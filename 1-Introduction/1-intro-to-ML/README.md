@@ -1,4 +1,4 @@
-# [Lesson Topic]
+# Introduction to Machine Learning
 
 Add a sketchnote if possible/appropriate
 
