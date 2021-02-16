@@ -16,18 +16,28 @@ Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson cur
 
 **Hearty thanks to our authors (list all authors here)**
 
-> **Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum. If you would like to create your own lessons, we have also included a [lesson template](lesson-template/README.md)
 
-> **Students**, to use this curriculum on your own, fork the entire repo and complete the exercises on your own, starting with a pre-lecture quiz, then reading the lecture and completing the rest of the activities. Try to create the projects by comprehending the lessons rather than copying the solution code; however that code is available in the `/solutions` folders in each project-oriented lesson. Another idea would be to form a study group with friends and go through the content together. For further study, we recommend [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) and by watching the videos mentioned below.
+**Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum. If you would like to create your own lessons, we have also included a [lesson template](lesson-template/README.md)
 
-> Your promo video here
+**Students**, to use this curriculum on your own, fork the entire repo and complete the exercises on your own:
+
+- Start with a pre-lecture quiz
+- Read the lecture and complete the activities, pausing and reflecting at each knowledge check. 
+- Try to create the projects by comprehending the lessons rather than copying the solution code; however that code is available in the `/solutions` folders in each project-oriented lesson. 
+- Take the post-lecture quiz
+- Complete the challenge
+- Complete the assignment
+- Consider forming a study group with friends and go through the content together. 
+- For further study, we recommend [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) and by watching the videos mentioned below.
+
+> Future space for Promo Video
 [![Promo video](screenshot.png)](https://youtube.com/watch?v=R1wrdtmBSII "Promo video")
 
 > Click the image above for a video about the project and the folks who created it!
 
 ## Pedagogy
 
-We have chosen two pedagogical tenets while building this curriculum: ensuring that it is project-based and that it includes frequent quizzes. [description]
+We have chosen two pedagogical tenets while building this curriculum: ensuring that it is **project-based** and that it includes **frequent quizzes**. In addition, this curriculum has a common **theme** to give it cohesion.
 
 By ensuring that the content aligns with projects, the process is made more engaging for students and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12 week cycle.
 
@@ -46,7 +56,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 - assignment
 - post-lesson quiz
 
-> **A note about quizzes**: All quizzes are contained [in this app](link a quiz app here), for 48 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder. They are gradually being localized.
+> **A note about quizzes**: All quizzes are contained [in this app](link a quiz app here), for 48 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
 |       | Project Name |         Concepts Taught          | Learning Objectives                                                  |                 Linked Lesson                 | Written Lesson | Sketchnote | Assignment | Starting Quiz | Ending Quiz | Video | Author |
 | :---: | :----------: | :------------------------------: | -------------------------------------------------------------------- | :-------------------------------------------: | :------------: | :--------: | :--------: | :-----------: | :---------: | :---: | :----: |
