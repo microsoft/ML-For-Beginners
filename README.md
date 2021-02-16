@@ -58,11 +58,16 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 > **A note about quizzes**: All quizzes are contained [in this app](link a quiz app here), for 48 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
-|       | Project Name/Group |         Concepts Taught          | Learning Objectives                                                  |                 Linked Lesson                 | Written Lesson | Sketchnote | Assignment | Starting Quiz | Ending Quiz | Video | Author |
-| :---: | :----------: | :------------------------------: | -------------------------------------------------------------------- | :-------------------------------------------: | :------------: | :--------: | :--------: | :-----------: | :---------: | :---: | :----: |
-|  01   | Introduction | Introduction to Machine Learning | Learn the basic concepts behind Machine Learning                     |  [link](1/../lesson/1-intro-to-ML/README.md)  |                |            |            |               |             |       | Author |
-|  02   |   History    | The History of Machine Learning  | Learn the history underlying this field                              | [link](1/../lesson/2-history-of-ML/README.md) |                |            |            |               |             |       | Author |
-|  03   |    Ethics    |  The Ethics of Machine Learning  | Learn the ethics that are important to understand when working in ML | [link](1/../lesson/3-ethics-of-ML/README.md)  |                |            |            |               |             |       | Author |
+
+|       | Project Name/Group |            Concepts Taught             | Learning Objectives                                                        |                  Linked Lesson                   | Written Lesson | Sketchnote | Assignment | Starting Quiz | Ending Quiz | Video | Author |
+| :---: | :----------------: | :------------------------------------: | -------------------------------------------------------------------------- | :----------------------------------------------: | :------------: | :--------: | :--------: | :-----------: | :---------: | :---: | :----: |
+|  01   |    Introduction    |    Introduction to Machine Learning    | Learn the basic concepts behind Machine Learning                           |  [link](1-Introduction/1-intro-to-ML/README.md)  |                |            |            |               |             |       | Author |
+|  02   |    Introduction    |    The History of Machine Learning     | Learn the history underlying this field                                    | [link](1-Introduction/2-history-of-ML/README.md) |                |            |            |               |             |       | Author |
+|  03   |    Introduction    |     The Ethics of Machine Learning     | Learn the ethics that are important to understand when working in ML       | [link](1-Introduction/3-ethics-of-ML/README.md)  |                |            |            |               |             |       | Author |
+|  04   |      Tooling       |           Tools of the Trade           | Get set up to become an ML Programmer                                      |      [link](2-Tooling/1-tools/README.md)       |                |            |            |               |             |       | Author |
+|  05   |      Tooling       | Programming for Machine Learning Tasks | Learn basic strategies for programming for ML, using Python and JavaScript |  [link](1-Introduction/2-programming/README.md)  |                |            |            |               |             |       | Author |
+|  06   |      Tooling       |           Math Basics for ML           | Basic mathematics tasks useful for Machine Learning                        |    [link](2-Tooling/lesson/3-math/README.md)     |                |            |            |               |             |       | Author |
+|  07   |      Tooling       |         Algorithms of Interest         | Learn useful algorithms that you might use for various ML tasks            |     [link](2-Tooling4-algorithms/README.md)      |                |            |            |               |             |       | Author |
 
 ## Offline access
 
