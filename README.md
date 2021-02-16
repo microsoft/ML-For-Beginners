@@ -58,7 +58,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 > **A note about quizzes**: All quizzes are contained [in this app](link a quiz app here), for 48 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
-|       | Project Name |         Concepts Taught          | Learning Objectives                                                  |                 Linked Lesson                 | Written Lesson | Sketchnote | Assignment | Starting Quiz | Ending Quiz | Video | Author |
+|       | Project Name/Group |         Concepts Taught          | Learning Objectives                                                  |                 Linked Lesson                 | Written Lesson | Sketchnote | Assignment | Starting Quiz | Ending Quiz | Video | Author |
 | :---: | :----------: | :------------------------------: | -------------------------------------------------------------------- | :-------------------------------------------: | :------------: | :--------: | :--------: | :-----------: | :---------: | :---: | :----: |
 |  01   | Introduction | Introduction to Machine Learning | Learn the basic concepts behind Machine Learning                     |  [link](1/../lesson/1-intro-to-ML/README.md)  |                |            |            |               |             |       | Author |
 |  02   |   History    | The History of Machine Learning  | Learn the history underlying this field                              | [link](1/../lesson/2-history-of-ML/README.md) |                |            |            |               |             |       | Author |
