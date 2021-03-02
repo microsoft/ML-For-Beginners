@@ -59,16 +59,32 @@ By ensuring that the content aligns with projects, the process is made more enga
 > **A note about quizzes**: All quizzes are contained [in this app](link a quiz app here), for 48 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
 
-| Lesson Number |            Project Name/Group            |           Concepts Taught            | Learning Objectives                                                                                  |                   Linked Lesson                    | Author |
+| Lesson Number | Project Name/Group | Concepts Taught | Learning Objectives | Linked Lesson | Author |
 | :-----------: | :--------------------------------------: | :----------------------------------: | ---------------------------------------------------------------------------------------------------- | :------------------------------------------------: | :----: |
-|      01       | [Introduction](1-Introduction/README.md) |   Introduction to Machine Learning   | Learn the basic concepts behind Machine Learning                                                     |  [lesson](1-Introduction/1-intro-to-ML/README.md)  |  Amy   |
-|      02       | [Introduction](1-Introduction/README.md) |   The History of Machine Learning    | Learn the history underlying this field                                                              | [lesson](1-Introduction/2-history-of-ML/README.md) |  Amy   |
-|      03       |     North American Pumpkin Prices 🎃      | [Regression](2-Regression/README.md) | Get started with Python and Scikit-Learn for Regression models                                       |      [lesson](2-Regression/1-Tools/README.md)      |  Jen   |
-|      04       |     North American Pumpkin Prices 🎃      | [Regression](2-Regression/README.md) | Visualize and clean data in preparation for ML                                                       |      [lesson](2-Regression/2-Data/README.md)       |  Jen   |
-|      05       |     North American Pumpkin Prices 🎃      | [Regression](2-Regression/README.md) | Build a Linear Regression model                                                                      |     [lesson](2-Regression/3-Linear/README.md)      |  Jen   |
-|      06       |     North American Pumpkin Prices 🎃      | [Regression](2-Regression/README.md) | Build a Logistic Regression model                                                                    |    [lesson](2-Regression/4-Logistic/README.md)     |  Jen   |
-|      23       |                  Future                  |    The Ethics of Machine Learning    | What are the important ethical issues apparent now and how will they impact the field going forward? |        [lesson](8-Future/Ethics/README.md)         |        |
-|      24       |                  Future                  |    The Future of Machine Learning    | What are the important trends that will shape the future of ML?                                      |     [lesson](8-Future/Future-Trends/README.md)     |        |
+| 01 | [Introduction](1-Introduction/README.md) | Introduction to Machine Learning | Learn the basic concepts behind Machine Learning | [lesson](1-Introduction/1-intro-to-ML/README.md) | Amy |
+| 02 | [Introduction](1-Introduction/README.md) | The History of Machine Learning | Learn the history underlying this field | [lesson](1-Introduction/2-history-of-ML/README.md) | Amy |
+| 03 | North American Pumpkin Prices 🎃 | [Regression](2-Regression/README.md) | Get started with Python and Scikit-Learn for Regression models | [lesson](2-Regression/1-Tools/README.md) | Jen |
+| 04 | North American Pumpkin Prices 🎃 | [Regression](2-Regression/README.md) | Visualize and clean data in preparation for ML | [lesson](2-Regression/2-Data/README.md) | Jen |
+| 05 | North American Pumpkin Prices 🎃 | [Regression](2-Regression/README.md) | Build a Linear Regression model | [lesson](2-Regression/3-Linear/README.md) | Jen |
+| 06 | North American Pumpkin Prices 🎃 | [Regression](2-Regression/README.md) | Build a Logistic Regression model | [lesson](2-Regression/4-Logistic/README.md) | Jen |
+| 07 | Delicious Asian Recipes 🍜 | [Clustering]() | tbd | [lesson]() |  |
+| 08 | Delicious Asian Recipes 🍜 | [Clustering]() | tbd | [lesson]() |  |
+| 09 | Delicious Asian Recipes 🍜 | [Clustering]() | tbd | [lesson]() |  |
+| 10 | Delicious Asian Recipes 🍜 | [Clustering]() | tbd | [lesson]() |  |
+| 11 | Interesting Maya Architecture 🦜 | [Classification]() | tbd | [lesson]() |  |
+| 12 | Interesting Maya Architecture 🦜 | [Classification]() | tbd | [lesson]() |  |
+| 13 | Interesting Maya Architecture 🦜 | [Classification]() | tbd | [lesson]() |  |
+| 14 | Interesting Maya Architecture 🦜 | [Classification]() | tbd | [lesson]() |  |
+| 15 | Romantic Hotels of Europe ♥️ | [Natural Language Processing]() | tbd | [lesson]() | Stephen  |
+| 16 | Romantic Hotels of Europe ♥️ | [Natural Language Processing]() | tbd | [lesson]() | Stephen  |
+| 17 | Romantic Hotels of Europe ♥️ | [Natural Language Processing]() | tbd | [lesson]() | Stephen  |
+| 18 | Romantic Hotels of Europe ♥️ | [Natural Language Processing]() | tbd | [lesson]() | Stephen  |
+| 19 | Power Usage in India ⚡️ | [Time Series]() | tbd | [lesson]() | Francesca |
+| 20 | Power Usage in India ⚡️ | [Time Series]() | tbd | [lesson]() | Francesca |
+| 21 | A fancy French mousetrap 🍫 | [Reinforcement Learning]() | tbd | [lesson]() |  |
+| 22 | A fancy French mousetrap 🍫 | [Reinforcement Learning]() | tbd | [lesson]() |  |
+| 23 | Future | The Ethics of Machine Learning | What are the important ethical issues apparent now and how will they impact the field going forward? | [lesson](8-Future/Ethics/README.md) | |
+| 24 | Future | The Future of Machine Learning | What are the important trends that will shape the future of ML? | [lesson](8-Future/Future-Trends/README.md) | |
 ## Offline access
 
 You can run this documentation offline by using [Docsify](https://docsify.js.org/#/). Fork this repo, [install Docsify](https://docsify.js.org/#/quickstart) on your local machine, and then in the root folder of this repo, type `docsify serve`. The website will be served on port 3000 on your localhost: `localhost:3000`.
