@@ -1,8 +1,7 @@
 # Build a Regression Model using Scikit-Learn: Data
 
 > Sketchnote
-## [Pre-lecture quiz](link-to-quiz-app)
-
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 
 ### Introduction
 
@@ -43,7 +42,7 @@ code blocks
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
 
 ## Review & Self Study
 

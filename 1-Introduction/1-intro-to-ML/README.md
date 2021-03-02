@@ -4,7 +4,7 @@ Add a sketchnote if possible/appropriate
 
 ![Embed a video here if available](video-url)
 
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
 
 Describe what we will learn
 
@@ -46,7 +46,7 @@ code blocks
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2/)
 
 ## Review & Self Study
 
