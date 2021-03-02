@@ -1,18 +1,15 @@
 # [Lesson Topic]
 
-Add a sketchnote if possible/appropriate
-
-![Embed a video here if available](video-url)
+> Sketchnote
 
 ## [Pre-lecture quiz](link-to-quiz-app)
-
-Describe what we will learn
-
 ### Introduction
 
-Describe what will be covered
-
-> Notes
+In this lesson, you will get set up to use Skikit-Learn.
+- What is Skikit-Learn
+- Installing the library
+- Installing Python
+- Using Jupyter notebooks in Visual Studio Code
 
 ### Prerequisite
 
