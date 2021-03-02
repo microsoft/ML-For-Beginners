@@ -7,6 +7,7 @@
 
 In this lesson, you will learn:
 - Good reasons to create a regression model for a machine learning problem
+- Some math behind regression models
 - Using Scikit-Learn to evaluate your data
 - Preparing your data for training, testing, and evaluation
 

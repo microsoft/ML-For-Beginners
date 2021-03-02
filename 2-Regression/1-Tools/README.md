@@ -10,9 +10,10 @@ Describe what we will learn
 
 ### Introduction
 
-Describe what will be covered
-
-> Notes
+In this lesson, you will learn:
+- How to configure Visual Studio Code for machine learning tasks
+- An introduction to Scikit-Learn, including installation
+- Some tips on working with Python for ML
 
 ### Prerequisite
 
