@@ -1,14 +1,21 @@
-# Tools of the Trade for Machine Learning
+# Regression Models for Machine Learning
 
-In this section, you will learn about the tools that are useful for machine learning, essential software that will help you master the field. In addition, you will find lessons here about programming basics, useful math, and algorithms that you'll use as you become more skilled.
+## Regional topic: Regression models for pumpkin prices in North America
+
+In North America, pumpkins are often carved into scary faces for Halloween. Let's discover more about these fascinating vegetables!
+## What you will learn
+
+In this section, you will get set up to begin machine learning tasks, including configuring Visual Studio code to manage notebooks, the common environment for data scientists. You will discover Scikit-Learn, a library for machine learning, and you will build your first models, focusing on Regression models in this chapter.
 
 ### Topics
 
-1. [Tools of the Trade](1-tools/README.md)
-2. [Programming Basics](2-programming/README.md)
-3. [Basic Math](3-math/README.md)
-4. [Useful Algorithms](3-algorithms/README.md)
+1. [Tools of the Trade](1-Tools/README.md)
+2. [Managing Data](2-Data/README.md)
+3. [Regression with a Linear Model](3-Linar/README.md)
+4. [Regression with a Logistic Model](4-Logistic/README.md)
 
 ### Credits
 
-"Introduction to" was written with ♥️ by [Name](Twitter)
+"ML with Regression" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper)
+
+The pumpkin dataset is suggested by [this project on Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) and its data is sourced from the ]Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture. This data is in the public domain.
