@@ -1,15 +1,18 @@
-# [Lesson Topic]
+# Introduction to Machine Learning
 
-> Sketchnote
+Add a sketchnote if possible/appropriate
 
-## [Pre-lecture quiz](link-to-quiz-app)
+![Embed a video here if available](video-url)
+
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+
+Describe what we will learn
+
 ### Introduction
 
-In this lesson, you will get set up to use Skikit-Learn.
-- What is Skikit-Learn
-- Installing the library
-- Installing Python
-- Using Jupyter notebooks in Visual Studio Code
+Describe what will be covered
+
+> Notes
 
 ### Prerequisite
 
@@ -43,7 +46,7 @@ code blocks
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 
 ## Review & Self Study
 
