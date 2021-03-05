@@ -50,11 +50,11 @@ Now that Python is set up in your local environment and you are comfortable with
 According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
 ### Let's unpack some of this jargon:
 
-> 🎓 A machine learning **model** 
+> 🎓 A machine learning **model** is a mathematical model that generates predictions given data to which it has not been exposed. It builds these predictions based on its analysis of data and extrapolating patterns.
 
 > 🎓 **[Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning)** works by mapping an input to an output based on example pairs. It uses **labeled** training data to build a function to make predictions. [Download a printable Zine about Supervised Learning](https://zines.jenlooper.com/zines/supervisedlearning.html). Regression, which is covered in this group of lessons, is a type of supervised learning.
 
-> 🎓 [Unsupervised Learning](https://en.wikipedia.org/wiki/Unsupervised_learning) works similarly but it maps pairs using **unlabeled data**. [Download a printable Zine about Supervised Learning](https://zines.jenlooper.com/zines/unsupervisedlearning.html)
+> 🎓 **[Unsupervised Learning](https://en.wikipedia.org/wiki/Unsupervised_learning)** works similarly but it maps pairs using **unlabeled data**. [Download a printable Zine about Supervised Learning](https://zines.jenlooper.com/zines/unsupervisedlearning.html)
 
 > 🎓 **[Model Fitting](https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py)** in the context of machine learning refers to the accuracy of the model's underlying function as it attempts to analyze data with which it is not familiar. **Underfitting** and **overfitting** are common problems that degrade the quality of the model as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
 
