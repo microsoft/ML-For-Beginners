@@ -83,7 +83,7 @@ import numpy as np
 from sklearn import datasets, linear_model, model_selection
 ```
 
-1. Print out a bit of the built-in [diabetes housing dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset). It includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
+2. Print out a bit of the built-in [diabetes housing dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset). It includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
 
 age: age in years
 bmi: body mass index
@@ -92,7 +92,7 @@ s1 tc: T-Cells (a type of white blood cells)
 
 ✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
 
-1. In a new cell, load the diabetes dataset as data and target (X and y, loaded as a tuple). X will be a data matrix, and y will be the regression target. Add some print commands to show the shape of the data matrix and its first element:
+3. In a new cell, load the diabetes dataset as data and target (X and y, loaded as a tuple). X will be a data matrix, and y will be the regression target. Add some print commands to show the shape of the data matrix and its first element:
 
 > 🎓 A **tuple** is an [ordered list of elements](https://en.wikipedia.org/wiki/Tuple).
 
@@ -109,19 +109,19 @@ You can see that this data has 442 items shaped in arrays of 10 elements:
  -0.04340085 -0.00259226  0.01990842 -0.01764613]
 ```
 
-2. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's newaxis function. We are going to use Linear Regression to generate a line between values in this data, according to a pattern it determines.
+4. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's newaxis function. We are going to use Linear Regression to generate a line between values in this data, according to a pattern it determines.
 
 ```python
 X = X[:, np.newaxis, 2]
 ```
 ✅ At any time, print out the data to check its shape
 
-1. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the targets (y) into test and training sets. Scikit-Learn has a straightforward way to do this; you can split your test data at a given point.
+5. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the targets (y) into test and training sets. Scikit-Learn has a straightforward way to do this; you can split your test data at a given point.
 
 ```python
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
 ```
-4. Now you are ready to train your model! Load up the Linear Regression model and train it with your X and y training sets:
+6. Now you are ready to train your model! Load up the Linear Regression model and train it with your X and y training sets:
 
 ✅ `model.fit` is a command you'll see in many ML libraries such as TensorFlow
 
@@ -130,13 +130,13 @@ model = linear_model.LinearRegression()
 model.fit(X_train, y_train)
 ```
 
-1. Then, create a prediction using test data. This will be used to draw the line between data groups
+7. Then, create a prediction using test data. This will be used to draw the line between data groups
 
 ```python
 y_pred = model.predict(X_test)
 ```
 
-6. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
+8. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
 
 ```python
 plt.scatter(X_test, y_test,  color='black')
