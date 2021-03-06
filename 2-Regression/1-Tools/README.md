@@ -18,11 +18,11 @@ In this lesson, you will learn:
 
 > Click this image to watch a video on using Python within VS Code.
 
-1. Ensure that [Python](https://www.python.org/downloads/) is installed on your computer. You will use Python for many data science and machine learning tasks. Most computer systems already include a Python installation. There are useful [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers) available as well to ease the setup for some users. Some usages of Python, however, require one version of the software, whereas others require a different version. For this reason, it's useful to work within a virtual environment. 
+1. Ensure that [Python](https://www.python.org/downloads/) is installed on your computer. You will use Python for many data science and machine learning tasks. Most computer systems already include a Python installation. There are useful [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) available as well to ease the setup for some users. Some usages of Python, however, require one version of the software, whereas others require a different version. For this reason, it's useful to work within a virtual environment. 
 
-2. Make sure you have Visual Studio Code installed on your computer. Follow [these instructions](https://code.visualstudio.com/) for the basic installation. You are going to use Python in Visual Studio Code in this course, so you might want to brush up on how to [configure](https://docs.microsoft.com/learn/modules/python-install-vscode/) VS Code for Python development.
+2. Make sure you have Visual Studio Code installed on your computer. Follow [these instructions](https://code.visualstudio.com/) for the basic installation. You are going to use Python in Visual Studio Code in this course, so you might want to brush up on how to [configure](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) VS Code for Python development.
 
-> Get comfortable with Python by working through this collection of [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7)
+> Get comfortable with Python by working through this collection of [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
 
 3. Install Scikit-Learn by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
 ## Your ML Authoring Environment
@@ -150,5 +150,7 @@ Congratulations, you just built your first Linear Regression model, created a pr
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 
 ## Review & Self Study
+
+Read more about the concept of Regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
 
 **Assignment**: [Assignment Name](assignment.md)
