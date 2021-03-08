@@ -12,6 +12,7 @@ In this lesson, you will learn:
 - Getting used to working with Jupyter notebooks
 - An introduction to Scikit-Learn, including installation
 - An introduction to Linear Regression with a hands-on exercise 
+  
 ## Installations and Configurations
 
 [![Using Python with Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Using Python with Visual Studio Code")
@@ -62,7 +63,7 @@ According to their [website](https://scikit-learn.org/stable/getting_started.htm
 
 > 🎓 **Model Selection and Evaluation** is the process whereby data scientists evaluate the accuracy of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
 
-In this course, you will use Scikit-Learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI and ML' curriculum. 
+In this course, you will use Scikit-Learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
 
 Scikit-Learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-Learn with some basic data.
 ## Your First Scikit-Learn Notebook
