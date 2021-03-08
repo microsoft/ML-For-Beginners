@@ -67,15 +67,15 @@ In this course, you will use Scikit-Learn and other tools to build machine learn
 Scikit-Learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-Learn with some basic data.
 ## Your First Scikit-Learn Notebook
 
-> This tutorial was inspired by the [Linear Regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Skikit-Learn's web site.
+> This tutorial was inspired by the [Linear Regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Scikit-Learn's web site.
 
 In the `notebook.ipynb` file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression Model, when visualized, might show groupings of variables that would help you organize your theoretical clinical trials. 
+In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression Model, when visualized, might show groupings of variables that would help you organize your theoretical clinical trials.  
 
 Let's get started on this task.
 
-1. Import some libraries to help with your tasks. First, import matplotlib, a useful graphing tool. We will use it to create a line plot. Also import [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html), a useful library for handling numeric data in Python. Loa up datasets and the linear_model from the Scikit-Learn library. Load model_selection for splitting data into training and test sets. Finally, load the metrics package to handle some math tasks we will use to plot a line. 
+1. Import some libraries to help with your tasks. First, import `matplotlib`, a useful [graphing tool](https://matplotlib.org/). We will use it to create a line plot. Also import [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html), a useful library for handling numeric data in Python. Load up `datasets` and the `linear_model` from the Scikit-Learn library. Load `model_selection` for splitting data into training and test sets. 
 
 ```python
 import matplotlib.pyplot as plt
@@ -95,12 +95,14 @@ s1 tc: T-Cells (a type of white blood cells)
 3. In a new cell, load the diabetes dataset as data and target (X and y, loaded as a tuple). X will be a data matrix, and y will be the regression target. Add some print commands to show the shape of the data matrix and its first element:
 
 > 🎓 A **tuple** is an [ordered list of elements](https://en.wikipedia.org/wiki/Tuple).
+✅ Think a bit about the relationship between the data and the regression target. Linear regression predicts relationships between feature X and target variable y. Can you find the [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for the diabetes dataset in the documentation? What is this dataset demonstrating, given that target? 
 
 ```python
 X, y = datasets.load_diabetes(return_X_y=True)
 print(X.shape)
 print(X[0])
 ```
+
 You can see that this data has 442 items shaped in arrays of 10 elements:
 
 ```text
@@ -116,7 +118,7 @@ X = X[:, np.newaxis, 2]
 ```
 ✅ At any time, print out the data to check its shape
 
-5. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the targets (y) into test and training sets. Scikit-Learn has a straightforward way to do this; you can split your test data at a given point.
+5. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the target (y) into test and training sets. Scikit-Learn has a straightforward way to do this; you can split your test data at a given point.
 
 ```python
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
@@ -145,7 +147,7 @@ plt.show()
 ```
 Congratulations, you just built your first Linear Regression model, created a prediction with it, and displayed it in a plot!
 
-🚀 Challenge: Try to plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]` 
+🚀 Challenge: Try to plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 
