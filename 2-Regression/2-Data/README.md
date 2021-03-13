@@ -140,4 +140,6 @@ This is a more useful data visualization! It seems to indicate that the highest 
 
 ## Review & Self Study
 
+Take a look at the many ways to visualize data. Make a list of the various libraries available and note which are best for given types of tasks, for example 2D visualizations vs. 3D visualizations. What do you discover?
+
 **Assignment**: [Exploring visualization](assignment.md)

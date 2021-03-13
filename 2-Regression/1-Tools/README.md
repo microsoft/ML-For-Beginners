@@ -157,4 +157,4 @@ Congratulations, you just built your first Linear Regression model, created a pr
 
 Read more about the concept of Regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
 
-**Assignment**: [Assignment Name](assignment.md)
+**Assignment**: [A different dataset](assignment.md)
