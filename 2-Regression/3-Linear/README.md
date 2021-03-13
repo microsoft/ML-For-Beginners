@@ -44,10 +44,10 @@ code blocks
 
 🚀 Challenge: Add a challenge for students to work on collaboratively in class to enhance the project
 
-Optional: add a screenshot of the completed lesson's UI if appropriate
-
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
 
 ## Review & Self Study
+
+In this lesson we learned about linear regression 
 
 **Assignment**: [Assignment Name](assignment.md)
