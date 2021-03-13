@@ -71,10 +71,10 @@ By ensuring that the content aligns with projects, the process is made more enga
 |      08       |        Delicious Asian Recipes 🍜         |            [Clustering]()            | tbd                                                                                                  |                     [lesson]()                     |           |
 |      09       |        Delicious Asian Recipes 🍜         |            [Clustering]()            | tbd                                                                                                  |                     [lesson]()                     |           |
 |      10       |        Delicious Asian Recipes 🍜         |            [Clustering]()            | tbd                                                                                                  |                     [lesson]()                     |           |
-|      11       |     Introduction to Classification      |          [Classification]()          | tbd                                                                                                  |                     [lesson]()                     |           |
-|      12       |     Interesting Maya Architecture 🦜      |          [Classification]()          | tbd                                                                                                  |                     [lesson]()                     |           |
-|      13       |     Interesting Maya Architecture 🦜      |          [Classification]()          | tbd                                                                                                  |                     [lesson]()                     |           |
-|      14       |     Interesting Maya Architecture 🦜      |          [Classification]()          | tbd                                                                                                  |                     [lesson]()                     |           |
+|      11       |     Introduction to Classification      |          [Classification]()          |                                                                                                   |                     [lesson]()                     |    Paige       |
+|      12       |     Interesting Maya Architecture 🦜      |          [Classification]()          |                                                                                                   |                     [lesson]()                     |    Paige       |
+|      13       |     Interesting Maya Architecture 🦜      |          [Classification]()          |                                                                                                   |                     [lesson]()                     |    Paige       |
+|      14       |     Interesting Maya Architecture 🦜      |          [Classification]()          |                                                                                                   |                     [lesson]()                     |    Paige       |
 |      15       |       Introduction to NLP        |   [Natural Language Processing]()    | tbd                                                                                                  |                     [lesson]()                     |  Stephen  |
 |      16       |       Romantic Hotels of Europe ♥️        |   [Natural Language Processing]()    | tbd                                                                                                  |                     [lesson]()                     |  Stephen  |
 |      17       |       Romantic Hotels of Europe ♥️        |   [Natural Language Processing]()    | tbd                                                                                                  |                     [lesson]()                     |  Stephen  |
@@ -89,6 +89,4 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 You can run this documentation offline by using [Docsify](https://docsify.js.org/#/). Fork this repo, [install Docsify](https://docsify.js.org/#/quickstart) on your local machine, and then in the root folder of this repo, type `docsify serve`. The website will be served on port 3000 on your localhost: `localhost:3000`.
 
-<a href="https://trackgit.com">
-<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/kl138v7a95oczz64x6ik" alt="trackgit-views" />
-</a>
+
