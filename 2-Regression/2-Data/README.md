@@ -23,12 +23,12 @@ What if you are trying to correlate two points of data - like age to height? You
 But it's not very common to be gifted a dataset that is completely ready to use to create a ML model. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
 ### Preparation
 
-In this folder you will find a .csv file called `US-pumpkins.csv` which includes 1757 lines of data about the pumpkin market, sorted into groupings by city. This is the raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture. 
+In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](../../data/US-pumpkins.csv) which includes 1757 lines of data about the pumpkin market, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
 
 This data is in the public domain. It can be downloaded in many separate files, per city, from the USDA web site. To avoid too many separate files we have concatenated all the city data into one spreadsheet. Take a look at this file.
 ## The Pumpkin data
 
-What do you notice about this data? First, you see that it is a mix of text and numeric data. There are also dates. Second, you see that there's a considerable amount of missing and mixed data. To build a good model, you will need to handle that. 
+What do you notice about this data? First, you see that it is a mix of text and numeric data. There are also dates. Second, you see that there's a considerable amount of missing and mixed data. To build a good model, you will need to handle that.
 
 What question can you ask of this data, using a Regression technique? What about "Predict the price of a pumpkin for sale during a given month". Looking again at the data, there are some changes you need to make to create the data structure necessary for the task. 
 ### Analyze the Pumpkin Data
@@ -39,7 +39,7 @@ Open the `notebook.ipynb` file in VS Code and import the spreadsheet in to a new
 
 ```python
 import pandas as pd
-pumpkins = pd.read_csv('US-pumpkins.csv')
+pumpkins = pd.read_csv('../../data/US-pumpkins.csv')
 pumpkins.head()
 ```
 
@@ -108,7 +108,7 @@ One data visualization libary that works well in Jupyter notebooks is [Matplotli
 > Get more experience with data visualization in [these tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa).
 ## Experiment with Matplotlib
 
-Try to create some simple plots to display the new dataframe you just created. What would a basic line plot show?
+Try to create some basic plots to display the new dataframe you just created. What would a basic line plot show?
 
 Import Matplotlib at the top of the file, under the Pandas import:
 
@@ -132,14 +132,12 @@ Add a cell to create a grouped bar chart:
 new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
 plt.ylabel("Pumpkin Price")
 ```
+
 This is a more useful data visualization! It seems to indicate that the highest price for pumpkins occurs in September and October. Does that meet your expectation? Why or why not?
 
-🚀 Challenge: Add a challenge for students to work on collaboratively in class to enhance the project
-
-Optional: add a screenshot of the completed lesson's UI if appropriate
-
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+🚀 Challenge: Explore the different types of visualization that matplotlib offers. Which types are most appropriate for regression problems?
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
 
 ## Review & Self Study
 
-**Assignment**: [Assignment Name](assignment.md)
+**Assignment**: [Exploring visualization](assignment.md)
