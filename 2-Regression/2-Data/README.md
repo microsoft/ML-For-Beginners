@@ -101,7 +101,7 @@ Now, you can analyze the pricing per unit based on their bushel measurement. If 
 ✅ Did you notice that pumpkins sold by the half-bushel are very expensive? Can you figure out why? Hint: little pumpkins are way pricier than big ones, probably because there are so many more of them per bushel, given the unused space taken by one big hollow pie pumpkin.
 ## Visualization Strategies
 
-Part of the data scientist's role is to demonstrate the quality and nature of the data they are working with. To do this, they often create interesting visualizations, or plots, graphs, and charts, showing different aspects of data. In this way, they are able to visually show relationships and gaps that are otherwise hard to uncover.
+Part of the data scientist's role is to demonstrate the quality and nature of the data they are working with. To do this, they often create interesting visualizations, or plots, graphs, and charts, showing different aspects of data. In this way, they are able to visually show relationships and gaps that are otherwise hard to uncover. Visualizations can also help determine the machine learning technique most appropriate for the data. A scatterplot that seems to follow a line, for example, indicates that the data is a good candidate for a linear regression exercise.
 
 One data visualization libary that works well in Jupyter notebooks is [Matplotlib](https://matplotlib.org/) (which you also saw in the previous lesson).
 
@@ -119,12 +119,14 @@ import matplotlib.pyplot as plt
 Rerun the entire notebook to refresh. Then at the bottom of the notebook, add a cell to plot the data as a box:
 
 ```python
-new_pumpkins.plot(kind='bar', y='Price')
+price = new_pumpkins.Price
+month = new_pumpkins.Month
+plt.scatter(price, month)
 plt.show()
 ```
 Is this a useful plot? Does anything about it surprise you?
 
-It's not particularly useful, as there are too many numbers in the x axis. All it does is show all the prices in your data. To get charts to display useful data, you usually need to group the data somehow. Let's try creating a plot where the y axis shows the months and the data demonstrates the distribution of data. 
+It's not particularly useful as all it does is display in your data as a spread of points in a given month. To get charts to display useful data, you usually need to group the data somehow. Let's try creating a plot where the y axis shows the months and the data demonstrates the distribution of data. 
 
 Add a cell to create a grouped bar chart:
 
