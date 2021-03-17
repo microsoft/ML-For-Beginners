@@ -7,6 +7,10 @@
 
 The lessons in this section cover types of Regression in the context of machine learning. Regression models can help determine the relationship between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes datapoints.
 
+In this series of lessons, you'll discover the difference between Linear vs. Logistic Regression, and when you should use one or the other.
+
+But before you do anything, make sure you have the right tools in place!
+
 In this lesson, you will learn:
 - How to configure your computer for local machine learning tasks
 - Getting used to working with Jupyter notebooks
@@ -72,7 +76,9 @@ Scikit-Learn makes it straightforward to build models and evaluate them for use.
 
 In the `notebook.ipynb` file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression Model, when visualized, might show groupings of variables that would help you organize your theoretical clinical trials.  
+In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression Model, when visualized, might show information about variables that would help you organize your theoretical clinical trials. 
+
+> ✅ There are many types of Regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use Linear Regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of recipe should be considered vegan or not, you're looking for a **category assignment** so you would use Logistic Regression. You'll learn more about Logistic Regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
 
 Let's get started on this task.
 
