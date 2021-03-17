@@ -29,12 +29,12 @@ As you learned in Lesson 1, the goal of a linear regression exercise is to be ab
 >
 > A common method of regression is **Least-Squares Regression** which means that all the datapoints surounding the regression line are squared and then added up. Ideally, that final sum is as small as possible, because we want a low number of errors, or `least-squares`.
 >
-> One more term to understand is the **Correlation Coefficient** between given X and Y variables. For a scatterplot, you can quickly visualize this coefficient: a plot with datapoints scattered in a neat line have high correlation, but a plot with datapoints scattered everywhere between X and Y have a low correlation.
+> One more term to understand is the **Correlation Coefficient** between given X and Y variables. For a scatterplot, you can quickly visualize this coefficient. A plot with datapoints scattered in a neat line have high correlation, but a plot with datapoints scattered everywhere between X and Y have a low correlation.
 >
 > A good regression model will be one that has a low (nearly zero) Correlation Coefficient using the Least-Squares Regression method with a line of regression.
 
 ✅ Run the notebook accompanying this lesson. Does the data associating City to Price for pumpkin sales seem to have high or low correlation, according to your visual interpretation of the scatterplot?
-## Create a Regression Model correlating Pumpkin Datapoints
+## Create a Linear Regression Model correlating Pumpkin Datapoints
 
 Now that you have an understanding of the math behind this exercise, create a Regression model to see if you can predict which type of pumpkins will have the best pumpkin prices. Someone buying pumpkins for a holiday pumpkin patch might want this information to be able to pre-order the best-priced pumpkins for the patch (normally there is a mix of miniature and large pumpkins in a patch).
 
@@ -68,7 +68,7 @@ This is a negative correlation, meaning the slope heads downhill, but it's still
 Let's build this regression model
 ## Building the model
 
-Before building your model, create a fresh dataframe with only the data you intend to query. Drop any null data and see what the data looks like.
+Before building your model, do one more tidy-up of your data. Drop any null data and check once more what the data looks like.
 
 ```python
 new_pumpkins.dropna(inplace=True)
@@ -119,7 +119,8 @@ print('Mean squared error: ',
 print('Coefficient of determination: ',
       r2_score(y_test, pred)) 
 ```
-Because there's a reasonably high correlation between the two variables, there accuracy of this model isn't bad!
+
+Because there's a reasonably high correlation between the two variables, there accuracy of this model isn't too bad!
 
 ```
 Model Accuracy:  0.7327987875929955
@@ -138,11 +139,22 @@ plt.xticks(())
 plt.yticks(())
 
 plt.show()
-
 ```
+
+Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. Your holiday pumpkin patch will be beautiful.
 ## Polynomial Regression
 
- 
+Another type of Linear Regression is Polynomial Regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. Take another look at the relationship between City to Price in the new_pumpkins data.
+
+✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use Polynomial Regression
+
+```python
+import matplotlib.pyplot as plt
+plt.scatter('City','Price',data=new_pumpkins)
+```
+Does the resultant scatterplot seem like it could be analyzed by a straight line? Perhaps not. In this case, you should try Polynomial Regression.
+
+✅ Polynomials are mathematical expressions that might consist of one or more variables and coefficients
 
 🚀 Challenge: Test several different variables in this notebook to see how correlation corresponds to model accuracy.
 
