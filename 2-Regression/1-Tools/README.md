@@ -1,7 +1,7 @@
 # Get started with Python and Scikit-Learn for Regression models
 
-> Sketchnote Placeholder
-> 
+> Sketchnote on three types of Regression
+
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
 ## Introduction
 
