@@ -133,6 +133,8 @@ plt.ylabel('Price')
 
 plt.show()
 ```
+![A scatterplot showing package to price relationship](./images/linear.png)
+
 And you can test the model against a hypothetical variety:
 
 ```python
@@ -173,6 +175,8 @@ corr = poly_pumpkins.corr()
 corr.style.background_gradient(cmap='coolwarm')
 ```
 
+![A heatmap showing data correlation](./images/heatmap.png)
+
 Looking at this chart, you can visualize the good correlation between Package and Price. So you should be able to create a somewhat better model than the last one.
 
 Build out the X and y columns:
@@ -210,6 +214,9 @@ plt.ylabel('Price')
 plt.scatter(X,y, color="black")
 plt.show()
 ```
+
+![A polynomial plot showing package to price relationship](./images/polynomial.png)
+
 You can see a curved line that fits your data better. Let's check the model's accuracy:
 
 ```python

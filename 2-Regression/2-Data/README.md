@@ -16,7 +16,7 @@ The question you need answered will determine what type of ML algorithms you wil
 
 > infographic here
 
-What if you are trying to correlate two points of data - like age to height? You can use a regression model, as shown in the previous lesson, to draw the classical straight line through the scatterplot of points to show how, with age, height tends to increase. Thus you can predict, for a given group of people, their height given their age.
+What if you are trying to correlate two points of data - like age to height? You can use a linear regression model, as shown in the previous lesson, to draw the classical straight line through the scatterplot of points to show how, with age, height tends to increase. Thus you can predict, for a given group of people, their height given their age.
 
 > infographic here
 
@@ -124,6 +124,8 @@ month = new_pumpkins.Month
 plt.scatter(price, month)
 plt.show()
 ```
+![A scatterplot showing price to month relationship](./images/scatterplot.png)
+
 Is this a useful plot? Does anything about it surprise you?
 
 It's not particularly useful as all it does is display in your data as a spread of points in a given month. To get charts to display useful data, you usually need to group the data somehow. Let's try creating a plot where the y axis shows the months and the data demonstrates the distribution of data. 
@@ -134,6 +136,8 @@ Add a cell to create a grouped bar chart:
 new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
 plt.ylabel("Pumpkin Price")
 ```
+
+![A bar chart showing price to month relationship](./images/barchart.png)
 
 This is a more useful data visualization! It seems to indicate that the highest price for pumpkins occurs in September and October. Does that meet your expectation? Why or why not?
 
