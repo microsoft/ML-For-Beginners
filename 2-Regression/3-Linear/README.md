@@ -234,7 +234,10 @@ It does make sense! And, if this is a better model than the previous one, lookin
 
 🏆 Well done! You created two Regression models in one lesson. In the final section on Regression, you will learn about Logistic Regression to determine categories. 
 
-🚀 Challenge: Test several different variables in this notebook to see how correlation corresponds to model accuracy.
+---
+## 🚀Challenge
+
+Test several different variables in this notebook to see how correlation corresponds to model accuracy.
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
 

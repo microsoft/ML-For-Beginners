@@ -137,7 +137,10 @@ plt.ylabel("Pumpkin Price")
 
 This is a more useful data visualization! It seems to indicate that the highest price for pumpkins occurs in September and October. Does that meet your expectation? Why or why not?
 
-🚀 Challenge: Explore the different types of visualization that matplotlib offers. Which types are most appropriate for regression problems?
+---
+## 🚀Challenge
+
+Explore the different types of visualization that matplotlib offers. Which types are most appropriate for regression problems?
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
 
 ## Review & Self Study
