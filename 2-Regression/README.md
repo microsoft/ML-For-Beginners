@@ -11,8 +11,8 @@ In this section, you will get set up to begin machine learning tasks, including 
 
 1. [Tools of the Trade](1-Tools/README.md)
 2. [Managing Data](2-Data/README.md)
-3. [Regression with a Linear Model](3-Linar/README.md)
-4. [Regression with a Logistic Model](4-Logistic/README.md)
+3. [Linear and Polynomial Regression](3-Linear/README.md)
+4. [Logistic Regression](4-Logistic/README.md)
 
 ### Credits
 
