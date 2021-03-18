@@ -1,49 +1,25 @@
 # Logistic Regression to Predict Categories
 
-- orange or white by price
-- 
-
-Add a sketchnote if possible/appropriate
-
-![Embed a video here if available](video-url)
-
+> Sketchnote on Logistic Regression
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
-
-Describe what we will learn
 
 ### Introduction
 
-Describe what will be covered
+In this final lesson on Regression, one of the basic 'classic' ML techniques, we will take a look at Logistic Regression. You would use this technique to discover patterns to predict categories. 
 
-> Notes
+In this lesson, you will learn:
+- A new library for data visualization
+- Techniques for Logistic Regression
+## Prerequisite
 
-### Prerequisite
+Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one small category that we can work with: Color. Let's build a Logistic Regression model to predict that, given a pumpkin's size, what color it will be (orange or white). There is also a 'striped' category in our dataset but there are few instances, so we will not use it.
 
-What steps should have been covered before this lesson?
-
+> 🎃 Fun fact, we sometimes call white pumpkins 'ghost' pumpkins. They aren't very easy to carve, so they aren't as popular as the orange ones but they are cool looking!
 ### Preparation
 
-Preparatory steps to start this lesson
+We have loaded up the [starter notebook](./notebook.ipynb) with pumpkin data once again and cleaned it so as to preserve a dataset containing Color and Item Size.
 
----
 
-[Step through content in blocks]
-
-## [Topic 1]
-
-### Task:
-
-Work together to progressively enhance your codebase to build the project with shared code:
-
-```html
-code blocks
-```
-
-✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
-
-## [Topic 2]
-
-## [Topic 3]
 
 ---
 ## 🚀Challenge

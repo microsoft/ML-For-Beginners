@@ -1,4 +1,6 @@
 # Build a Regression Model using Scikit-Learn: Regression Two Ways
+
+> Sketchnote on Linear vs. Polynomial Regression
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 ### Introduction
 

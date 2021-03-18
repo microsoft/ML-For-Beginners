@@ -1,16 +1,16 @@
 # Build a Regression Model using Scikit-Learn: Prepare and Visualize Data
 
-> Sketchnote
+> Sketchnote on data and visualization
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 
 ### Introduction
 
+Now that you are set up with the tools you need to start tackling machine learning model-building with Scikit-Learn, you are ready to start asking questions of your data. As you work with data and apply ML solutions, it's very important to understand how to ask the right question to properly unlock the potentials of your dataset. 
+
 In this lesson, you will learn:
 - Preparing your data for model-building
-- Two data visualization techniques and libraries
+- Using Matplotlib for data visualization
 ### Asking the Right Question
-
-As you work with data and apply ML solutions, it's very important to understand how to ask the right question to properly unlock the potentials of your dataset. 
 
 The question you need answered will determine what type of ML algorithms you will leverage. For example, do you need to determine the differences between cars and trucks as they cruise down a highway via a video feed? You will need some kind of highly performant classification model to make that differentiation. It will need to be able to perform object detection, probably by showing bounding boxes around detected cars and trucks.
 
