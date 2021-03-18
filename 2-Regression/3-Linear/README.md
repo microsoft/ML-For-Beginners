@@ -67,7 +67,7 @@ print(new_pumpkins['Package'].corr(new_pumpkins['Price']))
 0.6061712937226021
 ```
 
-A good question to ask of this data will be: 'What price can I expect of a given pumpkin variety?'
+A good question to ask of this data will be: 'What price can I expect of a given pumpkin package?'
 
 Let's build this regression model
 ## Building A Linear Model
