@@ -156,7 +156,10 @@ plt.show()
 
 Congratulations, you just built your first Linear Regression model, created a prediction with it, and displayed it in a plot!
 
-🚀 Challenge: Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
+---
+## 🚀Challenge
+
+Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 
 ## Review & Self Study
