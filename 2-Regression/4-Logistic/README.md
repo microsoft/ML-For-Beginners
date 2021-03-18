@@ -1,4 +1,7 @@
-# Introduction to Machine Learning
+# Logistic Regression to Predict Categories
+
+- orange or white by price
+- 
 
 Add a sketchnote if possible/appropriate
 
@@ -42,7 +45,10 @@ code blocks
 
 ## [Topic 3]
 
-🚀 Challenge: Add a challenge for students to work on collaboratively in class to enhance the project
+---
+## 🚀Challenge
+
+Add a challenge for students to work on collaboratively in class to enhance the project
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
