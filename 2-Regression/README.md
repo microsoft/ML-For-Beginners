@@ -18,4 +18,4 @@ In this section, you will get set up to begin machine learning tasks, including 
 
 "ML with Regression" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper)
 
-The pumpkin dataset is suggested by [this project on Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) and its data is sourced from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture. This data is in the public domain.
+The pumpkin dataset is suggested by [this project on Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) and its data is sourced from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture. We have added some points around color based on variety to normalize the distribution. This data is in the public domain.
