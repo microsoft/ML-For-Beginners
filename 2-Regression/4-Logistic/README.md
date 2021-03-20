@@ -199,7 +199,7 @@ Using Seaborn again, plot the model's [Receiving Operating Characteristic](https
 
 ![ROC](./images/ROC.png)
 
-Finally, use Scikit-Learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Receiver' (AUC):
+Finally, use Scikit-Learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Curve' (AUC):
 
 ```python
 auc = roc_auc_score(y_test,y_scores[:,1])
