@@ -14,11 +14,14 @@ In this lesson, you will learn:
 
 The question you need answered will determine what type of ML algorithms you will leverage. For example, do you need to determine the differences between cars and trucks as they cruise down a highway via a video feed? You will need some kind of highly performant classification model to make that differentiation. It will need to be able to perform object detection, probably by showing bounding boxes around detected cars and trucks.
 
-> infographic here
+> DRAFT IMAGE
+![2-Data-Asking_The_Right_Q-1](https://user-images.githubusercontent.com/55562013/112770551-01c1fe80-8fdc-11eb-94a0-498aef4843ce.png)
+
 
 What if you are trying to correlate two points of data - like age to height? You can use a linear regression model, as shown in the previous lesson, to draw the classical straight line through the scatterplot of points to show how, with age, height tends to increase. Thus you can predict, for a given group of people, their height given their age.
 
-> infographic here
+> DRAFT IMAGE
+![2-Data-Asking_The_Right_Q-2](https://user-images.githubusercontent.com/55562013/112770606-42217c80-8fdc-11eb-8661-b152774f4e8b.png)
 
 But it's not very common to be gifted a dataset that is completely ready to use to create a ML model. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
 ### Preparation
