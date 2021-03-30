@@ -1,6 +1,4 @@
 # Logistic Regression to Predict Categories
-
-> Sketchnote on Logistic Regression
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
 
 ### Introduction
@@ -25,10 +23,14 @@ For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. Th
 Logistic Regression differs from Linear Regression, which you learned about previously, in a few important ways.
 ### Binary Classification
 
-Logistic Regression does not offer the same features as Linear Regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of month, how much its price will rise.
+Logistic Regression does not offer the same features as Linear Regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, how much its price will rise.
+
+> Infographic about binary classification using logistic regression for pumpkins ("orange or not orange") - like this, with new labels and maybe little pumpkin dots https://miro.medium.com/max/1586/1*Yiv9NLy06vzJoUhvC6uBTA.png
 ### Other Classifications
 
-There are other types of Logistic Regression, including Multinomial and Ordinal. Multinomial involves having more than one categories - "Orange, White, and Striped". Ordinal involves ordered categories, such as if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
+There are other types of Logistic Regression, including Multinomial and Ordinal. Multinomial involves having more than one categories - "Orange, White, and Striped". Ordinal involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
+
+> Infographic on the difference between multinomial vs. ordinal logistic regression in the context of our pumpkin dataset: there are images here for multinomial https://www.codespeedy.com/multinomial-logistic-regression-in-python/ and for ordinal check this out: http://fa.bianp.net/blog/static/images/2013/ordinal_1.png - you can show the pumpkin sizes in a line - the smaller, the more expensive by the bushel, for example.
 
 ### It's Still Linear
 
@@ -101,7 +103,7 @@ sns.catplot(x="Color", y="Item Size",
 
 Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore Logistic Regression to determine a given pumpkin's likely color.
 
-> infographic here
+> infographic here (an image of logistic regression's sigmoid flow, like this: https://en.wikipedia.org/wiki/Logistic_regression#/media/File:Exam_pass_logistic_curve.jpeg)
 
 > **🧮 Show Me The Math**
 >
