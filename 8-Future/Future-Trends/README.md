@@ -6,17 +6,20 @@ Add a sketchnote if possible/appropriate
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-Describe what we will learn
+In this lesson, you will learn about important trends in the field of Machine Learning that will gain increasing momentum as the field evolves. These topics include:
 
-### Introduction
-
-Describe what will be covered
-
-> Notes
-
-### Prerequisite
-
-What steps should have been covered before this lesson?
+- Democratization of ML and AI
+- Work in ensuring ethical management of model creation, maintenance and curation
+- No-Code or Low-Code tooling improvements
+- Advances in MLOps
+- Concerns around Security
+- Interesting Applications:
+  - Voice applications with NLP
+  - Chatbots
+  - IoT+ML and Edge Computing with ML
+  - Quantum AI
+  - Facial recognition applications
+  - Next-generation AI/ML: GPT-3
 
 ### Preparation
 
