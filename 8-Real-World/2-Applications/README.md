@@ -6,7 +6,7 @@ Add a sketchnote if possible/appropriate
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-In this lesson, you will learn about important trends in the field of Machine Learning that will gain increasing momentum as the field evolves. These topics include:
+In this lesson, you will learn about some real-world applications in the field of Machine Learning that are of interest for their innovation. These topics include:
 
 - Democratization of ML and AI
 - Work in ensuring ethical management of model creation, maintenance and curation
