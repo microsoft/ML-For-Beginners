@@ -1,7 +1,7 @@
 # Get started with Python and Scikit-Learn for Regression models
 
-> Infographic on the types of Regression covered here: linear and logistic. Follow: https://en.wikipedia.org/wiki/Linear_regression#/media/File:Linear_regression.svg and https://en.wikipedia.org/wiki/Logistic_regression#/media/File:Logistic-curve.svg with explanatory graphics 
-> ![2-1-Getting_Started_With_Python](https://user-images.githubusercontent.com/55562013/114333711-cce69900-9afd-11eb-97ec-a0af2d92e567.png)
+![Logistic vs. Linear Regression Infographic](./images/logistic-linear.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
 ## Introduction
