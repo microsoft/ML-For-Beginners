@@ -4,9 +4,8 @@ In this section of the curriculum, you will be introduced to ...
 
 ## Topics
 
-1. [Introduction to](1-intro-to/README.md)
-
+1. [Real-World Applications for ML](1-Applications/README.md)
 
 ## Credits
 
-"Introduction to" was written with ♥️ by [Name](Twitter)
+"Real-World Applications" was written with ♥️ by [Name](Twitter)
