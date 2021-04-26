@@ -1,6 +1,7 @@
 # Build a Regression Model using Scikit-Learn: Regression Two Ways
 
-> Sketchnote on Linear vs. Polynomial Regression - what's the difference? https://en.wikipedia.org/wiki/Polynomial_regression#/media/File:Linear_regression.svg vs. https://en.wikipedia.org/wiki/Polynomial_regression#/media/File:Polyreg_scheffe.svg 
+![Linear vs Polynomial Regression Infographic](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/3-Linear/images/3-1-Linear_Vs_Polynomial_Regression_.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 ### Introduction
 
