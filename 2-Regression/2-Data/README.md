@@ -1,6 +1,8 @@
 # Build a Regression Model using Scikit-Learn: Prepare and Visualize Data
 
-> Sketchnote on data and visualization - show several different types of visualizations common to the topic, such as these https://seaborn.pydata.org/examples/index.html
+> ![Data Vizualization Inforgraphic](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/2-Data/images/3-1-Data_Visualization.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 
 ### Introduction
