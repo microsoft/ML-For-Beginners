@@ -1,6 +1,6 @@
 # Get started with Python and Scikit-Learn for Regression models
 
-![Logistic vs. Linear Regression Infographic](./images/logistic-linear.png)
+![Logistic vs. Linear Regression Infographic](./images/Linear vs Logistic Regression.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
