@@ -25,7 +25,8 @@ Logistic Regression differs from Linear Regression, which you learned about prev
 
 Logistic Regression does not offer the same features as Linear Regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, how much its price will rise.
 
-> Infographic about binary classification using logistic regression for pumpkins ("orange or not orange") - like this, with new labels and maybe little pumpkin dots https://miro.medium.com/max/1586/1*Yiv9NLy06vzJoUhvC6uBTA.png
+![Pumpking Classification Model](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/4-Logistic/images/Pumpkin_Classifier.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ### Other Classifications
 
 There are other types of Logistic Regression, including Multinomial and Ordinal. Multinomial involves having more than one categories - "Orange, White, and Striped". Ordinal involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
