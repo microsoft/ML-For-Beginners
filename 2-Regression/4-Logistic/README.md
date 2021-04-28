@@ -25,7 +25,7 @@ Logistic Regression differs from Linear Regression, which you learned about prev
 
 Logistic Regression does not offer the same features as Linear Regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, how much its price will rise.
 
-![Pumpking Classification Model](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/4-Logistic/images/Pumpkin_Classifier.png)
+![Pumpkin Classification Model](images/Pumpkin_Classifier.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ### Other Classifications
 
@@ -78,7 +78,7 @@ g = sns.PairGrid(new_pumpkins)
 g.map(sns.scatterplot)
 ```
 
-![A grid of visualized data](./images/grid.png)
+![A grid of visualized data](images/grid.png)
 
 By observing data side-by-side, you can see how the Color data relates to the other columns. 
 
@@ -90,7 +90,7 @@ Since Color is a binary category (Orange or Not), it's called 'categorical data'
 sns.swarmplot(x="Color", y="Item Size", data=new_pumpkins)
 ```
 
-![A swarm of visualized data](./images/swarm.png)
+![A swarm of visualized data](images/swarm.png)
 
 A 'violin' type plot is useful as you can easily visualize the way that data in the two categories is distributed. Violin plots don't work so well with smaller datasets as the distribution is displayed more 'smoothly'.
 
@@ -110,7 +110,8 @@ Now that we have an idea of the relationship between the binary categories of co
 >
 > Remember how Linear Regression often used ordinary least squares to arrive at a value? Logistic Regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://en.wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like thus:
 >
-> ![logistic function](images/logistic.png)
+> ![logistic function](images/sigmoid.png)
+>
 > where the sigmoid's midpoint finds itself at x's 0 point, L is the curve's maximum value, and k is the curve's steepness. If the outcome of the function is more than 0.5, the label in question will be given the class '1' of the binary choice. If not, it will be classified as '0'.
 
 ## Build your model
