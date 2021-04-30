@@ -21,7 +21,7 @@ What if you are trying to correlate two points of data - like age to height? You
 But it's not very common to be gifted a dataset that is completely ready to use to create a ML model. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
 ### Preparation
 
-In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](../../data/US-pumpkins.csv) which includes 1757 lines of data about the pumpkin market, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
+In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](../data/US-pumpkins.csv) which includes 1757 lines of data about the pumpkin market, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
 
 This data is in the public domain. It can be downloaded in many separate files, per city, from the USDA web site. To avoid too many separate files we have concatenated all the city data into one spreadsheet. Take a look at this file.
 ## The Pumpkin data
