@@ -2,8 +2,9 @@
 
 Add a sketchnote if possible/appropriate
 
-![Embed a video here if available](video-url)
+[![ML, AI, Deep Learning - What's the difference?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, Deep Learning - What's the difference?")
 
+> Click this image to watch a video discussing the difference between Machine Learning, AI, and Deep Learning.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
 
 Describe what we will learn
