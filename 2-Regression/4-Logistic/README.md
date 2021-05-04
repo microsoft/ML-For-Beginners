@@ -31,7 +31,7 @@ Logistic Regression does not offer the same features as Linear Regression. The f
 
 There are other types of Logistic Regression, including Multinomial and Ordinal. Multinomial involves having more than one categories - "Orange, White, and Striped". Ordinal involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
-![Multinomial vs Ordinal](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/4-Logistic/images/Multinomial_Vs_Ordinal.png)
+![Multinomial vs Ordinal Regression](./images/multinomial-ordinal.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ### It's Still Linear

@@ -1,9 +1,9 @@
 # Build a Regression Model using Scikit-Learn: Regression Two Ways
 
-![Linear vs Polynomial Regression Infographic](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/3-Linear/images/3-1-Linear_Vs_Polynomial_Regression_.png)
+![Linear vs Polynomial Regression Infographic](./images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
-### Introduction
+### Introduction 
 
 So far you have explored what regression is with sample data gathered from the pumpkin pricing dataset that we will use throughout this unit. You have also visualized it using Matplotlib. Now you are ready to dive deeper into regression for ML. In this lesson, you will learn more about two types of regression: basic linear regression and polynomial regression, along with some of the math underlying these techniques.
 

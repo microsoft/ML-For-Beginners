@@ -1,6 +1,6 @@
 # Build a Regression Model using Scikit-Learn: Prepare and Visualize Data
 
-> ![Data Vizualization Inforgraphic](https://github.com/jlooper/ml-for-beginners/blob/main/2-Regression/2-Data/images/3-1-Data_Visualization.png)
+> ![Data Vizualization Infographic](./images/data-visualization.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
