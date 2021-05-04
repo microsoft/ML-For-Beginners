@@ -25,7 +25,7 @@ Logistic Regression differs from Linear Regression, which you learned about prev
 
 Logistic Regression does not offer the same features as Linear Regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, how much its price will rise.
 
-![Pumpkin Classification Model](images/Pumpkin_Classifier.png)
+![Pumpkin Classification Model](./images/pumpkin-classifier.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ### Other Classifications
 
