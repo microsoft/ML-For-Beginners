@@ -1,6 +1,5 @@
-# [Lesson Topic]
+# Introduction to Clustering, Cleaning and Visualizing Data
 
-Add a sketchnote if possible/appropriate
 
 ![Embed a video here if available](video-url)
 

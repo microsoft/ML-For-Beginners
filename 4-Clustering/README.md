@@ -1,12 +1,9 @@
 # Clustering Models for Machine Learning
-## Regional topic: Clustering models for Maya architecture in Central America
+## Regional topic: Clustering models for Nigerian audience's musical taste
 
-In Central America, the amazing [ancient Maya civilization](https://en.wikipedia.org/wiki/Maya_civilization) is well-known for its architectural sites, often comprising impressive pyramids.  
+In Nigeria, a diverse audience has diverse musical tastes. Using data scraped from Spotify (inspired by [this article](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421), let's look at some music popular in Nigeria.
 
-![Pyramid at Chichen Itza](./images/chichen-itza.jpg)
-> Photo by <a href="https://unsplash.com/@amongthestones?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jimmy Baum</a> on <a href="https://unsplash.com/s/photos/maya-archaeology?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-
-In this series of lessons, you will discover a new way to analyze data using Clustering techniques. Clustering is particularly useful when your dataset lacks labels. If it does have labels, then classification techniques are more useful. But in cases where you are looking to group unlabelled data, clustering is a great way to discover patterns.
+In this series of lessons, you will discover new ways to analyze data using Clustering techniques. Clustering is particularly useful when your dataset lacks labels. If it does have labels, then Classification techniques such as those you learned in previous lessons are more useful. But in cases where you are looking to group unlabelled data, clustering is a great way to discover patterns.
 ## Topics
 
 1. [Introduction to Clustering with Data Visualizations](1-Visualize/README.md)
@@ -16,3 +13,7 @@ In this series of lessons, you will discover a new way to analyze data using Clu
 ## Credits
 
 "Introduction to Clustering" was written with ♥️ by [Jen Looper](https://www.twitter.com/jenlooper)
+
+The [Maya Architecture](https://www.kaggle.com/ujwalkandi/archaeological-sites-with-maya-inscriptions) dataset was sourced from Kaggle.
+
+The Flask API project was suggested by [this GitHub repo](https://github.com/amirziai/sklearnflask)
