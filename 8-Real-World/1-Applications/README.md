@@ -1,53 +1,70 @@
-# [Lesson Topic]
+# Machine Learning in the Real World
 
-Add a sketchnote if possible/appropriate
+In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic Regression, Clustering, Classification, Natural Language Processing, and Time Series models. Congratulations! Now, you might be wondering what it's all for...what are the real world applications for these models?
 
-![Embed a video here if available](video-url)
-
+While a lot of interest in industry has been garnered by AI, which usually leverages Deep Learning, there are still valuable applications for classical machine learning models, some of which you use today, although you might not be aware of it. In this lesson, you'll explore how ten different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and thus more valuable to users.
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-In this lesson, you will learn about some real-world applications in the field of Machine Learning that are of interest for their innovation. These topics include:
+## Finance
 
-- Democratization of ML and AI
-- Work in ensuring ethical management of model creation, maintenance and curation
-- No-Code or Low-Code tooling improvements
-- Advances in MLOps
-- Concerns around Security
-- Interesting Applications:
-  - Voice applications with NLP
-  - Chatbots
-  - IoT+ML and Edge Computing with ML
-  - Quantum AI
-  - Facial recognition applications
-  - Next-generation AI/ML: GPT-3
+One of the major consumers of classical machine learning models is the finance industry. 
 
-### Preparation
+### Credit card fraud detection
+### Wealth management
 
-Preparatory steps to start this lesson
+## Education
 
----
+### Predicting student behavior
+### Preventing plagiarism
+### Course recommendations
+## Retail
 
-[Step through content in blocks]
+### Personalizing the customer journey
 
-## [Topic 1]
+### Inventory management
 
-### Task:
+## Health Care
 
-Work together to progressively enhance your codebase to build the project with shared code:
+### Optimizing drug delivery
+### Hospital re-entry management
+### Disease management
 
-```html
-code blocks
-```
+## Ecology and Green Tech
+
+### Forest management
+### Motion sensing of animals
+
+## Insurance
+
+### Actuarial tasks
+
+## Consumer Electronics
+
+### Motion sensing
+## Software
+
+### UI regression
+### Document search
+
+### Recommendation engines
+
+## Arts, Culture, and Literature
+
+### Fake news detection
+### Classifying artifacts
+
+## Marketing
+
+### 'Ad words'
+### Customer segmentation
+
+
+
 
 ✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
 
-## [Topic 2]
-
-## [Topic 3]
 
 🚀 Challenge: Add a challenge for students to work on collaboratively in class to enhance the project
-
-Optional: add a screenshot of the completed lesson's UI if appropriate
 
 ## [Post-lecture quiz](link-to-quiz-app)
 
