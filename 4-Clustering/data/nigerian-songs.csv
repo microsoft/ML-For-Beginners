@@ -1,0 +1,531 @@
+name,album,artist,artist_top_genre,release_date,length,popularity,danceability,acousticness,energy,instrumentalness,liveness,loudness,speechiness,tempo,time_signature
+Sparky,Mandy & The Jungle,Cruel Santino,alternative r&b,2019,144000,48,0.666,0.851,0.42,0.534,0.11,-6.699,0.0829,133.015,5
+shuga rush,EVERYTHING YOU HEARD IS TRUE,Odunsi (The Engine),afropop,2020,89488,30,0.71,0.0822,0.683,0.000169,0.101,-5.64,0.36,129.993,3
+LITT!,LITT!,AYLØ,indie r&b,2018,207758,40,0.836,0.272,0.564,0.000537,0.11,-7.127,0.0424,130.005,4
+Confident / Feeling Cool,Enjoy Your Life,Lady Donli,nigerian pop,2019,175135,14,0.894,0.798,0.611,0.000187,0.0964,-4.961,0.113,111.087,4
+wanted you,rare.,Odunsi (The Engine),afropop,2018,152049,25,0.702,0.116,0.833,0.91,0.348,-6.044,0.0447,105.115,4
+Kasala,Pioneers,DRB Lasgidi,nigerian pop,2020,184800,26,0.803,0.127,0.525,6.69e-06,0.129,-10.034,0.197,100.103,4
+Pull Up,Everything Pretty,prettyboydo,nigerian pop,2018,202648,29,0.818,0.452,0.587,0.00449,0.59,-9.84,0.199,95.842,4
+take a break,rare.,Odunsi (The Engine),afropop,2018,141933,27,0.808,0.608,0.3,4.8e-05,0.0863,-11.213,0.0453,119.964,4
+Cash,Enjoy Your Life,Lady Donli,nigerian pop,2019,187714,36,0.846,0.214,0.669,0.467,0.0857,-7.822,0.0441,115.008,4
+SATISFIED,GEMINI,Tay Iwar,alternative r&b,2019,123082,30,0.555,0.912,0.295,0.275,0.0967,-11.038,0.036,77.033,4
+Morocco,Mandy & The Jungle,Cruel Santino,alternative r&b,2019,186696,33,0.735,0.872,0.596,0.866,0.16,-7.379,0.0865,89.966,4
+luv in a mosh,EVERYTHING YOU HEARD IS TRUE,Odunsi (The Engine),afropop,2020,97071,35,0.66,0.609,0.745,0.00301,0.342,-4.125,0.0421,177.991,4
+Raw Dinner,Mandy & The Jungle,Cruel Santino,alternative r&b,2019,143569,46,0.603,0.714,0.433,0.0407,0.105,-5.935,0.338,63.545,5
+Waka,Wildfire,prettyboydo,nigerian pop,2020,172708,23,0.583,0.296,0.563,0.00023,0.214,-6.801,0.143,96.568,4
+Summer Time (feat. Tay Iwar),Suzie's Funeral,Cruel Santino,alternative r&b,2016,226146,19,0.663,0.871,0.462,3.33e-06,0.125,-6.769,0.0278,139.946,4
+Bite the Dust,Enjoy Your Life,Lady Donli,nigerian pop,2019,142857,14,0.69,0.469,0.516,0.000236,0.0865,-8.45,0.131,104.991,4
+City on Lights!,dnt'dlt,AYLØ,indie r&b,2019,200937,15,0.535,0.488,0.696,4.33e-06,0.167,-7.65,0.264,159.48,4
+PDA!,EVERYTHING YOU HEARD IS TRUE,Odunsi (The Engine),afropop,2020,148666,29,0.624,0.56,0.646,0.0,0.233,-5.179,0.0793,179.874,4
+End Of The Wicked (feat. Octavian),End Of The Wicked (feat. Octavian),Cruel Santino,alternative r&b,2020,186341,49,0.748,0.608,0.819,0.0615,0.109,-5.41,0.0789,150.01,4
+Catching a Wav,Passionfruit Summers,Amaarae,afro r&b,2017,195000,34,0.655,0.793,0.333,0.00139,0.101,-12.849,0.051,80.033,4
+hectic,rare.,Odunsi (The Engine),afropop,2018,201082,34,0.713,0.171,0.669,0.00349,0.0724,-6.997,0.0921,90.988,4
+Whoa!,Insert Project Name,AYLØ,indie r&b,2017,205395,24,0.64,0.954,0.352,0.0731,0.106,-8.418,0.0526,108.356,4
+FLAVA,Enjoy Your Life,Lady Donli,nigerian pop,2019,166153,17,0.663,0.871,0.446,6.06e-05,0.146,-7.182,0.192,156.119,4
+Alté Cruise,rare.,Odunsi (The Engine),afropop,2018,192309,36,0.89,0.563,0.536,0.000859,0.622,-4.794,0.123,95.02,4
+Classic,Classic,Lady Donli,nigerian pop,2018,216296,45,0.721,0.313,0.782,0.0,0.0791,-9.297,0.071,161.971,4
+I listen to you...,dnt'dlt,AYLØ,indie r&b,2019,227500,17,0.828,0.273,0.529,5.73e-06,0.101,-12.471,0.143,119.976,4
+angel,rare.,Odunsi (The Engine),afropop,2018,151304,36,0.76,0.229,0.111,0.00119,0.129,-19.362,0.044,92.014,4
+Around,Enjoy Your Life,Lady Donli,nigerian pop,2019,111107,12,0.847,0.424,0.653,0.0,0.27,-5.617,0.0412,142.517,3
+SPACE,GEMINI,Tay Iwar,alternative r&b,2019,193249,27,0.853,0.249,0.372,0.00116,0.0517,-10.347,0.0596,116.989,4
+Alté,Alté,DRB Lasgidi,nigerian pop,2019,182909,18,0.774,0.021,0.73,2.46e-05,0.0749,-4.424,0.0315,105.077,4
+Beginning,Beginning,Joeboy,afropop,2019,158052,55,0.878,0.149,0.668,0.000116,0.1,-7.076,0.107,109.955,4
+Aye,Aye,DaVido,afropop,2014,235053,0,0.729,0.628,0.868,0.0,0.057,-4.72,0.0474,115.0,4
+Baby,Baby,Joeboy,afropop,2019,165448,13,0.785,0.142,0.806,0.000285,0.147,-5.34,0.0558,105.001,4
+Assurance,Assurance,DaVido,afropop,2018,249320,48,0.665,0.275,0.799,2.99e-06,0.0756,-3.244,0.115,206.007,4
+Yori Yori,Least Expected,Bracket,afro dancehall,2009,218426,43,0.685,0.523,0.783,0.0,0.112,-1.606,0.169,102.62,4
+Nobody,Nobody,DJ Neptune,afro dancehall,2020,145860,63,0.707,0.251,0.866,2.5e-06,0.263,-3.612,0.0354,108.053,4
+Perfect Gentleman,The Journey,Sean Tizzle,afro dancehall,2014,254824,16,0.693,0.369,0.936,3.83e-05,0.123,-4.091,0.0635,125.945,4
+Case,Case,Teni,afro dancehall,2018,202448,54,0.81,0.358,0.638,0.0,0.211,-4.778,0.0398,102.003,4
+Adiepena,Adiepena,KiDi,afro dancehall,2018,195728,36,0.741,0.307,0.762,0.0,0.318,-6.089,0.0346,102.965,4
+Nobody Fine Pass You,Nobody Fine Pass You,T-Classic,nigerian pop,2019,215170,0,0.765,0.628,0.687,2.28e-06,0.0736,-5.98,0.125,114.056,4
+Duduke,Duduke,Simi,afropop,2020,172000,60,0.781,0.552,0.656,5.18e-05,0.131,-4.105,0.106,96.083,4
+Mad over You,Mad over You,Runtown,afro dancehall,2016,215906,53,0.842,0.458,0.543,0.000135,0.102,-4.778,0.0483,107.048,4
+Odo Remix (feat. Mayorkun & Davido),Odo Remix (feat. Mayorkun & Davido),KiDi,afro dancehall,2017,233592,41,0.722,0.0642,0.608,0.0111,0.0514,-4.684,0.0304,103.04,4
+On Top Your Matter,On Top Your Matter,WizKid,afro dancehall,2014,284814,26,0.706,0.0536,0.966,0.0,0.0566,-1.266,0.0564,124.003,4
+Happy Day,Happy Day,Patoranking,afro dancehall,2014,260146,5,0.716,0.232,0.952,0.000105,0.0868,-2.717,0.111,102.948,4
+No One Like You,Best Of P-Square,P-Square,afro dancehall,2014,268120,1,0.826,0.549,0.877,0.0,0.0924,-3.028,0.172,101.993,4
+If,If,DaVido,afropop,2017,237714,57,0.951,0.397,0.661,0.0,0.0686,-2.678,0.0612,104.997,4
+Walk With Me,Walk With Me,Stormrex,Missing,2015,261973,0,0.488,0.586,0.666,0.0,0.397,-7.577,0.151,111.33,4
+Amen,Boo of the Booless,chike,nigerian pop,2020,220203,30,0.48,0.494,0.709,0.0,0.127,-5.963,0.104,90.826,4
+Yanga,Yanga,Chidinma,afropop,2018,182033,22,0.885,0.289,0.717,0.0,0.048,-5.36,0.169,118.0,4
+Thunder,Thunder,KiDi,afro dancehall,2018,197537,24,0.748,0.515,0.628,0.0,0.0586,-8.81,0.0322,102.983,4
+All I Want Is You,All I Want Is You,Banky W.,afro dancehall,2015,220343,22,0.47,0.127,0.91,0.000862,0.117,-4.508,0.0554,114.024,4
+Pino Pino,Pino Pino,Phyno,afro dancehall,2016,287137,1,0.65,0.633,0.937,0.0,0.13,-1.421,0.151,101.973,4
+Pana,Pana,Tekno,afropop,2017,244867,2,0.67,0.316,0.544,0.0308,0.0746,-7.388,0.325,199.871,4
+Mama,Mama,Mayorkun,afro dancehall,2017,198504,0,0.855,0.392,0.592,0.0,0.105,-3.685,0.071,104.035,4
+Majesty,Heartwork,Peruzzi,afropop,2018,211826,0,0.796,0.281,0.766,2.63e-06,0.137,-5.041,0.0643,110.073,4
+4DAYZ,4DAYZ,Kiss Daniel,afro dancehall,2018,160000,0,0.761,0.24,0.883,0.000496,0.0534,-3.591,0.0952,123.993,4
+FIA,FIA,DaVido,afropop,2017,214205,50,0.819,0.344,0.751,1.27e-05,0.425,-3.175,0.0459,107.063,4
+Kind Love,Ayo,WizKid,afro dancehall,2014,231947,26,0.627,0.0269,0.913,1.44e-06,0.0654,-2.402,0.0376,119.004,4
+Romantic (feat. Tiwa Savage),Romantic (feat. Tiwa Savage),Korede Bello,afro dancehall,2016,225933,49,0.764,0.0886,0.593,0.000296,0.0621,-4.026,0.0456,103.993,4
+Prayer,Prayer,DMW,afropop,2017,216111,0,0.728,0.14,0.823,0.000167,0.318,-6.015,0.0405,119.931,4
+Girl (feat. Wizkid),Cupid Stories,Bracket,afro dancehall,2011,294960,31,0.791,0.208,0.872,0.0,0.099,-5.94,0.176,120.017,4
+Poko,No Bad Songz,Kizz Daniel,afro dancehall,2018,169930,47,0.854,0.0718,0.816,0.0,0.0428,-5.225,0.11,106.017,4
+Panana,Panana,L.A.X,afro dancehall,2018,161593,22,0.75,0.776,0.744,3.3e-05,0.231,-2.799,0.0311,104.036,4
+Mi Na Bo Po,E.L.O.M.,E.L,azonto,2015,206266,0,0.478,0.0285,0.678,0.0,0.306,-5.648,0.242,61.695,4
+All Over,All Over,Tiwa Savage,afro dancehall,2017,211291,51,0.831,0.217,0.844,0.0,0.115,-4.589,0.0585,112.048,4
+For Life,For Life,Runtown,afro dancehall,2017,229633,0,0.72,0.0965,0.67,3.32e-05,0.0615,-4.895,0.216,205.67,4
+Fall,Fall,DaVido,afropop,2017,240000,61,0.928,0.379,0.675,0.0,0.0533,-3.535,0.0566,105.952,4
+Say,Rasaking,L.A.X,afro dancehall,2018,177658,13,0.774,0.515,0.605,0.0,0.0887,-6.447,0.0924,99.941,4
+Woju (Remix),Woju (Remix),Kiss Daniel,afro dancehall,2015,204210,0,0.791,0.302,0.906,2.66e-06,0.0356,-2.705,0.0478,113.955,4
+Duro (Remix),Duro (Remix),Tekno,afropop,2015,212000,1,0.607,0.313,0.87,3.73e-06,0.09,-3.298,0.0812,119.981,4
+Aje,Aje,DMW,afropop,2018,234788,0,0.771,0.416,0.79,0.0,0.0493,-3.807,0.0708,119.946,4
+Easy (Jeje),Easy (Jeje),Reekado Banks,afro dancehall,2017,200413,41,0.767,0.0704,0.839,4.8e-06,0.0604,-5.268,0.0803,126.99,4
+Applaudise,Applaudise,Iyanya,afro dancehall,2015,211693,0,0.668,0.288,0.93,0.000102,0.239,-3.274,0.0393,112.039,4
+Feeling (feat. Reekado Banks),Feeling (feat. Reekado Banks),Bisa Kdei,afro dancehall,2017,208195,15,0.704,0.354,0.705,1.85e-06,0.109,-6.434,0.0902,102.79,4
+"My Woman, My Everything (feat. Wandecoal)","My Woman, My Everything (feat. Wandecoal) - Single",Patoranking,afro dancehall,2015,233717,54,0.902,0.0438,0.845,0.0,0.0867,-2.695,0.0644,112.005,4
+Collabo,Double Trouble,P-Square,afro dancehall,2014,223500,52,0.58,0.353,0.903,6.98e-06,0.0957,-4.564,0.0773,194.828,3
+Give You Love,Give You Love,Juls,afro dancehall,2016,234605,36,0.799,0.0633,0.533,0.0,0.126,-6.412,0.0569,99.982,4
+Ohemaa,Ohemaa,Kuami Eugene,afropop,2019,245736,33,0.576,0.271,0.8,0.0,0.118,-4.479,0.0477,104.02,4
+Mon Bébé (feat. Flavour),Three,Patoranking,afro dancehall,2020,205450,34,0.631,0.6,0.386,0.0,0.112,-10.135,0.0622,96.651,4
+Tear Rubber,Greatness,DJ Neptune,afro dancehall,2018,221517,0,0.846,0.0501,0.664,6.16e-06,0.136,-3.184,0.0445,104.0,4
+Kololo,Kololo,Banky W.,afro dancehall,2017,232543,21,0.768,0.259,0.701,0.000385,0.121,-3.728,0.0543,121.026,4
+One and Only,One and Only,Korede Bello,afro dancehall,2016,170141,19,0.718,0.129,0.813,0.0,0.38,-4.102,0.112,125.965,4
+Laye,Laye,Kiss Daniel,afro dancehall,2015,229276,0,0.716,0.313,0.869,0.0,0.102,-3.923,0.107,120.018,4
+Dada Omo,Dada Omo,Sugarboy,nigerian pop,2017,213524,0,0.733,0.0662,0.92,0.0,0.107,-3.753,0.167,118.021,4
+Only Girl,Only Girl,Adekunle Gold,afro dancehall,2017,210050,0,0.83,0.327,0.667,0.0,0.141,-5.408,0.0743,105.947,4
+Obianuju,Naija Party Vibes Vol. 2,Various Artists,afro dancehall,2011,220543,0,0.696,0.172,0.733,0.0,0.315,-3.807,0.113,109.019,4
+Finally,Finally,Master Kraft,Missing,2015,222537,26,0.875,0.175,0.896,0.0,0.0589,-2.287,0.0438,111.631,4
+Ogadigide,Double Trouble,P-Square,afro dancehall,2014,252521,20,0.703,0.268,0.875,0.0,0.343,-6.088,0.081,172.469,3
+Ada Ada,Blessed,Flavour,afro dancehall,2012,233900,0,0.635,0.623,0.961,0.000138,0.111,-3.751,0.111,167.166,3
+Ololufe,Mushin2Mohits,Wande Coal,afro dancehall,2009,298800,0,0.397,0.51,0.532,0.0,0.102,-9.11,0.0693,96.811,4
+My Darling (feat. Don Jazzy),Mix of Love,Various Artists,afro dancehall,2015,249652,0,0.782,0.173,0.836,3.01e-06,0.12,-4.005,0.0494,124.995,4
+Yes/No,R & BW,Banky W.,afro dancehall,2013,247432,46,0.534,0.23,0.627,1.35e-05,0.127,-5.526,0.0745,128.796,5
+I Love U,Best Of P-Square,P-Square,afro dancehall,2014,281026,1,0.596,0.293,0.85,0.0,0.338,-2.129,0.145,97.724,4
+Tere (feat. Diamond Platnumz),No Bad Songz,Kizz Daniel,afro dancehall,2018,228121,28,0.833,0.0115,0.887,3.02e-05,0.0545,-2.839,0.171,119.97,4
+Return,Son of Mercy - EP,DaVido,afropop,2016,185360,24,0.67,0.158,0.738,0.0,0.101,-3.379,0.158,106.59,4
+Iwotago (feat. Phyno),Da Smash Hitz,Various Artists,soft rock,2015,201614,0,0.465,0.351,0.866,0.0,0.649,-4.978,0.342,173.857,3
+Ire,Ire,Boj,afro dancehall,2016,178256,8,0.683,0.149,0.882,0.0942,0.112,-4.982,0.0419,113.948,4
+Kedike,Naija Hits 2012-2013,This Is Africa,afropop,2013,233430,0,0.797,0.304,0.854,0.000587,0.172,-5.503,0.0415,117.995,4
+Strong Ting,The W Experience,Banky W.,afro dancehall,2009,301720,26,0.581,0.00755,0.844,0.00307,0.136,-2.557,0.0971,129.925,4
+Promise,Promise,Adekunle Gold,afro dancehall,2019,178000,34,0.813,0.413,0.604,0.00172,0.109,-8.667,0.0555,120.083,4
+Oyi (Remix),Best Of Flavour,Flavour,afro dancehall,2015,200013,0,0.428,0.592,0.677,1.19e-06,0.215,-11.731,0.343,112.516,5
+Always (feat. Davido),Man of the Year,Skales,afro dancehall,2015,240893,16,0.73,0.0859,0.943,0.0,0.162,-2.846,0.2,120.045,4
+Oruka,Legends,Various Artists,Missing,2015,300225,0,0.672,0.126,0.845,0.0,0.0426,-3.669,0.0531,94.999,4
+Angela,Angela,Kuami Eugene,afropop,2017,187297,42,0.653,0.0235,0.651,2.98e-05,0.221,-3.165,0.0723,200.075,4
+Obimo,Obimo,Kayswitch,Missing,2016,232896,14,0.7,0.00437,0.879,1.61e-05,0.111,-5.687,0.0594,126.03,4
+Where,Where,Tekno,afropop,2016,219080,7,0.887,0.0729,0.908,0.000192,0.0483,-3.346,0.0637,115.023,4
+Mansa,Mansa,Bisa Kdei,afro dancehall,2015,246987,0,0.665,0.16,0.875,0.0,0.0402,-4.712,0.0527,124.94,4
+Pakurumo,Superstar,WizKid,afro dancehall,2011,212005,41,0.879,0.525,0.737,0.00576,0.268,-5.412,0.0421,119.99,4
+Marry,Marry,DJ Neptune,afro dancehall,2016,209841,37,0.891,0.169,0.649,0.0289,0.058,-6.476,0.068,111.989,4
+Forever,Talk About It,M.I. Abaga,afropop,2009,257866,6,0.492,0.113,0.672,0.0,0.053,-4.588,0.191,122.024,4
+Ifunanya,Best Of P-Square,P-Square,afro dancehall,2014,266520,0,0.828,0.706,0.768,0.0,0.0433,-3.667,0.0424,110.001,4
+Ariva,Ariva,Flavour,afro dancehall,2019,218723,0,0.748,0.0861,0.641,1.34e-05,0.0751,-2.014,0.043,90.103,4
+I Gentle,I Gentle,Naeto C,afro dancehall,2012,245040,11,0.764,0.528,0.95,7.97e-06,0.142,-6.319,0.0551,119.972,4
+Fine Lady,"Afrobeats the Hits, Vol. 1",Various Artists,afro dancehall,2012,221720,0,0.75,0.0123,0.912,0.0,0.0402,-5.828,0.117,123.983,4
+Komole,The Journey,Sean Tizzle,afro dancehall,2015,251733,0,0.628,0.682,0.942,4.53e-06,0.0863,-3.84,0.144,127.991,4
+Dodo,Dodo,DaVido,afropop,2015,198191,0,0.759,0.0743,0.815,0.000237,0.167,-3.679,0.0418,113.965,4
+Today Today,Undeniable,Eldee,afro dancehall,2012,227451,18,0.715,0.00762,0.873,0.000473,0.26,-7.532,0.0338,120.009,4
+Duro,The Journey,Sean Tizzle,afro dancehall,2014,275330,3,0.633,0.0439,0.94,0.0,0.0699,-3.563,0.0547,119.946,4
+Criteria,Criteria,Olamide,afro dancehall,2018,220421,18,0.811,0.608,0.846,0.0,0.06,-4.84,0.0921,110.015,4
+Forever,Forever,Eazzy,hiplife,2016,216266,0,0.764,0.324,0.669,0.000181,0.107,-2.787,0.0339,98.979,4
+O Wa N'bę,Simisola,Simi,afropop,2017,210000,32,0.756,0.554,0.766,1.85e-05,0.132,-6.005,0.0686,106.003,4
+Ojoro,Ojoro,DJ Neptune,afro dancehall,2019,226000,1,0.772,0.17,0.841,1.73e-06,0.0715,-6.751,0.106,120.0,4
+Lovinjitis,Testimoney,Wizboyy,afro dancehall,2013,262706,37,0.772,0.493,0.871,5.66e-05,0.121,-3.673,0.242,88.778,4
+Made for You,Made for You,Banky W.,afro dancehall,2016,252030,38,0.433,0.134,0.811,0.0,0.0379,-3.6,0.246,70.638,3
+Ololufe,Best Of Flavour,Flavour,afro dancehall,2015,198213,0,0.457,0.657,0.616,2.61e-06,0.0918,-4.717,0.0373,168.523,4
+BE,BE,Tekno,afropop,2017,225645,43,0.861,0.273,0.679,2.12e-06,0.131,-5.566,0.0675,100.074,4
+Chinelo,Chinelo,Bracket,afro dancehall,2018,203493,21,0.856,0.0215,0.695,0.0,0.0776,-3.56,0.0982,105.056,4
+Chop My Money Remix,Best Of P-Square,P-Square,afro dancehall,2014,272125,2,0.815,0.156,0.797,3.66e-06,0.131,-5.875,0.0839,127.028,4
+Woman,Woman,Tekno,afropop,2019,255267,0,0.708,0.365,0.637,0.0,0.141,-5.12,0.197,124.124,5
+Facebook Love (feat. Jaywon),Essential,Essence,erotica,2010,294386,7,0.631,0.244,0.864,0.0,0.0976,-2.971,0.125,100.051,4
+Ashawo,U Know My P,Naeto C,afro dancehall,2008,262826,14,0.761,0.00957,0.807,0.0,0.35,-1.674,0.059,120.039,4
+Ki Ni Big Deal,U Know My P,Naeto C,afro dancehall,2008,268973,17,0.695,0.013,0.938,0.0,0.218,-1.489,0.113,109.954,4
+This Year (Odun Yi),A Jungle Christmas 2014,The Jungle Collective,afro dancehall,2014,230505,0,0.638,0.633,0.51,0.0,0.0885,-10.331,0.149,85.848,4
+Lefenuso,Aproko City,Lord Of Ajasa,nigerian hip hop,2016,234267,6,0.805,0.626,0.929,0.0,0.0781,-1.614,0.324,108.017,4
+Lori Le,Turn It Up,X Project,Missing,2010,243017,25,0.801,0.00907,0.819,1.32e-05,0.0652,-4.66,0.107,140.009,4
+Gongo Aso,Gongo Aso,9ice,afro dancehall,2008,224306,39,0.824,0.245,0.965,9.84e-05,0.0983,-2.742,0.0409,110.03,4
+Street Credibility,Gongo Aso,9ice,afro dancehall,2008,288413,34,0.474,0.496,0.737,0.0,0.12,-3.781,0.352,87.635,4
+Who Born The Maja,Mushin2Mohits,Wande Coal,afro dancehall,2009,187000,0,0.826,0.172,0.626,0.0,0.103,-9.68,0.135,95.426,4
+Kokoma,Kokoma,K9,Missing,2012,201599,0,0.893,0.0584,0.915,4.46e-06,0.0755,-1.863,0.12,125.049,4
+Gbamu-Gbamu,Tradition,9ice,afro dancehall,2009,241011,26,0.568,0.205,0.935,0.0,0.157,-2.266,0.23,88.516,5
+Beautiful Onyinye,The Invasion,P-Square,afro dancehall,2011,292106,37,0.709,0.687,0.793,8.11e-06,0.123,-4.725,0.057,99.96,4
+Do Me,Game Over,P-Square,afro dancehall,2008,281306,19,0.824,0.505,0.918,0.0,0.0415,-2.311,0.117,103.049,4
+Booty Call,Currliculum Vitae,Mo' Hits All Stars,afro dancehall,2009,314000,0,0.825,0.203,0.918,1.34e-06,0.144,-1.559,0.212,129.389,5
+1er Gaou - Version originale,1er Gaou (Album original),Magic System,afropop,2012,295146,0,0.835,0.14,0.86,0.0,0.0767,-6.872,0.0621,119.044,4
+My Car,My Car,Tony Tetuila,afro dancehall,2001,248426,24,0.917,0.25,0.707,0.00602,0.323,-10.512,0.0933,110.049,4
+See Me So,Nigeria Gold,Various Artists,afro dancehall,2011,278746,0,0.735,0.0823,0.482,0.0,0.0928,-6.68,0.427,195.886,4
+Fi Mi Le,a.k.a Fi Mi Le,Kas,Missing,2011,218331,22,0.917,0.0352,0.829,2.6e-05,0.241,-5.129,0.195,104.946,4
+Oleku (feat. Brymo),Oleku (feat. Brymo),Ice Prince,afro dancehall,2010,291363,38,0.544,0.344,0.73,1.36e-06,0.14,-4.299,0.144,162.112,5
+Ara,#TheSonOfaKapenta,Brymo,afro dancehall,2012,256813,33,0.668,0.435,0.908,4.41e-05,0.112,-4.988,0.111,129.982,4
+Pere,Currliculum Vitae,Mo' Hits All Stars,afro dancehall,2009,254000,0,0.842,0.0512,0.837,1.54e-06,0.172,-4.388,0.137,115.001,4
+Sound Track,Singles,May D,afro dancehall,2012,294112,0,0.635,0.458,0.582,2.22e-06,0.0928,-4.05,0.0771,118.006,4
+Imagine That,Expressions,Styl-Plus,afro dancehall,2007,299826,34,0.701,0.0501,0.885,0.0,0.0429,-1.203,0.12,124.989,4
+Olufunmi,Call My Name,Styl-Plus,afro dancehall,2012,309146,18,0.597,0.45,0.773,0.0,0.166,-5.496,0.109,113.197,4
+Call My Name,Call My Name,Styl-Plus,afro dancehall,2012,280653,16,0.664,0.381,0.607,2.48e-05,0.0651,-8.92,0.177,108.043,4
+African Queen,Nigeria Gold (YouTube),2Baba,afro dancehall,2011,261426,0,0.464,0.428,0.83,0.0,0.518,-4.139,0.419,74.612,4
+Nfana Ibaga (No Problem),Face 2 Face 10.0,2Baba,afro dancehall,2014,265440,22,0.615,0.22,0.723,0.0,0.082,-4.808,0.404,97.998,4
+kolomental,Old & New,Various Artists,afro dancehall,2010,276610,0,0.889,0.0387,0.699,5.61e-05,0.121,-4.879,0.169,105.995,4
+Nigeria Jaga Jaga,Old & New,Various Artists,Missing,2010,187820,0,0.835,0.0304,0.757,0.0,0.333,-6.175,0.294,97.33,4
+Mr. Lecturer,Mr. Lecturer,Eedris Abdulkareem,afro dancehall,2003,255426,17,0.834,0.0162,0.734,4.3e-05,0.11,-8.623,0.0535,127.024,4
+Live in Yankee,Mr. Lecturer,Eedris Abdulkareem,afro dancehall,2003,274720,9,0.619,0.277,0.644,0.0,0.1,-7.93,0.112,100.15,4
+Jaga Jaga,Jaga Jaga,Eedris Abdulkareem,afro dancehall,2004,226493,26,0.881,0.0384,0.689,0.0,0.227,-7.685,0.26,95.958,4
+Oruka,Unchained,Sunny Neji,highlife,2013,300173,0,0.677,0.138,0.842,0.0,0.0422,-3.551,0.0512,95.014,4
+Critical,The Alliance Reconstructed,Ikechukwu,afro dancehall,2011,238576,15,0.761,0.0154,0.96,0.00102,0.0566,-2.993,0.0559,105.983,4
+Mo Gbono Feli Feli,Carnival Street Bangers,Various Artists,afro dancehall,2013,258000,25,0.772,0.0753,0.859,0.00598,0.0718,-6.396,0.0896,105.962,4
+Pop Something Ft. D'banj,"African Football Anthems, Vol. 1",Various Artists,afro dancehall,2013,298813,0,0.661,0.00176,0.942,0.189,0.214,-4.694,0.0611,140.026,4
+Tongolo,Sangolo,Various Artists,afro dancehall,1998,251715,0,0.82,0.261,0.662,0.0,0.369,-9.514,0.0771,102.074,4
+Yahoozee,Trilogy,Olu Maintain,afro dancehall,2008,256391,0,0.802,0.234,0.641,0.0,0.148,-8.204,0.281,112.985,4
+Over The Moon Ft. K-Switch,51Lex Presents Something About You,Dr SID,afro dancehall,2011,235920,16,0.876,0.297,0.709,1.25e-05,0.0617,-7.842,0.0357,124.957,4
+Tony Montana - Remix,Tony Montana Remix,Naeto C,afro dancehall,2012,243774,24,0.726,0.0896,0.974,0.0,0.0946,-4.55,0.318,125.044,4
+Undisputed,Mi2 the Movie,M.I. Abaga,afropop,2011,164702,14,0.823,0.248,0.701,1.29e-05,0.2,-4.891,0.0509,114.978,4
+Implication,The Unstoppable (International Edition),2Baba,afro dancehall,2010,207813,0,0.764,0.332,0.842,1.44e-06,0.241,-6.872,0.0454,129.968,4
+Bomper to Bomper,Nigeria Club,Various Artists,Missing,2012,226200,6,0.731,0.0278,0.701,0.0,0.577,-10.326,0.105,119.991,4
+Oleku (feat. Brymo),Everbody Loves Ice Prince,Ice Prince,afro dancehall,2011,290413,0,0.542,0.39,0.751,0.0,0.256,-4.397,0.143,161.754,5
+Ten over Ten,Super C Season,Naeto C,afro dancehall,2011,218640,29,0.666,0.019,0.978,0.000466,0.378,-3.117,0.129,117.984,4
+Aboki,Aboki,Ice Prince,afro dancehall,2012,220760,30,0.776,0.17,0.843,0.0,0.0589,-2.992,0.057,122.01,4
+You Bad,Best Of Wande Coal,Wande Coal,afro dancehall,2016,243040,4,0.733,0.404,0.806,0.0,0.128,-4.45,0.0818,120.023,4
+Limpopo,Takeover,KCee,afro dancehall,2013,253933,23,0.691,0.432,0.966,0.0151,0.223,-2.677,0.133,125.037,4
+Caro (feat. Lax),Ayo,WizKid,afro dancehall,2014,246832,45,0.698,0.0214,0.944,4.68e-05,0.485,-2.48,0.0628,122.183,4
+Dami Duro,Best Of Davido,DaVido,afropop,2020,250250,8,0.659,0.188,0.995,0.0,0.216,-0.735,0.194,124.983,4
+Like to Party,Best of Burna Boy,Burna Boy,afro dancehall,2017,246400,0,0.452,0.136,0.718,0.0,0.121,-6.972,0.341,109.454,3
+First of All,YBNL,Olamide,afro dancehall,2016,186666,0,0.923,0.066,0.702,3.09e-05,0.0999,-6.031,0.246,124.98,4
+Stupid Love,YBNL,Olamide,afro dancehall,2016,227093,0,0.825,0.335,0.944,0.0,0.0313,-3.656,0.237,131.017,4
+Ten Ten,Best Of Wande Coal,Wande Coal,afro dancehall,2016,229146,1,0.665,0.0472,0.869,0.0,0.0775,-3.1,0.138,108.95,4
+Pop Something ft D'Banj,Turning Point,Dr SID,afro dancehall,2010,296813,24,0.661,0.00176,0.942,0.189,0.214,-4.694,0.0611,140.026,4
+Halleluyah,Olu Maintain,Olu Maintain,afro dancehall,2017,265055,7,0.678,0.622,0.575,0.0,0.359,-8.591,0.189,82.998,4
+Catch Cold,Olu Maintain,Olu Maintain,afro dancehall,2017,391001,9,0.764,0.665,0.646,2.22e-06,0.314,-10.312,0.514,106.444,4
+You Know It ft. Eldee,You Know It - Single ft. Eldee,Goldie,Missing,2010,230360,4,0.784,0.25,0.849,5.79e-06,0.256,-7.913,0.0621,119.994,4
+Kako bi Chicken,B.O.R.S,Reminisce,afropop,2012,224640,0,0.819,0.148,0.943,0.0,0.0893,-2.073,0.244,125.049,4
+If Love Is A Crime,Grass 2 Grace,2Baba,afro dancehall,2006,269733,34,0.505,0.496,0.7,0.0,0.111,-5.175,0.104,171.84,4
+African Queen,Face 2 Face - Remix,2Baba,afro dancehall,2004,260986,39,0.48,0.483,0.853,0.0,0.606,-2.081,0.381,79.362,4
+Possibilities Ft. 2face,Danger,P-Square,afro dancehall,2009,307373,31,0.698,0.561,0.646,0.0,0.0996,-7.524,0.36,91.784,4
+Bizzy Body,Get Squared,P-Square,afro dancehall,2009,289080,31,0.931,0.3,0.559,0.0,0.0398,-7.434,0.0787,100.062,4
+No Lele,Superstar,WizKid,afro dancehall,2011,218174,35,0.559,0.54,0.835,0.0,0.243,-4.256,0.185,136.29,5
+Ekuro,Omo Baba Olowo: The Genesis,DaVido,afropop,2016,207281,22,0.724,0.0142,0.823,0.0,0.0572,-5.617,0.113,122.916,4
+Pere,51Lex Presents Stop The Violence,Mo' Hits All Stars,afro dancehall,2011,254000,28,0.842,0.0512,0.837,1.54e-06,0.172,-4.388,0.137,115.001,4
+Bastard,Bastard,The Three Wisemen,Missing,2012,230714,18,0.901,0.145,0.668,0.00107,0.144,-8.597,0.263,105.011,4
+Pepper Dem Gang,The Glory,Olamide,afro dancehall,2016,219586,0,0.599,0.532,0.839,0.0,0.811,-3.441,0.374,117.643,4
+Yawa,Yawa,Mayorkun,afro dancehall,2016,204826,0,0.622,0.453,0.789,0.0,0.0987,-3.951,0.0787,123.282,4
+Daddy Yo,Daddy Yo,WizKid,afro dancehall,2016,161559,43,0.822,0.258,0.83,1.38e-05,0.137,-3.84,0.0718,98.94,4
+Diana,Diana,Tekno,afropop,2016,258626,10,0.854,0.217,0.825,4.61e-05,0.0515,-2.802,0.0629,102.989,4
+Gbagbe Oshi,Son of Mercy - EP,DaVido,afropop,2016,206640,13,0.527,0.0348,0.845,9.11e-06,0.0444,-4.125,0.141,102.96,4
+Do Like That,Do Like That,Korede Bello,afro dancehall,2016,214386,0,0.837,0.329,0.379,0.0,0.0786,-10.202,0.43,114.057,4
+Awon Da (Rasaki),Awon Da (Rasaki),L.A.X,afro dancehall,2016,209659,12,0.768,0.622,0.87,0.00166,0.0814,-4.236,0.0527,116.987,3
+Ah Skiibii (Remix) [feat. Olamide],Ah Skiibii (Remix) [feat. Olamide],Skiibii,afropop,2016,211748,4,0.762,0.103,0.97,0.0,0.0341,-0.807,0.111,132.982,4
+Bank Alert,Bank Alert,P-Square,afro dancehall,2016,253840,46,0.824,0.0767,0.915,0.0,0.045,-2.989,0.0894,129.989,4
+Omo Wobe Anthem,Omo Wobe Anthem,Olamide,afro dancehall,2016,187297,0,0.833,0.0206,0.66,0.0,0.14,-7.993,0.191,107.967,4
+Shele Gan Gan,Shele Gan Gan,Lil Kesh,afro dancehall,2016,220493,0,0.866,0.463,0.778,6.16e-05,0.0918,-4.417,0.143,105.061,4
+Cinderella,Chemistry,Falz,afro dancehall,2016,175830,20,0.717,0.238,0.77,0.0,0.0889,-3.98,0.276,114.826,4
+Foreign,Chemistry,Falz,afro dancehall,2016,182073,27,0.886,0.305,0.887,0.0,0.0945,-4.237,0.298,110.819,4
+Ariwo Ko,Gold,Adekunle Gold,afro dancehall,2016,184000,0,0.857,0.589,0.806,0.000101,0.0899,-4.735,0.214,89.929,4
+G.O.E,God Over Everything,Patoranking,afro dancehall,2016,232027,0,0.547,0.0814,0.699,0.0,0.122,-4.59,0.0426,88.239,4
+Jigi Jigi,Jigi Jigi,Niniola,afro dancehall,2016,222641,13,0.729,0.0553,0.932,0.000459,0.123,-2.001,0.178,123.922,4
+Love You Tire,Love You Tire,Mayorkun,afro dancehall,2016,182047,0,0.859,0.336,0.69,7.1e-06,0.0864,-4.12,0.0614,108.994,4
+Sons of Anarchy,The Glory,Olamide,afro dancehall,2016,140983,0,0.458,0.669,0.848,0.0,0.0952,-2.964,0.364,204.999,4
+Ireti,Ireti,Moelogo,afro dancehall,2016,251379,31,0.709,0.164,0.696,5.33e-06,0.28,-6.393,0.0412,116.005,4
+My City,Ireti,Moelogo,afro dancehall,2016,186009,18,0.597,0.152,0.615,0.0,0.161,-4.451,0.0415,89.911,4
+Love Don't Lie,Love Don't Lie,Johnny Drille,nigerian pop,2015,246543,0,0.529,0.175,0.799,0.0,0.0888,-5.038,0.0436,116.013,4
+Wait for Me,Wait for Me,Johnny Drille,nigerian pop,2015,287555,28,0.255,0.158,0.694,0.0,0.338,-5.495,0.0476,69.279,4
+Afro Lover,Afro Lover,Jilex Anderson,Missing,2016,223920,0,0.8,0.117,0.591,0.0035,0.112,-7.028,0.0719,92.013,4
+Link Up,Link Up,Ycee,afro dancehall,2016,251212,29,0.886,0.38,0.596,0.0,0.173,-6.749,0.168,106.99,4
+Ladies and Gentlemen,SPOTLIGHT,Reekado Banks,afro dancehall,2016,177941,25,0.797,0.0855,0.875,0.0,0.055,-6.523,0.0797,123.01,4
+Slide In,Slide In,Jilex,Missing,2015,258847,0,0.493,0.011,0.52,0.0,0.103,-8.039,0.203,77.13,4
+Tonight,Tonight,Nonso Amadi,afropop,2016,237374,48,0.768,0.76,0.498,2.04e-05,0.138,-6.159,0.0424,98.102,4
+Bokiniyen,Bokiniyen,Koker,afropop,2017,230680,0,0.769,0.162,0.835,0.0,0.109,-3.297,0.0883,117.995,4
+Hello,Jos To The World,Ice Prince,afro dancehall,2016,367998,0,0.497,0.611,0.683,0.00958,0.164,-7.107,0.138,121.322,5
+4 Me,4 Me,Maleek Berry,afropop,2017,197307,0,0.878,0.00852,0.605,0.0272,0.0637,-5.98,0.124,103.995,4
+LEG OVER,LEG OVER,Mr Eazi,afro dancehall,2016,197972,0,0.601,0.58,0.681,0.0,0.0934,-5.171,0.324,98.078,4
+Ballerz,Ballerz,Wande Coal,afro dancehall,2016,191150,29,0.857,0.322,0.736,7.39e-06,0.0672,-5.58,0.0441,112.986,4
+Like This,Like This,DJ Henry X,Missing,2016,161516,0,0.462,0.0234,0.755,0.0,0.572,-5.511,0.137,200.087,4
+Who You Epp,Who You Epp (feat. Wande Coal & Phyno),Olamide,afro dancehall,2016,231386,0,0.812,0.613,0.851,0.0,0.104,-3.393,0.127,110.995,4
+Legalize,Legalize,Sugarboy,nigerian pop,2016,192052,0,0.69,0.356,0.806,0.000812,0.104,-3.326,0.0531,99.984,4
+Get Up (Feat. Dj Tunez and Flash),Achikolo,Various Artists,afro dancehall,2016,200385,0,0.833,0.0187,0.722,0.0,0.0756,-6.613,0.113,117.998,4
+Oje (feat. Wizkid),Oje (feat. Wizkid),Legendury Beatz,afropop,2014,195613,15,0.661,0.00929,0.919,0.000118,0.198,-3.412,0.0475,124.043,4
+Bubble Bup,Bubble Bup,Cynthia Morgan,Missing,2016,227785,1,0.699,0.221,0.609,0.0,0.112,-5.689,0.238,98.316,4
+Wine to the Top,Wine to the Top,WizKid,afro dancehall,2017,219429,0,0.813,0.452,0.868,7.45e-06,0.0708,-2.941,0.2,104.951,4
+Radio,Radio,Nonso Amadi,afropop,2016,190000,1,0.836,0.824,0.472,0.00428,0.112,-8.004,0.0464,96.065,4
+Adore Her,The Collectiv3 Lp,Various Artists,Missing,2015,255873,19,0.625,0.211,0.527,1.53e-05,0.095,-7.565,0.159,115.016,4
+Rora Se (Tread Softly),Rora Se (Tread Softly),Moelogo,afro dancehall,2016,193469,13,0.72,0.102,0.678,0.0,0.107,-5.159,0.0523,98.016,4
+Pain Killer (feat. RunTown),Pain Killer (feat. RunTown),Sarkodie,afro dancehall,2017,219271,36,0.853,0.522,0.775,0.00348,0.0684,-4.111,0.0581,101.999,4
+Some Say,Ireti,Moelogo,afro dancehall,2016,226000,13,0.782,0.0867,0.752,0.00102,0.133,-3.297,0.0703,89.984,3
+Iskaba,Iskaba,Wande Coal,afro dancehall,2016,224680,59,0.814,0.0794,0.764,0.0174,0.0696,-7.944,0.053,125.026,4
+Tilapia (feat. Medikal),"Life Is Eazi, Vol. 1 - Accra To Lagos",Mr Eazi,afro dancehall,2017,191489,0,0.593,0.615,0.671,0.208,0.307,-7.398,0.1,93.694,4
+2 People,"Life Is Eazi, Vol. 1 - Accra To Lagos",Mr Eazi,afro dancehall,2017,200727,0,0.826,0.263,0.733,0.0,0.0816,-6.121,0.297,109.944,4
+Wo Onane No,DeYaaa,Kwamz & Flava,afro dancehall,2014,209502,0,0.842,0.0281,0.61,0.0288,0.0927,-6.91,0.096,110.003,4
+Walahi,Ghetto University,Runtown,afro dancehall,2015,213914,0,0.842,0.135,0.806,6.13e-06,0.076,-4.02,0.0384,115.937,4
+Te Ota E Mole,Te Ota E Mole,Moelogo,afro dancehall,2015,184444,8,0.665,0.493,0.907,0.159,0.12,-5.719,0.0478,128.042,4
+Bang Bang,Bang Bang,Timaya,afro dancehall,2016,187586,0,0.765,0.142,0.826,0.0,0.0382,-3.953,0.193,100.008,4
+Hey Stranger,SPOTLIGHT,Reekado Banks,afro dancehall,2016,209447,23,0.863,0.341,0.813,0.00407,0.103,-7.882,0.103,100.015,4
+Wishlist,Turn Up,Various Artists,nigerian pop,2016,233064,0,0.78,0.471,0.562,2.23e-05,0.46,-7.886,0.145,90.023,4
+Tonyor,Tonyor (feat. Mr. P),Selebobo,afro dancehall,2016,216999,34,0.861,0.108,0.756,3.03e-06,0.0996,-3.146,0.0554,124.966,4
+Shout Out Trap (feat. Wande Coal),Ballers,Dammy Krane,Missing,2016,194925,0,0.858,0.084,0.752,0.0,0.373,-4.548,0.108,121.086,4
+Killy Person Freestyle,Killy Person (Freestyle),Reekado Banks,afro dancehall,2016,165283,18,0.883,0.137,0.566,0.0,0.224,-10.091,0.175,105.975,4
+One Call Away (feat. Maleek Berry),Afropop 101,Legendury Beatz,afropop,2017,177600,0,0.625,0.165,0.651,0.0,0.123,-5.128,0.304,99.728,4
+Higher Healing (feat. Huma Lara),Away and Beyond Plus,2Baba,afro dancehall,2014,235781,17,0.703,0.0611,0.833,0.0,0.0921,-5.496,0.302,159.971,4
+Just Like Dat,Just Like Dat,Orezi,afro dancehall,2017,207516,0,0.791,0.252,0.803,0.0,0.191,-4.678,0.0895,118.027,4
+Say-Baba,Say-Baba,CDQ,afropop,2017,246746,0,0.842,0.0485,0.927,0.0067,0.161,-2.945,0.0993,125.04,4
+First Come First Serve,First Come First Serve,CDQ,afropop,2016,212349,1,0.769,0.367,0.758,0.0,0.125,-5.869,0.145,109.917,4
+Pass The Agbara,Pass The Agbara,Skuki,Missing,2017,215021,0,0.962,0.578,0.613,2.92e-06,0.0656,-3.921,0.205,110.021,4
+Come Closer (feat. Drake),Come Closer (feat. Drake),WizKid,afro dancehall,2017,211273,49,0.835,0.138,0.457,1.96e-06,0.109,-7.455,0.204,99.99,4
+Shine Your Light,Shine Your Light,Moelogo,afro dancehall,2017,218181,15,0.487,0.214,0.39,2.47e-05,0.0425,-11.317,0.0461,176.071,3
+Yetunde,Yetunde,Legendury Beatz,afropop,2016,152607,24,0.681,0.127,0.791,0.0,0.087,-5.144,0.0507,103.07,4
+Gbo Gan Gbom (Une Soul),Gbo Gan Gbom (Une Soul),Flavour,afro dancehall,2016,233920,0,0.622,0.406,0.92,1.67e-06,0.0637,-0.543,0.267,112.294,3
+Go Down,Go Down,Julz,Missing,2016,204973,0,0.882,0.297,0.69,0.00275,0.0715,-5.07,0.182,128.014,4
+Far Away,Far Away,Master Kraft,Missing,2016,208065,28,0.533,0.13,0.764,4.52e-06,0.0938,-3.63,0.148,79.997,5
+Dance 4 Me,Authentic (African Edition),J. Martins,afro dancehall,2016,250287,32,0.695,0.1,0.957,0.0,0.072,-2.173,0.183,125.996,4
+Koffi Anan,Koffi Anan,Yemi Alade,afro dancehall,2016,205008,37,0.937,0.265,0.872,0.000466,0.164,-1.43,0.133,112.983,4
+Fight (feat. DJ Cuppy),"Life Is Eazi, Vol. 1 - Accra To Lagos",Mr Eazi,afro dancehall,2017,184778,0,0.74,0.0943,0.721,0.0196,0.16,-8.43,0.0723,113.018,4
+Sometimes I Pray,Shine Your Light,Moelogo,afro dancehall,2017,220190,14,0.559,0.31,0.488,0.0,0.248,-11.293,0.0977,93.854,4
+Your Smile,Your Smile,Tjan,afro r&b,2017,215760,25,0.738,0.176,0.641,6.06e-06,0.258,-9.56,0.0549,99.84,4
+Salsa,Salsa,Master Kraft,Missing,2016,184058,12,0.845,0.162,0.622,0.0,0.113,-6.298,0.302,120.023,4
+Gbemisaya,Quality,CDQ,afropop,2016,261067,6,0.807,0.0353,0.858,0.000662,0.0589,-3.278,0.0922,129.939,4
+UP 2 SUMTING,UP 2 SUMTING,Iyanya,afro dancehall,2016,207172,0,0.57,0.459,0.616,0.0,0.208,-7.084,0.285,99.954,4
+Juice (feat. Maleek Berry),First Wave EP,Ycee,afro dancehall,2017,250920,54,0.812,0.496,0.657,0.0024,0.091,-2.77,0.0738,109.998,4
+Wavy,First Wave EP,Ycee,afro dancehall,2017,215226,12,0.714,0.0348,0.815,0.0,0.129,-3.978,0.28,105.048,4
+I.J.N,I.J.N,Pheelz,Missing,2016,221333,0,0.731,0.447,0.684,0.0,0.0898,-5.361,0.0508,89.95,4
+Teré teré,Teré teré,Toofan,azontobeats,2016,207333,45,0.916,0.113,0.744,2.22e-05,0.0494,-1.724,0.0747,109.995,4
+Maradona,Maradona,Niniola,afro dancehall,2017,191242,30,0.914,0.0444,0.613,0.069,0.11,-6.808,0.0548,118.043,4
+Yolo Yolo,Yolo Yolo,Seyi Shay,afro dancehall,2017,206600,16,0.785,0.0741,0.973,7.86e-06,0.2,-3.054,0.155,105.943,4
+Baby Answer,Signature - EP,Iyanya,afro dancehall,2017,202680,0,0.72,0.114,0.936,0.0,0.154,-1.804,0.101,106.022,4
+Gimme Luv (feat. Olamide),Gimme Luv (feat. Olamide),DJ Spinall,afro dancehall,2017,202161,18,0.877,0.261,0.738,0.0,0.346,-3.383,0.0628,110.006,4
+Ojukokoro,Ten,DJ Spinall,afro dancehall,2016,175000,0,0.69,0.0498,0.836,0.00015,0.0854,-6.863,0.1,123.1,4
+Sexy Girls,Sexy Girls,SUPERSTAR DJ Xclusive,Missing,2017,208000,3,0.88,0.129,0.699,4.56e-06,0.352,-6.482,0.0731,117.011,4
+Alhaji (Can't Hear You) [Remix] (feat. Runtown),Alhaji (Can't Hear You) [Remix] (feat. Runtown),Illbliss,afro dancehall,2017,215745,18,0.777,0.265,0.846,0.0,0.118,-5.446,0.0452,108.027,4
+Halé Halé,God Over Everything,Patoranking,afro dancehall,2016,208355,0,0.778,0.181,0.588,0.0,0.113,-8.845,0.06,115.976,4
+Cheating Zone,God Over Everything,Patoranking,afro dancehall,2016,236811,0,0.582,0.447,0.834,0.0,0.0663,-4.74,0.24,76.505,4
+Money,God Over Everything,Patoranking,afro dancehall,2016,224028,0,0.644,0.137,0.887,0.0,0.0834,-4.231,0.124,101.923,4
+Kill Nobody (feat. Calibrii),First Wave EP,Ycee,afro dancehall,2017,209186,14,0.699,0.382,0.799,0.0,0.495,-5.369,0.285,102.846,4
+Bad,Bad,Juls,afro dancehall,2017,240065,40,0.758,0.563,0.46,0.0,0.0972,-9.253,0.236,96.04,4
+Sikiru,Sikiru,Magnito,nigerian hip hop,2017,213183,0,0.934,0.337,0.762,0.0,0.0604,-6.247,0.27,109.973,4
+IZZUE,Izzue,Davido x Dammy Krane,Missing,2015,180610,0,0.86,0.0301,0.671,5.49e-05,0.0807,-1.908,0.0512,107.071,4
+Joro,Joro,WizKid,afro dancehall,2019,262736,66,0.686,0.253,0.694,0.000904,0.109,-3.693,0.257,189.998,4
+Skeletun,Skeletun,Tekno,afropop,2019,192623,60,0.747,0.0355,0.64,8.07e-05,0.338,-4.766,0.0899,201.999,4
+Blow My Mind,Blow My Mind,DaVido,afropop,2019,199173,61,0.52,0.129,0.644,0.000235,0.107,-7.09,0.0783,103.646,4
+Dumebi,Rema,Rema,nigerian pop,2019,179775,18,0.922,0.202,0.666,0.00386,0.105,-4.97,0.0609,110.015,4
+Risky,A Good Time,DaVido,afropop,2019,270315,55,0.714,0.15,0.702,0.0,0.0993,-4.544,0.264,126.511,5
+Killin Dem,Killin Dem,Zlatan,afro dancehall,2019,220884,54,0.876,0.107,0.808,0.00447,0.121,-5.382,0.176,112.923,4
+"Soco (feat. Wizkid, Ceeza Milli, Spotless & Terri)","Soco (feat. Wizkid, Ceeza Milli, Spotless & Terri)",Starboy,afro dancehall,2018,255608,65,0.841,0.594,0.644,0.00402,0.142,-3.284,0.083,108.003,4
+On the Low,African Giant,Burna Boy,afro dancehall,2019,185898,73,0.816,0.692,0.781,0.00935,0.0835,-4.237,0.0425,99.95,4
+Gbona,African Giant,Burna Boy,afro dancehall,2019,187609,65,0.798,0.564,0.813,0.000141,0.108,-5.869,0.162,93.912,4
+Sensima,Sensima,Skiibii,afropop,2018,187794,58,0.874,0.0899,0.807,0.0,0.0698,-3.973,0.177,109.945,4
+One Ticket (feat. Davido),No Bad Songz,Kizz Daniel,afro dancehall,2018,208419,41,0.832,0.0614,0.919,0.0,0.0773,-3.595,0.256,106.086,4
+Fever,Fever,WizKid,afro dancehall,2018,252244,58,0.755,0.544,0.806,0.000114,0.0908,-4.618,0.0479,98.008,4
+Skin Tight (feat. Efya),Skin Tight (feat. Efya),Mr Eazi,afro dancehall,2015,248626,1,0.654,0.152,0.439,1.11e-05,0.111,-7.114,0.263,111.358,3
+Power Rangers,Power Rangers,Teni,afro dancehall,2019,212662,49,0.804,0.488,0.782,0.00403,0.1,-3.905,0.0374,105.018,4
+Soapy,Soapy,Naira Marley,afro dancehall,2019,174043,52,0.9,0.159,0.806,0.00971,0.0811,-4.816,0.246,123.038,4
+Iron Man,Rema,Rema,nigerian pop,2019,201693,7,0.76,0.587,0.568,0.04,0.0905,-3.37,0.0489,99.955,4
+Jogodo,Jogodo,Tekno,afropop,2018,263026,47,0.74,0.379,0.771,0.0,0.0889,-4.7,0.122,100.019,4
+Balance,Chulo Vibes,Timaya,afro dancehall,2019,183529,0,0.722,0.378,0.788,0.0327,0.381,-3.661,0.0508,102.079,4
+Pana,Pana,Tekno,afropop,2016,242893,60,0.553,0.305,0.553,0.0581,0.0715,-6.818,0.305,72.949,3
+Mad Over You,Runtown Hits Vol.1,Runtown,afro dancehall,2017,216058,0,0.843,0.433,0.548,8.34e-05,0.109,-5.209,0.0477,107.044,4
+Wonder Woman,Wonder Woman,DaVido,afropop,2018,236000,42,0.688,0.434,0.696,0.0,0.128,-4.37,0.301,95.954,4
+Ghetto Love,Ghetto Love,WizKid,afro dancehall,2019,198367,60,0.807,0.206,0.774,0.000338,0.127,-4.553,0.235,98.048,4
+Risky,Risky,DaVido,afropop,2019,270315,58,0.714,0.15,0.702,0.0,0.0993,-4.544,0.264,126.511,5
+Audio Money,Audio Money,Rudeboy,azontobeats,2019,224092,14,0.894,0.281,0.787,0.0,0.0341,-2.881,0.0882,104.942,4
+40Yrs,40yrs Everlasting,Flavour,afro dancehall,2019,186084,0,0.765,0.0884,0.604,0.000158,0.101,-4.607,0.104,125.113,5
+Wetin We Gain,Wetin We Gain,Victor AD,Missing,2018,214752,36,0.533,0.424,0.784,0.0,0.093,-3.285,0.315,64.428,5
+Crazy Love,Crazy Love,Flavour,afro dancehall,2018,212729,0,0.742,0.187,0.702,0.0,0.522,-3.828,0.0341,100.979,4
+Osinachi,Osinachi,HumbleSmith,afropop,2015,235773,2,0.845,0.228,0.79,0.0,0.0886,-5.42,0.301,114.941,4
+Duro,Duro,Tekno,afropop,2015,212000,20,0.74,0.282,0.84,0.000156,0.0955,-3.815,0.0859,89.816,3
+Obianuju,Obianuju,Flavour,afro dancehall,2016,195056,0,0.587,0.704,0.463,0.0,0.143,-9.06,0.0784,118.392,5
+Waka Waka,Waka Waka (feat. Davido),Selebobo,afro dancehall,2017,206496,39,0.909,0.199,0.735,0.00022,0.038,-2.905,0.0375,110.033,4
+Dance (feat. Rudeboy),Dance (feat. Rudeboy),Timaya,afro dancehall,2017,203280,0,0.709,0.0761,0.868,0.0,0.086,-2.386,0.0696,95.979,4
+Kom Kom,Kom Kom,Timaya,afro dancehall,2018,188571,0,0.767,0.0539,0.872,5.18e-05,0.171,-4.305,0.0469,98.043,4
+Yawa,Yawa,Tekno,afropop,2017,236355,46,0.92,0.223,0.584,0.000274,0.0422,-4.789,0.0629,107.965,4
+Yeba,Yeba,Kiss Daniel,afro dancehall,2017,199024,0,0.812,0.187,0.768,0.000961,0.0891,-5.267,0.0962,110.051,4
+I Don't Care,I Don't Care,Selebobo,afro dancehall,2017,209893,30,0.891,0.54,0.701,0.000286,0.0862,-3.767,0.0439,112.027,4
+Ride for You,Deal with It,Phyno,afro dancehall,2019,217154,41,0.809,0.483,0.683,7.34e-06,0.107,-4.366,0.0709,99.056,4
+Obianuju,Legacy (Ahamefuna),Duncan Mighty,afro dancehall,2011,221080,45,0.696,0.187,0.693,0.0,0.0771,-4.031,0.101,108.928,4
+Reason with me,Reason with me,Rudeboy,azontobeats,2019,251305,28,0.913,0.431,0.56,1.6e-06,0.11,-6.782,0.0913,102.014,4
+Ifunanya,Game Over,P-Square,afro dancehall,2008,266613,31,0.824,0.711,0.767,0.0,0.0468,-3.537,0.0433,109.978,4
+Woman,Woman,Tekno,afropop,2019,255220,31,0.673,0.344,0.642,0.0,0.157,-5.013,0.187,125.437,5
+Awele,Awele The Ep,Flavour,afro dancehall,2018,511738,0,0.783,0.273,0.853,0.0,0.0922,-2.855,0.0798,79.458,3
+Yati Yati,Yati Yati,Rudeboy,azontobeats,2019,202031,21,0.82,0.512,0.538,0.0153,0.0799,-9.305,0.0543,90.019,3
+Chizoba,Chizoba,Rudeboy,azontobeats,2018,241065,11,0.795,0.628,0.587,1.23e-05,0.117,-5.751,0.0831,113.399,5
+Yati-Yati,Yati-Yati,Ruffcoin,nigerian hip hop,2019,203964,16,0.77,0.473,0.756,0.00856,0.081,-3.111,0.0518,180.013,3
+I Can't Kill Myself,Chulo Vibes,Timaya,afro dancehall,2019,196000,0,0.799,0.208,0.885,0.0,0.0739,-5.772,0.195,99.951,4
+No Kissing Baby,No Kissing Baby,Patoranking,afro dancehall,2016,222857,0,0.766,0.156,0.735,5.69e-06,0.0438,-6.624,0.0704,105.009,4
+By Force,By Force,May D,afro dancehall,2017,176953,9,0.889,0.441,0.673,0.0,0.0801,-4.48,0.0608,110.029,4
+Askamaya,Askamaya,Teni,afro dancehall,2018,175960,2,0.816,0.068,0.778,5.47e-06,0.0833,-2.702,0.0622,116.038,4
+Angela,Rockstar,Kuami Eugene,afropop,2018,187285,44,0.654,0.0194,0.655,4.09e-05,0.2,-3.165,0.0766,199.997,4
+My Level,Dripset,Shatta Wale,afropop,2019,164450,7,0.675,0.283,0.662,0.0,0.194,-9.44,0.311,106.739,4
+Taking Over,Dripset,Shatta Wale,afropop,2019,216061,9,0.855,0.148,0.418,0.0,0.354,-11.115,0.341,112.913,4
+I Can't Kill Myself,Chulo Vibes,Timaya,afro dancehall,2019,196000,46,0.799,0.208,0.885,0.0,0.0739,-5.772,0.195,99.951,4
+Yeba,Yeba,Kiss Daniel,afro dancehall,2017,198974,46,0.813,0.187,0.77,0.00152,0.0979,-5.26,0.0951,110.044,4
+Something Different,Something Different,Adekunle Gold,afro dancehall,2020,176962,2,0.719,0.446,0.781,7.38e-06,0.112,-2.922,0.139,99.718,4
+Jerusalema,Jerusalema,Master KG,south african house,2019,342662,32,0.882,0.0222,0.467,1.09e-05,0.0618,-7.5,0.0513,124.015,4
+Electric (feat. Wizkid & London),SoundMan Vol. 1,Starboy,afro dancehall,2019,178775,55,0.775,0.762,0.415,0.0269,0.092,-10.038,0.259,97.942,4
+Oga,Oga,Yemi Alade,afro dancehall,2018,181342,35,0.681,0.0218,0.74,0.182,0.424,-6.346,0.0437,107.042,4
+Fake Love (feat. Duncan Mighty & WizKid),Fake Love (feat. Duncan Mighty & WizKid),Starboy,afro dancehall,2018,246792,53,0.873,0.28,0.651,0.000205,0.0782,-6.415,0.0664,106.036,4
+Catch You,Ijele The Traveler,Flavour,afro dancehall,2017,216032,4,0.763,0.251,0.741,0.000862,0.101,-4.386,0.0876,90.02,4
+Skintight,Skintight,Mr Eazi,afro dancehall,2015,205186,0,0.869,0.0737,0.399,5.06e-05,0.079,-7.507,0.127,99.722,4
+Abule,Abule,Patoranking,afro dancehall,2020,199198,50,0.687,0.119,0.79,2.57e-05,0.104,-7.122,0.194,99.669,4
+Teyamo,Teyamo,Singah,Missing,2018,242508,44,0.698,0.391,0.892,8.32e-06,0.101,-3.018,0.0534,100.062,4
+Lucky (feat. Rudeboy),Black Love,Sarkodie,afro dancehall,2019,267660,39,0.841,0.392,0.731,0.0,0.0703,-5.8,0.243,103.934,4
+Ubi Ego,Ubi Ego,Otigba Agulu,Missing,2019,410045,22,0.703,0.115,0.924,0.0,0.0853,-2.015,0.268,89.979,3
+Igbotic,Igbotic,Anyidons,Missing,2020,204146,19,0.512,0.346,0.842,0.0,0.356,-3.692,0.253,88.374,4
+FEM,FEM,DaVido,afropop,2020,202222,61,0.775,0.493,0.687,8.5e-05,0.0958,-6.174,0.0725,108.017,4
+Kontrol,Kontrol,Maleek Berry,afropop,2016,206315,69,0.868,0.281,0.521,6.36e-05,0.0992,-6.902,0.0512,113.993,4
+My Body,My Body,Solidstar,afro dancehall,2014,216373,0,0.574,0.114,0.803,0.0,0.0782,-4.399,0.291,97.968,4
+Bend Down Pause,Bend Down Pause,Runtown,afro dancehall,2015,197276,0,0.895,0.22,0.956,0.0,0.34,-2.599,0.182,100.03,4
+Ferrari,Mama Africa (The Diary of an African Woman),Yemi Alade,afro dancehall,2016,206959,30,0.513,0.358,0.932,2.45e-06,0.166,-1.173,0.355,114.115,4
+"Reggae Blues (feat. Olamide, Kcee, Orezi & Iyanya)","Reggae Blues (feat. Olamide, Kcee, Orezi & Iyanya)",HarrySong,afro dancehall,2015,289149,35,0.84,0.237,0.861,0.0013,0.0721,-1.96,0.0734,94.502,3
+Pullover (feat. Wiz Kid),Takeover,KCee,afro dancehall,2013,187866,26,0.819,0.036,0.89,0.0,0.207,-2.265,0.064,130.044,4
+Sekem,Sekem,MC Galaxy,afropop,2014,236276,0,0.835,0.32,0.881,2.86e-06,0.228,-3.69,0.0359,130.0,4
+Anointing (feat. Sarkodie),Anointing (feat. Sarkodie),Mr Eazi,afro dancehall,2016,216546,0,0.61,0.199,0.367,2.07e-06,0.0684,-10.952,0.335,100.698,4
+Kukere,Desire,Iyanya,afro dancehall,2013,223007,0,0.74,0.0681,0.842,0.00984,0.0569,-5.281,0.0872,130.059,4
+Bobo,Eyan Mayweather,Olamide,afro dancehall,2015,253466,0,0.7,0.58,0.963,0.0,0.403,-3.599,0.138,125.004,4
+Johnny,King of Queens,Yemi Alade,afro dancehall,2014,236012,12,0.84,0.2,0.842,6.68e-05,0.138,-2.641,0.232,125.105,4
+Fada Fada (Ghetto Gospel),Fada Fada (Ghetto Gospel),Phyno,afro dancehall,2016,284592,5,0.477,0.697,0.797,0.0,0.19,-2.971,0.217,89.607,3
+I Concur,I Concur,Timaya,afro dancehall,2015,245960,9,0.866,0.113,0.702,0.000871,0.0581,-2.712,0.226,126.001,4
+Wash,Wash,Tekno,afropop,2015,194080,10,0.886,0.0763,0.803,0.0,0.187,-5.004,0.162,120.989,4
+M.O.N.E.Y,M.O.N.E.Y,Timaya,afro dancehall,2016,231106,6,0.86,0.275,0.728,0.0,0.0777,-2.95,0.158,122.918,4
+Ashawo,Ashawo,Flavour,afro dancehall,2014,257751,0,0.761,0.146,0.975,0.489,0.144,-0.18,0.0611,100.612,4
+Shake Body,Man of the Year,Skales,afro dancehall,2015,208873,51,0.855,0.193,0.872,2.87e-05,0.0615,-4.09,0.0548,130.998,4
+Karolina,"Awilo Collection, Vol. 1",Awilo Longomba,afro dancehall,2016,272065,0,0.643,0.0924,0.982,0.0,0.162,-3.519,0.0525,119.953,4
+Shake,Blessed,Flavour,afro dancehall,2012,236355,0,0.731,0.262,0.949,0.0,0.575,-3.571,0.224,125.043,4
+On Top Your Matter,Ayo,WizKid,afro dancehall,2014,284773,35,0.714,0.0516,0.968,0.0,0.0758,-0.831,0.0536,124.038,4
+Baby Oku (Gyration),Super Sexy,Various Artists,bongo flava,2015,197224,0,0.639,0.229,0.97,0.00937,0.259,-1.68,0.0418,104.178,3
+Why (feat. Awilo Longomba),Ballers,Dammy Krane,afro dancehall,2016,208431,0,0.786,0.239,0.834,4.89e-06,0.241,-4.371,0.129,129.048,4
+The Money,The Money,DaVido,afropop,2015,221309,0,0.818,0.145,0.889,0.000383,0.0793,-2.387,0.134,123.982,4
+Mmege,Thankful,Flavour,afro dancehall,2014,214706,0,0.593,0.0441,0.907,2.43e-06,0.265,-0.371,0.0921,111.943,4
+Oyoyo,Oyoyo,J. Martins,afro dancehall,2009,237066,25,0.613,0.199,0.807,1.1e-05,0.0894,-6.459,0.395,101.648,4
+Woyo,Woyo,Timaya,afro dancehall,2017,163005,0,0.779,0.0285,0.842,0.00519,0.05,-2.793,0.0763,102.104,4
+Ikwokrikwo,Blessed,Flavour,afro dancehall,2012,222876,0,0.709,0.317,0.895,8.26e-05,0.601,-4.478,0.226,106.601,4
+Sisi (Remix),MixDown,Various Artists,Missing,2016,247693,0,0.78,0.565,0.916,0.0,0.144,-2.357,0.236,124.126,4
+Manuchim Soh,Munachim Soh,Duncan Mighty,afro dancehall,2012,271516,0,0.839,0.416,0.777,4.75e-06,0.118,-6.303,0.0476,129.928,4
+Ohema (feat. Mr Eazi),Ohema (feat. Mr Eazi),DJ Spinall,afro dancehall,2016,208666,34,0.777,0.0158,0.707,0.000173,0.0522,-4.812,0.152,106.98,4
+Joana,Joana,Selebobo,afro dancehall,2014,200173,29,0.738,0.371,0.933,0.0208,0.0614,-1.579,0.0435,121.985,4
+Baby (Chop Kiss),Baby (Chop Kiss),Shatta Wale,afropop,2016,198973,0,0.923,0.0523,0.842,0.00062,0.0434,-5.365,0.146,123.006,4
+Body,Body,Eugy,afro dancehall,2015,216000,36,0.831,0.378,0.259,0.000151,0.0994,-13.457,0.175,99.978,4
+Nobody Ugly,Nobody Ugly,P-Square,afro dancehall,2017,246635,2,0.882,0.123,0.738,7.5e-05,0.0589,-3.627,0.117,134.131,4
+Ife Adigomma,Thankful,Flavour N'abania,Missing,2014,292937,0,0.385,0.48,0.918,0.0381,0.196,-3.382,0.0912,136.352,4
+Nnekata,Ijele The Traveler,Flavour,afro dancehall,2017,224052,4,0.771,0.73,0.794,0.0,0.224,-4.266,0.248,161.376,3
+Sekem,Breakthrough,MC Galaxy,afropop,2015,236200,0,0.833,0.324,0.884,2.13e-06,0.253,-3.696,0.0367,130.014,4
+Desire,Desire,KCee,afro dancehall,2017,181916,2,0.812,0.251,0.761,0.000247,0.045,-3.05,0.0502,105.971,4
+Baby Na Yoka,Ijele The Traveler,Flavour,afro dancehall,2017,215875,13,0.842,0.115,0.917,2.22e-06,0.659,-3.897,0.198,102.971,4
+Sangolo,Sangolo,Eff-Jay,Missing,2014,221040,0,0.831,0.184,0.915,1.15e-05,0.11,-1.362,0.21,130.061,4
+Vanessa,Vanessa,KCee,afro dancehall,2017,238106,1,0.841,0.407,0.891,0.000125,0.0593,-3.585,0.103,110.016,4
+Malo,Malo,Bracket,afro dancehall,2017,205191,0,0.928,0.42,0.737,0.0,0.0667,-5.465,0.129,105.005,4
+Knack Am,Knack Am,Yemi Alade,afro dancehall,2017,214974,32,0.649,0.169,0.877,4.78e-05,0.0472,-1.597,0.25,125.051,5
+Wo!!,Wo!!,Olamide,afro dancehall,2017,195422,0,0.849,0.537,0.385,0.0196,0.0916,-16.261,0.0838,129.013,4
+Bend It,Bend It,Maleek Berry,afropop,2017,199626,0,0.51,0.0159,0.73,2.04e-06,0.157,-3.75,0.0716,102.397,4
+Augment,Augment (feat. Olamide),Phyno,afro dancehall,2017,283402,29,0.421,0.469,0.875,0.0,0.0683,-3.663,0.346,195.105,3
+Jaiye,Ijele The Traveler,Flavour,afro dancehall,2017,210991,0,0.748,0.208,0.952,1.03e-06,0.102,-4.621,0.0995,128.024,4
+Chimamanda,Ijele The Traveler,Flavour,afro dancehall,2017,263784,6,0.526,0.568,0.846,0.000618,0.192,-3.604,0.155,205.919,4
+Reggae Blues,Best of Harrysong,HarrySong,afro dancehall,2017,289093,7,0.816,0.233,0.86,0.000349,0.0903,-2.764,0.0725,94.424,3
+Shake,Blessed,Flavour N'abania,Missing,2012,236094,0,0.716,0.259,0.95,0.0,0.606,-3.571,0.227,125.042,4
+Pour Me Water,Pour Me Water,Mr Eazi,afro dancehall,2017,168159,0,0.848,0.171,0.457,0.000739,0.0994,-9.957,0.117,66.657,5
+Sugar,Attention to Detail,KCee,afro dancehall,2017,232933,0,0.741,0.587,0.754,0.00024,0.0485,-3.475,0.0443,122.017,4
+Ma Lo,Sugarcane,Tiwa Savage,afro dancehall,2017,182857,55,0.788,0.424,0.721,2.86e-06,0.0897,-4.577,0.152,105.23,4
+Arabanko,Best of Harrysong,HarrySong,afro dancehall,2017,200960,0,0.735,0.0803,0.863,0.000127,0.0815,-2.888,0.151,200.895,3
+Yeba,Yeba,Kiss Daniel,afro dancehall,2017,198974,0,0.812,0.185,0.768,0.00112,0.0962,-5.267,0.096,110.041,4
+Forever,Best of P-Square,P-Square,afro dancehall,2017,269426,2,0.764,0.328,0.818,0.0,0.0711,-4.27,0.06,115.003,4
+Ashawo - Remix,Uplifted,Flavour,afro dancehall,2016,262322,0,0.77,0.12,0.973,0.375,0.131,0.075,0.0763,100.617,4
+Samankwe,Best of Harrysong,HarrySong,afro dancehall,2017,212533,4,0.783,0.0205,0.907,1.63e-05,0.0645,-2.524,0.0952,99.973,4
+Testimony,Best of P-Square,P-Square,afro dancehall,2017,259906,4,0.824,0.23,0.751,0.000153,0.0739,-4.013,0.134,120.073,4
+Nek-Unek,Collywood Music Afrobeats Kickers,Various Artists,afropop,2014,229343,0,0.766,0.038,0.93,0.00831,0.0898,0.034,0.0584,123.054,4
+Sexy Rosey,Thankful,Flavour N'abania,Missing,2014,251924,0,0.727,0.0723,0.887,9.88e-06,0.186,-4.144,0.102,128.035,4
+Amayanabo,DanceHall Kings,Various Artists,afro dancehall,2010,218881,0,0.594,0.0521,0.694,0.545,0.0478,-6.289,0.334,87.498,3
+Mind,Mind,Various Artists,afropop,2018,233848,0,0.842,0.106,0.632,0.0,0.0716,-5.846,0.0895,114.956,4
+Telli Person (feat. Phyno & Olamide),Telli Person (feat. Phyno & Olamide),Timaya,afro dancehall,2017,224754,0,0.865,0.186,0.801,0.0,0.0467,-2.006,0.111,122.074,4
+Manya,Manya,Mut4y,afropop,2017,231272,45,0.82,0.324,0.605,2.33e-06,0.159,-7.676,0.0922,110.011,4
+Wake Up,Thankful,Flavour N'abania,Missing,2014,225071,0,0.693,0.261,0.928,0.0,0.304,-3.278,0.127,125.994,4
+Laye,New Era,Kiss Daniel,afro dancehall,2016,228493,39,0.734,0.36,0.891,0.0,0.0874,-2.659,0.103,120.007,4
+The Matter (feat. Wizkid),The Matter (feat. Wizkid),Maleek Berry,afropop,2013,198058,40,0.697,0.224,0.841,0.0,0.336,-6.782,0.271,103.07,4
+Yori Yori,"DJ Collins Africa Essential Anthems, Vol 2.",Various Artists,Missing,2013,217700,0,0.652,0.677,0.725,0.0,0.164,-3.486,0.169,102.879,4
+Salambala,Salambala - Single,Wizboyy Ofuasia,Missing,2015,248441,26,0.745,0.0929,0.899,0.0138,0.211,-1.648,0.0959,193.489,3
+Gâté le coin,Coupé bibamba,Awilo Longomba,afro dancehall,2013,396226,36,0.696,0.0678,0.742,0.0,0.551,-8.749,0.0413,115.072,4
+Nwa Baby,W.E.E.D.,Solidstar,afro dancehall,2016,210840,20,0.763,0.425,0.937,3.07e-06,0.0534,-0.116,0.158,105.941,4
+Oh My God (feat. Flavour),Attention to Detail,KCee,afro dancehall,2017,180506,1,0.453,0.239,0.912,0.0,0.0404,-2.413,0.211,93.598,3
+Personally - Bonus,Double Trouble,P-Square,afro dancehall,2014,192786,48,0.736,0.0787,0.747,0.00045,0.0973,-3.963,0.267,159.559,5
+Drogba (Joanna),Drogba (Joanna),Afro B,afroswing,2018,199000,0,0.966,0.0206,0.633,4.06e-06,0.0715,-6.392,0.101,108.011,4
+Sisi Maria,First Daze Of Winter,Maleek Berry,afropop,2018,197777,0,0.734,0.564,0.693,2.55e-05,0.407,-5.625,0.0399,107.933,4
+Yur Luv,Yur Luv,Tekno,afropop,2018,231053,44,0.736,0.331,0.786,3.14e-05,0.186,-4.988,0.067,103.956,4
+Bank Alert,Best of P-Square,P-Square,afro dancehall,2017,253907,13,0.806,0.0679,0.914,0.0,0.0439,-3.537,0.0988,130.023,4
+Oshé (feat. Awilo Longomba),Rich & Famous [Famous],Praiz,afro r&b,2014,190902,29,0.54,0.222,0.945,0.0,0.27,-2.681,0.114,121.928,4
+Infinity,Infinity,Wizboyy,afro dancehall,2012,229786,19,0.788,0.308,0.916,0.0,0.18,-0.451,0.273,103.082,4
+Bundelele,Bundelele,Awilo Longomba,afro dancehall,2014,205970,33,0.68,0.0969,0.961,0.0124,0.142,-3.043,0.0478,133.988,4
+No Stress,No Stress,WizKid,afro dancehall,2020,202706,66,0.51,0.00401,0.663,0.0,0.0989,-4.871,0.472,199.733,4
+Smile (feat. H.E.R.),Smile (feat. H.E.R.),WizKid,afro dancehall,2020,251846,63,0.673,0.0258,0.74,0.0,0.127,-4.945,0.0847,90.026,4
+"PAMI (feat. Wizkid, Adekunle Gold & Omah Lay)","PAMI (feat. Wizkid, Adekunle Gold & Omah Lay)",DJ Tunez,afro dancehall,2020,213599,58,0.755,0.625,0.645,5.79e-06,0.197,-6.933,0.0944,99.889,4
+Kum Kum,Kum Kum,Chidokeyz,Missing,2020,142429,25,0.889,0.209,0.781,0.000228,0.077,-6.842,0.163,102.983,4
+Won Le Ba,Won Le Ba,Shizzi,nigerian pop,2020,229655,45,0.866,0.147,0.71,0.0,0.309,-5.562,0.0681,115.999,4
+Ginger Me,Ginger Me,Rema,nigerian pop,2020,205892,60,0.567,0.134,0.577,0.000397,0.145,-7.833,0.134,200.008,5
+Myself,Myself,Basketmouth,Missing,2020,203395,44,0.48,0.161,0.734,0.0,0.108,-6.978,0.287,95.735,4
+Where,Where,Tekno,afropop,2016,219080,34,0.887,0.0729,0.908,0.000192,0.0483,-3.346,0.0637,115.023,4
+Mmayewa,Mmayewa,Juls,afro dancehall,2020,169230,49,0.834,0.176,0.558,1.67e-05,0.0879,-8.274,0.166,116.977,4
+Jealous (feat. Fire Boy),YBNL MaFia Family,YBNL MaFia Family,nigerian pop,2018,216711,51,0.746,0.106,0.786,0.000128,0.622,-5.67,0.0472,102.996,4
+Mummy Pray for Me,Mummy Pray for Me,Mister Versace,Missing,2020,208378,35,0.885,0.565,0.506,0.000322,0.127,-8.173,0.204,105.999,4
+4 Life,4 Life,Famous Bobson,Missing,2020,165746,0,0.578,0.0102,0.561,0.00689,0.173,-7.367,0.202,103.969,4
+Sisi Maria (feat. Skales & Koker),Sisi Maria (feat. Skales & Koker),OmoAkin,Missing,2016,223451,33,0.916,0.0684,0.729,1.42e-05,0.11,-3.825,0.0457,111.982,4
+Tornado,Tornado,Tytanium,Missing,2019,151456,11,0.745,0.14,0.513,6.84e-05,0.1,-4.798,0.0424,137.039,5
+Skin,Skin,Minz,nigerian pop,2018,192506,40,0.775,0.851,0.517,2.13e-06,0.108,-7.782,0.437,95.904,4
+Kpro Kpro - Remix,Kpro Kpro (Remix),Sean Tizzle,afro dancehall,2018,213603,20,0.743,0.434,0.689,0.0,0.0854,-4.166,0.123,108.873,4
+Feel Alright,Feel Alright,WizzyWee,Missing,2018,226063,7,0.803,0.00616,0.668,8.6e-05,0.0503,-5.989,0.113,103.1,4
+Away,Away,Iyanya,afro dancehall,2014,211320,0,0.771,0.635,0.928,0.00567,0.0527,-1.285,0.0743,128.136,4
+Rotate,Naija Hits 2012-2013,This Is Africa,afro dancehall,2013,224574,0,0.725,0.133,0.945,1.02e-06,0.164,-0.809,0.094,130.07,4
+Shake Your Bum,Naija Hits 2012-2013,This Is Africa,afro dancehall,2013,216633,0,0.907,0.139,0.522,1.22e-06,0.0842,-4.896,0.139,126.075,4
+Commander,Commander,T-Obay,Missing,2014,200071,8,0.783,0.424,0.888,0.0,0.0464,-3.356,0.253,123.913,4
+Angelina,Angelina,Baci,Missing,2014,172866,0,0.78,0.13,0.92,0.0396,0.0415,-3.821,0.0629,125.996,4
+Sos,Sos,Yung L,afropop,2013,204120,14,0.747,0.0201,0.703,0.0,0.333,-8.652,0.123,99.941,4
+Le Kwa Ukwu,Le Kwa Ukwu,Iyanya,afro dancehall,2013,216920,0,0.755,0.4,0.887,2.95e-06,0.171,-3.939,0.115,125.03,4
+Give It to Me (feat. Flavour),Takeover,KCee,afro dancehall,2013,237546,6,0.783,0.107,0.922,0.00136,0.211,-0.812,0.087,130.03,4
+Johnny,Johnny,Yemi Alade,afro dancehall,2013,236012,32,0.848,0.186,0.711,0.000229,0.116,-6.385,0.194,125.084,4
+Kele Kele,Once Upon a Time,Tiwa Savage,afro dancehall,2013,222693,32,0.712,0.0319,0.77,0.0,0.103,-3.86,0.174,109.751,4
+Kukere,Kukere,Iyanya,afro dancehall,2012,224835,0,0.757,0.0179,0.853,0.00284,0.0452,-4.392,0.0601,130.058,4
+Ginger (feat. Wizkid),Ginger (feat. Wizkid),L.A.X,afro dancehall,2014,232120,29,0.777,0.0596,0.897,0.0,0.29,-2.871,0.0516,126.018,4
+Chineke Di Mma,Takeover,KCee,afro dancehall,2013,219866,3,0.703,0.0712,0.956,0.0,0.199,-2.786,0.0455,126.997,4
+Caro (feat. Wizkid),Caro (feat. Wizkid),Starboy L.a.X,Missing,2013,246760,32,0.702,0.0173,0.947,2.71e-05,0.445,-1.673,0.0642,122.075,4
+Dance,Dance,Tekno Miles,Missing,2014,201771,0,0.832,0.181,0.622,0.022,0.0615,-2.122,0.0738,126.054,4
+Dance (feat. R2bees),Explosion,WizKid,afro dancehall,2014,274546,0,0.73,0.0155,0.959,0.0,0.037,-2.408,0.0524,131.044,4
+Original,Original,Fally Ipupa,afropop,2014,285518,0,0.468,0.0555,0.896,0.0257,0.105,-4.335,0.054,118.737,4
+Nek-Unek,"Lanre Davies Presents Welcome to the Factory Afrobeat Bangers, Vol. 2",Various Artists,afropop,2014,228933,0,0.795,0.0216,0.857,0.0341,0.036,-5.228,0.0519,123.077,4
+Girlie O,Afrobeats With : Love Vol.1,Various Artists,afro dancehall,2014,240306,0,0.701,0.324,0.658,0.0,0.0973,-6.878,0.0618,107.037,4
+Say,Super Sun,BEZ,Missing,2011,255403,0,0.481,0.234,0.533,0.000185,0.15,-7.405,0.132,82.738,4
+Gallardo (feat. Davido),Good Music,Various Artists,Missing,2014,208536,0,0.792,0.506,0.79,1.9e-06,0.123,-6.299,0.067,129.944,4
+Limpopo,Good Music,Various Artists,afro dancehall,2014,258246,0,0.689,0.449,0.959,0.00871,0.186,-3.058,0.133,125.022,4
+Sanko,Afro Nation,Various Artists,afro dancehall,2014,187272,0,0.764,0.0385,0.837,0.00174,0.079,-3.4,0.102,102.992,4
+Jasi,Jasi,Banky W.,afro dancehall,2013,187116,29,0.727,0.0615,0.906,0.814,0.0854,-3.76,0.21,127.044,4
+Girlie 'O' Remix,Girlie 'O' Remix,Patoranking,afro dancehall,2014,235514,8,0.678,0.295,0.785,0.0,0.0807,-5.716,0.0505,106.351,4
+Repete,Blackmagic (Version 2.0),Blackmagic,nigerian pop,2013,218186,31,0.74,0.062,0.523,0.00108,0.0958,-9.024,0.18,130.649,5
+Give It to Me,Give It to Me,Skales,afro dancehall,2014,227473,9,0.928,0.116,0.845,0.0,0.133,-5.1,0.299,126.912,4
+Shake Body,Shake Body,Skales,afro dancehall,2014,208873,0,0.857,0.193,0.875,2.6e-05,0.057,-4.06,0.0554,130.993,4
+Jacuzzi (feat. Ice Prince),Lovely Afrolife Tunes,Various Artists,afro dancehall,2014,237244,0,0.911,0.319,0.833,5.44e-05,0.04,-3.635,0.0422,123.022,4
+Skelewu,Skelewu,DaVido,afropop,2014,187506,0,0.832,0.144,0.851,1.85e-06,0.0583,-3.098,0.109,121.009,4
+Garawa,Nicki Minaj,Tee Blaq,azontobeats,2014,222538,0,0.818,0.0345,0.936,9.6e-06,0.116,-3.121,0.0543,124.026,4
+Iwotago (feat. B Red),Afro Lovely Mix,Various Artists,afro dancehall,2014,201586,0,0.463,0.372,0.876,0.0,0.617,-4.853,0.345,172.827,3
+Bombay (feat. Wizkid),Bombay (feat. Wizkid),Phyno,afro dancehall,2014,200855,16,0.675,0.215,0.931,3.73e-06,0.381,-2.941,0.0661,103.017,4
+Oyo (On Your Own),Afro Lovely Mix,Various Artists,Missing,2014,240065,0,0.638,0.158,0.771,0.00476,0.103,-6.94,0.173,114.898,4
+Rara,Rara,Sean Tizzle,afro dancehall,2014,182543,6,0.732,0.338,0.902,0.0,0.175,-3.486,0.146,128.103,4
+All Of You,Naija Hits 2012-2013,This Is Africa,afropop,2013,187376,0,0.738,0.0558,0.654,1.23e-05,0.315,-5.952,0.0802,90.053,4
+Ojuelegba,Ayo,WizKid,afro dancehall,2014,216242,55,0.644,0.146,0.748,0.000346,0.203,-5.862,0.0349,100.037,4
+Murder (feat. Wale),Ayo,WizKid,afro dancehall,2014,242443,24,0.535,0.37,0.862,0.0,0.564,-3.482,0.317,102.958,4
+Chop Am,Chop Am,Reekado Banks,afro dancehall,2014,224522,24,0.725,0.018,0.915,0.0,0.0584,-4.036,0.219,128.973,4
+Ori Owo (feat. Tillaman),Love Afro Dancehall,Various Artists,afropop,2014,246256,0,0.742,0.194,0.933,4.06e-05,0.0543,-3.83,0.0692,125.978,4
+Ukwu,"Good Music, Vol. 1",Various Artists,afro dancehall,2014,187924,0,0.78,0.253,0.822,0.00711,0.683,-6.486,0.252,129.848,4
+Eledumare,"Good Music, Vol. 1",Various Artists,afro dancehall,2014,209581,0,0.786,0.0523,0.946,0.0,0.0368,-2.303,0.0781,122.004,4
+Sukus,Sukus,MC Galaxy,afropop,2014,209826,0,0.913,0.0652,0.894,0.00692,0.0837,-2.948,0.265,137.253,4
+"Adaobi (feat. Don Jazzy, Di'ja, Reekado Banks & Korede Bello)","Adaobi (feat. Don Jazzy, Di'ja, Reekado Banks & Korede Bello)",Mavins,afro dancehall,2014,260063,38,0.701,0.000665,0.898,0.185,0.156,-5.932,0.0837,128.045,4
+Shoki Remix,Shoki Remix,Lil Kesh,afro dancehall,2014,239666,5,0.744,0.405,0.918,0.0,0.174,-2.385,0.253,136.047,4
+Welu,Welu,Teddy-A,Missing,2014,221538,14,0.657,0.0908,0.971,4.8e-05,0.44,-1.371,0.134,194.977,3
+In My Bed,Ayo,WizKid,afro dancehall,2014,230557,39,0.851,0.00424,0.77,0.0,0.0342,-5.667,0.0486,125.006,4
+Baby Hello,Ghana Style,Various Artists,afro dancehall,2000,209162,0,0.813,0.0895,0.931,0.0,0.104,-2.465,0.0849,132.006,4
+Vasa Shiii,Vasa Shiii,Tee Blaq,azontobeats,2014,198347,0,0.84,0.0243,0.765,0.0455,0.0838,-6.507,0.0494,126.999,4
+Oh Baby (You & I),"Lanre Davies Presents Welcome to the Factory Afrobeat Bangers, Vol. 2",Various Artists,afropop,2014,218592,0,0.714,0.313,0.932,0.00182,0.0537,0.582,0.0999,128.021,4
+Hakuna Matata,Takeover,KCee,afro dancehall,2013,223241,14,0.747,0.241,0.967,0.00271,0.0344,-1.72,0.138,131.026,4
+Magical,Magical,Tobby Potter,Missing,2014,220003,0,0.88,0.0112,0.855,0.000169,0.109,-3.527,0.229,126.04,4
+Poco A Poco,The Evolution,Triplemg,Missing,2014,202240,0,0.759,0.247,0.691,1.23e-05,0.0339,-9.682,0.0857,125.987,4
+Shekini,Double Trouble,P-Square,afro dancehall,2014,218095,50,0.82,0.0226,0.857,0.0163,0.0283,-4.862,0.0756,94.459,3
+Tangerine (feat. Selebobo),King of Queens,Yemi Alade,afro dancehall,2014,226453,1,0.847,0.251,0.909,2.97e-06,0.0728,-3.791,0.353,126.085,4
+YoYo (Remix) [feat. J.Martins],YoYo (Remix) [feat. J.Martins],Selebobo,afro dancehall,2012,235853,23,0.74,0.0785,0.894,2.07e-05,0.0729,-6.846,0.0842,125.013,4
+Jeje,Jeje,DJ Xclusive,gqom,2014,236329,25,0.811,0.398,0.93,0.0,0.304,-3.012,0.209,127.989,4
+Osey,Osey,Nero X,christian afrobeat,2015,223946,28,0.795,0.343,0.642,0.0,0.0356,-4.792,0.0853,108.988,4
+Your Body Hot (feat. Attitude),Man of the Year,Skales,afro dancehall,2015,229906,20,0.838,0.0358,0.931,0.0,0.0985,-3.723,0.13,128.102,4
+Shuperu - Remix,Shuperu (Remix),Orezi,afro dancehall,2015,215320,14,0.786,0.195,0.806,0.0,0.161,-4.232,0.254,124.068,4
+Paper,Paper,Boj,afro dancehall,2014,192000,0,0.8,0.526,0.455,0.818,0.107,-11.184,0.0414,110.004,4
+Owo Ni Koko,Beta Hitz,Various Artists,afropop,2015,194089,0,0.735,0.138,0.864,3.19e-05,0.311,-3.497,0.0725,121.016,4
+Slow Down,Refuse To Be Broke,R2Bees,afro dancehall,2014,259373,0,0.519,0.109,0.721,0.0,0.275,-3.148,0.358,135.733,5
+Anything,Anything,Tekno,afropop,2015,208852,2,0.879,0.224,0.916,0.0,0.0877,-4.602,0.157,126.031,4
+Go Mad (feat. Mista Silva),Go Mad (feat. Mista Silva) - Single,Kwamz & Flava,afro dancehall,2015,171859,0,0.804,0.223,0.513,0.00073,0.0866,-9.695,0.0994,109.947,4
+Baloba (feat. DJ Leo),Baloba (feat. DJ Leo),BM,azontobeats,2015,216160,18,0.678,0.437,0.865,0.0193,0.0963,-4.134,0.0705,197.969,3
+Je Kan Mo,Je Kan Mo,Skales,afro dancehall,2015,195800,26,0.863,0.0366,0.896,0.000152,0.0504,-3.13,0.101,128.029,4
+My Woman My Everything,Mid Year Hitz Selection,Various Artists,afro dancehall,2015,233770,0,0.899,0.0497,0.846,0.0,0.0668,-2.654,0.0634,112.009,4
+In My Head,In My Head,Solidstar,afro dancehall,2015,224773,0,0.698,0.322,0.916,5.84e-05,0.133,-2.422,0.0785,124.082,4
+Kwaroro,Kwaroro,J. Martins,afro dancehall,2015,193960,10,0.735,0.632,0.918,0.193,0.0718,-2.582,0.0355,127.954,4
+Concert Party,Afro Escape,Various Artists,afro dancehall,2015,252708,0,0.602,0.177,0.883,4.38e-06,0.119,-6.183,0.0778,154.01,4
+Loko,Applaudise,Iyanya,afro dancehall,2015,223159,0,0.729,0.238,0.864,0.0,0.195,-3.942,0.0668,121.058,4
+Gift,Applaudise,Iyanya,afro dancehall,2015,278280,0,0.809,0.049,0.806,0.0,0.0659,-6.547,0.234,123.997,4
+Macoma,Applaudise,Iyanya,afro dancehall,2015,213426,0,0.816,0.114,0.961,0.0085,0.137,-2.204,0.139,106.972,4
