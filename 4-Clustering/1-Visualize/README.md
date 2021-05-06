@@ -1,11 +1,13 @@
 # Introduction to Clustering, Cleaning and Visualizing Data
 
+[![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
-![Embed a video here if available](video-url)
-
+> While you're studying Machine Learning with Clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-Describe what we will learn
+Clustering is a type of unsupervised learning that presumes that a dataset is unlabelled.
+
+
 
 ### Introduction
 
