@@ -137,15 +137,13 @@ pandas
 numpy
 flask
 ```
-Now, run this file by navigating to `web-app` (`cd web-app`) in your terminal and typing `python requirements.txt`
-
-> You might need to use `python3 requirements.txt`, depending on your local configuration.
+Now, run this file by navigating to `web-app` (`cd web-app`) in your terminal and typing `pip install -r requirements.txt`.
 
 Now, you're ready to create three more files to finish the app:
 
 1. Create `app.py` in the root
-1. Create `index.html` in `templates`
-1. Create `styles.css` in `static/css`
+2. Create `index.html` in `templates`
+3. Create `styles.css` in `static/css`
 
 Build out the styles.css file with a few styles:
 
