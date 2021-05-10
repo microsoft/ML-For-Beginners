@@ -64,7 +64,9 @@ One of the major consumers of classical machine learning models is the finance i
 ✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
 
 
-🚀 Challenge: Add a challenge for students to work on collaboratively in class to enhance the project
+## 🚀Challenge
+
+Add a challenge for students to work on collaboratively in class to enhance the project
 
 ## [Post-lecture quiz](link-to-quiz-app)
 
