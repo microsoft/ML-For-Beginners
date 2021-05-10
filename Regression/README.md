@@ -11,7 +11,7 @@ In North America, pumpkins are often carved into scary faces for Halloween. Let'
 
 In this section, you will get set up to begin machine learning tasks, including configuring Visual Studio code to manage notebooks, the common environment for data scientists. You will discover Scikit-Learn, a library for machine learning, and you will build your first models, focusing on Regression models in this chapter.
 
-### Topics
+### Lessons
 
 1. [Tools of the Trade](1-Tools/README.md)
 2. [Managing Data](2-Data/README.md)
