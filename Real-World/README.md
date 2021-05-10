@@ -2,7 +2,7 @@
 
 In this section of the curriculum, you will be introduced to ...
 
-## Topics
+## Lessons
 
 1. [Real-World Applications for ML](1-Applications/README.md)
 

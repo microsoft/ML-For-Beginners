@@ -2,7 +2,7 @@
 
 In this section of the curriculum you will learn about how to classify data using Machine Learning. 
 
-## Topics
+## Lessons
 
 1. [Visualize your Data and Prepare it for Use](1-Data/README.md)
 2. [Build a Discriminative Model](2-Discriminative/README.md)
