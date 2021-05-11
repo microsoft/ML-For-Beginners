@@ -33,6 +33,8 @@ One of the major consumers of classical machine learning models is the finance i
 
 ### Forest management
 ### Motion sensing of animals
+### Energy Management
+  This article discusses in detail how clustering and time series forecasting help predict future energy use in Ireland, based off of smart metering: https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
 
 ## Insurance
 
