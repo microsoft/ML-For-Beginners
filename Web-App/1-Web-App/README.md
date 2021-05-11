@@ -268,6 +268,6 @@ Using a model this way, with Flask and a pickled model, is relatively straightfo
 
 ## Review & Self Study
 
-**Assignment**: [Assignment Name](assignment.md)
+**Assignment**: [Try a different model](assignment.md)
 
 
