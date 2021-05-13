@@ -35,6 +35,7 @@ The analysis be performed using a variety of methods, including frequency-domain
 Time Series Forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time indices as x variables on a plot, this type of data is best analyzed using special types of models. 
 
 Time series data is a list of ordered observations, unlike data that can be analyzed by linear regression.   The most common one is ARIMA, an acronym that stands for "Autoregressive Integrated Moving Average".
+
 ARIMA models "relate the present value of a series to past values and past prediction errors." [source](https://online.stat.psu.edu/stat510/lesson/1/1.1). They are most appropriate for analyzing time-domain data, where data is ordered over time.
 
 > There are several types of ARIMA models, which you can learn about [here](https://people.duke.edu/~rnau/411arim.htm) and which you will touch on in the next lesson.
@@ -57,8 +58,6 @@ In the next lesson, you will build an ARIMA model using [Univariate Time Series]
 | 330.97 |  1975.96  | 1975  |  12   |
 
 ✅ Identify the variable that changes over time in this dataset
-
-
 ## Time Series [data characteristics](https://online.stat.psu.edu/stat510/lesson/1/1.1) to consider
 
 When looking at time series data, you might notice that it has certain characteristics that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques. 
@@ -89,38 +88,26 @@ Let's get started creating a time series model to predict future power usage giv
 >
 > Tao Hong, Pierre Pinson, Shu Fan, Hamidreza Zareipour, Alberto Troccoli and Rob J. Hyndman, "Probabilistic energy forecasting: Global Energy Forecasting Competition 2014 and beyond", International Journal of Forecasting, vol.32, no.3, pp 896-913, July-September, 2016.
 
-In the `working` folder of this lesson, open the `notebook.ipynb` file. Start by adding libraries that will help you load and visualize remote data
+In the `working` folder of this lesson, open the `notebook.ipynb` file. Start by adding libraries that will help you load and visualize data
 
 ```python
 import os
 import matplotlib.pyplot as plt
 from common.utils import load_data
-from common.extract_data import extract_data
 %matplotlib inline
 ```
 Note, you are using the files from the included `common` folder which set up your environment and handle downloading the data.
 
-Next, download, move and extract the zip file of data:
+Next, examine the data as a dataframe
 
 ```python
 data_dir = './data'
-
-if not os.path.exists(os.path.join(data_dir, 'energy.csv')):
-    # Download and move the zip file
-    !wget https://www.dropbox.com/s/pqenrr2mcvl0hk9/GEFCom2014.zip
-    !mv GEFCom2014.zip ./data
-    # If not done already, extract zipped data and save as csv
-    extract_data(data_dir)
-```
-Take a look at the way the data looks:
-
-```
 energy = load_data(data_dir)[['load']]
 energy.head()
 ```
 You can see that there are two columns representing date and load:
 
-|        date         |  load  |
+|                     |  load  |
 | :-----------------: | :----: |
 | 2012-01-01 00:00:00 | 2698.0 |
 | 2012-01-01 01:00:00 | 2558.0 |
