@@ -24,7 +24,7 @@ Before starting, however, it's useful to understand what's going on behind the s
 When encountering the term 'time series' you need to understand its use in several different contexts.
 ### Time Series
 
-In mathematics, "a time series is a series of data points indexed (or listed or graphed) in time order. Most commonly, a time series is a sequence taken at successive equally spaced points in time." An example of a time series is the daily closing value of the Dow Jones Industrial Average.[source](https://en.wikipedia.org/wiki/Time_series). The use of time series plots and statistical modeling is frequently encountered in signal processing, weather forecasting, earthquake prediction, and other fields where events occur and data points can be plotted over time.
+In mathematics, "a time series is a series of data points indexed (or listed or graphed) in time order. Most commonly, a time series is a sequence taken at successive equally spaced points in time." An example of a time series is the daily closing value of the [Dow Jones Industrial Average](https://en.wikipedia.org/wiki/Time_series). The use of time series plots and statistical modeling is frequently encountered in signal processing, weather forecasting, earthquake prediction, and other fields where events occur and data points can be plotted over time.
 ### Time Series Analysis
 
 Time Series Analysis is the analysis of the above mentioned time series data. Time series data can take distinct forms, including 'interrupted time series' which detects patterns in a time series' evolution before and after an interrupting event. The type of analysis needed for the time series depends on the nature of the data. Time series data itself can take the form of series of numbers or characters.
@@ -36,7 +36,7 @@ Time Series Forecasting is the use of a model to predict future values based on 
 
 Time series data is a list of ordered observations, unlike data that can be analyzed by linear regression.   The most common one is ARIMA, an acronym that stands for "Autoregressive Integrated Moving Average".
 
-ARIMA models "relate the present value of a series to past values and past prediction errors." [source](https://online.stat.psu.edu/stat510/lesson/1/1.1). They are most appropriate for analyzing time-domain data, where data is ordered over time.
+[ARIMA models](https://online.stat.psu.edu/stat510/lesson/1/1.1) "relate the present value of a series to past values and past prediction errors." They are most appropriate for analyzing time-domain data, where data is ordered over time.
 
 > There are several types of ARIMA models, which you can learn about [here](https://people.duke.edu/~rnau/411arim.htm) and which you will touch on in the next lesson.
 
