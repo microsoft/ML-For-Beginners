@@ -142,9 +142,11 @@ In the next lesson, you will create an ARIMA model to create some forecasts.
 
 ## 🚀Challenge
 
-tbd
+Make a list of all the industries and areas of inquiry you can think of that would benefit from Time Series Forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
 
 ## [Post-lecture quiz](link-to-quiz-app)
 ## Review & Self Study
+
+Although we won't cover them here, neural networks are sometimes used to enhance classic methods of Time Series Forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
 
 **Assignment**: [Assignment Name](assignment.md)
