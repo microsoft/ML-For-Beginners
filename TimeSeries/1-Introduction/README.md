@@ -1,9 +1,6 @@
 # Introduction to Time Series Forecasting
 
-[![Introduction to Time Series Forecasting](https://img.youtube.com/vi/mAv1SEXUKhE/0.jpg)](https://youtu.be/mAv1SEXUKhE "Introduction to Time Series Forecasting")
-
-> Introduction to Time Series Forecasting with Francesca Lazzeri; starting at 7:13.
-
+[![Introduction to Time Series Forecasting](https://img.youtube.com/vi/wGUV_XqchbE/0.jpg)](https://youtu.be/wGUV_XqchbE "Introduction to Time Series Forecasting")
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 In this lesson and the following one, you will learn a bit about Time Series Forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit lesser known than other topics. Time Series Forecasting is a sort of crystal ball: based on past performance of a variable such as price, you can predict its future potential value. 
