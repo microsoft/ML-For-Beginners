@@ -7,9 +7,14 @@ While a lot of interest in industry has been garnered by AI, which usually lever
 
 ## Finance
 
-One of the major consumers of classical machine learning models is the finance industry. 
+One of the major consumers of classical machine learning models is the finance industry.
 
 ### Credit card fraud detection
+
+We learned about [k-means clustering](Clustering/2-K-Means/README.md) earlier in the course, but how can it be used to solve problems related to credit card fraud?
+
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf
+
 ### Wealth management
 
 ## Education
@@ -17,6 +22,7 @@ One of the major consumers of classical machine learning models is the finance i
 ### Predicting student behavior
 ### Preventing plagiarism
 ### Course recommendations
+
 ## Retail
 
 ### Personalizing the customer journey
