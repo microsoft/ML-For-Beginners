@@ -290,7 +290,7 @@ Check the accuracy of your model by testing its mean absolute percentage error (
 >
 > ![MAPE](images/mape.png)
 > 
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) is used to show prediction accuracy as a ratio defined by the above formula. The difference between Actual<sub>t</sub> and Predicted<sub>t</sub> is divided by the Actual<sub>t</sub>. "The absolute value in this calculation is summed for every forecasted point in time and divided by the number of fitted points n." [wikipedia](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error)
+>  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) is used to show prediction accuracy as a ratio defined by the above formula. The difference between actual<sub>t</sub> and predicted<sub>t</sub> is divided by the actual<sub>t</sub>. "The absolute value in this calculation is summed for every forecasted point in time and divided by the number of fitted points n." [wikipedia](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error)
 
 If this equation is expressed in code:
 
