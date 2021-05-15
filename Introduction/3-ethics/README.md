@@ -1,8 +1,10 @@
-# [Lesson Topic]
+# The Ethics of Machine Learning
 
 Add a sketchnote if possible/appropriate
 
-![Embed a video here if available](video-url)
+> ✅ Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/en-us/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+
+[![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
