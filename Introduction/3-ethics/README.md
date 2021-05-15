@@ -26,6 +26,8 @@ Preparatory steps to start this lesson
 
 ---
 
+[![Eric Horvitz discusses Ethical AI](https://img.youtube.com/vi/tL7t2O5Iu8E/0.jpg)](https://youtu.be/tL7t2O5Iu8E "Eric Horvitz, Technical Fellow and Director of Microsoft Research Labs, talks about some of the benefits AI and machine learning are bringing and why it is essential for companies to establish ethical principles to make sure AI is properly governed.")
+
 [Step through content in blocks]
 
 ## [Topic 1]
