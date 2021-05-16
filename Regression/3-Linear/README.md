@@ -26,13 +26,13 @@ As you learned in Lesson 1, the goal of a linear regression exercise is to be ab
 > 
 > This line has an equation: `Y = a + bX`. It is typical of **Least-Squares Regression** to draw this type of line. 
 >
-> `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. The slope of the line is `b` and `a` is the intercept, which refers to the value of `Y` when `X = 0`. 
+> `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. The slope of the line is `b` and `a` is the y-intercept, which refers to the value of `Y` when `X = 0`. 
 >
 > In other words, and referring to our pumpkin data's original question: "predict the price of a pumpkin per bushel by month", `X` would refer to the price and `Y` would refer to the month of sale. The math that calculates the line must demonstrate the slope of the line, which is also dependent on the intercept, or where `Y` is situated when `X = 0`.
 >
 > You can observe the method of calculation for these values on the [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html) web site.
 >
-> A common method of regression is **Least-Squares Regression** which means that all the datapoints surounding the regression line are squared and then added up. Ideally, that final sum is as small as possible, because we want a low number of errors, or `least-squares`.
+> A common method of regression is **Least-Squares Regression** which means that all the datapoints surounding the regression line are squared and then added up. Ideally, that final sum is as small as possible, because we want a low number of errors, or `least-squares`. We do so since we want to model a line that has the least cumulative distance from all of our data points. We also square the terms before adding them since we are concerned with its magnitude rather than its direction.
 >
 > One more term to understand is the **Correlation Coefficient** between given X and Y variables. For a scatterplot, you can quickly visualize this coefficient. A plot with datapoints scattered in a neat line have high correlation, but a plot with datapoints scattered everywhere between X and Y have a low correlation.
 >
@@ -253,6 +253,6 @@ Test several different variables in this notebook to see how correlation corresp
 
 ## Review & Self Study
 
-In this lesson we learned about Linear Regression. There are other important types of Regression. Read about Stepwise, Ridge, Lasso and Elasticnet techniques.
+In this lesson we learned about Linear Regression. There are other important types of Regression. Read about Stepwise, Ridge, Lasso and Elasticnet techniques. A good course to study to learn more is the [Stanford Statistical Learning course](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
 
 **Assignment**: [Build a Model](assignment.md)
