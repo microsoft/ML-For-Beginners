@@ -64,9 +64,11 @@ According to their [website](https://scikit-learn.org/stable/getting_started.htm
 
 > 🎓 **[Model Fitting](https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py)** in the context of machine learning refers to the accuracy of the model's underlying function as it attempts to analyze data with which it is not familiar. **Underfitting** and **overfitting** are common problems that degrade the quality of the model as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
 
+TODO: Infographic to show underfitting/overfitting like this https://miro.medium.com/max/1525/1*TzMis7bbuaU1OE2q64hnbg.png
+
 > 🎓 **Data Preprocessing** is the process whereby data scientists clean and convert data for use in the machine learning lifecycle. 
 
-> 🎓 **Model Selection and Evaluation** is the process whereby data scientists evaluate the accuracy of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
+> 🎓 **Model Selection and Evaluation** is the process whereby data scientists evaluate the accuracy of a model or any other relevant metric of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
 
 In this course, you will use Scikit-Learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
 
@@ -99,6 +101,10 @@ bp: average blood pressure
 s1 tc: T-Cells (a type of white blood cells)
 
 ✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
+
+Now, load up the X and y data.
+
+> 🎓 Remember, this is supervised learning, and we need a named 'y' target.
 
 3. In a new cell, load the diabetes dataset as data and target (X and y, loaded as a tuple). X will be a data matrix, and y will be the regression target. Add some print commands to show the shape of the data matrix and its first element:
 
