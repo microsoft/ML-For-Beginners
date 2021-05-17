@@ -1,4 +1,4 @@
-# Introduction to Clustering, Cleaning and Visualizing Data
+# Introduction to Clustering
 
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
