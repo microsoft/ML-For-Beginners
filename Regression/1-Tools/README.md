@@ -33,9 +33,9 @@ In this lesson, you will learn:
 3. Install Scikit-Learn by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
 ## Your ML Authoring Environment
 
-You are going to use **notebooks** to develop your Python code and create machine learning models. This type of file is a common tool for data scientists, and they can be identified by their suffix `.ipynb`.
+You are going to use **notebooks** to develop your Python code and create machine learning models. This type of file is a common tool for data scientists, and they can be identified by their suffix or extension `.ipynb`.
 
-Notebooks are an interactive environment that allow the developer to both code and add notes and documentation around the code.
+Notebooks are an interactive environment that allow the developer to both code and add notes and write documentation around the code which is quite helpful for experimental or research-oriented projects.
 ### Working with A Notebook
 
 In this folder, you will find the file `notebook.ipynb`. If you open it in VS Code, assuming VS Code is properly configured, a Jupyter server will start with Python 3+ started. You will find areas of the notebook that can be 'run' by pressing arrows next to code blocks, and other areas that contain text.
@@ -68,7 +68,13 @@ TODO: Infographic to show underfitting/overfitting like this https://miro.medium
 
 > 🎓 **Data Preprocessing** is the process whereby data scientists clean and convert data for use in the machine learning lifecycle. 
 
-> 🎓 **Model Selection and Evaluation** is the process whereby data scientists evaluate the accuracy of a model or any other relevant metric of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
+> 🎓 **Model Selection and Evaluation** is the process whereby data scientists evaluate the performance of a model or any other relevant metric of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
+
+> 🎓 **Feature Variable** A [feature](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) is a measurable property of your data. In many datasets it is expressed as a column heading like 'date' 'size' or 'color'.
+
+> 🎓 **[Training and Testing](https://en.wikipedia.org/wiki/Training,_validation,_and_test_sets) datasets** Throughout this curriculum, you will divide up a dataset into at least two parts, one large group of data for 'training' and a smaller part for 'testing'. Sometimes you'll also find a 'validation' set. A training set is the group of examples you use to train a model. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. A test dataset is another independent group of data, often gathered from the original data, that you use to confirm the performance of the built model. 
+
+> 🎓 **Feature Selection and Feature Extraction** How do you know which variable to choose when building a model? You'll probably go through a process of feature selection or feature extraction to choose the right variables for the most performant model. They're not the same thing, however: "Feature extraction creates new features from functions of the original features, whereas feature selection returns a subset of the features." [source](https://en.wikipedia.org/wiki/Feature_selection)
 
 In this course, you will use Scikit-Learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
 
@@ -79,7 +85,7 @@ Scikit-Learn makes it straightforward to build models and evaluate them for use.
 
 In the `notebook.ipynb` file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression Model, when visualized, might show information about variables that would help you organize your theoretical clinical trials. 
+In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression model, when visualized, might show information about variables that would help you organize your theoretical clinical trials. 
 
 > ✅ There are many types of Regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use Linear Regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of recipe should be considered vegan or not, you're looking for a **category assignment** so you would use Logistic Regression. You'll learn more about Logistic Regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
 
@@ -109,6 +115,7 @@ Now, load up the X and y data.
 3. In a new cell, load the diabetes dataset as data and target (X and y, loaded as a tuple). X will be a data matrix, and y will be the regression target. Add some print commands to show the shape of the data matrix and its first element:
 
 > 🎓 A **tuple** is an [ordered list of elements](https://en.wikipedia.org/wiki/Tuple).
+
 ✅ Think a bit about the relationship between the data and the regression target. Linear regression predicts relationships between feature X and target variable y. Can you find the [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for the diabetes dataset in the documentation? What is this dataset demonstrating, given that target? 
 
 ```python
@@ -173,6 +180,8 @@ Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 
 ## Review & Self Study
+
+In this tutorial, you worked with simple linear regression, rather than univariate or multiple linear regression. Read a little about the differences between these methods, or take a look at [this video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
 Read more about the concept of Regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
 
