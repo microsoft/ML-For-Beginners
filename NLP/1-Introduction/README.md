@@ -90,7 +90,7 @@ Why do you say that?
 It was nice talking to you, goodbye!
 ```
 
-One possible solution to the task is [here](lesson1_task1.py)
+One possible solution to the task is [here](solutions/lesson1_task1.py)
 
 ✅ Knowledge Check
 1. Do you think the random responses would 'trick' someone into thinking that the bot actually understood them?
@@ -239,7 +239,7 @@ Hmm, that's not great. Can you tell me more about old hounddogs?
 It was nice talking to you, goodbye!
 ```
 
-One possible solution to the task is [here](lesson1_task2.py)
+One possible solution to the task is [here](solutions/lesson1_task2.py)
 
 ✅ Knowledge Check
 
@@ -307,7 +307,7 @@ Steps:
    1. If the polarity is 1 or -1 store the sentence in an array or list of positive or negative messages
 5. At the end, print out all the positive sentences and negative sentences (separately) and the number of each.
 
-Here is a sample [solution](lesson1_task3.py).
+Here is a sample [solution](solutions/lesson1_task3.py).
 
 ✅ Knowledge Check 
 
