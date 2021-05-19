@@ -37,8 +37,6 @@ ufos.head()
 Convert the ufos data to a small dataframe with fresh titles. Check the unique values in the Country field.
 
 ```python
-from sklearn.preprocessing import LabelEncoder
-
 ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
 
 ufos.Country.unique()
@@ -94,7 +92,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 Finally, train your model using Logistic Regression:
 
 ```python
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report 
 from sklearn.linear_model import LogisticRegression
 model = LogisticRegression()
