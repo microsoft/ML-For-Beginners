@@ -6,7 +6,7 @@ Add a sketchnote if possible/appropriate
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-### Introduction
+## Introduction
 
 This section covers a brief history and important concepts of *Computational Linguistics* focusing on *Natural Language Processing*. 
 You will learn about how the ideas about languages developed and what the major areas of study have been. 
@@ -16,7 +16,7 @@ Computational linguistics is an area of research and development over many decad
 
 At this point, you may be remembering school classes where the teacher covered the parts of grammar in a sentence. In some countries, students are taught grammar and linguistics as a dedicated subject, but in many, these topics are included as part of learning a language: either your first language in primary school (learning to read and write) and perhaps a second language in post-primary, or high school. Don't  worry if you are not an expert at differentiating nouns from verbs, or adverbs from adjectives! If you struggle with the difference between the *simple present* and *present progressive*, you are not alone. This is a challenging thing for many people, even native speakers of a language. The good news is that computers are really good at applying formal rules, and you will learn to write code that can *parse* a sentence as well as a human. The greater challenge you will examine later is understanding the *meaning*, and *sentiment*, of a sentence.
 
-### Prerequisites
+## Prerequisites
 
 For this lesson, the main prerequisite is being able to read and understand the language of this lesson. There are no maths or equations to handle. While I happen to be writing this lesson in English, it is also translated into other languages, so you could be reading a translation. There are examples where a number of different languages are used (to compare the different grammar rules of different languages). These are *not* translated, but the explanatory text is, so the meaning should be clear.
 
@@ -102,17 +102,17 @@ In the next lesson, you'll learn about a number of other approaches to parsing n
 
 For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or even just the frequency of terms and words in a text. Here are a list of common techniques used in processing text. You should know these are because they are combined with machine learning techniques to analyse large amounts of text efficiently. In the next lesson, you'll learn how to code some of these.
 
-##### Tokenization
+### Tokenization
 
 Probably the first thing most NLP algorithms have to do is split the text into tokens, or words. While this sounds simple, having to take punctuation and different language's word and sentence delimiters can make it tricky.
 
-##### Parsing & Part-of-speech Tagging
+### Parsing & Part-of-speech Tagging
 
 Every word that has been tokenised can be tagged as a part of speech - is the word a noun, a verb, or adjective etc. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as *fox* = noun, *jumped* = verb etc.
 
 Parsing is recognising what words are related to each other in a sentence - for instance `the quick red fox jumped` is an adjective-noun-verb sequence that is is separate from `lazy brown dog` sequence.  
 
-##### Word and phrase Frequencies
+### Word and phrase Frequencies
 
 A useful tool when analysing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for `the`. The Rudyard Kipling poem *The Winners* has a verse:
 
@@ -127,7 +127,7 @@ He travels the fastest who travels alone.
 
 As phrases frequencies can be case insensitive or case sensitive as required, the phrase `a friend` has a frequency of 2 and `the` has a frequency of 6, and `travels` is 2.
 
-##### n-grams
+### n-grams
 
 A text can be split into sequences of words of a set length, a single word (unigram), two words (bigrams), three words (trigrams) or any number of words (n-grams).
 
@@ -154,17 +154,17 @@ It might be easier to visualise it as a sliding box over the sentence. Here it i
 7.   the quick red fox jumped over <u>**the lazy brown**</u> dog
 8.   the quick red fox jumped over the **<u>lazy brown dog</u>**
 
-##### Noun phrase Extraction
+### Noun phrase Extraction
 
 In most sentences, there is a noun that is the subject, or object of the sentence. In English, it is often identifiable as it has 'a' or 'an' or the preceding it. Identifying the subject or object of a sentence by 'extracting the noun phrase' is a common task in NLP when attempting to understand the meaning of a sentence.
 
 In the sentence `the quick red fox jumped over the lazy brown dog` there are 2 noun phrases: **quick red fox** and **lazy brown dog**.
 
-##### Sentiment analysis
+### Sentiment analysis
 
 A sentence or text can be analysed for sentiment, or how *positive* or *negative* it is. Sentiment is measured in *polarity* and *objectivity/subjectivity*. Polarity is measured from -1.0 to 1.0 (negative to positive) and 0.0 to 1.0 (most objective to most subjective). Later this lesson you'll learn there are different ways to determine sentiment using machine learning, but one way is to have a list of words and phrases that are categorised as positive or negative by a human expert and apply that model to text to calculate a polarity score.
 
-##### WordNet, Inflection and lemmatization
+### WordNet, Inflection and lemmatization
 
 [WordNet](https://wordnet.princeton.edu/) is a database of words, synonyms, antonyms and many other details for every word in many different languages. It is incredibly useful when attempting to build translations, spell checkers, or language tools of any type.
 
@@ -172,7 +172,7 @@ Inflection enables you to take a word and get the singular, or plural of the wor
 
 A *lemma* is the root or headword for a set of words, for instance *flew*, *flies*, *flying* have a lemma of the verb *fly*.  
 
-#### TextBlob & NLTK
+### TextBlob & NLTK
 
 Luckily, you don't have to build all of these techniques yourself, as there are excellent Python libraries available that make it much more accessible to developers who haven't specialised in natural language processing or machine learning. The next lesson includes more examples on these, but here you will learn some useful examples to help you with the next task.
 
@@ -192,7 +192,7 @@ user_input_blob = TextBlob(user_input, np_extractor=extractor)  # note non-defau
 np = user_input_blob.noun_phrases                                    
 ```
 
-#### Task: Improving your bot with a little NLP
+### Task: Improving your bot with a little NLP
 
 Next, you'll make Marvin a bit more sympathetic by analysing our input for sentiment, and printing out a response to match the sentiment. You'll also need to identify a noun_phrase and ask about it.
 
@@ -270,7 +270,7 @@ The ML approach would be to hand gather negative and positive bodies of text - t
 
 **Example**: If you worked in a politician's office and there was some new law being debated, constituents might write to the office with emails supporting or emails against the particular new law. Let's say you are tasked with reading the emails and sorting them in 2 piles, *for* and *against*. If there were a lot of emails, you might be overwhelmed attempting to read them all. Wouldn't it be nice if a bot could read them all for you, understand them and tell you which pile each email belonged? One way to achieve that is to use Machine Learning. You would train the model with a portion of the *against* emails and a portion of the *for* emails. The model would tend to associate phrases and words with the against side and the for side, *but it would not understand any of the content*, only that certain words and patterns were more likely to appear in an *against* or a *for* email. You could test it with some emails that you had not used to train the model, and see if it came to the same conclusion as you did. Then, once you were happy with the accuracy of the model, you could process future emails without having to read each one.
 
-#### Task: Sentimental Sentences
+### Task: Sentimental Sentences
 
 Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most negative sentiment, and 1 is the most positive. Sentiment is also measured with an 0 - 1 score for objectivity (0) and subjectivity (1).
 
@@ -336,7 +336,7 @@ Here is a sample [solution](lesson1_task3.py).
 
 🚀 Challenge: Can you make Marvin even better by extracting other features from the user input?
 
-## [Post-lesson quiz](link-to-quiz-app)
+### [Post-lesson quiz](link-to-quiz-app)
 
 ### References
 
