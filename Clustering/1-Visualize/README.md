@@ -77,6 +77,7 @@ Get some information about the dataframe:
 df.info()
 ```
 
+```
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 530 entries, 0 to 529
 Data columns (total 16 columns):
@@ -100,6 +101,7 @@ Data columns (total 16 columns):
  15  time_signature    530 non-null    int64  
 dtypes: float64(8), int64(4), object(4)
 memory usage: 66.4+ KB
+```
 
 It's useful that this data is mostly numeric, so it's almost ready for clustering.
 
@@ -111,6 +113,7 @@ df.isnull().sum()
 
 Looking good:
 
+```
 name                0
 album               0
 artist              0
@@ -128,6 +131,7 @@ speechiness         0
 tempo               0
 time_signature      0
 dtype: int64
+```
 
 Describe the data:
 
