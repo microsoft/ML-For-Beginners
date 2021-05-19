@@ -33,18 +33,23 @@ In real life, clustering can be used to determine things like market segmentatio
 > 🎓 How we create clusters has a lot to do with how we gather up the data points into groups. Let's unpack some vocabulary:
 >
 > 🎓 ['Transductive' vs. 'inductive'](https://wikipedia.org/wiki/Transduction_(machine_learning))
+> 
 > Transductive inference is derived from observed training cases that map to specific test cases. Inductive inference is derived from training cases that map to general rules which are only then applied to test cases.
 > 
 > 🎓 ['Non-flat' vs. 'flat' geometry](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
+> 
 > Derived from mathematical terminology, non-flat vs. flat geometry refers to the measure of distances between points by either 'flat' (non-[Euclidean](https://wikipedia.org/wiki/Euclidean_geometry)) or 'non-flat' (Euclidean) geometrical methods. 
 > 
 > 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
+> 
 > Clusters are defined by their distance matrix, e.g. the distances between points. This distance can be measured a few ways. Euclidean clusters are defined by the average of the point values, and contain a 'centroid' or center point. Distances are thus measured by the distance to that centroid. Non-Euclidean distances refer to 'clustroids', the point closest to other points. Clustroids in turn can be defined in various ways.
 > 
 > 🎓 ['Constrained'](https://wikipedia.org/wiki/Constrained_clustering)
+> 
 > Constrained Clustering introduces 'semi-supervised' learning into this unsupervised method. The relationships between points are flagged as 'cannot link' or 'must-link' so some rules are forced on the dataset.
 > 
 > 🎓 'Density'
+> 
 > Data that is 'noisy' is considered to be 'dense'. The distances between points in each of its clusters may prove, on examination, to be more or less dense, or 'crowded' and thus this data needs to be analyzed with the appropriate clustering method. [This article](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demonstrates the difference between using K-Means clustering vs. HDBSCAN algorithms to explore a noisy dataset with uneven cluster density.
 ### Preparation
 
