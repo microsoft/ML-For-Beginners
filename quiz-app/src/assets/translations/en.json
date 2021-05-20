@@ -324,7 +324,7 @@
 			},
 			{
 				"id": 7,
-				"title": "Lesson 7 - Get started with Python and Scikit-Learn for Regression models: Pre-Lecture Quiz",
+				"title": "Get started with Python and Scikit-Learn for Regression models: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "Which of these variables is a numeric variable?",
@@ -381,7 +381,7 @@
 			},
 			{
 				"id": 8,
-				"title": "Lesson 8 - Get started with Python and Scikit-Learn for Regression models: Post-Lecture Quiz",
+				"title": "Get started with Python and Scikit-Learn for Regression models: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "If your Machine Learning model's training accuracy is 95 % and the testing accuracy is 30 %, then what type of condition it is called?",
