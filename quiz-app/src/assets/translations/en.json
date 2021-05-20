@@ -475,7 +475,7 @@
 						]
 					},
 					{
-						"questionText": "Which of these is a part Data Visualization step in a Machine Learning project?",
+						"questionText": "Which of these is a part of the Data Visualization step in a Machine Learning project?",
 						"answerOptions": [
 							{
 								"answerText": "Incorporating a certain Machine Learning algorithm",
