@@ -249,6 +249,9 @@ def predict():
 if __name__ == "__main__":
     app.run(debug=True)
 ```
+
+> 💡 Tip: when you add [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) while running the web app using Flask, any changes you make to your application will be reflected immediately without the need to restart the server. Beware! Don't enable this mode in a production app.
+
 If you run `python app.py` or `python3 app.py` - your web server starts up, locally, and you can fill out a short form to get an answer to your burning question about where UFOs have been sighted!
 
 Before doing that, take a look at the parts of `app.py`.
