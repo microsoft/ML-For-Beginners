@@ -2,8 +2,7 @@
 
 Add a sketchnote if possible/appropriate
 
-TODO: We need a good video here!
-
+![Embed a video here](video-url)
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 ## Introduction
@@ -100,7 +99,7 @@ Why do you say that?
 It was nice talking to you, goodbye!
 ```
 
-One possible solution to the task is [here](solutions/bot.py)
+One possible solution to the task is [here](solution/bot.py)
 
 ✅ Stop and consider
 1. Do you think the random responses would 'trick' someone into thinking that the bot actually understood them?
