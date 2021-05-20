@@ -8,4 +8,10 @@ In this section of the curriculum, you will be introduced to an applied ML topic
 
 ## Credits
 
-"Build a Web App" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper). The dataset is sourced from [Kaggle](https://www.kaggle.com/NUFORC/ufo-sightings). The web app architecture was suggested in part by [this article](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) and [this repo](https://github.com/abhinavsagar/machine-learning-deployment) by Abhinav Sagar.
+"Build a Web App" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper). 
+
+♥️ The quizzes were written by Rohan Raj.
+
+The dataset is sourced from [Kaggle](https://www.kaggle.com/NUFORC/ufo-sightings). 
+
+The web app architecture was suggested in part by [this article](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) and [this repo](https://github.com/abhinavsagar/machine-learning-deployment) by Abhinav Sagar.

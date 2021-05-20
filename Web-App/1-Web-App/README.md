@@ -1,7 +1,7 @@
 # Build a Web App to use a ML Model
 
 In this lesson, you will train a Linear Regression model and a Classification model on a dataset that's out of this world: UFO Sightings over the past century, sourced from [NUFORC's database](https://www.nuforc.org). We will continue our use of notebooks to clean data and train our model, but you can take the process one step further by exploring using a model 'in the wild', so to speak: in a web app. To do this, you need to build a web app using Flask.
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
 
 There are several ways to build web apps to consume machine learning models. Your web architecture may influence the way your model is trained. Imagine that you are working in a business where the data science group has trained a model that they want you to use in an app. There are many questions you need to ask: Is it a web app, or a mobile app? Where will the model reside, in the cloud or locally? Does the app have to work offline? And what technology was used to train the model, because that may influence the tooling you need to use? 
 
@@ -267,7 +267,7 @@ Using a model this way, with Flask and a pickled model, is relatively straightfo
 
 Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. What are the pros and cons of pursuing this method?
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
 
 ## Review & Self Study
 
