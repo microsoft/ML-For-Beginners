@@ -435,6 +435,438 @@
 						]
 					}
 				]
+			},
+			{
+				"id": 9,
+				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 10,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 11,
+				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 12,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 13,
+				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 14,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 15,
+				"title": "Build a Web App: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "What does ONNX stand for?",
+						"answerOptions": [
+							{
+								"answerText": "Over Neural Network Exchange",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Open Neural Network Exchange",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Output Neural Network Exchange",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "How is Flask defined by its creators?",
+						"answerOptions": [
+							{
+								"answerText": "mini-framework",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "large-framework",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "micro-framework",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "What does the Pickle module of Python do",
+						"answerOptions": [
+							{
+								"answerText": "Serializes a Python Object",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "De-serializes a Python Object",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Serializes and De-serializes a Python Object",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 16,
+				"title": "Build a Web App: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "What are the tools we can use to host a pre-trained model on the web using Python?",
+						"answerOptions": [
+							{
+								"answerText": "Flask",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "TensorFlow.js",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "onnx.js",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "What does SaaS stand for?",
+						"answerOptions": [
+							{
+								"answerText": "System as a Service",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Software as a Service",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Security as a Service",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "What does Scikit-Learn's LabelEncoder library do?",
+						"answerOptions": [
+							{
+								"answerText": "Encodes data alphabetically",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Encodes data numerically",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Encodes data serially",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
 			}
 		]
 	}
