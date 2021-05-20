@@ -9,8 +9,8 @@ In this section of the curriculum, you will be introduced to one of the most wid
 
 1. [Introduction to Natural Language Processing](1-Introduction-to-NLP/README.md)
 2. [Common NLP Tasks](2-NLP-Tasks/README.md)
-TBD
-TBD
+3. TBD
+4. TBD
 
 
 ## Credits 
