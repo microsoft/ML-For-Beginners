@@ -7,7 +7,7 @@ Add a sketchnote if possible/appropriate
 [![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 > Video: Microsoft's Approach to Responsible AI
 
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
 
 Describe what we will learn
 
@@ -54,7 +54,7 @@ Add a challenge for students to work on collaboratively in class to enhance the 
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 
 ## Review & Self Study
 

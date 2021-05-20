@@ -109,6 +109,332 @@
 						]
 					}
 				]
+			},
+			{
+				"id": 3,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 4,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 5,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 6,
+				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 7,
+				"title": "Lesson 7 - Get started with Python and Scikit-Learn for Regression models: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "Which of these variables is a numeric variable?",
+						"answerOptions": [
+							{
+								"answerText": "Height",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Gender",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Hair Color",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Which of these variables is a categorical variable?",
+						"answerOptions": [
+							{
+								"answerText": "Heart Rate",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Blood Type",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Weight",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Which of these problems is a Regression analysis-based problem?",
+						"answerOptions": [
+							{
+								"answerText": "Predicting the final exam marks of a student",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Predicting the blood type of a person",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Predicting whether an email is spam or not",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 8,
+				"title": "Lesson 8 - Get started with Python and Scikit-Learn for Regression models: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "If your Machine Learning model's training accuracy is 95 % and the testing accuracy is 30 %, then what type of condition it is called?",
+						"answerOptions": [
+							{
+								"answerText": "Overfitting",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Underfitting",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Double Fitting",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "The process of identifying significant features from a set of features is called:",
+						"answerOptions": [
+							{
+								"answerText": "Feature Extraction",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Feature Dimensionality Reduction",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Feature Selection",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "The process of splitting a dataset into a certain ratio of training and testing dataset using Scikit Learn's 'train_test_split()' method/function is called:",
+						"answerOptions": [
+							{
+								"answerText": "Cross-Validation",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Hold-Out Validation",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Leave one out Validation",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
 			}
 		]
 	}

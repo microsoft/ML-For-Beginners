@@ -3,7 +3,7 @@
 > ![Data Vizualization Infographic](./images/data-visualization.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 
 ### Introduction
 
@@ -143,7 +143,7 @@ This is a more useful data visualization! It seems to indicate that the highest 
 ## 🚀Challenge
 
 Explore the different types of visualization that matplotlib offers. Which types are most appropriate for regression problems?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
 
 ## Review & Self Study
 
