@@ -7,8 +7,8 @@ In this section of the curriculum, you will be introduced to one of the most wid
   
 ## Lessons
 
-1. [Introduction to](1-Introduction-to-NLP/README.md)
-2. [NLP Tasks](2-NLP-Tasks/README.md)
+1. [Introduction to Natural Language Processing](1-Introduction-to-NLP/README.md)
+2. [Common NLP Tasks](2-NLP-Tasks/README.md)
 TBD
 TBD
 
