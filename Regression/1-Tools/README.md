@@ -3,7 +3,7 @@
 ![Logistic vs. Linear Regression Infographic](./images/logistic-linear.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 ## Introduction
 
 The lessons in this section cover types of Regression in the context of machine learning. Regression models can help determine the relationship between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes datapoints.
@@ -177,7 +177,7 @@ Congratulations, you just built your first Linear Regression model, created a pr
 ## 🚀Challenge
 
 Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
 
 ## Review & Self Study
 
