@@ -6,7 +6,7 @@
 		"quizzes": [
 			{
 				"id": 1,
-				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"title": "Introduction to Machine Learning: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -59,7 +59,7 @@
 			},
 			{
 				"id": 2,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "Introduction to Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -112,7 +112,7 @@
 			},
 			{
 				"id": 3,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "History of Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -165,7 +165,7 @@
 			},
 			{
 				"id": 4,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "History of Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -218,7 +218,7 @@
 			},
 			{
 				"id": 5,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "Ethics of Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -271,7 +271,7 @@
 			},
 			{
 				"id": 6,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "Ethics of Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -438,51 +438,55 @@
 			},
 			{
 				"id": 9,
-				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"title": "Build a Regression Model using Scikit-Learn: Prepare and Visualize Data: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Which of these Python modules is used to plot the visualization of data?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Numpy",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Scikit-Learn",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Matplotlib",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "If you want to understand the spread or the other characteristics of data points of your dataset, then perform:",
+						"answerOptions": [
+							{
+								"answerText": "Data Visualization",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Data Preprocessing",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Train Test Split",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Which of these is a part Data Visualization step in a Machine Learning project?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "Incorporating a certain Machine Learning algorithm",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Creating a pictorial representation of data using different plotting methods",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Normalizing the values of a dataset",
 								"isCorrect": "false"
 							}
 						]
@@ -491,51 +495,55 @@
 			},
 			{
 				"id": 10,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "Build a Regression Model using Scikit-Learn: Prepare and Visualize Data: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Which of these code snippets is correct based on this lesson, if you want to check for the presence of missing values in your dataset? Suppose the dataset is stored in a variable named 'dataset' which is a Pandas DataFrame object.",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "dataset.isnull().sum()",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "findMissing(dataset)",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sum(null(dataset))",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Which of these plotting methods is useful when you would like to understand the spread of different groups of datapoints from your dataset?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "Scatter Plot",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Line Plot",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bar Plot",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What can Data Visualization NOT tell you?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Relationships among datapoints",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "The source from where the dataset is collected",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Finding the presence of outliers in the dataset",
 								"isCorrect": "false"
 							}
 						]
