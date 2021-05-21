@@ -1,12 +1,12 @@
 from textblob import TextBlob
 
-# The book file is supplied, but you can get it (and many other books) yourself from Project Gutenberg
-with open('pride.txt', encoding="utf8") as f:
+# You should download the book text, clean it, and import it here
+with open("pride.txt", encoding="utf8") as f:
     file_contents = f.read()
 
 book_pride = TextBlob(file_contents)
-positive_sentiment_sentences =[]
-negative_sentiment_sentences =[]
+positive_sentiment_sentences = []
+negative_sentiment_sentences = []
 
 for sentence in book_pride.sentences:
     if sentence.sentiment.polarity == 1:
