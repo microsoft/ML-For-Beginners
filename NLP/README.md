@@ -8,9 +8,10 @@ In this section of the curriculum, you will be introduced to one of the most wid
 ## Lessons
 
 1. [Introduction to Natural Language Processing](1-Introduction-to-NLP/README.md)
-2. [Common NLP Tasks](2-NLP-Tasks/README.md)
-3. [Translation with NLP](3-Translationn/README.md)
+2. [Common NLP Tasks](2-Tasks/README.md)
+3. [Translation with NLP](3-Translations/README.md)
 4. TBD
+5. TBD
 
 
 ## Credits 
