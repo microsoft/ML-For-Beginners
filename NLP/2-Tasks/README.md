@@ -24,7 +24,6 @@ Let's discover common techniques used in processing text. Combined with machine 
 > 🎓 **Word and Phrase Frequencies**
 >
 > A useful tool when analyzing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for `the`. 
-
 ### Example:
 
 The Rudyard Kipling poem *The Winners* has a verse:
@@ -43,7 +42,6 @@ As phrase frequencies can be case insensitive or case sensitive as required, the
 > 🎓 **N-grams**
 >
 > A text can be split into sequences of words of a set length, a single word (unigram), two words (bigrams), three words (trigrams) or any number of words (n-grams).
-
 ### Example
 
 For instance `the quick red fox jumped over the lazy brown dog` with a n-gram score of 2 produces the following n-grams:
@@ -93,7 +91,6 @@ In the sentence `the quick red fox jumped over the lazy brown dog` there are 2 n
 > 🎓 **Lemmatization**
 >
 > A *lemma* is the root or headword for a set of words, for instance *flew*, *flies*, *flying* have a lemma of the verb *fly*.  
-
 ## TextBlob & NLTK
 
 Luckily, you don't have to build all of these techniques yourself, as there are excellent Python libraries available that make it much more accessible to developers who aren't specialised in natural language processing or machine learning. The next lesson includes more examples on these, but here you will learn some useful examples to help you with the next task.
