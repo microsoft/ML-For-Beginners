@@ -6,7 +6,7 @@ Add a sketchnote if possible/appropriate
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or even just the frequency of terms and words in a text. 
+For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 
 Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently.
 ## The Tools of NLP
@@ -19,11 +19,11 @@ Let's discover common techniques used in processing text. Combined with machine 
 >
 > Every word that has been tokenised can be tagged as a part of speech - is the word a noun, a verb, or adjective etc. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as *fox* = noun, *jumped* = verb etc.
 >
-> Parsing is recognising what words are related to each other in a sentence - for instance `the quick red fox jumped` is an adjective-noun-verb sequence that is is separate from `lazy brown dog` sequence.  
+> Parsing is recognizing what words are related to each other in a sentence - for instance `the quick red fox jumped` is an adjective-noun-verb sequence that is is separate from `lazy brown dog` sequence.  
 
 > 🎓 **Word and Phrase Frequencies**
 >
-> A useful tool when analysing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for `the`. 
+> A useful tool when analyzing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for `the`. 
 
 ### Example:
 
@@ -168,11 +168,11 @@ One possible solution to the task is [here](solution/bot.py)
 3. Why would extracting a 'noun phrase' from a sentence a useful thing to do?
 ## 🚀Challenge
 
-TODO
+Take a task in the prior knowledge check and try to implement it. Test the bot on a friend. Can it trick them? Can you make your bot more 'believable?'
 ## [Post-lecture quiz](link-to-quiz-app)
 
 ## Review & Self Study
 
-TODO
+In the next few lessons you will learn more about sentiment analysis. Research this interesting technique in articles such as these on [KDNuggets](https://www.kdnuggets.com/tag/nlp)
 
-**Assignment**: [Assignment Name](assignment.md)
+**Assignment**: [Search for a bot](assignment.md)
