@@ -18,7 +18,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 **Hearty thanks to our authors (list all authors here)**
 
- **🙏Special thanks🙏 to our Microsoft Student Ambassador reviewers and content contributors**, notably Rishit Dagli, Rohan Raj, Muhammad Sakid Khan Inan, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
+ **🙏Special thanks🙏 to our Microsoft Student Ambassador reviewers and content contributors**, notably Rishit Dagli, Rohan Raj, Muhammad Sakib Khan Inan, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
 
 **Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum. If you would like to create your own lessons, we have also included a [lesson template](lesson-template/README.md)
 
