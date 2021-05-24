@@ -169,7 +169,12 @@ Predicted labels:  [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 
  0 0 0 1 0 1 0 0 1 0 0 0 1 0]
 ```
 
-Let's unpack some of those [terms](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report):
+Let's unpack some of those [terms](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) with a confusion matrix to help us measure the performance of our mdoel:
+
+```python
+from sklearn.metrics import confusion_matrix
+confusion_matrix(y_test, predictions)
+```
 
 🎓 Precision: The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
 
