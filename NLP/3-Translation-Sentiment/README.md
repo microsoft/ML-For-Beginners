@@ -1,30 +1,45 @@
-# Translation with NLP and Introduction to Sentiment
+# Translation and Sentiment Analysis with ML
 
 Add a sketchnote if possible/appropriate
 
 ![Embed a video here if available](video-url)
+
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-An important challenge in computational linguistics is accurate *translation* of a sentence from one spoken or written language to another. This is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This means that you would take the following steps:
+In the previous lessons you learned how to build a basic bot using TextBlob, a library that embeds ML behind-the-scenes to perform basic NLP tasks such as noun phrase extraction. Another important challenge in computational linguistics is accurate *translation* of a sentence from one spoken or written language to another. 
+
+This is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This means that you would take the following steps:
 
 1. Identify or tag the words in input language into nouns, verbs etc.
 2. Produce a direct translation of each word in the target language format
 
 > ☘️ **Example**: In **English**, the simple sentence `I feel happy` is 3 words in the order **subject** (I), **verb** (feel), **adjective** (happy). However, in the **Irish** language, the same sentence has a very different grammatical structure - emotions like "*happy*" or "*sad*" are expressed as being *upon* you. The English phrase `I feel happy` in Irish would be `Tá athas orm`. A *literal* translation would be `Happy is upon me`. Of course, an Irish speaker translating to English would say `I feel happy`, not `Happy is upon me`, because they understand the meaning of the sentence, even if the words and sentence structure are different. The formal order for the sentence in Irish are **verb** (Tá or is), **adjective** (athas, or happy), **subject** (orm, or upon me).
 
-A naive translation program might translate words only, ignoring the sentence structure. This leads to bad (and sometimes hilarious) mistranslations: `I feel happy` translates literally to `Mise bhraitheann athas`. In Irish that means (literally) `me feel happy` and not a valid Irish sentence. Even though English and Irish are languages spoken on two closely neighboring islands, they are very different languages with different grammar structures. 
+## Translation
+
+A naive translation program might translate words only, ignoring the sentence structure. 
+
+✅ If you've learned a second (or third or more) language as an adult, you might have started by thinking in your native language, translating a concept word by word in your head to the second language, and then speaking out your translation. This is similar to what naive translation computer programs are doing. It's important to get past this phase to attain fluency!
+
+Naive translation leads to bad (and sometimes hilarious) mistranslations: `I feel happy` translates literally to `Mise bhraitheann athas`. In Irish that means (literally) `me feel happy` and not a valid Irish sentence. Even though English and Irish are languages spoken on two closely neighboring islands, they are very different languages with different grammar structures. 
 
 > You can watch some videos about Irish linguistic traditions such as [this one](https://www.youtube.com/watch?v=mRIaLSdRMMs)
 
-### Machine Learning Approaches
+### Machine learning approaches
 
 So far, you've learned about the formal rules approach to natural language processing. Another approach is to ignore the meaning of the words, and _instead use machine learning to detect patterns_. This can work in translation if you have lots of text (a *corpus*) or texts (*corpora*) in both the origin and target languages. For instance, if you have *Pride and Prejudice* in English and a human translation of the book in *French*, you could detect phrases in one that are idiomatically translated into the other. 
 
 For instance, when an English phrase such as `John looked at the cake with a wolfish grin` is translated literally, to, say French, it might become `John regarda le gâteau avec un sourire de loup`. A reader of both languages would understand that the direct translation of `wolfish grin` is not the French translation `wolf smile` but a synonym - in this case for being very hungry or voracious. A better translation that a human might make would be `John regarda le gâteau avec voracité`, because it better conveys the meaning. If a ML model has enough human translations to build a model on, it can improve the accuracy of translations by identifying common patterns in texts that have been previously translated by expert human speakers of both languages. 
 
+TODO: Demo
+
+## Sentiment analysis
+
 Another area where machine learning can work very well is sentiment analysis. A non-ML approach to sentiment is to identify words and phrases which are 'positive' and 'negative'. Then, given a new piece of text, calculate the total value of the positive, negative and neutral words to identify the overall sentiment. This approach is easily tricked as you may have seen in the Marvin task - the sentence `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` is a sarcastic, negative sentiment sentence, but the simple algorithm detects 'great', 'wonderful', 'glad' as positive and 'waste', 'lost' and 'dark' as negative. The overall sentiment is swayed by these conflicting words.
 
 ✅ Stop a second and think about how we convey sarcasm as human speakers. Tone inflection plays a large role. Try to say the phrase "Well, that film was awesome" to discover how your voice conveys meaning.
+
+### Machine learning approaches
 
 The ML approach would be to hand gather negative and positive bodies of text - tweets, or movie reviews, or anything where the human has given a score *and* a written opinion. Then NLP techniques can be applied to opinions and scores, so that patterns emerge (e.g., positive movie reviews tend to have the phrase 'Oscar worthy' more than negative movie reviews, or positive restaurant reviews say 'gourmet' much more than 'disgusting').
 
@@ -97,10 +112,13 @@ Here is a sample [solution](solutions/book.py).
       - It would be dreadful!
 
 ✅ Any aficionado of Jane Austen will understand that she often uses her books to critique the more ridiculous aspects of English Regency society. Elizabeth Bennett, the main character in Pride and Prejudice, is a keen social observer (like the author) and her language is often heavily nuanced. Even Mr. Darcy (the love interest in the story) notes Elizabeth's playful and teasing use of language: "I have had the pleasure of your acquaintance long enough to know that you find great enjoyment in occasionally professing opinions which in fact are not your own."
+
 ## 🚀Challenge
 
 Can you make Marvin even better by extracting other features from the user input?
+
 ## [Post-lecture quiz](link-to-quiz-app)
+
 ## Review & Self Study
 
 There are many ways to extract sentiment from text. Think of the business applications that might make use of this technique. Think about how it can go awry. Read more about sophisticated enterprise-ready systems that analyze sentiment such as [Azure Text Analysis](https://docs.microsoft.com/en-us/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-15963-cxa). Test some of the Pride and Prejudice sentences above and see if it can detect nuance.
