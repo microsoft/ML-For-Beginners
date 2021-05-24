@@ -198,7 +198,9 @@ plt.title('Top genres',color = 'blue')
 ```
 ![most popular](images/popular.png)
 
-✅ If you'd like to see more top values, change this `[:5]` to a bigger value, or remove it to see all. It's interesting that one of the top genres is called 'Missing'!
+✅ If you'd like to see more top values, change this `[:5]` to a bigger value, or remove it to see all. 
+
+Note, when the top genre is described as 'Missing', that means that Spotify did not classify it.
 
 Explore the data by checking the most popular genre:
 
