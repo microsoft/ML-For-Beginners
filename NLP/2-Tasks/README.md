@@ -8,16 +8,16 @@ Add a sketchnote if possible/appropriate
 
 For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 
-Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently.
-## The Tools of NLP
+Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently. Before applying ML to these tasks, however, let's understand the problems encountered by an NLP specialist.
+## Tasks common to NLP
 
 > 🎓 **Tokenization**
 > 
-> Probably the first thing most NLP algorithms have to do is split the text into tokens, or words. While this sounds simple, having to take punctuation and different language's word and sentence delimiters can make it tricky.
+> Probably the first thing most NLP algorithms have to do is split the text into tokens, or words. While this sounds simple, having to account for punctuation and different language's word and sentence delimiters can make it tricky.
 
 > 🎓 **Parsing & Part-of-speech Tagging**
 >
-> Every word that has been tokenised can be tagged as a part of speech - is the word a noun, a verb, or adjective etc. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as *fox* = noun, *jumped* = verb etc.
+> Every word that has been tokenized can be tagged as a part of speech - a noun, verb, or adjective etc. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as *fox* = noun, *jumped* = verb etc.
 >
 > Parsing is recognizing what words are related to each other in a sentence - for instance `the quick red fox jumped` is an adjective-noun-verb sequence that is is separate from `lazy brown dog` sequence.  
 
@@ -78,11 +78,7 @@ In the sentence `the quick red fox jumped over the lazy brown dog` there are 2 n
 >
 > A sentence or text can be analysed for sentiment, or how *positive* or *negative* it is. Sentiment is measured in *polarity* and *objectivity/subjectivity*. Polarity is measured from -1.0 to 1.0 (negative to positive) and 0.0 to 1.0 (most objective to most subjective). 
 
-✅ Later you'll learn that there are different ways to determine sentiment using machine learning, but one way is to have a list of words and phrases that are categorised as positive or negative by a human expert and apply that model to text to calculate a polarity score. Can you see how this would work in some circumstances and less well in others?
-
-> 🎓 **WordNet**
->
-> [WordNet](https://wordnet.princeton.edu/) is a database of words, synonyms, antonyms and many other details for every word in many different languages. It is incredibly useful when attempting to build translations, spell checkers, or language tools of any type.
+✅ Later you'll learn that there are different ways to determine sentiment using machine learning, but one way is to have a list of words and phrases that are categorized as positive or negative by a human expert and apply that model to text to calculate a polarity score. Can you see how this would work in some circumstances and less well in others?
 
 > 🎓 **Inflection**
 >
@@ -90,14 +86,23 @@ In the sentence `the quick red fox jumped over the lazy brown dog` there are 2 n
 
 > 🎓 **Lemmatization**
 >
-> A *lemma* is the root or headword for a set of words, for instance *flew*, *flies*, *flying* have a lemma of the verb *fly*.  
-## TextBlob & NLTK
+> A *lemma* is the root or headword for a set of words, for instance *flew*, *flies*, *flying* have a lemma of the verb *fly*.
 
-Luckily, you don't have to build all of these techniques yourself, as there are excellent Python libraries available that make it much more accessible to developers who aren't specialised in natural language processing or machine learning. The next lesson includes more examples on these, but here you will learn some useful examples to help you with the next task.
+There are also useful databases available for the NLP researcher, notably:
+
+> 🎓 **WordNet**
+>
+> [WordNet](https://wordnet.princeton.edu/) is a database of words, synonyms, antonyms and many other details for every word in many different languages. It is incredibly useful when attempting to build translations, spell checkers, or language tools of any type.
+
+## NLP Libraries
+
+Luckily, you don't have to build all of these techniques yourself, as there are excellent Python libraries available that make it much more accessible to developers who aren't specialized in natural language processing or machine learning. The next lessons include more examples of these, but here you will learn some useful examples to help you with the next task.
+
+Let's use a library called TextBlob as it contains helpful APIs for tackling these types of tasks. TextBlob "stands on the giant shoulders of [NLTK](https://nltk.org) and [pattern](https://github.com/clips/pattern), and plays nicely with both." It has a considerable amount of ML embedded in its API.
 
 > Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers 
 
-When attempting to identify *noun phrases*, the default extractor seems to miss quite a few, but there is the option to use a different one.
+When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases. Take a look at `ConllExtractor`.
 
 ```python
 from textblob import TextBlob
@@ -110,6 +115,8 @@ user_input = input("> ")
 user_input_blob = TextBlob(user_input, np_extractor=extractor)  # note non-default extractor specified
 np = user_input_blob.noun_phrases                                    
 ```
+
+> What's going on here? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) is "A noun phrase extractor that uses chunk parsing trained with the ConLL-2000 training corpus." ConLL-2000 refers to the Conference on Computational Natural Language Learning (CoNLL-2000). Each year the conference hosted a workshop to tackle a thorny NLP problem, and in 2000 it was noun chunking. A model was trained on the Wall Street Journal, with "sections 15-18 as training data (211727 tokens) and section 20 as test data (47377 tokens)". You can look at the procedures used [here](https://www.clips.uantwerpen.be/conll2000/chunking/) and the [results](https://ifarm.nl/erikt/research/np-chunking.html).
 ## Task: Improving your bot with a little NLP
 
 In the previous lesson you built a very simple Q&A bot. Now, you'll make Marvin a bit more sympathetic by analyzing your input for sentiment and printing out a response to match the sentiment. You'll also need to identify a `noun_phrase` and ask about it.
