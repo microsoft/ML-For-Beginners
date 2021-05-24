@@ -57,7 +57,9 @@ In this case, the translation informed by ML does a better job than the human tr
 ✅ Try some more sentences. Which is better, ML or human translation? In which cases?
 ## Sentiment analysis
 
-Another area where machine learning can work very well is sentiment analysis. A non-ML approach to sentiment is to identify words and phrases which are 'positive' and 'negative'. Then, given a new piece of text, calculate the total value of the positive, negative and neutral words to identify the overall sentiment. This approach is easily tricked as you may have seen in the Marvin task - the sentence `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` is a sarcastic, negative sentiment sentence, but the simple algorithm detects 'great', 'wonderful', 'glad' as positive and 'waste', 'lost' and 'dark' as negative. The overall sentiment is swayed by these conflicting words.
+Another area where machine learning can work very well is sentiment analysis. A non-ML approach to sentiment is to identify words and phrases which are 'positive' and 'negative'. Then, given a new piece of text, calculate the total value of the positive, negative and neutral words to identify the overall sentiment. 
+
+This approach is easily tricked as you may have seen in the Marvin task - the sentence `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` is a sarcastic, negative sentiment sentence, but the simple algorithm detects 'great', 'wonderful', 'glad' as positive and 'waste', 'lost' and 'dark' as negative. The overall sentiment is swayed by these conflicting words.
 
 ✅ Stop a second and think about how we convey sarcasm as human speakers. Tone inflection plays a large role. Try to say the phrase "Well, that film was awesome" to discover how your voice conveys meaning.
 
@@ -70,7 +72,6 @@ The ML approach would be to hand gather negative and positive bodies of text - t
 > One way to achieve that is to use Machine Learning. You would train the model with a portion of the *against* emails and a portion of the *for* emails. The model would tend to associate phrases and words with the against side and the for side, *but it would not understand any of the content*, only that certain words and patterns were more likely to appear in an *against* or a *for* email. You could test it with some emails that you had not used to train the model, and see if it came to the same conclusion as you did. Then, once you were happy with the accuracy of the model, you could process future emails without having to read each one.
 
 ✅ Does this process sound like processes you have used in previous lessons?
-
 ### Task: Sentimental Sentences
 
 Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most negative sentiment, and 1 is the most positive. Sentiment is also measured with an 0 - 1 score for objectivity (0) and subjectivity (1).
