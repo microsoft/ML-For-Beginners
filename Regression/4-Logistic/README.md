@@ -205,6 +205,8 @@ Let's now understand more about the terms we saw earlier with the help of confus
 
 🎓 Weighted Avg: The calculation of the mean metrics for each label, taking label imbalance into account by weighting them by their support (the number of true instances for each label).
 
+> Can you think which metric you should use if you want your model to reduce the number of false negatives?
+
 ## Visualize the ROC Curve of this Model
 
 This is not a bad model; its accuracy is in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables.
