@@ -185,11 +185,11 @@ array([[162,   4],
 
 Let's understand what these numbers mean with an example. Let's say out model can classify between two categories, category 0 and category 1. If your model predicts something as category 0 and it belongs to category 0 in reality we call it a true positive, shown by the top left number. If your model predicts something as category 1 and it belongs to category 0 in reality we call it a false positive, shown by the top right number. If your model predicts something as category 0 and it belongs to category 1 in reality we call it a false negative, shown by the bottom left number. If your model predicts something as category 0 and it belongs to category 0 in reality we call it a true negative, shown by the top left number.
 
-
+![COnfusion Matrix](images/confusion-matrix.png)
 
 As you might have guessed we like to have a larger number of true positives and true negatives and a lower number of false negatives and false positives, which implies that the model performs better.
 
-Let's now see more about the terms we saw earlier:
+Let's now understand more about the terms we saw earlier with the help of confusion matrix:
 
 🎓 Precision: The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
 
