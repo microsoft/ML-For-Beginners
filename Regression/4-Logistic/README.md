@@ -176,6 +176,16 @@ from sklearn.metrics import confusion_matrix
 confusion_matrix(y_test, predictions)
 ```
 
+Take a look at our confusion matrix:
+
+```
+array([[162,   4],
+       [ 33,   0]])
+```
+
+Let's understand what these numbers mean with an example. Let's say out model can classify between two categories, category 0 and category 1. If your model predicts something as category 0 and it belongs to category 0 in reality we call it a true positive, shown by the top left number. If your model predicts something as category 1 and it belongs to category 0 in reality we call it a false positive, shown by the top right number. If your model predicts something as category 0 and it belongs to category 1 in reality we call it a false negative, shown by the bottom left number. If your model predicts something as category 0 and it belongs to category 0 in reality we call it a true negative, shown by the top left number.
+
+
 🎓 Precision: The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
 
 🎓 Recall: The fraction of relevant instances that were retrieved, whether well-labeled or not
