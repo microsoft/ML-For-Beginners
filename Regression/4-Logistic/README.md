@@ -191,15 +191,15 @@ As you might have guessed we like to have a larger number of true positives and 
 
 Let's now understand more about the terms we saw earlier with the help of confusion matrix:
 
-🎓 Precision: The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
+🎓 Precision: TP/(TP + FN) The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
 
-🎓 Recall: The fraction of relevant instances that were retrieved, whether well-labeled or not
+🎓 Recall: TP/(TP + FP) The fraction of relevant instances that were retrieved, whether well-labeled or not
 
-🎓 f1-score: A weighted average of the precision and recall, with best being 1 and worst being 0
+🎓 f1-score: (2 * precison * recall)/(precision + recall) A weighted average of the precision and recall, with best being 1 and worst being 0
 
 🎓 Support: The number of occurrences of each label retrieved
 
-🎓 Accuracy: The percentage of labels predicted accurately for a sample.
+🎓 Accuracy: (TP + TN)/(TP + TN + FP + FN) The percentage of labels predicted accurately for a sample.
 
 🎓 Macro Avg: The calculation of the unweighted mean metrics for each label, not taking label imbalance into account.
 
