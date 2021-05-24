@@ -31,8 +31,28 @@ So far, you've learned about the formal rules approach to natural language proce
 
 For instance, when an English phrase such as `John looked at the cake with a wolfish grin` is translated literally, to, say French, it might become `John regarda le gâteau avec un sourire de loup`. A reader of both languages would understand that the direct translation of `wolfish grin` is not the French translation `wolf smile` but a synonym - in this case for being very hungry or voracious. A better translation that a human might make would be `John regarda le gâteau avec voracité`, because it better conveys the meaning. If a ML model has enough human translations to build a model on, it can improve the accuracy of translations by identifying common patterns in texts that have been previously translated by expert human speakers of both languages. 
 
-TODO: Demo
+### Task: Translation
 
+You can use TextBlob to translate sentences. Try the famous first line of **Pride and Prejudice** by Jane Austen, an English novel written in 1813. 
+
+```python
+from textblob import TextBlob
+
+blob = TextBlob(
+    "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife!"
+)
+print(blob.translate(to="fr"))
+
+```
+TextBlob does a pretty good job at the translation: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!". 
+
+I would argue that TextBlob's translation is far more exact, in fact, than the 1932 French edition by V. Leconte and Ch. Pressoir:
+
+"C'est une vérité universelle qu'un celibataire pourvu d'une belle fortune doit avoir envie de se marier, et, si peu que l'on sache de son sentiment à cet egard, lorsqu'il arrive dans une nouvelle residence, cette idee  est si bien fixée dans l'esprit de ses voisins  qu'ils  le considèrent sur-le-champ comme la propriété légitime de l'une ou l'autre de leurs filles."
+
+In this case, the translation informed by ML does a better job than the human translator who is unnecessarily putting words in the original author's mouth for 'clarity'.
+
+✅ Try some more  sentences. Which is better, ML or human translation?
 ## Sentiment analysis
 
 Another area where machine learning can work very well is sentiment analysis. A non-ML approach to sentiment is to identify words and phrases which are 'positive' and 'negative'. Then, given a new piece of text, calculate the total value of the positive, negative and neutral words to identify the overall sentiment. This approach is easily tricked as you may have seen in the Marvin task - the sentence `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` is a sarcastic, negative sentiment sentence, but the simple algorithm detects 'great', 'wonderful', 'glad' as positive and 'waste', 'lost' and 'dark' as negative. The overall sentiment is swayed by these conflicting words.
@@ -53,7 +73,7 @@ The ML approach would be to hand gather negative and positive bodies of text - t
 
 Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most negative sentiment, and 1 is the most positive. Sentiment is also measured with an 0 - 1 score for objectivity (0) and subjectivity (1).
 
-**Pride and Prejudice**, by **Jane Austen** is an English novel with some famous lines. The text is available here at [Project Gutenberg](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm). The sample below shows a short program which analyses the sentiment of first and last sentences from the book and display its sentiment polarity and subjectivity/objectivity score. You should us the TextBlob library (described above) to determine sentiment (you do not have to write your own sentiment calculator) in the following task.
+Take another look at Jane Austen's *Pride and Prejudice*. The text is available here at [Project Gutenberg](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm). The sample below shows a short program which analyses the sentiment of first and last sentences from the book and display its sentiment polarity and subjectivity/objectivity score. You should us the TextBlob library (described above) to determine sentiment (you do not have to write your own sentiment calculator) in the following task.
 
 ```python
 from textblob import TextBlob
