@@ -169,33 +169,46 @@ Predicted labels:  [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 
  0 0 0 1 0 1 0 0 1 0 0 0 1 0]
 ```
 
-Let's unpack some of those [terms](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) with a confusion matrix to help us measure the performance of our mdoel:
+## Better comprehension via a confusion matrix
+
+While you can get a scoreboard report [terms](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) by printing out the items above, you might be able to understand your model more easily by using  a [confusion matrix]() to help us understand how the model is performing.
+
+> 🎓 A '[confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix)' (or 'error matrix') is a table that expresses your model's true vs. false positives and negatives, thus gauging the accuracy of predictions.
 
 ```python
 from sklearn.metrics import confusion_matrix
 confusion_matrix(y_test, predictions)
 ```
 
-Take a look at our confusion matrix:
+Take a look at your model's confusion matrix:
 
 ```
 array([[162,   4],
        [ 33,   0]])
 ```
 
-Let's understand what these numbers mean with an example. Let's say out model can classify between two categories, category 0 and category 1. If your model predicts something as category 0 and it belongs to category 0 in reality we call it a true positive, shown by the top left number. If your model predicts something as category 1 and it belongs to category 0 in reality we call it a false positive, shown by the top right number. If your model predicts something as category 0 and it belongs to category 1 in reality we call it a false negative, shown by the bottom left number. If your model predicts something as category 0 and it belongs to category 0 in reality we call it a true negative, shown by the top left number.
+What's going on here? Let's say our model is asked to classify items between two binary categories, category 'pumpkin' and category 'not-a-pumpkin'. 
 
-![COnfusion Matrix](images/confusion-matrix.png)
+- If your model predicts something as a pumpkin and it belongs to category 'pumpkin' in reality we call it a true positive, shown by the top left number. 
+- If your model predicts something as not a pumpkin and it belongs to category 'pumpkin' in reality we call it a false positive, shown by the top right number. 
+- If your model predicts something as a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a false negative, shown by the bottom left number. 
+- If your model predicts something as not a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a true negative, shown by the bottom right number.
 
-As you might have guessed we like to have a larger number of true positives and true negatives and a lower number of false negatives and false positives, which implies that the model performs better.
+![Confusion Matrix](images/confusion-matrix.png)
 
-Let's now understand more about the terms we saw earlier with the help of confusion matrix:
+> Infographic by [Jen Looper](https://twitter.com/jenlooper)
+
+As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
+
+✅ Q: According to the confusion matrix, how did the model do? A: Not too bad; there are a good number of true positives but also several false negatives. 
+
+Let's revisit the terms we saw earlier with the help of the confusion matrix's mapping of TP/TN and FP/FN:
 
 🎓 Precision: TP/(TP + FN) The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
 
 🎓 Recall: TP/(TP + FP) The fraction of relevant instances that were retrieved, whether well-labeled or not
 
-🎓 f1-score: (2 * precison * recall)/(precision + recall) A weighted average of the precision and recall, with best being 1 and worst being 0
+🎓 f1-score: (2 * precision * recall)/(precision + recall) A weighted average of the precision and recall, with best being 1 and worst being 0
 
 🎓 Support: The number of occurrences of each label retrieved
 
@@ -205,8 +218,7 @@ Let's now understand more about the terms we saw earlier with the help of confus
 
 🎓 Weighted Avg: The calculation of the mean metrics for each label, taking label imbalance into account by weighting them by their support (the number of true instances for each label).
 
-> Can you think which metric you should use if you want your model to reduce the number of false negatives?
-
+✅ Can you think which metric you should watch if you want your model to reduce the number of false negatives?
 ## Visualize the ROC Curve of this Model
 
 This is not a bad model; its accuracy is in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables.
