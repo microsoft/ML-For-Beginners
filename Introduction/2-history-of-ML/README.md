@@ -4,6 +4,8 @@ Add a sketchnote if possible/appropriate
 
 ![Embed a video here if available](video-url)
 
+[Check out this podcast where Amy Boyd discusses the evolution of AI](http://runasradio.com/Shows/Show/739)
+
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
 
 Describe what we will learn
