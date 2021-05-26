@@ -1,6 +1,13 @@
+
+
 # Time Series Forecasting
 
 In these two lessons, you will be introduced to Time Series Forecasting, a somewhat lesser known area of Machine Learning that is nevertheless extremely valuable for industry and business applications, among other fields. While neural networks can be used to enhance the utility of these models, we will study them in the context of classical machine learning as models help predict future performance based on the past.
+
+![electric-grid](images/electric-grid.jpg)
+
+Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> on <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
 
 ## Lessons
 
