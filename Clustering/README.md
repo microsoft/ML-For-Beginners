@@ -13,9 +13,8 @@ In this series of lessons, you will discover new ways to analyze data using Clus
 
 1. [Introduction to Clustering](1-Visualize/README.md)
 2. [K-Means Clustering](2-K-Means/README.md)
-3. [Centroid Clustering](3-Centroid/README.md)
 ## Credits
 
-These lessons were written with ♥️ by [Jen Looper](https://www.twitter.com/jenlooper)
+These lessons were written with ♥️ by [Jen Looper](https://www.twitter.com/jenlooper) with helpful reviews by Muhammad Sakib Khan Inan.
 
 The [Nigerian Songs](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) dataset was sourced from Kaggle as scraped from Spotify.
