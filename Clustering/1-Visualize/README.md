@@ -6,13 +6,19 @@
 ## [Pre-lecture quiz](link-to-quiz-app)
 ### Introduction
 
-Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning) that presumes that a dataset is unlabelled. It uses various algorithms to sort through unlabeled data and provide groupings according to patterns it discerns in the data. Clustering is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
+Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning) that presumes that a dataset is unlabelled. It uses various algorithms to sort through unlabeled data and provide groupings according to patterns it discerns in the data. 
+
+> TODO infographic
+
+[Clustering]() is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
 
 ✅ Take a minute to think about the uses of clustering. In real life, clustering happens whenever you have a pile of laundry and need to sort out your family members' clothes 🧦👕👖🩲. In data science, clustering happens when trying to analyze a user's preferences, or determine the characteristics of any unlabeled dataset. Clustering, in a way, helps make sense of chaos.
 
 In a professional setting, clustering can be used to determine things like market segmentation, determining what age groups buy what items, for example. Another use would be anomaly detection, perhaps to detect fraud from a dataset of credit card transactions. Or you might use clustering to determine tumors in a batch of medical scans. 
 
-> Interestingly, Cluster Analysis originated in the fields of Anthropology and Psychology in the 1930s. Can you imagine how it might have been used?
+✅ Think a minute about how you might have encountered clustering 'in the wild', in a banking, e-commerce, or business setting.
+
+> 🎓 Interestingly, Cluster Analysis originated in the fields of Anthropology and Psychology in the 1930s. Can you imagine how it might have been used?
 
 Alternately, you could use it for grouping search results - by shopping links, images, or reviews, for example. Clustering is useful when you have a large dataset that you want to reduce and on which you want to perform more granular analysis, so the technique can be used to learn about data before other models are constructed.
 

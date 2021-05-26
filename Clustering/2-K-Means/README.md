@@ -3,7 +3,9 @@
 Add a sketchnote if possible/appropriate
 
 ![Embed a video here if available](video-url)
+https://www.youtube.com/watch?v=hDmNF9JG3lo
 
+https://stanford.edu/~cpiech/cs221/handouts/kmeans.html
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 Describe what we will learn
