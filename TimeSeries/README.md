@@ -18,4 +18,4 @@ Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medi
 
 ## Credits
 
-"Time Series Forecasting" was written with ♥️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper)
+"Time Series Forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper)
