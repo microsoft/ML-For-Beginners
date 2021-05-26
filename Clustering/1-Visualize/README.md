@@ -44,11 +44,17 @@ Alternately, you could use it for grouping search results - by shopping links, i
 >
 > 🎓 ['Transductive' vs. 'inductive'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
-> Transductive inference is derived from observed training cases that map to specific test cases. Inductive inference is derived from training cases that map to general rules which are only then applied to test cases.
+> Transductive inference is derived from observed training cases that map to specific test cases. Inductive inference is derived from training cases that map to general rules which are only then applied to test cases. 
+> 
+> An example: Imagine you have a dataset that is only partially  labelled. Some things are 'records', some 'cds', and some are blank. Your job is to provide labels for the blanks. If you choose an inductive approach, you'd train a model looking for 'records' and 'cds', and apply those labels to your unlabeled data. This approach will have trouble classifying things that are actually 'cassettes'. A transductive approach, on the other hand, handles this unknown data more effectively as it works to group similar items together and then applies a label to a group. In this case, clusters might reflect 'round musical things' and 'square musical things'. 
 > 
 > 🎓 ['Non-flat' vs. 'flat' geometry](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
 > Derived from mathematical terminology, non-flat vs. flat geometry refers to the measure of distances between points by either 'flat' (non-[Euclidean](https://wikipedia.org/wiki/Euclidean_geometry)) or 'non-flat' (Euclidean) geometrical methods. 
+>
+>'Flat' in this context refers to Euclidean geometry (parts of which are taught as 'plane' geometry), and non-flat refers to non-Euclidean geometry. What does geometry have to do with machine learning? Well, as two fields that are rooted in mathematics, there must be a common way to measure distances between points in clusters, and that can be done in a 'flat' or 'non-flat' way, depending on the nature of the data. If your data, visualized, seems to not exist on a plane, you might need to use a specialized algorithm to handle it.
+>
+> Infographic: like the last one here https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering
 > 
 > 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
 > 
@@ -87,19 +93,27 @@ Data points are assigned to clusters based on their density, or their grouping a
 **Grid-based clustering**
 
 For multi-dimensional datasets, a grid is created and the data is divided amongst the grid's cells, thereby creating clusters.
-### Preparation
+### Preparing the data
 
-Clustering is heavily dependent on visualization, so let's get started by visualizing our music data. This exercise will help us decide which of the methods of clustering we should most effectively use for the nature of this data.
+Clustering as a technique is greatly aided by proper visualization, so let's get started by visualizing our music data. This exercise will help us decide which of the methods of clustering we should most effectively use for the nature of this data.
 
-Open the notebook.ipynb file in this folder and append the song data .csv file. Load up a dataframe with some data about the songs. Get ready to explore this data by importing the libraries and dumping out the data:
+Open the notebook.ipynb file in this folder. Import the Seaborn package for good data visualization.
+
+```python
+pip install seaborn
+```
+
+Append the song data .csv file. Load up a dataframe with some data about the songs. Get ready to explore this data by importing the libraries and dumping out the data:
 
 ```python
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv("../data/nigerian-songs.csv")
+df = pd.read_csv("../../data/nigerian-songs.csv")
 df.head()
 ```
+
+Check the first few lines of data:
 
 |     | name                     | album                        | artist              | artist_top_genre | release_date | length | popularity | danceability | acousticness | energy | instrumentalness | liveness | loudness | speechiness | tempo   | time_signature |
 | --- | ------------------------ | ---------------------------- | ------------------- | ---------------- | ------------ | ------ | ---------- | ------------ | ------------ | ------ | ---------------- | -------- | -------- | ----------- | ------- | -------------- |
@@ -108,9 +122,6 @@ df.head()
 | 2   | LITT!                    | LITT!                        | AYLØ                | indie r&b        | 2018         | 207758 | 40         | 0.836        | 0.272        | 0.564  | 0.000537         | 0.11     | -7.127   | 0.0424      | 130.005 | 4              |
 | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
 | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
-
-
-Check the first few lines of data:
 
 Get some information about the dataframe:
 
@@ -144,9 +155,7 @@ dtypes: float64(8), int64(4), object(4)
 memory usage: 66.4+ KB
 ```
 
-It's useful that this data is mostly numeric, so it's almost ready for clustering.
-
-Check for null values:
+Double-check for null values:
 
 ```python
 df.isnull().sum()
@@ -191,11 +200,13 @@ df.describe()
 | 75%   | 2017         | 242098.5    | 31         | 0.8295       | 0.403        | 0.87575  | 0.000234         | 0.164    | -3.331    | 0.177       | 125.03925  | 4              |
 | max   | 2020         | 511738      | 73         | 0.966        | 0.954        | 0.995    | 0.91             | 0.811    | 0.582     | 0.514       | 206.007    | 5              |
 
-## Visualize the data
+Look at the general values of the data. Note that popularity can be '0', which show songs that have no ranking. Let's remove those shortly.
 
-Now, find out the most popular music genre using a barplot:
+Use a barplot to find out the most popular genres:
 
 ```python
+import seaborn as sns
+
 top = df['artist_top_genre'].value_counts()
 plt.figure(figsize=(10,7))
 sns.barplot(x=top[:5].index,y=top[:5].values)
@@ -204,16 +215,76 @@ plt.title('Top genres',color = 'blue')
 ```
 ![most popular](images/popular.png)
 
-✅ If you'd like to see more top values, change this `[:5]` to a bigger value, or remove it to see all. 
+✅ If you'd like to see more top values, change the top `[:5]` to a bigger value, or remove it to see all. 
 
-Note, when the top genre is described as 'Missing', that means that Spotify did not classify it.
+Note, when the top genre is described as 'Missing', that means that Spotify did not classify it, so let's get rid of it:
 
-Explore the data by checking the most popular genre:
+```python
+df = df[df['artist_top_genre'] != 'Missing']
+top = df['artist_top_genre'].value_counts()
+plt.figure(figsize=(10,7))
+sns.barplot(x=top.index,y=top.values)
+plt.xticks(rotation=45)
+plt.title('Top genres',color = 'blue')
+```
+ Now recheck the most popular genres:
 
+![most popular](images/popular.png)
 
+By far, the top three genres dominate this dataset, so let's concentrate on `afro dancehall`, `afropop`, and `nigerian pop`, also filtering the dataset to remove anything with a 0 popularity value (meaning it was not classified with a popularity in the dataset and can be considered noise for our purposes):
 
+```python
+df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
+df = df[(df['popularity'] > 0)]
+top = df['artist_top_genre'].value_counts()
+plt.figure(figsize=(10,7))
+sns.barplot(x=top.index,y=top.values)
+plt.xticks(rotation=45)
+plt.title('Top genres',color = 'blue')
+```
 
+Do a quick test to see if the data correlates in any particularly strong way:
 
+```python
+corrmat = df.corr()
+f, ax = plt.subplots(figsize=(12, 9))
+sns.heatmap(corrmat, vmax=.8, square=True);
+```
+![correlations](images/correlation.png)
+
+The only strong correlation is between energy and loudness, which is not too surprising, given that loud music is usually pretty energetic. Otherwise, the correlations are relatively weak. It will be interesting to see what a clustering algorithm can make of this data.
+
+Is there any convergence in this dataset around a song's perceived popularity and danceability? A FacetGrid shows that there are concentric circles that line up, regardless of genre. Could it be that Nigerian tastes converge at a certain level of danceability for this genre? 
+
+✅ Try different datapoints (energy, loudness, speechiness) and more or different musical genres. What can you discover? Take a look at the `df.describe()` table to see the general spread of the data points.
+
+### Data Distribution
+
+Are these three genres significantly different in the perception of their danceability, based on their popularity? Examine our top three genres data distribution for popularity and danceability along a given x and y axis.
+
+```python
+sns.set_theme(style="ticks")
+
+g = sns.jointplot(
+    data=df,
+    x="popularity", y="danceability", hue="artist_top_genre",
+    kind="kde",
+)
+```
+
+You can discover concentric circles around a general point of convergence, showing the distribution of points. In general, the three genres align loosely in terms of their popularity and danceability. Determining clusters in this loosely-aligned data will be interesting:
+
+![distribution](images/distribution.png)
+
+A scatterplot of the same axes shows a similar pattern of convergence:
+
+```python
+sns.FacetGrid(df, hue="artist_top_genre", size=5) \
+   .map(plt.scatter, "popularity", "danceability") \
+   .add_legend()
+```
+
+In general, for clustering, you can use scatterplots to show clusters of data, so mastering this type of visualization is very useful. In the next lesson, we will take this filtered data and use k-means clustering to discover groups in this data that seems to overlap in interesting ways.
 ## 🚀Challenge
 
 
@@ -221,9 +292,9 @@ Explore the data by checking the most popular genre:
 
 ## Review & Self Study
 
-Before you apply clustering algorithms, as we have learned, you must determine the nature of your dataset. Read more onn this topic [here](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
+Before you apply clustering algorithms, as we have learned, it's a good idea to understand the nature of your dataset. Read more onn this topic [here](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
-[This helpful article](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) walks you through the different ways that various clustering algorithms behave given different data shapes
+[This helpful article](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) walks you through the different ways that various clustering algorithms behave, given different data shapes.
 
 In the next lesson, you will make use of the  most popular clustering method, K-Means. Take a look at Stanford's K-Means Simulator [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). You can use this tool to visualize sample data points and determine its centroids. With fresh data, click 'update' to see how long it takes to find convergence. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
 
