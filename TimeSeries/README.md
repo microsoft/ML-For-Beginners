@@ -4,9 +4,11 @@
 
 In these two lessons, you will be introduced to Time Series Forecasting, a somewhat lesser known area of Machine Learning that is nevertheless extremely valuable for industry and business applications, among other fields. While neural networks can be used to enhance the utility of these models, we will study them in the context of classical machine learning as models help predict future performance based on the past.
 
-![electric-grid](images/electric-grid.jpg)
+Our regional focus is electrical usage in the world, an interesting dataset to learn about forecasting future usage based on past load.
 
-Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> on <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+![electric-grid](electric-grid.jpg)
+
+Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> of electrical towers on a road in Rajasthan on <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 
 ## Lessons
