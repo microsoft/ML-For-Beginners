@@ -1,0 +1,28 @@
+# To create the conda environment:
+# $ conda env create -f environment.yaml
+# 
+# To update the conda environment:
+# $ conda env update -f environment.yaml
+# 
+# To register the conda environment in Jupyter:
+# $ conda activate dlts
+# $ python -m ipykernel install --user --name dlts --display-name "Python (dlts)"
+
+name: dlts
+channels:
+- defaults
+dependencies:
+- python==3.6.6
+- pip>=19.1.1
+- ipykernel>=4.6.1
+- jupyter>=1.0.0
+- matplotlib==3.0.0
+- numpy==1.16.2
+- pandas==0.23.4
+- tensorflow==1.12.0
+- keras==2.2.4
+- scikit-learn==0.20.3
+- statsmodels==0.9.0
+- xlrd >= 1.0.0
+- pip:
+  - pyramid-arima==0.8.1
