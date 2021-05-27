@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: bug_report.md
+    about: Any bugs can be reported here
+  - name: Feature Request
+    url: feature_request.md
+    about: Please request new features here
+  - lesson card: Lesson Card
+    url: lesson_request.md
+    about: Create a lesson card here
