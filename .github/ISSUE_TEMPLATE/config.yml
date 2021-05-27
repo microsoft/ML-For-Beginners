@@ -6,6 +6,6 @@ contact_links:
   - name: Feature Request
     url: feature_request.md
     about: Please request new features here
-  - lesson card: Lesson Card
-    url: lesson_request.md
+  - name: Lesson Card
+    url: lesson_elements.md
     about: Create a lesson card here
