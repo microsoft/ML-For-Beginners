@@ -78,7 +78,7 @@ There are over 100 clustering algorithms, and their use depends on the nature of
 
 If an object is classified by its proximity to a nearby object, rather than to one farther away, clusters are formed based on their members' distance to and from other objects. Scikit-Learn's Agglomerative clustering is hierarchical.
 
-TODO:  infographic
+TODO: infographic
 
 **Centroid clustering** 
 
