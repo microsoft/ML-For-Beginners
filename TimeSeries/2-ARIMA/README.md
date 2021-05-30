@@ -11,7 +11,7 @@ In this lesson, you will discover a specific way to build models with [ARIMA: *A
 
 > 🎓 Stationarity, from a statistical context, refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'. 
 
-> 🎓 [Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing) data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series."[Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
+> 🎓 [Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing) data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series." [Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
 
 Let's unpack the parts of ARIMA to better understand how it helps us model Time Series and help us make predictions against it.
 ## AR - for AutoRegressive
