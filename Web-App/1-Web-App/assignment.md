@@ -8,4 +8,4 @@ Now that you have built one web app using a trained Regression model, use one of
 
 | Criteria                   | Exemplary                                                 | Adequate                                                  | Needs Improvement                      |
 | -------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------- |
-|  | The web app runs as expected and is deployed to the cloud | The web app contains flaws or exhibits unexpected results | The web app does not function properly |
+| | The web app runs as expected and is deployed to the cloud | The web app contains flaws or exhibits unexpected results | The web app does not function properly |
