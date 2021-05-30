@@ -1,11 +1,13 @@
 # Time Series Forecasting with ARIMA
 
+In the previous lesson, you learned a bit about Time Series Forecasting and loaded a dataset showing the fluctuations of electrical load over a time period.
+
 [![Introduction to ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction to ARIMA")
 
 > A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-In the previous lesson, you learned a bit about Time Series Forecasting and loaded a dataset showing the fluctuations of electrical load over a time period. In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
+In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
 
 > 🎓 Stationarity, from a statistical context, refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'. 
 
