@@ -2,7 +2,8 @@
 
 For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 
-## [Pre-lecture quiz](link-to-quiz-app).
+## [Pre-lecture quiz](link-to-quiz-app)
+
 
 Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently. Before applying ML to these tasks, however, let's understand the problems encountered by an NLP specialist.
 
