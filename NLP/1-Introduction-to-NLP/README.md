@@ -1,8 +1,7 @@
 # Introduction to Natural Language Processing
 
-Add a sketchnote if possible/appropriate
-
 [![NLP 101](https://img.youtube.com/vi/C75SiVhXjRM/0.jpg)](https://youtu.be/C75SiVhXjRM "NLP 101")
+
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 ## Introduction
@@ -20,6 +19,7 @@ This is possible because someone wrote a computer program to do this. A few deca
 At this point, you may be remembering school classes where the teacher covered the parts of grammar in a sentence. In some countries, students are taught grammar and linguistics as a dedicated subject, but in many, these topics are included as part of learning a language: either your first language in primary school (learning to read and write) and perhaps a second language in post-primary, or high school. Don't  worry if you are not an expert at differentiating nouns from verbs or adverbs from adjectives! 
 
 If you struggle with the difference between the *simple present* and *present progressive*, you are not alone. This is a challenging thing for many people, even native speakers of a language. The good news is that computers are really good at applying formal rules, and you will learn to write code that can *parse* a sentence as well as a human. The greater challenge you will examine later is understanding the *meaning*, and *sentiment*, of a sentence.
+
 ## Prerequisites
 
 For this lesson, the main prerequisite is being able to read and understand the language of this lesson. There are no math problems or equations to solve. While the original author wrote this lesson in English, it is also translated into other languages, so you could be reading a translation. There are examples where a number of different languages are used (to compare the different grammar rules of different languages). These are *not* translated, but the explanatory text is, so the meaning should be clear.
