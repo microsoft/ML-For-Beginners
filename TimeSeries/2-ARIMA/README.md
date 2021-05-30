@@ -184,7 +184,7 @@ results = model.fit()
 print(results.summary())
 ```
 
-TODO: Explain these results and show residuals
+A table of results is printed.
 
 You've built your first model! Now we need to find a way to evaluate it.
 
@@ -345,11 +345,13 @@ plt.show()
 ```
 
 A very nice plot, showing a model with good accuracy. Well done!
+
 ## 🚀Challenge
 
 Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE in this lesson, but are there other methods you could use? Research them and annotate them. A helpful document can be found [here](https://otexts.com/fpp2/accuracy.html)
 
 ## [Post-lecture quiz](link-to-quiz-app)
+
 ## Review & Self Study
 
 This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.
