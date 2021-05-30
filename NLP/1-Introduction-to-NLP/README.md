@@ -1,4 +1,6 @@
 # Introduction to Natural Language Processing
+ 
+This lesson covers a brief history and important concepts of *Computational Linguistics* focusing on *Natural Language Processing*.
 
 [![NLP 101](https://img.youtube.com/vi/C75SiVhXjRM/0.jpg)](https://youtu.be/C75SiVhXjRM "NLP 101")
 
@@ -6,7 +8,7 @@
 
 ## Introduction
 
-This lesson covers a brief history and important concepts of *Computational Linguistics* focusing on *Natural Language Processing*. NLP, as it is commonly known, is one of the best-known areas where machine learning has been applied and used in production software.
+NLP, as it is commonly known, is one of the best-known areas where machine learning has been applied and used in production software.
 
 ✅ Can you think of software that you use every day that probably has some NLP embedded? What about your word processing programs or mobile apps that you use regularly?
 
