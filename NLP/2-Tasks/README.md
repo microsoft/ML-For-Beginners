@@ -1,14 +1,12 @@
 # Common Natural Language Processing Tasks and Techniques
 
-Add a sketchnote if possible/appropriate
-
-![Embed a video here if available](video-url)
+For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 
 Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently. Before applying ML to these tasks, however, let's understand the problems encountered by an NLP specialist.
+
 ## Tasks common to NLP
 
 > 🎓 **Tokenization**
@@ -117,6 +115,7 @@ np = user_input_blob.noun_phrases
 ```
 
 > What's going on here? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) is "A noun phrase extractor that uses chunk parsing trained with the ConLL-2000 training corpus." ConLL-2000 refers to the Conference on Computational Natural Language Learning (CoNLL-2000). Each year the conference hosted a workshop to tackle a thorny NLP problem, and in 2000 it was noun chunking. A model was trained on the Wall Street Journal, with "sections 15-18 as training data (211727 tokens) and section 20 as test data (47377 tokens)". You can look at the procedures used [here](https://www.clips.uantwerpen.be/conll2000/chunking/) and the [results](https://ifarm.nl/erikt/research/np-chunking.html).
+
 ## Task: Improving your bot with a little NLP
 
 In the previous lesson you built a very simple Q&A bot. Now, you'll make Marvin a bit more sympathetic by analyzing your input for sentiment and printing out a response to match the sentiment. You'll also need to identify a `noun_phrase` and ask about it.
@@ -170,9 +169,11 @@ One possible solution to the task is [here](solution/bot.py)
 1. Do you think the sympathetic responses would 'trick' someone into thinking that the bot actually understood them?
 2. Does identifying the noun phrase make the bot more 'believable'?
 3. Why would extracting a 'noun phrase' from a sentence a useful thing to do?
+
 ## 🚀Challenge
 
 Take a task in the prior knowledge check and try to implement it. Test the bot on a friend. Can it trick them? Can you make your bot more 'believable?'
+
 ## [Post-lecture quiz](link-to-quiz-app)
 
 ## Review & Self Study
