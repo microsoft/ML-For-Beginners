@@ -180,4 +180,4 @@ Take a task in the prior knowledge check and try to implement it. Test the bot o
 
 In the next few lessons you will learn more about sentiment analysis. Research this interesting technique in articles such as these on [KDNuggets](https://www.kdnuggets.com/tag/nlp)
 
-**Assignment**: [Search for a bot](assignment.md)
+**Assignment**: [Make a bot talk back](assignment.md)
