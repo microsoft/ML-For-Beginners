@@ -1519,6 +1519,1066 @@
 						]
 					}
 				]
+			},
+			{
+				"id": 29,
+				"title": "Intro to NLP: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 30,
+				"title": "Intro to NLP: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 31,
+				"title": "NLP Tasks: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 32,
+				"title": "NLP Tasks: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 33,
+				"title": "NLP and Translation: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 34,
+				"title": "NLP and Translation: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 35,
+				"title": "NLP 4: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 36,
+				"title": "NLP 4: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 37,
+				"title": "NLP 5: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 38,
+				"title": "NLP 5: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 39,
+				"title": "Intro to Time Series: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 40,
+				"title": "Intro to Time Series: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 41,
+				"title": "Time Series ARIMA: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 42,
+				"title": "Time Series ARIMA: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 43,
+				"title": "Reinforcement 1: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 44,
+				"title": "Reinforcement 1: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 45,
+				"title": "Reinforcement 2: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 46,
+				"title": "Reinforcement 2: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 47,
+				"title": "Real World Applications: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 48,
+				"title": "Real World Applications: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
 			}
 		]
 	}
