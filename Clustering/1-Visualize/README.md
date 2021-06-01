@@ -299,7 +299,7 @@ sns.FacetGrid(df, hue="artist_top_genre", size=5) \
 In general, for clustering, you can use scatterplots to show clusters of data, so mastering this type of visualization is very useful. In the next lesson, we will take this filtered data and use k-means clustering to discover groups in this data that seems to overlap in interesting ways.
 ## 🚀Challenge
 
-
+In preparation for the next lesson, make a chart about the various clustering algorithms you might discover and use in a production environment. What kinds of problems is the clustering trying to address? 
 ## [Post-lecture quiz](link-to-quiz-app)
 
 ## Review & Self Study
@@ -310,4 +310,4 @@ Before you apply clustering algorithms, as we have learned, it's a good idea to 
 
 In the next lesson, you will make use of the  most popular clustering method, K-Means. Take a look at Stanford's K-Means Simulator [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). You can use this tool to visualize sample data points and determine its centroids. With fresh data, click 'update' to see how long it takes to find convergence. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
 
-**Assignment**: [Assignment Name](assignment.md)
+**Assignment**: [Research other visualizations for clustering](assignment.md)
