@@ -151,7 +151,7 @@ This intro lesson does not dive deeply into the details of algorithmic unfairnes
 
 ### Fairlearn 
  
-\[Fairlearn\](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
+[Fairlearn](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
 The tool may help you to assesses how a model's predictions affect different groups, enables comparing multiple models by using fairness and performance metrics, and supply a set of algorithms to mitigate unfairness in binary classification and regression. 
 
 - Learn how to use the different components by checking out the Fairlearn's [GitHub](https://github.com/fairlearn/fairlearn/), [user guide](https://fairlearn.github.io/main/user_guide/index.html), [examples](https://fairlearn.github.io/main/auto_examples/index.html), and [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
