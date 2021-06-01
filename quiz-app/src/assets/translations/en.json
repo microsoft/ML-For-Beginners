@@ -1305,48 +1305,52 @@
 				"title": "Introduction to Clustering: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "A real-life example of clustering would be",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Setting the dinner table",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Sorting the laundry",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Grocery shopping",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Clustering techniques can be used in these industries",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "banking",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "e-commerce",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Clustering is a type of:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "supervised learning",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "unsupervised learning",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "reinforcement learning",
 								"isCorrect": "false"
 							}
 						]
@@ -1358,48 +1362,52 @@
 				"title": "Introduction to Clustering: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Euclidean geometry is arranged along",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "planes",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "curves",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "spheres",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "The density of your clustering data is related to its",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "noise",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "depth",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "validity",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "The best-known clustering algorithm is",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "k-means",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "k-middle",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "k-mart",
 								"isCorrect": "false"
 							}
 						]
