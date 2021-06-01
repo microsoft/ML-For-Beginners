@@ -218,7 +218,7 @@
 			},
 			{
 				"id": 5,
-				"title": "Ethics of Machine Learning: Post-Lecture Quiz",
+				"title": "Fairness and Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -271,7 +271,7 @@
 			},
 			{
 				"id": 6,
-				"title": "Ethics of Machine Learning: Post-Lecture Quiz",
+				"title": "Fairness and Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
