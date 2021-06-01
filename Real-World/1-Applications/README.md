@@ -80,4 +80,4 @@ Add a challenge for students to work on collaboratively in class to enhance the 
 
 ## Review & Self Study
 
-**Assignment**: [Assignment Name](assignment.md)
+**Assignment**: [A ML scavenger hunt](assignment.md)
