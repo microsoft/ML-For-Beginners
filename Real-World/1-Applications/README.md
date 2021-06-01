@@ -7,7 +7,7 @@ While a lot of interest in industry has been garnered by AI, which usually lever
 
 ## Finance
 
-One of the major consumers of classical machine learning models is the finance industry.
+One of the major consumers of classical machine learning models is the finance industry. Two specific examples we cover here are **credit card fraud detection** and **wealth management**. 
 
 ### Credit card fraud detection
 
@@ -16,6 +16,10 @@ We learned about [k-means clustering](Clustering/2-K-Means/README.md) earlier in
 K-means clustering comes in handy during a credit card fraud detection technique called **outlier detection**. Outliers, or deviations in observations about a set of data, can tell us if a credit card is being used in a normal capacity, or if something funky is going on. As shown in [this paper](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf), you can sort credit card data using a k-means clustering algorithm and assign each transaction to a cluster based on how much of an outlier it appears to be. Then, you can evaluate for riskiest cluster for fraudulent versus legitimate transactions.
 
 ### Wealth management
+
+In wealth management, an individual or firm handles investments on behalf of their clients. Their job is to sustain and grow wealth in the long-term, so it is essential to choose investments that perform well.
+
+One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out [this paper](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/) on evaluating fund performance using regression.
 
 ## Education
 
