@@ -1,11 +1,11 @@
-# Make a Bot talk back
+# Search for a bot
 
 ## Instructions
 
-In this lesson, you programmed a basic bot with whom to chat. This bot gives random answers until you say 'bye'. Can you make the answers a little less random, and trigger answers if you say specific things, like 'why' or 'how'? Think a bit how machine learning might make this type of work less manual as you extend your bot. You can use NLTK or TextBlob libraries to make your tasks easier.
+Bots are everywhere. Your assignment: find one and adopt it! You can find them on web sites, in banking applications, and on the phone, for example when you call financial services companies for advice or account information. Analyze the bot and see if you can confuse it. If you can confuse the bot, why do you think that happened? Write a short paper about your experience.
 
 ## Rubric
 
-| Criteria | Exemplary                                     | Adequate                                         | Needs Improvement       |
-| -------- | --------------------------------------------- | ------------------------------------------------ | ----------------------- |
-|          | A new bot.py file is presented and documented | A new bot file is presented but it contains bugs | A file is not presented |
+| Criteria | Exemplary                                                                                                     | Adequate                                     | Needs Improvement     |
+| -------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | --------------------- |
+|          | A full  page paper is written, explaining the presumed bot architecture and outlining your experience with it | A paper is incomplete or not well researched | No paper is submitted |
