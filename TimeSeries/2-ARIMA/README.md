@@ -1,15 +1,17 @@
 # Time Series Forecasting with ARIMA
 
+In the previous lesson, you learned a bit about Time Series Forecasting and loaded a dataset showing the fluctuations of electrical load over a time period.
+
 [![Introduction to ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction to ARIMA")
 
 > A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-In the previous lesson, you learned a bit about Time Series Forecasting and loaded a dataset showing the fluctuations of electrical load over a time period. In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
+In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
 
 > 🎓 Stationarity, from a statistical context, refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'. 
 
-> 🎓 [Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing) data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series."[Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
+> 🎓 [Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing) data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series." [Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
 
 Let's unpack the parts of ARIMA to better understand how it helps us model Time Series and help us make predictions against it.
 ## AR - for AutoRegressive
@@ -184,7 +186,7 @@ results = model.fit()
 print(results.summary())
 ```
 
-TODO: Explain these results and show residuals
+A table of results is printed.
 
 You've built your first model! Now we need to find a way to evaluate it.
 
@@ -345,11 +347,13 @@ plt.show()
 ```
 
 A very nice plot, showing a model with good accuracy. Well done!
+
 ## 🚀Challenge
 
 Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE in this lesson, but are there other methods you could use? Research them and annotate them. A helpful document can be found [here](https://otexts.com/fpp2/accuracy.html)
 
 ## [Post-lecture quiz](link-to-quiz-app)
+
 ## Review & Self Study
 
 This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.

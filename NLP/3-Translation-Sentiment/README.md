@@ -1,12 +1,8 @@
 # Translation and Sentiment Analysis with ML
 
-Add a sketchnote if possible/appropriate
-
-![Embed a video here if available](video-url)
+In the previous lessons you learned how to build a basic bot using TextBlob, a library that embeds ML behind-the-scenes to perform basic NLP tasks such as noun phrase extraction. Another important challenge in computational linguistics is accurate *translation* of a sentence from one spoken or written language to another.
 
 ## [Pre-lecture quiz](link-to-quiz-app)
-
-In the previous lessons you learned how to build a basic bot using TextBlob, a library that embeds ML behind-the-scenes to perform basic NLP tasks such as noun phrase extraction. Another important challenge in computational linguistics is accurate *translation* of a sentence from one spoken or written language to another. 
 
 This is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This means that you would take the following steps:
 
@@ -55,6 +51,7 @@ In this case, the translation informed by ML does a better job than the human tr
 > What's going on here? and why is TextBlob so good at translation? Well, behind the scenes, it's using Google translate, a sophisticated AI able to parse millions of phrases to predict the best strings for the task at hand. There's nothing manual going on here and you need an internet connection to use `blob.translate`. 
 
 ✅ Try some more sentences. Which is better, ML or human translation? In which cases?
+
 ## Sentiment analysis
 
 Another area where machine learning can work very well is sentiment analysis. A non-ML approach to sentiment is to identify words and phrases which are 'positive' and 'negative'. Then, given a new piece of text, calculate the total value of the positive, negative and neutral words to identify the overall sentiment. 
@@ -72,6 +69,7 @@ The ML approach would be to hand gather negative and positive bodies of text - t
 > One way to achieve that is to use Machine Learning. You would train the model with a portion of the *against* emails and a portion of the *for* emails. The model would tend to associate phrases and words with the against side and the for side, *but it would not understand any of the content*, only that certain words and patterns were more likely to appear in an *against* or a *for* email. You could test it with some emails that you had not used to train the model, and see if it came to the same conclusion as you did. Then, once you were happy with the accuracy of the model, you could process future emails without having to read each one.
 
 ✅ Does this process sound like processes you have used in previous lessons?
+
 ### Task: Sentimental Sentences
 
 Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most negative sentiment, and 1 is the most positive. Sentiment is also measured with an 0 - 1 score for objectivity (0) and subjectivity (1).
