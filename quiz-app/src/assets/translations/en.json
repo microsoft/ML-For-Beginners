@@ -324,7 +324,7 @@
 			},
 			{
 				"id": 7,
-				"title": "Get started with Python and Scikit-Learn for Regression models: Pre-Lecture Quiz",
+				"title": "Introduction to Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "Which of these variables is a numeric variable?",
@@ -381,7 +381,7 @@
 			},
 			{
 				"id": 8,
-				"title": "Get started with Python and Scikit-Learn for Regression models: Post-Lecture Quiz",
+				"title": "Introduction to Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "If your Machine Learning model's training accuracy is 95 % and the testing accuracy is 30 %, then what type of condition it is called?",
@@ -438,7 +438,7 @@
 			},
 			{
 				"id": 9,
-				"title": "Build a Regression Model using Scikit-Learn: Prepare and Visualize Data: Pre-Lecture Quiz",
+				"title": "Prepare and Visualize Data for Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "Which of these Python modules is used to plot the visualization of data?",
@@ -495,7 +495,7 @@
 			},
 			{
 				"id": 10,
-				"title": "Build a Regression Model using Scikit-Learn: Prepare and Visualize Data: Post-Lecture Quiz",
+				"title": "Prepare and Visualize Data for Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "Which of these code snippets is correct based on this lesson, if you want to check for the presence of missing values in your dataset? Suppose the dataset is stored in a variable named 'dataset' which is a Pandas DataFrame object.",
@@ -552,7 +552,7 @@
 			},
 			{
 				"id": 11,
-				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"title": "Linear and Polynomial Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -605,7 +605,7 @@
 			},
 			{
 				"id": 12,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "Linear and Polynomial Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -658,7 +658,7 @@
 			},
 			{
 				"id": 13,
-				"title": "Lesson 1 - Intro to ML: Pre-Lecture Quiz",
+				"title": "Logistic Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -711,7 +711,7 @@
 			},
 			{
 				"id": 14,
-				"title": "Lesson 1 - Intro to ML: Post-Lecture Quiz",
+				"title": "Logistic Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -870,6 +870,642 @@
 							},
 							{
 								"answerText": "Encodes data serially",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 17,
+				"title": "Classification 1: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 18,
+				"title": "Classification 1: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 19,
+				"title": "Classification 2: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 20,
+				"title": "Classification 2: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 21,
+				"title": "Classification 3: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 22,
+				"title": "Classification 3: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 23,
+				"title": "Classification 4: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 24,
+				"title": "Classification 4: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 25,
+				"title": "Introduction to Clustering: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 26,
+				"title": "Introduction to Clustering: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 27,
+				"title": "K-Means Clustering: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 28,
+				"title": "K-Means Clustering: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
 								"isCorrect": "false"
 							}
 						]

@@ -5,9 +5,7 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
 > While you're studying Machine Learning with Clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
-
-## [Pre-lecture quiz](link-to-quiz-app)
-
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/)
 ### Introduction
 
 > TODO infographic
@@ -300,7 +298,7 @@ In general, for clustering, you can use scatterplots to show clusters of data, s
 ## 🚀Challenge
 
 In preparation for the next lesson, make a chart about the various clustering algorithms you might discover and use in a production environment. What kinds of problems is the clustering trying to address? 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/26/)
 
 ## Review & Self Study
 
