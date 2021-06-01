@@ -65,8 +65,8 @@ Researchers found that several commercial gender classifiers had higher error ra
  
 Stereotypical gender view was found in machine translation. When translating “he is a nurse and she is a doctor” into Turkish, a genderless language, which has one pronoun, “o” to convey a singular third person, then back into English yields the stereotypical and incorrect as “she is a nurse and he is a doctor”. 
 
-!["He's a nurse. She's a doctor." machine-translated in Turkish: "O bir hemşire. O bir doktor."](images/fairness/gender-bias-translate-en-tr.png) 
-!["O bir hemşire. O bir doktor." machine-translated in English: "She's a nurse. He's a doctor."](images/fairness/gender-bias-translate-tr-en.png)
+!["He's a nurse. She's a doctor." machine-translated in Turkish: "O bir hemşire. O bir doktor."](images/gender-bias-translate-en-tr.png) 
+!["O bir hemşire. O bir doktor." machine-translated in English: "She's a nurse. He's a doctor."](images/gender-bias-translate-tr-en.png)
 
 #### Denigration 
  
