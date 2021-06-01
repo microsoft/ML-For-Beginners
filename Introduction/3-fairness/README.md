@@ -1,20 +1,20 @@
 # Fairness in Machine Learning 
  
-[Illustration “black box” here] 
+TODO: Illustration “black box” here 
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
  
 ## Introduction 
  
-You are about to learn machine learning to make our lives better— your future systems and models may be going to be involved in the everyday decision-making, such as health care system or fraud detection. So, it is important that they work well in providing fair outcomes for everyone. 
+In this curriculum, you will start to discover how machine learning can and is impacting our everyday lives. Even now, systems and models are involved in daily decision-making tasks, such as health care diagnoses or detecting fraud. So it is important that these models work well in order to provide fair outcomes for everyone.
 
-Imagine when the data you are using disproportionally represented, or lacks certain demographics, such as race, gender, political view, religion, etc. Or when the output is interpreted to favor some demographic. What is the consequence of the application? 
+Imagine what can happen when the data you are using to build these models lacks certain demographics, such as race, gender, political view, religion, or disproportionally represents such demographics. What about when the model's output is interpreted to favor some demographic? What is the consequence for the application? 
 
 In this lesson, you will: 
 
-- Raise your awareness of importance of fairness in ML 
-- Learn about fairness-related harms 
-- Learn about unfairness assessment and mitigation 
+- Raise your awareness of importance of fairness in machine learning
+- Learn about fairness-related harms
+- Learn about unfairness assessment and mitigation
 
 ## Prerequisite
 
@@ -29,17 +29,18 @@ Learn more about Responsible AI by following this [Learning Path](https://docs.m
  
 *"If you torture the data long enough, it will confess to anything." - Ronald Coase* 
 
-This sounds extreme but it is true that data can be manipulated to support any conclusion. And manipulation can happen unintentionally. As humans, we all have bias, and you just don’t consciously know when you introduce bias in data. 
-Fairness in AI and machine learning remains a complex sociotechnical challenge, meaning that it cannot be addressed from either purely social or technical perspectives. 
+This sounds extreme but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and you it is often difficult to consciously know when you are introducing bias in data. 
 
-Watch this video to learn about the fairness and socio-technical challenges: 
+Guaranteeing fairness in AI and machine learning remains a complex sociotechnical challenge. This means that it cannot be addressed from either purely social or technical perspectives.
 
-\[![Responsible AI - Fairness\](images/poster.png)](https://eus-streaming-video-rt-microsoft-com.akamaized.net/3c12a201-0657-4449-999c-f41b25df9616/31ce46d9-85b0-4e84-b93e-225478de_2250.mp4) 
+[![Responsible AI - Fairness](images/fairness.png)](https://eus-streaming-video-rt-microsoft-com.akamaized.net/3c12a201-0657-4449-999c-f41b25df9616/31ce46d9-85b0-4e84-b93e-225478de_2250.mp4) 
+> Watch this video to learn about the fairness and socio-technical challenges: 
 
 ## Fairness-related harms 
  
-What do you mean by unfairness? —it is negative impacts for group of people, such as those defined in terms of race, gender, age, or disability status.  
-Main fairness-related harms can be classified as: 
+What do you mean by unfairness? "Unfairness" encompasses negative impacts, or "harms", for a group of people, such as those defined in terms of race, gender, age, or disability status.  
+
+The main fairness-related harms can be classified as: 
 
 - Allocation 
 - Quality of service 
@@ -49,17 +50,19 @@ Main fairness-related harms can be classified as:
 
 Let’s take a look at the examples. 
  
-Example of Allocation 
- 
-One of the examples is a system for screening loan applications. The system tends to pick white men as good candidates than other groups. As a result, loans are withheld from certain applicants. 
+## Example of Allocation 
 
-Another example is this experimental hiring tool that developed by a large corporation to screen candidates. The tool systemically discriminated against women by using the models were trained to prefer masculine languages. It resulted in penalizing candidates whose resumes contain words such as “women’s rugby team”. 
- 
-Quality of service 
- 
-Researchers found the three commercial gender classifiers had higher error rates that images of women with darker skin tones than the images of men with lighter skin tones.  
+Consider a given system for screening loan applications. The system tends to pick white men as better candidates over other groups. As a result, loans are withheld from certain applicants. 
 
-Stereotyping 
+Another example would be an experimental hiring tool developed by a large corporation to screen candidates. The tool systemically discriminated against one gender by using the models were trained to prefer words associated with another. It resulted in penalizing candidates whose resumes contain words such as "women’s rugby team". 
+
+✅ Do a little research to find a real-world example of something like this
+ 
+## Quality of service 
+ 
+Researchers found that several commercial gender classifiers had higher error rates that images of women with darker skin tones than the images of men with lighter skin tones.  
+
+## Stereotyping 
  
 Stereotypical gender view was found in machine translation. When translating “he is a nurse and she is a doctor” into Turkish, a genderless language, which has one pronoun, “o” to convey a singular third person, then back into English yields the stereotypical and incorrect as “she is a nurse and he is a doctor”. 
 
@@ -162,6 +165,7 @@ To avoid biases to be introduced in the first place, we should:
 What else should we consider? 
  
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+
 ## Review & Self Study 
  
 In this lesson, you have learned about fairness/unfairness in ML.  
