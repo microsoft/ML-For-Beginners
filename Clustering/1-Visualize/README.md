@@ -5,6 +5,7 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
 > While you're studying Machine Learning with Clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
+
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 ### Introduction
@@ -51,9 +52,9 @@ Alternately, you could use it for grouping search results - by shopping links, i
 > 
 > 🎓 ['Non-flat' vs. 'flat' geometry](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
-> Derived from mathematical terminology, non-flat vs. flat geometry refers to the measure of distances between points by either 'flat' (non-[Euclidean](https://wikipedia.org/wiki/Euclidean_geometry)) or 'non-flat' (Euclidean) geometrical methods. 
+> Derived from mathematical terminology, non-flat vs. flat geometry refers to the measure of distances between points by either 'flat' ([Euclidean](https://wikipedia.org/wiki/Euclidean_geometry)) or 'non-flat' (non-Euclidean) geometrical methods. 
 >
->'Flat' in this context refers to Euclidean geometry (parts of which are taught as 'plane' geometry), and non-flat refers to non-Euclidean geometry. What does geometry have to do with machine learning? Well, as two fields that are rooted in mathematics, there must be a common way to measure distances between points in clusters, and that can be done in a 'flat' or 'non-flat' way, depending on the nature of the data. If your data, visualized, seems to not exist on a plane, you might need to use a specialized algorithm to handle it.
+>'Flat' in this context refers to Euclidean geometry (parts of which are taught as 'plane' geometry), and non-flat refers to non-Euclidean geometry. What does geometry have to do with machine learning? Well, as two fields that are rooted in mathematics, there must be a common way to measure distances between points in clusters, and that can be done in a 'flat' or 'non-flat' way, depending on the nature of the data. [Euclidean distances](https://en.wikipedia.org/wiki/Euclidean_distance) are measured as the length of a line segment between two points. [Non-Euclidean distances](https://en.wikipedia.org/wiki/Non-Euclidean_geometry) are measured along a curve. If your data, visualized, seems to not exist on a plane, you might need to use a specialized algorithm to handle it.
 >
 > Infographic: like the last one here https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering
 > 
@@ -259,7 +260,9 @@ sns.heatmap(corrmat, vmax=.8, square=True);
 
 The only strong correlation is between energy and loudness, which is not too surprising, given that loud music is usually pretty energetic. Otherwise, the correlations are relatively weak. It will be interesting to see what a clustering algorithm can make of this data.
 
-Is there any convergence in this dataset around a song's perceived popularity and danceability? A FacetGrid shows that there are concentric circles that line up, regardless of genre. Could it be that Nigerian tastes converge at a certain level of danceability for this genre? 
+> 🎓 Note that correlation does not imply causation! We have proof of correlation but no proof of causation. An [amusing web site](https://tylervigen.com/spurious-correlations) has some visuals that emphasize this point.
+
+Is there any convergence in this dataset around a song's perceived popularity and danceability? A FacetGrid shows that there are concentric circles that line up, regardless of genre. Could it be that Nigerian tastes converge at a certain level of danceability for this genre?  
 
 ✅ Try different datapoints (energy, loudness, speechiness) and more or different musical genres. What can you discover? Take a look at the `df.describe()` table to see the general spread of the data points.
 
@@ -277,7 +280,11 @@ g = sns.jointplot(
 )
 ```
 
-You can discover concentric circles around a general point of convergence, showing the distribution of points. In general, the three genres align loosely in terms of their popularity and danceability. Determining clusters in this loosely-aligned data will be interesting:
+You can discover concentric circles around a general point of convergence, showing the distribution of points. 
+
+> 🎓 Note that this example uses a KDE (Kernel Density Estimate) graph that represents the data using a continuous probability density curve. This allows us to interpret data when working with multiple distributions.
+
+In general, the three genres align loosely in terms of their popularity and danceability. Determining clusters in this loosely-aligned data will be interesting:
 
 ![distribution](images/distribution.png)
 
