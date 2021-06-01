@@ -65,9 +65,9 @@ Another infamous example is a hand soap dispenser that could not seem to be able
  
 Stereotypical gender view was found in machine translation. When translating “he is a nurse and she is a doctor” into Turkish, problems were encountered. Turkish is a genderless language which has one pronoun, “o” to convey a singular third person, but translating the sentence back from Turkish to English yields the stereotypical and incorrect as “she is a nurse and he is a doctor”.
 
-![translation to Turkish](images/english-to-turkish.png)
+![translation to Turkish](images/gender-bias-translate-en-tr.png)
 
-![translation back to English](images/turkish-to-english.png)
+![translation back to English](images/gender-bias-translate-tr-en.png)
 ### Denigration 
  
 An image labeling technology infamously mislabeled images of dark-skinned people as gorillas. Mislabeling is harmful not just because the system made a mistake because it specifically applied a label that has a long history of being purposefully used to denigrate Black people.
@@ -154,8 +154,7 @@ The tool helps you to assesses how a model's predictions affect different groups
 
 - Try some [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
   
-- Learn [how to enable fairness assessments](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa
-- ) of machine learning models in Azure Machine Learning. 
+- Learn [how to enable fairness assessments](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
   
 - Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
 ## 🚀 Challenge 
