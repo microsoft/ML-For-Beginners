@@ -27,16 +27,15 @@ Learn more about Responsible AI by following this [Learning Path](https://docs.m
  
 ## Unfairness in data and algorithms 
  
-*"If you torture the data long enough, it will confess to anything." - Ronald Coase* 
+*"If you torture the data long enough, it will confess to anything." - Ronald Coase*
 
 This sounds extreme but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and you it is often difficult to consciously know when you are introducing bias in data. 
 
 Guaranteeing fairness in AI and machine learning remains a complex sociotechnical challenge. This means that it cannot be addressed from either purely social or technical perspectives.
 
-[![Responsible AI - Fairness](images/fairness.png)](https://eus-streaming-video-rt-microsoft-com.akamaized.net/3c12a201-0657-4449-999c-f41b25df9616/31ce46d9-85b0-4e84-b93e-225478de_2250.mp4) 
-> Watch this video to learn about the fairness and socio-technical challenges: 
 
-## Fairness-related harms 
+
+### Fairness-related harms 
  
 What do you mean by unfairness? "Unfairness" encompasses negative impacts, or "harms", for a group of people, such as those defined in terms of race, gender, age, or disability status.  
 
@@ -81,11 +80,11 @@ Skewed image search results can be a good example of this harm. When searching i
  
 These five main types of harms are not mutually exclusive, and a single system can exhibit more than one type of harm. In addition, each case varies in its severity. For instance, unfairly labeling someone as a criminal is a much more severe harm than mislabeling an image. It's important, however, to remember that even relatively non-severe harms can make people feel alienated or singled out and the cumulative impact can be extremely oppressive. 
  
-✅ Discussion: Revisit some of the examples and see if they show different harms.  
+✅ **Discussion**: Revisit some of the examples and see if they show different harms.  
 
 |                         | Allocation | Quality of service | Stereotyping | Denigration | Over- or under- representation |
-| ----------------------- | ---------- | ------------------ | ------------ | ----------- | ------------------------------ |
-| Automated hiring system | x          | x                  | x            |             | x                              |
+| ----------------------- | :--------: | :----------------: | :----------: | :---------: | :----------------------------: |
+| Automated hiring system |     x      |         x          |      x       |             |               x                |
 | Machine translation     |            |                    |              |             |                                |
 | Photo labeling          |            |                    |              |             |                                |
 
@@ -96,7 +95,7 @@ There are many reasons why a given system behaves unfairly. Social biases, for e
 
 Inadequate data about a certain group of people can be the reason for unfairness. For example, image classifiers a have higher rate of error for images of dark-skinned people because darker skin tones were underrepresented in the data.  
 
-Wrong assumptions made during development causes unfairness too. For example, a facial analysis system intended to predict who is going to commit a crime based on images of people’s faces can lead to damaging assumptions. This could lead to substantial harms for people who are misclassified.
+Wrong assumptions made during development cause unfairness too. For example, a facial analysis system intended to predict who is going to commit a crime based on images of people’s faces can lead to damaging assumptions. This could lead to substantial harms for people who are misclassified.
 ## Understand your models and build in fairness 
  
 Although many aspects of fairness are not captured in quantitative fairness metrics, and it is not possible to fully remove bias from a system to guarantee fairness, you are still responsible to detect and to mitigate fairness issues as much as possible. 
@@ -144,7 +143,7 @@ To mitigate unfairness, explore the model to generate various mitigated models a
 
 This introductory lesson does not dive deeply into the details of algorithmic unfairness mitigation, such as post-processing and reductions approach, but here is a tool that you may want to try. 
 
-## Fairlearn 
+### Fairlearn 
  
 [Fairlearn](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
 The tool helps you to assesses how a model's predictions affect different groups, enabling you to compare multiple models by using fairness and performance metrics, and supplying a set of algorithms to mitigate unfairness in binary classification and regression. 
@@ -168,6 +167,7 @@ To avoid biases to be introduced in the first place, we should:
 - develop better methods for detecting and correcting bias when it occurs 
 
 Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider? 
+
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 ## Review & Self Study 
  
