@@ -18,6 +18,11 @@ In this section, you will get set up to begin machine learning tasks, including 
 3. [Linear and Polynomial Regression](3-Linear/README.md)
 4. [Logistic Regression](4-Logistic/README.md)
 
+
+![Summary of the lessons](images/ml-regression.png)
+
+---
+
 ### Credits
 
 "ML with Regression" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper)
