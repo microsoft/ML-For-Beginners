@@ -555,48 +555,52 @@
 				"title": "Linear and Polynomial Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Matplotlib is a ",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "drawing library",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "data visualization library",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "lending library",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Linear Regression uses the following to plot relationships between variables",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a straight line",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a circle",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "a curve",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "A good Linear Regression model has a ___ Correlation Coefficient",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "low",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "high",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "flat",
 								"isCorrect": "false"
 							}
 						]
@@ -608,49 +612,53 @@
 				"title": "Linear and Polynomial Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "If your data is nonlinear, try a ___ type of Regression",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "linear",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "spherical",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "polynomial",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "These are all types of Regression methods",
+						"answerOptions": [
+							{
+								"answerText": "Falsestep, Ridge, Lasso and Elasticnet",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Stepwise, Ridge, Lasso and Elasticnet",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Stepwise, Ridge, Lariat and Elasticnet",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Least-Squares Regression means that all the datapoints surrounding the regression line are:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "squared and then subtracted",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "multiplied",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "squared and then added up",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
