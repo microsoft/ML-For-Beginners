@@ -80,7 +80,11 @@ https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf
 
 This article shows how combining different ML domains can produce interesting results that can help stop fake news from spreading and creating real damage; in this case, the impetus was the spread of rumors about COVID treatments that incited mob violence.
 
-### Classifying artifacts
+### Museum ML
+
+Museums are at the cusp of an AI revolution in which cataloging and digitizing collections and finding links between artifacts is becoming easier as technology becomes more easy to use. Projects such as In Codice Ratio are helping unlock the mysteries of inaccessible collections such as the Vatican Archives. But the business aspect of museums benefits from ML models as well. For example, the Art Institute of Chicago built models to predict what audiences are interested in and when they will attend expositions. The goals is to create individualized and optimized visitor experiences each time the user visit the museum. "During fiscal 2017, the model predicted attendance and admissions within 1 percent of accuracy, says Andrew Simnick, senior vice president at the Art Institute."
+
+https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices
 
 ## Marketing
 
