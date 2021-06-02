@@ -1,6 +1,6 @@
 # Fairness in Machine Learning 
  
-TODO: Illustration “black box” here 
+![Summary of this curriculum in a one-pager doodle](../../sketchnotes/ml-fairness.png) 
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
  
