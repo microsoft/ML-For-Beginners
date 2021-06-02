@@ -42,6 +42,8 @@ One way to evaluate how a particular investment performs is through statistical 
 ## Ecology and Green Tech
 
 ### Forest management
+You learned about Reinforcement Learning in previous lessons. It can be very useful when trying to predict patterns in nature. In particular, it could be used to track ecological problems like forest fires and the spread of invasive species. In Canada, a group of researchers used Reinforcement Learning to build forest wildfire dynamics models from satellite images. Using an innovative "spatially spreading process (SSP)", they envisioned a forest fire as "fire is the agent at any cell in the landscape and the set of actions the fire can take from a location at any point in time includes spreading north, south, east, or west or not spreading. This approach inverts the usual RL setup since the dynamics of the corresponding Markov Decision Process (MDP) is a known function for immediate wildfire spread." Read more about the classic algorithms used by this group in this article: https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full
+
 ### Motion sensing of animals
 ### Energy Management
   This article discusses in detail how clustering and time series forecasting help predict future energy use in Ireland, based off of smart metering: https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
