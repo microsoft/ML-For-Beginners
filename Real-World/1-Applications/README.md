@@ -73,6 +73,13 @@ In our lesson on Time Series, we invoked the concept of smart parking meters to 
 ## Arts, Culture, and Literature
 
 ### Fake news detection
+
+Detecting fake news has become a game of cat and mouse in today's media. In this article, researchers suggest that a system combining several of the ML techniques we have studied can be tested and the best model deployed: "This system is based on natural language processing to extract features from the data and then these features are used for the training of machine learning classifiers such as Naive Bayes,  Support Vector Machine (SVM), Random Forest (RF), Stochastic Gradient Descent (SGD), and Logistic Regression(LR)." 
+
+https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf
+
+This article shows how combining different ML domains can produce interesting results that can help stop fake news from spreading and creating real damage; in this case, the impetus was the spread of rumors about COVID treatments that incited mob violence.
+
 ### Classifying artifacts
 
 ## Marketing
