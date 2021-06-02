@@ -76,7 +76,10 @@ An image labeling technology infamously mislabeled images of dark-skinned people
 > Video: AI, Ain't I a Woman - a performance showing the harm caused by racist denigration by AI
 ### Over- or under- representation 
  
-Skewed image search results can be a good example of this harm. When searching images of professions with an equal or higher percentage of men than women, such as engineering, or CEO, watch for results that are more heavily skewed towards a given gender. 
+Skewed image search results can be a good example of this harm. When searching images of professions with an equal or higher percentage of men than women, such as engineering, or CEO, watch for results that are more heavily skewed towards a given gender.
+
+![Bing CEO search](images/ceos.png)
+> This search on Bing for 'CEO' produces pretty inclusive results
  
 These five main types of harms are not mutually exclusive, and a single system can exhibit more than one type of harm. In addition, each case varies in its severity. For instance, unfairly labeling someone as a criminal is a much more severe harm than mislabeling an image. It's important, however, to remember that even relatively non-severe harms can make people feel alienated or singled out and the cumulative impact can be extremely oppressive. 
  
