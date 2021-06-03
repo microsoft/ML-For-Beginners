@@ -1,13 +1,12 @@
-# History of Machine Learning and AI
+# History of Machine Learning
 
 Add a sketchnote if possible/appropriate
 
-[![The history of AI by Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
 
 In this lesson, we will walk through the major milestones of the history of Machine Learning and AI.
 
-The history of Artificial Intelligence as a field is intertwined with the history of Machine Learning, as the algorithms that underpin ML fed into the development of AI. It is useful to remember that, while AI as a field of inquiry began to crystallize in the 1950s, important [algorithmical, statistical, mathematical and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. 
+The history of Artificial Intelligence as a field is intertwined with the history of Machine Learning, as the algorithms and computational advances that underpin ML fed into the development of AI. It is useful to remember that, while these fields as distinct areas of inquiry began to crystallize in the 1950s, important [algorithmical, statistical, mathematical, computational and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. 
 
 ## Notable Discoveries
 
@@ -23,7 +22,7 @@ The history of Artificial Intelligence as a field is intertwined with the histor
 
 ## 1950: Machines that Think
 
-Alan Turing, a truly remarkable person who was voted [by the public in 2019](https://en.wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) as the greatest scientist of the 20th century, was 
+Alan Turing, a truly remarkable person who was voted [by the public in 2019](https://en.wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) as the greatest scientist of the 20th century, is credited as helping to lay the foundation for the concept of a 'machine that can think'.
 
 ## 1956: Dartmouth Research Project
 
@@ -80,6 +79,8 @@ better able to frame question
 
 AI started as a single area, now there are many parts and they cross-collaborate
 
+
+
 [![The history of Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of Deep Learning")
 > Yann LeCun discusses the history of Deep Learning in this lecture
 
@@ -94,6 +95,10 @@ Optional: add a screenshot of the completed lesson's UI if appropriate
 
 ## Review & Self Study
 
-[Check out this podcast where Amy Boyd discusses the evolution of AI](http://runasradio.com/Shows/Show/739)
+Here are two items to review:
+
+[This podcast where Amy Boyd discusses the evolution of AI](http://runasradio.com/Shows/Show/739)
+
+[![The history of AI by Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
 
 **Assignment**: [Create a timeline](assignment.md)
