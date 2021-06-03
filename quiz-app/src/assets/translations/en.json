@@ -1549,49 +1549,53 @@
 				"title": "Intro to NLP: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What does NLP stand for in these lessons?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Neural Language Processing",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Natural Language Processing",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Natural Linguistic Processing",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Eliza was an early bot that acted as a computer",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "therapist",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "doctor",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "nurse",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Alan Turing's 'Turing Test' tried to determine if a computer was",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "indistinguishable from a human",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "thinking",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -1602,48 +1606,52 @@
 				"title": "Intro to NLP: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Joseph Weizenbaum invented the bot",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Elisha",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Eliza",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Eloise",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A conversational bot gives output based on",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "Randomly choosing predefined choices",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Analyzing the input and using machine intelligence",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "Both of these",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "How would you make the bot more effective?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "By asking it more questions.",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "By feeding it more data and training it accordingly",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "The bot is dumb, it cannot learn :(",
 								"isCorrect": "false"
 							}
 						]
