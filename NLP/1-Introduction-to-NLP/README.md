@@ -4,8 +4,7 @@ This lesson covers a brief history and important concepts of *Computational Ling
 
 [![NLP 101](https://img.youtube.com/vi/C75SiVhXjRM/0.jpg)](https://youtu.be/C75SiVhXjRM "NLP 101")
 
-## [Pre-lecture quiz](link-to-quiz-app)
-
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/29/)
 ## Introduction
 
 NLP, as it is commonly known, is one of the best-known areas where machine learning has been applied and used in production software.
@@ -115,7 +114,7 @@ Choose one of the "stop and consider" elements above and either try to implement
 
 In the next lesson, you'll learn about a number of other approaches to parsing natural language and machine learning.
 
-### [Post-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/30/)
 
 ## Review & Self Study
 
