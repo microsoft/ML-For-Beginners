@@ -43,9 +43,22 @@ https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the
 
 ## Health Care
 
-### Optimizing drug delivery
-### Hospital re-entry management
+### Managing clinical trials
+
+Toxicity in clinical trials is a major concern to drug makers. How much toxicity is tolerable? In this study, analyzing various clinical trial methods led to the development of a new approach for predicting the odds of clinical trial outcomes using random forest to produce a classifier that is able to distinguish between groups of drugs.
+
+https://www.sciencedirect.com/science/article/pii/S2451945616302914
+
+### Hospital readmission management
+
+Hospital care is costly, especially when patients have to be readmitted. This paper  discusses a company that uses ML to predict readmission potential by means of Clustering algorithms. These clusters help analysts to "discover groups of readmissions that may share a common cause".
+
+https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning
 ### Disease management
+
+The recent pandemic has shone a bright light on the ways that machine learning can aid in stopping the spread of disease. In this article, you'll recognise the use of ARIMA, logistic curves, linear regression, and SARIMA. "This work is an attempt to calculate the rate of spread of this virus and thus to predict the deaths, recoveries, and confirmed cases, so that it may help us to prepare better and survive."
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/
 
 ## Ecology and Green Tech
 
