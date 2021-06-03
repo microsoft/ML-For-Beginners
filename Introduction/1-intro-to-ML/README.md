@@ -4,9 +4,6 @@
 
 > Click this image to watch a video discussing the difference between Machine Learning, AI, and Deep Learning.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
-
-Describe what we will learn
-
 ### Introduction
 
 Describe what will be covered
