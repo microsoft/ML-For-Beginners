@@ -117,12 +117,13 @@ https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute
 ### 'Ad words'
 ### Customer segmentation
 
-
 ## 🚀Challenge
 
 Discover one more sector that benefits from some of the techniques you learned in this curriculum.
 ## [Post-lecture quiz](link-to-quiz-app)
 
 ## Review & Self Study
+
+
 
 **Assignment**: [A ML scavenger hunt](assignment.md)
