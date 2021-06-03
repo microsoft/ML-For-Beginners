@@ -66,7 +66,11 @@ In our lesson on Time Series, we invoked the concept of smart parking meters to 
 
 ## Insurance
 
-### Actuarial tasks
+### Volatility Management
+
+MetLife is forthcoming with the way they analyze and mitigate volatility in their financial models. In this article you'll notice binary and ordinal classification visualizations. You'll also discover forecasting visualizations.
+
+https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf
 
 ## Consumer Electronics
 
