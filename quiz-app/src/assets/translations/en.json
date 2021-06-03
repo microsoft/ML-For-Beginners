@@ -2079,48 +2079,52 @@
 				"title": "Intro to Time Series: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Time Series Forecasting is useful in",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "determining future costs",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "predicting future pricing",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both the above",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "A time series is a sequence taken at:",
+						"answerOptions": [
+							{
+								"answerText": "successive equally spaced points in space",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "successive equally spaced points in time",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "successive equally spaced points in space and time",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Time series can be used in:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "earthquake prediction",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "computer vision",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "color analysis",
 								"isCorrect": "false"
 							}
 						]
@@ -2132,48 +2136,52 @@
 				"title": "Intro to Time Series: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Time series trends are",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Measurable increases and decreases over time",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Quantifying decreases over time",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Gaps between increases and decreases over time",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Outliers are",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "points close to standard data variance",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "points far away from standard data variance",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "points within standard data variance",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Time Series Forecasting is most useful for",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Econometrics",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "History",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Libraries",
 								"isCorrect": "false"
 							}
 						]

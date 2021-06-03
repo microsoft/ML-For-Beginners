@@ -3,9 +3,9 @@
 In this lesson and the following one, you will learn a bit about Time Series Forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit lesser known than other topics. Time Series Forecasting is a sort of crystal ball: based on past performance of a variable such as price, you can predict its future potential value.
 
 [![Introduction to Time Series Forecasting](https://img.youtube.com/vi/wGUV_XqchbE/0.jpg)](https://youtu.be/wGUV_XqchbE "Introduction to Time Series Forecasting")
-## [Pre-lecture quiz](link-to-quiz-app) 
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
 
-It's a powerful and interesting field especially in business, given its direct application to problems of value, pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights in the prediction of future performance, Time Series Forecasting remains a field greatly informed by classic ML techniques.
+It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights in the prediction of future performance, Time Series Forecasting remains a field greatly informed by classic ML techniques.
 
 > Penn State's useful Time Series curriculum can be found [here](https://online.stat.psu.edu/stat510/lesson/1)
 
@@ -64,6 +64,7 @@ In the next lesson, you will build an ARIMA model using [Univariate Time Series]
 
 When looking at time series data, you might notice that it has certain characteristics that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques. 
 ### Trends
+
 Measurable increases and decreases over time. [Read more](https://machinelearningmastery.com/time-series-trends-in-python) about how to use and, if necessary, remove trends from your time series. 
 ### [Seasonality](https://machinelearningmastery.com/time-series-seasonality-with-python/)
 Periodic fluctuations, such as holiday rushes that might affect sales, for example. [Take a look](https://itl.nist.gov/div898/handbook/pmc/section4/pmc443.htm) at how different types of plots display seasonality in data.
@@ -75,8 +76,6 @@ Independent of seasonality, data might display a long-run cycle such as an econo
 Over time, some data display constant fluctuations, such as energy usage per day and night.
 ### Abrupt changes
 The data might display an abrupt change that might need further analysis. The abrupt shuttering of businesses due to COVID, for example, caused changes in data.
-
-### Stationary 
 
 ✅ Here is a [sample time series plot](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) showing daily in-game currency spent over a few years. Can you identify any of the characteristics listed above in this data?
 
@@ -146,7 +145,7 @@ In the next lesson, you will create an ARIMA model to create some forecasts.
 
 Make a list of all the industries and areas of inquiry you can think of that would benefit from Time Series Forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
 ## Review & Self Study
 
 Although we won't cover them here, neural networks are sometimes used to enhance classic methods of Time Series Forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
