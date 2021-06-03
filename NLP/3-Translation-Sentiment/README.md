@@ -138,7 +138,7 @@ Here is a sample [solution](solutions/book.py).
 
 Can you make Marvin even better by extracting other features from the user input?
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/34/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/34/)
 
 ## Review & Self Study
 
