@@ -112,7 +112,7 @@
 			},
 			{
 				"id": 3,
-				"title": "History of Machine Learning: Post-Lecture Quiz",
+				"title": "History of Machine Learning: Pre-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
@@ -218,51 +218,55 @@
 			},
 			{
 				"id": 5,
-				"title": "Fairness and Machine Learning: Post-Lecture Quiz",
+				"title": "Fairness and Machine Learning: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Unfairness in Machine Learning can happen",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "intentionally",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "unintentionally",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "The term 'unfairness' in ML connotes:",
+						"answerOptions": [
+							{
+								"answerText": "harms for a group of people",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "harm to one person",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "harms for the majority of people",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "The five main types of harms include",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "allocation, quality of service, stereotyping, denigration, and over- or under- representation",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "elocation, quality of service, stereotyping, denigration, and over- or under- representation ",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "allocation, quality of service, stereophonics, denigration, and over- or under- representation ",
 								"isCorrect": "false"
 							}
 						]
@@ -274,48 +278,52 @@
 				"title": "Fairness and Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Unfairness in a model can be caused by",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "overrreliance on historical data",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "underreliance on historical data",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "too closely aligning to historical data",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "To mitigate unfairness, you can",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "identify harms and affected groups",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "define fairness metrics",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "both the above",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Fairlearn is a package that can",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "compare multiple models by using fairness and performance metrics",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "choose the best model for your needs",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "help you decide what is fair and what is not",
 								"isCorrect": "false"
 							}
 						]

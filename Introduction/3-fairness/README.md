@@ -32,9 +32,6 @@ Learn more about Responsible AI by following this [Learning Path](https://docs.m
 This sounds extreme but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and you it is often difficult to consciously know when you are introducing bias in data. 
 
 Guaranteeing fairness in AI and machine learning remains a complex sociotechnical challenge. This means that it cannot be addressed from either purely social or technical perspectives.
-
-
-
 ### Fairness-related harms 
  
 What do you mean by unfairness? "Unfairness" encompasses negative impacts, or "harms", for a group of people, such as those defined in terms of race, gender, age, or disability status.  
@@ -149,6 +146,7 @@ This introductory lesson does not dive deeply into the details of algorithmic un
 ### Fairlearn 
  
 [Fairlearn](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
+
 The tool helps you to assesses how a model's predictions affect different groups, enabling you to compare multiple models by using fairness and performance metrics, and supplying a set of algorithms to mitigate unfairness in binary classification and regression. 
 
 - Learn how to use the different components by checking out the Fairlearn's [GitHub](https://github.com/fairlearn/fairlearn/)
@@ -162,7 +160,7 @@ The tool helps you to assesses how a model's predictions affect different groups
 - Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
 ## 🚀 Challenge 
  
-To avoid biases to be introduced in the first place, we should: 
+To prevent biases from being introduced in the first place, we should: 
 
 - have a diversity of backgrounds and perspectives among the people working on systems 
 - invest in datasets that reflect the diversity of our society 
