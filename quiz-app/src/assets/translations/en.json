@@ -1720,7 +1720,7 @@
 				"title": "NLP Tasks: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "Build a dictionary of how often words reocccur using:",
+						"questionText": "Build a dictionary of how often words reoccur using:",
 						"answerOptions": [
 							{
 								"answerText": "Word and Phrase Dictionary",
