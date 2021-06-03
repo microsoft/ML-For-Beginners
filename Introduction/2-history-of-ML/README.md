@@ -22,13 +22,15 @@ The history of Artificial Intelligence as a field is intertwined with the histor
 
 ## 1950: Machines that Think
 
-Alan Turing, a truly remarkable person who was voted [by the public in 2019](https://en.wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) as the greatest scientist of the 20th century, is credited as helping to lay the foundation for the concept of a 'machine that can think'.
+Alan Turing, a truly remarkable person who was voted [by the public in 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) as the greatest scientist of the 20th century, is credited as helping to lay the foundation for the concept of a 'machine that can think'. He grappled with naysayers and his own need for empirical evidence of this concept in part by creating the [Turing Test](https://www.bbc.com/news/technology-18475646), which you will explore in our NLP lessons.
 
-## 1956: Dartmouth Research Project
+## 1956: Dartmouth Summer Research Project
 
-"To proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it -- John McCarthy" 
+"The Dartmouth Summer Research Project on Artificial Intelligence was a seminal event for artificial intelligence as a field"[source](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth) and it was here that the term 'Artificial Intelligence' was coined.
 
-They named the field of "Artificial Intelligence". This is the first time the phrase was coined.
+The lead researcher, mathematics professor John McCarthy, hoped "to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it". The participants included another luminary in the field, Marvin Minsky.
+
+The Workshop is credited with having initiated and encouraged including "the rise of symbolic methods, systems focussed on limited domains (early expert systems), and deductive systems versus inductive systems."[source](https://wikipedia.org/wiki/Dartmouth_workshop)
 
 ## 1956 - 1974: "The Gold Rush"
 
