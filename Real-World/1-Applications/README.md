@@ -5,7 +5,7 @@ In this curriculum, you have learned many ways to prepare data for training and 
 While a lot of interest in industry has been garnered by AI, which usually leverages Deep Learning, there are still valuable applications for classical machine learning models, some of which you use today, although you might not be aware of it. In this lesson, you'll explore how ten different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and thus more valuable to users.
 ## [Pre-lecture quiz](link-to-quiz-app)
 
-## Finance
+## 💰 Finance
 
 One of the major consumers of classical machine learning models is the finance industry. Two specific examples we cover here are **credit card fraud detection** and **wealth management**. 
 
@@ -21,13 +21,13 @@ In wealth management, an individual or firm handles investments on behalf of the
 
 One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out [this paper](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/) on evaluating fund performance using regression.
 
-## Education
+## 🎓 Education
 
 ### Predicting student behavior
 ### Preventing plagiarism
 ### Course recommendations
 
-## Retail
+## 👜 Retail
 
 ### Personalizing the customer journey
 
@@ -41,7 +41,7 @@ Innovative, nimble companies like [StitchFix](https://stitchfix.com), a box serv
 
 https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/
 
-## Health Care
+## 🏥 Health Care
 
 ### Managing clinical trials
 
@@ -60,7 +60,7 @@ The recent pandemic has shone a bright light on the ways that machine learning c
 
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/
 
-## Ecology and Green Tech
+## 🌲 Ecology and Green Tech
 
 ### Forest management
 You learned about Reinforcement Learning in previous lessons. It can be very useful when trying to predict patterns in nature. In particular, it could be used to track ecological problems like forest fires and the spread of invasive species. In Canada, a group of researchers used Reinforcement Learning to build forest wildfire dynamics models from satellite images. Using an innovative "spatially spreading process (SSP)", they envisioned a forest fire as "the agent at any cell in the landscape". "The set of actions the fire can take from a location at any point in time includes spreading north, south, east, or west or not spreading. 
@@ -73,11 +73,11 @@ While deep learning has created a revolution in visually-tracking animal movemen
 
 Sensors to track movements of farm animals and IoT makes use of this type of visual processing, but more basic ML techniques are useful to preprocess data. For example, in this paper, sheep postures were monitored and analyzed using various classifier algorithms. You will recocgnize the ROC curve on p. 335: https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf
 
-### Energy Management
+### ⚡️ Energy Management
   
 In our lesson on Time Series, we invoked the concept of smart parking meters to generate revenue for a town based on understanding supply and demand. This article discusses in detail how clustering, regression and time series forecasting combined to help predict future energy use in Ireland, based off of smart metering: https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
 
-## Insurance
+## 💼 Insurance
 
 ### Volatility Management
 
@@ -85,17 +85,17 @@ MetLife is forthcoming with the way they analyze and mitigate volatility in thei
 
 https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf
 
-## Consumer Electronics
+## 📱 Consumer Electronics
 
 ### Motion sensing
-## Software
+## 💻 Software
 
 ### UI regression
 ### Document search
 
 ### Recommendation engines
 
-## Arts, Culture, and Literature
+## 🎨 Arts, Culture, and Literature
 
 ### Fake news detection
 
@@ -104,28 +104,23 @@ Detecting fake news has become a game of cat and mouse in today's media. In this
 https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf
 
 This article shows how combining different ML domains can produce interesting results that can help stop fake news from spreading and creating real damage; in this case, the impetus was the spread of rumors about COVID treatments that incited mob violence.
-
 ### Museum ML
 
-Museums are at the cusp of an AI revolution in which cataloging and digitizing collections and finding links between artifacts is becoming easier as technology becomes more easy to use. Projects such as In Codice Ratio are helping unlock the mysteries of inaccessible collections such as the Vatican Archives. But the business aspect of museums benefits from ML models as well. For example, the Art Institute of Chicago built models to predict what audiences are interested in and when they will attend expositions. The goals is to create individualized and optimized visitor experiences each time the user visit the museum. "During fiscal 2017, the model predicted attendance and admissions within 1 percent of accuracy, says Andrew Simnick, senior vice president at the Art Institute."
+Museums are at the cusp of an AI revolution in which cataloging and digitizing collections and finding links between artifacts is becoming easier as technology becomes more easy to use. Projects such as In Codice Ratio are helping unlock the mysteries of inaccessible collections such as the Vatican Archives. But the business aspect of museums benefits from ML models as well. 
+
+For example, the Art Institute of Chicago built models to predict what audiences are interested in and when they will attend expositions. The goals is to create individualized and optimized visitor experiences each time the user visit the museum. "During fiscal 2017, the model predicted attendance and admissions within 1 percent of accuracy, says Andrew Simnick, senior vice president at the Art Institute."
 
 https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices
 
-## Marketing
+## 🏷 Marketing
 
 ### 'Ad words'
 ### Customer segmentation
 
 
-
-
-✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
-
-
 ## 🚀Challenge
 
-Add a challenge for students to work on collaboratively in class to enhance the project
-
+Discover one more sector that benefits from some of the techniques you learned in this curriculum.
 ## [Post-lecture quiz](link-to-quiz-app)
 
 ## Review & Self Study
