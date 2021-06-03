@@ -6,6 +6,18 @@ Add a sketchnote if possible/appropriate
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
 
 In this lesson, we will walk through the major milestones of the history of Machine Learning and AI.
+
+The history of Artificial Intelligence as a field is intertwined with the history of Machine Learning, as the algorithms that underpin ML fed into the development of AI. It is useful to remember that, while AI as a field of inquiry began to crystallize in the 1950s, important [algorithmical, statistical, mathematical and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. 
+
+## Notable Discoveries
+
+- 1763, 1812 [Bayes Theorem](https://wikipedia.org/wiki/Bayes%27_theorem) and its predecessors. This theorem and its applications underlie inference, describing the probability of an event occuring based on prior knowledge. 
+- 1805 [Least Square Theory](https://wikipedia.org/wiki/Least_squares) by French mathematician Adrien-Marie Legendre. This theory, which you will learn about  in our Regression unit, helps in data fitting. 
+- 1913 [Markov Chains](https://wikipedia.org/wiki/Markov_chain) named after Russian mathematician Andrey Markov is used to describe a sequence of possible events based on a previous state.
+- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) is a type of linear classifier invented by American psychologist Frank Rosenblatt that underlies advances in deep learning. 
+- 1967 [Nearest Neighbor](https://wikipedia.org/wiki/Nearest_neighbor) is an algorithm originally designed to map routes. In an ML context it is used to  detect patterns.
+- 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) is used to train [feedforward neural networks](https://wikipedia.org/wiki/Feedforward_neural_network) 
+- 1982 [Recurrent Neural Network](https://wikipedia.org/wiki/Recurrent_neural_network) are artificial neural networks derived from feedforward neural networks that create temporal graphs.   
 ## 1950: Machines that Think
 
 Alan Turing
@@ -63,7 +75,7 @@ better able to frame question
 
 ## Now
 
-AI started as a single area, now there are may parts and they cross-collaborate
+AI started as a single area, now there are many parts and they cross-collaborate
 
 [![The history of Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of Deep Learning")
 > Yann LeCun discusses the history of Deep Learning in this lecture
