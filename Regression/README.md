@@ -1,7 +1,8 @@
 # Regression Models for Machine Learning
 
-![Summary of the lessons](../sketchnotes/ml-regression.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girliemac)
+![Summary of regressions in a sketchnote](../sketchnotes/ml-regression.png)
+> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+
 ## Regional topic: Regression models for pumpkin prices in North America
 
 In North America, pumpkins are often carved into scary faces for Halloween. Let's discover more about these fascinating vegetables!

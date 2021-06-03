@@ -1,7 +1,7 @@
 # Fairness in Machine Learning 
  
-![Fairness in Machine Learning](../../sketchnotes/ml-fairness.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girliemac)
+![Summary of Fairness in Machine Learning in a sketchnote](../../sketchnotes/ml-fairness.png)
+> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
  
