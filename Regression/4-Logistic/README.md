@@ -105,8 +105,6 @@ sns.catplot(x="Color", y="Item Size",
 
 Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore Logistic Regression to determine a given pumpkin's likely color.
 
-> infographic here (an image of logistic regression's sigmoid flow, like this: https://wikipedia.org/wiki/Logistic_regression#/media/File:Exam_pass_logistic_curve.jpeg)
-
 > **🧮 Show Me The Math**
 >
 > Remember how Linear Regression often used ordinary least squares to arrive at a value? Logistic Regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like thus:

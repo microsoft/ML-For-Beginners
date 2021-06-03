@@ -669,48 +669,52 @@
 				"title": "Logistic Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Use Logistic Regression to predict",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "whether an apple is ripe or not",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "how many tickets can be sold in a month",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "what color the sky will turn tomorrow at 6 PM",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Types of Logistic Regression include",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "multinomial and cardinal",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "multinomial and ordinal",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "principal and ordinal",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Your data has weak correlations. The best type of Regression to use is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Logistic",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Linear",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Cardinal",
 								"isCorrect": "false"
 							}
 						]
@@ -722,48 +726,52 @@
 				"title": "Logistic Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Seaborn is a type of",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "data visualization library",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "mapping library",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "mathematical library",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A confusion matrix is also known as a:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "error matrix",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "truth matrix",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "accuracy matrix",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "A good model will have:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a large number of false positives and true negatives in its confusion matrix",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a large number of true positives and true negatives in its confusion matrix",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "a large number of true positives and false negatives in its confusion matrix",
 								"isCorrect": "false"
 							}
 						]
