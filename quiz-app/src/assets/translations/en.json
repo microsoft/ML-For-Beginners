@@ -1663,48 +1663,52 @@
 				"title": "NLP Tasks: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Tokenization",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Splits text by means of punctuation",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Splits text into separate tokens (words)",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Splits text into phrases",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Embeddings",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "converts text data numerically so words can cluster",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "embeds words into phrases",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "embeds sentences into paragraphs",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Parts-of-Speech Tagging",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "divides sentences by their parts of speech",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "takes tokenized words and tags them by their part of speech",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "diagrams sentences",
 								"isCorrect": "false"
 							}
 						]
@@ -1716,48 +1720,52 @@
 				"title": "NLP Tasks: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Build a dictionary of how often words reocccur using:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Word and Phrase Dictionary",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Word and Phrase Frequencies",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Word and Phrase Library",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "N-grams refer to",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "A text can be split into sequences of words of a set length",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "A word can be split into sequences of characters of a set length",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "A text can be split into paragraphs of a set length",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Sentiment analysis",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "analyzes a phrase for positivity or negativity",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "analyzes a phrase for sentimentality",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "analyzes a phrase for sadness",
 								"isCorrect": "false"
 							}
 						]
