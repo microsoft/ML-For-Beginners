@@ -11,7 +11,13 @@ Let's discover common techniques used in processing text. Combined with machine 
 
 > 🎓 **Tokenization**
 > 
-> Probably the first thing most NLP algorithms have to do is split the text into tokens, or words. While this sounds simple, having to account for punctuation and different language's word and sentence delimiters can make it tricky.
+> Probably the first thing most NLP algorithms have to do is split the text into tokens, or words. While this sounds simple, having to account for punctuation and different languages' word and sentence delimiters can make it tricky. Thought it might seem very straightforward to split a sentence into words, you might have to use some other methods to determine demarcations.
+
+🎓 **Embeddings**
+
+> [Word embeddings](https://en.wikipedia.org/wiki/Word_embedding) are a way to convert your text data numerically. This is done in a way so that words with a similar meaning or words used together cluster together.
+
+✅ Try [this interesting tool](https://projector.tensorflow.org/) to experiment with word embeddings. Clicking on one word shows clusters of similar words: 'toy' clusters with 'disney', 'lego', 'playstation', and 'console'.
 
 > 🎓 **Parsing & Part-of-speech Tagging**
 >
