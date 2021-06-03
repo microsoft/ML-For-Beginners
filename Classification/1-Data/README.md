@@ -1,6 +1,4 @@
-# [Lesson Topic]
-
-Add a sketchnote if possible/appropriate
+# Introduction to Classification
 
 [![Introduction to Classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to Classification")
 > MIT's John Guttag introduces Classification
