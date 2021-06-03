@@ -179,7 +179,7 @@ One possible solution to the task is [here](solution/bot.py)
 
 Take a task in the prior knowledge check and try to implement it. Test the bot on a friend. Can it trick them? Can you make your bot more 'believable?'
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/32/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/32/)
 
 ## Review & Self Study
 

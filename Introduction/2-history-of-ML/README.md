@@ -17,10 +17,13 @@ The history of Artificial Intelligence as a field is intertwined with the histor
 - 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) is a type of linear classifier invented by American psychologist Frank Rosenblatt that underlies advances in deep learning. 
 - 1967 [Nearest Neighbor](https://wikipedia.org/wiki/Nearest_neighbor) is an algorithm originally designed to map routes. In an ML context it is used to  detect patterns.
 - 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) is used to train [feedforward neural networks](https://wikipedia.org/wiki/Feedforward_neural_network) 
-- 1982 [Recurrent Neural Network](https://wikipedia.org/wiki/Recurrent_neural_network) are artificial neural networks derived from feedforward neural networks that create temporal graphs.   
+- 1982 [Recurrent Neural Network](https://wikipedia.org/wiki/Recurrent_neural_network) are artificial neural networks derived from feedforward neural networks that create temporal graphs.
+
+✅ Do a little research. What other dates stand out as pivotal in the history of ML and AI?
+
 ## 1950: Machines that Think
 
-Alan Turing
+Alan Turing, a truly remarkable person who was voted [by the public in 2019](https://en.wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) as the greatest scientist of the 20th century, was 
 
 ## 1956: Dartmouth Research Project
 
@@ -80,7 +83,7 @@ AI started as a single area, now there are many parts and they cross-collaborate
 [![The history of Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of Deep Learning")
 > Yann LeCun discusses the history of Deep Learning in this lecture
 
-✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
+
 ## 🚀Challenge
 
 Add a challenge for students to work on collaboratively in class to enhance the project
