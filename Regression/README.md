@@ -1,5 +1,6 @@
 # Regression Models for Machine Learning
 
+![Summary of the lessons](images/ml-regression.png)
 ## Regional topic: Regression models for pumpkin prices in North America
 
 In North America, pumpkins are often carved into scary faces for Halloween. Let's discover more about these fascinating vegetables!
@@ -18,11 +19,7 @@ In this section, you will get set up to begin machine learning tasks, including 
 3. [Linear and Polynomial Regression](3-Linear/README.md)
 4. [Logistic Regression](4-Logistic/README.md)
 
-
-![Summary of the lessons](images/ml-regression.png)
-
 ---
-
 ### Credits
 
 "ML with Regression" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper)
