@@ -13,7 +13,8 @@ Describe what we will learn
 
 Describe what will be covered
 
-> Notes
+[![Introduction to ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduction to ML")
+> MIT's John Guttag introduces Machine Learning
 
 ### Prerequisite
 

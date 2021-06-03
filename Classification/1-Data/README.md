@@ -2,7 +2,8 @@
 
 Add a sketchnote if possible/appropriate
 
-![Embed a video here if available](video-url)
+[![Introduction to Classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to Classification")
+> MIT's John Guttag introduces Classification
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
