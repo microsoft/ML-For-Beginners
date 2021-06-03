@@ -124,6 +124,6 @@ Discover one more sector that benefits from some of the techniques you learned i
 
 ## Review & Self Study
 
-
+Wayfair Data Science group has several interesting videos on how they use ML in their company. It's worth [taking a look](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)!
 
 **Assignment**: [A ML scavenger hunt](assignment.md)
