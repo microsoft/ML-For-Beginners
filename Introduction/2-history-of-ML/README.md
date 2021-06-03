@@ -46,7 +46,6 @@ Eliza, an early 'chatterbot', could converse w/ people and act as a primitive 't
 
 "Blocks world" was an example of a micro world where blocks can be stacked and sorted and experiments in teaching machines to make decisions could be tested. Advances built with libraries such as [SHRDLU](https://wikipedia.org/wiki/SHRDLU) helped propel language processing forward. 
 
-https://www.youtube.com/watch?v=QAJz4YKUwqw
 [![blocks world with SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world with SHRDLU")
 
 ## 1974 - 1980: "AI Winter"
