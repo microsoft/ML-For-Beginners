@@ -155,8 +155,8 @@ It's time to implement ARIMA! You'll now use the `statsmodels` library that you 
 Now you need to follow several steps
 
 1. Define the model by calling `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters. 
-1. The model is prepared on the training data by calling the fit() function. 
-2. Predictions can be made by calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast
+1. The model is prepared on the training data by calling the fit() function.
+1. Predictions can be made by calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast
 
 > 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
 

@@ -2193,49 +2193,53 @@
 				"title": "Time Series ARIMA: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "ARIMA stands for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "AutoRegressive Integral Moving Average",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "AutoRegressive Integrated Moving Action",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "AutoRegressive Integrated Moving Average",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Stationarity refers to",
+						"answerOptions": [
+							{
+								"answerText": "data whose attributes does not change when shifted in time",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "data whose distribution does not change when shifted in time",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "data whose distribution changes when shifted in time",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Differencing",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "stabilizes trend and seasonality",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "exacerbates trend and seasonality",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "eliminates trend and seasonality",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -2246,48 +2250,52 @@
 				"title": "Time Series ARIMA: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "ARIMA is used to make a model fit the special form of time series data",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "as flat as possible",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "as closely as possible",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "via scatterplots",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Use SARIMAX to",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "manage seasonal ARIMA models",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "manage special ARIMA models",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "manage statistical ARIMA models",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "'Walk-Forward' validation involves",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "re-evaluating a model progressively as it is validated",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "re-training a model progressively as it is validated",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "re-configuring a model progressively as it is validated",
 								"isCorrect": "false"
 							}
 						]
