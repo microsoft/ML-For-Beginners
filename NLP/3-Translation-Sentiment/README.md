@@ -1,8 +1,8 @@
 # Translation and Sentiment Analysis with ML
 
 In the previous lessons you learned how to build a basic bot using TextBlob, a library that embeds ML behind-the-scenes to perform basic NLP tasks such as noun phrase extraction. Another important challenge in computational linguistics is accurate *translation* of a sentence from one spoken or written language to another.
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/33/)
 
-## [Pre-lecture quiz](link-to-quiz-app)
 
 This is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This means that you would take the following steps:
 
@@ -44,7 +44,7 @@ TextBlob does a pretty good job at the translation: "C'est une vérité universe
 
 I would argue that TextBlob's translation is far more exact, in fact, than the 1932 French translation of the book by V. Leconte and Ch. Pressoir:
 
-"C'est une vérité universelle qu'un celibataire pourvu d'une belle fortune doit avoir envie de se marier, et, si peu que l'on sache de son sentiment à cet egard, lorsqu'il arrive dans une nouvelle residence, cette idee  est si bien fixée dans l'esprit de ses voisins  qu'ils  le considèrent sur-le-champ comme la propriété légitime de l'une ou l'autre de leurs filles."
+"C'est une vérité universelle qu'un celibataire pourvu d'une belle fortune doit avoir envie de se marier, et, si peu que l'on sache de son sentiment à cet egard, lorsqu'il arrive dans une nouvelle residence, cette idée est si bien fixée dans l'esprit de ses voisins qu'ils le considèrent sur-le-champ comme la propriété légitime de l'une ou l'autre de leurs filles."
 
 In this case, the translation informed by ML does a better job than the human translator who is unnecessarily putting words in the original author's mouth for 'clarity'.
 
@@ -138,7 +138,7 @@ Here is a sample [solution](solutions/book.py).
 
 Can you make Marvin even better by extracting other features from the user input?
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/34/)
 
 ## Review & Self Study
 

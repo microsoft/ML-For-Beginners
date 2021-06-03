@@ -1769,49 +1769,53 @@
 				"title": "NLP and Translation: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Naive translation",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "translates words only",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "translates sentence structure",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "translates sentiment",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A *corpus* of texts refers to",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "A small number of texts",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "A large number of texts",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "One standard text",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "If a ML model has enough human translations to build a model on, it can",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "abbreviate translations",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "standardize translations",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "improve the accuracy of translations",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -1822,48 +1826,52 @@
 				"title": "NLP and Translation: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Underlying TextBlob's translation library is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Google Translate",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Bing",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "A custom ML model",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "To use `blob.translate` you need:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "an internet connection",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a dictionary",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "JavaScript",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "To determine sentiment, an ML approach would be to:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "apply Regression techniques to manually generated opinions and scores and look for patterns",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "apply NLP techniques to manually generated opinions and scores and look for patterns",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "apply Clustering techniques to manually generated opinions and scores and look for patterns",
 								"isCorrect": "false"
 							}
 						]
