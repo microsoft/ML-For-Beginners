@@ -19,10 +19,10 @@ Travel with us around the world as we apply these classic techniques to data fro
 **Hearty thanks to our authors (list all authors here)** Jen Looper, Stephen Howell, Francesca Lazzeri
 
  **🙏Special thanks🙏 to our Microsoft Student Ambassador reviewers and content contributors**, notably Rishit Dagli, Rohan Raj, Muhammad Sakib Khan Inan, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
+ 
+# Getting Started as a Student
 
-**Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum. If you would like to create your own lessons, we have also included a [lesson template](lesson-template/README.md)
-
-**Students**, to use this curriculum on your own, fork the entire repo and complete the exercises on your own:
+**Students**, to use this curriculum, fork the entire repo and complete the exercises on your own:
 
 - Start with a pre-lecture quiz
 - Read the lecture and complete the activities, pausing and reflecting at each knowledge check. 
@@ -32,6 +32,11 @@ Travel with us around the world as we apply these classic techniques to data fro
 - Complete the assignment
 - Consider forming a study group with friends and go through the content together. 
 - For further study, we recommend following [Microsoft Learn](https://docs.microsoft.com?WT.mc_id=academic-15963-cxa) modules and learning paths.
+
+---
+
+**Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum. If you would like to create your own lessons, we have also included a [lesson template](lesson-template/README.md)
+
 
 > Future space for Promo Video
 [![Promo video](screenshot.png)](https://youtube.com/watch?v=R1wrdtmBSII "Promo video")
