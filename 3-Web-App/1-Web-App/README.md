@@ -273,6 +273,8 @@ Instead of working in a notebook and importing the model to the Flask app, you c
 
 There are many ways to build a web app to consume ML models. Make a list of the ways you could use JavaScript or Python to build a web app to leverage machine learning. Consider architecture: should the model stay in the app or live in the cloud? If the latter, how would you access it? Draw out an architectural model for an applied ML web solution.
 
-**Assignment**: [Try a different model](assignment.md)
+## Assignment 
+
+[Try a different model](assignment.md)
 
 

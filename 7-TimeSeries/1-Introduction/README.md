@@ -150,4 +150,6 @@ Make a list of all the industries and areas of inquiry you can think of that wou
 
 Although we won't cover them here, neural networks are sometimes used to enhance classic methods of Time Series Forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
 
-**Assignment**: [Visualize some more Time Series](assignment.md)
+## Assignment 
+
+[Visualize some more Time Series](assignment.md)

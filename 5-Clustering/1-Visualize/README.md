@@ -312,4 +312,6 @@ Before you apply clustering algorithms, as we have learned, it's a good idea to 
 
 [This helpful article](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) walks you through the different ways that various clustering algorithms behave, given different data shapes.
 
-**Assignment**: [Research other visualizations for clustering](assignment.md)
+## Assignment 
+
+[Research other visualizations for clustering](assignment.md)

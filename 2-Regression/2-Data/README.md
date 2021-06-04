@@ -149,4 +149,6 @@ Explore the different types of visualization that matplotlib offers. Which types
 
 Take a look at the many ways to visualize data. Make a list of the various libraries available and note which are best for given types of tasks, for example 2D visualizations vs. 3D visualizations. What do you discover?
 
-**Assignment**: [Exploring visualization](assignment.md)
+## Assignment 
+
+[Exploring visualization](assignment.md)

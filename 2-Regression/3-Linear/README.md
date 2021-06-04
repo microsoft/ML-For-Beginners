@@ -255,4 +255,6 @@ Test several different variables in this notebook to see how correlation corresp
 
 In this lesson we learned about Linear Regression. There are other important types of Regression. Read about Stepwise, Ridge, Lasso and Elasticnet techniques. A good course to study to learn more is the [Stanford Statistical Learning course](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
 
-**Assignment**: [Build a Model](assignment.md)
+## Assignment 
+
+[Build a Model](assignment.md)

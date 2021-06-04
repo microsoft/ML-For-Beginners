@@ -187,4 +187,6 @@ In this tutorial, you worked with simple linear regression, rather than univaria
 
 Read more about the concept of Regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
 
-**Assignment**: [A different dataset](assignment.md)
+## Assignment 
+
+[A different dataset](assignment.md)
