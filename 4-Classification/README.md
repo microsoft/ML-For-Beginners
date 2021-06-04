@@ -10,4 +10,6 @@ In this section of the curriculum you will learn about how to classify data usin
 4. [Applied ML: Build a Web App](4-Applied/README.md)
 ## Credits
 
-"Getting Started with Classification" was written with ♥️ by [Cassie Breviu](@cassieview)
+"Getting Started with Classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
+
+The delicious recipes dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)
