@@ -20,9 +20,9 @@ Travel with us around the world as we apply these classic techniques to data fro
 
  **🙏Special thanks🙏 to our Microsoft Student Ambassador reviewers and content contributors**, notably Rishit Dagli, Rohan Raj, Muhammad Sakib Khan Inan, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
  
-# Getting Started as a Student
+# Getting Started
 
-**Students**, to use this curriculum, fork the entire repo and complete the exercises on your own:
+**Students**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own:
 
 - Start with a pre-lecture quiz
 - Read the lecture and complete the activities, pausing and reflecting at each knowledge check. 
@@ -30,7 +30,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 - Take the post-lecture quiz
 - Complete the challenge
 - Complete the assignment
-- Consider forming a study group with friends and go through the content together. 
+- Consider forming a study group with friends to go through the content together. 
 - For further study, we recommend following [Microsoft Learn](https://docs.microsoft.com?WT.mc_id=academic-15963-cxa) modules and learning paths.
 
 ---
