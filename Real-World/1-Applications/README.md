@@ -3,7 +3,7 @@
 In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic Regression, Clustering, Classification, Natural Language Processing, and Time Series models. Congratulations! Now, you might be wondering what it's all for...what are the real world applications for these models?
 
 While a lot of interest in industry has been garnered by AI, which usually leverages Deep Learning, there are still valuable applications for classical machine learning models, some of which you use today, although you might not be aware of it. In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and thus more valuable to users.
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/47/)
 
 ## 💰 Finance
 
@@ -13,16 +13,18 @@ One of the major consumers of classical machine learning models is the finance i
 
 We learned about [k-means clustering](Clustering/2-K-Means/README.md) earlier in the course, but how can it be used to solve problems related to credit card fraud?
 
-K-means clustering comes in handy during a credit card fraud detection technique called **outlier detection**. Outliers, or deviations in observations about a set of data, can tell us if a credit card is being used in a normal capacity, or if something unusual is going on. As shown in [this paper](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf), you can sort credit card data using a k-means clustering algorithm and assign each transaction to a cluster based on how much of an outlier it appears to be. Then, you can evaluate for riskiest cluster for fraudulent versus legitimate transactions.
+K-means clustering comes in handy during a credit card fraud detection technique called **outlier detection**. Outliers, or deviations in observations about a set of data, can tell us if a credit card is being used in a normal capacity or if something unusual is going on. As shown in the paper below, you can sort credit card data using a k-means clustering algorithm and assign each transaction to a cluster based on how much of an outlier it appears to be. Then, you can evaluate for riskiest cluster for fraudulent versus legitimate transactions.
 
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf
 ### Wealth management
 
 In wealth management, an individual or firm handles investments on behalf of their clients. Their job is to sustain and grow wealth in the long-term, so it is essential to choose investments that perform well.
 
-One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out [this paper](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/) on evaluating fund performance using regression.
+One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out the paper below on evaluating fund performance using regression. 
+
+http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/
 
 ## 🎓 Education
-
 ### Predicting student behavior
 
 [Coursera](https://coursera.com) has a great tech blog where they discuss many engineering decisions. In this case study, they plotted a regression line to try to explore any correlation between a low NPS (Net Promoter Score) rating and course retention or drop-off. 
@@ -70,19 +72,26 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/
 ## 🌲 Ecology and Green Tech
 
 ### Forest management
+
 You learned about Reinforcement Learning in previous lessons. It can be very useful when trying to predict patterns in nature. In particular, it could be used to track ecological problems like forest fires and the spread of invasive species. In Canada, a group of researchers used Reinforcement Learning to build forest wildfire dynamics models from satellite images. Using an innovative "spatially spreading process (SSP)", they envisioned a forest fire as "the agent at any cell in the landscape". "The set of actions the fire can take from a location at any point in time includes spreading north, south, east, or west or not spreading. 
 
-This approach inverts the usual RL setup since the dynamics of the corresponding Markov Decision Process (MDP) is a known function for immediate wildfire spread." Read more about the classic algorithms used by this group in this article: https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full
+This approach inverts the usual RL setup since the dynamics of the corresponding Markov Decision Process (MDP) is a known function for immediate wildfire spread." Read more about the classic algorithms used by this group.
+
+https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full
 
 ### Motion sensing of animals
 
-While deep learning has created a revolution in visually-tracking animal movements (you can build your own [polar bear tracker](https://docs.microsoft.com/en-us/learn/modules/build-ml-model-with-azure-stream-analytics/) here), classic ML still has a place in this task.
+While deep learning has created a revolution in visually-tracking animal movements (you can build your own [polar bear tracker](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-15963-cxa) here), classic ML still has a place in this task.
 
-Sensors to track movements of farm animals and IoT makes use of this type of visual processing, but more basic ML techniques are useful to preprocess data. For example, in this paper, sheep postures were monitored and analyzed using various classifier algorithms. You will recocgnize the ROC curve on p. 335: https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf
+Sensors to track movements of farm animals and IoT makes use of this type of visual processing, but more basic ML techniques are useful to preprocess data. For example, in this paper, sheep postures were monitored and analyzed using various classifier algorithms. You will recocgnize the ROC curve on p. 335.
+
+https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf
 
 ### ⚡️ Energy Management
   
-In our lesson on Time Series, we invoked the concept of smart parking meters to generate revenue for a town based on understanding supply and demand. This article discusses in detail how clustering, regression and time series forecasting combined to help predict future energy use in Ireland, based off of smart metering: https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
+In our lesson on Time Series, we invoked the concept of smart parking meters to generate revenue for a town based on understanding supply and demand. This article discusses in detail how clustering, regression and time series forecasting combined to help predict future energy use in Ireland, based off of smart metering.
+
+https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
 
 ## 💼 Insurance
 
@@ -93,7 +102,6 @@ MetLife is forthcoming with the way they analyze and mitigate volatility in thei
 https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf
 
 ## 🎨 Arts, Culture, and Literature
-
 ### Fake news detection
 
 Detecting fake news has become a game of cat and mouse in today's media. In this article, researchers suggest that a system combining several of the ML techniques we have studied can be tested and the best model deployed: "This system is based on natural language processing to extract features from the data and then these features are used for the training of machine learning classifiers such as Naive Bayes,  Support Vector Machine (SVM), Random Forest (RF), Stochastic Gradient Descent (SGD), and Logistic Regression(LR)." 
@@ -119,7 +127,7 @@ https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/
 ## 🚀Challenge
 
 Discover one more sector that benefits from some of the techniques you learned in this curriculum and learn how it uses ML.
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/48/)
 
 ## Review & Self Study
 
