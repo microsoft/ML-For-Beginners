@@ -9,6 +9,7 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 ### Introduction
 
 [![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
+
 🎥 Click the image above for a video: MIT's John Guttag introduces Clustering
 
 [Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
