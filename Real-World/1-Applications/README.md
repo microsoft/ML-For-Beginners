@@ -2,7 +2,7 @@
 
 In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic Regression, Clustering, Classification, Natural Language Processing, and Time Series models. Congratulations! Now, you might be wondering what it's all for...what are the real world applications for these models?
 
-While a lot of interest in industry has been garnered by AI, which usually leverages Deep Learning, there are still valuable applications for classical machine learning models, some of which you use today, although you might not be aware of it. In this lesson, you'll explore how ten different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and thus more valuable to users.
+While a lot of interest in industry has been garnered by AI, which usually leverages Deep Learning, there are still valuable applications for classical machine learning models, some of which you use today, although you might not be aware of it. In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and thus more valuable to users.
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 ## 💰 Finance
@@ -24,8 +24,15 @@ One way to evaluate how a particular investment performs is through statistical 
 ## 🎓 Education
 
 ### Predicting student behavior
-### Preventing plagiarism
-### Course recommendations
+
+[Coursera](https://coursera.com) has a great tech blog where they discuss many engineering decisions. In this case study, they plotted a regression line to try to explore any correlation between a low NPS (Net Promoter Score) rating and course retention or drop-off. 
+
+https://medium.com/coursera-engineering/controlled-regression-quantifying-the-impact-of-course-quality-on-learner-retention-31f956bd592a
+### Mitigating bias
+
+[Grammarly](https://grammarly.com) uses sophisticated NLP throughout its products, and wrote an interesting case study in their tech blog about how they dealt with gender bias in machine learning, which you learned about in our introductory fairness lesson. 
+
+https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/
 
 ## 👜 Retail
 
@@ -85,16 +92,6 @@ MetLife is forthcoming with the way they analyze and mitigate volatility in thei
 
 https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/research-topics/macro-strategy/pdf/MetLifeInvestmentManagement_MachineLearnedRanking_070920.pdf
 
-## 📱 Consumer Electronics
-
-### Motion sensing
-## 💻 Software
-
-### UI regression
-### Document search
-
-### Recommendation engines
-
 ## 🎨 Arts, Culture, and Literature
 
 ### Fake news detection
@@ -113,13 +110,15 @@ For example, the Art Institute of Chicago built models to predict what audiences
 https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices
 
 ## 🏷 Marketing
-
-### 'Ad words'
 ### Customer segmentation
+
+What are customers other than folks in different groups to whom you want to market in different ways? In this article, the uses of Clustering algorithms are discussed to support differentiated marketing.
+
+https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/
 
 ## 🚀Challenge
 
-Discover one more sector that benefits from some of the techniques you learned in this curriculum.
+Discover one more sector that benefits from some of the techniques you learned in this curriculum and learn how it uses ML.
 ## [Post-lecture quiz](link-to-quiz-app)
 
 ## Review & Self Study
