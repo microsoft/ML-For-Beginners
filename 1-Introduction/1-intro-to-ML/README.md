@@ -19,4 +19,6 @@ Before embarking on this curriculum, you need to have your computer set up and r
 
 ## Review & Self Study
 
-**Assignment**: [Get Up and Running](assignment.md)
+## Assignment 
+
+[Get Up and Running](assignment.md)

@@ -124,4 +124,6 @@ Take a look at the references below as further reading opportunities.
 1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
 2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
 
-**Assignment**: [Search for a Bot](assignment.md)
+## Assignment 
+
+[Search for a Bot](assignment.md)

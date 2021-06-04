@@ -192,4 +192,6 @@ Read about Azure Machine Learning's tools to ensure fairness
 
 - [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
-## [Explore Fairlearn](assignment.md) 
+## Assignment
+
+[Explore Fairlearn](assignment.md) 

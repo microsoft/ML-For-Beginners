@@ -51,4 +51,6 @@ Optional: add a screenshot of the completed lesson's UI if appropriate
 
 ## Review & Self Study
 
-**Assignment**: [Assignment Name](assignment.md)
+## Assignment 
+
+[Assignment Name](assignment.md)

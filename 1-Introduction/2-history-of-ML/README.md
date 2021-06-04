@@ -93,4 +93,6 @@ Here are items to watch and listen to:
 
 [![The history of AI by Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
 
-**Assignment**: [Create a timeline](assignment.md)
+## Assignment 
+
+[Create a timeline](assignment.md)

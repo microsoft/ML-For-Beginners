@@ -256,4 +256,6 @@ There's a lot more to unpack regarding Logistic Regression! But the best way to 
 
 Read the first few pages of [this paper from Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) on some practical uses for Logistic Regression. Think about tasks that are better suited for one or the other type of Regression tasks that we have studied up to this point. What would work best?
 
-**Assignment**: [Retrying this Regression](assignment.md)
+## Assignment 
+
+[Retrying this Regression](assignment.md)

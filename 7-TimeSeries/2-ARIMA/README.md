@@ -357,4 +357,6 @@ Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE 
 
 This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.
 
-**Assignment**: [A new ARIMA model](assignment.md)
+## Assignment 
+
+[A new ARIMA model](assignment.md)
