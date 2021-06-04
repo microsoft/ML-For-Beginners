@@ -8,28 +8,196 @@
 
 In this lesson, you will learn how to create clusters using Scikit-Learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common Clustering technique. Let's get started!
 
-- Data variance
+Terms you will learn about:
+
 - Silhouette Scoring
 - Elbow Method
-- K-Means for Clustering
-
+- Inertia
+- Variance
 ### Introduction
 
+[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) is a method derived from the domain of signal processing. It is used to divide and partition groups of data into 'k' clusters using a series of observations. Each observation works to group a given datapoint closest to its nearest 'mean', or the center point of a cluster. The clusters can be visualized as [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), which include a point (or 'seed') and its corresponding region. 
+
+TODO infographic of Voronoi diagram (https://en.wikipedia.org/wiki/Voronoi_diagram)
+
+The K-Means Clustering process [executes in a three-step process](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+
+1. The algorithm selects k-number of center points by sampling from the dataset. After this, it loops:
+    1. It assigns each sample to the nearest centroid
+    2. It creates new centroids by taking the mean value of all of the samples assigned to the previous centroids.
+    3. Then, it calculates the difference between the new and old centroids and repeats until the centroids are stablized.
+
+One drawback of using K-Means includes the fact that you will need to establish 'k', that is the number of centroids. Fortunately the  'elbow method' helps to estimate a good starting value for 'k'. You'll try it in a minute.
 ### Prerequisite
+
+You will work in this lesson's `notebook.ipynb` file that includes the data import and preliminary cleaning you did in the last lesson.
 ### Preparation
 
-Preparatory steps to start this lesson
+Start by taking another look at the songs data. This data is a little noisy: by observing each column as a boxplot, you can see outliers:
 
+```python
+plt.figure(figsize=(20,20), dpi=200)
+
+plt.subplot(4,3,1)
+sns.boxplot(x = 'popularity', data = df)
+
+plt.subplot(4,3,2)
+sns.boxplot(x = 'acousticness', data = df)
+
+plt.subplot(4,3,3)
+sns.boxplot(x = 'energy', data = df)
+
+plt.subplot(4,3,4)
+sns.boxplot(x = 'instrumentalness', data = df)
+
+plt.subplot(4,3,5)
+sns.boxplot(x = 'liveness', data = df)
+
+plt.subplot(4,3,6)
+sns.boxplot(x = 'loudness', data = df)
+
+plt.subplot(4,3,7)
+sns.boxplot(x = 'speechiness', data = df)
+
+plt.subplot(4,3,8)
+sns.boxplot(x = 'tempo', data = df)
+
+plt.subplot(4,3,9)
+sns.boxplot(x = 'time_signature', data = df)
+
+plt.subplot(4,3,10)
+sns.boxplot(x = 'danceability', data = df)
+
+plt.subplot(4,3,11)
+sns.boxplot(x = 'length', data = df)
+
+plt.subplot(4,3,12)
+sns.boxplot(x = 'release_date', data = df)
+```
+![outliers](images/boxplots.png)
+
+You could go through the dataset and remove these outliers, but that would make the data pretty minimal. For now, choose which columns you will use for your clustering exercise. Pick ones with similar ranges and encode the `artist_top_genre` column as numeric data:
+
+```python
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+
+X = df.loc[:, ('artist_top_genre','popularity','danceability','acousticness','loudness','energy')]
+
+y = df['artist_top_genre']
+
+X['artist_top_genre'] = le.fit_transform(X['artist_top_genre'])
+
+y = le.transform(y)
+```
+
+Now you need to pick how many clusters to target. You know there are 3 song genres that we carved out of the dataset, so let's try 3:
+
+```python
+from sklearn.cluster import KMeans
+
+nclusters = 3 
+seed = 0
+
+km = KMeans(n_clusters=nclusters, random_state=seed)
+km.fit(X)
+
+# Predict the cluster for each data point
+
+y_cluster_kmeans = km.predict(X)
+y_cluster_kmeans
+```
+You see an array printed out with predicted clusters (0, 1,or 2) for each row of the dataframe.
+
+Use this array to calculate a 'silhouette score':
+
+```python
+from sklearn import metrics
+score = metrics.silhouette_score(X, y_cluster_kmeans)
+score
+```
 ### Silhouette score
 
-"The value of the Silhouette score varies from -1 to 1. If the score is 1, the cluster is dense and well-separated than other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters. A negative score [-1, 0] indicates that the samples might have got assigned to the wrong clusters." - https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam
+Look for a silhouette score closer to 1. This score varies from -1 to 1, and if the score is 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters.[source](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam). 
 
-✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
+Our score is .53, so right in the middle. This indicates that our data is not particularly well-suited to this type of clustering, but let's continue.
+### Build a model
 
+Now you can import KMeans and start the clustering process. There are a few parts here that warrant explaining:
 
+```python
+from sklearn.cluster import KMeans
+wcss = []
+
+for i in range(1, 11):
+    kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)
+    kmeans.fit(X)
+    wcss.append(kmeans.inertia_)
+
+```
+> 🎓 range: These are the iterations of the clustering process
+
+> 🎓 random_state: "Determines random number generation for centroid initialization."[source](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+
+> 🎓 WCSS: "within-cluster sums of squares" measures the squared average distance of all the points within a cluster to the cluster centroid.[source](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce). 
+
+> 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
+
+> 🎓 k-means++: In [Scikit-Learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
+
+### Elbow method
+
+Previously, you surmised that, because you have targeted 3 song genres, you should choose 3 clusters. But is that the case? Use the 'elbow method' to make sure.
+
+```python
+plt.figure(figsize=(10,5))
+sns.lineplot(range(1, 11), wcss,marker='o',color='red')
+plt.title('Elbow')
+plt.xlabel('Number of clusters')
+plt.ylabel('WCSS')
+plt.show()
+```
+Use the `wcss` variable that you built in the previous step to create a chart showing where the 'bend' in the elbow is, which indicates the optimum number of clusters. Maybe it **is** 3!
+
+![elbow method](images/elbow.png)
+### Display the Clusters
+
+Try the process again, this time setting three clusters, and display the clusters as a scatterplot:
+
+```python
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters = 3)
+kmeans.fit(X)
+labels = kmeans.predict(X)
+plt.scatter(df['popularity'],df['danceability'],c = labels)
+plt.xlabel('popularity')
+plt.ylabel('danceability')
+plt.show()
+```
+Check the model's accuracy:
+
+```python
+labels = kmeans.labels_
+
+correct_labels = sum(y == labels)
+
+print("Result: %d out of %d samples were correctly labeled." % (correct_labels, y.size))
+
+print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
+```
+This model's accuracy is not very good, and the shape of the clusters gives you a hint why. In Scikit-Learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
+
+![problem models](images/problems.png)
+## Variance
+
+Variance is defined as "the average of the squared differences from the Mean."[source](https://www.mathsisfun.com/data/standard-deviation.html) In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 
+
+✅ This is a great moment to think about all the ways you could correct this issue. Tweak the data a bit more? Use different columns? Use a different algorithm? Hint: Try [scaling your data](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) to normalize it and test other columns.
+
+> Try this '[variance calculator](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' to understand the concept a bit more.
 ## 🚀Challenge
 
-Spend some time with this notebook, tweaking parameters. Can you improve the accuracy of the model by cleaning  the data more (removing outliers, for example)? What else can you do to create better clusters?
+Spend some time with this notebook, tweaking parameters. Can you improve the accuracy of the model by cleaning  the data more (removing outliers, for example)? You can use weights to give more weight to given data samples. What else can you do to create better clusters?
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/28/)
 ## Review & Self Study
 
