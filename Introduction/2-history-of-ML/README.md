@@ -47,7 +47,7 @@ Eliza, an early 'chatterbot', could converse w/ people and act as a primitive 't
 "Blocks world" was an example of a micro world where blocks can be stacked and sorted and experiments in teaching machines to make decisions could be tested. Advances built with libraries such as [SHRDLU](https://wikipedia.org/wiki/SHRDLU) helped propel language processing forward. 
 
 [![blocks world with SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world with SHRDLU")
-> Blocks world with SHRDLU
+> 🎥 Click the image above for a video: Blocks world with SHRDLU
 
 ## 1974 - 1980: "AI Winter"
 
@@ -80,7 +80,7 @@ This epoch saw a new era for ML and AI to be able to solve some of the problems 
 Today, Machine Learning and AI touch almost every part of our lives. This era calls for careful understanding of the risks and potentials effects of these algorithms on human lives. As Microsoft's Brad Smith has stated, "Information technology raises issues that go to the heart of fundamental human-rights protections like privacy and freedom of expression. These issues heighten responsibility for tech companies that create these products. In our view, they also call for thoughtful government regulation and for the development of norms around acceptable uses."[source](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/). It remains to be seen what the future holds but it is important to understand these computer systems and the software and algorithms that they run. We hope that this curriculum will help you to gain a better understanding so that you can decide for yourself.
 
 [![The history of Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of Deep Learning")
-> Yann LeCun discusses the history of Deep Learning in this lecture
+> 🎥 Click the image above for a video: Yann LeCun discusses the history of Deep Learning in this lecture
 ## 🚀Challenge
 
 Dig into one of these historical moments and learn more about the people behind  them. There are fascinating characters, and no scientific discovery was ever created in a cultural vacuum. What do you discover?

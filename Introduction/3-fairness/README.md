@@ -24,7 +24,7 @@ As a prerequisite, please take the "Responsible AI Principles" Learn Path and wa
 Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/en-us/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
 [![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
-> Video: Microsoft's Approach to Responsible AI
+> 🎥 Click the image above for a video: Microsoft's Approach to Responsible AI
  
 ## Unfairness in data and algorithms 
  
@@ -71,7 +71,7 @@ Stereotypical gender view was found in machine translation. When translating “
 An image labeling technology infamously mislabeled images of dark-skinned people as gorillas. Mislabeling is harmful not just because the system made a mistake because it specifically applied a label that has a long history of being purposefully used to denigrate Black people.
 
 [![AI: Ain't I a Woman?](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, Ain't I a Woman?")
-> Video: AI, Ain't I a Woman - a performance showing the harm caused by racist denigration by AI
+> 🎥 Click the image above for a video: AI, Ain't I a Woman - a performance showing the harm caused by racist denigration by AI
 ### Over- or under- representation 
  
 Skewed image search results can be a good example of this harm. When searching images of professions with an equal or higher percentage of men than women, such as engineering, or CEO, watch for results that are more heavily skewed towards a given gender.

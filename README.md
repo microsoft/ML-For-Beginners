@@ -41,7 +41,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 > Future space for Promo Video
 [![Promo video](screenshot.png)](https://youtube.com/watch?v=R1wrdtmBSII "Promo video")
 
-> Click the image above for a video about the project and the folks who created it!
+> 🎥 Click the image above for a video about the project and the folks who created it!
 
 ## Pedagogy
 

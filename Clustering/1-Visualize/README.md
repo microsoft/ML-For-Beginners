@@ -9,7 +9,7 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 ### Introduction
 
 [![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
-> MIT's John Guttag introduces Clustering
+🎥 Click the image above for a video: MIT's John Guttag introduces Clustering
 
 [Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
 
@@ -308,7 +308,5 @@ In preparation for the next lesson, make a chart about the various clustering al
 Before you apply clustering algorithms, as we have learned, it's a good idea to understand the nature of your dataset. Read more onn this topic [here](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
 [This helpful article](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) walks you through the different ways that various clustering algorithms behave, given different data shapes.
-
-In the next lesson, you will make use of the  most popular clustering method, K-Means. Take a look at Stanford's K-Means Simulator [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). You can use this tool to visualize sample data points and determine its centroids. With fresh data, click 'update' to see how long it takes to find convergence. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
 
 **Assignment**: [Research other visualizations for clustering](assignment.md)

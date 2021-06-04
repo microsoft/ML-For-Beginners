@@ -1,7 +1,7 @@
 # Introduction to Classification
 
 [![Introduction to Classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to Classification")
-> MIT's John Guttag introduces Classification
+> 🎥 Click the image above for a video: MIT's John Guttag introduces Classification
 
 ## [Pre-lecture quiz](link-to-quiz-app)
 
