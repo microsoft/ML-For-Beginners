@@ -16,7 +16,7 @@ Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson cur
 
 Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
-**Hearty thanks to our authors (list all authors here)** Jen Looper, Stephen Howell, Francesca Lazzeri
+**Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshkinov, Amy Boyd, Ornella Altunyan
 
  **🙏Special thanks🙏 to our Microsoft Student Ambassador reviewers and content contributors**, notably Rishit Dagli, Rohan Raj, Muhammad Sakib Khan Inan, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
  
