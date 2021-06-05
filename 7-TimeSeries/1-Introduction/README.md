@@ -1,6 +1,6 @@
 # Introduction to Time Series Forecasting
 
-![Summary of Time series in a sketchnote](../sketchnotes/ml-timeseries.png)
+![Summary of Time series in a sketchnote](../../sketchnotes/ml-timeseries.png)
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
