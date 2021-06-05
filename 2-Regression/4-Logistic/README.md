@@ -1,4 +1,7 @@
 # Logistic Regression to Predict Categories
+
+![Logistic vs. Linear Regression Infographic](./images/logistic-linear.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
 
 ### Introduction

@@ -1,7 +1,8 @@
 # Get started with Python and Scikit-Learn for Regression models
 
-![Logistic vs. Linear Regression Infographic](./images/logistic-linear.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+![Summary of regressions in a sketchnote](../../sketchnotes/ml-regression.png)
+
+> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 ## Introduction
@@ -17,7 +18,6 @@ In this lesson, you will learn:
 - Getting used to working with Jupyter notebooks
 - An introduction to Scikit-Learn, including installation
 - An introduction to Linear Regression with a hands-on exercise 
-  
 ## Installations and Configurations
 
 [![Using Python with Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Using Python with Visual Studio Code")
