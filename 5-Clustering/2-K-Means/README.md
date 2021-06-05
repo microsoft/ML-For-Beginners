@@ -18,7 +18,9 @@ Terms you will learn about:
 
 [K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) is a method derived from the domain of signal processing. It is used to divide and partition groups of data into 'k' clusters using a series of observations. Each observation works to group a given datapoint closest to its nearest 'mean', or the center point of a cluster. The clusters can be visualized as [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), which include a point (or 'seed') and its corresponding region. 
 
-TODO infographic of Voronoi diagram (https://en.wikipedia.org/wiki/Voronoi_diagram)
+![voronoi diagram](images/voronoi.png)
+
+> infographic by [Jen Looper](https://twitter.com/jenlooper)
 
 The K-Means Clustering process [executes in a three-step process](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
@@ -188,6 +190,8 @@ print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
 This model's accuracy is not very good, and the shape of the clusters gives you a hint why. In Scikit-Learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
 
 ![problem models](images/problems.png)
+
+> Infographic from Scikit-Learn
 ## Variance
 
 Variance is defined as "the average of the squared differences from the Mean."[source](https://www.mathsisfun.com/data/standard-deviation.html) In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 
