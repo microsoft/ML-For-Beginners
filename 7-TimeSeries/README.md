@@ -1,5 +1,7 @@
 # Time Series Forecasting
 
+## Regional topic: Worldwide Electricity Usage ✨
+
 In these two lessons, you will be introduced to Time Series Forecasting, a somewhat lesser known area of Machine Learning that is nevertheless extremely valuable for industry and business applications, among other fields. While neural networks can be used to enhance the utility of these models, we will study them in the context of classical machine learning as models help predict future performance based on the past.
 
 Our regional focus is electrical usage in the world, an interesting dataset to learn about forecasting future power usage based on patterns of past load. You can see how this kind of forecasting can be extremely helpful in a business environment.
