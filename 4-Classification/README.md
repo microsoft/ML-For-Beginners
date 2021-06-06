@@ -4,7 +4,7 @@ In this section of the curriculum you will learn about how to classify data usin
 
 ## Lessons
 
-1. [Visualize your Data and Prepare it for Use](1-Data/README.md)
+1. [Introduction to Classification](1-Introduction/README.md)
 2. [Build a Discriminative Model](2-Discriminative/README.md)
 3. [Build a Generative Model](3-Generative/README.md)
 4. [Applied ML: Build a Web App](4-Applied/README.md)
