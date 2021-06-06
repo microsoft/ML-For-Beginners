@@ -346,6 +346,8 @@ plt.ylabel('load', fontsize=12)
 plt.show()
 ```
 
+![a time series model](images/accuracy.png)
+
 A very nice plot, showing a model with good accuracy. Well done!
 
 ## 🚀Challenge
