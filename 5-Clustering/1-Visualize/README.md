@@ -8,13 +8,13 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/)
 ### Introduction
 
-[![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
-
-> 🎥 Click the image above for a video: MIT's John Guttag introduces Clustering
-
 [Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
 
 ✅ Take a minute to think about the uses of clustering. In real life, clustering happens whenever you have a pile of laundry and need to sort out your family members' clothes 🧦👕👖🩲. In data science, clustering happens when trying to analyze a user's preferences, or determine the characteristics of any unlabeled dataset. Clustering, in a way, helps make sense of chaos.
+
+[![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
+
+> 🎥 Click the image above for a video: MIT's John Guttag introduces Clustering
 
 In a professional setting, clustering can be used to determine things like market segmentation, determining what age groups buy what items, for example. Another use would be anomaly detection, perhaps to detect fraud from a dataset of credit card transactions. Or you might use clustering to determine tumors in a batch of medical scans. 
 
@@ -235,9 +235,9 @@ sns.barplot(x=top.index,y=top.values)
 plt.xticks(rotation=45)
 plt.title('Top genres',color = 'blue')
 ```
- Now recheck the most popular genres:
+ Now recheck the genres:
 
-![most popular](images/popular.png)
+![most popular](images/all-genres.png)
 
 By far, the top three genres dominate this dataset, so let's concentrate on `afro dancehall`, `afropop`, and `nigerian pop`, also filtering the dataset to remove anything with a 0 popularity value (meaning it was not classified with a popularity in the dataset and can be considered noise for our purposes):
 
