@@ -1,5 +1,5 @@
 # Regression Models for Machine Learning
-## Regional topic: Regression models for pumpkin prices in North America
+## Regional topic: Regression models for pumpkin prices in North America 🎃
 
 In North America, pumpkins are often carved into scary faces for Halloween. Let's discover more about these fascinating vegetables!
 
