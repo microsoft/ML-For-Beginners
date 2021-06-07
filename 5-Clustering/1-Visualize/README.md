@@ -58,7 +58,8 @@ Deepen your understanding of Clustering techniques in this [Learn module](https:
 >
 >'Flat' in this context refers to Euclidean geometry (parts of which are taught as 'plane' geometry), and non-flat refers to non-Euclidean geometry. What does geometry have to do with machine learning? Well, as two fields that are rooted in mathematics, there must be a common way to measure distances between points in clusters, and that can be done in a 'flat' or 'non-flat' way, depending on the nature of the data. [Euclidean distances](https://wikipedia.org/wiki/Euclidean_distance) are measured as the length of a line segment between two points. [Non-Euclidean distances](https://wikipedia.org/wiki/Non-Euclidean_geometry) are measured along a curve. If your data, visualized, seems to not exist on a plane, you might need to use a specialized algorithm to handle it.
 >
-> Infographic: like the last one here https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering
+![Flat vs Nonflat Geometry Infographic](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/images/Flat%20Vs%20Nonflat%20Geometry.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
 > 
@@ -82,13 +83,15 @@ There are over 100 clustering algorithms, and their use depends on the nature of
 
 If an object is classified by its proximity to a nearby object, rather than to one farther away, clusters are formed based on their members' distance to and from other objects. Scikit-Learn's Agglomerative clustering is hierarchical.
 
-TODO: infographic
+![Hierarchical clustering Infographic](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/images/Hierarchical%20Clustering.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 **Centroid clustering** 
 
 This popular algorithm requires the choice of 'k', or the number of clusters to form, after which the algorithm determines the center point of a cluster and gathers data around that point. [K-means clustering](https://wikipedia.org/wiki/K-means_clustering) is a popular version of centroid clustering. The center is determined by the nearest mean, thus the name. The squared distance from the cluster is minimized.
 
-TODO: infographic
+![Centroid clustering Infographic](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/images/Centroid%20Clustering.png)
+> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 **Distribution-based clustering**
 
