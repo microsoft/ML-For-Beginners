@@ -17,44 +17,17 @@ Classification uses various algorithms to determine other ways of determining a 
 
 Before working to clean the data and prepare it for analysis, it's useful to understand several of the algorithms that you will use. 
 
-Support-vector machines
-Naive Bayes
-Decision trees
-K-nearest neighbor algorithm
+- Support-vector machines
+- Naive Bayes
+- Decision trees
+- K-nearest neighbor algorithm
 
-### Prerequisite
 
-What steps should have been covered before this lesson?
-
-### Preparation
-
-Preparatory steps to start this lesson
-
----
-
-[Step through content in blocks]
-
-## [Topic 1]
-
-### Task:
-
-Work together to progressively enhance your codebase to build the project with shared code:
-
-```html
-code blocks
-```
 
 ✅ Knowledge Check - use this moment to stretch students' knowledge with open questions
 
-## [Topic 2]
-
-## [Topic 3]
 
 ## 🚀Challenge
-
-Add a challenge for students to work on collaboratively in class to enhance the project
-
-Optional: add a screenshot of the completed lesson's UI if appropriate
 
 ## [Post-lecture quiz](link-to-quiz-app)
 
