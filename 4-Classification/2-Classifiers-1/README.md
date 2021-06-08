@@ -1,10 +1,7 @@
-# [Lesson Topic]
+# Recipe Classifiers 1
 
-Add a sketchnote if possible/appropriate
 
-![Embed a video here if available](video-url)
-
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
 
 Describe what we will learn
 
@@ -48,8 +45,7 @@ Add a challenge for students to work on collaboratively in class to enhance the 
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
-## [Post-lecture quiz](link-to-quiz-app)
-
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
 ## Review & Self Study
 
 ## Assignment 
