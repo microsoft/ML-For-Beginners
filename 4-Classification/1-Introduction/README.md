@@ -218,4 +218,4 @@ Explore SMOTE's API. What use cases is it best used for? What problems does it s
 
 ## Assignment 
 
-[Assignment Name](assignment.md)
+[Explore classification methods](assignment.md)
