@@ -138,7 +138,7 @@ Identify another sector that benefits from some of the techniques you learned in
 
 ## Review & Self Study
 
-Wayfair Data Science group has several interesting videos on how they use ML in their company. It's worth [taking a look](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)!
+The Wayfair Data Science team has several interesting videos on how they use ML at their company. It's worth [taking a look](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)!
 
 ## Assignment
 
