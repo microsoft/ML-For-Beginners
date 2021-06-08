@@ -2543,48 +2543,52 @@
 				"title": "Real World Applications: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What's an example of an ML application in the Finance industry?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Personalizing the customer journey using NLP",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Wealth management using linear regression",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Energy management using Time Series",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What ML technique can hospitals use to manage readmission?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Clustering",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Time Series",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "NLP",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What is an example of using Time Series for energy management?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Motion sensing animals",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Smart parking meters",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Tracking forest fires",
 								"isCorrect": "false"
 							}
 						]
@@ -2596,48 +2600,52 @@
 				"title": "Real World Applications: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Which ML technique can be used to detect credit card fraud?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Regression",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Clustering",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "NLP",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Which ML technique is exemplified in forest management?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Reinforcement Learning",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Time Series",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "NLP",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What's an example of an ML application in the Health Care industry?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Predicting student behavior using regression",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Managing clinical trials using classifiers",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Motion sensing of animals using classifiers",
 								"isCorrect": "false"
 							}
 						]
