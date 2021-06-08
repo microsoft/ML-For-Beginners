@@ -176,7 +176,9 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 oversample = SMOTE()
 transformed_feature_df, transformed_label_df = oversample.fit_resample(feature_df, labels_df)
 ```
-By balancing your data, you'll have better results when classifying it. Now you can check the numbers of labels per ingredient:
+By balancing your data, you'll have better results when classifying it. Think about a binary classification. If most of your data is one class, a ML model is going to predict that class more frequently, just because there is more data for it. Balancing the data takes any skewed data and helps remove this imbalance. 
+
+Now you can check the numbers of labels per ingredient:
 
 ```python
 print(f'new label count: {transformed_label_df.value_counts()}')
