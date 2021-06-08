@@ -11,7 +11,8 @@ Classification is a form of [supervised learning](https://wikipedia.org/wiki/Sup
 Remember, Linear Regression helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict what price a pumpkin would be in September vs. December, for example. Logistic Regression helped you discover binary categories: at this price point, is this pumpkin orange or not-orange?
 
 Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this recipe data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
+
 ### Introduction
 
 Classification is one of the fundamental activities of the machine learning researcher and data scientist. From basic classification of a binary value ("is this email spam or not?") to complex image classification and segmentation using computer vision, it's always useful to be able to sort data into classes and ask questions of it. Or, to state the process in a more scientific way, your classification method creates a predictive model that enables you to map the relationship between input variables to output variables. 
@@ -181,6 +182,8 @@ By balancing your data, you'll have better results when classifying it. Now you 
 print(f'new label count: {transformed_label_df.value_counts()}')
 print(f'old label count: {df.cuisine.value_counts()}')
 ```
+
+```
 new label count: korean      799
 chinese     799
 indian      799
@@ -193,6 +196,7 @@ chinese     442
 japanese    320
 thai        289
 Name: cuisine, dtype: int64
+```
 
 The data is nice and clean, balanced, and very delicious! You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
 
@@ -202,9 +206,13 @@ transformed_df.to_csv("../../data/cleaned_cuisine.csv")
 This fresh CSV can now be found in the root data folder.
 ## 🚀Challenge
 
-## [Post-lecture quiz](link-to-quiz-app)
+This curriculum contains several interesting datasets. Dig through the `data` folders and see if any contain datasets that would be appropriate for binary or multi-class classification? What questions would you ask of this dataset?
+
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18/)
 
 ## Review & Self Study
+
+Explore SMOTE's API. What use cases is it best used for? What problems does it solve?
 
 ## Assignment 
 
