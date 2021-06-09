@@ -3,7 +3,21 @@
 In this second Classification lesson, you will explore more ways to classify data, and the ramifications for choosing one over the other.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
 
-Describe what we will learn
+Scikit-Learn offers a similar, but more granular cheat sheet that can further help narrow down your estimators (another term for classifiers):
+
+![ML Map from Scikit-Learn](images/map.png)
+
+This map is very helpful as you can 'walk' along its paths to a decision:
+
+- We have >50 samples
+- We want to predict a category
+- We have labeled data
+- We have fewer than 100K samples
+- We can choose a Linear SVC
+- If that doesn't work, since we have numeric data
+- We can try a KNeighbors Classifier and if that doesn't work, try SVC and Ensemble Classifiers
+
+This is a terrific trail to try. For our first foray, explore how well 
 
 ### Introduction
 
