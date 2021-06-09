@@ -91,11 +91,23 @@ You can also use [neural networks to classify](https://scikit-learn.org/stable/m
 So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-Learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized: 
 
 ![comparison of classifiers](images/comparison.png)
+> Plots generated on Scikit-Learn's documentation
 
 > AutoML solves this problem neatly by running these comparisons in the cloud, allowing you to choose the best algorithm for your data. Try it [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)
 
-✅ Todo: knowledge check
+A better way than wildly guessing, however, is to follow the ideas on this downloadable [ML Cheat sheet](https://docs.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa). Here, we discover that, for our multiclass problem, we have some choices:
 
+![cheatsheet for multiclass problems](images/cheatsheet.png)
+> A section of Microsoft's Algorithm Cheat Sheet, detailing multiclass classification options
+
+✅ Download this cheat sheet, print it out, and hang it on your wall!
+
+Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task. We do not use a two-class classifier, so that rules out One-vs-All. A 
+Decision Tree might work, or Logistic Regression for multiclass data. The Multiclass Boosted Decision Tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us. 
+
+We can focus on Decision Trees and Logistic Regression.
+
+Let's focus on Logistic Regression for our first training trial since you recently learned about it in a previous lesson.
 ## Train your model
 
 Let's train that model. Split your data into training and testing groups:
@@ -104,17 +116,33 @@ Let's train that model. Split your data into training and testing groups:
 X_train, X_test, y_train, y_test = train_test_split(recipes_feature_df, recipes_label_df, test_size=0.3)
 ```
 
-Use LogisticRegression with a multiclass setting and the lbfgs solver to train.
+There are many ways to use the LogisticRegression library in Scikit-Learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
-✅ Todo: explain ravel
+According to the docs, "In the multiclass case, the training algorithm uses the one-vs-rest (OvR) scheme if the ‘multi_class’ option is set to ‘ovr’, and uses the cross-entropy loss if the ‘multi_class’ option is set to ‘multinomial’. (Currently the ‘multinomial’ option is supported only by the ‘lbfgs’, ‘sag’, ‘saga’ and ‘newton-cg’ solvers.)"
+
+Since you are using the multiclass case, you need to choose what scheme to use and what 'solver' to set. 
+
+Use LogisticRegression with a multiclass setting and the liblinear solver to train.
+
+> 🎓 The 'scheme' here can either be 'ovr' (one-vs-rest) or 'multinomial'. Since Logistic Regression is really designed to support binary classification, these schemes allow it to better handle multiclass classification tasks. [source](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
+
+> 🎓 The 'solver' is defined as "the algorithm to use in the optimization problem". [source](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression). 
+
+Scikit-Learn offers this table to explain how solvers handle different challenges presented by different kinds of data structures:
+
+![solvers](images/solvers.png)
 
 ```python
-lr = LogisticRegression(multi_class='ovr',solver='lbfgs')
+lr = LogisticRegression(multi_class='ovr',solver='liblinear')
 model = lr.fit(X_train, np.ravel(y_train))
 
 accuracy = model.score(X_test, y_test)
 print ("Accuracy is {}".format(accuracy))
 ```
+
+✅ Try a different solver like `lbfgs`, which is often set as default
+
+> Note, use Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) function to flatten your data when needed.
 
 The accuracy is good at over 80%!
 
@@ -130,8 +158,7 @@ ingredients: Index(['cilantro', 'onion', 'pea', 'potato', 'tomato', 'vegetable_o
 cuisine: indian
 ```
 
-✅ Try a different row number!
-
+✅ Try a different row number and check the results
 
 Digging deeper, you can check for the accuracy of this prediction:
 
@@ -173,15 +200,15 @@ print(classification_report(y_test,y_pred))
 | accuracy     | 0.80   | 1199     |         |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | macro avg    | 0.80   | 0.80     | 0.80    | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 | weighted avg | 0.80   | 0.80     | 0.80    | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+
 ## 🚀Challenge
 
-Add a challenge for students to work on collaboratively in class to enhance the project
-
-Optional: add a screenshot of the completed lesson's UI if appropriate
+In this lesson, you used your cleaned data to build a machine learning model that can predict a national cuisine based on a series of ingredients. Take some time to read through the many options Scikit-Learn provides to classify data. Dig deeper into the concept of 'solver' to understand what goes on behind the scenes.
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
 ## Review & Self Study
 
+Dig a little more into the math behind Logistic Regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
 ## Assignment 
 
 [Assignment Name](assignment.md)

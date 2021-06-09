@@ -15,7 +15,9 @@ In this lesson, you will learn:
 Deepen your understanding of working with this type of Regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
 ## Prerequisite
 
-Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one small category that we can work with: Color. Let's build a Logistic Regression model to predict that, given some variables, what color a given pumpkin will be (orange 🎃 or white 👻). 
+Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one binary category that we can work with: Color. Let's build a Logistic Regression model to predict that, given some variables, what color a given pumpkin will be (orange 🎃 or white 👻). 
+
+> Why are we talking about binary classification in a lesson grouping about regression? Only for convenience, as Logistic Regression is [really a Classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), albeit a linear-based one. Learn other ways to classify data in the next lesson group.
 
 For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
 
