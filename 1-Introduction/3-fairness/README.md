@@ -21,7 +21,7 @@ In this lesson, you will:
 
 As a prerequisite, please take the "Responsible AI Principles" Learn Path and watch the video below on the topic:
 
-Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/en-us/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
 [![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 > 🎥 Click the image above for a video: Microsoft's Approach to Responsible AI
@@ -156,7 +156,7 @@ The tool helps you to assesses how a model's predictions affect different groups
 
 - Try some [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
   
-- Learn [how to enable fairness assessments](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
+- Learn [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
   
 - Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
 ## 🚀 Challenge 
@@ -190,7 +190,7 @@ Explore the Fairlearn toolkit
 
 Read about Azure Machine Learning's tools to ensure fairness
 
-- [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
 ## Assignment
 

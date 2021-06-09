@@ -26,7 +26,7 @@ Alternately, you could use it for grouping search results - by shopping links, i
 
 ✅ Once your data is organized in clusters, you assign it a cluster Id, and this technique can be useful when preserving a dataset's privacy; you can instead refer to a data point by its cluster id, rather than by more revealing identifiable data. Can you think of other reasons why you'd refer to a cluster Id rather than other elements of the cluster to identify it?
 
-Deepen your understanding of Clustering techniques in this [Learn module](https://docs.microsoft.com/en-us/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)
+Deepen your understanding of Clustering techniques in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)
 ## Getting started with clustering
 
 [Scikit-Learn offers a large array](https://scikit-learn.org/stable/modules/clustering.html) of methods to perform clustering. The type you choose will depend on your use case. According to the documentation, each method has various benefits. Here is a simplified table of the methods supported by Scikit-Learn and their appropriate use cases:

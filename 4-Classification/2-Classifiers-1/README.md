@@ -1,8 +1,9 @@
 # Recipe Classifiers 1
 
 In this lesson, you will use the dataset you saved from the last lesson full of balanced, clean data all about recipes. You will use this dataset with a variety of classifiers to predict a given national cuisine based on a group of ingredients. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
+
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
-# Preparatory steps to start this lesson
+# Preparation
 
 Assuming you completed Lesson 1, make sure that a `cleaned_cuisines.csv` file exists in the root `/data` folder for these four lessons.
 
@@ -74,7 +75,24 @@ Now you are ready to train your model!
 
 Now that your data is clean and ready for training, you have to decide which algorithm to use for the job. 
 
-TODO: discuss the types
+Scikit-Learn groups Classification under Supervised Learning, and in that category you will find many ways to classify. [The variety](https://scikit-learn.org/stable/supervised_learning.html) is quite bewildering at first sight. The following methods all include classification techniques:
+
+- Linear Models
+- Support Vector Machines
+- Stochastic Gradient Descent
+- Nearest Neighbors
+- Gaussian Processes
+- Decision Trees
+- Ensemble methods (voting Classifier)
+- Multiclass and multioutput algorithms (multiclass and multilabel classification, multiclass-multioutput classification)
+
+You can also use [neural networks to classify](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), but that is outside the scope of this lesson.
+
+So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-Learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized: 
+
+![comparison of classifiers](images/comparison.png)
+
+> AutoML solves this problem neatly by running these comparisons in the cloud, allowing you to choose the best algorithm for your data. Try it [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)
 
 ✅ Todo: knowledge check
 

@@ -20,7 +20,6 @@ Having worked with the pumpkin data, we are now familiar enough with it to reali
 For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
 
 > 🎃 Fun fact, we sometimes call white pumpkins 'ghost' pumpkins. They aren't very easy to carve, so they aren't as popular as the orange ones but they are cool looking!
-
 ## About Logistic Regression
 
 Logistic Regression differs from Linear Regression, which you learned about previously, in a few important ways.
