@@ -1,5 +1,5 @@
 # Getting Started with Classification
-## Regional topic: Delicious Asian Recipes 🍜
+## Regional topic: Delicious Asian and Indian Recipes 🍜
 
 In Asia and India, food traditions are extremely diverse, and very delicious! Let's look at data about regional recipes to try to guess where they originated.
 
