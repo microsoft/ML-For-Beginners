@@ -1,9 +1,6 @@
 # Recipe Classifiers 2
 
-Add a sketchnote if possible/appropriate
-
-![Embed a video here if available](video-url)
-
+In this second Classification lesson, you will explore more ways to classify data, and the ramifications for choosing one over the other.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
 
 Describe what we will learn

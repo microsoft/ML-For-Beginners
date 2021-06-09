@@ -2,7 +2,7 @@
 
 [![ML, AI, Deep Learning - What's the difference?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, Deep Learning - What's the difference?")
 
-python path: https://docs.microsoft.com/en-us/learn/paths/python-language/
+python path: https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa
 
 > 🎥 Click the image above for a video discussing the difference between Machine Learning, AI, and Deep Learning.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
@@ -45,6 +45,7 @@ conclusion
 
 ## Review & Self Study
 
+include this path: https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/ to warm up to these topics
 ## Assignment 
 
 [Get up and running](assignment.md)
