@@ -115,48 +115,52 @@
 				"title": "History of Machine Learning: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Approximately when was the term 'artificial intelligence' coined?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "1980s",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "1950s",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "1930s",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Who was one of the early pioneers of machine learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Alan Turing",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Bill Gates",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Shakey the robot",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What is one of the reasons that advancement in AI slowed in the 1970s?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Limited compute power",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Not enough skilled engineers",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Conflicts between countries",
 								"isCorrect": "false"
 							}
 						]
@@ -172,11 +176,11 @@
 						"answerOptions": [
 							{
 								"answerText": "a",
-								"isCorrect": "false"
+								"isCorrect": "true"
 							},
 							{
 								"answerText": "b",
-								"isCorrect": "true"
+								"isCorrect": "false"
 							},
 							{
 								"answerText": "c",
@@ -190,6 +194,10 @@
 							{
 								"answerText": "a",
 								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
 							},
 							{
 								"answerText": "b",
