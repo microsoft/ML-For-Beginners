@@ -2,27 +2,43 @@
 
 [![ML, AI, Deep Learning - What's the difference?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, Deep Learning - What's the difference?")
 
-python path: https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa
-
 > 🎥 Click the image above for a video discussing the difference between Machine Learning, AI, and Deep Learning.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
 ### Introduction
+
+outline
+I What is ML
+II What this course covers and doesn't cover
+III What you can expect to learn
+
 
 Welcome to this course on classic machine learning for beginners! If you are totally new to this topic, you're very welcome. If you are an experienced ML practitioner looking to brush up on an area, you're equally welcome. We want to create a friendly launching spot for your ML learning and would be happy to evaluate, respond to, and incorporate your [feedback](https://github.com/microsoft/ML-For-Beginners/discussions). 
 
 [![Introduction to ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduction to ML")
 > 🎥 Click the image above for a video: MIT's John Guttag introduces Machine Learning
-### Preparation
+### Getting Started with Machine Learning
 
-Before embarking on this curriculum, you need to have your computer set up and ready to run notebooks locally. Learn more about how to do this in this [set of videos](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6)
+Before embarking on this curriculum, you need to have your computer set up and ready to run notebooks locally. 
 
-It's also recommended to grasp the basics of Python, which we use in this course. Familiarize yourself with Scikit-Learn as well.
+- Learn more about how to do this in this [set of videos](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6)
+- It's also recommended to grasp the basics of [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), a programming language useful for data scientists that we use in this course. 
+- We also use JavaScript a few times in this course when building web apps, so you will need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com/) installed and [Visual Studio Code](https://code.visualstudio.com/) available for both Python and JavaScript development.
+- Since you are here on [GitHub](https://github.com), working with this courseware, you might already have an account, but if not, create one and then fork this curriculum to use on your own. (Give us a star, too, please!)
+- Familiarize yourself with [Scikit-Learn]([https://scikit-learn.org/stable/user_guide.html), which we reference in these lessons, as well.
 
-In today's era of Industrial Revolution 4.0, the term Machine Learning is one of the most popular and frequently used terms. There is a huge possibility that you have heard this term at least once if you have some sort of familiarity with technology irrespective of your working domain. Yet, Machine Learning is a great mystery to most people. For a beginner in Machine Learning, the subject can sometimes be felt as overwhelming. Therefore, it is important to understand what Machine Learning actually is or the motivation of this widely used term.
+### What is Machine Learning?
 
-We live in a universe full of mystery and magical-looking things. The great scientists of the world like Stephen Hawking, Albert Einstein, and many more have devoted their lives in search of meaningful information that uncovers the mysteries of the world around us. A human child learns to understand mysteries and uncover the meaning of the mystical world year by year in the process of growing as an adult. Human Brain is not preprogrammed. It means we don't come up in the world with all fixed sets of knowledge about certain things. 
+The term "Machine Learning" is one of the most popular and frequently used terms used today. There is a nontrivial possibility that you have heard this term at least once if you have some sort of familiarity with technology irrespective of your working domain. The mechanics of Machine Learning, however, is a mystery to most people. For a beginner in Machine Learning, the subject can sometimes feel overwhelming. Therefore, it is important to understand what Machine Learning actually and to learn about it step by step, through practical examples.
 
-Rather than that a child's brain perceives the nature around it and learns the hidden patterns in different objects which help it to build logical rules to identify a certain object next time. And this learning process of the human brain makes humans the most sophisticated living creature of this world. Learning continuously by discovering hidden patterns from the environment around us and making ourselves better and better throughout our lifetime is related to a concept called Brain's Plasticity. Superficially, we can draw some motivational similarities between the learning process of the Human Brain and the concepts of Machine Learning.
+![ml hype curve](images/hype.png)
+
+> Google Trends shows the recent 'hype curve' of the term 'machine learning'
+
+We live in a universe full of unusual and interesting mysteries. Great scientists such as Stephen Hawking, Albert Einstein, and many more have devoted their lives in search of meaningful information that uncovers the mysteries of the world around us. This is the human condition of learning: a human child learns new things and uncovers the structure of their world year by year as they grow to adulthood. 
+
+A child's brain and senses perceive the facts of their surroundings and gradually learn the hidden patterns of life which help the child to craft logical rules to identify learned patterns. The learning process of the human brain makes humans the most sophisticated living creature of this world. Learning continuously by discovering hidden patterns and then innovating on those patterns enable us to make ourselves better and better throughout our lifetime.  This learning capacity and evolving capability is related to a concept called [brain plasticity](https://www.simplypsychology.org/brain-plasticity.html). Superficially, we can draw some motivational similarities between the learning process of the human brain and the concepts of machine learning.
+
+--- 
 
 Human Brain perceives things from the real world, processes the perceived information, makes rational decisions, and performs certain actions based on circumstances. This is what we called behaving intelligently. When we artificially program this whole intelligent behavioral process to a machine, it is called Artificial Intelligence. Whereas, Machine Learning, an important subset of Artificial Intelligence, is concerned with fetching meaningful information and finding hidden patterns from perceived data to corroborate the rational decision-making process.
 
