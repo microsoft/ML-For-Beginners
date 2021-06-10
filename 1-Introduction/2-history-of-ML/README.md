@@ -1,5 +1,8 @@
 # History of Machine Learning
 
+![Summary of History of Machine Learning in a sketchnote](../../sketchnotes/ml-history.png)
+> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
 
 In this lesson, we will walk through the major milestones in the history of Machine Learning and Artificial Intelligence.
