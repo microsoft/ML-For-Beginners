@@ -187,7 +187,11 @@ print("Result: %d out of %d samples were correctly labeled." % (correct_labels, 
 
 print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
 ```
-This model's accuracy is not very good, and the shape of the clusters gives you a hint why. In Scikit-Learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
+This model's accuracy is not very good, and the shape of the clusters gives you a hint why. 
+
+![clusters](images/clusters.png)
+
+In Scikit-Learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
 
 ![problem models](images/problems.png)
 
