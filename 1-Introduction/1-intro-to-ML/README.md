@@ -23,7 +23,7 @@ Before embarking on this curriculum, you need to have your computer set up and r
 - Learn more about how to do this in this [set of videos](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6)
 - It's also recommended to grasp the basics of [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), a programming language useful for data scientists that we use in this course. 
 - We also use JavaScript a few times in this course when building web apps, so you will need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com/) installed and [Visual Studio Code](https://code.visualstudio.com/) available for both Python and JavaScript development.
-- Since you are here on [GitHub](https://github.com), working with this courseware, you might already have an account, but if not, create one and then fork this curriculum to use on your own. (Give us a star, too, please!)
+- Since you are here on [GitHub](https://github.com), working with this course ware, you might already have an account, but if not, create one and then fork this curriculum to use on your own. (Give us a star, too, please!)
 - Familiarize yourself with [Scikit-Learn]([https://scikit-learn.org/stable/user_guide.html), which we reference in these lessons, as well.
 
 ### What is Machine Learning?
