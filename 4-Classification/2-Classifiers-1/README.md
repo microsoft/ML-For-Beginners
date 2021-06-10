@@ -211,4 +211,4 @@ In this lesson, you used your cleaned data to build a machine learning model tha
 Dig a little more into the math behind Logistic Regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
 ## Assignment 
 
-[Assignment Name](assignment.md)
+[Study the solvers](assignment.md)
