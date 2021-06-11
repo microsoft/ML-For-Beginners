@@ -9,49 +9,49 @@
 				"title": "Introduction to Machine Learning: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Applications of machine learning are all around us",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "True",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "False",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is the technical difference between classical ML and deep learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "classical ML was invented first",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "the use of neural networks",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "deep learning is used in robots",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Why might a business want to use ML strategies?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "to automate the solving of multi-dimensional problems",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "to customize a shopping experience based on the type of customer",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -62,49 +62,53 @@
 				"title": "Introduction to Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Machine learning algorithms are meant to simulate",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "intelligent machines",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "the human brain",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "orangutans",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is an example of a classical ML technique?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Natural Language Processing",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Deep Learning",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Neural Networks",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Why should everyone learn the basics of ML?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "learning ML is fun and accessible to everyone",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "ML strategies are being used in many industries and domains",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
