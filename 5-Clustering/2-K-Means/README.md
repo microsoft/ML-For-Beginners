@@ -146,7 +146,6 @@ for i in range(1, 11):
 > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
 
 > 🎓 k-means++: In [Scikit-Learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
-
 ### Elbow method
 
 Previously, you surmised that, because you have targeted 3 song genres, you should choose 3 clusters. But is that the case? Use the 'elbow method' to make sure.
@@ -159,6 +158,7 @@ plt.xlabel('Number of clusters')
 plt.ylabel('WCSS')
 plt.show()
 ```
+
 Use the `wcss` variable that you built in the previous step to create a chart showing where the 'bend' in the elbow is, which indicates the optimum number of clusters. Maybe it **is** 3!
 
 ![elbow method](images/elbow.png)
@@ -176,6 +176,7 @@ plt.xlabel('popularity')
 plt.ylabel('danceability')
 plt.show()
 ```
+
 Check the model's accuracy:
 
 ```python

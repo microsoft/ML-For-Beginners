@@ -4,7 +4,7 @@ In this section of the curriculum, you will be introduced to an applied ML topic
 
 ## Lessons
 
-1. [Build a Web App](3-Web-App/README.md)
+1. [Build a Web App](1-Web-App/README.md)
 
 ## Credits
 

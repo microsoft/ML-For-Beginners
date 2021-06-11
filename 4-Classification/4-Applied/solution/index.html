@@ -1,0 +1,28 @@
+<html>
+
+<head> </head>
+
+<body>
+    <!-- Load ONNX.js -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+    <!-- Code that consumes ONNX.js -->
+    <script>
+        // create a session
+        const myOnnxSession = new onnx.InferenceSession();
+        // load the ONNX model file
+        myOnnxSession.loadModel('./model-kn.onnx').then(() => {
+
+            // generate model input
+            const inferenceInputs = getInputs();
+            console.log(inferenceInputs)
+            // execute the model
+            myOnnxSession.run(inferenceInputs).then((output) => {
+                // consume the output
+                const outputTensor = output.values().next().value;
+                console.log(`model output tensor: ${outputTensor.data}.`);
+            });
+        });
+    </script>
+</body>
+
+</html>
