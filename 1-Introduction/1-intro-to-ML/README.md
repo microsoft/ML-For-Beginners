@@ -6,12 +6,6 @@
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
 ### Introduction
 
-outline
-I What is ML
-II What this course covers and doesn't cover
-III What you can expect to learn
-
-
 Welcome to this course on classic machine learning for beginners! If you are totally new to this topic, you're very welcome. If you are an experienced ML practitioner looking to brush up on an area, you're equally welcome. We want to create a friendly launching spot for your ML learning and would be happy to evaluate, respond to, and incorporate your [feedback](https://github.com/microsoft/ML-For-Beginners/discussions). 
 
 [![Introduction to ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduction to ML")
@@ -38,30 +32,31 @@ We live in a universe full of unusual and interesting mysteries. Great scientist
 
 A child's brain and senses perceive the facts of their surroundings and gradually learn the hidden patterns of life which help the child to craft logical rules to identify learned patterns. The learning process of the human brain makes humans the most sophisticated living creature of this world. Learning continuously by discovering hidden patterns and then innovating on those patterns enable us to make ourselves better and better throughout our lifetime.  This learning capacity and evolving capability is related to a concept called [brain plasticity](https://www.simplypsychology.org/brain-plasticity.html). Superficially, we can draw some motivational similarities between the learning process of the human brain and the concepts of machine learning.
 
---- 
+The [human brain](https://www.livescience.com/29365-human-brain.html) perceives things from the real world, processes the perceived information, makes rational decisions, and performs certain actions based on circumstances. This is what we called behaving intelligently. When we program a facsimile of the intelligent behavioral process to a machine, it is called Artificial Intelligence (AI). Although the terms can be confused, Machine Learning (ML) is an important subset of Artificial Intelligence. **ML is concerned with fetching meaningful information and finding hidden patterns from perceived data to corroborate the rational decision-making process**.
+## What you will learn in this course
 
-Human Brain perceives things from the real world, processes the perceived information, makes rational decisions, and performs certain actions based on circumstances. This is what we called behaving intelligently. When we artificially program this whole intelligent behavioral process to a machine, it is called Artificial Intelligence. Whereas, Machine Learning, an important subset of Artificial Intelligence, is concerned with fetching meaningful information and finding hidden patterns from perceived data to corroborate the rational decision-making process.
+In this curriculum, we are going to cover only the core concepts of Machine Learning that a beginner must know. We cover what we call "Classic ML", avoiding the complexities of neural networks, "Deep Learning" - many-layered model-building - and AI, which we will discuss in a different curriculum. But to understand broader concepts of Artificial Intelligence or Deep Learning, a strong fundamental knowledge of Machine Learning is indispensable, and so we would like to offer it here.
 
-In this curriculum, we are going to cover only the core concepts of Machine Learning that a beginner must know. However, Artificial Intelligence or Deep Neural Networks are broader concepts that are out of the scope of this learning module. But to understand broader concepts of Artificial Intelligence or Deep Learning, a strong fundamental knowledge of Machine Learning is indispensable.
+TODO: a diagram like this one: https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining
 
-The major motivation of Machine Learning is to create automated systems that can learn hidden patterns from data sophisticatedly to infer intelligent decisions which seem to be loosely inspired by how Human Brain learns certain things based on the data it perceives from the outside world.
+The major motivation behind leveraging Machine Learning is to create automated systems that can learn hidden patterns from data to infer intelligent decisions which seem to be loosely inspired by how the human brain learns certain things based on the data it perceives from the outside world.
 
-The applications of Machine Learning are now almost everywhere. Considering the immense potential of state-of-the-art Machine Learning algorithms, researchers have been exploring their capability to solve multi-dimensional and multi-disciplinary real-life problems with great positive outcomes. Natural Language Processing (NLP) and Computer Vision (CV) are two extensions of Machine Learning, accordingly concerned with processing text/writings or sound/speech data to understand the Languages of Humans, and perusing images perceived from the real world.
+✅ Think for a minute why a business would want to try to use Machine Learning strategies vs. creating a hard-coded rules-based engine
 
-Diagnosing a disease like Breast Cancer from a patient's medical history or reports, understanding Climate Change from historical weather data to predict a natural calamity, identifying a person from an image automatically, understanding the sentiment of a text, or detecting fake news to stop spreading propaganda, etc are some common use case of Machine Learning in recent times. Finance, economics, Earth science, Space exploration, biomedical, cognitive science, and even fields in the humanities have adapted Machine Learning to solve arduous problems of their domain.
+The applications of Machine Learning are now almost everywhere, and are as ubiquitous as the data that is flowing around our societies, generated by our smart phones, connected devices, and other systems. Considering the immense potential of state-of-the-art Machine Learning algorithms, researchers have been exploring their capability to solve multi-dimensional and multi-disciplinary real-life problems with great positive outcomes. In this curriculum, you will learn the basics of Regression, Classification, Clustering, Natural Language Processing, Time Series, and Reinforcement Learning, as well as real-world applications, the history of ML, ML and Fairness, and how to use your model in a web app.
 
-Machine Learning automates the process of automation by finding meaningful insights from real-world or generated data. In this context, a bright future for machine learning is not so far. In near future, the knowledge of Machine Learning is going to be a must for people from any domain due to the wide usage of this great technology in almost every single domain.
+Eventually, you can use your learning to help predict the likelihood of disease from a patient's medical history or reports, to leverage weather data to predict weather events, to understand the sentiment of a text, or detecting fake news to stop the spread of propaganda. Finance, Economics, Earth Science, Space exploration, Biomedical applications, Cognitive Science, and even fields in the Humanities have adapted Machine Learning to solve the arduous, data-processing heavy problems of their domain.
 
-conclusion
-
+Machine Learning automates the process of pattern-discovery by finding meaningful insights from real-world or generated data. It has proven itself indispensible in today's business, health, and financial applications, among others. In the near future, understanding the basics of Machine Learning is going to be a must for people from any domain due to its widespread adoption in many domains.
 ## 🚀Challenge
 
-?
+Sketch, on paper or using an online app like [Excalidraw](https://excalidraw.com/), your understanding of the differences between AI, ML, Deep Learning, and Data Science. Add some ideas of problems that each of these techniques are good at solving. 
+
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2/)
 
 ## Review & Self Study
 
-include this path: https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/ to warm up to these topics
+To learn more about how you can work with ML algorithms in the cloud, follow this [Learning Path](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa).
 ## Assignment 
 
 [Get up and running](assignment.md)
