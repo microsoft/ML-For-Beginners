@@ -172,52 +172,52 @@
 				"title": "History of Machine Learning: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What's an example of a 'scruffy' AI system?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "ELIZA",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "HACKML",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "c",
+								"answerText": "SSYSTEM",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is an example of a technology that was developed during 'The Golden Years'?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Blocks world",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Jibo",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Robot dogs",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Which event was foundational in the creation and expansion of the field of Artificial Intelligence?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Turing Test",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Dartmouth Summer Research Project",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "AI Winter",
 								"isCorrect": "false"
 							}
 						]
