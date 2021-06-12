@@ -10,7 +10,7 @@ In this section of the curriculum, you will be introduced to the base concepts u
 
 ### Credits
 
-"Introduction to Machine Learning" was written with ♥️ by a team of folks including ...
+"Introduction to Machine Learning" was written with ♥️ by a team of folks including Muhammad Sakib Khan Inan, [Ornella Altunyan](https://twitter.com/ornelladotcom) and [Jen Looper](https://twitter.com/jenlooper)
 
 "The History of Machine Learning" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper) and [Amy Boyd](https://twitter.com/AmyKateNicho)
 
