@@ -6,4 +6,4 @@ In this section of the curriculum, you will be introduced to some real-world app
 1. [Real-World Applications for ML](1-Applications/README.md)
 ## Credits
 
-"Real-World Applications" was written by a team of folks, including [Jen Looper](https://twitter.com/jenlooper), [Ornella Altunyan](https://twitter.com/ornelladotcom) and ...
+"Real-World Applications" was written by a team of folks, including [Jen Looper](https://twitter.com/jenlooper) and [Ornella Altunyan](https://twitter.com/ornelladotcom).
