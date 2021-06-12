@@ -17,7 +17,7 @@ In this series of lessons, you will discover new ways to analyze data using Clus
 2. [K-Means Clustering](2-K-Means/README.md)
 ## Credits
 
-These lessons were written with 🎶 by [Jen Looper](https://www.twitter.com/jenlooper) with helpful reviews by Rishit Dagli Muhammad Sakib Khan Inan.
+These lessons were written with 🎶 by [Jen Looper](https://www.twitter.com/jenlooper) with helpful reviews by [Rishit Dagli](https://rishit_dagli) and [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan).
 
 The [Nigerian Songs](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) dataset was sourced from Kaggle as scraped from Spotify.
 
