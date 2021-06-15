@@ -1,16 +1,19 @@
 # Getting Started with Reinforcement Learning
 
-[![Intro to Reinforcement Learning](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
+[![Peter and the Wolf](https://img.youtube.com/vi/Fmi5zHg4QSM/0.jpg)](https://www.youtube.com/watch?v=Fmi5zHg4QSM)
 
+> 🎥 Click the image above to listen to Peter and the Wolf by Prokofiev
 ## Regional Topic: Peter and the Wolf (Russia)
 
 [Peter and the Wolf](https://en.wikipedia.org/wiki/Peter_and_the_Wolf) is a musical fairy tale written by a Russian composer [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). It is a story about young pioneer Peter, who bravely goes out of his house to the forest clearing to chase the wolf. In this section, we will train machine learning algorithms that will help Peter:
-* to explore the surroinding area and build an optimal navigation map
-* to learn how to use a skateboard and balance on it, in order to move around faster.
+
+- **Explore** the surrounding area and build an optimal navigation map
+- **Learn** how to use a skateboard and balance on it, in order to move around faster.
 
 ## Introduction to Reinforcement Learning
 
 In previous sections, you have seen two example of machine learning problems:
+
 * **Supervised**, where we had some datasets that show sample solutions to the problem we want to solve. [Classification][Classification] and [regression][Regression] are supervised learning tasks.
 * **Unsupervised**, in which we do not have training data. The main example of unsupervised learning is [clustering][Clustering].
 
@@ -21,21 +24,17 @@ In this section, we will introduce you to a new type of learning problems, which
 
 Suppose, you want to teach computer to play a game, such as chess, or [Super Mario](https://en.wikipedia.org/wiki/Super_Mario). For computer to play a game, we need it to predict which move to make in each of the game states. While this may seem like a classification problem, it is not - because we do not have a dataset with states and corresponding actions. While we may have some data like that (existing chess matches, or recording of players playing Super Mario), it is likely not to cover sufficiently large number of possible states.
 
-Instead of looking for existing game data, **reinforcement learning** (RL) is based on the idea of *making computer play* many times, observing the result. Thus, to apply reinforcement learning, we need two things:
+Instead of looking for existing game data, **reinforcement learning** (RL) is based on the idea of *making the computer play* many times, observing the result. Thus, to apply reinforcement learning, we need two things:
 1. **An environment** and **a simulator**, which would allow us to play a game many times. This simulator would define all game rules, possible states and actions.
 2. **A reward function**, which would tell us how good we did during each move or game.
 
-The main difference between supervised learning is that in RL we typically do not know whether we win or lose until we finish the game. Thus, we cannot say whether a certain move alone is good or now - we only receive reward at the end of the game. And our goal is to design such algorightms that will allow us to train a model under such uncertain conditions. We will learn about one RL algorithm called **Q-learning**.
+The main difference between supervised learning is that in RL we typically do not know whether we win or lose until we finish the game. Thus, we cannot say whether a certain move alone is good or now - we only receive reward at the end of the game. And our goal is to design such algorithms that will allow us to train a model under such uncertain conditions. We will learn about one RL algorithm called **Q-learning**.
 
 ## Lessons
 
-1. [Introduction to Reinforcement Learning and Q-Learning](1-qlearning/README.md)
-2. [Using gym simulation environment](2-gym/README.md)
+1. [Introduction to Reinforcement Learning and Q-Learning](1-QLearning/README.md)
+2. [Using gym simulation environment](2-Gym/README.md)
 
 ## Credits
 
-"Introduction to" was written with ♥️ by [Dmitry Soshnikov](http://soshnikov.com)
-
-[Classification]: ../4-Classification/README.md
-[Regression]: ../2-Regression/README.md
-[Clustering]: ../5-Clustering/README.md
+"Introduction to Reinforcement Learning" was written with ♥️ by [Dmitry Soshnikov](http://soshnikov.com)
