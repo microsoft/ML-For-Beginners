@@ -11,7 +11,7 @@ In this lesson, we will explore the world of **[Peter and the Wolf](https://en.w
 
 In this lesson, we will be experimenting with some code in Python. So you are expected to be able to run the Jupyter Notebook code from this lesson, either on your computer, or somewhere in the cloud.
 
-You can open [the lesson notebook](MazeLearner.ipynb) and continue reading the material there, or continue reading here, and run the code in your favorite Python environment. 
+You can open [the lesson notebook](notebook.ipynb) and continue reading the material there, or continue reading here, and run the code in your favorite Python environment. 
 
 > **Note:** If you are opening this code from the cloud, you also need to fetch [`rlboard.py`](rlboard.py) file, because notebook code uses it. Put it into the same directory with the notebook.
 ## Introduction
@@ -19,7 +19,7 @@ You can open [the lesson notebook](MazeLearner.ipynb) and continue reading the m
 **Reinforcement Learning** (RL) is a learning technique that allows us to learn an optimal behavior of an **agent** in some **environment** by running many experiments. An agent in this environment should have some **goal**, defined by a **reward function**.
 ## The Environment
 
-For simplicity, let's consider Peter's world to be a square board of size `width` x `height`, like this: 
+For simplicity, let's consider Peter's world to be a square board of size `width` x `height`, like this:
 
 ![Peter's Environment](images/environment.png)
 
@@ -32,6 +32,7 @@ Each cell in this board can either be:
 * **a wolf**, which is dangerous and should be avoided
 
 There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will just import the module and use it to create the sample board:
+
 ```python
 from rlboard import *
 
@@ -43,7 +44,6 @@ m.plot()
 This code should print the picture of the environment similar to the one above. 
 
 ## Actions and Policy
-
 
 In our example, Peter's goal would be to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds and apple. Therefore, at any position he can chose between one of the following actions: up, down, left and right. We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`.
 ```python
@@ -136,19 +136,19 @@ Interesting thing about reward function is that in most of the cases *we are onl
 
 An algorithm that we will discuss here is called **Q-Learning**. In this algorithm, the policy is defined by a function (or a data structure) called **Q-Table**. It records the "goodness" of each of the actions in a given state.
 
-It is called Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimentions `width` x `height`, we can represent Q-Table by a numpy array with shape `width` x `height` x `len(actions)`:
+It is called Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimensions `width` x `height`, we can represent Q-Table by a numpy array with shape `width` x `height` x `len(actions)`:
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 ```
 
-Notice that we initially initialize all values of Q-Table with equal value, in our case - 0.25. That corresponds to the "random walk" policy, because all moves in each state are equally good. We can pass the Q-Table to the `plot` function in order to visualize the table on the board: `m.plot(Q)`.
+Notice that we initially initialize all the values of Q-Table with equal value, in our case - 0.25. That corresponds to the "random walk" policy, because all moves in each state are equally good. We can pass the Q-Table to the `plot` function in order to visualize the table on the board: `m.plot(Q)`.
 
 ![Peter's Environment](images/env_init.png)
 
 In the center of each cell there is an "arrow" that indicates the preferred direction of movement. Since all directions are equal, a dot is displayed.
 
-Now we need to run the simulation, explore our environment, and learn better distribution of Q-Table values, which will allow us to find the path to the apple much faster.
+Now we need to run the simulation, explore our environment, and learn a better distribution of Q-Table values, which will allow us to find the path to the apple much faster.
 
 ## Essence of Q-Learning: Bellman Equation
 
@@ -164,11 +164,11 @@ This gives the **Bellman formula** for calculating the value of Q-Table at state
 
 <img src="images/bellmaneq.gif"/>
 
-Here γ is so-called **discount factor** that determines to which extent you should prefer current reward over the future reward and vice versa.
+Here γ is the so-called **discount factor** that determines to which extent you should prefer current reward over the future reward and vice versa.
 
 ## Learning Algorithm
 
-Given the equation above, we can now write a pseudo-code for our leaning algorithm:
+Given the equation above, we can now write pseudo-code for our leaning algorithm:
 
 * Initialize Q-Table Q with equal numbers for all states and actions
 * Set learning rate α ← 1
@@ -176,19 +176,18 @@ Given the equation above, we can now write a pseudo-code for our leaning algorit
    1. Start at random position
    1. Repeat
         1. Select an action *a* at state *s*
-        2. Exectute action by moving to a new state *s'*
+        2. Execute action by moving to a new state *s'*
         3. If we encounter end-of-game condition, or total reward is too small - exit simulation  
         4. Compute reward *r* at the new state
         5. Update Q-Function according to Bellman equation: *Q(s,a)* ← *(1-α)Q(s,a)+α(r+γ max<sub>a'</sub>Q(s',a'))*
         6. *s* ← *s'*
-        7. Update total reward and decrease α.
+        7. Update the total reward and decrease α.
 
 ## Exploit vs. Explore
 
-In the algorithm above, we did not specify how exactly we should chose an action at step 2.1. If we are choosing the action randomly, we will randomly **explore** the environment, and we are quite likely to die often, and also explore such areas where we would not normally go. An alternative approach would be to **exploit** the Q-Table values that we already know, and thus to chose the best action (with highers Q-Table value) at state *s*. This, however, will prevent us from exploring other states, and quite likely we might not find the optimal solution.
+In the algorithm above, we did not specify how exactly we should choose an action at step 2.1. If we are choosing the action randomly, we will randomly **explore** the environment, and we are quite likely to die often as well as explore areas where we would not normally go. An alternative approach would be to **exploit** the Q-Table values that we already know, and thus to choose the best action (with highers Q-Table value) at state *s*. This, however, will prevent us from exploring other states, and quite likely we might not find the optimal solution.
 
-Thus, the best approach is to balance between exploration and exploitation. This can be easily done by choosing the action at state *s* with probabilities proportional to values in Q-Table. In the beginning, when Q-Table values are all the same, it would correspond to random selection, but as we learn more about our environment, we would be more likely to follow the optimal route, however, choosing the unexplored path once in a while.
-
+Thus, the best approach is to balance between exploration and exploitation. This can be done by choosing the action at state *s* with probabilities proportional to values in Q-Table. In the beginning, when Q-Table values are all the same, it would correspond to a random selection, but as we learn more about our environment, we would be more likely to follow the optimal route while allowing the agent to choose the unexplored path once in a while.
 ## Python Implementation
 
 Now we are ready to implement the learning algorithm. Before that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions:
@@ -200,7 +199,7 @@ def probs(v,eps=1e-4):
     return v
 ```
 
-We add small amount `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
+We add a few `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
 
 The actual learning algorithm we will run for 5000 experiments, also called **epochs**: 
 
@@ -231,13 +230,13 @@ for epoch in range(5000):
         n+=1
 ```
 
-After executing this algorithm, Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw small circle instead of arrow head.
+After executing this algorithm, Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
 
 <img src="images/learned.png"/>
 
 ## Checking the Policy
 
-Since Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can just select the action corresponding to the highest Q-Table value:
+Since Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can select the action corresponding to the highest Q-Table value:
 
 ```python
 def qpolicy_strict(m):
@@ -249,7 +248,7 @@ def qpolicy_strict(m):
 walk(m,qpolicy_strict)
 ```
 
-If you try the code above several times, you may notice that sometimes it just "hangs", and you need to press STOP button in the notebook to interrupt it. This happens because there could be situations when two states "point" to each other in terms of optimal Q-Value, in which case the agents ends up moving between those states indefinitely.
+> If you try the code above several times, you may notice that sometimes it "hangs", and you need to press the STOP button in the notebook to interrupt it. This happens because there could be situations when two states "point" to each other in terms of optimal Q-Value, in which case the agents ends up moving between those states indefinitely.
 
 ## 🚀Challenge
 
@@ -271,22 +270,22 @@ def qpolicy(m):
 print_statistics(qpolicy)
 ```
 
-After running this code, you should get much smaller average path length than before, in the range 3-6...
+After running this code, you should get a much smaller average path length than before, in the range of 3-6.
 
-## Investigating Learning Process
+## Investigating the learning process
 
-As we have mentioned, the learning process is a balance between exploration and exploration of gained knowledge about the structure of problem space. We have seen that the result of learning (the ability to help an agent to find short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process: 
+As we have mentioned, the learning process is a balance between exploration and exploration of gained knowledge about the structure of problem space. We have seen that the result of learning (the ability to help an agent to find a short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process: 
 
 <img src="images/lpathlen1.png"/>
 
-What we see here is that at first the average path length increased. This is probably due to the fact that when we know nothing about the environment - we are likely to get trapped into bad states, water or wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know well where apples are.
+What we see here is that at first the average path length increases. This is probably due to the fact that when we know nothing about the environment we are likely to get trapped into bad states, water or wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know where the apples are very well.
 
 Once we learn enough, it becomes easier for the agent to achieve the goal, and the path length starts to decrease. However, we are still open to exploration, so we often diverge away from the best path, and explore new options, making the path longer than optimal.
 
-What we also observe on this graph, is that at some point the length increased abruptly. This indicates stochastic nature of the process, and that we can at some point "sploil" the Q-Table coefficients, by overwriting them with new values. This ideally should be minimized by decreasing learning rate (i.e. towards the end of training we only adjust Q-Table values by a small value).
+What we also observe on this graph, is that at some point the length increased abruptly. This indicates stochastic nature of the process, and that we can at some point "spoil" the Q-Table coefficients by overwriting them with new values. This ideally should be minimized by decreasing learning rate (i.e. towards the end of training we only adjust Q-Table values by a small value).
 
 Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters, such as leaning rate, learning rate decay and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters** which we optimize during training (eg. Q-Table coefficients). The process of finding best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
 
 ## [Post-lecture quiz](link-to-quiz-app)
 
-## Assignment [Assignment Name](assignment.md)
+## Assignment [A More Realistic World](assignment.md)
