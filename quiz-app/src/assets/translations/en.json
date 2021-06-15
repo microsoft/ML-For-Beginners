@@ -917,48 +917,52 @@
 				"title": "Classification 1: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Classification is a form of supervised learning that has a lot in common with",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Time Series",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Regression techniques",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "NLP",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What question can classification help answer?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Is this email spam or not?",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Can pigs fly?",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "What is the meaning of life?",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What is the first step to using Classification techniques?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "creating classes of a dataset",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "cleaning and balancing your data",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "assigning a data point to a group or outcome",
 								"isCorrect": "false"
 							}
 						]
@@ -970,48 +974,48 @@
 				"title": "Classification 1: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is a multiclass question?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "the task of classifying data points into multiple classes",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "the task of classifying data points into one of several classes",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "the task of cleaning data points in multiple ways",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "It's important to clean out recurrent or unhelpful data to help your classifiers solve your problem.",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What's the best reason to balance your data?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Imbalanced data looks bad in visualizations",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Balancing your data yields better results because an ML model won't skew towards one class",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Balancing your data gives you more data points",
 								"isCorrect": "false"
 							}
 						]
