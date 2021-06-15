@@ -7,7 +7,7 @@
 
 In this lesson, we will walk through the major milestones in the history of Machine Learning and Artificial Intelligence.
 
-The history of Artificial Intelligence as a field is intertwined with the history of Machine Learning, as the algorithms and computational advances that underpin ML fed into the development of AI. It is useful to remember that, while these fields as distinct areas of inquiry began to crystallize in the 1950s, important [algorithmical, statistical, mathematical, computational and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. In fact, people have been thinking about these questions for [hundreds of years](https://wikipedia.org/wiki/History_of_artificial_intelligence): this article discusses the historical intellectual underpinnings of the idea of a 'thinking machine.'
+The history of Artificial Intelligence, AI, as a field is intertwined with the history of Machine Learning, as the algorithms and computational advances that underpin ML fed into the development of AI. It is useful to remember that, while these fields as distinct areas of inquiry began to crystallize in the 1950s, important [algorithmical, statistical, mathematical, computational and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. In fact, people have been thinking about these questions for [hundreds of years](https://wikipedia.org/wiki/History_of_artificial_intelligence): this article discusses the historical intellectual underpinnings of the idea of a 'thinking machine.'
 
 ## Notable Discoveries
 
@@ -28,6 +28,8 @@ Alan Turing, a truly remarkable person who was voted [by the public in 2019](htt
 ## 1956: Dartmouth Summer Research Project
 
 "The Dartmouth Summer Research Project on Artificial Intelligence was a seminal event for artificial intelligence as a field," and it was here that the term 'Artificial Intelligence' was coined ([source](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+
+> every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it
 
 The lead researcher, mathematics professor John McCarthy, hoped "to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it." The participants included another luminary in the field, Marvin Minsky.
 
@@ -60,20 +62,20 @@ Research was well funded by government agencies, advances were made in computati
 
 By the mid 1970s, it had become apparent that the complexity of making 'intelligent machines' had been understated and that its promise, given the available compute power, had been overblown. Funding dried up and confidence in the field slowed. Some issues that impacted confidence included:
 
-- Compute power was too limited
-- 'Combinatorial explosion': the amount of parameters needed  to be trained grew exponentially as more was asked of computers, without a parallel evolution of compute power and capability
-- There was a paucity of data that hindered the process of testing, developing, and refining algorithms
-- The very questions that were being asked began to be questioned. Researchers began to field criticism about their approaches:
+- **Limitations**. Compute power was too limited.
+- **Combinatorial explosion**. The amount of parameters needed  to be trained grew exponentially as more was asked of computers, without a parallel evolution of compute power and capability
+- **Paucity of data**. There was a paucity of data that hindered the process of testing, developing, and refining algorithms.
+- **Are we asking the right questions?**. The very questions that were being asked began to be questioned. Researchers began to field criticism about their approaches:
   - Turing tests came into question by means, among other ideas, of the 'chinese room theory' which posited that, "programming a digital computer may make it appear to understand language but could not produce real understanding." ([source](https://plato.stanford.edu/entries/chinese-room/))
-  - The ethics of introducing artificial intelligences such as the "therapist" ELIZA into society was challenged
+  - The ethics of introducing artificial intelligences such as the "therapist" ELIZA into society was challenged.
 
-At the same time, various AI schools of thought began to form. A dichotomy was established between ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies) practices. 'Scruffy' labs tweaked programs for hours until they had the desired results. 'Neat' labs "focused on logic and formal problem solving". ELIZA and SHRDLU were well-known 'scruffy' systems. In the 1980s, as demand emerged to make ML systems reproducible, the 'neat' approach gradually took the forefront as its results are more explainable.
+At the same time, various AI schools of thought began to form. A dichotomy was established between ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies) practices. _Scruffy_ labs tweaked programs for hours until they had the desired results. _Neat_ labs "focused on logic and formal problem solving". ELIZA and SHRDLU were well-known _scruffy_ systems. In the 1980s, as demand emerged to make ML systems reproducible, the _neat_ approach gradually took the forefront as its results are more explainable.
 
 ## 1980s Expert systems
 
-As the field grew, its benefit to business became clearer, and the 1980s so did the proliferation of 'expert systems'. "Expert systems were among the first truly successful forms of artificial intelligence (AI) software." ([source](https://wikipedia.org/wiki/Expert_system))
+As the field grew, its benefit to business became clearer, and in the 1980s so did the proliferation of 'expert systems'. "Expert systems were among the first truly successful forms of artificial intelligence (AI) software." ([source](https://wikipedia.org/wiki/Expert_system)).
 
-This type of system is actually hybrid, consisting partially of a rules engine defining business requirements, and an inference engine that leveraged the rules system to deduce new facts.
+This type of system is actually _hybrid_, consisting partially of a rules engine defining business requirements, and an inference engine that leveraged the rules system to deduce new facts.
 
 This era also saw increasing attention paid to neural networks.
 
@@ -87,7 +89,9 @@ This epoch saw a new era for ML and AI to be able to solve some of the problems 
 
 ## Now
 
-Today, Machine Learning and AI touch almost every part of our lives. This era calls for careful understanding of the risks and potentials effects of these algorithms on human lives. As Microsoft's Brad Smith has stated, "Information technology raises issues that go to the heart of fundamental human-rights protections like privacy and freedom of expression. These issues heighten responsibility for tech companies that create these products. In our view, they also call for thoughtful government regulation and for the development of norms around acceptable uses" ([source](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)). It remains to be seen what the future holds, but it is important to understand these computer systems and the software and algorithms that they run. We hope that this curriculum will help you to gain a better understanding so that you can decide for yourself.
+Today, Machine Learning and AI touch almost every part of our lives. This era calls for careful understanding of the risks and potentials effects of these algorithms on human lives. As Microsoft's Brad Smith has stated, "Information technology raises issues that go to the heart of fundamental human-rights protections like privacy and freedom of expression. These issues heighten responsibility for tech companies that create these products. In our view, they also call for thoughtful government regulation and for the development of norms around acceptable uses" ([source](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+
+It remains to be seen what the future holds, but it is important to understand these computer systems and the software and algorithms that they run. We hope that this curriculum will help you to gain a better understanding so that you can decide for yourself.
 
 [![The history of Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of Deep Learning")
 > 🎥 Click the image above for a video: Yann LeCun discusses the history of Deep Learning in this lecture
@@ -97,6 +101,7 @@ Today, Machine Learning and AI touch almost every part of our lives. This era ca
 Dig into one of these historical moments and learn more about the people behind them. There are fascinating characters, and no scientific discovery was ever created in a cultural vacuum. What do you discover?
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+
 ## Review & Self Study
 
 Here are items to watch and listen to:
