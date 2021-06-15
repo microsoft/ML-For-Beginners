@@ -1,4 +1,4 @@
-# More Realistic Peter and the Wolf World
+# A More Realistic World
 
 In our situation, Peter was able to move around almost without getting tired or hungry. In more realistic world, we has to sit down and rest from time to time, and also to feed himself. Let's make our world more realistic, by implementing the following rules:
 
@@ -9,7 +9,7 @@ In our situation, Peter was able to move around almost without getting tired or 
 5. In order to kill the wolf, Peter needs to have certain levels of energy and fatigue, otherwise he loses the battle.
 ## Instructions
 
-Use original [MazeLearner.ipynb](MazeLearner.ipynb) notebook as a starting point for your solution.
+Use the original [notebook.ipynb](notebook.ipynb) notebook as a starting point for your solution.
 
 Modify the reward function above according to the rules of the game, run the reinforcement learning algorithm to learn the best strategy for winning the game, and compare the results of random walk with your algorithm in terms of number of games won and lost.
 
@@ -20,6 +20,6 @@ In your solution, please keep the code responsible for random walk strategy, and
 > **Note**: You may need to adjust hyperparameters to make it work, especially the number of epochs. Because the success of the game (fighting the wolf) is a rare event, you can expect much longer training time.
 ## Rubric
 
-| Criteria | Exemplary | Adequate | Needs Improvement |
-| -------- | --------- | -------- | ----------------- |
+| Criteria | Exemplary                                                                                                                                                                                             | Adequate                                                                                                                                                                                | Needs Improvement                                                                                                                          |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 |          | A notebook is presented with the definition of new world rules, Q-Learning algorithm and some textual explanations. Q-Learning is able to significantly improve the results comparing to random walk. | Notebook is presented, Q-Learning is implemented and improves results comparing to random walk, but not significantly; or notebook is poorly documented and code is not well-structured | Some attempt to re-define the rules of the world are made, but Q-Learning algorithm does not work, or reward function is not fully defined |
