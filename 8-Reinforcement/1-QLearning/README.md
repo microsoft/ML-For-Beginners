@@ -31,7 +31,7 @@ Each cell in this board can either be:
 * **an apple**, which represents something Peter would be glad to find in order to feed himself
 * **a wolf**, which is dangerous and should be avoided
 
-There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will just import the module and use it to create the sample board:
+There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will just import the module and use it to create the sample board (code block 1):
 
 ```python
 from rlboard import *
@@ -45,7 +45,8 @@ This code should print the picture of the environment similar to the one above.
 
 ## Actions and Policy
 
-In our example, Peter's goal would be to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds and apple. Therefore, at any position he can chose between one of the following actions: up, down, left and right. We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`.
+In our example, Peter's goal would be to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds and apple. Therefore, at any position he can chose between one of the following actions: up, down, left and right. We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`. (code block 2)
+
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
 action_idx = { a : i for i,a in enumerate(actions.keys()) }
@@ -57,7 +58,7 @@ The goal of reinforcement learning is to eventually learn a good policy that wil
 
 ## Random walk
 
-Let's first solve our problem by implementing a random walk strategy. With random walk, we will randomly chose the next action from allowed ones, until we reach the apple. 
+Let's first solve our problem by implementing a random walk strategy. With random walk, we will randomly chose the next action from allowed ones, until we reach the apple (code block 3). 
 
 ```python
 def random_policy(m):
@@ -86,7 +87,7 @@ def walk(m,policy,start_position=None):
 walk(m,random_policy)
 ```
 
-The call to `walk` should return us the length of corresponding path, which can vary from one run to another. We can run the walk experiment a number of times (say, 100), and print the resulting statistics:
+The call to `walk` should return us the length of corresponding path, which can vary from one run to another. We can run the walk experiment a number of times (say, 100), and print the resulting statistics (code block 4):
 
 ```python
 def print_statistics(policy):
@@ -111,7 +112,7 @@ You can also see how Peter's movement looks like during random walk:
 
 ## Reward Function
 
-To make out policy more intelligent, we need to understand which moves are "better" than others. To do this, we need to define our goal. The goal can be defined in terms of **reward function**, that will return some score value for each state. The higher the number - the better is the reward function
+To make out policy more intelligent, we need to understand which moves are "better" than others. To do this, we need to define our goal. The goal can be defined in terms of **reward function**, that will return some score value for each state. The higher the number - the better is the reward function. (code block 5)
 
 ```python
 move_reward = -0.1
@@ -130,13 +131,13 @@ def reward(m,pos=None):
     return move_reward
 ```
 
-Interesting thing about reward function is that in most of the cases *we are only given substantial reward at the end of the game*. It means that out algorithm should somehow remember "good" steps that lead to positive reward at the end, and increase their importance. Similarly, all moves that lead to bad results should be discouraged.
+An interesting thing about reward function is that in most of the cases *we are only given substantial reward at the end of the game*. It means that out algorithm should somehow remember "good" steps that lead to positive reward at the end, and increase their importance. Similarly, all moves that lead to bad results should be discouraged.
 
 ## Q-Learning
 
 An algorithm that we will discuss here is called **Q-Learning**. In this algorithm, the policy is defined by a function (or a data structure) called **Q-Table**. It records the "goodness" of each of the actions in a given state.
 
-It is called Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimensions `width` x `height`, we can represent Q-Table by a numpy array with shape `width` x `height` x `len(actions)`:
+It is called Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimensions `width` x `height`, we can represent Q-Table by a numpy array with shape `width` x `height` x `len(actions)`: (code block 6)
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
@@ -190,7 +191,7 @@ In the algorithm above, we did not specify how exactly we should choose an actio
 Thus, the best approach is to balance between exploration and exploitation. This can be done by choosing the action at state *s* with probabilities proportional to values in Q-Table. In the beginning, when Q-Table values are all the same, it would correspond to a random selection, but as we learn more about our environment, we would be more likely to follow the optimal route while allowing the agent to choose the unexplored path once in a while.
 ## Python Implementation
 
-Now we are ready to implement the learning algorithm. Before that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions:
+Now we are ready to implement the learning algorithm. Before that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions: (code block 7)
 
 ```python
 def probs(v,eps=1e-4):
@@ -201,7 +202,7 @@ def probs(v,eps=1e-4):
 
 We add a few `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
 
-The actual learning algorithm we will run for 5000 experiments, also called **epochs**: 
+The actual learning algorithm we will run for 5000 experiments, also called **epochs**: (code block 8)
 
 ```python
 for epoch in range(5000):
@@ -236,7 +237,7 @@ After executing this algorithm, Q-Table should be updated with values that defin
 
 ## Checking the Policy
 
-Since Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can select the action corresponding to the highest Q-Table value:
+Since Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can select the action corresponding to the highest Q-Table value: (code block 9)
 
 ```python
 def qpolicy_strict(m):
@@ -258,7 +259,7 @@ walk(m,qpolicy_strict)
 
 ## Navigation
 
-Better navigation policy would be the one that we have used during training, which combines exploitation and exploration. In this policy, we will select each action with a certain probability, proportional to the values in Q-Table. This strategy may still result in the agent returning back to the position it has already explored, but, as you can see from the code below, it results in very short average path to the desired location (remember that `print_statistics` runs the simulation 100 times):  
+Better navigation policy would be the one that we have used during training, which combines exploitation and exploration. In this policy, we will select each action with a certain probability, proportional to the values in Q-Table. This strategy may still result in the agent returning back to the position it has already explored, but, as you can see from the code below, it results in very short average path to the desired location (remember that `print_statistics` runs the simulation 100 times): (code block 10) 
 
 ```python
 def qpolicy(m):
