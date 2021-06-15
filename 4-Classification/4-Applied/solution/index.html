@@ -1,28 +1,36 @@
+<!DOCTYPE html>
 <html>
+    <header>
+        <title>ONNX Runtime JavaScript examples: Quick Start - Web (using script tag)</title>
+    </header>
+    <body>
+        <!-- import ONNXRuntime Web from CDN -->
+        <!--script src="./dist/ort.min.js"></script-->
+        <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.8.0-dev.20210608.0/dist/ort.min.js"></script>
+        <script>
+            // use an async context to call onnxruntime functions.
+            async function main() {
+                try {
+                    // create a new session and load the specific model.
+                    //
+                    const session = await ort.InferenceSession.create('./model.onnx');
 
-<head> </head>
+                    const input = new ort.Tensor(new Float32Array([5, 10, 15, 20, 25, 30, 23, 35, 50, 200]), [1, 10]);
+                    const feeds = { float_input: input };
 
-<body>
-    <!-- Load ONNX.js -->
-    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
-    <!-- Code that consumes ONNX.js -->
-    <script>
-        // create a session
-        const myOnnxSession = new onnx.InferenceSession();
-        // load the ONNX model file
-        myOnnxSession.loadModel('./model-kn.onnx').then(() => {
+                    // feed inputs and run
+                    const results = await session.run(feeds);
 
-            // generate model input
-            const inferenceInputs = getInputs();
-            console.log(inferenceInputs)
-            // execute the model
-            myOnnxSession.run(inferenceInputs).then((output) => {
-                // consume the output
-                const outputTensor = output.values().next().value;
-                console.log(`model output tensor: ${outputTensor.data}.`);
-            });
-        });
-    </script>
-</body>
+                    // read from results
+                    const output = JSON.stringify(results);
+                    document.write(`data of result tensor 'c': ${output}`);
 
+                } catch (e) {
+                    document.write(`failed to inference ONNX model: ${e}.`);
+                }
+            }
+
+            main();
+        </script>
+    </body>
 </html>
