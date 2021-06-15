@@ -1027,48 +1027,48 @@
 				"title": "Classification 2: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Balanced, clean data yields the best classification results",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "How do you choose the right classifier?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "Understand which classifiers work best for which scenarios",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Educated guess and check",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "Both of the above",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Classification is a type of",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "NLP",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Supervised Learning",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Programming language",
 								"isCorrect": "false"
 							}
 						]
@@ -1080,48 +1080,52 @@
 				"title": "Classification 2: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is a 'solver'?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "the person who double-checks your work",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "the algorithm to use in the optimization problem",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "a machine learning technique",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Which classifier did we use in this lesson?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Logistic Regression",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Decision Trees",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "One-vs-All Multiclass",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "How do you know if the classification algorithm is working as expected?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "By checking the accuracy of its predictions",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "By checking it against other algorithms",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "By looking at historical data for how good this algorithm is at solving similar problems",
 								"isCorrect": "false"
 							}
 						]
