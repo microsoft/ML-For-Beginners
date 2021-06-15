@@ -1,4 +1,8 @@
 # Introduction to Reinforcement Learning and Q-Learning
+
+[![Intro to Reinforcement Learning](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
+
+> 🎥 Click the image above to hear Dmitry discuss Reinforcement Learning
 ## [Pre-lecture quiz](link-to-quiz-app)
 
 In this lesson, we will explore the world of **[Peter and the Wolf](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, inspired by a musical fairy tale by a Russian composer, [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). We will use **Reinforcement Learning** to let Peter explore his environment, collect tasty apples and avoid meeting the wolf.
