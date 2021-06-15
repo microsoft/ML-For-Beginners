@@ -42,7 +42,9 @@ The [human brain](https://www.livescience.com/29365-human-brain.html) perceives 
 
 In this curriculum, we are going to cover only the core concepts of Machine Learning that a beginner must know. We cover what we call 'Classical Machine Learning', avoiding the complexities of neural networks, 'Deep Learning' - many-layered model-building - and AI, which we will discuss in a different curriculum. But to understand broader concepts of Artificial Intelligence or Deep Learning, a strong fundamental knowledge of Machine Learning is indispensable, and so we would like to offer it here.
 
-TODO: a diagram like this one: https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining
+![AI, ML, Deep Learning, Data Science](images/ai-ml-ds.png)
+
+> A diagram showing the relationships between AI, ML, Deep Learning, and Data Science. Infographic by [Jen Looper](https://twitter.com/jenlooper) inspired by [this graphic](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
 The major motivation behind leveraging Machine Learning is to create automated systems that can learn hidden patterns from data to infer intelligent decisions which seem to be loosely inspired by how the human brain learns certain things based on the data it perceives from the outside world.
 
