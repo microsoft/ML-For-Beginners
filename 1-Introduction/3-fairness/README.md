@@ -13,7 +13,7 @@ Imagine what can happen when the data you are using to build these models lacks 
 
 In this lesson, you will:
 
-- Raise your awareness of importance of fairness in machine learning.
+- Raise your awareness of the importance of fairness in machine learning.
 - Learn about fairness-related harms.
 - Learn about unfairness assessment and mitigation.
 
@@ -40,9 +40,9 @@ What do you mean by unfairness? "Unfairness" encompasses negative impacts, or "h
 
 The main fairness-related harms can be classified as:
 
-- **Allocation**, if a gender or ethnicity for example is favoured over another.
-- **Quality of service**. If you train the data one type of data and reality is much more complex, it leads to a poor performing service.
-- **Stereotyping**, that a certain gender is associated with a certain profession for example.
+- **Allocation**, if a gender or ethnicity for example is favored over another.
+- **Quality of service**. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.
+- **Stereotyping**. Associating a given group with pre-assigned attributes.
 - **Denigration**. To unfairly criticize and label something or someone.
 - **Over- or under- representation**. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
 
@@ -113,11 +113,11 @@ Let’s use the loan selection example to isolate the case to figure out each fa
 
 ## Assessment methods
 
-1. **Identify harms (and benefits)**. The first step is to identify the harms and benefits. Think about how this affects both potential customers of a business but a business itself for example.
+1. **Identify harms (and benefits)**. The first step is to identify harms and benefits. Think about how actions and decisions can affect both potential customers and a business itself.
   
-1. **Identify the affected groups**. Once you understand what kind of harms or benefits that can occur, identify the groups that may be affected. Are these groups defined by gender, ethnicity, social group?
+1. **Identify the affected groups**. Once you understand what kind of harms or benefits that can occur, identify the groups that may be affected. Are these groups defined by gender, ethnicity, or social group?
 
-1. **Define fairness metrics**. Finally define a metric so you have something to measure against in your work to improve the situation. 
+1. **Define fairness metrics**. Finally, define a metric so you have something to measure against in your work to improve the situation.
 
 ### Identify harms (and benefits)
 
