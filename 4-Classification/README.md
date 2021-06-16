@@ -1,7 +1,7 @@
 # Getting Started with Classification
-## Regional topic: Delicious Asian and Indian Recipes 🍜
+## Regional topic: Delicious Asian and Indian Cuisines 🍜
 
-In Asia and India, food traditions are extremely diverse, and very delicious! Let's look at data about regional recipes to try to guess where they originated.
+In Asia and India, food traditions are extremely diverse, and very delicious! Let's look at data about regional cuisines to try to guess where they originated.
 
 ![Thai food seller](./images/thai-food.jpg)
 > Photo by <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> on <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -22,4 +22,4 @@ In this section, you will build on the skills you learned in Lesson 1 (Regressio
 
 "Getting Started with Classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
 
-The delicious recipes dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)
+The delicious cuisines dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)

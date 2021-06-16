@@ -1,13 +1,16 @@
-# Build a Classifying Web App
+# Build a Cuisine Recommender Web App
 
-Add a sketchnote if possible/appropriate
+In this lesson, you will build a classification model using some of the techniques you have learned in previous lessons and with the delicious cuisine dataset used throughout this series. In addition, you will build a small web app to use a saved model, leveraging Onnx's web runtime.
 
-![Embed a video here if available](video-url)
+One of the most useful practical uses of machine learning is building recommendation systems, and you can take the first step in that direction today!
 
+[![Recommendation Systems Introduction](https://img.youtube.com/vi/giIXNoiqO_U/0.jpg)](https://youtu.be/giIXNoiqO_U "Recommendation Systems Introduction")
+
+> 🎥 Click the image above for a video: Andrew Ng introduces recommendation system design
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/23/)
 
-Describe what we will learn
-
+In this lesson you will learn:
+- 
 ### Introduction
 
 Describe what will be covered

@@ -1,6 +1,6 @@
-# Recipe Classifiers 1
+# Cuisine Classifiers 1
 
-In this lesson, you will use the dataset you saved from the last lesson full of balanced, clean data all about recipes. You will use this dataset with a variety of classifiers to predict a given national cuisine based on a group of ingredients. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
+In this lesson, you will use the dataset you saved from the last lesson full of balanced, clean data all about cuisines. You will use this dataset with a variety of classifiers to predict a given national cuisine based on a group of ingredients. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
 # Preparation
@@ -11,8 +11,8 @@ Working in this lesson's `notebook.ipynb` folder, import that file along with th
 
 ```python
 import pandas as pd
-recipes_df = pd.read_csv("../../data/cleaned_cuisine.csv")
-recipes_df.head()
+cuisines_df = pd.read_csv("../../data/cleaned_cuisine.csv")
+cuisines_df.head()
 ```
 The data looks like this:
 
@@ -37,8 +37,8 @@ import numpy as np
 Divide the X and y coordinates into two dataframes for training. `cuisine` can be the labels dataframe:
 
 ```python
-recipes_label_df = recipes_df['cuisine']
-recipes_label_df.head()
+cuisines_label_df = cuisines_df['cuisine']
+cuisines_label_df.head()
 ```
 
 It will look like this:
@@ -55,8 +55,8 @@ Name: cuisine, dtype: object
 Drop that `Unnamed: 0` column and the `cuisine` column and save the rest of the data as trainable features:
 
 ```python
-recipes_feature_df = recipes_df.drop(['Unnamed: 0', 'cuisine'], axis=1)
-recipes_feature_df.head()
+cuisines_feature_df = cuisines_df.drop(['Unnamed: 0', 'cuisine'], axis=1)
+cuisines_feature_df.head()
 ```
 
 Your features look like this:
@@ -113,7 +113,7 @@ Let's focus on Logistic Regression for our first training trial since you recent
 Let's train that model. Split your data into training and testing groups:
 
 ```python
-X_train, X_test, y_train, y_test = train_test_split(recipes_feature_df, recipes_label_df, test_size=0.3)
+X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
 ```
 
 There are many ways to use the LogisticRegression library in Scikit-Learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
@@ -181,7 +181,7 @@ The result is printed - Indian cuisine is its best guess, with good probability:
 |   korean | 0.017277 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 |     thai | 0.007634 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 
-✅ Can you explain why the model is pretty sure this is an Indian recipe?
+✅ Can you explain why the model is pretty sure this is an Indian cuisine?
 
 Get more detail by printing a classification report, as you did in the Regression lessons:
 

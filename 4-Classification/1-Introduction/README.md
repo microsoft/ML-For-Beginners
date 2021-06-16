@@ -10,7 +10,7 @@ Classification is a form of [supervised learning](https://wikipedia.org/wiki/Sup
 
 Remember, Linear Regression helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict what price a pumpkin would be in September vs. December, for example. Logistic Regression helped you discover binary categories: at this price point, is this pumpkin orange or not-orange?
 
-Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this recipe data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
+Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
 
 ### Introduction
@@ -21,11 +21,11 @@ Before starting the process of cleaning our data, visualizing it, and prepping i
 
 Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification), classification using classic machine learning uses features, such as 'smoker','weight', and 'age' to determine 'likelihood of developing X disease'. As a supervised learning technique similar to the Regression exercises you performed earlier, your data is labeled and the ML algorithms use those labels to classify and predict classes (or 'features') of a dataset and assign them to a group or outcome.
 
-✅ Take a moment to imagine a dataset about recipes. What would a multiclass model be able to answer? What would a binary model be able to answer? What if you wanted to determine whether a given cuisine was likely to contain Fenugreek? What if you wanted to see if, given a present of a grocery bag full of star anise, artichokes, cauliflower, and horseradish, you could create a typical Indian dish?
+✅ Take a moment to imagine a dataset about cuisines. What would a multiclass model be able to answer? What would a binary model be able to answer? What if you wanted to determine whether a given cuisine was likely to use fenugreek? What if you wanted to see if, given a present of a grocery bag full of star anise, artichokes, cauliflower, and horseradish, you could create a typical Indian dish?
 
 ## Hello 'classifier'
 
-The question we want to ask of this recipe dataset is actually a **multiclass question**, as we have several potential national cuisines to work with. Given a batch of ingredients, which of these many classes will the data fit?
+The question we want to ask of this cuisine dataset is actually a **multiclass question**, as we have several potential national cuisines to work with. Given a batch of ingredients, which of these many classes will the data fit?
 
 Scikit-Learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
 
@@ -51,7 +51,7 @@ from imblearn.over_sampling import SMOTE
 The next task will be to import the data:
 
 ```python
-df  = pd.read_csv('../data/recipes.csv')
+df  = pd.read_csv('../data/cuisines.csv')
 ```
 
 Check the data's shape:
