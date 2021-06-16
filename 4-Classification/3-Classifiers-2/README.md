@@ -1,4 +1,4 @@
-# Recipe Classifiers 2
+# Cuisine Classifiers 2
 
 In this second Classification lesson, you will explore more ways to classify numeric data, and the ramifications for choosing one over the other.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
@@ -42,7 +42,7 @@ import numpy as np
 Split your training and test data:
 
 ```python
-X_train, X_test, y_train, y_test = train_test_split(recipes_feature_df, recipes_label_df, test_size=0.3)
+X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
 ```
 ## Linear SVC Classifier
 
