@@ -29,7 +29,7 @@ Alan Turing, a truly remarkable person who was voted [by the public in 2019](htt
 
 "The Dartmouth Summer Research Project on Artificial Intelligence was a seminal event for artificial intelligence as a field," and it was here that the term 'Artificial Intelligence' was coined ([source](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
 
-> every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it
+> Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it.
 
 The lead researcher, mathematics professor John McCarthy, hoped "to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it." The participants included another luminary in the field, Marvin Minsky.
 
@@ -63,7 +63,7 @@ Research was well funded by government agencies, advances were made in computati
 By the mid 1970s, it had become apparent that the complexity of making 'intelligent machines' had been understated and that its promise, given the available compute power, had been overblown. Funding dried up and confidence in the field slowed. Some issues that impacted confidence included:
 
 - **Limitations**. Compute power was too limited.
-- **Combinatorial explosion**. The amount of parameters needed  to be trained grew exponentially as more was asked of computers, without a parallel evolution of compute power and capability
+- **Combinatorial explosion**. The amount of parameters needed to be trained grew exponentially as more was asked of computers, without a parallel evolution of compute power and capability.
 - **Paucity of data**. There was a paucity of data that hindered the process of testing, developing, and refining algorithms.
 - **Are we asking the right questions?**. The very questions that were being asked began to be questioned. Researchers began to field criticism about their approaches:
   - Turing tests came into question by means, among other ideas, of the 'chinese room theory' which posited that, "programming a digital computer may make it appear to understand language but could not produce real understanding." ([source](https://plato.stanford.edu/entries/chinese-room/))
