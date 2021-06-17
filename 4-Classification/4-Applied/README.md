@@ -7,7 +7,7 @@ One of the most useful practical uses of machine learning is building recommenda
 [![Recommendation Systems Introduction](https://img.youtube.com/vi/giIXNoiqO_U/0.jpg)](https://youtu.be/giIXNoiqO_U "Recommendation Systems Introduction")
 
 > 🎥 Click the image above for a video: Andrew Ng introduces recommendation system design
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/23/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/)
 
 In this lesson you will learn:
 - How to build a model and save it as an Onnx model
@@ -285,7 +285,7 @@ Congratulations, you have created a simple web app recommendation with a few fie
 
 Your web app is very minimal, so continue to build it out using ingredients and their indexes from the [ingredient_indexes](../data/ingredient_indexes.csv) data. What flavor combinations work to create a given national dish?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/24/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/26/)
 ## Review & Self Study
 
 While this lesson just touched on the utility of creating a recommendation system for food ingredients, this area of ML applications is very rich in examples. Read some more about how these systems are built:
