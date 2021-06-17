@@ -347,48 +347,52 @@
 				"title": "Tools and Techniques: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "When building a model, you should:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "prepare your data, then train your model",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "choose a training method, then prepare your data",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "tune parameters, then train your model",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Your data's ___ will impact the quality of your ML model",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "quantity",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "shape",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "A feature variable is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a quality of your data",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a measurable property of your data",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "a row of your data",
 								"isCorrect": "false"
 							}
 						]
@@ -400,49 +404,53 @@
 				"title": "Tools and Techniques: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "You should visualize your data because",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "you can discover outliers",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "you can discover potential cause for bias",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "both of these",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Split your data into:",
+						"answerOptions": [
+							{
+								"answerText": "training and turing sets",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "training and test sets",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "validation and evaluation sets",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A common command to start the training process in various ML libraries is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "model.travel",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "model.train",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "model.fit",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
