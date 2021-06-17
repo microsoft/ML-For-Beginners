@@ -2375,48 +2375,48 @@
 				"title": "Reinforcement 1: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is reinforcement learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "teaching someone something over and over again until they understand",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a learning technique that deciphers the optimal behavior of an agent in some environment by running many experiments",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "understanding how to run multiple experiments at once",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is a policy?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a function that returns the action at any given state",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a document that tells you whether or not you can return an item",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "a function that is used for a random purpose",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "A reward function returns a score for each state of an environment.",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
@@ -2428,49 +2428,49 @@
 				"title": "Reinforcement 1: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is Q-Learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a mechanism for recording the 'goodness' of each state",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "an algorithm where the policy is defined by a Q-Table",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "For what values does a Q-Table correspond to the random walk policy?",
+						"answerOptions": [
+							{
+								"answerText": "all equal values",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "-0.25",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "all different values",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "It was better to use exploration than exploitation during the learning process in our lesson.",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "true",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "false",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
