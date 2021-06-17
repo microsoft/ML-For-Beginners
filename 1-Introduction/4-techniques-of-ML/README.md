@@ -1,4 +1,4 @@
-# Techniques of Machine Learning
+# Techniques of machine learning
 
 The process of building, using, and maintaining machine learning models and the data they use is a process very different from many other development workflows. For web developers, techniques of machine learning can initially seem very strange. In this lesson, we will demystify the process by outlining it. You will:
 
@@ -51,7 +51,7 @@ Prior to training, you need to split your dataset into two or more parts of uneq
 
 - **Training**, this part of the dataset goes into your model to train it. The size of this chunk constitutes the majority of the original dataset.
 - **Testing**. A test dataset is another independent group of data, often gathered from the original data, that you use to confirm the performance of the built model.
-- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we noted in [Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)).
+- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we note in [Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)).
 ## Building a model
 
 Using your training data, your goal is to build a model, or a statistical representation of your data, using various algorithms to **train** it. Training a model exposes it to data and allows it to make assumptions about perceived patterns it discovers, validates, and accepts or rejects.
@@ -65,7 +65,7 @@ Armed with your training data, you are ready to 'fit' it to create a model. You 
 
 Once the training process is complete (it can take many iterations, or 'epochs', to train a large model), you will be able to evaluate the model's quality by using test data to gauge its performance. This data is a subset of the original data that the model has not previously analyzed. You can print out a table of metrics about your model's quality.
 
-🎓 Model Fitting
+🎓 **Model fitting**
 
 In the context of machine learning, Model fitting refers to the accuracy of the model's underlying function as it attempts to analyze data with which it is not familiar. 
 
