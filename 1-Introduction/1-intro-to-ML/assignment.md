@@ -2,7 +2,7 @@
 
 ## Instructions
 
-In this non-graded assignment, you should brush up on Python and get your environment up and running and able to run notebooks. 
+In this non-graded assignment, you should brush up on Python and get your environment up and running and able to run notebooks.
 
 Take this [Python Learning Path](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), and then get your systems setup by going through these introductory videos:
 

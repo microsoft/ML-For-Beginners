@@ -93,8 +93,8 @@ Today, Machine Learning and AI touch almost every part of our lives. This era ca
 
 It remains to be seen what the future holds, but it is important to understand these computer systems and the software and algorithms that they run. We hope that this curriculum will help you to gain a better understanding so that you can decide for yourself.
 
-[![The history of Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of Deep Learning")
-> 🎥 Click the image above for a video: Yann LeCun discusses the history of Deep Learning in this lecture
+[![The history of deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
+> 🎥 Click the image above for a video: Yann LeCun discusses the history of deep learning in this lecture
 
 ## 🚀Challenge
 
