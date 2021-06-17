@@ -1,4 +1,4 @@
-# Getting Started with Classification
+# Getting started with classification
 ## Regional topic: Delicious Asian and Indian Cuisines 🍜
 
 In Asia and India, food traditions are extremely diverse, and very delicious! Let's look at data about regional cuisines to try to guess where they originated.
@@ -8,18 +8,18 @@ In Asia and India, food traditions are extremely diverse, and very delicious! Le
   
 ## What you will learn
 
-In this section, you will build on the skills you learned in Lesson 1 (Regression) to learn about other classifiers you can use that will help you learn about your data.
+In this section, you will build on the skills you learned in the first part of this curriculum all about regressionn to learn about other classifiers you can use that will help you learn about your data.
 
-> There are useful low-code tools that can help you learn about working with Classification models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> There are useful low-code tools that can help you learn about working with classification models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
 
 ## Lessons
 
-1. [Introduction to Classification](1-Introduction/README.md)
-2. [More Classifiers](2-Classifiers-1/README.md)
-3. [Yet Other Classifiers](3-Classifiers-2/README.md)
-4. [Applied ML: Build a Web App](4-Applied/README.md)
+1. [Introduction to classification](1-Introduction/README.md)
+2. [More classifiers](2-Classifiers-1/README.md)
+3. [Yet other classifiers](3-Classifiers-2/README.md)
+4. [Applied ML: build a web app](4-Applied/README.md)
 ## Credits
 
-"Getting Started with Classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
+"Getting started with classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
 
 The delicious cuisines dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)
