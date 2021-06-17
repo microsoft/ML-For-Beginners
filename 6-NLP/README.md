@@ -1,8 +1,8 @@
-# Getting Started with Natural Language Processing 
+# Getting Started with natural language processing 
 
 ## Regional topic: European literature and Romantic Hotels of Europe ❤️ 
 
-In this section of the curriculum, you will be introduced to one of the most widespread uses of machine learning: Natural Language Processing (NLP). Derived from Computational Linguistics, this category of artificial intelligence is the bridge between humans and machines via voice or textual communication. 
+In this section of the curriculum, you will be introduced to one of the most widespread uses of machine learning: natural language processing (NLP). Derived from Computational Linguistics, this category of artificial intelligence is the bridge between humans and machines via voice or textual communication. 
 
 In these lessons we'll learn the basics of NLP by building small conversational bots to learn how Machine Learning aids in making these conversations more and more 'smart'. You'll travel back in time, chatting with Elizabeth Bennett and Mr. Darcy from Jane Austen's classic novel, **Pride and Prejudice**, published in 1813. Then, you'll further your knowledge by learning about sentiment analysis via hotel reviews in Europe.
 
@@ -11,7 +11,7 @@ In these lessons we'll learn the basics of NLP by building small conversational 
   
 ## Lessons
 
-1. [Introduction to Natural Language Processing](1-Introduction-to-NLP/README.md)
+1. [Introduction to natural language processing](1-Introduction-to-NLP/README.md)
 2. [Common NLP Tasks and Techniques](2-Tasks/README.md)
 3. [Translation and Sentiment Analysis with Machine Learning](3-Translation-Sentiment/README.md)
 4. TBD
@@ -19,4 +19,4 @@ In these lessons we'll learn the basics of NLP by building small conversational 
 
 ## Credits 
 
-These Natural Language Processing lessons were written with ☕ by [Stephen Howell]([Twitter](https://twitter.com/Howell_MSFT))
+These natural language processing lessons were written with ☕ by [Stephen Howell]([Twitter](https://twitter.com/Howell_MSFT))

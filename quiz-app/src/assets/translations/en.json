@@ -82,7 +82,7 @@
 						"questionText": "What is an example of a classical ML technique?",
 						"answerOptions": [
 							{
-								"answerText": "Natural Language Processing",
+								"answerText": "natural language processing",
 								"isCorrect": "true"
 							},
 							{
@@ -1682,7 +1682,7 @@
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "Natural Language Processing",
+								"answerText": "natural language processing",
 								"isCorrect": "true"
 							},
 							{

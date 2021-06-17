@@ -1,6 +1,6 @@
-# Common Natural Language Processing Tasks and Techniques
+# Common natural language processing Tasks and Techniques
 
-For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
+For most *natural language processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/33/)
 
 
