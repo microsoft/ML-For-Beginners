@@ -344,6 +344,112 @@
 			},
 			{
 				"id": 7,
+				"title": "Tools and Techniques: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 8,
+				"title": "Tools and Techniques: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 9,
 				"title": "Introduction to Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -400,7 +506,7 @@
 				]
 			},
 			{
-				"id": 8,
+				"id": 10,
 				"title": "Introduction to Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -457,7 +563,7 @@
 				]
 			},
 			{
-				"id": 9,
+				"id": 11,
 				"title": "Prepare and Visualize Data for Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -514,7 +620,7 @@
 				]
 			},
 			{
-				"id": 10,
+				"id": 12,
 				"title": "Prepare and Visualize Data for Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -571,7 +677,7 @@
 				]
 			},
 			{
-				"id": 11,
+				"id": 13,
 				"title": "Linear and Polynomial Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -628,7 +734,7 @@
 				]
 			},
 			{
-				"id": 12,
+				"id": 14,
 				"title": "Linear and Polynomial Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -685,7 +791,7 @@
 				]
 			},
 			{
-				"id": 13,
+				"id": 15,
 				"title": "Logistic Regression: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -742,7 +848,7 @@
 				]
 			},
 			{
-				"id": 14,
+				"id": 16,
 				"title": "Logistic Regression: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -799,7 +905,7 @@
 				]
 			},
 			{
-				"id": 15,
+				"id": 17,
 				"title": "Build a Web App: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -856,7 +962,7 @@
 				]
 			},
 			{
-				"id": 16,
+				"id": 18,
 				"title": "Build a Web App: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -913,7 +1019,7 @@
 				]
 			},
 			{
-				"id": 17,
+				"id": 19,
 				"title": "Classification 1: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -970,7 +1076,7 @@
 				]
 			},
 			{
-				"id": 18,
+				"id": 20,
 				"title": "Classification 1: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1023,7 +1129,7 @@
 				]
 			},
 			{
-				"id": 19,
+				"id": 21,
 				"title": "Classification 2: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1076,7 +1182,7 @@
 				]
 			},
 			{
-				"id": 20,
+				"id": 22,
 				"title": "Classification 2: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1133,7 +1239,7 @@
 				]
 			},
 			{
-				"id": 21,
+				"id": 23,
 				"title": "Classification 3: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1186,7 +1292,7 @@
 				]
 			},
 			{
-				"id": 22,
+				"id": 24,
 				"title": "Classification 3: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1239,7 +1345,7 @@
 				]
 			},
 			{
-				"id": 23,
+				"id": 25,
 				"title": "Classification 4: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1292,7 +1398,7 @@
 				]
 			},
 			{
-				"id": 24,
+				"id": 26,
 				"title": "Classification 4: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1345,7 +1451,7 @@
 				]
 			},
 			{
-				"id": 25,
+				"id": 27,
 				"title": "Introduction to Clustering: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1402,7 +1508,7 @@
 				]
 			},
 			{
-				"id": 26,
+				"id": 28,
 				"title": "Introduction to Clustering: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1459,7 +1565,7 @@
 				]
 			},
 			{
-				"id": 27,
+				"id": 29,
 				"title": "K-Means Clustering: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1512,7 +1618,7 @@
 				]
 			},
 			{
-				"id": 28,
+				"id": 30,
 				"title": "K-Means Clustering: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1565,7 +1671,7 @@
 				]
 			},
 			{
-				"id": 29,
+				"id": 31,
 				"title": "Intro to NLP: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1622,7 +1728,7 @@
 				]
 			},
 			{
-				"id": 30,
+				"id": 32,
 				"title": "Intro to NLP: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1679,7 +1785,7 @@
 				]
 			},
 			{
-				"id": 31,
+				"id": 33,
 				"title": "NLP Tasks: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1736,7 +1842,7 @@
 				]
 			},
 			{
-				"id": 32,
+				"id": 34,
 				"title": "NLP Tasks: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1793,7 +1899,7 @@
 				]
 			},
 			{
-				"id": 33,
+				"id": 35,
 				"title": "NLP and Translation: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1850,7 +1956,7 @@
 				]
 			},
 			{
-				"id": 34,
+				"id": 36,
 				"title": "NLP and Translation: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -1907,7 +2013,7 @@
 				]
 			},
 			{
-				"id": 35,
+				"id": 37,
 				"title": "NLP 4: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -1960,114 +2066,8 @@
 				]
 			},
 			{
-				"id": 36,
-				"title": "NLP 4: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "q1",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q2",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 37,
-				"title": "NLP 5: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "q1",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q2",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
 				"id": 38,
-				"title": "NLP 5: Post-Lecture Quiz",
+				"title": "NLP 4: Post-Lecture Quiz",
 				"quiz": [
 					{
 						"questionText": "q1",
