@@ -1589,49 +1589,53 @@
 				"title": "K-Means Clustering: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "K-Means is derived from:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "electrical engineering",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "signal processing",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "computational linguistics",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A good Silhouette score means:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "clusters are well-separated and well-defined",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "there are few clusters",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "there are many clusters",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Variance is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "the average of the squared differences from the mean",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a problem for clustering if it becomes too high",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -1642,48 +1646,48 @@
 				"title": "K-Means Clustering: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "A Voronoi diagram shows:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a cluster's variance",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a cluster's seed and its region",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "a cluster's inertia",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Inertia is",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a measure of how internally coherent clusters are",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a measure of how much clusters move",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "a measure of cluster quality",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Using K-Means, you must first determine the value of 'k'",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
