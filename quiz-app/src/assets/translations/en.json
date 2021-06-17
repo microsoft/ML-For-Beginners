@@ -1365,48 +1365,48 @@
 				"title": "Classification 4: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Recommendation systems might be used for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Recommending a good restaurant",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Recommending fashions to try",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Both of these",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Embedding a model in a web app helps it to be offline-capable",
+						"answerOptions": [
+							{
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Onnx Runtime can be used for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Running models in a web app",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "Training models",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "Hyperparameter tuning",
 								"isCorrect": "false"
 							}
 						]
@@ -1418,48 +1418,52 @@
 				"title": "Classification 4: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q11",
+						"questionText": "Netron app helps you:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Visualize data",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Visualize your model's structure",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Test your web app",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Convert your Scikit-learn model for use with Onnx using:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "sklearn-app",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "sklearn-web",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "sklearn-onnx",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Using your model in a web app is called:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "inference",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "interference",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "insurance",
 								"isCorrect": "false"
 							}
 						]
