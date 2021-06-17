@@ -11,43 +11,40 @@ Now that you are set up with the tools you need to start tackling machine learni
 
 In this lesson, you will learn:
 
-- Preparing your data for model-building.
-- Using Matplotlib for data visualization.
+- How to prepare your data for model-building.
+- How to use Matplotlib for data visualization.
 
-## Asking the Right Question
+## Asking the right question of your data
 
-The question you need answered, will determine what type of ML algorithms you will leverage. Consider the following two examples: 
+The question you need answered will determine what type of ML algorithms you will leverage. And the quality of the answer you get back will be heavily dependent on the nature of your data.
 
-- **Cars and trucks**. For example, do you need to determine the differences between cars and trucks as they cruise down a highway via a video feed? You will need some kind of highly performant classification model to make that differentiation. It will need to be able to perform object detection, probably by showing bounding boxes around detected cars and trucks.
+Take a look at the [data](../data/US-pumpkins.csv) provided for this lesson. You can open this .csv file in VS Code. A quick skim immediately shows that there are blanks and a mix of strings and numeric data. There's also a strange column called 'Package' where the data is a mix between 'sacks', 'bins' and other values. The data, in fact, is a bit of a mess.
 
-- **Age to height**. What if you are trying to correlate two points of data - like age to height? You can use a linear regression model, as shown in the previous lesson, to draw the classical straight line through the scatterplot of points to show how, with age, height tends to increase. Thus you can predict, for a given group of people, their height given their age.
+In fact, it is not very common to be gifted a dataset that is completely ready to use to create a ML model out of the box. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
 
-But it's not very common to be gifted a dataset that is completely ready to use to create a ML model. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
+## Case study: 'the pumpkin market'
 
-## Case study 'The Pumpkin market'
-
-In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](../data/US-pumpkins.csv) which includes 1757 lines of data about the pumpkin market, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
+In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](../data/US-pumpkins.csv) which includes 1757 lines of data about the market for pumpkins, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
 
 ### Preparing data
 
-This data is in the public domain. It can be downloaded in many separate files, per city, from the USDA web site. To avoid too many separate files, we have concatenated all the city data into one spreadsheet, thus we have _prepared_ the data. Next, let's take a closer look at the data.
+This data is in the public domain. It can be downloaded in many separate files, per city, from the USDA web site. To avoid too many separate files, we have concatenated all the city data into one spreadsheet, thus we have already _prepared_ the data a bit. Next, let's take a closer look at the data.
 
-### The Pumpkin data - early conclusions
+### The pumpkin data - early conclusions
 
-What do you notice about this data? First, you see that it is a mix of text and numeric data. There are also dates. Second, you see that there's a considerable amount of missing and mixed data. To build a good model, you will need to handle that.
+What do you notice about this data? You already saw that there is a mix of strings, numbers, blanks and strange values that you need to make sense of.
 
-What question can you ask of this data, using a Regression technique? What about _Predict the price of a pumpkin for sale during a given month_. Looking again at the data, there are some changes you need to make to create the data structure necessary for the task. 
-
-## Exercise - analyze the Pumpkin Data
+What question can you ask of this data, using a Regression technique? What about "Predict the price of a pumpkin for sale during a given month". Looking again at the data, there are some changes you need to make to create the data structure necessary for the task. 
+## Exercise - analyze the pumpkin data
 
 Let's use [Pandas](https://pandas.pydata.org/), (the name stands for `Python Data Analysis`) a tool very useful for shaping data, to analyze and prepare this pumpkin data.
 
 ### First, check for missing dates
 
-At a high level, you will need to take the following steps to check for missing dates.
+You will first need to take steps to check for missing dates:
 
-1. Convert the dates to a month format (these are US dates, so the format is currently `MM/DD/YYYY`).
-1. Extract the month to a new column.
+1. Convert the dates to a month format (these are US dates, so the format is `MM/DD/YYYY`).
+2. Extract the month to a new column.
 
 Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet in to a new Pandas dataframe.
 
@@ -59,7 +56,7 @@ Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet 
     pumpkins.head()
     ```
 
-   ✅ What function would you use to view the last five rows?
+    ✅ What function would you use to view the last five rows?
 
 1. Check if there is missing data in the current dataframe:
 
@@ -91,9 +88,9 @@ Solution: take the average of the `Low Price` and `High Price` columns to popula
     
     ```
 
-   ✅ Feel free to print any data you'd like to check: `print(month)` for example.
+   ✅ Feel free to print any data you'd like to check using `print(month)`.
 
-1. Now, append your converted data into a fresh Pandas dataframe:
+2. Now, copy your converted data into a fresh Pandas dataframe:
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
@@ -107,7 +104,7 @@ If you look at the `Package` column, pumpkins are sold in many different configu
 
 > Pumpkins seem very hard to weigh consistently
 
-Digging into the original data, it's interesting that anything with `Unit of Sale` equalling 'EACH' or 'PER BIN' also have the `Package` type per inch, per bin, or 'each'. Pumpkins seem to be very hard to weigh consistently, so let's filter them out by selecting only pumpkins with the string 'bushel' in their `Package` column.
+Digging into the original data, it's interesting that anything with `Unit of Sale` equalling 'EACH' or 'PER BIN' also have the `Package` type per inch, per bin, or 'each'. Pumpkins seem to be very hard to weigh consistently, so let's filter them by selecting only pumpkins with the string 'bushel' in their `Package` column.
 
 1. Add a filter at the top of the file, under the initial .csv import:
 
@@ -117,7 +114,7 @@ Digging into the original data, it's interesting that anything with `Unit of Sal
 
     If you print the data now, you can see that you are only getting the 415 or so rows of data containing pumpkins by the bushel.
 
-### But wait! there's one more thing to do
+### But wait! There's one more thing to do
 
 Did you notice that the bushel amount varies per row? You need to normalize the pricing so that you show the pricing per bushel, so do some math to standardize it.
 
@@ -137,7 +134,9 @@ Now, you can analyze the pricing per unit based on their bushel measurement. If 
 
 ## Visualization Strategies
 
-Part of the data scientist's role is to demonstrate the quality and nature of the data they are working with. To do this, they often create interesting visualizations, or plots, graphs, and charts, showing different aspects of data. In this way, they are able to visually show relationships and gaps that are otherwise hard to uncover. Visualizations can also help determine the machine learning technique most appropriate for the data. A scatterplot that seems to follow a line, for example, indicates that the data is a good candidate for a linear regression exercise.
+Part of the data scientist's role is to demonstrate the quality and nature of the data they are working with. To do this, they often create interesting visualizations, or plots, graphs, and charts, showing different aspects of data. In this way, they are able to visually show relationships and gaps that are otherwise hard to uncover. 
+
+Visualizations can also help determine the machine learning technique most appropriate for the data. A scatterplot that seems to follow a line, for example, indicates that the data is a good candidate for a linear regression exercise.
 
 One data visualization libary that works well in Jupyter notebooks is [Matplotlib](https://matplotlib.org/) (which you also saw in the previous lesson).
 
@@ -188,7 +187,7 @@ To get charts to display useful data, you usually need to group the data somehow
 
 ## 🚀Challenge
 
-Explore the different types of visualization that matplotlib offers. Which types are most appropriate for regression problems?
+Explore the different types of visualization that M Matplotlib offers. Which types are most appropriate for regression problems?
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
 
