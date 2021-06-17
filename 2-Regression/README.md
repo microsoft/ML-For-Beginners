@@ -1,4 +1,4 @@
-# Regression Models for Machine Learning
+# Regression models for machine learning
 ## Regional topic: Regression models for pumpkin prices in North America 🎃
 
 In North America, pumpkins are often carved into scary faces for Halloween. Let's discover more about these fascinating vegetables!
@@ -8,25 +8,25 @@ In North America, pumpkins are often carved into scary faces for Halloween. Let'
   
 ## What you will learn
 
-The lessons in this section cover types of Regression in the context of machine learning. Regression models can help determine the _relationship_ between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes data points.
+The lessons in this section cover types of regression in the context of machine learning. Regression models can help determine the _relationship_ between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes data points.
 
-In this series of lessons, you'll discover the difference between Linear vs. Logistic Regression, and when you should use one or the other.
+In this series of lessons, you'll discover the difference between linear vs. logistic regression, and when you should use one or the other.
 
 In this group of lessons, you will get set up to begin machine learning tasks, including configuring Visual Studio code to manage notebooks, the common environment for data scientists. You will discover Scikit-learn, a library for machine learning, and you will build your first models, focusing on Regression models in this chapter.
 
-> There are useful low-code tools that can help you learn about working with Regression models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> There are useful low-code tools that can help you learn about working with regression models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
 
 ### Lessons
 
-1. [Tools of the Trade](1-Tools/README.md)
-2. [Managing Data](2-Data/README.md)
-3. [Linear and Polynomial Regression](3-Linear/README.md)
-4. [Logistic Regression](4-Logistic/README.md)
+1. [Tools of the trade](1-Tools/README.md)
+2. [Managing data](2-Data/README.md)
+3. [Linear and polynomial regression](3-Linear/README.md)
+4. [Logistic regression](4-Logistic/README.md)
 
 ---
 ### Credits
 
-"ML with Regression" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper)
+"ML with regression" was written with ♥️ by [Jen Looper](https://twitter.com/jenlooper)
 
 ♥️ Quiz contributors include: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) and [Ornella Altunyan](https://twitter.com/ornelladotcom)
 
