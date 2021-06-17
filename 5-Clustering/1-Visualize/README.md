@@ -29,7 +29,7 @@ Alternately, you could use it for grouping search results - by shopping links, i
 Deepen your understanding of Clustering techniques in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)
 ## Getting started with clustering
 
-[Scikit-Learn offers a large array](https://scikit-learn.org/stable/modules/clustering.html) of methods to perform clustering. The type you choose will depend on your use case. According to the documentation, each method has various benefits. Here is a simplified table of the methods supported by Scikit-Learn and their appropriate use cases:
+[Scikit-learn offers a large array](https://scikit-learn.org/stable/modules/clustering.html) of methods to perform clustering. The type you choose will depend on your use case. According to the documentation, each method has various benefits. Here is a simplified table of the methods supported by Scikit-learn and their appropriate use cases:
 
 | Method name                  | Use case                                                               |
 | :--------------------------- | :--------------------------------------------------------------------- |
@@ -81,7 +81,7 @@ There are over 100 clustering algorithms, and their use depends on the nature of
 
 **Hierarchical clustering** 
 
-If an object is classified by its proximity to a nearby object, rather than to one farther away, clusters are formed based on their members' distance to and from other objects. Scikit-Learn's Agglomerative clustering is hierarchical.
+If an object is classified by its proximity to a nearby object, rather than to one farther away, clusters are formed based on their members' distance to and from other objects. Scikit-learn's Agglomerative clustering is hierarchical.
 
 ![Hierarchical clustering Infographic](./images/hierarchical.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)

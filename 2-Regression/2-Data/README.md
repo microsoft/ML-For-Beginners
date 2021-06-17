@@ -1,13 +1,13 @@
-# Build a Regression Model using Scikit-Learn: Prepare and Visualize Data
+# Build a regression model using Scikit-learn: prepare and visualize data
 
-> ![Data Vizualization Infographic](./images/data-visualization.png)
+> ![Data visualization infographic](./images/data-visualization.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
 
 ## Introduction
 
-Now that you are set up with the tools you need to start tackling machine learning model-building with Scikit-Learn, you are ready to start asking questions of your data. As you work with data and apply ML solutions, it's very important to understand how to ask the right question to properly unlock the potentials of your dataset.
+Now that you are set up with the tools you need to start tackling machine learning model building with Scikit-learn, you are ready to start asking questions of your data. As you work with data and apply ML solutions, it's very important to understand how to ask the right question to properly unlock the potentials of your dataset.
 
 In this lesson, you will learn:
 

@@ -6,7 +6,7 @@
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/29/)
 
-In this lesson, you will learn how to create clusters using Scikit-Learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common Clustering technique. Let's get started!
+In this lesson, you will learn how to create clusters using Scikit-learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common Clustering technique. Let's get started!
 
 Terms you will learn about:
 
@@ -145,7 +145,7 @@ for i in range(1, 11):
 
 > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
 
-> 🎓 k-means++: In [Scikit-Learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
+> 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
 ### Elbow method
 
 Previously, you surmised that, because you have targeted 3 song genres, you should choose 3 clusters. But is that the case? Use the 'elbow method' to make sure.
@@ -194,11 +194,11 @@ This model's accuracy is not very good, and the shape of the clusters gives you 
 
 This data is too imbalanced, too little correlated and there is too much variance between the column values, to cluster well. In fact, the clusters that form are probably heavily influenced or skewed by the three genre categories we defined above. That was a learning process!
 
-In Scikit-Learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
+In Scikit-learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
 
 ![problem models](images/problems.png)
 
-> Infographic from Scikit-Learn
+> Infographic from Scikit-learn
 ## Variance
 
 Variance is defined as "the average of the squared differences from the Mean."[source](https://www.mathsisfun.com/data/standard-deviation.html) In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 

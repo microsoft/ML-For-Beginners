@@ -27,13 +27,13 @@ Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification)
 
 The question we want to ask of this cuisine dataset is actually a **multiclass question**, as we have several potential national cuisines to work with. Given a batch of ingredients, which of these many classes will the data fit?
 
-Scikit-Learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
+Scikit-learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
 
 ## Clean and Balance Your Data
 
 The first task at hand before starting this project is to clean and **balance** your data to get better results. Start with the blank `notebook.ipynb` file ini the root of this folder.
 
-The first think to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-Learn package that will allow you to better balance the data (you will learn more about this task in a minute).
+The first think to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-learn package that will allow you to better balance the data (you will learn more about this task in a minute).
 
 ```python
 pip install imblearn

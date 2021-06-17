@@ -75,7 +75,7 @@ Now you are ready to train your model!
 
 Now that your data is clean and ready for training, you have to decide which algorithm to use for the job. 
 
-Scikit-Learn groups Classification under Supervised Learning, and in that category you will find many ways to classify. [The variety](https://scikit-learn.org/stable/supervised_learning.html) is quite bewildering at first sight. The following methods all include classification techniques:
+Scikit-learn groups Classification under Supervised Learning, and in that category you will find many ways to classify. [The variety](https://scikit-learn.org/stable/supervised_learning.html) is quite bewildering at first sight. The following methods all include classification techniques:
 
 - Linear Models
 - Support Vector Machines
@@ -88,10 +88,10 @@ Scikit-Learn groups Classification under Supervised Learning, and in that catego
 
 You can also use [neural networks to classify](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), but that is outside the scope of this lesson.
 
-So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-Learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized: 
+So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized: 
 
 ![comparison of classifiers](images/comparison.png)
-> Plots generated on Scikit-Learn's documentation
+> Plots generated on Scikit-learn's documentation
 
 > AutoML solves this problem neatly by running these comparisons in the cloud, allowing you to choose the best algorithm for your data. Try it [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)
 
@@ -116,7 +116,7 @@ Let's train that model. Split your data into training and testing groups:
 X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
 ```
 
-There are many ways to use the LogisticRegression library in Scikit-Learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
+There are many ways to use the LogisticRegression library in Scikit-learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
 According to the docs, "In the multiclass case, the training algorithm uses the one-vs-rest (OvR) scheme if the ‘multi_class’ option is set to ‘ovr’, and uses the cross-entropy loss if the ‘multi_class’ option is set to ‘multinomial’. (Currently the ‘multinomial’ option is supported only by the ‘lbfgs’, ‘sag’, ‘saga’ and ‘newton-cg’ solvers.)"
 
@@ -128,7 +128,7 @@ Use LogisticRegression with a multiclass setting and the liblinear solver to tra
 
 > 🎓 The 'solver' is defined as "the algorithm to use in the optimization problem". [source](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression). 
 
-Scikit-Learn offers this table to explain how solvers handle different challenges presented by different kinds of data structures:
+Scikit-learn offers this table to explain how solvers handle different challenges presented by different kinds of data structures:
 
 ![solvers](images/solvers.png)
 
@@ -203,7 +203,7 @@ print(classification_report(y_test,y_pred))
 
 ## 🚀Challenge
 
-In this lesson, you used your cleaned data to build a machine learning model that can predict a national cuisine based on a series of ingredients. Take some time to read through the many options Scikit-Learn provides to classify data. Dig deeper into the concept of 'solver' to understand what goes on behind the scenes.
+In this lesson, you used your cleaned data to build a machine learning model that can predict a national cuisine based on a series of ingredients. Take some time to read through the many options Scikit-learn provides to classify data. Dig deeper into the concept of 'solver' to understand what goes on behind the scenes.
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
 ## Review & Self Study

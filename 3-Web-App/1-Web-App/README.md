@@ -52,7 +52,7 @@ ufos = ufos[(ufos['Seconds'] >= 1) & (ufos['Seconds'] <= 60)]
 ufos.info()
 ```
 
-Next, import Scikit-Learn's LabelEncoder library to convert the text values for countries to a number. 
+Next, import Scikit-learn's LabelEncoder library to convert the text values for countries to a number. 
 
 ✅ LabelEncoder encodes data alphabetically
 

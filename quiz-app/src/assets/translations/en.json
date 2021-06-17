@@ -574,7 +574,7 @@
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "Scikit-Learn",
+								"answerText": "Scikit-learn",
 								"isCorrect": "false"
 							},
 							{
@@ -1000,7 +1000,7 @@
 						]
 					},
 					{
-						"questionText": "What does Scikit-Learn's LabelEncoder library do?",
+						"questionText": "What does Scikit-learn's LabelEncoder library do?",
 						"answerOptions": [
 							{
 								"answerText": "Encodes data alphabetically",
