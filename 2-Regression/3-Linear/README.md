@@ -1,6 +1,6 @@
-# Build a Regression Model using Scikit-learn: Regression Two Ways
+# Build a regression model using Scikit-learn: regression two ways
 
-![Linear vs Polynomial Regression Infographic](./images/linear-polynomial.png)
+![Linear vs polynomial regression infographic](./images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
 ### Introduction 
@@ -10,7 +10,7 @@ So far you have explored what regression is with sample data gathered from the p
 > Throughout this curriculum, we assume minimal knowledge of math, and seek to make it accessible for students coming from other fields, so watch for notes, callouts, diagrams, and other learning tools to aid in comprehension.
 ### Prerequisite
 
-You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's notebook.ipynb files, with the pumpkin price displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in VS Code.
+You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file, with the pumpkin price displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in VS Code.
 ### Preparation
 
 As a reminder, you are loading this data so as to ask questions of it. When is the best time to buy pumpkins? What price can I expect of a case of miniature pumpkins? Should I buy them in half-bushel baskets or by the 1 1/9 bushel box? Let's keep digging into this data.
@@ -18,7 +18,7 @@ As a reminder, you are loading this data so as to ask questions of it. When is t
 In the previous lesson, you created a Pandas dataframe and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were only able to gather about 400 datapoints and only for the fall months. 
 
 Take a look at the data that we preloaded in this lesson's accompanying notebook. The data is preloaded and an initial scatterplot is charted to show month data. Maybe we can get a little more detail about the nature of the data by cleaning it more.
-## A Linear Regression Line
+## A linear regression line
 
 As you learned in Lesson 1, the goal of a linear regression exercise is to be able to plot a line to show the relationship between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. 
 
@@ -91,6 +91,21 @@ lin_pumpkins = new_pumpkins.drop([c for c in new_pumpkins.columns if c not in ne
 lin_pumpkins
 
 ```
+```
+	Package	Price
+70	0	13.636364
+71	0	16.363636
+72	0	16.363636
+73	0	15.454545
+74	0	13.636364
+...	...	...
+1738	2	30.000000
+1739	2	28.750000
+1740	2	25.750000
+1741	2	24.000000
+1742	2	24.000000
+415 rows × 2 columns
+```
 
 Now you can assign your X and y coordinate data:
 
@@ -152,13 +167,13 @@ array([[33.15655975]])
 That number makes sense, if the logic of the regression line holds true.
 
 Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. Your holiday pumpkin patch will be beautiful. But you can probably create a better model!
-## Polynomial Regression
+## Polynomial regression
 
-Another type of Linear Regression is Polynomial Regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
+Another type of linear regression is polynomial regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
 
-✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use Polynomial Regression
+✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use polynomial regression
 
-Take another look at the relationship between Variety to Price in the previous plot. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try Polynomial Regression.
+Take another look at the relationship between Variety to Price in the previous plot. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try polynomial regression.
 
 ✅ Polynomials are mathematical expressions that might consist of one or more variables and coefficients
 
@@ -189,7 +204,7 @@ X=poly_pumpkins.iloc[:,3:4].values
 y=poly_pumpkins.iloc[:,4:5].values
 ```
 
-Scikit-learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes Polynomial Features, or predictions that form a nonlinear path.
+Scikit-learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes polynomial features, or predictions that form a nonlinear path.
 
 ```python
 from sklearn.preprocessing import PolynomialFeatures
@@ -242,7 +257,7 @@ array([[46.34509342]])
 ```
 It does make sense! And, if this is a better model than the previous one, looking at the same data, you need to budget for these more expensive pumpkins!
 
-🏆 Well done! You created two Regression models in one lesson. In the final section on Regression, you will learn about Logistic Regression to determine categories. 
+🏆 Well done! You created two regression models in one lesson. In the final section on regression, you will learn about logistic regression to determine categories. 
 
 ---
 ## 🚀Challenge
