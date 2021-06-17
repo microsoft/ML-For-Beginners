@@ -7,9 +7,7 @@
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 ## Introduction
 
-The lessons in this section cover types of Regression in the context of machine learning. Regression models can help determine the relationship between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes data points.
 
-In this series of lessons, you'll discover the difference between Linear vs. Logistic Regression, and when you should use one or the other.
 
 But before you do anything, make sure you have the right tools in place!
 
@@ -77,31 +75,7 @@ Now that Python is set up in your local environment, and you are comfortable wit
 
 According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
 
-### Let's unpack some of this jargon:
 
-- 🎓 A machine learning **model** is a mathematical model that generates predictions given data to which it has not been exposed. It builds these predictions based on its analysis of data and extrapolating patterns.
-
-- 🎓 **[Supervised Learning](https://wikipedia.org/wiki/Supervised_learning)** works by mapping an input to an output based on example pairs. It uses **labeled** training data to build a function to make predictions. [Download a printable Zine about Supervised Learning](https://zines.jenlooper.com/zines/supervisedlearning.html). Regression, which is covered in this group of lessons, is a type of supervised learning.
-
-- 🎓 **[Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning)** works similarly but it maps pairs using **unlabeled data**. [Download a printable Zine about Unsupervised Learning](https://zines.jenlooper.com/zines/unsupervisedlearning.html)
-
-- 🎓 **[Model Fitting](https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py)** in the context of machine learning, refers to the accuracy of the model's underlying function as it attempts to analyze data with which it is not familiar. 
-
-   **Underfitting** and **overfitting** are common problems that degrade the quality of the model as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
-
-![overfitting vs. correct model](images/overfitting.png)
-
-> Infographic by [Jen Looper](https://twitter.com/jenlooper)
-
-- 🎓 **Data Preprocessing** is the process whereby data scientists clean and convert data for use in the machine learning lifecycle. 
-
-- 🎓 **Model Selection and Evaluation** is the process whereby data scientists evaluate the performance of a model or any other relevant metric of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
-
-- 🎓 **Feature Variable** A [feature](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) is a measurable property of your data. In many datasets it is expressed as a column heading like 'date' 'size' or 'color'.
-
-- 🎓 **[Training and Testing](https://wikipedia.org/wiki/Training,_validation,_and_test_sets) datasets** Throughout this curriculum, you will divide up a dataset into at least two parts, one large group of data for 'training' and a smaller part for 'testing'. Sometimes you'll also find a 'validation' set. A training set is the group of examples you use to train a model. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. A test dataset is another independent group of data, often gathered from the original data, that you use to confirm the performance of the built model. 
-
-> 🎓 **Feature Selection and Feature Extraction** How do you know which variable to choose when building a model? You'll probably go through a process of feature selection or feature extraction to choose the right variables for the most performant model. They're not the same thing, however: "Feature extraction creates new features from functions of the original features, whereas feature selection returns a subset of the features." [source](https://wikipedia.org/wiki/Feature_selection)
 
 In this course, you will use Scikit-Learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
 
