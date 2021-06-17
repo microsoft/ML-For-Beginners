@@ -4,7 +4,7 @@
 
 > 🎥 Click the image above for a video: Andrew Ng explains Clustering
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/27/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/29/)
 
 In this lesson, you will learn how to create clusters using Scikit-Learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common Clustering technique. Let's get started!
 
@@ -212,13 +212,12 @@ Spend some time with this notebook, tweaking parameters. Can you improve the acc
 
 Hint: Try to scale your data. There's commented code in the notebook that adds Standard Scaling to make the data columns resemble each other more closely in terms of range. You'll find that while the silhouette score goes down, the 'kink' in the elbow graph smooths out. This is because leaving the data unscaled allows data with less variance to carry more weight. Read a bit more on this problem [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/28/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/30/)
 ## Review & Self Study
 
 Take a look at Stanford's K-Means Simulator [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). You can use this tool to visualize sample data points and determine its centroids. With fresh data, click 'update' to see how long it takes to find convergence. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
 
-Also, take a look at [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html
-) from Stanford
+Also, take a look at [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford
 
 ## Assignment 
 
