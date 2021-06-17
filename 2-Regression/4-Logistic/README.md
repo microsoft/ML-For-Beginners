@@ -1,6 +1,6 @@
-# Logistic Regression to Predict Categories
+# Logistic regression to predict categories
 
-![Logistic vs. Linear Regression Infographic](./images/logistic-linear.png)
+![Logistic vs. linear regression infographic](./images/logistic-linear.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
 
@@ -10,48 +10,47 @@ In this final lesson on Regression, one of the basic 'classic' ML techniques, we
 
 In this lesson, you will learn:
 - A new library for data visualization
-- Techniques for Logistic Regression
+- Techniques for logistic regression
 
-Deepen your understanding of working with this type of Regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+Deepen your understanding of working with this type of regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
 ## Prerequisite
 
-Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one binary category that we can work with: Color. Let's build a Logistic Regression model to predict that, given some variables, what color a given pumpkin will be (orange 🎃 or white 👻). 
+Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one binary category that we can work with: Color. Let's build a logistic regression model to predict that, given some variables, what color a given pumpkin is likely to be (orange 🎃 or white 👻). 
 
-> Why are we talking about binary classification in a lesson grouping about regression? Only for convenience, as Logistic Regression is [really a Classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), albeit a linear-based one. Learn other ways to classify data in the next lesson group.
+> Why are we talking about binary classification in a lesson grouping about regression? Only for linguistic convenience, as logistic regression is [really a classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), albeit a linear-based one. Learn about other ways to classify data in the next lesson group.
 
 For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
 
 > 🎃 Fun fact, we sometimes call white pumpkins 'ghost' pumpkins. They aren't very easy to carve, so they aren't as popular as the orange ones but they are cool looking!
-## About Logistic Regression
+## About logistic regression
 
-Logistic Regression differs from Linear Regression, which you learned about previously, in a few important ways.
-### Binary Classification
+Logistic regression differs from linear regression, which you learned about previously, in a few important ways.
+### Binary classification
 
-Logistic Regression does not offer the same features as Linear Regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, how much its price will rise.
+Logistic regression does not offer the same features as linear regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, how much its price will rise.
 
-![Pumpkin Classification Model](./images/pumpkin-classifier.png)
+![Pumpkin classification Model](./images/pumpkin-classifier.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-### Other Classifications
+### Other classifications
 
-There are other types of Logistic Regression, including Multinomial and Ordinal. Multinomial involves having more than one categories - "Orange, White, and Striped". Ordinal involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
+There are other types of logistic regression, including multinomial and ordinal. Multinomial involves having more than one categories - "Orange, White, and Striped". Ordinal involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
-![Multinomial vs Ordinal Regression](./images/multinomial-ordinal.png)
+![Multinomial vs ordinal regression](./images/multinomial-ordinal.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-### It's Still Linear
+### It's still linear
 
 Even though this type of Regression is all about category predictions, it still works best when there is a clear linear relationship between the dependent variable (color) and the other independent variables (the rest of the dataset, like city name and size). It's good to get an idea of whether there is any linearity dividing these variables or not.
 
 ### Variables DO NOT have to correlate
 
-Remember how Linear Regression worked better with more correlated variables? Logistic Regression is the opposite - the variables don't have to align. That works for this data which has somewhat weak correlations.
-### You Need a Lot of Clean Data
+Remember how linear regression worked better with more correlated variables? Logistic regression is the opposite - the variables don't have to align. That works for this data which has somewhat weak correlations.
+### You need a lot of clean data
 
-Logistic Regression will give more accurate results if you use more data; our small dataset is not optimal for this task, so keep that in mind.
+Logistic regression will give more accurate results if you use more data; our small dataset is not optimal for this task, so keep that in mind.
 
-✅ Think about the types of data that would lend themselves well to Logistic Regression
-
-## Tidy the Data
+✅ Think about the types of data that would lend themselves well to logistic regression
+## Tidy the data
 
 First, clean the data a bit, dropping null values and selecting only some of the columns:
 
@@ -107,11 +106,11 @@ sns.catplot(x="Color", y="Item Size",
 
 ✅ Try creating this plot, and other Seaborn plots, using other variables.
 
-Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore Logistic Regression to determine a given pumpkin's likely color.
+Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore logistic regression to determine a given pumpkin's likely color.
 
 > **🧮 Show Me The Math**
 >
-> Remember how Linear Regression often used ordinary least squares to arrive at a value? Logistic Regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like thus:
+> Remember how linear regression often used ordinary least squares to arrive at a value? Logistic regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like thus:
 >
 > ![logistic function](images/sigmoid.png)
 >
@@ -221,7 +220,7 @@ Let's revisit the terms we saw earlier with the help of the confusion matrix's m
 🎓 Weighted Avg: The calculation of the mean metrics for each label, taking label imbalance into account by weighting them by their support (the number of true instances for each label).
 
 ✅ Can you think which metric you should watch if you want your model to reduce the number of false negatives?
-## Visualize the ROC Curve of this Model
+## Visualize the ROC curve of this model
 
 This is not a bad model; its accuracy is in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables.
 
@@ -253,13 +252,13 @@ In future lessons on classifications, you will learn how to iterate to improve y
 ---
 ## 🚀Challenge
 
-There's a lot more to unpack regarding Logistic Regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://kaggle.com) for interesting datasets.
+There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://kaggle.com) for interesting datasets.
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
 
 ## Review & Self Study
 
-Read the first few pages of [this paper from Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) on some practical uses for Logistic Regression. Think about tasks that are better suited for one or the other type of Regression tasks that we have studied up to this point. What would work best?
+Read the first few pages of [this paper from Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) on some practical uses for logistic regression. Think about tasks that are better suited for one or the other type of regression tasks that we have studied up to this point. What would work best?
 
 ## Assignment 
 
-[Retrying this Regression](assignment.md)
+[Retrying this regression](assignment.md)
