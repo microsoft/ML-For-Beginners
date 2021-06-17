@@ -1,16 +1,16 @@
-# Cuisine Classifiers 2
+# Cuisine classifiers 2
 
-In this second Classification lesson, you will explore more ways to classify numeric data, and the ramifications for choosing one over the other.
+In this second classification lesson, you will explore more ways to classify numeric data. You will also learn about the ramifications for choosing one over the other.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/23/)
 
 ### Prerequisite
 
-We assume that you have completed the previous lessons and have a cleaned dataset in your `data` folder called `cleaned_cuisine.csv` in the root of this 4-lesson folder. 
+We assume that you have completed the previous lessons and have a cleaned dataset in your `data` folder called _cleaned_cuisine.csv_ in the root of this 4-lesson folder. 
 ### Preparation
 
-We have loaded your `notebook.ipynb` file with the cleaned dataset and have divided it into X and y dataframes, ready for the model building process.
+We have loaded your _notebook.ipynb_ file with the cleaned dataset and have divided it into X and y dataframes, ready for the model building process.
 
-## A Classification Map
+## A classification map
 
 Previously, you learned about the various options you have when classifying data using Microsoft's cheat sheet. Scikit-learn offers a similar, but more granular cheat sheet that can further help narrow down your estimators (another term for classifiers):
 
@@ -28,7 +28,7 @@ This map is very helpful once you have a clear grasp of your data, as you can 'w
     - We can try a ✨ KNeighbors Classifier 
       - If that doesn't work, try ✨ SVC and ✨ Ensemble Classifiers
 
-This is a terrific trail to try. Following this path, we should start by importing some libraries to use:
+This is a very helpful trail to follow. Following this path, we should start by importing some libraries to use:
 
 ```python
 from sklearn.neighbors import KNeighborsClassifier
@@ -44,7 +44,7 @@ Split your training and test data:
 ```python
 X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
 ```
-## Linear SVC Classifier
+## Linear SVC classifier
 
 Start by creating an array of classifiers. You will add progressively to this array as we test. Start with a Linear SVC:
 
@@ -85,12 +85,12 @@ Accuracy (train) for Linear SVC: 78.6%
 weighted avg       0.79      0.79      0.79      1199
 ```
 
-✅ Learn about Linear SVC
+✅ Learn about linear SVC
 
-Support-Vector Clustering (SVC) is a child of the Support-Vector machines family of ML techniques (learn more about these below). In this method, you can choose a 'kernel' to decide how to cluster the labels. The 'C' parameter refers to 'regularization' which regulates the influence of parameters. The kernel can be one of [several](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); here we set it to 'linear' to ensure that we leverage Linear SVC. Probability defaults to 'false'; here we set it to 'true' to gather probability estimates. We set the random state to '0' to shuffle the data to get probabilities.
-## K-Neighbors Classifier
+Support-Vector clustering (SVC) is a child of the Support-Vector machines family of ML techniques (learn more about these below). In this method, you can choose a 'kernel' to decide how to cluster the labels. The 'C' parameter refers to 'regularization' which regulates the influence of parameters. The kernel can be one of [several](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); here we set it to 'linear' to ensure that we leverage linear SVC. Probability defaults to 'false'; here we set it to 'true' to gather probability estimates. We set the random state to '0' to shuffle the data to get probabilities.
+## K-Neighbors classifier
 
-The previous classifier was good, and worked well with the data, but maybe we can get better accuracy. Try a K-Neighbors Classifer. Add a line to your classifier array (add a comma after the Linear SVC item):
+The previous classifier was good, and worked well with the data, but maybe we can get better accuracy. Try a K-Neighbors classifer. Add a line to your classifier array (add a comma after the Linear SVC item):
 
 ```python
 'KNN classifier': KNeighborsClassifier(C),
@@ -140,7 +140,7 @@ weighted avg       0.84      0.83      0.83      1199
 
 ✅ Learn about [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm)
 
-Support-Vector Classifiers are part of the [Support-Vector Machine](https://en.wikipedia.org/wiki/Support-vector_machine) family of ML methods that are used for classification and regression tasks. SVMs "map training examples to points in space" to maximize the distance between two categories. Subsequent data is mapped into this space so their category can be predicted.
+Support-Vector classifiers are part of the [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) family of ML methods that are used for classification and regression tasks. SVMs "map training examples to points in space" to maximize the distance between two categories. Subsequent data is mapped into this space so their category can be predicted.
 ## Ensemble Classifiers
 
 Let's follow the path to the very end, even though the previous test was quite good. Let's try some 'Ensemble Classifiers, specifically Random Forest and AdaBoost:
@@ -185,6 +185,8 @@ This method of Machine Learning "combines the predictions of several base estima
 - [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), an averaging method, builds a 'forest' of 'decision trees' infused with randomness to avoid overfitting. The n_estimators parameter is set to the number of trees.
 
 - [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) fits a classifier to a dataset and then fits copies of that classifier to the same dataset. It focuses on the weights of incorrectly classified items and adjusts the fit for the next classifier to correct.
+
+---
 ## 🚀Challenge
 
 Each of these techniques has a large number of parameters that you can tweak. Research each one's default parameters and think about what tweaking these parameters would mean for the model's quality.
@@ -192,7 +194,7 @@ Each of these techniques has a large number of parameters that you can tweak. Re
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/24/)
 ## Review & Self Study
 
-There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/en-us/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) of useful terminology!
+There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) of useful terminology!
 ## Assignment 
 
-[Parameter Play](assignment.md)
+[Parameter play](assignment.md)
