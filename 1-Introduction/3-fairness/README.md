@@ -171,6 +171,8 @@ The tool helps you to assesses how a model's predictions affect different groups
 - Learn [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
   
 - Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
+
+---
 ## 🚀 Challenge 
  
 To prevent biases from being introduced in the first place, we should: 
