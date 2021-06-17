@@ -1,4 +1,4 @@
-# Get started with Python and Scikit-Learn for Regression models
+# Get started with Python and Scikit-learn for regression models
 
 ![Summary of regressions in a sketchnote](../../sketchnotes/ml-regression.png)
 
@@ -7,17 +7,16 @@
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 ## Introduction
 
-
-In these four lessons, you will discover how to build Regression models. We will discuss what these are for shortly. But before you do anything, make sure you have the right tools in place to start the process!
+In these four lessons, you will discover how to build regression models. We will discuss what these are for shortly. But before you do anything, make sure you have the right tools in place to start the process!
 
 In this lesson, you will learn how to:
 
 - Configure your computer for local machine learning tasks.
 - Work with Jupyter notebooks.
-- Use Scikit-Learn, including installation.
-- Explore Linear Regression with a hands-on exercise.
+- Use Scikit-learn, including installation.
+- Explore linear regression with a hands-on exercise.
 
-## Installations and Configurations
+## Installations and configurations
 
 [![Using Python with Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Using Python with Visual Studio Code")
 
@@ -31,17 +30,17 @@ In this lesson, you will learn how to:
 
    > Get comfortable with Python by working through this collection of [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
 
-3. **Install Scikit-Learn**, by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
+3. **Install Scikit-learn**, by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
 
 1. **Install Jupyter Notebook**. You will need to [install the Jupyter package](https://pypi.org/project/jupyter/). 
 
-## Your ML Authoring Environment
+## Your ML authoring environment
 
 You are going to use **notebooks** to develop your Python code and create machine learning models. This type of file is a common tool for data scientists, and they can be identified by their suffix or extension `.ipynb`.
 
 Notebooks are an interactive environment that allow the developer to both code and add notes and write documentation around the code which is quite helpful for experimental or research-oriented projects.
 
-### Exercise - work with A Notebook
+### Exercise - work with a notebook
 
 In this folder, you will find the file _notebook.ipynb_. 
 
@@ -68,27 +67,25 @@ You can interleaf your code with comments to self-document the notebook.
 
 ✅ Think for a minute how different a web developer's working environment is versus that of a data scientist.
 
-## up and Running with Scikit-Learn
+## Up and running with Scikit-learn
 
-Now that Python is set up in your local environment, and you are comfortable with Jupyter notebooks, let's get equally comfortable with Scikit-Learn (pronounce it `sci` as in `science`). Scikit-Learn provides an [extensive API](https://scikit-learn.org/stable/modules/classes.html#api-ref) to help you perform ML tasks.
+Now that Python is set up in your local environment, and you are comfortable with Jupyter notebooks, let's get equally comfortable with Scikit-learn (pronounce it `sci` as in `science`). Scikit-learn provides an [extensive API](https://scikit-learn.org/stable/modules/classes.html#api-ref) to help you perform ML tasks.
 
 According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
 
+In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
 
+Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-learn with some basic data.
 
-In this course, you will use Scikit-Learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
+## Exercise - your first Scikit-learn notebook
 
-Scikit-Learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-Learn with some basic data.
-
-## Exercise - your First Scikit-Learn Notebook
-
-> This tutorial was inspired by the [Linear Regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Scikit-Learn's web site.
+> This tutorial was inspired by the [linear regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Scikit-learn's web site.
 
 In the _notebook.ipynb_ file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-Learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic Regression model, when visualized, might show information about variables that would help you organize your theoretical clinical trials.
+In this section, you will work with a small dataset about diabetes that is built into Scikit-learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic regression model, when visualized, might show information about variables that would help you organize your theoretical clinical trials.
 
-✅ There are many types of Regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use Linear Regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of cuisine should be considered vegan or not, you're looking for a **category assignment** so you would use Logistic Regression. You'll learn more about Logistic Regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
+✅ There are many types of regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use linear regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of cuisine should be considered vegan or not, you're looking for a **category assignment** so you would use logistic regression. You'll learn more about logistic regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
 
 Let's get started on this task.
 
@@ -98,7 +95,7 @@ For this task we will import some libraries:
 
 - **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the Scikit-Learn library.
+- **sklearn**. This is the Scikit-learn library.
 
 Import some libraries to help with your tasks.
 
@@ -112,9 +109,9 @@ Import some libraries to help with your tasks.
 
    Above you are importing `matplottlib`, `numpy` and you are importing `datasets`, `linear_model` and `model_selection` from `sklearn`. `model_selection` is used for splitting data into training and test sets.
 
-### The diabetes housing dataset
+### The diabetes dataset
 
-The built-in [diabetes housing dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
+The built-in [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
 
 age: age in years
 bmi: body mass index
@@ -149,7 +146,7 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
 
     ✅ Think a bit about the relationship between the data and the regression target. Linear regression predicts relationships between feature X and target variable y. Can you find the [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for the diabetes dataset in the documentation? What is this dataset demonstrating, given that target?
 
-1. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's `newaxis` function. We are going to use Linear Regression to generate a line between values in this data, according to a pattern it determines.
+2. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's `newaxis` function. We are going to use linear regression to generate a line between values in this data, according to a pattern it determines.
 
    ```python
    X = X[:, np.newaxis, 2]
@@ -157,13 +154,13 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
 
    ✅ At any time, print out the data to check its shape.
 
-1. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the target (y) into test and training sets. Scikit-Learn has a straightforward way to do this; you can split your test data at a given point.
+3. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the target (y) into test and training sets. Scikit-learn has a straightforward way to do this; you can split your test data at a given point.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-1. Now you are ready to train your model! Load up the Linear Regression model and train it with your X and y training sets using `model.fit()`:
+4. Now you are ready to train your model! Load up the linear regression model and train it with your X and y training sets using `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
@@ -172,13 +169,13 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
 
     ✅ `model.fit()` is a function you'll see in many ML libraries such as TensorFlow
 
-1. Then, create a prediction using test data, using the function `predict()`. This will be used to draw the line between data groups
+5. Then, create a prediction using test data, using the function `predict()`. This will be used to draw the line between data groups
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-8. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
+6. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -190,7 +187,7 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
 
    ✅ Think a bit about what's going on here. A straight line is running through many small dots of data, but what is it doing exactly? Can you see how you should be able to use this line to predict where a new, unseen data point should fit in relationship to the plot's y axis? Try to put into words the practical use of this model.
 
-Congratulations, you built your first Linear Regression model, created a prediction with it, and displayed it in a plot!
+Congratulations, you built your first linear regression model, created a prediction with it, and displayed it in a plot!
 
 ---
 ## 🚀Challenge
@@ -202,7 +199,7 @@ Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.
 
 In this tutorial, you worked with simple linear regression, rather than univariate or multiple linear regression. Read a little about the differences between these methods, or take a look at [this video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Read more about the concept of Regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
+Read more about the concept of regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
 
 ## Assignment 
 
