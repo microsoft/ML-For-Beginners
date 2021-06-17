@@ -1,8 +1,7 @@
-# Translation and Sentiment Analysis with ML
+# Translation and sentiment analysis with ML
 
 In the previous lessons you learned how to build a basic bot using TextBlob, a library that embeds ML behind-the-scenes to perform basic NLP tasks such as noun phrase extraction. Another important challenge in computational linguistics is accurate *translation* of a sentence from one spoken or written language to another.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/35/)
-
 
 This is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This means that you would take the following steps:
 
@@ -25,7 +24,7 @@ Naive translation leads to bad (and sometimes hilarious) mistranslations: `I fee
 
 So far, you've learned about the formal rules approach to natural language processing. Another approach is to ignore the meaning of the words, and _instead use machine learning to detect patterns_. This can work in translation if you have lots of text (a *corpus*) or texts (*corpora*) in both the origin and target languages. For instance, consider the case of *Pride and Prejudice*, a well-known English novel written by Jane Austen in 1813. If you consult the  book in English and a human translation of the book in *French*, you could detect phrases in one that are idiomatically translated into the other. You'll do that in a minute.
 
-For instance, when an English phrase such as `John looked at the cake with a wolfish grin` is translated literally, to, say French, it might become `John regarda le gâteau avec un sourire de loup`. A reader of both languages would understand that the direct translation of `wolfish grin` is not the French translation `wolf smile` but a synonym - in this case for being very hungry or voracious. A better translation that a human might make would be `John regarda le gâteau avec voracité`, because it better conveys the meaning. If a ML model has enough human translations to build a model on, it can improve the accuracy of translations by identifying common patterns in texts that have been previously translated by expert human speakers of both languages. 
+For instance, when an English phrase such as `I have no money` is translated literally to French, it might become `Je n'ai pas de monnaie`. "Monnaie" is a tricky french 'false cognate', as 'money' and 'monnaie' are not synonymous. A better translation that a human might make would be `Je n'ai pas d'argent`, because it better conveys the meaning that you have no money (rather than 'loose change' which is the meaning of 'monnaie'). If a ML model has enough human translations to build a model on, it can improve the accuracy of translations by identifying common patterns in texts that have been previously translated by expert human speakers of both languages. 
 
 ### Task: Translation
 
@@ -58,8 +57,7 @@ Another area where machine learning can work very well is sentiment analysis. A 
 
 This approach is easily tricked as you may have seen in the Marvin task - the sentence `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` is a sarcastic, negative sentiment sentence, but the simple algorithm detects 'great', 'wonderful', 'glad' as positive and 'waste', 'lost' and 'dark' as negative. The overall sentiment is swayed by these conflicting words.
 
-✅ Stop a second and think about how we convey sarcasm as human speakers. Tone inflection plays a large role. Try to say the phrase "Well, that film was awesome" to discover how your voice conveys meaning.
-
+✅ Stop a second and think about how we convey sarcasm as human speakers. Tone inflection plays a large role. Try to say the phrase "Well, that film was awesome" in different ways to discover how your voice conveys meaning.
 ### Machine learning approaches
 
 The ML approach would be to hand gather negative and positive bodies of text - tweets, or movie reviews, or anything where the human has given a score *and* a written opinion. Then NLP techniques can be applied to opinions and scores, so that patterns emerge (e.g., positive movie reviews tend to have the phrase 'Oscar worthy' more than negative movie reviews, or positive restaurant reviews say 'gourmet' much more than 'disgusting').
@@ -70,7 +68,7 @@ The ML approach would be to hand gather negative and positive bodies of text - t
 
 ✅ Does this process sound like processes you have used in previous lessons?
 
-### Task: Sentimental Sentences
+### Exercise: sentimental sentences
 
 Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most negative sentiment, and 1 is the most positive. Sentiment is also measured with an 0 - 1 score for objectivity (0) and subjectivity (1).
 
@@ -132,8 +130,9 @@ Here is a sample [solution](solutions/book.py).
       - The pause was to Elizabeth’s feelings dreadful.
       - It would be dreadful!
 
-✅ Any aficionado of Jane Austen will understand that she often uses her books to critique the more ridiculous aspects of English Regency society. Elizabeth Bennett, the main character in Pride and Prejudice, is a keen social observer (like the author) and her language is often heavily nuanced. Even Mr. Darcy (the love interest in the story) notes Elizabeth's playful and teasing use of language: "I have had the pleasure of your acquaintance long enough to know that you find great enjoyment in occasionally professing opinions which in fact are not your own."
+✅ Any aficionado of Jane Austen will understand that she often uses her books to critique the more ridiculous aspects of English Regency society. Elizabeth Bennett, the main character in *Pride and Prejudice*, is a keen social observer (like the author) and her language is often heavily nuanced. Even Mr. Darcy (the love interest in the story) notes Elizabeth's playful and teasing use of language: "I have had the pleasure of your acquaintance long enough to know that you find great enjoyment in occasionally professing opinions which in fact are not your own."
 
+---
 ## 🚀Challenge
 
 Can you make Marvin even better by extracting other features from the user input?
@@ -146,4 +145,4 @@ There are many ways to extract sentiment from text. Think of the business applic
 
 ## Assignment 
 
-[Poetic License](assignment.md)
+[Poetic license](assignment.md)
