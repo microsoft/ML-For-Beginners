@@ -85,12 +85,12 @@ Accuracy (train) for Linear SVC: 78.6%
 weighted avg       0.79      0.79      0.79      1199
 ```
 
-✅ Learn about linear SVC
+✅ Learn about Linear SVC
 
 Support-Vector clustering (SVC) is a child of the Support-Vector machines family of ML techniques (learn more about these below). In this method, you can choose a 'kernel' to decide how to cluster the labels. The 'C' parameter refers to 'regularization' which regulates the influence of parameters. The kernel can be one of [several](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); here we set it to 'linear' to ensure that we leverage linear SVC. Probability defaults to 'false'; here we set it to 'true' to gather probability estimates. We set the random state to '0' to shuffle the data to get probabilities.
 ## K-Neighbors classifier
 
-The previous classifier was good, and worked well with the data, but maybe we can get better accuracy. Try a K-Neighbors classifer. Add a line to your classifier array (add a comma after the Linear SVC item):
+The previous classifier was good, and worked well with the data, but maybe we can get better accuracy. Try a K-Neighbors classifier. Add a line to your classifier array (add a comma after the Linear SVC item):
 
 ```python
 'KNN classifier': KNeighborsClassifier(C),

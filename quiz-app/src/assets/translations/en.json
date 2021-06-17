@@ -1251,49 +1251,53 @@
 				"title": "Classification 3: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "A good initial classifier to try is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Linear SVC",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "K-Means",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Logical SVC",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Regularization controls:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "the influence of parameters",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "the influence of training speed",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "the influence of outliers",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "K-Neighbors classifier can be used for:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "supervised learning",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "unsupervised learning",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -1304,48 +1308,52 @@
 				"title": "Classification 3: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Support-Vector classifiers can be used for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "classification",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "regression",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Random Forest is a ___ type of classifier",
+						"answerOptions": [
+							{
+								"answerText": "Ensemble",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Dissemble",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Assemble",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Adaboost is known for:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "focusing on the weights of incorrectly classified items",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "focusing on outliers",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "focusing on incorrect data",
 								"isCorrect": "false"
 							}
 						]
