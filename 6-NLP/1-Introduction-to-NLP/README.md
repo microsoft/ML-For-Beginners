@@ -43,7 +43,7 @@ In this section, you will need:
 
 ## Conversing with Eliza
 
-The history of trying to make computers understand human language goes back decades, and one of the earliest scientists to consider natural language processing was *Alan Turing*. When Turing was researching *Artificial Intelligence* in the 1950's, he considered if a conversational test could be given to a human and computer (via typed correspondence) where the human in the conversation was not sure if they were conversing with another human or a computer. If, after a certain length of conversation, the human could not determine that the answers were from a computer or not, then could the computer be said to be *thinking*?
+The history of trying to make computers understand human language goes back decades, and one of the earliest scientists to consider natural language processing was *Alan Turing*. When Turing was researching *artificial intelligence* in the 1950's, he considered if a conversational test could be given to a human and computer (via typed correspondence) where the human in the conversation was not sure if they were conversing with another human or a computer. If, after a certain length of conversation, the human could not determine that the answers were from a computer or not, then could the computer be said to be *thinking*?
 
 [![Chatting with Eliza](https://img.youtube.com/vi/QD8mQXaUFG4/0.jpg)](https://youtu.be/QD8mQXaUFG4 "Chatting with Eliza")
 
