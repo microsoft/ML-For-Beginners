@@ -1,14 +1,14 @@
-# Introduction to Classification
+# Introduction to classification
 
-In these four lessons, you will discover the 'meat and potatoes' of classic machine learning - Classification. No pun intended - we will walk through using various classification algorithms with a dataset all about the brilliant cuisines of Asia and India. Hope you're hungry!
+In these four lessons, you will discover the 'meat and potatoes' of classic machine learning - classification. No pun intended - we will walk through using various classification algorithms with a dataset all about the brilliant cuisines of Asia and India. Hope you're hungry!
 
-Classification is a form of [supervised learning](https://wikipedia.org/wiki/Supervised_learning) that bears a lot in common with Regression techniques. If machine learning is all about assigning names to things via datasets, then classification generally falls into two groups: binary classification and multiclass classfication.
+Classification is a form of [supervised learning](https://wikipedia.org/wiki/Supervised_learning) that bears a lot in common with regression techniques. If machine learning is all about assigning names to things via datasets, then classification generally falls into two groups: binary classification and multiclass classification.
 
-[![Introduction to Classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to Classification")
+[![Introduction to classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to classification")
 
-> 🎥 Click the image above for a video: MIT's John Guttag introduces Classification
+> 🎥 Click the image above for a video: MIT's John Guttag introduces classification
 
-Remember, Linear Regression helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict what price a pumpkin would be in September vs. December, for example. Logistic Regression helped you discover binary categories: at this price point, is this pumpkin orange or not-orange?
+Remember, linear regression helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict what price a pumpkin would be in September vs. December, for example. Logistic Regression helped you discover binary categories: at this price point, is this pumpkin orange or not-orange?
 
 Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
@@ -19,9 +19,12 @@ Classification is one of the fundamental activities of the machine learning rese
 
 Before starting the process of cleaning our data, visualizing it, and prepping it for our ML tasks, let's learn a bit about the various ways machine learning can be leveraged to classify data.
 
-Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification), classification using classic machine learning uses features, such as 'smoker','weight', and 'age' to determine 'likelihood of developing X disease'. As a supervised learning technique similar to the Regression exercises you performed earlier, your data is labeled and the ML algorithms use those labels to classify and predict classes (or 'features') of a dataset and assign them to a group or outcome.
+Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification), classification using classic machine learning uses features, such as 'smoker','weight', and 'age' to determine 'likelihood of developing X disease'. As a supervised learning technique similar to the regression exercises you performed earlier, your data is labeled and the ML algorithms use those labels to classify and predict classes (or 'features') of a dataset and assign them to a group or outcome.
 
 ✅ Take a moment to imagine a dataset about cuisines. What would a multiclass model be able to answer? What would a binary model be able to answer? What if you wanted to determine whether a given cuisine was likely to use fenugreek? What if you wanted to see if, given a present of a grocery bag full of star anise, artichokes, cauliflower, and horseradish, you could create a typical Indian dish?
+
+[![Crazy mystery baskets](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Crazy mystery baskets")
+> The whole premise of the show 'Chopped' is the 'mystery basket' where chefs have to make some dish out of a random choice of ingredients. Surely a ML model would have helped!
 
 ## Hello 'classifier'
 
@@ -29,11 +32,11 @@ The question we want to ask of this cuisine dataset is actually a **multiclass q
 
 Scikit-learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
 
-## Clean and Balance Your Data
+## Clean and balance your data
 
-The first task at hand before starting this project is to clean and **balance** your data to get better results. Start with the blank `notebook.ipynb` file ini the root of this folder.
+The first task at hand before starting this project is to clean and **balance** your data to get better results. Start with the blank `notebook.ipynb` file in the root of this folder.
 
-The first think to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-learn package that will allow you to better balance the data (you will learn more about this task in a minute).
+The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-learn package that will allow you to better balance the data (you will learn more about this task in a minute).
 
 ```python
 pip install imblearn
@@ -206,6 +209,8 @@ The data is nice and clean, balanced, and very delicious! You can take one more 
 transformed_df.to_csv("../../data/cleaned_cuisine.csv")
 ```
 This fresh CSV can now be found in the root data folder.
+
+---
 ## 🚀Challenge
 
 This curriculum contains several interesting datasets. Dig through the `data` folders and see if any contain datasets that would be appropriate for binary or multi-class classification? What questions would you ask of this dataset?
