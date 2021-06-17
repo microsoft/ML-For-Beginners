@@ -8,14 +8,13 @@
 ## Introduction
 
 
+In these four lessons, you will discover how to build Regression models. We will discuss what these are for shortly. But before you do anything, make sure you have the right tools in place to start the process!
 
-But before you do anything, make sure you have the right tools in place!
-
-In this lesson, you will learn:
+In this lesson, you will learn how to:
 
 - Configure your computer for local machine learning tasks.
-- Getting used to working with Jupyter notebooks.
-- Using Scikit-Learn, including installation.
+- Work with Jupyter notebooks.
+- Use Scikit-Learn, including installation.
 - Explore Linear Regression with a hands-on exercise.
 
 ## Installations and Configurations
@@ -44,7 +43,7 @@ Notebooks are an interactive environment that allow the developer to both code a
 
 ### Exercise - work with A Notebook
 
-In this folder, you will find the file `notebook.ipynb`. 
+In this folder, you will find the file _notebook.ipynb_. 
 
 1. Open _notebook.ipynb_ in Visual Studio Code.
 

@@ -80,5 +80,16 @@ This is the moment where you can use completely new  data to test your model's a
 
 In these lessons, you will discover how to use these steps to prepare, build, test, evaluate, and predict - all the gestures of a data scientist and more, as you progress in your journey to become a 'full stack' ML engineer.
 
+---
+## 🚀Challenge
 
+Draw a flow chart reflecting the steps of a ML practitioner. Where do you see yourself right now in the process? Where do you predict you will find difficulty? What seems easy to you?
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+
+## Review & Self Study
+
+
+
+## Assignment 
+
+[Interview a data scientist](assignment.md)
