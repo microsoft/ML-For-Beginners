@@ -1,6 +1,6 @@
-# Introduction to Natural Language Processing
+# Introduction to natural language processing
  
-This lesson covers a brief history and important concepts of *Computational Linguistics* focusing on *Natural Language Processing*.
+This lesson covers a brief history and important concepts of *computational linguistics* focusing on *natural language processing*.
 
 [![NLP 101](https://img.youtube.com/vi/C75SiVhXjRM/0.jpg)](https://youtu.be/C75SiVhXjRM "NLP 101")
 
@@ -13,7 +13,7 @@ NLP, as it is commonly known, is one of the best-known areas where machine learn
 
 You will learn about how the ideas about languages developed and what the major areas of study have been. You will also learn definitions and concepts about how computers process text, including parsing, grammar, and identifying nouns and verbs. There are some coding tasks in this lesson, and several important concepts are introduced that you will learn to code later on in the next lessons. 
 
-Computational linguistics is an area of research and development over many decades that studies how computers can work with, and even understand, translate, and communicate with languages. Natural Language Processing (NLP) is a related field focused on how computers can process 'natural', or human, languages. If you have ever dictated to your phone instead of typing or asked a virtual assistant a question, your speech was converted into a text form and then processed or *parsed* from the language you spoke. The detected keywords were then processed into a format that the phone or assistant could understand and act on.
+Computational linguistics is an area of research and development over many decades that studies how computers can work with, and even understand, translate, and communicate with languages. natural language processing (NLP) is a related field focused on how computers can process 'natural', or human, languages. If you have ever dictated to your phone instead of typing or asked a virtual assistant a question, your speech was converted into a text form and then processed or *parsed* from the language you spoke. The detected keywords were then processed into a format that the phone or assistant could understand and act on.
 
 This is possible because someone wrote a computer program to do this. A few decades ago, some science fiction writers predicted that people would mostly speak to their computers, and the computers would always understand exactly what they meant. Sadly, it turned out to be a harder problem that many imagined, and while it is a much better understood problem today, there are significant challenges in achieving 'perfect' natural language processing when it comes to understanding the meaning of a sentence. This is a particularly hard problem when it comes to understanding humour or detecting emotions such as sarcasm in a sentence.
 
