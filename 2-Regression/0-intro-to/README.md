@@ -1,6 +1,7 @@
-In this lesson, you will learn:
+In this lesson, you will:
 
-- the process of doing machine learning at a high level.
+- Understand the process of doing machine learning at a high level.
+- Explore concepts like model and training data.
 
 # Introduction
 
@@ -81,7 +82,7 @@ Ok, you've made some initial assumptions before starting out. Now it's time to l
 
 ## Prediction
 
-You've made it to your goal hopefully. The whole point of this process was to combine an algorithm, i.e model and training data so you can make a prediction of data you haven't seen yet. Will take stock increase or decrease, is it sunny tomorrow and so on?
+You've made it to your goal hopefully. The whole point of this process was to combine an algorithm, i.e model and training data so you can make a prediction of data you haven't seen yet. Will that stock increase or decrease, is it sunny tomorrow and so on?
 
 
  
