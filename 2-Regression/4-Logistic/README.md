@@ -119,7 +119,7 @@ Now that we have an idea of the relationship between the binary categories of co
 
 ## Build your model
 
-Building a model to find these binary classification is surprisingly straightforward in Scikit-Learn.
+Building a model to find these binary classification is surprisingly straightforward in Scikit-learn.
 
 Select the variables you want to use in your classification model and split the training and test sets:
 
@@ -240,7 +240,7 @@ Using Seaborn again, plot the model's [Receiving Operating Characteristic](https
 
 ![ROC](./images/ROC.png)
 
-Finally, use Scikit-Learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Curve' (AUC):
+Finally, use Scikit-learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Curve' (AUC):
 
 ```python
 auc = roc_auc_score(y_test,y_scores[:,1])

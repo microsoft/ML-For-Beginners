@@ -21,7 +21,7 @@ Before starting with this curriculum, you need to have your computer set up and 
 - **Learn Python**. It's also recommended to have a basic understanding of [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), a programming language useful for data scientists that we use in this course.
 - **Learn Node.js and JavaScript**. We also use JavaScript a few times in this course when building web apps, so you will need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com/) installed, as well as [Visual Studio Code](https://code.visualstudio.com/) available for both Python and JavaScript development.
 - **Create a GitHub account**. Since you found us here on [GitHub](https://github.com), you might already have an account, but if not, create one and then fork this curriculum to use on your own. (Feel free to give us a star, too 😊)
-- **Explore Scikit-Learn**. Familiarize yourself with [Scikit-Learn]([https://scikit-learn.org/stable/user_guide.html), a set of ML libraries that we reference in these lessons.
+- **Explore Scikit-learn**. Familiarize yourself with [Scikit-learn]([https://scikit-learn.org/stable/user_guide.html), a set of ML libraries that we reference in these lessons.
 
 ### What is machine learning?
 
@@ -45,7 +45,7 @@ Although the terms can be confused, machine learning (ML) is an important subset
 
 ## What you will learn in this course
 
-In this curriculum, we are going to cover only the core concepts of machine learning that a beginner must know. We cover what we call 'Classical machine learning' primarily using Scikit-Learn, an excellent library many students use to learn the basics.  To understand broader concepts of artificial intelligence or deep learning, a strong fundamental knowledge of machine learning is indispensable, and so we would like to offer it here. 
+In this curriculum, we are going to cover only the core concepts of machine learning that a beginner must know. We cover what we call 'Classical machine learning' primarily using Scikit-learn, an excellent library many students use to learn the basics.  To understand broader concepts of artificial intelligence or deep learning, a strong fundamental knowledge of machine learning is indispensable, and so we would like to offer it here. 
 
 You will additionally learn the basics of Regression, Classification, Clustering, Natural Language Processing, Time Series Forecasting, and Reinforcement Learning, as well as real-world applications, the history of ML, ML and Fairness, and how to use your model in web apps.
 

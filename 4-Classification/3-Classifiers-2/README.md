@@ -12,9 +12,9 @@ We have loaded your `notebook.ipynb` file with the cleaned dataset and have divi
 
 ## A Classification Map
 
-Previously, you learned about the various options you have when classifying data using Microsoft's cheat sheet. Scikit-Learn offers a similar, but more granular cheat sheet that can further help narrow down your estimators (another term for classifiers):
+Previously, you learned about the various options you have when classifying data using Microsoft's cheat sheet. Scikit-learn offers a similar, but more granular cheat sheet that can further help narrow down your estimators (another term for classifiers):
 
-![ML Map from Scikit-Learn](images/map.png)
+![ML Map from Scikit-learn](images/map.png)
 > Tip: [visit this map online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) and click along the path to read documentation.
 
 This map is very helpful once you have a clear grasp of your data, as you can 'walk' along its paths to a decision:

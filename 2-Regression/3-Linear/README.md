@@ -1,4 +1,4 @@
-# Build a Regression Model using Scikit-Learn: Regression Two Ways
+# Build a Regression Model using Scikit-learn: Regression Two Ways
 
 ![Linear vs Polynomial Regression Infographic](./images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
@@ -43,7 +43,7 @@ As you learned in Lesson 1, the goal of a linear regression exercise is to be ab
 
 Now that you have an understanding of the math behind this exercise, create a Regression model to see if you can predict which package of pumpkins will have the best pumpkin prices. Someone buying pumpkins for a holiday pumpkin patch might want this information to be able to optimize their purchases of pumpkin packages for the patch.
 
-Since you'll use Scikit-Learn, there's no reason to do this by hand (although you could!). In the main data-processing block of your lesson notebook, add a library from Scikit-Learn to automatically convert all string data to numbers:
+Since you'll use Scikit-learn, there's no reason to do this by hand (although you could!). In the main data-processing block of your lesson notebook, add a library from Scikit-learn to automatically convert all string data to numbers:
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -52,7 +52,7 @@ new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-If you look at the new_pumpkins dataframe now, you see that all the strings are now numeric. This makes it harder for you to read but much more intelligible for Scikit-Learn!
+If you look at the new_pumpkins dataframe now, you see that all the strings are now numeric. This makes it harder for you to read but much more intelligible for Scikit-learn!
 
 Now you can make more educated decisions (not just based on eyeballing a scatterplot) about the data that is best suited to regression.
 
@@ -189,7 +189,7 @@ X=poly_pumpkins.iloc[:,3:4].values
 y=poly_pumpkins.iloc[:,4:5].values
 ```
 
-Scikit-Learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes Polynomial Features, or predictions that form a nonlinear path.
+Scikit-learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes Polynomial Features, or predictions that form a nonlinear path.
 
 ```python
 from sklearn.preprocessing import PolynomialFeatures
