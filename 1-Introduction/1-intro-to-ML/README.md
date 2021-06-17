@@ -1,4 +1,4 @@
-# Introduction to Machine Learning
+# Introduction to machine learning
 
 [![ML, AI, deep learning - What's the difference?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, deep learning - What's the difference?")
 
@@ -13,7 +13,7 @@ Welcome to this course on classical machine learning for beginners! Whether you'
 [![Introduction to ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduction to ML")
 
 > 🎥 Click the image above for a video: MIT's John Guttag introduces machine learning
-### Getting Started with Machine Learning
+### Getting started with machine learning
 
 Before starting with this curriculum, you need to have your computer set up and ready to run notebooks locally.
 
@@ -23,9 +23,9 @@ Before starting with this curriculum, you need to have your computer set up and 
 - **Create a GitHub account**. Since you found us here on [GitHub](https://github.com), you might already have an account, but if not, create one and then fork this curriculum to use on your own. (Feel free to give us a star, too 😊)
 - **Explore Scikit-Learn**. Familiarize yourself with [Scikit-Learn]([https://scikit-learn.org/stable/user_guide.html), a set of ML libraries that we reference in these lessons.
 
-### What is Machine Learning?
+### What is machine learning?
 
-The term 'Machine Learning' is one of the most popular and frequently used terms of today. There is a nontrivial possibility that you have heard this term at least once if you have some sort of familiarity with technology, no matter what domain you work in. The mechanics of Machine Learning, however, are a mystery to most people. For a Machine Learning beginner, the subject can sometimes feel overwhelming. Therefore, it is important to understand what Machine Learning actually is, and to learn about it step by step, through practical examples.
+The term 'machine learning' is one of the most popular and frequently used terms of today. There is a nontrivial possibility that you have heard this term at least once if you have some sort of familiarity with technology, no matter what domain you work in. The mechanics of machine learning, however, are a mystery to most people. For a machine learning beginner, the subject can sometimes feel overwhelming. Therefore, it is important to understand what machine learning actually is, and to learn about it step by step, through practical examples.
 
 ![ml hype curve](images/hype.png)
 
@@ -35,20 +35,26 @@ We live in a universe full of fascinating mysteries. Great scientists such as St
 
 A child's brain and senses perceive the facts of their surroundings and gradually learn the hidden patterns of life which help the child to craft logical rules to identify learned patterns. The learning process of the human brain makes humans the most sophisticated living creature of this world. Learning continuously by discovering hidden patterns and then innovating on those patterns enables us to make ourselves better and better throughout our lifetime. This learning capacity and evolving capability is related to a concept called [brain plasticity](https://www.simplypsychology.org/brain-plasticity.html). Superficially, we can draw some motivational similarities between the learning process of the human brain and the concepts of machine learning.
 
-The [human brain](https://www.livescience.com/29365-human-brain.html) perceives things from the real world, processes the perceived information, makes rational decisions, and performs certain actions based on circumstances. This is what we called behaving intelligently. When we program a facsimile of the intelligent behavioral process to a machine, it is called Artificial Intelligence (AI). Although the terms can be confused, Machine Learning (ML) is an important subset of Artificial Intelligence. **ML is concerned with using specialized algorithms to uncover meaningful information and find hidden patterns from perceived data to corroborate the rational decision-making process**.
+The [human brain](https://www.livescience.com/29365-human-brain.html) perceives things from the real world, processes the perceived information, makes rational decisions, and performs certain actions based on circumstances. This is what we called behaving intelligently. When we program a facsimile of the intelligent behavioral process to a machine, it is called artificial intelligence (AI). 
+
+Although the terms can be confused, machine learning (ML) is an important subset of artificial intelligence. **ML is concerned with using specialized algorithms to uncover meaningful information and find hidden patterns from perceived data to corroborate the rational decision-making process**.
+
+![AI, ML, deep learning, data science](images/ai-ml-ds.png)
+
+> A diagram showing the relationships between AI, ML, deep learning, and data science. Infographic by [Jen Looper](https://twitter.com/jenlooper) inspired by [this graphic](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
 ## What you will learn in this course
 
-In this curriculum, we are going to cover only the core concepts of Machine Learning that a beginner must know. We cover what we call 'Classical Machine Learning' primarily using Scikit-Learn, an excellent library many students use to learn the basics.  To understand broader concepts of Artificial Intelligence or deep learning, a strong fundamental knowledge of Machine Learning is indispensable, and so we would like to offer it here. 
+In this curriculum, we are going to cover only the core concepts of machine learning that a beginner must know. We cover what we call 'Classical machine learning' primarily using Scikit-Learn, an excellent library many students use to learn the basics.  To understand broader concepts of artificial intelligence or deep learning, a strong fundamental knowledge of machine learning is indispensable, and so we would like to offer it here. 
 
 You will additionally learn the basics of Regression, Classification, Clustering, Natural Language Processing, Time Series Forecasting, and Reinforcement Learning, as well as real-world applications, the history of ML, ML and Fairness, and how to use your model in web apps.
 
 In this course you will learn:
 
-- Core concepts of Machine Learning
+- Core concepts of machine learning
 - The history of ML
 - ML and fairness
-- The definition of "Classical Machine Learning"
+- The definition of "Classical machine learning"
 - Regression
 - Classification
 - Clustering
@@ -59,16 +65,11 @@ In this course you will learn:
 ## What we will not cover
 
 - deep learning
-- Neural Networks
+- neural networks
 - AI
   
 To make for a better learning experience, we will avoid the complexities of neural networks, 'deep learning' - many-layered model-building using neural networks - and AI, which we will discuss in a different curriculum. We also will offer a forthcoming data science curriculum to focus on that aspect of this larger field.
-
-![AI, ML, deep learning, data science](images/ai-ml-ds.png)
-
-> A diagram showing the relationships between AI, ML, deep learning, and data science. Infographic by [Jen Looper](https://twitter.com/jenlooper) inspired by [this graphic](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
-
-## Why study Machine Learning?
+## Why study machine learning?
 
 Machine learning, from a systems perspective, is defined as the creation of automated systems that can learn hidden patterns from data to aid in making intelligent decisions.
 
@@ -76,7 +77,7 @@ This motivation is loosely inspired by how the human brain learns certain things
 
 ✅ Think for a minute why a business would want to try to use machine learning strategies vs. creating a hard-coded rules-based engine.
 
-### Applications of Machine Learning
+### Applications of machine learning
 
 Applications of machine learning are now almost everywhere, and are as ubiquitous as the data that is flowing around our societies, generated by our smart phones, connected devices, and other systems. Considering the immense potential of state-of-the-art machine learning algorithms, researchers have been exploring their capability to solve multi-dimensional and multi-disciplinary real-life problems with great positive outcomes.
 
@@ -93,6 +94,7 @@ Machine learning automates the process of pattern-discovery by finding meaningfu
 
 In the near future, understanding the basics of machine learning is going to be a must for people from any domain due to its widespread adoption.
 
+---
 ## 🚀 Challenge
 
 Sketch, on paper or using an online app like [Excalidraw](https://excalidraw.com/), your understanding of the differences between AI, ML, deep learning, and data science. Add some ideas of problems that each of these techniques are good at solving.
