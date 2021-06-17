@@ -103,7 +103,7 @@ A better way than wildly guessing, however, is to follow the ideas on this downl
 
 Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task. We do not use a two-class classifier, so that rules out one-vs-all. A decision tree might work, or logistic regression for multiclass data. The multiclass boosted decision tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us. 
 
-We can focus on decision trees and logistic regression for our first training trial since you recently learned about the latter in a previous lesson.
+We can focus on logistic regression for our first training trial since you recently learned about the latter in a previous lesson.
 ## Train your model
 
 Let's train a model. Split your data into training and testing groups:
