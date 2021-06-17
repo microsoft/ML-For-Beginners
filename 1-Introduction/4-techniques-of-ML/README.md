@@ -72,11 +72,11 @@ In the context of machine learning, Model fitting refers to the accuracy of the 
 🎓 **Underfitting** and **overfitting** are common problems that degrade the quality of the model as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
 ## Parameter tuning
 
-Once your initial training is complete, observe the quality of the model and consider improving it by tweaking its 'hyperparameters'. Read more about the process [here](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa)
+Once your initial training is complete, observe the quality of the model and consider improving it by tweaking its 'hyperparameters'. Read more about the process [here](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa).
 
-## Prediction
+## Prediction
 
-This is the moment where you can use completely new  data to test your model's accuracy. In an 'applied' ML setting, where you are building web assets to use the model in production, this process might involve gathering user input (a button press, for example) to set a variable and send it to the model for inference, or evaluation.
+This is the moment where you can use completely new data to test your model's accuracy. In an 'applied' ML setting, where you are building web assets to use the model in production, this process might involve gathering user input (a button press, for example) to set a variable and send it to the model for inference, or evaluation.
 
 In these lessons, you will discover how to use these steps to prepare, build, test, evaluate, and predict - all the gestures of a data scientist and more, as you progress in your journey to become a 'full stack' ML engineer.
 
@@ -88,8 +88,7 @@ Draw a flow chart reflecting the steps of a ML practitioner. Where do you see yo
 
 ## Review & Self Study
 
-
-
+Search online for interviews with data scientists who discuss their daily work. Here is [one](https://www.youtube.com/watch?v=Z3IjgbbCEfs).
 ## Assignment 
 
 [Interview a data scientist](assignment.md)
