@@ -1,91 +1,84 @@
-In this lesson, you will:
+# Techniques of Machine Learning
 
-- Understand the process of doing machine learning at a high level.
-- Explore concepts like model and training data.
+The process of building, using, and maintaining machine learning models and the data they use is a process very different from many other development workflows. For web developers, techniques of machine learning can initially seem very strange. In this lesson, we will demystify the process by outlining it. You will:
 
+- Understand the processes underpinning machine learning at a high level.
+- Explore base concepts such as 'models', 'predictions', and 'training data'.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 
 # Introduction
 
-On a high-level the craft of doing machine learning, ML goes through a number of steps. Here's what it looks like:
+On a high level, the craft of creating machine learning (ML) processes is comprised of a number of steps:
 
-1. **Decide on the question**. You have a question you want answered, here's where you decide what that question should be.
-1. **Collect and prepare data**. To be able to answer your question, you need data, lots of it.
-1. **Choose a model**. A model is the same thing as an algorithm and you need to train in order for it to recognize what you need it to recognize.
-1. **Train the model**. You take part of your collected data and make sure the model changes basd on its input. The model has internal weights that gets adjusted based on what you feed it.
-1. **Evaluate the model**. You use never before seen data from your collected data to see how the model is performing.
-1. **Parameter tuning**. 
-1. **Predict**, make predictions with your model based on new input.
-
+1. **Decide on the question**. Most ML processes start by asking a question that cannot be answered by a simple conditional program or rules-based engine. These questions often revolve around predictions based on a collection of data.
+2. **Collect and prepare data**. To be able to answer your question, you need data. The quality and, sometimes, quantity of your data will determine how well you can answer your initial question. Visualizing data is an important aspect of this phase. This phase also includes splitting the data into a training and testing group to build a model.
+3. **Choose a training method**. Depending on your question and the nature of your data, you need to choose how you want to train a model to best reflect your data and make accurate predictions against it. This is the part of your ML process that requires specific expertise and, often, a considerably amount of experimentation.
+4. **Train the model**. Using your training data, you use various algorithms to train a model to recognize patterns in the data. The model might leverage internal weights that can be adjusted to privilege certain parts of the data over others to build a better model.
+5. **Evaluate the model**. You use never before seen data (your testing data) from your collected set to see how the model is performing.
+6. **Parameter tuning**. Based on the performance of your model, you can redo the process using different parameters, or variables, that control the behavior of the algorithms used to train the model.
+7. **Predict**. Use new input to test the accuracy of your model.
 ## What question to ask
 
-Ok, so why are you doing machine learning? Well, you have a question you want to ask, like if there's a correlation between your living habits and diabetes, maybe age is a factor. You think about it, you have your question, you want to know what causes diabetes. 
+Computers are particularly skilled at discovering hidden patterns in data. This utility is very helpful for researchers who have questions about a given domain that cannot be easily answered by creating a conditionally-based rules engine. Given an actuarial task, for example, a data scientist might be able to construct handcrafted rules around the mortality of smokers vs non-smokers. 
 
-### Identifying factors
+When many other variables are brought into the equation, however, a ML model might prove more efficient to predict future mortality rates based on past health history. A more cheerful example might be making weather predictions for the month of April in a given location based on data that includes latitude, longitude, climate change, proximity to the ocean, patterns of the jet stream, and more.
 
-You have a hypotheses on what might cause diabetes like age, living habits, maybe a gene is involved. Great you are off to a great start. But to be able to get further, you need data, lots of data, the more the better.
+✅ This [slide deck](https://www2.cisl.ucar.edu/sites/default/files/0900%20June%2024%20Haupt_0.pdf) on weather models offers a historical perspective for using ML in weather analysis  
 
-## Data
+## Pre-Building Tasks
 
-To be able to answer your question with any kind of certainty, you need a lot of data, and the right type. There are two things you need to do at this point:
+Before starting to build your model, there are several tasks you need to complete. To test your question and form a hypothesis based on a model's predictions, you need to identify and configure several elements.
+### Data
 
-- **Collect data**. Any which way you can collect data, do it. For things like diabetes there are actually free datasets you can use that are event built-in two libraries. Once you've either used datasets out there or data a ton of measurements, you have data. This data is also referred to as _training data_.
-- **Prepare data**. First you need to fuse together your data if it comes from many different sources. You might need to improve the data a little at this point, like cleaning and editing it. Finally you might also need to randomize it, this is to ensure that there is no actual correlation depending on how you later feed the data into the model for training.
+To be able to answer your question with any kind of certainty, you need a good amount of data of the right type. There are two things you need to do at this point:
 
-NOTE: After all this data collection and data preparation, can I address my intended question. You need a resounding yes at this point, or there's no point in continuing.  
+- **Collect data**. Keeping in mind the previous lesson on fairness in data analysis, collect your data with care. Be aware of the sources of this data, any inherent biases it might have, and document its origin. 
+- **Prepare data**. There are several steps in the data preparation process. You might need to collate data and normalize it if it comes from diverse sources. You can improve the data's quality and quantity through various methods such as converting strings to numbers (as we do in [Clustering](../../5-Clustering/1-Visualize/README.md)). You might also generate new data, based on the original (as we do in [Classification](../../4-Classification/1-Introduction/README.md)). You can clean and edit the data (as we did prior to the [Web App](../3-Web-App/README.md) lesson). Finally you might also need to randomize it and shuffle it, depending on your training techniques.
 
-### 🎓 Feature Variable
+✅ After collecting and processing your data, take a moment to see if its shape will allow you to address your intended question. It may be that the data will not perform well in your given task, as we discover in our [Clustering](../../5-Clustering/1-Visualize/README.md) lessons!
+### Selecting your feature variable
 
-A [feature](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) is a measurable property of your data. In many datasets it is expressed as a column heading like 'date' 'size' or 'color'.
-
-### Visualizing your data
-
-You most likely need to visualize your data at this point. There might be interesting correlations that you an make use of. One thing to be aware of is if your collected dataset represents what you are likely to find in the wild. Example, let's say you collected a lot of images on Dogs and Cats and you want a model to recognize animals in general, you need to be aware of this bias towards Dogs and Cats. Cause the consequences might be that your model labels everything as a Dog or a Cat when it's in fact a Squirrel.
-
-### Split your dataset
-
-You need to split your dataset at this point into some major parts.
-
-- **Training**, this part of the dataset goes into your model to train it. The size of this chunk constitutes the majority of the original dataset.
-- **Evaluation**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model.
-- **Test dataset**. A test dataset is another independent group of data, often gathered from the original data, that you use to confirm the performance of the built model.
-
-## The model
-
-A model is another word for algorithm or actually many smaller algorithms working together. Because we are doing Machine Learning, lets refer to it henceforth as the _model_.
+A [feature](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) is a measurable property of your data. In many datasets it is expressed as a column heading like 'date' 'size' or 'color'. Your feature variable, usually represented as `y` in code, represents the answer to the question you are trying to ask of your data: in December, what **color** pumpkins will be cheapest? in San Francisco, what neighborhoods will have the best real estate **price**?
 
 🎓 **Feature Selection and Feature Extraction** How do you know which variable to choose when building a model? You'll probably go through a process of feature selection or feature extraction to choose the right variables for the most performant model. They're not the same thing, however: "Feature extraction creates new features from functions of the original features, whereas feature selection returns a subset of the features." [source](https://wikipedia.org/wiki/Feature_selection)
 
-### Decide on a model
+### Visualize your data
 
-What we need to know at this point is that we need to select a model type. There are lot of existing models out there specialized on different things like images, text and so on. You are likely to go through a process whereby data scientists evaluate the performance of a model or any other relevant metric of a model by feeding it unseen data, selecting the most appropriate model for the task at hand.
+An important aspect of the data scientist's toolkit is the power to  visualize data using several excellent libraries such as Seaborn or MatPlotLib. Representing your data visually might allow you to uncover hidden correlations that you can leverage. Your visualizations might also help you to uncover bias or unbalanced data (as we discover in [Classification](../../4-Classification/2-Classifiers-1/README.md)).
+### Split your dataset
 
-## Training
+Prior to training, you need to split your dataset into two or more parts of unequal size, but representing the data well.
 
-At this point you are ready to go. You have your training data, that subset of your original dataset and you need to feed it into the model.
+- **Training**, this part of the dataset goes into your model to train it. The size of this chunk constitutes the majority of the original dataset.
+- **Testing**. A test dataset is another independent group of data, often gathered from the original data, that you use to confirm the performance of the built model.
+- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we noted in [Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)).
+## Building a model
 
-## Evaluate the model
+Using your training data, your goal is to build a model, or a statistical representation of your data, using various algorithms to **train** it. Training a model exposes it to data and allows it to make assumptions about perceived patterns it discovers, validates, and accepts or rejects.
+### Decide on a training method
 
-At this point, you want to check if your model is any good, is it able to answer the question you set out for it? The way to test is by using your evaluation data and see how it performs. It's important it's data the model hasn't seen before so it simulates how it would perform in the real world.
+Depending on your question and the nature of your data, your will choose a method to train it. Stepping through [Scikit-Learn's documentation](https://scikit-learn.org/stable/user_guide.html) - which we use in this course - , you can explore many ways to train a model. Depending on your experience, you might have to try several different methods to build the best model. You are likely to go through a process whereby data scientists evaluate the performance of a model by feeding it unseen data, checking for accuracy, bias, and other quality-degrading issues, selecting the most appropriate training method for the task at hand.
+### Train
 
-### 🎓 Model Fitting
+Armed with your training data, you are ready to 'fit' it to create a model. You will notice that in many ML libraries you will find the code 'model.fit' - it is at this time that you send in your data as an array of values (usually 'X') and a feature variable (usually 'y').
+### Evaluate the model
+
+Once the training process is complete (it can take many iterations, or 'epochs', to train a large model), you will be able to evaluate the model's quality by using test data to gauge its performance. This data is a subset of the original data that the model has not previously analyzed. You can print out a table of metrics about your model's quality.
+
+🎓 Model Fitting
 
 In the context of machine learning, Model fitting refers to the accuracy of the model's underlying function as it attempts to analyze data with which it is not familiar. 
 
-**Underfitting** and **overfitting** are common problems that degrade the quality of the model as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
-
-The lessons in this section cover types of Regression in the context of machine learning. Regression models can help determine the _relationship_ between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes data points.
-
-In this series of lessons, you'll discover the difference between Linear vs. Logistic Regression, and when you should use one or the other.
-
+🎓 **Underfitting** and **overfitting** are common problems that degrade the quality of the model as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
 ## Parameter tuning
 
-Ok, you've made some initial assumptions before starting out. Now it's time to look at something called hyperparameters. What we are looking to do is to control the learning process, see if we can make it better. Hyperparameters affect the speed and quality of this process and don't affect the performance of the model.
+Once your initial training is complete, observe the quality of the model and consider improving it by tweaking its 'hyperparameters'. Read more about the process [here](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa)
 
 ## Prediction
 
-You've made it to your goal hopefully. The whole point of this process was to combine an algorithm, i.e model and training data so you can make a prediction of data you haven't seen yet. Will that stock increase or decrease, is it sunny tomorrow and so on?
+This is the moment where you can use completely new  data to test your model's accuracy. In an 'applied' ML setting, where you are building web assets to use the model in production, this process might involve gathering user input (a button press, for example) to set a variable and send it to the model for inference, or evaluation.
+
+In these lessons, you will discover how to use these steps to prepare, build, test, evaluate, and predict - all the gestures of a data scientist and more, as you progress in your journey to become a 'full stack' ML engineer.
 
 
- 
- ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
