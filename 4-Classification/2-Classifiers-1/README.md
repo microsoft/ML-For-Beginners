@@ -1,13 +1,13 @@
-# Cuisine Classifiers 1
+# Cuisine classifiers 1
 
 In this lesson, you will use the dataset you saved from the last lesson full of balanced, clean data all about cuisines. You will use this dataset with a variety of classifiers to predict a given national cuisine based on a group of ingredients. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
 # Preparation
 
-Assuming you completed Lesson 1, make sure that a `cleaned_cuisines.csv` file exists in the root `/data` folder for these four lessons.
+Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a _cleaned_cuisines.csv_ file exists in the root `/data` folder for these four lessons.
 
-Working in this lesson's `notebook.ipynb` folder, import that file along with the Pandas library:
+Working in this lesson's _notebook.ipynb_ folder, import that file along with the Pandas library:
 
 ```python
 import pandas as pd
@@ -70,12 +70,11 @@ Your features look like this:
 |      4 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        1 | 0   |
 
 Now you are ready to train your model!
-
 ## Choosing your classifier
 
 Now that your data is clean and ready for training, you have to decide which algorithm to use for the job. 
 
-Scikit-learn groups Classification under Supervised Learning, and in that category you will find many ways to classify. [The variety](https://scikit-learn.org/stable/supervised_learning.html) is quite bewildering at first sight. The following methods all include classification techniques:
+Scikit-learn groups classification under Supervised Learning, and in that category you will find many ways to classify. [The variety](https://scikit-learn.org/stable/supervised_learning.html) is quite bewildering at first sight. The following methods all include classification techniques:
 
 - Linear Models
 - Support Vector Machines
@@ -86,7 +85,7 @@ Scikit-learn groups Classification under Supervised Learning, and in that catego
 - Ensemble methods (voting Classifier)
 - Multiclass and multioutput algorithms (multiclass and multilabel classification, multiclass-multioutput classification)
 
-You can also use [neural networks to classify](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), but that is outside the scope of this lesson.
+> You can also use [neural networks to classify data](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), but that is outside the scope of this lesson.
 
 So, which classifier should you choose? Often, running through several and looking for a good result is a way to test. Scikit-learn offers a [side-by-side comparison](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) on a created dataset, comparing KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis, showing the results visualized: 
 
@@ -95,22 +94,19 @@ So, which classifier should you choose? Often, running through several and looki
 
 > AutoML solves this problem neatly by running these comparisons in the cloud, allowing you to choose the best algorithm for your data. Try it [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)
 
-A better way than wildly guessing, however, is to follow the ideas on this downloadable [ML Cheat sheet](https://docs.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa). Here, we discover that, for our multiclass problem, we have some choices:
+A better way than wildly guessing, however, is to follow the ideas on this downloadable [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa). Here, we discover that, for our multiclass problem, we have some choices:
 
 ![cheatsheet for multiclass problems](images/cheatsheet.png)
 > A section of Microsoft's Algorithm Cheat Sheet, detailing multiclass classification options
 
 ✅ Download this cheat sheet, print it out, and hang it on your wall!
 
-Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task. We do not use a two-class classifier, so that rules out One-vs-All. A 
-Decision Tree might work, or Logistic Regression for multiclass data. The Multiclass Boosted Decision Tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us. 
+Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task. We do not use a two-class classifier, so that rules out one-vs-all. A decision tree might work, or logistic regression for multiclass data. The multiclass boosted decision tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us. 
 
-We can focus on Decision Trees and Logistic Regression.
-
-Let's focus on Logistic Regression for our first training trial since you recently learned about it in a previous lesson.
+We can focus on decision trees and logistic regression for our first training trial since you recently learned about the latter in a previous lesson.
 ## Train your model
 
-Let's train that model. Split your data into training and testing groups:
+Let's train a model. Split your data into training and testing groups:
 
 ```python
 X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
@@ -124,7 +120,7 @@ Since you are using the multiclass case, you need to choose what scheme to use a
 
 Use LogisticRegression with a multiclass setting and the liblinear solver to train.
 
-> 🎓 The 'scheme' here can either be 'ovr' (one-vs-rest) or 'multinomial'. Since Logistic Regression is really designed to support binary classification, these schemes allow it to better handle multiclass classification tasks. [source](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
+> 🎓 The 'scheme' here can either be 'ovr' (one-vs-rest) or 'multinomial'. Since logistic regression is really designed to support binary classification, these schemes allow it to better handle multiclass classification tasks. [source](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
 > 🎓 The 'solver' is defined as "the algorithm to use in the optimization problem". [source](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression). 
 
@@ -183,7 +179,7 @@ The result is printed - Indian cuisine is its best guess, with good probability:
 
 ✅ Can you explain why the model is pretty sure this is an Indian cuisine?
 
-Get more detail by printing a classification report, as you did in the Regression lessons:
+Get more detail by printing a classification report, as you did in the regression lessons:
 
 ```python
 y_pred = model.predict(X_test)
@@ -208,7 +204,7 @@ In this lesson, you used your cleaned data to build a machine learning model tha
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
 ## Review & Self Study
 
-Dig a little more into the math behind Logistic Regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
+Dig a little more into the math behind logistic regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
 ## Assignment 
 
 [Study the solvers](assignment.md)
