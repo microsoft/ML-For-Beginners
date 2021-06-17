@@ -2,7 +2,7 @@
 
 In this lesson, you will use the dataset you saved from the last lesson full of balanced, clean data all about cuisines. You will use this dataset with a variety of classifiers to predict a given national cuisine based on a group of ingredients. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
 # Preparation
 
 Assuming you completed Lesson 1, make sure that a `cleaned_cuisines.csv` file exists in the root `/data` folder for these four lessons.
@@ -205,7 +205,7 @@ print(classification_report(y_test,y_pred))
 
 In this lesson, you used your cleaned data to build a machine learning model that can predict a national cuisine based on a series of ingredients. Take some time to read through the many options Scikit-Learn provides to classify data. Dig deeper into the concept of 'solver' to understand what goes on behind the scenes.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
 ## Review & Self Study
 
 Dig a little more into the math behind Logistic Regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)

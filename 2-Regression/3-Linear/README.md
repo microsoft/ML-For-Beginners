@@ -2,7 +2,7 @@
 
 ![Linear vs Polynomial Regression Infographic](./images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
 ### Introduction 
 
 So far you have explored what regression is with sample data gathered from the pumpkin pricing dataset that we will use throughout this unit. You have also visualized it using Matplotlib. Now you are ready to dive deeper into regression for ML. In this lesson, you will learn more about two types of regression: basic linear regression and polynomial regression, along with some of the math underlying these techniques.
@@ -249,7 +249,7 @@ It does make sense! And, if this is a better model than the previous one, lookin
 
 Test several different variables in this notebook to see how correlation corresponds to model accuracy.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
 
 ## Review & Self Study
 

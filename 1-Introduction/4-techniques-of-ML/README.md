@@ -3,6 +3,8 @@ In this lesson, you will:
 - Understand the process of doing machine learning at a high level.
 - Explore concepts like model and training data.
 
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
+
 # Introduction
 
 On a high-level the craft of doing machine learning, ML goes through a number of steps. Here's what it looks like:
@@ -86,3 +88,4 @@ You've made it to your goal hopefully. The whole point of this process was to co
 
 
  
+ ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
