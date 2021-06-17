@@ -4,7 +4,7 @@ Add a sketchnote if possible/appropriate
 
 ![Embed a video here if available](video-url)
 
-## [Pre-lecture quiz](link-to-quiz-app)
+## [Pre-lecture quiz](link-to-quiz-app) 45
 
 Describe what we will learn
 
@@ -48,7 +48,7 @@ Add a challenge for students to work on collaboratively in class to enhance the 
 
 Optional: add a screenshot of the completed lesson's UI if appropriate
 
-## [Post-lecture quiz](link-to-quiz-app)
+## [Post-lecture quiz](link-to-quiz-app) 46
 
 ## Review & Self Study
 

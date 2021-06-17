@@ -1,7 +1,7 @@
 # Cuisine Classifiers 2
 
 In this second Classification lesson, you will explore more ways to classify numeric data, and the ramifications for choosing one over the other.
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/23/)
 
 ### Prerequisite
 
@@ -189,7 +189,7 @@ This method of Machine Learning "combines the predictions of several base estima
 
 Each of these techniques has a large number of parameters that you can tweak. Research each one's default parameters and think about what tweaking these parameters would mean for the model's quality.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/24/)
 ## Review & Self Study
 
 There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/en-us/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) of useful terminology!

@@ -8,7 +8,11 @@ In North America, pumpkins are often carved into scary faces for Halloween. Let'
   
 ## What you will learn
 
-In this section, you will get set up to begin machine learning tasks, including configuring Visual Studio code to manage notebooks, the common environment for data scientists. You will discover Scikit-Learn, a library for machine learning, and you will build your first models, focusing on Regression models in this chapter.
+The lessons in this section cover types of Regression in the context of machine learning. Regression models can help determine the _relationship_ between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes data points.
+
+In this series of lessons, you'll discover the difference between Linear vs. Logistic Regression, and when you should use one or the other.
+
+In this group of lessons, you will get set up to begin machine learning tasks, including configuring Visual Studio code to manage notebooks, the common environment for data scientists. You will discover Scikit-Learn, a library for machine learning, and you will build your first models, focusing on Regression models in this chapter.
 
 > There are useful low-code tools that can help you learn about working with Regression models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
 
