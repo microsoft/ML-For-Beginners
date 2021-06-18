@@ -109,7 +109,7 @@ Here is a sample [solution](solutions/book.py).
 
 ✅ Knowledge Check 
 
-1. The sentiment is based on words used in the sentence, but does it code *understand* the words?
+1. The sentiment is based on words used in the sentence, but does the code *understand* the words?
 2. Do you think the sentiment polarity is accurate, or in other words, do you *agree* with the scores?
    1. In particular, do you agree or disagree with the absolute **positive** polarity of the following sentences?
       * “What an excellent father you have, girls!” said she, when the door was shut.
