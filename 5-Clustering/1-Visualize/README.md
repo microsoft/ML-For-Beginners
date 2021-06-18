@@ -20,7 +20,7 @@ In a professional setting, clustering can be used to determine things like marke
 
 ✅ Think a minute about how you might have encountered clustering 'in the wild', in a banking, e-commerce, or business setting.
 
-> 🎓 Interestingly, Cluster analysis originated in the fields of Anthropology and Psychology in the 1930s. Can you imagine how it might have been used?
+> 🎓 Interestingly, cluster analysis originated in the fields of Anthropology and Psychology in the 1930s. Can you imagine how it might have been used?
 
 Alternately, you could use it for grouping search results - by shopping links, images, or reviews, for example. Clustering is useful when you have a large dataset that you want to reduce and on which you want to perform more granular analysis, so the technique can be used to learn about data before other models are constructed.
 
