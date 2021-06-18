@@ -236,6 +236,27 @@ What you may notice from those results:
 * We are very close achieving the goal of getting 195 cumulative reward over 100+ consecutive runs of the simulation, or we may have actually achieved it! Even if we get smaller numbers, we still do not know, because we average over 5000 runs, and only 100 runs is required in the formal criteria.
 * Sometimes the reward start to drop, which means that we can "destroy" already learnt values in Q-Table with the ones that make situation worse
 
+This is more clearly visible if we plot training progress.
+
+## Plotting Training Progress
+
+During training, we have collected the cumulative reward value at each of the iterations into `rewards` vector. Here is how it looks when we plot it against the iteration number:
+
+![](images/train_progress_raw.png)
+
+From this graph, it is not possible to tell anything, because due to the nature of stochastic training process the length of training sessions varies greatly. To make more sense of this graph, we can calculate **running average** over series of experiments, let's say 100. This can be done conveniently using `np.convolve`:
+
+```python
+def running_average(x,window):
+    return np.convolve(x,np.ones(window)/window,mode='valid')
+
+plt.plot(running_average(rewards,100))
+```
+
+![](images/train_progress_runav.png)
+
+## Varying Hyperparameters
+
 To make learning more stable, it makes sense to adjust some of our hyperparameters during training. In particular:
 * For **learning rate**, `alpha`, we may start with values close to 1, and then keep decreasing the parameter. With time, we will be getting good probability values in Q-Table, and thus we should be adjusting them slightly, and not overwriting completely with new values.
 * We may want to increase the `eplilon` slowly, in order to be exploring less, and expliting more. It probably makes sense to start with lower value of `epsilon`, and move up to almost 1
@@ -247,9 +268,6 @@ To make learning more stable, it makes sense to adjust some of our hyperparamete
 ## Seeing the Result in Action
 
 Now it would be interesting to actually see how the trained model behaves. Let's run the simulation, and we will be following the same action selection strategy as during training: sampling according to the probability distribution in Q-Table: 
-## 🚀Challenge
-
-Add a challenge for students to work on collaboratively in class to enhance the project
 
 ```python
 obs = env.reset()
@@ -277,4 +295,4 @@ You should see something like this:
 
 ## Conclusion
 
-We have now learnt how to train agents to achieve good results just by providing them a reward function that defines the desired state of the game, and by giving it an opportinity to intellegently explore the search space. We have successfully applied Q-Learning algorithm in the cases of discrete and continuous environments, but with discrete actions. In the are of reinforcement learning, we need to further study situations where action state is also continuous, and when observation space is much more complex, such as the image from Atarti game screen. In those problems we often need to use more powerful machine learning techniques, such as neural networks, in order to achieve good results. Those more advanced topics are the subject of more advanced Deep Reinforcement Learning course.
+We have now learnt how to train agents to achieve good results just by providing them a reward function that defines the desired state of the game, and by giving it an opportunity to intelligently explore the search space. We have successfully applied Q-Learning algorithm in the cases of discrete and continuous environments, but with discrete actions. In the are of reinforcement learning, we need to further study situations where action state is also continuous, and when observation space is much more complex, such as the image from Atari game screen. In those problems we often need to use more powerful machine learning techniques, such as neural networks, in order to achieve good results. Those more advanced topics are the subject of more advanced Deep Reinforcement Learning course.
