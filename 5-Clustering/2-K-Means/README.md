@@ -197,7 +197,6 @@ This data is too imbalanced, too little correlated and there is too much varianc
 In Scikit-learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
 
 ![problem models](images/problems.png)
-
 > Infographic from Scikit-learn
 ## Variance
 
@@ -219,7 +218,7 @@ Hint: Try to scale your data. There's commented code in the notebook that adds s
 
 Take a look at Stanford's K-Means Simulator [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). You can use this tool to visualize sample data points and determine its centroids. With fresh data, click 'update' to see how long it takes to find convergence. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
 
-Also, take a look at [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford
+Also, take a look at [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford.
 
 ## Assignment 
 
