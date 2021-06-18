@@ -45,23 +45,20 @@ Although the terms can be confused, machine learning (ML) is an important subset
 
 ## What you will learn in this course
 
-In this curriculum, we are going to cover only the core concepts of machine learning that a beginner must know. We cover what we call 'Classical machine learning' primarily using Scikit-learn, an excellent library many students use to learn the basics.  To understand broader concepts of artificial intelligence or deep learning, a strong fundamental knowledge of machine learning is indispensable, and so we would like to offer it here. 
-
-You will additionally learn the basics of Regression, Classification, Clustering, natural language processing, Time Series Forecasting, and Reinforcement Learning, as well as real-world applications, the history of ML, ML and Fairness, and how to use your model in web apps.
+In this curriculum, we are going to cover only the core concepts of machine learning that a beginner must know. We cover what we call 'classical machine learning' primarily using Scikit-learn, an excellent library many students use to learn the basics.  To understand broader concepts of artificial intelligence or deep learning, a strong fundamental knowledge of machine learning is indispensable, and so we would like to offer it here. 
 
 In this course you will learn:
 
-- Core concepts of machine learning
-- The history of ML
+- core concepts of machine learning
+- the history of ML
 - ML and fairness
-- The definition of "Classical machine learning"
-- Regression
-- Classification
-- Clustering
-- natural language processing
-- Time Series Forecasting
-- Reinforcement Learning
-- Real-world applications
+- regression ML techniques
+- classification ML techniques
+- clustering ML techniques
+- natural language processing ML techniques
+- time series forecasting ML techniques
+- reinforcement learning
+- real-world applications for ML
 ## What we will not cover
 
 - deep learning
