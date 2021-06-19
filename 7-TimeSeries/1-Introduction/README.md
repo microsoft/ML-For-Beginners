@@ -1,43 +1,43 @@
-# Introduction to Time Series Forecasting
+# Introduction to time series forecasting
 
-![Summary of Time series in a sketchnote](../../sketchnotes/ml-timeseries.png)
+![Summary of time series in a sketchnote](../../sketchnotes/ml-timeseries.png)
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-In this lesson and the following one, you will learn a bit about Time Series Forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit lesser known than other topics. Time Series Forecasting is a sort of crystal ball: based on past performance of a variable such as price, you can predict its future potential value.
+In this lesson and the following one, you will learn a bit about time series forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit lesser known than other topics. Time series forecasting is a sort of crystal ball: based on past performance of a variable such as price, you can predict its future potential value.
 
-[![Introduction to Time Series Forecasting](https://img.youtube.com/vi/wGUV_XqchbE/0.jpg)](https://youtu.be/wGUV_XqchbE "Introduction to Time Series Forecasting")
+[![Introduction to time series forecasting](https://img.youtube.com/vi/wGUV_XqchbE/0.jpg)](https://youtu.be/wGUV_XqchbE "Introduction to time series forecasting")
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
 
-It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights in the prediction of future performance, Time Series Forecasting remains a field greatly informed by classic ML techniques.
+It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights in the prediction of future performance, time series forecasting remains a field greatly informed by classic ML techniques.
 
-> Penn State's useful Time Series curriculum can be found [here](https://online.stat.psu.edu/stat510/lesson/1)
+> Penn State's useful time series curriculum can be found [here](https://online.stat.psu.edu/stat510/lesson/1)
 
 ### Introduction
 
-Supposing you maintain an array of smart parking meters that provide data about how often they are used and for how long over time. What if you could generate revenue to maintain your streets by slightly augmenting the prices of the meters when there is greater demand for them? What if you could predict, based on the meter's past performance, its future value according to the laws of supply and demand? This is a challenge that could be tackled by Time Series Forecasting. It wouldn't make those folks in search of a rare parking spot in busy times very happy to have to pay more for it, but it would be a sure way to generate revenue to clean the streets!
+Supposing you maintain an array of smart parking meters that provide data about how often they are used and for how long over time. What if you could generate revenue to maintain your streets by slightly augmenting the prices of the meters when there is greater demand for them? What if you could predict, based on the meter's past performance, its future value according to the laws of supply and demand? This is a challenge that could be tackled by time series forecasting. It wouldn't make those folks in search of a rare parking spot in busy times very happy to have to pay more for it, but it would be a sure way to generate revenue to clean the streets!
 
-Let's explore some of the types of Time Series algorithms and start a notebook to clean and prepare some data. The data you will analyze  is taken from the GEFCom2014 forecasting competition. It consists of 3 years of hourly electricity load and temperature values between 2012 and 2014. Given the historical patterns of electricity load and temperature, you can predict future values of electricity load. In this example, you'll learn how to forecast one time step ahead, using historical load data only.
+Let's explore some of the types of time series algorithms and start a notebook to clean and prepare some data. The data you will analyze  is taken from the GEFCom2014 forecasting competition. It consists of 3 years of hourly electricity load and temperature values between 2012 and 2014. Given the historical patterns of electricity load and temperature, you can predict future values of electricity load. In this example, you'll learn how to forecast one time step ahead, using historical load data only.
 
 Before starting, however, it's useful to understand what's going on behind the scenes.
 
-## Some Definitions
+## Some definitions
 
 When encountering the term 'time series' you need to understand its use in several different contexts.
 
-### Time Series
+### Time series
 
 In mathematics, "a time series is a series of data points indexed (or listed or graphed) in time order. Most commonly, a time series is a sequence taken at successive equally spaced points in time." An example of a time series is the daily closing value of the [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). The use of time series plots and statistical modeling is frequently encountered in signal processing, weather forecasting, earthquake prediction, and other fields where events occur and data points can be plotted over time.
 
-### Time Series Analysis
+### Time series analysis
 
-Time Series Analysis is the analysis of the above mentioned time series data. Time series data can take distinct forms, including 'interrupted time series' which detects patterns in a time series' evolution before and after an interrupting event. The type of analysis needed for the time series depends on the nature of the data. Time series data itself can take the form of series of numbers or characters.
+Time series analysis is the analysis of the above mentioned time series data. Time series data can take distinct forms, including 'interrupted time series' which detects patterns in a time series' evolution before and after an interrupting event. The type of analysis needed for the time series depends on the nature of the data. Time series data itself can take the form of series of numbers or characters.
 
 The analysis be performed using a variety of methods, including frequency-domain and time-domain, linear and nonlinear, and more. [Learn more](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) about the may ways to analyze this type of data.   
 
-### Time Series Forecasting
+### Time series forecasting
 
-Time Series Forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time indices as x variables on a plot, this type of data is best analyzed using special types of models. 
+Time series forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time indices as x variables on a plot, this type of data is best analyzed using special types of models. 
 
 Time series data is a list of ordered observations, unlike data that can be analyzed by linear regression.   The most common one is ARIMA, an acronym that stands for "Autoregressive Integrated Moving Average".
 
@@ -83,7 +83,7 @@ The data might display an abrupt change that might need further analysis. The ab
 
 ✅ Here is a [sample time series plot](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) showing daily in-game currency spent over a few years. Can you identify any of the characteristics listed above in this data?
 
-![in-game currency spend](./images/currency.png)
+![In-game currency spend](./images/currency.png)
 
 ## Getting started with power usage data
 
@@ -145,15 +145,16 @@ A beautiful plot! Take a look at these plots and see if you can determine any of
 
 In the next lesson, you will create an ARIMA model to create some forecasts.
 
+---
 ## 🚀Challenge
 
-Make a list of all the industries and areas of inquiry you can think of that would benefit from Time Series Forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
+Make a list of all the industries and areas of inquiry you can think of that would benefit from time series forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
 ## Review & Self Study
 
-Although we won't cover them here, neural networks are sometimes used to enhance classic methods of Time Series Forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
+Although we won't cover them here, neural networks are sometimes used to enhance classic methods of time series forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
 
 ## Assignment 
 
-[Visualize some more Time Series](assignment.md)
+[Visualize some more time series](assignment.md)

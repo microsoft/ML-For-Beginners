@@ -1,17 +1,17 @@
-# K-Means Clustering
+# K-Means clustering
 
 [![Andrew Ng explains Clustering](https://img.youtube.com/vi/hDmNF9JG3lo/0.jpg)](https://youtu.be/hDmNF9JG3lo "Andrew Ng explains Clustering")
 
-> 🎥 Click the image above for a video: Andrew Ng explains Clustering
+> 🎥 Click the image above for a video: Andrew Ng explains clustering
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/29/)
 
-In this lesson, you will learn how to create clusters using Scikit-Learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common Clustering technique. Let's get started!
+In this lesson, you will learn how to create clusters using Scikit-learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common clustering technique. Let's get started!
 
 Terms you will learn about:
 
-- Silhouette Scoring
-- Elbow Method
+- Silhouette scoring
+- Elbow method
 - Inertia
 - Variance
 ### Introduction
@@ -22,7 +22,7 @@ Terms you will learn about:
 
 > infographic by [Jen Looper](https://twitter.com/jenlooper)
 
-The K-Means Clustering process [executes in a three-step process](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+The K-Means clustering process [executes in a three-step process](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
 1. The algorithm selects k-number of center points by sampling from the dataset. After this, it loops:
     1. It assigns each sample to the nearest centroid
@@ -145,7 +145,7 @@ for i in range(1, 11):
 
 > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
 
-> 🎓 k-means++: In [Scikit-Learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
+> 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
 ### Elbow method
 
 Previously, you surmised that, because you have targeted 3 song genres, you should choose 3 clusters. But is that the case? Use the 'elbow method' to make sure.
@@ -162,7 +162,7 @@ plt.show()
 Use the `wcss` variable that you built in the previous step to create a chart showing where the 'bend' in the elbow is, which indicates the optimum number of clusters. Maybe it **is** 3!
 
 ![elbow method](images/elbow.png)
-### Display the Clusters
+### Display the clusters
 
 Try the process again, this time setting three clusters, and display the clusters as a scatterplot:
 
@@ -192,13 +192,12 @@ This model's accuracy is not very good, and the shape of the clusters gives you 
 
 ![clusters](images/clusters.png)
 
-This data is too imbalanced, too little correlated and there is too much variance between the column values, to cluster well. In fact, the clusters that form are probably heavily influenced or skewed by the three genre categories we defined above. That was a learning process!
+This data is too imbalanced, too little correlated and there is too much variance between the column values to cluster well. In fact, the clusters that form are probably heavily influenced or skewed by the three genre categories we defined above. That was a learning process!
 
-In Scikit-Learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
+In Scikit-learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
 
 ![problem models](images/problems.png)
-
-> Infographic from Scikit-Learn
+> Infographic from Scikit-learn
 ## Variance
 
 Variance is defined as "the average of the squared differences from the Mean."[source](https://www.mathsisfun.com/data/standard-deviation.html) In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 
@@ -206,18 +205,20 @@ Variance is defined as "the average of the squared differences from the Mean."[s
 ✅ This is a great moment to think about all the ways you could correct this issue. Tweak the data a bit more? Use different columns? Use a different algorithm? Hint: Try [scaling your data](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) to normalize it and test other columns.
 
 > Try this '[variance calculator](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' to understand the concept a bit more.
+
+---
 ## 🚀Challenge
 
 Spend some time with this notebook, tweaking parameters. Can you improve the accuracy of the model by cleaning  the data more (removing outliers, for example)? You can use weights to give more weight to given data samples. What else can you do to create better clusters?
 
-Hint: Try to scale your data. There's commented code in the notebook that adds Standard Scaling to make the data columns resemble each other more closely in terms of range. You'll find that while the silhouette score goes down, the 'kink' in the elbow graph smooths out. This is because leaving the data unscaled allows data with less variance to carry more weight. Read a bit more on this problem [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Hint: Try to scale your data. There's commented code in the notebook that adds standard scaling to make the data columns resemble each other more closely in terms of range. You'll find that while the silhouette score goes down, the 'kink' in the elbow graph smooths out. This is because leaving the data unscaled allows data with less variance to carry more weight. Read a bit more on this problem [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/30/)
 ## Review & Self Study
 
 Take a look at Stanford's K-Means Simulator [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). You can use this tool to visualize sample data points and determine its centroids. With fresh data, click 'update' to see how long it takes to find convergence. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
 
-Also, take a look at [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford
+Also, take a look at [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford.
 
 ## Assignment 
 

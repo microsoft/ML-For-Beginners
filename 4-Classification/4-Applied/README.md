@@ -24,7 +24,7 @@ First, train a classification model using the cleaned cuisines dataset we used. 
 pip install skl2onnx
 import pandas as pd 
 ```
-You need '[skl2onnx](https://onnx.ai/sklearn-onnx/)' to help convert your Scikit-Learn model to Onnx format.
+You need '[skl2onnx](https://onnx.ai/sklearn-onnx/)' to help convert your Scikit-learn model to Onnx format.
 
 Then, work with your data in the same way you did in previous lessons:
 
@@ -48,7 +48,7 @@ y.head()
 
 ```
 
-Commence the training routine. We will use the 'SVC' library which has good accuracy. Import the appropriate libraries from Scikit-Learn:
+Commence the training routine. We will use the 'SVC' library which has good accuracy. Import the appropriate libraries from Scikit-learn:
 
 ```python
 from sklearn.model_selection import train_test_split

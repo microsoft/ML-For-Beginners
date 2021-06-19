@@ -1,8 +1,8 @@
-# Machine Learning in the Real World
+# Machine learning in the real world
 
-In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic Regression, Clustering, Classification, Natural Language Processing, and Time Series models. Congratulations! Now, you might be wondering what it's all for... what are the real world applications for these models?
+In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic regression, clustering, classification, natural language processing, and time series models. Congratulations! Now, you might be wondering what it's all for... what are the real world applications for these models?
 
-While a lot of interest in industry has been garnered by AI, which usually leverages Deep Learning, there are still valuable applications for classical machine learning models. You might even use some of these applications today! In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and valuable to users.
+While a lot of interest in industry has been garnered by AI, which usually leverages deep learning, there are still valuable applications for classical machine learning models. You might even use some of these applications today! In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and valuable to users.
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/47/)
 
@@ -10,7 +10,7 @@ While a lot of interest in industry has been garnered by AI, which usually lever
 
 ### Credit card fraud detection
 
-We learned about [k-means clustering](5-Clustering/2-K-Means/README.md) earlier in the course, but how can it be used to solve problems related to credit card fraud?
+We learned about [k-means clustering](../../5-Clustering/2-K-Means/README.md) earlier in the course, but how can it be used to solve problems related to credit card fraud?
 
 K-means clustering comes in handy during a credit card fraud detection technique called **outlier detection**. Outliers, or deviations in observations about a set of data, can tell us if a credit card is being used in a normal capacity or if something unusual is going on. As shown in the paper linked below, you can sort credit card data using a k-means clustering algorithm and assign each transaction to a cluster based on how much of an outlier it appears to be. Then, you can evaluate the riskiest clusters for fraudulent versus legitimate transactions.
 
@@ -20,12 +20,11 @@ https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type
 
 In wealth management, an individual or firm handles investments on behalf of their clients. Their job is to sustain and grow wealth in the long-term, so it is essential to choose investments that perform well.
 
-One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](2-Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out the paper below on evaluating fund performance using regression.
+One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](../../2-Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out the paper below on evaluating fund performance using regression.
 
 http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/
 
 ## 🎓 Education
-
 ### Predicting student behavior
 
 [Coursera](https://coursera.com), an online open course provider, has a great tech blog where they discuss many engineering decisions. In this case study, they plotted a regression line to try to explore any correlation between a low NPS (Net Promoter Score) rating and course retention or drop-off.
@@ -34,12 +33,11 @@ https://medium.com/coursera-engineering/controlled-regression-quantifying-the-im
 
 ### Mitigating bias
 
-[Grammarly](https://grammarly.com), a writing assistant that checks for spelling and grammar errors, uses sophisticated [NLP](6-NLP/README.md) throughout its products. They published an interesting case study in their tech blog about how they dealt with gender bias in machine learning, which you learned about in our [introductory fairness lesson](1-Introduction/3-fairness/README.md).
+[Grammarly](https://grammarly.com), a writing assistant that checks for spelling and grammar errors, uses sophisticated [natural language processing systems](../../6-NLP/README.md) throughout its products. They published an interesting case study in their tech blog about how they dealt with gender bias in machine learning, which you learned about in our [introductory fairness lesson](../../1-Introduction/3-fairness/README.md).
 
 https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/
 
 ## 👜 Retail
-
 ### Personalizing the customer journey
 
 At Wayfair, a company that sells home goods like furniture, helping customers find the right products for their taste and needs is paramount. In this article, engineers from the company describe how they use ML and NLP to "surface the right results for customers". Notably, their Query Intent Engine has been built to use entity extraction, classifier training, asset and opinion extraction, and sentiment tagging on customer reviews. This is a classic use case of how NLP works in online retail.
@@ -56,13 +54,13 @@ https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the
 
 ### Managing clinical trials
 
-Toxicity in clinical trials is a major concern to drug makers. How much toxicity is tolerable? In this study, analyzing various clinical trial methods led to the development of a new approach for predicting the odds of clinical trial outcomes. Specifically, they were able to use random forest to produce a [classifier](4-Classification/README.md) that is able to distinguish between groups of drugs.
+Toxicity in clinical trials is a major concern to drug makers. How much toxicity is tolerable? In this study, analyzing various clinical trial methods led to the development of a new approach for predicting the odds of clinical trial outcomes. Specifically, they were able to use random forest to produce a [classifier](../../4-Classification/README.md) that is able to distinguish between groups of drugs.
 
 https://www.sciencedirect.com/science/article/pii/S2451945616302914
 
 ### Hospital readmission management
 
-Hospital care is costly, especially when patients have to be readmitted. This paper discusses a company that uses ML to predict readmission potential using [clustering](5-Clustering/README.md) algorithms. These clusters help analysts to "discover groups of readmissions that may share a common cause".
+Hospital care is costly, especially when patients have to be readmitted. This paper discusses a company that uses ML to predict readmission potential using [clustering](../../5-Clustering/README.md) algorithms. These clusters help analysts to "discover groups of readmissions that may share a common cause".
 
 https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning
 
@@ -76,7 +74,7 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/
 
 ### Forest management
 
-You learned about [Reinforcement Learning](8-Reinforcement/README.md) in previous lessons. It can be very useful when trying to predict patterns in nature. In particular, it can be used to track ecological problems like forest fires and the spread of invasive species. In Canada, a group of researchers used Reinforcement Learning to build forest wildfire dynamics models from satellite images. Using an innovative "spatially spreading process (SSP)", they envisioned a forest fire as "the agent at any cell in the landscape." "The set of actions the fire can take from a location at any point in time includes spreading north, south, east, or west or not spreading.
+You learned about [Reinforcement Learning](../../8-Reinforcement/README.md) in previous lessons. It can be very useful when trying to predict patterns in nature. In particular, it can be used to track ecological problems like forest fires and the spread of invasive species. In Canada, a group of researchers used Reinforcement Learning to build forest wildfire dynamics models from satellite images. Using an innovative "spatially spreading process (SSP)", they envisioned a forest fire as "the agent at any cell in the landscape." "The set of actions the fire can take from a location at any point in time includes spreading north, south, east, or west or not spreading.
 
 This approach inverts the usual RL setup since the dynamics of the corresponding Markov Decision Process (MDP) is a known function for immediate wildfire spread." Read more about the classic algorithms used by this group at the link below.
 
@@ -92,7 +90,7 @@ https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf
 
 ### ⚡️ Energy Management
   
-In our lesson on [Time Series](7-TimeSeries/README.md), we invoked the concept of smart parking meters to generate revenue for a town based on understanding supply and demand. This article discusses in detail how clustering, regression and time series forecasting combined to help predict future energy use in Ireland, based off of smart metering.
+In our lessons on [time series forecasting](../../7-TimeSeries/README.md), we invoked the concept of smart parking meters to generate revenue for a town based on understanding supply and demand. This article discusses in detail how clustering, regression and time series forecasting combined to help predict future energy use in Ireland, based off of smart metering.
 
 https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
 
@@ -113,7 +111,6 @@ Detecting fake news has become a game of cat and mouse in today's media. In this
 https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf
 
 This article shows how combining different ML domains can produce interesting results that can help stop fake news from spreading and creating real damage; in this case, the impetus was the spread of rumors about COVID treatments that incited mob violence.
-
 ### Museum ML
 
 Museums are at the cusp of an AI revolution in which cataloging and digitizing collections and finding links between artifacts is becoming easier as technology advances. Projects such as [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) are helping unlock the mysteries of inaccessible collections such as the Vatican Archives. But, the business aspect of museums benefits from ML models as well.
@@ -138,7 +135,7 @@ Identify another sector that benefits from some of the techniques you learned in
 
 ## Review & Self Study
 
-The Wayfair Data Science team has several interesting videos on how they use ML at their company. It's worth [taking a look](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)!
+The Wayfair data science team has several interesting videos on how they use ML at their company. It's worth [taking a look](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)!
 
 ## Assignment
 

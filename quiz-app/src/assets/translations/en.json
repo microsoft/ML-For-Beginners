@@ -82,11 +82,11 @@
 						"questionText": "What is an example of a classical ML technique?",
 						"answerOptions": [
 							{
-								"answerText": "Natural Language Processing",
+								"answerText": "natural language processing",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "Deep Learning",
+								"answerText": "deep learning",
 								"isCorrect": "false"
 							},
 							{
@@ -210,7 +210,7 @@
 						]
 					},
 					{
-						"questionText": "Which event was foundational in the creation and expansion of the field of Artificial Intelligence?",
+						"questionText": "Which event was foundational in the creation and expansion of the field of artificial intelligence?",
 						"answerOptions": [
 							{
 								"answerText": "Turing Test",
@@ -347,48 +347,52 @@
 				"title": "Tools and Techniques: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "When building a model, you should:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "prepare your data, then train your model",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "choose a training method, then prepare your data",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "tune parameters, then train your model",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Your data's ___ will impact the quality of your ML model",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "quantity",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "shape",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "A feature variable is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a quality of your data",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a measurable property of your data",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "a row of your data",
 								"isCorrect": "false"
 							}
 						]
@@ -400,49 +404,53 @@
 				"title": "Tools and Techniques: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "You should visualize your data because",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "you can discover outliers",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "you can discover potential cause for bias",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "both of these",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Split your data into:",
+						"answerOptions": [
+							{
+								"answerText": "training and turing sets",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "training and test sets",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "validation and evaluation sets",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A common command to start the training process in various ML libraries is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "model.travel",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "model.train",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "model.fit",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -574,7 +582,7 @@
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "Scikit-Learn",
+								"answerText": "Scikit-learn",
 								"isCorrect": "false"
 							},
 							{
@@ -1000,7 +1008,7 @@
 						]
 					},
 					{
-						"questionText": "What does Scikit-Learn's LabelEncoder library do?",
+						"questionText": "What does Scikit-learn's LabelEncoder library do?",
 						"answerOptions": [
 							{
 								"answerText": "Encodes data alphabetically",
@@ -1243,49 +1251,53 @@
 				"title": "Classification 3: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "A good initial classifier to try is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "Linear SVC",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "K-Means",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Logical SVC",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Regularization controls:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "the influence of parameters",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "the influence of training speed",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "the influence of outliers",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "K-Neighbors classifier can be used for:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "supervised learning",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "unsupervised learning",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -1296,48 +1308,52 @@
 				"title": "Classification 3: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Support-Vector classifiers can be used for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "classification",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "regression",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Random Forest is a ___ type of classifier",
+						"answerOptions": [
+							{
+								"answerText": "Ensemble",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Dissemble",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Assemble",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Adaboost is known for:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "focusing on the weights of incorrectly classified items",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "focusing on outliers",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "focusing on incorrect data",
 								"isCorrect": "false"
 							}
 						]
@@ -1349,48 +1365,48 @@
 				"title": "Classification 4: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Recommendation systems might be used for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Recommending a good restaurant",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Recommending fashions to try",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Both of these",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Embedding a model in a web app helps it to be offline-capable",
+						"answerOptions": [
+							{
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Onnx Runtime can be used for",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Running models in a web app",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
+								"answerText": "Training models",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "Hyperparameter tuning",
 								"isCorrect": "false"
 							}
 						]
@@ -1402,48 +1418,52 @@
 				"title": "Classification 4: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q11",
+						"questionText": "Netron app helps you:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Visualize data",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Visualize your model's structure",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Test your web app",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Convert your Scikit-learn model for use with Onnx using:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "sklearn-app",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "sklearn-web",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "sklearn-onnx",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Using your model in a web app is called:",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "inference",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "interference",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "insurance",
 								"isCorrect": "false"
 							}
 						]
@@ -1569,49 +1589,53 @@
 				"title": "K-Means Clustering: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "K-Means is derived from:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "electrical engineering",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "signal processing",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "computational linguistics",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "A good Silhouette score means:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "clusters are well-separated and well-defined",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "there are few clusters",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "there are many clusters",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Variance is:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "the average of the squared differences from the mean",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a problem for clustering if it becomes too high",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of these",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}
@@ -1622,48 +1646,48 @@
 				"title": "K-Means Clustering: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "A Voronoi diagram shows:",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a cluster's variance",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a cluster's seed and its region",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "a cluster's inertia",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "Inertia is",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a measure of how internally coherent clusters are",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a measure of how much clusters move",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "a measure of cluster quality",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "Using K-Means, you must first determine the value of 'k'",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
@@ -1682,7 +1706,7 @@
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "Natural Language Processing",
+								"answerText": "natural language processing",
 								"isCorrect": "true"
 							},
 							{
@@ -2351,48 +2375,48 @@
 				"title": "Reinforcement 1: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is reinforcement learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "teaching someone something over and over again until they understand",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a learning technique that deciphers the optimal behavior of an agent in some environment by running many experiments",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "understanding how to run multiple experiments at once",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is a policy?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a function that returns the action at any given state",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a document that tells you whether or not you can return an item",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "a function that is used for a random purpose",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "A reward function returns a score for each state of an environment.",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
@@ -2404,49 +2428,49 @@
 				"title": "Reinforcement 1: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is Q-Learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a mechanism for recording the 'goodness' of each state",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "an algorithm where the policy is defined by a Q-Table",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "For what values does a Q-Table correspond to the random walk policy?",
+						"answerOptions": [
+							{
+								"answerText": "all equal values",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "-0.25",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "all different values",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "It was better to use exploration than exploitation during the learning process in our lesson.",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "true",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "false",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					}

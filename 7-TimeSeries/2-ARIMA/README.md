@@ -1,10 +1,10 @@
-# Time Series Forecasting with ARIMA
+# Time series forecasting with ARIMA
 
-In the previous lesson, you learned a bit about Time Series Forecasting and loaded a dataset showing the fluctuations of electrical load over a time period.
+In the previous lesson, you learned a bit about time series forecasting and loaded a dataset showing the fluctuations of electrical load over a time period.
 
 [![Introduction to ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction to ARIMA")
 
-> A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
+> 🎥 Click the image above for a video: A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
 
 In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
@@ -13,7 +13,7 @@ In this lesson, you will discover a specific way to build models with [ARIMA: *A
 
 > 🎓 [Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing) data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series." [Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
 
-Let's unpack the parts of ARIMA to better understand how it helps us model Time Series and help us make predictions against it.
+Let's unpack the parts of ARIMA to better understand how it helps us model time series and help us make predictions against it.
 ## AR - for AutoRegressive
 
 Autoregressive models, as the name implies, look 'back' in time to analyze previous values in your data and make assumptions about them. These previous values are called 'lags'. An example would be data that shows monthly sales of pencils. Each month's sales total would be considered an 'evolving variable' in the dataset. This model is built as the "evolving variable of interest is regressed on its own lagged (i.e., prior) values." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average) 
@@ -348,8 +348,9 @@ plt.show()
 
 ![a time series model](images/accuracy.png)
 
-A very nice plot, showing a model with good accuracy. Well done!
+🏆 A very nice plot, showing a model with good accuracy. Well done!
 
+---
 ## 🚀Challenge
 
 Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE in this lesson, but are there other methods you could use? Research them and annotate them. A helpful document can be found [here](https://otexts.com/fpp2/accuracy.html)
