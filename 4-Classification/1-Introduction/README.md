@@ -212,7 +212,7 @@ Name: cuisine, dtype: int64
 The data is nice and clean, balanced, and very delicious! You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
 
 ```python
-transformed_df.to_csv("../../data/cleaned_cuisine.csv")
+transformed_df.to_csv("../data/cleaned_cuisine.csv")
 ```
 This fresh CSV can now be found in the root data folder.
 
