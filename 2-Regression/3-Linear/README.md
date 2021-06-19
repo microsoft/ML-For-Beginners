@@ -41,7 +41,7 @@ We do so since we want to model a line that has the least cumulative distance fr
 
 > **🧮 Show me the math** 
 > 
-> This line can be expressed by an equation: 
+> This line, called the _line of best fit_ can be expressed by [an equation](https://en.wikipedia.org/wiki/Simple_linear_regression): 
 > 
 > ```
 > Y = a + bX
@@ -49,10 +49,14 @@ We do so since we want to model a line that has the least cumulative distance fr
 >
 > `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. The slope of the line is `b` and `a` is the y-intercept, which refers to the value of `Y` when `X = 0`. 
 >
-> todo infographic
+>![calculate the slope](images/slope.png)
+> First, calculate the slope `b`
 >
 > In other words, and referring to our pumpkin data's original question: "predict the price of a pumpkin per bushel by month", `X` would refer to the price and `Y` would refer to the month of sale. 
-> 
+>
+>![complete the equation](images/calculation.png)
+> Calculate the value of Y. If you're paying around $4, it must be April!
+>
 > The math that calculates the line must demonstrate the slope of the line, which is also dependent on the intercept, or where `Y` is situated when `X = 0`.
 >
 > You can observe the method of calculation for these values on the [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html) web site. Also visit [this Least-squares calculator](https://www.mathsisfun.com/data/least-squares-calculator.html) to watch how the numbers' values impact the line.
