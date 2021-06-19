@@ -1,17 +1,17 @@
 # Build a Web App to use a ML Model
 
-In this lesson, you will train a Linear Regression model and a Classification model on a dataset that's out of this world: UFO Sightings over the past century, sourced from [NUFORC's database](https://www.nuforc.org). We will continue our use of notebooks to clean data and train our model, but you can take the process one step further by exploring using a model 'in the wild', so to speak: in a web app. To do this, you need to build a web app using Flask.
+In this lesson, you will train a ML model on a dataset that's out of this world: UFO sightings over the past century, sourced from [NUFORC's database](https://www.nuforc.org). We will continue our use of notebooks to clean data and train our model, but you can take the process one step further by exploring using a model 'in the wild', so to speak: in a web app. To do this, you need to build a web app using Flask.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
 
 There are several ways to build web apps to consume machine learning models. Your web architecture may influence the way your model is trained. Imagine that you are working in a business where the data science group has trained a model that they want you to use in an app. There are many questions you need to ask: Is it a web app, or a mobile app? Where will the model reside, in the cloud or locally? Does the app have to work offline? And what technology was used to train the model, because that may influence the tooling you need to use? 
 
 If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/). If you are building a mobile app or need to use the model in an IoT context, you could use [TensorFlow Lite](https://www.tensorflow.org/lite/) and use the model in an Android or iOS app. 
 
-If you are building a model using [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use [onnx.js](https://github.com/Microsoft/onnxjs). This option will be explored in a future lesson.
+If you are building a model using a library such as [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use the [Onnx Runtime](https://www.onnxruntime.ai/). This option will be explored in a future lesson for a Scikit-learn-trained model.
 
-If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/en-us/services/cognitive-services/custom-vision-service/) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
+If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
 
-You also have the opportunity to build an entire Flask web app that would be able to train the model itself in a web browser. This can also be done using TensorFlow.js in a JavaScript context. For our purposes, since we have been working with notebooks, let's explore the steps you need to take to export a trained model to a format readable by a Python-built web app. 
+You also have the opportunity to build an entire Flask web app that would be able to train the model itself in a web browser. This can also be done using TensorFlow.js in a JavaScript context. For our purposes, since we have been working with Python-based notebooks, let's explore the steps you need to take to export a trained model from such a notebook to a format readable by a Python-built web app. 
 
 ## Tools 
 
@@ -52,7 +52,7 @@ ufos = ufos[(ufos['Seconds'] >= 1) & (ufos['Seconds'] <= 60)]
 ufos.info()
 ```
 
-Next, import Scikit-Learn's LabelEncoder library to convert the text values for countries to a number. 
+Next, import Scikit-learn's LabelEncoder library to convert the text values for countries to a number. 
 
 ✅ LabelEncoder encodes data alphabetically
 
@@ -89,7 +89,7 @@ y = ufos['Country']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 ```
 
-Finally, train your model using Logistic Regression:
+Finally, train your model using logistic regression:
 
 ```python
 from sklearn.metrics import accuracy_score, classification_report 
@@ -103,10 +103,10 @@ print('Predicted labels: ', predictions)
 print('Accuracy: ', accuracy_score(y_test, predictions))
 ```
 
-The accuracy isn't bad (around 95%), unsurprisingly, as country and latitude/longitude have a good correlation. The model you created isn't very revolutionary, but it's a good exercise to try to train from raw data that you cleaned, export, and then use this model in a web app.
+The accuracy isn't bad (around 95%), unsurprisingly, as country and latitude/longitude correlate. The model you created isn't very revolutionary as it's obvious you  should be able to infer a country from its latitude and longitude, but it's a good exercise to try to train from raw data that you cleaned, exported, and then use this model in a web app.
 ## Pickle your model
 
-Now, it's time to pickle your model! You can do that in just a few lines of code. Load your pickled model and test it against a sample data array containing values for seconds, latitude and longitude,
+Now, it's time to pickle your model! You can do that in just a few lines of code. Once it's pickled, load your pickled model and test it against a sample data array containing values for seconds, latitude and longitude,
 
 ```python
 import pickle
@@ -122,9 +122,9 @@ The model returns '3', which is the country code for the UK. Wild! 👽
 
 Now you can build a Flask app to call your model and return similar results, but in a more visually pleasing way.
 
-Start by creating a folder called web-app next to the notebook.ipynb file where your ufo-model.pkl file resides. In that folder create three more folders: `static`, with a folder `css` inside it, and `templates`. 
+Start by creating a folder called web-app next to the _notebook.ipynb_ file where your _ufo-model.pkl_ file resides. In that folder create three more folders: `static`, with a folder `css` inside it, and `templates`. 
 
-> Refer to the solution folder for a view of the finished app
+✅ Refer to the solution folder for a view of the finished app
 
 The first file to create in `web-app` is a `requirements.txt` file. Like `package.json` in a JavaScript app, this file lists dependencies required by the app. In `requirements.txt` add the lines: 
 
@@ -258,11 +258,14 @@ Before doing that, take a look at the parts of `app.py`.
 
 First, dependencies are loaded and the app starts. Then, the model is imported. Then, index.html is rendered on the home route. On the `/predict` route, several things happen when the form is posted:
 
-1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned. 
+1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned.
 2. The Countries that we want displayed are re-rendered as readable text from their predicted country code, and that value is sent back to index.html to be rendered in the template.
 
-Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction. In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction. 
 
+In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+
+---
 ## 🚀 Challenge: 
 
 Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. What are the pros and cons of pursuing this method?

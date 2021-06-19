@@ -1,6 +1,6 @@
-# Build a Regression Model using Scikit-Learn: Regression Two Ways
+# Build a regression model using Scikit-learn: regression two ways
 
-![Linear vs Polynomial Regression Infographic](./images/linear-polynomial.png)
+![Linear vs polynomial regression infographic](./images/linear-polynomial.png)
 
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
@@ -16,11 +16,11 @@ Now you are ready to dive deeper into regression for ML. In this lesson, you wil
 
 ## Prerequisite
 
-You should be familiar by now, with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file. In the file, the pumpkin price is displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in Visual Studio Code.
+You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file. In the file, the pumpkin price is displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in Visual Studio Code.
 
 ## Preparation
 
-As a reminder, you are loading this data so to ask questions of it, questions like:
+As a reminder, you are loading this data so to ask questions of it:
 
 - When is the best time to buy pumpkins?
 - What price can I expect of a case of miniature pumpkins?
@@ -28,13 +28,9 @@ As a reminder, you are loading this data so to ask questions of it, questions li
 
 Let's keep digging into this data.
 
-### Limitations of the previous lesson
+✅  In the previous lesson, you created a Pandas data frame and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were _only_ able to gather about 400 data points and only for the fall months. Take a look at the data that we preloaded in this lesson's accompanying _notebook.ipynb_. The data is preloaded and an initial scatter plot is charted to show month data. Maybe we can get a little more detail about the nature of the data by cleaning it more.
 
-In the previous lesson, you created a Pandas data frame and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were _only_ able to gather about 400 data points and only for the fall months.
-
-✅  Take a look at the data that we preloaded in this lesson's accompanying notebook _notebook.ipynb_. The data is preloaded and an initial scatter plot is charted to show month data. Maybe we can get a little more detail about the nature of the data by cleaning it more.
-
-## A Linear Regression Line
+## A linear regression line
 
 As you learned in Lesson 1, the goal of a linear regression exercise is to be able to plot a line to:
 
@@ -43,7 +39,7 @@ As you learned in Lesson 1, the goal of a linear regression exercise is to be ab
 
 ### Understand the math
 
-Lets; focus on understanding the underlying math.
+Since you'll use Scikit-learn, there's no reason to do this by hand (although you could!). In the main data-processing block of your lesson notebook, add a library from Scikit-learn to automatically convert all string data to numbers:
 
 This line has an equation:
 
@@ -52,6 +48,26 @@ Y = a + bX`.
 ```
 
 It is typical of **Least-Squares Regression** to draw this type of line.
+
+Todo infographic
+
+If you look at the new_pumpkins dataframe now, you see that all the strings are now numeric. This makes it harder for you to read but much more intelligible for Scikit-learn!
+
+```
+	Package	Price
+70	0	13.636364
+71	0	16.363636
+72	0	16.363636
+73	0	15.454545
+74	0	13.636364
+...	...	...
+1738	2	30.000000
+1739	2	28.750000
+1740	2	25.750000
+1741	2	24.000000
+1742	2	24.000000
+415 rows × 2 columns
+```
 
 `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. 
 
@@ -77,8 +93,6 @@ We want to model a line that has the least cumulative distance from all of our d
 ### Correlation coefficent
 
 One more term to understand is the **Correlation Coefficient** between given `X` and `Y` variables.
-
-For a scatter plot, you can quickly visualize this coefficient.
 
 - **High correlation**. A plot with data points scattered in a neat line have high correlation.
 - **Low correlation**. A plot with data points scattered everywhere between X and Y have a low correlation.
@@ -222,13 +236,13 @@ Before building your model, do one more tidy-up of your data.
 
 Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. Your holiday pumpkin patch will be beautiful. But you can probably create a better model!
 
-## Polynomial Regression
+## Polynomial regression
 
-Another type of Linear Regression is Polynomial Regression. While sometimes there's a linear relationship between variables - _the bigger the pumpkin in volume, the higher the price_. Sometimes these relationships can't be plotted as a plane or straight line.
+Another type of linear regression is polynomial regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
 
-✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use Polynomial Regression
+✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use polynomial regression
 
-Take another look at the relationship between `Variety` to `Price` in the previous plot. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try Polynomial Regression.
+Take another look at the relationship between Variety to Price in the previous plot. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try polynomial regression.
 
 ✅ Polynomials are mathematical expressions that might consist of one or more variables and coefficients
 
@@ -262,7 +276,7 @@ A good way to visualize the correlations between data in dataframes is to displa
 
 ### Create a pipeline
 
-Scikit-Learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes Polynomial Features, or predictions that form a nonlinear path.
+Scikit-learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes polynomial features, or predictions that form a nonlinear path.
 
 1. Build out the X and y columns:
 
@@ -323,7 +337,7 @@ At this point, you need to create a new dataframe with _sorted_ data so that the
     Model Accuracy:  0.8537946517073784
     ```
 
-    That's better! Try to predict a price:
+That's better! Try to predict a price:
 
 ### Do a prediction
 
@@ -343,7 +357,8 @@ Let's see where we are, can we input a new value and get a prediction?
 
     It does make sense, if you compare it to the polynomial plot! And, if this is a better model than the previous one, looking at the same data, you need to budget for these more expensive pumpkins!
 
-🏆 Well done! You created two Regression models in one lesson. In the final section on Regression, you will learn about Logistic Regression to determine categories.
+🏆 Well done! You created two regression models in one lesson. In the final section on regression, you will learn about logistic regression to determine categories. 
+
 
 ---
 

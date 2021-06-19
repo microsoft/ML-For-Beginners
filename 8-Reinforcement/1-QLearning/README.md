@@ -9,15 +9,17 @@ In this lesson, we will explore the world of **[Peter and the Wolf](https://en.w
 
 ### Prerequisites and Setup
 
-In this lesson, we will be experimenting with some code in Python. So you are expected to be able to run the Jupyter Notebook code from this lesson, either on your computer, or somewhere in the cloud.
+In this lesson, we will be experimenting with some code in Python. You should be able to run the Jupyter Notebook code from this lesson, either on your computer or somewhere in the cloud.
 
-You can open [the lesson notebook](notebook.ipynb) and continue reading the material there, or continue reading here, and run the code in your favorite Python environment. 
+You can open [the lesson notebook](notebook.ipynb) and continue reading the material there, or continue reading here, and run the code in your favorite Python environment.
 
-> **Note:** If you are opening this code from the cloud, you also need to fetch [`rlboard.py`](rlboard.py) file, because notebook code uses it. Put it into the same directory with the notebook.
+> **Note:** If you are opening this code from the cloud, you also need to fetch the [`rlboard.py`](rlboard.py) file, which is used in the notebook code. Add it to the same directory as the notebook.
+
 ## Introduction
 
 **Reinforcement Learning** (RL) is a learning technique that allows us to learn an optimal behavior of an **agent** in some **environment** by running many experiments. An agent in this environment should have some **goal**, defined by a **reward function**.
-## The Environment
+
+## The environment
 
 For simplicity, let's consider Peter's world to be a square board of size `width` x `height`, like this:
 
@@ -27,9 +29,9 @@ Each cell in this board can either be:
 
 * **ground**, on which Peter and other creatures can walk
 * **water**, on which you obviously cannot walk
-* **a tree** or **grass** - a place where you can take some rest
-* **an apple**, which represents something Peter would be glad to find in order to feed himself
-* **a wolf**, which is dangerous and should be avoided
+* a **tree** or **grass**, a place where you can rest
+* an **apple**, which represents something Peter would be glad to find in order to feed himself
+* a **wolf**, which is dangerous and should be avoided
 
 There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will just import the module and use it to create the sample board (code block 1):
 
@@ -41,24 +43,25 @@ m = Board(width,height)
 m.randomize(seed=13)
 m.plot()
 ```
-This code should print the picture of the environment similar to the one above. 
 
-## Actions and Policy
+This code should print a picture of the environment similar to the one above.
 
-In our example, Peter's goal would be to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds and apple. Therefore, at any position he can chose between one of the following actions: up, down, left and right. We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`. (code block 2)
+## Actions and policy
+
+In our example, Peter's goal would be to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds an apple. Therefore, at any position he can choose between one of the following actions: up, down, left and right. We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`. (code block 2)
 
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
 action_idx = { a : i for i,a in enumerate(actions.keys()) }
 ```
 
-The strategy of our agent (Peter) is defined by so-called **policy**. A policy is a function that returns the action at any given state. In our case, the state of the problem is represented by the board, including the current position of the player. 
+The strategy of our agent (Peter) is defined by a so-called **policy**. A policy is a function that returns the action at any given state. In our case, the state of the problem is represented by the board, including the current position of the player. 
 
 The goal of reinforcement learning is to eventually learn a good policy that will allow us to solve the problem efficiently. However, as a baseline, let's consider the simplest policy called **random walk**.
 
 ## Random walk
 
-Let's first solve our problem by implementing a random walk strategy. With random walk, we will randomly chose the next action from allowed ones, until we reach the apple (code block 3). 
+Let's first solve our problem by implementing a random walk strategy. With random walk, we will randomly choose the next action from the allowed actions, until we reach the apple (code block 3).
 
 ```python
 def random_policy(m):
@@ -87,7 +90,7 @@ def walk(m,policy,start_position=None):
 walk(m,random_policy)
 ```
 
-The call to `walk` should return us the length of corresponding path, which can vary from one run to another. We can run the walk experiment a number of times (say, 100), and print the resulting statistics (code block 4):
+The call to `walk` should return the length of the corresponding path, which can vary from one run to another. We can run the walk experiment a number of times (say, 100), and print the resulting statistics (code block 4):
 
 ```python
 def print_statistics(policy):
@@ -106,13 +109,13 @@ print_statistics(random_policy)
 
 Note that the average length of a path is around 30-40 steps, which is quite a lot, given the fact that the average distance to the nearest apple is around 5-6 steps.
 
-You can also see how Peter's movement looks like during random walk:
+You can also see what Peter's movement looks like during the random walk:
 
 ![Peter's Random Walk](images/random_walk.gif)
 
-## Reward Function
+## Reward function
 
-To make out policy more intelligent, we need to understand which moves are "better" than others. To do this, we need to define our goal. The goal can be defined in terms of **reward function**, that will return some score value for each state. The higher the number - the better is the reward function. (code block 5)
+To make our policy more intelligent, we need to understand which moves are "better" than others. To do this, we need to define our goal. The goal can be defined in terms of a **reward function**, which will return some score value for each state. The higher the number, the better the reward function. (code block 5)
 
 ```python
 move_reward = -0.1
@@ -131,19 +134,19 @@ def reward(m,pos=None):
     return move_reward
 ```
 
-An interesting thing about reward function is that in most of the cases *we are only given substantial reward at the end of the game*. It means that out algorithm should somehow remember "good" steps that lead to positive reward at the end, and increase their importance. Similarly, all moves that lead to bad results should be discouraged.
+An interesting thing about reward functions is that in most cases, *we are only given a substantial reward at the end of the game*. This means that our algorithm should somehow remember "good" steps that lead to a positive reward at the end, and increase their importance. Similarly, all moves that lead to bad results should be discouraged.
 
 ## Q-Learning
 
-An algorithm that we will discuss here is called **Q-Learning**. In this algorithm, the policy is defined by a function (or a data structure) called **Q-Table**. It records the "goodness" of each of the actions in a given state.
+An algorithm that we will discuss here is called **Q-Learning**. In this algorithm, the policy is defined by a function (or a data structure) called a **Q-Table**. It records the "goodness" of each of the actions in a given state.
 
-It is called Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimensions `width` x `height`, we can represent Q-Table by a numpy array with shape `width` x `height` x `len(actions)`: (code block 6)
+It is called a Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimensions `width` x `height`, we can represent the Q-Table using a numpy array with shape `width` x `height` x `len(actions)`: (code block 6)
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 ```
 
-Notice that we initially initialize all the values of Q-Table with equal value, in our case - 0.25. That corresponds to the "random walk" policy, because all moves in each state are equally good. We can pass the Q-Table to the `plot` function in order to visualize the table on the board: `m.plot(Q)`.
+Notice that we initialize all the values of the Q-Table with an equal value, in our case - 0.25. This corresponds to the "random walk" policy, because all moves in each state are equally good. We can pass the Q-Table to the `plot` function in order to visualize the table on the board: `m.plot(Q)`.
 
 ![Peter's Environment](images/env_init.png)
 
@@ -153,19 +156,19 @@ Now we need to run the simulation, explore our environment, and learn a better d
 
 ## Essence of Q-Learning: Bellman Equation
 
-Once we start moving, each action will have a corresponding reward, i.e. we can theoretically select the next action based on the highest immediate reward. However, in most of the states the move will not achieve our goal or reaching the apple, and thus we cannot immediately decide which direction is better.
+Once we start moving, each action will have a corresponding reward, i.e. we can theoretically select the next action based on the highest immediate reward. However, in most states, the move will not achieve our goal of reaching the apple, and thus we cannot immediately decide which direction is better.
 
-> It is not the immediate result that matters, but rather the final result, which we will obtain at the end of the simulation.
+> Remember that it is not the immediate result that matters, but rather the final result, which we will obtain at the end of the simulation.
 
-In order to account for this delayed reward, we need to use the principles of **[dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming)**, which allows us to think about out problem recursively.
+In order to account for this delayed reward, we need to use the principles of **[dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming)**, which allow us to think about out problem recursively.
 
-Suppose we are now at the state *s*, and we want to move to the next state *s'*. By doing so, we will receive the immediate reward *r(s,a)*, defined by reward function, plus some future reward. If we suppose that our Q-Table correctly reflects the "attractiveness" of each action, then at state *s'* we will chose an action *a* that corresponds to maximum value of *Q(s',a')*. Thus, the best possible future reward we could get at state *s* will be defined as `max`<sub>a'</sub>*Q(s',a')* (maximum here is computed over all possible actions *a'* at state *s'*. 
+Suppose we are now at the state *s*, and we want to move to the next state *s'*. By doing so, we will receive the immediate reward *r(s,a)*, defined by the reward function, plus some future reward. If we suppose that our Q-Table correctly reflects the "attractiveness" of each action, then at state *s'* we will chose an action *a* that corresponds to maximum value of *Q(s',a')*. Thus, the best possible future reward we could get at state *s* will be defined as `max`<sub>a'</sub>*Q(s',a')* (maximum here is computed over all possible actions *a'* at state *s'*).
 
-This gives the **Bellman formula** for calculating the value of Q-Table at state *s*, given action *a*:
+This gives the **Bellman formula** for calculating the value of the Q-Table at state *s*, given action *a*:
 
 <img src="images/bellmaneq.gif"/>
 
-Here γ is the so-called **discount factor** that determines to which extent you should prefer current reward over the future reward and vice versa.
+Here γ is the so-called **discount factor** that determines to which extent you should prefer the current reward over the future reward and vice versa.
 
 ## Learning Algorithm
 
@@ -184,14 +187,15 @@ Given the equation above, we can now write pseudo-code for our leaning algorithm
         6. *s* ← *s'*
         7. Update the total reward and decrease α.
 
-## Exploit vs. Explore
+## Exploit vs. explore
 
-In the algorithm above, we did not specify how exactly we should choose an action at step 2.1. If we are choosing the action randomly, we will randomly **explore** the environment, and we are quite likely to die often as well as explore areas where we would not normally go. An alternative approach would be to **exploit** the Q-Table values that we already know, and thus to choose the best action (with highers Q-Table value) at state *s*. This, however, will prevent us from exploring other states, and quite likely we might not find the optimal solution.
+In the algorithm above, we did not specify how exactly we should choose an action at step 2.1. If we are choosing the action randomly, we will randomly **explore** the environment, and we are quite likely to die often as well as explore areas where we would not normally go. An alternative approach would be to **exploit** the Q-Table values that we already know, and thus to choose the best action (with higher Q-Table value) at state *s*. This, however, will prevent us from exploring other states, and it's likely we might not find the optimal solution.
 
-Thus, the best approach is to balance between exploration and exploitation. This can be done by choosing the action at state *s* with probabilities proportional to values in Q-Table. In the beginning, when Q-Table values are all the same, it would correspond to a random selection, but as we learn more about our environment, we would be more likely to follow the optimal route while allowing the agent to choose the unexplored path once in a while.
-## Python Implementation
+Thus, the best approach is to strike a balance between exploration and exploitation. This can be done by choosing the action at state *s* with probabilities proportional to values in the Q-Table. In the beginning, when Q-Table values are all the same, it would correspond to a random selection, but as we learn more about our environment, we would be more likely to follow the optimal route while allowing the agent to choose the unexplored path once in a while.
 
-Now we are ready to implement the learning algorithm. Before that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions: (code block 7)
+## Python implementation
+
+We are now ready to implement the learning algorithm. Before we do that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions: (code block 7)
 
 ```python
 def probs(v,eps=1e-4):
@@ -231,13 +235,13 @@ for epoch in range(5000):
         n+=1
 ```
 
-After executing this algorithm, Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
+After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
 
 <img src="images/learned.png"/>
 
-## Checking the Policy
+## Checking the policy
 
-Since Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can select the action corresponding to the highest Q-Table value: (code block 9)
+Since the Q-Table lists the "attractiveness" of each action at each state, it is quite easy to use it to define the efficient navigation in our world. In the simplest case, we can select the action corresponding to the highest Q-Table value: (code block 9)
 
 ```python
 def qpolicy_strict(m):
@@ -259,7 +263,7 @@ walk(m,qpolicy_strict)
 
 ## Navigation
 
-Better navigation policy would be the one that we have used during training, which combines exploitation and exploration. In this policy, we will select each action with a certain probability, proportional to the values in Q-Table. This strategy may still result in the agent returning back to the position it has already explored, but, as you can see from the code below, it results in very short average path to the desired location (remember that `print_statistics` runs the simulation 100 times): (code block 10) 
+A better navigation policy would be the one that we used during training, which combines exploitation and exploration. In this policy, we will select each action with a certain probability, proportional to the values in the Q-Table. This strategy may still result in the agent returning back to a position it has already explored, but, as you can see from the code below, it results in a very short average path to the desired location (remember that `print_statistics` runs the simulation 100 times): (code block 10)
 
 ```python
 def qpolicy(m):
@@ -275,19 +279,18 @@ After running this code, you should get a much smaller average path length than 
 
 ## Investigating the learning process
 
-As we have mentioned, the learning process is a balance between exploration and exploration of gained knowledge about the structure of problem space. We have seen that the result of learning (the ability to help an agent to find a short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process: 
+As we have mentioned, the learning process is a balance between exploration and exploration of gained knowledge about the structure of problem space. We have seen that the result of learning (the ability to help an agent to find a short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process:
 
 <img src="images/lpathlen1.png"/>
 
-What we see here is that at first the average path length increases. This is probably due to the fact that when we know nothing about the environment we are likely to get trapped into bad states, water or wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know where the apples are very well.
+What we see here is that at first, the average path length increases. This is probably due to the fact that when we know nothing about the environment, we are likely to get trapped in bad states, water or wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know where the apples are very well.
 
 Once we learn enough, it becomes easier for the agent to achieve the goal, and the path length starts to decrease. However, we are still open to exploration, so we often diverge away from the best path, and explore new options, making the path longer than optimal.
 
-What we also observe on this graph, is that at some point the length increased abruptly. This indicates stochastic nature of the process, and that we can at some point "spoil" the Q-Table coefficients by overwriting them with new values. This ideally should be minimized by decreasing learning rate (i.e. towards the end of training we only adjust Q-Table values by a small value).
+What we also observe on this graph is that at some point, the length increased abruptly. This indicates the stochastic nature of the process, and that we can at some point "spoil" the Q-Table coefficients by overwriting them with new values. This ideally should be minimized by decreasing learning rate (for example, towards the end of training, we only adjust Q-Table values by a small value).
 
-Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters, such as leaning rate, learning rate decay and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters** which we optimize during training (eg. Q-Table coefficients). The process of finding best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
+Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters, such as learning rate, learning rate decay, and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters**, which we optimize during training (for example, Q-Table coefficients). The process of finding the best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/44/)
-
 
 ## Assignment [A More Realistic World](assignment.md)

@@ -1,8 +1,7 @@
-# Common Natural Language Processing Tasks and Techniques
+# Common natural language processing tasks and techniques
 
-For most *Natural Language Processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
+For most *natural language processing* tasks, the text to be processed must be broken down, examined, and the results stored or cross referenced with rules and data sets. This allows the programmer to derive the meaning or intent or only the frequency of terms and words in a text.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/33/)
-
 
 Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently. Before applying ML to these tasks, however, let's understand the problems encountered by an NLP specialist.
 
@@ -175,6 +174,7 @@ One possible solution to the task is [here](solution/bot.py)
 2. Does identifying the noun phrase make the bot more 'believable'?
 3. Why would extracting a 'noun phrase' from a sentence a useful thing to do?
 
+---
 ## 🚀Challenge
 
 Take a task in the prior knowledge check and try to implement it. Test the bot on a friend. Can it trick them? Can you make your bot more 'believable?'
