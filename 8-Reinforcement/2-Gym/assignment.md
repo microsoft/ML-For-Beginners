@@ -2,7 +2,7 @@
 
 [OpenAI Gym](http://gym.openai.com) has been designed in such a way that all environments provide the same API - i.e. the same methods `reset`, `step` and `render`, and the same abstractions of **action space** and **observation space**. Thus is should be possible to adapt the same reinforcement learning algorithms to different environments with minimal code changes.
 
-## Mountain Car Environment
+## A Mountain Car Environment
 
 [Mountain Car environment](https://gym.openai.com/envs/MountainCar-v0/) contains a car stuck in a valley:
 

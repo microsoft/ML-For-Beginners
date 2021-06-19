@@ -1,6 +1,6 @@
 # A More Realistic World
 
-In our situation, Peter was able to move around almost without getting tired or hungry. In more realistic world, we has to sit down and rest from time to time, and also to feed himself. Let's make our world more realistic, by implementing the following rules:
+In our situation, Peter was able to move around almost without getting tired or hungry. In a more realistic world, we has to sit down and rest from time to time, and also to feed himself. Let's make our world more realistic, by implementing the following rules:
 
 1. By moving from one place to another, Peter loses **energy** and gains some **fatigue**.
 2. Peter can gain more energy by eating apples.
