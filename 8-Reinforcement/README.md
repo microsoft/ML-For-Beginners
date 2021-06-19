@@ -32,8 +32,8 @@ The main difference between other types of machine learning and RL is that in RL
 
 ## Lessons
 
-1. [Introduction to Reinforcement Learning and Q-Learning](1-QLearning/README.md)
-2. [Using gym simulation environment](2-Gym/README.md)
+1. [Introduction to reinforcement learning and Q-Learning](1-QLearning/README.md)
+2. [Using a gym simulation environment](2-Gym/README.md)
 
 ## Credits
 
