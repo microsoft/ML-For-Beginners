@@ -9,9 +9,13 @@ In the previous lesson, you learned a bit about time series forecasting and load
 
 In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
 
-> 🎓 Stationarity, from a statistical context, refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'. 
+🎓 **Stationarity**
 
-> 🎓 [Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing) data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series." [Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
+From a statistical context, stationarity refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'. 
+
+🎓 **[Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**
+
+Differencing data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series." [Paper by Shixiong et al](https://arxiv.org/abs/1904.07632) 
 
 Let's unpack the parts of ARIMA to better understand how it helps us model time series and help us make predictions against it.
 ## AR - for AutoRegressive
@@ -25,11 +29,11 @@ As opposed to the similar 'ARMA' models, the 'I' in ARIMA refers to its *[integr
 The [moving-average](https://wikipedia.org/wiki/Moving-average_model) aspect of this model refers to the output variable that is determined by observing the current and past values of lags.
 
 Bottom line: ARIMA is used to make a model fit the special form of time series data as closely as possible.
-### Preparation
+### Exercise: build an ARIMA model
 
-Open the `/working` folder in this lesson and find the `notebook.ipynb` file. Run the notebook to load the `statsmodels` Python library; you will need this for ARIMA models.
+Open the `/working` folder in this lesson and find the _notebook.ipynb_ file. Run the notebook to load the `statsmodels` Python library; you will need this for ARIMA models.
 
-## Load necessary libraries
+1. Load necessary libraries
 
 Now, load up several more libraries useful for plotting data:
 
@@ -53,7 +57,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 np.set_printoptions(precision=2)
 warnings.filterwarnings("ignore") # specify to ignore warning messages
 ```
-## Load the data
+2. Load the data
 
 Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look:
 
@@ -61,7 +65,7 @@ Load the data from the `/data/energy.csv` file into a Pandas dataframe and take 
 energy = load_data('./data')[['load']]
 energy.head(10)
 ```
-## Plot the data
+3. Plot the data
 
 Plot all the available energy data from January 2012 to December 2014. There should be no surprises as we saw this data in the last lesson:
 
@@ -72,7 +76,8 @@ plt.ylabel('load', fontsize=12)
 plt.show()
 ```
 Now, let's build a model!
-## Create training and testing datasets
+
+4. Create training and testing datasets
 
 Now your data is loaded, so you can separate it into train and test sets. You'll train your model on the train set. As usual, after the model has finished training, you'll evaluate its accuracy using the test set. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods. 
 
@@ -100,33 +105,33 @@ Therefore, using a relatively small window of time for training the data should 
 
 > Note: Since the function we use to fit the ARIMA model uses in-sample validation during fitting, we will omit validation data.
 
-## Prepare the data for training
+5. Prepare the data for training
 
 Now, you need to prepare the data for training by performing two tasks: 
 
-1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:
+   1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:
 
-```python
-train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
-test = energy.copy()[energy.index >= test_start_dt][['load']]
+    ```python
+    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
+    test = energy.copy()[energy.index >= test_start_dt][['load']]
 
-print('Training data shape: ', train.shape)
-print('Test data shape: ', test.shape)
-```
-You can see the shape of the data:
+    print('Training data shape: ', train.shape)
+    print('Test data shape: ', test.shape)
+    ```
+    You can see the shape of the data:
 
-Training data shape:  (1416, 1)
-Test data shape:  (48, 1)
+    Training data shape:  (1416, 1)
+    Test data shape:  (48, 1)
 
-1. Scale the data to be in the range (0, 1).
+    1. Scale the data to be in the range (0, 1).
 
-```python
-scaler = MinMaxScaler()
-train['load'] = scaler.fit_transform(train)
-train.head(10)
-```
+    ```python
+    scaler = MinMaxScaler()
+    train['load'] = scaler.fit_transform(train)
+    train.head(10)
+    ```
 
-Now, visualize the original vs. scaled data:
+6. Now, visualize the original vs. scaled data:
 
 ```python
 energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,15 +153,16 @@ Now that you have calibrated the scaled data, you can scale the test data:
 test['load'] = scaler.transform(test)
 test.head()
 ```
-## Implement ARIMA
+
+7. Implement ARIMA
 
 It's time to implement ARIMA! You'll now use the `statsmodels` library that you installed earlier.
 
 Now you need to follow several steps
 
-1. Define the model by calling `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters. 
-1. The model is prepared on the training data by calling the fit() function.
-1. Predictions can be made by calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast
+   1. Define the model by calling `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters. 
+   2. The model is prepared on the training data by calling the fit() function.
+   3. Predictions can be made by calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast
 
 > 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
 
@@ -190,7 +196,7 @@ A table of results is printed.
 
 You've built your first model! Now we need to find a way to evaluate it.
 
-## Evaluate your model
+8. Evaluate your model
 
 To evaluate your model, you can perform the so-called `walk forward` validation. In practice, time series models are re-trained each time a new data becomes available. This allows the model to make the best forecast at each time step.
 
@@ -256,6 +262,7 @@ for t in range(test_ts.shape[0]):
 
 You can watch the training occurring:
 
+```output
 2014-12-30 00:00:00
 1 : predicted = [0.32 0.29 0.28] expected = [0.32945389435989236, 0.2900626678603402, 0.2739480752014323]
 
@@ -264,6 +271,7 @@ You can watch the training occurring:
 
 2014-12-30 02:00:00
 3 : predicted = [0.27 0.28 0.32] expected = [0.2739480752014323, 0.26812891674127126, 0.3025962399283795]
+```
 
 Now you can compare the predictions to the actual load:
 
@@ -276,6 +284,7 @@ eval_df[['prediction', 'actual']] = scaler.inverse_transform(eval_df[['predictio
 eval_df.head()
 ```
 
+```output
 |     |            | timestamp | h   | prediction | actual   |
 | --- | ---------- | --------- | --- | ---------- | -------- |
 | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -283,6 +292,7 @@ eval_df.head()
 | 2   | 2014-12-30 | 02:00:00  | t+1 | 2,900.17   | 2,899.00 |
 | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
 | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
+```
 
 Observe the hourly data's prediction, compared to the actual load. How accurate is this?
 
@@ -314,7 +324,9 @@ And while you're at it, print the multi-step forecast MAPE:
 print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
 ```
 
+```output
 Multi-step forecast MAPE:  1.1460048657704118 %
+```
 
 A nice low number is best: consider that a forecast that has a MAPE of 10 is off by 10%.
 
@@ -359,7 +371,6 @@ Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE 
 ## Review & Self Study
 
 This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.
-
 ## Assignment 
 
 [A new ARIMA model](assignment.md)
