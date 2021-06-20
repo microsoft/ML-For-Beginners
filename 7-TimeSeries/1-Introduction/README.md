@@ -6,7 +6,9 @@
 
 In this lesson and the following one, you will learn a bit about time series forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit lesser known than other topics. Time series forecasting is a sort of crystal ball: based on past performance of a variable such as price, you can predict its future potential value.
 
-[![Introduction to time series forecasting](https://img.youtube.com/vi/wGUV_XqchbE/0.jpg)](https://youtu.be/wGUV_XqchbE "Introduction to time series forecasting")
+[![Introduction to time series forecasting](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Introduction to time series forecasting")
+
+> 🎥 Click the image above for a video about time series forecasting
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
 
 It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights in the prediction of future performance, time series forecasting remains a field greatly informed by classic ML techniques.

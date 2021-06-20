@@ -24,6 +24,7 @@ As a prerequisite, please take the "Responsible AI Principles" Learn Path and wa
 Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
 [![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
+
 > 🎥 Click the image above for a video: Microsoft's Approach to Responsible AI
 
 ## Unfairness in data and algorithms
