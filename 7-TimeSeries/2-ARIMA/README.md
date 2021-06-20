@@ -109,7 +109,7 @@ Therefore, using a relatively small window of time for training the data should 
 
 Now, you need to prepare the data for training by performing two tasks: 
 
-   1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:
+   - Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:
 
 ```python
 train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -125,7 +125,7 @@ print('Test data shape: ', test.shape)
 Training data shape:  (1416, 1)
 Test data shape:  (48, 1)
 ```
-   2. Scale the data to be in the range (0, 1).
+   - Scale the data to be in the range (0, 1).
 
 ```python
 scaler = MinMaxScaler()
