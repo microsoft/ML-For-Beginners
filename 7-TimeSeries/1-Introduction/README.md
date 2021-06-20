@@ -25,17 +25,17 @@ Before starting, however, it's useful to understand what's going on behind the s
 
 When encountering the term 'time series' you need to understand its use in several different contexts.
 
-### Time series
+🎓 **Time series**
 
 In mathematics, "a time series is a series of data points indexed (or listed or graphed) in time order. Most commonly, a time series is a sequence taken at successive equally spaced points in time." An example of a time series is the daily closing value of the [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). The use of time series plots and statistical modeling is frequently encountered in signal processing, weather forecasting, earthquake prediction, and other fields where events occur and data points can be plotted over time.
 
-### Time series analysis
+🎓 **Time series analysis**
 
 Time series analysis is the analysis of the above mentioned time series data. Time series data can take distinct forms, including 'interrupted time series' which detects patterns in a time series' evolution before and after an interrupting event. The type of analysis needed for the time series depends on the nature of the data. Time series data itself can take the form of series of numbers or characters.
 
 The analysis be performed using a variety of methods, including frequency-domain and time-domain, linear and nonlinear, and more. [Learn more](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) about the may ways to analyze this type of data.   
 
-### Time series forecasting
+🎓 **Time series forecasting**
 
 Time series forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time indices as x variables on a plot, this type of data is best analyzed using special types of models. 
 
@@ -67,25 +67,35 @@ In the next lesson, you will build an ARIMA model using [Univariate Time Series]
 ## Time Series [data characteristics](https://online.stat.psu.edu/stat510/lesson/1/1.1) to consider
 
 When looking at time series data, you might notice that it has certain characteristics that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques. 
-### Trends
+
+🎓 **Trends**
 
 Measurable increases and decreases over time. [Read more](https://machinelearningmastery.com/time-series-trends-in-python) about how to use and, if necessary, remove trends from your time series. 
-### [Seasonality](https://machinelearningmastery.com/time-series-seasonality-with-python/)
+
+🎓 **[Seasonality](https://machinelearningmastery.com/time-series-seasonality-with-python/)**
+
 Periodic fluctuations, such as holiday rushes that might affect sales, for example. [Take a look](https://itl.nist.gov/div898/handbook/pmc/section4/pmc443.htm) at how different types of plots display seasonality in data.
-### Outliers
+
+🎓 **Outliers**
+
 Outliers are far away from the standard data variance. 
-### Long-run cycle
+
+🎓 **Long-run cycle**
+
 Independent of seasonality, data might display a long-run cycle such as an economic down-turn that lasts longer than a year.
-### Constant variance
+
+🎓 **Constant variance**
+
 Over time, some data display constant fluctuations, such as energy usage per day and night.
-### Abrupt changes
+
+🎓 **Abrupt changes**
+
 The data might display an abrupt change that might need further analysis. The abrupt shuttering of businesses due to COVID, for example, caused changes in data.
 
 ✅ Here is a [sample time series plot](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) showing daily in-game currency spent over a few years. Can you identify any of the characteristics listed above in this data?
 
 ![In-game currency spend](./images/currency.png)
-
-## Getting started with power usage data
+## Exercise: Getting started with power usage data
 
 Let's get started creating a time series model to predict future power usage given past usage. 
 
@@ -93,7 +103,7 @@ Let's get started creating a time series model to predict future power usage giv
 >
 > Tao Hong, Pierre Pinson, Shu Fan, Hamidreza Zareipour, Alberto Troccoli and Rob J. Hyndman, "Probabilistic energy forecasting: Global Energy Forecasting Competition 2014 and beyond", International Journal of Forecasting, vol.32, no.3, pp 896-913, July-September, 2016.
 
-In the `working` folder of this lesson, open the `notebook.ipynb` file. Start by adding libraries that will help you load and visualize data
+1. In the `working` folder of this lesson, open the `notebook.ipynb` file. Start by adding libraries that will help you load and visualize data
 
 ```python
 import os
@@ -103,7 +113,7 @@ from common.utils import load_data
 ```
 Note, you are using the files from the included `common` folder which set up your environment and handle downloading the data.
 
-Next, examine the data as a dataframe
+2. Next, examine the data as a dataframe
 
 ```python
 data_dir = './data'
@@ -120,7 +130,7 @@ You can see that there are two columns representing date and load:
 | 2012-01-01 03:00:00 | 2402.0 |
 | 2012-01-01 04:00:00 | 2403.0 |
 
-Now, plot the data:
+3. Now, plot the data:
 
 ```python
 energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -130,7 +140,7 @@ plt.show()
 ```
 ![energy plot](images/energy-plot.png)
 
-Now, plot the first week of July 2014
+4. Now, plot the first week of July 2014
 
 ```python
 energy['2014-07-01':'2014-07-07'].plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
