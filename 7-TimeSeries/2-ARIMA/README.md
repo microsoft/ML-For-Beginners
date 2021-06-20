@@ -111,25 +111,27 @@ Now, you need to prepare the data for training by performing two tasks:
 
    1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:
 
-    ```python
-    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
-    test = energy.copy()[energy.index >= test_start_dt][['load']]
+```python
+train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
+test = energy.copy()[energy.index >= test_start_dt][['load']]
 
-    print('Training data shape: ', train.shape)
-    print('Test data shape: ', test.shape)
-    ```
+print('Training data shape: ', train.shape)
+print('Test data shape: ', test.shape)
+```
+ 
     You can see the shape of the data:
 
-    Training data shape:  (1416, 1)
-    Test data shape:  (48, 1)
+```output
+Training data shape:  (1416, 1)
+Test data shape:  (48, 1)
+```
+   2. Scale the data to be in the range (0, 1).
 
-    1. Scale the data to be in the range (0, 1).
-
-    ```python
-    scaler = MinMaxScaler()
-    train['load'] = scaler.fit_transform(train)
-    train.head(10)
-    ```
+```python
+scaler = MinMaxScaler()
+train['load'] = scaler.fit_transform(train)
+train.head(10)
+```
 
 6. Now, visualize the original vs. scaled data:
 
