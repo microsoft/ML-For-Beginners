@@ -108,9 +108,10 @@ class Board:
     def move_pos(self, pos, dpos):
         return (pos[0] + dpos[0], pos[1] + dpos[1])
 
-    def move(self,dpos):
+    def move(self,dpos,check_correctness=True):
         new_pos = self.move_pos(self.human,dpos)
-        self.human = new_pos
+        if self.is_valid(new_pos) or not check_correctness:
+            self.human = new_pos
 
     def random_pos(self):
         x = random.randint(0,self.width-1)
