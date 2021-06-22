@@ -2,6 +2,11 @@
 
 In this lesson, you will train an ML model on a data set that's out of this world: _UFO sightings over the past century_, sourced from [NUFORC's database](https://www.nuforc.org).
 
+You will learn:
+
+- How to 'pickle' a trained model
+- How to use that model in a Flask app
+
 We will continue our use of notebooks to clean data and train our model, but you can take the process one step further by exploring using a model 'in the wild', so to speak: in a web app.
 
 To do this, you need to build a web app using Flask.
@@ -17,7 +22,7 @@ There are several ways to build web apps to consume machine learning models. You
 There are many questions you need to ask: 
 
 - **Is it a web app or a mobile app?** If you are building a mobile app or need to use the model in an IoT context, you could use [TensorFlow Lite](https://www.tensorflow.org/lite/) and use the model in an Android or iOS app.
-- **Where will the model reside**, in the cloud or locally?
+- **Where will the model reside**? In the cloud or locally?
 - **Offline support**. Does the app have to work offline?
 - **What technology was used to train the model?** The chosen technology may influence the tooling you need to use.
    - **Using Tensor flow**. If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).  
@@ -131,7 +136,7 @@ Now you can get ready to train a model by diving the data into the training and 
 
 The accuracy isn't bad **(around 95%)**, unsurprisingly, as `Country` and `Latitude/Longitude` correlate.
 
-The model you created isn't very revolutionary as it's you should be able to infer a `Country` from its `Latitude` and `Longitude`, but it's a good exercise to try to train from raw data that you cleaned, exported, and then use this model in a web app.
+The model you created isn't very revolutionary as you should be able to infer a `Country` from its `Latitude` and `Longitude`, but it's a good exercise to try to train from raw data that you cleaned, exported, and then use this model in a web app.
 
 ## Exercise - 'pickle' your model
 

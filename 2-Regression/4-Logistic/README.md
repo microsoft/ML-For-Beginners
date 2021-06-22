@@ -42,8 +42,8 @@ Logistic regression does not offer the same features as linear regression. The f
 
 There are other types of logistic regression, including multinomial and ordinal:
 
-- **Multinomial**, involves having more than one category - "Orange, White, and Striped".
-- **Ordinal**, involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
+- **Multinomial**, which involves having more than one category - "Orange, White, and Striped".
+- **Ordinal**, which involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
 ![Multinomial vs ordinal regression](./images/multinomial-ordinal.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
@@ -90,7 +90,7 @@ First, clean the data a bit, dropping null values and selecting only some of the
 
 By now you have loaded up the [starter notebook](./notebook.ipynb) with pumpkin data once again and cleaned it so as to preserve a dataset containing a few variables, including `Color`. Let's visualize the dataframe in the notebook using a different library: [Seaborn](https://seaborn.pydata.org/index.html), which is built on Matplotlib which we used earlier. 
 
-Seaborn offers some neat ways to visualize your data. For example, you can compare distributions of the data for each point in a side-by side grid.
+Seaborn offers some neat ways to visualize your data. For example, you can compare distributions of the data for each point in a side-by-side grid.
 
 1. Create such a grid by instantiating a `PairGrid`, using our pumpkin data `new_pumpkins`, followed by calling `map()`:
 
