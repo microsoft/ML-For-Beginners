@@ -222,7 +222,7 @@ for epoch in range(5000):
         v = probs(Q[x,y])
         a = random.choices(list(actions),weights=v)[0]
         dpos = actions[a]
-        m.move(dpos)
+        m.move(dpos,check_correctness=False) # we allow player to move outside the board, which terminates episode
         r = reward(m)
         cum_reward += r
         if r==end_reward or cum_reward < -1000:
