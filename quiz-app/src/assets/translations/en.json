@@ -2144,6 +2144,112 @@
 			},
 			{
 				"id": 39,
+				"title": "NLP 5: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 40,
+				"title": "NLP 5: Post-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "q1",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q2",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "q3",
+						"answerOptions": [
+							{
+								"answerText": "a",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "b",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "c",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 41,
 				"title": "Intro to Time Series: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -2200,7 +2306,7 @@
 				]
 			},
 			{
-				"id": 40,
+				"id": 42,
 				"title": "Intro to Time Series: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -2257,7 +2363,7 @@
 				]
 			},
 			{
-				"id": 41,
+				"id": 43,
 				"title": "Time Series ARIMA: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -2314,7 +2420,7 @@
 				]
 			},
 			{
-				"id": 42,
+				"id": 44,
 				"title": "Time Series ARIMA: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -2371,7 +2477,7 @@
 				]
 			},
 			{
-				"id": 43,
+				"id": 45,
 				"title": "Reinforcement 1: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -2424,7 +2530,7 @@
 				]
 			},
 			{
-				"id": 44,
+				"id": 46,
 				"title": "Reinforcement 1: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -2477,7 +2583,7 @@
 				]
 			},
 			{
-				"id": 45,
+				"id": 47,
 				"title": "Reinforcement 2: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -2530,7 +2636,7 @@
 				]
 			},
 			{
-				"id": 46,
+				"id": 48,
 				"title": "Reinforcement 2: Post-Lecture Quiz",
 				"quiz": [
 					{
@@ -2583,7 +2689,7 @@
 				]
 			},
 			{
-				"id": 47,
+				"id": 49,
 				"title": "Real World Applications: Pre-Lecture Quiz",
 				"quiz": [
 					{
@@ -2640,7 +2746,7 @@
 				]
 			},
 			{
-				"id": 48,
+				"id": 50,
 				"title": "Real World Applications: Post-Lecture Quiz",
 				"quiz": [
 					{

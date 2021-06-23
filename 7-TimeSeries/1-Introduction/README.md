@@ -9,7 +9,7 @@ In this lesson and the following one, you will learn a bit about time series for
 [![Introduction to time series forecasting](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Introduction to time series forecasting")
 
 > 🎥 Click the image above for a video about time series forecasting
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
 
 It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights in the prediction of future performance, time series forecasting remains a field greatly informed by classic ML techniques.
 
@@ -162,7 +162,7 @@ In the next lesson, you will create an ARIMA model to create some forecasts.
 
 Make a list of all the industries and areas of inquiry you can think of that would benefit from time series forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/42/)
 ## Review & Self Study
 
 Although we won't cover them here, neural networks are sometimes used to enhance classic methods of time series forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)

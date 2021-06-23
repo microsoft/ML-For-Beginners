@@ -5,7 +5,7 @@ In the previous lesson, you learned a bit about time series forecasting and load
 [![Introduction to ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction to ARIMA")
 
 > 🎥 Click the image above for a video: A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/43/)
 
 In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
 
@@ -369,7 +369,7 @@ plt.show()
 
 Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE in this lesson, but are there other methods you could use? Research them and annotate them. A helpful document can be found [here](https://otexts.com/fpp2/accuracy.html)
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/42/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/44/)
 ## Review & Self Study
 
 This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.
