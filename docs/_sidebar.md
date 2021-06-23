@@ -27,6 +27,8 @@
   - [Introduction to NLP](../6-NLP/1-Introduction-to-NLP/README.md)
   - [NLP Tasks](../6-NLP/2-Tasks/README.md)
   - [Translation and Sentiment](../6-NLP/3-Translation-Sentiment/README.md)
+  - [Hotel Reviews 1](../6-NLP/4-Hotel-Reviews-1/README.md)
+  - [Hotel Reviews 2](../6-NLP/5-Hotel-Reviews-2/README.md)
 
 - Time Series Forecasting
   - [Introduction to Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)
@@ -34,6 +36,7 @@
 
 - Reinforcement Learning
   - [Q-Learning](../8-Reinforcement/1-QLearning/README.md)
+  - [Gym](../8-Reinforcement/2-Gym/README.md)
 
 - Real World ML
   - [Applications](../9-Real-World/1-Applications/README.md)
