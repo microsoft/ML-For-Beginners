@@ -1,6 +1,6 @@
 # Cuisine classifiers 2
 
-In this second classification lesson, you will explore more ways to classify numeric data. You will also learn about the ramifications for choosing one over the other.
+In this second classification lesson, you will explore more ways to classify numeric data. You will also learn about the ramifications for choosing one classifier over the other.
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/23/)
 
