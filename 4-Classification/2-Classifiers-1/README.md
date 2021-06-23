@@ -120,13 +120,13 @@ Let's see if we can reason our way through different approaches given the constr
 - **Neural networks are too heavy**. Given our clean, but minimal dataset, and the fact that we are running training locally via notebooks, neural networks are too heavyweight for this task.
 - **No two-class classifier**. We do not use a two-class classifier, so that rules out one-vs-all. 
 - **Decision tree or logistic regression could work**. A decision tree might work, or logistic regression for multiclass data. 
-- **Multiclass , wrong fit**. The multiclass boosted decision tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us.
+- **Multiclass Boosted Decision Trees solve a different problem**. The multiclass boosted decision tree is most suitable for nonparametric tasks, e.g. tasks designed to build rankings, so it is not useful for us.
 
-### Using Scikit 
+### Using Scikit-learn 
 
-We will be using SciKit to analyze our data. However, there are many ways to use Logistic Regression in Scikit-learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
+We will be using Scikit-learn to analyze our data. However, there are many ways to use logistic regression in Scikit-learn. Take a look at the [parameters to pass](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
-Essentially there are two important parameters `multi_class` and `solver`, that we need to specify, when we ask SciKit to perform a Logistic Regression. The `multi_class` value applies a certain behavior. The value of the solver is what algorithm to use. Not all solvers can be paired with all `multi_class` values.
+Essentially there are two important parameters `multi_class` and `solver`, that we need to specify, when we ask Scikit-learn to perform a logistic regression. The `multi_class` value applies a certain behavior. The value of the solver is what algorithm to use. Not all solvers can be paired with all `multi_class` values.
 
 According to the docs, in the multiclass case, the training algorithm:
 
