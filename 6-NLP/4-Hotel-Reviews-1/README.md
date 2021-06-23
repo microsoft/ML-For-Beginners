@@ -1,4 +1,4 @@
-# Sentiment Analysis: Hotel Reviews
+# Sentiment analysis with hotel reviews - cleaning the data
 
 In this section you will use the techniques in the previous lessons to do some exploratory data analysis of a large dataset. Once you have a good understanding of the usefulness of the various columns, you will learn how to remove the unneeded columns, calculate some new data based on the existing columns, and save the resulting dataset for use in the final challenge.
 
@@ -6,24 +6,20 @@ In this section you will use the techniques in the previous lessons to do some e
 
 ### Introduction
 
-So far you've learned about how text data is quite unlike numerical types of data. If it's text that was written or spoken by a human, if can be analysed to find patterns and frequencies, sentiment and meaning. This final lesson takes you into a real data set with a real challenge. This lesson is a lot of code and analysis of a data set, it is quite dense but very amenable to experimentation in your favourite IDE or Notebook. 
-
-> This lesson uses the data set **515K Hotel Reviews Data in Europe**, CC0: Public Domain license, scraped from Booking.com from public sources. The creator of the dataset was Jiashen Liu.
+So far you've learned about how text data is quite unlike numerical types of data. If it's text that was written or spoken by a human, if can be analysed to find patterns and frequencies, sentiment and meaning. This lesson takes you into a real data set with a real challenge: **[515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)** and includes a [CC0: Public Domain license](https://creativecommons.org/publicdomain/zero/1.0/). It was scraped from Booking.com from public sources. The creator of the dataset was Jiashen Liu.
 
 ### Preparation
 
 You will need:
 
 * Python 3
-
 * pandas
-* **TODO install NTLK details**
+* NLTK, [which you should install locally](https://www.nltk.org/install.html)
+* The data set which is available on Kaggle [515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe). It is around 230 MB unzipped. Download it to the `/data` folder associated with these NLP lessons.
 
-* The data set is available on Kaggle [515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe), it is around 230 MB unzipped.
+## Exploratory data analysis
 
-## Exploratory Data Analysis
-
-This challenge assumes you are building a hotel recommendation bot using sentiment analysis and guest reviews scores. The dataset you will be starting from has over 515,000 rows reviewing 1493 different hotels in 6 cities. 
+This challenge assumes that you are building a hotel recommendation bot using sentiment analysis and guest reviews scores. The dataset you will be using includes reviews of 1493 different hotels in 6 cities. 
 
 Using Python, a dataset of hotel reviews, and NLTK's sentiment analysis you could find out:
 
@@ -33,34 +29,26 @@ Using Python, a dataset of hotel reviews, and NLTK's sentiment analysis you coul
 
 #### Dataset
 
-Let's explore the dataset first. Remember to download and save the CSV file here: https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe. 
-
-The dataset was created by **Jiashen Liu** 4 years ago (as of writing) and is licensed [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/). 
-
-> "This dataset contains 515,000 customer reviews and scoring of 1493 luxury hotels across Europe. Meanwhile, the geographical location of hotels are also provided for further analysis."
-
-You could open the file in an editor like VS Code or even Excel, and as it's a text CSV file, any editor that can handle large text files should be able to open it.
+Let's explore the dataset first. Remember to download it and save it locally. Open the file in an editor like VS Code or even Excel. As it's a text-based CSV file, any editor that can handle large text files should be able to open it.
 
 The headers in the dataset are as follows:
 
 *Hotel_Address, Additional_Number_of_Scoring, Review_Date, Average_Score, Hotel_Name, Reviewer_Nationality, Negative_Review, Review_Total_Negative_Word_Counts, Total_Number_of_Reviews, Positive_Review, Review_Total_Positive_Word_Counts, Total_Number_of_Reviews_Reviewer_Has_Given, Reviewer_Score, Tags, days_since_review, lat, lng*
 
-and Jiashen provides the description of each item on Kaggle.
-
 Here they are grouped in a way that might be easier to examine: 
-
 ##### Hotel columns
 
 * `Hotel_Name`, `Hotel_Address`, `lat` (latitude), `lng` (longitude)
-  * Using *lat* and *lng* you could plot a map with Python showing the hotel locations (perhaps colour coded for negative and positive reviews)
+  * Using *lat* and *lng* you could plot a map with Python showing the hotel locations (perhaps color coded for negative and positive reviews)
   * Hotel_Address is not obviously useful to us, and we'll probably replace that with a country for easier sorting & searching
 
 **Hotel Meta-review columns**
 
 * `Average_Score`
-  * According to the dataset creator, this column is *Average Score of the hotel, calculated based on the latest comment in the last year*. This seems like an unusual way to calculate the score, but it is the data scraped so we may take it as face value for now. Based on the other columns in this data, can you think of another way to calculate the average score?
+  * According to the dataset creator, this column is the *Average Score of the hotel, calculated based on the latest comment in the last year*. This seems like an unusual way to calculate the score, but it is the data scraped so we may take it as face value for now. 
+  ✅ Based on the other columns in this data, can you think of another way to calculate the average score?
 * `Total_Number_of_Reviews`
-  * The total number of reviews this hotel has received - it is not clear (without writing some code) if this refers to the reviews in the dataset. More on this discrepancy below in the **Average hotel score** section.
+  * The total number of reviews this hotel has received - it is not clear (without writing some code) if this refers to the reviews in the dataset.
 * `Additional_Number_of_Scoring`
   * This means a review score was given but no positive or negative review was written by the reviewer
 
@@ -73,12 +61,12 @@ Here they are grouped in a way that might be easier to examine:
   - If a reviewer wrote nothing, this field will have "**No Negative**"
   - Note that a reviewer may write a positive review in the Negative review column (e.g. "there is nothing bad about this hotel")
 - `Review_Total_Negative_Word_Counts`
-  - Are higher negative word counts indicative of a lower score (without checking the sentimentality)
+  - Higher negative word counts indicate a lower score (without checking the sentimentality)
 - `Positive_Review`
   - If a reviewer wrote nothing, this field will have "**No Positive**"
   - Note that a reviewer may write a negative review in the Positive review column (e.g. "there is nothing good about this hotel at all")
 - `Review_Total_Positive_Word_Counts`
-  - Are higher positive word counts indicative of a higher score (without checking the sentimentality)
+  - Higher positive word counts indicate a higher score (without checking the sentimentality)
 - `Review_Date` and `days_since_review`
   - A freshness or staleness measure might be applied to a review (older reviews might not be as accurate as newer ones because hotel management changed, or renovations have been done, or a pool was added etc.)
 - `Tags`
@@ -88,9 +76,9 @@ Here they are grouped in a way that might be easier to examine:
 **Reviewer columns**
 
 - `Total_Number_of_Reviews_Reviewer_Has_Given`
-  - This might be an factor in a recommendation model, for instance, if you could determine that more prolific reviewers with hundreds of reviews were more likely to be negative rather than positive. However, the reviewer of any particular review is not identified with a unique code, and therefore cannot be linked to a set of reviews. There are 30 reviewers with 100 or more reviews, but hard to see how this can aid the recommendation model.
+  - This might be an factor in a recommendation model, for instance, if you could determine that more prolific reviewers with hundreds of reviews were more likely to be negative rather than positive. However, the reviewer of any particular review is not identified with a unique code, and therefore cannot be linked to a set of reviews. There are 30 reviewers with 100 or more reviews, but it's hard to see how this can aid the recommendation model.
 - `Reviewer_Nationality`
-  - Some people might think that certain nationalities are more likely to give a positive or negative review because of a national inclination. Be careful building such anecdotal views into your models. These are national (and sometimes racial) stereotypes, and each reviewer was an individual who wrote a review based on their experience. It may have been filtered through many lens, such as their previous hotel stays, the distance travelled, and their personal temperament - but thinking that their nationality was the reason for a review score is a hard to justify assumption.
+  - Some people might think that certain nationalities are more likely to give a positive or negative review because of a national inclination. Be careful building such anecdotal views into your models. These are national (and sometimes racial) stereotypes, and each reviewer was an individual who wrote a review based on their experience. It may have been filtered through many lenses such as their previous hotel stays, the distance travelled, and their personal temperament. Thinking that their nationality was the reason for a review score is hard to justify.
 
 ##### Examples
 
@@ -102,20 +90,21 @@ As you can see from this guest, they did not have a happy stay at this hotel. Th
 
 ##### Tags
 
-As mentioned above, at first glance, the idea to use `Tags` to categorise the data makes sense. Unfortunately these tags are not standardised, which means in one hotel, the options might be *Single room*, *Twin room*, and *Double room*, but in the next hotel, they are *Deluxe Single Room*, *Classic Queen Room*, and *Executive King Room*. These might be the same things, but there are so many variations, the choice becomes:
+As mentioned above, at first glance, the idea to use `Tags` to categorize the data makes sense. Unfortunately these tags are not standardized, which means that in a given hotel, the options might be *Single room*, *Twin room*, and *Double room*, but in the next hotel, they are *Deluxe Single Room*, *Classic Queen Room*, and *Executive King Room*. These might be the same things, but there are so many variations that the choice becomes:
 
-1. Attempt to change all terms to a single standard, which is very difficult, because it is not clear what the conversion path would be in each case (e.g. *Classic single room* maps to *Single room* but *Superior Queen Room with Courtyard Garden  or City View* is much harder to map)
-2. We can take an NLP approach and measure the frequency of certain terms like *Solo*, *Business Traveller*, or *Family with young kids* as they apply to each hotel, and factor that into the recommendation  
+1. Attempt to change all terms to a single standard, which is very difficult, because it is not clear what the conversion path would be in each case (e.g. *Classic single room* maps to *Single room* but *Superior Queen Room with Courtyard Garden or City View* is much harder to map)
+
+1. We can take an NLP approach and measure the frequency of certain terms like *Solo*, *Business Traveller*, or *Family with young kids* as they apply to each hotel, and factor that into the recommendation  
 
 Tags are usually (but not always) a single field containing a list of 5 to 6 comma separated values aligning to *Type of trip*, *Type of guests*, *Type of room*, *Number of nights*, and *Type of device review was submitted on*. However, because some reviewers don't fill in each field (they might leave one blank), the values are not always in the same order.
 
 As an example, take *Type of group*. There are 1025 unique possibilities in this field in the `Tags` column, and unfortunately only some of them refer to a group (some are the type of room etc.). If you filter only the ones that mention family, the results contain many *Family room* type results. If you include the term *with*, i.e. count the *Family with* values, the results are better, with over 80,000 of the 515,000 results containing the phrase "Family with young children" or "Family with older children".
 
-This means the tags column is not completely useless to us, but will take some work to make it useful.
+This means the tags column is not completely useless to us, but it will take some work to make it useful.
 
-##### Average Hotel Score
+##### Average hotel score
 
-There are a number of oddities or discrepancies with the data set that I can't figure out, but are illustrated here so you are aware of them when building your models. If you figure it out, please let us know!
+There are a number of oddities or discrepancies with the data set that I can't figure out, but are illustrated here so you are aware of them when building your models. If you figure it out, please let us know in the discussion section!
 
 The dataset has the following columns relating to the average score and number of reviews: 
 
@@ -125,7 +114,7 @@ The dataset has the following columns relating to the average score and number o
 4. Total_Number_of_Reviews
 5. Reviewer_Score  
 
-If we take a single hotel and count the reviews, we see that the single hotel with the most reviews in this dataset is *Britannia International Hotel Canary Wharf* with 4789 reviews out of 515,000. But if we look at the `Total_Number_of_Reviews` value for this hotel, it is 9086. You might surmise that there are many more scores without reviews, so perhaps we should add in the `Additional_Number_of_Scoring` column value. That value is 2682, and adding it to 4789 gets us 7,471 which is still 1615 short of the `Total_Number_of_Reviews`. 
+The single hotel with the most reviews in this dataset is *Britannia International Hotel Canary Wharf* with 4789 reviews out of 515,000. But if we look at the `Total_Number_of_Reviews` value for this hotel, it is 9086. You might surmise that there are many more scores without reviews, so perhaps we should add in the `Additional_Number_of_Scoring` column value. That value is 2682, and adding it to 4789 gets us 7,471 which is still 1615 short of the `Total_Number_of_Reviews`. 
 
 If you take the `Average_Score` columns, you might surmise it is the average of the reviews in the dataset, but the description from Kaggle is "*Average Score of the hotel, calculated based on the latest comment in the last year*". That doesn't seem that useful, but we can calculate our own average based on the reviews scores in the data set. Using the same hotel as an example, the average hotel score is given as 7.1 but the calculated score (average reviewer score *in* the dataset) is 6.8. This is close, but not the same value, and we can only guess that the scores given in the `Additional_Number_of_Scoring` reviews increased the average to 7.1. Unfortunately with no way to test or prove that assertion, it is difficult to use or trust `Average_Score`, `Additional_Number_of_Scoring` and `Total_Number_of_Reviews` when they are based on, or refer to, data we do not have.
 
@@ -133,19 +122,17 @@ To complicate things further, the hotel with the second highest number of review
 
 On the possibility that these hotel might be an outlier, and that maybe most of the values tally up (but some do not for some reason) we will write a short programs next to explore the values in the dataset and determine the correct usage (or non-usage) of the values.
 
-##### A note of caution when working with datasets with human written reviews
+> 🚨 A note of caution
+>
+> When working with this dataset you will write code that calculates something from the text without having to read or analyse the text yourself. This is the essence of NLP, interpreting meaning or sentiment without having to have a human do it. However, it is possible that you will read some of the negative reviews. I would urge you not to, because you don't have to. Some of them are silly, or irrelevant negative hotel reviews, such as  "The weather wasn't great", something beyond the control of the hotel, or indeed, anyone. But there is a dark side to some reviews too. Sometimes the negative reviews are racist, sexist, or ageist. This is unfortunate but to be expected in a dataset scraped off a public website. Some reviewers leave reviews that you would find distasteful, uncomfortable, or upsetting. Better to let the code measure the sentiment than read them yourself and be upset. That said, it is a minority that write such things, but they exist all the same. 
 
-Most of the time working with this dataset, you will write code that calculates something from the text, without having to read or analyse the text yourself. This is the essence of NLP, interpreting meaning or sentiment without having to have a human do it. However, it is possible you will read some of the negative reviews. I would urge you not to, because you don't have to. However they were written by humans, hotel guests who decided to write a review. Some of them are silly, or irrelevant negative hotel reviews, such as  "The weather wasn't great", something beyond the control of the hotel, or indeed, anyone. But there is a dark side to some reviews too. Sometimes the negative reviews are racist, sexist, or ageist. This is unfortunate but to be expected in a dataset scraped off a public website. Some reviewers leave reviews that you would find distasteful, uncomfortable, or upsetting. Better to let the code measure the sentiment, than read them yourself and be upset. That said, it is a minority that write such things, but they exist all the same. 
+## Exercise
 
-#### Loading the CSV data into a pandas DataFrame
+### Load the data
 
-That's enough examining the data visually, now you'll write some code and get some answers! This section is focused on the pandas library. Your very first task is to ensure you can load and read the CSV data. The pandas library has a fast CSV loader, and the result is placed in a *DataFrame*. If you've never used a DataFrame before, imagine it's a 2D structure with rows and columns. The CSV we are loading has over half a million rows, but only 17 columns. pandas gives you lots of powerful ways to interact with a DataFrame, including the ability to perform operations on every row. 
+That's enough examining the data visually, now you'll write some code and get some answers! This section uses the pandas library. Your very first task is to ensure you can load and read the CSV data. The pandas library has a fast CSV loader, and the result is placed in a dataframe, as in previous lessons. The CSV we are loading has over half a million rows, but only 17 columns. Pandas gives you lots of powerful ways to interact with a dataframe, including the ability to perform operations on every row. 
 
-Learning pandas is hard but very worth while, it is a great library to be a master of. For this lesson, you need to understand the following items like DataFrames, Series, value_count(), apply(), groupBy(), and transform().
-
-There are some great guides and docs at the [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/) and it's worth following the *Getting started* and *User guide*.
-
-From here on in this lesson, there will be code snippets and some explanations of the code and some discussion about what the results mean. Try to do each section in turn, and you may find the Juypter notebook useful as it contains all the sections. **TODO: clean and upload notebook too**
+From here on in this lesson, there will be code snippets and some explanations of the code and some discussion about what the results mean. Use the included _notebook.ipynb_ for your code.
 
 Let's start with loading the data file you be using:
 
@@ -156,31 +143,29 @@ import time
 # importing time so the start and end time can be used to calculate file loading time
 print("Loading data file now, this could take a while depending on file size")
 start = time.time()
-# df is 'DataFrame'
-df = pd.read_csv('Hotel_Reviews.csv')
+# df is 'DataFrame' - make sure you downloaded the file to the data folder
+df = pd.read_csv('../../data/Hotel_Reviews.csv')
 end = time.time()
 print("Loading took " + str(round(end - start, 2)) + " seconds")
 ```
 
 Now that the data is loaded, we can perform some operations on it. Keep this code at the top of your program for the next part.
 
-#### Exploring the data
+## Explore the data
 
-In this case, the data is already *clean*, that means that it is ready to work with, and does not have characters in other languages that might trip up the algorithms expecting only English characters. You might have to work with data that required some initial processing to format it before applying NLP techniques, but not this time.
+In this case, the data is already *clean*, that means that it is ready to work with, and does not have characters in other languages that might trip up algorithms expecting only English characters. 
 
-However, you should take a moment to ensure you that once loaded, you can explore the data with code. It's very easy to want to focus on the `Negative_Review` and `Positive_Review` columns. They are filled with natural text for your NLP algorithms to process. But wait! Before you jump into the NLP and sentiment, you should follow the code below, to get used to working with DataFrames and also to ascertain if the values given in the dataset match the values you calculate with *pandas*.
+✅ You might have to work with data that required some initial processing to format it before applying NLP techniques, but not this time. If you had to, how would you handle non-English characters?
 
-#### DataFrame operations
+Take a moment to ensure you that once the data is loaded, you can explore it with code. It's very easy to want to focus on the `Negative_Review` and `Positive_Review` columns. They are filled with natural text for your NLP algorithms to process. But wait! Before you jump into the NLP and sentiment, you should follow the code below to ascertain if the values given in the dataset match the values you calculate with pandas.
 
-The first task in this lesson is to check if the following assertions are correct by writing some code that examines the data frame (without changing it). The first is below as an example and the others are similar, but this is a great way to learn how to work with a DataFrame (if this is your first time encountering them, you should definitely try to complete them before the next section).
+## Dataframe operations
 
-> Like many programming tasks, there are several ways to complete this, but good advice is to do it in the simplest, easiest way you can, especially if it will be easier to understand when you come back this code in the future. With DataFrames, there is a comprehensive API that will often have a way to do what you want efficiently.
+The first task in this lesson is to check if the following assertions are correct by writing some code that examines the data frame (without changing it).
 
-If you prefer, you can treat these as coding tasks and attempt to answer them without looking at the solution. If you are new to DataFrames, try following and executing the code of each step, paying attention to methods you do not recognise.
+> Like many programming tasks, there are several ways to complete this, but good advice is to do it in the simplest, easiest way you can, especially if it will be easier to understand when you come back to this code in the future. With dataframes, there is a comprehensive API that will often have a way to do what you want efficiently.
 
-With each of these questions, you can build on the previous answer by adding each solution beneath the previous answer (you don't have to create a new Python file for each answer). Remember to include the code in the *Loading the CSV file* above, that code is *required* before your code. 
-
-Here are the questions on their own, followed by the code and explanations:
+Treat the following questions as coding tasks and attempt to answer them without looking at the solution. 
 
 1. Print out the *shape* of the data frame you have just loaded (the shape is the number of rows and columns)
 2. Calculate the frequency count for reviewer nationalities:
@@ -196,7 +181,7 @@ Here are the questions on their own, followed by the code and explanations:
 8. Calculate and print out how many rows have column `Positive_Review` values of "No Positive"
 9. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" **and** `Negative_Review` values of "No Negative"
 
-### Code
+### Code answers
 
 1. Print out the *shape* of the data frame you have just loaded (the shape is the number of rows and columns)
 
@@ -292,15 +277,15 @@ Here are the questions on their own, followed by the code and explanations:
    hotel_freq_df = hotel_freq_df.drop_duplicates(subset = ["Hotel_Name"])
    display(hotel_freq_df) 
    ```
-   | Hotel_Name | Total_Number_of_Reviews | Total_Reviews_Found |
-   |:----------:|:-----------------------:|:-------------------:|
-   |Britannia International Hotel Canary Wharf | 9086 | 4789 |
-   |Park Plaza Westminster Bridge London | 12158 | 4169 |
-   |Copthorne Tara Hotel London Kensington | 7105 | 3578 |
-   |...| ...| ...|
-   |Mercure Paris Porte d Orleans | 110 | 10 |
-   |Hotel Wagner | 135 | 10 |
-   |Hotel Gallitzinberg | 173 | 8 |
+   |                 Hotel_Name                 | Total_Number_of_Reviews | Total_Reviews_Found |
+   | :----------------------------------------: | :---------------------: | :-----------------: |
+   | Britannia International Hotel Canary Wharf |          9086           |        4789         |
+   |    Park Plaza Westminster Bridge London    |          12158          |        4169         |
+   |   Copthorne Tara Hotel London Kensington   |          7105           |        3578         |
+   |                    ...                     |           ...           |         ...         |
+   |       Mercure Paris Porte d Orleans        |           110           |         10          |
+   |                Hotel Wagner                |           135           |         10          |
+   |            Hotel Gallitzinberg             |           173           |          8          |
    
    You may notice that the *counted in the dataset* results do not match the value in `Total_Number_of_Reviews`. It is unclear if this value in the dataset represented the total number of reviews the hotel had, but not all were scraped, or some other calculation. `Total_Number_of_Reviews` is not used in the model because of this unclarity.
 
@@ -326,7 +311,7 @@ Here are the questions on their own, followed by the code and explanations:
    display(review_scores_df[["Average_Score_Difference", "Average_Score", "Calc_Average_Score", "Hotel_Name"]])
    ```
 
-   You may also wonder about the supplied in dataset `Average_Score` value and why it is sometimes different from the calculated average score. As we can't know why some of the values match, but others have a difference, it's safest in this case to use the review scores that we have to calculate the average ourselves. That said, the differences are usually very small, here are the hotels with the greatest deviation from the dataset average and the calculated average:
+   You may also wonder about the `Average_Score` value and why it is sometimes different from the calculated average score. As we can't know why some of the values match, but others have a difference, it's safest in this case to use the review scores that we have to calculate the average ourselves. That said, the differences are usually very small, here are the hotels with the greatest deviation from the dataset average and the calculated average:
 
    | Average_Score_Difference | Average_Score | Calc_Average_Score |                                  Hotel_Name |
    | :----------------------: | :-----------: | :----------------: | ------------------------------------------: |
@@ -393,11 +378,11 @@ Here are the questions on their own, followed by the code and explanations:
    Sum took 0.19 seconds
    ```
 
-   You may have noticed that there are 127 rows that have both "No Negative" and "No Positive" values for the columns `Negative_Review` and `Positive_Review` respectively. That means that the reviewer gave the hotel a numerical score, but declined to write either a positive or negative review. Luckily this is a small amount of rows (127 out of 515738, or 0.02%), so it probably won't skew our model or results in any particular direction, but you might not have expected a data set of reviews to have rows with no reviews, so worth exploring the data to discover rows like this.
+   You may have noticed that there are 127 rows that have both "No Negative" and "No Positive" values for the columns `Negative_Review` and `Positive_Review` respectively. That means that the reviewer gave the hotel a numerical score, but declined to write either a positive or negative review. Luckily this is a small amount of rows (127 out of 515738, or 0.02%), so it probably won't skew our model or results in any particular direction, but you might not have expected a data set of reviews to have rows with no reviews, so it's worth exploring the data to discover rows like this.
 
-### Modifying the DataFrame
+### Modifying the dataframe
 
-Now that you've explored the dataset, you can see some issues with it. Some columns are are filled with useless information, others are just incorrect, or if they are correct, it's unclear how to they were calculated, and answers cannot be independently verified by your own calculations.
+Now that you've explored the dataset, you can see some issues with it. Some columns are are filled with useless information, others are just incorrect. If they are correct, it's unclear how they were calculated, and answers cannot be independently verified by your own calculations.
 
 Next, you will add columns that will be useful later, change the values in other columns, and drop certain columns completely.
 
@@ -464,7 +449,7 @@ Follow these steps in order:
 2. Hotel Meta-review columns: `Average_Score`, `Total_Number_of_Reviews`, `Additional_Number_of_Scoring`
 
 * Drop `Additional_Number_of_Scoring`
-* Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset and 
+* Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
 
 * Replace `Average_Score` with our own calculated score
 
@@ -488,7 +473,7 @@ Follow these steps in order:
 - Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
 - Keep `Reviewer_Nationality` 
 
-Finally, save the dataset as it is now with a new name, then proceed to the NLP section.
+Finally, save the dataset as it is now with a new name.
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
@@ -501,13 +486,14 @@ df.to_csv(r'Hotel_Reviews_Filtered.csv', index = False)
 ---
 ## 🚀Challenge
 
-
+This lesson demonstrates, as we saw in previous lessons, how critically important it is to understand your data and its foibles before performing operations on it. Text-based data, in particular, bears careful scrutiny. Dig through various text-heavy datasets and see if you can discover areas that could introduce bias or skewed sentiment into a model. 
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/38/)
 
 ## Review & Self Study
 
+Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-15963-cxa) to discover tools to try when building speech and text-heavy models.
 
 ## Assignment 
 
-[Poetic license](assignment.md)
+[assignment tbd](assignment.md)
