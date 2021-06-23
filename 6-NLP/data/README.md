@@ -1,0 +1,1 @@
+Download the hotel review data to this folder.
