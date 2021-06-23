@@ -496,4 +496,4 @@ Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-
 
 ## Assignment 
 
-[assignment tbd](assignment.md)
+[NLTK](assignment.md)
