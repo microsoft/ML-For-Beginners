@@ -2587,48 +2587,48 @@
 				"title": "Reinforcement 2: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Chess and Go are games with continuous states.",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "true",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "false",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is the CartPole problem?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "a process for eliminating outliers",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a method for optimizing your shopping cart",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "a simplified version of balancing",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What tool can we use to play out different scenarios of potential states in a game?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "guess and check",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "simulation environments",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "state transition testing",
 								"isCorrect": "false"
 							}
 						]
