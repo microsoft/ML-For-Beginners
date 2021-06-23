@@ -290,18 +290,18 @@ Here are the questions on their own, followed by the code and explanations:
    
    # Get rid of all the duplicated rows
    hotel_freq_df = hotel_freq_df.drop_duplicates(subset = ["Hotel_Name"])
-   display(hotel_freq_df)
-   
-   Hotel_Name Total_Number_of_Reviews Total_Reviews_Found
-   Britannia International Hotel Canary Wharf 9086 4789
-   Park Plaza Westminster Bridge London 12158 4169
-   Copthorne Tara Hotel London Kensington 7105 3578
-   ...
-   Mercure Paris Porte d Orleans 110 10
-   Hotel Wagner 135 10
-   Hotel Gallitzinberg 173 8
+   display(hotel_freq_df) 
    ```
-
+   | Hotel_Name | Total_Number_of_Reviews | Total_Reviews_Found |
+   |:----------:|:-----------------------:|:-------------------:|
+   |Britannia International Hotel Canary Wharf | 9086 | 4789 |
+   |Park Plaza Westminster Bridge London | 12158 | 4169 |
+   |Copthorne Tara Hotel London Kensington | 7105 | 3578 |
+   |...| ...| ...|
+   |Mercure Paris Porte d Orleans | 110 | 10 |
+   |Hotel Wagner | 135 | 10 |
+   |Hotel Gallitzinberg | 173 | 8 |
+   
    You may notice that the *counted in the dataset* results do not match the value in `Total_Number_of_Reviews`. It is unclear if this value in the dataset represented the total number of reviews the hotel had, but not all were scraped, or some other calculation. `Total_Number_of_Reviews` is not used in the model because of this unclarity.
 
 5. While there is an `Average_Score` column for each hotel in the dataset, you can also calculate an average score (getting the average of all reviewer scores in the dataset for each hotel). Add a new column to your dataframe with the column header `Calc_Average_Score` that contains that calculated average. Print out the columns `Hotel_Name`, `Average_Score`, and `Calc_Average_Score`.
