@@ -10,6 +10,8 @@ We will use a simplified version of balancing known as a **CartPole** problem. I
 
 <img alt="a cartpole" src="images/cartpole.png" width="200"/>
 
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/47/)
+
 ## Prerequisites
 
 In this lesson, we will be using a library called **OpenAI Gym** to simulate different **environments**. You can run this lesson's code locally (eg. from Visual Studio Code), in which case the simulation will open in a new window. When running the code online, you may need to make some tweaks to the code, as described [here](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
@@ -305,8 +307,7 @@ You should see something like this:
 
 > **Task 4**: Here we were not selecting the best action on each step, but rather sampling with corresponding probability distribution. Would it make more sense to always select the best action, with the highest Q-Table value? This can be done by using `np.argmax` function to find out the action number corresponding to highers Q-Table value. Implement this strategy and see if it improves the balancing.
 
-## [Post-lecture quiz](link-to-quiz-app)
-
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/48/)
 ## Assignment: [Train a Mountain Car](assignment.md)
 
 ## Conclusion

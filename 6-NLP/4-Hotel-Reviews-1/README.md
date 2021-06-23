@@ -2,6 +2,8 @@
 
 In this section you will use the techniques in the previous lessons to do some exploratory data analysis of a large dataset. Once you have a good understanding of the usefulness of the various columns, you will learn how to remove the unneeded columns, calculate some new data based on the existing columns, and save the resulting dataset for use in the final challenge.
 
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/37/)
+
 ### Introduction
 
 So far you've learned about how text data is quite unlike numerical types of data. If it's text that was written or spoken by a human, if can be analysed to find patterns and frequencies, sentiment and meaning. This final lesson takes you into a real data set with a real challenge. This lesson is a lot of code and analysis of a data set, it is quite dense but very amenable to experimentation in your favourite IDE or Notebook. 
@@ -501,7 +503,7 @@ df.to_csv(r'Hotel_Reviews_Filtered.csv', index = False)
 
 
 
-## [Post-lecture quiz](tbd)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/38/)
 
 ## Review & Self Study
 
