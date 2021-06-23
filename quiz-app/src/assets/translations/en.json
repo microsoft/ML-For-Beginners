@@ -2587,48 +2587,48 @@
 				"title": "Reinforcement 2: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Chess and Go are games with continuous states.",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "true",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "false",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is the CartPole problem?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "a process for eliminating outliers",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "a method for optimizing your shopping cart",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "a simplified version of balancing",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What tool can we use to play out different scenarios of potential states in a game?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "guess and check",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "simulation environments",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "state transition testing",
 								"isCorrect": "false"
 							}
 						]
@@ -2640,48 +2640,52 @@
 				"title": "Reinforcement 2: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Where do we define all possible actions in an environment?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "methods",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "action space",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "action list",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What pair did we use as the dictionary key-value?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "(state, action) as the key, Q-Table entry as the value",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "state as the key, action as the value",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "the value of the qvalues function as the key, action as the value",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "What are the hyperparameters we used during Q-Learning?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "q-table value, current reward, random action",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "learning rate, discount factor, exploration/exploitation factor",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "cumulative rewards, learning rate, exploration factor",
 								"isCorrect": "false"
 							}
 						]
