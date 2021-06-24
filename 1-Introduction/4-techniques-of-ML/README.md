@@ -4,7 +4,7 @@ The process of building, using, and maintaining machine learning models and the 
 
 - Understand the processes underpinning machine learning at a high level.
 - Explore base concepts such as 'models', 'predictions', and 'training data'.
-- 
+  
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 ## Introduction
 
