@@ -28,7 +28,7 @@ Probably the first thing most NLP algorithms have to do is to split the text int
 
 ### Parsing & Part-of-speech Tagging
 
-Every word, that has been tokenized, can be tagged as a part of speech - a noun, verb, or adjective etc. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as *fox* = noun, *jumped* = verb etc.
+Every word that has been tokenized can be tagged as a part of speech - a noun, verb, or adjective. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as fox = noun, jumped = verb.
 
 ![parsing](images/parse.png)
 
@@ -38,9 +38,9 @@ Parsing is recognizing what words are related to each other in a sentence - for 
 
 ### Word and Phrase Frequencies
 
-A useful tool when analyzing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for `the`.
+A useful procedure when analyzing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for the.
 
-Let's look at an example text, where we count the frequency of words, from the Rudyard Kipling poem *The Winners* has a verse:
+Let's look at an example text where we count the frequency of words. Rudyard Kipling's poem The Winners contains the following verse:
 
 ```output
 What the moral? Who rides may read.
@@ -196,6 +196,8 @@ One possible solution to the task is [here](solution/bot.py)
 3. Why would extracting a 'noun phrase' from a sentence a useful thing to do?
 
 ---
+
+Implement the bot in the prior knowledge check and test it on a friend. Can it trick them? Can you make your bot more 'believable?'
 
 ## 🚀Challenge
 
