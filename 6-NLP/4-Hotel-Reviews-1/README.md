@@ -466,7 +466,7 @@ Follow these steps in order:
 - Drop `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
 - Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
 - Keep `Tags`
-  - We'll be doing some NLP operations on the tags in the next section.
+  - We'll be doing some additional filtering operations on the tags in the next lesson.
 
 **Reviewer columns**
 
