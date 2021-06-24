@@ -1,8 +1,10 @@
-# Getting started with natural language processing 
+# Getting started with natural language processing
 
-## Regional topic: European languages and literature and romantic hotels of Europe ❤️ 
+Natural language processing, NLP, is a subfield of artificial intelligence. The whole field is directed at helping machines understand and process the human language. This can then be used to perform tasks like spell check or machine translation.
 
-In this section of the curriculum, you will be introduced to one of the most widespread uses of machine learning: natural language processing (NLP). Derived from computational linguistics, this category of artificial intelligence is the bridge between humans and machines via voice or textual communication. 
+## Regional topic: European languages and literature and romantic hotels of Europe ❤️
+
+In this section of the curriculum, you will be introduced to one of the most widespread uses of machine learning: natural language processing (NLP). Derived from computational linguistics, this category of artificial intelligence is the bridge between humans and machines via voice or textual communication.
 
 In these lessons we'll learn the basics of NLP by building small conversational bots to learn how machine learning aids in making these conversations more and more 'smart'. You'll travel back in time, chatting with Elizabeth Bennett and Mr. Darcy from Jane Austen's classic novel, **Pride and Prejudice**, published in 1813. Then, you'll further your knowledge by learning about sentiment analysis via hotel reviews in Europe.
 
