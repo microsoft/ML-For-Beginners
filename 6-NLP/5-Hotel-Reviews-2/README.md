@@ -356,18 +356,17 @@ To review, the steps are:
 
 ### Conclusion
 
-When you started, you had a dataset with columns and data but not all of it could be verified or used. You've explored the data, filtered out what you don't need, converted tags into something useful, calculated your own averages, added some sentiment columns and hopefully, learned some interesting things about processing natural text. The challenge coming up is much easier now that you have wrangled your dataset into something useful!
+When you started, you had a dataset with columns and data but not all of it could be verified or used. You've explored the data, filtered out what you don't need, converted tags into something useful, calculated your own averages, added some sentiment columns and hopefully, learned some interesting things about processing natural text.
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
 
 ## Challenge
 
-Todo
+Now that you have your dataset analyzed for sentiment, see if you can use strategies you've learned in this curriculum (clustering, perhaps?) to determine patterns around sentiment. 
 
 ## Review & Self Study
 
-todo
-
+Take [this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa) to learn more and use different tools to explore sentiment in text.
 ## Assignment 
 
-[todo](assignment.md)
+[Try a different dataset](assignment.md)
