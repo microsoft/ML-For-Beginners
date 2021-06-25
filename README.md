@@ -24,7 +24,7 @@ Travel with us around the world as we apply these classic techniques to data fro
  
 # Getting Started
 
-**Students**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own:
+**Students**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
 
 - Start with a pre-lecture quiz
 - Read the lecture and complete the activities, pausing and reflecting at each knowledge check. 
@@ -32,8 +32,9 @@ Travel with us around the world as we apply these classic techniques to data fro
 - Take the post-lecture quiz
 - Complete the challenge
 - Complete the assignment
-- Consider forming a study group with friends to go through the content together. 
-- For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) modules and learning paths.
+- After completing a lesson group, visit the [Discussion board](/discussions) and "learn out loud" by filling out the appropriate PAT rubric. A 'PAT' is a Progress Assignment Tool that is a rubric you fill out to further your learning. You can also react to other PATs so we can learn together.
+
+> For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) modules and learning paths.
 
 ---
 
