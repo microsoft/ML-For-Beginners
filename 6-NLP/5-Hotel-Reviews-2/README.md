@@ -1,21 +1,21 @@
+# Sentiment analysis with hotel reviews
 
+Now that you have a explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
 
 ### Filtering & Sentiment Analysis Operations
 
-Now that you have a explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels. 
-
 As you've probably noticed, the dataset has a few issues. Some columns are filled with useless information, others seem incorrect. If they are correct, it's unclear how they were calculated, and answers cannot be independently verified by your own calculations.
 
-Next, you will add columns that will be useful later, change the values in other columns, and drop certain columns completely.
+## Exercise: a bit more data processing
 
-Follow these steps in order:
+Clean the data just a bit more. Add columns that will be useful later, change the values in other columns, and drop certain columns completely.
 
-1. `Hotel_Name`, `Hotel_Address`, `lat` (latitude), `lng` (longitude)
+1. Initial column processing
 
    1. Drop `lat` and `lng`
 
-   2. Replace `Hotel_Address` values with the following values (if the address contains the same of the city and the country, change it to just the city and the country). 
+   2. Replace `Hotel_Address` values with the following values (if the address contains the same of the city and the country, change it to just the city and the country).
 
       These are the only cities and countries in the dataset:
 
@@ -67,13 +67,13 @@ Follow these steps in order:
       | Paris, France          |    458     |
       | Vienna, Austria        |    158     |
 
-2. Hotel Meta-review columns: `Average_Score`, `Total_Number_of_Reviews`, `Additional_Number_of_Scoring`
+2. Process Hotel Meta-review columns
 
-* Drop `Additional_Number_of_Scoring`
+  1. Drop `Additional_Number_of_Scoring`
 
-* Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
 
-* Replace `Average_Score` with our own calculated score
+  1. Replace `Average_Score` with our own calculated score
 
   ```python
   # Drop `Additional_Number_of_Scoring`
@@ -83,25 +83,29 @@ Follow these steps in order:
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-**Review columns**
+3. Process review columns
 
-- Drop `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
-- Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
-- Keep `Tags` for now
-  - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+   1. Drop `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
 
-**Reviewer columns**
+   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
+     
+   3. Keep `Tags` for now
 
-- Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
-- Keep `Reviewer_Nationality` 
+     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
 
-#### Tags
+4. Process reviewer columns
 
-The `Tag` columns is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines, you can scan the text and find the most common phrases, and count them.
+  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
+  
+  2. Keep `Reviewer_Nationality`
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis shines, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` , you can begin to ask if it's possible to greatly reduce the processing you have to do. Luckily, it is - but first you need to follow a few steps to ascertain the tags of interest. 
+### Tag columns
 
-##### Filtering Tags
+The `Tag` columns is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+
+Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` , you can begin to ask if it's possible to greatly reduce the processing you have to do. Luckily, it is - but first you need to follow a few steps to ascertain the tags of interest.
+
+### Filtering tags
 
 Remember that the goal of the dataset is to add sentiment and columns that will help you choose the best hotel (for yourself or maybe a client tasking you to make a hotel recommendation bot). You need to ask yourself if the tags are useful or not in the final dataset. Here is one interpretation (if you needed the dataset for other reasons different tags might stay in/out of the selection):
 
@@ -111,7 +115,7 @@ Remember that the goal of the dataset is to add sentiment and columns that will 
 4. The device the review was submitted on is irrelevant
 5. The number of nights reviewer stayed for *could* be relevant if you attributed longer stays with them liking the hotel more, but it's a stretch, and probably irrelevant
 
-In summary, keep 2 kinds of tags and remove the others. But how to do that?
+In summary, **keep 2 kinds of tags and remove the others**.
 
 First, you don't want to count the tags until they are in a better format, so that means removing the square brackets and quotes. You can do this several ways, but you want the fastest as it could take a long time to process a lot of data. Luckily, pandas has an easy way to do each of these steps.
 
@@ -122,9 +126,11 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Each tag becomes something like: `Business trip  ,  Solo traveler ,  Single Room ,  Stayed 5 nights ,  Submitted from  a mobile device `. Next we find a problem, some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+Each tag becomes something like: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then *melt* the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+
+Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
@@ -153,7 +159,7 @@ Instead you will use the different order to our advantage, because each tag is m
 
 Some of the common tags like `Submitted from a mobile device` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
 
-##### Removing the length of stay tags
+### Removing the length of stay tags
 
 Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
 
@@ -196,7 +202,7 @@ Finally, and this is delightful (because it didn't take much processing at all),
 | Family  with older children                   | 26349  |
 | With a  pet                                   | 1405   |
 
-You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [Hotel_Review_Tags](Hotel_Review_Tags.py).
+You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](solution/notebook-tags.ipynb).
 
 The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag` column matches one of the new columns, add a 1, if not, add a 0. The end result will be a count of how many reviewers chose this hotel (in aggregate) for, say, business vs leisure, or to bring a pet to, and this is useful information when recommending a hotel.
 
@@ -216,6 +222,8 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ```
 
+### Save your file
+
 Finally, save the dataset as it is now with a new name.
 
 ```python
@@ -226,11 +234,11 @@ print("Saving results to Hotel_Reviews_Filtered.csv")
 df.to_csv(r'Hotel_Reviews_Filtered.csv', index = False)
 ```
 
-### Sentiment Analysis Operations
+## Sentiment Analysis Operations
 
 In this final section, you will apply sentiment analysis to the review columns and save the results in a dataset.
 
-#### Loading and saving the filtered data
+## Exercise: load and save the filtered data
 
 Note that now you are loading the filtered dataset that was saved in the previous section, **not** the original dataset.
 
@@ -241,21 +249,23 @@ from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 # Load the filtered hotel reviews from CSV
-df = pd.read_csv('Hotel_Reviews_Filtered.csv')
+df = pd.read_csv('../../data/Hotel_Reviews_Filtered.csv')
 
 # You code will be added here
 
 
 # Finally remember to save the hotel reviews with new NLP data added
 print("Saving results to Hotel_Reviews_NLP.csv")
-df.to_csv(r'Hotel_Reviews_NLP.csv', index = False)
+df.to_csv(r'../../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
-#### Stop words
+### Removing stop words
 
-If you were to run Sentiment Analysis on the Negative and Positive review columns, it could take a long time. Tested on a powerful test laptop with fast CPU, and oodles of RAM, it took 12 - 14 minutes depending on which sentiment library was used. That's a (relatively) long time, so worth investigating if that can be speeded up. 
+If you were to run Sentiment Analysis on the Negative and Positive review columns, it could take a long time. Tested on a powerful test laptop with fast CPU,it took 12 - 14 minutes depending on which sentiment library was used. That's a (relatively) long time, so worth investigating if that can be speeded up. 
 
-Removing stop words, or common English words that do not change the sentiment of a sentence, is the first step. By removing them, the sentiment analysis should run faster, but not be less accurate (as the stop words do not affect sentiment, but they do slow down the analysis). The longest negative review was 395 words, but after removing the stop words, it is 195 words.
+Removing stop words, or common English words that do not change the sentiment of a sentence, is the first step. By removing them, the sentiment analysis should run faster, but not be less accurate (as the stop words do not affect sentiment, but they do slow down the analysis). 
+
+The longest negative review was 395 words, but after removing the stop words, it is 195 words.
 
 Removing the stop words is also a fast operation, removing the stop words from 2 review columns over 515,000 rows took 3.3 seconds on the test device. It could take slightly more or less time for you depending on your device CPU speed, RAM, whether you have an SSD or not, and some other factors. The relative shortness of the operation means that if it improves the sentiment analysis time, then it is worth doing.
 
@@ -263,7 +273,7 @@ Removing the stop words is also a fast operation, removing the stop words from 2
 from nltk.corpus import stopwords
 
 # Load the hotel reviews from CSV
-df = pd.read_csv("Hotel_Reviews_Filtered.csv")
+df = pd.read_csv("../../data/Hotel_Reviews_Filtered.csv")
 
 # Remove stop words - can be slow for a lot of text!
 # Ryan Han (ryanxjhan on Kaggle) has a great post measuring performance of different stop words removal approaches
@@ -279,11 +289,11 @@ df.Negative_Review = df.Negative_Review.apply(remove_stopwords)
 df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
-#### Sentiment Analysis
+### Performing sentiment analysis
 
-Now you should calculate the sentiment analysis for both negative and positive review columns, and store the result in 2 new columns. The test of the sentiment will be to compare it to the reviewer's score for the same review. For instance, if the sentiment thinks the negative review had a sentiment of 1 (extremely positive sentiment) and a positive review sentiment of 1, but the reviewer gave the hotel the lowest score possible, then either the review text doesn't match the score, or the sentiment analyser could not recognise the sentiment correctly. You should expect some sentiment scores to be completely wrong, and often that will be explainable, e.g. the review could be extremely sarcastic "Of course I LOVED sleeping in a room with no heating" and the sentiment analyser thinks that's positive sentiment, even though a human reading it would know it was sarcasm. 
+Now you should calculate the sentiment analysis for both negative and positive review columns, and store the result in 2 new columns. The test of the sentiment will be to compare it to the reviewer's score for the same review. For instance, if the sentiment thinks the negative review had a sentiment of 1 (extremely positive sentiment) and a positive review sentiment of 1, but the reviewer gave the hotel the lowest score possible, then either the review text doesn't match the score, or the sentiment analyser could not recognize the sentiment correctly. You should expect some sentiment scores to be completely wrong, and often that will be explainable, e.g. the review could be extremely sarcastic "Of course I LOVED sleeping in a room with no heating" and the sentiment analyser thinks that's positive sentiment, even though a human reading it would know it was sarcasm. 
 
-NLTK supplies different sentiment analysers to learn with, and you can substitute them and see if the sentiment is more or less accurate. The VADER sentiment analysis is used here.
+NLTK supplies different sentiment analyzers to learn with, and you can substitute them and see if the sentiment is more or less accurate. The VADER sentiment analysis is used here.
 
 > Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
 
@@ -335,15 +345,13 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"Hotel_Reviews_NLP.csv", index = False)
 ```
 
-The should run the entire code for [Hotel_Reviews_Sentiment_Analysis.py](Hotel_Reviews_Sentiment_Analysis.py) (after you've run [Hotel_Dataset_Filtering.py](Hotel_Dataset_Filtering.py) to generate the Hotel_Reviews_Filtered.csv file).
+You should run the entire code for [the analysis notebook](solution/notebook-sentiment-analysis.ipynb) (after you've run [your filtering notebook](solution/notebook-filtering.ipynb) to generate the Hotel_Reviews_Filtered.csv file).
 
-If you find having more than one dataset and programs to work on them confusing, this approached was used so that you did not change the original file that you started with. 
+To review, the steps are:
 
-The steps are:
-
-1. Original dataset file **Hotel_Reviews.csv** explored with [Hotel_Review_Explorer.py](Hotel_Review_Explorer.py)
-2. Hotel_Reviews.csv is filtered by [Hotel_Dataset_Filtering.py](Hotel_Dataset_Filtering.py) resulting in **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv is processed by [Hotel_Reviews_Sentiment_Analysis.py](Hotel_Reviews_Sentiment_Analysis.py) resulting in **Hotel_Reviews_NLP.csv**
+1. Original dataset file **Hotel_Reviews.csv** is explored in the previous lesson with [the explorer notebook](../4-Hotel-Reviews-1/solution/notebook-explorer.ipynb)
+2. Hotel_Reviews.csv is filtered by [the filtering notebook](solution/notebook-filtering.ipynb) resulting in **Hotel_Reviews_Filtered.csv**
+3. Hotel_Reviews_Filtered.csv is processed by [the sentiment analysis notebook](solution/notebook-sentiment-analysis.ipynb) resulting in **Hotel_Reviews_NLP.csv**
 4. Use Hotel_Reviews_NLP.csv in the NLP Challenge below
 
 ### Conclusion
@@ -352,10 +360,14 @@ When you started, you had a dataset with columns and data but not all of it coul
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
 
+## Challenge
+
+Todo
+
 ## Review & Self Study
 
-Explore SMOTE's API. What use cases is it best used for? What problems does it solve?
+todo
 
 ## Assignment 
 
-[Explore classification methods](assignment.md)
+[todo](assignment.md)
