@@ -4,7 +4,7 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-In this lesson, and the following one, you will learn a bit about time series forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit lesser known than other topics. Time series forecasting, is a sort of 'crystal ball': based on past performance of a variable such as price, you can predict its future potential value.
+In this lesson and the following one, you will learn a bit about time series forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit less known than other topics. Time series forecasting is a sort of 'crystal ball': based on past performance of a variable such as price, you can predict its future potential value.
 
 [![Introduction to time series forecasting](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Introduction to time series forecasting")
 
@@ -12,17 +12,17 @@ In this lesson, and the following one, you will learn a bit about time series fo
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
 
-It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights, predicting future performance, time series forecasting remains a field greatly informed by classic ML techniques.
+It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights to better predict future performance, time series forecasting remains a field greatly informed by classic ML techniques.
 
 > Penn State's useful time series curriculum can be found [here](https://online.stat.psu.edu/stat510/lesson/1)
 
 ## Introduction
 
-Supposing you maintain an array of smart parking meters that provide data about how often they are used and for how long over time. What if you could generate revenue to maintain your streets, by slightly augmenting the prices of the meters, when there is greater demand for them
+Suppose you maintain an array of smart parking meters that provide data about how often they are used and for how long over time.
 
 > What if you could predict, based on the meter's past performance, its future value according to the laws of supply and demand?
 
-Accurately predicting when to act, to achieve your goal, is a challenge that could be tackled by time series forecasting. It wouldn't make folks happy to be charged more in busy times. looking for a parking spot, but it would be a sure way to generate revenue to clean the streets!
+Accurately predicting when to act so as to achieve your goal is a challenge that could be tackled by time series forecasting. It wouldn't make folks happy to be charged more in busy times when they're looking for a parking spot, but it would be a sure way to generate revenue to clean the streets!
 
 Let's explore some of the types of time series algorithms and start a notebook to clean and prepare some data. The data you will analyze  is taken from the GEFCom2014 forecasting competition. It consists of 3 years of hourly electricity load and temperature values between 2012 and 2014. Given the historical patterns of electricity load and temperature, you can predict future values of electricity load.
 
@@ -44,7 +44,7 @@ The analysis to be performed, uses a variety of methods, including frequency-dom
 
 🎓 **Time series forecasting**
 
-Time series forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time, indices as x variables on a plot, such data is best analyzed using special types of models.
+Time series forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time indices as x variables on a plot, such data is best analyzed using special types of models.
 
 Time series data is a list of ordered observations, unlike data that can be analyzed by linear regression.   The most common one is ARIMA, an acronym that stands for "Autoregressive Integrated Moving Average".
 
@@ -73,9 +73,9 @@ In the next lesson, you will build an ARIMA model using [Univariate Time Series]
 
 ## Time Series [data characteristics](https://online.stat.psu.edu/stat510/lesson/1/1.1) to consider
 
-When looking at time series data, you might notice that it has certain characteristics that you need to take into account, and mitigate, to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques.
+When looking at time series data, you might notice that it has certain characteristics that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques.
 
-Here's some concepts you should know to be able to work with time series:
+Here are some concepts you should know to be able to work with time series:
 
 🎓 **Trends**
 

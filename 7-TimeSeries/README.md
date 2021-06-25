@@ -1,6 +1,6 @@
 # Introduction to time series forecasting
 
-So what is time series forecasting? It's about predicting what's about to happen, future events, by analyzing trends of the past.
+What is time series forecasting? It's about predicting future events by analyzing trends of the past.
 
 ## Regional topic: worldwide electricity usage ✨
 
