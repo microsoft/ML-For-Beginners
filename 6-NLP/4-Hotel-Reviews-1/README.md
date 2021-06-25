@@ -347,7 +347,7 @@ Treat the following questions as coding tasks and attempt to answer them without
    both_no_reviews = df.apply(lambda x: True if x['Negative_Review'] == "No Negative" and x['Positive_Review'] == "No Positive" else False , axis=1)
    print("Number of both No Negative and No Positive reviews: " + str(len(both_no_reviews[both_no_reviews == True].index)))
    end = time.time()
-   print("Lamdas took " + str(round(end - start, 2)) + " seconds")
+   print("Lambdas took " + str(round(end - start, 2)) + " seconds")
    
    Number of No Negative reviews: 127890
    Number of No Positive reviews: 35946
