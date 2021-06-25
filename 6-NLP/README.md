@@ -16,8 +16,8 @@ In these lessons we'll learn the basics of NLP by building small conversational 
 1. [Introduction to natural language processing](1-Introduction-to-NLP/README.md)
 2. [Common NLP tasks and techniques](2-Tasks/README.md)
 3. [Translation and sentiment analysis with machine learning](3-Translation-Sentiment/README.md)
-4. [NLTK for Sentiment Analysis](4-Hotel-Reviews-1/README.md)
-5. TBD
+4. [Preparing your data](4-Hotel-Reviews-1/README.md)
+5. [NLTK for Sentiment Analysis](5-Hotel-Reviews-2/README.md)
 
 ## Credits 
 
