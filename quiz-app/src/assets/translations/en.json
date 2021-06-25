@@ -2041,48 +2041,52 @@
 				"title": "NLP 4: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What information can we get from text that was written or spoken by a human?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "patterns and frequencies",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "sentiment and meaning",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
 								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
-								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What is sentiment analysis?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "a study of whether a family heirloom has sentimental value",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "a method of systematically identifying, extracting, quantifying, and studying affective states and subjective information",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
+								"answerText": "the ability to tell whether someone is sad or happy",
 								"isCorrect": "false"
 							}
 						]
-					},
+					},					
 					{
-						"questionText": "q3",
+						"questionText": "What question could be answered using a dataset of hotel reviews, Python, and sentiment analysis?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "What are the most frequently used words and phrases in reviews?",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "Which resort has the best pool?",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Is there valet parking at this hotel?",
 								"isCorrect": "false"
 							}
 						]
@@ -2094,48 +2098,48 @@
 				"title": "NLP 4: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is the essence of NLP?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "categorizing human language into happy or sad",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "interpreting meaning or sentiment without having to have a human do it",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "finding outliers in sentiment and examining them",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What are some things you might look for while cleaning data?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "characters in other languages",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "blank rows or columns",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "It is important to understand your data and its foibles before performing operations on it.",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
