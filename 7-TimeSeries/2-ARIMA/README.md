@@ -14,7 +14,7 @@ In this lesson, you will discover a specific way to build models with [ARIMA: *A
 
 ## General concepts
 
-To be able to work with ARIMA, there's some concepts you need to know about:
+To be able to work with ARIMA, there are some concepts you need to know about:
 
 - 🎓 **Stationarity**. From a statistical context, stationarity refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'.
 
