@@ -1,6 +1,10 @@
 # Sentiment analysis with hotel reviews - processing the data
 
-In this section you will use the techniques in the previous lessons to do some exploratory data analysis of a large dataset. Once you have a good understanding of the usefulness of the various columns, you will learn how to remove the unneeded columns, calculate some new data based on the existing columns, and save the resulting dataset for use in the final challenge.
+In this section you will use the techniques in the previous lessons to do some exploratory data analysis of a large dataset. Once you have a good understanding of the usefulness of the various columns, you will learn: 
+
+- how to remove the unneeded columns
+- how to calculate some new data based on the existing columns
+- how to save the resulting dataset for use in the final challenge
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/37/)
 
@@ -12,10 +16,10 @@ So far you've learned about how text data is quite unlike numerical types of dat
 
 You will need:
 
-* Python 3
+* The ability to run .ipynb notebooks using Python 3
 * pandas
 * NLTK, [which you should install locally](https://www.nltk.org/install.html)
-* The data set which is available on Kaggle [515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe). It is around 230 MB unzipped. Download it to the `/data` folder associated with these NLP lessons.
+* The data set which is available on Kaggle [515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe). It is around 230 MB unzipped. Download it to the root `/data` folder associated with these NLP lessons.
 
 ## Exploratory data analysis
 
@@ -29,7 +33,7 @@ Using Python, a dataset of hotel reviews, and NLTK's sentiment analysis you coul
 
 #### Dataset
 
-Let's explore the dataset first. Remember to download it and save it locally. Open the file in an editor like VS Code or even Excel. As it's a text-based CSV file, any editor that can handle large text files should be able to open it.
+Let's explore the dataset that you've downloaded and saved locally. Open the file in an editor like VS Code or even Excel.
 
 The headers in the dataset are as follows:
 
@@ -86,7 +90,7 @@ Here they are grouped in a way that might be easier to examine:
 | -------------- | ---------------------- | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
 | 7.8            | 1945                   | 2.5              | This is  currently not a hotel but a construction site I was terroized from early  morning and all day with unacceptable building noise while resting after a  long trip and working in the room People were working all day i e with  jackhammers in the adjacent rooms I asked for a room change but no silent  room was available To make thinks worse I was overcharged I checked out in  the evening since I had to leave very early flight and received an appropiate  bill A day later the hotel made another charge without my concent in excess  of booked price It s a terrible place Don t punish yourself by booking  here | Nothing  Terrible place Stay away | Business trip                                Couple Standard Double  Room Stayed 2 nights |
 
-As you can see from this guest, they did not have a happy stay at this hotel. The hotel has a good average score of 7.8 and 1945 reviews, but this reviewer gave it 2.5 and wrote 115 words about how negative their stay was. If they wrote nothing at all in the Positive_Review column, you might surmise there was nothing positive, but alas they wrote 7 words of warning. If we just counted words instead of the meaning, or sentiment of the words, we might have a skewed view of the reviewers intent. Strangely, their score of 2.5 is confusing, because if that hotel stay was so bad, why give it any points at all? Investigating the dataset closely, you'll see that the lowest possible score is 2.5, not 0. The highest possible score is 10.
+As you can see, this guest did not have a happy stay at this hotel. The hotel has a good average score of 7.8 and 1945 reviews, but this reviewer gave it 2.5 and wrote 115 words about how negative their stay was. If they wrote nothing at all in the Positive_Review column, you might surmise there was nothing positive, but alas they wrote 7 words of warning. If we just counted words instead of the meaning, or sentiment of the words, we might have a skewed view of the reviewers intent. Strangely, their score of 2.5 is confusing, because if that hotel stay was so bad, why give it any points at all? Investigating the dataset closely, you'll see that the lowest possible score is 2.5, not 0. The highest possible score is 10.
 
 ##### Tags
 
@@ -126,8 +130,7 @@ On the possibility that these hotel might be an outlier, and that maybe most of 
 >
 > When working with this dataset you will write code that calculates something from the text without having to read or analyse the text yourself. This is the essence of NLP, interpreting meaning or sentiment without having to have a human do it. However, it is possible that you will read some of the negative reviews. I would urge you not to, because you don't have to. Some of them are silly, or irrelevant negative hotel reviews, such as  "The weather wasn't great", something beyond the control of the hotel, or indeed, anyone. But there is a dark side to some reviews too. Sometimes the negative reviews are racist, sexist, or ageist. This is unfortunate but to be expected in a dataset scraped off a public website. Some reviewers leave reviews that you would find distasteful, uncomfortable, or upsetting. Better to let the code measure the sentiment than read them yourself and be upset. That said, it is a minority that write such things, but they exist all the same. 
 
-## Exercise
-
+## Exercise -  Data exploration
 ### Load the data
 
 That's enough examining the data visually, now you'll write some code and get some answers! This section uses the pandas library. Your very first task is to ensure you can load and read the CSV data. The pandas library has a fast CSV loader, and the result is placed in a dataframe, as in previous lessons. The CSV we are loading has over half a million rows, but only 17 columns. Pandas gives you lots of powerful ways to interact with a dataframe, including the ability to perform operations on every row. 
@@ -180,7 +183,6 @@ Treat the following questions as coding tasks and attempt to answer them without
 7. Calculate and print out how many rows have column `Negative_Review` values of "No Negative" 
 8. Calculate and print out how many rows have column `Positive_Review` values of "No Positive"
 9. Calculate and print out how many rows have column `Positive_Review` values of "No Positive" **and** `Negative_Review` values of "No Negative"
-
 ### Code answers
 
 1. Print out the *shape* of the data frame you have just loaded (the shape is the number of rows and columns)
@@ -352,10 +354,12 @@ Treat the following questions as coding tasks and attempt to answer them without
    Number of No Negative reviews: 127890
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
-   Lamdas took 9.64 seconds
+   Lambdas took 9.64 seconds
    ```
 
-   Another way to do that one is without Lambdas, and use sum to count the rows:
+## Another way
+
+Another way count items without Lambdas, and use sum to count the rows:
 
    ```python
    # without lambdas (using a mixture of notations to show you can use both)

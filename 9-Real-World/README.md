@@ -1,4 +1,4 @@
-# Real World Applications of Classic Machine Learning
+# Postscript: Real world applications of classic machine learning
 
 In this section of the curriculum, you will be introduced to some real-world applications of classical ML. We have scoured the internet to find whitepapers and articles about applications that have used these strategies, avoiding neural networks, deep learning and AI as much as possible. Learn about how ML is used in business systems, ecological applications, finance, arts and culture, and more.
 
