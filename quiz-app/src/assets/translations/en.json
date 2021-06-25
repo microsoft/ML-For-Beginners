@@ -2151,48 +2151,48 @@
 				"title": "NLP 5: Pre-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "Why is it important to clean data before analyzing it?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "Some columns might have missing or incorrect data",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "Messy data can lead to false conclusions about the dataset",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Both of the above",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "What is one example of a strategy for cleaning data?",
+						"answerOptions": [
+							{
+								"answerText": "removing columns/rows that aren't useful for answering a specific question",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "getting rid of verified values that don't fit your hypothesis",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "moving the outliers to a separate table and running the calculations for that table to see if they match",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "It can be useful to categorize data using a Tag column.",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "b",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "q3",
-						"answerOptions": [
-							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
