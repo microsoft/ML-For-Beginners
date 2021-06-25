@@ -21,7 +21,9 @@ Travel with us around the world as we apply these classic techniques to data fro
 **🎨 Thanks as well to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper
 
  **🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers and content contributors**, notably Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
- 
+
+---
+
 # Getting Started
 
 **Students**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
@@ -36,10 +38,9 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 > For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) modules and learning paths.
 
----
-
 **Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum.
 
+---
 
 > Future space for Promo Video
 [![Promo video](screenshot.png)](https://youtube.com/watch?v=R1wrdtmBSII "Promo video")
