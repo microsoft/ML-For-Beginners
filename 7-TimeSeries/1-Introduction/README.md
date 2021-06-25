@@ -16,9 +16,9 @@ It's a useful and interesting field with real value to business, given its direc
 
 > Penn State's useful time series curriculum can be found [here](https://online.stat.psu.edu/stat510/lesson/1)
 
-### Introduction
+## Introduction
 
-Supposing you maintain an array of smart parking meters that provide data about how often they are used and for how long over time. What if you could generate revenue to maintain your streets, by slightly augmenting the prices of the meters, when there is greater demand for them? 
+Supposing you maintain an array of smart parking meters that provide data about how often they are used and for how long over time. What if you could generate revenue to maintain your streets, by slightly augmenting the prices of the meters, when there is greater demand for them
 
 > What if you could predict, based on the meter's past performance, its future value according to the laws of supply and demand?
 
