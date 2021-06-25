@@ -2204,48 +2204,48 @@
 				"title": "NLP 5: Post-Lecture Quiz",
 				"quiz": [
 					{
-						"questionText": "q1",
+						"questionText": "What is the goal of the dataset?",
 						"answerOptions": [
 							{
-								"answerText": "a",
+								"answerText": "to see how many negative and positive reviews there are for hotels across the world",
 								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "to add sentiment and columns that will help you choose the best hotel",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "to analyze why people leave specific reviews",
 								"isCorrect": "false"
 							}
 						]
 					},
 					{
-						"questionText": "q2",
+						"questionText": "What are stop words?",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "true"
+								"answerText": "common English words that do not change the sentiment of a sentence",
+								"isCorrect": "false"
 							},
 							{
-								"answerText": "b",
+								"answerText": "words that you can remove to speed up sentiment analysis",
 								"isCorrect": "false"
+							},
+							{
+								"answerText": "both of the above",
+								"isCorrect": "true"
 							}
 						]
 					},
 					{
-						"questionText": "q3",
+						"questionText": "To test the sentiment analysis, make sure it matches the reviewer's score for the same review.",
 						"answerOptions": [
 							{
-								"answerText": "a",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "b",
+								"answerText": "true",
 								"isCorrect": "true"
 							},
 							{
-								"answerText": "c",
+								"answerText": "false",
 								"isCorrect": "false"
 							}
 						]
