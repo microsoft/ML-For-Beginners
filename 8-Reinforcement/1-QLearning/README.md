@@ -1,13 +1,16 @@
 # Introduction to Reinforcement Learning and Q-Learning
 
+Reinforcement learning involves three important concepts, the agent, some states and a set of actions per state. By executing an action, in a specified state, the agent is scored with a reward. Again imagine the computer game Super Mario. You are Mario, you are in a game level, standing next to a cliff edge, above you is a coin. You being Mario, in a game level, at a specific position, that's your state. Moving one step to the right (an action) will take you over the edge, that would give you a low numerical score. However, pressing the jump button you would score a point and you would be alive, that's a positive outcome, that should award you a positive numerical score.
+
+The point of all this is that by using reinforcement learning, and a simulator (the game), you can learn how to play the game to maximize the reward, with the reward being, staying alive and scoring as much points as possible.
+
 [![Intro to Reinforcement Learning](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
 > 🎥 Click the image above to hear Dmitry discuss Reinforcement Learning
+
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/45/)
 
-In this lesson, we will explore the world of **[Peter and the Wolf](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, inspired by a musical fairy tale by a Russian composer, [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). We will use **Reinforcement Learning** to let Peter explore his environment, collect tasty apples and avoid meeting the wolf.
-
-### Prerequisites and Setup
+## Prerequisites and Setup
 
 In this lesson, we will be experimenting with some code in Python. You should be able to run the Jupyter Notebook code from this lesson, either on your computer or somewhere in the cloud.
 
@@ -16,6 +19,8 @@ You can open [the lesson notebook](notebook.ipynb) and continue reading the mate
 > **Note:** If you are opening this code from the cloud, you also need to fetch the [`rlboard.py`](rlboard.py) file, which is used in the notebook code. Add it to the same directory as the notebook.
 
 ## Introduction
+
+In this lesson, we will explore the world of **[Peter and the Wolf](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, inspired by a musical fairy tale by a Russian composer, [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). We will use **Reinforcement Learning** to let Peter explore his environment, collect tasty apples and avoid meeting the wolf.
 
 **Reinforcement Learning** (RL) is a learning technique that allows us to learn an optimal behavior of an **agent** in some **environment** by running many experiments. An agent in this environment should have some **goal**, defined by a **reward function**.
 
@@ -27,13 +32,13 @@ For simplicity, let's consider Peter's world to be a square board of size `width
 
 Each cell in this board can either be:
 
-* **ground**, on which Peter and other creatures can walk
-* **water**, on which you obviously cannot walk
-* a **tree** or **grass**, a place where you can rest
-* an **apple**, which represents something Peter would be glad to find in order to feed himself
-* a **wolf**, which is dangerous and should be avoided
+* **ground**, on which Peter and other creatures can walk.
+* **water**, on which you obviously cannot walk.
+* a **tree** or **grass**, a place where you can rest.
+* an **apple**, which represents something Peter would be glad to find in order to feed himself.
+* a **wolf**, which is dangerous and should be avoided.
 
-There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will just import the module and use it to create the sample board (code block 1):
+There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will import the module and use it to create the sample board (code block 1):
 
 ```python
 from rlboard import *
@@ -48,74 +53,86 @@ This code should print a picture of the environment similar to the one above.
 
 ## Actions and policy
 
-In our example, Peter's goal would be to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds an apple. Therefore, at any position he can choose between one of the following actions: up, down, left and right. We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`. (code block 2)
+In our example, Peter's goal would be able to find an apple, while avoiding the wolf and other obstacles. To do this, he can essentially walk around until he finds an apple.
+
+Therefore, at any position, he can choose between one of the following actions: up, down, left and right.
+
+We will define those actions as a dictionary, and map them to pairs of corresponding coordinate changes. For example, moving right (`R`) would correspond to a pair `(1,0)`. (code block 2):
 
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
 action_idx = { a : i for i,a in enumerate(actions.keys()) }
 ```
 
-The strategy of our agent (Peter) is defined by a so-called **policy**. A policy is a function that returns the action at any given state. In our case, the state of the problem is represented by the board, including the current position of the player. 
+To sum up, the strategy and goal of this scenario are as follows:
 
-The goal of reinforcement learning is to eventually learn a good policy that will allow us to solve the problem efficiently. However, as a baseline, let's consider the simplest policy called **random walk**.
+- **The strategy**, of our agent (Peter) is defined by a so-called **policy**. A policy is a function that returns the action at any given state. In our case, the state of the problem is represented by the board, including the current position of the player.
+
+- **The goal**, of reinforcement learning is to eventually learn a good policy that will allow us to solve the problem efficiently. However, as a baseline, let's consider the simplest policy called **random walk**.
 
 ## Random walk
 
 Let's first solve our problem by implementing a random walk strategy. With random walk, we will randomly choose the next action from the allowed actions, until we reach the apple (code block 3).
 
-```python
-def random_policy(m):
-    return random.choice(list(actions))
+1. Implement the random walk with the below code:
 
-def walk(m,policy,start_position=None):
-    n = 0 # number of steps
-    # set initial position
-    if start_position:
-        m.human = start_position 
-    else:
-        m.random_start()
-    while True:
-        if m.at() == Board.Cell.apple:
-            return n # success!
-        if m.at() in [Board.Cell.wolf, Board.Cell.water]:
-            return -1 # eaten by wolf or drowned
-        while True:
-            a = actions[policy(m)]
-            new_pos = m.move_pos(m.human,a)
-            if m.is_valid(new_pos) and m.at(new_pos)!=Board.Cell.water:
-                m.move(a) # do the actual move
-                break
-        n+=1
-
-walk(m,random_policy)
-```
-
-The call to `walk` should return the length of the corresponding path, which can vary from one run to another. We can run the walk experiment a number of times (say, 100), and print the resulting statistics (code block 4):
-
-```python
-def print_statistics(policy):
-    s,w,n = 0,0,0
-    for _ in range(100):
-        z = walk(m,policy)
-        if z<0:
-            w+=1
+    ```python
+    def random_policy(m):
+        return random.choice(list(actions))
+    
+    def walk(m,policy,start_position=None):
+        n = 0 # number of steps
+        # set initial position
+        if start_position:
+            m.human = start_position 
         else:
-            s += z
-            n += 1
-    print(f"Average path length = {s/n}, eaten by wolf: {w} times")
+            m.random_start()
+        while True:
+            if m.at() == Board.Cell.apple:
+                return n # success!
+            if m.at() in [Board.Cell.wolf, Board.Cell.water]:
+                return -1 # eaten by wolf or drowned
+            while True:
+                a = actions[policy(m)]
+                new_pos = m.move_pos(m.human,a)
+                if m.is_valid(new_pos) and m.at(new_pos)!=Board.Cell.water:
+                    m.move(a) # do the actual move
+                    break
+            n+=1
+    
+    walk(m,random_policy)
+    ```
 
-print_statistics(random_policy)
-```
+    The call to `walk` should return the length of the corresponding path, which can vary from one run to another. 
 
-Note that the average length of a path is around 30-40 steps, which is quite a lot, given the fact that the average distance to the nearest apple is around 5-6 steps.
+1. Run the walk experiment a number of times (say, 100), and print the resulting statistics (code block 4):
 
-You can also see what Peter's movement looks like during the random walk:
+    ```python
+    def print_statistics(policy):
+        s,w,n = 0,0,0
+        for _ in range(100):
+            z = walk(m,policy)
+            if z<0:
+                w+=1
+            else:
+                s += z
+                n += 1
+        print(f"Average path length = {s/n}, eaten by wolf: {w} times")
+    
+    print_statistics(random_policy)
+    ```
 
-![Peter's Random Walk](images/random_walk.gif)
+    Note that the average length of a path is around 30-40 steps, which is quite a lot, given the fact that the average distance to the nearest apple is around 5-6 steps.
+
+    You can also see what Peter's movement looks like during the random walk:
+
+    ![Peter's Random Walk](images/random_walk.gif)
 
 ## Reward function
 
-To make our policy more intelligent, we need to understand which moves are "better" than others. To do this, we need to define our goal. The goal can be defined in terms of a **reward function**, which will return some score value for each state. The higher the number, the better the reward function. (code block 5)
+To make our policy more intelligent, we need to understand which moves are "better" than others. To do this, we need to define our goal.
+
+The goal can be defined in terms of a **reward function**, which will return some score value for each state. The higher the number, the better the reward function. (code block 5)
 
 ```python
 move_reward = -0.1
@@ -195,49 +212,51 @@ Thus, the best approach is to strike a balance between exploration and exploitat
 
 ## Python implementation
 
-We are now ready to implement the learning algorithm. Before we do that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions: (code block 7)
+We are now ready to implement the learning algorithm. Before we do that, we also need some function that will convert arbitrary numbers in the Q-Table into a vector of probabilities for corresponding actions.
 
-```python
-def probs(v,eps=1e-4):
-    v = v-v.min()+eps
-    v = v/v.sum()
-    return v
-```
+1. Create a function `probs()`:
 
-We add a few `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
+    ```python
+    def probs(v,eps=1e-4):
+        v = v-v.min()+eps
+        v = v/v.sum()
+        return v
+    ```
 
-The actual learning algorithm we will run for 5000 experiments, also called **epochs**: (code block 8)
+    We add a few `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
 
-```python
-for epoch in range(5000):
+Run them learning algorithm through 5000 experiments, also called **epochs**: (code block 8)
 
-    # Pick initial point
-    m.random_start()
+    ```python
+    for epoch in range(5000):
     
-    # Start travelling
-    n=0
-    cum_reward = 0
-    while True:
-        x,y = m.human
-        v = probs(Q[x,y])
-        a = random.choices(list(actions),weights=v)[0]
-        dpos = actions[a]
-        m.move(dpos,check_correctness=False) # we allow player to move outside the board, which terminates episode
-        r = reward(m)
-        cum_reward += r
-        if r==end_reward or cum_reward < -1000:
-            lpath.append(n)
-            break
-        alpha = np.exp(-n / 10e5)
-        gamma = 0.5
-        ai = action_idx[a]
-        Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
-        n+=1
-```
+        # Pick initial point
+        m.random_start()
+        
+        # Start travelling
+        n=0
+        cum_reward = 0
+        while True:
+            x,y = m.human
+            v = probs(Q[x,y])
+            a = random.choices(list(actions),weights=v)[0]
+            dpos = actions[a]
+            m.move(dpos,check_correctness=False) # we allow player to move outside the board, which terminates episode
+            r = reward(m)
+            cum_reward += r
+            if r==end_reward or cum_reward < -1000:
+                lpath.append(n)
+                break
+            alpha = np.exp(-n / 10e5)
+            gamma = 0.5
+            ai = action_idx[a]
+            Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
+            n+=1
+    ```
 
-After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
+    After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
 
-<img src="images/learned.png"/>
+    <img src="images/learned.png"/>
 
 ## Checking the policy
 
@@ -279,15 +298,17 @@ After running this code, you should get a much smaller average path length than 
 
 ## Investigating the learning process
 
-As we have mentioned, the learning process is a balance between exploration and exploration of gained knowledge about the structure of problem space. We have seen that the result of learning (the ability to help an agent to find a short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process:
+As we have mentioned, the learning process is a balance between exploration and exploration of gained knowledge about the structure of problem space. We have seen that the results of learning (the ability to help an agent to find a short path to the goal) has improved, but it is also interesting to observe how the average path length behaves during the learning process:
 
 <img src="images/lpathlen1.png"/>
 
-What we see here is that at first, the average path length increases. This is probably due to the fact that when we know nothing about the environment, we are likely to get trapped in bad states, water or wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know where the apples are very well.
+The learnings can be summarized as:
 
-Once we learn enough, it becomes easier for the agent to achieve the goal, and the path length starts to decrease. However, we are still open to exploration, so we often diverge away from the best path, and explore new options, making the path longer than optimal.
+- **Average path length increases**. What we see here is that at first, the average path length increases. This is probably due to the fact that when we know nothing about the environment, we are likely to get trapped in bad states, water or wolf. As we learn more and start using this knowledge, we can explore the environment for longer, but we still do not know where the apples are very well.
 
-What we also observe on this graph is that at some point, the length increased abruptly. This indicates the stochastic nature of the process, and that we can at some point "spoil" the Q-Table coefficients by overwriting them with new values. This ideally should be minimized by decreasing learning rate (for example, towards the end of training, we only adjust Q-Table values by a small value).
+- **Path length decrease, as we learn more**. Once we learn enough, it becomes easier for the agent to achieve the goal, and the path length starts to decrease. However, we are still open to exploration, so we often diverge away from the best path, and explore new options, making the path longer than optimal.
+
+- **Length increase abruptly**. What we also observe on this graph is that at some point, the length increased abruptly. This indicates the stochastic nature of the process, and that we can at some point "spoil" the Q-Table coefficients by overwriting them with new values. This ideally should be minimized by decreasing learning rate (for example, towards the end of training, we only adjust Q-Table values by a small value).
 
 Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters, such as learning rate, learning rate decay, and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters**, which we optimize during training (for example, Q-Table coefficients). The process of finding the best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
 
