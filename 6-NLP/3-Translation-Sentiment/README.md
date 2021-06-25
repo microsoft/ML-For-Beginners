@@ -6,7 +6,7 @@ In the previous lessons you learned how to build a basic bot using `TextBlob`, a
 
 Translation is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This approach means that you would take the following steps:
 
-1. **Identification**, identify or tag the words in input language into nouns, verbs etc.
+1. **Identification**. Identify or tag the words in input language into nouns, verbs etc.
 2. **Create translation**. Produce a direct translation of each word in the target language format.
 
 ### Example sentence, English to Irish
@@ -139,7 +139,7 @@ Your task is to determine, using sentiment polarity, if *Pride and Prejudice* ha
    1. If the polarity is 1 or -1 store the sentence in an array or list of positive or negative messages
 5. At the end, print out all the positive sentences and negative sentences (separately) and the number of each.
 
-Here is a sample [solution](solutions/book.py).
+Here is a sample [solution](solutions/notebook.ipynb).
 
 ✅ Knowledge Check
 

@@ -1,4 +1,4 @@
-# Machine learning in the real world - a postscript
+# Postscript: Machine learning in the real world
 
 In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic regression, clustering, classification, natural language processing, and time series models. Congratulations! Now, you might be wondering what it's all for... what are the real world applications for these models?
 
