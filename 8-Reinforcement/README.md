@@ -1,6 +1,6 @@
 # Introduction to reinforcement learning
 
-Reinforcement learning, RL, is seen as one of three basic machine learning paradigms, next to supervised learning and unsupervised learning. To explain how Reinforcement learning works, think that it's all about decisions and delivering the right decisions or at least learn from them.
+Reinforcement learning, RL, is seen as one of the basic machine learning paradigms, next to supervised learning and unsupervised learning. RL is all about decisions: delivering the right decisions or at least learning from them.
 
 Imagine you have a simulated environment, like the stock market for example. What happens if you impose this or that regulation does it have a positive or negative effect? The whole point is being able to change course if something negative happen, so called _negative reinforcement_ or if it's a positive outcome, to keep building on that, so called _positive reinforcement_.
 
