@@ -8,7 +8,7 @@ While a lot of interest in industry has been garnered by AI, which usually lever
 
 ## 💰 Finance
 
-A big area of application for Machine learning is the finance sector. A lot of problems lends themselves to be modelled by and solved using ML.
+The finance sector offers many opportunities for machine learning. Many problems in this area lend themselves to be modeled and solved by using ML.
 
 ### Credit card fraud detection
 
@@ -28,7 +28,7 @@ http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/
 
 ## 🎓 Education
 
-The educational sector is also a very interesting area where ML can be applied. There are interesting problems like detecting cheats on tests or essays or bias into the correction process, unintentional or not.
+The educational sector is also a very interesting area where ML can be applied. There are interesting problems to be tackled such as detecting cheating on tests or essays or managing bias in the correction process, unintentional or not.
 
 ### Predicting student behavior
 
@@ -44,7 +44,7 @@ https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect
 
 ## 👜 Retail
 
-The retail sector can definitely benefit from the use of ML, with everything from creating a better customer journey to stock your inventory in an optimal way.
+The retail sector can definitely benefit from the use of ML, with everything from creating a better customer journey to stocking inventory in an optimal way.
 
 ### Personalizing the customer journey
 
@@ -60,7 +60,7 @@ https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the
 
 ## 🏥 Health Care
 
-The health care sector needs to address various problems in areas like research but also logistic problems like readmitting patients or stopping diseases from spreading for example.
+The health care sector can leverage ML to optimize research tasks and also logistic problems like readmitting patients or stopping diseases from spreading.
 
 ### Managing clinical trials
 
@@ -108,7 +108,7 @@ https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy
 
 ## 💼 Insurance
 
-The insurance sector, is another sector that uses ML for the purposes of being able to work and construct viable financial models. 
+The insurance sector is another sector that uses ML to construct and optimize viable financial and actuarial models. 
 
 ### Volatility Management
 
@@ -118,7 +118,7 @@ https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/r
 
 ## 🎨 Arts, Culture, and Literature
 
-In arts, culture and literature, there are many interesting problems. Fake news for example is huge problem that could influence the opinion of people to even topple democracies. Museums are an institution that can also benefit from using ML, in everything from finding links between artifacts to resource planning.
+In the arts, for example in journalism, there are many interesting problems. Detecting fake news is huge problem as it has been proven to influence the opinion of people and even to topple democracies. Museums can also benefit from using ML in everything from finding links between artifacts to resource planning.
 
 ### Fake news detection
 
