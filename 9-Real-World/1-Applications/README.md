@@ -8,6 +8,8 @@ While a lot of interest in industry has been garnered by AI, which usually lever
 
 ## 💰 Finance
 
+The finance sector offers many opportunities for machine learning. Many problems in this area lend themselves to be modeled and solved by using ML.
+
 ### Credit card fraud detection
 
 We learned about [k-means clustering](../../5-Clustering/2-K-Means/README.md) earlier in the course, but how can it be used to solve problems related to credit card fraud?
@@ -25,6 +27,9 @@ One way to evaluate how a particular investment performs is through statistical 
 http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/
 
 ## 🎓 Education
+
+The educational sector is also a very interesting area where ML can be applied. There are interesting problems to be tackled such as detecting cheating on tests or essays or managing bias in the correction process, unintentional or not.
+
 ### Predicting student behavior
 
 [Coursera](https://coursera.com), an online open course provider, has a great tech blog where they discuss many engineering decisions. In this case study, they plotted a regression line to try to explore any correlation between a low NPS (Net Promoter Score) rating and course retention or drop-off.
@@ -38,6 +43,9 @@ https://medium.com/coursera-engineering/controlled-regression-quantifying-the-im
 https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/
 
 ## 👜 Retail
+
+The retail sector can definitely benefit from the use of ML, with everything from creating a better customer journey to stocking inventory in an optimal way.
+
 ### Personalizing the customer journey
 
 At Wayfair, a company that sells home goods like furniture, helping customers find the right products for their taste and needs is paramount. In this article, engineers from the company describe how they use ML and NLP to "surface the right results for customers". Notably, their Query Intent Engine has been built to use entity extraction, classifier training, asset and opinion extraction, and sentiment tagging on customer reviews. This is a classic use case of how NLP works in online retail.
@@ -51,6 +59,8 @@ Innovative, nimble companies like [StitchFix](https://stitchfix.com), a box serv
 https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/
 
 ## 🏥 Health Care
+
+The health care sector can leverage ML to optimize research tasks and also logistic problems like readmitting patients or stopping diseases from spreading.
 
 ### Managing clinical trials
 
@@ -71,6 +81,8 @@ The recent pandemic has shone a bright light on the ways that machine learning c
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/
 
 ## 🌲 Ecology and Green Tech
+
+Nature and ecology consists of many sensitive systems where the interplay between animals and nature come into focus. It's important to be able to measure these systems accurately and act appropriately if something happens, like a forest fire or a drop in the animal population.
 
 ### Forest management
 
@@ -96,6 +108,8 @@ https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy
 
 ## 💼 Insurance
 
+The insurance sector is another sector that uses ML to construct and optimize viable financial and actuarial models. 
+
 ### Volatility Management
 
 MetLife, a life insurance provider, is forthcoming with the way they analyze and mitigate volatility in their financial models. In this article you'll notice binary and ordinal classification visualizations. You'll also discover forecasting visualizations.
@@ -104,6 +118,8 @@ https://investments.metlife.com/content/dam/metlifecom/us/investments/insights/r
 
 ## 🎨 Arts, Culture, and Literature
 
+In the arts, for example in journalism, there are many interesting problems. Detecting fake news is huge problem as it has been proven to influence the opinion of people and even to topple democracies. Museums can also benefit from using ML in everything from finding links between artifacts to resource planning.
+
 ### Fake news detection
 
 Detecting fake news has become a game of cat and mouse in today's media. In this article, researchers suggest that a system combining several of the ML techniques we have studied can be tested and the best model deployed: "This system is based on natural language processing to extract features from the data and then these features are used for the training of machine learning classifiers such as Naive Bayes,  Support Vector Machine (SVM), Random Forest (RF), Stochastic Gradient Descent (SGD), and Logistic Regression(LR)."
@@ -111,6 +127,7 @@ Detecting fake news has become a game of cat and mouse in today's media. In this
 https://www.irjet.net/archives/V7/i6/IRJET-V7I6688.pdf
 
 This article shows how combining different ML domains can produce interesting results that can help stop fake news from spreading and creating real damage; in this case, the impetus was the spread of rumors about COVID treatments that incited mob violence.
+
 ### Museum ML
 
 Museums are at the cusp of an AI revolution in which cataloging and digitizing collections and finding links between artifacts is becoming easier as technology advances. Projects such as [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) are helping unlock the mysteries of inaccessible collections such as the Vatican Archives. But, the business aspect of museums benefits from ML models as well.
