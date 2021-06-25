@@ -12,7 +12,7 @@
 
 > 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
-Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson curriculum all about traditional Machine Learning. In this lesson group, you will learn about what is sometimes called 'classic' ML, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair this curriculum with our forthcoming 'Data Science for Beginners' curriculum, as well!
+Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson curriculum all about **Machine Learning**. In this lesson group, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair this curriculum with our forthcoming 'Data Science for Beginners' curriculum, as well!
 
 Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
@@ -33,7 +33,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 - Complete the challenge
 - Complete the assignment
 - Consider forming a study group with friends to go through the content together. 
-- For further study, we recommend following [Microsoft Learn](https://docs.microsoft.com?WT.mc_id=academic-15963-cxa) modules and learning paths.
+- For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) modules and learning paths.
 
 ---
 
@@ -52,7 +52,6 @@ We have chosen two pedagogical tenets while building this curriculum: ensuring t
 By ensuring that the content aligns with projects, the process is made more engaging for students and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12 week cycle. This curriculum also includes a postscript on real-world applications of ML, which can be used as extra credit or as a basis for discussion.
 
 > Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), and [Translation](TRANSLATIONS.md) guidelines. We welcome your constructive feedback!
->
 ## Each lesson includes:
 
 - optional sketchnote
@@ -72,14 +71,14 @@ By ensuring that the content aligns with projects, the process is made more enga
 | Lesson Number |                           Topic                            |                       Section                       | Learning Objectives                                                                                                             |                     Linked Lesson                     |     Author     |
 | :-----------: | :--------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: | :------------: |
 |      01       |              Introduction to machine learning              |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts behind machine learning                                                                                |   [lesson](1-Introduction/1-intro-to-ML/README.md)    |    Muhammad    |
-|      02       |              The History of machine learning               |      [Introduction](1-Introduction/README.md)       | Learn the history underlying this field                                                                                         |   [lesson](1-Introduction/2-history-of-ML/README.md)    |  Jen and Amy   |
+|      02       |              The History of machine learning               |      [Introduction](1-Introduction/README.md)       | Learn the history underlying this field                                                                                         |  [lesson](1-Introduction/2-history-of-ML/README.md)   |  Jen and Amy   |
 |      03       |               Fairness and machine learning                |      [Introduction](1-Introduction/README.md)       | What are the important philosophical issues around fairness that students should consider when building and applying ML models? |     [lesson](1-Introduction/3-fairness/README.md)     |     Tomomi     |
 |      04       |              Techniques for machine learning               |      [Introduction](1-Introduction/README.md)       | What techniques do ML researchers use to build ML models?                                                                       | [lesson](1-Introduction/4-techniques-of-ML/README.md) | Chris and Jen  |
 |      05       |                 Introduction to regression                 |        [Regression](2-Regression/README.md)         | Get started with Python and Scikit-learn for regression models                                                                  |       [lesson](2-Regression/1-Tools/README.md)        |      Jen       |
 |      06       |              North American pumpkin prices 🎃               |        [Regression](2-Regression/README.md)         | Visualize and clean data in preparation for ML                                                                                  |        [lesson](2-Regression/2-Data/README.md)        |      Jen       |
 |      07       |              North American pumpkin prices 🎃               |        [Regression](2-Regression/README.md)         | Build linear and polynomial regression models                                                                                   |       [lesson](2-Regression/3-Linear/README.md)       |      Jen       |
 |      08       |              North American pumpkin prices 🎃               |        [Regression](2-Regression/README.md)         | Build a logistic regression model                                                                                               |      [lesson](2-Regression/4-Logistic/README.md)      |      Jen       |
-|      09       |                        A Web App 🔌                         |           [Web App](3-Web-App/README.md)            | Build a web app to use your trained model                                                                                       |             [lesson](3-Web-App/1-Web-App/README.md)             |      Jen       |
+|      09       |                        A Web App 🔌                         |           [Web App](3-Web-App/README.md)            | Build a web app to use your trained model                                                                                       |        [lesson](3-Web-App/1-Web-App/README.md)        |      Jen       |
 |      10       |               Introduction to classification               |    [Classification](4-Classification/README.md)     | Clean, prep, and visualize your data; introduction to classification                                                            |  [lesson](4-Classification/1-Introduction/README.md)  | Jen and Cassie |
 |      11       |           Delicious Asian and Indian cuisines 🍜            |    [Classification](4-Classification/README.md)     | Introduction to classifiers                                                                                                     | [lesson](4-Classification/2-Classifiers-1/README.md)  | Jen and Cassie |
 |      12       |           Delicious Asian and Indian cuisines 🍜            |    [Classification](4-Classification/README.md)     | More classifiers                                                                                                                | [lesson](4-Classification/3-Classifiers-2/README.md)  | Jen and Cassie |
