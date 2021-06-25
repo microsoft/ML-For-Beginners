@@ -57,7 +57,7 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
 1. Run the code below and see what it leads to.
 
-    > **Note**: Remember that it is preferred to run this code on local Python installation! (code block 3)
+    ✅ Remember that it is preferred to run this code on local Python installation! (code block 3)
 
     ```python
     env.reset()
@@ -68,11 +68,11 @@ To see how the environment works, let's run a short simulation for 100 steps. At
     env.close()
     ```
 
-    You should be seeing something similar to this one:
+    You should be seeing something similar to this image:
 
     ![non-balancing cartpole](images/cartpole-nobalance.gif)
 
-1. During simulation, we need to get observations in order to decide how to act. In fact, `step` function returns us back current observations, reward function, and the `done` flag that indicates whether it makes sense to continue the simulation or not: (code block 4)
+1. During simulation, we need to get observations in order to decide how to act. In fact, the step function returns current observations, a reward function, and the done flag that indicates whether it makes sense to continue the simulation or not: (code block 4)
 
     ```python
     env.reset()
@@ -113,7 +113,7 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
     You may also notice that reward value on each simulation step is always 1. This is because our goal is to survive as long as possible, i.e. keep the pole to a reasonably vertical position for the longest period of time.
 
-    > In fact, CartPole simulation is considered solved if we manage to get the average reward of 195 over 100 consecutive trials.
+    ✅ In fact, the CartPole simulation is considered solved if we manage to get the average reward of 195 over 100 consecutive trials.
 
 ## State discretization
 
@@ -127,7 +127,7 @@ There are a few ways we can do this:
 
 In our example, we will go with the second approach. As you may notice later, despite undefined upper/lower bounds, those value rarely take values outside of certain finite intervals, thus those states with extreme values will be very rare.
 
-1. Here is the function that will take the observation from our model, and produces a tuple of 4 integer values: (code block 6)
+1. Here is the function that will take the observation from our model and produce a tuple of 4 integer values: (code block 6)
 
     ```python
     def discretize(x):
@@ -152,7 +152,7 @@ In our example, we will go with the second approach. As you may notice later, de
 
 1. Let's now run a short simulation and observe those discrete environment values. Feel free to try both `discretize` and `discretize_bins` and see if there is a difference.
 
-    > **Note**: `discretize_bins` returns the bin number, which is 0-based, thus for values of input variable around 0 it returns the number from the middle of the interval (10). In `discretize`, we did not care about the range of output values, allowing them to be negative, thus the state values are not shifted, and 0 corresponds to 0. (code block 8)
+    ✅ discretize_bins returns the bin number, which is 0-based. Thus for values of input variable around 0 it returns the number from the middle of the interval (10). In discretize, we did not care about the range of output values, allowing them to be negative, thus the state values are not shifted, and 0 corresponds to 0. (code block 8)
 
     ```python
     env.reset()
@@ -166,7 +166,7 @@ In our example, we will go with the second approach. As you may notice later, de
     env.close()
     ```
 
-    > **Note**: Uncomment the line starting with `env.render` if you want to see how the environment executes. Otherwise you can execute it in the background, which is faster. We will use this "invisible" execution during our Q-Learning process.
+    ✅ Uncomment the line starting with env.render if you want to see how the environment executes. Otherwise you can execute it in the background, which is faster. We will use this "invisible" execution during our Q-Learning process.
 
 ## The Q-Table structure
 
