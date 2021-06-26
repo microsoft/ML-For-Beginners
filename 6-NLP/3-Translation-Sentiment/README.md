@@ -47,6 +47,10 @@ For instance, consider the case of *Pride and Prejudice*, a well-known English n
 
 For instance, when an English phrase such as `I have no money` is translated literally to French, it might become `Je n'ai pas de monnaie`. "Monnaie" is a tricky french 'false cognate', as 'money' and 'monnaie' are not synonymous. A better translation that a human might make would be `Je n'ai pas d'argent`, because it better conveys the meaning that you have no money (rather than 'loose change' which is the meaning of 'monnaie').
 
+![monnaie](images/monnaie.png)
+
+> Image by [Jen Looper](https://twitter.com/jenlooper)
+
 If an ML model has enough human translations to build a model on, it can improve the accuracy of translations by identifying common patterns in texts that have been previously translated by expert human speakers of both languages.
 
 ### Exercise - translation
