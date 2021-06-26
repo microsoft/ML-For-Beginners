@@ -184,7 +184,7 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
 
     ![japanese](images/japanese.png)
 
-1. Now for the chinese ingrediences:
+1. Now for the chinese ingredients:
 
     ```python
     chinese_ingredient_df = create_ingredient_df(chinese_df)
@@ -193,7 +193,7 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
 
     ![chinese](images/chinese.png)
 
-1. Plot the indian ingrediences:
+1. Plot the indian ingredients:
 
     ```python
     indian_ingredient_df = create_ingredient_df(indian_df)
@@ -202,7 +202,7 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
 
     ![indian](images/indian.png)
 
-1. Finally, plot the korean ingrediences:
+1. Finally, plot the korean ingredients:
 
     ```python
     korean_ingredient_df = create_ingredient_df(korean_df)
