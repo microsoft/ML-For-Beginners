@@ -50,7 +50,9 @@ Here they are grouped in a way that might be easier to examine:
 
 * `Average_Score`
   * According to the dataset creator, this column is the *Average Score of the hotel, calculated based on the latest comment in the last year*. This seems like an unusual way to calculate the score, but it is the data scraped so we may take it as face value for now. 
+  
   ✅ Based on the other columns in this data, can you think of another way to calculate the average score?
+
 * `Total_Number_of_Reviews`
   * The total number of reviews this hotel has received - it is not clear (without writing some code) if this refers to the reviews in the dataset.
 * `Additional_Number_of_Scoring`
