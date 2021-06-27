@@ -10,9 +10,9 @@ In this lesson we will apply the same principles of Q-Learning to a problem with
 
 > **Problem**: If Peter wants to escape from the wolf, he needs to be able to move faster. We will see how Peter can learn to skate, in particular, to keep balance, using Q-Learning.
 
-![skating](images/skate.png)
+![The great escape!](images/escape.png)
 
-> Image by [Jen Looper](https://twitter.com/jenlooper)
+> Peter and his friends get creative to escape the wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
 
 We will use a simplified version of balancing known as a **CartPole** problem. In the cartpole world, we have a horizontal slider that can move left or right, and the goal is to balance a vertical pole on top of the slider.
 

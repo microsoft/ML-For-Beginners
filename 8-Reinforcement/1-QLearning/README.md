@@ -24,7 +24,7 @@ In this lesson, we will explore the world of **[Peter and the Wolf](https://en.w
 
 ![peter and the wolf](images/peter.png)
 
-> Image by [Jen Looper](https://twitter.com/jenlooper)
+> Peter and his friends need to escape the hungry wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
 
 **Reinforcement Learning** (RL) is a learning technique that allows us to learn an optimal behavior of an **agent** in some **environment** by running many experiments. An agent in this environment should have some **goal**, defined by a **reward function**.
 
