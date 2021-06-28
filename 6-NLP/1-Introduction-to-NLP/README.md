@@ -1,6 +1,6 @@
 # Introduction to natural language processing
 
-This lesson covers a brief history and important concepts of *computational linguistics* focusing on *natural language processing*.
+This lesson covers a brief history and important concepts of *natural language processing*, a subfield of *computational linguistics*.
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/31/)
 
