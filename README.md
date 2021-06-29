@@ -23,7 +23,6 @@ Travel with us around the world as we apply these classic techniques to data fro
  **🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers and content contributors**, notably Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
 
 ---
-
 # Getting Started
 
 **Students**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
@@ -42,10 +41,13 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 ---
 
+## Meet the Team
+
 [![Promo video](ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "Promo video")
 
 > 🎥 Click the image above for a video about the project and the folks who created it!
 
+---
 ## Pedagogy
 
 We have chosen two pedagogical tenets while building this curriculum: ensuring that it is hands-on **project-based** and that it includes **frequent quizzes**. In addition, this curriculum has a common **theme** to give it cohesion.
