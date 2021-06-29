@@ -1,5 +1,9 @@
 # Postscript: Machine learning in the real world
 
+
+![Summary of Machine learning in the real world in a sketchnote](../../sketchnotes/ml-realworld.png)
+> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+
 In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic regression, clustering, classification, natural language processing, and time series models. Congratulations! Now, you might be wondering what it's all for... what are the real world applications for these models?
 
 While a lot of interest in industry has been garnered by AI, which usually leverages deep learning, there are still valuable applications for classical machine learning models. You might even use some of these applications today! In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and valuable to users.
