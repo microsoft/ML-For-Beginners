@@ -12,7 +12,7 @@
 
 > 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
-Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson curriculum all about **Machine Learning**. In this lesson group, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair this curriculum with our forthcoming 'Data Science for Beginners' curriculum, as well!
+Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair this curriculum with our forthcoming 'Data Science for Beginners' curriculum, as well!
 
 Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
@@ -70,7 +70,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 > **A note about quizzes**: All quizzes are contained [in this app](https://jolly-sea-0a877260f.azurestaticapps.net), for 50 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
 
-| Lesson Number |                           Topic                            |                       Section                       | Learning Objectives                                                                                                             |                     Linked Lesson                     |     Author     |
+| Lesson Number |                           Topic                            |                       Lesson Grouping                       | Learning Objectives                                                                                                             |                     Linked Lesson                     |     Author     |
 | :-----------: | :--------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: | :------------: |
 |      01       |              Introduction to machine learning              |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts behind machine learning                                                                                |   [lesson](1-Introduction/1-intro-to-ML/README.md)    |    Muhammad    |
 |      02       |              The History of machine learning               |      [Introduction](1-Introduction/README.md)       | Learn the history underlying this field                                                                                         |  [lesson](1-Introduction/2-history-of-ML/README.md)   |  Jen and Amy   |
