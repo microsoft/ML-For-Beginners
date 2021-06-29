@@ -202,7 +202,7 @@ Finally, and this is delightful (because it didn't take much processing at all),
 | Family  with older children                   | 26349  |
 | With a  pet                                   | 1405   |
 
-You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](solution/notebook-tags.ipynb).
+You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](solution/1-notebook.ipynb).
 
 The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag` column matches one of the new columns, add a 1, if not, add a 0. The end result will be a count of how many reviewers chose this hotel (in aggregate) for, say, business vs leisure, or to bring a pet to, and this is useful information when recommending a hotel.
 
@@ -227,11 +227,11 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 Finally, save the dataset as it is now with a new name.
 
 ```python
-df.drop(["Tags", "Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
+df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
 
 # Saving new data file with calculated columns
 print("Saving results to Hotel_Reviews_Filtered.csv")
-df.to_csv(r'Hotel_Reviews_Filtered.csv', index = False)
+df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 ```
 
 ## Sentiment Analysis Operations
@@ -245,8 +245,10 @@ Note that now you are loading the filtered dataset that was saved in the previou
 ```python
 import time
 import pandas as pd
+import nltk as nltk
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+nltk.download('vader_lexicon')
 
 # Load the filtered hotel reviews from CSV
 df = pd.read_csv('../../data/Hotel_Reviews_Filtered.csv')
@@ -256,7 +258,7 @@ df = pd.read_csv('../../data/Hotel_Reviews_Filtered.csv')
 
 # Finally remember to save the hotel reviews with new NLP data added
 print("Saving results to Hotel_Reviews_NLP.csv")
-df.to_csv(r'../../data/Hotel_Reviews_NLP.csv', index = False)
+df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
 ### Removing stop words
@@ -342,7 +344,7 @@ The very last thing to do with the file before using it in the challenge, is to 
 df = df.reindex(["Hotel_Name", "Hotel_Address", "Total_Number_of_Reviews", "Average_Score", "Reviewer_Score", "Negative_Sentiment", "Positive_Sentiment", "Reviewer_Nationality", "Leisure_trip", "Couple", "Solo_traveler", "Business_trip", "Group", "Family_with_young_children", "Family_with_older_children", "With_a_pet", "Negative_Review", "Positive_Review"], axis=1)
 
 print("Saving results to Hotel_Reviews_NLP.csv")
-df.to_csv(r"Hotel_Reviews_NLP.csv", index = False)
+df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
 You should run the entire code for [the analysis notebook](solution/notebook-sentiment-analysis.ipynb) (after you've run [your filtering notebook](solution/notebook-filtering.ipynb) to generate the Hotel_Reviews_Filtered.csv file).
