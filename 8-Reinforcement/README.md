@@ -2,7 +2,7 @@
 
 Reinforcement learning, RL, is seen as one of the basic machine learning paradigms, next to supervised learning and unsupervised learning. RL is all about decisions: delivering the right decisions or at least learning from them.
 
-Imagine you have a simulated environment, like the stock market for example. What happens if you impose this or that regulation does it have a positive or negative effect? The whole point is being able to change course if something negative happen, so called _negative reinforcement_ or if it's a positive outcome, to keep building on that, so called _positive reinforcement_.
+Imagine you have a simulated environment such as the stock market. What happens if you impose a given regulation. Does it have a positive or negative effect? If something negative happens, you need to take this _negative reinforcement_, learn from it, and change course. If it's a positive outcome, you need to build on that _positive reinforcement_.
 
 ![peter and the wolf](images/peter.png)
 
