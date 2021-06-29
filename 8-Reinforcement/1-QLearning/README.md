@@ -25,10 +25,6 @@ You can open [the lesson notebook](notebook.ipynb) and walk through this lesson 
 
 In this lesson, we will explore the world of **[Peter and the Wolf](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, inspired by a musical fairy tale by a Russian composer, [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). We will use **Reinforcement Learning** to let Peter explore his environment, collect tasty apples and avoid meeting the wolf.
 
-![peter and the wolf](images/peter.png)
-
-> Peter and his friends need to escape the hungry wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
-
 **Reinforcement Learning** (RL) is a learning technique that allows us to learn an optimal behavior of an **agent** in some **environment** by running many experiments. An agent in this environment should have some **goal**, defined by a **reward function**.
 
 ## The environment

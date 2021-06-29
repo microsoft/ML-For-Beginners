@@ -4,9 +4,9 @@ Reinforcement learning, RL, is seen as one of the basic machine learning paradig
 
 Imagine you have a simulated environment, like the stock market for example. What happens if you impose this or that regulation does it have a positive or negative effect? The whole point is being able to change course if something negative happen, so called _negative reinforcement_ or if it's a positive outcome, to keep building on that, so called _positive reinforcement_.
 
-[![Peter and the Wolf](https://img.youtube.com/vi/Fmi5zHg4QSM/0.jpg)](https://www.youtube.com/watch?v=Fmi5zHg4QSM)
+![peter and the wolf](images/peter.png)
 
-> 🎥 Click the image above to listen to Peter and the Wolf by Prokofiev
+> Peter and his friends need to escape the hungry wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
 
 ## Regional topic: Peter and the Wolf (Russia)
 
@@ -14,6 +14,10 @@ Imagine you have a simulated environment, like the stock market for example. Wha
 
 - **Explore** the surrounding area and build an optimal navigation map
 - **Learn** how to use a skateboard and balance on it, in order to move around faster.
+
+[![Peter and the Wolf](https://img.youtube.com/vi/Fmi5zHg4QSM/0.jpg)](https://www.youtube.com/watch?v=Fmi5zHg4QSM)
+
+> 🎥 Click the image above to listen to Peter and the Wolf by Prokofiev
 
 ## Reinforcement learning
 
