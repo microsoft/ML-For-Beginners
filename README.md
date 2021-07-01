@@ -106,4 +106,8 @@ You can run this documentation offline by using [Docsify](https://docsify.js.org
 
 Find a pdf of the curriculum with links [here](pdf/readme.pdf)
 
+## Help Wanted!
+
+Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add input [here](https://github.com/microsoft/ML-For-Beginners/issues/71)
+
 
