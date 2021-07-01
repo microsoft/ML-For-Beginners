@@ -110,4 +110,9 @@ Find a pdf of the curriculum with links [here](pdf/readme.pdf)
 
 Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add input [here](https://github.com/microsoft/ML-For-Beginners/issues/71)
 
+## Other Curricula
+
+Our team produces other curricula! Check out:
+
+- [Web Dev for Beginners](https://aka.ms/webdev-beginners)
 
