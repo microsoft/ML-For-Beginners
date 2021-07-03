@@ -1,7 +1,7 @@
-# History of machine learning
+# 機械学習の歴史
 
-![Summary of History of machine learning in a sketchnote](../../../sketchnotes/ml-history.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![機械学習の歴史をまとめたスケッチ](../../../sketchnotes/ml-history.png)
+> [Tomomi Imura](https://www.twitter.com/girlie_mac)によるスケッチ
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
 
@@ -43,19 +43,19 @@
 
 * 移動したり、タスクを実行する方法を「知的に」決定することができるロボット[「Shakey」](https://wikipedia.org/wiki/Shakey_the_robot) 
 
-    ![Shakey, an intelligent robot](../images/shakey.jpg)
-    > Shakey in 1972
+    ![知的なロボットであるShakey](../images/shakey.jpg)
+    > 1972のShakey
 
 * 初期の「おしゃべりロボット」であるElizaは、人と会話することができ、原始的な「セラピスト」の役割を果たした。エリザについては、NLPのレッスンで詳しく説明します。
 
-    ![Eliza, a bot](../images/eliza.png)
-    > A version of Eliza, a chatbot
+    ![BotであるEliza](../images/eliza.png)
+    > チャットボットEliza
 
 * 「Blocks world」は、ブロックを積み上げたり並べ替えたりするマイクロワールドの一例で、機械に判断力を身につけさせる実験を行った。[SHRDLU](https://wikipedia.org/wiki/SHRDLU)をはじめとするライブラリの進歩は、言語処理の発展に大きく貢献した。
 
-    [![blocks world with SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world with SHRDLU")
+    [![SHRDLUを用いたblocks world](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "SHRDLUを用いたblocks world")
     
-    > 🎥 上の画像をクリックすると動画が見られます："Blocks world with SHRDLU"
+    > 🎥 上の画像をクリックすると動画が見られます："SHRDLUを用いたblocks world"
 
 ## 1974 - 1980: AIの冬
 
@@ -91,8 +91,8 @@
 
 未来がどうなるかはまだわかりませんが、これらのコンピュータシステムと、それを動かすソフトウェアやアルゴリズムを理解することは重要です。このカリキュラムが自身で判断するにあたり、より良い理解を助けるものになると幸いです。
 
-[![The history of deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
-> 🎥  上の画像をクリックすると動画が見られます：Yann LeCun discusses the history of deep learning in this lecture
+[![ディープラーニングの歴史](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "ディープラーニングの歴史")
+> 🎥  上の画像をクリックすると動画が見られます：このレクチャーではYann LeCunがディープラーニングの歴史について議論しています。 
 
 ---
 ## 🚀Challenge
@@ -107,7 +107,7 @@
 
 [Amy BoydがAIの進化について述べているポッドキャスト](http://runasradio.com/Shows/Show/739)
 
-[![Amy BoydによるAIの歴史](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
+[![Amy BoydによるAIの歴史](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Amy BoydによるAIの歴史")
 
 ## 課題
 
