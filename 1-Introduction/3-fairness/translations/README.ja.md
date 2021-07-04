@@ -105,107 +105,100 @@ AIや機械学習における公平性の保証は、依然として複雑な社
 
 ## モデルを理解し、公平性を構築する
  
-Although many aspects of fairness are not captured in quantitative fairness metrics, and it is not possible to fully remove bias from a system to guarantee fairness, you are still responsible to detect and to mitigate fairness issues as much as possible. 
+公平性の多くの側面は定量的な指標では捉えられず、公平性を保証するためにシステムからバイアスを完全に取り除くことは不可能ですが、公平性の問題を可能な限り検出し、軽減する責任があります。
 
-When you are working with machine learning models, it is important to understand your models by means of assuring their interpretability and by assessing and mitigating unfairness.
+機械学習モデルを扱う際には、モデルの解釈可能性を保証し、不公平さを評価・軽減することで、モデルを理解することが重要です。
 
-Let’s use the loan selection example to isolate the case to figure out each factor's level of impact on the prediction.
+ここでは、ローン選択の例を使ってケースを切り分け、各要素が予測に与える影響の度合いを把握してみましょう。
 
-## Assessment methods
+## 評価方法
 
-1. **Identify harms (and benefits)**. The first step is to identify harms and benefits. Think about how actions and decisions can affect both potential customers and a business itself.
+1. **危害（と利益）を特定する**。最初のステップは、危害と利益を特定することです。行動や決定が、潜在的な顧客とビジネスそのものの両方にどのような影響を与えるかを考えてみましょう。
   
-1. **Identify the affected groups**. Once you understand what kind of harms or benefits that can occur, identify the groups that may be affected. Are these groups defined by gender, ethnicity, or social group?
+1. **影響を受けるグループを特定する**。どのような害や利益が発生しうるかを理解したら、影響を受ける可能性のあるグループを特定します。これらのグループは、性別、民族、または社会的グループによって定義されるでしょうか。
 
-1. **Define fairness metrics**. Finally, define a metric so you have something to measure against in your work to improve the situation.
+1. **公正さの測定基準を定義する**。最後に、状況を改善する際に何を基準にするかの指標を定義します。
 
-### Identify harms (and benefits)
+### 有害性（および利益）を特定する
+貸与に関連する有害性と利益は何か？偽陰性と偽陽性のシナリオについて考えてみましょう。
 
-What are the harms and benefits associated with lending? Think about false negatives and false positive scenarios: 
+**偽陰性（認可しないが、Y=1）** - この場合、ローンを返済できるであろう申請者が拒否されます。これは、融資が資格のある申請者になされなくなるため、不利な事象となります。
 
-**False negatives** (reject, but Y=1) - in this case, an applicant who will be capable of repaying a loan is rejected. This is an adverse event because the resources of the loans are withheld from qualified applicants.
+**偽陽性（受け入れるが、Y=0）** - この場合、申請者は融資を受けたが、最終的には返済不能（デフォルト）になる。その結果、申請者の事例は債権回収会社に送られ、将来のローン申請に影響を与える可能性があります。
 
-**False positives** (accept, but Y=0) - in this case, the applicant does get a loan but eventually defaults. As a result, the applicant's case will be sent to a debt collection agency which can affect their future loan applications.
+### 影響を受けるグループの特定
+次のステップでは、どのグループが影響を受ける可能性があるかを判断します。例えば、クレジットカードの申請の場合、家計の資産を共有している配偶者と比較して、女性の与信限度額は大幅に低くすべきだとモデルが判断するかもしれません。これにより、ジェンダーで定義される層全体が影響を受けることになります。
 
-### Identify affected groups
+### 公正さの測定基準を定義する
+あなたは有害性と影響を受けるグループ（この場合は、性別で定義されている）をここまでに特定しました。次に、定量化された要素を使って、その評価基準を分解します。例えば、以下のデータを使用すると、女性の偽陽性率が最も大きく、男性が最も小さいこと、そしてその逆が偽陰性の場合に当てはまることがわかります。
 
-The next step is to determine which groups are likely to be affected. For example, in case of a credit card application, a model might determine that women should receive much lower credit limits compared with their spouses who share household assets. An entire demographic, defined by gender, is thereby affected.
+✅ 今後の"クラスタリング"のレッスンでは、この"混同行列"をコードで構築する方法をご紹介します。
 
-### Define fairness metrics
- 
-You have identified harms and an affected group, in this case, delineated by gender. Now, use the quantified factors to disaggregate their metrics. For example, using the data below, you can see that women have the largest false positive rate and men have the smallest, and that the opposite is true for false negatives.
-
-✅ In a future lesson on Clustering, you will see how to build this 'confusion matrix' in code
-
-|            | False positive rate | False negative rate | count |
+|            | 偽陽性率 | 偽陰性率 | サンプル数 |
 | ---------- | ------------------- | ------------------- | ----- |
-| Women      | 0.37                | 0.27                | 54032 |
-| Men        | 0.31                | 0.35                | 28620 |
-| Non-binary | 0.33                | 0.31                | 1266  |
+| 女性      | 0.37                | 0.27                | 54032 |
+| 男性        | 0.31                | 0.35                | 28620 |
+| どちらにも属さない | 0.33                | 0.31                | 1266  |
 
- 
-This table tells us several things. First, we note that there are comparatively few non-binary people in the data. The data is skewed, so you need to be careful how you interpret these numbers.
+この表から、いくつかのことがわかります。まず、データに含まれる男性と女性どちらでもない人が比較的少ないことがわかります。従ってこのデータは歪んでおり、この数字をどう解釈するかに注意が必要です。
 
-In this case, we have 3 groups and 2 metrics. When we are thinking about how our system affects the group of customers with their loan applicants, this may be sufficient, but when you want to define larger number of groups, you may want to distill this to smaller sets of summaries. To do that, you can add more metrics, such as the largest difference or smallest ratio of each false negative and false positive. 
+今回の場合、3つのグループと2つの指標があります。このシステムがローン申請者であるお客様のグループにどのような影響を与えるかを考えるときにはこれで十分かもしれません。しかし、より多くのグループを定義したい場合は、これをより小さな要約のまとまりに抽出したいと思うかもしれません。そのためには、偽陰性と偽陽性それぞれの最大値の差や最小の比率など、より多くの要素を追加することができます。
  
-✅ Stop and Think: What other groups are likely to be affected for loan application? 
+✅ 一旦ここで考えてみてください：ローン申請の際に影響を受けそうな他のグループは？
  
-## Mitigating unfairness 
+## 不公平の緩和
  
-To mitigate unfairness, explore the model to generate various mitigated models and compare the tradeoffs it makes between accuracy and fairness to select the most fair model. 
+不公平を緩和するためには、モデルを探索して様々な緩和モデルを生成し、精度と公平性の間で行うトレードオフを比較して、最も公平なモデルを選択します。
 
-This introductory lesson does not dive deeply into the details of algorithmic unfairness mitigation, such as post-processing and reductions approach, but here is a tool that you may want to try. 
+この入門編では、後処理やリダクションのアプローチといったアルゴリズムによる不公平の緩和の詳細については深く触れていませんが、試していきたいツールをここで紹介します。
 
 ### Fairlearn 
- 
-[Fairlearn](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
+[Fairlearn](https://fairlearn.github.io/)はオープンソースのPythonパッケージで、システムの公平性を評価し、不公平を緩和することができます。
 
-The tool helps you to assesses how a model's predictions affect different groups, enabling you to compare multiple models by using fairness and performance metrics, and supplying a set of algorithms to mitigate unfairness in binary classification and regression. 
+このツールは、モデルの予測が異なるグループにどのような影響を与えるかを評価し、公平性とパフォーマンスの指標を用いて複数のモデルを比較することを可能にし、二項分類(binary classification)と回帰(regression)における不公平さを緩和するためのアルゴリズムを提供します。
 
-- Learn how to use the different components by checking out the Fairlearn's [GitHub](https://github.com/fairlearn/fairlearn/)
+- Fairlearnの[GitHub](https://github.com/fairlearn/fairlearn/)では、各要素の使用方法を紹介しています。
 
-- Explore the [user guide](https://fairlearn.github.io/main/user_guide/index.html), [examples](https://fairlearn.github.io/main/auto_examples/index.html)
+- [ユーザーガイド](https://fairlearn.github.io/main/user_guide/index.html)、[サンプル](https://fairlearn.github.io/main/auto_examples/index.html)を見る。
 
-- Try some [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
+- [サンプルノートブック](https://github.com/fairlearn/fairlearn/tree/master/notebooks)を試す。
   
-- Learn [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
+- Azure Machine Learningで機械学習モデルの[公平性評価を可能にする方法](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa)を学ぶ。
   
-- Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
+- Azure Machine Learningで[サンプルノートブック](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)をチェックして、公平性評価の流れを確認する。
 
 ---
 ## 🚀 Challenge 
  
-To prevent biases from being introduced in the first place, we should: 
+そもそも偏りが生じないようにするためには、次のようなことが必要です。
 
-- have a diversity of backgrounds and perspectives among the people working on systems 
-- invest in datasets that reflect the diversity of our society 
-- develop better methods for detecting and correcting bias when it occurs 
+- システムに携わる人たちの背景や考え方を多様化する。
+- 社会の多様性を反映したデータセットに投資する。
+- バイアスが発生したときに、それを検知して修正するためのより良い方法を開発する。
 
-Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider? 
+モデルの構築や使用において、不公平が明らかになるような現実のシナリオを考えてみてください。他にどのようなことを考えるべきでしょうか？
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
 ## Review & Self Study 
  
-In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  
+このレッスンでは、機械学習における公平、不公平の概念の基礎を学びました。
  
-Watch this workshop to dive deeper into the topics: 
+このワークショップを見て、トピックをより深く理解してください：
 
-- YouTube: Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik [Fairness-related harms in AI systems: Examples, assessment, and mitigation - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
+- YouTube: AIシステムにおける公平性に関連した被害: Hanna Wallach、Miro Dudikによる、事例、評価、緩和策について[AIシステムにおける公平性に関連した被害: Hanna Wallach、Miro Dudikによる、事例、評価、緩和策について - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
 
-Also, read: 
+- MicrosoftのRAIリソースセンター: [責任あるAIリソース – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-- Microsoft’s RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- MicrosoftのFATE研究グループ: [AIにおけるFATE: Fairness（公平性）, Accountability（説明責任）, Transparency（透明性）, and Ethics（倫理）- Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
-- Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+Fairlearnのツールキットを調べてみましょう
 
-Explore the Fairlearn toolkit
+- [Fairlearn](https://fairlearn.org/)
 
-[Fairlearn](https://fairlearn.org/)
-
-Read about Azure Machine Learning's tools to ensure fairness
+Azure Machine Learningによる、公平性を確保するためのツールについて読む
 
 - [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
-## Assignment
+## 課題
 
-[Explore Fairlearn](assignment.md) 
+[Fairlearnを調査する](../assignment.md) 
