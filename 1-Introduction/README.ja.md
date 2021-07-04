@@ -9,7 +9,7 @@
 
 1. [機械学習への導入](1-intro-to-ML/README.md)
 1. [機械学習とAIの歴史](2-history-of-ML/README.md)
-1. [公平性と機械学習](3-fairness/README.md)
+1. [機械学習における公平さ](3-fairness/README.md)
 1. [機械学習の技術](4-techniques-of-ML/README.md)
 ### Credits
 
