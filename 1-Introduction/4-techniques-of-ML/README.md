@@ -35,7 +35,7 @@ Before starting to build your model, there are several tasks you need to complet
 To be able to answer your question with any kind of certainty, you need a good amount of data of the right type. There are two things you need to do at this point:
 
 - **Collect data**. Keeping in mind the previous lesson on fairness in data analysis, collect your data with care. Be aware of the sources of this data, any inherent biases it might have, and document its origin.
-- **Prepare data**. There are several steps in the data preparation process. You might need to collate data and normalize it if it comes from diverse sources. You can improve the data's quality and quantity through various methods such as converting strings to numbers (as we do in [Clustering](../../5-Clustering/1-Visualize/README.md)). You might also generate new data, based on the original (as we do in [Classification](../../4-Classification/1-Introduction/README.md)). You can clean and edit the data (as we did prior to the [Web App](../3-Web-App/README.md) lesson). Finally, you might also need to randomize it and shuffle it, depending on your training techniques.
+- **Prepare data**. There are several steps in the data preparation process. You might need to collate data and normalize it if it comes from diverse sources. You can improve the data's quality and quantity through various methods such as converting strings to numbers (as we do in [Clustering](../../5-Clustering/1-Visualize/README.md)). You might also generate new data, based on the original (as we do in [Classification](../../4-Classification/1-Introduction/README.md)). You can clean and edit the data (as we will prior to the [Web App](../../3-Web-App/README.md) lesson). Finally, you might also need to randomize it and shuffle it, depending on your training techniques.
 
 ✅ After collecting and processing your data, take a moment to see if its shape will allow you to address your intended question. It may be that the data will not perform well in your given task, as we discover in our [Clustering](../../5-Clustering/1-Visualize/README.md) lessons!
 
@@ -53,7 +53,7 @@ Prior to training, you need to split your dataset into two or more parts of uneq
 
 - **Training**. This part of the dataset is fit to your model to train it. This set constitutes the majority of the original dataset.
 - **Testing**. A test dataset is an independent group of data, often gathered from the original data, that you use to confirm the performance of the built model.
-- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we note in [Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)).
+- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we note in [Time Series Forecasting](../../7-TimeSeries/1-Introduction/README.md)).
 
 ## Building a model
 
