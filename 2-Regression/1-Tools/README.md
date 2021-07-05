@@ -58,7 +58,7 @@ In this folder, you will find the file _notebook.ipynb_.
    You should see the printed statement:
 
     ```output
-    'hello notebook'
+    hello notebook
     ```
 
 ![VS Code with a notebook open](images/notebook.png)
