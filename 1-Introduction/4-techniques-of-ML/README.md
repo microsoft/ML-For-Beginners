@@ -53,7 +53,7 @@ Prior to training, you need to split your dataset into two or more parts of uneq
 
 - **Training**. This part of the dataset is fit to your model to train it. This set constitutes the majority of the original dataset.
 - **Testing**. A test dataset is an independent group of data, often gathered from the original data, that you use to confirm the performance of the built model.
-- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we note in [Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)).
+- **Validating**. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model. Depending on your data's size and the question you are asking, you might not need to build this third set (as we note in [Time Series Forecasting](../../7-TimeSeries/1-Introduction/README.md)).
 
 ## Building a model
 
