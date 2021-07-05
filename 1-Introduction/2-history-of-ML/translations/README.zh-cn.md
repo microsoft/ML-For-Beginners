@@ -1,116 +1,116 @@
-# History of machine learning
+# 机器学习的历史 
 
-![Summary of History of machine learning in a sketchnote](../../sketchnotes/ml-history.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![机器学习历史概述](../../sketchnotes/ml-history.png)
+> 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
+## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
 
-In this lesson, we will walk through the major milestones in the history of machine learning and artificial intelligence.
+在本课中，我们将走过机器学习和人工智能历史上的主要里程碑。 
 
-The history of artificial intelligence, AI, as a field is intertwined with the history of machine learning, as the algorithms and computational advances that underpin ML fed into the development of AI. It is useful to remember that, while these fields as distinct areas of inquiry began to crystallize in the 1950s, important [algorithmical, statistical, mathematical, computational and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. In fact, people have been thinking about these questions for [hundreds of years](https://wikipedia.org/wiki/History_of_artificial_intelligence): this article discusses the historical intellectual underpinnings of the idea of a 'thinking machine.'
+人工智能（AI）作为一个领域的历史与机器学习的历史交织在一起，因为支持机器学习的算法和计算能力的进步推动了AI的发展。记住，虽然这些领域作为不同研究领域在20世纪50年代才开始具体化，但重要的[算法、统计、数学、计算和技术发现](https://wikipedia.org/wiki/Timeline_of_machine_learning) 要早于和重叠了这个时代。 事实上，[数百年来](https://wikipedia.org/wiki/History_of_artificial_intelligence)人们一直在思考这些问题：本文讨论了“思维机器”这一概念的历史知识基础。 
 
-## Notable discoveries
+## 主要发现
 
-- 1763, 1812 [Bayes Theorem](https://wikipedia.org/wiki/Bayes%27_theorem) and its predecessors. This theorem and its applications underlie inference, describing the probability of an event occurring based on prior knowledge.
-- 1805 [Least Square Theory](https://wikipedia.org/wiki/Least_squares) by French mathematician Adrien-Marie Legendre. This theory, which you will learn about  in our Regression unit, helps in data fitting.
-- 1913 [Markov Chains](https://wikipedia.org/wiki/Markov_chain) named after Russian mathematician Andrey Markov is used to describe a sequence of possible events based on a previous state.
-- 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) is a type of linear classifier invented by American psychologist Frank Rosenblatt that underlies advances in deep learning.
-- 1967 [Nearest Neighbor](https://wikipedia.org/wiki/Nearest_neighbor) is an algorithm originally designed to map routes. In an ML context it is used to  detect patterns.
-- 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) is used to train [feedforward neural networks](https://wikipedia.org/wiki/Feedforward_neural_network).
-- 1982 [Recurrent Neural Networks](https://wikipedia.org/wiki/Recurrent_neural_network) are artificial neural networks derived from feedforward neural networks that create temporal graphs.
+- 1763, 1812 [贝叶斯定理](https://wikipedia.org/wiki/Bayes%27_theorem) 及其前身。该定理及其应用是推理的基础，描述了基于先验知识的事件发生的概率。
+- 1805 [最小二乘理论](https://wikipedia.org/wiki/Least_squares)由法国数学家Adrien-Marie Legendre提出。 您将在我们的回归单元中了解这一理论，它有助于数据拟合。
+- 1913 [马尔可夫链](https://wikipedia.org/wiki/Markov_chain)以俄罗斯数学家安德烈马尔可夫的名字命名，用于描述基于先前状态的一系列可能事件。
+- 1957 [感知器](https://wikipedia.org/wiki/Perceptron)是美国心理学家弗兰克·罗森布拉特发明的一种线性分类器，是深度学习发展的基础。
+- 1967 [最近邻](https://wikipedia.org/wiki/Nearest_neighbor)是一种最初设计用于映射路线的算法。 在ML中，它用于检测模式。
+- 1970 [反向传播](https://wikipedia.org/wiki/Backpropagation)用于训练[前馈神经网络](https://wikipedia.org/wiki/Feedforward_neural_network)。
+- 1982 [循环神经网络](https://wikipedia.org/wiki/Recurrent_neural_network) 是源自产生时间图的前馈神经网络的人工神经网络。
 
-✅ Do a little research. What other dates stand out as pivotal in the history of ML and AI?
-## 1950: Machines that think
+✅ 做点调查。在ML和AI的历史上，还有哪些日期是重要的？
+## 1950: 会思考的机器 
 
-Alan Turing, a truly remarkable person who was voted [by the public in 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) as the greatest scientist of the 20th century, is credited as helping to lay the foundation for the concept of a 'machine that can think.' He grappled with naysayers and his own need for empirical evidence of this concept in part by creating the [Turing Test](https://www.bbc.com/news/technology-18475646), which you will explore in our NLP lessons.
+艾伦·图灵，一个真正杰出的人，[在2019年被公众投票选出](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 作为20世纪最伟大的科学家，他认为有助于为“会思考的机器”的概念打下基础。他通过创建 [图灵测试](https://www.bbc.com/news/technology-18475646)来解决反对者和他自己对这一概念的经验证据的需求，您将在我们的 NLP 课程中进行探索。
 
-## 1956: Dartmouth Summer Research Project
+## 1956: 达特茅斯夏季研究项目
 
-"The Dartmouth Summer Research Project on artificial intelligence was a seminal event for artificial intelligence as a field," and it was here that the term 'artificial intelligence' was coined ([source](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
+“达特茅斯夏季人工智能研究项目是人工智能领域的一个开创性事件，”正是在这里，人们创造了“人工智能”一词（[来源](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth))。
 
-> Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it.
+> 原则上，学习的每个方面或智能的任何其他特征都可以被精确地描述，以至于可以用机器来模拟它。 
 
-The lead researcher, mathematics professor John McCarthy, hoped "to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it." The participants included another luminary in the field, Marvin Minsky.
+首席研究员、数学教授John McCarthy希望“基于这样一种猜想，即学习的每个方面或智能的任何其他特征原则上都可以如此精确地描述，以至于可以制造出一台机器来模拟它。” 参与者包括该领域的另一位杰出人物Marvin Minsky。
 
-The workshop is credited with having initiated and encouraged several discussions including "the rise of symbolic methods, systems focussed on limited domains (early expert systems), and deductive systems versus inductive systems." ([source](https://wikipedia.org/wiki/Dartmouth_workshop)).
+研讨会被认为发起并鼓励了一些讨论，包括“符号方法的兴起、专注于有限领域的系统（早期专家系统），以及演绎系统与归纳系统的对比。”([来源](https://wikipedia.org/wiki/Dartmouth_workshop))。
 
-## 1956 - 1974: "The golden years"
+## 1956 - 1974: “黄金岁月”
 
-From the 1950s through the mid '70s, optimism ran high in the hope that AI could solve many problems. In 1967, Marvin Minsky stated confidently that "Within a generation ... the problem of creating 'artificial intelligence' will substantially be solved." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+从20世纪50年代到70年代中期，乐观情绪高涨，希望人工智能能够解决许多问题。1967年，Marvin Minsky自信地说，“一代人之内。。。创造‘人工智能’的问题将得到实质性的解决。”（Minsky，Marvin（1967），《计算：有限和无限机器》，新泽西州恩格伍德克利夫斯：Prentice Hall）
 
-natural language processing research flourished, search was refined and made more powerful, and the concept of 'micro-worlds' was created, where simple tasks were completed using plain language instructions.
+自然语言处理研究蓬勃发展，搜索被提炼并变得更加强大，创造了“微观世界”的概念，在这个概念中，简单的任务是用简单的语言指令完成的。
 
-Research was well funded by government agencies, advances were made in computation and algorithms, and prototypes of intelligent machines were built. Some of these machines include:
+这项研究得到了政府机构的充分资助，在计算和算法方面取得了进展，并建造了智能机器的原型。其中一些机器包括：
 
-* [Shakey the robot](https://wikipedia.org/wiki/Shakey_the_robot), who could maneuver and decide how to perform tasks 'intelligently'.
+* [机器人Shakey](https://wikipedia.org/wiki/Shakey_the_robot)，他们可以“聪明地”操纵和决定如何执行任务。
 
-    ![Shakey, an intelligent robot](images/shakey.jpg)
-    > Shakey in 1972
+    ![Shakey, 智能机器人](images/shakey.jpg)
+    > 1972 年的Shakey
 
-* Eliza, an early 'chatterbot', could converse with people and act as a primitive 'therapist'. You'll learn more about Eliza in the NLP lessons.
+* Eliza，一个早期的“聊天机器人”，可以与人交谈并充当原始的“治疗师”。 您将在NLP课程中了解有关Eliza的更多信息。 
 
-    ![Eliza, a bot](images/eliza.png)
-    > A version of Eliza, a chatbot
+    ![Eliza, 机器人](images/eliza.png)
+    > Eliza的一个版本，一个聊天机器人 
 
-* "Blocks world" was an example of a micro-world where blocks could be stacked and sorted, and experiments in teaching machines to make decisions could be tested. Advances built with libraries such as [SHRDLU](https://wikipedia.org/wiki/SHRDLU) helped propel language processing forward.
+* “积木世界”是一个微观世界的例子，在那里积木可以堆叠和分类，并且可以测试教机器做出决策的实验。 使用[SHRDLU](https://wikipedia.org/wiki/SHRDLU)等库构建的高级功能有助于推动语言处理向前发展。
 
-    [![blocks world with SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world with SHRDLU")
+    [![积木世界与SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "积木世界与SHRDLU")
     
-    > 🎥 Click the image above for a video: Blocks world with SHRDLU
+    > 🎥 点击上图观看视频： 积木世界与SHRDLU
 
-## 1974 - 1980: "AI Winter"
+## 1974 - 1980: AI的寒冬
 
-By the mid 1970s, it had become apparent that the complexity of making 'intelligent machines' had been understated and that its promise, given the available compute power, had been overblown. Funding dried up and confidence in the field slowed. Some issues that impacted confidence included:
+到了20世纪70年代中期，很明显制造“智能机器”的复杂性被低估了，而且考虑到可用的计算能力，它的前景被夸大了。资金枯竭，市场信心放缓。影响信心的一些问题包括：
 
-- **Limitations**. Compute power was too limited.
-- **Combinatorial explosion**. The amount of parameters needed to be trained grew exponentially as more was asked of computers, without a parallel evolution of compute power and capability.
-- **Paucity of data**. There was a paucity of data that hindered the process of testing, developing, and refining algorithms.
-- **Are we asking the right questions?**. The very questions that were being asked began to be questioned. Researchers began to field criticism about their approaches:
-  - Turing tests came into question by means, among other ideas, of the 'chinese room theory' which posited that, "programming a digital computer may make it appear to understand language but could not produce real understanding." ([source](https://plato.stanford.edu/entries/chinese-room/))
-  - The ethics of introducing artificial intelligences such as the "therapist" ELIZA into society was challenged.
+- **限制**。计算能力太有限了
+- **组合爆炸**。随着对计算机的要求越来越高，需要训练的参数数量呈指数级增长，而计算能力却没有平行发展。
+- **缺乏数据**。 缺乏数据阻碍了测试、开发和改进算法的过程。 
+- **我们是否在问正确的问题？**。 被问到的问题也开始受到质疑。 研究人员开始对他们的方法提出批评： 
+  - 图灵测试受到质疑的方法之一是“中国房间理论”，该理论认为，“对数字计算机进行编程可能使其看起来能理解语言，但不能产生真正的理解。” ([来源](https://plato.stanford.edu/entries/chinese-room/))
+  - 将“治疗师”ELIZA这样的人工智能引入社会的伦理受到了挑战。
 
-At the same time, various AI schools of thought began to form. A dichotomy was established between ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies) practices. _Scruffy_ labs tweaked programs for hours until they had the desired results. _Neat_ labs "focused on logic and formal problem solving". ELIZA and SHRDLU were well-known _scruffy_ systems. In the 1980s, as demand emerged to make ML systems reproducible, the _neat_ approach gradually took the forefront as its results are more explainable.
+与此同时，各种人工智能学派开始形成。 在[“scruffy”与“neat AI”](https://wikipedia.org/wiki/Neats_and_scruffies)之间建立了二分法。 _Scruffy_ 实验室对程序进行了数小时的调整，直到获得所需的结果。 _Neat_ 实验室“专注于逻辑和形式问题的解决”。 ELIZA 和 SHRDLU 是众所周知的 _scruffy_ 系统。 在 1980 年代，随着使 ML 系统可重现的需求出现，_neat_ 方法逐渐走上前沿，因为其结果更易于解释。
 
-## 1980s Expert systems
+## 1980s 专家系统
 
-As the field grew, its benefit to business became clearer, and in the 1980s so did the proliferation of 'expert systems'. "Expert systems were among the first truly successful forms of artificial intelligence (AI) software." ([source](https://wikipedia.org/wiki/Expert_system)).
+随着这个领域的发展，它对商业的好处变得越来越明显，在20世纪80年代，‘专家系统’的泛滥也是如此。“专家系统是首批真正成功的人工智能 (AI) 软件形式之一。” ([来源](https://wikipedia.org/wiki/Expert_system))。
 
-This type of system is actually _hybrid_, consisting partially of a rules engine defining business requirements, and an inference engine that leveraged the rules system to deduce new facts.
+这种类型的系统实际上是混合系统，部分由定义业务需求的规则引擎和利用规则系统推断新事实的推理引擎组成。
 
-This era also saw increasing attention paid to neural networks.
+在这个时代，神经网络也越来越受到重视。
 
-## 1987 - 1993: AI 'Chill'
+## 1987 - 1993: AI的冷静期
 
-The proliferation of specialized expert systems hardware had the unfortunate effect of becoming too specialized. The rise of personal computers also competed with these large, specialized, centralized systems. The democratization of computing had begun, and it eventually paved the way for the modern explosion of big data.
+专业的专家系统硬件的激增造成了过于专业化的不幸后果。个人电脑的兴起也与这些大型、专业化、集中化系统展开了竞争。计算机的平民化已经开始，它最终为大数据的现代爆炸铺平了道路。
 
 ## 1993 - 2011
 
-This epoch saw a new era for ML and AI to be able to solve some of the problems that had been caused earlier by the lack of data and compute power. The amount of data began to rapidly increase and become more widely available, for better and for worse, especially with the advent of the smartphone around 2007. Compute power expanded exponentially, and algorithms evolved alongside. The field began to gain maturity as the freewheeling days of the past began to crystallize into a true discipline.
+这个时代见证了一个新的时代，ML和AI能够解决早期由于缺乏数据和计算能力而导致的一些问题。数据量开始迅速增加，变得越来越广泛，无论好坏，尤其是2007年左右智能手机的出现，计算能力呈指数级增长，算法也随之发展。这个领域开始变得成熟，因为过去那些随心所欲的日子开始具体化为一种真正的纪律。
 
 ## Now
 
-Today, machine learning and AI touch almost every part of our lives. This era calls for careful understanding of the risks and potentials effects of these algorithms on human lives. As Microsoft's Brad Smith has stated, "Information technology raises issues that go to the heart of fundamental human-rights protections like privacy and freedom of expression. These issues heighten responsibility for tech companies that create these products. In our view, they also call for thoughtful government regulation and for the development of norms around acceptable uses" ([source](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+今天，机器学习和人工智能几乎触及我们生活的每一个部分。这个时代要求仔细了解这些算法对人类生活的风险和潜在影响。正如微软的Brad Smith所言，“信息技术引发的问题触及隐私和言论自由等基本人权保护的核心。这些问题加重了制造这些产品的科技公司的责任。在我们看来，它们还呼吁政府进行深思熟虑的监管，并围绕可接受的用途制定规范”([来源](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/))。
 
-It remains to be seen what the future holds, but it is important to understand these computer systems and the software and algorithms that they run. We hope that this curriculum will help you to gain a better understanding so that you can decide for yourself.
+未来的情况还有待观察，但了解这些计算机系统以及它们运行的软件和算法是很重要的。我们希望这门课程能帮助你更好的理解，以便你自己决定。
 
-[![The history of deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
-> 🎥 Click the image above for a video: Yann LeCun discusses the history of deep learning in this lecture
+[![深度学习的历史 ](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "深度学习的历史 ")
+> 🎥 点击上图观看视频：Yann LeCun 在本次讲座中讨论深度学习的历史 
 
 ---
-## 🚀Challenge
+## 🚀挑战
 
-Dig into one of these historical moments and learn more about the people behind them. There are fascinating characters, and no scientific discovery was ever created in a cultural vacuum. What do you discover?
+深入了解这些历史时刻之一，并更多地了解它们背后的人。这里有许多引人入胜的人物，没有一项科学发现是在文化真空中创造出来的。你发现了什么？
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
 
-## Review & Self Study
+## 复习与自学
 
-Here are items to watch and listen to:
+以下是要观看和收听的节目：
 
-[This podcast where Amy Boyd discusses the evolution of AI](http://runasradio.com/Shows/Show/739)
+[这是Amy Boyd讨论人工智能进化的播客](http://runasradio.com/Shows/Show/739)
 
-[![The history of AI by Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
+[![Amy Boyd的《人工智能史》](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "Amy Boyd的《人工智能史》")
 
-## Assignment
+## 任务
 
-[Create a timeline](assignment.md)
+[创建时间线](assignment.md)
