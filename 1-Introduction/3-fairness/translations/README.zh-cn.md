@@ -1,212 +1,214 @@
-# Fairness in Machine Learning 
+# 机器学习中的公平性
  
-![Summary of Fairness in Machine Learning in a sketchnote](../../sketchnotes/ml-fairness.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![机器学习中的公平性概述](../../sketchnotes/ml-fairness.png)
+> 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
  
-## Introduction
+## 介绍
 
-In this curriculum, you will start to discover how machine learning can and is impacting our everyday lives. Even now, systems and models are involved in daily decision-making tasks, such as health care diagnoses or detecting fraud. So it is important that these models work well in order to provide fair outcomes for everyone.
+在本课程中，您将开始了解机器学习如何影响我们的日常生活。截至目前，系统和模型已经参与到日常决策任务中，例如医疗诊断或发现欺诈。因此，这些模型运行良好，并为每个人提供公平的结果非常重要。
 
-Imagine what can happen when the data you are using to build these models lacks certain demographics, such as race, gender, political view, religion, or disproportionally represents such demographics. What about when the model's output is interpreted to favor some demographic? What is the consequence for the application? 
+想象一下，当您用于构建这些模型的数据缺少某些人口统计信息时会发生什么情况，例如种族、性别、政治观点、宗教，或者不成比例地代表了这些人口统计信息。当模型的输出被解释为有利于某些人口统计学的时候呢？申请结果如何？
 
-In this lesson, you will:
+在本课中，您将：
 
-- Raise your awareness of the importance of fairness in machine learning.
-- Learn about fairness-related harms.
-- Learn about unfairness assessment and mitigation.
+- 提高你对机器学习中公平的重要性的认识。
+- 了解公平相关的危害。
+- 了解不公平评估和缓解措施。
 
-## Prerequisite
+## 先决条件
 
-As a prerequisite, please take the "Responsible AI Principles" Learn Path and watch the video below on the topic:
+作为先决条件，请选择“负责任的人工智能原则”学习路径并观看以下主题视频：
 
-Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+按照此[学习路径](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)了解有关负责任 AI 的更多信息
 
-[![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
+[![微软对负责任人工智能的做法](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "微软对负责任人工智能的做法")
 
-> 🎥 Click the image above for a video: Microsoft's Approach to Responsible AI
+> 🎥 点击上图观看视频：微软对负责任人工智能的做法
 
-## Unfairness in data and algorithms
+## 数据和算法的不公平性
 
-> "If you torture the data long enough, it will confess to anything - Ronald Coase
+> “如果你折磨数据足够长的时间，它会坦白一切” - Ronald Coase
 
-This statement sounds extreme, but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and it's often difficult to consciously know when you are introducing bias in data.
+这种说法听起来很极端，但数据确实可以被操纵以支持任何结论。这种操纵有时可能是无意中发生的。作为人类，我们都有偏见，当你在数据中引入偏见时，往往很难有意识地知道。
 
-Guaranteeing fairness in AI and machine learning remains a complex sociotechnical challenge. Meaning that it cannot be addressed from either purely social or technical perspectives.
+保证人工智能和机器学习的公平性仍然是一项复杂的社会技术挑战。这意味着它不能从纯粹的社会或技术角度来解决。
 
-### Fairness-related harms
+### 与公平相关的危害
 
-What do you mean by unfairness? "Unfairness" encompasses negative impacts, or "harms", for a group of people, such as those defined in terms of race, gender, age, or disability status.  
+你说的不公平是什么意思？“不公平”包括对一群人的负面影响或“伤害”，例如根据种族、性别、年龄或残疾状况定义的那些人。
 
-The main fairness-related harms can be classified as:
+与公平相关的主要危害可分为：
 
-- **Allocation**, if a gender or ethnicity for example is favored over another.
-- **Quality of service**. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.
-- **Stereotyping**. Associating a given group with pre-assigned attributes.
-- **Denigration**. To unfairly criticize and label something or someone.
-- **Over- or under- representation**. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
+- **分配**，如果一个性别或种族比另一个更受青睐。
+- **服务质量**。 如果您针对一种特定场景训练数据，但实际情况要复杂得多，则会导致服务性能不佳。
+- **刻板印象**。 将给定的组与预先分配的属性相关联。
+- **诋毁**。 不公平地批评和标记某事或某人。
+- **代表性过高或过低**。这种想法是，某个群体在某个行业中不被看到，而这个行业一直在提升，这是造成伤害的原因。
 
-Let’s take a look at the examples.
+让我们来看看这些例子。
 
-### Allocation
+### 分配
 
-Consider a hypothetical system for screening loan applications. The system tends to pick white men as better candidates over other groups. As a result, loans are withheld from certain applicants.
+考虑一个用于筛选贷款申请的假设系统。该系统倾向于选择白人男性作为比其他群体更好的候选人。因此，某些申请人的贷款被拒。
 
-Another example would be an experimental hiring tool developed by a large corporation to screen candidates. The tool systemically discriminated against one gender by using the models were trained to prefer words associated with another. It resulted in penalizing candidates whose resumes contain words such as "women’s rugby team". 
+另一个例子是一家大型公司开发的一种实验性招聘工具，用于筛选应聘者。通过使用这些模型，该工具系统地歧视了一种性别，并被训练为更喜欢与另一种性别相关的词。这导致了对简历中含有“女子橄榄球队”等字样的候选人的不公正地对待。
 
-✅ Do a little research to find a real-world example of something like this
+✅ 做一点研究，找出一个真实的例子
 
-### Quality of Service
+### 服务质量
 
-Researchers found that several commercial gender classifiers had higher error rates around images of women with darker skin tones as opposed to images of men with lighter skin tones. [Reference](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/) 
+研究人员发现，与肤色较浅的男性相比，一些商业性的性别分类工具在肤色较深的女性图像上的错误率更高。[参考](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/) 
 
-Another infamous example is a hand soap dispenser that could not seem to be able to sense people with dark skin. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+另一个臭名昭著的例子是洗手液分配器，它似乎无法感知皮肤黝黑的人。[参考](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
 
-### Stereotyping
+### 刻板印象
 
-Stereotypical gender view was found in machine translation. When translating “he is a nurse and she is a doctor” into Turkish, problems were encountered. Turkish is a genderless language which has one pronoun, “o” to convey a singular third person, but translating the sentence back from Turkish to English yields the stereotypical and incorrect as “she is a nurse and he is a doctor”.
+机器翻译中存在着刻板的性别观。在将“他是护士，她是医生”翻译成土耳其语时，遇到了一些问题。土耳其语是一种无性别的语言，它有一个代词“o”来表示单数第三人称，但把这个句子从土耳其语翻译成英语，会产生“她是护士，他是医生”这样的刻板印象和错误。
 
-![translation to Turkish](images/gender-bias-translate-en-tr.png)
+![翻译成土耳其语](images/gender-bias-translate-en-tr.png)
 
-![translation back to English](images/gender-bias-translate-tr-en.png)
+![翻译成英语](images/gender-bias-translate-tr-en.png)
 
-### Denigration
+### 诋毁
 
-An image labeling technology infamously mislabeled images of dark-skinned people as gorillas. Mislabeling is harmful not just because the system made a mistake because it specifically applied a label that has a long history of being purposefully used to denigrate Black people.
+一种图像标记技术，臭名昭著地将深色皮肤的人的图像错误地标记为大猩猩。错误的标签是有害的，不仅仅是因为这个系统犯了一个错误，而且它还特别使用了一个长期以来被故意用来诋毁黑人的标签。
 
-[![AI: Ain't I a Woman?](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, Ain't I a Woman?")
-> 🎥 Click the image above for a video: AI, Ain't I a Woman - a performance showing the harm caused by racist denigration by AI
+[![AI: 我不是女人吗？](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, 我不是女人吗？")
+> 🎥 点击上图观看视频：AI，我不是女人吗 - 一场展示AI种族主义诋毁造成的伤害的表演
 
-### Over- or under- representation
+### 代表性过高或过低
  
-Skewed image search results can be a good example of this harm. When searching images of professions with an equal or higher percentage of men than women, such as engineering, or CEO, watch for results that are more heavily skewed towards a given gender.
+有倾向性的图像搜索结果就是一个很好的例子。在搜索男性比例等于或高于女性的职业的图片时，比如工程或首席执行官，要注意那些更倾向于特定性别的结果。
 
-![Bing CEO search](images/ceos.png)
-> This search on Bing for 'CEO' produces pretty inclusive results
+![必应CEO搜索](images/ceos.png)
+> 在Bing上搜索“CEO”会得到非常全面的结果
 
-These five main types of harms are not mutually exclusive, and a single system can exhibit more than one type of harm. In addition, each case varies in its severity. For instance, unfairly labeling someone as a criminal is a much more severe harm than mislabeling an image. It's important, however, to remember that even relatively non-severe harms can make people feel alienated or singled out and the cumulative impact can be extremely oppressive. 
+这五种主要类型的危害不是相互排斥的，一个单一的系统可以表现出一种以上的危害。此外，每个案例的严重程度各不相同。例如，不公平地给某人贴上罪犯的标签比给形象贴上错误的标签要严重得多。然而，重要的是要记住，即使是相对不严重的伤害也会让人感到疏远或被孤立，累积的影响可能会非常压抑。
  
-✅ **Discussion**: Revisit some of the examples and see if they show different harms.  
+✅ **讨论**：重温一些例子，看看它们是否显示出不同的危害。
 
-|                         | Allocation | Quality of service | Stereotyping | Denigration | Over- or under- representation |
+|                         | 分配 | 服务质量 | 刻板印象 | 诋毁 | 代表性过高或过低 |
 | ----------------------- | :--------: | :----------------: | :----------: | :---------: | :----------------------------: |
-| Automated hiring system |     x      |         x          |      x       |             |               x                |
-| Machine translation     |            |                    |              |             |                                |
-| Photo labeling          |            |                    |              |             |                                |
+| 自动招聘系统 |     x      |         x          |      x       |             |               x                |
+| 机器翻译     |            |                    |              |             |                                |
+| 照片加标签          |            |                    |              |             |                                |
 
 
-## Detecting unfairness 
+## 检测不公平
 
-There are many reasons why a given system behaves unfairly. Social biases, for example, might be reflected in the datasets used to train them. For example, hiring unfairness might have been exacerbated by over reliance on historical data. By using the patterns in resumes submitted to the company over a 10-year period, the model determined that men were more qualified because the majority of resumes came from men, a reflection of past male dominance across the tech industry.
+给定系统行为不公平的原因有很多。例如，社会偏见可能会反映在用于训练它们的数据集中。例如，过度依赖历史数据可能会加剧招聘不公平。通过使用过去10年提交给公司的简历中的模式，该模型确定男性更合格，因为大多数简历来自男性，这反映了过去男性在整个科技行业的主导地位。
 
-Inadequate data about a certain group of people can be the reason for unfairness. For example, image classifiers a have higher rate of error for images of dark-skinned people because darker skin tones were underrepresented in the data.  
+关于特定人群的数据不足可能是不公平的原因。例如，图像分类器对于深肤色人的图像具有较高的错误率，因为数据中没有充分代表较深的肤色。
 
-Wrong assumptions made during development cause unfairness too. For example, a facial analysis system intended to predict who is going to commit a crime based on images of people’s faces can lead to damaging assumptions. This could lead to substantial harms for people who are misclassified.
+开发过程中做出的错误假设也会导致不公平。例如，旨在根据人脸图像预测谁将犯罪的面部分析系统可能会导致破坏性假设。这可能会对错误分类的人造成重大伤害。
 
-## Understand your models and build in fairness
+## 了解您的模型并建立公平性
  
-Although many aspects of fairness are not captured in quantitative fairness metrics, and it is not possible to fully remove bias from a system to guarantee fairness, you are still responsible to detect and to mitigate fairness issues as much as possible. 
+尽管公平性的许多方面都没有包含在量化公平性指标中，并且不可能从系统中完全消除偏见以保证公平性，但您仍然有责任尽可能多地检测和缓解公平性问题。
 
-When you are working with machine learning models, it is important to understand your models by means of assuring their interpretability and by assessing and mitigating unfairness.
+当您使用机器学习模型时，通过确保模型的可解释性以及评估和减轻不公平性来理解模型非常重要。
 
-Let’s use the loan selection example to isolate the case to figure out each factor's level of impact on the prediction.
+让我们使用贷款选择示例来作为分析案例，以确定每个因素对预测的影响程度。
 
-## Assessment methods
+## 评价方法
 
-1. **Identify harms (and benefits)**. The first step is to identify harms and benefits. Think about how actions and decisions can affect both potential customers and a business itself.
+1. **识别危害（和好处）**。第一步是找出危害和好处。思考行动和决策如何影响潜在客户和企业本身。
   
-1. **Identify the affected groups**. Once you understand what kind of harms or benefits that can occur, identify the groups that may be affected. Are these groups defined by gender, ethnicity, or social group?
+2. **确定受影响的群体**。一旦你了解了什么样的伤害或好处可能会发生，找出可能受到影响的群体。这些群体是按性别、种族或社会群体界定的吗？
 
-1. **Define fairness metrics**. Finally, define a metric so you have something to measure against in your work to improve the situation.
+3. **定义公平性度量**。最后，定义一个度量标准，这样你就可以在工作中衡量一些东西来改善这种情况。
 
-### Identify harms (and benefits)
+### 识别危害（和好处）
 
-What are the harms and benefits associated with lending? Think about false negatives and false positive scenarios: 
+与贷款相关的危害和好处是什么？想想假阴性和假阳性的情况：
 
-**False negatives** (reject, but Y=1) - in this case, an applicant who will be capable of repaying a loan is rejected. This is an adverse event because the resources of the loans are withheld from qualified applicants.
+**假阴性**（拒绝，但Y=1）-在这种情况下，将拒绝有能力偿还贷款的申请人。这是一个不利的事件，因为贷款的资源是从合格的申请人扣留。
 
-**False positives** (accept, but Y=0) - in this case, the applicant does get a loan but eventually defaults. As a result, the applicant's case will be sent to a debt collection agency which can affect their future loan applications.
+**假阳性**（接受，但Y=0）-在这种情况下，申请人确实获得了贷款，但最终违约。因此，申请人的案件将被送往一个债务催收机构，这可能会影响他们未来的贷款申请。
 
-### Identify affected groups
+### 确定受影响的群体
 
-The next step is to determine which groups are likely to be affected. For example, in case of a credit card application, a model might determine that women should receive much lower credit limits compared with their spouses who share household assets. An entire demographic, defined by gender, is thereby affected.
+下一步是确定哪些群体可能受到影响。例如，在信用卡申请的情况下，模型可能会确定女性应获得比共享家庭资产的配偶低得多的信用额度。因此，由性别定义的整个人口统计数据都会受到影响。
 
-### Define fairness metrics
+### 定义公平性度量
  
-You have identified harms and an affected group, in this case, delineated by gender. Now, use the quantified factors to disaggregate their metrics. For example, using the data below, you can see that women have the largest false positive rate and men have the smallest, and that the opposite is true for false negatives.
+你已经确定了伤害和受影响的群体，在本例中，是按性别划分的。现在，使用量化因子来分解它们的度量。例如，使用下面的数据，你可以看到女性的假阳性率最大，男性的假阳性率最小，而对于假阴性则相反。
 
-✅ In a future lesson on Clustering, you will see how to build this 'confusion matrix' in code
+✅ 在以后关于聚类的课程中，您将看到如何在代码中构建这个“混淆矩阵”
 
-|            | False positive rate | False negative rate | count |
+|            | 假阳性率 | 假阴性率 | 数量 |
 | ---------- | ------------------- | ------------------- | ----- |
-| Women      | 0.37                | 0.27                | 54032 |
-| Men        | 0.31                | 0.35                | 28620 |
-| Non-binary | 0.33                | 0.31                | 1266  |
+| 女性      | 0.37                | 0.27                | 54032 |
+| 男性        | 0.31                | 0.35                | 28620 |
+| 未列出性别 | 0.33                | 0.31                | 1266  |
 
  
-This table tells us several things. First, we note that there are comparatively few non-binary people in the data. The data is skewed, so you need to be careful how you interpret these numbers.
+这张桌子告诉我们几件事。首先，我们注意到数据中的未列出性别的人相对较少。数据是有偏差的，所以你需要小心解释这些数字。
 
-In this case, we have 3 groups and 2 metrics. When we are thinking about how our system affects the group of customers with their loan applicants, this may be sufficient, but when you want to define larger number of groups, you may want to distill this to smaller sets of summaries. To do that, you can add more metrics, such as the largest difference or smallest ratio of each false negative and false positive. 
+在本例中，我们有3个组和2个度量。当我们考虑我们的系统如何影响贷款申请人的客户群时，这可能就足够了，但是当您想要定义更多的组时，您可能需要将其提取到更小的摘要集。为此，您可以添加更多的度量，例如每个假阴性和假阳性的最大差异或最小比率。
  
-✅ Stop and Think: What other groups are likely to be affected for loan application? 
+✅ 停下来想一想：还有哪些群体可能会受到贷款申请的影响？
  
-## Mitigating unfairness 
+## 减轻不公平
  
-To mitigate unfairness, explore the model to generate various mitigated models and compare the tradeoffs it makes between accuracy and fairness to select the most fair model. 
+为了缓解不公平，探索模型生成各种缓解模型，并比较其在准确性和公平性之间的权衡，以选择最公平的模型。
 
-This introductory lesson does not dive deeply into the details of algorithmic unfairness mitigation, such as post-processing and reductions approach, but here is a tool that you may want to try. 
+这个介绍性的课程并没有深入探讨算法不公平缓解的细节，比如后处理和减少方法，但是这里有一个你可能想尝试的工具。
 
 ### Fairlearn 
  
-[Fairlearn](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
+[Fairlearn](https://fairlearn.github.io/) 是一个开源Python包，可让您评估系统的公平性并减轻不公平性。
 
-The tool helps you to assesses how a model's predictions affect different groups, enabling you to compare multiple models by using fairness and performance metrics, and supplying a set of algorithms to mitigate unfairness in binary classification and regression. 
+该工具可帮助您评估模型的预测如何影响不同的组，使您能够通过使用公平性和性能指标来比较多个模型，并提供一组算法来减轻二元分类和回归中的不公平性。
 
-- Learn how to use the different components by checking out the Fairlearn's [GitHub](https://github.com/fairlearn/fairlearn/)
+- 通过查看Fairlearn的[GitHub](https://github.com/fairlearn/fairlearn/)了解如何使用不同的组件
 
-- Explore the [user guide](https://fairlearn.github.io/main/user_guide/index.html), [examples](https://fairlearn.github.io/main/auto_examples/index.html)
+- 浏览[用户指南](https://fairlearn.github.io/main/user_guide/index.html), [示例](https://fairlearn.github.io/main/auto_examples/index.html)
 
-- Try some [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
+- 尝试一些 [示例Notebook](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
   
-- Learn [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
+- 了解Azure机器学习中机器学习模型[如何启用公平性评估](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa)。
   
-- Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
+- 看看这些[示例Notebook](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)了解Azure机器学习中的更多公平性评估场景。
 
 ---
-## 🚀 Challenge 
+## 🚀 挑战 
  
-To prevent biases from being introduced in the first place, we should: 
+为了防止首先引入偏见，我们应该：
 
-- have a diversity of backgrounds and perspectives among the people working on systems 
-- invest in datasets that reflect the diversity of our society 
-- develop better methods for detecting and correcting bias when it occurs 
+- 在系统工作人员中有不同的背景和观点
 
-Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider? 
+- 获取反映我们社会多样性的数据集
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
-## Review & Self Study 
+- 开发更好的方法来检测和纠正偏差
+
+想想现实生活中的场景，在模型构建和使用中明显存在不公平。我们还应该考虑什么？
+
+## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## 复习与自学
  
-In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  
- 
-Watch this workshop to dive deeper into the topics: 
+在本课中，您学习了机器学习中公平和不公平概念的一些基础知识。
 
-- YouTube: Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik [Fairness-related harms in AI systems: Examples, assessment, and mitigation - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
+观看本次研讨会，深入探讨以下主题：
 
-Also, read: 
+- YouTube:人工智能系统中与公平相关的危害：示例、评估和缓解Hanna Wallach和Miro Dudik[人工智能系统中与公平相关的危害：示例、评估和缓解-YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
 
-- Microsoft’s RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+另外，请阅读：
 
-- Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+- 微软RAI资源中心：[负责人工智能资源-微软人工智能](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-Explore the Fairlearn toolkit
+- 微软FATE研究小组：[FATE：AI 中的公平、问责、透明和道德-微软研究院](https://www.microsoft.com/research/theme/fate/) 
+
+探索Fairlearn工具箱
 
 [Fairlearn](https://fairlearn.org/)
 
-Read about Azure Machine Learning's tools to ensure fairness
+了解Azure机器学习的工具以确保公平性
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure机器学习](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
-## Assignment
+## 任务
 
-[Explore Fairlearn](assignment.md) 
+[探索Fairlearn](assignment.md) 
