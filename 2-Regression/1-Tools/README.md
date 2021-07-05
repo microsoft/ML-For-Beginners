@@ -52,7 +52,7 @@ In this folder, you will find the file _notebook.ipynb_.
 
    Next, add some Python code. 
 
-1. Type **print("'hello notebook'")** in the code block.
+1. Type **print('hello notebook')** in the code block.
 1. Select the arrow to run the code.
 
    You should see the printed statement:
