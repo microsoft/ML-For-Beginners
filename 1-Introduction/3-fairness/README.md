@@ -29,7 +29,7 @@ Learn more about Responsible AI by following this [Learning Path](https://docs.m
 
 ## Unfairness in data and algorithms
 
-> "If you torture the data long enough, it will confess to anything - Ronald Coase
+> "If you torture the data long enough, it will confess to anything" - Ronald Coase
 
 This statement sounds extreme, but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and it's often difficult to consciously know when you are introducing bias in data.
 
