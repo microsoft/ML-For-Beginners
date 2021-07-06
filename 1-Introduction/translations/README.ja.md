@@ -2,7 +2,7 @@
 
 このセクションでは、機械学習の分野の基礎となる概念、機械学習とは何かを紹介し、その歴史や研究者が機械学習を扱う際に使用する技術について学びます。 新しいMLの世界を一緒に探求していきましょう！
 
-![地球](images/globe.jpg)
+![地球](../images/globe.jpg)
 > <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>の<a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a>による写真
   
 ### Lessons
