@@ -4,5 +4,4 @@ All the curriculum's sketchnotes can be downloaded here.
 
 🎨 Created by: [Tomomi Imura](https://github.com/girliemac) (Twitter: [@girlie_mac](https://twitter.com/girlie_mac))
 
----
-⚖️ License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
