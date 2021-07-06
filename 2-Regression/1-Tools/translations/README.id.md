@@ -1,4 +1,4 @@
-# Get started with Python and Scikit-learn for regression models
+# Memulai dengan Python dan Scikit-learn untuk model regresi
 
 ![Ringkisan regresi dalam sebuah catatan sketsa](../../sketchnotes/ml-regression.png)
 
@@ -23,7 +23,7 @@ Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
 > 🎥 Klik foto di atas untuk sebuah video: menggunakan Python dalam VS Code
 
-1. **Pasang Python**. Pastikan bahwa [Python](https://www.python.org/downloads/) telah dipasang di komputermu. Kamu akan menggunakan Python untuk banyak tugas *data science* dan *machine learning*. Kebanyakan sistem komputer sudah diinstal dengan Python. Adapula *[Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa)* yang berguna untuk membantu proses pemasangan untuk beberapa pengguna.
+1. **Pasang Python**. Pastikan bahwa [Python](https://www.python.org/downloads/) telah dipasang di komputermu. Kamu akan menggunakan Python untuk banyak tugas *data science* dan *machine learning*. Python sudah dipasang di kebanyakan sistem komputer. Adapula *[Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa)* yang berguna untuk membantu proses pemasangan untuk beberapa pengguna.
 
    Beberapa penggunaan Python memerlukan satu versi perangkat lunak tersebut, sedangkan beberapa penggunaan lainnya mungkin memerlukan versi Python yang beda lagi. Oleh sebab itulah akan sangat berguna untuk bekerja dalam sebuah *[virtual environment](https://docs.python.org/3/library/venv.html)* (lingkungan virtual).
 
@@ -39,68 +39,70 @@ Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
 Kamu akan menggunakan ***notebooks*** untuk bekerja dengan kode Python-mu dan membuat model *machine learning*-mu. Jenis file ini adalah alat yang sering digunakan *data scientists* dan dapat diidentifikasikan dengan akhiran/ekstensi `.ipynb`. 
 
-Notebooks are an interactive environment that allow the developer to both code and add notes and write documentation around the code which is quite helpful for experimental or research-oriented projects.
+*Notebook* adalah sebuah lingkungan interaktif yang memungkinkan seorang *developer* untuk menulis kode, catatan, dan dokumentasi mengenai kode tersebut sehingga menjadi sangat berguna untuk proyek eksperimental ataupun riset.
 
-### Exercise - work with a notebook
+### Latihan - bekerja dengan sebuah *notebook*
 
-In this folder, you will find the file _notebook.ipynb_. 
+Dalam folder ini, kamu akan menemukan file _notebook.ipynb_.
 
-1. Open _notebook.ipynb_ in Visual Studio Code.
+1. Buka _notebook.ipynb_ dalam Visual Studio Code.
 
-   A Jupyter server will start with Python 3+ started. You will find areas of the notebook that can be `run`, pieces of code. You can run a code block, by selecting the icon that looks like a play button.
+   Sebuah server Jupyter akan mulai dengan Python 3+. Kamu akan menemukan bagian-bagian *notebook* yang dapat di-`run` (dijalankan). Bagian-bagian tersebut adalah carikan-carikan kode. Kamu bisa menjalankan secarik kode dengan mengklik tombol ▶.
 
-1. Select the `md` icon and add a bit of markdown, and the following text **# Welcome to your notebook**.
+2. Pilih ikon `md` dan tambahlah sedikit *markdown*: **# Selamat datang di *notebook* saya!**
 
-   Next, add some Python code. 
+   Lalu, tambahlah sedikit kode Python.
 
-1. Type **print('hello notebook')** in the code block.
-1. Select the arrow to run the code.
+3. Ketik **print('hello notebook')** dalam blok kode.
 
-   You should see the printed statement:
+4. Klik ▶ untuk menjalankan kode.
+
+   Hasilnya harusnya ini:
 
     ```output
     hello notebook
     ```
 
-![VS Code with a notebook open](images/notebook.png)
+![Sebuah *notebook* yang dibuka di VS Code](images/notebook.png)
 
-You can interleaf your code with comments to self-document the notebook.
+Kamu bisa menyelipkan catatan-catatan antara kodemu untuk mendokumentasi *notebook*-nya.
 
-✅ Think for a minute how different a web developer's working environment is versus that of a data scientist.
+✅ Pikirkanlah sejenak bagaimana lingkungan seorang *web developer* berbeda dengan lingkungan seorang *data scientist*.
 
-## Up and running with Scikit-learn
+## Berjalan dengan Scikit-learn
 
-Now that Python is set up in your local environment, and you are comfortable with Jupyter notebooks, let's get equally comfortable with Scikit-learn (pronounce it `sci` as in `science`). Scikit-learn provides an [extensive API](https://scikit-learn.org/stable/modules/classes.html#api-ref) to help you perform ML tasks.
+Sekarang, Python sudah siap dalam lingkungan lokalmu, dan kamu sudah nyaman bekerja dengan *Jupyter notebook*. Marilah membiasakan diri dengan Scikit-learn (dilafalkan `saikit lern`; huruf `e` dalam `lern` seperti `e` dalam kata `Perancis`). Scikit-learn menyediakan sebuah [API ekstensif](https://scikit-learn.org/stable/modules/classes.html#api-ref) untuk membantu kamu mengerjakan tugas ML.
 
-According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
+Berdasarkan [situs mereka](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn" adalah sebuah *open-source library* untuk *machine-learning* yang dapat digunakan untuk *supervised* dan *unsupervised learning*. Scikit-learn juga menyediakan beragam alat untuk *model-fitting*, *data preprocessing*, seleksi dan evaluasi model, dll.
 
-In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
+Dalam kursus ini, kamu akan menggunakan Scikit-learn dan beberapa alat lainnya untuk membangun model *machine-learning* untuk mengerjakan apa yang kami panggil tugas '*machine-learning* tradisional'. Kami sengaja menghindari *neural networks* dan *deep learning* sebab mereka akan dibahas dengan lebih lengkap dalam kurikulum 'AI untuk pemula' nanti.
 
-Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-learn with some basic data.
+Scikit-learn memudahkan pembangunan dan evaluasi model-model. Dia terutama fokus pada menggunakan data numerik dan mempunyai beberapa *dataset* yang siap sedia untuk digunakan sebagai alat belajar. Dia juga mempunyai model yang sudah dibangun untuk murid-murid untuk langsung coba. Mari menjelajahi proses memuat data yang sudah disiapkan dan menggunakan model ML pengestimasian pertama menggunakan Scikit-learn dengan data sederhana.
 
-## Exercise - your first Scikit-learn notebook
 
-> This tutorial was inspired by the [linear regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Scikit-learn's web site.
+## Latihan - Scikit-learn *notebook* pertamamu
 
-In the _notebook.ipynb_ file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
+> Tutorial ini terinspirasi [contoh regresi linear ini](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) di situs Scikit-learn.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic regression model, when visualized, might show information about variables that would help you organize your theoretical clinical trials.
+Dalam file _notebook.ipynb_ dari pelajaran ini, kosongkan semua sel dengan mengklik tombol berlambang 'tempat sampah'. 
 
-✅ There are many types of regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use linear regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of cuisine should be considered vegan or not, you're looking for a **category assignment** so you would use logistic regression. You'll learn more about logistic regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
+Dalam bagian ini, kamu akan bekerja dengan sebuah *dataset* kecil tentang diabetes yang datang bersama dengan Scikit-learn yang dimaksud sebagai bahan ajaran. Bayangkan bahwa kamu ingin mencoba sebuah cara pengobatan untuk pasien diabetes. Model *machine learning* mungkin dapat membantu kamu menentukan pasien mana merespon lebih baik pada pengobatan tersebut berdasarkan kombinasi-kombinasi variabel. Bahkan sebuah model regresi yang sederhana, saat divisualisasikan, dapat menunjukkanmu informasi tentang variabel-variabel yang dapat membantu kamu mengorganisasikan uji-uji klinis teoritismu.
 
-Let's get started on this task.
+✅ Ada banyak macam metode regresi, dan yang mana yang kamu pilih tergantung pada jawaban yang kamu sedang cari. Kalau kamu ingin memprediksi tinggi badan seseorang dari usianya, kamu bisa menggunakan regresi linear, karena kamu mencari sebuah **nilai numerik**. Kalau kamu tertarik pada apa sebuah jenis kuliner sebaiknya dianggap sebagai vegan atau tidak, kamu sedang mencari sebuah **kategorisasi/klasifikasi**; kamu bisa menggunakan regresi logistik. Kamu akan belajar lebih banyak tentang regresi logistik nanti. Pikirkan dahulu beberapa pertanyaan yang kamu bisa tanyakan dari data yang ada dan metode yang mana akan paling cocok.
 
-### Import libraries
+Mari mulai mengerjakan tugas ini.
 
-For this task we will import some libraries:
+### Impor *library*
 
-- **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the Scikit-learn library.
+Untuk tugas ini, kita akan mengimpor beberapa *library*:
 
-Import some libraries to help with your tasks.
+- **matplotlib**. Sebuah [alat untuk membuat grafik](https://matplotlib.org/) yang kita akan gunakan untuk membuat sebuah grafik garis.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) adalah sebuah *library* berguna untuk menangani data numerik di Python.
+- **sklearn**. Ini adalah *library* Scikit-learn.
 
-1. Add imports by typing the following code:
+Imporlah *library-library* yang akan membantu dengan tugasmu.
+
+1. Tambahlah impor dengan mengetik kode berikut:
 
    ```python
    import matplotlib.pyplot as plt
@@ -108,36 +110,35 @@ Import some libraries to help with your tasks.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Above you are importing `matplottlib`, `numpy` and you are importing `datasets`, `linear_model` and `model_selection` from `sklearn`. `model_selection` is used for splitting data into training and test sets.
+   Di atas, kamu sedang mengimpor `matplottlib`, `numpy`. Selain itu, kamu juga sedang mengimpor `datasets`, `linear_model` dan `model_selection` dari `sklearn`. `model_selection` digunakan untuk memisahkan data menjadi set latihan dan set ujian.
 
-### The diabetes dataset
+### *Dataset* diabetes
 
-The built-in [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
+[*Dataset* diabetes](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) mencakupi 442 sampel data mengenai diabetes dengan 10 variabel utama, termasuk:
 
-age: age in years
-bmi: body mass index
-bp: average blood pressure
-s1 tc: T-Cells (a type of white blood cells)
+- age: usia dalam tahun
+- bmi: *body mass index*
+- bp: tekanan darah rata-rata
+- s1 tc: Sel T (sejenis cel darah putih)
 
-✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
+✅ *Dataset* ini juga mempunyai konsep 'jenis kelamin' sebagai sebuah variabel utama yang penting dalam riset diabetes. Banyak *dataset* medis mempunyai klasifikasi binari ini. Pikirkan sejenak bagaimana kategorisasi seperti yang ini dapat mengecualikan bagian tertentu dari sebuah populasi dari pengobatan.
 
-Now, load up the X and y data.
+Sekarang, muatkan data X dan y.
 
-> 🎓 Remember, this is supervised learning, and we need a named 'y' target.
+> 🎓 Ingatlah, ini adalah *supervised learning*, jadi kita perlu sebuah target (dinamakan 'y').
 
-In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The input `return_X_y=True` signals that `X` will be a data matrix, and `y` will be the regression target. 
+Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `load_diabetes()`. Input `return_X_y=True` menunjukkan bahwa `X` adalah sebuah matriks data dan `y` adalah target regresi.
 
-1. Add some print commands to show the shape of the data matrix and its first element:
-
+1. Tambah beberapa instruksi *print* untuk menunjukkan ukuran data matriks dan elemen pertama matriks tersebut.
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
     print(X.shape)
     print(X[0])
     ```
 
-    What you are getting back as a response, is a tuple. What you are doing is to assign the two first values of the tuple to `X` and `y` respectively. Learn more [about tuples](https://wikipedia.org/wiki/Tuple).
+    Respon yang didapati adalah sebuah *tuple*. Kamu sedang menetapkan kedua nilai pertama dalam *tuple* itu ke dalam `X` dan `y` secara berturut. Pelajari lebih banyak [tentant *tuples*](https://wikipedia.org/wiki/Tuple).
 
-    You can see that this data has 442 items shaped in arrays of 10 elements:
+    Kamu bisa melihat bahwa data ini berupa 422 nilai yang disusun menjadi beberapa `array` dengan 10 elemen:
 
     ```text
     (442, 10)
@@ -145,38 +146,38 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Think a bit about the relationship between the data and the regression target. Linear regression predicts relationships between feature X and target variable y. Can you find the [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for the diabetes dataset in the documentation? What is this dataset demonstrating, given that target?
+    ✅ Pikirkan sejenak tentang hubungan antara data dan target regresi. Apa kamu bisa menemukan [targetnya](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) untuk *database* diabetes dalam dokumentasinya? Mengetahui targetnya, apa yang *dataset* ini sedang mendemonstrasikan?
 
-2. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's `newaxis` function. We are going to use linear regression to generate a line between values in this data, according to a pattern it determines.
+2. Lalu, pilih sebuah porsi dataset ini untuk digambarkan dengan menyusuninya menjadi sebuah `array` baru dengan fungsi `newaxis` dari `numpy`. Kita akan menggunakan regresi linear untuk menggambar sebuah garis antara nilai-nilai dalam data ini sesuai dengan pola yang ditentukannya.
 
    ```python
    X = X[:, np.newaxis, 2]
    ```
 
-   ✅ At any time, print out the data to check its shape.
+   ✅ Kapanpun, *print*-lah datanya untuk memeriksa bentuknya.
 
-3. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the target (y) into test and training sets. Scikit-learn has a straightforward way to do this; you can split your test data at a given point.
+3. Sekarang datanya sudah siap untuk digambar. Kamu bisa melihat jikalau sebuah mesin dapat menentukan sebuah perpisahan logika dari nomor-nomor *dataset* ini. Untuk melakukan itu, kamu harus memisahkan data (X) dan target (y) menjadi set latihan dan set ujian. Scikit-learn juga memberi cara untuk melakukan itu; kamu bisa memisahkan data ujianmu pada titik tertentu.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Now you are ready to train your model! Load up the linear regression model and train it with your X and y training sets using `model.fit()`:
+4. Sekarang, kamu sudah siap untuk melatihkan modelmu! Muatkan dahulu data regresi linear dan latihkan modelmu dengan set X dan y-mu dengan `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` is a function you'll see in many ML libraries such as TensorFlow
+    ✅ `model.fit()` adalah sebuah fungsi yang akan kamu temukan dalam banyak *library* ML seperti TensorFlow.
 
-5. Then, create a prediction using test data, using the function `predict()`. This will be used to draw the line between data groups
+5. Lalu, buatlah sebuah prediksi dengan data ujianmu dengan fungsi `predict()`. Ini akan digunakan untuk menggambar sebuah garis antara grup-grup data.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
+6. Sekarang waktunya untuk menggambar data dalam sebuah grafik. Matplotlib adalah sebuah alat yang sangat berguna untuk melakukan itu. Buatlah sebuah petak sebar dari semua X dan y dari set ujian dan gunakan prediksi yang dihasilkan untuk menggambar sebuah garis di tempat yang paling cocok antara grup-grup data modelnya.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -184,24 +185,24 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     plt.show()
     ```
 
-   ![a scatterplot showing datapoints around diabetes](./images/scatterplot.png)
+   ![sebuah petak sebar yang menunjukkan poin-poin data sekitar diabetes](./images/scatterplot.png)
 
-   ✅ Think a bit about what's going on here. A straight line is running through many small dots of data, but what is it doing exactly? Can you see how you should be able to use this line to predict where a new, unseen data point should fit in relationship to the plot's y axis? Try to put into words the practical use of this model.
+   ✅ Pikirkan sejenak tentang apa yang sedang terjadi di sini. Sebuah garis lurus membentang tengah-tengah titik-titik kecil data. Tetapi apa yang sedang garis itu lakukan? Apa kamu bisa melihat bagaimana kamu bisa menggunakan garis ini untuk memprediksi di mana sebuah data poin baru yang tidak pernah dilihat sebelumnya kemungkinan besar akan terletak berhubungan dengan sumbu y grafik ini? Coba jelaskan dalam kata-kata kegunaan praktis model ini.
 
-Congratulations, you built your first linear regression model, created a prediction with it, and displayed it in a plot!
+Selamat, kamu telah membangun model regresi linear pertamamu, membuat sebuah prediksi darinya, dan menunjukkannya dalam sebuah grafik!
 
 ---
-## 🚀Challenge
+## Tantangan
 
-Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+Gambarkan sebuah variabel yang beda dari *dataset* ini. Petunjuk: edit baris ini: `X = X[:, np.newaxis, 2]`. Mengetahui target *dataset* ini, apa yang kamu bisa menemukan tentang kemajuan diabetes sebagai sebuah penyakit?
+## [Kuis pasca-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
 
-## Review & Self Study
+## Review & Pembelajaran Mandiri
 
-In this tutorial, you worked with simple linear regression, rather than univariate or multiple linear regression. Read a little about the differences between these methods, or take a look at [this video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+Dalam tutorial ini, kamu bekerja dengan sebuah model regresi linear yang sederhana daripada regresi linear univariat atau berganda. Bacalah sedikit tentang perbedaan antara metode-metode ini atau tontonlah [video ini](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
 
-Read more about the concept of regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
+Bacalah lebih banyak tentang konsep regresi dan pikirkanlah tentang jenis pertanyaan apa saja yang bisa dijawab teknik ini. Cobalah [tutorial ini](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) untuk memperdalam pemahamanmu.
 
-## Assignment 
+## Tugas 
 
-[A different dataset](assignment.md)
+[*Dataset* yang beda](assignment.md)
