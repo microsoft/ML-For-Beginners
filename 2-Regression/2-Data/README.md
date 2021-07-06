@@ -187,7 +187,7 @@ To get charts to display useful data, you usually need to group the data somehow
 
 ## 🚀Challenge
 
-Explore the different types of visualization that M Matplotlib offers. Which types are most appropriate for regression problems?
+Explore the different types of visualization that Matplotlib offers. Which types are most appropriate for regression problems?
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
 
