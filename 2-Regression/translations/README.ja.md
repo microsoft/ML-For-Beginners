@@ -3,7 +3,7 @@
 
 北米では、ハロウィンのためにカボチャはよく怖い顔に彫られています。そんな魅力的な野菜についてもっと知りましょう！
 
-![jack-o-lanterns](./images/jack-o-lanterns.jpg)
+![jack-o-lanterns](../images/jack-o-lanterns.jpg)
 > <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a>によって<a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>に投稿された写真
 
 ## 今回学ぶこと
