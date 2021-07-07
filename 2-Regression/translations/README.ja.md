@@ -1,7 +1,7 @@
 # 機械学習のための回帰モデル
-## トピック: 北米のカボチャ価格の回帰モデル 🎃
+## トピック: 北米のカボチャ価格に関する回帰モデル 🎃
 
-In North America, pumpkins are often carved into scary faces for Halloween. Let's discover more about these fascinating vegetables!
+北米では、ハロウィンのためにカボチャはよく怖い顔に彫られています。そんな魅力的な野菜についてもっと知りましょう！
 
 ![jack-o-lanterns](./images/jack-o-lanterns.jpg)
 > <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a>によって<a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>に投稿された写真
