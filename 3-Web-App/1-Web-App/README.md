@@ -167,7 +167,7 @@ Now you can build a Flask app to call your model and return similar results, but
         css/
         templates/
     notebook.ipynb
-    ufo-model.pk1
+    ufo-model.pkl
     ``` 
 
    ✅ Refer to the solution folder for a view of the finished app
