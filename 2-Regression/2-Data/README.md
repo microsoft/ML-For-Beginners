@@ -52,7 +52,7 @@ Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet 
 
     ```python
     import pandas as pd
-    pumpkins = pd.read_csv('../../data/US-pumpkins.csv')
+    pumpkins = pd.read_csv('../data/US-pumpkins.csv')
     pumpkins.head()
     ```
 
