@@ -7,10 +7,10 @@
   
 ### Lessons
 
-1. [機械学習への導入](1-intro-to-ML/README.md)
-1. [機械学習とAIの歴史](2-history-of-ML/README.md)
-1. [機械学習における公平さ](3-fairness/README.md)
-1. [機械学習の技術](4-techniques-of-ML/README.md)
+1. [機械学習への導入](../1-intro-to-ML/translations/README.ja.md)
+1. [機械学習とAIの歴史](../2-history-of-ML/translations/README.ja.md)
+1. [機械学習における公平さ](../3-fairness/translations/README.ja.md)
+1. [機械学習の技術](../4-techniques-of-ML/translations/README.ja.md)
 ### Credits
 
 "機械学習への導入 "は、[Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan)、[Ornella Altunyan](https://twitter.com/ornelladotcom)、[Jen Looper](https://twitter.com/jenlooper)などのチームによって制作されました。
