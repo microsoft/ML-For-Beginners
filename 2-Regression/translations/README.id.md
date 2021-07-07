@@ -8,7 +8,7 @@ Di Amerika Utara, labu seringkali diukir menjadi muka-muka seram untuk Halloween
   
 ## Apa yang kamu akan pelajari
 
-Pelajaran-pelajaran dalam seksi ini mencakupi jenis-jenis regresi dalam konteks *machine learning*. Model regresi dapat membantu menentukan _hubungan_ antara variabel-variabel. Model jenis ini dapat memprediksi nilai-nilai seperti panjang, temperatur, atau usia, sehingga mengemukakan hubungan-hubungan antara variabel dengan menganalisis poin-poin data.
+Pelajaran-pelajaran dalam seksi ini mencakupi jenis-jenis regresi dalam konteks *machine learning*. Model regresi dapat membantu menentukan _hubungan_ antara variabel-variabel. Model jenis ini dapat memprediksi nilai-nilai seperti panjang, temperatur, atau usia, sehingga mengemukakan hubungan-hubungan antara variabel dengan menganalisis titik-titik data.
 
 Dalam seri pelajaran ini, kamu akan menemukan perbedaan antara regresi linear dan logistik, dan kapan untuk menggunakan satu atau yang lainnya.
 

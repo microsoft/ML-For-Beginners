@@ -185,9 +185,9 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
     plt.show()
     ```
 
-   ![sebuah petak sebar yang menunjukkan poin-poin data sekitar diabetes](./images/scatterplot.png)
+   ![sebuah petak sebar yang menunjukkan titik-titik data sekitar diabetes](./images/scatterplot.png)
 
-   ✅ Pikirkan sejenak tentang apa yang sedang terjadi di sini. Sebuah garis lurus membentang tengah-tengah titik-titik kecil data. Tetapi apa yang sedang garis itu lakukan? Apa kamu bisa melihat bagaimana kamu bisa menggunakan garis ini untuk memprediksi di mana sebuah data poin baru yang tidak pernah dilihat sebelumnya kemungkinan besar akan terletak berhubungan dengan sumbu y grafik ini? Coba jelaskan dalam kata-kata kegunaan praktis model ini.
+   ✅ Pikirkan sejenak tentang apa yang sedang terjadi di sini. Sebuah garis lurus membentang tengah-tengah titik-titik kecil data. Tetapi apa yang sedang garis itu lakukan? Apa kamu bisa melihat bagaimana kamu bisa menggunakan garis ini untuk memprediksi di mana sebuah titik data baru yang tidak pernah dilihat sebelumnya kemungkinan besar akan terletak berhubungan dengan sumbu y grafik ini? Coba jelaskan dalam kata-kata kegunaan praktis model ini.
 
 Selamat, kamu telah membangun model regresi linear pertamamu, membuat sebuah prediksi darinya, dan menunjukkannya dalam sebuah grafik!
 
