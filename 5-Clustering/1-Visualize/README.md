@@ -104,7 +104,7 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
 1. Import the `Seaborn` package for good data visualization.
 
     ```python
-    pip install seaborn
+    !pip install seaborn
     ```
 
 1. Append the song data from _nigerian-songs.csv_. Load up a dataframe with some data about the songs. Get ready to explore this data by importing the libraries and dumping out the data:
