@@ -31,7 +31,7 @@ First, train a classification model using the cleaned cuisines dataset we used.
 1. Start by importing useful libraries:
 
     ```python
-    pip install skl2onnx
+    !pip install skl2onnx
     import pandas as pd 
     ```
 
