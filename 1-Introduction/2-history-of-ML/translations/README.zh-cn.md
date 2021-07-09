@@ -1,6 +1,6 @@
 # 机器学习的历史 
 
-![机器学习历史概述](../../sketchnotes/ml-history.png)
+![机器学习历史概述](../../../sketchnotes/ml-history.png)
 > 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
@@ -44,12 +44,12 @@ Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https
 
 * [机器人Shakey](https://wikipedia.org/wiki/Shakey_the_robot)，他们可以“聪明地”操纵和决定如何执行任务。
 
-    ![Shakey, 智能机器人](images/shakey.jpg)
+    ![Shakey, 智能机器人](../images/shakey.jpg)
     > 1972 年的Shakey
 
 * Eliza，一个早期的“聊天机器人”，可以与人交谈并充当原始的“治疗师”。 你将在NLP课程中了解有关Eliza的更多信息。 
 
-    ![Eliza, 机器人](images/eliza.png)
+    ![Eliza, 机器人](../images/eliza.png)
     > Eliza的一个版本，一个聊天机器人 
 
 * “积木世界”是一个微观世界的例子，在那里积木可以堆叠和分类，并且可以测试教机器做出决策的实验。 使用[SHRDLU](https://wikipedia.org/wiki/SHRDLU)等库构建的高级功能有助于推动语言处理向前发展。
@@ -113,4 +113,4 @@ Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https
 
 ## 任务
 
-[创建时间线](assignment.md)
+[创建时间线](../assignment.md)
