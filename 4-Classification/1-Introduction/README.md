@@ -264,12 +264,12 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 
     The data is nice and clean, balanced, and very delicious! 
 
-1. You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
+1. You can take one more look at the data using `transformed_feature_df.head()` and `transformed_feature_df.info()`. Save a copy of this data for use in future lessons:
 
     ```python
-    transformed_df.head()
-    transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisine.csv")
+    transformed_feature_df.head()
+    transformed_feature_df.info()
+    transformed_feature_df.to_csv("../data/cleaned_cuisine.csv")
     ```
 
     This fresh CSV can now be found in the root data folder.
