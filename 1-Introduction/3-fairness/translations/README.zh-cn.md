@@ -1,6 +1,6 @@
 # 机器学习中的公平性
  
-![机器学习中的公平性概述](../../sketchnotes/ml-fairness.png)
+![机器学习中的公平性概述](../../../sketchnotes/ml-fairness.png)
 > 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
@@ -67,9 +67,9 @@
 
 机器翻译中存在着刻板的性别观。在将“他是护士，她是医生”翻译成土耳其语时，遇到了一些问题。土耳其语是一种无性别的语言，它有一个代词“o”来表示单数第三人称，但把这个句子从土耳其语翻译成英语，会产生“她是护士，他是医生”这样的刻板印象和错误。
 
-![翻译成土耳其语](images/gender-bias-translate-en-tr.png)
+![翻译成土耳其语](../images/gender-bias-translate-en-tr.png)
 
-![翻译成英语](images/gender-bias-translate-tr-en.png)
+![翻译成英语](../images/gender-bias-translate-tr-en.png)
 
 ### 诋毁
 
@@ -82,7 +82,7 @@
  
 有倾向性的图像搜索结果就是一个很好的例子。在搜索男性比例等于或高于女性的职业的图片时，比如工程或首席执行官，要注意那些更倾向于特定性别的结果。
 
-![必应CEO搜索](images/ceos.png)
+![必应CEO搜索](../images/ceos.png)
 > 在Bing上搜索“CEO”会得到非常全面的结果
 
 这五种主要类型的危害不是相互排斥的，一个单一的系统可以表现出一种以上的危害。此外，每个案例的严重程度各不相同。例如，不公平地给某人贴上罪犯的标签比给形象贴上错误的标签要严重得多。然而，重要的是要记住，即使是相对不严重的伤害也会让人感到疏远或被孤立，累积的影响可能会非常压抑。
@@ -211,4 +211,4 @@
 
 ## 任务
 
-[探索Fairlearn](assignment.md) 
+[探索Fairlearn](../assignment.md) 
