@@ -1,4 +1,4 @@
-# Esplora Fairlearn
+# Esplorare Fairlearn
 
 ## Istruzioni
 

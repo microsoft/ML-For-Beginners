@@ -17,7 +17,7 @@ Ad alto livello, il mestiere di creare processi di apprendimento automatico (ML)
 4. **Addestrare il modello**. Usando i dati di addestramento, si utilizzeranno vari algoritmi per addestrare un modello a riconoscere modelli nei dati. Il modello potrebbe sfruttare pesi interni che possono essere regolati per privilegiare alcune parti dei dati rispetto ad altre per costruire un modello migliore.
 5. **Valutare il modello**. Si utilizzano dati mai visti prima (i dati di test) da quelli raccolti per osservare le prestazioni del modello.
 6. **Regolazione dei parametri**. In base alle prestazioni del modello, si può ripetere il processo utilizzando parametri differenti, o variabili, che controllano il comportamento degli algoritmi utilizzati per addestrare il modello.
-7. **Prevedere** Usare nuovi input per testare la precisione del modello.
+7. **Prevedere**. Usare nuovi input per testare la precisione del modello.
 
 ## Che domanda fare
 
@@ -74,11 +74,11 @@ Occorre armarsi dei propri dati di allenamento, per essere pronti per "adattarli
 
 Una volta completato il processo di addestramento (potrebbero essere necessarie molte iterazioni, o "epoche", per addestrare un modello di grandi dimensioni), si sarà in grado di valutare la qualità del modello utilizzando i dati di test per valutarne le prestazioni. Questi dati sono un sottoinsieme dei dati originali che il modello non ha analizzato in precedenza. Si può stampare una tabella di metriche sulla qualità del proprio modello.
 
-**Adattamento del modello**
+🎓 **Adattamento del modello**
 
 Nel contesto di machine learning, l'adattamento del modello si riferisce all'accuratezza della funzione sottostante del modello mentre tenta di analizzare dati con cui non ha familiarità.
 
-? **Inadeguatezza** o **sovraadattamento** sono problemi comuni che degradano la qualità del modello, poiché il modello non si adatta abbastanza bene o troppo bene. Ciò fa sì che il modello esegua previsioni troppo allineate o troppo poco allineate con i suoi dati di addestramento. Un modello overfit (sovraaddestrato) prevede troppo bene i dati di addestramento perché ha appreso troppo bene i dettagli e il rumore dei dati. Un modello underfit (inadeguato) non è accurato in quanto non può né analizzare accuratamente i suoi dati di allenamento né i dati che non ha ancora "visto".
+🎓 **Inadeguatezza** o **sovraadattamento** sono problemi comuni che degradano la qualità del modello, poiché il modello non si adatta abbastanza bene o troppo bene. Ciò fa sì che il modello esegua previsioni troppo allineate o troppo poco allineate con i suoi dati di addestramento. Un modello overfit (sovraaddestrato) prevede troppo bene i dati di addestramento perché ha appreso troppo bene i dettagli e il rumore dei dati. Un modello underfit (inadeguato) non è accurato in quanto non può né analizzare accuratamente i suoi dati di allenamento né i dati che non ha ancora "visto".
 
 ![modello sovraaddestrato](../images/overfitting.png)
 > Infografica di [Jen Looper](https://twitter.com/jenlooper)
