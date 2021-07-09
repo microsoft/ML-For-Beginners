@@ -1,72 +1,73 @@
-# Logistic regression to predict categories
+# 逻辑回归预测分类
 
-![Logistic vs. linear regression infographic](./images/logistic-linear.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
+![逻辑与线性回归信息图](./images/logistic-linear.png)
+> 作者[Dasani Madipalli](https://twitter.com/dasani_decoded)
+## [课前测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
 
-## Introduction
+## 介绍
 
-In this final lesson on Regression, one of the basic _classic_ ML techniques, we will take a look at Logistic Regression. You would use this technique to discover patterns to predict binary categories. Is this candy chocolate or not? Is this disease contagious or not? Will this customer choose this product or not? 
+在关于回归的最后一课中，我们将学习逻辑回归，这是经典的基本技术之一。您可以使用此技术来发现预测二元分类的模式。这是不是巧克力糖？这种病会传染吗？这个顾客会选择这个产品吗？
 
-In this lesson, you will learn:
+在本课中，您将学习：
 
-- A new library for data visualization
-- Techniques for logistic regression
+- 用于数据可视化的新库
+- 逻辑回归技术
 
-✅ Deepen your understanding of working with this type of regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
-## Prerequisite
+✅ 在此[学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) 中加深您对使用此类回归的理解
 
-Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one binary category that we can work with: `Color`.
+## 前提
 
-Let's build a logistic regression model to predict that, given some variables, _what color a given pumpkin is likely to be_ (orange 🎃 or white 👻).
+使用南瓜数据后，我们现在对它已经足够熟悉了，可以意识到我们可以使用一个二元类别：`Color`。
 
-> Why are we talking about binary classification in a lesson grouping about regression? Only for linguistic convenience, as logistic regression is [really a classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), albeit a linear-based one. Learn about other ways to classify data in the next lesson group.
+让我们建立一个逻辑回归模型来预测，给定一些变量，_给定的南瓜可能是什么颜色_（橙色🎃或白色👻）。
 
-## Define the question
+> 为什么我们在关于回归的课程分组中谈论二元分类？ 只是为了语言上的方便，因为逻辑回归[真的是一种分类方法](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)，尽管是基于线性的。我们将在在下一课组中了解对数据进行分类的其他方法。
 
-For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
+## 定义问题
 
-> 🎃 Fun fact, we sometimes call white pumpkins 'ghost' pumpkins. They aren't very easy to carve, so they aren't as popular as the orange ones but they are cool looking!
+出于我们的目的，我们将其表示为二进制：“橙色”或“非橙色”。我们的数据集中还有一个“条纹”类别，但它的实例很少，所以我们不会使用它。无论如何，一旦我们从数据集中删除空值，它就会消失。
 
-## About logistic regression
+> 🎃 有趣的是，我们有时称白南瓜为鬼南瓜。他们不是很容易雕刻，所以它们不像橙色的那么受欢迎，但它们看起来很酷！
 
-Logistic regression differs from linear regression, which you learned about previously, in a few important ways.
+## 关于逻辑回归
 
-### Binary classification
+逻辑回归在一些重要方面与您之前了解的线性回归不同。
 
-Logistic regression does not offer the same features as linear regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, _how much its price will rise_.
+### 二元分类
 
-![Pumpkin classification Model](./images/pumpkin-classifier.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-### Other classifications
+逻辑回归不提供与线性回归相同的功能。前者提供关于二元类别（“橙色或非橙色”）的预测，而后者能够预测连续值，例如，给定南瓜的起源和收获时间，_其价格将上涨多少_。
 
-There are other types of logistic regression, including multinomial and ordinal:
+![南瓜分类模型](./images/pumpkin-classifier.png)
+> 作者[Dasani Madipalli](https://twitter.com/dasani_decoded)
+### 其他分类
 
-- **Multinomial**, which involves having more than one category - "Orange, White, and Striped".
-- **Ordinal**, which involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
+还有其他类型的逻辑回归，包括多项和有序：
 
-![Multinomial vs ordinal regression](./images/multinomial-ordinal.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+- **多项**，涉及多个类别 - “橙色、白色和条纹”。
+- **有序**，涉及有序类别，如果我们想对我们的结果进行逻辑排序非常有用，例如我们的南瓜按有限数量的大小（mini、sm、med、lg、xl、xxl）排序。
 
-### It's still linear
+![多项式与有序回归](./images/multinomial-ordinal.png)
+> 作者[Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-Even though this type of Regression is all about 'category predictions', it still works best when there is a clear linear relationship between the dependent variable (color) and the other independent variables (the rest of the dataset, like city name and size). It's good to get an idea of whether there is any linearity dividing these variables or not.
+### 仍然是线性的
 
-### Variables DO NOT have to correlate
+尽管这种类型的回归都是关于“类别预测”的，但当因变量（颜色）和其他自变量（数据集的其余部分，如城市名称和大小）之间存在明显的线性关系时，它仍然效果最好。最好了解一下这些变量是否存在线性划分。
 
-Remember how linear regression worked better with more correlated variables? Logistic regression is the opposite - the variables don't have to align. That works for this data which has somewhat weak correlations.
+### 变量不必相关
 
-### You need a lot of clean data
+还记得线性回归如何更好地处理更多相关变量吗？逻辑回归是相反的——变量不必对齐。这适用于相关性较弱的数据。
 
-Logistic regression will give more accurate results if you use more data; our small dataset is not optimal for this task, so keep that in mind.
+### 你需要大量干净的数据
 
-✅ Think about the types of data that would lend themselves well to logistic regression
+如果使用更多数据，逻辑回归将给出更准确的结果；我们的小数据集对于这项任务不是最佳的，请记住这一点。
 
-## Exercise - tidy the data
+✅ 考虑适合逻辑回归的数据类型
 
-First, clean the data a bit, dropping null values and selecting only some of the columns:
+## 练习 - 整理数据
 
-1. Add the following code:
+首先，稍微清理一下数据，删除空值并仅选择其中一些列：
+
+1. 添加以下代码：
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -80,19 +81,19 @@ First, clean the data a bit, dropping null values and selecting only some of the
     new_pumpkins = new_pumpkins.apply(LabelEncoder().fit_transform)
     ```
 
-    You can always take a peek at your new dataframe:
+    您可以随时查看新的数据帧：
 
     ```python
     new_pumpkins.info
     ```
 
-### Visualization - side-by-side grid
+### 可视化 - 并列网格
 
-By now you have loaded up the [starter notebook](./notebook.ipynb) with pumpkin data once again and cleaned it so as to preserve a dataset containing a few variables, including `Color`. Let's visualize the dataframe in the notebook using a different library: [Seaborn](https://seaborn.pydata.org/index.html), which is built on Matplotlib which we used earlier. 
+到现在为止，您已经再次使用南瓜数据加载了[starter notebook](./notebook.ipynb)并对其进行了清理，以保留包含一些变量（包括`Color`）的数据集。让我们使用不同的库来可视化notebook中的数据帧：[Seaborn](https://seaborn.pydata.org/index.html)，它是基于我们之前使用的Matplotlib构建的。
 
-Seaborn offers some neat ways to visualize your data. For example, you can compare distributions of the data for each point in a side-by-side grid.
+Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可以比较并列网格中每个点的数据分布。
 
-1. Create such a grid by instantiating a `PairGrid`, using our pumpkin data `new_pumpkins`, followed by calling `map()`:
+1. 通过实例化一个`PairGrid`，使用我们的南瓜数据`new_pumpkins`，然后调用`map()`来创建这样一个网格：
 
     ```python
     import seaborn as sns
@@ -101,56 +102,56 @@ Seaborn offers some neat ways to visualize your data. For example, you can compa
     g.map(sns.scatterplot)
     ```
 
-    ![A grid of visualized data](images/grid.png)
+    ![可视化数据网格](images/grid.png)
 
-    By observing data side-by-side, you can see how the Color data relates to the other columns.
+    通过并列观察数据，您可以看到颜色数据与其他列的关系。
 
-    ✅ Given this scatterplot grid, what are some interesting explorations you can envision?
+    ✅ 鉴于此散点图网格，您可以设想哪些有趣的探索？
 
-### Use a swarm plot
+### 使用分类散点图
 
-Since Color is a binary category (Orange or Not), it's called 'categorical data' and needs 'a more [specialized approach](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) to visualization'. There are other ways to visualize the relationship of this category with other variables. 
+由于颜色是一个二元类别（橙色或非橙色），它被称为“分类数据”，需要一种更[专业的方法](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar)来可视化。还有其他方法可以可视化此类别与其他变量的关系。
 
-You can visualize variables side-by-side with Seaborn plots.
+您可以使用Seaborn图并列可视化变量。
 
-1. Try a 'swarm' plot to show the distribution of values:
+1. 尝试使用“分类散点”图来显示值的分布：
 
     ```python
     sns.swarmplot(x="Color", y="Item Size", data=new_pumpkins)
     ```
 
-    ![A swarm of visualized data](images/swarm.png)
+    ![分类散点图可视化数据](images/swarm.png)
 
-### Violin plot
+### 小提琴图
 
-A 'violin' type plot is useful as you can easily visualize the way that data in the two categories is distributed. Violin plots don't work so well with smaller datasets as the distribution is displayed more 'smoothly'.
+“小提琴”类型的图很有用，因为您可以轻松地可视化两个类别中数据的分布方式。小提琴图不适用于较小的数据集，因为分布显示得更“平滑”。
 
-1. As parameters `x=Color`, `kind="violin"` and call `catplot()`:
+1. 作为参数`x=Color`、`kind="violin"`并调用`catplot()`：
 
     ```python
     sns.catplot(x="Color", y="Item Size",
                 kind="violin", data=new_pumpkins)
     ```
 
-    ![a violin type chart](images/violin.png)
+    ![小提琴图](images/violin.png)
 
-    ✅ Try creating this plot, and other Seaborn plots, using other variables.
+    ✅ 尝试使用其他变量创建此图和其他Seaborn图。
 
-Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore logistic regression to determine a given pumpkin's likely color.
+现在我们已经了解了颜色的二元类别与更大的尺寸组之间的关系，让我们探索逻辑回归来确定给定南瓜的可能颜色。
 
-> **🧮 Show Me The Math**
+> **🧮 给我看看数学**
 >
-> Remember how linear regression often used ordinary least squares to arrive at a value? Logistic regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like thus:
+> 还记得线性回归如何经常使用普通最小二乘法来得出一个值吗？逻辑回归依赖于使用[sigmoid 函数](https://wikipedia.org/wiki/Sigmoid_function) 的“最大似然”概念。绘图上的“Sigmoid 函数”看起来像“S”形。它接受一个值并将其映射到0和1之间的某个位置。它的曲线也称为“逻辑曲线”。它的公式如下所示：
 >
-> ![logistic function](images/sigmoid.png)
+> ![逻辑函数](images/sigmoid.png)
 >
-> where the sigmoid's midpoint finds itself at x's 0 point, L is the curve's maximum value, and k is the curve's steepness. If the outcome of the function is more than 0.5, the label in question will be given the class '1' of the binary choice. If not, it will be classified as '0'.
+> 其中sigmoid的中点位于x的0点，L是曲线的最大值，k是曲线的陡度。如果函数的结果大于0.5，则所讨论的标签将被赋予二进制选择的类“1”。否则，它将被分类为“0”。
 
-## Build your model
+## 建立你的模型
 
-Building a model to find these binary classification is surprisingly straightforward in Scikit-learn.
+在Scikit-learn中构建模型来查找这些二元分类非常简单。
 
-1. Select the variables you want to use in your classification model and split the training and test sets calling `train_test_split()`:
+1. 选择要在分类模型中使用的变量，并调用`train_test_split()`拆分训练集和测试集：
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -164,7 +165,7 @@ Building a model to find these binary classification is surprisingly straightfor
     
     ```
 
-1. Now you can train your model, by calling `fit()` with your training data, and print out its result:
+2. 现在你可以训练你的模型，用你的训练数据调用`fit()`，并打印出它的结果：
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -180,7 +181,7 @@ Building a model to find these binary classification is surprisingly straightfor
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-    Take a look at your model's scoreboard. It's not too bad, considering you have only about 1000 rows of data:
+    看看你的模型的记分板。考虑到您只有大约1000行数据，这还不错：
 
     ```output
                        precision    recall  f1-score   support
@@ -200,63 +201,63 @@ Building a model to find these binary classification is surprisingly straightfor
      0 0 0 1 0 1 0 0 1 0 0 0 1 0]
     ```
 
-## Better comprehension via a confusion matrix
+## 通过混淆矩阵更好地理解
 
-While you can get a scoreboard report [terms](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) by printing out the items above, you might be able to understand your model more easily by using a [confusion matrix](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) to help us understand how the model is performing.
+虽然您可以通过获得记分板报告[条目](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report)把上面的项目打印出来，通过使用[混淆矩阵](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix)可以更容易地理解您的模型，帮助我们了解模型的性能。
 
-> 🎓 A '[confusion matrix](https://wikipedia.org/wiki/Confusion_matrix)' (or 'error matrix') is a table that expresses your model's true vs. false positives and negatives, thus gauging the accuracy of predictions.
+> 🎓 “[混淆矩阵](https://wikipedia.org/wiki/Confusion_matrix)”（或“误差矩阵”）是一个表格，用于表示模型的真假阳性和假阴性，从而衡量预测的准确性。
 
-1. To use a confusion metrics, call `confusin_matrix()`:
+1. 要使用混淆指标，请调用 `confusin_matrix()`：
 
     ```python
     from sklearn.metrics import confusion_matrix
     confusion_matrix(y_test, predictions)
     ```
 
-    Take a look at your model's confusion matrix:
+    看看你的模型的混淆矩阵：
 
     ```output
     array([[162,   4],
            [ 33,   0]])
     ```
 
-What's going on here? Let's say our model is asked to classify items between two binary categories, category 'pumpkin' and category 'not-a-pumpkin'.
+这里发生了什么？假设我们的模型被要求对两个二元类别之间的项目进行分类，即类别“南瓜”和类别“非南瓜”。
 
-- If your model predicts something as a pumpkin and it belongs to category 'pumpkin' in reality we call it a true positive, shown by the top left number. 
-- If your model predicts something as not a pumpkin and it belongs to category 'pumpkin' in reality we call it a false positive, shown by the top right number. 
-- If your model predicts something as a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a false negative, shown by the bottom left number. 
-- If your model predicts something as not a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a true negative, shown by the bottom right number.
+- 如果您的模型将某物预测为南瓜并且它实际上属于“南瓜”类别，我们将其称为真阳性，由左上角的数字显示。
+- 如果您的模型预测某物不是南瓜，并且它实际上属于“南瓜”类别，我们将其称为假阳性，如右上角的数字所示。
+- 如果您的模型将某物预测为南瓜并且它实际上属于“非南瓜”类别，我们将其称为假阴性，由左下角的数字显示。
+- 如果您的模型预测某物不是南瓜，并且它实际上属于“非南瓜”类别，我们将其称为真阴性，如右下角的数字所示。
 
-![Confusion Matrix](images/confusion-matrix.png)
+![混淆矩阵](images/confusion-matrix.png)
 
-> Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> 作者[Jen Looper](https://twitter.com/jenlooper)
 
-As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
+正如您可能已经猜到的那样，最好有更多的真阳性和真阴性以及较少的假阳性和假阴性，这意味着模型性能更好。
 
-✅ Q: According to the confusion matrix, how did the model do? A: Not too bad; there are a good number of true positives but also several false negatives. 
+✅ Q：根据混淆矩阵，模型怎么样？ A：还不错；有很多真阳性，但也有一些假阴性。
 
-Let's revisit the terms we saw earlier with the help of the confusion matrix's mapping of TP/TN and FP/FN:
+让我们借助混淆矩阵对TP/TN和FP/FN的映射，重新审视一下我们之前看到的术语：
 
-🎓 Precision: TP/(TP + FN) The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
+🎓 准确率：TP/（TP+FN）检索实例中相关实例的分数（例如，哪些标签标记得很好）
 
-🎓 Recall: TP/(TP + FP) The fraction of relevant instances that were retrieved, whether well-labeled or not
+🎓 召回率: TP/(TP + FP) 检索到的相关实例的比例，无论是否标记良好
 
-🎓 f1-score: (2 * precision * recall)/(precision + recall) A weighted average of the precision and recall, with best being 1 and worst being 0
+🎓 F1分数: (2 * 准确率 * 召回率)/(准确率 + 召回率) 准确率和召回率的加权平均值，最好为1，最差为0
 
-🎓 Support: The number of occurrences of each label retrieved
+🎓 Support：检索到的每个标签的出现次数
 
-🎓 Accuracy: (TP + TN)/(TP + TN + FP + FN) The percentage of labels predicted accurately for a sample.
+🎓 准确度：(TP + TN)/(TP + TN + FP + FN) 为样本准确预测的标签百分比。
 
-🎓 Macro Avg: The calculation of the unweighted mean metrics for each label, not taking label imbalance into account.
+🎓 宏平均值: 计算每个标签的未加权平均指标，不考虑标签不平衡。
 
-🎓 Weighted Avg: The calculation of the mean metrics for each label, taking label imbalance into account by weighting them by their support (the number of true instances for each label).
+🎓 加权平均值：计算每个标签的平均指标，通过按支持度（每个标签的真实实例数）加权来考虑标签不平衡。
 
-✅ Can you think which metric you should watch if you want your model to reduce the number of false negatives?
-## Visualize the ROC curve of this model
+✅ 如果你想让你的模型减少假阴性的数量，你能想出应该关注哪个指标吗？
+## 可视化该模型的ROC曲线
 
-This is not a bad model; its accuracy is in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables.
+这不是一个糟糕的模型；它的准确率在80%范围内，因此理想情况下，您可以使用它来预测给定一组变量的南瓜颜色。
 
-Let's do one more visualization to see the so-called 'ROC' score:
+让我们再做一个可视化来查看所谓的“ROC”分数
 
 ```python
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -267,30 +268,30 @@ fpr, tpr, thresholds = roc_curve(y_test, y_scores[:,1])
 sns.lineplot([0, 1], [0, 1])
 sns.lineplot(fpr, tpr)
 ```
-Using Seaborn again, plot the model's [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) or ROC. ROC curves are often used to get a view of the output of a classifier in terms of its true vs. false positives. "ROC curves typically feature true positive rate on the Y axis, and false positive rate on the X axis." Thus, the steepness of the curve and the space between the midpoint line and the curve matter: you want a curve that quickly heads up and over the line. In our case, there are false positives to start with, and then the line heads up and over properly:
+再次使用Seaborn，绘制模型的[接收操作特性](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc)或ROC。 ROC曲线通常用于根据分类器的真假阳性来了解分类器的输出。“ROC曲线通常具有Y轴上的真阳性率和X轴上的假阳性率。” 因此，曲线的陡度以及中点线与曲线之间的空间很重要：您需要一条快速向上并越过直线的曲线。在我们的例子中，一开始就有误报，然后这条线正确地向上和重复：
 
 ![ROC](./images/ROC.png)
 
-Finally, use Scikit-learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Curve' (AUC):
+最后，使用Scikit-learn的[`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score)来计算实际“曲线下面积”（AUC）：
 
 ```python
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```
-The result is `0.6976998904709748`. Given that the AUC ranges from 0 to 1, you want a big score, since a model that is 100% correct in its predictions will have an AUC of 1; in this case, the model is _pretty good_. 
+结果是`0.6976998904709748`。 鉴于AUC的范围从0到1，您需要一个高分，因为预测100%正确的模型的AUC为1；在这种情况下，模型_相当不错_。
 
-In future lessons on classifications, you will learn how to iterate to improve your model's scores. But for now, congratulations! You've completed these regression lessons!
-
+在以后的分类课程中，您将学习如何迭代以提高模型的分数。但是现在，恭喜！您已经完成了这些回归课程！
 ---
-## 🚀Challenge
+## 🚀挑战
 
-There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://kaggle.com) for interesting datasets.
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
+关于逻辑回归，还有很多东西需要解开！但最好的学习方法是实验。找到适合此类分析的数据集并用它构建模型。你学到了什么？小贴士：尝试[Kaggle](https://kaggle.com)获取有趣的数据集。
 
-## Review & Self Study
+## [课后测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
 
-Read the first few pages of [this paper from Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) on some practical uses for logistic regression. Think about tasks that are better suited for one or the other type of regression tasks that we have studied up to this point. What would work best?
+## 复习与自学
 
-## Assignment 
+阅读[斯坦福大学的这篇论文](https://web.stanford.edu/~jurafsky/slp3/5.pdf)的前几页关于逻辑回归的一些实际应用。想想那些更适合于我们目前所研究的一种或另一种类型的回归任务的任务。什么最有效？
 
-[Retrying this regression](assignment.md)
+## 任务 
+
+[重试此回归](assignment.md)
