@@ -3,7 +3,7 @@
 
 Di Amerika Utara, labu seringkali diukir menjadi muka-muka seram untuk Halloween. Mari mencari tahu lebih banyak tentang sayur menarik ini!
 
-![jack-o-lantern](./images/jack-o-lanterns.jpg)
+![jack-o-lantern](../images/jack-o-lanterns.jpg)
 > Foto oleh <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> di <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Apa yang kamu akan pelajari
@@ -18,10 +18,10 @@ Selain itu, kamu akan disiapkan untuk mulai mengerjakan tugas *machine learning*
 
 ### Pelajaran
 
-1. [Alat-alat seorang *data scientist*](1-Tools/README.md)
-2. [Mengelola data](2-Data/README.md)
-3. [Regresi linear dan polinomial](3-Linear/README.md)
-4. [Regresi logistik](4-Logistic/README.md)
+1. [Alat-alat seorang *data scientist*](1-Tools/translations/README.id.md)
+2. [Mengelola data](2-Data/translations/README.id.md)
+3. [Regresi linear dan polinomial](3-Linear/translations/README.id.md)
+4. [Regresi logistik](4-Logistic/translations/README.id.md)
 
 ---
 ### Kredit
