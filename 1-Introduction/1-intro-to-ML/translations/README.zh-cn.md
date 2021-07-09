@@ -27,7 +27,7 @@
 
 术语“机器学习”是当今最流行和最常用的术语之一。 如果你对科技有某种程度的熟悉，那么很可能你至少听说过这个术语一次，无论你在哪个领域工作。然而，机器学习的机制对大多数人来说是一个谜。 对于机器学习初学者来说，这个主题有时会让人感到不知所措。 因此，了解机器学习的实质是什么，并通过实例一步一步地了解机器学习是很重要的。
 
-![机器学习趋势曲线](images/hype.png)
+![机器学习趋势曲线](../images/hype.png)
 
 > 谷歌趋势显示了“机器学习”一词最近的“趋势曲线”
 
@@ -39,7 +39,7 @@
 
 尽管这些术语可能会混淆，但机器学习 (ML) 是人工智能的一个重要子集。 **机器学习关注使用专门的算法来发现有意义的信息，并从感知数据中找到隐藏的模式，以证实理性的决策过程**。
 
-![人工智能、机器学习、深度学习、数据科学](images/ai-ml-ds.png)
+![人工智能、机器学习、深度学习、数据科学](../images/ai-ml-ds.png)
 
 > 显示AI、ML、深度学习和数据科学之间关系的图表。图片作者[Jen Looper](https://twitter.com/jenlooper)，灵感来自[这张图](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
