@@ -1,6 +1,6 @@
 # Memulai dengan Python dan Scikit-learn untuk model regresi
 
-![Ringkisan regresi dalam sebuah catatan sketsa](../../sketchnotes/ml-regression.png)
+![Ringkisan regresi dalam sebuah catatan sketsa](../../../sketchnotes/ml-regression.png)
 
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
