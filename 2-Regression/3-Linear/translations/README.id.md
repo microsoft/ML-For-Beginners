@@ -1,6 +1,6 @@
 # Bangun sebuah model regresi dengan Scikit-learn: regresi dua arah
 
-![Infografik regresi linear vs polinomial](./images/linear-polynomial.png)
+![Infografik regresi linear vs polinomial](../images/linear-polynomial.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Kuis pra-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
 ### Pembukaan
@@ -49,13 +49,13 @@ Kita melakukan itu sebab kita ingin memodelkan sebuah garis yang jarak kumulatif
 >
 > `X` adalah 'variabel penerang'. `Y` adalah 'variabel dependen'. Gradien garisnya adalah `b`, dan `a` adalah titik potong sumbu y yaitu nilai `Y` saat `X = 0`. 
 >
->![hitunglah gradiennya](images/slope.png)
+>![hitunglah gradiennya](../images/slope.png)
 >
 > Pertama, hitunglah gradien `b`. Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 >
 > Dalam kata lain, dan berhubungan pula dengan pertanyaan awal data labu kita "prediksikan harga satu bushel labu setiap bulan", `X` merujuk pada harganya, sedangkan `Y` akan merujuk pada bulan penjualan.
 >
->![lengkapilah persamaan ini](images/calculation.png)
+>![lengkapilah persamaan ini](../images/calculation.png)
 >
 > Hitunglah nilai Y. Kalau harganya $4, artinya pasti April! Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 >
@@ -182,7 +182,7 @@ lin_pumpkins
 
    plt.show()
    ```
-   ![Sebuah petak sebar yang menunjukkan hubungan antara paket dan harga](./images/linear.png)
+   ![Sebuah petak sebar yang menunjukkan hubungan antara paket dan harga](../images/linear.png)
 
 3. Ujilah modelnya dengan sebuah jenis labu hipotetis:
 
@@ -231,7 +231,7 @@ Sebuah cara bagus untuk memvisualisasi korelasi-korelasi antara data dalam *data
    ```
    This code creates a heatmap:
    Kode ini membuat sebuah peta panas
-   ![Sebuah peta panas yang menunjukkan korelasi data](./images/heatmap.png)
+   ![Sebuah peta panas yang menunjukkan korelasi data](../images/heatmap.png)
 
 Melihat peta ini, kamu bisa memvisualisasikan korelasi yang baik antara Package dan Price. Jadi kamu seharusnya bisa membuat sebuah model yang lebih baik daripada yang sebelumnya.
 
@@ -281,7 +281,7 @@ Tambahlah kode ini:
 
 Kamu membuat sebuah *dataframe* baru dengan fungsi `pd.DataFrame`. Lalu kamu mengurutkan isinya dengan fungsi `sort_values()`. Akhirnya kamu membuat sebuah bagan polinomial:
 
-![Sebuah bagan polinomial yang menunjukkan hubungan antara paket dan harga](./images/polynomial.png)
+![Sebuah bagan polinomial yang menunjukkan hubungan antara paket dan harga](../images/polynomial.png)
 
 Kamu bisa melihat garis lengkungnya yang lebih cocok terhadap datamu.
 
@@ -332,4 +332,4 @@ Dalam pelajaran ini kita belajar tentang regresi linear. Ada banyak jenis regres
 
 ## Tugas 
 
-[Buatlah sebuah model](assignment.md)
+[Buatlah sebuah model](../assignment.md)
