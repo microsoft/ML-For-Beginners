@@ -1,6 +1,6 @@
 # Introduzione a machine learning
 
-In questa sezione del curriculum, verranno presentati i concetti di base sottostanti machine learning, di cosa si tratta, e si imparerà la sua storia e le tecniche utilizzate dai ricercatori per lavorarci. Si esplorerà insieme questo nuovo mondo di ML!
+In questa sezione del programma di studi, verranno presentati i concetti di base sottostanti machine learning, di cosa si tratta, e si imparerà la sua storia e le tecniche utilizzate dai ricercatori per lavorarci. Si esplorerà insieme questo nuovo mondo di ML!
 
 ![globo](../images/globe.jpg)
 > Foto di <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> su <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -13,10 +13,10 @@ In questa sezione del curriculum, verranno presentati i concetti di base sottost
 1. [Tecniche di machine learning](../4-techniques-of-ML/translations/README.it.md)
 ### Crediti
 
-"Introduzione a Machine Learning" è stato scritto con ♥️ da un team di persone tra cui [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan), [Ornella Altunyan](https://twitter.com/ornelladotcom) e [Jen Looper](https://twitter.com/jenlooper)
+"Introduzione a Machine Learning" scritto con ♥️ da un team di persone tra cui [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan), [Ornella Altunyan](https://twitter.com/ornelladotcom) e [Jen Looper](https://twitter.com/jenlooper)
 
-"La Storia di Machine Learning" è stato scritto con ♥️ da [Jen Looper](https://twitter.com/jenlooper) e [Amy Boyd](https://twitter.com/AmyKateNicho)
+"La Storia di Machine Learning" scritto con ♥️ da [Jen Looper](https://twitter.com/jenlooper) e [Amy Boyd](https://twitter.com/AmyKateNicho)
 
-"Equità e Machine Learning" è stato scritto con ♥️ da [Tomomi Imura](https://twitter.com/girliemac)
+"Equità e Machine Learning" scritto con ♥️ da [Tomomi Imura](https://twitter.com/girliemac)
 
-"Tecniche di Machine Learning" è stato scritto con ♥️ da [Jen Looper](https://twitter.com/jenlooper) e [Chris Noring](https://twitter.com/softchris)
+"Tecniche di Machine Learning" scritto con ♥️ da [Jen Looper](https://twitter.com/jenlooper) e [Chris Noring](https://twitter.com/softchris)

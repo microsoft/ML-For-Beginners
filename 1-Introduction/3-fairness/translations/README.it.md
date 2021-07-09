@@ -19,7 +19,7 @@ In questa lezione, si dovrà:
 
 ## Prerequisito
 
-Come prerequisito, si segua il percorso di apprendimento "Principi di IA responsabile" e si guardi il video qui sotto sull'argomento:
+Come prerequisito, si segua il percorso di apprendimento "Principi di AI Responsabile" e si guardi il video qui sotto sull'argomento:
 
 Si scopra di più sull'AI Responsabile seguendo questo [percorso di apprendimento](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
@@ -45,13 +45,13 @@ I principali danni legati all'equità possono essere classificati come:
 - **Qualità di servizio** Se si addestrano i dati per uno scenario specifico, ma la realtà è molto più complessa, si ottiene un servizio scadente.
 - **Stereotipi**. Associazione di un dato gruppo con attributi preassegnati.
 - **Denigrazione**. Criticare ed etichettare ingiustamente qualcosa o qualcuno.
-- **Sovra o sotto rappresentazione**. L'idea è che un certo gruppo non è visto in una certa professione, e qualsiasi servizio o funzione che continua a promuovere ciò contribuisce al danno.
+- **Sovra o sotto rappresentazione**. L'idea è che un certo gruppo non è visto in una certa professione, e qualsiasi servizio o funzione che continua a promuovere ciò, contribuisce al danno.
 
 Si dia un'occhiata agli esempi.
 
 ### Allocazione
 
-Si consideri un ipotetico sistema per la scrematura delle domande di prestito. Il sistema tende a scegliere gli uomini bianchi come candidati migliori rispetto ad altri gruppi. Di conseguenza, i prestiti vengono trattenuti da alcuni richiedenti.
+Si consideri un ipotetico sistema per la scrematura delle domande di prestito. Il sistema tende a scegliere gli uomini bianchi come candidati migliori rispetto ad altri gruppi. Di conseguenza, i prestiti vengono negati ad alcuni richiedenti.
 
 Un altro esempio potrebbe essere uno strumento sperimentale di assunzione sviluppato da una grande azienda per selezionare i candidati. Lo strumento discrimina sistematicamente un genere utilizzando i modelli che sono stati addestrati a preferire parole associate con altro. Ha portato a penalizzare i candidati i cui curricula contengono parole come "squadra di rugby femminile".
 
@@ -123,7 +123,7 @@ Si utilizza l'esempio di selezione del prestito per isolare il caso e determinar
 
 Quali sono i danni e i benefici associati al prestito? Si pensi agli scenari di falsi negativi e falsi positivi:
 
-**Falsi negativi** (rifiutato, ma Y=1) - in questo caso viene rifiutato un richiedente che sarà in grado di rimborsare un prestito. Questo è un evento avverso perché le risorse dei prestiti sono trattenute da richiedenti qualificati.
+**Falsi negativi** (rifiutato, ma Y=1) - in questo caso viene rifiutato un richiedente che sarà in grado di rimborsare un prestito. Questo è un evento avverso perché le risorse dei prestiti non sono erogate a richiedenti qualificati.
 
 **Falsi positivi** (accettato, ma Y=0) - in questo caso, il richiedente ottiene un prestito ma alla fine fallisce. Di conseguenza, il caso del richiedente verrà inviato a un'agenzia di recupero crediti che può influire sulle sue future richieste di prestito.
 
@@ -151,7 +151,7 @@ In questo caso, ci sono 3 gruppi e 2 metriche. Quando si pensa a come il nostro 
 
 ## Mitigare l'ingiustizia
 
-Per mitigare l'ingiustizia, si esplorari il modello per generare vari modelli mitigati e si confrontino i compromessi tra accuratezza ed equità per selezionare il modello più equo.
+Per mitigare l'ingiustizia, si esplori il modello per generare vari modelli mitigati e si confrontino i compromessi tra accuratezza ed equità per selezionare il modello più equo.
 
 Questa lezione introduttiva non approfondisce i dettagli dell'algoritmo della mitigazione dell'ingiustizia, come l'approccio di post-elaborazione e riduzione, ma ecco uno strumento che si potrebbe voler provare.
 
