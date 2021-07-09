@@ -12,7 +12,7 @@
 ## 主要发现
 
 - 1763, 1812 [贝叶斯定理](https://wikipedia.org/wiki/Bayes%27_theorem) 及其前身。该定理及其应用是推理的基础，描述了基于先验知识的事件发生的概率。
-- 1805 [最小二乘理论](https://wikipedia.org/wiki/Least_squares)由法国数学家Adrien-Marie Legendre提出。 您将在我们的回归单元中了解这一理论，它有助于数据拟合。
+- 1805 [最小二乘理论](https://wikipedia.org/wiki/Least_squares)由法国数学家Adrien-Marie Legendre提出。 你将在我们的回归单元中了解这一理论，它有助于数据拟合。
 - 1913 [马尔可夫链](https://wikipedia.org/wiki/Markov_chain)以俄罗斯数学家Andrey Markov的名字命名，用于描述基于先前状态的一系列可能事件。
 - 1957 [感知器](https://wikipedia.org/wiki/Perceptron)是美国心理学家Frank Rosenblatt发明的一种线性分类器，是深度学习发展的基础。
 - 1967 [最近邻](https://wikipedia.org/wiki/Nearest_neighbor)是一种最初设计用于映射路线的算法。 在ML中，它用于检测模式。
@@ -22,7 +22,7 @@
 ✅ 做点调查。在ML和AI的历史上，还有哪些日期是重要的？
 ## 1950: 会思考的机器 
 
-Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 作为20世纪最伟大的科学家，他认为有助于为“会思考的机器”的概念打下基础。他通过创建 [图灵测试](https://www.bbc.com/news/technology-18475646)来解决反对者和他自己对这一概念的经验证据的需求，您将在我们的 NLP 课程中进行探索。
+Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 作为20世纪最伟大的科学家，他认为有助于为“会思考的机器”的概念打下基础。他通过创建 [图灵测试](https://www.bbc.com/news/technology-18475646)来解决反对者和他自己对这一概念的经验证据的需求，你将在我们的 NLP 课程中进行探索。
 
 ## 1956: 达特茅斯夏季研究项目
 
@@ -47,7 +47,7 @@ Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https
     ![Shakey, 智能机器人](images/shakey.jpg)
     > 1972 年的Shakey
 
-* Eliza，一个早期的“聊天机器人”，可以与人交谈并充当原始的“治疗师”。 您将在NLP课程中了解有关Eliza的更多信息。 
+* Eliza，一个早期的“聊天机器人”，可以与人交谈并充当原始的“治疗师”。 你将在NLP课程中了解有关Eliza的更多信息。 
 
     ![Eliza, 机器人](images/eliza.png)
     > Eliza的一个版本，一个聊天机器人 
