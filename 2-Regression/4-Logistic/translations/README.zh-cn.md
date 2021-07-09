@@ -6,14 +6,14 @@
 
 ## 介绍
 
-在关于回归的最后一课中，我们将学习逻辑回归，这是经典的基本技术之一。您可以使用此技术来发现预测二元分类的模式。这是不是巧克力糖？这种病会传染吗？这个顾客会选择这个产品吗？
+在关于回归的最后一课中，我们将学习逻辑回归，这是经典的基本技术之一。你可以使用此技术来发现预测二元分类的模式。这是不是巧克力糖？这种病会传染吗？这个顾客会选择这个产品吗？
 
-在本课中，您将学习：
+在本课中，你将学习：
 
 - 用于数据可视化的新库
 - 逻辑回归技术
 
-✅ 在此[学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) 中加深您对使用此类回归的理解
+✅ 在此[学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) 中加深你对使用此类回归的理解
 
 ## 前提
 
@@ -31,7 +31,7 @@
 
 ## 关于逻辑回归
 
-逻辑回归在一些重要方面与您之前了解的线性回归不同。
+逻辑回归在一些重要方面与你之前了解的线性回归不同。
 
 ### 二元分类
 
@@ -81,7 +81,7 @@
     new_pumpkins = new_pumpkins.apply(LabelEncoder().fit_transform)
     ```
 
-    您可以随时查看新的数据帧：
+    你可以随时查看新的数据帧：
 
     ```python
     new_pumpkins.info
@@ -89,9 +89,9 @@
 
 ### 可视化 - 并列网格
 
-到现在为止，您已经再次使用南瓜数据加载了[starter notebook](./notebook.ipynb)并对其进行了清理，以保留包含一些变量（包括`Color`）的数据集。让我们使用不同的库来可视化notebook中的数据帧：[Seaborn](https://seaborn.pydata.org/index.html)，它是基于我们之前使用的Matplotlib构建的。
+到现在为止，你已经再次使用南瓜数据加载了[starter notebook](./notebook.ipynb)并对其进行了清理，以保留包含一些变量（包括`Color`）的数据集。让我们使用不同的库来可视化notebook中的数据帧：[Seaborn](https://seaborn.pydata.org/index.html)，它是基于我们之前使用的Matplotlib构建的。
 
-Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可以比较并列网格中每个点的数据分布。
+Seaborn提供了一些巧妙的方法来可视化你的数据。例如，你可以比较并列网格中每个点的数据分布。
 
 1. 通过实例化一个`PairGrid`，使用我们的南瓜数据`new_pumpkins`，然后调用`map()`来创建这样一个网格：
 
@@ -104,15 +104,15 @@ Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可�
 
     ![可视化数据网格](images/grid.png)
 
-    通过并列观察数据，您可以看到颜色数据与其他列的关系。
+    通过并列观察数据，你可以看到颜色数据与其他列的关系。
 
-    ✅ 鉴于此散点图网格，您可以设想哪些有趣的探索？
+    ✅ 鉴于此散点图网格，你可以设想哪些有趣的探索？
 
 ### 使用分类散点图
 
 由于颜色是一个二元类别（橙色或非橙色），它被称为“分类数据”，需要一种更[专业的方法](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar)来可视化。还有其他方法可以可视化此类别与其他变量的关系。
 
-您可以使用Seaborn图并列可视化变量。
+你可以使用Seaborn图并列可视化变量。
 
 1. 尝试使用“分类散点”图来显示值的分布：
 
@@ -124,7 +124,7 @@ Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可�
 
 ### 小提琴图
 
-“小提琴”类型的图很有用，因为您可以轻松地可视化两个类别中数据的分布方式。小提琴图不适用于较小的数据集，因为分布显示得更“平滑”。
+“小提琴”类型的图很有用，因为你可以轻松地可视化两个类别中数据的分布方式。小提琴图不适用于较小的数据集，因为分布显示得更“平滑”。
 
 1. 作为参数`x=Color`、`kind="violin"`并调用`catplot()`：
 
@@ -181,7 +181,7 @@ Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可�
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-    看看你的模型的记分板。考虑到您只有大约1000行数据，这还不错：
+    看看你的模型的记分板。考虑到你只有大约1000行数据，这还不错：
 
     ```output
                        precision    recall  f1-score   support
@@ -203,7 +203,7 @@ Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可�
 
 ## 通过混淆矩阵更好地理解
 
-虽然您可以通过获得记分板报告[条目](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report)把上面的项目打印出来，通过使用[混淆矩阵](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix)可以更容易地理解您的模型，帮助我们了解模型的性能。
+虽然你可以通过获得记分板报告[条目](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report)把上面的项目打印出来，通过使用[混淆矩阵](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix)可以更容易地理解你的模型，帮助我们了解模型的性能。
 
 > 🎓 “[混淆矩阵](https://wikipedia.org/wiki/Confusion_matrix)”（或“误差矩阵”）是一个表格，用于表示模型的真假阳性和假阴性，从而衡量预测的准确性。
 
@@ -223,16 +223,16 @@ Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可�
 
 这里发生了什么？假设我们的模型被要求对两个二元类别之间的项目进行分类，即类别“南瓜”和类别“非南瓜”。
 
-- 如果您的模型将某物预测为南瓜并且它实际上属于“南瓜”类别，我们将其称为真阳性，由左上角的数字显示。
-- 如果您的模型预测某物不是南瓜，并且它实际上属于“南瓜”类别，我们将其称为假阳性，如右上角的数字所示。
-- 如果您的模型将某物预测为南瓜并且它实际上属于“非南瓜”类别，我们将其称为假阴性，由左下角的数字显示。
-- 如果您的模型预测某物不是南瓜，并且它实际上属于“非南瓜”类别，我们将其称为真阴性，如右下角的数字所示。
+- 如果你的模型将某物预测为南瓜并且它实际上属于“南瓜”类别，我们将其称为真阳性，由左上角的数字显示。
+- 如果你的模型预测某物不是南瓜，并且它实际上属于“南瓜”类别，我们将其称为假阳性，如右上角的数字所示。
+- 如果你的模型将某物预测为南瓜并且它实际上属于“非南瓜”类别，我们将其称为假阴性，由左下角的数字显示。
+- 如果你的模型预测某物不是南瓜，并且它实际上属于“非南瓜”类别，我们将其称为真阴性，如右下角的数字所示。
 
 ![混淆矩阵](images/confusion-matrix.png)
 
 > 作者[Jen Looper](https://twitter.com/jenlooper)
 
-正如您可能已经猜到的那样，最好有更多的真阳性和真阴性以及较少的假阳性和假阴性，这意味着模型性能更好。
+正如你可能已经猜到的那样，最好有更多的真阳性和真阴性以及较少的假阳性和假阴性，这意味着模型性能更好。
 
 ✅ Q：根据混淆矩阵，模型怎么样？ A：还不错；有很多真阳性，但也有一些假阴性。
 
@@ -255,7 +255,7 @@ Seaborn提供了一些巧妙的方法来可视化您的数据。例如，您可�
 ✅ 如果你想让你的模型减少假阴性的数量，你能想出应该关注哪个指标吗？
 ## 可视化该模型的ROC曲线
 
-这不是一个糟糕的模型；它的准确率在80%范围内，因此理想情况下，您可以使用它来预测给定一组变量的南瓜颜色。
+这不是一个糟糕的模型；它的准确率在80%范围内，因此理想情况下，你可以使用它来预测给定一组变量的南瓜颜色。
 
 让我们再做一个可视化来查看所谓的“ROC”分数
 
@@ -268,7 +268,7 @@ fpr, tpr, thresholds = roc_curve(y_test, y_scores[:,1])
 sns.lineplot([0, 1], [0, 1])
 sns.lineplot(fpr, tpr)
 ```
-再次使用Seaborn，绘制模型的[接收操作特性](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc)或ROC。 ROC曲线通常用于根据分类器的真假阳性来了解分类器的输出。“ROC曲线通常具有Y轴上的真阳性率和X轴上的假阳性率。” 因此，曲线的陡度以及中点线与曲线之间的空间很重要：您需要一条快速向上并越过直线的曲线。在我们的例子中，一开始就有误报，然后这条线正确地向上和重复：
+再次使用Seaborn，绘制模型的[接收操作特性](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc)或ROC。 ROC曲线通常用于根据分类器的真假阳性来了解分类器的输出。“ROC曲线通常具有Y轴上的真阳性率和X轴上的假阳性率。” 因此，曲线的陡度以及中点线与曲线之间的空间很重要：你需要一条快速向上并越过直线的曲线。在我们的例子中，一开始就有误报，然后这条线正确地向上和重复：
 
 ![ROC](./images/ROC.png)
 
@@ -278,9 +278,9 @@ sns.lineplot(fpr, tpr)
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```
-结果是`0.6976998904709748`。 鉴于AUC的范围从0到1，您需要一个高分，因为预测100%正确的模型的AUC为1；在这种情况下，模型_相当不错_。
+结果是`0.6976998904709748`。 鉴于AUC的范围从0到1，你需要一个高分，因为预测100%正确的模型的AUC为1；在这种情况下，模型_相当不错_。
 
-在以后的分类课程中，您将学习如何迭代以提高模型的分数。但是现在，恭喜！您已经完成了这些回归课程！
+在以后的分类课程中，你将学习如何迭代以提高模型的分数。但是现在，恭喜！你已经完成了这些回归课程！
 ---
 ## 🚀挑战
 
