@@ -1,6 +1,6 @@
 # Membangun sebuah model regresi dengan Scikit-learn: siapkan dan visualisasikan data
 
-> ![Infografik visualisasi data](./images/data-visualization.png)
+![Infografik visualisasi data](../images/data-visualization.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Kuis pra-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
@@ -164,7 +164,7 @@ Coba membuat beberapa grafik sederhana untuk menunjukkan *dataframe* baru yang b
     plt.show()
     ```
 
-    ![Sebuah petak sebar yang menunjukkan hubungan antara harga dan bulan](./images/scatterplot.png)
+    ![Sebuah petak sebar yang menunjukkan hubungan antara harga dan bulan](../images/scatterplot.png)
 
     Apakah grafik ini berguna? Apa ada yang mengejutkanmu?
 
@@ -181,7 +181,7 @@ Untuk menjadikan sebuah grafik menjadi berguna, biasanya datanya harus dikelompo
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Sebuah diagram batang yang menunjukkan hubungan antara harga dan bulan](./images/barchart.png)
+    ![Sebuah diagram batang yang menunjukkan hubungan antara harga dan bulan](../images/barchart.png)
 
     Nah, ini lebih berguna! Kelihatannya visualisasi ini mengindikasi bahwa labu itu paling mahal pada bulan September dan Oktober. Apa itu sesuai ekspektasimu? Mengapa?
 
@@ -199,4 +199,4 @@ Lihatlah beragam cara memvisualisasi data. Buatlah sebuah daftar dari aneka *lib
 
 ## Tugas
 
-[Menjelajahi visualisasi](assignment.md)
+[Menjelajahi visualisasi](../assignment.md)
