@@ -264,6 +264,12 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 
     The data is nice and clean, balanced, and very delicious! 
 
+1. The last step is to save your balanced data, including labels and features, into a new dataframe that can be exported into a file:
+
+    ```python
+    transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
+    ```
+
 1. You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
 
     ```python
