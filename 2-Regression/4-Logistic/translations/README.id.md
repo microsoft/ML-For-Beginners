@@ -1,7 +1,8 @@
 # Regresi logistik untuk memprediksi kategori-kategori
 
-![Infografik regresi logistik vs. linear](./images/logistic-linear.png)
+![Infografik regresi logistik vs. linear](../images/logistic-linear.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
+
 ## [Kuis pra-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
 
 ## Pembukaan
@@ -14,6 +15,7 @@ Dalam pelajaran ini, kamu akan belajar:
 - Teknik-teknik untuk regresi logistik
 
 ✅ Perdalamkan pemahamanmu dalam bekerja dengan regresi jenis ini dalam [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+
 ## Prasyarat
 
 Setelah bekerja dengan data labu, kita sekarang sudah terbiasa dengannya untuk menyadari bahwa adapula sebuah kategori binari yang kita dapat menggunakan: `Color` (warna).
@@ -36,8 +38,9 @@ Regresi logistik berbeda dari regresi linear, jenis regresi yang kamu pelajari s
 
 Regresi logistik tidak mempunyai beberapa fitur regresi linear. Regresi logistik menyediakan sebuah prediksi tentang sebuah kategori binari (seperti "oranye atau bukan oranye"), sedangkan yang lainnya dapat memprediksi nilai-nilai kontinu. Contohnya, dengan mengetahui dari mana labu ini dan kapan dipanennya, regresi linear dapat memprediksi _berapa harganya akan naik_, namun regresi logistik tidak bisa.
 
-![Model klasifikasi labu](./images/pumpkin-classifier.png)
+![Model klasifikasi labu](../images/pumpkin-classifier.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
+
 ### Klasifikasi lain
 
 Ditambah itu, ada banyak jenis regresi logistik, termasuk jenis multinomial dan ordinal:
@@ -101,7 +104,7 @@ Seaborn menyediakan beberapa cara keren untuk memvisualisasi datamu. Contohnya, 
     g.map(sns.scatterplot)
     ```
 
-    ![Sebuah visualisasi *grid* data](images/grid.png)
+    ![Sebuah visualisasi *grid* data](../images/grid.png)
 
     Dengan mengobservasi datanya secara berdampingan, kamu bisa lihat bagaimana data warnanya berhubungan dengan kolom-kolom lainnya.
 
@@ -119,7 +122,7 @@ Kamu bisa memvisualisasikan variabel-variabel secara berdampingan dengan bagan-b
     sns.swarmplot(x="Color", y="Item Size", data=new_pumpkins)
     ```
 
-    ![Sekawanan data yang divisualisasi](images/swarm.png)
+    ![Sekawanan data yang divisualisasi](../images/swarm.png)
 
 ### Bagan biola
 
@@ -132,7 +135,7 @@ Sebuah bagan 'biola' itu berguna sebab kamu bisa memvisualisasi bagaimana data d
                 kind="violin", data=new_pumpkins)
     ```
 
-    ![sebuah bagan biola](images/violin.png)
+    ![sebuah bagan biola](../images/violin.png)
 
     ✅ Cobalah membuat bagan ini dan jenis-jenis bagan Seaborn lainnya dengan variabel-variabel lainnya.
 
@@ -142,7 +145,7 @@ Sekarang kita sudah dapat bayangan hubungan antara kedua kategori binary warna d
 >
 > Ingat bagaiaman regresi linear seringkali menggunakan metode kuadrat terkecil untuk tiba pada sebuah nilai? Regresi logistik tergantung pada konsep 'kemungkinan terbesar' menggunakan [fungsi sigmoid](https://wikipedia.org/wiki/Sigmoid_function). Sebuah 'fungsi Sigmoid' terlihat seperti huruf 'S' dalam sistem koordinat Kartesius. Fungsi ini mengambil sebuah nilai dan 'mencorongkannya' menjadi sebuah nomor antara 0 dan 1. Kurva ini juga dipanggil sebuah 'kurva logistik'. Formulanya seperti ini:
 >
-> ![Fungsi logistic](images/sigmoid.png)
+> ![Fungsi logistic](../images/sigmoid.png)
 >
 > Titik tengah sigmoidnya terletak di sumbu X. L adalah nilai maksimum kurvanya. k adalah terjalnya kurvanya. Jika hasil fungsinya lebih dari 0.5, nilai yang diberikan kepada fungsi tersebut akan diklasifikasikan sebagai '1'. Kalau tidak, nilai itu akan diklasifikasikan sebagai '0'.
 
@@ -227,7 +230,7 @@ Apa yang sedang terjadi di sini? Mari kita asumsi dulu bahwa model kita ditanyak
 - Kalau modelmu memprediksi sesuati sebagai sebuah labu tetapi sebenarnya bukan sebuah labu, itu disebut negatif palsu yang diindikasi angka di pojok kiri bawah.
 - Kalau modelmu memprediksi sesuati sebagai bukan sebuah labu dan memang benar sesuatu itu bukan sebuah labu, itu disebut negatif benar yang diindikasi angka di pojok kanan bawah.
 
-![Matriks Kebingungan](images/confusion-matrix.png)
+![Matriks Kebingungan](../images/confusion-matrix.png)
 
 > Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
 
@@ -257,6 +260,7 @@ Mari kita lihat kembali istilah-istilah yang kita lihat tadi dengan bantuan matr
 🎓 Rata-rata Tertimbang: Hitungan rata-rata metrik setiap label dengan mempertimbangkan ketidakseimbangan label. Rata-ratanya tertimbang nilai Dukungan (jumlah kejadian dalam realita) setiap label.
 
 ✅ Apa kamu bisa tebak metrik apa yang harus dipantau untuk mengurangi jumlah negatif palsu modelmu?
+
 ## Visualisasikan kurva ROC model ini
 
 Ini bukanlah sebuah model buruk. Akurasinya sekitar 80%, jadi sebenarnya bisa digunakan untuk memprediksi warna sebuah labu berdasarkan beberapa variabel.
@@ -274,7 +278,7 @@ sns.lineplot(fpr, tpr)
 ```
 Menggunakan Seaborn lagi, gambarlah [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) (ROC) model ini. Kurva ROC seringkali digunakan untuk menunjukkan output sebuah pembuat klasifikasi berdasarkan jumlah positif benar dan positif palsunya. "Kurva ROC biasanya menetapkan persentase positif benar di sumbu Y dan positif palsunya di sumbu X" (diterjemahkan). Maka, terjalnya kurva ini dan ruang antara garis titik tengah dan kurvanya penting: kamu mau sebuah kurva yang naik ke atas garisnya secepat mungkin. Dalam kasus ini, ada positif palsu di awal, terus kurvanya naik di atas garisnya dengan benar:
 
-![ROC](./images/ROC.png)
+![ROC](../images/ROC.png)
 
 Akhirnya, gunakanlah [API `roc_auc_score`](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) Scikit-learn untuk menghitung 'Area Di Bawah Kurva'-nya (ADBK) secara persis:
 
@@ -290,6 +294,7 @@ Nanti dalam pelajaran lebih lanjut tentang klasifikasi, kamu akan belajar bagaim
 ## 🚀 Tantangan
 
 Masih ada banyak tentang regresi logistik! Tetapi cara paling baik adalah untuk bereksperimen. Carilah sebuah *dataset* yang bisa diteliti seperti ini dan bangunlah sebuah model darinya. Apa yang kamu pelajari? Petunjuk: Coba [Kaggle](https://kaggle.com) untuk *dataset-dataset* menarik.
+
 ## [Kuis pasca-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
 
 ## Review & Pembelajaran mandiri
@@ -298,4 +303,4 @@ Bacalah beberapa halaman pertama [makalah ini dari Stanford](https://web.stanfor
 
 ## Tugas 
 
-[Coba lagi regresi ini](assignment.md)
+[Coba lagi regresi ini](../assignment.md)
