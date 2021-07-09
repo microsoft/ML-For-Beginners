@@ -13,8 +13,8 @@
 
 - 1763, 1812 [贝叶斯定理](https://wikipedia.org/wiki/Bayes%27_theorem) 及其前身。该定理及其应用是推理的基础，描述了基于先验知识的事件发生的概率。
 - 1805 [最小二乘理论](https://wikipedia.org/wiki/Least_squares)由法国数学家Adrien-Marie Legendre提出。 您将在我们的回归单元中了解这一理论，它有助于数据拟合。
-- 1913 [马尔可夫链](https://wikipedia.org/wiki/Markov_chain)以俄罗斯数学家安德烈马尔可夫的名字命名，用于描述基于先前状态的一系列可能事件。
-- 1957 [感知器](https://wikipedia.org/wiki/Perceptron)是美国心理学家弗兰克·罗森布拉特发明的一种线性分类器，是深度学习发展的基础。
+- 1913 [马尔可夫链](https://wikipedia.org/wiki/Markov_chain)以俄罗斯数学家Andrey Markov的名字命名，用于描述基于先前状态的一系列可能事件。
+- 1957 [感知器](https://wikipedia.org/wiki/Perceptron)是美国心理学家Frank Rosenblatt发明的一种线性分类器，是深度学习发展的基础。
 - 1967 [最近邻](https://wikipedia.org/wiki/Nearest_neighbor)是一种最初设计用于映射路线的算法。 在ML中，它用于检测模式。
 - 1970 [反向传播](https://wikipedia.org/wiki/Backpropagation)用于训练[前馈神经网络](https://wikipedia.org/wiki/Feedforward_neural_network)。
 - 1982 [循环神经网络](https://wikipedia.org/wiki/Recurrent_neural_network) 是源自产生时间图的前馈神经网络的人工神经网络。
@@ -22,7 +22,7 @@
 ✅ 做点调查。在ML和AI的历史上，还有哪些日期是重要的？
 ## 1950: 会思考的机器 
 
-艾伦·图灵，一个真正杰出的人，[在2019年被公众投票选出](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 作为20世纪最伟大的科学家，他认为有助于为“会思考的机器”的概念打下基础。他通过创建 [图灵测试](https://www.bbc.com/news/technology-18475646)来解决反对者和他自己对这一概念的经验证据的需求，您将在我们的 NLP 课程中进行探索。
+Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) 作为20世纪最伟大的科学家，他认为有助于为“会思考的机器”的概念打下基础。他通过创建 [图灵测试](https://www.bbc.com/news/technology-18475646)来解决反对者和他自己对这一概念的经验证据的需求，您将在我们的 NLP 课程中进行探索。
 
 ## 1956: 达特茅斯夏季研究项目
 
@@ -87,14 +87,14 @@
 
 这个时代见证了一个新的时代，ML和AI能够解决早期由于缺乏数据和计算能力而导致的一些问题。数据量开始迅速增加，变得越来越广泛，无论好坏，尤其是2007年左右智能手机的出现，计算能力呈指数级增长，算法也随之发展。这个领域开始变得成熟，因为过去那些随心所欲的日子开始具体化为一种真正的纪律。
 
-## Now
+## 现在
 
 今天，机器学习和人工智能几乎触及我们生活的每一个部分。这个时代要求仔细了解这些算法对人类生活的风险和潜在影响。正如微软的Brad Smith所言，“信息技术引发的问题触及隐私和言论自由等基本人权保护的核心。这些问题加重了制造这些产品的科技公司的责任。在我们看来，它们还呼吁政府进行深思熟虑的监管，并围绕可接受的用途制定规范”([来源](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/))。
 
 未来的情况还有待观察，但了解这些计算机系统以及它们运行的软件和算法是很重要的。我们希望这门课程能帮助你更好的理解，以便你自己决定。
 
-[![深度学习的历史 ](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "深度学习的历史 ")
-> 🎥 点击上图观看视频：Yann LeCun 在本次讲座中讨论深度学习的历史 
+[![深度学习的历史](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "深度学习的历史")
+> 🎥 点击上图观看视频：Yann LeCun在本次讲座中讨论深度学习的历史 
 
 ---
 ## 🚀挑战
