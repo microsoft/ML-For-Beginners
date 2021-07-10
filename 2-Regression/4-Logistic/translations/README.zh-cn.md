@@ -270,7 +270,7 @@ sns.lineplot(fpr, tpr)
 ```
 再次使用Seaborn，绘制模型的[接收操作特性](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc)或ROC。 ROC曲线通常用于根据分类器的真假阳性来了解分类器的输出。“ROC曲线通常具有Y轴上的真阳性率和X轴上的假阳性率。” 因此，曲线的陡度以及中点线与曲线之间的空间很重要：你需要一条快速向上并越过直线的曲线。在我们的例子中，一开始就有误报，然后这条线正确地向上和重复：
 
-![ROC](./images/ROC.png)
+![ROC](../images/ROC.png)
 
 最后，使用Scikit-learn的[`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score)来计算实际“曲线下面积”（AUC）：
 
