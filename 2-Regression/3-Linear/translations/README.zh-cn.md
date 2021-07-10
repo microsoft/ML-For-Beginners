@@ -1,82 +1,81 @@
-# Build a regression model using Scikit-learn: regression two ways
+# 使用Scikit-learn构建回归模型：两种方式的回归
 
-![Linear vs polynomial regression infographic](./images/linear-polynomial.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
-### Introduction 
+![线性与多项式回归信息图](../images/linear-polynomial.png)
+> 作者[Dasani Madipalli](https://twitter.com/dasani_decoded)
+## [课前测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
+### 介绍 
 
-So far you have explored what regression is with sample data gathered from the pumpkin pricing dataset that we will use throughout this lesson. You have also visualized it using Matplotlib. 
+到目前为止，您已经通过从我们将在本课程中使用的南瓜定价数据集收集的样本数据探索了什么是回归。您还使用Matplotlib对其进行了可视化。
 
-Now you are ready to dive deeper into regression for ML. In this lesson, you will learn more about two types of regression: _basic linear regression_ and _polynomial regression_, along with some of the math underlying these techniques.
+现在您已准备好深入研究ML的回归。 在本课中，您将详细了解两种类型的回归：_基本线性回归_和_多项式回归_，以及这些技术背后的一些数学知识。 
 
-> Throughout this curriculum, we assume minimal knowledge of math, and seek to make it accessible for students coming from other fields, so watch for notes, 🧮 callouts, diagrams, and other learning tools to aid in comprehension.
+> 在整个课程中，我们假设数学知识最少，并试图让来自其他领域的学生也能接触到它，因此请使用笔记、🧮标注、图表和其他学习工具以帮助理解。
 
-### Prerequisite
+### 前提
 
-You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file. In the file, the pumpkin price is displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in Visual Studio Code.
+您现在应该熟悉我们正在检查的南瓜数据的结构。您可以在本课的_notebook.ipynb_文件中找到它。 在这个文件中，南瓜的价格显示在一个新的dataframe 中。确保可以在Visual Studio Code代码的内核中运行这些notebooks。
 
-### Preparation
+### 准备
 
-As a reminder, you are loading this data so as to ask questions of it. 
+提醒一下，您正在加载此数据以提出问题。
 
-- When is the best time to buy pumpkins? 
-- What price can I expect of a case of miniature pumpkins?
-- Should I buy them in half-bushel baskets or by the 1 1/9 bushel box?
-Let's keep digging into this data.
+- 什么时候买南瓜最好？
+- 一箱微型南瓜的价格是多少？
+- 我应该买半蒲式耳还是1 1/9蒲式耳？
+让我们继续深入研究这些数据。
 
-In the previous lesson, you created a Pandas dataframe and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were only able to gather about 400 datapoints and only for the fall months. 
+在上一课中，您创建了一个Pandas dataframe并用原始数据集的一部分填充它，按蒲式耳标准化定价。但是，通过这样做，您只能收集大约400个数据点，而且只能收集秋季月份的数据。
 
-Take a look at the data that we preloaded in this lesson's accompanying notebook. The data is preloaded and an initial scatterplot is charted to show month data. Maybe we can get a little more detail about the nature of the data by cleaning it more.
+看看我们在本课随附的notebook中预加载的数据。数据已预加载，并绘制了初始散点图以显示月份数据。也许我们可以通过更多地清理数据来获得更多关于数据性质的细节。 
 
-## A linear regression line
+## 线性回归线
 
-As you learned in Lesson 1, the goal of a linear regression exercise is to be able to plot a line to:
+正如您在第1课中学到的，线性回归练习的目标是能够绘制一条线以便：
 
-- **Show variable relationships**. Show the relationship between variables
-- **Make predictions**. Make accurate predictions on where a new datapoint would fall in relationship to that line. 
+- **显示变量关系**。 显示变量之间的关系
+- **作出预测**。 准确预测新数据点与该线的关系。
  
-It is typical of **Least-Squares Regression** to draw this type of line. The term 'least-squares' means that all the datapoints surrounding the regression line are squared and then added up. Ideally, that final sum is as small as possible, because we want a low number of errors, or `least-squares`. 
+绘制这种类型的线是**最小二乘回归**的典型做法。术语“最小二乘法”意味着将回归线周围的所有数据点平方，然后相加。理想情况下，最终和尽可能小，因为我们希望错误数量较少，或“最小二乘法”。
 
-We do so since we want to model a line that has the least cumulative distance from all of our data points. We also square the terms before adding them since we are concerned with its magnitude rather than its direction.
+我们这样做是因为我们想要对一条与所有数据点的累积距离最小的线进行建模。我们还在添加它们之前对这些项进行平方，因为我们关心的是它的大小而不是它的方向。
 
-> **🧮 Show me the math** 
+> **🧮 数学知识** 
 > 
-> This line, called the _line of best fit_ can be expressed by [an equation](https://en.wikipedia.org/wiki/Simple_linear_regression): 
+> 这条线称为_最佳拟合线_，可以用[一个等式](https://en.wikipedia.org/wiki/Simple_linear_regression)表示：
 > 
 > ```
 > Y = a + bX
 > ```
 >
-> `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. The slope of the line is `b` and `a` is the y-intercept, which refers to the value of `Y` when `X = 0`. 
+> `X`是“解释变量”。`Y`是“因变量”。直线的斜率是`b`，`a`是y轴截距，指的是`X = 0`时`Y`的值。
 >
->![calculate the slope](images/slope.png)
+>![计算斜率](../images/slope.png)
 >
-> First, calculate the slope `b`. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> 首先，计算斜率`b`。作者[Jen Looper](https://twitter.com/jenlooper)
 >
-> In other words, and referring to our pumpkin data's original question: "predict the price of a pumpkin per bushel by month", `X` would refer to the price and `Y` would refer to the month of sale. 
+> 换句话说，参考我们的南瓜数据的原始问题：“按月预测每蒲式耳南瓜的价格”，`X`指的是价格，`Y`指的是销售月份。
 >
->![complete the equation](images/calculation.png)
+>![完成等式](../images/calculation.png)
 >
-> Calculate the value of Y. If you're paying around $4, it must be April! Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> 计算Y的值。如果你支付大约4美元，那一定是四月！作者[Jen Looper](https://twitter.com/jenlooper)
 >
-> The math that calculates the line must demonstrate the slope of the line, which is also dependent on the intercept, or where `Y` is situated when `X = 0`.
+> 计算直线的数学必须证明直线的斜率，这也取决于截距，或者当`X = 0`时`Y`所在的位置。
 >
-> You can observe the method of calculation for these values on the [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html) web site. Also visit [this Least-squares calculator](https://www.mathsisfun.com/data/least-squares-calculator.html) to watch how the numbers' values impact the line.
+> 您可以在[Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html)网站上观察这些值的计算方法。另请访问[这个最小二乘计算器](https://www.mathsisfun.com/data/least-squares-calculator.html)以观察数字的值如何影响直线。
 
-## Correlation
+## 相关性
 
-One more term to understand is the **Correlation Coefficient** between given X and Y variables. Using a scatterplot, you can quickly visualize this coefficient. A plot with datapoints scattered in a neat line have high correlation, but a plot with datapoints scattered everywhere between X and Y have a low correlation.
+另一个需要理解的术语是给定X和Y变量之间的**相关系数**。使用散点图，您可以快速可视化该系数。数据点散布在一条直线上的图具有高相关性，但数据点散布在X和Y之间的图具有低相关性。
 
-A good linear regression model will be one that has a high (nearer to 1 than 0) Correlation Coefficient using the Least-Squares Regression method with a line of regression.
+一个好的线性回归模型将是一个用最小二乘回归法与直线回归得到的高（更接近于1）相关系数的模型。
 
-✅ Run the notebook accompanying this lesson and look at the City to Price scatterplot. Does the data associating City to Price for pumpkin sales seem to have high or low correlation, according to your visual interpretation of the scatterplot? 
+✅ 运行本课随附的notebook并查看City to Price散点图。根据您对散点图的视觉解释，将南瓜销售的城市与价格相关联的数据似乎具有高相关性或低相关性？
 
+## 为回归准备数据
 
-## Prepare your data for regression
+现在您已经了解了本练习背后的数学原理，可以创建一个回归模型，看看您是否可以预测哪个南瓜包装的南瓜价格最优惠。为节日购买南瓜的人可能希望此信息能够优化他们如何购买南瓜包装。
 
-Now that you have an understanding of the math behind this exercise, create a Regression model to see if you can predict which package of pumpkins will have the best pumpkin prices. Someone buying pumpkins for a holiday pumpkin patch might want this information to be able to optimize their purchases of pumpkin packages for the patch.
-
-Since you'll use Scikit-learn, there's no reason to do this by hand (although you could!). In the main data-processing block of your lesson notebook, add a library from Scikit-learn to automatically convert all string data to numbers:
+由于您将使用Scikit-learn，因此没有理由手动执行此操作（尽管您可以！）。在课程notebook的主要数据处理块中，从Scikit-learn添加一个库以自动将所有字符串数据转换为数字：
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -84,37 +83,38 @@ from sklearn.preprocessing import LabelEncoder
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-If you look at the new_pumpkins dataframe now, you see that all the strings are now numeric. This makes it harder for you to read but much more intelligible for Scikit-learn!
-Now you can make more educated decisions (not just based on eyeballing a scatterplot) about the data that is best suited to regression.
+如果您现在查看new_pumpkins dataframe，您会看到所有字符串现在都是数字。这让你更难阅读，但对Scikit-learn来说更容易理解！
 
-Try to find a good correlation between two points of your data to potentially build a good predictive model. As it turns out, there's only weak correlation between the City and Price:
+现在，您可以对最适合回归的数据做出更有根据的决策（不仅仅是基于观察散点图）。
+
+尝试在数据的两点之间找到良好的相关性，以构建良好的预测模型。事实证明，城市和价格之间只有微弱的相关性：
 
 ```python
 print(new_pumpkins['City'].corr(new_pumpkins['Price']))
 0.32363971816089226
 ```
 
-However there's a bit better correlation between the Package and its Price. That makes sense, right? Normally, the bigger the produce box, the higher the price.
+然而，包装和它的价格之间有更好的相关性。这是有道理的，对吧？通常，农产品箱越大，价格越高。
 
 ```python
 print(new_pumpkins['Package'].corr(new_pumpkins['Price']))
 0.6061712937226021
 ```
 
-A good question to ask of this data will be: 'What price can I expect of a given pumpkin package?'
+对这些数据提出的一个很好的问题是：“我可以期望给定的南瓜包装的价格是多少？”
 
-Let's build this regression model
+让我们建立这个回归模型 
 
-## Building a linear model
+## 建立线性模型
 
-Before building your model, do one more tidy-up of your data. Drop any null data and check once more what the data looks like.
+在构建模型之前，再对数据进行一次整理。删除任何空数据并再次检查数据的样子。
 
 ```python
 new_pumpkins.dropna(inplace=True)
 new_pumpkins.info()
 ```
 
-Then, create a new dataframe from this minimal set and print it out:
+然后，从这个最小集合创建一个新的dataframe并将其打印出来：
 
 ```python
 new_columns = ['Package', 'Price']
@@ -139,15 +139,15 @@ lin_pumpkins
 415 rows × 2 columns
 ```
 
-1. Now you can assign your X and y coordinate data:
+1. 现在您可以分配X和y坐标数据：
 
    ```python
    X = lin_pumpkins.values[:, :1]
    y = lin_pumpkins.values[:, 1:2]
    ```
-✅ What's going on here? You're using [Python slice notation](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295) to create arrays to populate `X` and `y`.
+✅ 这里发生了什么？您正在使用[Python slice notation](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295)来创建数组来填充`X`和`y`。
 
-2. Next, start the regression model-building routines:
+2. 接下来，开始回归模型构建例程：
 
    ```python
    from sklearn.linear_model import LinearRegression
@@ -164,13 +164,13 @@ lin_pumpkins
    print('Model Accuracy: ', accuracy_score)
    ```
 
-   Because the correlation isn't particularly good, the model produced isn't terribly accurate.
+   因为相关性不是特别好，所以生成的模型不是非常准确。
 
    ```output
    Model Accuracy:  0.3315342327998987
    ```
 
-3. You can visualize the line that's drawn in the process:
+3. 您可以将过程中绘制的线条可视化：
 
    ```python
    plt.scatter(X_test, y_test,  color='black')
@@ -181,37 +181,37 @@ lin_pumpkins
 
    plt.show()
    ```
-   ![A scatterplot showing package to price relationship](./images/linear.png)
+   ![散点图显示包装与价格的关系](../images/linear.png)
 
-4. Test the model against a hypothetical variety:
+4. 针对假设的品种测试模型：
 
    ```python
    lin_reg.predict( np.array([ [2.75] ]) )
    ```
    
-   The returned price for this mythological Variety is:
+   这个神话般的品种的价格是：
 
    ```output
    array([[33.15655975]])
    ```
 
-That number makes sense, if the logic of the regression line holds true.
+如果回归线的逻辑成立，这个数字是有意义的。
 
-🎃 Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. Your holiday pumpkin patch will be beautiful. But you can probably create a better model!
-## Polynomial regression
+🎃 恭喜你，你刚刚创建了一个模型，可以帮助预测几个南瓜品种的价格。你的节日南瓜地会很漂亮的。但是你可以创造一个更好的模型！
 
-Another type of linear regression is polynomial regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
+## 多项式回归
 
-✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use polynomial regression
+另一种线性回归是多项式回归。虽然有时变量之间存在线性关系——南瓜的体积越大，价格就越高——但有时这些关系不能绘制成平面或直线。
 
-Take another look at the relationship between Variety to Price in the previous plot. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try polynomial regression.
+✅ 这里有可以使用多项式回归数据的[更多示例](https://online.stat.psu.edu/stat501/lesson/9/9.8)
 
-✅ Polynomials are mathematical expressions that might consist of one or more variables and coefficients
+再看一下上图中品种与价格之间的关系。这个散点图看起来是否应该用一条直线来分析？也许不是。在这种情况下，您可以尝试多项式回归。
 
-Polynomial regression creates a curved line to better fit nonlinear data. 
+✅ 多项式是可能由一个或多个变量和系数组成的数学表达式
 
-1. Let's recreate a dataframe populated with a segment of the original pumpkin data:
+多项式回归创建一条曲线以更好地拟合非线性数据。
 
+1. 让我们重新创建一个填充了原始南瓜数据片段的dataframe：
    ```python
    new_columns = ['Variety', 'Package', 'City', 'Month', 'Price']
    poly_pumpkins = new_pumpkins.drop([c for c in new_pumpkins.columns if c not in new_columns], axis='columns')
@@ -219,30 +219,31 @@ Polynomial regression creates a curved line to better fit nonlinear data.
    poly_pumpkins
    ```
 
-A good way to visualize the correlations between data in dataframes is to display it in a 'coolwarm' chart:
+可视化dataframe中数据之间相关性的一种好方法是将其显示在“coolwarm”图表中：
 
-2. Use the `Background_gradient()` method with `coolwarm` as its argument value:
+2. 使用`Background_gradient()`方法和`coolwarm`作为其参数值：
 
    ```python
    corr = poly_pumpkins.corr()
    corr.style.background_gradient(cmap='coolwarm')
    ```
-   This code creates a heatmap:
-   ![A heatmap showing data correlation](./images/heatmap.png)
+   这段代码创建了一个热图:
+   ![显示数据相关性的热图](../images/heatmap.png)
 
-Looking at this chart, you can visualize the good correlation between Package and Price. So you should be able to create a somewhat better model than the last one.
-### Create a pipeline
+查看此图表，您可以直观地看到Package和Price之间的良好相关性。所以你应该能够创建一个比上一个更好的模型。
 
-Scikit-learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes polynomial features, or predictions that form a nonlinear path.
+### 创建管道
 
-1. Build out the X and y columns:
+Scikit-learn包含一个用于构建多项式回归模型的有用API - `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline)。 创建了一个“管道”，它是一个估计器链。 在这种情况下，管道包括多项式特征或形成非线性路径的预测。
+
+1. 构建X和y列：
 
    ```python
    X=poly_pumpkins.iloc[:,3:4].values
    y=poly_pumpkins.iloc[:,4:5].values
    ```
 
-2. Create the pipeline by calling the `make_pipeline()` method:
+2. 通过调用`make_pipeline()`方法创建管道：
 
    ```python
    from sklearn.preprocessing import PolynomialFeatures
@@ -257,11 +258,11 @@ Scikit-learn includes a helpful API for building polynomial regression models - 
    y_pred=pipeline.predict(X_test)
    ```
 
-### Create a sequence
+### 创建序列
 
-At this point, you need to create a new dataframe with _sorted_ data so that the pipeline can create a sequence.
+此时，您需要使用_排序好的_数据创建一个新的dataframe ，以便管道可以创建序列。
 
-Add the following code:
+添加以下代码：
 
    ```python
    df = pd.DataFrame({'x': X_test[:,0], 'y': y_pred[:,0]})
@@ -275,57 +276,57 @@ Add the following code:
    plt.show()
    ```
 
-You created a new dataframe by calling `pd.DataFrame`. Then you sorted the values by calling `sort_values()`. Finally you created a polynomial plot:
+您通过调用`pd.DataFrame`创建了一个新的dataframe。然后通过调用`sort_values()`对值进行排序。最后你创建了一个多项式图：
 
-![A polynomial plot showing package to price relationship](./images/polynomial.png)
+![显示包装与价格关系的多项式图](../images/polynomial.png)
 
-You can see a curved line that fits your data better. 
+您可以看到更适合您的数据的曲线。
 
-Let's check the model's accuracy:
+让我们检查模型的准确性：
 
    ```python
    accuracy_score = pipeline.score(X_train,y_train)
    print('Model Accuracy: ', accuracy_score)
    ```
 
-   And voila!
+   瞧！
 
    ```output
    Model Accuracy:  0.8537946517073784
    ```
 
-That's better! Try to predict a price:
+这样好多了！试着预测一个价格：
 
-### Do a prediction
+### 做个预测
 
-Can we input a new value and get a prediction?
+我们可以输入一个新值并得到一个预测吗？
 
-Call `predict()` to make a prediction:
+调用`predict()`进行预测：
  
    ```python
    pipeline.predict( np.array([ [2.75] ]) )
    ```
-   You are given this prediction:
+   你会得到这样的预测：
 
    ```output
    array([[46.34509342]])
    ```
 
-It does make sense, given the plot! And, if this is a better model than the previous one, looking at the same data, you need to budget for these more expensive pumpkins!
+参照图像，这确实有道理！而且，如果这是一个比前一个更好的模型，看同样的数据，你需要为这些更昂贵的南瓜做好预算！
 
-🏆 Well done! You created two regression models in one lesson. In the final section on regression, you will learn about logistic regression to determine categories. 
+🏆 干得不错！您在一节课中创建了两个回归模型。在回归的最后一节中，您将了解逻辑回归以确定类别。 
 
 ---
-## 🚀Challenge
+## 🚀挑战
 
-Test several different variables in this notebook to see how correlation corresponds to model accuracy.
+在此notebook中测试几个不同的变量，以查看相关性与模型准确性的对应关系。
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
+## [课后测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
 
-## Review & Self Study
+## 复习与自学
 
-In this lesson we learned about Linear Regression. There are other important types of Regression. Read about Stepwise, Ridge, Lasso and Elasticnet techniques. A good course to study to learn more is the [Stanford Statistical Learning course](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
+在本课中，我们学习了线性回归。还有其他重要的回归类型。了解Stepwise、Ridge、Lasso和Elasticnet技术。学习更多信息的好课程是[斯坦福统计学习课程](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
 
-## Assignment 
+## 任务 
 
-[Build a Model](assignment.md)
+[构建模型](../assignment.md)
