@@ -44,7 +44,7 @@ Viaja connosco ao redor do mundo enquanto aplicamos estas técnicas clássicas a
 
 ## Conhece a equipa
 
-[![Promo video](ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU 'Promo video')
+[![Promo video](../ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "Promo video")
 
 > 🎥 Clica na imagem acima para um vídeo sobre o projeto e as pessoas que o criaram!
 
