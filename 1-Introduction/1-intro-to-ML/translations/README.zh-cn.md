@@ -8,26 +8,26 @@
 
 ### 介绍
 
-欢迎来到这个经典机器学习的初学者课程！无论您是这个主题的新手，还是一个有经验的ML从业者，我们都很高兴您能加入我们！我们希望为您的ML研究创建一个好的开始，并很乐意评估、回应和接受您的[反馈](https://github.com/microsoft/ML-For-Beginners/discussions)。
+欢迎来到这个经典机器学习的初学者课程！无论你是这个主题的新手，还是一个有经验的ML从业者，我们都很高兴你能加入我们！我们希望为你的ML研究创建一个好的开始，并很乐意评估、回应和接受你的[反馈](https://github.com/microsoft/ML-For-Beginners/discussions)。
 
 [![机器学习简介](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduction to ML")
 
 > 🎥 单击上图观看视频：麻省理工学院的 John Guttag 介绍机器学习
 ### 机器学习入门
 
-在开始本课程之前，您需要设置计算机能在本地运行Jupyter Notebooks。
+在开始本课程之前，你需要设置计算机能在本地运行Jupyter Notebooks。
 
-- **按照这些视频里的讲解配置您的计算机**。了解有关如何在此[视频集](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6)中设置计算机的更多信息。
-- **学习Python**. 还建议您对[Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa)，我们在本课程中使用的一种对数据科学家有用的编程语言，有一个基本的了解。
-- **学习Node.js和JavaScript**。在本课程中，我们在构建web应用程序时也使用过几次JavaScript，因此您需要有[node](https://nodejs.org)和[npm](https://www.npmjs.com/) 以及[Visual Studio Code](https://code.visualstudio.com/)用于Python和JavaScript开发。
-- **创建GitHub帐户**。既然你在[GitHub](https://github.com)上找到我们，您可能已经有了一个帐户，但如果没有，请创建一个帐户，然后fork此课程自己使用(也给我们一颗星星吧😊) 
+- **按照这些视频里的讲解配置你的计算机**。了解有关如何在此[视频集](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6)中设置计算机的更多信息。
+- **学习Python**. 还建议你对[Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa)，我们在本课程中使用的一种对数据科学家有用的编程语言，有一个基本的了解。
+- **学习Node.js和JavaScript**。在本课程中，我们在构建web应用程序时也使用过几次JavaScript，因此你需要有[node](https://nodejs.org)和[npm](https://www.npmjs.com/) 以及[Visual Studio Code](https://code.visualstudio.com/)用于Python和JavaScript开发。
+- **创建GitHub帐户**。既然你在[GitHub](https://github.com)上找到我们，你可能已经有了一个帐户，但如果没有，请创建一个帐户，然后fork此课程自己使用(也给我们一颗星星吧😊) 
 - **探索Scikit-learn**. 熟悉[Scikit-learn]([https://scikit-learn.org/stable/user_guide.html)，我们在这些课程中引用的一组ML库。
 
 ### 什么是机器学习？
 
-术语“机器学习”是当今最流行和最常用的术语之一。 如果您对科技有某种程度的熟悉，那么很可能您至少听说过这个术语一次，无论您在哪个领域工作。然而，机器学习的机制对大多数人来说是一个谜。 对于机器学习初学者来说，这个主题有时会让人感到不知所措。 因此，了解机器学习的实质是什么，并通过实例一步一步地了解机器学习是很重要的。
+术语“机器学习”是当今最流行和最常用的术语之一。 如果你对科技有某种程度的熟悉，那么很可能你至少听说过这个术语一次，无论你在哪个领域工作。然而，机器学习的机制对大多数人来说是一个谜。 对于机器学习初学者来说，这个主题有时会让人感到不知所措。 因此，了解机器学习的实质是什么，并通过实例一步一步地了解机器学习是很重要的。
 
-![机器学习趋势曲线](images/hype.png)
+![机器学习趋势曲线](../images/hype.png)
 
 > 谷歌趋势显示了“机器学习”一词最近的“趋势曲线”
 
@@ -39,15 +39,15 @@
 
 尽管这些术语可能会混淆，但机器学习 (ML) 是人工智能的一个重要子集。 **机器学习关注使用专门的算法来发现有意义的信息，并从感知数据中找到隐藏的模式，以证实理性的决策过程**。
 
-![人工智能、机器学习、深度学习、数据科学](images/ai-ml-ds.png)
+![人工智能、机器学习、深度学习、数据科学](../images/ai-ml-ds.png)
 
 > 显示AI、ML、深度学习和数据科学之间关系的图表。图片作者[Jen Looper](https://twitter.com/jenlooper)，灵感来自[这张图](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
-## 您将在本课程中学到什么
+## 你将在本课程中学到什么
 
 在本课程中，我们将仅涵盖初学者必须了解的机器学习的核心概念。 我们主要使用Scikit-learn来介绍我们所谓的“经典机器学习”，这是一个许多学生用来学习基础知识的优秀库。要理解更广泛的人工智能或深度学习的概念，机器学习的基础知识是必不可少的，所以我们想在这里提供它。
 
-在本课程中，您将学习：
+在本课程中，你将学习：
 
 - 机器学习的核心概念
 - 机器学习的历史
@@ -94,7 +94,7 @@
 ---
 ## 🚀 挑战
 
-在纸上或使用[Excalidraw](https://excalidraw.com/)等在线应用程序绘制草图，了解您对AI、ML、深度学习和数据科学之间差异的理解。添加一些关于这些技术擅长解决的问题的想法。
+在纸上或使用[Excalidraw](https://excalidraw.com/)等在线应用程序绘制草图，了解你对AI、ML、深度学习和数据科学之间差异的理解。添加一些关于这些技术擅长解决的问题的想法。
 
 ## [阅读后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2/)
 
@@ -104,4 +104,4 @@
 
 ## 任务
 
-[启动并运行](assignment.md)
+[启动并运行](../assignment.md)

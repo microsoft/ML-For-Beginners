@@ -1,6 +1,0 @@
-- [ ] quiz 1
-- [ ] written content
-- [ ] quiz 2
-- [ ] challenge
-- [ ] extra reading
-- [ ] assignment
