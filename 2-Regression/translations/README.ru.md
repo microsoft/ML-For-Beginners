@@ -3,7 +3,7 @@
 
 В Северной Америке на Хэллоуин из тыкв часто вырезают страшные лица. Давайте узнаем больше об этих восхитительных овощах!
 
-! [jack-o-lanterns](./images/jack-o-lanterns.jpg)
+![jack-o-lanterns](../images/jack-o-lanterns.jpg)
 > Фото <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Бет Тойчманн </a> на <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Unsplash </a>
   
 ## Что вы узнаете
