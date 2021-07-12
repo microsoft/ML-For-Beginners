@@ -1,55 +1,55 @@
 # Scikit-learnを用いた回帰モデルの構築: データの準備と可視化
 
-> ![Data visualization infographic](../images/data-visualization.png)
+> ![データの可視化に関するインフォグラフィック](../images/data-visualization.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) によるインフォグラフィック
 
 ## [講義前のクイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
 
 ## イントロダクション
 
-Now that you are set up with the tools you need to start tackling machine learning model building with Scikit-learn, you are ready to start asking questions of your data. As you work with data and apply ML solutions, it's very important to understand how to ask the right question to properly unlock the potentials of your dataset.
-
+Scikit-learnを使って機械学習モデルの構築を行うために必要なツールの用意ができたところで、データに対する問いかけを始める準備が整いました。データを扱いMLソリューションを適用する際には、データセットの潜在能力を適切に引き出すために正しい問いかけをすることが非常に重要です。
 
 このレッスンでは、以下のことを学びます。
 
 - モデルを構築するためのデータ処理方法について
 - データの可視化におけるMatplotlibの使い方について
 
-## Asking the right question of your data
+## データに対して正しい問いかけをする
 
-The question you need answered will determine what type of ML algorithms you will leverage. And the quality of the answer you get back will be heavily dependent on the nature of your data.
+どのような質問に答えるかによって、どのようなMLアルゴリズムを活用するかが決まります。また、返ってくる回答の質は、データの性質に大きく依存します。
 
-Take a look at the [data](../data/US-pumpkins.csv) provided for this lesson. You can open this .csv file in VS Code. A quick skim immediately shows that there are blanks and a mix of strings and numeric data. There's also a strange column called 'Package' where the data is a mix between 'sacks', 'bins' and other values. The data, in fact, is a bit of a mess.
+このレッスンのために用意された[データ]((../../data/US-pumpkins.csv))を見てみましょう。この.csvファイルは、VS Codeで開くことができます。ざっと確認してみると、空欄があったり、文字列や数値データが混在していることがわかります。また、'Package'という奇妙な列では 'sacks' や 'bins' などの異なる単位の値が混在しています。このように、データはちょっとした混乱状態にあります。
 
-In fact, it is not very common to be gifted a dataset that is completely ready to use to create a ML model out of the box. In this lesson, you will learn how to prepare a raw dataset using standard Python libraries. You will also learn various techniques to visualize the data.
+実際のところ、MLモデルの作成にすぐに使えるような整ったデータセットをそのまま受け取ることはあまりありません。このレッスンでは、Pythonの標準ライブラリを使って生のデータセットを準備する方法を学びます。また、データを可視化するための様々なテクニックを学びます。
 
-## Case study: 'the pumpkin market'
+## ケーススタディ: カボチャの市場
 
-In this folder you will find a .csv file in the root `data` folder called [US-pumpkins.csv](../data/US-pumpkins.csv) which includes 1757 lines of data about the market for pumpkins, sorted into groupings by city. This is raw data extracted from the [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distributed by the United States Department of Agriculture.
+ルートの`date`フォルダの中に [US-pumpkins.csv](../../data/US-pumpkins.csv) という名前の.csvファイルがあります。このファイルには、カボチャの市場に関する1757行のデータが、都市ごとにグループ分けされて入っています。これは、米国農務省が配布している [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) から抽出した生データです。
 
-### Preparing data
+### データの準備
 
-This data is in the public domain. It can be downloaded in many separate files, per city, from the USDA web site. To avoid too many separate files, we have concatenated all the city data into one spreadsheet, thus we have already _prepared_ the data a bit. Next, let's take a closer look at the data.
+このデータはパブリックドメインです。米国農務省のウェブサイトから、都市ごとに個別ファイルをダウンロードすることができます。ファイルが多くなりすぎないように、すべての都市のデータを1つのスプレッドシートに連結しました。次に、データを詳しく見てみましょう。
 
-### The pumpkin data - early conclusions
+### カボチャのデータ - 初期の結論
 
-What do you notice about this data? You already saw that there is a mix of strings, numbers, blanks and strange values that you need to make sense of.
+このデータについて何か気付いたことはありますか？文字列、数字、空白、奇妙な値が混在していて、意味を理解しなければならないこと気付いたと思います。
 
-What question can you ask of this data, using a Regression technique? What about "Predict the price of a pumpkin for sale during a given month". Looking again at the data, there are some changes you need to make to create the data structure necessary for the task. 
-## Exercise - analyze the pumpkin data
+回帰を使って、このデータにどのような問いかけができますか？「ある月に販売されるカボチャの価格を予測する」というのはどうでしょうか？データをもう一度見てみると、この課題に必要なデータ構造を作るために、いくつかの変更が必要です。
 
-Let's use [Pandas](https://pandas.pydata.org/), (the name stands for `Python Data Analysis`) a tool very useful for shaping data, to analyze and prepare this pumpkin data.
+## エクササイズ - カボチャのデータを分析
 
-### First, check for missing dates
+データを整形するのに非常に便利な [Pandas](https://pandas.pydata.org/) (Python Data Analysisの略) を使って、このカボチャのデータを分析したり整えてみましょう。
 
-You will first need to take steps to check for missing dates:
+### 最初に、日付が欠損していないか確認する
 
-1. Convert the dates to a month format (these are US dates, so the format is `MM/DD/YYYY`).
-2. Extract the month to a new column.
+日付が欠損していないか確認するために、いくつかのステップがあります:
 
-Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet in to a new Pandas dataframe.
+1. 日付を月の形式に変換する（これは米国の日付なので、形式は `MM/DD/YYYY` となる）。
+2. 新しい列として月を抽出する。
 
-1. Use the `head()` function to view the first five rows.
+Visual Studio Codeで _notebook.ipynb_ ファイルを開き、スプレッドシートを Pandas DataFrame としてインポートします。
+
+1. `head()` 関数を使って最初の5行を確認します。
 
     ```python
     import pandas as pd
@@ -57,30 +57,32 @@ Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet 
     pumpkins.head()
     ```
 
-    ✅ What function would you use to view the last five rows?
+    ✅ 最後の5行を表示するには、どのような関数を使用しますか？
 
-1. Check if there is missing data in the current dataframe:
+
+1. 現在のデータフレームに欠損データがあるかどうかをチェックします。
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    There is missing data, but maybe it won't matter for the task at hand.
+    欠損データがありましたが、今回のタスクには影響がなさそうです。
 
-1. To make your dataframe easier to work with, drop several of its columns, using `drop()`, keeping only the columns you need: 
+
+1. データフレームを扱いやすくするために、`drop()` 関数を使っていくつかの列を削除し、必要な列だけを残すようにします。
 
     ```python
     new_columns = ['Package', 'Month', 'Low Price', 'High Price', 'Date']
     pumpkins = pumpkins.drop([c for c in pumpkins.columns if c not in new_columns], axis=1)
     ```
 
-### Second, determine average price of pumpkin
+### 次に、カボチャの平均価格を決定します。
 
-Think about how to determine the average price of a pumpkin in a given month. What columns would you pick for this task? Hint: you'll need 3 columns.
+ある月のかぼちゃの平均価格を決定する方法を考えてみましょう。このタスクのために、どの列が必要ですか？ヒント：3つの列が必要になります。
 
-Solution: take the average of the `Low Price` and `High Price` columns to populate the new Price column, and convert the Date column to only show the month. Fortunately, according to the check above, there is no missing data for dates or prices.
+解決策：「最低価格」と「最高価格」の平均値を取って新しい「price」列を作成し、「日付」列を月のみ表示するように変換します。幸いなことに、上記で確認した結果によると日付や価格に欠損データはありませんでした。
 
-1. To calculate the average, add the following code:
+1. 平均値を算出するために、以下のコードを追加します。
 
     ```python
     price = (pumpkins['Low Price'] + pumpkins['High Price']) / 2
@@ -89,37 +91,39 @@ Solution: take the average of the `Low Price` and `High Price` columns to popula
     
     ```
 
-   ✅ Feel free to print any data you'd like to check using `print(month)`.
+   ✅ `print(month)` などを使って自由にデータを確認してみてください。
 
-2. Now, copy your converted data into a fresh Pandas dataframe:
+
+2. 変換したデータをPandasの新しいデータフレームにコピーします。
 
     ```python
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Printing out your dataframe will show you a clean, tidy dataset on which you can build your new regression model.
+    データフレームを出力すると、新しい回帰モデルを構築するための綺麗に整頓されたデータセットが表示されます。
 
-### But wait! There's something odd here
+### でも、待ってください！なにかおかしいです。
 
-If you look at the `Package` column, pumpkins are sold in many different configurations. Some are sold in '1 1/9 bushel' measures, and some in '1/2 bushel' measures, some per pumpkin, some per pound, and some in big boxes with varying widths.
+`Package` 列をみると、カボチャは様々な形で販売されています。「1 1/9ブッシェル」で売られているもの、「1/2ブッシェル」で売られているもの、かぼちゃ1個単位で売られているもの、1ポンド単位で売られているもの、幅の違う大きな箱で売られているものなど様々です。
 
-> Pumpkins seem very hard to weigh consistently
 
-Digging into the original data, it's interesting that anything with `Unit of Sale` equalling 'EACH' or 'PER BIN' also have the `Package` type per inch, per bin, or 'each'. Pumpkins seem to be very hard to weigh consistently, so let's filter them by selecting only pumpkins with the string 'bushel' in their `Package` column.
+> かぼちゃの重さを一定にするのはとても難しいようです。
 
-1. Add a filter at the top of the file, under the initial .csv import:
+元のデータを調べてみると、「Unit of Sale」が「EACH」または「PER BIN」となっているものは、「Package」が「per inch」、「per bin」、「each」となっているのが興味深いです。カボチャの計量単位に一貫性を持たせるのが非常に難しいようなので、`Package`列に「bushel」という文字列を持つカボチャだけを選択してフィルタリングしてみましょう。
+
+1. ファイルの一番上にフィルタを追加します。
 
     ```python
     pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
-    If you print the data now, you can see that you are only getting the 415 or so rows of data containing pumpkins by the bushel.
+    今、データを出力してみると、ブッシェル単位のカボチャを含む415行ほどのデータしか得られていないことがわかります。
 
-### But wait! There's one more thing to do
+### でも、待ってください！もうひとつ、やるべきことがあります。
 
-Did you notice that the bushel amount varies per row? You need to normalize the pricing so that you show the pricing per bushel, so do some math to standardize it.
+行ごとにブッシェルの量が異なることに気付きましたか？1ブッシェルあたりの価格を表示するためには、計算して価格を標準化する必要があります。
 
-1. Add these lines after the block creating the new_pumpkins dataframe:
+1. new_pumpkinsデータフレームを作成するブロックの後に以下の行を追加します。
 
     ```python
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1 1/9'), 'Price'] = price/(1 + 1/9)
@@ -127,34 +131,34 @@ Did you notice that the bushel amount varies per row? You need to normalize the 
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ According to [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), a bushel's weight depends on the type of produce, as it's a volume measurement. "A bushel of tomatoes, for example, is supposed to weigh 56 pounds... Leaves and greens take up more space with less weight, so a bushel of spinach is only 20 pounds." It's all pretty complicated! Let's not bother with making a bushel-to-pound conversion, and instead price by the bushel. All this study of bushels of pumpkins, however, goes to show how very important it is to understand the nature of your data!
+✅ [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308) によると、ブッシェルの重さは体積を測るものなので、農産物の種類によって異なります。例えば、トマトの1ブッシェルは、56ポンドの重さになるとされています。葉っぱや野菜は重量が少なくてもスペースを取るので、ほうれん草の1ブッシェルはたったの20ポンドです。なんだか複雑ですね！ブッシェルからポンドへの換算は面倒なのでやめて、ブッシェル単位で価格を決めましょう。しかし、カボチャのブッシェルについての議論は、データの性質を理解することがいかに重要であるかを示しています。
 
-Now, you can analyze the pricing per unit based on their bushel measurement. If you print out the data one more time, you can see how it's standardized.
+これで、ブッシェルの測定値に基づいて、ユニットごとの価格を分析することができます。もう1度データを出力してみると、標準化されていることがわかります。
 
-✅ Did you notice that pumpkins sold by the half-bushel are very expensive? Can you figure out why? Hint: little pumpkins are way pricier than big ones, probably because there are so many more of them per bushel, given the unused space taken by one big hollow pie pumpkin.
+✅ ハーフブッシェルで売られているカボチャがとても高価なことに気付きましたか？なぜだかわかりますか？小さなカボチャは大きなカボチャよりもはるかに高価です。おそらく大きなカボチャ中身には、体積あたりで考えると空洞な部分が多く含まれると考えられます。
 
-## Visualization Strategies
+## 可視化戦略
 
-Part of the data scientist's role is to demonstrate the quality and nature of the data they are working with. To do this, they often create interesting visualizations, or plots, graphs, and charts, showing different aspects of data. In this way, they are able to visually show relationships and gaps that are otherwise hard to uncover. 
+データサイエンティストの役割の一つは、扱うデータの質や性質を示すことです。そのために、データのさまざまな側面を示す興味深いビジュアライゼーション（プロット、グラフ、チャート）を作成することがよくあります。そうすることで、他の方法では発見しにくい関係性やギャップを視覚的に示すことができます。
 
-Visualizations can also help determine the machine learning technique most appropriate for the data. A scatterplot that seems to follow a line, for example, indicates that the data is a good candidate for a linear regression exercise.
+また、可視化することでデータに適した機械学習の手法を判断することができます。例えば、散布図が直線に沿っているように見える場合は、線形回帰が適用する手法の良い候補の一つとして考えられます。
 
-One data visualization libary that works well in Jupyter notebooks is [Matplotlib](https://matplotlib.org/) (which you also saw in the previous lesson).
+Jupyter notebookでうまく利用できるテータ可視化ライブラリの一つに [Matplotlib](https://matplotlib.org/) があります (前のレッスンでも紹介しています)。
 
-> Get more experience with data visualization in [these tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa).
+> [こちらのチュートリアル](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa) でデータの可視化ついてより深く体験することができます。
 
-## Exercise - experiment with Matplotlib
+## エクササイズ - Matplotlibの実験
 
-Try to create some basic plots to display the new dataframe you just created. What would a basic line plot show?
+先ほど作成したデータフレームを表示するために、いくつか基本的なプロットを作成してみてください。折れ線グラフから何が読み取れるでしょうか？
 
-1. Import Matplotlib at the top of the file, under the Pandas import:
+1. ファイルの先頭、Pandasのインポートの下で Matplotlibをインポートします。
 
     ```python
     import matplotlib.pyplot as plt
     ```
 
-1. Rerun the entire notebook to refresh.
-1. At the bottom of the notebook, add a cell to plot the data as a box:
+1. ノートブック全体を再実行してリフレッシュします。
+2. ノートブックの下部に、データをプロットするためのセルを追加します。
 
     ```python
     price = new_pumpkins.Price
@@ -163,39 +167,39 @@ Try to create some basic plots to display the new dataframe you just created. Wh
     plt.show()
     ```
 
-    ![A scatterplot showing price to month relationship](../images/scatterplot.png)
+    ![価格と月の関係を示す散布図](../images/scatterplot.png)
 
-    Is this a useful plot? Does anything about it surprise you?
+    これは役に立つプロットですか？なにか驚いたことはありますか？
 
-    It's not particularly useful as all it does is display in your data as a spread of points in a given month.
+    これはデータをある月についてデータの広がりとして表示しているだけなので、特に役に立つものではありません。
 
-### Make it useful
+### 活用できるようにする
 
-To get charts to display useful data, you usually need to group the data somehow. Let's try creating a plot where the y axis shows the months and the data demonstrates the distribution of data.
+グラフに有用なデータを表示するには、通常、データを何らかの方法でグループ化する必要があります。ここでは、X軸で月を表し、データの分布を示すようなプロットを作ってみましょう。
 
-1. Add a cell to create a grouped bar chart:
+1. セルを追加してグループ化された棒グラフを作成します。
 
     ```python
     new_pumpkins.groupby(['Month'])['Price'].mean().plot(kind='bar')
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![A bar chart showing price to month relationship](../images/barchart.png)
+    ![値段と月の関係を表した棒グラフ](../images/barchart.png)
 
-    This is a more useful data visualization! It seems to indicate that the highest price for pumpkins occurs in September and October. Does that meet your expectation? Why or why not?
+    このプロットの方が、より有用なデータを可視化しています！カボチャの価格が最も高くなるのは、9月と10月であることを示しているようです。このプロットはあなたの期待に応えるものですか？どのような点で期待通りですか？また、どのような点で期待に答えられていませんか？
 
 ---
 
-## 🚀Challenge
+## 🚀チャレンジ
 
-Explore the different types of visualization that Matplotlib offers. Which types are most appropriate for regression problems?
+Matplotlibが提供する様々なタイプのビジュアライゼーションを探ってみましょう。回帰の問題にはどのタイプが最も適しているでしょうか？
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
+## [講義後クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
 
-## Review & Self Study
+## レビュー & 自主学習
 
-Take a look at the many ways to visualize data. Make a list of the various libraries available and note which are best for given types of tasks, for example 2D visualizations vs. 3D visualizations. What do you discover?
+データを可視化するための様々な方法を見てみましょう。様々なライブラリをリストアップし、例えば2Dビジュアライゼーションと3Dビジュアライゼーションのように、特定のタイプのタスクに最適なものをメモします。どのような発見がありましたか？
 
-## Assignment
+## 課題
 
-[Exploring visualization](assignment.md)
+[ビジュアライゼーションの探求](assignment.md)
