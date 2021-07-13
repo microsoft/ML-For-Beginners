@@ -2,7 +2,7 @@
 
 Dans cette section du programme, vous découvrirez les concepts de base sous-jacents au domaine de l'apprentissage automatique, ce qu’il est, et vous découvrirez son histoire et les techniques que les chercheurs utilisent pour travailler avec lui.  Explorons ensemble ce nouveau monde de Machine Learning !
 
-![globe](images/globe.jpg)
+![globe](../images/globe.jpg)
 > Photo par <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> sur <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Leçons
