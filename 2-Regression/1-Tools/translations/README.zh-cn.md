@@ -1,6 +1,6 @@
 # 开始使用Python和Scikit学习回归模型
 
-![回归](../../sketchnotes/ml-regression.png)
+![回归](../../../sketchnotes/ml-regression.png)
 
 > 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
 
