@@ -217,7 +217,7 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
     print(classification_report(y_test,y_pred))
     ```
 
-    | precision    | recall | f1-score | support |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+    |              | precision | recall   | f1-score| support |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
     | ------------ | ------ | -------- | ------- | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
     | chinese      | 0.73   | 0.71     | 0.72    | 229  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
     | indian       | 0.91   | 0.93     | 0.92    | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
