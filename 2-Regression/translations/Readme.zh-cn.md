@@ -31,4 +31,4 @@
 
 ♥️ 测试的贡献者: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) 和 [Ornella Altunyan](https://twitter.com/ornelladotcom)
 
-南瓜数据集受此启发 [this project on Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) 并且其数据源自 [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) 由美国农业部上传分享。我们根据种类
+南瓜数据集受此启发 [this project on Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) 并且其数据源自 [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) 由美国农业部上传分享。我们根据种类添加了围绕颜色的一些数据点。这些数据处在公共的域名上。
