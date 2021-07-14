@@ -102,8 +102,8 @@
                         "Did you catch the game last night?"]
     ```
 
-    Here is some sample output to guide you (user input is on the lines starting with `>`):
-
+    以下是一些指导你的示例输出（用户输入位于以 `>` 开头的行上）：
+    
     ```output
     Hello, I am Marvin, the simple robot.
     You can end this conversation at any time by typing 'bye'
@@ -128,10 +128,6 @@
     该任务的一种可能解决方案在[这里](solution/bot.py)
 
     ✅ 停止并思考
-
-    1. Do you think the random responses would 'trick' someone into thinking that the bot actually understood them?
-    2. What features would the bot need to be more effective?
-    3. If a bot could really 'understand' the meaning of a sentence, would it need to 'remember' the meaning of previous sentences in a conversation too?
    
     1. 你认为随机响应会“欺骗”某人认为机器人实际上理解他们吗？
     2. 机器人需要哪些功能才能更有效？
