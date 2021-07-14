@@ -18,10 +18,10 @@ Dans ce groupe de leçons, vous serez préparé afin de commencer les tâches de
 
 ### Cours
 
-1. [Outils du métier](1-Tools/README.md)
-2. [Gestion des données](2-Data/README.md)
-3. [Régression linéaire et polynomiale](3-Linear/README.md)
-4. [Régression logistique](4-Logistic/README.md)
+1. [Outils du métier](1-Tools/translations/README.fr.md)
+2. [Gestion des données](2-Data/translations/README.fr.md)
+3. [Régression linéaire et polynomiale](3-Linear/translations/README.fr.md)
+4. [Régression logistique](4-Logistic/translations/README.fr.md)
 
 ---
 ### Crédits
