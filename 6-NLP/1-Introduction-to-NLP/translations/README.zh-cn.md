@@ -45,7 +45,7 @@
    python -m textblob.download_corpora
    ```
 
-> 💡 提示:可以在 VS Code 环境中直接运行 Python。 点击[docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa)查看更多信息。
+> 💡 提示：可以在 VS Code 环境中直接运行 Python。 点击[docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa)查看更多信息。
 
 ## 与机器对话
 
@@ -61,7 +61,7 @@
 
 ### Eliza的研发
 
-在 1960 年代，一位名叫 *Joseph Weizenbaum* 的麻省理工学院科学家开发了[*Eliza*](https:/wikipedia.org/wiki/ELIZA)，Eliza是一位计算机“治疗师”，它可以向人类提出问题并表现出理解他们的答案。然而，虽然 Eliza 可以解析句子并识别某些语法结构和关键字以给出合理的答案，但不能说它*理解*了句子。如果 Eliza 看到的句子格式为“**I am** <u>sad</u>”，它可能会重新排列并替换句子中的单词以形成响应“How long have ** you been** <u>sad</u>"。
+在 1960 年代，一位名叫 *Joseph Weizenbaum* 的麻省理工学院科学家开发了[*Eliza*](https:/wikipedia.org/wiki/ELIZA)，Eliza是一位计算机“治疗师”，它可以向人类提出问题并表现出理解他们的答案。然而，虽然 Eliza 可以解析句子并识别某些语法结构和关键字以给出合理的答案，但不能说它*理解*了句子。如果 Eliza 看到的句子格式为“**I am** <u>sad</u>”，它可能会重新排列并替换句子中的单词以形成响应“How long have **you been** <u>sad</u>"。
 
 这给人的印象是伊丽莎理解了这句话，并在问一个后续问题，而实际上，它是在改变时态并添加一些词。如果 Eliza 无法识别它有响应的关键字，它会给出一个随机响应，该响应可以适用于许多不同的语句。 Eliza 很容易被欺骗，例如，如果用户写了**You are** a <u>bicycle</u>"，它可能会回复"How long have **I been** a <u>bicycle</u>?"，而不是更合理的回答。
 
@@ -103,7 +103,7 @@
     ```
 
     以下是一些指导你的示例输出（用户输入位于以 `>` 开头的行上）：
-    
+
     ```output
     Hello, I am Marvin, the simple robot.
     You can end this conversation at any time by typing 'bye'
