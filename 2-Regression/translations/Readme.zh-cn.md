@@ -3,8 +3,8 @@
 
 在北美，南瓜经常在万圣节被刻上吓人的鬼脸。让我们来深入研究一下这种奇妙的蔬菜
 
-![jack-o-lanterns](./images/jack-o-lanterns.jpg)
-> Photo by <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> on <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+![jack-o-lantern](../images/jack-o-lanterns.jpg)
+> Foto oleh <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> di <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 ##你会学到什么
 
