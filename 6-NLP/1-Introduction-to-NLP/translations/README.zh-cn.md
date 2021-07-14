@@ -1,7 +1,7 @@
 # 自然语言处理介绍
 这节课讲解了*自然语言处理*简要历史和重要概念，*自然语言处理*是计算语言学的一个子领域。
 
-## [课前测验]](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/31/)
+## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/31/)
 
 ## 介绍
 众所周知，自然语言处理(Natural Language Processing, NLP)是机器学习在生产软件中应用最广泛的领域之一。
@@ -19,7 +19,7 @@
 
 如果你曾经在手机上使用语音输入替代键盘输入或者向语音助手小娜提问，那么你的语音将被转录为文本形式后进行处理或者叫*解析*。被检测到的关键字最后将被处理成手机或语音助手可以理解并采取行动的格式。
 
-![comprehension](images/comprehension.png)
+![comprehension](../images/comprehension.png)
 > 真实的语言理解十分困难！图源：[Jen Looper](https://twitter.com/jenlooper)
 ### 这项技术是如何实现的？
 
@@ -127,7 +127,6 @@
 
     该任务的一种可能解决方案在[这里](solution/bot.py)
 
-    ✅ Stop and consider
     ✅ 停止并思考
 
     1. Do you think the random responses would 'trick' someone into thinking that the bot actually understood them?
