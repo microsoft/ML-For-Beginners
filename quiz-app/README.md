@@ -1,6 +1,6 @@
 # Quizzes
 
-These quizzes are the pre- and post-lecture quizzes for the web development for ml curriculum at https://aka.ms/ml-beginners
+These quizzes are the pre- and post-lecture quizzes for the ML curriculum at https://aka.ms/ml-beginners
 
 ## Project setup
 
