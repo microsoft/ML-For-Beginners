@@ -2,7 +2,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
 [![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](../http://makeapullrequest.com)
 
 [![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
@@ -37,13 +37,13 @@
 
 > 如果希望进一步学习，我们推荐跟随 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) 的模块和学习路径。
 
-**对于老师们**，我们对于如何使用这套教程[提供了一些建议](for-teachers.md)。
+**对于老师们**，我们对于如何使用这套教程[提供了一些建议](../for-teachers.md)。
 
 ---
 
 ## 项目团队
 
-[![宣传视频](ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "宣传视频")
+[![宣传视频](../ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "宣传视频")
 
 > 🎥 点击上方的图片，来观看一个关于这个项目和它的创造者们的视频！
 
@@ -54,7 +54,7 @@
 
 通过确保课程内容与项目强相关，我们让学习过程对学生更具吸引力，概念的学习也被深化了。难度较低的课前测验可以吸引学生学习课程，课后的第二次测验进一步重复了课堂中的概念。该课程被设计地灵活有趣，可以一次性全部学习，或者分开来一部分一部分学习。这些项目由浅入深，从第一周的的小项目开始，在第十二周的周期结束时变得较为复杂。本课程还包括一个关于机器学习实际应用的后记，可用作额外学分或讨论的基础。
 
-> 在这里，你可以找到我们的[行为守则](CODE_OF_CONDUCT.md)，[对项目作出贡献](CONTRIBUTING.md)以及[翻译](TRANSLATIONS.md)指南。我们欢迎各位提出有建设性的反馈！
+> 在这里，你可以找到我们的[行为守则](../CODE_OF_CONDUCT.md)，[对项目作出贡献](../CONTRIBUTING.md)以及[翻译](../TRANSLATIONS.md)指南。我们欢迎各位提出有建设性的反馈！
 
 ## 每一节课都包含：
 
@@ -74,41 +74,41 @@
 
 | 课程编号 |                           主体                            |                       课程组                       | 学习目标                                                                                                             |                     课程链接                     |     作者     |
 | :-----------: | :--------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: | :------------: |
-|      01       |              机器学习简介              |      [简介](1-Introduction/README.md)       | 了解机器学习背后的基本概念                                                                                |   [课程](1-Introduction/1-intro-to-ML/README.md)    |    Muhammad    |
-|      02       |              机器学习的历史               |      [简介](1-Introduction/README.md)       | 了解该领域的历史                                                                                         |  [课程](1-Introduction/2-history-of-ML/README.md)   |  Jen 和 Amy   |
-|      03       |               机器学习与公平                |      [简介](1-Introduction/README.md)       | 在构建和应用机器学习模型时，我们应该考虑哪些有关公平的重要哲学问题？ |     [课程](1-Introduction/3-fairness/README.md)     |     Tomomi     |
-|      04       |              机器学习的技术工具               |      [简介](1-Introduction/README.md)       | 机器学习研究者使用哪些技术来构建机器学习模型？                                                                       | [课程](1-Introduction/4-techniques-of-ML/README.md) | Chris 和 Jen  |
-|      05       |                 回归简介                 |        [回归](2-Regression/README.md)         | 开始使用 Python 和 Scikit-learn 构建回归模型                                                                  |       [课程](2-Regression/1-Tools/README.md)        |      Jen       |
-|      06       |              北美南瓜价格 🎃               |        [回归](2-Regression/README.md)         | 可视化、进行数据清理，为机器学习做准备                                                                                  |        [课程](2-Regression/2-Data/README.md)        |      Jen       |
-|      07       |              北美南瓜价格 🎃               |        [回归](2-Regression/README.md)         | 建立线性和多项式回归模型                                                                                   |       [课程](2-Regression/3-Linear/README.md)       |      Jen       |
-|      08       |              北美南瓜价格 🎃               |        [回归](2-Regression/README.md)         | 构建逻辑回归模型                                                                                               |      [课程](2-Regression/4-Logistic/README.md)      |      Jen       |
-|      09       |                        一个网页应用 🔌                         |           [网页应用](3-Web-App/README.md)            | 构建一个 Web 应用程序以使用经过训练的模型                                                                                       |        [课程](3-Web-App/1-Web-App/README.md)        |      Jen       |
-|      10       |               分类简介               |    [分类](4-Classification/README.md)     | 清理、准备和可视化数据； 分类简介                                                            |  [课程](4-Classification/1-Introduction/README.md)  | Jen 和 Cassie |
-|      11       |          美味的亚洲和印度美食 🍜            |    [分类](4-Classification/README.md)     | 分类器简介                                                                                                     | [课程](4-Classification/2-Classifiers-1/README.md)  | Jen 和 Cassie |
-|      12       |          美味的亚洲和印度美食 🍜            |    [分类](4-Classification/README.md)     | 关于分类器的更多内容                                                                                                                | [课程](4-Classification/3-Classifiers-2/README.md)  | Jen 和 Cassie |
-|      13       |          美味的亚洲和印度美食 🍜            |    [分类](4-Classification/README.md)     | 使用您的模型构建一个可以「推荐」的 Web 应用                                                                                    |    [课程](4-Classification/4-Applied/README.md)     |      Jen       |
-|      14       |                 聚类简介                 |        [聚类](5-Clustering/README.md)         | 清理、准备和可视化数据； 聚类简介                                                                |     [课程](5-Clustering/1-Visualize/README.md)      |      Jen       |
-|      15       |            探索尼日利亚人的音乐品味 🎧             |        [聚类](5-Clustering/README.md)         | 探索 K-Means 聚类方法                                                                                           |      [课程](5-Clustering/2-K-Means/README.md)       |      Jen       |
-|      16       |       自然语言处理 (NLP) 简介  ☕️       |   [自然语言处理](6-NLP/README.md)    | 通过构建一个简单的 bot (机器人) 来了解 NLP 的基础知识                                                                             |    [课程](6-NLP/1-Introduction-to-NLP/README.md)    |    Stephen     |
-|      17       |                     常见的 NLP 任务 ☕️                     |   [自然语言处理](6-NLP/README.md)    | 通过理解处理语言结构时所需的常见任务来加深对于自然语言处理 (NLP) 的理解                          |           [课程](6-NLP/2-Tasks/README.md)           |    Stephen     |
-|      18       |            翻译和情感分析 ♥️            |   [自然语言处理](6-NLP/README.md)    | 对简·奥斯汀的文本进行翻译和情感分析                                                                             |   [课程](6-NLP/3-Translation-Sentiment/README.md)   |    Stephen     |
-|      19       |                欧洲的浪漫酒店 ♥️                 |   [自然语言处理](6-NLP/README.md)    | 对于酒店评价进行情感分析（上）                                                                                        |      [课程](6-NLP/4-Hotel-Reviews-1/README.md)      |    Stephen     |
-|      20       |                欧洲的浪漫酒店 ♥️                 |   [自然语言处理](6-NLP/README.md)    | 对于酒店评价进行情感分析（下）                                                                                         |      [课程](6-NLP/5-Hotel-Reviews-2/README.md)      |    Stephen     |
-|      21       |          时间序列预测简介           |        [时间序列](7-TimeSeries/README.md)        | 时间序列预测简介 forecasting                                                                                         |    [课程](7-TimeSeries/1-Introduction/README.md)    |   Francesca    |
-|      22       | ⚡️ 世界用电量 ⚡️ - 使用 ARIMA 进行时间序列预测 |        [时间序列](7-TimeSeries/README.md)        | 使用 ARIMA 进行时间序列预测                                                                                              |       [课程](7-TimeSeries/2-ARIMA/README.md)        |   Francesca    |
-|      23       |           强化学习简介           | [强化学习](8-Reinforcement/README.md) | Q-Learning 强化学习简介                                                                          |    [课程](8-Reinforcement/1-QLearning/README.md)    |     Dmitry     |
-|      24       |                帮助 Peter 避开狼！🐺                | [强化学习](8-Reinforcement/README.md) | 强化学习练习                                                                                                      |       [课程](8-Reinforcement/2-Gym/README.md)       |     Dmitry     |
-|  后记   |          现实世界中的机器学习场景和应用          |      [自然场景下的机器学习](9-Real-World/README.md)       | 探索有趣的经典机器学习方法，了解现实世界中机器学习的应用                                                               |    [课程](9-Real-World/1-Applications/README.md)    |      团队      |
+|      01       |              机器学习简介              |      [简介](../1-Introduction/README.md)       | 了解机器学习背后的基本概念                                                                                |   [课程](../1-Introduction/1-intro-to-ML/README.md)    |    Muhammad    |
+|      02       |              机器学习的历史               |      [简介](../1-Introduction/README.md)       | 了解该领域的历史                                                                                         |  [课程](../1-Introduction/2-history-of-ML/README.md)   |  Jen 和 Amy   |
+|      03       |               机器学习与公平                |      [简介](../1-Introduction/README.md)       | 在构建和应用机器学习模型时，我们应该考虑哪些有关公平的重要哲学问题？ |     [课程](../1-Introduction/3-fairness/README.md)     |     Tomomi     |
+|      04       |              机器学习的技术工具               |      [简介](../1-Introduction/README.md)       | 机器学习研究者使用哪些技术来构建机器学习模型？                                                                       | [课程](../1-Introduction/4-techniques-of-ML/README.md) | Chris 和 Jen  |
+|      05       |                 回归简介                 |        [回归](../2-Regression/README.md)         | 开始使用 Python 和 Scikit-learn 构建回归模型                                                                  |       [课程](../2-Regression/1-Tools/README.md)        |      Jen       |
+|      06       |              北美南瓜价格 🎃               |        [回归](../2-Regression/README.md)         | 可视化、进行数据清理，为机器学习做准备                                                                                  |        [课程](../2-Regression/2-Data/README.md)        |      Jen       |
+|      07       |              北美南瓜价格 🎃               |        [回归](../2-Regression/README.md)         | 建立线性和多项式回归模型                                                                                   |       [课程](../2-Regression/3-Linear/README.md)       |      Jen       |
+|      08       |              北美南瓜价格 🎃               |        [回归](../2-Regression/README.md)         | 构建逻辑回归模型                                                                                               |      [课程](../2-Regression/4-Logistic/README.md)      |      Jen       |
+|      09       |                        一个网页应用 🔌                         |           [网页应用](../3-Web-App/README.md)            | 构建一个 Web 应用程序以使用经过训练的模型                                                                                       |        [课程](../3-Web-App/1-Web-App/README.md)        |      Jen       |
+|      10       |               分类简介               |    [分类](../4-Classification/README.md)     | 清理、准备和可视化数据； 分类简介                                                            |  [课程](../4-Classification/1-Introduction/README.md)  | Jen 和 Cassie |
+|      11       |          美味的亚洲和印度美食 🍜            |    [分类](../4-Classification/README.md)     | 分类器简介                                                                                                     | [课程](../4-Classification/2-Classifiers-1/README.md)  | Jen 和 Cassie |
+|      12       |          美味的亚洲和印度美食 🍜            |    [分类](../4-Classification/README.md)     | 关于分类器的更多内容                                                                                                                | [课程](../4-Classification/3-Classifiers-2/README.md)  | Jen 和 Cassie |
+|      13       |          美味的亚洲和印度美食 🍜            |    [分类](../4-Classification/README.md)     | 使用您的模型构建一个可以「推荐」的 Web 应用                                                                                    |    [课程](../4-Classification/4-Applied/README.md)     |      Jen       |
+|      14       |                 聚类简介                 |        [聚类](../5-Clustering/README.md)         | 清理、准备和可视化数据； 聚类简介                                                                |     [课程](../5-Clustering/1-Visualize/README.md)      |      Jen       |
+|      15       |            探索尼日利亚人的音乐品味 🎧             |        [聚类](../5-Clustering/README.md)         | 探索 K-Means 聚类方法                                                                                           |      [课程](../5-Clustering/2-K-Means/README.md)       |      Jen       |
+|      16       |       自然语言处理 (NLP) 简介  ☕️       |   [自然语言处理](../6-NLP/README.md)    | 通过构建一个简单的 bot (机器人) 来了解 NLP 的基础知识                                                                             |    [课程](../6-NLP/1-Introduction-to-NLP/README.md)    |    Stephen     |
+|      17       |                     常见的 NLP 任务 ☕️                     |   [自然语言处理](../6-NLP/README.md)    | 通过理解处理语言结构时所需的常见任务来加深对于自然语言处理 (NLP) 的理解                          |           [课程](../6-NLP/2-Tasks/README.md)           |    Stephen     |
+|      18       |            翻译和情感分析 ♥️            |   [自然语言处理](../6-NLP/README.md)    | 对简·奥斯汀的文本进行翻译和情感分析                                                                             |   [课程](../6-NLP/3-Translation-Sentiment/README.md)   |    Stephen     |
+|      19       |                欧洲的浪漫酒店 ♥️                 |   [自然语言处理](../6-NLP/README.md)    | 对于酒店评价进行情感分析（上）                                                                                        |      [课程](../6-NLP/4-Hotel-Reviews-1/README.md)      |    Stephen     |
+|      20       |                欧洲的浪漫酒店 ♥️                 |   [自然语言处理](../6-NLP/README.md)    | 对于酒店评价进行情感分析（下）                                                                                         |      [课程](../6-NLP/5-Hotel-Reviews-2/README.md)      |    Stephen     |
+|      21       |          时间序列预测简介           |        [时间序列](../7-TimeSeries/README.md)        | 时间序列预测简介 forecasting                                                                                         |    [课程](../7-TimeSeries/1-Introduction/README.md)    |   Francesca    |
+|      22       | ⚡️ 世界用电量 ⚡️ - 使用 ARIMA 进行时间序列预测 |        [时间序列](../7-TimeSeries/README.md)        | 使用 ARIMA 进行时间序列预测                                                                                              |       [课程](../7-TimeSeries/2-ARIMA/README.md)        |   Francesca    |
+|      23       |           强化学习简介           | [强化学习](../8-Reinforcement/README.md) | Q-Learning 强化学习简介                                                                          |    [课程](../8-Reinforcement/1-QLearning/README.md)    |     Dmitry     |
+|      24       |                帮助 Peter 避开狼！🐺                | [强化学习](../8-Reinforcement/README.md) | 强化学习练习                                                                                                      |       [课程](../8-Reinforcement/2-Gym/README.md)       |     Dmitry     |
+|  后记   |          现实世界中的机器学习场景和应用          |      [自然场景下的机器学习](../9-Real-World/README.md)       | 探索有趣的经典机器学习方法，了解现实世界中机器学习的应用                                                               |    [课程](../9-Real-World/1-Applications/README.md)    |      团队      |
 ## 离线访问
 
 您可以使用 [Docsify](https://docsify.js.org/#/) 离线运行此文档。 Fork 这个仓库，并在你的本地机器上[安装 Docsify](https://docsify.js.org/#/quickstart)，并在这个仓库的根文件夹中运行 `docsify serve`。你可以通过 localhost 的 3000 端口访问此文档：`localhost:3000`。
 ## PDF 文档们
 
-点击[这里](pdf/readme.pdf)查找课程的 PDF 文档们。
+点击[这里](../pdf/readme.pdf)查找课程的 PDF 文档们。
 
 ## 需要你的帮助！
 
-想贡献一份翻译吗？请阅读我们的[翻译指南](TRANSLATIONS.md)并在[此处](https://github.com/microsoft/ML-For-Beginners/issues/71)添加你的意见。
+想贡献一份翻译吗？请阅读我们的[翻译指南](../TRANSLATIONS.md)并在[此处](https://github.com/microsoft/ML-For-Beginners/issues/71)添加你的意见。
 
 ## 其他课程
 
