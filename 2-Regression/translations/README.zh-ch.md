@@ -19,10 +19,10 @@
 
 ### Lessons
 
-1. [交易的工具](../1-Tools/README.md)
-2. [管理数据](../2-Data/README.md)
-3. [线性和多项式回归](../3-Linear/README.md)
-4. [逻辑回归](../4-Logistic/README.md)
+1. [交易的工具](../1-Tools/translations/README.zh-cn.md)
+2. [管理数据](../2-Data/translations/README.zh-cn.md)
+3. [线性和多项式回归](../3-Linear/translations/README.zh-cn.md)
+4. [逻辑回归](../4-Logistic/translations/README.zh-cn.md)
 
 ---
 ### Credits
