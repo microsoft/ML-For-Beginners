@@ -1,58 +1,58 @@
-# Build a Web App to use a ML Model
+# 构建使用ML模型的Web应用程序
 
-In this lesson, you will train an ML model on a data set that's out of this world: _UFO sightings over the past century_, sourced from [NUFORC's database](https://www.nuforc.org).
+在本课中，你将在一个数据集上训练一个ML模型，这个数据集来自世界各地：过去一个世纪的UFO目击事件，来源于[NUFORC的数据库](https://www.nuforc.org)。
 
-You will learn:
+你将学会：
 
-- How to 'pickle' a trained model
-- How to use that model in a Flask app
+- 如何“pickle”一个训练有素的模型
+- 如何在Flask应用程序中使用该模型
 
-We will continue our use of notebooks to clean data and train our model, but you can take the process one step further by exploring using a model 'in the wild', so to speak: in a web app.
+我们将继续使用notebook来清理数据和训练我们的模型，但你可以进一步探索在web应用程序中使用模型。
 
-To do this, you need to build a web app using Flask.
+为此，你需要使用Flask构建一个web应用程序。
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
+## [课前测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
 
-## Building an app
+## 构建应用程序
 
-There are several ways to build web apps to consume machine learning models. Your web architecture may influence the way your model is trained. Imagine that you are working in a business where the data science group has trained a model that they want you to use in an app.
+有多种方法可以构建Web应用程序以使用机器学习模型。你的web架构可能会影响你的模型训练方式。想象一下，你在一家企业工作，其中数据科学小组已经训练了他们希望你在应用程序中使用的模型。 
 
-### Considerations
+### 注意事项 
 
-There are many questions you need to ask: 
+你需要问很多问题： 
 
-- **Is it a web app or a mobile app?** If you are building a mobile app or need to use the model in an IoT context, you could use [TensorFlow Lite](https://www.tensorflow.org/lite/) and use the model in an Android or iOS app.
-- **Where will the model reside**? In the cloud or locally?
-- **Offline support**. Does the app have to work offline?
-- **What technology was used to train the model?** The chosen technology may influence the tooling you need to use.
-   - **Using Tensor flow**. If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).  
-   - **Using PyTorch**.  If you are building a model using a library such as [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use the [Onnx Runtime](https://www.onnxruntime.ai/). This option will be explored in a future lesson for a Scikit-learn-trained model.
-   - **Using Lobe.ai or Azure Custom vision**. If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
+- **它是web应用程序还是移动应用程序？**如果你正在构建移动应用程序或需要在物联网环境中使用模型，你可以使用[TensorFlow Lite](https://www.tensorflow.org/lite/)并在Android或iOS应用程序中使用该模型。
+- **模型放在哪里？**在云端还是本地？
+- **离线支持**。该应用程序是否必须离线工作？ 
+- **使用什么技术来训练模型？**所选的技术可能会影响你需要使用的工具。 
+   - **使用Tensor flow**。例如，如果你正在使用TensorFlow训练模型，则该生态系统提供了使用[TensorFlow.js](https://www.tensorflow.org/js/)转换TensorFlow模型以便在Web应用程序中使用的能力。
+   - **使用 PyTorch**。如果你使用[PyTorch](https://pytorch.org/)等库构建模型，则可以选择将其导出到[ONNX](https://onnx.ai/)（开放神经网络交换)格式，用于可以使用 [Onnx Runtime](https://www.onnxruntime.ai/)的JavaScript Web 应用程序。此选项将在Scikit-learn-trained模型的未来课程中进行探讨。
+   - **使用Lobe.ai或Azure自定义视觉**。如果你使用ML SaaS（软件即服务）系统，例如[Lobe.ai](https://lobe.ai/)或[Azure Custom Vision](https://azure.microsoft.com/services/ cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa)来训练模型，这种类型的软件提供了为许多平台导出模型的方法，包括构建一个定制API，供在线应用程序在云中查询。
 
-You also have the opportunity to build an entire Flask web app that would be able to train the model itself in a web browser. This can also be done using TensorFlow.js in a JavaScript context.
+你还有机会构建一个完整的Flask Web应用程序，该应用程序能够在 Web浏览器中训练模型本身。这也可以在JavaScript上下文中使用 TensorFlow.js来完成。 
 
-For our purposes, since we have been working with Python-based notebooks, let's explore the steps you need to take to export a trained model from such a notebook to a format readable by a Python-built web app.
+出于我们的目的，既然我们一直在使用基于Python的notebook，那么就让我们探讨一下将经过训练的模型从notebook导出为Python构建的web应用程序可读的格式所需要采取的步骤。
 
-## Tool
+## 工具
 
-For this task, you need two tools: Flask and Pickle, both of which run on Python.
+对于此任务，你需要两个工具：Flask和Pickle，它们都在Python上运行。 
 
-✅ What's [Flask](https://palletsprojects.com/p/flask/)? Defined as a 'micro-framework' by its creators, Flask provides the basic features of web frameworks using Python and a templating engine to build web pages.  Take a look at [this Learn module](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa) to practice building with Flask.
+✅ 什么是 [Flask](https://palletsprojects.com/p/flask/)？ Flask被其创建者定义为“微框架”，它提供了使用Python和模板引擎构建网页的Web框架的基本功能。看看[本学习单元](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa)练习使用Flask构建应用程序。 
 
-✅ What's [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 is a Python module that serializes and de-serializes a Python object structure. When you 'pickle' a model, you serialize or flatten its structure for use on the web. Be careful: pickle is not intrinsically secure, so be careful if prompted to 'un-pickle' a file. A pickled file has the suffix `.pkl`.
+✅ 什么是[Pickle](https://docs.python.org/3/library/pickle.html)？ Pickle🥒是一 Python模块，用于序列化和反序列化 Python对象结构。当你“pickle”一个模型时，你将其结构序列化或展平以在 Web上使用。小心：pickle本质上不是安全的，所以如果提示“un-pickle”文件，请小心。生产的文件具有后缀`.pkl`。
 
-## Exercise - clean your data
+## 练习 - 清理你的数据 
 
-In this lesson you'll use data from 80,000 UFO sightings, gathered by [NUFORC](https://nuforc.org) (The National UFO Reporting Center). This data has some interesting descriptions of UFO sightings, for example:
+在本课中，你将使用由 [NUFORC](https://nuforc.org)（国家 UFO 报告中心）收集的80,000次UFO目击数据。这些数据对UFO目击事件有一些有趣的描述，例如：
 
-- **Long example description**. "A man emerges from a beam of light that shines on a grassy field at night and he runs towards the Texas Instruments parking lot".
-- **Short example description**. "the lights chased us".
+- **详细描述**。"一名男子从夜间照射在草地上的光束中出现，他朝德克萨斯仪器公司的停车场跑去"。
+- **简短描述**。 “灯光追着我们”。 
 
-The [ufos.csv](./data/ufos.csv) spreadsheet includes columns about the `city`, `state` and `country` where the sighting occurred, the object's `shape` and its `latitude` and `longitude`. 
+[ufos.csv](./data/ufos.csv)电子表格包括有关目击事件发生的`city`、`state`和`country`、对象的`shape`及其`latitude`和`longitude`的列。
 
-In the blank [notebook](notebook.ipynb) included in this lesson: 
+在包含在本课中的空白[notebook](notebook.ipynb)中： 
 
-1. import `pandas`, `matplotlib`, and `numpy` as you did in previous lessons and import the ufos spreadsheet. You can take a look at a sample data set:
+1. 像在之前的课程中一样导入`pandas`、`matplotlib`和`numpy`，然后导入ufos电子表格。你可以查看一个示例数据集： 
 
     ```python
     import pandas as pd
@@ -62,7 +62,7 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.head()
     ```
 
-1. Convert the ufos data to a small dataframe with fresh titles. Check the unique values in the `Country` field.
+2. 将ufos数据转换为带有新标题的小dataframe。检查`country`字段中的唯一值。 
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
@@ -70,7 +70,7 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.Country.unique()
     ```
 
-1. Now, you can reduce the amount of data we need to deal with by dropping any null values and only importing sightings between 1-60 seconds:
+3. 现在，你可以通过删除任何空值并仅导入1-60秒之间的目击数据来减少我们需要处理的数据量：
 
     ```python
     ufos.dropna(inplace=True)
@@ -80,9 +80,9 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.info()
     ```
 
-1. Import Scikit-learn's `LabelEncoder` library to convert the text values for countries to a number:
+4. 导入Scikit-learn的`LabelEncoder`库，将国家的文本值转换为数字： 
 
-   ✅ LabelEncoder encodes data alphabetically
+   ✅ LabelEncoder按字母顺序编码数据 
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -92,7 +92,7 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.head()
     ```
 
-    Your data should look like this:
+    你的数据应如下所示：
 
     ```output
     	Seconds	Country	Latitude	Longitude
@@ -103,11 +103,11 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     24	3.0	    3	    51.783333	-0.783333
     ```
 
-## Exercise - build your model
+## 练习 - 建立你的模型 
 
-Now you can get ready to train a model by diving the data into the training and testing group. 
+现在，你可以通过将数据划分为训练和测试组来准备训练模型。 
 
-1. Select the three features you want to train on as your X vector, and the y vector will be the `Country`. You want to be able to input `Seconds`, `Latitude` and `Longitude` and get a country id to return.
+1. 选择要训练的三个特征作为X向量，y向量将是`Country` 你希望能够输入`Seconds`、`Latitude`和`Longitude`并获得要返回的国家/地区ID。
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -120,7 +120,7 @@ Now you can get ready to train a model by diving the data into the training and 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. Train your model using logistic regression:
+2. 使用逻辑回归训练模型： 
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report 
@@ -134,13 +134,13 @@ Now you can get ready to train a model by diving the data into the training and 
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-The accuracy isn't bad **(around 95%)**, unsurprisingly, as `Country` and `Latitude/Longitude` correlate.
+准确率还不错**（大约 95%）**，不出所料，因为`Country`和`Latitude/Longitude`相关。
 
-The model you created isn't very revolutionary as you should be able to infer a `Country` from its `Latitude` and `Longitude`, but it's a good exercise to try to train from raw data that you cleaned, exported, and then use this model in a web app.
+你创建的模型并不是非常具有革命性，因为你应该能够从其`Latitude`和`Longitude`推断出`Country`，但是，尝试从清理、导出的原始数据进行训练，然后在web应用程序中使用此模型是一个很好的练习。
 
-## Exercise - 'pickle' your model
+## 练习 - “pickle”你的模型
 
-Now, it's time to _pickle_ your model! You can do that in a few lines of code. Once it's _pickled_, load your pickled model and test it against a sample data array containing values for seconds, latitude and longitude,
+现在，是时候_pickle_你的模型了！你可以在几行代码中做到这一点。一旦它是 _pickled_，加载你的pickled模型并针对包含秒、纬度和经度值的示例数据数组对其进行测试， 
 
 ```python
 import pickle
@@ -151,15 +151,15 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-The model returns **'3'**, which is the country code for the UK. Wild! 👽
+该模型返回**'3'**，这是英国的国家代码。👽
 
-## Exercise - build a Flask app
+## 练习 - 构建Flask应用程序 
 
-Now you can build a Flask app to call your model and return similar results, but in a more visually pleasing way.
+现在你可以构建一个Flask应用程序来调用你的模型并返回类似的结果，但以一种更美观的方式。
 
-1. Start by creating a folder called **web-app** next to the _notebook.ipynb_ file where your _ufo-model.pkl_ file resides.
+1. 首先在你的 _ufo-model.pkl_ 文件所在的_notebook.ipynb_文件旁边创建一个名为**web-app**的文件夹。 
 
-1. In that folder create three more folders: **static**, with a folder **css** inside it, and **templates`**. You should now have the following files and directories:
+2. 在该文件夹中创建另外三个文件夹：**static**，其中有文件夹**css**和**templates`**。 你现在应该拥有以下文件和目录
 
     ```output
     web-app/
@@ -170,9 +170,9 @@ Now you can build a Flask app to call your model and return similar results, but
     ufo-model.pkl
     ``` 
 
-   ✅ Refer to the solution folder for a view of the finished app
+   ✅ 请参阅解决方案文件夹以查看已完成的应用程序 
 
-1. The first file to create in _web-app_ folder is **requirements.txt** file. Like _package.json_ in a JavaScript app, this file lists dependencies required by the app. In **requirements.txt** add the lines: 
+3. 在_web-app_文件夹中创建的第一个文件是**requirements.txt**文件。与JavaScript应用程序中的_package.json_一样，此文件列出了应用程序所需的依赖项。在**requirements.txt**中添加以下几行：  
 
     ```text
     scikit-learn
@@ -181,25 +181,25 @@ Now you can build a Flask app to call your model and return similar results, but
     flask
     ```
 
-1. Now, run this file by navigating to _web-app_:
+4. 现在，进入web-app文件夹： 
 
    ```bash
    cd web-app
    ```
 
-1. In your terminal type `pip install`, to install the libraries listed in _reuirements.txt_:
+5. 在你的终端中输入`pip install`，以安装_reuirements.txt_中列出的库：
 
    ```bash
    pip install -r requirements.txt
    ```
 
-1. Now, you're ready to create three more files to finish the app:
+6. 现在，你已准备好创建另外三个文件来完成应用程序： 
 
-    1. Create **app.py** in the root
-    2. Create **index.html** in _templates_ directory.
-    3. Create **styles.css** in _static/css_ directory.
+    1. 在根目录中创建**app.py** 
+    2. 在_templates_目录中创建**index.html**。 
+    3. 在_static/css_目录中创建**styles.css**。 
 
-1. Build out the _styles.css__ file with a few styles:
+7. 使用一些样式构建_styles.css_文件： 
 
     ```css
     body {
@@ -233,7 +233,7 @@ Now you can build a Flask app to call your model and return similar results, but
     }
     ```
 
-1. Next, build out the _index.html_ file:
+8. 接下来，构建_index.html_文件： 
 
     ```html
     <!DOCTYPE html>
@@ -268,11 +268,11 @@ Now you can build a Flask app to call your model and return similar results, but
     </html>
     ```
 
-    Take a look at the templating in this file. Notice the 'mustache' syntax around variables that will be provided by the app, like the prediction text: `{{}}`. There's also a form that posts a prediction to the `/predict` route.
+    看看这个文件中的模板。请注意应用程序将提供的变量周围的“mustache”语法，例如预测文本：`{{}}`。还有一个表单可以将预测发布到`/predict`路由。
 
-    Finally, you're ready to build the python file that drives the consumption of the model and the display of predictions:
+    最后，你已准备好构建使用模型和显示预测的python 文件：
 
-1. In `app.py` add:
+9. 在`app.py`中添加:
 
     ```python
     import numpy as np
@@ -309,39 +309,39 @@ Now you can build a Flask app to call your model and return similar results, but
         app.run(debug=True)
     ```
 
-   > 💡 Tip: when you add [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) while running the web app using Flask, any changes you make to your application will be reflected immediately without the need to restart the server. Beware! Don't enable this mode in a production app.
+   > 💡 提示：当你在使用Flask运行Web应用程序时添加 [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode)时你对应用程序所做的任何更改将立即反映，无需重新启动服务器。注意！不要在生产应用程序中启用此模式
 
-If you run `python app.py` or `python3 app.py` - your web server starts up, locally, and you can fill out a short form to get an answer to your burning question about where UFOs have been sighted!
+如果你运行`python app.py`或`python3 app.py` - 你的网络服务器在本地启动，你可以填写一个简短的表格来回答你关于在哪里看到UFO的问题！
 
-Before doing that, take a look at the parts of `app.py`:
+在此之前，先看一下`app.py`的实现： 
 
-1. First, dependencies are loaded and the app starts.
-1. Then, the model is imported.
-1. Then, index.html is rendered on the home route.
+1. 首先，加载依赖项并启动应用程序。
+2. 然后，导入模型。
+3. 然后，在home路由上渲染index.html。 
 
-On the `/predict` route, several things happen when the form is posted:
+在`/predict`路由上，当表单被发布时会发生几件事情： 
 
-1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned.
-2. The Countries that we want displayed are re-rendered as readable text from their predicted country code, and that value is sent back to index.html to be rendered in the template.
+1. 收集表单变量并转换为numpy数组。然后将它们发送到模型并返回预测。
+2. 我们希望显示的国家/地区根据其预测的国家/地区代码重新呈现为可读文本，并将该值发送回index.html以在模板中呈现。 
 
-Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction. 
+以这种方式使用模型，包括Flask和pickled模型，是相对简单的。最困难的是要理解数据是什么形状的，这些数据必须发送到模型中才能得到预测。这完全取决于模型是如何训练的。有三个数据要输入，以便得到一个预测。
 
-In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+在一个专业的环境中，你可以看到训练模型的人和在Web或移动应用程序中使用模型的人之间的良好沟通是多么的必要。在我们的情况下，只有一个人，你！
 
 ---
 
-## 🚀 Challenge: 
+## 🚀 挑战: 
 
-Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. What are the pros and cons of pursuing this method?
+你可以在Flask应用程序中训练模型，而不是在notebook上工作并将模型导入Flask应用程序！尝试在notebook中转换Python代码，可能是在清除数据之后，从应用程序中的一个名为`train`的路径训练模型。采用这种方法的利弊是什么？
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18/)
+## [课后测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18/)
 
-## Review & Self Study
+## 复习与自学 
 
-There are many ways to build a web app to consume ML models. Make a list of the ways you could use JavaScript or Python to build a web app to leverage machine learning. Consider architecture: should the model stay in the app or live in the cloud? If the latter, how would you access it? Draw out an architectural model for an applied ML web solution.
+有很多方法可以构建一个Web应用程序来使用ML模型。列出可以使用JavaScript或Python构建Web应用程序以利用机器学习的方法。考虑架构：模型应该留在应用程序中还是存在于云中？如果是后者，你将如何访问它？为应用的ML Web解决方案绘制架构模型。 
 
-## Assignment 
+## 任务 
 
-[Try a different model](assignment.md)
+[尝试不同的模型](../assignment.md)
 
 
