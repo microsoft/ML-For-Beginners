@@ -133,7 +133,7 @@ Let's create the bot next. We'll start by defining some phrases.
     It was nice talking to you, goodbye!
     ```
 
-    One possible solution to the task is [here](solution/bot.py)
+    One possible solution to the task is [here](../solution/bot.py)
 
     ✅ Stop and consider
 
@@ -162,4 +162,4 @@ Take a look at the references below as further reading opportunities.
 
 ## Assignment 
 
-[Search for a bot](assignment.md)
+[Search for a bot](../assignment.md)
