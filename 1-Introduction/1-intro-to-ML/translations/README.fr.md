@@ -27,7 +27,7 @@ Avant de commencer avec ce cours, vous aurez besoin d'un ordinateur configuré e
 
 Le terme `machine learning` est un des mots les plus populaire et le plus utilisé ces derniers temps. Il y a une probabilité accrue que vous l'ayez entendu au moins une fois si vous avez une appétence pour la technologie indépendamment du domaine dans lequel vous travaillez. Le fonctionnement du machine learning, cependant, reste un mystère pour la plupart des personnes. Pour un débutant en machine learning, le sujet peut nous submerger. Ainsi, il est important de comprendre ce qu'est le machine learning et de l'apprendre petit à petit au travers d'exemples pratiques.   
 
-![ml hype curve](images/hype.png)
+![ml hype curve](../images/hype.png)
 
 > Google Trends montre la récente 'courbe de popularité' pour le mot 'machine learning'
 
@@ -39,7 +39,7 @@ Le [cerveau humain](https://www.livescience.com/29365-human-brain.html) perçoit
 
 Bien que le terme peut être confu, machine learning (ML) est un important sous-ensemble de l'intelligence artificielle. **ML se réfère à l'utilisation d'algorithmes spécialisés afin de découvrir des informations utiles et de trouver des schémas cachés depuis des données perçues pour corroborer un processus de décision rationnel**.
 
-![AI, ML, deep learning, data science](images/ai-ml-ds.png)
+![AI, ML, deep learning, data science](../images/ai-ml-ds.png)
 
 > Un diagramme montrant les relations entre AI, ML, deep learning et data science. Infographie par [Jen Looper](https://twitter.com/jenlooper) et inspiré par [ce graphique](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
