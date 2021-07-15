@@ -125,7 +125,7 @@
     It was nice talking to you, goodbye!
     ```
 
-    该任务的一种可能解决方案在[这里](solution/bot.py)
+    该任务的一种可能解决方案在[这里](../solution/bot.py)
 
     ✅ 停止并思考
    
@@ -152,4 +152,4 @@
 
 ## 任务
 
-[查找一个机器人](assignment.md)
+[查找一个机器人](../assignment.md)
