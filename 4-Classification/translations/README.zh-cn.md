@@ -3,7 +3,7 @@
 
 在亚洲，饮食传统极其多样化，而且非常美味！让我们来看看各地区的美食数据，来尝试了解它们的成分。
 
-![泰国食品商店](./images/thai-food.jpg)
+![泰国食品商店](../images/thai-food.jpg)
 > 图片由 <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> 经 <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> 提供
   
 ## 你将会学到什么
