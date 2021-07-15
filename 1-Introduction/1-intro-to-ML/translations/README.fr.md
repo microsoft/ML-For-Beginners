@@ -4,7 +4,7 @@
 
 > 🎥 Cliquer sur l'image ci-dessus afin de regarder une vidéo expliquant la différence entre machine learning, AI et deep learning.
 
-## [Quiz de pré-conférence](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
+## [Quiz prélecture](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
 
 ### Introduction
 
@@ -33,11 +33,11 @@ Le terme `machine learning` est un des mots les plus populaire et le plus utilis
 
 Nous vivons dans un univers rempli de mystères fascinants. De grands scientifiques comme Stephen Hawking, Albert Einstein et pleins d'autres ont dévoués leur vie à la recherche d'informations utiles afin de dévoiler les mystères qui nous entourent. C'est la condition humaine pour apprendre : un enfant apprend de nouvelles choses et découvre la structure du monde année après année jusqu'à qu'ils deviennent adultes.
 
-Le cerveau d'un enfant et ses sens perçoivent l'environnement qui les entourent et apprennent graduellement des schémas secrets de la vie qui vont l'aider à fabriquer des règles logiques afin d'identifier les schémas appris. Le processus d'apprentissage du cerveau humain est ce que rend les hommes comme la créature la plus sophistiquée du monde vivant. Apprendre continuellement par la découverte de schémas cachés et ensuite innover sur ces schémas nous permet de nous améliorer tout au long de notre vie. Cette capacité d'apprendre et d'évoluer est liée au concept de [plasticité neuronale](https://www.simplypsychology.org/brain-plasticity.html), nous pouvons tirer quelques motivations similaires entre le processus d'apprentissage du cerveau humain et le concept de machine learning.
+Le cerveau d'un enfant et ses sens perçoivent l'environnement qui les entourent et apprennent graduellement des schémas non observés de la vie qui vont l'aider à fabriquer des règles logiques afin d'identifier les schémas appris. Le processus d'apprentissage du cerveau humain est ce que rend les hommes comme la créature la plus sophistiquée du monde vivant. Apprendre continuellement par la découverte de schémas non observés et ensuite innover sur ces schémas nous permet de nous améliorer tout au long de notre vie. Cette capacité d'apprendre et d'évoluer est liée au concept de [plasticité neuronale](https://www.simplypsychology.org/brain-plasticity.html), nous pouvons tirer quelques motivations similaires entre le processus d'apprentissage du cerveau humain et le concept de machine learning.
 
 Le [cerveau humain](https://www.livescience.com/29365-human-brain.html) perçoit des choses du monde réel, assimile les informations perçues, fait des décisions rationnelles et entreprend certaines actions selon le contexte. C'est ce que l'on appelle se comporter intelligemment. Lorsque nous programmons une reproduction du processus de ce comportement à une machine, c'est ce que l'on appelle intelligence artificielle (IA).
 
-Bien que le terme peut être confu, machine learning (ML) est un important sous-ensemble de l'intelligence artificielle. **ML se réfère à l'utilisation d'algorithmes spécialisés afin de découvrir des informations utiles et de trouver des schémas cachés depuis des données perçues pour corroborer un processus de décision rationnel**.
+Bien que le terme peut être confu, machine learning (ML) est un important sous-ensemble de l'intelligence artificielle. **ML se réfère à l'utilisation d'algorithmes spécialisés afin de découvrir des informations utiles et de trouver des schémas non observés depuis des données perçues pour corroborer un processus de décision rationnel**.
 
 ![AI, ML, deep learning, data science](../images/ai-ml-ds.png)
 
@@ -70,7 +70,7 @@ Afin d'avoir la meilleur expérience d'apprentissage, nous éviterons les comple
 
 ## Pourquoi etudier le machine learning ?
 
-Le machine learning, depuis une perspective systémique, est défini comme la création de systèmes automatiques pouvant apprendre des schémas cachés depuis des données afin d'aider à prendre des décisions intelligentes.
+Le machine learning, depuis une perspective systémique, est défini comme la création de systèmes automatiques pouvant apprendre des schémas non observés depuis des données afin d'aider à prendre des décisions intelligentes.
 
 Ce but est faiblement inspiré de la manière dont le cerveau humain apprend certaines choses depuis les données qu'il perçoit du monde extérieur.
 
@@ -98,7 +98,7 @@ Dans un avenir proche, comprendre les bases du machine learning sera indispensab
 
 Esquisser, sur papier ou à l'aide d'une application en ligne comme [Excalidraw](https://excalidraw.com/), votre compréhension des différences entre l'IA, le ML, le deep learning et la data science. Ajouter quelques idées de problèmes que chacune de ces techniques est bonne à résoudre.
 
-## [Quiz de post-conférence](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2/)
+## [Quiz postlecture](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2/)
 
 ## Révision et auto-apprentissage
 
