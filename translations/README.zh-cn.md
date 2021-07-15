@@ -43,7 +43,7 @@
 
 ## 项目团队
 
-[![宣传视频](../ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "宣传视频")
+[![宣传视频](ml-for-beginners.zh-cn.png)](https://youtu.be/Tj1XWrDSYJU "宣传视频")
 
 > 🎥 点击上方的图片，来观看一个关于这个项目和它的创造者们的视频！
 
