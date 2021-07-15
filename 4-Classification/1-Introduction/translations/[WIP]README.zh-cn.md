@@ -1,53 +1,52 @@
-# Introduction to classification
+# 分类的介绍
 
-In these four lessons, you will explore a fundamental focus of classic machine learning - _classification_. We will walk through using various classification algorithms with a dataset about all the brilliant cuisines of Asia and India. Hope you're hungry!
+在这四节课中，您将探索经典机器学习的一个基本重点——_分类_ 。我们将利用各种分类算法对泛亚的佳肴数据集进行演练。希望你如饥似渴了！
 
-![just a pinch!](images/pinch.png)
+![就放一点儿！](../images/pinch.png)
 
-> Celebrate pan-Asian cuisines in these lessons! Image by [Jen Looper](https://twitter.com/jenlooper)
+> 在这些课程中享受泛亚美食吧！图片由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-Classification is a form of [supervised learning](https://wikipedia.org/wiki/Supervised_learning) that bears a lot in common with regression techniques. If machine learning is all about predicting values or names to things by using datasets, then classification generally falls into two groups: _binary classification_ and _multiclass classification_.
+分类是[监督学习](https://wikipedia.org/wiki/Supervised_learning)的一种形式，与回归技术有很多共同之处。如果说机器学习就是通过使用数据集来预测事物的值或名称，那么分类通常就是其中两类：_二元分类_ 和 _多元分类_ 。
 
-[![Introduction to classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to classification")
+[![分类的介绍](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "分类的介绍")
 
-> 🎥 Click the image above for a video: MIT's John Guttag introduces classification
+> 🎥 点击上面的图片来观看：MIT的 John Guttag 向您介绍分类
 
-Remember:
+请记住：
 
-- **Linear regression** helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict _what price a pumpkin would be in September vs. December_, for example.
-- **Logistic regression** helped you discover "binary categories": at this price point, _is this pumpkin orange or not-orange_?
+- **线性回归** 帮助您预测变量之间的关系，并准确预测新数据点与该线的关系。举个例子，您可以预测 *南瓜在九月与十二月的价格* 。
+- **逻辑回归** 帮助您发现“二元归类”：在这个价位上，*这个南瓜是橙色还是非橙色* ？
 
-Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
+分类利用各种算法提供了确定数据点的标签或类别的另外一种方法。让我们使用这些美食数据，看看能否通过观察菜谱，来确定其美食的来源。
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
+## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
 
-### Introduction
+### 简介
 
-Classification is one of the fundamental activities of the machine learning researcher and data scientist. From basic classification of a binary value ("is this email spam or not?"), to complex image classification and segmentation using computer vision, it's always useful to be able to sort data into classes and ask questions of it.
+分类是机器学习研究人员和数据科学家的基本活动之一。从基本的二元分类（“这是否是垃圾邮件？”），到使用计算机视觉的复杂图像识别。能够将数据分类并提出问题总是很有帮助的。
 
-To state the process in a more scientific way, your classification method creates a predictive model that enables you to map the relationship between input variables to output variables.
+用更严谨的方式说明这一过程——您的分类方法创建了一个预测模型，使您能够将输入变量之间的关系映射到输出变量。
 
-![binary vs. multiclass classification](images/binary-multiclass.png)
+![binary vs. multiclass classification](../images/binary-multiclass.png)
 
-> Binary vs. multiclass problems for classification algorithms to handle. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> 适合使用分类算法处理的二元与多元问题。由 [Jen Looper](https://twitter.com/jenlooper) 绘制的图示
 
-Before starting the process of cleaning our data, visualizing it, and prepping it for our ML tasks, let's learn a bit about the various ways machine learning can be leveraged to classify data.
+在开始着手清理数据、可视化以及为机器学习任务准备数据之前，让我们先了解一下机器学习之中可用于对数据进行分类的各种方式。
 
-Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification), classification using classic machine learning uses features, such as `smoker`, `weight`, and `age` to determine _likelihood of developing X disease_. As a supervised learning technique similar to the regression exercises you performed earlier, your data is labeled and the ML algorithms use those labels to classify and predict classes (or 'features') of a dataset and assign them to a group or outcome.
+依据[维基百科的统计](https://wikipedia.org/wiki/Statistical_classification)，经典的机器学习分类法利用一些特征，如`吸烟`、`体重`与`年龄`等，来确定患某些疾病的可能性。跟您之前做过的的回归练习类似，在监督学习中，机器学习算法利用数据集的类别（或“特征”），来进行归类和预测，并得出一个分类或结果。
 
-✅ Take a moment to imagine a dataset about cuisines. What would a multiclass model be able to answer? What would a binary model be able to answer? What if you wanted to determine whether a given cuisine was likely to use fenugreek? What if you wanted to see if, given a present of a grocery bag full of star anise, artichokes, cauliflower, and horseradish, you could create a typical Indian dish?
+✅ 让我们花点时间来思考关于美食的数据集。多元模型能够回答什么？二元模型能够回答什么？如果您想确定给定的菜肴是否会使用胡芦巴怎么办？如果您想知道拥有一个装满八角、朝鲜蓟、花椰菜和芥末的食材包，您是否可以制作出典型的印度菜？
 
 [![Crazy mystery baskets](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Crazy mystery baskets")
 
-> 🎥 Click the image above for a video.The whole premise of the show 'Chopped' is the 'mystery basket' where chefs have to make some dish out of a random choice of ingredients. Surely a ML model would have helped!
+> 🎥 单击上面的图片观看视频。“疯厨胡炖（Chopped）”节目会拿出一个“神秘篮子”，其中装有一些随机的食材，厨师必须用这些食材来制作菜肴。在这种情况下，机器学习当然会很有帮助！
+## 你好呀 '分类器'
 
-## Hello 'classifier'
+关于这个美食数据集的问题实际上是一个**多元分类**问题——如果我们有一些选定国家的美食，知道了它们的配料，推测出他们是哪个国家的美食。
 
-The question we want to ask of this cuisine dataset is actually a **multiclass question**, as we have several potential national cuisines to work with. Given a batch of ingredients, which of these many classes will the data fit?
+Scikit-learn 提供了适用于不同问题类型的几种用于对数据进行分类的算法模型。在接下来的两课中，您将了解其中的几种算法。
 
-Scikit-learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
-
-## Exercise - clean and balance your data
+## 练习 - 清理和平衡您的数据 
 
 The first task at hand, before starting this project, is to clean and **balance** your data to get better results. Start with the blank _notebook.ipynb_ file in the root of this folder.
 
