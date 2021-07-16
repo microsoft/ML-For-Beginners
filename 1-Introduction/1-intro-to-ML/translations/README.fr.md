@@ -102,7 +102,7 @@ Esquisser, sur papier ou à l'aide d'une application en ligne comme [Excalidraw]
 
 ## Révision et auto-apprentissage
 
-Pour en savoir plus sur la façon dont vous pouvez utiliser les algorithmes de ML dans le cloud, suivez ce [Parcours d'apprentissage](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine- learning/?WT.mc_id=academic-15963-cxa).
+Pour en savoir plus sur la façon dont vous pouvez utiliser les algorithmes de ML dans le cloud, suivez ce [Parcours d'apprentissage](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa).
 
 ## Devoir
 
