@@ -106,4 +106,4 @@ Pour en savoir plus sur la façon dont vous pouvez utiliser les algorithmes de M
 
 ## Devoir
 
-[Être opérationnel](../assignment.md)
+[Être opérationnel](assignment.fr.md)
