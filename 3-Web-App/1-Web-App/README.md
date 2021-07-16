@@ -165,7 +165,7 @@ Now you can build a Flask app to call your model and return similar results, but
     web-app/
       static/
         css/
-        templates/
+      templates/
     notebook.ipynb
     ufo-model.pkl
     ``` 
