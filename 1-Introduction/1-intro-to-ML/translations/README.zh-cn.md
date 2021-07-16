@@ -104,4 +104,4 @@
 
 ## 任务
 
-[启动并运行](../assignment.md)
+[启动并运行](assignment.zh-cn.md)
