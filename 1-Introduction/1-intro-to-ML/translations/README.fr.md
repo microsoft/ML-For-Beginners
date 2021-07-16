@@ -8,7 +8,7 @@
 
 ### Introduction
 
-Bienvenue à ce cours sur le machine learning classique pour débutant ! Que vous soyez complètement nouveau sur ce sujet ou que vous soyez un professonnel du ML expérimenté cherchant à peaufiner vos connaissances, nous sommes heureux de vous avoir avec nous ! Nous voulons créer un tremplin chaleureux pour vos études en ML et serions ravis d'évaluer, de répondre et d'apprendre de vos retours d'[expériences](https://github.com/microsoft/ML-For-Beginners/discussions).
+Bienvenue à ce cours sur le machine learning classique pour débutant ! Que vous soyez complètement nouveau sur ce sujet ou que vous soyez un professionnel du ML expérimenté cherchant à peaufiner vos connaissances, nous sommes heureux de vous avoir avec nous ! Nous voulons créer un tremplin chaleureux pour vos études en ML et serions ravis d'évaluer, de répondre et d'apprendre de vos retours d'[expériences](https://github.com/microsoft/ML-For-Beginners/discussions).
 
 [![Introduction au ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduction to ML")
 
@@ -45,7 +45,7 @@ Bien que le terme peut être confu, machine learning (ML) est un important sous-
 
 ## Ce que vous allez apprendre dans ce cours
 
-Dans ce cours, nous allons nous concentrer sur les concepts clés du machine learning qu'un débutant se doit de connaître. Nous parlerons ce que l'on appelle le 'machine learning classique' en utilisant principalement Scikit-learn, une excellente librairie que beaucoup d'étudiants utilisent afin d'apprendre les bases. Afin de comprendre les concepts plus larges de l'intelligence artificielle ou du deep learning, une profonde connaissance en machine learning est indispensable, et c'est ce que nous aimerions fournir ici.
+Dans ce cours, nous allons nous concentrer sur les concepts clés du machine learning qu'un débutant se doit de connaître. Nous parlerons de ce que l'on appelle le 'machine learning classique' en utilisant principalement Scikit-learn, une excellente librairie que beaucoup d'étudiants utilisent afin d'apprendre les bases. Afin de comprendre les concepts plus larges de l'intelligence artificielle ou du deep learning, une profonde connaissance en machine learning est indispensable, et c'est ce que nous aimerions fournir ici.
 
 Dans ce cours, vous allez apprendre :
 
