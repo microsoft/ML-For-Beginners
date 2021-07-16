@@ -229,8 +229,7 @@ We are now ready to implement the learning algorithm. Before we do that, we also
     We add a few `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
 
 Run them learning algorithm through 5000 experiments, also called **epochs**: (code block 8)
-
-    ```python
+```python
     for epoch in range(5000):
     
         # Pick initial point
@@ -255,11 +254,11 @@ Run them learning algorithm through 5000 experiments, also called **epochs**: (c
             ai = action_idx[a]
             Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
             n+=1
-    ```
+```
 
-    After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
+After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
 
-    <img src="images/learned.png"/>
+<img src="images/learned.png"/>
 
 ## Checking the policy
 

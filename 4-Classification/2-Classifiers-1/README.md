@@ -21,15 +21,14 @@ Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a
 
     The data looks like this:
 
-    ```output
-    |     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
-    | --- | ---------- | ------- | ------ | -------- | ----- | ---------- | ----- | ------------ | ------- | -------- | --- | ------- | ----------- | ---------- | ----------------------- | ---- | ---- | --- | ----- | ------ | -------- |
-    | 0   | 0          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
-    | 1   | 1          | indian  | 1      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
-    | 2   | 2          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
-    | 3   | 3          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
-    | 4   | 4          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
-    ```
+|     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
+| --- | ---------- | ------- | ------ | -------- | ----- | ---------- | ----- | ------------ | ------- | -------- | --- | ------- | ----------- | ---------- | ----------------------- | ---- | ---- | --- | ----- | ------ | -------- |
+| 0   | 0          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 1   | 1          | indian  | 1      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 2   | 2          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 3   | 3          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 0      | 0        |
+| 4   | 4          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
+  
 
 1. Now, import several more libraries:
 
@@ -68,13 +67,13 @@ Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a
 
     Your features look like this:
 
-    | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |     |
-    | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: | --- |
-    |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      1 |        1 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      2 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      3 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      4 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        1 | 0   |
+| almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |
+| -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: | 
+|      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
+|      1 |        1 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
+|      2 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
+|      3 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
+|      4 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        1 | 0   |
 
 Now you are ready to train your model!
 
@@ -200,13 +199,13 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
 
     The result is printed - Indian cuisine is its best guess, with good probability:
 
-    |          |        0 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | -------: | -------: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-    |   indian | 0.715851 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    |  chinese | 0.229475 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | japanese | 0.029763 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    |   korean | 0.017277 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    |     thai | 0.007634 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+    |          |        0 | 
+    | -------: | -------: | 
+    |   indian | 0.715851 |
+    |  chinese | 0.229475 |
+    | japanese | 0.029763 |
+    |   korean | 0.017277 |
+    |     thai | 0.007634 |
 
     ✅ Can you explain why the model is pretty sure this is an Indian cuisine?
 
@@ -217,22 +216,23 @@ Since you are using the multiclass case, you need to choose what _scheme_ to use
     print(classification_report(y_test,y_pred))
     ```
 
-    | precision    | recall | f1-score | support |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | ------------ | ------ | -------- | ------- | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-    | chinese      | 0.73   | 0.71     | 0.72    | 229  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | indian       | 0.91   | 0.93     | 0.92    | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | japanese     | 0.70   | 0.75     | 0.72    | 220  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | korean       | 0.86   | 0.76     | 0.81    | 242  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | thai         | 0.79   | 0.85     | 0.82    | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | accuracy     | 0.80   | 1199     |         |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | macro avg    | 0.80   | 0.80     | 0.80    | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | weighted avg | 0.80   | 0.80     | 0.80    | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+    |              | precision | recall | f1-score | support |
+    | ------------ | ------ | -------- | ------- | ---- |
+    | chinese      | 0.73   | 0.71     | 0.72    | 229  |
+    | indian       | 0.91   | 0.93     | 0.92    | 254  |
+    | japanese     | 0.70   | 0.75     | 0.72    | 220  |
+    | korean       | 0.86   | 0.76     | 0.81    | 242  |
+    | thai         | 0.79   | 0.85     | 0.82    | 254  |
+    | accuracy     | 0.80   | 1199     |         |      |
+    | macro avg    | 0.80   | 0.80     | 0.80    | 1199 |
+    | weighted avg | 0.80   | 0.80     | 0.80    | 1199 |
 
 ## 🚀Challenge
 
 In this lesson, you used your cleaned data to build a machine learning model that can predict a national cuisine based on a series of ingredients. Take some time to read through the many options Scikit-learn provides to classify data. Dig deeper into the concept of 'solver' to understand what goes on behind the scenes.
 
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
+
 ## Review & Self Study
 
 Dig a little more into the math behind logistic regression in [this lesson](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
