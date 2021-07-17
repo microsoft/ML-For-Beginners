@@ -9,7 +9,7 @@ Photo by <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=
 
 ## 강의
 
-1. [Build a Web App](1-Web-App/translations/README.ko.md)
+1. [Web App 만들기](1-Web-App/translations/README.ko.md)
 
 ## 크레딧
 

@@ -48,7 +48,7 @@
 - **긴 예시 설명**. "A man emerges from a beam of light that shines on a grassy field at night and he runs towards the Texas Instruments parking lot".
 - **짧은 예시 설명**. "the lights chased us".
 
-[ufos.csv](./data/ufos.csv) 스프레드시트에는 목격된 `city`, `state` 와 `country`, 오브젝트의 `shape` 와 `latitude` 및 `longitude` 열이 포함되어 있습니다.
+[ufos.csv](.././data/ufos.csv) 스프레드시트에는 목격된 `city`, `state` 와 `country`, 오브젝트의 `shape` 와 `latitude` 및 `longitude` 열이 포함되어 있습니다.
 
 강의에 있는 빈 [notebook](../notebook.ipynb)에서 진행합니다:
 
