@@ -23,7 +23,7 @@ L'histoire de l'intelligence artificielle, l'IA, en tant que domaine est étroit
 
 ## 1950 : Des machines qui pensent
 
-Alan Turing, une personne vraiment remarquable qui a été élue [par le public en 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) comme le plus grand scientifique du 20e siècle, est reconnu pour avoir aidé à jeter les bases du concept d'une "machine qui peut penser". Il a lutté avec ses opposants et son propre besoin de preuves empiriques de sa théorie en créant le [Test de Turing] (https://www.bbc.com/news/technology-18475646), que vous explorerez dans nos leçons de TALN.
+Alan Turing, une personne vraiment remarquable qui a été élue [par le public en 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) comme le plus grand scientifique du 20e siècle, est reconnu pour avoir aidé à jeter les bases du concept d'une "machine qui peut penser". Il a lutté avec ses opposants et son propre besoin de preuves empiriques de sa théorie en créant le [Test de Turing] (https://www.bbc.com/news/technology-18475646), que vous explorerez dans nos leçons de NLP (TALN en français).
 
 ## 1956 : Projet de recherche d'été à Dartmouth
 
@@ -39,7 +39,7 @@ L'atelier est crédité d'avoir initié et encouragé plusieurs discussions, not
 
 Des années 50 au milieu des années 70, l'optimisme était au rendez-vous en espérant que l'IA puisse résoudre de nombreux problèmes. En 1967, Marvin Minsky a déclaré avec assurance que « Dans une génération... le problème de la création d'"intelligence artificielle" sera substantiellement résolu. » (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
 
-La recherche sur le traitement du langage naturel a prospéré, la recherche a été affinée et rendue plus puissante, et le concept de « micro-mondes » a été créé, où des tâches simples ont été effectuées en utilisant des instructions en langue naturelle.
+La recherche sur le Natural Language Processing (traitement du langage naturel en français) a prospéré, la recherche a été affinée et rendue plus puissante, et le concept de « micro-mondes » a été créé, où des tâches simples ont été effectuées en utilisant des instructions en langue naturelle.
 
 La recherche a été bien financée par les agences gouvernementales, des progrès ont été réalisés dans le calcul et les algorithmes, et des prototypes de machines intelligentes ont été construits. Certaines de ces machines incluent :
 
@@ -48,12 +48,12 @@ La recherche a été bien financée par les agences gouvernementales, des progr�
     ![Shakey, un robot intelligent](../images/shakey.jpg)
     > Shaky en 1972
 
-* Eliza, une des premières « chatbot », pouvait converser avec les gens et agir comme une « thérapeute » primitive. Vous en apprendrez plus sur Eliza dans les leçons de TALN.
+* Eliza, une des premières « chatbot », pouvait converser avec les gens et agir comme une « thérapeute » primitive. Vous en apprendrez plus sur Eliza dans les leçons de NLP.
 
     ![Eliza, un bot](../images/eliza.png)
     > Une version d'Eliza, un chatbot
 
-* Le « monde des blocs » était un exemple de micro-monde où les blocs pouvaient être empilés et triés, et où des expériences d'apprentissages sur des machines, dans le but qu'elles prennent des décisions, pouvaient être testées. Les avancées réalisées avec des bibliothèques telles que [SHRDLU](https://fr.wikipedia.org/wiki/SHRDLU) ont contribué à faire avancer le traitement du langage.
+* Le « monde des blocs » était un exemple de micro-monde où les blocs pouvaient être empilés et triés, et où des expériences d'apprentissages sur des machines, dans le but qu'elles prennent des décisions, pouvaient être testées. Les avancées réalisées avec des bibliothèques telles que [SHRDLU](https://fr.wikipedia.org/wiki/SHRDLU) ont contribué à faire avancer le natural language processing.
 
     [![Monde de blocs avec SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "Monde de blocs avec SHRDLU" )
     
@@ -98,7 +98,7 @@ Reste à savoir ce que l'avenir nous réserve, mais il est important de comprend
 > 🎥 Cliquez sur l'image ci-dessus pour une vidéo : Yann LeCun discute de l'histoire du deep learning dans cette conférence
 
 ---
-## 🚀Défi
+## 🚀Challenge
 
 Plongez dans l'un de ces moments historiques et apprenez-en plus sur les personnes derrière ceux-ci. Il y a des personnalités fascinantes, et aucune découverte scientifique n'a jamais été créée avec un vide culturel. Que découvrez-vous ?
 
