@@ -10,7 +10,7 @@
 
 # Yeni Başlayanlar için Makine Öğrenimi - Bir Eğitim Programı
 
-> :earth_africa: Dünya kültürleri sayesinde Makine Öğrenimi'ni keşfederken dünyayı gezin :earth_africa:
+> :earth_africa: Dünya kültürleri sayesinde Makine Öğrenimini keşfederken dünyayı gezin :earth_africa:
 
 Microsoft'taki Azure Cloud Destekleyicileri tamamen **Makine Öğrenimi** hakkında olan 12 hafta ve 24 derslik eğitim programını sunmaktan memnuniyet duyar. Bu eğitim programında, kütüphane olarak temelde Scikit-learn kullanarak ve yakında çıkacak olan 'Yeni Başlayanlar için Yapay Zeka' dersinde anlatılan derin öğrenmeden uzak durarak, zaman zaman adlandırıldığı şekliyle, **klasik makine öğrenimi**ni öğreneceksiniz. Bu dersleri yakında çıkacak olan 'Yeni Başlayanlar için Veri Bilimi' eğitim programımızla da birleştirin!
 
@@ -20,7 +20,7 @@ Biz bu klasik teknikleri dünyanın birçok alanından verilere uygularken bizim
 
 **:art: Çizerlerimize de teşekkürler** Tomomi Imura, Dasani Madipalli, and Jen Looper
 
- **:pray: Microsoft Student Ambassador yazarlarımıza, eleştirmenlerimize ve içeriğe katkıda bulunanlara özel teşekkürler :pray:**, özellikle Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
+ **:pray: Microsoft Student Ambassador yazarlarımıza, eleştirmenlerimize ve içeriğe katkıda bulunanlara özel teşekkürler :pray:** özellikle Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
 
 ---
 # Başlarken
@@ -55,7 +55,7 @@ Bu eğitim programını oluştururken iki pedagojik ilke seçtik: uygulamalı **
 İçeriğin projelerle uyumlu olduğuna emin olarak, süreç öğrenciler için daha ilgi çekici hale getirilmiştir ve kavramların akılda kalıcılığı artacaktır. Ayrıca, dersten önce ikincil değerli bir kısa sınav öğrencinin niyetini konuyu öğrenmek yaparken dersten sonra yapılan ikinci bir kısa sınav da akılda kalıcılığı sağlar. Bu eğitim programı esnek ve eğlenceli olacak şekilde hazırlanmıştır ve tümüyle veya kısmen işlenebilir. Projeler kolay başlar ve 12 haftalık zamanın sonuna doğru karmaşıklıkları gittikçe artar. Bu eğitim programı, Makine Öğreniminin gerçek hayattaki uygulamaları üzerine, ek puan veya tartışma için bir temel olarak kullanılabilecek bir ek yazı da içermektedir.
 
 > [Davranış Kuralları](CODE_OF_CONDUCT.md)'mızı, [Katkıda Bulunma](CONTRIBUTING.md) ve [Çeviri](TRANSLATIONS.md) kılavuz ilkelerimizi inceleyin. Yapıcı geridönütlerinizi memnuniyetle karşılıyoruz!
-## Her ders şunları içermektedir:
+## Her bir ders şunları içermektedir:
 
 - isteğe bağlı eskiz notu
 - isteğe bağlı ek video
@@ -97,10 +97,10 @@ Bu eğitim programını oluştururken iki pedagojik ilke seçtik: uygulamalı **
 |      22       | :zap: Dünya Güç Kullanımı :zap: - ARIMA ile Zaman Serisi Tahmini |        [Zaman Serisi](7-TimeSeries/README.md)       | ARIMA ile zaman serisi tahmini                                                                                                  |        [ders](7-TimeSeries/2-ARIMA/README.md)         |   Francesca    |
 |      23       |                Pekiştirmeli Öğrenmeye Giriş                |  [Pekiştirmeli Öğrenme](8-Reinforcement/README.md)  | Q-Learning ile pekiştirmeli öğrenmeye giriş                                                                                     |     [ders](8-Reinforcement/1-QLearning/README.md)     |     Dmitry     |
 |      24       |       Peter'ın Kurttan Uzak Durmasına Yardım Edin! :wolf:       |  [Pekiştirmeli Öğrenme](8-Reinforcement/README.md)  | Pekiştirmeli öğrenme spor salonu                                                                                                |        [ders](8-Reinforcement/2-Gym/README.md)        |     Dmitry     |
-|   Ek Yazı     |       Gerçek Hayattan ML Senaryoları ve Uygulamaları       |     [Vahşi Doğada ML](9-Real-World/README.md)       | Klasik makine öğreniminin ilginç ve açıklayıcı gerçek hayat uygulamaları                                                        |     [ders](9-Real-World/1-Applications/README.md)     |      Team      |
+|   Ek Yazı     |       Gerçek Hayattan ML Senaryoları ve Uygulamaları       |     [Vahşi Doğada ML](9-Real-World/README.md)       | Klasik makine öğreniminin ilginç ve açıklayıcı gerçek hayat uygulamaları                                                        |     [ders](9-Real-World/1-Applications/README.md)     |     Takım      |
 ## Çevrimdışı erişim
 
-Bu dokümantasyonu [Docsify](https://docsify.js.org/#/) kullanarak çevrimdışı çalıştırabilirsiniz. Bu depoyu çatallayın, yerel makinenizde [Docsify'ı kurum](https://docsify.js.org/#/quickstart) ve sonra bu deponun kök dizininde `docsify serve` yazın. İnternet sitesi, 3000 portunda `localhost:3000` yerel ana makinenizde sunulacaktır.
+Bu dokümantasyonu [Docsify](https://docsify.js.org/#/) kullanarak çevrimdışı çalıştırabilirsiniz. Bu yazılım havuzunu çatallayın, yerel makinenizde [Docsify'ı kurum](https://docsify.js.org/#/quickstart) ve sonra bu yazılım havuzunun kök dizininde `docsify serve` yazın. İnternet sitesi, 3000 portunda `localhost:3000` yerel ana makinenizde sunulacaktır.
 
 ## PDF'ler
 
