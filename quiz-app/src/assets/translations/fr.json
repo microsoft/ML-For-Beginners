@@ -1,18 +1,18 @@
 [
 							{
-    "title": "Machine Learning pour les débutants: quiz",
+    "title": "Machine Learning pour les Débutants: Quiz",
     "complete": "Félicitations, vous avez terminé le quiz!",
     "error": "Désolé, essayez à nouveau",
     "quizzes": [
 							{
             "id": 1,
-            "title": "Introduction au machine learning: quiz préalable",
+            "title": "Introduction au machine learning: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Les applications de machine learning sont toutes autour de nous",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -59,7 +59,7 @@
         },
         {
             "id": 2,
-            "title": "Introduction au machine learning: quiz de validation des connaissances",
+            "title": "Introduction au machine learning: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Les algorithmes de machine learning sont destinés à simuler",
@@ -116,7 +116,7 @@
         },
         {
             "id": 3,
-            "title": "Historique du machine learning: quiz préalable",
+            "title": "Historique du machine learning: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Quand approximativement le terme 'intelligence artificielle' a-t-il été inventé ?",
@@ -173,7 +173,7 @@
         },
         {
             "id": 4,
-            "title": "Historique du machine learning: quiz de validation des connaissances",
+            "title": "Historique du machine learning: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Qu'est-ce qu'un exemple de système d'IA \" Scruffy \" AI?",
@@ -230,7 +230,7 @@
         },
         {
             "id": 5,
-            "title": "L'équité et machine learning: quiz préalable",
+            "title": "L'équité et le machine learning: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "L'injustice dans le machine learning peut arriver",
@@ -287,7 +287,7 @@
         },
         {
             "id": 6,
-            "title": "Equité et machine learning: quiz de validation des connaissances",
+            "title": "L'équité et le machine learning: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "L'injustice dans un modèle peut être causée par",
@@ -324,10 +324,10 @@
                     ]
                 },
                 {
-                    "questionText": "FairLearn est un paquet qui peut",
+                    "questionText": "Fairlearn est un paquet qui peut",
                     "answerOptions": [
 							{
-							"answerText": "Comparez plusieurs modèles en utilisant des métriques d'équité et de performance",
+							"answerText": "Comparer plusieurs modèles en utilisant des métriques d'équité et de performance",
                             "isCorrect": "true"
                         },
                         {
@@ -335,7 +335,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Aidez-vous à décider de ce qui est juste et ce qui n'est pas",
+							"answerText": "Vous aider à décider de ce qui est juste et ce qui ne l'est pas",
                             "isCorrect": "false"
                         }
                     ]
@@ -344,7 +344,7 @@
         },
         {
             "id": 7,
-            "title": "Outils et techniques: quiz préalable",
+            "title": "Outils et techniques: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Lors de la construction d'un modèle, vous devriez:",
@@ -401,7 +401,7 @@
         },
         {
             "id": 8,
-            "title": "Outils et techniques: quiz de validation des connaissances",
+            "title": "Outils et techniques: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Vous devez visualiser vos données car",
@@ -458,7 +458,7 @@
         },
         {
             "id": 9,
-            "title": "Introduction à la régression: quiz préalable",
+            "title": "Introduction à la régression: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Laquelle de ces variables est une variable numérique?",
@@ -515,7 +515,7 @@
         },
         {
             "id": 10,
-            "title": "Introduction à la régression: quiz de validation des connaissances",
+            "title": "Introduction à la régression: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Si la précision de la formation du modèle d'apprentissage de votre machine est de 95% et que la précision des tests est de 30%, quel type de condition est appelé?",
@@ -572,7 +572,7 @@
         },
         {
             "id": 11,
-            "title": "Préparer et visualiser des données pour la régression: quiz préalable",
+            "title": "Préparer et visualiser des données pour la régression: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Lequel de ces modules Python est utilisé pour tracer la visualisation des données?",
@@ -629,7 +629,7 @@
         },
         {
             "id": 12,
-            "title": "Préparez et visualisez des données pour la régression: quiz de validation des connaissances",
+            "title": "Préparer et visualiser des données pour la régression: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Lequel de ces extraits de code est correct d'après cette leçon, si vous souhaitez vérifier la présence de valeurs manquantes dans votre ensemble de données ? Supposons que l'ensemble de données soit stocké dans une variable nommée \"ensemble de données\", qui est un objet Pandas DataFrame.",
@@ -686,7 +686,7 @@
         },
         {
             "id": 13,
-            "title": "régression linéaire et polynomiale: quiz préalable",
+            "title": "Régression linéaire et polynomiale: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Matplotlib est un",
@@ -743,7 +743,7 @@
         },
         {
             "id": 14,
-            "title": "Régression linéaire et polynomiale: quiz de validation des connaissances",
+            "title": "Régression linéaire et polynomiale: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Si vos données sont non linéaires, essayez un type ___  de régression",
@@ -800,7 +800,7 @@
         },
         {
             "id": 15,
-            "title": "Régression logistique: quiz préalable",
+            "title": "Régression logistique: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Utilisez la régression logistique à prédire",
@@ -857,7 +857,7 @@
         },
         {
             "id": 16,
-            "title": "Régression logistique: quiz de validation des connaissances",
+            "title": "Régression logistique: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Sea-né est un type de",
@@ -913,7 +913,7 @@
             ]
         }, {
             "id": 17,
-            "title": "Construire une application Web: quiz préalable",
+            "title": "Construire une application Web: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Qu'est-ce que OnNX signifie?",
@@ -970,7 +970,7 @@
         },
         {
             "id": 18,
-            "title": "Construire une application Web: quiz de validation des connaissances",
+            "title": "Construire une application Web: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Quels sont les outils que nous pouvons utiliser pour héberger un modèle pré-formé sur le Web à l'aide de Python?",
@@ -1027,7 +1027,7 @@
         },
         {
             "id": 19,
-            "title": "Classification 1: quiz préalable",
+            "title": "Classification 1: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "La classification est une forme d'apprentissage supervisé qui a beaucoup en commun avec",
@@ -1084,7 +1084,7 @@
         },
         {
             "id": 20,
-            "title": "Classification 1: quiz de validation des connaissances",
+            "title": "Classification 1: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Qu'est-ce qu'une question multiclasse?",
@@ -1107,7 +1107,7 @@
                     "questionText": "Il est important de nettoyer des données récurrentes ou inutiles pour aider vos classificateurs à résoudre votre problème.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -1137,13 +1137,13 @@
         },
         {
             "id": 21,
-            "title": "Classification 2: quiz préalable",
+            "title": "Classification 2: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Les données équilibrées et propres ont produit les meilleurs résultats de la classification",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -1190,7 +1190,7 @@
         },
         {
             "id": 22,
-            "title": "Classification 2: quiz de validation des connaissances",
+            "title": "Classification 2: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Qu'est-ce qu'un \"solveur\" ?",
@@ -1247,7 +1247,7 @@
         },
         {
             "id": 23,
-            "title": "Classification 3: quiz préalable",
+            "title": "Classification 3: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Un bon classificateur initial à essayer est:",
@@ -1304,7 +1304,7 @@
         },
         {
             "id": 24,
-            "title": "Classification 3: quiz de validation des connaissances",
+            "title": "Classification 3: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Les classificateurs de support-vectoriel peuvent être utilisés pour",
@@ -1361,7 +1361,7 @@
         },
         {
             "id": 25,
-            "title": "Classification 4: quiz préalable",
+            "title": "Classification 4: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Les systèmes de recommandation peuvent être utilisés pour",
@@ -1384,7 +1384,7 @@
                     "questionText": "L'intégration d'un modèle dans une application Web l'aide à être hors ligne",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -1414,7 +1414,7 @@
         },
         {
             "id": 26,
-            "title": "Classification 4: quiz de validation des connaissances",
+            "title": "Classification 4: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "L'application Nettron vous aide:",
@@ -1471,7 +1471,7 @@
         },
         {
             "id": 27,
-            "title": "Introduction au clustering: quiz préalable",
+            "title": "Introduction au Clustering: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Un exemple de vie réel de regroupement serait",
@@ -1508,18 +1508,18 @@
                     ]
                 },
                 {
-                    "questionText": "La clustering est un type de:",
+                    "questionText": "La Clustering est un type :",
                     "answerOptions": [
 							{
-							"answerText": "Apprentissage supervisé",
+							"answerText": "D'apprentissage supervisé",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "L'apprentissage non supervisé",
+							"answerText": "D'apprentissage non supervisé",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Apprentissage du renforcement",
+							"answerText": "D'apprentissage de renforcement",
                             "isCorrect": "false"
                         }
                     ]
@@ -1528,30 +1528,30 @@
         },
         {
             "id": 28,
-            "title": "Introduction au clustering: quiz de validation des connaissances",
+            "title": "Introduction au Clustering: Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "La géométrie euclidienne est arrangée",
+                    "questionText": "La géométrie euclidienne est disposée le long",
                     "answerOptions": [
 							{
-							"answerText": "Planes",
+							"answerText": "De plans",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Courbes",
+							"answerText": "De courbes",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Sphères",
+							"answerText": "De sphères",
                             "isCorrect": "false"
                         }
                     ]
                 },
                 {
-                    "questionText": "La densité de vos données de clustering est liée à sa",
+                    "questionText": "La densité de vos données de clustering est liée à son / sa",
                     "answerOptions": [
 							{
-							"answerText": "bruit",
+							"answerText": "Bruit",
                             "isCorrect": "true"
                         },
                         {
@@ -1568,15 +1568,15 @@
                     "questionText": "L'algorithme de regroupement le plus connu est",
                     "answerOptions": [
 							{
-							"answerText": "k-signifie",
+							"answerText": "k-means",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "K-Middle",
+							"answerText": "K-middle",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "K-Mart",
+							"answerText": "K-mart",
                             "isCorrect": "false"
                         }
                     ]
@@ -1585,7 +1585,7 @@
         },
         {
             "id": 29,
-            "title": "K-Means Clustering: quiz préalable",
+            "title": "K-Means Clustering: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "K-Means est dérivé de:",
@@ -1605,7 +1605,7 @@
                     ]
                 },
                 {
-                    "questionText": "Une bonne score de silhouette signifie:",
+                    "questionText": "Un bon score de silhouette signifie:",
                     "answerOptions": [
 							{
 							"answerText": "Les grappes sont bien séparées et bien définies",
@@ -1642,13 +1642,13 @@
         },
         {
             "id": 30,
-            "title": "K-olth regroupement: quiz de validation des connaissances",
+            "title": "K-Means Clustering: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Un diagramme de Voronoi montre:",
                     "answerOptions": [
 							{
-							"answerText": "Variance d'une cluster",
+							"answerText": "Une variance d'une cluster",
                             "isCorrect": "false"
                         },
                         {
@@ -1682,7 +1682,7 @@
                     "questionText": "en utilisant k-moyen, vous devez d'abord déterminer la valeur de 'k'",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -1695,7 +1695,7 @@
         },
         {
             "id": 31,
-            "title": "Intro to NLP: quiz préalable",
+            "title": "Intro aux NLP: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Que signifie NLP pour ces leçons?",
@@ -1732,14 +1732,14 @@
                     ]
                 },
                 {
-                    "questionText": "Le test de Turing 'd'Alan Turing a essayé de déterminer si un ordinateur était",
+                    "questionText": "Le test Turing d'Alan Turing a essayé de déterminer si un ordinateur était",
                     "answerOptions": [
 							{
-							"answerText": "Inmistingtilisable d'un humain",
+							"answerText": "indiscernable d'un humain",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Penser",
+							"answerText": "Pensif",
                             "isCorrect": "false"
                         },
                         {
@@ -1752,7 +1752,7 @@
         },
         {
             "id": 32,
-            "title": "Intro to NLP: quiz de validation des connaissances",
+            "title": "Intro aux NLP: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Joseph Weizenbaum a inventé le bot",
@@ -1775,7 +1775,7 @@
                     "questionText": "Un bot conversationnel donne une sortie basée sur",
                     "answerOptions": [
 							{
-							"answerText": "Choisir des choix prédéfinis au hasard",
+							"answerText": "Un choix de choix prédéfinis au hasard",
                             "isCorrect": "false"
                         },
                         {
@@ -1789,14 +1789,14 @@
                     ]
                 },
                 {
-                    "questionText": "Comment feriez-vous le bot plus efficace?",
+                    "questionText": "Comment feriez-vous pour que le bot soit plus efficace?",
                     "answerOptions": [
 							{
 							"answerText": "En le demandant plus de questions.",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "En l'alignant plus de données et de la formation en conséquence",
+							"answerText": "En lui fournissant plus de données et en le formant en conséquence",
                             "isCorrect": "true"
                         },
                         {
@@ -1809,21 +1809,21 @@
         },
         {
             "id": 33,
-            "title": "Tâches NLP: quiz préalable",
+            "title": "Tâches NLP: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Tokenization",
                     "answerOptions": [
 							{
-							"answerText": "Splituelle du texte au moyen de la ponctuation",
+							"answerText": "Divise le texte au moyen de la ponctuation",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Splituelle du texte en jetons séparés (mots)",
+							"answerText": "Divise le texte en jetons séparés (mots)",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Splituelle du texte en phrases",
+							"answerText": "Divise le texte en phrases",
                             "isCorrect": "false"
                         }
                     ]
@@ -1836,11 +1836,11 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Intégrance des mots en phrases",
+							"answerText": "Intégre des mots en phrases",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Intégrance des phrases dans les paragraphes",
+							"answerText": "Intégre des phrases dans les paragraphes",
                             "isCorrect": "false"
                         }
                     ]
@@ -1866,7 +1866,7 @@
         },
         {
             "id": 34,
-            "title": "Tâches NLP: quiz de validation des connaissances",
+            "title": "Tâches NLP: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Construisez un dictionnaire de la fréquence à laquelle les mots se reproduisent en utilisant:",
@@ -1923,10 +1923,10 @@
         },
         {
             "id": 35,
-            "title": "NLP et traduction: quiz préalable",
+            "title": "NLP et traduction: Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "Traduction naïf",
+                    "questionText": "La traduction naïve",
                     "answerOptions": [
 							{
 							"answerText": "Traduit uniquement les mots",
@@ -1943,7 +1943,7 @@
                     ]
                 },
                 {
-                    "questionText": "Un corpus * de textes fait référence à",
+                    "questionText": "Un *corpus* de textes fait référence à",
                     "answerOptions": [
 							{
 							"answerText": "Un petit nombre de textes",
@@ -1960,10 +1960,10 @@
                     ]
                 },
                 {
-                    "questionText": "Si un modèle ML a suffisamment de traductions humaines pour construire un modèle sur, il peut",
+                    "questionText": "Si un modèle ML a suffisamment de traductions humaines pour construire un modèle, il peut",
                     "answerOptions": [
 							{
-							"answerText": "Traductions abrégées",
+							"answerText": "Abréger des traductions",
                             "isCorrect": "false"
                         },
                         {
@@ -1980,7 +1980,7 @@
         },
         {
             "id": 36,
-            "title": "NLP et traduction: quiz de validation des connaissances",
+            "title": "NLP et traduction: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "La bibliothèque de traduction de texte sous-jacente est:",
@@ -2000,7 +2000,7 @@
                     ]
                 },
                 {
-                    "questionText": "utiliser `blob.translate` vous avez besoin:",
+                    "questionText": "Pour utiliser `blob.translate` vous avez besoin:",
                     "answerOptions": [
 							{
 							"answerText": "Une connexion Internet",
@@ -2017,7 +2017,7 @@
                     ]
                 },
                 {
-                    "questionText": "Déterminer le sentiment, une approche ML serait de:",
+                    "questionText": "Pour déterminer un sentiment, une approche ML serait de:",
                     "answerOptions": [
 							{
 							"answerText": "Appliquez des techniques de régression pour générer manuellement des opinions et des scores et rechercher des modèles",
@@ -2037,7 +2037,7 @@
         },
         {
             "id": 37,
-            "title": "NLP 4: quiz préalable",
+            "title": "NLP 4: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Quelles informations pouvons-nous obtenir du texte écrit ou parlé par un humain?",
@@ -2094,17 +2094,17 @@
         },
         {
             "id": 38,
-            "title": "NLP 4: quiz de validation des connaissances",
+            "title": "NLP 4: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Quelle est l'essence de la NLP?",
                     "answerOptions": [
 							{
-							"answerText": "catégoriser la langue humaine en joyeux ou triste",
+							"answerText": "catégoriser la langue humaine en joyeuse ou triste",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Interprétation de sens ou de sentiment sans avoir à avoir un homme humain le faire",
+							"answerText": "Interprétation de sens ou de sentiment sans avoir un humain pour le faire",
                             "isCorrect": "true"
                         },
                         {
@@ -2114,7 +2114,7 @@
                     ]
                 },
                 {
-                    "questionText": "Quelles sont certaines choses que vous pourriez rechercher lors de la nettoyage des données?",
+                    "questionText": "Quelles sont certaines choses que vous pourriez rechercher lors du nettoyage des données?",
                     "answerOptions": [
 							{
 							"answerText": "Personnages dans d'autres langues",
@@ -2131,10 +2131,10 @@
                     ]
                 },
                 {
-                    "questionText": "Il est important de comprendre vos données et ses fruits avant d'effectuer des opérations à ce sujet.",
+                    "questionText": "Il est important de comprendre votre donnée et ses faiblesses avant d'effectuer des opérations à ce sujet.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -2147,7 +2147,7 @@
         },
         {
             "id": 39,
-            "title": "NLP 5: quiz préalable",
+            "title": "NLP 5: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Pourquoi est-il important de nettoyer les données avant de l'analyser?",
@@ -2178,7 +2178,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Déplacement des valeurs aberrantes vers une table séparée et exécutant les calculs de cette table pour voir s'ils correspondent à",
+							"answerText": "Déplacement des valeurs aberrantes vers une table séparée et exécutant les calculs de cette table pour voir s'ils correspondent",
                             "isCorrect": "false"
                         }
                     ]
@@ -2187,7 +2187,7 @@
                     "questionText": "Il peut être utile de classer les données à l'aide d'une colonne Tag.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -2200,17 +2200,17 @@
         },
         {
             "id": 40,
-            "title": "NLP 5: quiz de validation des connaissances",
+            "title": "NLP 5: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Quel est l'objectif de l'ensemble de données?",
                     "answerOptions": [
 							{
-							"answerText": "Pour voir combien de critiques négatives et positives il y a pour les hôtels à travers le monde",
+							"answerText": "Voir combien de critiques négatives et positives il y a pour les hôtels à travers le monde",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Pour ajouter du sentiment et des colonnes qui vous aideront à choisir le meilleur hôtel",
+							"answerText": "Ajouter du sentiment et des colonnes qui vous aideront à choisir le meilleur hôtel",
                             "isCorrect": "true"
                         },
                         {
@@ -2240,7 +2240,7 @@
                     "questionText": "Pour tester l'analyse du sentiment, assurez-vous qu'il correspond au score du critique pour le même examen.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -2253,27 +2253,27 @@
         },
         {
             "id": 41,
-            "title": "Série introduction à temps: quiz préalable",
+            "title": "Introduction aux Time Series (séries temporelles): Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "La prévision de la série chronologique est utile",
+                    "questionText": "La prévision de Time Series est utile pour",
                     "answerOptions": [
 							{
 							"answerText": "Déterminer les coûts futurs",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Prédicter les prix futurs",
+							"answerText": "Prédire les prix futurs",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "à la fois ce qui précède",
+							"answerText": "Les deux à la fois",
                             "isCorrect": "true"
                         }
                     ]
                 },
                 {
-                    "questionText": "Une série chronologique est une séquence prise à:",
+                    "questionText": "Une série temporelles est une séquence prise à:",
                     "answerOptions": [
 							{
 							"answerText": "points successifs également espacés dans l'espace",
@@ -2290,7 +2290,7 @@
                     ]
                 },
                 {
-                    "questionText": "La série chronologique peut être utilisée dans:",
+                    "questionText": "La série temporelles peut être utilisée dans les cas de:",
                     "answerOptions": [
 							{
 							"answerText": "Prévision de tremblement de terre",
@@ -2310,17 +2310,17 @@
         },
         {
             "id": 42,
-            "title": "Série introduction à TIME: quiz de validation des connaissances",
+            "title": "Introduction aux Time Series (séries temporelles): Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "Tendances de la série chronologique sont",
+                    "questionText": "Les tendances de série temporelles sont",
                     "answerOptions": [
 							{
-							"answerText": "mesure mesurable augmente et diminue au fil du temps",
+							"answerText": "des augmentations et des diminutions mesurables au fil du temps",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "La quantification diminue au fil du temps",
+							"answerText": "La quantification des diminutions au fil du temps",
                             "isCorrect": "false"
                         },
                         {
@@ -2330,14 +2330,14 @@
                     ]
                 },
                 {
-                    "questionText": "Les valeurs aberrantes sont",
+                    "questionText": "Les valeurs aberrantes sont des",
                     "answerOptions": [
 							{
 							"answerText": "Points proches de la variance de données standard",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Pointes loin de la variance de données standard",
+							"answerText": "Points loin de la variance de données standard",
                             "isCorrect": "true"
                         },
                         {
@@ -2347,18 +2347,18 @@
                     ]
                 },
                 {
-                    "questionText": "La prévision de la série chronologique est la plus utile pour",
+                    "questionText": "La prévision de la série temporelle est la plus utile pour",
                     "answerOptions": [
 							{
-							"answerText": "Econométrics",
+							"answerText": "L'conométrics",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Histoire",
+							"answerText": "L'histoire",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Bibliothèques",
+							"answerText": "Les bibliothèques",
                             "isCorrect": "false"
                         }
                     ]
@@ -2367,7 +2367,7 @@
         },
         {
             "id": 43,
-            "title": "Série TIME ARIMA: quiz préalable",
+            "title": "Série TIME ARIMA: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Arima signifie",
@@ -2424,7 +2424,7 @@
         },
         {
             "id": 44,
-            "title": "Série TIME ARIMA: quiz de validation des connaissances",
+            "title": "Série TIME ARIMA: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Arima est utilisé pour créer un modèle adapté à la forme spéciale des données de la série chronologique",
@@ -2480,7 +2480,7 @@
             ]
         }, {
             "id": 45,
-            "title": "Renforcement 1: quiz préalable",
+            "title": "Renforcement 1: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Qu'est-ce que l'apprentissage du renforcement?",
@@ -2520,7 +2520,7 @@
                     "questionText": "Une fonction de récompense renvoie un score pour chaque état d'environnement.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "true"
                         },
                         {
@@ -2532,7 +2532,7 @@
             ]
         }, {
             "id": 46,
-            "title": "Renforcement 1: quiz de validation des connaissances",
+            "title": "Renforcement 1: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Qu'est-ce que q-apprentissage?",
@@ -2572,7 +2572,7 @@
                     "questionText": "Il valait mieux utiliser l'exploration que l'exploitation pendant le processus d'apprentissage de notre leçon.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "false"
                         },
                         {
@@ -2585,13 +2585,13 @@
         },
         {
             "id": 47,
-            "title": "Renforcement 2: quiz préalable",
+            "title": "Renforcement 2: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Les échecs et les jeux sont des jeux avec des états continus.",
                     "answerOptions": [
 							{
-							"answerText": "vrai",
+							"answerText": "Vrai",
                             "isCorrect": "false"
                         },
                         {
@@ -2638,7 +2638,7 @@
         },
         {
             "id": 48,
-            "title": "Renforcement 2: quiz de validation des connaissances",
+            "title": "Renforcement 2: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Où définissons-nous toutes les actions possibles dans un environnement?",
@@ -2695,7 +2695,7 @@
         },
         {
             "id": 49,
-            "title": "Applications du monde réel: quiz préalable",
+            "title": "Applications du monde réel: Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Quel est un exemple d'application ML dans l'industrie des finances?",
@@ -2752,7 +2752,7 @@
         },
         {
             "id": 50,
-            "title": "Applications du monde réel: quiz de validation des connaissances",
+            "title": "Applications du monde réel: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Quelle technique ML peut être utilisée pour détecter la fraude par carte de crédit?",
