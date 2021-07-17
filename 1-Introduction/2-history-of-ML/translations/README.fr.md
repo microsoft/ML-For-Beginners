@@ -110,8 +110,8 @@ Voici quelques articles à regarder et à écouter :
 
 [Ce podcast où Amy Boyd discute de l'évolution de l'IA](http://runasradio.com/Shows/Show/739)
 
-[![L'histoire de l'iA par Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "L'histoire de l'iA par Amy Boyd")
+[![L'histoire de l'IA par Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "L'histoire de l'IA par Amy Boyd")
 
-## Assignment
+## Devoir
 
 [Créer une frise chonologique](assignment.fr.md)
