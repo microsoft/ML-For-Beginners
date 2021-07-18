@@ -552,7 +552,7 @@
             ]
           },
           {
-            "questionText": "O processo de dividir o conjunto de dados num conjunto de dados de um certo rácio de treino e de teste usando o método/função Scikit Learn's 'train_test_split()' é chamado:",
+            "questionText": "O processo de dividir o dataset noutro de um certo rácio de treino e de teste usando o método/função Scikit Learn's 'train_test_split()' é chamado:",
             "answerOptions": [
               {
                 "answerText": "Validação Cruzada",
@@ -592,7 +592,7 @@
             ]
           },
           {
-            "questionText": "Se queres perceber a distribuição ou outra característica dos pontos de dados do teu conjunto de dados, executa:",
+            "questionText": "Se queres perceber a distribuição ou outra característica dos pontos de dados do teu dataset, executa:",
             "answerOptions": [
               {
                 "answerText": "Visualização de Dados",
@@ -616,11 +616,11 @@
                 "isCorrect": "false"
               },
               {
-                "answerText": "Creating a pictorial representation of data using different plotting methods",
+                "answerText": "Criar uma representação pictorial dos dados usando diferentes métodos de plotagem",
                 "isCorrect": "true"
               },
               {
-                "answerText": "Normalizing the values of a dataset",
+                "answerText": "Normalizar os valores do dataset",
                 "isCorrect": "false"
               }
             ]
@@ -629,10 +629,10 @@
       },
       {
         "id": 12,
-        "title": "Prepare and Visualize Data for Regression: Teste Pós-Aula",
+        "title": "Preparar e Visualizar Dados para Regressão: Teste Pós-Aula",
         "quiz": [
           {
-            "questionText": "Which of these code snippets is correct based on this lesson, if you want to check for the presence of missing values in your dataset? Suppose the dataset is stored in a variable named 'dataset' which is a Pandas DataFrame object.",
+            "questionText": "Qual destes trechos de código está correto com base nesta aula, se desejares verificar a presença de valores ausentes no teu dataset? Supõe que o dataset está armazenado numa variável chamada 'dataset', que é um objeto Pandas DataFrame.",
             "answerOptions": [
               {
                 "answerText": "dataset.isnull().sum()",
@@ -649,35 +649,35 @@
             ]
           },
           {
-            "questionText": "Which of these plotting methods is useful when you would like to understand the spread of different groups of datapoints from your dataset?",
+            "questionText": "Qual destes métodos de plotagem é útil quando queremos entender a propagação de diferentes grupos de datapoints do dataset?",
             "answerOptions": [
               {
-                "answerText": "Scatter Plot",
+                "answerText": "Plotagem de Dispersão",
                 "isCorrect": "false"
               },
               {
-                "answerText": "Line Plot",
+                "answerText": "Plotagem de Linhas",
                 "isCorrect": "false"
               },
               {
-                "answerText": "Bar Plot",
+                "answerText": "Plotagem de Barras",
                 "isCorrect": "true"
               }
             ]
           },
           {
-            "questionText": "What can Data Visualization NOT tell you?",
+            "questionText": "O que é que a Visualização de Dados NÃO te consegue dizer?",
             "answerOptions": [
               {
-                "answerText": "Relationships among datapoints",
+                "answerText": "Relações entre datapoints",
                 "isCorrect": "false"
               },
               {
-                "answerText": "The source from where the dataset is collected",
+                "answerText": "A fonte de onde o dataset é coletado",
                 "isCorrect": "true"
               },
               {
-                "answerText": "Finding the presence of outliers in the dataset",
+                "answerText": "Encontrar a presença de outliers no dataset",
                 "isCorrect": "false"
               }
             ]
@@ -686,55 +686,55 @@
       },
       {
         "id": 13,
-        "title": "Linear and Polynomial Regression: Teste Pré-Aula",
+        "title": "Regressão Linear e Polinomial: Teste Pré-Aula",
         "quiz": [
           {
-            "questionText": "Matplotlib is a ",
+            "questionText": "Matplotlib é uma",
             "answerOptions": [
               {
-                "answerText": "drawing library",
+                "answerText": "biblioteca de desenho",
                 "isCorrect": "false"
               },
               {
-                "answerText": "data visualization library",
+                "answerText": "biblioteca de visualização de dados",
                 "isCorrect": "true"
               },
               {
-                "answerText": "lending library",
+                "answerText": "biblioteca de empréstimo",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "Linear Regression uses the following to plot relationships between variables",
+            "questionText": "Para efetuar a plotagem de relações entre variáveis, a Regressão Linear usa:",
             "answerOptions": [
               {
-                "answerText": "a straight line",
+                "answerText": "uma linha reta",
                 "isCorrect": "true"
               },
               {
-                "answerText": "a circle",
+                "answerText": "um círculo",
                 "isCorrect": "false"
               },
               {
-                "answerText": "a curve",
+                "answerText": "uma curva",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "A good Linear Regression model has a ___ Correlation Coefficient",
+            "questionText": "Um bom modelo de Regressão Linear tem um Coeficiente de Correlação:",
             "answerOptions": [
               {
-                "answerText": "low",
+                "answerText": "baixo",
                 "isCorrect": "false"
               },
               {
-                "answerText": "high",
+                "answerText": "alto",
                 "isCorrect": "true"
               },
               {
-                "answerText": "flat",
+                "answerText": "liso",
                 "isCorrect": "false"
               }
             ]
@@ -743,27 +743,27 @@
       },
       {
         "id": 14,
-        "title": "Linear and Polynomial Regression: Teste Pós-Aula",
+        "title": "Regressão Linear e Polinomial: Teste Pós-Aula",
         "quiz": [
           {
-            "questionText": "If your data is nonlinear, try a ___ type of Regression",
+            "questionText": "Se os teus dados são não-lineares, tenta a Regressão:",
             "answerOptions": [
               {
                 "answerText": "linear",
                 "isCorrect": "false"
               },
               {
-                "answerText": "spherical",
+                "answerText": "esférica",
                 "isCorrect": "false"
               },
               {
-                "answerText": "polynomial",
+                "answerText": "polinomial",
                 "isCorrect": "true"
               }
             ]
           },
           {
-            "questionText": "These are all types of Regression methods",
+            "questionText": "Estes são todos os tipos de métodos de Regressão",
             "answerOptions": [
               {
                 "answerText": "Falsestep, Ridge, Lasso and Elasticnet",
@@ -780,18 +780,18 @@
             ]
           },
           {
-            "questionText": "Least-Squares Regression means that all the datapoints surrounding the regression line are:",
+            "questionText": "A Regressão de Mínimos Quadrados significa que todos os datapoints à volta da linha de regressão são:",
             "answerOptions": [
               {
-                "answerText": "squared and then subtracted",
+                "answerText": "elevados ao quadrado e depois subtraídos",
                 "isCorrect": "false"
               },
               {
-                "answerText": "multiplied",
+                "answerText": "multiplicados",
                 "isCorrect": "false"
               },
               {
-                "answerText": "squared and then added up",
+                "answerText": "elevados ao quadrade e depois somados",
                 "isCorrect": "true"
               }
             ]
@@ -800,47 +800,47 @@
       },
       {
         "id": 15,
-        "title": "Logistic Regression: Teste Pré-Aula",
+        "title": "Regressão Logística: Teste Pré-Aula",
         "quiz": [
           {
-            "questionText": "Use Logistic Regression to predict",
+            "questionText": "Usa-se Regressão Logística para prever",
             "answerOptions": [
               {
-                "answerText": "whether an apple is ripe or not",
+                "answerText": "se uma maçã está madura ou não",
                 "isCorrect": "true"
               },
               {
-                "answerText": "how many tickets can be sold in a month",
+                "answerText": "quantos bilhetes podem ser vendidos num mês",
                 "isCorrect": "false"
               },
               {
-                "answerText": "what color the sky will turn tomorrow at 6 PM",
+                "answerText": "que cor o céu irá ter amanhã às 18h",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "Types of Logistic Regression include",
+            "questionText": "Tipos de Regressão Logística incluem",
             "answerOptions": [
               {
-                "answerText": "multinomial and cardinal",
+                "answerText": "multinomial e cardinal",
                 "isCorrect": "false"
               },
               {
-                "answerText": "multinomial and ordinal",
+                "answerText": "multinomial e ordinal",
                 "isCorrect": "true"
               },
               {
-                "answerText": "principal and ordinal",
+                "answerText": "principal e ordinal",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "Your data has weak correlations. The best type of Regression to use is:",
+            "questionText": "Os teus dados têm correlações fracas. O melhor tipo de Regressão para usar é:",
             "answerOptions": [
               {
-                "answerText": "Logistic",
+                "answerText": "Logística",
                 "isCorrect": "true"
               },
               {
@@ -857,55 +857,55 @@
       },
       {
         "id": 16,
-        "title": "Logistic Regression: Teste Pós-Aula",
+        "title": "Regressão Logística: Teste Pós-Aula",
         "quiz": [
           {
-            "questionText": "Seaborn is a type of",
+            "questionText": "Seaborn é um tipo de",
             "answerOptions": [
               {
-                "answerText": "data visualization library",
+                "answerText": "biblioteca de visualização de dados",
                 "isCorrect": "true"
               },
               {
-                "answerText": "mapping library",
+                "answerText": "bilioteca de mapeamento",
                 "isCorrect": "false"
               },
               {
-                "answerText": "mathematical library",
+                "answerText": "biblioteca matemática",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "A confusion matrix is also known as a:",
+            "questionText": "Uma matriz de confusão é também conhecida como:",
             "answerOptions": [
               {
-                "answerText": "error matrix",
+                "answerText": "matriz de erros",
                 "isCorrect": "true"
               },
               {
-                "answerText": "truth matrix",
+                "answerText": "matriz de verdade",
                 "isCorrect": "false"
               },
               {
-                "answerText": "accuracy matrix",
+                "answerText": "matriz de exatidão",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "A good model will have:",
+            "questionText": "Um bom modelo terá:",
             "answerOptions": [
               {
-                "answerText": "a large number of false positives and true negatives in its confusion matrix",
+                "answerText": "um grande número de falsos positivos e verdadeiros negativos na matriz de confusão",
                 "isCorrect": "false"
               },
               {
-                "answerText": "a large number of true positives and true negatives in its confusion matrix",
+                "answerText": "um grande número de verdadeiros positivos e verdadeiros negativos na matriz de confusão",
                 "isCorrect": "true"
               },
               {
-                "answerText": "a large number of true positives and false negatives in its confusion matrix",
+                "answerText": "um grande número de verdadeiros positivos e falsos negativos na matriz de confusão",
                 "isCorrect": "false"
               }
             ]
@@ -914,10 +914,10 @@
       },
       {
         "id": 17,
-        "title": "Build a Web App: Teste Pré-Aula",
+        "title": "Construir uma Web App: Teste Pré-Aula",
         "quiz": [
           {
-            "questionText": "What does ONNX stand for?",
+            "questionText": "O que significa ONNX?",
             "answerOptions": [
               {
                 "answerText": "Over Neural Network Exchange",
@@ -934,7 +934,7 @@
             ]
           },
           {
-            "questionText": "How is Flask defined by its creators?",
+            "questionText": "Como é que Flask é definida pelos seus criadores?",
             "answerOptions": [
               {
                 "answerText": "mini-framework",
@@ -951,18 +951,18 @@
             ]
           },
           {
-            "questionText": "What does the Pickle module of Python do",
+            "questionText": "O que é que o módulo Pickle de Python faz",
             "answerOptions": [
               {
-                "answerText": "Serializes a Python Object",
+                "answerText": "Serializa um Objeto Python",
                 "isCorrect": "false"
               },
               {
-                "answerText": "De-serializes a Python Object",
+                "answerText": "Deserializa um Objeto Python",
                 "isCorrect": "false"
               },
               {
-                "answerText": "Serializes and De-serializes a Python Object",
+                "answerText": "Serializa and Deserializa um Objecto Python",
                 "isCorrect": "true"
               }
             ]
@@ -971,10 +971,10 @@
       },
       {
         "id": 18,
-        "title": "Build a Web App: Teste Pós-Aula",
+        "title": "Construir uma Web App: Teste Pós-Aula",
         "quiz": [
           {
-            "questionText": "What are the tools we can use to host a pre-trained model on the web using Python?",
+            "questionText": "Quais são as ferramentas que podemos usar para hospedar um modelo pré-treinado na web usando Python??",
             "answerOptions": [
               {
                 "answerText": "Flask",
@@ -991,7 +991,7 @@
             ]
           },
           {
-            "questionText": "What does SaaS stand for?",
+            "questionText": "O que significa SaaS?",
             "answerOptions": [
               {
                 "answerText": "System as a Service",
@@ -1008,18 +1008,18 @@
             ]
           },
           {
-            "questionText": "What does Scikit-learn's LabelEncoder library do?",
+            "questionText": "O que é que a biblioteca Scikit-learn's LabelEncoder faz?",
             "answerOptions": [
               {
-                "answerText": "Encodes data alphabetically",
+                "answerText": "Codifica os dados em ordem alfabética",
                 "isCorrect": "true"
               },
               {
-                "answerText": "Encodes data numerically",
+                "answerText": "Codifica os dados em ordem numérica",
                 "isCorrect": "false"
               },
               {
-                "answerText": "Encodes data serially",
+                "answerText": "Codifica os dados em série",
                 "isCorrect": "false"
               }
             ]
@@ -1028,17 +1028,17 @@
       },
       {
         "id": 19,
-        "title": "Classification 1: Teste Pré-Aula",
+        "title": "Classificação 1: Teste Pré-Aula",
         "quiz": [
           {
-            "questionText": "Classification is a form of supervised learning that has a lot in common with",
+            "questionText": "Classificação é uma forma de aprendizagem supervisionada que tem muito em comum com",
             "answerOptions": [
               {
-                "answerText": "Time Series",
+                "answerText": "Séries temporais",
                 "isCorrect": "false"
               },
               {
-                "answerText": "Regression techniques",
+                "answerText": "Técnicas de regressão",
                 "isCorrect": "true"
               },
               {
@@ -1048,35 +1048,35 @@
             ]
           },
           {
-            "questionText": "What question can classification help answer?",
+            "questionText": "Que pergunta a classificação pode ajudar a responder?",
             "answerOptions": [
               {
-                "answerText": "Is this email spam or not?",
+                "answerText": "Este email é spam ou não?",
                 "isCorrect": "true"
               },
               {
-                "answerText": "Can pigs fly?",
+                "answerText": "Os porcos conseguem voar?",
                 "isCorrect": "false"
               },
               {
-                "answerText": "What is the meaning of life?",
+                "answerText": "Qual é o significado da vida?",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "What is the first step to using Classification techniques?",
+            "questionText": "Qual é o primeiro passo ao usar técnicas de Classificação?",
             "answerOptions": [
               {
-                "answerText": "creating classes of a dataset",
+                "answerText": "criar classes de um dataset",
                 "isCorrect": "false"
               },
               {
-                "answerText": "cleaning and balancing your data",
+                "answerText": "limpar e equilibrar os dados",
                 "isCorrect": "true"
               },
               {
-                "answerText": "assigning a data point to a group or outcome",
+                "answerText": "atribuir um data point a um grupo ou a um resultado",
                 "isCorrect": "false"
               }
             ]
@@ -1085,51 +1085,51 @@
       },
       {
         "id": 20,
-        "title": "Classification 1: Teste Pós-Aula",
+        "title": "Classificação 1: Teste Pós-Aula",
         "quiz": [
           {
-            "questionText": "What is a multiclass question?",
+            "questionText": "O que é uma questão multiclass?",
             "answerOptions": [
               {
-                "answerText": "the task of classifying data points into multiple classes",
+                "answerText": "a tarefa de classificar data points em múltiplas classes",
                 "isCorrect": "true"
               },
               {
-                "answerText": "the task of classifying data points into one of several classes",
+                "answerText": "a tarefa de classificar data points numa ou em várias classes",
                 "isCorrect": "true"
               },
               {
-                "answerText": "the task of cleaning data points in multiple ways",
+                "answerText": "a tarefa de limpar data points de múltiplas maneiras",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "It's important to clean out recurrent or unhelpful data to help your classifiers solve your problem.",
+            "questionText": "É importante limpar dados recurrentes ou inúteis para ajudar os classificadores a resolver o problema.",
             "answerOptions": [
               {
-                "answerText": "true",
+                "answerText": "verdadeiro",
                 "isCorrect": "true"
               },
               {
-                "answerText": "false",
+                "answerText": "falso",
                 "isCorrect": "false"
               }
             ]
           },
           {
-            "questionText": "What's the best reason to balance your data?",
+            "questionText": "Qual é a melhor razão para equilibrar os dados?",
             "answerOptions": [
               {
-                "answerText": "Imbalanced data looks bad in visualizations",
+                "answerText": "Dados desiquilibrados parecem mal na visualização",
                 "isCorrect": "false"
               },
               {
-                "answerText": "Balancing your data yields better results because an ML model won't skew towards one class",
+                "answerText": "Equilibrar os dados retorna melhores resultados porque o modelo ML não irá tender para uma classe",
                 "isCorrect": "true"
               },
               {
-                "answerText": "Balancing your data gives you more data points",
+                "answerText": "Equilibrados os dados cria mais data points",
                 "isCorrect": "false"
               }
             ]
@@ -1138,7 +1138,7 @@
       },
       {
         "id": 21,
-        "title": "Classification 2: Teste Pré-Aula",
+        "title": "Classificação 2: Teste Pré-Aula",
         "quiz": [
           {
             "questionText": "Balanced, clean data yields the best classification results",
