@@ -14,7 +14,7 @@ Bu bölümde, bu eğitim programının tamamen regresyon üzerine olan ilk böl�
 
 ## Dersler
 
-1. [Sınıflandırmaya giriş](../1-Introduction/README.md)
+1. [Sınıflandırmaya giriş](../1-Introduction/translations/README.tr.md)
 2. [Daha fazla sınıflandırıcı](../2-Classifiers-1/README.md)
 3. [Hatta daha fazla sınıflandırıcı](../3-Classifiers-2/README.md)
 4. [Uygulamalı Makine Öğrenimi: bir web uygulaması oluşturun](../4-Applied/README.md)
