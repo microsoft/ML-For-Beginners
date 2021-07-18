@@ -64,7 +64,6 @@ https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the
 
 ## 🏥 保健
 
-啊
 The health care sector can leverage ML to optimize research tasks and also logistic problems like readmitting patients or stopping diseases from spreading.
 
 ### Managing clinical trials
