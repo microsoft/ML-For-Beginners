@@ -6,7 +6,7 @@
 ![jack-o-lantern](../images/jack-o-lanterns.jpg)
 > Foto oleh <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> di <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
-##你会学到什么
+## 你会学到什么
 
 这节的课程包括机器学习领域中的多种回归模型。回归模型可以明确多种变量间的_关系_。这种模型可以用来预测类似长度、温度和年龄之类的值， 通过分析数据点来揭示变量之间的关系。
 
