@@ -171,7 +171,7 @@ Provare a creare alcuni grafici di base per visualizzare il nuovo dataframe appe
 
 ### Renderlo utile
 
-Per fare in modo che i grafici mostrino dati utili, di solito è necessario raggruppare i dati in qualche modo. Si prova a creare un grafico in cui l'asse y mostra i prezzi e l'asse x mostra la distribuzione dei dati raggruppati per mese.
+Per fare in modo che i grafici mostrino dati utili, di solito è necessario raggruppare i dati in qualche modo. Si prova a creare un grafico che mostra la distribuzione dei dati dove  l'asse x mostra i mesi.
 
 1. Aggiungere una cella per creare un grafico a barre raggruppato:
 
