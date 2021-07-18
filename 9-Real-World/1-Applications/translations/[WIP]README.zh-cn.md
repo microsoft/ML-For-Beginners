@@ -48,17 +48,17 @@ https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect
 
 ## 👜 零售
 
-无论是创造更好的客户旅程，还是以最佳方式管理库存，零售业绝对可以从机器学习的使用中受益匪浅。
+无论是创造更好的客户体验，还是以最佳方式管理库存，零售业绝对可以从机器学习的使用中受益匪浅。
 
-### Personalizing the customer journey
+### 个性化的客户体验
 
-At Wayfair, a company that sells home goods like furniture, helping customers find the right products for their taste and needs is paramount. In this article, engineers from the company describe how they use ML and NLP to "surface the right results for customers". Notably, their Query Intent Engine has been built to use entity extraction, classifier training, asset and opinion extraction, and sentiment tagging on customer reviews. This is a classic use case of how NLP works in online retail.
+Wayfair是一家销售家具等家居用品的公司，对于它们来说，帮助客户找到适合他们口味和需求的产品至关重要。在下方文章中，该公司的工程师描述了他们如何使用机器学习和NLP来“为客户呈现正确的结果”。值得注意的是，他们构建的的意向引擎（Query Intent Engine）已经利用了实体提取、分类器训练、反馈意见提取，以及客户评论的情感标签。这是NLP如何在在线零售中发挥作用的经典案例。
 
 https://www.aboutwayfair.com/tech-innovation/how-we-use-machine-learning-and-natural-language-processing-to-empower-search
 
-### Inventory management
+### 库存管理
 
-Innovative, nimble companies like [StitchFix](https://stitchfix.com), a box service that ships clothing to consumers, rely heavily on ML for recommendations and inventory management. Their styling teams work together with their merchandising teams, in fact: "one of our data scientists tinkered with a genetic algorithm and applied it to apparel to predict what would be a successful piece of clothing that doesn't exist today. We brought that to the merchandise team and now they can use that as a tool."
+像 [StitchFix](https://stitchfix.com) （一家售卖服饰的造型公司）这样的创新、灵活的公司，非常依赖机器学习进行推荐和库存管理。 事实上，他们的造型团队与他们的营销团队合作：“我们的一位数据科学家修改了遗传算法并将其应用于服装，以预测今后可能大受欢迎的服装。我们将其引入到商品团队，现在他们可以将其用作工具。”
 
 https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/
 
