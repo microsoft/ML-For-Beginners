@@ -114,4 +114,4 @@ Voici quelques articles à regarder et à écouter :
 
 ## Devoir
 
-[Créer une frise chonologique](assignment.fr.md)
+[Créer une frise chronologique](assignment.fr.md)
