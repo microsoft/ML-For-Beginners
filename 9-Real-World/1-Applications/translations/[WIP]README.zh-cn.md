@@ -1,54 +1,54 @@
-# Postscript: Machine learning in the real world
+# 附录：机器学习的实际应用
 
 
-![Summary of Machine learning in the real world in a sketchnote](../../sketchnotes/ml-realworld.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+![Summary of Machine learning in the real world in a sketchnote](../../../sketchnotes/ml-realworld.png)
+> 绘图笔记由[Tomomi Imura](https://www.twitter.com/girlie_mac)绘制
 
-In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic regression, clustering, classification, natural language processing, and time series models. Congratulations! Now, you might be wondering what it's all for... what are the real world applications for these models?
+在本课程中，您学到了很多种为训练准备数据和创建机器学习模型的方法。您构建了一系列经典回归、聚类、分类、自然语言处理和时间序列模型。恭喜！现在，您可能想知道这一切是为了什么？这些模型如何应用于实际生活中？
 
-While a lot of interest in industry has been garnered by AI, which usually leverages deep learning, there are still valuable applications for classical machine learning models. You might even use some of these applications today! In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and valuable to users.
+虽然利用深度学习的AI已经引起了工业界的极大兴趣，但经典机器学习模型仍然有很多可取之处。甚至，可能您今天都使用了其中的一些应用程序！在本课中，您将探索八个不同的行业和领域如何使用这些模型来提高其应用程序的性能、可靠性、智能性和对用户的价值。
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/49/)
+## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/49/)
 
-## 💰 Finance
+## 💰 金融
 
-The finance sector offers many opportunities for machine learning. Many problems in this area lend themselves to be modeled and solved by using ML.
+金融领域为机器学习提供了许多机会。该领域的许多问题都可以通过使用机器学习来建模解决。
 
-### Credit card fraud detection
+### 信用卡欺诈检测
 
-We learned about [k-means clustering](../../5-Clustering/2-K-Means/README.md) earlier in the course, but how can it be used to solve problems related to credit card fraud?
+我们在之前的课程里学习了[k-means clustering](../../../5-Clustering/2-K-Means/translations/README.zh-cn.md)，但它如何用于解决与信用卡欺诈相关的问题？
 
-K-means clustering comes in handy during a credit card fraud detection technique called **outlier detection**. Outliers, or deviations in observations about a set of data, can tell us if a credit card is being used in a normal capacity or if something unusual is going on. As shown in the paper linked below, you can sort credit card data using a k-means clustering algorithm and assign each transaction to a cluster based on how much of an outlier it appears to be. Then, you can evaluate the riskiest clusters for fraudulent versus legitimate transactions.
+K-means 聚类在称为**异常值检测**的信用卡欺诈检测技术中十分有用。 异常值（或一组数据的观察偏差）可以告诉我们信用卡是否正常使用，或是否发生了异常情况。 如下面链接的论文所示，您可以使用k-means clustering算法对信用卡数据进行排序，并根据每笔交易出现的异常值将其分配到一个集群中。 然后，您可以评估欺诈交易与合法交易的风险最高的集群。
 
 https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf
 
-### Wealth management
+### 财富管理
 
-In wealth management, an individual or firm handles investments on behalf of their clients. Their job is to sustain and grow wealth in the long-term, so it is essential to choose investments that perform well.
+在财富管理中，个人或公司代表其客户处理投资。 他们的工作是长期维持并增长财富，因此选择表现良好的投资至关重要。
 
-One way to evaluate how a particular investment performs is through statistical regression. [Linear regression](../../2-Regression/1-Tools/README.md) is a valuable tool for understanding how a fund performs relative to some benchmark. We can also deduce whether or not the results of the regression are statistically significant, or how much they would affect a client's investments. You could even further expand your analysis using multiple regression, where additional risk factors can be taken into account. For an example of how this would work for a specific fund, check out the paper below on evaluating fund performance using regression.
+评估特定投资收益的一种方法是统计回归。其中，[线性回归]((../../../2-Regression/1-Tools/translations/README.zh-cn.md))是了解基金相对于某些基准表现的重要工具。我们还可以推断回归结果在统计上是否显着，或者它们会在多大程度上影响客户的投资结果。您甚至可以考虑其他风险因素，使用多元回归来进一步扩展您的分析。 有关如何适用于特定基金的示例，请查看以下有关使用回归工具评估基金业绩的论文。
 
 http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/
 
-## 🎓 Education
+## 🎓 教育
 
-The educational sector is also a very interesting area where ML can be applied. There are interesting problems to be tackled such as detecting cheating on tests or essays or managing bias in the correction process, unintentional or not.
+教育领域也是一个机器学习很引人注意的领域。 有一些令人瞩目的问题亟待解决，例如检测考试或论文中的作弊行为，或在评估过程中管理有意或无意的偏见。
 
-### Predicting student behavior
+### 预测学生行为
 
-[Coursera](https://coursera.com), an online open course provider, has a great tech blog where they discuss many engineering decisions. In this case study, they plotted a regression line to try to explore any correlation between a low NPS (Net Promoter Score) rating and course retention or drop-off.
+[Coursera](https://coursera.com)是一家在线公开课提供商。他们有一个很棒的技术博客讨论了许多工程决策。在这个下方的参考案例中，他们绘制了一条回归线，试图探究低 NPS（净推荐值）评级与课程保留或降级之间的相关性。
 
 https://medium.com/coursera-engineering/controlled-regression-quantifying-the-impact-of-course-quality-on-learner-retention-31f956bd592a
 
-### Mitigating bias
+### 降低偏见
 
-[Grammarly](https://grammarly.com), a writing assistant that checks for spelling and grammar errors, uses sophisticated [natural language processing systems](../../6-NLP/README.md) throughout its products. They published an interesting case study in their tech blog about how they dealt with gender bias in machine learning, which you learned about in our [introductory fairness lesson](../../1-Introduction/3-fairness/README.md).
+[Grammarly](https://grammarly.com)是一种检查拼写和语法错误的写作助手，在其整个产品中使用了复杂的[自然语言处理系统](../../../6-NLP/translations/README.zh-cn.md)。 他们在他们的技术博客中发布了一个有趣的案例研究，内容涉及他们如何处理机器学习中的性别偏见，您在我们的[introductory fairness lesson](../../../1-Introduction/3-fairness/translations/README.zh-cn.md)中了解到。
 
 https://www.grammarly.com/blog/engineering/mitigating-gender-bias-in-autocorrect/
 
-## 👜 Retail
+## 👜 零售
 
-The retail sector can definitely benefit from the use of ML, with everything from creating a better customer journey to stocking inventory in an optimal way.
+无论是创造更好的客户旅程，还是以最佳方式管理库存，零售业绝对可以从机器学习的使用中受益匪浅。
 
 ### Personalizing the customer journey
 
@@ -62,7 +62,7 @@ Innovative, nimble companies like [StitchFix](https://stitchfix.com), a box serv
 
 https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/
 
-## 🏥 Health Care
+## 🏥 保健
 
 The health care sector can leverage ML to optimize research tasks and also logistic problems like readmitting patients or stopping diseases from spreading.
 
@@ -84,7 +84,7 @@ The recent pandemic has shone a bright light on the ways that machine learning c
 
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/
 
-## 🌲 Ecology and Green Tech
+## 🌲 生态与环保科技 
 
 Nature and ecology consists of many sensitive systems where the interplay between animals and nature come into focus. It's important to be able to measure these systems accurately and act appropriately if something happens, like a forest fire or a drop in the animal population.
 
@@ -110,7 +110,7 @@ In our lessons on [time series forecasting](../../7-TimeSeries/README.md), we in
 
 https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf
 
-## 💼 Insurance
+## 💼 保险行业
 
 The insurance sector is another sector that uses ML to construct and optimize viable financial and actuarial models. 
 
@@ -140,7 +140,7 @@ For example, the Art Institute of Chicago built models to predict what audiences
 
 https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices
 
-## 🏷 Marketing
+## 🏷 市场营销
 
 ### Customer segmentation
 
@@ -148,16 +148,16 @@ The most effective marketing strategies target customers in different ways based
 
 https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/
 
-## 🚀 Challenge
+## 🚀 挑战
 
 Identify another sector that benefits from some of the techniques you learned in this curriculum, and discover how it uses ML.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/50/)
+## [课后测试](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/50/)
 
-## Review & Self Study
+## 复习&自学
 
 The Wayfair data science team has several interesting videos on how they use ML at their company. It's worth [taking a look](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos)!
 
-## Assignment
+## 课后作业
 
 [A ML scavenger hunt](assignment.md)
