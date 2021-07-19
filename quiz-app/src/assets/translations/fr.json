@@ -415,7 +415,7 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -1033,7 +1033,7 @@
                     "questionText": "La classification est une forme d'apprentissage supervisé qui a beaucoup en commun avec",
                     "answerOptions": [
 							{
-							"answerText": "Série temporelle",
+							"answerText": "Série chronologique",
                             "isCorrect": "false"
                         },
                         {
@@ -1164,7 +1164,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -1213,7 +1213,7 @@
                     "questionText": "Quel classificateur avons-nous utilisé dans cette leçon?",
                     "answerOptions": [
 							{
-							"answerText": "régression logistique",
+							"answerText": "Régression logistique",
                             "isCorrect": "true"
                         },
                         {
@@ -1221,7 +1221,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "MultiClass one-vs-tout",
+							"answerText": "Multiclasse un-contre-tous",
                             "isCorrect": "false"
                         }
                     ]
@@ -1257,7 +1257,7 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "k-signifie",
+							"answerText": "K-Means",
                             "isCorrect": "false"
                         },
                         {
@@ -1295,7 +1295,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -1310,15 +1310,15 @@
                     "questionText": "Les classificateurs de support-vectoriel peuvent être utilisés pour",
                     "answerOptions": [
 							{
-							"answerText": "Classification",
+							"answerText": "La classification",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "régression",
+							"answerText": "La régression",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -1327,15 +1327,15 @@
                     "questionText": "Forêt aléatoire est un type de classificateur ___",
                     "answerOptions": [
 							{
-							"answerText": "Ensemble",
+							"answerText": "Ensembliste",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Dissembliste",
+							"answerText": "Disensembliste",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Assemblez",
+							"answerText": "Assembliste",
                             "isCorrect": "false"
                         }
                     ]
@@ -1371,17 +1371,17 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "recommander des modes à essayer",
+							"answerText": "Recommander des modes à essayer",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
                 },
                 {
-                    "questionText": "L'intégration d'un modèle dans une application Web l'aide à être hors ligne",
+                    "questionText": "L'intégration d'un modèle dans une application Web l'aide à être compatible hors ligne",
                     "answerOptions": [
 							{
 							"answerText": "Vrai",
@@ -1394,7 +1394,7 @@
                     ]
                 },
                 {
-                    "questionText": "OnNX Runtime peut être utilisé pour",
+                    "questionText": "Onnx Runtime peut être utilisé pour",
                     "answerOptions": [
 							{
 							"answerText": "Exécution de modèles dans une application Web",
@@ -1405,7 +1405,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Hyperparameter Tuning",
+							"answerText": "Réglage des hyperparamètres",
                             "isCorrect": "false"
                         }
                     ]
@@ -1417,7 +1417,7 @@
             "title": "Classification 4: Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "L'application Nettron vous aide:",
+                    "questionText": "L'application Netron vous aide:",
                     "answerOptions": [
 							{
 							"answerText": "Visualiser les données",
@@ -1434,10 +1434,10 @@
                     ]
                 },
                 {
-                    "questionText": "Convertissez votre modèle SCIKIT-HALL pour une utilisation avec OnNX en utilisant:",
+                    "questionText": "Convertissez votre modèle Scikit-learnL pour une utilisation avec Onnx en utilisant:",
                     "answerOptions": [
 							{
-							"answerText": "Sklearn-App",
+							"answerText": "Sklearn-app",
                             "isCorrect": "false"
                         },
                         {
@@ -1445,7 +1445,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Sklearn-ONNX",
+							"answerText": "Sklearn-onnX",
                             "isCorrect": "true"
                         }
                     ]
@@ -1471,7 +1471,7 @@
         },
         {
             "id": 27,
-            "title": "Introduction au Clustering: Quiz préalable",
+            "title": "Introduction au Clustering (regroupement): Quiz préalable",
             "quiz": [
 							{
                     "questionText": "Un exemple de vie réel de regroupement serait",
@@ -1502,7 +1502,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "false"
                         }
                     ]
@@ -1528,10 +1528,10 @@
         },
         {
             "id": 28,
-            "title": "Introduction au Clustering: Quiz de validation des connaissances",
+            "title": "Introduction au Clustering (regroupement): Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "La géométrie euclidienne est disposée le long",
+                    "questionText": "La géométrie Euclidienne est disposée le long",
                     "answerOptions": [
 							{
 							"answerText": "De plans",
@@ -1633,7 +1633,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -1701,15 +1701,15 @@
                     "questionText": "Que signifie NLP pour ces leçons?",
                     "answerOptions": [
 							{
-							"answerText": "Traitement des langues neurales",
+							"answerText": "Neural Language Processing (Traitement des langues neurales)",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Traitement des langues naturelles",
+							"answerText": "Natural Language Processing (Traitement des langues naturelles)",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Traitement linguistique naturel",
+							"answerText": "Natural Linguistic Processing (Traitement linguistique naturel)",
                             "isCorrect": "false"
                         }
                     ]
@@ -1783,7 +1783,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "tous les deux",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -1812,7 +1812,7 @@
             "title": "Tâches NLP: Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "Tokenization",
+                    "questionText": "La tokenization",
                     "answerOptions": [
 							{
 							"answerText": "Divise le texte au moyen de la ponctuation",
@@ -1829,7 +1829,7 @@
                     ]
                 },
                 {
-                    "questionText": "Embeddings",
+                    "questionText": "L'Embeddings",
                     "answerOptions": [
 							{
 							"answerText": "Convertit numériquement les données de texte afin que les mots puissent se classer",
@@ -1846,18 +1846,18 @@
                     ]
                 },
                 {
-                    "questionText": "Marquage des parties de la parole",
+                    "questionText": "Le balisage des parties du discours (Parts-of-Speech Tagging)",
                     "answerOptions": [
 							{
-							"answerText": "Divise des phrases par leurs parties de la parole",
+							"answerText": "Divise les phrases en fonction de leurs parties du discours",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "prend des mots togmentés et les étiquettes de leur part de la parole",
+							"answerText": "prend les mots tokenisés et les marque selon leur partie du discours",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Phrases de diagrammes",
+							"answerText": "schématise des phrases",
                             "isCorrect": "false"
                         }
                     ]
@@ -1886,18 +1886,18 @@
                     ]
                 },
                 {
-                    "questionText": "N-grammes se réfèrent à",
+                    "questionText": "N-grams fait référence à",
                     "answerOptions": [
 							{
-							"answerText": "Un texte peut être divisé en séquences de mots d'une longueur définie",
+							"answerText": "Un texte pouvant être divisé en séquences de mots d'une longueur définie",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Un mot peut être divisé en séquences de caractères d'une longueur de jeu",
+							"answerText": "Un mot pouvant être divisé en séquences de caractères d'une longueur de jeu",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Un texte peut être divisé en paragraphes d'une longueur définie",
+							"answerText": "Un texte pouvant être divisé en paragraphes d'une longueur définie",
                             "isCorrect": "false"
                         }
                     ]
@@ -2000,7 +2000,7 @@
                     ]
                 },
                 {
-                    "questionText": "Pour utiliser `blob.translate` vous avez besoin:",
+                    "questionText": "Pour utiliser `blob.translate` vous avez besoin de:",
                     "answerOptions": [
 							{
 							"answerText": "Une connexion Internet",
@@ -2017,18 +2017,18 @@
                     ]
                 },
                 {
-                    "questionText": "Pour déterminer un sentiment, une approche ML serait de:",
+                    "questionText": "Pour déterminer un sentiment, une approche ML serait d':",
                     "answerOptions": [
 							{
-							"answerText": "Appliquez des techniques de régression pour générer manuellement des opinions et des scores et rechercher des modèles",
+							"answerText": "Appliquer des techniques de régression pour générer manuellement des opinions et des scores et rechercher des modèles",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Appliquez des techniques de PNL pour générer manuellement des opinions et des scores et rechercher des modèles",
+							"answerText": "Appliquer des techniques de PNL pour générer manuellement des opinions et des scores et rechercher des modèles",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Appliquez des techniques de regroupement pour des opinions et des scores générés manuellement et rechercher des modèles",
+							"answerText": "Appliquer des techniques de regroupement pour des opinions et des scores générés manuellement et rechercher des modèles",
                             "isCorrect": "false"
                         }
                     ]
@@ -2253,10 +2253,10 @@
         },
         {
             "id": 41,
-            "title": "Introduction aux Time Series (séries temporelles): Quiz préalable",
+            "title": "Introduction aux Séries chronologiques (Time Series) : Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "La prévision de Time Series est utile pour",
+                    "questionText": "La prévision de série chronologique est utile pour",
                     "answerOptions": [
 							{
 							"answerText": "Déterminer les coûts futurs",
@@ -2273,7 +2273,7 @@
                     ]
                 },
                 {
-                    "questionText": "Une série temporelles est une séquence prise à:",
+                    "questionText": "Une série chronologique est une séquence prise à:",
                     "answerOptions": [
 							{
 							"answerText": "points successifs également espacés dans l'espace",
@@ -2290,7 +2290,7 @@
                     ]
                 },
                 {
-                    "questionText": "La série temporelles peut être utilisée dans les cas de:",
+                    "questionText": "La série chronologique peut être utilisée dans les cas de:",
                     "answerOptions": [
 							{
 							"answerText": "Prévision de tremblement de terre",
@@ -2310,10 +2310,10 @@
         },
         {
             "id": 42,
-            "title": "Introduction aux Time Series (séries temporelles): Quiz de validation des connaissances",
+            "title": "Introduction aux séries chronologiques : Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "Les tendances de série temporelles sont",
+                    "questionText": "Les tendances de série chronologique sont",
                     "answerOptions": [
 							{
 							"answerText": "des augmentations et des diminutions mesurables au fil du temps",
@@ -2347,10 +2347,10 @@
                     ]
                 },
                 {
-                    "questionText": "La prévision de la série temporelle est la plus utile pour",
+                    "questionText": "La prévision de séries chronologiques est utile pour",
                     "answerOptions": [
 							{
-							"answerText": "L'conométrics",
+							"answerText": "L'économétrie",
                             "isCorrect": "true"
                         },
                         {
@@ -2367,27 +2367,27 @@
         },
         {
             "id": 43,
-            "title": "Série TIME ARIMA: Quiz préalable",
+            "title": "Les séries chronologiques ARIMA: Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "Arima signifie",
+                    "questionText": "ARIMA signifie",
                     "answerOptions": [
 							{
-							"answerText": "Moyenne mobile intégrale autonome",
+							"answerText": "AutoRegressive Integral Moving Average",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Action mobile intégrée autorégressive",
+							"answerText": "AutoRegressive Integrated Moving Action",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Moyenne mobile intégrée autorégresive",
+							"answerText": "AutoRegressive Integrated Moving Average",
                             "isCorrect": "true"
                         }
                     ]
                 },
                 {
-                    "questionText": "Stationarité fait référence à",
+                    "questionText": "La stationnarité fait référence à",
                     "answerOptions": [
 							{
 							"answerText": "Les données dont les attributs ne changent pas lors de la décalage",
@@ -2404,7 +2404,7 @@
                     ]
                 },
                 {
-                    "questionText": "différenciation",
+                    "questionText": "La différenciation",
                     "answerOptions": [
 							{
 							"answerText": "Stabilise la tendance et la saisonnalité",
@@ -2424,7 +2424,7 @@
         },
         {
             "id": 44,
-            "title": "Série TIME ARIMA: Quiz de validation des connaissances",
+            "title": "Les séries chronologiques ARIMA: Quiz de validation des connaissances",
             "quiz": [
 							{
                     "questionText": "Arima est utilisé pour créer un modèle adapté à la forme spéciale des données de la série chronologique",
@@ -2444,7 +2444,7 @@
                     ]
                 },
                 {
-                    "questionText": "Utilisez Sarimax à",
+                    "questionText": "Utilisez Sarimax pour",
                     "answerOptions": [
 							{
 							"answerText": "Gérer les modèles d'ARIMA saisonniers",
@@ -2461,18 +2461,18 @@
                     ]
                 },
                 {
-                    "questionText": " `La validation` de la promenade implique ",
+                    "questionText": " La validation « Walk-Forward » implique de",
                     "answerOptions": [
 							{
 							"answerText": "Réévaluer un modèle progressivement tel qu'il est validé",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Ré-entraînant un modèle progressivement tel qu'il est validé",
+							"answerText": "Re-entraîner un modèle progressivement tel qu'il est validé",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Ré-configurez un modèle progressivement tel qu'il est validé",
+							"answerText": "Re-configurer un modèle progressivement tel qu'il est validé",
                             "isCorrect": "false"
                         }
                     ]
@@ -2535,7 +2535,7 @@
             "title": "Renforcement 1: Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "Qu'est-ce que q-apprentissage?",
+                    "questionText": "Qu'est-ce que le Q-Learning?",
                     "answerOptions": [
 							{
 							"answerText": "Un mécanisme d'enregistrement de la \"bonté\" de chaque État",
@@ -2552,7 +2552,7 @@
                     ]
                 },
                 {
-                    "questionText": "Pour quelles valeurs une table Q correspond à la stratégie de marche aléatoire?",
+                    "questionText": "Pour quelles valeurs une Q-Table correspond à la stratégie de marche aléatoire?",
                     "answerOptions": [
 							{
 							"answerText": "toutes les valeurs égales",
@@ -2588,7 +2588,7 @@
             "title": "Renforcement 2: Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "Les échecs et les jeux sont des jeux avec des états continus.",
+                    "questionText": "Les échecs et le go sont des jeux avec des états continus",
                     "answerOptions": [
 							{
 							"answerText": "Vrai",
@@ -2601,7 +2601,7 @@
                     ]
                 },
                 {
-                    "questionText": "Quel est le problème de la cartpole?",
+                    "questionText": "Quel est le problème CartPole ?",
                     "answerOptions": [
 							{
 							"answerText": "Un processus d'élimination des valeurs aberrantes",
@@ -2658,14 +2658,14 @@
                     ]
                 },
                 {
-                    "questionText": "Quelle paire avez-nous utilisée comme valeur de la clé de dictionnaire?",
+                    "questionText": "Quelle paire avons-nous utilisée comme valeur de la clé de dictionnaire?",
                     "answerOptions": [
 							{
-							"answerText": "(état, action) comme clé de la table Q-Table comme valeur",
+							"answerText": "(état, action) comme clé, l'entrée Q-Table comme valeur",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "State comme clé, action en tant que valeur",
+							"answerText": "L'état comme clé, action en tant que valeur",
                             "isCorrect": "false"
                         },
                         {
@@ -2675,7 +2675,7 @@
                     ]
                 },
                 {
-                    "questionText": "Quels sont les hyperparamètres que nous avons utilisés pendant q-apprentissage?",
+                    "questionText": "Quels sont les hyperparamètres que nous avons utilisés pendant le Q-Learning?",
                     "answerOptions": [
 							{
 							"answerText": "Valeur de la table Q, récompense actuelle, action aléatoire",
@@ -2718,15 +2718,15 @@
                     "questionText": "Quelle technique ML peut utiliser les hôpitaux pour gérer la réadmission?",
                     "answerOptions": [
 							{
-							"answerText": "Clustering",
+							"answerText": "Le Clustering (Regroupement)",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Série temporelle",
+							"answerText": "Les séries chronologiques",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "NLP",
+							"answerText": "Le NLP",
                             "isCorrect": "false"
                         }
                     ]
@@ -2779,7 +2779,7 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Série temporelle",
+							"answerText": "Série chronologique",
                             "isCorrect": "false"
                         },
                         {
