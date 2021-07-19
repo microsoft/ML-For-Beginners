@@ -269,7 +269,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     ```python
     transformed_df.head()
     transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisine.csv")
+    transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
     这个全新的CSV文件可以在数据根目录中被找到。

@@ -275,7 +275,8 @@ Veriyi temizlediniz, şimdi [SMOTE](https://imbalanced-learn.org/dev/references/
     ```python
     transformed_df.head()
     transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisine.csv")
+    transformed_df.to_csv("../../data/cleaned_cuisines.csv")
+
     ```
 
     Bu yeni CSV şimdi kök data (veri) klasöründe görülebilir.
