@@ -3,7 +3,7 @@
 ![Résumé de l'histoire du machine learning dans un sketchnote](../../../sketchnotes/ml-history.png)
 > Sketchnote de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quizz préalable](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
+## [Quizz préalable](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3?loc=fr)
 
 Dans cette leçon, nous allons parcourir les principales étapes de l'histoire du machine learning et de l'intelligence artificielle.
 
@@ -102,7 +102,7 @@ Reste à savoir ce que l'avenir nous réserve, mais il est important de comprend
 
 Plongez dans l'un de ces moments historiques et apprenez-en plus sur les personnes derrière ceux-ci. Il y a des personnalités fascinantes, et aucune découverte scientifique n'a jamais été créée avec un vide culturel. Que découvrez-vous ?
 
-## [Quiz de validation des connaissances](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+## [Quiz de validation des connaissances](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4?loc=fr)
 
 ## Révision et auto-apprentissage
 
