@@ -7,10 +7,10 @@ Dans cette section du programme, vous découvrirez les concepts de base sous-jac
   
 ### Leçons
 
-1. [Introduction au machine learning](1-intro-to-ML/README.md)
-1. [L’histoire du machine learning et de l’IA](2-history-of-ML/README.md)
-1. [Équité et machine learning](3-équité/README.md)
-1. [Techniques de machine learning](4-techniques-of-ML/README.md)
+1. [Introduction au machine learning](../1-intro-to-ML/translations/README.fr.md)
+1. [L’histoire du machine learning et de l’IA](../2-history-of-ML/translations/README.fr.md)
+1. [Équité et machine learning](../3-fairness/translations/README.fr.md)
+1. [Techniques de machine learning](../4-techniques-of-ML/translations/README.fr.md)
 ### Crédits
 
 "Introduction au machine learning" a été écrit avec ♥️ par une équipe de personnes comprenant [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan), [Ornella Altunyan](https://twitter.com/ornelladotcom) et [Jen Looper](https://twitter.com/jenlooper)

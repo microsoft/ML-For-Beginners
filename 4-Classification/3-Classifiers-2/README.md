@@ -6,7 +6,7 @@ In this second classification lesson, you will explore more ways to classify num
 
 ### Prerequisite
 
-We assume that you have completed the previous lessons and have a cleaned dataset in your `data` folder called _cleaned_cuisine.csv_ in the root of this 4-lesson folder.
+We assume that you have completed the previous lessons and have a cleaned dataset in your `data` folder called _cleaned_cuisines.csv_ in the root of this 4-lesson folder.
 
 ### Preparation
 
