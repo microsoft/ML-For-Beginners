@@ -820,7 +820,7 @@
                     ]
                 },
                 {
-                    "questionText": "Types de régression logistique incluent",
+                    "questionText": "Les types de régression logistique incluent",
                     "answerOptions": [
 							{
 							"answerText": "multinomial et cardinal",
@@ -848,7 +848,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "cardinal",
+							"answerText": "cardinale",
                             "isCorrect": "false"
                         }
                     ]
@@ -860,7 +860,7 @@
             "title": "Régression logistique: Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "Sea-né est un type de",
+                    "questionText": "Seaborn est un type de",
                     "answerOptions": [
 							{
 							"answerText": "Bibliothèque de visualisation de données",
@@ -880,15 +880,15 @@
                     "questionText": "Une matrice de confusion est également connue sous le nom de:",
                     "answerOptions": [
 							{
-							"answerText": "matrice d'erreur",
+							"answerText": "Matrice d'erreur",
                             "isCorrect": "true"
                         },
                         {
-                            "answerText": "Matrix de vérité",
+                            "answerText": "Matrice de vérité",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "matrice de précision",
+							"answerText": "Matrice de précision",
                             "isCorrect": "false"
                         }
                     ]
@@ -916,35 +916,35 @@
             "title": "Construire une application Web: Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "Qu'est-ce que OnNX signifie?",
+                    "questionText": "Qu'est-ce que ONNX signifie?",
                     "answerOptions": [
 							{
-							"answerText": "Exchange de réseau de neurones",
+							"answerText": "Over Neural Network Exchange",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Exchange de réseau de neurones ouverts",
+							"answerText": "Open Neural Network Exchange",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Exchange de réseau neural de sortie",
+							"answerText": "Output Neural Network Exchange",
                             "isCorrect": "false"
                         }
                     ]
                 },
                 {
-                    "questionText": "Comment le ballon est-il défini par ses créateurs?",
+                    "questionText": "Comment Flask est-il défini par ses créateurs?",
                     "answerOptions": [
 							{
-							"answerText": "mini-cadre",
+							"answerText": "mini-framework",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Grand-cadre",
+							"answerText": "grand-framework",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "micro-cadre",
+							"answerText": "micro-framework",
                             "isCorrect": "true"
                         }
                     ]
@@ -953,15 +953,15 @@
                     "questionText": "Que fait le module de cornichon de Python",
                     "answerOptions": [
 							{
-							"answerText": "Serialise un objet Python",
+							"answerText": "Serialiser un objet Python",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "désagréalise un objet Python",
+							"answerText": "Dé-sérialiser un objet Python",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Serialise et désémarifier un objet Python",
+							"answerText": "Sérialiser et Dé-sérialiser un objet Python",
                             "isCorrect": "true"
                         }
                     ]
@@ -976,7 +976,7 @@
                     "questionText": "Quels sont les outils que nous pouvons utiliser pour héberger un modèle pré-formé sur le Web à l'aide de Python?",
                     "answerOptions": [
 							{
-							"answerText": "Flacon",
+							"answerText": "Flask",
                             "isCorrect": "true"
                         },
                         {
@@ -984,7 +984,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "ONNX.JS",
+							"answerText": "onnx.JS",
                             "isCorrect": "false"
                         }
                     ]
@@ -1018,7 +1018,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Code des données en série",
+							"answerText": "Encode des données en série",
                             "isCorrect": "false"
                         }
                     ]
