@@ -50,7 +50,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -107,7 +107,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -236,15 +236,15 @@
                     "questionText": "L'injustice dans le machine learning peut arriver",
                     "answerOptions": [
 							{
-							"answerText": "intentionnellement",
+							"answerText": "Intentionnellement",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Indormalement",
+							"answerText": "Involontairement",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -253,15 +253,15 @@
                     "questionText": "Le terme \" injustice \" en ml connotes:",
                     "answerOptions": [
 							{
-							"answerText": "nuit à un groupe de personnes",
+							"answerText": "Préjudices pour un groupe de personnees",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Dommage à une personne",
+							"answerText": "préjudice à une personne",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "nuit à la majorité des gens",
+							"answerText": "Préjudices pour la majorité des gens",
                             "isCorrect": "false"
                         }
                     ]
@@ -293,21 +293,21 @@
                     "questionText": "L'injustice dans un modèle peut être causée par",
                     "answerOptions": [
 							{
-							"answerText": "dépassement de données historiques",
+							"answerText": "Dépendance excessive de données historiques",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Sous-solliance sur les données historiques",
+							"answerText": "sous-dépendance sur les données historiques",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Trop d'alignement sur les données historiques",
+							"answerText": "Alignement trop étroit sur les données historiques",
                             "isCorrect": "false"
                         }
                     ]
                 },
                 {
-                    "questionText": "Pour atténuer l'injustice, tu peux",
+                    "questionText": "Pour atténuer l'injustice, vous pouvez",
                     "answerOptions": [
 							{
 							"answerText": "Identifier les préjudices et les groupes affectés",
@@ -318,7 +318,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "à la fois ce qui précède",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -375,7 +375,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -521,11 +521,11 @@
                     "questionText": "Si la précision de la formation du modèle d'apprentissage de votre machine est de 95% et que la précision des tests est de 30%, quel type de condition est appelé?",
                     "answerOptions": [
 							{
-							"answerText": "Surface",
+							"answerText": "Surapprentissage",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "sous-facture",
+							"answerText": "Insuffisance",
                             "isCorrect": "false"
                         },
                         {
@@ -552,18 +552,18 @@
                     ]
                 },
                 {
-                    "questionText": "Le processus de division d'un jeu de données dans un certain rapport d'entraînement et de test de jeu de données à l'aide de la méthode / la fonction Train_Test_split () '' Train_Test_Split () 'est appelée:",
+                    "questionText": "Le processus de division d'un ensemble de données en un certain rapport d'ensemble de données d'entraînement et de test à l'aide de la méthode/fonction 'train_test_split ()' de Scikit Learn est appelé une:",
                     "answerOptions": [
 							{
 							"answerText": "Validation croisée",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "validation de maintien",
+							"answerText": "Validation d'attentn",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "laissez une validation d'une sortie",
+							"answerText": "Validation \"Oubliez-en un\" ",
                             "isCorrect": "false"
                         }
                     ]
@@ -582,7 +582,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Scikit-apprendre",
+							"answerText": "Scikit-learn",
                             "isCorrect": "false"
                         },
                         {
@@ -592,18 +592,18 @@
                     ]
                 },
                 {
-                    "questionText": "Si vous souhaitez comprendre la propagation ou les autres caractéristiques des points de données de votre ensemble de données, puis effectuez:",
+                    "questionText": "Si vous souhaitez comprendre la propagation ou les autres caractéristiques des points de données de votre ensemble de données, alors effectuez:",
                     "answerOptions": [
 							{
-							"answerText": "Visualisation des données",
+							"answerText": "Une visualisation des données",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Pré-traitement des données",
+							"answerText": "Un pré-traitement des données",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Split test de train",
+							"answerText": "Un Train Test Splitn",
                             "isCorrect": "false"
                         }
                     ]
@@ -612,7 +612,7 @@
                     "questionText": "Lequel d'entre eux fait partie de l'étape de visualisation des données dans un projet de machine learning?",
                     "answerOptions": [
 							{
-							"answerText": "Intégrant un algorithme d'apprentissage de certains machines",
+							"answerText": "Intégrer un algorithme d'apprentissage de certains machines",
                             "isCorrect": "false"
                         },
                         {
@@ -634,16 +634,16 @@
 							{
                     "questionText": "Lequel de ces extraits de code est correct d'après cette leçon, si vous souhaitez vérifier la présence de valeurs manquantes dans votre ensemble de données ? Supposons que l'ensemble de données soit stocké dans une variable nommée \"ensemble de données\", qui est un objet Pandas DataFrame.",
                     "answerOptions": [
-							{
-							"answerText": "DataSet.isnull (). Somme ()",
+                        {
+                            "answerText": "dataset.isnull().sum()",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "FindMissing (DataSet)",
+                            "answerText": "findMissing(dataset)",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Somme (NULL (DataSet))",
+                            "answerText": "sum(null(dataset))",
                             "isCorrect": "false"
                         }
                     ]
@@ -652,15 +652,15 @@
                     "questionText": "Laquelle de ces méthodes de traçage est utile lorsque vous souhaitez comprendre la propagation de différents groupes de fichiers de données de votre jeu de données?",
                     "answerOptions": [
 							{
-							"answerText": "Terrain de dispersion",
+							"answerText": "Nuage de pointsn",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Terrain de ligne",
+							"answerText": "Graphique linéaire",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "barre de bar",
+							"answerText": "Graphique à barres",
                             "isCorrect": "true"
                         }
                     ]
@@ -689,7 +689,7 @@
             "title": "Régression linéaire et polynomiale: Quiz préalable",
             "quiz": [
 							{
-                    "questionText": "Matplotlib est un",
+                    "questionText": "Matplotlib est une",
                     "answerOptions": [
 							{
 							"answerText": "Bibliothèque de dessin",
@@ -700,7 +700,7 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Library Lanchage",
+							"answerText": "Bibliothèque de prêt",
                             "isCorrect": "false"
                         }
                     ]
@@ -717,7 +717,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "une courbe",
+							"answerText": "Une courbe",
                             "isCorrect": "false"
                         }
                     ]
@@ -726,15 +726,15 @@
                     "questionText": "Un bon modèle de régression linéaire a un coefficient de corrélation ___",
                     "answerOptions": [
 							{
-							"answerText": "Low",
+							"answerText": "Bas",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "High",
+							"answerText": "Elevé",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "flat",
+							"answerText": "Plat",
                             "isCorrect": "false"
                         }
                     ]
@@ -757,7 +757,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "polynôme",
+							"answerText": "polynômial",
                             "isCorrect": "true"
                         }
                     ]
@@ -766,15 +766,15 @@
                     "questionText": "Ce sont tous types de méthodes de régression",
                     "answerOptions": [
 							{
-							"answerText": "Falsestetep, crête, lasso et élastique",
+							"answerText": "Falsestep, Ridge, Lasso et Elasticnet",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Stealwise, Ridge, Lasso et Elasticnet",
+							"answerText": "Stepwise, Ridge, Lasso et Elasticnet",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Stealwise, Ridge, Lariat et Elasticnet",
+							"answerText": "Stepwise, Ridge, Lariat et Elasticnet",
                             "isCorrect": "false"
                         }
                     ]
@@ -1735,7 +1735,7 @@
                     "questionText": "Le test Turing d'Alan Turing a essayé de déterminer si un ordinateur était",
                     "answerOptions": [
 							{
-							"answerText": "indiscernable d'un humain",
+							"answerText": "Indiscernable d'un humain",
                             "isCorrect": "false"
                         },
                         {
@@ -1743,7 +1743,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -2047,11 +2047,11 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "sentiment et signification",
+							"answerText": "Sentiment et signification",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -2121,11 +2121,11 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "lignes vierges ou colonnes",
+							"answerText": "Lignes vierges ou colonnes",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -2161,7 +2161,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -2227,11 +2227,11 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "mots que vous pouvez supprimer pour accélérer l'analyse du sentiment",
+							"answerText": "Mots que vous pouvez supprimer pour accélérer l'analyse du sentiment",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
@@ -2546,7 +2546,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Les deux ci-dessus",
+							"answerText": "Les deux",
                             "isCorrect": "true"
                         }
                     ]
