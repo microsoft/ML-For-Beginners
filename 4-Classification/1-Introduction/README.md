@@ -275,7 +275,7 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
     ```python
     transformed_df.head()
     transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisine.csv")
+    transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
     This fresh CSV can now be found in the root data folder.
