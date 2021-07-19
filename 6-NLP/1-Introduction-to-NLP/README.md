@@ -81,7 +81,7 @@ This gave the impression that Eliza understood the statement and was asking a fo
 
 ## Exercise - coding a basic conversational bot
 
-A conversational bot, like Eliza, is a program that elicits user input and seems to understand and respond intelligently. Unlike Eliza, our bot will not have several rules giving it the appearance of having an intelligent conversation. Instead, out bot will have one ability only, to keep the conversation going with random responses that might work in almost any trivial conversation.
+A conversational bot, like Eliza, is a program that elicits user input and seems to understand and respond intelligently. Unlike Eliza, our bot will not have several rules giving it the appearance of having an intelligent conversation. Instead, our bot will have one ability only, to keep the conversation going with random responses that might work in almost any trivial conversation.
 
 ### The plan
 
@@ -133,7 +133,7 @@ Let's create the bot next. We'll start by defining some phrases.
     It was nice talking to you, goodbye!
     ```
 
-    One possible solution to the task is [here](solution/bot.py)
+    One possible solution to the task is [here](../solution/bot.py)
 
     ✅ Stop and consider
 
@@ -162,4 +162,4 @@ Take a look at the references below as further reading opportunities.
 
 ## Assignment 
 
-[Search for a bot](assignment.md)
+[Search for a bot](../assignment.md)
