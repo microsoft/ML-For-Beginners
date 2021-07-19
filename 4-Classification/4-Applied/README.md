@@ -40,7 +40,7 @@ First, train a classification model using the cleaned cuisines dataset we used.
 1. Then, work with your data in the same way you did in previous lessons, by reading a CSV file using `read_csv()`:
 
     ```python
-    data = pd.read_csv('../data/cleaned_cuisine.csv')
+    data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
