@@ -49,7 +49,7 @@ Scikit-learn, veriyi sınıflandırmak için kullanmak üzere, çözmek istediğ
 
 ## Alıştırma - verinizi temizleyip dengeleyin
 
-Bu projeye başlamadan önce elinizdeki ilk görev, daha iyi sonuçlar almak için, verinizi temizlemek ve **dengelemek**. Bu klasördeki boş _notebook.ipynb_ dosyasıyla başlayın.
+Bu projeye başlamadan önce elinizdeki ilk görev, daha iyi sonuçlar almak için, verinizi temizlemek ve **dengelemek**. Üst klasördeki boş _notebook.ipynb_ dosyasıyla başlayın.
 
 Kurmanız gereken ilk şey [imblearn](https://imbalanced-learn.org/stable/). Bu, veriyi daha iyi dengelemenizi sağlayacak bir Scikit-learn paketidir. (Bu görev hakkında birazdan daha fazla bilgi göreceksiniz.)
 
@@ -74,7 +74,7 @@ Kurmanız gereken ilk şey [imblearn](https://imbalanced-learn.org/stable/). Bu,
 1. Sonraki görev veriyi almak olacak:
 
     ```python
-    df  = pd.read_csv('../../data/cuisines.csv')
+    df  = pd.read_csv('../data/cuisines.csv')
     ```
 
    `read_csv()` kullanmak _cusines.csv_ csv dosyasının içeriğini okuyacak ve `df` değişkenine yerleştirecek.
@@ -275,7 +275,7 @@ Veriyi temizlediniz, şimdi [SMOTE](https://imbalanced-learn.org/dev/references/
     ```python
     transformed_df.head()
     transformed_df.info()
-    transformed_df.to_csv("../../data/cleaned_cuisine.csv")
+    transformed_df.to_csv("../data/cleaned_cuisine.csv")
     ```
 
     Bu yeni CSV şimdi kök data (veri) klasöründe görülebilir.
