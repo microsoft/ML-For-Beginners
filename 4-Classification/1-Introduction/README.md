@@ -163,7 +163,7 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
     def create_ingredient_df(df):
         ingredient_df = df.T.drop(['cuisine','Unnamed: 0']).sum(axis=1).to_frame('value')
         ingredient_df = ingredient_df[(ingredient_df.T != 0).any()]
-        ingredient_df = ingredient_df.sort_values(by='value', ascending=False
+        ingredient_df = ingredient_df.sort_values(by='value', ascending=False,
         inplace=False)
         return ingredient_df
     ```
