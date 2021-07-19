@@ -100,7 +100,7 @@ Bu eğitim programını oluştururken iki pedagojik ilke seçtik: uygulamalı **
 |   Ek Yazı     |       Gerçek Hayattan ML Senaryoları ve Uygulamaları       |     [Vahşi Doğada ML](../9-Real-World/README.md)       | Klasik makine öğreniminin ilginç ve açıklayıcı gerçek hayat uygulamaları                                                        |     [ders](../9-Real-World/1-Applications/README.md)     |     Takım      |
 ## Çevrimdışı erişim
 
-Bu dokümantasyonu [Docsify](https://docsify.js.org/#/) kullanarak çevrimdışı çalıştırabilirsiniz. Bu yazılım havuzunu çatallayın, yerel makinenizde [Docsify'ı kurum](https://docsify.js.org/#/quickstart) ve sonra bu yazılım havuzunun kök dizininde `docsify serve` yazın. İnternet sitesi, 3000 portunda `localhost:3000` yerel ana makinenizde sunulacaktır.
+Bu dokümantasyonu [Docsify](https://docsify.js.org/#/) kullanarak çevrimdışı çalıştırabilirsiniz. Bu yazılım havuzunu çatallayın, yerel makinenizde [Docsify'ı kurun](https://docsify.js.org/#/quickstart) ve sonra bu yazılım havuzunun kök dizininde `docsify serve` yazın. İnternet sitesi, 3000 portunda `localhost:3000` yerel ana makinenizde sunulacaktır.
 
 ## PDF'ler
 
