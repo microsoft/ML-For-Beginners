@@ -6,6 +6,7 @@ Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsup
 
 > 🎥 Click the image above for a video. While you're studying machine learning with clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/27/)
+Pre-lector quiz is not working properly
 ### Introduction
 
 [Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
