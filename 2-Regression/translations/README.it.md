@@ -19,10 +19,10 @@ In questo gruppo di lezioni si imposterà una configurazione per iniziare le att
 
 ### Lezioni
 
-1. [Gli Attrezzi Necessari](1-Tools/README.md)
-2. [Gestione dati](2-Data/README.md)
-3. [Regressione lineare e polinomiale](3-Linear/README.md)
-4. [Regressione logistica](4-Logistic/README.md)
+1. [Gli Attrezzi Necessari](../1-Tools/translations/README.it.md)
+2. [Gestione dati](../2-Data/translations/README.it.md)
+3. [Regressione lineare e polinomiale](../3-Linear/translations/README.it.md)
+4. [Regressione logistica](../4-Logistic/translations/README.it.md)
 
 ---
 ### Crediti
