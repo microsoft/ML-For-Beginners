@@ -1,2815 +1,2815 @@
 [
-	{
-		"title": "Machine Learning for Beginners: Quizzes",
-		"complete": "Congratulations, you completed the quiz!",
-		"error": "Sorry, try again",
-		"quizzes": [
-			{
-				"id": 1,
-				"title": "Introduction to Machine Learning: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Applications of machine learning are all around us",
-						"answerOptions": [
-							{
-								"answerText": "True",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "False",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is the technical difference between classical ML and deep learning?",
-						"answerOptions": [
-							{
-								"answerText": "classical ML was invented first",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "the use of neural networks",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "deep learning is used in robots",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Why might a business want to use ML strategies?",
-						"answerOptions": [
-							{
-								"answerText": "to automate the solving of multi-dimensional problems",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "to customize a shopping experience based on the type of customer",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 2,
-				"title": "Introduction to Machine Learning: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Machine learning algorithms are meant to simulate",
-						"answerOptions": [
-							{
-								"answerText": "intelligent machines",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "the human brain",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "orangutans",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is an example of a classical ML technique?",
-						"answerOptions": [
-							{
-								"answerText": "natural language processing",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "deep learning",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Neural Networks",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Why should everyone learn the basics of ML?",
-						"answerOptions": [
-							{
-								"answerText": "learning ML is fun and accessible to everyone",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "ML strategies are being used in many industries and domains",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 3,
-				"title": "History of Machine Learning: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Approximately when was the term 'artificial intelligence' coined?",
-						"answerOptions": [
-							{
-								"answerText": "1980s",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "1950s",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "1930s",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Who was one of the early pioneers of machine learning?",
-						"answerOptions": [
-							{
-								"answerText": "Alan Turing",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Bill Gates",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Shakey the robot",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is one of the reasons that advancement in AI slowed in the 1970s?",
-						"answerOptions": [
-							{
-								"answerText": "Limited compute power",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Not enough skilled engineers",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Conflicts between countries",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 4,
-				"title": "History of Machine Learning: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What's an example of a 'scruffy' AI system?",
-						"answerOptions": [
-							{
-								"answerText": "ELIZA",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "HACKML",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "SSYSTEM",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is an example of a technology that was developed during 'The Golden Years'?",
-						"answerOptions": [
-							{
-								"answerText": "Blocks world",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Jibo",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Robot dogs",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which event was foundational in the creation and expansion of the field of artificial intelligence?",
-						"answerOptions": [
-							{
-								"answerText": "Turing Test",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Dartmouth Summer Research Project",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "AI Winter",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 5,
-				"title": "Fairness and Machine Learning: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Unfairness in Machine Learning can happen",
-						"answerOptions": [
-							{
-								"answerText": "intentionally",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "unintentionally",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "The term 'unfairness' in ML connotes:",
-						"answerOptions": [
-							{
-								"answerText": "harms for a group of people",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "harm to one person",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "harms for the majority of people",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "The five main types of harms include",
-						"answerOptions": [
-							{
-								"answerText": "allocation, quality of service, stereotyping, denigration, and over- or under- representation",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "elocation, quality of service, stereotyping, denigration, and over- or under- representation ",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "allocation, quality of service, stereophonics, denigration, and over- or under- representation ",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 6,
-				"title": "Fairness and Machine Learning: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Unfairness in a model can be caused by",
-						"answerOptions": [
-							{
-								"answerText": "overrreliance on historical data",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "underreliance on historical data",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "too closely aligning to historical data",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "To mitigate unfairness, you can",
-						"answerOptions": [
-							{
-								"answerText": "identify harms and affected groups",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "define fairness metrics",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Fairlearn is a package that can",
-						"answerOptions": [
-							{
-								"answerText": "compare multiple models by using fairness and performance metrics",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "choose the best model for your needs",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "help you decide what is fair and what is not",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 7,
-				"title": "Tools and Techniques: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "When building a model, you should:",
-						"answerOptions": [
-							{
-								"answerText": "prepare your data, then train your model",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "choose a training method, then prepare your data",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "tune parameters, then train your model",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Your data's ___ will impact the quality of your ML model",
-						"answerOptions": [
-							{
-								"answerText": "quantity",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "shape",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "A feature variable is:",
-						"answerOptions": [
-							{
-								"answerText": "a quality of your data",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a measurable property of your data",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a row of your data",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 8,
-				"title": "Tools and Techniques: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "You should visualize your data because",
-						"answerOptions": [
-							{
-								"answerText": "you can discover outliers",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "you can discover potential cause for bias",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "both of these",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Split your data into:",
-						"answerOptions": [
-							{
-								"answerText": "training and turing sets",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "training and test sets",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "validation and evaluation sets",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A common command to start the training process in various ML libraries is:",
-						"answerOptions": [
-							{
-								"answerText": "model.travel",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "model.train",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "model.fit",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 9,
-				"title": "Introduction to Regression: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Which of these variables is a numeric variable?",
-						"answerOptions": [
-							{
-								"answerText": "Height",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Gender",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Hair Color",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which of these variables is a categorical variable?",
-						"answerOptions": [
-							{
-								"answerText": "Heart Rate",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Blood Type",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Weight",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which of these problems is a Regression analysis-based problem?",
-						"answerOptions": [
-							{
-								"answerText": "Predicting the final exam marks of a student",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Predicting the blood type of a person",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Predicting whether an email is spam or not",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 10,
-				"title": "Introduction to Regression: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "If your Machine Learning model's training accuracy is 95 % and the testing accuracy is 30 %, then what type of condition it is called?",
-						"answerOptions": [
-							{
-								"answerText": "Overfitting",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Underfitting",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Double Fitting",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "The process of identifying significant features from a set of features is called:",
-						"answerOptions": [
-							{
-								"answerText": "Feature Extraction",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Feature Dimensionality Reduction",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Feature Selection",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "The process of splitting a dataset into a certain ratio of training and testing dataset using Scikit Learn's 'train_test_split()' method/function is called:",
-						"answerOptions": [
-							{
-								"answerText": "Cross-Validation",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Hold-Out Validation",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Leave one out Validation",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 11,
-				"title": "Prepare and Visualize Data for Regression: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Which of these Python modules is used to plot the visualization of data?",
-						"answerOptions": [
-							{
-								"answerText": "Numpy",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Scikit-learn",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Matplotlib",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "If you want to understand the spread or the other characteristics of data points of your dataset, then perform:",
-						"answerOptions": [
-							{
-								"answerText": "Data Visualization",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Data Preprocessing",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Train Test Split",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which of these is a part of the Data Visualization step in a Machine Learning project?",
-						"answerOptions": [
-							{
-								"answerText": "Incorporating a certain Machine Learning algorithm",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Creating a pictorial representation of data using different plotting methods",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Normalizing the values of a dataset",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 12,
-				"title": "Prepare and Visualize Data for Regression: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Which of these code snippets is correct based on this lesson, if you want to check for the presence of missing values in your dataset? Suppose the dataset is stored in a variable named 'dataset' which is a Pandas DataFrame object.",
-						"answerOptions": [
-							{
-								"answerText": "dataset.isnull().sum()",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "findMissing(dataset)",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "sum(null(dataset))",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which of these plotting methods is useful when you would like to understand the spread of different groups of datapoints from your dataset?",
-						"answerOptions": [
-							{
-								"answerText": "Scatter Plot",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Line Plot",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Bar Plot",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "What can Data Visualization NOT tell you?",
-						"answerOptions": [
-							{
-								"answerText": "Relationships among datapoints",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "The source from where the dataset is collected",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Finding the presence of outliers in the dataset",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 13,
-				"title": "Linear and Polynomial Regression: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Matplotlib is a ",
-						"answerOptions": [
-							{
-								"answerText": "drawing library",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "data visualization library",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "lending library",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Linear Regression uses the following to plot relationships between variables",
-						"answerOptions": [
-							{
-								"answerText": "a straight line",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a circle",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a curve",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A good Linear Regression model has a ___ Correlation Coefficient",
-						"answerOptions": [
-							{
-								"answerText": "low",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "high",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "flat",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 14,
-				"title": "Linear and Polynomial Regression: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "If your data is nonlinear, try a ___ type of Regression",
-						"answerOptions": [
-							{
-								"answerText": "linear",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "spherical",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "polynomial",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "These are all types of Regression methods",
-						"answerOptions": [
-							{
-								"answerText": "Falsestep, Ridge, Lasso and Elasticnet",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Stepwise, Ridge, Lasso and Elasticnet",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Stepwise, Ridge, Lariat and Elasticnet",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Least-Squares Regression means that all the datapoints surrounding the regression line are:",
-						"answerOptions": [
-							{
-								"answerText": "squared and then subtracted",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "multiplied",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "squared and then added up",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 15,
-				"title": "Logistic Regression: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Use Logistic Regression to predict",
-						"answerOptions": [
-							{
-								"answerText": "whether an apple is ripe or not",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "how many tickets can be sold in a month",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "what color the sky will turn tomorrow at 6 PM",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Types of Logistic Regression include",
-						"answerOptions": [
-							{
-								"answerText": "multinomial and cardinal",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "multinomial and ordinal",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "principal and ordinal",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Your data has weak correlations. The best type of Regression to use is:",
-						"answerOptions": [
-							{
-								"answerText": "Logistic",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Linear",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Cardinal",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 16,
-				"title": "Logistic Regression: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Seaborn is a type of",
-						"answerOptions": [
-							{
-								"answerText": "data visualization library",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "mapping library",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "mathematical library",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A confusion matrix is also known as a:",
-						"answerOptions": [
-							{
-								"answerText": "error matrix",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "truth matrix",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "accuracy matrix",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A good model will have:",
-						"answerOptions": [
-							{
-								"answerText": "a large number of false positives and true negatives in its confusion matrix",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a large number of true positives and true negatives in its confusion matrix",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a large number of true positives and false negatives in its confusion matrix",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 17,
-				"title": "Build a Web App: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What does ONNX stand for?",
-						"answerOptions": [
-							{
-								"answerText": "Over Neural Network Exchange",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Open Neural Network Exchange",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Output Neural Network Exchange",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "How is Flask defined by its creators?",
-						"answerOptions": [
-							{
-								"answerText": "mini-framework",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "large-framework",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "micro-framework",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "What does the Pickle module of Python do",
-						"answerOptions": [
-							{
-								"answerText": "Serializes a Python Object",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "De-serializes a Python Object",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Serializes and De-serializes a Python Object",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 18,
-				"title": "Build a Web App: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What are the tools we can use to host a pre-trained model on the web using Python?",
-						"answerOptions": [
-							{
-								"answerText": "Flask",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "TensorFlow.js",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "onnx.js",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What does SaaS stand for?",
-						"answerOptions": [
-							{
-								"answerText": "System as a Service",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Software as a Service",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Security as a Service",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What does Scikit-learn's LabelEncoder library do?",
-						"answerOptions": [
-							{
-								"answerText": "Encodes data alphabetically",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Encodes data numerically",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Encodes data serially",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 19,
-				"title": "Classification 1: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Classification is a form of supervised learning that has a lot in common with",
-						"answerOptions": [
-							{
-								"answerText": "Time Series",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Regression techniques",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "NLP",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What question can classification help answer?",
-						"answerOptions": [
-							{
-								"answerText": "Is this email spam or not?",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Can pigs fly?",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "What is the meaning of life?",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is the first step to using Classification techniques?",
-						"answerOptions": [
-							{
-								"answerText": "creating classes of a dataset",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "cleaning and balancing your data",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "assigning a data point to a group or outcome",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 20,
-				"title": "Classification 1: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What is a multiclass question?",
-						"answerOptions": [
-							{
-								"answerText": "the task of classifying data points into multiple classes",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "the task of classifying data points into one of several classes",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "the task of cleaning data points in multiple ways",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "It's important to clean out recurrent or unhelpful data to help your classifiers solve your problem.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What's the best reason to balance your data?",
-						"answerOptions": [
-							{
-								"answerText": "Imbalanced data looks bad in visualizations",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Balancing your data yields better results because an ML model won't skew towards one class",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Balancing your data gives you more data points",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 21,
-				"title": "Classification 2: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Balanced, clean data yields the best classification results",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "How do you choose the right classifier?",
-						"answerOptions": [
-							{
-								"answerText": "Understand which classifiers work best for which scenarios",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Educated guess and check",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Classification is a type of",
-						"answerOptions": [
-							{
-								"answerText": "NLP",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Supervised Learning",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Programming language",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 22,
-				"title": "Classification 2: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What is a 'solver'?",
-						"answerOptions": [
-							{
-								"answerText": "the person who double-checks your work",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "the algorithm to use in the optimization problem",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a machine learning technique",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which classifier did we use in this lesson?",
-						"answerOptions": [
-							{
-								"answerText": "Logistic Regression",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Decision Trees",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "One-vs-All Multiclass",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "How do you know if the classification algorithm is working as expected?",
-						"answerOptions": [
-							{
-								"answerText": "By checking the accuracy of its predictions",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "By checking it against other algorithms",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "By looking at historical data for how good this algorithm is at solving similar problems",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 23,
-				"title": "Classification 3: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "A good initial classifier to try is:",
-						"answerOptions": [
-							{
-								"answerText": "Linear SVC",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "K-Means",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Logical SVC",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Regularization controls:",
-						"answerOptions": [
-							{
-								"answerText": "the influence of parameters",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "the influence of training speed",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "the influence of outliers",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "K-Neighbors classifier can be used for:",
-						"answerOptions": [
-							{
-								"answerText": "supervised learning",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "unsupervised learning",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of these",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 24,
-				"title": "Classification 3: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Support-Vector classifiers can be used for",
-						"answerOptions": [
-							{
-								"answerText": "classification",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "regression",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of these",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Random Forest is a ___ type of classifier",
-						"answerOptions": [
-							{
-								"answerText": "Ensemble",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Dissemble",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Assemble",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Adaboost is known for:",
-						"answerOptions": [
-							{
-								"answerText": "focusing on the weights of incorrectly classified items",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "focusing on outliers",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "focusing on incorrect data",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 25,
-				"title": "Classification 4: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Recommendation systems might be used for",
-						"answerOptions": [
-							{
-								"answerText": "Recommending a good restaurant",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Recommending fashions to try",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Both of these",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Embedding a model in a web app helps it to be offline-capable",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Onnx Runtime can be used for",
-						"answerOptions": [
-							{
-								"answerText": "Running models in a web app",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Training models",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Hyperparameter tuning",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 26,
-				"title": "Classification 4: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Netron app helps you:",
-						"answerOptions": [
-							{
-								"answerText": "Visualize data",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Visualize your model's structure",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Test your web app",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Convert your Scikit-learn model for use with Onnx using:",
-						"answerOptions": [
-							{
-								"answerText": "sklearn-app",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "sklearn-web",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "sklearn-onnx",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Using your model in a web app is called:",
-						"answerOptions": [
-							{
-								"answerText": "inference",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "interference",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "insurance",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 27,
-				"title": "Introduction to Clustering: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "A real-life example of clustering would be",
-						"answerOptions": [
-							{
-								"answerText": "Setting the dinner table",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Sorting the laundry",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Grocery shopping",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Clustering techniques can be used in these industries",
-						"answerOptions": [
-							{
-								"answerText": "banking",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "e-commerce",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of these",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Clustering is a type of:",
-						"answerOptions": [
-							{
-								"answerText": "supervised learning",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "unsupervised learning",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "reinforcement learning",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 28,
-				"title": "Introduction to Clustering: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Euclidean geometry is arranged along",
-						"answerOptions": [
-							{
-								"answerText": "planes",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "curves",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "spheres",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "The density of your clustering data is related to its",
-						"answerOptions": [
-							{
-								"answerText": "noise",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "depth",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "validity",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "The best-known clustering algorithm is",
-						"answerOptions": [
-							{
-								"answerText": "k-means",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "k-middle",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "k-mart",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 29,
-				"title": "K-Means Clustering: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "K-Means is derived from:",
-						"answerOptions": [
-							{
-								"answerText": "electrical engineering",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "signal processing",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "computational linguistics",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A good Silhouette score means:",
-						"answerOptions": [
-							{
-								"answerText": "clusters are well-separated and well-defined",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "there are few clusters",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "there are many clusters",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Variance is:",
-						"answerOptions": [
-							{
-								"answerText": "the average of the squared differences from the mean",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a problem for clustering if it becomes too high",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of these",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 30,
-				"title": "K-Means Clustering: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "A Voronoi diagram shows:",
-						"answerOptions": [
-							{
-								"answerText": "a cluster's variance",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a cluster's seed and its region",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a cluster's inertia",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Inertia is",
-						"answerOptions": [
-							{
-								"answerText": "a measure of how internally coherent clusters are",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a measure of how much clusters move",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a measure of cluster quality",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Using K-Means, you must first determine the value of 'k'",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 31,
-				"title": "Intro to NLP: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What does NLP stand for in these lessons?",
-						"answerOptions": [
-							{
-								"answerText": "Neural Language Processing",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "natural language processing",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Natural Linguistic Processing",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Eliza was an early bot that acted as a computer",
-						"answerOptions": [
-							{
-								"answerText": "therapist",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "doctor",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "nurse",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Alan Turing's 'Turing Test' tried to determine if a computer was",
-						"answerOptions": [
-							{
-								"answerText": "indistinguishable from a human",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "thinking",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 32,
-				"title": "Intro to NLP: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Joseph Weizenbaum invented the bot",
-						"answerOptions": [
-							{
-								"answerText": "Elisha",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Eliza",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Eloise",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A conversational bot gives output based on",
-						"answerOptions": [
-							{
-								"answerText": "Randomly choosing predefined choices",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Analyzing the input and using machine intelligence",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Both of these",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "How would you make the bot more effective?",
-						"answerOptions": [
-							{
-								"answerText": "By asking it more questions.",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "By feeding it more data and training it accordingly",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "The bot is dumb, it cannot learn :(",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 33,
-				"title": "NLP Tasks: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Tokenization",
-						"answerOptions": [
-							{
-								"answerText": "Splits text by means of punctuation",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Splits text into separate tokens (words)",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Splits text into phrases",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Embeddings",
-						"answerOptions": [
-							{
-								"answerText": "converts text data numerically so words can cluster",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "embeds words into phrases",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "embeds sentences into paragraphs",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Parts-of-Speech Tagging",
-						"answerOptions": [
-							{
-								"answerText": "divides sentences by their parts of speech",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "takes tokenized words and tags them by their part of speech",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "diagrams sentences",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 34,
-				"title": "NLP Tasks: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Build a dictionary of how often words reoccur using:",
-						"answerOptions": [
-							{
-								"answerText": "Word and Phrase Dictionary",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Word and Phrase Frequencies",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Word and Phrase Library",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "N-grams refer to",
-						"answerOptions": [
-							{
-								"answerText": "A text can be split into sequences of words of a set length",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "A word can be split into sequences of characters of a set length",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "A text can be split into paragraphs of a set length",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Sentiment analysis",
-						"answerOptions": [
-							{
-								"answerText": "analyzes a phrase for positivity or negativity",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "analyzes a phrase for sentimentality",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "analyzes a phrase for sadness",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 35,
-				"title": "NLP and Translation: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Naive translation",
-						"answerOptions": [
-							{
-								"answerText": "translates words only",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "translates sentence structure",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "translates sentiment",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A *corpus* of texts refers to",
-						"answerOptions": [
-							{
-								"answerText": "A small number of texts",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "A large number of texts",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "One standard text",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "If a ML model has enough human translations to build a model on, it can",
-						"answerOptions": [
-							{
-								"answerText": "abbreviate translations",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "standardize translations",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "improve the accuracy of translations",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 36,
-				"title": "NLP and Translation: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Underlying TextBlob's translation library is:",
-						"answerOptions": [
-							{
-								"answerText": "Google Translate",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Bing",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "A custom ML model",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "To use `blob.translate` you need:",
-						"answerOptions": [
-							{
-								"answerText": "an internet connection",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a dictionary",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "JavaScript",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "To determine sentiment, an ML approach would be to:",
-						"answerOptions": [
-							{
-								"answerText": "apply Regression techniques to manually generated opinions and scores and look for patterns",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "apply NLP techniques to manually generated opinions and scores and look for patterns",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "apply Clustering techniques to manually generated opinions and scores and look for patterns",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 37,
-				"title": "NLP 4: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What information can we get from text that was written or spoken by a human?",
-						"answerOptions": [
-							{
-								"answerText": "patterns and frequencies",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "sentiment and meaning",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "What is sentiment analysis?",
-						"answerOptions": [
-							{
-								"answerText": "a study of whether a family heirloom has sentimental value",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a method of systematically identifying, extracting, quantifying, and studying affective states and subjective information",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "the ability to tell whether someone is sad or happy",
-								"isCorrect": "false"
-							}
-						]
-					},					
-					{
-						"questionText": "What question could be answered using a dataset of hotel reviews, Python, and sentiment analysis?",
-						"answerOptions": [
-							{
-								"answerText": "What are the most frequently used words and phrases in reviews?",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Which resort has the best pool?",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Is there valet parking at this hotel?",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 38,
-				"title": "NLP 4: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What is the essence of NLP?",
-						"answerOptions": [
-							{
-								"answerText": "categorizing human language into happy or sad",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "interpreting meaning or sentiment without having to have a human do it",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "finding outliers in sentiment and examining them",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What are some things you might look for while cleaning data?",
-						"answerOptions": [
-							{
-								"answerText": "characters in other languages",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "blank rows or columns",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "It is important to understand your data and its foibles before performing operations on it.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 39,
-				"title": "NLP 5: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Why is it important to clean data before analyzing it?",
-						"answerOptions": [
-							{
-								"answerText": "Some columns might have missing or incorrect data",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Messy data can lead to false conclusions about the dataset",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "What is one example of a strategy for cleaning data?",
-						"answerOptions": [
-							{
-								"answerText": "removing columns/rows that aren't useful for answering a specific question",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "getting rid of verified values that don't fit your hypothesis",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "moving the outliers to a separate table and running the calculations for that table to see if they match",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "It can be useful to categorize data using a Tag column.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 40,
-				"title": "NLP 5: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What is the goal of the dataset?",
-						"answerOptions": [
-							{
-								"answerText": "to see how many negative and positive reviews there are for hotels across the world",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "to add sentiment and columns that will help you choose the best hotel",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "to analyze why people leave specific reviews",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What are stop words?",
-						"answerOptions": [
-							{
-								"answerText": "common English words that do not change the sentiment of a sentence",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "words that you can remove to speed up sentiment analysis",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "To test the sentiment analysis, make sure it matches the reviewer's score for the same review.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 41,
-				"title": "Intro to Time Series: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Time Series Forecasting is useful in",
-						"answerOptions": [
-							{
-								"answerText": "determining future costs",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "predicting future pricing",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "A time series is a sequence taken at:",
-						"answerOptions": [
-							{
-								"answerText": "successive equally spaced points in space",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "successive equally spaced points in time",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "successive equally spaced points in space and time",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Time series can be used in:",
-						"answerOptions": [
-							{
-								"answerText": "earthquake prediction",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "computer vision",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "color analysis",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 42,
-				"title": "Intro to Time Series: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Time series trends are",
-						"answerOptions": [
-							{
-								"answerText": "Measurable increases and decreases over time",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Quantifying decreases over time",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Gaps between increases and decreases over time",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Outliers are",
-						"answerOptions": [
-							{
-								"answerText": "points close to standard data variance",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "points far away from standard data variance",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "points within standard data variance",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Time Series Forecasting is most useful for",
-						"answerOptions": [
-							{
-								"answerText": "Econometrics",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "History",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Libraries",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 43,
-				"title": "Time Series ARIMA: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "ARIMA stands for",
-						"answerOptions": [
-							{
-								"answerText": "AutoRegressive Integral Moving Average",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "AutoRegressive Integrated Moving Action",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "AutoRegressive Integrated Moving Average",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "Stationarity refers to",
-						"answerOptions": [
-							{
-								"answerText": "data whose attributes does not change when shifted in time",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "data whose distribution does not change when shifted in time",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "data whose distribution changes when shifted in time",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Differencing",
-						"answerOptions": [
-							{
-								"answerText": "stabilizes trend and seasonality",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "exacerbates trend and seasonality",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "eliminates trend and seasonality",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 44,
-				"title": "Time Series ARIMA: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "ARIMA is used to make a model fit the special form of time series data",
-						"answerOptions": [
-							{
-								"answerText": "as flat as possible",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "as closely as possible",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "via scatterplots",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Use SARIMAX to",
-						"answerOptions": [
-							{
-								"answerText": "manage seasonal ARIMA models",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "manage special ARIMA models",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "manage statistical ARIMA models",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "'Walk-Forward' validation involves",
-						"answerOptions": [
-							{
-								"answerText": "re-evaluating a model progressively as it is validated",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "re-training a model progressively as it is validated",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "re-configuring a model progressively as it is validated",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 45,
-				"title": "Reinforcement 1: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What is reinforcement learning?",
-						"answerOptions": [
-							{
-								"answerText": "teaching someone something over and over again until they understand",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a learning technique that deciphers the optimal behavior of an agent in some environment by running many experiments",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "understanding how to run multiple experiments at once",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is a policy?",
-						"answerOptions": [
-							{
-								"answerText": "a function that returns the action at any given state",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "a document that tells you whether or not you can return an item",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a function that is used for a random purpose",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "A reward function returns a score for each state of an environment.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 46,
-				"title": "Reinforcement 1: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What is Q-Learning?",
-						"answerOptions": [
-							{
-								"answerText": "a mechanism for recording the 'goodness' of each state",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "an algorithm where the policy is defined by a Q-Table",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "both of the above",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "For what values does a Q-Table correspond to the random walk policy?",
-						"answerOptions": [
-							{
-								"answerText": "all equal values",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "-0.25",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "all different values",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "It was better to use exploration than exploitation during the learning process in our lesson.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "true"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 47,
-				"title": "Reinforcement 2: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Chess and Go are games with continuous states.",
-						"answerOptions": [
-							{
-								"answerText": "true",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "false",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "What is the CartPole problem?",
-						"answerOptions": [
-							{
-								"answerText": "a process for eliminating outliers",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a method for optimizing your shopping cart",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "a simplified version of balancing",
-								"isCorrect": "true"
-							}
-						]
-					},
-					{
-						"questionText": "What tool can we use to play out different scenarios of potential states in a game?",
-						"answerOptions": [
-							{
-								"answerText": "guess and check",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "simulation environments",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "state transition testing",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 48,
-				"title": "Reinforcement 2: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Where do we define all possible actions in an environment?",
-						"answerOptions": [
-							{
-								"answerText": "methods",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "action space",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "action list",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What pair did we use as the dictionary key-value?",
-						"answerOptions": [
-							{
-								"answerText": "(state, action) as the key, Q-Table entry as the value",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "state as the key, action as the value",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "the value of the qvalues function as the key, action as the value",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What are the hyperparameters we used during Q-Learning?",
-						"answerOptions": [
-							{
-								"answerText": "q-table value, current reward, random action",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "learning rate, discount factor, exploration/exploitation factor",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "cumulative rewards, learning rate, exploration factor",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 49,
-				"title": "Real World Applications: Pre-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "What's an example of an ML application in the Finance industry?",
-						"answerOptions": [
-							{
-								"answerText": "Personalizing the customer journey using NLP",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Wealth management using linear regression",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Energy management using Time Series",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What ML technique can hospitals use to manage readmission?",
-						"answerOptions": [
-							{
-								"answerText": "Clustering",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Time Series",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "NLP",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What is an example of using Time Series for energy management?",
-						"answerOptions": [
-							{
-								"answerText": "Motion sensing animals",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Smart parking meters",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Tracking forest fires",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			},
-			{
-				"id": 50,
-				"title": "Real World Applications: Post-Lecture Quiz",
-				"quiz": [
-					{
-						"questionText": "Which ML technique can be used to detect credit card fraud?",
-						"answerOptions": [
-							{
-								"answerText": "Regression",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Clustering",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "NLP",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "Which ML technique is exemplified in forest management?",
-						"answerOptions": [
-							{
-								"answerText": "Reinforcement Learning",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Time Series",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "NLP",
-								"isCorrect": "false"
-							}
-						]
-					},
-					{
-						"questionText": "What's an example of an ML application in the Health Care industry?",
-						"answerOptions": [
-							{
-								"answerText": "Predicting student behavior using regression",
-								"isCorrect": "false"
-							},
-							{
-								"answerText": "Managing clinical trials using classifiers",
-								"isCorrect": "true"
-							},
-							{
-								"answerText": "Motion sensing of animals using classifiers",
-								"isCorrect": "false"
-							}
-						]
-					}
-				]
-			}
-		]
-	}
+  {
+    "title": "Machine Learning for Beginners: Quizzes",
+    "complete": "Congratulations, you completed the quiz!",
+    "error": "Sorry, try again",
+    "quizzes": [
+      {
+        "id": 1,
+        "title": "Introduction to Machine Learning: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Applications of machine learning are all around us",
+            "answerOptions": [
+              {
+                "answerText": "True",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "False",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is the technical difference between classical ML and deep learning?",
+            "answerOptions": [
+              {
+                "answerText": "classical ML was invented first",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "the use of neural networks",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "deep learning is used in robots",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Why might a business want to use ML strategies?",
+            "answerOptions": [
+              {
+                "answerText": "to automate the solving of multi-dimensional problems",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "to customize a shopping experience based on the type of customer",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Introduction to Machine Learning: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Machine learning algorithms are meant to simulate",
+            "answerOptions": [
+              {
+                "answerText": "intelligent machines",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "the human brain",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "orangutans",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is an example of a classical ML technique?",
+            "answerOptions": [
+              {
+                "answerText": "natural language processing",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "deep learning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Neural Networks",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Why should everyone learn the basics of ML?",
+            "answerOptions": [
+              {
+                "answerText": "learning ML is fun and accessible to everyone",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ML strategies are being used in many industries and domains",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "History of Machine Learning: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Approximately when was the term 'artificial intelligence' coined?",
+            "answerOptions": [
+              {
+                "answerText": "1980s",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "1950s",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "1930s",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Who was one of the early pioneers of machine learning?",
+            "answerOptions": [
+              {
+                "answerText": "Alan Turing",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bill Gates",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Shakey the robot",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is one of the reasons that advancement in AI slowed in the 1970s?",
+            "answerOptions": [
+              {
+                "answerText": "Limited compute power",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Not enough skilled engineers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Conflicts between countries",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "History of Machine Learning: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What's an example of a 'scruffy' AI system?",
+            "answerOptions": [
+              {
+                "answerText": "ELIZA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "HACKML",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SSYSTEM",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is an example of a technology that was developed during 'The Golden Years'?",
+            "answerOptions": [
+              {
+                "answerText": "Blocks world",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Jibo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Robot dogs",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which event was foundational in the creation and expansion of the field of artificial intelligence?",
+            "answerOptions": [
+              {
+                "answerText": "Turing Test",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Dartmouth Summer Research Project",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "AI Winter",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Fairness and Machine Learning: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Unfairness in Machine Learning can happen",
+            "answerOptions": [
+              {
+                "answerText": "intentionally",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "unintentionally",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "The term 'unfairness' in ML connotes:",
+            "answerOptions": [
+              {
+                "answerText": "harms for a group of people",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "harm to one person",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "harms for the majority of people",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "The five main types of harms include",
+            "answerOptions": [
+              {
+                "answerText": "allocation, quality of service, stereotyping, denigration, and over- or under- representation",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "elocation, quality of service, stereotyping, denigration, and over- or under- representation ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "allocation, quality of service, stereophonics, denigration, and over- or under- representation ",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Fairness and Machine Learning: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Unfairness in a model can be caused by",
+            "answerOptions": [
+              {
+                "answerText": "overrreliance on historical data",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "underreliance on historical data",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "too closely aligning to historical data",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "To mitigate unfairness, you can",
+            "answerOptions": [
+              {
+                "answerText": "identify harms and affected groups",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "define fairness metrics",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Fairlearn is a package that can",
+            "answerOptions": [
+              {
+                "answerText": "compare multiple models by using fairness and performance metrics",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "choose the best model for your needs",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "help you decide what is fair and what is not",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Tools and Techniques: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "When building a model, you should:",
+            "answerOptions": [
+              {
+                "answerText": "prepare your data, then train your model",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "choose a training method, then prepare your data",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tune parameters, then train your model",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Your data's ___ will impact the quality of your ML model",
+            "answerOptions": [
+              {
+                "answerText": "quantity",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "shape",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "A feature variable is:",
+            "answerOptions": [
+              {
+                "answerText": "a quality of your data",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a measurable property of your data",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a row of your data",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Tools and Techniques: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "You should visualize your data because",
+            "answerOptions": [
+              {
+                "answerText": "you can discover outliers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "you can discover potential cause for bias",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "both of these",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Split your data into:",
+            "answerOptions": [
+              {
+                "answerText": "training and turing sets",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "training and test sets",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "validation and evaluation sets",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A common command to start the training process in various ML libraries is:",
+            "answerOptions": [
+              {
+                "answerText": "model.travel",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.train",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.fit",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Introduction to Regression: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Which of these variables is a numeric variable?",
+            "answerOptions": [
+              {
+                "answerText": "Height",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Gender",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Hair Color",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these variables is a categorical variable?",
+            "answerOptions": [
+              {
+                "answerText": "Heart Rate",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Blood Type",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Weight",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these problems is a Regression analysis-based problem?",
+            "answerOptions": [
+              {
+                "answerText": "Predicting the final exam marks of a student",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Predicting the blood type of a person",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Predicting whether an email is spam or not",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Introduction to Regression: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "If your Machine Learning model's training accuracy is 95 % and the testing accuracy is 30 %, then what type of condition it is called?",
+            "answerOptions": [
+              {
+                "answerText": "Overfitting",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Underfitting",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Double Fitting",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "The process of identifying significant features from a set of features is called:",
+            "answerOptions": [
+              {
+                "answerText": "Feature Extraction",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Feature Dimensionality Reduction",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Feature Selection",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "The process of splitting a dataset into a certain ratio of training and testing dataset using Scikit Learn's 'train_test_split()' method/function is called:",
+            "answerOptions": [
+              {
+                "answerText": "Cross-Validation",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Hold-Out Validation",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Leave one out Validation",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Prepare and Visualize Data for Regression: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Which of these Python modules is used to plot the visualization of data?",
+            "answerOptions": [
+              {
+                "answerText": "Numpy",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Scikit-learn",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Matplotlib",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "If you want to understand the spread or the other characteristics of data points of your dataset, then perform:",
+            "answerOptions": [
+              {
+                "answerText": "Data Visualization",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Data Preprocessing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Train Test Split",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these is a part of the Data Visualization step in a Machine Learning project?",
+            "answerOptions": [
+              {
+                "answerText": "Incorporating a certain Machine Learning algorithm",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Creating a pictorial representation of data using different plotting methods",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Normalizing the values of a dataset",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Prepare and Visualize Data for Regression: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Which of these code snippets is correct based on this lesson, if you want to check for the presence of missing values in your dataset? Suppose the dataset is stored in a variable named 'dataset' which is a Pandas DataFrame object.",
+            "answerOptions": [
+              {
+                "answerText": "dataset.isnull().sum()",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "findMissing(dataset)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sum(null(dataset))",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these plotting methods is useful when you would like to understand the spread of different groups of datapoints from your dataset?",
+            "answerOptions": [
+              {
+                "answerText": "Scatter Plot",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Line Plot",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Bar Plot",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "What can Data Visualization NOT tell you?",
+            "answerOptions": [
+              {
+                "answerText": "Relationships among datapoints",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "The source from where the dataset is collected",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Finding the presence of outliers in the dataset",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Linear and Polynomial Regression: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Matplotlib is a ",
+            "answerOptions": [
+              {
+                "answerText": "drawing library",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "data visualization library",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "lending library",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Linear Regression uses the following to plot relationships between variables",
+            "answerOptions": [
+              {
+                "answerText": "a straight line",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a circle",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a curve",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A good Linear Regression model has a ___ Correlation Coefficient",
+            "answerOptions": [
+              {
+                "answerText": "low",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "high",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "flat",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Linear and Polynomial Regression: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "If your data is nonlinear, try a ___ type of Regression",
+            "answerOptions": [
+              {
+                "answerText": "linear",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "spherical",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "polynomial",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "These are all types of Regression methods",
+            "answerOptions": [
+              {
+                "answerText": "Falsestep, Ridge, Lasso and Elasticnet",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Stepwise, Ridge, Lasso and Elasticnet",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Stepwise, Ridge, Lariat and Elasticnet",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Least-Squares Regression means that all the datapoints surrounding the regression line are:",
+            "answerOptions": [
+              {
+                "answerText": "squared and then subtracted",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "multiplied",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "squared and then added up",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Logistic Regression: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Use Logistic Regression to predict",
+            "answerOptions": [
+              {
+                "answerText": "whether an apple is ripe or not",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "how many tickets can be sold in a month",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "what color the sky will turn tomorrow at 6 PM",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Types of Logistic Regression include",
+            "answerOptions": [
+              {
+                "answerText": "multinomial and cardinal",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "multinomial and ordinal",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "principal and ordinal",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Your data has weak correlations. The best type of Regression to use is:",
+            "answerOptions": [
+              {
+                "answerText": "Logistic",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Linear",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Cardinal",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Logistic Regression: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Seaborn is a type of",
+            "answerOptions": [
+              {
+                "answerText": "data visualization library",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "mapping library",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "mathematical library",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A confusion matrix is also known as a:",
+            "answerOptions": [
+              {
+                "answerText": "error matrix",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "truth matrix",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "accuracy matrix",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A good model will have:",
+            "answerOptions": [
+              {
+                "answerText": "a large number of false positives and true negatives in its confusion matrix",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a large number of true positives and true negatives in its confusion matrix",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a large number of true positives and false negatives in its confusion matrix",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Build a Web App: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What does ONNX stand for?",
+            "answerOptions": [
+              {
+                "answerText": "Over Neural Network Exchange",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Open Neural Network Exchange",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Output Neural Network Exchange",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "How is Flask defined by its creators?",
+            "answerOptions": [
+              {
+                "answerText": "mini-framework",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "large-framework",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "micro-framework",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "What does the Pickle module of Python do",
+            "answerOptions": [
+              {
+                "answerText": "Serializes a Python Object",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "De-serializes a Python Object",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Serializes and De-serializes a Python Object",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Build a Web App: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What are the tools we can use to host a pre-trained model on the web using Python?",
+            "answerOptions": [
+              {
+                "answerText": "Flask",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "TensorFlow.js",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "onnx.js",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What does SaaS stand for?",
+            "answerOptions": [
+              {
+                "answerText": "System as a Service",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Software as a Service",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Security as a Service",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What does Scikit-learn's LabelEncoder library do?",
+            "answerOptions": [
+              {
+                "answerText": "Encodes data alphabetically",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Encodes data numerically",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Encodes data serially",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Classification 1: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Classification is a form of supervised learning that has a lot in common with",
+            "answerOptions": [
+              {
+                "answerText": "Time Series",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Regression techniques",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What question can classification help answer?",
+            "answerOptions": [
+              {
+                "answerText": "Is this email spam or not?",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Can pigs fly?",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "What is the meaning of life?",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is the first step to using Classification techniques?",
+            "answerOptions": [
+              {
+                "answerText": "creating classes of a dataset",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "cleaning and balancing your data",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "assigning a data point to a group or outcome",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Classification 1: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What is a multiclass question?",
+            "answerOptions": [
+              {
+                "answerText": "the task of classifying data points into multiple classes",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "the task of classifying data points into one of several classes",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "the task of cleaning data points in multiple ways",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "It's important to clean out recurrent or unhelpful data to help your classifiers solve your problem.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What's the best reason to balance your data?",
+            "answerOptions": [
+              {
+                "answerText": "Imbalanced data looks bad in visualizations",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Balancing your data yields better results because an ML model won't skew towards one class",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Balancing your data gives you more data points",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Classification 2: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Balanced, clean data yields the best classification results",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "How do you choose the right classifier?",
+            "answerOptions": [
+              {
+                "answerText": "Understand which classifiers work best for which scenarios",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Educated guess and check",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Classification is a type of",
+            "answerOptions": [
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Supervised Learning",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Programming language",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Classification 2: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What is a 'solver'?",
+            "answerOptions": [
+              {
+                "answerText": "the person who double-checks your work",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "the algorithm to use in the optimization problem",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a machine learning technique",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which classifier did we use in this lesson?",
+            "answerOptions": [
+              {
+                "answerText": "Logistic Regression",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Decision Trees",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "One-vs-All Multiclass",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "How do you know if the classification algorithm is working as expected?",
+            "answerOptions": [
+              {
+                "answerText": "By checking the accuracy of its predictions",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "By checking it against other algorithms",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "By looking at historical data for how good this algorithm is at solving similar problems",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Classification 3: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "A good initial classifier to try is:",
+            "answerOptions": [
+              {
+                "answerText": "Linear SVC",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-Means",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Logical SVC",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Regularization controls:",
+            "answerOptions": [
+              {
+                "answerText": "the influence of parameters",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "the influence of training speed",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "the influence of outliers",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "K-Neighbors classifier can be used for:",
+            "answerOptions": [
+              {
+                "answerText": "supervised learning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "unsupervised learning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of these",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Classification 3: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Support-Vector classifiers can be used for",
+            "answerOptions": [
+              {
+                "answerText": "classification",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "regression",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of these",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Random Forest is a ___ type of classifier",
+            "answerOptions": [
+              {
+                "answerText": "Ensemble",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Dissemble",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Assemble",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Adaboost is known for:",
+            "answerOptions": [
+              {
+                "answerText": "focusing on the weights of incorrectly classified items",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "focusing on outliers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "focusing on incorrect data",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Classification 4: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Recommendation systems might be used for",
+            "answerOptions": [
+              {
+                "answerText": "Recommending a good restaurant",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Recommending fashions to try",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Both of these",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Embedding a model in a web app helps it to be offline-capable",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Onnx Runtime can be used for",
+            "answerOptions": [
+              {
+                "answerText": "Running models in a web app",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Training models",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Hyperparameter tuning",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Classification 4: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Netron app helps you:",
+            "answerOptions": [
+              {
+                "answerText": "Visualize data",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Visualize your model's structure",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Test your web app",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Convert your Scikit-learn model for use with Onnx using:",
+            "answerOptions": [
+              {
+                "answerText": "sklearn-app",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-web",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-onnx",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Using your model in a web app is called:",
+            "answerOptions": [
+              {
+                "answerText": "inference",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "interference",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "insurance",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Introduction to Clustering: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "A real-life example of clustering would be",
+            "answerOptions": [
+              {
+                "answerText": "Setting the dinner table",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Sorting the laundry",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Grocery shopping",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Clustering techniques can be used in these industries",
+            "answerOptions": [
+              {
+                "answerText": "banking",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "e-commerce",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of these",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Clustering is a type of:",
+            "answerOptions": [
+              {
+                "answerText": "supervised learning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "unsupervised learning",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "reinforcement learning",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Introduction to Clustering: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Euclidean geometry is arranged along",
+            "answerOptions": [
+              {
+                "answerText": "planes",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "curves",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "spheres",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "The density of your clustering data is related to its",
+            "answerOptions": [
+              {
+                "answerText": "noise",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "depth",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "validity",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "The best-known clustering algorithm is",
+            "answerOptions": [
+              {
+                "answerText": "k-means",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "k-middle",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "k-mart",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "K-Means Clustering: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "K-Means is derived from:",
+            "answerOptions": [
+              {
+                "answerText": "electrical engineering",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "signal processing",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "computational linguistics",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A good Silhouette score means:",
+            "answerOptions": [
+              {
+                "answerText": "clusters are well-separated and well-defined",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "there are few clusters",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "there are many clusters",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Variance is:",
+            "answerOptions": [
+              {
+                "answerText": "the average of the squared differences from the mean",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a problem for clustering if it becomes too high",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of these",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "K-Means Clustering: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "A Voronoi diagram shows:",
+            "answerOptions": [
+              {
+                "answerText": "a cluster's variance",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a cluster's seed and its region",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a cluster's inertia",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Inertia is",
+            "answerOptions": [
+              {
+                "answerText": "a measure of how internally coherent clusters are",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a measure of how much clusters move",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a measure of cluster quality",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Using K-Means, you must first determine the value of 'k'",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "title": "Intro to NLP: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What does NLP stand for in these lessons?",
+            "answerOptions": [
+              {
+                "answerText": "Neural Language Processing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "natural language processing",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Natural Linguistic Processing",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Eliza was an early bot that acted as a computer",
+            "answerOptions": [
+              {
+                "answerText": "therapist",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "doctor",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "nurse",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Alan Turing's 'Turing Test' tried to determine if a computer was",
+            "answerOptions": [
+              {
+                "answerText": "indistinguishable from a human",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "thinking",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "Intro to NLP: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Joseph Weizenbaum invented the bot",
+            "answerOptions": [
+              {
+                "answerText": "Elisha",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Eliza",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Eloise",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A conversational bot gives output based on",
+            "answerOptions": [
+              {
+                "answerText": "Randomly choosing predefined choices",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Analyzing the input and using machine intelligence",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Both of these",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "How would you make the bot more effective?",
+            "answerOptions": [
+              {
+                "answerText": "By asking it more questions.",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "By feeding it more data and training it accordingly",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "The bot is dumb, it cannot learn :(",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "title": "NLP Tasks: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Tokenization",
+            "answerOptions": [
+              {
+                "answerText": "Splits text by means of punctuation",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Splits text into separate tokens (words)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Splits text into phrases",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Embeddings",
+            "answerOptions": [
+              {
+                "answerText": "converts text data numerically so words can cluster",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "embeds words into phrases",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "embeds sentences into paragraphs",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Parts-of-Speech Tagging",
+            "answerOptions": [
+              {
+                "answerText": "divides sentences by their parts of speech",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "takes tokenized words and tags them by their part of speech",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "diagrams sentences",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "title": "NLP Tasks: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Build a dictionary of how often words reoccur using:",
+            "answerOptions": [
+              {
+                "answerText": "Word and Phrase Dictionary",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Word and Phrase Frequencies",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Word and Phrase Library",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "N-grams refer to",
+            "answerOptions": [
+              {
+                "answerText": "A text can be split into sequences of words of a set length",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "A word can be split into sequences of characters of a set length",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "A text can be split into paragraphs of a set length",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Sentiment analysis",
+            "answerOptions": [
+              {
+                "answerText": "analyzes a phrase for positivity or negativity",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "analyzes a phrase for sentimentality",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "analyzes a phrase for sadness",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "title": "NLP and Translation: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Naive translation",
+            "answerOptions": [
+              {
+                "answerText": "translates words only",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "translates sentence structure",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "translates sentiment",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A *corpus* of texts refers to",
+            "answerOptions": [
+              {
+                "answerText": "A small number of texts",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "A large number of texts",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "One standard text",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "If a ML model has enough human translations to build a model on, it can",
+            "answerOptions": [
+              {
+                "answerText": "abbreviate translations",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "standardize translations",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "improve the accuracy of translations",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "title": "NLP and Translation: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Underlying TextBlob's translation library is:",
+            "answerOptions": [
+              {
+                "answerText": "Google Translate",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "A custom ML model",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "To use `blob.translate` you need:",
+            "answerOptions": [
+              {
+                "answerText": "an internet connection",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a dictionary",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "JavaScript",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "To determine sentiment, an ML approach would be to:",
+            "answerOptions": [
+              {
+                "answerText": "apply Regression techniques to manually generated opinions and scores and look for patterns",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "apply NLP techniques to manually generated opinions and scores and look for patterns",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "apply Clustering techniques to manually generated opinions and scores and look for patterns",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "title": "NLP 4: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What information can we get from text that was written or spoken by a human?",
+            "answerOptions": [
+              {
+                "answerText": "patterns and frequencies",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sentiment and meaning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "What is sentiment analysis?",
+            "answerOptions": [
+              {
+                "answerText": "a study of whether a family heirloom has sentimental value",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a method of systematically identifying, extracting, quantifying, and studying affective states and subjective information",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "the ability to tell whether someone is sad or happy",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What question could be answered using a dataset of hotel reviews, Python, and sentiment analysis?",
+            "answerOptions": [
+              {
+                "answerText": "What are the most frequently used words and phrases in reviews?",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Which resort has the best pool?",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Is there valet parking at this hotel?",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "title": "NLP 4: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What is the essence of NLP?",
+            "answerOptions": [
+              {
+                "answerText": "categorizing human language into happy or sad",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "interpreting meaning or sentiment without having to have a human do it",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "finding outliers in sentiment and examining them",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What are some things you might look for while cleaning data?",
+            "answerOptions": [
+              {
+                "answerText": "characters in other languages",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "blank rows or columns",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "It is important to understand your data and its foibles before performing operations on it.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "title": "NLP 5: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Why is it important to clean data before analyzing it?",
+            "answerOptions": [
+              {
+                "answerText": "Some columns might have missing or incorrect data",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Messy data can lead to false conclusions about the dataset",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "What is one example of a strategy for cleaning data?",
+            "answerOptions": [
+              {
+                "answerText": "removing columns/rows that aren't useful for answering a specific question",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "getting rid of verified values that don't fit your hypothesis",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "moving the outliers to a separate table and running the calculations for that table to see if they match",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "It can be useful to categorize data using a Tag column.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "title": "NLP 5: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What is the goal of the dataset?",
+            "answerOptions": [
+              {
+                "answerText": "to see how many negative and positive reviews there are for hotels across the world",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "to add sentiment and columns that will help you choose the best hotel",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "to analyze why people leave specific reviews",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What are stop words?",
+            "answerOptions": [
+              {
+                "answerText": "common English words that do not change the sentiment of a sentence",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "words that you can remove to speed up sentiment analysis",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "To test the sentiment analysis, make sure it matches the reviewer's score for the same review.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "title": "Intro to Time Series: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Time Series Forecasting is useful in",
+            "answerOptions": [
+              {
+                "answerText": "determining future costs",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "predicting future pricing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "A time series is a sequence taken at:",
+            "answerOptions": [
+              {
+                "answerText": "successive equally spaced points in space",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "successive equally spaced points in time",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "successive equally spaced points in space and time",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Time series can be used in:",
+            "answerOptions": [
+              {
+                "answerText": "earthquake prediction",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "computer vision",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "color analysis",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "title": "Intro to Time Series: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Time series trends are",
+            "answerOptions": [
+              {
+                "answerText": "Measurable increases and decreases over time",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Quantifying decreases over time",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Gaps between increases and decreases over time",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Outliers are",
+            "answerOptions": [
+              {
+                "answerText": "points close to standard data variance",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "points far away from standard data variance",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "points within standard data variance",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Time Series Forecasting is most useful for",
+            "answerOptions": [
+              {
+                "answerText": "Econometrics",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "History",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Libraries",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "title": "Time Series ARIMA: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "ARIMA stands for",
+            "answerOptions": [
+              {
+                "answerText": "AutoRegressive Integral Moving Average",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Action",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Average",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Stationarity refers to",
+            "answerOptions": [
+              {
+                "answerText": "data whose attributes does not change when shifted in time",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "data whose distribution does not change when shifted in time",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "data whose distribution changes when shifted in time",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Differencing",
+            "answerOptions": [
+              {
+                "answerText": "stabilizes trend and seasonality",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "exacerbates trend and seasonality",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "eliminates trend and seasonality",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "title": "Time Series ARIMA: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "ARIMA is used to make a model fit the special form of time series data",
+            "answerOptions": [
+              {
+                "answerText": "as flat as possible",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "as closely as possible",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "via scatterplots",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Use SARIMAX to",
+            "answerOptions": [
+              {
+                "answerText": "manage seasonal ARIMA models",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "manage special ARIMA models",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "manage statistical ARIMA models",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "'Walk-Forward' validation involves",
+            "answerOptions": [
+              {
+                "answerText": "re-evaluating a model progressively as it is validated",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "re-training a model progressively as it is validated",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "re-configuring a model progressively as it is validated",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "title": "Reinforcement 1: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What is reinforcement learning?",
+            "answerOptions": [
+              {
+                "answerText": "teaching someone something over and over again until they understand",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a learning technique that deciphers the optimal behavior of an agent in some environment by running many experiments",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "understanding how to run multiple experiments at once",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is a policy?",
+            "answerOptions": [
+              {
+                "answerText": "a function that returns the action at any given state",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a document that tells you whether or not you can return an item",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a function that is used for a random purpose",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A reward function returns a score for each state of an environment.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "title": "Reinforcement 1: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What is Q-Learning?",
+            "answerOptions": [
+              {
+                "answerText": "a mechanism for recording the 'goodness' of each state",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "an algorithm where the policy is defined by a Q-Table",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "both of the above",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "For what values does a Q-Table correspond to the random walk policy?",
+            "answerOptions": [
+              {
+                "answerText": "all equal values",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "-0.25",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "all different values",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "It was better to use exploration than exploitation during the learning process in our lesson.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "title": "Reinforcement 2: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Chess and Go are games with continuous states.",
+            "answerOptions": [
+              {
+                "answerText": "true",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "false",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "What is the CartPole problem?",
+            "answerOptions": [
+              {
+                "answerText": "a process for eliminating outliers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a method for optimizing your shopping cart",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a simplified version of balancing",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "What tool can we use to play out different scenarios of potential states in a game?",
+            "answerOptions": [
+              {
+                "answerText": "guess and check",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "simulation environments",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "state transition testing",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "title": "Reinforcement 2: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Where do we define all possible actions in an environment?",
+            "answerOptions": [
+              {
+                "answerText": "methods",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "action space",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "action list",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What pair did we use as the dictionary key-value?",
+            "answerOptions": [
+              {
+                "answerText": "(state, action) as the key, Q-Table entry as the value",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "state as the key, action as the value",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "the value of the qvalues function as the key, action as the value",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What are the hyperparameters we used during Q-Learning?",
+            "answerOptions": [
+              {
+                "answerText": "q-table value, current reward, random action",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "learning rate, discount factor, exploration/exploitation factor",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "cumulative rewards, learning rate, exploration factor",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 49,
+        "title": "Real World Applications: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "What's an example of an ML application in the Finance industry?",
+            "answerOptions": [
+              {
+                "answerText": "Personalizing the customer journey using NLP",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Wealth management using linear regression",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Energy management using Time Series",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What ML technique can hospitals use to manage readmission?",
+            "answerOptions": [
+              {
+                "answerText": "Clustering",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Time Series",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is an example of using Time Series for energy management?",
+            "answerOptions": [
+              {
+                "answerText": "Motion sensing animals",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Smart parking meters",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Tracking forest fires",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "title": "Real World Applications: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "Which ML technique can be used to detect credit card fraud?",
+            "answerOptions": [
+              {
+                "answerText": "Regression",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Clustering",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which ML technique is exemplified in forest management?",
+            "answerOptions": [
+              {
+                "answerText": "Reinforcement Learning",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Time Series",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What's an example of an ML application in the Health Care industry?",
+            "answerOptions": [
+              {
+                "answerText": "Predicting student behavior using regression",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Managing clinical trials using classifiers",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Motion sensing of animals using classifiers",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]
