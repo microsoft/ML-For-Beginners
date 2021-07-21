@@ -3,7 +3,7 @@
 Proses membangun, menggunakan, dan memelihara model machine learning dan data yang digunakan adalah proses yang sangat berbeda dari banyak alur kerja pengembangan lainnya. Dalam pelajaran ini, kita akan mengungkap prosesnya, dan menguraikan teknik utama yang perlu Kamu ketahui. Kamu akan: 
 
 - Memahami gambaran dari proses yang mendasari machine learning.
-- Menjelajahi konsep dasar seperti 'models', 'predictions', dan 'training data'. 
+- Menjelajahi konsep dasar seperti '*models*', '*predictions*', dan '**training data*'. 
   
 ## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 ## Pengantar
@@ -61,7 +61,7 @@ Dengan menggunakan data *training*, tujuan kamu adalah membuat model atau repres
 
 ### Tentukan metode training
 
-Tergantung dari pertanyaan dan sifat datamu, Kamu akan memilih metode untuk melatihnya. Melangkah menuju dokumentasi [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) - yang kita gunakan dalam pelajaran ini - kamu bisa menjelajahi banyak cara untuk melatih sebuah model. Tergantung dari pengalamanmu, kamu mungkin perlu mencoba beberapa metode yang berbeda untuk membuat model yang terbaik. Kemungkinan kamu akan melalui proses di mana data scientist mengevaluasi kinerja model dengan memasukkan data yang belum pernah dilihat, memeriksa akurasi, bias, dan masalah penurunan kualitas lainnya, dan memilih metode training yang paling tepat untuk tugas yang ada. 
+Tergantung dari pertanyaan dan sifat datamu, Kamu akan memilih metode untuk melatihnya. Buka dokumentasi [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) yang kita gunakan dalam pelajaran ini, kamu bisa menjelajahi banyak cara untuk melatih sebuah model. Tergantung dari pengalamanmu, kamu mungkin perlu mencoba beberapa metode yang berbeda untuk membuat model yang terbaik. Kemungkinan kamu akan melalui proses di mana data scientist mengevaluasi kinerja model dengan memasukkan data yang belum pernah dilihat, memeriksa akurasi, bias, dan masalah penurunan kualitas lainnya, dan memilih metode training yang paling tepat untuk tugas yang ada. 
 ### Melatih sebuah model
 
 Berbekal data *training*, Kamu siap untuk menggunakannya untuk membuat model. Kamu akan melihat di banyak *library* ML mengenai kode 'model.fit' - pada saat inilah kamu mengirimkan data kamu sebagai *array* nilai (biasanya 'X') dan variabel fitur (biasanya 'y' ). 
