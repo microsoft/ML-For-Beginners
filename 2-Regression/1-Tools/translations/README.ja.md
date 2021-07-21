@@ -4,7 +4,7 @@
 
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) によって制作されたスケッチノート
 
-## [講義前クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [講義前クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9?loc=ja)
 
 ## イントロダクション
 
@@ -205,7 +205,7 @@ s1 tc: T細胞（白血球の一種）
 ## 🚀チャレンジ
 
 このデータセットから別の変数を選択してプロットしてください。ヒント： `X = X[:, np.newaxis, 2]` の行を編集する。今回のデータセットのターゲットである、糖尿病という病気の進行について、どのような発見があるのでしょうか？
-## [講義後クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [講義後クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10?loc=ja)
 
 ## レビュー & 自主学習
 
