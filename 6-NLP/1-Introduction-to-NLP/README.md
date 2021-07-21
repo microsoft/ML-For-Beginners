@@ -162,4 +162,4 @@ Take a look at the references below as further reading opportunities.
 
 ## Assignment 
 
-[Search for a bot](../assignment.md)
+[Search for a bot](assignment.md)
