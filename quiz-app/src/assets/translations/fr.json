@@ -1503,7 +1503,7 @@
                         },
                         {
 							"answerText": "Les deux",
-                            "isCorrect": "false"
+                            "isCorrect": "true"
                         }
                     ]
                 },
