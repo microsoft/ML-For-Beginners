@@ -2,7 +2,7 @@
 
 [![ML, AI, deep learning - Apa perbedaannya?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, deep learning - Apa perbedaannya?")
 
-> 🎥 Klik gambar diatas untuk melihat video yang mendiskusikan perbedaan antara Machine Learning, AI, dan Deep Learning.
+> 🎥 Klik gambar diatas untuk menonton video yang mendiskusikan perbedaan antara Machine Learning, AI, dan Deep Learning.
 
 ## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
 
@@ -12,7 +12,7 @@ Selamat datang di pelajaran Machine Learning klasik untuk pemula! Baik kamu yang
 
 [![Pengantar Machine Learning](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Pengantar Machine Learning")
 
-> 🎥 Klik gambar diatas untuk melihat video: John Guttag dari MIT yang memberikan pengantar Machine Learning.
+> 🎥 Klik gambar diatas untuk menonton video: John Guttag dari MIT yang memberikan pengantar Machine Learning.
 ### Memulai Machine Learning
 
 Sebelum memulai kurikulum ini, kamu perlu memastikan komputer kamu sudah dipersiapkan untuk menjalankan *notebook* secara lokal.

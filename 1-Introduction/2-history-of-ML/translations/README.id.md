@@ -56,7 +56,7 @@ Penelitian didanai dengan baik oleh lembaga pemerintah, banyak kemajuan dibuat d
 
     [![blocks world dengan SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world dengan SHRDLU")
     
-    > 🎥 Klik gambar diatas untuk melihat video: Blocks world with SHRDLU
+    > 🎥 Klik gambar diatas untuk menonton video: Blocks world with SHRDLU
 
 ## 1974 - 1980: "Musim Dingin AI"
 
@@ -94,7 +94,7 @@ Saat ini, *machine learning* dan AI hampir ada di setiap bagian dari kehidupan k
 Kita masih belum tahu apa yang akan terjadi di masa depan, tetapi penting untuk memahami sistem komputer dan perangkat lunak serta algoritma yang dijalankannya. Kami berharap kurikulum ini akan membantu kamu untuk mendapatkan pemahaman yang lebih baik sehingga kamu dapat memutuskan sendiri. 
 
 [![Sejarah Deep Learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "Sejarah Deep Learning")
-> 🎥 Klik gambar diatas untuk melihat video: Yann LeCun mendiskusikan sejarah dari Deep Learning dalam pelajaran ini
+> 🎥 Klik gambar diatas untuk menonton video: Yann LeCun mendiskusikan sejarah dari Deep Learning dalam pelajaran ini
 
 ---
 ## 🚀Tantangan
