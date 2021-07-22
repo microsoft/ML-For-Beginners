@@ -412,7 +412,7 @@
               },
               {
                 "answerText": "you can discover potential cause for bias",
-                "isCorrect": "true"
+                "isCorrect": "false"
               },
               {
                 "answerText": "both of these",
@@ -1092,7 +1092,7 @@
             "answerOptions": [
               {
                 "answerText": "the task of classifying data points into multiple classes",
-                "isCorrect": "true"
+                "isCorrect": "false"
               },
               {
                 "answerText": "the task of classifying data points into one of several classes",
