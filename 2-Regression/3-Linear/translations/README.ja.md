@@ -331,4 +331,4 @@ Scikit-learnには、多項式回帰モデルを構築するための便利なAP
 
 ## 課題 
 
-[モデル構築](../assignment.md)
+[モデル構築](./assignment.ja.md)
