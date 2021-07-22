@@ -16,8 +16,8 @@ Bu bölümde, bu eğitim programının tamamen regresyon üzerine olan ilk böl�
 
 1. [Sınıflandırmaya giriş](../1-Introduction/translations/README.tr.md)
 2. [Daha fazla sınıflandırıcı](../2-Classifiers-1/translations/README.tr.md)
-3. [Hatta daha fazla sınıflandırıcı](../3-Classifiers-2/README.md)
-4. [Uygulamalı Makine Öğrenimi: bir web uygulaması oluşturun](../4-Applied/README.md)
+3. [Hatta daha fazla sınıflandırıcı](../3-Classifiers-2/translations/README.tr.md)
+4. [Uygulamalı Makine Öğrenimi: bir web uygulaması oluşturun](../4-Applied/translations/README.tr.md)
 ## Katkıda bulunanlar
 
 "Sınıflandırmaya başlarken" [Cassie Breviu](https://www.twitter.com/cassieview) ve [Jen Looper](https://www.twitter.com/jenlooper) tarafından :hearts: ile yazılmıştır.
