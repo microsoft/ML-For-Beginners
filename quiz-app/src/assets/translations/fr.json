@@ -412,7 +412,7 @@
                         },
                         {
 							"answerText": "Vous pouvez découvrir une cause potentielle de biais",
-                            "isCorrect": "true"
+                            "isCorrect": "false"
                         },
                         {
 							"answerText": "Les deux",
@@ -1091,7 +1091,7 @@
                     "answerOptions": [
 							{
 							"answerText": "La tâche de classer les points de données dans plusieurs classes",
-                            "isCorrect": "true"
+                            "isCorrect": "false"
                         },
                         {
 							"answerText": "La tâche de classifier les points de données dans l'une des plusieurs classes",
