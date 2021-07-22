@@ -215,4 +215,4 @@ s1 tc: T細胞（白血球の一種）
 
 ## 課題
 
-[異なるデータセット](assignment.md)
+[異なるデータセット](./assignment.ja.md)
