@@ -1,65 +1,65 @@
-# Introduction to classification
+# 分类介绍
 
-In these four lessons, you will explore a fundamental focus of classic machine learning - _classification_. We will walk through using various classification algorithms with a dataset about all the brilliant cuisines of Asia and India. Hope you're hungry!
+在这四节课中，你将探索经典机器学习的一个基本重点 - _分类_。我们将使用各种分类算法，通过一个关于亚洲和印度所有美食的数据集来进行分类。希望你饿了！ 
 
-![just a pinch!](images/pinch.png)
+![一点点！](../images/pinch.png)
 
-> Celebrate pan-Asian cuisines in these lessons! Image by [Jen Looper](https://twitter.com/jenlooper)
+> 在这些课程中庆祝泛亚美食!作者[Jen Looper](https://twitter.com/jenlooper)
 
-Classification is a form of [supervised learning](https://wikipedia.org/wiki/Supervised_learning) that bears a lot in common with regression techniques. If machine learning is all about predicting values or names to things by using datasets, then classification generally falls into two groups: _binary classification_ and _multiclass classification_.
+分类是一种[监督学习](https://wikipedia.org/wiki/Supervised_learning)，这与回归技术有很多共同点。如果机器学习都是用数据集来预测事物的值或名称，那么分类一般分为两类：二元分类和多元分类。
 
-[![Introduction to classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to classification")
+[![分类介绍](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "分类介绍")
 
-> 🎥 Click the image above for a video: MIT's John Guttag introduces classification
+> 🎥 点击上图观看视频：麻省理工学院的John Guttag介绍分类 
 
-Remember:
+回忆一下:
 
-- **Linear regression** helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict _what price a pumpkin would be in September vs. December_, for example.
-- **Logistic regression** helped you discover "binary categories": at this price point, _is this pumpkin orange or not-orange_?
+- **线性回归**帮助你预测变量之间的关系，并准确预测新数据点与该线的关系。因此，例如，你可以预测_南瓜在9月与12月的价格_。
+- **逻辑回归**帮助你发现“二元类别”：例如，在这个价位上，_这个南瓜是橙色还是非橙色_？ 
 
-Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
+分类使用各种算法来确定给定数据点标签或类别的其他方式。让我们使用这些美食数据，看看我们是否可以通过观察一组食材来确定其美食的来源。 
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
+## [课前测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
 
-### Introduction
+### 介绍
 
-Classification is one of the fundamental activities of the machine learning researcher and data scientist. From basic classification of a binary value ("is this email spam or not?"), to complex image classification and segmentation using computer vision, it's always useful to be able to sort data into classes and ask questions of it.
+分类是机器学习研究者和数据科学家的基本活动之一。从二元分类（“这是不是垃圾邮件？”），到使用计算机视觉的复杂图像分类和分割，能够将数据分类并提出问题总是很有用的。
 
-To state the process in a more scientific way, your classification method creates a predictive model that enables you to map the relationship between input variables to output variables.
+为了更科学地描述过程，你的分类方法会创建一个预测模型，使你能够将输入变量与输出变量之间的关系映射到一起。
 
-![binary vs. multiclass classification](images/binary-multiclass.png)
+![二元分类与多元分类](../images/binary-multiclass.png)
 
-> Binary vs. multiclass problems for classification algorithms to handle. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> 分类算法要处理的二元分类与多元分类问题。作者[Jen Looper](https://twitter.com/jenlooper)
 
-Before starting the process of cleaning our data, visualizing it, and prepping it for our ML tasks, let's learn a bit about the various ways machine learning can be leveraged to classify data.
+在开始清理数据、可视化数据以及为ML任务准备数据之前，让我们先了解一下机器学习可用于对数据进行分类的各种方式。
 
-Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification), classification using classic machine learning uses features, such as `smoker`, `weight`, and `age` to determine _likelihood of developing X disease_. As a supervised learning technique similar to the regression exercises you performed earlier, your data is labeled and the ML algorithms use those labels to classify and predict classes (or 'features') of a dataset and assign them to a group or outcome.
+源自[统计](https://wikipedia.org/wiki/Statistical_classification)，使用经典机器学习的分类使用诸如`吸烟者`、`体重`和`年龄`等特征来确定_患某疾病的可能性_。作为类似于你之前执行的回归练习的监督学习技术，你的数据被标记，ML算法使用这些标签对数据集的类别（或“特征”）进行分类和预测，并将它们分配给一个组或结果。
 
-✅ Take a moment to imagine a dataset about cuisines. What would a multiclass model be able to answer? What would a binary model be able to answer? What if you wanted to determine whether a given cuisine was likely to use fenugreek? What if you wanted to see if, given a present of a grocery bag full of star anise, artichokes, cauliflower, and horseradish, you could create a typical Indian dish?
+✅ 花点时间想象一个关于美食的数据集。多元模型能够回答什么？ 二元模型能够回答什么？ 如果你想确定给定的菜肴是否可能使用胡芦巴怎么办？ 如果你想看看，给一个装满八角、朝鲜蓟、花椰菜和辣根的杂货袋，你是否可以制作出典型的印度菜？ 
 
-[![Crazy mystery baskets](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Crazy mystery baskets")
+[![疯狂的神秘篮子](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "疯狂的神秘篮子")
 
-> 🎥 Click the image above for a video.The whole premise of the show 'Chopped' is the 'mystery basket' where chefs have to make some dish out of a random choice of ingredients. Surely a ML model would have helped!
+> 🎥 点击上图观看视频。“Chopped”节目提供“神秘篮子”，厨师们必须在那里随意选择一些配料来做菜。一个ML模型肯定会有帮助！ 
 
-## Hello 'classifier'
+## 你好“分类器” 
 
-The question we want to ask of this cuisine dataset is actually a **multiclass question**, as we have several potential national cuisines to work with. Given a batch of ingredients, which of these many classes will the data fit?
+我们想问这个美食数据集的问题实际上是一个**多元分类问题**，因为我们有几个潜在的国家美食可以使用。给定一批配料，这些数据将符合以下哪一类？
 
-Scikit-learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
+Scikit-learn提供了几种不同的算法用于对数据进行分类，具体取决于你要解决的问题类型。在接下来的两课中，你将了解其中的几种算法。
 
-## Exercise - clean and balance your data
+## 练习 - 清理和平衡数据
 
-The first task at hand, before starting this project, is to clean and **balance** your data to get better results. Start with the blank _notebook.ipynb_ file in the root of this folder.
+在开始这个项目之前，手头的第一项任务是清理和**平衡**你的数据以获得更好的结果。 从文件夹根目录中的空白_notebook.ipynb_文件开始。
 
-The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-learn package that will allow you to better balance the data (you will learn more about this task in a minute).
+首先要安装的是[imblearn](https://imbalanced-learn.org/stable/)。这是一个Scikit-learn包，可让你更好地平衡数据（你将在一分钟内了解有关此任务的更多信息）。 
 
-1. To install `imblearn`, run `pip install`, like so:
+1. 要安装`imblearn`，请运行`pip install`，如下所示：
 
     ```python
     pip install imblearn
     ```
 
-1. Import the packages you need to import your data and visualize it, also import `SMOTE` from `imblearn`.
+1. 导入所需的包用于导入数据并对其进行可视化，同时从`imblearn`导入`SMOTE`。
 
     ```python
     import pandas as pd
@@ -69,23 +69,23 @@ The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). 
     from imblearn.over_sampling import SMOTE
     ```
 
-    Now you are set up to read import the data next.
+    现在你已准备好接下来读取导入数据。
 
-1. The next task will be to import the data:
+1. 下一个任务是导入数据： 
 
     ```python
     df  = pd.read_csv('../data/cuisines.csv')
     ```
 
-   Using `read_csv()` will read the content of the csv file _cusines.csv_ and place it in the variable `df`.
+   使用`read_csv()`将读取csv文件_cusines.csv_的内容并将其放入变量`df`中。
 
-1. Check the data's shape:
+1. 检查数据的形状： 
 
     ```python
     df.head()
     ```
 
-   The first five rows look like this:
+   前五行如下所示：
 
     ```output
     |     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
@@ -97,13 +97,13 @@ The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). 
     | 4   | 69         | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
     ```
 
-1. Get info about this data by calling `info()`:
+1. 通过调用`info()`获取有关此数据的信息： 
 
     ```python
     df.info()
     ```
 
-    Your out resembles:
+    输出类似于： 
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -113,21 +113,21 @@ The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). 
     memory usage: 7.2+ MB
     ```
 
-## Exercise - learning about cuisines
+## 练习 - 学习美食 
 
-Now the work starts to become more interesting. Let's discover the distribution of data, per cuisine 
+现在这项工作开始变得更有趣了。让我们发现菜系的数据分布 
 
-1. Plot the data as bars by calling `barh()`:
+1. 通过调用`barh()`将数据绘制为柱状图：
 
     ```python
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![cuisine data distribution](images/cuisine-dist.png)
+    ![美食数据分布](../images/cuisine-dist.png)
 
-    There are a finite number of cuisines, but the distribution of data is uneven. You can fix that! Before doing so, explore a little more. 
+    菜系数量有限，但数据分布不均。你可以解决这个问题！在这样做之前，多探索一点。 
 
-1. Find out how much data is available per cuisine and print it out:
+1. 找出每种菜系有多少可用数据并将其打印出来： 
 
     ```python
     thai_df = df[(df.cuisine == "thai")]
@@ -143,7 +143,7 @@ Now the work starts to become more interesting. Let's discover the distribution 
     print(f'korean df: {korean_df.shape}')
     ```
 
-    the output looks like so:
+    输出如下所示： 
 
     ```output
     thai df: (289, 385)
@@ -153,11 +153,11 @@ Now the work starts to become more interesting. Let's discover the distribution 
     korean df: (799, 385)
     ```
 
-## Discovering ingredients
+## 研究成分 
 
-Now you can dig deeper into the data and learn what are the typical ingredients per cuisine. You should clean out recurrent data that creates confusion between cuisines, so let's learn about this problem.
+现在，你可以更深入地挖掘数据并了解每种菜肴的典型成分是什么。你应该清除在菜系之间造成混淆的重复数据，让我们了解这个问题。 
 
-1. Create a function `create_ingredient()` in Python to create an ingredient dataframe. This function will start by dropping an unhelpful column and sort through ingredients by their count:
+1. 在Python中创建一个函数`create_ingredient()`来创建一个成分dataframe。此功能将首先删除一个无用的列，并按数量对成分进行排序：
 
     ```python
     def create_ingredient_df(df):
@@ -168,56 +168,56 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
         return ingredient_df
     ```
 
-   Now you can use that function to get an idea of top ten most popular ingredients by cuisine.
+   现在，你可以使用该功能来了解各菜系最受欢迎的十大食材。 
 
-1. Call `create_ingredient()` and plot it calling `barh()`:
+1. 调用`create_ingredient()`并调用`barh()`绘制柱状图： 
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thai](images/thai.png)
+    ![泰国](../images/thai.png)
 
-1. Do the same for the japanese data:
+1. 对日本的数据做同样的事情： 
 
     ```python
     japanese_ingredient_df = create_ingredient_df(japanese_df)
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japanese](images/japanese.png)
+    ![日本](../images/japanese.png)
 
-1. Now for the chinese ingredients:
+1. 现在是中国： 
 
     ```python
     chinese_ingredient_df = create_ingredient_df(chinese_df)
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinese](images/chinese.png)
+    ![中国](../images/chinese.png)
 
-1. Plot the indian ingredients:
+1. 接着是印度：
 
     ```python
     indian_ingredient_df = create_ingredient_df(indian_df)
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indian](images/indian.png)
+    ![印度](../images/indian.png)
 
-1. Finally, plot the korean ingredients:
+1. 最后是韩国:
 
     ```python
     korean_ingredient_df = create_ingredient_df(korean_df)
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korean](images/korean.png)
+    ![韩国](../images/korean.png)
 
-1. Now, drop the most common ingredients that create confusion between distinct cuisines, by calling `drop()`: 
+1. 现在，通过调用`drop()`删除在不同菜系之间造成混淆的最常见成分： 
 
-   Everyone loves rice, garlic and ginger!
+   每个人都喜欢米饭，大蒜和姜！ 
 
     ```python
     feature_df= df.drop(['cuisine','Unnamed: 0','rice','garlic','ginger'], axis=1)
@@ -225,27 +225,27 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
     feature_df.head()
     ```
 
-## Balance the dataset
+## 平衡数据集 
 
-Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Synthetic Minority Over-sampling Technique" - to balance it.
+现在你已经清理了数据，使用[SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - “人工少数类过采样法” - 来平衡它。
 
-1. Call `fit_resample()`, this strategy generates new samples by interpolation.
+1. 调用`fit_resample()`，通过插值生成新样本。 
 
     ```python
     oversample = SMOTE()
     transformed_feature_df, transformed_label_df = oversample.fit_resample(feature_df, labels_df)
     ```
 
-    By balancing your data, you'll have better results when classifying it. Think about a binary classification. If most of your data is one class, a ML model is going to predict that class more frequently, just because there is more data for it. Balancing the data takes any skewed data and helps remove this imbalance. 
+    通过平衡你的数据，你将在分类时获得更好的结果。考虑二元分类。如果你的大部分数据是一个类，那么ML模型将更频繁地预测该类，因为它有更多数据。平衡数据接受任何倾斜的数据，并有助于消除这种不平衡。 
 
-1. Now you can check the numbers of labels per ingredient:
+1. 现在你可以检查每种成分的标签数量： 
 
     ```python
     print(f'new label count: {transformed_label_df.value_counts()}')
     print(f'old label count: {df.cuisine.value_counts()}')
     ```
 
-    Your output looks like so:
+    输出如下所示： 
 
     ```output
     new label count: korean      799
@@ -262,15 +262,15 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
     Name: cuisine, dtype: int64
     ```
 
-    The data is nice and clean, balanced, and very delicious! 
+    数据很好，干净，平衡，非常好吃！ 
 
-1. The last step is to save your balanced data, including labels and features, into a new dataframe that can be exported into a file:
+1. 最后一步是将你的平衡数据（包括标签和特征）保存到新dataframe中，以便导出到文件： 
 
     ```python
     transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
     ```
 
-1. You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
+1. 你可以使用`transformed_df.head()`和`transformed_df.info()`来进一步查看数据。保存此数据的副本以供将来的课程使用： 
 
     ```python
     transformed_df.head()
@@ -278,20 +278,20 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
     transformed_df.to_csv("../data/cleaned_cuisine.csv")
     ```
 
-    This fresh CSV can now be found in the root data folder.
+    可以在根数据文件夹中找到这个新的CSV。 
 
 ---
 
-## 🚀Challenge
+## 🚀挑战
 
-This curriculum contains several interesting datasets. Dig through the `data` folders and see if any contain datasets that would be appropriate for binary or multi-class classification? What questions would you ask of this dataset?
+本课程包含几个有趣的数据集。挖掘“data”文件夹，看看是否有适合二元或多元分类的数据集？你会问这个数据集什么问题？ 
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
+## [课后测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
 
-## Review & Self Study
+## 复习与自学 
 
-Explore SMOTE's API. What use cases is it best used for? What problems does it solve?
+探索SMOTE的API。它最适合用于哪些用例？它解决了哪些问题？ 
 
-## Assignment 
+## 任务 
 
-[Explore classification methods](assignment.md)
+[探索分类方法](../assignment.md)
