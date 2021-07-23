@@ -1,6 +1,6 @@
 # Build a Web App to use a ML Model
 
-In this lesson, you will train an ML model on a data set that's out of this world: _UFO sightings over the past century_, sourced from [NUFORC's database](https://www.nuforc.org).
+In this lesson, you will train an ML model on a data set that's out of this world: _UFO sightings over the past century_, sourced from NUFORC's database.
 
 You will learn:
 
