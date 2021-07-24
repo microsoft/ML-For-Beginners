@@ -187,7 +187,7 @@ Now you can build a Flask app to call your model and return similar results, but
    cd web-app
    ```
 
-1. In your terminal type `pip install`, to install the libraries listed in _reuirements.txt_:
+1. In your terminal type `pip install`, to install the libraries listed in _requirements.txt_:
 
    ```bash
    pip install -r requirements.txt
