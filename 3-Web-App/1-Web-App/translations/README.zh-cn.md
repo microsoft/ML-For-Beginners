@@ -165,7 +165,7 @@ print(model.predict([[50,44,-12]]))
     web-app/
       static/
         css/
-        templates/
+      templates/
     notebook.ipynb
     ufo-model.pkl
     ``` 
