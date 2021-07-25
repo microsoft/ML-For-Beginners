@@ -113,4 +113,4 @@ Berikut adalah item untuk ditonton dan didengarkan:
 
 ## Tugas
 
-[Membuat sebuah *timeline*](assignment.md)
+[Membuat sebuah *timeline*](assignment.id.md)

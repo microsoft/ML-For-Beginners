@@ -8,10 +8,10 @@ sejarah serta teknik-teknik yang digunakan oleh para peneliti. Ayo jelajahi duni
   
 ### Pelajaran
 
-1. [Pengantar Machine Learning](1-intro-to-ML/README.md)
-1. [Sejarah dari Machine Learning dan AI](2-history-of-ML/README.md)
-1. [Keadilan dan Machine Learning](3-fairness/README.md)
-1. [Teknik-Teknik Machine Learning](4-techniques-of-ML/README.md)
+1. [Pengantar Machine Learning](../1-intro-to-ML/translations/README.id.md)
+1. [Sejarah dari Machine Learning dan AI](../2-history-of-ML/translations/README.id.md)
+1. [Keadilan dan Machine Learning](../3-fairness/translations/README.id.md)
+1. [Teknik-Teknik Machine Learning](../4-techniques-of-ML/translations/README.id.md)
 ### Penghargaan
 
 "Pengantar Machine Learning" ditulis dengan ♥️ oleh sebuah tim yang terdiri dari [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan), [Ornella Altunyan](https://twitter.com/ornelladotcom) dan [Jen Looper](https://twitter.com/jenlooper)
