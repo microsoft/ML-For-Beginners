@@ -35,9 +35,9 @@ Sebelum mulai membangun model kamu, ada beberapa tugas yang harus kamu selesaika
 Untuk dapat menjawab pertanyaan kamu dengan kepastian, Kamu memerlukan sejumlah besar data dengan jenis yang tepat. Ada dua hal yang perlu kamu lakukan pada saat ini: 
 
 - **Mengumpulkan data**. Ingat pelajaran sebelumnya tentang keadilan dalam analisis data, kumpulkan data kamu dengan hati-hati. Waspadai sumber datanya, bias bawaan apa pun yang mungkin dimiliki, dan dokumentasikan asalnya. 
-- **Menyiapkan data**. Ada beberapa langkah dalam proses persiapan data. Kamu mungkin perlu menyusun data dan melakukan normalisasi jika berasal dari berbagai sumber. Kamu dapat meningkatkan kualitas dan kuantitas data melalui berbagai metode seperti mengonversi string menjadi angka (seperti yang kita lakukan di [Clustering](../../5-Clustering/1-Visualize/README.md)). Kamu mungkin juga bisa membuat data baru berdasarkan data yang asli (seperti yang kita lakukan di [Classification](../../4-Classification/1-Introduction/README.md)). Kamu bisa membersihkan dan mengubah data (seperti yang kita lakukan sebelum pelajaran [Web App](../3-Web-App/README.md)). Terakhir, Kamu mungkin juga perlu mengacaknya dan mengubah urutannya, tergantung pada teknik *training* kamu. 
+- **Menyiapkan data**. Ada beberapa langkah dalam proses persiapan data. Kamu mungkin perlu menyusun data dan melakukan normalisasi jika berasal dari berbagai sumber. Kamu dapat meningkatkan kualitas dan kuantitas data melalui berbagai metode seperti mengonversi string menjadi angka (seperti yang kita lakukan di [Clustering](../../5-Clustering/1-Visualize/translations/README.id.md)). Kamu mungkin juga bisa membuat data baru berdasarkan data yang asli (seperti yang kita lakukan di [Classification](../../4-Classification/1-Introduction/translations/README.id.md)). Kamu bisa membersihkan dan mengubah data (seperti yang kita lakukan sebelum pelajaran [Web App](../3-Web-App/translations/README.id.md)). Terakhir, Kamu mungkin juga perlu mengacaknya dan mengubah urutannya, tergantung pada teknik *training* kamu. 
 
-✅ Setelah mengumpulkan dan memproses data kamu, luangkan waktu sejenak untuk melihat apakah bentuknya memungkinkan kamu untuk menjawab pertanyaan yang kamu maksudkan. Mungkin data tidak akan berkinerja baik dalam tugas yang kamu berikan, seperti yang kita temukan dalam pelajaran [Clustering](../../5-Clustering/1-Visualize/README.md).
+✅ Setelah mengumpulkan dan memproses data kamu, luangkan waktu sejenak untuk melihat apakah bentuknya memungkinkan kamu untuk menjawab pertanyaan yang kamu maksudkan. Mungkin data tidak akan berkinerja baik dalam tugas yang kamu berikan, seperti yang kita temukan dalam pelajaran [Clustering](../../5-Clustering/1-Visualize/translations/README.id.md).
 
 ### Memilih variabel fiturmu
 
@@ -46,14 +46,14 @@ Sebuah [fitur](https://www.datasciencecentral.com/profiles/blogs/an-introduction
 🎓 **Feature Selection dan Feature Extraction** Bagaimana kamu tahu variabel mana yang harus dipilih saat membangun model? Kamu mungkin akan melalui proses pemilihan fitur (*Feature Selection*) atau ekstraksi fitur (*Feature Extraction*) untuk memilih variabel yang tepat untuk model yang paling berkinerja. Namun, keduanya tidak sama: "Ekstraksi fitur membuat fitur baru dari fungsi fitur asli, sedangkan pemilihan fitur mengembalikan subset fitur." ([sumber](https://wikipedia.org/wiki/Feature_selection))
 ### Visualisasikan datamu
 
-Aspek penting dari toolkit data scientist adalah kemampuan untuk memvisualisasikan data menggunakan beberapa *library* seperti Seaborn atau MatPlotLib. Merepresentasikan data kamu secara visual memungkinkan kamu mengungkap korelasi tersembunyi yang dapat kamu manfaatkan. Visualisasimu mungkin juga membantu kamu mengungkap data yang bias atau tidak seimbang (seperti yang kita temukan dalam [Classification](../../4-Classification/2-Classifiers-1/README.md)).
+Aspek penting dari toolkit data scientist adalah kemampuan untuk memvisualisasikan data menggunakan beberapa *library* seperti Seaborn atau MatPlotLib. Merepresentasikan data kamu secara visual memungkinkan kamu mengungkap korelasi tersembunyi yang dapat kamu manfaatkan. Visualisasimu mungkin juga membantu kamu mengungkap data yang bias atau tidak seimbang (seperti yang kita temukan dalam [Classification](../../4-Classification/2-Classifiers-1/translations/README.id.md)).
 ### Membagi dataset
 
 Sebelum memulai *training*, Kamu perlu membagi dataset menjadi dua atau lebih bagian dengan ukuran yang tidak sama tapi masih mewakili data dengan baik.
 
 - **Training**. Bagian dataset ini digunakan untuk men-training model kamu. Bagian dataset ini merupakan mayoritas dari dataset asli. 
 - **Testing**. Sebuah dataset tes adalah kelompok data independen, seringkali dikumpulkan dari data yang asli yang akan digunakan untuk mengkonfirmasi kinerja dari model yang dibuat.
-- **Validating**. Dataset validasi adalah kumpulan contoh mandiri yang lebih kecil yang kamu gunakan untuk menyetel hyperparameter atau arsitektur model untuk meningkatkan model. Tergantung dari ukuran data dan pertanyaan yang kamu ajukan, Kamu mungkin tidak perlu membuat dataset ketiga ini (seperti yang kita catat dalam [Time Series Forecasting](../7-TimeSeries/1-Introduction/README.md)).
+- **Validating**. Dataset validasi adalah kumpulan contoh mandiri yang lebih kecil yang kamu gunakan untuk menyetel hyperparameter atau arsitektur model untuk meningkatkan model. Tergantung dari ukuran data dan pertanyaan yang kamu ajukan, Kamu mungkin tidak perlu membuat dataset ketiga ini (seperti yang kita catat dalam [Time Series Forecasting](../7-TimeSeries/1-Introduction/translations/README.id.md)).
 
 ## Membuat sebuah model
 
@@ -102,4 +102,4 @@ Cari di Internet mengenai wawancara dengan data scientist yang mendiskusikan pek
 
 ## Tugas
 
-[Wawancara dengan data scientist](assignment.md)
+[Wawancara dengan data scientist](assignment.id.md)

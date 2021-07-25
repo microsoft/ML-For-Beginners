@@ -212,4 +212,4 @@ Baca mengenai *tools* Azure Machine Learning untuk memastikan keadilan
 
 ## Tugas
 
-[Jelajahi Fairlearn](assignment.md) 
+[Jelajahi Fairlearn](assignment.id.md) 

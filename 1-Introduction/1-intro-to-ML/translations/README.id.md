@@ -104,4 +104,4 @@ Untuk mempelajari lebih lanjut tentang bagaimana kamu dapat menggunakan algoritm
 
 ## Tugas
 
-[Persiapan](assignment.md)
+[Persiapan](assignment.id.md)
