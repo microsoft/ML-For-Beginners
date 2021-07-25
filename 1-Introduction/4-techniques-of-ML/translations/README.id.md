@@ -1,9 +1,9 @@
 # Teknik-teknik Machine Learning
 
-Proses membangun, menggunakan, dan memelihara model machine learning dan data yang digunakan adalah proses yang sangat berbeda dari banyak alur kerja pengembangan lainnya. Dalam pelajaran ini, kita akan mengungkap prosesnya, dan menguraikan teknik utama yang perlu Kamu ketahui. Kamu akan: 
+Proses membangun, menggunakan, dan memelihara model machine learning dan data yang digunakan adalah proses yang sangat berbeda dari banyak alur kerja pengembangan lainnya. Dalam pelajaran ini, kita akan mengungkap prosesnya dan menguraikan teknik utama yang perlu Kamu ketahui. Kamu akan: 
 
 - Memahami gambaran dari proses yang mendasari machine learning.
-- Menjelajahi konsep dasar seperti '*models*', '*predictions*', dan '**training data*'. 
+- Menjelajahi konsep dasar seperti '*models*', '*predictions*', dan '*training data*'. 
   
 ## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
 ## Pengantar
@@ -43,7 +43,7 @@ Untuk dapat menjawab pertanyaan kamu dengan kepastian, Kamu memerlukan sejumlah 
 
 Sebuah [fitur](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) adalah sebuah properti yang dapat diukur dalam data kamu. Dalam banyak dataset, properti dinyatakan sebagai sebuah heading kolom seperti 'date' 'size' atau 'color'. Variabel fitur kamu yang biasanya direpresentasikan sebagai `y` dalam kode, mewakili jawaban atas pertanyaan yang kamu coba tanyakan tentang data kamu: pada bulan Desember, labu dengan **warna** apa yang akan paling murah? di San Francisco, lingkungan mana yang menawarkan **harga** real estate terbaik?
 
-🎓 **Feature Selection dan Feature Extraction** Bagaimana kamu tahu variabel mana yang harus dipilih saat membangun model? Kamu mungkin akan melalui proses pemilihan fitur (*Feature Selection*) atau ekstraksi fitur (*Feature Extraction*) untuk memilih variabel yang tepat untuk model yang paling berkinerja. Namun, keduanya tidak sama: "Ekstraksi fitur membuat fitur baru dari fungsi fitur asli, sedangkan pemilihan fitur mengembalikan subset fitur." ([sumber](https://wikipedia.org/wiki/Feature_selection))
+🎓 **Feature Selection dan Feature Extraction** Bagaimana kamu tahu variabel mana yang harus dipilih saat membangun model? Kamu mungkin akan melalui proses pemilihan fitur (*Feature Selection*) atau ekstraksi fitur (*Feature Extraction*) untuk memilih variabel yang tepat untuk membuat model yang berkinerja paling baik. Namun, keduanya tidak sama: "Ekstraksi fitur membuat fitur baru dari fungsi fitur asli, sedangkan pemilihan fitur mengembalikan subset fitur." ([sumber](https://wikipedia.org/wiki/Feature_selection))
 ### Visualisasikan datamu
 
 Aspek penting dari toolkit data scientist adalah kemampuan untuk memvisualisasikan data menggunakan beberapa *library* seperti Seaborn atau MatPlotLib. Merepresentasikan data kamu secara visual memungkinkan kamu mengungkap korelasi tersembunyi yang dapat kamu manfaatkan. Visualisasimu mungkin juga membantu kamu mengungkap data yang bias atau tidak seimbang (seperti yang kita temukan dalam [Classification](../../4-Classification/2-Classifiers-1/translations/README.id.md)).
@@ -57,7 +57,7 @@ Sebelum memulai *training*, Kamu perlu membagi dataset menjadi dua atau lebih ba
 
 ## Membuat sebuah model
 
-Dengan menggunakan data *training*, tujuan kamu adalah membuat model atau representasi statistik data kamu, menggunakan berbagai algoritma untuk **melatihnya**. Melatih model berarti mengeksposnya dengan data dan mengizinkannya membuat asumsi tentang pola yang ditemukan, divalidasi, dan diterima atau ditolak. 
+Dengan menggunakan data *training*, tujuan kamu adalah membuat model atau representasi statistik data kamu menggunakan berbagai algoritma untuk **melatihnya**. Melatih model berarti mengeksposnya dengan data dan mengizinkannya membuat asumsi tentang pola yang ditemukan, divalidasi, dan diterima atau ditolak. 
 
 ### Tentukan metode training
 
@@ -73,7 +73,7 @@ Setelah proses *training* selesai (ini mungkin membutuhkan banyak iterasi, atau 
 
 Dalam konteks machine learning, *model fitting* mengacu pada keakuratan dari fungsi yang mendasari model saat mencoba menganalisis data yang tidak familiar. 
 
-🎓 **Underfitting** dan **overfitting** adalah masalah umum yang menurunkan kualitas model, karena model tidak cukup akurat atau terlalu akurat. Hal ini menyebabkan model membuat prediksi yang terlalu selaras atau tidak cukup selaras dengan data pelatihannya. Model overfit memprediksi data *training* terlalu baik karena telah mempelajari detail dan noise data dengan terlalu baik. Model underfit tidak akurat karena tidak dapat menganalisis data *training* atau data yang belum pernah dilihat sebelumnya secara akurat. 
+🎓 **Underfitting** dan **overfitting** adalah masalah umum yang menurunkan kualitas model, karena model tidak cukup akurat atau terlalu akurat. Hal ini menyebabkan model membuat prediksi yang terlalu selaras atau tidak cukup selaras dengan data trainingnya. Model overfit memprediksi data *training* terlalu baik karena telah mempelajari detail dan noise data dengan terlalu baik. Model underfit tidak akurat karena tidak dapat menganalisis data *training* atau data yang belum pernah dilihat sebelumnya secara akurat. 
 
 ![overfitting model](images/overfitting.png)
 > Infografis oleh [Jen Looper](https://twitter.com/jenlooper)
