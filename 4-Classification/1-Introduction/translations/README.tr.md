@@ -157,7 +157,7 @@ Kurmanız gereken ilk şey [imblearn](https://imbalanced-learn.org/stable/). Bu,
 
 Şimdi veriyi daha derinlemesine inceleyebilirsiniz ve her mutfak için tipik malzemelerin neler olduğunu öğrenebilirsiniz. Mutfaklar arasında karışıklık yaratan tekrar eden veriyi temizlemelisiniz, dolayısıyla şimdi bu problemle ilgili bilgi edinelim.
 
-1. Python'da, malzeme veri iskeleti yaratmak için `create_ingredient()` diye bir fonksiyon oluşturun. Bu fonksiyon, yardımcı olmayan bir sütunu temizleyerek ve sayılarına göre malzemeleri sıralayarak başlar:
+1. Python'da, malzeme veri iskeleti yaratmak için `create_ingredient_df()` diye bir fonksiyon oluşturun. Bu fonksiyon, yardımcı olmayan bir sütunu temizleyerek ve sayılarına göre malzemeleri sıralayarak başlar:
 
     ```python
     def create_ingredient_df(df):
@@ -170,7 +170,7 @@ Kurmanız gereken ilk şey [imblearn](https://imbalanced-learn.org/stable/). Bu,
 
    Şimdi bu fonksiyonu, her mutfağın en yaygın ilk on malzemesi hakkında hakkında fikir edinmek için kullanabilirsiniz.
 
-1. `create_ingredient()` fonksiyonunu çağırın ve `barh()` fonksiyonunu çağırarak çizdirin:
+1. `create_ingredient_df()` fonksiyonunu çağırın ve `barh()` fonksiyonunu çağırarak çizdirin:
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
