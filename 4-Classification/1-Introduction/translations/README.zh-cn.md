@@ -152,7 +152,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
 
 现在你可以在数据中探索的更深一点并了解每道菜肴的代表性食材。你需要将反复出现的、容易造成混淆的数据清理出去，那么让我们来学习解决这个问题。
 
-1. 在Python中创建一个函数 `create_ingredient()` 来创建一个食材的数据帧。这个函数会去掉数据中无用的列并按食材的数量进行分类。
+1. 在Python中创建一个函数 `create_ingredient_df()` 来创建一个食材的数据帧。这个函数会去掉数据中无用的列并按食材的数量进行分类。
 
     ```python
     def create_ingredient_df(df):
@@ -164,7 +164,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     ```
 现在你可以使用这个函数来得到理想的每道菜肴最重要的10种食材。
 
-1. 调用函数 `create_ingredient()` 然后通过函数`barh()`来绘制图像:
+1. 调用函数 `create_ingredient_df()` 然后通过函数`barh()`来绘制图像:
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
