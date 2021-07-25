@@ -17,7 +17,7 @@ You will learn about:
 
 ## Computational linguistics
 
-Computational linguistics is an area of research and development over many decades that studies how computers can work with, and even understand, translate, and communicate with languages. natural language processing (NLP) is a related field focused on how computers can process 'natural', or human, languages.
+Computational linguistics is an area of research and development over many decades that studies how computers can work with, and even understand, translate, and communicate with languages. Natural language processing (NLP) is a related field focused on how computers can process 'natural', or human, languages.
 
 ### Example - phone dictation
 
