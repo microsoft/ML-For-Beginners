@@ -17,10 +17,10 @@ Selamat datang di pelajaran Machine Learning klasik untuk pemula! Baik kamu yang
 
 Sebelum memulai kurikulum ini, kamu perlu memastikan komputer kamu sudah dipersiapkan untuk menjalankan *notebook* secara lokal.
 
-- **Konfigurasi komputer kamu dengan video-video ini**. Pelajari bagaimana menyiapkan komputer kamu dalam [video-video](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6) ini.
+- **Konfigurasi komputer kamu dengan video ini**. Pelajari bagaimana menyiapkan komputer kamu dalam [video-video](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6) ini.
 - **Belajar Python**. Disarankan juga untuk memiliki pemahaman dasar dari [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), sebuah bahasa pemrograman yang digunakan oleh data scientist yang juga akan kita gunakan dalam pelajaran ini. 
 - **Belajar Node.js dan JavaScript**. Kita juga menggunakan JavaScript beberapa kali dalam pelajaran ini ketika membangun aplikasi web, jadi kamu perlu menginstal [node](https://nodejs.org) dan [npm](https://www.npmjs.com/), serta [Visual Studio Code](https://code.visualstudio.com/) yang tersedia untuk pengembangan Python dan JavaScript.
-- **Buat akun GitHub**. Karena kamu menemukan kami di [GitHub](https://github.com), kamu mungkin sudah punya akun, tapi jika belum, silahkan buat akun baru kemudian *fork* kurikulum ini untuk kamu pergunakan sendiri. (Jangan ragu untuk memberikan kami bintang juga 😊)
+- **Buat akun GitHub**. Karena kamu menemukan kami di [GitHub](https://github.com), kamu mungkin sudah punya akun, tapi jika belum, silakan buat akun baru kemudian *fork* kurikulum ini untuk kamu pergunakan sendiri. (Jangan ragu untuk memberikan kami bintang juga 😊)
 - **Jelajahi Scikit-learn**. Buat diri kamu familiar dengan [Scikit-learn]([https://scikit-learn.org/stable/user_guide.html), seperangkat *library* ML yang kita acu dalam pelajaran-pelajaran ini.
 
 ### Apa itu Machine Learning?

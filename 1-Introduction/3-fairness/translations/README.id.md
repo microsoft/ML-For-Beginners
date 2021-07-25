@@ -38,23 +38,23 @@ Menjamin keadilan dalam AI dan machine learning tetap menjadi tantangan sosiotek
 
 ### Kerugian Terkait Keadilan  
 
-Apa yang kamu maksud dengan ketidakadilan? "Ketidakadilan" mencakup dampak negatif, atau "bahaya", bagi sekelompok orang, seperti yang didefinisikan dalam hal ras, jenis kelamin, usia, atau status disabilitas. 
+Apa yang dimaksud dengan ketidakadilan? "Ketidakadilan" mencakup dampak negatif atau "bahaya" bagi sekelompok orang, seperti yang didefinisikan dalam hal ras, jenis kelamin, usia, atau status disabilitas. 
 
 Kerugian utama yang terkait dengan keadilan dapat diklasifikasikan sebagai: 
 
 - **Alokasi**, jika suatu jenis kelamin atau etnisitas misalkan lebih disukai daripada yang lain.
-- **Kualitas layanan**. Jika kamu melatih data untuk satu skenario tertentu tetapi kenyataannya jauh lebih kompleks, itu mengarah ke layanan yang berkinerja buruk.
+- **Kualitas layanan**. Jika kamu melatih data untuk satu skenario tertentu tetapi kenyataannya jauh lebih kompleks, hasilnya adalah layanan yang berkinerja buruk.
 - **Stereotip**. Mengaitkan grup tertentu dengan atribut yang ditentukan sebelumnya.
 - **Fitnah**. Untuk mengkritik dan melabeli sesuatu atau seseorang secara tidak adil.
-- **Representasi yang kurang atau berlebihan**. Idenya adalah bahwa kelompok tertentu tidak terlihat dalam profesi tertentu, dan layanan atau fungsi apa pun yang terus dipromosikan yang berkontribusi pada kerugian.
+- **Representasi yang kurang atau berlebihan**. Idenya adalah bahwa kelompok tertentu tidak terlihat dalam profesi tertentu, dan layanan atau fungsi apa pun yang terus dipromosikan yang menambah kerugian.
 
 Mari kita lihat contoh-contohnya.
 
 ### Alokasi
 
-Pertimbangkan sistem hipotetis untuk menyaring aplikasi pinjaman. Sistem cenderung memilih pria kulit putih sebagai kandidat yang lebih baik daripada kelompok lain. Akibatnya, pinjaman ditahan dari pemohon tertentu. 
+Bayangkan sebuah sistem untuk menyaring pengajuan pinjaman. Sistem cenderung memilih pria kulit putih sebagai kandidat yang lebih baik daripada kelompok lain. Akibatnya, pinjaman ditahan dari pemohon tertentu. 
 
-Contoh lain adalah alat perekrutan eksperimental yang dikembangkan oleh perusahaan besar untuk menyaring kandidat. Alat tersebut secara sistematis mendiskriminasi satu gender dengan menggunakan model yang dilatih untuk lebih memilih kata-kata yang terkait dengan yang lain. Hal ini mengakibatkan kandidat yang resumenya berisi kata-kata seperti "tim rugby wanita". 
+Contoh lain adalah alat perekrutan eksperimental yang dikembangkan oleh perusahaan besar untuk menyaring kandidat. Alat tersebut secara sistematis mendiskriminasi satu gender dengan menggunakan model yang dilatih untuk lebih memilih kata-kata yang terkait dengan gender lain. Hal ini mengakibatkan kandidat yang resumenya berisi kata-kata seperti "tim rugby wanita" tidak masuk kualifikasi. 
 
 ✅ Lakukan sedikit riset untuk menemukan contoh dunia nyata dari sesuatu seperti ini
 
@@ -62,11 +62,9 @@ Contoh lain adalah alat perekrutan eksperimental yang dikembangkan oleh perusaha
 
 Para peneliti menemukan bahwa beberapa pengklasifikasi gender komersial memiliki tingkat kesalahan yang lebih tinggi di sekitar gambar wanita dengan warna kulit lebih gelap dibandingkan dengan gambar pria dengan warna kulit lebih terang. [Referensi](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/) 
 
-Contoh terkenal lainnya adalah dispenser sabun tangan yang sepertinya tidak bisa merasakan orang dengan kulit gelap. [Referensi](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+Contoh terkenal lainnya adalah dispenser sabun tangan yang sepertinya tidak bisa mendeteksi orang dengan kulit gelap. [Referensi](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
 
 ### Stereotip
-
-Stereotypical gender view was found in machine translation. When translating “he is a nurse and she is a doctor” into Turkish, problems were encountered. Turkish is a genderless language which has one pronoun, “o” to convey a singular third person, but translating the sentence back from Turkish to English yields the stereotypical and incorrect as “she is a nurse and he is a doctor”.
 
 Pandangan gender stereotip ditemukan dalam terjemahan mesin. Ketika menerjemahkan "dia (laki-laki) adalah seorang perawat dan dia (perempuan) adalah seorang dokter" ke dalam bahasa Turki, masalah muncul. Turki adalah bahasa tanpa gender yang memiliki satu kata ganti, "o" untuk menyampaikan orang ketiga tunggal, tetapi menerjemahkan kalimat kembali dari Turki ke Inggris menghasilkan stereotip dan salah sebagai "dia (perempuan) adalah seorang perawat dan dia (laki-laki) adalah seorang dokter". 
 
@@ -101,7 +99,7 @@ Lima jenis bahaya utama ini tidak saling eksklusif, dan satu sistem dapat menunj
 
 ## Mendeteksi Ketidakadilan 
 
-Ada banyak alasan mengapa sistem tertentu berperilaku tidak adil. Bias sosial, misalnya, mungkin tercermin dalam kumpulan data yang digunakan untuk melatih mereka. Misalnya, ketidakadilan perekrutan mungkin telah diperburuk oleh ketergantungan yang berlebihan pada data historis. Dengan menggunakan pola dalam resume yang dikirimkan ke perusahaan selama periode 10 tahun, model tersebut menentukan bahwa pria lebih berkualitas karena mayoritas resume berasal dari pria, yang mencerminkan dominasi pria di masa lalu di industri teknologi. 
+Ada banyak alasan mengapa sistem tertentu berperilaku tidak adil. Bias sosial, misalnya, mungkin tercermin dalam kumpulan data yang digunakan untuk melatih. Misalnya, ketidakadilan perekrutan mungkin telah diperburuk oleh ketergantungan yang berlebihan pada data historis. Dengan menggunakan pola dalam resume yang dikirimkan ke perusahaan selama periode 10 tahun, model tersebut menentukan bahwa pria lebih berkualitas karena mayoritas resume berasal dari pria, yang mencerminkan dominasi pria di masa lalu di industri teknologi. 
 
 Data yang tidak memadai tentang sekelompok orang tertentu dapat menjadi alasan ketidakadilan. Misalnya, pengklasifikasi gambar memiliki tingkat kesalahan yang lebih tinggi untuk gambar orang berkulit gelap karena warna kulit yang lebih gelap kurang terwakili dalam data. 
 
@@ -133,13 +131,13 @@ Apa bahaya dan manfaat yang terkait dengan pinjaman? Pikirkan tentang skenario n
 
 ### Identifikasi kelompok yang terkena dampak
 
-Langkah selanjutnya adalah menentukan kelompok mana yang kemungkinan akan terpengaruh. Misalnya, dalam kasus permohonan kartu kredit, seorang model mungkin menentukan bahwa perempuan harus menerima batas kredit yang jauh lebih rendah dibandingkan dengan pasangan mereka yang berbagi aset rumah tangga. Dengan demikian, seluruh demografi, yang ditentukan berdasarkan jenis kelamin, terpengaruh. 
+Langkah selanjutnya adalah menentukan kelompok mana yang kemungkinan akan terpengaruh. Misalnya, dalam kasus permohonan kartu kredit, sebuah model mungkin menentukan bahwa perempuan harus menerima batas kredit yang jauh lebih rendah dibandingkan dengan pasangan mereka yang berbagi aset rumah tangga. Dengan demikian, seluruh demografi yang ditentukan berdasarkan jenis kelamin menjadi terpengaruh. 
 
 ### Tentukan metrik keadilan
 
-Kamu telah mengidentifikasi bahaya dan kelompok yang terpengaruh, dalam hal ini, digambarkan berdasarkan jenis kelamin. Sekarang, gunakan faktor terukur untuk memisahkan metriknya. Misalnya, dengan menggunakan data di bawah ini, Kamu dapat melihat bahwa wanita memiliki tingkat *false positive* terbesar dan pria memiliki yang terkecil, dan kebalikannya berlaku untuk *false negative*. 
+Kamu telah mengidentifikasi bahaya dan kelompok yang terpengaruh, dalam hal ini digambarkan berdasarkan jenis kelamin. Sekarang, gunakan faktor terukur (*quantified factors*) untuk memisahkan metriknya. Misalnya, dengan menggunakan data di bawah ini, Kamu dapat melihat bahwa wanita memiliki tingkat *false positive* terbesar dan pria memiliki yang terkecil, dan kebalikannya berlaku untuk *false negative*. 
 
-✅ Dalam pelajaran selanjutnya tentang Pengelompokan, Kamu akan melihat bagaimana membangun 'matriks kebingungan' ini dalam kode 
+✅ Dalam pelajaran selanjutnya tentang *Clustering*, Kamu akan melihat bagaimana membangun 'confusion matrix' ini dalam kode 
 
 |            | False positive rate | False negative rate | count |
 | ---------- | ------------------- | ------------------- | ----- |
@@ -148,7 +146,7 @@ Kamu telah mengidentifikasi bahaya dan kelompok yang terpengaruh, dalam hal ini,
 | Non-binary | 0.33                | 0.31                | 1266  |
 
  
-Tabel ini memberitahu kita beberapa hal. Pertama, kami mencatat bahwa ada sedikit orang non-biner dalam data. Datanya condong, jadi Kamu harus berhati-hati dalam menafsirkan angka-angka ini. 
+Tabel ini memberitahu kita beberapa hal. Pertama, kami mencatat bahwa ada sedikit orang non-biner dalam data. Datanya condong (*skewed*), jadi Kamu harus berhati-hati dalam menafsirkan angka-angka ini. 
 
 Dalam hal ini, kita memiliki 3 grup dan 2 metrik. Ketika kita memikirkan tentang bagaimana sistem kita memengaruhi kelompok pelanggan dengan permohonan pinjaman mereka, ini mungkin cukup, tetapi ketika Kamu ingin menentukan jumlah grup yang lebih besar, Kamu mungkin ingin menyaringnya menjadi kumpulan ringkasan yang lebih kecil. Untuk melakukannya, Kamu dapat menambahkan lebih banyak metrik, seperti perbedaan terbesar atau rasio terkecil dari setiap *false negative* dan *false positive*. 
 
@@ -198,7 +196,7 @@ Tonton workshop ini untuk menyelami lebih dalam kedalam topik:
 
 Kamu juga dapat membaca:
 
-- Pusat sumber daya RAI Microsoft: [Sumber daya Responsible AI – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Pusat sumber daya RAI Microsoft: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
 - Grup riset FATE Microsoft: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 

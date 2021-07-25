@@ -13,10 +13,10 @@ Sejarah Artifical Intelligence, AI, sebagai bidang terkait dengan sejarah Machin
 
 - 1763, 1812 [Bayes Theorem](https://wikipedia.org/wiki/Bayes%27_theorem) dan para pendahulu. Teorema ini dan penerapannya mendasari inferensi, mendeskripsikan kemungkinan suatu peristiwa terjadi berdasarkan pengetahuan sebelumnya. 
 - 1805 [Least Square Theory](https://wikipedia.org/wiki/Least_squares) oleh matematikawan Perancis Adrien-Marie Legendre. Teori ini yang akan kamu pelajari di unit Regresi, ini membantu dalam *data fitting*. 
-- 1913 [Markov Chains](https://wikipedia.org/wiki/Markov_chain) dinamai setelah matematikawan Rusia, Andrey Markov, digunakan untuk mendeskripsikan sebuah urutan dari kejadian-kejadian yang mungkin terjadi berdasarkan kondisi sebelumnya.
+- 1913 [Markov Chains](https://wikipedia.org/wiki/Markov_chain) dinamai dengan nama matematikawan Rusia, Andrey Markov, digunakan untuk mendeskripsikan sebuah urutan dari kejadian-kejadian yang mungkin terjadi berdasarkan kondisi sebelumnya.
 - 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) adalah sebuah tipe dari *linear classifier* yang ditemukan oleh psikolog Amerika, Frank Rosenblatt, yang mendasari kemajuan dalam *Deep Learning*.
 - 1967 [Nearest Neighbor](https://wikipedia.org/wiki/Nearest_neighbor) adalah sebuah algoritma yang pada awalnya didesain untuk memetakan rute. Dalam konteks ML, ini digunakan untuk mendeteksi berbagai pola.
-- 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) digunakan untuk men-*train* [feedforward neural networks](https://wikipedia.org/wiki/Feedforward_neural_network). 
+- 1970 [Backpropagation](https://wikipedia.org/wiki/Backpropagation) digunakan untuk melatih [feedforward neural networks](https://wikipedia.org/wiki/Feedforward_neural_network). 
 - 1982 [Recurrent Neural Networks](https://wikipedia.org/wiki/Recurrent_neural_network) adalah *artificial neural networks* yang berasal dari *feedforward neural networks* yang membuat grafik sementara. 
 
 ✅ Lakukan sebuah riset kecil. Tanggal berapa lagi yang merupakan tanggal penting dalam sejarah ML dan AI?
@@ -36,9 +36,9 @@ Workshop ini dipuji karena telah memprakarsai dan mendorong beberapa diskusi ter
 
 ## 1956 - 1974: "Tahun-tahun Emas"
 
-Dari tahun 1950-an hingga pertengahan 70-an, optimisme memuncak dengan harapan bahwa AI dapat memecahkan banyak masalah. Pada tahun 1967, Marvin Minsky dengan yakin menyatakan bahwa "Dalam satu generasi ... masalah menciptakan '*artificial intelligence*' secara substansial akan terpecahkan." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+Dari tahun 1950-an hingga pertengahan 70-an, optimisme memuncak dengan harapan bahwa AI dapat memecahkan banyak masalah. Pada tahun 1967, Marvin Minsky dengan yakin menyatakan bahwa "Dalam satu generasi ... masalah menciptakan '*artificial intelligence*' akan terpecahkan secara substansial." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
 
-penelitian *natural language processing* berkembang, pencarian disempurnakan dan dibuat lebih kuat, dan konsep '*micro-worlds*' diciptakan, di mana tugas-tugas sederhana diselesaikan menggunakan instruksi bahasa sederhana. 
+Penelitian *natural language processing* berkembang, pencarian disempurnakan dan dibuat lebih *powerful*, dan konsep '*micro-worlds*' diciptakan, di mana tugas-tugas sederhana diselesaikan menggunakan instruksi bahasa sederhana. 
 
 Penelitian didanai dengan baik oleh lembaga pemerintah, banyak kemajuan dibuat dalam komputasi dan algoritma, dan prototipe mesin cerdas dibangun. Beberapa mesin tersebut antara lain: 
 
@@ -63,19 +63,19 @@ Penelitian didanai dengan baik oleh lembaga pemerintah, banyak kemajuan dibuat d
 Pada pertengahan 1970-an, semakin jelas bahwa kompleksitas pembuatan 'mesin cerdas' telah diremehkan dan janjinya, mengingat kekuatan komputasi yang tersedia, telah dilebih-lebihkan. Pendanaan telah habis dan kepercayaan dalam bidang ini menurun. Beberapa masalah yang memengaruhi kepercayaan diri termasuk: 
 
 - **Keterbatasan**. Kekuatan komputasi terlalu terbatas.
-- **Ledakan kombinatorial**. Jumlah parameter yang perlu di-*train* bertambah secara eksponensial karena lebih banyak hal yang diminta dari komputer, tanpa evolusi paralel dari kekuatan dan kemampuan komputasi. 
+- **Ledakan kombinatorial**. Jumlah parameter yang perlu dilatih bertambah secara eksponensial karena lebih banyak hal yang diminta dari komputer, tanpa evolusi paralel dari kekuatan dan kemampuan komputasi. 
 - **Kekurangan data**. Adanya kekurangan data yang menghalangi proses pengujian, pengembangan, dan penyempurnaan algoritma.
 - **Apakah kita menanyakan pertanyaan yang tepat?**. Pertanyaan-pertanyaan yang diajukan pun mulai dipertanyakan kembali. Para peneliti mulai melontarkan kritik tentang pendekatan mereka 
   - Tes Turing mulai dipertanyakan, di antara ide-ide lain, dari 'teori ruang Cina' yang mengemukakan bahwa, "memprogram komputer digital mungkin membuatnya tampak memahami bahasa tetapi tidak dapat menghasilkan pemahaman yang sebenarnya." ([sumber](https://plato.stanford.edu/entries/chinese-room/))
-  - Etika memperkenalkan kecerdasan buatan seperti "terapis" ELIZA ke dalam masyarakat telah ditantang. 
+  - Tantangan etika ketika memperkenalkan kecerdasan buatan seperti si "terapis" ELIZA ke dalam masyarakat. 
 
-Pada saat yang sama, berbagai aliran pemikiran AI mulai terbentuk. Sebuah dikotomi didirikan antara praktek ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies). Lab _Scruffy_ mengubah program selama berjam-jam sampai mendapat hasil yang diinginkan. Lab _Neat_ "berfokus pada logika dan penyelesaian masalah formal". ELIZA dan SHRDLU adalah sistem _scruffy_ yang terkenal. Pada tahun 1980-an, karena perkembangan permintaan untuk membuat sistem ML yang dapat direproduksi, pendekatan _neat_ secara bertahap menjadi yang terdepan karena hasilnya lebih dapat dijelaskan.
+Pada saat yang sama, berbagai aliran pemikiran AI mulai terbentuk. Sebuah dikotomi didirikan antara praktik ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies). Lab _Scruffy_ mengubah program selama berjam-jam sampai mendapat hasil yang diinginkan. Lab _Neat_ "berfokus pada logika dan penyelesaian masalah formal". ELIZA dan SHRDLU adalah sistem _scruffy_ yang terkenal. Pada tahun 1980-an, karena perkembangan permintaan untuk membuat sistem ML yang dapat direproduksi, pendekatan _neat_ secara bertahap menjadi yang terdepan karena hasilnya lebih dapat dijelaskan.
 
 ## 1980s Sistem Pakar
 
 Seiring berkembangnya bidang ini, manfaatnya bagi bisnis menjadi lebih jelas, dan begitu pula dengan menjamurnya 'sistem pakar' pada tahun 1980-an. "Sistem pakar adalah salah satu bentuk perangkat lunak artificial intelligence (AI) pertama yang benar-benar sukses."  ([sumber](https://wikipedia.org/wiki/Expert_system)).
 
-Tipe sistem ini sebenarnya adalah _hybrid_, sebagian terdiri dari mesin aturan yang mendefinisikan *business requirement*, dan mesin inferensi yang memanfaatkan sistem aturan untuk menyimpulkan fakta baru. 
+Tipe sistem ini sebenarnya adalah _hybrid_, sebagian terdiri dari mesin aturan yang mendefinisikan kebutuhan bisnis, dan mesin inferensi yang memanfaatkan sistem aturan untuk menyimpulkan fakta baru. 
 
 Pada era ini juga terlihat adanya peningkatan perhatian pada jaringan saraf. 
 
@@ -89,7 +89,7 @@ Pada zaman ini memperlihatkan era baru bagi ML dan AI untuk dapat menyelesaikan 
 
 ## Sekarang
 
-Saat ini, *machine learning* dan AI hampir ada di setiap bagian dari kehidupan kita. Era ini menuntut pemahaman yang cermat tentang risiko dan efek potensi dari algoritma ini pada kehidupan manusia. Seperti yang telah dinyatakan oleh Brad Smith dari Microsoft, "Teknologi informasi mengangkat isu-isu yang menjadi inti dari perlindungan hak asasi manusia yang mendasar seperti privasi dan kebebasan berekspresi. Masalah-masalah ini meningkatkan tanggung jawab bagi perusahaan teknologi yang menciptakan produk-produk ini. Dalam pandangan kami, mereka juga menyerukan peraturan pemerintah yang bijaksana dan untuk pengembangan norma-norma seputar penggunaan yang wajar" ([sumber](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Saat ini, *machine learning* dan AI hampir ada di setiap bagian dari kehidupan kita. Era ini menuntut pemahaman yang cermat tentang risiko dan efek potensi dari berbagai algoritma yang ada pada kehidupan manusia. Seperti yang telah dinyatakan oleh Brad Smith dari Microsoft, "Teknologi informasi mengangkat isu-isu yang menjadi inti dari perlindungan hak asasi manusia yang mendasar seperti privasi dan kebebasan berekspresi. Masalah-masalah ini meningkatkan tanggung jawab bagi perusahaan teknologi yang menciptakan produk-produk ini. Dalam pandangan kami, mereka juga menyerukan peraturan pemerintah yang bijaksana dan untuk pengembangan norma-norma seputar penggunaan yang wajar" ([sumber](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
 Kita masih belum tahu apa yang akan terjadi di masa depan, tetapi penting untuk memahami sistem komputer dan perangkat lunak serta algoritma yang dijalankannya. Kami berharap kurikulum ini akan membantu kamu untuk mendapatkan pemahaman yang lebih baik sehingga kamu dapat memutuskan sendiri. 
 
