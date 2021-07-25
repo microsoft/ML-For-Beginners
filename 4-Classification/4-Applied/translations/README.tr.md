@@ -312,7 +312,7 @@ Bu kodda birçok şey gerçekleşiyor:
 
 ## Uygulamanızı test edin
 
-index.html dosyanızın olduğu klasördeyken Visual Studio Code'da bir terminal açın. Global kapsamda `[http-server](https://www.npmjs.com/package/http-server)` indirilmiş olduğundan emin olun ve istemde `http-server` yazın. Bir yerel ana makine açılmalı ve web uygulamanızı görebilirsiniz. Çeşitli malzemeleri baz alarak hangi mutfağın önerildiğine bakın:
+index.html dosyanızın olduğu klasördeyken Visual Studio Code'da bir terminal açın. Global kapsamda [http-server](https://www.npmjs.com/package/http-server) indirilmiş olduğundan emin olun ve istemde `http-server` yazın. Bir yerel ana makine açılmalı ve web uygulamanızı görebilirsiniz. Çeşitli malzemeleri baz alarak hangi mutfağın önerildiğine bakın:
 
 ![malzeme web uygulaması](../images/web-app.png)
 
