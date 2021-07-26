@@ -111,4 +111,4 @@
 
 ## 課題
 
-[時系列を制作してください](../assignment.md)
+[年表を作成する](./assignment.ja.md)
