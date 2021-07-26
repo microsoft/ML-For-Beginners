@@ -1,6 +1,6 @@
 # Sejarah Machine Learning
 
-![Ringkasan dari Sejarah Machine Learning dalam sebuah catatan sketsa](../../sketchnotes/ml-history.png)
+![Ringkasan dari Sejarah Machine Learning dalam sebuah catatan sketsa](../../../sketchnotes/ml-history.png)
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
@@ -44,12 +44,12 @@ Penelitian didanai dengan baik oleh lembaga pemerintah, banyak kemajuan dibuat d
 
 * [Shakey the robot](https://wikipedia.org/wiki/Shakey_the_robot), yang bisa bermanuver dan memutuskan bagaimana melakukan tugas-tugas secara 'cerdas'. 
 
-    ![Shakey, an intelligent robot](images/shakey.jpg)
+    ![Shakey, an intelligent robot](../images/shakey.jpg)
     > Shakey pada 1972
 
 * Eliza, sebuah 'chatterbot' awal, dapat mengobrol dengan orang-orang dan bertindak sebagai 'terapis' primitif. Kamu akan belajar lebih banyak tentang Eliza dalam pelajaran NLP. 
 
-    ![Eliza, a bot](images/eliza.png)
+    ![Eliza, a bot](../images/eliza.png)
     > Sebuah versi dari Eliza, sebuah *chatbot*
 
 * "Blocks world" adalah contoh sebuah *micro-world* dimana balok dapat ditumpuk dan diurutkan, dan pengujian eksperimen mesin pengajaran untuk membuat keputusan dapat dilakukan. Kemajuan yang dibuat dengan *library-library* seperti [SHRDLU](https://wikipedia.org/wiki/SHRDLU) membantu mendorong kemajuan pemrosesan bahasa.

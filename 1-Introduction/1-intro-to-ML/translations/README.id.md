@@ -27,7 +27,7 @@ Sebelum memulai kurikulum ini, kamu perlu memastikan komputer kamu sudah dipersi
 
 Istilah 'Machine Learning' merupakan salah satu istilah yang paling populer dan paling sering digunakan saat ini. Ada kemungkinan kamu pernah mendengar istilah ini paling tidak sekali jika kamu familiar dengan teknologi. Tetapi untuk mekanisme Machine Learning sendiri, merupakan sebuah misteri bagi sebagian besar orang. Karena itu, penting untuk memahami sebenarnya apa itu Machine Learning, dan mempelajarinya langkah demi langkah melalui contoh praktis.
 
-![kurva tren ml](images/hype.png)
+![kurva tren ml](../images/hype.png)
 
 > Google Trends memperlihatkan 'kurva tren' dari istilah 'Machine Learning' belakangan ini.
 
@@ -39,7 +39,7 @@ Otak dan indera seorang anak memahami fakta-fakta di sekitarnya dan secara berta
 
 Meskipun istilah-stilahnya bisa membingungkan, Machine Learning (ML) adalah bagian penting dari Artificial Intelligence. **ML berkaitan dengan menggunakan algoritma-algoritma terspesialisasi untuk mengungkap informasi yang berarti dan mencari pola-pola tersembunyi dari data yang diterima untuk mendukung proses pembuatan keputusan rasional**.
 
-![AI, ML, deep learning, data science](images/ai-ml-ds.png)
+![AI, ML, deep learning, data science](../images/ai-ml-ds.png)
 
 > Sebuah diagram yang memperlihatkan hubungan antara AI, ML, Deep Learning, dan Data Science. Infografis oleh [Jen Looper](https://twitter.com/jenlooper) terinspirasi dari [infografis ini](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
