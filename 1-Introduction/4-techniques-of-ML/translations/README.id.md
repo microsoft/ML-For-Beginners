@@ -75,7 +75,7 @@ Dalam konteks machine learning, *model fitting* mengacu pada keakuratan dari fun
 
 🎓 **Underfitting** dan **overfitting** adalah masalah umum yang menurunkan kualitas model, karena model tidak cukup akurat atau terlalu akurat. Hal ini menyebabkan model membuat prediksi yang terlalu selaras atau tidak cukup selaras dengan data trainingnya. Model overfit memprediksi data *training* terlalu baik karena telah mempelajari detail dan noise data dengan terlalu baik. Model underfit tidak akurat karena tidak dapat menganalisis data *training* atau data yang belum pernah dilihat sebelumnya secara akurat. 
 
-![overfitting model](images/overfitting.png)
+![overfitting model](../images/overfitting.png)
 > Infografis oleh [Jen Looper](https://twitter.com/jenlooper)
 
 ## Parameter tuning

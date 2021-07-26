@@ -1,6 +1,6 @@
 # Keadilan dalam Machine Learning 
 
-![Ringkasan dari Keadilan dalam Machine Learning dalam sebuah catatan sketsa](../../sketchnotes/ml-fairness.png)
+![Ringkasan dari Keadilan dalam Machine Learning dalam sebuah catatan sketsa](../../../sketchnotes/ml-fairness.png)
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
@@ -68,9 +68,9 @@ Contoh terkenal lainnya adalah dispenser sabun tangan yang sepertinya tidak bisa
 
 Pandangan gender stereotip ditemukan dalam terjemahan mesin. Ketika menerjemahkan "dia (laki-laki) adalah seorang perawat dan dia (perempuan) adalah seorang dokter" ke dalam bahasa Turki, masalah muncul. Turki adalah bahasa tanpa gender yang memiliki satu kata ganti, "o" untuk menyampaikan orang ketiga tunggal, tetapi menerjemahkan kalimat kembali dari Turki ke Inggris menghasilkan stereotip dan salah sebagai "dia (perempuan) adalah seorang perawat dan dia (laki-laki) adalah seorang dokter". 
 
-![terjemahan ke bahasa Turki](images/gender-bias-translate-en-tr.png)
+![terjemahan ke bahasa Turki](../images/gender-bias-translate-en-tr.png)
 
-![terjemahan kembali ke bahasa Inggris](images/gender-bias-translate-tr-en.png)
+![terjemahan kembali ke bahasa Inggris](../images/gender-bias-translate-tr-en.png)
 
 ### Fitnah
 
@@ -83,7 +83,7 @@ Sebuah teknologi pelabelan gambar yang terkenal salah memberi label gambar orang
 
 Hasil pencarian gambar yang condong ke hal tertentu (skewed) dapat menjadi contoh yang bagus dari bahaya ini. Saat menelusuri gambar profesi dengan persentase pria yang sama atau lebih tinggi daripada wanita, seperti teknik, atau CEO, perhatikan hasil yang lebih condong ke jenis kelamin tertentu. 
 
-![Pencarian CEO di Bing](images/ceos.png)
+![Pencarian CEO di Bing](../images/ceos.png)
 > Pencarian di Bing untuk 'CEO' ini menghasilkan hasil yang cukup inklusif
 
 Lima jenis bahaya utama ini tidak saling eksklusif, dan satu sistem dapat menunjukkan lebih dari satu jenis bahaya. Selain itu, setiap kasus bervariasi dalam tingkat keparahannya. Misalnya, memberi label yang tidak adil kepada seseorang sebagai penjahat adalah bahaya yang jauh lebih parah daripada memberi label yang salah pada gambar. Namun, penting untuk diingat bahwa bahkan kerugian yang relatif tidak parah dapat membuat orang merasa terasing atau diasingkan dan dampak kumulatifnya bisa sangat menekan. 
