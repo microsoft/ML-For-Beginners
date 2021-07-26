@@ -3,7 +3,7 @@
 Di bagian kurikulum ini, Kamu akan berkenalan dengan konsep yang mendasari bidang Machine Learning, apa itu Machine Learning, dan belajar mengenai
 sejarah serta teknik-teknik yang digunakan oleh para peneliti. Ayo jelajahi dunia baru Machine Learning bersama! 
 
-![bola dunia](images/globe.jpg)
+![bola dunia](../images/globe.jpg)
 > Foto oleh <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> di <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### Pelajaran
