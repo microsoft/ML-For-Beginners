@@ -245,9 +245,9 @@ Mari kita lihat kembali istilah-istilah yang kita lihat tadi dengan bantuan matr
 > NB: Negatif benar
 > NP: Negatif palsu
 
-🎓 Presisi: PB/(PB + NP) Rasio titik data relevan antara semua titik data (seperti data mana yang benar dilabelkannya)
+🎓 Presisi: PB/(PB + PP) Rasio titik data relevan antara semua titik data (seperti data mana yang benar dilabelkannya)
 
-🎓 *Recall*: PB/(PB + PP) Rasio titk data relevan yang digunakan, maupun labelnya benar atau tidak.
+🎓 *Recall*: PB/(PB + NP) Rasio titk data relevan yang digunakan, maupun labelnya benar atau tidak.
 
 🎓 *f1-score*: (2 * Presisi * *Recall*)/(Presisi + *Recall*) Sebuah rata-rata tertimbang antara presisi dan *recall*. 1 itu baik dan 0 itu buruk.
 
