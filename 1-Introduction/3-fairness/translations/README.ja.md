@@ -201,4 +201,4 @@ Azure Machine Learningによる、公平性を確保するためのツールに�
 
 ## 課題
 
-[Fairlearnを調査する](../assignment.md) 
+[Fairlearnを調査する](./assignment.ja.md) 
