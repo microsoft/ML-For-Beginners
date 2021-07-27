@@ -30,7 +30,7 @@
 
    > 通过学习这一系列的 [学习模块](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)熟悉Python
 
-3. **按照[这些说明]安装Scikit learn**(https://scikit-learn.org/stable/install.html)。由于你需要确保使用Python3，因此建议你使用虚拟环境。注意，如果你是在M1 Mac上安装这个库，在上面链接的页面上有特别的说明。
+3. **按照[这些说明]安装Scikit learn**(https://scikit-learn.org/stable/install.html )。由于你需要确保使用Python3，因此建议你使用虚拟环境。注意，如果你是在M1 Mac上安装这个库，在上面链接的页面上有特别的说明。
 
 4. **安装Jupyter Notebook**。你需要[安装Jupyter包](https://pypi.org/project/jupyter/)。
 
