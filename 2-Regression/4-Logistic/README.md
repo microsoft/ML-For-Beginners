@@ -206,7 +206,7 @@ While you can get a scoreboard report [terms](https://scikit-learn.org/stable/mo
 
 > 🎓 A '[confusion matrix](https://wikipedia.org/wiki/Confusion_matrix)' (or 'error matrix') is a table that expresses your model's true vs. false positives and negatives, thus gauging the accuracy of predictions.
 
-1. To use a confusion metrics, call `confusin_matrix()`:
+1. To use a confusion metrics, call `confusion_matrix()`:
 
     ```python
     from sklearn.metrics import confusion_matrix
@@ -220,17 +220,29 @@ While you can get a scoreboard report [terms](https://scikit-learn.org/stable/mo
            [ 33,   0]])
     ```
 
-What's going on here? Let's say our model is asked to classify items between two binary categories, category 'pumpkin' and category 'not-a-pumpkin'.
+In Scikit-learn, confusion matrices Rows (axis 0) are actual labels and columns (axis 1) are predicted labels.
 
-- If your model predicts something as a pumpkin and it belongs to category 'pumpkin' in reality we call it a true positive, shown by the top left number. 
-- If your model predicts something as not a pumpkin and it belongs to category 'pumpkin' in reality we call it a false positive, shown by the top right number. 
-- If your model predicts something as a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a false negative, shown by the bottom left number. 
-- If your model predicts something as not a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a true negative, shown by the bottom right number.
+|  |0|1|
+|:-:|:-:|:-:|
+|0|TN|FP|
+|1|FN|TP|
 
+What's going on here? Let's say our model is asked to classify pumpkins between two binary categories, category 'orange' and category 'not-orange'.
+
+- If your model predicts a pumpkin as not orange and it belongs to category 'not-orange' in reality we call it a true negative, shown by the top left number.
+- If your model predicts a pumpkin as orange and it belongs to category 'not-orange' in reality we call it a false negative, shown by the bottom left number. 
+- If your model predicts a pumpkin as not orange and it belongs to category 'orange' in reality we call it a false positive, shown by the top right number. 
+- If your model predicts a pumpkin as orange and it belongs to category 'orange' in reality we call it a true positive, shown by the bottom right number.
 
 As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
 
-✅ Q: According to the confusion matrix, how did the model do? A: Not too bad; there are a good number of true positives but also several false negatives. 
+How does the confusion matrix relate to precision and recall? Remember, the classification report printed above showed precision (0.83) and recall (0.98).
+
+Precision = tp / (tp + fp) = 162 / (162 + 33) = 0.8307692307692308
+
+Recall = tp / (tp + fn) = 162 / (162 + 4) = 0.9759036144578314
+
+✅ Q: According to the confusion matrix, how did the model do? A: Not too bad; there are a good number of true negatives but also several false negatives. 
 
 Let's revisit the terms we saw earlier with the help of the confusion matrix's mapping of TP/TN and FP/FN:
 
@@ -249,6 +261,7 @@ Let's revisit the terms we saw earlier with the help of the confusion matrix's m
 🎓 Weighted Avg: The calculation of the mean metrics for each label, taking label imbalance into account by weighting them by their support (the number of true instances for each label).
 
 ✅ Can you think which metric you should watch if you want your model to reduce the number of false negatives?
+
 ## Visualize the ROC curve of this model
 
 This is not a bad model; its accuracy is in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables.
