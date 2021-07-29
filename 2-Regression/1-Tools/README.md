@@ -6,7 +6,7 @@
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 
-> ### [This lesson is available in R!](../solution/lesson_1-R.ipynb)
+> ### [This lesson is available in R!](./solution/lesson_1-R.ipynb)
 
 ## Introduction
 
