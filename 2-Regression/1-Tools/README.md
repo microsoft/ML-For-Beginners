@@ -95,7 +95,7 @@ For this task we will import some libraries:
 
 - **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the Scikit-learn library.
+- **sklearn**. This is the [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) library.
 
 Import some libraries to help with your tasks.
 
