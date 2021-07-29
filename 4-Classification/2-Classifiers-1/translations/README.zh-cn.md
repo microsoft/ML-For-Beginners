@@ -2,7 +2,6 @@
 
 在本节中，将使用你在上一个课程中所保存的全部经过均衡和清洗的菜品数据。
 
-You will use this dataset with a variety of classifiers to _predict a given national cuisine based on a group of ingredients_. While doing so, you'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
 你将使用这份数据集，并通过多种分类器 _在给出了各种配料后预测这是那一个国家的菜品_。在此过程中，你将学到更多能够用来调节分类任务算法的方法。   
 
 ## [课前测试](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
