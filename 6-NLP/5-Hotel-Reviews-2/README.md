@@ -347,13 +347,13 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-You should run the entire code for [the analysis notebook](solution/notebook-sentiment-analysis.ipynb) (after you've run [your filtering notebook](solution/notebook-filtering.ipynb) to generate the Hotel_Reviews_Filtered.csv file).
+You should run the entire code for [the analysis notebook](solution/3-notebook.ipynb) (after you've run [your filtering notebook](solution/1-notebook.ipynb) to generate the Hotel_Reviews_Filtered.csv file).
 
 To review, the steps are:
 
-1. Original dataset file **Hotel_Reviews.csv** is explored in the previous lesson with [the explorer notebook](../4-Hotel-Reviews-1/solution/notebook-explorer.ipynb)
-2. Hotel_Reviews.csv is filtered by [the filtering notebook](solution/notebook-filtering.ipynb) resulting in **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv is processed by [the sentiment analysis notebook](solution/notebook-sentiment-analysis.ipynb) resulting in **Hotel_Reviews_NLP.csv**
+1. Original dataset file **Hotel_Reviews.csv** is explored in the previous lesson with [the explorer notebook](../4-Hotel-Reviews-1/solution/notebook.ipynb)
+2. Hotel_Reviews.csv is filtered by [the filtering notebook](solution/1-notebook.ipynb) resulting in **Hotel_Reviews_Filtered.csv**
+3. Hotel_Reviews_Filtered.csv is processed by [the sentiment analysis notebook](solution/3-notebook.ipynb) resulting in **Hotel_Reviews_NLP.csv**
 4. Use Hotel_Reviews_NLP.csv in the NLP Challenge below
 
 ### Conclusion
