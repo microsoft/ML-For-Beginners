@@ -227,9 +227,6 @@ What's going on here? Let's say our model is asked to classify items between two
 - If your model predicts something as a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a false negative, shown by the bottom left number. 
 - If your model predicts something as not a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a true negative, shown by the bottom right number.
 
-![Confusion Matrix](images/confusion-matrix.png)
-
-> Infographic by [Jen Looper](https://twitter.com/jenlooper)
 
 As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
 
@@ -285,6 +282,7 @@ In future lessons on classifications, you will learn how to iterate to improve y
 ## 🚀Challenge
 
 There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) for interesting datasets.
+
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
 
 ## Review & Self Study
