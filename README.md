@@ -22,6 +22,8 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 **🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers and content contributors**, notably Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
 
+**🤩 Extra gratitude to Microsoft Student Ambassador Eric Wanjau for our R lessons!** 
+
 ---
 
 # Getting Started
