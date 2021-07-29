@@ -5,6 +5,9 @@
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+
+> ### [This lesson is available in R!](../solution/lesson_1-R.ipynb)
+
 ## Introduction
 
 In these four lessons, you will discover how to build regression models. We will discuss what these are for shortly. But before you do anything, make sure you have the right tools in place to start the process!
