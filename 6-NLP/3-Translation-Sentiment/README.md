@@ -143,7 +143,7 @@ Your task is to determine, using sentiment polarity, if *Pride and Prejudice* ha
    1. If the polarity is 1 or -1 store the sentence in an array or list of positive or negative messages
 5. At the end, print out all the positive sentences and negative sentences (separately) and the number of each.
 
-Here is a sample [solution](solutions/notebook.ipynb).
+Here is a sample [solution](solution/notebook.ipynb).
 
 ✅ Knowledge Check
 
