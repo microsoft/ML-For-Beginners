@@ -228,10 +228,6 @@ Cosa sta succedendo qui? Si supponga che al modello venga chiesto di classificar
 - Se il modello prevede qualcosa come una zucca e appartiene alla categoria 'non-una-zucca' in realtà si chiama falso negativo, mostrato dal numero in basso a sinistra.
 - Se il modello prevede qualcosa come non una zucca e appartiene alla categoria 'non-una-zucca' in realtà lo si chiama un vero negativo, mostrato dal numero in basso a destra.
 
-![Matrice di Confusione](../images/confusion-matrix.png)
-
-> Infografica di [Jen Looper](https://twitter.com/jenlooper)
-
 Come si sarà intuito, è preferibile avere un numero maggiore di veri positivi e veri negativi e un numero inferiore di falsi positivi e falsi negativi, il che implica che il modello funziona meglio.
 
 ✅ Domanda: Secondo la matrice di confusione, come si è comportato il modello? Risposta: Non male; ci sono un buon numero di veri positivi ma anche diversi falsi negativi.
