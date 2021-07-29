@@ -230,10 +230,6 @@ Apa yang sedang terjadi di sini? Mari kita asumsi dulu bahwa model kita ditanyak
 - Kalau modelmu memprediksi sesuati sebagai sebuah labu tetapi sebenarnya bukan sebuah labu, itu disebut negatif palsu yang diindikasi angka di pojok kiri bawah.
 - Kalau modelmu memprediksi sesuati sebagai bukan sebuah labu dan memang benar sesuatu itu bukan sebuah labu, itu disebut negatif benar yang diindikasi angka di pojok kanan bawah.
 
-![Matriks Kebingungan](../images/confusion-matrix.png)
-
-> Infografik oleh [Jen Looper](https://twitter.com/jenlooper)
-
 Sebagaimana kamu mungkin sudah pikirkan, lebih baik dapat banyak positif benar dan negatif benar dan sedikit positif palsu dan negatif palsu. Implikasinya adalah performa modelnya bagus.
 
 ✅ Pertanyaan: Berdasarkan matriks kebingungan, modelnya baik tidak? Jawaban: Tidak buruk; ada banyak positif benar dan sedikit negatif palsu.
