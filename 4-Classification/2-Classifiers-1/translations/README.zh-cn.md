@@ -4,10 +4,10 @@
 
 你将使用这份数据集，并通过多种分类器 _在给出了各种配料后预测这是那一个国家的菜品_。在此过程中，你将学到更多能够用来调试分类任务算法的方法。   
 
-## [课前测试](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
+## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
 # 准备工作
 
-假设你已经完成了[课程1](../1-Introduction/README.md), 确保在根目录的`/data`文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
+假如你已经完成了[课程1](../1-Introduction/README.md), 确保在根目录的`/data`文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
 
 ## 练习 - 预测某国的菜品
 
@@ -59,14 +59,14 @@
     Name: cuisine, dtype: object
     ```
 
-1. 调用`drop()`函数将 `Unnamed: 0`和 `cuisine`列删除，并将余下的数据作为可以用于训练的特证（feature）数据:
+1. 调用`drop()`方法将 `Unnamed: 0`和 `cuisine`列删除，并将余下的数据作为可以用于训练的特证（feature）数据:
 
     ```python
     cuisines_feature_df = cuisines_df.drop(['Unnamed: 0', 'cuisine'], axis=1)
     cuisines_feature_df.head()
     ```
 
-    你的特证（feature）数据看上去将会是这样:
+    你的特征集看上去将会是这样:
 
     | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |     |
     | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: | --- |
@@ -78,7 +78,7 @@
 
 现在，你已经准备好可以开始训练你的模型了！
 
-## 选则你的分类器
+## 选择你的分类器
 
 你的数据已经清洗干净并已经准备好可以进行训练了，现在需要决定你想要使用的算法来完成这项任务。
 
@@ -232,7 +232,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 在本课程中，你使用了清洗后的数据建立了一个机器学习的模型，能够根据一系列的配料来预测菜品来自于哪个国家。请再花点时间阅读一下Scikit-learn所提供的可以用来分类数据的其他选择。同时也可以深入研究一下“solver”的概念并尝试一下理解其背后的原理。
 
-## [课后小测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
+## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
 ## 回顾与自学
 
 [这个课程](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)将对逻辑回归背后的数学原理进行更加深入的讲解
