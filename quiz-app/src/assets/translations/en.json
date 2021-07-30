@@ -293,11 +293,11 @@
             "questionText": "Unfairness in a model can be caused by",
             "answerOptions": [
               {
-                "answerText": "overrreliance on historical data",
+                "answerText": "over reliance on historical data",
                 "isCorrect": "true"
               },
               {
-                "answerText": "underreliance on historical data",
+                "answerText": "under reliance on historical data",
                 "isCorrect": "false"
               },
               {
