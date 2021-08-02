@@ -2,12 +2,12 @@
 
 本节课程将使用你在上一个课程中所保存的全部经过均衡和清洗的菜品数据。
 
-你将使用这份数据集，并通过多种分类器 _在给出了各种配料后预测这是那一个国家的菜品_。在此过程中，你将学到更多能够用来调试分类任务算法的方法。   
+你将使用此数据集和各种分类器，_根据一组配料预测这是哪一国家的美食_。在此过程中，你将学到更多用来权衡分类任务算法的方法  
 
 ## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
 # 准备工作
 
-假如你已经完成了[课程1](../1-Introduction/README.md), 确保在根目录的`/data`文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
+假如你已经完成了[课程1](../../1-Introduction/translations/README.zh-cn.md), 确保在根目录的`/data`文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
 
 ## 练习 - 预测某国的菜品
 
@@ -68,7 +68,7 @@
 
     你的特征集看上去将会是这样:
 
-    | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |     |
+    | | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |     
     | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: | --- |
     |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
     |      1 |        1 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
@@ -200,13 +200,13 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
     运行后的输出如下———可以发现这是一道印度菜的可能性最大，是最合理的猜测:
 
-    |          |        0 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | -------: | -------: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-    |   indian | 0.715851 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    |  chinese | 0.229475 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | japanese | 0.029763 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    |   korean | 0.017277 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    |     thai | 0.007634 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+    |          |        0 |
+    | -------: | -------: | 
+    |   indian | 0.715851 |
+    |  chinese | 0.229475 |
+    | japanese | 0.029763 |
+    |   korean | 0.017277 | 
+    |     thai | 0.007634 |
 
     ✅ 你能解释下为什么模型会如此确定这是一道印度菜么？
 
@@ -217,16 +217,16 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     print(classification_report(y_test,y_pred))
     ```
 
-    | precision    | recall | f1-score | support |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | ------------ | ------ | -------- | ------- | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-    | chinese      | 0.73   | 0.71     | 0.72    | 229  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | indian       | 0.91   | 0.93     | 0.92    | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | japanese     | 0.70   | 0.75     | 0.72    | 220  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | korean       | 0.86   | 0.76     | 0.81    | 242  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | thai         | 0.79   | 0.85     | 0.82    | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | accuracy     | 0.80   | 1199     |         |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | macro avg    | 0.80   | 0.80     | 0.80    | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-    | weighted avg | 0.80   | 0.80     | 0.80    | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+    | precision    | recall | f1-score | support |      |
+    | ------------ | ------ | -------- | ------- | ---- | 
+    | chinese      | 0.73   | 0.71     | 0.72    | 229  | 
+    | indian       | 0.91   | 0.93     | 0.92    | 254  |
+    | japanese     | 0.70   | 0.75     | 0.72    | 220  |
+    | korean       | 0.86   | 0.76     | 0.81    | 242  |
+    | thai         | 0.79   | 0.85     | 0.82    | 254  |
+    | accuracy     | 0.80   | 1199     |         |      |
+    | macro avg    | 0.80   | 0.80     | 0.80    | 1199 |
+    | weighted avg | 0.80   | 0.80     | 0.80    | 1199 |
 
 ## 挑战
 
