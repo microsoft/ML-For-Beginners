@@ -295,7 +295,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     eval_df.head()
     ```
 
-    ```output
+    Output
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -303,7 +303,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     | 2   | 2014-12-30 | 02:00:00  | t+1 | 2,900.17   | 2,899.00 |
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
-    ```
+    
 
     Observe the hourly data's prediction, compared to the actual load. How accurate is this?
 
