@@ -199,7 +199,7 @@ Now you can build a Flask app to call your model and return similar results, but
     2. Create **index.html** in _templates_ directory.
     3. Create **styles.css** in _static/css_ directory.
 
-1. Build out the _styles.css__ file with a few styles:
+1. Build out the _styles.css_ file with a few styles:
 
     ```css
     body {
