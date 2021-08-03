@@ -183,6 +183,9 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     ```python
     plt.scatter(X_test, y_test,  color='black')
     plt.plot(X_test, y_pred, color='blue', linewidth=3)
+    plt.xlabel('Scaled BMIs')
+    plt.ylabel('Disease Progression')
+    plt.title('A Graph Plot Showing Diabetes Progression Against BMI')
     plt.show()
     ```
 
