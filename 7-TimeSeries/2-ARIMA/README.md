@@ -50,13 +50,13 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
     import pandas as pd
     import datetime as dt
     import math
-    
+
     from pandas.plotting import autocorrelation_plot
     from statsmodels.tsa.statespace.sarimax import SARIMAX
     from sklearn.preprocessing import MinMaxScaler
     from common.utils import load_data, mape
     from IPython.display import Image
-    
+
     %matplotlib inline
     pd.options.display.float_format = '{:,.2f}'.format
     np.set_printoptions(precision=2)
@@ -83,16 +83,16 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
 
 ### Create training and testing datasets
 
-Now your data is loaded, so you can separate it into train and test sets. You'll train your model on the train set. As usual, after the model has finished training, you'll evaluate its accuracy using the test set. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods. 
+Now your data is loaded, so you can separate it into train and test sets. You'll train your model on the train set. As usual, after the model has finished training, you'll evaluate its accuracy using the test set. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods.
 
 1. Allocate a two-month period from September 1 to October 31, 2014 to the training set. The test set will include the two-month period of November 1 to December 31, 2014:
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
-    test_start_dt = '2014-12-30 00:00:00'    
+    test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Since this data reflects the daily consumption of energy, there is a strong seasonal pattern, but the consumption is most similar to the consumption in more recent days. 
+    Since this data reflects the daily consumption of energy, there is a strong seasonal pattern, but the consumption is most similar to the consumption in more recent days.
 
 1. Visualize the differences:
 
@@ -120,11 +120,11 @@ Now, you need to prepare the data for training by performing filtering and scali
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
     test = energy.copy()[energy.index >= test_start_dt][['load']]
-    
+
     print('Training data shape: ', train.shape)
     print('Test data shape: ', test.shape)
     ```
- 
+
     You can see the shape of the data:
 
     ```output
@@ -189,17 +189,17 @@ Now you need to follow several steps
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Selecting the best values for an ARIMA model's parameters can be challenging as it's somewhat subjective and time intensive. You might consider using an `auto_arima()` function from the [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html), 
+    Selecting the best values for an ARIMA model's parameters can be challenging as it's somewhat subjective and time intensive. You might consider using an `auto_arima()` function from the [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
 
 1. For now try some manual selections to find a good model.
 
     ```python
     order = (4, 1, 0)
     seasonal_order = (1, 1, 0, 24)
-    
+
     model = SARIMAX(endog=train, order=order, seasonal_order=seasonal_order)
     results = model.fit()
-    
+
     print(results.summary())
     ```
 
@@ -223,10 +223,10 @@ Walk-forward validation is the gold standard of time series model evaluation and
 
     ```python
     test_shifted = test.copy()
-    
-    for t in range(1, HORIZON):
+
+    for t in range(1, HORIZON+1):
         test_shifted['load+'+str(t)] = test_shifted['load'].shift(-t, freq='H')
-        
+
     test_shifted = test_shifted.dropna(how='any')
     test_shifted.head(5)
     ```
@@ -246,18 +246,18 @@ Walk-forward validation is the gold standard of time series model evaluation and
     ```python
     %%time
     training_window = 720 # dedicate 30 days (720 hours) for training
-    
+
     train_ts = train['load']
     test_ts = test_shifted
-    
+
     history = [x for x in train_ts]
     history = history[(-training_window):]
-    
+
     predictions = list()
-    
+
     order = (2, 1, 0)
     seasonal_order = (1, 1, 0, 24)
-    
+
     for t in range(test_ts.shape[0]):
         model = SARIMAX(endog=history, order=order, seasonal_order=seasonal_order)
         model_fit = model.fit()
@@ -276,10 +276,10 @@ Walk-forward validation is the gold standard of time series model evaluation and
     ```output
     2014-12-30 00:00:00
     1 : predicted = [0.32 0.29 0.28] expected = [0.32945389435989236, 0.2900626678603402, 0.2739480752014323]
-    
+
     2014-12-30 01:00:00
     2 : predicted = [0.3  0.29 0.3 ] expected = [0.2900626678603402, 0.2739480752014323, 0.26812891674127126]
-    
+
     2014-12-30 02:00:00
     3 : predicted = [0.27 0.28 0.32] expected = [0.2739480752014323, 0.26812891674127126, 0.3025962399283795]
     ```
@@ -303,7 +303,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     | 2   | 2014-12-30 | 02:00:00  | t+1 | 2,900.17   | 2,899.00 |
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
-    
+
 
     Observe the hourly data's prediction, compared to the actual load. How accurate is this?
 
@@ -311,10 +311,10 @@ Walk-forward validation is the gold standard of time series model evaluation and
 
 Check the accuracy of your model by testing its mean absolute percentage error (MAPE) over all the predictions.
 
-> **🧮 Show me the math** 
+> **🧮 Show me the math**
 >
 > ![MAPE](images/mape.png)
-> 
+>
 >  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) is used to show prediction accuracy as a ratio defined by the above formula. The difference between actual<sub>t</sub> and predicted<sub>t</sub> is divided by the actual<sub>t</sub>. "The absolute value in this calculation is summed for every forecasted point in time and divided by the number of fitted points n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 
 1. Express equation in code:
@@ -351,13 +351,13 @@ Check the accuracy of your model by testing its mean absolute percentage error (
      if(HORIZON == 1):
         ## Plotting single step forecast
         eval_df.plot(x='timestamp', y=['actual', 'prediction'], style=['r', 'b'], figsize=(15, 8))
-    
+
     else:
         ## Plotting multi step forecast
         plot_df = eval_df[(eval_df.h=='t+1')][['timestamp', 'actual']]
         for t in range(1, HORIZON+1):
             plot_df['t+'+str(t)] = eval_df[(eval_df.h=='t+'+str(t))]['prediction'].values
-    
+
         fig = plt.figure(figsize=(15, 8))
         ax = plt.plot(plot_df['timestamp'], plot_df['actual'], color='red', linewidth=4.0)
         ax = fig.add_subplot(111)
@@ -365,9 +365,9 @@ Check the accuracy of your model by testing its mean absolute percentage error (
             x = plot_df['timestamp'][(t-1):]
             y = plot_df['t+'+str(t)][0:len(x)]
             ax.plot(x, y, color='blue', linewidth=4*math.pow(.9,t), alpha=math.pow(0.8,t))
-        
+
         ax.legend(loc='best')
-        
+
     plt.xlabel('timestamp', fontsize=12)
     plt.ylabel('load', fontsize=12)
     plt.show()
@@ -389,6 +389,6 @@ Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE 
 
 This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.
 
-## Assignment 
+## Assignment
 
 [A new ARIMA model](assignment.md)
