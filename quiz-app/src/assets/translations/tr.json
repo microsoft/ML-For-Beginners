@@ -412,7 +412,7 @@
 							},
 							{
 								"answerText": "önyargı için potansiyel bir sebebi keşfedebilirsiniz",
-								"isCorrect": "true"
+								"isCorrect": "false"
 							},
 							{
 								"answerText": "bunların her ikisi",
@@ -1092,7 +1092,7 @@
 						"answerOptions": [
 							{
 								"answerText": "veri noktalarını birden çok sınıfa sınıflandırma görevi",
-								"isCorrect": "true"
+								"isCorrect": "false"
 							},
 							{
 								"answerText": "veri noktalarını birkaç sınıftan birine sınıflandırma görevi",

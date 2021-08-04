@@ -102,6 +102,8 @@ Sketch, on paper or using an online app like [Excalidraw](https://excalidraw.com
 
 To learn more about how you can work with ML algorithms in the cloud, follow this [Learning Path](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa).
 
+Take a [Learning Path](https://docs.microsoft.com/learn/modules/introduction-to-machine-learning/?WT.mc_id=academic-15963-cxa) about the basics of ML.
+
 ## Assignment
 
 [Get up and running](assignment.md)

@@ -1,9 +1,12 @@
 # Build a regression model using Scikit-learn: prepare and visualize data
 
-> ![Data visualization infographic](./images/data-visualization.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+![Data visualization infographic](./images/data-visualization.png)
+
+Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
+
+> ### [This lesson is available in R!](./solution/lesson_2-R.ipynb)
 
 ## Introduction
 

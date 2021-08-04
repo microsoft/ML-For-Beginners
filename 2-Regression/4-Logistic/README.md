@@ -140,7 +140,7 @@ Now that we have an idea of the relationship between the binary categories of co
 
 > **🧮 Show Me The Math**
 >
-> Remember how linear regression often used ordinary least squares to arrive at a value? Logistic regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like thus:
+> Remember how linear regression often used ordinary least squares to arrive at a value? Logistic regression relies on the concept of 'maximum likelihood' using [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). A 'Sigmoid Function' on a plot looks like an 'S' shape. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like this:
 >
 > ![logistic function](images/sigmoid.png)
 >
@@ -206,7 +206,7 @@ While you can get a scoreboard report [terms](https://scikit-learn.org/stable/mo
 
 > 🎓 A '[confusion matrix](https://wikipedia.org/wiki/Confusion_matrix)' (or 'error matrix') is a table that expresses your model's true vs. false positives and negatives, thus gauging the accuracy of predictions.
 
-1. To use a confusion metrics, call `confusin_matrix()`:
+1. To use a confusion metrics, call `confusion_matrix()`:
 
     ```python
     from sklearn.metrics import confusion_matrix
@@ -220,26 +220,35 @@ While you can get a scoreboard report [terms](https://scikit-learn.org/stable/mo
            [ 33,   0]])
     ```
 
-What's going on here? Let's say our model is asked to classify items between two binary categories, category 'pumpkin' and category 'not-a-pumpkin'.
+In Scikit-learn, confusion matrices Rows (axis 0) are actual labels and columns (axis 1) are predicted labels.
 
-- If your model predicts something as a pumpkin and it belongs to category 'pumpkin' in reality we call it a true positive, shown by the top left number. 
-- If your model predicts something as not a pumpkin and it belongs to category 'pumpkin' in reality we call it a false positive, shown by the top right number. 
-- If your model predicts something as a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a false negative, shown by the bottom left number. 
-- If your model predicts something as not a pumpkin and it belongs to category 'not-a-pumpkin' in reality we call it a true negative, shown by the bottom right number.
+|  |0|1|
+|:-:|:-:|:-:|
+|0|TN|FP|
+|1|FN|TP|
 
-![Confusion Matrix](images/confusion-matrix.png)
+What's going on here? Let's say our model is asked to classify pumpkins between two binary categories, category 'orange' and category 'not-orange'.
 
-> Infographic by [Jen Looper](https://twitter.com/jenlooper)
+- If your model predicts a pumpkin as not orange and it belongs to category 'not-orange' in reality we call it a true negative, shown by the top left number.
+- If your model predicts a pumpkin as orange and it belongs to category 'not-orange' in reality we call it a false negative, shown by the bottom left number. 
+- If your model predicts a pumpkin as not orange and it belongs to category 'orange' in reality we call it a false positive, shown by the top right number. 
+- If your model predicts a pumpkin as orange and it belongs to category 'orange' in reality we call it a true positive, shown by the bottom right number.
 
 As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
 
-✅ Q: According to the confusion matrix, how did the model do? A: Not too bad; there are a good number of true positives but also several false negatives. 
+How does the confusion matrix relate to precision and recall? Remember, the classification report printed above showed precision (0.83) and recall (0.98).
+
+Precision = tp / (tp + fp) = 162 / (162 + 33) = 0.8307692307692308
+
+Recall = tp / (tp + fn) = 162 / (162 + 4) = 0.9759036144578314
+
+✅ Q: According to the confusion matrix, how did the model do? A: Not too bad; there are a good number of true negatives but also several false negatives. 
 
 Let's revisit the terms we saw earlier with the help of the confusion matrix's mapping of TP/TN and FP/FN:
 
-🎓 Precision: TP/(TP + FN) The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
+🎓 Precision: TP/(TP + FP) The fraction of relevant instances among the retrieved instances (e.g. which labels were well-labeled)
 
-🎓 Recall: TP/(TP + FP) The fraction of relevant instances that were retrieved, whether well-labeled or not
+🎓 Recall: TP/(TP + FN) The fraction of relevant instances that were retrieved, whether well-labeled or not
 
 🎓 f1-score: (2 * precision * recall)/(precision + recall) A weighted average of the precision and recall, with best being 1 and worst being 0
 
@@ -252,6 +261,7 @@ Let's revisit the terms we saw earlier with the help of the confusion matrix's m
 🎓 Weighted Avg: The calculation of the mean metrics for each label, taking label imbalance into account by weighting them by their support (the number of true instances for each label).
 
 ✅ Can you think which metric you should watch if you want your model to reduce the number of false negatives?
+
 ## Visualize the ROC curve of this model
 
 This is not a bad model; its accuracy is in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables.
@@ -284,7 +294,8 @@ In future lessons on classifications, you will learn how to iterate to improve y
 ---
 ## 🚀Challenge
 
-There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://kaggle.com) for interesting datasets.
+There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) for interesting datasets.
+
 ## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
 
 ## Review & Self Study
