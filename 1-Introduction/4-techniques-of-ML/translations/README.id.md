@@ -39,9 +39,13 @@ Untuk dapat menjawab pertanyaan kamu dengan kepastian, Kamu memerlukan sejumlah 
 
 ✅ Setelah mengumpulkan dan memproses data kamu, luangkan waktu sejenak untuk melihat apakah bentuknya memungkinkan kamu untuk menjawab pertanyaan yang kamu maksudkan. Mungkin data tidak akan berkinerja baik dalam tugas yang kamu berikan, seperti yang kita temukan dalam pelajaran [Clustering](../../5-Clustering/1-Visualize/translations/README.id.md).
 
-### Memilih variabel fiturmu
+### Fitur dan Target
 
-Sebuah [fitur](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) adalah sebuah properti yang dapat diukur dalam data kamu. Dalam banyak dataset, properti dinyatakan sebagai sebuah heading kolom seperti 'date' 'size' atau 'color'. Variabel fitur kamu yang biasanya direpresentasikan sebagai `y` dalam kode, mewakili jawaban atas pertanyaan yang kamu coba tanyakan tentang data kamu: pada bulan Desember, labu dengan **warna** apa yang akan paling murah? di San Francisco, lingkungan mana yang menawarkan **harga** real estate terbaik?
+Fitur adalah properti terukur dari data Anda. Dalam banyak set data, data tersebut dinyatakan sebagai judul kolom seperti 'date' 'size' atau 'color'. Variabel fitur Anda, biasanya direpresentasikan sebagai `X` dalam kode, mewakili variabel input yang akan digunakan untuk melatih model.
+
+A target is a thing you are trying to predict. Target usually represented as `y` in code, represents the answer to the question you are trying to ask of your data: in December, what color pumpkins will be cheapest? in San Francisco, what neighborhoods will have the best real estate price? Sometimes target is also referred as label attribute.
+
+### Memilih variabel fiturmu
 
 🎓 **Feature Selection dan Feature Extraction** Bagaimana kamu tahu variabel mana yang harus dipilih saat membangun model? Kamu mungkin akan melalui proses pemilihan fitur (*Feature Selection*) atau ekstraksi fitur (*Feature Extraction*) untuk memilih variabel yang tepat untuk membuat model yang berkinerja paling baik. Namun, keduanya tidak sama: "Ekstraksi fitur membuat fitur baru dari fungsi fitur asli, sedangkan pemilihan fitur mengembalikan subset fitur." ([sumber](https://wikipedia.org/wiki/Feature_selection))
 ### Visualisasikan datamu
@@ -61,10 +65,12 @@ Dengan menggunakan data *training*, tujuan kamu adalah membuat model atau repres
 
 ### Tentukan metode training
 
-Tergantung dari pertanyaan dan sifat datamu, Kamu akan memilih metode untuk melatihnya. Buka dokumentasi [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) yang kita gunakan dalam pelajaran ini, kamu bisa menjelajahi banyak cara untuk melatih sebuah model. Tergantung dari pengalamanmu, kamu mungkin perlu mencoba beberapa metode yang berbeda untuk membuat model yang terbaik. Kemungkinan kamu akan melalui proses di mana data scientist mengevaluasi kinerja model dengan memasukkan data yang belum pernah dilihat, memeriksa akurasi, bias, dan masalah penurunan kualitas lainnya, dan memilih metode training yang paling tepat untuk tugas yang ada. 
+Tergantung dari pertanyaan dan sifat datamu, Kamu akan memilih metode untuk melatihnya. Buka dokumentasi [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) yang kita gunakan dalam pelajaran ini, kamu bisa menjelajahi banyak cara untuk melatih sebuah model. Tergantung dari pengalamanmu, kamu mungkin perlu mencoba beberapa metode yang berbeda untuk membuat model yang terbaik. Kemungkinan kamu akan melalui proses di mana data scientist mengevaluasi kinerja model dengan memasukkan data yang belum pernah dilihat, memeriksa akurasi, bias, dan masalah penurunan kualitas lainnya, dan memilih metode training yang paling tepat untuk tugas yang ada.
+
 ### Melatih sebuah model
 
-Berbekal data *training*, Kamu siap untuk menggunakannya untuk membuat model. Kamu akan melihat di banyak *library* ML mengenai kode 'model.fit' - pada saat inilah kamu mengirimkan data kamu sebagai *array* nilai (biasanya 'X') dan variabel fitur (biasanya 'y' ). 
+Berbekan dengan data pelatihan Anda, Anda siap untuk 'menyesuaikan' untuk membuat model. Anda akan melihat bahwa di banyak perpustakaan ML Anda akan menemukan kode 'model.fit' - saat inilah Anda mengirim variabel fitur Anda sebagai array nilai (biasanya `X`) dan variabel target (biasanya `y`).
+
 ### Mengevaluasi model
 
 Setelah proses *training* selesai (ini mungkin membutuhkan banyak iterasi, atau 'epoch', untuk melatih model besar), Kamu akan dapat mengevaluasi kualitas model dengan menggunakan data tes untuk mengukur kinerjanya. Data ini merupakan subset dari data asli yang modelnya belum pernah dianalisis sebelumnya. Kamu dapat mencetak tabel metrik tentang kualitas model kamu. 
