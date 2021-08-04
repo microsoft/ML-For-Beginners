@@ -33,7 +33,7 @@ In this section, we will introduce you to a new type of learning problems that d
 
 ### Example - computer game
 
-Suppose you want to teach a computer to play a game, such as chess, or [Super Mario](https://wikipedia.org/wiki/Super_Mario). For the computer to play a game, we need it to predict which move to make in each of the game states. While this may seem like a classification problem, it is not - because we do not have a dataset with states and corresponding actions. While we may have some data like existing chess matches or recording of players playing Super Mario, it is likely that that data will not sufficiently cover a large enough number of possible states.
+Suppose you want to teach a computer to play a game, such as chess, or [Super Mario](https://wikipedia.org/wiki/Super_Mario). For the computer to play a game, we need it to predict which move to make in each of the game states. While this may seem like a classification problem, it is not  because we do not have a dataset with states and corresponding actions. While we may have some data like existing chess matches or recording of players playing Super Mario, it is likely that that data will not sufficiently cover a large enough number of possible states.
 
 Instead of looking for existing game data, **Reinforcement Learning** (RL) is based on the idea of *making the computer play* many times and observing the result. Thus, to apply Reinforcement Learning, we need two things:
 
@@ -41,7 +41,7 @@ Instead of looking for existing game data, **Reinforcement Learning** (RL) is ba
 
 - **A reward function**, which would tell us how well we did during each move or game.
 
-The main difference between other types of machine learning and RL is that in RL we typically do not know whether we win or lose until we finish the game. Thus, we cannot say whether a certain move alone is good or not - we only receive a reward at the end of the game. And our goal is to design algorithms that will allow us to train a model under  uncertain conditions. We will learn about one RL algorithm called **Q-learning**.
+The main difference between other types of machine learning and RL is that in RL, we typically do not know whether we win or lose until we finish the game. Thus, we cannot say whether a certain move alone is good or not - we only receive a reward at the end of the game. And our goal is to design algorithms that will allow us to train a model under  uncertain conditions. We will learn about one RL algorithm called **Q-learning**.
 
 ## Lessons
 
