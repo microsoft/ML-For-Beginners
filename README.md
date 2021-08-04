@@ -62,16 +62,16 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 ## Each lesson includes:
 
-- optional sketchnote
-- optional supplemental video
-- pre-lecture warmup quiz
-- written lesson
-- for project-based lessons, step-by-step guides on how to build the project
-- knowledge checks
-- a challenge
-- supplemental reading
-- assignment
-- post-lecture quiz
+- Optional Sketchnote
+- Optional Supplemental video
+- Pre-lecture warmup quiz
+- Written lesson
+- For project-based lessons, step-by-step guides on how to build the project
+- Knowledge checks
+- A challenge
+- Supplemental reading
+- Assignment
+- Post-lecture quiz
 
 > **A note about quizzes**: All quizzes are contained [in this app](https://jolly-sea-0a877260f.azurestaticapps.net), for 50 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
