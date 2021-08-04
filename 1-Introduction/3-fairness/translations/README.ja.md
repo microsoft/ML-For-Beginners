@@ -3,7 +3,7 @@
 ![機械学習における公平性をまとめたスケッチ](../../../sketchnotes/ml-fairness.png)
 > [Tomomi Imura](https://www.twitter.com/girlie_mac)によるスケッチ
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5?loc=ja)
  
 ## イントロダクション
 
@@ -178,7 +178,7 @@ AIや機械学習における公平性の保証は、依然として複雑な社
 
 モデルの構築や使用において、不公平が明らかになるような現実のシナリオを考えてみてください。他にどのようなことを考えるべきでしょうか？
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6?loc=ja)
 ## Review & Self Study 
  
 このレッスンでは、機械学習における公平、不公平の概念の基礎を学びました。
@@ -201,4 +201,4 @@ Azure Machine Learningによる、公平性を確保するためのツールに�
 
 ## 課題
 
-[Fairlearnを調査する](../assignment.md) 
+[Fairlearnを調査する](./assignment.ja.md) 

@@ -40,7 +40,7 @@ First, train a classification model using the cleaned cuisines dataset we used.
 1. Then, work with your data in the same way you did in previous lessons, by reading a CSV file using `read_csv()`:
 
     ```python
-    data = pd.read_csv('../data/cleaned_cuisine.csv')
+    data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
@@ -312,7 +312,7 @@ In this code, there are several things happening:
 
 ## Test your application
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have `[http-server](https://www.npmjs.com/package/http-server)` installed globally, and type `http-server` at the prompt. A localhost should open and you can view your web app. Check what cuisine is recommended based on various ingredients:
+Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server` at the prompt. A localhost should open and you can view your web app. Check what cuisine is recommended based on various ingredients:
 
 ![ingredient web app](images/web-app.png)
 
