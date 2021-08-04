@@ -41,9 +41,13 @@ Hay dos cosas que debe hacer en este punto:
 
 ✅ Despúes de recopilar y procesar sus datos, tómese un momento para ver si su forma le permitirá responder a su pregunta. ¡Puede ser que los datos no funcionen bien en su tarea dada, como descubriremos en nuestras lecciones de[Clustering](../../5-Clustering/1-Visualize/README.md)!
 
-### Seleccionando su variable característica
+### Características y destino
 
-Una [característica](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection) es una propiedad medible de sus datos. En muchos conjuntos de datos, se expresa como un encabezado de columna como 'fecha', 'tamaño' o 'color'. Su variable característica, generalmente representada como `y` en el código, representa la respuesta a la pregunta que está tratando de hacer a sus datos: en diciembre, ¿qué calabazas de **color** serán las más baratas?, en San Francisco, ¿que vecinadarios tendrán el mejor **precio** de bienes raíces?
+Una característica es una propiedad medible de los datos.En muchos conjuntos de datos se expresa como un encabezado de columna como 'date' 'size' o 'color'. La variable de entidad, normalmente representada como `X` en el código, representa la variable de entrada que se utilizará para entrenar el modelo.
+
+Un objetivo es una cosa que está tratando de predecir. Target generalmente representado como `y` en el código, representa la respuesta a la pregunta que está tratando de hacer de sus datos: en diciembre, ¿qué color de calabazas serán más baratas? en San Francisco, ¿qué barrios tendrán el mejor precio de bienes raíces? A veces, target también se conoce como atributo label.
+
+### Seleccionando su variable característica
 
 🎓 **Selección y extracción de características** ¿ Cómo sabe que variable elegir al construir un modelo? Probablemente pasará por un proceso de selección o extracción de características para elegir las variables correctas para mayor un mayor rendimiento del modelo. Sin embargo, no son lo mismo: "La extracción de características crea nuevas características a partir de funciones de las características originales, mientras que la selección de características devuelve un subconjunto de las características." ([fuente](https://wikipedia.org/wiki/Feature_selection))
 
@@ -68,7 +72,8 @@ Usando sus datos de entrenamiento, su objetivo es construir un modelo, o una rep
 Dependiendo de su pregunta y la naturaleza de sus datos, elegirá un método para entrenarlos. Pasando por la [documentación de Scikit-learn ](https://scikit-learn.org/stable/user_guide.html) - que usamos en este curso - puede explorar muchas formas de entrenar un modelo. Dependiendo de su experiencia, es posible que deba probar varios métodos diferentes para construir el mejor modelo. Es probable que pase por un proceso en el que los científicos de datos evalúan el rendimiento de un modelo alimentándolo con datos no vistos anteriormente por el modelo, verificando la precisión, el sesgo, y otros problemas que degradan la calidad, y seleccionando el método de entrenamieto más apropiado para la tarea en custión.
 ### Entrena un modelo
 
-Armado con sus datos de entrenamiento, está listo para 'fit'(ajustarlos/entrenarlos) para crear un modelo. Notará que en muchas bibliotecas de ML, encontrará el código 'model.fit' - es en este momento cuando envías sus datos como una matriz de valores (generalmente 'X') y una variable característica (generalmente 'Y').
+Armado con sus datos de entrenamiento, está listo para "ajustarlo" para crear un modelo. Notará que en muchas bibliotecas de ML encontrará el código 'model.fit' - es en este momento que envía su variable de característica como una matriz de valores (generalmente `X`) y una variable de destino (generalmente `y`).
+
 ### Evaluar el modelo
 
 Una vez que se completa el proceso de entrenamiento (puede tomar muchas iteraciones, o 'épocas', entrenar un modelo de gran tamaño), podrá evaluar la calidad del modelo utilizando datos de prueba para medir su rendimiento. Estos datos son un subconjunto de los datos originales que el modelo no ha analizado previamente. Puede imprimir una tabla de métricas sobre la calidad de su modelo.
