@@ -17,10 +17,10 @@
 
 ### レッスン
 
-1. [商売道具](../1-Tools/README.ja.md)
-2. [データ管理](../2-Data/README.ja.md)
-3. [線形回帰と多項式回帰](../3-Linear/README.ja.md)
-4. [ロジスティック回帰](../4-Logistic/README.ja.md)
+1. [商売道具](../1-Tools/translations/README.ja.md)
+2. [データ管理](../2-Data/translations/README.ja.md)
+3. [線形回帰と多項式回帰](../3-Linear/translations/README.ja.md)
+4. [ロジスティック回帰](../4-Logistic/translations/README.ja.md)
 
 ---
 ### クレジット
