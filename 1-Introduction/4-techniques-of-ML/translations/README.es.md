@@ -96,7 +96,7 @@ En estas lecciones, descubrirá cómo utilizar estos pasos para preparar, constr
 
 Dibuje un diagrama de flujos que refleje los pasos de practicante de ML. ¿Dónde te ves ahora mismo en el proceso? ¿Dónde predice que encontrará dificultades? ¿Qué te parece fácil? 
 
-## [Cuestionario previo a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [Cuestionario posterior a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
 
 ## Revisión & Autoestudio
 
