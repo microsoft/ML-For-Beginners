@@ -74,7 +74,7 @@ Al mismo tiempo, comenzaron a formarse varia escuelas de pensamiento de AI. Se e
 
 ## Systemas expertos de la década de 1980
 
-A medida que el campo creció, su beneficio para las empresas se hizo más claro, y en la década de 1980 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (AI)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
+A medida que el campo creció, su beneficio para las empresas se hizo más claro, y en la década de 1980 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (IA)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
 
 Este tipo de sistemas es en realidad _híbrido_, que consta parcialmente de un motor de reglas que define los requisitos comerciales, y un motor de inferencia que aprovechó el sistema de reglas para deducir nuevos hechos.
 
