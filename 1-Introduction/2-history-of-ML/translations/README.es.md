@@ -95,7 +95,7 @@ Hoy en día, machine learning y la inteligencia artificial tocan casi todos los 
 Queda por ver qué depara el futuro, pero es importante entender estos sistemas informáticos y el software y algortimos que ejecutan. Esperamos que este plan de estudios le ayude a comprender mejor para que pueda decidir por si mismo.
 
 [![La historia del deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
-> 🎥 Haga Click en la imagen de arriba para ver un video: Yann LeCun analiza la historia del deep learning es esta conferencia
+> 🎥 Haga Click en la imagen de arriba para ver un video: Yann LeCun analiza la historia del deep learning en esta conferencia
 
 ---
 ## 🚀Desafío
