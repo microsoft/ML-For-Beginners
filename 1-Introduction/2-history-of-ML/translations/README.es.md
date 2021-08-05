@@ -100,7 +100,7 @@ Queda por ver qué depara el futuro, pero es importante entender estos sistemas 
 ---
 ## 🚀Desafío
 
-Sumérjas dentro de unos de estos momentos históricos y aprenda más sobre las personas detrás de ellos. Hay personajes fascinantes y nunca se se creó ningún descubrimientos científico en un vacío cultural. ¿Qué descubres?
+Sumérjase dentro de unos de estos momentos históricos y aprenda más sobre las personas detrás de ellos. Hay personajes fascinantes y nunca se creó ningún descubrimiento científico en un vacío cultural. ¿Qué descubres?
 
 ## [Cuestionario posterior a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
 
