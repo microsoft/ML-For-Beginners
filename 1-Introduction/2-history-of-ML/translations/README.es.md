@@ -110,7 +110,7 @@ Aquí hay elementos para ver y escuchar:
 
 [Este podcast donde Amy Boyd habla sobre la evolución de la AI](http://runasradio.com/Shows/Show/739)
 
-[![La historia de la AI por Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
+[![La historia de la AI por Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "La historia de la AI por Amy Boyd")
 
 ## Asignación
 
