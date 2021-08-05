@@ -86,7 +86,7 @@ La prolifercaión de hardware de sistemas expertos especializados tuvo el desafo
 
 ## 1993 - 2011
 
-Esta época vió una nueva era para el ML y la AI para poder resolver problemas que habían sido causados anteriormente for la falta de datos y poder de cómputo. La cantidad de datos comenzó a aumentar rápidamente y a estar más disponible, para bien o para mal, especialmente con la llegada del smartphone alrededor del 2007. El poder computacional se expandió exponencialmentem y los algoritmos evolucionaron al mismo tiempo. El campo comenzó a ganar madurez a medida que los días libres del pasado comenzaron a cristalizar en un verdadera disciplina.
+Esta época vió una nueva era para el ML y la IA para poder resolver problemas que habían sido causados anteriormente for la falta de datos y poder de cómputo. La cantidad de datos comenzó a aumentar rápidamente y a estar más disponible, para bien o para mal, especialmente con la llegada del smartphone alrededor del 2007. El poder computacional se expandió exponencialmente y los algoritmos evolucionaron al mismo tiempo. El campo comenzó a ganar madurez a medida que los días libres del pasado comenzaron a cristalizar en un verdadera disciplina.
 
 ## Ahora
 
