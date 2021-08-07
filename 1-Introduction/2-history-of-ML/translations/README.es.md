@@ -70,49 +70,48 @@ A mediados de la década de 1970, se hizo evidente que la complejidad de la fabr
   - Las pruebas de Turing se cuestionaron por medio, entre otras ideas, de la 'teoría de la habitación china' que postulaba que "progrmar una computadora digital puede hacerse que parezca que entiende el lenguaje, pero no puede producir una comprensión real" ([fuente](https://plato.stanford.edu/entries/chinese-room/))
   - Se cuestionó la ética de introducir inteligencias artificiales como la "terapeuta" Eliza en la sociedad.
 
-Al mismo tiempo, comenzaron a formarse varia escuelas de pensamiento de AI. Se estableció una dicotomía entre las prácticas ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies). 
-At the same time, various AI schools of thought began to form. A dichotomy was established between ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies) practices. _Scruffy_ labs tweaked programs for hours until they had the desired results. _Neat_ labs "focused on logic and formal problem solving". ELIZA and SHRDLU were well-known _scruffy_ systems. In the 1980s, as demand emerged to make ML systems reproducible, the _neat_ approach gradually took the forefront as its results are more explainable.
+Al mismo tiempo, comenzaron a formarse varia escuelas de pensamiento de AI. Se estableció una dicotomía entre las prácticas ["scruffy" vs. "neat AI"](https://wikipedia.org/wiki/Neats_and_scruffies). _Scruffy_ labs modificó los programas durante horas hasta que obtuvieron los objetivos deseados. _Neat_ labs "centrados en la lógica y la resolución de problemas formales". ELIZA y SHRDLU eran systemas _scruffy_ bien conocidos. En la década de 1980, cuando surgió la demanda para hacer que los sistemas de aprendizaje fueran reproducibles, el enfoque _neat_ gradualmente tomó la vanguardia a medidad que sus resultados eran más explicables.
 
-## 1980s Expert systems
+## Systemas expertos de la década de 1980
 
-As the field grew, its benefit to business became clearer, and in the 1980s so did the proliferation of 'expert systems'. "Expert systems were among the first truly successful forms of artificial intelligence (AI) software." ([source](https://wikipedia.org/wiki/Expert_system)).
+A medida que el campo creció, su beneficio para las empresas se hizo más claro, y en la década de 1980 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (IA)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
 
-This type of system is actually _hybrid_, consisting partially of a rules engine defining business requirements, and an inference engine that leveraged the rules system to deduce new facts.
+Este tipo de sistemas es en realidad _híbrido_, que consta parcialmente de un motor de reglas que define los requisitos comerciales, y un motor de inferencia que aprovechó el sistema de reglas para deducir nuevos hechos.
 
-This era also saw increasing attention paid to neural networks.
+En esta era también se prestó mayor atención a las redes neuronales.
 
 ## 1987 - 1993: AI 'Chill'
 
-The proliferation of specialized expert systems hardware had the unfortunate effect of becoming too specialized. The rise of personal computers also competed with these large, specialized, centralized systems. The democratization of computing had begun, and it eventually paved the way for the modern explosion of big data.
+La prolifercaión de hardware de sistemas expertos especializados tuvo el desafortunado efecto de volverse demasiado especializado. El auge de las computadoras personales también compitió con estos grandes sistemas centralizados especializados. La democratización de la informática había comenzado, y finalmente, allanó el camino para la explosión moderna del big data.
 
 ## 1993 - 2011
 
-This epoch saw a new era for ML and AI to be able to solve some of the problems that had been caused earlier by the lack of data and compute power. The amount of data began to rapidly increase and become more widely available, for better and for worse, especially with the advent of the smartphone around 2007. Compute power expanded exponentially, and algorithms evolved alongside. The field began to gain maturity as the freewheeling days of the past began to crystallize into a true discipline.
+Esta época vió una nueva era para el ML y la IA para poder resolver problemas que habían sido causados anteriormente for la falta de datos y poder de cómputo. La cantidad de datos comenzó a aumentar rápidamente y a estar más disponible, para bien o para mal, especialmente con la llegada del smartphone alrededor del 2007. El poder computacional se expandió exponencialmente y los algoritmos evolucionaron al mismo tiempo. El campo comenzó a ganar madurez a medida que los días libres del pasado comenzaron a cristalizar en un verdadera disciplina.
 
-## Now
+## Ahora
 
-Today, machine learning and AI touch almost every part of our lives. This era calls for careful understanding of the risks and potentials effects of these algorithms on human lives. As Microsoft's Brad Smith has stated, "Information technology raises issues that go to the heart of fundamental human-rights protections like privacy and freedom of expression. These issues heighten responsibility for tech companies that create these products. In our view, they also call for thoughtful government regulation and for the development of norms around acceptable uses" ([source](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
+Hoy en día, machine learning y la inteligencia artificial tocan casi todos los aspectos de nuestras vidas. Esta era requiere una comprensión cuidadosa de los riesgos y los efectos potenciales de estos algoritmos en las vidas humanas. Como ha dicho Brad Smith de Microsoft, "La tecnología de la información plantea problemas que van al corazón de las protecciones fundamentales de los derechos humanos, como la privacidad y la libertad de expresión. Esos problemas aumentan las responsabilidades de las empresas de tecnología que crean estos productos. En nuestra opinión, también exige regulación gubernamental reflexiva y para el desarrollo de normas sobre usos aceptables" ([fuente](https://www.technologyreview.com/2019/12/18/102365/the-future-of-ais-impact-on-society/)).
 
-It remains to be seen what the future holds, but it is important to understand these computer systems and the software and algorithms that they run. We hope that this curriculum will help you to gain a better understanding so that you can decide for yourself.
+Queda por ver qué depara el futuro, pero es importante entender estos sistemas informáticos y el software y algortimos que ejecutan. Esperamos que este plan de estudios le ayude a comprender mejor para que pueda decidir por si mismo.
 
-[![The history of deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
-> 🎥 Click the image above for a video: Yann LeCun discusses the history of deep learning in this lecture
+[![La historia del deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
+> 🎥 Haga Click en la imagen de arriba para ver un video: Yann LeCun analiza la historia del deep learning en esta conferencia
 
 ---
-## 🚀Challenge
+## 🚀Desafío
 
-Dig into one of these historical moments and learn more about the people behind them. There are fascinating characters, and no scientific discovery was ever created in a cultural vacuum. What do you discover?
+Sumérjase dentro de unos de estos momentos históricos y aprenda más sobre las personas detrás de ellos. Hay personajes fascinantes y nunca se creó ningún descubrimiento científico en un vacío cultural. ¿Qué descubres?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+## [Cuestionario posterior a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
 
-## Review & Self Study
+## Revisión y autoestudio
 
-Here are items to watch and listen to:
+Aquí hay elementos para ver y escuchar:
 
-[This podcast where Amy Boyd discusses the evolution of AI](http://runasradio.com/Shows/Show/739)
+[Este podcast donde Amy Boyd habla sobre la evolución de la IA](http://runasradio.com/Shows/Show/739)
 
-[![The history of AI by Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
+[![La historia de la IA por Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "La historia de la IA por Amy Boyd")
 
-## Assignment
+## Asignación
 
-[Create a timeline](assignment.md)
+[Crea un timeline](assignment.md)
