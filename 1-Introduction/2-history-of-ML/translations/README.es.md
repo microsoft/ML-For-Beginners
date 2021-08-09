@@ -74,7 +74,7 @@ Al mismo tiempo, comenzaron a formarse varia escuelas de pensamiento de AI. Se e
 
 ## Systemas expertos de la década de 1980
 
-A medida que el campo creció, su beneficio para las empresas se hizo más claro, y en la década de 1980 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (AI)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
+A medida que el campo creció, su beneficio para las empresas se hizo más claro, y en la década de 1980 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (IA)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
 
 Este tipo de sistemas es en realidad _híbrido_, que consta parcialmente de un motor de reglas que define los requisitos comerciales, y un motor de inferencia que aprovechó el sistema de reglas para deducir nuevos hechos.
 
@@ -86,7 +86,7 @@ La prolifercaión de hardware de sistemas expertos especializados tuvo el desafo
 
 ## 1993 - 2011
 
-Esta época vió una nueva era para el ML y la AI para poder resolver problemas que habían sido causados anteriormente for la falta de datos y poder de cómputo. La cantidad de datos comenzó a aumentar rápidamente y a estar más disponible, para bien o para mal, especialmente con la llegada del smartphone alrededor del 2007. El poder computacional se expandió exponencialmentem y los algoritmos evolucionaron al mismo tiempo. El campo comenzó a ganar madurez a medida que los días libres del pasado comenzaron a cristalizar en un verdadera disciplina.
+Esta época vió una nueva era para el ML y la IA para poder resolver problemas que habían sido causados anteriormente for la falta de datos y poder de cómputo. La cantidad de datos comenzó a aumentar rápidamente y a estar más disponible, para bien o para mal, especialmente con la llegada del smartphone alrededor del 2007. El poder computacional se expandió exponencialmente y los algoritmos evolucionaron al mismo tiempo. El campo comenzó a ganar madurez a medida que los días libres del pasado comenzaron a cristalizar en un verdadera disciplina.
 
 ## Ahora
 
@@ -95,12 +95,12 @@ Hoy en día, machine learning y la inteligencia artificial tocan casi todos los 
 Queda por ver qué depara el futuro, pero es importante entender estos sistemas informáticos y el software y algortimos que ejecutan. Esperamos que este plan de estudios le ayude a comprender mejor para que pueda decidir por si mismo.
 
 [![La historia del deep learning](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "The history of deep learning")
-> 🎥 Haga Click en la imagen de arriba para ver un video: Yann LeCun analiza la historia del deep learning es esta conferencia
+> 🎥 Haga Click en la imagen de arriba para ver un video: Yann LeCun analiza la historia del deep learning en esta conferencia
 
 ---
 ## 🚀Desafío
 
-Sumérjas dentro de unos de estos momentos históricos y aprenda más sobre las personas detrás de ellos. Hay personajes fascinantes y nunca se se creó ningún descubrimientos científico en un vacío cultural. ¿Qué descubres?
+Sumérjase dentro de unos de estos momentos históricos y aprenda más sobre las personas detrás de ellos. Hay personajes fascinantes y nunca se creó ningún descubrimiento científico en un vacío cultural. ¿Qué descubres?
 
 ## [Cuestionario posterior a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
 
@@ -108,9 +108,9 @@ Sumérjas dentro de unos de estos momentos históricos y aprenda más sobre las 
 
 Aquí hay elementos para ver y escuchar:
 
-[Este podcast donde Amy Boyd habla sobre la evolución de la AI](http://runasradio.com/Shows/Show/739)
+[Este podcast donde Amy Boyd habla sobre la evolución de la IA](http://runasradio.com/Shows/Show/739)
 
-[![La historia de la AI por Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "The history of AI by Amy Boyd")
+[![La historia de la IA por Amy Boyd](https://img.youtube.com/vi/EJt3_bFYKss/0.jpg)](https://www.youtube.com/watch?v=EJt3_bFYKss "La historia de la IA por Amy Boyd")
 
 ## Asignación
 
