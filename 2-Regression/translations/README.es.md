@@ -14,7 +14,7 @@ En esta serie de lecciones, descubrirá la diferencia entre la regresión lineal
 
 En este grupo de lecciones, se preparará para comenzar las tares de machine learning, incluida la configuración de Visual Studio Code para manejar los cuadernos, el entorno común para los científicos de datos. Descubrirá Scikit-learn, una librería para machine learning, y creará sus primeros modelos, centrándose en los modelos de Regresión en este capítulo.
 
-> Existen herramientas útiles low-code que pueden ayudarlo a aprender a trabjar con modelos de regresión. Pruebe [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Existen herramientas útiles _low-code_ que pueden ayudarlo a aprender a trabjar con modelos de regresión. Pruebe [Azure ML para esta tarea](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
 
 ### Lecciones
 
