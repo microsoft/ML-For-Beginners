@@ -261,7 +261,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     for t in range(test_ts.shape[0]):
         model = SARIMAX(endog=history, order=order, seasonal_order=seasonal_order)
         model_fit = model.fit()
-        yhat = model_fit.forecast(steps = HORIZON)
+        yhat = model_fit.forecast(steps = HORIZON+1)
         predictions.append(yhat)
         obs = list(test_ts.iloc[t])
         # move the training window
@@ -287,8 +287,8 @@ Walk-forward validation is the gold standard of time series model evaluation and
 1. Compare the predictions to the actual load:
 
     ```python
-    eval_df = pd.DataFrame(predictions, columns=['t+'+str(t) for t in range(1, HORIZON+1)])
-    eval_df['timestamp'] = test.index[0:len(test.index)-HORIZON+1]
+    eval_df = pd.DataFrame(predictions, columns=['t+'+str(t) for t in range(1, HORIZON+2)])
+    eval_df['timestamp'] = test.index[0:len(test.index)-HORIZON]
     eval_df = pd.melt(eval_df, id_vars='timestamp', value_name='prediction', var_name='h')
     eval_df['actual'] = np.array(np.transpose(test_ts)).ravel()
     eval_df[['prediction', 'actual']] = scaler.inverse_transform(eval_df[['prediction', 'actual']])
