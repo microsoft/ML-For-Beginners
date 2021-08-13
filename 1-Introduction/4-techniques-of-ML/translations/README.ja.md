@@ -5,7 +5,7 @@
 - 機械学習を支えるプロセスを高い水準で理解します。
 - 「モデル」「予測」「訓練データ」などの基本的な概念を調べます。
 
-## [講義前の小テスト](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7?loc=ja)
+## [講義前の小テスト](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7?loc=ja)
 
 ## 導入
 
@@ -103,7 +103,7 @@
 
 機械学習の学習者のステップを反映したフローチャートを描いてください。今の自分はこのプロセスのどこにいると思いますか？どこに困難があると予想しますか？あなたにとって簡単そうなことは何ですか？
 
-## [講義後の小テスト](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8?loc=ja)
+## [講義後の小テスト](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8?loc=ja)
 
 ## 振り返りと自主学習
 

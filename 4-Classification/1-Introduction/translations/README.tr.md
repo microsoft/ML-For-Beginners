@@ -19,7 +19,7 @@ Hatırlayın:
 
 Sınıflandırma, bir veri noktasının etiketini veya sınıfını belirlemek için farklı yollar belirlemek üzere çeşitli algoritmalar kullanır. Bir grup malzemeyi gözlemleyerek kökeninin hangi mutfak olduğunu belirleyip belirleyemeyeceğimizi görmek için bu mutfak verisiyle çalışalım.
 
-## [Ders öncesi kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/?loc=tr)
+## [Ders öncesi kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/?loc=tr)
 
 ### Giriş
 
@@ -287,7 +287,7 @@ Veriyi temizlediniz, şimdi [SMOTE](https://imbalanced-learn.org/dev/references/
 
 Bu öğretim programı farklı ilgi çekici veri setleri içermekte. `data` klasörlerini inceleyin ve ikili veya çok sınıflı sınıflandırma için uygun olabilecek veri setleri bulunduran var mı, bakın. Bu veri seti için hangi soruları sorabilirdiniz?
 
-## [Ders sonrası kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/?loc=tr)
+## [Ders sonrası kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/?loc=tr)
 
 ## Gözden Geçirme & Kendi Kendine Çalışma
 

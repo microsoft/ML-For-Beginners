@@ -2,7 +2,7 @@
 
 ![Infografik regresi linear vs polinomial](../images/linear-polynomial.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Kuis pra-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
+## [Kuis pra-ceramah](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
 ### Pembukaan
 
 Selama ini kamu telah menjelajahi apa regresi itu dengan data contoh yang dikumpulkan dari *dataset* harga labu yang kita akan gunakan terus sepanjang pelajaran ini. Kamu juga telah memvisualisasikannya dengan Matplotlib.
@@ -324,7 +324,7 @@ Itu sangat masuk akal dengan bagan sebelumnya! Selain itu, jika ini model lebih 
 
 Coba-cobalah variabel-variabel yang lain di *notebook* ini untuk melihat bagaimana korelasi berhubungan dengan akurasi model.
 
-## [Kuis pasca-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
+## [Kuis pasca-ceramah](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
 
 ## Review & Pembelajaran Mandiri
 

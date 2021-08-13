@@ -6,7 +6,7 @@ In questa sezione si utilizzeranno le tecniche delle lezioni precedenti per eseg
 - come calcolare alcuni nuovi dati in base alle colonne esistenti
 - come salvare l'insieme di dati risultante per l'uso nella sfida finale
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/37/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37/)
 
 ### Introduzione
 
@@ -287,15 +287,15 @@ Trattare le seguenti domande come attività di codifica e provare a rispondere s
    display(hotel_freq_df)
    ```
    
-   | Hotel_Name (Nome Hotel) | Total_Number_of_Reviews (Numero totale di recensioni) | Total_Reviews_Found |
-   | :----------------------------------------: | :---------------------: | :-----------------: |
-   | Britannia International Hotel Canary Wharf | 9086 | 4789 |
-   | Park Plaza Westminster Bridge Londra | 12158 | 4169 |
-   | Copthorne Tara Hotel London Kensington | 7105 | 3578 |
-   | ... | ... | ... |
-   | Mercure Paris Porte d'Orléans | 110 | 10 |
-   | Hotel Wagner | 135 | 10 |
-   | Hotel Gallitzinberg | 173 | 8 |
+   |          Hotel_Name (Nome Hotel)           | Total_Number_of_Reviews (Numero totale di recensioni) | Total_Reviews_Found |
+   | :----------------------------------------: | :---------------------------------------------------: | :-----------------: |
+   | Britannia International Hotel Canary Wharf |                         9086                          |        4789         |
+   |    Park Plaza Westminster Bridge Londra    |                         12158                         |        4169         |
+   |   Copthorne Tara Hotel London Kensington   |                         7105                          |        3578         |
+   |                    ...                     |                          ...                          |         ...         |
+   |       Mercure Paris Porte d'Orléans        |                          110                          |         10          |
+   |                Hotel Wagner                |                          135                          |         10          |
+   |            Hotel Gallitzinberg             |                          173                          |          8          |
    
 
    Si potrebbe notare che il *conteggio nell'insieme di dati* non corrisponde al valore in `Total_Number_of_Reviews`. Non è chiaro se questo valore nell'insieme di dati rappresentasse il numero totale di recensioni che l'hotel aveva, ma non tutte sono state recuperate o qualche altro calcolo. `Total_Number_of_Reviews` non viene utilizzato nel modello a causa di questa non chiarezza.
@@ -324,19 +324,19 @@ Trattare le seguenti domande come attività di codifica e provare a rispondere s
 
    Ci si potrebbe anche chiedere del valore `Average_Score` e perché a volte è diverso dal punteggio medio calcolato. Poiché non è possibile sapere perché alcuni valori corrispondano, ma altri hanno una differenza, in questo caso è più sicuro utilizzare i punteggi delle recensioni a disposizione per calcolare autonomamente la media. Detto questo, le differenze sono solitamente molto piccole, ecco gli hotel con la maggiore deviazione dalla media dell'insieme di dati e dalla media calcolata:
 
-   | Average_Score_Difference | Average_Score | Calc_Average_Score | Hotel_Name (Nome Hotel) |
-   | :----------------------: | :-----------: | :----------------: | ------------------------------------------: |
-   | -0,8 | 7,7 | 8,5 | Best Western Hotel Astoria |
-   | -0,7 | 8,8 | 9,5 | Hotel Stendhal Place Vend me Parigi MGallery |
-   | -0,7 | 7,5 | 8.2 | Mercure Paris Porte d'Orléans |
-   | -0,7 | 7,9 | 8,6 | Renaissance Paris Vendome Hotel |
-   | -0,5 | 7,0 | 7,5 | Hotel Royal Elys es |
-   | ... | ... | ... | ... |
-   | 0.7 | 7,5 | 6.8 | Mercure Paris Op ra Faubourg Montmartre |
-   | 0,8 | 7,1 | 6.3 | Holiday Inn Paris Montparnasse Pasteur |
-   | 0,9 | 6.8 | 5,9 | Villa Eugenia |
-   | 0,9 | 8,6 | 7,7 | MARCHESE Faubourg St Honor Relais Ch teaux |
-   | 1,3 | 7,2 | 5,9 | Kube Hotel Ice Bar |
+   | Average_Score_Difference | Average_Score | Calc_Average_Score |                      Hotel_Name (Nome Hotel) |
+   | :----------------------: | :-----------: | :----------------: | -------------------------------------------: |
+   |           -0,8           |      7,7      |        8,5         |                   Best Western Hotel Astoria |
+   |           -0,7           |      8,8      |        9,5         | Hotel Stendhal Place Vend me Parigi MGallery |
+   |           -0,7           |      7,5      |        8.2         |                Mercure Paris Porte d'Orléans |
+   |           -0,7           |      7,9      |        8,6         |              Renaissance Paris Vendome Hotel |
+   |           -0,5           |      7,0      |        7,5         |                          Hotel Royal Elys es |
+   |           ...            |      ...      |        ...         |                                          ... |
+   |           0.7            |      7,5      |        6.8         |      Mercure Paris Op ra Faubourg Montmartre |
+   |           0,8            |      7,1      |        6.3         |       Holiday Inn Paris Montparnasse Pasteur |
+   |           0,9            |      6.8      |        5,9         |                                Villa Eugenia |
+   |           0,9            |      8,6      |        7,7         |   MARCHESE Faubourg St Honor Relais Ch teaux |
+   |           1,3            |      7,2      |        5,9         |                           Kube Hotel Ice Bar |
 
    Con un solo hotel con una differenza di punteggio maggiore di 1, significa che probabilmente si può ignorare la differenza e utilizzare il punteggio medio calcolato.
 
@@ -401,7 +401,7 @@ Ora che si è esplorato l'insieme di dati, nella prossima lezione si filtreranno
 
 Questa lezione dimostra, come visto nelle lezioni precedenti, quanto sia di fondamentale importanza comprendere i dati e le loro debolezze prima di eseguire operazioni su di essi. I dati basati su testo, in particolare, sono oggetto di un attento esame. Esaminare vari insiemi di dati contenenti principalmente testo e vedere se si riesce a scoprire aree che potrebbero introdurre pregiudizi o sentiment distorti in un modello.
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/38/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38/)
 
 ## Revisione e Auto Apprendimento
 

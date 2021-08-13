@@ -4,7 +4,7 @@
 
 Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
 
 > ### [This lesson is available in R!](./solution/lesson_2-R.ipynb)
 
@@ -192,7 +192,7 @@ To get charts to display useful data, you usually need to group the data somehow
 
 Explore the different types of visualization that Matplotlib offers. Which types are most appropriate for regression problems?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12/)
 
 ## Review & Self Study
 

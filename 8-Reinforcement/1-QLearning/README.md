@@ -11,7 +11,7 @@ By using reinforcement learning and a simulator (the game), you can learn how to
 
 > 🎥 Click the image above to hear Dmitry discuss Reinforcement Learning
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/45/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/45/)
 
 ## Prerequisites and Setup
 
@@ -314,6 +314,6 @@ The learnings can be summarized as:
 
 Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters, such as learning rate, learning rate decay, and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters**, which we optimize during training (for example, Q-Table coefficients). The process of finding the best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/46/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/46/)
 
 ## Assignment [A More Realistic World](assignment.md)

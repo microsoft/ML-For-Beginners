@@ -5,7 +5,7 @@ Il processo di creazione, utilizzo e mantenimento dei modelli di machine learnin
 - Comprendere i processi ad alto livello alla base di machine learning.
 - Esplorare concetti di base come "modelli", "previsioni" e "dati di addestramento".
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7/)
 
 ## Introduzione
 
@@ -103,7 +103,7 @@ In queste lezioni si scoprirà come utilizzare questi passaggi per preparare, co
 
 Disegnare un diagramma di flusso che rifletta i passaggi di un professionista di ML. Dove ci si vede in questo momento nel processo? Dove si prevede che sorgeranno difficoltà? Cosa sembra facile?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8/)
 
 ## Revisione e Auto Apprendimento
 

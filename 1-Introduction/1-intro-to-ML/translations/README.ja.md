@@ -4,7 +4,7 @@
 
 > 🎥 上の画像をクリックすると、機械学習、AI、深層学習の違いについて説明した動画が表示されます。
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1?loc=ja)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1?loc=ja)
 
 ### イントロダクション
 
@@ -94,7 +94,7 @@
 ## 🚀 Challenge
 AI、ML、深層学習、データサイエンスの違いについて理解していることを、紙や[Excalidraw](https://excalidraw.com/)などのオンラインアプリを使ってスケッチしてください。また、それぞれの技術が得意とする問題のアイデアを加えてみてください。
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2?loc=ja)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/2?loc=ja)
 
 ## 振り返りと自習
 

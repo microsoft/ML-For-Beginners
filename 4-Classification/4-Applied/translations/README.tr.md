@@ -8,7 +8,7 @@ Makine öğreniminin en faydalı pratik kullanımlarından biri, önerici/tavsiy
 
 > :movie_camera: Video için yukarıdaki fotoğrafa tıklayın: Andrew Ng introduces recommendation system design (Andrew Ng önerici sistem tasarımını tanıtıyor)
 
-## [Ders öncesi kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/?loc=tr)
+## [Ders öncesi kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/?loc=tr)
 
 Bu derste şunları öğreneceksiniz:
 
@@ -321,7 +321,7 @@ Tebrikler, birkaç değişkenle bir 'önerici' web uygulaması oluşturdunuz! Bu
 
 Web uygulamanız çok minimal, bu yüzden [ingredient_indexes](../../data/ingredient_indexes.csv) verisinden malzemeleri ve indexlerini kullanarak web uygulamanızı oluşturmaya devam edin. Verilen bir ulusal yemeği yapmak için hangi tat birleşimleri işe yarıyor?
 
-## [Ders sonrası kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/26/?loc=tr)
+## [Ders sonrası kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26/?loc=tr)
 
 ## Gözden Geçirme & Kendi Kendine Çalışma
 

@@ -2,7 +2,7 @@
 
 ![ロジスティク回帰 vs 線形回帰のインフォグラフィック](../images/logistic-linear.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) によるインフォグラフィック
-## [講義前のクイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
+## [講義前のクイズ](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
 
 ## イントロダクション
 
@@ -225,10 +225,10 @@ Seabornプロットでは、変数を並べて表示することができます�
 
 Scikit-learnでは、混同行列の行 (axis=0)が実際のラベル、列 (axis=1)が予測ラベルとなります。
 
-|  |0|1|
-|:-:|:-:|:-:|
-|0|TN|FP|
-|1|FN|TP|
+|       |   0   |   1   |
+| :---: | :---: | :---: |
+|   0   |  TN   |  FP   |
+|   1   |  FN   |  TP   |
 
 ここで何が起こっているのか？例えば、カボチャを「オレンジ色」と「オレンジ色でない」という2つのカテゴリーに分類するように求められたとしましょう。
 
@@ -299,7 +299,7 @@ print(auc)
 
 ロジスティック回帰については、まだまだ解き明かすべきことがたくさんあります。しかし、学ぶための最良の方法は、実験することです。この種の分析に適したデータセットを見つけて、それを使ってモデルを構築してみましょう。ヒント：面白いデータセットを探すために[Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) を試してみてください。
 
-## [講義後クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
+## [講義後クイズ](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/)
 
 ## レビュー & 自主学習
 

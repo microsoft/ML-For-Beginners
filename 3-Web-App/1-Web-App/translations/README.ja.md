@@ -11,7 +11,7 @@
 
 そのためには、Flaskを使ってWebアプリを構築する必要があります。
 
-## [講義前の小テスト](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17?loc=ja)
+## [講義前の小テスト](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17?loc=ja)
 
 ## アプリの構築
 
@@ -334,7 +334,7 @@ print(model.predict([[50,44,-12]]))
 
 ノートブックで作業してモデルをFlaskアプリにインポートする代わりに、Flaskアプリの中でモデルをトレーニングすることができます。おそらくデータをクリーニングした後になりますが、ノートブック内のPythonコードを変換して、アプリ内の `train` というパスでモデルを学習してみてください。この方法を採用することの長所と短所は何でしょうか？
 
-## [講義後の小テスト](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18?loc=ja)
+## [講義後の小テスト](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18?loc=ja)
 
 ## 振り返りと自主学習
 

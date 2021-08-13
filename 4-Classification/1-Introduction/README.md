@@ -19,7 +19,7 @@ Remember:
 
 Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/)
 
 ### Introduction
 
@@ -286,7 +286,7 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 
 This curriculum contains several interesting datasets. Dig through the `data` folders and see if any contain datasets that would be appropriate for binary or multi-class classification? What questions would you ask of this dataset?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/)
 
 ## Review & Self Study
 

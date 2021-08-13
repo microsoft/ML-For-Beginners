@@ -2,7 +2,7 @@
 
 Ora che si è  esplorato in dettaglio l'insieme di dati, è il momento di filtrare le colonne e quindi utilizzare le tecniche NLP sull'insieme di dati per ottenere nuove informazioni sugli hotel.
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/39/)
 
 ### Operazioni di Filtraggio e Analisi del Sentiment
 
@@ -59,14 +59,14 @@ Occorre pulire un po' di più i dati. Si aggiungono colonne che saranno utili in
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
       ```
 
-      | Hotel_Address | Hotel_Name (Nome Hotel) |
-      | :--------------------- | :--------: |
-      | Amsterdam, Paesi Bassi | 105 |
-      | Barcellona, Spagna | 211 |
-      | Londra, Regno Unito | 400 |
-      | Milano, Italia | 162 |
-      | Parigi, Francia | 458 |
-      | Vienna, Austria | 158 |
+      | Hotel_Address          | Hotel_Name (Nome Hotel) |
+      | :--------------------- | :---------------------: |
+      | Amsterdam, Paesi Bassi |           105           |
+      | Barcellona, Spagna     |           211           |
+      | Londra, Regno Unito    |           400           |
+      | Milano, Italia         |           162           |
+      | Parigi, Francia        |           458           |
+      | Vienna, Austria        |           158           |
 
 2. Elaborazione colonne di meta-recensione dell'hotel
 
@@ -361,7 +361,7 @@ Per riepilogare, i passaggi sono:
 
 Quando si è iniziato, si disponeva di un insieme di dati con colonne e dati, ma non tutto poteva essere verificato o utilizzato. Si sono esplorati i dati, filtrato ciò che non serve, convertito i tag in qualcosa di utile, calcolato le proprie medie, aggiunto alcune colonne di sentiment e, si spera, imparato alcune cose interessanti sull'elaborazione del testo naturale.
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/40/)
 
 ## Sfida
 

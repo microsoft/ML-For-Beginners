@@ -2,7 +2,7 @@
 
 ![Logistic vs. linear regression infographic](./images/logistic-linear.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
 
 ## Introduction
 
@@ -222,10 +222,10 @@ While you can get a scoreboard report [terms](https://scikit-learn.org/stable/mo
 
 In Scikit-learn, confusion matrices Rows (axis 0) are actual labels and columns (axis 1) are predicted labels.
 
-|  |0|1|
-|:-:|:-:|:-:|
-|0|TN|FP|
-|1|FN|TP|
+|       |   0   |   1   |
+| :---: | :---: | :---: |
+|   0   |  TN   |  FP   |
+|   1   |  FN   |  TP   |
 
 What's going on here? Let's say our model is asked to classify pumpkins between two binary categories, category 'orange' and category 'not-orange'.
 
@@ -296,7 +296,7 @@ In future lessons on classifications, you will learn how to iterate to improve y
 
 There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) for interesting datasets.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/)
 
 ## Review & Self Study
 

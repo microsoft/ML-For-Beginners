@@ -2,7 +2,7 @@
 
 Bu ikinci sınıflandırma dersinde, sayısal veriyi sınıflandırmak için daha fazla yöntem öğreneceksiniz. Ayrıca, bir sınıflandırıcıyı diğerlerine tercih etmenin sonuçlarını da öğreneceksiniz.
 
-## [Ders öncesi kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/23/?loc=tr)
+## [Ders öncesi kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/?loc=tr)
 
 ### Ön koşul
 
@@ -224,7 +224,7 @@ Makine Öğreniminin bu yöntemi, modelin kalitesini artırmak için, "birçok t
 
 Bu yöntemlerden her biri değiştirebileceğiniz birsürü parametre içeriyor. Her birinin varsayılan parametrelerini araştırın ve bu parametreleri değiştirmenin modelin kalitesi için ne anlama gelebileceği hakkında düşünün.
 
-## [Ders sonrası kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/24/?loc=tr)
+## [Ders sonrası kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/?loc=tr)
 
 ## Gözden Geçirme & Kendi Kendine Çalışma
 

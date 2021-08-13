@@ -2,7 +2,7 @@
 
 Per la maggior parte delle attività di *elaborazione del linguaggio naturale* , il testo da elaborare deve essere suddiviso, esaminato e i risultati archiviati o incrociati con regole e insiemi di dati. Queste attività consentono al programmatore di derivare il _significato_ o l'_intento_ o solo la _frequenza_ di termini e parole in un testo.
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/33/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/33/)
 
 Si esaminano le comuni tecniche utilizzate nell'elaborazione del testo. Combinate con machine learning, queste tecniche aiutano ad analizzare grandi quantità di testo in modo efficiente. Prima di applicare machine learning a queste attività, tuttavia, occorre cercare di comprendere i problemi incontrati da uno specialista in NLP.
 
@@ -203,7 +203,7 @@ Implementare il bot nel controllo delle conoscenze precedenti e testarlo su un a
 
 Prendere un'attività dalla verifica delle conoscenze qui sopra e provare a implementarla. Provare il bot su un amico. Può ingannarlo? Si può rendere il bot più 'credibile?'
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/34/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/34/)
 
 ## Revisione e Auto Apprendimento
 

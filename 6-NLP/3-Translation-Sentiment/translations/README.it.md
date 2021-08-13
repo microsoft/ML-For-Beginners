@@ -2,7 +2,7 @@
 
 Nelle lezioni precedenti si è imparato come creare un bot di base utilizzando `TextBlob`, una libreria che incorpora machine learning dietro le quinte per eseguire attività di base di NPL come l'estrazione di frasi nominali. Un'altra sfida importante nella linguistica computazionale è _la traduzione_ accurata di una frase da una lingua parlata o scritta a un'altra.
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/35/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/35/)
 
 La traduzione è un problema molto difficile, aggravato dal fatto che ci sono migliaia di lingue e ognuna può avere regole grammaticali molto diverse. Un approccio consiste nel convertire le regole grammaticali formali per una lingua, come l'inglese, in una struttura non dipendente dalla lingua e quindi tradurla convertendola in un'altra lingua. Questo approccio significa che si dovrebbero eseguire i seguenti passaggi:
 
@@ -176,7 +176,7 @@ Ecco una [soluzione](../solution/notebook.ipynb) di esempio.
 
 Si può rendere Marvin ancora migliore estraendo altre funzionalità dall'input dell'utente?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/36/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/36/)
 
 ## Revisione e Auto Apprendimento
 

@@ -3,7 +3,7 @@
 ![Riepilogo dell'equità in machine learning in uno sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote di [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
 
 ## Introduzione
 
@@ -89,11 +89,11 @@ Questi cinque principali tipi di danno non si escludono a vicenda e un singolo s
 
 ✅ **Discussione**: rivisitare alcuni degli esempi e vedere se mostrano danni diversi.
 
-|                         | Allocatione | Qualita di servizio | Stereotipo | Denigrazione | Sovra o sotto rappresentazione |
-| ----------------------- | :--------: | :----------------: | :----------: | :---------: | :----------------------------: |
-| Sistema di assunzione automatizzato |     x      |         x          |      x       |             |               x                |
-| Traduzione automatica     |            |                    |              |             |                                |
-| Eitchettatura foto          |            |                    |              |             |                                |
+|                                     | Allocatione | Qualita di servizio | Stereotipo | Denigrazione | Sovra o sotto rappresentazione |
+| ----------------------------------- | :---------: | :-----------------: | :--------: | :----------: | :----------------------------: |
+| Sistema di assunzione automatizzato |      x      |          x          |     x      |              |               x                |
+| Traduzione automatica               |             |                     |            |              |                                |
+| Eitchettatura foto                  |             |                     |            |              |                                |
 
 ## Rilevare l'ingiustizia
 
@@ -137,11 +137,11 @@ Si sono identificati i danni e un gruppo interessato, in questo caso, delineato 
 
 ✅ In una futura lezione sul Clustering, si vedrà come costruire questa 'matrice di confusione' nel codice
 
-|            | percentuale di falsi positivi | Percentuale di falsi negativi |conteggio |
-| ---------- | ------------------- | ------------------- | ----- |
-| Donna | 0,37 | 0,27 | 54032 |
-| Uomo | 0,31 | 0.35 | 28620 |
-| Non binario | 0,33 | 0,31 | 1266 |
+|             | percentuale di falsi positivi | Percentuale di falsi negativi | conteggio |
+| ----------- | ----------------------------- | ----------------------------- | --------- |
+| Donna       | 0,37                          | 0,27                          | 54032     |
+| Uomo        | 0,31                          | 0.35                          | 28620     |
+| Non binario | 0,33                          | 0,31                          | 1266      |
 
 Questa tabella ci dice diverse cose. Innanzitutto, si nota che ci sono relativamente poche persone non binarie nei dati. I dati sono distorti, quindi si deve fare attenzione a come si interpretano  questi numeri.
 
@@ -183,7 +183,7 @@ Per evitare che vengano introdotti pregiudizi, in primo luogo, si dovrebbe:
 
 Si pensi a scenari di vita reale in cui l'ingiustizia è evidente nella creazione e nell'utilizzo del modello. Cos'altro si dovrebbe considerare?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
 
 ## Revisione e Auto Apprendimento
 

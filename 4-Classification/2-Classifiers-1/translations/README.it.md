@@ -4,7 +4,7 @@ In questa lezione, si utilizzerà l'insieme di dati salvati dall'ultima lezione,
 
 Si utilizzerà questo insieme di dati con una varietà di classificatori per _prevedere una determinata cucina nazionale in base a un gruppo di ingredienti_. Mentre si fa questo, si imparerà di più su alcuni dei modi in cui gli algoritmi possono essere sfruttati per le attività di classificazione.
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21/)
 # Preparazione
 
 Supponendo che la [Lezione 1](../1-Introduction/README.md) sia stata completata, assicurarsi che _esista_ un file clean_cuisines.csv nella cartella in radice `/data` per queste quattro lezioni.
@@ -200,13 +200,13 @@ Poiché si sta utilizzando il caso multiclasse, si deve scegliere quale _schema_
 
    Il risultato è stampato: la cucina indiana è la sua ipotesi migliore, con buone probabilità:
 
-   |          | 0 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | -------: | -------: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-   | indiano | 0,715851 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | cinese | 0.229475 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   |            |        0 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | ---------: | -------: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+   |    indiano | 0,715851 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   |     cinese | 0.229475 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
    | Giapponese | 0,029763 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | Coreano | 0.017277 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | thai | 0.007634 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   |    Coreano | 0.017277 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   |       thai | 0.007634 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 
    ✅ Si è in grado di spiegare perché il modello è abbastanza sicuro che questa sia una cucina indiana?
 
@@ -217,22 +217,22 @@ Poiché si sta utilizzando il caso multiclasse, si deve scegliere quale _schema_
    print(classification_report(y_test,y_pred))
    ```
 
-   | precisione | recall | punteggio f1 | supporto |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | ------------ | ------ | -------- | ------- | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-   | cinese | 0,73 | 0,71 | 0,72 | 229 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | indiano | 0,91 | 0,93 | 0,92 | 254 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | Giapponese | 0.70 | 0,75 | 0,72 | 220 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | Coreano | 0,86 | 0,76 | 0,81 | 242 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | thai | 0,79 | 0,85 | 0.82 | 254 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | accuratezza | 0,80 | 1199 |         |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | macro media | 0,80 | 0,80 | 0,80 | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-   | Media ponderata | 0,80 | 0,80 | 0,80 | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | precisione      | recall | punteggio f1 | supporto |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | --------------- | ------ | ------------ | -------- | ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+   | cinese          | 0,73   | 0,71         | 0,72     | 229  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | indiano         | 0,91   | 0,93         | 0,92     | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | Giapponese      | 0.70   | 0,75         | 0,72     | 220  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | Coreano         | 0,86   | 0,76         | 0,81     | 242  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | thai            | 0,79   | 0,85         | 0.82     | 254  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | accuratezza     | 0,80   | 1199         |          |      |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | macro media     | 0,80   | 0,80         | 0,80     | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+   | Media ponderata | 0,80   | 0,80         | 0,80     | 1199 |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 
 ## 🚀 Sfida
 
 In questa lezione, sono stati utilizzati dati puliti per creare un modello di apprendimento automatico in grado di prevedere una cucina nazionale basata su una serie di ingredienti. Si prenda del tempo per leggere le numerose opzioni fornite da Scikit-learn per classificare i dati. Approfondire il concetto di "risolutore" per capire cosa succede dietro le quinte.
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22/)
 ## Revisione e Auto Apprendimento
 
 Approfondire un po' la matematica alla base della regressione logistica in [questa lezione](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)

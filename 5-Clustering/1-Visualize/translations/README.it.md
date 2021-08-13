@@ -5,7 +5,7 @@ Il clustering è un tipo di [apprendimento non supervisionato](https://wikipedia
 [![No One Like You di PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You di PSquare")
 
 > 🎥 Fare clic sull'immagine sopra per un video. Mentre si studia machine learning con il clustering, si potranno gradire brani della Nigerian Dance Hall: questa è una canzone molto apprezzata del 2014 di PSquare.
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/27/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
 
 ### Introduzione
 
@@ -33,18 +33,18 @@ In questo [modulo di apprendimento](https://docs.microsoft.com/learn/modules/tra
 
 [Scikit-learn offre una vasta gamma](https://scikit-learn.org/stable/modules/clustering.html) di metodi per eseguire il clustering. Il tipo scelto dipenderà dal caso d'uso. Secondo la documentazione, ogni metodo ha diversi vantaggi. Ecco una tabella semplificata dei metodi supportati da Scikit-learn e dei loro casi d'uso appropriati:
 
-| Nome del metodo | Caso d'uso |
-| :--------------------------- | :--------------------------------------------------------------------- |
-| K-MEANS | uso generale, induttivo |
-| Affinity propagation (Propagazione dell'affinità) | molti, cluster irregolari, induttivo |
-| Mean-shift (Spostamento medio) | molti, cluster irregolari, induttivo |
-| Spectral clustering (Raggruppamento spettrale) | pochi, anche grappoli, trasduttivi |
-| Ward hierarchical clustering (Cluster gerarchico) | molti, cluster vincolati, trasduttivi |
-| Agglomerative clustering (Raggruppamento agglomerativo) | molte, vincolate, distanze non euclidee, trasduttive |
-| DBSCAN | geometria non piatta, cluster irregolari, trasduttivo |
-| OPTICS | geometria non piatta, cluster irregolari con densità variabile, trasduttivo |
-| Gaussian mixtures (miscele gaussiane) | geometria piana, induttiva |
-| BIRCH | insiemi di dati di grandi dimensioni con valori anomali, induttivo |
+| Nome del metodo                                         | Caso d'uso                                                                  |
+| :------------------------------------------------------ | :-------------------------------------------------------------------------- |
+| K-MEANS                                                 | uso generale, induttivo                                                     |
+| Affinity propagation (Propagazione dell'affinità)       | molti, cluster irregolari, induttivo                                        |
+| Mean-shift (Spostamento medio)                          | molti, cluster irregolari, induttivo                                        |
+| Spectral clustering (Raggruppamento spettrale)          | pochi, anche grappoli, trasduttivi                                          |
+| Ward hierarchical clustering (Cluster gerarchico)       | molti, cluster vincolati, trasduttivi                                       |
+| Agglomerative clustering (Raggruppamento agglomerativo) | molte, vincolate, distanze non euclidee, trasduttive                        |
+| DBSCAN                                                  | geometria non piatta, cluster irregolari, trasduttivo                       |
+| OPTICS                                                  | geometria non piatta, cluster irregolari con densità variabile, trasduttivo |
+| Gaussian mixtures (miscele gaussiane)                   | geometria piana, induttiva                                                  |
+| BIRCH                                                   | insiemi di dati di grandi dimensioni con valori anomali, induttivo          |
 
 > 🎓 Il modo in cui si creno i cluster ha molto a che fare con il modo in cui si raccolgono punti dati in gruppi. Si esamina un po' di vocabolario:
 >
@@ -197,16 +197,16 @@ Il clustering come tecnica è notevolmente aiutato da una corretta visualizzazio
    df.describe()
    ```
 
-   |       | release_date | lenght | popularity | danceability | acousticness | Energia | strumentale | vitalità | livello di percezione sonora | parlato | tempo | #ora_firma |
-   | ----- | ------------ | ----------- | ---------- | ------------ | ------------ | -------- | ---------------- | -------- | --------- | ----------- | ---------- | -------------- |
-   | estero) | 530 | 530 | 530 | 530 | 530 | 530 | 530 | 530 | 530 | 530 | 530 | 530 |
-   | mezzo | 2015.390566 | 222298.1698 | 17.507547 | 0.741619 | 0.265412 | 0.760623 | 0,016305 | 0,147308 | -4.953011 | 0,130748 | 116.487864 | 3.986792 |
-   | std | 3.131688 | 39696.82226 | 18.992212 | 0,117522 | 0.208342 | 0.148533 | 0.090321 | 0,123588 | 2.464186 | 0,092939 | 23.518601 | 0.333701 |
-   | min | 1998 | 89488 | 0 | 0,255 | 0,000665 | 0,111 | 0 | 0,0283 | -19,362 | 0,0278 | 61.695 | 3 |
-   | 25% | 2014 | 199305 | 0 | 0,681 | 0,089525 | 0,669 | 0 | 0,07565 | -6.29875 | 0,0591 | 102.96125 | 4 |
-   | 50% | 2016 | 218509 | 13 | 0,761 | 0.2205 | 0.7845 | 0.000004 | 0,1035 | -4.5585 | 0,09795 | 112.7145 | 4 |
-   | 75% | 2017 | 242098.5 | 31 | 0,8295 | 0.403 | 0.87575 | 0.000234 | 0,164 | -3.331 | 0,177 | 125.03925 | 4 |
-   | max | 2020 | 511738 | 73 | 0.966 | 0,954 | 0,995 | 0,91 | 0,811 | 0,582 | 0.514 | 206.007 | 5 |
+   |         | release_date | lenght      | popularity | danceability | acousticness | Energia  | strumentale | vitalità | livello di percezione sonora | parlato  | tempo      | #ora_firma |
+   | ------- | ------------ | ----------- | ---------- | ------------ | ------------ | -------- | ----------- | -------- | ---------------------------- | -------- | ---------- | ---------- |
+   | estero) | 530          | 530         | 530        | 530          | 530          | 530      | 530         | 530      | 530                          | 530      | 530        | 530        |
+   | mezzo   | 2015.390566  | 222298.1698 | 17.507547  | 0.741619     | 0.265412     | 0.760623 | 0,016305    | 0,147308 | -4.953011                    | 0,130748 | 116.487864 | 3.986792   |
+   | std     | 3.131688     | 39696.82226 | 18.992212  | 0,117522     | 0.208342     | 0.148533 | 0.090321    | 0,123588 | 2.464186                     | 0,092939 | 23.518601  | 0.333701   |
+   | min     | 1998         | 89488       | 0          | 0,255        | 0,000665     | 0,111    | 0           | 0,0283   | -19,362                      | 0,0278   | 61.695     | 3          |
+   | 25%     | 2014         | 199305      | 0          | 0,681        | 0,089525     | 0,669    | 0           | 0,07565  | -6.29875                     | 0,0591   | 102.96125  | 4          |
+   | 50%     | 2016         | 218509      | 13         | 0,761        | 0.2205       | 0.7845   | 0.000004    | 0,1035   | -4.5585                      | 0,09795  | 112.7145   | 4          |
+   | 75%     | 2017         | 242098.5    | 31         | 0,8295       | 0.403        | 0.87575  | 0.000234    | 0,164    | -3.331                       | 0,177    | 125.03925  | 4          |
+   | max     | 2020         | 511738      | 73         | 0.966        | 0,954        | 0,995    | 0,91        | 0,811    | 0,582                        | 0.514    | 206.007    | 5          |
 
 > 🤔 Se si sta lavorando con il clustering, un metodo non supervisionato che non richiede dati etichettati, perché si stanno mostrando questi dati con etichette? Nella fase di esplorazione dei dati, sono utili, ma non sono necessari per il funzionamento degli algoritmi di clustering. Si potrebbero anche rimuovere le intestazioni delle colonne e fare riferimento ai dati per numero di colonna.
 
@@ -319,7 +319,7 @@ In generale, per il clustering è possibile utilizzare i grafici a dispersione p
 
 In preparazione per la lezione successiva, creare un grafico sui vari algoritmi di clustering che si potrebbero scoprire e utilizzare in un ambiente di produzione. Che tipo di problemi sta cercando di affrontare il clustering?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/28/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/)
 
 ## Revisione e Auto Apprendimento
 

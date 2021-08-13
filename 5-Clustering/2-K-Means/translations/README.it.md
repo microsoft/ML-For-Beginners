@@ -4,7 +4,7 @@
 
 > 🎥 Fare clic sull'immagine sopra per un video: Andrew Ng spiega il clustering
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/29/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/29/)
 
 In questa lezione si imparerà come creare cluster utilizzando Scikit-learn e l'insieme di dati di musica nigeriana importato in precedenza. Si tratteranno le basi di K-Means per Clustering. Si tenga presente che, come appreso nella lezione precedente, ci sono molti modi per lavorare con i cluster e il metodo usato dipende dai propri dati. Si proverà K-Means poiché è la tecnica di clustering più comune. Si inizia!
 
@@ -238,7 +238,7 @@ Trascorrere un po' di tempo con questo notebook, modificando i parametri. E poss
 
 Suggerimento: provare a ridimensionare i dati. C'è un codice commentato nel notebook che aggiunge il ridimensionamento standard per rendere le colonne di dati più simili tra loro in termini di intervallo. Si scoprirà che mentre il punteggio della silhouette diminuisce, il "kink" nel grafico del gomito si attenua. Questo perché lasciare i dati non scalati consente ai dati con meno varianza di avere più peso. Leggere un po' di più su questo problema [qui](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/30/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/30/)
 
 ## Revisione e Auto Apprendimento
 
