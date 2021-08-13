@@ -1,7 +1,7 @@
 # 自然语言处理介绍
 这节课讲解了 *自然语言处理* 的简要历史和重要概念，*自然语言处理*是计算语言学的一个子领域。
 
-## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/31/)
+## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
 
 ## 介绍
 众所周知，自然语言处理 (Natural Language Processing, NLP) 是机器学习在生产软件中应用最广泛的领域之一。
@@ -146,7 +146,7 @@
 
 在下一课中，您将了解解析自然语言和机器学习的许多其他方法。
 
-## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/32/)
+## [课后测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
 
 ## 复习与自学
 

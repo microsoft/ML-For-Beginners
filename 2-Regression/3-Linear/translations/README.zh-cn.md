@@ -2,7 +2,7 @@
 
 ![线性与多项式回归信息图](../images/linear-polynomial.png)
 > 作者[Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [课前测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
+## [课前测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
 ### 介绍 
 
 到目前为止，你已经通过从我们将在本课程中使用的南瓜定价数据集收集的样本数据探索了什么是回归。你还使用Matplotlib对其进行了可视化。
@@ -321,7 +321,7 @@ Scikit-learn包含一个用于构建多项式回归模型的有用API - `make_pi
 
 在此notebook中测试几个不同的变量，以查看相关性与模型准确性的对应关系。
 
-## [课后测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
+## [课后测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
 
 ## 复习与自学
 

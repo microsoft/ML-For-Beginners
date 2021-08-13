@@ -4,7 +4,7 @@
 
 > Sketchnote di [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Qui Pre-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Qui Pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
 
 ## Introduzione
 
@@ -197,7 +197,7 @@ Congratulazioni, si è costruito il primo modello di regressione lineare, creato
 
 Tracciare una variabile diversa da questo insieme di dati. Suggerimento: modificare questa riga: `X = X[:, np.newaxis, 2]`. Dato l'obiettivo di questo insieme di dati, cosa si potrebbe riuscire a scoprire circa la progressione del diabete come matattia?
 
-## [Qui post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [Qui post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
 ## Riepilogo e Auto Apprendimento
 

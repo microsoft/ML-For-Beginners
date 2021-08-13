@@ -3,7 +3,7 @@
 ![機械学習の歴史をまとめたスケッチ](../../../sketchnotes/ml-history.png)
 > [Tomomi Imura](https://www.twitter.com/girlie_mac)によるスケッチ
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3?loc=ja)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3?loc=ja)
 
 この授業では、機械学習と人工知能の歴史における主要な出来事を紹介します。
 
@@ -99,7 +99,7 @@
 
 これらの歴史的瞬間の1つを掘り下げて、その背後にいる人々について学びましょう。魅力的な人々がいますし、文化的に空白の状態で科学的発見がなされたことはありません。どういったことが見つかるでしょうか？
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4?loc=ja)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4?loc=ja)
 
 ## 振り返りと自習
 

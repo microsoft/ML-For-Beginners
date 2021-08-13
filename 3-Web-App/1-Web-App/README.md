@@ -11,7 +11,7 @@ We will continue our use of notebooks to clean data and train our model, but you
 
 To do this, you need to build a web app using Flask.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17/)
 
 ## Building an app
 
@@ -334,7 +334,7 @@ In a professional setting, you can see how good communication is necessary betwe
 
 Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. What are the pros and cons of pursuing this method?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18/)
 
 ## Review & Self Study
 

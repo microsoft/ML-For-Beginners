@@ -5,7 +5,7 @@ Proses membangun, menggunakan, dan memelihara model machine learning dan data ya
 - Memahami gambaran dari proses yang mendasari machine learning.
 - Menjelajahi konsep dasar seperti '*models*', '*predictions*', dan '*training data*'. 
   
-## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
+## [Quiz Pra-Pelajaran](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7/)
 ## Pengantar
 
 Gambaran membuat proses machine learning (ML) terdiri dari sejumlah langkah: 
@@ -100,7 +100,7 @@ Dalam pelajaran ini, Kamu akan menemukan cara untuk menggunakan langkah-langkah 
 
 Gambarlah sebuah flow chart yang mencerminkan langkah-langkah seorang praktisi ML. Di mana kamu melihat diri kamu saat ini dalam prosesnya? Di mana kamu memprediksi kamu akan menemukan kesulitan? Apa yang tampak mudah bagi kamu? 
 
-## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [Quiz Pra-Pelajaran](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8/)
 
 ## Ulasan & Belajar Mandiri
 

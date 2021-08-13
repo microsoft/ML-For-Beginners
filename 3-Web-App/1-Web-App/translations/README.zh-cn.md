@@ -11,7 +11,7 @@
 
 为此，你需要使用Flask构建一个web应用程序。
 
-## [课前测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
+## [课前测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17/)
 
 ## 构建应用程序
 
@@ -334,7 +334,7 @@ print(model.predict([[50,44,-12]]))
 
 你可以在Flask应用程序中训练模型，而不是在notebook上工作并将模型导入Flask应用程序！尝试在notebook中转换Python代码，可能是在清除数据之后，从应用程序中的一个名为`train`的路径训练模型。采用这种方法的利弊是什么？
 
-## [课后测](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18/)
+## [课后测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18/)
 
 ## 复习与自学 
 

@@ -3,7 +3,7 @@
 ![Riepilogo della storia di machine learning in uno sketchnote](../../../sketchnotes/ml-history.png)
 > Sketchnote di [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
 
 In questa lezione, si camminerà attraverso le principali pietre miliari nella storia di machine learning e dell'intelligenza artificiale.
 
@@ -103,7 +103,7 @@ Resta da vedere cosa riserva il futuro, ma è importante capire questi sistemi i
 Approfondire uno di questi momenti storici e scoprire
  di più sulle persone che stanno dietro ad essi. Ci sono personaggi affascinanti e nessuna scoperta scientifica è mai stata creata in un vuoto culturale. Cosa si è scoperto?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4/)
 
 ## Revisione e Auto Apprendimento
 

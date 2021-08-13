@@ -5,7 +5,7 @@ The process of building, using, and maintaining machine learning models and the 
 - Understand the processes underpinning machine learning at a high level.
 - Explore base concepts such as 'models', 'predictions', and 'training data'.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7/)
 
 ## Introduction
 
@@ -103,7 +103,7 @@ In these lessons, you will discover how to use these steps to prepare, build, te
 
 Draw a flow chart reflecting the steps of a ML practitioner. Where do you see yourself right now in the process? Where do you predict you will find difficulty? What seems easy to you?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8/)
 
 ## Review & Self Study
 

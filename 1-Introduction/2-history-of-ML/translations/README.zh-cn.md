@@ -3,7 +3,7 @@
 ![机器学习历史概述](../../../sketchnotes/ml-history.png)
 > 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
+## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
 
 在本课中，我们将走过机器学习和人工智能历史上的主要里程碑。 
 
@@ -101,7 +101,7 @@ Alan Turing，一个真正杰出的人，[在2019年被公众投票选出](https
 
 深入了解这些历史时刻之一，并更多地了解它们背后的人。这里有许多引人入胜的人物，没有一项科学发现是在文化真空中创造出来的。你发现了什么？
 
-## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+## [课后测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4/)
 
 ## 复习与自学
 

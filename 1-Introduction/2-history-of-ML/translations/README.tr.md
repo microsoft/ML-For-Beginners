@@ -3,7 +3,7 @@
 ![Bir taslak-notta makine öğrenimi geçmişinin özeti](../../../sketchnotes/ml-history.png)
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) tarafından hazırlanan taslak-not
 
-## [Ders öncesi test](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3?loc=tr)
+## [Ders öncesi test](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3?loc=tr)
 
 Bu derste, makine öğrenimi ve yapay zeka tarihindeki önemli kilometre taşlarını inceleyeceğiz.
 
@@ -102,7 +102,7 @@ Geleceğin neler getireceğini birlikte göreceğiz, ancak bu bilgisayar sisteml
 
 Bu tarihi anlardan birine girin ve arkasındaki insanlar hakkında daha fazla bilgi edinin. Büyüleyici karakterler var ve kültürel bir boşlukta hiçbir bilimsel keşif yaratılmadı. Ne keşfedersiniz?
 
-## [Ders sonrası test](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4?loc=tr)
+## [Ders sonrası test](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4?loc=tr)
 
 ## İnceleme ve Bireysel Çalışma
 

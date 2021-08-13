@@ -4,7 +4,7 @@ Bu derste, mutfaklarla ilgili dengeli ve temiz veriyle dolu, geçen dersten kayd
 
 Bu veri setini çeşitli sınıflandırıcılarla _bir grup malzemeyi baz alarak verilen bir ulusal mutfağı öngörmek_ için kullanacaksınız. Bunu yaparken, sınıflandırma görevleri için algoritmaların leveraj edilebileceği yollardan bazıları hakkında daha fazla bilgi edineceksiniz.
 
-## [Ders öncesi kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/?loc=tr)
+## [Ders öncesi kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21/?loc=tr)
 # Hazırlık
 
 [Birinci dersi](../../1-Introduction/README.md) tamamladığınızı varsayıyoruz, dolayısıyla bu dört ders için _cleaned_cuisines.csv_ dosyasının kök `/data` klasöründe var olduğundan emin olun.
@@ -68,12 +68,12 @@ Bu veri setini çeşitli sınıflandırıcılarla _bir grup malzemeyi baz alarak
     Öznitelikleriniz şöyle görünüyor:
 
 | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |
-| -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: | 
-|      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-|      1 |        1 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-|      2 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-|      3 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-|      4 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        1 | 0   |
+| -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: |
+|      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|      1 |        1 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|      2 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|      3 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
+|      4 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        1 | 0 |
 
 Şimdi modelinizi eğitmek için hazırsınız!
 
@@ -199,8 +199,8 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
     Sonuç bastırılır - Hint mutfağı iyi olasılıkla en iyi öngörü:
 
-    |          |        0 | 
-    | -------: | -------: | 
+    |          |        0 |
+    | -------: | -------: |
     |   indian | 0.715851 |
     |  chinese | 0.229475 |
     | japanese | 0.029763 |
@@ -217,21 +217,21 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     ```
 
     |              | precision | recall | f1-score | support |
-    | ------------ | ------ | -------- | ------- | ---- |
-    | chinese      | 0.73   | 0.71     | 0.72    | 229  |
-    | indian       | 0.91   | 0.93     | 0.92    | 254  |
-    | japanese     | 0.70   | 0.75     | 0.72    | 220  |
-    | korean       | 0.86   | 0.76     | 0.81    | 242  |
-    | thai         | 0.79   | 0.85     | 0.82    | 254  |
-    | accuracy     | 0.80   | 1199     |         |      |
-    | macro avg    | 0.80   | 0.80     | 0.80    | 1199 |
-    | weighted avg | 0.80   | 0.80     | 0.80    | 1199 |
+    | ------------ | --------- | ------ | -------- | ------- |
+    | chinese      | 0.73      | 0.71   | 0.72     | 229     |
+    | indian       | 0.91      | 0.93   | 0.92     | 254     |
+    | japanese     | 0.70      | 0.75   | 0.72     | 220     |
+    | korean       | 0.86      | 0.76   | 0.81     | 242     |
+    | thai         | 0.79      | 0.85   | 0.82     | 254     |
+    | accuracy     | 0.80      | 1199   |          |         |
+    | macro avg    | 0.80      | 0.80   | 0.80     | 1199    |
+    | weighted avg | 0.80      | 0.80   | 0.80     | 1199    |
 
 ## :rocket: Meydan Okuma
 
 Bu derste, bir grup malzemeyi baz alarak bir ulusal mutfağı öngörebilen bir makine öğrenimi modeli oluşturmak için temiz verinizi kullandınız. Scikit-learn'ün veri sınıflandırmak için sağladığı birçok yöntemi okumak için biraz vakit ayırın. Arka tarafta neler olduğunu anlamak için 'çözücü' kavramını derinlemesine inceleyin.
 
-## [Ders sonrası kısa sınavı](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/?loc=tr)
+## [Ders sonrası kısa sınavı](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22/?loc=tr)
 
 ## Gözden geçirme & kendi kendine çalışma
 

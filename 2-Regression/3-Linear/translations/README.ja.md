@@ -2,7 +2,7 @@
 
 ![線形回帰 vs 多項式回帰 のインフォグラフィック](../images/linear-polynomial.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) によるインフォグラフィック
-## [講義前のクイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
+## [講義前のクイズ](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
 ### イントロダクション 
 
 これまで、このレッスンで使用するカボチャの価格データセットから集めたサンプルデータを使って、回帰とは何かを探ってきました。また、Matplotlibを使って可視化を行いました。
@@ -323,7 +323,7 @@ Scikit-learnには、多項式回帰モデルを構築するための便利なAP
 
 このノートブックでいくつかの異なる変数をテストし、相関関係がモデルの精度にどのように影響するかを確認してみてください。
 
-## [講義後クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
+## [講義後クイズ](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
 
 ## レビュー & 自主学習
 

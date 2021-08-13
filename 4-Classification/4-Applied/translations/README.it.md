@@ -8,7 +8,7 @@ Uno degli usi pratici più utili dell'apprendimento automatico è la creazione d
 
 > 🎥 Fare clic sull'immagine sopra per un video: Andrew Ng introduce la progettazione di un sistema di raccomandazione
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/)
+## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/)
 
 In questa lezione, si imparerà:
 
@@ -321,7 +321,7 @@ Congratulazioni, si è creato un'app web di "raccomandazione" con pochi campi. S
 
 L'app web è molto minimale, quindi continuare a costruirla usando gli ingredienti e i loro indici dai dati [ingredient_indexes](../../data/ingredient_indexes.csv) . Quali combinazioni di sapori funzionano per creare un determinato piatto nazionale?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/26/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26/)
 
 ## Revisione e Auto Apprendimento
 

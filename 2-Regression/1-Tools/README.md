@@ -4,7 +4,7 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
 
 > ### [This lesson is available in R!](./solution/lesson_1-R.ipynb)
 
@@ -199,7 +199,7 @@ Congratulations, you built your first linear regression model, created a predict
 ## 🚀Challenge
 
 Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
 ## Review & Self Study
 

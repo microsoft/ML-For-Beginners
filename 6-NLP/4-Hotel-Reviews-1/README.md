@@ -6,7 +6,7 @@ In this section you will use the techniques in the previous lessons to do some e
 - how to calculate some new data based on the existing columns
 - how to save the resulting dataset for use in the final challenge
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/37/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37/)
 
 ### Introduction
 
@@ -393,7 +393,7 @@ Now that you have explored the dataset, in the next lesson you will filter the d
 
 This lesson demonstrates, as we saw in previous lessons, how critically important it is to understand your data and its foibles before performing operations on it. Text-based data, in particular, bears careful scrutiny. Dig through various text-heavy datasets and see if you can discover areas that could introduce bias or skewed sentiment into a model. 
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/38/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38/)
 
 ## Review & Self Study
 

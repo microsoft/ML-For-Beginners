@@ -4,7 +4,7 @@
 
 你将使用此数据集和各种分类器，_根据一组配料预测这是哪一国家的美食_。在此过程中，你将学到更多用来权衡分类任务算法的方法  
 
-## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/21/)
+## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21/)
 # 准备工作
 
 假如你已经完成了[课程1](../../1-Introduction/translations/README.zh-cn.md), 确保在根目录的`/data`文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
@@ -68,13 +68,13 @@
 
     你的特征集看上去将会是这样:
 
-    | | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |     
-    | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: | --- |
-    |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      1 |        1 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      2 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      3 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0   |
-    |      4 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |    0 |     ... |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        1 | 0   |
+    |      | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |
+    | ---: | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------- |
+    |    0 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 | 0        |
+    |    1 |      1 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 | 0        |
+    |    2 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 | 0        |
+    |    3 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 | 0        |
+    |    4 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      1 | 0        |
 
 现在，你已经准备好可以开始训练你的模型了！
 
@@ -201,11 +201,11 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     运行后的输出如下———可以发现这是一道印度菜的可能性最大，是最合理的猜测:
 
     |          |        0 |
-    | -------: | -------: | 
+    | -------: | -------: |
     |   indian | 0.715851 |
     |  chinese | 0.229475 |
     | japanese | 0.029763 |
-    |   korean | 0.017277 | 
+    |   korean | 0.017277 |
     |     thai | 0.007634 |
 
     ✅ 你能解释下为什么模型会如此确定这是一道印度菜么？
@@ -218,8 +218,8 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     ```
 
     | precision    | recall | f1-score | support |      |
-    | ------------ | ------ | -------- | ------- | ---- | 
-    | chinese      | 0.73   | 0.71     | 0.72    | 229  | 
+    | ------------ | ------ | -------- | ------- | ---- |
+    | chinese      | 0.73   | 0.71     | 0.72    | 229  |
     | indian       | 0.91   | 0.93     | 0.92    | 254  |
     | japanese     | 0.70   | 0.75     | 0.72    | 220  |
     | korean       | 0.86   | 0.76     | 0.81    | 242  |
@@ -232,7 +232,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 在本课程中，你使用了清洗后的数据建立了一个机器学习的模型，这个模型能够根据输入的一系列的配料来预测菜品来自于哪个国家。请再花点时间阅读一下Scikit-learn所提供的关于可以用来分类数据的其他方法的资料。此外，你也可以深入研究一下“solver”的概念并尝试一下理解其背后的原理。
 
-## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/22/)
+## [课后测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22/)
 ## 回顾与自学
 
 [这个课程](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)将对逻辑回归背后的数学原理进行更加深入的讲解

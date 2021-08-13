@@ -3,7 +3,7 @@
 ![Ringkasan dari Keadilan dalam Machine Learning dalam sebuah catatan sketsa](../../../sketchnotes/ml-fairness.png)
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz Pra-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [Quiz Pra-Pelajaran](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
  
 ## Pengantar
 
@@ -90,11 +90,11 @@ Lima jenis bahaya utama ini tidak saling eksklusif, dan satu sistem dapat menunj
  
 ✅ **Diskusi**: Tinjau kembali beberapa contoh dan lihat apakah mereka menunjukkan bahaya yang berbeda.  
 
-|                         | Alokasi | Kualitas Layanan | Stereotip | Fitnah | Representasi yang kurang atau berlebihan |
-| ----------------------- | :--------: | :----------------: | :----------: | :---------: | :----------------------------: |
-| Sistem perekrutan otomatis |     x      |         x          |      x       |             |               x                |
-| Terjemahan mesin     |            |                    |              |             |                                |
-| Melabeli foto          |            |                    |              |             |                                |
+|                            | Alokasi | Kualitas Layanan | Stereotip | Fitnah | Representasi yang kurang atau berlebihan |
+| -------------------------- | :-----: | :--------------: | :-------: | :----: | :--------------------------------------: |
+| Sistem perekrutan otomatis |    x    |        x         |     x     |        |                    x                     |
+| Terjemahan mesin           |         |                  |           |        |                                          |
+| Melabeli foto              |         |                  |           |        |                                          |
 
 
 ## Mendeteksi Ketidakadilan 
@@ -185,7 +185,7 @@ Untuk mencegah kemunculan bias pada awalnya, kita harus:
 
 Pikirkan tentang skenario kehidupan nyata di mana ketidakadilan terbukti dalam pembuatan dan penggunaan model. Apa lagi yang harus kita pertimbangkan? 
 
-## [Quiz Pasca-Pelajaran](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## [Quiz Pasca-Pelajaran](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
 ## Ulasan & Belajar Mandiri 
  
 Dalam pelajaran ini, Kamu telah mempelajari beberapa dasar konsep keadilan dan ketidakadilan dalam pembelajaran mesin. 

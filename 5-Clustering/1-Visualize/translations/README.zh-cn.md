@@ -4,7 +4,7 @@
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
 > 🎥 点击上面的图片观看视频。当您通过聚类学习机器学习时，请欣赏一些尼日利亚舞厅曲目 - 这是2014 年PSquare上高度评价的歌曲。
-## [课前测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/27/)
+## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
 ### 介绍
 
 [聚类](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124)对于数据探索非常有用。让我们看看它是否有助于发现尼日利亚观众消费音乐的趋势和模式。
@@ -323,7 +323,7 @@
 
 聚类试图解决什么样的问题？
 
-## [课后测验](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/28/)
+## [课后测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/)
 
 ## 复习与自学
 

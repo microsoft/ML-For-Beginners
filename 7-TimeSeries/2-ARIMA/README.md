@@ -6,7 +6,7 @@ In the previous lesson, you learned a bit about time series forecasting and load
 
 > 🎥 Click the image above for a video: A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/43/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/43/)
 
 ## Introduction
 
@@ -383,7 +383,7 @@ Check the accuracy of your model by testing its mean absolute percentage error (
 
 Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE in this lesson, but are there other methods you could use? Research them and annotate them. A helpful document can be found [here](https://otexts.com/fpp2/accuracy.html)
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/44/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/44/)
 
 ## Review & Self Study
 
