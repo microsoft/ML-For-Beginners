@@ -68,7 +68,7 @@ Bu eğitim programını oluştururken iki pedagojik ilke seçtik: uygulamalı **
 - ödev
 - ders sonrası kısa sınavı
 
-> **Kısa sınavlar hakkında bir not**: Her biri üç sorudan oluşan ve toplamda 50 tane olan tüm kısa sınavlar [bu uygulamada](https://jolly-sea-0a877260f.azurestaticapps.net) bulunmaktadır. Derslerin içinden de bağlantı yoluyla ulaşılabilirler ancak kısa sınav uygulaması yerelde çalıştırılabilir; `quiz-app` klasöründeki yönergeleri takip edin.
+> **Kısa sınavlar hakkında bir not**: Her biri üç sorudan oluşan ve toplamda 50 tane olan tüm kısa sınavlar [bu uygulamada](https://white-water-09ec41f0f.azurestaticapps.net/) bulunmaktadır. Derslerin içinden de bağlantı yoluyla ulaşılabilirler ancak kısa sınav uygulaması yerelde çalıştırılabilir; `quiz-app` klasöründeki yönergeleri takip edin.
 
 
 | Ders Numarası |                           Konu                             |                     Ders Gruplandırması                     |  Öğrenme Hedefleri                                                                                                              |                         Ders                          |     Yazar      |
