@@ -3,7 +3,7 @@
 ![Summary of History of machine learning in a sketchnote](../../sketchnotes/ml-history.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/3/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
 
 In this lesson, we will walk through the major milestones in the history of machine learning and artificial intelligence.
 
@@ -101,7 +101,7 @@ It remains to be seen what the future holds, but it is important to understand t
 
 Dig into one of these historical moments and learn more about the people behind them. There are fascinating characters, and no scientific discovery was ever created in a cultural vacuum. What do you discover?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/4/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4/)
 
 ## Review & Self Study
 

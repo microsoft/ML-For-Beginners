@@ -26,7 +26,7 @@ Similar to Readme's, please translate the assignments as well.
 
 3. Edit the quiz-app's [translations index.js file](https://github.com/microsoft/ML-For-Beginners/blob/main/quiz-app/src/assets/translations/index.js) to add your language.
 
-4. Finally, edit ALL the quiz links in your translated README.md files to point directly to your translated quiz: https://https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1 becomes https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1?loc=id
+4. Finally, edit ALL the quiz links in your translated README.md files to point directly to your translated quiz: https://white-water-09ec41f0f.azurestaticapps.net/quiz/1 becomes https://white-water-09ec41f0f.azurestaticapps.net/quiz/1?loc=id
 
 **THANK YOU**
 
