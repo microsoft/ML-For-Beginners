@@ -3,7 +3,7 @@
 ![Summary of Fairness in Machine Learning in a sketchnote](../../sketchnotes/ml-fairness.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
  
 ## Introduction
 
@@ -29,7 +29,7 @@ Learn more about Responsible AI by following this [Learning Path](https://docs.m
 
 ## Unfairness in data and algorithms
 
-> "If you torture the data long enough, it will confess to anything - Ronald Coase
+> "If you torture the data long enough, it will confess to anything" - Ronald Coase
 
 This statement sounds extreme, but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and it's often difficult to consciously know when you are introducing bias in data.
 
@@ -184,7 +184,7 @@ To prevent biases from being introduced in the first place, we should:
 
 Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider? 
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
 ## Review & Self Study 
  
 In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  

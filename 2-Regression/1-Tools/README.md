@@ -4,7 +4,10 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
+
+> ### [This lesson is available in R!](./solution/lesson_1-R.ipynb)
+
 ## Introduction
 
 In these four lessons, you will discover how to build regression models. We will discuss what these are for shortly. But before you do anything, make sure you have the right tools in place to start the process!
@@ -52,7 +55,7 @@ In this folder, you will find the file _notebook.ipynb_.
 
    Next, add some Python code. 
 
-1. Type **print("hello notebook'")** in the code block.
+1. Type **print('hello notebook')** in the code block.
 1. Select the arrow to run the code.
 
    You should see the printed statement:
@@ -95,7 +98,7 @@ For this task we will import some libraries:
 
 - **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the Scikit-learn library.
+- **sklearn**. This is the [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) library.
 
 Import some libraries to help with your tasks.
 
@@ -180,6 +183,9 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     ```python
     plt.scatter(X_test, y_test,  color='black')
     plt.plot(X_test, y_pred, color='blue', linewidth=3)
+    plt.xlabel('Scaled BMIs')
+    plt.ylabel('Disease Progression')
+    plt.title('A Graph Plot Showing Diabetes Progression Against BMI')
     plt.show()
     ```
 
@@ -193,7 +199,7 @@ Congratulations, you built your first linear regression model, created a predict
 ## 🚀Challenge
 
 Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
 ## Review & Self Study
 

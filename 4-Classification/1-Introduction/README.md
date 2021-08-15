@@ -19,7 +19,7 @@ Remember:
 
 Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/)
 
 ### Introduction
 
@@ -163,7 +163,7 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
     def create_ingredient_df(df):
         ingredient_df = df.T.drop(['cuisine','Unnamed: 0']).sum(axis=1).to_frame('value')
         ingredient_df = ingredient_df[(ingredient_df.T != 0).any()]
-        ingredient_df = ingredient_df.sort_values(by='value', ascending=False
+        ingredient_df = ingredient_df.sort_values(by='value', ascending=False,
         inplace=False)
         return ingredient_df
     ```
@@ -264,12 +264,18 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 
     The data is nice and clean, balanced, and very delicious! 
 
+1. The last step is to save your balanced data, including labels and features, into a new dataframe that can be exported into a file:
+
+    ```python
+    transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
+    ```
+
 1. You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
 
     ```python
     transformed_df.head()
     transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisine.csv")
+    transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
     This fresh CSV can now be found in the root data folder.
@@ -280,7 +286,7 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
 
 This curriculum contains several interesting datasets. Dig through the `data` folders and see if any contain datasets that would be appropriate for binary or multi-class classification? What questions would you ask of this dataset?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/)
 
 ## Review & Self Study
 

@@ -1,0 +1,2815 @@
+[
+  {
+    "title": "初心者のための機械学習: 小テスト",
+    "complete": "おめでとうございます、小テストを完了しました！",
+    "error": "すみません、もう一度試してみてください。",
+    "quizzes": [
+      {
+        "id": 1,
+        "title": "機械学習への導入: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "機械学習の応用は身近にある",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "古典的機械学習と深層学習の技術的な違いは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "古典的機械学習のほうが先に発明された",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ニューラルネットワークを使用するかどうか",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "深層学習はロボットに使用されている",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "なぜ企業は機械学習の戦略を使いたいと思うのでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "多元的な問題の解決を自動化するため",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "顧客の種類に応じてショッピング体験をカスタマイズするため",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "機械学習への導入: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "機械学習のアルゴリズムがシミュレートするのは",
+            "answerOptions": [
+              {
+                "answerText": "賢いマシン",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "人間の脳",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "オランウータン",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "古典的機械学習の手法の例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "自然言語処理",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "深層学習",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ニューラルネットワーク",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "なぜ全員が機械学習の基礎を学ぶべきなのでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "機械学習を学ぶのは誰でも始めやすくて楽しいから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "機械学習の戦略は多くの産業や領域で使用されているから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "機械学習の歴史: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "「人工知能」という言葉が生まれたのはいつ頃でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "1980年代",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "1950年代",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "1930年代",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "機械学習における先駆者のうちのひとりは誰でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "アラン・チューリング",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ビル・ゲイツ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "シェーキー",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "1970年代にAIの進歩が鈍化した理由のひとつは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "計算能力の限界",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "熟練したエンジニアの不足",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "国家間の紛争",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "機械学習の歴史: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "「みすぼらしい」AIシステムの例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "ELIZA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "HACKML",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SSYSTEM",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "「黄金期」に開発された技術の例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "Blocks world",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Jibo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ロボット犬",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "人工知能の分野において誕生と発展の礎になった出来事はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "チューリングテスト",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ダートマス夏期研究会",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "AIの冬",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "公平性と機械学習: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "機械学習において不公平性が起こりうるのは",
+            "answerOptions": [
+              {
+                "answerText": "故意で",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "過失で",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方で",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "機械学習において「不公平性」が意味するのは",
+            "answerOptions": [
+              {
+                "answerText": "あるグループの人々に対する弊害",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ひとりの人に対する弊害",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "大多数の人々に対する弊害",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "5つの主な弊害は",
+            "answerOptions": [
+              {
+                "answerText": "割り当て・サービスの質・偏見・誹謗中傷・表現の過不足",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "移住・サービスの質・偏見・誹謗中傷・表現の過不足",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "割り当て・サービスの質・ステレオ・誹謗中傷・表現の過不足",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "公平性と機械学習: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "モデルに不公平性が発生する原因のひとつは",
+            "answerOptions": [
+              {
+                "answerText": "過去のデータに対する依存度が高すぎること",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "過去のデータに対する依存度が低すぎること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "過去のデータとの整合性が高すぎること",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "不公平性を緩和するためにできることは",
+            "answerOptions": [
+              {
+                "answerText": "弊害とそれを受けるグループの特定",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "公平性に関する指標の定義",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Fairlearnパッケージができることは",
+            "answerOptions": [
+              {
+                "answerText": "複数のモデル間で公平性とパフォーマンスの指標を比較",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ニーズに応じた最適なモデルの選択",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "何が公平で、何がそうでないかの判断を助けること",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "ツールと手法: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "モデルを構築する際にすべきなのは",
+            "answerOptions": [
+              {
+                "answerText": "データを準備してから学習すること",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "学習方法を選んでからデータを準備すること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "パラメータを調整してから学習すること",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "データの〇〇が機械学習モデルの質に影響を与える",
+            "answerOptions": [
+              {
+                "answerText": "量",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "形",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "特徴量とは",
+            "answerOptions": [
+              {
+                "answerText": "データの質",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データの測定可能な特性",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データの列",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "ツールと手法: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "データを可視化すべき理由は",
+            "answerOptions": [
+              {
+                "answerText": "外れ値を発見できるから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "バイアスの原因を発見できるから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "分割するデータの種類は",
+            "answerOptions": [
+              {
+                "answerText": "訓練データとチューリングデータ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "訓練データとテストデータ",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "検証データと評価データ",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "様々な機械学習ライブラリで学習プロセスを開始する一般的なコマンドは",
+            "answerOptions": [
+              {
+                "answerText": "model.travel",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.train",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.fit",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "回帰への導入: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "次の変数のうち、数値の変数はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "身長",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "性別",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "髪の色",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "次の変数のうち、カテゴリーの変数はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "心拍数",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "血液型",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "体重",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "次の問題のうち、回帰分析に基づく問題はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "学生の期末試験の点数を予測する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ある人物の血液型を予測する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "メールがスパムかどうかを判定する",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "回帰への導入: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "機械学習モデルの学習精度が95%でテスト精度が30%の場合、どんな状態であると呼ばれるでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "過学習",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "未学習",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "二重学習",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "特徴量の中から重要なものを特定するプロセスの名前は",
+            "answerOptions": [
+              {
+                "answerText": "特徴量抽出",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "特徴量の次元削減",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "特徴量選択",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Scikit Learn の 'train_test_split()' メソッド/関数を使用して、データセットを一定の割合で訓練データセットとテストデータセットに分割する処理の名前は",
+            "answerOptions": [
+              {
+                "answerText": "交差検証",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ホールドアウト検証",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ひとつ抜き検証",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "回帰のためにデータを準備して可視化する: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "次のPythonモジュールのうち、データを可視化するために使用されるものはどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "Numpy",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Scikit-learn",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Matplotlib",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "データセットの広がり方やその他の特性を理解するために実行するのは",
+            "answerOptions": [
+              {
+                "answerText": "データの可視化",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データの前処理",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "訓練データとテストデータの分割",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "次のうち、機械学習プロジェクトにおいてデータ可視化ステップの一部であるものはどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "特定の機械学習アルゴリズムを取り入れる",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "様々なプロット方法を使ってデータの図解表現を作成する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データセットの値を正規化する",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "回帰のためにデータを準備して可視化する: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "次のコードスニペットのうち、データセットに欠損値が含まれているかどうかを確認するものとして、このレッスンにおいて正しいのはどれでしょうか？なお、データセットはPandasのDataFrameオブジェクトである 'dataset' という変数に格納されているものとします。",
+            "answerOptions": [
+              {
+                "answerText": "dataset.isnull().sum()",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "findMissing(dataset)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sum(null(dataset))",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "次のプロット方法のうち、データセットの異なるデータグループの広がり方を理解するために有効なものはどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "散布図",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "折れ線グラフ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "棒グラフ",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "データ可視化が教えてくれないことは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "データポイント間の関係",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データセットの収集源",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データセットに外れ値が含まれているかどうか",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "線形および多項式回帰: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "Matplotlibは",
+            "answerOptions": [
+              {
+                "answerText": "描画ライブラリ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データ可視化ライブラリ",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "図書館",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "線形回帰が変数間の関係をプロットする方法は",
+            "answerOptions": [
+              {
+                "answerText": "直線",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "円J",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "曲線",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "優れた線形回帰モデルは〇〇相関係数を持つ",
+            "answerOptions": [
+              {
+                "answerText": "低い",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "高い",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "平坦な",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "線形および多項式回帰: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "データが線形でない場合、〇〇回帰を試すと良い",
+            "answerOptions": [
+              {
+                "answerText": "線形",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "球面",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "多項式",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "すべて回帰法の種類なのは",
+            "answerOptions": [
+              {
+                "answerText": "フォルスステップ・リッジ・ラッソ・エラスティックネット",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ステップワイズ・リッジ・ラッソ・エラスティックネット",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ステップワイズ・リッジ・ラリアット・エラスティックネット",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "最小二乗回帰は回帰直線のまわりのすべてのデータポイントが",
+            "answerOptions": [
+              {
+                "answerText": "二乗してから減算されている",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "乗算されている",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "二乗してから加算されている",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "ロジスティック回帰: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "ロジスティック回帰が予測するのは",
+            "answerOptions": [
+              {
+                "answerText": "りんごが熟しているかどうか",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "チケットが月にいくつ売れるか",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "明日の午後6時に空が何色になるか",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "ロジスティック回帰の種類に含まれるのは",
+            "answerOptions": [
+              {
+                "answerText": "多項と基本",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "多項と順序",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "主要と順序",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "あなたのデータには弱い相関があります。最適な回帰の種類は",
+            "answerOptions": [
+              {
+                "answerText": "ロジスティック",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "線形",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "基本",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "ロジスティック回帰: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "Seabornは",
+            "answerOptions": [
+              {
+                "answerText": "データ可視化ライブラリ",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "地図ライブラリ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "数学ライブラリ",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "混同行列の別名は",
+            "answerOptions": [
+              {
+                "answerText": "誤差行列",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "真理行列",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "精度行列",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "良いモデルは",
+            "answerOptions": [
+              {
+                "answerText": "混同行列に多くの偽陽性と真陰性を含む",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "混同行列に多くの真陽性と真陰性を含む",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "混同行列に多くの真陽性と偽陰性を含む",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Webアプリを構築する: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "ONNXは何の略でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "Over Neural Network Exchange",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Open Neural Network Exchange",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Output Neural Network Exchange",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Flaskは作成者にどのように定義されているでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "ミニフレームワーク",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ラージフレームワーク",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "マイクロフレームワーク",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "PythonのPickleモジュールが行うのは",
+            "answerOptions": [
+              {
+                "answerText": "パイソンオブジェクトのシリアライズ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Pythonオブジェクトのデシリアライズ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Pythonオブジェクトのシリアライズとデシリアライズ",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Webアプリを構築する: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "事前学習済みモデルをWeb上にホスティングするために使えるPythonのツールは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "Flask",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "TensorFlow.js",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "onnx.js",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "SaaSは何の略でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "System as a Service",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Software as a Service",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Security as a Service",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Scikit-learn の LabelEncoder ライブラリが行うことは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "データをアルファベットにエンコードすること",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データを数値にエンコードすること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データをシリアルにエンコードすること",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "分類 1: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "分類は教師あり学習の一種であり、多くの共通点を持つのは",
+            "answerOptions": [
+              {
+                "answerText": "時系列",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "回帰手法",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "自然言語処理",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "分類はどのような疑問に答えられるでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "このメールはスパムでしょうか？",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "豚は飛べるでしょうか？",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "人生の意味とは何でしょうか？",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "分類手法を使うための最初のステップは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "データのクラスを作成すること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データのクリーニングとバランシング",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データポイントをグループまたは結果に割り当てること",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "分類 1: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "多クラス問題とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "データポイントを複数のクラスに分類するタスク",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データポイントを複数のクラスのどれかに分類するタスク",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データポイントを複数の方法でクリーニングするタスク",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "分類器が問題を解決するためには、何度も現れるデータや役に立たないデータを除くことが重要である",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "データをバランシングする一番の理由は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "不均衡データは可視化すると見栄えが悪いから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "データをバランシングすると機械学習モデルがひとつのクラスに偏らず、良い結果が得られるから",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "データをバランシングするとより多くのデータポイントが得られるから",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "分類 2: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "バランシングおよびクリーニングされたデータが最も良い分類結果につながる",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "正しい分類器はどのように選ぶでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "どの分類器がどの場面に最適かを理解する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "経験に基づく推測と確認",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "分類は一種の",
+            "answerOptions": [
+              {
+                "answerText": "自然言語処理",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "教師あり学習",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "プログラミング言語",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "分類 2: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "「ソルバ」とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "自分の仕事をダブルチェックしてくれる人",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "最適化問題で使用するアルゴリズム",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "機械学習の手法",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "レッスンで使用した分類器はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "ロジスティック回帰",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "決定木",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "一対他の多クラス",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "分類アルゴリズムが期待通りに動作しているかどうかは、どのようにして知ることができるでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "予測の精度を確認する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "他のアルゴリズムと比較する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "似た問題を解決した際にどれだけ優れていたかを過去のデータから確認する",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "分類 3: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "最初に試すのに適した分類器は",
+            "answerOptions": [
+              {
+                "answerText": "線形サポートベクター分類器",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-Means",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "論理サポートベクター分類器",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "正則化がコントロールするのは",
+            "answerOptions": [
+              {
+                "answerText": "パラメータの影響",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "学習スピードの影響",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "外れ値の影響",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "k近傍分類器が使えるのは",
+            "answerOptions": [
+              {
+                "answerText": "教師あり学習",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "教師なし学習",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "分類 3: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "サポートベクター分類器が使えるのは",
+            "answerOptions": [
+              {
+                "answerText": "分類",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "回帰",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "ランダムフォレストは〇〇な分類器の一種である",
+            "answerOptions": [
+              {
+                "answerText": "アンサンブル",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ディセンブル",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "アセンブル",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "アダブーストは次のように知られている",
+            "answerOptions": [
+              {
+                "answerText": "誤って分類された要素の重みに着目する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "外れ値に着目する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "誤ったデータに着目する",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "分類 4: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "推薦システムが使えるのは",
+            "answerOptions": [
+              {
+                "answerText": "良いレストランの推薦",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "試すべきファッションの推薦",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Webアプリにモデルを埋め込むことでオフライン対応が可能になる",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Onnx Runtime が使えるのは",
+            "answerOptions": [
+              {
+                "answerText": "Webアプリの中でモデルを実行する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "モデルを学習する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ハイパーパラメータのチューニング",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "分類 4: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "Netronアプリが役立つのは",
+            "answerOptions": [
+              {
+                "answerText": "データの可視化",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "モデル構造の可視化",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Webアプリのテスト",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Scikit-learn モデルをOnnxで扱えるようにするために使うのは",
+            "answerOptions": [
+              {
+                "answerText": "sklearn-app",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-web",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-onnx",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Webアプリでモデルを使うことは、通称",
+            "answerOptions": [
+              {
+                "answerText": "推論",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "干渉",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "保険",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "クラスタリングへの導入: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "クラスタリングの実例は",
+            "answerOptions": [
+              {
+                "answerText": "食卓の準備",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "洗濯物の分類",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "食料品の買い物",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "クラスタリングの手法が使える産業は",
+            "answerOptions": [
+              {
+                "answerText": "銀行",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "電子商取引",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "クラスタリングは一種の",
+            "answerOptions": [
+              {
+                "answerText": "教師あり学習",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "教師なし学習",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "強化学習",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "クラスタリングへの導入: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "ユークリッド幾何学が配置されるのは",
+            "answerOptions": [
+              {
+                "answerText": "平面",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "曲面",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "球面",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "クラスタリングデータの密度が関係するのは",
+            "answerOptions": [
+              {
+                "answerText": "ノイズ",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "深さ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "妥当性",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "最も有名なクラスタリングアルゴリズムは",
+            "answerOptions": [
+              {
+                "answerText": "k-means",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "k-middle",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "k-mart",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "K-Means法: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "K-Means の派生元は",
+            "answerOptions": [
+              {
+                "answerText": "電気工学",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "信号処理",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "計算言語学",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "良いシルエットスコアとは",
+            "answerOptions": [
+              {
+                "answerText": "クラスタがよく分離されていて、よく定義されている",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "クラスタの数が少ない",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "クラスタの数が多い",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "分散とは",
+            "answerOptions": [
+              {
+                "answerText": "平均との差を二乗した値の平均",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "クラスタリングにおいて高くなりすぎると問題になるもの",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "K-Means法: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "ボロノイ図が表すのは",
+            "answerOptions": [
+              {
+                "answerText": "クラスタの分散",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "クラスタのシードとその領域",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "クラスタの慣性",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "慣性とは",
+            "answerOptions": [
+              {
+                "answerText": "どれだけ内部にまとまっているクラスタかを表す指標",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "クラスタがどれだけ動くかを表す指標",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "クラスタの質を表す指標",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "K-Means を使う際は、最初に 'k' の値を決める必要がある",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "title": "自然言語処理への導入: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "レッスンにおいてNLPは何の略でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "Neural Language Processing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "natural language processing",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Natural Linguistic Processing",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "初期のボットであるElizaが演じていたのは",
+            "answerOptions": [
+              {
+                "answerText": "療法士",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "医者",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "看護師",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "アラン・チューリングの「チューリングテスト」が判定しようとしていたのは、コンピュータが",
+            "answerOptions": [
+              {
+                "answerText": "人間と見分けがつかないかどうか",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "思考しているかどうか",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "自然言語処理への導入: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "ジョセフ・ワイゼンバウムが発明したボットは",
+            "answerOptions": [
+              {
+                "answerText": "Elisha",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Eliza",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Eloise",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "会話型のボットが出力する方法は",
+            "answerOptions": [
+              {
+                "answerText": "あらかじめ決められた選択肢からランダムに選ぶ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "入力を分析して機械知能を使う",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "ボットをより効果的にするにはどうすれば良いでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "ボットに対してより多くの質問をする",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ボットにより多くのデータを与えて、それに応じた学習をさせる",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ボットは頭が悪いので学習できない :(",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "title": "自然言語処理のタスク: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "トークン化は",
+            "answerOptions": [
+              {
+                "answerText": "文章を句読点で分割する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "文章をトークン（単語）に分割する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "文章をフレーズに分割する",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "埋め込みは",
+            "answerOptions": [
+              {
+                "answerText": "単語をクラスタ化するために文章を数値に変換する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "単語をフレーズに埋め込む",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "文を段落に埋め込む",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "品詞タグ付けは",
+            "answerOptions": [
+              {
+                "answerText": "文を品詞で分ける",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "トークン化された単語を品詞でタグ付けする",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "文を図で表す",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "title": "自然言語処理のタスク: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "単語の出現頻度に関する辞書を作る際に使うのは",
+            "answerOptions": [
+              {
+                "answerText": "単語とフレーズの辞書",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "単語とフレーズの出現頻度",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "単語とフレーズのライブラリ",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "N-grams とは",
+            "answerOptions": [
+              {
+                "answerText": "一定の長さの単語列に分割できる文章",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "一定の長さの文字列に分割できる単語",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "一定の長さの段落に分割できる文章",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "感情分析は",
+            "answerOptions": [
+              {
+                "answerText": "フレーズがポジティブかネガティブかを分析する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "フレーズが感傷的かどうかを分析する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "フレーズの悲しさを分析する",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "title": "自然言語処理と翻訳: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "単純な翻訳は",
+            "answerOptions": [
+              {
+                "answerText": "単語のみを翻訳する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "文章構造を翻訳する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "感情を翻訳する",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "文章の「コーパス」とは",
+            "answerOptions": [
+              {
+                "answerText": "少量の文章",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "大量の文章",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ひとつの標準的な文章",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "もしモデルを構築するのに十分な人間の翻訳があれば、機械学習モデルは",
+            "answerOptions": [
+              {
+                "answerText": "翻訳を省略できる",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "翻訳を標準化できる",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "翻訳の精度を高められる",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "title": "自然言語処理と翻訳: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "TextBlob の翻訳ライブラリの基盤は",
+            "answerOptions": [
+              {
+                "answerText": "Google翻訳",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "独自の機械学習モデル",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "`blob.translate` を使用するために必要なのは",
+            "answerOptions": [
+              {
+                "answerText": "インターネット接続",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "辞書",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "JavaScript",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "感情を判定するために機械学習のアプローチで行うのは",
+            "answerOptions": [
+              {
+                "answerText": "手で作成した意見やスコアに回帰の手法を適用して、パターンを探す",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "手で作成した意見やスコアに自然言語処理の手法を適用して、パターンを探す",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "手で作成した意見やスコアにクラスタリングの手法を適用して、パターンを探す",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "title": "自然言語処理 4: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "人間が書いたり話した文章から得られる情報は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "パターンと頻度",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "感情と意味",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "感情分析とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "家宝に感傷的な価値があるかどうかの研究",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "感情の状態や主観的な情報を体系的に識別・抽出・定量化・研究する方法",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ある人物が悲しいのか楽しいのかを見分ける能力",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "ホテルのレビューのデータセット・Python・感情分析を使うことで答えられる質問は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "レビューで最もよく使われる単語やフレーズは何でしょうか？",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "どのリゾートに最も良いプールがあるでしょうか？",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "このホテルにはバレーパーキングがあるでしょうか？",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "title": "自然言語処理 4: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "自然言語処理の本質とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "人間の言葉を楽しいものと悲しいものに分類すること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "人の手を借りずに意味や感情を読み取ること",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "感情の異常を見つけて調べること",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "データをクリーニングする際に気を付けたほうが良いことは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "他の言語の文字",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "空の行や列",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "データを操作する前にデータとその弱点を理解するのが重要である",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "title": "自然言語処理 5: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "分析する前にデータをクリーニングすることが重要なのはなぜでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "データが欠損していたり不正だったりする列があるかもしれないから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "汚いデータはデータセットに関する誤った結論につながる可能性があるから",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "データクリーニング戦略の例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "特定の質問に答えるために有用でない列や行の削除",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "仮説に合わない検証値の排除",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "外れ値を別の表に移し、その表で計算を行って、一致するかどうかを確認",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Tag列を使ってデータを分類すると便利なことがある",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "title": "自然言語処理 5: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "データセットの目的は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "世界中のホテルに対する否定的および肯定的なレビューがいくつあるかを確認すること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "最も良いホテルを選ぶために役立つ意見と列を追加すること",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "人々がなぜ特定のレビューを残すのかを分析すること",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "ストップワードとは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "文章の印象を変えない一般的な単語",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "感情分析を高速化するために除去できる単語",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "感情分析をテストするには、同じレビューに対するレビュアーのスコアが一致していることを確認する",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "title": "時系列への導入: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "時系列予測が役立つのは",
+            "answerOptions": [
+              {
+                "answerText": "将来のコストを決めるとき",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "将来の価格を予測するとき",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "時系列とは、次のような列である",
+            "answerOptions": [
+              {
+                "answerText": "空間的に連続した等間隔の点",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "時間的に連続した等間隔の点",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "時間的および空間的に連続した等間隔の点",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "時系列が使用できるのは",
+            "answerOptions": [
+              {
+                "answerText": "地震予測",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "コンピュータビジョン",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "色解析",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "title": "時系列への導入: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "時系列のトレンドとは",
+            "answerOptions": [
+              {
+                "answerText": "時間の経過に伴う測定可能な増加と減少",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "時間の経過に伴う減少の定量化",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "時間の経過に伴う増加と減少の差",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "外れ値とは",
+            "answerOptions": [
+              {
+                "answerText": "標準的なデータの分散に近い点",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "標準的なデータの分散から離れた点",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "標準的なデータの分散の中にある点",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "時系列予測が最も有効なのは",
+            "answerOptions": [
+              {
+                "answerText": "計量経済学",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "歴史",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "図書館",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "title": "時系列ARIMA: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "ARIMAは次の略である",
+            "answerOptions": [
+              {
+                "answerText": "AutoRegressive Integral Moving Average",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Action",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Average",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "定常性とは",
+            "answerOptions": [
+              {
+                "answerText": "時間をずらしても属性が変わらないデータ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "時間をずらしても分布が変わらないデータ",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "時間をずらすと分布が変わるデータ",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "差分変換は",
+            "answerOptions": [
+              {
+                "answerText": "トレンドや季節性を安定させる",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "トレンドや季節性を悪化させる",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "トレンドや季節性を排除する",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "title": "時系列ARIMA: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "ARIMAは、時系列データの特殊な形に対してモデルを次のように適合させるために使われる",
+            "answerOptions": [
+              {
+                "answerText": "できるだけ平坦に",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "できるだけ近く",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "散布図によって",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "SARIMAXを使うのは",
+            "answerOptions": [
+              {
+                "answerText": "季節性ARIMAモデルを管理するため",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "特別なARIMAモデルを管理するため",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "統計的なARIMAモデルを管理するため",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "「ウォークフォワード」検証では",
+            "answerOptions": [
+              {
+                "answerText": "モデルを検証しながら段階的に再評価する",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "モデルを検証しながら段階的に再学習する",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "モデルを検証しながら段階的に再構成する",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "title": "強化 1: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "強化学習とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "理解するまで何度も教えること",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "何回も試行することで、ある環境におけるエージェントの最適な行動を解読する学習手法",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "複数の試行を一度に行う方法を理解すること",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "方策とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "任意の状態で行動を返す関数",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "返品できるかどうかを示す書類",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ランダムな目的で使用される関数",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "報酬関数はある環境における各状態に対するスコアを返す",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "title": "強化 1: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "Q学習とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "各状態の「良さ」を記録する仕組み",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Qテーブルによって方策が定義されているアルゴリズム",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "上の両方",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "ランダムウォークに対応するQテーブルの値は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "すべて同じ値",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "-0.25",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "すべて違う値",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "レッスンの学習プロセスでは搾取よりも探索を行ったほうが良かった",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "title": "強化 2: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "チェスや囲碁は連続した状態を持つゲームである",
+            "answerOptions": [
+              {
+                "answerText": "正しい",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "正しくない",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "カートポール問題とは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "外れ値を排除するプロセス",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "買い物かごを最適化する方法",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "バランシングの簡易版",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "ゲームの中で起こりうる状態における様々なシナリオを行うために使えるツールは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "推測と確認",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "シミュレーション環境",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "状態遷移テスト",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "title": "強化 2: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "ある環境で起こりうるすべての状態を定義する場所はどこでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "メソッド",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "アクションスペース",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "アクションリスト",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "辞書のキーバリューとして使ったペアは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "キーに(state, action)、バリューにQテーブルのエントリ",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "キーにstate、バリューにaction",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "キーにqvalues関数の値、バリューにaction",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Q学習で使用したハイパーパラメータは何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "Qテーブルの値・現在の報酬・ランダムなアクション",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "学習率・割引率・探索/搾取率",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "累積報酬・学習率・探索率",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 49,
+        "title": "実世界への応用: 講義前の小テスト",
+        "quiz": [
+          {
+            "questionText": "金融業界における機械学習の応用例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "自然言語処理を使ったカスタマージャーニーのパーソナライズ",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "線形回帰を使った健康管理",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "時系列を使ったエネルギー管理",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "再入院を管理するために病院で使える機械学習の手法は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "クラスタリング",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "時系列",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "自然言語処理",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "エネルギー管理に時系列を使用する例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "動物のモーションセンシング",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "スマートパーキングメーター",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "森林火災の追跡",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "title": "実世界への応用: 講義後の小テスト",
+        "quiz": [
+          {
+            "questionText": "クレジットカードの不正利用を検出するために使用できる機械学習の手法はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "回帰",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "クラスタリング",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "自然言語処理",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "森林管理で例示されている機械学習の手法はどれでしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "強化学習",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "時系列",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "自然言語処理",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "ヘルスケア業界における機械学習の応用例は何でしょうか？",
+            "answerOptions": [
+              {
+                "answerText": "回帰を使った学生の行動予測",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "分類器を使った臨床試験の管理",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "分類器を使った動物のモーションセンシング",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

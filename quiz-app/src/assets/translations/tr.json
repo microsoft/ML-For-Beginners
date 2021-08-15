@@ -1,0 +1,2815 @@
+[
+	{
+		"title": "Yeni Başlayanlar için Makine Öğrenimi: Kısa Sınavlar",
+		"complete": "Tebrikler, testi tamamladınız!",
+		"error": "Üzgünüz, tekrar deneyin",
+		"quizzes": [
+			{
+				"id": 1,
+				"title": "Makine Öğrenmesine Giriş: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Makine öğrenimi uygulamaları her yerdedir",
+						"answerOptions": [
+							{
+								"answerText": "Doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Yanlış",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Klasik ML(Makine Öğrenimi) ile derin öğrenme arasındaki teknik fark nedir?",
+						"answerOptions": [
+							{
+								"answerText": "ilk olarak klasik makine öğrenimi icat edildi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sinir ağlarının kullanımı",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "robotlarda derin öğrenme kullanılır",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bir işletme neden makine öğrenimi stratejilerini kullanmak isteyebilir?",
+						"answerOptions": [
+							{
+								"answerText": "çok boyutlu problemlerin çözümünü otomatikleştirmek için",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "müşteri türüne göre bir alışveriş deneyimini özelleştirmek için",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 2,
+				"title": "Makine Öğrenmesine Giriş: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Makine öğrenimi algoritmaları aşağıdakilerin hangisini simüle etmek içindir?",
+						"answerOptions": [
+							{
+								"answerText": "akıllı makineler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "insan beyni",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "orangutanlar",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Klasik ML tekniğine bir örnek nedir?",
+						"answerOptions": [
+							{
+								"answerText": "doğal dil işleme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "derin öğrenme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Sinir Ağları",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Neden herkes makine öğreniminin temellerini öğrenmeli?",
+						"answerOptions": [
+							{
+								"answerText": "ML öğrenmek eğlencelidir ve herkes için erişilebilirdir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "ML stratejileri birçok endüstri ve alanda kullanılıyor",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 3,
+				"title": "Makine Öğreniminin Tarihçesi: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "'Yapay zeka' terimi yaklaşık olarak ne zaman ortaya çıktı?",
+						"answerOptions": [
+							{
+								"answerText": "1980'ler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "1950'ler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "1930'lar",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Hangisi makine öğreniminin ilk öncülerinden biridir?",
+						"answerOptions": [
+							{
+								"answerText": "Alan Turing",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bill Gates",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Robot Shakey",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "1970'lerde yapay zekâdaki ilerlemenin yavaşlamasının nedenlerinden biri nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Sınırlı işlem gücü",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Yeterli kalifiye mühendis olmaması",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Ülkeler arası çatışmalar",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 4,
+				"title": "Makine Öğreniminin Tarihçesi: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "'Düzensiz' bir yapay zeka sistemi örneği nedir?",
+						"answerOptions": [
+							{
+								"answerText": "ELIZA",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "HACKML",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "SSYSTEM",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "'Altın Yıllar'da geliştirilen bir teknoloji örneği nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Dünya Blokları",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Jibo",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Robot köpekler",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Yapay zeka alanının yaratılması ve genişletilmesinde hangi olay temel oluşturmuştur?",
+						"answerOptions": [
+							{
+								"answerText": "Turing Testi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Dartmouth Yaz Araştırma Projesi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "AI Kışı",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 5,
+				"title": "Adillik ve Makine Öğrenimi: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Makine Öğreniminde adaletsizlik ne şekilde olabilir?",
+						"answerOptions": [
+							{
+								"answerText": "kasıtlı olarak",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "istemeden",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "ML'deki 'haksızlık' terimi şu anlama gelir:",
+						"answerOptions": [
+							{
+								"answerText": "bir grup insana zarar verilmesi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir kişiye zarar verilmesi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "insanların çoğuna zarar verilmesi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Hangisi beş ana zarar türüdür?",
+						"answerOptions": [
+							{
+								"answerText": "tahsis, hizmet kalitesi, klişeleştirme, aşağılama ve gereğinden fazla veya eksik temsil",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yerleştirme, hizmet kalitesi, klişeleştirme, aşağılama ve gereğinden fazla veya eksik temsil",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "tahsis, hizmet kalitesi, stereofoni, aşağılama ve fazla veya eksik temsil",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 6,
+				"title": "Adillik ve Makine Öğrenimi: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Bir modeldeki adaletsizlik şundan kaynaklanabilir",
+						"answerOptions": [
+							{
+								"answerText": "geçmiş verilere aşırı güven",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "geçmiş verilere yetersiz güven",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "geçmiş verilere çok yakın durmak",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Haksızlığı azaltmak için ne yapabilirsiniz?",
+						"answerOptions": [
+							{
+								"answerText": "zararları ve etkilenen grupları tanımlarım",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "adalet ölçütlerini tanımlarım",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin her ikisi de",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Fairlearn paketi hangisini yapabilir?",
+						"answerOptions": [
+							{
+								"answerText": "adalet ve performans ölçütlerini kullanarak birden çok modeli karşılaştırır",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "ihtiyaçlarınıza en uygun modeli seçer",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Neyin adil olup neyin olmadığına karar vermenize yardımcı olur",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 7,
+				"title": "Araçlar ve Teknikler: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Bir model oluştururken şunları yapmalısınız:",
+						"answerOptions": [
+							{
+								"answerText": "verilerinizi hazırlamalı, ardından modelinizi eğitmelisiniz",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir eğitim yöntemi seçip, ardından verilerinizi hazırlamalısınız",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "parametreleri ayarlamalı, ardından modelinizi eğitmelisiniz",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Verilerinizin ___ makine öğrenimi modelinizin kalitesini etkiler",
+						"answerOptions": [
+							{
+								"answerText": "miktarı",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "şekli",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Bir özellik değişkeni:",
+						"answerOptions": [
+							{
+								"answerText": "verilerinizin kalitesini gösteren bir değişkendir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "verilerinizin ölçülebilir bir özelliğini gösteren bir değişkendir",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "verilerinizin bir satırıdır",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 8,
+				"title": "Araçlar ve Teknikler: Ders Sonrası Test",
+				"quiz": [
+					{
+						"questionText": "Verilerinizi görselleştirmelisiniz çünkü",
+						"answerOptions": [
+							{
+								"answerText": "aykırı değerleri keşfedebilirsiniz",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "önyargı için potansiyel bir sebebi keşfedebilirsiniz",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Verilerinizi şu şekilde bölün:",
+						"answerOptions": [
+							{
+								"answerText": "eğitim ve turing setleri",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "eğitim ve test setleri",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "doğrulama ve değerlendirme setleri",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Çeşitli ML kütüphanelerinde modelin eğitim sürecini başlatmak için yaygın bir komut şudur:",
+						"answerOptions": [
+							{
+								"answerText": "model.travel",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "model.train",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "model.fit",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 9,
+				"title": "Regresyona Giriş: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Bu değişkenlerden hangisi sayısal bir değişkendir?",
+						"answerOptions": [
+							{
+								"answerText": "Yükseklik",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Cinsiyet",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Saç Rengi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bu değişkenlerden hangisi kategorik bir değişkendir?",
+						"answerOptions": [
+							{
+								"answerText": "Kalp Atış Hızı",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Kan Tipi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Ağırlık",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bu problemlerden hangisi Regresyon analizine dayalı bir problemdir?",
+						"answerOptions": [
+							{
+								"answerText": "Öğrencinin final sınav notlarını tahmin etme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Kişinin kan grubunu tahmin etme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bir e-postanın spam (gereksiz) olup olmadığını tahmin etme",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 10,
+				"title": "Regresyona Giriş: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Makine Öğrenimi modelinizin eğitim doğruluğu %95 ve test doğruluğu %30 ise buna ne denir?",
+						"answerOptions": [
+							{
+								"answerText": "Aşırı öğrenme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Eksik öğrenme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Çift öğrenme",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bir dizi özellikten önemli özellikleri belirleme sürecine ne denir?",
+						"answerOptions": [
+							{
+								"answerText": "Özellik Çıkarma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Özellik Boyutu Azaltma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Özellik Seçimi",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Scikit Learn kütüphanesinin 'train_test_split()' metodunu/fonksiyonunu kullanarak bir veri setini belirli bir oranda eğitim ve test veri setine bölme işlemine ne ad verilir?",
+						"answerOptions": [
+							{
+								"answerText": "Çapraz doğrulama",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Dışarıda bırakma (Hold-out) doğrulaması",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Birini dışarıda bırakma (Leave one out) doğrulaması",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 11,
+				"title": "Regresyon için Verileri Hazırlayın ve Görselleştirin: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Verilerin görselleştirilmesi için bu Python modüllerinden hangisi kullanılır?",
+						"answerOptions": [
+							{
+								"answerText": "Numpy",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Scikit-learn",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Matplotlib",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Veri setinizdeki veri noktalarının yayılımını veya diğer özelliklerini anlamak istiyorsanız yapmanız gereken nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Veri Görselleştirme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Veri Ön İşlemesi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Eğitim Test Bölümü",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bunlardan hangisi bir Makine Öğrenimi projesinde Veri Görselleştirme adımının bir parçasıdır?",
+						"answerOptions": [
+							{
+								"answerText": "Belirli bir Makine Öğrenimi algoritması kullanma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Farklı çizim yöntemlerini kullanarak verilerin görsel bir temsilini oluşturma",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bir veri kümesinin değerlerini normalleştirme",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 12,
+				"title": "Regresyon için Verileri Hazırlayın ve Görselleştirin: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Verisetinizde kayıp verilerin varlığını kontrol etmek istiyorsanız, derste gördüklerinize göre aşağıdaki kod parçacıklarından hangisi doğrudur? Verisetinizin 'dataset' adlı bir değişkende Pandas Dataframe objesi olarak tutulduğunu varsayın.",
+						"answerOptions": [
+							{
+								"answerText": "dataset.isnull().sum()",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "findMissing(dataset)",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sum(null(dataset))",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Veri kümenizden farklı veri noktası gruplarının yayılımını anlamak istediğinizde bu çizim yöntemlerinden hangisi yararlıdır?",
+						"answerOptions": [
+							{
+								"answerText": "Dağılım Grafiği",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Çizgi Grafiği",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Çubuk Grafiği",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Veri Görselleştirme size ne söyleyemez?",
+						"answerOptions": [
+							{
+								"answerText": "Veri noktaları arasındaki ilişkiler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Veri kümesinin toplandığı kaynak",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Veri kümesinde aykırı değerlerin varlığı",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 13,
+				"title": "Doğrusal ve Polinom Regresyon: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Matplotlib bir ",
+						"answerOptions": [
+							{
+								"answerText": "çizim kütüphanesidir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "veri görselleştirme kütüphanesidir",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "ödünç kitap kütüphanesidir",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Doğrusal Regresyon, değişkenler arasındaki ilişkileri çizmek için aşağıdakileri kullanır",
+						"answerOptions": [
+							{
+								"answerText": "düz bir çizgi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir daire",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bir eğri",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "İyi bir Doğrusal Regresyon modelinin ___ Korelasyon Katsayısı vardır",
+						"answerOptions": [
+							{
+								"answerText": "düşük",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yüksek",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "düz",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 14,
+				"title": "Doğrusal ve Polinom Regresyon: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Verileriniz doğrusal değilse, ___ tipi bir Regresyon deneyin",
+						"answerOptions": [
+							{
+								"answerText": "doğrusal",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "küresel",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "polinom",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Bunların tümü Regresyon yöntemleridir",
+						"answerOptions": [
+							{
+								"answerText": "Falsestep, Ridge, Lasso ve Elasticnet",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Kademeli, Ridge, Lasso ve Elasticnet",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Kademeli, Ridge, Lariat ve Elasticnet",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "En Küçük Kareler Regresyonunda, regresyon çizgisini çevreleyen tüm veri noktalarının regresyon çizgisine olan mesafelerinin",
+						"answerOptions": [
+							{
+								"answerText": "kareleri alınır ve sonra çıkarılır",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "çarpımı kullanılır",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "kareleri alınır ve sonra toplanır",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 15,
+				"title": "Lojistik Regresyon: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Hangisini tahmin etmek için Lojistik Regresyon kullanılır",
+						"answerOptions": [
+							{
+								"answerText": "bir elmanın olgun olup olmadığı",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bir ayda kaç bilet satılabileceği",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yarın 18.00'de gökyüzünün ne renge döneceği",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Lojistik Regresyon Türleri şunları içerir",
+						"answerOptions": [
+							{
+								"answerText": "çok terimli ve kardinal",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "çok terimli ve sıralı",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "asıl ve sıralı",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Verilerinizin korelasyonları zayıf ise kullanılacak en iyi Regresyon türü:",
+						"answerOptions": [
+							{
+								"answerText": "Lojistik",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Doğrusal",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Kardinal",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 16,
+				"title": "Lojistik Regresyon: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Seaborn ne tür bir kütüphanedir?",
+						"answerOptions": [
+							{
+								"answerText": "veri görselleştirme kütüphanesi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "haritalama kütüphanesi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "matematiksel kütüphanesi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bir karışıklık matrisi şu şekilde de bilinir:",
+						"answerOptions": [
+							{
+								"answerText": "hata matrisi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "doğruluk matrisi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "isabet matrisi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "İyi bir modelde şunlar bulunur:",
+						"answerOptions": [
+							{
+								"answerText": "karışıklık matrisinde çok sayıda yanlış pozitif ve gerçek negatif",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "karışıklık matrisinde çok sayıda gerçek pozitif ve gerçek negatif",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "karışıklık matrisinde çok sayıda doğru pozitif ve yanlış negatif",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 17,
+				"title": "Web Uygulaması Oluşturun: Ders Öncesi Test",
+				"quiz": [
+					{
+						"questionText": "ONNX ne anlama gelir?",
+						"answerOptions": [
+							{
+								"answerText": "Sinir Ağı Değişimi üzerinden",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Açık Sinir Ağı Değişimi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Çıkış Sinir Ağı Değişimi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Flask, yaratıcıları tarafından nasıl tanımlanır?",
+						"answerOptions": [
+							{
+								"answerText": "mini framework",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "büyük framework",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "mikro framework",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Python'un Pickle modülü ne işe yarar",
+						"answerOptions": [
+							{
+								"answerText": "Bir Python nesnesini serileştirir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bir Python nesnesini serileştirilmiş halden geri getirir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bir Python nesnesini serileştirir ve serileştirilmiş halden geri getirir",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 18,
+				"title": "Web Uygulaması Oluşturun: Ders Sonrası Test",
+				"quiz": [
+					{
+						"questionText": "Python kullanarak web üzerinde önceden eğitilmiş bir modeli barındırmak için kullanabileceğimiz araçlar nelerdir?",
+						"answerOptions": [
+							{
+								"answerText": "Flask",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "TensorFlow.js",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "onnx.js",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "SaaS ne anlama gelir?",
+						"answerOptions": [
+							{
+								"answerText": "Hizmet Olarak Sistem",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Hizmet Olarak Yazılım",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Hizmet Olarak Güvenlik",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Scikit-learn'ün LabelEncoder kitaplığı ne işe yarar?",
+						"answerOptions": [
+							{
+								"answerText": "Verileri alfabetik olarak kodlar",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Verileri sayısal olarak kodlar",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Verileri seri olarak kodlar",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 19,
+				"title": "Sınıflandırma 1: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Sınıflandırma, şununla birçok ortak noktası olan bir denetimli öğrenme şeklidir",
+						"answerOptions": [
+							{
+								"answerText": "Zaman Serileri",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Regresyon teknikleri",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "NLP",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Sınıflandırma hangi soruyu yanıtlamaya yardımcı olabilir?",
+						"answerOptions": [
+							{
+								"answerText": "Bu e-posta spam mı değil mi?",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Domuzlar uçabilir mi?",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Hayatın anlamı nedir?",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Sınıflandırma tekniklerini kullanmanın ilk adımı nedir?",
+						"answerOptions": [
+							{
+								"answerText": "bir veri kümesinin sınıflarını oluşturma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "verilerinizi temizleme ve dengeleme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir gruba veya sonuca veri noktası atama",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 20,
+				"title": "Sınıflandırma 1: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Çok sınıflı soru nedir?",
+						"answerOptions": [
+							{
+								"answerText": "veri noktalarını birden çok sınıfa sınıflandırma görevi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "veri noktalarını birkaç sınıftan birine sınıflandırma görevi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "veri noktalarını birden çok yolla temizleme görevi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Sınıflandırıcılarınızın probleminizi çözmesine yardımcı olmak için tekrarlayan veya yardımcı olmayan verileri temizlemek önemlidir.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Verilerinizi dengelemek için en iyi neden nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Dengesiz veriler görselleştirmelerde kötü görünüyor",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bir ML modeli bir sınıfa doğru eğilmeyeceğinden, verilerinizi dengelemek daha iyi sonuçlar verir",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Verilerinizi dengelemek size daha fazla veri noktası sağlar",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 21,
+				"title": "Sınıflandırma 2: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Dengeli, temiz veriler en iyi sınıflandırma sonuçlarını verir",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Doğru sınıflandırıcıyı nasıl seçersiniz?",
+						"answerOptions": [
+							{
+								"answerText": "Hangi senaryolar için hangi sınıflandırıcıların en iyi çalıştığını öğrenirsiniz",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Eğitimli tahmin ve kontrol",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Yukarıdakilerin ikisi de",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Sınıflandırma bir:",
+						"answerOptions": [
+							{
+								"answerText": "NLP türüdür",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Denetimli Öğrenme türüdür",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Programlama dilidir",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 22,
+				"title": "Sınıflandırma 2: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "'Çözücü' nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Çalışmanızı kontrol eden kişi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "optimizasyon probleminde kullanılacak algoritma",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir makine öğrenimi tekniği",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bu derste hangi sınıflandırıcıyı kullandık?",
+						"answerOptions": [
+							{
+								"answerText": "Lojistik Regresyon",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Karar Ağaçları",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bire-Tüm Çok Sınıflı Sınıflandırıcı",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Sınıflandırma algoritmasının beklendiği gibi çalışıp çalışmadığını nasıl anlarsınız?",
+						"answerOptions": [
+							{
+								"answerText": "Tahminlerinin doğruluğunu kontrol ederek",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Diğer algoritmalara karşı kontrol ederek",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bu algoritmanın benzer sorunları çözmede ne kadar iyi olduğuna dair geçmiş verilere bakarak",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 23,
+				"title": "Sınıflandırma 3: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Denemek için iyi bir ilk sınıflandırıcı:",
+						"answerOptions": [
+							{
+								"answerText": "Doğrusal SVC",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "K-Means",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Mantıksal SVC",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Düzenlileştirme şunu kontrol eder:",
+						"answerOptions": [
+							{
+								"answerText": "parametrelerin etkisi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "eğitim hızının etkisi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "aykırı değerlerin etkisi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "K-Neighbors (K-Komşu) sınıflandırıcısı şunlar ne için kullanılabilir?",
+						"answerOptions": [
+							{
+								"answerText": "denetimli öğrenme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "denetimsiz öğrenme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 24,
+				"title": "Sınıflandırma 3: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Destek-Vektör sınıflandırıcıları ne ne için kullanılabilir?",
+						"answerOptions": [
+							{
+								"answerText": "sınıflandırma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "regresyon",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Random Forest, ___ bir sınıflandırıcıdır",
+						"answerOptions": [
+							{
+								"answerText": "topluluk türü",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "dağınık türden",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "birleştirici türden",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Adaboost şunlarla tanınır:",
+						"answerOptions": [
+							{
+								"answerText": "yanlış sınıflandırılmış öğelerin ağırlıklarına odaklanma",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "aykırı değerlere odaklanma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yanlış verilere odaklanma",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 25,
+				"title": "Sınıflandırma 4: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Öneri sistemleri ne için kullanılabilir?",
+						"answerOptions": [
+							{
+								"answerText": "İyi bir restoran önermek",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Denenecek moda önerileri",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Bir web uygulamasına bir model gömmek, onun çevrimdışı özellikli olmasına yardımcı olur",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Onnx Runtime ne için kullanılabilir?",
+						"answerOptions": [
+							{
+								"answerText": "Modelleri bir web uygulamasında çalıştırmak",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Model eğitmek",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Hiperparametre ayarlamak",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 26,
+				"title": "Sınıflandırma 4: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Netron uygulaması size ne konuda yardımcı olur?",
+						"answerOptions": [
+							{
+								"answerText": "Verileri görselleştirir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Modelinizin yapısını görselleştirir",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Web uygulamanızı test eder",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Scikit-learn modelinizi, Onnx ile kullanacak şekilde dönüştürmek için aşağıdakilerin hangisini kullanabilirsiniz?",
+						"answerOptions": [
+							{
+								"answerText": "sklearn-app",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sklearn-web",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sklearn-onnx",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Modelinizi bir web uygulamasında kullanmaya ne denir?",
+						"answerOptions": [
+							{
+								"answerText": "çıkarım",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "parazit",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sigorta",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 27,
+				"title": "Kümelemeye Giriş: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Kümelemenin gerçek hayattan bir örneği şu olabilir",
+						"answerOptions": [
+							{
+								"answerText": "Yemek sofrasını kurmak",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Çamaşırları ayırmak",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bakkal alışverişi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bu sektörlerde kümeleme teknikleri kullanılabilir",
+						"answerOptions": [
+							{
+								"answerText": "bankacılık",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "e-ticaret",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Kümeleme hangi eğitim türündendir?",
+						"answerOptions": [
+							{
+								"answerText": "denetimli öğrenme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "denetimsiz öğrenme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "pekiştirmeli öğrenme",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 28,
+				"title": "Kümelemeye Giriş: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Öklid geometrisi, şunların düzenine dayanır:",
+						"answerOptions": [
+							{
+								"answerText": "eksenler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "eğriler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "küreler",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Kümeleme verilerinizin yoğunluğu ne ile ilgilidir?",
+						"answerOptions": [
+							{
+								"answerText": "gürültü",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "derinlik",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "geçerlilik",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "En iyi bilinen kümeleme algoritması nedir?",
+						"answerOptions": [
+							{
+								"answerText": "k-means",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "k-middle",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "k-mart",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 29,
+				"title": "K-Means Kümelemesi: Pre-Lecture Quiz",
+				"quiz": [
+					{
+						"questionText": "K-Means şu alandan türetilmiştir:",
+						"answerOptions": [
+							{
+								"answerText": "elektrik mühendisliği",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "sinyal işleme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "hesaplamalı dilbilim",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "İyi bir Silhouette puanı şu anlama gelir:",
+						"answerOptions": [
+							{
+								"answerText": "kümeler iyi ayrılmış ve iyi tanımlanmış",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "birkaç küme var",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "birçok küme var",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Varyans:",
+						"answerOptions": [
+							{
+								"answerText": "ortalamadan farkların karelerinin ortalaması",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "çok yüksek olursa kümeleme açısından sorun oluşturur",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 30,
+				"title": "K-Means Kümelemesi: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Bir Voronoi diyagramı şunları gösterir:",
+						"answerOptions": [
+							{
+								"answerText": "bir kümenin varyansı",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bir kümenin çekirdeği ve bölgesi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir kümenin ataleti",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Atalet:",
+						"answerOptions": [
+							{
+								"answerText": "kümelerin kendi içinde ne kadar tutarlı olduğunun bir ölçüsü",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "kümelerin ne kadar hareket ettiğinin bir ölçüsü",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "küme kalitesinin bir ölçüsü",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "K-Means'i kullanmak için önce 'k' değerini belirlemelisiniz",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 31,
+				"title": "NLP'ye Giriş: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "NLP bu derslerde ne anlama geliyor?",
+						"answerOptions": [
+							{
+								"answerText": "Sinirsel Dil İşleme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Doğal dil işleme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Doğal Dilbilimsel İşleme",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Eliza ne gibi davranan eski bir bottur?",
+						"answerOptions": [
+							{
+								"answerText": "terapist",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "doktor",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "hemşire",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Alan Turing'in 'Turing Testi' bir bilgisayarın hangi özelliklerini belirlemeye çalışır?",
+						"answerOptions": [
+							{
+								"answerText": "insandan ayırt edilememe",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "düşünme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 32,
+				"title": "NLP'ye Giriş: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Joseph Weizenbaum hangi botu icat etti?",
+						"answerOptions": [
+							{
+								"answerText": "Elisha",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Eliza",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Eloise",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bir konuşma botu şuna dayalı olarak çıktı verir",
+						"answerOptions": [
+							{
+								"answerText": "Önceden tanımlanmış seçenekleri rastgele seçme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Girdileri analiz etme ve makine zekasını kullanma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bunların her ikisi",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Botu nasıl daha etkili hale getirirsiniz?",
+						"answerOptions": [
+							{
+								"answerText": "Daha fazla soru sorarak",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Daha fazla veri besleyerek ve buna göre eğiterek",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bot aptaldır, öğrenemez :(",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 33,
+				"title": "NLP Görevleri: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Jetonlaştırma",
+						"answerOptions": [
+							{
+								"answerText": "Metni noktalama işaretleri ile böler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Metni ayrı jetonlara (kelimelere) böler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Metni cümlelere böler",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Yerleştirmeler",
+						"answerOptions": [
+							{
+								"answerText": "kelimelerin kümelenebilmesi için metin verilerini sayılara dönüştürür",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "kelimeleri tümcelere yerleştirir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "cümleleri paragraflara yerleştirir",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Konuşma Bölümleri Etiketleme",
+						"answerOptions": [
+							{
+								"answerText": "cümleleri konuşma bölümlerine böler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "jetonlaştırılmış sözcükleri alır ve bunları konuşmanın bölümlerine göre etiketler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "cümleleri diyagram haline getirir",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 34,
+				"title": "NLP Görevleri: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Kelimelerin ne sıklıkta tekrarlandığına dair bir sözlük oluşturun:",
+						"answerOptions": [
+							{
+								"answerText": "Kelime ve Cümle Sözlüğü",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Kelime ve Cümle Sıklıkları",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Kelime ve Cümle Kitaplığı",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "N-gram terimi ne anlama gelir?",
+						"answerOptions": [
+							{
+								"answerText": "Bir metin, belirli bir uzunluktaki sözcük dizilerine bölünebilir",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bir kelime, belirli bir uzunluktaki karakter dizilerine bölünebilir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bir metin, belirli bir uzunlukta paragraflara bölünebilir",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Duygu analizi",
+						"answerOptions": [
+							{
+								"answerText": "olumluluk veya olumsuzluk için bir ifadeyi analiz eder",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "duygusallık için bir ifadeyi analiz eder",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "üzüntü için bir ifadeyi analiz eder",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 35,
+				"title": "NLP ve Çeviri: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Naif çeviri",
+						"answerOptions": [
+							{
+								"answerText": "yalnızca sözcükleri çevirir",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "cümle yapısını çevirir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "duyguları çevirir",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bir metin *korpusu* ne anlama gelir?",
+						"answerOptions": [
+							{
+								"answerText": "Az sayıda metin",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Çok sayıda metin",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bir standart metin",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Bir ML modelinde model oluşturmak için yeterli insan çevirisi varsa, aşağıdakilerden hangisi yapılabilir?",
+						"answerOptions": [
+							{
+								"answerText": "çevirileri kısaltılabilir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "çeviriler standartlaştırılabilir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "çevirilerin doğruluğu iyileştirilebilir",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 36,
+				"title": "NLP ve Çeviri: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "TextBlob'un çeviri kitaplığının altında yatan şey nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Google Çeviri",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Bing",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Özel bir makine öğrenimi modeli",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "`blob.translate`i kullanmak için neye ihtiyacınız vardır?",
+						"answerOptions": [
+							{
+								"answerText": "internet bağlantısı",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir sözlük",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "JavaScript",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Duygu analizi yapmak için nasıl bir ML yaklaşımı izlenmelidir?",
+						"answerOptions": [
+							{
+								"answerText": "Manuel olarak oluşturulan görüşlere ve puanlara Regresyon teknikleri uygulanır ve kalıplar aranır",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "NLP teknikleri manuel olarak oluşturulan görüşlere ve puanlara uygulanır ve kalıplar aranır",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Manuel olarak oluşturulan görüşlere ve puanlara Kümeleme teknikleri uygulanır ve kalıplar aranır",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 37,
+				"title": "NLP 4: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Bir insan tarafından yazılan veya konuşulan metinlerden hangi bilgileri alabiliriz?",
+						"answerOptions": [
+							{
+								"answerText": "kalıplar ve frekanslar",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "duygu ve anlam",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Duygu analizi nedir?",
+						"answerOptions": [
+							{
+								"answerText": "bir aile yadigarının manevi değeri olup olmadığına dair bir araştırma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "duygusal durumları ve öznel bilgileri sistematik olarak tanımlama, çıkarma, ölçme ve inceleme yöntemi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Birinin üzgün mü mutlu mu olduğunu anlama yeteneği",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Otel incelemeleri, Python ve duygu analizi veri kümesi kullanılarak hangi soru yanıtlanabilir?",
+						"answerOptions": [
+							{
+								"answerText": "İncelemelerde en sık kullanılan kelime ve deyimler nelerdir?",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "En iyi havuz hangi tesiste bulunur?",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Bu otelde vale park hizmeti var mı?",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 38,
+				"title": "NLP 4: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "NLP'nin özü nedir?",
+						"answerOptions": [
+							{
+								"answerText": "insan dilini mutlu veya üzgün olarak sınıflandırmak",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "insanın yapmasına gerek kalmadan anlamı veya duyguyu yorumlamak",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "duygudaki aykırı değerleri bulma ve inceleme",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Verileri temizlerken arayabileceğiniz bazı şeyler nelerdir?",
+						"answerOptions": [
+							{
+								"answerText": "diğer dillerdeki karakterler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "boş satırlar veya sütunlar",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Üzerinde işlem yapmadan önce verilerinizi ve zaaflarını anlamak önemlidir.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 39,
+				"title": "NLP 5: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Verileri analiz etmeden önce temizlemek neden önemlidir?",
+						"answerOptions": [
+							{
+								"answerText": "Bazı sütunlarda eksik veya yanlış veriler olabilir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Dağınık veriler, veri kümesi hakkında yanlış sonuçlara yol açabilir",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Yukarıdakilerin ikisi de",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Verileri temizlemek için bir strateji örneği nedir?",
+						"answerOptions": [
+							{
+								"answerText": "belirli bir soruyu yanıtlamak için yararlı olmayan sütunları/satırları kaldırma",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "hipotezinize uymayan doğrulanmış değerlerden kurtulma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "aykırı değerleri ayrı bir tabloya taşımak ve eşleşip eşleşmediklerini görmek için o tablo için hesaplamaları çalıştırmak",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Verileri bir Etiket sütunu kullanarak kategorilere ayırmak faydalı olabilir.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 40,
+				"title": "NLP 5: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Kullandığımız veri setinin amacı nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Dünyadaki oteller için kaç tane olumlu ve olumsuz yorum olduğunu görmek",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "En iyi oteli seçmemize yardımcı olacak duyguları ve sütunları eklemek",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "İnsanların belirli yorumları neden bıraktığını analiz etmek",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Duruş sözcükleri nelerdir?",
+						"answerOptions": [
+							{
+								"answerText": "Bir cümlenin duygusunu değiştirmeyen yaygın İngilizce kelimeler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "duygu analizini hızlandırmak için kaldırabileceğiniz kelimeler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Duygu analizini test etmek için, aynı inceleme için gözden geçirenin puanıyla eşleştiğinden emin olun.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 41,
+				"title": "Zaman Serisine Giriş: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Zaman Serisi Tahmini şu durumlarda yararlıdır",
+						"answerOptions": [
+							{
+								"answerText": "gelecekteki maliyetlerin belirlenmesi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "gelecekteki fiyatlandırmayı tahmin etme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin her ikisi de",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Zaman serisi:",
+						"answerOptions": [
+							{
+								"answerText": "uzayda ardışık eşit aralıklı noktalardır",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "zamanda ardışık eşit aralıklı noktalardır",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "uzay ve zamanda ardışık eşit aralıklı noktalardır",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Zaman serileri şurada kullanılabilir:",
+						"answerOptions": [
+							{
+								"answerText": "deprem tahmini",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bilgisayarlı görü",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "renk analizi",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 42,
+				"title": "Zaman Serisine Giriş: Ders Sonrası Test",
+				"quiz": [
+					{
+						"questionText": "Zaman serisi trendleri nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Zaman içinde ölçülebilir artış ve azalışlar",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Zamanla gerçekleşen azalmanın ölçümü",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Zaman içinde artışlar ve azalışlar arasındaki boşluklar",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Aykırı değerler",
+						"answerOptions": [
+							{
+								"answerText": "standart veri varyansına yakın noktalardır",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "standart veri varyansından çok uzak noktalardır",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "standart veri varyansının dahilindeki noktalardır",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Zaman Serisi Tahmini en çok şunlar için yararlıdır",
+						"answerOptions": [
+							{
+								"answerText": "Ekonometri",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Tarih",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Kütüphaneler",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 43,
+				"title": "Zaman Serisi ARIMA: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "ARIMA'nın açılımı",
+						"answerOptions": [
+							{
+								"answerText": "Otomatik Regresif İntegral Hareketli Ortalama",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Otomatik Regresif Entegre Hareketli Eylem",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Otomatik Regresif Entegre Hareketli Ortalama",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Durağanlık neyi ifade eder?",
+						"answerOptions": [
+							{
+								"answerText": "Zaman içinde kaydırıldığında özellikleri değişmeyen veriler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Zaman içinde kaydırıldığında dağılımı değişmeyen veriler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Zaman içinde kaydırıldığında dağılımı değişen veriler",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Farklandırma",
+						"answerOptions": [
+							{
+								"answerText": "trendi ve mevsimselliği dengeler",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "trendi ve mevsimselliği artırır",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "trendi ve mevsimselliği ortadan kaldırır",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 44,
+				"title": "Zaman Serisi ARIMA: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "ARIMA, bir modeli zaman serisi verilerinin özel formuna şu şekilde uydurmak için kullanılır:",
+						"answerOptions": [
+							{
+								"answerText": "mümkün olduğunca düz",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "mümkün olduğunca yakından",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "dağılım grafikleri aracılığıyla",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "SARIMAX ne için kullanılır?",
+						"answerOptions": [
+							{
+								"answerText": "mevsimsel ARIMA modellerini yönetmek",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "özel ARIMA modellerini yönetmek",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "istatistiksel ARIMA modellerini yönetmek",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "'Walk-Forward' doğrulama şunları içerir",
+						"answerOptions": [
+							{
+								"answerText": "bir modelin doğrulanırken aşamalı olarak yeniden değerlendirilmesi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bir modelin doğrulanırken aşamalı olarak yeniden eğitilmesi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir modelin doğrulanırken aşamalı olarak yeniden yapılandırılması",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 45,
+				"title": "Pekiştirmeli Öğrenme 1: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Pekiştirmeli öğrenme nedir?",
+						"answerOptions": [
+							{
+								"answerText": "birine bir şeyi anlayana kadar tekrar tekrar öğretmek",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "bir aracının bazı ortamlardaki en uygun davranışını birçok deney çalıştırarak deşifre eden bir öğrenme tekniği",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "birden çok deneyin aynı anda nasıl çalıştırılacağını anlamak",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Eylem politikası nedir?",
+						"answerOptions": [
+							{
+								"answerText": "herhangi bir durumda eylemi döndüren bir fonksiyon",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "bir eşyayı iade edip edemeyeceğinizi söyleyen bir belge",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "rastgele bir amaç için kullanılan bir fonksiyon",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Ödül fonksiyonu, ortamın her durumu için bir puan döndürür.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 46,
+				"title": "Pekiştirmeli Öğrenme 1: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Q-öğrenme nedir?",
+						"answerOptions": [
+							{
+								"answerText": "her durumun 'iyiliğini' kaydetmek için bir mekanizma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "eylem politikasının bir Q-Tablosu tarafından tanımlandığı bir algoritma",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yukarıdakilerin tümü",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Q-Tablosu hangi değerler için rastgele yürüyüş ilkesine karşılık gelir?",
+						"answerOptions": [
+							{
+								"answerText": "hepsi eşit olan değerler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "-0.25",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "tüm farklı değerler",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Dersimizde öğrenme süreci boyunca keşif kullanmak, sömürü kullanmaktan daha iyiydi.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "true"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 47,
+				"title": "Pekiştirmeli Öğrenme 2: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Satranç ve Go, süreğen durumları olan oyunlardır.",
+						"answerOptions": [
+							{
+								"answerText": "doğru",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "yanlış",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "CartPole sorunu nedir?",
+						"answerOptions": [
+							{
+								"answerText": "aykırı değerleri ortadan kaldırmak için bir işlem",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "alışveriş sepetinizi optimize etmek için bir yöntem",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "dengelemenin basitleştirilmiş bir versiyonu",
+								"isCorrect": "true"
+							}
+						]
+					},
+					{
+						"questionText": "Bir oyunda potansiyel durumların farklı senaryolarını oynamak için hangi aracı kullanabiliriz?",
+						"answerOptions": [
+							{
+								"answerText": "tahmin ve kontrol",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "simülasyon ortamları",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "durum geçiş testi",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 48,
+				"title": "Pekiştirmeli Öğrenme 2: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Bir ortamda tüm olası eylemleri nerede tanımlarız?",
+						"answerOptions": [
+							{
+								"answerText": "metodlar",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "eylem uzayı",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "eylem listesi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Sözlükte anahtar/değer çifti olarak hangi çifti kullandık?",
+						"answerOptions": [
+							{
+								"answerText": "anahtar olarak (durum, eylem), değer olarak Q-Table girdisi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "anahtar olarak durum, değer olarak eylem",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "anahtar olarak qvalues fonksiyonunun ​​değeri, değer olarak eylem",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Q-öğrenme sırasında kullandığımız hiperparametreler nelerdir?",
+						"answerOptions": [
+							{
+								"answerText": "q-tablo değeri, mevcut ödül, rastgele eylem",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "öğrenme hızı, indirim faktörü, keşif/sömürü faktörü",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "kümülatif ödüller, öğrenme hızı, keşif faktörü",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 49,
+				"title": "Gerçek Dünya Uygulamaları: Ders Öncesi Sınav",
+				"quiz": [
+					{
+						"questionText": "Finans sektöründeki bir makine öğrenimi uygulaması örneği nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Müşteri deneyimini NLP kullanarak kişiselleştirme",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Doğrusal regresyon kullanarak servet yönetimi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Zaman Serilerini kullanarak enerji yönetimi",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Hastaneler, yeniden hastaneye yatacak hastaların yönetimi için hangi ML tekniğini kullanabilir?",
+						"answerOptions": [
+							{
+								"answerText": "Kümeleme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Zaman Serileri",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "NLP",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Enerji yönetimi için Zaman Serilerini kullanma örneği nedir?",
+						"answerOptions": [
+							{
+								"answerText": "Hareket algılayan hayvanlar",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Akıllı parkmetreler",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Orman yangınlarının takibi",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": 50,
+				"title": "Gerçek Dünya Uygulamaları: Ders Sonrası Sınav",
+				"quiz": [
+					{
+						"questionText": "Kredi kartı dolandırıcılığını tespit etmek için hangi ML tekniği kullanılabilir?",
+						"answerOptions": [
+							{
+								"answerText": "Regresyon",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Kümeleme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "NLP",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Orman yönetiminde hangi ML tekniği örneklendirilmiştir?",
+						"answerOptions": [
+							{
+								"answerText": "Pekiştirilmiş Öğrenme",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Zaman Serileri",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "NLP",
+								"isCorrect": "false"
+							}
+						]
+					},
+					{
+						"questionText": "Hangisi Sağlık Hizmetleri sektöründe bir makine öğrenimi uygulaması örneğidir?",
+						"answerOptions": [
+							{
+								"answerText": "Regresyon kullanarak öğrenci davranışının tahmin edilmesi",
+								"isCorrect": "false"
+							},
+							{
+								"answerText": "Sınıflandırıcılar kullanarak klinik araştırmaların yönetimi",
+								"isCorrect": "true"
+							},
+							{
+								"answerText": "Sınıflandırıcılar kullanarak hayvanların hareketlerinin algılaması",
+								"isCorrect": "false"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

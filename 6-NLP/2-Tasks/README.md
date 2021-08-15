@@ -2,7 +2,7 @@
 
 For most *natural language processing* tasks, the text to be processed, must be broken down, examined, and the results stored or cross referenced with rules and data sets. These tasks, allows the programmer to derive the _meaning_ or _intent_ or only the _frequency_ of terms and words in a text.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/33/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/33/)
 
 Let's discover common techniques used in processing text. Combined with machine learning, these techniques help you to analyse large amounts of text efficiently. Before applying ML to these tasks, however, let's understand the problems encountered by an NLP specialist.
 
@@ -203,7 +203,7 @@ Implement the bot in the prior knowledge check and test it on a friend. Can it t
 
 Take a task in the prior knowledge check and try to implement it. Test the bot on a friend. Can it trick them? Can you make your bot more 'believable?'
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/34/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/34/)
 
 ## Review & Self Study
 

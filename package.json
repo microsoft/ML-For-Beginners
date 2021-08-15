@@ -4,8 +4,8 @@
 	"description": "Machine Learning for Beginners - A Curriculum",
 	"main": "index.js",
 	"scripts": {
-    "convert": "node_modules/.bin/docsify-to-pdf"
-  },
+		"convert": "node_modules/.bin/docsify-to-pdf"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/microsoft/ML-For-Beginners.git"
