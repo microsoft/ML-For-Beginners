@@ -1,4 +1,4 @@
-# Visualize some more Time Series 좀더 다양한 시계열 데이터를 시각화해 봅시다
+# 좀더 다양한 시계열 데이터를 시각화해 봅시다
 
 ## 설명
 
