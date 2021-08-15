@@ -19,7 +19,7 @@ Classification은 regression 기술과 공통점이 많은 [supervised learning]
 
 Classification은 다양한 알고리즘으로 데이터 포인트의 라벨 혹은 클래스를 결정할 다른 방식을 고릅니다. 요리 데이터로, 재료 그룹을 찾아서, 전통 요리로 결정할 수 있는지 알아보려 합니다.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/19/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/)
 
 ### 소개
 
@@ -164,7 +164,7 @@ Scikit-learn은 해결하고 싶은 문제의 타입에 따라서, 데이터를 
     def create_ingredient_df(df):
         ingredient_df = df.T.drop(['cuisine','Unnamed: 0']).sum(axis=1).to_frame('value')
         ingredient_df = ingredient_df[(ingredient_df.T != 0).any()]
-        ingredient_df = ingredient_df.sort_values(by='value', ascending=False
+        ingredient_df = ingredient_df.sort_values(by='value', ascending=False,
         inplace=False)
         return ingredient_df
     ```
@@ -265,12 +265,18 @@ Scikit-learn은 해결하고 싶은 문제의 타입에 따라서, 데이터를 
 
     이 데이터는 훌륭하고 깔끔하고, 균형 잡히고, 그리고 매우 맛있습니다!
 
+1. 마지막 단계는 라벨과 features를 포함한, 밸런스 맞춘 데이터를 파일로 뽑을 수 있는 새로운 데이터프레임으로 저장합니다:
+
+    ```python
+    transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
+    ```
+
 1. `transformed_df.head()` 와 `transformed_df.info()`로 데이터를 다시 볼 수 있습니다. 다음 강의에서 쓸 수 있도록 데이터를 복사해서 저장합니다:
 
     ```python
     transformed_df.head()
     transformed_df.info()
-    transformed_df.to_csv("../data/cleaned_cuisine.csv")
+    transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
     새로운 CSV는 최상단 데이터 폴더에서 찾을 수 있습니다.
@@ -281,7 +287,7 @@ Scikit-learn은 해결하고 싶은 문제의 타입에 따라서, 데이터를 
 
 해당 커리큘럼은 여러 흥미로운 데이터셋을 포함하고 있습니다. `data` 폴더를 파보면서 binary 또는 multi-class classification에 적당한 데이터셋이 포함되어 있나요? 데이터셋에 어떻게 물어보나요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/20/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/)
 
 ## 검토 & 자기주도 학습
 

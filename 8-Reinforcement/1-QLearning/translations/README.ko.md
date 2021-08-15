@@ -11,7 +11,7 @@ reinforcement learning과 (게임) 시뮬레이터로, 살아남고 가능한 �
 
 > 🎥 Dmitry discuss Reinforcement Learning 들으려면 이미지 클릭
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/45/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/45/)
 
 ## 전제조건 및 설정
 
@@ -230,7 +230,7 @@ Q-Table의 모든 값이 같다면, 이 케이스에서 - 0.25 으로 초기화�
 
 **epochs**라고 불리는, 5000번 실험으로 학습 알고리즘을 실행합니다: (code block 8)
 
-    ```python
+```python
     for epoch in range(5000):
     
         # Pick initial point
@@ -255,7 +255,7 @@ Q-Table의 모든 값이 같다면, 이 케이스에서 - 0.25 으로 초기화�
             ai = action_idx[a]
             Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
             n+=1
-    ```
+```
 
 이 알고리즘이 실행된 후, Q-Table은 각 단계에 다른 액션의 attractiveness를 정의하는 값으로 업데이트해야 합니다. 움직이고 싶은 방향의 방향으로 각 셀에 백터를 plot해서 Q-Table을 시각화할 수 있습니다. 단순하게, 화살표 머리 대신 작은 원을 그립니다.
 
@@ -315,7 +315,7 @@ print_statistics(qpolicy)
 
 전체적으로, 학습 프로세스의 성공과 퀄리티는 학습률, 학습률 감소, 그리고 감가율처럼 파라미터에 기반하는게 상당히 중요하다는 점을 기억합니다. 훈련하면서 최적화하면 (예시로, Q-Table coefficients), **parameters**와 구별해서, 가끔 **hyperparameters**라고 불립니다. 최고의 hyperparameter 값을 찾는 프로세스는 **hyperparameter optimization**이라고 불리며, 별도의 토픽이 있을 만합니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/46/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/46/)
 
 ## 과제 
 

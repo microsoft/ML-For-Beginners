@@ -3,7 +3,7 @@
 ![Linear vs polynomial regression infographic](.././images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/13/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
 
 ### 소개 
 
@@ -85,7 +85,6 @@ Scikit-learn을 사용할 예정이기 때문에, (할 수 있지만) 손으로 
 ```python
 from sklearn.preprocessing import LabelEncoder
 
-new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
@@ -328,7 +327,7 @@ Scikit-learn에는 polynomial regression 모델을 만들 때 도움을 받을 �
 
 노트북에서 다른 변수를 테스트하면서 상관 관계가 모델 정확도에 어떻게 대응되는 지 봅니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/14/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
 
 ## 검토 & 자기주도 학습
 

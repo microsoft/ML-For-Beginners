@@ -2,7 +2,7 @@
 
 이전 강의에서 풀었던 문제는 장난감 문제처럼 보일 수 있고, 실제 시나리오에서 진짜 적용되지 않습니다. 체스나 바둑을 즐기는 것을 포함한 - 시나리오에 많은 실제 문제와 공유하기 때문에, 이 케이스는 아닙니다. 주어진 룰과 **discrete state**를 보드가 가지고 있기 때문에 비슷합니다. 
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/47/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/47/)
 
 ## 소개
 
@@ -329,7 +329,7 @@ env.close()
 
 > **Task 4**: 여기에는 각 단계에서 최상의 액션을 선택하지 않고, 일치하는 확률 분포로 샘플링했습니다. 가장 높은 Q-Table 값으로, 항상 최상의 액션을 선택하면 더 합리적인가요? `np.argmax` 함수로 높은 Q-Table 값에 해당되는 액션 숫자를 찾아서 마무리할 수 있습니다. 이 전략을 구현하고 밸런스를 개선했는지 봅니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/48/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/48/)
 
 ## 과제: [Train a Mountain Car](../assignment.md)
 

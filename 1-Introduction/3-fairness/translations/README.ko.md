@@ -3,7 +3,7 @@
 ![Summary of Fairness in Machine Learning in a sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/5/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
  
 ## 소개
 
@@ -185,7 +185,7 @@ AI와 머신러닝의 공정성을 보장하는 건 계속 복잡한 사회기�
 
 모델을 구축하고 사용하면서 불공정한 실-생활 시나리오를 생각해보세요. 어떻게 고려해야 하나요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/6/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
 
 ## 검토 & 자기주도 학습
  

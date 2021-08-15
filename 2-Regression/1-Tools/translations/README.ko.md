@@ -4,7 +4,7 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
 
 ## 소개
 
@@ -54,7 +54,7 @@
 
    다음으로, 약간의 Python 코드를 추가합니다. 
 
-1. 코드 블록에서 **print("hello notebook'")** 입력합니다.
+1. 코드 블록에서 **print('hello notebook')** 입력합니다.
 1. 코드를 실행하려면 화살표를 선택합니다.
 
    출력된 구문이 보여야 합니다:
@@ -97,7 +97,7 @@ Scikit-learn 사용하면 올바르게 모델을 만들고 사용하기 위해 �
 
 - **matplotlib**. 유용한 [graphing tool](https://matplotlib.org/)이며 line plot을 만들 때 사용합니다.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html)는 Python애서 숫자를 핸들링할 때 유용한 라이브러리입니다.
-- **sklearn**. Scikit-learn 라이브러리 입니다.
+- **sklearn**. [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) 라이브러리 입니다.
 
 작업을 도움받으려면 라이브러리를 Import 합니다.
 
@@ -183,6 +183,9 @@ s1 tc: T-Cells (a type of white blood cells)
     ```python
     plt.scatter(X_test, y_test,  color='black')
     plt.plot(X_test, y_pred, color='blue', linewidth=3)
+    plt.xlabel('Scaled BMIs')
+    plt.ylabel('Disease Progression')
+    plt.title('A Graph Plot Showing Diabetes Progression Against BMI')
     plt.show()
     ```
 
@@ -197,7 +200,7 @@ s1 tc: T-Cells (a type of white blood cells)
 
 이 데이터셋은 다른 변수를 Plot 합니다. 힌트: 이 라인을 수정합니다: `X = X[:, np.newaxis, 2]`. 이 데이터셋의 타겟이 주어질 때, 질병으로 당뇨가 진행되면 어떤 것을 탐색할 수 있나요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
 ## 검토 & 자기주도 학습
 

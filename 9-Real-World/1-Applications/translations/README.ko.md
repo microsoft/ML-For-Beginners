@@ -8,7 +8,7 @@
 
 보통 딥러닝을 활용하는, AI로 산업에 많은 관심이 모이지만, 여전히 classical 머신러닝 모델의 가치있는 애플리케이션도 존재합니다. 오늘 이 애플리케이션 일부를 사용할 수도 있습니다! 이 강의에서, 8개 다양한 산업과 subject-matter 도메인에서 이 모델 타입으로 애플리케이션의 성능, 신뢰, 지능과, 사용자 가치를 어떻게 더 높일지 탐색할 예정입니다.  
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/49/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/49/)
 
 ## 💰 금융
 
@@ -152,7 +152,7 @@ https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/
 
 이 커리큘럼에서 배웠던 일부 기술로 이익을 낼 다른 색터를 식별하고, ML을 어떻게 사용하는지 탐색합니다. 
 
-## [강의 후 학습](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/50/)
+## [강의 후 학습](https://white-water-09ec41f0f.azurestaticapps.net/quiz/50/)
 
 ## 검토 & 자기주도 학습
 

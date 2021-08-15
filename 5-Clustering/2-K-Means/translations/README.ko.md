@@ -4,7 +4,7 @@
 
 > 🎥 영상을 보려면 이미지 클릭: Andrew Ng explains clustering
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/29/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/29/)
 
 이 강의에서, Scikit-learn과 함께 이전에 가져온 나이지리아 음악 데이터셋으로 클러스터 제작 방식을 배울 예정입니다. Clustering을 위한 K-Means 기초를 다루게 됩니다. 참고로, 이전 강의에서 배웠던대로, 클러스터로 작업하는 여러 방식이 있고 데이터를 기반한 방식도 있습니다. 가장 일반적 clustering 기술인 K-Means을 시도해보려고 합니다. 시작해봅니다!
 
@@ -238,11 +238,11 @@ Variance는 "the average of the squared differences from the Mean."으로 정의
 
 힌트: 데이터를 더 키워봅니다. 가까운 범위 조건에 비슷한 데이터 열을 만들고자 추가하는 표준 스케일링 코드를 노트북에 주석으로 남겼습니다. silhouette 점수가 낮아지는 동안, elbow 그래프의 'kink'가 주름 펴지는 것을 볼 수 있습니다. 데이터를 조정하지 않고 남기면 덜 분산된 데이터가 더 많은 가중치로 나를 수 있다는 이유입니다. [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226) 이 문제를 조금 더 읽어봅니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/30/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/30/)
 
 ## 검토 & 자기주도 학습
 
-Stanford의 K-Means 시뮬레이터를 찾아봅니다 [here](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html). 이 도구로 샘플 데이터 포인트를 시각화하고 무게 중심을 결정할 수 있습니다. 새로운 데이터로, 'update'를 클릭해서 수렴을 찾는데 얼마나 오래 걸리는지 봅니다. 데이터의 랜덤성, 클러스터 수와 무게 중심 수를 고칠 수 있습니다. 데이터를 그룹으로 묶기 위한 아이디어를 얻는 게 도움이 되나요?
+[such as this one](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/)같은 K-Means 시뮬레이터를 찾아봅니다. 이 도구로 샘플 데이터 포인트를 시각화하고 무게 중심을 결정할 수 있습니다. 데이터의 랜덤성, 클러스터 수와 무게 중심 수를 고칠 수 있습니다. 데이터를 그룹으로 묶기 위한 아이디어를 얻는 게 도움이 되나요?
 
 또한, Stanford의 [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html)을 찾아봅니다.
 

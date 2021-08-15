@@ -8,7 +8,7 @@
 
 > 🎥 영상 보려면 이미지 클릭: Andrew Ng introduces recommendation system design
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/)
 
 이 강의에서 다음을 배우게 됩니다:
 
@@ -31,7 +31,7 @@ Applied ML 시스템을 만드는 것은 비지니스 시스템에서 이 기술
 1. 유용한 라이브러리를 가져와서 시작합니다:
 
     ```python
-    pip install skl2onnx
+    !pip install skl2onnx
     import pandas as pd 
     ```
 
@@ -40,7 +40,7 @@ Applied ML 시스템을 만드는 것은 비지니스 시스템에서 이 기술
 1. 그리고, `read_csv()` 사용해서 CSV 파일을 읽어보면, 이전 강의에서 했던 같은 방식으로 데이터를 작업합니다:
 
     ```python
-    data = pd.read_csv('../data/cleaned_cuisine.csv')
+    data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
@@ -312,7 +312,7 @@ Netron은 모델을 보게 도와주는 도구입니다.
 
 ## 애플리케이션 테스트하기
 
-index.html 파일의 폴더에서 Visual Studio Code로 터미널 세션을 엽니다. 전역적으로 `[http-server](https://www.npmjs.com/package/http-server)`를 설치했는지 확인하고, 프롬프트에 `http-server`를 타이핑합니다. 로컬 호스트로 열고 웹 앱을 볼 수 있습니다. 여러 재료를 기반으로 추천된 요리를 확인합니다:
+index.html 파일의 폴더에서 Visual Studio Code로 터미널 세션을 엽니다. 전역적으로 [http-server](https://www.npmjs.com/package/http-server)를 설치했는지 확인하고, 프롬프트에 `http-server`를 타이핑합니다. 로컬 호스트로 열고 웹 앱을 볼 수 있습니다. 여러 재료를 기반으로 추천된 요리를 확인합니다:
 
 ![ingredient web app](../images/web-app.png)
 
@@ -322,7 +322,7 @@ index.html 파일의 폴더에서 Visual Studio Code로 터미널 세션을 엽�
 
 이 웹 앱은 매우 작아서, [ingredient_indexes](../../data/ingredient_indexes.csv) 데이터에서 성분과 인덱스로 계속 만듭니다. 주어진 국민 요리를 만드려면 어떤 풍미 조합으로 작업해야 되나요?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/26/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26/)
 
 ## 검토 & 자기주도 학습
 

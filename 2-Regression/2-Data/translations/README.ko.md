@@ -1,9 +1,10 @@
 # Scikit-learn 사용한 regression 모델 만들기: 데이터 준비와 시각화 
 
 > ![Data visualization infographic](.././images/data-visualization.png)
+
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/11/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
 
 ## 소개
 
@@ -53,7 +54,7 @@ visual Studio Code에서 _notebook.ipynb_ 파일을 열고 새로운 Pandas 데�
 
     ```python
     import pandas as pd
-    pumpkins = pd.read_csv('../../data/US-pumpkins.csv')
+    pumpkins = pd.read_csv('../data/US-pumpkins.csv')
     pumpkins.head()
     ```
 
@@ -190,7 +191,7 @@ Jupyter notebooks에서 잘 작동하는 데이터 시각화 라이브러리는 
 
 Matplotlib에서 제공하는 다양한 시각화 타입을 찾아보세요. regression 문제에 가장 적당한 타입은 무엇인가요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/12/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12/)
 
 ## 검토 & 자기주도 학습
 

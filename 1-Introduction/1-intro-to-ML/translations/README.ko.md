@@ -4,7 +4,7 @@
 
 > 🎥 머신러닝, AI 그리고 딥러닝의 차이를 설명하는 영상을 보려면 위 이미지를 클릭합니다.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1/)
 
 ### 소개
 
@@ -21,7 +21,7 @@
 - **Python 배우기**. 이 코스에서 사용할 데이터 사이언티스트에게 유용한 프로그래밍 언어인 [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa)에 대한 기본적인 이해를 해야 좋습니다.
 - **Node.js 와 JavaScript 배우기**. 이 코스에서 웹앱을 빌드할 때 몇 번 JavaScript를 사용하므로, [node](https://nodejs.org) 와 [npm](https://www.npmjs.com/)을 설치해야 합니다, Python 과 JavaScript를 개발하며 모두 쓸 수 있는 [Visual Studio Code](https://code.visualstudio.com/)도 있습니다.
 - **GitHub 계정 만들기**. [GitHub](https://github.com)에서 찾았으므로, 이미 계정이 있을 수 있습니다, 혹시 없다면, 계정을 만든 뒤에 이 커리큘럼을 포크해서 직접 쓸 수 있습니다. (star 주셔도 됩니다 😊)
-- **Scikit-learn 찾아보기**. 이 강의에서 참조하고 있는 ML 라이브러리 셋인 [Scikit-learn]([https://scikit-learn.org/stable/user_guide.html)을 숙지합니다.
+- **Scikit-learn 찾아보기**. 이 강의에서 참조하고 있는 ML 라이브러리 셋인 [Scikit-learn](https://scikit-learn.org/stable/user_guide.html)을 숙지합니다.
 
 ### 머신러닝은 무엇인가요?
 
@@ -97,11 +97,13 @@
 
 종이에 그리거나, [Excalidraw](https://excalidraw.com/)처럼 온라인 앱을 이용하여 AI, ML, 딥러닝, 그리고 데이터 사이언스의 차이를 이해합시다. 각 기술들이 잘 해결할 수 있는 문제에 대해 아이디어를 합쳐보세요.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/2/)
 
 ## 리뷰 & 자기주도 학습
 
 클라우드에서 ML 알고리즘을 어떻게 사용하는 지 자세히 알아보려면, [Learning Path](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa)를 따릅니다.
+
+ML의 기초에 대한 [Learning Path](https://docs.microsoft.com/learn/modules/introduction-to-machine-learning/?WT.mc_id=academic-15963-cxa)를 봅니다.
 
 ## 과제
 
