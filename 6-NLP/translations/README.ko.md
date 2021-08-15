@@ -8,16 +8,16 @@ Natural language processing, 즉 NLP는, 인공지능의 하위 필드입니다.
 
 이 강의에서 머신러닝이 이 대화를 점차 'smart'하게 만드는 방식을 배우고자 작은 대화 봇을 만들어서 NLP의 기본을 배울 예정입니다. 1813년에 출판한, Jane Austen의 고전 소설, **Pride and Prejudice**에, Elizabeth Bennett과 Mr. Darcy 같이 이야기하며 과거로 시간 여행을 하게 됩니다. 그러면, 유럽의 호텔 리뷰로 감정 분석을 배우면서 지식을 발전시킬 예정입니다.
 
-![Pride and Prejudice book and tea](images/p&p.jpg)
+![Pride and Prejudice book and tea](../images/p&p.jpg)
 > Photo by <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> on <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 강의
 
-1. [Natural language processing 소개하기](1-Introduction-to-NLP/translations/README.ko.md)
-2. [일반적 NLP 작업과 기술](2-Tasks/translations/README.ko.md)
-3. [머신러닝으로 번역과 감정 분석하기](3-Translation-Sentiment/translations/README.ko.md)
-4. [데이터 준비하기](4-Hotel-Reviews-1/translations/README.ko.md)
-5. [감정 분석을 위한 NLTK](5-Hotel-Reviews-2/translations/README.ko.md)
+1. [Natural language processing 소개하기](../1-Introduction-to-NLP/translations/README.ko.md)
+2. [일반적 NLP 작업과 기술](../2-Tasks/translations/README.ko.md)
+3. [머신러닝으로 번역과 감정 분석하기](../3-Translation-Sentiment/translations/README.ko.md)
+4. [데이터 준비하기](../4-Hotel-Reviews-1/translations/README.ko.md)
+5. [감정 분석을 위한 NLTK](../5-Hotel-Reviews-2/translations/README.ko.md)
 
 ## 크래딧 
 

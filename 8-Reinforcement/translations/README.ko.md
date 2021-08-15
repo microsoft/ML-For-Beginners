@@ -4,7 +4,7 @@ Reinforcement learning, 즉 RL은, supervised learning 과 unsupervised learning
 
 주식 시장처럼 시뮬레이션된 환경을 상상해봅니다. 만약 규제시키면 어떤 일이 벌어질까요. 긍정적이거나 부정적인 영향을 주나요? 만약 부정적인 일이 생긴다면, 진로를 바꾸어, _negative reinforcement_ 을 배울 필요가 있습니다. 긍정적인 결과는, _positive reinforcement_ 로 만들 필요가 있습니다.
 
-![peter and the wolf](images/peter.png)
+![peter and the wolf](../images/peter.png)
 
 > Peter and his friends need to escape the hungry wolf! Image by [Jen Looper](https://twitter.com/jenlooper)
 
@@ -23,9 +23,9 @@ Reinforcement learning, 즉 RL은, supervised learning 과 unsupervised learning
 
 이전 섹션에서, 머신러닝 문제의 예시를 보았습니다:
 
-- **Supervised**, 해결하려는 문제에 대해서 예시 솔루션을 추천할 데이터셋이 있습니다. [Classification](../4-Classification/README.ko.md) 과 [regression](../2-Regression/README.ko.md)은 supervised learning 작업입니다.
+- **Supervised**, 해결하려는 문제에 대해서 예시 솔루션을 추천할 데이터셋이 있습니다. [Classification](../../4-Classification/translations/README.ko.md) 과 [regression](../../2-Regression/translations/README.ko.md)은 supervised learning 작업입니다.
 
-- **Unsupervised**, 라벨링된 훈련 데이터가 없습니다. unsupervised learning의 주요 예시는 [Clustering](../5-Clustering/README.ko.md)입니다.
+- **Unsupervised**, 라벨링된 훈련 데이터가 없습니다. unsupervised learning의 주요 예시는 [Clustering](../../5-Clustering/translations/README.ko.md)입니다.
 
 이 섹션에서, 라벨링된 훈련 데이터가 필요없는 학습 문제의 새로운 타입에 대하여 소개할 예정입니다. 여러 문제의 타입이 있습니다:
 
@@ -46,8 +46,8 @@ Reinforcement learning, 즉 RL은, supervised learning 과 unsupervised learning
 
 ## 강의
 
-1. [Reinforcement learning과 Q-Learning 소개하기](1-QLearning/translations/EADME.ko.md)
-2. [헬스장 시뮬레이션 환경 사용하기](2-Gym/translations/README.ko.md)
+1. [Reinforcement learning과 Q-Learning 소개하기](../1-QLearning/translations/EADME.ko.md)
+2. [헬스장 시뮬레이션 환경 사용하기](../2-Gym/translations/README.ko.md)
 
 ## 크레딧
 

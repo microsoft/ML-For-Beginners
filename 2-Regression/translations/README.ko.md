@@ -4,7 +4,7 @@
 
 북미에서, Halloween을 위해서 호박을 소름돋게 무서운 얼굴로 조각하는 경우가 자주 있습니다. 매혹적인 채소에 대하여 찾아봅시다!
 
-![jack-o-lanterns](./images/jack-o-lanterns.jpg)
+![jack-o-lanterns](../images/jack-o-lanterns.jpg)
 > Photo by <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Beth Teutschmann</a> on <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## 무엇을 배우나요
@@ -19,10 +19,10 @@
 
 ### Lessons
 
-1. [무역의 도구](1-Tools/translations/README.ko.md)
-2. [데이터 관리](2-Data/translations/README.ko.md)
-3. [Linear와 polynomial regression](3-Linear/translations/README.ko.md)
-4. [Logistic regression](4-Logistic/translations/README.ko.md)
+1. [무역의 도구](../1-Tools/translations/README.ko.md)
+2. [데이터 관리](../2-Data/translations/README.ko.md)
+3. [Linear와 polynomial regression](../3-Linear/translations/README.ko.md)
+4. [Logistic regression](../4-Logistic/translations/README.ko.md)
 
 ---
 ### 크레딧
