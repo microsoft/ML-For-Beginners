@@ -6,7 +6,7 @@
 
 > 🎥 영상을 보려면 이미지 클릭: A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/43/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/43/)
 
 ## 소개
 
@@ -224,7 +224,7 @@ Walk-forward 검사는 time series 모델 평가의 최적 표준이고 이 프�
     ```python
     test_shifted = test.copy()
     
-    for t in range(1, HORIZON):
+    for t in range(1, HORIZON + 1):
         test_shifted['load+'+str(t)] = test_shifted['load'].shift(-t, freq='H')
         
     test_shifted = test_shifted.dropna(how='any')
@@ -295,7 +295,7 @@ Walk-forward 검사는 time series 모델 평가의 최적 표준이고 이 프�
     eval_df.head()
     ```
 
-    ```output
+    output
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -303,7 +303,6 @@ Walk-forward 검사는 time series 모델 평가의 최적 표준이고 이 프�
     | 2   | 2014-12-30 | 02:00:00  | t+1 | 2,900.17   | 2,899.00 |
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
-    ```
 
     실제 부하와 비교해서, 시간당 데이터의 예측을 관찰해봅니다. 어느정도 정확한가요?
 
@@ -384,7 +383,7 @@ Walk-forward 검사는 time series 모델 평가의 최적 표준이고 이 프�
 
 Time Series 모델의 정확도를 테스트할 방식을 파봅니다. 이 강의에서 MAPE을 다루지만, 사용할 다른 방식이 있나요? 조사해보고 첨언해봅니다. 도움을 받을 수 있는 문서는 [here](https://otexts.com/fpp2/accuracy.html)에서 찾을 수 있습니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/44/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/44/)
 
 ## 검토 & 자기주도 학습
 

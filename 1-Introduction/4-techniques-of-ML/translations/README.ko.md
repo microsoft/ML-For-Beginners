@@ -5,7 +5,7 @@
 - 머신러닝을 받쳐주는 프로세스를 고수준에서 이해합니다.
 - 'models', 'predictions', 그리고 'training data'와 같은 기초 개념을 탐색합니다.
   
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/7/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7/)
 
 ## 소개
 
@@ -36,13 +36,17 @@
 어떠한 종류의 질문을 대답하려면, 올바른 타입의 데이터가 필요합니다. 이 포인트에서 필요한 두 가지가 있습니다:
 
 - **데이터 수집**. 데이터 분석의 공정도를 설명한 이전 강의를 기억하고, 데이터를 조심히 수집합니다. 데이터의 출처와, 내재적 편견을 알고, 출처를 문서화합니다.
-- **데이터 준비**. 데이터 준비 프로세스는 여러 단계가 있습니다. 데이터가 다양한 소스에서 제공되는 경우에는 정렬하고 노멀라이즈해야 할 수 있습니다. ([Clustering](../../../5-Clustering/1-Visualize/README.md)과 같이) 문자열을 숫자로 바꾸는 방식처럼 다양한 방식을 통하여 데이터의 품질과 양을 향상시킬 수 있습니다. ([Classification](../../../4-Classification/1-Introduction/README.md)과 같이) 원본 기반으로, 새로운 데이터를 생성할 수 있습니다. ([Web App](../../3-Web-App/README.md) 강의 이전처럼) 데이터를 정리하고 변경할 수 있습니다. 마지막으로, 훈련하는 기술에 따라서, 무작위로 섞어야 할 수 있습니다.
+- **데이터 준비**. 데이터 준비 프로세스는 여러 단계가 있습니다. 데이터가 다양한 소스에서 제공되는 경우에는 정렬하고 노멀라이즈해야 할 수 있습니다. ([Clustering](../../../5-Clustering/1-Visualize/README.md)과 같이) 문자열을 숫자로 바꾸는 방식처럼 다양한 방식을 통하여 데이터의 품질과 양을 향상시킬 수 있습니다. ([Classification](../../../4-Classification/1-Introduction/README.md)과 같이) 원본 기반으로, 새로운 데이터를 생성할 수 있습니다. ([Web App](../../../3-Web-App/README.md) 강의 이전처럼) 데이터를 정리하고 변경할 수 있습니다. 마지막으로, 훈련하는 기술에 따라서, 무작위로 섞어야 할 수 있습니다.
 
 ✅ 데이터를 수집하고 처리하면, 그 모양이 의도한 질문을 해결할 수 있는 지 잠시 봅니다. [Clustering](../../5-Clustering/1-Visualize/README.md) 강의에서 본 것처럼, 데이터가 주어진 작업에서 잘 수행하지 못할 수 있습니다!
 
-### feature 변수 선택하기
+### Features와 타겟
 
-[feature](https://www.datasciencecentral.com/profiles/blogs/an-introduction-to-variable-and-feature-selection)는 데이터의 측정할 수 있는 속성입니다. 많은 데이터셋에서 'date' 'size' 또는 'color' 같은 컬럼 제목으로 표현합니다. 일반적인 코드에서 `y`로 나타내는 feature 변수는, 데이터에 물어보려는 질문에 대한 정답을 나타냅니다: 12월에, 어떤 **색상**의 호박이 가장 쌀까요? San Francisco에서, 부동산 **가격**이 가장 좋은 동네는 어디일까요?
+feature는 데이터의 측정할 수 있는 속성입니다. 많은 데이터셋에서 'date' 'size' 또는 'color'처럼 열 제목으로 표현합니다. 일반적으로 코드에서 X로 보여지는 feature 변수는, 모델을 훈련할 때 사용되는 입력 변수로 나타냅니다.
+
+타겟은 예측하려고 시도한 것입니다. 코드에서 X로 표시하는 보통 타겟은, 데이터에 물어보려는 질문의 대답을 나타냅니다: 12월에, 어떤 색의 호박이 가장 쌀까요? San Francisco 근처의 좋은 토지 실제 거래가는 어디인가요? 가끔은 타겟을 라벨 속성이라고 부르기도 합니다.
+
+### feature 변수 선택하기
 
 🎓 **Feature Selection과 Feature Extraction** 모델을 만들 때 선택할 변수를 어떻게 알 수 있을까요? 가장 성능이 좋은 모델에 올바른 변수를 선택하기 위하여 Feature Selection 또는 Feature Extraction 프로세스를 거치게 됩니다. 그러나, 같은 내용이 아닙니다: "Feature extraction creates new features from functions of the original features, whereas feature selection returns a subset of the features." ([source](https://wikipedia.org/wiki/Feature_selection))
 
@@ -56,7 +60,7 @@
 
 - **학습**. 데이터셋의 파트는 모델을 학습할 때 적당합니다. 이 셋은 본 데이터셋의 대부분을 차지합니다.
 - **테스트**. 테스트 데이터셋은 독립적인 데이터의 그룹이지만, 미리 만들어진 모델의 성능을 확인할 때에, 가끔 본 데이터에서도 수집됩니다.
-- **검증**. 검증 셋은 모델을 개선하며 모델의 hyperparameters, 또는 architecture를 튜닝할 때, 사용하는 작은 독립된 예시 그룹입니다. ([Time Series Forecasting](../../7-TimeSeries/1-Introduction/README.md)에서 언급하듯) 데이터의 크기와 질문에 따라서 세번째 셋을 만들 이유가 없습니다.
+- **검증**. 검증 셋은 모델을 개선하며 모델의 hyperparameters, 또는 architecture를 튜닝할 때, 사용하는 작은 독립된 예시 그룹입니다. ([Time Series Forecasting](../../../7-TimeSeries/1-Introduction/README.md)에서 언급하듯) 데이터의 크기와 질문에 따라서 세번째 셋을 만들 이유가 없습니다.
 
 ## 모델 구축하기
 
@@ -99,7 +103,7 @@
 
 ML 실무자의 단계를 반영한 플로우를 그려보세요. 프로세스에서 지금 어디에 있는 지 보이나요? 어려운 내용을 예상할 수 있나요? 어떤게 쉬울까요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/8/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8/)
 
 ## 검토 & 자기주도 학습
 

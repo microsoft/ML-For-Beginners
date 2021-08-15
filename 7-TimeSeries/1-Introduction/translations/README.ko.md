@@ -10,7 +10,7 @@
 
 > 🎥 이미지를 눌러서 time series forecasting에 대한 비디오를 봅니다
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/41/)
 
 가격, 재고, 그리고 공급과 연관된 이슈에 직접 적용하게 된다면, 비지니스에 실제로 가치있는 유용하고 흥미로운 필드가 됩니다. 딥러닝 기술은 미래의 성능을 잘 예측하기 위해 더 많은 인사이트를 얻고자 사용했지만, time series forecasting은 classic ML 기술에서 지속적으로 많은 정보를 얻는 필드입니다.
 
@@ -175,7 +175,7 @@ seasonality의 독립적으로, 1년 보다 긴 경제 침체같은 long-run cyc
 
 time series forecasting에서 얻을 수 있다고 생각할 수 있는 모든 산업과 조사 영역의 리스트를 만듭니다. 예술에 이 기술을 적용할 수 있다고 생각하나요? 경제학에서? 생태학에서? 리테일에서? 산업에서? 금융에서? 또 다른 곳은 어딘가요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/42/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/42/)
 
 ## 검토 & 자기주도 학습
 

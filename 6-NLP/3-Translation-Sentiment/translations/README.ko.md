@@ -2,7 +2,7 @@
 
 이전 강의에서 noun phrase 추출하는 기초 NLP 작업을 하기 위해 ML behind-the-scenes을 포함한 라이브러리인, `TextBlob`으로 기본적인 봇을 만드는 방식을 배웠습니다. 컴퓨터 언어학에서 다른 중요한 도전은 구두나 다른 언어로 문장을 정확하게 _translation_ 하는 것입니다.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/35/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/35/)
 
 번역은 천여 개 언어와 각자 많이 다른 문법 규칙이 있다는 사실에 의해서 합쳐진 매우 어려운 문제입니다. 한 접근 방식은 영어처럼, 한 언어의 형식적인 문법 규칙을 비-언어 종속 구조로 변환하고, 다른 언어로 변환하면서 번역합니다. 이 접근 방식은 다음 단계로 진행된다는 점을 의미합니다:
 
@@ -144,7 +144,7 @@ Darcy, as well as Elizabeth, really loved them; and they were
    1. 만약 polarity가 1 또는 -1이면 문장을 배열이나 positive 또는 negative 메시지 리스트에 저장합니다
 5. 마지막으로, (각자) 모든 긍정적인 문장과 부정적인 문장, 각 수를 출력합니다
 
-여기에 샘플 [solution](../solutions/notebook.ipynb)이 있습니다.
+여기에 샘플 [solution](../solution/notebook.ipynb)이 있습니다.
 
 ✅ 지식 점검
 
@@ -177,7 +177,7 @@ Darcy, as well as Elizabeth, really loved them; and they were
 
 사용자 입력으로 다른 features를 추출해서 Marvin을 더 좋게 만들 수 있나요?
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/36/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/36/)
 
 ## 검토 & 자기주도 학습
 

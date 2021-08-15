@@ -1,6 +1,6 @@
 # ML 모델 사용하여 Web App 만들기
 
-이 강의에서, 이 세상에 없었던 데이터셋에 대하여 ML 모델을 훈련할 예정입니다: _UFO sightings over the past century_, sourced from [NUFORC's database](https://www.nuforc.org).
+이 강의에서, 이 세상에 없었던 데이터셋에 대하여 ML 모델을 훈련할 예정입니다: _UFO sightings over the past century_, sourced from NUFORC's database.
 
 다음을 배우게 됩니다:
 
@@ -11,7 +11,7 @@
 
 이러면, Flask로 웹 앱을 만들어야 합니다.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/17/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17/)
 
 ## 앱 만들기
 
@@ -22,12 +22,12 @@
 많은 질문들을 물어볼 필요가 있습니다:
 
 - **웹 앱 혹은 모바일 앱인가요?** 만약 모바일 앱을 만들거나 IoT 컨텍스트에서 모델을 사용해야 되는 경우, [TensorFlow Lite](https://www.tensorflow.org/lite/)로 Android 또는 iOS 앱에서 모델을 사용할 수 있습니다.
-- **모델은 어디에 있나요**? 클라우드 또는 로컬 중 어디인가요?
-- **오프라인 지원**. 앱이 오프라인으로 동작하나요?
+- **모델은 어디에 있나요?** 클라우드 또는 로컬 중 어디인가요?
+- **오프라인 지원합니다.** 앱이 오프라인으로 동작하나요?
 - **모델을 훈련시킬 때 사용하는 기술은 무엇인가요?** 선택된 기술은 사용할 도구에 영향을 줄 수 있습니다.
-   - **Tensor flow 사용**. 만약 TensorFlow로 모델을 훈련한다면, 예시로, 에코 시스템은 [TensorFlow.js](https://www.tensorflow.org/js/)로 웹 앱에서 사용할 TensorFlow 모델을 변환해주는 기능을 제공합니다.
-   - **PyTorch 사용**. 만약 [PyTorch](https://pytorch.org/) 같은 라이브러리로 모델을 만들면, [Onnx Runtime](https://www.onnxruntime.ai/)으로 할 수 있는 JavaScript 웹 앱에서 사용하기 위한 [ONNX](https://onnx.ai/) (Open Neural Network Exchange) 포맷으로 내보낼 옵션이 존재합니다. 이 옵션은 Scikit-learn-trained 모델로 이후 강의에서 알아볼 예정입니다.
-   - **Lobe.ai 또는 Azure Custom vision 사용**. 만약 [Lobe.ai](https://lobe.ai/) 또는 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) 같은 ML SaaS (Software as a Service) 시스템으로 모델을 훈련하게 된다면, 이 소프트웨어 타입은 온라인 애플리케이션이 클라우드에서 쿼리된 bespoke API를 만드는 것도 포함해서 많은 플랫폼의 모델들을 내보낼 방식을 제공합니다.
+   - **Tensor flow 사용합니다.** 만약 TensorFlow로 모델을 훈련한다면, 예시로, 에코 시스템은 [TensorFlow.js](https://www.tensorflow.org/js/)로 웹 앱에서 사용할 TensorFlow 모델을 변환해주는 기능을 제공합니다.
+   - **PyTorch 사용합니다.** 만약 [PyTorch](https://pytorch.org/) 같은 라이브러리로 모델을 만들면, [Onnx Runtime](https://www.onnxruntime.ai/)으로 할 수 있는 JavaScript 웹 앱에서 사용하기 위한 [ONNX](https://onnx.ai/) (Open Neural Network Exchange) 포맷으로 내보낼 옵션이 존재합니다. 이 옵션은 Scikit-learn-trained 모델로 이후 강의에서 알아볼 예정입니다.
+   - **Lobe.ai 또는 Azure Custom vision 사용합니다.** 만약 [Lobe.ai](https://lobe.ai/) 또는 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) 같은 ML SaaS (Software as a Service) 시스템으로 모델을 훈련하게 된다면, 이 소프트웨어 타입은 온라인 애플리케이션이 클라우드에서 쿼리된 bespoke API를 만드는 것도 포함해서 많은 플랫폼의 모델들을 내보낼 방식을 제공합니다.
 
 또 웹 브라우저에서 모델로만 훈련할 수 있는 모든 Flask 웹 앱을 만들 수 있습니다. JavaScript 컨텍스트에서 TensorFlow.js로 마무리 지을 수 있습니다.
 
@@ -45,8 +45,8 @@
 
 [NUFORC](https://nuforc.org) (The National UFO Reporting Center)에서 모아둔, 80,000 UFO 목격 데이터를 이 강의에서 사용합니다. 데이터에 UFO 목격 관련한 몇 흥미로운 설명이 있습니다, 예시로 들어봅니다:
 
-- **긴 예시 설명**. "A man emerges from a beam of light that shines on a grassy field at night and he runs towards the Texas Instruments parking lot".
-- **짧은 예시 설명**. "the lights chased us".
+- **긴 예시를 설명합니다.** "A man emerges from a beam of light that shines on a grassy field at night and he runs towards the Texas Instruments parking lot".
+- **짧은 예시를 설명합니다.** "the lights chased us".
 
 [ufos.csv](.././data/ufos.csv) 스프레드시트에는 목격된 `city`, `state` 와 `country`, 오브젝트의 `shape` 와 `latitude` 및 `longitude` 열이 포함되어 있습니다.
 
@@ -58,7 +58,7 @@
     import pandas as pd
     import numpy as np
     
-    ufos = pd.read_csv('../data/ufos.csv')
+    ufos = pd.read_csv('./data/ufos.csv')
     ufos.head()
     ```
 
@@ -167,7 +167,7 @@ print(model.predict([[50,44,-12]]))
         css/
         templates/
     notebook.ipynb
-    ufo-model.pk1
+    ufo-model.pkl
     ``` 
 
    ✅ 완성된 앱을 보려면 solution 폴더를 참조합니다
@@ -187,7 +187,7 @@ print(model.predict([[50,44,-12]]))
    cd web-app
    ```
 
-1. 터미널에서 `pip install`을 타이핑해서, _reuirements.txt_ 에 나열된 라이브러리를 설치합니다:
+1. 터미널에서 `pip install`을 타이핑해서, _requirements.txt_ 에 나열된 라이브러리를 설치합니다:
 
    ```bash
    pip install -r requirements.txt
@@ -335,7 +335,7 @@ Flask와 pickled 모델과 같이, 모델을 사용하는 이 방식은, 비교�
 노트북에서 작성하고 Flask 앱에서 모델을 가져오는 대신, Flask 앱에서 바로 모델을 훈련할 수 있습니다!  어쩌면 데이터를 정리하고, 노트북에서 Python 코드로 변환해서, `train`이라고 불리는 라우터로 앱에서 모델을 훈련합니다. 이러한 방식을 추구했을 때 장점과 단점은 무엇인가요?
 
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/18/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18/)
 
 ## 검토 & 자기주도 학습
 

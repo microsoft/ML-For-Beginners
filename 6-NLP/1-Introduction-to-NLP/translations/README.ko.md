@@ -2,7 +2,7 @@
 
 이 강의애서 *computational linguistics* 하위인, *natural language processing*의 간단한 역사와 중요 컨셉을 다룹니다.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/31/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
 
 ## 소개
 
@@ -69,7 +69,7 @@ Turing이 1950년에 *artificial intelligence*를 연구하고 있을 때, 만�
 
 ### Eliza 개발
 
-1960년에 *Joseph Weizenbaum*으로 불린 MIT 사이언티스트는, 사람의 질문을 답변하고 답변을 이해하는 모습을 주는 컴퓨터 'therapist' [*Eliza*](https:/wikipedia.org/wiki/ELIZA)를 개발했습니다. 하지만, Eliza는 문장을 파싱하고 특정 문법 구조와 키워드를 식별하여 이유있는 답변을 준다고 할 수 있지만, 문장을 *understand*한다고 말할 수 없습니다. 만약 Eliza가 "**I am** <u>sad</u>" 포맷과 유사한 문장을 제시받으면 문장에서 단어를 재배열하고 대치해서 "How long have **you been** <u>sad</u>" 형태로 응답할 수 있습니다.
+1960년에 *Joseph Weizenbaum*으로 불린 MIT 사이언티스트는, 사람의 질문을 답변하고 답변을 이해하는 모습을 주는 컴퓨터 'therapist' [*Eliza*](https://wikipedia.org/wiki/ELIZA)를 개발했습니다. 하지만, Eliza는 문장을 파싱하고 특정 문법 구조와 키워드를 식별하여 이유있는 답변을 준다고 할 수 있지만, 문장을 *understand*한다고 말할 수 없습니다. 만약 Eliza가 "**I am** <u>sad</u>" 포맷과 유사한 문장을 제시받으면 문장에서 단어를 재배열하고 대치해서 "How long have **you been** <u>sad</u>" 형태로 응답할 수 있습니다.
 
 Eliza가 문장을 이해하고 다음 질문을 대답하는 것처럼 인상을 줬지만, 실제로는, 시제를 바꾸고 일부 단어를 추가했을 뿐입니다. 만약 Eliza가 응답할 키워드를 식별하지 못하는 경우, 여러 다른 문장에 적용할 수 있는 랜덤 응답으로 대신합니다. 만약 사용자가 "**You are** a <u>bicycle</u>"라고 작성하면 더 이유있는 응답 대신에, "How long have **I been** a <u>bicycle</u>?"처럼 답변하므로, Eliza는 쉽게 속을 수 있습니다.
 
@@ -149,7 +149,7 @@ Eliza와 같은, 대화 봇은, 사용자 입력을 유도해서 지능적으로
 
 다음 강의에서, natural language와 머신러닝을 분석하는 여러 다른 접근 방식에 대해 배울 예정입니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/32/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
 
 ## 검토 & 자기주도 학습
 

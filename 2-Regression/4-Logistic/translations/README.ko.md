@@ -3,7 +3,7 @@
 ![Logistic vs. linear regression infographic](.././images/logistic-linear.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/15/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
 
 ## 소개
 
@@ -209,7 +209,7 @@ binary classification을 찾는 모델을 만드는 건 Scikit-learn에서 놀�
 
 > 🎓 '[confusion matrix](https://wikipedia.org/wiki/Confusion_matrix)' (또는 'error matrix')는 모델의 true 대 false 로 긍정 및 부정을 나타내서, 예측의 정확도를 측정하는 테이블입니다.
 
-1. `confusin_matrix()` 불러서, confusion metrics를 사용합니다:
+1. `confusion_matrix()` 불러서, confusion metrics를 사용합니다:
 
     ```python
     from sklearn.metrics import confusion_matrix
@@ -223,26 +223,35 @@ binary classification을 찾는 모델을 만드는 건 Scikit-learn에서 놀�
            [ 33,   0]])
     ```
 
-어떤 일이 생기나요? 모델이 2개의 binary categories 인, 'pumpkin' 카테고리와 'not-a-pumpkin' 카테고리 사이에 아이템을 분류하도록 질문받았다고 가정합니다.
+Scikit-learn에서, confusion matrices 행은 (axis 0) 실제 라벨이고 열은 (axis 1) 예측된 라벨입니다.
 
-- 만약 모델이 무언가를 호박으로 예측하고 실제로 'pumpkin' 카테고리에 있다면 true positive라고 부르며, 좌측 상단의 숫자로 보여집니다.
-- 만약 모델이 무언가를 호박으로 예측하지 않았는데 실제 'pumpkin' 카테고리에 있다면 false positive라고 부르며, 우측 상단의 숫자로 보여집니다.
-- 만약 모델이 무언가를 호박으로 예측하지만 실제로 'not-a-pumpkin' 카테고리에 있다면 false negative라고 부르며, 좌측 하단의 숫자로 보여집니다.
-- 만약 모델이 무언가를 호박으로 예측하지 않았고 'not-a-pumpkin' 카테고리에 있다면 true negative라고 부르며, 우측 하단의 숫자로 보여집니다.
+|       |   0   |   1   |
+| :---: | :---: | :---: |
+|   0   |  TN   |  FP   |
+|   1   |  FN   |  TP   |
 
-![Confusion Matrix](../images/confusion-matrix.png)
+어떤 일이 생기나요? 모델이 'orange'와 'not-orange' 카테고리의, 두 바이너리 카테고리로 호박을 분류하게 요청받았다고 가정합니다.
 
-> Infographic by [Jen Looper](https://twitter.com/jenlooper)
+- 만약 모델이 호박을 오랜지색이 아닌 것으로 예측하고 실제로 'not-orange' 카테고리에 있다면 좌측 상단에서 보여지고, true negative 라고 불립니다.
+- 만약 모델이 호박을 오랜지색으로 예측하고 실제로 'not-orange' 카테고리에 있다면 좌측 하단에 보여지고, false negative 라고 불립니다.
+- 만약 모델이 호박을 오랜지색이 아닌 것으로 예측하고 실제로 'orange' 카테고리에 있다면 우측 상단에 보여지고, false positive 라고 불립니다.
+- 만약 모델이 호박을 오랜지색으로 예측하고 실제로 'orange' 카테고리에 있다면 우측 하단에 보여지고, true positive 라고 불립니다.
 
 예상한 것처럼 true positives와 true negatives는 큰 숫자를 가지고 false positives와 false negatives은 낮은 숫자을 가지는 게 더 좋습니다, 모델의 성능이 더 좋다는 것을 의미합니다.
+
+confusion matrix는 정확도와 재현율에 얼마나 관련있나요? classification 리포트에 정확도와 (0.83) 재현율 (0.98)으로 보여져서 출력되었습니다.
+
+Precision = tp / (tp + fp) = 162 / (162 + 33) = 0.8307692307692308
+
+Recall = tp / (tp + fn) = 162 / (162 + 4) = 0.9759036144578314
 
 ✅ Q: confusion matrix에 따르면, 모델은 어떻게 되나요? A: 나쁘지 않습니다; true positives의 많은 숫자뿐만 아니라 몇 false negatives도 있습니다.
 
 confusion matrix TP/TN 과 FP/FN의 맵핑으로 미리 본 용어에 대하여 다시 봅니다:
 
-🎓 정밀도: TP/(TP + FN) 검색된 인스턴스 중 관련된 인스턴스의 비율 (예시. 잘 라벨링된 라벨)
+🎓 정밀도: TP/(TP + FP) 검색된 인스턴스 중 관련된 인스턴스의 비율 (예시. 잘 라벨링된 라벨)
 
-🎓 재현율: TP/(TP + FP) 라벨링이 잘 되었는 지 상관없이, 검색한 관련된 인스턴스의 비율
+🎓 재현율: TP/(TP + FN) 라벨링이 잘 되었는 지 상관없이, 검색한 관련된 인스턴스의 비율
 
 🎓 f1-score: (2 * precision * recall)/(precision + recall) 정밀도와 재현율의 가중치 평균은, 최고 1과 최저 0
 
@@ -289,9 +298,9 @@ classifications에 대한 이후 강의에서, 모델의 스코어를 개선하�
 ---
 ## 🚀 도전
 
-logistic regression과 관련해서 풀어야할 내용이 더 있습니다! 하지만 배우기 좋은 방식은 실험입니다. 이런 분석에 적당한 데이터셋을 찾아서 모델을 만듭니다. 무엇을 배우나요? 팁: 흥미로운 데이터셋으로 [Kaggle](https://kaggle.com)에서 시도해보세요.
+logistic regression과 관련해서 풀어야할 내용이 더 있습니다! 하지만 배우기 좋은 방식은 실험입니다. 이런 분석에 적당한 데이터셋을 찾아서 모델을 만듭니다. 무엇을 배우나요? 팁: 흥미로운 데이터셋으로 [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets)에서 시도해보세요.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/16/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/)
 
 ## 검토 & 자기주도 학습
 

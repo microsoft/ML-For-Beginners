@@ -2,7 +2,7 @@
 
 지금까지 자세히 데이터셋을 살펴보았으며, 열을 필터링하고 데이터셋으로 NLP 기술을 사용하여 호텔에 대한 새로운 시각을 얻게 될 시간입니다.
 
-## [강의 전 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/39/)
+## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/39/)
 
 ### 필터링 & 감정 분석 작업
 
@@ -348,20 +348,20 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-(Hotel_Reviews_Filtered.csv 파일 만들어서 [your filtering notebook](solution/notebook-filtering.ipynb) 실행한 후에) [the analysis notebook](solution/notebook-sentiment-analysis.ipynb)으로 전체 코드를 실행해야 합니다.
+(Hotel_Reviews_Filtered.csv 파일 만들어서 [your filtering notebook](../solution/1-notebook.ipynb) 실행한 후에) [the analysis notebook](../solution/3-notebook.ipynb)으로 전체 코드를 실행해야 합니다.
 
 검토하는, 단계는 이렇습니다:
 
-1. 원본 데이터셋 **Hotel_Reviews.csv** 파일은 이전 강의에서 [the explorer notebook](../../4-Hotel-Reviews-1/solution/notebook-explorer.ipynb)으로 살펴보았습니다
-2. Hotel_Reviews.csv는 [the filtering notebook](../solution/notebook-filtering.ipynb)에서 필터링되고 **Hotel_Reviews_Filtered.csv**에 결과로 남습니다
-3. Hotel_Reviews_Filtered.csv는 [the sentiment analysis notebook](../solution/notebook-sentiment-analysis.ipynb)에서 처리되어 **Hotel_Reviews_NLP.csv**에 결과로 남습니다
+1. 원본 데이터셋 **Hotel_Reviews.csv** 파일은 이전 강의에서 [the explorer notebook](../../4-Hotel-Reviews-1/solution/notebook.ipynb)으로 살펴보았습니다
+2. Hotel_Reviews.csv는 [the filtering notebook](../solution/1-notebook.ipynb)에서 필터링되고 **Hotel_Reviews_Filtered.csv**에 결과로 남습니다
+3. Hotel_Reviews_Filtered.csv는 [the sentiment analysis notebook](../solution/3-notebook.ipynb)에서 처리되어 **Hotel_Reviews_NLP.csv**에 결과로 남습니다
 4. 다음 NLP 도전에서 Hotel_Reviews_NLP.csv를 사용합니다
 
 ### 결론
 
 시작했을 때, 열과 데이터로 이루어진 데이터셋이 었었지만 모두 다 확인되거나 사용되지 않았습니다. 데이터를 살펴보았으며, 필요없는 것은 필터링해서 지웠고, 유용하게 태그를 변환했고, 평균을 계산했으며, 일부 감정 열을 추가하고 기대하면서, 자연어 처리에 대한 일부 흥미로운 사실을 학습했습니다.
 
-## [강의 후 퀴즈](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/40/)
+## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/40/)
 
 ## 도전
 
