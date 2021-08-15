@@ -6,7 +6,7 @@ Clustering은 서로 비슷한 오브젝트를 찾고 clusters라고 불린 그�
 
 나이지리아의 다양한 사람들은 다양한 음악 취향이 있습니다. Spotify에서 긁어온 데이터를 사용해서 ([this article](https://towardsdatascience.com/country-wise-visual-analysis-of-music-taste-using-spotify-api-seaborn-in-python-77f5b749b421)에서 영감받았습니다), 나이지니아에서 인기있는 음악을 알아보겠습니다. 데이터셋에 다양한 노래의 'danceability' 점수, 'acousticness', loudness, 'speechiness', 인기도와 에너지 데이터가 포함됩니다. 데이터에서 패턴을 찾는 것은 흥미로울 예정입니다!
 
-![A turntable](./images/turntable.jpg)
+![A turntable](../images/turntable.jpg)
 
 Photo by <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> on <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
@@ -16,8 +16,8 @@ Photo by <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_
 
 ## 강의
 
-1. [clustering 소개하기](1-Visualize/translations/README.ko.md)
-2. [K-Means clustering](2-K-Means/translations/README.ko.md)
+1. [clustering 소개하기](../1-Visualize/translations/README.ko.md)
+2. [K-Means clustering](../2-K-Means/translations/README.ko.md)
 
 ## 크레딧
 

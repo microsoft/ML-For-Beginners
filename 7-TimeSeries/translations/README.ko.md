@@ -8,14 +8,14 @@ time series forecasting은 무엇인가요? 과거의 트렌드로 분석해서 
 
 여기에서 핵심은 과거 부하 패턴 기반으로 향후 전력 사용량의 예측에 대해 배울 수 있는 흥미로운 데이터셋인, 전세계의 전기 사용량입니다. 이 예측 종류가 비지니스 환경에서 많이 돕고 있는지 볼 수 있습니다.
 
-![electric grid](images/electric-grid.jpg)
+![electric grid](../images/electric-grid.jpg)
 
 Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> of electrical towers on a road in Rajasthan on <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 ## 강의
 
-1. [Time series forecasting 소개하기](1-Introduction/translations/README.ko.md)
-2. [ARIMA time series 모델 만들기](2-ARIMA/translations/README.ko.md)
+1. [Time series forecasting 소개하기](../1-Introduction/translations/README.ko.md)
+2. [ARIMA time series 모델 만들기](../2-ARIMA/translations/README.ko.md)
 
 ## 크레딧
 
