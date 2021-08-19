@@ -96,7 +96,7 @@ En el futuro próximo, entender las bases de machine learning va a ser una neces
 
 ---
 
-## 🚀 Challenge
+## 🚀 Desafío
 
 Dibuja, en papel o usando una aplicación como [Excalidraw](https://excalidraw.com/), como tú entiendes las diferencias entre inteligencia artificial, ML, deep learning, y la ciencia de datos. Agrega algunas ideas o problemas que cada una de estas técnicas son buenas en resolver.
 
