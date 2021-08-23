@@ -125,12 +125,12 @@ df %>%
 
 There are a finite number of cuisines, but the distribution of data is uneven. You can fix that! Before doing so, explore a little more.
 
-2.  Next, let's assign each cuisine into it's individual tibble and find out how much data is available (rows, columns) per cuisine.
+2.  Next, let's assign each cuisine into it's individual table and find out how much data is available (rows, columns) per cuisine.
 
 ![Artwork by \@allison_horst](../images/dplyr_filter.jpg)
 
 ```{r cuisine_df}
-# Create individual tibbles for the cuisines
+# Create individual tables for the cuisines
 thai_df <- df %>% 
   filter(cuisine == "thai")
 japanese_df <- df %>% 
