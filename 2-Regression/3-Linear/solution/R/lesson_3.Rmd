@@ -12,7 +12,7 @@ output:
 
 ## Linear and Polynomial Regression for Pumpkin Pricing - Lesson 3
 
-![Infographic by Dasani Madipalli](../images/linear-polynomial.png){width="800"}
+![Infographic by Dasani Madipalli](../../images/linear-polynomial.png){width="800"}
 
 #### Introduction
 
@@ -78,13 +78,13 @@ We do so since we want to model a line that has the least cumulative distance fr
 >
 > `X` is the '`explanatory variable` or `predictor`'. `Y` is the '`dependent variable` or `outcome`'. The slope of the line is `b` and `a` is the y-intercept, which refers to the value of `Y` when `X = 0`.
 >
-> ![Infographic by Jen Looper](../images/slope.png){width="400"}
+> ![Infographic by Jen Looper](../../images/slope.png){width="400"}
 >
 > First, calculate the slope `b`.
 >
 > In other words, and referring to our pumpkin data's original question: "predict the price of a pumpkin per bushel by month", `X` would refer to the price and `Y` would refer to the month of sale.
 >
-> ![Infographic by Jen Looper](../images/calculation.png)
+> ![Infographic by Jen Looper](../../images/calculation.png)
 >
 > Calculate the value of Y. If you're paying around \$4, it must be April!
 >
@@ -102,7 +102,7 @@ A good linear regression model will be one that has a high (nearer to 1 than 0) 
 
 ## **2. A dance with data: creating a data frame that will be used for modelling**
 
-![Artwork by \@allison_horst](../images/janitor.jpg){width="700"}
+![Artwork by \@allison_horst](../../images/janitor.jpg){width="700"}
 
 Load up required libraries and dataset. Convert the data to a data frame containing a subset of the data:
 
@@ -346,7 +346,7 @@ A good question to now ask of this data will be: '`What price can I expect of a 
 
 ## 4. Build a linear regression model
 
-![Infographic by Dasani Madipalli](../images/linear-polynomial.png){width="800"}
+![Infographic by Dasani Madipalli](../../images/linear-polynomial.png){width="800"}
 
 Now that we have build a recipe, and actually confirmed that the data will be pre-processed appropriately, let's now build a regression model to answer the question: `What price can I expect of a given pumpkin package?`
 
@@ -498,7 +498,7 @@ Great! As you can see, the linear regression model does not really well generali
 
 ## 5. Build a polynomial regression model
 
-![Infographic by Dasani Madipalli](../images/linear-polynomial.png){width="800"}
+![Infographic by Dasani Madipalli](../../images/linear-polynomial.png){width="800"}
 
 Sometimes our data may not have a linear relationship, but we still want to predict an outcome. Polynomial regression can help us make predictions for more complex non-linear relationships.
 
