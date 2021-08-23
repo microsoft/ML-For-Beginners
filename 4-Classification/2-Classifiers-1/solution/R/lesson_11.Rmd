@@ -154,7 +154,7 @@ Now we are ready to train a model 👩‍💻👨‍💻!
 
 ## 3. Choosing your classifier
 
-![Artwork by \@allison_horst](../images/parsnip.jpg){width="600"}
+![Artwork by \@allison_horst](../../images/parsnip.jpg){width="600"}
 
 Now we have to decide which algorithm to use for the job 🤔.
 
@@ -198,7 +198,7 @@ Also the choice of classifier depends on our problem. For instance, when the out
 
 A better way than wildly guessing, however, is to follow the ideas on this downloadable [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa). Here, we discover that, for our multiclass problem, we have some choices:
 
-![A section of Microsoft's Algorithm Cheat Sheet, detailing multiclass classification options](../images/cheatsheet.png){width="500"}
+![A section of Microsoft's Algorithm Cheat Sheet, detailing multiclass classification options](../../images/cheatsheet.png){width="500"}
 
 ### **Reasoning**
 
