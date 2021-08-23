@@ -125,7 +125,7 @@ df %>%
 
 There are a finite number of cuisines, but the distribution of data is uneven. You can fix that! Before doing so, explore a little more.
 
-2.  Next, let's assign each cuisine into it's individual table and find out how much data is available (rows, columns) per cuisine.
+2.  Next, let's assign each cuisine into its individual table and find out how much data is available (rows, columns) per cuisine.
 
 ![Artwork by \@allison_horst](../images/dplyr_filter.jpg)
 
