@@ -34,7 +34,7 @@ Classification is one of the fundamental activities of the machine learning rese
 
 To state the process in a more scientific way, your classification method creates a predictive model that enables you to map the relationship between input variables to output variables.
 
-![Binary vs. multiclass problems for classification algorithms to handle. Infographic by Jen Looper](../images/binary-multiclass.png)
+![Binary vs. multiclass problems for classification algorithms to handle. Infographic by Jen Looper](../../images/binary-multiclass.png){width="500"}
 
 Before starting the process of cleaning our data, visualizing it, and prepping it for our ML tasks, let's learn a bit about the various ways machine learning can be leveraged to classify data.
 
@@ -127,7 +127,9 @@ There are a finite number of cuisines, but the distribution of data is uneven. Y
 
 2.  Next, let's assign each cuisine into it's individual tibble and find out how much data is available (rows, columns) per cuisine.
 
-![Artwork by \@allison_horst](../images/dplyr_filter.jpg)
+> A tibble, or tbl_df, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not.
+
+![Artwork by \@allison_horst](../../images/dplyr_filter.jpg)
 
 ```{r cuisine_df}
 # Create individual tibbles for the cuisines
@@ -297,7 +299,7 @@ df_select %>%
 
 ## Preprocessing data using recipes 👩‍🍳👨‍🍳 - Dealing with imbalanced data ⚖️
 
-![Artwork by \@allison_horst](../images/recipes.png)
+![Artwork by \@allison_horst](../../images/recipes.png)
 
 Given that this lesson is about cuisines, we have to put `recipes` into context .
 
