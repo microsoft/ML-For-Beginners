@@ -14,7 +14,7 @@ output:
 
 In these four lessons, you will explore a fundamental focus of classic machine learning - *classification*. We will walk through using various classification algorithms with a dataset about all the brilliant cuisines of Asia and India. Hope you're hungry!
 
-![Celebrate pan-Asian cuisines in these lessons! Image by Jen Looper](../images/pinch.png)
+![Celebrate pan-Asian cuisines in these lessons! Image by Jen Looper](../../images/pinch.png)
 
 Classification is a form of [supervised learning](https://wikipedia.org/wiki/Supervised_learning) that bears a lot in common with regression techniques. In classification, you train a model to predict which `category` an item belongs to. If machine learning is all about predicting values or names to things by using datasets, then classification generally falls into two groups: *binary classification* and *multiclass classification*.
 
@@ -417,4 +417,4 @@ This curriculum contains several interesting datasets. Dig through the `data` fo
 
 [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper) for creating the original Python version of this module ♥️
 
-![Artwork by \@allison_horst](../images/r_learners_sm.jpeg)
+![Artwork by \@allison_horst](../../images/r_learners_sm.jpeg)

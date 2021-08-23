@@ -4,6 +4,8 @@
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 ## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
 
+> ### [This lesson is available in R!](./solution/R/lesson_4-R.ipynb)
+
 ## Introduction
 
 In this final lesson on Regression, one of the basic _classic_ ML techniques, we will take a look at Logistic Regression. You would use this technique to discover patterns to predict binary categories. Is this candy chocolate or not? Is this disease contagious or not? Will this customer choose this product or not? 

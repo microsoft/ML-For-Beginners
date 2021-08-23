@@ -12,7 +12,7 @@ output:
 
 ## Build a logistic regression model - Lesson 4
 
-![Infographic by Dasani Madipalli](../images/logistic-linear.png){width="600"}
+![Infographic by Dasani Madipalli](../../images/logistic-linear.png){width="600"}
 
 #### ** [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)**
 
@@ -70,7 +70,7 @@ Logistic regression differs from linear regression, which you learned about prev
 
 Logistic regression does not offer the same features as linear regression. The former offers a prediction about a `binary category` ("orange or not orange") whereas the latter is capable of predicting `continual values`, for example given the origin of a pumpkin and the time of harvest, *how much its price will rise*.
 
-![Infographic by Dasani Madipalli](../images/pumpkin-classifier.png){width="600"}
+![Infographic by Dasani Madipalli](../../images/pumpkin-classifier.png){width="600"}
 
 #### **Other classifications**
 
@@ -80,7 +80,7 @@ There are other types of logistic regression, including multinomial and ordinal:
 
 -   **Ordinal**, which involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
-![Infographic by Dasani Madipalli](../images/multinomial-ordinal.png){width="600"}
+![Infographic by Dasani Madipalli](../../images/multinomial-ordinal.png){width="600"}
 
 \
 **It's still linear**
@@ -244,7 +244,7 @@ Now that we have an idea of the relationship between the binary categories of co
 >
 > Remember how `linear regression` often used `ordinary least squares` to arrive at a value? `Logistic regression` relies on the concept of 'maximum likelihood' using [`sigmoid functions`](https://wikipedia.org/wiki/Sigmoid_function). A Sigmoid Function on a plot looks like an `S shape`. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like this:
 >
-> ![](../images/sigmoid.png)
+> ![](../../images/sigmoid.png)
 >
 > where the sigmoid's midpoint finds itself at x's 0 point, L is the curve's maximum value, and k is the curve's steepness. If the outcome of the function is more than 0.5, the label in question will be given the class 1 of the binary choice. If not, it will be classified as 0.
 
@@ -425,6 +425,6 @@ But for now, congratulations 🎉🎉🎉! You've completed these regression les
 
 You R awesome!
 
-![Artwork by \@allison_horst](../images/r_learners_sm.jpeg)
+![Artwork by \@allison_horst](../../images/r_learners_sm.jpeg)
 
 
