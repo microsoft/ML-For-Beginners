@@ -21,6 +21,8 @@ Classification uses various algorithms to determine other ways of determining a 
 
 ## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/)
 
+> ### [This lesson is available in R!](./solution/R/lesson_10-R.ipynb)
+
 ### Introduction
 
 Classification is one of the fundamental activities of the machine learning researcher and data scientist. From basic classification of a binary value ("is this email spam or not?"), to complex image classification and segmentation using computer vision, it's always useful to be able to sort data into classes and ask questions of it.
