@@ -6,7 +6,7 @@ Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
 
-> ### [This lesson is available in R!](./solution/lesson_2-R.ipynb)
+> ### [This lesson is available in R!](./solution/R/lesson_2-R.ipynb)
 
 ## Introduction
 
