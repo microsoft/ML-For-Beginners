@@ -26,7 +26,7 @@ The question you need answered will determine what type of ML algorithms you wil
 
 Let's see this by working through a practical exercise.
 
-![Artwork by \@allison_horst](../images/unruly_data.jpg){width="700"}
+![Artwork by \@allison_horst](../../images/unruly_data.jpg){width="700"}
 
 ## 1. Importing pumpkins data and summoning the Tidyverse
 
@@ -113,7 +113,7 @@ Much better! There is missing data, but maybe it won't matter for the task at ha
 
 ## 3. Dplyr: A Grammar of Data Manipulation
 
-![Artwork by \@allison_horst](../images/dplyr_wrangling.png){width="569"}
+![Artwork by \@allison_horst](../../images/dplyr_wrangling.png){width="569"}
 
 [`dplyr`](https://dplyr.tidyverse.org/), a package in the Tidyverse, is a grammar of data manipulation that provides a consistent set of verbs that help you solve the most common data manipulation challenges. In this section, we'll explore some of dplyr's verbs!
 
@@ -270,7 +270,7 @@ Good job!👌 You now have a clean, tidy dataset on which you can build your new
 
 ## 4. Data visualization with ggplot2
 
-![Infographic by Dasani Madipalli](../images/data-visualization.png){width="600"}
+![Infographic by Dasani Madipalli](../../images/data-visualization.png){width="600"}
 
 There is a *wise* saying that goes like this:
 
@@ -342,4 +342,4 @@ new_pumpkins %>%
 
 🤩🤩This is a more useful data visualization! It seems to indicate that the highest price for pumpkins occurs in September and October. Does that meet your expectation? Why or why not?
 
-Congratulations on finishing the second lesson 👏! You did prepared your data for model building, then uncovered more insights using visualizations!\
+Congratulations on finishing the second lesson 👏! You prepared your data for model building, then uncovered more insights using visualizations!

@@ -20,7 +20,7 @@ In this section, you will work with a [small dataset about diabetes](https://www
 
 That said, let's get started on this task!
 
-![Artwork by \@allison_horst](../images/encouRage.jpg){width="630"}
+![Artwork by \@allison_horst](../../images/encouRage.jpg){width="630"}
 
 ## 1. Loading up our tool set
 
