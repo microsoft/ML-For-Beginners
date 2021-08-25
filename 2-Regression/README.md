@@ -8,6 +8,9 @@ In North America, pumpkins are often carved into scary faces for Halloween. Let'
   
 ## What you will learn
 
+[![Introduction to Regression](https://img.youtube.com/vi/5QnJtDad4iQ/0.jpg)](https://youtu.be/5QnJtDad4iQ "Regression Introduction video - Click to Watch!")
+> 🎥 Click the image above for a quick introduction video to this lesson
+
 The lessons in this section cover types of regression in the context of machine learning. Regression models can help determine the _relationship_ between variables. This type of model can predict values such as length, temperature, or age, thus uncovering relationships between variables as it analyzes data points.
 
 In this series of lessons, you'll discover the difference between linear vs. logistic regression, and when you should use one or the other.
