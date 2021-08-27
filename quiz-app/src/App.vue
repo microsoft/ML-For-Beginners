@@ -8,6 +8,7 @@
         <option>tr</option>
         <option>fr</option>
         <option>ja</option>
+        <option>zh-cn</option>
       </select>
     </nav>
     <div id="app">

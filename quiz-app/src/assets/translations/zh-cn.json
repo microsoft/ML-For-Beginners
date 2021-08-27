@@ -1,0 +1,2612 @@
+[{
+    "title": "初学者机器学习：测验",
+    "complete": "恭喜你，你完成了测验！",
+    "error": "对不起，再试一次",
+    "quizzes": [{
+            "id": 1,
+            "title": "机器学习简介：讲座前测验",
+            "quiz": [{
+                    "questionText": "机器学习的应用都在我们身边",
+                    "answerOptions": [{
+                            "answerText": "是",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "否",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "经典 ML 和深度学习之间的技术区别是什么？",
+                    "answerOptions": [{
+                            "answerText": "古典 ML 是先发明的",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "神经网络的使用",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "深度学习用于机器人",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "为什么企业要使用 ML 策略？",
+                    "answerOptions": [{
+                            "answerText": "自动化解决多维问题",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "根据客户类型定制购物体验",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "机器学习简介：讲座后测验",
+            "quiz": [{
+                    "questionText": "机器学习算法旨在模拟",
+                    "answerOptions": [{
+                            "answerText": "智能机器",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "人脑",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "猩猩",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "什么是经典 ML 技术的例子？",
+                    "answerOptions": [{
+                            "answerText": "自然语言处理",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "深度学习",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "神经网络",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "为什么每个人都要学习 ML 的基本知识？",
+                    "answerOptions": [{
+                            "answerText": "学习 Ml 是有趣和访问的每个人",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "ML 策略正在许多行业和领域使用",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "机器学习史：课前测验",
+            "quiz": [{
+                    "questionText": "大约是'人工智能'一词的创造时间？",
+                    "answerOptions": [{
+                            "answerText": "20 世纪 80 年代",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "20 世纪 50 年代",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "20 世纪 30 年代",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "谁是机器学习的早期先驱之一？",
+                    "answerOptions": [{
+                            "answerText": "艾伦·图灵",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "比尔·盖茨",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "摇动机器人",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "20 世纪 70 年代人工智能发展放缓的原因之一是什么？",
+                    "answerOptions": [{
+                            "answerText": "计算能力有限",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "没有足够的熟练工程师",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "国家间的冲突",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "机器学习史：讲座后测验",
+            "quiz": [{
+                    "questionText": "什么是'粗糙'AI 系统的例子？",
+                    "answerOptions": [{
+                            "answerText": "伊丽莎",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "哈克姆",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "系统",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在'黄金年'期间开发的技术的例子是什么？",
+                    "answerOptions": [{
+                            "answerText": "块世界",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "吉波",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "机器人狗",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "人工智能领域的创建和扩展是基础性的？",
+                    "answerOptions": [{
+                            "answerText": "图灵测试",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "达特茅斯夏季研究项目",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "AI 冬季",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "公平与机器学习：演讲前测验",
+            "quiz": [{
+                    "questionText": "机器学习中的不公平可能发生",
+                    "answerOptions": [{
+                            "answerText": "有意",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "不经意间",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "ML 中的'不公平'一词表示：",
+                    "answerOptions": [{
+                            "answerText": "对一群人的伤害",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "伤害一个人",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "对大多数人的伤害",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "五种主要伤害类型包括",
+                    "answerOptions": [{
+                            "answerText": "分配、服务质量、陈规定型观念、诋毁以及过度或不足代表",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "定位、服务质量、成见、诋毁以及过度或不足代表 ",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "分配、服务质量、立体声、诋毁以及过度或不足代表 ",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "title": "公平与机器学习：讲座后测验",
+            "quiz": [{
+                    "questionText": "模型中的不公平可能由",
+                    "answerOptions": [{
+                            "answerText": "过度依赖历史数据",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "依赖历史数据",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "与历史数据过于紧密一致",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "为了减轻不公平，你可以",
+                    "answerOptions": [{
+                            "answerText": "识别伤害和受影响的群体",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "定义公平指标",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "公平学习是一个包， 可以",
+                    "answerOptions": [{
+                            "answerText": "使用公平性和性能指标比较多个模型",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "根据您的需求选择最佳型号",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "帮助您决定什么是公平的，什么是不公平的",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "title": "工具和技术：讲座前测验",
+            "quiz": [{
+                    "questionText": "构建模型时，应：",
+                    "answerOptions": [{
+                            "answerText": "准备数据，然后训练您的模型",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "选择培训方法，然后准备数据",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "调整参数，然后训练您的模型",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "您的数据的 ___将影响您的 ML 模型的质量",
+                    "answerOptions": [{
+                            "answerText": "数量",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "样",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "功能变量是：",
+                    "answerOptions": [{
+                            "answerText": "数据质量",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "数据的可测量属性",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "一排数据",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "title": "工具和技术：讲座后测验",
+            "quiz": [{
+                    "questionText": "您应该可视化您的数据，因为",
+                    "answerOptions": [{
+                            "answerText": "您可以发现离群值",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "您可以发现偏见的潜在原因",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "将数据拆分为：",
+                    "answerOptions": [{
+                            "answerText": "训练和图灵集",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "培训和测试集",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "验证和评估集",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在各种 ML 库中启动培训过程的常见命令是：",
+                    "answerOptions": [{
+                            "answerText": "model.travel",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "模型.火车",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "模型.适合",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "title": "回归简介：演讲前测验",
+            "quiz": [{
+                    "questionText": "这些变量中哪一个是数字变量？",
+                    "answerOptions": [{
+                            "answerText": "高度",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "性别",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "毛色",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "这些变量中哪一个是绝对变量？",
+                    "answerOptions": [{
+                            "answerText": "心率",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "血型",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "重量",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "这些问题中哪一个是基于回归分析的问题？",
+                    "answerOptions": [{
+                            "answerText": "预测学生的期末考试成绩",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "预测一个人的血型",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "预测电子邮件是否是垃圾邮件",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "title": "回归简介：演讲后测验",
+            "quiz": [{
+                    "questionText": "如果您的机器学习模型的训练精度为 95%，测试精度为 30%，那么它被称为什么类型的条件？",
+                    "answerOptions": [{
+                            "answerText": "过度拟合",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "不合身",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "双合身",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "从一组功能中识别重要特征的过程称为：",
+                    "answerOptions": [{
+                            "answerText": "功能提取",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "功能尺寸降低",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "功能选择",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用 Scikit Learn 的'train_test_split（）'方法/功能将数据集拆分为一定比例的训练和测试数据集的过程称为：",
+                    "answerOptions": [{
+                            "answerText": "交叉验证",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "坚持验证",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "将一个排除在验证外",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "title": "准备和可视化回归数据：讲座前测验",
+            "quiz": [{
+                    "questionText": "这些 Python 模块中哪一个用于绘制数据的可视化图？",
+                    "answerOptions": [{
+                            "answerText": "努皮",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "科学学习",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "马特普洛特利布",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "如果您想要了解数据集数据点的分布或其他特征，则执行以下工作：",
+                    "answerOptions": [{
+                            "answerText": "数据可视化",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "数据预处理",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "列车测试拆分",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "哪些是机器学习项目中数据可视化步骤的一部分？",
+                    "answerOptions": [{
+                            "answerText": "纳入特定的机器学习算法",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "使用不同的绘图方法创建数据的图片表示",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "使数据集值正常化",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "title": "准备和可视化回归数据：讲座后测验",
+            "quiz": [{
+                    "questionText": "如果您想要检查数据集中是否存在缺失值，则根据此课程，这些代码片段中哪一个是正确的？假设数据集存储在名为'数据集'的变量中，该变量是熊猫数据帧对象。",
+                    "answerOptions": [{
+                            "answerText": "数据集. isnull （. 和 （）",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "查找错误（数据集）",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "和（空（数据集））",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "当您想了解数据集中不同数据点组的分布时，这些绘图方法中哪一个有用？",
+                    "answerOptions": [{
+                            "answerText": "散布图",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "线图",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "酒吧情节",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "数据可视化不能告诉你什么？",
+                    "answerOptions": [{
+                            "answerText": "数据点之间的关系",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "收集数据集的来源",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "在数据集中查找离群值的存在",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "title": "线性和多面回归：演讲前测验",
+            "quiz": [{
+                    "questionText": "马特普洛特利布是一个",
+                    "answerOptions": [{
+                            "answerText": "绘图库",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "数据可视化库",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "借阅库",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "线性回归使用以下图来绘制变量之间的关系",
+                    "answerOptions": [{
+                            "answerText": "直线",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "一个圆圈",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "曲线",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "一个好的线性回归模型具有 ___ 相关系数",
+                    "answerOptions": [{
+                            "answerText": "低",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "轩",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "平",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "title": "线性和多面回归：讲座后测验",
+            "quiz": [{
+                    "questionText": "如果您的数据是非线性的，请尝试 '回归'类型",
+                    "answerOptions": [{
+                            "answerText": "线性",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "球形",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "多项式",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "这些都是类型的回归方法",
+                    "answerOptions": [{
+                            "answerText": "假步、岭、拉索和弹性网",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "步进， 岭， 拉索和弹性网",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "步进， 岭， 拉里亚特和弹性网",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "最小方块回归意味着回归线周围的所有数据点都是：",
+                    "answerOptions": [{
+                            "answerText": "平方，然后减去",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "乘以",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "平方，然后加起来",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "title": "后勤回归：课前测验",
+            "quiz": [{
+                    "questionText": "使用物流回归来预测",
+                    "answerOptions": [{
+                            "answerText": "苹果是否成熟",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "一个月内能卖出多少张票",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "天空明天下午 6 点会转动什么颜色",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "后勤回归类型包括",
+                    "answerOptions": [{
+                            "answerText": "多名和枢机主教",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "多名和序",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "校长和序人",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "您的数据相关性较弱。最佳类型的回归使用是：",
+                    "answerOptions": [{
+                            "answerText": "物流",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "线性",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "红衣主教",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "title": "后勤回归：课后测验",
+            "quiz": [{
+                    "questionText": "海出生是一种类型",
+                    "answerOptions": [{
+                            "answerText": "数据可视化库",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "制图库",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "数学库",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "混淆矩阵也称为：",
+                    "answerOptions": [{
+                            "answerText": "错误矩阵",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "真相矩阵",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "精度矩阵",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "一个好的模型将有：",
+                    "answerOptions": [{
+                            "answerText": "大量的误报和真底片在其混乱矩阵",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "大量的真正的积极和真正的负面在其混乱矩阵",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "大量的真正反误矩阵",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "title": "构建 Web 应用程序：讲座前测验",
+            "quiz": [{
+                    "questionText": "ONNX 代表什么？",
+                    "answerOptions": [{
+                            "answerText": "通过神经网络交换",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "开放神经网络交换",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "输出神经网络交换",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "弗拉斯克是如何由它的创造者定义的？",
+                    "answerOptions": [{
+                            "answerText": "迷你框架",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "大框架",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "微型框架",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "Python 的泡菜模块是做什么的",
+                    "answerOptions": [{
+                            "answerText": "序列化 Python 对象",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "去序列化 Python 对象",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "序列化和去序列化 Python 对象",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "title": "构建 Web 应用程序：讲座后测验",
+            "quiz": [{
+                    "questionText": "我们可以使用哪些工具使用 Python 在网络上托管预先训练的模型？",
+                    "answerOptions": [{
+                            "answerText": "瓶",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "滕索弗.js",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": ".js",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "萨斯代表什么？",
+                    "answerOptions": [{
+                            "answerText": "系统作为服务",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "软件作为服务",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "安全作为一种服务",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "科学学习的标签编码器库是做什么的？",
+                    "answerOptions": [{
+                            "answerText": "按字母顺序编码数据",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "以数字编码数据",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "串行编码数据",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "title": "分类1：课前测验",
+            "quiz": [{
+                    "questionText": "分类是一种监督学习的形式，有很多共同之处",
+                    "answerOptions": [{
+                            "answerText": "时间系列",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "回归技术",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "NLP",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "分类可以帮助回答什么问题？",
+                    "answerOptions": [{
+                            "answerText": "这封邮件是不是垃圾邮件？",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "猪会飞吗？",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "生命的意义何在？",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用分类技术的第一步是什么？",
+                    "answerOptions": [{
+                            "answerText": "创建数据集的类",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "清洁和平衡您的数据",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "将数据点分配给组或结果",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "title": "分类1：课后测验",
+            "quiz": [{
+                    "questionText": "什么是多类问题？",
+                    "answerOptions": [{
+                            "answerText": "将数据点分类为多个类的任务",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "将数据点分类为几个类之一的任务",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "以多种方式清理数据点的任务",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "清理经常性或无益的数据以帮助分类器解决您的问题非常重要。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "平衡数据的最佳理由是什么？",
+                    "answerOptions": [{
+                            "answerText": "不平衡的数据在可视化方面看起来很糟糕",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "平衡数据会产生更好的结果，因为 ML 模型不会偏向一个类",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "平衡数据为您提供了更多的数据点",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "title": "分类2：课前测验",
+            "quiz": [{
+                    "questionText": "平衡、干净的数据产生最佳的分类结果",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "如何选择正确的分类器？",
+                    "answerOptions": [{
+                            "answerText": "了解哪些分类器最适合哪些场景",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "受过教育的猜测和检查",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "分类是一种类型",
+                    "answerOptions": [{
+                            "answerText": "NLP",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "监督学习",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "程序设计语言",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "title": "分类2：课后测验",
+            "quiz": [{
+                    "questionText": "什么是'解算器'？",
+                    "answerOptions": [{
+                            "answerText": "仔细检查您工作的人",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "优化问题中使用的算法",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "机器学习技术",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "我们在这节课中使用了哪个分类器？",
+                    "answerOptions": [{
+                            "answerText": "物流回归",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "决策树",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "一对全多类",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "您如何知道分类算法是否按预期工作？",
+                    "answerOptions": [{
+                            "answerText": "通过检查其预测的准确性",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "通过检查它与其他算法",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "通过查看历史数据，了解该算法在解决类似问题时有多好",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "title": "分类3：课前测验",
+            "quiz": [{
+                    "questionText": "要尝试的一个好的初始分类器是：",
+                    "answerOptions": [{
+                            "answerText": "线性 SVC",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "K-手段",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "逻辑 SVC",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "正规化控制：",
+                    "answerOptions": [{
+                            "answerText": "参数的影响",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "训练速度的影响",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "离群值的影响",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "K-邻居分类器可用于：",
+                    "answerOptions": [{
+                            "answerText": "监督学习",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "无人监督的学习",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "title": "分类3：课后测验",
+            "quiz": [{
+                    "questionText": "支持矢量分类器可用于",
+                    "answerOptions": [{
+                            "answerText": "分类",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "回归",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "随机森林是一种___类型的分类器",
+                    "answerOptions": [{
+                            "answerText": "整体",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "掩饰",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "聚集",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "阿达布斯特以：",
+                    "answerOptions": [{
+                            "answerText": "关注分类错误项目的权重",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "关注离群值",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "关注不正确的数据",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "title": "分类4：课前测验",
+            "quiz": [{
+                    "questionText": "建议系统可用于",
+                    "answerOptions": [{
+                            "answerText": "推荐一家好餐厅",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "推荐时尚尝试",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "将模型嵌入 Web 应用有助于它具有离线能力",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "Onnx 运行时间可用于",
+                    "answerOptions": [{
+                            "answerText": "在 Web 应用中运行模型",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "培训模式",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "超参数调谐",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "title": "分类4：课后测验",
+            "quiz": [{
+                    "questionText": "Netron 应用程序可帮助您：",
+                    "answerOptions": [{
+                            "answerText": "可视化数据",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "可视化模型的结构",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "测试您的网络应用",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "转换您的 Scikit 学习模型，以便与 Onnx 一起使用：",
+                    "answerOptions": [{
+                            "answerText": "斯克莱恩应用程序",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "斯克莱恩网",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "斯克莱恩 - 奥恩克斯",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在 Web 应用中使用您的模型称为：",
+                    "answerOptions": [{
+                            "answerText": "推理",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "干涉",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "保险",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "title": "集群简介：讲座前测验",
+            "quiz": [{
+                    "questionText": "聚类的真实例子是",
+                    "answerOptions": [{
+                            "answerText": "设置餐桌",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "整理衣物",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "买",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "聚类技术可用于这些行业",
+                    "answerOptions": [{
+                            "answerText": "银行业",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "电子商务",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "聚类是一种类型：",
+                    "answerOptions": [{
+                            "answerText": "监督学习",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "无人监督的学习",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "强化学习",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "title": "集群简介：讲座后测验",
+            "quiz": [{
+                    "questionText": "欧几里德几何排列沿",
+                    "answerOptions": [{
+                            "answerText": "飞机",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "曲线",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "领域",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "聚类数据的密度与其相关",
+                    "answerOptions": [{
+                            "answerText": "noise",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "深度",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "有效性",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "最著名的聚类算法是",
+                    "answerOptions": [{
+                            "answerText": "k- 手段",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "k - 中",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "k - mart",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "title": "K-平均聚类：讲座前测验",
+            "quiz": [{
+                    "questionText": "K-手段来源于：",
+                    "answerOptions": [{
+                            "answerText": "电机工程",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "信号处理",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "计算语言学",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "一个好的剪影分数意味着：",
+                    "answerOptions": [{
+                            "answerText": "集群分离良好，定义清晰",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "集群很少",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "有许多集群",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "方差为：",
+                    "answerOptions": [{
+                            "answerText": "与平均值的平方差异的平均值",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "如果聚类变得过高，则会出现问题",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "title": "K-平均分组：讲座后测验",
+            "quiz": [{
+                    "questionText": "沃罗诺伊图显示：",
+                    "answerOptions": [{
+                            "answerText": "聚类的方差",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "集群的种子及其区域",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "集群的惯性",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "惯性是",
+                    "answerOptions": [{
+                            "answerText": "衡量内部连贯性聚类的指标",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "测量组移动的量",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "集群质量的衡量标准",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用 K 手段，您必须首先确定'k'值",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "title": "NLP 简介：演讲前测验",
+            "quiz": [{
+                    "questionText": "Nlp 在这些课程中代表什么？",
+                    "answerOptions": [{
+                            "answerText": "神经语言处理",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "自然语言处理",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "自然语言处理",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "伊丽莎是一个早期的机器人， 充当计算机",
+                    "answerOptions": [{
+                            "answerText": "心理医生",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "大夫",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "护士",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "艾伦·图灵的'图灵测试'试图确定计算机是否",
+                    "answerOptions": [{
+                            "answerText": "与人类无法区分",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "思维",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "title": "NLP 简介：演讲后测验",
+            "quiz": [{
+                    "questionText": "约瑟夫 · 韦森鲍姆发明了机器人",
+                    "answerOptions": [{
+                            "answerText": "以利沙",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "伊丽莎",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "艾萝依",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "对话机器人根据",
+                    "answerOptions": [{
+                            "answerText": "随机选择预先定义的选择",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "分析输入和使用机器智能",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "两者都是",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "您如何使机器人更有效？",
+                    "answerOptions": [{
+                            "answerText": "通过问更多的问题。",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "通过给它提供更多的数据并相应地进行培训",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "机器人是哑巴， 它不能学习:(",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "title": "NLP 任务：讲座前测验",
+            "quiz": [{
+                    "questionText": "令牌化",
+                    "answerOptions": [{
+                            "answerText": "通过标点符号拆分文本",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "将文本拆分为单独的代币（文字）",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "将文本拆分为短语",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "嵌入",
+                    "answerOptions": [{
+                            "answerText": "以数字形式转换文本数据，以便单词可以聚类",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "将单词嵌入短语",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "将句子嵌入段落",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "语音标记部分",
+                    "answerOptions": [{
+                            "answerText": "将句子除以其部分的语音",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "采取象征性的单词， 并标记他们说话的一部分",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "图表句子",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "title": "NLP 任务：讲座后测验",
+            "quiz": [{
+                    "questionText": "构建单词重复使用的频率字典：",
+                    "answerOptions": [{
+                            "answerText": "单词和短语词典",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "单词和短语频率",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "单词和短语库",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "N 克指",
+                    "answerOptions": [{
+                            "answerText": "文本可以分为一定长度的单词序列",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "一个单词可以分为一定长度的字符序列",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "文本可以拆分为一定长度的段落",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "情绪分析",
+                    "answerOptions": [{
+                            "answerText": "分析积极或消极的短语",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "分析一个感伤的短语",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "分析悲伤的短语",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "title": "NLP 和翻译：讲座前测验",
+            "quiz": [{
+                    "questionText": "天真翻译",
+                    "answerOptions": [{
+                            "answerText": "仅翻译单词",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "仅翻译单词",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "翻译情绪",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "文本的 [语料库] 指",
+                    "answerOptions": [{
+                            "answerText": "少量文本",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "大量的文本",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "一个标准文本",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "如果 ML 模型有足够的人工翻译来构建模型，它可以",
+                    "answerOptions": [{
+                            "answerText": "缩写翻译",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "标准化翻译",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "提高翻译的准确性",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "title": "提高翻译的准确性",
+            "quiz": [{
+                    "questionText": "文本博客的翻译库基础是：",
+                    "answerOptions": [{
+                            "answerText": "谷歌翻译",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "必应",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "自定义 ML 模型",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "要使用您需要的'blob.翻译: '",
+                    "answerOptions": [{
+                            "answerText": "互联网连接",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "互联网连接",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "爪哇脚本",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "为了确定情绪，ML 的方法是：",
+                    "answerOptions": [{
+                            "answerText": "应用回归技术手动生成的意见和分数，并查找模式",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "将 NLP 技术应用于手动生成的意见和分数并查找模式",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "将聚类技术应用于手动生成的意见和分数并查找模式",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "title": "NLP 4： 讲座前测验",
+            "quiz": [{
+                    "questionText": "我们可以从人类撰写或发言的文本中获得哪些信息？",
+                    "answerOptions": [{
+                            "answerText": "模式和频率",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "情绪和意义",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "什么是情绪分析？",
+                    "answerOptions": [{
+                            "answerText": "研究家族传家宝是否有感伤价值",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "系统识别、提取、量化和研究情感状态和主观信息的方法",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "判断某人是悲伤还是快乐的能力",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用酒店评论、Python 和情绪分析的数据集可以回答什么问题？",
+                    "answerOptions": [{
+                            "answerText": "评论中最常用的单词和短语是什么？",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "哪个度假村有最好的游泳池？",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "这家酒店有代客泊车吗？",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "title": "NLP 4：课后测验",
+            "quiz": [{
+                    "questionText": "NLP 的本质是什么？",
+                    "answerOptions": [{
+                            "answerText": "将人类语言分为快乐或悲伤",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "解释意义或情感， 而不必有一个人这样做",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "发现情绪的离群值并检查它们",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在清洁数据时，您可以查找哪些内容？",
+                    "answerOptions": [{
+                            "answerText": "其他语言中的字符",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "空白行或列",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在对其执行操作之前，了解您的数据及其弱点非常重要。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "title": "NLP 5： 讲座前测验",
+            "quiz": [{
+                    "questionText": "为什么在分析数据之前清理数据很重要？",
+                    "answerOptions": [{
+                            "answerText": "某些列可能缺少或不正确的数据",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "混乱的数据可能导致有关数据集的错误结论",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "清洁数据策略的一个例子是什么？",
+                    "answerOptions": [{
+                            "answerText": "删除不适合回答特定问题的列/行",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "删除不符合您假设的验证值",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "将离群值移到单独的表中，并运行该表的计算，以查看它们是否匹配",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用标签列对数据进行分类是很有用的。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "title": "NLP 5：课后测验",
+            "quiz": [{
+                    "questionText": "数据集的目标是什么？",
+                    "answerOptions": [{
+                            "answerText": "看看全世界酒店有多少负面和正面的评论",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "添加情绪和专栏，这将有助于您选择最好的酒店",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "分析人们为什么留下特定的评论",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "什么是停止词？",
+                    "answerOptions": [{
+                            "answerText": "不改变句子情绪的普通英语单词",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "单词，你可以删除，以加快情绪分析",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "要测试情绪分析，请确保它与审阅者的分数相匹配，以便进行相同的审核。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": " 错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "title": "时间系列简介：演讲前测验",
+            "quiz": [{
+                    "questionText": "时间系列预测在",
+                    "answerOptions": [{
+                            "answerText": "确定未来成本",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "预测未来定价",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两者",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "时间序列是按下列顺序拍摄的：",
+                    "answerOptions": [{
+                            "answerText": "空间中连续的相同间隔点",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "连续的相同间隔点的时间",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "空间和时间的连续等间隔点",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "时间系列可用于：",
+                    "answerOptions": [{
+                            "answerText": "地震预报",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "计算机视觉",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "颜色分析",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "title": "时间系列简介：讲座后测验",
+            "quiz": [{
+                    "questionText": "时间系列趋势是",
+                    "answerOptions": [{
+                            "answerText": "可测量的增减随时间推移而增加和减少",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "量化会随着时间推移而减少",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "随着时间的推移，增减之间的差距",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "离群值是",
+                    "answerOptions": [{
+                            "answerText": "接近标准数据方差的点",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "远离标准数据差异的点",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "标准数据方差内的点",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "时间系列预测最有用",
+                    "answerOptions": [{
+                            "answerText": "计量经济学",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "历史",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "图书馆",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "title": "时间系列阿里玛：演讲前测验",
+            "quiz": [{
+                    "questionText": "阿里玛代表",
+                    "answerOptions": [{
+                            "answerText": "自动回归整体移动平均线",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "自动回归综合移动操作",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "自动递减综合移动平均线",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "固定性是指",
+                    "answerOptions": [{
+                            "answerText": "属性在时间转移时不会更改的数据",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "分布在时间转移时不会更改的数据",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "数据其分布在时间转移时发生更改",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "差分",
+                    "answerOptions": [{
+                            "answerText": "稳定趋势和季节性",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "加剧趋势和季节性",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "消除趋势和季节性",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "title": "时间系列阿里玛：课后测验",
+            "quiz": [{
+                    "questionText": "ARIMA 用于使模型适合特殊时间系列数据的形式",
+                    "answerOptions": [{
+                            "answerText": "尽可能平坦",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "尽可能紧密",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "通过散射图",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用萨里玛克斯",
+                    "answerOptions": [{
+                            "answerText": "管理季节性 ARIMA 模型",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "管理特殊的 ARIMA 模型",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "管理统计 ARIMA 模型",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "'向前走'验证涉及",
+                    "answerOptions": [{
+                            "answerText": "重新评估模型，使其在验证时逐步进行",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "重新培训模型，使其在验证时逐步恢复",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "验证时逐步重新配置模型",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "title": "强化 1：课前测验",
+            "quiz": [{
+                    "questionText": "什么是强化学习？",
+                    "answerOptions": [{
+                            "answerText": "一遍又一遍地教某人一些东西， 直到他们明白",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "一种通过运行许多实验来破译代理在某些环境中的最佳行为的学习技术",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "了解如何同时运行多个实验",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "什么是政策？",
+                    "answerOptions": [{
+                            "answerText": "在任何给定状态下返回操作的功能",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "一份文件，告诉你是否可以返回一个项目",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "用于随机目的的功能",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "奖励函数会返回环境中每个状态的分数。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "title": "强化 1：课后测验",
+            "quiz": [{
+                    "questionText": "什么是 Q 学习？",
+                    "answerOptions": [{
+                            "answerText": "记录每个状态的'善良'的机制",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "由 Q 表定义策略的算法",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "以上两个",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "Q-Table 与随机步行策略相对应的值是什么？",
+                    "answerOptions": [{
+                            "answerText": "所有等值",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "-0.25",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "所有不同的值",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在我们的学习过程中，使用探索比开发更好。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "true"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 47,
+            "title": "强化 2：课前测验",
+            "quiz": [{
+                    "questionText": "国际象棋和围棋是具有连续状态的游戏。",
+                    "answerOptions": [{
+                            "answerText": "真",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "错误",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "什么是卡特波尔问题？",
+                    "answerOptions": [{
+                            "answerText": "消除离群值的过程",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "优化购物车的方法",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "平衡的简化版本",
+                            "isCorrect": "true"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "我们可以使用什么工具在游戏中播放不同的潜在状态场景？",
+                    "answerOptions": [{
+                            "answerText": "猜测和检查",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "模拟环境",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "状态过渡测试",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "title": "强化 2：课后测验",
+            "quiz": [{
+                    "questionText": "我们在哪里定义环境中的所有可能操作？",
+                    "answerOptions": [{
+                            "answerText": "方法",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "行动空间",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "行动列表",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "我们用什么对作为字典的关键值？",
+                    "answerOptions": [{
+                            "answerText": "（状态、动作）为键，Q表输入为值",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "状态为键，行动为价值",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "qvalue 的价值以功能为键，以行动为价值",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "我们在 Q 学习期间使用的超参数是什么？",
+                    "answerOptions": [{
+                            "answerText": "q 表值、当前奖励、随机操作",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "学习率、折扣系数、勘探/开发系数",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "累积奖励、学习率、探索因素",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 49,
+            "title": "现实世界应用：讲座前测验",
+            "quiz": [{
+                    "questionText": "金融行业 ML 应用的例子是什么？",
+                    "answerOptions": [{
+                            "answerText": "使用 NLP 个性化客户旅程",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "使用线性回归的财富管理",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "使用时间系列进行能源管理",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "医院可以使用什么ML技术来管理重新接纳？",
+                    "answerOptions": [{
+                            "answerText": "聚类",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "时间系列",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "NLP",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "使用时间系列进行能源管理的例子是什么？",
+                    "answerOptions": [{
+                            "answerText": "运动感应动物",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "智能停车表",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "跟踪森林火灾",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "title": "现实世界应用：讲座后测验",
+            "quiz": [{
+                    "questionText": "哪些 ML 技术可用于检测信用卡欺诈？",
+                    "answerOptions": [{
+                            "answerText": "回归",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "聚类",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "NLP",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在森林管理中体现了哪种ML技术？",
+                    "answerOptions": [{
+                            "answerText": "强化学习",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "时间系列",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "NLP",
+                            "isCorrect": "false"
+                        }
+                    ]
+                },
+                {
+                    "questionText": "在医疗保健行业应用 ML 的例子是什么？",
+                    "answerOptions": [{
+                            "answerText": "使用回归预测学生行为",
+                            "isCorrect": "false"
+                        },
+                        {
+                            "answerText": "使用分类器管理临床试验",
+                            "isCorrect": "true"
+                        },
+                        {
+                            "answerText": "使用分类器对动物的运动感应",
+                            "isCorrect": "false"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}]
