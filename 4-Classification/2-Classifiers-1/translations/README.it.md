@@ -4,7 +4,7 @@ In questa lezione, si utilizzerà l'insieme di dati salvati dall'ultima lezione,
 
 Si utilizzerà questo insieme di dati con una varietà di classificatori per _prevedere una determinata cucina nazionale in base a un gruppo di ingredienti_. Mentre si fa questo, si imparerà di più su alcuni dei modi in cui gli algoritmi possono essere sfruttati per le attività di classificazione.
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21/?loc=it)
 # Preparazione
 
 Supponendo che la [Lezione 1](../1-Introduction/README.md) sia stata completata, assicurarsi che _esista_ un file clean_cuisines.csv nella cartella in radice `/data` per queste quattro lezioni.
@@ -232,7 +232,7 @@ Poiché si sta utilizzando il caso multiclasse, si deve scegliere quale _schema_
 
 In questa lezione, sono stati utilizzati dati puliti per creare un modello di apprendimento automatico in grado di prevedere una cucina nazionale basata su una serie di ingredienti. Si prenda del tempo per leggere le numerose opzioni fornite da Scikit-learn per classificare i dati. Approfondire il concetto di "risolutore" per capire cosa succede dietro le quinte.
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22/?loc=it)
 ## Revisione e Auto Apprendimento
 
 Approfondire un po' la matematica alla base della regressione logistica in [questa lezione](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)

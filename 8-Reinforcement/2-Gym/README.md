@@ -1,7 +1,7 @@
 # CartPole Skating
 
 The problem we have been solving in the previous lesson might seem like a toy problem, not really applicable for real life scenarios. This is not the case, because many real world problems also share this scenario - including playing Chess or Go. They are similar, because we also have a board with given rules and a **discrete state**.
-
+https://white-water-09ec41f0f.azurestaticapps.net/
 ## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/47/)
 
 ## Introduction

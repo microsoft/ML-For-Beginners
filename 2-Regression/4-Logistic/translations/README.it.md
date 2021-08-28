@@ -3,7 +3,7 @@
 ![Infografica di regressione lineare e logistica](../images/logistic-linear.png)
 > Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/?loc=it)
 
 ## Introduzione
 
@@ -284,7 +284,7 @@ Nelle lezioni future sulle classificazioni si imparerà come eseguire l'iterazio
 
 C'è molto altro da svelare riguardo alla regressione logistica! Ma il modo migliore per imparare è sperimentare. Trovare un insieme di dati che si presti a questo tipo di analisi e costruire un modello con esso. Cosa si è appreso? suggerimento: provare [Kaggle](https://kaggle.com) per ottenere insiemi di dati interessanti.
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/?loc=it)
 
 ## Revisione e Auto Apprendimento
 
