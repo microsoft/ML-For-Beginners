@@ -10,7 +10,7 @@ In questa lezione e nella successiva si imparerà qualcosa sulla previsione dell
 
 > 🎥 Fare clic sull'immagine sopra per un video sulla previsione delle serie temporali
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/41/?loc=it)
 
 È un campo utile e interessante con un valore reale per il business, data la sua applicazione diretta a problemi di prezzi, inventario e problemi della catena di approvvigionamento. Mentre le tecniche di deep learning hanno iniziato a essere utilizzate per acquisire maggiori informazioni per prevedere meglio le prestazioni future, la previsione delle serie temporali rimane un campo ampiamente informato dalle tecniche classiche di ML.
 
@@ -174,7 +174,7 @@ Nella prossima lezione, si creerà un modello ARIMA per creare alcune previsioni
 
 Fare un elenco di tutti i settori e le aree di indagine che vengono in mente che potrebbero trarre vantaggio dalla previsione delle serie temporali. Si riesce a pensare a un'applicazione di queste tecniche nelle arti? In Econometria? Ecologia? Vendita al Dettaglio? Industria? Finanza? Dove se no?
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/42/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/42/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

@@ -6,7 +6,7 @@ Nella lezione precedente, si è imparato qualcosa sulla previsione delle serie t
 
 > 🎥 Fare clic sull'immagine sopra per un video: Una breve introduzione ai modelli ARIMA. L'esempio è fatto in linguaggio R, ma i concetti sono universali.
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/43/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/43/?loc=it)
 
 ## Introduzione
 
@@ -383,7 +383,7 @@ Controllare l'accuratezza del modello testando il suo errore percentuale medio a
 
 Scoprire i modi per testare l'accuratezza di un modello di serie temporali. Si esamina MAPE in questa lezione, ma ci sono altri metodi che si potrebbero usare? Ricercarli e annotarli. Un documento utile può essere trovato [qui](https://otexts.com/fpp2/accuracy.html)
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/44/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/44/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

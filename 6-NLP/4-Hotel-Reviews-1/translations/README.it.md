@@ -6,7 +6,7 @@ In questa sezione si utilizzeranno le tecniche delle lezioni precedenti per eseg
 - come calcolare alcuni nuovi dati in base alle colonne esistenti
 - come salvare l'insieme di dati risultante per l'uso nella sfida finale
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37/?loc=it)
 
 ### Introduzione
 
@@ -401,7 +401,7 @@ Ora che si è esplorato l'insieme di dati, nella prossima lezione si filtreranno
 
 Questa lezione dimostra, come visto nelle lezioni precedenti, quanto sia di fondamentale importanza comprendere i dati e le loro debolezze prima di eseguire operazioni su di essi. I dati basati su testo, in particolare, sono oggetto di un attento esame. Esaminare vari insiemi di dati contenenti principalmente testo e vedere se si riesce a scoprire aree che potrebbero introdurre pregiudizi o sentiment distorti in un modello.
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

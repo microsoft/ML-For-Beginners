@@ -5,7 +5,7 @@ Il processo di creazione, utilizzo e mantenimento dei modelli di machine learnin
 - Comprendere i processi ad alto livello alla base di machine learning.
 - Esplorare concetti di base come "modelli", "previsioni" e "dati di addestramento".
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7/?loc=it)
 
 ## Introduzione
 
@@ -42,7 +42,7 @@ Per poter rispondere con sicurezza alla domanda, serve una buona quantità di da
 
 ### Caratteristiche e destinazione
 
-Una funzionalità è una proprietà misurabile dei dati. In molti set di dati è espresso come intestazione di colonna come 'date' 'size' o 'color'. La variabile di funzionalità, solitamente rappresentata come `X` nel codice, rappresenta la variabile di input che verrà utilizzata per il training del modello.
+Una caratteristica è una proprietà misurabile dei dati. In molti set di dati è espresso come intestazione di colonna come 'date' 'size' o 'color'. La variabile di caratteristica, solitamente rappresentata come `X` nel codice, rappresenta la variabile di input che verrà utilizzata per il training del modello.
 
 Un obiettivo è una cosa che stai cercando di prevedere. Target solitamente rappresentato come `y` nel codice, rappresenta la risposta alla domanda che stai cercando di porre dei tuoi dati: a dicembre, di che colore saranno le zucche più economiche? a San Francisco, quali quartieri avranno il miglior prezzo immobiliare? A volte la destinazione viene anche definita attributo label.
 
@@ -103,7 +103,7 @@ In queste lezioni si scoprirà come utilizzare questi passaggi per preparare, co
 
 Disegnare un diagramma di flusso che rifletta i passaggi di un professionista di ML. Dove ci si vede in questo momento nel processo? Dove si prevede che sorgeranno difficoltà? Cosa sembra facile?
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8/?loc=it)
 
 ## Revisione e Auto Apprendimento
 
