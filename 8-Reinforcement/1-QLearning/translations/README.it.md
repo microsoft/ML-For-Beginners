@@ -11,7 +11,7 @@ Usando reinforcement learning e un simulatore (il gioco), si può imparare a gio
 
 > 🎥 Fare clic sull'immagine sopra per ascoltare Dmitry discutere sul reinforcement learning
 
-## [Quiz Pre-Lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/45/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/45/?loc=it)
 
 ## Prerequisiti e Configurazione
 
@@ -315,6 +315,6 @@ Gli apprendimenti possono essere riassunti come:
 
 Nel complesso, è importante ricordare che il successo e la qualità del processo di apprendimento dipendono in modo significativo da parametri come il tasso di apprendimento, il decadimento del tasso di apprendimento e il fattore di sconto. Questi sono spesso chiamati **iperparametri**, per distinguerli dai **parametri**, che si ottimizzano durante l'allenamento (ad esempio, i coefficienti della Q-Table). Il processo per trovare i valori migliori degli iperparametri è chiamato **ottimizzazione degli iperparametri** e merita un argomento a parte.
 
-## [Quiz post-lezione](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/46/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/46/?loc=fr)
 
 ## Incarico: [Un mondo più realistico](assignment.it.md)

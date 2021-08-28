@@ -5,7 +5,7 @@ Il clustering è un tipo di [apprendimento non supervisionato](https://wikipedia
 [![No One Like You di PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You di PSquare")
 
 > 🎥 Fare clic sull'immagine sopra per un video. Mentre si studia machine learning con il clustering, si potranno gradire brani della Nigerian Dance Hall: questa è una canzone molto apprezzata del 2014 di PSquare.
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/?loc=it)
 
 ### Introduzione
 
@@ -319,7 +319,7 @@ In generale, per il clustering è possibile utilizzare i grafici a dispersione p
 
 In preparazione per la lezione successiva, creare un grafico sui vari algoritmi di clustering che si potrebbero scoprire e utilizzare in un ambiente di produzione. Che tipo di problemi sta cercando di affrontare il clustering?
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/?loc=it)
 
 ## Revisione e Auto Apprendimento
 
