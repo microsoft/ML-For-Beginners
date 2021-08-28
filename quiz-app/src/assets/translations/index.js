@@ -12,7 +12,7 @@ const messages = {
 	tr: tr[0],
 	fr: fr[0],
 	ja: ja[0],
-                   zh-cn: zh-cn[0]
+        zh-cn: zh-cn[0]
 };
 
 export default messages;
