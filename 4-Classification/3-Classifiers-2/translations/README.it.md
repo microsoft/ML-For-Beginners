@@ -2,7 +2,7 @@
 
 In questa seconda lezione sulla classificazione, si esploreranno più modi per classificare i dati numerici. Si Impareranno anche le ramificazioni per la scelta di un classificatore rispetto all'altro.
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/?loc=it)
 
 ### Prerequisito
 
@@ -224,7 +224,7 @@ Questo metodo di Machine Learning "combina le previsioni di diversi stimatori di
 
 Ognuna di queste tecniche ha un gran numero di parametri che si possono modificare. Ricercare i parametri predefiniti di ciascuno e pensare a cosa significherebbe modificare questi parametri per la qualità del modello.
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

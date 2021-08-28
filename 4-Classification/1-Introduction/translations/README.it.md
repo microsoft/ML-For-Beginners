@@ -19,7 +19,7 @@ Ricordare:
 
 La classificazione utilizza vari algoritmi per determinare altri modi per definire l'etichetta o la classe di un punto dati. Si lavorerà con questi dati di cucina per vedere se, osservando un gruppo di ingredienti, è possibile determinarne la cucina di origine.
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/?loc=it)
 
 ### Introduzione
 
@@ -286,7 +286,7 @@ Ora che i dati sono puliti, si usa [SMOTE](https://imbalanced-learn.org/dev/refe
 
 Questo programma di studi contiene diversi insiemi di dati interessanti. Esaminare le cartelle `data` e vedere se contiene insiemi di dati che sarebbero appropriati per la classificazione binaria o multiclasse. Quali domande si farebbero a questo insieme di dati?
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/?loc=it)
 
 ## Revisione e Auto Apprendimento
 
