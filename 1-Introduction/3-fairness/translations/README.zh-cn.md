@@ -1,7 +1,7 @@
 # 机器学习中的公平性
  
 ![机器学习中的公平性概述](../../../sketchnotes/ml-fairness.png)
-> 作者[Tomomi Imura](https://www.twitter.com/girlie_mac)
+> 作者 [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
  
@@ -76,14 +76,14 @@
 一种图像标记技术，臭名昭著地将深色皮肤的人的图像错误地标记为大猩猩。错误的标签是有害的，不仅仅是因为这个系统犯了一个错误，而且它还特别使用了一个长期以来被故意用来诋毁黑人的标签。
 
 [![AI: 我不是女人吗？](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, 我不是女人吗？")
-> 🎥 点击上图观看视频：AI，我不是女人吗 - 一场展示AI种族主义诋毁造成的伤害的表演
+> 🎥 点击上图观看视频：AI，我不是女人吗 - 一场展示 AI 种族主义诋毁造成的伤害的表演
 
 ### 代表性过高或过低
  
 有倾向性的图像搜索结果就是一个很好的例子。在搜索男性比例等于或高于女性的职业的图片时，比如工程或首席执行官，要注意那些更倾向于特定性别的结果。
 
 ![必应CEO搜索](../images/ceos.png)
-> 在Bing上搜索“CEO”会得到非常全面的结果
+> 在 Bing 上搜索“CEO”会得到非常全面的结果
 
 这五种主要类型的危害不是相互排斥的，一个单一的系统可以表现出一种以上的危害。此外，每个案例的严重程度各不相同。例如，不公平地给某人贴上罪犯的标签比给形象贴上错误的标签要严重得多。然而，重要的是要记住，即使是相对不严重的伤害也会让人感到疏远或被孤立，累积的影响可能会非常压抑。
  
@@ -98,7 +98,7 @@
 
 ## 检测不公平
 
-给定系统行为不公平的原因有很多。例如，社会偏见可能会反映在用于训练它们的数据集中。例如，过度依赖历史数据可能会加剧招聘不公平。通过使用过去10年提交给公司的简历中的模式，该模型确定男性更合格，因为大多数简历来自男性，这反映了过去男性在整个科技行业的主导地位。
+给定系统行为不公平的原因有很多。例如，社会偏见可能会反映在用于训练它们的数据集中。例如，过度依赖历史数据可能会加剧招聘不公平。通过使用过去 10 年提交给公司的简历中的模式，该模型确定男性更合格，因为大多数简历来自男性，这反映了过去男性在整个科技行业的主导地位。
 
 关于特定人群的数据不足可能是不公平的原因。例如，图像分类器对于深肤色人的图像具有较高的错误率，因为数据中没有充分代表较深的肤色。
 
@@ -124,9 +124,9 @@
 
 与贷款相关的危害和好处是什么？想想假阴性和假阳性的情况：
 
-**假阴性**（拒绝，但Y=1）-在这种情况下，将拒绝有能力偿还贷款的申请人。这是一个不利的事件，因为贷款的资源是从合格的申请人扣留。
+**假阴性**（拒绝，但 Y=1）-在这种情况下，将拒绝有能力偿还贷款的申请人。这是一个不利的事件，因为贷款的资源是从合格的申请人扣留。
 
-**假阳性**（接受，但Y=0）-在这种情况下，申请人确实获得了贷款，但最终违约。因此，申请人的案件将被送往一个债务催收机构，这可能会影响他们未来的贷款申请。
+**假阳性**（接受，但 Y=0）-在这种情况下，申请人确实获得了贷款，但最终违约。因此，申请人的案件将被送往一个债务催收机构，这可能会影响他们未来的贷款申请。
 
 ### 确定受影响的群体
 
@@ -147,7 +147,7 @@
  
 这个表格告诉我们几件事。首先，我们注意到数据中的未列出性别的人相对较少。数据是有偏差的，所以你需要小心解释这些数字。
 
-在本例中，我们有3个组和2个度量。当我们考虑我们的系统如何影响贷款申请人的客户群时，这可能就足够了，但是当你想要定义更多的组时，你可能需要将其提取到更小的摘要集。为此，你可以添加更多的度量，例如每个假阴性和假阳性的最大差异或最小比率。
+在本例中，我们有 3 个组和 2 个度量。当我们考虑我们的系统如何影响贷款申请人的客户群时，这可能就足够了，但是当你想要定义更多的组时，你可能需要将其提取到更小的摘要集。为此，你可以添加更多的度量，例如每个假阴性和假阳性的最大差异或最小比率。
  
 ✅ 停下来想一想：还有哪些群体可能会受到贷款申请的影响？
  
@@ -159,19 +159,19 @@
 
 ### Fairlearn 
  
-[Fairlearn](https://fairlearn.github.io/) 是一个开源Python包，可让你评估系统的公平性并减轻不公平性。
+[Fairlearn](https://fairlearn.github.io/) 是一个开源 Python 包，可让你评估系统的公平性并减轻不公平性。
 
 该工具可帮助你评估模型的预测如何影响不同的组，使你能够通过使用公平性和性能指标来比较多个模型，并提供一组算法来减轻二元分类和回归中的不公平性。
 
-- 通过查看Fairlearn的[GitHub](https://github.com/fairlearn/fairlearn/)了解如何使用不同的组件
+- 通过查看 Fairlearn 的 [GitHub](https://github.com/fairlearn/fairlearn/) 了解如何使用不同的组件
 
 - 浏览[用户指南](https://fairlearn.github.io/main/user_guide/index.html), [示例](https://fairlearn.github.io/main/auto_examples/index.html)
 
-- 尝试一些 [示例Notebook](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
+- 尝试一些 [示例 Notebook](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
   
 - 了解Azure机器学习中机器学习模型[如何启用公平性评估](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa)。
   
-- 看看这些[示例Notebook](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)了解Azure机器学习中的更多公平性评估场景。
+- 看看这些[示例 Notebook](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)了解 Azure 机器学习中的更多公平性评估场景。
 
 ---
 ## 🚀 挑战 
@@ -193,22 +193,22 @@
 
 观看本次研讨会，深入探讨以下主题：
 
-- YouTube:人工智能系统中与公平相关的危害：示例、评估和缓解Hanna Wallach和Miro Dudik[人工智能系统中与公平相关的危害：示例、评估和缓解-YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
+- YouTube:人工智能系统中与公平相关的危害：示例、评估和缓解 Hanna Wallach 和 Miro Dudik[人工智能系统中与公平相关的危害：示例、评估和缓解-YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
 
 另外，请阅读：
 
 - 微软RAI资源中心：[负责人工智能资源-微软人工智能](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
 
-- 微软FATE研究小组：[FATE：AI 中的公平、问责、透明和道德-微软研究院](https://www.microsoft.com/research/theme/fate/) 
+- 微软 FATE 研究小组：[FATE：AI 中的公平、问责、透明和道德-微软研究院](https://www.microsoft.com/research/theme/fate/) 
 
-探索Fairlearn工具箱
+探索 Fairlearn 工具箱
 
 [Fairlearn](https://fairlearn.org/)
 
-了解Azure机器学习的工具以确保公平性
+了解 Azure 机器学习的工具以确保公平性
 
-- [Azure机器学习](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure 机器学习](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
 ## 任务
 
-[探索Fairlearn](assignment.zh-cn.md) 
+[探索 Fairlearn](assignment.zh-cn.md) 
