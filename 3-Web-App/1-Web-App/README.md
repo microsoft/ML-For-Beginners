@@ -330,7 +330,7 @@ In a professional setting, you can see how good communication is necessary betwe
 
 ---
 
-## 🚀 Challenge:
+## 🚀 Challenge
 
 Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. What are the pros and cons of pursuing this method?
 

@@ -2,7 +2,7 @@
 
 Questa lezione copre una breve storia e concetti importanti dell' *elaborazione del linguaggio naturale*, un sottocampo della *linguistica computazionale*.
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/?loc=it)
 
 ## Introduzione
 
@@ -149,7 +149,7 @@ Scegliere uno degli elementi "fermarsi e riflettere" qui sopra e provare a imple
 
 Nella prossima lezione si impareranno una serie di altri approcci all'analisi del linguaggio naturale e dell'machine learning.
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/?loc=it)
 
 ## Revisione e Auto Apprendimento
 
