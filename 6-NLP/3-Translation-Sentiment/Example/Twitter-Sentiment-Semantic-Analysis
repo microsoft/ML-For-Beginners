@@ -1,0 +1,229 @@
+
+from tweepy import OAuthHandler
+from tweepy.streaming import StreamListener
+import tweepy
+import json
+import pandas as pd
+import csv
+import numpy as np
+import re
+from textblob import TextBlob
+import string
+import preprocessor as pp
+import os
+import time
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+import wikipedia
+import spacy
+import nltk
+import en_core_web_lg
+nlp = en_core_web_lg.load()
+
+
+plt.style.use('fivethirtyeight')
+
+consumer_key = 'vbmjXqywZLhmv9558pByted7H7Q'
+consumer_secret = 'tVh6UXfW2atSX7665PylXwxQwhbKUWS7nwo8YvjlgnsdOgmItRx3y'
+#access_key = '477407786-2Q5Gx2'
+#access_secret = 'A4sesXVpq44zH'
+auth = tweepy.AppAuthHandler(consumer_key, consumer_secret)
+#auth = OAuthHandler(consumer_key, consumer_secret)
+#auth.set_access_token(access_key, access_secret)
+api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+
+'''
+By default spaCy calculates cosine similarity. Similarity is determined by comparing word vectors or word embeddings, multi-dimensional meaning representations of a word.
+
+It returns return (numpy.dot(self.vector, other.vector) / (self_norm * other_norm))'''
+# Removing stopwords using for loop
+def remove_stopwords(text):
+    doc = nlp(text.lower()) #1
+    result = [] #2
+    for token in doc: #3
+        if token.text in nlp.Defaults.stop_words: #4
+            continue
+        result.append(token.text)#5
+    return " ".join(result) #6
+
+def cleanTxt(text):
+    text = re.sub('@[A-Za-z0–9]+', '', text)  # Removing @mentions
+    text = re.sub('#', '', text)  # Removing '#' hash tag
+    text = re.sub('RT[\s]+', '', text)  # Removing RT
+    text = re.sub('https?:\/\/\S+', '', text)  # Removing hyperlink
+
+    return text
+# Remove stopwords, punctuation, and pronouns
+def process_text(text):
+    doc = nlp(text.lower())
+    result = []
+    for token in doc:
+        if token.text in nlp.Defaults.stop_words:
+            continue
+        if token.is_punct:
+            continue
+        if token.lemma_ == '-PRON-':
+            continue
+        result.append(token.lemma_)
+    return " ".join(result)
+# Removing stopwords using list comprehension
+def remove_stopwords_fast(text):
+    doc = nlp(text.lower())
+    result = [token.text for token in doc if token.text not in nlp.Defaults.stop_words]
+    return " ".join(result)
+'''
+# without lemmatization
+def remove_pronoun(text):
+    doc = nlp(text.lower())
+    result = [token for token in doc if token.lemma_ != '-PRON-']
+    return " ".join(result)
+# with lemmatization   
+def remove_pronoun(text):
+    doc = nlp(text.lower())
+    result = [token.lemma_ for token in doc if token.lemma_ != '-PRON-']
+return " ".join(result)
+'''
+def wikiPedia(searchWord):
+    result = wikipedia.summary(searchWord)
+    result = cleanTxt(result)
+    result = remove_stopwords_fast(result)
+    result = process_text(result)
+    result = nlp(result)
+    return result
+
+def getSubjectivity(text):
+    return TextBlob(text).sentiment.subjectivity
+
+
+def getPolarity(text):
+    return TextBlob(text).sentiment.polarity
+
+
+def getAnalysis(score):
+    if score < 0:
+        return 'Negative'
+    elif score == 0:
+        return 'Neutral'
+    else:
+        return 'Positive'
+
+
+def scraptweets(search_words, date_since, numTweets, numRuns, res):
+    # Define a pandas dataframe to store the date:
+    db_tweets = pd.DataFrame(
+        columns=['username', 'acctdesc', 'verified', 'location', 'following', 'followers', 'totaltweets',
+                 'usercreatedts', 'tweetcreatedts', 'retweetcount', 'text', 'hashtags', 'Subjectivity', 'Polarity',
+                 'Analysis','Semantic'])
+    program_start = time.time()
+    doc1 = wikiPedia(search_words)
+    for i in range(0, numRuns):
+        # We will time how long it takes to scrape tweets for each run:
+        start_run = time.time()
+
+        tweets = tweepy.Cursor(api.search, q=search_words, lang="en", result_type=res, since=date_since,
+                               tweet_mode='extended').items(numTweets)
+        # Store these tweets into a python list
+        tweet_list = [tweet for tweet in tweets]
+
+        noTweets = 0
+        for tweet in tweet_list:
+            # Pull the values
+            username = tweet.user.screen_name
+            acctdesc = tweet.user.description
+            verified = tweet.user.verified
+            location = tweet.user.location
+            following = tweet.user.friends_count
+            followers = tweet.user.followers_count
+            totaltweets = tweet.user.statuses_count
+            usercreatedts = tweet.user.created_at
+            tweetcreatedts = tweet.created_at
+            retweetcount = tweet.retweet_count
+            hashtags = tweet.entities['hashtags']
+            try:
+                text = tweet.retweeted_status.full_text
+            except AttributeError:  # Not a Retweet
+                text = tweet.full_text
+            #text = cleanTxt(process_text(text))
+            Subjectivity = getSubjectivity(cleanTxt(process_text(text)))
+            Polarity = getPolarity(cleanTxt(process_text(text)))
+            Analysis = getAnalysis(Polarity)
+            Semantic = doc1.similarity(nlp(cleanTxt(process_text(text))))
+           
+            
+
+            ith_tweet = [username, acctdesc, verified, location, following, followers, totaltweets,
+                         usercreatedts, tweetcreatedts, retweetcount, text, hashtags, Subjectivity, Polarity, Analysis,Semantic]
+
+            db_tweets.loc[len(db_tweets)] = ith_tweet
+
+            noTweets += 1
+
+        # Run ended:
+        end_run = time.time()
+        duration_run = round((end_run - start_run) / 60, 2)
+
+        print('no. of tweets scraped for run {} is {}'.format(i + 1, noTweets))
+        print('time take for {} run to complete is {} mins'.format(i + 1, duration_run))
+
+    from datetime import datetime
+    # Chunking/Sorting tweet based on Semantic Analysis
+    db_tweets.sort_values("Semantic", axis = 0, ascending = False, 
+                 inplace = True, na_position ='first') 
+
+    to_csv_timestamp = datetime.today().strftime('%Y%m%d_%H%M%S')
+    plt.figure(figsize=(8, 6))
+    for i in range(0, db_tweets.shape[0]):
+        plt.scatter(db_tweets["Polarity"][i], db_tweets["Subjectivity"][i], color='Red')
+    # Dotted Graph
+    plt.title('Sentiment Analysis')
+    plt.xlabel('Polarity')
+    plt.ylabel('Subjectivity')
+    plt.show()
+    # Count v/s Sentiment
+    ptweets = db_tweets[db_tweets.Analysis == 'Positive']
+    ptweets = ptweets['text']
+    ptweets
+
+    round((ptweets.shape[0] / db_tweets.shape[0]) * 100, 1)
+
+    ntweets = db_tweets[db_tweets.Analysis == 'Negative']
+    ntweets = ntweets['text']
+    ntweets
+
+    round((ntweets.shape[0] / db_tweets.shape[0]) * 100, 1)
+
+    db_tweets['Analysis'].value_counts()
+
+    plt.title('Sentiment Analysis')
+    plt.xlabel('Sentiment')
+    plt.ylabel('Counts')
+    db_tweets['Analysis'].value_counts().plot(kind='bar')
+    plt.show()
+    # Word Cloud
+    allWords = ' '.join([cleanTxt(process_text(twts)) for twts in db_tweets['text']])
+    wordCloud = WordCloud(width=500, height=300, random_state=21, max_font_size=110).generate(allWords)
+    plt.imshow(wordCloud, interpolation="bilinear")
+    plt.axis('off')
+    plt.show()
+
+    filename = to_csv_timestamp + 'tweets.csv'
+
+    db_tweets.to_csv(filename, index=False)
+    program_end = time.time()
+    print('Scraping has completed!')
+    print('Total time taken to scrap is {} minutes.'.format(round(program_end - program_start) / 60, 2))
+
+
+# Initialise these variables:
+print('Enter your query -->if hashtag include it too<--, in case of multiple query add both query with --> OR')
+search_words = input()
+print('Date Since in YYYY-MM-DD format')
+date_since = input()
+print('Enter No of tweets to be scrapped for Analysis')
+numTweets = int(input())
+print('Enter No of Runs')
+numRuns = int(input())
+print('Enter result type --> mixed or popular <--')
+res = input()
+# Call the function scraptweets
+scraptweets(search_words, date_since, numTweets, numRuns, res)
