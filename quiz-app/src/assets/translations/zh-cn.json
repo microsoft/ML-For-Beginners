@@ -34,17 +34,17 @@
                     ]
                 },
                 {
-                    "questionText": "為什麼企業可能想要使用 ML 策略？",
+                    "questionText": "为什么企业可能想要使用 ML 策略？",
                     "answerOptions": [{
-                            "answerText": "自動解決多維問題",
+                            "answerText": "自动解决多维问题",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "定制根據客戶的類型的購物體驗",
+                            "answerText": "根据客户类型定制购物体验",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "以上兩者",
+                            "answerText": "以上两者",
                             "isCorrect": "true"
                         }
                     ]
@@ -53,15 +53,15 @@
         },
         {
             "id": 2,
-            "title": "機器學習簡介：課後測驗",
+            "title": "机器学习简介：课后测验",
             "quiz": [{
-                    "questionText": "機器學習算法是為了模擬",
+                    "questionText": "机器学习算法旨在模拟",
                     "answerOptions": [{
-                            "answerText": "智能機器",
+                            "answerText": "智能机器",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "人腦",
+                            "answerText": "人脑",
                             "isCorrect": "true"
                         },
                         {
@@ -71,33 +71,33 @@
                     ]
                 },
                 {
-                    "questionText": "什麼是經典 ML 技術的示例？",
+                    "questionText": "什么是经典 ML 技术的示例？",
                     "answerOptions": [{
-                            "answerText": "自然語言處理",
+                            "answerText": "自然语言处理",
                             "isCorrect": "true"
                         },
                         {
-                            "answerText": "深度學習",
+                            "answerText": "深度学习",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "神經網絡",
+                            "answerText": "神经网络",
                             "isCorrect": "false"
                         }
                     ]
                 },
                 {
-                    "questionText": "為什麼每個人都應該學習機器學習的基礎知識？",
+                    "questionText": "为什么每个人都应该学习机器学习的基础知识？",
                     "answerOptions": [{
-                            "answerText": "學習ML的樂趣和方便大家",
+                            "answerText": "学习机器学习很有趣，每个人都可以使用",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "ML策略在許多行業和領域被使用",
+                            "answerText": "许多行业和领域都在使用 ML 策略",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "以上兩者",
+                            "answerText": "以上两者",
                             "isCorrect": "true"
                         }
                     ]
@@ -106,35 +106,35 @@
         },
         {
             "id": 3,
-            "title": "預講座測驗：機器學習的歷史",
+            "title": "机器学习的历史：课前测验",
             "quiz": [{
-                    "questionText": "“人工智能”這個詞是什麼時候創造的？",
+                    "questionText": "““人工智能”这个词大概是什么时候出现的？",
                     "answerOptions": [{
-                            "answerText": "1980年代",
+                            "answerText": "1980s",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "1950年代",
+                            "answerText": "1950s",
                             "isCorrect": "true"
                         },
                         {
-                            "answerText": "1930年代",
+                            "answerText": "1930s",
                             "isCorrect": "false"
                         }
                     ]
                 },
                 {
-                    "questionText": "誰是機器學習的早期先驅之一？",
+                    "questionText": "谁是机器学习的早期先驱之一？",
                     "answerOptions": [{
-                            "answerText": "阿蘭·圖靈",
+                            "answerText": "阿兰·图灵",
                             "isCorrect": "true"
                         },
                         {
-                            "answerText": "比爾蓋茨",
+                            "answerText": "比尔盖茨",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "摇晃机器人",
+                            "answerText": "沙基 机器人",
                             "isCorrect": "false"
                         }
                     ]
@@ -256,7 +256,7 @@
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "分配，服务，Stereophonics的，弄黑，和过度或不足表示的质量 ",
+                            "answerText": "allocation, quality of service, stereophonics, denigration, and over- or under- representation ",
                             "isCorrect": "false"
                         }
                     ]
@@ -407,7 +407,7 @@
                 {
                     "questionText": "一个常见的命令来启动训练过程中各种ML库是：",
                     "answerOptions": [{
-                            "answerText": "",
+                            "answerText": "model.travel",
                             "isCorrect": "false"
                         },
                         {
@@ -534,11 +534,11 @@
             "quiz": [{
                     "questionText": "以下哪个 Python 模块用于绘制数据的可视化？",
                     "answerOptions": [{
-                            "answerText": "NumPy的",
+                            "answerText": "NumPy",
                             "isCorrect": "false"
                         },
                         {
-                            "answerText": "Scikit-学习",
+                            "answerText": "Scikit-Learn",
                             "isCorrect": "false"
                         },
                         {
