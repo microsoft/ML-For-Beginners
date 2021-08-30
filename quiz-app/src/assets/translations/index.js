@@ -9,13 +9,12 @@ import it from './it.json';
 //export const defaultLocale = 'en';
 
 const messages = {
-  
-    en: en[0],
-    tr: tr[0],
-    fr: fr[0],
-    ja: ja[0],
-    it: it[0],
-    zh-cn: zh-cn[0]
+      en: en[0],
+      tr: tr[0],
+      fr: fr[0],
+      ja: ja[0],
+      it: it[0],
+      zh-cn: zh-cn[0]
 };
 
 export default messages;
