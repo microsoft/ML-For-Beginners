@@ -3,7 +3,7 @@
 ![Infografica di regressione lineare e polinomiale](../images/linear-polynomial.png)
 > Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz Pre-Lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
+## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/?loc=it)
 
 ### Introduzione
 
@@ -328,7 +328,7 @@ Ben fatto! Sono stati  creati due modelli di regressione in una lezione. Nella s
 
 Testare diverse variabili in questo notebook per vedere come la correlazione corrisponde all'accuratezza del modello.
 
-## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
+## [Quiz post-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/?loc=it)
 
 ## Revisione e Auto Apprendimento
 
