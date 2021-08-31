@@ -1,0 +1,452 @@
+---
+title: 'Build a classification model: Delicious Asian and Indian Cuisines'
+output:
+  html_document:
+    df_print: paged
+    theme: flatly
+    highlight: breezedark
+    toc: yes
+    toc_float: yes
+    code_download: yes
+---
+
+## Cuisine classifiers 2
+
+In this second classification lesson, we will explore `more ways` to classify categorical data. We will also learn about the ramifications for choosing one classifier over the other.
+
+### [**Pre-lecture quiz**](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/)
+
+### **Prerequisite**
+
+We assume that you have completed the previous lessons since we will be carrying forward some concepts we learned before.
+
+For this lesson, we'll require the following packages:
+
+-   `tidyverse`: The [tidyverse](https://www.tidyverse.org/) is a [collection of R packages](https://www.tidyverse.org/packages) designed to makes data science faster, easier and more fun!
+
+-   `tidymodels`: The [tidymodels](https://www.tidymodels.org/) framework is a [collection of packages](https://www.tidymodels.org/packages/) for modeling and machine learning.
+
+-   `themis`: The [themis package](https://themis.tidymodels.org/) provides Extra Recipes Steps for Dealing with Unbalanced Data.
+
+You can have them installed as:
+
+`install.packages(c("tidyverse", "tidymodels", "kernlab", "themis", "ranger", "xgboost", "kknn"))`
+
+Alternatively, the script below checks whether you have the packages required to complete this module and installs them for you in case they are missing.
+
+```{r, message=F, warning=F}
+suppressWarnings(if (!require("pacman"))install.packages("pacman"))
+
+pacman::p_load(tidyverse, tidymodels, themis, kernlab, ranger, xgboost, kknn)
+```
+
+Now, let's hit the ground running!
+
+## **1. A classification map**
+
+In our [previous lesson](https://github.com/microsoft/ML-For-Beginners/tree/main/4-Classification/2-Classifiers-1), we tried to address the question: how do we choose between multiple models? To a great extent, it depends on the characteristics of the data and the type of problem we want to solve (for instance classification or regression?)
+
+Previously, we learned about the various options you have when classifying data using Microsoft's cheat sheet. Python's Machine Learning framework, Scikit-learn, offers a similar but more granular cheat sheet that can further help narrow down your estimators (another term for classifiers):
+
+![](../../images/map.png){width="650"}\
+
+> Tip: [visit this map online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) and click along the path to read documentation.
+>
+> The [Tidymodels reference site](https://www.tidymodels.org/find/parsnip/#models) also provides an excellent documentation about different types of model.
+
+### **The plan** 🗺️
+
+This map is very helpful once you have a clear grasp of your data, as you can 'walk' along its paths to a decision:
+
+-   We have \>50 samples
+
+-   We want to predict a category
+
+-   We have labeled data
+
+-   We have fewer than 100K samples
+
+-   ✨ We can choose a Linear SVC
+
+-   If that doesn't work, since we have numeric data
+
+    -   We can try a ✨ KNeighbors Classifier
+
+        -   If that doesn't work, try ✨ SVC and ✨ Ensemble Classifiers
+
+This is a very helpful trail to follow. Now, let's get right into it using the [tidymodels](https://www.tidymodels.org/) modelling framework: a consistent and flexible collection of R packages developed to encourage good statistical practice 😊.
+
+## 2. Split the data and deal with imbalanced data set.
+
+From our previous lessons, we learnt that there were a set of common ingredients across our cuisines. Also, there was quite an unequal distribution in the number of cuisines.
+
+We'll deal with these by
+
+-   Dropping the most common ingredients that create confusion between distinct cuisines, using `dplyr::select()`.
+
+-   Use a `recipe` that preprocesses the data to get it ready for modelling by applying an `over-sampling` algorithm.
+
+We already looked at the above in the previous lesson so this should be a breeze 🥳!
+
+```{r clean_imbalance}
+# Load the core Tidyverse and Tidymodels packages
+library(tidyverse)
+library(tidymodels)
+
+# Load the original cuisines data
+df <- read_csv(file = "https://raw.githubusercontent.com/microsoft/ML-For-Beginners/main/4-Classification/data/cuisines.csv")
+
+# Drop id column, rice, garlic and ginger from our original data set
+df_select <- df %>% 
+  select(-c(1, rice, garlic, ginger)) %>%
+  # Encode cuisine column as categorical
+  mutate(cuisine = factor(cuisine))
+
+
+# Create data split specification
+set.seed(2056)
+cuisines_split <- initial_split(data = df_select,
+                                strata = cuisine,
+                                prop = 0.7)
+
+# Extract the data in each split
+cuisines_train <- training(cuisines_split)
+cuisines_test <- testing(cuisines_split)
+
+# Display distribution of cuisines in the training set
+cuisines_train %>% 
+  count(cuisine) %>% 
+  arrange(desc(n))
+
+
+```
+
+### Deal with imbalanced data
+
+Imbalanced data often has negative effects on the model performance. Many models perform best when the number of observations is equal and, thus, tend to struggle with unbalanced data.
+
+There are majorly two ways of dealing with imbalanced data sets:
+
+-   adding observations to the minority class: `Over-sampling` e.g using a SMOTE algorithm which synthetically generates new examples of the minority class using nearest neighbors of these cases.
+
+-   removing observations from majority class: `Under-sampling`
+
+In our previous lesson, we demonstrated how to deal with imbalanced data sets using a `recipe`. A recipe can be thought of as a blueprint that describes what steps should be applied to a data set in order to get it ready for data analysis. In our case, we want to have an equal distribution in the number of our cuisines for our `training set`. Let's get right into it.
+
+```{r recap_balance}
+# Load themis package for dealing with imbalanced data
+library(themis)
+
+# Create a recipe for preprocessing training data
+cuisines_recipe <- recipe(cuisine ~ ., data = cuisines_train) %>%
+  step_smote(cuisine) 
+
+# Print recipe
+cuisines_recipe
+
+```
+
+Now we are ready to train models 👩‍💻👨‍💻!
+
+## 3. Beyond multinomial regression models
+
+In our previous lesson, we looked at multinomial regression models. Let's explore some more flexible models for classification.
+
+### Support Vector Machines.
+
+In the context of classification, `Support Vector Machines` is a machine learning technique that tries to find a *hyperplane* that "best" separates the classes. Let's look at a simple example:
+
+![By User:ZackWeinberg:This file was derived from: <https://commons.wikimedia.org/w/index.php?curid=22877598>](../../images/svm.png){width="300"}
+
+H~1~ does not separate the classes. H~2~ does, but only with a small margin. H~3~ separates them with the maximal margin.
+
+#### Linear Support Vector Classifier
+
+Support-Vector clustering (SVC) is a child of the Support-Vector machines family of ML techniques. In SVC, the hyperplane is chosen to correctly separate `most` of the training observations, but `may misclassify` a few observations. By allowing some points to be on the wrong side, the SVM becomes more robust to outliers hence better generalization to new data. The parameter that regulates this violation is referred to as `cost` which has a default value of 1 (see `help("svm_poly")`).
+
+Let's create a linear SVC by setting `degree = 1` in a polynomial SVM model.
+
+```{r svc_spec}
+# Make a linear SVC specification
+svc_linear_spec <- svm_poly(degree = 1) %>% 
+  set_engine("kernlab") %>% 
+  set_mode("classification")
+
+# Bundle specification and recipe into a worklow
+svc_linear_wf <- workflow() %>% 
+  add_recipe(cuisines_recipe) %>% 
+  add_model(svc_linear_spec)
+
+# Print out workflow
+svc_linear_wf
+```
+
+Now that we have captured the preprocessing steps and model specification into a *workflow*, we can go ahead and train the linear SVC and evaluate results while at it. For performance metrics, let's create a metric set that will evaluate: `accuracy`, `sensitivity`, `Positive Predicted Value` and `F Measure`
+
+> `augment()` will add column(s) for predictions to the given data.
+
+```{r svc_train}
+# Train a linear SVC model
+svc_linear_fit <- svc_linear_wf %>% 
+  fit(data = cuisines_train)
+
+# Create a metric set
+eval_metrics <- metric_set(ppv, sens, accuracy, f_meas)
+
+
+# Make predictions and Evaluate model performance
+svc_linear_fit %>% 
+  augment(new_data = cuisines_test) %>% 
+  eval_metrics(truth = cuisine, estimate = .pred_class)
+  
+
+
+```
+
+#### 
+
+#### Support Vector Machine
+
+The support vector machine (SVM) is an extension of the support vector classifier in order to accommodate a non-linear boundary between the classes. In essence, SVMs use the *kernel trick* to enlarge the feature space to adapt to nonlinear relationships between classes. One popular and extremely flexible kernel function used by SVMs is the *Radial basis function.* Let's see how it will perform on our data.
+
+```{r svm_rbf}
+set.seed(2056)
+
+# Make an RBF SVM specification
+svm_rbf_spec <- svm_rbf() %>% 
+  set_engine("kernlab") %>% 
+  set_mode("classification")
+
+# Bundle specification and recipe into a worklow
+svm_rbf_wf <- workflow() %>% 
+  add_recipe(cuisines_recipe) %>% 
+  add_model(svm_rbf_spec)
+
+
+# Train an RBF model
+svm_rbf_fit <- svm_rbf_wf %>% 
+  fit(data = cuisines_train)
+
+
+# Make predictions and Evaluate model performance
+svm_rbf_fit %>% 
+  augment(new_data = cuisines_test) %>% 
+  eval_metrics(truth = cuisine, estimate = .pred_class)
+```
+
+Much better 🤩!
+
+> ✅ Please see:
+>
+> -   [*Support Vector Machines*](https://bradleyboehmke.github.io/HOML/svm.html), Hands-on Machine Learning with R
+>
+> -   [*Support Vector Machines*](https://www.statlearning.com/), An Introduction to Statistical Learning with Applications in R
+>
+> for further reading.
+
+### Nearest Neighbor classifiers
+
+*K*-nearest neighbor (KNN) is an algorithm in which each observation is predicted based on its *similarity* to other observations.
+
+Let's fit one to our data.
+
+```{r knn}
+# Make a KNN specification
+knn_spec <- nearest_neighbor() %>% 
+  set_engine("kknn") %>% 
+  set_mode("classification")
+
+# Bundle recipe and model specification into a workflow
+knn_wf <- workflow() %>% 
+  add_recipe(cuisines_recipe) %>% 
+  add_model(knn_spec)
+
+# Train a boosted tree model
+knn_wf_fit <- knn_wf %>% 
+  fit(data = cuisines_train)
+
+
+# Make predictions and Evaluate model performance
+knn_wf_fit %>% 
+  augment(new_data = cuisines_test) %>% 
+  eval_metrics(truth = cuisine, estimate = .pred_class)
+```
+
+It appears that this model is not performing that well. Probably changing the model's arguments (see `help("nearest_neighbor")` will improve model performance. Be sure to try it out.
+
+> ✅ Please see:
+>
+> -   [Hands-on Machine Learning with R](https://bradleyboehmke.github.io/HOML/)
+>
+> -   [An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
+>
+> to learn more about *K*-Nearest Neighbors classifiers.
+
+### Ensemble classifiers
+
+Ensemble algorithms work by combining multiple base estimators to produce an optimal model either by:
+
+`bagging`: applying an *averaging function* to a collection of base models
+
+`boosting`: building a sequence of models that build on one another to improve predictive performance.
+
+Let's start by trying out a Random Forest model, which builds a large collection of decision trees then applies an averaging function to for a better overall model.
+
+```{r rf}
+# Make a random forest specification
+rf_spec <- rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+
+# Bundle recipe and model specification into a workflow
+rf_wf <- workflow() %>% 
+  add_recipe(cuisines_recipe) %>% 
+  add_model(rf_spec)
+
+# Train a random forest model
+rf_wf_fit <- rf_wf %>% 
+  fit(data = cuisines_train)
+
+
+# Make predictions and Evaluate model performance
+rf_wf_fit %>% 
+  augment(new_data = cuisines_test) %>% 
+  eval_metrics(truth = cuisine, estimate = .pred_class)
+  
+
+```
+
+Good job 👏!
+
+Let's also experiment with a Boosted Tree model.
+
+Boosted Tree defines an ensemble method that creates a series of sequential decision trees where each tree depends on the results of previous trees in an attempt to incrementally reduce the error. It focuses on the weights of incorrectly classified items and adjusts the fit for the next classifier to correct.
+
+There are different ways to fit this model (see `help("boost_tree")`). In this example, we'll fit Boosted trees via `xgboost` engine.
+
+```{r boosted_tree}
+# Make a boosted tree specification
+boost_spec <- boost_tree(trees = 200) %>% 
+  set_engine("xgboost") %>% 
+  set_mode("classification")
+
+# Bundle recipe and model specification into a workflow
+boost_wf <- workflow() %>% 
+  add_recipe(cuisines_recipe) %>% 
+  add_model(boost_spec)
+
+# Train a boosted tree model
+boost_wf_fit <- boost_wf %>% 
+  fit(data = cuisines_train)
+
+
+# Make predictions and Evaluate model performance
+boost_wf_fit %>% 
+  augment(new_data = cuisines_test) %>% 
+  eval_metrics(truth = cuisine, estimate = .pred_class)
+```
+
+> ✅ Please see:
+>
+> -   [Machine Learning for Social Scientists](https://cimentadaj.github.io/ml_socsci/tree-based-methods.html#random-forests)
+>
+> -   [Hands-on Machine Learning with R](https://bradleyboehmke.github.io/HOML/)
+>
+> -   [An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com/)
+>
+> -   <https://algotech.netlify.app/blog/xgboost/> - Explores the AdaBoost model which is a good alternative to xgboost.
+>
+> to learn more about Ensemble classifiers.
+
+## 4. Extra - comparing multiple models
+
+We have fitted quite a number of models in this lab 🙌. It can become tedious or onerous to create a lot of workflows from different sets of preprocessors and/or model specifications and then calculate the performance metrics one by one.
+
+Let's see if we can address this by creating a function that fits a list of workflows on the training set then returns the performance metrics based on the test set. We'll get to use `map()` and `map_dfr()` from the [purrr](https://purrr.tidyverse.org/) package to apply functions to each element in list.
+
+> [`map()`](https://purrr.tidyverse.org/reference/map.html) functions allow you to replace many for loops with code that is both more succinct and easier to read. The best place to learn about the [`map()`](https://purrr.tidyverse.org/reference/map.html) functions is the [iteration chapter](http://r4ds.had.co.nz/iteration.html) in R for data science.
+
+```{r compare_models}
+set.seed(2056)
+
+# Create a metric set
+eval_metrics <- metric_set(ppv, sens, accuracy, f_meas)
+
+# Define a function that returns performance metrics
+compare_models <- function(workflow_list, train_set, test_set){
+  
+  suppressWarnings(
+    # Fit each model to the train_set
+    map(workflow_list, fit, data = train_set) %>% 
+    # Make predictions on the test set
+      map_dfr(augment, new_data = test_set, .id = "model") %>%
+    # Select desired columns
+      select(model, cuisine, .pred_class) %>% 
+    # Evaluate model performance
+      group_by(model) %>% 
+      eval_metrics(truth = cuisine, estimate = .pred_class) %>% 
+      ungroup()
+  )
+  
+} # End of function
+
+
+```
+
+Let's call our function and compare the accuracy across the models.
+
+```{r call_fn}
+# Make a list of workflows
+workflow_list <- list(
+  "svc" = svc_linear_wf,
+  "svm" = svm_rbf_wf,
+  "knn" = knn_wf,
+  "random_forest" = rf_wf,
+  "xgboost" = boost_wf)
+
+# Call the function
+set.seed(2056)
+perf_metrics <- compare_models(workflow_list = workflow_list, train_set = cuisines_train, test_set = cuisines_test)
+
+# Print out performance metrics
+perf_metrics %>% 
+  group_by(.metric) %>% 
+  arrange(desc(.estimate)) %>% 
+  slice_head(n=7)
+
+# Compare accuracy
+perf_metrics %>% 
+  filter(.metric == "accuracy") %>% 
+  arrange(desc(.estimate))
+
+```
+
+[**workflowset**](https://workflowsets.tidymodels.org/) package allow users to create and easily fit a large number of models but is mostly designed to work with resampling techniques such as `cross-validation`, an approach we are yet to cover.
+
+## **🚀Challenge**
+
+Each of these techniques has a large number of parameters that you can tweak for instance `cost` in SVMs, `neighbors` in KNN, `mtry` (Randomly Selected Predictors) in Random Forest.
+
+Research each one's default parameters and think about what tweaking these parameters would mean for the model's quality.
+
+To find out more about a particular model and its parameters, use: `help("model")` e.g `help("rand_forest")`
+
+> In practice, we usually *estimate* the *best values* for these by training many models on a `simulated data set` and measuring how well all these models perform. This process is called **tuning**.
+
+### [**Post-lecture quiz**](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/)
+
+### **Review & Self Study**
+
+There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) of useful terminology!
+
+#### THANK YOU TO:
+
+[`Allison Horst`](https://twitter.com/allison_horst/) for creating the amazing illustrations that make R more welcoming and engaging. Find more illustrations at her [gallery](https://www.google.com/url?q=https://github.com/allisonhorst/stats-illustrations&sa=D&source=editors&ust=1626380772530000&usg=AOvVaw3zcfyCizFQZpkSLzxiiQEM).
+
+[Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper) for creating the original Python version of this module ♥️
+
+Happy Learning,
+
+[Eric](https://twitter.com/ericntay), Gold Microsoft Learn Student Ambassador.
+
+![Artwork by \@allison_horst](../../images/r_learners_sm.jpeg)
