@@ -8,4 +8,19 @@
 
 ## 你将会学到什么
 
-在这一小节中
+建立在我们之前所讨论的关于回归的问题的讨论基础上，在本小节中，你将继续学习能够帮助你更好地理解数据的各种分类器。
+
+> 这里有一些不太涉及代码的，帮助你了解如何使用分类模型的小工具。可以试试用 Azure 来完成[这个小任务](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)。
+
+## 课程
+
+1. [介绍分类方法](1-Introduction/README.md)
+2. [其他分类器](2-Classifiers-1/README.md)
+3. [更多其他的分类器](3-Classifiers-2/README.md)
+4. [应用机器学习：做一个网页 APP](4-Applied/README.md)
+
+## 致谢
+
+"开始学习分类方法“部分由 [Cassie Breviu](https://www.twitter.com/cassieview) 和 [Jen Looper](https://www.twitter.com/jenlooper) 带着 ♥️ 写作
+
+这些美食的数据库数据来源于 [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)。
