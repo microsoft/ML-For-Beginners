@@ -14,10 +14,10 @@
 
 ## Уроки
 
-1. [Введение в классификацию](../1-Introduction/translations/README.ru.md)
-2. [Другие классификаторы](../2-Classifiers-1/translations/README.ru.md)
-3. [Еще классификаторы](../3-Classifiers-2/translations/README.ru.md)
-4. [Прикладное машинное обучение: создание веб-приложения](../4-Applied/translations/README.ru.md)
+1. [Введение в классификацию](1-Introduction/README.md)
+2. [Другие классификаторы](2-Classifiers-1/README.md)
+3. [Еще классификаторы](3-Classifiers-2/README.md)
+4. [Прикладное машинное обучение: создание веб-приложения](4-Applied/README.md)
 
 ## Благодарности
 
