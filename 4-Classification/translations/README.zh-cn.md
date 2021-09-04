@@ -17,8 +17,8 @@
 
 1. [介绍分类方法](../1-Introduction/translations/README.zh-cn.md)
 2. [其他分类器](../2-Classifiers-1/translations/README.zh-cn.md)
-3. [更多其他的分类器](../3-Classifiers-2/translations/README.zh-cn.md)
-4. [应用机器学习：做一个网页 APP](../4-Applied/translations/README.zh-cn.md)
+3. [更多其他的分类器](../3-Classifiers-2/README.md)
+4. [应用机器学习：做一个网页 APP](../4-Applied/README.md)
 
 ## 致谢
 
