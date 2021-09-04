@@ -1,4 +1,5 @@
 # Getting started with classification
+
 ## Regional topic: Delicious Asian and Indian Cuisines 🍜
 
 In Asia and India, food traditions are extremely diverse, and very delicious! Let's look at data about regional cuisines to try to understand their ingredients.
@@ -18,8 +19,9 @@ In this section, you will build on the skills you learned in the first part of t
 2. [More classifiers](2-Classifiers-1/README.md)
 3. [Yet other classifiers](3-Classifiers-2/README.md)
 4. [Applied ML: build a web app](4-Applied/README.md)
+
 ## Credits
 
 "Getting started with classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
 
-The delicious cuisines dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)
+The delicious cuisines dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines).

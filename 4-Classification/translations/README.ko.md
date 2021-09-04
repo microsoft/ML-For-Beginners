@@ -22,6 +22,6 @@
 
 ## 크레딧
 
-"Getting started with classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
+"Getting started with classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper).
 
 맛있는 요리 데이터셋은 [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)에서 가져왔습니다.
