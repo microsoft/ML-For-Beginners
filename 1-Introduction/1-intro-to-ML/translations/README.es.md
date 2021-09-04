@@ -8,7 +8,7 @@
 
 ### Introducción
 
-Bienvenid@ a este curso acerca del machine learning (ML) clásico para principiantes! Ya sea que tú seas completamente nuev@ en este tema, o un practicante experimentado del ML que busca refrescar los conocimientos en un área, ¡estamos contentos de que te nos unas! Queremos crear un punto de lanzamiento amigable para tus estudios de ML y nos encantaría evaluar, responder, e incorporar tu [retroalimentación](https://github.com/microsoft/ML-For-Beginners/discussions).}
+Te damos la bienvenida a este curso acerca del machine learning (ML) clásico para principiantes! Así se trate de tu primera incursión en este tema, o cuentes con amplia experiencia en el ML y busques refrescar tus conocimientos en un área específica, ¡nos alegramos de que te nos unas! Queremos crear un punto de lanzamiento amigable para tus estudios de ML y nos encantaría evaluar, responder, e incorporar tu [retroalimentación](https://github.com/microsoft/ML-For-Beginners/discussions).
 
 [![Introducción al ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introducción al ML")
 
@@ -19,9 +19,9 @@ Bienvenid@ a este curso acerca del machine learning (ML) clásico para principia
 Antes de comenzar con este currículum, debes tener tu computadora configurada y lista para ejecutar los notebooks localmente.
 
 - **Configura tu equipo con estos videos**. Aprende más acerca de como configurar tu equipo con [estos videos](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6).
-- **Aprende Python**. También se recomienda que tengas un entendimiento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), un lenguaje de programación útil para los científic@s de datos, y que se utiliza en este curso.
+- **Aprende Python**. También se recomienda que tengas un entendimiento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), un lenguaje de programación útil para practicantes de la ciencia de datos, y que se utiliza en este curso.
 - **Aprende Node.js y JavaScript**. También usamos JavaScript unas cuantas veces en este curso cuando creamos aplicaciones web, así que necesitarás tener [node](https://nodejs.org) y [npm](https://www.npmjs.com/) instalados, así como [Visual Studio Code](https://code.visualstudio.com/) listo para el desarrollo con Python y JavaScript.
-- **Crea una cuenta de GitHub**. Como nos encontraste aquí en [GitHub](https://github.com), puede que ya tengas una cuenta, pero si no, crea una y después haz un fork de este curriculum para usarlo por ti mism@. (Siéntete en libertad de regalarnos una estrella, también 😊)
+- **Crea una cuenta de GitHub**. Como nos encontraste aquí en [GitHub](https://github.com), puede que ya tengas una cuenta, pero si no, créate una y después haz un fork de este curriculum para usarlo en tu computadora personal. (Siéntete en libertad de regalarnos una estrella, también 😊)
 - **Explora Scikit-learn**. Familiarízate con [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), un juego de bibliotecas de ML que referenciamos en estas lecciones.
 
 ### ¿Qué es el machine learning?
@@ -42,7 +42,7 @@ Aunque los términos se suelen confundir, machine learning (ML) es un subconjunt
 
 ![IA, ML, deep learning, ciencia de los datos](../images/ai-ml-ds.png)
 
-> El diagrama muestra la relación entre IA, ML, deep learning y la ciencia de los datos. Infografía hecho por [Jen Looper](https://twitter.com/jenlooper) inspirada en [esta gráfica](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining).
+> El diagrama muestra la relación entre IA, ML, deep learning y la ciencia de los datos. Infografía hecha por [Jen Looper](https://twitter.com/jenlooper) inspirada en [esta gráfica](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining).
 
 ## Lo que aprenderás en el curso
 
