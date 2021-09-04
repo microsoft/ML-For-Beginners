@@ -25,7 +25,7 @@
 
 ![二元分类 vs 多元分类](../images/binary-multiclass.png)
 
-> 需要分类算法解决的二元分类和多元分类问题的对比. 信息图由[Jen Looper](https://twitter.com/jenlooper)提供
+> 需要分类算法解决的二元分类和多元分类问题的对比. 信息图由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
 在开始清洗数据、数据可视化和调整数据以适应机器学习的任务前，让我们来了解一下多种可用来数据分类的机器学习方法。
 
@@ -47,7 +47,7 @@ Scikit-learn 项目提供多种对数据进行分类的算法，你需要根据�
 
 在你开始进行这个项目前的第一个上手的任务就是清洗和 **平衡**你的数据来得到更好的结果。从当前目录的根目录中的 _nodebook.ipynb_ 开始。
 
-第一个需要安装的东西是 [imblearn](https://imbalanced-learn.org/stable/)这是一个 Scikit-learn 项目中的一个包，它可以让你更好的平衡数据 (关于这个任务你很快你就会学到更多)。
+第一个需要安装的东西是 [imblearn](https://imbalanced-learn.org/stable/) 这是一个 Scikit-learn 项目中的一个包，它可以让你更好的平衡数据 (关于这个任务你很快你就会学到更多)。
 
 1. 安装 `imblearn`, 运行命令 `pip install`:
 
@@ -99,7 +99,7 @@ Scikit-learn 项目提供多种对数据进行分类的算法，你需要根据�
     df.info()
     ```
 
-    Your out resembles:
+    你的输出应该像这样：
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -109,7 +109,7 @@ Scikit-learn 项目提供多种对数据进行分类的算法，你需要根据�
     memory usage: 7.2+ MB
     ```
 
-    ## 练习 - 了解这些菜肴
+## 练习 - 了解这些菜肴
 
 现在任务变得更有趣了，让我们来探索如何将数据分配给各个菜肴
 
@@ -152,7 +152,7 @@ Scikit-learn 项目提供多种对数据进行分类的算法，你需要根据�
 
 现在你可以在数据中探索的更深一点并了解每道菜肴的代表性食材。你需要将反复出现的、容易造成混淆的数据清理出去，那么让我们来学习解决这个问题。
 
-1. 在Python中创建一个函数 `create_ingredient_df()` 来创建一个食材的数据帧。这个函数会去掉数据中无用的列并按食材的数量进行分类。
+1. 在 Python 中创建一个函数 `create_ingredient_df()` 来创建一个食材的数据帧。这个函数会去掉数据中无用的列并按食材的数量进行分类。
 
     ```python
     def create_ingredient_df(df):
