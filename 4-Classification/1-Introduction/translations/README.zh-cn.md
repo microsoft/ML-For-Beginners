@@ -1,16 +1,16 @@
 # 对分类方法的介绍
 
-在这四节课程中，你将会学习机器学习中一个基本的重点 - _分类_. 我们会在关于亚洲和印度的神奇的美食的数据集上尝试使用多种分类算法。希望你有点饿了。
+在这四节课程中，你将会学习机器学习中一个基本的重点 - _分类_。 我们会在关于亚洲和印度的神奇的美食的数据集上尝试使用多种分类算法。希望你有点饿了。
 
 ![一个桃子！](../images/pinch.png)
 
->在学习的课程中赞叹泛亚地区的美食吧！ 图片由 [Jen Looper](https://twitter.com/jenlooper)提供
+> 在学习的课程中赞叹泛亚地区的美食吧！ 图片由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
-分类算法是[监督学习](https://wikipedia.org/wiki/Supervised_learning) 的一种。它与回归算法在很多方面都有相同之处。如果机器学习所有的目标都是使用数据集来预测数值或物品的名字，那么分类算法通常可以分为两类 _二元分类_ 和 _多元分类_。
+分类算法是[监督学习](https://wikipedia.org/wiki/Supervised_learning)的一种。它与回归算法在很多方面都有相同之处。如果机器学习所有的目标都是使用数据集来预测数值或物品的名字，那么分类算法通常可以分为两类 _二元分类_ 和 _多元分类_。
 
 [![对分类算法的介绍](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "对分类算法的介绍")
 
-> 🎥 点击上方给的图片可以跳转到一个视频-MIT的John对分类算法的介绍
+> 🎥 点击上方的图片可以跳转到一个视频-MIT 的 John 对分类算法的介绍
 
 请记住：
 
@@ -25,7 +25,7 @@
 
 ![二元分类 vs 多元分类](../images/binary-multiclass.png)
 
-> 需要分类算法解决的二元分类和多元分类问题的对比. 信息图由[Jen Looper](https://twitter.com/jenlooper)提供
+> 需要分类算法解决的二元分类和多元分类问题的对比. 信息图由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
 在开始清洗数据、数据可视化和调整数据以适应机器学习的任务前，让我们来了解一下多种可用来数据分类的机器学习方法。
 
@@ -41,13 +41,13 @@
 
 我们关于这个菜肴数据集想要提出的问题其实是一个 **多元问题**，因为我们有很多潜在的具有代表性的菜肴。给定一系列食材数据，数据能够符合这些类别中的哪一类？
 
-Scikit-learn项目提供多种对数据进行分类的算法，你需要根据问题的具体类型来进行选择。在下两节课程中你会学到这些算法中的几个。
+Scikit-learn 项目提供多种对数据进行分类的算法，你需要根据问题的具体类型来进行选择。在下两节课程中你会学到这些算法中的几个。
 
 ## 练习 - 清洗并平衡你的数据
 
 在你开始进行这个项目前的第一个上手的任务就是清洗和 **平衡**你的数据来得到更好的结果。从当前目录的根目录中的 _nodebook.ipynb_ 开始。
 
-第一个需要安装的东西是 [imblearn](https://imbalanced-learn.org/stable/)这是一个Scikit-learn项目中的一个包，它可以让你更好的平衡数据 (关于这个任务你很快你就会学到更多)。
+第一个需要安装的东西是 [imblearn](https://imbalanced-learn.org/stable/) 这是一个 Scikit-learn 项目中的一个包，它可以让你更好的平衡数据 (关于这个任务你很快你就会学到更多)。
 
 1. 安装 `imblearn`, 运行命令 `pip install`:
 
@@ -55,7 +55,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     pip install imblearn
     ```
 
-1. 为了导入和可视化数据你需要导入下面的这些包, 你还需要从`imblearn`导入`SMOTE`
+1. 为了导入和可视化数据你需要导入下面的这些包, 你还需要从 `imblearn` 导入 `SMOTE`
 
     ```python
     import pandas as pd
@@ -73,7 +73,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     df  = pd.read_csv('../data/cuisines.csv')
     ```
 
-   使用函数 `read_csv()` 会读取csv文件的内容 _cusines.csv_ 并将内容放置在 变量`df`中。
+   使用函数 `read_csv()` 会读取 csv 文件的内容 _cusines.csv_ 并将内容放置在 变量 `df` 中。
    
 1. 检查数据的形状是否正确:
 
@@ -99,7 +99,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     df.info()
     ```
 
-    Your out resembles:
+    你的输出应该像这样：
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -109,11 +109,11 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     memory usage: 7.2+ MB
     ```
 
-    ## 练习 - 了解这些菜肴
+## 练习 - 了解这些菜肴
 
 现在任务变得更有趣了，让我们来探索如何将数据分配给各个菜肴
 
-1. 调用函数 `barh()`可以绘制出数据的条形图:
+1. 调用函数 `barh()` 可以绘制出数据的条形图:
 
     ```python
     df.cuisine.value_counts().plot.barh()
@@ -152,7 +152,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
 
 现在你可以在数据中探索的更深一点并了解每道菜肴的代表性食材。你需要将反复出现的、容易造成混淆的数据清理出去，那么让我们来学习解决这个问题。
 
-1. 在Python中创建一个函数 `create_ingredient_df()` 来创建一个食材的数据帧。这个函数会去掉数据中无用的列并按食材的数量进行分类。
+1. 在 Python 中创建一个函数 `create_ingredient_df()` 来创建一个食材的数据帧。这个函数会去掉数据中无用的列并按食材的数量进行分类。
 
     ```python
     def create_ingredient_df(df):
@@ -162,9 +162,9 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
         inplace=False)
         return ingredient_df
     ```
-现在你可以使用这个函数来得到理想的每道菜肴最重要的10种食材。
+现在你可以使用这个函数来得到理想的每道菜肴最重要的 10 种食材。
 
-1. 调用函数 `create_ingredient_df()` 然后通过函数`barh()`来绘制图像:
+1. 调用函数 `create_ingredient_df()` 然后通过函数 `barh()` 来绘制图像:
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
@@ -264,7 +264,7 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
     ```
 
-1. 你可以通过调用函数 `transformed_df.head()` 和 `transformed_df.info()`再检查一下你的数据。 接下来要将数据保存以供在未来的课程中使用:
+1. 你可以通过调用函数 `transformed_df.head()` 和 `transformed_df.info()` 再检查一下你的数据。 接下来要将数据保存以供在未来的课程中使用:
 
     ```python
     transformed_df.head()
@@ -272,19 +272,19 @@ Scikit-learn项目提供多种对数据进行分类的算法，你需要根据�
     transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
-    这个全新的CSV文件可以在数据根目录中被找到。
+    这个全新的 CSV 文件可以在数据根目录中被找到。
 
 ---
 
 ## 🚀小练习
 
-本项目的全部课程含有很多有趣的数据集。 探索一下 `data`文件夹，看看这里面有没有适合二元分类、多元分类算法的数据集，再想一下你对这些数据集有没有什么想问的问题。
+本项目的全部课程含有很多有趣的数据集。 探索一下 `data` 文件夹，看看这里面有没有适合二元分类、多元分类算法的数据集，再想一下你对这些数据集有没有什么想问的问题。
 
 ## [课后练习](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20/)
 
 ## 回顾 & 自学
 
-探索一下 SMOTE的API文档。思考一下它最适合于什么样的情况、它能够解决什么样的问题。
+探索一下 SMOTE 的 API 文档。思考一下它最适合于什么样的情况、它能够解决什么样的问题。
 
 ## 课后作业 
 

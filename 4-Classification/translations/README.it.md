@@ -21,6 +21,6 @@ In questa sezione si approfondiranno le abilità sulla regressione apprese nella
 4. [Machine Learning applicato: sviluppare un'app web](../4-Applied/translations/README.it.md)
 ## Crediti
 
-"Iniziare con la classificazione" è stato scritto con ♥️ da [Cassie Breviu](https://www.twitter.com/cassieview) e [Jen Looper](https://www.twitter.com/jenlooper)
+"Iniziare con la classificazione" è stato scritto con ♥️ da [Cassie Breviu](https://www.twitter.com/cassieview) e [Jen Looper](https://www.twitter.com/jenlooper).
 
-L'insieme di dati sulle deliziose cucine proviene da [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines)
+L'insieme di dati sulle deliziose cucine proviene da [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines).

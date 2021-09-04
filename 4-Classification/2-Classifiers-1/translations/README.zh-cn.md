@@ -1,17 +1,18 @@
-# 菜品分类器1
+# 菜品分类器 1
 
 本节课程将使用你在上一个课程中所保存的全部经过均衡和清洗的菜品数据。
 
 你将使用此数据集和各种分类器，_根据一组配料预测这是哪一国家的美食_。在此过程中，你将学到更多用来权衡分类任务算法的方法  
 
 ## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21/)
+
 # 准备工作
 
-假如你已经完成了[课程1](../../1-Introduction/translations/README.zh-cn.md), 确保在根目录的`/data`文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
+假如你已经完成了[课程 1](../../1-Introduction/translations/README.zh-cn.md), 确保在根目录的 `/data` 文件夹中有 _cleaned_cuisines.csv_ 这份文件来进行接下来的四节课程。
 
 ## 练习 - 预测某国的菜品
 
-1. 在本节课的 _notebook.ipynb_ 文件中，导入Pandas，并读取相应的数据文件：
+1. 在本节课的 _notebook.ipynb_ 文件中，导入 Pandas，并读取相应的数据文件：
 
     ```python
     import pandas as pd
@@ -41,7 +42,7 @@
     import numpy as np
     ```
 
-1. 接下来需要将数据分为训练模型所需的X（译者注：代表特征数据）和y（译者注：代表标签数据）两个dataframe。首先可将`cuisine`列的数据单独保存为的一个dataframe作为标签（label）。
+1. 接下来需要将数据分为训练模型所需的 X（译者注：代表特征数据）和 y（译者注：代表标签数据）两个 dataframe。首先可将 `cuisine` 列的数据单独保存为的一个 dataframe 作为标签（label）。
 
     ```python
     cuisines_label_df = cuisines_df['cuisine']
@@ -59,7 +60,7 @@
     Name: cuisine, dtype: object
     ```
 
-1. 调用`drop()`方法将 `Unnamed: 0`和 `cuisine`列删除，并将余下的数据作为可以用于训练的特证（feature）数据:
+1. 调用 `drop()` 方法将 `Unnamed: 0` 和 `cuisine` 列删除，并将余下的数据作为可以用于训练的特证（feature）数据:
 
     ```python
     cuisines_feature_df = cuisines_df.drop(['Unnamed: 0', 'cuisine'], axis=1)
@@ -82,7 +83,7 @@
 
 你的数据已经清洗干净并已经准备好可以进行训练了，现在需要决定你想要使用的算法来完成这项任务。
 
-Scikit_learn将分类任务归在了监督学习类别中，在这个类别中你可以找到很多可以用来分类的方法。乍一看上去，有点[琳琅满目](https://scikit-learn.org/stable/supervised_learning.html)。以下这些算法都可以用于分类：
+Scikit_learn 将分类任务归在了监督学习类别中，在这个类别中你可以找到很多可以用来分类的方法。乍一看上去，有点[琳琅满目](https://scikit-learn.org/stable/supervised_learning.html)。以下这些算法都可以用于分类：
 
 - 线性模型（Linear Models）
 - 支持向量机（Support Vector Machines）
@@ -97,18 +98,18 @@ Scikit_learn将分类任务归在了监督学习类别中，在这个类别中�
 
 ### 如何选择分类器?
 
-那么，你应该如何从中选择分类器呢？一般来说，可以选择多个分类器并对比他们的运行结果。Scikit-learn提供了各种算法（包括KNeighbors、 SVC two ways、 GaussianProcessClassifier、 DecisionTreeClassifier、 RandomForestClassifier、 MLPClassifier、 AdaBoostClassifier、 GaussianNB以及QuadraticDiscrinationAnalysis）的[对比](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html)，并且将结果进行了可视化的展示：
+那么，你应该如何从中选择分类器呢？一般来说，可以选择多个分类器并对比他们的运行结果。Scikit-learn 提供了各种算法（包括 KNeighbors、 SVC two ways、 GaussianProcessClassifier、 DecisionTreeClassifier、 RandomForestClassifier、 MLPClassifier、 AdaBoostClassifier、 GaussianNB 以及 QuadraticDiscrinationAnalysis）的[对比](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html)，并且将结果进行了可视化的展示：
 
 ![各分类器比较](../images/comparison.png)
-> 图表来源于Scikit-learn的官方文档
+> 图表来源于 Scikit-learn 的官方文档
 
-> AutoML通过在云端运行这些算法并进行了对比，非常巧妙地解决的算法选择的问题，能帮助你根据数据集的特点来选择最佳的算法。试试点击[这里](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)了解更多。
+> AutoML 通过在云端运行这些算法并进行了对比，非常巧妙地解决的算法选择的问题，能帮助你根据数据集的特点来选择最佳的算法。试试点击[这里](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)了解更多。
 
 ### 另外一种效果更佳的分类器选择方法
 
-比起无脑地猜测，你可以下载这份[机器学习小抄（cheatsheet）](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa)。这里面将各算法进行了比较，能更有效地帮助我们选择算法。根据这份小抄，我们可以找到要完成本课程中涉及的多类型的分类任务，可以有以下这些选择：
+比起无脑地猜测，你可以下载这份[机器学习速查表（cheatsheet）](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa)。这里面将各算法进行了比较，能更有效地帮助我们选择算法。根据这份速查表，我们可以找到要完成本课程中涉及的多类型的分类任务，可以有以下这些选择：
 
-![多类型问题作弊表](../images/cheatsheet.png)
+![多类型问题速查表](../images/cheatsheet.png)
 > 微软算法小抄中部分关于多类型分类任务可选算法
 
 ✅ 下载这份小抄，并打印出来，挂在你的墙上吧！
@@ -117,23 +118,23 @@ Scikit_learn将分类任务归在了监督学习类别中，在这个类别中�
 
 让我们根据所有限制条件依次对各种算法的可行性进行判断：
 
-- **神经网络（Neural Network）太过复杂了**。我们的数据很清晰但数据量比较小，此外我们是通过notebook在本地进行训练的，神经网络对于这个任务来说过于复杂了。
-- **二分类法(two-class classifier)是不可行的**。我们不能使用二分类法,所以这就排除了一对多（one-vs-all）算法。 
+- **神经网络（Neural Network）太过复杂了**。我们的数据很清晰但数据量比较小，此外我们是通过 notebook 在本地进行训练的，神经网络对于这个任务来说过于复杂了。
+- **二分类法（two-class classifier）是不可行的**。我们不能使用二分类法,所以这就排除了一对多（one-vs-all）算法。 
 - **可以选择决策树以及逻辑回归算法**。决策树应该是可行的，此外也可以使用逻辑回归来处理多类型数据。
 - **多类型增强决策树是用于解决其他问题的**. 多类型增强决策树最适合的是非参数化的任务，即任务目标是建立一个排序，这对我们当前的任务并没有作用。
 
-### 使用Scikit-learn 
+### 使用 Scikit-learn 
 
-我们将会使用Scikit-learn来对我们的数据进行分析。然而在Scikit-learn中使用逻辑回归也有很多方法。可以先了解一下逻辑回归算法需要[传递的参数](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression)。
+我们将会使用 Scikit-learn 来对我们的数据进行分析。然而在 Scikit-learn 中使用逻辑回归也有很多方法。可以先了解一下逻辑回归算法需要[传递的参数](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression)。
 
-当我们需要Scikit-learn进行逻辑回归运算时，`multi_class` 以及 `solver`是最重要的两个参数，因此我们需要特别说明一下。 `multi_class` 是分类方式选择参数，而`solver`优化算法选择参数。值得注意的是，并不是所有的solvers都可以与`multi_class`参数进行匹配的。
+当我们需要 Scikit-learn 进行逻辑回归运算时，`multi_class` 以及 `solver`是最重要的两个参数，因此我们需要特别说明一下。 `multi_class` 是分类方式选择参数，而`solver`优化算法选择参数。值得注意的是，并不是所有的 solvers 都可以与`multi_class`参数进行匹配的。
 
 根据官方文档，在多类型分类问题中:
 
-- 当`multi_class`被设置为`ovr`时，将使用 **“一对其余”(OvR)策略（scheme）**。
-- 当`multi_class`被设置为`multinomial`时，则使用的是**交叉熵损失（cross entropy loss）** 作为损失函数。(注意，目前`multinomial`只支持‘lbfgs’, ‘sag’, ‘saga’以及‘newton-cg’等solver作为损失函数的优化方法)
+- 当 `multi_class` 被设置为 `ovr` 时，将使用 **“一对其余”(OvR)策略（scheme）**。
+- 当 `multi_class` 被设置为 `multinomial` 时，则使用的是**交叉熵损失（cross entropy loss）** 作为损失函数。(注意，目前`multinomial`只支持‘lbfgs’, ‘sag’, ‘saga’以及‘newton-cg’等 solver 作为损失函数的优化方法)
 
-> 🎓 在本课程的任务中“scheme”可以是“ovr(one-vs-rest)”也可以是“multinomial”。因为逻辑回归本来是设计来用于进行二分类任务的，这两个scheme参数的选择都可以使得逻辑回归很好的完成多类型分类任务。[来源](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
+> 🎓 在本课程的任务中“scheme”可以是“ovr(one-vs-rest)”也可以是“multinomial”。因为逻辑回归本来是设计来用于进行二分类任务的，这两个 scheme 参数的选择都可以使得逻辑回归很好的完成多类型分类任务。[来源](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
 > 🎓 “solver”被定义为是"用于解决优化问题的算法"。[来源](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).
 
@@ -145,16 +146,15 @@ Scikit-learn提供了以下这个表格来解释各种solver是如何应对的�
 
 因为你刚刚在上一节课中学习了逻辑回归，我们这里就通过逻辑回归算法，来演练一下如何进行你的第一个机器学习模型的训练。首先，需要通过调用`train_test_split()`方法可以把你的数据分割成训练集和测试集：
 
-
 ```python
 X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
 ```
 
 ## 练习 - 调用逻辑回归算法
 
-接下来，你需要决定选用什么 _scheme_ 以及 _solver_ 来进行我们这个多类型分类的案例。在这里我们使用LogisticRegression方法，并设置相应的multi_class参数，同时将solver设置为**liblinear**来进行模型训练。
+接下来，你需要决定选用什么 _scheme_ 以及 _solver_ 来进行我们这个多类型分类的案例。在这里我们使用 LogisticRegression 方法，并设置相应的 multi_class 参数，同时将 solver 设置为 **liblinear** 来进行模型训练。
 
-1. 创建一个逻辑回归模型，并将multi_class设置为`ovr`，同时将solver设置为 `liblinear`:
+1. 创建一个逻辑回归模型，并将 multi_class 设置为 `ovr`，同时将 solver 设置为 `liblinear`:
 
     ```python
     lr = LogisticRegression(multi_class='ovr',solver='liblinear')
@@ -164,13 +164,13 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     print ("Accuracy is {}".format(accuracy))
     ```
 
-    ✅ 也可以试试其他solver比如`lbfgs`, 这也是默认参数
+    ✅ 也可以试试其他 solver 比如 `lbfgs`, 这也是默认参数
 
-    > 注意, 使用Pandas的[`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) 方法可以在需要的时候将你的数据进行降维
+    > 注意, 使用 Pandas 的 [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) 方法可以在需要的时候将你的数据进行降维
 
-    运算之后，可以看到准确率高达了**80%**!
+    运算之后，可以看到准确率高达 **80%**!
 
-1. 你也可以通过查看某一行数据（比如第50行）来观测到模型运行的情况:
+1. 你也可以通过查看某一行数据（比如第 50 行）来观测到模型运行的情况:
 
     ```python
     print(f'ingredients: {X_test.iloc[50][X_test.iloc[50]!=0].keys()}')
@@ -230,13 +230,14 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 ## 挑战
 
-在本课程中，你使用了清洗后的数据建立了一个机器学习的模型，这个模型能够根据输入的一系列的配料来预测菜品来自于哪个国家。请再花点时间阅读一下Scikit-learn所提供的关于可以用来分类数据的其他方法的资料。此外，你也可以深入研究一下“solver”的概念并尝试一下理解其背后的原理。
+在本课程中，你使用了清洗后的数据建立了一个机器学习的模型，这个模型能够根据输入的一系列的配料来预测菜品来自于哪个国家。请再花点时间阅读一下 Scikit-learn 所提供的关于可以用来分类数据的其他方法的资料。此外，你也可以深入研究一下“solver”的概念并尝试一下理解其背后的原理。
 
 ## [课后测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22/)
+
 ## 回顾与自学
 
 [这个课程](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)将对逻辑回归背后的数学原理进行更加深入的讲解
 
 ## 作业 
 
-[学习solver](assignment.md)
+[学习 solver](assignment.md)
