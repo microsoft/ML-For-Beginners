@@ -9,7 +9,7 @@
 
 到目前为止，你已经通过从我们将在本课程中使用的南瓜定价数据集收集的样本数据探索了什么是回归。你还使用 Matplotlib 对其进行了可视化。
 
-现在你已准备好深入研究 ML 的回归。 在本课中，你将详细了解两种类型的回归：_基本线性回归_和_多项式回归_，以及这些技术背后的一些数学知识。
+现在你已准备好深入研究 ML 的回归。 在本课中，你将详细了解两种类型的回归：_基本线性回归_ 和 _多项式回归_，以及这些技术背后的一些数学知识。
 
 > 在整个课程中，我们假设数学知识最少，并试图让来自其他领域的学生也能接触到它，因此请使用笔记、🧮标注、图表和其他学习工具以帮助理解。
 
@@ -24,6 +24,7 @@
 - 什么时候买南瓜最好？
 - 一箱微型南瓜的价格是多少？
 - 我应该买半蒲式耳还是 1 1/9 蒲式耳？
+
 让我们继续深入研究这些数据。
 
 在上一课中，你创建了一个 Pandas dataframe 并用原始数据集的一部分填充它，按蒲式耳标准化定价。但是，通过这样做，你只能收集大约 400 个数据点，而且只能收集秋季月份的数据。
@@ -43,41 +44,41 @@
 
 > **🧮 数学知识**
 >
-> 这条线称为_最佳拟合线_，可以用[一个等式](https://en.wikipedia.org/wiki/Simple_linear_regression)表示：
+> 这条线称为 _最佳拟合线_，可以用[一个等式](https://en.wikipedia.org/wiki/Simple_linear_regression)表示：
 >
 > ```
 > Y = a + bX
 > ```
 >
-> `X` 是“解释变量”。`Y` 是“因变量”。直线的斜率是`b`，`a`是y轴截距，指的是`X = 0`时`Y`的值。
+> `X` 是“解释变量”。`Y` 是“因变量”。直线的斜率是 `b`，`a` 是 y 轴截距，指的是 `X = 0` 时 `Y` 的值。
 >
 >![计算斜率](../images/slope.png)
 >
-> 首先，计算斜率`b`。作者[Jen Looper](https://twitter.com/jenlooper)
+> 首先，计算斜率 `b`。作者 [Jen Looper](https://twitter.com/jenlooper)
 >
-> 换句话说，参考我们的南瓜数据的原始问题：“按月预测每蒲式耳南瓜的价格”，`X`指的是价格，`Y`指的是销售月份。
+> 换句话说，参考我们的南瓜数据的原始问题：“按月预测每蒲式耳南瓜的价格”，`X` 指的是价格，`Y` 指的是销售月份。
 >
->![完成等式](../images/calculation.png)
+> ![完成等式](../images/calculation.png)
 >
-> 计算Y的值。如果你支付大约4美元，那一定是四月！作者[Jen Looper](https://twitter.com/jenlooper)
+> 计算 Y 的值。如果你支付大约 4 美元，那一定是四月！作者 [Jen Looper](https://twitter.com/jenlooper)
 >
-> 计算直线的数学必须证明直线的斜率，这也取决于截距，或者当`X = 0`时`Y`所在的位置。
+> 计算直线的数学必须证明直线的斜率，这也取决于截距，或者当 `X = 0` 时 `Y` 所在的位置。
 >
-> 你可以在[Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html)网站上观察这些值的计算方法。另请访问[这个最小二乘计算器](https://www.mathsisfun.com/data/least-squares-calculator.html)以观察数字的值如何影响直线。
+> 你可以在 [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html) 网站上观察这些值的计算方法。另请访问[这个最小二乘计算器](https://www.mathsisfun.com/data/least-squares-calculator.html)以观察数字的值如何影响直线。
 
 ## 相关性
 
-另一个需要理解的术语是给定X和Y变量之间的**相关系数**。使用散点图，你可以快速可视化该系数。数据点散布在一条直线上的图具有高相关性，但数据点散布在X和Y之间的图具有低相关性。
+另一个需要理解的术语是给定 X 和 Y 变量之间的**相关系数**。使用散点图，你可以快速可视化该系数。数据点散布在一条直线上的图具有高相关性，但数据点散布在 X 和 Y 之间的图具有低相关性。
 
-一个好的线性回归模型将是一个用最小二乘回归法与直线回归得到的高（更接近于1）相关系数的模型。
+一个好的线性回归模型将是一个用最小二乘回归法与直线回归得到的高（更接近于 1）相关系数的模型。
 
-✅ 运行本课随附的notebook并查看City to Price散点图。根据你对散点图的视觉解释，将南瓜销售的城市与价格相关联的数据似乎具有高相关性或低相关性？
+✅ 运行本课随附的 notebook 并查看 City to Price 散点图。根据你对散点图的视觉解释，将南瓜销售的城市与价格相关联的数据似乎具有高相关性或低相关性？
 
 ## 为回归准备数据
 
 现在你已经了解了本练习背后的数学原理，可以创建一个回归模型，看看你是否可以预测哪个南瓜包装的南瓜价格最优惠。为节日购买南瓜的人可能希望此信息能够优化他们如何购买南瓜包装。
 
-由于你将使用Scikit-learn，因此没有理由手动执行此操作（尽管你可以！）。在课程notebook的主要数据处理块中，从Scikit-learn添加一个库以自动将所有字符串数据转换为数字：
+由于你将使用 Scikit-learn，因此没有理由手动执行此操作（尽管你可以！）。在课程 notebook 的主要数据处理块中，从 Scikit-learn 添加一个库以自动将所有字符串数据转换为数字：
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -85,7 +86,7 @@ from sklearn.preprocessing import LabelEncoder
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-如果你现在查看new_pumpkins dataframe，你会看到所有字符串现在都是数字。这让你更难阅读，但对Scikit-learn来说更容易理解！
+如果你现在查看 new_pumpkins dataframe，你会看到所有字符串现在都是数字。这让你更难阅读，但对 Scikit-learn 来说更容易理解！
 
 现在，你可以对最适合回归的数据做出更有根据的决策（不仅仅是基于观察散点图）。
 
@@ -116,7 +117,7 @@ new_pumpkins.dropna(inplace=True)
 new_pumpkins.info()
 ```
 
-然后，从这个最小集合创建一个新的dataframe并将其打印出来：
+然后，从这个最小集合创建一个新的 dataframe 并将其打印出来：
 
 ```python
 new_columns = ['Package', 'Price']
@@ -148,7 +149,7 @@ lin_pumpkins
    y = lin_pumpkins.values[:, 1:2]
    ```
 
-✅ 这里发生了什么？你正在使用 [Python slice notation](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295) 来创建数组来填充`X`和`y`。
+✅ 这里发生了什么？你正在使用 [Python slice notation](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295) 来创建数组来填充 `X` 和 `y`。
 
 2. 接下来，开始回归模型构建例程：
 
@@ -215,7 +216,7 @@ lin_pumpkins
 
 多项式回归创建一条曲线以更好地拟合非线性数据。
 
-1. 让我们重新创建一个填充了原始南瓜数据片段的dataframe：
+1. 让我们重新创建一个填充了原始南瓜数据片段的 dataframe：
 
    ```python
    new_columns = ['Variety', 'Package', 'City', 'Month', 'Price']
@@ -224,7 +225,7 @@ lin_pumpkins
    poly_pumpkins
    ```
 
-可视化dataframe中数据之间相关性的一种好方法是将其显示在“coolwarm”图表中：
+可视化 dataframe 中数据之间相关性的一种好方法是将其显示在“coolwarm”图表中：
 
 2. 使用 `Background_gradient()` 方法和 `coolwarm` 作为其参数值：
 
@@ -240,7 +241,7 @@ lin_pumpkins
 
 ### 创建管道
 
-Scikit-learn 包含一个用于构建多项式回归模型的有用 API - `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline)。 创建了一个“管道”，它是一个估计器链。 在这种情况下，管道包括多项式特征或形成非线性路径的预测。
+Scikit-learn 包含一个用于构建多项式回归模型的有用 API - `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline)。 创建了一个“管道”，它是一个估计器链。在这种情况下，管道包括多项式特征或形成非线性路径的预测。
 
 1. 构建 X 和 y 列：
 
@@ -337,4 +338,4 @@ Scikit-learn 包含一个用于构建多项式回归模型的有用 API - `make_
 
 ## 任务
 
-[构建模型](../assignment.md)
+[构建模型](./assignment.zh-cn.md)

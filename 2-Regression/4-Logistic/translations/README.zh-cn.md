@@ -297,4 +297,4 @@ print(auc)
 
 ## 任务
 
-[重试此回归](../assignment.md)
+[重试此回归](./assignment.zh-cn.md)
