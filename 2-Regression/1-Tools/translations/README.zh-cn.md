@@ -30,7 +30,7 @@
 
    > 通过学习这一系列的 [学习模块](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa) 熟悉 Python
 
-3. **按照 [这些说明] 安装 Scikit learn**(https://scikit-learn.org/stable/install.html)。由于你需要确保使用 Python3，因此建议你使用虚拟环境。注意，如果你是在 M1 Mac 上安装这个库，在上面链接的页面上有特别的说明。
+3. **按照 [这些说明](https://scikit-learn.org/stable/install.html) 安装 Scikit learn**。由于你需要确保使用 Python3，因此建议你使用虚拟环境。注意，如果你是在 M1 Mac 上安装这个库，在上面链接的页面上有特别的说明。
 
 4. **安装 Jupyter Notebook**。你需要 [安装 Jupyter 包](https://pypi.org/project/jupyter/)。
 
@@ -112,10 +112,10 @@ Scikit-learn 使构建模型和评估它们的使用变得简单。它主要侧�
 
 内置的 [糖尿病数据集](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) 包含 442 个围绕糖尿病的数据样本，具有 10 个特征变量，其中包括：
 
-age：岁数
-bmi：体重指数
-bp：平均血压
-s1 tc：T 细胞（一种白细胞）
+- age：岁数
+- bmi：体重指数
+- bp：平均血压
+- s1 tc：T 细胞（一种白细胞）
 
 ✅ 该数据集包括“性别”的概念，作为对糖尿病研究很重要的特征变量。许多医学数据集包括这种类型的二元分类。想一想诸如此类的分类如何将人群的某些部分排除在治疗之外。
 
@@ -204,4 +204,4 @@ s1 tc：T 细胞（一种白细胞）
 
 ## 任务  
 
-[不同的数据集](../assignment.md)
+[不同的数据集](./assignment.zh-cn.md)

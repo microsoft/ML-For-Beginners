@@ -1,6 +1,6 @@
 # 使用 Scikit-learn 构建回归模型：准备和可视化数据
 
-> ![数据可视化信息图](../images/data-visualization.png)
+![数据可视化信息图](../images/data-visualization.png)
 > 作者 [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ## [课前测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
@@ -38,7 +38,7 @@
 
 ## 练习 - 分析南瓜数据
 
-让我们使用 [Pandas](https://pandas.pydata.org/)，（“Python 数据分析”的意思）一个非常有用的工具，用于分析和准备南瓜数据。
+让我们使用 [Pandas](https://pandas.pydata.org/)，（“Python 数据分析” Python Data Analysis 的意思）一个非常有用的工具，用于分析和准备南瓜数据。
 
 ### 首先，检查遗漏的日期
 
@@ -200,4 +200,4 @@
 
 ## 任务
 
-[探索可视化](../assignment.md)
+[探索可视化](./assignment.zh-cn.md)

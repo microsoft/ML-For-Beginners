@@ -116,10 +116,10 @@ Import some libraries to help with your tasks.
 
 The built-in [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
 
-age: age in years
-bmi: body mass index
-bp: average blood pressure
-s1 tc: T-Cells (a type of white blood cells)
+- age: age in years
+- bmi: body mass index
+- bp: average blood pressure
+- s1 tc: T-Cells (a type of white blood cells)
 
 ✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
 

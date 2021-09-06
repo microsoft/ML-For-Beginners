@@ -115,10 +115,10 @@ Scikit-learn 사용하면 올바르게 모델을 만들고 사용하기 위해 �
 
 빌트-인된 [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)은 당뇨에 대한 442개의 데이터 샘플이 있고, 10개의 feature 변수가 있으며, 그 일부는 아래와 같습니다:
 
-age: age in years
-bmi: body mass index
-bp: average blood pressure
-s1 tc: T-Cells (a type of white blood cells)
+- age: age in years
+- bmi: body mass index
+- bp: average blood pressure
+- s1 tc: T-Cells (a type of white blood cells)
 
 ✅ 이 데이터셋에는 당뇨를 연구할 때 중요한 feature 변수인 '성' 컨셉이 포함되어 있습니다. 많은 의학 데이터셋에는 binary classification의 타입이 포함됩니다. 이처럼 categorizations이 치료에서 인구의 특정 파트를 제외할 수 있는 방법에 대하여 조금 고민해보세요.
 
