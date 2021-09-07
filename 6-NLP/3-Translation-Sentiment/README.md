@@ -103,7 +103,7 @@ Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most ne
 
 Take another look at Jane Austen's *Pride and Prejudice*. The text is available here at [Project Gutenberg](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm). The sample below shows a short program which analyses the sentiment of first and last sentences from the book and display its sentiment polarity and subjectivity/objectivity score.
 
-You should us the `TextBlob` library (described above) to determine `sentiment` (you do not have to write your own sentiment calculator) in the following task.
+You should use the `TextBlob` library (described above) to determine `sentiment` (you do not have to write your own sentiment calculator) in the following task.
 
 ```python
 from textblob import TextBlob
