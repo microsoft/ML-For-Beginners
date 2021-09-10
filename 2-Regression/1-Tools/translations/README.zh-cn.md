@@ -18,7 +18,7 @@
 
 ## 安装和配置 
 
-[![在 Visual Studio Code 中使用 Python](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "在 Visual Studio Code 中使用 Python")
+[![在 Visual Studio Code 中使用 Python](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Setup Python with Visual Studio Code")
 
 > 🎥 单击上图观看视频：在 VS Code 中使用 Python。 
 
@@ -145,7 +145,7 @@ Scikit-learn 使构建模型和评估它们的使用变得简单。它主要侧�
 
     ✅ 稍微思考一下数据和回归目标之间的关系。线性回归预测特征 X 和目标变量 y 之间的关系。你能在文档中找到糖尿病数据集的 [目标](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) 吗？鉴于该目标，该数据集展示了什么？
 
-2. 接下来，通过使用 numpy 的 `newaxis` 函数将其排列到一个新数组中来选择要绘制的该数据集的一部分。我们将使用线性回归根据它确定的模式在此数据中的值之间生成一条线。
+2. 接下来，通过使用 numpy 的 `newaxis` 函数将数据集的一部分排列到一个新数组中。我们将使用线性回归根据它确定的模式在此数据中的值之间生成一条线。
 
    ```python
    X = X[:, np.newaxis, 2]
@@ -153,7 +153,7 @@ Scikit-learn 使构建模型和评估它们的使用变得简单。它主要侧�
 
    ✅ 随时打印数据以检查其形状。
 
-3. 现在你已准备好绘制数据，你可以查看机器是否可以帮助确定此数据集中数字之间的逻辑分割。为此你需要将数据 (X) 和目标 (y) 拆分为测试集和训练集。Scikit-learn 有一个简单的方法来做到这一点；你可以在给定点拆分测试数据。
+3. 现在你已准备好绘制数据，你可以看到计算机是否可以帮助确定此数据集中数字之间的逻辑分割。为此你需要将数据 (X) 和目标 (y) 拆分为测试集和训练集。Scikit-learn 有一个简单的方法来做到这一点；你可以在给定点拆分测试数据。
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
