@@ -4,18 +4,18 @@
 ## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
 
 ## 介绍
-众所周知，自然语言处理 (Natural Language Processing, NLP) 是机器学习在生产软件中应用最广泛的领域之一。
+众所周知，自然语言处理（Natural Language Processing, NLP）是机器学习在生产软件中应用最广泛的领域之一。
 
 ✅ 你能想到哪些你日常生活中使用的软件可能嵌入了自然语言处理技术呢？或者，你经常使用的文字处理程序或移动应用程序中是否嵌入了自然语言处理技术呢？
 
 你将会学习到：
 
 - **什么是「语言」**。语言的发展历程，以及相关研究的主要领域。
-- **定义和概念**。你还将了解关于计算机文本处理的概念。包括解析 (parsing)、语法 (grammar) 以及识别名词与动词。这节课中有一些编程任务；还有一些重要概念将在以后的课程中被引入，届时你也会练习通过编程实现其它概念。
+- **定义和概念**。你还将了解关于计算机文本处理的概念。包括解析（parsing）、语法（grammar）以及识别名词与动词。这节课中有一些编程任务；还有一些重要概念将在以后的课程中被引入，届时你也会练习通过编程实现其它概念。
 
 ## 计算语言学
 
-计算语言学 (Computational Linguistics) 是一个经过几十年研究和发展的领域，它研究如何让计算机能使用、理解、翻译语言并使用语言交流。自然语言处理 (NLP) 是计算语言学中一个专注于计算机如何处理「自然的」（或者说，人类的）语言的相关领域。
+计算语言学 (Computational Linguistics) 是一个经过几十年研究和发展的领域，它研究如何让计算机能使用、理解、翻译语言并使用语言交流。自然语言处理（NLP）是计算语言学中一个专注于计算机如何处理「自然的」（或者说，人类的）语言的相关领域。
 
 ### 举例：电话号码识别
 
@@ -30,7 +30,7 @@
 
 现在，你可能会想起课堂上老师讲解的语法。在某些国家/地区，语法和语言学知识是学生的专题课内容。但在另一些国家/地区，不管是从小学习的第一语言（学习阅读和写作），还是之后学习的第二语言中，语法及语言学知识都是作为语言的一部分教学的。所以，如果你不能很好地区分名词与动词或者区分副词与形容词，请不要担心！
 
-你还为难以区分*一般现在时*与*现在进行时*而烦恼吗？没关系的，即使是对以这门语言为母语的人在内的大多数人来说，区分它们都很有挑战性。但是，计算机非常善于应用标准的规则，你将学会编写可以像人一样"解析"句子的代码。稍后你将面对的更大挑战是理解句子的*语义*和*情绪*。
+你还为难以区分*一般现在时*与*现在进行时*而烦恼吗？没关系的，即使是对以这门语言为母语的人在内的大多数人来说，区分它们都很有挑战性。但是，计算机非常善于应用标准的规则，你将学会编写可以像人一样“解析”句子的代码。稍后你将面对的更大挑战是理解句子的*语义*和*情绪*。
 
 ## 前提
 
@@ -41,15 +41,15 @@
 在本节中你将需要并使用如下技能：
 
 - **Python 3**。你需要能够理解并使用 Python 3. 本课将会使用输入、循环、文件读取、数组功能。
-- **Visual Studio Code + 扩展**. 我们将使用 Visual Studio Code 及其 Python 扩展。你也可以使用你喜欢的 Python IDE。
-- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob)是一个精简的 Python 文本处理库。请按照 TextBlob 网站上的说明，在您的系统上安装它（也需要安装语料库，安装代码如下所示）：
+- **Visual Studio Code + 扩展**。 我们将使用 Visual Studio Code 及其 Python 扩展。你也可以使用你喜欢的 Python IDE。
+- **TextBlob**。[TextBlob](https://github.com/sloria/TextBlob) 是一个精简的 Python 文本处理库。请按照 TextBlob 网站上的说明，在您的系统上安装它（也需要安装语料库，安装代码如下所示）：
 - 
    ```bash
    pip install -U textblob
    python -m textblob.download_corpora
    ```
 
-> 💡 提示：你可以在 VS Code 环境中直接运行 Python。 点击[docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa)查看更多信息。
+> 💡 提示：你可以在 VS Code 环境中直接运行 Python。 点击 [文档](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) 查看更多信息。
 
 ## 与机器对话
 
@@ -67,7 +67,7 @@
 
 ### Eliza 的研发
 
-在 1960 年代的麻省理工学院，一位名叫 *Joseph Weizenbaum* 的科学家开发了[*Eliza*](https:/wikipedia.org/wiki/ELIZA)。Eliza 是一位计算机“治疗师”，它可以向人类提出问题并让人类觉得它能理解人类的回答。然而，虽然 Eliza 可以解析句子并识别某些语法结构和关键字以给出合理的答案，但不能说它*理解*了句子。如果 Eliza 看到的句子格式为“**I am** <u>sad</u>”（**我很** <u>难过</u>），它可能会重新排列并替换句子中的单词，回答 “How long have **you been** <u>sad</u>"（**你已经** <u>难过</u> 多久了）。
+在 1960 年代的麻省理工学院，一位名叫 *Joseph Weizenbaum* 的科学家开发了 [*Eliza*](https:/wikipedia.org/wiki/ELIZA)。Eliza 是一位计算机“治疗师”，它可以向人类提出问题并让人类觉得它能理解人类的回答。然而，虽然 Eliza 可以解析句子并识别某些语法结构和关键字以给出合理的答案，但不能说它*理解*了句子。如果 Eliza 看到的句子格式为“**I am** <u>sad</u>”（**我很** <u>难过</u>），它可能会重新排列并替换句子中的单词，回答 “How long have **you been** <u>sad</u>"（**你已经** <u>难过</u> 多久了）。
 
 看起来像是 Eliza 理解了这句话，还在询问关于这句话的问题，而实际上，它只是在改变时态和添加词语。如果 Eliza 没有在回答中发现它知道如何响应的词汇，它会给出一个随机响应，该响应可以适用于许多不同的语句。 Eliza 很容易被欺骗，例如，如果用户写了 "**You are** a <u>bicycle</u>"（**你是** 个 <u>自行车</u>），它可能会回复 "How long have **I been** a <u>bicycle</u>?"（**我已经是** 一个 <u>自行车</u> 多久了?），而不是更合理的回答。
 
@@ -75,7 +75,7 @@
 
 > 🎥 点击上方的图片查看关于 Eliza 原型的视频
 
-> 旁注：如果你拥有 ACM 账户，你可以阅读 1996 年发表的 [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract)的原始介绍。或者，在[维基百科](https://wikipedia.org/wiki/ELIZA)上阅读有关 Eliza 的信息。
+> 旁注：如果你拥有 ACM 账户，你可以阅读 1996 年发表的 [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) 的原始介绍。或者，在[维基百科](https://wikipedia.org/wiki/ELIZA)上阅读有关 Eliza 的信息。
 
 ## 练习 - 编程实现一个基础的对话机器人
 
@@ -91,7 +91,7 @@
    2. 如果用户要求退出，就退出
    3. 处理用户输入并选择一个回答（在这个例子中，从回答列表中随机选择一个回答）
    4. 打印回答
-3. 重复步骤2
+3. 重复步骤 2
 
 ### 构建聊天机器人
 
@@ -140,6 +140,7 @@
     3. 如果机器人真的可以“理解”一个句子的意思，它是否也需要“记住”前面句子的意思？
 
 ---
+
 ## 🚀挑战
 
 在上面的「停下来，思考一下」板块中选择一个问题，尝试编程实现它们，或使用伪代码在纸上编写解决方案。
