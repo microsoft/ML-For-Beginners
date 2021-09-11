@@ -13,7 +13,7 @@
   
 ## 课程
 
-1. [自然语言处理简介](../1-Introduction-to-NLP/README.md)
+1. [自然语言处理简介](../1-Introduction-to-NLP/translations/README.zh-cn.md)
 2. [NLP 常见任务与技巧](../2-Tasks/README.md)
 3. [机器学习翻译和情感分析](../3-Translation-Sentiment/README.md)
 4. [准备数据](../4-Hotel-Reviews-1/README.md)
