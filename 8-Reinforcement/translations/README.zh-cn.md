@@ -10,7 +10,7 @@
 
 ## 本节主题：彼得与狼（俄罗斯）
 
-[彼得与狼](https://en.wikipedia.org/wiki/Peter_and_the_Wolf) 是俄罗斯作曲家[谢尔盖·普罗科菲耶夫](https://en.wikipedia.org/wiki/Sergei_Prokofiev)创作的音乐童话。它讲述了彼得勇敢地走出家门，到森林中央追逐狼的故事。在本节中，我们将训练帮助 Peter 追狼的机器学习算法：
+[彼得与狼](https://en.wikipedia.org/wiki/Peter_and_the_Wolf) 是俄罗斯作曲家[谢尔盖·普罗科菲耶夫](https://en.wikipedia.org/wiki/Sergei_Prokofiev)创作的音乐童话。它讲述了彼得勇敢地走出家门，到森林中央追逐狼的故事。在本节中，我们将训练帮助彼得追狼的机器学习算法：
 
 - **探索**周边区域并构建最佳地图
 - **学习**如何使用滑板并在滑板上保持平衡，以便更快地移动。
@@ -23,8 +23,8 @@
 
 在前面的部分中，您已经看到了两类机器学习问题的例子：
 
-- **监督**，在有已经标记的，暗含解决方案的数据集的情况下。 [分类](../../4-Classification/README.md) 和 [回归](../../2-Regression/README.md) 是监督学习任务。
-- **无监督**，在我们没有标记训练数据集的情况下。无监督学习的主要例子是 [聚类](../../5-Clustering/README.md)。
+- **监督**，在有已经标记的，暗含解决方案的数据集的情况下。 [分类](../../4-Classification/translations/README.zh-cn.md) 和 [回归](../../2-Regression/translations/README.zh-cn.md) 是监督学习任务。
+- **无监督**，在我们没有标记训练数据集的情况下。无监督学习的主要例子是 [聚类](../../5-Clustering/translations/README.zh-cn.md)。
 
 在本节中，我们将学习一类新的机器学习问题，它不需要已经标记的训练数据 —— 比如这两类问题：
 
@@ -45,8 +45,8 @@
 
 ## 课程
 
-1.【强化学习和 Q-Learning 介绍】(1-QLearning/README.md)
-2.【使用 Gym 模拟环境】(2-Gym/README.md)
+1. [强化学习和 Q-Learning 介绍](1-QLearning/README.md)
+2. [使用 Gym 模拟环境](2-Gym/README.md)
 
 ## 本文作者
 
