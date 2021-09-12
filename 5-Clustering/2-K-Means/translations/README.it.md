@@ -244,7 +244,7 @@ Suggerimento: provare a ridimensionare i dati. C'è un codice commentato nel not
 
 Dare un'occhiata a un simulatore di K-Means [tipo questo](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). È possibile utilizzare questo strumento per visualizzare i punti dati di esempio e determinarne i centroidi. Questo aiuta a farsi un'idea di come i dati possono essere raggruppati?
 
-Inoltre, dare un'occhiata a [questa dispensa sui k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) di Stanford.
+Inoltre, dare un'occhiata a [questa dispensa sui K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) di Stanford.
 
 ## Compito
 

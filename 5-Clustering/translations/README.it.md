@@ -8,7 +8,7 @@ Il pubblico eterogeneo della Nigeria ha gusti musicali diversi. Usando i dati re
 
 ![Un giradischi](../images/turntable.jpg)
 
-Foto di <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> su <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> Foto di <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> su <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 In questa serie di lezioni si scopriranno nuovi modi per analizzare i dati utilizzando tecniche di clustering. Il clustering è particolarmente utile quando l'insieme di dati non ha etichette. Se ha etichette, le tecniche di classificazione come quelle apprese nelle lezioni precedenti potrebbero essere più utili. Ma nei casi in cui si sta cercando di raggruppare dati senza etichetta, il clustering è un ottimo modo per scoprire i modelli.
 
