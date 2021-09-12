@@ -5,7 +5,7 @@
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
 > 🎥 点击上面的图片观看视频。当您通过聚类学习机器学习时，请欣赏一些尼日利亚舞厅曲目 - 这是 2014 年 PSquare 上高度评价的歌曲。
-> 
+
 ## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
 
 ### 介绍
