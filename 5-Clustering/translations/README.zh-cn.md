@@ -8,7 +8,7 @@
 
 ![A turntable](../images/turntable.jpg)
 
-<a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a>在<a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>上的照片
+> <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> 在 <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> 上的照片
 
 在本系列课程中，您将发现使用聚类技术分析数据的新方法。当数据集缺少标签的时候，聚类特别有用。如果它有标签，那么分类技术(比如您在前面的课程中所学的那些)可能会更有用。但是如果要对未标记的数据进行分组，聚类是发现模式的好方法。
 
@@ -18,7 +18,7 @@
 
 1. [介绍聚类](../1-Visualize/translations/README.zh-cn.md)
 2. [K-Means 聚类](../2-K-Means/translations/README.zh-cn.md)
-3. 
+
 ## 致谢
 
 这些课程由 Jen Looper 在 🎶 上撰写，并由 [Rishit Dagli](https://rishit_dagli) 和 [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) 进行了有帮助的评审。
