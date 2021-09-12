@@ -244,7 +244,7 @@ Variance는 "the average of the squared differences from the Mean."으로 정의
 
 [such as this one](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/)같은 K-Means 시뮬레이터를 찾아봅니다. 이 도구로 샘플 데이터 포인트를 시각화하고 무게 중심을 결정할 수 있습니다. 데이터의 랜덤성, 클러스터 수와 무게 중심 수를 고칠 수 있습니다. 데이터를 그룹으로 묶기 위한 아이디어를 얻는 게 도움이 되나요?
 
-또한, Stanford의 [this handout on k-means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html)을 찾아봅니다.
+또한, Stanford 의 [this handout on K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) 을 찾아봅니다.
 
 ## 과제
 

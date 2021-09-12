@@ -1,10 +1,13 @@
 # 介绍聚类
 
 聚类是一种无监督学习，它假定数据集未标记或其输入与预定义的输出不匹配。它使用各种算法对未标记的数据进行排序，并根据它在数据中识别的模式提供分组。
+
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
-> 🎥 点击上面的图片观看视频。当您通过聚类学习机器学习时，请欣赏一些尼日利亚舞厅曲目 - 这是2014 年PSquare上高度评价的歌曲。
+> 🎥 点击上面的图片观看视频。当您通过聚类学习机器学习时，请欣赏一些尼日利亚舞厅曲目 - 这是 2014 年 PSquare 上高度评价的歌曲。
+
 ## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
+
 ### 介绍
 
 [聚类](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124)对于数据探索非常有用。让我们看看它是否有助于发现尼日利亚观众消费音乐的趋势和模式。
@@ -29,7 +32,7 @@
 
 ## 聚类入门
 
-[Scikit-learn ](https://scikit-learn.org/stable/modules/clustering.html)提供了大量的方法来执行聚类。您选择的类型将取决于您的用例。根据文档，每种方法都有不同的好处。以下是 Scikit-learn 支持的方法及其适当用例的简化表：
+[Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html) 提供了大量的方法来执行聚类。您选择的类型将取决于您的用例。根据文档，每种方法都有不同的好处。以下是 Scikit-learn 支持的方法及其适当用例的简化表：
 
 | 方法名称                     | 用例                                               |
 | ---------------------------- | -------------------------------------------------- |
@@ -83,13 +86,13 @@
 
    ![Hierarchical clustering Infographic](../images/hierarchical.png)
 
-   > [Dasani Madipalli ](https://twitter.com/dasani_decoded)作图
+   > [Dasani Madipalli](https://twitter.com/dasani_decoded) 作图
 
 - **质心聚类**。这种流行的算法需要选择“k”或要形成的聚类数量，然后算法确定聚类的中心点并围绕该点收集数据。[K-means 聚类](https://wikipedia.org/wiki/K-means_clustering)是质心聚类的流行版本。中心由最近的平均值确定，因此叫做质心。与聚类的平方距离被最小化。
 
    ![Centroid clustering Infographic](../images/centroid.png)
 
-   > [Dasani Madipalli](https://twitter.com/dasani_decoded)作图
+   > [Dasani Madipalli](https://twitter.com/dasani_decoded) 作图
 
 - **基于分布的聚类**。基于统计建模，基于分布的聚类中心确定一个数据点属于一个聚类的概率，并相应地分配它。高斯混合方法属于这种类型。
 
@@ -103,15 +106,15 @@
 
 适当的可视化对聚类作为一种技术有很大帮助，所以让我们从可视化我们的音乐数据开始。这个练习将帮助我们决定我们应该最有效地使用哪种聚类方法来处理这些数据的性质。
 
-1. 打开此文件夹中的*notebook.ipynb*文件。
+1. 打开此文件夹中的 *notebook.ipynb* 文件。
 
-1. 导入`Seaborn`包以获得良好的数据可视化。
+1. 导入 `Seaborn` 包以获得良好的数据可视化。
 
     ```python
     !pip install seaborn
     ```
 
-1. 附加来自*nigerian-songs.csv*的歌曲数据。加载包含有关歌曲的一些数据的数据帧。准备好通过导入库和转储数据来探索这些数据：
+1. 附加来自 *nigerian-songs.csv* 的歌曲数据。加载包含有关歌曲的一些数据的数据帧。准备好通过导入库和转储数据来探索这些数据：
 
     ```python
     import matplotlib.pyplot as plt
@@ -131,7 +134,7 @@
     | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
     | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
 
-1. 获取有关数据帧的一些信息，调用`info()`：
+1. 获取有关数据帧的一些信息，调用 `info()`：
 
     ```python
     df.info()
@@ -165,7 +168,7 @@
     memory usage: 66.4+ KB
     ```
 
-1. 通过调用`isnull()`和验证总和为 0 来仔细检查空值：
+1. 通过调用 `isnull()` 和验证总和为 0 来仔细检查空值：
 
     ```python
     df.isnull().sum()
@@ -243,11 +246,11 @@
     plt.title('Top genres',color = 'blue')
     ```
 
-    现在重新检查genres：
+    现在重新检查 genres：
 
     ![most popular](../images/all-genres.png)
 
-1. 到目前为止，前三大流派主导了这个数据集。让我们专注于`afro dancehall`, `afropop`, 和`nigerian pop`，另外过滤数据集以删除任何具有 0 流行度值的内容（这意味着它在数据集中没有被归类为流行度并且可以被视为我们的目的的噪音）：
+1. 到目前为止，前三大流派主导了这个数据集。让我们专注于 `afro dancehall`，`afropop` 和 `nigerian pop`，另外过滤数据集以删除任何具有 0 流行度值的内容（这意味着它在数据集中没有被归类为流行度并且可以被视为我们的目的的噪音）：
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -269,13 +272,13 @@
 
     ![correlations](../images/correlation.png)
 
-    > 唯一强相关性是`energy`和之间`loudness`，这并不奇怪，因为嘈杂的音乐通常非常有活力。否则，相关性相对较弱。看看聚类算法可以如何处理这些数据会很有趣。
+    > 唯一强相关性是 `energy` 和之间 `loudness`，这并不奇怪，因为嘈杂的音乐通常非常有活力。否则，相关性相对较弱。看看聚类算法可以如何处理这些数据会很有趣。
     >
     > > 🎓请注意，相关性并不意味着因果关系！我们有相关性的证据，但没有因果关系的证据。一个[有趣的网站](https://tylervigen.com/spurious-correlations)有一些强调这一点的视觉效果。
 
 这个数据集是否围绕歌曲的流行度和可舞性有任何收敛？FacetGrid 显示无论流派如何，都有同心圆排列。对于这种类型，尼日利亚人的口味是否会在某种程度的可舞性上趋于一致？
 
-✅尝试不同的数据点（能量、响度、语音）和更多或不同的音乐类型。你能发现什么？查看`df.describe()`表格以了解数据点的一般分布。
+✅ 尝试不同的数据点（能量、响度、语音）和更多或不同的音乐类型。你能发现什么？查看 `df.describe()` 表格以了解数据点的一般分布。
 
 ### 练习 - 数据分布
 

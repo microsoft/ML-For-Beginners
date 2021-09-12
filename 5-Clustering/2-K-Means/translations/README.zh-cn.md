@@ -17,9 +17,9 @@
 
 ## 介绍
 
-[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering)是一种源自信号处理领域的方法。它用于使用一系列观察将数据组划分和划分为“k”个聚类。每个观察都用于对最接近其最近“平均值”或聚类中心点的给定数据点进行分组。
+[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) 是一种源自信号处理领域的方法。它用于使用一系列观察将数据组划分和划分为“k”个聚类。每个观察都用于对最接近其最近“平均值”或聚类中心点的给定数据点进行分组。
 
-聚类可以可视化为[Voronoi 图](https://wikipedia.org/wiki/Voronoi_diagram)，其中包括一个点（或“种子”）及其相应的区域。
+聚类可以可视化为 [Voronoi 图](https://wikipedia.org/wiki/Voronoi_diagram)，其中包括一个点（或“种子”）及其相应的区域。
 
 ![voronoi diagram](../images/voronoi.png)
 
@@ -36,13 +36,13 @@ K-Means 聚类过程[分三步执行](https://scikit-learn.org/stable/modules/cl
 
 ## 前置条件
 
-您将使用本课的*notebook.ipynb*文件，其中包含您在上一课中所做的数据导入和初步清理。
+您将使用本课的 *notebook.ipynb* 文件，其中包含您在上一课中所做的数据导入和初步清理。
 
 ## 练习 - 准备
 
 首先再看看歌曲数据。
 
-1. 创建一个箱线图，`boxplot()`为每一列调用：
+1. 创建一个箱线图，`boxplot()` 为每一列调用：
 
     ```python
     plt.figure(figsize=(20,20), dpi=200)
@@ -90,7 +90,7 @@ K-Means 聚类过程[分三步执行](https://scikit-learn.org/stable/modules/cl
 
 您可以浏览数据集并删除这些异常值，但这会使数据非常少。
 
-1. 现在，选择您将用于聚类练习的列。选择具有相似范围的那些并将`artist_top_genre`列编码为数字类型的数据：
+1. 现在，选择您将用于聚类练习的列。选择具有相似范围的那些并将 `artist_top_genre` 列编码为数字类型的数据：
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -136,11 +136,11 @@ K-Means 聚类过程[分三步执行](https://scikit-learn.org/stable/modules/cl
 
 寻找接近 1 的轮廓分数。该分数从 -1 到 1 不等，如果分数为 1，则该聚类密集且与其他聚类分离良好。接近 0 的值表示重叠聚类，样本非常接近相邻聚类的决策边界。[来源](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)。
 
-我们的分数是**0.53**，所以正好在中间。这表明我们的数据不是特别适合这种类型的聚类，但让我们继续。
+我们的分数是 **0.53**，所以正好在中间。这表明我们的数据不是特别适合这种类型的聚类，但让我们继续。
 
 ### 练习 - 建立模型
 
-1. 导入`KMeans`并启动聚类过程。
+1. 导入 `KMeans` 并启动聚类过程。
 
     ```python
     from sklearn.cluster import KMeans
@@ -157,17 +157,17 @@ K-Means 聚类过程[分三步执行](https://scikit-learn.org/stable/modules/cl
 
     > 🎓 range：这些是聚类过程的迭代
 
-    > 🎓random_state：“确定质心初始化的随机数生成。” [来源](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+    > 🎓 random_state：“确定质心初始化的随机数生成。” [来源](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓WCSS：“聚类内平方和”测量聚类内所有点到聚类质心的平方平均距离。[来源](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce)。
+    > 🎓 WCSS：“聚类内平方和”测量聚类内所有点到聚类质心的平方平均距离。[来源](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce)。
 
-    > 🎓Inertia：K-Means 算法尝试选择质心以最小化“惯性”，“惯性是衡量内部相干程度的一种方法”。[来源](https://scikit-learn.org/stable/modules/clustering.html)。该值在每次迭代时附加到 wcss 变量。
+    > 🎓 Inertia：K-Means 算法尝试选择质心以最小化“惯性”，“惯性是衡量内部相干程度的一种方法”。[来源](https://scikit-learn.org/stable/modules/clustering.html)。该值在每次迭代时附加到 wcss 变量。
 
-    > 🎓k-means++：在[Scikit-learn 中，](https://scikit-learn.org/stable/modules/clustering.html#k-means)您可以使用“k-means++”优化，它“将质心初始化为（通常）彼此远离，导致可能比随机初始化更好的结果。
+    > 🎓 k-means++：在 [Scikit-learn 中，](https://scikit-learn.org/stable/modules/clustering.html#k-means)您可以使用“k-means++”优化，它“将质心初始化为（通常）彼此远离，导致可能比随机初始化更好的结果。
 
 ### 手肘方法
 
-之前，您推测，因为您已经定位了 3 个歌曲genre，所以您应该选择 3 个聚类。但真的是这样吗？
+之前，您推测，因为您已经定位了 3 个歌曲 genre，所以您应该选择 3 个聚类。但真的是这样吗？
 
 1. 使用手肘方法来确认。
 
@@ -180,7 +180,7 @@ K-Means 聚类过程[分三步执行](https://scikit-learn.org/stable/modules/cl
     plt.show()
     ```
 
-    使用`wcss`您在上一步中构建的变量创建一个图表，显示肘部“弯曲”的位置，这表示最佳聚类数。也许**是**3！
+    使用 `wcss` 您在上一步中构建的变量创建一个图表，显示肘部“弯曲”的位置，这表示最佳聚类数。也许**是** 3！
 
     ![elbow method](../images/elbow.png)
 
@@ -245,7 +245,7 @@ K-Means 聚类过程[分三步执行](https://scikit-learn.org/stable/modules/cl
 
 看看[像这样](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/)的 K-Means 模拟器。您可以使用此工具来可视化样本数据点并确定其质心。您可以编辑数据的随机性、聚类数和质心数。这是否有助于您了解如何对数据进行分组？
 
-另外，看看斯坦福大学的[k-means 讲义](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html)。
+另外，看看斯坦福大学的 [K-Means 讲义](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html)。
 
 ## 作业
 
