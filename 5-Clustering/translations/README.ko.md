@@ -8,7 +8,7 @@ Clustering은 서로 비슷한 오브젝트를 찾고 clusters라고 불린 그�
 
 ![A turntable](../images/turntable.jpg)
 
-Photo by <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> on <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> Photo by <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> on <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 이 강의의 시리즈에서, clustering 기술로 데이터를 분석하는 새로운 방식을 찾아볼 예정입니다. Clustering은 데이터셋에 라벨이 없으면 더욱 더 유용합니다. 만약 라벨이 있다면, 이전 강의에서 배운대로 classification 기술이 더 유용할 수 있습니다. 그러나 라벨링되지 않은 데이터를 그룹으로 묶으려면, clustering은 패턴을 발견하기 위한 좋은 방식입니다.
 
