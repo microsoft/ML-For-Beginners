@@ -9,97 +9,96 @@
 
 En estas cuatro lecciones, descubrirá como crear modelos de regresión. Discutiremos para que sirven estos en breve. Pero antes de hacer cualquier coasa, asegúrese de tener las herramientas adecuadas para comenzar el proceso!
 
-En esta lecciñon, aprenderá a:
+En esta lección, aprenderá a:
 
-- Confugurar su computadora para tares locales de machine learning.
+- Configurar su computadora para tares locales de machine learning.
 - Trabajar con cuadernos Jupyter.
 - Usar Scikit-learn, icluida la instalación.
 - Explorar la regressión lineal con un ejercicio práctico.
 
-## Installations and configurations
+## Instalaciones y configuraciones.
 
-[![Using Python with Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Using Python with Visual Studio Code")
+[![Uso de Python con Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Uso de Python con Visual Studio Code")
 
-> 🎥 Click the image above for a video: using Python within VS Code.
+> 🎥 Haga click en la imagen de arriba para ver un video: usando Python dentro de VS Code.
 
-1. **Install Python**. Ensure that [Python](https://www.python.org/downloads/) is installed on your computer. You will use Python for many data science and machine learning tasks. Most computer systems already include a Python installation. There are useful [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) available as well, to ease the setup for some users.
+1. **Instale Python**. Asegúrese de que [Python](https://www.python.org/downloads/) esté instalado en su computadora. Utilizará Python para muchas tareas de ciencia de datos y machine learning. La mayoría de los sistemas informáticos ya incluyen una instalación de Python. También hay disponibles [paquetes de código de Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) útiles para facilitar la configuración a algunos usiarios.
 
-   Some usages of Python, however, require one version of the software, whereas others require a different version. For this reason, it's useful to work within a [virtual environment](https://docs.python.org/3/library/venv.html).
+   Sin embargo algunos usos de Python requieren una versión del software, mientras otros requieren una versión diferente. Por esta razón, es útil trabajar den tro de un [entorno virtual](https://docs.python.org/3/library/venv.html).
 
-2. **Install Visual Studio Code**. Make sure you have Visual Studio Code installed on your computer. Follow these instructions to [install Visual Studio Code](https://code.visualstudio.com/) for the basic installation. You are going to use Python in Visual Studio Code in this course, so you might want to brush up on how to [configure Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) for Python development.
+2. **Instale Visual Studio Code**. Asegúrese de tener Visual Studio Code instalado en su computadora. Siga estas instrucciones para [instalar Visual Studio Code](https://code.visualstudio.com/) para la instalación básica. Va a utilizar Python en Visual Studio Code en este curso, por lo que es posible que desee repasar cómo [configurar Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) para el desarrollo en Python.
 
-   > Get comfortable with Python by working through this collection of [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Siéntase cómodo con Python trabajando con esta colección de [módulos de aprendizaje](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
 
-3. **Install Scikit-learn**, by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
+3. **Instale Scikit-learn**, siguiendo [estas instrucciones](https://scikit-learn.org/stable/install.html). Dado que debe asegurarse de usar Python3, se recomienda que use un entorno virtual. Tenga en cuenta que si está instalando esta biblioteca en una Mac M1, hay instrucciones especiales en la página vinculada arriba.
 
-1. **Install Jupyter Notebook**. You will need to [install the Jupyter package](https://pypi.org/project/jupyter/). 
+1. **Instale Jupyter Notebook**. Deberá [instalar el paquete de Jupyter](https://pypi.org/project/jupyter/). 
 
-## Your ML authoring environment
+## Tu entorno de creación de ML
 
-You are going to use **notebooks** to develop your Python code and create machine learning models. This type of file is a common tool for data scientists, and they can be identified by their suffix or extension `.ipynb`.
+Va a utilizar **cuadernos** para desarrollar tu código Python y crear modelos de machine learning. Este tipo de archivos es una herramienta común para científicos de datos, y se pueden identificar por su sifijo o extensión `.ipynb`.
 
-Notebooks are an interactive environment that allow the developer to both code and add notes and write documentation around the code which is quite helpful for experimental or research-oriented projects.
+Los cuacderno son un entorno interactivo que permite al desarrollador cofificar y agregar notas y escribir documntación sobre el código lo cual es bastante útil para proyectos experimentales u orientados a la investigación.
+### Ejercicio - trabajar con un cuaderno
 
-### Exercise - work with a notebook
+En esta carpeta, encontrará el archivo _notebook.ipynb_. 
 
-In this folder, you will find the file _notebook.ipynb_. 
+1. Abra _notebook.ipynb_ en Visual Studio Code.
 
-1. Open _notebook.ipynb_ in Visual Studio Code.
+Un servidor de Jupyter comenzará con Python 3+ iniciado. Encontrará áreas del cuaderno que se pueden `ejecutar`, fragmentos de código. Puede ejecutar un bloque de código seleccionando el icono que parece un botón de reproducción.
 
-   A Jupyter server will start with Python 3+ started. You will find areas of the notebook that can be `run`, pieces of code. You can run a code block, by selecting the icon that looks like a play button.
+1. Seleccione el icono `md` y agrege un poco de _markdown_, y el siguiente texto **# Welcome to your notebook**.
 
-1. Select the `md` icon and add a bit of markdown, and the following text **# Welcome to your notebook**.
+   A continuación, agrege algo de código Python. 
 
-   Next, add some Python code. 
+1. Escriba **print('hello notebook')** en el bloque de código.
+1. Seleccione la flecha para ejecutar el código.
 
-1. Type **print('hello notebook')** in the code block.
-1. Select the arrow to run the code.
-
-   You should see the printed statement:
+   Debería ver impresa la declaración:
 
     ```output
     hello notebook
     ```
 
-![VS Code with a notebook open](images/notebook.png)
+![VS Code con un cuaderno abierto](images/notebook.png)
 
-You can interleaf your code with comments to self-document the notebook.
+Puede intercalar su código con comentarios para autodocumentar el cuaderno.
 
-✅ Think for a minute how different a web developer's working environment is versus that of a data scientist.
+✅ Piense por un minuto en cuán diferente es el entorno de trabajo de un desarrollador web en comparación con el de un científico de datos.
 
-## Up and running with Scikit-learn
+## En funcionamiento con Scikit-learn
 
-Now that Python is set up in your local environment, and you are comfortable with Jupyter notebooks, let's get equally comfortable with Scikit-learn (pronounce it `sci` as in `science`). Scikit-learn provides an [extensive API](https://scikit-learn.org/stable/modules/classes.html#api-ref) to help you perform ML tasks.
+Ahora que Python está configurado en un entorno local, y se siente cómo con los cuadernos de Jupyter, vamos a sentirnos igualmente cómodos con Scikit-learn (pronuncie `sci` como en `science`). Scikit-learn proporciona una[API extensa](https://scikit-learn.org/stable/modules/classes.html#api-ref) para ayudarlo a realizar tares de ML.
 
-According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
+Según su [sitio web](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn es una biblioteca de machine learning de código abierto que admite el aprendizaje supervisado y no supervisado. También proporciona varias herramientas para el ajuste de modelos, preprocesamiento de datos, selección y evaluación de modelos, y muchas otras utilidades."
 
-In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
+En este curso, utilizará Scikit-learn y otras herramientas para crear modelos de machine learning para realizar lo que llamamos tareas de 'machine leraning tradicional'. Hemos evitado deliberadamente las redes neuronales y el _deep learning_, ya que se tratartán mejor en nuestro próximo plan de estudios 'IA para principiantes'. 
 
-Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-learn with some basic data.
+Scikit-learn hace que sea sencillo construir modelos y evaluarlos para su uso. Se centra principalmente en el uso de datos numéricos y contiene varios conjuntos de datos listos para usar como herramientas de aprendizaje. También incluye modelos prediseñados para que los estudiantes lo prueben. Exploremos el proceso de cargar datos preempaquetados y el uso de un primer modelo de estimador integrado con Scikit-learn con algunos datos básicos.
 
-## Exercise - your first Scikit-learn notebook
+## Ejercicio - su primer cuaderno de Scikit-learn
 
-> This tutorial was inspired by the [linear regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Scikit-learn's web site.
+> Este tutorial se insipiró en el [ejemplo de regresión lineal](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) en el sitio web de Scikit-learn's.
 
-In the _notebook.ipynb_ file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
+En el archivo _notebook.ipynb_ asociado a esta lección, borre todas las celdas presionando el icono 'papelera'.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic regression model, when visualized, might show information about variables that would help you organize your theoretical clinical trials.
+En esta sección, trabajará con un pequeño conjunto de datos sobre la diabetes que está integrado con Scikit-learn con fines de aprendizaje. Imagínese que quisiera probar un tratamiento para pacientes diabéticos. Los modelos de Machine Learning, pueden ayudarlo a determinar que pacientes responderían mejor al tratamiento, en función  de combinanciones de varibales. Incluso un modelo de regresión muy básico, cuando se visualiza, puede mostrar información sobre variables que le ayudarían sus ensayos clínicos teóricos.
 
-✅ There are many types of regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use linear regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of cuisine should be considered vegan or not, you're looking for a **category assignment** so you would use logistic regression. You'll learn more about logistic regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
+✅ Hay muchos tipos de métodos de regresión y el que elija dependerá de las respuestas que esté buscando. Si desea predecir la altura probable de una persona de una edad determinada, utlizaría la regresión lineal, ya que busca un **valor numérico**. Si está interesado en descubrir si un tipo de cocina puede considerarse vegano o no, está buscando una **asignación de categoría**, por lo que utlilizaría la regresión logística. Más adelante aprenderá más sobre la regresión logística. Piense un poco en algunas preguntas que puede puede hacer a los datos y cuáles de estos métodos sería más apropiado.
 
-Let's get started on this task.
+Comencemos con esta tarea.
 
-### Import libraries
+### Importar bibliotecas
 
-For this task we will import some libraries:
+Para esta tarea importaremos algunas librerías:
 
-- **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the Scikit-learn library.
+- **matplotlib**. Es una [herramienta gráfica](https://matplotlib.org/)  útil y la usaremos para crear un diagrama de líneas.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) es una librería útil para manejar datos numéricos en Python.
+- **sklearn**. Esta es la librería Scikit-learn.
 
-Import some libraries to help with your tasks.
+Importar algunas librerías para ayudarte con tus tareas.
 
-1. Add imports by typing the following code:
+1. Agrege importaciones escribiendo el siguiente código:
 
    ```python
    import matplotlib.pyplot as plt
@@ -107,26 +106,26 @@ Import some libraries to help with your tasks.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Above you are importing `matplottlib`, `numpy` and you are importing `datasets`, `linear_model` and `model_selection` from `sklearn`. `model_selection` is used for splitting data into training and test sets.
+   Arriba estás importando `matplottlib`, `numpy` y estás importando `datasets`, `linear_model` y `model_selection` de `sklearn`. `model_selection` se usa para dividir datos en conjuntos de entrenamiento y de prueba.
 
-### The diabetes dataset
+### El conjunto de datos de diabetes
 
-The built-in [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
+El [conjunto de datos de diabetes](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) incluye 442 muestras de datos sobre la diabetes, con 10 variables de características, algunas de las cuales incluyen:
 
-age: age in years
-bmi: body mass index
-bp: average blood pressure
-s1 tc: T-Cells (a type of white blood cells)
+edad: edad en años
+bmi: índice de masa corporal
+bp: presión arterial promedio
+s1 tc: Células-T (un tipo de glóbulos blancos)
 
-✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
+✅ Este conjunto de datos incluye el concepto de sexo como una variable característica importante para la investigación sobre la diabetes. Piense un poco en cómo categorizaciones como esta podrían excluir a ciertas partes de una población de los tratamientos.
 
-Now, load up the X and y data.
+Ahora cargue los datos X e y.
 
-> 🎓 Remember, this is supervised learning, and we need a named 'y' target.
+> 🎓 Recuerde, esto es aprendizeje supervisado, y necesitamos un objetivo llamado 'y'.
 
-In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The input `return_X_y=True` signals that `X` will be a data matrix, and `y` will be the regression target. 
+En una nueva celda de código, cargue el conjunto de datos de diabetes llamando `load_diabetes()`. La entrada `return_X_y=True` indica que `X` será una matriz de datos, y `y` será el objetivo de regresión. 
 
-1. Add some print commands to show the shape of the data matrix and its first element:
+1. Agregue algunos comandos de impresión para mostrar la forma de la matriz de datos y su primer elemento:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -134,9 +133,10 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     print(X[0])
     ```
 
-    What you are getting back as a response, is a tuple. What you are doing is to assign the two first values of the tuple to `X` and `y` respectively. Learn more [about tuples](https://wikipedia.org/wiki/Tuple).
+    Lo que recibe como respuesta es una tupla. Lo que está haciendo es asignar los dos primeros valores de la tupla a `X` y `y` respectivamente. Más información [sobre tuplas](https://wikipedia.org/wiki/Tuple).
 
-    You can see that this data has 442 items shaped in arrays of 10 elements:
+    Puede ver que estos datos tienen 442 elementos en forma de matrices de 10 elementos:
+    
 
     ```text
     (442, 10)
@@ -144,38 +144,38 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Think a bit about the relationship between the data and the regression target. Linear regression predicts relationships between feature X and target variable y. Can you find the [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for the diabetes dataset in the documentation? What is this dataset demonstrating, given that target?
+    ✅ Piense un poco en la relación entre los datos y el objetivo de la regresión. La regersión lineal predice relaciones entre la característica X y la variable objetivo y. ¿Puede encontrar el [objetivo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) para el cojunto de datos de diabetes en la documentación? ¿Qué está demostrando este conjunto de datos dado ese objetivo?
 
-2. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's `newaxis` function. We are going to use linear regression to generate a line between values in this data, according to a pattern it determines.
+2. A continuación, seleccione una parte de este conjunto de datos para graficarlos colocándolos en una nueva matriz utilizando la función `newaxis` de _numpy_. Vamos utilizar una regresión lineal para generar una línea entre los valores de estos datos, según un patrón que determine.
 
    ```python
    X = X[:, np.newaxis, 2]
    ```
 
-   ✅ At any time, print out the data to check its shape.
+   ✅ En cualquier momento, imprima los datos para comprobar su forma.
 
-3. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the target (y) into test and training sets. Scikit-learn has a straightforward way to do this; you can split your test data at a given point.
+3. Ahora que tiene los datos listos para graficarlos, puede ver si una máquina puede ayudar a determinar una división lógica entre los númnero en este conjunto de datos. Para hacer esto, necesita dividir los datos (X) y el objetivo (y) en conjunto de datos de prueba y entrenamiento. Scikit-learn tiene una forma sencilla de hacer esto; puede dividir sus datos de prueba en un punto determinado.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Now you are ready to train your model! Load up the linear regression model and train it with your X and y training sets using `model.fit()`:
+4. Ahora está listo para entrenar su modelo! Cargue el modelo de regresión lineal y entrénelo con sus datos de entrenamiento X e y usando `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` is a function you'll see in many ML libraries such as TensorFlow
+    ✅ `model.fit()` es una función que verá en muchas bibliotecas de ML como TensorFlow
 
-5. Then, create a prediction using test data, using the function `predict()`. This will be used to draw the line between data groups
+5. Luego, cree una predicción usando datos de prueba, usando la función `predict()`. Esto se utilizará para trazar la línea entre los grupos de datos.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
+6. Ahora es el momento de mostrar los datos en una gráfica. Matplotlib es una herramienta muy útil para esta tarea. Cree una gráfica de dispersión de todos los datos de prueba X e y, y use la prediccíón para dibujar una línea en el lugar más apropiado, entre las agrupaciones de datos del modelo.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -183,24 +183,24 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     plt.show()
     ```
 
-   ![a scatterplot showing datapoints around diabetes](./images/scatterplot.png)
+   ![un diagrama de dispersión que muestra puntos de datos sobre la diabtes](./images/scatterplot.png)
 
-   ✅ Think a bit about what's going on here. A straight line is running through many small dots of data, but what is it doing exactly? Can you see how you should be able to use this line to predict where a new, unseen data point should fit in relationship to the plot's y axis? Try to put into words the practical use of this model.
+   ✅ Piense un poco sobre lo que está pasando aquí. Una línea recta atraviesa muchos pequeños puntos de datos, pero ¿qué está haciendo excactamente? ¿Puede ver cómo debería poder usar esta línea para predecir dónde debe encajar un punto de datos nuevo y no visto en relación con el eje y del gráfico? Intente poner en palabras el uso práctico de este modelo.
 
-Congratulations, you built your first linear regression model, created a prediction with it, and displayed it in a plot!
+Felicitaciones, construiste tu primer modelo de regresión lineal, creaste una predicción con él y lo mostraste en una gráfica!
 
 ---
-## 🚀Challenge
+## Desafío
 
-Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+Grafique una variable diferente de este conjunto de datos. Sugerencia: edite esta linea: `X = X[:, np.newaxis, 2]`. Dado el objetivo de este conjunto de datos,¿qué puede descubrir sobre la progresión de la diabetes?
+## [Cuestionario posterior a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
 
-## Review & Self Study
+## Revisión y autoestudio
 
-In this tutorial, you worked with simple linear regression, rather than univariate or multiple linear regression. Read a little about the differences between these methods, or take a look at [this video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+En este tutorial, trabajó con regresión lineal simple, en lugar de regresión lineal univariante o múltiple. Lea un poco sobre las diferencias entre estos métodos o eche un vistazo a [este video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Read more about the concept of regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
+Lea más sobre el concepto de regresión lineal y piense que tipo de preguntas se pueden responder con esta técnica.Tome este [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) para profundizar su comprensión.
 
-## Assignment 
+## Asignación 
 
-[A different dataset](assignment.md)
+[Un conjunto de datos diferentes](assignment.md)
