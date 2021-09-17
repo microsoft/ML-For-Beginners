@@ -34,7 +34,7 @@ En esta lección, aprenderá a:
 
 1. **Instale Jupyter Notebook**. Deberá [instalar el paquete de Jupyter](https://pypi.org/project/jupyter/). 
 
-## Tu entorno de creación de ML
+## El entorno de creación de ML
 
 Va a utilizar **cuadernos** para desarrollar tu código Python y crear modelos de machine learning. Este tipo de archivos es una herramienta común para científicos de datos, y se pueden identificar por su sufijo o extensión `.ipynb`.
 
@@ -45,7 +45,7 @@ En esta carpeta, encontrará el archivo _notebook.ipynb_.
 
 1. Abra _notebook.ipynb_ en Visual Studio Code.
 
-Un servidor de Jupyter comenzará con Python 3+ iniciado. Encontrará áreas del cuaderno que se pueden `ejecutar`, fragmentos de código. Puede ejecutar un bloque de código seleccionando el icono que parece un botón de reproducción.
+Un servidor de Jupyter comenzará con Python 3+ iniciado. Encontrará áreas del cuaderno que se pueden ejecutar, fragmentos de código. Puede ejecutar un bloque de código seleccionando el icono que parece un botón de reproducción.
 
 1. Seleccione el icono `md` y agrege un poco de _markdown_, y el siguiente texto **# Welcome to your notebook**.
 
@@ -106,7 +106,7 @@ Importar algunas librerías para ayudarte con tus tareas.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Arriba estás importando `matplottlib`, `numpy` y estás importando `datasets`, `linear_model` y `model_selection` de `sklearn`. `model_selection` se usa para dividir datos en conjuntos de entrenamiento y de prueba.
+Arriba estás importando `matplottlib`, `numpy` y estás importando `datasets`, `linear_model` y `model_selection` de `sklearn`. `model_selection` se usa para dividir datos en conjuntos de entrenamiento y de prueba.
 
 ### El conjunto de datos de diabetes
 
