@@ -4,7 +4,7 @@
 
 > Boceto de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Cuestinario previo a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Cuestionario previo a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 ## Introducción
 
 En estas cuatro lecciones, descubrirá como crear modelos de regresión. Discutiremos para que sirven estos en breve. Pero antes de hacer cualquier coasa, asegúrese de tener las herramientas adecuadas para comenzar el proceso!
@@ -13,7 +13,7 @@ En esta lección, aprenderá a:
 
 - Configurar su computadora para tares locales de machine learning.
 - Trabajar con cuadernos Jupyter.
-- Usar Scikit-learn, icluida la instalación.
+- Usar Scikit-learn, incluida la instalación.
 - Explorar la regressión lineal con un ejercicio práctico.
 
 ## Instalaciones y configuraciones.
@@ -22,9 +22,9 @@ En esta lección, aprenderá a:
 
 > 🎥 Haga click en la imagen de arriba para ver un video: usando Python dentro de VS Code.
 
-1. **Instale Python**. Asegúrese de que [Python](https://www.python.org/downloads/) esté instalado en su computadora. Utilizará Python para muchas tareas de ciencia de datos y machine learning. La mayoría de los sistemas informáticos ya incluyen una instalación de Python. También hay disponibles [paquetes de código de Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) útiles para facilitar la configuración a algunos usiarios.
+1. **Instale Python**. Asegúrese de que [Python](https://www.python.org/downloads/) esté instalado en su computadora. Utilizará Python para muchas tareas de ciencia de datos y machine learning. La mayoría de los sistemas informáticos ya incluyen una instalación de Python. También hay disponibles [paquetes de código de Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) útiles para facilitar la configuración a algunos usuarios.
 
-   Sin embargo algunos usos de Python requieren una versión del software, mientras otros requieren una versión diferente. Por esta razón, es útil trabajar den tro de un [entorno virtual](https://docs.python.org/3/library/venv.html).
+   Sin embargo algunos usos de Python requieren una versión del software, mientras otros requieren una versión diferente. Por esta razón, es útil trabajar dentro de un [entorno virtual](https://docs.python.org/3/library/venv.html).
 
 2. **Instale Visual Studio Code**. Asegúrese de tener Visual Studio Code instalado en su computadora. Siga estas instrucciones para [instalar Visual Studio Code](https://code.visualstudio.com/) para la instalación básica. Va a utilizar Python en Visual Studio Code en este curso, por lo que es posible que desee repasar cómo [configurar Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) para el desarrollo en Python.
 
@@ -36,9 +36,9 @@ En esta lección, aprenderá a:
 
 ## Tu entorno de creación de ML
 
-Va a utilizar **cuadernos** para desarrollar tu código Python y crear modelos de machine learning. Este tipo de archivos es una herramienta común para científicos de datos, y se pueden identificar por su sifijo o extensión `.ipynb`.
+Va a utilizar **cuadernos** para desarrollar tu código Python y crear modelos de machine learning. Este tipo de archivos es una herramienta común para científicos de datos, y se pueden identificar por su sufijo o extensión `.ipynb`.
 
-Los cuacderno son un entorno interactivo que permite al desarrollador cofificar y agregar notas y escribir documntación sobre el código lo cual es bastante útil para proyectos experimentales u orientados a la investigación.
+Los cuadernos son un entorno interactivo que permiten al desarrollador codificar y agregar notas y escribir documentación sobre el código lo cual es bastante útil para proyectos experimentales u orientados a la investigación.
 ### Ejercicio - trabajar con un cuaderno
 
 En esta carpeta, encontrará el archivo _notebook.ipynb_. 
@@ -68,7 +68,7 @@ Puede intercalar su código con comentarios para autodocumentar el cuaderno.
 
 ## En funcionamiento con Scikit-learn
 
-Ahora que Python está configurado en un entorno local, y se siente cómo con los cuadernos de Jupyter, vamos a sentirnos igualmente cómodos con Scikit-learn (pronuncie `sci` como en `science`). Scikit-learn proporciona una[API extensa](https://scikit-learn.org/stable/modules/classes.html#api-ref) para ayudarlo a realizar tares de ML.
+Ahora que Python está configurado en un entorno local, y se siente cómo con los cuadernos de Jupyter, vamos a sentirnos igualmente cómodos con Scikit-learn (pronuncie `sci` como en `science`). Scikit-learn proporciona una [API extensa](https://scikit-learn.org/stable/modules/classes.html#api-ref) para ayudarlo a realizar tares de ML.
 
 Según su [sitio web](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn es una biblioteca de machine learning de código abierto que admite el aprendizaje supervisado y no supervisado. También proporciona varias herramientas para el ajuste de modelos, preprocesamiento de datos, selección y evaluación de modelos, y muchas otras utilidades."
 
@@ -82,7 +82,7 @@ Scikit-learn hace que sea sencillo construir modelos y evaluarlos para su uso. S
 
 En el archivo _notebook.ipynb_ asociado a esta lección, borre todas las celdas presionando el icono 'papelera'.
 
-En esta sección, trabajará con un pequeño conjunto de datos sobre la diabetes que está integrado con Scikit-learn con fines de aprendizaje. Imagínese que quisiera probar un tratamiento para pacientes diabéticos. Los modelos de Machine Learning, pueden ayudarlo a determinar que pacientes responderían mejor al tratamiento, en función  de combinanciones de varibales. Incluso un modelo de regresión muy básico, cuando se visualiza, puede mostrar información sobre variables que le ayudarían sus ensayos clínicos teóricos.
+En esta sección, trabajará con un pequeño conjunto de datos sobre la diabetes que está integrado con Scikit-learn con fines de aprendizaje. Imagínese que quisiera probar un tratamiento para pacientes diabéticos. Los modelos de Machine Learning, pueden ayudarlo a determinar que pacientes responderían mejor al tratamiento, en función  de combinanciones de varibales. Incluso un modelo de regresión muy básico, cuando se visualiza, puede mostrar información sobre variables que le ayudarían en sus ensayos clínicos teóricos.
 
 ✅ Hay muchos tipos de métodos de regresión y el que elija dependerá de las respuestas que esté buscando. Si desea predecir la altura probable de una persona de una edad determinada, utlizaría la regresión lineal, ya que busca un **valor numérico**. Si está interesado en descubrir si un tipo de cocina puede considerarse vegano o no, está buscando una **asignación de categoría**, por lo que utlilizaría la regresión logística. Más adelante aprenderá más sobre la regresión logística. Piense un poco en algunas preguntas que puede puede hacer a los datos y cuáles de estos métodos sería más apropiado.
 
@@ -112,10 +112,10 @@ Importar algunas librerías para ayudarte con tus tareas.
 
 El [conjunto de datos de diabetes](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) incluye 442 muestras de datos sobre la diabetes, con 10 variables de características, algunas de las cuales incluyen:
 
-edad: edad en años
-bmi: índice de masa corporal
-bp: presión arterial promedio
-s1 tc: Células-T (un tipo de glóbulos blancos)
+edad: edad en años.
+bmi: índice de masa corporal.
+bp: presión arterial promedio.
+s1 tc: Células-T (un tipo de glóbulos blancos).
 
 ✅ Este conjunto de datos incluye el concepto de sexo como una variable característica importante para la investigación sobre la diabetes. Piense un poco en cómo categorizaciones como esta podrían excluir a ciertas partes de una población de los tratamientos.
 
@@ -183,7 +183,7 @@ En una nueva celda de código, cargue el conjunto de datos de diabetes llamando 
     plt.show()
     ```
 
-   ![un diagrama de dispersión que muestra puntos de datos sobre la diabtes](./images/scatterplot.png)
+   ![un diagrama de dispersión que muestra puntos de datos sobre la diabetes](./images/scatterplot.png)
 
    ✅ Piense un poco sobre lo que está pasando aquí. Una línea recta atraviesa muchos pequeños puntos de datos, pero ¿qué está haciendo excactamente? ¿Puede ver cómo debería poder usar esta línea para predecir dónde debe encajar un punto de datos nuevo y no visto en relación con el eje y del gráfico? Intente poner en palabras el uso práctico de este modelo.
 
