@@ -4,7 +4,7 @@
 
 > Boceto de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Cuestionario previo a la conferencia](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Cuestionario previo](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 ## Introducción
 
 En estas cuatro lecciones, descubrirá como crear modelos de regresión. Discutiremos para que sirven estos en breve. Pero antes de hacer cualquier coasa, asegúrese de tener las herramientas adecuadas para comenzar el proceso!
