@@ -109,7 +109,7 @@ You can run this documentation offline by using [Docsify](https://docsify.js.org
 
 ## PDFs
 
-Find a pdf of the curriculum with links [here](pdf/readme.pdf).
+Find a pdf of the curriculum with links [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 ## Help Wanted!
 
