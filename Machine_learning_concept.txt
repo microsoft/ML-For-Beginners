@@ -1,0 +1,2 @@
+a=5 b=6 c=7
+Machine learning is the future of technology
