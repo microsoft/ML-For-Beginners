@@ -36,7 +36,7 @@ En esta lección, aprenderá a:
 
 ## El entorno de creación de ML
 
-Va a utilizar **cuadernos** para desarrollar tu código Python y crear modelos de machine learning. Este tipo de archivos es una herramienta común para científicos de datos, y se pueden identificar por su sufijo o extensión `.ipynb`.
+Utilizará **cuadernos** para desarrollar su código en Python y crear modelos de machine learning. Este tipo de archivos es una herramienta común para científicos de datos, y se pueden identificar por su sufijo o extensión `.ipynb`.
 
 Los cuadernos son un entorno interactivo que permiten al desarrollador codificar y agregar notas y escribir documentación sobre el código lo cual es bastante útil para proyectos experimentales u orientados a la investigación.
 ### Ejercicio - trabajar con un cuaderno
