@@ -18,7 +18,7 @@ En esta lección, aprenderá a:
 
 ## Instalaciones y configuraciones.
 
-[![Uso de Python con Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Uso de Python con Visual Studio Code")
+[![Uso de Python con Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Uso de Python con Visual Studio Code")
 
 > 🎥 Haga click en la imagen de arriba para ver un video: usando Python dentro de VS Code.
 
