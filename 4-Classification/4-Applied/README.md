@@ -219,7 +219,7 @@ You can use your model directly in a web app. This architecture also allows you 
 1. First, import the [Onnx Runtime](https://www.onnxruntime.ai/):
 
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.8.0-dev.20210608.0/dist/ort.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.09/dist/ort.min.js"></script> 
     ```
 
     > Onnx Runtime is used to enable running your Onnx models across a wide range of hardware platforms, including optimizations and an API to use.
