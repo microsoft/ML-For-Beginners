@@ -20,6 +20,8 @@ where _[language]_ is a two letter language abbreviation following the ISO 639-1
 
 Similar to Readme's, please translate the assignments as well.
 
+> Important: when translating text in this repo, please ensure that you do not use machine translation. We will verify translations via the community, so please only volunteer for translations in languages where you are proficient.
+
 **Quizzes**
 
 1. Add your translation to the quiz-app by adding a file here: https://github.com/microsoft/ML-For-Beginners/tree/main/quiz-app/src/assets/translations, with proper naming convention (en.json, fr.json). **Please don't localize the words 'true' or 'false' however. thanks!**
