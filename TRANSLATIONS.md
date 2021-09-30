@@ -2,6 +2,8 @@
 
 We welcome translations for the lessons in this curriculum!
 
+> Note, please do not use Google Translate or other machine translation tools for translations, but rather use your own proficiency and manually translate the files.
+
 ## Guidelines
 
 There are folders in each lesson folder and lesson introduction folder which contain the translated markdown files.
@@ -17,6 +19,8 @@ where _[language]_ is a two letter language abbreviation following the ISO 639-1
 **assignment._[language]_.md**
 
 Similar to Readme's, please translate the assignments as well.
+
+> Important: when translating text in this repo, please ensure that you do not use machine translation. We will verify translations via the community, so please only volunteer for translations in languages where you are proficient.
 
 **Quizzes**
 
