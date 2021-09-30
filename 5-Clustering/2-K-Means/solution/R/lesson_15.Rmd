@@ -1,0 +1,392 @@
+---
+title: 'K-Means Clustering using Tidymodels and friends'
+output:
+  html_document:
+    #css: style_7.css
+    df_print: paged
+    theme: flatly
+    highlight: breezedark
+    toc: yes
+    toc_float: yes
+    code_download: yes
+---
+
+## Explore K-Means clustering using R and Tidy data principles.
+
+### [**Pre-lecture quiz**](https://white-water-09ec41f0f.azurestaticapps.net/quiz/29/)
+
+In this lesson, you will learn how to create clusters using the Tidymodels package and other packages in the R ecosystem (we'll call them friends 🧑‍🤝‍🧑), and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common clustering technique. Let's get started!
+
+Terms you will learn about:
+
+-   Silhouette scoring
+
+-   Elbow method
+
+-   Inertia
+
+-   Variance
+
+### **Introduction**
+
+[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) is a method derived from the domain of signal processing. It is used to divide and partition groups of data into `k clusters` based on similarities in their features.
+
+The clusters can be visualized as [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), which include a point (or 'seed') and its corresponding region.
+
+![Infographic by Jen Looper](../../images/voronoi.png)
+
+K-Means clustering has the following steps:
+
+1.  The data scientist starts by specifying the desired number of clusters to be created.
+
+2.  Next, the algorithm randomly selects K observations from the data set to serve as the initial centers for the clusters (i.e., centroids).
+
+3.  Next, each of the remaining observations is assigned to its closest centroid.
+
+4.  Next, the new means of each cluster is computed and the centroid is moved to the mean.
+
+5.  Now that the centers have been recalculated, every observation is checked again to see if it might be closer to a different cluster. All the objects are reassigned again using the updated cluster means. The cluster assignment and centroid update steps are iteratively repeated until the cluster assignments stop changing (i.e., when convergence is achieved). Typically, the algorithm terminates when each new iteration results in negligible movement of centroids and the clusters become static.
+
+<div>
+
+> Note that due to randomization of the initial k observations used as the starting centroids, we can get slightly different results each time we apply the procedure. For this reason, most algorithms use several *random starts* and choose the iteration with the lowest WCSS. As such, it is strongly recommended to always run K-Means with several values of *nstart* to avoid an *undesirable local optimum.*
+
+</div>
+
+This short animation using the [artwork](https://github.com/allisonhorst/stats-illustrations) of Allison Horst explains the clustering process:
+
+![Artwork by \@allison_horst](../../images/kmeans.gif)
+
+A fundamental question that arises in clustering is this: how do you know how many clusters to separate your data into? One drawback of using K-Means includes the fact that you will need to establish `k`, that is the number of `centroids`. Fortunately the `elbow method` helps to estimate a good starting value for `k`. You'll try it in a minute.
+
+### 
+
+**Prerequisite**
+
+We'll pick off right from where we stopped in the [previous lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/solution/R/lesson_14-R.ipynb), where we analysed the data set, made lots of visualizations and filtered the data set to observations of interest. Be sure to check it out!
+
+We'll require some packages to knock-off this module. You can have them installed as: `install.packages(c('tidyverse', 'tidymodels', 'cluster', 'summarytools', 'plotly', 'paletteer', 'factoextra', 'patchwork'))`
+
+Alternatively, the script below checks whether you have the packages required to complete this module and installs them for you in case some are missing.
+
+```{r}
+suppressWarnings(if(!require("pacman")) install.packages("pacman"))
+
+pacman::p_load('tidyverse', 'tidymodels', 'cluster', 'summarytools', 'plotly', 'paletteer', 'factoextra', 'patchwork')
+```
+
+Let's hit the ground running!
+
+## 1. A dance with data: Narrow down to the 3 most popular music genres
+
+This is a recap of what we did in the previous lesson. Let's slice and dice some data!
+
+```{r message=F, warning=F}
+# Load the core tidyverse and make it available in your current R session
+library(tidyverse)
+
+# Import the data into a tibble
+df <- read_csv(file = "https://raw.githubusercontent.com/microsoft/ML-For-Beginners/main/5-Clustering/data/nigerian-songs.csv", show_col_types = FALSE)
+
+# Narrow down to top 3 popular genres
+nigerian_songs <- df %>% 
+  # Concentrate on top 3 genres
+  filter(artist_top_genre %in% c("afro dancehall", "afropop","nigerian pop")) %>% 
+  # Remove unclassified observations
+  filter(popularity != 0)
+
+
+
+# Visualize popular genres using bar plots
+theme_set(theme_light())
+nigerian_songs %>%
+  count(artist_top_genre) %>%
+  ggplot(mapping = aes(x = artist_top_genre, y = n,
+                       fill = artist_top_genre)) +
+  geom_col(alpha = 0.8) +
+  paletteer::scale_fill_paletteer_d("ggsci::category10_d3") +
+  ggtitle("Top genres") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+```
+
+🤩 That went well!
+
+## 2. More data exploration.
+
+How clean is this data? Let's check for outliers using box plots. We will concentrate on numeric columns with fewer outliers (although you could clean out the outliers). Boxplots can show the range of the data and will help choose which columns to use. Note, Boxplots do not show variance, an important element of good clusterable data. Please see [this discussion](https://stats.stackexchange.com/questions/91536/deduce-variance-from-boxplot) for further reading.
+
+[Boxplots](https://en.wikipedia.org/wiki/Box_plot) are used to graphically depict the distribution of `numeric` data, so let's start by *selecting* all numeric columns alongside the popular music genres.
+
+```{r select}
+# Select top genre column and all other numeric columns
+df_numeric <- nigerian_songs %>% 
+  select(artist_top_genre, where(is.numeric)) 
+
+# Display the data
+df_numeric %>% 
+  slice_head(n = 5)
+
+```
+
+See how the selection helper `where` makes this easy 💁? Explore such other functions [here](https://tidyselect.r-lib.org/).
+
+Since we'll be making a boxplot for each numeric features and we want to avoid using loops, let's reformat our data into a *longer* format that will allow us to take advantage of `facets` - subplots that each display one subset of the data.
+
+```{r pivot_longer}
+# Pivot data from wide to long
+df_numeric_long <- df_numeric %>% 
+  pivot_longer(!artist_top_genre, names_to = "feature_names", values_to = "values") 
+
+# Print out data
+df_numeric_long %>% 
+  slice_head(n = 15)
+```
+
+Much longer! Now time for some `ggplots`! So what `geom` will we use?
+
+```{r}
+# Make a box plot
+df_numeric_long %>% 
+  ggplot(mapping = aes(x = feature_names, y = values, fill = feature_names)) +
+  geom_boxplot() +
+  facet_wrap(~ feature_names, ncol = 4, scales = "free") +
+  theme(legend.position = "none")
+```
+
+Easy-gg!
+
+Now we can see this data is a little noisy: by observing each column as a boxplot, you can see outliers. You could go through the dataset and remove these outliers, but that would make the data pretty minimal.
+
+For now, let's choose which columns we will use for our clustering exercise. Let's pick the numeric columns with similar ranges. We could encode the `artist_top_genre` as numeric but we'll drop it for now.
+
+```{r select_columns}
+# Select variables with similar ranges
+df_numeric_select <- df_numeric %>% 
+  select(popularity, danceability, acousticness, loudness, energy) 
+
+# Normalize data
+# df_numeric_select <- scale(df_numeric_select)
+```
+
+## 3. Computing k-means clustering in R
+
+We can compute k-means in R with the built-in `kmeans` function, see `help("kmeans()")`. `kmeans()` function accepts a data frame with all numeric columns as it's primary argument.
+
+The first step when using k-means clustering is to specify the number of clusters (k) that will be generated in the final solution. We know there are 3 song genres that we carved out of the dataset, so let's try 3:
+
+```{r kmeans}
+set.seed(2056)
+# Kmeans clustering for 3 clusters
+kclust <- kmeans(
+  df_numeric_select,
+  # Specify the number of clusters
+  centers = 3,
+  # How many random initial configurations
+  nstart = 25
+)
+
+# Display clustering object
+kclust
+```
+
+The kmeans object contains several bits of information which is well explained in `help("kmeans()")`. For now, let's focus on a few. We see that the data has been grouped into 3 clusters of sizes 65, 110, 111. The output also contains the cluster centers (means) for the 3 groups across the 5 variables.
+
+The clustering vector is the cluster assignment for each observation. Let's use the `augment` function to add the cluster assignment the original data set.
+
+```{r augment}
+# Add predicted cluster assignment to data set
+augment(kclust, df_numeric_select) %>% 
+  relocate(.cluster) %>% 
+  slice_head(n = 10)
+```
+
+Perfect, we have just partitioned our data set into a set of 3 groups. So, how good is our clustering 🤷? Let's take a look at the `Silhouette score`
+
+### **Silhouette score**
+
+[Silhouette analysis](https://en.wikipedia.org/wiki/Silhouette_(clustering)) can be used to study the separation distance between the resulting clusters. This score varies from -1 to 1, and if the score is near 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters.[source](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam).
+
+The average silhouette method computes the average silhouette of observations for different values of *k*. A high average silhouette score indicates a good clustering.
+
+The `silhouette` function in the cluster package to compuate the average silhouette width.
+
+> The silhouette can be calculated with any [distance](https://en.wikipedia.org/wiki/Distance "Distance") metric, such as the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance "Euclidean distance") or the [Manhattan distance](https://en.wikipedia.org/wiki/Manhattan_distance "Manhattan distance") which we discussed in the [previous lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/solution/R/lesson_14-R.ipynb).
+
+```{r}
+# Load cluster package
+library(cluster)
+
+# Compute average silhouette score
+ss <- silhouette(kclust$cluster,
+                 # Compute euclidean distance
+                 dist = dist(df_numeric_select))
+mean(ss[, 3])
+
+```
+
+Our score is **.549**, so right in the middle. This indicates that our data is not particularly well-suited to this type of clustering. Let's see whether we can confirm this hunch visually. The [factoextra package](https://rpkgs.datanovia.com/factoextra/index.html) provides functions (`fviz_cluster()`) to visualize clustering.
+
+```{r fviz_cluster}
+library(factoextra)
+
+# Visualize clustering results
+fviz_cluster(kclust, df_numeric_select)
+
+```
+
+The overlap in clusters indicates that our data is not particularly well-suited to this type of clustering but let's continue.
+
+## 4. Determining optimal clusters
+
+A fundamental question that often arises in K-Means clustering is this - without known class labels, how do you know how many clusters to separate your data into?
+
+One way we can try to find out is to use a data sample to `create a series of clustering models` with an incrementing number of clusters (e.g from 1-10), and evaluate clustering metrics such as the **Silhouette score.**
+
+Let's determine the optimal number of clusters by computing the clustering algorithm for different values of *k* and evaluating the **Within Cluster Sum of Squares** (WCSS). The total within-cluster sum of square (WCSS) measures the compactness of the clustering and we want it to be as small as possible, with lower values meaning that the data points are closer.
+
+Let's explore the effect of different choices of `k`, from 1 to 10, on this clustering.
+
+```{r}
+# Create a series of clustering models
+kclusts <- tibble(k = 1:10) %>% 
+  # Perform kmeans clustering for 1,2,3 ... ,10 clusters
+  mutate(model = map(k, ~ kmeans(df_numeric_select, centers = .x, nstart = 25)),
+  # Farm out clustering metrics eg WCSS
+         glanced = map(model, ~ glance(.x))) %>% 
+  unnest(cols = glanced)
+  
+
+# View clustering rsulsts
+kclusts
+```
+
+Now that we have the total within-cluster sum-of-squares (tot.withinss) for each clustering algorithm with center *k*, we use the [elbow method](https://en.wikipedia.org/wiki/Elbow_method_(clustering)) to find the optimal number of clusters. The method consists of plotting the WCSS as a function of the number of clusters, and picking the [elbow of the curve](https://en.wikipedia.org/wiki/Elbow_of_the_curve "Elbow of the curve") as the number of clusters to use.
+
+```{r elbow_method}
+set.seed(2056)
+# Use elbow method to determine optimum number of clusters
+kclusts %>% 
+  ggplot(mapping = aes(x = k, y = tot.withinss)) +
+  geom_line(size = 1.2, alpha = 0.8, color = "#FF7F0EFF") +
+  geom_point(size = 2, color = "#FF7F0EFF")
+```
+
+The plot shows a large reduction in WCSS (so greater *tightness*) as the number of clusters increases from one to two, and a further noticable reduction from two to three clusters. After that, the reduction is less pronounced, resulting in an `elbow` 💪in the chart at around three clusters. This is a good indication that there are two to three reasonably well separated clusters of data points.
+
+We can now go ahead and extract the clustering model where `k = 3`:
+
+> `pull()`: used to extract a single column
+>
+> `pluck()`: used to index data structures such as lists
+
+```{r extract_model}
+# Extract k = 3 clustering
+final_kmeans <- kclusts %>% 
+  filter(k == 3) %>% 
+  pull(model) %>% 
+  pluck(1)
+
+
+final_kmeans
+```
+
+Great! Let's go ahead and visualize the clusters obtained. Care for some interactivity using `plotly`?
+
+```{r viz_clust}
+# Add predicted cluster assignment to data set
+results <-  augment(final_kmeans, df_numeric_select) %>% 
+  bind_cols(df_numeric %>% select(artist_top_genre)) 
+
+# Plot cluster assignments
+clust_plt <- results %>% 
+  ggplot(mapping = aes(x = popularity, y = danceability, color = .cluster, shape = artist_top_genre)) +
+  geom_point(size = 2, alpha = 0.8) +
+  paletteer::scale_color_paletteer_d("ggthemes::Tableau_10")
+
+ggplotly(clust_plt)
+
+```
+
+Perhaps we would have expected that each cluster (represented by different colors) would have distinct genres (represented by different shapes).
+
+Let's take a look at the model's accuracy.
+
+```{r ordinal_encode}
+# Assign genres to predefined integers
+label_count <- results %>% 
+  group_by(artist_top_genre) %>% 
+  mutate(id = cur_group_id()) %>% 
+  ungroup() %>% 
+  summarise(correct_labels = sum(.cluster == id))
+
+
+# Print results  
+cat("Result:", label_count$correct_labels, "out of", nrow(results), "samples were correctly labeled.")
+
+cat("\nAccuracy score:", label_count$correct_labels/nrow(results))
+
+```
+
+This model's accuracy is not bad, but not great. It may be that the data may not lend itself well to K-Means Clustering. This data is too imbalanced, too little correlated and there is too much variance between the column values to cluster well. In fact, the clusters that form are probably heavily influenced or skewed by the three genre categories we defined above.
+
+Nevertheless, that was quite a learning process!
+
+In Scikit-learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
+
+![Infographic from Scikit-learn](../../images/problems.png)
+
+## **Variance**
+
+Variance is defined as "the average of the squared differences from the Mean" [source](https://www.mathsisfun.com/data/standard-deviation.html). In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean.
+
+✅ This is a great moment to think about all the ways you could correct this issue. Tweak the data a bit more? Use different columns? Use a different algorithm? Hint: Try [scaling your data](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) to normalize it and test other columns.
+
+> Try this '[variance calculator](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' to understand the concept a bit more.
+
+------------------------------------------------------------------------
+
+## **🚀Challenge**
+
+Spend some time with this notebook, tweaking parameters. Can you improve the accuracy of the model by cleaning the data more (removing outliers, for example)? You can use weights to give more weight to given data samples. What else can you do to create better clusters?
+
+Hint: Try to scale your data. There's commented code in the notebook that adds standard scaling to make the data columns resemble each other more closely in terms of range. You'll find that while the silhouette score goes down, the 'kink' in the elbow graph smooths out. This is because leaving the data unscaled allows data with less variance to carry more weight. Read a bit more on this problem [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+
+## [**Post-lecture quiz**](https://white-water-09ec41f0f.azurestaticapps.net/quiz/30/)
+
+## **Review & Self Study**
+
+-   Take a look at a K-Means Simulator [such as this one](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). You can use this tool to visualize sample data points and determine its centroids. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
+
+-   Also, take a look at [this handout on K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford.
+
+Want to try out your newly acquired clustering skills to data sets that lend well to K-Means clustering? Please see:
+
+-   [Train and Evaluate Clustering Models](https://rpubs.com/eR_ic/clustering) using Tidymodels and friends
+
+-   [K-means Cluster Analysis](https://uc-r.github.io/kmeans_clustering), UC Business Analytics R Programming Guide
+
+-   [K-means clustering with tidy data principles](https://www.tidymodels.org/learn/statistics/k-means/)
+
+## **Assignment**
+
+[Try different clustering methods](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/assignment.md)
+
+## THANK YOU TO:
+
+[Jen Looper](https://www.twitter.com/jenlooper) for creating the original Python version of this module ♥️
+
+[`Allison Horst`](https://twitter.com/allison_horst/) for creating the amazing illustrations that make R more welcoming and engaging. Find more illustrations at her [gallery](https://www.google.com/url?q=https://github.com/allisonhorst/stats-illustrations&sa=D&source=editors&ust=1626380772530000&usg=AOvVaw3zcfyCizFQZpkSLzxiiQEM).
+
+Happy Learning,
+
+[Eric](https://twitter.com/ericntay), Gold Microsoft Learn Student Ambassador.
+
+![Artwork by \@allison_horst](../../images/r_learners_sm.jpeg)
+
+```{r include=FALSE}
+library(here)
+library(rmd2jupyter)
+rmd2jupyter("lesson_14.Rmd")
+```

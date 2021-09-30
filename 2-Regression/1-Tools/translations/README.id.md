@@ -4,7 +4,7 @@
 
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Kuis Pra-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Kuis Pra-ceramah](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
 ## Pembukaan
 
 Dalam keempat pelajaran ini, kamu akan belajar bagaimana membangun model regresi. Kita akan berdiskusi apa fungsi model tersebut dalam sejenak. Tetapi sebelum kamu melakukan apapun, pastikan bahwa kamu sudah mempunyai alat-alat yang diperlukan untuk memulai!
@@ -195,7 +195,7 @@ Selamat, kamu telah membangun model regresi linear pertamamu, membuat sebuah pre
 ## Tantangan
 
 Gambarkan sebuah variabel yang beda dari *dataset* ini. Petunjuk: edit baris ini: `X = X[:, np.newaxis, 2]`. Mengetahui target *dataset* ini, apa yang kamu bisa menemukan tentang kemajuan diabetes sebagai sebuah penyakit?
-## [Kuis pasca-ceramah](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [Kuis pasca-ceramah](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
 ## Review & Pembelajaran Mandiri
 

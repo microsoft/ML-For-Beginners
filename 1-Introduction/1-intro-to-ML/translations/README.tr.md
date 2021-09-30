@@ -4,7 +4,7 @@
 
 > 🎥  Makine öğrenimi, yapay zeka ve derin öğrenme arasındaki farkı tartışan bir video için yukarıdaki resme tıklayın.
 
-## [Ders öncesi sınav](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/1?loc=tr)
+## [Ders öncesi sınav](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1?loc=tr)
 
 ### Introduction
 
@@ -103,7 +103,7 @@ Yakın gelecekte, yaygın olarak benimsenmesi nedeniyle makine öğreniminin tem
 
 Kağıt üzerinde veya [Excalidraw](https://excalidraw.com/) gibi çevrimiçi bir uygulama kullanarak AI, makine öğrenimi, derin öğrenme ve veri bilimi arasındaki farkları anladığınızdan emin olun. Bu tekniklerin her birinin çözmede iyi olduğu bazı problem fikirleri ekleyin.
 
-## [Ders sonrası test](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/2?loc=tr)
+## [Ders sonrası test](https://white-water-09ec41f0f.azurestaticapps.net/quiz/2?loc=tr)
 
 ## İnceleme ve Bireysel Çalışma
 

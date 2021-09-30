@@ -10,7 +10,7 @@ In this lesson and the following one, you will learn a bit about time series for
 
 > 🎥 Click the image above for a video about time series forecasting
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/41/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/41/)
 
 It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights to better predict future performance, time series forecasting remains a field greatly informed by classic ML techniques.
 
@@ -40,7 +40,7 @@ In mathematics, "a time series is a series of data points indexed (or listed or 
 
 Time series analysis, is the analysis of the above mentioned time series data. Time series data can take distinct forms, including 'interrupted time series' which detects patterns in a time series' evolution before and after an interrupting event. The type of analysis needed for the time series, depends on the nature of the data. Time series data itself can take the form of series of numbers or characters.
 
-The analysis to be performed, uses a variety of methods, including frequency-domain and time-domain, linear and nonlinear, and more. [Learn more](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) about the may ways to analyze this type of data.
+The analysis to be performed, uses a variety of methods, including frequency-domain and time-domain, linear and nonlinear, and more. [Learn more](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) about the many ways to analyze this type of data.
 
 🎓 **Time series forecasting**
 
@@ -174,7 +174,7 @@ In the next lesson, you will create an ARIMA model to create some forecasts.
 
 Make a list of all the industries and areas of inquiry you can think of that would benefit from time series forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/42/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/42/)
 
 ## Review & Self Study
 

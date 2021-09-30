@@ -8,7 +8,7 @@
 
 ![Поворотный стол](./images/turntable.jpg)
 
-Фото <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Марсела Ласкоски </a> на <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Unsplash </a>
+> Фото <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Марсела Ласкоски </a> на <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"> Unsplash </a>
   
 В этой серии уроков вы откроете для себя новые способы анализа данных с помощью методов кластеризации. Кластеризация особенно полезна, когда в наборе данных отсутствуют метки. Если на нем есть ярлыки, тогда могут быть более полезными методы классификации, подобные тем, которые вы изучили на предыдущих уроках. Но в случаях, когда вы хотите сгруппировать немаркированные данные, кластеризация - отличный способ обнаружить закономерности.
 

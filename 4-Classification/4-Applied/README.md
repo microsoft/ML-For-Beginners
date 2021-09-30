@@ -8,7 +8,7 @@ One of the most useful practical uses of machine learning is building recommenda
 
 > 🎥 Click the image above for a video: Andrew Ng introduces recommendation system design
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/25/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/)
 
 In this lesson you will learn:
 
@@ -40,7 +40,7 @@ First, train a classification model using the cleaned cuisines dataset we used.
 1. Then, work with your data in the same way you did in previous lessons, by reading a CSV file using `read_csv()`:
 
     ```python
-    data = pd.read_csv('../data/cleaned_cuisine.csv')
+    data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
@@ -219,7 +219,7 @@ You can use your model directly in a web app. This architecture also allows you 
 1. First, import the [Onnx Runtime](https://www.onnxruntime.ai/):
 
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.8.0-dev.20210608.0/dist/ort.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.09/dist/ort.min.js"></script> 
     ```
 
     > Onnx Runtime is used to enable running your Onnx models across a wide range of hardware platforms, including optimizations and an API to use.
@@ -312,7 +312,7 @@ In this code, there are several things happening:
 
 ## Test your application
 
-Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have `[http-server](https://www.npmjs.com/package/http-server)` installed globally, and type `http-server` at the prompt. A localhost should open and you can view your web app. Check what cuisine is recommended based on various ingredients:
+Open a terminal session in Visual Studio Code in the folder where your index.html file resides. Ensure that you have [http-server](https://www.npmjs.com/package/http-server) installed globally, and type `http-server` at the prompt. A localhost should open and you can view your web app. Check what cuisine is recommended based on various ingredients:
 
 ![ingredient web app](images/web-app.png)
 
@@ -321,7 +321,7 @@ Congratulations, you have created a 'recommendation' web app  with a few fields.
 
 Your web app is very minimal, so continue to build it out using ingredients and their indexes from the [ingredient_indexes](../data/ingredient_indexes.csv) data. What flavor combinations work to create a given national dish?
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/26/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26/)
 
 ## Review & Self Study
 

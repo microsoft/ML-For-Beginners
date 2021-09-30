@@ -11,7 +11,7 @@ By using reinforcement learning and a simulator (the game), you can learn how to
 
 > 🎥 Click the image above to hear Dmitry discuss Reinforcement Learning
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/45/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/45/)
 
 ## Prerequisites and Setup
 
@@ -229,8 +229,7 @@ We are now ready to implement the learning algorithm. Before we do that, we also
     We add a few `eps` to the original vector in order to avoid division by 0 in the initial case, when all components of the vector are identical.
 
 Run them learning algorithm through 5000 experiments, also called **epochs**: (code block 8)
-
-    ```python
+```python
     for epoch in range(5000):
     
         # Pick initial point
@@ -255,11 +254,11 @@ Run them learning algorithm through 5000 experiments, also called **epochs**: (c
             ai = action_idx[a]
             Q[x,y,ai] = (1 - alpha) * Q[x,y,ai] + alpha * (r + gamma * Q[x+dpos[0], y+dpos[1]].max())
             n+=1
-    ```
+```
 
-    After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
+After executing this algorithm, the Q-Table should be updated with values that define the attractiveness of different actions at each step. We can try to visualize the Q-Table by plotting a vector at each cell that will point in the desired direction of movement. For simplicity, we draw a small circle instead of an arrow head.
 
-    <img src="images/learned.png"/>
+<img src="images/learned.png"/>
 
 ## Checking the policy
 
@@ -315,6 +314,6 @@ The learnings can be summarized as:
 
 Overall, it is important to remember that the success and quality of the learning process significantly depends on parameters, such as learning rate, learning rate decay, and discount factor. Those are often called **hyperparameters**, to distinguish them from **parameters**, which we optimize during training (for example, Q-Table coefficients). The process of finding the best hyperparameter values is called **hyperparameter optimization**, and it deserves a separate topic.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/46/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/46/)
 
 ## Assignment [A More Realistic World](assignment.md)

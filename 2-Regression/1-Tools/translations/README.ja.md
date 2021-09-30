@@ -4,7 +4,7 @@
 
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) によって制作されたスケッチノート
 
-## [講義前クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [講義前クイズ](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9?loc=ja)
 
 ## イントロダクション
 
@@ -121,10 +121,10 @@ Scikit-learnは、モデルを構築し、評価を行って実際に利用す�
 
 組み込みの [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) には、糖尿病に関する442サンプルのデータが含まれており、10個の変数が含まれています。
 
-age: 年齢
-bmi: ボディマス指数
-bp: 平均血圧
-s1 tc: T細胞（白血球の一種）
+- age: 年齢
+- bmi: ボディマス指数
+- bp: 平均血圧
+- s1 tc: T細胞（白血球の一種）
 
 ✅ このデータセットには、糖尿病に関する研究に重要な変数として「性別」の概念が含まれています。多くの医療データセットには、このようなバイナリ分類が含まれています。このような分類が、人口のある部分を治療から排除する可能性があることについて、少し考えてみましょう。
 
@@ -205,7 +205,7 @@ s1 tc: T細胞（白血球の一種）
 ## 🚀チャレンジ
 
 このデータセットから別の変数を選択してプロットしてください。ヒント： `X = X[:, np.newaxis, 2]` の行を編集する。今回のデータセットのターゲットである、糖尿病という病気の進行について、どのような発見があるのでしょうか？
-## [講義後クイズ](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [講義後クイズ](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10?loc=ja)
 
 ## レビュー & 自主学習
 
@@ -215,4 +215,4 @@ s1 tc: T細胞（白血球の一種）
 
 ## 課題
 
-[異なるデータセット](assignment.md)
+[異なるデータセット](./assignment.ja.md)

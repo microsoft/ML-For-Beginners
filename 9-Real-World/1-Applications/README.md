@@ -8,7 +8,7 @@ In this curriculum, you have learned many ways to prepare data for training and 
 
 While a lot of interest in industry has been garnered by AI, which usually leverages deep learning, there are still valuable applications for classical machine learning models. You might even use some of these applications today! In this lesson, you'll explore how eight different industries and subject-matter domains use these types of models to make their applications more performant, reliable, intelligent, and valuable to users.
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/49/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/49/)
 
 ## 💰 Finance
 
@@ -152,7 +152,7 @@ https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/
 
 Identify another sector that benefits from some of the techniques you learned in this curriculum, and discover how it uses ML.
 
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/50/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/50/)
 
 ## Review & Self Study
 

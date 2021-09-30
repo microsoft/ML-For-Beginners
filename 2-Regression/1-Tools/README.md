@@ -4,7 +4,10 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Pre-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
+
+> ### [This lesson is available in R!](./solution/R/lesson_1-R.ipynb)
+
 ## Introduction
 
 In these four lessons, you will discover how to build regression models. We will discuss what these are for shortly. But before you do anything, make sure you have the right tools in place to start the process!
@@ -18,7 +21,7 @@ In this lesson, you will learn how to:
 
 ## Installations and configurations
 
-[![Using Python with Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Using Python with Visual Studio Code")
+[![Setup Python with Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Setup Python with Visual Studio Code")
 
 > 🎥 Click the image above for a video: using Python within VS Code.
 
@@ -32,7 +35,7 @@ In this lesson, you will learn how to:
 
 3. **Install Scikit-learn**, by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
 
-1. **Install Jupyter Notebook**. You will need to [install the Jupyter package](https://pypi.org/project/jupyter/). 
+1. **Install Jupyter Notebook**. You will need to [install the Jupyter package](https://pypi.org/project/jupyter/).
 
 ## Your ML authoring environment
 
@@ -42,7 +45,7 @@ Notebooks are an interactive environment that allow the developer to both code a
 
 ### Exercise - work with a notebook
 
-In this folder, you will find the file _notebook.ipynb_. 
+In this folder, you will find the file _notebook.ipynb_.
 
 1. Open _notebook.ipynb_ in Visual Studio Code.
 
@@ -50,7 +53,7 @@ In this folder, you will find the file _notebook.ipynb_.
 
 1. Select the `md` icon and add a bit of markdown, and the following text **# Welcome to your notebook**.
 
-   Next, add some Python code. 
+   Next, add some Python code.
 
 1. Type **print('hello notebook')** in the code block.
 1. Select the arrow to run the code.
@@ -73,7 +76,7 @@ Now that Python is set up in your local environment, and you are comfortable wit
 
 According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
 
-In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum. 
+In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum.
 
 Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-learn with some basic data.
 
@@ -95,7 +98,7 @@ For this task we will import some libraries:
 
 - **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the Scikit-learn library.
+- **sklearn**. This is the [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) library.
 
 Import some libraries to help with your tasks.
 
@@ -113,10 +116,10 @@ Import some libraries to help with your tasks.
 
 The built-in [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
 
-age: age in years
-bmi: body mass index
-bp: average blood pressure
-s1 tc: T-Cells (a type of white blood cells)
+- age: age in years
+- bmi: body mass index
+- bp: average blood pressure
+- s1 tc: T-Cells (a type of white blood cells)
 
 ✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
 
@@ -124,7 +127,7 @@ Now, load up the X and y data.
 
 > 🎓 Remember, this is supervised learning, and we need a named 'y' target.
 
-In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The input `return_X_y=True` signals that `X` will be a data matrix, and `y` will be the regression target. 
+In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The input `return_X_y=True` signals that `X` will be a data matrix, and `y` will be the regression target.
 
 1. Add some print commands to show the shape of the data matrix and its first element:
 
@@ -180,6 +183,9 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     ```python
     plt.scatter(X_test, y_test,  color='black')
     plt.plot(X_test, y_pred, color='blue', linewidth=3)
+    plt.xlabel('Scaled BMIs')
+    plt.ylabel('Disease Progression')
+    plt.title('A Graph Plot Showing Diabetes Progression Against BMI')
     plt.show()
     ```
 
@@ -193,7 +199,7 @@ Congratulations, you built your first linear regression model, created a predict
 ## 🚀Challenge
 
 Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
-## [Post-lecture quiz](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/10/)
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
 ## Review & Self Study
 
@@ -201,6 +207,6 @@ In this tutorial, you worked with simple linear regression, rather than univaria
 
 Read more about the concept of regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
 
-## Assignment 
+## Assignment
 
 [A different dataset](assignment.md)

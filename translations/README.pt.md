@@ -71,7 +71,7 @@ Ao garantir que o conteúdo esteja alinhado com os projetos, o processo torna-se
 - tarefa
 - teste pós-aula
 
-> **Uma nota sobre testes**: Podes encontrar todos os testes [nesta app](https://jolly-sea-0a877260f.azurestaticapps.net), para um total de 50 testes de 3 perguntas cada. Eles estão vinculados às aulas, mas a aplicação do teste pode ser executada localmente; segue as intruções na pasta `quiz-app`.
+> **Uma nota sobre testes**: Podes encontrar todos os testes [nesta app](https://white-water-09ec41f0f.azurestaticapps.net/), para um total de 50 testes de 3 perguntas cada. Eles estão vinculados às aulas, mas a aplicação do teste pode ser executada localmente; segue as intruções na pasta `quiz-app`.
 
 | Número de aula |                                Tópico                                 |                 Agrupamento de Aulas                  | Objetivos de aprendizagem                                                                                                            |                   Aula vinculada                    |    Autor     |
 | :------------: | :-------------------------------------------------------------------: | :---------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------: | :----------: |
