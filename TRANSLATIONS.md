@@ -2,6 +2,8 @@
 
 We welcome translations for the lessons in this curriculum!
 
+> Note, please do not use Google Translate or other machine translation tools for translations, but rather use your own proficiency and manually translate the files.
+
 ## Guidelines
 
 There are folders in each lesson folder and lesson introduction folder which contain the translated markdown files.
