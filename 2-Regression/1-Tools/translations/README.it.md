@@ -63,7 +63,7 @@ In questa cartella, si troverà il file _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code con un notebook aperto](../images/notebook.png)
+![VS Code con un notebook aperto](../images/notebook.jpg)
 
 Si può inframezzare il codice con commenti per auto documentare il notebook.
 

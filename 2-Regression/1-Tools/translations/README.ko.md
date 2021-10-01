@@ -63,7 +63,7 @@
     hello notebook
     ```
 
-![VS Code with a notebook open](../images/notebook.png)
+![VS Code with a notebook open](../images/notebook.jpg)
 
 코드에 주석을 넣어서 노트북이 자체적으로 문서화 할 수 있게 할 수 있습니다.
 

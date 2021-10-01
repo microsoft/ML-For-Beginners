@@ -60,7 +60,7 @@ Un servidor de Jupyter comenzará con Python 3+ iniciado. Encontrará áreas del
     hello notebook
     ```
 
-![VS Code con un cuaderno abierto](images/notebook.png)
+![VS Code con un cuaderno abierto](../images/notebook.jpg)
 
 Puede intercalar su código con comentarios para autodocumentar el cuaderno.
 
