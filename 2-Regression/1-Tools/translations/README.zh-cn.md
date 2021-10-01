@@ -60,7 +60,7 @@ Notebooks 是一个交互式环境，允许开发人员编写代码并添加注�
     hello notebook
     ```
 
-![打开 notebook 的 VS Code](../images/notebook.png)
+![打开 notebook 的 VS Code](../images/notebook.jpg)
 
 你可以为你的代码添加注释，以便 notebook 可以自描述。
 

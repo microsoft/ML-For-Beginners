@@ -63,7 +63,7 @@ Dalam folder ini, kamu akan menemukan file _notebook.ipynb_.
     hello notebook
     ```
 
-![Sebuah *notebook* yang dibuka di VS Code](images/notebook.png)
+![Sebuah *notebook* yang dibuka di VS Code](../images/notebook.jpg)
 
 Kamu bisa menyelipkan catatan-catatan antara kodemu untuk mendokumentasi *notebook*-nya.
 

@@ -69,7 +69,7 @@
     hello notebook
     ```
 
-![VS Codeで開いたノートブック](../images/notebook.png)
+![VS Codeで開いたノートブック](../images/notebook.jpg)
 
 コードにコメントを追加することで、ノートブックをセルフドキュメント化することができます。
 
