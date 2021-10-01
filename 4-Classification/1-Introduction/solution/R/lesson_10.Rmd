@@ -64,7 +64,7 @@ You can have them installed as:
 
 `install.packages(c("tidyverse", "tidymodels", "DataExplorer", "here"))`
 
-Alternatiely, the script below checks whether you have the packages required to complete this module and installs them for you in case they are missing.
+Alternately, the script below checks whether you have the packages required to complete this module and installs them for you in case they are missing.
 
 ```{r, message=F, warning=F}
 suppressWarnings(if (!require("pacman"))install.packages("pacman"))
@@ -145,7 +145,7 @@ korean_df <- df %>%
   filter(cuisine == "korean")
 
 
-# Find out how much data is avilable per cuisine
+# Find out how much data is available per cuisine
 cat(" thai df:", dim(thai_df), "\n",
     "japanese df:", dim(japanese_df), "\n",
     "chinese_df:", dim(chinese_df), "\n",

@@ -273,7 +273,7 @@ kclusts %>%
   geom_point(size = 2, color = "#FF7F0EFF")
 ```
 
-The plot shows a large reduction in WCSS (so greater *tightness*) as the number of clusters increases from one to two, and a further noticable reduction from two to three clusters. After that, the reduction is less pronounced, resulting in an `elbow` 💪in the chart at around three clusters. This is a good indication that there are two to three reasonably well separated clusters of data points.
+The plot shows a large reduction in WCSS (so greater *tightness*) as the number of clusters increases from one to two, and a further noticeable reduction from two to three clusters. After that, the reduction is less pronounced, resulting in an `elbow` 💪in the chart at around three clusters. This is a good indication that there are two to three reasonably well separated clusters of data points.
 
 We can now go ahead and extract the clustering model where `k = 3`:
 
