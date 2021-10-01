@@ -158,7 +158,7 @@ Now we are ready to train a model 👩‍💻👨‍💻!
 
 Now we have to decide which algorithm to use for the job 🤔.
 
-In Tidymodels, the [`parsnip package`](https://parsnip.tidymodels.org/index.html) provides consistent interface for working with models across different engines (packages). Please see the parsnip documentation to explore [model types & engines](https://www.tidymodels.org/find/parsnip/#models) and their corresponding [model arguements](https://www.tidymodels.org/find/parsnip/#model-args). The variety is quite bewildering at first sight. For instance, the following methods all include classification techniques:
+In Tidymodels, the [`parsnip package`](https://parsnip.tidymodels.org/index.html) provides consistent interface for working with models across different engines (packages). Please see the parsnip documentation to explore [model types & engines](https://www.tidymodels.org/find/parsnip/#models) and their corresponding [model arguments](https://www.tidymodels.org/find/parsnip/#model-args). The variety is quite bewildering at first sight. For instance, the following methods all include classification techniques:
 
 -   C5.0 Rule-Based Classification Models
 
