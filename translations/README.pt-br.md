@@ -44,7 +44,7 @@ Viaje conosco ao redor do mundo enquanto aplicamos essas técnicas clássicas a 
 
 ---
 
-## Conhece a equipa
+## Conhece a equipe
 
 [![Video promo](../ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "Video promo")
 
@@ -95,8 +95,8 @@ Ao garantir que o conteúdo esteja alinhado com os projetos, o processo torna-se
 |       16       |           Introdução processamento de linguagem natural ☕️           | [Processamento de linguagem natural](../6-NLP/README.md) | Aprenda o básico sobre PNL criando um bot simples                                                             |    [Python](6-NLP/1-Introduction-to-NLP/README.md)  |     Stephen    |
 |       17       |                        Tarefas NLP comuns ☕️                         | [Processamento de linguagem natural](../6-NLP/README.md) | Aprofunde seu conhecimento de PNL entendendo as tarefas comuns exigidas ao lidar com estruturas de linguagem                      |           [Python](6-NLP/2-Tasks/README.md)     |     Stephen    |
 |       18       |                  Tradução e análise de sentimento ♥️                  | [Processamento de linguagem natural](../6-NLP/README.md) | Tradução e análise de sentimento com Jane Austen                                                                 |    [Python](6-NLP/3-Translation-Sentiment/README.md) |     Stephen    |
-|       19       |                    Hotéis romanticos da Europa ♥️                     | [Processamento de linguagem natural](../6-NLP/README.md) | Análise de sentimento com avaliações de hotéis, 1                                                     |    [Python](6-NLP/4-Hotel-Reviews-1/README.md)    |     Stephen    |
-|       20       |                    Hotéis romanticos da Europa ♥️                     | [Processamento de linguagem natural](../6-NLP/README.md) | Análise de sentimento com avaliações de hotéis, 2                                                    |      [Python](6-NLP/5-Hotel-Reviews-2/README.md)   |     Stephen    |
+|       19       |                    Hotéis românticos da Europa ♥️                     | [Processamento de linguagem natural](../6-NLP/README.md) | Análise de sentimento com avaliações de hotéis, 1                                                     |    [Python](6-NLP/4-Hotel-Reviews-1/README.md)    |     Stephen    |
+|       20       |                    Hotéis românticos da Europa ♥️                     | [Processamento de linguagem natural](../6-NLP/README.md) | Análise de sentimento com avaliações de hotéis, 2                                                    |      [Python](6-NLP/5-Hotel-Reviews-2/README.md)   |     Stephen    |
 |       21       |                Introdução à previsão de séries temporais               |      [Séries temporais](../7-TimeSeries/README.md)       | Introdução à previsão de séries temporais                                                             |    [Python](7-TimeSeries/1-Introduction/README.md)    |    Francesca   |
 |       22       | ⚡️ Uso de Energia Mundial ⚡️ - previsão de série temporal com ARIMA |      [Séries temporais](../7-TimeSeries/README.md)       | Previsão de séries temporais com ARIMA                                                                      |        [Python](7-TimeSeries/2-ARIMA/README.md)        |    Francesca   |
 |       23       |                 Introdução à aprendizagem por reforço                 | [Aprendizagem por reforço](../8-Reinforcement/README.md) |Introdução à aprendizagem por reforço com Q-Learning                                                   |    [Python](8-Reinforcement/1-QLearning/README.md)  |     Dmitry     |
