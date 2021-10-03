@@ -64,7 +64,7 @@ In this folder, you will find the file _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code with a notebook open](images/notebook.png)
+![VS Code with a notebook open](images/notebook.jpg)
 
 You can interleaf your code with comments to self-document the notebook.
 

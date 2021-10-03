@@ -50,7 +50,7 @@ class TimeSeriesTensor(UserDict):
        - **dataset**: original time series
        - **target** name of the target column
        - **H**: the forecast horizon
-       - **tensor_structures**: a dictionary discribing the tensor structure of the form
+       - **tensor_structures**: a dictionary describing the tensor structure of the form
              { 'tensor_name' : (range(max_backward_shift, max_forward_shift), [feature, feature, ...] ) }
              if features are non-sequential and should not be shifted, use the form
              { 'tensor_name' : (None, [feature, feature, ...])}

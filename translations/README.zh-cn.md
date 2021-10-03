@@ -12,9 +12,9 @@
 
 > 🌍 环游世界，并通过世界文化来探索机器学习 🌍
 
-微软 Azure Cloud 的倡导者们很高兴可以提供这套十二周、二十四节课的关于**机器学习**的课程。在这套课程中，你将学习关于**经典机器学习**的内容，主要将使用 Scikit-learn 这一库。关于深度学习的内容将会尽量避免 —— 它会被我们即将推出的 "AI for Beginners (针对初学者的 AI 教程)" 所涵盖。你也可以把这些课和我们即将推出的 "Data Science for Beginners (针对初学者的数据科学教程)" 相结合！
+微软 Azure Cloud 的倡导者们很高兴可以提供这套十二周、二十四节课的关于**机器学习**的课程。在这套课程中，你将学习关于**经典机器学习**的内容，主要将使用 Scikit-learn 这一库。关于深度学习的内容将会尽量避免 —— 它会被我们即将推出的 "AI for Beginners (针对初学者的 AI 教程)" 所涵盖。你也可以把这些课和我们已推出的 [Data Science for Beginners（针对初学者的数据科学教程）](https://aka.ms/datascience-beginners) 相结合！
 
-通过把这些经典的技术应用在来自世界各地的数据，我们将 “环游世界”。每一节课都包括了课前和课后测验、课程内容的文字讲义说明、示例代码、作业等。通过这种基于项目的教学方法，你将在构建中学习，这样可以把技能学的更牢靠。
+通过把这些经典的技术应用在来自世界各地的数据，我们将 “环游世界”。每一节课都包括了课前和课后测验、课程内容的文字讲义说明、示例代码、作业等。通过这种基于项目的教学方法，你将在构建中学习，这样可以把技能学得更牢靠。
 
 **✍️ 衷心感谢作者们** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Ornella Altunyan 以及 Amy Boyd
 
@@ -25,7 +25,7 @@
 ---
 # 准备开始
 
-**对于学生们**，为了更好的使用这套课程，把整个仓库 fork 到你自己的 Github 账户中，并自行（或和一个小组一起）完成以下练习：
+**对于学生们**，为了更好的使用这套课程，把整个仓库 fork 到你自己的 GitHub 账户中，并自行（或和一个小组一起）完成以下练习：
 
 - 从课前测验开始
 - 阅读课程内容，完成所有的活动，在每次 knowledge check 时暂停并思考
@@ -104,7 +104,7 @@
 您可以使用 [Docsify](https://docsify.js.org/#/) 离线运行此文档。 Fork 这个仓库，并在你的本地机器上[安装 Docsify](https://docsify.js.org/#/quickstart)，并在这个仓库的根文件夹中运行 `docsify serve`。你可以通过 localhost 的 3000 端口访问此文档：`localhost:3000`。
 ## PDF 文档们
 
-点击[这里](../pdf/readme.pdf)查找课程的 PDF 文档们。
+点击[这里](../pdf/readme.pdf)查找课程的 PDF 文档。
 
 ## 需要你的帮助！
 
@@ -116,4 +116,4 @@
 
 - [针对初学者的 Web 开发课程](https://aka.ms/webdev-beginners)
 - [针对初学者的物联网课程](https://aka.ms/iot-beginners)
-
+- [针对初学者的数据科学课程](https://aka.ms/datascience-beginners)
