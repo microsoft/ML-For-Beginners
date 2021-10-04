@@ -22,7 +22,7 @@ Viaje conosco ao redor do mundo enquanto aplicamos essas técnicas clássicas a 
 
 **🙏 Agradecimentos especiais 🙏 aos autores, revisores e colaboradores de conteúdo do Microsoft Student Ambassador**, notavelmente Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, e Snigdha Agarwal
 
-**🤩 EAgradecimento extra ao Microsoft Student Ambassador, Eric Wanjau, por nossas aulas de R!**
+**🤩 Agradecimento extra ao Microsoft Student Ambassador, Eric Wanjau, por nossas aulas de R!**
 
 ---
 
