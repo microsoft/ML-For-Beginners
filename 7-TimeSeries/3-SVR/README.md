@@ -132,7 +132,7 @@ For this example, we take `timesteps = 5`. So, the inputs to the model are the d
 timesteps=5
 ```
 
-Converting training data to 3D tensor using nested list comprehension:
+Converting training data to 2D tensor using nested list comprehension:
 
 ```python
 train_data_timesteps=np.array([[j for j in train_data[i:i+timesteps]] for i in range(0,len(train_data)-timesteps+1)])[:,:,0]
@@ -143,7 +143,7 @@ train_data_timesteps.shape
 (1412, 5)
 ```
 
-Converting testing data to 3D tensor:
+Converting testing data to 2D tensor:
 
 ```python
 test_data_timesteps=np.array([[j for j in test_data[i:i+timesteps]] for i in range(0,len(test_data)-timesteps+1)])[:,:,0]
@@ -302,7 +302,7 @@ data = energy.copy().values
 # Scaling
 data = scaler.transform(data)
 
-# Transforming to 3D tensor as per model input requirement
+# Transforming to 2D tensor as per model input requirement
 data_timesteps=np.array([[j for j in data[i:i+timesteps]] for i in range(0,len(data)-timesteps+1)])[:,:,0]
 print("Tensor shape: ", data_timesteps.shape)
 
