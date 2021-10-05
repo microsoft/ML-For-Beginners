@@ -11,21 +11,21 @@ In this lesson, you will discover a specific way to build models with [**SVM**: 
 
 ## SVR in the context of time series
 
-Let's unpack the parts of ARIMA to better understand how it helps us model time series and help us make predictions against it.
+Before understanding the importance of SVR in time series prediction, here are some of the important concepts that you need to know:
 
 - **Regression:** Supervised learning technique to predict continuous values from a given set of inputs. The idea is to fit a curve (or line) in the feature space that has the maximum number of data points.
 - **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a kernel function is generally used to transform the dataset so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces
 - **Support Vector Regressor (SVR):** A type of SVM, to find the best fit line (which in the case of SVM is a hyperplane) that has the maximum number of data points.
 
+### Why SVR?
+
+In the last lesson you learned about ARIMA, which is a very successful statistical linear method to forecast time series data. However, in many cases, time series data have non-linearity, which cannot be mapped by linear models. The ability of SVM to consider nonlinearity in the data for regression tasks makes SVR successful in time series forecasting.
+
 ## Exercise - build an SVR model
 
 The first few steps for data preparation are the same as that of the previous lesson. Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
 
-1. Run the notebook to load the `statsmodels` Python library; you will need this for ARIMA models.
-
-2. Load necessary libraries
-
-3. Now, load up several more libraries useful for plotting data:
+1. Run the notebook and import the necessary libraries:
 
    ```python
    import os
@@ -40,7 +40,7 @@ The first few steps for data preparation are the same as that of the previous le
    from sklearn.preprocessing import MinMaxScaler
    from common.utils import load_data, mape
    ```
-   
+
 4. Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look:
 
    ```python
@@ -57,11 +57,13 @@ The first few steps for data preparation are the same as that of the previous le
    plt.show()
    ```
 
-   Now, let's build a model!
+   ![training and testing data](images/full-data.png)
+   
+   Now, let's build our SVR model.
 
 ### Create training and testing datasets
 
-Now your data is loaded, so you can separate it into train and test sets. You'll train your model on the train set. As usual, after the model has finished training, you'll evaluate its accuracy using the test set. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods.
+Now your data is loaded, so you can separate it into train and test sets. Then you'll reshape the data to create a time-step based dataset which will be needed for the SVR. You'll train your model on the train set. After the model has finished training, you'll evaluate its accuracy on the training set, testing set and then the full dataset to see the overall performance. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods (a situation known as *Overfitting*).
 
 1. Allocate a two-month period from September 1 to October 31, 2014 to the training set. The test set will include the two-month period of November 1 to December 31, 2014:
 
@@ -69,8 +71,6 @@ Now your data is loaded, so you can separate it into train and test sets. You'll
    train_start_dt = '2014-11-01 00:00:00'
    test_start_dt = '2014-12-30 00:00:00'
    ```
-
-   Since this data reflects the daily consumption of energy, there is a strong seasonal pattern, but the consumption is most similar to the consumption in more recent days.
 
 2. Visualize the differences:
 
@@ -85,7 +85,6 @@ Now your data is loaded, so you can separate it into train and test sets. You'll
 
    ![training and testing data](images/train-test.png)
 
-   Therefore, using a relatively small window of time for training the data should be sufficient.
 
 
 ### Prepare the data for training
@@ -179,19 +178,19 @@ Now you need to follow several steps
 
 
 
-**1. Create an SVR model**
+1. Create an SVR model
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10)
 ```
 
-**2. Fit the model on training data**
+2. Fit the model on training data
 
 ```python
 model.fit(x_train, y_train[:,0])
 ```
 
-**3. Make model predictions**
+3. Make model predictions
 
 ```python
 y_train_pred = model.predict(x_train).reshape(-1,1)
@@ -202,13 +201,13 @@ print(y_train_pred.shape, y_test_pred.shape)
 
 
 
-You've built your SVR! Now we need to find a way to evaluate it.
+You've built your SVR! Now we need to evaluate it.
 
 ### Evaluate your model
 
-This process provides a more robust estimation of how the model will perform in practice. However, it comes at the computation cost of creating so many models. This is acceptable if the data is small or if the model is simple, but could be an issue at scale.
+For evaluation, first we will scale back the data to our original scale. Then, to check the performance, we will plot the original and predicted time series plot, and also print the MAPE result.
 
-2. Scale the predicted and original output
+1. Scale the predicted and original output
 
     ```python
     # Scaling the predictions
@@ -228,18 +227,16 @@ This process provides a more robust estimation of how the model will perform in 
     
     ### Check model performance
     
-    **Extract the timesteps for x-axis**
+    Extract the timesteps for x-axis
     
     ```python
-    # Extract the timesteps for x-axis
-    
     train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
     test_timestamps = energy[test_start_dt:].index[timesteps-1:]
     
     print(len(train_timestamps), len(test_timestamps))
     ```
     
-    **Plot the predictions**
+    Plot the predictions
     
     ```python
     plt.figure(figsize=(25,6))
@@ -253,15 +250,15 @@ This process provides a more robust estimation of how the model will perform in 
     
     ![training and testing data](images/train-data-predict.png)
     
-    **Print MAPE for training data**
+    Print MAPE for training data
     
     ```python
     print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
     ```
     
-    ​	MAPE for training data:  2.6702350467033176 %
+    ```MAPE for training data:  2.6702350467033176 %```
     
-    **Plot the predictions**
+    Plot the predictions
     
     ```python
     plt.figure(figsize=(10,3))
@@ -280,4 +277,4 @@ This process provides a more robust estimation of how the model will perform in 
     print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
     ```
     
-    ​	MAPE for testing data:  1.4628890659719878 %
+    ```MAPE for testing data:  1.4628890659719878 %```
