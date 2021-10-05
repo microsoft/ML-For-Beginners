@@ -12,7 +12,7 @@ In this lesson, you will discover a specific way to build models with [**SVM**: 
 Before understanding the importance of SVR in time series prediction, here are some of the important concepts that you need to know:
 
 - **Regression:** Supervised learning technique to predict continuous values from a given set of inputs. The idea is to fit a curve (or line) in the feature space that has the maximum number of data points.
-- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a kernel function is generally used to transform the dataset so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces
+- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a kernel function is generally used to transform the dataset, so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces.
 - **Support Vector Regressor (SVR):** A type of SVM, to find the best fit line (which in the case of SVM is a hyperplane) that has the maximum number of data points.
 
 ### Why SVR?
@@ -179,16 +179,21 @@ Now you need to follow several steps
   2. Prepare the model for the training data by calling the `fit()` function.
   3. Make predictions calling the `predict()` function
 
-Create an SVR model:
+Now we create an SVR model. Here we use the [RBF kernel](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), and set the hyperparameters gamma, C and epsilon as 0.5, 10 and 0.05 respectively.
 
 ```python
-model = SVR(kernel='rbf',gamma=0.5, C=10)
+model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
 ```
 
 Fit the model on training data
 
 ```python
 model.fit(x_train, y_train[:,0])
+```
+
+```output
+SVR(C=10, cache_size=200, coef0=0.0, degree=3, epsilon=0.05, gamma=0.5,
+    kernel='rbf', max_iter=-1, shrinking=True, tol=0.001, verbose=False)
 ```
 
 Make model predictions
@@ -262,8 +267,6 @@ print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
 ```output
 MAPE for training data: 1.7195710200875551 %
 ```
-
-
 
 Plot the predictions for testing data
 
