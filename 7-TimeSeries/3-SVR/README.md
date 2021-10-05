@@ -171,9 +171,7 @@ print(x_test.shape, y_test.shape)
 
 ### Implement SVR
 
-It's time to implement SVR, which you'll do from the `SVR` library that you installed earlier.
-
-Now you need to follow several steps
+Now, It's time to implement SVR:
 
   1. Define the model by calling `SVR()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
   2. Prepare the model for the training data by calling the `fit()` function.
@@ -353,5 +351,5 @@ MAPE:  2.0572089029888656 %
 
 ## 🚀Challenge
 
-- Try to tweak the hyperparameters (gamma, C, epsilon) while creating the model and evaluate on the data to see which set of hyperparameters give the best results on the testing data.  
+- Try to tweak the hyperparameters (gamma, C, epsilon) while creating the model and evaluate on the data to see which set of hyperparameters give the best results on the testing data. To know more about these hyperparameters, you can refer to the  document [here](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Try to use different kernel functions for the model and analyze their performances on the dataset. A helpful document can be found [here](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
