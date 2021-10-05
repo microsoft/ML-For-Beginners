@@ -3,13 +3,11 @@
 In the previous lesson, you learned how to use ARIMA model to make time series predictions. Now you'll be looking at Support Vector Regressor model which is a regressor model used to predict continuous data.
 
 
-
-
 ## Introduction
 
 In this lesson, you will discover a specific way to build models with [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) for regression, or **SVR: Support Vector Regressor**. 
 
-## SVR in the context of time series
+### SVR in the context of time series
 
 Before understanding the importance of SVR in time series prediction, here are some of the important concepts that you need to know:
 
@@ -45,7 +43,6 @@ The first few steps for data preparation are the same as that of the previous le
 
    ```python
    energy = load_data('./data')[['load']]
-   energy.head(10)
    ```
    
 5. Plot all the available energy data from January 2012 to December 2014. There should be no surprises as we saw this data in the last lesson:
@@ -57,7 +54,7 @@ The first few steps for data preparation are the same as that of the previous le
    plt.show()
    ```
 
-   ![training and testing data](images/full-data.png)
+   ![full data](images/full-data.png)
    
    Now, let's build our SVR model.
 
@@ -101,26 +98,22 @@ Now, you need to prepare the data for training by performing filtering and scali
    print('Test data shape: ', test.shape)
    ```
 
-   You can see the shape of the data:
-
    ```output
    Training data shape:  (1416, 1)
    Test data shape:  (48, 1)
    ```
-
+   
 2. Scale the data to be in the range (0, 1).
 
    ```python
    scaler = MinMaxScaler()
    train['load'] = scaler.fit_transform(train)
-   train.head(10)
    ```
-
-4. Now that you have calibrated the scaled data, you can scale the test data:
+   
+4. Now, you scale the test data:
 
    ```python
    test['load'] = scaler.transform(test)
-   test.head()
    ```
 
 ### Create data with time-steps
@@ -129,7 +122,6 @@ For the SVR, you transform the input data to be of the form `[batch, timesteps]`
 
 ```python
 # Converting to numpy arrays
-
 train_data = train.values
 test_data = test.values
 ```
@@ -137,27 +129,34 @@ test_data = test.values
 For this example, we take `timesteps = 5`. So, the inputs to the model are the data for the first 4 timesteps, and the output will be the data for the 5th timestep.
 
 ```python
-# Selecting the timesteps
 timesteps=5
 ```
 
-```python
-# Converting training data to 3D tensor using nested list comprehension
+Converting training data to 3D tensor using nested list comprehension:
 
+```python
 train_data_timesteps=np.array([[j for j in train_data[i:i+timesteps]] for i in range(0,len(train_data)-timesteps+1)])[:,:,0]
 train_data_timesteps.shape
 ```
 
-```python
-# Converting testing data to 3D tensor
+```output
+(1412, 5)
+```
 
+Converting testing data to 3D tensor:
+
+```python
 test_data_timesteps=np.array([[j for j in test_data[i:i+timesteps]] for i in range(0,len(test_data)-timesteps+1)])[:,:,0]
 test_data_timesteps.shape
 ```
 
-```python
-# Selecting inputs and outputs from training and testing data
+```output
+(44, 5)
+```
 
+ Selecting inputs and outputs from training and testing data:
+
+```python
 x_train, y_train = train_data_timesteps[:,:timesteps-1],train_data_timesteps[:,[timesteps-1]]
 x_test, y_test = test_data_timesteps[:,:timesteps-1],test_data_timesteps[:,[timesteps-1]]
 
@@ -165,6 +164,10 @@ print(x_train.shape, y_train.shape)
 print(x_test.shape, y_test.shape)
 ```
 
+```output
+(1412, 4) (1412, 1)
+(44, 4) (44, 1)
+```
 
 ### Implement SVR
 
@@ -172,25 +175,23 @@ It's time to implement SVR, which you'll do from the `SVR` library that you inst
 
 Now you need to follow several steps
 
-      1. Define the model by calling `SVR()` and passing in the model hyperparameters: kernel, gamma and c
-      2. Prepare the model for the training data by calling the fit() function.
-      3. Make predictions calling the `predict()` function
+  1. Define the model by calling `SVR()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
+  2. Prepare the model for the training data by calling the `fit()` function.
+  3. Make predictions calling the `predict()` function
 
-
-
-1. Create an SVR model
+Create an SVR model:
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10)
 ```
 
-2. Fit the model on training data
+Fit the model on training data
 
 ```python
 model.fit(x_train, y_train[:,0])
 ```
 
-3. Make model predictions
+Make model predictions
 
 ```python
 y_train_pred = model.predict(x_train).reshape(-1,1)
@@ -199,7 +200,9 @@ y_test_pred = model.predict(x_test).reshape(-1,1)
 print(y_train_pred.shape, y_test_pred.shape)
 ```
 
-
+```output
+(1412, 1) (44, 1)
+```
 
 You've built your SVR! Now we need to evaluate it.
 
@@ -207,74 +210,145 @@ You've built your SVR! Now we need to evaluate it.
 
 For evaluation, first we will scale back the data to our original scale. Then, to check the performance, we will plot the original and predicted time series plot, and also print the MAPE result.
 
-1. Scale the predicted and original output
+Scale the predicted and original output:
 
-    ```python
-    # Scaling the predictions
-    y_train_pred = scaler.inverse_transform(y_train_pred)
-    y_test_pred = scaler.inverse_transform(y_test_pred)
-    
-    print(len(y_train_pred), len(y_test_pred))
-    ```
-    
-    ```python
-    # Scaling the original values
-    y_train = scaler.inverse_transform(y_train)
-    y_test = scaler.inverse_transform(y_test)
-    
-    print(len(y_train), len(y_test))
-    ```
-    
-    ### Check model performance
-    
-    Extract the timesteps for x-axis
-    
-    ```python
-    train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
-    test_timestamps = energy[test_start_dt:].index[timesteps-1:]
-    
-    print(len(train_timestamps), len(test_timestamps))
-    ```
-    
-    Plot the predictions
-    
-    ```python
-    plt.figure(figsize=(25,6))
-    plt.plot(train_timestamps, y_train, color = 'red', linewidth=2.0, alpha = 0.6)
-    plt.plot(train_timestamps, y_train_pred, color = 'blue', linewidth=0.8)
-    plt.legend(['Actual','Predicted'])
-    plt.xlabel('Timestamp')
-    plt.title("Training data prediction")
-    plt.show()
-    ```
-    
-    ![training and testing data](images/train-data-predict.png)
-    
-    Print MAPE for training data
-    
-    ```python
-    print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
-    ```
-    
-    ```MAPE for training data:  2.6702350467033176 %```
-    
-    Plot the predictions
-    
-    ```python
-    plt.figure(figsize=(10,3))
-    plt.plot(test_timestamps, y_test, color = 'red', linewidth=2.0, alpha = 0.6)
-    plt.plot(test_timestamps, y_test_pred, color = 'blue', linewidth=0.8)
-    plt.legend(['Actual','Predicted'])
-    plt.xlabel('Timestamp')
-    plt.show()
-    ```
-    
-    ![training and testing data](images/test-data-predict.png)
-    
-    **Print MAPE for testing data**
-    
-    ```python
-    print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
-    ```
-    
-    ```MAPE for testing data:  1.4628890659719878 %```
+```python
+# Scaling the predictions
+y_train_pred = scaler.inverse_transform(y_train_pred)
+y_test_pred = scaler.inverse_transform(y_test_pred)
+
+print(len(y_train_pred), len(y_test_pred))
+```
+
+```python
+# Scaling the original values
+y_train = scaler.inverse_transform(y_train)
+y_test = scaler.inverse_transform(y_test)
+
+print(len(y_train), len(y_test))
+```
+
+#### Check model performance on training and testing data
+
+We extract the timestamps from the dataset to show in the x-axis of our plot. Note that we are using the first ```timesteps-1``` values as out input for the first output, so the timestamps for the output will start after that.
+
+```python
+train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
+test_timestamps = energy[test_start_dt:].index[timesteps-1:]
+
+print(len(train_timestamps), len(test_timestamps))
+```
+
+Plot the predictions for training data:
+
+```python
+plt.figure(figsize=(25,6))
+plt.plot(train_timestamps, y_train, color = 'red', linewidth=2.0, alpha = 0.6)
+plt.plot(train_timestamps, y_train_pred, color = 'blue', linewidth=0.8)
+plt.legend(['Actual','Predicted'])
+plt.xlabel('Timestamp')
+plt.title("Training data prediction")
+plt.show()
+```
+
+![training data prediction](images/train-data-predict.png)
+
+Print MAPE for training data
+
+```python
+print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
+```
+
+```output
+MAPE for training data: 1.7195710200875551 %
+```
+
+
+
+Plot the predictions for testing data
+
+```python
+plt.figure(figsize=(10,3))
+plt.plot(test_timestamps, y_test, color = 'red', linewidth=2.0, alpha = 0.6)
+plt.plot(test_timestamps, y_test_pred, color = 'blue', linewidth=0.8)
+plt.legend(['Actual','Predicted'])
+plt.xlabel('Timestamp')
+plt.show()
+```
+
+![testing data prediction](images/test-data-predict.png)
+
+Print MAPE for testing data
+
+```python
+print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
+```
+
+```output
+MAPE for testing data:  1.2623790187854018 %
+```
+
+🏆 You have a very good result on the testing dataset!
+
+### Check model performance on full dataset
+
+```python
+# Extracting load values as numpy array
+data = energy.copy().values
+
+# Scaling
+data = scaler.transform(data)
+
+# Transforming to 3D tensor as per model input requirement
+data_timesteps=np.array([[j for j in data[i:i+timesteps]] for i in range(0,len(data)-timesteps+1)])[:,:,0]
+print("Tensor shape: ", data_timesteps.shape)
+
+# Selecting inputs and outputs from data
+X, Y = data_timesteps[:,:timesteps-1],data_timesteps[:,[timesteps-1]]
+print("X shape: ", X.shape,"\nY shape: ", Y.shape)
+```
+
+```output
+Tensor shape:  (26300, 5)
+X shape:  (26300, 4) 
+Y shape:  (26300, 1)
+```
+
+```python
+# Make model predictions
+Y_pred = model.predict(X).reshape(-1,1)
+
+# Inverse scale and reshape
+Y_pred = scaler.inverse_transform(Y_pred)
+Y = scaler.inverse_transform(Y)
+```
+
+```python
+plt.figure(figsize=(30,8))
+plt.plot(Y, color = 'red', linewidth=2.0, alpha = 0.6)
+plt.plot(Y_pred, color = 'blue', linewidth=0.8)
+plt.legend(['Actual','Predicted'])
+plt.xlabel('Timestamp')
+plt.show()
+```
+
+![full data prediction](images/full-data-predict.png)
+
+```python
+print('MAPE: ', mape(Y_pred, Y)*100, '%')
+```
+
+```output
+MAPE:  2.0572089029888656 %
+```
+
+
+
+🏆 Very nice plots, showing a model with good accuracy. Well done!
+
+---
+
+## 🚀Challenge
+
+- Try to tweak the hyperparameters (gamma, C, epsilon) while creating the model and evaluate on the data to see which set of hyperparameters give the best results on the testing data.  
+- Try to use different kernel functions for the model and analyze their performances on the dataset. A helpful document can be found [here](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
