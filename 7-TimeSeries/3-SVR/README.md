@@ -7,7 +7,7 @@ In the previous lesson, you learned how to use ARIMA model to make time series p
 
 ## Introduction
 
-In this lesson, you will discover a specific way to build models with [**SVM**: **S**upport **V**ector**M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) for regression, or **SVR: Support Vector Regressor**. 
+In this lesson, you will discover a specific way to build models with [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) for regression, or **SVR: Support Vector Regressor**. 
 
 ## SVR in the context of time series
 
