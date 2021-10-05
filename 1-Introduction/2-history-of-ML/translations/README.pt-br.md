@@ -1,6 +1,6 @@
 # História do machine learning
 
-![Resumo da história do machine learning no sketchnote](../../sketchnotes/ml-history.png)
+![Resumo da história do machine learning no sketchnote](../../../sketchnotes/ml-history.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
@@ -12,7 +12,7 @@ precederam e se sobrepuseram com esta época. Na verdade, as pessoas têm reflet
 
 ## Descobertas notáveis
 
-- 1763, 1812 [Teorema de Bayes](https://wikipedia.org/wiki/Bayes%27_theorem)e seus predecessores. Este teorema e suas aplicações fundamentam a inferência, descrevendo a probabilidade de um evento ocorrer com base em conhecimento prévio.
+- 1763, 1812 [Teorema de Bayes](https://wikipedia.org/wiki/Bayes%27_theorem) e seus predecessores. Este teorema e suas aplicações fundamentam a inferência, descrevendo a probabilidade de um evento ocorrer com base em conhecimento prévio.
 - 1805 [Teoria dos Mínimos Quadrados](https://wikipedia.org/wiki/Least_squares) pelo matemático francês Adrien-Marie Legendre. Esta teoria, que você aprenderá em nossa unidade de regressão, ajuda no ajuste de dados.
 - 1913 [Cadeias de Markov](https://wikipedia.org/wiki/Markov_chain) com o nome do matemático russo Andrey Markov é usado para descrever uma sequência de eventos possíveis com base em um estado anterior.
 - 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) é um tipo de classificador linear inventado pelo psicólogo americano Frank Rosenblatt que fundamenta os avanços no aprendizado profundo.
