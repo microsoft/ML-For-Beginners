@@ -21,14 +21,14 @@ Antes de iniciar este curso, você precisa ter seu computador configurado e pron
 - **Configure sua máquina com estes vídeos**. Use os links a seguir para aprender [como instalar o Python](https://youtu.be/CXZYvNRIAKM) em seu sistema e [configurar um editor de texto](https://youtu.be/EU8eayHWoZg) para desenvolvimento.
 - **Aprenda Python**. Também é recomendável ter um conhecimento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), uma linguagem de programação útil para cientistas de dados (data scientists) que usamos neste curso.
 - **Aprenda Node.js e JavaScript**. Também usamos JavaScript algumas vezes neste curso para criar aplicativos web, então você precisará ter [node](https://nodejs.org) e [npm](https://www.npmjs.com/) instalado, assim como o [Visual Studio Code](https://code.visualstudio.com/) disponível para desenvolvimento em Python e JavaScript.
-- **Crie uma conta no GitHub**. Como você nos encontrou aqui no[GitHub](https://github.com),talvez você já tenha uma conta, mas se não, crie uma faça um fork deste curso para usar por conta própria. (Sinta-se à vontade para nos dar uma estrela também 😊)
+- **Crie uma conta no GitHub**. Como você nos encontrou aqui no [GitHub](https://github.com),talvez você já tenha uma conta, mas se não, crie uma faça um fork deste curso para usar por conta própria. (Sinta-se à vontade para nos dar uma estrela também 😊)
 - **Explore o Scikit-learn**. Familiarize-se com o [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), um conjunto de bibliotecas de ML referenciadas nestas lições.
 
 ### O que é machine learning?
 
 O termo 'machine learning' é um dos termos mais populares e usados ​​atualmente. Há uma boa chance de você já ter ouvido esse termo pelo menos uma vez se estiver familiarizado com tecnologia, independentemente do campo em que trabalha. A mecânica do aprendizado de máquina (machine learning), entretanto, é um mistério para a maioria das pessoas. Para um iniciante em machine learning, o assunto às vezes pode parecer opressor. Portanto, é importante entender o que realmente é o machine learning e aprender sobre isso passo a passo, por meio de exemplos práticos.
 
-![curva de hype de ml](images/hype.png)
+![curva de hype de ml](../images/hype.png)
 
 > Google Trends mostra o recente 'curva de hype' do termo 'machine learning'
 
@@ -40,7 +40,7 @@ O [cérebro humano](https://www.livescience.com/29365-human-brain.html) percebe 
 
 Embora os termos possam ser confundidos, o machine learning (ML) é um subconjunto importante da inteligência artificial. **ML se preocupa em usar algoritmos especializados para descobrir informações significativas e encontrar padrões ocultos de dados percebidos para corroborar o processo de tomada de decisão racional**.
 
-![AI, ML, deep learning, data science](images/ai-ml-ds.png)
+![AI, ML, deep learning, data science](../images/ai-ml-ds.png)
 
 > Um diagrama que mostra as relações entre AI, ML, deep learning, and data science. Infográfico de [Jen Looper](https://twitter.com/jenlooper) inspirado [neste gráfico](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
