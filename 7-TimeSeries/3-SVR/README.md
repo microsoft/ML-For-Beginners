@@ -242,6 +242,10 @@ test_timestamps = energy[test_start_dt:].index[timesteps-1:]
 print(len(train_timestamps), len(test_timestamps))
 ```
 
+```output
+1412 44
+```
+
 Plot the predictions for training data:
 
 ```python
