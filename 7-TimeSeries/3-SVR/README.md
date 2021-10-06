@@ -12,12 +12,12 @@ In this lesson, you will discover a specific way to build models with [**SVM**: 
 Before understanding the importance of SVR in time series prediction, here are some of the important concepts that you need to know:
 
 - **Regression:** Supervised learning technique to predict continuous values from a given set of inputs. The idea is to fit a curve (or line) in the feature space that has the maximum number of data points.
-- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a kernel function is generally used to transform the dataset, so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces.
+- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a Kernel function is generally used to transform the dataset, so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces.
 - **Support Vector Regressor (SVR):** A type of SVM, to find the best fit line (which in the case of SVM is a hyperplane) that has the maximum number of data points.
 
 ### Why SVR?
 
-In the last lesson you learned about ARIMA, which is a very successful statistical linear method to forecast time series data. However, in many cases, time series data have non-linearity, which cannot be mapped by linear models. The ability of SVM to consider nonlinearity in the data for regression tasks makes SVR successful in time series forecasting.
+In the last lesson you learned about ARIMA, which is a very successful statistical linear method to forecast time series data. However, in many cases, time series data have *non-linearity*, which cannot be mapped by linear models. The ability of SVM to consider nonlinearity in the data for regression tasks makes SVR successful in time series forecasting.
 
 ## Exercise - build an SVR model
 
