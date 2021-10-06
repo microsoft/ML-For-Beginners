@@ -8,4 +8,4 @@ Usando [este repositório](https://github.com/Digital-Humanities-Toolkit/timelin
 
 | Critérios | Exemplar                                         | Adequado                                | Precisa Melhorar                                                |
 | -------- | ------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-|          | Um cronograma implantado é apresentado como uma página do GitHub (GitHub Page)) | O código está incompleto e não implementado | O cronograma está incompleto, não foi bem pesquisado e não implantado |
+|          | Um cronograma implantado é apresentado como uma página do GitHub (GitHub Page) | O código está incompleto e não implementado | O cronograma está incompleto, não foi bem pesquisado e não implantado |
