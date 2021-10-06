@@ -17,7 +17,7 @@ Before understanding the importance of SVR in time series prediction, here are s
 
 ### Why SVR?
 
-In the last lesson you learned about ARIMA, which is a very successful statistical linear method to forecast time series data. However, in many cases, time series data have *non-linearity*, which cannot be mapped by linear models. The ability of SVM to consider nonlinearity in the data for regression tasks makes SVR successful in time series forecasting.
+In the last lesson you learned about ARIMA, which is a very successful statistical linear method to forecast time series data. However, in many cases, time series data have *non-linearity*, which cannot be mapped by linear models. In such cases, the ability of SVM to consider non-linearity in the data for regression tasks makes SVR successful in time series forecasting.
 
 ## Exercise - build an SVR model
 
@@ -103,14 +103,14 @@ Now, you need to prepare the data for training by performing filtering and scali
    Test data shape:  (48, 1)
    ```
    
-2. Scale the data to be in the range (0, 1).
+2. Scale the training data to be in the range (0, 1).
 
    ```python
    scaler = MinMaxScaler()
    train['load'] = scaler.fit_transform(train)
    ```
    
-4. Now, you scale the test data:
+4. Now, you scale the testing data:
 
    ```python
    test['load'] = scaler.transform(test)
