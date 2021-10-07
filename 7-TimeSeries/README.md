@@ -19,4 +19,4 @@ Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medi
 
 ## Credits
 
-"Introduction to time series forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks first appeared in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) by Yijing Chen and Angus Taylor.
+"Introduction to time series forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks first appeared online in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) originally written by Francesca Lazzeri.
