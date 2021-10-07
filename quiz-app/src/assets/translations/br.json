@@ -1,0 +1,2815 @@
+[
+  {
+    "title": "Machine Learning para iniciantes: Questionários",
+    "complete": "Parabéns, você completou o questionário!",
+    "error": "Desculpe, tente novamente",
+    "quizzes": [
+      {
+        "id": 1,
+        "title": "Introdução ao Machine Learning: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Aplicações de machine learning estão à nossa volta",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é a diferença técnica entre ML clássico e deep learning?",
+            "answerOptions": [
+              {
+                "answerText": "ML clássico foi inventado primeiro",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "O uso de redes neurais",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Deep learning é usado em robôs",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Por que uma empresa pode querer usar estratégias de ML?",
+            "answerOptions": [
+              {
+                "answerText": "para automatizar a resolução de problemas multidimensionais",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "para personalizar uma experiência de compra com base no tipo de cliente",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Introdução ao Machine Learning: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Algoritmos de Machine learning têm o objetivo de simular",
+            "answerOptions": [
+              {
+                "answerText": "máquinas inteligentes",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "o cérebro humano",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "orangotangos",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é um exemplo de técnica clássica de ML?",
+            "answerOptions": [
+              {
+                "answerText": "processamento de linguagem natural",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "deep learning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Redes neurais",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Por que todos deveriam aprender o básico do ML?",
+            "answerOptions": [
+              {
+                "answerText": "aprender ML é divertido e acessível a todos",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "As estratégias de ML estão sendo utilizadas em muitas indústrias e setores",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "História do aprendizado de máquina: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Aproximadamente quando foi criado o termo 'inteligência artificial'?",
+            "answerOptions": [
+              {
+                "answerText": "Na década de 1980",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Na década de 1950",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Na década de 1930",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Quem foi um dos pioneiros do machine learning?",
+            "answerOptions": [
+              {
+                "answerText": "Alan Turing",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bill Gates",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Shakey o robô",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual foi uma das razões pelas quais o avanço da IA desacelerou na década de 1970?",
+            "answerOptions": [
+              {
+                "answerText": "Poder de computação limitado",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Engenheiros qualificados insuficientes",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Conflitos entre países",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "História do aprendizado de máquina: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Qual é um exemplo de sistema de IA 'desalinhada'?",
+            "answerOptions": [
+              {
+                "answerText": "ELIZA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "HACKML",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SSYSTEM",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é um exemplo de tecnologia desenvolvida durante os 'Anos de Ouro'?",
+            "answerOptions": [
+              {
+                "answerText": "Mundo de blocos",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Jibo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Cães robóticos",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual evento foi fundamental na criação e expansão do campo da inteligência artificial?",
+            "answerOptions": [
+              {
+                "answerText": "Teste de Turing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Projeto de pesquisa de verão de Dartmouth",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Winter AI",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Equidade e aprendizado de máquina: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Injustiça no aprendizado de máquina pode acontecer",
+            "answerOptions": [
+              {
+                "answerText": "intencionalmente",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "não intencionalmente",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "O termo 'injustiça' em ML conota:",
+            "answerOptions": [
+              {
+                "answerText": "prejudicar um grupo de pessoas",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "dano a uma pessoa",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "prejudicar a maioria das pessoas",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Os cinco principais tipos de danos incluem",
+            "answerOptions": [
+              {
+                "answerText": "atribuição, qualidade de serviço, estereótipos, difamação e super-representação ou sub-representação",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "alocação, qualidade de serviço, estereótipos, difamação e super-representação ou sub-representação",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "atribuição, qualidade de serviço, estereofônico, difamação e super-representação ou sub-representação",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Equidade e aprendizado de máquina: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Injustiça em um modelo pode ser causada por",
+            "answerOptions": [
+              {
+                "answerText": "confiança excessiva em dados históricos",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "pouca confiança em dados históricos",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "alinhamento muito preciso para dados históricos",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Para mitigar a injustiça, você pode",
+            "answerOptions": [
+              {
+                "answerText": "identificar os danos e grupos afetados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "definir métricas de justiça",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Fairlearn é um pacote que pode",
+            "answerOptions": [
+              {
+                "answerText": "compare vários modelos usando métricas de imparcialidade e desempenho",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "escolha o melhor modelo que atenda as suas necessidades",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ajudá-lo a decidir o que é justo e o que não é",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Ferramentas e técnicas: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Ao construir um modelo, você deve:",
+            "answerOptions": [
+              {
+                "answerText": "prepare seus dados e treine seu modelo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "escolha um método de treinamento e, em seguida, prepare seus dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ajustar os parâmetros e treinar seu modelo",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A ___ dos seus dados afetará a qualidade do seu modelo de ML",
+            "answerOptions": [
+              {
+                "answerText": "quantidade",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "formato",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Uma variável característica é:",
+            "answerOptions": [
+              {
+                "answerText": "uma qualidade de seus dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uma propriedade mensurável de seus dados",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "uma linha de seus dados",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Ferramentas e técnicas: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Você deve visualizar seus dados porque",
+            "answerOptions": [
+              {
+                "answerText": "pode descobrir outliers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "pode descobrir uma causa potencial para viés",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Divida seus dados em:",
+            "answerOptions": [
+              {
+                "answerText": "conjuntos de treinamento e conjuntos de turing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "conjuntos de treinamento e teste",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "conjuntos de validação e avaliação",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Um comando comum para iniciar o processo de treinamento em várias bibliotecas de ML é:",
+            "answerOptions": [
+              {
+                "answerText": "model.travel",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.train",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.fit",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Introdução à regressão: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Qual dessas variáveis é uma variável numérica?",
+            "answerOptions": [
+              {
+                "answerText": "Altura",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Gênero",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Cor do Cabelo",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual dessas variáveis é uma variável categórica?",
+            "answerOptions": [
+              {
+                "answerText": "Frequência cardíaca",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Tipo sanguíneo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Peso",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual desses problemas é um problema baseado em análise de regressão?",
+            "answerOptions": [
+              {
+                "answerText": "Previsão das notas do exame final de um aluno",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Previsão do tipo sanguíneo de uma pessoa",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Prever se um e-mail é spam ou não",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Introdução à regressão: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Se a precisão do treinamento do seu modelo de Machine Learning for 95% e a precisão do teste for 30%, então que tipo de condição é chamada?",
+            "answerOptions": [
+              {
+                "answerText": "Sobre-ajuste (Overfitting)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Sub-ajuste (Underfitting)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Adaptação dupla",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O processo de identificação de recursos significativos de um conjunto de recursos é denominado:",
+            "answerOptions": [
+              {
+                "answerText": "Extração de recurso",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Redução de dimensionalidade do recurso",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Seleção de recursos",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "O processo de divisão de um conjunto de dados em uma determinada proporção de conjunto de dados de treinamento e teste usando o método/função 'train_test_split()' do Scikit Learn é chamado:",
+            "answerOptions": [
+              {
+                "answerText": "Validação cruzada (Cross-Validation)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Validação Hold-Out (Hold-Out Validation)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Deixe um de fora Validação (Leave one out Validation)",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Prepare e visualize dados para regressão: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Qual desses módulos Python é usado para traçar a visualização dos dados?",
+            "answerOptions": [
+              {
+                "answerText": "Numpy",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Scikit-learn",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Matplotlib",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Se você quiser entender a distribuição ou outras características dos pontos de dados em um conjunto, faça:",
+            "answerOptions": [
+              {
+                "answerText": "Visualização de dados",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Pré-processamento de dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Divisão de teste de trem",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual deles faz parte da etapa de Visualização de Dados em um projeto de Aprendizado de Máquina?",
+            "answerOptions": [
+              {
+                "answerText": "Incorporando um determinado algoritmo de Machine Learning",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Criação de uma representação pictórica de dados usando diferentes métodos de plotagem",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Normalizando os valores de um conjunto de dados",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Prepare e visualize dados para regressão: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Qual desses trechos de código está correto com base nesta lição, se você deseja verificar a presença de valores ausentes em seu conjunto de dados? Suponha que o conjunto de dados esteja armazenado em uma variável chamada 'dataset', que é um objeto Pandas DataFrame.",
+            "answerOptions": [
+              {
+                "answerText": "dataset.isnull().sum()",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "findMissing(dataset)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sum(null(dataset))",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual desses métodos de plotagem é útil quando você gostaria de entender a disseminação de diferentes grupos de pontos de dados de seu conjunto de dados?",
+            "answerOptions": [
+              {
+                "answerText": "Gráfico de dispersão (Scatter Plot)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Gráfico de linha (Line Plot)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Gráfico em barras (Bar Plot)",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "O que a visualização de dados NÃO pode dizer a você?",
+            "answerOptions": [
+              {
+                "answerText": "Relações entre pontos de dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "A fonte de onde o conjunto de dados é coletado",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Encontrar a presença de outliers no conjunto de dados",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Regressão Linear e Polinomial: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Matplotlib é uma ",
+            "answerOptions": [
+              {
+                "answerText": "biblioteca de desenho",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "biblioteca de visualização de dados",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "biblioteca de empréstimos",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A regressão linear usa o seguinte para representar graficamente as relações entre as variáveis",
+            "answerOptions": [
+              {
+                "answerText": "uma linha reta",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "um círculo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uma curva",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Um bom modelo de regressão linear tem um coeficiente de correlação ___ ",
+            "answerOptions": [
+              {
+                "answerText": "baixo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "alto",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "plano",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Regressão Linear e Polinomial: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Se seus dados forem não lineares, tente um tipo ___ de regressão",
+            "answerOptions": [
+              {
+                "answerText": "linear",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "esférico",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "polinomial",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Todos esses são tipos de métodos de regressão",
+            "answerOptions": [
+              {
+                "answerText": "Falsestep, Ridge, Lasso and Elasticnet",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Stepwise, Ridge, Lasso and Elasticnet",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Stepwise, Ridge, Lariat and Elasticnet",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Regressão de Mínimos Quadrados (Least-Squares Regression) significa que todos os pontos de dados ao redor da linha de regressão são:",
+            "answerOptions": [
+              {
+                "answerText": "elevados ao quadrado e depois subtraído",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "multiplicado",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "elevados ao quadrado e depois adicionado",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Regressão Logística: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Use a regressão logística para prever",
+            "answerOptions": [
+              {
+                "answerText": "se uma maçã está madura ou não",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "quantos ingressos podem ser vendidos em um mês",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "que cor o céu vai ser amanhã às 18h",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Tipos de regressão logística incluem",
+            "answerOptions": [
+              {
+                "answerText": "multinomial e cardinal",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "multinomial e ordinal",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "principal e ordinal",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Seus dados apresentam correlações fracas. O melhor tipo de regressão a ser usado é:",
+            "answerOptions": [
+              {
+                "answerText": "Logística",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Linear",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Cardeal",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Regressão Logística: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Seaborn é um tipo de",
+            "answerOptions": [
+              {
+                "answerText": "biblioteca de visualização de dados",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "biblioteca de mapeamento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "biblioteca matemática",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Uma matriz de confusão também é conhecida como:",
+            "answerOptions": [
+              {
+                "answerText": "matriz de erro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "matriz da verdade",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "matriz de precisão",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Um bom modelo terá:",
+            "answerOptions": [
+              {
+                "answerText": "um grande número de falsos positivos e verdadeiros negativos em sua matriz de confusão",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "um grande número de verdadeiros positivos e verdadeiros negativos em sua matriz de confusão",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "um grande número de verdadeiros positivos e falsos negativos em sua matriz de confusão",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Crie um aplicativo web: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "O que ONNX significa?",
+            "answerOptions": [
+              {
+                "answerText": "Sobre troca de rede neural (Over Neural Network Exchange)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Troca de rede neural aberta (Open Neural Network Exchange)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Saída de troca de rede neural (Output Neural Network Exchange)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Como o Flask é definido por seus criadores?",
+            "answerOptions": [
+              {
+                "answerText": "mini-framework",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "large-framework",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "micro-framework",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "O que o módulo Pickle do Python faz",
+            "answerOptions": [
+              {
+                "answerText": "Serializa um objeto Python",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Deserializa um objeto Python",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Serializa e desserializa um objeto Python",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Crie um aplicativo web: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Quais são as ferramentas que podemos usar para hospedar um modelo pré-treinado na web usando Python?",
+            "answerOptions": [
+              {
+                "answerText": "Flask",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "TensorFlow.js",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "onnx.js",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O que significa SaaS?",
+            "answerOptions": [
+              {
+                "answerText": "Sistema como serviço (System as a Service)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Software como serviço (Software as a Service)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Segurança como serviço (Security as a Service)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O que a biblioteca LabelEncoder do Scikit-learn faz?",
+            "answerOptions": [
+              {
+                "answerText": "Codifica os dados em ordem alfabética",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Codifica dados numericamente",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Codifica dados em série",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Classificação 1: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "A classificação é uma forma de aprendizagem supervisionada que tem muito em comum com",
+            "answerOptions": [
+              {
+                "answerText": "Série Temporal",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Técnicas de regressão",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Que pergunta a classificação pode ajudar a responder?",
+            "answerOptions": [
+              {
+                "answerText": "Este e-mail é spam ou não?",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Os porcos podem voar?",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Qual o significado da vida?",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é a primeira etapa para usar as técnicas de classificação?",
+            "answerOptions": [
+              {
+                "answerText": "criação de classes de um conjunto de dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "limpando e equilibrando seus dados",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "atribuir um ponto de dados a um grupo ou resultado",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Classificação 1: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "O que é uma questão multiclasse?",
+            "answerOptions": [
+              {
+                "answerText": "a tarefa de classificar pontos de dados em várias classes",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a tarefa de classificar os pontos de dados em uma das várias classes",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a tarefa de limpar pontos de dados de várias maneiras",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "É importante limpar dados recorrentes ou inúteis para ajudar seus classificadores a resolver seu problema.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é o melhor motivo para equilibrar seus dados?",
+            "answerOptions": [
+              {
+                "answerText": "Dados desequilibrados parecem ruins nas visualizações",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Balancear seus dados produz melhores resultados porque um modelo de ML não se inclina para uma classe",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Balancear seus dados oferece mais pontos de dados",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Classificação 2: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Dados equilibrados e limpos produzem os melhores resultados de classificação",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Como você escolhe o classificador certo?",
+            "answerOptions": [
+              {
+                "answerText": "Entenda quais classificadores funcionam melhor para quais cenários",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Adivinhação educada e checagem",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "A classificação é um tipo de",
+            "answerOptions": [
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Aprendizagem Supervisionada",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Linguagem de programação",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Classificação 2: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "O que é um 'solucionador'?",
+            "answerOptions": [
+              {
+                "answerText": "a pessoa que verifica seu trabalho",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "o algoritmo a ser usado no problema de otimização",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "uma técnica de machine learning",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual classificador usamos nesta lição?",
+            "answerOptions": [
+              {
+                "answerText": "Regressão Logística",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Árvores de decisão",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Multiclasse Um contra Todos (One-vs-All Multiclass)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Como saber se o algoritmo de classificação está funcionando conforme o esperado?",
+            "answerOptions": [
+              {
+                "answerText": "Ao verificar a precisão de suas previsões",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Comparando com outros algoritmos",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Ao olhar para os dados históricos para saber quão bom é este algoritmo na resolução de problemas semelhantes",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Classificação 3: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Um bom classificador inicial para tentar é:",
+            "answerOptions": [
+              {
+                "answerText": "SVC Linear (Linear SVC)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-Means",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SVC lógico (Logical SVC)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Controles de regularização:",
+            "answerOptions": [
+              {
+                "answerText": "a influência dos parâmetros",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a influência da velocidade de treinamento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a influência de outliers",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O classificador K-Neighbours pode ser usado para:",
+            "answerOptions": [
+              {
+                "answerText": "aprendizagem supervisionada",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "aprendizagem não supervisionada",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Classificação 3: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Classificadores de vetores de suporte podem ser usados para",
+            "answerOptions": [
+              {
+                "answerText": "classificação",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "regressão",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Random Forest é um tipo de classificador ___",
+            "answerOptions": [
+              {
+                "answerText": "de conjunto (Ensemble)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "dissimulado (Dissemble)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "de reunião (Assemble)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Adaboost é conhecido por:",
+            "answerOptions": [
+              {
+                "answerText": "focando nos pesos de itens classificados incorretamente",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "focando em outliers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "focando em dados incorretos",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Classificação 4: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Sistemas de recomendação podem ser usados para",
+            "answerOptions": [
+              {
+                "answerText": "Recomendando um bom restaurante",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Recomendando roupas para experimentar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Incorporar um modelo em um aplicativo da web o ajuda a ser capaz de funcionar off-line",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Onnx Runtime pode ser usado para",
+            "answerOptions": [
+              {
+                "answerText": "Execução de modelos em um aplicativo da web",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Modelos de treinamento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Ajuste de hiperparâmetros",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Classificação 4: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "O aplicativo Netron ajuda você a:",
+            "answerOptions": [
+              {
+                "answerText": "Visualizar os dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Visualizar a estrutura do seu modelo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Testar seu aplicativo web",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Converta seu modelo Scikit-learn para uso com Onnx usando:",
+            "answerOptions": [
+              {
+                "answerText": "sklearn-app",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-web",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-onnx",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Usar seu modelo em um aplicativo web é denominado:",
+            "answerOptions": [
+              {
+                "answerText": "inferência",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "interferência",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "seguro",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Introdução ao Clustering (Agrupamento): Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Um exemplo da vida real de clustering seria",
+            "answerOptions": [
+              {
+                "answerText": "Pondo a mesa de jantar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Separando a roupa",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Compras de supermercado",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "As técnicas de agrupamento podem ser usadas nessas indústrias",
+            "answerOptions": [
+              {
+                "answerText": "bancário",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "e-commerce",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Clustering é um tipo de:",
+            "answerOptions": [
+              {
+                "answerText": "aprendizagem supervisionada",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "aprendizagem não supervisionada",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "aprendizagem por reforço",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Introdução ao Clustering (Agrupamento): Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "A geometria euclidiana é organizada ao longo",
+            "answerOptions": [
+              {
+                "answerText": "plano",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "curva",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "esfera",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A densidade de seus dados de cluster está relacionada ao seu",
+            "answerOptions": [
+              {
+                "answerText": "barulho",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "barulho",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "validade",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O algoritmo de agrupamento mais conhecido é",
+            "answerOptions": [
+              {
+                "answerText": "k-means",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "k-middle",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "k-mart",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Agrupamento K-Means: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "K-Means é derivado de:",
+            "answerOptions": [
+              {
+                "answerText": "engenharia elétrica",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "processamento de sinal",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "lingüística computacional",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Uma boa pontuação de Silhouette significa:",
+            "answerOptions": [
+              {
+                "answerText": "os clusters são bem separados e bem definidos",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "existem poucos clusters",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "existem muitos clusters",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Variância é:",
+            "answerOptions": [
+              {
+                "answerText": "a média das diferenças quadradas da média",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "um problema para o agrupamento se ele se tornar muito alto",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Agrupamento K-Means: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Um diagrama de Voronoi mostra:",
+            "answerOptions": [
+              {
+                "answerText": "a variância de um cluster",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "a semente de um cluster e sua região",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a inércia de um cluster",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Inércia é",
+            "answerOptions": [
+              {
+                "answerText": "a medida da coerência interna dos clusters",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "uma medida de quanto os clusters se movem",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uma medida da qualidade do cluster",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Usando K-Means, você deve primeiro determinar o valor de 'k'",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "title": "Introdução à NLP: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "O que a PNL (NLP) representa nessas lições?",
+            "answerOptions": [
+              {
+                "answerText": "Processamento de linguagem neural (Neural Language Processing)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Processamento de linguagem natural (Natural Language Processing)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Processamento Linguístico Natural (Natural Linguistic Processing)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Eliza foi uma das primeiras bots que agia como computador",
+            "answerOptions": [
+              {
+                "answerText": "terapeuta",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "doutor",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "enfermeira",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O 'Teste de Turing' de Alan Turing tentou determinar se um computador estava",
+            "answerOptions": [
+              {
+                "answerText": "indistinguível de um humano",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "pensamento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "Introdução à NLP: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Joseph Weizenbaum inventou o bot",
+            "answerOptions": [
+              {
+                "answerText": "Elisha",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Eliza",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Eloise",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Um bot de conversação fornece resultados com base em",
+            "answerOptions": [
+              {
+                "answerText": "Escolhendo aleatoriamente escolhas predefinidas",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Analisando a entrada e usando inteligência de máquina",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Como você tornaria o bot mais eficaz?",
+            "answerOptions": [
+              {
+                "answerText": "Fazendo mais perguntas.",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Ao alimentá-lo com mais dados e treiná-lo de acordo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "O bot é burro, não pode aprender :(",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "title": "Tarefas de NLP: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Tokenização",
+            "answerOptions": [
+              {
+                "answerText": "Divide o texto por meio de pontuação",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Divide o texto em tokens separados (palavras)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Divide o texto em frases",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Embeddings",
+            "answerOptions": [
+              {
+                "answerText": "converte dados de texto numericamente para que as palavras possam agrupar",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "incorpora palavras em frases",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "incorpora frases em parágrafos",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Marcação de partes da fala",
+            "answerOptions": [
+              {
+                "answerText": "divide as sentenças por suas partes do discurso",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "pega palavras tokenizadas e as marca de acordo com sua classe gramatical",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "frases de diagramas",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "title": "Tarefas de NLP: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Construa um dicionário de com que frequência as palavras ocorrem novamente usando:",
+            "answerOptions": [
+              {
+                "answerText": "Dicionário de palavras e frases",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Frequências de palavras e frases",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Biblioteca de palavras e frases",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "N-grams referem-se a",
+            "answerOptions": [
+              {
+                "answerText": "Um texto pode ser dividido em sequências de palavras de um determinado comprimento",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Uma palavra pode ser dividida em sequências de caracteres de um determinado comprimento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Um texto pode ser dividido em parágrafos de comprimento definido",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Análise de sentimentos",
+            "answerOptions": [
+              {
+                "answerText": "analisa uma frase para positividade ou negatividade",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "analisa uma frase de sentimentalismo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "analisa uma frase para tristeza",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "title": "NLP e Tradução: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Tradução ingênua",
+            "answerOptions": [
+              {
+                "answerText": "traduz apenas palavras",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "traduz a estrutura da frase",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "traduz sentimento",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Um *corpus* de textos refere-se a",
+            "answerOptions": [
+              {
+                "answerText": "Um pequeno número de textos",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Um grande número de textos",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Um texto padrão",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Se um modelo de ML tiver traduções humanas suficientes para construir um modelo, ele pode",
+            "answerOptions": [
+              {
+                "answerText": "abreviar traduções",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "padronizar traduções",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "melhorar a precisão das traduções",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "title": "NLP e Tradução: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "A biblioteca de tradução subjacente do TextBlob é:",
+            "answerOptions": [
+              {
+                "answerText": "Google Tradutor",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Um modelo de ML personalizado",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Para usar `blob.translate`, você precisa:",
+            "answerOptions": [
+              {
+                "answerText": "estar conectado na internet",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "um dicionário",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "JavaScript",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Para determinar o sentimento, uma abordagem de ML seria:",
+            "answerOptions": [
+              {
+                "answerText": "aplicar técnicas de regressão para opiniões e pontuações geradas manualmente e procurar padrões",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "aplicar técnicas de PNL para opiniões e pontuações geradas manualmente e procurar padrões",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "aplicar técnicas de agrupamento para opiniões e pontuações geradas manualmente e procurar padrões",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "title": "NLP 4: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Que informações podemos obter de um texto escrito ou falado por um humano?",
+            "answerOptions": [
+              {
+                "answerText": "padrões e frequências",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sentimento e significado",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "O que é análise de sentimento?",
+            "answerOptions": [
+              {
+                "answerText": "um estudo para saber se uma herança de família tem valor sentimental",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "um método de identificar, extrair, quantificar e estudar sistematicamente estados afetivos e informações subjetivas",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "a capacidade de dizer se alguém está triste ou feliz",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Que pergunta poderia ser respondida usando um conjunto de dados de avaliações de hotéis, Python e análise de sentimento?",
+            "answerOptions": [
+              {
+                "answerText": "Quais são as palavras e frases usadas com mais frequência em resenhas?",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Qual resort tem a melhor piscina?",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Há estacionamento com manobrista neste hotel?",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "title": "NLP 4: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Qual é a essência do NLP?",
+            "answerOptions": [
+              {
+                "answerText": "categorizando a linguagem humana em feliz ou triste",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "interpretar o significado ou sentimento sem a necessidade de um ser humano para fazê-lo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "encontrar outliers no sentimento e examiná-los",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Quais são algumas coisas que você pode procurar ao limpar dados?",
+            "answerOptions": [
+              {
+                "answerText": "caracteres em outras línguas",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "linhas ou colunas em branco",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "É importante entender seus dados e seus pontos fracos antes de realizar operações neles.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "title": "NLP 5: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Por que é importante limpar os dados antes de analisá-los?",
+            "answerOptions": [
+              {
+                "answerText": "Algumas colunas podem ter dados ausentes ou incorretos",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Dados confusos podem levar a conclusões falsas sobre o conjunto de dados",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é um exemplo de estratégia para limpeza de dados?",
+            "answerOptions": [
+              {
+                "answerText": "removendo colunas/linhas que não são úteis para responder a uma pergunta específica",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "livrar-se de valores verificados que não se encaixam em sua hipótese",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "mover os valores discrepantes para uma tabela separada e executar os cálculos dessa tabela para ver se eles correspondem",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Pode ser útil categorizar os dados usando uma coluna Tag.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "title": "NLP 5: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Qual é o objetivo do conjunto de dados?",
+            "answerOptions": [
+              {
+                "answerText": "ver quantos comentários negativos e positivos existem para hotéis em todo o mundo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "adicionar opiniões e colunas que o ajudarão a escolher o melhor hotel",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "analisar por que as pessoas deixam comentários específicos",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O que são stop words?",
+            "answerOptions": [
+              {
+                "answerText": "palavras comuns em inglês que não mudam o sentimento de uma frase",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "palavras que você pode remover para acelerar a análise de sentimento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Para testar a análise de sentimento, certifique-se de que corresponde à pontuação do revisor para a mesma revisão.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "title": "Introdução à série temporal: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "A previsão de séries temporais é útil em",
+            "answerOptions": [
+              {
+                "answerText": "determinar custos futuros",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "prever preços futuros",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Uma série temporal é uma sequência tomada em:",
+            "answerOptions": [
+              {
+                "answerText": "pontos sucessivos igualmente espaçados no espaço",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "pontos sucessivos igualmente espaçados no tempo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "pontos sucessivos igualmente espaçados no espaço e no tempo",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A série temporal pode ser usada em:",
+            "answerOptions": [
+              {
+                "answerText": "previsão de terremoto",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "visão de computador",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "análise de cor",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "title": "Introdução à série temporal: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "As tendências das séries temporais são",
+            "answerOptions": [
+              {
+                "answerText": "Aumentos e diminuições mensuráveis ao longo do tempo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Quantificando diminuições ao longo do tempo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Lacunas entre aumentos e diminuições ao longo do tempo",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Outliers são",
+            "answerOptions": [
+              {
+                "answerText": "pontos próximos da variação de dados padrão",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "pontos distantes da variação de dados padrão",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "pontos dentro da variação de dados padrão",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A previsão de séries temporais é mais útil para",
+            "answerOptions": [
+              {
+                "answerText": "Econometria",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "História",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Bibliotecas",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "title": "Série Temporal ARIMA: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "ARIMA significa",
+            "answerOptions": [
+              {
+                "answerText": "AutoRegressive Integral Moving Average",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Action",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Average",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Estacionaridade se refere a",
+            "answerOptions": [
+              {
+                "answerText": "dados cujos atributos não mudam quando deslocados no tempo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "dados cuja distribuição não muda quando deslocados no tempo",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "dados cuja distribuição muda quando deslocada no tempo",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Diferenciação",
+            "answerOptions": [
+              {
+                "answerText": "estabiliza tendência e sazonalidade",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "exacerba tendência e sazonalidade",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "elimina tendência e sazonalidade",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "title": "Série Temporal ARIMA: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "ARIMA é usado para fazer um modelo se ajustar à forma especial de dados de série temporal",
+            "answerOptions": [
+              {
+                "answerText": "o mais plano possível",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "o mais próximo possível",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "por meio de gráficos de dispersão (scatterplots)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Use SARIMAX para",
+            "answerOptions": [
+              {
+                "answerText": "gerenciar modelos ARIMA sazonais",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "gerenciar modelos ARIMA especiais",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "gerenciar modelos estatísticos ARIMA",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "A validação 'Walk-Forward' envolve",
+            "answerOptions": [
+              {
+                "answerText": "reavaliar um modelo progressivamente à medida que é validado",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "retreinar um modelo progressivamente à medida que é validado",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "reconfigurar um modelo progressivamente à medida que é validado",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "title": "Reforço 1: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "O que é aprendizagem por reforço?",
+            "answerOptions": [
+              {
+                "answerText": "ensinar algo a alguém repetidas vezes até que eles entendam",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uma técnica de aprendizagem que decifra o comportamento ideal de um agente em algum ambiente, executando muitos experimentos",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "entender como realizar vários experimentos ao mesmo tempo",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O que é uma política?",
+            "answerOptions": [
+              {
+                "answerText": "uma função que retorna a ação em qualquer estado dado",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "um documento que informa se você pode ou não devolver um item",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uma função que é usada para um propósito aleatório",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Uma função de recompensa retorna uma pontuação para cada estado de um ambiente.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "title": "Reforço 1: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "O que é Q-Learning?",
+            "answerOptions": [
+              {
+                "answerText": "um mecanismo para registrar a 'bondade' de cada estado",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "um algoritmo onde a política é definida por um Q-Table",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todas opções acima",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Para quais valores uma Q-Table corresponde à política de passeio aleatório?",
+            "answerOptions": [
+              {
+                "answerText": "todos os valores iguais",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "-0.25",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "todos os valores diferentes",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Era melhor usar a exploração do que a exploração durante o processo de aprendizagem em nossa lição.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "title": "Reforço 2: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "Xadrez e Go são jogos com estados contínuos.",
+            "answerOptions": [
+              {
+                "answerText": "Verdadeiro",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Falso",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é o problema do CartPole?",
+            "answerOptions": [
+              {
+                "answerText": "um processo para eliminar outliers",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "um método para otimizar seu carrinho de compras",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uma versão simplificada de balanceamento",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Que ferramenta podemos usar para jogar diferentes cenários de estados potenciais em um jogo?",
+            "answerOptions": [
+              {
+                "answerText": "adivinhe e verifique",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ambientes de simulação",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "teste de transição de estado",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "title": "Reforço 2: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Onde definimos todas as ações possíveis em um ambiente?",
+            "answerOptions": [
+              {
+                "answerText": "métodos",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "espaço de ação",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "lista de ação",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Que par usamos como valor-chave do dicionário?",
+            "answerOptions": [
+              {
+                "answerText": "(state, action) como a chave, a entrada Q-Table como o valor",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "state como a chave, action como o valor",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "o valor da função qvalues como a chave, action  como o valor",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Quais são os hiperparâmetros que usamos durante o Q-Learning?",
+            "answerOptions": [
+              {
+                "answerText": "valor da q-table, recompensa atual, ação aleatória",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "taxa de aprendizagem, fator de desconto, fator de exploração/exploração",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "recompensas cumulativas, taxa de aprendizagem, fator de exploração",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 49,
+        "title": "Aplicativos do mundo real: Teste pré-aula",
+        "quiz": [
+          {
+            "questionText": "O que é um exemplo de um aplicativo de ML no setor financeiro?",
+            "answerOptions": [
+              {
+                "answerText": "Personalizar a jornada do cliente usando NLP",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Gestão de patrimônio usando regressão linear",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Gerenciamento de energia usando séries temporais",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual técnica de ML os hospitais podem usar para gerenciar a readmissão?",
+            "answerOptions": [
+              {
+                "answerText": "Clustering",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Série Temporal",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual é um exemplo de uso de séries temporais para gerenciamento de energia?",
+            "answerOptions": [
+              {
+                "answerText": "Animais com detecção de movimento",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Parquímetros inteligentes",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Rastreando incêndios florestais",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "title": "Aplicativos do mundo real: Teste pós-aula",
+        "quiz": [
+          {
+            "questionText": "Qual técnica de ML pode ser usada para detectar fraude de cartão de crédito?",
+            "answerOptions": [
+              {
+                "answerText": "Regressão",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Clustering",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual técnica de ML é exemplificada no manejo florestal?",
+            "answerOptions": [
+              {
+                "answerText": "Aprendizagem por Reforço",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Série Temporal",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "O que é um exemplo de um aplicativo de ML no setor de saúde?",
+            "answerOptions": [
+              {
+                "answerText": "Prevendo o comportamento do aluno por meio de regressão",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Gerenciando ensaios clínicos usando classificadores",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Sensor de movimento de animais usando classificadores",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
