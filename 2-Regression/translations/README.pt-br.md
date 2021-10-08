@@ -29,6 +29,6 @@ Neste grupo de lições, te prepararemos para começar tarefas de _machine learn
 
 "ML with regression" (ML com regressão) foi escrito com ♥️ por [Jen Looper](https://twitter.com/jenlooper)
 
-♥️ Contribuidores do quiz incluem: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) e [Ornella Altunyan](https://twitter.com/ornelladotcom)
+♥️ Contribuidores do questionário incluem: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) e [Ornella Altunyan](https://twitter.com/ornelladotcom)
 
 O _dataset_ (base de dados) de abóbora foi sugerido por [esse projeto no Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) e seus dados vieram dos [Specialty Crops Terminal Markets Standard Reports (Relatórios Padrão de Mercados Terminais para Cultivos Especiais)](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuído pelo Departamento de Agricultura dos Estados Unidos. Adicionamos alguns pontos sobre a cor por tipo de abóbora para normalizar a distribuição dos dados. Esses dados são abertos ao público.
