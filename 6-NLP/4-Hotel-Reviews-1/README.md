@@ -2,7 +2,7 @@
 
 In this section you will use the techniques in the previous lessons to do some exploratory data analysis of a large dataset. Once you have a good understanding of the usefulness of the various columns, you will learn: 
 
-- how to remove the not needed columns
+- how to remove the unnecessary columns
 - how to calculate some new data based on the existing columns
 - how to save the resulting dataset for use in the final challenge
 
