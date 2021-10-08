@@ -2809,6 +2809,120 @@
             ]
           }
         ]
+      },
+	  {
+        "id": 51,
+        "title": "Time Series SVR: Pre-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "SVM stands for",
+            "answerOptions": [
+              {
+                "answerText": "Statistical Vector Machine",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Support Vector Machine",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Statistical Vector Model",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these ML techniques is used to predict continuous values?",
+            "answerOptions": [
+              {
+                "answerText": "Clustering",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Classification",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Regression",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these models is popularly used for time series forecasting?",
+            "answerOptions": [
+              {
+                "answerText": "ARIMA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-Means Clustering",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Logistic Regression",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 52,
+        "title": "Time Series SVR: Post-Lecture Quiz",
+        "quiz": [
+          {
+            "questionText": "By which of these methods does an SVR learn?",
+            "answerOptions": [
+              {
+                "answerText": "Finding the best fit hyperplane that has the maximum number of data points",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Learning the probability distribution of the dataset",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Finding clusters in the dataset",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "What is the purpose of a kernel in SVMs?",
+            "answerOptions": [
+              {
+                "answerText": "To measure the accuracy of the model predictions",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "To transform the dataset to a higher dimension space",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "To standardize the values of the dataset",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these models consider the non-linearity in the dataset?",
+            "answerOptions": [
+              {
+                "answerText": "Simple Linear Regression",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ARIMA",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SVR using RBF kernel",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

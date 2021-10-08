@@ -2,6 +2,7 @@
 
 In the previous lesson, you learned how to use ARIMA model to make time series predictions. Now you'll be looking at Support Vector Regressor model which is a regressor model used to predict continuous data.
 
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/51/)
 
 ## Introduction
 
@@ -12,7 +13,7 @@ In this lesson, you will discover a specific way to build models with [**SVM**: 
 Before understanding the importance of SVR in time series prediction, here are some of the important concepts that you need to know:
 
 - **Regression:** Supervised learning technique to predict continuous values from a given set of inputs. The idea is to fit a curve (or line) in the feature space that has the maximum number of data points. [Click here](https://en.wikipedia.org/wiki/Regression_analysis) for more information.
-- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a Kernel function is generally used to transform the dataset, so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces. [Click here](https://en.wikipedia.org/wiki/Support-vector_machine) for more information.
+- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a Kernel function is generally used to transform the dataset to a space of higher number of dimensions, so that they can be easily separable. [Click here](https://en.wikipedia.org/wiki/Support-vector_machine) for more information on SVMs.
 - **Support Vector Regressor (SVR):** A type of SVM, to find the best fit line (which in the case of SVM is a hyperplane) that has the maximum number of data points.
 
 ### Why SVR? [^1]
@@ -360,6 +361,8 @@ MAPE:  2.0572089029888656 %
 - Try to tweak the hyperparameters (gamma, C, epsilon) while creating the model and evaluate on the data to see which set of hyperparameters give the best results on the testing data. To know more about these hyperparameters, you can refer to the  document [here](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Try to use different kernel functions for the model and analyze their performances on the dataset. A helpful document can be found [here](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 - Try using different values for `timesteps` for the model to look back to make prediction.
+
+## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/52/)
 
 ## Review & Self Study
 
