@@ -7,23 +7,25 @@ In the previous lesson, you learned how to use ARIMA model to make time series p
 
 In this lesson, you will discover a specific way to build models with [**SVM**: **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) for regression, or **SVR: Support Vector Regressor**. 
 
-### SVR in the context of time series[^2]
+### SVR in the context of time series [^1]
 
 Before understanding the importance of SVR in time series prediction, here are some of the important concepts that you need to know:
 
-- **Regression:** Supervised learning technique to predict continuous values from a given set of inputs. The idea is to fit a curve (or line) in the feature space that has the maximum number of data points.
-- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a Kernel function is generally used to transform the dataset, so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces.
+- **Regression:** Supervised learning technique to predict continuous values from a given set of inputs. The idea is to fit a curve (or line) in the feature space that has the maximum number of data points. [Click here](https://en.wikipedia.org/wiki/Regression_analysis) for more information.
+- **Support Vector Machine (SVM):** A type of supervised machine learning model used for classification, regression and outliers detection. The model is a hyperplane in the feature space, which in case of classification acts as a boundary, and in case of regression acts as the best-fit line. In SVM, a Kernel function is generally used to transform the dataset, so that a non-linear decision surface is able to transform to a linear equation in a higher number of dimension spaces. [Click here](https://en.wikipedia.org/wiki/Support-vector_machine) for more information.
 - **Support Vector Regressor (SVR):** A type of SVM, to find the best fit line (which in the case of SVM is a hyperplane) that has the maximum number of data points.
 
-### Why SVR?[^2]
+### Why SVR? [^1]
 
 In the last lesson you learned about ARIMA, which is a very successful statistical linear method to forecast time series data. However, in many cases, time series data have *non-linearity*, which cannot be mapped by linear models. In such cases, the ability of SVM to consider non-linearity in the data for regression tasks makes SVR successful in time series forecasting.
 
 ## Exercise - build an SVR model
 
-The first few steps for data preparation are the same as that of the previous lesson. Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
+The first few steps for data preparation are the same as that of the previous lesson on [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
 
-1. Run the notebook and import the necessary libraries: [^1]
+Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.[^2]
+
+1. Run the notebook and import the necessary libraries:  [^2]
 
    ```python
    import os
@@ -39,13 +41,13 @@ The first few steps for data preparation are the same as that of the previous le
    from common.utils import load_data, mape
    ```
 
-4. Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look: [^1]
+4. Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look:  [^2]
 
    ```python
    energy = load_data('./data')[['load']]
    ```
    
-5. Plot all the available energy data from January 2012 to December 2014:[^1]
+5. Plot all the available energy data from January 2012 to December 2014: [^2]
 
    ```python
    energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -60,16 +62,16 @@ The first few steps for data preparation are the same as that of the previous le
 
 ### Create training and testing datasets
 
-Now your data is loaded, so you can separate it into train and test sets. Then you'll reshape the data to create a time-step based dataset which will be needed for the SVR. You'll train your model on the train set. After the model has finished training, you'll evaluate its accuracy on the training set, testing set and then the full dataset to see the overall performance. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods (a situation known as *Overfitting*).[^1]
+Now your data is loaded, so you can separate it into train and test sets. Then you'll reshape the data to create a time-step based dataset which will be needed for the SVR. You'll train your model on the train set. After the model has finished training, you'll evaluate its accuracy on the training set, testing set and then the full dataset to see the overall performance. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods [^2] (a situation known as *Overfitting*).
 
-1. Allocate a two-month period from September 1 to October 31, 2014 to the training set. The test set will include the two-month period of November 1 to December 31, 2014:[^1]
+1. Allocate a two-month period from September 1 to October 31, 2014 to the training set. The test set will include the two-month period of November 1 to December 31, 2014: [^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
    test_start_dt = '2014-12-30 00:00:00'
    ```
 
-2. Visualize the differences:[^1]
+2. Visualize the differences: [^2]
 
    ```python
    energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -88,7 +90,7 @@ Now your data is loaded, so you can separate it into train and test sets. Then y
 
 Now, you need to prepare the data for training by performing filtering and scaling of your data. Filter your dataset to only include the time periods and columns you need, and scaling to ensure the data is projected in the interval 0,1.
 
-1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:[^1]
+1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date: [^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -103,20 +105,20 @@ Now, you need to prepare the data for training by performing filtering and scali
    Test data shape:  (48, 1)
    ```
    
-2. Scale the training data to be in the range (0, 1):[^1]
+2. Scale the training data to be in the range (0, 1): [^2]
 
    ```python
    scaler = MinMaxScaler()
    train['load'] = scaler.fit_transform(train)
    ```
    
-4. Now, you scale the testing data:[^1]
+4. Now, you scale the testing data: [^2]
 
    ```python
    test['load'] = scaler.transform(test)
    ```
 
-### Create data with time-steps[^2]
+### Create data with time-steps [^1]
 
 For the SVR, you transform the input data to be of the form `[batch, timesteps]`. So, you reshape the existing `train_data` and `test_data` such that there is a new dimension which refers to the timesteps. 
 
@@ -169,7 +171,7 @@ print(x_test.shape, y_test.shape)
 (44, 4) (44, 1)
 ```
 
-### Implement SVR[^2]
+### Implement SVR [^1]
 
 Now, It's time to implement SVR:
 
@@ -183,7 +185,7 @@ Now we create an SVR model. Here we use the [RBF kernel](https://scikit-learn.or
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
 ```
 
-Fit the model on training data
+#### Fit the model on training data [^1]
 
 ```python
 model.fit(x_train, y_train[:,0])
@@ -194,7 +196,7 @@ SVR(C=10, cache_size=200, coef0=0.0, degree=3, epsilon=0.05, gamma=0.5,
     kernel='rbf', max_iter=-1, shrinking=True, tol=0.001, verbose=False)
 ```
 
-Make model predictions
+#### Make model predictions [^1]
 
 ```python
 y_train_pred = model.predict(x_train).reshape(-1,1)
@@ -209,7 +211,7 @@ print(y_train_pred.shape, y_test_pred.shape)
 
 You've built your SVR! Now we need to evaluate it.
 
-### Evaluate your model[^2]
+### Evaluate your model [^1]
 
 For evaluation, first we will scale back the data to our original scale. Then, to check the performance, we will plot the original and predicted time series plot, and also print the MAPE result.
 
@@ -231,7 +233,7 @@ y_test = scaler.inverse_transform(y_test)
 print(len(y_train), len(y_test))
 ```
 
-#### Check model performance on training and testing data[^2]
+#### Check model performance on training and testing data [^1]
 
 We extract the timestamps from the dataset to show in the x-axis of our plot. Note that we are using the first ```timesteps-1``` values as out input for the first output, so the timestamps for the output will start after that.
 
@@ -295,7 +297,7 @@ MAPE for testing data:  1.2623790187854018 %
 
 🏆 You have a very good result on the testing dataset!
 
-### Check model performance on full dataset[^2]
+### Check model performance on full dataset [^1]
 
 ```python
 # Extracting load values as numpy array
@@ -358,6 +360,10 @@ MAPE:  2.0572089029888656 %
 - Try to tweak the hyperparameters (gamma, C, epsilon) while creating the model and evaluate on the data to see which set of hyperparameters give the best results on the testing data. To know more about these hyperparameters, you can refer to the  document [here](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Try to use different kernel functions for the model and analyze their performances on the dataset. A helpful document can be found [here](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 
-[^1] Text, code and output taken from [Arima](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
+## Assignment
 
-[^2] Text, code and output contributed by [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
+[A new SVR model](assignment.md)
+
+
+[^1]: The text, code and output in this section was contributed by [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
+[^2]: The text, code and output in this section was taken from [Arima](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
