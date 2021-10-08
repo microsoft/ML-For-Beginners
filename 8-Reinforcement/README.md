@@ -37,7 +37,7 @@ Suppose you want to teach a computer to play a game, such as chess, or [Super Ma
 
 Instead of looking for existing game data, **Reinforcement Learning** (RL) is based on the idea of *making the computer play* many times and observing the result. Thus, to apply Reinforcement Learning, we need two things:
 
-- **An environment** and **a simulator** which allows us to play a game many times. This simulator would define all the game rules as well as possible states and actions.
+- **An environment** and **a simulator** which allow us to play a game many times. This simulator would define all the game rules as well as possible states and actions.
 
 - **A reward function**, which would tell us how well we did during each move or game.
 
