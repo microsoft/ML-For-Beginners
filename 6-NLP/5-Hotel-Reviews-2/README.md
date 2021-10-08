@@ -1,6 +1,6 @@
 # Sentiment analysis with hotel reviews
 
-Now that you have a explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels.
+Now that you have explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels.
 ## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/39/)
 
 ### Filtering & Sentiment Analysis Operations
@@ -101,7 +101,7 @@ Clean the data just a bit more. Add columns that will be useful later, change th
 
 ### Tag columns
 
-The `Tag` columns is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
 
 Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` , you can begin to ask if it's possible to greatly reduce the processing you have to do. Luckily, it is - but first you need to follow a few steps to ascertain the tags of interest.
 
@@ -176,7 +176,7 @@ Removing these tags is step 1, it reduces the total number of tags to be conside
 | Stayed 9 nights  | 1293   |
 | ...              | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean the roughly the same thing and not relevant to you, so remove them from consideration.
+There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
 
 | Type of room                  | Count |
 | ----------------------------- | ----- |
