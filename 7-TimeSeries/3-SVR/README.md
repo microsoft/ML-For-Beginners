@@ -365,5 +365,9 @@ MAPE:  2.0572089029888656 %
 [A new SVR model](assignment.md)
 
 
+
+## Credits
+
+
 [^1]: The text, code and output in this section was contributed by [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
-[^2]: The text, code and output in this section was taken from [Arima](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
+[^2]: The text, code and output in this section was taken from [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
