@@ -173,10 +173,10 @@ print(x_test.shape, y_test.shape)
 
 ### Implement SVR [^1]
 
-Now, It's time to implement SVR:
+Now, it's time to implement SVR. To read more about this implementation, you can refer to [this documentation](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). For our implementation, we follow these steps:
 
   1. Define the model by calling `SVR()` and passing in the model hyperparameters: kernel, gamma, c and epsilon
-  2. Prepare the model for the training data by calling the `fit()` function.
+  2. Prepare the model for the training data by calling the `fit()` function
   3. Make predictions calling the `predict()` function
 
 Now we create an SVR model. Here we use the [RBF kernel](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), and set the hyperparameters gamma, C and epsilon as 0.5, 10 and 0.05 respectively.
@@ -360,6 +360,10 @@ MAPE:  2.0572089029888656 %
 - Try to tweak the hyperparameters (gamma, C, epsilon) while creating the model and evaluate on the data to see which set of hyperparameters give the best results on the testing data. To know more about these hyperparameters, you can refer to the  document [here](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Try to use different kernel functions for the model and analyze their performances on the dataset. A helpful document can be found [here](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 - Try using different values for `timesteps` for the model to look back to make prediction.
+
+## Review & Self Study
+
+This lesson was to introduce the application of SVR for Time Series Forecasting. To read more about SVR, you can refer to [this blog](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). This [documentation on scikit-learn](https://scikit-learn.org/stable/modules/svm.html) provides a more comprehensive explanation about SVMs in general, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) and also other implementation details such as the different [kernel functions](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) that can be used, and their parameters.
 
 ## Assignment
 
