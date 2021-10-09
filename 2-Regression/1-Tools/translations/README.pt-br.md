@@ -4,9 +4,9 @@
 
 > _Sketchnote_ por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9?loc=br)
 
-> ### [Esta lição está disponível em R!](./solution/R/lesson_1-R.ipynb)
+> ### [Esta lição está disponível em R!](../solution/R/lesson_1-R.ipynb)
 
 ## Introdução
 
@@ -21,9 +21,9 @@ Nesta lição, você aprenderá como:
 
 ## Instalação e configuração
 
-[![Configurar Python no Visual Studio Code (em inglês)](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Configurar Python no Visual Studio Code")
+[![Configurar Python no Visual Studio Code (vídeo em inglês)](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Configurar Python no Visual Studio Code")
 
-> 🎥 Clique na imagem acima para assistir o vídeo: usando Python no VS Code (em inglês).
+> 🎥 Clique na imagem acima para assistir o vídeo: usando Python no VS Code (vídeo em inglês).
 
 1. **Instale Python**. Verifique se você já instalou [Python](https://www.python.org/downloads/) em seu computador. Você usará Python para muitas tarefas de _data science_ e _machine learning_. A maioria dos sistemas de computador já possui Python instalado. Existem [Pacotes de Código em Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) disponíveis para ajudar na instalação.
 
@@ -200,7 +200,7 @@ Parabéns, usando um conjunto de dados, você construiu seu primeiro modelo de r
 ## 🚀Desafio
 
 Plote uma variável diferente desse mesmo conjunto de dados. Dica: edite a linha: `X = X[:, np.newaxis, 2]`. Dado o conjunto de dados alvo, o que pode ser descoberto sobre o progresso da diabetes como uma doença?
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
+## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10?loc=br)
 
 ## Revisão e Auto Aprendizagem
 
