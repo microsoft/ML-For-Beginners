@@ -117,7 +117,7 @@ Find a pdf of the curriculum with links [here](https://microsoft.github.io/ML-Fo
 
 Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add input [here](https://github.com/microsoft/ML-For-Beginners/issues/71).
 
-## Other Curricula
+## Other Curriculum
 
 Our team produces other curricula! Check out:
 
