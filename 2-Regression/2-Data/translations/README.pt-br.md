@@ -4,7 +4,7 @@
 
 Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11?loc=br)
 
 > ### [Esta liçao está disponível em R!](../solution/R/lesson_2-R.ipynb)
 
@@ -142,7 +142,7 @@ Você pode analisar o preço por unidade com base na medição do bushel. Se voc
 
 ## Estratégias de visualização
 
-Parte da função do _data scientist_ é demonstrar a qualidade e a natureza dos dados com os quais está trabalhando. Para fazer isso, eles geralmente criam visualizações, ou plotagens, gráficos e tabelas, mostrando diferentes aspectos dos dados. Dessa forma, eles são capazes de mostrar visualmente relacionamentos e lacunas que, de outra forma, seriam difíceis de descobrir.
+Parte da função do _data scientist_ é demonstrar a qualidade e a natureza dos dados com os quais está trabalhando. Para fazer isso, eles geralmente criam visualizações, ou plotagens, gráficos e tabelas, mostrando diferentes aspectos dos dados. Dessa forma, eles são capazes de mostrar visualmente relações e lacunas que, de outra forma, seriam difíceis de descobrir.
 
 As visualizações também podem ajudar a determinar a técnica de _machine learning_ mais adequada para os dados. Um gráfico de dispersão que parece seguir uma linha, por exemplo, indica que os dados são um bom candidato para um exercício de regressão linear.
 
@@ -197,12 +197,12 @@ Para fazer com que os gráficos exibam dados úteis, você precisa agrupar os da
 
 Explore os diferentes tipos de visualização que o Matplotlib oferece. Quais tipos são mais adequados para problemas de regressão?
 
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12?loc=br)
 
 ## Revisão e Auto Aprendizagem
 
 Dê uma olhada nas maneiras de visualizar dados. Faça uma lista das várias bibliotecas disponíveis e observe quais são as melhores para determinados tipos de tarefas, por exemplo, visualizações 2D vs. visualizações 3D. O que você descobriu?
 
-## Assignment
+## Tarefa
 
-[Explorando visualização](assignment.pt-br.md)
+[Explorando visualização](assignment.pt-br.md).

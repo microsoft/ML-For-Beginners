@@ -148,7 +148,7 @@ Em uma célula de código, carregue o conjunto de dados sobre diabetes chamando 
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Pense sobre o relacionamento entre os dados e o alvo da regressão. Regressão linear sugere relações entre a característica X e a característica alvo y. Você pode achar o [alvo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) para o conjunto de dados sobre diabetes na documentação? Conhecendo o alvo, o que este conjunto de dados demonstra?
+    ✅ Pense sobre a relação entre os dados e o alvo da regressão. Regressão linear sugere a relação entre a característica X e a característica alvo y. Você pode achar o [alvo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) para o conjunto de dados sobre diabetes na documentação? Conhecendo o alvo, o que este conjunto de dados demonstra?
 
 2. Em seguida, selecione uma parte do conjunto de dados para plotar em um gráfico, colocando-o em uma nova matriz usando a função `newaxis` da numpy. Iremos usar regressão linear para gerar uma linha entre os valores do conjunto de dados, de acordo com o padrão que ela é definida.
 
@@ -200,7 +200,7 @@ Parabéns, usando um conjunto de dados, você construiu seu primeiro modelo de r
 ## 🚀Desafio
 
 Plote uma variável diferente desse mesmo conjunto de dados. Dica: edite a linha: `X = X[:, np.newaxis, 2]`. Dado o conjunto de dados alvo, o que pode ser descoberto sobre o progresso da diabetes como uma doença?
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10?loc=br)
 
 ## Revisão e Auto Aprendizagem
 
@@ -210,4 +210,4 @@ Leia mais sobre o conceito de regressão e pense sobre os tipos de questões que
 
 ## Tarefa
 
-[Um conjunto de dados diferente](assignment.pt-br.md)
+[Um conjunto de dados diferente](assignment.pt-br.md).
