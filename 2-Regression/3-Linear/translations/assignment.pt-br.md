@@ -1,4 +1,4 @@
-# Crie um modelo de regressão
+# Construa um modelo de regressão
 
 ## Instruções
 

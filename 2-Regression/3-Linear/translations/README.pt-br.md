@@ -10,15 +10,15 @@
 
 ### Introdução 
 
-Até agora, você viu o que é regressão com dados de amostra coletados do conjunto de dados de preços de abóboras, usaremos esse conjunto de dados ao longo desta lição. Você também o visualizou o conjunto de dados usando Matplotlib.
+Até agora, você viu o que é regressão com dados de amostra coletados do conjunto de dados de preços de abóboras, usaremos esse conjunto de dados ao longo desta lição. Você também o visualizou usando Matplotlib.
 
 Você está pronto para mergulhar mais fundo na regressão para ML. Nesta lição, você aprenderá mais sobre dois tipos de regressão: _regressão linear básica_ e _regressão polinomial_, junto com um pouco da matemática que fundamenta essas duas técnicas.
 
-> Ao longo deste currículo, assumimos um conhecimento mínimo de matemática e procuramos torná-lo acessível para alunos vindos de outras áreas, portanto, preste atenção às notas, 🧮 legendas, diagramas e outras ferramentas de aprendizagem para ajudar na compreensão.
+> Ao longo deste curso, assumimos um conhecimento mínimo de matemática e procuramos torná-lo acessível para alunos vindos de outras áreas, portanto, preste atenção às notas, 🧮 legendas, diagramas e outras ferramentas de aprendizagem para ajudar na compreensão.
 
 ### Pré-requisito
 
-Você já deve estar familiarizado com a estrutura do conjunto de dados de abóboras que estávamos examinando. Você pode encontrá-lo já tratado no arquivo _notebook.ipynb_ desta lição. No arquivo, o preço da abóbora é exibido por bushel (aquela unidade de medida 😅) em um novo _dataframe_. Certifique-se de que você pode executar os _notebooks_ no Visual Studio Code.
+Você já deve sabe mais ou menos como é estrutura do conjunto de dados de abóboras que estávamos examinando. Você pode encontrá-lo já tratado no arquivo _notebook.ipynb_ desta lição. No arquivo, o preço da abóbora é exibido por bushel (aquela unidade de medida 😅) em um novo _dataframe_. Certifique-se de que você pode executar os _notebooks_ no Visual Studio Code.
 
 ### Preparação
 
@@ -53,7 +53,7 @@ Fazemos isso porque queremos modelar uma linha que tenha a menor distância cumu
 > Y = a + bX
 > ```
 >
-> `X` é a 'variável explanatória'. `Y` é a 'variável dependente'. A inclinação da linha `b` e `a` é a interseção de y, que se refere ao valor de `Y` quando `X = 0`. 
+> `X` é a 'variável explanatória'. `Y` é a 'variável dependente'. `b` é a inclinação da linha e `a` é a interseção de y, que se refere ao valor de `Y` quando `X = 0`. 
 >
 >![Cálculo da inclinação](../images/slope.png)
 >
@@ -82,7 +82,7 @@ Um bom modelo de regressão linear será aquele que tiver um coeficiente de corr
 
 Usando a matemática por trás deste exercício, crie um modelo de regressão para prever qual melhor preço de caixa de abóbora. Um comprador de abóbora vai querer saber desse tipo de informação para otimizar suas compras.
 
-Como você usará o Scikit-learn, não há razão para fazer isso manualmente (mas você pode!). No bloco principal de processamento de dados do seu _notebook_, adicione a biblioteca do Scikit-learn para converter automaticamente todos os dados da string em números:
+Como você usará o Scikit-learn, não há razão para fazer isso manualmente (mas você pode!). No bloco principal do seu _notebook_, adicione a biblioteca do Scikit-learn para converter automaticamente todos os dados string em números:
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -90,10 +90,10 @@ from sklearn.preprocessing import LabelEncoder
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-Se você olhar para o _dataframe_ `new_pumpkins` agora, verá que todas as strings são numéricas. Isso torna a leitura mais difícil, mas muito mais simples para o Scikit-learn! 
+Se você olhar para o _dataframe_ `new_pumpkins` agora, verá que todas as strings são números. Isso torna a leitura mais difícil, mas muito mais simples para o Scikit-learn! 
 Você pode tomar decisões robustas (não apenas com base em um gráfico de dispersão) sobre os melhores dados para a regressão.
 
-Tente encontrar uma boa correlação entre dois pontos de seus dados para construir um bom modelo preditivo. Vemos que há apenas uma correlação fraca entre City  e Price:
+Tente encontrar uma boa correlação entre dois pontos de seus dados para construir um bom modelo preditivo. Vemos que há uma correlação baixa entre City  e Price:
 
 ```python
 print(new_pumpkins['City'].corr(new_pumpkins['Price']))
@@ -111,7 +111,7 @@ Uma boa pergunta sobre esses dados seria: 'Que preço posso esperar de uma deter
 
 Vamos construir o modelo de regressão.
 
-## Constrindo um modelo linear
+## Construindo um modelo linear
 
 Antes de construir seu modelo, vamos tratar os dados mais uma vez. Elimine quaisquer dados nulos e verifique os dados mais uma vez.
 
@@ -204,7 +204,7 @@ lin_pumpkins
 O número faz sentido se a lógica da linha de regressão estiver correta.
 
 🎃 Parabéns, você acabou de criar um modelo que pode ajudar a prever o preço de uma caixa (ou outro tipo de medida) de abóboras. 
-Já vai ter decoração de halloween até o do ano que vem ou já pode aprimorar seu histórico de receitas usando abóboras!.
+Já vai ter decoração de halloween até o do ano que vem ou já pode aprimorar seu histórico de receitas que levam abóbora.
 
 Lembre-se que sempre tem como melhorar o seu modelo!
 
@@ -214,13 +214,13 @@ Outro tipo de regressão linear é a regressão polinomial. Embora às vezes haj
 
 ✅ Aqui estão [mais exemplos](https://online.stat.psu.edu/stat501/lesson/9/9.8) de dados que podem usar regressão polinomial.
 
-Dê uma outra olhada na relação entre Variety (Variedade) e Price no gráfico anterior. Este gráfico de dispersão parece que deve ser analisado por uma linha reta? Talvez não. Nesse caso, você pode tentar a regressão polinomial.
+Dê uma outra olhada na relação entre Variety e Price no gráfico anterior. Este gráfico de dispersão parece que deve ser analisado por uma linha reta? Talvez não. Nesse caso, você pode tentar a regressão polinomial.
 
 ✅ Polinômios são expressões matemáticas que podem consistir em uma ou mais variáveis e coeficientes.
 
 A regressão polinomial cria uma linha curva para ajustar melhor os dados não lineares.
 
-1. Vamos recriar um _dataframe_ preenchido com um segmento dos dados originais da abóbora:
+1. Vamos recriar um _dataframe_ preenchido com um segmento dos dados originais:
 
    ```python
    new_columns = ['Variety', 'Package', 'City', 'Month', 'Price']
@@ -229,7 +229,7 @@ A regressão polinomial cria uma linha curva para ajustar melhor os dados não l
    poly_pumpkins
    ```
 
-Uma boa forma de visualizar as correlações entre os dados em _dataframes_ é exibi-los em um gráfico 'coolwarm':
+Uma boa forma de visualizar as correlações entre os dados em _dataframes_ é exibi-los em um gráfico '_coolwarm_':
 
 2. Use o método `Background_gradient()` com `coolwarm` como parâmetro:
 
@@ -238,6 +238,7 @@ Uma boa forma de visualizar as correlações entre os dados em _dataframes_ é e
    corr.style.background_gradient(cmap='coolwarm')
    ```
    Este código cria um mapa de calor:
+
    ![Um mapa de calor mostrando a correlação dos dados](../images/heatmap.png)
 
 Este gráfico mostra a boa correlação entre Package e Price. Portanto, você pode criar um modelo melhor que o anterior.
@@ -321,7 +322,7 @@ Chame `predict()` para pedir uma previsão:
    ```
 
 Agora faz sentido!
-E se esse modelo for melhor que o anterior usando o mesmo conjunto de dados, você já pode fazer orçamentos para abóboras mais caras! 😂.
+E se esse modelo for melhor que o anterior usando o mesmo conjunto de dados, você já pode fazer orçamentos para abóboras mais caras! 😂
 
 🏆 Muito bem! Você criou dois modelos de regressão em uma lição. Na lição final, você aprenderá sobre regressão logística para determinar categorias 🤩.
 

@@ -13,16 +13,16 @@ As lições desta seção abordam tipos de regressão no contexto de _machine le
 
 Nesta série de lições, você descobrirá a diferença entre regressão linear e logística, e quando deve usar uma ou outra.
 
-Neste grupo de lições, te prepararemos para começar tarefas de _machine learning_, incluindo configuração do Visual Studio Code para gerenciar _notebooks_, o ambiente comum para _data scientists_ (cientistas de dados). Você descobrirá a Scikit-learn, uma biblioteca para _machine learning_, e construirá seus primeiros modelos, focando em modelos de regressão neste capítulo.
+Neste grupo de lições, te prepararemos para começar tarefas de _machine learning_, incluindo configuração do Visual Studio Code para gerenciar _notebooks_, o ambiente comum para _data scientists_. Você descobrirá a Scikit-learn, uma biblioteca para _machine learning_, e construirá seus primeiros modelos, focando em modelos de regressão neste capítulo.
 
-> Existem ferramentas _low-code_ que podem ajudar a aprender como trabalhar com modelos de regressão. Use a [Azure ML para esta tarefa](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Existem ferramentas _low-code_ que podem ajudar a aprender como trabalhar com modelos de regressão. Use a [Azure ML para esta tarefa](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa).
 
 ### Lições
 
-1. [Ferramentas necessárias](1-Tools/README.pt-br.md)
-2. [Gerenciamento de dados](2-Data/README.pt-br.md)
-3. [Regressão linear e polinomial](3-Linear/README.pt-br.md)
-4. [Regressão logística](4-Logistic/README.pt-br.md)
+1. [Ferramentas necessárias](../1-Tools/README.pt-br.md)
+2. [Gerenciamento de dados](../2-Data/README.pt-br.md)
+3. [Regressão linear e polinomial](../3-Linear/README.pt-br.md)
+4. [Regressão logística](../4-Logistic/README.pt-br.md)
 
 ---
 ### Créditos
@@ -31,4 +31,4 @@ Neste grupo de lições, te prepararemos para começar tarefas de _machine learn
 
 ♥️ Contribuidores do questionário incluem: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) e [Ornella Altunyan](https://twitter.com/ornelladotcom)
 
-O _dataset_ (base de dados) de abóbora foi sugerido por [esse projeto no Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) e seus dados vieram dos [Specialty Crops Terminal Markets Standard Reports (Relatórios Padrão de Mercados Terminais para Cultivos Especiais)](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuído pelo Departamento de Agricultura dos Estados Unidos. Adicionamos alguns pontos sobre a cor por tipo de abóbora para normalizar a distribuição dos dados. Esses dados são abertos ao público.
+O _dataset_ (base de dados) de abóbora foi sugerido por [esse projeto no Kaggle](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) e seus dados vieram dos [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) (Relatórios Padrão de Mercados Terminais para Cultivos Especiais) distribuído pelo Departamento de Agricultura dos Estados Unidos. Adicionamos alguns pontos sobre a cor por tipo de abóbora para normalizar a distribuição dos dados. Esses dados são abertos ao público.

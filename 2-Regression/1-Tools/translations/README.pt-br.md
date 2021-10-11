@@ -25,11 +25,11 @@ Nesta lição, você aprenderá como:
 
 > 🎥 Clique na imagem acima para assistir o vídeo: usando Python no VS Code (vídeo em inglês).
 
-1. **Instale Python**. Verifique se você já instalou [Python](https://www.python.org/downloads/) em seu computador. Você usará Python para muitas tarefas de _data science_ e _machine learning_. A maioria dos sistemas de computador já possui Python instalado. Existem [Pacotes de Código em Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) disponíveis para ajudar na instalação.
+1. **Instale Python**. Verifique se você já instalou [Python](https://www.python.org/downloads/) em seu computador. Você usará Python para muitas tarefas de _data science_ (ciência de dados) e _machine learning_. A maioria dos sistemas de computador já possui Python instalado. Existem [Pacotes de Código em Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) disponíveis para ajudar na instalação.
 
    Algumas aplicações em Python exigem versões diferentes da linguagem. Portanto, será útil trabalhar com [ambiente virtual](https://docs.python.org/3/library/venv.html).
 
-2. **Instale o Visual Studio Code**. Verifique se já existe o Visual Studio Code instalado em seu computador. Siga essas instruções para [instalar o Visual Studio Code](https://code.visualstudio.com/) com uma instalação básica. Você usará Python no Visual Studio Code deste curso e precisará [configurar o Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) para isso.
+2. **Instale o Visual Studio Code**. Verifique se já existe o Visual Studio Code instalado em seu computador. Siga essas instruções para [instalar o Visual Studio Code](https://code.visualstudio.com/) com uma instalação básica. Você usará Python no Visual Studio Code neste curso e precisará [configurar o Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) para isso.
 
    > Fique mais confortável em usar Python trabalhando nessa coleção de [módulos de aprendizagem](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa).
 
@@ -39,12 +39,12 @@ Nesta lição, você aprenderá como:
 
 ## Seu ambiente de ML
 
-Você irá usar **notebooks** para desenvolver código em Python e criar modelos de _machine learning_. Esse tipo de arquivo é uma ferramenta comum para _data scientists_, e pode ser identificado pelo sufixo ou extensão `.ipynb`.
+Você irá usar **_notebooks_** para desenvolver código em Python e criar modelos de _machine learning_. Esse tipo de arquivo é uma ferramenta comum para _data scientists_ (cientistas de dados), e pode ser identificado pelo sufixo ou extensão `.ipynb`.
 
 _Notebooks_ são ambientes interativos que permitem a construção de código de programação e notas de _markdown_ para documentá-lo, o que pode ser muito útil para
 projetos experimentais ou de pesquisa.
 
-### Exercício - trabalhando com um **notebook**
+### Exercício - Trabalhando com um **_notebook_**
 
 Nesta pasta, você encontrará o arquivo _notebook.ipynb_.
 
@@ -81,13 +81,13 @@ Nesse curso, você irá usar a Scikit-learn e outras ferramentas para construir 
 
 Scikit-learn facilita a construção e validação de modelos. O foco principal é no uso de dados numéricos mas também contém vários conjuntos de dados prontos para serem usados como ferramenta de estudo. Também possui modelos pré-construídos para os alunos experimentarem. Vamos explorar o processo de carregar dados predefinidos e usar um modelo com estimador integrado com a Scikit-learn e alguns dados básicos.
 
-## Exercício - seu primeiro notebook Scikit-learn
+## Exercício - Seu primeiro notebook Scikit-learn
 
 > Este tutorial foi inspirado pelo [exemplo de regressão linear](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) do site da Scikit-learn.
 
-No arquivo _notebook.ipynb_ da primeira lição, limpe todas as células clicando no ícone que parece uma lata de lixo 🗑️.
+No arquivo _notebook.ipynb_, limpe todas as células clicando no ícone que parece uma lata de lixo 🗑️.
 
-Nesta seção, você irá trabalhar com um pequeno conjunto de dados sobre diabetes que foi produzido na Scikit-learn para fins de aprendizagem. Imagine que você queira testar um tratamento para pessoas diabéticas. Modelos de _machine learning_ podem te ajudar a escolher quais pacientes irão responder melhor ao tratamento, baseado em combinações de variáveis. Mesmo um modelo de regressão simples, quando visualizado, pode mostrar informações sobre variáveis que ajudarão a organizar ensaios clínicos teóricos.
+Nesta seção, você irá trabalhar com um pequeno conjunto de dados sobre diabetes que foi produzido para a Scikit-learn com fins de aprendizagem. Imagine que você queira testar um tratamento para pessoas diabéticas. Modelos de _machine learning_ podem te ajudar a escolher quais pacientes irão responder melhor ao tratamento, baseado em combinações de variáveis. Mesmo um modelo de regressão simples, quando visualizado, pode mostrar informações sobre variáveis que ajudarão a organizar ensaios clínicos teóricos.
 
 ✅ Existem muitos tipos de métodos de regressão, e a escolha dentre eles dependerá da resposta que você procura. Se você quer prever a altura provável de uma pessoa de uma determinada idade, você deve usar a regressão linear, pois está sendo usado um **valor numérico**. Se você quer descobrir se um tipo de cozinha pode ser considerado vegano ou não, isso está relacionado a uma **atribuição de categoria**, então usa-se a regressão logística. Você irá aprender mais sobre regressão logística em breve. Pense um pouco nas questões que aparecem com os dados que você tem e qual desses métodos seria mais apropriado usar.
 
@@ -118,11 +118,11 @@ Importe essas bibliotecas pois te ajudarão na tarefa.
 O [conjunto de dados sobre diabetes](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) inclui 442 exemplos de dados sobre diabetes, com 10 variáveis de características, algumas delas incluem:
 
 - age: idade em anos
-- bmi: índice de massa corporal (body mass index)
-- bp: média de pressão sanguínea (blood pressure)
+- bmi (body mass index): índice de massa corporal
+- bp (blood pressure): média de pressão sanguínea
 - s1 tc: Células T (um tipo de glóbulo branco)
 
-✅ Esse conjunto de dados inclue o conceito de "sexo" como variável de característica importante no contexto de diabetes. Muitos conjuntos de dados médicos incluem tipos de classificação binária. Pense um pouco sobre como categorizações como essa podem excluir partes de uma população dos tratamentos.
+✅ Esse conjunto de dados inclui o conceito de "sexo" como variável de característica importante no contexto de diabetes. Muitos conjuntos de dados médicos incluem tipos de classificação binária. Pense um pouco sobre como categorizações como essa podem excluir partes de uma população dos tratamentos.
 
 Agora, carregue os dados X e y.
 
@@ -130,7 +130,7 @@ Agora, carregue os dados X e y.
 
 Em uma célula de código, carregue o conjunto de dados sobre diabetes chamando a função `load_diabetes()`. O parâmetro `return_X_y=True` indica que `X` será uma matriz de dados e `y` é o alvo da regressão.
 
-1. Adicione alguns comandos _print_ para mostrar a forma da matrix e seu primeiro elemento:
+1. Adicione alguns comandos _print_ para mostrar a forma da matriz e seu primeiro elemento:
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -158,7 +158,7 @@ Em uma célula de código, carregue o conjunto de dados sobre diabetes chamando 
 
    ✅ Você pode adicionar comandos _print_ para imprimir e visualizar os dados e verificar seus formatos.
 
-3. Agora que os dados estão prontos para serem plotados, podemos usar uma máquina para ajudar a determinar a divisão lógica entre os números no conjunto de dados. Para isso, é necessário dividir os dados (X) e o alvo (y) em conjuntos de teste e treinamento. Scikit-learn oferece uma maneira de fazer isso; você pode dividir seu conjunto de dados de teste em um determinado ponto.
+3. Agora que os dados estão prontos para serem plotados, podemos usar uma máquina para ajudar a determinar a divisão lógica entre os dados no conjunto de dados. Para isso, é necessário dividir os dados (X) e o alvo (y) em conjuntos de teste e treinamento e a Scikit-learn oferece uma maneira de fazer isso.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
@@ -204,7 +204,7 @@ Plote uma variável diferente desse mesmo conjunto de dados. Dica: edite a linha
 
 ## Revisão e Auto Aprendizagem
 
-Neste tutorial, você trabalhou com regressão linear simples, ao invés de regressão univariada ou múltipla. Leia sobre as diferença esses métodos, ou assista [esse vídeo](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+Neste tutorial, você trabalhou com regressão linear simples, ao invés de regressão univariada ou múltipla. Leia sobre as diferença desses métodos, ou assista [esse vídeo](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
 
 Leia mais sobre o conceito de regressão e pense sobre os tipos de questões que podem ser respondidas usando essa técnica. Faça esse [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) para aprender mais.
 

@@ -21,7 +21,7 @@ Você irá aprender:
 
 Tendo trabalhado com os dados das abóboras, estamos familiarizados o suficiente com eles para perceber que há uma categoria binária com a qual podemos trabalhar: `Color` (cor).
 
-Vamos construir um modelo de regressão logística para prever _a cor que a abóbora provavelmente terá_ (laranja 🎃 ou branca 👻), com base em algumas variáveis.
+Vamos construir um modelo de regressão logística para prever _qual a cor que a abóbora provavelmente terá_ (laranja 🎃 ou branca 👻), com base em algumas colunas.
 
 > Por que estamos falando de classificação binária em um grupo de lições sobre regressão? Apenas por conveniência linguística, regressão logística é [um método de classificação](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), mesmo sendo linear. Vamos aprender outros modos de classificar dados em lições mais a frente.
 
@@ -58,7 +58,7 @@ Embora esse tipo de regressão esteja relacionado a "previsões de categoria", e
 
 ### Variáveis ​​NÃO devem ser correlacionadas
 
-Lembra como a regressão linear funcionou melhor com várias variáveis ​​correlacionadas? A regressão logística é o oposto: as variáveis ​​não precisam disso. Logo, funciona para dados que têm correlações fracas.
+Lembra como a regressão linear funcionou melhor com variáveis ​​correlacionadas? A regressão logística é o oposto: as variáveis ​​não precisam disso. Logo, funciona para dados que têm correlações baixas.
 
 ### Você precisará de muitos dados. E tratados.
 
@@ -90,9 +90,9 @@ Primeiro, limpamos os dados eliminando os valores nulos e selecionando apenas al
     new_pumpkins.info
     ```
 
-### Visualização - _side-by-side grid_ (grade lado-a-lado)
+### Visualização: _side-by-side grid_ (grade lado-a-lado)
 
-Após carregar mais uma vez seu [_notebook_](../notebook.ipynb) com os dados das abóboras e tratá-los para preservar um conjunto de dados contendo algumas variáveis, incluindo `Color`, vamos visualizar o _dataframe_ no _notebook_ usando uma biblioteca diferente: a [Seaborn](https://seaborn.pydata.org/index.html).
+Após carregar mais uma vez seu [_notebook_](../notebook.ipynb) com os dados das abóboras e tratá-los para preservar um conjunto de dados contendo algumas colunas, incluindo `Color`, vamos visualizar o _dataframe_ no _notebook_ usando uma biblioteca diferente: a [Seaborn](https://seaborn.pydata.org/index.html).
 
 Seaborn oferece algumas maneiras interessantes de visualizar dados. Por exemplo, você pode comparar as distribuições dos dados para cada ponto em uma grade lado-a-lado.
 
@@ -113,9 +113,9 @@ Seaborn oferece algumas maneiras interessantes de visualizar dados. Por exemplo,
 
 ### Gráfico _swarm_
 
-Como `Color` é uma categoria binária (laranja ou não), ela é chamada de 'dado categórico' e precisa de 'uma [abordagem mais especializada](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) para visualização'. Existem outras maneiras de visualizar a relação desta categoria com outras variáveis.
+Como `Color` é uma categoria binária (laranja ou não), ela é chamada de 'dado categórico' e precisa de 'uma [abordagem mais especializada](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) para visualização'. Existem outras maneiras de visualizar a relação desta coluna com as outras.
 
-As variáveis ​​podem ser visualizadas lado a lado com os gráficos Seaborn.
+As colunas ​​podem ser visualizadas lado a lado com os gráficos Seaborn.
 
 1. Experimente um gráfico _swarm_ para mostrar a distribuição de valores:
 
@@ -138,7 +138,7 @@ Um gráfico do tipo "violino" é útil para visualizar como os dados são distri
 
     ![Gráfico violino](../images/violin.png)
 
-    ✅ Tente criar este gráfico e outros gráficos Seaborn, usando outras variáveis.
+    ✅ Tente criar este gráfico e outros gráficos Seaborn, usando outras colunas.
 
 Agora podemos imaginar a relação entre as duas categorias binárias de cor e tamanho (_item size_). Vamos explorar a regressão logística para prever a cor de uma abóbora em particular.
 
@@ -154,7 +154,7 @@ Agora podemos imaginar a relação entre as duas categorias binárias de cor e t
 
 Construir um modelo para encontrar classificações binárias é muito simples no Scikit-learn.
 
-1. Selecione as variáveis que deseja usar em seu modelo de classificação e divida os conjuntos de dados em conjuntos de treinamento e teste chamando `train_test_split()`:
+1. Selecione as colunas que deseja usar em seu modelo de classificação e divida os conjuntos de dados em conjuntos de treinamento e teste chamando `train_test_split()`:
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -204,7 +204,7 @@ Construir um modelo para encontrar classificações binárias é muito simples n
      0 0 0 1 0 1 0 0 1 0 0 0 1 0]
     ```
 
-## Melhor compreensão usando Matrix de Confusão
+## Melhor compreensão usando Matriz de Confusão
 
 Embora você possa obter os [valores](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) de um relatório de *placar* do seu modelo como na *impressão* acima, você pode entender melhor o desempenho do seu modelo com uma [matriz de confusão](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix).
 
@@ -234,13 +234,13 @@ Embora você possa obter os [valores](https://scikit-learn.org/stable/modules/ge
 O que está acontecendo aqui? Supondo que nosso modelo tenha que classificar as abóboras entre duas categorias binárias, categoria 'laranja' e categoria 'não laranja':
 
 - Se o seu modelo prevê que uma abóbora não é laranja e ela pertence à categoria 'não laranja', chamamos isso de verdadeiro negativo.
-- Se o seu modelo prevê que uma abóbora é laranja e ela pertence à categoria 'não laranja', chamamos isso de falso negativo.
-- Se o seu modelo prevê que uma abóbora não é laranja e ela pertence à categoria 'laranja', chamamos isso de falso positivo.
+- Se o seu modelo prevê que uma abóbora é laranja e ela pertence à categoria 'não laranja', chamamos isso de falso positivo.
+- Se o seu modelo prevê que uma abóbora não é laranja e ela pertence à categoria 'laranja', chamamos isso de falso negativo.
 - Se o seu modelo prevê que uma abóbora é laranja e ela pertence à categoria 'laranja', chamamos isso de verdadeiro positivo.
 
 Podemos perceber que é melhor ter um número maior de positivos e negativos verdadeiros e um número menor de positivos e negativos falsos pois, isso significa que o modelo tem um desempenho melhor.
 
-✅ Pergunta: Com base na matriz de confusão, o modelo é bom ou não? Resposta: nada mal; existem muitos verdadeiros positivos e poucos falsos negativos.
+✅ Pergunta: Com base na matriz de confusão, o modelo é bom ou não? Resposta: nada mal; existem muitos verdadeiros positivos (162) e poucos falsos negativos (4).
 
 Vamos revisitar os termos que vimos anteriormente com a ajuda da matriz de confusão de TP / TN e FP / FN:
 
@@ -252,7 +252,7 @@ Vamos revisitar os termos que vimos anteriormente com a ajuda da matriz de confu
 
 🎓 Support (suporte): O número de ocorrências de cada classe.
 
-🎓 Accuracy (acurácia): (TP + TN) / (TP + TN + FP + FN). Porcentagem de classes previstos corretamente para uma amostra.
+🎓 Accuracy (acurácia): (TP + TN) / (TP + TN + FP + FN). Porcentagem de classes previstas corretamente para uma amostra.
 
 🎓 Macro avg (média macro): Média simples (não ponderada) das métricas de cada classe.
 
@@ -268,9 +268,9 @@ Recall = TP / (TP + FN) = 162 / (162 + 4) = 0.9759036144578314
 
 ## Visualizando a curva ROC de um modelo
 
-O modelo construído não é ruim. A acurácia é de cerca de 80%, então ele pode realmente ser usado para prever a cor de uma abóbora com base em algumas variáveis.
+O modelo construído não é ruim. A acurácia é de cerca de 80%, então ele pode ser usado para prever a cor de uma abóbora com base em algumas colunas.
 
-Vamos usar mais um tipo de visualização utilizando a 'ROC':
+Vamos usar mais um tipo de visualização utilizando a ROC:
 
 ```python
 from sklearn.metrics import roc_curve, roc_auc_score
