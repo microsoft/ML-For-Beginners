@@ -39,7 +39,7 @@ Nesta lição, você aprenderá como:
 
 ## Seu ambiente de ML
 
-Você irá usar **_notebooks_** para desenvolver código em Python e criar modelos de _machine learning_. Esse tipo de arquivo é uma ferramenta comum para _data scientists_ (cientistas de dados), e pode ser identificado pelo sufixo ou extensão `.ipynb`.
+Você irá usar **_notebooks_** para desenvolver código em Python e criar modelos de _machine learning_. Esse tipo de arquivo é uma ferramenta comum para _data scientists_, e pode ser identificado pelo sufixo ou extensão `.ipynb`.
 
 _Notebooks_ são ambientes interativos que permitem a construção de código de programação e notas de _markdown_ para documentá-lo, o que pode ser muito útil para
 projetos experimentais ou de pesquisa.
