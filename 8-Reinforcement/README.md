@@ -2,7 +2,7 @@
 
 Reinforcement learning, RL, is seen as one of the basic machine learning paradigms, next to supervised learning and unsupervised learning. RL is all about decisions: delivering the right decisions or at least learning from them.
 
-Imagine you have a simulated environment such as the stock market. What happens if you impose a given regulation. Does it have a positive or negative effect? If something negative happens, you need to take this _negative reinforcement_, learn from it, and change course. If it's a positive outcome, you need to build on that _positive reinforcement_.
+Imagine you have a simulated environment such as the stock market. What happens if you impose a given regulation? Does it have a positive or negative effect? If something negative happens, you need to take this _negative reinforcement_, learn from it, and change course. If it's a positive outcome, you need to build on that _positive reinforcement_.
 
 ![peter and the wolf](images/peter.png)
 
@@ -26,7 +26,7 @@ In previous sections, you have seen two examples of machine learning problems:
 - **Supervised**, where we have datasets that suggest sample solutions to the problem we want to solve. [Classification](../4-Classification/README.md) and [regression](../2-Regression/README.md) are supervised learning tasks.
 - **Unsupervised**, in which we do not have labeled training data. The main example of unsupervised learning is [Clustering](../5-Clustering/README.md).
 
-In this section, we will introduce you to a new type of learning problems that does not require labeled training data. There are several types of such problems:
+In this section, we will introduce you to a new type of learning problem that does not require labeled training data. There are several types of such problems:
 
 - **[Semi-supervised learning](https://wikipedia.org/wiki/Semi-supervised_learning)**, where we have a lot of unlabeled data that can be used to pre-train the model.
 - **[Reinforcement learning](https://wikipedia.org/wiki/Reinforcement_learning)**, in which an agent learns how to behave by performing experiments in some simulated environment.

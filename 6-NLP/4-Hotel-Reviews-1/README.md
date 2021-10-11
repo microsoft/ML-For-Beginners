@@ -2,7 +2,7 @@
 
 In this section you will use the techniques in the previous lessons to do some exploratory data analysis of a large dataset. Once you have a good understanding of the usefulness of the various columns, you will learn: 
 
-- how to remove the unneeded columns
+- how to remove the unnecessary columns
 - how to calculate some new data based on the existing columns
 - how to save the resulting dataset for use in the final challenge
 
@@ -27,9 +27,9 @@ This challenge assumes that you are building a hotel recommendation bot using se
 
 Using Python, a dataset of hotel reviews, and NLTK's sentiment analysis you could find out:
 
-* what are the most frequently used words and phrases in reviews?
-* do the official *tags* describing a hotel correlate with review scores (e.g. are the more negative reviews for a particular hotel for  *Family with young children* than by *Solo traveller*, perhaps indicating it is better for *Solo travellers*?)
-* do the NLTK sentiment scores 'agree' with the hotel reviewer's numerical score?
+* What are the most frequently used words and phrases in reviews?
+* Do the official *tags* describing a hotel correlate with review scores (e.g. are the more negative reviews for a particular hotel for  *Family with young children* than by *Solo traveller*, perhaps indicating it is better for *Solo travellers*?)
+* Do the NLTK sentiment scores 'agree' with the hotel reviewer's numerical score?
 
 #### Dataset
 
@@ -82,7 +82,7 @@ Here they are grouped in a way that might be easier to examine:
 **Reviewer columns**
 
 - `Total_Number_of_Reviews_Reviewer_Has_Given`
-  - This might be an factor in a recommendation model, for instance, if you could determine that more prolific reviewers with hundreds of reviews were more likely to be negative rather than positive. However, the reviewer of any particular review is not identified with a unique code, and therefore cannot be linked to a set of reviews. There are 30 reviewers with 100 or more reviews, but it's hard to see how this can aid the recommendation model.
+  - This might be a factor in a recommendation model, for instance, if you could determine that more prolific reviewers with hundreds of reviews were more likely to be negative rather than positive. However, the reviewer of any particular review is not identified with a unique code, and therefore cannot be linked to a set of reviews. There are 30 reviewers with 100 or more reviews, but it's hard to see how this can aid the recommendation model.
 - `Reviewer_Nationality`
   - Some people might think that certain nationalities are more likely to give a positive or negative review because of a national inclination. Be careful building such anecdotal views into your models. These are national (and sometimes racial) stereotypes, and each reviewer was an individual who wrote a review based on their experience. It may have been filtered through many lenses such as their previous hotel stays, the distance travelled, and their personal temperament. Thinking that their nationality was the reason for a review score is hard to justify.
 
@@ -90,9 +90,9 @@ Here they are grouped in a way that might be easier to examine:
 
 | Average  Score | Total Number   Reviews | Reviewer   Score | Negative <br />Review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Positive   Review                 | Tags                                                                                      |
 | -------------- | ---------------------- | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 7.8            | 1945                   | 2.5              | This is  currently not a hotel but a construction site I was terroized from early  morning and all day with unacceptable building noise while resting after a  long trip and working in the room People were working all day i e with  jackhammers in the adjacent rooms I asked for a room change but no silent  room was available To make thinks worse I was overcharged I checked out in  the evening since I had to leave very early flight and received an appropriate  bill A day later the hotel made another charge without my concent in excess  of booked price It s a terrible place Don t punish yourself by booking  here | Nothing  Terrible place Stay away | Business trip                                Couple Standard Double  Room Stayed 2 nights |
+| 7.8            | 1945                   | 2.5              | This is  currently not a hotel but a construction site I was terrorized from early  morning and all day with unacceptable building noise while resting after a  long trip and working in the room People were working all day i e with  jackhammers in the adjacent rooms I asked for a room change but no silent  room was available To make things worse I was overcharged I checked out in  the evening since I had to leave very early flight and received an appropriate  bill A day later the hotel made another charge without my consent in excess  of booked price It's a terrible place Don't punish yourself by booking  here | Nothing  Terrible place Stay away | Business trip                                Couple Standard Double  Room Stayed 2 nights |
 
-As you can see, this guest did not have a happy stay at this hotel. The hotel has a good average score of 7.8 and 1945 reviews, but this reviewer gave it 2.5 and wrote 115 words about how negative their stay was. If they wrote nothing at all in the Positive_Review column, you might surmise there was nothing positive, but alas they wrote 7 words of warning. If we just counted words instead of the meaning, or sentiment of the words, we might have a skewed view of the reviewers intent. Strangely, their score of 2.5 is confusing, because if that hotel stay was so bad, why give it any points at all? Investigating the dataset closely, you'll see that the lowest possible score is 2.5, not 0. The highest possible score is 10.
+As you can see, this guest did not have a happy stay at this hotel. The hotel has a good average score of 7.8 and 1945 reviews, but this reviewer gave it 2.5 and wrote 115 words about how negative their stay was. If they wrote nothing at all in the Positive_Review column, you might surmise there was nothing positive, but alas they wrote 7 words of warning. If we just counted words instead of the meaning, or sentiment of the words, we might have a skewed view of the reviewer's intent. Strangely, their score of 2.5 is confusing, because if that hotel stay was so bad, why give it any points at all? Investigating the dataset closely, you'll see that the lowest possible score is 2.5, not 0. The highest possible score is 10.
 
 ##### Tags
 
@@ -126,7 +126,7 @@ If you take the `Average_Score` columns, you might surmise it is the average of 
 
 To complicate things further, the hotel with the second highest number of reviews has a calculated average score of 8.12 and the dataset `Average_Score` is 8.1. Is this correct score a coincidence or is the first hotel a discrepancy? 
 
-On the possibility that these hotel might be an outlier, and that maybe most of the values tally up (but some do not for some reason) we will write a short programs next to explore the values in the dataset and determine the correct usage (or non-usage) of the values.
+On the possibility that these hotel might be an outlier, and that maybe most of the values tally up (but some do not for some reason) we will write a short program next to explore the values in the dataset and determine the correct usage (or non-usage) of the values.
 
 > 🚨 A note of caution
 >
@@ -162,7 +162,7 @@ In this case, the data is already *clean*, that means that it is ready to work w
 
 ✅ You might have to work with data that required some initial processing to format it before applying NLP techniques, but not this time. If you had to, how would you handle non-English characters?
 
-Take a moment to ensure you that once the data is loaded, you can explore it with code. It's very easy to want to focus on the `Negative_Review` and `Positive_Review` columns. They are filled with natural text for your NLP algorithms to process. But wait! Before you jump into the NLP and sentiment, you should follow the code below to ascertain if the values given in the dataset match the values you calculate with pandas.
+Take a moment to ensure that once the data is loaded, you can explore it with code. It's very easy to want to focus on the `Negative_Review` and `Positive_Review` columns. They are filled with natural text for your NLP algorithms to process. But wait! Before you jump into the NLP and sentiment, you should follow the code below to ascertain if the values given in the dataset match the values you calculate with pandas.
 
 ## Dataframe operations
 

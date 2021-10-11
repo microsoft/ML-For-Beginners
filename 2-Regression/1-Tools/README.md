@@ -110,7 +110,7 @@ Import some libraries to help with your tasks.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Above you are importing `matplottlib`, `numpy` and you are importing `datasets`, `linear_model` and `model_selection` from `sklearn`. `model_selection` is used for splitting data into training and test sets.
+   Above you are importing `matplotlib`, `numpy` and you are importing `datasets`, `linear_model` and `model_selection` from `sklearn`. `model_selection` is used for splitting data into training and test sets.
 
 ### The diabetes dataset
 
