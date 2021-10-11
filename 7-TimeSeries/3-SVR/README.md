@@ -2,7 +2,7 @@
 
 In the previous lesson, you learned how to use ARIMA model to make time series predictions. Now you'll be looking at Support Vector Regressor model which is a regressor model used to predict continuous data.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/51/)
+## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/51/) 
 
 ## Introduction
 
@@ -29,6 +29,11 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.[^2
 1. Run the notebook and import the necessary libraries:  [^2]
 
    ```python
+   import sys
+   sys.path.append('../../')
+   ```
+
+   ```python
    import os
    import warnings
    import matplotlib.pyplot as plt
@@ -42,13 +47,13 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.[^2
    from common.utils import load_data, mape
    ```
 
-4. Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look:  [^2]
+2. Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look:  [^2]
 
    ```python
-   energy = load_data('./data')[['load']]
+   energy = load_data('../../data')[['load']]
    ```
-   
-5. Plot all the available energy data from January 2012 to December 2014: [^2]
+
+3. Plot all the available energy data from January 2012 to December 2014: [^2]
 
    ```python
    energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -58,7 +63,7 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.[^2
    ```
 
    ![full data](images/full-data.png)
-   
+
    Now, let's build our SVR model.
 
 ### Create training and testing datasets
