@@ -1,4 +1,4 @@
-# Posfácil: Aplicações no mundo real do clássico Machine Learning
+# Posfácio: Aplicações no mundo real do clássico Machine Learning
 Nesta seção do currículo, você será apresentado a algumas aplicações do ML clássico. Vasculhamos a internet para encontrar publicações e artigos sobre aplicações que tratassem apenas de ML e evitassem, ao máximo, usar as estratégias de redes neurais, deep learning e IA. Aprenda sobre como a ML é usada em sistemas de negócios, aplicações ecológicas, finanças, arte, cultura e muito mais.
 
 ![xadrez](images/chess.jpg)
