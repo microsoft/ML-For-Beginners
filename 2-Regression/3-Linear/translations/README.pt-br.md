@@ -18,7 +18,7 @@ Você está pronto para mergulhar mais fundo na regressão para ML. Nesta liçã
 
 ### Pré-requisito
 
-Você já deve saber mais ou menos como é estrutura do conjunto de dados de abóboras que estávamos examinando. Você pode encontrá-lo já tratado no arquivo _notebook.ipynb_ desta lição. No arquivo, o preço da abóbora é exibido por bushel (aquela unidade de medida 😅) em um novo _dataframe_. Certifique-se de que você pode executar os _notebooks_ no Visual Studio Code.
+Você já deve saber mais ou menos como é a estrutura do conjunto de dados de abóboras que estávamos examinando. Você pode encontrá-lo já tratado no arquivo _notebook.ipynb_ desta lição. No arquivo, o preço da abóbora é exibido por bushel (aquela unidade de medida 😅) em um novo _dataframe_. Certifique-se de que você pode executar os _notebooks_ no Visual Studio Code.
 
 ### Preparação
 
