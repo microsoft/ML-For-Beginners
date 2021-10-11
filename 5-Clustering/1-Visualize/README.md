@@ -63,7 +63,7 @@ Deepen your understanding of clustering techniques in this [Learn module](https:
 > 
 > 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
 > 
-> Clusters are defined by their distance matrix, e.g. the distances between points. This distance can be measured a few ways. Euclidean clusters are defined by the average of the point values, and contain a 'centroid' or center point. Distances are thus measured by the distance to that centroid. Non-Euclidean distances refer to 'clustroids', the point closest to other points. Clustroids in turn can be defined in various ways.
+> Clusters are defined by their distance matrix, e.g. the distances between points. This distance can be measured in a few ways. Euclidean clusters are defined by the average of the point values, and contain a 'centroid' or center point. Distances are thus measured by the distance to that centroid. Non-Euclidean distances refer to 'clustroids', the point closest to other points. Clustroids in turn can be defined in various ways.
 > 
 > 🎓 ['Constrained'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
@@ -321,7 +321,7 @@ In preparation for the next lesson, make a chart about the various clustering al
 
 ## Review & Self Study
 
-Before you apply clustering algorithms, as we have learned, it's a good idea to understand the nature of your dataset. Read more onn this topic [here](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
+Before you apply clustering algorithms, as we have learned, it's a good idea to understand the nature of your dataset. Read more on this topic [here](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
 [This helpful article](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) walks you through the different ways that various clustering algorithms behave, given different data shapes.
 
