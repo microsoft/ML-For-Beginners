@@ -7,7 +7,7 @@ Nesta seção do currículo, você será apresentado a algumas aplicações do M
   
 ## Aula
 
-1. [Aplicações práticas do ML no mundo real](1-Applications/README.md)
+1. [Aplicações práticas do ML no mundo real](https://github.com/microsoft/ML-For-Beginners/blob/main/9-Real-World/1-Applications/README.md)
 ## Créditos
 
 "Real-World Applications" foi escrito por uma equipe de colegas, dentre eles [Jen Looper](https://twitter.com/jenlooper) e [Ornella Altunyan](https://twitter.com/ornelladotcom).
