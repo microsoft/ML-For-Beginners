@@ -16,7 +16,7 @@ Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson (pl
 
 Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
-**✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Ornella Altunyan, and Amy Boyd
+**✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, and Amy Boyd
 
 **🎨 Thanks as well to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper
 
@@ -101,8 +101,9 @@ By ensuring that the content aligns with projects, the process is made more enga
 |       20      |                 Romantic hotels of Europe ♥️                |    [Natural language processing](6-NLP/README.md)   | Sentiment analysis with hotel reviews 2                                                                                         |      [Python](6-NLP/5-Hotel-Reviews-2/README.md)   |     Stephen    |
 |       21      |           Introduction to time series forecasting          |        [Time series](7-TimeSeries/README.md)        | Introduction to time series forecasting                                                                                         |    [Python](7-TimeSeries/1-Introduction/README.md)    |    Francesca   |
 |       22      | ⚡️ World Power Usage ⚡️ - time series forecasting with ARIMA |        [Time series](7-TimeSeries/README.md)        | Time series forecasting with ARIMA                                                                                              |        [Python](7-TimeSeries/2-ARIMA/README.md)        |    Francesca   |
-|       23      |           Introduction to reinforcement learning           | [Reinforcement learning](8-Reinforcement/README.md) | Introduction to reinforcement learning with Q-Learning                                                                          |    [Python](8-Reinforcement/1-QLearning/README.md)  |     Dmitry     |
-|       24      |                Help Peter avoid the wolf! 🐺                | [Reinforcement learning](8-Reinforcement/README.md) | Reinforcement learning Gym                                                                                                      |       [Python](8-Reinforcement/2-Gym/README.md)      |     Dmitry     |
+|       23      | ⚡️ World Power Usage ⚡️ - time series forecasting with SVR |        [Time series](7-TimeSeries/README.md)        | Time series forecasting with Support Vector Regressor                                                                                              |        [Python](7-TimeSeries/3-SVR/README.md)        |    Anirban   |
+|       24      |           Introduction to reinforcement learning           | [Reinforcement learning](8-Reinforcement/README.md) | Introduction to reinforcement learning with Q-Learning                                                                          |    [Python](8-Reinforcement/1-QLearning/README.md)  |     Dmitry     |
+|       25      |                Help Peter avoid the wolf! 🐺                | [Reinforcement learning](8-Reinforcement/README.md) | Reinforcement learning Gym                                                                                                      |       [Python](8-Reinforcement/2-Gym/README.md)      |     Dmitry     |
 |   Postscript  |          Real-World ML scenarios and applications          |       [ML in the Wild](9-Real-World/README.md)      | Interesting and revealing real-world applications of classical ML                                                               |    [Lesson](9-Real-World/1-Applications/README.md)    |      Team      |
 
 ## Offline access
