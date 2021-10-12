@@ -1,4 +1,4 @@
-# Time series forecasting with Support Vector Regressor
+# Time Series Forecasting with Support Vector Regressor
 
 In the previous lesson, you learned how to use ARIMA model to make time series predictions. Now you'll be looking at Support Vector Regressor model which is a regressor model used to predict continuous data.
 

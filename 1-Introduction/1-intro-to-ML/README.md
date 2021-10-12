@@ -6,7 +6,7 @@
 
 ## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1/)
 
-# Welcome
+***
 
 Welcome to this course on classical machine learning for beginners! Whether you're completely new to this topic, or an experienced ML practitioner looking to brush up on an area, we're happy to have you join us! We want to create a friendly launching spot for your ML study and would be happy to evaluate, respond to, and incorporate your [feedback](https://github.com/microsoft/ML-For-Beginners/discussions).
 
