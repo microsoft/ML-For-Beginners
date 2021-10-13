@@ -16,7 +16,8 @@ Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medi
 
 1. [Introduction to time series forecasting](1-Introduction/README.md)
 2. [Building ARIMA time series models](2-ARIMA/README.md)
+3. [Building Support Vector Regressor for time series forcasting](3-SVR/README.md)
 
 ## Credits
 
-"Introduction to time series forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks first appeared online in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) originally written by Francesca Lazzeri.
+"Introduction to time series forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks first appeared online in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) originally written by Francesca Lazzeri. The SVR lesson was written by [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
