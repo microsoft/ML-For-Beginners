@@ -121,7 +121,7 @@ To see how the environment works, let's run a short simulation for 100 steps. At
 
 ## State discretization
 
-In Q=Learning, we need to build Q-Table that defines what to do at each state. To be able to do this, we need state to be **discreet**, more precisely, it should contain finite number of discrete values. Thus, we need somehow to **discretize** our observations, mapping them to  a finite set of states.
+In Q-Learning, we need to build Q-Table that defines what to do at each state. To be able to do this, we need state to be **discreet**, more precisely, it should contain finite number of discrete values. Thus, we need somehow to **discretize** our observations, mapping them to  a finite set of states.
 
 There are a few ways we can do this:
 
