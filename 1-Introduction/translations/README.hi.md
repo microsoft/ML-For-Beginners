@@ -20,7 +20,7 @@
 
 "निष्पक्षता और मशीन लर्निंग"  [टोमोमी  ईमुरा](https://twitter.com/girliemac) द्वारा ♥ से लिखा गया
 
-"मशीन लर्निंग की तकनीक" [जेन  लूपर](https://twitter.com/jenlooper) और  [क्रिस  नोरिंग ](https://twitter.com/softchris) द्वारा ♥ से लिखा गया
+"मशीन लर्निंग की तकनीक" [जेन लूपर](https://twitter.com/jenlooper) और  [क्रिस  नोरिंग ](https://twitter.com/softchris) द्वारा ♥ से लिखा गया
 
 
 
