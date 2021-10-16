@@ -14,7 +14,7 @@
 
 Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson (plus one!) curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/datascience-beginners), as well!
 
-Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre-and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
+Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre -and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
 **✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, and Amy Boyd
 
@@ -56,7 +56,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 We have chosen two pedagogical tenets while building this curriculum: ensuring that it is hands-on **project-based** and that it includes **frequent quizzes**. In addition, this curriculum has a common **theme** to give it cohesion.
 
-By ensuring that the content aligns with projects, the process is made more engaging for students, and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12-week cycle. This curriculum also includes a postscript on real-world applications of ML, which can be used as extra credit or as a basis for discussion.
+By ensuring that the content aligns with projects, the process is made more engaging for students and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12-week cycle. This curriculum also includes a postscript on real-world applications of ML, which can be used as extra credit or as a basis for discussion.
 
 > Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), and [Translation](TRANSLATIONS.md) guidelines. We welcome your constructive feedback!
 
