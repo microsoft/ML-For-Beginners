@@ -16,10 +16,10 @@
 
 ## पाठ
 
-1. [वर्गीकरण से परिचय](1-Introduction/README.md)
-2. [और वर्गीकारक](2-Classifiers-1/README.md)
-3. [और भी अनेक वर्गीकारक](3-Classifiers-2/README.md)
-4. [व्यावहारिक म. ल. (ML): वेब अनुप्रयोग का निर्माण](4-Applied/README.md)
+1. [वर्गीकरण से परिचय](../1-Introduction/README.md)
+2. [और वर्गीकारक](../2-Classifiers-1/README.md)
+3. [और भी अनेक वर्गीकारक](../3-Classifiers-2/README.md)
+4. [व्यावहारिक म. ल. (ML): वेब अनुप्रयोग का निर्माण](../4-Applied/README.md)
 
 ## श्रेय
 
