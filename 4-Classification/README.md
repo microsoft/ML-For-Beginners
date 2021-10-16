@@ -9,7 +9,7 @@ In Asia and India, food traditions are extremely diverse, and very delicious! Le
   
 ## What you will learn
 
-In this section, you will build on the skills you learned in the first part of this curriculum all about regression to learn about other classifiers you can use that will help you learn about your data.
+In this section, you will build on your earlier study of Regression and learn about other classifiers that you can use to better understand the data.
 
 > There are useful low-code tools that can help you learn about working with classification models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
 
