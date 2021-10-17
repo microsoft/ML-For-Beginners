@@ -121,7 +121,7 @@ cartpole balancing 문제를 풀려면, 대상 환경을 초기화할 필요가 
 
 ## State discretization
 
-Q=Learning에서, 각 state에서 할 것을 정의하는 Q-Table을 만들 필요가 있습니다. 이렇게 하려면, state가 **discreet**으로 되어야하고, 더 정확해지면, 한정된 discrete 값 숫자를 포함해야 합니다. 그래서, 관측치를 어떻게든지 **discretize** 해서, 한정된 state 세트와 맵핑할 필요가 있습니다.
+Q-Learning에서, 각 state에서 할 것을 정의하는 Q-Table을 만들 필요가 있습니다. 이렇게 하려면, state가 **discreet**으로 되어야하고, 더 정확해지면, 한정된 discrete 값 숫자를 포함해야 합니다. 그래서, 관측치를 어떻게든지 **discretize** 해서, 한정된 state 세트와 맵핑할 필요가 있습니다.
 
 이렇게 할 수 있는 몇 방식이 있습니다:
 
