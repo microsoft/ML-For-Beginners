@@ -1,11 +1,11 @@
-# Interview a data scientist
+# Entrevista a un científico de datos
 
-## Instructions
+## Instrucciones
 
-In your company, in a user group, or among your friends or fellow students, talk to someone who works professionally as a data scientist. Write a short paper (500 words) about their daily occupations. Are they specialists, or do they work 'full stack'?
+En tu compañía, en un grupo de usuarios, o entre tus amigos o compañeros de estudio, habla con alguien que trabaje profesionalmente como científico de datos. Escribe un artículo corto (500 palabras) acerca de sus ocupaciones diarias. ¿Son ellos especialistas, o trabajan como 'full stack'?
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                                                            | Adequate                                                           | Needs Improvement     |
+| Criterio | Ejemplar                                                                            | Adecuado                                                           | Necesita mejorar     |
 | -------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | --------------------- |
-|          | An essay of the correct length, with attributed sources, is presented as a .doc file | The essay is poorly attributed or shorter than the required length | No essay is presented |
+|          | Un ensayo de la longitud correcta, con fuentes atribuidas, es presentado como un archivo .doc | El ensayo es pobremente atribuido o más corto que la longitud requerida | No se presentó el ensayo |
