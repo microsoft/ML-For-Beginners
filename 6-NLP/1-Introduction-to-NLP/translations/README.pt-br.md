@@ -1,34 +1,37 @@
-# Introduction to natural language processing
+# Introdução ao Processamento de Linguagem Natural
 
-This lesson covers a brief history and important concepts of *natural language processing*, a subfield of *computational linguistics*.
+Esta aula cobre uma breve história e conceitos importantes do *processamento de linguagem natural*, uma subárea da *Linguística computacional*.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
+## [Quiz pŕe-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
 
-## Introduction
+## Introdução
 
-NLP, as it is commonly known, is one of the best-known areas where machine learning has been applied and used in production software.
+PLN (ou, em inglês NLP), como é geralmente conhecido, é uma das áreas mais conhecidas onde o aprendizado de máquina (machine learning) tem sido aplicado e usado na produção de software.
 
-✅ Can you think of software that you use every day that probably has some NLP embedded? What about your word processing programs or mobile apps that you use regularly?
+✅ Você consegue pensar em algum software que você usa todo dia que provavelmente tem algum PLN integrado? E programas de processamento de palavras e aplicativos mobile que você usa com frequência?
 
-You will learn about:
+Você vai aprender sobre:
 
-- **The idea of languages**. How languages developed and what the major areas of study have been.
-- **Definition and concepts**. You will also learn definitions and concepts about how computers process text, including parsing, grammar, and identifying nouns and verbs. There are some coding tasks in this lesson, and several important concepts are introduced that you will learn to code later on in the next lessons.
+- **A ideia das linguagens**. Como as linguagens se desenvolveram e quais as maiores áreas de estudo têm sido.
+- **Definição e conceitos**. Você também vai aprender definições e conceitos sobre como os computadores processam texto, incluindo análise sintática (parsing), gramática, e identificação de substantivos e verbos. Existem algumas tarefas de programação nesta aula, e muitos conceitos importantes serão introduzidos, que você ira aprender a programar nas próximas aulas.
 
-## Computational linguistics
+## Linguística computacional
 
-Computational linguistics is an area of research and development over many decades that studies how computers can work with, and even understand, translate, and communicate with languages. Natural language processing (NLP) is a related field focused on how computers can process 'natural', or human, languages.
+Linguística computacional é uma área de pesquisa e desenvolvimento ao longo de várias décadas que estuda como computadores podem trabalhar com, e até entender, traduzir, e comunicar com linguagens. Processamento de linguagem natural (PLN) é um campo correlato que tem o foco em como computadores podem processar linguagens 'naturais' ou humanas.
 
-### Example - phone dictation
+### Exemplo - transcrição de voz no celular
 
-If you have ever dictated to your phone instead of typing or asked a virtual assistant a question, your speech was converted into a text form and then processed or *parsed* from the language you spoke. The detected keywords were then processed into a format that the phone or assistant could understand and act on.
+Se você já usou o recurso de digitação por voz ao invés de escrever ou fez uma pergunta para uma assistente virtual, sua fala foi convertida para o formato textual e então processou ou *parseou* (analisou a sintaxe) da linguagem que você falou. As palavras-chave detectadas então são processadas em um formato que o celular ou o assistente possa entender e agir.
 
-![comprehension](images/comprehension.png)
-> Real linguistic comprehension is hard! Image by [Jen Looper](https://twitter.com/jenlooper)
+![compreensão](../images/comprehension.png)
+> Compreensão de linguagem de verdade é difícil! Imagem por [Jen Looper](https://twitter.com/jenlooper)
+> Tradução:
+   > Mulher: Mas o que você quer? Frango? Peixe? Patê?
+   > Gato: Miau
 
-### How is this technology made possible?
+### Como essa tecnologia é possível?
 
-This is possible because someone wrote a computer program to do this. A few decades ago, some science fiction writers predicted that people would mostly speak to their computers, and the computers would always understand exactly what they meant. Sadly, it turned out to be a harder problem that many imagined, and while it is a much better understood problem today, there are significant challenges in achieving 'perfect' natural language processing when it comes to understanding the meaning of a sentence. This is a particularly hard problem when it comes to understanding humour or detecting emotions such as sarcasm in a sentence.
+Ela é possível porque alguém escreveu um programa de computador para fazer isto. Algumas décadas atrás, escritores de ficção previram que as pessoas iriam falar principalmente com seus computadores, e que computadores sempre iriam entender exatamente o que eles queriam dizer. Infelizmente, isto mostrou-se mais difícil do que muitos imaginavam, e enquanto hoje é um problema muito melhor compreendido, existem desafios significantes em alcançar o processamento de linguagem natural 'perfeito' quando pensamos em entender o significado de uma frase/expressão. Este é um problema particularmente difícil quando é preciso entender humor ou detectar emoções como sarcasmo em uma frase.
 
 At this point, you may be remembering school classes where the teacher covered the parts of grammar in a sentence. In some countries, students are taught grammar and linguistics as a dedicated subject, but in many, these topics are included as part of learning a language: either your first language in primary school (learning to read and write) and perhaps a second language in post-primary, or high school. Don't  worry if you are not an expert at differentiating nouns from verbs or adverbs from adjectives!
 
