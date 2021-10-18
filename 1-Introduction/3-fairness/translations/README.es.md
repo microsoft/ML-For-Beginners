@@ -1,212 +1,211 @@
-# Fairness in Machine Learning 
+# Justicia en el Aprendizaje Automático
+
+![Resumen de justicia en el aprendizaje automático en un sketchnote](../../../sketchnotes/ml-fairness.png)
+> Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
+
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
+
+## introducción
+
+En este plan de estudios, comenzarás a descubrir como el aprendizaje automático puede y está impactando nuestra vida diaria. Aún ahora, los sistemas y modelos involucrads en tareas diarias de toma de decisiones, como los diagnósticos del cuidado de la salud o detección del fraude. Es importante que estos modelos trabajen bien con el fin de proveer resultados justos para todos.
+
+Imagina que puede pasar cuando los datos que usas para construir estos modelos carecen de cierta demografía, como es el caso de raza, género, punto de vista político, religión, o representa desproporcionadamente estas demografías. ¿Qué pasa cuando la salida del modelo es interpretada a favor de alguna demografía? ¿Cuál es la consecuencia para la aplicación?
+
+En esta lección, será capaz de:
+
+- Tomar conciencia de la importancia de la justicia en el aprendizaje automático.
+- Aprender acerca de daños relacionados a la justicia.
+- Aprender acerca de la evaluación de la justicia y mitigación.
+
+## Prerrequisitos
+
+Como un prerrequisito, por favor toma el Path de aprendizaje "Responsible AI Principles" y mira el video debajo en el tema:
+
+Aprende más acerca de la AI responsable siguiendo este [Path de aprendizaje](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+
+[![Enfonque de Microsoft para la AI responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Enfonque de Microsoft para la AI responsable")
+
+> 🎥 Da clic en imagen superior para el video: Enfonque de Microsoft para la AI responsable
+
+## Injusticia en los datos y algoritmos
+
+> "Si torturas los datos lo suficiente, este conferasá cualquier cosa" - Ronald Coase
+
+Esta oración suena extrema, pero es cierto que los datos pueden ser manipulados para soportar cualquier conclusión. Dicha conclusión puede pasar algunas veces de forma no intencional. Como humanos, todos tenemos sesgos, y es usualmente difícil saber conscientemente cuando estás introduciendo un sesgo en los datos.
+
+El garantizar la justicia en la AI y aprendizaje automático sigue siendo un desafío secio-tecnológico complejo. Sginificando que no puede ser dirigido puramente desde una perspectiva social o ténica.
+
+### Daños relacionados con la justicia
+
+¿Qué quieres decir con injusticia? "injusticia" engloba impactos negativos, o "daños", para un grupo de personas, como esas definidas en términos de raza, género, edad o estado de discapacidad.
+
+Los principales daños relacionados a la justicia pueden ser clasificados como de:
+
+- **Asignación**, si un género o etnicidad, por ejemplo, se favorece sobre otro.
+- **Calidad del servicio**. Si entrenas los datos para un escenario específico pero la realidad es mucho más compleja, esto conlleva a servicio de bajo rendimiento.
+- **Estereotipo**. El asociar un grupo dato con atributos preasignados.
+- **Denigrado**. Criticar injustamente y etiquetar algo a a alguien.
+- **Sobre- o sub- representación** La idea es que un cierto grupo no es visto en una cierta profesión, y cualquier servicio o función que se sigue promocionando está contribuyendo al daño.
+
+Demos un vistazo a los ejemplos.
+
+### Asignación
+
+Considerar un sistema hipotético para seleccionar solicitudes de préstamo. El sistem atiende a seleccionar a hombres blancos como mejores candidatos por encima de otros grupos. Como resultado, los préstamos se retienen para ciertos solicitantes.
+
+Otro ejemplo sería una herramienta experimental de contratación desarrollada por una gran corporación para seleccionar candidatos. La herramienta discriminó sistemáticamente un género de otro usando los modelos entrenados para preferir palabras asociadas con otras. Lo cual resultó en candidatos penalizados cuyos currículos contienen las palabras como "women’s rugby team".
+
+✅ Realiza una pequeña investigación para encontrar un ejemplo del mundo real de algo como esto.
+
+### Calidad del servicio
+
+Los investigadores encontraron que varios clasificadores de género comerciales tenían altas tasas de error en las imágenes de mujeres con tonos de piel má obscuros lo opuesto a las imágenes de hombres con tonos de piel más claros. [Referencia](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/)
+
+Otro infame ejemplo es el dispensador de jabón para manos que parece no ser capaz de detectar a la gente con piel de color obscuro. [Referencia](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+
+### Estereotipo
+
+La vista de género estereotipada fue encontrada en una traducción de máquina. Cuando la se tradujo “he is a nurse and she is a doctor” al turco, se encontraron los problemas. El Turco es un idioma sin género el cual tiene un  pronombre, "o" para comunicar el singular de la tercer persona, pero al traducir nuevamente la oración del Turco al Inglés se produjo el estereotipo como “she is a nurse and he is a doctor”.
+
+![traducción al Turco](../images/gender-bias-translate-en-tr.png)
+
+![traducción de nuevo al Inglés](../images/gender-bias-translate-tr-en.png)
+
+### Denigrado
+
+Una tecnología de etiquetado de imágenes infamemente etiquetó imágenes de gente con color obscuro de piel como gorilas. El etiquetado incorrecto es dañino no solo porque el sistema cometió un error, sino porque específicamente aplicó una etiqueta que tiene una larga historia de ser usada a propósito para denigrar a la gente negra.
+
+[![AI: ¿No soy una mujer?](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, ¿No soy una mujer?")
+> 🎥 Da clic en la imagen superior para el video: AI, ¿No soy una mujer? - un espectáculo que muestra el daño causado por la denigración racista de una AI.
+
+### Sobre- o sub- representación
+
+Los resultados de búsqueda de imágenes sesgados pueden ser vun buen ejemplo de este daño. Cuando se buscan imágenes de profesiones con un porcentaje igual o mayor de hombres que de mujeres, como en ingeniería, o CEO, observa que los resultados están mayormente inclinados hacia un género dado.
+
+![Búsqueda de CEO en Bing](../images/ceos.png)
+> Esta búsquefa en Bing para 'CEO' produce resultados bastante inclusivos
+
+Estos cinco tipos principales de daños no son mutuamente exclusivos, y un solo sistema puede exhibir más de un tipo de daño. Además, cada caso varía es severidad. Por ejemplo, etiquetar injustamente a alguien como un criminal es un daño mucho más severo que etiquetar incorrectamente una imagen. Es importante, sin embargo, el recordar que aún los daños relativamente no severos pueden hacer que la gente se sienta enajenada o señalada y el impacto acumulado puede ser extremadamente opresivo.
  
-![Summary of Fairness in Machine Learning in a sketchnote](../../sketchnotes/ml-fairness.png)
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+✅ **Discusión**: Revisa algunos de los ejemplos y ve si estos muestran diferentes daños.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
- 
-## Introduction
-
-In this curriculum, you will start to discover how machine learning can and is impacting our everyday lives. Even now, systems and models are involved in daily decision-making tasks, such as health care diagnoses or detecting fraud. So it is important that these models work well in order to provide fair outcomes for everyone.
-
-Imagine what can happen when the data you are using to build these models lacks certain demographics, such as race, gender, political view, religion, or disproportionally represents such demographics. What about when the model's output is interpreted to favor some demographic? What is the consequence for the application? 
-
-In this lesson, you will:
-
-- Raise your awareness of the importance of fairness in machine learning.
-- Learn about fairness-related harms.
-- Learn about unfairness assessment and mitigation.
-
-## Prerequisite
-
-As a prerequisite, please take the "Responsible AI Principles" Learn Path and watch the video below on the topic:
-
-Learn more about Responsible AI by following this [Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
-
-[![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
-
-> 🎥 Click the image above for a video: Microsoft's Approach to Responsible AI
-
-## Unfairness in data and algorithms
-
-> "If you torture the data long enough, it will confess to anything" - Ronald Coase
-
-This statement sounds extreme, but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and it's often difficult to consciously know when you are introducing bias in data.
-
-Guaranteeing fairness in AI and machine learning remains a complex sociotechnical challenge. Meaning that it cannot be addressed from either purely social or technical perspectives.
-
-### Fairness-related harms
-
-What do you mean by unfairness? "Unfairness" encompasses negative impacts, or "harms", for a group of people, such as those defined in terms of race, gender, age, or disability status.  
-
-The main fairness-related harms can be classified as:
-
-- **Allocation**, if a gender or ethnicity for example is favored over another.
-- **Quality of service**. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.
-- **Stereotyping**. Associating a given group with pre-assigned attributes.
-- **Denigration**. To unfairly criticize and label something or someone.
-- **Over- or under- representation**. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
-
-Let’s take a look at the examples.
-
-### Allocation
-
-Consider a hypothetical system for screening loan applications. The system tends to pick white men as better candidates over other groups. As a result, loans are withheld from certain applicants.
-
-Another example would be an experimental hiring tool developed by a large corporation to screen candidates. The tool systemically discriminated against one gender by using the models were trained to prefer words associated with another. It resulted in penalizing candidates whose resumes contain words such as "women’s rugby team". 
-
-✅ Do a little research to find a real-world example of something like this
-
-### Quality of Service
-
-Researchers found that several commercial gender classifiers had higher error rates around images of women with darker skin tones as opposed to images of men with lighter skin tones. [Reference](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/) 
-
-Another infamous example is a hand soap dispenser that could not seem to be able to sense people with dark skin. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
-
-### Stereotyping
-
-Stereotypical gender view was found in machine translation. When translating “he is a nurse and she is a doctor” into Turkish, problems were encountered. Turkish is a genderless language which has one pronoun, “o” to convey a singular third person, but translating the sentence back from Turkish to English yields the stereotypical and incorrect as “she is a nurse and he is a doctor”.
-
-![translation to Turkish](images/gender-bias-translate-en-tr.png)
-
-![translation back to English](images/gender-bias-translate-tr-en.png)
-
-### Denigration
-
-An image labeling technology infamously mislabeled images of dark-skinned people as gorillas. Mislabeling is harmful not just because the system made a mistake because it specifically applied a label that has a long history of being purposefully used to denigrate Black people.
-
-[![AI: Ain't I a Woman?](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, Ain't I a Woman?")
-> 🎥 Click the image above for a video: AI, Ain't I a Woman - a performance showing the harm caused by racist denigration by AI
-
-### Over- or under- representation
- 
-Skewed image search results can be a good example of this harm. When searching images of professions with an equal or higher percentage of men than women, such as engineering, or CEO, watch for results that are more heavily skewed towards a given gender.
-
-![Bing CEO search](images/ceos.png)
-> This search on Bing for 'CEO' produces pretty inclusive results
-
-These five main types of harms are not mutually exclusive, and a single system can exhibit more than one type of harm. In addition, each case varies in its severity. For instance, unfairly labeling someone as a criminal is a much more severe harm than mislabeling an image. It's important, however, to remember that even relatively non-severe harms can make people feel alienated or singled out and the cumulative impact can be extremely oppressive. 
- 
-✅ **Discussion**: Revisit some of the examples and see if they show different harms.  
-
-|                         | Allocation | Quality of service | Stereotyping | Denigration | Over- or under- representation |
+|                         | Asignación | Calidad del servicio | Estereotipo | Denigrado | Sobre- o sub- representación |
 | ----------------------- | :--------: | :----------------: | :----------: | :---------: | :----------------------------: |
-| Automated hiring system |     x      |         x          |      x       |             |               x                |
-| Machine translation     |            |                    |              |             |                                |
-| Photo labeling          |            |                    |              |             |                                |
+| Sistema de contratación automatizada |     x      |         x          |      x       |             |               x                |
+| Máquina traductora   |            |                    |              |             |                                |
+| Etiquetado de fotos        |            |                    |              |             |                                |
 
 
-## Detecting unfairness 
+## Detectando injusticias
 
-There are many reasons why a given system behaves unfairly. Social biases, for example, might be reflected in the datasets used to train them. For example, hiring unfairness might have been exacerbated by over reliance on historical data. By using the patterns in resumes submitted to the company over a 10-year period, the model determined that men were more qualified because the majority of resumes came from men, a reflection of past male dominance across the tech industry.
+Hay varias razones porqué un sistema se comporta injustamente. Sesgos sociales, por ejemplo, pueden ser reflejados ne los conjutos de datos usados para entrenarlos. Por ejemplo, la injusticia en la contratación puede ser exacerbada por la sobre dependencia en los datos históricos. El uso de patrones en los currículos enviados a la compañía en un período de 10 años, el modelo determminó que los hombres estaban más calificados porque la mayoría de los currículos porvenían de hombres reflejo del pasado dominio masculino en la industria tecnológica.
 
-Inadequate data about a certain group of people can be the reason for unfairness. For example, image classifiers a have higher rate of error for images of dark-skinned people because darker skin tones were underrepresented in the data.  
+Los datos inadecuados acerca de cierto grupo de personas pueden ser la razón de la injusticia. Por ejemplo, los clasificadores de imágenes tiene una tasa de error más alta para imágenes de gente con piel obscura porque los tonos de piel más obscura fueron sub-representados en los datos.
 
-Wrong assumptions made during development cause unfairness too. For example, a facial analysis system intended to predict who is going to commit a crime based on images of people’s faces can lead to damaging assumptions. This could lead to substantial harms for people who are misclassified.
+Las suposiciones erróneas hechas durante el desarrollo también causan injusticia. Por ejemplo, un sistema de análisis facial intentó predecir quién cometerá un crimen basado en imágenes de los rostros de personas que pueden llevar a supuestos dañinos. Esto podría llevar a daños substanciales para las personas clasificadas erróneamente.
 
-## Understand your models and build in fairness
+## Entiende tus modelos y construye de forma justa
  
-Although many aspects of fairness are not captured in quantitative fairness metrics, and it is not possible to fully remove bias from a system to guarantee fairness, you are still responsible to detect and to mitigate fairness issues as much as possible. 
+A pesar de los muchos aspectos de justicia que no son capturados en métricas cuantitativas justas, y que no es posible remover totalmente el sesgo de un sistema para garantizar la justicia, aún eres responsable de detectar y mitigar problemas de justicia tanto como sea posible.
 
-When you are working with machine learning models, it is important to understand your models by means of assuring their interpretability and by assessing and mitigating unfairness.
+Cuando trabajas con modelos de aprendizaje automático, es importante entender tus modelos asegurando su interpretabilidad y evaluar y mitigar injusticias.
 
-Let’s use the loan selection example to isolate the case to figure out each factor's level of impact on the prediction.
+Usemos el ejemplo de selección de préstamos para aislar el caso y averiguar el nivel de impacto de cada factor en la predicción.
 
-## Assessment methods
+## Métodos de evaluación
 
-1. **Identify harms (and benefits)**. The first step is to identify harms and benefits. Think about how actions and decisions can affect both potential customers and a business itself.
-  
-1. **Identify the affected groups**. Once you understand what kind of harms or benefits that can occur, identify the groups that may be affected. Are these groups defined by gender, ethnicity, or social group?
+1. **Identifica daños (y beneficios)**. El primer paso es identificar daños y beneficios. Piensa cómo las acciones y decisiones pueden afectar tanto a clientes potenciales como al negocio mismo.
 
-1. **Define fairness metrics**. Finally, define a metric so you have something to measure against in your work to improve the situation.
+2. **Identifica los grupos afectados**. Una vez que entendiste qué clase de daños o beneficios que pueden ocurrir, identifica los grupos que pueden ser afectados. ¿Están estos grupos definidos por género, etnicidad, o grupo social?
 
-### Identify harms (and benefits)
+3. **Define métricas de justicia**. Finalmente, define una métrica para así tener algo con qué medir en tu trabajo para mejorar la situación.
 
-What are the harms and benefits associated with lending? Think about false negatives and false positive scenarios: 
+### Identifica daños (y beneficios)
 
-**False negatives** (reject, but Y=1) - in this case, an applicant who will be capable of repaying a loan is rejected. This is an adverse event because the resources of the loans are withheld from qualified applicants.
+¿Cuáles son los daños y beneficios asociados con el préstamo? Piensa en escenarios con falsos negativos y falsos positivos: 
 
-**False positives** (accept, but Y=0) - in this case, the applicant does get a loan but eventually defaults. As a result, the applicant's case will be sent to a debt collection agency which can affect their future loan applications.
+**Falsos negativos** (rechazo, aunque Y=1) - en este caso, un solicitante quien será capaz de pagar un préstamo es rechazado. Esto es un evento adverso porque los recursos de los préstamos se retienen a los solicitantes calificados.
 
-### Identify affected groups
+**Falsos positivos** (aceptado, aunque Y=0) - en este caso, el solictante obtiene un préstamo pero eventualmente incumple. Como resultado, el caso del solicitante será enviado a la agencia de cobranza de deudas lo cual puede afectar en sus futuras solicitudes de préstamo.
 
-The next step is to determine which groups are likely to be affected. For example, in case of a credit card application, a model might determine that women should receive much lower credit limits compared with their spouses who share household assets. An entire demographic, defined by gender, is thereby affected.
+### Identifica los grupos afectados
 
-### Define fairness metrics
- 
-You have identified harms and an affected group, in this case, delineated by gender. Now, use the quantified factors to disaggregate their metrics. For example, using the data below, you can see that women have the largest false positive rate and men have the smallest, and that the opposite is true for false negatives.
+Los siguientes pasos son determinar cuales son los grupos que suelen ser afectados. Por ejemplo, en caso de una solicitud de tarjeta de crédito, un modelo puede determinar que mujeres deberían recibir mucho menor límite de crédito comparado con sus esposos con los cuales comparten ingreso familiar. Una demografía entera, definida por género, es de este modo afectada.
 
-✅ In a future lesson on Clustering, you will see how to build this 'confusion matrix' in code
+### Define métricas de justicia
 
-|            | False positive rate | False negative rate | count |
+Has identificado los daños y un grupo afectado, en este caso, delimitado por género. Ahora, usa los factores cuantificados para desagregar sus métricas. Por ejemplo, usando los datos abajo, puedes ver que las mujeres tienen la tasa de falso positivo más grande y los hombres tienen la más pequeña, y que lo opuesto es verdadero para los falsos negativos.
+
+✅ En una lección futura de Clustering, verás como construir esta 'matriz de confusión' en código
+
+|            | Tasa de falso positivo | Tasa de falso negativo | contador |
 | ---------- | ------------------- | ------------------- | ----- |
-| Women      | 0.37                | 0.27                | 54032 |
-| Men        | 0.31                | 0.35                | 28620 |
-| Non-binary | 0.33                | 0.31                | 1266  |
+| Mujeres    | 0.37                | 0.27                | 54032 |
+| Hombres    | 0.31                | 0.35                | 28620 |
+| No-binario | 0.33                | 0.31                | 1266  |
 
- 
-This table tells us several things. First, we note that there are comparatively few non-binary people in the data. The data is skewed, so you need to be careful how you interpret these numbers.
+Esta tabla nos dice varias cosas. Primero, notamos que hay comparativamente pocas personas no-binarias en los datos. Los datos están sesgados, por lo que necesitas ser cuidadoso en cómo interpretas estos números.
 
-In this case, we have 3 groups and 2 metrics. When we are thinking about how our system affects the group of customers with their loan applicants, this may be sufficient, but when you want to define larger number of groups, you may want to distill this to smaller sets of summaries. To do that, you can add more metrics, such as the largest difference or smallest ratio of each false negative and false positive. 
- 
-✅ Stop and Think: What other groups are likely to be affected for loan application? 
- 
-## Mitigating unfairness 
- 
-To mitigate unfairness, explore the model to generate various mitigated models and compare the tradeoffs it makes between accuracy and fairness to select the most fair model. 
+En este caso, tenemo 3 grupos y 2 métricas. Cuando estamos pensando en como nuestro sistea afecta a los grupos de clientes con sus solicitantes de préstamo, esto puede ser suficiente, pero cuando quieres definir grupos mayores, querrás reducir esto a conjuntos más pequeños de resúmenes. Para hacer eso, puedes agregar más métricas, como la diferencia mayor o la menor tasa de cada faso negativo y falso positivo. 
 
-This introductory lesson does not dive deeply into the details of algorithmic unfairness mitigation, such as post-processing and reductions approach, but here is a tool that you may want to try. 
+✅ Deténte y piensa: ¿Qué otros grupos es probale sean afectados para su solicitud de préstamo?
+
+## Mitigando injusticias
+
+Para mitigar injusticias, explorar el modelo para generar varios modelos mitigados y compara las compensaciones que se hacen entre la precisión y justicia para seleccionar el modelo más justo.
+
+Esta lección introductoria no profundiza en los detalles de mitigación de injusticia algorítmica, como los enfoques de post-procesamiento y reducciones, pero aquí tienes una herramiento que podrías probar.
 
 ### Fairlearn 
- 
-[Fairlearn](https://fairlearn.github.io/) is an open-source Python package that allows you to assess your systems' fairness and mitigate unfairness.  
 
-The tool helps you to assesses how a model's predictions affect different groups, enabling you to compare multiple models by using fairness and performance metrics, and supplying a set of algorithms to mitigate unfairness in binary classification and regression. 
+[Fairlearn](https://fairlearn.github.io/) es un paquete Python de código abierto que te permite evaluar la justicia de tus sistemas y mitigar injusticias.
 
-- Learn how to use the different components by checking out the Fairlearn's [GitHub](https://github.com/fairlearn/fairlearn/)
+La herramienta te ayuda a evaluarcomo unos modeloss de predicción afectan a diferentes grupos, permitiéndote comparar múltiples modelos usando métricas de rendimiento y justicia, y provee un conjunto de algoritmos para mitigar injusticia en regresión y clasificación binaria.
 
-- Explore the [user guide](https://fairlearn.github.io/main/user_guide/index.html), [examples](https://fairlearn.github.io/main/auto_examples/index.html)
+- Aprende como usar los distintos componentes revisando el repositorio de [GitHub](https://github.com/fairlearn/fairlearn/) de Fairlearn.
 
-- Try some [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
+- Explora la [guía de usuario](https://fairlearn.github.io/main/user_guide/index.html), [ejemplos](https://fairlearn.github.io/main/auto_examples/index.html)
+
+- Prueba algunas [muestras de notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks).
   
-- Learn [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) of machine learning models in Azure Machine Learning. 
+- Aprende [cómo activar evaluación de justicia](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) de los modelos de aprendizaje automático en Azure Machine Learning.
   
-- Check out these [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) for more fairness assessment scenarios in Azure Machine Learning. 
+- Revisa estas [muestras de notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) para más escenarios de evaluaciones de justicia en Azure Machine Learning.
 
 ---
-## 🚀 Challenge 
- 
-To prevent biases from being introduced in the first place, we should: 
+## 🚀 Desafío
 
-- have a diversity of backgrounds and perspectives among the people working on systems 
-- invest in datasets that reflect the diversity of our society 
-- develop better methods for detecting and correcting bias when it occurs 
+Para prevenir que los sesgos sean introducidos en primer lugar, debemos:
 
-Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider? 
+- Tener una diversisdad de antecedents y perspectivas entre las personas trabajando en los sistemas.
+- Invertir en conjuntos de datos que reflejen la diversidad de nuestra sociedad.
+- Desarrollar mejores métodos para la detección y corrección de sesgos cuando estos ocurren.
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
-## Review & Self Study 
- 
-In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.  
- 
-Watch this workshop to dive deeper into the topics: 
+Piensa en escenarios de la vida real donde la injusticia es evidente en la construcción y uso de modelos. ¿Qué más debemos considerar?
 
-- YouTube: Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik [Fairness-related harms in AI systems: Examples, assessment, and mitigation - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
+## Revisión y autoestudio 
 
-Also, read: 
+En esta lección, has aprendido algunos de los conceptos básicos de justicia e injusticia en el aprendizaje automático.
 
-- Microsoft’s RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+Mira este taller para profundizar en estos temas:
 
-- Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
+- YouTube: Daños relacionados a la justicia en sistemas de AI: Ejemplos, evaluaciones, y mitigación por Hanna Wallach y Miro Dudik [Daños relacionados a la justicia en sistemas de AI: Ejemplos, evaluaciones, y mitigación - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k)
 
-Explore the Fairlearn toolkit
+También lee:
+
+- Centro de recursos de Microsoft RAI: [Recursos de AI responsable – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+
+- Grupo de investigació nde Microsoft FATE: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+
+Explorar la caja de herramientas de Fiarlearn
 
 [Fairlearn](https://fairlearn.org/)
 
-Read about Azure Machine Learning's tools to ensure fairness
+Lee acerca de las herramienta de Azure Machine Learning para asegurar justicia
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa)
 
-## Assignment
+## Asignación
 
-[Explore Fairlearn](assignment.md) 
+[Explora Fairlearn](../translations/assignment.es.md)
