@@ -1,11 +1,11 @@
-# Create a timeline
+# Crea una línea de tiempo
 
-## Instructions
+## Instrucciones
 
-Using [this repo](https://github.com/Digital-Humanities-Toolkit/timeline-builder), create a timeline of some aspect of the history of algorithms, mathematics, statistics, AI, or ML, or a combination of these. You can focus on one person, one idea, or a long timespan of thought. Make sure to add multimedia elements.
+Usando [este repo](https://github.com/Digital-Humanities-Toolkit/timeline-builder), crea una línea de tiempo de algunos aspectos de la historia de los algoritmos, matemáticas, estadística, Inteligencia Artificial (AI), Aprendizaje Automático (ML), o una combinación de todos estos. Te puedes enfocar en una persona, una idea o período largo de tiempo de pensamiento. Asegúrate de agregar elementos multimedia.
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                         | Adequate                                | Needs Improvement                                                |
+| Criterio | Ejemplar                                         | Adecuado                                | Necesita mejorar                                                |
 | -------- | ------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-|          | A deployed timeline is presented as a GitHub page | The code is incomplete and not deployed | The timeline is incomplete, not well researched and not deployed |
+|          | Una línea de tiempo desplegada es representada como una página de Github | El código está incompleto y no fue desplegado | La línea del tiempo está incompleta, sin buena investigación y sin desplegar |
