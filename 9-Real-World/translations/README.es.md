@@ -1,14 +1,14 @@
-# Postscript: Real world applications of classic machine learning
+# Postdata: Aplicaciones del mundo real de aprendizaje automático clásico
 
-In this section of the curriculum, you will be introduced to some real-world applications of classical ML. We have scoured the internet to find whitepapers and articles about applications that have used these strategies, avoiding neural networks, deep learning and AI as much as possible. Learn about how ML is used in business systems, ecological applications, finance, arts and culture, and more.
+En esta sección del curso, presentaremos algunas aplicaciones del aprendizaje automático clásico en el mundo real. Hemos escrutinado el internet para encontrar documentos oficiales y artículos acerca de aplicaciones que han usado estas estrategias; evitando las redes neuronales, el aprendizaje profundo y la inteligencia artificial tanto como fue posible. Aprende cómo se usa el aprendizaje automático en los sistemas comerciales, las aplicaciones ecológicas, las finanzas, el arte y la cultura y más.
 
-![chess](images/chess.jpg)
+![ajedrez](../images/chess.jpg)
 
-> Photo by <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> on <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> Foto por <a href="https://unsplash.com/@childeye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexis Fauvet</a> en <a href="https://unsplash.com/s/photos/artificial-intelligence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-## Lesson
+## Lección
 
-1. [Real-World Applications for ML](1-Applications/README.md)
-## Credits
+1. [Aplicaciones del mundo real para el aprendizaje automático](../1-Applications/translations/README.es.md)
+## Créditos
 
-"Real-World Applications" was written by a team of folks, including [Jen Looper](https://twitter.com/jenlooper) and [Ornella Altunyan](https://twitter.com/ornelladotcom).
+"Aplicaciones del mundo real" fue escrito por un equipo de personas, incluyendo a [Jen Looper](https://twitter.com/jenlooper) y [Ornella Altunyan](https://twitter.com/ornelladotcom).
