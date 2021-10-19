@@ -33,42 +33,42 @@ Se você já usou o recurso de digitação por voz ao invés de escrever ou fez 
 
 Ela é possível porque alguém escreveu um programa de computador para fazer isto. Algumas décadas atrás, escritores de ficção previram que as pessoas iriam falar principalmente com seus computadores, e que computadores sempre iriam entender exatamente o que eles queriam dizer. Infelizmente, isto mostrou-se mais difícil do que muitos imaginavam, e enquanto hoje é um problema muito melhor compreendido, existem desafios significantes em alcançar o processamento de linguagem natural 'perfeito' quando pensamos em entender o significado de uma frase/expressão. Este é um problema particularmente difícil quando é preciso entender humor ou detectar emoções como sarcasmo em uma frase.
 
-At this point, you may be remembering school classes where the teacher covered the parts of grammar in a sentence. In some countries, students are taught grammar and linguistics as a dedicated subject, but in many, these topics are included as part of learning a language: either your first language in primary school (learning to read and write) and perhaps a second language in post-primary, or high school. Don't  worry if you are not an expert at differentiating nouns from verbs or adverbs from adjectives!
+Neste momento, você pode estar se lembrando das aulas da escola onde o professor fala sobre a gramática de uma oração. Em alguns países, estudantes aprendem gramática e linguística em uma matéria dedicada, mas, em muitos, estes tópicos são incluídos como parte do aprendizado da linguagem: ou sua primeira linguagem na pré-escola (aprendendo a ler e escrever) e talvez a segunda linguagem no ensino fundamental ou médio. Não se preocupe se você não é experiente em diferenciar substantivos de verbos ou advérbios de adjetivos!
 
-If you struggle with the difference between the *simple present* and *present progressive*, you are not alone. This is a challenging thing for many people, even native speakers of a language. The good news is that computers are really good at applying formal rules, and you will learn to write code that can *parse* a sentence as well as a human. The greater challenge you will examine later is understanding the *meaning*, and *sentiment*, of a sentence.
+Se você tem dificuldade com a diferença entre o *presente do indicativo* e o *gerúndio*, você não está sozinho(a). Esta é uma tarefa desafiadora para muitas pessoas, mesmo falantes nativos de uma língua. A boa notícia é que computadores são muito bons em aplicar regras formais, e você vai aprender a escrever código que pode *parsear* (analisar a sintaxe) uma frase tão bem quanto um humano. A maior dificuldade que você irá enfrentar mais tarde é entender o *significado* e o *sentimento* de uma frase.
 
-## Prerequisites
+## Pré-requisitos
 
-For this lesson, the main prerequisite is being able to read and understand the language of this lesson. There are no math problems or equations to solve. While the original author wrote this lesson in English, it is also translated into other languages, so you could be reading a translation. There are examples where a number of different languages are used (to compare the different grammar rules of different languages). These are *not* translated, but the explanatory text is, so the meaning should be clear.
+Para esta aula. o pré-requisito principal é conseguir ler e entender a linguagem desta lição. Não existem equações ou prblemas da matemática para resolver. Enquanto o autor original escreveu essa aula em inglês. ela também será traduzida em outras línguas (como em português!), então você pode estar lendo uma tradução. Existem exemplos onde um número de diferentes linguagens são usadas (como comparar regras gramaticais entre diferentes linguagens). Elas *não* são traduzidas, mas o texto que as explica sim, então o significado fica claro.
 
-For the coding tasks, you will use Python and the examples are using Python 3.8.
+Para as tarefas de programação, você irá usar Python. Os exemplos a seguir usam Python 3.8.
 
-In this section, you will need, and use:
+Nesta seção, você vai usar:
 
-- **Python 3 comprehension**.  Programming language comprehension in Python 3, this lesson uses input, loops, file reading, arrays.
-- **Visual Studio Code + extension**. We will use Visual Studio Code and its Python extension. You can also use a Python IDE of your choice.
-- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) is a simplified text processing library for Python. Follow the instructions on the TextBlob site to install it on your system (install the corpora as well, as shown below):
+- **Entendimento de Python 3**.  Entendimento da linguagem Python 3, esta aula usa input (entrada), loops (iteração), leitura de arquivos, arrays (vetores).
+- **Visual Studio Code + extenção**. Nós iremos utilizar o Visual Studio Code e sua extensão de Python. Você também pode usar a IDE Python de sua preferência.
+- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) é uma biblioteca de processamento de texto simplificada para Python. Siga as instruções no site do  TextBlob para instalá-lo no seu sistema (instale o corpora também, como mostrado abaixo):
 
    ```bash
    pip install -U textblob
    python -m textblob.download_corpora
    ```
 
-> 💡 Tip: You can run Python directly in VS Code environments. Check the [docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) for more information.
+> 💡 Dica: Você pode rodar Python diretamente nos ambientes (environments) do VS Code. Veja a [documentação](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) para mais informações.
 
-## Talking to machines
+## Falando com máquinas
 
-The history of trying to make computers understand human language goes back decades, and one of the earliest scientists to consider natural language processing was *Alan Turing*.
+A história de tentar fazer computadores entender a linguagem humana é de décadas atrás, e um dos primeiros cientistas a considerar o processamento de linguagem natural foi *Alan Turing*.
 
-### The 'Turing test'
+### O 'Teste de Turing'
 
-When Turing was researching *artificial intelligence* in the 1950's, he considered if a conversational test could be given to a human and computer (via typed correspondence) where the human in the conversation was not sure if they were conversing with another human or a computer.
+Quando Turing estava pesquisando *inteligência artificial* na década de 1950, ele imaginou um caso onde um teste de conversação que poderia ser dado para um humano e um computador (correspondentemente digitado), onde o humano na conversa não conseguiria ter certeza de que ele estava falando com outro humano ou um computador.
 
-If, after a certain length of conversation, the human could not determine that the answers were from a computer or not, then could the computer be said to be *thinking*?
+Se, depois de um certo período de conversa, o humano não pudesse determinar se as respostas foram dadas por um computador ou não, então poderíamos dizer que computador está *pensando*?
 
-### The inspiration - 'the imitation game'
+### A inspiração - 'o jogo da imitação'
 
-The idea for this came from a party game called *The Imitation Game* where an interrogator is alone in a room and tasked with determining which of two people (in another room) are male and female respectively. The interrogator can send notes, and must try to think of questions where the written answers reveal the gender of the mystery person. Of course, the players in the other room are trying to trick the interrogator by answering questions in such as way as to mislead or confuse the interrogator, whilst also giving the appearance of answering honestly.
+A ideia disso veio de um jogo de festa chamado *O Jogo da Imitação* (The Imitation Game) onde um interrogador está sozinho em um cômodo e tem a tarefa de determinar qual de duas pessoas (em outro cômodo) é homem e mulher respectivamente. O interrogador pode mandar notas, e precisa tentar pensar em questões onde as respostas escritas revelam o gênero da pessoa misteriosa. Obviamente, os jogadores na outra sala estão tentando enganar o interrogador ao responder questões de forma confusa/enganosa, ao mesmo tempo em que aparentam ser respostas sinceras.
 
 ### Developing Eliza
 
