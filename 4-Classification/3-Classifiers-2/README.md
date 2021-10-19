@@ -176,7 +176,7 @@ Let's try for a little better accuracy with a Support Vector Classifier.
 Let's follow the path to the very end, even though the previous test was quite good. Let's try some 'Ensemble Classifiers, specifically Random Forest and AdaBoost:
 
 ```python
-'RFST': RandomForestClassifier(n_estimators=100),
+  'RFST': RandomForestClassifier(n_estimators=100),
   'ADA': AdaBoostClassifier(n_estimators=100)
 ```
 
