@@ -10,7 +10,7 @@
 
 1. [构建一个 Web 应用程序](../1-Web-App/translations/README.zh-cn.md)
 
-## 作者
+## 致谢
 
 "构建一个 Web 应用程序" 由 [Jen Looper](https://twitter.com/jenlooper) 用 ♥ 编写️
 
