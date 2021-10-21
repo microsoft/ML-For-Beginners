@@ -228,82 +228,80 @@ You can use your model directly in a web app. This architecture also allows you 
 
     ```javascript
     <script>
-                const ingredients = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                
-                const checks = [].slice.call(document.querySelectorAll('.checkbox'));
-    
-                // use an async context to call onnxruntime functions.
-                function init() {
-                    
-                    checks.forEach(function (checkbox, index) {
-                        checkbox.onchange = function () {
-                            if (this.checked) {
-                                var index = checkbox.value;
-    
-                                if (index !== -1) {
-                                    ingredients[index] = 1;
-                                }
-                                console.log(ingredients)
-                            }
-                            else {
-                                var index = checkbox.value;
-    
-                                if (index !== -1) {
-                                    ingredients[index] = 0;
-                                }
-                                console.log(ingredients)
-                            }
+        const ingredients = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        
+        const checks = [].slice.call(document.querySelectorAll('.checkbox'));
+
+        // use an async context to call onnxruntime functions.
+        function init() {
+            
+            checks.forEach(function (checkbox, index) {
+                checkbox.onchange = function () {
+                    if (this.checked) {
+                        var index = checkbox.value;
+
+                        if (index !== -1) {
+                            ingredients[index] = 1;
                         }
-                    })
-                }
-    
-                function testCheckboxes() {
-                        for (var i = 0; i < checks.length; i++)
-                            if (checks[i].type == "checkbox")
-                                if (checks[i].checked)
-                                    return true;
-                        return false;
-                }
-    
-                async function startInference() {
-    
-                    let checked = testCheckboxes()
-    
-                    if (checked) {
-    
-                    try {
-                        // create a new session and load the model.
-                        
-                        const session = await ort.InferenceSession.create('./model.onnx');
-    
-                        const input = new ort.Tensor(new Float32Array(ingredients), [1, 380]);
-                        const feeds = { float_input: input };
-    
-                        // feed inputs and run
-    
-                        const results = await session.run(feeds);
-    
-                        // read from results
-                        alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
-    
-                    } catch (e) {
-                        console.log(`failed to inference ONNX model: ${e}.`);
+                        console.log(ingredients)
+                    }
+                    else {
+                        var index = checkbox.value;
+
+                        if (index !== -1) {
+                            ingredients[index] = 0;
+                        }
+                        console.log(ingredients)
                     }
                 }
-                else alert("Please check an ingredient")
+            })
+        }
+
+        function testCheckboxes() {
+                for (var i = 0; i < checks.length; i++)
+                    if (checks[i].type == "checkbox")
+                        if (checks[i].checked)
+                            return true;
+                return false;
+        }
+
+        async function startInference() {
+
+            let checked = testCheckboxes()
+
+            if (checked) {
+                try {
+                    // create a new session and load the model.
                     
+                    const session = await ort.InferenceSession.create('./model.onnx');
+
+                    const input = new ort.Tensor(new Float32Array(ingredients), [1, 380]);
+                    const feeds = { float_input: input };
+
+                    // feed inputs and run
+
+                    const results = await session.run(feeds);
+
+                    // read from results
+                    alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
+
+                } catch (e) {
+                    console.log(`failed to inference ONNX model: ${e}.`);
                 }
+            }
+            else alert("Please check an ingredient")
+        }
         init();
                
-            </script>
+    </script>
     ```
 
 In this code, there are several things happening:
 
-1. You created an array of 380 possible values (1 or 0)  to be  set and sent to the model for inference, depending on whether an ingredient checkbox is checked.
+1. You created an array of 380 possible values (1 or 0) to be set and sent to the model for inference, depending on whether an ingredient checkbox is checked.
 2. You created an array of checkboxes and a way to determine whether they were checked in an `init` function that is called when the application starts. When a checkbox is checked, the `ingredients` array is altered to reflect the chosen ingredient.
 3. You created a `testCheckboxes` function that checks whether any checkbox was checked.
-4. You use that function when the button is pressed and, if any checkbox is checked, you start inference.
+4. You use `startInference` function when the button is pressed and, if any checkbox is checked, you start inference.
 5. The inference routine includes:
    1. Setting up an asynchronous load of the model
    2. Creating a Tensor structure to send to the model
