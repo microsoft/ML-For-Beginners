@@ -1,13 +1,13 @@
-# A ML Scavenger Hunt
+# Una búsqueda del tesoro con aprendizaje automático
 
-## Instructions
+## Instrucciones
 
-In this lesson, you learned about many real-life use cases that were solved using classical ML. While the use of deep learning, new techniques and tools in AI, and leveraging neural networks has helped speed up the production of tools to help in these sectors, classic ML using the techniques in this curriculum still hold great value.
+En esta lección aprendiste acerca de muchos casos de uso en la vida real que fueron solucionados usando aprendizaje automático. Si bien, el uso del aprendizaje profundo, las nuevas técnicas y herramientas en la inteligencia artificial y el apoyo en las redes neuronales han ayudado a acelerar la producción de herramientas para ayudar a estos sectores, el aprendizaje automático clásico que usa las técnicas en este curso aún tienen gran valor.
 
-In this assignment, imagine that you are participating in a hackathon. Use what you learned in the curriculum to propose a solution using classic ML to solve a problem in one of the sectors discussed in this lesson. Create a presentation where you discuss how you will implement your idea. Bonus points if you can gather sample data and build a ML model to support your concept!
+Para esta asignación, imagina que estás participando en un hackatón. Usa lo que has aprendido en el curso para así proponer una solución mediante el uso de aprendizaje automático clásico y así resolver un problema en uno de los sectores discutidos en esta lección. Crea una una presentación donde discutas cómo implementarás tu idea. ¡Tendrás puntos adicionales si puedes reunir datos de prueba y construir un modelo de aprendizaje automático para soportar tu concepto!
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                                           | Adequate                                          | Needs Improvement      |
+| Criterio  | Ejemplar                                                           | Adecuado                                          | Necesita mejorar      |
 | -------- | ------------------------------------------------------------------- | ------------------------------------------------- | ---------------------- |
-|          | A PowerPoint presentation is presented - bonus for building a model | A non-innovative, basic presentation is presented | The work is incomplete |
+|          | Entregó una presentación de PowerPoint - puntos adicionales si creó un modelo | Entregó una presentación básica nada innovadora | El trabajo está incompleto |
