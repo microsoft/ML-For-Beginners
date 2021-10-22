@@ -4,10 +4,12 @@
       <router-link class="navlink" to="/">Home</router-link>
       <label for="locale">locale</label>
       <select v-model="locale">
+        <option>br</option>
         <option>en</option>
-        <option>tr</option>
         <option>fr</option>
+        <option>it</option>
         <option>ja</option>
+        <option>tr</option>
       </select>
     </nav>
     <div id="app">
