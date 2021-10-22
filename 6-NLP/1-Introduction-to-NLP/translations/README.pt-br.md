@@ -2,7 +2,7 @@
 
 Esta aula cobre uma breve história e conceitos importantes do *processamento de linguagem natural*, uma subárea da *Linguística computacional*.
 
-## [Quiz pŕe-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
+## [Quiz pŕe-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31?loc=br)
 
 ## Introdução
 
@@ -140,7 +140,7 @@ Em seguida, vamos criar o bot. Iremos começar definindo algumas frases.
     ```
    O bot se apresenta e dá instruções de como os usuário deve interagir. A conversa é iniciada pelo bot, que pergunta "Como você está hoje?". O usuário diz "Estou bem, valeu", ao que o bot responde "Isso é bem interessante, por favor me conte mais.". A conversa continua por mais alguns diálogos.
 
-    Uma solução possível para a tarefa está [aqui](solution/bot.py)
+    Uma solução possível para a tarefa está [aqui](../solution/bot.py)
 
     ✅ Pare e pense
 
@@ -156,7 +156,7 @@ Escolha um dos elementos do "pare e considere" acima e tente implementá-lo em c
 
 Na próxima aula, você irá aprender sobre algumas outras abordagens para parsear linguagem natural e aprendizado de máquina.
 
-## [Quiz pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
+## [Quiz pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32?loc=br)
 
 ## Revisão & Autoestudo
 
@@ -169,4 +169,4 @@ Dê uma olhada nas referências abaixo e talvez até considere-as como oportunid
 
 ## Tarefa 
 
-[Procura por um bot](assignment.md)
+[Procura por um bot](assignment.pt-br.md)
