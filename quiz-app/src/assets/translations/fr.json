@@ -22,7 +22,7 @@
                     ]
                 },
                 {
-                    "questionText": "Quelle est la différence technique entre le ml classique et le deep learning?",
+                    "questionText": "Quelle est la différence technique entre le ML classique et le deep learning?",
                     "answerOptions": [
 							{
 							"answerText": "ML classique a été inventé en premier",
@@ -73,7 +73,7 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Des orangutans",
+							"answerText": "Des Orangs-outans",
                             "isCorrect": "false"
                         }
                     ]
@@ -90,7 +90,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Des neural networks",
+							"answerText": "Des réseaux neuronaux",
                             "isCorrect": "false"
                         }
                     ]
@@ -99,7 +99,7 @@
                     "questionText": "Pourquoi tout le monde devrait-il apprendre les bases du ML?",
                     "answerOptions": [
 							{
-							"answerText": "L'apprentissage ml est amusant et accessible à tout le monde",
+							"answerText": "L'apprentissage ML est amusant et accessible à tout le monde",
                             "isCorrect": "false"
                         },
                         {
@@ -122,7 +122,7 @@
                     "questionText": "Quand approximativement le terme 'intelligence artificielle' a-t-il été inventé ?",
                     "answerOptions": [
 							{
-							"answerText": "1980s",
+							"answerText": "années 1980",
                             "isCorrect": "false"
                         },
                         {
@@ -153,7 +153,7 @@
                     ]
                 },
                 {
-                    "questionText": "Quelle est l'une des raisons pour lesquelles l'avancement de l'AI a ralenti dans les années 1970?",
+                    "questionText": "Quelle est l'une des raisons pour lesquelles l'avancement de l'IA a ralenti dans les années 1970?",
                     "answerOptions": [
 							{
 							"answerText": "Puissance de calcul limitée",
@@ -176,7 +176,7 @@
             "title": "Historique du machine learning: Quiz de validation des connaissances",
             "quiz": [
 							{
-                    "questionText": "Qu'est-ce qu'un exemple de système d'IA \" Scruffy \" AI?",
+                    "questionText": "Qu'est-ce qu'un exemple de système d'IA \" Scruffy \" ?",
                     "answerOptions": [
 							{
 							"answerText": "ELIZA",
@@ -250,7 +250,7 @@
                     ]
                 },
                 {
-                    "questionText": "Le terme \" injustice \" en ml connotes:",
+                    "questionText": "Le terme \" injustice \" en ML connotes:",
                     "answerOptions": [
 							{
 							"answerText": "Préjudices pour un groupe de personnees",
@@ -358,13 +358,13 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Tune Paramètres, puis formez votre modèle",
+							"answerText": "Régler les paramètres, puis entraîner votre modèle",
                             "isCorrect": "false"
                         }
                     ]
                 },
                 {
-                    "questionText": "Vos données ___ vont avoir une incidence sur la qualité de votre modèle ML",
+                    "questionText": "Vos données de ___ vont avoir une incidence sur la qualité de votre modèle ML",
                     "answerOptions": [
 							{
 							"answerText": "Quantité",
@@ -441,15 +441,15 @@
                     "questionText": "Une commande commune de démarrer le processus de formation dans diverses bibliothèques ML est la suivante:",
                     "answerOptions": [
 							{
-							"answerText": "Model.travel",
+							"answerText": "model.travel",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Model.train",
+							"answerText": "model.train",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Model.fit",
+							"answerText": "model.fit",
                             "isCorrect": "true"
                         }
                     ]
@@ -481,7 +481,7 @@
                     "questionText": "Laquelle de ces variables est une variable catégorique?",
                     "answerOptions": [
 							{
-							"answerText": "rythme cardiaque",
+							"answerText": "Rythme cardiaque",
                             "isCorrect": "false"
                         },
                         {
@@ -603,7 +603,7 @@
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "Un Train Test Splitn",
+							"answerText": "Un Train Test Split",
                             "isCorrect": "false"
                         }
                     ]
@@ -652,7 +652,7 @@
                     "questionText": "Laquelle de ces méthodes de traçage est utile lorsque vous souhaitez comprendre la propagation de différents groupes de fichiers de données de votre jeu de données?",
                     "answerOptions": [
 							{
-							"answerText": "Nuage de pointsn",
+							"answerText": "Nuage de points",
                             "isCorrect": "false"
                         },
                         {
@@ -844,11 +844,11 @@
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "linéaire",
+							"answerText": "Linéaire",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "cardinale",
+							"answerText": "Cardinale",
                             "isCorrect": "false"
                         }
                     ]
@@ -1494,11 +1494,11 @@
                     "questionText": "Les techniques de clustering peuvent être utilisées dans ces industries",
                     "answerOptions": [
 							{
-							"answerText": "Banking",
+							"answerText": "Les banques",
                             "isCorrect": "false"
                         },
                         {
-							"answerText": "e-commerce",
+							"answerText": "Le e-commerce",
                             "isCorrect": "false"
                         },
                         {
@@ -2444,14 +2444,14 @@
                     ]
                 },
                 {
-                    "questionText": "Utilisez Sarimax pour",
+                    "questionText": "Utilisez SARIMAX pour",
                     "answerOptions": [
 							{
 							"answerText": "Gérer les modèles d'ARIMA saisonniers",
                             "isCorrect": "true"
                         },
                         {
-							"answerText": "Gérer des modèles spéciaux Arima",
+							"answerText": "Gérer des modèles spéciaux ARIMA",
                             "isCorrect": "false"
                         },
                         {
@@ -2806,6 +2806,120 @@
                     ]
                 }
             ]
-        }
+        },
+        {
+            "id": 51,
+            "title": "Séries temporelles SVR: Quiz préalable",
+            "quiz": [
+              {
+                "questionText": "SVM signifie",
+                "answerOptions": [
+                  {
+                    "answerText": "Statistical Vector Machine",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "Support Vector Machine",
+                    "isCorrect": "true"
+                  },
+                  {
+                    "answerText": "Statistical Vector Model",
+                    "isCorrect": "false"
+                  }
+                ]
+              },
+              {
+                "questionText": "Laquelle de ces techniques ML est utilisée pour prédire des valeurs continues ?",
+                "answerOptions": [
+                  {
+                    "answerText": "Le Clustering",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "La classification",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "La régression",
+                    "isCorrect": "true"
+                  }
+                ]
+              },
+              {
+                "questionText": "Lequel de ces modèles est couramment utilisé pour les prévisions de séries chronologiques ?",
+                "answerOptions": [
+                  {
+                    "answerText": "ARIMA",
+                    "isCorrect": "true"
+                  },
+                  {
+                    "answerText": "K-Means Clustering",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "Logistic Regression",
+                    "isCorrect": "false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "title": "Séries temporelles SVR: Quiz de validation des connaissances",
+            "quiz": [
+              {
+                "questionText": "Par laquelle de ces méthodes un SVR apprend-il ?",
+                "answerOptions": [
+                  {
+                    "answerText": "Trouver le meilleur hyperplan d'ajustement qui a le nombre maximum de points de données",
+                    "isCorrect": "true"
+                  },
+                  {
+                    "answerText": "Apprentissage de la distribution de probabilité de l'ensemble de données",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "Recherche de clusters dans l'ensemble de données",
+                    "isCorrect": "false"
+                  }
+                ]
+              },
+              {
+                "questionText": "À quoi sert un noyau dans les SVM ?",
+                "answerOptions": [
+                  {
+                    "answerText": "Pour mesurer la précision des prédictions du modèle",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "Pour transformer l'ensemble de données dans un espace de dimension supérieure",
+                    "isCorrect": "true"
+                  },
+                  {
+                    "answerText": "Pour standardiser les valeurs de l'ensemble de données",
+                    "isCorrect": "false"
+                  }
+                ]
+              },
+              {
+                "questionText": "Lequel de ces modèles prend en compte la non-linéarité de l'ensemble de données ?",
+                "answerOptions": [
+                  {
+                    "answerText": "La régression linéaire simple",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "ARIMA",
+                    "isCorrect": "false"
+                  },
+                  {
+                    "answerText": "SVR utilisant le noyau RBF",
+                    "isCorrect": "true"
+                  }
+                ]
+              }
+            ]
+          }
     ]
 }]
