@@ -70,39 +70,41 @@ Se, depois de um certo período de conversa, o humano não pudesse determinar se
 
 A ideia disso veio de um jogo de festa chamado *O Jogo da Imitação* (The Imitation Game) onde um interrogador está sozinho em um cômodo e tem a tarefa de determinar qual de duas pessoas (em outro cômodo) é homem e mulher respectivamente. O interrogador pode mandar notas, e precisa tentar pensar em questões onde as respostas escritas revelam o gênero da pessoa misteriosa. Obviamente, os jogadores na outra sala estão tentando enganar o interrogador ao responder questões de forma confusa/enganosa, ao mesmo tempo em que aparentam ser respostas sinceras.
 
-### Developing Eliza
+### Desenvolvendo Eliza
 
-In the 1960's an MIT scientist called *Joseph Weizenbaum* developed [*Eliza*](https://wikipedia.org/wiki/ELIZA), a computer 'therapist' that would ask the human questions and give the appearance of understanding their answers. However, while Eliza could parse a sentence and identify certain grammatical constructs and keywords so as to give a reasonable answer, it could not be said to *understand* the sentence. If Eliza was presented with a sentence following the format "**I am** <u>sad</u>" it might rearrange and substitute words in the sentence to form the response "How long have **you been** <u>sad</u>". 
+Nos anos 1960 um cientista do MIT chamado *Joseph Weizenbaum* desenvolveu [*Eliza*](https://wikipedia.org/wiki/ELIZA), um computador 'terapeuta' que iria fazer perguntas ao humano e aparentaria entender suas respostas. No entanto, enquanto Eliza conseguia parsear e identificar certas construções gramaticais e palavras-chave para conseguir responder de forma razoável, não podemos dizer que ela era capaz de *entender* a frase. Se Eliza fosse apresentada com uma sequência de sentenças seguindo o formato "**Eu estou** <u>triste</u>" ela pode ser capaz de rearrajar e substituir palavras na sentença para formar a resposta "Há quanto tempo **você está** <u>triste</u>?". 
 
-This gave the impression that Eliza understood the statement and was asking a follow-on question, whereas in reality, it was changing the tense and adding some words. If Eliza could not identify a keyword that it had a response for, it would instead give a random response that could be applicable to many different statements. Eliza could be easily tricked, for instance if a user wrote "**You are** a <u>bicycle</u>" it might respond with "How long have **I been** a <u>bicycle</u>?", instead of a more reasoned response.
+Isso dá a impressão de que Eliza entendeu a afirmação e fez uma pergunta subsequente, enquanto na realidade, ela mudou a conjugação verbal e adicionou algumas palavras. Se Eliza não conseguir identificar uma palavra-chave que já tem uma resposta pronta, ela daria uma resposta aleatória que poderia ser aplicada em diversas afirmações do usuário. Eliza poderia ser facilmente enganada, por exemplo quando um usuário escreve "**Você é** uma <u>bicicleta</u>", a resposta dada pode ser "Há quanto tempo **eu sou** uma <u>bicicleta</u>?", ao invés de uma resposta mais razoável.
 
-[![Chatting with Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Chatting with Eliza")
+[![Conversando com Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Chatting with Eliza")
 
-> 🎥 Click the image above for a video about original ELIZA program
+> 🎥 Clique na imagem abaixo para ver um video sobre o programa original ELIZA
 
-> Note: You can read the original description of [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) published in 1966 if you have an ACM account. Alternately, read about Eliza on [wikipedia](https://wikipedia.org/wiki/ELIZA)
+> Nota: Você pode ler a descrição original de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publicada em 1966 se você tem uma conta ACM. Alternativamente, leia sobre Eliza na [wikipedia](https://wikipedia.org/wiki/ELIZA)
 
-## Exercise - coding a basic conversational bot
+## Exercício - programando um bot de conversação básico
 
-A conversational bot, like Eliza, is a program that elicits user input and seems to understand and respond intelligently. Unlike Eliza, our bot will not have several rules giving it the appearance of having an intelligent conversation. Instead, our bot will have one ability only, to keep the conversation going with random responses that might work in almost any trivial conversation.
+Um bot de conversação, como Eliza, é um programa que obtem o input do usuário e parece entender e responder de forma inteligente. Diferentemente de Eliza, nosso bot não vai ter diversas regras dando a aparência de uma conversação inteligente. Ao invés disso, nosso bot tem uma única habilidade, a de continuar a conversação com respostas aleatórias que podem funcionar em qualquer conversação trivial.
 
-### The plan
+### O plano
 
-Your steps when building a conversational bot:
+Seus passos quando estiver construindo um bot de conversação:
 
-1. Print instructions advising the user how to interact with the bot
-2. Start a loop
-   1. Accept user input
-   2. If user has asked to exit, then exit
-   3. Process user input and determine response (in this case, the response is a random choice from a list of possible generic responses)
-   4. Print response
-3. loop back to step 2
+1. Imprima instruções indicando como o usuário pode interagir com o bot
+2. Comece um loop (laço)
+   1. Aceite o input do usuário
+   2. Se o usuário pedir para sair, então sair
+   3. Processar o input do usuário e determinar resposta (neste caso, a resposta é uma escolha aleatória de uma lista de possíveis respostas genéricas)
+   4. Imprimir resposta
+3. Voltar para o passo 2 (continuando o loop/laço)
 
-### Building the bot
+### Construindo o bot
 
-Let's create the bot next. We'll start by defining some phrases.
+Em seguida, vamos criar o bot. Iremos começar definindo algumas frases.
 
-1. Create this bot yourself in Python with the following random responses:
+> Nota da tradutora: em função da política de contribuição da Microsoft, todos os códigos foram mantidos em inglês. No entanto, é possível encontrar traduções abaixo deles para ajudar no entendimento. Para não estender muito a tradução, somente algumas partes foram traduzidas, então sintam-se convidados a pesquisar em tradutores/dicionários.
+
+1. Crie este bot você mesmo em Python com as seguintes respostas:
 
     ```python
     random_responses = ["That is quite interesting, please tell me more.",
@@ -112,8 +114,9 @@ Let's create the bot next. We'll start by defining some phrases.
                         "Let's change the subject.",
                         "Did you catch the game last night?"]
     ```
+   > A lista de respostas genéricas inclui frases como "Isso é bem interessante, por favor me conte mais."  e "O tempo esses dias está bem doido, né?"
 
-    Here is some sample output to guide you (user input is on the lines starting with `>`):
+    Aqui estão alguns outputs de exemplo para te guiar (as entradas do usuário se iniciam com `>`):
 
     ```output
     Hello, I am Marvin, the simple robot.
@@ -135,34 +138,35 @@ Let's create the bot next. We'll start by defining some phrases.
     > bye
     It was nice talking to you, goodbye!
     ```
+   O bot se apresenta e dá instruções de como os usuário deve interagir. A conversa é iniciada pelo bot, que pergunta "Como você está hoje?". O usuário diz "Estou bem, valeu", ao que o bot responde "Isso é bem interessante, por favor me conte mais.". A conversa continua por mais alguns diálogos.
 
-    One possible solution to the task is [here](solution/bot.py)
+    Uma solução possível para a tarefa está [aqui](solution/bot.py)
 
-    ✅ Stop and consider
+    ✅ Pare e pense
 
-    1. Do you think the random responses would 'trick' someone into thinking that the bot actually understood them?
-    2. What features would the bot need to be more effective?
-    3. If a bot could really 'understand' the meaning of a sentence, would it need to 'remember' the meaning of previous sentences in a conversation too?
+    1. Você acha que respostas aleatórias seriam capazes de fazer uma pessoa achar que o bot realmente entendeu  que ela disse?
+    2. Quais recursos/funções o bot precisaria ter para ser mais efetivo?
+    3. Se um bot pudesse 'entender' facilmente o significado de uma frase, ele também precisaria se 'lembrar' do significado de frases anteriores?
 
 ---
 
-## 🚀Challenge
+## 🚀Desafio
 
-Choose one of the "stop and consider" elements above and either try to implement them in code or write a solution on paper using pseudocode.
+Escolha um dos elementos do "pare e considere" acima e tente implementá-lo em código ou escreva uma solução no papel usando pseudocódigo.
 
-In the next lesson, you'll learn about a number of other approaches to parsing natural language and machine learning.
+Na próxima aula, você irá aprender sobre algumas outras abordagens para parsear linguagem natural e aprendizado de máquina.
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
+## [Quiz pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
 
-## Review & Self Study
+## Revisão & Autoestudo
 
-Take a look at the references below as further reading opportunities.
+Dê uma olhada nas referências abaixo e talvez até considere-as como oportunidade de leitura futura.
 
 ### References
 
 1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
 2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
 
-## Assignment 
+## Tarefa 
 
-[Search for a bot](assignment.md)
+[Procura por um bot](assignment.md)
