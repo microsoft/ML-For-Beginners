@@ -2,7 +2,7 @@
 
 Para a maioria das tarefas de *processamento de linguagem natural*, o texto a ser processado precisa ser quebrado em partes, examinado, e os resultados guardados ou cruzados com regras e data sets. Estas tarefas permitem que o programador obtenha _significado_ ou _intencionalidade_ ou a _frequência_ de termos e palavras em um texto.
 
-## [Quiz pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/33?loc=br)
+## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/33?loc=br)
 
 Vamos descobrir técnicas frequentemente usadas no processamento de texto. Combinadas com aprendizado de máquina, estas técnicas ajudam você a analisar grandes quantidades de texto com eficiência. Contudo, antes de aplicar o aprendizado de máquina para estas tarefas, vamos entender os problemas encontrados por um especialista de PLN (ou NLP, em inglês).
 
@@ -19,28 +19,30 @@ Provavelmente a primeira coisa que a maioria dos algoritmos de PLN precisa é fa
 
 ### Embeddings
 
-[Word embeddings](https://wikipedia.org/wiki/Word_embedding) are a way to convert your text data numerically. Embeddings are done in a way so that words with a similar meaning or words used together cluster together.
+[Word embeddings](https://wikipedia.org/wiki/Word_embedding) (em português, podemos dizer vetores de palavras - apesar do termo mais comum ser word embeddings) são uma forma de converter seus dados textuais em dados numéricos. Os embeddings são feitos de tal forma que as palavras com significado parecido ou palavras usadas em conjunto ficam agrupadas em clusters.
 
-![word embeddings](images/embedding.png)
-> "I have the highest respect for your nerves, they are my old friends." - Word embeddings for a sentence in **Pride and Prejudice**. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+![word embeddings](../images/embedding.png)
+> "I have the highest respect for your nerves, they are my old friends." - Word embeddings de uma frase em **Orgulho e Preconceito**. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
-✅ Try [this interesting tool](https://projector.tensorflow.org/) to experiment with word embeddings. Clicking on one word shows clusters of similar words: 'toy' clusters with 'disney', 'lego', 'playstation', and 'console'.
+✅ Tente esta [ferramenta interessante](https://projector.tensorflow.org/) para experimentar word embeddings. Clicar em uma palavra mostra o cluster (agrupamento) de palavras parecidas: 'brinquedo' está agrupado com 'disney', 'lego', 'playstation', e 'console'.
 
-### Parsing & Part-of-speech Tagging
+### Parsear & Marcação de Partes da Fala (Part of Speech Tagging - POS)
 
-Every word that has been tokenized can be tagged as a part of speech - a noun, verb, or adjective. The sentence `the quick red fox jumped over the lazy brown dog` might be POS tagged as fox = noun, jumped = verb.
+Toda palavra tokenizada pode ser marcadacomo parte da fala - um substantivo, verbo, ou adjetivo. A frase `A rápida raposa pula por cima do preguiçoso cão marrom` pode ser marcada com o POS da seguinte forma: raposa = substantivo, pula = verbo.
 
-![parsing](images/parse.png)
+![parsing/análise sintática](../images/parse.png)
 
-> Parsing a sentence from **Pride and Prejudice**. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> Parseando/analisando sintaticamente uma frase de **Orgulho e Preconceito**. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
-Parsing is recognizing what words are related to each other in a sentence - for instance `the quick red fox jumped` is an adjective-noun-verb sequence that is separate from the `lazy brown dog` sequence.  
+Parsear é reconhecer quais palavras se relacionam entre si em uma frase - por exemplo `A rápida raposa pula` é uma sequência com adjetivo-substantivo-verbo que é diferente da sequência `preguiçoso cão marrom`.  
 
-### Word and Phrase Frequencies
+### Frequência de palavras e frases
 
-A useful procedure when analyzing a large body of text is to build a dictionary of every word or phrase of interest and how often it appears. The phrase `the quick red fox jumped over the lazy brown dog` has a word frequency of 2 for the.
+Um procedimento útil ao analisar um texto grande é construir um dicionário com toda palavra ou frase de interesse e com a frequência elas aparecem. A frase `A rápida raposa pula por cima do preguiçoso cão marrom` tem uma frequência de 1 para a palavra raposa.
 
-Let's look at an example text where we count the frequency of words. Rudyard Kipling's poem The Winners contains the following verse:
+Vamos observar um exemplo de texto onde contamos a frequência de palavras. O poema The Winners de Rudyard Kipling contém o seguinte verso:
+
+> O poema não foi traduzido, porém é só observar as frequências.
 
 ```output
 What the moral? Who rides may read.
@@ -51,80 +53,82 @@ Down to Gehenna or up to the Throne,
 He travels the fastest who travels alone.
 ```
 
-As phrase frequencies can be case insensitive or case sensitive as required, the phrase `a friend` has a frequency of 2 and `the` has a frequency of 6, and `travels` is 2.
+Dependendo do caso, a frequência de expressões pode variar ou não com relação a letras maiúsculas e minúsculas. A expressão `a friend` possui frequência de 2 no poema e `the` tem frequência de 6, e a de `travels` é 2.
 
-### N-grams
+### N-gramas
 
-A text can be split into sequences of words of a set length, a single word (unigram), two words (bigrams), three words (trigrams) or any number of words (n-grams).
+Um texto pode ser dividido em sequências de palavras de certo tamanho, uma única palavra (unigrama), duas palavras (bigrama), três palavras (trigrama) ou qualquer número de palavras (n-gramas).
 
-For instance `the quick red fox jumped over the lazy brown dog` with a n-gram score of 2 produces the following n-grams:
+Por exemplo `A rápida raposa pula por cima do preguiçoso cão marrom` com um n-grama de tamanho 2 produz os seguintes n-gramas:
 
-1. the quick 
-2. quick red 
-3. red fox
-4. fox jumped 
-5. jumped over 
-6. over the 
-7. the lazy 
-8. lazy brown 
-9. brown dog
+1. a rápida 
+2. rápida raposa 
+3. raposa pula
+4. pula por 
+5. por cima 
+6. cima do 
+7. do preguiçoco 
+8. preguiçoso cão 
+9. cão marrom
 
-It might be easier to visualize it as a sliding box over the sentence. Here it is for n-grams of 3 words, the n-gram is in bold in each sentence:
+Pode ser mais fácil visualizar o n-grama como uma caixa que desliza sobre a frase. Aqui está um exemplo dos n-gramas de 3 palavras, o n-grama está em negrito em cada frase:
 
-1.   <u>**the quick red**</u> fox jumped over the lazy brown dog
-2.   the **<u>quick red fox</u>** jumped over the lazy brown dog
-3.   the quick **<u>red fox jumped</u>** over the lazy brown dog
-4.   the quick red **<u>fox jumped over</u>** the lazy brown dog
-5.   the quick red fox **<u>jumped over the</u>** lazy brown dog
-6.   the quick red fox jumped **<u>over the lazy</u>** brown dog
-7.   the quick red fox jumped over <u>**the lazy brown**</u> dog
-8.   the quick red fox jumped over the **<u>lazy brown dog</u>**
+A rápida raposa pula por cima do preguiçoso cão marrom
 
-![n-grams sliding window](images/n-grams.gif)
+1.   <u>**A rápida raposa**</u> pula por cima do preguiçoso cão marrom
+2.   A **<u>rápida raposa pula</u>** por cima do preguiçoso cão marrom
+3.   A rápida **<u>raposa pula por</u>** cima do preguiçoso cão marrom
+4.   A rápida raposa **<u>pula por cima</u>** do preguiçoso cão marrom
+5.   A rápida raposa pula **<u>por cima do</u>** preguiçoso cão marrom
+6.   A rápida raposa pula por **<u>cima do preguiçoso</u>** cão marrom
+7.   A rápida raposa pula por cima **<u>do preguiçoso cão</u>** marrom
+8.   A rápida raposa pula por cima do **<u>preguiçoso cão marrom</u>**
 
-> N-gram value of 3: Infographic by [Jen Looper](https://twitter.com/jenlooper)
+![janela deslizante do n-gramas](../images/n-grams.gif)
 
-### Noun phrase Extraction
+> N-grama de tamanho 3: Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
-In most sentences, there is a noun that is the subject, or object of the sentence. In English, it is often identifiable as having 'a' or 'an' or 'the' preceding it. Identifying the subject or object of a sentence by 'extracting the noun phrase' is a common task in NLP when attempting to understand the meaning of a sentence.
+### Extração de sujeito e objeto
 
-✅ In the sentence "I cannot fix on the hour, or the spot, or the look or the words, which laid the foundation. It is too long ago. I was in the middle before I knew that I had begun.", can you identify the noun phrases?
+Na maioria das frases, existe um substantivo que é o sujeito ou o objeto da oração. Em português (e em inglês também), geralmente é possível identificá-los por serem precedidos por palavras como "a(s)" e "o(s)". Identificar o sujeito ou o objeto de uma oração é uma tarefa comum em PLN quando o objetivo é entender o significado de uma frase.
 
-In the sentence `the quick red fox jumped over the lazy brown dog` there are 2 noun phrases: **quick red fox** and **lazy brown dog**.
+✅ Nas frases "Não sei precisar a hora, ou o lugar, ou o olhar, ou as palavras que lançaram as bases. Faz muito tempo. Eu já estava no meio antes de me dar conta de que havia começado.", você consegue identificar os sujeitos?
 
-### Sentiment analysis
+Na frase `A rápida raposa pula por cima do preguiçoso cão marrom` existem dois substantivos **raposa** e **cão**, que, respectivamente, são sujeito e objeto.
 
-A sentence or text can be analysed for sentiment, or how *positive* or *negative* it is. Sentiment is measured in *polarity* and *objectivity/subjectivity*. Polarity is measured from -1.0 to 1.0 (negative to positive) and 0.0 to 1.0 (most objective to most subjective).
+### Análise de sentimento
 
-✅ Later you'll learn that there are different ways to determine sentiment using machine learning, but one way is to have a list of words and phrases that are categorized as positive or negative by a human expert and apply that model to text to calculate a polarity score. Can you see how this would work in some circumstances and less well in others?
+Uma frase ou texto podem ser analisados para encontrar sentimento, ou avaliar o quão *positivo* ou *negativo* é. Sentimento é medido em *polaridade* e *objetividade/subjetividade*. Polaridade é medida de -1.0 a 1.0 (negativo a positivo) e 0.0 a 1.0 (mais objetivo a mais subjetivo).
 
-### Inflection
+✅ Mais tarde voĉe irá aprender que existem diferentes formas de se determinar sentimento usando aprendizado de máquina (machine learning), mas um jeito de fazer é ter uma lista de palavras e frases que são categorizadas como positivas ou negativas por um especialista humano e aplicar este modelo ao texto para calcular a pontuação da polaridade. Você consegue perceber como isso poderia funcionar melhor em alguns casos e pior em outros?
 
-Inflection enables you to take a word and get the singular or plural of the word.
+### Inflexão/flexão
 
-### Lemmatization
+A inflexão/flexão é a variação de uma palavra. Exemplos incluem flexão de número (singular/pularal), gênero (feminino/masculino) e grau (aumentativo/diminutivo).
 
-A *lemma* is the root or headword for a set of words, for instance *flew*, *flies*, *flying* have a lemma of the verb *fly*.
+### Lematização
 
-There are also useful databases available for the NLP researcher, notably:
+Um *lema* é uma palavra (ou conjunto de palavras) que é raiz ou termo base, como por exemplo *voa*, *voou*, *voando* são variações (lexemas) do verbo *voar*.
+
+Também existem databases úteis disponíveis para pesquisadores de PLN, particularmente:
 
 ### WordNet
 
-[WordNet](https://wordnet.princeton.edu/) is a database of words, synonyms, antonyms and many other details for every word in many different languages. It is incredibly useful when attempting to build translations, spell checkers, or language tools of any type.
+[WordNet](https://wordnet.princeton.edu/) é uma database de palavras, sinônimos, antônimos e muitos outros detalhes para toda palavra em muitas linguagens diferentes. É incrivelmente útil quando estamos tentando contruir tradutores, verificadores de ortografia ou ferramentas de linguagem de qualquer tipo.
 
-## NLP Libraries
+## Bibliotecas de PLN
 
-Luckily, you don't have to build all of these techniques yourself, as there are excellent Python libraries available that make it much more accessible to developers who aren't specialized in natural language processing or machine learning. The next lessons include more examples of these, but here you will learn some useful examples to help you with the next task.
+Por sorte, você não precisa criar estas técnicas por si só, já que existem bibliotecas de Python excelentes disponíveis que torna o PLN muito mais acessível para desenvolvedores que não são especializado em processamento de linguagem natural ou machine learning. As próximas aulas incluem mais exemplos destas, mas aqui você irá aprender alguns exemplos úteis para te ajudar na próxima tarefa.
 
-### Exercise - using `TextBlob` library
+### Exercício - usando a biblioteca `TextBlob`
 
-Let's use a library called TextBlob as it contains helpful APIs for tackling these types of tasks. TextBlob "stands on the giant shoulders of [NLTK](https://nltk.org) and [pattern](https://github.com/clips/pattern), and plays nicely with both." It has a considerable amount of ML embedded in its API.
+Iremos utilizar uma biblioteca chamada TextBlob, pois ela contém APIs convenientes para lidar com esse tipo de tarefas. O TextBlob "se apoia nos ombros do gigante [NLTK](https://nltk.org) e [pattern](https://github.com/clips/pattern), e funciona bem com ambos". Existe uma quantidade considerável de aprendizado de máquina embutido em sua API.
 
-> Note: A useful [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) guide is available for TextBlob that is recommended for experienced Python developers 
+> Nota: Um guia inicial ([Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart)) está disponível para o TextBlob e é recomendado para desenvolvedores Python.
 
-When attempting to identify *noun phrases*, TextBlob offers several options of extractors to find noun phrases. 
+Quando estiver tentando identificar *sujeitos e objetos*, o TextBlob oferece diversas opções de extratores para encontrar ambos. 
 
-1. Take a look at `ConllExtractor`.
+1. Obeserve o `ConllExtractor`.
 
     ```python
     from textblob import TextBlob
@@ -138,24 +142,27 @@ When attempting to identify *noun phrases*, TextBlob offers several options of e
     np = user_input_blob.noun_phrases                                    
     ```
 
-    > What's going on here? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) is "A noun phrase extractor that uses chunk parsing trained with the ConLL-2000 training corpus." ConLL-2000 refers to the 2000 Conference on Computational Natural Language Learning. Each year the conference hosted a workshop to tackle a thorny NLP problem, and in 2000 it was noun chunking. A model was trained on the Wall Street Journal, with "sections 15-18 as training data (211727 tokens) and section 20 as test data (47377 tokens)". You can look at the procedures used [here](https://www.clips.uantwerpen.be/conll2000/chunking/) and the [results](https://ifarm.nl/erikt/research/np-chunking.html).
+    > O que está acontecendo aqui? O [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) é "um extrator de sujeito e objeto que usa parsing/análise sintática de chunks, e é treinado com o ConLL-2000 training corpus." O nome ConLL-2000 é em referência à conferência 2000 Conference on Computational Natural Language Learning. Todo ano a conferência é sedia um workshop para lidar com um problema difícil de NLP, e em 2000 foi o noun phrase chunking (divisão da frase em subcomponentes - como substantivos e verbos). Um modelo foi treinado no Wall Street Journal, com "seções 15-18 como dados de treino (211727 tokens) e a seção 20 como dados de teste (47377 tokens)". Você pode ver os procedimentos utilizados [aqui](https://www.clips.uantwerpen.be/conll2000/chunking/) e os  [resultados](https://ifarm.nl/erikt/research/np-chunking.html).
 
-### Challenge - improving your bot with NLP
+### Desafio - melhorando seu bot com PLN
 
-In the previous lesson you built a very simple Q&A bot. Now, you'll make Marvin a bit more sympathetic by analyzing your input for sentiment and printing out a response to match the sentiment. You'll also need to identify a `noun_phrase` and ask about it.
+Na aula anterior você construiu um bot de perguntas e respostas bastante simples. Agora, você vai fazer Marvin um pouco mais simpático ao analisar seu input em busca por sentimento e imprimindo a resposta de forma a combinar com o sentimento. Você também vai precisar identificar um `sujeito ou objeto` e perguntar sobre ele.
 
-Your steps when building a better conversational bot:
+Seus passos quando estiver construindo um bot de conversação são:
 
-1. Print instructions advising the user how to interact with the bot
-2. Start loop 
-   1. Accept user input
-   2. If user has asked to exit, then exit
-   3. Process user input and determine appropriate sentiment response
-   4. If a noun phrase is detected in the sentiment, pluralize it and ask for more input on that topic
-   5. Print response
-3. loop back to step 2
+1. Imprima instruções indicando como o usuário pode interagir com o bot
+2. Comece um loop (laço)
+   1. Aceite o input do usuário
+   2. Se o usuário pedir para sair, então sair
+   3. Processar o input do usuário e determinar resposta adequada de acordo com o sentimento expressado no input
+   4. Se um sujeito ou objeto forem identificados no sentimento, torne o bot mais variado e pergunte por mais inputs sobre aquele tópico
+   5. Imprima a resposta
+3. Voltar para o passo 2 (continuando o loop/laço)
 
-Here is the code snippet to determine sentiment using TextBlob. Note there are only four *gradients* of sentiment response (you could have more if you like):
+
+Aqui está um trecho de código que determina o sentimento usando TextBlob. Note que só existem quatro *gradientes* de resposta a sentimento (você pode ter mais, se quiser):
+
+> É feita uma divisão por valor de polaridade. Se estiver dentro do intervalo, retorna respostas correspondentes: "Nossa, isso parece terrível", "Hmm, isso não parece muito bom", "Bom, isso parece positivo" e "Uau, isso soa ótimo"
 
 ```python
 if user_input_blob.polarity <= -0.5:
@@ -168,7 +175,7 @@ elif user_input_blob.polarity <= 1:
   response = "Wow, that sounds great. "
 ```
 
-Here is some sample output to guide you (user input is on the lines with starting with >):
+Aqui estão alguns outputs de exemplo para te guiar (input do usuário está nas linhas que começam com >):
 
 ```output
 Hello, I am Marvin, the friendly robot.
@@ -187,28 +194,27 @@ Hmm, that's not great. Can you tell me more about old hounddogs?
 It was nice talking to you, goodbye!
 ```
 
-One possible solution to the task is [here](solution/bot.py)
+Uma possível resposta para a tarefa está [aqui](solution/bot.py)
 
-✅ Knowledge Check
+✅ Checagem de conhecimento
 
-1. Do you think the sympathetic responses would 'trick' someone into thinking that the bot actually understood them?
-2. Does identifying the noun phrase make the bot more 'believable'?
-3. Why would extracting a 'noun phrase' from a sentence a useful thing to do?
+1. Você acha que respostas simpáticas conseguiriam convencer uma pessoa a achar que o bot realmente entendeu o que ela disse?
+2. Será que identificar sujeito e objeto faz o bot mais convincente?
+3. Porque você acha que extrair o sujeito e o objeto de uma oração é algo útil a se fazer?
 
 ---
 
-Implement the bot in the prior knowledge check and test it on a friend. Can it trick them? Can you make your bot more 'believable?'
 
-## 🚀Challenge
+## 🚀Desafio
 
-Take a task in the prior knowledge check and try to implement it. Test the bot on a friend. Can it trick them? Can you make your bot more 'believable?'
+Implemente o bot visto discutido acima da seção checagem de conhecimento e teste-o em amigos. O bot consegue enganá-los? Você consegue fazer seu bot mais convincente?
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/34/)
+## [Teste pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/34?loc=br)
 
-## Review & Self Study
+## Revisão & Autoestudo
 
-In the next few lessons you will learn more about sentiment analysis. Research this interesting technique in articles such as these on [KDNuggets](https://www.kdnuggets.com/tag/nlp)
+Nas próximas aulas você vai aprender mais sobre análise de sentimento. Pesquise sobre esta técnica interessante em artigos como estes no [KDNuggets](https://www.kdnuggets.com/tag/nlp).
 
-## Assignment 
+## Tarefa
 
-[Make a bot talk back](assignment.md)
+[Faça um bot responder](assignment.md)
