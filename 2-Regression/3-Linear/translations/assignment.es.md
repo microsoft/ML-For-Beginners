@@ -1,11 +1,11 @@
-# Create a Regression Model
+# Crea un modelo de regresión
 
-## Instructions
+## Instrucciones
 
-In this lesson you were shown how to build a model using both Linear and Polynomial Regression. Using this knowledge, find a dataset or use one of Scikit-learn's built-in sets to build a fresh model. Explain in your notebook why you chose the technique you did, and demonstrate your model's accuracy. If it is not accurate, explain why.
+En esta lección viste cómo construir un modelo usando tanto la regresión lineal como polinomial. Usando este conocimiento, encuentra un conjunto de datos o usa uno de los conjuntos de datos incorporados de Scikit-learn, para construir un modelo nuevo. Explica en tu notebook por qué elegiste dicha técnica y demuestra la precisión de tu modelo. Si este no es preciso explica por qué.
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                                    | Adequate                   | Needs Improvement               |
+| Criterio | Ejemplar                                                    | Adecuado                   | Necesita mejorar               |
 | -------- | ------------------------------------------------------------ | -------------------------- | ------------------------------- |
-|          | presents a complete notebook with a well-documented solution | the solution is incomplete | the solution is flawed or buggy |
+|          | Presenta un notebook completo con la solución bien documentada. | La solución se encuentra incompleta. | La solución es defectuosa o tiene errores. |
