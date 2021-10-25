@@ -12,7 +12,7 @@
 
 > 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
-Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 24-lesson (plus one!) curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/datascience-beginners), as well!
+Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/datascience-beginners), as well!
 
 Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
@@ -75,7 +75,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 > **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.
 
-> **A note about quizzes**: All quizzes are contained [in this app](https://white-water-09ec41f0f.azurestaticapps.net/), for 50 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
+> **A note about quizzes**: All quizzes are contained [in this app](https://white-water-09ec41f0f.azurestaticapps.net/), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder.
 
 | Lesson Number |                            Topic                           |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                   Linked Lesson                  |     Author     |
 |:-------------:|:----------------------------------------------------------:|:---------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------:|:--------------:|
@@ -116,7 +116,7 @@ Find a pdf of the curriculum with links [here](https://microsoft.github.io/ML-Fo
 
 ## Help Wanted!
 
-Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add input [here](https://github.com/microsoft/ML-For-Beginners/issues/71).
+Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add a templated issue to manage the workload [here](https://github.com/microsoft/ML-For-Beginners/issues).
 
 ## Other Curricula
 
