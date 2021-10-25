@@ -48,10 +48,10 @@ Nesta lição, você usará dados de 80.000 avistamentos de OVNIs, coletados pel
 - **Exemplo de descrição longa.** "Um homem emerge de um feixe de luz que brilha em um campo gramado à noite e corre em direção ao estacionamento da Texas Instruments".
 - **Exemplo de descrição curta.** "as luzes nos perseguiram".
 
-A planilha [ufos.csv](./data/ufos.csv) inclui colunas sobre a `city`, `state` e `country` onde o avistamento ocorreu, a `shape` do objeto e sua `latitude` e `longitude`.
+A planilha [ufos.csv](../data/ufos.csv) inclui colunas sobre a `city`, `state` e `country` onde o avistamento ocorreu, a `shape` do objeto e sua `latitude` e `longitude`.
 _nota da tradução: city é a coluna referente a cidade, state é a coluna referente ao estado e country é a coluna referente ao país._
 
-Em um [notebook](./notebook.ipynb) branco incluído nesta lição:
+Em um [notebook](../notebook.ipynb) branco incluído nesta lição:
 
 1. importe as bibliotecas `pandas`, `matplotlib`, e `numpy` como você fez nas lições anteriores e importe a planilha ufos. Você pode dar uma olhada em um conjunto de dados de amostra:
 
