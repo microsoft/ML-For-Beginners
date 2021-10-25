@@ -12,9 +12,9 @@
 
 > 🌍 세계의 문화로 머신러닝을 알아가면서 전 세계를 여행합니다 🌍
 
-Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-주, 24-강의 (하나 더!) 커리큘럼을 제공해서 만족합니다. 이 커리큘럼에서는, 곧 만들어질 'AI for Beginners'에서 커버하지 않는 딥러닝을 제외한, **classic machine learning**이라고 불리는 것을 Scikit-learn 라이브러리 위주로 배우게 됩니다. 이 강의에서 곧 만들어질 'Data Science for Beginners' 커리큘럼과 같이 봅니다!
+Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-주, 24-강의 (하나 더!) 커리큘럼을 제공하게 된 것을 기쁘게 생각합니다. 이 교육 과정에서는 주로 Scikit-learn을 라이브러리로 사용하고 향후에 다룰 딥 러닝을 제외한 **classic machine learning**에 대해 배우게 됩니다. 본 수업과 '입문자를 위한 데이터 과학' 커리큘럼과 연계하여 학습해도 좋습니다.
 
-월드의 많은 영역에 데이터를 적용하면서 이러한 classic 기술로 전 세계를 여행합니다. 각 강의에는 강의 전과 후에 진행하는 퀴즈, 강의를 마치기 위한 설명, 솔루션, 과제 등 있습니다. 새로운 스킬을 'stick'할 수 있다고 증명된 프로젝트-기반 교육학에 의하여 만들면서 배울 수 있습니다.
+이러한 고전적인 기술을 세계 여러 지역의 데이터에 적용하는 동안 우리와 함께 세계 여행을 떠나보십시오. 각 레슨에는 예습 및 복습 퀴즈, 레슨을 완료하기 위한 서면 지침, 해결책 및 과제가 포함됩니다. 프로젝트 기반 교육학을 통해 새로운 기술을 익힐 수 있는 검증된 방법으로 학습 할 수 있습니다.
 
 **✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Ornella Altunyan, and Amy Boyd
 
@@ -28,11 +28,11 @@ Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-�
 
 # 시작하기
 
-**학생**은, 이 커리큘럼을 사용하기 위해서, 전체 저장소를 자신의 GitHub 계정으로 포크하고 혼자하거나 그룹으로 같이 연습합니다:
+**학생**은, 이 커리큘럼을 사용하기 위해서, 전체 저장소를 자신의 GitHub 계정으로 포크하고 혼자 또는 그룹으로 같이 학습합니다:
 
 - 강의 전 퀴즈를 시작합니다.
 - 강의를 읽고, 각 지식 점검에서 멈추고 습득해서 활동을 끝냅니다.
-- 솔루션 코드를 실행하는 것보다 강의를 이해해서 프로젝트를 만들어봅니다; 그러나 코드는 각 프로젝트-지향 강의마다 `/solution` 폴더에 존재합니다.
+- 솔루션 코드를 실행하는 것보다 강의를 이해해서 프로젝트를 만들어봅니다. 해답 코드는 각 프로젝트-지향 강의 별 `/solution` 폴더에 위치합니다.
 - 강의 후 퀴즈를 해봅니다.
 - 도전을 끝내봅니다.
 - 과제를 끝내봅니다.
@@ -40,7 +40,7 @@ Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-�
 
 > 더 배우기 위해서, [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) 모듈과 학습 경로를 따르는 것을 추천합니다.
 
-**선생님**은, 이 커리큘럼으로 사용하기 위해서 [included some suggestions](../for-teachers.md)를 준비했습니다.
+**선생님**은, 이 커리큘럼의 사용 방법에 대해 [일부 제안사항](../for-teachers.md)이 있습니다.
 
 ---
 
@@ -73,7 +73,8 @@ Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-�
 - 과제
 - 강의 후 퀴즈
 
-> **퀴즈 참고사항**: 모든 퀴즈는 [in this app](https://white-water-09ec41f0f.azurestaticapps.net/)에 묶여있으며, 각 3개 질문으로 총 50개 퀴즈가 있습니다. 강의에 연결되어 있지만 퀴즈 앱은 로컬에서 수행할 수 있습니다; `quiz-app` 폴더의 설명을 따릅니다.
+> **퀴즈 참고사항**: 모든 퀴즈는 [이 앱](https://white-water-09ec41f0f.azurestaticapps.net/)에 포함되어 있으며, 각각 3문제씩 총 50개의 퀴즈가 있습니다. 퀴즈 앱은 교육 과정과 연결되어 있지만, 원하는 경우 따로 퀴즈 앱을 실행할 수도 있습니다. 자세한 사항은 퀴즈 앱 폴더 내의 지침을 따르십시오.
+
 
 | 강의 번호 |                           토픽                            |                   강의 그룹                   | 학습 목표                                                                                                             |                     연결 강의                     |     저자     |
 | :-----------: | :--------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: | :------------: |
@@ -103,13 +104,13 @@ Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-�
 |      24       |                늑대를 피하는 Peter 도와주기! 🐺                | [Reinforcement learning](../8-Reinforcement/translations/README.ko.md) | Gym에서 Reinforcement learning                                                                                                       |       [강의](../8-Reinforcement/2-Gym/translations/README.ko.md)       |     Dmitry     |
 |  Postscript   |          실생활 ML 시나리오와 애플리케이션           |      [야생의 ML](../9-Real-World/translations/README.ko.md)       | classical ML의 흥미롭게 드러나는 현실 애플리케이션                                                               |    [강의](../9-Real-World/1-Applications/translations/README.ko.md)    |      Team      |
 
-## 오프라인 접근
+## 오프라인 액세스
 
-[Docsify](https://docsify.js.org/#/)에서 문서를 오프라인으로 실행할 수 있습니다. 저장소를 포크해서 로컬 머신에 [install Docsify](https://docsify.js.org/#/quickstart)히고, 이 저장소의 최상위 폴더에서, `docsify serve` 입력합니다. 웹 사이트는 로컬호스트로 3000 포트에서 서버가 켜집니다: `localhost:3000`.
+[Docsify](https://docsify.js.org/#/)를 사용하여 이 문서를 오프라인으로 실행할 수 있습니다. 이 repo를 포크하여 로컬 컴퓨터에 [Docsify (설치)](https://docsify.js.org/#/quickstart)를 설치한 다음 이 repo의 루트 폴더에 'docsify serve'를 입력하면 됩니다. 웹 사이트는 로컬 호스트의 포트 3000에서 제공됩니다: 'localhost:3000'.
 
 ## PDF
 
-[here](../pdf/readme.pdf)에서 링크가 있는 커리큘럼의 PDF를 찾습니다.
+[여기](../pdf/readme.pdf) 링크를 통해 커리큘럼의 PDF를 찾아보십시오.
 
 ## 도와주세요!
 
