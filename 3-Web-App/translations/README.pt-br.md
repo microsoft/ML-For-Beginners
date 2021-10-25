@@ -8,7 +8,7 @@ Foto por <a href="https://unsplash.com/@mdherren?utm_source=unsplash&utm_medium=
 
 ## Lições
 
-1. [Crie um aplicativo Web](../1-Web-App/translation/README.pt-br.md)
+1. [Crie um aplicativo Web](./1-Web-App/translation/README.pt-br.md)
 
 ## Créditos
 
