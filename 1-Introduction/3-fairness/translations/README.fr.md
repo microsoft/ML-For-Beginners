@@ -21,7 +21,7 @@ Dans cette leçon, nous :
 
 En tant que prérequis, veuillez lire le guide des connaissances sur les "Principes de l'IA responsable" et regarder la vidéo sur le sujet suivant :
 
-En apprendre plus sur l'IA responsable en suivant ce [guide des connaissances](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+En apprendre plus sur l'IA responsable en suivant ce [guide des connaissances](https://docs.microsoft.com/fr-fr/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
 [![L'approche de Microsoft sur l'IA responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 
@@ -61,7 +61,7 @@ Un autre exemple est un outil de recrutement expérimental développé par une g
 
 Les chercheurs ont découvert que plusieurs classificateurs commerciaux de sexe avaient des taux d'erreur plus élevés autour des images de femmes avec des teins de peau plus foncés par opposition aux images d'hommes avec des teins de peau plus clairs. [Référence](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/) 
 
-Un autre exemple tristement célèbre est un distributeur de savon pour les mains qui ne semble pas capable de détecter les personnes ayant une couleur de peau foncée. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+Un autre exemple tristement célèbre est un distributeur de savon pour les mains qui ne semble pas capable de détecter les personnes ayant une couleur de peau foncée. [Référence](https://www.journaldugeek.com/2017/08/18/quand-un-distributeur-automatique-de-savon-ne-reconnait-pas-les-couleurs-de-peau-foncees/)
 
 ### Stéréotypes
 
@@ -169,7 +169,7 @@ L'outil aide à évaluer comment les prédictions d'un modèle affectent différ
 
 - Essayez quelques [notebooks d'exemples](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
   
-- Apprenez [comment activer les évaluations d'équités](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) des modèles de machine learning sur Azure Machine Learning. 
+- Apprenez [comment activer les évaluations d'équités](https://docs.microsoft.com/fr-fr/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) des modèles de machine learning sur Azure Machine Learning. 
   
 - Jetez un coup d'oeil aux [notebooks d'exemples](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) pour plus de scénarios d'évaluation d'équités sur Azure Machine Learning. 
 
@@ -195,7 +195,7 @@ Regardez cet atelier pour approfondir les sujets :
 
 Lectures supplémentaires : 
 
-- Centre de ressources Microsoft RAI : [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4) 
+- Centre de ressources Microsoft RAI : [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/fr-fr/ai/responsible-ai-resources?activetab=pivot1:primaryr4&rtc=1) 
 
 - Groupe de recherche Microsoft FATE : [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
@@ -205,7 +205,7 @@ Explorer la boite à outils Fairlearn
 
 Lire sur les outils Azure Machine Learning afin d'assurer l'équité
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure Machine Learning](https://docs.microsoft.com/fr-fr/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
 ## Devoir
 
