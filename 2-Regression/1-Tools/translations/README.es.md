@@ -7,7 +7,7 @@
 ## [Cuestionario previo](https://jolly-sea-0a877260f.azurestaticapps.net/quiz/9/)
 ## Introducción
 
-En estas cuatro lecciones, descubrirá como crear modelos de regresión. Discutiremos para que sirven estos en breve. Pero antes de hacer cualquier coasa, asegúrese de tener las herramientas adecuadas para comenzar el proceso!
+En estas cuatro lecciones, descubrirá como crear modelos de regresión. Discutiremos para que sirven estos en breve. Pero antes de hacer cualquier cosa, asegúrese de tener las herramientas adecuadas para comenzar el proceso!
 
 En esta lección, aprenderá a:
 
@@ -47,9 +47,9 @@ En esta carpeta, encontrará el archivo _notebook.ipynb_.
 
 Un servidor de Jupyter comenzará con Python 3+ iniciado. Encontrará áreas del cuaderno que se pueden ejecutar, fragmentos de código. Puede ejecutar un bloque de código seleccionando el icono que parece un botón de reproducción.
 
-1. Seleccione el icono `md` y agrege un poco de _markdown_, y el siguiente texto **# Welcome to your notebook**.
+1. Seleccione el icono `md` y agregue un poco de _markdown_, y el siguiente texto **# Welcome to your notebook**.
 
-   A continuación, agrege algo de código Python. 
+   A continuación, agregue algo de código Python. 
 
 1. Escriba **print('hello notebook')** en el bloque de código.
 1. Seleccione la flecha para ejecutar el código.
@@ -72,7 +72,7 @@ Ahora que Python está configurado en un entorno local, y se siente cómo con lo
 
 Según su [sitio web](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn es una biblioteca de machine learning de código abierto que admite el aprendizaje supervisado y no supervisado. También proporciona varias herramientas para el ajuste de modelos, preprocesamiento de datos, selección y evaluación de modelos, y muchas otras utilidades."
 
-En este curso, utilizará Scikit-learn y otras herramientas para crear modelos de machine learning para realizar lo que llamamos tareas de 'machine leraning tradicional'. Hemos evitado deliberadamente las redes neuronales y el _deep learning_, ya que se tratartán mejor en nuestro próximo plan de estudios 'IA para principiantes'. 
+En este curso, utilizará Scikit-learn y otras herramientas para crear modelos de machine learning para realizar lo que llamamos tareas de 'machine learning tradicional'. Hemos evitado deliberadamente las redes neuronales y el _deep learning_, ya que se tratarán mejor en nuestro próximo plan de estudios 'IA para principiantes'. 
 
 Scikit-learn hace que sea sencillo construir modelos y evaluarlos para su uso. Se centra principalmente en el uso de datos numéricos y contiene varios conjuntos de datos listos para usar como herramientas de aprendizaje. También incluye modelos prediseñados para que los estudiantes lo prueben. Exploremos el proceso de cargar datos preempaquetados y el uso de un primer modelo de estimador integrado con Scikit-learn con algunos datos básicos.
 
@@ -80,11 +80,11 @@ Scikit-learn hace que sea sencillo construir modelos y evaluarlos para su uso. S
 
 > Este tutorial se insipiró en el [ejemplo de regresión lineal](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) en el sitio web de Scikit-learn's.
 
-En el archivo _notebook.ipynb_ asociado a esta lección, borre todas las celdas presionando el icono 'papelera'.
+En el archivo _notebook.ipynb_ asociado a esta lección, borré todas las celdas presionando el icono 'papelera'.
 
-En esta sección, trabajará con un pequeño conjunto de datos sobre la diabetes que está integrado con Scikit-learn con fines de aprendizaje. Imagínese que quisiera probar un tratamiento para pacientes diabéticos. Los modelos de Machine Learning, pueden ayudarlo a determinar que pacientes responderían mejor al tratamiento, en función  de combinanciones de varibales. Incluso un modelo de regresión muy básico, cuando se visualiza, puede mostrar información sobre variables que le ayudarían en sus ensayos clínicos teóricos.
+En esta sección, trabajará con un pequeño conjunto de datos sobre la diabetes que está integrado con Scikit-learn con fines de aprendizaje. Imagínese que quisiera probar un tratamiento para pacientes diabéticos. Los modelos de Machine Learning, pueden ayudarlo a determinar que pacientes responderían mejor al tratamiento, en función  de combinaciones de variables. Incluso un modelo de regresión muy básico, cuando se visualiza, puede mostrar información sobre variables que le ayudarían en sus ensayos clínicos teóricos.
 
-✅ Hay muchos tipos de métodos de regresión y el que elija dependerá de las respuestas que esté buscando. Si desea predecir la altura probable de una persona de una edad determinada, utlizaría la regresión lineal, ya que busca un **valor numérico**. Si está interesado en descubrir si un tipo de cocina puede considerarse vegano o no, está buscando una **asignación de categoría**, por lo que utlilizaría la regresión logística. Más adelante aprenderá más sobre la regresión logística. Piense un poco en algunas preguntas que puede puede hacer a los datos y cuáles de estos métodos sería más apropiado.
+✅ Hay muchos tipos de métodos de regresión y el que elija dependerá de las respuestas que esté buscando. Si desea predecir la altura probable de una persona de una edad determinada, utlizaría la regresión lineal, ya que busca un **valor numérico**. Si está interesado en descubrir si un tipo de cocina puede considerarse vegano o no, está buscando una **asignación de categoría**, por lo que utilizaría la regresión logística. Más adelante aprenderá más sobre la regresión logística. Piense un poco en algunas preguntas que puede hacer a los datos y cuáles de estos métodos sería más apropiado.
 
 Comencemos con esta tarea.
 
@@ -92,7 +92,7 @@ Comencemos con esta tarea.
 
 Para esta tarea importaremos algunas librerías:
 
-- **matplotlib**. Es una [herramienta gráfica](https://matplotlib.org/)  útil y la usaremos para crear un diagrama de líneas.
+- **matplotlib**. Es una [herramienta gráfica](https://matplotlib.org/) útil y la usaremos para crear un diagrama de líneas.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) es una librería útil para manejar datos numéricos en Python.
 - **sklearn**. Esta es la librería Scikit-learn.
 
@@ -117,7 +117,7 @@ bmi: índice de masa corporal.
 bp: presión arterial promedio.
 s1 tc: Células-T (un tipo de glóbulos blancos).
 
-✅ Este conjunto de datos incluye el concepto de sexo como una variable característica importante para la investigación sobre la diabetes. Piense un poco en cómo categorizaciones como esta podrían excluir a ciertas partes de una población de los tratamientos.
+✅ Este conjunto de datos incluye el concepto de sexo como una variable característica importante para la investigación sobre la diabetes. Piense un poco en cómo categorizaciones como ésta podrían excluir a ciertas partes de una población de los tratamientos.
 
 Ahora cargue los datos X e y.
 
@@ -144,9 +144,9 @@ En una nueva celda de código, cargue el conjunto de datos de diabetes llamando 
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Piense un poco en la relación entre los datos y el objetivo de la regresión. La regersión lineal predice relaciones entre la característica X y la variable objetivo y. ¿Puede encontrar el [objetivo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) para el cojunto de datos de diabetes en la documentación? ¿Qué está demostrando este conjunto de datos dado ese objetivo?
+    ✅ Piense un poco en la relación entre los datos y el objetivo de la regresión. La regresión lineal predice relaciones entre la característica X y la variable objetivo y. ¿Puede encontrar el [objetivo](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) para el cojunto de datos de diabetes en la documentación? ¿Qué está demostrando este conjunto de datos dado ese objetivo?
 
-2. A continuación, seleccione una parte de este conjunto de datos para graficarlos colocándolos en una nueva matriz utilizando la función `newaxis` de _numpy_. Vamos utilizar una regresión lineal para generar una línea entre los valores de estos datos, según un patrón que determine.
+2. A continuación, seleccione una parte de este conjunto de datos para graficarlos colocándolos en una nueva matriz utilizando la función `newaxis` de _numpy_. Vamos a utilizar una regresión lineal para generar una línea entre los valores de estos datos, según un patrón que determine.
 
    ```python
    X = X[:, np.newaxis, 2]
@@ -175,7 +175,7 @@ En una nueva celda de código, cargue el conjunto de datos de diabetes llamando 
     y_pred = model.predict(X_test)
     ```
 
-6. Ahora es el momento de mostrar los datos en una gráfica. Matplotlib es una herramienta muy útil para esta tarea. Cree una gráfica de dispersión de todos los datos de prueba X e y, y use la prediccíón para dibujar una línea en el lugar más apropiado, entre las agrupaciones de datos del modelo.
+6. Ahora es el momento de mostrar los datos en una gráfica. Matplotlib es una herramienta muy útil para esta tarea. Cree una gráfica de dispersión de todos los datos de prueba X e y, y use la predicción para dibujar una línea en el lugar más apropiado, entre las agrupaciones de datos del modelo.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
