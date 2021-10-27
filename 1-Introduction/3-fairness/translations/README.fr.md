@@ -3,17 +3,17 @@
 ![Résumé de l'équité dans le Machine Learning dans un sketchnote](../../sketchnotes/ml-fairness.png)
 > Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz préalable](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
+## [Quiz préalable](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/?loc=fr)
  
 ## Introduction
 
-Dans ce programme, nous allons découvrir comment le Machine Learning peut avoir un impact sur notre vie quotidienne. Encore aujourd'hui, les systèmes et les modèles sont impliqués quotidiennement dans les tâches de prise à la décision, telles que les diagnostics de soins ou la détection de fraudes. Il est donc important que ces modèles fonctionnent bien afin de fournir des résultats équitables pour tout le monde.
+Dans ce programme, nous allons découvrir comment le Machine Learning peut avoir un impact sur notre vie quotidienne. Encore aujourd'hui, les systèmes et les modèles sont impliqués quotidiennement dans les tâches de prise de décision, telles que les diagnostics de soins ou la détection de fraudes. Il est donc important que ces modèles fonctionnent bien afin de fournir des résultats équitables pour tout le monde.
 
 Imaginons ce qui peut arriver lorsque les données que nous utilisons pour construire ces modèles manquent de certaines données démographiques, telles que la race, le sexe, les opinions politiques, la religion ou représentent de manière disproportionnée ces données démographiques. Qu'en est-il lorsque la sortie du modèle est interprétée pour favoriser certains éléments démographiques ? Quelle est la conséquence pour l'application l'utilisant ?
 
 Dans cette leçon, nous :
 
-- Nous sensibiliserons à l'importance de l'équité dans le Machine Learning.
+- Sensibiliserons à l'importance de l'équité dans le Machine Learning.
 - Apprenderons sur les préjudices liés à l'équité.
 - Apprenderons sur l'évaluation et l'atténuation des injustices.
 
@@ -21,7 +21,7 @@ Dans cette leçon, nous :
 
 En tant que prérequis, veuillez lire le guide des connaissances sur les "Principes de l'IA responsable" et regarder la vidéo sur le sujet suivant :
 
-En apprendre plus sur l'IA responsableen suivant ce [guide des connaissances](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+En apprendre plus sur l'IA responsable en suivant ce [guide des connaissances](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
 [![L'approche de Microsoft sur l'IA responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 
@@ -184,8 +184,8 @@ Pour éviter que des biais ne soient introduits en premier lieu, nous devrions 
 
 Pensez à des scénarios de la vie réelle où l'injustice est évidente dans la construction et l'utilisation de modèles. Que devrions-nous considérer d'autre ?
 
-## [Quiz de validation des connaissances](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
-## Review & Self Study 
+## [Quiz de validation des connaissances](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/?loc=fr)
+## Révision et auto-apprentissage
  
 Dans cette leçon, nous avons appris quelques notions de base sur les concepts d'équité et d'injustice dans le machine learning.  
  
