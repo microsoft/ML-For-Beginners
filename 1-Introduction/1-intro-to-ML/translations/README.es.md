@@ -46,7 +46,7 @@ Aunque los términos se suelen confundir, machine learning (ML) es un subconjunt
 
 ## Lo que aprenderás en el curso
 
-En este currículum, vamos a cubrir solo los conceptos clave de machine learning que un principiante debería conocer. Cubrimos algo a lo que le llamamos "machine learning clásico" usando principalmente Scikit-learn, una biblioteca excelente que muchos estudiantes utilizan para aprender las bases. Para entender conteptos más amplios de la inteligencia artificial o deep learning, es indispensable tener un fuerte conocimiento de los fundamentos, y eso es lo que nos gustaría ofrecerte aquí.
+En este currículum, vamos a cubrir solo los conceptos clave de machine learning que un principiante debería conocer. Cubrimos algo a lo que le llamamos "machine learning clásico" usando principalmente Scikit-learn, una biblioteca excelente que muchos estudiantes utilizan para aprender las bases. Para entender conceptos más amplios de la inteligencia artificial o deep learning, es indispensable tener un fuerte conocimiento de los fundamentos, y eso es lo que nos gustaría ofrecerte aquí.
 
 En este curso aprenderás:
 
