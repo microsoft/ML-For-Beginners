@@ -25,15 +25,15 @@ Aprende más acerca de la AI responsable siguiendo este [Path de aprendizaje](ht
 
 [![Enfonque de Microsoft para la AI responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Enfonque de Microsoft para la AI responsable")
 
-> 🎥 Da clic en imagen superior para el video: Enfonque de Microsoft para la AI responsable
+> 🎥 Haz clic en imagen superior para el video: Enfoque de Microsoft para la AI responsable
 
 ## Injusticia en los datos y algoritmos
 
-> "Si torturas los datos lo suficiente, estos conferasán cualquier cosa" - Ronald Coase
+> "Si torturas los datos lo suficiente, estos confesarán cualquier cosa" - Ronald Coase
 
 Esta oración suena extrema, pero es cierto que los datos pueden ser manipulados para soportar cualquier conclusión. Dicha conclusión puede pasar algunas veces de forma no intencional. Como humanos, todos tenemos sesgos, y es usualmente difícil saber conscientemente cuando estás introduciendo un sesgo en los datos.
 
-El garantizar la justicia en la AI y aprendizaje automático sigue siendo un desafío secio-tecnológico complejo. Sginificando que no puede ser dirigido puramente desde una perspectiva social o ténica.
+El garantizar la justicia en la AI y aprendizaje automático sigue siendo un desafío socio-tecnológico complejo. Sginificando que no puede ser dirigido puramente desde una perspectiva social o técnica.
 
 ### Daños relacionados con la justicia
 
@@ -44,7 +44,7 @@ Los principales daños relacionados a la justicia pueden ser clasificados como d
 - **Asignación**, si un género o etnicidad, por ejemplo, se favorece sobre otro.
 - **Calidad del servicio**. Si entrenas los datos para un escenario específico pero la realidad es mucho más compleja, esto conlleva a servicio de bajo rendimiento.
 - **Estereotipo**. El asociar un grupo dato con atributos preasignados.
-- **Denigrado**. Criticar injustamente y etiquetar algo a a alguien.
+- **Denigrado**. Criticar injustamente y etiquetar algo a alguien.
 - **Sobre- o sub- representación** La idea es que un cierto grupo no es visto en una cierta profesión, y cualquier servicio o función que se sigue promocionando está contribuyendo al daño.
 
 Demos un vistazo a los ejemplos.
@@ -80,7 +80,7 @@ Una tecnología de etiquetado de imágenes infamemente etiquetó imágenes de ge
 
 ### Sobre- o sub- representación
 
-Los resultados de búsqueda de imágenes sesgados pueden ser vun buen ejemplo de este daño. Cuando se buscan imágenes de profesiones con un porcentaje igual o mayor de hombres que de mujeres, como en ingeniería, o CEO, observa que los resultados están mayormente inclinados hacia un género dado.
+Los resultados de búsqueda de imágenes sesgados pueden ser un buen ejemplo de este daño. Cuando se buscan imágenes de profesiones con un porcentaje igual o mayor de hombres que de mujeres, como en ingeniería, o CEO, observa que los resultados están mayormente inclinados hacia un género dado.
 
 ![Búsqueda de CEO en Bing](../images/ceos.png)
 > Esta búsqueda en Bing para 'CEO' produce resultados bastante inclusivos
@@ -126,7 +126,7 @@ Usemos el ejemplo de selección de préstamos para aislar el caso y averiguar el
 
 **Falsos negativos** (rechazo, aunque Y=1) - en este caso, un solicitante quien será capaz de pagar un préstamo es rechazado. Esto es un evento adverso porque los recursos de los préstamos se retienen a los solicitantes calificados.
 
-**Falsos positivos** (aceptado, aunque Y=0) - en este caso, el solictante obtiene un préstamo pero eventualmente incumple. Como resultado, el caso del solicitante será enviado a la agencia de cobranza de deudas lo cual puede afectar en sus futuras solicitudes de préstamo.
+**Falsos positivos** (aceptado, aunque Y=0) - en este caso, el solicitante obtiene un préstamo pero eventualmente incumple. Como resultado, el caso del solicitante será enviado a la agencia de cobranza de deudas lo cual puede afectar en sus futuras solicitudes de préstamo.
 
 ### Identifica los grupos afectados
 
@@ -146,9 +146,9 @@ Has identificado los daños y un grupo afectado, en este caso, delimitado por g�
 
 Esta tabla nos dice varias cosas. Primero, notamos que hay comparativamente pocas personas no-binarias en los datos. Los datos están sesgados, por lo que necesitas ser cuidadoso en cómo interpretas estos números.
 
-En este caso, tenemos 3 grupos y 2 métricas. Cuando estamos pensando en cómo nuestro sistema afecta a los grupos de clientes con sus solicitantes de préstamo, esto puede ser suficiente, pero cuando quieres definir grupos mayores, querrás reducir esto a conjuntos más pequeños de resúmenes. Para hacer eso, puedes agregar más métricas, como la diferencia mayor o la menor tasa de cada faso negativo y falso positivo.
+En este caso, tenemos 3 grupos y 2 métricas. Cuando estamos pensando en cómo nuestro sistema afecta a los grupos de clientes con sus solicitantes de préstamo, esto puede ser suficiente, pero cuando quieres definir grupos mayores, querrás reducir esto a conjuntos más pequeños de resúmenes. Para hacer eso, puedes agregar más métricas, como la diferencia mayor o la menor tasa de cada falso negativo y falso positivo.
 
-✅ Detente y piensa: ¿Qué otros grupos es probable sean vean afectados a la hora de solicitar un préstamo?
+✅ Detente y piensa: ¿Qué otros grupos es probable se vean afectados a la hora de solicitar un préstamo?
 
 ## Mitigando injusticias
 
