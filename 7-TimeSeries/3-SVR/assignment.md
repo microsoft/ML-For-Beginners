@@ -2,7 +2,7 @@
 
 ## Instructions [^1]
 
-Now that you have built an SVR model, build a new one with fresh data (try one of [these datasets from Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html). Annotate your work in a notebook, visualize the data and your model, and test its accuracy using appropriate plots and MAPE. Also try tweaking the different hyperparameters and also using different values for the timesteps.
+Now that you have built an SVR model, build a new one with fresh data (try one of [these datasets from Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html)). Annotate your work in a notebook, visualize the data and your model, and test its accuracy using appropriate plots and MAPE. Also try tweaking the different hyperparameters and also using different values for the timesteps.
 ## Rubric [^1]
 
 | Criteria | Exemplary                                                    | Adequate                                                  | Needs Improvement                   |
