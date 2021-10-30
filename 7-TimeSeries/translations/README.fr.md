@@ -8,15 +8,15 @@ Dans ces deux leçons, nous vous présenterons la prévision des séries tempore
 
 Nous nous concentrons sur l'utilisation de l'électricité dans le monde, un ensemble de données intéressant pour apprendre à prévoir l'utilisation future de l'électricité sur la base des modèles de charge passés. Vous pouvez voir comment ce type de prévision peut être extrêmement utile dans un environnement commercial.
 
-![réseau électrique](images/electric-grid.jpg)
+![réseau électrique](../images/electric-grid.jpg)
 
 Photo par <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> de poteaux électriques sur une route au Rajasthan, sur <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 ## Leçons
 
-1. [Introduction à la prévision des séries chronologiques](1-Introduction/README.md)
-2. [Construction de modèles de séries temporelles ARIMA](2-ARIMA/README.md)
-3. [Construction d'un régresseur à vecteur de support pour la prévision des séries temporelles](3-SVR/README.md)
+1. [Introduction à la prévision des séries chronologiques](../1-Introduction/README.md)
+2. [Construction de modèles de séries temporelles ARIMA](../2-ARIMA/README.md)
+3. [Construction d'un régresseur à vecteur de support pour la prévision des séries temporelles](../3-SVR/README.md)
 
 ## Crédits
 
