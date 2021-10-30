@@ -1,4 +1,4 @@
- Introduction to reinforcement learning
+# Introduction to reinforcement learning
 
 Reinforcement learning, RL, is seen as one of the basic machine learning paradigms, next to supervised learning and unsupervised learning. RL is all about decisions: delivering the right decisions or at least learning from them.
 
