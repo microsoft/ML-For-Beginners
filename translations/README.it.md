@@ -115,7 +115,7 @@ Si può seguire questa documentazione offline usando [Docsify](https://docsify.j
 
 Vorresti contribuire alla traduzione? Per favore leggi le [linee guida per la traduzione](TRANSLATIONS.md) e aggiungi una issue basata sul modello per gestire il carico di lavoro [qui](https://github.com/microsoft/ML-For-Beginners/issues/71).
 
-## Altri Programmi di Studi\
+## Altri Programmi di Studi
 
 Il nostro team produce altri programmi di studi! Dai un'occhiata a:
 
