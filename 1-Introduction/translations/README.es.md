@@ -1,6 +1,6 @@
 # Introducción al machine learning
 
-En esta sección del plan de estudios, se le presentarán los conceptos básicos que subyacen al campo del "machine learning", lo que es, y aprenderá sobre su historia y las técnicas que los investigadores utilizan para trabajar con él. ¡Exploremos juntos este nuevo mundo de ML! 
+En esta sección del plan de estudios se le presentarán los conceptos básicos que hay detrás del campo del "machine learning", lo que es, y aprenderemos sobre su historia y las técnicas que los investigadores utilizan para trabajar con él. ¡Exploremos juntos el mundo del ML! 
 
 ![globe](images/globe.jpg)
 > Photo by <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> on <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

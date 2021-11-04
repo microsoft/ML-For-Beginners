@@ -7,9 +7,9 @@
 
 ## Introducción
 
-En este plan de estudios, comenzarás a descubrir como el aprendizaje automático puede y está impactando nuestra vida diaria. Aún ahora, los sistemas y modelos involucrados en tareas diarias de toma de decisiones, como los diagnósticos del cuidado de la salud o detección del fraude. Es importante que estos modelos trabajen bien con el fin de proveer resultados justos para todos.
+En esta sección, comenzarás a descubrir como el aprendizaje automático puede y está impactando nuestra vida diaria. Incluso ahora mismo, hay sistemas y modelos involucrados en tareas diarias de toma de decisiones, como los diagnósticos del cuidado de la salud o detección del fraude. Es importante que estos modelos funcionen correctamente con el fin de proveer resultados justos para todos.
 
-Imagina que puede pasar cuando los datos que usas para construir estos modelos carecen de cierta demografía, como es el caso de raza, género, punto de vista político, religión, o representa desproporcionadamente estas demografías. ¿Qué pasa cuando la salida del modelo es interpretada a favor de alguna demografía? ¿Cuál es la consecuencia para la aplicación?
+Imagina que podría pasar si los datos que usas para construir estos modelos carecen de cierta demografía, como es el caso de raza, género, punto de vista político, religión, o representan desproporcionadamente estas demografías. ¿Qué pasa cuando los resultados del modelo son interpretados en favor de alguna demografía? ¿Cuál es la consecuencia para la aplicación?
 
 En esta lección, será capaz de:
 
@@ -19,33 +19,33 @@ En esta lección, será capaz de:
 
 ## Prerrequisitos
 
-Como un prerrequisito, por favor toma el Path de aprendizaje "Responsible AI Principles" y mira el video debajo en el tema:
+Como un prerrequisito, por favor toma el curso "Responsible AI Principles" y mira el vídeo debajo sobre el tema:
 
-Aprende más acerca de la AI responsable siguiendo este [Path de aprendizaje](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+Aprende más acerca de la AI responsable siguiendo este [curso](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
-[![Enfonque de Microsoft para la AI responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Enfonque de Microsoft para la AI responsable")
+[![Enfonque de Microsoft para la AI responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Enfoque de Microsoft para la AI responsable")
 
-> 🎥 Haz clic en imagen superior para el video: Enfoque de Microsoft para la AI responsable
+> 🎥 Haz clic en imagen superior para el vídeo: Enfoque de Microsoft para la AI responsable
 
 ## Injusticia en los datos y algoritmos
 
 > "Si torturas los datos lo suficiente, estos confesarán cualquier cosa" - Ronald Coase
 
-Esta oración suena extrema, pero es cierto que los datos pueden ser manipulados para soportar cualquier conclusión. Dicha conclusión puede pasar algunas veces de forma no intencional. Como humanos, todos tenemos sesgos, y es usualmente difícil saber conscientemente cuando estás introduciendo un sesgo en los datos.
+Esta oración suena extrema, pero es cierto que los datos pueden ser manipulados para soportar cualquier conclusión. Dicha manipulación puede ocurrir a veces de forma no intencional. Como humanos, todos tenemos sesgos, y muchas veces es difícil saber conscientemente cuando estás introduciendo un sesgo en los datos.
 
-El garantizar la justicia en la AI y aprendizaje automático sigue siendo un desafío socio-tecnológico complejo. Sginificando que no puede ser dirigido puramente desde una perspectiva social o técnica.
+El garantizar la justicia en la AI y aprendizaje automático sigue siendo un desafío socio-tecnológico complejo. Esto quiere decir que no puede ser afrontado desde una perspectiva puramente social o técnica.
 
 ### Daños relacionados con la justicia
 
-¿Qué quieres decir con injusticia? "injusticia" engloba impactos negativos, o "daños", para un grupo de personas, como esas definidas en términos de raza, género, edad o estado de discapacidad.
+¿Qué quieres decir con injusticia? "injusticia" engloba impactos negativos, o "daños", para un grupo de personas, como aquellos definidos en términos de raza, género, edad o estado de discapacidad.
 
 Los principales daños relacionados a la justicia pueden ser clasificados como de:
 
-- **Asignación**, si un género o etnicidad, por ejemplo, se favorece sobre otro.
+- **Asignación**, si un género o etnia, por ejemplo, se favorece sobre otro.
 - **Calidad del servicio**. Si entrenas los datos para un escenario específico pero la realidad es mucho más compleja, esto conlleva a servicio de bajo rendimiento.
-- **Estereotipo**. El asociar un grupo dato con atributos preasignados.
-- **Denigrado**. Criticar injustamente y etiquetar algo a alguien.
-- **Sobre- o sub- representación** La idea es que un cierto grupo no es visto en una cierta profesión, y cualquier servicio o función que se sigue promocionando está contribuyendo al daño.
+- **Estereotipo**. El asociar un cierto grupo con atributos preasignados.
+- **Denigrado**. Criticar injustamente y etiquetar algo o alguien.
+- **Sobre- o sub- representación** La idea es que un cierto grupo no es visto en una cierta profesión, y cualquier servicio o función que sigue promocionándolo está contribuyendo al daño.
 
 Demos un vistazo a los ejemplos.
 
@@ -53,27 +53,27 @@ Demos un vistazo a los ejemplos.
 
 Considerar un sistema hipotético para seleccionar solicitudes de préstamo. El sistema tiende a seleccionar a hombres blancos como mejores candidatos por encima de otros grupos. Como resultado, los préstamos se retienen para ciertos solicitantes.
 
-Otro ejemplo sería una herramienta experimental de contratación desarrollada por una gran corporación para seleccionar candidatos. La herramienta discriminó sistemáticamente un género de otro usando los modelos entrenados para preferir palabras asociadas con otras, lo cual resultó en candidatos penalizados cuyos currículos contienen palabras como "women’s rugby team".
+Otro ejemplo sería una herramienta experimental de contratación desarrollada por una gran corporación para seleccionar candidatos. La herramienta discriminó sistemáticamente un género de otro usando los modelos entrenados para preferir palabras asociadas con otras, lo cual resultó en candidatos penalizados cuyos currículos contienen palabras como "equipo de rugby femenino".
 
 ✅ Realiza una pequeña investigación para encontrar un ejemplo del mundo real de algo como esto.
 
 ### Calidad del servicio
 
-Los investigadores encontraron que varios clasificadores de género comerciales tenían altas tasas de error en las imágenes de mujeres con tonos de piel más oscuros lo opuesto a las imágenes de hombres con tonos de piel más claros. [Referencia](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/)
+Los investigadores encontraron que varios clasificadores de género comerciales tenían altas tasas de error en las imágenes de mujeres con tonos de piel más oscuros, al contrario que con imágenes de hombres con tonos de piel más claros. [Referencia](https://www.media.mit.edu/publications/gender-shades-intersectional-accuracy-disparities-in-commercial-gender-classification/)
 
-Otro infame ejemplo es el dispensador de jabón para manos que parece no ser capaz de detectar a la gente con piel de color oscuro. [Referencia](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
+Otro ejemplo infame es el dispensador de jabón para manos que parece no ser capaz de detectar a la gente con piel de color oscuro. [Referencia](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
 
 ### Estereotipo
 
-La vista de género estereotipada fue encontrada en una traducción automática. Cuando se tradujo “he is a nurse and she is a doctor” al turco, se encontraron los problemas. El turco es un idioma sin género el cual tiene un  pronombre "o" para comunicar el singular de la tercera persona, pero al traducir nuevamente la oración del turco al inglés se produjo el estereotipo como “she is a nurse and he is a doctor”.
+La vista de género estereotipada fue encontrada en una traducción automática. Cuando se tradujo “Él es un enfermero y ella es una doctora” al turco, se encontraron los problemas. El turco es un idioma sin género el cual tiene un  pronombre "o" para comunicar el singular de la tercera persona, pero al traducir nuevamente la oración del turco al inglés resulta la frase estereotipada e incorrecta de “Ella es una enfermera y él es un doctor”.
 
 ![Traducción al turco](../images/gender-bias-translate-en-tr.png)
 
 ![Traducción de nuevo al inglés](../images/gender-bias-translate-tr-en.png)
 
-### Denigrado
+### Denigración
 
-Una tecnología de etiquetado de imágenes infamemente etiquetó imágenes de gente con color oscuro de piel como gorilas. El etiquetado incorrecto es dañino no solo porque el sistema cometió un error, sino porque específicamente aplicó una etiqueta que tiene una larga historia de ser usada a propósito para denigrar a la gente negra.
+Una tecnología de etiquetado de imágenes horriblemente etiquetó imágenes de gente con color oscuro de piel como gorilas. El etiquetado incorrecto es dañino no solo porque el sistema cometió un error, sino porque específicamente aplicó una etiqueta que tiene una larga historia de ser usada a propósito para denigrar a la gente negra.
 
 [![AI: ¿No soy una mujer?](https://img.youtube.com/vi/QxuyfWoVV98/0.jpg)](https://www.youtube.com/watch?v=QxuyfWoVV98 "AI, ¿No soy una mujer?")
 > 🎥 Da clic en la imagen superior para el video: AI, ¿No soy una mujer? - un espectáculo que muestra el daño causado por la denigración racista de una AI.
@@ -106,7 +106,7 @@ Las suposiciones erróneas hechas durante el desarrollo también causan injustic
 
 ## Entiende tus modelos y construye de forma justa
  
-A pesar de los muchos aspectos de justicia que no son capturados en métricas cuantitativas justas, y que no es posible remover totalmente el sesgo de un sistema para garantizar la justicia, aún eres responsable de detectar y mitigar problemas de justicia tanto como sea posible.
+A pesar de los muchos aspectos de justicia que no son capturados en métricas cuantitativas justas, y que no es posible borrar totalmente el sesgo de un sistema para garantizar la justicia, eres responsable de detectar y mitigar problemas de justicia tanto como sea posible.
 
 Cuando trabajas con modelos de aprendizaje automático, es importante entender tus modelos asegurando su interpretabilidad y evaluar y mitigar injusticias.
 
@@ -114,7 +114,7 @@ Usemos el ejemplo de selección de préstamos para aislar el caso y averiguar el
 
 ## Métodos de evaluación
 
-1. **Identifica daños (y beneficios)**. El primer paso es identificar daños y beneficios. Piensa cómo las acciones y decisiones pueden afectar tanto a clientes potenciales como al negocio mismo.
+1. **Identifica daños (y beneficios)**. El primer paso es identificar daños y beneficios. Piensa en cómo las acciones y decisiones pueden afectar tanto a clientes potenciales como al negocio mismo.
 
 2. **Identifica los grupos afectados**. Una vez que entendiste qué clase de daños o beneficios pueden ocurrir, identifica los grupos que podrían ser afectados. ¿Están estos grupos definidos por género, etnicidad, o grupo social?
 
@@ -124,9 +124,9 @@ Usemos el ejemplo de selección de préstamos para aislar el caso y averiguar el
 
 ¿Cuáles son los daños y beneficios asociados con el préstamo? Piensa en escenarios con falsos negativos y falsos positivos: 
 
-**Falsos negativos** (rechazo, aunque Y=1) - en este caso, un solicitante quien será capaz de pagar un préstamo es rechazado. Esto es un evento adverso porque los recursos de los préstamos se retienen a los solicitantes calificados.
+**Falsos negativos** (rechazado, pero Y=1) - en este caso, un solicitante que sería capaz de pagar un préstamo es rechazado. Esto es un evento adverso porque los recursos de los préstamos se retienen a los solicitantes calificados.
 
-**Falsos positivos** (aceptado, aunque Y=0) - en este caso, el solicitante obtiene un préstamo pero eventualmente incumple. Como resultado, el caso del solicitante será enviado a la agencia de cobranza de deudas lo cual puede afectar en sus futuras solicitudes de préstamo.
+**Falsos positivos** (aceptado, pero Y=0) - en este caso, el solicitante obtiene un préstamo pero eventualmente incumple. Como resultado, el caso del solicitante será enviado a la agencia de cobro de deudas lo cual puede afectar en sus futuras solicitudes de préstamo.
 
 ### Identifica los grupos afectados
 
@@ -146,7 +146,7 @@ Has identificado los daños y un grupo afectado, en este caso, delimitado por g�
 
 Esta tabla nos dice varias cosas. Primero, notamos que hay comparativamente pocas personas no-binarias en los datos. Los datos están sesgados, por lo que necesitas ser cuidadoso en cómo interpretas estos números.
 
-En este caso, tenemos 3 grupos y 2 métricas. Cuando estamos pensando en cómo nuestro sistema afecta a los grupos de clientes con sus solicitantes de préstamo, esto puede ser suficiente, pero cuando quieres definir grupos mayores, querrás reducir esto a conjuntos más pequeños de resúmenes. Para hacer eso, puedes agregar más métricas, como la diferencia mayor o la menor tasa de cada falso negativo y falso positivo.
+En este caso, tenemos 3 grupos y 2 métricas. En el caso de cómo nuestro sistema afecta a los grupos de clientes con sus solicitantes de préstamo, esto puede ser suficiente, pero cuando quieres definir grupos mayores, querrás reducir esto a conjuntos más pequeños de resúmenes. Para hacer eso, puedes agregar más métricas, como la mayor diferencia o la menor tasa de cada falso negativo y falso positivo.
 
 ✅ Detente y piensa: ¿Qué otros grupos es probable se vean afectados a la hora de solicitar un préstamo?
 
@@ -154,7 +154,7 @@ En este caso, tenemos 3 grupos y 2 métricas. Cuando estamos pensando en cómo n
 
 Para mitigar injusticias, explora el modelo para generar varios modelos mitigados y compara las compensaciones que se hacen entre la precisión y justicia para seleccionar el modelo más justo.
 
-Esta lección introductoria no profundiza en los detalles de mitigación de injusticia algorítmica, como los enfoques de post-procesamiento y reducciones, pero aquí tienes una herramiento que podrías probar.
+Esta lección introductoria no profundiza en los detalles de mitigación algorítmica de injusticia, como los enfoques de post-procesado y de reducciones, pero aquí tienes una herramiento que podrías probar:
 
 ### Fairlearn 
 
@@ -166,11 +166,11 @@ La herramienta te ayuda a evaluar cómo unos modelos de predicción afectan a di
 
 - Explora la [guía de usuario](https://fairlearn.github.io/main/user_guide/index.html), [ejemplos](https://fairlearn.github.io/main/auto_examples/index.html)
 
-- Prueba algunas [muestras de notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks).
+- Prueba algunos [notebooks de ejemplo](https://github.com/fairlearn/fairlearn/tree/master/notebooks).
   
-- Aprende [cómo activar evaluación de justicia](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) de los modelos de aprendizaje automático en Azure Machine Learning.
+- Aprende a [cómo activar evaluación de justicia](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) de los modelos de aprendizaje automático en Azure Machine Learning.
   
-- Revisa estas [muestras de notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) para más escenarios de evaluaciones de justicia en Azure Machine Learning.
+- Revisa estos [notebooks de ejemplo](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) para más escenarios de evaluaciones de justicia en Azure Machine Learning.
 
 ---
 ## 🚀 Desafío
@@ -183,14 +183,14 @@ Para prevenir que los sesgos sean introducidos en primer lugar, debemos:
 
 Piensa en escenarios de la vida real donde la injusticia es evidente en la construcción y uso de modelos. ¿Qué más debemos considerar?
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
+## [Cuestionario posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
 ## Revisión y autoestudio 
 
-En esta lección, has aprendido algunos de los conceptos básicos de justicia e injusticia en el aprendizaje automático.
+En esta lección has aprendido algunos de los conceptos básicos de justicia e injusticia en el aprendizaje automático.
 
 Mira este taller para profundizar en estos temas:
 
-- YouTube: Daños relacionados a la justicia en sistemas de AI: Ejemplos, evaluaciones, y mitigación por Hanna Wallach y Miro Dudik [Daños relacionados a la justicia en sistemas de AI: Ejemplos, evaluaciones, y mitigación - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k)
+- YouTube: [Daños relacionados con la justicia en sistemas de AI: Ejemplos, evaluaciones, y mitigación - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) por Hanna Wallach y Miro Dudik
 
 También lee:
 
@@ -206,6 +206,6 @@ Lee acerca de las herramientas de Azure Machine Learning para asegurar justicia
 
 - [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa)
 
-## Asignación
+## Tarea
 
 [Explora Fairlearn](../translations/assignment.es.md)
