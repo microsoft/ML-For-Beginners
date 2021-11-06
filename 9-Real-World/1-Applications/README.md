@@ -1,7 +1,7 @@
 # Postscript: Machine learning in the real world
 
 
-![Summary of Machine learning in the real world in a sketchnote](../../sketchnotes/ml-realworld.png)
+![Summary of machine learning in the real world in a sketchnote](../../sketchnotes/ml-realworld.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 In this curriculum, you have learned many ways to prepare data for training and create machine learning models. You built a series of classic regression, clustering, classification, natural language processing, and time series models. Congratulations! Now, you might be wondering what it's all for... what are the real world applications for these models?
