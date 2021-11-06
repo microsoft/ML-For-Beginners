@@ -1,4 +1,4 @@
-# Introduction to machine learning
+# Introduction to Machine Learning
 
 <!--
 Watch the video, then take the pre-lesson quiz
@@ -19,7 +19,7 @@ Welcome to this course on classical machine learning for beginners! Whether you'
 > 🎥 Click the image above for a video: MIT's John Guttag introduces machine learning
 
 ---
-## Getting started with machine learning
+## Getting started with Machine learning
 
 Before starting with this curriculum, you need to have your computer set up and ready to run notebooks locally.
 
@@ -30,9 +30,9 @@ Before starting with this curriculum, you need to have your computer set up and 
 - **Explore Scikit-learn**. Familiarize yourself with [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), a set of ML libraries that we reference in these lessons.
 
 ---
-## What is machine learning?
+## What is Machine learning?
 
-The term 'machine learning' is one of the most popular and frequently used terms of today. There is a nontrivial possibility that you have heard this term at least once if you have some sort of familiarity with technology, no matter what domain you work in. The mechanics of machine learning, however, are a mystery to most people. For a machine learning beginner, the subject can sometimes feel overwhelming. Therefore, it is important to understand what machine learning actually is, and to learn about it step by step, through practical examples.
+The term 'Machine Learning' is one of the most popular and frequently used terms of today. There is a nontrivial possibility that you have heard this term at least once if you have some sort of familiarity with technology, no matter what domain you work in. The mechanics of machine learning, however, are a mystery to most people. For a machine learning beginner, the subject can sometimes feel overwhelming. Therefore, it is important to understand what machine learning actually is, and to learn about it step by step, through practical examples.
 
 ---
 ## The hype curve
@@ -97,7 +97,7 @@ In this curriculum, we are going to cover only the core concepts of machine lear
 To make for a better learning experience, we will avoid the complexities of neural networks, 'deep learning' - many-layered model-building using neural networks - and AI, which we will discuss in a different curriculum. We also will offer a forthcoming data science curriculum to focus on that aspect of this larger field.
 
 ---
-## Why study machine learning?
+## Why study Machine learning?
 
 Machine learning, from a systems perspective, is defined as the creation of automated systems that can learn hidden patterns from data to aid in making intelligent decisions.
 
