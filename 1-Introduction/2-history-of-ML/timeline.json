@@ -1,0 +1,59 @@
+{
+    "title": {
+        "media": {
+            "url": "https://static01.nyt.com/images/2011/02/17/us/17jeopardy_337-span/17jeopardy_337-span-jumbo.jpg?quality=75&auto=webp",
+            "caption": "Watson on Jeopardy",
+            "credit": "flickr/<a href='https://www.nytimes.com/2011/02/17/science/17jeopardy-watson.html'>New York Times</a>"
+        },
+        "text": {
+            "headline": "History Of Machine Learning<br/> 1963 - 2012",
+            "text": "<p>A History of machine learing</p>"
+        }
+    },
+    "events": [
+        {
+            "media": {
+                "url": "https://miro.medium.com/max/4560/0*3jGv1es40NHPcTE3.jpg",
+                "caption": "Dem boys: Marvin Minsky, Claude Shannon, Ray Solomonoff and other scientists at the Dartmouth Summer Research Project on Artificial Intelligence (Photo: Margaret Minsky)",
+                "credit": "(Photo: Margaret Minsky)"
+            },
+            "start_date": {
+                "month": "8",
+                "day": "9",
+                "year": "1956"
+            },
+            "text": {
+                "headline": "A Beginning",
+                "text": "<p>The Dartmouth Summer Research Project on Artificial Intelligence was a summer workshop widely considered to be the founding moment of artificial intelligence as a field of research</p>"
+            }
+        },
+        {
+            "media": {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/ELIZA_conversation.png",
+                "caption": "Eliza",
+                "credit": "<a href=\"http://unidiscmusic.com\">Wikipedia</a>"
+            },
+            "start_date": {
+                "year": "1966"
+            },
+            "text": {
+                "headline": "First Natural Language Processing",
+                "text": "NLP. But it sucks."
+            }
+        },
+        {
+            "media": {
+                "url": "https://www.youtube.com/watch?v=P18EdAKuC1U",
+                "caption": "Watson on Jeopardy",
+                "credit": "IBM"
+            },
+            "start_date": {
+                "year": "20111"
+            },
+            "text": {
+                "headline": "Watson",
+                "text": "Watson destroys Ken and Brad."
+            }
+        }
+    ]
+}

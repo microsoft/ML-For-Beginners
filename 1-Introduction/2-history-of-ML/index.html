@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <link title="timeline-styles" rel="stylesheet"
+        href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" language="javascript" src="timeline.json"></script>
+
+    <script type="text/javascript">
+        $.getJSON("timeline.json", function (data) {
+            var timeline_json = data;
+            window.timeline = new TL.Timeline('timeline-embed', timeline_json);
+        });
+    </script>
+</head>
+
+<body>
+    <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+</body>
+
+</html>
