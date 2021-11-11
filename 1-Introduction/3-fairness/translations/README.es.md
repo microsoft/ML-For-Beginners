@@ -19,9 +19,9 @@ En esta lección, será capaz de:
 
 ## Prerrequisitos
 
-Como un prerrequisito, por favor toma el curso "Responsible AI Principles" y mira el vídeo debajo sobre el tema:
+Como un prerrequisito, por favor toma la ruta de aprendizaje "Responsible AI Principles" y mira el vídeo debajo sobre el tema:
 
-Aprende más acerca de la AI responsable siguiendo este [curso](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+Aprende más acerca de la AI responsable siguiendo este [curso](https://docs.microsoft.com/es-es/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
 
 [![Enfonque de Microsoft para la AI responsable](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Enfoque de Microsoft para la AI responsable")
 
