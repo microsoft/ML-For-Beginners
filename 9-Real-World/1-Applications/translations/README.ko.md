@@ -1,7 +1,7 @@
 # 추신: 현실의 머신러닝
 
 
-![Summary of Machine learning in the real world in a sketchnote](../../../sketchnotes/ml-realworld.png)
+![Summary of machine learning in the real world in a sketchnote](../../../sketchnotes/ml-realworld.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 이 커리큘럼에서, 훈련하기 위한 데이터를 준비하고 머신러닝 모델으로 만드는 다양한 방식을 배웠습니다. 일렬의 classic regression, clustering, classification, natural language processing과, time series 모델을 만들었습니다. 축하드립니다! 지금부터, 모두 어떤 것을 고려했는지 궁금할 수 있습니다... 이 모델로 어떤 현실 어플리케이션을 만들었나요?
