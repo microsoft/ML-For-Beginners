@@ -30,7 +30,7 @@ El término "machine learning" es uno de los términos más frecuentemente usado
 
 ![curva de interés en ml](../images/hype.png)
 
-> Google Trends nos muestra la "curva de interés" reciente para el término "machine learning"
+> Google Trends nos muestra la "curva de interés" más reciente para el término "machine learning"
 
 Vivimos en un universo lleno de misterios fascinantes. Grandes científicos como Stephen Hawking, Albert Einstein, y muchos más han dedicado sus vidas a la búsqueda de información significativa que revela los misterios del mundo a nuestro alrededor. Esta es la condición humana del aprendizaje: un niño humano aprende cosas nuevas y descubre la estructura de su mundo año tras año a medida que se convierten en adultos.
 
