@@ -73,7 +73,7 @@ Research was well funded by government agencies, advances were made in computati
 * "Blocks world" was an example of a micro-world where blocks could be stacked and sorted, and experiments in teaching machines to make decisions could be tested. Advances built with libraries such as [SHRDLU](https://wikipedia.org/wiki/SHRDLU) helped propel language processing forward.
 
     [![blocks world with SHRDLU](https://img.youtube.com/vi/QAJz4YKUwqw/0.jpg)](https://www.youtube.com/watch?v=QAJz4YKUwqw "blocks world with SHRDLU")
-    
+
     > 🎥 Click the image above for a video: Blocks world with SHRDLU
 
 ---
