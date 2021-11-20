@@ -283,7 +283,7 @@ Finalmente, você está pronto para construir o arquivo python que direciona o c
     
     app = Flask(__name__)
     
-    model = pickle.load(open("../ufo-model.pkl", "rb"))
+    model = pickle.load(open("./ufo-model.pkl", "rb"))
     
     
     @app.route("/")
