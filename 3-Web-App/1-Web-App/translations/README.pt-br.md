@@ -284,7 +284,7 @@ Agora você pode construir uma aplicação Flask para chamar seu modelo e retorn
     
     app = Flask(__name__)
     
-    model = pickle.load(open("../ufo-model.pkl", "rb"))
+    model = pickle.load(open("./ufo-model.pkl", "rb"))
     
     
     @app.route("/")
