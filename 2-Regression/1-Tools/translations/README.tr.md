@@ -1,6 +1,6 @@
 # Regresyon modelleri için Python ve Scikit-learn'e giriş
 
-![Summary of regressions in a sketchnote](../../sketchnotes/ml-regression.png)
+![Summary of regressions in a sketchnote](../../../sketchnotes/ml-regression.png)
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -19,90 +19,89 @@ Bu derste, şunları öğreneceğiz:
 - Scikit-learn kullanmayı, kurulum da dahil.
 - Uygulamalı alıştırma ile doğrusal(lineer) regresyonu keşfedin.
 
-## Installations and configurations
+## Kurulum ve Konfigürasyonlar
 
-[![Setup Python with Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Setup Python with Visual Studio Code")
+[![Visual Studio Code ile Python kurulumu](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Setup Python with Visual Studio Code")
 
-> 🎥 Click the image above for a video: using Python within VS Code.
+> 🎥 Video için yukarıdaki resme tıklayınız: Python'u VS Code içinde kullanma.
 
-1. **Install Python**. Ensure that [Python](https://www.python.org/downloads/) is installed on your computer. You will use Python for many data science and machine learning tasks. Most computer systems already include a Python installation. There are useful [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) available as well, to ease the setup for some users.
+1. **Python Kurulumu**. [Python](https://www.python.org/downloads/) kurulumunun bilgisayarınızda yüklü olduğundan emin olun.Python'u birçok veri bilimi ve makine öğrenimi görevi için kullanacaksınız. Çoğu bilgisayar sistemi zaten bir Python kurulumu içerir. Şurada [Python Kodlama Paketleri](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) mevcut, bazı kullanıcılar için kurulumu daha kolay.
 
-   Some usages of Python, however, require one version of the software, whereas others require a different version. For this reason, it's useful to work within a [virtual environment](https://docs.python.org/3/library/venv.html).
+   Ancak Python'un bazı kullanımları, yazılımın spesifik bir sürümünü gerektirir, diğerleri ise farklı bir sürüm gerektirir. Bu yüzden, [virtual environment](https://docs.python.org/3/library/venv.html) (sanal ortamlar) ile çalışmak daha kullanışlıdır.
 
-2. **Install Visual Studio Code**. Make sure you have Visual Studio Code installed on your computer. Follow these instructions to [install Visual Studio Code](https://code.visualstudio.com/) for the basic installation. You are going to use Python in Visual Studio Code in this course, so you might want to brush up on how to [configure Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) for Python development.
+2. **Visual Studio Code kurulumu**. Visual Studio Code'un bilgisayarınıza kurulduğundan emin olun. [Visual Studio Code kurulumu](https://code.visualstudio.com/) bu adımları takip ederek basitçe bir kurulum yapabilirsiniz. Bu kursta Python'ı Visual Studio Code'un içinde kullanacaksınız, bu yüzden nasıl yapılacağını görmek isteyebilirsiniz. Python ile geliştirme için [Visual Studio Code konfigürasyonu](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa).
 
-   > Get comfortable with Python by working through this collection of [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Bu koleksiyon üzerinde çalışarak Python ile rahatlayın. [Modülleri öğren](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
 
-3. **Install Scikit-learn**, by following [these instructions](https://scikit-learn.org/stable/install.html). Since you need to ensure that you use Python 3, it's recommended that you use a virtual environment. Note, if you are installing this library on a M1 Mac, there are special instructions on the page linked above.
+3. **Scikit-learn kurulumu**, [bu talimatları](https://scikit-learn.org/stable/install.html) takip ediniz. Python 3 kullandığınızdan emin olmanız gerektiğinden, sanal ortam kullanmanız önerilir. Not, bu kütüphaneyi bir M1 Mac'e kuruyorsanız, yukarıda bağlantısı verilen sayfada özel talimatlar var onları takip ediniz.
 
-1. **Install Jupyter Notebook**. You will need to [install the Jupyter package](https://pypi.org/project/jupyter/).
+1. **Jupyter Notebook kurulumu**. [Jupyter package'ı](https://pypi.org/project/jupyter/) kurmanız gerekmektedir.
 
-## Your ML authoring environment
+## Makine öğrenimi geliştirme ortamınız
 
-You are going to use **notebooks** to develop your Python code and create machine learning models. This type of file is a common tool for data scientists, and they can be identified by their suffix or extension `.ipynb`.
+Python kodunuzu geliştirmek ve makine öğrenimi modelleri oluşturmak için **notebook** kullanacaksınız. Bu dosya türü, veri bilimcileri için yaygın bir araçtır ve bunlar, ".ipynb" son eki veya uzantısıyla tanımlanabilir.
 
-Notebooks are an interactive environment that allow the developer to both code and add notes and write documentation around the code which is quite helpful for experimental or research-oriented projects.
+Notebook'lar, geliştiricinin hem kod yazmasına hem de notlar eklemesine ve kodun etrafına deneysel veya araştırma odaklı projeler için oldukça yararlı olan dökümantasyonlar yazmasına izin veren etkileşimli bir ortamdır.
+### Alıştırma - notebook'larla çalışmak
 
-### Exercise - work with a notebook
+Bu klasörde, _notebook.ipynb_ adlı dosyası bulacaksınız.
 
-In this folder, you will find the file _notebook.ipynb_.
+1.  _notebook.ipynb_ dosyasını Visual Studio Code ile açınız.
 
-1. Open _notebook.ipynb_ in Visual Studio Code.
+   Bir Jupyter serveri Python 3+ ile beraber başlayacaktır. Notebook içinde kod parçalarını çalıştıracak `run` alanını göreceksiniz. Play butonuna benzeyen buton ile kod bloklarını çalıştırabileceksiniz.
 
-   A Jupyter server will start with Python 3+ started. You will find areas of the notebook that can be `run`, pieces of code. You can run a code block, by selecting the icon that looks like a play button.
+1. `md` ikonunu seçip bir markdown ekleyelim ve **# Welcome to your notebook** yazalım.
 
-1. Select the `md` icon and add a bit of markdown, and the following text **# Welcome to your notebook**.
+   Sonra, biraz Python kodu ekleyelim.
 
-   Next, add some Python code.
+1. Kod bloğuna **print('hello notebook')** yazalım.
+1. Ok işaretini seçip kodu çalıştıralım.
 
-1. Type **print('hello notebook')** in the code block.
-1. Select the arrow to run the code.
-
-   You should see the printed statement:
+   Bu ifadeyi çıktı olarak göreceksiniz:
 
     ```output
     hello notebook
     ```
 
-![VS Code with a notebook open](images/notebook.jpg)
+![VS Code ile notebook açma](images/notebook.jpg)
 
-You can interleaf your code with comments to self-document the notebook.
+Notebook'ğunuzu dökümante etmek için kodunuza yorumlar ekleyebilirsiniz.
 
-✅ Think for a minute how different a web developer's working environment is versus that of a data scientist.
+✅ Bir web geliştiricisinin çalışma ortamının bir veri bilimcisinden ne kadar farklı olduğunu bir an için düşünün.
 
-## Up and running with Scikit-learn
+## Scikit-learn çalışır durumda
 
-Now that Python is set up in your local environment, and you are comfortable with Jupyter notebooks, let's get equally comfortable with Scikit-learn (pronounce it `sci` as in `science`). Scikit-learn provides an [extensive API](https://scikit-learn.org/stable/modules/classes.html#api-ref) to help you perform ML tasks.
+Artık Python yerel ortamınızda kurulduğuna göre ve Jupyter notebook ile rahatsanız, hadi Scikit-learn ile de eşit derecede rahat edelim.(`sci` `science`'ın kısaltması yani bilim anlamı taşır). Scikit-learn sağladığı [yaygın API](https://scikit-learn.org/stable/modules/classes.html#api-ref) ile ML görevlerinde sizlere yardım eder.
 
-According to their [website](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn is an open source machine learning library that supports supervised and unsupervised learning. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities."
+[websitelerine](https://scikit-learn.org/stable/getting_started.html) göre, "Scikit-learn, denetimli ve denetimsiz öğrenmeyi destekleyen açık kaynaklı bir makine öğrenimi kütüphanesidir. Ayrıca model uydurma, veri ön işleme, model seçimi ve değerlendirmesi gibi diğer birçok şey için yardımcı olacak çeşitli araçlar sağlar."
 
-In this course, you will use Scikit-learn and other tools to build machine learning models to perform what we call 'traditional machine learning' tasks. We have deliberately avoided neural networks and deep learning, as they are better covered in our forthcoming 'AI for Beginners' curriculum.
+Bu kursta, 'geleneksel makine öğrenimi' olarak adlandırdığımız görevleri gerçekleştirmek üzere ve makine öğrenimi modelleri oluşturmak için Scikit-learn ve diğer araçları kullanacaksınız. Yakında çıkacak olan 'Yeni Başlayanlar için Yapay Zeka' müfredatımızda daha iyi ele alındığı için sinir ağlarından ve derin öğrenme konularından bilinçli olarak kaçındık.
 
-Scikit-learn makes it straightforward to build models and evaluate them for use. It is primarily focused on using numeric data and contains several ready-made datasets for use as learning tools. It also includes pre-built models for students to try. Let's explore the process of loading prepackaged data and using a built in estimator  first ML model with Scikit-learn with some basic data.
+Scikit-learn, modeller oluşturmayı ve bunları kullanım için  modeli değerlendirmeyi kolaylaştırır. Öncelikle sayısal verileri kullanmaya odaklanır ve öğrenme araçları olarak kullanılmak üzere birkaç hazır veri seti içerir. Ayrıca öğrencilerin denemesi için önceden oluşturulmuş modelleri de içerir. Önceden paketlenmiş verileri yükleme ve bazı temel verilerle birlikte Scikit-learn'de ilk ML modelini kullanma sürecini keşfedelim.
 
-## Exercise - your first Scikit-learn notebook
+## Alıştırma - ilk Scikit-learn notebook'unuz
 
-> This tutorial was inspired by the [linear regression example](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) on Scikit-learn's web site.
+> Bu eğitim  Scikit-learn web sitesindeki [lineer regresyon örneğinden](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) ilham alınmıştır.
 
-In the _notebook.ipynb_ file associated to this lesson, clear out all the cells by pressing the 'trash can' icon.
+_notebook.ipynb_ dosyasıda bu dersle ilgili olan, tüm hücreleri 'çöp kutusu' simgesine basarak temizleyin.
 
-In this section, you will work with a small dataset about diabetes that is built into Scikit-learn for learning purposes. Imagine that you wanted to test a treatment for diabetic patients. Machine Learning models might help you determine which patients would respond better to the treatment, based on combinations of variables. Even a very basic regression model, when visualized, might show information about variables that would help you organize your theoretical clinical trials.
+Bu bölümde, öğrenme amacıyla Scikit-learn'de yerleşik olarak bulunan diyabetle ilgili küçük bir veri seti ile çalışacaksınız. Diyabet hastaları için bir tedaviyi test etmek istediğinizi hayal edin. Makine Öğrenimi modelleri, değişken kombinasyonlarına göre hangi hastaların tedaviye daha iyi yanıt vereceğini belirlemenize yardımcı olabilir. Çok basit bir regresyon modeli bile görselleştirildiğinde, teorik klinik denemelerinizi düzenlemenize yardımcı olacak değişkenler hakkında bilgi verebilir.
 
-✅ There are many types of regression methods, and which one you pick depends on the answer you're looking for. If you want to predict the probable height for a person of a given age, you'd use linear regression, as you're seeking a **numeric value**. If you're interested in discovering whether a type of cuisine should be considered vegan or not, you're looking for a **category assignment** so you would use logistic regression. You'll learn more about logistic regression later. Think a bit about some questions you can ask of data, and which of these methods would be more appropriate.
+✅ Pek çok regresyon yöntemi vardır ve hangisini seçeceğiniz, aradığınız cevaba bağlıdır. Belirli bir yaştaki bir kişinin olası boyunu tahmin etmek istiyorsanız, **sayısal bir değer** aradığınız için doğrusal regresyon kullanırsınız. Bir yemeğin vegan olarak kabul edilip edilmeyeceğini keşfetmekle ilgileniyorsanız, **kategorik görev** olduğu için lojistik regresyon kullanmalısınız. Daha sonra lojistik regresyon hakkında daha fazla bilgi edineceksiniz. Verilere sorabileceğiniz bazı sorular ve bu yöntemlerden hangisinin daha uygun olacağı hakkında biraz düşünün.
 
-Let's get started on this task.
+Hadi bu görev ile başlayalım.
 
-### Import libraries
+### Kütüphaneleri Import etmek
 
-For this task we will import some libraries:
+Bu görev için bazı kütüphaneleri import edeceğiz:
 
-- **matplotlib**. It's a useful [graphing tool](https://matplotlib.org/) and we will use it to create a line plot.
-- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
-- **sklearn**. This is the [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) library.
+- **matplotlib**. Kullanışlı bir [grafiksel bir araç](https://matplotlib.org/) ve bir çizgi grafiği oluşturmak için kullanacağız.
+- **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) Python'da nümerik verileri ele almak için kullanışlı bir kütüphane.
+- **sklearn**. Bu da [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) kütüphanesi.
 
-Import some libraries to help with your tasks.
+Bu görevimizde yardımcı olacak bazı kütüphaneleri import edelim.
 
-1. Add imports by typing the following code:
+1. Aşağıdaki kodu yazarak import edelim:
 
    ```python
    import matplotlib.pyplot as plt
@@ -110,22 +109,22 @@ Import some libraries to help with your tasks.
    from sklearn import datasets, linear_model, model_selection
    ```
 
-   Above you are importing `matplotlib`, `numpy` and you are importing `datasets`, `linear_model` and `model_selection` from `sklearn`. `model_selection` is used for splitting data into training and test sets.
+    `matplotlib`, `numpy` import ettik ve `datasets`, `linear_model` , `model_selection` 'ı `sklearn` den import ettik. `model_selection` veri setimizi eğitim ve test kümeleri şeklinde bölmemize yardımcı olacak.
 
-### The diabetes dataset
+### Diyabet veri seti
 
-The built-in [diabetes dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) includes 442 samples of data around diabetes, with 10 feature variables, some of which include:
+[Diyabet veri seti](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) 442 tane diyabet ile ilgili örnek içeririr, 10 öznitelik değişkeni,bazıları şunları içerir:
 
-- age: age in years
-- bmi: body mass index
-- bp: average blood pressure
-- s1 tc: T-Cells (a type of white blood cells)
+- age: yaşı
+- bmi: vücut kitle indeksi
+- bp: ortalama kan basıncı
+- s1 tc: T-Cells (bir tür beyaz kan hücresi)
 
-✅ This dataset includes the concept of 'sex' as a feature variable important to research around diabetes. Many medical datasets include this type of binary classification. Think a bit about how categorizations such as this might exclude certain parts of a population from treatments.
+✅ Bu veri seti, diyabet hakkında araştırma yapmak için önemli bir özellik değişkeni olarak 'cinsiyet' kavramını içerir. Birçok tıbbi veri kümesi bu tür ikili sınıflandırmayı içerir. Bunun gibi sınıflandırmaların bir popülasyonun belirli bölümlerini tedavilerden nasıl dışlayabileceğini biraz düşünün.
 
-Now, load up the X and y data.
+Şimdi, X ve y verilerini yükleyelim.
 
-> 🎓 Remember, this is supervised learning, and we need a named 'y' target.
+> 🎓 Unutmayın, bu denetimli öğrenmedir ve adlandırılmış bir 'y' hedefi vardır.
 
 In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The input `return_X_y=True` signals that `X` will be a data matrix, and `y` will be the regression target.
 
