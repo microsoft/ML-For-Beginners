@@ -65,7 +65,7 @@ Bu klasörde, _notebook.ipynb_ adlı dosyası bulacaksınız.
 
 ![VS Code ile notebook açma](images/notebook.jpg)
 
-Notebook'ğunuzu dökümante etmek için kodunuza yorumlar ekleyebilirsiniz.
+Notebook'kunuzu dökümante etmek için kodunuza yorumlar ekleyebilirsiniz.
 
 ✅ Bir web geliştiricisinin çalışma ortamının bir veri bilimcisinden ne kadar farklı olduğunu bir an için düşünün.
 
@@ -124,9 +124,9 @@ Bu görevimizde yardımcı olacak bazı kütüphaneleri import edelim.
 
 Şimdi, X ve y verilerini yükleyelim.
 
-> 🎓 Unutmayın, bu denetimli öğrenmedir ve adlandırılmış bir 'y' hedefi vardır.
+> 🎓 Unutmayın, bu denetimli öğrenmedir ve bir 'y' hedefine ihtiyaç vardır.
 
-In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The input `return_X_y=True` signals that `X` will be a data matrix, and `y` will be the regression target.
+Yeni bir hücrede, load_diabetes()'i çağırarak diyabet veri setini yükleyin. 'return_X_y=True' girişi, X'in bir veri matrisi olacağını ve y'nin regresyon hedefi olacağını bildirir.
 
 1. Add some print commands to show the shape of the data matrix and its first element:
 
