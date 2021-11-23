@@ -128,7 +128,7 @@ Bu görevimizde yardımcı olacak bazı kütüphaneleri import edelim.
 
 Yeni bir hücrede, load_diabetes()'i çağırarak diyabet veri setini yükleyin. 'return_X_y=True' girişi, X'in bir veri matrisi olacağını ve y'nin regresyon hedefi olacağını bildirir.
 
-1. Add some print commands to show the shape of the data matrix and its first element:
+1. Verinin, matriksinin şekline ve ilk elementine göz atmak için print kullanalım.
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -136,9 +136,9 @@ Yeni bir hücrede, load_diabetes()'i çağırarak diyabet veri setini yükleyin.
     print(X[0])
     ```
 
-    What you are getting back as a response, is a tuple. What you are doing is to assign the two first values of the tuple to `X` and `y` respectively. Learn more [about tuples](https://wikipedia.org/wiki/Tuple).
+    Yanıt olarak geri aldığınız şey, bir tuple. Yaptığınız şey, tuple'ın ilk iki değerini sırasıyla 'X' ve 'y'ye atamak. [Tuple hakkında  daha fazla bilgi](https://wikipedia.org/wiki/Tuple).
 
-    You can see that this data has 442 items shaped in arrays of 10 elements:
+  Bu verinin 10 elemanlı dizilerde(array) şekillendirilmiş 442 öğeye sahip olduğunu görebilirsiniz:
 
     ```text
     (442, 10)
@@ -146,38 +146,37 @@ Yeni bir hücrede, load_diabetes()'i çağırarak diyabet veri setini yükleyin.
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Think a bit about the relationship between the data and the regression target. Linear regression predicts relationships between feature X and target variable y. Can you find the [target](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) for the diabetes dataset in the documentation? What is this dataset demonstrating, given that target?
+    ✅ Veriler ve regresyon hedefi arasındaki ilişki hakkında biraz düşünün. Doğrusal regresyon, özellik X ile hedef değişken y arasındaki ilişkileri tahmin eder. Diyabet veri setindeki dökümantasyonda [hedefi](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) bulabildiniz mi? Bu hedef göz önüne alındığında, bu veri kümesi neyi gösteriyor?
 
-2. Next, select a portion of this dataset to plot by arranging it into a new array using numpy's `newaxis` function. We are going to use linear regression to generate a line between values in this data, according to a pattern it determines.
-
+2. Ardından, numpy'nin 'newaxis' fonksiyonunu kullanarak yeni bir array düzenleyerek bu veri kümesinin bir bölümünü seçin. Belirlediği bir kalıba göre bu verilerdeki değerler arasında bir çizgi oluşturmak için doğrusal regresyon kullanacağız.
    ```python
    X = X[:, np.newaxis, 2]
    ```
 
-   ✅ At any time, print out the data to check its shape.
+   ✅ İstediğiniz zaman, verinin şeklini kontrol etmek için yazdırın.
 
-3. Now that you have data ready to be plotted, you can see if a machine can help determine a logical split between the numbers in this dataset. To do this, you need to split both the data (X) and the target (y) into test and training sets. Scikit-learn has a straightforward way to do this; you can split your test data at a given point.
+3. Artık çizilmeye hazır verileriniz olduğuna göre, bir makinenin bu veri kümesindeki sayılar arasında mantıksal bir ayrım belirlemeye yardımcı olup olamayacağını görebilirsiniz. Bunun için, hem verileri (X) hem de hedefi (y), test ve eğitim kümelerine ayırmanız gerekir. Scikit-learn'in bunu yapmanın basit bir yolu var; test verilerinizi belirli bir noktada bölebilirsiniz.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Now you are ready to train your model! Load up the linear regression model and train it with your X and y training sets using `model.fit()`:
+4. Artık modelinizi eğitmeye hazırsınız! Doğrusal regresyon modelini yükleyin ve onu "model.fit()" kullanarak X ve y eğitim kümelerinde eğitin:
 
     ```python
     model = linear_model.LinearRegression()
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` is a function you'll see in many ML libraries such as TensorFlow
+    ✅ `model.fit()` TensorFlow gibi birçok ML kütüphanesinde görebileceğiniz bir fonksiyondur.
 
-5. Then, create a prediction using test data, using the function `predict()`. This will be used to draw the line between data groups
+5. Ardından, "predict()" fonksiyonunu kullanarak test verilerini üzerinde bir tahmin oluşturun. Bu, veri grupları arasındaki çizgiyi çizmek için kullanılacaktır.
 
     ```python
     y_pred = model.predict(X_test)
     ```
 
-6. Now it's time to show the data in a plot. Matplotlib is a very useful tool for this task. Create a scatterplot of all the X and y test data, and use the prediction to draw a line in the most appropriate place, between the model's data groupings.
+6. Şimdi verileri bir plotta gösterme zamanı. Matplotlib bu görev için çok kullanışlı bir araçtır. Tüm X ve y test verilerinin bir dağılım grafiğini(scatterplot) oluşturun ve modelin veri grupları arasında en uygun yere bir çizgi çizmek için tahminleri kullanın.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -188,23 +187,23 @@ Yeni bir hücrede, load_diabetes()'i çağırarak diyabet veri setini yükleyin.
     plt.show()
     ```
 
-   ![a scatterplot showing datapoints around diabetes](./images/scatterplot.png)
+   ![a scatterplot showing datapoints around diabetes](././images/scatterplot.png)
 
-   ✅ Think a bit about what's going on here. A straight line is running through many small dots of data, but what is it doing exactly? Can you see how you should be able to use this line to predict where a new, unseen data point should fit in relationship to the plot's y axis? Try to put into words the practical use of this model.
+   ✅ Burada neler olduğunu biraz düşünün. Birçok küçük veri noktalarından düz bir çizgi geçiyor ama tam olarak ne yapıyor? Yeni, görünmeyen bir veri noktasının grafiğin y eksenine göre nerede olması gerektiğini tahmin etmek için bu çizgiyi nasıl kullanabilmeniz gerektiğini görebiliyor musunuz? Bu modelin pratik kullanımını kelimelere dökmeye çalışın.
 
-Congratulations, you built your first linear regression model, created a prediction with it, and displayed it in a plot!
+Tebrikler, ilk doğrusal regresyon modelinizi oluşturdunuz, onunla bir tahmin oluşturdunuz ve bunu bir grafikte görüntülediniz!
 
 ---
 ## 🚀Challenge
 
-Plot a different variable from this dataset. Hint: edit this line: `X = X[:, np.newaxis, 2]`. Given this dataset's target, what are you able to discover about the progression of diabetes as a disease?
+Bu veri kümesinden farklı bir değişken çizin. İpucu: bu satırı düzenleyin: `X = X[:, np.newaxis, 2]`. Bu veri setinin hedefi göz önüne alındığında, diyabetin bir hastalık olarak ilerlemesi hakkında neler keşfedebilirsiniz?
 ## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
 
-## Review & Self Study
+## İnceleme ve Bireysel Çalışma
 
-In this tutorial, you worked with simple linear regression, rather than univariate or multiple linear regression. Read a little about the differences between these methods, or take a look at [this video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
+Bu eğitimde, tek değişkenli veya çoklu doğrusal regresyon yerine basit doğrusal regresyonla çalıştınızBu yöntemler arasındaki farklar hakkında biraz bilgi edinin veya şuna bir göz atın: [bu videoya](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Read more about the concept of regression and think about what kinds of questions can be answered by this technique. Take this [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) to deepen your understanding.
+Regresyon kavramı hakkında daha fazla bilgi edinin ve bu teknikle ne tür soruların yanıtlanabileceğini düşünün. Anlayışınızı derinleştirmek için bu [eğitime](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) göz atabilirsiniz.
 
 ## Assignment
 
