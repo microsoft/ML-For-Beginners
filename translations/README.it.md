@@ -10,17 +10,17 @@
 
 # Machine Learning per Principianti - Un Programma di Studio
 
-> 🌍 Viaggio intorno al mondo esplorando Machine Learning per mezzo delle culture mondiali 🌍
+> 🌍 Fai il giro del mondo mentre esploriamo il Machine Learning attraverso le varie culture 🌍
 
-Azure Cloud Advocates in Microsoft sono lieti di offrire un programma di studi di 12 settimane, 24 lezioni (più una!) tutto su **Machine Learning**. In questo programma di studi, si imparerà di ciò che a volte è chiamato **machine learning classico**, usando principalmente Scikit-learn come libreria ed evitando il deep learning, che è coperto nel nostro prossimo programma di studi "AI per principianti". Queste lezioni si accoppiano anche con il programma di studi di prossima uscita "Data Science per principianti"!
+Gli Azure Cloud Advocates di Microsoft sono lieti di offrire un programma di studi di 12 settimane, articolato su 26 lezioni, interamente dedicato al **Machine Learning**. In questo programma di studi imparerai ciò che viene talvolta definito **machine learning classico**, usando principalmente Scikit-learn come libreria ed evitando il deep learning, che verrà coperto nel nostro prossimo programma di studi "AI per principianti". Queste lezioni si accoppiano anche con il programma di studi di prossima uscita "Data Science per principianti"!
 
-Si viaggerà insieme in tutto il mondo mentre si applicano queste tecniche classiche ai dati da molte aree del mondo. Ogni lezione include quiz pre e post lezione, istruzioni scritte per completare la lezione, una soluzione, un compito e altro ancora. La pedagogia basata su progetto consente di imparare durante la costruzione, un modo comprovato per memorizzare nuove conoscenze.
+Gira il mondo insieme a noi mentre applichiamo queste classiche tecniche ai dati di diverse aree del mondo. Ogni lezione include quiz pre- e post- lezione, istruzioni scritte per completare la lezione, una soluzione, un compito ed altro ancora. Il nostro metodo di insegnamento basato sui progetti consente di imparare strada facendo, un metodo comprovato per memorizzare le nuove conoscenze.
 
 **✍️ Un grazie di cuore ai nostri autori** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Ornella Altunyan, e Amy Boyd
 
 **🎨 Grazie anche ai nostri illustratori** Tomomi Imura, Dasani Madipalli, e Jen Looper
 
-**🙏 Un ringraziamento speciale 🙏 agli autori di Microsoft Student Ambassador, revisori e collaboratori per i contenuti**, in particolare Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, e Snigdha Agarwal
+**🙏 Un ringraziamento speciale 🙏 agli autori di Microsoft Student Ambassador, ai revisori e ai collaboratori per i contenuti**, in particolare Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, e Snigdha Agarwal
 
 **🤩 Un grazie supplementare al Microsoft Student Ambassador Eric Wanjau per le nostre lezioni su R!** 
 
@@ -28,15 +28,15 @@ Si viaggerà insieme in tutto il mondo mentre si applicano queste tecniche class
 
 # Per Iniziare
 
-**Studenti**, per utilizzare questo programma di studi, eseguire il fork dell'intero repo sul proprio account GitHub e completare gli esercizi da soli o in gruppo:
+**Studenti**, per utilizzare questo programma di studi, eseguite il fork dell'intera repo sul vostro account GitHub e completate gli esercizi da soli o con un gruppo:
 
-- Iniziare con un quiz pre-lezione.
-- Leggere la lezione e completare le attività, facendo una pausa di riflessione in ogni controllo della conoscenza.
-- Provare a creare i progetti capendo le lezioni piuttosto che eseguire il codice della soluzione; comunque quel codice è disponibile nelle cartelle `/solution` in ogni lezione orientata al progetto.
-- Fare il quiz post-lezione.
-- Completare la sfida.
-- Completare il compito.
-- Dopo il completamento di un gruppo di lezioni, visitare il  [Forum di discussione](https://github.com/microsoft/ML-For-Beginners/discussions) e imparare ad alta voce riempiendo la rubrica di Pat appropriata. Un 'PAT' è uno Strumento di valutazione del progresso che è una rubrica che si compila per promuovere il proprio apprendimento. Si può interagire anche in altri PAT in modo da imparare assieme.
+- Iniziate con un quiz pre-lezione.
+- Leggete la lezione e completate le attività, facendo una pausa e riflettendo ad ogni verifica della conoscenza.
+- Provate a fare i progetti capendo le lezioni piuttosto che eseguendo il codice della soluzione; Quel codice è ad ogni modo disponibile nella cartella `/solution` presente in ogni lezione con progetto.
+- Fate il quiz post-lezione.
+- Completate la sfida.
+- Completate il compito.
+- Dopo il completamento di un gruppo di lezioni, visitate il  [Forum di discussione](https://github.com/microsoft/ML-For-Beginners/discussions) e "learn out load" (imparare ad alta voce) riempiendo la rubrica Pat appropriata. 'PAT' è uno strumento di valutazione dei progressi che consiste in una rubrica da compilare per promuovere il proprio apprendimento. Si può anche interagire in altri PAT in modo da imparare assieme.
 
 > Per ulteriori approfondimenti, si raccomanda di sequire i seguenti moduli e percorsi di apprendimento [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa).
 
@@ -48,39 +48,39 @@ Si viaggerà insieme in tutto il mondo mentre si applicano queste tecniche class
 
 [![Promo video](../ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "Promo video")
 
-> 🎥 Fare click sull'immagine qui sopra per un video sul progetto e sulle persone che lo hanno creato!
+> 🎥 Clicca sull'immagine qui sopra per visualizzare un video sul progetto e su coloro che lo hanno creato!
 
 ---
 
 ## Pedagogia
 
-Sono stati scelti due principi pedagogici durante la creazione di questo programma di studi: assicurandosi che sia pratico **basato su progetto** e che includa **quiz frequenti**. Inoltre, questo programma di studi ha un **tema** comune per conferirgli coesione.
+Abbiamo scelto due principi pedagogici durante la creazione di questo programma di studi: assicurandoci che sia **basato su progetti** pratici e che includa **quiz frequenti**. Inoltre, questo programma di studi presenta un **tema** comune per conferirgli coerenza.
 
 Assicurandosi che il contenuto si allinei con i progetti, il processo è reso più coinvolgente per gli studenti e la conservazione dei concetti sarà aumentata. Inoltre, un quiz di poca difficoltà prima di una lezione imposta l'intenzione dello studente verso l'apprendimento di un argomento, mentre un secondo quiz dopo la lezione garantisce ulteriore ritenzione. Questo programma di studi è stato progettato per essere flessibile e divertente e può essere seguito in tutto o in parte. I progetti iniziano piccoli e diventano sempre più complessi entro la fine del ciclo di 12 settimane. Questo programma di studi include anche un poscritto sulle applicazioni del mondo reale di ML, che può essere utilizzata come credito extra o come base per la discussione.
 
-> Consultare Le linee guida del [Codice di Condotta](CODE_OF_CONDUCT.md), per [Collaborare](CONTRIBUTING.md), e [Tradurre](TRANSLATIONS.md). Un feedback costruttivo sarà accolto con piacere!
+> Consultate Le linee guida del [Codice di Condotta](CODE_OF_CONDUCT.md), per [Collaborare](CONTRIBUTING.md), e [Tradurre](TRANSLATIONS.md). I feedback costruttivi saranno accolti con piacere!
 
 ## Ogni lezione include:
 
-- sketchNote opzionale
-- video supplementare opzionale
-- quiz di riscaldamento pre-lezione
-- lezione scritta
-- per lezioni basate su progetto, guide passo-passo su come costruire il progetto
-- controlli della conoscenza
+- uno sketchNote opzionale
+- un video supplementare opzionale
+- un quiz di riscaldamento pre-lezione
+- una lezione scritta
+- per le lezioni basate sulla creazione di un progetto, guide passo-passo su come farlo
+- verifiche della conoscenza
 - una sfida
-- lettura supplementare
-- compito
-- quiz post-lezione
+- una lettura supplementare
+- un compito
+- un quiz post-lezione
 
-> **Una nota sui quiz**: Tutti i quiz sono contenuti [in questa app](https://white-water-09ec41f0f.azurestaticapps.net/), per un totale di 50 quiz con tre domande ciascuno. Sono collegati all'interno delle lezioni ma l'app può essere eseguita localmente; seguire le istruzioni nella cartella `quiz-app`.
+> **Una nota sui quiz**: Tutti i quiz sono contenuti [in questa app](https://white-water-09ec41f0f.azurestaticapps.net/), per un totale di 50 quiz con tre domande ciascuno. I link ai quiz sono presenti all'interno delle lezioni ma l'app può essere eseguita in locale seguendo le istruzioni contenute nella cartella `quiz-app`.
 
 | Numero Lezione |                           Argomento                            |                   Gruppo Lezioni                   | Obiettivi di Apprendimento                                                                                                             |                     Lezioni Collegate                     |     Autore     |
 | :-----------: | :--------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: | :------------: |
-|      01       |              Introduzione a machine learning              |      [Introduzione](../1-Introduction/translations/README.it.md)       | Apprendere i concetti di base dietro machine learning                                                                                |   [lezione](../1-Introduction/1-intro-to-ML/translations/README.it.md)    |    Muhammad    |
-|      02       |              La storia di machine learning               |      [Introduzione](../1-Introduction/translations/README.it.md)       | Apprendere la storia alla base di questo campo                                                                                         |  [lezione](../1-Introduction/2-history-of-ML/translations/README.it.md)   |  Jen e Amy   |
-|      03       |               Equità e machine learning                |      [Introduzione](../1-Introduction/translations/README.it.md)       | Quali sono gli importanti quesiti filosofici attorno all'equità che gli studenti dovrebbero prendere in considerazione quando si costruiscono e applicano i modelli ML? |     [lezione](../1-Introduction/3-fairness/translations/README.it.md)     |     Tomomi     |
-|      04       |              Tecniche di machine learning               |      [Introduzione](../1-Introduction/translations/README.it.md)       | Quali tecniche usano i ricercatori ML per costruire modelli ML?                                                                       | [lezione](../1-Introduction/4-techniques-of-ML/translations/README.it.md) | Chris e Jen  |
+|      01       |              Introduzione a machine learning              |      [Introduzione](../1-Introduction/translations/README.it.md)       | Apprendere i concetti di base dietro il machine learning                                                                                |   [lezione](../1-Introduction/1-intro-to-ML/translations/README.it.md)    |    Muhammad    |
+|      02       |              La storia del machine learning               |      [Introduzione](../1-Introduction/translations/README.it.md)       | Apprendere la storia alla base di questo campo                                                                                         |  [lezione](../1-Introduction/2-history-of-ML/translations/README.it.md)   |  Jen e Amy   |
+|      03       |               Equità e machine learning                |      [Introduzione](../1-Introduction/translations/README.it.md)       | Quali sono gli importanti quesiti filosofici riguardanti l'etica che gli studenti dovrebbero prendere in considerazione quando si creano ed applicano i modelli di ML? |     [lezione](../1-Introduction/3-fairness/translations/README.it.md)     |     Tomomi     |
+|      04       |              Tecniche di machine learning               |      [Introduzione](../1-Introduction/translations/README.it.md)       | Quali tecniche usano i ricercatori per costruire i modelli di ML?                                                                       | [lezione](../1-Introduction/4-techniques-of-ML/translations/README.it.md) | Chris e Jen  |
 |      05       |                 Introduzione alla regressione                 |        [Regressione](../2-Regression/translations/README.it.md)         | Iniziare con Python e Scikit-learn per i modelli di regressione                                                                  |       [lezione](../2-Regression/1-Tools/translations/README.it.md)        |      Jen       |
 |      06       |              Prezzi della zucca del Nord America 🎃               |        [Regressione](../2-Regression/translations/README.it.md)         | Visualizzare e pulire i dati in preparazione per ML                                                                                  |        [lezione](../2-Regression/2-Data/translations/README.it.md)        |      Jen       |
 |      07       |              Prezzi della zucca del Nord America 🎃               |        [Regressione](../2-Regression/translations/README.it.md)         | Costruire modelli di regressione lineare e polinomiale                                                                                   |       [lezione](../2-Regression/3-Linear/translations/README.it.md)       |      Jen       |
@@ -105,19 +105,20 @@ Assicurandosi che il contenuto si allinei con i progetti, il processo è reso pi
 
 ## Accesso offline
 
-Si può eseguire questa documentazione offline usando [Docsify](https://docsify.js.org/#/). Effettuare il fork di questo repo, [installare Docsify](https://docsify.js.org/#/quickstart) sulla propria macchina locale, quindi nella cartella radice di questo repo digitare `docsify serve`. Il sito web sarà servito sulla porta 3000 di localhost: `localhost:3000`.
+Si può seguire questa documentazione offline usando [Docsify](https://docsify.js.org/#/). Effettuate il fork di questa repo, [installare Docsify](https://docsify.js.org/#/quickstart) sul proprio dispositivo e poi digitare `docsify serve` nella cartella radice della repo. Il sito web sarà servito sulla porta 3000 di localhost: `localhost:3000`.
 
 ## PDF
 
-Si può trovare un pdf con il programma di studio e collegamenti [qui](pdf/readme.pdf).
+È possibile trovare un pdf con il programma di studio ed i collegamenti [qui](pdf/readme.pdf).
 
 ## Cercasi aiuto!
 
-Si vorrebbe contribuire a una traduzione? Per favore leggere le [linee guida di traduzione](TRANSLATIONS.md) e aggiungere eventuale input [qui](https://github.com/microsoft/ML-For-Beginners/issues/71).
+Vorresti contribuire alla traduzione? Per favore leggi le [linee guida per la traduzione](TRANSLATIONS.md) e aggiungi una issue basata sul modello per gestire il carico di lavoro [qui](https://github.com/microsoft/ML-For-Beginners/issues/71).
 
-## Altri Programmi di Studi\
+## Altri Programmi di Studi
 
-Il nostro team produce altri programmi di studi! Dare un occhiatat:
+Il nostro team produce altri programmi di studi! Dai un'occhiata a:
 
 - [Sviluppo Web per Principianti](https://aka.ms/webdev-beginners)
 - [IoT per Principianti](https://aka.ms/iot-beginners)
+- [Data Science for Beginners](https://aka.ms/datascience-beginners)

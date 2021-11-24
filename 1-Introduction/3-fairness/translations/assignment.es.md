@@ -8,4 +8,4 @@ En esta lección, aprendió sobre Fairlearn, un "proyecto open-source impulsado 
 
 | Criterios | Ejemplar | Adecuado | Necesita mejorar |
 | -------- | --------- | -------- | ----------------- |
-|          |  Un documento o presentación powerpoint es presentado discutiendo los sistemas de Fairlearn, el cuadernos que fue ejecutado, y las conclusiones extraídas al ejecutarlo        |   Un documento es presentado sin conclusiones       |  No se presenta ningún documento    |
+|          |  Un documento o presentación powerpoint es presentado discutiendo los sistemas de Fairlearn, el cuaderno que fue ejecutado, y las conclusiones extraídas al ejecutarlo        |   Un documento es presentado sin conclusiones       |  No se presenta ningún documento    |
