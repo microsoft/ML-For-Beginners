@@ -6,7 +6,7 @@
 
 ## [Ders öncesi quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
 
-> ### [R dili ile bu dersin içeriği!](./solution/R/lesson_1-R.ipynb)
+> ### [R dili ile bu dersin içeriği!](././solution/R/lesson_1-R.ipynb)
 
 ## Giriş
 
@@ -63,7 +63,7 @@ Bu klasörde, _notebook.ipynb_ adlı dosyası bulacaksınız.
     hello notebook
     ```
 
-![VS Code ile notebook açma](images/notebook.jpg)
+![VS Code ile notebook açma](../images/notebook.jpg)
 
 Notebook'kunuzu dökümante etmek için kodunuza yorumlar ekleyebilirsiniz.
 
