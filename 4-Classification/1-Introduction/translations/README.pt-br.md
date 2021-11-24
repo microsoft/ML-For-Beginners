@@ -1,67 +1,67 @@
-# Introduction to classification
+# Introdução à classificação
 
-In these four lessons, you will explore a fundamental focus of classic machine learning - _classification_. We will walk through using various classification algorithms with a dataset about all the brilliant cuisines of Asia and India. Hope you're hungry!
+Nestas quatro lições, você explorará um foco fundamental da aprendizagem de máquina clássica - _classificação_. Usaremos vários algoritmos de classificação com um _datset_ (conjunto de dados) sobre todas as cozinhas brilhantes da Ásia e da Índia. Espero que esteja com fome!
 
-![just a pinch!](../images/pinch.png)
+![Só uma pitada!](../images/pinch.png)
 
-> Celebrate pan-Asian cuisines in these lessons! Image by [Jen Looper](https://twitter.com/jenlooper)
+> Celebre a cozinha pan-asiática nestas aulas! Imagem por [Jen Looper](https://twitter.com/jenlooper).
 
-Classification is a form of [supervised learning](https://wikipedia.org/wiki/Supervised_learning) that bears a lot in common with regression techniques. If machine learning is all about predicting values or names to things by using datasets, then classification generally falls into two groups: _binary classification_ and _multiclass classification_.
+A classificação é uma forma de [aprendizado supervisionado](https://wikipedia.org/wiki/Supervised_learning) que tem muito em comum com as técnicas de regressão. O aprendizado de máquina tem tudo a ver com prever valores ou nomes para coisas usando _datasets_. A classificação geralmente se divide em dois grupos: _classificação binária_ e _classificação de multiclasse_.
 
-[![Introduction to classification](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introduction to classification")
+[![Introdução à classificação](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introdução à classificação")
 
-> 🎥 Click the image above for a video: MIT's John Guttag introduces classification
+> 🎥 Clique na imagem acima para ver o vídeo: John Guttag do MIT introduz classificação (vídeo em inglês).
 
-Remember:
+Lembre-se:
 
-- **Linear regression** helped you predict relationships between variables and make accurate predictions on where a new datapoint would fall in relationship to that line. So, you could predict _what price a pumpkin would be in September vs. December_, for example.
-- **Logistic regression** helped you discover "binary categories": at this price point, _is this pumpkin orange or not-orange_?
+- **A regressão linear** ajudou a prever relações entre variáveis e fazer previsões precisas sobre onde um novo ponto de dados cairia em relação a uma linha. Então, você poderia prever _que preço teria uma abóbora em setembro vs. dezembro_, por exemplo.
+- **A regressão logística** ajudou a descobrir "categorias binárias": em uma faixa de preço, _essa abóbora é laranja ou não_?
 
-Classification uses various algorithms to determine other ways of determining a data point's label or class. Let's work with this cuisine data to see whether, by observing a group of ingredients, we can determine its cuisine of origin.
+A classificação usa vários algoritmos para determinar outras maneiras de determinar o rótulo ou a classe de um ponto de dados ou objeto. Vamos trabalhar com dados sobre culinária para ver se, observando um grupo de ingredientes, podemos determinar sua culinária de origem.
 
 ## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/19/?loc=br)
 
 > ### [Esta lição está disponível em R!](../solution/R/lesson_10-R.ipynb)
 
-### Introduction
+### Introdução
 
-Classification is one of the fundamental activities of the machine learning researcher and data scientist. From basic classification of a binary value ("is this email spam or not?"), to complex image classification and segmentation using computer vision, it's always useful to be able to sort data into classes and ask questions of it.
+Classificação é uma das atividades fundamentais do pesquisador de aprendizado de máquina e cientista de dados. Desde a classificação básica de um valor binário ("este e-mail é spam ou não?"), até a classificação e segmentação de imagens complexas usando visão computacional, é sempre útil ser capaz de classificar os dados em classes e fazer perguntas sobre eles.
 
-To state the process in a more scientific way, your classification method creates a predictive model that enables you to map the relationship between input variables to output variables.
+Para declarar o processo de uma maneira mais científica, seu método de classificação cria um modelo preditivo que permite mapear o relacionamento entre as variáveis de entrada e as variáveis de saída.
 
-![binary vs. multiclass classification](../images/binary-multiclass.png)
+![Classificação binária vs multiclasse](../images/binary-multiclass.png)
 
-> Binary vs. multiclass problems for classification algorithms to handle. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> Problemas binários vs. multiclasse para algoritmos de classificação lidarem. Infográfico por [Jen Looper](https://twitter.com/jenlooper).
 
-Before starting the process of cleaning our data, visualizing it, and prepping it for our ML tasks, let's learn a bit about the various ways machine learning can be leveraged to classify data.
+Antes de iniciar o processo de limpar, visualizar e preparar nossos dados para tarefas de ML, vamos aprender um pouco sobre as várias maneiras pelas quais o aprendizado de máquina pode ser usado ao classificar dados.
 
-Derived from [statistics](https://wikipedia.org/wiki/Statistical_classification), classification using classic machine learning uses features, such as `smoker`, `weight`, and `age` to determine _likelihood of developing X disease_. As a supervised learning technique similar to the regression exercises you performed earlier, your data is labeled and the ML algorithms use those labels to classify and predict classes (or 'features') of a dataset and assign them to a group or outcome.
+Derivado da [estatística](https://wikipedia.org/wiki/Statistical_classification), a classificação no aprendizado de máquina clássico usa características como `fumante`,` peso` e `idade` para determinar a _possibilidade de desenvolver a doença X_. Como uma técnica de aprendizado supervisionado semelhante aos exercícios de regressão que você realizou anteriormente, seus dados são rotulados e os algoritmos de ML usam esses rótulos para classificar e prever classes (ou 'características') de um _dataset_ e atribuí-los a um grupo ou resultado.
 
-✅ Take a moment to imagine a dataset about cuisines. What would a multiclass model be able to answer? What would a binary model be able to answer? What if you wanted to determine whether a given cuisine was likely to use fenugreek? What if you wanted to see if, given a present of a grocery bag full of star anise, artichokes, cauliflower, and horseradish, you could create a typical Indian dish?
+✅ Imagine um _dataset_ sobre culinárias. O que um modelo multiclasse seria capaz de responder? O que um modelo binário seria capaz de responder? E se você quisesse determinar se uma determinada cozinha usaria [feno-grego](https://pt.wikipedia.org/wiki/Feno-grego)? E se você quisesse ver se usando uma sacola de supermercado cheia de anis estrelado, alcachofras, couve-flor e raiz-forte, você poderia criar um prato típico indiano?
 
-[![Crazy mystery baskets](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Crazy mystery baskets")
+[![Cestas de mistério malucas](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Cestas de mistério malucas")
 
-> 🎥 Click the image above for a video.The whole premise of the show 'Chopped' is the 'mystery basket' where chefs have to make some dish out of a random choice of ingredients. Surely a ML model would have helped!
+> 🎥 Clique na imagem acima para assistir a um vídeo (em inglês). O foco de cada episódio do programa 'Chopped' é a 'cesta misteriosa' onde os chefs têm que fazer um prato a partir de uma escolha aleatória de ingredientes. Certamente um modelo de ML teria ajudado!
 
-## Hello 'classifier'
+## Olá 'classificador'
 
-The question we want to ask of this cuisine dataset is actually a **multiclass question**, as we have several potential national cuisines to work with. Given a batch of ingredients, which of these many classes will the data fit?
+A pergunta que queremos fazer sobre este _dataset_ de culinária é, na verdade, uma **questão multiclasse**, pois temos várias cozinhas nacionais em potencial para trabalhar. Dado um lote de ingredientes, em qual dessas muitas classes os dados se encaixam?
 
-Scikit-learn offers several different algorithms to use to classify data, depending on the kind of problem you want to solve. In the next two lessons, you'll learn about several of these algorithms.
+Dependendo do tipo de problema que você deseja resolver, o Scikit-learn oferece vários algoritmos diferentes para classificar dados. Nas próximas tarefas, você aprenderá sobre esses algoritmos.
 
-## Exercise - clean and balance your data
+## Exercício - limpe e balanceie seus dados
 
-The first task at hand, before starting this project, is to clean and **balance** your data to get better results. Start with the blank _notebook.ipynb_ file in the root of this folder.
+A primeira tarefa, antes de iniciar este projeto, é limpar e **balancear** seus dados para obter melhores resultados. Comece com o arquivo _notebook.ipynb_ na raiz da pasta desta tarefa.
 
-The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). This is a Scikit-learn package that will allow you to better balance the data (you will learn more about this task in a minute).
+A primeira coisa a instalar é o [imblearn](https://imbalanced-learn.org/stable/). O imblearn é um pacote Scikit-learn que permitirá que você balanceie melhor os dados (vamos aprender mais sobre isso já já).
 
-1. To install `imblearn`, run `pip install`, like so:
+1. Para instalar o `imblearn`, rode `pip install`:
 
     ```python
     pip install imblearn
     ```
 
-1. Import the packages you need to import your data and visualize it, also import `SMOTE` from `imblearn`.
+1. Importe os pacotes que você precisa para obter seus dados e visualizá-los, importe também a classe `SMOTE`.
 
     ```python
     import pandas as pd
@@ -71,23 +71,23 @@ The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). 
     from imblearn.over_sampling import SMOTE
     ```
 
-    Now you are set up to read import the data next.
+    Agora você está pronto para obter os dados do _dataset_.
 
-1. The next task will be to import the data:
+1. O próximo passo é obter os dados do _dataset_ a ser usado:
 
     ```python
     df  = pd.read_csv('../data/cuisines.csv')
     ```
 
-   Using `read_csv()` will read the content of the csv file _cusines.csv_ and place it in the variable `df`.
+   Usando o método `read_csv()`, leremos o conteúdo do arquivo csv _cusines.csv_ e colocaremos na variável `df`.
 
-1. Check the data's shape:
+1. Vamos observar o formato dos dados:
 
     ```python
     df.head()
     ```
 
-   The first five rows look like this:
+   As primeiras cinco linhas são assim:
 
     ```output
     |     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
@@ -99,13 +99,13 @@ The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). 
     | 4   | 69         | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
     ```
 
-1. Get info about this data by calling `info()`:
+1. Conseguimos informações sobre esses dados chamando `info()`:
 
     ```python
     df.info()
     ```
 
-    Your out resembles:
+    O resultado será mais ou menos assim:
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -115,21 +115,21 @@ The first thing to install is [imblearn](https://imbalanced-learn.org/stable/). 
     memory usage: 7.2+ MB
     ```
 
-## Exercise - learning about cuisines
+## Exercício - aprendendo sobre cozinhas
 
-Now the work starts to become more interesting. Let's discover the distribution of data, per cuisine 
+Agora o trabalho começa a ficar mais interessante. Vamos descobrir a distribuição de dados por cozinha.
 
-1. Plot the data as bars by calling `barh()`:
+1. Plote os dados como gráfico de barras chamando o método `barh()`:
 
     ```python
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![cuisine data distribution](../images/cuisine-dist.png)
+    ![distribuição de dados de culinária](../images/cuisine-dist.png)
 
-    There are a finite number of cuisines, but the distribution of data is uneven. You can fix that! Before doing so, explore a little more. 
+    Há um número finito de cozinhas, mas a distribuição de dados é desigual. Você pode consertar isso! Mas antes, explore um pouco mais. 
 
-1. Find out how much data is available per cuisine and print it out:
+1. Descubra quantos dados estão disponíveis por cozinha e imprima-os:
 
     ```python
     thai_df = df[(df.cuisine == "thai")]
@@ -145,7 +145,7 @@ Now the work starts to become more interesting. Let's discover the distribution 
     print(f'korean df: {korean_df.shape}')
     ```
 
-    the output looks like so:
+    O resultado será mais ou menos assim:
 
     ```output
     thai df: (289, 385)
@@ -155,11 +155,11 @@ Now the work starts to become more interesting. Let's discover the distribution 
     korean df: (799, 385)
     ```
 
-## Discovering ingredients
+## Descobrindo ingredientes
 
-Now you can dig deeper into the data and learn what are the typical ingredients per cuisine. You should clean out recurrent data that creates confusion between cuisines, so let's learn about this problem.
+Vamos nos aprofundar nos dados e aprender quais são os ingredientes típicos de cada cozinha. Para isso, devemos limpar os dados recorrentes que criam confusão entre cozinhas.
 
-1. Create a function `create_ingredient()` in Python to create an ingredient dataframe. This function will start by dropping an unhelpful column and sort through ingredients by their count:
+1. Crie uma função em Python chamada `create_ingredient()` para criar um _dataframe_ de ingredientes. Esta função começará eliminando uma coluna inútil ("Unnamed: 0") e classificando os ingredientes por quantidade:
 
     ```python
     def create_ingredient_df(df):
@@ -170,84 +170,84 @@ Now you can dig deeper into the data and learn what are the typical ingredients 
         return ingredient_df
     ```
 
-   Now you can use that function to get an idea of top ten most popular ingredients by cuisine.
+   Você pode usar essa função para ter uma ideia dos dez ingredientes mais populares de uma culinária.
 
-1. Call `create_ingredient()` and plot it calling `barh()`:
+1. Chame a função `create_ingredient()` usando os dados de cozinha tailandesa, e plote-os usando o método `barh()`:
 
     ```python
     thai_ingredient_df = create_ingredient_df(thai_df)
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thai](../images/thai.png)
+    ![tailandesa](../images/thai.png)
 
-1. Do the same for the japanese data:
+1. Faça o mesmo para cozinha japonesa:
 
     ```python
     japanese_ingredient_df = create_ingredient_df(japanese_df)
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japanese](../images/japanese.png)
+    ![japonesa](../images/japanese.png)
 
-1. Now for the chinese ingredients:
+1. E para cozinha chinesa:
 
     ```python
     chinese_ingredient_df = create_ingredient_df(chinese_df)
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinese](../images/chinese.png)
+    ![chinesa](../images/chinese.png)
 
-1. Plot the indian ingredients:
+1. Plote os ingredientes indianos:
 
     ```python
     indian_ingredient_df = create_ingredient_df(indian_df)
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indian](../images/indian.png)
+    ![indiana](../images/indian.png)
 
-1. Finally, plot the korean ingredients:
+1. Por fim, os ingredientes da cozinha coreana:
 
     ```python
     korean_ingredient_df = create_ingredient_df(korean_df)
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korean](../images/korean.png)
+    ![coreana](../images/korean.png)
 
-1. Now, drop the most common ingredients that create confusion between distinct cuisines, by calling `drop()`: 
+1. Agora, remova os ingredientes mais comuns que criam confusão entre cozinhas distintas, chamando `drop()`: 
 
-   Everyone loves rice, garlic and ginger!
+   Todo mundo adora arroz, alho e gengibre!
 
     ```python
-    feature_df= df.drop(['cuisine','Unnamed: 0','rice','garlic','ginger'], axis=1)
+    feature_df = df.drop(['cuisine','Unnamed: 0','rice','garlic','ginger'], axis=1)
     labels_df = df.cuisine #.unique()
     feature_df.head()
     ```
 
-## Balance the dataset
+## Balanceie o _dataset_
 
-Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Synthetic Minority Over-sampling Technique" - to balance it.
+Agora que você limpou os dados, use a [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Técnica de sobreamostragem de minoria sintética" - para balancear.
 
-1. Call `fit_resample()`, this strategy generates new samples by interpolation.
+1. Chame o método `fit_resample()`, esta estratégia gera novas amostras por interpolação.
 
     ```python
     oversample = SMOTE()
     transformed_feature_df, transformed_label_df = oversample.fit_resample(feature_df, labels_df)
     ```
 
-    By balancing your data, you'll have better results when classifying it. Think about a binary classification. If most of your data is one class, a ML model is going to predict that class more frequently, just because there is more data for it. Balancing the data takes any skewed data and helps remove this imbalance. 
+    Ao balancear seus dados, você terá melhores resultados ao classificá-los. Pense em uma classificação binária. Se a maioria dos seus dados for uma classe, um modelo de ML vai prever essa classe com mais frequência, simplesmente porque há mais dados para ela. O balanceamento de dados pega todos os dados distorcidos e ajuda a remover esse desequilíbrio.
 
-1. Now you can check the numbers of labels per ingredient:
+1. Verifique o número de rótulos por ingrediente:
 
     ```python
     print(f'new label count: {transformed_label_df.value_counts()}')
     print(f'old label count: {df.cuisine.value_counts()}')
     ```
 
-    Your output looks like so:
+    O resultado será mais ou menos assim:
 
     ```output
     new label count: korean      799
@@ -264,15 +264,15 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
     Name: cuisine, dtype: int64
     ```
 
-    The data is nice and clean, balanced, and very delicious! 
+    Os dados são bons e limpos, equilibrados e muito deliciosos! 
 
-1. The last step is to save your balanced data, including labels and features, into a new dataframe that can be exported into a file:
+1. A última etapa é salvar seus dados balanceados, incluindo rótulos e características, em um novo _dataframe_ que pode ser exportado para um arquivo:
 
     ```python
     transformed_df = pd.concat([transformed_label_df,transformed_feature_df],axis=1, join='outer')
     ```
 
-1. You can take one more look at the data using `transformed_df.head()` and `transformed_df.info()`. Save a copy of this data for use in future lessons:
+1. Você pode dar mais uma olhada nos dados usando o método `transform_df.head()` e `transform_df.info()`. Salve uma cópia desses dados para usar nas próximas tarefas:
 
     ```python
     transformed_df.head()
@@ -280,20 +280,20 @@ Now that you have cleaned the data, use [SMOTE](https://imbalanced-learn.org/dev
     transformed_df.to_csv("../data/cleaned_cuisines.csv")
     ```
 
-    This fresh CSV can now be found in the root data folder.
+    Este novo csv pode ser encontrado na pasta raiz, onde estão todos os arquivos com os dados dos _datasets_.
 
 ---
 
 ## 🚀Desafio
 
-This curriculum contains several interesting datasets. Dig through the `data` folders and see if any contain datasets that would be appropriate for binary or multi-class classification? What questions would you ask of this dataset?
+Esta lição contém vários _datasets_ interessantes. Explore os arquivos da pasta `data` e veja quais _datasets_ seriam apropriados para classificação binária ou multiclasse. Quais perguntas você faria sobre estes _datasets_?
 
 ## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/20?loc=br)
 
 ## Revisão e Auto Aprendizagem
 
-Explore SMOTE's API. What use cases is it best used for? What problems does it solve?
+Explore a API do SMOTE. Para quais casos de uso ela é melhor usada? Quais problemas resolve?
 
 ## Tarefa 
 
-[Explore classification methods](assignment.pt-br.md)
+[Explore métodos de classificação](assignment.pt-br.md)

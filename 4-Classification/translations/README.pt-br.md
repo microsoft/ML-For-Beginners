@@ -1,27 +1,27 @@
-# Getting started with classification
+# Começando com Classificação
 
-## Regional topic: Delicious Asian and Indian Cuisines 🍜
+## Tópico regional: Deliciosas cozinhas asiáticas e indianas 🍜
 
-In Asia and India, food traditions are extremely diverse, and very delicious! Let's look at data about regional cuisines to try to understand their ingredients.
+Na Ásia e na Índia, as tradições alimentares são extremamente diversificadas e deliciosas! Vamos observar dados sobre culinária regional para tentar entender seus ingredientes.
 
-![Thai food seller](../images/thai-food.jpg)
-> Photo by <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> on <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+![Vendedor de comida tailandesa](../images/thai-food.jpg)
+> Foto por <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> no <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-## What you will learn
+## O que você vai aprender
 
-In this section, you will build on the skills you learned in the first part of this curriculum all about regression to learn about other classifiers you can use that will help you learn about your data.
+Você desenvolverá as habilidades que aprendeu nas lições sobre Regressão, para aprender sobre outros classificadores que o ajudarão a aprender mais sobre dados.
 
-> There are useful low-code tools that can help you learn about working with classification models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Existem ferramentas _low-code_ (que não exigem o uso de código) úteis que podem ajudá-lo a aprender como trabalhar com modelos de classificação. Experimente a [Azure ML para esta tarefa](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa).
 
-## Lessons
+## Lições
 
-1. [Introduction to classification](../1-Introduction/README.pt-br.md)
-2. [More classifiers](../2-Classifiers-1/README.pt-br.md)
-3. [Yet other classifiers](../3-Classifiers-2/README.pt-br.md)
-4. [Applied ML: build a web app](../4-Applied/README.pt-br.md)
+1. [Introdução à classificação](../1-Introduction/translations/README.pt-br.md)
+2. [Mais classificadores](../2-Classifiers-1/translations/README.pt-br.md)
+3. [Ainda mais classificadores](../3-Classifiers-2/translations/README.pt-br.md)
+4. [ML aplicado: construindo uma aplicação web](../4-Applied/translations/README.pt-br.md)
 
 ## Créditos
 
-"Getting started with classification" was written with ♥️ by [Cassie Breviu](https://www.twitter.com/cassieview) and [Jen Looper](https://www.twitter.com/jenlooper)
+"Começando com Classificação" foi escrito com ♥️ por [Cassie Breviu](https://www.twitter.com/cassieview) e [Jen Looper](https://www.twitter.com/jenlooper).
 
-The delicious cuisines dataset was sourced from [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines).
+O conjunto de dados sobre deliciosas culinárias foi obtido a partir do [Kaggle](https://www.kaggle.com/hoandan/asian-and-indian-cuisines).

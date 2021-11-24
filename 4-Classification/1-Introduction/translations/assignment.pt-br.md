@@ -1,11 +1,11 @@
-# Explore classification methods
+# Explore métodos de classificação
 
 ## Instruções
 
-In [Scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html) you'll find a large list of ways to classify data. Do a little scavenger hunt in these docs: your goals is to look for classification methods and match a dataset in this curriculum, a question you can ask of it, and a technique of classification. Create a spreadsheet or table in a .doc file and explain how the dataset would work with the classification algorithm.
+Na [documentação do Scikit-learn](https://scikit-learn.org/stable/supervised_learning.html), você encontrará uma grande lista de maneiras de classificar dados. Faça uma pequena caça ao tesouro nesses documentos: seu objetivo é procurar métodos de classificação e combinar um _dataset_, uma pergunta que você pode fazer sobre ele e uma técnica de classificação. Crie uma planilha ou tabela em um arquivo .doc e explique como o _dataset_ funcionaria com o algoritmo de classificação.
 
 ## Critérios de avaliação
 
 | Critério | Exemplar                                                                                                                           | Adequado                                                                                                                            | Precisa melhorar                                                                                                                                              |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|          | a document is presented overviewing 5 algorithms alongside a classification technique. The overview is well-explained and detailed. | a document is presented overviewing 3 algorithms alongside a classification technique. The overview is well-explained and detailed. | a document is presented overviewing fewer than three algorithms alongside a classification technique and the overview is neither well-explained nor detailed. |
+|          | O documento é apresentado com uma visão geral de 5 algoritmos e uma técnica de classificação. A visão geral é bem explicada e detalhada. | O documento é apresentado com uma visão geral de 3 algoritmos e uma técnica de classificação. A visão geral é bem explicada e detalhada. | O documento é apresentado com uma visão geral de menos de três algoritmos e uma técnica de classificação. A visão geral não é bem explicada nem detalhada. |
