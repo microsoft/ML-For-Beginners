@@ -24,6 +24,6 @@ En esta serie de lecciones, descubrirás nuevas formas de analizar datos usando 
 
 Éstas lecciones fueron escritas con 🎶 por [Jen Looper](https://www.twitter.com/jenlooper) con la útil ayuda de [Rishit Dagli](https://rishit_dagli) y [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan).
 
-El conjunto de datos de las [Canciones Nigerianas](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) fue obtenido de Kaggle como raspado de Spotify.
+El conjunto de datos de las [Canciones Nigerianas](https://www.kaggle.com/sootersaalu/nigerian-songs-spotify) fue obtenido de Kaggle como raspado de datos de Spotify.
 
 Algunos ejemplos útiles de K-means que ayudaron en la creación de esta lección son [exploración de iris](https://www.kaggle.com/bburns/iris-exploration-pca-k-means-and-gmm-clustering), este [notebook introductorio](https://www.kaggle.com/prashant111/k-means-clustering-with-python), y este [ejemplo hipotético de ONG](https://www.kaggle.com/ankandash/pca-k-means-clustering-hierarchical-clustering).
