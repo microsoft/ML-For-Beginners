@@ -10,7 +10,7 @@ La audiencia Nigeriana tiene diversos gustos musicales. Usando datos extraídos 
 
 > Foto por <a href="https://unsplash.com/@marcelalaskoski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marcela Laskoski</a> en <a href="https://unsplash.com/s/photos/nigerian-music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-En esta serie de lecciones, descubrirás nuevas formas de analizar datos usando técnicas de clustering. El clustering es particularmente útil cuando tu conjunto de datos carece de etiquetas. Si este sí tiene etiquetas, entonces las técnicas de clasificación como las que has aprendido en lecciones previas son más útiles. Pero en casos donde pretendes agrupar datos sin etiquetas, el clusterin es una gran forma de descubrir patrones.
+En esta serie de lecciones, descubrirás nuevas formas de analizar datos usando técnicas de clustering. El clustering es particularmente útil cuando tu conjunto de datos carece de etiquetas. Si este sí tiene etiquetas, entonces las técnicas de clasificación como las que has aprendido en lecciones previas son más útiles. Pero en casos donde pretendes agrupar datos sin etiquetas, el clustering es una gran forma de descubrir patrones.
 
 
 > Existen herramientas low-code útiles que te pueden ayudar a trabajar con modelos de clustering. Prueba [Azure ML para esta tarea](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
