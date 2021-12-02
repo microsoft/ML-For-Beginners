@@ -8,6 +8,6 @@ Kendi kelimelerinizle, bel ile çekilen mekik sayısı arasındaki ilişkiyi çi
 
 ## Değerlendirme
 
-| Kriterler                           | Örnek                                 | Yeterli                       | İyileştirme Gerekli        |
+| Kriter                              | Örnek                                 | Yeterli                       | İyileştirme Gerekli        |
 | ----------------------------------- | ------------------------------------- | ----------------------------- | -------------------------- |
 | Açıklayıcı bir paragraf gönderildi. | İyi yazılmış bir paragraf gönderildi. | Birkaç cümle gönderildi.      | Açıklama sağlanmadı.       |
