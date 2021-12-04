@@ -25,7 +25,7 @@ There are many questions you need to ask:
 - **Where will the model reside?** In the cloud or locally?
 - **Offline support.** Does the app have to work offline?
 - **What technology was used to train the model?** The chosen technology may influence the tooling you need to use.
-    - **Using Tensor flow.** If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).
+    - **Using TensorFlow.** If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).
     - **Using PyTorch.** If you are building a model using a library such as [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use the [Onnx Runtime](https://www.onnxruntime.ai/). This option will be explored in a future lesson for a Scikit-learn-trained model.
     - **Using Lobe.ai or Azure Custom Vision.** If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
 
@@ -281,7 +281,7 @@ Now you can build a Flask app to call your model and return similar results, but
     
     app = Flask(__name__)
     
-    model = pickle.load(open("../ufo-model.pkl", "rb"))
+    model = pickle.load(open("./ufo-model.pkl", "rb"))
     
     
     @app.route("/")
