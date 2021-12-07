@@ -4,7 +4,7 @@ In this lesson, you will build a classification model using some of the techniqu
 
 One of the most useful practical uses of machine learning is building recommendation systems, and you can take the first step in that direction today!
 
-[![Presenting this web app](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Recommendation Systems Introduction")
+[![Presenting this web app](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
 > 🎥 Click the image above for a video: Jen Looper builds a web app using classified cuisine data
 
