@@ -2,7 +2,7 @@
 
 ![Infográfico de regressão logística versus regressão linear](../images/logistic-linear.png)
 > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15?loc=ptbr)
 
 > ### [Esta liçao está disponível em R!](../solution/R/lesson_4-R.ipynb)
 
@@ -300,7 +300,7 @@ Em outras lições sobre classificação, você aprenderá como iterar para melh
 
 Ainda há muito sobre regressão logística! E a melhor maneira de aprender é experimentando. Encontre um conjunto de dados para este tipo de análise e construa um modelo com ele. O que você aprendeu? dica: tente o [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) para conjuntos de dados interessantes.
 
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

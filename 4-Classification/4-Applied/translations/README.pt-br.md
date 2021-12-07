@@ -8,7 +8,7 @@ Um dos usos práticos mais úteis do aprendizado de máquina é criar sistemas d
 
 > 🎥 Clique na imagem acima para ver um vídeo
 
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25?loc=ptbr)
 
 Nesta lição você aprenderá:
 
@@ -322,7 +322,7 @@ Parabéns, você criou uma aplicação Web de 'recomendação' com alguns campos
 
 Sua aplicação é simples, portanto, adicione outros ingredientes observando seus índices na [planilha de ingredientes](../../data/ingredient_indexes.csv). Que combinações de sabores funcionam para criar um determinado prato?
 
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

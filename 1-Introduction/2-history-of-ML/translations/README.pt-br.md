@@ -3,7 +3,7 @@
 ![Resumo da história do machine learning no sketchnote](../../../sketchnotes/ml-history.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3?loc=br)
+## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3?loc=ptbr)
 
 Nesta lição, veremos os principais marcos da história do machine learning e da artificial intelligence.
 
@@ -103,7 +103,7 @@ Resta saber o que o futuro reserva, mas é importante entender esses sistemas de
 
 Explore um desses momentos históricos e aprenda mais sobre as pessoas por trás deles. Existem personagens fascinantes e nenhuma descoberta científica foi criada em um vácuo cultural. O que você descobriu?
 
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4?loc=br)
+## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4?loc=ptbr)
 
 ## Revisão e Autoestudo
 
