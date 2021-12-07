@@ -4,7 +4,7 @@
 
 > 🎥 Clique na imagem acima para assistir um vídeo que ilustra a diferença entre machine learning, AI, and deep learning.
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1?loc=ptbr)
 
 ### Introdução
 
@@ -100,7 +100,7 @@ Em um futuro próximo, compreender os fundamentos do machine learning será uma 
 
 Esboce, no papel ou usando um aplicativo online como [Excalidraw](https://excalidraw.com/), sua compreensão das diferenças entre AI, ML, deep learning e data science. Adicione algumas idéias de problemas que cada uma dessas técnicas é boa para resolver.
 
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/2?loc=br)
+## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/2?loc=ptbr)
 
 ## Revisão e autoestudo
 

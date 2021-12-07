@@ -3,7 +3,7 @@
 ![Infográfico de regressão linear versus polinomial](../images/linear-polynomial.png)
 
 > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13?loc=ptbr)
 
 
 > ### [Esta liçao está disponível em R!](../solution/R/lesson_3-R.ipynb)
@@ -331,7 +331,7 @@ E se esse modelo for melhor que o anterior usando o mesmo conjunto de dados, voc
 
 Teste variáveis diferentes neste _notebook_ para ver como a correlação corresponde à acurácia do modelo.
 
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

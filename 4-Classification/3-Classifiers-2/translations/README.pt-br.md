@@ -2,7 +2,7 @@
 
 Nesta segunda lição de classificação, você explorará outras maneiras de classificar dados numéricos. Você também aprenderá sobre as ramificações para escolher um classificador em vez de outro.
 
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23?loc=ptbr)
 
 ### Pré-requisito
 
@@ -224,7 +224,7 @@ Este método de arendizado de máquina "combina as previsões de vários estimad
 
 Cada uma dessas técnicas possui um grande número de parâmetros. Pesquise os parâmetros padrão de cada um e pense no que o ajuste desses parâmetros significaria para a qualidade do modelo.
 
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

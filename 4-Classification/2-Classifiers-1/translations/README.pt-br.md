@@ -4,7 +4,7 @@ Nesta lição, você usará o _dataset_ balanceado e tratado que salvou da últi
 
 Você usará este _dataset_ com uma variedade de classificadores para _prever uma determinada culinária nacional com base em um grupo de ingredientes_. Enquanto isso, você aprenderá mais sobre algumas das maneiras como os algoritmos podem ser aproveitados para tarefas de classificação.
 
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21?loc=ptbr)
 
 # Preparação
 
@@ -232,7 +232,7 @@ Já que estamos usando um caso multiclasse, você precisa escolher qual _scheme_
 
 Nesta lição, você usou seus dados para construir um modelo de aprendizado de máquina que pode prever uma culinária nacional com base em uma série de ingredientes. Reserve algum tempo para ler as opções que o Scikit-learn oferece para classificar dados. Aprofunde-se no conceito de 'solucionador' para entender o que acontece nos bastidores.
 
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 
