@@ -15,7 +15,7 @@ Hay herramientas "low code" útiles que pueden ayudarte a aprender a trabajar co
 
 ## Lecciones
 
-1. [Introducción a la clasificación](../1-Introduction/README.es.md)
+1. [Introducción a la clasificación](../1-Introduction/README.md)
 2. [Más clasificadores](../2-Classifiers-1/README.md)
 3. [Otros clasificadores](../3-Classifiers-2/README.md)
 4. [ML aplicado: construir una aplicación web](../4-Applied/README.md)
