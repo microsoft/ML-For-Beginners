@@ -1,11 +1,11 @@
-# Parameter Play
+# Brincando com parâmetros
 
 ## Instruções
 
-There are a lot of parameters that are set by default when working with these classifiers. Intellisense in VS Code can help you dig into them. Adopt one of the ML Classification Techniques in this lesson and retrain models tweaking various parameter values. Build a notebook explaining why some changes help the model quality while others degrade it. Be detailed in your answer.
+Existem muitos parâmetros definidos por padrão ao trabalhar com classificadores. O Intellisense no VS Code pode ajudá-lo a se aprofundar neles. Adote uma das técnicas de classificação de ML nesta lição e retreine os modelos ajustando os parâmetros. Construa um _notebook_ explicando por que algumas mudanças ajudam na qualidade do modelo enquanto outras o degradam. Seja detalhado em sua resposta.
 
 ## Critérios de avaliação
 
 | Critério | Exemplar                                                                                                              | Adequado                                              | Precisa melhorar             |
 | -------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------- |
-|          | A notebook is presented with a classifier fully built up and its parameters tweaked and changes explained in textboxes | A notebook is partially presented or poorly explained | A notebook is buggy or flawed |
+|          | Um _notebook_ foi apresentado com um classificador totalmente construído e seus parâmetros ajustados e mudanças explicadas em caixas de texto | O _notebook_ foi parcialmente apresentado ou mal explicado | O _notebook_ está bugado |

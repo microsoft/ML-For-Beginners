@@ -16,8 +16,8 @@ Você desenvolverá as habilidades que aprendeu nas lições sobre Regressão, p
 ## Lições
 
 1. [Introdução à classificação](../1-Introduction/translations/README.pt-br.md)
-2. [Mais classificadores](../2-Classifiers-1/translations/README.pt-br.md)
-3. [Ainda mais classificadores](../3-Classifiers-2/translations/README.pt-br.md)
+2. [Classificadores](../2-Classifiers-1/translations/README.pt-br.md)
+3. [Mais classificadores](../3-Classifiers-2/translations/README.pt-br.md)
 4. [ML aplicado: construindo uma aplicação web](../4-Applied/translations/README.pt-br.md)
 
 ## Créditos

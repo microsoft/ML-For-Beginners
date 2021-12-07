@@ -1,44 +1,44 @@
-# Cuisine classifiers 2
+# Classificadores de culinária 2
 
-In this second classification lesson, you will explore more ways to classify numeric data. You will also learn about the ramifications for choosing one classifier over the other.
+Nesta segunda lição de classificação, você explorará outras maneiras de classificar dados numéricos. Você também aprenderá sobre as ramificações para escolher um classificador em vez de outro.
 
 ## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23?loc=br)
 
-### Prerequisite
+### Pré-requisito
 
-We assume that you have completed the previous lessons and have a cleaned dataset in your `data` folder called _cleaned_cuisines.csv_ in the root of this 4-lesson folder.
+Presumimos que você tenha concluído as lições anteriores e tenha um arquivo com o _dataset_ em sua pasta `data` chamado _cleaned_cuisines.csv_.
 
-### Preparation
+### Preparação
 
-We have loaded your _notebook.ipynb_ file with the cleaned dataset and have divided it into X and y dataframes, ready for the model building process.
+Carregando o arquivo _notebook.ipynb_ com o _dataset_ e o dividimos em dataframes X e y, estamos prontos para o processo de construção do modelo.
 
-## A classification map
+## Um mapa de classificação
 
-Previously, you learned about the various options you have when classifying data using Microsoft's cheat sheet. Scikit-learn offers a similar, but more granular cheat sheet that can further help narrow down your estimators (another term for classifiers):
+Anteriormente, você aprendeu sobre as várias opções para classificar dados usando a planilha da Microsoft. O Scikit-learn oferece uma planilha semelhante, com mais informações, que pode ajudar ainda mais a restringir seus estimadores (outro termo para classificadores):
 
-![ML Map from Scikit-learn](../images/map.png)
-> Tip: [visit this map online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) and click along the path to read documentation.
+![Mapa da ML do Scikit-learn](../images/map.png)
+> Dica: [visite este site](https://scikit-learn.org/stable/tutorial/machine_learning_map/) para ler a documentação.
 
-### The plan
+### O plano
 
-This map is very helpful once you have a clear grasp of your data, as you can 'walk' along its paths to a decision:
+Este mapa é muito útil, uma vez que você tenha uma compreensão clara de seus dados, pois você pode 'andar' no mapa ao longo dos caminhos para então, tomar uma decisão:
 
-- We have >50 samples
-- We want to predict a category
-- We have labeled data
-- We have fewer than 100K samples
-- ✨ We can choose a Linear SVC
-- If that doesn't work, since we have numeric data
-    - We can try a ✨ KNeighbors Classifier 
-      - If that doesn't work, try ✨ SVC and ✨ Ensemble Classifiers
+- Temos mais que 50 amostras
+- Queremos prever uma categoria
+- Nós rotulamos os dados
+- Temos menos de 100 mil amostras
+- ✨ Podemos escolher um SVC linear
+- Se isso não funcionar, já que temos dados numéricos:
+     - Podemos tentar um classificador KNeighbors ✨
+       - Se não funcionar, tente o ✨ SVC e ✨ Classificadores de conjunto (ensemble)
 
-This is a very helpful trail to follow.
+Esta é uma trilha muito útil a seguir.
 
-## Exercise - split the data
+## Exercício - dividindo os dados
 
-Following this path, we should start by importing some libraries to use.
+Seguindo este caminho, devemos começar importando algumas bibliotecas.
 
-1. Import the needed libraries:
+1. Importe essas bibliotecas:
 
     ```python
     from sklearn.neighbors import KNeighborsClassifier
@@ -50,21 +50,21 @@ Following this path, we should start by importing some libraries to use.
     import numpy as np
     ```
 
-1. Split your training and test data:
+1. Divida os dados em dados de treinamento e teste:
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Linear SVC classifier
+## Classificador linear SVC
 
-Support-Vector clustering (SVC) is a child of the Support-Vector machines family of ML techniques (learn more about these below). In this method, you can choose a 'kernel' to decide how to cluster the labels. The 'C' parameter refers to 'regularization' which regulates the influence of parameters. The kernel can be one of [several](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); here we set it to 'linear' to ensure that we leverage linear SVC. Probability defaults to 'false'; here we set it to 'true' to gather probability estimates. We set the random state to '0' to shuffle the data to get probabilities.
+O Clustering de Vetores de Suporte (SVC, ou no inglês, Support-Vector clustering) é um filho da família de máquinas de vetores de suporte de técnicas de ML. Neste método, você pode escolher um 'kernel' para decidir como agrupar os rótulos. O parâmetro 'C' refere-se à 'regularização' que regula a influência dos parâmetros. O kernel pode ser um de [vários](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); aqui, nós o definimos como 'linear' para garantir impulsionar o classificador. O padrão de probabilidade é 'false'; aqui, nós o definimos como 'true' para reunir estimativas de probabilidade. Definimos random_state como '0' para embaralhar os dados e obter probabilidades.
 
-### Exercise - apply a linear SVC
+### Exercício - aplicando um SVC linear
 
-Start by creating an array of classifiers. You will add progressively to this array as we test. 
+Comece criando um array de classificadores. Você adicionará itens progressivamente a este array enquanto testamos.
 
-1. Start with a Linear SVC:
+1. Comece com um SVC linear:
 
     ```python
     C = 10
@@ -74,7 +74,7 @@ Start by creating an array of classifiers. You will add progressively to this ar
     }
     ```
 
-2. Train your model using the Linear SVC and print out a report:
+2. Treine seu modelo usando o SVC e imprima um relatório:
 
     ```python
     n_classifiers = len(classifiers)
@@ -88,7 +88,7 @@ Start by creating an array of classifiers. You will add progressively to this ar
         print(classification_report(y_test,y_pred))
     ```
 
-    The result is pretty good:
+    O resultado é bom:
 
     ```output
     Accuracy (train) for Linear SVC: 78.6% 
@@ -105,21 +105,21 @@ Start by creating an array of classifiers. You will add progressively to this ar
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-## K-Neighbors classifier
+## Classificador K-Neighbors
 
-K-Neighbors is part of the "neighbors" family of ML methods, which can be used for both supervised and unsupervised learning. In this method, a predefined number of points is created and data are gathered around these points such that generalized labels can be predicted for the data.
+K-Neighbors faz parte da família "neighbors" de métodos de ML, que podem ser usados para aprendizado supervisionado e não supervisionado. Neste método, um número predefinido de pontos é criado e os dados são reunidos em torno desses pontos de modo que rótulos generalizados podem ser previstos para os dados.
 
-### Exercise - apply the K-Neighbors classifier
+### Exercício - aplicando o classificador K-Neighbors
 
-The previous classifier was good, and worked well with the data, but maybe we can get better accuracy. Try a K-Neighbors classifier.
+O classificador anterior era bom e funcionou bem com os dados, mas talvez possamos obter uma melhor precisão. Experimente um classificador K-Neighbors.
 
-1. Add a line to your classifier array (add a comma after the Linear SVC item):
+1. Adicione uma linha ao seu array de classificadores (adicione uma vírgula após o item do SVC):
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
     ```
 
-    The result is a little worse:
+    O resultado é um pouco pior:
 
     ```output
     Accuracy (train) for KNN classifier: 73.8% 
@@ -136,23 +136,23 @@ The previous classifier was good, and worked well with the data, but maybe we ca
     weighted avg       0.76      0.74      0.74      1199
     ```
 
-    ✅ Learn about [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
+    ✅ Aprenda mais sobre [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
 
-## Support Vector Classifier
+## Classificador de Vetores de Suporte
 
-Support-Vector classifiers are part of the [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) family of ML methods that are used for classification and regression tasks. SVMs "map training examples to points in space" to maximize the distance between two categories. Subsequent data is mapped into this space so their category can be predicted.
+Os Classificadores de Vetores de Suporte (SVM, ou no inglês, Support-Vector Machine) fazem parte da família [Classificadores de Vetores de Suporte](https://wikipedia.org/wiki/Support-vector_machine) de métodos de ML que são usados para tarefas de classificação e regressão. Os SVMs "mapeiam exemplos de treinamento para pontos no espaço" para maximizar a distância entre duas categorias. Os dados subsequentes são mapeados neste espaço para que sua categoria possa ser prevista.
 
-### Exercise - apply a Support Vector Classifier
+###  Exercício - aplicando o Classificador de Vetores de Suporte
 
-Let's try for a little better accuracy with a Support Vector Classifier.
+Vamos tentar aumentar a precisão com um Classificador de Vetores de Suporte.
 
-1. Add a comma after the K-Neighbors item, and then add this line:
+1. Adicione uma vírgula após o item K-Neighbors e, em seguida, adicione esta linha:
 
     ```python
     'SVC': SVC(),
     ```
 
-    The result is quite good!
+    O resultado é muito bom!
 
     ```output
     Accuracy (train) for SVC: 83.2% 
@@ -169,18 +169,18 @@ Let's try for a little better accuracy with a Support Vector Classifier.
     weighted avg       0.84      0.83      0.83      1199
     ```
 
-    ✅ Learn about [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm)
+    ✅ Aprenda mais sobre [Vetores de Suporte](https://scikit-learn.org/stable/modules/svm.html#svm)
 
-## Ensemble Classifiers
+## Classificadores de conjunto (ensemble)
 
-Let's follow the path to the very end, even though the previous test was quite good. Let's try some 'Ensemble Classifiers, specifically Random Forest and AdaBoost:
+Vamos seguir o caminho até o fim, embora o teste anterior tenha sido muito bom. Vamos tentar alguns 'Classificadores de conjunto, especificamente Random Forest (Árvores Aleatórias) e AdaBoost:
 
 ```python
 'RFST': RandomForestClassifier(n_estimators=100),
   'ADA': AdaBoostClassifier(n_estimators=100)
 ```
 
-The result is very good, especially for Random Forest:
+O resultado é muito bom, especialmente para Random Forest:
 
 ```output
 Accuracy (train) for RFST: 84.5% 
@@ -210,26 +210,26 @@ Accuracy (train) for ADA: 72.4%
 weighted avg       0.73      0.72      0.72      1199
 ```
 
-✅ Learn about [Ensemble Classifiers](https://scikit-learn.org/stable/modules/ensemble.html)
+✅ Aprenda mais sobre [Classificadores de conjunto](https://scikit-learn.org/stable/modules/ensemble.html)
 
-This method of Machine Learning "combines the predictions of several base estimators" to improve the model's quality. In our example, we used Random Trees and AdaBoost. 
+Este método de arendizado de máquina "combina as previsões de vários estimadores de base" para melhorar a qualidade do modelo. Em nosso exemplo, usamos Random Forest e AdaBoost.
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), an averaging method, builds a 'forest' of 'decision trees' infused with randomness to avoid overfitting. The n_estimators parameter is set to the number of trees.
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), um método de média, constrói uma 'floresta' de 'árvores de decisão' infundidas com aleatoriedade para evitar _overfitting_. O parâmetro `n_estimators` define a quantidade de árvores.
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) fits a classifier to a dataset and then fits copies of that classifier to the same dataset. It focuses on the weights of incorrectly classified items and adjusts the fit for the next classifier to correct.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) ajusta um classificador a um _dataset_ e, em seguida, ajusta cópias desse classificador ao mesmo _dataset_. Ele se concentra nos pesos dos itens classificados incorretamente e corrige o ajuste para o próximo classificador.
 
 ---
 
 ## 🚀Desafio
 
-Each of these techniques has a large number of parameters that you can tweak. Research each one's default parameters and think about what tweaking these parameters would mean for the model's quality.
+Cada uma dessas técnicas possui um grande número de parâmetros. Pesquise os parâmetros padrão de cada um e pense no que o ajuste desses parâmetros significaria para a qualidade do modelo.
 
 ## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24?loc=br)
 
 ## Revisão e Auto Aprendizagem
 
-There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) of useful terminology!
+Há muitos termos nessas lições, então reserve um minuto para revisar [esta lista útil](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) sobre terminologias!
 
 ## Tarefa
 
-[Parameter play](assignment.pt-br.md).
+[Brincando com parâmetros](assignment.pt-br.md).
