@@ -1,11 +1,11 @@
-# Build a recommender
+# Construindo um recomendador
 
 ## Instruções
 
-Given your exercises in this lesson, you now know how to build JavaScript-based web app using Onnx Runtime and a converted Onnx model. Experiment with building a new recommender using data from these lessons or sourced elsewhere (give credit, please). You might create a pet recommender given various personality attributes, or a music genre recommender based on a person's mood. Be creative!
+Dados os exercícios desta lição, agora você sabe como construir uma aplicação Web baseada em JavaScript usando Onnx Runtime e um modelo Onnx convertido. Experimente construir um novo recomendador usando dados dessas lições ou obtidos em outro lugar (dê crédito, por favor). Você pode criar um recomendador de animais de estimação com vários atributos de personalidade, ou um recomendador de gênero musical baseado no humor de uma pessoa. Use a criatividade!
 
 ## Critérios de avaliação
 
 | Critério | Exemplar                                                              | Adequado                              | Precisa melhorar                 |
 | -------- | ---------------------------------------------------------------------- | ------------------------------------- | --------------------------------- |
-|          | A web app and notebook are presented, both well documented and running | One of those two is missing or flawed | Both are either missing or flawed |
+|          | Uma aplicação Web e um _notebook_ foram apresentados, ambos bem documentados e funcionando | Um dos dois está faltando ou com bugs | Não possui nem uma aplicação Web e nem um _notebook_, ou ambos estão com bugs |

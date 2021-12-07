@@ -111,7 +111,7 @@ K-Neighbors faz parte da família "neighbors" de métodos de ML, que podem ser u
 
 ### Exercício - aplicando o classificador K-Neighbors
 
-O classificador anterior era bom e funcionou bem com os dados, mas talvez possamos obter uma melhor precisão. Experimente um classificador K-Neighbors.
+O classificador anterior era bom e funcionou bem com os dados, mas talvez possamos obter uma melhor acurácia. Experimente um classificador K-Neighbors.
 
 1. Adicione uma linha ao seu array de classificadores (adicione uma vírgula após o item do SVC):
 
@@ -144,7 +144,7 @@ Os Classificadores de Vetores de Suporte (SVM, ou no inglês, Support-Vector Mac
 
 ###  Exercício - aplicando o Classificador de Vetores de Suporte
 
-Vamos tentar aumentar a precisão com um Classificador de Vetores de Suporte.
+Vamos tentar aumentar a acurácia com um Classificador de Vetores de Suporte.
 
 1. Adicione uma vírgula após o item K-Neighbors e, em seguida, adicione esta linha:
 
