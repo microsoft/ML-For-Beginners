@@ -4,9 +4,9 @@ In questa lezione si creerà un modello di classificazione utilizzando alcune de
 
 Uno degli usi pratici più utili dell'apprendimento automatico è la creazione di sistemi di raccomandazione e oggi si può fare il primo passo in quella direzione!
 
-[![Introduzione ai Sistemi di Raccomandazione](https://img.youtube.com/vi/giIXNoiqO_U/0.jpg)](https://youtu.be/giIXNoiqO_U "Introduzione ai Sistemi di Raccomandazione")
+[![Introduzione ai Sistemi di Raccomandazione](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
-> 🎥 Fare clic sull'immagine sopra per un video: Andrew Ng introduce la progettazione di un sistema di raccomandazione
+> 🎥 Fare clic sull'immagine sopra per un video
 
 ## [Quiz pre-lezione](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/?loc=it)
 
