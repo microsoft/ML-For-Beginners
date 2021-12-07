@@ -4,9 +4,9 @@ Nesta lição, você construirá um modelo de classificação usando algumas das
 
 Um dos usos práticos mais úteis do aprendizado de máquina é criar sistemas de recomendação, e você pode dar o primeiro passo nessa direção hoje!
 
-[![Introdução a Sistemas de Recomendação](https://img.youtube.com/vi/giIXNoiqO_U/0.jpg)](https://youtu.be/giIXNoiqO_U "Introdução a Sistemas de Recomendação")
+[![Introdução a Sistemas de Recomendação](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
-> 🎥 Clique na imagem acima para ver um vídeo: Andrew Ng apresenta o design de um sistema de recomendação (vídeo em inglês).
+> 🎥 Clique na imagem acima para ver um vídeo
 
 ## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25?loc=br)
 
