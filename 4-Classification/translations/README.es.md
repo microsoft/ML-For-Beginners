@@ -4,7 +4,7 @@
 
 En Asia y la India, las tradiciones alimentarias son muy diversas, ¡y muy deliciosas!. Veamos los datos sobre las cocinas regionales para intentar comprender sus ingredientes. 
 
-![Vendedor de comida tailandesa](./images/thai-food.jpg)
+![Vendedor de comida tailandesa](../images/thai-food.jpg)
 > Photo by <a href="https://unsplash.com/@changlisheng?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lisheng Chang</a> on <a href="https://unsplash.com/s/photos/asian-food?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ## Lo que aprenderás
