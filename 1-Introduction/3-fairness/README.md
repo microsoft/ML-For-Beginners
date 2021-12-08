@@ -191,7 +191,10 @@ In this lesson, you have learned some basics of the concepts of fairness and unf
  
 Watch this workshop to dive deeper into the topics: 
 
-- YouTube: [Fairness-related harms in AI systems: Examples, assessment, and mitigation](https://www.youtube.com/watch?v=1RptHwfkx_k) by Hanna Wallach and Miro Dudik
+- Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik 
+
+[![Fairness-related harms in AI systems: Examples, assessment, and mitigation](https://img.youtube.com/vi/1RptHwfkx_k/0.jpg)](https://www.youtube.com/watch?v=1RptHwfkx_k "Fairness-related harms in AI systems: Examples, assessment, and mitigation")
+> 🎥 Click the image above for a video: Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik
 
 Also, read: 
 
