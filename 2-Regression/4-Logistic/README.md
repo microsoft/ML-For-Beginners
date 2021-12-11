@@ -232,8 +232,8 @@ In Scikit-learn, confusion matrices Rows (axis 0) are actual labels and columns 
 What's going on here? Let's say our model is asked to classify pumpkins between two binary categories, category 'orange' and category 'not-orange'.
 
 - If your model predicts a pumpkin as not orange and it belongs to category 'not-orange' in reality we call it a true negative, shown by the top left number.
-- If your model predicts a pumpkin as orange and it belongs to category 'not-orange' in reality we call it a false negative, shown by the bottom left number. 
-- If your model predicts a pumpkin as not orange and it belongs to category 'orange' in reality we call it a false positive, shown by the top right number. 
+- If your model predicts a pumpkin as orange and it belongs to category 'not-orange' in reality we call it a false positive, shown by the bottom left number. 
+- If your model predicts a pumpkin as not orange and it belongs to category 'orange' in reality we call it a false negative, shown by the top right number. 
 - If your model predicts a pumpkin as orange and it belongs to category 'orange' in reality we call it a true positive, shown by the bottom right number.
 
 As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
