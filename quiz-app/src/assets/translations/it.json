@@ -2809,6 +2809,120 @@
             ]
           }
         ]
+      },
+      {
+        "id": 51,
+        "title": "Serie temporali SVR: Quiz Pre-Lezione",
+        "quiz": [
+          {
+            "questionText": "SVM significa",
+            "answerOptions": [
+              {
+                "answerText": "Statistical Vector Machine",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Support Vector Machine",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Statistical Vector Model",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Quale di queste tecniche ML viene utilizzata per prevedere i valori continui?",
+            "answerOptions": [
+              {
+                "answerText": "Clustering",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Classificazione",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Regressione",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Quale di questi modelli viene comunemente utilizzato per la previsione delle serie temporali?",
+            "answerOptions": [
+              {
+                "answerText": "ARIMA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-Means Clustering",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Regressione logistica",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 52,
+        "title": "Serie temporali SVR: Quiz Post-Lezione",
+        "quiz": [
+          {
+            "questionText": "Da quali di questi metodi impara una SVR?",
+            "answerOptions": [
+              {
+                "answerText": "Trovare l'iperpiano migliore con il numero massimo di punti dati",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Apprendendo della distribuzione di probabilità del set di dati",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Trovando cluster nel set di dati",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qual è lo scopo di un kernel nelle SVM?",
+            "answerOptions": [
+              {
+                "answerText": "Per misurare l'accuratezza delle previsioni del modello",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Per trasformare il set di dati in uno spazio di dimensioni superiori",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Per standardizzare i valori del set di dati",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Which of these models consider the non-linearity in the dataset?",
+            "answerOptions": [
+              {
+                "answerText": "Regressione lineare semplice",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ARIMA",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SVR utilizzando il kernel RBF",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
