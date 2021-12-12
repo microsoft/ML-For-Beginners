@@ -16,7 +16,7 @@
 
     ```python
     import pandas as pd
-    cuisines_df = pd.read_csv("../../data/cleaned_cuisine.csv")
+    cuisines_df = pd.read_csv("../../data/cleaned_cuisines.csv")
     cuisines_df.head()
     ```
 
