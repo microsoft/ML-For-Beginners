@@ -189,7 +189,7 @@ In a new code cell, load the diabetes dataset by calling `load_diabetes()`. The 
     plt.show()
     ```
 
-   ![a scatterplot showing datapoints around diabetes](./images/scatterplot-wb.png)
+   ![a scatterplot showing datapoints around diabetes](./images/scatterplot.png)
 
    ✅ Think a bit about what's going on here. A straight line is running through many small dots of data, but what is it doing exactly? Can you see how you should be able to use this line to predict where a new, unseen data point should fit in relationship to the plot's y axis? Try to put into words the practical use of this model.
 
