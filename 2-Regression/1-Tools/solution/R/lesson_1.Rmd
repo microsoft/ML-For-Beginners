@@ -131,7 +131,7 @@ Now that we have data ready, we can see if a machine can help determine a logica
 
 ```{r split, message=F, warning=F}
 set.seed(2056)
-# Split 67% of the data for training and the rest for tesing
+# Split 67% of the data for training and the rest for testing
 diabetes_split <- diabetes_select %>% 
   initial_split(prop = 0.67)
 
