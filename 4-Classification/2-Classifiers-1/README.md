@@ -15,7 +15,7 @@ Assuming you completed [Lesson 1](../1-Introduction/README.md), make sure that a
 
     ```python
     import pandas as pd
-    cuisines_df = pd.read_csv("../../data/cleaned_cuisines.csv")
+    cuisines_df = pd.read_csv("../data/cleaned_cuisines.csv")
     cuisines_df.head()
     ```
 
