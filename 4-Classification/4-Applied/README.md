@@ -219,7 +219,7 @@ You can use your model directly in a web app. This architecture also allows you 
 1. First, import the [Onnx Runtime](https://www.onnxruntime.ai/):
 
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.09/dist/ort.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
     > Onnx Runtime is used to enable running your Onnx models across a wide range of hardware platforms, including optimizations and an API to use.
@@ -230,7 +230,7 @@ You can use your model directly in a web app. This architecture also allows you 
     <script>
         const ingredients = Array(380).fill(0);
         
-        const checks = document.querySelectorAll('.checkbox');
+        const checks = [...document.querySelectorAll('.checkbox')];
         
         checks.forEach(check => {
             check.addEventListener('change', function() {
@@ -272,7 +272,6 @@ You can use your model directly in a web app. This architecture also allows you 
                 console.error(e);
             }
         }
-        init();
                
     </script>
     ```
