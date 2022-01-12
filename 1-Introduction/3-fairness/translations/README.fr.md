@@ -1,6 +1,6 @@
 # Equité dans le Machine Learning 
  
-![Résumé de l'équité dans le Machine Learning dans un sketchnote](../../sketchnotes/ml-fairness.png)
+![Résumé de l'équité dans le Machine Learning dans un sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 ## [Quiz préalable](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/?loc=fr)
@@ -13,9 +13,9 @@ Imaginons ce qui peut arriver lorsque les données que nous utilisons pour const
 
 Dans cette leçon, nous :
 
-- Sensibiliserons à l'importance de l'équité dans le Machine Learning.
-- Apprenderons sur les préjudices liés à l'équité.
-- Apprenderons sur l'évaluation et l'atténuation des injustices.
+- Sensibiliserons sur l'importance de l'équité dans le Machine Learning.
+- En apprendrons plus sur les préjudices liés à l'équité.
+- En apprendrons plus sur l'évaluation et l'atténuation des injustices.
 
 ## Prérequis
 
@@ -67,9 +67,9 @@ Un autre exemple tristement célèbre est un distributeur de savon pour les main
 
 Une vision stéréotypée du sexe a été trouvée dans la traduction automatique. Lors de la traduction de « il est infirmier et elle est médecin » en turc, des problèmes ont été rencontrés. Le turc est une langue sans genre et possède un pronom « o » pour transmettre une troisième personne du singulier. Cependant, la traduction de la phrase du turc à l'anglais donne la phrase incorrecte et stéréotypée suivante : « elle est infirmière et il est médecin ».
 
-![Traduction en turc](images/gender-bias-translate-en-tr.png)
+![Traduction en turc](../images/gender-bias-translate-en-tr.png)
 
-![Traduction en anglais de nouveau](images/gender-bias-translate-tr-en.png)
+![Traduction en anglais de nouveau](../images/gender-bias-translate-tr-en.png)
 
 ### Dénigration
 
@@ -82,7 +82,7 @@ Une technologie d'étiquetage d'images a notoirement mal étiqueté les images d
  
 Les résultats de recherche d'images biaisés peuvent être un bon exemple de ce préjudice. Lorsque nous recherchons des images de professions avec un pourcentage égal ou supérieur d'hommes que de femmes, comme l'ingénierie ou PDG, nous remarquons des résultats qui sont plus fortement biaisés en faveur d'un sexe donné.
 
-![Recherche Bing pour PDG](images/ceos.png)
+![Recherche Bing pour PDG](../images/ceos.png)
 > Cette recherche sur Bing pour « PDG » produit des résultats assez inclusifs
 
 Ces cinq principaux types de préjudices ne sont pas mutuellement exclusifs et un même système peut présenter plus d'un type de préjudice. De plus, chaque cas varie dans sa gravité. Par exemple, étiqueter injustement quelqu'un comme un criminel est un mal beaucoup plus grave que de mal étiqueter une image. Il est toutefois important de se rappeler que même des préjudices relativement peu graves peuvent causer une aliénation ou une isolation de personnes et l'impact cumulatif peut être extrêmement oppressant.
