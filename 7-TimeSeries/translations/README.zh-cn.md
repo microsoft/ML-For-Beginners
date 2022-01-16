@@ -1,6 +1,6 @@
 # 时间序列预测简介
 
-什么是时间序列预测？它通过分析过去的趋势来预测未来的事件。
+什么是时间序列预测？它就是通过分析过去的趋势来预测未来的事件。
 
 ## 区域主题：全球用电量✨
 
@@ -10,15 +10,17 @@
 
 ![电网](../images/electric-grid.jpg)
 
-<a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> 摄于 <a href="https: //unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) 摄于 [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) 。
 
 ## 课程
 
-1.【时间序列预测介绍】(../1-Introduction/README.md)
-2.【构建 ARIMA 时间序列模型】(../2-ARIMA/README.md)
-3.【构建支持向量回归器的时间序列预测】(../3-SVR/README.md)
+1. [时间序列预测介绍](../1-Introduction/README.md)
+2. [构建 ARIMA 时间序列模型](../2-ARIMA/README.md)
+3. [构建支持向量回归器的时间序列预测](../3-SVR/README.md)
 
 ## 作者
 
-“时间序列预测简介” 由 [Francesca Lazzeri](https://twitter.com/frlazzeri) 和 [Jen Looper](https://twitter.com/jenlooper) 用 ⚡️ 编写。笔记本首先出现在 [Azure“时间序列深度学习”存储库](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) 最初由 Francesca Lazzeri 编写。SVR 课由 [Anirban Mukherjee](https://github.com/AnibanMukherjeeXD) 编写
+“时间序列预测简介” 由 [Francesca Lazzeri](https://twitter.com/frlazzeri) 和 [Jen Looper](https://twitter.com/jenlooper) 用 ⚡️ 编写。
+
+笔记本首先出现在 [Azure “时间序列深度学习”存储库](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) 最初由 Francesca Lazzeri 编写。SVR 课由 [Anirban Mukherjee](https://github.com/AnibanMukherjeeXD) 编写。
 
