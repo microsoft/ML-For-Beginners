@@ -10,7 +10,7 @@ Our regional focus is electrical usage in the world, an interesting dataset to l
 
 ![electric grid](images/electric-grid.jpg)
 
-Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> of electrical towers on a road in Rajasthan on <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Photo by [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) of electrical towers on a road in Rajasthan on [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Lessons
 
