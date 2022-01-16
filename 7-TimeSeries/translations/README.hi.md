@@ -10,7 +10,7 @@
 
 ![विद्युत ग्रिड](../images/electric-grid.jpg)
 
-> राजस्थान में एक सड़क पर बिजली के टावरों का  <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">पेड्डी साई ऋतिक (Peddi Sai hrithik)</a> द्वारा Unsplash <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्प्लैश (Unsplash)</a> पर चित्र
+> राजस्थान में एक सड़क पर बिजली के टावरों का  [पेड्डी साई ऋतिक (Peddi Sai hrithik)](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) द्वारा Unsplash [अनस्प्लैश (Unsplash)](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) पर चित्र
   
 
 ## पाठ
