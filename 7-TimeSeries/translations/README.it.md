@@ -10,7 +10,7 @@ L'obiettivo regionale è l'utilizzo elettrico nel mondo, un interessante insieme
 
 ![rete elettrica](../images/electric-grid.jpg)
 
-Foto di <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> di torri elettriche su una strada in Rajasthan su <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Foto di [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) di torri elettriche su una strada in Rajasthan su [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Lezioni
 
