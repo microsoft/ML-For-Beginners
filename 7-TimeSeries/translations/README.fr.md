@@ -10,7 +10,7 @@ Nous nous concentrons sur l'utilisation de l'électricité dans le monde, un ens
 
 ![réseau électrique](../images/electric-grid.jpg)
 
-Photo par <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> de poteaux électriques sur une route au Rajasthan, sur <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Photo par [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de poteaux électriques sur une route au Rajasthan, sur [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Leçons
 

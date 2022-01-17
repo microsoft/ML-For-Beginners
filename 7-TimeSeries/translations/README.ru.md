@@ -10,7 +10,7 @@
 
 ![электрическая сеть](../images/electric-grid.jpg)
 
-Автор фотографии <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Педди Саи Хритика</a> электрических башен на дороге в Раджастане на <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Автор фотографии [Педди Саи Хритика](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) электрических башен на дороге в Раджастане на [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## Уроки
 
