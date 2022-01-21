@@ -22,31 +22,30 @@ MIT এর জন গাটেং মেশিন লার্নিং এর �
 ---
 ## মেশিন লার্নিং এর শুরু 
 
-Before starting with this curriculum, you need to have your computer set up and ready to run notebooks locally.
+এই ক্যারিকুলাম শুরুর করার পূর্বে, নোটবুক রান করার জন্য নোটবুক সেটআপ থাকতে হবে। 
 
 
-- **Configure your machine with these videos**. Use the following links to learn [how to install Python](https://youtu.be/CXZYvNRIAKM) in your system and [setup a text editor](https://youtu.be/EU8eayHWoZg) for development.
-- **Learn Python**. It's also recommended to have a basic understanding of [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), a programming language useful for data scientists that we use in this course.
-- **Learn Node.js and JavaScript**. We also use JavaScript a few times in this course when building web apps, so you will need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com/) installed, as well as [Visual Studio Code](https://code.visualstudio.com/) available for both Python and JavaScript development.
-- **Create a GitHub account**. Since you found us here on [GitHub](https://github.com), you might already have an account, but if not, create one and then fork this curriculum to use on your own. (Feel free to give us a star, too 😊)
-- **Explore Scikit-learn**. Familiarize yourself with [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), a set of ML libraries that we reference in these lessons.
-
----
-## What is machine learning?
-
-The term 'machine learning' is one of the most popular and frequently used terms of today. There is a nontrivial possibility that you have heard this term at least once if you have some sort of familiarity with technology, no matter what domain you work in. The mechanics of machine learning, however, are a mystery to most people. For a machine learning beginner, the subject can sometimes feel overwhelming. Therefore, it is important to understand what machine learning actually is, and to learn about it step by step, through practical examples.
+- **আপনার মেশিন কে কনফিগার করুন এই ভিডিও দেখে**. শিখার জন্য এই লিংকটি ব্যবহার করুন [কিভাবে পাইথন ইন্সটল করতে হয়](https://youtu.be/CXZYvNRIAKM) এবং [সেটআপ এ ইডিটর](https://youtu.be/EU8eayHWoZg) .
+- **পাইথন শিখুন**. [পাইথন](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa) এর ব্যাসিক নলেজ জানা থাকা জরুরী। এই কোর্সের প্রোগ্রামিং ল্যাঙ্গুয়েজ ডেটা সাইন্সটিস্ট এর জন্য খুবই গুরুত্বপূর্ণ। 
+- **Node.js এবং JavaScript শিখুন**.ওয়েব অ্যাপস তৈরির জন্য এই কোর্সে আমরা জাবাস্ক্রিপট ব্যাবহার করব। তাই, আপনার [নোড](https://nodejs.org) এবং [npm](https://www.npmjs.com/) ইন্সটল থাকতে হবে। অন্যদিকে, পাইথন এবং জাভাস্ক্রিপট ডেভেলাপমেন্টের জন্য [ভিজুয়াল স্টুডিও](https://code.visualstudio.com/) কোড এ দুটুই আছে। 
+- **একটি গিটহাব অ্যাকাউন্ট তৈরি করুন**. যেহেতু আপনি আমাদের কে [গিটহাব](https://github.com) এ পেয়েছেন, তারমানে আপনার ইতিমধ্যেই একাউন্ট আছে। তবে যদি না থাকে, একটি একাউন্ট তৈরি করুন এবং পরে ফর্ক করে আপনার বানিয়ে নিন। (স্টার দিতে ভুলে যাবেন না,😊 )
+- **ঘুরিয়ে আসেন Scikit-learn**. নিজেকে পরিচিত করুন [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) এর সাথে, মেশিন লার্নিং লাইব্রেরি সেট যা আমরা এই কোর্সে উল্লেখ করে থাকব
 
 ---
-## The hype curve
+## মেশিন লার্নিং কি?
+'মেশিন লার্নিং' শব্দটি বর্তমান সময়ের সবচেয়ে জনপ্রিয় এবং প্রায়ই ব্যবহৃত একটি শব্দ। আপনি যে ডোমেইনে কাজ করেন না কেন প্রযুক্তির সাথে আপনার পরিচিতি থাকলে অন্তত একবার এই শব্দটি শুনেছেন এমন একটি অপ্রয়োজনীয় সম্ভাবনা রয়েছে। মেশিন লার্নিং এর মেকানিক্স, যাইহোক, বেশিরভাগ মানুষের কাছে  এটি একটি রহস্য। একজন মেশিন লার্নিং নতুনদের জন্য, বিষয়টি কখনও কখনও অপ্রতিরোধ্য মনে হতে পারে। অতএব, মেশিন লার্নিং আসলে কী তা বোঝা গুরুত্বপূর্ণ এবং বাস্তব উদাহরণের মাধ্যমে ধাপে ধাপে এটি সম্পর্কে শিখতে হবে।
+
+---
+## হাইফ কার্ভ
 
 ![ml hype curve](images/hype.png)
 
-> Google Trends shows the recent 'hype curve' of the term 'machine learning'
+> Google Trends এ 'মেশিন লার্নিং' শব্দটির সাম্প্রতিক 'হাইপ কার্ভ'।
 
 ---
-## A mysterious universe
+## এক রহস্যময় মহাবিশ্ব
 
-We live in a universe full of fascinating mysteries. Great scientists such as Stephen Hawking, Albert Einstein, and many more have devoted their lives to searching for meaningful information that uncovers the mysteries of the world around us. This is the human condition of learning: a human child learns new things and uncovers the structure of their world year by year as they grow to adulthood.
+আমরা রহস্যে ভরপুর একটি আকর্ষনীয় মহাবিশ্বে বাস করি। স্টিফেন হকিং, আলবার্ট আইনস্টাইন এবং আরও অনেকের মতো মহান বিজ্ঞানীরা আমাদের চারপাশের বিশ্বের রহস্য উন্মোচন করে এমন অর্থপূর্ণ তথ্য অনুসন্ধানে তাদের জীবন উৎসর্গ করেছেন।এটি মানুষের শেখার একটি অবস্থা: একটি মানব শিশু নতুন জিনিস শিখে এবং বছরের পর বছর তাদের বিশ্বের গঠন উন্মোচন করে যখন তারা প্রাপ্তবয়স্ক হয়ে ওঠে।
 
 ---
 ## The child's brain
