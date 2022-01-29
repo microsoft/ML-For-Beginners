@@ -3,7 +3,7 @@
 ![Resumo de imparcialidade no Machine Learning em um sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5?loc=br)
+## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5?loc=ptbr)
 
 ## Introdução
 
@@ -182,7 +182,7 @@ Para evitar que preconceitos sejam introduzidos em primeiro lugar, devemos:
 
 Pense em cenários da vida real onde a injustiça é evidente na construção e uso de modelos. O que mais devemos considerar?
 
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6?loc=br)
+## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6?loc=ptbr)
 
 ## Revisão e Autoestudo
 

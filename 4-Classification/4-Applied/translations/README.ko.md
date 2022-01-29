@@ -4,9 +4,9 @@
 
 머신러닝의 유용하고 실용적인 사용 방식 중에 하나인 recommendation system을 만들고, 오늘 이 쪽으로 처음 걷습니다!
 
-[![Recommendation Systems Introduction](https://img.youtube.com/vi/giIXNoiqO_U/0.jpg)](https://youtu.be/giIXNoiqO_U "Recommendation Systems Introduction")
+[![Applied ML](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
-> 🎥 영상 보려면 이미지 클릭: Andrew Ng introduces recommendation system design
+> 🎥 영상 보려면 이미지 클릭
 
 ## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/)
 

@@ -4,7 +4,7 @@
 
 > _Sketchnote_ por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9?loc=ptbr)
 
 > ### [Esta lição está disponível em R!](../solution/R/lesson_1-R.ipynb)
 
@@ -200,7 +200,7 @@ Parabéns, usando um conjunto de dados, você construiu seu primeiro modelo de r
 ## 🚀Desafio
 
 Plote uma variável diferente desse mesmo conjunto de dados. Dica: edite a linha: `X = X[:, np.newaxis, 2]`. Dado o conjunto de dados alvo, o que pode ser descoberto sobre o progresso da diabetes como uma doença?
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

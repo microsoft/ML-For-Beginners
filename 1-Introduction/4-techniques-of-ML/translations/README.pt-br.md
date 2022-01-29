@@ -5,7 +5,7 @@ O processo de construção, uso e manutenção de modelos de machine learning e 
 - Compreender os processos que sustentam o aprendizado de máquina em alto nível.
 - Explorar conceitos básicos como 'modelos', 'previsões' e 'dados de treinamento'..
 
-## [Questionário pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7?loc=br)
+## [Questionário pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7?loc=ptbr)
 
 ## Introdução
 
@@ -103,7 +103,7 @@ Nessas lições, você descobrirá como usar essas etapas para preparar, criar, 
 
 Desenhe um fluxograma refletindo as etapas de um praticante de ML. Onde você se vê agora no processo? Onde você prevê que encontrará dificuldade? O que parece fácil para você?
 
-## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8?loc=br)
+## [Questionário pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8?loc=ptbr)
 
 ## Revisão e Autoestudo
 

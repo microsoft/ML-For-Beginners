@@ -47,73 +47,51 @@
         <!-- import ONNXRuntime Web from CDN -->
         <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script>
         <script>
-            const ingredients = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            
-            const checks = [].slice.call(document.querySelectorAll('.checkbox'));
+        const ingredients = Array(380).fill(0);
+        
+        const checks = [...document.querySelectorAll('.checkbox')];
+        
+        checks.forEach(check => {
+            check.addEventListener('change', function() {
+                // toggle the state of the ingredient
+                // based on the checkbox's value (1 or 0)
+                ingredients[check.value] = check.checked ? 1 : 0;
+            });
+        });
 
-            // use an async context to call onnxruntime functions.
-            function init() {
+        function testCheckboxes() {
+            // validate if at least one checkbox is checked
+            return checks.some(check => check.checked);
+        }
+
+        async function startInference() {
+
+            let atLeastOneChecked = testCheckboxes()
+
+            if (!atLeastOneChecked) {
+                alert('Please select at least one ingredient.');
+                return;
+            }
+            try {
+                // create a new session and load the model.
                 
-                checks.forEach(function (checkbox, index) {
-                    checkbox.onchange = function () {
-                        if (this.checked) {
-                            var index = checkbox.value;
+                const session = await ort.InferenceSession.create('./model.onnx');
 
-                            if (index !== -1) {
-                                ingredients[index] = 1;
-                            }
-                            console.log(ingredients)
-                        }
-                        else {
-                            var index = checkbox.value;
+                const input = new ort.Tensor(new Float32Array(ingredients), [1, 380]);
+                const feeds = { float_input: input };
 
-                            if (index !== -1) {
-                                ingredients[index] = 0;
-                            }
-                            console.log(ingredients)
-                        }
-                    }
-                })
+                // feed inputs and run
+                const results = await session.run(feeds);
+
+                // read from results
+                alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
+
+            } catch (e) {
+                console.log(`failed to inference ONNX model`);
+                console.error(e);
             }
-
-            function testCheckboxes() {
-                    for (var i = 0; i < checks.length; i++)
-                        if (checks[i].type == "checkbox")
-                            if (checks[i].checked)
-                                return true;
-                    return false;
-            }
-
-            async function startInference() {
-
-                let checked = testCheckboxes()
-
-                if (checked) {
-
-                try {
-                    // create a new session and load the model.
-                    
-                    const session = await ort.InferenceSession.create('./model.onnx');
-
-                    const input = new ort.Tensor(new Float32Array(ingredients), [1, 380]);
-                    const feeds = { float_input: input };
-
-                    // feed inputs and run
-
-                    const results = await session.run(feeds);
-
-                    // read from results
-                    alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
-
-                } catch (e) {
-                    console.log(`failed to inference ONNX model: ${e}.`);
-                }
-            }
-            else alert("Please check an ingredient")
-                
-            }
-    init();
-           
-        </script>
+        }
+               
+    </script>
     </body>
 </html>

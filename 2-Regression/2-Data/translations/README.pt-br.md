@@ -4,7 +4,7 @@
 
 Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11?loc=br)
+## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11?loc=ptbr)
 
 > ### [Esta liçao está disponível em R!](../solution/R/lesson_2-R.ipynb)
 
@@ -197,7 +197,7 @@ Para fazer com que os gráficos exibam dados úteis, você precisa agrupar os da
 
 Explore os diferentes tipos de visualização que o Matplotlib oferece. Quais tipos são mais adequados para problemas de regressão?
 
-## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12?loc=br)
+## [Questionário para fixação](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

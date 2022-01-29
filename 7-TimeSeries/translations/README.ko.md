@@ -10,7 +10,7 @@ time series forecasting은 무엇인가요? 과거의 트렌드로 분석해서 
 
 ![electric grid](../images/electric-grid.jpg)
 
-Photo by <a href="https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peddi Sai hrithik</a> of electrical towers on a road in Rajasthan on <a href="https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Photo by [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) of electrical towers on a road in Rajasthan on [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ## 강의
 

@@ -191,7 +191,10 @@ In this lesson, you have learned some basics of the concepts of fairness and unf
  
 Watch this workshop to dive deeper into the topics: 
 
-- YouTube: Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik [Fairness-related harms in AI systems: Examples, assessment, and mitigation - YouTube](https://www.youtube.com/watch?v=1RptHwfkx_k) 
+- Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik 
+
+[![Fairness-related harms in AI systems: Examples, assessment, and mitigation](https://img.youtube.com/vi/1RptHwfkx_k/0.jpg)](https://www.youtube.com/watch?v=1RptHwfkx_k "Fairness-related harms in AI systems: Examples, assessment, and mitigation")
+> 🎥 Click the image above for a video: Fairness-related harms in AI systems: Examples, assessment, and mitigation by Hanna Wallach and Miro Dudik
 
 Also, read: 
 
@@ -199,11 +202,11 @@ Also, read:
 
 - Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/) 
 
-Explore the Fairlearn toolkit
+Explore the Fairlearn toolkit:
 
-[Fairlearn](https://fairlearn.org/)
+- [Fairlearn](https://fairlearn.org/)
 
-Read about Azure Machine Learning's tools to ensure fairness
+Read about Azure Machine Learning's tools to ensure fairness:
 
 - [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
 
