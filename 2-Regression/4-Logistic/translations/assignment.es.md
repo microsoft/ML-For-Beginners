@@ -1,10 +1,11 @@
-# Retrying some Regression
+# Reintentando alguna regresión
 
-## Instructions
+## Instrucciones
 
-In the lesson, you used a subset of the pumpkin data. Now, go back to the original data and try to use all of it, cleaned and standardized, to build a Logistic Regression model.
-## Rubric
+En esta lección, usaste un subconjunto de datos de las calabazas. Hora, vuelve a los datos originales e intenta usar todos ellos, limpios y estandarizados, para construir un modelo de regresión logística.
 
-| Criteria | Exemplary                                                               | Adequate                                                     | Needs Improvement                                           |
+## Rúbrica
+
+| Criterio | Ejemplar                                                               | Adecuado                                                     | Necesita mejorar                                           |
 | -------- | ----------------------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------- |
-|          | A notebook is presented with a well-explained and well-performing model | A notebook is presented with a model that performs minimally | A notebook is presented with a sub-performing model or none |
+|          | Se presenta un notebook con un modelo bien explicado y realizado | Se presenta un notebook con un modelo con rendimiento mínimo | Se presenta un modelo con un rendimiento precario o nulo |
