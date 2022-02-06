@@ -1,11 +1,11 @@
-# Try a different model
+# Prueba un modelo distinto
 
-## Instructions
+## Instrucciones
 
-Now that you have built one web app using a trained Regression model, use one of the models from an earlier Regression lesson to redo this web app. You can keep the style or design it differently to reflect the pumpkin data. Be careful to change the inputs to reflect your model's training method.
+Ahora que haz construido una aplicación web usando un modelo de regresión entrenado, usa uno de los modelos de la lección anterior de regresión para rehacer esta aplicación web. Puedes conservar el estilo o diseñarlo de forma diferente para reflejar los datos de las calabazas. Sé cuidadoso al cambiar los insumos para reflejar tu método de entrenamiento del modelo.
 
-## Rubric
+## Rúbrica
 
-| Criteria                   | Exemplary                                                 | Adequate                                                  | Needs Improvement                      |
+| Criterio                  | Ejemplar                                                 | Adecuado                                                 | Necesita mejora                      |
 | -------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------- |
-| | The web app runs as expected and is deployed to the cloud | The web app contains flaws or exhibits unexpected results | The web app does not function properly |
+| | La aplicación web se ejecuta como se espera y es desplegda en la nube | La aplicación web contiene defectos o exhibe resultados inesperados | La aplicación web no funciona correctamente |
