@@ -1,58 +1,59 @@
-# Build a Web App to use a ML Model
+# Construye una aplicación web usando un modelo de aprendizaje automático
 
-In this lesson, you will train an ML model on a data set that's out of this world: _UFO sightings over the past century_, sourced from NUFORC's database.
+En esta lección, entrenarás un modelo de aprendizaje automático sobre un conjunto de datos que está fuera de este mundo: _avistamiento de OVNIs durante el siglo pasado_, proporcionados por la base de datos de NUFORC.
 
-You will learn:
+Aprenderás:
 
-- How to 'pickle' a trained model
-- How to use that model in a Flask app
+- Cómo hacer 'pickle' a un modelo entrenado
+- Cómo usar ese modelo en una aplicación Flask
 
-We will continue our use of notebooks to clean data and train our model, but you can take the process one step further by exploring using a model 'in the wild', so to speak: in a web app.
+Continuaremos nuestro uso de notebooks para limpiar los datos y entrenar nuestro modelo, pero puedes llevar el proceso un paso más allá explorando el uso de un modelo 'en la naturaleza', por así decirlo: en una aplicación web.
 
-To do this, you need to build a web app using Flask.
+Para hacer esto, necesitas construir una aplicación web usando Flask.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17/)
 
-## Building an app
+## Construyendo una aplicación
 
-There are several ways to build web apps to consume machine learning models. Your web architecture may influence the way your model is trained. Imagine that you are working in a business where the data science group has trained a model that they want you to use in an app.
+Existen muchas formas de construir aplicaciones web para consumir modelos de aprendizaje automático. Tu arquitectura web podría influir en la forma que tu modelo es entrenado. Imagina que estás trabajando en un negocio donde el grupo de ciencia de datos ha entrenado un modelo que quieren uses en una aplicación.
 
-### Considerations
+### Consideraciones
 
-There are many questions you need to ask:
+Hay muchas preguntas que necesitas realizar:
 
-- **Is it a web app or a mobile app?** If you are building a mobile app or need to use the model in an IoT context, you could use [TensorFlow Lite](https://www.tensorflow.org/lite/) and use the model in an Android or iOS app.
-- **Where will the model reside?** In the cloud or locally?
-- **Offline support.** Does the app have to work offline?
-- **What technology was used to train the model?** The chosen technology may influence the tooling you need to use.
-    - **Using TensorFlow.** If you are training a model using TensorFlow, for example, that ecosystem provides the ability to convert a TensorFlow model for use in a web app by using [TensorFlow.js](https://www.tensorflow.org/js/).
-    - **Using PyTorch.** If you are building a model using a library such as [PyTorch](https://pytorch.org/), you have the option to export it in [ONNX](https://onnx.ai/) (Open Neural Network Exchange) format for use in JavaScript web apps that can use the [Onnx Runtime](https://www.onnxruntime.ai/). This option will be explored in a future lesson for a Scikit-learn-trained model.
-    - **Using Lobe.ai or Azure Custom Vision.** If you are using an ML SaaS (Software as a Service) system such as [Lobe.ai](https://lobe.ai/) or [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) to train a model, this type of software provides ways to export the model for many platforms, including building a bespoke API to be queried in the cloud by your online application.
+- **¿Es una aplicación web o móvil?** Si estás construyendo una aplicación móvil o necesitas uar el modelo en un contexto de IoT, podrías usar [TensorFlow Lite](https://www.tensorflow.org/lite/) y usar el modelo en una applicación Android o iOS.
+- **¿Dónde residirá el modelo?** ¿En la nube o de forma local?
+- **Soporte fuera de línea.** ¿La aplicación trabaja en modo fuera de línea?
+- **¿Qué tecnología se usó para entrenar al modelo?** La tecnología elegida puede influir en las herramientas que necesitas utilizar.
+    - **Uso de TensorFlow.** Si estás entrenando un modelo usando TensorFlow, por ejemplo, ese ecosistema proporciona la capacidad de convertir un modelo de TensorFlow para su uso en una aplicación web usando [TensorFlow.js](https://www.tensorflow.org/js/).
+    - **Uso de PyTorch.** Si estás construyendo un modelo usando una librería como [PyTorch](https://pytorch.org/), tienes la opción de exportarlo en formato [ONNX](https://onnx.ai/) (Open Neural Network Exchange) para usarlo en aplicaciones web de javascript que puedan usar el entorno de ejecución [Onnx Runtime](https://www.onnxruntime.ai/). Esta opción será explorada en una futura lección para un modelo entrenado Scikit-learn.
+    - **Uso de Lobe.ai o Azure Custom Vision.** Si estás usando un sistema de aprendizaje automático SaaS (Software as a Service) como lo es [Lobe.ai](https://lobe.ai/) o [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) para entrenar un modelo, este tipo de software proporciona formas de exportar el modelo a diversas plataformas, incluyendo el construir una API a medida para que esta sea consultada en la nube por tu aplicación en línea.
 
-You also have the opportunity to build an entire Flask web app that would be able to train the model itself in a web browser. This can also be done using TensorFlow.js in a JavaScript context.
+También tienes la oportunidad de construir una plicación web completamente en Flask que será capaz de entrenar el propio modelo en un navegador web. Esto también puede ser realizado usando TensorFlow.js en un contexto JavaScript.
 
-For our purposes, since we have been working with Python-based notebooks, let's explore the steps you need to take to export a trained model from such a notebook to a format readable by a Python-built web app.
+Para nuestros propósitos, ya que hemos estado trabajando con notebooks basados en Python, exploremos los pasos que necesitas realizar para exportar un modelo entrenado desde un notebook a un formato legible para una aplicación web construida en Python.
 
-## Tool
+## Herramientas
 
-For this task, you need two tools: Flask and Pickle, both of which run on Python.
+Para esta tarea, necesitas dos herramientas: Flask y Pickle, ambos corren en Python.
 
-✅ What's [Flask](https://palletsprojects.com/p/flask/)? Defined as a 'micro-framework' by its creators, Flask provides the basic features of web frameworks using Python and a templating engine to build web pages. Take a look at [this Learn module](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa) to practice building with Flask.
+✅ ¿Qué es [Flask](https://palletsprojects.com/p/flask/)? Definido como un 'micro-framework' por sus creadores, Flask proporciona las características básicas de los frameworks web usando Python y un motor de plantillas para construir páginas web. Da un vistazo a [este módulo de aprendizaje](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa) para practicar construir con Flask.
 
-✅ What's [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 is a Python module that serializes and de-serializes a Python object structure. When you 'pickle' a model, you serialize or flatten its structure for use on the web. Be careful: pickle is not intrinsically secure, so be careful if prompted to 'un-pickle' a file. A pickled file has the suffix `.pkl`.
+✅ ¿Qué es [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 es un módulo de Python que serializa y deserializa estructura de objetos Python. Cuando conviertes un modelo en 'pickle', serializas o aplanas su estructura para su uso en la web. Sé cuidadoso: Pickle no es intrínsecamente seguro, por lo que debes ser cuidadoso si solicitaste hacer 'un-pickle' en un archivo. Un archivo hecho pickle tiene el sufijo `.pkl`.
 
-## Exercise - clean your data
+## Ejercicio - limpia tus datos
 
-In this lesson you'll use data from 80,000 UFO sightings, gathered by [NUFORC](https://nuforc.org) (The National UFO Reporting Center). This data has some interesting descriptions of UFO sightings, for example:
+En esta lección usarás datos de 80,000 avistamientos de OVNIs, recopilados por [NUFORC](https://nuforc.org) (El centro nacional de informes OVNI). Estos datos tienen algunas descripciones interesantes de avistamientos OVNI, por ejemplo:
 
-- **Long example description.** "A man emerges from a beam of light that shines on a grassy field at night and he runs towards the Texas Instruments parking lot".
-- **Short example description.** "the lights chased us".
 
-The [ufos.csv](./data/ufos.csv) spreadsheet includes columns about the `city`, `state` and `country` where the sighting occurred, the object's `shape` and its `latitude` and `longitude`.
+- **Descripción larga del ejemplo.** "Un hombre emerge de un haz de luz que brilla en un campo de hierba por la noche y corre hacia el estacionamiento de Texas Instruments".
+- **Descripción corta del ejemplo.** "las luces nos persiguieron".
 
-In the blank [notebook](notebook.ipynb) included in this lesson:
+La hoja de cálculo [ufos.csv](../data/ufos.csv) incluye columnas acerca de los campos `city`, `state` y `country` donde ocurrió el avistamiento, la forma (`shape`) y su latitud (`latitude`) y ubicación (`latitude` y `longitude`).
 
-1. import `pandas`, `matplotlib`, and `numpy` as you did in previous lessons and import the ufos spreadsheet. You can take a look at a sample data set:
+En el [notebook](../notebook.ipynb) en blanco incluído en esta lección:
+
+1. Importa `pandas`, `matplotlib`, y `numpy` como lo hiciste en lecciones anteriores e importa la hoja de cálculo ufos. Puedes dar un vistazo al conjunto de datos de ejemplo:
 
     ```python
     import pandas as pd
@@ -62,7 +63,7 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.head()
     ```
 
-1. Convert the ufos data to a small dataframe with fresh titles. Check the unique values in the `Country` field.
+1. Convierte los datos de OVNIs en un pequeño dataframe con nuevos títulos. Revisa los valores únicos en el campo `Country`.
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
@@ -70,7 +71,7 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.Country.unique()
     ```
 
-1. Now, you can reduce the amount of data we need to deal with by dropping any null values and only importing sightings between 1-60 seconds:
+1. Ahora, puedes reducir la cantidad de datos que necesitamos manejar eliminando cualquier valor nulo e importando únicamente los avistamientos entre 1 y 60 segundos:
 
     ```python
     ufos.dropna(inplace=True)
@@ -80,9 +81,9 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.info()
     ```
 
-1. Import Scikit-learn's `LabelEncoder` library to convert the text values for countries to a number:
+1. Importa la librería `LabelEncoder` de Scikit-learn para convertir los valores de texto de los países a número:
 
-    ✅ LabelEncoder encodes data alphabetically
+    ✅ LabelEncoder codifica los datos alfabéticamente
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -92,7 +93,7 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     ufos.head()
     ```
 
-    Your data should look like this:
+    Tus datos deberían verse así:
 
     ```output
     	Seconds	Country	Latitude	Longitude
@@ -103,11 +104,11 @@ In the blank [notebook](notebook.ipynb) included in this lesson:
     24	3.0		3		51.783333	-0.783333
     ```
 
-## Exercise - build your model
+## Ejercicio - construye tu modelo
 
-Now you can get ready to train a model by dividing the data into the training and testing group.
+Ahora puedes prepararte para entrenar un modelo dividiendo los datos entre los grupos de entrenamiento y pruebas.
 
-1. Select the three features you want to train on as your X vector, and the y vector will be the `Country`. You want to be able to input `Seconds`, `Latitude` and `Longitude` and get a country id to return.
+1. Selecciona las tres características que quieres entrenar en tu vector X, y el vector Y será `Country`. Quieres ser capaz de introducir `Seconds`, `Latitude` y `Longitude` y obtener un id de país de regreso.
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -120,7 +121,7 @@ Now you can get ready to train a model by dividing the data into the training an
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. Train your model using logistic regression:
+1. Entrena tu modelo usando regresión logística:
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -134,13 +135,13 @@ Now you can get ready to train a model by dividing the data into the training an
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-The accuracy isn't bad **(around 95%)**, unsurprisingly, as `Country` and `Latitude/Longitude` correlate.
+La precisión no es mala **(alrededor del 95%)**, como era de esperar, ya que `Country` y `Latitude/Longitude` se correlacionan.
 
-The model you created isn't very revolutionary as you should be able to infer a `Country` from its `Latitude` and `Longitude`, but it's a good exercise to try to train from raw data that you cleaned, exported, and then use this model in a web app.
+El modelo que creaste no es muy revolucionario como deberías ser capaz de inferir un país (`Country`) por su latitud y longitud (`Latitude`, `Longitude`), pero es un buen ejercicio intentar entrenar desde datos en crudo que ya limpiaste, exportaste y luego usa este modelo en una aplicación web.
 
-## Exercise - 'pickle' your model
+## Ejercicio - Haz 'pickle' a tu modelo
 
-Now, it's time to _pickle_ your model! You can do that in a few lines of code. Once it's _pickled_, load your pickled model and test it against a sample data array containing values for seconds, latitude and longitude,
+Ahora, ¡es momento de hacer _pickle_ a tu modelo! Puedes hacer eso con pocas líneas de código. Una vez la hiciste _pickle_, carga tu modelo serializado (pickled) y pruébalo constra un arreglo de datos de muestra que contenga los valores para segundos, latitud y longitud.
 
 ```python
 import pickle
@@ -151,15 +152,15 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-The model returns **'3'**, which is the country code for the UK. Wild! 👽
+El modelo regresa **'3'**, lo cual es el código de país para el Reino Unido (UK). ¡Sorprendente! 👽
 
-## Exercise - build a Flask app
+## Ejercicio - Construye una aplicación Flask
 
-Now you can build a Flask app to call your model and return similar results, but in a more visually pleasing way.
+Ahora puedes construir una aplicación Flask para llamara tu modelo y regresar resultados similares, pero de una forma visualmente más agradable.
 
-1. Start by creating a folder called **web-app** next to the _notebook.ipynb_ file where your _ufo-model.pkl_ file resides.
+1. Comienza por crear un directorio llamado **web-app** junto al archivo _notebook.ipynb_  donde reside el archivo _ufo-model.pkl_.
 
-1. In that folder create three more folders: **static**, with a folder **css** inside it, and **templates**. You should now have the following files and directories:
+1. En ese directorio crea 3 directorios más: **static**, con un directorio **css** dentro de el, y **templates**.  Ahora tienes la siguiente estructura de directorios:
 
     ```output
     web-app/
@@ -170,9 +171,9 @@ Now you can build a Flask app to call your model and return similar results, but
     ufo-model.pkl
     ```
 
-    ✅ Refer to the solution folder for a view of the finished app
+    ✅ Consulta el directorio de la solución para una vista de la aplicación terminada.
 
-1. The first file to create in _web-app_ folder is **requirements.txt** file. Like _package.json_ in a JavaScript app, this file lists dependencies required by the app. In **requirements.txt** add the lines:
+1. El primer archivo a crear en el directorio _web-app_ es el archivo **requirements.txt**. Así como _package.json_ en una aplicación JavaScript, este archivo lista las dependencias requeridas por la aplicación. En **requirements.txt** agrega las líneas:
 
     ```text
     scikit-learn
@@ -181,25 +182,25 @@ Now you can build a Flask app to call your model and return similar results, but
     flask
     ```
 
-1. Now, run this file by navigating to _web-app_:
+1. Ahora, ejecuta este archivo navegando a _web-app_:
 
     ```bash
     cd web-app
     ```
 
-1. In your terminal type `pip install`, to install the libraries listed in _requirements.txt_:
+1. Escribe en tu terminal `pip install`, para instalar las librerías listadas en _requirements.txt_:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-1. Now, you're ready to create three more files to finish the app:
+1. Ahora, estás listo para crear 3 archivos más y así terminar la aplicación:
 
-    1. Create **app.py** in the root.
-    2. Create **index.html** in _templates_ directory.
-    3. Create **styles.css** in _static/css_ directory.
+    1. Crea el archivo **app.py** en la raíz.
+    2. Crea el archivo **index.html** dentro del directorio _templates_.
+    3. Crea el archivo **styles.css** dentro del directorio _static/css_.
 
-1. Build out the _styles.css_ file with a few styles:
+1. Construye el archivo _styles.css_ file con algunos estilos:
 
     ```css
     body {
@@ -233,7 +234,7 @@ Now you can build a Flask app to call your model and return similar results, but
     }
     ```
 
-1. Next, build out the _index.html_ file:
+1. Lo siguiente es constuir el archivo _index.html_:
 
     ```html
     <!DOCTYPE html>
@@ -268,11 +269,11 @@ Now you can build a Flask app to call your model and return similar results, but
     </html>
     ```
 
-    Take a look at the templating in this file. Notice the 'mustache' syntax around variables that will be provided by the app, like the prediction text: `{{}}`. There's also a form that posts a prediction to the `/predict` route.
+    Echa un vistazo a la plantilla en este archivo. Nota la sitaxis 'mustache' alrededor de las variables que serán proporcionadas por la aplicación, como el texto de predicción `{{}}`. También hay un formulario que publica una predicción a la ruta `/predict`.
 
-    Finally, you're ready to build the python file that drives the consumption of the model and the display of predictions:
+    Finalmente, estás listo para construir el archivo python que maneja el consumo de el modelo y la pantalla de predicciones:
 
-1. In `app.py` add:
+1. En `app.py` agrega:
 
     ```python
     import numpy as np
@@ -309,37 +310,37 @@ Now you can build a Flask app to call your model and return similar results, but
         app.run(debug=True)
     ```
 
-    > 💡 Tip: when you add [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) while running the web app using Flask, any changes you make to your application will be reflected immediately without the need to restart the server. Beware! Don't enable this mode in a production app.
+    > 💡 Tip: Cuando agregas [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) mientras ejecutas la aplicación web usando Flask, cualquier cambio que realices a tu aplicación será reflejado inmediatamente sin la necesidad de reiniciar el servidor. ¡Ten cuidado! No actives este modo en una aplicación en producción.
 
-If you run `python app.py` or `python3 app.py` - your web server starts up, locally, and you can fill out a short form to get an answer to your burning question about where UFOs have been sighted!
+Si ejecutas `python app.py` o `python3 app.py` - tu servidor web inicia, localmente, y puedes llenar un pequeño formulario para obtener una respuesta a tu pregunta en cuestión acerca de ¡dónde han avistado OVNIs!
 
-Before doing that, take a look at the parts of `app.py`:
+Antes de hacerlo, echa un vistazo a las partes de `app.py`:
 
-1. First, dependencies are loaded and the app starts.
-1. Then, the model is imported.
-1. Then, index.html is rendered on the home route.
+1. Primero, las dependencias son cargadas y la aplicación inicia.
+2. Luego, el modelo es importado.
+3. Lo siguiente, el archivo index.html es renderizado en la ruta principal.
 
-On the `/predict` route, several things happen when the form is posted:
+En la ruta `/predict`, pasan muchas cosas cuando el formulario se publica:
 
-1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned.
-2. The Countries that we want displayed are re-rendered as readable text from their predicted country code, and that value is sent back to index.html to be rendered in the template.
+1. Las variables del formulario son reunidas y convertidas a un arreglo de numpy. Luego estas son enviadas al modelo y se regresa una predicción.
+2. Los países que queremos se muestren son re-renderizados como texto legible de su código de país previsto, y ese valor es enviado de vuelta a index.html para ser renderizado en la plantilla.
 
-Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction.
+Usando un modelo de esta forma, con Flask y un modelo hecho pickled, es relativamente sencillo. La cosa más difícil es entender qué forma tienen los datos que deben ser enviados al modelo para obtener una predicción. Todo eso depende en cómo fue entrenado el modelo. Este tiene 3 puntos de datos como entrada para así obtener una predicción.
 
-In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+En un entorno profesional, puedes ver cómo la buena comunicación es necesaria entre las personas las cuales entrenan el modelo y aquellas que lo consumen en una aplicación web o móvil. En nuestro caso, es una sola persona, ¡tú!
 
 ---
 
-## 🚀 Challenge
+## 🚀 Desafío
 
-Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. What are the pros and cons of pursuing this method?
+En lugar de trabajar en un notebook e importar el modelo a una aplicación Flask, ¡podrías entrenar el modelo directo en la aplicación Flask! Intenta convertir tu código Python en el notebook, quizá después que tus datos sean limpiados, para entrenar el modelo desde la aplicación en una ruta llamada `train`. ¿Cuáles son los pros y contras de seguir este método?
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18/)
 
-## Review & Self Study
+## Revisión y autoestudio
 
-There are many ways to build a web app to consume ML models. Make a list of the ways you could use JavaScript or Python to build a web app to leverage machine learning. Consider architecture: should the model stay in the app or live in the cloud? If the latter, how would you access it? Draw out an architectural model for an applied ML web solution.
+Hay muchas formas de construir una aplicación web para consumir modelos de aprendizaje automático. Haz una lista de las formas en que podrías usar JavaScript o Python para construir una aplicación web para aprovechar el apredizaje automático. Considera la arquitectura: ¿El modelo debería estar en la aplicación o vivir en la nube? Si es lo segundo, ¿Cómo lo accederías? Dibuja un modelo de arquitectura para una solución web de aprendizaje automático aplicada.
 
-## Assignment
+## Asignación
 
-[Try a different model](assignment.md)
+[Prueba un modelo diferente](assignment.es.md)
