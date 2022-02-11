@@ -1,11 +1,11 @@
-# Search for a bot
+# Buscar un bot
 
-## Instructions
+## Instrucciones
 
-Bots are everywhere. Your assignment: find one and adopt it! You can find them on web sites, in banking applications, and on the phone, for example when you call financial services companies for advice or account information. Analyze the bot and see if you can confuse it. If you can confuse the bot, why do you think that happened? Write a short paper about your experience.
+Los bots están en todas partes. Tu asignación: ¡encuentra uno y adóptalo! Los puedes encontrar en sitios web, en aplicaciones bancarias, y en los teléfonos, por ejemplo cuando llamas a companías de servicios financieros para asesoramiento o información de cuenta. Analiza el bot y ve si puedes confundirlo. Si puedes confundir al bot, ¿por qué piensas que sucedió? Escribe un ensayo corto acerca de tu experiencia.
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                                                                                     | Adequate                                     | Needs Improvement     |
+| Criterio | Ejemplar                                                                                                     | Adecuado                                     | Necesita mejorar     |
 | -------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | --------------------- |
-|          | A full  page paper is written, explaining the presumed bot architecture and outlining your experience with it | A paper is incomplete or not well researched | No paper is submitted |
+|          | Se escribió un ensayo a página completa, explicando la presunta arquitectura del bot y describiendo tu experiencia con él | El ensayo está incompleto o no fue bien investigado | No se envió ensayo |
