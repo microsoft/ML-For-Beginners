@@ -88,7 +88,7 @@ from sklearn.preprocessing import LabelEncoder
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-Si ahora miras el nuevo dataframe new_pumpkins, ves que todas las cadenas ahora son numéricas. ¡Esto te dificulta el leer pero lo hace más comprensible para Scikit-learn!
+Si ahora miras el nuevo dataframe `new_pumpkins`, ves que todas las cadenas ahora son numéricas. ¡Esto te dificulta el leer pero lo hace más comprensible para Scikit-learn!
 Ahora puedes tomar decisiones más informadas (no sólo basado en ver un gráfico de dispersión) acerca de los datos que mejor se ajustan a la regresión.
 
 Intenta encontrar una buena correlación entre dos puntos de tus datos para construir potencialmente un buen modelo predictivo. Como resulta, sólo hay correlación débil entre las Ciudad y el Precio.
