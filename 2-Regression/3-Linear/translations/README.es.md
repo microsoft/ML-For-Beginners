@@ -31,7 +31,7 @@ Sigamos profundizando en estos datos.
 
 En la lección anterior, creaste un dataframe de Pandas y lo poblaste con parte del conjunto de datos original, estandarizando el precio de la fanega. Haciéndolo, sólo fuiste capaz de reunir alrededor de 400 puntos de datos y sólo para los meses de otoño.
 
-Da un vistazo a los datos que fueron precargados en el notebook que acompaña a esta lección. Los datos están precargados y hay graficada un gráfico de dispersión inicial para mostrar datos mensuales. Quizá podamos obtener un poco más de detalle acerca de la naturaleza de los datos limpiándolos más.
+Da un vistazo a los datos que fueron precargados en el notebook que acompaña a esta lección. Los datos están precargados con un gráfico de dispersión inicial para mostrar datos mensuales. Quizá podamos obtener un poco más de detalle acerca de la naturaleza de los datos limpiándolos más.
 
 ## Un línea de regresión lineal
 
