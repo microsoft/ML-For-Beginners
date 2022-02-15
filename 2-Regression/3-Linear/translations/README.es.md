@@ -25,7 +25,7 @@ Como recordatorio, estás cargando estos datos para hacer preguntas aceca de est
 
 - ¿Cuándo es el mejor momento para comprar calabazas?
 - ¿Qué precio puedo esperar para el caso de calabazas miniatura?
-- ¿Debería comprarlas en cestos de media fanega o por caja de 1 1) de fanega?
+- ¿Debería comprarlas en cestos de media fanega o por caja de 1 1/9 de fanega?
 
 Sigamos profundizando en estos datos.
 
