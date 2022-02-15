@@ -1,84 +1,86 @@
-# Build a regression model using Scikit-learn: regression two ways
+# Construye un modelo de regresión usando Scikit-learn: regresión de dos formas
 
-![Linear vs polynomial regression infographic](./images/linear-polynomial.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
+![Infografía de regresión lineal vs polinomial](./images/linear-polynomial.png)
+> Infografía de [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-> ### [This lesson is available in R!](./solution/R/lesson_3-R.ipynb)
-### Introduction 
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13/)
 
-So far you have explored what regression is with sample data gathered from the pumpkin pricing dataset that we will use throughout this lesson. You have also visualized it using Matplotlib. 
+> ### [¡Esta lección está disponible en R!](../solution/R/lesson_3-R.ipynb)
 
-Now you are ready to dive deeper into regression for ML. In this lesson, you will learn more about two types of regression: _basic linear regression_ and _polynomial regression_, along with some of the math underlying these techniques.
+### Introducción
 
-> Throughout this curriculum, we assume minimal knowledge of math, and seek to make it accessible for students coming from other fields, so watch for notes, 🧮 callouts, diagrams, and other learning tools to aid in comprehension.
+Hasta ahora has explorado qué es la regresión con datos obtenidos del conjunto de datos de los precios de las calabazas que usaremos en esta lección. También los has visualizado usando Matplotlib.
 
-### Prerequisite
+Ahora estás listo para profundizar en la regresión para el aprendizaje automático. En esta lección, aprenderás más acerca de dos tipos de regresión: _regresión básica lineal_ y _regresión polinomial_, junto con algo de matemáticas fundamental a estas técnicas.
 
-You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file. In the file, the pumpkin price is displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in Visual Studio Code.
+> A lo largo de este plan de estudios, asumimos un conocimiento mínimo de matemáticas, y buscamos hacerlo accesible para los estudiantes provenientes de otros campos, así que pon atención a las notas, 🧮 llamados, diagramas, y otras herramientas de estudio para ayudar en la comprensión.
 
-### Preparation
+### Prerrequisitos
 
-As a reminder, you are loading this data so as to ask questions of it. 
+Ahora, debes estar familiarizado con la estructura de los datos de las calabazas que ya examinamos. Puedes encontrarlos precargados y pre-limpiados en el archivo _notebook.ipynb_ de esta lección. En el archivo, el precio de la calabaza se muestra por fanega en un nuevo dataframe. Asegúrate que puedas ejecutar estos notebooks en kernels en Visual Studio Code.
 
-- When is the best time to buy pumpkins? 
-- What price can I expect of a case of miniature pumpkins?
-- Should I buy them in half-bushel baskets or by the 1 1/9 bushel box?
-Let's keep digging into this data.
+### Preparación
 
-In the previous lesson, you created a Pandas dataframe and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were only able to gather about 400 datapoints and only for the fall months. 
+Como recordatorio, estás cargando estos datos para hacer preguntas aceca de estos.
 
-Take a look at the data that we preloaded in this lesson's accompanying notebook. The data is preloaded and an initial scatterplot is charted to show month data. Maybe we can get a little more detail about the nature of the data by cleaning it more.
+- ¿Cuándo es el mejor momento para comprar calabazas?
+- ¿Qué precio puedo esperar para el caso de calabazas miniatura?
+- ¿Debería comprarlas en cestos de media fanega o por caja de 1 1) de fanega?
 
-## A linear regression line
+Sigamos profundizando en estos datos.
 
-As you learned in Lesson 1, the goal of a linear regression exercise is to be able to plot a line to:
+En la lección anterior, creaste un dataframe de Pandas y lo poblaste con parte del conjunto de datos original, estandarizando el precio de la fanega. Haciéndolo, sólo fuiste capaz de reunir alrededor de 400 puntos de datos y sólo para los meses de otoño.
 
-- **Show variable relationships**. Show the relationship between variables
-- **Make predictions**. Make accurate predictions on where a new datapoint would fall in relationship to that line. 
- 
-It is typical of **Least-Squares Regression** to draw this type of line. The term 'least-squares' means that all the datapoints surrounding the regression line are squared and then added up. Ideally, that final sum is as small as possible, because we want a low number of errors, or `least-squares`. 
+Da un vistazo a los datos que fueron precargados en el notebook que acompaña a esta lección. Los datos están precargados y hay graficada un gráfico de dispersión inicial para mostrar datos mensuales. Quizá podamos obtener un poco más de detalle acerca de la naturaleza de los datos limpiándolos más.
 
-We do so since we want to model a line that has the least cumulative distance from all of our data points. We also square the terms before adding them since we are concerned with its magnitude rather than its direction.
+## Un línea de regresión lineal
 
-> **🧮 Show me the math** 
-> 
-> This line, called the _line of best fit_ can be expressed by [an equation](https://en.wikipedia.org/wiki/Simple_linear_regression): 
-> 
+Como aprendiste en la lección 1, el objetivo de un ejercicio de regresión lineal es ser capaz de graficar una línea para:
+
+- **Mostrar la relación de las variables**. Mostrar la relación entre las variables
+- **Realizar predicciones**. Hacer predicciones precisas en donde un nuevo punto de datos caería en relación a esa línea.
+
+Es típico de la **regresión de mínimos cuadrados** el dibujar este tipo de línea. El término 'mínimos cuadrados' significa que todos los puntos de datos rodeando la línea de regresión se elevan al cuadrado y luego se suman. Idealmente, la suma final es tan pequeña como sea posible, porque queremos un número bajo de errores, o `mínimos cuadrados`.
+
+Lo hacemos así ya que que queremos modelar una línea que tiene la distancia acumulada menor de todos nuestros puntos de datos. Tambień elevamos al cuadraro los términos antes de sumarlos ya que nos interesa su magnitud en lugar de su direción.
+
+> **🧮 Muéstrame las matemáticas**
+>
+> Esta línea, llamada la _línea de mejor ajuste_ puede ser expresada por [una ecuación](https://en.wikipedia.org/wiki/Simple_linear_regression):
+>
 > ```
 > Y = a + bX
 > ```
 >
-> `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. The slope of the line is `b` and `a` is the y-intercept, which refers to the value of `Y` when `X = 0`. 
+> `X` es la 'variable explicativa'. `Y` es la 'variable dependiente'. La pendiente de la línea es `b` y `a` es la intercepción en y, la cual se refiere a el valor de `Y` cuando `X = 0`.
 >
->![calculate the slope](images/slope.png)
+>![Calcula la pendiente](../images/slope.png)
 >
-> First, calculate the slope `b`. Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> Primero, calcula la pendiente `b`. Infografía de [Jen Looper](https://twitter.com/jenlooper)
 >
-> In other words, and referring to our pumpkin data's original question: "predict the price of a pumpkin per bushel by month", `X` would refer to the price and `Y` would refer to the month of sale. 
+> En otras palabras, y refiriéndose a nuestra pregunta original de los datos de las calabazas: "predice el precio de una calabaza por fanega por mes", `X` se referiría al precio e `Y` a el mes de venta.
 >
->![complete the equation](images/calculation.png)
+>![Completa la ecuación](../images/calculation.png)
 >
-> Calculate the value of Y. If you're paying around $4, it must be April! Infographic by [Jen Looper](https://twitter.com/jenlooper)
+> Calcula el valor de Y. ¡Si estás pagando alrededor de $4, debe ser Abril! Infografía de [Jen Looper](https://twitter.com/jenlooper)
 >
-> The math that calculates the line must demonstrate the slope of the line, which is also dependent on the intercept, or where `Y` is situated when `X = 0`.
+> Las matemáticas que calculan la línea deben demostrar la pendiente de la línea, la cual también depende de la intercepción, o dónde `Y` se sitúa cuando `X = 0`.
 >
-> You can observe the method of calculation for these values on the [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html) web site. Also visit [this Least-squares calculator](https://www.mathsisfun.com/data/least-squares-calculator.html) to watch how the numbers' values impact the line.
+> Puedes observar el método de cálculo para estos valores en el sitio web [las matemáticas son divertidas](https://www.mathsisfun.com/data/least-squares-regression.html). También visita esta [calculadora de mínimos cuadrados](https://www.mathsisfun.com/data/least-squares-calculator.html) para ver cómo los valores de los números impactan la línea.
 
-## Correlation
+## Correlación
 
-One more term to understand is the **Correlation Coefficient** between given X and Y variables. Using a scatterplot, you can quickly visualize this coefficient. A plot with datapoints scattered in a neat line have high correlation, but a plot with datapoints scattered everywhere between X and Y have a low correlation.
+Un término más a entender es el **coeficiente de correlación** entre las variables dadas X e Y. Usando un gráfico de dispersión, puedes visualizar rápidamente este coeficiente. Un gráfico con pountos de datos dispersos en una línea ordenada tienen alta correlación, pero una gráfico con puntos de datos dispersos por todas partes entre X e Y tienen baja correlación.
 
-A good linear regression model will be one that has a high (nearer to 1 than 0) Correlation Coefficient using the Least-Squares Regression method with a line of regression.
+Un buen modelo de regresión lineal será aquél que tenga un alto Coeficiente de Correlación (más cercano a 1 que a 0) usando el métro de regresión de mínimos cuadrados con una línea de regresión.
 
-✅ Run the notebook accompanying this lesson and look at the City to Price scatterplot. Does the data associating City to Price for pumpkin sales seem to have high or low correlation, according to your visual interpretation of the scatterplot? 
+✅ Ejecutta el notebook que acompaña esta lección y mira el gráfico de Ciudad a Precio. ¿Los datos asociados de Ciudad a Precio para las ventas de calabaza parecen tener correlación lata o baja, de acuerdo a tu intepretación visual del gráfico de dispersión?
 
+## Prepara tus datos para la regresión
 
-## Prepare your data for regression
+Ahora que tienes conocimiento de las matemáticas detrás de este ejercicio, crea un modelo de regresión para ver si puedes predecir cuál de los paquetes de calabazas tendrá los mejores precios. Alguien comprando calabazas para una parcela de calabazas de días festivos quisiera esta información para ser capaz de optimizar sus compras de paquetes de calabazas para la parcela.
 
-Now that you have an understanding of the math behind this exercise, create a Regression model to see if you can predict which package of pumpkins will have the best pumpkin prices. Someone buying pumpkins for a holiday pumpkin patch might want this information to be able to optimize their purchases of pumpkin packages for the patch.
-
-Since you'll use Scikit-learn, there's no reason to do this by hand (although you could!). In the main data-processing block of your lesson notebook, add a library from Scikit-learn to automatically convert all string data to numbers:
+Ya que usarás Scikit-learn, no hay razón para hacer esto a mano (¡aunque podrías!). En el bloque principal de procesamientos de datos de tu notebook de lección, agrega una biblioteca de Scikit-learn para convertir automáticamente todos los datos de cadena a números:
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -86,37 +88,37 @@ from sklearn.preprocessing import LabelEncoder
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-If you look at the new_pumpkins dataframe now, you see that all the strings are now numeric. This makes it harder for you to read but much more intelligible for Scikit-learn!
-Now you can make more educated decisions (not just based on eyeballing a scatterplot) about the data that is best suited to regression.
+Si ahora miras el nuevo dataframe new_pumpkins, ves que todas las cadenas ahora son numéricas. ¡Esto te dificulta el leer pero lo hace más comprensible para Scikit-learn!
+Ahora puedes tomar decisiones más informadas (no sólo basado en ver un gráfico de dispersión) acerca de los datos que mejor se ajustan a la regresión.
 
-Try to find a good correlation between two points of your data to potentially build a good predictive model. As it turns out, there's only weak correlation between the City and Price:
+Intenta encontrar una buena correlación entre dos puntos de tus datos para construir potencialmente un buen modelo predictivo. Como resulta, sólo hay correlación débil entre las Ciudad y el Precio.
 
 ```python
 print(new_pumpkins['City'].corr(new_pumpkins['Price']))
 0.32363971816089226
 ```
 
-However there's a bit better correlation between the Package and its Price. That makes sense, right? Normally, the bigger the produce box, the higher the price.
+sin embargo, existe una correlación un poco mejor entre el Paquete y su Precio. Esto tiene sentido, ¿cierto? Normalmente, entre más grande sea la caja producidad, mayor será el precio.
 
 ```python
 print(new_pumpkins['Package'].corr(new_pumpkins['Price']))
 0.6061712937226021
 ```
 
-A good question to ask of this data will be: 'What price can I expect of a given pumpkin package?'
+Una buena pregunta a realizar de estos datos, sería: '¿Qué precio puedo esperar de un paquete de calabazas dado?'
 
-Let's build this regression model
+Construyamos este modelo de regresión
 
-## Building a linear model
+## Construyendo un modelo lineal
 
-Before building your model, do one more tidy-up of your data. Drop any null data and check once more what the data looks like.
+Antes de construir tu modelo, haz una limpieza más a tus datos. Elimina cualquier dato nulo y verifica una vez cómo lucen los datos.
 
 ```python
 new_pumpkins.dropna(inplace=True)
 new_pumpkins.info()
 ```
 
-Then, create a new dataframe from this minimal set and print it out:
+Luego, crea un dataframe nuevo de este conjunto mínimo e imprímelo:
 
 ```python
 new_columns = ['Package', 'Price']
@@ -141,15 +143,16 @@ lin_pumpkins
 415 rows × 2 columns
 ```
 
-1. Now you can assign your X and y coordinate data:
+1. Ahora puedes asignar tus datos de coodenadas X e Y:
 
    ```python
    X = lin_pumpkins.values[:, :1]
    y = lin_pumpkins.values[:, 1:2]
    ```
-✅ What's going on here? You're using [Python slice notation](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295) to create arrays to populate `X` and `y`.
 
-2. Next, start the regression model-building routines:
+✅ ¿Qué está pasando aquí? Estás usando [notación slice de Python](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295) para crear arreglos y así poblar `X` e `Y`.
+
+2. Lo siguiente es, iniciar las rutinas de construcción del modelo de regresión:
 
    ```python
    from sklearn.linear_model import LinearRegression
@@ -166,13 +169,13 @@ lin_pumpkins
    print('Model Accuracy: ', accuracy_score)
    ```
 
-   Because the correlation isn't particularly good, the model produced isn't terribly accurate.
+   Debido a que la correlación nos es particularmente buena, el modelo producido no es terriblemente preciso.
 
    ```output
    Model Accuracy:  0.3315342327998987
    ```
 
-3. You can visualize the line that's drawn in the process:
+3. Puedes visualziar la línea dibujada en el proceso:
 
    ```python
    plt.scatter(X_test, y_test,  color='black')
@@ -183,36 +186,37 @@ lin_pumpkins
 
    plt.show()
    ```
-   ![A scatterplot showing package to price relationship](./images/linear.png)
 
-4. Test the model against a hypothetical variety:
+   ![Un gráfico de dispersión mostrando la relación paquete a precio](../images/linear.png)
+
+4. Prueba el modelo contra una variedad hipotética:
 
    ```python
    lin_reg.predict( np.array([ [2.75] ]) )
    ```
-   
-   The returned price for this mythological Variety is:
+
+   El precio devuelto para esta Variedad mitológica es:
 
    ```output
    array([[33.15655975]])
    ```
+Ese número hace sentido, si la lógica de la regresión lineal es cierta.
 
-That number makes sense, if the logic of the regression line holds true.
+🎃 Felicidades, acabas de crear un modelo que puede ayudara predecir el precio de unas pocas variedades de calabazas. Tu parcela de calabazas de días festivos serán hermosas. ¡Pero probablemente puedes crear un mejor modelo mejor! 
 
-🎃 Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. Your holiday pumpkin patch will be beautiful. But you can probably create a better model!
-## Polynomial regression
+## Regresión polinomial
 
-Another type of linear regression is polynomial regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
+Otro tipo de regresión lineal es la regresión polinomial. Mientras algunas veces existe una relación lineal entre variables - entre más grande el volumen de la calabaza, mayor el precio - algunas veces estas relaciones no pueden ser graficadas como un plano o línea recta.
 
-✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use polynomial regression
+✅ Aquí hay [más ejemplos](https://online.stat.psu.edu/stat501/lesson/9/9.8) de los datos que podrían usar regresión polinomial.
 
-Take another look at the relationship between Variety to Price in the previous plot. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try polynomial regression.
+De un vistazo más a la relación entre Variedad a Precio en la gráfica anterior. ¿Parece que el gráfico de dispersión debería ser analizado necesariamente por una línea recta? Quizá no. En este caso,  puedes probar la regresión polinomial.
 
-✅ Polynomials are mathematical expressions that might consist of one or more variables and coefficients
+✅ Los polinomios son expresiones matemáticas que pueden consistir en una o más variables y coeficientes.
 
-Polynomial regression creates a curved line to better fit nonlinear data. 
+La regresión polinomial crea una línea curva para ajustar mejor los datos no lineales.
 
-1. Let's recreate a dataframe populated with a segment of the original pumpkin data:
+1. Recreemos un dataframe poblado con un segmento de los datos originales de las calabazas:
 
    ```python
    new_columns = ['Variety', 'Package', 'City', 'Month', 'Price']
@@ -221,30 +225,32 @@ Polynomial regression creates a curved line to better fit nonlinear data.
    poly_pumpkins
    ```
 
-A good way to visualize the correlations between data in dataframes is to display it in a 'coolwarm' chart:
+Una buena forma de visualizar las correlaciones entre los datos en los dataframes es mostrarlos en una gráfica 'coolwarm':
 
-2. Use the `Background_gradient()` method with `coolwarm` as its argument value:
+2. Usa el método `Background_gradient()` con `coolwarm` como valor de su argumento:
 
    ```python
    corr = poly_pumpkins.corr()
    corr.style.background_gradient(cmap='coolwarm')
    ```
-   This code creates a heatmap:
-   ![A heatmap showing data correlation](./images/heatmap.png)
 
-Looking at this chart, you can visualize the good correlation between Package and Price. So you should be able to create a somewhat better model than the last one.
-### Create a pipeline
+   Este código crea un mapa de calor:
+   ![Un mapa de calor mostrando correlación de datos](../images/heatmap.png)
 
-Scikit-learn includes a helpful API for building polynomial regression models - the `make_pipeline` [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). A 'pipeline' is created which is a chain of estimators. In this case, the pipeline includes polynomial features, or predictions that form a nonlinear path.
+Viendo esta gráfica, puedes visualizar la buena correlación entre Paquete y Precio. Así que deberías ser capaz de crear un modelo algo mejor que el último.
 
-1. Build out the X and y columns:
+### Crea un pipeline
+
+Scikit-learn incluye una API útil para crear modelos de regresión polinomail - la [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) `make_pipeline`. Se crea un 'pipeline' que es una cadena de estimadores. En este caso, el pipeline incluye características polinomiales, o predicciones que forman un camino no lineal.
+
+1. Construye las columnas X e Y:
 
    ```python
    X=poly_pumpkins.iloc[:,3:4].values
    y=poly_pumpkins.iloc[:,4:5].values
    ```
 
-2. Create the pipeline by calling the `make_pipeline()` method:
+2. Crea el pipeline llamando al método `make_pipeline()`:
 
    ```python
    from sklearn.preprocessing import PolynomialFeatures
@@ -259,11 +265,11 @@ Scikit-learn includes a helpful API for building polynomial regression models - 
    y_pred=pipeline.predict(X_test)
    ```
 
-### Create a sequence
+### Crea una secuencia
 
-At this point, you need to create a new dataframe with _sorted_ data so that the pipeline can create a sequence.
+En este punto, necesitas crear un nuevo dataframe con datos _ordenados_ para que así el pipeline pueda crear una secuencia.
 
-Add the following code:
+Agrega el siguiente código:
 
    ```python
    df = pd.DataFrame({'x': X_test[:,0], 'y': y_pred[:,0]})
@@ -277,57 +283,59 @@ Add the following code:
    plt.show()
    ```
 
-You created a new dataframe by calling `pd.DataFrame`. Then you sorted the values by calling `sort_values()`. Finally you created a polynomial plot:
+Creaste un nuevo dataframe llamando `pd.DataFrame`. Luego ordenaste los valores al llamar `sort_values()`. Finalmente creaste un gráfico polinomial:
 
-![A polynomial plot showing package to price relationship](./images/polynomial.png)
+![Un gráfico polinomail mostrando la relación paquete a precio](../images/polynomial.png)
 
-You can see a curved line that fits your data better. 
+Puedes ver una línea curva que se ajusta mejor a tus datos.
 
-Let's check the model's accuracy:
+Revisemos la precisión del modelo:
 
    ```python
    accuracy_score = pipeline.score(X_train,y_train)
    print('Model Accuracy: ', accuracy_score)
    ```
 
-   And voila!
+   ¡Y voila!
 
    ```output
    Model Accuracy:  0.8537946517073784
    ```
 
-That's better! Try to predict a price:
+¡Es mejor! Intenta predecir un precio:
 
-### Do a prediction
+### Haz un predicción
 
-Can we input a new value and get a prediction?
+¿Podemos ingresar un nuevo valor y obtener una predicción?
 
-Call `predict()` to make a prediction:
- 
+Llama a `predict()` para hacer una predicción:
+
    ```python
    pipeline.predict( np.array([ [2.75] ]) )
    ```
-   You are given this prediction:
+
+   Se te presenta esta predicción:
 
    ```output
    array([[46.34509342]])
    ```
 
-It does make sense, given the plot! And, if this is a better model than the previous one, looking at the same data, you need to budget for these more expensive pumpkins!
+¡Hace sentido, dado el gráfico! Y, si este es un mejor modelo que el anterior, viendo los mismos datos, ¡necesitas presupuestar para estas calabazas más caras!
 
-🏆 Well done! You created two regression models in one lesson. In the final section on regression, you will learn about logistic regression to determine categories. 
+🏆 ¡Bien hecho! Creaste dos modelos de regresión en una lección. En la sección final de regresión, aprenderás acerca de la regresión logística para determinar categorías.
 
 ---
-## 🚀Challenge
 
-Test several different variables in this notebook to see how correlation corresponds to model accuracy.
+## 🚀Desafío
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
+Prueba varias variables diferenstes en este notebook para ver cómo la correlación corresponde a la precisión del modelo.
 
-## Review & Self Study
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
 
-In this lesson we learned about Linear Regression. There are other important types of Regression. Read about Stepwise, Ridge, Lasso and Elasticnet techniques. A good course to study to learn more is the [Stanford Statistical Learning course](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
+## Revisión y autoestudio
 
-## Assignment 
+En esta lección aprendimos acerca de la regresión lineal. Existen otros tipos importantes de regresión. Lee acerca de las técnicas paso a paso (Stepwise), cresta (Ridge), Lazo y red elástica (Lasso and Elasticnet). Un buen curso para estudiar para aprender más es el[Curso de aprendizaje estadístico de Stanford](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
 
-[Build a Model](assignment.md)
+## Asignación
+
+[Construye un modelo](assignment.es.md)
