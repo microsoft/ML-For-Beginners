@@ -70,7 +70,7 @@ Lo hacemos así ya que queremos modelar una línea que tiene la menor distancia 
 
 ## Correlación
 
-Un término más a entender es el **coeficiente de correlación** entre las variables dadas X e Y. Usando un gráfico de dispersión, puedes visualizar rápidamente este coeficiente. Un gráfico con pountos de datos dispersos en una línea ordenada tienen alta correlación, pero una gráfico con puntos de datos dispersos por todas partes entre X e Y tienen baja correlación.
+Un término más a entender es el **coeficiente de correlación** entre las variables dadas X e Y. Usando un gráfico de dispersión, puedes visualizar rápidamente este coeficiente. Un gráfico con puntos de datos dispersos en una línea ordenada tienen alta correlación, pero un gráfico con puntos de datos dispersos por todas partes entre X e Y tienen baja correlación.
 
 Un buen modelo de regresión lineal será aquél que tenga un alto Coeficiente de Correlación (más cercano a 1 que a 0) usando el métro de regresión de mínimos cuadrados con una línea de regresión.
 
