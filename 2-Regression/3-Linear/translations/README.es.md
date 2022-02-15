@@ -74,7 +74,7 @@ Un término más a entender es el **coeficiente de correlación** entre las vari
 
 Un buen modelo de regresión lineal será aquél que tenga un alto Coeficiente de Correlación (más cercano a 1 que a 0) usando el métro de regresión de mínimos cuadrados con una línea de regresión.
 
-✅ Ejecutta el notebook que acompaña esta lección y mira el gráfico de Ciudad a Precio. ¿Los datos asociados de Ciudad a Precio para las ventas de calabaza parecen tener correlación lata o baja, de acuerdo a tu intepretación visual del gráfico de dispersión?
+✅ Ejecuta el notebook que acompaña esta lección y mira el gráfico de Ciudad a Precio. ¿Los datos asociados de Ciudad a Precio para las ventas de calabaza parecen tener correlación alta o baja, de acuerdo a tu interpretación visual del gráfico de dispersión?
 
 ## Prepara tus datos para la regresión
 
