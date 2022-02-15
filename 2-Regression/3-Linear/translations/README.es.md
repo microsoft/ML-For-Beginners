@@ -42,7 +42,7 @@ Como aprendiste en la lección 1, el objetivo de un ejercicio de regresión line
 
 Es típico de la **regresión de mínimos cuadrados** el dibujar este tipo de línea. El término 'mínimos cuadrados' significa que todos los puntos de datos rodeando la línea de regresión se elevan al cuadrado y luego se suman. Idealmente, la suma final es tan pequeña como sea posible, porque queremos un número bajo de errores, o `mínimos cuadrados`.
 
-Lo hacemos así ya que que queremos modelar una línea que tiene la distancia acumulada menor de todos nuestros puntos de datos. Tambień elevamos al cuadraro los términos antes de sumarlos ya que nos interesa su magnitud en lugar de su direción.
+Lo hacemos así ya que queremos modelar una línea que tiene la menor distancia acumulada de todos nuestros puntos de datos. También elevamos al cuadrado los términos antes de sumarlos ya que nos interesa su magnitud en lugar de su dirección.
 
 > **🧮 Muéstrame las matemáticas**
 >
