@@ -1,9 +1,11 @@
-# Study the solvers
-## Instructions
+# Estudia los solucionadores
 
-In this lesson you learned about the various solvers that pair algorithms with a machine learning process to create an accurate model. Walk through the solvers listed in the lesson and pick two. In your own words, compare and contrast these two solvers. What kind of problem do they address? How do they work with various data structures? Why would you pick one over another? 
-## Rubric
+## Instrucciones
 
-| Criteria | Exemplary                                                                                      | Adequate                                         | Needs Improvement            |
+En esta lección aprendiste acerca de diferentes solucionadores que emparejan algoritmos con un proceso de aprendizaje automático para crear un modelo preciso. Revisa los solucionadores listados en la lección y elige dos. En tus propias palabras, compara y contrasta estos dos solucionadores. ¿Qué clase de problema abordan? ¿Cómo funcionan con varias estructuras de datos? ¿Porqué elegirías uno por encima de otro?
+
+## Rúbrica
+
+| Criterio | Ejemplar                                                                                      | Adecuado                                         | Necesita mejorar            |
 | -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------ | ---------------------------- |
-|          | A .doc file is presented with two paragraphs, one on each solver, comparing them thoughtfully. | A .doc file is presented with only one paragraph | The assignment is incomplete |
+|          | Se presentó un archivo .doc con dos párrafos, uno de cada solucionador, comparándolos seriamente. | Se presentó un archivo .doc con sólo un párrafo | La asignación está incompleta |
