@@ -98,7 +98,7 @@ print(new_pumpkins['City'].corr(new_pumpkins['Price']))
 0.32363971816089226
 ```
 
-sin embargo, existe una correlación un poco mejor entre el Paquete y su Precio. Esto tiene sentido, ¿cierto? Normalmente, entre más grande sea la caja producidad, mayor será el precio.
+Sin embargo, existe una correlación un poco mejor entre el Paquete y su Precio. Esto tiene sentido, ¿cierto? Normalmente, entre más grande sea la caja producida, mayor será el precio.
 
 ```python
 print(new_pumpkins['Package'].corr(new_pumpkins['Price']))
