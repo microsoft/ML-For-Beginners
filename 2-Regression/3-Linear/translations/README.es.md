@@ -200,17 +200,18 @@ lin_pumpkins
    ```output
    array([[33.15655975]])
    ```
+
 Ese número hace sentido, si la lógica de la regresión lineal es cierta.
 
-🎃 Felicidades, acabas de crear un modelo que puede ayudara predecir el precio de unas pocas variedades de calabazas. Tu parcela de calabazas de días festivos serán hermosas. ¡Pero probablemente puedes crear un mejor modelo mejor! 
+🎃 Felicidades, acabas de crear un modelo que puede ayudara predecir el precio de unas pocas variedades de calabazas. Tu parcela de calabazas de días festivos serán hermosas. ¡Pero probablemente puedes crear un mejor modelo!
 
 ## Regresión polinomial
 
-Otro tipo de regresión lineal es la regresión polinomial. Mientras algunas veces existe una relación lineal entre variables - entre más grande el volumen de la calabaza, mayor el precio - algunas veces estas relaciones no pueden ser graficadas como un plano o línea recta.
+Otro tipo de regresión lineal es la regresión polinomial. Mientras algunas veces existe una relación lineal entre las variables - entre más grande el volumen de la calabaza, mayor el precio - algunas veces estas relaciones no pueden ser graficadas como un plano o línea recta.
 
 ✅ Aquí hay [más ejemplos](https://online.stat.psu.edu/stat501/lesson/9/9.8) de los datos que podrían usar regresión polinomial.
 
-De un vistazo más a la relación entre Variedad a Precio en la gráfica anterior. ¿Parece que el gráfico de dispersión debería ser analizado necesariamente por una línea recta? Quizá no. En este caso,  puedes probar la regresión polinomial.
+Da un vistazo más a la relación entre Variedad a Precio en la gráfica anterior. ¿Parece que el gráfico de dispersión debería ser analizado necesariamente por una línea recta? Quizá no. En este caso, puedes probar la regresión polinomial.
 
 ✅ Los polinomios son expresiones matemáticas que pueden consistir en una o más variables y coeficientes.
 
@@ -237,7 +238,7 @@ Una buena forma de visualizar las correlaciones entre los datos en los dataframe
    Este código crea un mapa de calor:
    ![Un mapa de calor mostrando correlación de datos](../images/heatmap.png)
 
-Viendo esta gráfica, puedes visualizar la buena correlación entre Paquete y Precio. Así que deberías ser capaz de crear un modelo algo mejor que el último.
+Viendo esta gráfica, puedes visualizar la buena correlación entre Paquete y Precio. Así que deberías ser capaz de crear un modelo algo mejor que el anterior.
 
 ### Crea un pipeline
 
@@ -285,7 +286,7 @@ Agrega el siguiente código:
 
 Creaste un nuevo dataframe llamando `pd.DataFrame`. Luego ordenaste los valores al llamar `sort_values()`. Finalmente creaste un gráfico polinomial:
 
-![Un gráfico polinomail mostrando la relación paquete a precio](../images/polynomial.png)
+![Un gráfico polinomial mostrando la relación paquete a precio](../images/polynomial.png)
 
 Puedes ver una línea curva que se ajusta mejor a tus datos.
 
@@ -328,13 +329,13 @@ Llama a `predict()` para hacer una predicción:
 
 ## 🚀Desafío
 
-Prueba varias variables diferenstes en este notebook para ver cómo la correlación corresponde a la precisión del modelo.
+Prueba variables diferentes en este notebook para ver cómo la correlación corresponde a la precisión del modelo.
 
 ## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14/)
 
-## Revisión y autoestudio
+## Revisión y auto-estudio
 
-En esta lección aprendimos acerca de la regresión lineal. Existen otros tipos importantes de regresión. Lee acerca de las técnicas paso a paso (Stepwise), cresta (Ridge), Lazo y red elástica (Lasso and Elasticnet). Un buen curso para estudiar para aprender más es el[Curso de aprendizaje estadístico de Stanford](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
+En esta lección aprendimos acerca de la regresión lineal. Existen otros tipos importantes de regresión. Lee acerca de las técnicas paso a paso (Stepwise), cresta (Ridge), Lazo y red elástica (Lasso and Elasticnet). Un buen curso para estudiar para aprender más es el [Curso de aprendizaje estadístico de Stanford](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning)
 
 ## Asignación
 
