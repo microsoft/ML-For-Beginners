@@ -1,11 +1,11 @@
-# Parameter Play
+# Juega con los parámetros
 
-## Instructions
+## Instrucciones
 
-There are a lot of parameters that are set by default when working with these classifiers. Intellisense in VS Code can help you dig into them. Adopt one of the ML Classification Techniques in this lesson and retrain models tweaking various parameter values. Build a notebook explaining why some changes help the model quality while others degrade it. Be detailed in your answer.
+Hay varios parámetros que están configurados de forma predeterminada cuando usas estos clasificadores. Intellisense en VS Code puede ayudarte a profundizar en ellos. Adopta una de las técnicas de clasificación de aprendizaje automático de esta lección y vuelve a entrenar los modelos ajustando varios valores de parámetros. Construye un notebook explicando por qué algunos cambios mejoran la calidad del modelo mientras otros la degradan. Sé minucioso en tu respuesta.
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                                                                                              | Adequate                                              | Needs Improvement             |
+| Criterio | Ejemplar                                                                                                              | Adecuado                                              | Necesita mejorar             |
 | -------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------- |
-|          | A notebook is presented with a classifier fully built up and its parameters tweaked and changes explained in textboxes | A notebook is partially presented or poorly explained | A notebook is buggy or flawed |
+|          | Se presentó un notebook con un clasificador completamente construido, sus parámetros ajustados y los cambios explicados en cajas de texto | Se presentó un notebook parcialmente completo o pobremente explicado | Se presentó un notebook con errores o fallos |
