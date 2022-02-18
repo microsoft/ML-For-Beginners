@@ -1,11 +1,11 @@
-# Make a Bot talk back
+# Hacer que un Bot responda
 
-## Instructions
+## Instrucciones
 
-In the past few lessons, you programmed a basic bot with whom to chat. This bot gives random answers until you say 'bye'. Can you make the answers a little less random, and trigger answers if you say specific things, like 'why' or 'how'? Think a bit how machine learning might make this type of work less manual as you extend your bot. You can use NLTK or TextBlob libraries to make your tasks easier.
+En las lecciones anteriores, programaste un bot básico con el cual chatear. Este bot da respuestas aleatorias hasta que le digas 'bye'. ¿Puedes hacer las respuestas menos aleatorias, y enviar respuestas si dices cosas específicas, como 'why' o 'how'? Piensa un poco en cómo el aprendizaje automático puede realizar este tipo de trabajo menos manual a medida que extiendes tu bot. Puedes usar las librerías NLTK o TextBlob para hacer más fáciles tus actividades.
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                     | Adequate                                         | Needs Improvement       |
+| Criterio | Ejemplar                                     | Adecuado                                         | Necesita mejorar       |
 | -------- | --------------------------------------------- | ------------------------------------------------ | ----------------------- |
-|          | A new bot.py file is presented and documented | A new bot file is presented but it contains bugs | A file is not presented |
+|          | Se presentó y documentó un nuevo archivo bot.py | Se presentó un nuevo archivo bot pero contiene fallos | No se presentó un archivo |
