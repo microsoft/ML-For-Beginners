@@ -1,10 +1,11 @@
-# Try different clustering methods
+# Prueba distintos métodos de agrupamiento
 
-## Instructions
+## Instrucciones
 
-In this lesson you learned about K-Means clustering. Sometimes K-Means is not appropriate for your data. Create a notebook using data either from these lessons or from somewhere else (credit your source) and show a different clustering method NOT using K-Means. What did you learn? 
-## Rubric
+En esta lección aprendiste acerca del agrupamiento K-Medias. Algunas veces K-Medias no es apropiado para tus datos. Crea un notebook usando los datos ya sea de estas lecciones o de algún otro lugar (dá crédito a tu fuente) y muestra un método de agrupamiento diferente sin usar K-Medias. ¿Qué aprendiste?
 
-| Criteria | Exemplary                                                       | Adequate                                                             | Needs Improvement            |
+## Rúbrica
+
+| Criterio | Ejemplar                                                       | Adecuado                                                             | Necesita mejorar            |
 | -------- | --------------------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------- |
-|          | A notebook is presented with a well-documented clustering model | A notebook is presented without good documentation and/or incomplete | Incomplete work is submitted |
+|          | Se presentó un notebook con un modelo de agrupamiento bien documentado | Se presentó un notebook sin buena documentación y/o incompleto | Se envió un trabajo incompleto |
