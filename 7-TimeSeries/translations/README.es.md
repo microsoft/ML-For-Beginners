@@ -1,23 +1,23 @@
-# Introduction to time series forecasting
+# Introducción a la predicción de series de tiempo
 
-What is time series forecasting? It's about predicting future events by analyzing trends of the past.
+¿Qué es la predicción de series de tiempo? Se trata de predecir eventos futuros al analizar las tendencias del pasado.
 
-## Regional topic: worldwide electricity usage ✨
+## Tema regional: Uso de la electricidad en el mundo ✨
 
-In these two lessons, you will be introduced to time series forecasting, a somewhat lesser known area of machine learning that is nevertheless extremely valuable for industry and business applications, among other fields. While neural networks can be used to enhance the utility of these models, we will study them in the context of classical machine learning as models help predict future performance based on the past.
+En estas dos lecciones, se te presentará la predicción de series de tiempo, un área algo menos conocida del aprendizaje automático que sin embargo es extremadamente valiosa para la industria y aplicaciones empresariales, entre otros campos. Mientras las redes neuronales pueden ser usadas para mejorar la utilidad de estos modelos, las estudiaremos en el contexto del aprendizaje automático clásico como modelos que ayudan a predecir el desempeño a futuro basado en el pasado.
 
-Our regional focus is electrical usage in the world, an interesting dataset to learn about forecasting future power usage based on patterns of past load. You can see how this kind of forecasting can be extremely helpful in a business environment.
+Nuestro enfoque regional es el uso de la electricidad en el mundo, un conjunto de datos interesante para aprender a predecir el uso de la energía a futuro basado en patrones de cargas pasadas. Puedes ver cómo esta clase de predicción puede ser extremadamente útil en un entorno empresarial.
 
-![electric grid](images/electric-grid.jpg)
+![Red eléctrica](../images/electric-grid.jpg)
 
-Photo by [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) of electrical towers on a road in Rajasthan on [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Fotografía de [Peddi Sai hrithik](https://unsplash.com/@shutter_log?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) de torres eléctricas en una carretera en Rajasthan en [Unsplash](https://unsplash.com/s/photos/electric-india?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-## Lessons
+## Lecciones
 
-1. [Introduction to time series forecasting](1-Introduction/README.md)
-2. [Building ARIMA time series models](2-ARIMA/README.md)
-3. [Building Support Vector Regressor for time series forcasting](3-SVR/README.md)
+1. [Introducción a la predicción de series de tiempo](../1-Introduction/README.md)
+2. [Construyendo modelos de series de tiempo con ARIMA](../2-ARIMA/README.md)
+3. [Construyendo un Regresor de Soporte Vectorial para la predicción de series de tiempo](../3-SVR/README.md)
 
-## Credits
+## Créditos
 
-"Introduction to time series forecasting" was written with ⚡️ by [Francesca Lazzeri](https://twitter.com/frlazzeri) and [Jen Looper](https://twitter.com/jenlooper). The notebooks first appeared online in the [Azure "Deep Learning For Time Series" repo](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) originally written by Francesca Lazzeri. The SVR lesson was written by [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
+"Introducción a la predicción de series de tiempo" fue escrito con ⚡️ por [Francesca Lazzeri](https://twitter.com/frlazzeri) y [Jen Looper](https://twitter.com/jenlooper). Los notebooks aparecieron primero en el [repo de Azure "Aprendizaje profundo para series de tiempo"](https://github.com/Azure/DeepLearningForTimeSeriesForecasting) originalmente escrito por Francesca Lazzeri. La lección de SVR fue escrita por [Anirban Mukherjee](https://github.com/AnirbanMukherjeeXD)
