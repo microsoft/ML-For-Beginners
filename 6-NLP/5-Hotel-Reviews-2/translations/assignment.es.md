@@ -1,11 +1,11 @@
-# Try a different dataset
+# Prueba un conjunto de dato diferente
 
-## Instructions
+## Instrucciones
 
-Now that you have learned about using NLTK to assign sentiment to text, try a different dataset. You will probably need to do some data processing around it, so create a notebook and document your thought process. What do you discover?
+Ahora que has aprendido acerca del uso de NLTK para asignar sentimiento al texto, prueba un conjunto de datos diferente. Probablemente necesitarás hacer algo más de procesamiento de datos, por lo cual, crear un notebook y documenta tu proceso de pensamiento. ¿Qué descubriste?
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                                                                                         | Adequate                                  | Needs Improvement      |
+| Criterio | Ejemplar                                                                                                         | Adecuado                                  | Necesita mejorar      |
 | -------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ---------------------- |
-|          | A complete notebook and dataset are presented with well-documented cells explaining how the sentiment is assigned | The notebook is missing good explanations | The notebook is flawed |
+|          | Se presentó tanto un notebook como un conjunto de datos con celdas bien documentadas explicando cómo se asignó el sentimiento | Al notebook le faltan buenas explicaciones | El notebook es defectuoso |
