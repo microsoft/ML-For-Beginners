@@ -1,14 +1,13 @@
-# A new SVR model
+# Un nuevo modelo SVR
 
-## Instructions [^1]
+## Instrucciones [^1]
 
-Now that you have built an SVR model, build a new one with fresh data (try one of [these datasets from Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html)). Annotate your work in a notebook, visualize the data and your model, and test its accuracy using appropriate plots and MAPE. Also try tweaking the different hyperparameters and also using different values for the timesteps.
-## Rubric [^1]
+Ahora que has construido un modelo SVR, construye uno nuevo con datos frescos (prueba uno de [estos conjuntos de datos de Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html)). Anota tu trabajo en un notebook. Visualiza los datos y tu modelo, y prueba su precisión usando MAPE y gráficos apropiados. También prueba ajustar distintos hiperparámetros y también usa distintos valores para los pasos de tiempo.
 
-| Criteria | Exemplary                                                    | Adequate                                                  | Needs Improvement                   |
+## Rúbrica [^1]
+
+| Criterio | Ejemplar                                                    | Adecuado                                                  | Necesita mejorar                   |
 | -------- | ------------------------------------------------------------ | --------------------------------------------------------- | ----------------------------------- |
-|          | A notebook is presented with an SVR model built, tested and explained with visualizations and accuracy stated. | The notebook presented is not annotated or contains bugs. | An incomplete notebook is presented |
+|          | Se presentó un notebook on un modelo SVR construido, probado y explicado con visualizaciones y precisión declarada. | El notebook presentado no está anotado o contiene errores. | Se presentó un notebook incompleto. |
 
-
-
-[^1]:The text in this section was based on the [assignment from ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/assignment.md)
+[^1]:El texto en esta sección se basó en la [asignación de ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/assignment.md)
