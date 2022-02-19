@@ -1,10 +1,11 @@
-# Poetic license
+# Licencia poética
 
-## Instructions
+## Instrucciones
 
-In [this notebook](https://www.kaggle.com/jenlooper/emily-dickinson-word-frequency) you can find over 500 Emily Dickinson poems previously analyzed for sentiment using Azure text analytics. Using this dataset, analyze it using the techniques described in the lesson. Does the suggested sentiment of a poem match the more sophistic Azure service's decision? Why or why not, in your opinion? Does anything surprise you?
-## Rubric
+En [este notebook](https://www.kaggle.com/jenlooper/emily-dickinson-word-frequency) puedes encontrar más de 500 poemas de Emily Dickinson previamente analizados por sentimiento usando análisis de texto de AZure. Usando este conjunto de datos, analízalo usando las técnicas descritas en la lección. ¿El sentimiento sugerido de un poema coincide con la decisión más sofisticada del servicio de Azure? ¿En tu opinión por qué o por qué no? ¿Algo te sorprende?
 
-| Criteria | Exemplary                                                                  | Adequate                                                | Needs Improvement        |
+## Rúbrica
+
+| Criterio | Ejemplar                                                                  | Adecuado                                                | Necesita mejorar        |
 | -------- | -------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------ |
-|          | A notebook is presented with a solid analysis of an author's sample output | The notebook is incomplete or does not perform analysis | No notebook is presented |
+|          | Se presentó un notebook con un análisis sólido de una muestra de salida del autor | El notebook se presenta incompleto o no ejecuta el análisis | No se presentó un notebook |
