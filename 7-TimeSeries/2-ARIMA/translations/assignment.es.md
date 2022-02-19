@@ -1,10 +1,11 @@
-# A new ARIMA model
+# Un nuevo modelo ARIMA
 
-## Instructions
+## Instrucciones
 
-Now that you have built an ARIMA model, build a new one with fresh data (try one of [these datasets from Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html). Annotate your work in a notebook, visualize the data and your model, and test its accuracy using MAPE.
-## Rubric
+Ahora que has construido un modelo de ARIMA, construye uno nuevo con datos frescos (prueba uno de [estos conjuntos de datos de Duke](http://www2.stat.duke.edu/~mw/ts_data_sets.html)). Anota tu trabajo en un notebook, visualiza los datos y tu modelo, y prueba su precisión usando MAPE.
 
-| Criteria | Exemplary                                                                                                           | Adequate                                                 | Needs Improvement                   |
+## Rúbrica
+
+| Criterio | Ejemplar                                                                                                           | Adecuado                                                 | Necesita mejorar                   |
 | -------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------- |
-|          | A notebook is presented with a new ARIMA model built, tested and explained with visualizations and accuracy stated. | The notebook presented is not annotated or contains bugs | An incomplete notebook is presented |
+|          | Se presentó un notebook con nuevo modelo de ARIMA construido, probado y explicado con visualizaciones y precisión declarada. | El notebook presentado no está anotado o contiene bugs | Se presentó un notebook incompleto |
