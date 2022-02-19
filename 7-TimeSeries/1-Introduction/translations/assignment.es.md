@@ -1,11 +1,11 @@
-# Visualize some more Time Series
+# Visualiza algunas series de tiempo más
 
-## Instructions
+## Instrucciones
 
-You've begun to learn about Time Series Forecasting by looking at the type of data that requires this special modeling. You've visualized some data around energy. Now, look around for some other data that would benefit from Time Series Forecasting. Find three examples (try [Kaggle](https://kaggle.com) and [Azure Open Datasets](https://azure.microsoft.com/en-us/services/open-datasets/catalog/?WT.mc_id=academic-15963-cxa)) and create a notebook to visualize them. Notate any special characteristics they have (seasonality, abrupt changes, or other trends) in the notebook.
+Has comenzado a aprender acerca de la predicción de series de tiempo al mirar el tipo de datos que requiere este modelado especial. Ya has visualizado algunos datos referentes a la energía. Ahora, mira alrededor para algunos otros datos que te beneficiarían de la predicción de series de tiempo. Encuentra tres ejemplos (prueba [Kaggle](https://kaggle.com) y [Azure Open Datasets](https://azure.microsoft.com/en-us/services/open-datasets/catalog/?WT.mc_id=academic-15963-cxa)) y crea un notebook para visualizarlos. Anota cualquier característica especial que tengan (estacionalidad, cambios abruptos, u otras tendencias) en el notebook.
 
-## Rubric
+## Rúbrica
 
-| Criteria | Exemplary                                              | Adequate                                             | Needs Improvement                                                                         |
+| Criterio | Ejemplar                                              | Adecuado                                             | Necesita mejorar                                                                         |
 | -------- | ------------------------------------------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-|          | Three datasets are plotted and explained in a notebook | Two datasets are plotted and explained in a notebook | Few datasets are plotted or explained in a notebook or the data presented is insufficient |
+|          | Se graficaron y explicaron tres conjuntos de datos en un notebook | Se graficaron y explicaron tres conjuntos de datos en un notebook | Se graficaron y explicaron pocos conjuntos de datos en un notebook o los datos presentados fueron insuficientes |
