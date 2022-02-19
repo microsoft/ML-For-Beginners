@@ -1,6 +1,5 @@
 # NLTK
 
-## Instructions
+## Instrucciones
 
-NLTK is a well-known library for use in computational linguistics and NLP. Take this opportunity to read through the '[NLTK book](https://www.nltk.org/book/)' and try out its exercises. In this ungraded assignment, you will get to know this library more deeply.
-
+NLTK es una biblioteca bien conocida para su uso en lingüística computacional y NLP. Toma esta oportunidad para leer el '[libro NLTK](https://www.nltk.org/book/)' y prueba sus ejercicios. En esta asignación sin calificar, conocerás más profundamente esta biblioteca más a fondo.
