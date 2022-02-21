@@ -1,25 +1,27 @@
-# A More Realistic World
+# Un mundo más realista
 
-In our situation, Peter was able to move around almost without getting tired or hungry. In a more realistic world, we has to sit down and rest from time to time, and also to feed himself. Let's make our world more realistic, by implementing the following rules:
+En nuestro caso, Pedro (Peter) fue capaz de moverse y casi sin cansarse o estar hambriento. En un mundo más realista, él tiene que sentarse y descansar de vez en cuando, así como también alimentarse. Hagamos nuestro mundo más realista, al implementar las siguientes reglas:
 
-1. By moving from one place to another, Peter loses **energy** and gains some **fatigue**.
-2. Peter can gain more energy by eating apples.
-3. Peter can get rid of fatigue by resting under the tree or on the grass (i.e. walking into a board location with a tree or grass - green field)
-4. Peter needs to find and kill the wolf
-5. In order to kill the wolf, Peter needs to have certain levels of energy and fatigue, otherwise he loses the battle.
-## Instructions
+1. Al moverse de un lugar a otro, Pedro pierde **energía** y obtiene algo de **fatiga**.
+2. Pedro puede adquirir más energía al comer manzanas.
+3. Pedro puede deshacerse de la fatiga al descansar bajo un árbol o en el pasto (esto es, entrar en una ubicación del tablero con un árbol o pasto - campo verde)
+4. Pedro necesita encontrar y matar al lobo
+5. Con el fin de matar al lobo, Pedro necesita tener ciertos niveles de energía y fatiga, de lo contrario pierde la batalla.
 
-Use the original [notebook.ipynb](notebook.ipynb) notebook as a starting point for your solution.
+## Instrucciones
 
-Modify the reward function above according to the rules of the game, run the reinforcement learning algorithm to learn the best strategy for winning the game, and compare the results of random walk with your algorithm in terms of number of games won and lost.
+Usa el notebook original [notebook.ipynb](../notebook.ipynb) como punto de partida para tu solución.
 
-> **Note**: In your new world, the state is more complex, and in addition to human position also includes fatigue and energy levels. You may chose to represent the state as a tuple (Board,energy,fatigue), or define a class for the state (you may also want to derive it from `Board`), or even modify the original `Board` class inside [rlboard.py](rlboard.py).
+Modifica la función reward de arriba de acuerdo a las reglas del juego, ejecuta el algoritmo de aprendizaje reforzado para aprender la mejor estrategia para ganar el juego, y compara los resultados de caminata aleatoria con tu algoritmo en términos de el número de juegos ganados y perdidos.
 
-In your solution, please keep the code responsible for random walk strategy, and compare the results of your algorithm with random walk at the end.
+> **Nota**: En tu nuevo mundo, el estado es más complejo, y además a la posición humana también incluye la fatiga y los niveles de energía. Puedes optar para representar el estado como una tupla (tablero, energía, fatiga), o define una clase para el estado (también puedes querer derivarlo de `Board`), o incluso modifica la clase original `Board` dentro de [rlboard.py](../rlboard.py).
 
-> **Note**: You may need to adjust hyperparameters to make it work, especially the number of epochs. Because the success of the game (fighting the wolf) is a rare event, you can expect much longer training time.
-## Rubric
+En tu solución, mantén el código responsable de la estrategia de caminata aleatoria, y compara los resultados de tu algoritmo con la caminata aleatoria al final.
 
-| Criteria | Exemplary                                                                                                                                                                                             | Adequate                                                                                                                                                                                | Needs Improvement                                                                                                                          |
+> **Nota**: Puedes necesitar ajustar los hiperparámetros para hacerlo funcionar, especialmente el número de épocas. Porque el éxito del juego (pelear contra el lobo) es un evento raro, puedes esperar un tiempo de entrenamiento mayor.
+
+## Rúbrica
+
+| Criterio | Ejemplar                                                                                                                                                                                             | Adecuado                                                                                                                                                                                | Necesita mejorar                                                                                                                          |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-|          | A notebook is presented with the definition of new world rules, Q-Learning algorithm and some textual explanations. Q-Learning is able to significantly improve the results comparing to random walk. | Notebook is presented, Q-Learning is implemented and improves results comparing to random walk, but not significantly; or notebook is poorly documented and code is not well-structured | Some attempt to re-define the rules of the world are made, but Q-Learning algorithm does not work, or reward function is not fully defined |
+|          | Se presentó un notebook con la definición de las nuevas reglas del mundo. El algoritmo Q-Learning y algunas explicaciones textuales. Q-Learning es capa de mejorar significativamente los resultados comparado con la caminata aleatoria. | Se presentó un notebook, Q-Learning se implementó y mejoró los resultados comparado con la caminata aleatoria, pero no de forma significativa; o el notebook está pobremente documentado y el código no está bien estructurado | Se hicieron algunos intentos para redefinir las reglas del mundo, pero el algoritmo de Q-Learning no funciona, o la función reward no está totalmente definida |
