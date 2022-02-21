@@ -1,43 +1,44 @@
-# Train Mountain Car
+# Entrena el carrito de montaña
 
-[OpenAI Gym](http://gym.openai.com) has been designed in such a way that all environments provide the same API - i.e. the same methods `reset`, `step` and `render`, and the same abstractions of **action space** and **observation space**. Thus is should be possible to adapt the same reinforcement learning algorithms to different environments with minimal code changes.
+[OpenAI Gym](http://gym.openai.com) ha sido diseñado de tal forma que todos los ambientes proveen la misma API - esto es, los mismos métodos `reset`, `step` y `render`, y las mismas abstracciones de **action space** y **observation space**. Así sería posible adaptar los mismos algoritmos de aprendizaje reforzado a diferentes ambientes con mínimos cambios al código.
 
-## A Mountain Car Environment
+## Un ambiente de carrito de montaña
 
-[Mountain Car environment](https://gym.openai.com/envs/MountainCar-v0/) contains a car stuck in a valley:
+El [ambiente de carrito de montaña](https://gym.openai.com/envs/MountainCar-v0/) contiene un carrito atrapado en un valle:
 
-<img src="images/mountaincar.png" width="300"/>
+<img src="../images/mountaincar.png" width="300"/>
 
-The goal is to get out of the valley and capture the flag, by doing at each step one of the following actions:
+El objetivo es salir del valle y capturar la bandera, al hacer a cada paso una de las siguientes acciones:
 
-| Value | Meaning |
+| Valor | Significado |
 |---|---|
-| 0 | Accelerate to the left |
-| 1 | Do not accelerate |
-| 2 | Accelerate to the right |
+| 0 | Acelerar a la izquierda |
+| 1 | No acelerar |
+| 2 | Acelerar a la derecha |
 
-The main trick of this problem is, however, that the car's engine is not strong enough to scale the mountain in a single pass. Therefore, the only way to succeed is to drive back and forth to build up momentum.
+El truco principal de este problema es, no obstante, que el motor del carrito no es lo suficientemente potente para escalar la montaña en una sola pasada. Por lo tanto, la única forma de lograrlo es conducir de hacia atrás y  adelante para generar impulso.
 
-Observation space consists of just two values:
+El espacio de observación consiste de sólo dos valores:
 
-| Num | Observation  | Min | Max |
-|-----|--------------|-----|-----|
-|  0  | Car Position | -1.2| 0.6 |
-|  1  | Car Velocity | -0.07 | 0.07 |
+| Num | Observación           | Min   | Max  |
+|-----|-----------------------|-------|------|
+|  0  | Posición del carrito   | -1.2  | 0.6  |
+|  1  | Velocidad del carrito | -0.07 | 0.07 |
 
-Reward system for the mountain car is rather tricky:
+El sistema de recompensas para el carrito de montaña es bastante difícil:
 
- * Reward of 0 is awarded if the agent reached the flag (position = 0.5) on top of the mountain.
- * Reward of -1 is awarded if the position of the agent is less than 0.5.
+* La recompensa de 0 es otorgada si el agente alcanzó la bandera (position = 0.5) en la cima de la montaña.
+* La recompensa de -1 es otorgada si la posición del agente es menos de 0.5.
 
-Episode terminates if the car position is more than 0.5, or episode length is greater than 200.
-## Instructions
+El episodio termina si la posición del carrito es más de 0.5, o la longitud del episodio es mayor que 200.
 
-Adapt our reinforcement learning algorithm to solve the mountain car problem. Start with existing [notebook.ipynb](notebook.ipynb) code, substitute new environment, change state discretization functions, and try to make existing algorithm to train with minimal code modifications. Optimize the result by adjusting hyperparameters.
+## Instrucciones
 
-> **Note**: Hyperparameters adjustment is likely to be needed to make algorithm converge. 
-## Rubric
+Adapta nuestro algoritmo de aprendizaje reforzado para resolver el problema del carrito de montaña. Comienza con el código existente en [notebook.ipynb](../notebook.ipynb), substituye el nuevo ambiente, cambia las funciones de discretización de estado, e intenta hacer que el algoritmo existente entrene con mínimas modificaciones al código. Optimiza el resultado al ajustar los hiperparámetros.
 
-| Criteria | Exemplary | Adequate | Needs Improvement |
+> **Nota**: El ajuste de los hiperparámetros es probable sea necesario para hacer que el algoritmo converja.
+## Rúbrica
+
+| Criterio | Ejemplar | Adecuado | Necesita mejorar |
 | -------- | --------- | -------- | ----------------- |
-|          | Q-Learning algorithm is successfully adapted from CartPole example, with minimal code modifications, which is able to solve the problem of capturing the flag under 200 steps. | A new Q-Learning algorithm has been adopted from the Internet, but is well-documented; or existing algorithm adopted, but does not reach desired results | Student was not able to successfully adopt any algorithm, but has mede substantial steps towards solution (implemented state discretization, Q-Table data structure, etc.) |
+|          | El algoritmo Q-Learning se adaptó de forma exitosa a partir del ejemplo CartPole, con mínimas modificaciones al código, el cual es capaz de resolver el problema al capturar la bandera con menos de 200 pasos. | Se adoptó un nuevo algoritmo Q-Learning de internet, pero está bien documentado; o se adoptó el algoritmo existente, pero no cumple los resultados deseados | El estudiante no fue capaz de adoptar algún algoritmo de forma exitosa, pero ha hecho pasos substanciales hacia la solución (implementó la discretización de estado, la estructura de datos de Q-Table, etc.) |
