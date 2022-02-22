@@ -78,7 +78,7 @@ Un buen modelo de regresión lineal será aquél que tenga un alto Coeficiente d
 
 ## Prepara tus datos para la regresión
 
-Ahora que tienes conocimiento de las matemáticas detrás de este ejercicio, crea un modelo de regresión para ver si puedes predecir cuál de los paquetes de calabazas tendrá los mejores precios. Alguien comprando calabazas para una parcela de calabazas de días festivos quisiera esta información para ser capaz de optimizar sus compras de paquetes de calabazas para la parcela.
+Ahora que tienes conocimiento de las matemáticas detrás de este ejercicio, crea un modelo de regresión para ver si puedes predecir cuál de los paquetes de calabazas tendrá los mejores precios. Alguien comprando calabazas para una parcela de calabazas en días festivos quisiera esta información para ser capaz de optimizar sus compras de paquetes de calabazas para la parcela.
 
 Ya que usarás Scikit-learn, no hay razón para hacer esto a mano (¡aunque podrías!). En el bloque principal de procesamientos de datos de tu notebook de lección, agrega una biblioteca de Scikit-learn para convertir automáticamente todos los datos de cadena a números:
 
