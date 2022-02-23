@@ -36,7 +36,7 @@ Viaja con nosotros alrededor del mundo mientras aplicamos estas técnicas clási
 - Realiza el examen posterior a la lección.
 - Completa el desafío.
 - Completa la asignación.
-- Después de completar un grupo de lecciones, visita el [tablero de discusión](https://github.com/microsoft/ML-For-Beginners/discussions) y "aprende en voz alta" al llenar la rúbrica PAT apropiada. Un 'PAT' es una herramienta de evaluación del progreso que es una rúbrica la cual llenas para avanzar en tu aprendizaje. También puede reaccionar a otros PATs y así aprender juntos.
+- Después de completar un grupo de lecciones, visita el [tablero de discusión](https://github.com/microsoft/ML-For-Beginners/discussions) y "aprende en voz alta" llenando la rúbrica PAT apropiada. Un 'PAT' es una herramienta de evaluación del progreso que es una rúbrica la cual llenas para avanzar en tu aprendizaje. También puede reaccionar a otros PATs y así aprender juntos.
 
 > Para mayor estudio, recomendamos seguir estos módulos y rutas de aprendizaje de [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa).
 
