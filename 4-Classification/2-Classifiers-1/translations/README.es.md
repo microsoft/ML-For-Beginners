@@ -48,7 +48,7 @@ Asumiendo que completaste la [Lección 1](../../1-Introduction/translations/READ
     cuisines_label_df.head()
     ```
 
-    It will look like this:
+    Se verá así:
 
     ```output
     0    indian
@@ -111,7 +111,7 @@ Una mejor forma a estar adivinando, es seguir las ideas de esta [hoja de trucos 
 ![Hoja de trucos para problemas multiclase](../images/cheatsheet.png)
 > Una sección de la hoja de trucos de algoritmos de Microsoft, detallando opciones de clasificación multiclase.
 
-✅ !Descarga esta hoja de trucos, imprímela y cuélgala en tu pared!
+✅ ¡Descarga esta hoja de trucos, imprímela y cuélgala en tu pared!
 
 ### Razonamiento
 
@@ -119,7 +119,7 @@ Veamos si podemos razonar nuestro camino a través de diferentes enfoques dadas 
 
 - **Las redes neuronales son muy pesadas**. Dado nuestro conjunto de datos limpio aunque mínimo, y el hecho que estamos ejecutando el entrenamiento de forma local vía los notebooks, las redes neuronales son demasiado pesadas para esta tarea.
 - **Sin clasificador de dos clases**. No usamos clasificador de dos clases, por lo que descarta un uno-contra-todos.
-- **El árbol de decisión o la regresión logística podría funcionar**. Un árbolo de decisión podría funcionar, o la regresión logística para datos multiclase.
+- **El árbol de decisión o la regresión logística podría funcionar**. Un árbol de decisión podría funcionar, o la regresión logística para datos multiclase.
 - **Los árboles de decisión potenciados multiclase resuelven un problema diferente**. El árbol de decisión potenciado multiclase es el más adecuado para tareas no paramétricas, por ejemplo, las tareas designadas para construir clasificaciones, por lo que no es útil para nosotros.
 
 ### Usando Scikit-learn
@@ -210,7 +210,7 @@ Ya que estás usando un caso multiclase, necesitas elegir qué _esquema_ usar y 
     |   korean | 0.017277 |
     |     thai | 0.007634 |
 
-    ✅ ¿Puedes explicar por qué el modelo está muy seguro esta es una cocina India?
+    ✅ ¿Puedes explicar por qué el modelo está muy seguro de que esta es una cocina India?
 
 1. Obtén mayor detalle al imprimir un reporte de clasificación, como lo hiciste en las lecciones de regresión:
 
@@ -238,7 +238,7 @@ En esta lección, usaste tus datos limpios para construir un modelo de aprendiza
 
 ## Revisión y autoestudio
 
-Indaga un poco más en las matemática detrás de la regresión logística en [esta lección](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
+Indaga un poco más en las matemáticas detrás de la regresión logística en [esta lección](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
 
 ## Asignación
 
