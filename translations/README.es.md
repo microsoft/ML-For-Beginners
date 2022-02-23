@@ -32,7 +32,7 @@ Viaja con nosotros alrededor del mundo mientras aplicamos estas técnicas clási
 
 - Comienza con un examen previo a la lección.
 - Lee las lecciones y completa las actividades, pausando y reflexionando en cada verificación de conocimiento.
-- Intenta crear los proyectos al comprender las lecciones en lugar de ejecutar la solución en código; sin embargo ese código se encuentra disponible en los directorios `/solution` en cada lección orientada a proyecto.
+- Intenta crear los proyectos al comprender las lecciones en lugar de ejecutar el código de la solución; sin embargo ese código se encuentra disponible en los directorios `/solution` en cada lección orientada a proyecto.
 - Realiza el examen posterior a la lección.
 - Completa el desafío.
 - Completa la asignación.
