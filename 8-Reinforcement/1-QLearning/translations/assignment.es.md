@@ -14,7 +14,7 @@ Usa el notebook original [notebook.ipynb](../notebook.ipynb) como punto de parti
 
 Modifica la función reward de arriba de acuerdo a las reglas del juego, ejecuta el algoritmo de aprendizaje reforzado para aprender la mejor estrategia para ganar el juego, y compara los resultados de caminata aleatoria con tu algoritmo en términos de el número de juegos ganados y perdidos.
 
-> **Nota**: En tu nuevo mundo, el estado es más complejo, y además a la posición humana también incluye la fatiga y los niveles de energía. Puedes optar para representar el estado como una tupla (tablero, energía, fatiga), o define una clase para el estado (también puedes querer derivarlo de `Board`), o incluso modifica la clase original `Board` dentro de [rlboard.py](../rlboard.py).
+> **Nota**: En tu nuevo mundo, el estado es más complejo, y además a la posición humana también incluye la fatiga y los niveles de energía. Puedes optar por representar el estado como una tupla (tablero, energía, fatiga), o definir una clase para el estado (también puedes querer derivarlo de `Board`), o incluso modifica la clase original `Board` dentro de [rlboard.py](../rlboard.py).
 
 En tu solución, mantén el código responsable de la estrategia de caminata aleatoria, y compara los resultados de tu algoritmo con la caminata aleatoria al final.
 
