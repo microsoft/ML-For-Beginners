@@ -12,9 +12,16 @@
 
 > 🌍 Viaja alrededor del mundo mientras exploramos el aprendizaje automático a través de las culturas del mundo 🌍
 
-Los defensores de Azure Cloud en Microsoft están complacidos en ofrecer un plan de estudios de 12 semanas, con 26 lecciones, todas acerca de **aprendizaje automático**. En este plan de estudios, aprenderás acerca de lo que algunas veces es llamado **aprendizaje automático clásico**, usando principalmente la biblioteca Scikit-learn y evitando el aprendizaje profundo, el cual se aborda en nuestro próximo plan de estudios 'IA para principiantes'. ¡También empareja estas lecciones con nuestro [plan de estudios 'Ciencia de Datos para principiantes'](https://aka.ms/datascience-beginners)!
+Los defensores de Azure Cloud en Microsoft están complacidos en ofrecer un plan de estudios de 12 semanas, con 26 lecciones, todas acerca del **aprendizaje automático**. En este plan de estudios, aprenderás acerca de lo que algunas veces es llamado **aprendizaje automático clásico**, usando principalmente Scikit-learn y evitando el aprendizaje profundo, el cual se aborda en nuestro próximo plan de estudios 'IA para principiantes'. ¡También acompaña estas lecciones con nuestro [plan de estudios 'Ciencia de Datos para principiantes'](https://aka.ms/datascience-beginners)!
 
-Viaja con nosotros alrededor del mundo mientras aplicamos estas técnicas clásicas a los datos de distintas áreas del mundo. Cada lección incluye exámenes previos y posteriores a la lección, instrucciones escritas para completar la lección, una solución, una asignación y más. Nuestra pedagogía basa en proyectos te permite aprender mientras construyes, una forma probada para que las nuevas habilidades se te 'peguen'.
+Viaja con nosotros alrededor del mundo mientras aplicamos estas técnicas clásicas a los datos de distintas áreas del mundo. Cada lección incluye:
+
+- Exámenes previos y posteriores a cada lección
+- Instrucciones escritas para completar dicha lección
+- Una solución
+- Una tarea y más
+
+Nuestra enseñanza basada en proyectos, te permite aprender mientras practicas; esta es una forma aprobada para que adquieras nuevas habilidades.
 
 **✍️ Agradecimientos encarecidos** a Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, y Amy Boyd.
 
