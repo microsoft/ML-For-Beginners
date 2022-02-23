@@ -8,4 +8,4 @@ Has comenzado a aprender acerca de la predicción de series de tiempo al mirar e
 
 | Criterio | Ejemplar                                              | Adecuado                                             | Necesita mejorar                                                                         |
 | -------- | ------------------------------------------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-|          | Se graficaron y explicaron tres conjuntos de datos en un notebook | Se graficaron y explicaron tres conjuntos de datos en un notebook | Se graficaron y explicaron pocos conjuntos de datos en un notebook o los datos presentados fueron insuficientes |
+|          | Se graficaron y explicaron tres conjuntos de datos en un notebook | Se graficaron y explicaron dos conjuntos de datos en un notebook | Se graficaron y explicaron pocos conjuntos de datos en un notebook o los datos presentados fueron insuficientes |
