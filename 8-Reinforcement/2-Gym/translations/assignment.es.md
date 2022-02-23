@@ -27,7 +27,7 @@ El espacio de observación consiste de sólo dos valores:
 
 El sistema de recompensas para el carrito de montaña es engañoso:
 
-* La recompensa de 0 es otorgada si el agente alcanzó la bandera (position = 0.5) en la cima de la montaña.
+* La recompensa de 0 es otorgada si el agente alcanzó la bandera (posición = 0.5) en la cima de la montaña.
 * La recompensa de -1 es otorgada si la posición del agente es menos de 0.5.
 
 El episodio termina si la posición del carrito es más de 0.5, o la longitud del episodio es mayor que 200.
