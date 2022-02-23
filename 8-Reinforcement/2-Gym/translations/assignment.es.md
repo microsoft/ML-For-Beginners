@@ -36,7 +36,7 @@ El episodio termina si la posición del carrito es más de 0.5, o la longitud de
 
 Adapta nuestro algoritmo de aprendizaje reforzado para resolver el problema del carrito de montaña. Comienza con el código existente en [notebook.ipynb](../notebook.ipynb), substituye el nuevo ambiente, cambia las funciones de discretización de estado, e intenta hacer que el algoritmo existente entrene con mínimas modificaciones al código. Optimiza el resultado al ajustar los hiperparámetros.
 
-> **Nota**: El ajuste de los hiperparámetros es probable sea necesario para hacer que el algoritmo converja.
+> **Nota**: Es probable que ajustar los hiperparámetros sea necesario para hacer que el algoritmo converja.
 ## Rúbrica
 
 | Criterio | Ejemplar | Adecuado | Necesita mejorar |
