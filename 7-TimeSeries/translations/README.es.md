@@ -4,7 +4,7 @@
 
 ## Tema regional: Uso de la electricidad en el mundo ✨
 
-En estas dos lecciones, se te presentará la predicción de series de tiempo, un área algo menos conocida del aprendizaje automático que sin embargo es extremadamente valiosa para la industria y aplicaciones empresariales, entre otros campos. Mientras las redes neuronales pueden ser usadas para mejorar la utilidad de estos modelos, las estudiaremos en el contexto del aprendizaje automático clásico como modelos que ayudan a predecir el desempeño a futuro basado en el pasado.
+En estas dos lecciones, se te presentará la predicción de series de tiempo, un área algo menos conocida del aprendizaje automático que sin embargo es extremadamente valiosa para la industria y aplicaciones empresariales, entre otros campos. Mientras las redes neuronales pueden ser usadas para mejorar la utilidad de estos modelos, las estudiaremos en el contexto del aprendizaje automático clásico como modelos que ayudan a predecir el desempeño futuro basado en el pasado.
 
 Nuestro enfoque regional es el uso de la electricidad en el mundo, un conjunto de datos interesante para aprender a predecir el uso de la energía a futuro basado en patrones de cargas pasadas. Puedes ver cómo esta clase de predicción puede ser extremadamente útil en un entorno empresarial.
 
