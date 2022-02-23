@@ -4,7 +4,7 @@ En nuestro caso, Pedro (Peter) fue capaz de moverse y casi sin cansarse o estar 
 
 1. Al moverse de un lugar a otro, Pedro pierde **energía** y obtiene algo de **fatiga**.
 2. Pedro puede adquirir más energía al comer manzanas.
-3. Pedro puede deshacerse de la fatiga al descansar bajo un árbol o en el pasto (esto es, entrar en una ubicación del tablero con un árbol o pasto - campo verde)
+3. Pedro puede deshacerse de la fatiga al descansar bajo un árbol o en el pasto (ej. caminar en una ubicación del tablero con un árbol o pasto - campo verde)
 4. Pedro necesita encontrar y matar al lobo
 5. Con el fin de matar al lobo, Pedro necesita tener ciertos niveles de energía y fatiga, de lo contrario pierde la batalla.
 
