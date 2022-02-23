@@ -8,4 +8,4 @@ Dados tus ejercicios en esta lección, ahora sabes cómo construir aplicaciones 
 
 | Criterio | Ejemplar                                                              | Adecuado                              | Necesita mejorar                 |
 | -------- | ---------------------------------------------------------------------- | ------------------------------------- | --------------------------------- |
-|          | Se presentó tanto una aplicación web como un notebook, ambos bien documentados y ejecutándose | Uno de esos dos falta o contiene errores | A web app and notebook are presented, both well documented and running | One of those two is missing or flawed | Ambos faltan o están defectuosos |
+|          | Se presentó tanto una aplicación web como un notebook, ambos bien documentados y ejecutándose | Uno de esos dos falta o contiene errores | Ambos faltan o están defectuosos |
