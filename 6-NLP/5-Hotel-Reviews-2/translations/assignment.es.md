@@ -1,4 +1,4 @@
-# Prueba un conjunto de dato diferente
+# Prueba un conjunto de datos diferente
 
 ## Instrucciones
 
