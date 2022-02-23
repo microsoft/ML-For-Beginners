@@ -25,7 +25,7 @@ El espacio de observación consiste de sólo dos valores:
 |  0  | Posición del carrito   | -1.2  | 0.6  |
 |  1  | Velocidad del carrito | -0.07 | 0.07 |
 
-El sistema de recompensas para el carrito de montaña es bastante difícil:
+El sistema de recompensas para el carrito de montaña es engañoso:
 
 * La recompensa de 0 es otorgada si el agente alcanzó la bandera (position = 0.5) en la cima de la montaña.
 * La recompensa de -1 es otorgada si la posición del agente es menos de 0.5.
