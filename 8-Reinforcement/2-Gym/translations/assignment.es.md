@@ -16,7 +16,7 @@ El objetivo es salir del valle y capturar la bandera, al hacer a cada paso una d
 | 1 | No acelerar |
 | 2 | Acelerar a la derecha |
 
-El truco principal de este problema es, no obstante, que el motor del carrito no es lo suficientemente potente para escalar la montaña en una sola pasada. Por lo tanto, la única forma de lograrlo es conducir de hacia atrás y  adelante para generar impulso.
+El truco principal de este problema es, no obstante, que el motor del carrito no es lo suficientemente potente para escalar la montaña en una sola pasada. Por lo tanto, la única forma de lograrlo es conducir hacia atrás y adelante para generar impulso.
 
 El espacio de observación consiste de sólo dos valores:
 
