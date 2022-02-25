@@ -1,113 +1,116 @@
-# Introduction to clustering
+# Introducción al agrupamiento
 
-Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning) that presumes that a dataset is unlabelled or that its inputs are not matched with predefined outputs. It uses various algorithms to sort through unlabeled data and provide groupings according to patterns it discerns in the data. 
+El agrupamiento (clustering) es un tipo de [aprendizaje no supervisado](https://wikipedia.org/wiki/Unsupervised_learning) que supone que un conjunto de datos está sin etiquetar o que sus entradas no están emparejadas con salidas predefinidas. Usa varios algoritmos para ordenar datos sin etiquetar y provee agrupaciones de acuerdo a patrones que discierne en los datos.
 
-[![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
+[![No One Like You de PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You de PSquare")
 
-> 🎥 Click the image above for a video. While you're studying machine learning with clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
-### Introduction
+> 🎥 Haz clic en la imagen de arriba para ver el video. Mientras estudias aprendizaje automático con agrupamiento, disfruta de algunas canciones Dance Hall Nigerianas - esta es una canción muy popular del 2014 de PSquare.
 
-[Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) is very useful for data exploration. Let's see if it can help discover trends and patterns in the way Nigerian audiences consume music.
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
 
-✅ Take a minute to think about the uses of clustering. In real life, clustering happens whenever you have a pile of laundry and need to sort out your family members' clothes 🧦👕👖🩲. In data science, clustering happens when trying to analyze a user's preferences, or determine the characteristics of any unlabeled dataset. Clustering, in a way, helps make sense of chaos, like a sock drawer.
+### Introducción
 
-[![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
+El [agrupamiento](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) es muy útil para la exploración de datos. Veamos si nos puede ayudar a descubrir tendencias y patrones en la forma en que la audiencia Nigeriana consume música.
 
-> 🎥 Click the image above for a video: MIT's John Guttag introduces clustering
+✅ Piensa por un minuto acerca de los usos del agrupamiento. En la vida real, el agrupamiento sucede siempre que tienes un montón de ropa sucia y necesitas ordenar las prendas de los miembros de la familia 🧦👕👖🩲. En la ciencia de datos, el agrupamiento ocurre cuando intentamos analizar las preferencias de los usuarios, o determinar las características de cualquier conjunto de datos no etiquetado. El agrupamiento, de cierta forma, ayuda a dar sentido al caos, como un cajón de calcetines.
 
-In a professional setting, clustering can be used to determine things like market segmentation, determining what age groups buy what items, for example. Another use would be anomaly detection, perhaps to detect fraud from a dataset of credit card transactions. Or you might use clustering to determine tumors in a batch of medical scans. 
+[![introducción al agrupamiento](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "introducción al agrupamiento")
 
-✅ Think a minute about how you might have encountered clustering 'in the wild', in a banking, e-commerce, or business setting.
+> 🎥 Haz clic en la imagen de arriba para ver el video: John Guttag del MIT presenta el agrupamiento
 
-> 🎓 Interestingly, cluster analysis originated in the fields of Anthropology and Psychology in the 1930s. Can you imagine how it might have been used?
+En el ámbito profesional, el agrupamiento puede ser usado para determinar temas como la segmentación de mercado, qué grupos de edad compran qué cosas, por citar algunos. Otro uso sería la detección de anomalías, quizá para detectar el fraude de un conjunto de datos de transacciones de tarjetas de crédito. O podrías usar el agrupamiento para determinar tumores en un lote de escaneos médicos.
 
-Alternately, you could use it for grouping search results - by shopping links, images, or reviews, for example. Clustering is useful when you have a large dataset that you want to reduce and on which you want to perform more granular analysis, so the technique can be used to learn about data before other models are constructed.
+✅ Piensa un poco acerca de cómo encontrarías el agrupamiento 'en la naturaleza', en un entorno bancario, de comercio electrónico o de negocio.
 
-✅ Once your data is organized in clusters, you assign it a cluster Id, and this technique can be useful when preserving a dataset's privacy; you can instead refer to a data point by its cluster id, rather than by more revealing identifiable data. Can you think of other reasons why you'd refer to a cluster Id rather than other elements of the cluster to identify it?
+> 🎓 Curiosamente, el análisis de agrupamiento se originó en los campos de la Antropología y Psicología en los años 1930. ¿Puedes imaginar cómo fue usado?
 
-Deepen your understanding of clustering techniques in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)
-## Getting started with clustering
+Alternativamente, puedes usarlo para agrupar resultados de búsqueda - por enlaces de compra, imágenes o reseñas, por citar algunos. El agrupamiento es útil cuando tienes un gran conjunto de datos el cual quieres reducir y sobre el cual deseas realizar un análisis más granular, así la técnica puede ser usada para aprender acerca de los datos antes que se construyan otros modelos.
 
-[Scikit-learn offers a large array](https://scikit-learn.org/stable/modules/clustering.html) of methods to perform clustering. The type you choose will depend on your use case. According to the documentation, each method has various benefits. Here is a simplified table of the methods supported by Scikit-learn and their appropriate use cases:
+✅ Una vez que tus datos están organizados en grupos , asignale un Id de grupo, y esta técnica puede ser útil cuando conservas la privacidad de un conjunto de datos; en su lugar te puedes referir a un punto de datos por su id de grupo, en vez de sus datos identificables más reveladores. ¿Puedes pensar en otras razones del por qué preferirías un Id de grupo en lugar de otros elementos del grupo para identificarlo?
 
-| Method name                  | Use case                                                               |
-| :--------------------------- | :--------------------------------------------------------------------- |
-| K-Means                      | general purpose, inductive                                             |
-| Affinity propagation         | many, uneven clusters, inductive                                       |
-| Mean-shift                   | many, uneven clusters, inductive                                       |
-| Spectral clustering          | few, even clusters, transductive                                       |
-| Ward hierarchical clustering | many, constrained clusters, transductive                               |
-| Agglomerative clustering     | many, constrained, non Euclidean distances, transductive               |
-| DBSCAN                       | non-flat geometry, uneven clusters, transductive                       |
-| OPTICS                       | non-flat geometry, uneven clusters with variable density, transductive |
-| Gaussian mixtures            | flat geometry, inductive                                               |
-| BIRCH                        | large dataset with outliers, inductive                                 |
+Profundiza tu compresión de las técnicas de agrupamiento en este [módulo de aprendizaje](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)
 
-> 🎓 How we create clusters has a lot to do with how we gather up the data points into groups. Let's unpack some vocabulary:
+## Empezando con el agrupamiento
+
+[Scikit-learn ofrece un gran arreglo](https://scikit-learn.org/stable/modules/clustering.html) de métodos para realizar agrupamiento. El tipo que elijas dependerá de tu caso de uso. De acuerdo a la documentación, cada método tiene varios beneficios. Aquí tienes una tabla simplificada de los métodos soportados por Scikit-learn y sus casos de uso apropiados:
+
+| Nombre del método            | Caso de uso                                                               |
+| :--------------------------- | :-------------------------------------------------------------------------|
+| K-Medias                     | propósito general, inductivo                                              |
+| Propagación de afinidad      | Muchos, grupos desiguales, inductivo                                      |
+| Desplazamiento medio         | Muchos, grupos desiguales, inductivo                                      |
+| Agrupamiento espectral       | Pocos, grupos iguales, transductivo                                       |
+| Agrupación jerárquica Ward   | Muchos, grupos restringidos, transductivo                                 |
+| Agrupación aglomerativa      | Muchos, restringidos, distancia no Euclidianas, transductivo              |
+| DBSCAN                       | Geometría no plana, grupos desiguales, transductivo                       |
+| OPTICS                       | Geometría no plana, grupos desiguales con densidad variable, transductivo |
+| Mezclas Gaussianas           | Geometría plana, inductivo                                                |
+| BIRCH                        | Gran conjunto de datos con valores atípicos, inductivo                    |
+
+> 🎓 El cómo creamos los grupos tiene mucho que ver con cómo recopilamos los puntos de datos en grupos. Desempaquemos algo de vocabulario:
 >
-> 🎓 ['Transductive' vs. 'inductive'](https://wikipedia.org/wiki/Transduction_(machine_learning))
-> 
-> Transductive inference is derived from observed training cases that map to specific test cases. Inductive inference is derived from training cases that map to general rules which are only then applied to test cases. 
-> 
-> An example: Imagine you have a dataset that is only partially  labelled. Some things are 'records', some 'cds', and some are blank. Your job is to provide labels for the blanks. If you choose an inductive approach, you'd train a model looking for 'records' and 'cds', and apply those labels to your unlabeled data. This approach will have trouble classifying things that are actually 'cassettes'. A transductive approach, on the other hand, handles this unknown data more effectively as it works to group similar items together and then applies a label to a group. In this case, clusters might reflect 'round musical things' and 'square musical things'. 
-> 
-> 🎓 ['Non-flat' vs. 'flat' geometry](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
-> 
-> Derived from mathematical terminology, non-flat vs. flat geometry refers to the measure of distances between points by either 'flat' ([Euclidean](https://wikipedia.org/wiki/Euclidean_geometry)) or 'non-flat' (non-Euclidean) geometrical methods. 
+> 🎓 ['Transductivo' vs. 'inductivo'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 >
->'Flat' in this context refers to Euclidean geometry (parts of which are taught as 'plane' geometry), and non-flat refers to non-Euclidean geometry. What does geometry have to do with machine learning? Well, as two fields that are rooted in mathematics, there must be a common way to measure distances between points in clusters, and that can be done in a 'flat' or 'non-flat' way, depending on the nature of the data. [Euclidean distances](https://wikipedia.org/wiki/Euclidean_distance) are measured as the length of a line segment between two points. [Non-Euclidean distances](https://wikipedia.org/wiki/Non-Euclidean_geometry) are measured along a curve. If your data, visualized, seems to not exist on a plane, you might need to use a specialized algorithm to handle it.
+> La inferencia transductiva se deriva de los casos de entrenamiento observados que se asignan a casos de prueba específicos. La inferencia inductiva se deriva de los casos de entrenamiento que se asignan a reglas generales las cuales sólo aplican a los casos de prueba.
 >
-![Flat vs Nonflat Geometry Infographic](./images/flat-nonflat.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-> 
-> 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
-> 
-> Clusters are defined by their distance matrix, e.g. the distances between points. This distance can be measured in a few ways. Euclidean clusters are defined by the average of the point values, and contain a 'centroid' or center point. Distances are thus measured by the distance to that centroid. Non-Euclidean distances refer to 'clustroids', the point closest to other points. Clustroids in turn can be defined in various ways.
-> 
-> 🎓 ['Constrained'](https://wikipedia.org/wiki/Constrained_clustering)
-> 
-> [Constrained Clustering](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) introduces 'semi-supervised' learning into this unsupervised method. The relationships between points are flagged as 'cannot link' or 'must-link' so some rules are forced on the dataset.
+> Un ejemplo: Imagina que tienes un conjunto de datos que está parcialmente etiquetado. Algunas cosas son 'records', otras 'cds' y unas más están en blanco. Tu trabajo es proveer las etiquetas para los blancos. Si eliges un enfoque inductivo, entrenarías un modelo buscando 'records' y 'cds' y aplicarías esas etiquetas a tus datos sin etiquetar. Este enfoque tendrá problemas clasificando como que en realidad con 'cassettes'. Por otro lado, un enfoque transductivo, maneja estos datos desconocidos de forma más efectiva ya que funciona para agrupar elementos similares y luego aplica una etiqueta a un grupo. En este caso, los agrupamientos reflejan 'cosas musicales redondas' y 'cosas musicales cuadradas'.
 >
->An example: If an algorithm is set free on a batch of unlabelled or semi-labelled data, the clusters it produces may be of poor quality. In the example above, the clusters might group 'round music things' and 'square music things' and 'triangular things' and 'cookies'. If given some constraints, or rules to follow ("the item must be made of plastic", "the item needs to be able to produce music") this can help 'constrain' the algorithm to make better choices.
+> 🎓 [Geometría 'no plana' vs 'plana'](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
+>
+> Derivada de la terminología matemática, la geometría no plana versus plana se refiere a la medida de distancias entre puntos ya sea por métodos geométricos 'planos' ([Euclidianos](https://wikipedia.org/wiki/Euclidean_geometry)) o 'no planos' (no Euclidianos).
+>
+> En este contexto 'Plano' se refiere a la geometría Euclidiana (partes de las cuales se enseñan como geometría 'plana'), y no plana se refiere a la geometría no Euclidiana. ¿Qué tiene que ver la geometría con el aprendizaje automático? Bien, como dos campos que tienen sus raíces en las matemáticas, debe haber una forma común de medir las distancias entre puntos en los grupos, y eso puede hacerse de forma 'plana' o 'no plana', dependiendo de la naturaleza de los datos. Las [distancias Euclidianas](https://wikipedia.org/wiki/Euclidean_distance) se miden como la longitud de un segmento de línea entre dos puntos. Las [distancias no Euclidianas](https://wikipedia.org/wiki/Non-Euclidean_geometry) se miden como a lo largo de la curva. Si tus datos visualizados parecen no existir en un plano, podrías necesitar usar un algoritmo especializado para realizarlo.
+>
+![Infografía de geometría plana vs no plana](../images/flat-nonflat.png)
+> Infografía de [Dasani Madipalli](https://twitter.com/dasani_decoded)
+>
+> 🎓 ['Distancias'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
+>
+> Los agrupamientos se definen por su matriz de distancia, por ejemplo, las distancias entre puntos. Esta distancia puede ser medida de varias formas. Los agrupamientos Euclidianos se definen por el promedio de los valores de los puntos, y contienen un 'centroide' o punto central. por lo tanto, las distancias son medidas por la distancia al centroide. Las distancias no Euclidianas se refieren a 'clustroides', el punto más cercano a otros puntos. Los clustroides en turno pueden ser definidos de varias formas.
+>
+> 🎓 ['Restringido'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
-> 🎓 'Density'
-> 
-> Data that is 'noisy' is considered to be 'dense'. The distances between points in each of its clusters may prove, on examination, to be more or less dense, or 'crowded' and thus this data needs to be analyzed with the appropriate clustering method. [This article](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demonstrates the difference between using K-Means clustering vs. HDBSCAN algorithms to explore a noisy dataset with uneven cluster density.
+> El [agrupamiento restringido](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) presenta el término aprendizaje 'semi-supervisado' en este método no supervisado. Las relaciones entre los puntos son marcadas como 'cannot link' o 'must-link' por lo que algunas reglas son forzadas en el conjunto de datos.
+>
+> Un ejemplo: Si se libera un algoritmo en un lote de datos no etiquetados o semi-etiquetados, los agrupamientos que produce pueden ser de baja calidad. En el ejemplo de arriba, los agrupamientos pueden reunir 'round music things' y 'square music things' y 'triangular things' y 'cookies'. Si se proporcionan algunas restricciones o reglas a seguir ("el elemento debe estar hecho de plástico", "el elemento necesita ser capaz de reproducir música") esto puede ayudar a 'restringir' al algoritmo para que realice mejores elecciones.
+>
+> 🎓 'Densidad'
+>
+> Los datos que son 'ruidosos' se consideran como 'densos'. Las distancias entre los puntos en cada uno de sus grupos puede probar, al examinarse, ser más o menos densos, o 'atestados' y por lo tanto estos datos necesitan ser analizados con los métodos de agrupamiento apropiados. [Este artículo](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demuestra la diferencia entre usar los algoritmos K-Medias vs HDBSCAN para explorar un conjunto de datos ruidosos con densidad de agrupamiento desigual.
 
-## Clustering algorithms
+## Algoritmos de agrupamiento
 
-There are over 100 clustering algorithms, and their use depends on the nature of the data at hand. Let's discuss some of the major ones:
+Existen más de 100 algoritmos de agrupamiento, y sus usos dependen de la naturaleza de los datos que se te presentan. Discutamos algunos de los más importantes:
 
-- **Hierarchical clustering**. If an object is classified by its proximity to a nearby object, rather than to one farther away, clusters are formed based on their members' distance to and from other objects. Scikit-learn's agglomerative clustering is hierarchical.
+- **Agrupamiento jerárquico** Si un objeto se clasifica por su proximidad a un objeto cercano, en lugar de uno más lejano, los grupos se forman basados en las distancias de sus miembros hacia y desde otros objetos. El agrupamiento aglomerativo de Scikit-learn es jerárquico.
 
-   ![Hierarchical clustering Infographic](./images/hierarchical.png)
-   > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+   ![Infografía de agrupamiento jerárquico](../images/hierarchical.png)
+   > Infografía de [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Centroid clustering**. This popular algorithm requires the choice of 'k', or the number of clusters to form, after which the algorithm determines the center point of a cluster and gathers data around that point. [K-means clustering](https://wikipedia.org/wiki/K-means_clustering) is a popular version of centroid clustering. The center is determined by the nearest mean, thus the name. The squared distance from the cluster is minimized.
+- **Agrupamiento de centroide**. Este popular algoritmo require la elección de 'k', o el número de grupos a formar, tras lo cua el algoritmo determina el punto central de un grupo y reúne datos alrededor de ese punto. [El agrupamiento K-Medias](https://wikipedia.org/wiki/K-means_clustering) es una versión popular de agrupamiento de centroide. El centro se determina por la media más cercana, por eso el nombre. La distancia al cuadrado desde el grupo se minimiza.
 
-   ![Centroid clustering Infographic](./images/centroid.png)
-   > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+   ![Infografía de agrupamiento de centroide](../images/centroid.png)
+   > Infografía de [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Distribution-based clustering**. Based in statistical modeling, distribution-based clustering centers on determining the probability that a data point belongs to a cluster, and assigning it accordingly. Gaussian mixture methods belong to this type.
+- **Agrupamiento basado en distribución**. Se basa en el modelado estadístico, el agrupamiento basado en distribución se centra en determinar la probabilidad de los puntos de datos de pertenecer a un grupo, y los asigna en consecuencia. Los métodos de mezcla Gaussiana pertenecen a este tipo.
 
-- **Density-based clustering**. Data points are assigned to clusters based on their density, or their grouping around each other. Data points far from the group are considered outliers or noise. DBSCAN, Mean-shift and OPTICS belong to this type of clustering.
+- **Agrupamiento basado en densidad**. Los puntos de datos se asignan a grupos basado en su densidad, o su agrupación unos alrededor de otros. Los puntos de datos lejanos del grupo se consideran valores atípicos o ruido. DBSCAN, desplazamiento medio y OPTICS pertenecen a este tipo de agrupamiento.
 
-- **Grid-based clustering**. For multi-dimensional datasets, a grid is created and the data is divided amongst the grid's cells, thereby creating clusters.
+- **Agrupamiento basado en cuadrícula**. Para conjuntos de datos multi-dimensionales, se crea una cuadrícula y los datos se dividen entre las celdas de la cuadrícula, creando así los grupos.
 
-## Exercise - cluster your data
+## Ejercicio - agrupa tus datos
 
-Clustering as a technique is greatly aided by proper visualization, so let's get started by visualizing our music data. This exercise will help us decide which of the methods of clustering we should most effectively use for the nature of this data.
+El agrupamiento como técnica recibe mucha ayuda de una buena visualización, así que empecemos por visualizar nuestros datos de música. Este ejercicio nos ayudará a decidir cuál de los métodos de agrupamiento deberíamos usar de forma más efectiva de acuerdo a la naturaleza de estos datos.
 
-1. Open the _notebook.ipynb_ file in this folder.
+1. Abre el archivo _notebook.ipynb_ en este directorio.
 
-1. Import the `Seaborn` package for good data visualization.
+1. Importa el paquete `Seaborn` para una buena visualización de datos.
 
     ```python
     !pip install seaborn
     ```
 
-1. Append the song data from _nigerian-songs.csv_. Load up a dataframe with some data about the songs. Get ready to explore this data by importing the libraries and dumping out the data:
+1. Adjunta los datos de la canción del archivo _nigerian-songs.csv_. Carga un dataframe con algunos datos de las canciones. Prepárate para explorar estos datos al importar las bibliotecas y volcar los datos: 
 
     ```python
     import matplotlib.pyplot as plt
@@ -117,7 +120,7 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
     df.head()
     ```
 
-    Check the first few lines of data:
+    Revisa las primeras líneas de datos:
 
     |     | name                     | album                        | artist              | artist_top_genre | release_date | length | popularity | danceability | acousticness | energy | instrumentalness | liveness | loudness | speechiness | tempo   | time_signature |
     | --- | ------------------------ | ---------------------------- | ------------------- | ---------------- | ------------ | ------ | ---------- | ------------ | ------------ | ------ | ---------------- | -------- | -------- | ----------- | ------- | -------------- |
@@ -127,13 +130,13 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
     | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
     | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
 
-1. Get some information about the dataframe, calling `info()`:
+1. Obtén información acerca del dataframe, llamando a `info()`:
 
     ```python
     df.info()
     ```
 
-   The output looking like so:
+   La salida luce así:
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -161,13 +164,13 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
     memory usage: 66.4+ KB
     ```
 
-1. Double-check for null values, by calling `isnull()` and verifying the sum being 0:
+1. Vuelve a revisar los valores nulos, al llamar a `isnull()` y verifica que la suma sea 0:
 
     ```python
     df.isnull().sum()
     ```
 
-    Looking good:
+    Se ve bien:
 
     ```output
     name                0
@@ -189,7 +192,7 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
     dtype: int64
     ```
 
-1. Describe the data:
+1. Describe los datos:
 
     ```python
     df.describe()
@@ -206,11 +209,11 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
     | 75%   | 2017         | 242098.5    | 31         | 0.8295       | 0.403        | 0.87575  | 0.000234         | 0.164    | -3.331    | 0.177       | 125.03925  | 4              |
     | max   | 2020         | 511738      | 73         | 0.966        | 0.954        | 0.995    | 0.91             | 0.811    | 0.582     | 0.514       | 206.007    | 5              |
 
-> 🤔 If we are working with clustering, an unsupervised method that does not require labeled data, why are we showing this data with labels? In the data exploration phase, they come in handy, but they are not necessary for the clustering algorithms to work. You could just as well remove the column headers and refer to the data by column number. 
+> 🤔 Si estamos trabajando con el agrupamiento, un método no supervisado que no requiere datos etiquetados. ¿Por qué mostramos estos datos con etiquetas? En la fase de exploración de datos, son útiles, pero no son necesarias para que el algoritmo de agrupamiento funcione.  Podrías sólo eliminar los encabezados de columna y referirte a los datos por el número de columna.
 
-Look at the general values of the data. Note that popularity can be '0', which show songs that have no ranking. Let's remove those shortly.
+Observa los valores generales de los datos. Nota que 'popularity' puede ser '0', lo cual muestra las canciones que no tienen clasificación. Eliminemos esas.
 
-1. Use a barplot to find out the most popular genres:
+1. Usa un gráfico de barras para descubrir los géneros más populares:
 
     ```python
     import seaborn as sns
@@ -222,13 +225,13 @@ Look at the general values of the data. Note that popularity can be '0', which s
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](./images/popular.png)
+    ![Los más populares](../images/popular.png)
 
-✅ If you'd like to see more top values, change the top `[:5]` to a bigger value, or remove it to see all.
+✅ Si te gustaría ver los mejores valores, cambia el valor top `[:5]` por uno mayor, o elimínalo para verlos todos.
 
-Note, when the top genre is described as 'Missing', that means that Spotify did not classify it, so let's get rid of it.
+Nota, cuando el género superior se describe como 'Missing', que significa que Spotify no lo clasificó, así que deshagámonos de él.
 
-1. Get rid of missing data by filtering it out
+1. Deshazte de los datos faltantes al filtrarlos
 
     ```python
     df = df[df['artist_top_genre'] != 'Missing']
@@ -239,11 +242,11 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
     plt.title('Top genres',color = 'blue')
     ```
 
-    Now recheck the genres:
+    Ahora revisa nuevamente los géneros:
 
-    ![most popular](images/all-genres.png)
+    ![Los más populares](../images/all-genres.png)
 
-1. By far, the top three genres dominate this dataset. Let's concentrate on `afro dancehall`, `afropop`, and `nigerian pop`, additionally filter the dataset to remove anything with a 0 popularity value (meaning it was not classified with a popularity in the dataset and can be considered noise for our purposes):
+1. Por mucho, los mejores tres géneros dominan este conjunto de datos. Concentrémonos en `afro dancehall`, `afropop`, y `nigerian pop`, adicionalmente filtra el conjunto de datos para remover todo lo que tenga un valor de popularidad de 0 (lo que significa no fue clasificado con una popularidad en el conjunto de datos y puede ser considerado ruido para nuestros propósitos):
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -255,7 +258,7 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
     plt.title('Top genres',color = 'blue')
     ```
 
-1. Do a quick test to see if the data correlates in any particularly strong way:
+1. Haz una prueba rápida para ver si los datos se correlacionan de alguna forma particularmente fuerte:
 
     ```python
     corrmat = df.corr()
@@ -263,21 +266,21 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](images/correlation.png)
+    ![Correlaciones](../images/correlation.png)
 
-    The only strong correlation is between `energy` and `loudness`, which is not too surprising, given that loud music is usually pretty energetic. Otherwise, the correlations are relatively weak. It will be interesting to see what a clustering algorithm can make of this data.
+    La única correlación fuerte es entre `energy` y `loudness`, lo cual no es de sorprender, dado que la música a todo volumen es usualmente muy energética. De lo contrario, las correlaciones son relativamente débiles. Será interesante ver lo que un algoritmo de agrupamiento puede hacer con estos datos.
 
-    > 🎓 Note that correlation does not imply causation! We have proof of correlation but no proof of causation. An [amusing web site](https://tylervigen.com/spurious-correlations) has some visuals that emphasize this point.
+    > 🎓 ¡Nota que la correlación no implica causalidad! Tenemos prueba de la correlación pero no de la causalidad. Un [sitio web divertido](https://tylervigen.com/spurious-correlations) tiene algunas imágenes que enfatizan este punto.
 
-Is there any convergence in this dataset around a song's perceived popularity and danceability? A FacetGrid shows that there are concentric circles that line up, regardless of genre. Could it be that Nigerian tastes converge at a certain level of danceability for this genre?  
+¿Hay convergencia alguna en este conjunto de datos en torno a la popularidad percibida y bailabilidad de la canción? Una rejilla frontal muestra que hay círculos concéntricos que se alínean, sin importar el género. ¿Podría ser que los gustos Nigerianos converjan a cierto nivel con la bailabilidad de este género?
 
-✅ Try different datapoints (energy, loudness, speechiness) and more or different musical genres. What can you discover? Take a look at the `df.describe()` table to see the general spread of the data points.
+✅ Prueba distintos puntos de datos (energy, loudness, speechiness) y más o distintos géneros musicales. ¿Qué puedes descubrir? Da un vistazo a la table `df.describe()` para ver la propagación general de los puntos de datos.
 
-### Exercise - data distribution
+### Ejercicio - distribución de datos
 
-Are these three genres significantly different in the perception of their danceability, based on their popularity?
+¿Son significativamente diferentes estos tres géneros en la percepció nde su bailabilidad, basados en su popularidad?
 
-1. Examine our top three genres data distribution for popularity and danceability along a given x and y axis.
+1. Examina nuestra distribución de datos de los tres mejores géneros por popularidad y bailabilidad junto con un eje x e y dados.
 
     ```python
     sns.set_theme(style="ticks")
@@ -289,15 +292,15 @@ Are these three genres significantly different in the perception of their dancea
     )
     ```
 
-    You can discover concentric circles around a general point of convergence, showing the distribution of points.
+    Puedes descubrir círculos concéntricos entorno alrededor de un punto general de convergencia, mostrando la distribución de los puntos.
 
-    > 🎓 Note that this example uses a KDE (Kernel Density Estimate) graph that represents the data using a continuous probability density curve. This allows us to interpret data when working with multiple distributions.
+    > 🎓 Nota que este ejemplo usa KDE (Estimación de la Densidad del Kernel), gráfico que representa los datos usando una curva de densidad de probabilidad continua. Esto nos permite interpretar los dato al trabajar con distribuciones múltilples.
 
-    In general, the three genres align loosely in terms of their popularity and danceability. Determining clusters in this loosely-aligned data will be a challenge:
+    En general, los tres géneros se alinean libremente en términos de su probabilidad y bailabilidad. Determinar los grupos en estos datos libremente alineados será un desafío:
 
-    ![distribution](images/distribution.png)
+    ![Distribución](../images/distribution.png)
 
-1. Create a scatter plot:
+1. Crea un gráfico de dispersión:
 
     ```python
     sns.FacetGrid(df, hue="artist_top_genre", size=5) \
@@ -305,26 +308,26 @@ Are these three genres significantly different in the perception of their dancea
        .add_legend()
     ```
 
-    A scatterplot of the same axes shows a similar pattern of convergence
+    Un gráfico de dispersión de los mismos ejes muestra un patrón similar de convergencia
 
-    ![Facetgrid](images/facetgrid.png)
+    ![Cadrícula de facetas](../images/facetgrid.png)
 
-In general, for clustering, you can use scatterplots to show clusters of data, so mastering this type of visualization is very useful. In the next lesson, we will take this filtered data and use k-means clustering to discover groups in this data that see to overlap in interesting ways.
+En general, para el agrupamiento, puedes usar gráficos de dispersión para mostrar grupos de datos, por lo que dominar este tipo de visualizaciones es muy útil. En la siguiente lección, tomaremos estos datos filtrados y usaremos el agrupamiento k-medias para descubrir grupos en estos datos que se vean superpuestos de formas interesantes.
 
 ---
 
-## 🚀Challenge
+## 🚀Desafío
 
-In preparation for the next lesson, make a chart about the various clustering algorithms you might discover and use in a production environment. What kinds of problems is the clustering trying to address?
+En preparación para la siguiente lección, realiza una gráfica acerca de los diverso algoritmos de agrupamiento que puedes descubrir y usar en un ambiente de producción. ¿Qué tipo de problemas trata de abordar el agrupamiento?
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/)
+## [Examen porterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/)
 
-## Review & Self Study
+## Revisión y auto-estudio
 
-Before you apply clustering algorithms, as we have learned, it's a good idea to understand the nature of your dataset. Read more on this topic [here](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
+Antes que apliques los algoritmos de agrupamiento, como aprendimos, es buena idea entender la naturaleza de tu conjunto de datos. Lee más sobre este tema [aquí](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
-[This helpful article](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) walks you through the different ways that various clustering algorithms behave, given different data shapes.
+[Este útil artículo](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) te guía a través de las distintas formas en que se comportan los distintos algoritmos de agrupamiento, dadas distintas formas de los datos.
 
-## Assignment
+## Asignación
 
-[Research other visualizations for clustering](assignment.md)
+[Investiga otras visualizaciones para agrupamiento](assignment.es.md)
