@@ -1,48 +1,48 @@
-# K-Means clustering
+# Agrupamiento K-Medias
 
-[![Andrew Ng explains Clustering](https://img.youtube.com/vi/hDmNF9JG3lo/0.jpg)](https://youtu.be/hDmNF9JG3lo "Andrew Ng explains Clustering")
+[![Andrew Ng explica el agrupamiento](https://img.youtube.com/vi/hDmNF9JG3lo/0.jpg)](https://youtu.be/hDmNF9JG3lo "Andrew Ng explica el agrupamiento")
 
-> 🎥 Click the image above for a video: Andrew Ng explains clustering
+> 🎥 Haz clic en la imagen de arriba para ver el video: Andrew Ng explica el agrupamiento"
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/29/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/29/)
 
-In this lesson, you will learn how to create clusters using Scikit-learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common clustering technique. Let's get started!
+En esta lección, aprenderás cómo crear grupos usando Scikit-learn y el conjunto de datos de música Nigeriana que importaste anteriormente. Cubriremos los conceptos básicos de K-Medias para agrupamiento. Ten en mente que, como aprendiste en lecciones anteriores, hay muchas formas de de trabajar con grupos y el método que uses depende de tus datos. Probaremos K-medias ya que es la técnica de agrupamiento más común. ¡Comencemos!
 
-Terms you will learn about:
+Términos que sobre los que aprenderás:
 
-- Silhouette scoring
-- Elbow method
-- Inertia
-- Variance
+- Puntaje de silueta
+- Método del codo
+- Inercia
+- Varianza
 
-## Introduction
+## Introducción
 
-[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) is a method derived from the domain of signal processing. It is used to divide and partition groups of data into 'k' clusters using a series of observations. Each observation works to group a given datapoint closest to its nearest 'mean', or the center point of a cluster.
+[El agrupamiento K-medias](https://wikipedia.org/wiki/K-means_clustering) es un método derivado del dominio del procesamiento de señales. Se usa para dividir y particionar grupos de datos en 'k' grupos usando una serie de observaciones. Cada observación funciona para agrupar un punto de datos más cercano a su 'media' más cercana, o el punto central de un grupo.
 
-The clusters can be visualized as [Voronoi diagrams](https://wikipedia.org/wiki/Voronoi_diagram), which include a point (or 'seed') and its corresponding region. 
+Los grupos pueden ser visualizados como [diagramas Voronoi](https://wikipedia.org/wiki/Voronoi_diagram), los cuales incluye un punto (o 'semilla') y su región correspondiente.
 
-![voronoi diagram](images/voronoi.png)
+![diagrama Voronoi](../images/voronoi.png)
 
-> infographic by [Jen Looper](https://twitter.com/jenlooper)
+> Infografía de [Jen Looper](https://twitter.com/jenlooper)
 
-The K-Means clustering process [executes in a three-step process](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+El proceso de agrupamiento K-medias [se ejecuta en un proceso de tres pasos](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
-1. The algorithm selects k-number of center points by sampling from the dataset. After this, it loops:
-    1. It assigns each sample to the nearest centroid.
-    2. It creates new centroids by taking the mean value of all of the samples assigned to the previous centroids.
-    3. Then, it calculates the difference between the new and old centroids and repeats until the centroids are stabilized.
+1. El algoritmo selecciona el k-número de puntos centrales al hacer muestreo del conjunto de datos. Después de esto, se repite:
+    1. Se asigna cada muestra al centroide más cercano.
+    2. Se crean nuevos centroides al tomar el valor medio de todas las muestras asignadas a los centroides previos.
+    3. Luego, se calcula la diferencia entre los centroides nuevos y viejos y se repite hasta que los centroides se estabilizan.
 
-One drawback of using K-Means includes the fact that you will need to establish 'k', that is the number of centroids. Fortunately the  'elbow method' helps to estimate a good starting value for 'k'. You'll try it in a minute.
+Un inconveniente de usar K-medias incluye el hecho que necesitarás establecer 'k', que es el número de centroides. Afortunadamente el 'método del codo' ayuda a estimar un buen valor inicial para 'k'. Lo probarás en un minuto.
 
-## Prerequisite
+## Prerrequisitos
 
-You will work in this lesson's _notebook.ipynb_ file that includes the data import and preliminary cleaning you did in the last lesson.
+Trabajarás en el archivo _notebook.ipynb_ de esta lección, que incluye la importación de datos y limpieza preliminar que hiciste en la última lección.
 
-## Exercise - preparation
+## Ejercicio - preparación
 
-Start by taking another look at the songs data.
+Comienza por darle otro vistazo a los datos de canciones.
 
-1. Create a boxplot, calling `boxplot()` for each column:
+1. Crea un gráfico de caja, llamando a `boxplot()` para cada columna:
 
     ```python
     plt.figure(figsize=(20,20), dpi=200)
@@ -84,13 +84,13 @@ Start by taking another look at the songs data.
     sns.boxplot(x = 'release_date', data = df)
     ```
 
-    This data is a little noisy: by observing each column as a boxplot, you can see outliers.
+    Estos datos son un poco ruidosos: al observar cada columna como un gráfico de caja, puedes ver los valores atípicos.
 
-    ![outliers](images/boxplots.png)
+    ![Valores atípicos](../images/boxplots.png)
 
-You could go through the dataset and remove these outliers, but that would make the data pretty minimal.
+Podrías revisar el conjunto de datos y remover estos valores atípicos, pero eso haría que quedara un mínimo de datos.
 
-1. For now, choose which columns you will use for your clustering exercise. Pick ones with similar ranges and encode the `artist_top_genre` column as numeric data:
+1. Por ahora, elege qué columnas usarás para tu ejercicio de agrupamiento. Elige unas con rangos similares y codifica la columna `artist_top_genre` como datos numéricos:
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -105,7 +105,7 @@ You could go through the dataset and remove these outliers, but that would make 
     y = le.transform(y)
     ```
 
-1. Now you need to pick how many clusters to target. You know there are 3 song genres that we carved out of the dataset, so let's try 3:
+1. Ahora necesitas elegir a cuántos grupos apuntar. Sabes que hay 3 géneros de canciones que extrajimos de el conjunto de datos, así que probemos con 3:
 
     ```python
     from sklearn.cluster import KMeans
@@ -122,9 +122,9 @@ You could go through the dataset and remove these outliers, but that would make 
     y_cluster_kmeans
     ```
 
-You see an array printed out with predicted clusters (0, 1,or 2) for each row of the dataframe.
+Ves un arreglo impreso con los grupos predichos (0, 1, 0 2) para cada fila del dataframe.
 
-1. Use this array to calculate a 'silhouette score':
+1. Usa este arreglo para calcular una 'puntaje de silueta':
 
     ```python
     from sklearn import metrics
@@ -132,15 +132,15 @@ You see an array printed out with predicted clusters (0, 1,or 2) for each row of
     score
     ```
 
-## Silhouette score
+## Puntaje de silueta
 
-Look for a silhouette score closer to 1. This score varies from -1 to 1, and if the score is 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters.[source](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam). 
+Busca un puntaje de silueta más cercano a 1. Este puntaje varía de -1 a 1, y si el puntaje es 1, el grupo es denso y bien separado de otros grupos. Un valor cercano a 0 representa grupos superpuestos con muestras muy cercanas al límite de decisión de los grupos vecinos. [Fuente](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam).
 
-Our score is **.53**, so right in the middle. This indicates that our data is not particularly well-suited to this type of clustering, but let's continue.
+Nuestro puntaje es de **.53**, justo a la mitad. Esto indica que nuestros datos no son particularmente adecuados para este tipo de agrupamiento, pero continuemos.
 
-### Exercise - build a model
+### Ejercicio - construye un modelo
 
-1. Import `KMeans` and start the clustering process.
+1. Importa `KMeans` e inicia el proceso de agrupamiento.
 
     ```python
     from sklearn.cluster import KMeans
@@ -153,23 +153,23 @@ Our score is **.53**, so right in the middle. This indicates that our data is no
     
     ```
 
-    There are a few parts here that warrant explaining.
+    Hay algunas partes que requieren explicación.
 
-    > 🎓 range: These are the iterations of the clustering process
+    > 🎓 range: Estas son las iteraciones del proceso de agrupamiento
 
-    > 🎓 random_state: "Determines random number generation for centroid initialization."[source](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+    > 🎓 random_state: "Determina la generación de números aleatorios para la inicialización del centroide." [Fuente](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓 WCSS: "within-cluster sums of squares" measures the squared average distance of all the points within a cluster to the cluster centroid.[source](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce). 
+    > 🎓 WCSS: "within-cluster sums of squares (suma de cuadrados dentro del grupo)" mide la distancia cuadrática promedio de todos los puntos dentro de un grupo al centroide dle grupo. [Fuente](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
 
-    > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
+    > 🎓 Inertia: Los algoritmos K-medias intentan elegir los centroides para minimizar la 'inertia (inercia)', "una medida de cuánta coherencia interna  tienen los grupos." [Fuente](https://scikit-learn.org/stable/modules/clustering.html). El valor se agrega a la variable wcss en cada iteración.
 
-    > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
+    > 🎓 k-means++: En [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) puedes usar la optimización 'k-means++', la cual "inicializa los centroides para que sean (generalmente) distantes uno de otro, llevando a probablemente mejores resultados que la inicialización aleatoria".
 
-### Elbow method
+### Método del codo
 
-Previously, you surmised that, because you have targeted 3 song genres, you should choose 3 clusters. But is that the case?
+Anteriormente, supusiste que, porque has apuntado a 3 géneros de canciones, deberías elegir 3 grupos. ¿Pero es el caso?
 
-1. Use the 'elbow method' to make sure.
+1. Usa el 'método del codo' para asegurarte.
 
     ```python
     plt.figure(figsize=(10,5))
@@ -180,13 +180,13 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
     plt.show()
     ```
 
-    Use the `wcss` variable that you built in the previous step to create a chart showing where the 'bend' in the elbow is, which indicates the optimum number of clusters. Maybe it **is** 3!
+    Usa la variable `wcss` que construiste en el paso anterior para crear una gráfica que muestre dónde se está 'la curva' en el codo, la cual indica el número óptimo de grupos. ¡Quizá **es** 3!
 
-    ![elbow method](images/elbow.png)
+    ![Método del codo](../images/elbow.png)
 
-## Exercise - display the clusters
+## Ejercicio - muestra los grupos
 
-1. Try the process again, this time setting three clusters, and display the clusters as a scatterplot:
+1. Prueba el proceso de nuevo, esta vez configurando 3 grupos, y muestra los grupos como un gráfico de dispersión:
 
     ```python
     from sklearn.cluster import KMeans
@@ -199,7 +199,7 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
     plt.show()
     ```
 
-1. Check the model's accuracy:
+1. Revisa la precisión del modelo:
 
     ```python
     labels = kmeans.labels_
@@ -211,41 +211,41 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
     print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
     ```
 
-    This model's accuracy is not very good, and the shape of the clusters gives you a hint why. 
+    La precisión de este modelo no es tan buena, y la forma de los grupos te dará una pista del por qué.
 
-    ![clusters](images/clusters.png)
+    ![Grupos](../images/clusters.png)
 
-    This data is too imbalanced, too little correlated and there is too much variance between the column values to cluster well. In fact, the clusters that form are probably heavily influenced or skewed by the three genre categories we defined above. That was a learning process!
+    Estos datos están demasiado desequilibrados, muy poco correlacionados y tienen demasiada varianza entre los valores de columna para agrupar bien. De hecho, los grupos que forman están probablemente fuertemente influenciados o sesgados por las tres categorías de géneros que definimos arriba. ¡Eso fue un proceso de aprendizaje!
 
-    In Scikit-learn's documentation, you can see that a model like this one, with clusters not very well demarcated, has a 'variance' problem:
+    En la documentación de Scikit-learn, puedes ver que un modelo como este, con grupos no muy bien demarcados, tienen un problema de 'varianza':
 
-    ![problem models](images/problems.png)
-    > Infographic from Scikit-learn
+    ![Modelos de problemas](../images/problems.png)
+    > Infografía de Scikit-learn
 
-## Variance
+## Varianza
 
-Variance is defined as "the average of the squared differences from the Mean" [source](https://www.mathsisfun.com/data/standard-deviation.html). In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 
+La varianza se define como "ep promedio de diferencias cuadráticas de la media". [Fuente](https://www.mathsisfun.com/data/standard-deviation.html). En el contexto de este problema de agrupamiento, se refiere a los datos en los que los números de nuestro conjunto de datos tienden a divergir demasiado de la media.
 
-✅ This is a great moment to think about all the ways you could correct this issue. Tweak the data a bit more? Use different columns? Use a different algorithm? Hint: Try [scaling your data](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) to normalize it and test other columns.
+✅ Este es un buen momento para pensar acerca de todas las formas en que podrías corregir este problema. ¿Modificar los datos un poco más? 'Usar columnas distintas? ¿Usar un algoritmo diferente? Intenta [escalando tus datos](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) para normalizarlos y probar otras columnas.
 
-> Try this '[variance calculator](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' to understand the concept a bit more.
+> Prueba esta '[calculadora de varianza](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' para entender un poca más el concepto.
 
 ---
 
-## 🚀Challenge
+## 🚀Desafío
 
-Spend some time with this notebook, tweaking parameters. Can you improve the accuracy of the model by cleaning  the data more (removing outliers, for example)? You can use weights to give more weight to given data samples. What else can you do to create better clusters?
+Dedica algo de tiempo a este notebook, ajustando los parámetros. ¿Puedes mejorar la precisión del modelo al limpiar más los datos (eliminando valores atípicos, por ejemplo)? Puedes usar pesos para dar mayor ponderación a las muestras de datos proporcionadas. ¿Qué más puedes hacer para crear mejores grupos?
 
-Hint: Try to scale your data. There's commented code in the notebook that adds standard scaling to make the data columns resemble each other more closely in terms of range. You'll find that while the silhouette score goes down, the 'kink' in the elbow graph smooths out. This is because leaving the data unscaled allows data with less variance to carry more weight. Read a bit more on this problem [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Pista: Prueba escalar tus datos. Hay código comentado en el notebook que agrega escalado estándar para hacer que las columnas de datos se parezcan más entre sí en términos de rango. Encontrarás que mientras el puntaje de silueta disminuye el 'pliegue' en la gráfica de codo se suaviza. Esto es por qué al dejar los datos sin escalar le permite a los datos con menos variación tengan más peso. Lee un poco más de este problema [aquí](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/30/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/30/)
 
-## Review & Self Study
+## Revisión y auto-estudio
 
-Take a look at a K-Means Simulator [such as this one](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). You can use this tool to visualize sample data points and determine its centroids. You can edit the data's randomness, numbers of clusters and numbers of centroids. Does this help you get an idea of how the data can be grouped?
+Da un vistazo a un simulador K-Medias [como este](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Puedes usar esta herramienta para visualizar puntos de datos de muestra y determina sus centroides. Puedes editar la aleatoriedad de los datos, el número de grupos y el número de centroides. ¿Esto te ayuda para tener una idea de cómo se pueden agrupar los datos?
 
-Also, take a look at [this handout on K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) from Stanford.
+También, da un vistazo a [este folleto de K-Medias](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) de Stanford.
 
-## Assignment
+## Asignación
 
-[Try different clustering methods](assignment.md)
+[Prueba distintos métodos de agrupamiento](assignment.es.md)
