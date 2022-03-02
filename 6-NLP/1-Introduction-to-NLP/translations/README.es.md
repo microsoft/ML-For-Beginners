@@ -1,105 +1,106 @@
-# Introduction to natural language processing
+# Introducción al procesamiento del lenguaje natural
 
-This lesson covers a brief history and important concepts of *natural language processing*, a subfield of *computational linguistics*.
+Esta lección cubre una breve historia y conceptos importante del *procesamiento del lenguaje natural*, un subcampo de la *ligüística computacional*.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
 
-## Introduction
+## Introducción
 
-NLP, as it is commonly known, is one of the best-known areas where machine learning has been applied and used in production software.
+NLP, como se conoce comúnmente, es una de las áreas más conocidas donde se ha aplicado y usado el aprendizaje automático en software de producción.
 
-✅ Can you think of software that you use every day that probably has some NLP embedded? What about your word processing programs or mobile apps that you use regularly?
+✅ ¿Puedes pensar en software que usas cada d´ia que probablemente tenga algo de NLP embebido? ¿Qué hay de tus programas de procesamiento de palabras o aplicaciones web que usas regularmente?
 
-You will learn about:
+Aprenderás acerca de:
 
-- **The idea of languages**. How languages developed and what the major areas of study have been.
-- **Definition and concepts**. You will also learn definitions and concepts about how computers process text, including parsing, grammar, and identifying nouns and verbs. There are some coding tasks in this lesson, and several important concepts are introduced that you will learn to code later on in the next lessons.
+- **La idea de los idiomas**. Cómo se desarrollaron los idiomas y cuáles han sido las mayores áreas de estudio.
+- **Definiciones y conceptos**. También aprenderás definiciones y conceptos acerca de cómo procesan texto las computadoras, incluyendo análisis, gramática e identificación de sustantivos y verbos. Hay algunas tareas de codificación en esta lección, y  se presentan varios conceptos importantes que aprenderás a codificar posteriormente en las próximas lecciones.
 
-## Computational linguistics
+## Lingüística computacional
 
-Computational linguistics is an area of research and development over many decades that studies how computers can work with, and even understand, translate, and communicate with languages. Natural language processing (NLP) is a related field focused on how computers can process 'natural', or human, languages.
+La lingüística computacional es una área de la investigación y desarrollo que por varias décadas ha estudiado cómo pueden trabajar las computadoras e incluso entender, traducir y comunicar con idiomas. El procesamiento del lenguaje natural es un campo relacionado que se enfoca en cómo las computadoras pueden procesar el lenguaje 'natural' o humano.
 
-### Example - phone dictation
+### Ejemplo - dictado telefónico
 
-If you have ever dictated to your phone instead of typing or asked a virtual assistant a question, your speech was converted into a text form and then processed or *parsed* from the language you spoke. The detected keywords were then processed into a format that the phone or assistant could understand and act on.
+Si alguna vez has dictado a tu teléfono en lugar de escribir o hacerle una pregunta al asistente virtual, tu voz se convirtió a texto y luego fue procesada o *parseada* desde el idioma que hablaste. Las palabras clave detectadas fueron procesadas en un formato que el teléfono o asistente pueda entender y actuar.
 
-![comprehension](images/comprehension.png)
-> Real linguistic comprehension is hard! Image by [Jen Looper](https://twitter.com/jenlooper)
+![Comprensión](../images/comprehension.png)
+> ¡La comprensión lingüística real es difícil! Imagen de [Jen Looper](https://twitter.com/jenlooper)
 
-### How is this technology made possible?
+### ¿Cómo es posible esta tecnología?
 
-This is possible because someone wrote a computer program to do this. A few decades ago, some science fiction writers predicted that people would mostly speak to their computers, and the computers would always understand exactly what they meant. Sadly, it turned out to be a harder problem that many imagined, and while it is a much better understood problem today, there are significant challenges in achieving 'perfect' natural language processing when it comes to understanding the meaning of a sentence. This is a particularly hard problem when it comes to understanding humour or detecting emotions such as sarcasm in a sentence.
+Es posible porque alguien escribió un programa de computadora que lo hace. Hace algunas décadas, algunos escritores de ciencia ficción predijeron que la gente hablaría regularmente con sus computadoras, y las computadoras siempre entenderían exactamente lo que éstas quieren. Tristemente, resultó ser un problema más complejo del que se imaginó, y aunque es un problema mejor comprendido ahora, hay desafíos significativos en lograr un 'perfecto' procesamiento del lenguaje natural cuando se trata de entender el significado de una oración. Este es un problema particularmente difícil cuando se trata de entender el humor o detectar las emociones tal como el sarcasmo en una oración.
 
-At this point, you may be remembering school classes where the teacher covered the parts of grammar in a sentence. In some countries, students are taught grammar and linguistics as a dedicated subject, but in many, these topics are included as part of learning a language: either your first language in primary school (learning to read and write) and perhaps a second language in post-primary, or high school. Don't  worry if you are not an expert at differentiating nouns from verbs or adverbs from adjectives!
+En este punto, recordarás las clases escolares donde el profesor cubría las partes de la gramática en una oración. En algunos países, los estudiantes aprenden gramática y lingüística como una materia dedicada, pero en varios casos, estos temas se incluyen como parte del aprendizaje de un idioma: ya sea tu primer idioma en la escuela primaria (aprendiendo a leer y escribir) y quizá como un segundo idioma en la escuela secundaria o la preparatoria. ¡No te preocupes si no eres un experto diferenciando sustantivos de verbos o adverbios de adjetivos!
 
-If you struggle with the difference between the *simple present* and *present progressive*, you are not alone. This is a challenging thing for many people, even native speakers of a language. The good news is that computers are really good at applying formal rules, and you will learn to write code that can *parse* a sentence as well as a human. The greater challenge you will examine later is understanding the *meaning*, and *sentiment*, of a sentence.
+Si tienes problemas diferenciando entre *presente simple* y *presente continuo*, no estás solo. Esto es un algo desafiante para mucha gente, incluso hablantes nativos de un idioma. La buena noticia es que las computadoras son muy buenas aplicando reglas formales, y aprenderás a escribir código que puede *parsear* una oración tan bien como un humano. El mayor desafío que examinarás más adelante es el entender el *significado* y *sentimiento* de una oración.
 
-## Prerequisites
+## Prerrequisitos
 
-For this lesson, the main prerequisite is being able to read and understand the language of this lesson. There are no math problems or equations to solve. While the original author wrote this lesson in English, it is also translated into other languages, so you could be reading a translation. There are examples where a number of different languages are used (to compare the different grammar rules of different languages). These are *not* translated, but the explanatory text is, so the meaning should be clear.
+Para esta lección, el prerrequisito principal es ser capaz de leer y comprender el idioma de esta lección. No hay problemas matemáticos ni ecuaciones a resolver. Aunque el actor original escribió esta lección en Inglés, también está traducida a otros idiomas, por lo que podrías leer la traducción. Hay ejemplos donde se usan un número distinto de idiomas (para comparar las distintas reglas gramaticales de los distintos idiomas). Estas *no* son traducidas, pero su texto explicativo sí, así que el significado debería ser claro.
 
-For the coding tasks, you will use Python and the examples are using Python 3.8.
+Para las tareas de programación, usarás Python y los ejemplos usan Python 3.8.
 
-In this section, you will need, and use:
+En esta sección, necesitarás y usarás:
 
-- **Python 3 comprehension**.  Programming language comprehension in Python 3, this lesson uses input, loops, file reading, arrays.
-- **Visual Studio Code + extension**. We will use Visual Studio Code and its Python extension. You can also use a Python IDE of your choice.
-- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) is a simplified text processing library for Python. Follow the instructions on the TextBlob site to install it on your system (install the corpora as well, as shown below):
+- **Comprensión de Python 3**. Comprensión del lenguaje de programación Python 3, esta lección usa entradas, ciclos, lectura de archivos, arreglos.
+- **Visual Studio Code + extensión**. Usaremos Visual Studio Code y su extensión para Python. También puedes usar algún IDE para Python de tu elección.
+- **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) es una biblioteca de procesamiento de texto simplificada para Python. Sigue las instrucciones en el sitio de TextBlob para instalarla en tu sistema (también instala corpora, como se muestra abajo):
 
    ```bash
    pip install -U textblob
    python -m textblob.download_corpora
    ```
 
-> 💡 Tip: You can run Python directly in VS Code environments. Check the [docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) for more information.
+> 💡 Consejo: Puedes ejecutar Python directamente en los ambientes de VS Code. Revisa la [documentación](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) para mayor información.
 
-## Talking to machines
+## Hablando con las máquinas
 
-The history of trying to make computers understand human language goes back decades, and one of the earliest scientists to consider natural language processing was *Alan Turing*.
+La historia de intentar hacer que las computadoras comprendan el lenguaje humano se remota a décadas atrás, y uno de los primeros científicos en considerar el procesamiento del lenguaje natural fue *Alan Turing*.
 
-### The 'Turing test'
+### La 'prueba de Turing'
 
-When Turing was researching *artificial intelligence* in the 1950's, he considered if a conversational test could be given to a human and computer (via typed correspondence) where the human in the conversation was not sure if they were conversing with another human or a computer.
+Cuando Turing estaba investigando *la inteligencia artificial* en los años 1950, considero que si una prueba conversacional pudiera ser proporcionada a un humano y una computadora (a través de correspondencia mecanografiada) donde el humano en la conversación no estuviese seguro si estuviesen conversando con otro humano o una computadora.
 
-If, after a certain length of conversation, the human could not determine that the answers were from a computer or not, then could the computer be said to be *thinking*?
+Si, después de cierto tiempo de conversación, el humano no pudiese determinar si las respuestas provinieron de una computadora o no, entonces pudiese decirse que la computadora estaba *pensando*?
 
-### The inspiration - 'the imitation game'
+### La inspiración - 'el juego de imitación'
 
-The idea for this came from a party game called *The Imitation Game* where an interrogator is alone in a room and tasked with determining which of two people (in another room) are male and female respectively. The interrogator can send notes, and must try to think of questions where the written answers reveal the gender of the mystery person. Of course, the players in the other room are trying to trick the interrogator by answering questions in such as way as to mislead or confuse the interrogator, whilst also giving the appearance of answering honestly.
+La idea para este juego provino de una juego de fiesta llamado *El juego de imitación* donde un interrogador está solo en una habitación y tiene como objetivo determinar cuál de las dos personas (en otra habitación) son hombres y mujeres, respectivamente. El interrogador puede enviar notas, y debe intentar pensar en preguntas donde las respuestas escritas revelen el género de la persona misteriosa. Desde luego, los jugadores en la otra habitación intentan engañar al interrogador al responder a sus preguntas de tal forma que engañen o confundan al interrogador, pero dando la apariencia de responder honestamente.
 
-### Developing Eliza
+### Desarrollando a Eliza
 
-In the 1960's an MIT scientist called *Joseph Weizenbaum* developed [*Eliza*](https://wikipedia.org/wiki/ELIZA), a computer 'therapist' that would ask the human questions and give the appearance of understanding their answers. However, while Eliza could parse a sentence and identify certain grammatical constructs and keywords so as to give a reasonable answer, it could not be said to *understand* the sentence. If Eliza was presented with a sentence following the format "**I am** <u>sad</u>" it might rearrange and substitute words in the sentence to form the response "How long have **you been** <u>sad</u>". 
+En los años 1960s un científico del MIT llamado *Joseph Weizenbaum* desarrolló a [*Eliza*](https://wikipedia.org/wiki/ELIZA), un 'terapeuta' de computadora que realiza preguntas a los humanos y da la sensación de entender sus respuestas. Sin embargo, mientras Eliza podía analizar una oración e identificar ciertas construcciones gramaticales y palabras clase para así darles respuestas razonables, no debería decirse  *entender* la oración. Si a Eliza le fuera presentada una oración con el siguiente formato "**I am** <u>sad</u>" podría reorganizar y sustituir palabras en la oración para formar la respuesta "How long have **you been** <u>sad</u>".
 
-This gave the impression that Eliza understood the statement and was asking a follow-on question, whereas in reality, it was changing the tense and adding some words. If Eliza could not identify a keyword that it had a response for, it would instead give a random response that could be applicable to many different statements. Eliza could be easily tricked, for instance if a user wrote "**You are** a <u>bicycle</u>" it might respond with "How long have **I been** a <u>bicycle</u>?", instead of a more reasoned response.
+Esto daba la impresión que Eliza entendió la oración y le fue hecha una pregunta de seguimiento, aunque en realidad, cambió el tiempo verbal y agregó algunas palabras. Si Eliza no podía identificar una palabra clave para la cual tenía una respuesta, en su lugar daría una respuesta aleatoria que pudiese ser aplicable a distintas oraciones. Eliza podía ser engañada fácilmente, por ejemplo si un usuario escribió "**You are** a <u>bicycle</u>" podría responder con "How long have **I been** a <u>bicycle</u>?", en lugar de una respuesta más elaborada.
 
-[![Chatting with Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Chatting with Eliza")
+[![Chateando con Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Chateando con Eliza")
 
-> 🎥 Click the image above for a video about original ELIZA program
+> 🎥 Da clic en la imagen de arriba para ver el video del programa original ELIZA
 
-> Note: You can read the original description of [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) published in 1966 if you have an ACM account. Alternately, read about Eliza on [wikipedia](https://wikipedia.org/wiki/ELIZA)
+> Nota: Puedes leer la descripción original de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publicado en 1966 si tienes una cuenta ACM, lee acerca de Eliza en [wikipedia](https://wikipedia.org/wiki/ELIZA)
 
-## Exercise - coding a basic conversational bot
+## Ejercicio - Programar un bot conversacional básico
 
-A conversational bot, like Eliza, is a program that elicits user input and seems to understand and respond intelligently. Unlike Eliza, our bot will not have several rules giving it the appearance of having an intelligent conversation. Instead, our bot will have one ability only, to keep the conversation going with random responses that might work in almost any trivial conversation.
+Un bot conversacional, como Eliza, es una programa que obtiene entradas del usuario y parece entender y responder inteligentemente. A diferencia de Eliza, nuestro bot no tendrá varias reglas dándole la apariencia de tener una conversación inteligente. En su lugar, nuestro bot tendrá sólo una habilidad, mantener la conversación con respuestas aleatorias que funcionen en casi cualquier conversación trivial.
 
-### The plan
+### El plan
 
-Your steps when building a conversational bot:
 
-1. Print instructions advising the user how to interact with the bot
-2. Start a loop
-   1. Accept user input
-   2. If user has asked to exit, then exit
-   3. Process user input and determine response (in this case, the response is a random choice from a list of possible generic responses)
-   4. Print response
-3. loop back to step 2
+Tus pasos para construir un bot conversacional:
 
-### Building the bot
+1. Imprime instrucciones asesorando al usuario cómo interactuar con el bot
+2. Empieza un ciclo
+   1. Acepta la entrada del usuario
+   2. Si el usuario pidió salir, entonces sal
+   3. Procesa la entrada del usuario y determina la respuesta (en este caso, la respuesta es una elección aleatoria de una lista de posibles respuestas genéricas)
+   4. Imprime la respuesta
+3. Vuelve al paso 2
 
-Let's create the bot next. We'll start by defining some phrases.
+### Construye el bot
 
-1. Create this bot yourself in Python with the following random responses:
+Ahora creemos el bot. Iniciaremos definiendo algunas frases.
+
+1. Crea este bot tú mismo en Python con las siguientes respuestas aleatorias:
 
     ```python
     random_responses = ["That is quite interesting, please tell me more.",
@@ -110,7 +111,7 @@ Let's create the bot next. We'll start by defining some phrases.
                         "Did you catch the game last night?"]
     ```
 
-    Here is some sample output to guide you (user input is on the lines starting with `>`):
+    Aquí tienes unas salidas de ejemplo para guiarte (la entrada del usuario está en las líneas que empiezan con `>`):
 
     ```output
     Hello, I am Marvin, the simple robot.
@@ -133,33 +134,33 @@ Let's create the bot next. We'll start by defining some phrases.
     It was nice talking to you, goodbye!
     ```
 
-    One possible solution to the task is [here](solution/bot.py)
+    [Aquí](../solution/bot.py) tienes una posible solución a la tarea.
 
-    ✅ Stop and consider
+    ✅ Detente y considera
 
-    1. Do you think the random responses would 'trick' someone into thinking that the bot actually understood them?
-    2. What features would the bot need to be more effective?
-    3. If a bot could really 'understand' the meaning of a sentence, would it need to 'remember' the meaning of previous sentences in a conversation too?
+    1. ¿Crees que las respuestas aleatorias podrías 'engañar' a alguien haciéndole pensar que el bot realmente los entendió?
+    2. ¿Qué características necesitaría el bot para ser más efectivo?
+    3. Si el bot pudiera 'entender' realmente el significado de una oración, ¿también necesitaría 'recordar' el significado de oraciones anteriores en una conversación?
 
 ---
 
-## 🚀Challenge
+## 🚀Desafío
 
-Choose one of the "stop and consider" elements above and either try to implement them in code or write a solution on paper using pseudocode.
+Elige uno de los elementos "Detente y considera" de arriba y trata de implementarlos en código o escribe una solución en papel usando pseudo-código.
 
-In the next lesson, you'll learn about a number of other approaches to parsing natural language and machine learning.
+En la siguiente lección, aprenderás acerca de otros enfoques de cómo analizar el lenguaje natural y aprendizaje automático.
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
 
-## Review & Self Study
+## Revisión y autoestudio
 
-Take a look at the references below as further reading opportunities.
+Da un vistazo a las referencias abajo para más oportunidades de lectura.
 
-### References
+### Referencias
 
 1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
-2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
+2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010.
 
-## Assignment 
+## Asignación
 
-[Search for a bot](assignment.md)
+[Buscar un bot](assignment.es.md)
