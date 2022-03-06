@@ -1,61 +1,61 @@
-# Translation and sentiment analysis with ML
+# Traducción y análisis de sentimiento con aprendizaje automático
 
-In the previous lessons you learned how to build a basic bot using `TextBlob`, a library that embeds ML behind-the-scenes to perform basic NLP tasks such as noun phrase extraction. Another important challenge in computational linguistics is accurate _translation_ of a sentence from one spoken or written language to another.
+En las lecciones anteriores aprendiste cómo construir un bot básico usando `TextBlob`, una biblioteca que embebe aprendizaje automático tras bambalinas para realizar tareas básicas de procesamiento del lenguaje natural (NLP) tales como extracción de frases nominales. Otro desafío importante en la lingüística computacional es la _traducción_ precisa de una oración de un idioma hablado o escrito a otro.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/35/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/35/)
 
-Translation is a very hard problem compounded by the fact that there are thousands of languages and each can have very different grammar rules. One approach is to convert the formal grammar rules for one language, such as English, into a non-language dependent structure, and then translate it by converting back to another language. This approach means that you would take the following steps:
+La traducción es siempre un problema difícil compuesto por el hecho que existen miles de idiomas y cada uno puede tener distintas reglas gramaticales. Un enfoque es convertir las reglas gramaticales formales para un idioma, como el Inglés, a una estructura no dependiente del idioma, y luego traducirlo al convertirlo de nuevo a otro idioma. Este enfoque significa que deberías realizar los siguientes pasos:
 
-1. **Identification**. Identify or tag the words in input language into nouns, verbs etc.
-2. **Create translation**. Produce a direct translation of each word in the target language format.
+1. **Identificacción**. Identifica o etiqueta las palabras en el idioma de entrada en sustantivos, verbos, etc.
+2. **Crea la traducción**. Produce una traducción directa de cada palabra en el formato del idioma objetivo.
 
-### Example sentence, English to Irish
+### Oración de ejemplo, Inglés a Irlandés
 
-In 'English', the sentence _I feel happy_ is three words in the order:
+En 'Inglés', la oración _I feel happy_ es de 3 palabras en el orden:
 
-- **subject** (I)
-- **verb** (feel)
-- **adjective** (happy)
+- **sujeto** (I)
+- **verbo** (feel)
+- **adjetivo** (happy)
 
-However, in the 'Irish' language, the same sentence has a very different grammatical structure - emotions like "*happy*" or "*sad*" are expressed as being *upon* you.
+Sin embargo, en el idioma 'Irlandés', la misma oración tiene una estructura gramatical muy diferente - emociones como "*happy*" o "*sad*" se expresan como `being *upon* you`.
 
-The English phrase `I feel happy` in Irish would be `Tá athas orm`. A *literal* translation would be `Happy is upon me`.
+La frase en Inglés `I feel happy` en Irlandés sería `Tá athas orm`. Una traducción *literal* sería `Happy is upon me`.
 
-An Irish speaker translating to English would say `I feel happy`, not `Happy is upon me`, because they understand the meaning of the sentence, even if the words and sentence structure are different.
+Un hablante Irlandés al traducir al Inglés diría `I feel happy`, no `Happy is upon me`, porque el entiende el significado de la oración, aún si las palabras y la estructura de la oración son diferentes.
 
-The formal order for the sentence in Irish are:
+El orden formal para la oración en Irlandés es:
 
-- **verb** (Tá or is)
-- **adjective** (athas, or happy)
-- **subject** (orm, or upon me)
+- **verbo** (Tá or is)
+- **adjetivo** (athas, or happy)
+- **sujeto** (orm, or upon me)
 
-## Translation
+## Traducción
 
-A naive translation program might translate words only, ignoring the sentence structure.
+Un programa de traducción simple podría traducir sólo las palabras, ignorando la estructura de la oración.
 
-✅ If you've learned a second (or third or more) language as an adult, you might have started by thinking in your native language, translating a concept word by word in your head to the second language, and then speaking out your translation. This is similar to what naive translation computer programs are doing. It's important to get past this phase to attain fluency!
+✅ Si has aprendido un segundo (o tercero o más) idioma como adulto, podrías haber comenzado pensando en tu idioma nativo, traduciendo un concepto palabra por palabra en tu cabeza al segundo idioma, y luego diciendo tu traducción. Esto es similar a lo que realizan los programas de traducción simple. ¡Es importante superar esta fase para lograr fluidez!
 
-Naive translation leads to bad (and sometimes hilarious) mistranslations: `I feel happy` translates literally to `Mise bhraitheann athas` in Irish. That means (literally) `me feel happy` and is not a valid Irish sentence. Even though English and Irish are languages spoken on two closely neighboring islands, they are very different languages with different grammar structures.
+La traducción simple lleva a malas (y algunas veces divertidas) traducciones: `I feel happy` se traduce literalmente a `Mise bhraitheann athas` en Irlandés. Lo cual significa (literalmente) `me feel happy` y no es una oración Irlandesa válida. Aún cuando el Inglés e Irlandés son idiomas hablados en dos islas vecinas muy cercanas, son idiomas muy diferentes con diferentes estructuras gramaticales.
 
-> You can watch some videos about Irish linguistic traditions such as [this one](https://www.youtube.com/watch?v=mRIaLSdRMMs)
+> Puedes ver más videos acerca de las tradiciones lingüísticas Irlandesas tales como [esta](https://www.youtube.com/watch?v=mRIaLSdRMMs)
 
-### Machine learning approaches
+### Enfoques del aprendizaje automático
 
-So far, you've learned about the formal rules approach to natural language processing. Another approach is to ignore the meaning of the words, and _instead use machine learning to detect patterns_. This can work in translation if you have lots of text (a *corpus*) or texts (*corpora*) in both the origin and target languages.
+Hasta ahora, hasta aprendido acerca de los enfoques a las reglas formales para el procesamiento del lenguaje natural. Otro enfoque es ignorar el significado de las palabras, y _en su lugar usar aprendizaje automático para detectar patrones_. Esto puede funcionar en traducciones si tienes demasiado texto (un *corpus*) o textos (*corpora*) tanto en el idioma origen como el destino.
 
-For instance, consider the case of *Pride and Prejudice*, a well-known English novel written by Jane Austen in 1813. If you consult the book in English and a human translation of the book in *French*, you could detect phrases in one that are _idiomatically_ translated into the other. You'll do that in a minute.
+Por ejemplo, considera el caso de *Orgullo y Prejuicio*, una novela Ingles muy conocidad escrita por Jane Austen in 1813. Si consultas el libro en Inglés y una traducción humana del libro en *Francés*, podrías detectar frases  en uno que están traducidas _idiomáticamente_ al otro. Lo cual harás en un minuto.
 
-For instance, when an English phrase such as `I have no money` is translated literally to French, it might become `Je n'ai pas de monnaie`. "Monnaie" is a tricky french 'false cognate', as 'money' and 'monnaie' are not synonymous. A better translation that a human might make would be `Je n'ai pas d'argent`, because it better conveys the meaning that you have no money (rather than 'loose change' which is the meaning of 'monnaie').
+Por ejemplo, cuando una frase en Inglés como `I have no money` se traduce literalmente al Francés, se convertiría en `Je n'ai pas de monnaie`. "Monnaie" es un 'falso cognado' francés, ya que 'money' y 'monnaie' no son sinónimos. Una mejor traducción que la humana sería `Je n'ai pas d'argent`, porque transmite mejor el significado de no tener dinero (en lugar de 'loose change' lo cual es el significado de 'monnaie').
 
-![monnaie](images/monnaie.png)
+![monnaie](../images/monnaie.png)
 
-> Image by [Jen Looper](https://twitter.com/jenlooper)
+> Imagen de [Jen Looper](https://twitter.com/jenlooper)
 
-If an ML model has enough human translations to build a model on, it can improve the accuracy of translations by identifying common patterns in texts that have been previously translated by expert human speakers of both languages.
+Si un modelo de aprendizaje automático tiene suficientes traducciones humanas para construir un modelo sobre el cual basarse, puede mejorar la precisión de las traducciones al identificar patrones comunes en textos que han sido previamente traducidos por hablantes humanos expertos de ambos idiomas.
 
-### Exercise - translation
+### Ejercicio - traducción
 
-You can use `TextBlob` to translate sentences. Try the famous first line of **Pride and Prejudice**:
+Puedes usar `TextBlob` para traducir oraciones. Prueba la famosa primer línea de **Orgullo y Prejuicio**:
 
 ```python
 from textblob import TextBlob
@@ -67,43 +67,43 @@ print(blob.translate(to="fr"))
 
 ```
 
-`TextBlob` does a pretty good job at the translation: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!". 
+`TextBlob` hace un muy buen trabajo al traducir: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!".
 
-It can be argued that TextBlob's translation is far more exact, in fact, than the 1932 French translation of the book by V. Leconte and Ch. Pressoir:
+Se podría discutir que la traducción de TextBlob es mucho más exacta, que la traducción Francesa de 1932 del libro por V. Leconte y Ch. Pressoir:
 
 "C'est une vérité universelle qu'un célibataire pourvu d'une belle fortune doit avoir envie de se marier, et, si peu que l'on sache de son sentiment à cet egard, lorsqu'il arrive dans une nouvelle résidence, cette idée est si bien fixée dans l'esprit de ses voisins qu'ils le considèrent sur-le-champ comme la propriété légitime de l'une ou l'autre de leurs filles."
 
-In this case, the translation informed by ML does a better job than the human translator who is unnecessarily putting words in the original author's mouth for 'clarity'.
+En este caso, la traducción proporcionada por el aprendizaje automático realiza un mejor trabajo que el traductor humano quien innecesariamente agrega palabras a las dichas por el autor para dar 'claridad'.
 
-> What's going on here? and why is TextBlob so good at translation? Well, behind the scenes, it's using Google translate, a sophisticated AI able to parse millions of phrases to predict the best strings for the task at hand. There's nothing manual going on here and you need an internet connection to use `blob.translate`.
+> ¿Qué pasa aquí? ¿y por qué TextBlob es tan bueno al traducir? Bien, tras bambalinas, usa Google translate, una IA sofisticada capaz de analizar millones de frases y predecir las mejores cadenas para la tarea en cuestión. No ocurre nada manual aquí y tienes una conexión a internet para usar `blob.translate`.
 
-✅ Try some more sentences. Which is better, ML or human translation? In which cases?
+✅ Prueba unas oraciones más. ¿Cuál es mejor, la traducción del aprendizaje automático o la humana? ¿En qué casos?
 
-## Sentiment analysis
+## Análisis de sentimiento
 
-Another area where machine learning can work very well is sentiment analysis. A non-ML approach to sentiment is to identify words and phrases which are 'positive' and 'negative'. Then, given a new piece of text, calculate the total value of the positive, negative and neutral words to identify the overall sentiment. 
+Otra área donde el aprendizaje automático funciona muy bien es el análisis de sentimiento. Un enfoque de no aprendizaje automático al sentimiento es identificar las palabras y frases que son 'positivas' y 'negativas'. Luego, dada una nueva porción de texto, calcular el valor total de las palabras positivas, negativas y neutras para identificar el sentimiento en general.
 
-This approach is easily tricked as you may have seen in the Marvin task - the sentence `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` is a sarcastic, negative sentiment sentence, but the simple algorithm detects 'great', 'wonderful', 'glad' as positive and 'waste', 'lost' and 'dark' as negative. The overall sentiment is swayed by these conflicting words.
+Este enfoque se puede engañar fácilmente como ya has visto en la tarea de Marvin - La oración `Great, that was a wonderful waste of time, I'm glad we are lost on this dark road` es una oración sarcástica y de sentimiento negativo, pero el algoritmo simple detecta 'great', 'wonderful', 'glad' como positivas y 'waste', 'lost' y 'dark' como negativas. El sentimiento general está influenciado por estas palabras contradictorias.
 
-✅ Stop a second and think about how we convey sarcasm as human speakers. Tone inflection plays a large role. Try to say the phrase "Well, that film was awesome" in different ways to discover how your voice conveys meaning.
+✅ Detente un segundo y piensa en cómo transmitimos el sarcasmo como hablantes humanos. La inflexión del tono juega un gran rol. Intenta decir la frase "Well, that film was awesome" de distintas formas para descubrir cómo tu voz transmite el significado.
 
-### ML approaches
+### Enfoques del aprendizaje automático
 
-The ML approach would be to manually gather negative and positive bodies of text - tweets, or movie reviews, or anything where the human has given a score *and* a written opinion. Then NLP techniques can be applied to opinions and scores, so that patterns emerge (e.g., positive movie reviews tend to have the phrase 'Oscar worthy' more than negative movie reviews, or positive restaurant reviews say 'gourmet' much more than 'disgusting').
+El enfoque del aprendizaje automático debería ser reunir manualmente los cuerpos de texto negativos y positivos - tweets, o reseñar de películas, o cualquier otra cosa donde el ser humano ha dado una calificación **y** una opinión escrita. Luego las técnicas de procesamiento del lenguaje natural pueden ser aplicadas a las opiniones y calificaciones, para que surjan los patrones (por ejemplo, las reseñas positivas de películas tienden a usar la frase 'merecedora del Oscar' más que las reseñas negativas, o las reseñas positivas de restaurantes dicen 'gourmet' mucho más que 'disgusting').
 
-> ⚖️ **Example**: If you worked in a politician's office and there was some new law being debated, constituents might write to the office with emails supporting or emails against the particular new law. Let's say you are tasked with reading the emails and sorting them in 2 piles, *for* and *against*. If there were a lot of emails, you might be overwhelmed attempting to read them all. Wouldn't it be nice if a bot could read them all for you, understand them and tell you in which pile each email belonged? 
-> 
-> One way to achieve that is to use Machine Learning. You would train the model with a portion of the *against* emails and a portion of the *for* emails. The model would tend to associate phrases and words with the against side and the for side, *but it would not understand any of the content*, only that certain words and patterns were more likely to appear in an *against* or a *for* email. You could test it with some emails that you had not used to train the model, and see if it came to the same conclusion as you did. Then, once you were happy with the accuracy of the model, you could process future emails without having to read each one.
+> ⚖️ **Ejemplo**: Si trabajaste en la oficina de un político y se debatía alguna ley nueva, los constituyentes pueden escribir a la oficina con correos electrónicos emitiendo su apoyo o rechazo a esa nueva ley. Digamos que te asignaron leer los correos electrónicos y ordenarlos en 2 pilas, *for* y *against*. Si hubiera muchos correos electrónicos, podrías estar abrumado al intentar leerlos todos. ¿No sería genial que un bot pudiera leerlos todos por ti, entenderlos y decirte a qué pila pertenecen?
+>
+> Una forma de lograrlo es usar aprendizaje automático. Entrenarías al modelo con una porción de los correos electrónicos de los que están en contra (*against*) y a favor (*for*). El modelo tendería a asociar frases y palabras con los lados en contra y a favor, *pero no entendería nada del contenido*, a menos que ciertas palabras y patrones fuesen más probables de aparecer en un correo clasificado como *against* o *for*. Podrías probarlo con algunos correo electrónicos que no usaste para entrenar el modelo, y ver si llegó a la misma conclusión que tú. Luego, una vez que estuvieses satisfecho con la precisión del modelo, podrías procesar correos posteriores sin necesidad de leer cada uno.
 
-✅ Does this process sound like processes you have used in previous lessons?
+✅ ¿Este proceso suena como algún proceso que has usado en lecciones previas?
 
-## Exercise - sentimental sentences
+## Ejercicio - oraciones sentimentales
 
-Sentiment is measured in with a *polarity* of -1 to 1, meaning -1 is the most negative sentiment, and 1 is the most positive. Sentiment is also measured with an 0 - 1 score for objectivity (0) and subjectivity (1).
+El sentimiento se mide con una *polaridad* de -1 a 1, donde -1 es el sentimiento más negativo, y 1 el más positivo. El sentimiento también puede medirse con el puntaje de 0 a 1, para la objetividad (0) y la subjetividad (1).
 
-Take another look at Jane Austen's *Pride and Prejudice*. The text is available here at [Project Gutenberg](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm). The sample below shows a short program which analyses the sentiment of first and last sentences from the book and display its sentiment polarity and subjectivity/objectivity score.
+Da un vistazo más a *Orgullo y Prejuicio* de Jane Austen. El texto está disponible en [Project Gutenberg](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm). la muestra de abajo muestra un pequeño programa el cual analiza el sentimiento de las primer y última oraciones del libro y muestra su polaridad de sentimiento y el puntaje subjetivo/objetivo.
 
-You should use the `TextBlob` library (described above) to determine `sentiment` (you do not have to write your own sentiment calculator) in the following task.
+Deberías usar la biblioteca `TextBlob` (descrita arriba) para determinar el sentimiento (`sentiment`) (no tienes que escribir tu propia calculadora de sentimiento) en la siguiente tarea.
 
 ```python
 from textblob import TextBlob
@@ -119,7 +119,7 @@ print(quote1 + " has a sentiment of " + str(sentiment1))
 print(quote2 + " has a sentiment of " + str(sentiment2))
 ```
 
-You see the following output:
+Verás la siguiente salida:
 
 ```output
 It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want # of a wife. has a sentiment of Sentiment(polarity=0.20952380952380953, subjectivity=0.27142857142857146)
@@ -130,26 +130,26 @@ Darcy, as well as Elizabeth, really loved them; and they were
       uniting them. has a sentiment of Sentiment(polarity=0.7, subjectivity=0.8)
 ```
 
-## Challenge - check sentiment polarity
+## Desafío - revisa la polaridad de sentimiento
 
-Your task is to determine, using sentiment polarity, if *Pride and Prejudice* has more absolutely positive sentences than absolutely negative ones. For this task, you may assume that a polarity score of 1 or -1 is absolutely positive or negative respectively.
+Tu tarea es determinar, usando la polaridad de sentimiento, si *Orgullo y Prejuicio* tiene más oraciones absolutamente positivas que absolutamente negativas. Para esta tarea, puedes asumir que un puntaje de polaridad de 1 o -1 es absolutamente positivo o negativo, respectivamente.
 
-**Steps:**
+**Pasos:**
 
-1. Download a [copy of Pride and Prejudice](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm) from Project Gutenberg as a .txt file. Remove the metadata at the start and end of the file, leaving only the original text
-2. Open the file in Python and extract the contents as a string
-3. Create a TextBlob using the book string
-4. Analyse each sentence in the book in a loop
-   1. If the polarity is 1 or -1 store the sentence in an array or list of positive or negative messages
-5. At the end, print out all the positive sentences and negative sentences (separately) and the number of each.
+1. Descarga una [copia de Orgullo y Prejuicio](https://www.gutenberg.org/files/1342/1342-h/1342-h.htm) de Project Gutenberg como archivo .txt. Elimina los metadatos al inicio y final del archivo, dejando solo el texto original.
+2. Abre el archivo en python y extrae los contenidos como una cadena.
+3. Crea un TextBlob usando la cadena del libro
+4. Analiza cada oración en el libro dentro de un ciclo
+   1. Si la polaridad es 1 o -1 almacena la oración en un arreglo o lista de mensajes positivos o negativos
+5. Al final, imprime todas las oraciones positivas y negativas (de forma separada) y el número de cada una.
 
-Here is a sample [solution](solution/notebook.ipynb).
+Aquí tienes una [solución de muestra](../solution/notebook.ipynb).
 
-✅ Knowledge Check
+✅ Verificación de conocimiento
 
-1. The sentiment is based on words used in the sentence, but does the code *understand* the words?
-2. Do you think the sentiment polarity is accurate, or in other words, do you *agree* with the scores?
-   1. In particular, do you agree or disagree with the absolute **positive** polarity of the following sentences?
+1. El sentimiento se basa en las palabras usadas en la oración, pero ¿el código *entiende* las palabras?
+2. ¿Piensas que la polaridad del sentimiento es precisa, o en otras palabras, estás *de acuerdo* con los puntajes?
+   1. En particular, ¿estás de acuerdo o en desacuerdo con la polaridad **positiva** absoluta de las siguientes oraciones?
       * “What an excellent father you have, girls!” said she, when the door was shut.
       * “Your examination of Mr. Darcy is over, I presume,” said Miss Bingley; “and pray what is the result?” “I am perfectly convinced by it that Mr. Darcy has no defect.
       * How wonderfully these sort of things occur!
@@ -158,30 +158,30 @@ Here is a sample [solution](solution/notebook.ipynb).
       * “This is delightful indeed!
       * I am so happy!
       * Your idea of the ponies is delightful.
-   2. The next 3 sentences were scored with an absolute positive sentiment, but on close reading, they are not positive sentences. Why did the sentiment analysis think they were positive sentences?
+   2. Las siguientes 3 oraciones fueron puntuadas con un sentimiento positivo absoluto, pero leyendo atentamente, esas no son oraciones positivas. ¿Por qué el análisis de sentimiento piensa que fueron oraciones positivas?
       * Happy shall I be, when his stay at Netherfield is over!” “I wish I could say anything to comfort you,” replied Elizabeth; “but it is wholly out of my power.
       * If I could but see you as happy!
       * Our distress, my dear Lizzy, is very great.
-   3. Do you agree or disagree with the absolute **negative** polarity of the following sentences?
+   3. ¿Estás de acuerdo o en desacuerdo con la polaridad absoluta **negativa** de las siguientes oraciones?
       - Everybody is disgusted with his pride.
       - “I should like to know how he behaves among strangers.” “You shall hear then—but prepare yourself for something very dreadful.
       - The pause was to Elizabeth’s feelings dreadful.
       - It would be dreadful!
 
-✅ Any aficionado of Jane Austen will understand that she often uses her books to critique the more ridiculous aspects of English Regency society. Elizabeth Bennett, the main character in *Pride and Prejudice*, is a keen social observer (like the author) and her language is often heavily nuanced. Even Mr. Darcy (the love interest in the story) notes Elizabeth's playful and teasing use of language: "I have had the pleasure of your acquaintance long enough to know that you find great enjoyment in occasionally professing opinions which in fact are not your own."
+✅ Cualquier aficionado de Jane Austen entenderá que ella usa frecuentemente sus libros para criticar los aspectos más ridículo de la sociedad de la Regencia Inglesa. Elizabeth Bennett, el personaje principal en *Orgullo y Prejuicio*, es una aguda observadora social (como la autora) y su lenguaje es a menudo muy matizado. Incluso el Sr. Darcy (el interés amoroso en la historia) nota el lenguaje juguetón y burlón de Elizabeth: "I have had the pleasure of your acquaintance long enough to know that you find great enjoyment in occasionally professing opinions which in fact are not your own."
 
 ---
 
-## 🚀Challenge
+## 🚀Desafío
 
-Can you make Marvin even better by extracting other features from the user input?
+¿Puedes hacer a Marvin aún mejor al extraer otras características de la entrada del usuario?
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/36/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/36/)
 
-## Review & Self Study
+## Revisión y autoestudio
 
-There are many ways to extract sentiment from text. Think of the business applications that might make use of this technique. Think about how it can go awry. Read more about sophisticated enterprise-ready systems that analyze sentiment such as [Azure Text Analysis](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-15963-cxa). Test some of the Pride and Prejudice sentences above and see if it can detect nuance.
+Hay varias formas de extraer el sentimiento del texto. Piensa en las aplicaciones de negocios que podrían hacer uso de esta técnica. Piensa cómo puede salir mal. Lee más acerca de los sistemas sofisticados listos para empresas que analizan  el sentimiento tal como [Azure Text Analysis](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-15963-cxa). Prueba algunas de las oraciones de Orgullo y Prejuicio de arriba y observa si se pueden detectar matices.
 
-## Assignment 
+## Asignación
 
-[Poetic license](assignment.md)
+[Licencia poética](assignment.es.md)
