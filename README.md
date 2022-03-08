@@ -28,7 +28,7 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 # Getting Started
 
-**Students**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
+**[Students](https://aka.ms/student-page)**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
 
 - Start with a pre-lecture quiz.
 - Read the lecture and complete the activities, pausing and reflecting at each knowledge check.
