@@ -1,1 +1,1 @@
-This is a temporary placeholder
+This is a temporary holder
