@@ -1,4 +1,4 @@
-# Build a regression model using Scikit-learn: regression two ways
+# Build a regression model using Scikit-learn: regression four ways
 
 ![Linear vs polynomial regression infographic](./images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
