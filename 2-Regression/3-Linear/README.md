@@ -17,7 +17,7 @@ In this lesson, you will learn more about two types of regression: _basic linear
 
 ### Prerequisite
 
-You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file. In the file, the pumpkin price is displayed per bushel in a new dataframe.  Make sure you can run these notebooks in kernels in Visual Studio Code.
+You should be familiar by now with the structure of the pumpkin data that we are examining. You can find it preloaded and pre-cleaned in this lesson's _notebook.ipynb_ file. In the file, the pumpkin price is displayed per bushel in a new data frame.  Make sure you can run these notebooks in kernels in Visual Studio Code.
 
 ### Preparation
 
@@ -28,7 +28,7 @@ As a reminder, you are loading this data so as to ask questions of it.
 - Should I buy them in half-bushel baskets or by the 1 1/9 bushel box?
 Let's keep digging into this data.
 
-In the previous lesson, you created a Pandas dataframe and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were only able to gather about 400 datapoints and only for the fall months. 
+In the previous lesson, you created a Pandas data frame and populated it with part of the original dataset, standardizing the pricing by the bushel. By doing that, however, you were only able to gather about 400 datapoints and only for the fall months. 
 
 Take a look at the data that we preloaded in this lesson's accompanying notebook. The data is preloaded and an initial scatterplot is charted to show month data. Maybe we can get a little more detail about the nature of the data by cleaning it more.
 
@@ -75,7 +75,7 @@ A good linear regression model will be one that has a high (nearer to 1 than 0) 
 
 ✅ Run the notebook accompanying this lesson and look at the Month to Price scatterplot. Does the data associating Month to Price for pumpkin sales seem to have high or low correlation, according to your visual interpretation of the scatterplot? Does that change if you use more fine-grained measure instead of `Month`, eg. *day of the year* (i.e. number of days since the beginning of the year)?
 
-In the code below, we will assume that we have cleaned up the data, and obtained a dataframe called `new_pumpkins`, similar to the following:
+In the code below, we will assume that we have cleaned up the data, and obtained a data frame called `new_pumpkins`, similar to the following:
 
 ID | Month | DayOfYear | Variety | City | Package | Low Price | High Price | Price
 ---|-------|-----------|---------|------|---------|-----------|------------|-------
@@ -103,7 +103,7 @@ This suggests that there should be some correlation, and we can try training lin
 
 <img alt="Scatter plot of Price vs. Day of Year" src="images/scatter-dayofyear.png" width="50%" /> 
 
-It looks like there are different clusters of prices corresponding to different pumpkin varieties. To confirm this hypothesis, let's plot each pumpkin category using different color. By passing `ax` parameter to the `scatter` plotting function we can plot all points on the same graph:
+It looks like there are different clusters of prices corresponding to different pumpkin varieties. To confirm this hypothesis, let's plot each pumpkin category using a different color. By passing an `ax` parameter to the `scatter` plotting function we can plot all points on the same graph:
 
 ```python
 ax=None
@@ -115,8 +115,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
 
 <img alt="Scatter plot of Price vs. Day of Year" src="images/scatter-dayofyear-color.png" width="50%" /> 
 
-
-Our investigation suggests that variety has more effect on the overall price than actual selling date. So let us focus for the moment only on one pumpkin variety, and see what effect does the date have:
+Our investigation suggests that variety has more effect on the overall price than the actual selling date. So let us focus for the moment only on one pumpkin variety, and see what effect the date has on the price:
 
 ```python
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
@@ -124,9 +123,9 @@ pie_pumpkins.plot.scatter('DayOfYear','Price')
 ```
 <img alt="Scatter plot of Price vs. Day of Year" src="images/pie-pumpkins-scatter.png" width="50%" /> 
 
-If we now calculate the correlation between `Price` and `DayOfYear` using `corr` function, we will get something like `-0.27` - which means that training predictive model makes sense.
+If we now calculate the correlation between `Price` and `DayOfYear` using `corr` function, we will get something like `-0.27` - which means that training a predictive model makes sense.
 
-> Before training linear regression model, it is important to make sure that our data is clean. Linear regression does not work well with missing values, thus it makes sense to get rid of all empty cells:
+> Before training a linear regression model, it is important to make sure that our data is clean. Linear regression does not work well with missing values, thus it makes sense to get rid of all empty cells:
 
 ```python
 pie_pumpkins.dropna(inplace=True)
@@ -137,7 +136,7 @@ Another approach would be to fill those empty values with mean values from the c
 
 ## Simple Linear Regression
 
-To train linear regression model, we will use **Scikit Learn** library.
+To train our Linear Regression model, we will use the **Scikit-learn** library.
 
 ```python
 from sklearn.linear_model import LinearRegression
@@ -145,14 +144,14 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 ```
 
-We start by separating input values (features) and expected output (label) into separate numpy arrays:
+We start by separating input values (features) and the expected output (label) into separate numpy arrays:
 
 ```python
 X = pie_pumpkins['DayOfYear'].to_numpy().reshape(-1,1)
 y = pie_pumpkins['Price']
 ```
 
-> Note that we had to preform `reshape` on input data in order for linear regression package to understand it correctly. Linear regression expects 2D-array as an input, where each row of the array corresponds to a vector of input features. In our case, since we have only one input - we need an array with shape N&times;1, where N is the dataset size.
+> Note that we had to perform `reshape` on the input data in order for the Linear Regression package to understand it correctly. Linear Regression expects a 2D-array as an input, where each row of the array corresponds to a vector of input features. In our case, since we have only one input - we need an array with shape N&times;1, where N is the dataset size.
 
 Then, we need to split the data into train and test datasets, so that we can validate our model after training:
 
@@ -160,7 +159,7 @@ Then, we need to split the data into train and test datasets, so that we can val
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 ```
 
-Finally, training linear regression takes only two lines of code. We define the `LinearRegression` object, and fit it to our data using `fit` method:
+Finally, training the actual Linear Regression model takes only two lines of code. We define the `LinearRegression` object, and fit it to our data using the `fit` method:
 
 ```python
 lin_reg = LinearRegression()
@@ -169,7 +168,7 @@ lin_reg.fit(X_train,y_train)
 
 The `LinearRegression` object after `fit`-ting contains all the coefficients of the regression, which can be accessed using `.coef_` property. In our case, there is just one coefficient, which should be around `-0.017`. It means that prices seem to drop a bit with time, but not too much, around 2 cents per day. We can also access the intersection point of the regression with Y-axis using `lin_reg.intercept_` - it will be around `21` in our case, indicating the price at the beginning of the year.
 
-To see how accurate our model is, we can predict prices on test dataset, and then measure how close our predictions are to the expected values. This can be done using mean square error (MSE) metrics, which is the mean of all squared differences between expected and predicted value.
+To see how accurate our model is, we can predict prices on a test dataset, and then measure how close our predictions are to the expected values. This can be done using mean square error (MSE) metrics, which is the mean of all squared differences between expected and predicted value.
 
 ```python
 pred = lin_reg.predict(X_test)
@@ -178,7 +177,7 @@ mse = np.sqrt(mean_squared_error(y_test,pred))
 print(f'Mean error: {mse:3.3} ({mse/np.mean(pred)*100:3.3}%)')
 ```
 
-Our error seems to be around 2 points, which is ~17%. Not too good. Another indicator of model quality is **coefficient of determination**, which can be obtained like this:
+Our error seems to be around 2 points, which is ~17%. Not too good. Another indicator of model quality is the **coefficient of determination**, which can be obtained like this:
 
 ```python
 score = lin_reg.score(X_train,y_train)
@@ -186,7 +185,7 @@ print('Model determination: ', score)
 ```
 If the value is 0, it means that the model does not take input data into account, and acts as the *worst linear predictor*, which is simply a mean value of the result. The value of 1 means that we can perfectly predict all expected outputs. In our case, the coefficient is around 0.06, which is quite low.
 
-We can also plot the test data together with regression line to better see how regression works in our case:
+We can also plot the test data together with the regression line to better see how regression works in our case:
 
 ```python
 plt.scatter(X_test,y_test)
@@ -198,15 +197,15 @@ plt.plot(X_test,pred)
 
 ## Polynomial Regression
 
-Another type of linear regression is polynomial regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
+Another type of Linear Regression is Polynomial Regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
 
-✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use polynomial regression
+✅ Here are [some more examples](https://online.stat.psu.edu/stat501/lesson/9/9.8) of data that could use Polynomial Regression
 
-Take another look at the relationship between Date and Price. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Perhaps not. In this case, you can try polynomial regression.
+Take another look at the relationship between Date and Price. Does this scatterplot seem like it should necessarily be analyzed by a straight line? Can't prices fluctuate? In this case, you can try polynomial regression.
 
 ✅ Polynomials are mathematical expressions that might consist of one or more variables and coefficients
 
-Polynomial regression creates a curved line to better fit nonlinear data. In our case, if we include a squared `DayOfYear` variable into input data, we should be able to fit our data with parabolic curve, which will have a minimum at a certain point within the year.
+Polynomial regression creates a curved line to better fit nonlinear data. In our case, if we include a squared `DayOfYear` variable into input data, we should be able to fit our data with a parabolic curve, which will have a minimum at a certain point within the year.
 
 Scikit-learn includes a helpful [pipeline API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) to combine different steps of data processing together. A **pipeline** is a chain of **estimators**. In our case, we will create a pipeline that first adds polynomial features to our model, and then trains the regression:
 
@@ -219,30 +218,30 @@ pipeline = make_pipeline(PolynomialFeatures(2), LinearRegression())
 pipeline.fit(X_train,y_train)
 ```
 
-Using `PolynomialFeatures(2)` means that we will include all second-degree polynomials from the input data. In our case it will just mean `DayOfYear`<sup>2</sup>, but given two input variables X and Y, this will add X<sup>2</sup>, XY and Y<sup>2</sup>. We may also use higher degree polynomial if we want.
+Using `PolynomialFeatures(2)` means that we will include all second-degree polynomials from the input data. In our case it will just mean `DayOfYear`<sup>2</sup>, but given two input variables X and Y, this will add X<sup>2</sup>, XY and Y<sup>2</sup>. We may also use higher degree polynomials if we want.
 
-Pipeline can be used in the same manner as original `LinearRegression` object, i.e. we can `fit` the pipeline, and then use `predict` to get the prediction results. Here is the graph showing test data, and the approximation curve:
+Pipelines can be used in the same manner as the original `LinearRegression` object, i.e. we can `fit` the pipeline, and then use `predict` to get the prediction results. Here is the graph showing test data, and the approximation curve:
  
 <img alt="Polynomial regression" src="images/poly-results.png" width="50%" />
 
-Using polynomial regression we can get slightly lower MSE and higher determination, but not significantly. We need to take into account other features!
+Using Polynomial Regression, we can get slightly lower MSE and higher determination, but not significantly. We need to take into account other features!
 
 > You can see that the minimal pumpkin prices are observed somewhere around Halloween. How can you explain this? 
 
-🎃 Congratulations, you just created a model that can help predict the price of pie pumpkins. You can probably repeat the same procedure for all pumpkin types, but that would be tedious. We will learn now how to take pumpkin variety into account in our model!
+🎃 Congratulations, you just created a model that can help predict the price of pie pumpkins. You can probably repeat the same procedure for all pumpkin types, but that would be tedious. Let's learn now how to take pumpkin variety into account in our model!
 
 ## Categorical Features
 
-In the ideal world, we want to be able to predict prices for different pumpkin varieties using the same model. However, `Variety` column is somewhat different from columns like `Month`, because they contain non-numeric values. Such columns are called **categorical**.
+In the ideal world, we want to be able to predict prices for different pumpkin varieties using the same model. However, the `Variety` column is somewhat different from columns like `Month`, because it contains non-numeric values. Such columns are called **categorical**.
 
 Here you can see how average price depends on variety:
 
 <img alt="Average price by variety" src="images/price-by-variety.png" width="50%" />
 
-To take variety into account, we first need to convert it to numeric form, or **encode**. There are several way we can do it:
+To take variety into account, we first need to convert it to numeric form, or **encode** it. There are several way we can do it:
 
-* Simple numeric encoding that will build a table of different varieties, and then replace variety name by an index in that table. This is not the best idea for linear regression, because linear regression takes the actual numeric value of the index, and adds it to the result, multiplying by some coefficient. In our case, relationship between index number and price is clearly non-linear, even if we make sure that indices are ordered in some specific way.
-* One-hot encoding, which will replace `Variety` column by 4 different columns, one for each variety, that will contain 1 if the corresponding row is of given variety, and 0 otherwise. This means that there will be four coefficients in linear regression, one for each pumpkin variety, responsible for "starting price" (or rather "additional price") for that particular variety.
+* Simple **numeric encoding** will build a table of different varieties, and then replace the variety name by an index in that table. This is not the best idea for linear regression, because linear regression takes the actual numeric value of the index, and adds it to the result, multiplying by some coefficient. In our case, the relationship between the index number and the price is clearly non-linear, even if we make sure that indices are ordered in some specific way.
+* **One-hot encoding** will replace the `Variety` column by 4 different columns, one for each variety. Each column will contain `1` if the corresponding row is of a given variety, and `0` otherwise. This means that there will be four coefficients in linear regression, one for each pumpkin variety, responsible for "starting price" (or rather "additional price") for that particular variety.
 
 The code below shows how we can one-hot encode a variety:
 
@@ -268,7 +267,7 @@ X = pd.get_dummies(new_pumpkins['Variety'])
 y = new_pumpkins['Price']
 ```
 
-The rest of the code is the same as we have used above to train linear regression. If you try it, you will see that the mean squared error is about the same, but we get much higher coefficient of determination (~77%). To get even more accurate predictions, we can take more categorical features into account, as well as numeric features, such as `Month` or `DayOfYear`. To get one large array of features, we can use `join`:
+The rest of the code is the same as what we used above to train Linear Regression. If you try it, you will see that the mean squared error is about the same, but we get much higher coefficient of determination (~77%). To get even more accurate predictions, we can take more categorical features into account, as well as numeric features, such as `Month` or `DayOfYear`. To get one large array of features, we can use `join`:
 
 ```python
 X = pd.get_dummies(new_pumpkins['Variety']) \
@@ -282,7 +281,7 @@ Here we also take into account `City` and `Package` type, which gives us MSE 2.8
 
 ## Putting it all together
 
-To make the best model, we can use combined (one-hot encoded categorical + numeric) data from above together with polynomial regression. Here is the complete code for your convenience:
+To make the best model, we can use combined (one-hot encoded categorical + numeric) data from the above example together with Polynomial Regression. Here is the complete code for your convenience:
 
 ```python
 # set up training data
@@ -320,7 +319,7 @@ This should give us the best determination coefficient of almost 97%, and MSE=2.
 | All features Linear | 2.84 (10.5%) | 0.94 |
 | All features Polynomial | 2.23 (8.25%) | 0.97 |
 
-🏆 Well done! You created four regression models in one lesson, and improved model quality to 97%. In the final section on regression, you will learn about logistic regression to determine categories. 
+🏆 Well done! You created four Regression models in one lesson, and improved the model quality to 97%. In the final section on Regression, you will learn about Logistic Regression to determine categories. 
 
 ---
 ## 🚀Challenge
