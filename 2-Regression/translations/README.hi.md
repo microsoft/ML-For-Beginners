@@ -19,7 +19,7 @@
 
 >ये उपयोगी निम्न-कोड उपकरण हैं जो आपको रिग्रेशन मॉडल के साथ काम करने के बारे में जानने में मदद कर सकते हैं.इस्तेमाल करे [इस कार्य के लिए अज़ूरे एमएल](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
 
-### Lessons
+### पाठ
 
 1. [व्यापार के उपकरण](../1-Tools/README.md)
 2. [डेटा प्रबंधित करना](../2-Data/README.md)
