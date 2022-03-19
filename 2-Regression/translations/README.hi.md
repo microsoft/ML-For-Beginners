@@ -3,7 +3,7 @@
 
 उत्तरी अमेरिका में, कद्दू को अक्सर हैलोवीन के लिए डरावने चेहरों में उकेरा जाता है। आइए इन आकर्षक सब्जियों के बारे में और जानें!
 
-![जैक-ओ-लालटेन](./images/jack-o-lanterns.jpg)
+![जैक-ओ-लालटेन](../images/jack-o-lanterns.jpg)
 >   <a href="https://unsplash.com/@teutschmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">बेथ तेउतसच्मैंन</a> द्वारा तस्वीर  <a href="https://unsplash.com/s/photos/jack-o-lanterns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">अनस्पेलश </a> पर
   
 ## आप क्या सीखेंगे
