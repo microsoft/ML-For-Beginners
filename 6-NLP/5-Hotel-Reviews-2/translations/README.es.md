@@ -1,23 +1,24 @@
-# Sentiment analysis with hotel reviews
+# Análisis de sentimiento con reseñas de hoteles
 
-Now that you have explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels.
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/39/)
+Ahora que has explorado a detalle el conjunto de datos, es momento de filtrar las columnas y luego usar técnicas de procesamiento del lenguaje natural sobre el conjunto de datos para obtener nuevos conocimientos acerca de los hoteles.
 
-### Filtering & Sentiment Analysis Operations
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/39/)
 
-As you've probably noticed, the dataset has a few issues. Some columns are filled with useless information, others seem incorrect. If they are correct, it's unclear how they were calculated, and answers cannot be independently verified by your own calculations.
+### Filtrado y operaciones de análisis de sentimiento
 
-## Exercise: a bit more data processing
+Como quizá ya has notado, el conjunto de datos presenta unos cuantos problemas. Algunas columnas contienen información inútil, otras parecen incorrectas. Si estas son correctas, no está claro cómo fueron calculadas, y las respuestas no pueden verificarse de forma independiente al realizar nuestros propios cálculos.
 
-Clean the data just a bit more. Add columns that will be useful later, change the values in other columns, and drop certain columns completely.
+## Ejercicio: un poco más de procesamiento de datos
 
-1. Initial column processing
+Limpia un poco más los datos. Agrega las columnas que usaremos más tarde, cambia los valores en otras columnas y elimina completamente ciertas columnas.
 
-   1. Drop `lat` and `lng`
+1. Procesamiento inicial de columnas
 
-   2. Replace `Hotel_Address` values with the following values (if the address contains the same of the city and the country, change it to just the city and the country).
+   1. Elimina `lat` y `lng`
 
-      These are the only cities and countries in the dataset:
+   2. Reemplaza los valores de `Hotel_Address` con los siguientes valores (si la dirección contiene lo mismo que la ciudad y el país, cámbialo sólo a la ciudad y el país).
+
+      Estas son las únicas ciudades y países en el conjunto de datos:
 
       Amsterdam, Netherlands
 
@@ -29,7 +30,7 @@ Clean the data just a bit more. Add columns that will be useful later, change th
 
       Paris, France
 
-      Vienna, Austria 
+      Vienna, Austria
 
       ```python
       def replace_address(row):
@@ -52,7 +53,7 @@ Clean the data just a bit more. Add columns that will be useful later, change th
       print(df["Hotel_Address"].value_counts())
       ```
 
-      Now you can query country level data:
+      Ahora puedes consultar datos a nivel de país:
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
@@ -67,13 +68,13 @@ Clean the data just a bit more. Add columns that will be useful later, change th
       | Paris, France          |    458     |
       | Vienna, Austria        |    158     |
 
-2. Process Hotel Meta-review columns
+2. Procesa las columnas Hotel Meta-review
 
-  1. Drop `Additional_Number_of_Scoring`
+  1. Elimina `Additional_Number_of_Scoring`
 
-  1. Replace `Total_Number_of_Reviews` with the total number of reviews for that hotel that are actually in the dataset 
+  1. Reemplaza `Total_Number_of_Reviews` con el número total de reseñas para ese hotel que realmente están en el conjunto de datos
 
-  1. Replace `Average_Score` with our own calculated score
+  1. Reemplaza `Average_Score` con nuestros propio puntaje calculado
 
   ```python
   # Drop `Additional_Number_of_Scoring`
@@ -83,41 +84,41 @@ Clean the data just a bit more. Add columns that will be useful later, change th
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-3. Process review columns
+3. Procesa las columnas review
 
-   1. Drop `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` and `days_since_review`
+   1. Elimina `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` y `days_since_review`
 
-   2. Keep `Reviewer_Score`, `Negative_Review`, and `Positive_Review` as they are,
-     
-   3. Keep `Tags` for now
+   2. Conserva `Reviewer_Score`, `Negative_Review`, y `Positive_Review` tal cual están,
 
-     - We'll be doing some additional filtering operations on the tags in the next section and then tags will be dropped
+   3. Conserva `Tags` por ahora
 
-4. Process reviewer columns
+     - Realizaremos operaciones de filtrado adicionales sobre las etiquetas en la siguiente lección y luego se eliminarán etiquetas
 
-  1. Drop `Total_Number_of_Reviews_Reviewer_Has_Given`
-  
-  2. Keep `Reviewer_Nationality`
+4. Procesa las columnas reviewer
 
-### Tag columns
+  1. Elimina `Total_Number_of_Reviews_Reviewer_Has_Given`
 
-The `Tag` column is problematic as it is a list (in text form) stored in the column. Unfortunately the order and number of sub sections in this column are not always the same. It's hard for a human to identify the correct phrases to be interested in, because there are 515,000 rows, and 1427 hotels, and each has slightly different options a reviewer could choose. This is where NLP shines. You can scan the text and find the most common phrases, and count them.
+  2. Conserva `Reviewer_Nationality`
 
-Unfortunately, we are not interested in single words, but multi-word phrases (e.g. *Business trip*). Running a multi-word frequency distribution algorithm on that much data (6762646 words) could take an extraordinary amount of time, but without looking at the data, it would seem that is a necessary expense. This is where exploratory data analysis comes in useful, because you've seen a sample of the tags such as `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` , you can begin to ask if it's possible to greatly reduce the processing you have to do. Luckily, it is - but first you need to follow a few steps to ascertain the tags of interest.
+### Columnas de etiqueta (Tag)
 
-### Filtering tags
+La columna `Tag` es problemática ya que está almacenada como lista (en forma de texto) en la columna. Desafortunadamente el orden y número de subsecciones es esta columna no son siempre los mismos. Es difícil para un humano el identificar las frases correctas en las que estar interesado, ya que hay 515,000 filas, y 1427 hoteles, y cada uno tiene opciones ligeramente diferentes que un crítico podría elegir. Aquí es donde destaca el procesamiento del lenguaje natural. Puedes escanear texto y encontrar las frases más comunes, y contarlas.
 
-Remember that the goal of the dataset is to add sentiment and columns that will help you choose the best hotel (for yourself or maybe a client tasking you to make a hotel recommendation bot). You need to ask yourself if the tags are useful or not in the final dataset. Here is one interpretation (if you needed the dataset for other reasons different tags might stay in/out of the selection):
+Desafortunadamente, no estamos interesados en palabras simples, sino en frases multi-palabra (por ejemplo, *Business trip*). Ejecutar un algoritmo de distribución de frecuencia multi-palabra sobre tantos datos (6762646 palabras) podría tomar un largo período de tiempo, pero sin mirar los datos, estos parecería que es un gasto necesario. Aquí es donde el análisis exploratorio de datos es útil, porque ya has visto una muestra de estas etiquetas tales como `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']` , puedes empezar a preguntar si es posible reducir ampliamente el procesamiento que tienes que hacer. Afortunadamente, así es - pero primero necesitas seguir algunos pasos para determinar las etiquetas de interés.
 
-1. The type of trip is relevant, and that should stay
-2. The type of guest group is important, and that should stay
-3. The type of room, suite, or studio that the guest stayed in is irrelevant (all hotels have basically the same rooms)
-4. The device the review was submitted on is irrelevant
-5. The number of nights reviewer stayed for *could* be relevant if you attributed longer stays with them liking the hotel more, but it's a stretch, and probably irrelevant
+### Filtrar las etiquetas
 
-In summary, **keep 2 kinds of tags and remove the others**.
+Recuerda que el objetivo de los conjuntos de datos es agregar sentimiento y columnas que nos ayudarán a elegir el mejor hotel (para ti o quizá un cliente te pidió realizar un bot de recomendación de hoteles). Necesitas preguntarte si la etiquetas son útiles o no en el conjunto de datos final. Aquí hay una interpretación (si necesitabas el conjunto de datos por otras razones, distintas etiquetas podrían permanecer dentro/fuera de la selección):
 
-First, you don't want to count the tags until they are in a better format, so that means removing the square brackets and quotes. You can do this several ways, but you want the fastest as it could take a long time to process a lot of data. Luckily, pandas has an easy way to do each of these steps.
+1. El tipo de viaje es relevante, y así debería seguir
+2. El tipo de grupo de huéspedes es importante, y así debería seguir
+3. El tipo de cuarto, suite o estudio en que se quedó el huésped es irrelevante (todos los hoteles tienen básicamente los mismos cuartos)
+4. El dispositivo desde el cual se envió la reseña es irrelevante
+5. El número de noches que se hospedó el crítico *podría* ser relevante si atribuiste a las estancias largas con mayor gusto por el hotel, pero es exagerado, y probablemente irrelevante
+
+En resumen, **conserva 2 tipos de etiquetas y elimina el resto**.
+
+Primero, no quieres contar las etiquetas hasta que estén en un mejor formato, lo cual significa eliminar los corchetes y comillas. Puedes hacerlo de varias formas, pero quieres la más rápida ya que podría tomar un largo tiempo el procesar demasiados datos. Afortunadamente, pandas tiene una forma fácil de hacer cada uno de estos pasos.
 
 ```Python
 # Remove opening and closing brackets
@@ -126,11 +127,11 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Each tag becomes something like: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
+Cada etiqueta se convierte en algo así: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`.
 
-Next we find a problem. Some reviews, or rows, have 5 columns, some 3, some 6. This is a result of how the dataset was created, and hard to fix. You want to get a frequency count of each phrase, but they are in different order in each review, so the count might be off, and a hotel might not get a tag assigned to it that it deserved.
+Ahora encontramos un problema. Algunas reseñas o filas tienen 5 columnas, algunas 3, otras 6. Esto es resultado de cómo se creó el conjunto de datos, y es difícil de corregir. Quieres obtener un conteo de frecuencia de cada frase, pero están en distinto orden en cada reseña, ya que el conteo podría estar apagado y un hotel podría no obtener una etiqueta asignada como lo merece.
 
-Instead you will use the different order to our advantage, because each tag is multi-word but also separated by a comma! The simplest way to do this is to create 6 temporary columns with each tag inserted in to the column corresponding to its order in the tag. You can then merge the 6 columns into one big column and run the `value_counts()` method on the resulting column. Printing that out, you'll see there was 2428 unique tags. Here is a small sample:
+En su lugar, usarás el orden distinto a tu favor, ¡porque cada etiqueta es multi-palabra pero también está separada por una coma! La forma más simple de hacerlo es crear 6 columnas temporales con cada etiqueta insertada en la columna correspondiente a su orden en la etiqueta. Luego puedes unir las 6 columnas en una sola y ejecutar el método `value_counts()` en la columna resultante. Imprímelo, verás que había 2428 etiquetas únicas. Aquí una pequeña muestra:
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
@@ -157,11 +158,11 @@ Instead you will use the different order to our advantage, because each tag is m
 | Superior Double or Twin Room   | 13570  |
 | 2 rooms                        | 12393  |
 
-Some of the common tags like `Submitted from a mobile device` are of no use to us, so it might be a smart thing to remove them before counting phrase occurrence, but it is such a fast operation you can leave them in and ignore them.
+Algunas de las etiquetas comunes como `Submitted from a mobile device` no nos son útiles, por lo que podría ser una buena idea quitarlas antes de contar la ocurrencia de las frases, pero es una operación tan rápida que puedes dejarlos e ignorarlos.
 
-### Removing the length of stay tags
+### Eliminando la longitud de las etiquetas de estadía
 
-Removing these tags is step 1, it reduces the total number of tags to be considered slightly. Note you do not remove them from the dataset, just choose to remove them from consideration as values to  count/keep in the reviews dataset.
+Eliminar estas etiquetas es el paso 1, reduce levemente el número total de etiquetas a ser consideradas. Nota que no las eliminas del conjunto de datos, sólo eliges eliminarlas de la consideración de valores a contar/mantener en el conjunto de datos de reseñas.
 
 | Length of stay   | Count  |
 | ---------------- | ------ |
@@ -176,7 +177,7 @@ Removing these tags is step 1, it reduces the total number of tags to be conside
 | Stayed 9 nights  | 1293   |
 | ...              | ...    |
 
-There are a huge variety of rooms, suites, studios, apartments and so on. They all mean roughly the same thing and not relevant to you, so remove them from consideration.
+Existe una gran variedad de cuartos, suites, studios, departamentos, y así sucesivamente. Estos significan casi lo mismo y no te son relevantes, así que elimínalos de consideración.
 
 | Type of room                  | Count |
 | ----------------------------- | ----- |
@@ -189,7 +190,7 @@ There are a huge variety of rooms, suites, studios, apartments and so on. They a
 | Classic Double Room           | 16989 |
 | Superior  Double or Twin Room | 13570 |
 
-Finally, and this is delightful (because it didn't take much processing at all), you will be left with the following *useful* tags:
+Finalmente, y esto es placentero (porque no requirió casi nada de procesamiento), te quedarás con las siguientes etiquetas *útiles*:
 
 | Tag                                           | Count  |
 | --------------------------------------------- | ------ |
@@ -202,9 +203,9 @@ Finally, and this is delightful (because it didn't take much processing at all),
 | Family  with older children                   | 26349  |
 | With a  pet                                   | 1405   |
 
-You could argue that `Travellers with friends` is the same as `Group` more or less, and that would be fair to combine the two as above. The code for identifying the correct tags is [the Tags notebook](solution/1-notebook.ipynb).
+Podrías argumentar que `Travellers with friends` es casi lo mismo que `Group`, y sería justo combinar las dos de arriba. El código para identificar las etiquetas correctas es [el notebook de Etiquetas](../solution/1-notebook.ipynb).
 
-The final step is to create new columns for each of these tags. Then, for every review row, if the `Tag` column matches one of the new columns, add a 1, if not, add a 0. The end result will be a count of how many reviewers chose this hotel (in aggregate) for, say, business vs leisure, or to bring a pet to, and this is useful information when recommending a hotel.
+El último paso es crear nuevas columnas para cada una de estas etiquetas. Luego, para cada fila de reseña, si la columna `Tag` coincide con una de las nuevas columnas, agrega un 1, si no es así, agrega un 0. El resultado final será un conteo de cuántos críticos eligieron este hotel (en agregado), digamos, para negocios vs ocio, o para traer mascota, y esta es información útil al recomendar un hotel.
 
 ```python
 # Process the Tags into new columns
@@ -222,9 +223,9 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ```
 
-### Save your file
+### Guarda tu archivo
 
-Finally, save the dataset as it is now with a new name.
+Finalmente, guarda el conjunto de datos tal cual se encuentra ahora con un nuevo nombre.
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
@@ -234,13 +235,13 @@ print("Saving results to Hotel_Reviews_Filtered.csv")
 df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 ```
 
-## Sentiment Analysis Operations
+## Operaciones de análisis de sentimiento
 
-In this final section, you will apply sentiment analysis to the review columns and save the results in a dataset.
+En esta sección final, aplicarás análisis de sentimiento a las columnas de reseña y guardarás los resultados en un conjunto de datos.
 
-## Exercise: load and save the filtered data
+## Ejercicio: Carga y guarda los datos filtrados
 
-Note that now you are loading the filtered dataset that was saved in the previous section, **not** the original dataset.
+Nota que ahora estás cargando el conjunto de datos filtrado que fue guardado en la sección anterior, **no** el conjunto de datos original.
 
 ```python
 import time
@@ -261,15 +262,15 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
-### Removing stop words
+### Eliminando stop words
 
-If you were to run Sentiment Analysis on the Negative and Positive review columns, it could take a long time. Tested on a powerful test laptop with fast CPU,it took 12 - 14 minutes depending on which sentiment library was used. That's a (relatively) long time, so worth investigating if that can be speeded up. 
+Si fueses a ejecutar el análisis de sentimiento en las columnas de reseñas positivas y negativas, te llevaría mucho tiempo. Al probarlo en un laptop de pruebas poderosa con una CPU rápida, tomó de 12 - 14 minutos dependiendo en qué biblioteca de sentimientos fue usada. Eso es demasiado tiempo (relativamente), por lo que vale la pena investigar si se puede acelerar.
 
-Removing stop words, or common English words that do not change the sentiment of a sentence, is the first step. By removing them, the sentiment analysis should run faster, but not be less accurate (as the stop words do not affect sentiment, but they do slow down the analysis). 
+Eliminar stop words, o palabras comunes del Inglés que no cambian el sentimiento de una oración, es el primer paso. Al eliminarlas, el análisis de sentimiento debería ejecutarse más rápido, pero no sería menos preciso (ya que las stop words no afectan el sentimiento, pero sí ralentizan el análisis).
 
-The longest negative review was 395 words, but after removing the stop words, it is 195 words.
+La reseña negativa más larga fue de 395 palabras, pero después de eliminar las stop words, es de 195 palabras.
 
-Removing the stop words is also a fast operation, removing the stop words from 2 review columns over 515,000 rows took 3.3 seconds on the test device. It could take slightly more or less time for you depending on your device CPU speed, RAM, whether you have an SSD or not, and some other factors. The relative shortness of the operation means that if it improves the sentiment analysis time, then it is worth doing.
+Eliminar las stops words también es una operación rápida, remover las stop words de 2 columnas de reseñas de 515,000 filas tomó 3.3 segundos en el dispositivo de prueba, Podría tomar ligeramente más o menos tiempo dependiendo de la velocidad del CPU de tu dispositivo, la RAM, si tienes un disco de estado sólido o no, entre otros factores. La relatividad de corto período de operación significa que si se mejora el tiempo de análisis de sentimiento, entonces vale la pena hacerlo.
 
 ```python
 from nltk.corpus import stopwords
@@ -291,11 +292,11 @@ df.Negative_Review = df.Negative_Review.apply(remove_stopwords)
 df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
-### Performing sentiment analysis
+### Realizando análisis de sentimiento
 
-Now you should calculate the sentiment analysis for both negative and positive review columns, and store the result in 2 new columns. The test of the sentiment will be to compare it to the reviewer's score for the same review. For instance, if the sentiment thinks the negative review had a sentiment of 1 (extremely positive sentiment) and a positive review sentiment of 1, but the reviewer gave the hotel the lowest score possible, then either the review text doesn't match the score, or the sentiment analyser could not recognize the sentiment correctly. You should expect some sentiment scores to be completely wrong, and often that will be explainable, e.g. the review could be extremely sarcastic "Of course I LOVED sleeping in a room with no heating" and the sentiment analyser thinks that's positive sentiment, even though a human reading it would know it was sarcasm. 
+Ahora deberías calcular el análisis de sentimiento tanto para las columnas de reseñas positivas como negativas y almacenar el resultado en 2 nuevas columnas. La prueba del sentimiento será compararlo con el puntaje del crítico para la misma reseña. Por ejemplo, si el sentimiento piensa que la reseña negativa tuvo un sentimiento de 1 (sentimiento extremadamente positivo) y un sentimiento de reseña positiva de 1, pero el crítico le dió al hotel el puntaje más bajo posible, luego que el texto de la reseña no coincide con el puntaje o el analizador de sentimiento no pudo reconocer el sentimiento de forma correcta. Deberías esperar que algunos puntajes de sentimiento sean completamente erróneos, y a menudo será explicable, por ejemplo, la reseña podría ser extremadamente sarcástica "Of course I LOVED sleeping in a room with no heating" y el analizador de sentimiento piensa que es un sentimiento positivo, aunque un humano leyéndolo sabría que fue sarcasmo.
 
-NLTK supplies different sentiment analyzers to learn with, and you can substitute them and see if the sentiment is more or less accurate. The VADER sentiment analysis is used here.
+NLTK provee distintos analizadores de sentimiento con los cuales aprender, y puedes sustituirlos y así ver si el sentimiento es más o menos preciso. El análisis de sentimiento VADER se usó aquí.
 
 > Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
 
@@ -316,7 +317,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Later in your program when you are ready to calculate sentiment, you can apply it to each review as follows:
+Después en tu programa cuando estés listo para calcular el sentimiento, puedes aplicarlo a ca reseña como sigue:
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -328,7 +329,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-This takes approximately 120 seconds on my computer, but it will vary on each computer. If you want to print of the results and see if the sentiment matches the review:
+Esto toma aproximadamente 120 segundos en mi computadora, pero varía en cada equipo. Si quieres imprimir los resultados y ver si el sentimiento coincide con la reseña:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -337,7 +338,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-The very last thing to do with the file before using it in the challenge, is to save it! You should also consider reordering all your new columns so they are easy to work with (for a human, it's a cosmetic change).
+¡Lo último por hacer con el archivo antes de usarlo en el desafío, es guardarlo! También deberías considerar reordenar todas tus nuevas columnas para que sean fáciles de usar (para un humano, es un cambio cosmético).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -347,28 +348,29 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-You should run the entire code for [the analysis notebook](solution/3-notebook.ipynb) (after you've run [your filtering notebook](solution/1-notebook.ipynb) to generate the Hotel_Reviews_Filtered.csv file).
+Deberías ejecutar el código completo del [notebook de análisis](../solution/3-notebook.ipynb) (después de que hayas ejecutado [tu notebook de filtrado](../solution/1-notebook.ipynb) para generar el archivo Hotel_Reviews_Filtered.csv).
 
-To review, the steps are:
+Para revisar, los pasos son:
 
-1. Original dataset file **Hotel_Reviews.csv** is explored in the previous lesson with [the explorer notebook](../4-Hotel-Reviews-1/solution/notebook.ipynb)
-2. Hotel_Reviews.csv is filtered by [the filtering notebook](solution/1-notebook.ipynb) resulting in **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv is processed by [the sentiment analysis notebook](solution/3-notebook.ipynb) resulting in **Hotel_Reviews_NLP.csv**
-4. Use Hotel_Reviews_NLP.csv in the NLP Challenge below
+1. Se exploró el archivo original del conjunto de datos **Hotel_Reviews.csv** en la lección anterior con [el notebook explorador](../../4-Hotel-Reviews-1/solution/notebook.ipynb)
+2. Se filtró Hotel_Reviews.csv con [el notebook de filtrado](../solution/1-notebook.ipynb) resultando el archivo **Hotel_Reviews_Filtered.csv**
+3. Se procesó Hotel_Reviews_Filtered.csv con [el notebook de análisis de sentimiento](../solution/3-notebook.ipynb) obteniendo como resultado **Hotel_Reviews_NLP.csv**
+4. Usa Hotel_Reviews_NLP.csv en el desafío NLP de abajo
 
-### Conclusion
+### Conclusión
 
-When you started, you had a dataset with columns and data but not all of it could be verified or used. You've explored the data, filtered out what you don't need, converted tags into something useful, calculated your own averages, added some sentiment columns and hopefully, learned some interesting things about processing natural text.
+Cuando iniciaste, tenías un conjunto de datos con columnas y datos pero no todos ello podían ser verificados o usados. Exploraste los datos, filtraste lo que no necesitas, convertiste etiquetas en algo útil, calculaste tus propios promedios, agregaste algunas columnas de sentimiento y espero hayas aprendido cosas interesantes acerca de procesar texto natural.
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/40/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/40/)
 
-## Challenge
+## Desafío
 
-Now that you have your dataset analyzed for sentiment, see if you can use strategies you've learned in this curriculum (clustering, perhaps?) to determine patterns around sentiment. 
+Ahora que tienes tu conjunto de datos analizado por sentimiento, observa si puedes usar las estrategias que aprendiste en este plan de estudios (agrupamiento, ¿quizá?) para determinar patrones alrededor del sentimiento.
 
-## Review & Self Study
+## Revisión y autoestudio
 
-Take [this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa) to learn more and use different tools to explore sentiment in text.
-## Assignment 
+Toma [este módulo de aprendizaje](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa) para aprender más y usar distintas herramientas para explorar el sentimiento en el texto.
 
-[Try a different dataset](assignment.md)
+## Asignación
+
+[Prueba distintos conjuntos de datos](assignment.es.md)
