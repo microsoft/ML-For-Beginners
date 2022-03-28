@@ -12,18 +12,18 @@
 
 > 🌍 Viaja alrededor del mundo mientras exploramos el aprendizaje automático a través de las culturas del mundo 🌍
 
-Los defensores de Azure Cloud en Microsoft están complacidos en ofrecer un plan de estudios de 12 semanas, con 26 lecciones, todas acerca del **aprendizaje automático**. En este plan de estudios, aprenderás acerca de lo que algunas veces es llamado **aprendizaje automático clásico**, usando principalmente Scikit-learn y evitando el aprendizaje profundo, el cual se aborda en nuestro próximo plan de estudios 'IA para principiantes'. ¡También acompaña estas lecciones con nuestro [plan de estudios 'Ciencia de Datos para principiantes'](https://aka.ms/datascience-beginners)!
+Los Azure Cloud Advocates de Microsoft están emocionados en ofrecer un plan de estudios de 12 semanas, con 26 lecciones, todas acerca de **aprendizaje automático**. En este plan de estudios, aprenderás sobre lo que algunas veces es llamado **aprendizaje automático clásico**, usando principalmente Scikit-learn y evitando el aprendizaje profundo, el cual se aborda en nuestro próximo plan de estudios 'IA para principiantes'. ¡Acompaña estas lecciones con nuestro [plan de estudios 'Ciencia de Datos para principiantes'](https://aka.ms/datascience-beginners)!
 
-Viaja con nosotros alrededor del mundo mientras aplicamos estas técnicas clásicas a los datos de distintas áreas del mundo. Cada lección incluye:
+Viaja con nosotros alrededor del mundo mientras aplicamos técnicas clásicas a los datos de distintas áreas del mundo. Cada lección incluye:
 
 - Exámenes previos y posteriores a cada lección
-- Instrucciones escritas para completar dicha lección
+- Instrucciones para completar dicha lección
 - Una solución
-- Una tarea y más
+- Un ejercicio y más
 
-Nuestra enseñanza basada en proyectos, te permite aprender mientras practicas; esta es una forma aprobada para que adquieras nuevas habilidades.
+Nuestra metodología de enseñanza basada en proyectos, te permite aprender mientras practicas; esta es una forma comprobada para que adquieras nuevas habilidades.
 
-**✍️ Agradecimientos encarecidos** a Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, y Amy Boyd.
+**✍️ Agradecimientos de todo corazón** a Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, y Amy Boyd.
 
 **🎨 Gracias también a nuestros ilustradores** Tomomi Imura, Dasani Madipalli, y Jen Looper.
 
@@ -33,16 +33,16 @@ Nuestra enseñanza basada en proyectos, te permite aprender mientras practicas; 
 
 ---
 
-# Empezando
+# Empezando con el plan de estudio
 
-**Estudiantes**, para usar este plan de estudios, realiza un fork del repositorio completo en tu cuenta de Github y completa los ejercicios por ti mismo o en grupo:
+**Estudiantes**, para usar este plan de estudios, realiza un fork del repositorio completo en tu cuenta de GitHub y completa los ejercicios por ti mismo o en grupo:
 
-- Comienza con un examen previo a la lección.
+- Realiza el examen previo a la lección.
 - Lee las lecciones y completa las actividades, pausando y reflexionando en cada verificación de conocimiento.
-- Intenta crear los proyectos al comprender las lecciones en lugar de ejecutar el código de la solución; sin embargo ese código se encuentra disponible en los directorios `/solution` en cada lección orientada a proyecto.
+- Intenta crear los proyectos para comprender las lecciones en lugar de ejecutar el código de la solución; sin embargo ese código se encuentra disponible en los directorios `/solution` en cada lección orientada a proyecto.
 - Realiza el examen posterior a la lección.
 - Completa el desafío.
-- Completa la asignación.
+- Completa el ejercicio.
 - Después de completar un grupo de lecciones, visita el [tablero de discusión](https://github.com/microsoft/ML-For-Beginners/discussions) y "aprende en voz alta" llenando la rúbrica PAT apropiada. Un 'PAT' es una herramienta de evaluación del progreso que es una rúbrica la cual llenas para avanzar en tu aprendizaje. También puede reaccionar a otros PATs y así aprender juntos.
 
 > Para aprender más, recomendamos seguir estos módulos y rutas de aprendizaje de [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa).
@@ -65,7 +65,7 @@ Nuestra enseñanza basada en proyectos, te permite aprender mientras practicas; 
 
 Hemos elegido dos principios pedagógicos mientras construimos este plan de estudios: asegurar que es práctico **basado en proyectos** y que incluye **exámenes frecuentes**. Además, este plan de estudios tiene un **tema** común para darle cohesión.
 
-Al asegurar que el contenido se alinea con los proyectos, el proceso se hace más atractivo par los estudiantes y la retención de conceptos incrementará. Además, un pequeño examen antes de cada clase para establecer la intención del estudiante de aprender un tema, mientras el segundo examen después de la clase asegura una mayor retención. Este plan de estudios fue diseñado para ser flexible y divertido y puede se tomado en su totalidad o en partes. Los proyectos comienzan pequeños y van incrementando en complejidad al final del ciclo de 12 semanas. Este plan de estudios también incluye una nota al final sobre aplicaciones del aprendizaje automático en el mundo real, la cual puede ser usada como cŕeditos extra o como base para discusión.
+Al asegurar que el contenido se alinea con los proyectos, el proceso se hace más atractivo par los estudiantes y la retención de conceptos incrementará. Además, un pequeño examen antes de cada clase para establecer la intención del estudiante de aprender un tema, mientras el segundo examen después de la clase asegura una mayor retención. Este plan de estudios fue diseñado para ser flexible y divertido y puede se tomado en su totalidad o por partes. Los proyectos comienzan pequeños y van incrementando en complejidad durante el ciclo de 12 semanas. Este plan de estudios también incluye una nota al final sobre aplicaciones de aprendizaje automático en el mundo real, la cual puede ser usada como cŕeditos extra o como base para discusión.
 
 > Encuentra nuestros lineamientos de [Código de conducta](../CODE_OF_CONDUCT.md), [Contribución](../CONTRIBUTING.md), y [Traducción](../TRANSLATIONS.md). ¡Son bienvenidos tus comentarios constructivos!
 
@@ -73,13 +73,13 @@ Al asegurar que el contenido se alinea con los proyectos, el proceso se hace má
 
 - boceto opcional
 - video suplementario opcional
-- examen de calentamiento previo a la lección
+- examen diagnóstico previo a la lección
 - lección escrita
 - para lecciones basadas en proyectos, guías paso a paso de cómo construir el proyecto
 - verificaciones de conocimiento
 - un desafío
 - lectura suplementaria
-- asignación
+- un ejercicio
 - examen posterior a la lección
 
 > **Una nota acerca de los lenguajes**: Estas lecciones están escritas principalmente en Python, pero muchas también están disponibles en R. Para completar una lección en R, ve al directorio `/solution` y busca las lecciones. Ellas incluyen una extensión .rmd que representa un archivo **Markdown R** el cual puede ser definido simplemente como `porciones de código` embebido (de R u otros lenguajes) y un `encabezado YAML` (que guía cómo dar formato a las salidas, por ejemplo PDF) en un `documento Markdown`. Como tal, este sirve como un framework ejemplar de autoría para la ciencia de datos ya que permite combinar tu código, su salida, y tus pensamientos al permitirte escribirlos en Markdown. Es más, los documentos Markdown R pueden ser representados como formatos de salida tal como PDF, HTML, o Word.
@@ -89,7 +89,7 @@ Al asegurar que el contenido se alinea con los proyectos, el proceso se hace má
 | Número de lección |                             Tema                              |                   Agrupación de lecciones                   | Objetivos de aprendizaje                                                                                                             |                                                              Lección vinculada                                                               |                        Autor                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
 |      01       |                Introducción al aprendizaje automático                |      [Introducción](../1-Introduction/translations/README.es.md)       | Aprende los conceptos básicos detrás del aprendizaje automático                                                                                |                                             [Lección](../1-Introduction/1-intro-to-ML/translations/README.es.md)                                             |                       Muhammad                       |
-|      02       |                La historia del aprendizaje automático                 |      [Introducción](../1-Introduction/translations/README.es.md)       | Aprende la historia subyacente a este campo                                                                                         |                                            [Lección](../1-Introduction/2-history-of-ML/translations/README.es.md)                                            |                     Jen y Amy                      |
+|      02       |                La historia del aprendizaje automático                 |      [Introducción](../1-Introduction/translations/README.es.md)       | Aprende la historia de este campo                                                                                         |                                            [Lección](../1-Introduction/2-history-of-ML/translations/README.es.md)                                            |                     Jen y Amy                      |
 |      03       |                 Justicia y aprendizaje automático                  |      [introducción](../1-Introduction/translations/README.es.md)       | ¿Cuáles son los problemas filosóficos importantes alrededor de la justicia que los estudiantes deberían considerar al construir y aplicar modelos de aprendizaje automático? |                                              [Lección](../1-Introduction/3-fairness/translations/README.es.md)                                               |                        Tomomi                        |
 |      04       |                Técnicas para el aprendizaje automático                 |      [introducción](../1-Introduction/translations/README.es.md)       | ¿Qué técnicas usan los investigadores de aprendizaje automático para construir modelos de ML? |                                          [Lección](../1-Introduction/4-techniques-of-ML/translations/README.es.md)                                           |                    Chris y Jen                     |
 |      05       |                   Introducción a la regresión                   |        [Regresión](../2-Regression/translations/README.es.md)         | Comienza con Python y Scikit-learn para modelos de regresión |         <ul><li>[Python](../2-Regression/1-Tools/translations/README.es.md)</li><li>[R](../2-Regression/1-Tools/solution/R/lesson_1-R.ipynb)</li></ul>         |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
