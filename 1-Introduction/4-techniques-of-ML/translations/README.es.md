@@ -25,7 +25,7 @@ Las computadoras son particularmente hábiles para descubrir patrones ocultos en
 
 Sin embargo, cuando se incorporan muchas otras variables a la ecuación, un modelo de ML podría resultar más eficiente para predecir las tasas de mortalidad futuras en función de los antecedentes de salud. Un ejemplo más alegre podría hacer predicciones meteorológicas para el mes de abril en una ubicación determinada que incluya latitud, longitud, cambio climático, proximidad al océano, patrones de la corriente en chorro, y más. 
 
-✅ Esta [presentación de diapositivas](https://www2.cisl.ucar.edu/sites/default/files/0900%20June%2024%20Haupt_0.pdf) sobre modelos meteorológicos ofrece una perspectiva histórica del uso de ML en el análisis meteorológico.
+✅ Esta [presentación de diapositivas](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf) sobre modelos meteorológicos ofrece una perspectiva histórica del uso de ML en el análisis meteorológico.
 
 ## Tarea previas a la construcción
 

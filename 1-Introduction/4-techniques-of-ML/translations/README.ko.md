@@ -25,7 +25,7 @@
 
 많은 다른 변수가 방정식에 포함되면, ML 모델이 과거 건강기록을 기반으로 미래 사망률을 예측하는 데에 효율적이라고 검증할 수 있습니다. 유쾌한 예시로 위도, 경도, 기후 변화, proximity to the ocean, 제트 기류의 패턴을 포함한 데이터 기반으로 주어진 위치에서 4월의 날씨를 예측하는 것입니다.
 
-✅ 날씨 모델에 대한 [slide deck](https://www2.cisl.ucar.edu/sites/default/files/0900%20June%2024%20Haupt_0.pdf)은 날씨 분석에서 ML을 사용한 역사적 관점을 제공합니다.
+✅ 날씨 모델에 대한 [slide deck](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf)은 날씨 분석에서 ML을 사용한 역사적 관점을 제공합니다.
 
 ## 작업 사전-구축하기
 
