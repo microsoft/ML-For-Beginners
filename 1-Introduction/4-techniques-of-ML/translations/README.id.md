@@ -24,7 +24,7 @@ Komputer sangat ahli dalam menemukan pola tersembunyi dalam data. Hal ini sangat
 
 Namun, ketika banyak variabel lain dimasukkan ke dalam persamaan, model ML mungkin terbukti lebih efisien untuk memprediksi tingkat mortalitas di masa depan berdasarkan riwayat kesehatan masa lalu. Contoh yang lebih menyenangkan mungkin membuat prediksi cuaca untuk bulan April di lokasi tertentu berdasarkan data yang mencakup garis lintang, garis bujur, perubahan iklim, kedekatan dengan laut, pola aliran udara (Jet Stream), dan banyak lagi. 
 
-✅ [Slide deck](https://www2.cisl.ucar.edu/sites/default/files/0900%20June%2024%20Haupt_0.pdf) ini menawarkan perspektif historis pada model cuaca dengan menggunakan ML dalam analisis cuaca.
+✅ [Slide deck](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf) ini menawarkan perspektif historis pada model cuaca dengan menggunakan ML dalam analisis cuaca.
 
 ## Tugas Pra-Pembuatan
 

@@ -25,7 +25,7 @@ I computer sono particolarmente abili nello scoprire modelli nascosti nei dati. 
 
 Quando molte altre variabili vengono introdotte nell'equazione, tuttavia, un modello ML potrebbe rivelarsi più efficiente per prevedere i tassi di mortalità futuri in base alla storia sanitaria passata. Un esempio più allegro potrebbe essere fare previsioni meteorologiche per il mese di aprile in una determinata località sulla base di dati che includono latitudine, longitudine, cambiamento climatico, vicinanza all'oceano, modelli della corrente a getto e altro ancora.
 
-✅ Questa [presentazione](https://www2.cisl.ucar.edu/sites/default/files/0900%20June%2024%20Haupt_0.pdf) sui modelli meteorologici offre una prospettiva storica per l'utilizzo di ML nell'analisi meteorologica.
+✅ Questa [presentazione](https://www2.cisl.ucar.edu/sites/default/files/2021-10/0900%20June%2024%20Haupt_0.pdf) sui modelli meteorologici offre una prospettiva storica per l'utilizzo di ML nell'analisi meteorologica.
 
 ## Attività di pre-costruzione
 
