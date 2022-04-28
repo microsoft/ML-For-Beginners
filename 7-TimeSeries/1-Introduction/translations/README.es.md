@@ -1,58 +1,58 @@
-# Introduction to time series forecasting
+# Introducción a la predicción de series de tiempo
 
-![Summary of time series in a sketchnote](../../sketchnotes/ml-timeseries.png)
+![Resumen de series de tiempo en un boceto](../../../sketchnotes/ml-timeseries.png)
 
-> Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Boceto de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-In this lesson and the following one, you will learn a bit about time series forecasting, an interesting and valuable part of a ML scientist's repertoire that is a bit less known than other topics. Time series forecasting is a sort of 'crystal ball': based on past performance of a variable such as price, you can predict its future potential value.
+En esta lección y la siguiente, aprenderás un poco acerca de la predicción de series de tiempo, una parte interesante y valiosa del repertorio de de un científico de ML, la cual es un poco menos conocida que otros temas. La predicción de series de tiempo es una especie de 'bola de cristal': basada en el rendimiento pasado de una variable como el precio, puedes predecir su valor potencial futuro.
 
-[![Introduction to time series forecasting](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Introduction to time series forecasting")
+[![Introducción a la predicción de series de tiempo](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Introducción a la predicción de series de tiempo")
 
-> 🎥 Click the image above for a video about time series forecasting
+> 🎥 Da clic en la imagen de arriba para ver un video acerca de la predicción de series de tiempo
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/41/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/41/)
 
-It's a useful and interesting field with real value to business, given its direct application to problems of pricing, inventory, and supply chain issues. While deep learning techniques have started to be used to gain more insights to better predict future performance, time series forecasting remains a field greatly informed by classic ML techniques.
+Es un campo útil e interesante con valor real para el negocio, dada su aplicación directa a problemas de precio, inventario e incidentes de cadenas de suministro. Mientras que las técnicas de aprendizaje profundo han comenzado a usarse para ganar más conocimiento para mejorar el rendimiento de futuras predicciones, la predicción de series de tiempo sigue siendo un campo muy informado por técnicas de aprendizaje automático clásico.
 
-> Penn State's useful time series curriculum can be found [here](https://online.stat.psu.edu/stat510/lesson/1)
+> El útil plan de estudios de series de tiempo de Penn State puede ser encontrado [aquí](https://online.stat.psu.edu/stat510/lesson/1)
 
-## Introduction
+## Introducción
 
-Suppose you maintain an array of smart parking meters that provide data about how often they are used and for how long over time.
+Supón que mantienes un arreglo de parquímetros inteligentes que proveen datos acerca de que tan seguido son usados y con qué duración de tiempo.
 
-> What if you could predict, based on the meter's past performance, its future value according to the laws of supply and demand?
+> ¿Qué pasaría si pudieras predecir, basado en el rendimiento pasado del medidor, su valor futuro de acuerdo a las leyes de suministro y demanda?
 
-Accurately predicting when to act so as to achieve your goal is a challenge that could be tackled by time series forecasting. It wouldn't make folks happy to be charged more in busy times when they're looking for a parking spot, but it would be a sure way to generate revenue to clean the streets!
+Predecir de forma precisa cuándo actuar para así lograr tu objetivo es una desafío que podría ser abordado con la predicción de series de tiempo.No haría feliz a la gente que le cobraran más en hora pico cuando están buscando un lugar para estacionarse, ¡pero sería una forma segura de generar ingresos para limpiar las calles!
 
-Let's explore some of the types of time series algorithms and start a notebook to clean and prepare some data. The data you will analyze  is taken from the GEFCom2014 forecasting competition. It consists of 3 years of hourly electricity load and temperature values between 2012 and 2014. Given the historical patterns of electricity load and temperature, you can predict future values of electricity load.
+Exploremos algunos de los tipos de algoritmos de series de tiempo e iniciemos un notebook para limpiar y preparar algunos datos. Los datos que analizarás son tomados de la competencia de predicción de GEFCom2014. Esta consiste de 3 años de carga eléctrica por hora y los valores de temperatura entre el 2012 y 2014. Dados los patrones históricos de carga eléctrica y temperatura, puedes predecir valores futuros de carga eléctrica.
 
-In this example, you'll learn how to forecast one time step ahead, using historical load data only. Before starting, however, it's useful to understand what's going on behind the scenes.
+En este ejemplo, aprenderás cómo predecir un paso de tiempo adelante, usando sólo la carga histórica. Antes de iniciar, sin embargo, es útil entender qué está pasando detrás de escena.
 
-## Some definitions
+## Algunas definiciones
 
-When encountering the term 'time series' you need to understand its use in several different contexts.
+Al encontrar el término 'series de tiempo' necesitas entender su uso en varios contextos diferentes.
 
-🎓 **Time series**
+🎓 **Series de tiempo**
 
-In mathematics, "a time series is a series of data points indexed (or listed or graphed) in time order. Most commonly, a time series is a sequence taken at successive equally spaced points in time." An example of a time series is the daily closing value of the [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). The use of time series plots and statistical modeling is frequently encountered in signal processing, weather forecasting, earthquake prediction, and other fields where events occur and data points can be plotted over time.
+En matemáticas, "una serie de tiempo es una serie de puntos de datos indexados (o listados o graficados) en orden de tiempo. Más comúnmente, una serie de tiempo es una secuencia tomada en puntos sucesivos igualmente espaciados en el tiempo." Un ejemplo de una serie de tiempo es el valor diario de cierre de el [Promedio Industrial Down Jones](https://wikipedia.org/wiki/Time_series). El uso de gráficos de series de tiempo y modelado estadístico se encuentra frecuentemente en el procesamiento de señales, predicción del clima, predicción de sismos, y otros campos donde ocurren eventos y los puntos de datos pueden ser graficados en el tiempo.
 
-🎓 **Time series analysis**
+🎓 **Análisis de series de tiempo**
 
-Time series analysis, is the analysis of the above mentioned time series data. Time series data can take distinct forms, including 'interrupted time series' which detects patterns in a time series' evolution before and after an interrupting event. The type of analysis needed for the time series, depends on the nature of the data. Time series data itself can take the form of series of numbers or characters.
+El análisis de series de tiempo, es el análisis de los datos de las series de tiempo previamente mencionadas. Los datos de las series de tiempo pueden tomar distintas formas, incluyendo 'series de tiempo interrumpidas' las cuales detectan patrones en la evolución de las series de tiempo antes y después de un evento de interrupción. El tipo de análisis necesario para las series de tiempo depende de la naturaleza de los datos. Los datos de series de tiempo en sí mismos pueden tomar la forma de series de números o caracteres.
 
-The analysis to be performed, uses a variety of methods, including frequency-domain and time-domain, linear and nonlinear, and more. [Learn more](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) about the many ways to analyze this type of data.
+El análisis a realizar, usa una variedad de métodos, incluyendo dominio de frecuencia y dominio de tiempo, lineal y no lineal y más. [Aprende más](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) acerca de varias formas de analizar este tipo de datos.
 
-🎓 **Time series forecasting**
+🎓 **Predicción de series de tiempo**
 
-Time series forecasting is the use of a model to predict future values based on patterns displayed by previously gathered data as it occurred in the past. While it is possible to use regression models to explore time series data, with time indices as x variables on a plot, such data is best analyzed using special types of models.
+La predicción de series de tiempo es el uso de un modelo para predecir valores futuros basándose en patrones mostrados por datos previamente recopilados como ocurrieron en el pasado. Mientras es posible usar modelos de regresión para explorar los datos de las series de tiempo, con índices de tiempo como variables x en un plano, dichos datos se analizan mejor usando tipos especiales de modelos.
 
-Time series data is a list of ordered observations, unlike data that can be analyzed by linear regression.   The most common one is ARIMA, an acronym that stands for "Autoregressive Integrated Moving Average".
+Los datos de series de timpo son una lista de observaciones ordenadas, a diferencia de los datos que pueden ser analizados por regresión lineal. El más común es ARIMA, el cual es un acrónimo que significa "Autoregressive Integrated Moving Average".
 
-[ARIMA models](https://online.stat.psu.edu/stat510/lesson/1/1.1) "relate the present value of a series to past values and past prediction errors." They are most appropriate for analyzing time-domain data, where data is ordered over time.
+Los [modelos ARIMA](https://online.stat.psu.edu/stat510/lesson/1/1.1) "relacionan el valor presente de una serie de valores pasados y errores de predicción anteriores". Estos son más apropiados para el análisis de datos en el dominio de tiempo, donde los datos están se ordenan en el tiempo.
 
-> There are several types of ARIMA models, which you can learn about [here](https://people.duke.edu/~rnau/411arim.htm) and which you will touch on in the next lesson.
+> Existen varios tipos de modelos ARIMA, los cuales puedes aprender [aquí](https://people.duke.edu/~rnau/411arim.htm) y que conocerás más tarde.
 
-In the next lesson, you will build an ARIMA model using [Univariate Time Series](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm), which focuses on one variable that changes its value over time. An example of this type of data is [this dataset](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) that records the monthly C02 concentration at the Mauna Loa Observatory:
+En la siguiente lección, construirás un modelo ARIMA usando [series de tiempo univariante](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm), las cual se enfoca en una variable que cambia su valor en el tiempo. Un ejemplo de este tipo de datos es [este conjunto de datos](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) que registra la concentración mensual de CO2 en el Observatorio Mauna Loa:
 
 |  CO2   | YearMonth | Year  | Month |
 | :----: | :-------: | :---: | :---: |
@@ -69,51 +69,52 @@ In the next lesson, you will build an ARIMA model using [Univariate Time Series]
 | 329.25 |  1975.88  | 1975  |  11   |
 | 330.97 |  1975.96  | 1975  |  12   |
 
-✅ Identify the variable that changes over time in this dataset
+✅ Identifica la variable que cambia en el tiempo en este conjunto de datos
 
-## Time Series [data characteristics](https://online.stat.psu.edu/stat510/lesson/1/1.1) to consider
+## [Características de datos](https://online.stat.psu.edu/stat510/lesson/1/1.1) de series de tiempo a considerar
 
-When looking at time series data, you might notice that it has certain characteristics that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques.
+Al mirar datos de series de tiempo, puedes notar que tienen ciertas características que necesitas tomar ne consideración y mitigar para entender mejor sus patrones. Si consideras los datos de las series de tiempo como proporcionando potencialmente una 'señal' que quieres analizar, estas características pueden ser interpretadas como 'ruido'. Frecuentemente necesitarás reducir este 'ruido' al compensar algunas de estas características usando ciertas técnicas estadísticas.
 
-Here are some concepts you should know to be able to work with time series:
+Aquí hay algunos conceptos que deberías saber para ser capaz de trabajar con las series de tiempo:
 
-🎓 **Trends**
+🎓 **Tendencias**
 
-Trends are defined as measurable increases and decreases over time. [Read more](https://machinelearningmastery.com/time-series-trends-in-python). In the context of time series, it's about how to use and, if necessary, remove trends from your time series.
+Las tendencias se definen como incrementos y decrementos medibles en el tiempo. [Lee más](https://machinelearningmastery.com/time-series-trends-in-python). En el contexto de las series de tiempo, se trata de cómo usar las tendencias y, si es necesario, eliminarlas.
 
-🎓 **[Seasonality](https://machinelearningmastery.com/time-series-seasonality-with-python/)**
+🎓 **[Estacionalidad](https://machinelearningmastery.com/time-series-seasonality-with-python/)**
 
-Seasonality is defined as periodic fluctuations, such as holiday rushes that might affect sales, for example. [Take a look](https://itl.nist.gov/div898/handbook/pmc/section4/pmc443.htm) at how different types of plots display seasonality in data.
+La estacionalidad se define como fluctuaciones periódicas, tales como prisas de vacaciones que pueden afectar las ventas, por ejemplo. [Da un vistazo](https://itl.nist.gov/div898/handbook/pmc/section4/pmc443.htm) a cómo los distintos tipos de gráficos muestran la estacionalidad en los datos.
 
-🎓 **Outliers**
+🎓 **Valores atípicos**
 
-Outliers are far away from the standard data variance.
+Los valores atípicos están muy lejos de la varianza de datos estándar.
 
-🎓 **Long-run cycle**
+🎓 **Ciclos de largo plazo**
 
-Independent of seasonality, data might display a long-run cycle such as an economic down-turn that lasts longer than a year.
+Independiente de la estacionalidad, los datos pueden mostrar un ciclo de largo plazo como un declive que dura más de un año.
 
-🎓 **Constant variance**
+🎓 **Varianza constante**
 
-Over time, some data display constant fluctuations, such as energy usage per day and night.
+En el tiempo, algunos datos muestran fluctuaciones constantes, tales como el uso de energía por día y noche.
 
-🎓 **Abrupt changes**
+🎓 **Cambios abruptos**
 
-The data might display an abrupt change that might need further analysis. The abrupt shuttering of businesses due to COVID, for example, caused changes in data.
+Los datos pueden mostrar un cambio abrupto que puede necesitar mayor análisis. El cierre abrupto de negocios debido al COVID, por ejemplo, causó cambios en los datos.
 
-✅ Here is a [sample time series plot](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) showing daily in-game currency spent over a few years. Can you identify any of the characteristics listed above in this data?
+✅ Aquí hay una [muestra de gráfico de series de tiempo](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) mostrando la moneda diaria en juego gastada en algunos años. ¿Puedes identificar alguna de las características listadas arriba en estos datos?
 
-![In-game currency spend](./images/currency.png)
+![Gasto de moneda en el juego](../images/currency.png)
 
-## Exercise - getting started with power usage data
+## Ejercicio - comenzando con los datos de uso de energía
 
-Let's get started creating a time series model to predict future power usage given past usage.
+Comencemos creando un modelo de series de tiempo para predecir el uso futuro de energía dato su uso pasado.
 
-> The data in this example is taken from the GEFCom2014 forecasting competition. It consists of 3 years of hourly electricity load and temperature values between 2012 and 2014.
+> Los datos en este ejemplo se tomaron de la competencia de predicción GEFCom2014. Consta de 3 años de valores de carga eléctrica y de temperatura medidos por hora entre 2012 y 2014.
+
 >
-> Tao Hong, Pierre Pinson, Shu Fan, Hamidreza Zareipour, Alberto Troccoli and Rob J. Hyndman, "Probabilistic energy forecasting: Global Energy Forecasting Competition 2014 and beyond", International Journal of Forecasting, vol.32, no.3, pp 896-913, July-September, 2016.
+> Tao Hong, Pierre Pinson, Shu Fan, Hamidreza Zareipour, Alberto Troccoli y Rob J. Hyndman, "Probabilistic energy forecasting: Global Energy Forecasting Competition 2014 and beyond", International Journal of Forecasting, vol.32, no.3, pp 896-913, July-September, 2016.
 
-1. In the `working` folder of this lesson, open the _notebook.ipynb_ file. Start by adding libraries that will help you load and visualize data
+1. En el directorio `working` de esta lección, abre el archivo _notebook.ipynb_. Empieza agregando las bibliotecas que te ayudarán a cargar y visualizar datos
 
     ```python
     import os
@@ -122,9 +123,9 @@ Let's get started creating a time series model to predict future power usage giv
     %matplotlib inline
     ```
 
-    Note, you are using the files from the included `common` folder which set up your environment and handle downloading the data.
+    Nota, estás usando los archivos del direcorio `common` incluido el cual configura tu ambiente y maneja la descarga de los datos.
 
-2. Next, examine the data as a dataframe calling `load_data()` and `head()`:
+2. Ahora, examina los datos como un dataframe llamando `load_data()` y `head()`:
 
     ```python
     data_dir = './data'
@@ -132,7 +133,7 @@ Let's get started creating a time series model to predict future power usage giv
     energy.head()
     ```
 
-    You can see that there are two columns representing date and load:
+    Puedes ver que hay dos columnas representando la fecha y la carga:
 
     |                     |  load  |
     | :-----------------: | :----: |
@@ -142,7 +143,7 @@ Let's get started creating a time series model to predict future power usage giv
     | 2012-01-01 03:00:00 | 2402.0 |
     | 2012-01-01 04:00:00 | 2403.0 |
 
-3. Now, plot the data calling `plot()`:
+3. Ahora, grafica los datos llamando `plot()`:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -151,9 +152,9 @@ Let's get started creating a time series model to predict future power usage giv
     plt.show()
     ```
 
-    ![energy plot](images/energy-plot.png)
+    ![Gráfico de energía](../images/energy-plot.png)
 
-4. Now, plot the first week of July 2014, by providing it as input to the `energy` in `[from date]: [to date]` pattern:
+4. Ahora, grafica la primer semana de Julio de 2014, al proveerla como entrada a `energy` en el patrón `[from date]: [to date]`:
 
     ```python
     energy['2014-07-01':'2014-07-07'].plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -162,24 +163,24 @@ Let's get started creating a time series model to predict future power usage giv
     plt.show()
     ```
 
-    ![july](images/july-2014.png)
+    ![julio](../images/july-2014.png)
 
-    A beautiful plot! Take a look at these plots and see if you can determine any of the characteristics listed above. What can we surmise by visualizing the data?
+    ¡Un hermoso gráfico! Da un vistazo a estos gráficos y ve si puedes determinar alguna de las características listadas arriba. ¿Que podemos suponer al visualizar los datos?
 
-In the next lesson, you will create an ARIMA model to create some forecasts.
+En la siguiente lección, crearás un modelo ARIMA para realizar algunas predicciones.
 
 ---
 
-## 🚀Challenge
+## 🚀Desafío
 
-Make a list of all the industries and areas of inquiry you can think of that would benefit from time series forecasting. Can you think of an application of these techniques in the arts? In Econometrics? Ecology? Retail? Industry? Finance? Where else?
+Haz una lista de todas las industrias y áreas de consulta en las que puedes pensar que se beneficiarían de la predicción de series de tiempo. ¿Puedes pensar en una aplicación de estas técnicas en las artes, en la econometría, ecología, venta al menudeo, la industria, finanzas? ¿Dónde más?
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/42/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/42/)
 
-## Review & Self Study
+## Revisión y autoestudio
 
-Although we won't cover them here, neural networks are sometimes used to enhance classic methods of time series forecasting. Read more about them [in this article](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
+Aunque no las cubriremos aquí, las redes neuronales son usadas algunas veces para mejorar los métodos clásicos de predicción de series de tiempo. Lee más acerca de ellas [en este artículo](https://medium.com/microsoftazure/neural-networks-for-forecasting-financial-and-economic-time-series-6aca370ff412)
 
-## Assignment
+## Asignación
 
-[Visualize some more time series](assignment.md)
+[Visualiza algunas series de tiempo más](assignment.es.md)
