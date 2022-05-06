@@ -2,7 +2,7 @@
 
 [![ML, AI, deep learning - Qual é a diferença?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, deep learning - Qual é a diferença?")
 
-> 🎥 Clique na imagem acima para assistir um vídeo que ilustra a diferença entre machine learning, AI, and deep learning.
+> 🎥 Clique na imagem acima para assistir um vídeo que ilustra a diferença entre machine learning, AI, e deep learning.
 
 ## [Questionário inicial](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1?loc=ptbr)
 
@@ -12,7 +12,7 @@ Nossas boas vindas a este curso de machine learning clássico para iniciantes! Q
 
 [![Introdução ao  ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introdução ao  ML")
 
-> 🎥 Clique na imagem acima para assistir: John Guttag, do MIT, apresenta o machine learning
+> 🎥 Clique na imagem acima para assistir: John Guttag, do MIT, apresenta o machine learning.
 
 ### Primeiros passos com machine learning
 
@@ -21,7 +21,7 @@ Antes de iniciar este curso, você precisa ter seu computador configurado e pron
 - **Configure sua máquina com estes vídeos**. Use os links a seguir para aprender [como instalar o Python](https://youtu.be/CXZYvNRIAKM) em seu sistema e [configurar um editor de texto](https://youtu.be/EU8eayHWoZg) para desenvolvimento.
 - **Aprenda Python**. Também é recomendável ter um conhecimento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), uma linguagem de programação útil para cientistas de dados (data scientists) que usamos neste curso.
 - **Aprenda Node.js e JavaScript**. Também usamos JavaScript algumas vezes neste curso para criar aplicativos web, então você precisará ter [node](https://nodejs.org) e [npm](https://www.npmjs.com/) instalado, assim como o [Visual Studio Code](https://code.visualstudio.com/) disponível para desenvolvimento em Python e JavaScript.
-- **Crie uma conta no GitHub**. Como você nos encontrou aqui no [GitHub](https://github.com),talvez você já tenha uma conta, mas se não, crie uma faça um fork deste curso para usar por conta própria. (Sinta-se à vontade para nos dar uma estrela também 😊)
+- **Crie uma conta no GitHub**. Como você nos encontrou aqui no [GitHub](https://github.com),talvez você já tenha uma conta, mas se não, crie uma e faça um fork deste curso para usar por conta própria. (Sinta-se à vontade para nos dar uma estrela também 😊).
 - **Explore o Scikit-learn**. Familiarize-se com o [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), um conjunto de bibliotecas de ML referenciadas nestas lições.
 
 ### O que é machine learning?
@@ -30,7 +30,7 @@ O termo 'machine learning' é um dos termos mais populares e usados ​​atualm
 
 ![curva de hype de ml](../images/hype.png)
 
-> Google Trends mostra o recente 'curva de hype' do termo 'machine learning'
+> Google Trends mostra a recente 'curva de hype' do termo 'machine learning'.
 
 Vivemos em um universo cheio de mistérios fascinantes. Grandes cientistas como Stephen Hawking, Albert Einstein e muitos outros dedicaram suas vidas à busca de informações significativas que desvendam os mistérios do mundo ao nosso redor. Esta é a condição humana de aprendizagem: uma criança humana aprende coisas novas e descobre a estrutura de seu mundo ano a ano à medida que chega à idade adulta.
 
@@ -52,7 +52,7 @@ Neste curso você aprenderá:
 
 - conceitos fundamentais de machine learning
 - a história do ML
-- MLe justiça
+- ML e justiça
 - técnicas de regressão de ML
 - técnicas de classificação com ML
 - técnicas de agrupamento de ML
@@ -88,7 +88,7 @@ Os aplicativos de machine learning agora estão em quase todos os lugares e são
 - Para entender o sentimento de um texto.
 - Para detectar notícias falsas (fake news) e impedir a propagação de propaganda.
 
-Finanças, economia, ciências da terra, exploração espacial, engenharia biomédica, ciências cognitivas e até mesmo campos das humanidades adaptaram o machine learning para resolver os árduos e pesados problemas de processamento de dados de seu domínio
+Finanças, economia, ciências da terra, exploração espacial, engenharia biomédica, ciências cognitivas e até mesmo campos das humanidades adaptaram o machine learning para resolver os árduos e pesados problemas de processamento de dados de seu domínio.
 
 O machine learning automatiza o processo de descoberta de padrões, encontrando insights significativos do mundo real ou dados gerados. Ele provou ser altamente valioso em aplicações comerciais, de saúde e financeiras, entre outras.
 
