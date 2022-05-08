@@ -2,7 +2,7 @@
 
 Esta lección cubre una breve historia y conceptos importante del *procesamiento del lenguaje natural*, un subcampo de la *ligüística computacional*.
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31?loc=es)
 
 ## Introducción
 
@@ -150,7 +150,7 @@ Elige uno de los elementos "Detente y considera" de arriba y trata de implementa
 
 En la siguiente lección, aprenderás acerca de otros enfoques de cómo analizar el lenguaje natural y aprendizaje automático.
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32?loc=es)
 
 ## Revisión y autoestudio
 

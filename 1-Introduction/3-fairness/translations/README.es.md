@@ -3,7 +3,7 @@
 ![Resumen de justicia en el aprendizaje automático en un sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5?loc=es)
 
 ## Introducción
 
@@ -183,7 +183,7 @@ Para prevenir que los sesgos sean introducidos en primer lugar, debemos:
 
 Piensa en escenarios de la vida real donde la injusticia es evidente en la construcción y uso de modelos. ¿Qué más debemos considerar?
 
-## [Cuestionario posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
+## [Cuestionario posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6?loc=es)
 ## Revisión y autoestudio 
 
 En esta lección has aprendido algunos de los conceptos básicos de justicia e injusticia en el aprendizaje automático.
