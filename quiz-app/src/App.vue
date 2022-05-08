@@ -10,6 +10,7 @@
         <option>ja</option>
         <option value="ptbr">pt-br</option>
         <option>tr</option>
+        <option>es</option>
       </select>
     </nav>
     <div id="app">
