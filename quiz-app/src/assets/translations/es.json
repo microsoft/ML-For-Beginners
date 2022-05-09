@@ -1,12 +1,12 @@
 [
   {
-    "title": "Machine Learning para principiantes: Cuestionarios",
-    "complete": "Felicitaciones, has completado el cuestionario!",
+    "title": "Machine Learning para principiantes: Exámenes",
+    "complete": "Felicitaciones, has completado el examen!",
     "error": "Lo sentimos, inténtalo de nuevo",
     "quizzes": [
       {
         "id": 1,
-        "title": "Introducción a Machine Learning: Cuestionario previo a la lección",
+        "title": "Introducción a Machine Learning: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Las aplicaciones de Machine Learning están por todas partes:",
@@ -59,7 +59,7 @@
       },
       {
         "id": 2,
-        "title": "Introducción a Machine Learning: Cuestionario posterior a la lección",
+        "title": "Introducción a Machine Learning: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Los algoritmos de Machine Learning estan pensados para simular:",
@@ -116,7 +116,7 @@
       },
       {
         "id": 3,
-        "title": "La historia del Machine Learning: Cuestionario previo a la lección",
+        "title": "La historia del Machine Learning: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Cuándo se acuñó aproximadamente el término 'inteligencia artificial'?:",
@@ -173,7 +173,7 @@
       },
       {
         "id": 4,
-        "title": "La historia del Machine Learning: Cuestionario posterior a la lección",
+        "title": "La historia del Machine Learning: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál es un ejemplo de sistema de IA 'scruffy'?:",
@@ -230,7 +230,7 @@
       },
       {
         "id": 5,
-        "title": "Justicia y Machine Learning: Cuestionario previo a la lección",
+        "title": "Justicia y Machine Learning: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "La injusticia en Machine Learning puede ocurrir:",
@@ -287,7 +287,7 @@
       },
       {
         "id": 6,
-        "title": "Justicia y Machine Learning: Cuestionario posterior a la lección",
+        "title": "Justicia y Machine Learning: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "La injusticia en un modelo puede ser causada por:",
@@ -344,7 +344,7 @@
       },
       {
         "id": 7,
-        "title": "Herramientas y técnicas: Cuestionario previo a la lección",
+        "title": "Herramientas y técnicas: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Al construir un modelo, deberías:",
@@ -401,7 +401,7 @@
       },
       {
         "id": 8,
-        "title": "Herramientas y técnicas: Cuestionario posterior a la lección",
+        "title": "Herramientas y técnicas: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Deberías visualizar tus datos porque:",
@@ -458,7 +458,7 @@
       },
       {
         "id": 9,
-        "title": "Introducción a la regresión: Cuestionario previo a la lección",
+        "title": "Introducción a la regresión: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál de estas variables es una variable numérica?:",
@@ -515,7 +515,7 @@
       },
       {
         "id": 10,
-        "title": "Introducción a la regresión: Cuestionario posterior a la lección",
+        "title": "Introducción a la regresión: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Si la exactitud de entrenamiento de su modelo de Machine Learning es del 95 % y la exactitud de prueba es del 30 %, ¿cómo se llama esta condición?:",
@@ -572,7 +572,7 @@
       },
       {
         "id": 11,
-        "title": "Preparar y visualizar los datos para la regresión: Cuestionario previo a la lección",
+        "title": "Preparar y visualizar los datos para la regresión: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál de estos módulos de Python se utiliza para graficar la visualización de datos?:",
@@ -629,7 +629,7 @@
       },
       {
         "id": 12,
-        "title": "Preparar y visualizar los datos para la regresión: Cuestionario posterior a la lección",
+        "title": "Preparar y visualizar los datos para la regresión: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál de estos fragmentos de código es correcto en base a esta lección, si se quiere comprobar la presencia de valores perdidos en el conjunto de datos? Suponga que el conjunto de datos se almacena en una variable llamada 'dataset' que es un objeto Pandas DataFrame:",
@@ -686,7 +686,7 @@
       },
       {
         "id": 13,
-        "title": "Regresión lineal y polinomial: Cuestionario previo a la lección",
+        "title": "Regresión lineal y polinomial: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Matplotlib es una:",
@@ -743,7 +743,7 @@
       },
       {
         "id": 14,
-        "title": "Regresión lineal y polinomial: Cuestionario posterior a la lección",
+        "title": "Regresión lineal y polinomial: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Si sus datos no son lineales, pruebe con un tipo de regresión ___:",
@@ -800,7 +800,7 @@
       },
       {
         "id": 15,
-        "title": "Regresión Logística: Cuestionario previo a la lección",
+        "title": "Regresión Logística: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "La regresión logística se utiliza para predecir:",
@@ -857,7 +857,7 @@
       },
       {
         "id": 16,
-        "title": "Regresión Logística: Cuestionario posterior a la lección",
+        "title": "Regresión Logística: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Seaborn es un tipo de:",
@@ -914,7 +914,7 @@
       },
       {
         "id": 17,
-        "title": "Construir una aplicación web: Cuestionario previo a la lección",
+        "title": "Construir una aplicación web: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Qué significa ONNX?:",
@@ -971,7 +971,7 @@
       },
       {
         "id": 18,
-        "title": "Construir una aplicación web: Cuestionario posterior a la lección",
+        "title": "Construir una aplicación web: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Cuáles son las herramientas que podemos utilizar para alojar un modelo preentrenado en la web utilizando Python?:",
@@ -1028,7 +1028,7 @@
       },
       {
         "id": 19,
-        "title": "Clasificación 1: Cuestionario previo a la lección",
+        "title": "Clasificación 1: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "La clasificación es una forma de aprendizaje supervisado que tiene mucho en común con:",
@@ -1085,7 +1085,7 @@
       },
       {
         "id": 20,
-        "title": "Clasificación 1: Cuestionario posterior a la lección",
+        "title": "Clasificación 1: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Qué es una pregunta multiclase?:",
@@ -1138,7 +1138,7 @@
       },
       {
         "id": 21,
-        "title": "Clasificación 2: Cuestionario previo a la lección",
+        "title": "Clasificación 2: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Los datos balanceados y limpios producen los mejores resultados de clasificación:",
@@ -1191,7 +1191,7 @@
       },
       {
         "id": 22,
-        "title": "Clasificación 2: Cuestionario posterior a la lección",
+        "title": "Clasificación 2: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Qué es un 'solucionador'?:",
@@ -1248,7 +1248,7 @@
       },
       {
         "id": 23,
-        "title": "Clasificación 3: Cuestionario previo a la lección",
+        "title": "Clasificación 3: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Un buen clasificador inicial para probar es:",
@@ -1305,7 +1305,7 @@
       },
       {
         "id": 24,
-        "title": "Clasificación 3: Cuestionario posterior a la lección",
+        "title": "Clasificación 3: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Los clasificadores de vectores de apoyo pueden utilizarse para:",
@@ -1362,7 +1362,7 @@
       },
       {
         "id": 25,
-        "title": "Clasificación 4: Cuestionario previo a la lección",
+        "title": "Clasificación 4: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Los sistemas de recomendación pueden utilizarse para:",
@@ -1415,7 +1415,7 @@
       },
       {
         "id": 26,
-        "title": "Clasificación 4: Cuestionario posterior a la lección",
+        "title": "Clasificación 4: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "La aplicación Netron te ayuda a:",
@@ -1472,7 +1472,7 @@
       },
       {
         "id": 27,
-        "title": "Introducción al Clustering: Cuestionario previo a la lección",
+        "title": "Introducción al Clustering: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "Un ejemplo real de agrupación sería:",
@@ -1529,7 +1529,7 @@
       },
       {
         "id": 28,
-        "title": "Introducción al Clustering: Cuestionario posterior a la lección",
+        "title": "Introducción al Clustering: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "La geometría euclidiana se organiza a lo largo de:",
@@ -1586,7 +1586,7 @@
       },
       {
         "id": 29,
-        "title": "K-Means Clustering: Cuestionario previo a la lección",
+        "title": "K-Means Clustering: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "K-Means se deriva de:",
@@ -1643,7 +1643,7 @@
       },
       {
         "id": 30,
-        "title": "K-Means Clustering: Cuestionario posterior a la lección",
+        "title": "K-Means Clustering: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Un diagrama de Voronoi muestra:",
@@ -1696,7 +1696,7 @@
       },
       {
         "id": 31,
-        "title": "Introducción al NLP: Cuestionario previo a la lección",
+        "title": "Introducción al NLP: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Qué significa NLP en estas lecciones?:",
@@ -1753,7 +1753,7 @@
       },
       {
         "id": 32,
-        "title": "Introducción al NLP: Cuestionario posterior a la lección",
+        "title": "Introducción al NLP: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Joseph Weizenbaum inventó el robot:",
@@ -1810,7 +1810,7 @@
       },
       {
         "id": 33,
-        "title": "Tareas de NPL: Cuestionario previo a la lección",
+        "title": "Tareas de NPL: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "La tokenización:",
@@ -1867,7 +1867,7 @@
       },
       {
         "id": 34,
-        "title": "Tareas de NPL: Cuestionario posterior a la lección",
+        "title": "Tareas de NPL: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Construye un diccionario de la frecuencia con la que se repiten las palabras:",
@@ -1924,7 +1924,7 @@
       },
       {
         "id": 35,
-        "title": "NLP y traducción: Cuestionario previo a la lección",
+        "title": "NLP y traducción: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "La traducción ingenua:",
@@ -1981,7 +1981,7 @@
       },
       {
         "id": 36,
-        "title": "NLP y traducción: Cuestionario posterior a la lección",
+        "title": "NLP y traducción: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "La base de la biblioteca de traducción de TextBlob es:",
@@ -2038,7 +2038,7 @@
       },
       {
         "id": 37,
-        "title": "NLP 4: Cuestionario previo a la lección",
+        "title": "NLP 4: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Qué información se puede obtener de un texto escrito o hablado por un ser humano?:",
@@ -2095,7 +2095,7 @@
       },
       {
         "id": 38,
-        "title": "NLP 4: Cuestionario posterior a la lección",
+        "title": "NLP 4: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál es la esencia del NLP?:",
@@ -2148,7 +2148,7 @@
       },
       {
         "id": 39,
-        "title": "NLP 5: Cuestionario previo a la lección",
+        "title": "NLP 5: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Por qué es importante limpiar los datos antes de analizarlos?:",
@@ -2201,7 +2201,7 @@
       },
       {
         "id": 40,
-        "title": "NLP 5: Cuestionario posterior a la lección",
+        "title": "NLP 5: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál es el objetivo del conjunto de datos?:",
@@ -2254,7 +2254,7 @@
       },
       {
         "id": 41,
-        "title": "Introducción a las series temporales: Cuestionario previo a la lección",
+        "title": "Introducción a las series temporales: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "La predicción de series temporales es útil en:",
@@ -2311,7 +2311,7 @@
       },
       {
         "id": 42,
-        "title": "Introducción a las series temporales: Cuestionario posterior a la lección",
+        "title": "Introducción a las series temporales: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "Las tendencias de las series temporales son:",
@@ -2368,7 +2368,7 @@
       },
       {
         "id": 43,
-        "title": "Series temporales ARIMA: Cuestionario previo a la lección",
+        "title": "Series temporales ARIMA: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "ARIMA significa:",
@@ -2425,7 +2425,7 @@
       },
       {
         "id": 44,
-        "title": "Series temporales ARIMA: Cuestionario posterior a la lección",
+        "title": "Series temporales ARIMA: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "ARIMA se utiliza para hacer que un modelo se ajuste a la forma especial de los datos de las series temporales:",
@@ -2482,7 +2482,7 @@
       },
       {
         "id": 45,
-        "title": "Refuerzo 1: Cuestionario previo a la lección",
+        "title": "Refuerzo 1: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Qué es el aprendizaje por refuerzo?:",
@@ -2535,7 +2535,7 @@
       },
       {
         "id": 46,
-        "title": "Refuerzo 1: Cuestionario posterior a la lección",
+        "title": "Refuerzo 1: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Qué es el Q-Learning?:",
@@ -2588,7 +2588,7 @@
       },
       {
         "id": 47,
-        "title": "Refuerzo 2: Cuestionario previo a la lección",
+        "title": "Refuerzo 2: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "El ajedrez y el Go son juegos con estados continuos:",
@@ -2641,7 +2641,7 @@
       },
       {
         "id": 48,
-        "title": "Refuerzo 2: Cuestionario posterior a la lección",
+        "title": "Refuerzo 2: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Dónde definimos todas las acciones posibles en un entorno?:",
@@ -2698,7 +2698,7 @@
       },
       {
         "id": 49,
-        "title": "Aplicaciones en el mundo real: Cuestionario previo a la lección",
+        "title": "Aplicaciones en el mundo real: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "¿Cuál es un ejemplo de aplicación de ML en el sector financiero?:",
@@ -2755,7 +2755,7 @@
       },
       {
         "id": 50,
-        "title": "Aplicaciones en el mundo real: Cuestionario posterior a la lección",
+        "title": "Aplicaciones en el mundo real: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Qué técnica de ML puede utilizarse para detectar el fraude con tarjetas de crédito?:",
@@ -2812,7 +2812,7 @@
       },
 	  {
         "id": 51,
-        "title": "Series temporales SVR: Cuestionario previo a la lección",
+        "title": "Series temporales SVR: Examen previo a la lección",
         "quiz": [
           {
             "questionText": "SVM significa:",
@@ -2869,7 +2869,7 @@
       },
       {
         "id": 52,
-        "title": "Series temporales SVR: Cuestionario posterior a la lección",
+        "title": "Series temporales SVR: Examen posterior a la lección",
         "quiz": [
           {
             "questionText": "¿Por cuál de estos métodos aprende un SVR?:",
