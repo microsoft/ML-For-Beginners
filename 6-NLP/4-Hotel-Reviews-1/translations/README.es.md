@@ -6,7 +6,7 @@ En esta sección usarás las técnicas de las lecciones anteriores para hacer un
 - cómo calcular algunos datos nuevos basándote en las columnas existentes
 - cómo guardar el conjunto de datos resultante para usarlo en el desafío final
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37?loc=es)
 
 ### Introducción
 
@@ -404,7 +404,7 @@ Ahora que has explorado el conjunto de datos, en la próxima lección filtrarás
 
 Esta lección demuestra, como vimos en lecciones anteriores, qué tan críticamente importante es entender tus datos y sus imperfecciones antes de realizar operaciones sobre ellos. Los datos basados en texto, requieren particularmente un minucioso escrutinio. Profundiza en grandes conjuntos de datos basados en texto y ve si puedes descubrir áreas que podrían presentar sesgos o sentimientos sesgados en un modelo.
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38?loc=es)
 
 ## Revisión y autoestudio
 
