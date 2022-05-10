@@ -2,7 +2,7 @@
 
 En esta segunda lección de clasificación, explorarás más formas de clasificar datos numéricos. También aprenderás acerca de las ramificaciones para elegir un clasificador en lugar de otro.
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23?loc=es)
 
 ### Prerrequisito
 
@@ -223,7 +223,7 @@ Este método de aprendizaje automático "combina las predicciones de varios esti
 
 Cada una de estas técnicas tiene un gran número de parámetros que puedes modificar. Investiga los parámetros predeterminados de cada uno y piensa en lo que significaría el ajuste de estos parámetros para la calidad del modelo.
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24?loc=es)
 
 ## Revisión y autoestudio
 
