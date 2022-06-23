@@ -1,7 +1,7 @@
 # Introduction to machine learning
 
 <!--
-Watch the video, then take the pre-lesson quiz
+Watch the video, then take the pre-lesson quiz  
 -->
 
 [![ML, AI, deep learning - What's the difference?](https://img.youtube.com/vi/lTd9RSxS9ZE/0.jpg)](https://youtu.be/lTd9RSxS9ZE "ML, AI, deep learning - What's the difference?")
