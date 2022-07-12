@@ -1,6 +1,6 @@
 # Dipnot: Klasik makine öğrenmesinin gerçek dünya uygulamaları
 
-In this section of the curriculum, you will be introduced to some real-world applications of classical ML. We have scoured the internet to find whitepapers and articles about applications that have used these strategies, avoiding neural networks, deep learning and AI as much as possible. Learn about how ML is used in business systems, ecological applications, finance, arts and culture, and more.
+
 
 Müfredatın bu bölümünde, klasik makine öğrenmesinin bazı gerçek dünya uygulamalarıyla tanışacaksınız. Bu stratejileri kullanan, sinir ağlarından, derin öğrenmeden ve yapay zeka(AI)'dan mümkün olduğunca kaçınan uygulamalar hakkında teknik incelemeler ve makaleler bulmak için interneti taradık.Makine öğrenmesinin iş sistemlerinde, ekolojik uygulamalarda, finansta, sanat ve kültürde ve dahasında nasıl kullanıldığı hakkında bilgi edinin.
 
