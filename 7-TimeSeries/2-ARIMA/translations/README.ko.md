@@ -6,7 +6,7 @@
 
 > 🎥 영상을 보려면 이미지 클릭: A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/43/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/43/)
 
 ## 소개
 
@@ -383,7 +383,7 @@ Walk-forward 검사는 time series 모델 평가의 최적 표준이고 이 프�
 
 Time Series 모델의 정확도를 테스트할 방식을 파봅니다. 이 강의에서 MAPE을 다루지만, 사용할 다른 방식이 있나요? 조사해보고 첨언해봅니다. 도움을 받을 수 있는 문서는 [here](https://otexts.com/fpp2/accuracy.html)에서 찾을 수 있습니다.
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/44/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/44/)
 
 ## 검토 & 자기주도 학습
 

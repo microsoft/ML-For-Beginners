@@ -5,7 +5,7 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Questionário pré-palestra](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
+## [Questionário pré-palestra](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/9/)
 
 > ### [Esta lição está disponível em R!](./solution/R/lesson_1-R.ipynb)
 
@@ -202,7 +202,7 @@ Parabéns, construíste o teu primeiro modelo linear de regressão, criaste uma 
 ## 🚀Challenge
 
 Defina uma variável diferente deste conjunto de dados. Dica: edite esta linha:`X = X[:, np.newaxis, 2]`. Tendo em conta o objetivo deste conjunto de dados, o que é que consegue descobrir sobre a progressão da diabetes como uma doença?
-## [Questionário pós-palestra](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
+## [Questionário pós-palestra](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/10/)
 
 ## Review & Self Study
 

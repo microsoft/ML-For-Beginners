@@ -4,7 +4,7 @@
 
 > 🎥 머신러닝, AI 그리고 딥러닝의 차이를 설명하는 영상을 보려면 위 이미지를 클릭합니다.
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/1/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/1/)
 
 ### 소개
 
@@ -100,7 +100,7 @@
 
 종이에 그리거나, [Excalidraw](https://excalidraw.com/)처럼 온라인 앱을 이용하여 AI, ML, 딥러닝, 그리고 데이터 사이언스의 차이를 이해합시다. 각 기술들이 잘 해결할 수 있는 문제에 대해 아이디어를 합쳐보세요.
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/2/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/2/)
 
 ## 리뷰 & 자기주도 학습
 

@@ -2,7 +2,7 @@
 
 지금까지 자세히 데이터셋을 살펴보았으며, 열을 필터링하고 데이터셋으로 NLP 기술을 사용하여 호텔에 대한 새로운 시각을 얻게 될 시간입니다.
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/39/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/39/)
 
 ### 필터링 & 감정 분석 작업
 
@@ -361,7 +361,7 @@ df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 
 시작했을 때, 열과 데이터로 이루어진 데이터셋이 었었지만 모두 다 확인되거나 사용되지 않았습니다. 데이터를 살펴보았으며, 필요없는 것은 필터링해서 지웠고, 유용하게 태그를 변환했고, 평균을 계산했으며, 일부 감정 열을 추가하고 기대하면서, 자연어 처리에 대한 일부 흥미로운 사실을 학습했습니다.
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/40/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/40/)
 
 ## 도전
 

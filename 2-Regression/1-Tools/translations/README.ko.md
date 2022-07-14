@@ -4,7 +4,7 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/9/)
 
 ## 소개
 
@@ -200,7 +200,7 @@ Scikit-learn 사용하면 올바르게 모델을 만들고 사용하기 위해 �
 
 이 데이터셋은 다른 변수를 Plot 합니다. 힌트: 이 라인을 수정합니다: `X = X[:, np.newaxis, 2]`. 이 데이터셋의 타겟이 주어질 때, 질병으로 당뇨가 진행되면 어떤 것을 탐색할 수 있나요?
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/10/)
 
 ## 검토 & 자기주도 학습
 

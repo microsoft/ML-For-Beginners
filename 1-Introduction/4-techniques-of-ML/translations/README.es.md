@@ -6,7 +6,7 @@ El proceso de creación, uso y mantenimiento de modelos de machine learning, y l
 - Explorar conceptos básicos como 'modelos', 'predicciones', y 'datos de entrenamiento'
 
  
-## [Cuestionario previo a la conferencia](https://white-water-09ec41f0f.azurestaticapps.net/quiz/7?loc=es)
+## [Cuestionario previo a la conferencia](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/7?loc=es)
 ## Introducción
 
 A un alto nivel, el arte de crear procesos de machine learning (ML) se compone de una serie de pasos:
@@ -101,7 +101,7 @@ En estas lecciones, descubrirá cómo utilizar estos pasos para preparar, constr
 
 Dibuje un diagrama de flujos que refleje los pasos de practicante de ML. ¿Dónde te ves ahora mismo en el proceso? ¿Dónde predice que encontrará dificultades? ¿Qué te parece fácil? 
 
-## [Cuestionario posterior a la conferencia](https://white-water-09ec41f0f.azurestaticapps.net/quiz/8?loc=es)
+## [Cuestionario posterior a la conferencia](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/8?loc=es)
 
 ## Revisión & Autoestudio
 

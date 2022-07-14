@@ -4,7 +4,7 @@
 
 > 作者 [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [課前測](https://white-water-09ec41f0f.azurestaticapps.net/quiz/9/)
+## [課前測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/9/)
 
 ## 介紹
 
@@ -195,7 +195,7 @@ Scikit-learn 使構建模型和評估它們的使用變得簡單。它主要側�
 
 從這個數據集中繪製一個不同的變量。提示：編輯這一行：`X = X[:, np.newaxis, 2]`。鑒於此數據集的目標，你能夠發現糖尿病作為一種疾病的進展情況嗎？
 
-## [課後測](https://white-water-09ec41f0f.azurestaticapps.net/quiz/10/)
+## [課後測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/10/)
 
 ## 復習與自學 
 

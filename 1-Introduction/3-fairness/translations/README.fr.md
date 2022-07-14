@@ -3,7 +3,7 @@
 ![Résumé de l'équité dans le Machine Learning dans un sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz préalable](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/?loc=fr)
+## [Quiz préalable](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/5/?loc=fr)
  
 ## Introduction
 
@@ -184,7 +184,7 @@ Pour éviter que des biais ne soient introduits en premier lieu, nous devrions 
 
 Pensez à des scénarios de la vie réelle où l'injustice est évidente dans la construction et l'utilisation de modèles. Que devrions-nous considérer d'autre ?
 
-## [Quiz de validation des connaissances](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/?loc=fr)
+## [Quiz de validation des connaissances](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/6/?loc=fr)
 ## Révision et auto-apprentissage
  
 Dans cette leçon, nous avons appris quelques notions de base sur les concepts d'équité et d'injustice dans le machine learning.  

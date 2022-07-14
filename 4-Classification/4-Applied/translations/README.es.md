@@ -8,7 +8,7 @@ Uno de los usos prácticos más útiles del aprendizaje automático es construir
 
 > 🎥 Haz clic en la imagen de arriba para ver el video: Jen Looper construye una aplicación web usando los datos clasificados de cocina.
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25?loc=es)
+## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/25?loc=es)
 
 En esta lección aprenderás:
 
@@ -301,7 +301,7 @@ Felicidades, has creado una aplicación de 'recomendación' con pocos campos. ¡
 
 Tu aplicación web es mínima, así que continua construyéndola usando los ingredientes y sus índices de los datos [ingredient_indexes](../../data/ingredient_indexes.csv). ¿Qué combinaciones de sabor funcionan para crear un determinado platillo nacional?
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26?loc=es)
+## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/26?loc=es)
 
 ## Revisión y autoestudio
 

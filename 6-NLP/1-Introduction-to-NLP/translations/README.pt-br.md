@@ -2,7 +2,7 @@
 
 Esta aula cobre uma breve história, bem como conceitos importantes do *processamento de linguagem natural*, uma subárea da *Linguística computacional*.
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/31?loc=ptbr)
+## [Teste pré-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/31?loc=ptbr)
 
 ## Introdução
 
@@ -157,7 +157,7 @@ Escolha um dos elementos do "pare e considere" acima e tente implementá-lo em c
 
 Na próxima aula, você irá aprender sobre algumas outras abordagens de análise sintática de linguagem natural e de aprendizado de máquina.
 
-## [Teste pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/32?loc=ptbr)
+## [Teste pós-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/32?loc=ptbr)
 
 ## Revisão & Autoestudo
 

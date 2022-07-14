@@ -8,7 +8,7 @@
 
 > 🎥 영상 보려면 이미지 클릭
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/25/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/25/)
 
 이 강의에서 다음을 배우게 됩니다:
 
@@ -322,7 +322,7 @@ index.html 파일의 폴더에서 Visual Studio Code로 터미널 세션을 엽�
 
 이 웹 앱은 매우 작아서, [ingredient_indexes](../../data/ingredient_indexes.csv) 데이터에서 성분과 인덱스로 계속 만듭니다. 주어진 국민 요리를 만드려면 어떤 풍미 조합으로 작업해야 되나요?
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/26/)
+## [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/26/)
 
 ## 검토 & 자기주도 학습
 

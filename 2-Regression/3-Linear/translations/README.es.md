@@ -3,7 +3,7 @@
 ![Infografía de regresión lineal vs polinomial](./images/linear-polynomial.png)
 > Infografía de [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/13?loc=es)
+## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/13?loc=es)
 
 > ### [¡Esta lección está disponible en R!](../solution/R/lesson_3-R.ipynb)
 
@@ -331,7 +331,7 @@ Llama a `predict()` para hacer una predicción:
 
 Prueba variables diferentes en este notebook para ver cómo la correlación corresponde a la precisión del modelo.
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/14?loc=es)
+## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/14?loc=es)
 
 ## Revisión y auto-estudio
 

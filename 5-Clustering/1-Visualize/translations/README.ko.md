@@ -6,7 +6,7 @@ Clustering이 데이터셋에 라벨을 붙이지 않거나 입력이 미리 정
 
 > 🎥 영상을 보려면 이미지 클릭. While you're studying machine learning with clustering, enjoy some Nigerian Dance Hall tracks - this is a highly rated song from 2014 by PSquare.
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/27/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/27/)
 
 ### 소개
 
@@ -322,7 +322,7 @@ Clustering이 데이터셋에 라벨을 붙이지 않거나 입력이 미리 정
 
 다음 강의를 준비하기 위해서, 프로덕션 환경에서 찾아서 사용할 수 있는 다양한 clustering 알고리즘을 차트로 만듭니다. clustering은 어떤 문제를 해결하려고 시도하나요?
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/28/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/28/)
 
 ## 검토 & 자기주도 학습
 
