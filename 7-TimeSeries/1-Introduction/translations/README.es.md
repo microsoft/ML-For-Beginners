@@ -10,7 +10,7 @@ En esta lección y la siguiente, aprenderás un poco acerca de la predicción de
 
 > 🎥 Da clic en la imagen de arriba para ver un video acerca de la predicción de series de tiempo
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/41?loc=es)
+## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/41?loc=es)
 
 Es un campo útil e interesante con valor real para el negocio, dada su aplicación directa a problemas de precio, inventario e incidentes de cadenas de suministro. Mientras que las técnicas de aprendizaje profundo han comenzado a usarse para ganar más conocimiento para mejorar el rendimiento de futuras predicciones, la predicción de series de tiempo sigue siendo un campo muy informado por técnicas de aprendizaje automático clásico.
 
@@ -175,7 +175,7 @@ En la siguiente lección, crearás un modelo ARIMA para realizar algunas predicc
 
 Haz una lista de todas las industrias y áreas de consulta en las que puedes pensar que se beneficiarían de la predicción de series de tiempo. ¿Puedes pensar en una aplicación de estas técnicas en las artes, en la econometría, ecología, venta al menudeo, la industria, finanzas? ¿Dónde más?
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/42?loc=es)
+## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/42?loc=es)
 
 ## Revisión y autoestudio
 

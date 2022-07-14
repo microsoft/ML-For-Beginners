@@ -11,7 +11,7 @@ reinforcement learning과 (게임) 시뮬레이터로, 살아남고 가능한 �
 
 > 🎥 Dmitry discuss Reinforcement Learning 들으려면 이미지 클릭
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/45/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/45/)
 
 ## 전제조건 및 설정
 
@@ -315,7 +315,7 @@ print_statistics(qpolicy)
 
 전체적으로, 학습 프로세스의 성공과 퀄리티는 학습률, 학습률 감소, 그리고 감가율처럼 파라미터에 기반하는게 상당히 중요하다는 점을 기억합니다. 훈련하면서 최적화하면 (예시로, Q-Table coefficients), **parameters**와 구별해서, 가끔 **hyperparameters**라고 불립니다. 최고의 hyperparameter 값을 찾는 프로세스는 **hyperparameter optimization**이라고 불리며, 별도의 토픽이 있을 만합니다.
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/46/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/46/)
 
 ## 과제 
 

@@ -2,7 +2,7 @@
  
 ![機器學習中的公平性概述](../../../sketchnotes/ml-fairness.png)
 > 作者 [Tomomi Imura](https://www.twitter.com/girlie_mac)
-## [課前測驗](https://white-water-09ec41f0f.azurestaticapps.net/quiz/5/)
+## [課前測驗](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/5/)
  
 ## 介紹
 
@@ -181,7 +181,7 @@
 
 想想現實生活中的場景，在模型構建和使用中明顯存在不公平。我們還應該考慮什麽？
 
-## [課後測驗](https://white-water-09ec41f0f.azurestaticapps.net/quiz/6/)
+## [課後測驗](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/6/)
 ## 復習與自學
  
 在本課中，你學習了機器學習中公平和不公平概念的一些基礎知識。

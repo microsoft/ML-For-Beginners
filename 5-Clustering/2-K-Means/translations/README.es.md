@@ -4,7 +4,7 @@
 
 > 🎥 Haz clic en la imagen de arriba para ver el video: Andrew Ng explica el agrupamiento"
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/29?loc=es)
+## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/29?loc=es)
 
 En esta lección, aprenderás cómo crear grupos usando Scikit-learn y el conjunto de datos de música Nigeriana que importaste anteriormente. Cubriremos los conceptos básicos de K-Medias para agrupamiento. Ten en mente que, como aprendiste en lecciones anteriores, hay muchas formas de de trabajar con grupos y el método que uses depende de tus datos. Probaremos K-medias ya que es la técnica de agrupamiento más común. ¡Comencemos!
 
@@ -238,7 +238,7 @@ Dedica algo de tiempo a este notebook, ajustando los parámetros. ¿Puedes mejor
 
 Pista: Prueba escalar tus datos. Hay código comentado en el notebook que agrega escalado estándar para hacer que las columnas de datos se parezcan más entre sí en términos de rango. Encontrarás que mientras el puntaje de silueta disminuye el 'pliegue' en la gráfica de codo se suaviza. Esto es por qué al dejar los datos sin escalar le permite a los datos con menos variación tengan más peso. Lee un poco más de este problema [aquí](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/30?loc=es)
+## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/30?loc=es)
 
 ## Revisión y auto-estudio
 

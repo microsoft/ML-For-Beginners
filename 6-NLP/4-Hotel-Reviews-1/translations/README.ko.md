@@ -6,7 +6,7 @@
 - 이미 존재하는 열을 기반으로 일부 새로운 데이터를 계산하는 방식
 - 최종 도전에서 사용하고자 결과 데이터셋을 저장하는 방식
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/37/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/37/)
 
 ### 소개
 
@@ -397,7 +397,7 @@ print("Loading took " + str(round(end - start, 2)) + " seconds")
 
 이전 강의에서 본 것처럼, 이 강의에서 작업하기 전 데이터와 약점을 이해하는 것이 얼마나 치명적이게 중요한지 보여줍니다. 특별히, 텍스트-기반 데이터는, 조심히 조사해야 합니다. 다양한 text-heavy 데이터셋을 파보고 모델에서 치우치거나 편향된 감정으로 끼워놓은 영역을 찾을 수 있는지 확인합니다.
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/38/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/38/)
 
 ## 검토 & 자기주도 학습
 
