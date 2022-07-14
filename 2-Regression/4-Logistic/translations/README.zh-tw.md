@@ -4,7 +4,7 @@
 
 > 作者 [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [課前測](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
+## [課前測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)
 
 ## 介紹
 
@@ -290,7 +290,7 @@ print(auc)
 
 關於邏輯回歸，還有很多東西需要解開！但最好的學習方法是實驗。找到適合此類分析的數據集並用它構建模型。你學到了什麽？小貼士：嘗試 [Kaggle](https://kaggle.com) 獲取有趣的數據集。
 
-## [課後測](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/)
+## [課後測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/16/)
 
 ## 復習與自學
 

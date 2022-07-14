@@ -11,7 +11,7 @@ Continuaremos nosso uso de notebooks para limpar dados e treinar nosso modelo, m
 
 Para fazer isso, você precisa construir um aplicativo da web usando o Flask.
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/17?loc=ptbr)
+## [Teste pré-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/17?loc=ptbr)
 
 ## Construindo um aplicativo
 
@@ -337,7 +337,7 @@ Em um ambiente profissional, você pode ver como uma boa comunicação é necess
 
 Em vez de trabalhar em um notebook e importar o modelo para o aplicativo Flask, você pode treinar o modelo diretamente no aplicativo Flask! Tente converter seu código Python no notebook, talvez depois que seus dados forem limpos, para treinar o modelo de dentro do aplicativo em uma rota chamada `train`. Quais são os prós e os contras de seguir esse método?
 
-## [Teste pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/18?loc=ptbr)
+## [Teste pós-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/18?loc=ptbr)
 
 ## Revisão e autoestudo
 

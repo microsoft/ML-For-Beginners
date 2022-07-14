@@ -3,7 +3,7 @@
 ![Краткое изложение истории машинного обучения в заметке](../../../sketchnotes/ml-history.png)
 > Заметка [Томоми Имура](https://www.twitter.com/girlie_mac)
 
-## [Тест перед лекцией](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
+## [Тест перед лекцией](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/3/)
 
 ---
 
@@ -128,7 +128,7 @@
 
 Погрузитесь в один из этих исторических моментов и узнайте больше о людях, стоящих за ними. Есть увлекательные персонажи, и ни одно научное открытие никогда не создавалось в культурном вакууме. Что вы обнаружите?
 
-## [Тест после лекции](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4/)
+## [Тест после лекции](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/4/)
 
 ---
 ## Обзор и самообучение

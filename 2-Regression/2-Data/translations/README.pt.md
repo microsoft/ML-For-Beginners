@@ -4,7 +4,7 @@
 
 Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Teste de pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
+## [Teste de pré-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11/)
 
 > ### [Esta lição está disponível em R!](./solution/R/lesson_2-R.ipynb)
 
@@ -196,7 +196,7 @@ Esta é uma visualização de dados mais útil! Parece indicar que o preço mais
 
 Explore os diferentes tipos de visualização que o Matplotlib oferece. Que tipos são mais apropriados para problemas de regressão?
 
-## [Questionário pós-palestra](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12/)
+## [Questionário pós-palestra](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12/)
 
 ## Revisão e Estudo Automático
 

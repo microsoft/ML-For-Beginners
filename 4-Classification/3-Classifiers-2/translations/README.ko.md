@@ -2,7 +2,7 @@
 
 두번째 classification 강의에서, 숫자 데이터를 분류하는 더 많은 방식을 알아봅니다. 다른 것보다 하나의 classifier를 선택하는 파급효과도 배우게 됩니다.
 
-## [강의 전 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/)
+## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/23/)
 
 ### 필요 조건
 
@@ -224,7 +224,7 @@ weighted avg       0.73      0.72      0.72      1199
 
 각 기술에는 트윅할 수 있는 많은 수의 파라미터가 존재합니다. 각 기본 파라미터를 조사하고 파라미터를 조절헤서 모델 품질에 어떤 의미가 부여되는지 생각합니다.
 
-## [강의 후 퀴즈](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/)
+## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/24/)
 
 ## 검토 & 자기주도 학습
 

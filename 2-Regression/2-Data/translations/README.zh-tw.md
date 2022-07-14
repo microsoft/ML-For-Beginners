@@ -3,7 +3,7 @@
 ![數據可視化信息圖](../images/data-visualization.png)
 > 作者 [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [課前測](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
+## [課前測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11/)
 
 ## 介紹
 
@@ -192,7 +192,7 @@
 
 探索 Matplotlib 提供的不同類型的可視化。哪種類型最適合回歸問題？
 
-## [課後測](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12/)
+## [課後測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12/)
 
 ## 復習與自學
 

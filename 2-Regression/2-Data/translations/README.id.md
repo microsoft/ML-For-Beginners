@@ -3,7 +3,7 @@
 ![Infografik visualisasi data](../images/data-visualization.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Kuis pra-ceramah](https://white-water-09ec41f0f.azurestaticapps.net/quiz/11/)
+## [Kuis pra-ceramah](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11/)
 
 ## Pembukaan
 
@@ -191,7 +191,7 @@ Untuk menjadikan sebuah grafik menjadi berguna, biasanya datanya harus dikelompo
 
 Jelajahi jenis-jenis visualisasi yang beda dan yang disediakan Matplotlib. Jenis mana yang paling cocok untuk kasus regresi?
 
-## [Kuis pasca-ceramah](https://white-water-09ec41f0f.azurestaticapps.net/quiz/12/)
+## [Kuis pasca-ceramah](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12/)
 
 ## Review & Pembelajaran Mandiri
 

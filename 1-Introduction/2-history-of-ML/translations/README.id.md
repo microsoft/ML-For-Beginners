@@ -3,7 +3,7 @@
 ![Ringkasan dari Sejarah Machine Learning dalam sebuah catatan sketsa](../../../sketchnotes/ml-history.png)
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz Pra-Pelajaran](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
+## [Quiz Pra-Pelajaran](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/3/)
 
 Dalam pelajaran ini, kita akan membahas tonggak utama dalam sejarah Machine Learning dan Artificial Intelligence. 
 
@@ -101,7 +101,7 @@ Kita masih belum tahu apa yang akan terjadi di masa depan, tetapi penting untuk 
 
 Gali salah satu momen bersejarah ini dan pelajari lebih lanjut tentang orang-orang di baliknya. Ada karakter yang menarik, dan tidak ada penemuan ilmiah yang pernah dibuat dalam kekosongan budaya. Apa yang kamu temukan? 
 
-## [Quiz Pasca-Pelajaran](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4/)
+## [Quiz Pasca-Pelajaran](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/4/)
 
 ## Ulasan & Belajar Mandiri
 
