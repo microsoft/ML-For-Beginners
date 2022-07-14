@@ -2,7 +2,7 @@
 
 Para a maioria das tarefas de *processamento de linguagem natural*, o texto a ser processado precisa ser quebrado em partes e examinado, e os resultados precisam ser guardados ou cruzados com regras e data sets. Estas tarefas permitem que o programador obtenha _significado_, _intencionalidade_ ou a _frequência_ de termos e palavras em um texto.
 
-## [Teste pré-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/33?loc=ptbr)
+## [Teste pré-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/33?loc=ptbr)
 
 Vamos descobrir técnicas frequentemente usadas no processamento de texto. Combinadas com aprendizado de máquina, estas técnicas ajudam você a analisar grandes quantidades de texto com eficiência. Contudo, antes de aplicar o aprendizado de máquina para estas tarefas, vamos entender os problemas enfrentados por um especialista de PLN (ou NLP).
 
@@ -209,7 +209,7 @@ Uma possível resposta para a tarefa está [aqui](../solution/bot.py)
 
 Implemente o bot discutido acima da seção checagem de conhecimento e teste-o em amigos. O bot consegue enganá-los? Você consegue fazer seu bot mais convincente?
 
-## [Teste pós-aula](https://white-water-09ec41f0f.azurestaticapps.net/quiz/34?loc=ptbr)
+## [Teste pós-aula](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/34?loc=ptbr)
 
 ## Revisão & Autoestudo
 

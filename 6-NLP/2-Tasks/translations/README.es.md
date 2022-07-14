@@ -2,7 +2,7 @@
 
 Para la mayoría de tareas de *procesamiento del lenguaje natural*, el texto a ser procesado debe ser partido en bloques, examinado y los resultados almacenados y tener referencias cruzadas con reglas y conjuntos de datos. Esta tareas, le permiten al programador obtener el _significado_, _intención_ o sólo la _frecuencia_ de los términos y palabras en un texto.
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/33?loc=es)
+## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/33?loc=es)
 
 Descubramos técnicas comunes usadas en el procesamiento de texto. Combinadas con el aprendizaje automático, estas técnicas te ayudan a analizar grandes cantidades de texto de forma eficiente, Antes de aplicar aprendizaje automático a estas tareas, primero entendamos los problemas encontrados por un especialista del procesamiento del lenguaje natural.
 
@@ -203,7 +203,7 @@ Implementa el bot con la revisión de conocimiento anterior y pruébalo con un a
 
 Toma una tarea de la revisión de conocimiento previo y trata de implementarla. Prueba el bot con un amigo. ¿Pudo engañarlo? ¿Puedes hacer a tu bot más 'creíble'?
 
-## [Examen posterior a la lectura](https://white-water-09ec41f0f.azurestaticapps.net/quiz/34?loc=es)
+## [Examen posterior a la lectura](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/34?loc=es)
 
 ## Revisión y autoestudio
 

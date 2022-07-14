@@ -4,7 +4,7 @@ En esta lección, usarás el conjunto de datos que guardaste en la última lecci
 
 Usarás este conjunto de datos con una variedad de clasificadores para _predecir una cocina nacional dada basado en un grupo de ingredientes_. Mientras lo haces, aprenderás más acerca de algunas formas en que los algoritmos pueden ser aprovechados para las tareas de clasificación.
 
-## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/21?loc=es)
+## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/21?loc=es)
 
 # Preparación
 
@@ -234,7 +234,7 @@ Ya que estás usando un caso multiclase, necesitas elegir qué _esquema_ usar y 
 
 En esta lección, usaste tus datos limpios para construir un modelo de aprendizaje automático que puede predecir una cocina nacional basado en una serie de ingredientes. Toma un tiempo para leer las diversas opciones que provee Scikit-learn para clasificar los datos. Profundiza en el concepto de 'solucionador' para comprender que sucede detrás de escena.
 
-## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/22?loc=es)
+## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/22?loc=es)
 
 ## Revisión y autoestudio
 

@@ -3,7 +3,7 @@
 ![逻辑与线性回归信息图](../images/logistic-linear.png)
 > 作者 [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [课前测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/15/)
+## [课前测](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)
 
 ## 介绍
 
@@ -289,7 +289,7 @@ print(auc)
 
 关于逻辑回归，还有很多东西需要解开！但最好的学习方法是实验。找到适合此类分析的数据集并用它构建模型。你学到了什么？小贴士：尝试 [Kaggle](https://kaggle.com) 获取有趣的数据集。
 
-## [课后测](https://white-water-09ec41f0f.azurestaticapps.net/quiz/16/)
+## [课后测](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/16/)
 
 ## 复习与自学
 

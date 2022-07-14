@@ -2,7 +2,7 @@
 
 ![機器學習歷史概述](../../../sketchnotes/ml-history.png)
 > 作者 [Tomomi Imura](https://www.twitter.com/girlie_mac)
-## [課前測驗](https://white-water-09ec41f0f.azurestaticapps.net/quiz/3/)
+## [課前測驗](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/3/)
 
 在本課中，我們將走過機器學習和人工智能歷史上的主要裏程碑。 
 
@@ -95,7 +95,7 @@ Alan Turing，一個真正傑出的人，[在 2019 年被公眾投票選出](htt
 
 深入了解這些歷史時刻之一，並更多地了解它們背後的人。這裏有許多引人入勝的人物，沒有一項科學發現是在文化真空中創造出來的。你發現了什麽？
 
-## [課後測驗](https://white-water-09ec41f0f.azurestaticapps.net/quiz/4/)
+## [課後測驗](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/4/)
 
 ## 復習與自學
 

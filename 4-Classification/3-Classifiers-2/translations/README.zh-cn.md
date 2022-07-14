@@ -2,7 +2,7 @@
 
 在第二节课程中，您将探索更多方法来对数值数据进行分类。您还将了解选择不同的分类器所带来的结果。
 
-## [课前测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/23/)
+## [课前测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/23/)
 
 ### 先决条件
 
@@ -224,7 +224,7 @@ weighted avg       0.73      0.72      0.72      1199
 
 这些技术方法每个都有很多能够让您微调的参数。研究每一个的默认参数，并思考调整这些参数对模型质量有何意义。
 
-## [课后测验](https://white-water-09ec41f0f.azurestaticapps.net/quiz/24/)
+## [课后测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/24/)
 
 ## 回顾与自学
 
