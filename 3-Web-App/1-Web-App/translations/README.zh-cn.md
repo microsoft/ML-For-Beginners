@@ -342,6 +342,6 @@ print(model.predict([[50,44,-12]]))
 
 ## 任务
 
-[尝试不同的模型](../assignment.md)
+[尝试不同的模型](./assignment.zh-cn.md)
 
 
