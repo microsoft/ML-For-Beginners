@@ -73,7 +73,7 @@ Ao garantir que o conteúdo esteja alinhado com os projetos, o processo torna-se
 - tarefa
 - questionário pós-aula
 
-> **Uma nota sobre questionários**: Todos os questionários estão contidos [neste aplicativo](https://white-water-09ec41f0f.azurestaticapps.net/), para um total de 50 testes de três perguntas cada. Eles estão vinculados nas lições, mas o aplicativo de teste pode ser executado localmente; siga as instruções na pasta `quiz-app`.
+> **Uma nota sobre questionários**: Todos os questionários estão contidos [neste aplicativo](https://gentle-hill-034defd0f.1.azurestaticapps.net/), para um total de 50 testes de três perguntas cada. Eles estão vinculados nas lições, mas o aplicativo de teste pode ser executado localmente; siga as instruções na pasta `quiz-app`.
 
 | Número da aula |                                Tópico                                 |                 Agrupamento de Aulas                  | Objetivos de aprendizagem                                                                                                            |                   Aula vinculada                    |    Autor     |
 | :------------: | :-------------------------------------------------------------------: | :---------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------: | :----------: |
