@@ -8,7 +8,7 @@ Uno degli usi pratici più utili dell'apprendimento automatico è la creazione d
 
 > 🎥 Fare clic sull'immagine sopra per un video
 
-## [Quiz pre-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/25/?loc=it)
+## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/?loc=it)
 
 In questa lezione, si imparerà:
 
@@ -321,7 +321,7 @@ Congratulazioni, si è creato un'app web di "raccomandazione" con pochi campi. S
 
 L'app web è molto minimale, quindi continuare a costruirla usando gli ingredienti e i loro indici dai dati [ingredient_indexes](../../data/ingredient_indexes.csv) . Quali combinazioni di sapori funzionano per creare un determinato piatto nazionale?
 
-## [Quiz post-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/26/?loc=it)
+## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

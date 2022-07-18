@@ -2,7 +2,7 @@
 
 ![Regressão linear vs polinomial infográfica](./images/linear-polynomial.png)
 > Infográfico de [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Questionário pré-seleção](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/13/)
+## [Questionário pré-seleção](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
 
 > ### [Esta lição está disponível em R!](./solution/R/lesson_3-R.ipynb)
 ### Introdução
@@ -321,7 +321,7 @@ Faz sentido, dado o enredo! E, se este é um modelo melhor do que o anterior, ol
 ## 🚀 desafio
 
 Teste várias variáveis diferentes neste bloco de notas para ver como a correlação corresponde à precisão do modelo.
-##[Questionário pós-palestra](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/14/)
+##[Questionário pós-palestra](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
 
 ## Revisão e Estudo Automático
 

@@ -6,7 +6,7 @@
 - 在高層次上理解支持機器學習的過程。 
 - 探索基本概念，例如「模型」、「預測」和「訓練數據」。 
   
-## [課前測驗](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/7/)
+## [課前測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/)
 ## 介紹
 
 在較高的層次上，創建機器學習（ML）過程的工藝包括許多步驟：
@@ -100,7 +100,7 @@
 
 畫一個流程圖，反映ML的步驟。在這個過程中，你認為自己現在在哪裏？你預測你在哪裏會遇到困難？什麽對你來說很容易？ 
 
-## [閱讀後測驗](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/8/)
+## [閱讀後測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/8/)
 
 ## 復習與自學 
 

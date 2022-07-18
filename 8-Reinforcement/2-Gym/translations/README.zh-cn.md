@@ -3,7 +3,7 @@
 我们在上一课中一直在解决的问题可能看起来像一个玩具问题，并不真正适用于现实生活场景。事实并非如此，因为许多现实世界的问题也有这种情况——包括下国际象棋或围棋。它们很相似，因为我们也有一个具有给定规则和**离散状态**的板。
 https://white-water-09ec41f0f.azurestaticapps.net/
 
-## [课前测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/47/)
+## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
 
 ## 介绍
 
@@ -330,7 +330,7 @@ env.close()
 
 > **任务 4**：这里我们不是在每一步选择最佳动作，而是用相应的概率分布进行采样。始终选择具有最高 Q-Table 值的最佳动作是否更有意义？这可以通过使用 `np.argmax` 函数找出对应于较高 Q-Table 值的动作编号来完成。实施这个策略，看看它是否能改善平衡。
 
-## [课后测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/48/)
+## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
 
 ## 作业：[训练山地车](assignment.zh-cn.md)
 

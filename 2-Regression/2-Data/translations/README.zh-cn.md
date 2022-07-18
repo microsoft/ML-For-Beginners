@@ -3,7 +3,7 @@
 ![数据可视化信息图](../images/data-visualization.png)
 > 作者 [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [课前测](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11/)
+## [课前测](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
 
 ## 介绍
 
@@ -192,7 +192,7 @@
 
 探索 Matplotlib 提供的不同类型的可视化。哪种类型最适合回归问题？
 
-## [课后测](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12/)
+## [课后测](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
 
 ## 复习与自学
 

@@ -4,7 +4,7 @@ Bu derste, mutfaklarla ilgili dengeli ve temiz veriyle dolu, geçen dersten kayd
 
 Bu veri setini çeşitli sınıflandırıcılarla _bir grup malzemeyi baz alarak verilen bir ulusal mutfağı öngörmek_ için kullanacaksınız. Bunu yaparken, sınıflandırma görevleri için algoritmaların leveraj edilebileceği yollardan bazıları hakkında daha fazla bilgi edineceksiniz.
 
-## [Ders öncesi kısa sınavı](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/21/?loc=tr)
+## [Ders öncesi kısa sınavı](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/?loc=tr)
 # Hazırlık
 
 [Birinci dersi](../../1-Introduction/README.md) tamamladığınızı varsayıyoruz, dolayısıyla bu dört ders için _cleaned_cuisines.csv_ dosyasının kök `/data` klasöründe var olduğundan emin olun.
@@ -231,7 +231,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 Bu derste, bir grup malzemeyi baz alarak bir ulusal mutfağı öngörebilen bir makine öğrenimi modeli oluşturmak için temiz verinizi kullandınız. Scikit-learn'ün veri sınıflandırmak için sağladığı birçok yöntemi okumak için biraz vakit ayırın. Arka tarafta neler olduğunu anlamak için 'çözücü' kavramını derinlemesine inceleyin.
 
-## [Ders sonrası kısa sınavı](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/22/?loc=tr)
+## [Ders sonrası kısa sınavı](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/?loc=tr)
 
 ## Gözden geçirme & kendi kendine çalışma
 

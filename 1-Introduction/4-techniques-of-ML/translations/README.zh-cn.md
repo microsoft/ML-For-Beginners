@@ -6,7 +6,7 @@
 - 在高层次上理解支持机器学习的过程。 
 - 探索基本概念，例如“模型”、“预测”和“训练数据”。 
   
-## [课前测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/7/)
+## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/)
 ## 介绍
 
 在较高的层次上，创建机器学习（ML）过程的工艺包括许多步骤：
@@ -101,7 +101,7 @@
 
 画一个流程图，反映ML的步骤。在这个过程中，你认为自己现在在哪里？你预测你在哪里会遇到困难？什么对你来说很容易？ 
 
-## [阅读后测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/8/)
+## [阅读后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/8/)
 
 ## 复习与自学 
 

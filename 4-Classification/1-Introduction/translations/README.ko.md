@@ -19,7 +19,7 @@ Classification은 regression 기술과 공통점이 많은 [supervised learning]
 
 Classification은 다양한 알고리즘으로 데이터 포인트의 라벨 혹은 클래스를 결정할 다른 방식을 고릅니다. 요리 데이터로, 재료 그룹을 찾아서, 전통 요리로 결정할 수 있는지 알아보려 합니다.
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/19/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/)
 
 ### 소개
 
@@ -287,7 +287,7 @@ Scikit-learn은 해결하고 싶은 문제의 타입에 따라서, 데이터를 
 
 해당 커리큘럼은 여러 흥미로운 데이터셋을 포함하고 있습니다. `data` 폴더를 파보면서 binary 또는 multi-class classification에 적당한 데이터셋이 포함되어 있나요? 데이터셋에 어떻게 물어보나요?
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/20/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/)
 
 ## 검토 & 자기주도 학습
 

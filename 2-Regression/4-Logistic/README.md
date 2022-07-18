@@ -2,7 +2,7 @@
 
 ![Logistic vs. linear regression infographic](./images/logistic-linear.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)
+## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
 
 > ### [This lesson is available in R!](./solution/R/lesson_4-R.ipynb)
 
@@ -298,7 +298,7 @@ In future lessons on classifications, you will learn how to iterate to improve y
 
 There's a lot more to unpack regarding logistic regression! But the best way to learn is to experiment. Find a dataset that lends itself to this type of analysis and build a model with it. What do you learn? tip: try [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) for interesting datasets.
 
-## [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/16/)
+## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
 
 ## Review & Self Study
 

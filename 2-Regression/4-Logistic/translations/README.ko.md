@@ -3,7 +3,7 @@
 ![Logistic vs. linear regression infographic](.././images/logistic-linear.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
 
 ## 소개
 
@@ -300,7 +300,7 @@ classifications에 대한 이후 강의에서, 모델의 스코어를 개선하�
 
 logistic regression과 관련해서 풀어야할 내용이 더 있습니다! 하지만 배우기 좋은 방식은 실험입니다. 이런 분석에 적당한 데이터셋을 찾아서 모델을 만듭니다. 무엇을 배우나요? 팁: 흥미로운 데이터셋으로 [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets)에서 시도해보세요.
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/16/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
 
 ## 검토 & 자기주도 학습
 
