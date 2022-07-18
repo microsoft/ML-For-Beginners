@@ -4,7 +4,7 @@
 
 Infografía por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11?loc=es)
+## [Examen previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11?loc=es)
 
 > ### [Esta lección se encuentra disponible en R!](../solution/R/lesson_2-R.ipynb)
 
@@ -196,7 +196,7 @@ Para obtener gráficas para mostrar datos útiles, necesitas agrupar los datos d
 
 Explora los distintos tipos de visualización que ofrece Matplotlib. ¿Qué tipos son los más apropiados para problemas de regresión?
 
-## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12?loc=es)
+## [Examen posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12?loc=es)
 
 ## Revisión y autoestudio
 

@@ -11,7 +11,7 @@
 
 为此，你需要使用 Flask 构建一个 web 应用程序。
 
-## [课前测](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/17/)
+## [课前测](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
 
 ## 构建应用程序
 
@@ -334,7 +334,7 @@ print(model.predict([[50,44,-12]]))
 
 你可以在 Flask 应用程序中训练模型，而不是在 notebook 上工作并将模型导入 Flask 应用程序！尝试在 notebook 中转换 Python 代码，可能是在清除数据之后，从应用程序中的一个名为 `train` 的路径训练模型。采用这种方法的利弊是什么？
 
-## [课后测](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/18/)
+## [课后测](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
 
 ## 复习与自学
 

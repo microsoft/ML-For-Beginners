@@ -2,7 +2,7 @@
 
 Il problema risolto nella lezione precedente potrebbe sembrare un problema giocattolo, non propriamente applicabile a scenari di vita reale. Questo non è il caso, perché anche molti problemi del mondo reale condividono questo scenario, incluso Scacchi o Go. Sono simili, perché anche in quei casi si ha una tavolo di gioco con regole date e uno **stato discreto**.
 
-## [Quiz pre-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/47/?loc=it)
+## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/?loc=it)
 
 ## Introduzione
 
@@ -329,7 +329,7 @@ Si dovrebbe vedere qualcosa del genere:
 
 > **Compito 4**: Qui non si stava selezionando l'azione migliore per ogni passaggio, ma piuttosto campionando con la corrispondente distribuzione di probabilità. Avrebbe più senso selezionare sempre l'azione migliore, con il valore Q-Table più alto? Questo può essere fatto usando la funzione `np.argmax` per trovare il numero dell'azione corrispondente al valore della Q-Table più alto. Implementare questa strategia e vedere se migliora il bilanciamento.
 
-## [Quiz post-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/48/?loc=it)
+## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/?loc=it)
 
 ## Compito: [addestrare un'auto di montagna](assignment.it.md)
 

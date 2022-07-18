@@ -11,7 +11,7 @@
 
 이러면, Flask로 웹 앱을 만들어야 합니다.
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/17/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
 
 ## 앱 만들기
 
@@ -335,7 +335,7 @@ Flask와 pickled 모델과 같이, 모델을 사용하는 이 방식은, 비교�
 노트북에서 작성하고 Flask 앱에서 모델을 가져오는 대신, Flask 앱에서 바로 모델을 훈련할 수 있습니다!  어쩌면 데이터를 정리하고, 노트북에서 Python 코드로 변환해서, `train`이라고 불리는 라우터로 앱에서 모델을 훈련합니다. 이러한 방식을 추구했을 때 장점과 단점은 무엇인가요?
 
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/18/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
 
 ## 검토 & 자기주도 학습
 

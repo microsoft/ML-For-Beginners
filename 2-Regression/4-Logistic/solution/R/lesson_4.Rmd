@@ -14,7 +14,7 @@ output:
 
 ![Infographic by Dasani Madipalli](../../images/logistic-linear.png){width="600"}
 
-#### ** [Pre-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)**
+#### ** [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)**
 
 ####  Introduction
 

@@ -8,7 +8,7 @@ One of the most useful practical uses of machine learning is building recommenda
 
 > 🎥 Click the image above for a video: Jen Looper builds a web app using classified cuisine data
 
-## [Pre-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/25/)
+## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
 
 In this lesson you will learn:
 
@@ -299,7 +299,7 @@ Congratulations, you have created a 'recommendation' web app  with a few fields.
 
 Your web app is very minimal, so continue to build it out using ingredients and their indexes from the [ingredient_indexes](../data/ingredient_indexes.csv) data. What flavor combinations work to create a given national dish?
 
-## [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/26/)
+## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
 
 ## Review & Self Study
 

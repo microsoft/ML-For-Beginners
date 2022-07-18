@@ -1,7 +1,7 @@
 # Sentiment analysis with hotel reviews
 
 Now that you have explored the dataset in detail, it's time to filter the columns and then use NLP techniques on the dataset to gain new insights about the hotels.
-## [Pre-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/39/)
+## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
 
 ### Filtering & Sentiment Analysis Operations
 
@@ -360,7 +360,7 @@ To review, the steps are:
 
 When you started, you had a dataset with columns and data but not all of it could be verified or used. You've explored the data, filtered out what you don't need, converted tags into something useful, calculated your own averages, added some sentiment columns and hopefully, learned some interesting things about processing natural text.
 
-## [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/40/)
+## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
 
 ## Challenge
 

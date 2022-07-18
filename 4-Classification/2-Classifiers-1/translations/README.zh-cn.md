@@ -4,7 +4,7 @@
 
 你将使用此数据集和各种分类器，_根据一组配料预测这是哪一国家的美食_。在此过程中，你将学到更多用来权衡分类任务算法的方法  
 
-## [课前测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/21/)
+## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/)
 
 # 准备工作
 
@@ -230,7 +230,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 在本课程中，你使用了清洗后的数据建立了一个机器学习的模型，这个模型能够根据输入的一系列的配料来预测菜品来自于哪个国家。请再花点时间阅读一下 Scikit-learn 所提供的关于可以用来分类数据的其他方法的资料。此外，你也可以深入研究一下“solver”的概念并尝试一下理解其背后的原理。
 
-## [课后测验](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/22/)
+## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/)
 
 ## 回顾与自学
 

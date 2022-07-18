@@ -2,7 +2,7 @@
 
 In the previous lesson, you learned how to use ARIMA model to make time series predictions. Now you'll be looking at Support Vector Regressor model which is a regressor model used to predict continuous data.
 
-## [Pre-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/51/) 
+## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
 
 ## Introduction
 
@@ -367,7 +367,7 @@ MAPE:  2.0572089029888656 %
 - Try to use different kernel functions for the model and analyze their performances on the dataset. A helpful document can be found [here](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 - Try using different values for `timesteps` for the model to look back to make prediction.
 
-## [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/52/)
+## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
 
 ## Review & Self Study
 

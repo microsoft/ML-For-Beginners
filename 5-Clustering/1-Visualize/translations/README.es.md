@@ -6,7 +6,7 @@ El agrupamiento (clustering) es un tipo de [aprendizaje no supervisado](https://
 
 > 🎥 Haz clic en la imagen de arriba para ver el video. Mientras estudias aprendizaje automático con agrupamiento, disfruta de algunas canciones Dance Hall Nigerianas - esta es una canción muy popular del 2014 de PSquare.
 
-## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/27?loc=es)
+## [Examen previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27?loc=es)
 
 ### Introducción
 
@@ -320,7 +320,7 @@ En general, para el agrupamiento, puedes usar gráficos de dispersión para most
 
 En preparación para la siguiente lección, realiza una gráfica acerca de los diverso algoritmos de agrupamiento que puedes descubrir y usar en un ambiente de producción. ¿Qué tipo de problemas trata de abordar el agrupamiento?
 
-## [Examen porterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/28?loc=es)
+## [Examen porterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28?loc=es)
 
 ## Revisión y auto-estudio
 

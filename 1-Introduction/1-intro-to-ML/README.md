@@ -8,7 +8,7 @@ Watch the video, then take the pre-lesson quiz
 
 > 🎥 Click the image above for a video discussing the difference between machine learning, AI, and deep learning.
 
-## [Pre-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/1/)
+## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1/)
 
 ---
 
@@ -134,7 +134,7 @@ In the near future, understanding the basics of machine learning is going to be 
 
 Sketch, on paper or using an online app like [Excalidraw](https://excalidraw.com/), your understanding of the differences between AI, ML, deep learning, and data science. Add some ideas of problems that each of these techniques are good at solving.
 
-# [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/2/)
+# [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/)
 
 ---
 # Review & Self Study
