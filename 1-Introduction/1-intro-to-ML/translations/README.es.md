@@ -4,7 +4,7 @@
 
 > 🎥 Haz clic en la imagen de arriba para ver un video donde se discuten las diferencias entre el machine learning, la inteligencia artificial, y el deep learning.
 
-## [Cuestionario previo a la conferencia](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/1?loc=es)
+## [Cuestionario previo a la conferencia](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1?loc=es)
 
 ### Introducción
 
@@ -100,7 +100,7 @@ En el futuro próximo, entender las bases de machine learning va a ser una neces
 
 Dibuja, en papel o usando una aplicación como [Excalidraw](https://excalidraw.com/), cómo entiendes las diferencias entre inteligencia artificial, ML, deep learning, y la ciencia de datos. Agrega algunas ideas de problemas que cada una de estas técnicas son buenas en resolver.
 
-## [Cuestionario después de la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/2?loc=es)
+## [Cuestionario después de la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2?loc=es)
 
 ## Revisión y autoestudio
 

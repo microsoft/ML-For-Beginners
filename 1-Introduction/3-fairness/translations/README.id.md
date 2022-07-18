@@ -3,7 +3,7 @@
 ![Ringkasan dari Keadilan dalam Machine Learning dalam sebuah catatan sketsa](../../../sketchnotes/ml-fairness.png)
 > Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz Pra-Pelajaran](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/5/)
+## [Quiz Pra-Pelajaran](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
  
 ## Pengantar
 
@@ -185,7 +185,7 @@ Untuk mencegah kemunculan bias pada awalnya, kita harus:
 
 Pikirkan tentang skenario kehidupan nyata di mana ketidakadilan terbukti dalam pembuatan dan penggunaan model. Apa lagi yang harus kita pertimbangkan? 
 
-## [Quiz Pasca-Pelajaran](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/6/)
+## [Quiz Pasca-Pelajaran](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
 ## Ulasan & Belajar Mandiri 
  
 Dalam pelajaran ini, Kamu telah mempelajari beberapa dasar konsep keadilan dan ketidakadilan dalam pembelajaran mesin. 

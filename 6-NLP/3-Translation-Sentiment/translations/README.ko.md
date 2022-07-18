@@ -2,7 +2,7 @@
 
 이전 강의에서 noun phrase 추출하는 기초 NLP 작업을 하기 위해 ML behind-the-scenes을 포함한 라이브러리인, `TextBlob`으로 기본적인 봇을 만드는 방식을 배웠습니다. 컴퓨터 언어학에서 다른 중요한 도전은 구두나 다른 언어로 문장을 정확하게 _translation_ 하는 것입니다.
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/35/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/35/)
 
 번역은 천여 개 언어와 각자 많이 다른 문법 규칙이 있다는 사실에 의해서 합쳐진 매우 어려운 문제입니다. 한 접근 방식은 영어처럼, 한 언어의 형식적인 문법 규칙을 비-언어 종속 구조로 변환하고, 다른 언어로 변환하면서 번역합니다. 이 접근 방식은 다음 단계로 진행된다는 점을 의미합니다:
 
@@ -177,7 +177,7 @@ Darcy, as well as Elizabeth, really loved them; and they were
 
 사용자 입력으로 다른 features를 추출해서 Marvin을 더 좋게 만들 수 있나요?
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/36/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/36/)
 
 ## 검토 & 자기주도 학습
 

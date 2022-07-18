@@ -27,7 +27,7 @@ Similar to Readme's, please translate the assignments as well.
 
 3. Edit the quiz-app's [translations index.js file](https://github.com/microsoft/ML-For-Beginners/blob/main/quiz-app/src/assets/translations/index.js) to add your language.
 
-4. Finally, edit ALL the quiz links in your translated README.md files to point directly to your translated quiz: https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/1 becomes https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/1?loc=id
+4. Finally, edit ALL the quiz links in your translated README.md files to point directly to your translated quiz: https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1 becomes https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1?loc=id
 
 **THANK YOU**
 

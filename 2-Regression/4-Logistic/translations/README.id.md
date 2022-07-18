@@ -3,7 +3,7 @@
 ![Infografik regresi logistik vs. linear](../images/logistic-linear.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Kuis pra-ceramah](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)
+## [Kuis pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
 
 ## Pembukaan
 
@@ -291,7 +291,7 @@ Nanti dalam pelajaran lebih lanjut tentang klasifikasi, kamu akan belajar bagaim
 
 Masih ada banyak tentang regresi logistik! Tetapi cara paling baik adalah untuk bereksperimen. Carilah sebuah *dataset* yang bisa diteliti seperti ini dan bangunlah sebuah model darinya. Apa yang kamu pelajari? Petunjuk: Coba [Kaggle](https://kaggle.com) untuk *dataset-dataset* menarik.
 
-## [Kuis pasca-ceramah](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/16/)
+## [Kuis pasca-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
 
 ## Review & Pembelajaran mandiri
 

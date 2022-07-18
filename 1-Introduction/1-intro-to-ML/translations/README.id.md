@@ -4,7 +4,7 @@
 
 > 🎥 Klik gambar diatas untuk menonton video yang mendiskusikan perbedaan antara Machine Learning, AI, dan Deep Learning.
 
-## [Quiz Pra-Pelajaran](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/1/)
+## [Quiz Pra-Pelajaran](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1/)
 
 ### Pengantar
 
@@ -96,7 +96,7 @@ Dalam waktu dekat, memahami dasar-dasar Machine Learning akan menjadi suatu keha
 
 Buat sketsa di atas kertas atau menggunakan aplikasi seperti [Excalidraw](https://excalidraw.com/), mengenai pemahaman kamu tentang perbedaan antara AI, ML, Deep Learning, dan Data Science. Tambahkan beberapa ide masalah yang cocok diselesaikan masing-masing teknik.
 
-## [Quiz Pasca-Pelajaran](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/2/)
+## [Quiz Pasca-Pelajaran](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/)
 
 ## Ulasan & Belajar Mandiri
 

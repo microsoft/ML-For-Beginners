@@ -4,7 +4,7 @@
 
 > 🎥 영상을 보려면 이미지 클릭: Andrew Ng explains clustering
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/29/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
 
 이 강의에서, Scikit-learn과 함께 이전에 가져온 나이지리아 음악 데이터셋으로 클러스터 제작 방식을 배울 예정입니다. Clustering을 위한 K-Means 기초를 다루게 됩니다. 참고로, 이전 강의에서 배웠던대로, 클러스터로 작업하는 여러 방식이 있고 데이터를 기반한 방식도 있습니다. 가장 일반적 clustering 기술인 K-Means을 시도해보려고 합니다. 시작해봅니다!
 
@@ -238,7 +238,7 @@ Variance는 "the average of the squared differences from the Mean."으로 정의
 
 힌트: 데이터를 더 키워봅니다. 가까운 범위 조건에 비슷한 데이터 열을 만들고자 추가하는 표준 스케일링 코드를 노트북에 주석으로 남겼습니다. silhouette 점수가 낮아지는 동안, elbow 그래프의 'kink'가 주름 펴지는 것을 볼 수 있습니다. 데이터를 조정하지 않고 남기면 덜 분산된 데이터가 더 많은 가중치로 나를 수 있다는 이유입니다. [here](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226) 이 문제를 조금 더 읽어봅니다.
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/30/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
 
 ## 검토 & 자기주도 학습
 

@@ -19,7 +19,7 @@ Recuerda:
 
 La clasificación utiliza varios algorítmos para determinar otras formas de determinar la clase o etiqueta de un punto de datos. Trabajemos con estos datos de cocina para ver si, al observar un grupo de ingredientes, podemos determinar su cocina u origen.
 
-## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/19?loc=es)
+## [Examen previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19?loc=es)
 
 > ### [¡Esta lección está disponible en R!](./solution/R/lesson_10-R.ipynb)
 
@@ -288,7 +288,7 @@ Ahora que has limpiado los datos, usa [SMOTE](https://imbalanced-learn.org/dev/r
 
 Este plan de estudios contiene varios conjuntos de datos interesantes. Profundiza en los directorios `data` y ve si alguno contiene conjuntos de datos que serían apropiados para clasificación binaria o multiclase. ¿Qué preguntas harías a este conunto de datos?
 
-## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/20?loc=es)
+## [Examen posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20?loc=es)
 
 ## Revisión y autoestudio
 

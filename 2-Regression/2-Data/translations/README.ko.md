@@ -4,7 +4,7 @@
 
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
 
 ## 소개
 
@@ -191,7 +191,7 @@ Jupyter notebooks에서 잘 작동하는 데이터 시각화 라이브러리는 
 
 Matplotlib에서 제공하는 다양한 시각화 타입을 찾아보세요. regression 문제에 가장 적당한 타입은 무엇인가요?
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
 
 ## 검토 & 자기주도 학습
 

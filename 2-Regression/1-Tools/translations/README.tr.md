@@ -4,7 +4,7 @@
 
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Ders öncesi quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/9/)
+## [Ders öncesi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
 
 > ### [R dili ile bu dersin içeriği!](././solution/R/lesson_1-R.ipynb)
 
@@ -197,7 +197,7 @@ Tebrikler, ilk doğrusal regresyon modelinizi oluşturdunuz, onunla bir tahmin o
 ## 🚀Challenge
 
 Bu veri kümesinden farklı bir değişken çizin. İpucu: bu satırı düzenleyin: `X = X[:, np.newaxis, 2]`. Bu veri setinin hedefi göz önüne alındığında, diyabetin bir hastalık olarak ilerlemesi hakkında neler keşfedebilirsiniz?
-## [Post-lecture quiz](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/10/)
+## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/)
 
 ## İnceleme ve Bireysel Çalışma
 
