@@ -2,7 +2,7 @@
 
 Esta lección cubre una breve historia y conceptos importante del *procesamiento del lenguaje natural*, un subcampo de la *ligüística computacional*.
 
-## [Examen previo a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/31?loc=es)
+## [Examen previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31?loc=es)
 
 ## Introducción
 
@@ -150,7 +150,7 @@ Elige uno de los elementos "Detente y considera" de arriba y trata de implementa
 
 En la siguiente lección, aprenderás acerca de otros enfoques de cómo analizar el lenguaje natural y aprendizaje automático.
 
-## [Examen posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/32?loc=es)
+## [Examen posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32?loc=es)
 
 ## Revisión y autoestudio
 

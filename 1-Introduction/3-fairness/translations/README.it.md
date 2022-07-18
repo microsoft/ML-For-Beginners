@@ -3,7 +3,7 @@
 ![Riepilogo dell'equità in machine learning in uno sketchnote](../../../sketchnotes/ml-fairness.png)
 > Sketchnote di [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz pre-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/5/?loc=it)
+## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/?loc=it)
 
 ## Introduzione
 
@@ -183,7 +183,7 @@ Per evitare che vengano introdotti pregiudizi, in primo luogo, si dovrebbe:
 
 Si pensi a scenari di vita reale in cui l'ingiustizia è evidente nella creazione e nell'utilizzo del modello. Cos'altro si dovrebbe considerare?
 
-## [Quiz post-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/6/?loc=it)
+## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

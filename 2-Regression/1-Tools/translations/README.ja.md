@@ -4,7 +4,7 @@
 
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) によって制作されたスケッチノート
 
-## [講義前クイズ](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/9?loc=ja)
+## [講義前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9?loc=ja)
 
 ## イントロダクション
 
@@ -205,7 +205,7 @@ Scikit-learnは、モデルを構築し、評価を行って実際に利用す�
 ## 🚀チャレンジ
 
 このデータセットから別の変数を選択してプロットしてください。ヒント： `X = X[:, np.newaxis, 2]` の行を編集する。今回のデータセットのターゲットである、糖尿病という病気の進行について、どのような発見があるのでしょうか？
-## [講義後クイズ](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/10?loc=ja)
+## [講義後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10?loc=ja)
 
 ## レビュー & 自主学習
 

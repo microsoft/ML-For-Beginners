@@ -3,7 +3,7 @@
 ![Resumen de la historia del machine learning en un boceto](../../sketchnotes/ml-history.png)
 > Boceto por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Cuestionario previo a la conferencia](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/3?loc=es)
+## [Cuestionario previo a la conferencia](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/3?loc=es)
 
 En esta lección, analizaremos los principales hitos en la historia del machine learning y la inteligencia artificial.
 
@@ -102,7 +102,7 @@ Queda por ver qué depara el futuro, pero es importante entender estos sistemas 
 
 Sumérjase dentro de unos de estos momentos históricos y aprenda más sobre las personas detrás de ellos. Hay personajes fascinantes y nunca ocurrió ningún descubrimiento científico en un vacío cultural. ¿Qué descubres?
 
-## [Cuestionario posterior a la lección](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/4?loc=es)
+## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/4?loc=es)
 
 ## Revisión y autoestudio
 

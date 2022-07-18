@@ -19,7 +19,7 @@ Lembre-se:
 
 A classificação usa vários algoritmos para determinar outras maneiras de determinar o rótulo ou a classe de um ponto de dados ou objeto. Vamos trabalhar com dados sobre culinária para ver se, observando um grupo de ingredientes, podemos determinar sua culinária de origem.
 
-## [Questionário inicial](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/19/?loc=ptbr)
+## [Questionário inicial](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/?loc=ptbr)
 
 > ### [Esta lição está disponível em R!](../solution/R/lesson_10-R.ipynb)
 
@@ -288,7 +288,7 @@ Agora que você limpou os dados, use a [SMOTE](https://imbalanced-learn.org/dev/
 
 Esta lição contém vários _datasets_ interessantes. Explore os arquivos da pasta `data` e veja quais _datasets_ seriam apropriados para classificação binária ou multiclasse. Quais perguntas você faria sobre estes _datasets_?
 
-## [Questionário para fixação](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/20?loc=ptbr)
+## [Questionário para fixação](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20?loc=ptbr)
 
 ## Revisão e Auto Aprendizagem
 

@@ -73,7 +73,7 @@ Assicurandosi che il contenuto si allinei con i progetti, il processo è reso pi
 - un compito
 - un quiz post-lezione
 
-> **Una nota sui quiz**: Tutti i quiz sono contenuti [in questa app](https://gentle-hill-034defd0f.1.azurestaticapps.net/), per un totale di 50 quiz con tre domande ciascuno. I link ai quiz sono presenti all'interno delle lezioni ma l'app può essere eseguita in locale seguendo le istruzioni contenute nella cartella `quiz-app`.
+> **Una nota sui quiz**: Tutti i quiz sono contenuti [in questa app](https://gray-sand-07a10f403.1.azurestaticapps.net/), per un totale di 50 quiz con tre domande ciascuno. I link ai quiz sono presenti all'interno delle lezioni ma l'app può essere eseguita in locale seguendo le istruzioni contenute nella cartella `quiz-app`.
 
 | Numero Lezione |                           Argomento                            |                   Gruppo Lezioni                   | Obiettivi di Apprendimento                                                                                                             |                     Lezioni Collegate                     |     Autore     |
 | :-----------: | :--------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------: | :------------: |

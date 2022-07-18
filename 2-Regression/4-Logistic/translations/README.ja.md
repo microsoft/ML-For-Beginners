@@ -2,7 +2,7 @@
 
 ![ロジスティク回帰 vs 線形回帰のインフォグラフィック](../images/logistic-linear.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) によるインフォグラフィック
-## [講義前のクイズ](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/15/)
+## [講義前のクイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
 
 ## イントロダクション
 
@@ -299,7 +299,7 @@ print(auc)
 
 ロジスティック回帰については、まだまだ解き明かすべきことがたくさんあります。しかし、学ぶための最良の方法は、実験することです。この種の分析に適したデータセットを見つけて、それを使ってモデルを構築してみましょう。ヒント：面白いデータセットを探すために[Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) を試してみてください。
 
-## [講義後クイズ](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/16/)
+## [講義後クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
 
 ## レビュー & 自主学習
 

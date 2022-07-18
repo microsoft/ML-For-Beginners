@@ -2,7 +2,7 @@
 
 대부분 *natural language processing* 작업으로, 처리한 텍스트를 분해하고, 검사하고, 그리고 결과를 저장하거나 룰과 데이터셋을 서로 참조했습니다. 이 작업들로, 프로그래머가 _meaning_ 또는 _intent_ 또는 오직 텍스트에 있는 용어와 단어의 _frequency_ 만 끌어낼 수 있게 합니다.
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/33/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
 
 텍스트를 처리하며 사용했던 일반적인 기술을 찾아봅니다. 머신러닝에 결합된, 이 기술은 효율적으로 많은 텍스트를 분석하는데 도와줍니다. 그러나, 이 작업에 ML을 적용하기 전에, NLP 스페셜리스트가 일으킨 문제를 이해합니다.
 
@@ -203,7 +203,7 @@ It was nice talking to you, goodbye!
 
 이전의 지식 점검에서 작업하고 구현합니다. 친구에게 봇을 테스트합니다. 그들을 속일 수 있나요? 좀 더 '믿을 수'있게 봇을 만들 수 있나요?
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/34/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
 
 ## 검토 & 자기주도 학습
 

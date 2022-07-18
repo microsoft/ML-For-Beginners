@@ -4,7 +4,7 @@
 
 > 作者 [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [課前測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/13/)
+## [課前測](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
 
 ### 介紹
 
@@ -331,7 +331,7 @@ Scikit-learn 包含一個用於構建多項式回歸模型的有用 API - `make_
 
 在此 notebook 中測試幾個不同的變量，以查看相關性與模型準確性的對應關系。
 
-## [課後測](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/14/)
+## [課後測](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
 
 ## 復習與自學
 

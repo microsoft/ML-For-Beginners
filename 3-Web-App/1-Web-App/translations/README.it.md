@@ -11,7 +11,7 @@ Si continuerà a utilizzare il notebook per pulire i dati e addestrare il modell
 
 Per fare ciò, è necessario creare un'app Web utilizzando Flask.
 
-## [Quiz pre-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/17/?loc=it)
+## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/?loc=it)
 
 ## Costruire un'app
 
@@ -334,7 +334,7 @@ In un ambiente professionale, si può vedere quanto sia necessaria una buona com
 
 Invece di lavorare su un notebook e importare il modello nell'app Flask, si può addestrare il modello direttamente nell'app Flask! Provare a convertire il codice Python nel notebook, magari dopo che i dati sono stati puliti, per addestrare il modello dall'interno dell'app su un percorso chiamato `/train`. Quali sono i pro e i contro nel seguire questo metodo?
 
-## [Quiz post-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/18/?loc=it)
+## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

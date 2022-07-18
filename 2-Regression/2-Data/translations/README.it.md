@@ -3,7 +3,7 @@
 > ![Infografica sulla visualizzazione dei dati](../images/data-visualization.png)
 > Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz pre-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/11/?loc=it)
+## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/?loc=it)
 
 ## Introduzione
 
@@ -190,7 +190,7 @@ Per fare in modo che i grafici mostrino dati utili, di solito è necessario ragg
 
 Esplorare i diversi tipi di visualizzazione offerti da Matplotlib. Quali tipi sono più appropriati per i problemi di regressione?
 
-## [Quiz post-lezione](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/12/?loc=it)
+## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/?loc=it)
 
 ## Revisione e Auto Apprendimento
 

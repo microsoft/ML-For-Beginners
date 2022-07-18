@@ -3,7 +3,7 @@
 ![Summary of History of machine learning in a sketchnote](../../../sketchnotes/ml-history.png)
 > Sketchnote by [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [강의 전 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/3/)
+## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/3/)
 
 이 강의에서, 머신러닝과 인공 지능의 역사에서 주요 마일스톤을 살펴보려 합니다.
 
@@ -103,7 +103,7 @@ natural language processing 연구가 발전하고, 검색이 개선되어 더 �
 
 역사적인 순간에 사람들 뒤에서 한 가지를 집중적으로 파고 있는 자를 자세히 알아보세요. 매력있는 캐릭터가 있으며, 문화가 사라진 곳에서는 과학적인 발견을 하지 못합니다. 당신은 어떤 발견을 해보았나요?
 
-## [강의 후 퀴즈](https://gentle-hill-034defd0f.1.azurestaticapps.net/quiz/4/)
+## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/4/)
 
 ## 검토 & 자기주도 학습
 
