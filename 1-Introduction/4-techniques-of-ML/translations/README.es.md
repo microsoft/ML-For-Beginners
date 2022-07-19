@@ -109,4 +109,4 @@ Busque entrevistas en línea con científicos de datos que analicen su trabajo d
 
 ## Asignación
 
-[Entrevistar a un científico de datos](assignment.md)
+[Entrevistar a un científico de datos](assignment.es.md)
