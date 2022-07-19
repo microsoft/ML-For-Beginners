@@ -18,10 +18,10 @@ En este grupo de lecciones, se preparará para comenzar las tareas de machine le
 
 ### Lecciones
 
-1. [Herramientas del oficio](1-Tools/README.md)
-2. [Gestión de datos](2-Data/README.md)
-3. [Regresión lineal y polinomial](3-Linear/README.md)
-4. [Regresión logística](4-Logistic/README.md)
+1. [Herramientas del oficio](../1-Tools/translations/README.es.md)
+2. [Gestión de datos](../2-Data/translations/README.es.md)
+3. [Regresión lineal y polinomial](../3-Linear/translations/README.es.md)
+4. [Regresión logística](../4-Logistic/translations/README.es.md)
 
 ---
 ### Créditos
