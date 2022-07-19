@@ -7,10 +7,10 @@ En esta sección del plan de estudios se le presentarán los conceptos básicos 
   
 ### Lecciones
 
-1. [Introducción al machine learning](1-intro-to-ML/translations/README.es.md)
-1. [La Historia del machine learning y la AI](2-history-of-ML/translations/README.es.md)
-1. [Equidad y machine learning](3-fairness/translations/README.md)
-1. [Técnicas de machine learning](4-techniques-of-ML/translations/README.es.md)
+1. [Introducción al machine learning](1-intro-to-ML/README.es.md)
+1. [La Historia del machine learning y la AI](2-history-of-ML/README.es.md)
+1. [Equidad y machine learning](3-fairness/README.es.md)
+1. [Técnicas de machine learning](4-techniques-of-ML/README.es.md)
 ### Créditos
 
 "Introducción al Machine Learning" fue escrito con ♥️ por un equipo de personas que incluye [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan), [Ornella Altunyan](https://twitter.com/ornelladotcom) y [Jen Looper](https://twitter.com/jenlooper)
