@@ -1,6 +1,6 @@
 # Comience con Python y Scikit-learn para modelos de regresión
 
-![Resumen de regresiones en un boceto](../../sketchnotes/ml-regression.png)
+![Resumen de regresiones en un boceto](../../../sketchnotes/ml-regression.png)
 
 > Boceto de [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
