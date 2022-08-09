@@ -48,7 +48,7 @@ Ditambah itu, ada banyak jenis regresi logistik, termasuk jenis multinomial dan 
 - **Multinomial** memperlibatkan lebih dari satu kategori - "Oranye, Putih, dan Belang-belang".
 - **Ordinal** memperlibatkan kategori-kategori berurut. Biasanya berguna jika kita inging mengurutkan hasil kita secara logikal, seperti labu-useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
-![Multinomial vs ordinal regression](./images/multinomial-ordinal.png)
+![Multinomial vs ordinal regression](../images/multinomial-ordinal.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ### Eh, masih linear ya?
