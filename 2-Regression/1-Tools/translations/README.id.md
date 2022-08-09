@@ -7,7 +7,7 @@
 ## [Kuis Pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
 ## Pembukaan
 
-Dalam keempat pelajaran ini, kamu akan belajar bagaimana membangun model regresi. Kita akan berdiskusi apa fungsi model tersebut dalam sejenak. Tetapi sebelum kamu melakukan apapun, pastikan bahwa kamu sudah mempunyai alat-alat yang diperlukan untuk memulai!
+Dalam keempat pelajaran ini, kamu akan belajar bagaimana membangun model regresi. Untuk sejenak, kita akan berdiskusi apa fungsi model tersebut. Tetapi sebelum kamu melakukan apapun, pastikan bahwa kamu sudah mempunyai alat-alat yang diperlukan untuk memulai!
 
 Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
@@ -21,15 +21,15 @@ Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
 [![Menggunakan Python dalam Visual Studio Code](https://img.youtube.com/vi/7EXd4_ttIuw/0.jpg)](https://youtu.be/7EXd4_ttIuw "Menggunakan Python dalam Visual Studio Code")
 
-> 🎥 Klik foto di atas untuk sebuah video: menggunakan Python dalam VS Code
+> 🎥 Klik foto di atas untuk melihat video: menggunakan Python dalam VS Code
 
 1. **Pasang Python**. Pastikan bahwa [Python](https://www.python.org/downloads/) telah dipasang di komputermu. Kamu akan menggunakan Python untuk banyak tugas *data science* dan *machine learning*. Python sudah dipasang di kebanyakan sistem komputer. Adapula *[Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa)* yang berguna untuk membantu proses pemasangan untuk beberapa pengguna.
 
    Beberapa penggunaan Python memerlukan satu versi perangkat lunak tersebut, sedangkan beberapa penggunaan lainnya mungkin memerlukan versi Python yang beda lagi. Oleh sebab itulah akan sangat berguna untuk bekerja dalam sebuah *[virtual environment](https://docs.python.org/3/library/venv.html)* (lingkungan virtual).
 
-2. **Pasang Visual Studio Code**. Pastikan kamu sudah memasangkan Visual Studio Code di komputermu. Ikuti instruksi-instruksi ini untuk [memasangkan Visual Studio Code](https://code.visualstudio.com/) untuk instalasi dasar. Kamu akan menggunakan Python dalam Visual Studio Code dalam kursus ini, jadi kamu mungkin akan ingin mencari tahu cara [mengkonfigurasi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) untuk menggunakan Python.
+2. **Pasang Visual Studio Code**. Pastikan Visual Studio Code sudah terpasang di komputermu. Ikuti instruksi-instruksi ini untuk dasar [instalasi Visual Studio Code](https://code.visualstudio.com/). Kamu akan menggunakan Python dalam Visual Studio Code dalam kursus ini, jadi kamu mungkin akan perlu cara [mengkonfigurasi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) agar ter-integrasi dengan Python.
 
-   > Nyamankan diri dengan Python dengan mengerjakan [koleksi modul pembelajaran ini](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Familiarkan diri kamu Python dengan mengerjakan [koleksi modul pembelajaran ini](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
 
 3. **Pasang Scikit-learn**, dengan mengikuti [instruksi di sini](https://scikit-learn.org/stable/install.html). Karena harus dipastikan bahwa kamu sedang menggunakan Python 3, kami anjurkan kamu menggunakan sebuah *virtual environment*. Ingatlah juga bahwa jika kamu ingin memasangkan ini di sebuah M1 Mac, ada instruksi khusus dalam laman yang ditautkan di atas.
 
@@ -162,7 +162,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Sekarang, kamu sudah siap untuk melatihkan modelmu! Muatkan dahulu data regresi linear dan latihkan modelmu dengan set X dan y-mu dengan `model.fit()`:
+4. Sekarang, kamu sudah siap untuk melatih modelmu! Muatkan dahulu data regresi linear dan latihkan modelmu dengan set X dan y-mu dengan `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
