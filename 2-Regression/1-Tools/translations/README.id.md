@@ -7,7 +7,7 @@
 ## [Kuis Pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
 ## Pembukaan
 
-Dalam keempat pelajaran ini, kamu akan belajar bagaimana membangun model regresi. Untuk sejenak, kita akan berdiskusi apa fungsi model tersebut. Tetapi sebelum kamu melakukan apapun, pastikan bahwa kamu sudah mempunyai alat-alat yang diperlukan untuk memulai!
+Dalam keempat pelajaran ini, kamu akan belajar bagaimana membangun model regresi. Kita akan mengetahui apa fungsi model tersebut. Tetapi sebelum kamu melakukan apapun, pastikan bahwa kamu sudah mempunyai alat-alat yang diperlukan untuk memulai!
 
 Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
