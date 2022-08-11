@@ -2,22 +2,22 @@
 
 ![Infografik regresi linear vs polinomial](../images/linear-polynomial.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Kuis pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
+## [Kuis pra-belajar](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
 ### Pembukaan
 
-Selama ini kamu telah menjelajahi apa regresi itu dengan data contoh yang dikumpulkan dari *dataset* harga labu yang kita akan gunakan terus sepanjang pelajaran ini. Kamu juga telah memvisualisasikannya dengan Matplotlib.
+Selama ini kamu telah menjelajahi apa itu regresi dengan data contoh yang dikumpulkan dari *dataset* harga labu yang kita akan gunakan terus sepanjang pelajaran ini. Kamu juga telah berhasil memvisualisasikannya dengan Matplotlib.
 
 Sekarang kamu sudah siap terjun ke dalam regresi untuk ML. Dalam pelajaran ini, kamu akan belajar lebih tentang dua jenis regresi: _regresi linear sederhana_ dan _regresi polinomial_ serta sedikit matematika yang mendasari kedua teknik ini.
 
-> Sepanjang kurikulum ini, kami mengasumsi kamu punya pengetahuan matematika yang minim dan ingin tetap membuat pelajaran ini terjangkau bagi murid-murid dari bidang-bidang lain. Jadi perhatikan catatan, 🧮 info, diagram, dan alat-alat belajar lainnya untuk membantu pemahaman.
+> Sepanjang kurikulum ini, kami mengasumsi kamu punya pengetahuan matematika yang minim dan ingin tetap membuat pelajaran ini terjangkau bagi murid-murid dari bidang-bidang lain. Jadi perhatikan catatan, simbol 🧮 yang menyatakan info, diagram, dan alat-alat belajar lainnya untuk membantu pemahaman.
 
 ### Prasyarat
 
-Kamu harusnya sudah terbiasa sekarang dengan struktur data labu yang kita sedang teliti. Datanya harusnya sudah dimuat dan dibersihkan dalam file _notebook.ipynb_ pelajaran ini. Dalam file ini, harga labu ditampilkan per bushel dalam *dataframe* yang bari. Pastikan kamu bisa menjalankan *notebook-notebook* ini di *kernels* di Visual Studio Code.
+Kamu harusnya sudah terbiasa sekarang dengan struktur data labu yang kita sedang teliti. Datanya harusnya sudah dimuat dan dibersihkan dalam file _notebook.ipynb_ pelajaran ini. Dalam file ini, harga labu ditampilkan per bushel dalam *dataframe* baru. Pastikan kamu bisa menjalankan *notebook-notebook* ini di *kernels* pada Visual Studio Code.
 
 ### Persiapan
 
-Ingat, kamu sedang memuat data ini untuk menanyakan pertanyaan darinya.
+Ingat, kamu sedang memuat data ini dan muncul pertanyaan berikut...
 
 - Kapankah waktu terbaik untuk membeli labu?
 - Saya kira-kira harus bayar berapa untuk satu kotak labu mini?
@@ -61,7 +61,7 @@ Kita melakukan itu sebab kita ingin memodelkan sebuah garis yang jarak kumulatif
 >
 > Matematika yang mengkalkulasi garis ini harus mendemonstrasikan gradien garisnya yang juga tergantung pada titik potongnya pada sumbu y, alias apa `Y`-nya saat `X = 0`.
 >
-> Kamu bisa melihat metode menghitung nilai-nilai ini di situs internet [*Math is Fun* (Matematika Itu Menyenangkan)](https://www.mathsisfun.com/data/least-squares-regression.html). Kunjungi [kalkulator kuadrat terkecil ini](https://www.mathsisfun.com/data/least-squares-calculator.html) juga untuk melihat bagaimana nomor-nomor ini mengubah garisnya.
+> Kamu bisa melihat metode menghitung nilai-nilai ini di situs internet [*Math is Fun*](https://www.mathsisfun.com/data/least-squares-regression.html). Kunjungi [kalkulator kuadrat terkecil ini](https://www.mathsisfun.com/data/least-squares-calculator.html) juga untuk melihat bagaimana nomor-nomor ini mengubah garisnya.
 
 ## Korelasi
 
@@ -69,14 +69,14 @@ Satu lagi yang harus dipahami adalah **Koefisien Korelasi** antara variabel X da
 
 Sebuah model regresi linear yang bagus akan mempunyai Koefisien Korelasi yang tinggi (lebih dekat ke 1 daripada ke 0) menggunakan metode Regresi Kuadrat Terkecil dengan sebuah garis regresi.
 
-✅ Jalankan *notebook* yang terlampir dalam pelajaran ini dan lihatlah petak sebar City (Kota) ke Price (Harga). Apa data yang menghubungkan City ke Price untuk penjualan labu mempunyai korelasi yang tinggi atau rendah kelihatannya?
+✅ Pada materi ini, coba jalankan *notebook* yang terlampir dalam pelajaran ini dan lihatlah petak sebar City (Kota) ke Price (Harga). Apa data yang menghubungkan City ke Price untuk penjualan labu mempunyai korelasi yang terlihat tinggi atau rendah?
 
 
 ## Siapkan datamu untuk regresi
 
 Sekarang dengan pemahamanmu mengenai matematika di balik latihan ini, buatlah sebuah model regresi untuk melihat apa kamu bisa memprediksi paket labu yang mana yang harganya paling baik. Seorang pembeli labu akan ingin mengetahui informasi ini untuk mengoptimasi pembelian labu mereka.
 
-Karena kamu akan menggunakan Scikit-learn, tidak usah mengerjakan ini dengan tangan (walaupun bisa sih!). Dalam blok memrosesan data utama *notebook*-mu untuk pelajaran ini, tambahlah sebuah *library* dari Scikit-learn untuk mengkonversi semua data *string* menjadi nomor secara otomatis:
+Diawali dengan melakukan konversi semua data string menjadi nomor karena model hanya mengenal angka saat memproses data. Kamu menggunakan Scikit-learn, sehingga kamu tidak perlu mengubahnya secara manual (walaupun bisa sih!). Dalam blok memrosesan data utama *notebook*-mu untuk pelajaran ini, tambahlah sebuah *library* dari Scikit-learn supaya dapat mengkonversi semua data *string* menjadi nomor secara otomatis dengan kode berikut:
 
 ```python
 from sklearn.preprocessing import LabelEncoder
@@ -85,8 +85,7 @@ new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit
 new_pumpkins.iloc[:, 0:-1] = new_pumpkins.iloc[:, 0:-1].apply(LabelEncoder().fit_transform)
 ```
 
-Kalau kamu sekarang simak *dataframe* new_punkins, kamu akan lihat bahwa semua *string* sudah dijadikan nomor. Ini lebih susah untuk kita baca, tetapi jauh lebih mudah untuk Scikit-learn! 
-Sekarang kamu bisa membuat lebih banyak keputusan berakal (tidak hanya tebak-tebak dari petak sebarnya) tentang data yang paling cocok untuk regresi.
+Kalau kamu sekarang simak *dataframe* `new_pumpkins`, kamu akan lihat bahwa semua *string* sudah dijadikan nomor. Ini lebih susah untuk kita baca, tetapi jauh lebih mudah untuk model Scikit-learn! Sekarang kamu bisa membuat lebih banyak keputusan berakal (tidak hanya tebak-tebak dari petak sebarnya) tentang data yang paling cocok untuk regresi.
 
 Coba cari sebuah korelasi bagus antara dua titik data yang berpotensi untuk membangun sebuah model prediksi yang baik. Ternyata, hanya ada korelasi yang lemah antara City dan Price:
 
@@ -95,33 +94,33 @@ print(new_pumpkins['City'].corr(new_pumpkins['Price']))
 0.32363971816089226
 ```
 
-Meskipun begitu, ada korelasi yang sedikit lebih baik antara Package (Paket) dan Price (Harga). Masuk akal juga kan? Biasanya, lebih besar kardusnya, lebih mahal harganya.
+Meskipun begitu, ada korelasi yang sedikit lebih baik antara Package (Paket) dan Price (Harga), coba lihat dibawah. Masuk akal juga kan? Biasanya, lebih besar kardusnya, lebih mahal harganya.
 
 ```python
 print(new_pumpkins['Package'].corr(new_pumpkins['Price']))
 0.6061712937226021
 ```
 
-Sebuah pertanyaan bagus untuk ditanyakan dari data ini adalah "Kira-kira harga sebuah paket labu berapa?"
+Pertanyaan bagus yang dapat diperoleh dari data ini adalah "Kira-kira harga sebuah paket labu berapa?"
 
 Mari membangun sebuah model regresi
 
 ## Membangun sebuah model linear
 
-Sebelum membangun modelmu, rapikanlah datamu sekali lagi. Buanglah sebuah data nil (null) dan periksalah sekali lagi datanya kelihatannya seperti apa.
+Sebelum membangun modelmu, rapikanlah datamu sekali lagi. Buanglah setiap data kosong (null) dan periksalah sekali lagi datanya kelihatannya seperti apa.
 
 ```python
 new_pumpkins.dropna(inplace=True)
 new_pumpkins.info()
 ```
 
-Lalu, buatlah sebuah *dataframe* baru dari set minimal ini dan *print*:
+Lalu, buatlah sebuah *dataframe* baru dari set minimal ini dan tampilkan:
 
 ```python
 new_columns = ['Package', 'Price']
 lin_pumpkins = new_pumpkins.drop([c for c in new_pumpkins.columns if c not in new_columns], axis='columns')
 
-lin_pumpkins
+print(lin_pumpkins)
 ```
 
 ```output
@@ -148,7 +147,7 @@ lin_pumpkins
    ```
 ✅ Apa yang sedang terjadi di sini? Kamu sedang menggunakan [notasi perpotongan Python (*Python slice notation*)](https://stackoverflow.com/questions/509211/understanding-slice-notation/509295#509295) untuk membuat dua *array* untuk mengisi `X` dan `y`.
 
-1. Selanjutnya, mulailah rutin pembangunan model:
+1. Selanjutnya, mulailah membangun model:
 
    ```python
    from sklearn.linear_model import LinearRegression
@@ -221,25 +220,25 @@ Regresi polinomial menghasilkan sebuah garis lengkung supaya lebih cocok dengan 
    poly_pumpkins
    ```
 
-Sebuah cara bagus untuk memvisualisasi korelasi-korelasi antara data dalam *dataframe-dataframe* adalah untuk menampilkannya dalam sebuah peta '*coolwarm*' (panas-dingin):
+Sebuah cara bagus untuk memvisualisasi korelasi-korelasi antara data dalam *dataframe-dataframe* adalah untuk menampilkannya dalam sebuah peta '*coolwarm*' (semacam grafik yang memetakan tingkatan suatu nilai dengan notasi warna panas-dingin disebut 'heatmap'):
 
-2. Gunakan fungsi `Background_gradient()` dengan `coolwarm` sebagai argumennya:
+1. Gunakan fungsi `background_gradient()` dengan `coolwarm` sebagai argumennya:
 
    ```python
    corr = poly_pumpkins.corr()
    corr.style.background_gradient(cmap='coolwarm')
    ```
-   This code creates a heatmap:
-   Kode ini membuat sebuah peta panas
+   Kode ini membuat sebuah heatmap
+
    ![Sebuah peta panas yang menunjukkan korelasi data](../images/heatmap.png)
 
 Melihat peta ini, kamu bisa memvisualisasikan korelasi yang baik antara Package dan Price. Jadi kamu seharusnya bisa membuat sebuah model yang lebih baik daripada yang sebelumnya.
 
 ### Buatlah sebuah *pipeline*
 
-Scikit-learn mempunyai sebuah API yang berguna untuk membangun model regresi polinomial — [API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) `make_pipeline`. Sebuah '*pipeline*' adalah sebuah rantai penaksir. Dalam kasus ini, *pipeline* ini mempunyai fitur-fitur polinomial, atau prediksi-prediksi yang membuat garis non-linear.
+Scikit-learn mempunyai sebuah API yang berguna untuk membangun model regresi polinomial — `API` [`make_pipeline`](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline). '*Pipeline*' adalah sebuah rantai penduga (estimator). Dalam kasus ini, *pipeline* ini mempunyai fitur-fitur polinomial, atau prediksi-prediksi yang membuat garis non-linear.
 
-1. Bangunlah kolom X dan y:
+1. Buatlah kolom X dan y:
 
    ```python
    X=poly_pumpkins.iloc[:,3:4].values
@@ -298,7 +297,7 @@ Ayo periksa akurasi modelnya:
    Model Accuracy:  0.8537946517073784
    ```
 
-Itu bagus! Coba memprediksi harga:
+Akurasinya meningkat dari sebelumnya! Coba kita prediksi harganya:
 
 ### Buatlah sebuah prediksi
 
@@ -317,14 +316,14 @@ Pakai fungsi `predict()` untuk membuat prediksi:
 
 Itu sangat masuk akal dengan bagan sebelumnya! Selain itu, jika ini model lebih baik daripada yang sebelumnya dengan data ini, kamu bisa siap untuk labu-labu yang lebih mahal ini!
 
-🏆 Mantap sekali! Kamu membuat dua model regresi dalam satu pelajaran. Dalam bagian terakhir mengenai regresi, kamu akan belajar tentang regresi logistik untuk pengkategorisasian.
+🏆 Mantap sekali! Kamu membuat dua model regresi dalam satu pelajaran. Dalam bagian terakhir mengenai regresi, kamu akan belajar tentang regresi logistik yang fungsinya untuk pengkategorian atau klasifikasi.
 
 ---
 ## 🚀 Tantangan
 
 Coba-cobalah variabel-variabel yang lain di *notebook* ini untuk melihat bagaimana korelasi berhubungan dengan akurasi model.
 
-## [Kuis pasca-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
+## [Kuis pasca-belajar](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
 
 ## Review & Pembelajaran Mandiri
 
