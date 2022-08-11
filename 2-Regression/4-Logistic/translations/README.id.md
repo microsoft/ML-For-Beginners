@@ -296,7 +296,7 @@ Nanti pada saat mempelajari lebih lanjut tentang klasifikasi, kamu akan belajar 
 
 Masih ada banyak tentang regresi logistik! Tetapi cara paling baik adalah untuk bereksperimen. Carilah sebuah *dataset* yang bisa diteliti seperti ini dan bangunlah sebuah model darinya. Apa yang kamu pelajari? Petunjuk: Coba [Kaggle](https://kaggle.com) untuk *dataset-dataset* menarik.
 
-## [Kuis pasca-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+## [Kuis pasca-belajar](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
 
 ## Review & Pembelajaran mandiri
 
