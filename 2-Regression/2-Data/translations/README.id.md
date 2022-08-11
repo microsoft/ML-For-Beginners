@@ -3,11 +3,11 @@
 ![Infografik visualisasi data](../images/data-visualization.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Kuis pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
+## [Kuis pra-belajar](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
 
 ## Pembukaan
 
-Karena sekarang kamu sudah siap dengan alat-alat yang akan diperlukan untuk mulai melampiaskan pembangunan model *machine learning* dengan Scikit-learn, kamu juga siap untuk mulai membuat pertanyaan dari datamu. Selagi kamu bekerja dengan data dan mengaplikasikan solusi ML, sangatlah penting untuk mengerti bagaimana menanyakan cara yang benar dan tepat untuk mengemukakan potensial *dataset*-mu.
+Karena sekarang kamu sudah siap dengan alat-alat yang akan diperlukan untuk mulai membangun model *machine learning* dengan Scikit-learn, maka kamu bisa mulai membuat pertanyaan dari datamu. Selagi kamu bekerja dengan data dan mengaplikasikan solusi ML, sangatlah penting untuk mengerti bagaimana menanyakan cara yang benar dan tepat untuk mengemukakan potensial *dataset*-mu.
 
 Dalam pelajaran ini, kamu akan belajar:
 
@@ -16,19 +16,19 @@ Dalam pelajaran ini, kamu akan belajar:
 
 ## Menanyakan pertanyaan yang tepat dari datamu
 
-Pertanyaan yang perlu dijawab akan menentukan jenis algoritma ML yang kamu akan memanfaatkan. Lalu, kualitas jawaban yang kamu akan dapat sangat tergantung pada sifat datamu (*the nature of your data*).
+Pertanyaan yang perlu dijawab akan menentukan jenis algoritma ML yang kamu akan manfaatkan. Lalu, kualitas jawaban yang kamu akan dapat sangat tergantung pada sifat datamu (*the nature of your data*).
 
-Lihatlah [data](../data/US-pumpkins.csv) yang disiapkan untuk pelajaran ini. Kamu bisa membuka file .csv ini di VS Code. Membaca dengan cepat, *dataset* ini ada yang kosong dan ada yang campuran data *string* dan data numerik. Adapula sebuah kolom 'Package' yang aneh dan mengandung data antara 'sacks', 'bins', dll. Terus terang, data ini amburadul.
+Lihatlah [data](../data/US-pumpkins.csv) yang disiapkan untuk pelajaran ini. Kamu bisa membuka file .csv ini di VS Code. Jika dilihat sekilas, *dataset* ini ada yang isinya kosong dan ada juga data yang campuran antara data *string* dan numerik. Adapula sebuah kolom 'Package' yang aneh dan mengandung data diantaranya 'sacks', 'bins', dll. Terus terang, data ini amburadul.
 
 Faktanya adalah tidak sering kita dihadiahkan sebuah *dataset* yang langsung bisa digunakan untuk membuat sebuah model ML. Dalam pelajaran ini, kamu akan belajar bagaimana menyiapkan sebuah *dataset* 'mentah' menggunakan *library* standar Python. Kamu juga akan belajar aneka teknik untuk memvisualisasikan datanya.
 
-## Studi kasus: 'pasar labu'
+## Studi kasus: 'Pasar Labu'
 
-Dalam folder ini kamu akan menemukan sebuah file .csv dalam folder `data` bernama [US-pumpkins.csv](../data/US-pumpkins.csv) yang mempunyai 1757 baris data tentang pasar labu disortir dalam pengelompokkan berdasarkan kota. Ini adalah data mentah yang diambil dari [Specialty Crops Terminal Markets Standard Reports (Laporan Standar Pasar Terminal Tanaman Khusus)](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) yang didistribusi Departemen Agrikultur Amerika Serikat.
+Dalam folder ini kamu akan menemukan sebuah file .csv dalam folder `data` bernama [US-pumpkins.csv](../../data/US-pumpkins.csv) yang mempunyai 1757 baris data tentang pasar labu disortir dalam pengelompokkan berdasarkan kota. Ini adalah data mentah yang diambil dari [Specialty Crops Terminal Markets Standard Reports (Laporan Standar Pasar Terminal Tanaman Khusus)](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) yang didistribusikan oleh Departemen Agrikultur Amerika Serikat.
 
 ### Menyiapkan data
 
-Data ini terbuka untuk umum (*publik domain*) dan bisa diunduh sebagai banyak file terpisah berdasarkan kota dari situs internet Departemen Agrikultur Amerika Serikat. Supaya tidak berurusan dengan terlalu banyak file, kami telah menggabungkan data dari semua kota menjadi satu *spreadsheet* (file Excel). Jadi kamu sudah _menyiapkan_ datanya sedikit. Selanjutnya, mari kita lihat datanya.
+Data ini terbuka untuk umum (*public domain*) dan bisa diunduh sebagai banyak file terpisah berdasarkan kota dari situs internet Departemen Agrikultur Amerika Serikat. Supaya tidak berurusan dengan terlalu banyak file, kami telah menggabungkan data dari semua kota menjadi satu *spreadsheet* (file Excel). Jadi kamu sudah _menyiapkan_ datanya sedikit. Selanjutnya, mari kita lihat datanya.
 
 ### Data labu - kesimpulan-kesimpulan awal
 
@@ -36,7 +36,7 @@ Apa yang kamu cermati tentang data ini? Kamu sudah melihat bahwa ada campuran *s
 
 Pertanyaan apa yang kamu bisa tanyakan dari data data ini menggunakan teknik regresi? Kalau "Prediksikan harga jual sebuah labu pada bulan tertentu" bagaimana? Melihat datanya sekali lagi, ada beberapa perubahan yang kamu harus terapkan untuk membuat struktur data yang diperlukan untuk tugas ini.
 
-## Latihan - analisiskan data labu
+## Latihan - Analisiskan data labu
 
 Mari menggunakan [Pandas](https://pandas.pydata.org/) (singkatan dari `Python Data Analysis`), sebuah alat yang sangat beruna untuk membentuk, menganalisis, dan menyiapkan data labu ini.
 
@@ -99,14 +99,13 @@ Solusi: Ambil rata-rata kolom `Low Price` dan `High Price` untuk mengisi kolom `
 
     Jika *dataframe* baru ini di-*print*, kamu akan lihat sebuah *dataset* yang rapih darimana kamu bisa membangun model regresi barumu.
 
-### But wait! There's something odd here
 ### Tunggu! Ada yang aneh di sini
 
-Kalau kamu lihat kolom `Package`, labu dijual dalam berbagai konfigurasi. Beberapa dijual dalam satuan '1 1/9 bushel', beberapa per labu, beberapa per pon, dan beberapa dalam dus-dus besar dengan kelebaran yang berbeda-beda.
+Kalau kamu lihat kolom `Package`, labu dijual dalam berbagai jenis. Beberapa dijual dalam satuan '1 1/9 bushel', beberapa per-labu, beberapa per-pon, dan beberapa dalam dus-dus besar dengan kelebaran yang berbeda-beda.
 
 > Kelihatannya susah untuk menimbang labu secara konsisten
 
-Menggali data orisinal lebih dalam, sangatlah menarik untuk melihat apapun dengan `Unit of Sale` (satuan penjualan) yang sama dengan 'EACH' atau 'PER BIN' akan mempunyai jenis `Package` yang per inci, per bin, atau 'each'. Kelihatannya susah untuk menimbang labu secara konsisten, jadi mari memilah datanya dengan hanya memilih labu yang kolom `Package`-nya sama dengan *string* 'bushel'.
+Menggali data orisinal lebih dalam, sangatlah menarik untuk melihat apapun dengan `Unit of Sale` (satuan penjualan) yang sama dengan 'EACH' atau 'PER BIN' akan mempunyai jenis `Package` seperti per-inci, per-bin (semacam ember), atau 'each' (setiap tetapi satuan tertentu). Kelihatannya susah untuk menimbang labu secara konsisten, jadi mari memilah datanya dengan hanya memilih labu yang kolom `Package`-nya sama dengan *string* 'bushel'.
 
 1. Tambah sebuah filter di atas file tetapi dibawah impor .csv yang di awal
 
@@ -130,7 +129,7 @@ Apa kamu sadar bahwa jumlah bushel berbeda-beda per baris? Kamu harus menormalis
 
 ✅ Berdasarkan [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), berat satu bushel tergantung jenis hasil bumi sebab bushel adalah satuan volume. "Satu bushel tomat, sebagai contoh, seharusnya seberat 56 pon (25.4 kg)... Dedaunan mengambil lebih banyak ruang tetapi lebih ringan, jadi satu bushel bayam hanya seberat 20 pon (9.1 kg)" (diterjemah). Lumayan rumit ya! Kita tidak usah mengkonversi bushel ke pon saja bagaimana, jadi kita gunakan satuan harga per bushel? Namun, semua riset ini tentang bushel labu menunjukkan sebagaimana pentingnya untuk mengerti sifat datamu!
 
-Sekarang, kamu bisa meneliti harga per satuan berdasarkan hitungan bushel mereka. Jika kamu *print* datanya sekali lagi, kamu bisa lihat bagaimana telah distandarisasi.
+Sekarang, kamu bisa meneliti harga per satuan berdasarkan hitungan bushel mereka. Jika kamu *print* datanya sekali lagi, kamu bisa lihat bagaimana data telah distandarisasi.
 
 ✅ Apa kamu sadar bahwa labu yang dijual per setengah bushel sangat mahal? Kira-kira mengapa ya? Petunjuk: labu kecil jauh lebih mahal daripada labu besar, mungkin karena ada lebih banyak per bushel, apalagi mengingat pula bahwa satu labu besar mempunyai rongga kosong yang besar di dalamnya.
 
@@ -138,7 +137,7 @@ Sekarang, kamu bisa meneliti harga per satuan berdasarkan hitungan bushel mereka
 
 Sebagian dari peran seorang *data scientist* adalah untuk mendemonstrasikan kualitas dan sifat data yang sedang digunakan. Untuk melakukan ini, mereka seringkali membuat visualisasi-visualisasi atau grafik menarik yang menunjukkan aspek-aspek berbeda tentang datanya. Dengan cara ini, mereka dapat menunjukkan hubungan-hubungan dan celah-celah secara visual. Kalau tidak secara visual, akan susah untuk menemukan pola-pola tersebut.
 
-Visualisasi juga bisa membantu menentukan teknik *machine learning* yang palingn cocok untuk datanya. Sebagai contoh, sebuah petak sebar yang kelihatannya mengikuti sebuah garis mengindikasikan bahwa data ini adalah kandidat baik untuk latihan regresi linear.
+Visualisasi juga bisa membantu menentukan teknik *machine learning* yang paling cocok untuk datanya. Sebagai contoh, sebuah petak sebar yang kelihatannya mengikuti sebuah garis mengindikasikan bahwa data ini adalah kandidat baik untuk latihan regresi linear.
 
 Satu *library* visualisasi data yang bekerja dengan baik dalam sebuah *Jupyter notebook* adalah [Matplotlib](https://matplotlib.org/) (yang kamu juga lihat dalam pelajaran sebelumnya).
 
@@ -191,7 +190,7 @@ Untuk menjadikan sebuah grafik menjadi berguna, biasanya datanya harus dikelompo
 
 Jelajahi jenis-jenis visualisasi yang beda dan yang disediakan Matplotlib. Jenis mana yang paling cocok untuk kasus regresi?
 
-## [Kuis pasca-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
+## [Kuis pasca-belajar](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
 
 ## Review & Pembelajaran Mandiri
 
