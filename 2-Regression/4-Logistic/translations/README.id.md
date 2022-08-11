@@ -3,36 +3,36 @@
 ![Infografik regresi logistik vs. linear](../images/logistic-linear.png)
 > Infografik oleh [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Kuis pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [Kuis pra-belajar](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
 
 ## Pembukaan
 
-Dalam pelajaran regresi terakhir, salah satu teknik ML _klasik_ dan sederhana adalah regresi logistik. Teknik ini digunakan untuk mengemukakan pola-pola untuk memprediksi kategori binari. Apa ini sebuah permen coklat atau tidak? Apa penyakit ini menular tidak? Apa pelanggan ini akan memilih produk ini tidak?
+Dalam pelajaran regresi terakhir, salah satu teknik ML _klasik_ dan sederhana adalah regresi logistik. Teknik ini digunakan untuk mengemukakan pola-pola untuk memprediksi kategori biner. Apa ini sebuah permen coklat atau tidak? Apa penyakit ini menular tidak? Apa pelanggan ini akan memilih produk ini tidak?
 
 Dalam pelajaran ini, kamu akan belajar:
 
-- Sebuah *library* baru untuk pemvisualisasian data
-- Teknik-teknik untuk regresi logistik
+- Sebuah *library* baru untuk memvisualisasikan data
+- Teknik-teknik regresi logistik
 
-✅ Perdalamkan pemahamanmu dalam bekerja dengan regresi jenis ini dalam [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+✅ Perdalam pemahamanmu dalam bekerja dengan regresi jenis ini pada [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
 
 ## Prasyarat
 
-Setelah bekerja dengan data labu, kita sekarang sudah terbiasa dengannya untuk menyadari bahwa adapula sebuah kategori binari yang kita dapat menggunakan: `Color` (warna).
+Setelah bekerja dengan data labu, kita sekarang sudah terbiasa dengannya dan menyadari bahwa adapula sebuah kategori biner yang dapat kita gunakan: `Color` (warna).
 
 Mari membangun sebuah model regresi logistik untuk memprediksi _kemungkinannya labu ini warnanya apa_ berdasarkan beberapa variabel (oranye 🎃 atau putih 👻).
 
-> Mengapa kita berbicara tentang klasifikasi binary dalam seri pelajaran tentang regresi? Hanya untuk kemudahan linguistik, regresi logistik juga [sebenarnya sebuah metode klasifikasi](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), namun satu yang berdasarkan garis linear. Pelajari lebih lanjut tentang cara-cara lain untuk mengklasifikasi data dalam seri pelajaran berikutnya.
+> Mengapa kita berbicara tentang klasifikasi biner dalam seri pelajaran tentang regresi? Hanya untuk kemudahan linguistik, regresi logistik juga [sebenarnya sebuah metode klasifikasi](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), namun satu yang berdasarkan garis linear. Pelajari lebih lanjut tentang cara-cara lain untuk mengklasifikasi data dalam seri pelajaran berikutnya.
 
 ## Tentukan pertanyaannya
 
-Untuk keperluan kita, kita akan mengekspresikannya sebagai pilihan binari 'Orange' atau 'Not Orange' (oranye atau bukan oranye). Adapula kategori 'striped' (belang-belang) dalam dataset kita, tetapi tidak banyak titik datanya, jadi kita tidak akan menggunakannya. Lagipula, kategori itu hilang begitu kita buang nilai-nilai nil (null) dari datasetnya.
+Untuk keperluan tersebut, kita akan mengekspresikannya sebagai pilihan binari 'Orange' atau 'Not Orange' (oranye atau bukan oranye). Adapula kategori 'striped' (belang-belang) dalam dataset kita, tetapi tidak banyak titik datanya, jadi kita tidak akan menggunakannya. Lagipula, kategori itu hilang begitu kita buang nilai-nilai kosong (null) dari datasetnya.
 
-> 🎃 Tahukah tidak? Kita kadangkali memanggil labu putih labu 'hantu'. Mereka tidak mudah diukir, jadi mereka tidak sepopuler yang oranye pada Halloween. Tetapi mereka keren juga ya!
+> 🎃 Tahu tidak? Kita kadangkali memanggil labu putih labu 'hantu'. Mereka tidak mudah diukir, jadi mereka tidak sepopuler yang oranye pada saat Halloween tiba. Tetapi mereka keren juga ya!
 
 ## Tentang regresi logistik
 
-Regresi logistik berbeda dari regresi linear, jenis regresi yang kamu pelajari sebelumnya, dalam beberapa askpek penting.
+Regresi logistik berbeda dari regresi linear, jenis regresi yang kamu pelajari sebelumnya, dalam beberapa aspek penting.
 
 ### Klasifikasi binari
 
@@ -67,7 +67,7 @@ Regresi logistik akan memberi hasil lebih akurat jika kamu menggunakan data lebi
 
 ## Latihan - rapikan data
 
-Pertama, rapikanlah datanya sedikit. Buanglah nilai-nilai nil (null) dan pilihlah beberapa kolom:
+Pertama, rapikanlah datanya sedikit. Buanglah nilai-nilai yang tidak penting (null) dan pilihlah beberapa kolom:
 
 1. Tambahlah kode di bawah ini:
 
@@ -108,13 +108,13 @@ Seaborn menyediakan beberapa cara keren untuk memvisualisasi datamu. Contohnya, 
 
     Dengan mengobservasi datanya secara berdampingan, kamu bisa lihat bagaimana data warnanya berhubungan dengan kolom-kolom lainnya.
 
-    ✅ Dengan petak sebar ini, pendalaman menarik apa saja yang kamu bisa membayangkan?
+    ✅ Dengan petak sebar ini, pendalaman menarik apa saja yang kamu bisa bayangkan?
 
 ### Gunakan sebuah bagan kawanan (*swarm plot*)
 
-Karena warna adalah sebuah kategori binari (oranye atau bukan oranye), warna disebut 'data kategorikal' dan memerlukan 'sebuah [pendekatan khusus](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) untuk memvisualisasi'. Ada beberapa cara lain untuk memvisualisasi hubungan antara kategori ini dengan variabel-variabel lainnya.
+Karena warna adalah sebuah kategori binari (oranye atau bukan oranye), warna disebut 'data kategorikal' dan memerlukan 'sebuah [pendekatan khusus](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) untuk keperluan visualisasi'. Ada beberapa cara lain untuk memvisualisasi hubungan antara kategori ini dengan variabel-variabel lainnya.
 
-Kamu bisa memvisualisasikan variabel-variabel secara berdampingan dengan bagan-bagan Seaborn.
+Kamu bisa memvisualisasikan variabel-variabel secara berdampingan dengan bagan-bagan yang disajikan Seaborn.
 
 1. Cobalah sebuah bagan kawanan untuk menunjukkan distribusi nilai:
 
@@ -151,23 +151,23 @@ Sekarang kita sudah dapat bayangan hubungan antara kedua kategori binary warna d
 
 ## Bangunlah modelmu
 
-Scikit-learn membuat membangun model klasifikasi binary sangat mudah.
+Scikit-learn membuat proses pembangunan model klasifikasi binari dengan sangat mudah.
 
 1. Pilihlah variabel-variabel yang kamu ingin gunakan dalam model klasifikasimu dan bagilah datanya menjadi set latihan dan set ujian dengan fungsi `train_test_split()`:
 
     ```python
     from sklearn.model_selection import train_test_split
     
-    Selected_features = ['Origin','Item Size','Variety','City Name','Package']
+    selected_features = ['Origin','Item Size','Variety','City Name','Package']
     
-    X = new_pumpkins[Selected_features]
+    X = new_pumpkins[selected_features]
     y = new_pumpkins['Color']
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     
     ```
 
-2. Sekarang kamu bisa melatihkan modelmu dengan fungsi `fit()` dengan data latihanmu. *Print* hasilnya:
+2. Sekarang kamu bisa melatih model dengan fungsi `fit()` dengan data latihanmu. Lalu kita *Print* hasilnya:
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -203,11 +203,11 @@ Scikit-learn membuat membangun model klasifikasi binary sangat mudah.
      0 0 0 1 0 1 0 0 1 0 0 0 1 0]
     ```
 
-## Pemahaman lebih baik via sebuah 'matriks kebingungan'
+## Pemahaman lebih baik lewat sebuah 'Matriks Kebingungan' (Confusion Matrix)
 
-Walaupun kamu bisa membuat sebuah *scoreboard* melaporkan [istilah-istilah](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) dengan mem-*print* yang di atas, kamu mungkin bisa memahami modelmu dengan lebih mudah dengan sebuah [matriks kebingungan](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) untuk membantu kita lebih paham akan performa modelnya.
+Walaupun kamu bisa membuat sebuah *scoreboard* untuk mendapatkan wawasan terkait [istilah-istilah](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) performa model dengan mem-*print* yang di atas, kamu mungkin bisa memahami modelmu dengan lebih mudah dengan sebuah [matriks kebingungan (Confusion Matrix)](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) untuk membantu kita lebih paham akan performa modelnya.
 
-> 🎓 Sebuah '[matriks kebingungan](https://wikipedia.org/wiki/Confusion_matrix)' (atau 'matriks kesalahan') adalah sebuah tabel yang mengekspresikan positif benar vs. positif palsu modelmu sehingga mengukur akurasi prediksi=prediksinya.
+> 🎓 Sebuah '[matriks kebingungan](https://wikipedia.org/wiki/Confusion_matrix)' (atau 'matriks kesalahan') adalah sebuah tabel yang mengekspresikan positif benar vs. positif palsu yang dihasilkan oleh model kamu sehingga dapat diukur akurasi prediksinya.
 
 1. Untuk menggunakan sebuah matriks kebingungan, gunakan fungsi `confusin_matrix()`:
 
@@ -216,30 +216,35 @@ Walaupun kamu bisa membuat sebuah *scoreboard* melaporkan [istilah-istilah](http
     confusion_matrix(y_test, predictions)
     ```
 
-    Lihatlah matriks kebingungan modelmu:
+    Lihatlah matriks kebingungan yang dihasilkan oleh modelmu:
 
     ```output
     array([[162,   4],
            [ 33,   0]])
     ```
 
-Apa yang sedang terjadi di sini? Mari kita asumsi dulu bahwa model kita ditanyakan untuk mengklasifikasi antara dua kategori binari: 'labu' dan 'bukan labu'.
+Apa yang sedang terjadi di sini? Mari kita asumsi dulu bahwa model kita ditanyakan untuk mengklasifikasi antara dua kategori biner: 'labu' dan 'bukan labu'.
 
-- Kalau modelmu memprediksi sesuatu sebagai sebuah labu dan memang benar sesuatu itu adalah sebuah labu, itu disebut positif benar yang diindikasi angka di pojok kiri atas. 
-- Kalau modelmu memprediksi sesuatu sebagai bukan sebuah labu tetapi sesuatu itu sebenarnya sebuah labu, itu disebut positif palsu yang diindikasi angka di pojok kanan atas.
-- Kalau modelmu memprediksi sesuati sebagai sebuah labu tetapi sebenarnya bukan sebuah labu, itu disebut negatif palsu yang diindikasi angka di pojok kiri bawah.
-- Kalau modelmu memprediksi sesuati sebagai bukan sebuah labu dan memang benar sesuatu itu bukan sebuah labu, itu disebut negatif benar yang diindikasi angka di pojok kanan bawah.
+- Kalau modelmu memprediksi sesuatu sebagai sebuah labu dan memang benar sesuatu itu adalah sebuah labu, itu disebut positif benar yang diindikasi angka di **pojok kiri atas**. 
+- Kalau modelmu memprediksi sesuatu sebagai bukan sebuah labu tetapi sesuatu itu sebenarnya sebuah labu, itu disebut positif palsu yang diindikasi angka di **pojok kanan atas**.
+- Kalau modelmu memprediksi sesuatu sebagai sebuah labu tetapi sebenarnya bukan sebuah labu, itu disebut negatif palsu yang diindikasi angka di **pojok kiri bawah**.
+- Kalau modelmu memprediksi sesuatu sebagai bukan sebuah labu dan memang benar sesuatu itu bukan sebuah labu, itu disebut negatif benar yang diindikasi angka di **pojok kanan bawah**.
 
-Sebagaimana kamu mungkin sudah pikirkan, lebih baik dapat banyak positif benar dan negatif benar dan sedikit positif palsu dan negatif palsu. Implikasinya adalah performa modelnya bagus.
+![ROC](../images/confusion-matrix.png)
+
+Dari kalian mungkin berpikir, lebih baik dapat banyak positif benar dan negatif benar dan sedikit positif palsu dan negatif palsu. Implikasinya adalah performa modelnya bagus.
 
 ✅ Pertanyaan: Berdasarkan matriks kebingungan, modelnya baik tidak? Jawaban: Tidak buruk; ada banyak positif benar dan sedikit negatif palsu.
 
 Mari kita lihat kembali istilah-istilah yang kita lihat tadi dengan bantuan matriks kebingungan:
 
-> PB: Positif benar
-> PP: Positif palsu
-> NB: Negatif benar
-> NP: Negatif palsu
+> PB (TP): Positif benar (True Positive) 
+> 
+> PP (FP): Positif palsu (False Positive)
+> 
+> NB (TN): Negatif benar (True Negative)
+> 
+> NP (FN): Negatif palsu (False Negative)
 
 🎓 Presisi: PB/(PB + PP) Rasio titik data relevan antara semua titik data (seperti data mana yang benar dilabelkannya)
 
@@ -247,17 +252,17 @@ Mari kita lihat kembali istilah-istilah yang kita lihat tadi dengan bantuan matr
 
 🎓 *f1-score*: (2 * Presisi * *Recall*)/(Presisi + *Recall*) Sebuah rata-rata tertimbang antara presisi dan *recall*. 1 itu baik dan 0 itu buruk.
 
-🎓 Dukungan: Jumlah kejadian per label
+🎓 *Dukungan*: Jumlah kejadian per label
 
-🎓 Akurasi: (PB + NB)/(PB + PS + NB + NS) Persentase label yang diprediksi dengan benar untuk sebuah sampel.
+🎓 *Akurasi*: (PB + NB)/(PB + PS + NB + NS) Persentase label yang diprediksi dengan benar untuk sebuah sampel.
 
-🎓 Rata-rata Makro: Hitungan rata-rata sederhana (non-tertimbang) metrik setiap label tanpa menghiraukan ketidakseimbangan label.
+🎓 *Macro Average*: Hitungan rata-rata sederhana (non-tertimbang) metrik setiap label tanpa menghiraukan ketidakseimbangan label.
 
-🎓 Rata-rata Tertimbang: Hitungan rata-rata metrik setiap label dengan mempertimbangkan ketidakseimbangan label. Rata-ratanya tertimbang nilai Dukungan (jumlah kejadian dalam realita) setiap label.
+🎓 *Weighted Average*: Hitungan rata-rata metrik setiap label dengan mempertimbangkan ketidakseimbangan label. Rata-ratanya tertimbang nilai Dukungan (jumlah kejadian dalam realita) setiap label.
 
 ✅ Apa kamu bisa tebak metrik apa yang harus dipantau untuk mengurangi jumlah negatif palsu modelmu?
 
-## Visualisasikan kurva ROC model ini
+## Visualisasikan performa model dengan kurva ROC
 
 Ini bukanlah sebuah model buruk. Akurasinya sekitar 80%, jadi sebenarnya bisa digunakan untuk memprediksi warna sebuah labu berdasarkan beberapa variabel.
 
@@ -272,19 +277,19 @@ fpr, tpr, thresholds = roc_curve(y_test, y_scores[:,1])
 sns.lineplot([0, 1], [0, 1])
 sns.lineplot(fpr, tpr)
 ```
-Menggunakan Seaborn lagi, gambarlah [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) (ROC) model ini. Kurva ROC seringkali digunakan untuk menunjukkan output sebuah pembuat klasifikasi berdasarkan jumlah positif benar dan positif palsunya. "Kurva ROC biasanya menetapkan persentase positif benar di sumbu Y dan positif palsunya di sumbu X" (diterjemahkan). Maka, terjalnya kurva ini dan ruang antara garis titik tengah dan kurvanya penting: kamu mau sebuah kurva yang naik ke atas garisnya secepat mungkin. Dalam kasus ini, ada positif palsu di awal, terus kurvanya naik di atas garisnya dengan benar:
+Menggunakan Seaborn lagi, gambarlah [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) (ROC) model ini. Kurva ROC seringkali digunakan untuk menunjukkan tingkat fungsionalitasnya sebagai klasifikasi berdasarkan jumlah positif benar dan positif palsunya. "Kurva ROC biasanya menetapkan persentase positif benar di sumbu Y dan positif palsunya di sumbu X" (diterjemahkan) yang ditunjukan oleh terjalan kurva dari garis titik tengah menuju ke atas maupun kebawah, semakin keatas terjalan dari garis tengah, semakin baik (terjal ke atas ini adalah yang terpenting dan kita inginkan). Dalam latihan ini, ada positif palsu di awal, lalu kurvanya menunjukan naik ke atas yang artinya sesuai dengan yang diinginkan:
 
 ![ROC](../images/ROC.png)
 
-Akhirnya, gunakanlah [API `roc_auc_score`](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) Scikit-learn untuk menghitung 'Area Di Bawah Kurva'-nya (ADBK) secara persis:
+Akhirnya, gunakanlah [API `roc_auc_score`](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) Scikit-learn untuk menghitung 'Area Di Bawah Kurva'-nya (AUC) secara persis:
 
 ```python
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```
-Hasilnya adalah `0.6976998904709748`. Mengingat bahwa ADBK itu antara 0 dan 1, lebih besar ADBK-nya lebih baik sebab ADBK model yang 100% benar terus adalah 1; dalam kasus ini, modelnya _lumayan bagus_. 
+Hasilnya adalah `0.6976998904709748`. Mengingat bahwa AUC itu antara 0 dan 1, lebih besar AUC-nya lebih baik sebab skor AUC pada model yang 100% benar terus adalah 1; dalam kasus ini, modelnya _lumayan bagus_. 
 
-Nanti dalam pelajaran lebih lanjut tentang klasifikasi, kamu akan belajar bagaimana mengulang untuk membuat nilai-nilai modelmu lebih baik. Tetapi sekian dulu. Selamat! Kamu selesai pelajaran-pelajaran regresi ini!
+Nanti pada saat mempelajari lebih lanjut tentang klasifikasi, kamu akan belajar bagaimana melakukan proses mengulang agar skor yang dihasilkan modelmu lebih baik. Tetapi sekian dulu. Selamat! Kamu telah selesai mempelajaran materi regresi ini!
 
 ---
 ## 🚀 Tantangan
@@ -295,7 +300,7 @@ Masih ada banyak tentang regresi logistik! Tetapi cara paling baik adalah untuk 
 
 ## Review & Pembelajaran mandiri
 
-Bacalah beberapa halaman pertama [makalah ini dari Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) tentang beberapa penggunaan praktis regresi logistik. Pikirkan tentang tugas-tugas yang lebih baik untuk suatu jenis regresi atau jenis-jenis lainnya yang kita telah pelajari sampai kini. Apa yang akan bekerja paling baik?
+Bacalah beberapa halaman pertama [makalah ini dari Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) tentang beberapa penggunaan praktis regresi logistik. Pikirkan tentang tugas-tugas yang lebih baik untuk suatu jenis regresi atau jenis-jenis lainnya yang kita telah pelajari hingga sekarang. Kira-kira *study case* seperti apa yang cocok?
 
 ## Tugas 
 

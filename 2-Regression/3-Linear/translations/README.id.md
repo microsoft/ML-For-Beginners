@@ -228,7 +228,7 @@ Sebuah cara bagus untuk memvisualisasi korelasi-korelasi antara data dalam *data
    corr = poly_pumpkins.corr()
    corr.style.background_gradient(cmap='coolwarm')
    ```
-   Kode ini membuat sebuah heatmap
+   Kode ini membuat sebuah heatmap korelasi
 
    ![Sebuah peta panas yang menunjukkan korelasi data](../images/heatmap.png)
 
