@@ -2,9 +2,9 @@
 
 ![Ringkisan regresi dalam sebuah catatan sketsa](../../../sketchnotes/ml-regression.png)
 
-> Catatan sketsa oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
+> Sketsa Catatan oleh [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Kuis Pra-ceramah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
+## [Kuis Pra-kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
 ## Pembukaan
 
 Dalam keempat pelajaran ini, kamu akan belajar bagaimana membangun model regresi. Kita akan mengetahui apa fungsi model tersebut. Tetapi sebelum kamu melakukan apapun, pastikan bahwa kamu sudah mempunyai alat-alat yang diperlukan untuk memulai!
@@ -37,7 +37,7 @@ Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
 ## Lingkungan penulisan ML-mu
 
-Kamu akan menggunakan ***notebooks*** untuk bekerja dengan kode Python-mu dan membuat model *machine learning*-mu. Jenis file ini adalah alat yang sering digunakan *data scientists* dan dapat diidentifikasikan dengan akhiran/ekstensi `.ipynb`. 
+Kamu akan menggunakan ***notebooks*** untuk bekerja dengan kode Python-mu dan membuat model *machine learning*-mu. Jenis file ini adalah alat yang sering digunakan *data scientists* dan dapat diidentifikasi dengan akhiran/ekstensi `.ipynb`. 
 
 *Notebook* adalah sebuah lingkungan interaktif yang memungkinkan seorang *developer* untuk menulis kode, catatan, dan dokumentasi mengenai kode tersebut sehingga menjadi sangat berguna untuk proyek eksperimental ataupun riset.
 
@@ -84,11 +84,11 @@ Scikit-learn memudahkan pembangunan dan evaluasi model-model. Dia terutama fokus
 
 > Tutorial ini terinspirasi [contoh regresi linear ini](https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py) di situs Scikit-learn.
 
-Dalam file _notebook.ipynb_ dari pelajaran ini, kosongkan semua sel dengan mengklik tombol berlambang 'tempat sampah'. 
+Dalam file _notebook.ipynb_ dari pelajaran ini, kosongkan semua sel dengan mengklik tombol berlambang 'tempat sampah' ![image](https://user-images.githubusercontent.com/44340813/184047481-5a6fa8da-262a-41f3-b046-f67d9a8a2f42.png). 
 
-Dalam bagian ini, kamu akan bekerja dengan sebuah *dataset* kecil tentang diabetes yang datang bersama dengan Scikit-learn yang dimaksud sebagai bahan ajaran. Bayangkan bahwa kamu ingin mencoba sebuah cara pengobatan untuk pasien diabetes. Model *machine learning* mungkin dapat membantu kamu menentukan pasien mana merespon lebih baik pada pengobatan tersebut berdasarkan kombinasi-kombinasi variabel. Bahkan sebuah model regresi yang sederhana, saat divisualisasikan, dapat menunjukkanmu informasi tentang variabel-variabel yang dapat membantu kamu mengorganisasikan uji-uji klinis teoritismu.
+Dalam bagian ini, kamu akan bekerja dengan sebuah *dataset* kecil tentang diabetes yang datang bersama dengan Scikit-learn yang dimaksud sebagai bahan ajaran. Bayangkan bahwa kamu ingin mencoba sebuah cara pengobatan untuk pasien diabetes. Model *machine learning* mungkin dapat membantu kamu menentukan pasien mana merespon lebih baik pada pengobatan tersebut berdasarkan kombinasi-kombinasi variabel. Bahkan sebuah model regresi yang sederhana, saat divisualisasikan, dapat menunjukkanmu informasi tentang variabel-variabel yang dapat membantu kamu mengorganisir uji-uji klinis teoritismu.
 
-✅ Ada banyak macam metode regresi, dan yang mana yang kamu pilih tergantung pada jawaban yang kamu sedang cari. Kalau kamu ingin memprediksi tinggi badan seseorang dari usianya, kamu bisa menggunakan regresi linear, karena kamu mencari sebuah **nilai numerik**. Kalau kamu tertarik pada apa sebuah jenis kuliner sebaiknya dianggap sebagai vegan atau tidak, kamu sedang mencari sebuah **kategorisasi/klasifikasi**; kamu bisa menggunakan regresi logistik. Kamu akan belajar lebih banyak tentang regresi logistik nanti. Pikirkan dahulu beberapa pertanyaan yang kamu bisa tanyakan dari data yang ada dan metode yang mana akan paling cocok.
+✅ Ada banyak macam metode regresi, dan yang mana yang kamu pilih tergantung pada jenis jawaban yang kamu sedang cari. Kalau kamu ingin memprediksi tinggi badan seseorang dari usianya, kamu bisa menggunakan regresi linear, karena kamu mencari sebuah **nilai numerik**. Kalau kamu tertarik pada apa sebuah jenis kuliner sebaiknya dianggap sebagai vegan atau tidak, kamu sedang mencari sebuah **kategorisasi/klasifikasi**; kamu bisa menggunakan regresi logistik. Kamu akan belajar lebih banyak tentang regresi logistik nanti. Pikirkan dahulu beberapa pertanyaan yang kamu bisa tanyakan dari data yang ada dan metode yang mana akan paling cocok.
 
 Mari mulai mengerjakan tugas ini.
 
@@ -136,7 +136,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
     print(X[0])
     ```
 
-    Respon yang didapati adalah sebuah *tuple*. Kamu sedang menetapkan kedua nilai pertama dalam *tuple* itu ke dalam `X` dan `y` secara berturut. Pelajari lebih banyak [tentant *tuples*](https://wikipedia.org/wiki/Tuple).
+    Respon yang didapati adalah sebuah *tuple*. Kamu sedang menetapkan kedua nilai pertama dalam *tuple* itu ke dalam `X` dan `y` secara berturut. Pelajari lebih banyak [tentang *tuples*](https://wikipedia.org/wiki/Tuple).
 
     Kamu bisa melihat bahwa data ini berupa 422 nilai yang disusun menjadi beberapa `array` dengan 10 elemen:
 
@@ -146,7 +146,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
     -0.04340085 -0.00259226  0.01990842 -0.01764613]
     ```
 
-    ✅ Pikirkan sejenak tentang hubungan antara data dan target regresi. Apa kamu bisa menemukan [targetnya](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) untuk *database* diabetes dalam dokumentasinya? Mengetahui targetnya, apa yang *dataset* ini sedang mendemonstrasikan?
+    ✅ Pikirkan sejenak tentang hubungan antara data dan target regresi. Apa kamu bisa menemukan [targetnya](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) untuk *database* diabetes dalam dokumentasinya? Mengetahui targetnya, apa yang *dataset* ini sedang demonstrasikan?
 
 2. Lalu, pilih sebuah porsi dataset ini untuk digambarkan dengan menyusuninya menjadi sebuah `array` baru dengan fungsi `newaxis` dari `numpy`. Kita akan menggunakan regresi linear untuk menggambar sebuah garis antara nilai-nilai dalam data ini sesuai dengan pola yang ditentukannya.
 
@@ -154,7 +154,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
    X = X[:, np.newaxis, 2]
    ```
 
-   ✅ Kapanpun, *print*-lah datanya untuk memeriksa bentuknya.
+   ✅ Kamu boleh *print* data X-nya untuk memeriksa bentuknya jika penasaran.
 
 3. Sekarang datanya sudah siap untuk digambar. Kamu bisa melihat jikalau sebuah mesin dapat menentukan sebuah perpisahan logika dari nomor-nomor *dataset* ini. Untuk melakukan itu, kamu harus memisahkan data (X) dan target (y) menjadi set latihan dan set ujian. Scikit-learn juga memberi cara untuk melakukan itu; kamu bisa memisahkan data ujianmu pada titik tertentu.
 
@@ -169,7 +169,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
     model.fit(X_train, y_train)
     ```
 
-    ✅ `model.fit()` adalah sebuah fungsi yang akan kamu temukan dalam banyak *library* ML seperti TensorFlow.
+    ✅ `model.fit()` adalah sebuah fungsi yang akan kamu temukan pada banyak *library* ML seperti TensorFlow.
 
 5. Lalu, buatlah sebuah prediksi dengan data ujianmu dengan fungsi `predict()`. Ini akan digunakan untuk menggambar sebuah garis antara grup-grup data.
 
@@ -177,7 +177,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
     y_pred = model.predict(X_test)
     ```
 
-6. Sekarang waktunya untuk menggambar data dalam sebuah grafik. Matplotlib adalah sebuah alat yang sangat berguna untuk melakukan itu. Buatlah sebuah petak sebar dari semua X dan y dari set ujian dan gunakan prediksi yang dihasilkan untuk menggambar sebuah garis di tempat yang paling cocok antara grup-grup data modelnya.
+6. Sekarang waktunya untuk menggambar data dalam sebuah grafik. Matplotlib adalah sebuah alat yang sangat berguna untuk melakukan itu. Buatlah sebuah petak sebar (scatterplot) dari semua set uji X dan y, lalu gunakan prediksi yang dihasilkan untuk menggambar sebuah garis di tempat yang paling cocok antara grup-grup data modelnya.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -185,7 +185,7 @@ Dalam sebuah sel kode yang baru, muatkan *dataset* diabetes dengan memanggil `lo
     plt.show()
     ```
 
-   ![sebuah petak sebar yang menunjukkan titik-titik data sekitar diabetes](./images/scatterplot.png)
+   ![sebuah petak sebar (scatterplot) yang menunjukkan titik-titik data sekitar diabetes](../images/scatterplot.png)
 
    ✅ Pikirkan sejenak tentang apa yang sedang terjadi di sini. Sebuah garis lurus membentang tengah-tengah titik-titik kecil data. Tetapi apa yang sedang garis itu lakukan? Apa kamu bisa melihat bagaimana kamu bisa menggunakan garis ini untuk memprediksi di mana sebuah titik data baru yang tidak pernah dilihat sebelumnya kemungkinan besar akan terletak berhubungan dengan sumbu y grafik ini? Coba jelaskan dalam kata-kata kegunaan praktis model ini.
 
