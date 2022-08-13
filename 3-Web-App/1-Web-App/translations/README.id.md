@@ -309,7 +309,7 @@ Sekarang kamu sudah bisa mulai menggunakan flask agar model kamu dapat dipanggil
         countries = ["Australia", "Canada", "Germany", "UK", "US"]
     
         return render_template(
-            "index.html", prediction_text="Kemungkinan negara: {}".format(countries[output]."-lah yang akan melihat penampakan UFO!")
+            "index.html", prediction_text="Kemungkinan negara: {}".format(countries[output])
         )
     
     
