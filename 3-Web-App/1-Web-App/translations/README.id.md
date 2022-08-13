@@ -289,7 +289,7 @@ Sekarang kamu sudah bisa mulai menggunakan flask agar model kamu dapat dipanggil
     
     app = Flask(__name__)
     
-    model = pickle.load(open("./ufo-model.pkl", "rb"))
+    model = pickle.load(open("../ufo-model.pkl", "rb"))
     
     
     @app.route("/")
