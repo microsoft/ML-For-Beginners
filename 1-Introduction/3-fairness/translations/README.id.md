@@ -22,7 +22,7 @@ Dalam pelajaran ini, kamu akan:
 
 Sebagai prasyarat, silakan ikuti jalur belajar "Prinsip AI yang Bertanggung Jawab" dan tonton video di bawah ini dengan topik: 
 
-Pelajari lebih lanjut tentang AI yang Bertanggung Jawab dengan mengikuti [Jalur Belajar](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa) ini
+Pelajari lebih lanjut tentang AI yang Bertanggung Jawab dengan mengikuti [Jalur Belajar](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott) ini
 
 [![Pendekatan Microsoft untuk AI yang Bertanggung Jawab](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Pendekatan Microsoft untuk AI yang Bertanggung Jawab")
 
@@ -170,7 +170,7 @@ Pelajaran pengantar ini tidak membahas secara mendalam mengenai detail mitigasi 
 
 - Coba beberapa [sampel notebook](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
 
-- Pelajari [bagaimana cara mengaktifkan penilaian keadilan](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) dari model machine learning di Azure Machine Learning.
+- Pelajari [bagaimana cara mengaktifkan penilaian keadilan](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-77952-leestott) dari model machine learning di Azure Machine Learning.
 
 - Lihat [sampel notebook](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) ini untuk skenario penilaian keadilan yang lebih banyak di Azure Machine Learning. 
 
@@ -206,7 +206,7 @@ Jelajahi *toolkit* Fairlearn
 
 Baca mengenai *tools* Azure Machine Learning untuk memastikan keadilan
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## Tugas
 

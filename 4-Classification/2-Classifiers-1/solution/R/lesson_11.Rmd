@@ -190,13 +190,13 @@ The list goes on!
 
 So, which classifier should you choose? Often, running through several and looking for a good result is a way to test.
 
-> AutoML solves this problem neatly by running these comparisons in the cloud, allowing you to choose the best algorithm for your data. Try it [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)
+> AutoML solves this problem neatly by running these comparisons in the cloud, allowing you to choose the best algorithm for your data. Try it [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
 
 Also the choice of classifier depends on our problem. For instance, when the outcome can be categorized into `more than two classes`, like in our case, you must use a `multiclass classification algorithm` as opposed to `binary classification.`
 
 ### **A better approach**
 
-A better way than wildly guessing, however, is to follow the ideas on this downloadable [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa). Here, we discover that, for our multiclass problem, we have some choices:
+A better way than wildly guessing, however, is to follow the ideas on this downloadable [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott). Here, we discover that, for our multiclass problem, we have some choices:
 
 ![A section of Microsoft's Algorithm Cheat Sheet, detailing multiclass classification options](../../images/cheatsheet.png){width="500"}
 

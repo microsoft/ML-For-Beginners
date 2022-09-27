@@ -13,7 +13,7 @@
 - データを可視化するための新しいライブラリ
 - ロジスティック回帰について
 
-✅ この[モジュール](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) では、今回のタイプのような回帰について理解を深めることができます。
+✅ この[モジュール](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) では、今回のタイプのような回帰について理解を深めることができます。
 
 ## 前提条件
 

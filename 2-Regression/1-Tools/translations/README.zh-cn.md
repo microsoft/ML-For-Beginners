@@ -22,13 +22,13 @@
 
 > 🎥 单击上图观看视频：在 VS Code 中使用 Python。 
 
-1. **安装 Python**。确保你的计算机上安装了 [Python](https://www.python.org/downloads/)。你将在许多数据科学和机器学习任务中使用 Python。大多数计算机系统已经安装了 Python。也有一些有用的 [Python 编码包](https://code.visualstudio.com/learn/educations/installers?WT.mc_id=academic-15963-cxa) 可用于简化某些用户的设置。 
+1. **安装 Python**。确保你的计算机上安装了 [Python](https://www.python.org/downloads/)。你将在许多数据科学和机器学习任务中使用 Python。大多数计算机系统已经安装了 Python。也有一些有用的 [Python 编码包](https://code.visualstudio.com/learn/educations/installers?WT.mc_id=academic-77952-leestott) 可用于简化某些用户的设置。 
 
    然而，Python 的某些用法需要一个版本的软件，而其他用法则需要另一个不同的版本。 因此，在 [虚拟环境](https://docs.python.org/3/library/venv.html) 中工作很有用。
 
-2. **安装 Visual Studio Code**。确保你的计算机上安装了 Visual Studio Code。按照这些说明 [安装 Visual Studio Code](https://code.visualstudio.com/) 进行基本安装。在本课程中，你将在 Visual Studio Code 中使用 Python，因此你可能想复习如何 [配置 Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) 用于 Python 开发。 
+2. **安装 Visual Studio Code**。确保你的计算机上安装了 Visual Studio Code。按照这些说明 [安装 Visual Studio Code](https://code.visualstudio.com/) 进行基本安装。在本课程中，你将在 Visual Studio Code 中使用 Python，因此你可能想复习如何 [配置 Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) 用于 Python 开发。 
 
-   > 通过学习这一系列的 [学习模块](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa) 熟悉 Python
+   > 通过学习这一系列的 [学习模块](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) 熟悉 Python
 
 3. **按照 [这些说明](https://scikit-learn.org/stable/install.html) 安装 Scikit learn**。由于你需要确保使用 Python3，因此建议你使用虚拟环境。注意，如果你是在 M1 Mac 上安装这个库，在上面链接的页面上有特别的说明。
 
@@ -200,7 +200,7 @@ Scikit-learn 使构建模型和评估它们的使用变得简单。它主要侧�
 
 在本教程中，你使用了简单线性回归，而不是单变量或多元线性回归。阅读一些关于这些方法之间差异的信息，或查看 [此视频](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-阅读有关回归概念的更多信息，并思考这种技术可以回答哪些类型的问题。用这个 [教程](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) 加深你的理解。
+阅读有关回归概念的更多信息，并思考这种技术可以回答哪些类型的问题。用这个 [教程](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) 加深你的理解。
 
 ## 任务  
 

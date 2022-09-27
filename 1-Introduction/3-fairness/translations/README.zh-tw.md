@@ -20,7 +20,7 @@
 
 作為先決條件，請選擇「負責任的人工智能原則」學習路徑並觀看以下主題視頻：
 
-按照此[學習路徑](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)了解有關負責任 AI 的更多信息
+按照此[學習路徑](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)了解有關負責任 AI 的更多信息
 
 [![微軟對負責任人工智能的做法](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "微軟對負責任人工智能的做法")
 
@@ -164,7 +164,7 @@
 
 - 嘗試一些 [示例 Notebook](https://github.com/fairlearn/fairlearn/tree/master/notebooks). 
   
-- 了解Azure機器學習中機器學習模型[如何啟用公平性評估](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa)。
+- 了解Azure機器學習中機器學習模型[如何啟用公平性評估](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-77952-leestott)。
   
 - 看看這些[示例 Notebook](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)了解 Azure 機器學習中的更多公平性評估場景。
 
@@ -202,7 +202,7 @@
 
 了解 Azure 機器學習的工具以確保公平性
 
-- [Azure 機器學習](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure 機器學習](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## 任務
 

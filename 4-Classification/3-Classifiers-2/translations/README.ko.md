@@ -228,7 +228,7 @@ weighted avg       0.73      0.72      0.72      1199
 
 ## 검토 & 자기주도 학습
 
-강의에서 많은 특수 용어가 있어서, 잠시 시간을 투자해서 유용한 용어의 [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa)를 검토합니다!
+강의에서 많은 특수 용어가 있어서, 잠시 시간을 투자해서 유용한 용어의 [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott)를 검토합니다!
 
 ## 과제 
 

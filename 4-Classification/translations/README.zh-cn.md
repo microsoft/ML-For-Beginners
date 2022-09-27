@@ -11,7 +11,7 @@
 
 建立在我们之前关于回归问题的讨论基础上，在本小节中，你将继续学习能够帮助你更好地理解数据的各种分类器。
 
-> 这里有一些不太涉及代码，且能帮助你了解如何使用分类模型的小工具。可以试试用 Azure 来完成[这个小任务](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)。
+> 这里有一些不太涉及代码，且能帮助你了解如何使用分类模型的小工具。可以试试用 Azure 来完成[这个小任务](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)。
 
 ## 课程
 

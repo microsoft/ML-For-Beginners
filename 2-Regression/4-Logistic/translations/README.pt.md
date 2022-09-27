@@ -14,7 +14,7 @@ Nesta lição, aprenderá:
 - Uma nova biblioteca para visualização de dados
 - Técnicas de regressão logística
 
-✅ aprofundar a sua compreensão de trabalhar com este tipo de regressão neste [módulo Aprender](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+✅ aprofundar a sua compreensão de trabalhar com este tipo de regressão neste [módulo Aprender](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
 ## Pré-requisito
 
 Tendo trabalhado com os dados da abóbora, estamos agora familiarizados o suficiente para perceber que há uma categoria binária com a qual podemos trabalhar:` Cor`.

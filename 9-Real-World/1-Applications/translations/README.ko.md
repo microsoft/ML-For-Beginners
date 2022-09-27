@@ -98,7 +98,7 @@ https://www.frontiersin.org/articles/10.3389/fict.2018.00006/full
 
 ### 동물의 움직임 감지
 
-딥러닝이 동물 움직임을 시각적으로-추적하려고 혁신적으로 만들었지만 (여기에 [polar bear tracker](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-15963-cxa)를 만들 수 있습니다), classic ML은 여전히 이 작업에서 자리를 차지하고 있습니다.
+딥러닝이 동물 움직임을 시각적으로-추적하려고 혁신적으로 만들었지만 (여기에 [polar bear tracker](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott)를 만들 수 있습니다), classic ML은 여전히 이 작업에서 자리를 차지하고 있습니다.
 
 농장 동물의 움직임을 추적하는 센서와 이 비주얼 프로세싱 타입을 사용하는 IoT도 있지만, 더 기본적인 ML 기술은 데이터를 전처리할 때 유용합니다. 예시로, 논문에서, 다양한 classifier 알고리즘으로 양의 상태를 모니터링하고 분석했습니다. 335 페이지에서 ROC curve를 알게 될 수 있습니다.
 

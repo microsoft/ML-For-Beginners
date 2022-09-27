@@ -39,7 +39,7 @@ Para nossos propósitos, já que estamos trabalhando com notebooks baseados em P
 
 Para esta tarefa, você precisa de duas ferramentas: Flask e Pickle, ambos em Python.
 
-O que é [Frasco](https://palletsprojects.com/p/flask/)? Definido como um 'microframework' por seus criadores, o Flask fornece as características básicas de frameworks web usando Python e um motor de modelagem para construir páginas web. Dê uma olhada em [este módulo de aprendizado](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa) para praticar a construção com o Flask.
+O que é [Frasco](https://palletsprojects.com/p/flask/)? Definido como um 'microframework' por seus criadores, o Flask fornece as características básicas de frameworks web usando Python e um motor de modelagem para construir páginas web. Dê uma olhada em [este módulo de aprendizado](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) para praticar a construção com o Flask.
 
 ✅ O que é [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 é um módulo Python que serializa e desserializa uma estrutura de objeto Python. Ao "pichar" um modelo, você serializa ou achata sua estrutura para uso na web. Tenha cuidado: o pickle não é intrinsecamente seguro, portanto, tenha cuidado se for solicitado a `cancelar o pickle` de um arquivo. Um arquivo em conserto tem o sufixo `.pkl`.
 

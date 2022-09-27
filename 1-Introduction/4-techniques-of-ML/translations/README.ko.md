@@ -89,7 +89,7 @@ feature는 데이터의 측정할 수 있는 속성입니다. 많은 데이터�
 
 ## 파라미터 튜닝
 
-초반 훈련이 마무리 될 때, 모델의 품질을 살펴보고 'hyperparameters'를 트윅해서 개선하는 것을 고려합니다. [in the documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa) 프로세스에 대하여 알아봅니다.
+초반 훈련이 마무리 될 때, 모델의 품질을 살펴보고 'hyperparameters'를 트윅해서 개선하는 것을 고려합니다. [in the documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott) 프로세스에 대하여 알아봅니다.
 
 ## 예측
 

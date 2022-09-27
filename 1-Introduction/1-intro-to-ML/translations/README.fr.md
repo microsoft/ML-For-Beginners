@@ -18,7 +18,7 @@ Bienvenue à ce cours sur le machine learning classique pour débutant ! Que vou
 Avant de commencer avec ce cours, vous aurez besoin d'un ordinateur configuré et prêt à faire tourner des notebooks (jupyter) localement.
 
 - **Configurer votre ordinateur avec ces vidéos**. Apprendre comment configurer votre ordinateur avec cette [série de vidéos](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6).
-- **Apprendre Python**. Il est aussi recommandé d'avoir une connaissance basique de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), un langage de programmaton utile pour les data scientist que nous utilisons tout au long de ce cours.
+- **Apprendre Python**. Il est aussi recommandé d'avoir une connaissance basique de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott), un langage de programmaton utile pour les data scientist que nous utilisons tout au long de ce cours.
 - **Apprendre Node.js et Javascript**. Nous utilisons aussi Javascript par moment dans ce cours afin de construire des applications WEB, vous aurez donc besoin de [node](https://nodejs.org) et [npm](https://www.npmjs.com/) installé, ainsi que de [Visual Studio Code](https://code.visualstudio.com/) pour développer en Python et Javascript.
 - **Créer un compte GitHub**. Comme vous nous avez trouvé sur [GitHub](https://github.com), vous y avez sûrement un compte, mais si non, créez en un et répliquez ce cours afin de l'utiliser à votre grés. (N'oublier pas de nous donner une étoile aussi 😊)
 - **Explorer Scikit-learn**. Familiariser vous avec [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), un ensemble de librairies ML que nous mentionnons dans nos leçons.
@@ -102,7 +102,7 @@ Esquisser, sur papier ou à l'aide d'une application en ligne comme [Excalidraw]
 
 ## Révision et auto-apprentissage
 
-Pour en savoir plus sur la façon dont vous pouvez utiliser les algorithmes de ML dans le cloud, suivez ce [Parcours d'apprentissage](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa).
+Pour en savoir plus sur la façon dont vous pouvez utiliser les algorithmes de ML dans le cloud, suivez ce [Parcours d'apprentissage](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-77952-leestott).
 
 ## Devoir
 

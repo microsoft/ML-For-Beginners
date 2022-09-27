@@ -227,7 +227,7 @@ Cada una de estas técnicas tiene un gran número de parámetros que puedes modi
 
 ## Revisión y autoestudio
 
-Existe mucha jerga en esta lecciones, ¡así que toma unos minutos para revisar [esta lista](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) de términos útiles!
+Existe mucha jerga en esta lecciones, ¡así que toma unos minutos para revisar [esta lista](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) de términos útiles!
 
 ## Asignación
 

@@ -38,7 +38,7 @@ Microsoft의 Azure Cloud Advocates는 **Machine Learning**에 대한 모든 12-�
 - 과제를 끝내봅니다.
 - 강의 그룹을 끝내면, [Discussion board](https://github.com/microsoft/ML-For-Beginners/discussions)를 방문하고 적절한 PAT rubric를 채워서 "learn out loud" 합니다. 'PAT'은 심화적으로 배우려고 작성하는 rubric인 Progress Assessment 도구 입니다. 같이 배울 수 있게 다른 PAT으로도 할 수 있습니다.
 
-> 더 배우기 위해서, [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) 모듈과 학습 경로를 따르는 것을 추천합니다.
+> 더 배우기 위해서, [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) 모듈과 학습 경로를 따르는 것을 추천합니다.
 
 **선생님**은, 이 커리큘럼의 사용 방법에 대해 [일부 제안사항](../for-teachers.md)이 있습니다.
 

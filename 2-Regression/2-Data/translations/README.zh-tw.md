@@ -142,7 +142,7 @@
 
 一個在 Jupyter notebooks 中運行良好的數據可視化庫是 [Matplotlib](https://matplotlib.org/)（你在上一課中也看到過）。
 
-> 在[這些教程](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa)中獲得更多數據可視化經驗。
+> 在[這些教程](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott)中獲得更多數據可視化經驗。
 
 ## 練習 - 使用 Matplotlib 進行實驗
 

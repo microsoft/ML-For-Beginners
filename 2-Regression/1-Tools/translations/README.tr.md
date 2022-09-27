@@ -25,13 +25,13 @@ Bu derste, şunları öğreneceğiz:
 
 > 🎥 Video için yukarıdaki resme tıklayınız: Python'u VS Code içinde kullanma.
 
-1. **Python Kurulumu**. [Python](https://www.python.org/downloads/) kurulumunun bilgisayarınızda yüklü olduğundan emin olun.Python'u birçok veri bilimi ve makine öğrenimi görevi için kullanacaksınız. Çoğu bilgisayar sistemi zaten bir Python kurulumu içerir. Şurada [Python Kodlama Paketleri](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) mevcut, bazı kullanıcılar için kurulumu daha kolay.
+1. **Python Kurulumu**. [Python](https://www.python.org/downloads/) kurulumunun bilgisayarınızda yüklü olduğundan emin olun.Python'u birçok veri bilimi ve makine öğrenimi görevi için kullanacaksınız. Çoğu bilgisayar sistemi zaten bir Python kurulumu içerir. Şurada [Python Kodlama Paketleri](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) mevcut, bazı kullanıcılar için kurulumu daha kolay.
 
    Ancak Python'un bazı kullanımları, yazılımın spesifik bir sürümünü gerektirir, diğerleri ise farklı bir sürüm gerektirir. Bu yüzden, [virtual environment](https://docs.python.org/3/library/venv.html) (sanal ortamlar) ile çalışmak daha kullanışlıdır.
 
-2. **Visual Studio Code kurulumu**. Visual Studio Code'un bilgisayarınıza kurulduğundan emin olun. [Visual Studio Code kurulumu](https://code.visualstudio.com/) bu adımları takip ederek basitçe bir kurulum yapabilirsiniz. Bu kursta Python'ı Visual Studio Code'un içinde kullanacaksınız, bu yüzden nasıl yapılacağını görmek isteyebilirsiniz. Python ile geliştirme için [Visual Studio Code konfigürasyonu](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa).
+2. **Visual Studio Code kurulumu**. Visual Studio Code'un bilgisayarınıza kurulduğundan emin olun. [Visual Studio Code kurulumu](https://code.visualstudio.com/) bu adımları takip ederek basitçe bir kurulum yapabilirsiniz. Bu kursta Python'ı Visual Studio Code'un içinde kullanacaksınız, bu yüzden nasıl yapılacağını görmek isteyebilirsiniz. Python ile geliştirme için [Visual Studio Code konfigürasyonu](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott).
 
-   > Bu koleksiyon üzerinde çalışarak Python ile rahatlayın. [Modülleri öğren](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Bu koleksiyon üzerinde çalışarak Python ile rahatlayın. [Modülleri öğren](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
 
 3. **Scikit-learn kurulumu**, [bu talimatları](https://scikit-learn.org/stable/install.html) takip ediniz. Python 3 kullandığınızdan emin olmanız gerektiğinden, sanal ortam kullanmanız önerilir. Not, bu kütüphaneyi bir M1 Mac'e kuruyorsanız, yukarıda bağlantısı verilen sayfada özel talimatlar var onları takip ediniz.
 
@@ -203,7 +203,7 @@ Bu veri kümesinden farklı bir değişken çizin. İpucu: bu satırı düzenley
 
 Bu eğitimde, tek değişkenli veya çoklu doğrusal regresyon yerine basit doğrusal regresyonla çalıştınızBu yöntemler arasındaki farklar hakkında biraz bilgi edinin veya şuna bir göz atın: [bu videoya](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Regresyon kavramı hakkında daha fazla bilgi edinin ve bu teknikle ne tür soruların yanıtlanabileceğini düşünün. Anlayışınızı derinleştirmek için bu [eğitime](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) göz atabilirsiniz.
+Regresyon kavramı hakkında daha fazla bilgi edinin ve bu teknikle ne tür soruların yanıtlanabileceğini düşünün. Anlayışınızı derinleştirmek için bu [eğitime](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) göz atabilirsiniz.
 
 ## Assignment
 

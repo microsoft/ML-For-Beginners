@@ -17,7 +17,7 @@ Bu dersler dizisinde, lineer ve lojistik regresyon arasındaki farkları ve ne z
 
 Bu ders grubunda, veri bilimcileri için ortak ortam olan not defterlerini yönetmek için Visual Studio Code'un yapılandırılması dahil olmak üzere makine öğrenimi görevlerine başlamak için hazırlanacaksınız. 
 
-> Regresyon modelleriyle çalışma hakkında bilgi edinmenize yardımcı olabilecek kullanışlı low-code (az kodlamalı) araçlar vardır. Bunu deneyin. [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Regresyon modelleriyle çalışma hakkında bilgi edinmenize yardımcı olabilecek kullanışlı low-code (az kodlamalı) araçlar vardır. Bunu deneyin. [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ### Dersler
 

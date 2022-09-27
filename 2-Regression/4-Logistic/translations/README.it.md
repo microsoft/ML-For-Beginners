@@ -14,7 +14,7 @@ In questa lezione, si imparerà:
 - Una nuova libreria per la visualizzazione dei dati
 - Tecniche per la regressione logistica
 
-✅ Con questo [modulo di apprendimento](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) si potrà approfondire la comprensione del lavoro con questo tipo di regressione
+✅ Con questo [modulo di apprendimento](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) si potrà approfondire la comprensione del lavoro con questo tipo di regressione
 ## Prerequisito
 
 Avendo lavorato con i dati della zucca, ora si ha abbastanza familiarità con essi per rendersi conto che esiste una categoria binaria con cui è possibile lavorare: `Color` (Colore).

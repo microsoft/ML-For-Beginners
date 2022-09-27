@@ -14,7 +14,7 @@ Dalam pelajaran ini, kamu akan belajar:
 - Sebuah *library* baru untuk pemvisualisasian data
 - Teknik-teknik untuk regresi logistik
 
-✅ Perdalamkan pemahamanmu dalam bekerja dengan regresi jenis ini dalam [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+✅ Perdalamkan pemahamanmu dalam bekerja dengan regresi jenis ini dalam [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
 
 ## Prasyarat
 

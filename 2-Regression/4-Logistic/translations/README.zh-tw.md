@@ -15,7 +15,7 @@
 - 用於數據可視化的新庫
 - 邏輯回歸技術
 
-✅ 在此[學習模塊](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) 中加深你對使用此類回歸的理解
+✅ 在此[學習模塊](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) 中加深你對使用此類回歸的理解
 
 ## 前提
 
