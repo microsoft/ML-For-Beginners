@@ -15,7 +15,7 @@ In this lesson, you will learn:
 - A new library for data visualization
 - Techniques for logistic regression
 
-✅ Deepen your understanding of working with this type of regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+✅ Deepen your understanding of working with this type of regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
 ## Prerequisite
 
 Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one binary category that we can work with: `Color`.

@@ -38,7 +38,7 @@ Gira il mondo insieme a noi mentre applichiamo queste classiche tecniche ai dati
 - Completate il compito.
 - Dopo il completamento di un gruppo di lezioni, visitate il  [Forum di discussione](https://github.com/microsoft/ML-For-Beginners/discussions) e "learn out load" (imparare ad alta voce) riempiendo la rubrica Pat appropriata. 'PAT' è uno strumento di valutazione dei progressi che consiste in una rubrica da compilare per promuovere il proprio apprendimento. Si può anche interagire in altri PAT in modo da imparare assieme.
 
-> Per ulteriori approfondimenti, si raccomanda di sequire i seguenti moduli e percorsi di apprendimento [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa).
+> Per ulteriori approfondimenti, si raccomanda di sequire i seguenti moduli e percorsi di apprendimento [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott).
 
 **Insegnanti**, sono stati [inclusi alcuni suggerimenti](for-teachers.md) su come usare questo programma di studi.
 

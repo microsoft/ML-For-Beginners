@@ -51,7 +51,7 @@
    python -m textblob.download_corpora
    ```
 
-> 💡 팁: VS Code 환경에서 Python을 바로 실행할 수 있습니다. [docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa)으로 정보를 더 확인합니다.
+> 💡 팁: VS Code 환경에서 Python을 바로 실행할 수 있습니다. [docs](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott)으로 정보를 더 확인합니다.
 
 ## 기계와 대화하기
 

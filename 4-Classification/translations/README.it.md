@@ -11,7 +11,7 @@ In Asia e in India, le tradizioni alimentari sono estremamente diverse e molto d
 
 In questa sezione si approfondiranno le abilità sulla regressione apprese nella prima parte di questo programma di studi  per conoscere altri classificatori da poter utilizzare e che aiuteranno a conoscere i propri dati.
 
-> Esistono utili strumenti a basso codice che possono aiutare a imparare a lavorare con i modelli di regressione. Si provi [Azure ML per questa attività](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Esistono utili strumenti a basso codice che possono aiutare a imparare a lavorare con i modelli di regressione. Si provi [Azure ML per questa attività](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## Lezioni
 

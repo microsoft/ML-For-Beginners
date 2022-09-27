@@ -38,7 +38,7 @@ Viaje conosco ao redor do mundo enquanto aplicamos essas técnicas clássicas a 
 - Conclua a tarefa.
 - Após concluir uma lição em grupo, visite o [Quadro de discussões](https://github.com/microsoft/ML-For-Beginners/discussions) e "aprenda em voz alta" preenchendo de forma apropriada a rubrica PAT. Um 'PAT' é uma ferramenta de avaliação de progresso que é uma rubrica que você preenche para promover seu aprendizado. Você também pode reagir a outros PATs para que possamos aprender juntos.
 
-> Para um estudo mais aprofundado, recomendamos seguir os módulos e percursos de aprendizagem da [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa).
+> Para um estudo mais aprofundado, recomendamos seguir os módulos e percursos de aprendizagem da [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott).
 
 **Professores**, [incluímos algumas sugestões](../for-teachers.md) em como usar este curso.
 

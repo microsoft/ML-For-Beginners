@@ -228,7 +228,7 @@ Each of these techniques has a large number of parameters that you can tweak. Re
 
 ## Review & Self Study
 
-There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) of useful terminology!
+There's a lot of jargon in these lessons, so take a minute to review [this list](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) of useful terminology!
 
 ## Assignment 
 

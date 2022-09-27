@@ -142,7 +142,7 @@ Visualisasi juga bisa membantu menentukan teknik *machine learning* yang palingn
 
 Satu *library* visualisasi data yang bekerja dengan baik dalam sebuah *Jupyter notebook* adalah [Matplotlib](https://matplotlib.org/) (yang kamu juga lihat dalam pelajaran sebelumnya).
 
-> Carilah pengalaman dalam memvisualisasi data dengan [tutorial-tutorial ini](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa).
+> Carilah pengalaman dalam memvisualisasi data dengan [tutorial-tutorial ini](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
 ## Latihan - sebuah experimen dengan Matplotlib
 

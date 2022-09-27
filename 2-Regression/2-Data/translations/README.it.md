@@ -141,7 +141,7 @@ Le visualizzazioni possono anche aiutare a determinare la tecnica di machine lea
 
 Una libreria di visualizzazione dei dati che funziona bene nei notebook Jupyter è [Matplotlib](https://matplotlib.org/) (che si è visto anche nella lezione precedente).
 
-> Per fare più esperienza con la visualizzazione dei dati si seguano [questi tutorial](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa).
+> Per fare più esperienza con la visualizzazione dei dati si seguano [questi tutorial](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
 ## Esercizio - sperimentare con Matplotlib
 

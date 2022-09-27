@@ -142,7 +142,7 @@ bushel 수량이 행마다 다른 것을 알았나요? bushel 단위로 가격�
 
 Jupyter notebooks에서 잘 작동하는 데이터 시각화 라이브러리는 (이전 강의에서 보았던) [Matplotlib](https://matplotlib.org/)입니다.
 
-> [these tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa)에서 데이터 시각화 연습을 더 해보세요.
+> [these tutorials](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott)에서 데이터 시각화 연습을 더 해보세요.
 
 ## 연습 - Matplotlib으로 실험하기
 

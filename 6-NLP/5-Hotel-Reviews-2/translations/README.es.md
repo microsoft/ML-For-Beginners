@@ -369,7 +369,7 @@ Ahora que tienes tu conjunto de datos analizado por sentimiento, observa si pued
 
 ## Revisión y autoestudio
 
-Toma [este módulo de aprendizaje](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa) para aprender más y usar distintas herramientas para explorar el sentimiento en el texto.
+Toma [este módulo de aprendizaje](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) para aprender más y usar distintas herramientas para explorar el sentimiento en el texto.
 
 ## Asignación
 

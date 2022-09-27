@@ -22,13 +22,13 @@ En esta lección, aprenderá a:
 
 > 🎥 Haga click en la imagen de arriba para ver un video: usando Python dentro de VS Code.
 
-1. **Instale Python**. Asegúrese de que [Python](https://www.python.org/downloads/) esté instalado en su computadora. Utilizará Python para muchas tareas de ciencia de datos y machine learning. La mayoría de los sistemas informáticos ya incluyen una instalación de Python. También hay disponibles [paquetes de código de Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) útiles para facilitar la configuración a algunos usuarios.
+1. **Instale Python**. Asegúrese de que [Python](https://www.python.org/downloads/) esté instalado en su computadora. Utilizará Python para muchas tareas de ciencia de datos y machine learning. La mayoría de los sistemas informáticos ya incluyen una instalación de Python. También hay disponibles [paquetes de código de Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) útiles para facilitar la configuración a algunos usuarios.
 
    Sin embargo algunos usos de Python requieren una versión del software, mientras otros requieren una versión diferente. Por esta razón, es útil trabajar dentro de un [entorno virtual](https://docs.python.org/3/library/venv.html).
 
-2. **Instale Visual Studio Code**. Asegúrese de tener Visual Studio Code instalado en su computadora. Siga estas instrucciones para [instalar Visual Studio Code](https://code.visualstudio.com/) para la instalación básica. Va a utilizar Python en Visual Studio Code en este curso, por lo que es posible que desee repasar cómo [configurar Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) para el desarrollo en Python.
+2. **Instale Visual Studio Code**. Asegúrese de tener Visual Studio Code instalado en su computadora. Siga estas instrucciones para [instalar Visual Studio Code](https://code.visualstudio.com/) para la instalación básica. Va a utilizar Python en Visual Studio Code en este curso, por lo que es posible que desee repasar cómo [configurar Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) para el desarrollo en Python.
 
-   > Siéntase cómodo con Python trabajando con esta colección de [módulos de aprendizaje](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Siéntase cómodo con Python trabajando con esta colección de [módulos de aprendizaje](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
 
 3. **Instale Scikit-learn**, siguiendo [estas instrucciones](https://scikit-learn.org/stable/install.html). Dado que debe asegurarse de usar Python3, se recomienda que use un entorno virtual. Tenga en cuenta que si está instalando esta biblioteca en una Mac M1, hay instrucciones especiales en la página vinculada arriba.
 
@@ -199,7 +199,7 @@ Grafique una variable diferente de este conjunto de datos. Sugerencia: edite est
 
 En este tutorial, trabajó con regresión lineal simple, en lugar de regresión lineal univariante o múltiple. Lea un poco sobre las diferencias entre estos métodos o eche un vistazo a [este video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Lea más sobre el concepto de regresión lineal y piense que tipo de preguntas se pueden responder con esta técnica.Tome este [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) para profundizar su comprensión.
+Lea más sobre el concepto de regresión lineal y piense que tipo de preguntas se pueden responder con esta técnica.Tome este [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) para profundizar su comprensión.
 
 ## Asignación 
 

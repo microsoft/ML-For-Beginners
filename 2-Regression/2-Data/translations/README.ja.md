@@ -146,7 +146,7 @@ Visual Studio Codeで _notebook.ipynb_ ファイルを開き、スプレッド�
 
 Jupyter notebookでうまく利用できるテータ可視化ライブラリの一つに [Matplotlib](https://matplotlib.org/) があります (前のレッスンでも紹介しています)。
 
-> [こちらのチュートリアル](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa) でデータの可視化ついてより深く体験することができます。
+> [こちらのチュートリアル](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott) でデータの可視化ついてより深く体験することができます。
 
 ## エクササイズ - Matplotlibの実験
 

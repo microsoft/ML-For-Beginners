@@ -28,7 +28,7 @@ Clustering이 데이터셋에 라벨을 붙이지 않거나 입력이 미리 정
 
 ✅ 데이터가 클러스터에서 구성되면, 클러스터 ID를 할당하며, 이 기술로 데이터셋의 프라이버시를 보호할 때 유용합니다; 식별할 수 있는 데이터를 더 노출하는 대신, 클러스터 ID로 데이터 포인트를 참조할 수 있습니다. 클러스터의 다른 요소가 아닌 클러스터 ID를 참조해서 식별하는 이유를 생각할 수 있나요?
 
-이 [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)에서 clustering 기술을 깊게 이해합니다.
+이 [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott)에서 clustering 기술을 깊게 이해합니다.
 
 ## Clustering 시작하기
 

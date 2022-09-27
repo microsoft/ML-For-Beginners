@@ -13,7 +13,7 @@
 
 データサイエンティストの共通開発環境であるノートブックを管理するためのVisual Studio Codeの構成や機械学習のタスクを開始するための準備を行います。また、機械学習用のライブラリであるScikit-learnを利用し最初のモデルを構築します。この章では回帰モデルに焦点を当てます。
 
-> 回帰モデルを学習するのに役立つローコードツールがあります。ぜひ[Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)を使ってみてください。
+> 回帰モデルを学習するのに役立つローコードツールがあります。ぜひ[Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)を使ってみてください。
 
 ### レッスン
 

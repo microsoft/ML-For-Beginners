@@ -89,7 +89,7 @@
 
 ## パラメータチューニング
 
-最初のトレーニングが完了したら、モデルの質を観察して、「ハイパーパラメータ」の調整によるモデルの改善を検討しましょう。このプロセスについては [ドキュメント](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa) を読んでください。
+最初のトレーニングが完了したら、モデルの質を観察して、「ハイパーパラメータ」の調整によるモデルの改善を検討しましょう。このプロセスについては [ドキュメント](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott) を読んでください。
 
 ## 予測
 

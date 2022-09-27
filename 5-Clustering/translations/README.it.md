@@ -12,7 +12,7 @@ Il pubblico eterogeneo della Nigeria ha gusti musicali diversi. Usando i dati re
 
 In questa serie di lezioni si scopriranno nuovi modi per analizzare i dati utilizzando tecniche di clustering. Il clustering è particolarmente utile quando l'insieme di dati non ha etichette. Se ha etichette, le tecniche di classificazione come quelle apprese nelle lezioni precedenti potrebbero essere più utili. Ma nei casi in cui si sta cercando di raggruppare dati senza etichetta, il clustering è un ottimo modo per scoprire i modelli.
 
-> Esistono utili strumenti a basso codice che possono aiutare a imparare a lavorare con i modelli di clustering. Si provi [Azure ML per questa attività](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Esistono utili strumenti a basso codice che possono aiutare a imparare a lavorare con i modelli di clustering. Si provi [Azure ML per questa attività](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## Lezioni
 

@@ -369,7 +369,7 @@ Ora che si è analizzato il proprio insieme di dati per il sentiment, vedere se 
 
 ## recensione e Auto Apprendimento
 
-Seguire [questo modulo di apprendimento](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa) per saperne di più e utilizzare diversi strumenti per esplorare il sentiment nel testo.
+Seguire [questo modulo di apprendimento](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) per saperne di più e utilizzare diversi strumenti per esplorare il sentiment nel testo.
 
 ## Compito
 
