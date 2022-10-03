@@ -14,7 +14,7 @@ Dans cette série de leçons, vous découvrirez la différence entre la régress
 
 Dans ce groupe de leçons, vous serez préparé afin de commencer les tâches de machine learning, y compris la configuration de Visual Studio Code pour gérer les blocs-notes, l'environnement commun pour les scientifiques des données. Vous découvrirez Scikit-learn, une bibliothèque pour le machine learning, et vous construirez vos premiers modèles, en vous concentrant sur les modèles de régression dans ce chapitre.
 
-> Il existe des outils low-code utiles qui peuvent vous aider à apprendre à travailler avec des modèles de régression. Essayez [Azure ML pour cette tâche](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> Il existe des outils low-code utiles qui peuvent vous aider à apprendre à travailler avec des modèles de régression. Essayez [Azure ML pour cette tâche](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ### Cours
 

@@ -405,7 +405,7 @@ Questa lezione dimostra, come visto nelle lezioni precedenti, quanto sia di fond
 
 ## Revisione e Auto Apprendimento
 
-Seguire [questo percorso di apprendimento su NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-15963-cxa) per scoprire gli strumenti da provare durante la creazione di modelli vocali e di testo.
+Seguire [questo percorso di apprendimento su NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) per scoprire gli strumenti da provare durante la creazione di modelli vocali e di testo.
 
 ## Compito
 

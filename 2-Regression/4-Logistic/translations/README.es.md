@@ -16,7 +16,7 @@ En esta lección, aprenderás:
 - Una nueva librería para visualización de datos
 - Técnicas para regresión logística
 
-✅ Profundiza tu entendimiento de trabajo con este tipo de regresión en este [módulo de aprendizaje(https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)
+✅ Profundiza tu entendimiento de trabajo con este tipo de regresión en este [módulo de aprendizaje(https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
 ## Requisitos previos
 
 Haber trabajado con los datos de calabazas, ahora estamos suficientemente familiarizados con estos para entender que hay una categoría binaria que podemos trabajar con `Color`.

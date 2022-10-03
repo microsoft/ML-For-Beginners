@@ -14,7 +14,7 @@
 - 用于数据可视化的新库
 - 逻辑回归技术
 
-✅ 在此[学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa) 中加深你对使用此类回归的理解
+✅ 在此[学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) 中加深你对使用此类回归的理解
 
 ## 前提
 

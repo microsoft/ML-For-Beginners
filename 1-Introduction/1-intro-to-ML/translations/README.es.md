@@ -19,7 +19,7 @@
 Antes de comenzar con este currículum, debes tener tu computadora configurada y lista para ejecutar los notebooks localmente.
 
 - **Configura tu equipo con estos videos**. Aprende más acerca de como configurar tu equipo con [estos videos](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6).
-- **Aprende Python**. También se recomienda que tengas un entendimiento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa), un lenguaje de programación útil para practicantes de la ciencia de datos, y que se utiliza en este curso.
+- **Aprende Python**. También se recomienda que tengas un entendimiento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott), un lenguaje de programación útil para practicantes de la ciencia de datos, y que se utiliza en este curso.
 - **Aprende Node.js y JavaScript**. También usamos JavaScript unas cuantas veces en este curso cuando creamos aplicaciones web, así que necesitarás tener [node](https://nodejs.org) y [npm](https://www.npmjs.com/) instalados, así como [Visual Studio Code](https://code.visualstudio.com/) listo para el desarrollo con Python y JavaScript.
 - **Crea una cuenta de GitHub**. Como nos encontraste aquí en [GitHub](https://github.com), puede que ya tengas una cuenta, pero si no, créate una y después haz un fork de este curriculum para usarlo en tu computadora personal. (Siéntete libre de darnos una estrella 😊)
 - **Explora Scikit-learn**. Familiarízate con [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), un conjunto de bibliotecas de ML que referenciamos en estas lecciones.
@@ -104,9 +104,9 @@ Dibuja, en papel o usando una aplicación como [Excalidraw](https://excalidraw.c
 
 ## Revisión y autoestudio
 
-Para aprender más sobre como puedes trabajar con algoritmos de ML en la nube, sigue esta [Ruta de Aprendizaje](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa).
+Para aprender más sobre como puedes trabajar con algoritmos de ML en la nube, sigue esta [Ruta de Aprendizaje](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-77952-leestott).
 
-Toma esta [Ruta de Aprendizaje](https://docs.microsoft.com/learn/modules/introduction-to-machine-learning/?WT.mc_id=academic-15963-cxa) sobre las bases de ML.
+Toma esta [Ruta de Aprendizaje](https://docs.microsoft.com/learn/modules/introduction-to-machine-learning/?WT.mc_id=academic-77952-leestott) sobre las bases de ML.
 
 ## Tarea
 

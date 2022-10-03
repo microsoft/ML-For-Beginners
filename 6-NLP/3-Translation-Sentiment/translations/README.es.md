@@ -180,7 +180,7 @@ Aquí tienes una [solución de muestra](../solution/notebook.ipynb).
 
 ## Revisión y autoestudio
 
-Hay varias formas de extraer el sentimiento del texto. Piensa en las aplicaciones de negocios que podrían hacer uso de esta técnica. Piensa cómo puede salir mal. Lee más acerca de los sistemas sofisticados listos para empresas que analizan  el sentimiento tal como [Azure Text Analysis](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-15963-cxa). Prueba algunas de las oraciones de Orgullo y Prejuicio de arriba y observa si se pueden detectar matices.
+Hay varias formas de extraer el sentimiento del texto. Piensa en las aplicaciones de negocios que podrían hacer uso de esta técnica. Piensa cómo puede salir mal. Lee más acerca de los sistemas sofisticados listos para empresas que analizan  el sentimiento tal como [Azure Text Analysis](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-77952-leestott). Prueba algunas de las oraciones de Orgullo y Prejuicio de arriba y observa si se pueden detectar matices.
 
 ## Asignación
 

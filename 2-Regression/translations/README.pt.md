@@ -19,7 +19,7 @@ Nesta série de lições, você vai descobrir a diferença entre regressão log�
 Neste grupo de lições, você será configurado para iniciar tarefas de machine learning, incluindo configurar o Código do Estúdio Visual para gerir cadernos, o ambiente comum para cientistas de dados. Você vai descobrir Scikit-learn, uma biblioteca para machine learning, e você vai construir seus primeiros modelos, focando-se em modelos de Regressão neste capítulo.
 
 > Existem ferramentas de baixo código úteis que podem ajudá-lo a aprender sobre trabalhar com modelos de regressão. Tente
-[Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+[Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ### Lessons
 

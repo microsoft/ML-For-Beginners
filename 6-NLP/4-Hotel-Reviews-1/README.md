@@ -397,7 +397,7 @@ This lesson demonstrates, as we saw in previous lessons, how critically importan
 
 ## Review & Self Study
 
-Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-15963-cxa) to discover tools to try when building speech and text-heavy models.
+Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) to discover tools to try when building speech and text-heavy models.
 
 ## Assignment 
 

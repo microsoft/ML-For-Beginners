@@ -228,7 +228,7 @@ Ognuna di queste tecniche ha un gran numero di parametri che si possono modifica
 
 ## Revisione e Auto Apprendimento
 
-C'è molto gergo in queste lezioni, quindi si prenda un minuto per rivedere [questo elenco](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) di terminologia utile!
+C'è molto gergo in queste lezioni, quindi si prenda un minuto per rivedere [questo elenco](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) di terminologia utile!
 
 ## Compito
 

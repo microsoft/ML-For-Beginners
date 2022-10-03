@@ -14,7 +14,7 @@
 - 데이터 시각화를 위한 새로운 라이브러리
 - logistic regression 기술
 
-✅ [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa)애서 regression의 타입에 대하여 깊게 이해해봅니다.
+✅ [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)애서 regression의 타입에 대하여 깊게 이해해봅니다.
 
 ## 필요 조건
 

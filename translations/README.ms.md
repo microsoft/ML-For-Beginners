@@ -38,7 +38,7 @@ Perjalanan bersama kami di seluruh dunia kerana kami menerapkan teknik klasik in
 - Selesaikan tugasan.
 - Setelah menyelesaikan kumpulan pelajaran, lawati [Discussion board](https://github.com/microsoft/ML-For-Beginners/discussions) dan "belajar dengan kuat" dengan mengisi rubrik PAT yang sesuai. 'PAT' adalah Alat Penilaian Kemajuan yang merupakan rubrik yang anda isi untuk melanjutkan pembelajaran anda. Anda juga boleh bertindak balas terhadap PAT lain sehingga kami dapat belajar bersama.
 
-> Untuk kajian lebih lanjut, kami mengesyorkan mengikuti [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) berikut dan jalan belajar.
+> Untuk kajian lebih lanjut, kami mengesyorkan mengikuti [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) berikut dan jalan belajar.
 
 **Guru**, kami telah [memasukkan beberapa cadangan](for-teachers.md) mengenai cara menggunakan kurikulum ini.
 

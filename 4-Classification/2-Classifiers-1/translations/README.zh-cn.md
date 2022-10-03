@@ -101,11 +101,11 @@ Scikit_learn 将分类任务归在了监督学习类别中，在这个类别中�
 ![各分类器比较](../images/comparison.png)
 > 图表来源于 Scikit-learn 的官方文档
 
-> AutoML 通过在云端运行这些算法并进行了对比，非常巧妙地解决的算法选择的问题，能帮助你根据数据集的特点来选择最佳的算法。试试点击[这里](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)了解更多。
+> AutoML 通过在云端运行这些算法并进行了对比，非常巧妙地解决的算法选择的问题，能帮助你根据数据集的特点来选择最佳的算法。试试点击[这里](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)了解更多。
 
 ### 另外一种效果更佳的分类器选择方法
 
-比起无脑地猜测，你可以下载这份[机器学习速查表（cheatsheet）](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa)。这里面将各算法进行了比较，能更有效地帮助我们选择算法。根据这份速查表，我们可以找到要完成本课程中涉及的多类型的分类任务，可以有以下这些选择：
+比起无脑地猜测，你可以下载这份[机器学习速查表（cheatsheet）](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott)。这里面将各算法进行了比较，能更有效地帮助我们选择算法。根据这份速查表，我们可以找到要完成本课程中涉及的多类型的分类任务，可以有以下这些选择：
 
 ![多类型问题速查表](../images/cheatsheet.png)
 > 微软算法小抄中部分关于多类型分类任务可选算法

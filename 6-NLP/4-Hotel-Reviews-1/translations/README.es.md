@@ -408,7 +408,7 @@ Esta lección demuestra, como vimos en lecciones anteriores, qué tan críticame
 
 ## Revisión y autoestudio
 
-Toma [esta ruta de aprendizaje de NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-15963-cxa) para descubrir herramientas a probar al construir modelos de voz y de gran cantidad de datos.
+Toma [esta ruta de aprendizaje de NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) para descubrir herramientas a probar al construir modelos de voz y de gran cantidad de datos.
 
 ## Asignación
 

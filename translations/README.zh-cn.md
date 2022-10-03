@@ -35,7 +35,7 @@
 - 完成作业
 - 一节课完成后, 访问[讨论版](https://github.com/microsoft/ML-For-Beginners/discussions)，通过填写相应的 PAT Rubric (课程目标) 来深化自己的学习成果。你也可以回应其它的 PAT，这样我们可以一起学习。
 
-> 如果希望进一步学习，我们推荐跟随 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) 的模块和学习路径。
+> 如果希望进一步学习，我们推荐跟随 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) 的模块和学习路径。
 
 **对于老师们**，我们对于如何使用这套教程[提供了一些建议](../for-teachers.md)。
 

@@ -11,7 +11,7 @@ En Asia y la India, las tradiciones alimentarias son muy diversas, ¡y muy delic
 
 Esta sección, se basará en el estudio anterior de la Regresión y aprenderás sobre otros clasificadores que puedes usar para entender mejor los datos.
 
-Hay herramientas "low code" útiles que pueden ayudarte a aprender a trabajar con modelos de clasificación. Prueba [Azure ML para esta tarea](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+Hay herramientas "low code" útiles que pueden ayudarte a aprender a trabajar con modelos de clasificación. Prueba [Azure ML para esta tarea](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## Lecciones
 

@@ -180,7 +180,7 @@ Si può rendere Marvin ancora migliore estraendo altre funzionalità dall'input 
 
 ## Revisione e Auto Apprendimento
 
-Esistono molti modi per estrarre il sentiment dal testo. Si pensi alle applicazioni aziendali che potrebbero utilizzare questa tecnica. Pensare a cosa potrebbe andare storto. Ulteriori informazioni sui sistemi sofisticati pronti per l'azienda che analizzano il sentiment come l'[analisi del testo di Azure](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-15963-cxa). Provare alcune delle frasi di Orgoglio e Pregiudizio sopra e vedere se può rilevare sfumature.
+Esistono molti modi per estrarre il sentiment dal testo. Si pensi alle applicazioni aziendali che potrebbero utilizzare questa tecnica. Pensare a cosa potrebbe andare storto. Ulteriori informazioni sui sistemi sofisticati pronti per l'azienda che analizzano il sentiment come l'[analisi del testo di Azure](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-77952-leestott). Provare alcune delle frasi di Orgoglio e Pregiudizio sopra e vedere se può rilevare sfumature.
 
 ## Compito
 

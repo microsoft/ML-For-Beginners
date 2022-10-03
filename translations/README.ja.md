@@ -36,7 +36,7 @@
 - 課題を完了させてください。
 - レッスングループの完了後は [Discussionボード](https://github.com/microsoft/ML-For-Beginners/discussions) にアクセスし、適切なPAT表に記入することで「声に出して学習」してください。"PAT" とは Progress Assessment Tool（進捗評価ツール）の略で、学習を促進するために記入する表のことです。他のPATにリアクションすることもできるので、共に学ぶことが可能です。
 
-> さらに学習を進める場合は、[Microsoft Learn](https://docs.microsoft.com/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa) のラーニングパスに従うことをお勧めします。
+> さらに学習を進める場合は、[Microsoft Learn](https://docs.microsoft.com/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) のラーニングパスに従うことをお勧めします。
 
 **先生方**、このカリキュラムをどのように使用するか、[いくつかの提案](../for-teachers.md) があります。
 

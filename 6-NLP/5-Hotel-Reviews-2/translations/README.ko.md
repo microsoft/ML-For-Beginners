@@ -369,7 +369,7 @@ df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 
 ## 검토 & 자기주도 학습
 
-[this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa)로 더 배우고 다른 도구도 사용해서 텍스트에서 감정을 찾습니다.
+[this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott)로 더 배우고 다른 도구도 사용해서 텍스트에서 감정을 찾습니다.
 
 ## 과제 
 

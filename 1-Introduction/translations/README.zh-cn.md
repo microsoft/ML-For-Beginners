@@ -3,7 +3,7 @@
 课程的本章节将为您介绍机器学习领域背后的基本概念、什么是机器学习，并学习它的历史以及曾为此做出贡献的技术研究者们。让我们一起开始探索机器学习的全新世界吧！
 
 ![globe](../images/globe.jpg)
-> 图片由 <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a>提供，来自 <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> 图片由 <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> 提供，来自 <a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 ### 课程安排
 

@@ -181,7 +181,7 @@ Darcy, as well as Elizabeth, really loved them; and they were
 
 ## 검토 & 자기주도 학습
 
-텍스트에서 감정을 추출하는 많은 방식이 있습니다. 이 기술로 사용할 수 있는 비지니스 애플리케이션을 생각해봅니다. 어떻게 틀릴 수 있는지도 생각해봅니다. [Azure Text Analysis](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-15963-cxa) 같이 감정 분석을 하는 정교한 enterprise-ready 시스템에 대하여 읽어봅니다. Pride and Prejudice 일부 문장에서 미묘한 차이를 감지할 수 있는지 테스트 합니다.
+텍스트에서 감정을 추출하는 많은 방식이 있습니다. 이 기술로 사용할 수 있는 비지니스 애플리케이션을 생각해봅니다. 어떻게 틀릴 수 있는지도 생각해봅니다. [Azure Text Analysis](https://docs.microsoft.com/azure/cognitive-services/Text-Analytics/how-tos/text-analytics-how-to-sentiment-analysis?tabs=version-3-1?WT.mc_id=academic-77952-leestott) 같이 감정 분석을 하는 정교한 enterprise-ready 시스템에 대하여 읽어봅니다. Pride and Prejudice 일부 문장에서 미묘한 차이를 감지할 수 있는지 테스트 합니다.
 
 ## 과제 
 

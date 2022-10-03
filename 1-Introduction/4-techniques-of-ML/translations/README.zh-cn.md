@@ -87,7 +87,7 @@
 
 ## 参数调优 
 
-初始训练完成后，观察模型的质量并考虑通过调整其“超参数”来改进它。[在此文档中](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa)阅读有关该过程的更多信息。
+初始训练完成后，观察模型的质量并考虑通过调整其“超参数”来改进它。[在此文档中](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott)阅读有关该过程的更多信息。
 
 ## 预测
 

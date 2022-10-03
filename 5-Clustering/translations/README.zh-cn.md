@@ -12,7 +12,7 @@
 
 在本系列课程中，您将发现使用聚类技术分析数据的新方法。当数据集缺少标签的时候，聚类特别有用。如果它有标签，那么分类技术(比如您在前面的课程中所学的那些)可能会更有用。但是如果要对未标记的数据进行分组，聚类是发现模式的好方法。
 
-> 这里有一些有用的低代码工具可以帮助您了解如何使用聚类模型。尝试 [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> 这里有一些有用的低代码工具可以帮助您了解如何使用聚类模型。尝试 [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## 课程安排
 

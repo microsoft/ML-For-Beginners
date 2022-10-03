@@ -86,7 +86,7 @@
 > 作者 [Jen Looper](https://twitter.com/jenlooper)
 ## 參數調優 
 
-初始訓練完成後，觀察模型的質量並考慮通過調整其「超參數」來改進它。[在此文檔中](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa)閱讀有關該過程的更多信息。
+初始訓練完成後，觀察模型的質量並考慮通過調整其「超參數」來改進它。[在此文檔中](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott)閱讀有關該過程的更多信息。
 
 ## 預測
 

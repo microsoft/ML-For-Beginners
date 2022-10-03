@@ -21,7 +21,7 @@ In questa lezione, si dovrà:
 
 Come prerequisito, si segua il percorso di apprendimento "Principi di AI Responsabile" e si guardi il video qui sotto sull'argomento:
 
-Si scopra di più sull'AI Responsabile seguendo questo [percorso di apprendimento](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)
+Si scopra di più sull'AI Responsabile seguendo questo [percorso di apprendimento](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)
 
 [![L'approccio di Microsoft all'AI responsabileL'](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "approccio di Microsoft all'AI Responsabile")
 
@@ -167,7 +167,7 @@ Lo strumento consente di valutare in che modo le previsioni di un modello influi
 
 - Si provino alcuni [notebook di esempio](https://github.com/fairlearn/fairlearn/tree/master/notebooks).
 
-- Si scopra [come abilitare le valutazioni dell'equità](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) dei modelli di Machine Learning in Azure Machine Learning.
+- Si scopra [come abilitare le valutazioni dell'equità](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-77952-leestott) dei modelli di Machine Learning in Azure Machine Learning.
 
 - Si dia un'occhiata a questi [notebook di esempio](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) per ulteriori scenari di valutazione dell'equità in Azure Machine Learning.
 
@@ -205,7 +205,7 @@ Si esplori il toolkit Fairlearn
 
 Si scoprano gli strumenti di Azure Machine Learning per garantire l'equità
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa)
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
 
 ## Compito
 

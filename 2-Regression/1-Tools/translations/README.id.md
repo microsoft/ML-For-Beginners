@@ -23,13 +23,13 @@ Dalam pelajaran ini, kamu akan belajar bagaimana untuk:
 
 > 🎥 Klik foto di atas untuk sebuah video: menggunakan Python dalam VS Code
 
-1. **Pasang Python**. Pastikan bahwa [Python](https://www.python.org/downloads/) telah dipasang di komputermu. Kamu akan menggunakan Python untuk banyak tugas *data science* dan *machine learning*. Python sudah dipasang di kebanyakan sistem komputer. Adapula *[Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa)* yang berguna untuk membantu proses pemasangan untuk beberapa pengguna.
+1. **Pasang Python**. Pastikan bahwa [Python](https://www.python.org/downloads/) telah dipasang di komputermu. Kamu akan menggunakan Python untuk banyak tugas *data science* dan *machine learning*. Python sudah dipasang di kebanyakan sistem komputer. Adapula *[Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott)* yang berguna untuk membantu proses pemasangan untuk beberapa pengguna.
 
    Beberapa penggunaan Python memerlukan satu versi perangkat lunak tersebut, sedangkan beberapa penggunaan lainnya mungkin memerlukan versi Python yang beda lagi. Oleh sebab itulah akan sangat berguna untuk bekerja dalam sebuah *[virtual environment](https://docs.python.org/3/library/venv.html)* (lingkungan virtual).
 
-2. **Pasang Visual Studio Code**. Pastikan kamu sudah memasangkan Visual Studio Code di komputermu. Ikuti instruksi-instruksi ini untuk [memasangkan Visual Studio Code](https://code.visualstudio.com/) untuk instalasi dasar. Kamu akan menggunakan Python dalam Visual Studio Code dalam kursus ini, jadi kamu mungkin akan ingin mencari tahu cara [mengkonfigurasi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) untuk menggunakan Python.
+2. **Pasang Visual Studio Code**. Pastikan kamu sudah memasangkan Visual Studio Code di komputermu. Ikuti instruksi-instruksi ini untuk [memasangkan Visual Studio Code](https://code.visualstudio.com/) untuk instalasi dasar. Kamu akan menggunakan Python dalam Visual Studio Code dalam kursus ini, jadi kamu mungkin akan ingin mencari tahu cara [mengkonfigurasi Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) untuk menggunakan Python.
 
-   > Nyamankan diri dengan Python dengan mengerjakan [koleksi modul pembelajaran ini](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Nyamankan diri dengan Python dengan mengerjakan [koleksi modul pembelajaran ini](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
 
 3. **Pasang Scikit-learn**, dengan mengikuti [instruksi di sini](https://scikit-learn.org/stable/install.html). Karena harus dipastikan bahwa kamu sedang menggunakan Python 3, kami anjurkan kamu menggunakan sebuah *virtual environment*. Ingatlah juga bahwa jika kamu ingin memasangkan ini di sebuah M1 Mac, ada instruksi khusus dalam laman yang ditautkan di atas.
 
@@ -201,7 +201,7 @@ Gambarkan sebuah variabel yang beda dari *dataset* ini. Petunjuk: edit baris ini
 
 Dalam tutorial ini, kamu bekerja dengan sebuah model regresi linear yang sederhana daripada regresi linear univariat atau berganda. Bacalah sedikit tentang perbedaan antara metode-metode ini atau tontonlah [video ini](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
 
-Bacalah lebih banyak tentang konsep regresi dan pikirkanlah tentang jenis pertanyaan apa saja yang bisa dijawab teknik ini. Cobalah [tutorial ini](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) untuk memperdalam pemahamanmu.
+Bacalah lebih banyak tentang konsep regresi dan pikirkanlah tentang jenis pertanyaan apa saja yang bisa dijawab teknik ini. Cobalah [tutorial ini](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) untuk memperdalam pemahamanmu.
 
 ## Tugas 
 

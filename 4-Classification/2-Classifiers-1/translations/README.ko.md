@@ -103,11 +103,11 @@ Scikit-learn은 Supervised Learning 아래에 classification 그룹으로 묶여
 ![comparison of classifiers](../images/comparison.png)
 > Plots generated on Scikit-learn's documentation
 
-> AutoML은 클라우드에서 comparisons을 실행해서 이러한 문제를 깔끔하게 해결했으며, 데이터에 적당한 알고리즘을 고를 수 있습니다. [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)에서 시도해봅니다.
+> AutoML은 클라우드에서 comparisons을 실행해서 이러한 문제를 깔끔하게 해결했으며, 데이터에 적당한 알고리즘을 고를 수 있습니다. [here](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)에서 시도해봅니다.
 
 ### 더 괜찮은 접근법
 
-그러나, 성급히 추측하기보다 더 괜찮은 방식으로, 내려받을 수 있는 [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa)의 아이디어를 따르는 것입니다. 여기, multiclass 문제에 대하여, 몇 선택 사항을 볼 수 있습니다:
+그러나, 성급히 추측하기보다 더 괜찮은 방식으로, 내려받을 수 있는 [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott)의 아이디어를 따르는 것입니다. 여기, multiclass 문제에 대하여, 몇 선택 사항을 볼 수 있습니다:
 
 ![cheatsheet for multiclass problems](../images/cheatsheet.png)
 > multiclass classification 옵션을 잘 설명하는, Microsoft의 알고리즘 치트 시트의 섹션

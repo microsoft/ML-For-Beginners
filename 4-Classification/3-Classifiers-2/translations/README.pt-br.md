@@ -228,7 +228,7 @@ Cada uma dessas técnicas possui um grande número de parâmetros. Pesquise os p
 
 ## Revisão e Auto Aprendizagem
 
-Há muitos termos nessas lições, então reserve um minuto para revisar [esta lista útil](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) sobre terminologias!
+Há muitos termos nessas lições, então reserve um minuto para revisar [esta lista útil](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) sobre terminologias!
 
 ## Tarefa
 

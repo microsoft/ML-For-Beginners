@@ -23,14 +23,14 @@
 
 > 🎥 上の画像をクリックするとビデオが再生されます: VisualStudioCodeでのPythonの使用方法
 
-1. **Pythonのインストール**: [Python](https://www.python.org/downloads/) がコンピュータにインストールされていることを確認してください。Pythonは多くのデータサイエンス、機械学習のタスクで使用します。ほとんどのコンピュータシステムにはPythonがすでにインストールされています。一部のユーザのセットアップを簡単にするために [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) を利用することもできます。
+1. **Pythonのインストール**: [Python](https://www.python.org/downloads/) がコンピュータにインストールされていることを確認してください。Pythonは多くのデータサイエンス、機械学習のタスクで使用します。ほとんどのコンピュータシステムにはPythonがすでにインストールされています。一部のユーザのセットアップを簡単にするために [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) を利用することもできます。
 
    しかし、Pythonを使っていると時に異なるバージョンを必要とする場合があります。そのため、[仮想環境](https://docs.python.org/3/library/venv.html) を利用すると便利です。   
 
 
-2. **Visual Studio Codeのインストール**: Visual Studio Codeがコンピュータにインストールされていることを確認してください。[こちらの手順](https://code.visualstudio.com/) でVisual Studio Codeをインストールしてください。このコースでは、Visual Studio CodeでPythonを使用しますので [Visual Studio Codeの設定](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) をブラッシュアップしておくといいです。
+2. **Visual Studio Codeのインストール**: Visual Studio Codeがコンピュータにインストールされていることを確認してください。[こちらの手順](https://code.visualstudio.com/) でVisual Studio Codeをインストールしてください。このコースでは、Visual Studio CodeでPythonを使用しますので [Visual Studio Codeの設定](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) をブラッシュアップしておくといいです。
 
-   > この [学習モジュール](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa) を利用して、Pythonの使い方に慣れてください。
+   > この [学習モジュール](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott) を利用して、Pythonの使い方に慣れてください。
 
 
 3. **Scikit-learnのインストール**: [こちらの手順](https://scikit-learn.org/stable/install.html) に従ってインストールしてください。Python3の環境で実行する必要があるので、仮想環境を使用することをおすすめします。なお、このライブラリをM1のMacにインストールする場合は、上記リンク先のページに特別な説明があります。
@@ -211,7 +211,7 @@ Scikit-learnは、モデルを構築し、評価を行って実際に利用す�
 
 このチュートリアルでは、単変量線形回帰や多変量線形回帰ではなく、単純線形回帰を扱いました。これらの手法の違いについて少し調べてみるか、この [ビデオ](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef) を見てみましょう。
 
-回帰の概念について詳しく調べ、この手法でどのような質問に答えられるかを考えてみましょう。この [チュートリアル](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) で理解を深めることもできます。
+回帰の概念について詳しく調べ、この手法でどのような質問に答えられるかを考えてみましょう。この [チュートリアル](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) で理解を深めることもできます。
 
 ## 課題
 

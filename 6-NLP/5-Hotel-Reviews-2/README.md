@@ -368,7 +368,7 @@ Now that you have your dataset analyzed for sentiment, see if you can use strate
 
 ## Review & Self Study
 
-Take [this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-15963-cxa) to learn more and use different tools to explore sentiment in text.
+Take [this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) to learn more and use different tools to explore sentiment in text.
 ## Assignment 
 
 [Try a different dataset](assignment.md)
