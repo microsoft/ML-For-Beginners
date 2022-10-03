@@ -1,46 +1,46 @@
-# Time series forecasting with ARIMA
+# Predicción de series de tiempo con ARIMA
 
-In the previous lesson, you learned a bit about time series forecasting and loaded a dataset showing the fluctuations of electrical load over a time period.
+En la lección anterior, aprendiste un poco acerca de la predicción de series de tiempo y cargaste un conjunto de datos mostrando las fluctuaciones de energía eléctrica a través de un período de tiempo.
 
-[![Introduction to ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introduction to ARIMA")
+[![Introducción a ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introducción a ARIMA")
 
-> 🎥 Click the image above for a video: A brief introduction to ARIMA models. The example is done in R, but the concepts are universal.
+> 🎥 Da clic en la imagen de arriba para reproducir el video: Una breve introducción a los modelos de ARIMA. El ejemplo fue hecho en R, pero los conceptos son universales.
 
-## [Pre-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/43/)
+## [Examen previo a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/43/)
 
-## Introduction
+## Introducción
 
-In this lesson, you will discover a specific way to build models with [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA models are particularly suited to fit data that shows [non-stationarity](https://wikipedia.org/wiki/Stationary_process).
+En esta lección, descubrirás una forma específica de construir modelos con [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Los modelos ARIMA son particularmente adecuados para ajustar los datos que muestran [no-estacionariedad](https://wikipedia.org/wiki/Stationary_process).
 
-## General concepts
+## Conceptos generales
 
-To be able to work with ARIMA, there are some concepts you need to know about:
+Para ser capaz de trabajar con ARIMA, hay algunos conceptos que necesitas conocer:
 
-- 🎓 **Stationarity**. From a statistical context, stationarity refers to data whose distribution does not change when shifted in time. Non-stationary data, then, shows fluctuations due to trends that must be transformed to be analyzed. Seasonality, for example, can introduce fluctuations in data and can be eliminated by a process of 'seasonal-differencing'.
+- 🎓 **Estacionariedad**. Desde un contexto estadístico, la estacionariedad se refiere a los datos cuya distribución no cambia cuando se desplaza en el tiempo. Los datos no estacionarios, entonces, muestran fluctuaciones debido a tendencias que deben ser transformadas para ser analizadas. La estacionalidad, por ejemplo, pueden introducir fluctuaciones en los datos y pueden ser eliminados por un proceso de 'diferenciación-estacional'.
 
-- 🎓 **[Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Differencing data, again from a statistical context, refers to the process of transforming non-stationary data to make it stationary by removing its non-constant trend. "Differencing removes the changes in the level of a time series, eliminating trend and seasonality and consequently stabilizing the mean of the time series." [Paper by Shixiong et al](https://arxiv.org/abs/1904.07632)
+- 🎓 **[Diferenciación](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Los datos de diferenciación, de nuevo desde un contexto estadístico, se refieren al proceso de transformar datos no estacionarios para hacerlos estacionarios al eliminar su tendencia no constante. "Diferenciar remueve los cambios en el nivel de una serie de tiempo, eliminando tendencias y estacionalidad, y consecuentemente estabilizando la media de las series de tiempo." [Artículo de Shixiong et al](https://arxiv.org/abs/1904.07632)
 
-## ARIMA in the context of time series
+## ARIMA en el contexto de series de tiempo
 
-Let's unpack the parts of ARIMA to better understand how it helps us model time series and help us make predictions against it.
+Descifremos las partes de ARIM par aentender mejor cómo nos ayuda a modelar series de tiempo así como a hacer predicciones contra este.
 
-- **AR - for AutoRegressive**. Autoregressive models, as the name implies, look 'back' in time to analyze previous values in your data and make assumptions about them. These previous values are called 'lags'. An example would be data that shows monthly sales of pencils. Each month's sales total would be considered an 'evolving variable' in the dataset. This model is built as the "evolving variable of interest is regressed on its own lagged (i.e., prior) values." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - para AutoRegresivo**. Los modelos autoregresivos, como su nombre lo implica, miran 'atrás' en el tiempo para analizar valores previos en tus datos y hacer suposiciones acerca de ellos. Estos valores previos son llamados 'lags'. Un ejemplo de sería los datos que muestran las ventas mensuales de lápices. Cada total de ventas por mes sería considerado una 'variable en evolución' en el conjunto de datos. Este modelo es construido como la "variable en evolución de interés se retrocede en sus propios valores (previos) de rezago." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - for Integrated**. As opposed to the similar 'ARMA' models, the 'I' in ARIMA refers to its *[integrated](https://wikipedia.org/wiki/Order_of_integration)* aspect. The data is 'integrated' when differencing steps are applied so as to eliminate non-stationarity.
+- **I - para Integrado**. En contraparte a los modelos similares 'ARMA', la 'I' en ARIMA se refiere a su aspecto *[integrado](https://wikipedia.org/wiki/Order_of_integration)*. Los datos son 'integrados' cuando los pasos de diferenciación se aplican para así eliminar la no estacionariedad.
 
-- **MA -  for Moving Average**. The [moving-average](https://wikipedia.org/wiki/Moving-average_model) aspect of this model refers to the output variable that is determined by observing the current and past values of lags.
+- **MA - para Moving Average**. El aspecto de [media móvil](https://wikipedia.org/wiki/Moving-average_model) de este modelo se refiere a la variable de salida que es determinada al observar los valores actuales y pasados de los lags.
 
-Bottom line: ARIMA is used to make a model fit the special form of time series data as closely as possible.
+Resultado final: ARIMA es usado para hacer que un modelo se ajuste a la forma especial de los datos de series de tiempo lo mejor posible.
 
-## Exercise - build an ARIMA model
+## Ejercicio - Construye un modelo ARIMA
 
-Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
+Abre el directorio _/working_ de esta lección y encuentra el archivo _notebook.ipynb_.
 
-1. Run the notebook to load the `statsmodels` Python library; you will need this for ARIMA models.
+1. Ejecuta el notebook para cargar la biblioteca de Python `statsmodels`; necesitarás ésta para los modelos ARIMA.
 
-1. Load necessary libraries
+1. Carga las bibliotecas necesarias.
 
-1. Now, load up several more libraries useful for plotting data:
+1. Ahora, carga algunas bibliotecas útiles más para graficar datos:
 
     ```python
     import os
@@ -63,14 +63,14 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. Load the data from the `/data/energy.csv` file into a Pandas dataframe and take a look:
+1. Carga los datos del archivo `/data/energy.csv` en un dataframe de Pandas y da un vistazo:
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. Plot all the available energy data from January 2012 to December 2014. There should be no surprises as we saw this data in the last lesson:
+1. Grafica todos los datos de energía disponibles desde Enero de 2012 a Diciembre de 2014. No debe haber sorpresas ya que vimos estos datos en la última lección:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -79,22 +79,22 @@ Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
     plt.show()
     ```
 
-    Now, let's build a model!
+    Ahora, ¡construyamos un modelo!
 
-### Create training and testing datasets
+### Crea conjuntos de datos de prueba y entrenamiento
 
-Now your data is loaded, so you can separate it into train and test sets. You'll train your model on the train set. As usual, after the model has finished training, you'll evaluate its accuracy using the test set. You need to ensure that the test set covers a later period in time from the training set to ensure that the model does not gain information from future time periods.
+Ahora que tus datos están cargados, puedes separarlos en conjuntos de entrenamiento y prueba. Entrenarás tu modelo en el conjunto de entrenamiento. Como siempre, después que el modelo terminó su entrenamiento, evaluarás su precisión usando un conjunto de pruebas. Necesitas asegurar el conjunto de pruebas cubra un período posterior en tiempo al conjunto de entrenamiento para así asegurar que el modelo no obtiene información de futuros períodos.
 
-1. Allocate a two-month period from September 1 to October 31, 2014 to the training set. The test set will include the two-month period of November 1 to December 31, 2014:
+1. Asigna un período de dos meses desde el 1 de Septiembre al 31 de Octubre de 2014 para el conjunto de entrenamiento. El conjunto de pruebas incluirá el período de dos meses del 1 de Noviembre al 31 de Diciembre de 2014:
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Since this data reflects the daily consumption of energy, there is a strong seasonal pattern, but the consumption is most similar to the consumption in more recent days.
+    Ya que estos datos reflejan el consumo diario de energía, hay un fuerte patrón estacional, pero el consumo mayormente similar a el consumo en días más recientes.
 
-1. Visualize the differences:
+1. Visualiza las diferencias:
 
     ```python
     energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)][['load']].rename(columns={'load':'train'}) \
@@ -105,17 +105,17 @@ Now your data is loaded, so you can separate it into train and test sets. You'll
     plt.show()
     ```
 
-    ![training and testing data](images/train-test.png)
+    ![Datos de entrenamiento y prueba](../images/train-test.png)
 
-    Therefore, using a relatively small window of time for training the data should be sufficient.
+    Por lo tanto, usando una ventana de tiempo relativamente pequeña para entrenar los datos debería ser suficiente.
 
-    > Note: Since the function we use to fit the ARIMA model uses in-sample validation during fitting, we will omit validation data.
+    > Nota: Ya que la función que usamos para ajustar el modelo ARIMA usa una validación en la muestra durante el ajuste, omitiremos la validación de los datos.
 
-### Prepare the data for training
+### Prepara los datos para entrenamiento
 
-Now, you need to prepare the data for training by performing filtering and scaling of your data. Filter your dataset to only include the time periods and columns you need, and scaling to ensure the data is projected in the interval 0,1.
+Ahora, necesitas preparar los datos para entrenar al realizar filtrado y escalado de tus datos. Filtra tu conjunto de datos para sólo incluir los períodos de tiempo y columnas que necesitas, y escala para asegurar que tus datos son proyectados en un intervalo 0,1.
 
-1. Filter the original dataset to include only the aforementioned time periods per set and only including the needed column 'load' plus the date:
+1. Filtra el conjunto de datos original para incluir sólo los ya mencionados períodos de tiempo por conjunto y sólo incluyendo las columnas necesarias  'load' más date: 
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -132,7 +132,7 @@ Now, you need to prepare the data for training by performing filtering and scali
     Test data shape:  (48, 1)
     ```
 
-1. Scale the data to be in the range (0, 1).
+1. Escala los datos que estén en el rango (0, 1).
 
     ```python
     scaler = MinMaxScaler()
@@ -140,7 +140,7 @@ Now, you need to prepare the data for training by performing filtering and scali
     train.head(10)
     ```
 
-1. Visualize the original vs. scaled data:
+1. Visualiza los datos originales vs los escalados:
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -148,40 +148,40 @@ Now, you need to prepare the data for training by performing filtering and scali
     plt.show()
     ```
 
-    ![original](images/original.png)
+    ![original](../images/original.png)
 
-    > The original data
+    > Los datos originales
 
-    ![scaled](images/scaled.png)
+    ![Escalados](../images/scaled.png)
 
-    > The scaled data
+    > Los datos escalados
 
-1. Now that you have calibrated the scaled data, you can scale the test data:
+1. Ahora que has calibrado los datos escalados, puedes escalar los datos de prueba:
 
     ```python
     test['load'] = scaler.transform(test)
     test.head()
     ```
 
-### Implement ARIMA
+### Implementa ARIMA
 
-It's time to implement ARIMA! You'll now use the `statsmodels` library that you installed earlier.
+¡Es hora de implementar ARIMA! Ahora usarás la biblioteca `statsmodels` que instalaste anteriormente.
 
-Now you need to follow several steps
+Ahora necesitas seguir varios pasos
 
-   1. Define the model by calling `SARIMAX()` and passing in the model parameters: p, d, and q parameters, and P, D, and Q parameters.
-   2. Prepare the model for the training data by calling the fit() function.
-   3. Make predictions calling the `forecast()` function and specifying the number of steps (the `horizon`) to forecast.
+   1. Define el modelo llamando a `SARIMAX()` y pasando en el modelo los parámetros: p, d y q, así como P, D y Q.
+   2. Prepara el modelo para entrenamiento llamando la función `fit()`.
+   3. Haz predicciones llamando a la función `forecast()` y especificando el número de pasos (el `horizonte`) a predecir.
 
-> 🎓 What are all these parameters for? In an ARIMA model there are 3 parameters that are used to help model the major aspects of a time series: seasonality, trend, and noise. These parameters are:
+> 🎓 ¿Para qué son todos estos parámetros? En un modelo de ARIMA hay 3 parámetros que son usados para ayudar a modelar los aspectos principales de una serie de tiempo: estacionalidad, tendencia y ruido. Estos parámetros son:
 
-`p`: the parameter associated with the auto-regressive aspect of the model, which incorporates *past* values.
-`d`: the parameter associated with the integrated part of the model, which affects the amount of *differencing* (🎓 remember differencing 👆?) to apply to a time series.
-`q`: the parameter associated with the moving-average part of the model.
+`p`: el parámetro asociado con el aspecto auto-regresivo del modelo, el cual incorpora valores *pasados*.
+`d`: el parámetro asociado con la parte integrada del modelo, el cual afecta a la cantidad de *diferenciación* (🎓 recuerdas la diferenciación 👆?) a aplicar a una serie de tiempo.
+`q`: el parámetro asociado con la parte media-móvil del modelo.
 
-> Note: If your data has a seasonal aspect - which this one does - , we use a seasonal ARIMA model (SARIMA). In that case you need to use another set of parameters: `P`, `D`, and `Q` which describe the same associations as `p`, `d`, and `q`, but correspond to the seasonal components of the model.
+> Nota: Si tus datos tienen un aspecto estacional - el cual tiene este - , usamos un modelo estacional de ARIMA (SARIMA). En ese caso necesitas usar otro conjunto de parámetros: `P`, `D`, y `Q` el cual describe las mismas asociaciones como `p`, `d`, y `q`, pero correspondientes a los componentes estacionales del modelo.
 
-1. Start by setting your preferred horizon value. Let's try 3 hours:
+1. Inicia configurando tu valor horizonte preferido. Probemos con 3 horas:
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -189,9 +189,9 @@ Now you need to follow several steps
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Selecting the best values for an ARIMA model's parameters can be challenging as it's somewhat subjective and time intensive. You might consider using an `auto_arima()` function from the [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
+    Seleccionar los mejores valores para los parámetros de un modelo ARIMA puede ser desafiante ya que es algo subjetivo y requiere mucho tiempo. Puedes considerar usar una función `auto_arima()` de la [biblioteca `pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html),
 
-1. For now try some manual selections to find a good model.
+1. Por ahora prueba algunas selecciones manuales para encontrar un buen modelo.
 
     ```python
     order = (4, 1, 0)
@@ -203,23 +203,23 @@ Now you need to follow several steps
     print(results.summary())
     ```
 
-    A table of results is printed.
+    Se imprime una tabla de resultados.
 
-You've built your first model! Now we need to find a way to evaluate it.
+¡Has construido tu primer modelo! Ahora necesitamos encontrar una forma de evaluarlo.
 
-### Evaluate your model
+### Evalúa tu modelo
 
-To evaluate your model, you can perform the so-called `walk forward` validation. In practice, time series models are re-trained each time a new data becomes available. This allows the model to make the best forecast at each time step.
+Para evaluar tu modelo, puedes realizar la validación llamada `walk forward`. En la práctica, los modelos de series de tiempo son re-entrenados cada vez que están disponibles nuevos datos. Esto permite al modelo realizar la mejor predicción en cada paso de tiempo.
 
-Starting at the beginning of the time series using this technique, train the model on the train data set. Then make a prediction on the next time step. The prediction is evaluated against the known value. The training set is then expanded to include the known value and the process is repeated.
+Comenzando al principio de las series de tiempo usando esta técnica, entrena el modelo con el conjunto de datos de entrenamiento. Luego haz una predicción del siguiente paso de tiempo. La predicción es evaluada contra el valor conocido. El conjunto de entrenamiento después es expandido para incluir el valor conocido y el proceso se repite.
 
-> Note: You should keep the training set window fixed for more efficient training so that every time you add a new observation to the training set, you remove the observation from the beginning of the set.
+> Nota: Debes mantener fija la ventana del conjunto de entrenamiento para un entrenamiento más eficiente y así cada vez que agregues una nueva observación al conjunto de entrenamiento, la remuevas del comienzo del conjunto.
 
-This process provides a more robust estimation of how the model will perform in practice. However, it comes at the computation cost of creating so many models. This is acceptable if the data is small or if the model is simple, but could be an issue at scale.
+Este proceso provee una estimación más robusta de cómo se comportará el modelo en la práctica. Sin embargo, presenta un costo de computación con la creación de demasiados modelos. Esto es aceptable si los datos son pequeños o si el modelo es simple, pero podría ser un problema en escala.
 
-Walk-forward validation is the gold standard of time series model evaluation and is recommended for your own projects.
+La validación walk-forward es el estándar dorado de la evaluación de modelos de series de tiempo y se recomienda para proyectos propios.
 
-1. First, create a test data point for each HORIZON step.
+1. Primero, crea un punto de datos de prueba para cada paso HORIZON.
 
     ```python
     test_shifted = test.copy()
@@ -239,9 +239,9 @@ Walk-forward validation is the gold standard of time series model evaluation and
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    The data is shifted horizontally according to its horizon point.
+    los datos son desplazados horizontalmente de acuerdo a su punto horizonte.
 
-1. Make predictions on your test data using this sliding window approach in a loop the size of the test data length:
+1. Haz predicciones en tus datos de prueba usando este enfoque de ventana deslizable en un bucle del tamaño de la longitud de los datos de prueba:
 
     ```python
     %%time
@@ -271,7 +271,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
         print(t+1, ': predicted =', yhat, 'expected =', obs)
     ```
 
-    You can watch the training occurring:
+    Puedes ver cómo se desarrolla el entrenamiento:
 
     ```output
     2014-12-30 00:00:00
@@ -284,7 +284,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     3 : predicted = [0.27 0.28 0.32] expected = [0.2739480752014323, 0.26812891674127126, 0.3025962399283795]
     ```
 
-1. Compare the predictions to the actual load:
+1. Compara las predicciones con la carga real:
 
     ```python
     eval_df = pd.DataFrame(predictions, columns=['t+'+str(t) for t in range(1, HORIZON+1)])
@@ -295,7 +295,7 @@ Walk-forward validation is the gold standard of time series model evaluation and
     eval_df.head()
     ```
 
-    Output
+    Salida
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -305,19 +305,19 @@ Walk-forward validation is the gold standard of time series model evaluation and
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
 
-    Observe the hourly data's prediction, compared to the actual load. How accurate is this?
+    Observa la predicción de datos por hora, comparada con la carga real. ¿Qué tan precisa es?
 
-### Check model accuracy
+### Comprueba la precisión del modelo
 
-Check the accuracy of your model by testing its mean absolute percentage error (MAPE) over all the predictions.
+Comprueba la precisión de tu modelo al probar su error porcentual absoluto medio (MAPE) sobre todas las predicciones.
 
-> **🧮 Show me the math**
+> **🧮 Muéstrame las matemáticas**
 >
-> ![MAPE](images/mape.png)
+> ![MAPE](../images/mape.png)
 >
->  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) is used to show prediction accuracy as a ratio defined by the above formula. The difference between actual<sub>t</sub> and predicted<sub>t</sub> is divided by the actual<sub>t</sub>. "The absolute value in this calculation is summed for every forecasted point in time and divided by the number of fitted points n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+>  [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) se usa para mostrar la precisión de predicción como una proporción definida por la fórmula de arriba. La diferencia entre <sub>t</sub> real <sub>t</sub> predicha es dividida por la <sub>t</sub> real. "El valor absoluto en este cálculo es sumado por cada punto pronosticado en el tiempo y dividido por el número n de puntos ajustados." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 
-1. Express equation in code:
+1. Expresa lacuación en código:
 
     ```python
     if(HORIZON > 1):
@@ -325,15 +325,15 @@ Check the accuracy of your model by testing its mean absolute percentage error (
         print(eval_df.groupby('h')['APE'].mean())
     ```
 
-1. Calculate one step's MAPE:
+1. Calculate el MAPE de un paso:
 
     ```python
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
     ```
 
-    One step forecast MAPE:  0.5570581332313952 %
+    Pronóstico de un paso MAPE:  0.5570581332313952 %
 
-1. Print the multi-step forecast MAPE:
+1. Imprime el pronóstico MAPE multi-paso:
 
     ```python
     print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
@@ -343,9 +343,9 @@ Check the accuracy of your model by testing its mean absolute percentage error (
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    A nice low number is best: consider that a forecast that has a MAPE of 10 is off by 10%.
+    Un número bajo es lo mejor: considera que la predicción que tiene un MAPE de 10 está equivocado en un 10%.
 
-1. But as always, it's easier to see this kind of accuracy measurement visually, so let's plot it:
+1. Pero como siempre, es más fácil ver este tipo de medición de precisión de forma visual, así que grafiquémoslo:
 
     ```python
      if(HORIZON == 1):
@@ -373,22 +373,22 @@ Check the accuracy of your model by testing its mean absolute percentage error (
     plt.show()
     ```
 
-    ![a time series model](images/accuracy.png)
+    ![Un modelo de series de tiempo](../images/accuracy.png)
 
-🏆 A very nice plot, showing a model with good accuracy. Well done!
+🏆 Un gráfico muy bonito, mostrando un modelo con una buena precisión. ¡Bien hecho!
 
 ---
 
-## 🚀Challenge
+## 🚀Desafío
 
-Dig into the ways to test the accuracy of a Time Series Model. We touch on MAPE in this lesson, but are there other methods you could use? Research them and annotate them. A helpful document can be found [here](https://otexts.com/fpp2/accuracy.html)
+Indaga en las formas de probar la precisión de un modelo de series de tiempo. Nosotros abordamos MAPE en esta lección, pero ¿hay otros métodos que pudieras usar? Investiga y anota cuáles son. Puedes encontrar un documento útil [aquí](https://otexts.com/fpp2/accuracy.html)
 
-## [Post-lecture quiz](https://white-water-09ec41f0f.azurestaticapps.net/quiz/44/)
+## [Examen posterior a la lección](https://white-water-09ec41f0f.azurestaticapps.net/quiz/44/)
 
-## Review & Self Study
+## Revisión y auto-estudio
 
-This lesson touches on only the basics of Time Series Forecasting with ARIMA. Take some time to deepen your knowledge by digging into [this repository](https://microsoft.github.io/forecasting/) and its various model types to learn other ways to build Time Series models.
+Esta lección aborda sólo las bases de la predicción de series de tiempo con ARIMA. Toma algo de tiempo para profundizar tu conocimiento indagando en [este repositorio](https://microsoft.github.io/forecasting/) y sus distintos tipos de modelos para aprender otras formas de construir modelos de series de tiempo.
 
-## Assignment
+## Asignación
 
-[A new ARIMA model](assignment.md)
+[Un nuevo modelo ARIMA](../translations/assignment.es.md)
