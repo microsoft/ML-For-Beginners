@@ -28,7 +28,7 @@ Alternativamente, puedes usarlo para agrupar resultados de búsqueda - por enlac
 
 ✅ Una vez que tus datos están organizados en grupos , asignale un Id de grupo, y esta técnica puede ser útil cuando conservas la privacidad de un conjunto de datos; en su lugar te puedes referir a un punto de datos por su id de grupo, en vez de sus datos identificables más reveladores. ¿Puedes pensar en otras razones del por qué preferirías un Id de grupo en lugar de otros elementos del grupo para identificarlo?
 
-Profundiza tu compresión de las técnicas de agrupamiento en este [módulo de aprendizaje](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa)
+Profundiza tu compresión de las técnicas de agrupamiento en este [módulo de aprendizaje](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott)
 
 ## Empezando con el agrupamiento
 

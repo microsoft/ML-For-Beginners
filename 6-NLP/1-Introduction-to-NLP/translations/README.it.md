@@ -51,7 +51,7 @@ In questa sezione servirà e si utilizzerà:
    python -m textblob.download_corpora
    ```
 
-> 💡 Suggerimento: si può eseguire Python direttamente negli ambienti VS Code. Controllare la [documentazione](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) per ulteriori informazioni.
+> 💡 Suggerimento: si può eseguire Python direttamente negli ambienti VS Code. Controllare la [documentazione](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) per ulteriori informazioni.
 
 ## Parlare con le macchine
 

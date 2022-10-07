@@ -147,7 +147,7 @@ Las visualizaciones también ayudan a determinar la técnica de aprendizaje auto
 
 Una librería de visualización de datos que funciona bien en los notebooks de Jupyter es [Matplotlib](https://matplotlib.org/) (la cual también viste en la lección anterior).
 
-> Obtén más experiencia con la visualización de datos en [estos tutoriales](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-15963-cxa).
+> Obtén más experiencia con la visualización de datos en [estos tutoriales](https://docs.microsoft.com/learn/modules/explore-analyze-data-with-python?WT.mc_id=academic-77952-leestott).
 
 ## Ejercicio - experimenta con Matplotlib
 

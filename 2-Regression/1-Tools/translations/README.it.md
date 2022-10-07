@@ -24,13 +24,13 @@ In questa lezione, si imparerà come:
 
 > 🎥 Fare click sull'immagine qui sopra per un video: usare Python all'interno di VS Code.
 
-1. **Installare Python**. Assicurarsi che [Python](https://www.python.org/downloads/) sia installato nel proprio computer. Si userà Python for per molte attività di data science e machine learning. La maggior parte dei sistemi già include una installazione di Python. Ci sono anche utili [Pacchetti di Codice Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa) disponbili, per facilitare l'installazione per alcuni utenti.
+1. **Installare Python**. Assicurarsi che [Python](https://www.python.org/downloads/) sia installato nel proprio computer. Si userà Python for per molte attività di data science e machine learning. La maggior parte dei sistemi già include una installazione di Python. Ci sono anche utili [Pacchetti di Codice Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) disponbili, per facilitare l'installazione per alcuni utenti.
 
    Alcuni utilizzi di Python, tuttavia, richiedono una versione del software, laddove altri ne richiedono un'altra differente. Per questa ragione, è utile lavorare con un [ambiente virtuale](https://docs.python.org/3/library/venv.html).
 
-2. **Installare Visual Studio Code**. Assicurarsi di avere installato Visual Studio Code sul proprio computer. Si seguano queste istruzioni per [installare Visual Studio Code](https://code.visualstudio.com/) per l'installazione basica. Si userà Python in Visual Studio Code in questo corso, quindi meglio rinfrescarsi le idee su come [configurare Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa) per lo sviluppo in Python.
+2. **Installare Visual Studio Code**. Assicurarsi di avere installato Visual Studio Code sul proprio computer. Si seguano queste istruzioni per [installare Visual Studio Code](https://code.visualstudio.com/) per l'installazione basica. Si userà Python in Visual Studio Code in questo corso, quindi meglio rinfrescarsi le idee su come [configurare Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) per lo sviluppo in Python.
 
-   > Si prenda confidenza con Python tramite questa collezione di [moduli di apprendimento](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)
+   > Si prenda confidenza con Python tramite questa collezione di [moduli di apprendimento](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
 
 3. **Installare Scikit-learn**, seguendo [queste istruzioni](https://scikit-learn.org/stable/install.html). Visto che ci si deve assicurare di usare Python 3, ci si raccomanda di usare un ambiente virtuale. Si noti che se si installa questa libreria in un M1 Mac, ci sono istruzioni speciali nella pagina di cui al riferimento qui sopra.
 
@@ -203,7 +203,7 @@ Tracciare una variabile diversa da questo insieme di dati. Suggerimento: modific
 
 In questo tutorial, si è lavorato con una semplice regressione lineare, piuttosto che una regressione univariata o multipla. Ci so informi circa le differenze tra questi metodi oppure si dia uno sguardo a [questo video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)
 
-Si legga di più sul concetto di regressione e si pensi a quale tipo di domande potrebbero trovare risposta con questa tecnica. Seguire questo [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa) per approfondire la propria conoscenza.
+Si legga di più sul concetto di regressione e si pensi a quale tipo di domande potrebbero trovare risposta con questa tecnica. Seguire questo [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) per approfondire la propria conoscenza.
 
 ## Compito
 

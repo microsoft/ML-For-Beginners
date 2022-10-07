@@ -27,7 +27,7 @@
 - **모델을 훈련시킬 때 사용하는 기술은 무엇인가요?** 선택된 기술은 사용할 도구에 영향을 줄 수 있습니다.
    - **Tensor flow 사용합니다.** 만약 TensorFlow로 모델을 훈련한다면, 예시로, 에코 시스템은 [TensorFlow.js](https://www.tensorflow.org/js/)로 웹 앱에서 사용할 TensorFlow 모델을 변환해주는 기능을 제공합니다.
    - **PyTorch 사용합니다.** 만약 [PyTorch](https://pytorch.org/) 같은 라이브러리로 모델을 만들면, [Onnx Runtime](https://www.onnxruntime.ai/)으로 할 수 있는 JavaScript 웹 앱에서 사용하기 위한 [ONNX](https://onnx.ai/) (Open Neural Network Exchange) 포맷으로 내보낼 옵션이 존재합니다. 이 옵션은 Scikit-learn-trained 모델로 이후 강의에서 알아볼 예정입니다.
-   - **Lobe.ai 또는 Azure Custom vision 사용합니다.** 만약 [Lobe.ai](https://lobe.ai/) 또는 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) 같은 ML SaaS (Software as a Service) 시스템으로 모델을 훈련하게 된다면, 이 소프트웨어 타입은 온라인 애플리케이션이 클라우드에서 쿼리된 bespoke API를 만드는 것도 포함해서 많은 플랫폼의 모델들을 내보낼 방식을 제공합니다.
+   - **Lobe.ai 또는 Azure Custom vision 사용합니다.** 만약 [Lobe.ai](https://lobe.ai/) 또는 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) 같은 ML SaaS (Software as a Service) 시스템으로 모델을 훈련하게 된다면, 이 소프트웨어 타입은 온라인 애플리케이션이 클라우드에서 쿼리된 bespoke API를 만드는 것도 포함해서 많은 플랫폼의 모델들을 내보낼 방식을 제공합니다.
 
 또 웹 브라우저에서 모델로만 훈련할 수 있는 모든 Flask 웹 앱을 만들 수 있습니다. JavaScript 컨텍스트에서 TensorFlow.js로 마무리 지을 수 있습니다.
 
@@ -37,7 +37,7 @@
 
 작업에서, 2가지 도구가 필요합니다: Flask 와 Pickle은, 둘 다 Python에서 작동합니다.
 
-✅ [Flask](https://palletsprojects.com/p/flask/)는 무엇일까요? 작성자가 'micro-framework'로 정의한, Flask는 Python으로 웹 프레임워크의 기본적인 기능과 웹 페이지를 만드는 템플릿 엔진을 제공합니다. [this Learn module](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa)을 보고 Flask로 만드는 것을 연습합니다.
+✅ [Flask](https://palletsprojects.com/p/flask/)는 무엇일까요? 작성자가 'micro-framework'로 정의한, Flask는 Python으로 웹 프레임워크의 기본적인 기능과 웹 페이지를 만드는 템플릿 엔진을 제공합니다. [this Learn module](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)을 보고 Flask로 만드는 것을 연습합니다.
 
 ✅ [Pickle](https://docs.python.org/3/library/pickle.html)은 무엇일까요? Pickle 🥒은 Python 객체 구조를 serializes와 de-serializes하는 Python 모듈입니다. 모델을 'pickle'하게 되면, 웹에서 쓰기 위해서 serialize 또는 flatten합니다. 주의합시다: pickle은 원래 안전하지 않아서, 파일을 'un-pickle'한다고 나오면 조심합니다. pickled 파일은 접미사 `.pkl`로 있습니다. 
 

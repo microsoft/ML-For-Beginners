@@ -18,7 +18,7 @@
 在开始本课程之前，你需要设置计算机能在本地运行 Jupyter Notebooks。
 
 - **按照这些视频里的讲解配置你的计算机**。了解有关如何在此[视频集](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6)中设置计算机的更多信息。
-- **学习 Python**。 还建议你对 [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa) 有一个基本的了解。这是我们在本课程中使用的一种对数据科学家有用的编程语言。
+- **学习 Python**。 还建议你对 [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott) 有一个基本的了解。这是我们在本课程中使用的一种对数据科学家有用的编程语言。
 - **学习 Node.js 和 JavaScript**。在本课程中，我们在构建 web 应用程序时也使用过几次 JavaScript，因此你需要有 [Node.js](https://nodejs.org) 和 [npm](https://www.npmjs.com/) 以及 [Visual Studio Code](https://code.visualstudio.com/) 用于 Python 和 JavaScript 开发。
 - **创建 GitHub 帐户**。既然你在 [GitHub](https://github.com) 上找到我们，你可能已经有了一个帐户，但如果没有，请创建一个帐户，然后 fork 此课程自己使用(也给我们一颗星星吧😊) 
 - **探索 Scikit-learn**. 熟悉 [Scikit-learn]([https://scikit-learn.org/stable/user_guide.html)，我们在这些课程中引用的一组 ML 库。
@@ -100,7 +100,7 @@
 
 ## 复习与自学
 
-要了解有关如何在云中使用 ML 算法的更多信息，请遵循以下[学习路径](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa)。
+要了解有关如何在云中使用 ML 算法的更多信息，请遵循以下[学习路径](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-77952-leestott)。
 
 ## 任务
 

@@ -228,7 +228,7 @@ Bu yöntemlerden her biri değiştirebileceğiniz birsürü parametre içeriyor.
 
 ## Gözden Geçirme & Kendi Kendine Çalışma
 
-Bu derslerde çok fazla jargon var, bu yüzden yararlı terminoloji içeren [bu listeyi](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa) incelemek için bir dakika ayırın.
+Bu derslerde çok fazla jargon var, bu yüzden yararlı terminoloji içeren [bu listeyi](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) incelemek için bir dakika ayırın.
 
 ## Ödev
 

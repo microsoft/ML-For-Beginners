@@ -15,7 +15,7 @@
 
 이 강의의 그룹에서, 데이터 사이언티스트를 위한 일반적 환경의, 노트북을 관리할 Visual Studio code 구성을 포함해서, 머신러닝 작업을 시작하도록 맞춥니다. 머신러닝을 위한 라이브러리인, Scikit-learn을 찾고, 이 챕터의 Regression 모델에 초점을 맞추어, 첫 모델을 만들 예정입니다.
 
-> Regression 모델을 작업할 때 배울 수 있는 유용한 low-code 도구가 있습니다. [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)를 시도해보세요.
+> Regression 모델을 작업할 때 배울 수 있는 유용한 low-code 도구가 있습니다. [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)를 시도해보세요.
 
 ### Lessons
 

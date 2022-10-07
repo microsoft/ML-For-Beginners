@@ -49,7 +49,7 @@
    python -m textblob.download_corpora
    ```
 
-> 💡 提示：你可以在 VS Code 环境中直接运行 Python。 点击 [文档](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-15963-cxa) 查看更多信息。
+> 💡 提示：你可以在 VS Code 环境中直接运行 Python。 点击 [文档](https://code.visualstudio.com/docs/languages/python?WT.mc_id=academic-77952-leestott) 查看更多信息。
 
 ## 与机器对话
 

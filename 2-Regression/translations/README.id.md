@@ -14,7 +14,7 @@ Dalam seri pelajaran ini, kamu akan menemukan perbedaan antara regresi linear da
 
 Selain itu, kamu akan disiapkan untuk mulai mengerjakan tugas *machine learning*, termasuk mengkonfigurasi Visual Studio Code untuk mengelola *notebook*, lingkungan wajar untuk *data scientist*. Kamu akan menemukan Scikit-learn, sebuah *library* untuk *machine learning*, dan kamu akan membangun model pertamamu dengan memfokus pada model regresi dalam bab ini.
 
-> Ada alat-alat *low-code* yang dapat membantumu belajar tentang bekerja dengan model regresi. Cobalah [Azure ML untuk tugas ini](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa).
+> Ada alat-alat *low-code* yang dapat membantumu belajar tentang bekerja dengan model regresi. Cobalah [Azure ML untuk tugas ini](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott).
 
 ### Pelajaran
 

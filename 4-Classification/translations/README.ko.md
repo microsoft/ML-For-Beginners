@@ -11,7 +11,7 @@
 
 이 섹션에서, 데이터를 배우며 도음이 될 다른 classifiers을 배우기 위해서 이 커리큘럼 첫 파트에서 배운 regression의 모든 내용을 바탕으로 진행합니다.
 
-> There are useful low-code tools that can help you learn about working with classification models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> There are useful low-code tools that can help you learn about working with classification models. Try [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## 강의
 

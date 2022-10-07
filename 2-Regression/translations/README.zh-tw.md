@@ -15,7 +15,7 @@
 
 在這組課程中，你會準備好包括為管理筆記而設置VS Code、配置數據科學家常用的環境等機器學習的初始任務。你會開始上手Scikit-learn學習項目（一個機器學習的百科），並且你會以回歸模型為主構建起你的第一種機器學習模型
 
-> 這裏有一些代碼難度較低但很有用的工具可以幫助你學習使用回歸模型。 試一下 [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> 這裏有一些代碼難度較低但很有用的工具可以幫助你學習使用回歸模型。 試一下 [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-regression-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 
 ### Lessons

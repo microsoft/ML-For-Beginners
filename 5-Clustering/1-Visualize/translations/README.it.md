@@ -27,7 +27,7 @@ In alternativa, lo si può utilizzare per raggruppare i risultati di ricerca, ad
 
 ✅ Una volta che i dati sono organizzati in cluster, viene assegnato un ID cluster e questa tecnica può essere utile quando si preserva la privacy di un insieme di dati; si può invece fare riferimento a un punto dati tramite il suo ID cluster, piuttosto che dati identificabili più rivelatori. Si riesce a pensare ad altri motivi per cui fare riferimento a un ID cluster piuttosto che ad altri elementi del cluster per identificarlo?
 
-In questo [modulo di apprendimento](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-15963-cxa) si approfondirà la propria comprensione delle tecniche di clustering
+In questo [modulo di apprendimento](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott) si approfondirà la propria comprensione delle tecniche di clustering
 
 ## Iniziare con il clustering
 

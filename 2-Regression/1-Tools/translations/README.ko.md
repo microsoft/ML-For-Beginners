@@ -23,13 +23,13 @@
 
 > 🎥 영상 보려면 이미지 클릭: using Python within VS Code.
 
-1. **Python 설치하기**. [Python](https://www.python.org/downloads/)이 컴퓨터에 설치되었는 지 확인합니다. 많은 데이터 사이언스와 머신러닝 작업에서 Python을 사용하게 됩니다. 대부분 컴퓨터 시스템은 이미 Python 애플리케이션을 미리 포함하고 있습니다. 사용자가 설치를 쉽게하는, 유용한 [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-15963-cxa)이 존재합니다.
+1. **Python 설치하기**. [Python](https://www.python.org/downloads/)이 컴퓨터에 설치되었는 지 확인합니다. 많은 데이터 사이언스와 머신러닝 작업에서 Python을 사용하게 됩니다. 대부분 컴퓨터 시스템은 이미 Python 애플리케이션을 미리 포함하고 있습니다. 사용자가 설치를 쉽게하는, 유용한 [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott)이 존재합니다.
 
    그러나, 일부 Python만 사용하면, 소프트웨어의 하나의 버전만 요구하지만, 다른 건 다른 버전을 요구합니다. 이런 이유로, [virtual environment](https://docs.python.org/3/library/venv.html)에서 작업하는 것이 유용합니다.
 
-2. **Visual Studio Code 설치하기**. 컴퓨터에 Visual Studio Code가 설치되어 있는 지 확인합니다. 기본 설치로 [install Visual Studio Code](https://code.visualstudio.com/)를 따라합니다. Visual Studio Code에서 Python을 사용하므로 Python 개발을 위한 [configure Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-15963-cxa)를 살펴봅니다.
+2. **Visual Studio Code 설치하기**. 컴퓨터에 Visual Studio Code가 설치되어 있는 지 확인합니다. 기본 설치로 [install Visual Studio Code](https://code.visualstudio.com/)를 따라합니다. Visual Studio Code에서 Python을 사용하므로 Python 개발을 위한 [configure Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott)를 살펴봅니다.
 
-   > 이 [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-15963-cxa)의 모음을 통하여 Python에 익숙해집시다.
+   > 이 [Learn modules](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)의 모음을 통하여 Python에 익숙해집시다.
 
 3. [these instructions](https://scikit-learn.org/stable/install.html)에 따라서,  **Scikit-learn 설치하기**. Python 3을  사용하는 지 확인할 필요가 있습니다. 가상 환경으로 사용하는 것을 추천합니다. 참고로, M1 Mac에서 라이브러리를 설치하려면, 링크된 페이지에서 특별한 설치 방법을 따라합시다.
 
@@ -206,7 +206,7 @@ Scikit-learn 사용하면 올바르게 모델을 만들고 사용하기 위해 �
 
 이 튜토리얼에서, univariate 또는 multiple linear regression이 아닌 simple linear regression으로 작업했습니다. 방식의 차이를 읽어보거나, [this video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef)를 봅니다.
 
-regression의 개념에 대하여 더 읽고 기술로 답변할 수 있는 질문의 종류에 대하여 생각해봅니다. [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-15963-cxa)로 깊게 이해합니다.
+regression의 개념에 대하여 더 읽고 기술로 답변할 수 있는 질문의 종류에 대하여 생각해봅니다. [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott)로 깊게 이해합니다.
 
 ## 과제 
 

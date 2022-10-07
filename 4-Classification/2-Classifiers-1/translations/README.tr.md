@@ -101,11 +101,11 @@ Scikit-learn, sınıflandırmayı gözetimli öğrenme altında grupluyor. Bu ka
 ![sınıflandırıcıların karşılaştırılması](../images/comparison.png)
 > Grafikler Scikit-learn dokümantasyonlarında oluşturulmuştur.
 
-> AutoML, bu karşılaştırmaları bulutta çalıştırarak bu problemi muntazam bir şekilde çözer ve veriniz için en iyi algoritmayı seçmenizi sağlar. [Buradan](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa) deneyin.
+> AutoML, bu karşılaştırmaları bulutta çalıştırarak bu problemi muntazam bir şekilde çözer ve veriniz için en iyi algoritmayı seçmenizi sağlar. [Buradan](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott) deneyin.
 
 ### Daha iyi bir yaklaşım
 
-Böyle tahminlerle çözmekten daha iyi bir yol ise, indirilebilir [ML Kopya kağıdı](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa) içindeki fikirlere bakmaktır. Burada, bizim çok sınıflı problemimiz için bazı seçenekler olduğunu görüyoruz:
+Böyle tahminlerle çözmekten daha iyi bir yol ise, indirilebilir [ML Kopya kağıdı](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott) içindeki fikirlere bakmaktır. Burada, bizim çok sınıflı problemimiz için bazı seçenekler olduğunu görüyoruz:
 
 ![çok sınıflı problemler için kopya kağıdı](../images/cheatsheet.png)
 > Microsoft'un Algoritma Kopya Kağıdı'ndan, çok sınıflı sınıflandırma seçeneklerini detaylandıran bir bölüm

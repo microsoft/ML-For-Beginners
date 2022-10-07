@@ -401,7 +401,7 @@ print("Loading took " + str(round(end - start, 2)) + " seconds")
 
 ## 검토 & 자기주도 학습
 
-[this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-15963-cxa)로 음성과 text-heavy 모델을 만들 때 시도하는 도구를 찾아봅니다.
+[this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott)로 음성과 text-heavy 모델을 만들 때 시도하는 도구를 찾아봅니다.
 
 ## 과제 
 

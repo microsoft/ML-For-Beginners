@@ -27,7 +27,7 @@
 - **モデルの学習にはどのような技術が使われていますか？** 選択された技術は使用しなければいけないツールに影響を与える可能性があります。
     - **Tensor flow を使っている。** 例えば TensorFlow を使ってモデルを学習している場合、 [TensorFlow.js](https://www.tensorflow.org/js/) を使って、Webアプリで使用できるように TensorFlow モデルを変換する機能をそのエコシステムは提供しています。
     - **PyTorchを使っている。** [PyTorch](https://pytorch.org/) などのライブラリを使用してモデルを構築している場合、[ONNX](https://onnx.ai/) (Open Neural Network Exchange) 形式で出力して、JavaScript のWebアプリで [Onnx Runtime](https://www.onnxruntime.ai/) を使用するという選択肢があります。この選択肢は、Scikit-learn で学習したモデルを使う今後の講義で調べます。
-    - **Lobe.ai または Azure Custom Vision を使っている。** [Lobe.ai](https://lobe.ai/) や [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) のような機械学習SaaS (Software as a Service) システムを使用してモデルを学習している場合、この種のソフトウェアは多くのプラットフォーム向けにモデルを出力する方法を用意していて、これにはクラウド上のオンラインアプリケーションからリクエストされるような専用APIを構築することも含まれます。
+    - **Lobe.ai または Azure Custom Vision を使っている。** [Lobe.ai](https://lobe.ai/) や [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) のような機械学習SaaS (Software as a Service) システムを使用してモデルを学習している場合、この種のソフトウェアは多くのプラットフォーム向けにモデルを出力する方法を用意していて、これにはクラウド上のオンラインアプリケーションからリクエストされるような専用APIを構築することも含まれます。
 
 また、ウェブブラウザ上でモデルを学習することができるFlaskのWebアプリを構築することもできます。JavaScript の場合でも TensorFlow.js を使うことで実現できます。
 
@@ -37,7 +37,7 @@
 
 ここでの作業には2つのツールが必要です。FlaskとPickleで、どちらもPython上で動作します。
 
-✅ [Flask](https://palletsprojects.com/p/flask/) とは？制作者によって「マイクロフレームワーク」と定義されているFlaskは、Pythonを使ったWebフレームワークの基本機能と、Webページを構築するためのテンプレートエンジンを提供しています。Flaskでの構築を練習するために [この学習モジュール](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa) を見てみてください。
+✅ [Flask](https://palletsprojects.com/p/flask/) とは？制作者によって「マイクロフレームワーク」と定義されているFlaskは、Pythonを使ったWebフレームワークの基本機能と、Webページを構築するためのテンプレートエンジンを提供しています。Flaskでの構築を練習するために [この学習モジュール](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) を見てみてください。
 
 ✅ [Pickle](https://docs.python.org/3/library/pickle.html) とは？Pickle 🥒 は、Pythonのオブジェクト構造をシリアライズ・デシリアライズするPythonモジュールです。モデルを「塩漬け」にすると、Webで使用するためにその構造をシリアライズしたり平坦化したりします。pickleは本質的に安全ではないので、ファイルの 'un-pickle' を促された際は注意してください。塩漬けされたファイルの末尾は `.pkl` となります。
 

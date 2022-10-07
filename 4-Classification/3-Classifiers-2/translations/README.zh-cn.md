@@ -228,7 +228,7 @@ weighted avg       0.73      0.72      0.72      1199
 
 ## 回顾与自学
 
-课程中出现了很多术语，花点时间浏览[术语表](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-15963-cxa)来复习一下它们吧！
+课程中出现了很多术语，花点时间浏览[术语表](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott)来复习一下它们吧！
 
 ## 作业
 

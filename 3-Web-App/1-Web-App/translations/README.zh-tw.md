@@ -27,7 +27,7 @@
 - **使用什麽技術來訓練模型？** 所選的技術可能會影響你需要使用的工具。
    - **使用 TensorFlow**。例如，如果你正在使用 TensorFlow 訓練模型，則該生態系統提供了使用 [TensorFlow.js](https://www.tensorflow.org/js/) 轉換 TensorFlow 模型以便在Web應用程序中使用的能力。
    - **使用 PyTorch**。如果你使用 [PyTorch](https://pytorch.org/) 等庫構建模型，則可以選擇將其導出到 [ONNX](https://onnx.ai/)（開放神經網絡交換）格式，用於可以使用 [Onnx Runtime](https://www.onnxruntime.ai/)的JavaScript Web 應用程序。此選項將在 Scikit-learn-trained 模型的未來課程中進行探討。
-   - **使用 Lobe.ai 或 Azure 自定義視覺**。如果你使用 ML SaaS（軟件即服務）系統，例如 [Lobe.ai](https://lobe.ai/) 或 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-15963-cxa) 來訓練模型，這種類型的軟件提供了為許多平臺導出模型的方法，包括構建一個定製A PI，供在線應用程序在雲中查詢。
+   - **使用 Lobe.ai 或 Azure 自定義視覺**。如果你使用 ML SaaS（軟件即服務）系統，例如 [Lobe.ai](https://lobe.ai/) 或 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) 來訓練模型，這種類型的軟件提供了為許多平臺導出模型的方法，包括構建一個定製A PI，供在線應用程序在雲中查詢。
 
 你還有機會構建一個完整的 Flask Web 應用程序，該應用程序能夠在 Web瀏覽器中訓練模型本身。這也可以在 JavaScript 上下文中使用 TensorFlow.js 來完成。
 
@@ -37,7 +37,7 @@
 
 對於此任務，你需要兩個工具：Flask 和 Pickle，它們都在 Python 上運行。
 
-✅ 什麽是 [Flask](https://palletsprojects.com/p/flask/)？ Flask 被其創建者定義為「微框架」，它提供了使用 Python 和模板引擎構建網頁的 Web 框架的基本功能。看看[本學習單元](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-15963-cxa)練習使用 Flask 構建應用程序。
+✅ 什麽是 [Flask](https://palletsprojects.com/p/flask/)？ Flask 被其創建者定義為「微框架」，它提供了使用 Python 和模板引擎構建網頁的 Web 框架的基本功能。看看[本學習單元](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)練習使用 Flask 構建應用程序。
 
 ✅ 什麽是 [Pickle](https://docs.python.org/3/library/pickle.html)？ Pickle🥒是一個 Python 模塊，用於序列化和反序列化 Python 對象結構。當你「pickle」一個模型時，你將其結構序列化或展平以在 Web 上使用。小心：pickle 本質上不是安全的，所以如果提示「un-pickle」文件，請小心。生產的文件具有後綴 `.pkl`。
 

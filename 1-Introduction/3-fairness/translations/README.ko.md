@@ -21,7 +21,7 @@
 
 전제 조건으로, "Responsible AI Principles" 학습 과정을 수강하고 주제에 대한 영상을 시청합니다:
 
-[Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-15963-cxa)를 따라서 Responsible AI에 대하여 더 자세히 알아보세요
+[Learning Path](https://docs.microsoft.com/learn/modules/responsible-ai-principles/?WT.mc_id=academic-77952-leestott)를 따라서 Responsible AI에 대하여 더 자세히 알아보세요
 
 [![Microsoft's Approach to Responsible AI](https://img.youtube.com/vi/dnC8-uUZXSc/0.jpg)](https://youtu.be/dnC8-uUZXSc "Microsoft's Approach to Responsible AI")
 
@@ -170,7 +170,7 @@ AI와 머신러닝의 공정성을 보장하는 건 계속 복잡한 사회기�
 
 - [sample notebooks](https://github.com/fairlearn/fairlearn/tree/master/notebooks) 시도해보기. 
   
-- Azure Machine Learning에서 머신러닝 모델의 [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-15963-cxa) 알아보기. 
+- Azure Machine Learning에서 머신러닝 모델의 [how to enable fairness assessments](https://docs.microsoft.com/azure/machine-learning/how-to-machine-learning-fairness-aml?WT.mc_id=academic-77952-leestott) 알아보기. 
   
 - Azure Machine Learning에서 더 공정한 평가 시나리오에 대하여 [sample notebooks](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness) 확인해보기. 
 
@@ -207,7 +207,7 @@ Fairlearn toolkit 탐색합니다
 
 공정성을 보장하기 위한 Azure Machine Learning 도구에 대해 읽어봅시다
 
-- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-15963-cxa) 
+- [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott) 
 
 ## 과제
 

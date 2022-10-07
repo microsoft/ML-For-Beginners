@@ -18,7 +18,7 @@ Yeni başlayanlar için klasik makine öğrenimi üzerine olan bu kursa hoş gel
 Bu müfredata başlamadan önce, bilgisayarınızın yerel olarak (Jupyter) not defterlerini çalıştırmak için hazır olması gerekir.
 
 - **Makinenizi bu videolar rehberliğinde yapılandırın**. Bu [video setinde](https://www.youtube.com/playlist?list=PLlrxD0HtieHhS8VzuMCfQD4uJ9yne1mE6) makinenizi nasıl kuracağınız hakkında daha fazla bilgi edinin.
-- **Python öğrenin**. Ayrıca, veri bilimciler için faydalı bir programlama dili olan ve bu derslerde kullandığımız [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-15963-cxa) programlama dili hakkında temel bilgilere sahip olmanız da önerilir.
+- **Python öğrenin**. Ayrıca, veri bilimciler için faydalı bir programlama dili olan ve bu derslerde kullandığımız [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott) programlama dili hakkında temel bilgilere sahip olmanız da önerilir.
 - **Node.js ve JavaScript'i öğrenin**. Web uygulamaları oluştururken de bu kursta JavaScript'i birkaç kez kullanıyoruz, bu nedenle [node](https://nodejs.org), [npm](https://www.npmjs.com/) ve ayrıca hem Python hem de JavaScript geliştirme için kullanılabilen [Visual Studio Code](https://code.visualstudio.com/) yüklü olmalıdır.
 - **GitHub hesabı oluşturun**. Bizi burada [GitHub](https://github.com) üzerinde bulduğunuza göre, zaten bir hesabınız olabilir, ancak mevcut değilse, bir tane hesap oluşturun ve ardından bu müfredatı kendi başınıza kullanmak için çatallayın (fork). (Bize de yıldız vermekten çekinmeyin 😊)
 - **Scikit-learn'ü keşfedin**. Bu derslerde referans verdiğimiz, bir dizi ML kütüphanesinden oluşan [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) hakkında bilgi edinin.
@@ -107,7 +107,7 @@ Kağıt üzerinde veya [Excalidraw](https://excalidraw.com/) gibi çevrimiçi bi
 
 ## İnceleme ve Bireysel Çalışma
 
-Bulutta makine öğrenimi algoritmalarıyla nasıl çalışabileceğiniz hakkında daha fazla bilgi edinmek için bu [Eğitim Patikasını](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-15963-cxa) izleyin.
+Bulutta makine öğrenimi algoritmalarıyla nasıl çalışabileceğiniz hakkında daha fazla bilgi edinmek için bu [Eğitim Patikasını](https://docs.microsoft.com/learn/paths/create-no-code-predictive-models-azure-machine-learning/?WT.mc_id=academic-77952-leestott) izleyin.
 
 ## Ödev
 

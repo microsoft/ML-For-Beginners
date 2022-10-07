@@ -10,7 +10,7 @@ Asya ve Hindistan'da yemek gelenekleri fazlaca çeşitlilik gösterir ve çok le
 
 Bu bölümde, bu eğitim programının tamamen regresyon üzerine olan ilk bölümünde öğrendiğiniz becerilere dayanıp onların üstüne beceriler ekleyeceksiniz ve veriniz hakkında bilgi sahibi olmanızı sağlayacak diğer sınıflandırıcıları öğreneceksiniz.
 
-> Sınıflandırma modelleriyle çalışmayı öğrenmenizi sağlayacak faydalı düşük kodlu araçlar vardır. [Bu görev için Azure ML](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)'i deneyin.
+> Sınıflandırma modelleriyle çalışmayı öğrenmenizi sağlayacak faydalı düşük kodlu araçlar vardır. [Bu görev için Azure ML](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)'i deneyin.
 
 ## Dersler
 

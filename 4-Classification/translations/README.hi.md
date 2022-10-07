@@ -12,7 +12,7 @@
 
 इस खंड में आप इस पाठ्यक्रम के पूर्व भाग में सीखे गए प्रतिगमन (regression) के कौशल पर निर्माण करेंगे, और अन्य वर्गीकारकों (classifiers) के बारे में जानेंगे। इन वर्गीकारकों का उपयोग करके आप डेटा (data) को बेहतर ढंग से समझ सकते हैं।
 
-> कई उपकरण हैं जिनकी सहयता से आप न्यूनतम कोड के माध्यम से वर्गीकरण मॉडलों के साथ काम करना सीख सकते हैं। [इस कार्य के लिए अज़ौर म. ल. (Azure ML) का उपयोग करें।](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)
+> कई उपकरण हैं जिनकी सहयता से आप न्यूनतम कोड के माध्यम से वर्गीकरण मॉडलों के साथ काम करना सीख सकते हैं। [इस कार्य के लिए अज़ौर म. ल. (Azure ML) का उपयोग करें।](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)
 
 ## पाठ
 

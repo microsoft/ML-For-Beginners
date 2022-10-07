@@ -15,7 +15,7 @@ Você irá aprender:
 - Uma nova biblioteca para visualização de dados
 - Técnicas de regressão logística
 
-✅ Aprofunde seu conhecimento de como trabalhar com este tipo de regressão neste [módulo](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-15963-cxa).
+✅ Aprofunde seu conhecimento de como trabalhar com este tipo de regressão neste [módulo](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott).
 
 ## Pré-requisito
 

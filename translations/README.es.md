@@ -45,7 +45,7 @@ Nuestra metodología de enseñanza basada en proyectos, te permite aprender mien
 - Completa el ejercicio.
 - Después de completar un grupo de lecciones, visita el [tablero de discusión](https://github.com/microsoft/ML-For-Beginners/discussions) y "aprende en voz alta" llenando la rúbrica PAT apropiada. Un 'PAT' es una herramienta de evaluación del progreso que es una rúbrica la cual llenas para avanzar en tu aprendizaje. También puede reaccionar a otros PATs y así aprender juntos.
 
-> Para aprender más, recomendamos seguir estos módulos y rutas de aprendizaje de [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-15963-cxa).
+> Para aprender más, recomendamos seguir estos módulos y rutas de aprendizaje de [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott).
 
 **Profesores**, hemos [incluido algunas sugerencias](../for-teachers.md) de cómo usar este plan de estudios.
 

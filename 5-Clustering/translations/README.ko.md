@@ -12,7 +12,7 @@ Clustering 은 서로 비슷한 오브젝트를 찾고 clusters 라고 불린 �
   
 이 강의의 시리즈에서, clustering 기술로 데이터를 분석하는 새로운 방식을 찾아볼 예정입니다. Clustering 은 데이터셋에 라벨이 없으면 더욱 더 유용합니다. 만약 라벨이 있다면, 이전 강의에서 배운대로 classification 기술이 더 유용할 수 있습니다. 그러나 라벨링되지 않은 데이터를 그룹으로 묶으려면, clustering 은 패턴을 발견하기 위한 좋은 방식입니다.
 
-> clustering 모델 작업을 배울 때 도움을 받을 수 있는 유용한 low-code 도구가 있습니다. [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa)를 시도해봅니다.
+> clustering 모델 작업을 배울 때 도움을 받을 수 있는 유용한 low-code 도구가 있습니다. [Azure ML for this task](https://docs.microsoft.com/learn/modules/create-clustering-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott)를 시도해봅니다.
 
 ## 강의
 

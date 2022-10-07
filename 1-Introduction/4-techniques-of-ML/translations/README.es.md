@@ -89,7 +89,7 @@ En el contexto del machine learning, el ajuste del modelo se refiere a la precis
 
 ## Ajuste de parámetros
 
-Una vez que haya completado su entrenamiento inicial, observe la calidad del modelo y considere mejorarlo ajustando sus 'hiperparámetros'. Lea más sobre el proceso [en la documentación](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa).
+Una vez que haya completado su entrenamiento inicial, observe la calidad del modelo y considere mejorarlo ajustando sus 'hiperparámetros'. Lea más sobre el proceso [en la documentación](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott).
 
 ## Predicción
 

@@ -11,7 +11,7 @@ Na Ásia e na Índia, as tradições alimentares são extremamente diversificada
 
 Você desenvolverá as habilidades que aprendeu nas lições sobre Regressão, para aprender sobre outros classificadores que o ajudarão a aprender mais sobre dados.
 
-> Existem ferramentas _low-code_ (que não exigem o uso de código) úteis que podem ajudá-lo a aprender como trabalhar com modelos de classificação. Experimente a [Azure ML para esta tarefa](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-15963-cxa).
+> Existem ferramentas _low-code_ (que não exigem o uso de código) úteis que podem ajudá-lo a aprender como trabalhar com modelos de classificação. Experimente a [Azure ML para esta tarefa](https://docs.microsoft.com/learn/modules/create-classification-model-azure-machine-learning-designer/?WT.mc_id=academic-77952-leestott).
 
 ## Lições
 

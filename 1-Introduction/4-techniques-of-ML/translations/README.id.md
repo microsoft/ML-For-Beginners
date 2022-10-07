@@ -86,7 +86,7 @@ Dalam konteks machine learning, *model fitting* mengacu pada keakuratan dari fun
 
 ## Parameter tuning
 
-Setelah *training* awal selesai, amati kualitas model dan pertimbangkan untuk meningkatkannya dengan mengubah 'hyperparameter' nya. Baca lebih lanjut tentang prosesnya [di dalam dokumentasi](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-15963-cxa).
+Setelah *training* awal selesai, amati kualitas model dan pertimbangkan untuk meningkatkannya dengan mengubah 'hyperparameter' nya. Baca lebih lanjut tentang prosesnya [di dalam dokumentasi](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters?WT.mc_id=academic-77952-leestott).
 
 ## Prediksi
 

@@ -102,11 +102,11 @@ Quale classificatore si dovrebbe scegliere? Spesso, scorrerne diversi e cercare 
 ![confronto di classificatori](../images/comparison.png)
 > Grafici generati sulla documentazione di Scikit-learn
 
-> AutoML risolve questo problema in modo ordinato eseguendo questi confronti nel cloud, consentendo di scegliere l'algoritmo migliore per i propri dati. Si può provare [qui](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-15963-cxa)
+> AutoML risolve questo problema in modo ordinato eseguendo questi confronti nel cloud, consentendo di scegliere l'algoritmo migliore per i propri dati. Si può provare [qui](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
 
 ### Un approccio migliore
 
-Un modo migliore che indovinare a caso, tuttavia, è seguire le idee su questo [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-15963-cxa) scaricabile. Qui si scopre che, per questo problema multiclasse, si dispone di  alcune scelte:
+Un modo migliore che indovinare a caso, tuttavia, è seguire le idee su questo [ML Cheat sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott) scaricabile. Qui si scopre che, per questo problema multiclasse, si dispone di  alcune scelte:
 
 ![cheatsheet per problemi multiclasse](../images/cheatsheet.png)
 > Una sezione dell'Algorithm Cheat Sheet di Microsoft, che descrive in dettaglio le opzioni di classificazione multiclasse
