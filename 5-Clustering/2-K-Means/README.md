@@ -173,7 +173,7 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
 
     ```python
     plt.figure(figsize=(10,5))
-    sns.lineplot(range(1, 11), wcss,marker='o',color='red')
+    sns.lineplot((range(1, 11), wcss) ,marker='o',color='red')
     plt.title('Elbow')
     plt.xlabel('Number of clusters')
     plt.ylabel('WCSS')
