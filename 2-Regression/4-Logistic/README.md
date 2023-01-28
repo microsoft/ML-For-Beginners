@@ -276,8 +276,8 @@ from sklearn.metrics import roc_curve, roc_auc_score
 y_scores = model.predict_proba(X_test)
 # calculate ROC curve
 fpr, tpr, thresholds = roc_curve(y_test, y_scores[:,1])
-sns.lineplot([0, 1], [0, 1])
-sns.lineplot(fpr, tpr)
+sns.lineplot(x=[0, 1], y=[0, 1])
+sns.lineplot(x=fpr, y=tpr)
 ```
 Using Seaborn again, plot the model's [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) or ROC. ROC curves are often used to get a view of the output of a classifier in terms of its true vs. false positives. "ROC curves typically feature true positive rate on the Y axis, and false positive rate on the X axis." Thus, the steepness of the curve and the space between the midpoint line and the curve matter: you want a curve that quickly heads up and over the line. In our case, there are false positives to start with, and then the line heads up and over properly:
 
