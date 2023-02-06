@@ -77,9 +77,7 @@ Start by creating an array of classifiers. You will add progressively to this ar
 2. Train your model using the Linear SVC and print out a report:
 
     ```python
-    n_classifiers = len(classifiers)
-    
-    for index, (name, classifier) in enumerate(classifiers.items()):
+    for name, classifier in classifiers.items():
         classifier.fit(X_train, np.ravel(y_train))
     
         y_pred = classifier.predict(X_test)
