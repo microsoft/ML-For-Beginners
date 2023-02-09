@@ -163,7 +163,7 @@ Our score is **.53**, so right in the middle. This indicates that our data is no
 
     > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
 
-    > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
+    > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other", leading to probably better results than random initialization.
 
 ### Elbow method
 
@@ -173,7 +173,7 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
 
     ```python
     plt.figure(figsize=(10,5))
-    sns.lineplot(range(1, 11), wcss,marker='o',color='red')
+    sns.lineplot(x=range(1, 11), y=wcss, marker='o', color='red')
     plt.title('Elbow')
     plt.xlabel('Number of clusters')
     plt.ylabel('WCSS')
@@ -193,7 +193,7 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
     kmeans = KMeans(n_clusters = 3)
     kmeans.fit(X)
     labels = kmeans.predict(X)
-    plt.scatter(df['popularity'],df['danceability'],c = labels)
+    plt.scatter(df['popularity'], df['danceability'], c=labels)
     plt.xlabel('popularity')
     plt.ylabel('danceability')
     plt.show()
