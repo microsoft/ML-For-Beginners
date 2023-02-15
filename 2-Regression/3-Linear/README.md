@@ -122,7 +122,15 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
 
 <img alt="Scatter plot of Price vs. Day of Year" src="images/scatter-dayofyear-color.png" width="50%" /> 
 
-Our investigation suggests that variety has more effect on the overall price than the actual selling date. So let us focus for the moment only on one pumpkin variety, and see what effect the date has on the price:
+Our investigation suggests that variety has more effect on the overall price than the actual selling date. We can see this with a bar graph:
+
+```python
+new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
+```
+
+<img alt="Scatter plot of Price vs. Day of Year" src="images/price-by-variety.png" width="50%" /> 
+
+Let us focus for the moment only on one pumpkin variety, the 'pie type', and see what effect the date has on the price:
 
 ```python
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
