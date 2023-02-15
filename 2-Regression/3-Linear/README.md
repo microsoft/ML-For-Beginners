@@ -103,7 +103,14 @@ This suggests that there should be some correlation, and we can try training lin
 
 <img alt="Scatter plot of Price vs. Day of Year" src="images/scatter-dayofyear.png" width="50%" /> 
 
-It looks like there are different clusters of prices corresponding to different pumpkin varieties. To confirm this hypothesis, let's plot each pumpkin category using a different color. By passing an `ax` parameter to the `scatter` plotting function we can plot all points on the same graph:
+Let's see if there is a correlation using the `corr` function:
+
+```python
+print(new_pumpkins['Month'].corr(new_pumpkins['Price']))
+print(new_pumpkins['DayOfYear'].corr(new_pumpkins['Price']))
+```
+
+It looks like the correlation is pretty small, -0.15 by `Month` and -0.17 by the `DayOfMonth`, but there could be another important relationship. It looks like there are different clusters of prices corresponding to different pumpkin varieties. To confirm this hypothesis, let's plot each pumpkin category using a different color. By passing an `ax` parameter to the `scatter` plotting function we can plot all points on the same graph:
 
 ```python
 ax=None
