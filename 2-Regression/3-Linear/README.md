@@ -128,7 +128,7 @@ Our investigation suggests that variety has more effect on the overall price tha
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="Scatter plot of Price vs. Day of Year" src="images/price-by-variety.png" width="50%" /> 
+<img alt="Bar graph of price vs variety" src="images/price-by-variety.png" width="50%" /> 
 
 Let us focus for the moment only on one pumpkin variety, the 'pie type', and see what effect the date has on the price:
 
