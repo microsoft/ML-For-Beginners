@@ -115,19 +115,15 @@ quote2 = """Darcy, as well as Elizabeth, really loved them; and they were both e
 sentiment1 = TextBlob(quote1).sentiment
 sentiment2 = TextBlob(quote2).sentiment
 
-print(quote1 + " has a sentiment of " + str(sentiment1))
-print(quote2 + " has a sentiment of " + str(sentiment2))
+print(f'"quote1" has a sentiment of {sentiment1}')
+print(f'"quote2" has a sentiment of {sentiment2}')
 ```
 
 You see the following output:
 
 ```output
-It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want # of a wife. has a sentiment of Sentiment(polarity=0.20952380952380953, subjectivity=0.27142857142857146)
-
-Darcy, as well as Elizabeth, really loved them; and they were
-     both ever sensible of the warmest gratitude towards the persons
-      who, by bringing her into Derbyshire, had been the means of
-      uniting them. has a sentiment of Sentiment(polarity=0.7, subjectivity=0.8)
+"quote1" has a sentiment of Sentiment(polarity=0.20952380952380953, subjectivity=0.27142857142857146)
+"quote2" has a sentiment of Sentiment(polarity=0.7, subjectivity=0.8)
 ```
 
 ## Challenge - check sentiment polarity
