@@ -73,11 +73,11 @@ Open the _notebook.ipynb_ file in Visual Studio Code and import the spreadsheet 
 
     There is missing data, but maybe it won't matter for the task at hand.
 
-1. To make your dataframe easier to work with, drop several of its columns, using `drop()`, keeping only the columns you need:
+1. To make your dataframe easier to work with, select only the columns you need, using the `loc` function which extracts from the original dataframe a group of rows (passed as first parameter) and columns (passed as second parameter). The expression `:` in the case below means "all rows".
 
     ```python
-    new_columns = ['Package', 'Month', 'Low Price', 'High Price', 'Date']
-    pumpkins = pumpkins.drop([c for c in pumpkins.columns if c not in new_columns], axis=1)
+    columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
+    pumpkins = pumpkins.loc[:, columns_to_select]
     ```
 
 ### Second, determine average price of pumpkin
