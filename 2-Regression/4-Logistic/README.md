@@ -133,8 +133,9 @@ For feature encoding there are two main types of encoders:
     ```
 Then, `ColumnTransformer` is used to combine multiple encoders into a single step and apply them to the appropriate columns.
 
-    ```python
+```python
     from sklearn.compose import ColumnTransformer
+    
     ct = ColumnTransformer(transformers=[
         ('ord', ordinal_encoder, ordinal_features),
         ('cat', categorical_encoder, categorical_features)
@@ -142,20 +143,20 @@ Then, `ColumnTransformer` is used to combine multiple encoders into a single ste
     
     ct.set_output(transform='pandas')
     encoded_features = ct.fit_transform(pumpkins)
-    ```
+```
 On the other hand, to encode the label, we use the scikit-learn `LabelEncoder` class, which is a utility class to help normalize labels such that they contain only values between 0 and n_classes-1 (here, 0 and 1).
 
-    ```python
+```python
     from sklearn.preprocessing import LabelEncoder
 
     label_encoder = LabelEncoder()
     encoded_label = label_encoder.fit_transform(pumpkins['Color'])
-    ```
+```
 Once we have encoded the features and the label, we can merge them into a new dataframe `encoded_pumpkins`.
 
-    ```python
+```python
     encoded_pumpkins = encoded_features.assign(Color=encoded_label)
-    ```
+```
 ✅ What are the advantages of using an ordinal encoder for the `Item Size` column?
 
 ### Analyse relationships between variables
@@ -163,7 +164,7 @@ Once we have encoded the features and the label, we can merge them into a new da
 Now that we have pre-processed our data, we can analyse the relationships between the features and the label to grasp an idea of how well the model will be able to predict the label given the features.
 The best way to perform this kind of analysis is plotting the data. We'll be using again the Seaborn `catplot` function, to visualize the relationships between `Item Size`,  `Variety` and `Color` in a categorical plot. To better plot the data we'll be using the encoded `Item Size` column and the unencoded `Variety` column.
 
-    ```python
+```python
     palette = {
     'ORANGE': 'orange',
     'WHITE': 'wheat',
@@ -179,8 +180,8 @@ The best way to perform this kind of analysis is plotting the data. We'll be usi
     )
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
-    ```
-    ![A catplot of visualized data](images/pumpkins_catplot_2.png)
+```
+![A catplot of visualized data](images/pumpkins_catplot_2.png)
 
 ### Use a swarm plot
 
@@ -347,7 +348,7 @@ plt.show()
 ```
 Using Matplotlib, plot the model's [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) or ROC. ROC curves are often used to get a view of the output of a classifier in terms of its true vs. false positives. "ROC curves typically feature true positive rate on the Y axis, and false positive rate on the X axis." Thus, the steepness of the curve and the space between the midpoint line and the curve matter: you want a curve that quickly heads up and over the line. In our case, there are false positives to start with, and then the line heads up and over properly:
 
-![ROC](./images/ROC.png)
+![ROC](./images/ROC_2.png)
 
 Finally, use Scikit-learn's [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) to compute the actual 'Area Under the Curve' (AUC):
 
