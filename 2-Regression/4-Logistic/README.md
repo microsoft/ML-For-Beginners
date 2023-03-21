@@ -1,7 +1,7 @@
 # Logistic regression to predict categories
 
-![Logistic vs. linear regression infographic](./images/logistic-linear.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+![Logistic vs. linear regression infographic](./images/linear-vs-logistic.png)
+
 ## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
 
 > ### [This lesson is available in R!](./solution/R/lesson_4-R.ipynb)
@@ -47,8 +47,7 @@ There are other types of logistic regression, including multinomial and ordinal:
 - **Multinomial**, which involves having more than one category - "Orange, White, and Striped".
 - **Ordinal**, which involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
-![Multinomial vs ordinal regression](./images/multinomial-ordinal.png)
-> Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+![Multinomial vs ordinal regression](./images/multinomial-vs-ordinal.png)
 
 ### It's still linear
 
