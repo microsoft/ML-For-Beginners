@@ -8,7 +8,7 @@
   
 ## 课程安排
 
-1. [机器学习的现实应用](../1-Applications/README.md)
+1. [机器学习的现实应用](../1-Applications/translations/README.zh-cn.md.md)
 ## 致谢
 
 "机器学习的现实应用" 由 [Jen Looper](https://twitter.com/jenlooper) 和 [Ornella Altunyan](https://twitter.com/ornelladotcom) 两人的团队共同撰写.
