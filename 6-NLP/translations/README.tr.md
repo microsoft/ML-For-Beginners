@@ -17,7 +17,7 @@ Zamanda geriye giderek, Jane Austen'in klasik romanından Elizabeth Bennett ve B
 yayınlandı. Ardından, Avrupa'daki otel incelemeleri aracılığıyla duygu analizini (sentiment analysis) öğrenecek ve bu alandaki bilginizi artıracaksınız.
 
 
-![Pride and Prejudice book and tea](images/p&p.jpg)
+![Pride and Prejudice book and tea](../images/p&p.jpg)
 > <a href="https://unsplash.com/s/photos/pride-and-prejudice?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash </a> 'tan <a href="https://unsplash.com/@elaineh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elaine Howlin</a> 'nın fotoğrafı.
   
 ## Dersler
