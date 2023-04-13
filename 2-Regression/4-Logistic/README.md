@@ -176,7 +176,7 @@ The best way to perform this kind of analysis is plotting the data. We'll be usi
         x="Item Size", y="Color", row='Variety',
         kind="box", orient="h",
         sharex=False, margin_titles=True,
-        height=1.5, aspect=4, palette=palette,
+        height=1.8, aspect=4, palette=palette,
     )
     g.set(xlabel="Item Size", ylabel="").set(xlim=(0,6))
     g.set_titles(row_template="{row_name}")
@@ -193,8 +193,8 @@ You can visualize variables side-by-side with Seaborn plots.
 
     ```python
     palette = {
-    '0': 'orange',
-    '1': 'wheat'
+    0: 'orange',
+    1: 'wheat'
     }
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
@@ -229,7 +229,6 @@ Building a model to find these binary classification is surprisingly straightfor
 2. Now you can train your model, by calling `fit()` with your training data, and print out its result:
 
     ```python
-    from sklearn.model_selection import train_test_split
     from sklearn.metrics import f1_score, classification_report 
     from sklearn.linear_model import LogisticRegression
 
