@@ -200,6 +200,8 @@ You can visualize variables side-by-side with Seaborn plots.
 
     ![A swarm of visualized data](images/swarm_2.png)
 
+**Watch Out**: the code above might generate a warning, since seaborn fails to represent such amount of datapoints into a swam plot. A possible solution is decreasing the size of the marker, by using the 'size' parameter. However, be aware that this affects the readability of the plot.
+
 
 > **🧮 Show Me The Math**
 >
