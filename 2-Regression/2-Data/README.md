@@ -116,7 +116,7 @@ Digging into the original data, it's interesting that anything with `Unit of Sal
 1. Add a filter at the top of the file, under the initial .csv import:
 
     ```python
-    pumpkins = pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
+    new_pumpkins = new_pumpkins[pumpkins['Package'].str.contains('bushel', case=True, regex=True)]
     ```
 
     If you print the data now, you can see that you are only getting the 415 or so rows of data containing pumpkins by the bushel.
