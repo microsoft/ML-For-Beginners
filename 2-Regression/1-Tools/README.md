@@ -21,6 +21,10 @@ In this lesson, you will learn how to:
 
 ## Installations and configurations
 
+[![ML for beginners - Setup your tools ready to build Machine Learning models](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML for beginners -Setup your tools ready to build Machine Learning models")
+
+> 🎥 Click the image above for a short video working through configuring your computer for ML.
+
 [![Setup Python with Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Setup Python with Visual Studio Code")
 
 > 🎥 Click the image above for a video: using Python within VS Code.

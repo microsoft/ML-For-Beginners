@@ -44,6 +44,14 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 ---
 
+## Video walkthroughs
+
+Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.
+
+[![ML for beginners banner](./ml-for-beginners-video-banner.png)](https://aka.ms/ml-beginners-videos)
+
+---
+
 ## Meet the Team
 
 [![Promo video](ml.gif)](https://youtu.be/Tj1XWrDSYJU "Promo video")
@@ -66,6 +74,7 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 - optional sketchnote
 - optional supplemental video
+- video walkthrough (some lessons only)
 - pre-lecture warmup quiz
 - written lesson
 - for project-based lessons, step-by-step guides on how to build the project
