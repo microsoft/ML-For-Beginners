@@ -7,6 +7,10 @@ The process of building, using, and maintaining machine learning models and the 
 
 ## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/)
 
+[![ML for beginners - Techniques of Machine Learning](https://img.youtube.com/vi/4NGM0U2ZSHU/0.jpg)](https://youtu.be/4NGM0U2ZSHU "ML for beginners - Techniques of Machine Learning")
+
+> 🎥 Click the image above for a short video working through this lesson.
+
 ## Introduction
 
 On a high level, the craft of creating machine learning (ML) processes is comprised of a number of steps:
