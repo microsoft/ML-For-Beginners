@@ -108,7 +108,7 @@ Seaborn offers some neat ways to visualize your data. For example, you can compa
     ✅ Given this categorical plot, what are some interesting explorations you can envision?
 
 ### Data pre-processing: feature and label encoding
-Our pumpkins dataset contains string values for all its columns. Working with categorical data is intuitive for humans but not for machines. Machine learning algorithms work well with numbers. There's why encoding is a very important step in the data pre-processing phase, since it enables to turn categorical data into numerical data, without losing any information. A good encoding leads to build a good model.
+Our pumpkins dataset contains string values for all its columns. Working with categorical data is intuitive for humans but not for machines. Machine learning algorithms work well with numbers. That's why encoding is a very important step in the data pre-processing phase, since it enables us to turn categorical data into numerical data, without losing any information. Good encoding leads to building a good model.
 
 For feature encoding there are two main types of encoders:
 
