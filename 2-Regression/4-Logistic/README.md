@@ -16,6 +16,7 @@ In this lesson, you will learn:
 - Techniques for logistic regression
 
 ✅ Deepen your understanding of working with this type of regression in this [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
+
 ## Prerequisite
 
 Having worked with the pumpkin data, we are now familiar enough with it to realize that there's one binary category that we can work with: `Color`.
@@ -34,12 +35,17 @@ For our purposes, we will express this as a binary: 'White' or 'Not White'. Ther
 
 Logistic regression differs from linear regression, which you learned about previously, in a few important ways.
 
+[![ML for beginners - Logistic Regression for classification of data](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML for beginners - Logistic Regression for classification of data")
+
+> 🎥 Click the image above for a short video overview of logistic regression.
+
 ### Binary classification
 
 Logistic regression does not offer the same features as linear regression. The former offers a prediction about a binary category ("orange or not orange") whereas the latter is capable of predicting continual values, for example given the origin of a pumpkin and the time of harvest, _how much its price will rise_.
 
 ![Pumpkin classification Model](./images/pumpkin-classifier.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
+
 ### Other classifications
 
 There are other types of logistic regression, including multinomial and ordinal:
@@ -56,6 +62,10 @@ Remember how linear regression worked better with more correlated variables? Log
 ### You need a lot of clean data
 
 Logistic regression will give more accurate results if you use more data; our small dataset is not optimal for this task, so keep that in mind.
+
+[![ML for beginners - Data Analysis and Preparation for Logistic Regression](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "ML for beginners - Data Analysis and Preparation for Logistic Regression")
+
+> 🎥 Click the image above for a short video overview of preparing data for linear regression
 
 ✅ Think about the types of data that would lend themselves well to logistic regression
 
@@ -215,6 +225,10 @@ You can visualize variables side-by-side with Seaborn plots.
 
 Building a model to find these binary classification is surprisingly straightforward in Scikit-learn.
 
+[![ML for beginners - Logistic Regression for classification of data](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML for beginners - Logistic Regression for classification of data")
+
+> 🎥 Click the image above for a short video overview of building a linear regression model
+
 1. Select the variables you want to use in your classification model and split the training and test sets calling `train_test_split()`:
 
     ```python
@@ -327,6 +341,10 @@ Let's revisit the terms we saw earlier with the help of the confusion matrix's m
 
 ## Visualize the ROC curve of this model
 
+[![ML for beginners - Analyzing Logistic Regression Performance with ROC Curves](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "ML for beginners - Analyzing Logistic Regression Performance with ROC Curves")
+
+> 🎥 Click the image above for a short video overview of ROC curves
+
 Let's do one more visualization to see the so-called 'ROC' curve:
 
 ```python
@@ -346,6 +364,7 @@ plt.ylabel('True Positive Rate')
 plt.title('ROC Curve')
 plt.show()
 ```
+
 Using Matplotlib, plot the model's [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) or ROC. ROC curves are often used to get a view of the output of a classifier in terms of its true vs. false positives. "ROC curves typically feature true positive rate on the Y axis, and false positive rate on the X axis." Thus, the steepness of the curve and the space between the midpoint line and the curve matter: you want a curve that quickly heads up and over the line. In our case, there are false positives to start with, and then the line heads up and over properly:
 
 ![ROC](./images/ROC_2.png)
