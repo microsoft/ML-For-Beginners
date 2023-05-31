@@ -13,6 +13,10 @@ Now you are ready to dive deeper into regression for ML. While visualization all
 
 In this lesson, you will learn more about two types of regression: _basic linear regression_ and _polynomial regression_, along with some of the math underlying these techniques. Those models will allow us to predict pumpkin prices depending on different input data. 
 
+[![ML for beginners - Understanding Linear Regression](https://img.youtube.com/vi/CRxFT8oTDMg/0.jpg)](https://youtu.be/CRxFT8oTDMg "ML for beginners - Understanding Linear Regression")
+
+> 🎥 Click the image above for a short video overview of linear regression.
+
 > Throughout this curriculum, we assume minimal knowledge of math, and seek to make it accessible for students coming from other fields, so watch for notes, 🧮 callouts, diagrams, and other learning tools to aid in comprehension.
 
 ### Prerequisite
@@ -95,6 +99,10 @@ Now that you have an understanding of the math behind linear regression, let's c
 
 ## Looking for Correlation
 
+[![ML for beginners - Looking for Correlation: The Key to Linear Regression](https://img.youtube.com/vi/uoRq-lW2eQo/0.jpg)](https://youtu.be/uoRq-lW2eQo "ML for beginners - Looking for Correlation: The Key to Linear Regression")
+
+> 🎥 Click the image above for a short video overview of correlation.
+
 From the previous lesson you have probably seen that the average price for different months looks like this:
 
 <img alt="Average price by month" src="../2-Data/images/barchart.png" width="50%"/>
@@ -150,6 +158,10 @@ pie_pumpkins.info()
 Another approach would be to fill those empty values with mean values from the corresponding column.
 
 ## Simple Linear Regression
+
+[![ML for beginners - Linear and Polynomial Regression using Scikit-learn](https://img.youtube.com/vi/e4c_UP2fSjg/0.jpg)](https://youtu.be/e4c_UP2fSjg "ML for beginners - Linear and Polynomial Regression using Scikit-learn")
+
+> 🎥 Click the image above for a short video overview of linear and polynomial regression.
 
 To train our Linear Regression model, we will use the **Scikit-learn** library.
 
@@ -209,7 +221,6 @@ plt.plot(X_test,pred)
 
 <img alt="Linear regression" src="images/linear-results.png" width="50%" />
 
-
 ## Polynomial Regression
 
 Another type of Linear Regression is Polynomial Regression. While sometimes there's a linear relationship between variables - the bigger the pumpkin in volume, the higher the price - sometimes these relationships can't be plotted as a plane or straight line. 
@@ -236,7 +247,7 @@ pipeline.fit(X_train,y_train)
 Using `PolynomialFeatures(2)` means that we will include all second-degree polynomials from the input data. In our case it will just mean `DayOfYear`<sup>2</sup>, but given two input variables X and Y, this will add X<sup>2</sup>, XY and Y<sup>2</sup>. We may also use higher degree polynomials if we want.
 
 Pipelines can be used in the same manner as the original `LinearRegression` object, i.e. we can `fit` the pipeline, and then use `predict` to get the prediction results. Here is the graph showing test data, and the approximation curve:
- 
+
 <img alt="Polynomial regression" src="images/poly-results.png" width="50%" />
 
 Using Polynomial Regression, we can get slightly lower MSE and higher determination, but not significantly. We need to take into account other features!
@@ -248,6 +259,10 @@ Using Polynomial Regression, we can get slightly lower MSE and higher determinat
 ## Categorical Features
 
 In the ideal world, we want to be able to predict prices for different pumpkin varieties using the same model. However, the `Variety` column is somewhat different from columns like `Month`, because it contains non-numeric values. Such columns are called **categorical**.
+
+[![ML for beginners - Categorical Feature Predictions with Linear Regression](https://img.youtube.com/vi/DYGliioIAE0/0.jpg)](https://youtu.be/DYGliioIAE0 "ML for beginners - Categorical Feature Predictions with Linear Regression")
+
+> 🎥 Click the image above for a short video overview of using categorical features.
 
 Here you can see how average price depends on variety:
 
