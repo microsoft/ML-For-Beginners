@@ -7,6 +7,10 @@
 
 ---
 
+[![ML for beginners - History of Machine Learning](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML for beginners - History of Machine Learning")
+
+> 🎥 Click the image above for a short video working through this lesson.
+
 In this lesson, we will walk through the major milestones in the history of machine learning and artificial intelligence.
 
 The history of artificial intelligence (AI) as a field is intertwined with the history of machine learning, as the algorithms and computational advances that underpin ML fed into the development of AI. It is useful to remember that, while these fields as distinct areas of inquiry began to crystallize in the 1950s, important [algorithmic, statistical, mathematical, computational and technical discoveries](https://wikipedia.org/wiki/Timeline_of_machine_learning) predated and overlapped this era. In fact, people have been thinking about these questions for [hundreds of years](https://wikipedia.org/wiki/History_of_artificial_intelligence): this article discusses the historical intellectual underpinnings of the idea of a 'thinking machine.'
