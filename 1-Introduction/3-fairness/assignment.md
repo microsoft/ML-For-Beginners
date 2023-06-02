@@ -1,8 +1,8 @@
-# Explore Fairlearn
+# Explore the Responsible AI Toolbox
 
 ## Instructions
 
-In this lesson you learned about Fairlearn, an "open-source, community-driven project to help data scientists improve fairness of AI systems." For this assignment, explore one of Fairlearn's [notebooks](https://fairlearn.org/v0.6.2/auto_examples/index.html) and report your findings in a paper or presentation.
+In this lesson you learned about the Responsible AI Toolbox, an "open-source, community-driven project to help data scientists to analyze and improve AI systems." For this assignment, explore one of RAI Toolbox's [notebooks](https://github.com/microsoft/responsible-ai-toolbox/blob/main/notebooks/responsibleaidashboard/getting-started.ipynb) and report your findings in a paper or presentation.
 
 ## Rubric
 
