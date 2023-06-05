@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="model-debugging-in-machine-learning-using-responsible-ai-dashboard-components" class="level1">
+<h1>Model Debugging in Machine Learning using Responsible AI dashboard components</h1>
+<section id="pre-lecture-quiz" class="level2">
+<h2 class="anchored" data-anchor-id="pre-lecture-quiz"><a href="https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/">Pre-lecture quiz</a></h2>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Machine learning impacts our everyday lives. AI is finding its way into some of the most important systems that affect us as individuals as well us our society, from healthcare, finance, education, and employment. For instance, systems and models are involved in daily decision-making tasks, such as health care diagnoses or detecting fraud. Consequentially, the advancements in AI along with the accelerated adoption are being met with evolving societal expectations and growing regulation in response. We constantly see areas where AI systems continue to miss expectations; they expose new challenges; and governments are starting to regulate AI solutions. So it is important that these models are analyzed in order to provide fair, reliable, inclusive, transparent and accountable outcomes for everyone.</p>
+<p>In this curriculum, we will look at practical tools that can be used to assess if a model has responsible AI issues. Traditional machine learning debugging techniques tend to be based on quantitative calculations such as aggregated accuracy or average error loss. Imagine what can happen when the data you are using to build these models lacks certain demographics, such as race, gender, political view, religion, or disproportionally represents such demographics. What about when the model’s output is interpreted to favor some demographic? This can introduce an over or under representation of these sensitive feature groups resulting in fairness, inclusiveness or reliability issues from the model. Another factor is, machine learning models are considered black boxes, which makes it hard to understand and explain what drives a model’s prediction. All of these are challenges data scientists and AI developers face when they do not have adequate tools to debug and assess the fairness or trustworthiness of a model.</p>
+<p>In this lesson, you will learn about debugging your models using:</p>
+<ul>
+<li><strong>Error Analysis</strong>: identify where in your data distribution the model has high error rates.</li>
+<li><strong>Model Overview</strong>: perform comparative analysis across different data cohorts to discover disparities in your model’s performance metrics.</li>
+<li><strong>Data Analysis</strong>: investigate where there could be over or under representation of your data that can skew your model to favor one data demographic vs another.</li>
+<li><strong>Feature Importance</strong>: understand which features are driving your model’s predictions on a global level or local level.</li>
+</ul>
+</section>
+<section id="prerequisite" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisite">Prerequisite</h2>
+<p>As a prerequisite, please take the review <a href="https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard">Responsible AI tools for developers</a></p>
+<blockquote class="blockquote">
+<p><img src="../images/rai-overview.gif" class="img-fluid"></p>
+</blockquote>
+</section>
+<section id="error-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="error-analysis">Error Analysis</h2>
+<p>Traditional model performance metrics used for measuring accuracy are mostly calculations based on correct vs incorrect predictions. For example, determining that a model is accurate 89% of time with an error loss of 0.001 can be considered a good performance. Errors are often not distributed uniformly in your underlying dataset. You may get an 89% model accuracy score, but discover that there are different regions of your data for which the model is failing 42% of the time. The consequence of these failure patterns with certain data groups can lead to fairness or reliability issues. It is essential to understand areas where the model is performing well or not. The data regions where there are a high number of inaccuracies in your model may turn out to be an important data demographic.</p>
+<p><img src="../images/ea-error-distribution.png" class="img-fluid"></p>
+<p>The Error Analysis component on the RAI dashboard illustrates how model failure is distributed across various cohorts with a tree visualization. This is useful in identifying features or areas where there is a high error rate with your dataset. By seeing where most of the model’s inaccuracies are coming from, you can start investigating the root cause. You also have the ability to create cohorts of data to perform analysis on. These data cohorts help in the debugging process to determine why the model performance is good in one cohort, but erroneous in another.</p>
+<p><img src="../images/ea-error-cohort.png" class="img-fluid"></p>
+<p>The visual indicators on the tree map help in locating the problem areas quicker. For instance, the darker shade of red color a tree node has, the higher the error rate.</p>
+<p>Heat map is another visualization functionality that users can usein investigating the error rate using one or two features to find a contributor to the model errors across an entire dataset or cohorts.</p>
+<p><img src="../images/ea-heatmap.png" class="img-fluid"></p>
+<p>Use error analysis when you need to:</p>
+<ul>
+<li>Gain a deep understanding of how model failures are distributed across a dataset and across several input and feature dimensions.</li>
+<li>Break down the aggregate performance metrics to automatically discover erroneous cohorts in order to inform your targeted mitigation steps.</li>
+</ul>
+</section>
+<section id="model-overview" class="level2">
+<h2 class="anchored" data-anchor-id="model-overview">Model Overview</h2>
+<p>Evaluating the performance of a machine learning model requires getting a holistic understanding of its behavior. This can be achieved by reviewing more than one metric such as error rate, accuracy, recall, precision or MAE to find disparities among performance metrics. One performance metric may look great, but inaccuracies can be exposed in another metric. In addition, comparing the metrics for disparities across the entire dataset or cohorts helps shed light on where the model is performing well or not. This is especially important in seeing the model’s performance among sensitive vs insensitive features (e.g., patient race, gender, or age) to uncover potential unfairness the model may have. For example, discovering that the model is more erroneous in a cohort that has sensitive features can reveal potential unfairness the model may have.</p>
+<p>The Model Overview component of the RAI dashboard helps not just in analyzing the performance metrics of the data representation in a cohort, but it gives users the ability to compare the model’s behavior across different cohorts.</p>
+<p><img src="../images/model-overview-dataset-cohorts.png" class="img-fluid"></p>
+<p>The component’s feature-based analysis functionality allows users to narrow down data subgroups within a particular feature in order to identify anomalies on a granular level. For example, the dashboard has built-in intelligence to automatically generate cohorts for a user-selected feature (eg., <em>“time_in_hospital &lt; 3”</em> or <em>“time_in_hospital &gt;= 7”</em>). This enables a user to isolate a particular feature from a larger data group to see if it is a key influencer of the model’s erroneous outcomes.</p>
+<p><img src="../images/model-overview-feature-cohorts.png" class="img-fluid"></p>
+<p>The Model Overview component supports two classes of disparity metrics:</p>
+<p><strong>Disparity in model performance</strong>: These sets of metrics calculate the disparity (difference) in the values of the selected performance metric across subgroups of data. Here are a few examples:</p>
+<ul>
+<li>Disparity in accuracy rate</li>
+<li>Disparity in error rate</li>
+<li>Disparity in precision</li>
+<li>Disparity in recall</li>
+<li>Disparity in mean absolute error (MAE)</li>
+</ul>
+<p><strong>Disparity in selection rate</strong>: This metric contains the difference in selection rate (favorable prediction) among subgroups. An example of this is disparity in loan approval rate. Selection rate means the fraction of data points in each class classified as 1 (in binary classification) or distribution of prediction values (in regression).</p>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<blockquote class="blockquote">
+<p>“If you torture the data long enough, it will confess to anything” - Ronald Coase</p>
+</blockquote>
+<p>This statement sounds extreme, but it is true that data can be manipulated to support any conclusion. Such manipulation can sometimes happen unintentionally. As humans, we all have bias, and it’s often difficult to consciously know when you are introducing bias in data. Guaranteeing fairness in AI and machine learning remains a complex challenge.</p>
+<p>Data is a huge blind spot for traditional model performance metrics. You may have high accuracy scores, but this does not always reflect the underlining data bias that could be in your dataset. For example, if a dataset of employees has 27% of women in executive positions in a company and 73% of men at the same level, a job advertising AI model trained on this data may target mostly a male audience for senior level job positions. Having this imbalance in data skewed the model’s prediction to favor one gender. This reveals a fairness issue where there is a gender bias in the AI model.</p>
+<p>The Data Analysis component on the RAI dashboard helps to identify areas where there’s an over- and under-representation in the dataset. It helps users diagnose the root cause of errors and fairness issues introduced from data imbalances or lack of representation of a particular data group. This gives users the ability to visualize datasets based on predicted and actual outcomes, error groups, and specific features. Sometimes discovering an underrepresented data group can also uncover that the model is not learning well, hence the high inaccuracies. Having a model that has data bias is not just a fairness issue but shows that the model is not inclusive or reliable.</p>
+<p><img src="../images/dataanalysis-cover.png" class="img-fluid"></p>
+<p>Use data analysis when you need to:</p>
+<ul>
+<li>Explore your dataset statistics by selecting different filters to slice your data into different dimensions (also known as cohorts).</li>
+<li>Understand the distribution of your dataset across different cohorts and feature groups.</li>
+<li>Determine whether your findings related to fairness, error analysis, and causality (derived from other dashboard components) are a result of your dataset’s distribution.</li>
+<li>Decide in which areas to collect more data to mitigate errors that come from representation issues, label noise, feature noise, label bias, and similar factors.</li>
+</ul>
+</section>
+<section id="model-interpretability" class="level2">
+<h2 class="anchored" data-anchor-id="model-interpretability">Model Interpretability</h2>
+<p>Machine learning models tend to be black boxes. Understanding which key data features drive a model’s prediction can be challenging. It is important to provide transparency as to why a model make a certain prediction. For example, if AI system predicts that a diabetic patient is at risk of being readmitted back in a hospital in less than 30 days, it should be able to provide supporting data that led to its prediction. Having supporting data indicators brings transparency to help clinicians or hospitals to be able to make well-informed decisions. In addition, being able to explain why a model made a prediction for an individual patient enables accountability with health regulations. When you’re using machine learning models in ways that affect people’s lives, it’s crucial to understand and explain what influences the behavior of a model. Model explainability and interpretability helps answer questions in scenarios such as:</p>
+<ul>
+<li>Model debugging: Why did my model make this mistake? How can I improve my model?</li>
+<li>Human-AI collaboration: How can I understand and trust the model’s decisions?</li>
+<li>Regulatory compliance: Does my model satisfy legal requirements?</li>
+</ul>
+<p>The Feature Importance component of the RAI dashboard helps you to debug and get a comprehensive understanding of how a model makes predictions. It is also a useful tool for machine learning professionals and decision-makers to explain and show evidence of features influencing a model’s behavior for regulatory compliance. Next, users can explore both global and local explanations validate which features drive a model’s prediction. Global explanations lists the top features that affected a model’s overall prediction. Local explanations displays which features led to a model’s prediction for an individual case. The ability to evaluate local explanations is also helpful in debugging or auditing a specific case to better understand and interpret why a model made an accurate or inaccurate prediction.</p>
+<p><img src="../images/9-feature-importance.png" class="img-fluid"></p>
+<ul>
+<li>Global explanations: For example, what features affect the overall behavior of a diabetes hospital readmission model?</li>
+<li>Local explanations: For example, why was a diabetic patient over 60 years old with prior hospitalizations predicted to be readmitted or not readmitted within 30 days back to a hospital?</li>
+</ul>
+<p>In the debugging process of examining a model’s performance across different cohorts, Feature Importance shows what level of impact a feature has across the cohorts. It helps reveal anomalies when comparing the level of influence the feature has in driving a model’s erroneous predictions. The Feature Importance component can show which values in a feature positively or negatively influenced the model’s outcome. For instance, if a model made an inaccurate prediction, the component gives you the ability to drill down and pinpoint what features or feature values drove the prediction. This level of detail helps not just in debugging but providing transparency and accountability in auditing situations. Finally, the component can help you to identify fairness issues. To illustrate, if a sensitive feature such as ethnicity or gender is highly influential in driving a model’s prediction, this could be a sign of race or gender bias in the model.</p>
+<p><img src="../images/9-features-influence.png" class="img-fluid"></p>
+<p>Use interpretability when you need to:</p>
+<ul>
+<li>Determine how trustworthy your AI system’s predictions are by understanding what features are most important for the predictions.</li>
+<li>Approach the debugging of your model by understanding it first and identifying whether the model is using healthy features or merely false correlations.</li>
+<li>Uncover potential sources of unfairness by understanding whether the model is basing predictions on sensitive features or on features that are highly correlated with them.</li>
+<li>Build user trust in your model’s decisions by generating local explanations to illustrate their outcomes.</li>
+<li>Complete a regulatory audit of an AI system to validate models and monitor the impact of model decisions on humans.</li>
+</ul>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>All of the RAI dashboard components are practical tool to help your build machine learning models that are less harmful and more trustworthy to society. It improve the prevention of treats to human rights; discriminating or excluding certain group to life opportunities; and the risk of physical or psychology injury. It also helps to build trust in your model’s decisions by generating local explanations to illustrate their outcomes. Some of the potential harms can be classified as:</p>
+<ul>
+<li><strong>Allocation</strong>, if a gender or ethnicity for example is favored over another.</li>
+<li><strong>Quality of service</strong>. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.</li>
+<li><strong>Stereotyping</strong>. Associating a given group with pre-assigned attributes.</li>
+<li><strong>Denigration</strong>. To unfairly criticize and label something or someone.</li>
+<li><strong>Over- or under- representation</strong>. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.</li>
+</ul>
+<section id="azure-rai-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="azure-rai-dashboard">Azure RAI dashboard</h3>
+<p><a href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu">Azure RAI dashboard</a> is built on open-source tools developed by the leading academic institutions and organizations including Microsoft are instrumental for data scientists and AI developers to better understand model behavior, discover and mitigate undesirable issues from AI models.</p>
+<ul>
+<li><p>Learn how to use the different components by checking out the RAI dashboard <a href="https://learn.microsoft.com/en-us/azure/machine-learning/how-to-responsible-ai-dashboard?WT.mc_id=aiml-90525-ruyakubu">docs</a></p></li>
+<li><p>Check out some RAI dashboard <a href="https://github.com/Azure/RAI-vNext-Preview/tree/main/examples/notebooks">sample notebooks</a> for debugging more responsible AI scenarios in Azure Machine Learning.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="challenge" class="level2">
+<h2 class="anchored" data-anchor-id="challenge">🚀 Challenge</h2>
+<p>To prevent statistical or data biases from being introduced in the first place, we should:</p>
+<ul>
+<li>have a diversity of backgrounds and perspectives among the people working on systems</li>
+<li>invest in datasets that reflect the diversity of our society</li>
+<li>develop better methods for detecting and correcting bias when it occurs</li>
+</ul>
+<p>Think about real-life scenarios where unfairness is evident in model-building and usage. What else should we consider?</p>
+</section>
+<section id="post-lecture-quiz" class="level2">
+<h2 class="anchored" data-anchor-id="post-lecture-quiz"><a href="https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/">Post-lecture quiz</a></h2>
+</section>
+<section id="review-self-study" class="level2">
+<h2 class="anchored" data-anchor-id="review-self-study">Review &amp; Self Study</h2>
+<p>In this lesson, you have learned some of the practical tools of incorporating responsible AI in machine learning.</p>
+<p>Watch this workshop to dive deeper into the topics:</p>
+<ul>
+<li>Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice by Besmira Nushi and Mehrnoosh Sameki</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.youtube.com/watch?v=f1oaDNl3djg" title="Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice"><img src="https://img.youtube.com/vi/f1oaDNl3djg/0.jpg" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice</figcaption><p></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>🎥 Click the image above for a video: Responsible AI Dashboard: One-stop shop for operationalizing RAI in practice by Besmira Nushi and Mehrnoosh Sameki</p>
+</blockquote>
+<p>Reference the following materials to learn more about responsible AI and how to build more trustworthy models:</p>
+<ul>
+<li><p>Microsoft’s RAI dashboard tools for debugging ML models: <a href="https://aka.ms/rai-dashboard">Responsible AI tools resources</a></p></li>
+<li><p>Explore the Responsible AI toolkit: <a href="https://github.com/microsoft/responsible-ai-toolbox">Github</a></p></li>
+<li><p>Microsoft’s RAI resource center: <a href="https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4">Responsible AI Resources – Microsoft AI</a></p></li>
+<li><p>Microsoft’s FATE research group: <a href="https://www.microsoft.com/research/theme/fate/">FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research</a></p></li>
+</ul>
+</section>
+<section id="assignment" class="level2">
+<h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
+<p><a href="assignment.md">Explore RAI dashboard</a></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
