@@ -187,7 +187,7 @@ Hmm, that's not great. Can you tell me more about old hounddogs?
 It was nice talking to you, goodbye!
 ```
 
-One possible solution to the task is [here](solution/bot.py)
+One possible solution to the task is [here](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/2-Tasks/solution/bot.py)
 
 ✅ Knowledge Check
 
