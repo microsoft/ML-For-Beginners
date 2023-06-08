@@ -193,7 +193,7 @@ Perfect, we have just partitioned our data set into a set of 3 groups. So, how g
 
 ### **Silhouette score**
 
-[Silhouette analysis](https://en.wikipedia.org/wiki/Silhouette_(clustering)) can be used to study the separation distance between the resulting clusters. This score varies from -1 to 1, and if the score is near 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters.[source](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam).
+[Silhouette analysis](https://en.wikipedia.org/wiki/Silhouette_(clustering)) can be used to study the separation distance between the resulting clusters. This score varies from -1 to 1, and if the score is near 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters. [(Source)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam).
 
 The average silhouette method computes the average silhouette of observations for different values of *k*. A high average silhouette score indicates a good clustering.
 
@@ -326,7 +326,7 @@ In Scikit-learn's documentation, you can see that a model like this one, with cl
 
 ## **Variance**
 
-Variance is defined as "the average of the squared differences from the Mean" [source](https://www.mathsisfun.com/data/standard-deviation.html). In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean.
+Variance is defined as "the average of the squared differences from the Mean" [(Source)](https://www.mathsisfun.com/data/standard-deviation.html). In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean.
 
 ✅ This is a great moment to think about all the ways you could correct this issue. Tweak the data a bit more? Use different columns? Use a different algorithm? Hint: Try [scaling your data](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) to normalize it and test other columns.
 
