@@ -316,4 +316,5 @@ Overall, it is important to remember that the success and quality of the learnin
 
 ## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
 
-## Assignment [A More Realistic World](assignment.md)
+## Assignment 
+[A More Realistic World](assignment.md)
