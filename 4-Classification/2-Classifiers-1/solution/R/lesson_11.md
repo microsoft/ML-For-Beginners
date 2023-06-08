@@ -1,15 +1,3 @@
----
-title: 'Build a classification model: Delicious Asian and Indian Cuisines'
-output:
-  html_document:
-    df_print: paged
-    theme: flatly
-    highlight: breezedark
-    toc: yes
-    toc_float: yes
-    code_download: yes
----
-
 ## Cuisine classifiers 1
 
 In this lesson, we'll explore a variety of classifiers to *predict a given national cuisine based on a group of ingredients.* While doing so, we'll learn more about some of the ways that algorithms can be leveraged for classification tasks.
