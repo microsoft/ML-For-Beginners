@@ -186,7 +186,7 @@ Suppose we are now at the state *s*, and we want to move to the next state *s'*.
 
 This gives the **Bellman formula** for calculating the value of the Q-Table at state *s*, given action *a*:
 
-<img src="images/bellmaneq.gif"/>
+<img src="images/bellman-equation.png"/>
 
 Here γ is the so-called **discount factor** that determines to which extent you should prefer the current reward over the future reward and vice versa.
 
