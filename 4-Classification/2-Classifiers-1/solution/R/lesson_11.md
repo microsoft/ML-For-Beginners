@@ -6,7 +6,7 @@ In this lesson, we'll explore a variety of classifiers to *predict a given natio
 
 ### **Preparation**
 
-This lesson builds up on our [previous lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/4-Classification/1-Introduction/solution/lesson_10-R.ipynb) where we:
+This lesson builds up on our [previous lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/4-Classification/1-Introduction/solution/R/lesson_10.md) where we:
 
 -   Made a gentle introduction to classifications using a dataset about all the brilliant cuisines of Asia and India 😋.
 
