@@ -331,7 +331,8 @@ You should see something like this:
 
 ## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
 
-## Assignment: [Train a Mountain Car](assignment.md)
+## Assignment
+[Train a Mountain Car](assignment.md)
 
 ## Conclusion
 
