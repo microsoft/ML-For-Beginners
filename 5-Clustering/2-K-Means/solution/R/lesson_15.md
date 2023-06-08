@@ -1,16 +1,3 @@
----
-title: 'K-Means Clustering using Tidymodels and friends'
-output:
-  html_document:
-    #css: style_7.css
-    df_print: paged
-    theme: flatly
-    highlight: breezedark
-    toc: yes
-    toc_float: yes
-    code_download: yes
----
-
 ## Explore K-Means clustering using R and Tidy data principles.
 
 ### [**Pre-lecture quiz**](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
