@@ -1,15 +1,3 @@
----
-title: 'Build a classification model: Delicious Asian and Indian Cuisines'
-output:
-  html_document:
-    df_print: paged
-    theme: flatly
-    highlight: breezedark
-    toc: yes
-    toc_float: yes
-    code_download: yes
----
-
 ## Cuisine classifiers 2
 
 In this second classification lesson, we will explore `more ways` to classify categorical data. We will also learn about the ramifications for choosing one classifier over the other.
