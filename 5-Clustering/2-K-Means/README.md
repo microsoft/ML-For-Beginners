@@ -1,9 +1,5 @@
 # K-Means clustering
 
-[![Andrew Ng explains Clustering](https://img.youtube.com/vi/hDmNF9JG3lo/0.jpg)](https://youtu.be/hDmNF9JG3lo "Andrew Ng explains Clustering")
-
-> 🎥 Click the image above for a video: Andrew Ng explains clustering
-
 ## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
 
 In this lesson, you will learn how to create clusters using Scikit-learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common clustering technique. Let's get started!
@@ -36,7 +32,7 @@ One drawback of using K-Means includes the fact that you will need to establish 
 
 ## Prerequisite
 
-You will work in this lesson's _notebook.ipynb_ file that includes the data import and preliminary cleaning you did in the last lesson.
+You will work in this lesson's [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) file that includes the data import and preliminary cleaning you did in the last lesson.
 
 ## Exercise - preparation
 
