@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to clustering: Clean, prep and visualize your data'
 output:
-  github_document:
+  html_document:
     df_print: paged
     theme: flatly
     highlight: breezedark
