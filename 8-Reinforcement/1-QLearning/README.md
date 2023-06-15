@@ -17,9 +17,9 @@ By using reinforcement learning and a simulator (the game), you can learn how to
 
 In this lesson, we will be experimenting with some code in Python. You should be able to run the Jupyter Notebook code from this lesson, either on your computer or somewhere in the cloud.
 
-You can open [the lesson notebook](notebook.ipynb) and walk through this lesson to build.
+You can open [the lesson notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) and walk through this lesson to build.
 
-> **Note:** If you are opening this code from the cloud, you also need to fetch the [`rlboard.py`](rlboard.py) file, which is used in the notebook code. Add it to the same directory as the notebook.
+> **Note:** If you are opening this code from the cloud, you also need to fetch the [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) file, which is used in the notebook code. Add it to the same directory as the notebook.
 
 ## Introduction
 
@@ -41,7 +41,7 @@ Each cell in this board can either be:
 * an **apple**, which represents something Peter would be glad to find in order to feed himself.
 * a **wolf**, which is dangerous and should be avoided.
 
-There is a separate Python module, [`rlboard.py`](rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will import the module and use it to create the sample board (code block 1):
+There is a separate Python module, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), which contains the code to work with this environment. Because this code is not important for understanding our concepts, we will import the module and use it to create the sample board (code block 1):
 
 ```python
 from rlboard import *
@@ -186,7 +186,7 @@ Suppose we are now at the state *s*, and we want to move to the next state *s'*.
 
 This gives the **Bellman formula** for calculating the value of the Q-Table at state *s*, given action *a*:
 
-<img src="images/bellmaneq.gif"/>
+<img src="images/bellman-equation.png"/>
 
 Here γ is the so-called **discount factor** that determines to which extent you should prefer the current reward over the future reward and vice versa.
 
@@ -316,4 +316,5 @@ Overall, it is important to remember that the success and quality of the learnin
 
 ## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
 
-## Assignment [A More Realistic World](assignment.md)
+## Assignment 
+[A More Realistic World](assignment.md)

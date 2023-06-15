@@ -71,9 +71,9 @@ In the next lesson, you will build an ARIMA model using [Univariate Time Series]
 
 ✅ Identify the variable that changes over time in this dataset
 
-## Time Series [data characteristics](https://online.stat.psu.edu/stat510/lesson/1/1.1) to consider
+## Time Series data characteristics to consider
 
-When looking at time series data, you might notice that it has certain characteristics that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques.
+When looking at time series data, you might notice that it has [certain characteristics](https://online.stat.psu.edu/stat510/lesson/1/1.1) that you need to take into account and mitigate to better understand its patterns. If you consider time series data as potentially providing a 'signal' that you want to analyze, these characteristics can be thought of as 'noise'. You often will need to reduce this 'noise' by offsetting some of these characteristics using some statistical techniques.
 
 Here are some concepts you should know to be able to work with time series:
 

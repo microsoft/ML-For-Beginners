@@ -34,7 +34,7 @@ Bottom line: ARIMA is used to make a model fit the special form of time series d
 
 ## Exercise - build an ARIMA model
 
-Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.
+Open the [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) folder in this lesson and find the [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) file.
 
 1. Run the notebook to load the `statsmodels` Python library; you will need this for ARIMA models.
 

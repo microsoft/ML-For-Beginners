@@ -1,9 +1,5 @@
 # K-Means clustering
 
-[![Andrew Ng explains Clustering](https://img.youtube.com/vi/hDmNF9JG3lo/0.jpg)](https://youtu.be/hDmNF9JG3lo "Andrew Ng explains Clustering")
-
-> 🎥 Click the image above for a video: Andrew Ng explains clustering
-
 ## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
 
 In this lesson, you will learn how to create clusters using Scikit-learn and the Nigerian music dataset you imported earlier. We will cover the basics of K-Means for Clustering. Keep in mind that, as you learned in the earlier lesson, there are many ways to work with clusters and the method you use depends on your data. We will try K-Means as it's the most common clustering technique. Let's get started!
@@ -36,7 +32,7 @@ One drawback of using K-Means includes the fact that you will need to establish 
 
 ## Prerequisite
 
-You will work in this lesson's _notebook.ipynb_ file that includes the data import and preliminary cleaning you did in the last lesson.
+You will work in this lesson's [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) file that includes the data import and preliminary cleaning you did in the last lesson.
 
 ## Exercise - preparation
 
@@ -134,7 +130,7 @@ You see an array printed out with predicted clusters (0, 1,or 2) for each row of
 
 ## Silhouette score
 
-Look for a silhouette score closer to 1. This score varies from -1 to 1, and if the score is 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters.[source](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam). 
+Look for a silhouette score closer to 1. This score varies from -1 to 1, and if the score is 1, the cluster is dense and well-separated from other clusters. A value near 0 represents overlapping clusters with samples very close to the decision boundary of the neighboring clusters. [(Source)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
 
 Our score is **.53**, so right in the middle. This indicates that our data is not particularly well-suited to this type of clustering, but let's continue.
 
@@ -157,11 +153,11 @@ Our score is **.53**, so right in the middle. This indicates that our data is no
 
     > 🎓 range: These are the iterations of the clustering process
 
-    > 🎓 random_state: "Determines random number generation for centroid initialization."[source](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+    > 🎓 random_state: "Determines random number generation for centroid initialization." [Source](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓 WCSS: "within-cluster sums of squares" measures the squared average distance of all the points within a cluster to the cluster centroid.[source](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce). 
+    > 🎓 WCSS: "within-cluster sums of squares" measures the squared average distance of all the points within a cluster to the cluster centroid. [Source](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce). 
 
-    > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are."[source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
+    > 🎓 Inertia: K-Means algorithms attempt to choose centroids to minimize 'inertia', "a measure of how internally coherent clusters are." [Source](https://scikit-learn.org/stable/modules/clustering.html). The value is appended to the wcss variable on each iteration.
 
     > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) you can use the 'k-means++' optimization, which "initializes the centroids to be (generally) distant from each other, leading to probably better results than random initialization.
 
@@ -224,7 +220,7 @@ Previously, you surmised that, because you have targeted 3 song genres, you shou
 
 ## Variance
 
-Variance is defined as "the average of the squared differences from the Mean" [source](https://www.mathsisfun.com/data/standard-deviation.html). In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 
+Variance is defined as "the average of the squared differences from the Mean" [(Source)](https://www.mathsisfun.com/data/standard-deviation.html). In the context of this clustering problem, it refers to data that the numbers of our dataset tend to diverge a bit too much from the mean. 
 
 ✅ This is a great moment to think about all the ways you could correct this issue. Tweak the data a bit more? Use different columns? Use a different algorithm? Hint: Try [scaling your data](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) to normalize it and test other columns.
 

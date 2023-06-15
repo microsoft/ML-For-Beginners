@@ -99,7 +99,7 @@ There are over 100 clustering algorithms, and their use depends on the nature of
 
 Clustering as a technique is greatly aided by proper visualization, so let's get started by visualizing our music data. This exercise will help us decide which of the methods of clustering we should most effectively use for the nature of this data.
 
-1. Open the _notebook.ipynb_ file in this folder.
+1. Open the [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/notebook.ipynb) file in this folder.
 
 1. Import the `Seaborn` package for good data visualization.
 
@@ -107,7 +107,7 @@ Clustering as a technique is greatly aided by proper visualization, so let's get
     !pip install seaborn
     ```
 
-1. Append the song data from _nigerian-songs.csv_. Load up a dataframe with some data about the songs. Get ready to explore this data by importing the libraries and dumping out the data:
+1. Append the song data from [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Load up a dataframe with some data about the songs. Get ready to explore this data by importing the libraries and dumping out the data:
 
     ```python
     import matplotlib.pyplot as plt
