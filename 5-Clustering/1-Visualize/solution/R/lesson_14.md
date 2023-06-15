@@ -1,3 +1,15 @@
+---
+title: 'Introduction to clustering: Clean, prep and visualize your data'
+output:
+  github_document:
+    df_print: paged
+    theme: flatly
+    highlight: breezedark
+    toc: yes
+    toc_float: yes
+    code_download: yes
+---
+
 ## **Nigerian Music scraped from Spotify - an analysis**
 
 Clustering is a type of [Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning) that presumes that a dataset is unlabelled or that its inputs are not matched with predefined outputs. It uses various algorithms to sort through unlabeled data and provide groupings according to patterns it discerns in the data.
