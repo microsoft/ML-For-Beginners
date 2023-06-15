@@ -24,7 +24,7 @@ In the last lesson you learned about ARIMA, which is a very successful statistic
 
 The first few steps for data preparation are the same as that of the previous lesson on [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
 
-Open the _/working_ folder in this lesson and find the _notebook.ipynb_ file.[^2]
+Open the [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) folder in this lesson and find the [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb) file.[^2]
 
 1. Run the notebook and import the necessary libraries:  [^2]
 
