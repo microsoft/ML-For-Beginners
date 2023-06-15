@@ -9,6 +9,10 @@ In this section of the curriculum, you will be introduced to some real-world app
 ## Lesson
 
 1. [Real-World Applications for ML](1-Applications/README.md)
+2. [Model Debugging in Machine Learning using Responsible AI dashboard components](2-Debugging-ML-Models/README.md)
+
 ## Credits
 
 "Real-World Applications" was written by a team of folks, including [Jen Looper](https://twitter.com/jenlooper) and [Ornella Altunyan](https://twitter.com/ornelladotcom).
+
+"Model Debugging in Machine Learning using Responsible AI dashboard components" was written by [Ruth Yakubu](https://twitter.com/ruthieyakubu)
