@@ -14,7 +14,7 @@ output:
 
 ![Infographic by Dasani Madipalli](../../images/logistic-linear.png){width="600"}
 
-#### ** [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)**
+#### **[Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)**
 
 ####  Introduction
 
@@ -56,7 +56,7 @@ suppressWarnings(if (!require("pacman"))install.packages("pacman"))
 pacman::p_load(tidyverse, tidymodels, janitor, ggbeeswarm)
 ```
 
-## ** Define the question**
+## **Define the question**
 
 For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
 
@@ -148,7 +148,7 @@ pumpkins_select %>%
 
 The goal of data exploration is to try to understand the `relationships` between its attributes; in particular, any apparent correlation between the *features* and the *label* your model will try to predict. One way of doing this is by using data visualization.
 
-Given our the data types of our columns, we can `encode` them and be on our way to making some visualizations. This simply involves `translating` a column with `categorical values` for example our columns of type *char*, into one or more `numeric columns` that take the place of the original. - Something we did in our [last lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/3-Linear/solution/lesson_3-R.ipynb).
+Given our the data types of our columns, we can `encode` them and be on our way to making some visualizations. This simply involves `translating` a column with `categorical values` for example our columns of type *char*, into one or more `numeric columns` that take the place of the original. - Something we did in our [last lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/3-Linear/solution/lesson_3.html).
 
 Tidymodels provides yet another neat package: [recipes](https://recipes.tidymodels.org/)- a package for preprocessing data. We'll define a `recipe` that specifies that all predictor columns should be encoded into a set of integers , `prep` it to estimates the required quantities and statistics needed by any operations and finally `bake` to apply the computations to new data.
 
