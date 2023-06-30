@@ -356,3 +356,8 @@ MigrationBackup/
 # Mac-specific
 .DS_Store
 .Rproj.user
+
+.Rdata
+.Rhistory
+.Rproj.user/
+
