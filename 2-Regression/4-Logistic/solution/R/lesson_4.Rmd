@@ -58,9 +58,9 @@ pacman::p_load(tidyverse, tidymodels, janitor, ggbeeswarm)
 
 ## **Define the question**
 
-For our purposes, we will express this as a binary: 'Orange' or 'Not Orange'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
+For our purposes, we will express this as a binary: 'White' or 'Not White'. There is also a 'striped' category in our dataset but there are few instances of it, so we will not use it. It disappears once we remove null values from the dataset, anyway.
 
-> 🎃 Fun fact, we sometimes call white pumpkins 'ghost' pumpkins. They aren't very easy to carve, so they aren't as popular as the orange ones but they are cool looking!
+> 🎃 Fun fact, we sometimes call white pumpkins 'ghost' pumpkins. They aren't very easy to carve, so they aren't as popular as the orange ones but they are cool looking! So we could also reformulate our question as: 'Ghost' or 'Not Ghost'. 👻
 
 ## **About logistic regression**
 
@@ -319,7 +319,7 @@ wf_fit
 
 The model print out shows the coefficients learned during training.
 
-Now we've trained the model using the training data, we can make predictions on the test data using [parsnip::predict()](https://parsnip.tidymodels.org/reference/predict.model_fit.html). Let's start by using the model to predict labels for our test set and the probabilities for each label. When the probability is more than 0.5, the predict class is `ORANGE` else `WHITE`.
+Now we've trained the model using the training data, we can make predictions on the test data using [parsnip::predict()](https://parsnip.tidymodels.org/reference/predict.model_fit.html). Let's start by using the model to predict labels for our test set and the probabilities for each label. When the probability is more than 0.5, the predict class is `WHITE` else `ORANGE`.
 
 ```{r test_pred}
 # Make predictions for color and corresponding probabilities
@@ -350,15 +350,15 @@ conf_mat(data = results, truth = color, estimate = .pred_class)
 
 ```
 
-Let's interpret the confusion matrix. Our model is asked to classify pumpkins between two binary categories, category `orange` and category `not-orange`
+Let's interpret the confusion matrix. Our model is asked to classify pumpkins between two binary categories, category `white` and category `not-white`
 
--   If your model predicts a pumpkin as orange and it belongs to category 'orange' in reality we call it a `true positive`, shown by the top left number.
+-   If your model predicts a pumpkin as white and it belongs to category 'white' in reality we call it a `true positive`, shown by the top left number.
 
--   If your model predicts a pumpkin as not orange and it belongs to category 'orange' in reality we call it a `false negative`, shown by the bottom left number.
+-   If your model predicts a pumpkin as not white and it belongs to category 'white' in reality we call it a `false negative`, shown by the bottom left number.
 
--   If your model predicts a pumpkin as orange and it belongs to category 'not-orange' in reality we call it a `false positive`, shown by the top right number.
+-   If your model predicts a pumpkin as white and it belongs to category 'not-white' in reality we call it a `false positive`, shown by the top right number.
 
--   If your model predicts a pumpkin as not orange and it belongs to category 'not-orange' in reality we call it a `true negative`, shown by the bottom right number.
+-   If your model predicts a pumpkin as not white and it belongs to category 'not-white' in reality we call it a `true negative`, shown by the bottom right number.
 
 | Truth |
 |:-----:|
@@ -366,9 +366,9 @@ Let's interpret the confusion matrix. Our model is asked to classify pumpkins be
 
 |               |        |       |
 |---------------|--------|-------|
-| **Predicted** | ORANGE | WHITE |
-| ORANGE        | TP     | FP    |
-| WHITE         | FN     | TN    |
+| **Predicted** | WHITE | ORANGE |
+| WHITE        | TP     | FP    |
+| ORANGE         | FN     | TN    |
 
 As you might have guessed it's preferable to have a larger number of true positives and true negatives and a lower number of false positives and false negatives, which implies that the model performs better.
 
