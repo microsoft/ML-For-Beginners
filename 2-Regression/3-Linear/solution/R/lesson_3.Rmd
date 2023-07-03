@@ -84,8 +84,8 @@ We do so since we want to model a line that has the least cumulative distance fr
 >
 > In other words, and referring to our pumpkin data's original question: "predict the price of a pumpkin per bushel by month", `X` would refer to the price and `Y` would refer to the month of sale.
 >
-> ![Infographic by Jen Looper](../../images/calculation.png)
->
+![Infographic by Jen Looper](../../images/calculation.png)
+
 > Calculate the value of Y. If you're paying around \$4, it must be April!
 >
 > The math that calculates the line must demonstrate the slope of the line, which is also dependent on the intercept, or where `Y` is situated when `X = 0`.
@@ -114,7 +114,7 @@ Load up required libraries and dataset. Convert the data to a data frame contain
 
 -   Convert the price to reflect the pricing by bushel quantity
 
-> We covered these steps in the [previous lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/2-Data/solution/lesson_2-R.ipynb).
+> We covered these steps in the [previous lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/2-Data/solution/lesson_2.html).
 
 ```{r load_tidy_verse_models, message=F, warning=F}
 # Load the core Tidyverse packages
@@ -285,7 +285,7 @@ That's an awesome thought! You see, once your recipe is defined, you can estimat
 
 For that, you'll need two more verbs: `prep()` and `bake()` and as always, our little R friends by [`Allison Horst`](https://github.com/allisonhorst/stats-illustrations) help you in understanding this better!
 
-![Artwork by \@allison_horst](../images/recipes.png){width="550"}
+![Artwork by \@allison_horst](../../images/recipes.png){width="550"}
 
 [`prep()`](https://recipes.tidymodels.org/reference/prep.html): estimates the required parameters from a training set that can be later applied to other data sets. For instance, for a given predictor column, what observation will be assigned integer 0 or 1 or 2 etc
 
