@@ -393,7 +393,7 @@ Let's now save a copy of this data for use in future lessons:
 
 ```{r save_preproc_data}
 # Save preprocessed data
-write_csv(preprocessed_df, "../../data/cleaned_cuisines_R.csv")
+write_csv(preprocessed_df, "../../../data/cleaned_cuisines_R.csv")
 
 ```
 
