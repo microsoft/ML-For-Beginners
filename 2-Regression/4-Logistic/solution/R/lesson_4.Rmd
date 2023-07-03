@@ -220,22 +220,6 @@ baked_pumpkins %>%
   theme(legend.position = "none")
 ```
 
-#### **Violin plot**
-
-A 'violin' type plot is useful as you can easily visualize the way that data in the two categories is distributed. [`Violin plots`](https://en.wikipedia.org/wiki/Violin_plot) are similar to box plots, except that they also show the probability density of the data at different values. Violin plots don't work so well with smaller datasets as the distribution is displayed more 'smoothly'.
-
-```{r violin_plot}
-# Create a violin plot of color and item_size
-baked_pumpkins %>%
-  mutate(color = factor(color)) %>% 
-  ggplot(mapping = aes(x = color, y = item_size, fill = color)) +
-  geom_violin() +
-  geom_boxplot(color = "black", fill = "white", width = 0.02) +
-  scale_fill_brewer(palette = "Dark2", direction = -1) +
-  theme(legend.position = "none")
-
-```
-
 Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore logistic regression to determine a given pumpkin's likely color.
 
 ## 3. Build your model
