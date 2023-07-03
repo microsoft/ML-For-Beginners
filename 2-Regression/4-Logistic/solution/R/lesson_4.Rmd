@@ -12,7 +12,7 @@ output:
 
 ## Build a logistic regression model - Lesson 4
 
-![Infographic by Dasani Madipalli](../../images/logistic-linear.png){width="600"}
+![Logistic vs. linear regression infographic](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/4-Logistic/images/linear-vs-logistic.png)
 
 #### **[Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)**
 
@@ -80,7 +80,7 @@ There are other types of logistic regression, including multinomial and ordinal:
 
 -   **Ordinal**, which involves ordered categories, useful if we wanted to order our outcomes logically, like our pumpkins that are ordered by a finite number of sizes (mini,sm,med,lg,xl,xxl).
 
-![Infographic by Dasani Madipalli](../../images/multinomial-ordinal.png){width="600"}
+![Multinomial vs ordinal regression](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
 \
 **It's still linear**
