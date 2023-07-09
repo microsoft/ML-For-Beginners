@@ -9,8 +9,11 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-</head>
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
+          onerror="this.href = this.href.replace('cdn', 'fastly')"
+  ></head>
 
 <body>
   <div id="app"></div>
@@ -21,8 +24,13 @@
       relativePath: true,
       auto2top: true,
     }
+    function replaceResources(target) {
+      const newScript = document.createElement("script");
+      newScript.src = target.src.replace("cdn", "fastly")
+      document.body.appendChild(newScript)
+    }
   </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js" onerror="replaceResources(this)" ></script>
 </body>
 
 </html>
