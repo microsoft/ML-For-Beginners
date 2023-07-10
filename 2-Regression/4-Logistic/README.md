@@ -35,7 +35,7 @@ For our purposes, we will express this as a binary: 'White' or 'Not White'. Ther
 
 Logistic regression differs from linear regression, which you learned about previously, in a few important ways.
 
-[![ML for beginners - Logistic Regression for classification of data](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML for beginners - Logistic Regression for classification of data")
+[![ML for beginners - Understanding Logistic Regression for Machine Learning Classification](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "ML for beginners - Understanding Logistic Regression for Machine Learning Classification")
 
 > 🎥 Click the image above for a short video overview of logistic regression.
 
