@@ -258,9 +258,12 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
 1. Do a quick test to see if the data correlates in any particularly strong way:
 
     ```python
-    corrmat = df.corr()
-    f, ax = plt.subplots(figsize=(12, 9))
-    sns.heatmap(corrmat, vmax=.8, square=True)
+   # Create a DF of only numeric columns
+   df_num = df.select_dtypes(include=['int64', 'float64'])
+   
+   corrmat = df_num.corr()
+   f, ax = plt.subplots(figsize=(12, 9))
+   sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
     ![correlations](images/correlation.png)
