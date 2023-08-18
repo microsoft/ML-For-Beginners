@@ -113,9 +113,26 @@ For this task we will import some libraries:
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) is a useful library for handling numeric data in Python.
 - **sklearn**. This is the [Scikit-learn](https://scikit-learn.org/stable/user_guide.html) library.
 
+1. Install the libraries using below command
+
+```
+pip install matplotlib # To install matplotlib
+pip install numpy # to install numpy
+```
+**Please note, sklearn has been already installed as part of previous step (Install Scikit-learn).**
+
+2. Setup the venv
+Please ensure you are selecting the virtual environment created where the sklearn was installed. For example, if you followed the instructions from https://scikit-learn.org/stable/install.html the venv name specified is `sklearn-venv`.
+
+![Alt text](images/install_scikit_venv.png)
+
+So, select sklearn-venv as the environment while running the following code in vscode (refer the screenshot that follows).
+
+![Alt text](images/select_sklearn_venv.png)
+
 Import some libraries to help with your tasks.
 
-1. Add imports by typing the following code:
+3. Add imports by typing the following code:
 
    ```python
    import matplotlib.pyplot as plt
