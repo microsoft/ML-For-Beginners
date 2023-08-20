@@ -7,8 +7,8 @@ Kurikulumun bu hissəsində siz maşın öyrənməsi sahəsinin əsas fundamenta
   
 ### Dərslər
 
-1. [Maşın öyrənməsinə giriş](../1-intro-to-ML/README.md)
-1. [Maşın öyrənmə tarixi](../2-history-of-ML/README.md)
+1. [Maşın öyrənməsinə giriş](../1-intro-to-ML/translations/README.az.md)
+1. [Maşın öyrənmə tarixi](../2-history-of-ML/translations/README.az.md)
 1. [Maşın öyrənmə və ədalət](../3-fairness/README.md)
 1. [Maşın öyrənmə texnikaları](../4-techniques-of-ML/README.md)
 
