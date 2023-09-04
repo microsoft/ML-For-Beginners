@@ -386,7 +386,7 @@ eval_metrics(data = results, truth = color, estimate = .pred_class)
 
 #### **Visualize the ROC curve of this model**
 
-For a start, this is not a bad model; its precision, recall, F measure and accuracy are in the 80% range so ideally you could use it to predict the color of a pumpkin given a set of variables. It also seems that our model was not really able to identify the white pumpkins 🧐. Could you guess why? One reason could be because of the high prevalence of ORANGE pumpkins in our training set making our model more inclined to predict the majority class.
+For a start, this is not a bad model; its precision, recall, F measure and accuracy are in the 90% range so ideally you could use it to predict the color of a pumpkin given a set of variables. It also seems that our model was not really able to identify the white pumpkins 🧐. Could you guess why? One reason could be because of the high prevalence of ORANGE pumpkins in our training set making our model more inclined to predict the majority class.
 
 Let's do one more visualization to see the so-called [`ROC score`](https://en.wikipedia.org/wiki/Receiver_operating_characteristic):
 
@@ -409,7 +409,7 @@ results %>%
 
 ```
 
-The result is around `0.67053`. Given that the AUC ranges from 0 to 1, you want a big score, since a model that is 100% correct in its predictions will have an AUC of 1; in this case, the model is *pretty good*.
+The result is around `0.947`. Given that the AUC ranges from 0 to 1, you want a big score, since a model that is 100% correct in its predictions will have an AUC of 1; in this case, the model is *pretty good*.
 
 In future lessons on classifications, you will learn how to improve your model's scores (such as dealing with imbalanced data in this case).
 
