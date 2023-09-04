@@ -150,6 +150,12 @@ The goal of data exploration is to try to understand the `relationships` between
 
 Given our the data types of our columns, we can `encode` them and be on our way to making some visualizations. This simply involves `translating` a column with `categorical values` for example our columns of type *char*, into one or more `numeric columns` that take the place of the original. - Something we did in our [last lesson](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/3-Linear/solution/lesson_3.html).
 
+For feature encoding there are two main types of encoders:
+
+1. Ordinal encoder: it suits well for ordinal variables, which are categorical variables where their data follows a logical ordering, like the `item_size` column in our dataset. It creates a mapping such that each category is represented by a number, which is the order of the category in the column.
+
+2. Categorical encoder: it suits well for nominal variables, which are categorical variables where their data does not follow a logical ordering, like all the features different from `item_size` in our dataset. It is a one-hot encoding, which means that each category is represented by a binary column: the encoded variable is equal to 1 if the pumpkin belongs to that Variety and 0 otherwise.
+
 Tidymodels provides yet another neat package: [recipes](https://recipes.tidymodels.org/)- a package for preprocessing data. We'll define a `recipe` that specifies that all predictor columns should be encoded into a set of integers , `prep` it to estimates the required quantities and statistics needed by any operations and finally `bake` to apply the computations to new data.
 
 > Normally, recipes is usually used as a preprocessor for modelling where it defines what steps should be applied to a data set in order to get it ready for modelling. In that case it is **highly recommend** that you use a `workflow()` instead of manually estimating a recipe using prep and bake. We'll see all this in just a moment.
@@ -158,17 +164,19 @@ Tidymodels provides yet another neat package: [recipes](https://recipes.tidymode
 
 ```{r recipe_prep_bake}
 # Preprocess and extract data to allow some data analysis
-baked_pumpkins <- recipe(color ~ ., data = pumpkins_select) %>% 
-  # Encode all columns to a set of integers
-  step_integer(all_predictors(), zero_based = T) %>% 
-  prep() %>% 
+baked_pumpkins <- recipe(color ~ ., data = pumpkins_select) %>%
+  # Define ordering for item_size column
+  step_mutate(item_size = ordered(item_size, levels = c('sml', 'med', 'med-lge', 'lge', 'xlge', 'jbo', 'exjbo'))) %>%
+  # Convert factors to numbers using the order defined above (Ordinal encoding)
+  step_integer(item_size, zero_based = F) %>%
+  # Encode all other predictors using one hot encoding
+  step_dummy(all_nominal(), -all_outcomes(), one_hot = TRUE) %>%
+  prep(data = pumpkin_select) %>%
   bake(new_data = NULL)
-
 
 # Display the first few rows of preprocessed data
 baked_pumpkins %>% 
   slice_head(n = 5)
-
 ```
 
 Now let's compare the feature distributions for each label value using box plots. We'll begin by formatting the data to a *long* format to make it somewhat easier to make multiple `facets`.
@@ -255,21 +263,21 @@ pumpkins_train %>%
 
 🙌 We are now ready to train a model by fitting the training features to the training label (color).
 
-We'll begin by creating a recipe that specifies the preprocessing steps that should be carried out on our data to get it ready for modelling i.e: encoding categorical variables into a set of integers.
+We'll begin by creating a recipe that specifies the preprocessing steps that should be carried out on our data to get it ready for modelling i.e: encoding categorical variables into a set of integers. Just like `baked_pumpkins`, we create a `pumpkins_recipe` but do not `prep` and `bake` since it would be bundled into a workflow, which you will see in just a few steps from now. 
 
 There are quite a number of ways to specify a logistic regression model in Tidymodels. See `?logistic_reg()` For now, we'll specify a logistic regression model via the default `stats::glm()` engine.
 
 ```{r log_reg}
 # Create a recipe that specifies preprocessing steps for modelling
 pumpkins_recipe <- recipe(color ~ ., data = pumpkins_train) %>% 
-  step_integer(all_predictors(), zero_based = TRUE)
-
+  step_mutate(item_size = ordered(item_size, levels = c('sml', 'med', 'med-lge', 'lge', 'xlge', 'jbo', 'exjbo'))) %>%
+  step_integer(item_size, zero_based = F) %>%  
+  step_dummy(all_nominal(), -all_outcomes(), one_hot = TRUE)
 
 # Create a logistic model specification
 log_reg <- logistic_reg() %>% 
   set_engine("glm") %>% 
   set_mode("classification")
-
 
 ```
 
