@@ -8,10 +8,18 @@
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
-# Machine Learning for Beginners - A Curriculum
+# Introduction to Deep Learning for HA AI Track - A Curriculum
 
-> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
+> 🤩  Welcome to the Honors Academy AI Track Resource Hub! 🤩
 
+
+Dive into the world of Artificial Intelligence with the Eindhoven University of Technology's Honors Academy AI Track. This dedicated platform is tailored to provide our ambitious students with a comprehensive collection of materials, insights, and tools to excel in their AI endeavors. Whether you're embarking on a deep learning journey or exploring the intricacies of machine learning, our curated resources are here to guide you every step of the way.
+
+Our commitment is to ensure that you have a solid foundation to kickstart your projects. From essential basics to advanced techniques, our materials encompass a wide spectrum of AI knowledge. Moreover, our expertly crafted tips and tricks are designed to enhance your project's efficiency and effectiveness. But that's not all! Dive deeper with our additional resources that offer a broader perspective and connect theoretical knowledge with practical application.
+
+Embrace the future of AI with confidence. Let's embark on this transformative journey together, harnessing the power of technology to innovate, inspire, and impact. Welcome to the Honors Academy AI Track of the Eindhoven University of Technology.
+
+I hope this introduction sets the right tone for your webpage! Adjustments can be made as per specific requirements or preferences.
 Azure Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our forthcoming 'AI for Beginners' curriculum. Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/datascience-beginners), as well!
 
 Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
