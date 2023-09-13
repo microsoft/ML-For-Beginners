@@ -1,0 +1,1 @@
+'''An empty file in pysrc that can be imported (from sitecustomize) to find the location of pysrc'''

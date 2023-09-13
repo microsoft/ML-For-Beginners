@@ -1,0 +1,3 @@
+/pydevd_frame_evaluator.*.so
+/pydevd_frame_evaluator.*.pyd
+/pydevd_frame_evaluator.pyx

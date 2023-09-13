@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-27 11:05+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: extract_me.py:11
+msgid "school"
+msgstr "école"
+
+#: extract_me.py:12
+msgctxt "law"
+msgid "right"
+msgstr "le droit"
+
+#: extract_me.py:13
+msgctxt "good"
+msgid "right"
+msgstr "le bien"
+
+#: extract_me.py:14
+msgctxt "organization"
+msgid "club"
+msgid_plural "clubs"
+msgstr[0] "le club"
+msgstr[1] "les clubs"
+
+#: extract_me.py:15
+msgctxt "stick"
+msgid "club"
+msgid_plural "clubs"
+msgstr[0] "le bâton"
+msgstr[1] "les bâtons"

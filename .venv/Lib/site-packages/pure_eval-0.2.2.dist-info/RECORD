@@ -1,0 +1,17 @@
+pure_eval-0.2.2.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+pure_eval-0.2.2.dist-info/LICENSE.txt,sha256=pHaiyw70xBRQNApXeii5GsTH9mkTay7hSAR_q9X8QYE,1066
+pure_eval-0.2.2.dist-info/METADATA,sha256=7ymWO8RGYzKetW67FHk45j-x3cig4U3pWAk2V-w5U38,6245
+pure_eval-0.2.2.dist-info/RECORD,,
+pure_eval-0.2.2.dist-info/WHEEL,sha256=G16H4A3IeoQmnOrYV4ueZGKSjhipXx8zc8nu9FGlvMA,92
+pure_eval-0.2.2.dist-info/top_level.txt,sha256=aj24vzw3wc3XsL3Q0sHidIX6N7TaViEDr1R_R4Qbgjo,10
+pure_eval/__init__.py,sha256=epP1aW7z2hYB0FtC_x3w1AFlnhSgn4UVkRamFlVfXd4,285
+pure_eval/__pycache__/__init__.cpython-310.pyc,,
+pure_eval/__pycache__/core.cpython-310.pyc,,
+pure_eval/__pycache__/my_getattr_static.cpython-310.pyc,,
+pure_eval/__pycache__/utils.cpython-310.pyc,,
+pure_eval/__pycache__/version.cpython-310.pyc,,
+pure_eval/core.py,sha256=bxshWghVwCawdVfrNdXLqHj5UOpaPz1aAkB0T3xh_3Q,15309
+pure_eval/my_getattr_static.py,sha256=JvAM30EQcf7RQKG3fYSJT1tiwEKbkPnpqPRWXjIoV8o,4076
+pure_eval/py.typed,sha256=w3xYJo71zA7pDnF65xr6u8FL8gvJ7GdAKMJSLuv2IPU,68
+pure_eval/utils.py,sha256=eSI-lVyBzYW1D2vRQPrvhXPhQpRArhv_GoBx1AIfWHc,4415
+pure_eval/version.py,sha256=pKh2_hmFNUwG0JxbL18qxdmi_nmFpgRbR8X6IPZr08o,21

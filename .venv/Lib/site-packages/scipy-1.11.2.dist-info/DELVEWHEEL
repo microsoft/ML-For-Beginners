@@ -1,0 +1,2 @@
+Version: 1.5.0
+Arguments: ['C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-196xxil4\\cp310-win_amd64\\build\\venv\\Scripts\\delvewheel', 'repair', '--add-path', 'C:/opt/openblas/openblas_dll', '-w', 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-196xxil4\\cp310-win_amd64\\repaired_wheel', 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\cibw-run-196xxil4\\cp310-win_amd64\\built_wheel\\scipy-1.11.2-cp310-cp310-win_amd64.whl']

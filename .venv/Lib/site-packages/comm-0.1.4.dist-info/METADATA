@@ -1,0 +1,110 @@
+Metadata-Version: 2.1
+Name: comm
+Version: 0.1.4
+Summary: Jupyter Python Comm implementation, for usage in ipykernel, xeus-python etc.
+Project-URL: Homepage, https://github.com/ipython/comm
+Author: Jupyter contributors
+License: BSD 3-Clause License
+        
+        Copyright (c) 2022, Jupyter
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        3. Neither the name of the copyright holder nor the names of its
+           contributors may be used to endorse or promote products derived from
+           this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+License-File: LICENSE
+Keywords: ipykernel,jupyter,xeus-python
+Classifier: Framework :: Jupyter
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.6
+Requires-Dist: traitlets>=4
+Provides-Extra: lint
+Requires-Dist: black>=22.6.0; extra == 'lint'
+Requires-Dist: mdformat-gfm>=0.3.5; extra == 'lint'
+Requires-Dist: mdformat>0.7; extra == 'lint'
+Requires-Dist: ruff>=0.0.156; extra == 'lint'
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+Provides-Extra: typing
+Requires-Dist: mypy>=0.990; extra == 'typing'
+Description-Content-Type: text/markdown
+
+# Comm
+
+It provides a way to register a Kernel Comm implementation, as per the Jupyter kernel protocol.
+It also provides a base Comm implementation and a default CommManager that can be used.
+
+## Register a comm implementation in the kernel:
+
+### Case 1: Using the default CommManager and the BaseComm implementations
+
+We provide default implementations for usage in IPython:
+
+```python
+import comm
+
+
+class MyCustomComm(comm.base_comm.BaseComm):
+
+    def publish_msg(self, msg_type, data=None, metadata=None, buffers=None, **keys):
+        # TODO implement the logic for sending comm messages through the iopub channel
+        pass
+
+
+comm.create_comm = MyCustomComm
+```
+
+This is typically what ipykernel and JupyterLite's pyolite kernel will do.
+
+### Case 2: Providing your own comm manager creation implementation
+
+```python
+import comm
+
+comm.create_comm = custom_create_comm
+comm.get_comm_manager = custom_comm_manager_getter
+```
+
+This is typically what xeus-python does (it has its own manager implementation using xeus's C++ messaging logic).
+
+## Comm users
+
+Libraries like ipywidgets can then use the comms implementation that has been registered by the kernel:
+
+```python
+from comm import create_comm, get_comm_manager
+
+# Create a comm
+comm_manager = get_comm_manager()
+comm = create_comm()
+
+comm_manager.register_comm(comm)
+```

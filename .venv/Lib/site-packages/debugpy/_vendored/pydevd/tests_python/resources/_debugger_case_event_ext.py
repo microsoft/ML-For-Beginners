@@ -1,0 +1,1 @@
+# File empty. Output is in the extension itself

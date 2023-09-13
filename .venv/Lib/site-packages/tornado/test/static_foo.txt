@@ -1,0 +1,2 @@
+This file should not be served by StaticFileHandler even though
+its name starts with "static".

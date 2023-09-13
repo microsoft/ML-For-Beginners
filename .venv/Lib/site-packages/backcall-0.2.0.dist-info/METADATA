@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: backcall
+Version: 0.2.0
+Summary: Specifications for callback functions passed in to an API
+Home-page: https://github.com/takluyver/backcall
+License: UNKNOWN
+Author: Thomas Kluyver
+Author-email: thomas@kluyver.me.uk
+Description-Content-Type: text/x-rst
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+
+========
+backcall
+========
+
+.. image:: https://travis-ci.org/takluyver/backcall.png?branch=master
+        :target: https://travis-ci.org/takluyver/backcall
+
+Specifications for callback functions passed in to an API
+
+If your code lets other people supply callback functions, it's important to
+specify the function signature you expect, and check that functions support that.
+Adding extra parameters later would break other peoples code unless you're careful.
+
+backcall provides a way of specifying the callback signature using a prototype
+function::
+
+    from backcall import callback_prototype
+    
+    @callback_prototype
+    def handle_ping(sender, delay=None):
+        # Specify positional parameters without a default, and keyword
+        # parameters with a default.
+        pass
+    
+    def register_ping_handler(callback):
+        # This checks and adapts the function passed in:
+        callback = handle_ping.adapt(callback)
+        ping_callbacks.append(callback)
+
+If the callback takes fewer parameters than your prototype, *backcall* will wrap
+it in a function that discards the extra arguments. If the callback expects
+more arguments, a TypeError is thrown when it is registered.
+
+For more details, see the `docs <http://backcall.readthedocs.org/en/latest/>`_ or
+the `Demo notebook <http://nbviewer.ipython.org/github/takluyver/backcall/blob/master/Demo.ipynb>`_.
+
+The tests are run with `pytest <http://pytest.org/latest/>`_. In the root directory,
+execute::
+
+    py.test
+

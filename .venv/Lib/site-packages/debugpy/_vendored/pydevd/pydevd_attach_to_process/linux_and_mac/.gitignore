@@ -1,0 +1,4 @@
+/attach_x86.dylib
+/attach_x86_64.dylib
+/attach_linux_x86.o
+/attach_linux_x86_64.o

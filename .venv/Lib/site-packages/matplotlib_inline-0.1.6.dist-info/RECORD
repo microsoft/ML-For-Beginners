@@ -1,0 +1,12 @@
+matplotlib_inline-0.1.6.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+matplotlib_inline-0.1.6.dist-info/LICENSE,sha256=hSGwNsZEjg4KpyE9RxO2_e4PTGTJ8yBFD3c0a_XA6OQ,1538
+matplotlib_inline-0.1.6.dist-info/METADATA,sha256=iP6YScmis6YNZibrwn3fvVNtKp0k6ZHpMCbpfEvdGKk,2841
+matplotlib_inline-0.1.6.dist-info/RECORD,,
+matplotlib_inline-0.1.6.dist-info/WHEEL,sha256=G16H4A3IeoQmnOrYV4ueZGKSjhipXx8zc8nu9FGlvMA,92
+matplotlib_inline-0.1.6.dist-info/top_level.txt,sha256=0ViJqRtJZLIS7IfjHrUgYI6RIvWY0cfk1OjAlp40Zsw,18
+matplotlib_inline/__init__.py,sha256=ibK75tAMh_hr1mTuKaz62oBiVg1azrOT_nclTO5R73k,75
+matplotlib_inline/__pycache__/__init__.cpython-310.pyc,,
+matplotlib_inline/__pycache__/backend_inline.cpython-310.pyc,,
+matplotlib_inline/__pycache__/config.cpython-310.pyc,,
+matplotlib_inline/backend_inline.py,sha256=a4w8cmBHOSUwMJHvLJUOs6pSUlOHEsx0N8HGEAfxsxU,11311
+matplotlib_inline/config.py,sha256=Z87OCv-LStYhOwQ2LmHDNxwkAn9BLFKTbHI7XSAT1Jc,3911

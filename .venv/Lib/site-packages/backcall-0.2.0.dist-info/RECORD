@@ -1,0 +1,11 @@
+backcall-0.2.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+backcall-0.2.0.dist-info/LICENSE,sha256=1CL4zncxJzPAf1_sjMvmHVjVOXdPembzfkvFR0DYYCA,1490
+backcall-0.2.0.dist-info/METADATA,sha256=LT8_pGhJ34ZF8jWEZL3L-hB7HLBkscI6q9cdipDWwao,1966
+backcall-0.2.0.dist-info/RECORD,,
+backcall-0.2.0.dist-info/WHEEL,sha256=4vGQWMHJO3SOyvYcLHqr380W2n90FCfzkrP_YY3xjq8,99
+backcall/__init__.py,sha256=v9YUFMCNpwHpfy9M-sfVDIYaf-0McoI-AS-3j98RG0M,213
+backcall/__pycache__/__init__.cpython-310.pyc,,
+backcall/__pycache__/_signatures.cpython-310.pyc,,
+backcall/__pycache__/backcall.cpython-310.pyc,,
+backcall/_signatures.py,sha256=y3px_fTFVZMy8-mwTOvSxlOOaLUdHJmF37k7Rv9NXu0,29847
+backcall/backcall.py,sha256=DQzNXv47Zooa8YTX5BE19RuLx4jyrEsQURJTHhqhc48,3752

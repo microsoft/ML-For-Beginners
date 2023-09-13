@@ -1,0 +1,13 @@
+kiwisolver-1.4.5.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+kiwisolver-1.4.5.dist-info/LICENSE,sha256=mcfCJHgDN3ly03E8EwtAsjyyZ7oHx8X46G0vh6wv1kY,3350
+kiwisolver-1.4.5.dist-info/METADATA,sha256=hFuZxv8P3GLHitrqBsLCvNjz_0MyKaIMyOYv3LN9iVg,6514
+kiwisolver-1.4.5.dist-info/RECORD,,
+kiwisolver-1.4.5.dist-info/WHEEL,sha256=yrvteVAZzxQvtDnzdCRh4dP01sPIxYhLXIXplC7o50E,102
+kiwisolver-1.4.5.dist-info/top_level.txt,sha256=BhbDDMpSTWllCy1Ln0h8gA5zHkrOZogmbr5Ngm3vOhM,15
+kiwisolver/__init__.py,sha256=ykPl-gdEkZLCcZWxyCaRDXV6IGOfobEFBdGbihpJcQk,1055
+kiwisolver/__pycache__/__init__.cpython-310.pyc,,
+kiwisolver/__pycache__/exceptions.cpython-310.pyc,,
+kiwisolver/_cext.cp310-win_amd64.pyd,sha256=akV5iGqy7Q3fb3bikOAQcN00xs1qamKCDrmvKkdl6Z4,114688
+kiwisolver/_cext.pyi,sha256=WCtUuBQjRQeumQfx50i5jx5X0WUQA2WbjDRpI4KJoIs,8898
+kiwisolver/exceptions.py,sha256=H8MFOKtVLGx1v7jE_QxMZofdYRTOC56dL9rvC7gwh2A,1288
+kiwisolver/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0

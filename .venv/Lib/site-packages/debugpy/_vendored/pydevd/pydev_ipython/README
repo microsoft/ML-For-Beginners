@@ -1,0 +1,8 @@
+# Parts of IPython, files from: https://github.com/ipython/ipython/tree/rel-1.0.0/IPython
+# The files in this package are extracted from IPython to aid the main loop integration
+# See tests_mainloop for some manually runable tests
+
+# What we are doing is reusing the "inputhook" functionality (i.e. what in IPython
+# ends up on PyOS_InputHook) and using it in the pydevconsole context.
+# Rather that having the callbacks called in PyOS_InputHook, we use a custom XML-RPC
+# Server (HookableXMLRPCServer) that calls the inputhook when idle

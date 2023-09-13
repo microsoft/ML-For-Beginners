@@ -1,0 +1,27 @@
+{
+  "libraries": [
+    "libzmq-v141-mt-4_3_4",
+    "ws2_32",
+    "iphlpapi",
+    "advapi32"
+  ],
+  "include_dirs": [
+    "D:\\a\\pyzmq\\pyzmq\\libzmq-dll",
+    "zmq\\utils"
+  ],
+  "library_dirs": [
+    "D:\\a\\pyzmq\\pyzmq\\libzmq-dll"
+  ],
+  "runtime_library_dirs": [],
+  "extra_link_args": [],
+  "define_macros": [
+    [
+      "WINVER",
+      "0x0601"
+    ],
+    [
+      "_WIN32_WINNT",
+      "0x0601"
+    ]
+  ]
+}

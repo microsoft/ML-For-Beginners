@@ -1,0 +1,13 @@
+{
+  "zmq_prefix": "D:\\a\\pyzmq\\pyzmq\\libzmq-dll",
+  "zmq_draft_api": false,
+  "libzmq_extension": false,
+  "no_libzmq_extension": true,
+  "skip_check_zmq": false,
+  "allow_legacy_libzmq": true,
+  "bundle_msvcp": null,
+  "build_ext": {},
+  "bdist_egg": {},
+  "win_ver": "0x0601",
+  "have_sys_un_h": false
+}

@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: debugpy
+Version: 1.7.0
+Summary: An implementation of the Debug Adapter Protocol for Python
+Home-page: https://aka.ms/debugpy
+Author: Microsoft Corporation
+Author-email: ptvshelp@microsoft.com
+License: MIT
+Project-URL: Source, https://github.com/microsoft/debugpy
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Debuggers
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+debugpy is an implementation of the Debug Adapter Protocol for Python.
+
+The source code and the issue tracker is [hosted on GitHub](https://github.com/microsoft/debugpy/).

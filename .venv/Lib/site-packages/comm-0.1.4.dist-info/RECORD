@@ -1,0 +1,9 @@
+comm-0.1.4.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+comm-0.1.4.dist-info/METADATA,sha256=WvIprDH0ccNG9BK2t8TYPINkfzwfaF6gRQ2d0ebE25Y,4221
+comm-0.1.4.dist-info/RECORD,,
+comm-0.1.4.dist-info/WHEEL,sha256=9QBuHhg6FNW7lppboF2vKVbCGTVzsFykgRQjjlajrhA,87
+comm-0.1.4.dist-info/licenses/LICENSE,sha256=l6fgoUK3wdzSZGGyD8E5gJiLREm3RG7XdpKIJv0sqcQ,1515
+comm/__init__.py,sha256=ACOCWUmSxL4XjXxkipw2m7KzkDOE_nSIT3IxhT_iK_Q,1190
+comm/__pycache__/__init__.cpython-310.pyc,,
+comm/__pycache__/base_comm.cpython-310.pyc,,
+comm/base_comm.py,sha256=puFbcJ7-H_oh-xJhOpcrdl75bhNJFIYA9fRs1s7td8w,8420

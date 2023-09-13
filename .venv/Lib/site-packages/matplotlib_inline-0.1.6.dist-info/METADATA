@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: matplotlib-inline
+Version: 0.1.6
+Summary: Inline Matplotlib backend for Jupyter
+Home-page: https://github.com/ipython/matplotlib-inline
+Author: IPython Development Team
+Author-email: ipython-dev@scipy.org
+License: BSD 3-Clause
+Keywords: python,ipython,matplotlib,jupyter
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: traitlets
+
+# Matplotlib Inline Back-end for IPython and Jupyter
+
+This package provides support for matplotlib to display figures directly inline in the Jupyter notebook and related clients, as shown below.
+
+## Installation
+
+With conda:
+
+```bash
+conda install -c conda-forge matplotlib-inline
+```
+
+With pip:
+
+```bash
+pip install matplotlib-inline
+```
+
+## Usage
+
+Note that in current versions of JupyterLab and Jupyter Notebook, the explicit use of the `%matplotlib inline` directive is not needed anymore, though other third-party clients may still require it.
+
+This will produce a figure immediately below:
+
+```python
+%matplotlib inline
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 3*np.pi, 500)
+plt.plot(x, np.sin(x**2))
+plt.title('A simple chirp');
+```
+
+## License
+
+Licensed under the terms of the BSD 3-Clause License, by the IPython Development Team (see `LICENSE` file).
+
+BSD 3-Clause License
+
+Copyright (c) 2019-2022, IPython Development Team.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

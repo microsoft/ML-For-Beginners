@@ -1,0 +1,325 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Custom Debug Adapter Protocol",
+	"description": "Extension to the DAP to support additional features.",
+	"type": "object",
+
+
+	"definitions": {
+
+		"SetDebuggerPropertyRequest": {
+			"allOf": [ { "$ref": "#/definitions/Request" }, {
+				"type": "object",
+				"description": "The request can be used to enable or disable debugger features.",
+				"properties": {
+					"command": {
+						"type": "string",
+						"enum": [ "setDebuggerProperty" ]
+					},
+					"arguments": {
+						"$ref": "#/definitions/SetDebuggerPropertyArguments"
+					}
+				},
+				"required": [ "command", "arguments" ]
+			}]
+		},
+		"SetDebuggerPropertyArguments": {
+			"type": "object",
+			"description": "Arguments for 'setDebuggerProperty' request.",
+			"properties": {
+				"ideOS": {
+					"type": [ "string" ],
+					"description": "OS where the ide is running. Supported values [Windows, Linux]"
+				},
+				"dontTraceStartPatterns": {
+					"type": [ "array" ],
+					"description": "Patterns to match with the start of the file paths. Matching paths will be added to a list of file where trace is ignored."
+				},
+				"dontTraceEndPatterns": {
+					"type": [ "array" ],
+					"description": "Patterns to match with the end of the file paths. Matching paths will be added to a list of file where trace is ignored."
+				},
+				"skipSuspendOnBreakpointException": {
+					"type": [ "array" ],
+					"description": "List of exceptions that should be skipped when doing condition evaluations."
+				},
+				"skipPrintBreakpointException": {
+					"type": [ "array" ],
+					"description": "List of exceptions that should skip printing to stderr when doing condition evaluations."
+				},
+				"multiThreadsSingleNotification": {
+					"type": [ "boolean" ],
+					"description": "If false then a notification is generated for each thread event. If true a single event is gnenerated, and all threads follow that behavior."
+				}
+			}
+		},
+		"SetDebuggerPropertyResponse": {
+			"allOf": [ { "$ref": "#/definitions/Response" }, {
+				"type": "object",
+				"description": "Response to 'setDebuggerProperty' request. This is just an acknowledgement, so no body field is required."
+			}]
+		},
+
+		"PydevdInputRequestedEvent": {
+			"allOf": [ { "$ref": "#/definitions/Event" }, {
+				"type": "object",
+				"description": "The event indicates input was requested by debuggee.",
+				"properties": {
+					"event": {
+						"type": "string",
+						"enum": [ "pydevdInputRequested" ]
+					}
+				},
+				"required": [ "event" ]
+			}]
+		},
+
+		"SetPydevdSourceMapRequest": {
+			"allOf": [ { "$ref": "#/definitions/Request" }, {
+				"type": "object",
+				"description": [
+					"Sets multiple PydevdSourceMap for a single source and clears all previous PydevdSourceMap in that source.",
+					"i.e.: Maps paths and lines in a 1:N mapping (use case: map a single file in the IDE to multiple IPython cells).",
+					"To clear all PydevdSourceMap for a source, specify an empty array.",
+					"Interaction with breakpoints: When a new mapping is sent, breakpoints that match the source (or previously matched a source) are reapplied.",
+					"Interaction with launch pathMapping: both mappings are independent. This mapping is applied after the launch pathMapping."
+				],
+				"properties": {
+					"command": {
+						"type": "string",
+						"enum": [ "setPydevdSourceMap" ]
+					},
+					"arguments": {
+						"$ref": "#/definitions/SetPydevdSourceMapArguments"
+					}
+				},
+				"required": [ "command", "arguments"  ]
+			}]
+		},
+		"SetPydevdSourceMapArguments": {
+			"type": "object",
+			"description": "Arguments for 'setPydevdSourceMap' request.",
+			"properties": {
+				"source": {
+					"$ref": "#/definitions/Source",
+					"description": "The source location of the PydevdSourceMap; 'source.path' must be specified (e.g.: for an ipython notebook this could be something as /home/notebook/note.py)."
+				},
+				"pydevdSourceMaps": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/PydevdSourceMap"
+					},
+					"description": "The PydevdSourceMaps to be set to the given source (provide an empty array to clear the source mappings for a given path)."
+				}
+			},
+			"required": [ "source", "pydevdSourceMap" ]
+		},
+		"SetPydevdSourceMapResponse": {
+			"allOf": [ { "$ref": "#/definitions/Response" }, {
+				"type": "object",
+				"description": "Response to 'setPydevdSourceMap' request. This is just an acknowledgement, so no body field is required."
+			}]
+		},
+
+		"PydevdSourceMap": {
+			"type": "object",
+			"description": "Information that allows mapping a local line to a remote source/line.",
+			"properties": {
+				"line": {
+					"type": "integer",
+					"description": "The local line to which the mapping should map to (e.g.: for an ipython notebook this would be the first line of the cell in the file)."
+				},
+				"endLine": {
+					"type": "integer",
+					"description": "The end line."
+				},
+				"runtimeSource": {
+					"$ref": "#/definitions/Source",
+					"description": "The path that the user has remotely -- 'source.path' must be specified (e.g.: for an ipython notebook this could be something as '<ipython-input-1-4561234>')"
+				},
+				"runtimeLine": {
+					"type": "integer",
+					"description": "The remote line to which the mapping should map to (e.g.: for an ipython notebook this would be always 1 as it'd map the start of the cell)."
+				}
+			},
+			"required": ["line", "endLine", "runtimeSource", "runtimeLine"]
+		},
+
+		"PydevdSystemInfoRequest": {
+			"allOf": [ { "$ref": "#/definitions/Request" }, {
+				"type": "object",
+				"description": "The request can be used retrieve system information, python version, etc.",
+				"properties": {
+					"command": {
+						"type": "string",
+						"enum": [ "pydevdSystemInfo" ]
+					},
+					"arguments": {
+						"$ref": "#/definitions/PydevdSystemInfoArguments"
+					}
+				},
+				"required": [ "command" ]
+			}]
+		},
+		"PydevdSystemInfoArguments": {
+			"type": "object",
+			"description": "Arguments for 'pydevdSystemInfo' request."
+		},
+		"PydevdSystemInfoResponse": {
+			"allOf": [ { "$ref": "#/definitions/Response" }, {
+				"type": "object",
+				"description": "Response to 'pydevdSystemInfo' request.",
+				"properties": {
+					"body": {
+						"type": "object",
+						"properties": {
+							"python": {
+								"$ref": "#/definitions/PydevdPythonInfo",
+								"description": "Information about the python version running in the current process."
+							},
+							"platform": {
+								"$ref": "#/definitions/PydevdPlatformInfo",
+								"description": "Information about the plarforn on which the current process is running."
+							},
+							"process": {
+								"$ref": "#/definitions/PydevdProcessInfo",
+								"description": "Information about the current process."
+							},
+							"pydevd": {
+								"$ref": "#/definitions/PydevdInfo",
+								"description": "Information about pydevd."
+							}
+						},
+						"required": [ "python", "platform", "process", "pydevd" ]
+					}
+				},
+				"required": [ "body" ]
+			}]
+		},
+
+		"PydevdPythonInfo": {
+			"type": "object",
+			"description": "This object contains python version and implementation details.",
+			"properties": {
+				"version": {
+					"type": "string",
+					"description": "Python version as a string in semver format: <major>.<minor>.<micro><releaselevel><serial>."
+				},
+				"implementation": {
+					"$ref": "#/definitions/PydevdPythonImplementationInfo",
+					"description": "Python version as a string in this format <major>.<minor>.<micro><releaselevel><serial>."
+				}
+			}
+		},
+		"PydevdPythonImplementationInfo": {
+			"type": "object",
+			"description": "This object contains python implementation details.",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Python implementation name."
+				},
+				"version": {
+					"type": "string",
+					"description": "Python version as a string in semver format: <major>.<minor>.<micro><releaselevel><serial>."
+				},
+				"description": {
+					"type": "string",
+					"description": "Optional description for this python implementation."
+				}
+			}
+		},
+		"PydevdPlatformInfo": {
+			"type": "object",
+			"description": "This object contains python version and implementation details.",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Name of the platform as returned by 'sys.platform'."
+				}
+			}
+		},
+		"PydevdProcessInfo": {
+			"type": "object",
+			"description": "This object contains python process details.",
+			"properties": {
+				"pid": {
+					"type": "integer",
+					"description": "Process ID for the current process."
+				},
+				"ppid": {
+					"type": "integer",
+					"description": "Parent Process ID for the current process."
+				},
+				"executable": {
+					"type": "string",
+					"description": "Path to the executable as returned by 'sys.executable'."
+				},
+				"bitness": {
+					"type": "integer",
+					"description": "Integer value indicating the bitness of the current process."
+				}
+			}
+		},
+		"PydevdInfo": {
+			"type": "object",
+			"description": "This object contains details on pydevd.",
+			"properties": {
+				"usingCython": {
+					"type": "boolean",
+					"description": "Specifies whether the cython native module is being used."
+				},
+				"usingFrameEval": {
+					"type": "boolean",
+					"description": "Specifies whether the frame eval native module is being used."
+				}
+			}
+		},
+		"PydevdAuthorizeRequest": {
+			"allOf": [ { "$ref": "#/definitions/Request" }, {
+				"type": "object",
+				"description": "A request to authorize the ide to start accepting commands.",
+				"properties": {
+					"command": {
+						"type": "string",
+						"enum": [ "pydevdAuthorize" ]
+					},
+					"arguments": {
+						"$ref": "#/definitions/PydevdAuthorizeArguments"
+					}
+				},
+				"required": [ "command", "arguments" ]
+			}]
+		},
+		"PydevdAuthorizeArguments": {
+			"type": "object",
+			"description": "Arguments for 'pydevdAuthorize' request.",
+			"properties": {
+				"debugServerAccessToken": {
+					"type": "string" ,
+					"description": "The access token to access the debug server."
+				}
+			},
+			"required": [ "command" ]
+		},
+		"PydevdAuthorizeResponse": {
+			"allOf": [ { "$ref": "#/definitions/Response" }, {
+				"type": "object",
+				"description": "Response to 'pydevdAuthorize' request.",
+				"properties": {
+					"body": {
+						"type": "object",
+						"properties": {
+							"clientAccessToken": {
+								"type": "string",
+								"description": "The access token to access the client (i.e.: usually the IDE)."
+							}
+						},
+						"required": [ "clientAccessToken" ]
+					}
+				},
+				"required": [ "body" ]
+			}]
+		}
+	}
+}

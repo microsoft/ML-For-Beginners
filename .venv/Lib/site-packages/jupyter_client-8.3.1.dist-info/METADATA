@@ -1,0 +1,190 @@
+Metadata-Version: 2.1
+Name: jupyter_client
+Version: 8.3.1
+Summary: Jupyter protocol implementation and client libraries
+Project-URL: Homepage, https://jupyter.org
+Project-URL: Documentation, https://jupyter-client.readthedocs.io/
+Project-URL: Source, https://github.com/jupyter/jupyter_client
+Author-email: Jupyter Development Team <jupyter@googlegroups.com>
+License: BSD 3-Clause License
+        
+        - Copyright (c) 2001-2015, IPython Development Team
+        - Copyright (c) 2015-, Jupyter Development Team
+        
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        3. Neither the name of the copyright holder nor the names of its
+           contributors may be used to endorse or promote products derived from
+           this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+License-File: LICENSE
+Keywords: Interactive,Interpreter,Shell,Web
+Classifier: Framework :: Jupyter
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Requires-Dist: importlib-metadata>=4.8.3; python_version < '3.10'
+Requires-Dist: jupyter-core!=5.0.*,>=4.12
+Requires-Dist: python-dateutil>=2.8.2
+Requires-Dist: pyzmq>=23.0
+Requires-Dist: tornado>=6.2
+Requires-Dist: traitlets>=5.3
+Provides-Extra: docs
+Requires-Dist: ipykernel; extra == 'docs'
+Requires-Dist: myst-parser; extra == 'docs'
+Requires-Dist: pydata-sphinx-theme; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints; extra == 'docs'
+Requires-Dist: sphinx>=4; extra == 'docs'
+Requires-Dist: sphinxcontrib-github-alt; extra == 'docs'
+Requires-Dist: sphinxcontrib-spelling; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: ipykernel>=6.14; extra == 'test'
+Requires-Dist: mypy; extra == 'test'
+Requires-Dist: paramiko; sys_platform == 'win32' and extra == 'test'
+Requires-Dist: pre-commit; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: pytest-jupyter[client]>=0.4.1; extra == 'test'
+Requires-Dist: pytest-timeout; extra == 'test'
+Description-Content-Type: text/markdown
+
+# Jupyter Client
+
+[![Build Status](https://github.com/jupyter/jupyter_client/workflows/CI/badge.svg)](https://github.com/jupyter/jupyter_client/actions)
+[![Documentation Status](https://readthedocs.org/projects/jupyter-client/badge/?version=latest)](http://jupyter-client.readthedocs.io/en/latest/?badge=latest)
+
+`jupyter_client` contains the reference implementation of the [Jupyter protocol].
+It also provides client and kernel management APIs for working with kernels.
+
+It also provides the `jupyter kernelspec` entrypoint
+for installing kernelspecs for use with Jupyter frontends.
+
+## Development Setup
+
+The [Jupyter Contributor Guides](https://jupyter.readthedocs.io/en/latest/contributing/content-contributor.html) provide extensive information on contributing code or documentation to Jupyter projects. The limited instructions below for setting up a development environment are for your convenience.
+
+## Coding
+
+You'll need Python and `pip` on the search path. Clone the Jupyter Client git repository to your computer, for example in `/my/project/jupyter_client`
+
+```bash
+cd /my/projects/
+git clone git@github.com:jupyter/jupyter_client.git
+```
+
+Now create an [editable install](https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs)
+and download the dependencies of code and test suite by executing:
+
+```bash
+cd /my/projects/jupyter_client/
+pip install -e ".[test]"
+pytest
+```
+
+The last command runs the test suite to verify the setup. During development, you can pass filenames to `pytest`, and it will execute only those tests.
+
+## Documentation
+
+The documentation of Jupyter Client is generated from the files in `docs/` using Sphinx. Instructions for setting up Sphinx with a selection of optional modules are in the [Documentation Guide](https://jupyter.readthedocs.io/en/latest/contributing/docs-contributions/index.html). You'll also need the `make` command.
+For a minimal Sphinx installation to process the Jupyter Client docs, execute:
+
+```bash
+pip install ".[doc]"
+```
+
+The following commands build the documentation in HTML format and check for broken links:
+
+```bash
+cd /my/projects/jupyter_client/docs/
+make html linkcheck
+```
+
+Point your browser to the following URL to access the generated documentation:
+
+_file:///my/projects/jupyter_client/docs/\_build/html/index.html_
+
+## Contributing
+
+`jupyter-client` has adopted automatic code formatting so you shouldn't
+need to worry too much about your code style.
+As long as your code is valid,
+the pre-commit hook should take care of how it should look.
+You can invoke the pre-commit hook by hand at any time with:
+
+```bash
+pre-commit run
+```
+
+which should run any autoformatting on your code
+and tell you about any errors it couldn't fix automatically.
+You may also install [black integration](https://black.readthedocs.io/en/stable/integrations/editors.html)
+into your text editor to format code automatically.
+
+If you have already committed files before setting up the pre-commit
+hook with `pre-commit install`, you can fix everything up using
+`pre-commit run --all-files`. You need to make the fixing commit
+yourself after that.
+
+Some of the hooks only run on CI by default, but you can invoke them by
+running with the `--hook-stage manual` argument.
+
+## About the Jupyter Development Team
+
+The Jupyter Development Team is the set of all contributors to the Jupyter project.
+This includes all of the Jupyter subprojects.
+
+The core team that coordinates development on GitHub can be found here:
+https://github.com/jupyter/.
+
+## Our Copyright Policy
+
+Jupyter uses a shared copyright model. Each contributor maintains copyright
+over their contributions to Jupyter. But, it is important to note that these
+contributions are typically only changes to the repositories. Thus, the Jupyter
+source code, in its entirety is not the copyright of any single person or
+institution. Instead, it is the collective copyright of the entire Jupyter
+Development Team. If individual contributors want to maintain a record of what
+changes/contributions they have specific copyright on, they should indicate
+their copyright in the commit message of the change, when they commit the
+change to one of the Jupyter repositories.
+
+With this in mind, the following banner should be used in any source code file
+to indicate the copyright and license terms:
+
+```
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+```
+
+[jupyter protocol]: https://jupyter-client.readthedocs.io/en/latest/messaging.html

@@ -1,0 +1,315 @@
+Metadata-Version: 2.1
+Name: wcwidth
+Version: 0.2.6
+Summary: Measures the displayed width of unicode strings in a terminal
+Home-page: https://github.com/jquast/wcwidth
+Author: Jeff Quast
+Author-email: contact@jeffquast.com
+License: MIT
+Keywords: cjk,combining,console,eastasian,emoji,emulator,terminal,unicode,wcswidth,wcwidth,xterm
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Localization
+Classifier: Topic :: Software Development :: Internationalization
+Classifier: Topic :: Terminals
+License-File: LICENSE
+Requires-Dist: backports.functools-lru-cache (>=1.2.1) ; python_version < "3.2"
+
+|pypi_downloads| |codecov| |license|
+
+============
+Introduction
+============
+
+This library is mainly for CLI programs that carefully produce output for
+Terminals, or make pretend to be an emulator.
+
+**Problem Statement**: The printable length of *most* strings are equal to the
+number of cells they occupy on the screen ``1 character : 1 cell``.  However,
+there are categories of characters that *occupy 2 cells* (full-wide), and
+others that *occupy 0* cells (zero-width).
+
+**Solution**: POSIX.1-2001 and POSIX.1-2008 conforming systems provide
+`wcwidth(3)`_ and `wcswidth(3)`_ C functions of which this python module's
+functions precisely copy.  *These functions return the number of cells a
+unicode string is expected to occupy.*
+
+Installation
+------------
+
+The stable version of this package is maintained on pypi, install using pip::
+
+    pip install wcwidth
+
+Example
+-------
+
+**Problem**: given the following phrase (Japanese),
+
+   >>>  text = u'コンニチハ'
+
+Python **incorrectly** uses the *string length* of 5 codepoints rather than the
+*printible length* of 10 cells, so that when using the `rjust` function, the
+output length is wrong::
+
+    >>> print(len('コンニチハ'))
+    5
+
+    >>> print('コンニチハ'.rjust(20, '_'))
+    _______________コンニチハ
+
+By defining our own "rjust" function that uses wcwidth, we can correct this::
+
+   >>> def wc_rjust(text, length, padding=' '):
+   ...    from wcwidth import wcswidth
+   ...    return padding * max(0, (length - wcswidth(text))) + text
+   ...
+
+Our **Solution** uses wcswidth to determine the string length correctly::
+
+   >>> from wcwidth import wcswidth
+   >>> print(wcswidth('コンニチハ'))
+   10
+
+   >>> print(wc_rjust('コンニチハ', 20, '_'))
+   __________コンニチハ
+
+
+Choosing a Version
+------------------
+
+Export an environment variable, ``UNICODE_VERSION``. This should be done by
+*terminal emulators* or those developers experimenting with authoring one of
+their own, from shell::
+
+   $ export UNICODE_VERSION=13.0
+
+If unspecified, the latest version is used. If your Terminal Emulator does not
+export this variable, you can use the `jquast/ucs-detect`_ utility to
+automatically detect and export it to your shell.
+
+wcwidth, wcswidth
+-----------------
+Use function ``wcwidth()`` to determine the length of a *single unicode
+character*, and ``wcswidth()`` to determine the length of many, a *string
+of unicode characters*.
+
+Briefly, return values of function ``wcwidth()`` are:
+
+``-1``
+  Indeterminate (not printable).
+
+``0``
+  Does not advance the cursor, such as NULL or Combining.
+
+``2``
+  Characters of category East Asian Wide (W) or East Asian
+  Full-width (F) which are displayed using two terminal cells.
+
+``1``
+  All others.
+
+Function ``wcswidth()`` simply returns the sum of all values for each character
+along a string, or ``-1`` when it occurs anywhere along a string.
+
+Full API Documentation at http://wcwidth.readthedocs.org
+
+==========
+Developing
+==========
+
+Install wcwidth in editable mode::
+
+   pip install -e.
+
+Execute unit tests using tox_::
+
+   tox
+
+Regenerate python code tables from latest Unicode Specification data files::
+
+   tox -e update
+
+Supplementary tools for browsing and testing terminals for wide unicode
+characters are found in the `bin/`_ of this project's source code.  Just ensure
+to first ``pip install -erequirements-develop.txt`` from this projects main
+folder. For example, an interactive browser for testing::
+
+  python ./bin/wcwidth-browser.py
+
+Uses
+----
+
+This library is used in:
+
+- `jquast/blessed`_: a thin, practical wrapper around terminal capabilities in
+  Python.
+
+- `jonathanslenders/python-prompt-toolkit`_: a Library for building powerful
+  interactive command lines in Python.
+
+- `dbcli/pgcli`_: Postgres CLI with autocompletion and syntax highlighting.
+
+- `thomasballinger/curtsies`_: a Curses-like terminal wrapper with a display
+  based on compositing 2d arrays of text.
+
+- `selectel/pyte`_: Simple VTXXX-compatible linux terminal emulator.
+
+- `astanin/python-tabulate`_: Pretty-print tabular data in Python, a library
+  and a command-line utility.
+
+- `LuminosoInsight/python-ftfy`_: Fixes mojibake and other glitches in Unicode
+  text.
+
+- `nbedos/termtosvg`_: Terminal recorder that renders sessions as SVG
+  animations.
+
+- `peterbrittain/asciimatics`_: Package to help people create full-screen text
+  UIs.
+
+Other Languages
+---------------
+
+- `timoxley/wcwidth`_: JavaScript
+- `janlelis/unicode-display_width`_: Ruby
+- `alecrabbit/php-wcwidth`_: PHP
+- `Text::CharWidth`_: Perl
+- `bluebear94/Terminal-WCWidth`: Perl 6
+- `mattn/go-runewidth`_: Go
+- `emugel/wcwidth`_: Haxe
+- `aperezdc/lua-wcwidth`: Lua
+- `joachimschmidt557/zig-wcwidth`: Zig
+- `fumiyas/wcwidth-cjk`: `LD_PRELOAD` override
+- `joshuarubin/wcwidth9`: Unicode version 9 in C
+
+History
+-------
+
+0.2.6 *2023-01-14*
+  * **Updated** tables to include Unicode Specification 14.0.0 and 15.0.0.
+  * **Changed** developer tools to use pip-compile, and to use jinja2 templates
+    for code generation in `bin/update-tables.py` to prepare for possible
+    compiler optimization release.
+
+0.2.1 .. 0.2.5 *2020-06-23*
+  * **Repository** changes to update tests and packaging issues, and
+    begin tagging repository with matching release versions.
+
+0.2.0 *2020-06-01*
+  * **Enhancement**: Unicode version may be selected by exporting the
+    Environment variable ``UNICODE_VERSION``, such as ``13.0``, or ``6.3.0``.
+    See the `jquast/ucs-detect`_ CLI utility for automatic detection.
+  * **Enhancement**:
+    API Documentation is published to readthedocs.org.
+  * **Updated** tables for *all* Unicode Specifications with files
+    published in a programmatically consumable format, versions 4.1.0
+    through 13.0
+
+0.1.9 *2020-03-22*
+  * **Performance** optimization by `Avram Lubkin`_, `PR #35`_.
+  * **Updated** tables to Unicode Specification 13.0.0.
+
+0.1.8 *2020-01-01*
+  * **Updated** tables to Unicode Specification 12.0.0. (`PR #30`_).
+
+0.1.7 *2016-07-01*
+  * **Updated** tables to Unicode Specification 9.0.0. (`PR #18`_).
+
+0.1.6 *2016-01-08 Production/Stable*
+  * ``LICENSE`` file now included with distribution.
+
+0.1.5 *2015-09-13 Alpha*
+  * **Bugfix**:
+    Resolution of "combining_ character width" issue, most especially
+    those that previously returned -1 now often (correctly) return 0.
+    resolved by `Philip Craig`_ via `PR #11`_.
+  * **Deprecated**:
+    The module path ``wcwidth.table_comb`` is no longer available,
+    it has been superseded by module path ``wcwidth.table_zero``.
+
+0.1.4 *2014-11-20 Pre-Alpha*
+  * **Feature**: ``wcswidth()`` now determines printable length
+    for (most) combining_ characters.  The developer's tool
+    `bin/wcwidth-browser.py`_ is improved to display combining_
+    characters when provided the ``--combining`` option
+    (`Thomas Ballinger`_ and `Leta Montopoli`_ `PR #5`_).
+  * **Feature**: added static analysis (prospector_) to testing
+    framework.
+
+0.1.3 *2014-10-29 Pre-Alpha*
+  * **Bugfix**: 2nd parameter of wcswidth was not honored.
+    (`Thomas Ballinger`_, `PR #4`_).
+
+0.1.2 *2014-10-28 Pre-Alpha*
+  * **Updated** tables to Unicode Specification 7.0.0.
+    (`Thomas Ballinger`_, `PR #3`_).
+
+0.1.1 *2014-05-14 Pre-Alpha*
+  * Initial release to pypi, Based on Unicode Specification 6.3.0
+
+This code was originally derived directly from C code of the same name,
+whose latest version is available at
+http://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c::
+
+ * Markus Kuhn -- 2007-05-26 (Unicode 5.0)
+ *
+ * Permission to use, copy, modify, and distribute this software
+ * for any purpose and without fee is hereby granted. The author
+ * disclaims all warranties with regard to this software.
+
+.. _`tox`: https://testrun.org/tox/latest/install.html
+.. _`prospector`: https://github.com/landscapeio/prospector
+.. _`combining`: https://en.wikipedia.org/wiki/Combining_character
+.. _`bin/`: https://github.com/jquast/wcwidth/tree/master/bin
+.. _`bin/wcwidth-browser.py`: https://github.com/jquast/wcwidth/tree/master/bin/wcwidth-browser.py
+.. _`Thomas Ballinger`: https://github.com/thomasballinger
+.. _`Leta Montopoli`: https://github.com/lmontopo
+.. _`Philip Craig`: https://github.com/philipc
+.. _`PR #3`: https://github.com/jquast/wcwidth/pull/3
+.. _`PR #4`: https://github.com/jquast/wcwidth/pull/4
+.. _`PR #5`: https://github.com/jquast/wcwidth/pull/5
+.. _`PR #11`: https://github.com/jquast/wcwidth/pull/11
+.. _`PR #18`: https://github.com/jquast/wcwidth/pull/18
+.. _`PR #30`: https://github.com/jquast/wcwidth/pull/30
+.. _`PR #35`: https://github.com/jquast/wcwidth/pull/35
+.. _`jquast/blessed`: https://github.com/jquast/blessed
+.. _`selectel/pyte`: https://github.com/selectel/pyte
+.. _`thomasballinger/curtsies`: https://github.com/thomasballinger/curtsies
+.. _`dbcli/pgcli`: https://github.com/dbcli/pgcli
+.. _`jonathanslenders/python-prompt-toolkit`: https://github.com/jonathanslenders/python-prompt-toolkit
+.. _`timoxley/wcwidth`: https://github.com/timoxley/wcwidth
+.. _`wcwidth(3)`:  http://man7.org/linux/man-pages/man3/wcwidth.3.html
+.. _`wcswidth(3)`: http://man7.org/linux/man-pages/man3/wcswidth.3.html
+.. _`astanin/python-tabulate`: https://github.com/astanin/python-tabulate
+.. _`janlelis/unicode-display_width`: https://github.com/janlelis/unicode-display_width
+.. _`LuminosoInsight/python-ftfy`: https://github.com/LuminosoInsight/python-ftfy
+.. _`alecrabbit/php-wcwidth`: https://github.com/alecrabbit/php-wcwidth
+.. _`Text::CharWidth`: https://metacpan.org/pod/Text::CharWidth
+.. _`bluebear94/Terminal-WCWidth`: https://github.com/bluebear94/Terminal-WCWidth
+.. _`mattn/go-runewidth`: https://github.com/mattn/go-runewidth
+.. _`emugel/wcwidth`: https://github.com/emugel/wcwidth
+.. _`jquast/ucs-detect`: https://github.com/jquast/ucs-detect
+.. _`Avram Lubkin`: https://github.com/avylove
+.. _`nbedos/termtosvg`: https://github.com/nbedos/termtosvg
+.. _`peterbrittain/asciimatics`: https://github.com/peterbrittain/asciimatics
+.. _`aperezdc/lua-wcwidth`: https://github.com/aperezdc/lua-wcwidth
+.. _`fumiyas/wcwidth-cjk`: https://github.com/fumiyas/wcwidth-cjk
+.. |pypi_downloads| image:: https://img.shields.io/pypi/dm/wcwidth.svg?logo=pypi
+    :alt: Downloads
+    :target: https://pypi.org/project/wcwidth/
+.. |codecov| image:: https://codecov.io/gh/jquast/wcwidth/branch/master/graph/badge.svg
+    :alt: codecov.io Code Coverage
+    :target: https://codecov.io/gh/jquast/wcwidth/
+.. |license| image:: https://img.shields.io/github/license/jquast/wcwidth.svg
+    :target: https://pypi.python.org/pypi/wcwidth/
+    :alt: MIT License

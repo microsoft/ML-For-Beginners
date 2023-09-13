@@ -1,0 +1,120 @@
+Metadata-Version: 2.1
+Name: asttokens
+Version: 2.4.0
+Summary: Annotate AST trees with source code positions
+Home-page: https://github.com/gristlabs/asttokens
+Author: Dmitry Sagalovskiy, Grist Labs
+Author-email: dmitry@getgrist.com
+License: Apache 2.0
+Keywords: code,ast,parse,tokenize,refactor
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: Software Development :: Interpreters
+Classifier: Topic :: Software Development :: Pre-processors
+Classifier: Environment :: Console
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+License-File: LICENSE
+Requires-Dist: six >=1.12.0
+Requires-Dist: typing ; python_version < "3.5"
+Provides-Extra: test
+Requires-Dist: astroid ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+
+ASTTokens
+=========
+
+.. image:: https://img.shields.io/pypi/v/asttokens.svg
+    :target: https://pypi.python.org/pypi/asttokens/
+.. image:: https://img.shields.io/pypi/pyversions/asttokens.svg
+    :target: https://pypi.python.org/pypi/asttokens/
+.. image:: https://github.com/gristlabs/asttokens/actions/workflows/build-and-test.yml/badge.svg
+    :target: https://github.com/gristlabs/asttokens/actions/workflows/build-and-test.yml
+.. image:: https://readthedocs.org/projects/asttokens/badge/?version=latest
+    :target: http://asttokens.readthedocs.io/en/latest/index.html
+.. image:: https://coveralls.io/repos/github/gristlabs/asttokens/badge.svg
+    :target: https://coveralls.io/github/gristlabs/asttokens
+
+.. Start of user-guide
+
+The ``asttokens`` module annotates Python abstract syntax trees (ASTs) with the positions of tokens
+and text in the source code that generated them.
+
+It makes it possible for tools that work with logical AST nodes to find the particular text that
+resulted in those nodes, for example for automated refactoring or highlighting.
+
+Installation
+------------
+asttokens is available on PyPI: https://pypi.python.org/pypi/asttokens/::
+
+    pip install asttokens
+
+The code is on GitHub: https://github.com/gristlabs/asttokens.
+
+The API Reference is here: http://asttokens.readthedocs.io/en/latest/api-index.html.
+
+Usage
+-----
+ASTTokens works with both Python2 and Python3.
+
+ASTTokens can annotate both trees built by `ast <https://docs.python.org/2/library/ast.html>`_,
+AND those built by `astroid <https://github.com/PyCQA/astroid>`_.
+
+Here's an example:
+
+.. code-block:: python
+
+    import asttokens, ast
+    source = "Robot('blue').walk(steps=10*n)"
+    atok = asttokens.ASTTokens(source, parse=True)
+
+Once the tree has been marked, nodes get ``.first_token``, ``.last_token`` attributes, and
+the ``ASTTokens`` object offers helpful methods:
+
+.. code-block:: python
+
+    attr_node = next(n for n in ast.walk(atok.tree) if isinstance(n, ast.Attribute))
+    print(atok.get_text(attr_node))
+    start, end = attr_node.last_token.startpos, attr_node.last_token.endpos
+    print(atok.text[:start] + 'RUN' + atok.text[end:])
+
+Which produces this output:
+
+.. code-block:: text
+
+    Robot('blue').walk
+    Robot('blue').RUN(steps=10*n)
+
+The ``ASTTokens`` object also offers methods to walk and search the list of tokens that make up
+the code (or a particular AST node), which is more useful and powerful than dealing with the text
+directly.
+
+
+Contribute
+----------
+
+To contribute:
+
+1. Fork this repository, and clone your fork.
+2. Install the package with test dependencies (ideally in a virtualenv) with::
+
+    pip install -e '.[test]'
+
+3. Run tests in your current interpreter with the command ``pytest`` or ``python -m pytest``.
+4. Run tests across all supported interpreters with the ``tox`` command. You will need to have the interpreters installed separately. We recommend ``pyenv`` for that. Use ``tox -p auto`` to run the tests in parallel.
+5. By default certain tests which take a very long time to run are skipped, but they are run on travis CI. To run them locally, set the environment variable ``ASTTOKENS_SLOW_TESTS``. For example run ``ASTTOKENS_SLOW_TESTS=1 tox`` to run the full suite of tests.
