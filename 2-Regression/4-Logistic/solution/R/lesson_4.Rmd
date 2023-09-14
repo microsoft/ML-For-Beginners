@@ -83,9 +83,7 @@ There are other types of logistic regression, including multinomial and ordinal:
 ![Multinomial vs ordinal regression](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
 \
-**It's still linear**
 
-Even though this type of Regression is all about 'category predictions', it still works best when there is a clear linear relationship between the dependent variable (color) and the other independent variables (the rest of the dataset, like city name and size). It's good to get an idea of whether there is any linearity dividing these variables or not.
 
 #### **Variables DO NOT have to correlate**
 
@@ -231,35 +229,6 @@ baked_pumpkins %>%
 Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore logistic regression to determine a given pumpkin's likely color.
 
 ## 3. Build your model
-
-> **🧮 Show Me The Math**
->
-> Remember how `linear regression` often used `ordinary least squares` to arrive at a value? `Logistic regression` relies on the concept of 'maximum likelihood' using [`sigmoid functions`](https://wikipedia.org/wiki/Sigmoid_function). A Sigmoid Function on a plot looks like an `S shape`. It takes a value and maps it to somewhere between 0 and 1. Its curve is also called a 'logistic curve'. Its formula looks like this:
->
-> ![](../../images/sigmoid.png)
->
-> where the sigmoid's midpoint finds itself at x's 0 point, L is the curve's maximum value, and k is the curve's steepness. If the outcome of the function is more than 0.5, the label in question will be given the class 1 of the binary choice. If not, it will be classified as 0.
-
-Let's begin by splitting the data into `training` and `test` sets. The training set is used to train a classifier so that it finds a statistical relationship between the features and the label value.
-
-It is best practice to hold out some of your data for **testing** in order to get a better estimate of how your models will perform on new data by comparing the predicted labels with the already known labels in the test set. [rsample](https://rsample.tidymodels.org/), a package in Tidymodels, provides infrastructure for efficient data splitting and resampling:
-
-```{r split_data}
-# Split data into 80% for training and 20% for testing
-set.seed(2056)
-pumpkins_split <- pumpkins_select %>% 
-  initial_split(prop = 0.8)
-
-# Extract the data in each split
-pumpkins_train <- training(pumpkins_split)
-pumpkins_test <- testing(pumpkins_split)
-
-# Print out the first 5 rows of the training set
-pumpkins_train %>% 
-  slice_head(n = 5)
-
-
-```
 
 🙌 We are now ready to train a model by fitting the training features to the training label (color).
 
@@ -418,5 +387,3 @@ But for now, congratulations 🎉🎉🎉! You've completed these regression les
 You R awesome!
 
 ![Artwork by \@allison_horst](../../images/r_learners_sm.jpeg)
-
-
