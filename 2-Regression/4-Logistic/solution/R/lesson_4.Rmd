@@ -192,18 +192,18 @@ baked_pumpkins_long %>%
 ```
 
 
-Now, let's make some boxplots showing the distribution of the predictors with respect to the outcome color!
+Now, let's make a categorical plot showing the distribution of the predictors with respect to the outcome color!
 
-```{r boxplots}
-theme_set(theme_light())
-#Make a box plot for each predictor feature
-baked_pumpkins_long %>% 
-  mutate(color = factor(color)) %>% 
-  ggplot(mapping = aes(x = color, y = values, fill = features)) +
-  geom_boxplot() + 
-  facet_wrap(~ features, scales = "free", ncol = 3) +
-  scale_color_viridis_d(option = "cividis", end = .8) +
-  theme(legend.position = "none")
+```{r cat plot pumpkins-colors-variety}
+# Specify colors for each value of the hue variable
+palette <- c(ORANGE = "orange", WHITE = "wheat")
+
+# Create the bar plot
+ggplot(pumpkins, aes(y = Variety, fill = Color)) +
+  geom_bar(position = "dodge") +
+  scale_fill_manual(values = palette) +
+  labs(y = "Variety", fill = "Color") +
+  theme_minimal()
 ```
 
 Amazing🤩! For some of the features, there's a noticeable difference in the distribution for each color label. For instance, it seems the white pumpkins can be found in smaller packages and in some particular varieties of pumpkins. The *item_size* category also seems to make a difference in the color distribution. These features may help predict the color of a pumpkin.
@@ -227,19 +227,10 @@ baked_pumpkins %>%
 ```
 
 
-```{r cat plot pumpkins-colors-variety}
-# Specify colors for each value of the hue variable
-palette <- c(ORANGE = "orange", WHITE = "wheat")
-
-# Create the bar plot
-ggplot(pumpkins, aes(y = Variety, fill = Color)) +
-  geom_bar(position = "dodge") +
-  scale_fill_manual(values = palette) +
-  labs(y = "Variety", fill = "Color") +
-  theme_minimal()
-```
-
 Now that we have an idea of the relationship between the binary categories of color and the larger group of sizes, let's explore logistic regression to determine a given pumpkin's likely color.
+
+
+### **Analysing relationships between features and label**
 
 ## 3. Build your model
 
