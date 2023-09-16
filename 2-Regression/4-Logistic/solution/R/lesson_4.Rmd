@@ -184,7 +184,7 @@ Now, let's make a categorical plot showing the distribution of the predictors wi
 palette <- c(ORANGE = "orange", WHITE = "wheat")
 
 # Create the bar plot
-ggplot(pumpkins, aes(y = Variety, fill = Color)) +
+ggplot(pumpkins_select, aes(y = variety, fill = color)) +
   geom_bar(position = "dodge") +
   scale_fill_manual(values = palette) +
   labs(y = "Variety", fill = "Color") +
@@ -216,7 +216,7 @@ ggplot(pumpkins_select, aes(x = `item_size`, y = color, fill = color)) +
   theme(axis.title.y = element_blank()) +
   theme(legend.position = "bottom") +
   guides(fill = guide_legend(title = "Color")) +
-  theme(panel.spacing = unit(2.0, "lines"))+
+  theme(panel.spacing = unit(0.5, "lines"))+
   theme(strip.text.y = element_text(size = 4, hjust = 0)) 
 
 ```
