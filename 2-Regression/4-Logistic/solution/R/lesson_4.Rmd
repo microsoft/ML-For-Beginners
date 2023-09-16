@@ -82,8 +82,6 @@ There are other types of logistic regression, including multinomial and ordinal:
 
 ![Multinomial vs ordinal regression](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
-\
-
 
 #### **Variables DO NOT have to correlate**
 
@@ -306,6 +304,7 @@ log_reg_wf
 
 After a workflow has been *specified*, a model can be `trained` using the [`fit()`](https://tidymodels.github.io/parsnip/reference/fit.html) function. The workflow will estimate a recipe and preprocess the data before training, so we won't have to manually do that using prep and bake.
 
+
 ```{r train}
 # Train the model
 wf_fit <- log_reg_wf %>% 
@@ -345,8 +344,6 @@ The [**`conf_mat()`**](https://tidymodels.github.io/yardstick/reference/conf_mat
 ```{r conf_mat}
 # Confusion matrix for prediction results
 conf_mat(data = results, truth = color, estimate = .pred_class)
-
-
 ```
 
 Let's interpret the confusion matrix. Our model is asked to classify pumpkins between two binary categories, category `white` and category `not-white`
