@@ -1,72 +1,70 @@
 # Introduciton to Pytorch
 
--   [Introduction](https://aman.ai/primers/pytorch/#introduction)
--   [Getting Started](https://aman.ai/primers/pytorch/#getting-started)
-    -   [Creating a Virtual Environment](https://aman.ai/primers/pytorch/#creating-a-virtual-environment)
-    -   [Using a GPU?](https://aman.ai/primers/pytorch/#using-a-gpu)
-    -   [Recommended Code Structure](https://aman.ai/primers/pytorch/#recommended-code-structure)
-    -   [Running Experiments](https://aman.ai/primers/pytorch/#running-experiments)
-        -   [Training and Evaluation](https://aman.ai/primers/pytorch/#training-and-evaluation)
-        -   [Hyperparameter Search](https://aman.ai/primers/pytorch/#hyperparameter-search)
-        -   [Display the Results of Multiple Experiments](https://aman.ai/primers/pytorch/#display-the-results-of-multiple-experiments)
--   [PyTorch Introduction](https://aman.ai/primers/pytorch/#pytorch-introduction)
-    -   [Goals of This Tutorial](https://aman.ai/primers/pytorch/#goals-of-this-tutorial)
-    -   [Resources](https://aman.ai/primers/pytorch/#resources)
-    -   [Code Layout](https://aman.ai/primers/pytorch/#code-layout)
--   [Tensors and Variables](https://aman.ai/primers/pytorch/#tensors-and-variables)
-    -   [Changing Datatypes](https://aman.ai/primers/pytorch/#changing-datatypes)
-    -   [Automatic Differentiation](https://aman.ai/primers/pytorch/#automatic-differentiation)
-    -   [Disabling Automatic Differentiation](https://aman.ai/primers/pytorch/#disabling-automatic-differentiation)
-        -   [Using `requires_grad=False`](https://aman.ai/primers/pytorch/#using-requires_gradfalse)
-        -   [Using `torch.no_grad()`](https://aman.ai/primers/pytorch/#using-torchno_grad)
-            -   [Related: Using `model.eval()`](https://aman.ai/primers/pytorch/#related-using-modeleval)
--   [Parameters](https://aman.ai/primers/pytorch/#parameters)
-    -   [`nn.Parameter` Internals](https://aman.ai/primers/pytorch/#nnparameter-internals)
-    -   [Difference Between Parameter vs. Tensor in PyTorch](https://aman.ai/primers/pytorch/#difference-between-parameter-vs-tensor-in-pytorch)
--   [Core Training Step](https://aman.ai/primers/pytorch/#core-training-step)
--   [Models in PyTorch](https://aman.ai/primers/pytorch/#models-in-pytorch)
--   [Loss Functions](https://aman.ai/primers/pytorch/#loss-functions)
--   [Optimizers](https://aman.ai/primers/pytorch/#optimizers)
--   [Training vs. Evaluation](https://aman.ai/primers/pytorch/#training-vs-evaluation)
--   [Computing Metrics](https://aman.ai/primers/pytorch/#computing-metrics)
--   [Saving and Loading Models](https://aman.ai/primers/pytorch/#saving-and-loading-models)
--   [Using the GPU](https://aman.ai/primers/pytorch/#using-the-gpu)
--   [Painless Debugging](https://aman.ai/primers/pytorch/#painless-debugging)
 
--   [Selected Methods](https://aman.ai/primers/pytorch/#selected-methods)
-    -   [Tensor Shape/size](https://aman.ai/primers/pytorch/#tensor-shapesize)
-    -   [Initialization](https://aman.ai/primers/pytorch/#initialization)
-        -   [Static](https://aman.ai/primers/pytorch/#static)
-    -   [Standard Normal](https://aman.ai/primers/pytorch/#standard-normal)
-        -   [Xavier/Glorot](https://aman.ai/primers/pytorch/#xavierglorot)
-            -   [Uniform](https://aman.ai/primers/pytorch/#uniform)
-            -   [Normal](https://aman.ai/primers/pytorch/#normal)
-        -   [Kaiming/He](https://aman.ai/primers/pytorch/#kaiminghe)
-            -   [Uniform](https://aman.ai/primers/pytorch/#uniform-1)
-            -   [Normal](https://aman.ai/primers/pytorch/#normal-1)
-    -   [Send Tensor to GPU](https://aman.ai/primers/pytorch/#send-tensor-to-gpu)
-    -   [Convert to NumPy](https://aman.ai/primers/pytorch/#convert-to-numpy)
-    -   [`tensor.item()`: Convert Single Value Tensor to Scalar](https://aman.ai/primers/pytorch/#tensoritem-convert-single-value-tensor-to-scalar)
-    -   [`tensor.tolist()`: Convert Multi Value Tensor to Scalar](https://aman.ai/primers/pytorch/#tensortolist-convert-multi-value-tensor-to-scalar)
-    -   [Len](https://aman.ai/primers/pytorch/#len)
-    -   [Arange](https://aman.ai/primers/pytorch/#arange)
-    -   [Linspace](https://aman.ai/primers/pytorch/#linspace)
-    -   [View](https://aman.ai/primers/pytorch/#view)
-    -   [Transpose](https://aman.ai/primers/pytorch/#transpose)
-        -   [Swapaxes](https://aman.ai/primers/pytorch/#swapaxes)
-    -   [Permute](https://aman.ai/primers/pytorch/#permute)
-    -   [Movedim](https://aman.ai/primers/pytorch/#movedim)
-    -   [Randperm](https://aman.ai/primers/pytorch/#randperm)
-    -   [Where](https://aman.ai/primers/pytorch/#where)
-    -   [Reshape](https://aman.ai/primers/pytorch/#reshape)
-    -   [Concatenate](https://aman.ai/primers/pytorch/#concatenate)
-    -   [Squeeze](https://aman.ai/primers/pytorch/#squeeze)
-    -   [Unsqueeze](https://aman.ai/primers/pytorch/#unsqueeze)
-    -   [Print Model Summary](https://aman.ai/primers/pytorch/#print-model-summary)
-    -   [Resources](https://aman.ai/primers/pytorch/#resources-2)
--   [References](https://aman.ai/primers/pytorch/#references)
--   [Citation](https://aman.ai/primers/pytorch/#citation)
-
+- [Overview](#overview)
+  - [Creating a Virtual Environment](#creating-a-virtual-environment)
+    - [Using a GPU?](#using-a-gpu)
+    - [Recommended Code Structure](#recommended-code-structure)
+    - [Running Experiments](#running-experiments)
+        - [Training and Evaluation](#training-and-evaluation)
+        - [Hyperparameter Search](#hyperparameter-search)
+        - [Display the Results of Multiple Experiments](#display-the-results-of-multiple-experiments)
+- [PyTorch Introduction](#pytorch-introduction)
+    - [Goals of This Tutorial](#goals-of-this-tutorial)
+    - [Resources](#resources)
+    - [Code Layout](#code-layout)
+- [Tensors and Variables](#tensors-and-variables)
+    - [Changing Datatypes](#changing-datatypes)
+    - [Automatic Differentiation](#automatic-differentiation)
+    - [Disabling Automatic Differentiation](#disabling-automatic-differentiation)
+        - [Using requires_grad=False](#using-requires_gradfalse)
+        - [Using torch.no_grad()](#using-torchno_grad)
+            - [Related: Using model.eval()](#related-using-modeleval)
+- [Parameters](#parameters)
+    - [nn.Parameter Internals](#nnparameter-internals)
+    - [Difference Between Parameter vs. Tensor in PyTorch](#difference-between-parameter-vs-tensor-in-pytorch)
+- [Core Training Step](#core-training-step)
+- [Models in PyTorch](#models-in-pytorch)
+- [Loss Functions](#loss-functions)
+- [Optimizers](#optimizers)
+- [Training vs. Evaluation](#training-vs-evaluation)
+- [Computing Metrics](#computing-metrics)
+- [Saving and Loading Models](#saving-and-loading-models)
+- [Using the GPU](#using-the-gpu)
+- [Painless Debugging](#painless-debugging)
+- [Selected Methods](#selected-methods)
+    - [Tensor Shape/size](#tensor-shapesize)
+    - [Initialization](#initialization)
+        - [Static](#static)
+    - [Standard Normal](#standard-normal)
+        - [Xavier/Glorot](#xavierglorot)
+            - [Uniform](#uniform)
+            - [Normal](#normal)
+        - [Kaiming/He](#kaiminghe)
+            - [Uniform](#uniform-1)
+            - [Normal](#normal-1)
+    - [Send Tensor to GPU](#send-tensor-to-gpu)
+    - [Convert to NumPy](#convert-to-numpy)
+    - [tensor.item(): Convert Single Value Tensor to Scalar](#tensoritem-convert-single-value-tensor-to-scalar)
+    - [tensor.tolist(): Convert Multi Value Tensor to Scalar](#tensortolist-convert-multi-value-tensor-to-scalar)
+    - [Len](#len)
+    - [Arange](#arange)
+    - [Linspace](#linspace)
+    - [View](#view)
+    - [Transpose](#transpose)
+        - [Swapaxes](#swapaxes)
+    - [Permute](#permute)
+    - [Movedim](#movedim)
+    - [Randperm](#randperm)
+    - [Where](#where)
+    - [Reshape](#reshape)
+    - [Concatenate](#concatenate)
+    - [Squeeze](#squeeze)
+    - [Unsqueeze](#unsqueeze)
+    - [Print Model Summary](#print-model-summary)
+    - [Resources](#resources-2)
+- [References](#references)
+- [Citation](#citation)
   
 [![Colab Notebook](https://aman.ai/primers/assets/colab-open.svg)](https://colab.research.google.com/github/amanchadha/aman-ai/blob/master/pytorch.ipynb)
 
@@ -77,9 +75,9 @@ PyTorch is an open-source machine learning library developed by Facebook's AI Re
 
 -   This tutorial gives an overview of the Pytorch for deep learning model building, trainng and evaluation with practical examples as well as descrition of possible project environments
 
-## Options for utilising GPU
-Working Environments for PyTorch
-When diving into PyTorch, you have multiple options in terms of development environments. Two of the most popular choices are Visual Studio Code (VSCode) and Google Colab:
+## Options for utilising GPU and environments
+
+When diving into PyTorch, you have multiple options in terms of development environments and GPU resources. Two of the most popular choices are Visual Studio Code (VSCode) and Google Colab:
 
 ### Visual Studio Code (VSCode)
 Description: VSCode is a free, open-source code editor developed by Microsoft. It supports a variety of programming languages and has a rich ecosystem of extensions, including support for Python and PyTorch.
@@ -720,7 +718,7 @@ torch.randn(2, 3) # Returns a 2x3 matrix sampled from the standard normal distri
 -   Fills the input Tensor with values according to the method described in Understanding the difficulty of training deep feed-forward neural networks - Glorot, X. & Bengio, Y. (2010), using a uniform distribution. The resulting tensor will have values sampled from $\mathcal{U}(-a, a)$ where,
 
 $$
-a = \text{gain} \times \sqrt{\frac{6}{\text{fan_in} + \text{fan_out}}}
+a = \text{gain} \times \sqrt{\frac{6}{\text{fan-in} + \text{fan-out}}}
 $$
 
 -   Also known as Glorot initialization.
@@ -737,7 +735,7 @@ nn.init.xavier_uniform_(a, gain=nn.init.calculate_gain('relu')) # Initializes a 
 -   Fills the input Tensor with values according to the method described in Understanding the difficulty of training deep feed-forward neural networks - Glorot, X. & Bengio, Y. (2010), using a normal distribution. The resulting tensor will have values sampled from $\mathcal{N}(0, \text{std}^2)$ where,
 
 $$
-\text{std} = \text{gain} \times \sqrt{\frac{2}{\text{fan_in} + \text{fan_out}}}
+\text{std} = \text{gain} \times \sqrt{\frac{2}{\text{fan-in} + \text{fan-out}}}
 $$
 
 -   Also known as Glorot initialization.
@@ -756,7 +754,7 @@ nn.init.xavier_normal_(a) # Initializes a with the Xavier normal method
 -   Fills the input Tensor with values according to the method described in Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification - He, K. et al. (2015), using a uniform distribution. The resulting tensor will have values sampled from $\mathcal{U}(-\text{bound}, \text{bound})$ where,
 
 $$
-\text{bound} = \text{gain} \times \sqrt{\frac{3}{\text{fan_mode}}}
+\text{bound} = \text{gain} \times \sqrt{\frac{3}{\text{fan-mode}}}
 $$
 
 -   Also known as He initialization.
@@ -773,7 +771,7 @@ nn.init.kaiming_uniform_(a, mode='fan_in', nonlinearity='relu') # Initializes a 
 -   Fills the input Tensor with values according to the method described in Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification - He, K. et al. (2015), using a normal distribution. The resulting tensor will have values sampled from $\mathcal{N}(0, \text{std}^2)$ where,
 
 $$
-\operatorname{std}=\frac{\text { gain }}{\sqrt{\text { fan_mode }}}
+\operatorname{std}=\frac{\text { gain }}{\sqrt{\text { fan-mode }}}
 $$ 
 
 -   Also known as He initialization.
