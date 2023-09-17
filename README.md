@@ -1,17 +1,7 @@
-[![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
-[![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
-[![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
 # Introduction to Deep Learning for HA AI Track - A Curriculum
 
 > 🤩  Welcome to the Honors Academy AI Track Resource Hub! 🤩
-
 
 Dive into the world of  **Deep Learning** with the  **Eindhoven University of Technology's Honors Academy AI Track **. This dedicated platform is tailored to provide our ambitious students with a comprehensive collection of materials, insights, and tools to excel in their AI endeavors. Whether you're embarking on a deep learning journey or exploring the intricacies of machine learning, our curated resources are here to guide you every step of the way.
 
@@ -43,7 +33,7 @@ Embrace the future of AI with confidence. Let's embark on this transformative jo
 
 **Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum.
 
----
+---fdfd
 
 ## Video walkthroughs
 
