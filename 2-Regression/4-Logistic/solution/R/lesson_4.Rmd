@@ -188,10 +188,11 @@ Amazing🤩! For some of the features, there's a noticeable difference in the di
 palette <- c(ORANGE = "orange", WHITE = "wheat")
 
 # We need the encoded Item Size column to use it as the x-axis values in the plot
-pumpkins_select$item_size <- baked_pumpkins$item_size
+pumpkins_select_plot<-pumpkins_select
+pumpkins_select_plot$item_size <- baked_pumpkins$item_size
 
 # Create the grouped box plot
-ggplot(pumpkins_select, aes(x = `item_size`, y = color, fill = color)) +
+ggplot(pumpkins_select_plot, aes(x = `item_size`, y = color, fill = color)) +
   geom_boxplot() +
   facet_grid(variety ~ ., scales = "free_x") +
   scale_fill_manual(values = palette) +
@@ -295,6 +296,7 @@ wf_fit <- log_reg_wf %>%
 
 # Print the trained workflow
 wf_fit
+
 
 ```
 
