@@ -24,7 +24,7 @@ This repository includes pages with introductory tutiruals and materials that ar
 The curriculum does not include all but necessary materials on deep leanring in Python as well as useful tips from the 2022-2023 HA AI Track members. In case you see there is more to be added, feel free to contribute and extend the materials or link your own project for reference in the topics. 
 
 > For further study, we recommend following these 
-....................[Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules and learning paths.
+....................
 
 
 ## Pedagogy
@@ -40,19 +40,12 @@ By ensuring that the content aligns with projects, the process is made more enga
 
 | Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-|      01       |              ⚡️ Introduction to Pytorch ⚡️                |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts of deep learning using Pytorch                                           |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      01       |              ⚡️ Introduction to Pytorch ⚡️                |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts of deep learning using Pytorch                                           |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Simon                       |
 
-## Offline access
 
-You can run this documentation offline by using [Docsify](https://docsify.js.org/#/). Fork this repo, [install Docsify](https://docsify.js.org/#/quickstart) on your local machine, and then in the root folder of this repo, type `docsify serve`. The website will be served on port 3000 on your localhost: `localhost:3000`.
 
-## PDFs
 
-Find a pdf of the curriculum with links [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
-## Help Wanted!
-
-Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add a templated issue to manage the workload [here](https://github.com/microsoft/ML-For-Beginners/issues).
 
 ## Other Curricula
 
