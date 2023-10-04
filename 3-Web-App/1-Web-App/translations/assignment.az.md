@@ -1,11 +1,11 @@
-# Try a different model
+# Başqa bir model ilə yoxlayın
 
-## Instructions
+## Təlimatlar
 
-Now that you have built one web app using a trained Regression model, use one of the models from an earlier Regression lesson to redo this web app. You can keep the style or design it differently to reflect the pumpkin data. Be careful to change the inputs to reflect your model's training method.
+Artıq öyrədilmiş Reqrassiya modeli ilə veb tətbiq qurduqdan sonra, bu veb tətbiqini yenidən qurmaq üçün əvvəlki Reqressiya dərsindəki modellərdən birini istifadə edin. Balqabaq datalarını əks etdirmək üçün mövcud üslubu saxlaya və ya fərqli dizayn edə bilərsiniz. Modelinizin təlim metodunu düzgün əks etdirmək üçün daxil edilən məlumatları dəyişdirdiyinizdən əmin olun.
 
-## Rubric
+## Rubrika
 
-| Criteria                   | Exemplary                                                 | Adequate                                                  | Needs Improvement                      |
+| Meyarlar                   | Nümunəvi                                                 | Adekvat                                                  | İnkişaf Etdirilməli Olan                      |
 | -------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------- |
-| | The web app runs as expected and is deployed to the cloud | The web app contains flaws or exhibits unexpected results | The web app does not function properly |
+| | Veb tətbiq buludda deploy olunub və gözlənildiyi kimi işləyir | Veb tətbiqin işində qusurlar var və ya yalnış cavablar qaytarır | Veb tətbiq düzgün işləmir |
