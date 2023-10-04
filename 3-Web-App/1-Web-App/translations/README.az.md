@@ -19,7 +19,7 @@ Maşın öyrənmə modellərini emal etmək üçün veb tətbiq yaratmağın bir
 
 Soruşmalı olduğunuz çoxlu suallar var:
 
-- **Bu veb yoxsa mobil tətbiqdir?** Əgər mobil tətbiq yaradırsınızsa və tətbiqi Əİ konteksində istifadə edəcəksinizsə, modeli Android və ya IOS tətbiqdə istifadə edə edərək [TensorFlow Lite](https://www.tensorflow.org/lite/) işlədə bilərsiniz. 
+- **Bu veb yoxsa mobil tətbiqdir?** Əgər mobil tətbiq yaradırsınızsa və tətbiqi Əİ konteksində istifadə edəcəksinizsə, modeli Android və ya iOS tətbiqdə istifadə edə edərək [TensorFlow Lite](https://www.tensorflow.org/lite/) işlədə bilərsiniz. 
 - **Model harada yerləşəcək?** Bulud yoxsa lokal yaddaşda?
 - **Oflayn dəstək.** Tətbiq oflayn da işləməlidirmi?
 - **Modeli öyrətmək üçün hansı texnologiya istifadə edilmişdir?** Seçilmiş texnologiya istifadə etməli olduğunuz alətlərə təsir göstərə bilər.
