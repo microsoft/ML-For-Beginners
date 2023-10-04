@@ -19,9 +19,9 @@ Maşın öyrənmə modellərini emal etmək üçün veb tətbiq yaratmağın bir
 
 Soruşmalı olduğunuz çoxlu suallar var:
 
-- **Bu veb yoxsa mobil tətbiqdir?** Əgər mobil tətbiq yaradırsınızsa və tətbiqi Əİ konteksində istifadə edəcəksinizsə, modeli Android və ya İOS tətbiqdə istifadə edə edərək [TensorFlow Lite](https://www.tensorflow.org/lite/) işlədə bilərsiniz. 
+- **Bu veb yoxsa mobil tətbiqdir?** Əgər mobil tətbiq yaradırsınızsa və tətbiqi Əİ konteksində istifadə edəcəksinizsə, modeli Android və ya IOS tətbiqdə istifadə edə edərək [TensorFlow Lite](https://www.tensorflow.org/lite/) işlədə bilərsiniz. 
 - **Model harada yerləşəcək?** Bulud yoxsa lokal yaddaşda?
-- **Offlayn dəstək.** Tətbiq offlayn da işləməlidirmi?
+- **Oflayn dəstək.** Tətbiq oflayn da işləməlidirmi?
 - **Modeli öyrətmək üçün hansı texnologiya istifadə edilmişdir?** Seçilmiş texnologiya istifadə etməli olduğunuz alətlərə təsir göstərə bilər.
     - **TensorFlow.** Məsələn, modeli TensorFlow istifadə edərək öyrədirsinizsə, ekosistem TensorFlow modelini veb proqramında istifadə etmək üçün çevirmək/dəyişdirmək imkanı verir. [TensorFlow.js](https://www.tensorflow.org/js/).
     - **PyTorch.** Əgər modeli [PyTorch](https://pytorch.org/) ilə öyrədirsinizsə, onu [ONNX](https://onnx.ai/) istifadə edərək JavaScript veb tətbiqində [Onnx Runtime](https://www.onnxruntime.ai/) işlədə bilən xüsusi (Open Neural Network Exchange) formata eksport edə bilərsiniz. Bu seçim növbəti dərsdə Scikit tərəfindən öyrənilən model üçün araşdırılacaq.
@@ -46,9 +46,9 @@ Bu dərsdə [NUFORC](https://nuforc.org) (Milli UFO Melumatlar Mərkəzi) tərə
 - **Əhatəli nümunə.** "Bir adam gecə otlu bir tarlada parlayan işıq şüasından çıxır və Texas Instruments dayanacağına tərəf qaçır".
 - **Qısa nümunə.** "İşıq bizi təqib edir".
 
-[ufos.csv](./data/ufos.csv) cədvəli görülmənin baş verdiyi `şəhər`, `ştat` and `ölkə`, obyektin `forması`, `coğrafi enlik` və `çoğrafi uzunluq` sütunlarına bölün.
+[ufos.csv](../data/ufos.csv) cədvəli görülmənin baş verdiyi `şəhər`, `ştat` and `ölkə`, obyektin `forması`, `coğrafi enlik` və `çoğrafi uzunluq` sütunlarına bölün.
 
-Bu dərsə daxil olan boş [qeyd dəftəri](notebook.ipynb) verilmişdir.
+Bu dərsə daxil olan boş [qeyd dəftəri](../notebook.ipynb) verilmişdir.
 
 1. `pandas`, `matplotlib`, və `numpy` kitabxanalarını və ufolar cədvəlini keçən dərs olduğu kimi daxil edin. Sadə verilənlər toplusuna nəzər yetirin:
 
