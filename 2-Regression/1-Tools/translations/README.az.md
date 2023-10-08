@@ -190,7 +190,7 @@ Yeni kod xanasında, şəkərli diabet data massivini `load_diabetes()`-i çağ�
     y_pred = model.predict(X_test)
     ```
 
-6. Artıq datanı qrafiklə göstərməyin vaxtıdır. Matplotlib bu tapşırıq üçün çox uyğun bir alətdir. Bütün X və y test məlumatlarının səpələnmə qrafikini yaradın və modelin data qrupları arasında ən uyğun yerə xətti çəkmək üçün proqnozdan istifadə edin.
+6. Artıq datanı qrafiklə göstərməyin vaxtıdır. Matplotlib bu tapşırıq üçün çox uyğun bir alətdir. Bütün X və y test məlumatlarının paylanma qrafikini yaradın və modelin data qrupları arasında ən uyğun yerə xətti çəkmək üçün proqnozdan istifadə edin.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -201,7 +201,7 @@ Yeni kod xanasında, şəkərli diabet data massivini `load_diabetes()`-i çağ�
     plt.show()
     ```
 
-   ![şəkərli diabetlə bağlı nöqtələri göstərən səpələnmə qrafiki](../images/scatterplot.png)
+   ![şəkərli diabetlə bağlı nöqtələri göstərən paylanma qrafiki](../images/scatterplot.png)
 
    ✅ Bu hissədə nə baş verdiyi barədə biraz düşünün. Düz xətt çoxlu kiçik data nöqtələrinin arasından keçir. Amma tam olaraq nə baş verir? Yeni, görünməz məlumat nöqtəsinin qrafikin y oxuna nisbətən harada olacağını proqnozlaşdırmaq üçün bu xəttdən necə istifadə edə biləcəyinizi düşünə bilirsinizmi? Bu modelin praktiki istifadəsini sözlə ifadə etməyə çalışın.
 
@@ -210,9 +210,10 @@ Yeni kod xanasında, şəkərli diabet data massivini `load_diabetes()`-i çağ�
 ## 🚀Məşğələ
 
 Bu data massivindən fərqli bir dəyişən üçün qrafik çəkin. İpucu: bu sətirə düzəliş edin: `X = X[:,2]`. Data massivinin hədəfi verilmək şərti ilə, şəkərli diabetin xəstəlik olaraq inkişafı ilə bağlı nələri tapa bilərsiniz?
-## [Mühazirədən sonra test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/)
 
-# Təkrarlayın və özünüz öyrənin
+## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/)
+
+## Təkrarlayın və özünüz öyrənin
 
 Bu təlimatda, çoxdəyişənli və yaxud çoxlu xətti reqressiya yerinə,sadə xətti reqressiya ilə işlədiniz. Bu metodlar arasındakı fərqlər barəsində oxuyun və ya [bu videoya](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef) nəzər salın.
 

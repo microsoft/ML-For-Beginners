@@ -34,6 +34,6 @@ Bu dərslər qrupunda siz data alimləri üçün ümumi mühit olan dəftərçə
 
 "Reqressiya ilə MÖ" [Jen Looper](https://twitter.com/jenlooper) tərəfindən ♥️-lə yazılmışdır.
 
-♥️ Quizlərə töhvə verənlər:: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) və [Ornella Altunyan](https://twitter.com/ornelladotcom)
+♥️ Quizlərə töhvə verənlər: [Muhammad Sakib Khan Inan](https://twitter.com/Sakibinan) və [Ornella Altunyan](https://twitter.com/ornelladotcom)
 
 Balqabaq data massivi [Kaagle-dakı bu proyekt](https://www.kaggle.com/usda/a-year-of-pumpkin-prices) tərəfindən məsləhət görülmüşdür və məlumatlar Amerika Birləşmiş Ştatlarının Kənd Təsərrüfatı Nazirliyi tərəfindən dərc olunmuş [Xüsusi Bitkilər Terminal Bazarlarının Standart Hesabatlarından](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) götürülmüşdür. Paylanmanı normallaşdırmaq üçün müxtəlifliyə görə rəng əsaslı bəzi nöqtələr əlavə etmişik. Bu məlumatlar publik domendədir.
