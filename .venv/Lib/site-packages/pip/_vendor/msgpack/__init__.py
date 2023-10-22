@@ -6,8 +6,8 @@ import os
 import sys
 
 
-version = (1, 0, 4)
-__version__ = "1.0.4"
+version = (1, 0, 5)
+__version__ = "1.0.5"
 
 
 if os.environ.get("MSGPACK_PUREPYTHON") or sys.version_info[0] == 2:

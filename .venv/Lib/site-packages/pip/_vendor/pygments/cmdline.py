@@ -4,7 +4,7 @@
 
     Command line interface.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -185,7 +185,7 @@ def main_inner(parser, argns):
         return 0
 
     if argns.V:
-        print('Pygments version %s, (c) 2006-2022 by Georg Brandl, Matthäus '
+        print('Pygments version %s, (c) 2006-2023 by Georg Brandl, Matthäus '
               'Chajdas and contributors.' % __version__)
         return 0
 

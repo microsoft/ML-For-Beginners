@@ -2,9 +2,8 @@ from __future__ import absolute_import
 
 import time
 
-# The default socket timeout, used by httplib to indicate that no timeout was
-# specified by the user
-from socket import _GLOBAL_DEFAULT_TIMEOUT
+# The default socket timeout, used by httplib to indicate that no timeout was; specified by the user
+from socket import _GLOBAL_DEFAULT_TIMEOUT, getdefaulttimeout
 
 from ..exceptions import TimeoutStateError
 
@@ -115,6 +114,10 @@ class Timeout(object):
 
     # __str__ provided for backwards compatibility
     __str__ = __repr__
+
+    @classmethod
+    def resolve_default_timeout(cls, timeout):
+        return getdefaulttimeout() if timeout is cls.DEFAULT_TIMEOUT else timeout
 
     @classmethod
     def _validate_timeout(cls, value, name):

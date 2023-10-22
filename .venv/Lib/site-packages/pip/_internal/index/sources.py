@@ -171,7 +171,6 @@ def build_source(
     expand_dir: bool,
     cache_link_parsing: bool,
 ) -> Tuple[Optional[str], Optional[LinkSource]]:
-
     path: Optional[str] = None
     url: Optional[str] = None
     if os.path.exists(location):  # Is a local path.

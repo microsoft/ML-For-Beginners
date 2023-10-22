@@ -4,6 +4,7 @@ import locale
 import logging
 import os
 import sys
+import warnings
 from typing import List, Optional
 
 from pip._internal.cli.autocompletion import autocomplete
@@ -45,6 +46,14 @@ logger = logging.getLogger(__name__)
 def main(args: Optional[List[str]] = None) -> int:
     if args is None:
         args = sys.argv[1:]
+
+    # Suppress the pkg_resources deprecation warning
+    # Note - we use a module of .*pkg_resources to cover
+    # the normal case (pip._vendor.pkg_resources) and the
+    # devendored case (a bare pkg_resources)
+    warnings.filterwarnings(
+        action="ignore", category=DeprecationWarning, module=".*pkg_resources"
+    )
 
     # Configure our deprecation warnings to be sent through loggers
     deprecation.install_warning_logger()

@@ -209,7 +209,7 @@ def call_subprocess(
                 output_lines=all_output if not showing_subprocess else None,
             )
             if log_failed_cmd:
-                subprocess_logger.error("[present-rich] %s", error)
+                subprocess_logger.error("%s", error, extra={"rich": True})
                 subprocess_logger.verbose(
                     "[bold magenta]full command[/]: [blue]%s[/]",
                     escape(format_command_args(cmd)),

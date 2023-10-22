@@ -303,7 +303,7 @@ if __name__ == "__main__":  # pragma: no cover
         ),
         width=60,
         style="on dark_blue",
-        title="Algin",
+        title="Align",
     )
 
     console.print(

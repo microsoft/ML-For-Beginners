@@ -151,7 +151,8 @@ def _emit_egg_deprecation(location: Optional[str]) -> None:
     deprecated(
         reason=f"Loading egg at {location} is deprecated.",
         replacement="to use pip for package installation.",
-        gone_in=None,
+        gone_in="24.3",
+        issue=12330,
     )
 
 
@@ -174,7 +175,7 @@ class Environment(BaseEnvironment):
         for location in self._paths:
             yield from finder.find(location)
             for dist in finder.find_eggs(location):
-                # _emit_egg_deprecation(dist.location)  # TODO: Enable this.
+                _emit_egg_deprecation(dist.location)
                 yield dist
             # This must go last because that's how pkg_resources tie-breaks.
             yield from finder.find_linked(location)

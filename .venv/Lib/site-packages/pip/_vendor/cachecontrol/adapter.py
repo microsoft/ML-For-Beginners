@@ -1,16 +1,26 @@
 # SPDX-FileCopyrightText: 2015 Eric Larson
 #
 # SPDX-License-Identifier: Apache-2.0
+from __future__ import annotations
 
-import types
 import functools
+import types
 import zlib
+from typing import TYPE_CHECKING, Any, Collection, Mapping
 
 from pip._vendor.requests.adapters import HTTPAdapter
 
-from .controller import CacheController, PERMANENT_REDIRECT_STATUSES
-from .cache import DictCache
-from .filewrapper import CallbackFileWrapper
+from pip._vendor.cachecontrol.cache import DictCache
+from pip._vendor.cachecontrol.controller import PERMANENT_REDIRECT_STATUSES, CacheController
+from pip._vendor.cachecontrol.filewrapper import CallbackFileWrapper
+
+if TYPE_CHECKING:
+    from pip._vendor.requests import PreparedRequest, Response
+    from pip._vendor.urllib3 import HTTPResponse
+
+    from pip._vendor.cachecontrol.cache import BaseCache
+    from pip._vendor.cachecontrol.heuristics import BaseHeuristic
+    from pip._vendor.cachecontrol.serialize import Serializer
 
 
 class CacheControlAdapter(HTTPAdapter):
@@ -18,16 +28,16 @@ class CacheControlAdapter(HTTPAdapter):
 
     def __init__(
         self,
-        cache=None,
-        cache_etags=True,
-        controller_class=None,
-        serializer=None,
-        heuristic=None,
-        cacheable_methods=None,
-        *args,
-        **kw
-    ):
-        super(CacheControlAdapter, self).__init__(*args, **kw)
+        cache: BaseCache | None = None,
+        cache_etags: bool = True,
+        controller_class: type[CacheController] | None = None,
+        serializer: Serializer | None = None,
+        heuristic: BaseHeuristic | None = None,
+        cacheable_methods: Collection[str] | None = None,
+        *args: Any,
+        **kw: Any,
+    ) -> None:
+        super().__init__(*args, **kw)
         self.cache = DictCache() if cache is None else cache
         self.heuristic = heuristic
         self.cacheable_methods = cacheable_methods or ("GET",)
@@ -37,7 +47,16 @@ class CacheControlAdapter(HTTPAdapter):
             self.cache, cache_etags=cache_etags, serializer=serializer
         )
 
-    def send(self, request, cacheable_methods=None, **kw):
+    def send(
+        self,
+        request: PreparedRequest,
+        stream: bool = False,
+        timeout: None | float | tuple[float, float] | tuple[float, None] = None,
+        verify: bool | str = True,
+        cert: (None | bytes | str | tuple[bytes | str, bytes | str]) = None,
+        proxies: Mapping[str, str] | None = None,
+        cacheable_methods: Collection[str] | None = None,
+    ) -> Response:
         """
         Send a request. Use the request information to see if it
         exists in the cache and cache the response if we need to and can.
@@ -54,13 +73,17 @@ class CacheControlAdapter(HTTPAdapter):
             # check for etags and add headers if appropriate
             request.headers.update(self.controller.conditional_headers(request))
 
-        resp = super(CacheControlAdapter, self).send(request, **kw)
+        resp = super().send(request, stream, timeout, verify, cert, proxies)
 
         return resp
 
     def build_response(
-        self, request, response, from_cache=False, cacheable_methods=None
-    ):
+        self,
+        request: PreparedRequest,
+        response: HTTPResponse,
+        from_cache: bool = False,
+        cacheable_methods: Collection[str] | None = None,
+    ) -> Response:
         """
         Build a response by making a request or using the cache.
 
@@ -102,36 +125,37 @@ class CacheControlAdapter(HTTPAdapter):
             else:
                 # Wrap the response file with a wrapper that will cache the
                 #   response when the stream has been consumed.
-                response._fp = CallbackFileWrapper(
-                    response._fp,
+                response._fp = CallbackFileWrapper(  # type: ignore[attr-defined]
+                    response._fp,  # type: ignore[attr-defined]
                     functools.partial(
                         self.controller.cache_response, request, response
                     ),
                 )
                 if response.chunked:
-                    super_update_chunk_length = response._update_chunk_length
+                    super_update_chunk_length = response._update_chunk_length  # type: ignore[attr-defined]
 
-                    def _update_chunk_length(self):
+                    def _update_chunk_length(self: HTTPResponse) -> None:
                         super_update_chunk_length()
                         if self.chunk_left == 0:
-                            self._fp._close()
+                            self._fp._close()  # type: ignore[attr-defined]
 
-                    response._update_chunk_length = types.MethodType(
+                    response._update_chunk_length = types.MethodType(  # type: ignore[attr-defined]
                         _update_chunk_length, response
                     )
 
-        resp = super(CacheControlAdapter, self).build_response(request, response)
+        resp: Response = super().build_response(request, response)  # type: ignore[no-untyped-call]
 
         # See if we should invalidate the cache.
         if request.method in self.invalidating_methods and resp.ok:
+            assert request.url is not None
             cache_url = self.controller.cache_url(request.url)
             self.cache.delete(cache_url)
 
         # Give the request a from_cache attr to let people use it
-        resp.from_cache = from_cache
+        resp.from_cache = from_cache  # type: ignore[attr-defined]
 
         return resp
 
-    def close(self):
+    def close(self) -> None:
         self.cache.close()
-        super(CacheControlAdapter, self).close()
+        super().close()  # type: ignore[no-untyped-call]

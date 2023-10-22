@@ -1,5 +1,5 @@
 import logging
-from typing import Iterable, Set, Tuple
+from typing import Iterable, Optional, Set, Tuple
 
 from pip._internal.build_env import BuildEnvironment
 from pip._internal.distributions.base import AbstractDistribution
@@ -17,6 +17,12 @@ class SourceDistribution(AbstractDistribution):
     The preparation step for these needs metadata for the packages to be
     generated, either using PEP 517 or using the legacy `setup.py egg_info`.
     """
+
+    @property
+    def build_tracker_id(self) -> Optional[str]:
+        """Identify this requirement uniquely by its link."""
+        assert self.req.link
+        return self.req.link.url_without_fragment
 
     def get_metadata_distribution(self) -> BaseDistribution:
         return self.req.get_dist()

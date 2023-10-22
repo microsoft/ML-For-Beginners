@@ -24,7 +24,11 @@ from .base import (
     Wheel,
 )
 
+__all__ = ["NAME", "Distribution", "Environment"]
+
 logger = logging.getLogger(__name__)
+
+NAME = "pkg_resources"
 
 
 class EntryPoint(NamedTuple):
@@ -212,11 +216,15 @@ class Distribution(BaseDistribution):
 
     def iter_dependencies(self, extras: Collection[str] = ()) -> Iterable[Requirement]:
         if extras:  # pkg_resources raises on invalid extras, so we sanitize.
-            extras = frozenset(extras).intersection(self._dist.extras)
+            extras = frozenset(pkg_resources.safe_extra(e) for e in extras)
+            extras = extras.intersection(self._dist.extras)
         return self._dist.requires(extras)
 
     def iter_provided_extras(self) -> Iterable[str]:
         return self._dist.extras
+
+    def is_extra_provided(self, extra: str) -> bool:
+        return pkg_resources.safe_extra(extra) in self._dist.extras
 
 
 class Environment(BaseEnvironment):

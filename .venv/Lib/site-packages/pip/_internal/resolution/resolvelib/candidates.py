@@ -65,15 +65,13 @@ def make_install_req_from_link(
         use_pep517=template.use_pep517,
         isolated=template.isolated,
         constraint=template.constraint,
-        options=dict(
-            install_options=template.install_options,
-            global_options=template.global_options,
-            hashes=template.hash_options,
-        ),
+        global_options=template.global_options,
+        hash_options=template.hash_options,
         config_settings=template.config_settings,
     )
     ireq.original_link = template.original_link
     ireq.link = link
+    ireq.extras = template.extras
     return ireq
 
 
@@ -81,7 +79,7 @@ def make_install_req_from_editable(
     link: Link, template: InstallRequirement
 ) -> InstallRequirement:
     assert template.editable, "template not editable"
-    return install_req_from_editable(
+    ireq = install_req_from_editable(
         link.url,
         user_supplied=template.user_supplied,
         comes_from=template.comes_from,
@@ -89,13 +87,12 @@ def make_install_req_from_editable(
         isolated=template.isolated,
         constraint=template.constraint,
         permit_editable_wheels=template.permit_editable_wheels,
-        options=dict(
-            install_options=template.install_options,
-            global_options=template.global_options,
-            hashes=template.hash_options,
-        ),
+        global_options=template.global_options,
+        hash_options=template.hash_options,
         config_settings=template.config_settings,
     )
+    ireq.extras = template.extras
+    return ireq
 
 
 def _make_install_req_from_dist(
@@ -114,11 +111,8 @@ def _make_install_req_from_dist(
         use_pep517=template.use_pep517,
         isolated=template.isolated,
         constraint=template.constraint,
-        options=dict(
-            install_options=template.install_options,
-            global_options=template.global_options,
-            hashes=template.hash_options,
-        ),
+        global_options=template.global_options,
+        hash_options=template.hash_options,
         config_settings=template.config_settings,
     )
     ireq.satisfied_by = dist
@@ -246,7 +240,7 @@ class _InstallRequirementBackedCandidate(Candidate):
     def iter_dependencies(self, with_requires: bool) -> Iterable[Optional[Requirement]]:
         requires = self.dist.iter_dependencies() if with_requires else ()
         for r in requires:
-            yield self._factory.make_requirement_from_spec(str(r), self._ireq)
+            yield from self._factory.make_requirements_from_spec(str(r), self._ireq)
         yield self._factory.make_requires_python_requirement(self.dist.requires_python)
 
     def get_install_requirement(self) -> Optional[InstallRequirement]:
@@ -265,7 +259,7 @@ class LinkCandidate(_InstallRequirementBackedCandidate):
         version: Optional[CandidateVersion] = None,
     ) -> None:
         source_link = link
-        cache_entry = factory.get_wheel_cache_entry(link, name)
+        cache_entry = factory.get_wheel_cache_entry(source_link, name)
         if cache_entry is not None:
             logger.debug("Using cached wheel link: %s", cache_entry.link)
             link = cache_entry.link
@@ -283,13 +277,15 @@ class LinkCandidate(_InstallRequirementBackedCandidate):
                 )
 
         if cache_entry is not None:
+            assert ireq.link.is_wheel
+            assert ireq.link.is_file
             if cache_entry.persistent and template.link is template.original_link:
-                ireq.original_link_is_in_wheel_cache = True
+                ireq.cached_wheel_source_link = source_link
             if cache_entry.origin is not None:
                 ireq.download_info = cache_entry.origin
             else:
                 # Legacy cache entry that does not have origin.json.
-                # download_info may miss the archive_info.hash field.
+                # download_info may miss the archive_info.hashes field.
                 ireq.download_info = direct_url_from_link(
                     source_link, link_is_in_wheel_cache=cache_entry.persistent
                 )
@@ -345,6 +341,7 @@ class AlreadyInstalledCandidate(Candidate):
         self.dist = dist
         self._ireq = _make_install_req_from_dist(dist, template)
         self._factory = factory
+        self._version = None
 
         # This is just logging some messages, so we can do it eagerly.
         # The returned dist would be exactly the same as self.dist because we
@@ -380,7 +377,9 @@ class AlreadyInstalledCandidate(Candidate):
 
     @property
     def version(self) -> CandidateVersion:
-        return self.dist.version
+        if self._version is None:
+            self._version = self.dist.version
+        return self._version
 
     @property
     def is_editable(self) -> bool:
@@ -393,7 +392,7 @@ class AlreadyInstalledCandidate(Candidate):
         if not with_requires:
             return
         for r in self.dist.iter_dependencies():
-            yield self._factory.make_requirement_from_spec(str(r), self._ireq)
+            yield from self._factory.make_requirements_from_spec(str(r), self._ireq)
 
     def get_install_requirement(self) -> Optional[InstallRequirement]:
         return None
@@ -428,9 +427,28 @@ class ExtrasCandidate(Candidate):
         self,
         base: BaseCandidate,
         extras: FrozenSet[str],
+        *,
+        comes_from: Optional[InstallRequirement] = None,
     ) -> None:
+        """
+        :param comes_from: the InstallRequirement that led to this candidate if it
+            differs from the base's InstallRequirement. This will often be the
+            case in the sense that this candidate's requirement has the extras
+            while the base's does not. Unlike the InstallRequirement backed
+            candidates, this requirement is used solely for reporting purposes,
+            it does not do any leg work.
+        """
         self.base = base
-        self.extras = extras
+        self.extras = frozenset(canonicalize_name(e) for e in extras)
+        # If any extras are requested in their non-normalized forms, keep track
+        # of their raw values. This is needed when we look up dependencies
+        # since PEP 685 has not been implemented for marker-matching, and using
+        # the non-normalized extra for lookup ensures the user can select a
+        # non-normalized extra in a package with its non-normalized form.
+        # TODO: Remove this attribute when packaging is upgraded to support the
+        # marker comparison logic specified in PEP 685.
+        self._unnormalized_extras = extras.difference(self.extras)
+        self._comes_from = comes_from if comes_from is not None else self.base._ireq
 
     def __str__(self) -> str:
         name, rest = str(self.base).split(" ", 1)
@@ -481,6 +499,50 @@ class ExtrasCandidate(Candidate):
     def source_link(self) -> Optional[Link]:
         return self.base.source_link
 
+    def _warn_invalid_extras(
+        self,
+        requested: FrozenSet[str],
+        valid: FrozenSet[str],
+    ) -> None:
+        """Emit warnings for invalid extras being requested.
+
+        This emits a warning for each requested extra that is not in the
+        candidate's ``Provides-Extra`` list.
+        """
+        invalid_extras_to_warn = frozenset(
+            extra
+            for extra in requested
+            if extra not in valid
+            # If an extra is requested in an unnormalized form, skip warning
+            # about the normalized form being missing.
+            and extra in self.extras
+        )
+        if not invalid_extras_to_warn:
+            return
+        for extra in sorted(invalid_extras_to_warn):
+            logger.warning(
+                "%s %s does not provide the extra '%s'",
+                self.base.name,
+                self.version,
+                extra,
+            )
+
+    def _calculate_valid_requested_extras(self) -> FrozenSet[str]:
+        """Get a list of valid extras requested by this candidate.
+
+        The user (or upstream dependant) may have specified extras that the
+        candidate doesn't support. Any unsupported extras are dropped, and each
+        cause a warning to be logged here.
+        """
+        requested_extras = self.extras.union(self._unnormalized_extras)
+        valid_extras = frozenset(
+            extra
+            for extra in requested_extras
+            if self.base.dist.is_extra_provided(extra)
+        )
+        self._warn_invalid_extras(requested_extras, valid_extras)
+        return valid_extras
+
     def iter_dependencies(self, with_requires: bool) -> Iterable[Optional[Requirement]]:
         factory = self.base._factory
 
@@ -490,24 +552,13 @@ class ExtrasCandidate(Candidate):
         if not with_requires:
             return
 
-        # The user may have specified extras that the candidate doesn't
-        # support. We ignore any unsupported extras here.
-        valid_extras = self.extras.intersection(self.base.dist.iter_provided_extras())
-        invalid_extras = self.extras.difference(self.base.dist.iter_provided_extras())
-        for extra in sorted(invalid_extras):
-            logger.warning(
-                "%s %s does not provide the extra '%s'",
-                self.base.name,
-                self.version,
-                extra,
-            )
-
+        valid_extras = self._calculate_valid_requested_extras()
         for r in self.base.dist.iter_dependencies(valid_extras):
-            requirement = factory.make_requirement_from_spec(
-                str(r), self.base._ireq, valid_extras
+            yield from factory.make_requirements_from_spec(
+                str(r),
+                self._comes_from,
+                valid_extras,
             )
-            if requirement:
-                yield requirement
 
     def get_install_requirement(self) -> Optional[InstallRequirement]:
         # We don't return anything here, because we always

@@ -25,7 +25,12 @@ from . import certs
 from .__version__ import __version__
 
 # to_native_string is unused here, but imported here for backwards compatibility
-from ._internal_utils import HEADER_VALIDATORS, to_native_string  # noqa: F401
+from ._internal_utils import (  # noqa: F401
+    _HEADER_VALIDATORS_BYTE,
+    _HEADER_VALIDATORS_STR,
+    HEADER_VALIDATORS,
+    to_native_string,
+)
 from .compat import (
     Mapping,
     basestring,
@@ -1031,20 +1036,23 @@ def check_header_validity(header):
     :param header: tuple, in the format (name, value).
     """
     name, value = header
-
-    for part in header:
-        if type(part) not in HEADER_VALIDATORS:
-            raise InvalidHeader(
-                f"Header part ({part!r}) from {{{name!r}: {value!r}}} must be "
-                f"of type str or bytes, not {type(part)}"
-            )
-
-    _validate_header_part(name, "name", HEADER_VALIDATORS[type(name)][0])
-    _validate_header_part(value, "value", HEADER_VALIDATORS[type(value)][1])
+    _validate_header_part(header, name, 0)
+    _validate_header_part(header, value, 1)
 
 
-def _validate_header_part(header_part, header_kind, validator):
+def _validate_header_part(header, header_part, header_validator_index):
+    if isinstance(header_part, str):
+        validator = _HEADER_VALIDATORS_STR[header_validator_index]
+    elif isinstance(header_part, bytes):
+        validator = _HEADER_VALIDATORS_BYTE[header_validator_index]
+    else:
+        raise InvalidHeader(
+            f"Header part ({header_part!r}) from {header} "
+            f"must be of type str or bytes, not {type(header_part)}"
+        )
+
     if not validator.match(header_part):
+        header_kind = "name" if header_validator_index == 0 else "value"
         raise InvalidHeader(
             f"Invalid leading whitespace, reserved character(s), or return"
             f"character(s) in header {header_kind}: {header_part!r}"

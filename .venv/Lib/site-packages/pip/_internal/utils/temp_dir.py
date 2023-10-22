@@ -3,8 +3,19 @@ import itertools
 import logging
 import os.path
 import tempfile
+import traceback
 from contextlib import ExitStack, contextmanager
-from typing import Any, Dict, Generator, Optional, TypeVar, Union
+from pathlib import Path
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generator,
+    List,
+    Optional,
+    TypeVar,
+    Union,
+)
 
 from pip._internal.utils.misc import enum, rmtree
 
@@ -106,6 +117,7 @@ class TempDirectory:
         delete: Union[bool, None, _Default] = _default,
         kind: str = "temp",
         globally_managed: bool = False,
+        ignore_cleanup_errors: bool = True,
     ):
         super().__init__()
 
@@ -128,6 +140,7 @@ class TempDirectory:
         self._deleted = False
         self.delete = delete
         self.kind = kind
+        self.ignore_cleanup_errors = ignore_cleanup_errors
 
         if globally_managed:
             assert _tempdir_manager is not None
@@ -170,7 +183,44 @@ class TempDirectory:
         self._deleted = True
         if not os.path.exists(self._path):
             return
-        rmtree(self._path)
+
+        errors: List[BaseException] = []
+
+        def onerror(
+            func: Callable[..., Any],
+            path: Path,
+            exc_val: BaseException,
+        ) -> None:
+            """Log a warning for a `rmtree` error and continue"""
+            formatted_exc = "\n".join(
+                traceback.format_exception_only(type(exc_val), exc_val)
+            )
+            formatted_exc = formatted_exc.rstrip()  # remove trailing new line
+            if func in (os.unlink, os.remove, os.rmdir):
+                logger.debug(
+                    "Failed to remove a temporary file '%s' due to %s.\n",
+                    path,
+                    formatted_exc,
+                )
+            else:
+                logger.debug("%s failed with %s.", func.__qualname__, formatted_exc)
+            errors.append(exc_val)
+
+        if self.ignore_cleanup_errors:
+            try:
+                # first try with tenacity; retrying to handle ephemeral errors
+                rmtree(self._path, ignore_errors=False)
+            except OSError:
+                # last pass ignore/log all errors
+                rmtree(self._path, onexc=onerror)
+            if errors:
+                logger.warning(
+                    "Failed to remove contents in a temporary directory '%s'.\n"
+                    "You can safely remove it manually.",
+                    self._path,
+                )
+        else:
+            rmtree(self._path)
 
 
 class AdjacentTempDirectory(TempDirectory):

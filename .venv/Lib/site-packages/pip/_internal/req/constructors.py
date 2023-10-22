@@ -8,10 +8,11 @@ These are meant to be used elsewhere within pip to create instances of
 InstallRequirement.
 """
 
+import copy
 import logging
 import os
 import re
-from typing import Any, Dict, Optional, Set, Tuple, Union
+from typing import Collection, Dict, List, Optional, Set, Tuple, Union
 
 from pip._vendor.packaging.markers import Marker
 from pip._vendor.packaging.requirements import InvalidRequirement, Requirement
@@ -55,6 +56,31 @@ def convert_extras(extras: Optional[str]) -> Set[str]:
     if not extras:
         return set()
     return get_requirement("placeholder" + extras.lower()).extras
+
+
+def _set_requirement_extras(req: Requirement, new_extras: Set[str]) -> Requirement:
+    """
+    Returns a new requirement based on the given one, with the supplied extras. If the
+    given requirement already has extras those are replaced (or dropped if no new extras
+    are given).
+    """
+    match: Optional[re.Match[str]] = re.fullmatch(
+        # see https://peps.python.org/pep-0508/#complete-grammar
+        r"([\w\t .-]+)(\[[^\]]*\])?(.*)",
+        str(req),
+        flags=re.ASCII,
+    )
+    # ireq.req is a valid requirement so the regex should always match
+    assert (
+        match is not None
+    ), f"regex match on requirement {req} failed, this should never happen"
+    pre: Optional[str] = match.group(1)
+    post: Optional[str] = match.group(3)
+    assert (
+        pre is not None and post is not None
+    ), f"regex group selection for requirement {req} failed, this should never happen"
+    extras: str = "[%s]" % ",".join(sorted(new_extras)) if new_extras else ""
+    return Requirement(f"{pre}{extras}{post}")
 
 
 def parse_editable(editable_req: str) -> Tuple[Optional[str], str, Set[str]]:
@@ -201,15 +227,16 @@ def parse_req_from_editable(editable_req: str) -> RequirementParts:
 def install_req_from_editable(
     editable_req: str,
     comes_from: Optional[Union[InstallRequirement, str]] = None,
+    *,
     use_pep517: Optional[bool] = None,
     isolated: bool = False,
-    options: Optional[Dict[str, Any]] = None,
+    global_options: Optional[List[str]] = None,
+    hash_options: Optional[Dict[str, List[str]]] = None,
     constraint: bool = False,
     user_supplied: bool = False,
     permit_editable_wheels: bool = False,
-    config_settings: Optional[Dict[str, str]] = None,
+    config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
 ) -> InstallRequirement:
-
     parts = parse_req_from_editable(editable_req)
 
     return InstallRequirement(
@@ -222,9 +249,8 @@ def install_req_from_editable(
         constraint=constraint,
         use_pep517=use_pep517,
         isolated=isolated,
-        install_options=options.get("install_options", []) if options else [],
-        global_options=options.get("global_options", []) if options else [],
-        hash_options=options.get("hashes", {}) if options else {},
+        global_options=global_options,
+        hash_options=hash_options,
         config_settings=config_settings,
         extras=parts.extras,
     )
@@ -376,13 +402,15 @@ def parse_req_from_line(name: str, line_source: Optional[str]) -> RequirementPar
 def install_req_from_line(
     name: str,
     comes_from: Optional[Union[str, InstallRequirement]] = None,
+    *,
     use_pep517: Optional[bool] = None,
     isolated: bool = False,
-    options: Optional[Dict[str, Any]] = None,
+    global_options: Optional[List[str]] = None,
+    hash_options: Optional[Dict[str, List[str]]] = None,
     constraint: bool = False,
     line_source: Optional[str] = None,
     user_supplied: bool = False,
-    config_settings: Optional[Dict[str, str]] = None,
+    config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
 ) -> InstallRequirement:
     """Creates an InstallRequirement from a name, which might be a
     requirement, directory containing 'setup.py', filename, or URL.
@@ -399,9 +427,8 @@ def install_req_from_line(
         markers=parts.markers,
         use_pep517=use_pep517,
         isolated=isolated,
-        install_options=options.get("install_options", []) if options else [],
-        global_options=options.get("global_options", []) if options else [],
-        hash_options=options.get("hashes", {}) if options else {},
+        global_options=global_options,
+        hash_options=hash_options,
         config_settings=config_settings,
         constraint=constraint,
         extras=parts.extras,
@@ -415,7 +442,6 @@ def install_req_from_req_string(
     isolated: bool = False,
     use_pep517: Optional[bool] = None,
     user_supplied: bool = False,
-    config_settings: Optional[Dict[str, str]] = None,
 ) -> InstallRequirement:
     try:
         req = get_requirement(req_string)
@@ -445,7 +471,6 @@ def install_req_from_req_string(
         isolated=isolated,
         use_pep517=use_pep517,
         user_supplied=user_supplied,
-        config_settings=config_settings,
     )
 
 
@@ -454,7 +479,7 @@ def install_req_from_parsed_requirement(
     isolated: bool = False,
     use_pep517: Optional[bool] = None,
     user_supplied: bool = False,
-    config_settings: Optional[Dict[str, str]] = None,
+    config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
 ) -> InstallRequirement:
     if parsed_req.is_editable:
         req = install_req_from_editable(
@@ -473,7 +498,14 @@ def install_req_from_parsed_requirement(
             comes_from=parsed_req.comes_from,
             use_pep517=use_pep517,
             isolated=isolated,
-            options=parsed_req.options,
+            global_options=(
+                parsed_req.options.get("global_options", [])
+                if parsed_req.options
+                else []
+            ),
+            hash_options=(
+                parsed_req.options.get("hashes", {}) if parsed_req.options else {}
+            ),
             constraint=parsed_req.constraint,
             line_source=parsed_req.line_source,
             user_supplied=user_supplied,
@@ -493,9 +525,52 @@ def install_req_from_link_and_ireq(
         markers=ireq.markers,
         use_pep517=ireq.use_pep517,
         isolated=ireq.isolated,
-        install_options=ireq.install_options,
         global_options=ireq.global_options,
         hash_options=ireq.hash_options,
         config_settings=ireq.config_settings,
         user_supplied=ireq.user_supplied,
     )
+
+
+def install_req_drop_extras(ireq: InstallRequirement) -> InstallRequirement:
+    """
+    Creates a new InstallationRequirement using the given template but without
+    any extras. Sets the original requirement as the new one's parent
+    (comes_from).
+    """
+    return InstallRequirement(
+        req=(
+            _set_requirement_extras(ireq.req, set()) if ireq.req is not None else None
+        ),
+        comes_from=ireq,
+        editable=ireq.editable,
+        link=ireq.link,
+        markers=ireq.markers,
+        use_pep517=ireq.use_pep517,
+        isolated=ireq.isolated,
+        global_options=ireq.global_options,
+        hash_options=ireq.hash_options,
+        constraint=ireq.constraint,
+        extras=[],
+        config_settings=ireq.config_settings,
+        user_supplied=ireq.user_supplied,
+        permit_editable_wheels=ireq.permit_editable_wheels,
+    )
+
+
+def install_req_extend_extras(
+    ireq: InstallRequirement,
+    extras: Collection[str],
+) -> InstallRequirement:
+    """
+    Returns a copy of an installation requirement with some additional extras.
+    Makes a shallow copy of the ireq object.
+    """
+    result = copy.copy(ireq)
+    result.extras = {*ireq.extras, *extras}
+    result.req = (
+        _set_requirement_extras(ireq.req, result.extras)
+        if ireq.req is not None
+        else None
+    )
+    return result

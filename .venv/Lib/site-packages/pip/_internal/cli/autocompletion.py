@@ -71,8 +71,9 @@ def autocomplete() -> None:
 
         for opt in subcommand.parser.option_list_all:
             if opt.help != optparse.SUPPRESS_HELP:
-                for opt_str in opt._long_opts + opt._short_opts:
-                    options.append((opt_str, opt.nargs))
+                options += [
+                    (opt_str, opt.nargs) for opt_str in opt._long_opts + opt._short_opts
+                ]
 
         # filter out previously specified options from available options
         prev_opts = [x.split("=")[0] for x in cwords[1 : cword - 1]]

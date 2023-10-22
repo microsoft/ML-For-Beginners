@@ -24,7 +24,7 @@ from typing import (
 
 from pip._vendor.packaging.requirements import Requirement
 from pip._vendor.packaging.specifiers import InvalidSpecifier, SpecifierSet
-from pip._vendor.packaging.utils import NormalizedName
+from pip._vendor.packaging.utils import NormalizedName, canonicalize_name
 from pip._vendor.packaging.version import LegacyVersion, Version
 
 from pip._internal.exceptions import NoneMetadataError
@@ -37,7 +37,6 @@ from pip._internal.models.direct_url import (
 from pip._internal.utils.compat import stdlib_pkgs  # TODO: Move definition here.
 from pip._internal.utils.egg_link import egg_link_path_from_sys_path
 from pip._internal.utils.misc import is_local, normalize_path
-from pip._internal.utils.packaging import safe_extra
 from pip._internal.utils.urls import url_to_path
 
 from ._json import msg_to_json
@@ -460,6 +459,19 @@ class BaseDistribution(Protocol):
 
         For modern .dist-info distributions, this is the collection of
         "Provides-Extra:" entries in distribution metadata.
+
+        The return value of this function is not particularly useful other than
+        display purposes due to backward compatibility issues and the extra
+        names being poorly normalized prior to PEP 685. If you want to perform
+        logic operations on extras, use :func:`is_extra_provided` instead.
+        """
+        raise NotImplementedError()
+
+    def is_extra_provided(self, extra: str) -> bool:
+        """Check whether an extra is provided by this distribution.
+
+        This is needed mostly for compatibility issues with pkg_resources not
+        following the extra normalization rules defined in PEP 685.
         """
         raise NotImplementedError()
 
@@ -537,10 +549,11 @@ class BaseDistribution(Protocol):
         """Get extras from the egg-info directory."""
         known_extras = {""}
         for entry in self._iter_requires_txt_entries():
-            if entry.extra in known_extras:
+            extra = canonicalize_name(entry.extra)
+            if extra in known_extras:
                 continue
-            known_extras.add(entry.extra)
-            yield entry.extra
+            known_extras.add(extra)
+            yield extra
 
     def _iter_egg_info_dependencies(self) -> Iterable[str]:
         """Get distribution dependencies from the egg-info directory.
@@ -556,10 +569,11 @@ class BaseDistribution(Protocol):
         all currently available PEP 517 backends, although not standardized.
         """
         for entry in self._iter_requires_txt_entries():
-            if entry.extra and entry.marker:
-                marker = f'({entry.marker}) and extra == "{safe_extra(entry.extra)}"'
-            elif entry.extra:
-                marker = f'extra == "{safe_extra(entry.extra)}"'
+            extra = canonicalize_name(entry.extra)
+            if extra and entry.marker:
+                marker = f'({entry.marker}) and extra == "{extra}"'
+            elif extra:
+                marker = f'extra == "{extra}"'
             elif entry.marker:
                 marker = entry.marker
             else:

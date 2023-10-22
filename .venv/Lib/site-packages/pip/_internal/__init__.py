@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-import pip._internal.utils.inject_securetransport  # noqa
 from pip._internal.utils import _log
 
 # init_logging() must be called before any call to logging.getLogger()

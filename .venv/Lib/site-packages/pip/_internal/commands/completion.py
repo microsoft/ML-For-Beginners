@@ -22,15 +22,19 @@ COMPLETION_SCRIPTS = {
         complete -o default -F _pip_completion {prog}
     """,
     "zsh": """
-        function _pip_completion {{
-          local words cword
-          read -Ac words
-          read -cn cword
-          reply=( $( COMP_WORDS="$words[*]" \\
-                     COMP_CWORD=$(( cword-1 )) \\
-                     PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+        #compdef -P pip[0-9.]#
+        __pip() {{
+          compadd $( COMP_WORDS="$words[*]" \\
+                     COMP_CWORD=$((CURRENT-1)) \\
+                     PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null )
         }}
-        compctl -K _pip_completion {prog}
+        if [[ $zsh_eval_context[-1] == loadautofunc ]]; then
+          # autoload from fpath, call function directly
+          __pip "$@"
+        else
+          # eval/source/. command, register function for later
+          compdef __pip -P 'pip[0-9.]#'
+        fi
     """,
     "fish": """
         function __fish_complete_pip

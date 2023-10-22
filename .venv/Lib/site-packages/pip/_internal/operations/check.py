@@ -5,12 +5,15 @@ import logging
 from typing import Callable, Dict, List, NamedTuple, Optional, Set, Tuple
 
 from pip._vendor.packaging.requirements import Requirement
+from pip._vendor.packaging.specifiers import LegacySpecifier
 from pip._vendor.packaging.utils import NormalizedName, canonicalize_name
+from pip._vendor.packaging.version import LegacyVersion
 
 from pip._internal.distributions import make_distribution_for_install_requirement
 from pip._internal.metadata import get_default_environment
 from pip._internal.metadata.base import DistributionVersion
 from pip._internal.req.req_install import InstallRequirement
+from pip._internal.utils.deprecation import deprecated
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +59,8 @@ def check_package_set(
     If should_ignore is passed, it should be a callable that takes a
     package name and returns a boolean.
     """
+
+    warn_legacy_versions_and_specifiers(package_set)
 
     missing = {}
     conflicting = {}
@@ -147,3 +152,36 @@ def _create_whitelist(
                 break
 
     return packages_affected
+
+
+def warn_legacy_versions_and_specifiers(package_set: PackageSet) -> None:
+    for project_name, package_details in package_set.items():
+        if isinstance(package_details.version, LegacyVersion):
+            deprecated(
+                reason=(
+                    f"{project_name} {package_details.version} "
+                    f"has a non-standard version number."
+                ),
+                replacement=(
+                    f"to upgrade to a newer version of {project_name} "
+                    f"or contact the author to suggest that they "
+                    f"release a version with a conforming version number"
+                ),
+                issue=12063,
+                gone_in="24.0",
+            )
+        for dep in package_details.dependencies:
+            if any(isinstance(spec, LegacySpecifier) for spec in dep.specifier):
+                deprecated(
+                    reason=(
+                        f"{project_name} {package_details.version} "
+                        f"has a non-standard dependency specifier {dep}."
+                    ),
+                    replacement=(
+                        f"to upgrade to a newer version of {project_name} "
+                        f"or contact the author to suggest that they "
+                        f"release a version with a conforming dependency specifiers"
+                    ),
+                    issue=12063,
+                    gone_in="24.0",
+                )

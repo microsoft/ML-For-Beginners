@@ -28,8 +28,7 @@ from pip._internal.utils.entrypoints import (
 from pip._internal.utils.filesystem import adjacent_tmp_file, check_path_owner, replace
 from pip._internal.utils.misc import ensure_dir
 
-_DATE_FMT = "%Y-%m-%dT%H:%M:%SZ"
-
+_WEEK = datetime.timedelta(days=7)
 
 logger = logging.getLogger(__name__)
 
@@ -73,12 +72,10 @@ class SelfCheckState:
         if "pypi_version" not in self._state:
             return None
 
-        seven_days_in_seconds = 7 * 24 * 60 * 60
-
         # Determine if we need to refresh the state
-        last_check = datetime.datetime.strptime(self._state["last_check"], _DATE_FMT)
-        seconds_since_last_check = (current_time - last_check).total_seconds()
-        if seconds_since_last_check > seven_days_in_seconds:
+        last_check = datetime.datetime.fromisoformat(self._state["last_check"])
+        time_since_last_check = current_time - last_check
+        if time_since_last_check > _WEEK:
             return None
 
         return self._state["pypi_version"]
@@ -100,7 +97,7 @@ class SelfCheckState:
             # Include the key so it's easy to tell which pip wrote the
             # file.
             "key": self.key,
-            "last_check": current_time.strftime(_DATE_FMT),
+            "last_check": current_time.isoformat(),
             "pypi_version": pypi_version,
         }
 
@@ -229,14 +226,14 @@ def pip_self_version_check(session: PipSession, options: optparse.Values) -> Non
     try:
         upgrade_prompt = _self_version_check_logic(
             state=SelfCheckState(cache_dir=options.cache_dir),
-            current_time=datetime.datetime.utcnow(),
+            current_time=datetime.datetime.now(datetime.timezone.utc),
             local_version=installed_dist.version,
             get_remote_version=functools.partial(
                 _get_current_remote_pip_version, session, options
             ),
         )
         if upgrade_prompt is not None:
-            logger.warning("[present-rich] %s", upgrade_prompt)
+            logger.warning("%s", upgrade_prompt, extra={"rich": True})
     except Exception:
         logger.warning("There was an error checking the latest version of pip.")
         logger.debug("See below for error", exc_info=True)

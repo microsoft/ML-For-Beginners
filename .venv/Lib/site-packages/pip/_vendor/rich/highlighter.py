@@ -82,7 +82,7 @@ class ReprHighlighter(RegexHighlighter):
 
     base_style = "repr."
     highlights = [
-        r"(?P<tag_start><)(?P<tag_name>[-\w.:|]*)(?P<tag_contents>[\w\W]*?)(?P<tag_end>>)",
+        r"(?P<tag_start><)(?P<tag_name>[-\w.:|]*)(?P<tag_contents>[\w\W]*)(?P<tag_end>>)",
         r'(?P<attrib_name>[\w_]{1,50})=(?P<attrib_value>"?[\w_]+"?)?',
         r"(?P<brace>[][{}()])",
         _combine_regex(

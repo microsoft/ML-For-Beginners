@@ -9,7 +9,7 @@ from pip._internal.utils.misc import strtobool
 from .base import BaseDistribution, BaseEnvironment, FilesystemWheel, MemoryWheel, Wheel
 
 if TYPE_CHECKING:
-    from typing import Protocol
+    from typing import Literal, Protocol
 else:
     Protocol = object
 
@@ -50,6 +50,7 @@ def _should_use_importlib_metadata() -> bool:
 
 
 class Backend(Protocol):
+    NAME: 'Literal["importlib", "pkg_resources"]'
     Distribution: Type[BaseDistribution]
     Environment: Type[BaseEnvironment]
 

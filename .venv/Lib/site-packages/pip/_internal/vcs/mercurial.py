@@ -31,7 +31,7 @@ class Mercurial(VersionControl):
 
     @staticmethod
     def get_base_rev_args(rev: str) -> List[str]:
-        return [rev]
+        return [f"-r={rev}"]
 
     def fetch_new(
         self, dest: str, url: HiddenText, rev_options: RevOptions, verbosity: int

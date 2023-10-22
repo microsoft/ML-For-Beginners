@@ -4,15 +4,15 @@
 
     Contains built-in styles.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pip._vendor.pygments.plugin import find_plugin_styles
 from pip._vendor.pygments.util import ClassNotFound
 
-
-#: Maps style names to 'submodule::classname'.
+#: A dictionary of built-in styles, mapping style names to
+#: ``'submodule::classname'`` strings.
 STYLE_MAP = {
     'default':  'default::DefaultStyle',
     'emacs':    'emacs::EmacsStyle',
@@ -66,6 +66,13 @@ STYLE_MAP = {
 
 
 def get_style_by_name(name):
+    """
+    Return a style class by its short name. The names of the builtin styles
+    are listed in :data:`pygments.styles.STYLE_MAP`.
+
+    Will raise :exc:`pygments.util.ClassNotFound` if no style of that name is
+    found.
+    """
     if name in STYLE_MAP:
         mod, cls = STYLE_MAP[name].split('::')
         builtin = "yes"
@@ -90,8 +97,7 @@ def get_style_by_name(name):
 
 
 def get_all_styles():
-    """Return a generator for all styles by name,
-    both builtin and plugin."""
+    """Return a generator for all styles by name, both builtin and plugin."""
     yield from STYLE_MAP
     for name, _ in find_plugin_styles():
         yield name

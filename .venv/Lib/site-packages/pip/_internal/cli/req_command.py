@@ -58,12 +58,9 @@ def _create_truststore_ssl_context() -> Optional["SSLContext"]:
         return None
 
     try:
-        import truststore
-    except ImportError:
-        raise CommandError(
-            "To use the truststore feature, 'truststore' must be installed into "
-            "pip's current environment."
-        )
+        from pip._vendor import truststore
+    except ImportError as e:
+        raise CommandError(f"The truststore feature is unavailable: {e}")
 
     return truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
 
@@ -123,7 +120,7 @@ class SessionCommandMixin(CommandContextMixIn):
             ssl_context = None
 
         session = PipSession(
-            cache=os.path.join(cache_dir, "http") if cache_dir else None,
+            cache=os.path.join(cache_dir, "http-v2") if cache_dir else None,
             retries=retries if retries is not None else options.retries,
             trusted_hosts=options.trusted_hosts,
             index_urls=self._get_index_urls(options),
@@ -151,6 +148,7 @@ class SessionCommandMixin(CommandContextMixIn):
 
         # Determine if we can prompt the user for authentication or not
         session.auth.prompting = not options.no_input
+        session.auth.keyring_provider = options.keyring_provider
 
         return session
 
@@ -267,7 +265,7 @@ class RequirementCommand(IndexGroupCommand):
         if "legacy-resolver" in options.deprecated_features_enabled:
             return "legacy"
 
-        return "2020-resolver"
+        return "resolvelib"
 
     @classmethod
     def make_requirement_preparer(
@@ -286,9 +284,10 @@ class RequirementCommand(IndexGroupCommand):
         """
         temp_build_dir_path = temp_build_dir.path
         assert temp_build_dir_path is not None
+        legacy_resolver = False
 
         resolver_variant = cls.determine_resolver_variant(options)
-        if resolver_variant == "2020-resolver":
+        if resolver_variant == "resolvelib":
             lazy_wheel = "fast-deps" in options.features_enabled
             if lazy_wheel:
                 logger.warning(
@@ -299,6 +298,7 @@ class RequirementCommand(IndexGroupCommand):
                     "production."
                 )
         else:
+            legacy_resolver = True
             lazy_wheel = False
             if "fast-deps" in options.features_enabled:
                 logger.warning(
@@ -319,6 +319,7 @@ class RequirementCommand(IndexGroupCommand):
             use_user_site=use_user_site,
             lazy_wheel=lazy_wheel,
             verbosity=verbosity,
+            legacy_resolver=legacy_resolver,
         )
 
     @classmethod
@@ -343,13 +344,12 @@ class RequirementCommand(IndexGroupCommand):
             install_req_from_req_string,
             isolated=options.isolated_mode,
             use_pep517=use_pep517,
-            config_settings=getattr(options, "config_settings", None),
         )
         resolver_variant = cls.determine_resolver_variant(options)
         # The long import name and duplicated invocation is needed to convince
         # Mypy into correctly typechecking. Otherwise it would complain the
         # "Resolver" class being redefined.
-        if resolver_variant == "2020-resolver":
+        if resolver_variant == "resolvelib":
             import pip._internal.resolution.resolvelib.resolver
 
             return pip._internal.resolution.resolvelib.resolver.Resolver(
@@ -410,7 +410,7 @@ class RequirementCommand(IndexGroupCommand):
         for req in args:
             req_to_add = install_req_from_line(
                 req,
-                None,
+                comes_from=None,
                 isolated=options.isolated_mode,
                 use_pep517=options.use_pep517,
                 user_supplied=True,
@@ -438,6 +438,9 @@ class RequirementCommand(IndexGroupCommand):
                     isolated=options.isolated_mode,
                     use_pep517=options.use_pep517,
                     user_supplied=True,
+                    config_settings=parsed_req.options.get("config_settings")
+                    if parsed_req.options
+                    else None,
                 )
                 requirements.append(req_to_add)
 

@@ -1,73 +1,22 @@
 # helpers.py
 import html.entities
 import re
+import sys
 import typing
 
 from . import __diag__
 from .core import *
-from .util import _bslash, _flatten, _escape_regex_range_chars
+from .util import (
+    _bslash,
+    _flatten,
+    _escape_regex_range_chars,
+    replaced_by_pep8,
+)
 
 
 #
 # global helpers
 #
-def delimited_list(
-    expr: Union[str, ParserElement],
-    delim: Union[str, ParserElement] = ",",
-    combine: bool = False,
-    min: typing.Optional[int] = None,
-    max: typing.Optional[int] = None,
-    *,
-    allow_trailing_delim: bool = False,
-) -> ParserElement:
-    """Helper to define a delimited list of expressions - the delimiter
-    defaults to ','. By default, the list elements and delimiters can
-    have intervening whitespace, and comments, but this can be
-    overridden by passing ``combine=True`` in the constructor. If
-    ``combine`` is set to ``True``, the matching tokens are
-    returned as a single token string, with the delimiters included;
-    otherwise, the matching tokens are returned as a list of tokens,
-    with the delimiters suppressed.
-
-    If ``allow_trailing_delim`` is set to True, then the list may end with
-    a delimiter.
-
-    Example::
-
-        delimited_list(Word(alphas)).parse_string("aa,bb,cc") # -> ['aa', 'bb', 'cc']
-        delimited_list(Word(hexnums), delim=':', combine=True).parse_string("AA:BB:CC:DD:EE") # -> ['AA:BB:CC:DD:EE']
-    """
-    if isinstance(expr, str_type):
-        expr = ParserElement._literalStringClass(expr)
-
-    dlName = "{expr} [{delim} {expr}]...{end}".format(
-        expr=str(expr.copy().streamline()),
-        delim=str(delim),
-        end=" [{}]".format(str(delim)) if allow_trailing_delim else "",
-    )
-
-    if not combine:
-        delim = Suppress(delim)
-
-    if min is not None:
-        if min < 1:
-            raise ValueError("min must be greater than 0")
-        min -= 1
-    if max is not None:
-        if min is not None and max <= min:
-            raise ValueError("max must be greater than, or equal to min")
-        max -= 1
-    delimited_list_expr = expr + (delim + expr)[min, max]
-
-    if allow_trailing_delim:
-        delimited_list_expr += Opt(delim)
-
-    if combine:
-        return Combine(delimited_list_expr).set_name(dlName)
-    else:
-        return delimited_list_expr.set_name(dlName)
-
-
 def counted_array(
     expr: ParserElement,
     int_expr: typing.Optional[ParserElement] = None,
@@ -187,7 +136,7 @@ def match_previous_expr(expr: ParserElement) -> ParserElement:
             theseTokens = _flatten(t.as_list())
             if theseTokens != matchTokens:
                 raise ParseException(
-                    s, l, "Expected {}, found{}".format(matchTokens, theseTokens)
+                    s, l, f"Expected {matchTokens}, found{theseTokens}"
                 )
 
         rep.set_parse_action(must_match_these_tokens, callDuringTry=True)
@@ -218,7 +167,7 @@ def one_of(
     - ``caseless`` - treat all literals as caseless - (default= ``False``)
     - ``use_regex`` - as an optimization, will
       generate a :class:`Regex` object; otherwise, will generate
-      a :class:`MatchFirst` object (if ``caseless=True`` or ``asKeyword=True``, or if
+      a :class:`MatchFirst` object (if ``caseless=True`` or ``as_keyword=True``, or if
       creating a :class:`Regex` raises an exception) - (default= ``True``)
     - ``as_keyword`` - enforce :class:`Keyword`-style matching on the
       generated expressions - (default= ``False``)
@@ -262,6 +211,7 @@ def one_of(
 
     symbols: List[str] = []
     if isinstance(strs, str_type):
+        strs = typing.cast(str, strs)
         symbols = strs.split()
     elif isinstance(strs, Iterable):
         symbols = list(strs)
@@ -293,15 +243,13 @@ def one_of(
         try:
             if all(len(sym) == 1 for sym in symbols):
                 # symbols are just single characters, create range regex pattern
-                patt = "[{}]".format(
-                    "".join(_escape_regex_range_chars(sym) for sym in symbols)
-                )
+                patt = f"[{''.join(_escape_regex_range_chars(sym) for sym in symbols)}]"
             else:
                 patt = "|".join(re.escape(sym) for sym in symbols)
 
             # wrap with \b word break markers if defining as keywords
             if asKeyword:
-                patt = r"\b(?:{})\b".format(patt)
+                patt = rf"\b(?:{patt})\b"
 
             ret = Regex(patt, flags=re_flags).set_name(" | ".join(symbols))
 
@@ -371,7 +319,7 @@ def original_text_for(
     expression.  Useful to restore the parsed fields of an HTML start
     tag into the raw tag text itself, or to revert separate tokens with
     intervening whitespace back to the original matching input text. By
-    default, returns astring containing the original parsed text.
+    default, returns a string containing the original parsed text.
 
     If the optional ``as_string`` argument is passed as
     ``False``, then the return value is
@@ -390,7 +338,7 @@ def original_text_for(
         src = "this is test <b> bold <i>text</i> </b> normal text "
         for tag in ("b", "i"):
             opener, closer = make_html_tags(tag)
-            patt = original_text_for(opener + SkipTo(closer) + closer)
+            patt = original_text_for(opener + ... + closer)
             print(patt.search_string(src)[0])
 
     prints::
@@ -426,7 +374,7 @@ def ungroup(expr: ParserElement) -> ParserElement:
 
 def locatedExpr(expr: ParserElement) -> ParserElement:
     """
-    (DEPRECATED - future code should use the Located class)
+    (DEPRECATED - future code should use the :class:`Located` class)
     Helper to decorate a returned token with its starting and ending
     locations in the input string.
 
@@ -437,12 +385,12 @@ def locatedExpr(expr: ParserElement) -> ParserElement:
     - ``value`` - the actual parsed results
 
     Be careful if the input text contains ``<TAB>`` characters, you
-    may want to call :class:`ParserElement.parseWithTabs`
+    may want to call :class:`ParserElement.parse_with_tabs`
 
     Example::
 
         wd = Word(alphas)
-        for match in locatedExpr(wd).searchString("ljsdf123lksdjjf123lkkjj1222"):
+        for match in locatedExpr(wd).search_string("ljsdf123lksdjjf123lkkjj1222"):
             print(match)
 
     prints::
@@ -471,6 +419,7 @@ def nested_expr(
     closing delimiters (``"("`` and ``")"`` are the default).
 
     Parameters:
+
     - ``opener`` - opening character for a nested list
       (default= ``"("``); can also be a pyparsing expression
     - ``closer`` - closing character for a nested list
@@ -507,7 +456,7 @@ def nested_expr(
 
         c_function = (decl_data_type("type")
                       + ident("name")
-                      + LPAR + Opt(delimited_list(arg), [])("args") + RPAR
+                      + LPAR + Opt(DelimitedList(arg), [])("args") + RPAR
                       + code_body("body"))
         c_function.ignore(c_style_comment)
 
@@ -539,6 +488,8 @@ def nested_expr(
         raise ValueError("opening and closing strings cannot be the same")
     if content is None:
         if isinstance(opener, str_type) and isinstance(closer, str_type):
+            opener = typing.cast(str, opener)
+            closer = typing.cast(str, closer)
             if len(opener) == 1 and len(closer) == 1:
                 if ignoreExpr is not None:
                     content = Combine(
@@ -695,12 +646,15 @@ common_html_entity = Regex("&(?P<entity>" + "|".join(_htmlEntityMap) + ");").set
 )
 
 
-def replace_html_entity(t):
+def replace_html_entity(s, l, t):
     """Helper parser action to replace common HTML entities with their special characters"""
     return _htmlEntityMap.get(t.entity)
 
 
 class OpAssoc(Enum):
+    """Enumeration of operator associativity
+    - used in constructing InfixNotationOperatorSpec for :class:`infix_notation`"""
+
     LEFT = 1
     RIGHT = 2
 
@@ -742,6 +696,7 @@ def infix_notation(
     improve your parser performance.
 
     Parameters:
+
     - ``base_expr`` - expression representing the most basic operand to
       be used in the expression
     - ``op_list`` - list of tuples, one for each operator precedence level
@@ -764,11 +719,11 @@ def infix_notation(
         ``set_parse_action(*fn)``
         (:class:`ParserElement.set_parse_action`)
     - ``lpar`` - expression for matching left-parentheses; if passed as a
-      str, then will be parsed as Suppress(lpar). If lpar is passed as
+      str, then will be parsed as ``Suppress(lpar)``. If lpar is passed as
       an expression (such as ``Literal('(')``), then it will be kept in
       the parsed results, and grouped with them. (default= ``Suppress('(')``)
     - ``rpar`` - expression for matching right-parentheses; if passed as a
-      str, then will be parsed as Suppress(rpar). If rpar is passed as
+      str, then will be parsed as ``Suppress(rpar)``. If rpar is passed as
       an expression (such as ``Literal(')')``), then it will be kept in
       the parsed results, and grouped with them. (default= ``Suppress(')')``)
 
@@ -800,9 +755,13 @@ def infix_notation(
         (5+3)*6
         [[[5, '+', 3], '*', 6]]
 
+        (5+x)*y
+        [[[5, '+', 'x'], '*', 'y']]
+
         -2--11
         [[['-', 2], '-', ['-', 11]]]
     """
+
     # captive version of FollowedBy that does not do parse actions or capture results names
     class _FB(FollowedBy):
         def parseImpl(self, instring, loc, doActions=True):
@@ -823,19 +782,25 @@ def infix_notation(
     else:
         lastExpr = base_expr | (lpar + ret + rpar)
 
+    arity: int
+    rightLeftAssoc: opAssoc
+    pa: typing.Optional[ParseAction]
+    opExpr1: ParserElement
+    opExpr2: ParserElement
     for i, operDef in enumerate(op_list):
-        opExpr, arity, rightLeftAssoc, pa = (operDef + (None,))[:4]
+        opExpr, arity, rightLeftAssoc, pa = (operDef + (None,))[:4]  # type: ignore[assignment]
         if isinstance(opExpr, str_type):
             opExpr = ParserElement._literalStringClass(opExpr)
+        opExpr = typing.cast(ParserElement, opExpr)
         if arity == 3:
             if not isinstance(opExpr, (tuple, list)) or len(opExpr) != 2:
                 raise ValueError(
                     "if numterms=3, opExpr must be a tuple or list of two expressions"
                 )
             opExpr1, opExpr2 = opExpr
-            term_name = "{}{} term".format(opExpr1, opExpr2)
+            term_name = f"{opExpr1}{opExpr2} term"
         else:
-            term_name = "{} term".format(opExpr)
+            term_name = f"{opExpr} term"
 
         if not 1 <= arity <= 3:
             raise ValueError("operator must be unary (1), binary (2), or ternary (3)")
@@ -843,7 +808,8 @@ def infix_notation(
         if rightLeftAssoc not in (OpAssoc.LEFT, OpAssoc.RIGHT):
             raise ValueError("operator must indicate right or left associativity")
 
-        thisExpr: Forward = Forward().set_name(term_name)
+        thisExpr: ParserElement = Forward().set_name(term_name)
+        thisExpr = typing.cast(Forward, thisExpr)
         if rightLeftAssoc is OpAssoc.LEFT:
             if arity == 1:
                 matchExpr = _FB(lastExpr + opExpr) + Group(lastExpr + opExpr[1, ...])
@@ -890,7 +856,7 @@ def infix_notation(
 
 def indentedBlock(blockStatementExpr, indentStack, indent=True, backup_stacks=[]):
     """
-    (DEPRECATED - use IndentedBlock class instead)
+    (DEPRECATED - use :class:`IndentedBlock` class instead)
     Helper method for defining space-delimited indentation blocks,
     such as those used to define block statements in Python source code.
 
@@ -1063,22 +1029,28 @@ _builtin_exprs: List[ParserElement] = [
 ]
 
 
+# compatibility function, superseded by DelimitedList class
+def delimited_list(
+    expr: Union[str, ParserElement],
+    delim: Union[str, ParserElement] = ",",
+    combine: bool = False,
+    min: typing.Optional[int] = None,
+    max: typing.Optional[int] = None,
+    *,
+    allow_trailing_delim: bool = False,
+) -> ParserElement:
+    """(DEPRECATED - use :class:`DelimitedList` class)"""
+    return DelimitedList(
+        expr, delim, combine, min, max, allow_trailing_delim=allow_trailing_delim
+    )
+
+
 # pre-PEP8 compatible names
-delimitedList = delimited_list
-countedArray = counted_array
-matchPreviousLiteral = match_previous_literal
-matchPreviousExpr = match_previous_expr
-oneOf = one_of
-dictOf = dict_of
-originalTextFor = original_text_for
-nestedExpr = nested_expr
-makeHTMLTags = make_html_tags
-makeXMLTags = make_xml_tags
-anyOpenTag, anyCloseTag = any_open_tag, any_close_tag
-commonHTMLEntity = common_html_entity
-replaceHTMLEntity = replace_html_entity
+# fmt: off
 opAssoc = OpAssoc
-infixNotation = infix_notation
+anyOpenTag = any_open_tag
+anyCloseTag = any_close_tag
+commonHTMLEntity = common_html_entity
 cStyleComment = c_style_comment
 htmlComment = html_comment
 restOfLine = rest_of_line
@@ -1086,3 +1058,43 @@ dblSlashComment = dbl_slash_comment
 cppStyleComment = cpp_style_comment
 javaStyleComment = java_style_comment
 pythonStyleComment = python_style_comment
+
+@replaced_by_pep8(DelimitedList)
+def delimitedList(): ...
+
+@replaced_by_pep8(DelimitedList)
+def delimited_list(): ...
+
+@replaced_by_pep8(counted_array)
+def countedArray(): ...
+
+@replaced_by_pep8(match_previous_literal)
+def matchPreviousLiteral(): ...
+
+@replaced_by_pep8(match_previous_expr)
+def matchPreviousExpr(): ...
+
+@replaced_by_pep8(one_of)
+def oneOf(): ...
+
+@replaced_by_pep8(dict_of)
+def dictOf(): ...
+
+@replaced_by_pep8(original_text_for)
+def originalTextFor(): ...
+
+@replaced_by_pep8(nested_expr)
+def nestedExpr(): ...
+
+@replaced_by_pep8(make_html_tags)
+def makeHTMLTags(): ...
+
+@replaced_by_pep8(make_xml_tags)
+def makeXMLTags(): ...
+
+@replaced_by_pep8(replace_html_entity)
+def replaceHTMLEntity(): ...
+
+@replaced_by_pep8(infix_notation)
+def infixNotation(): ...
+# fmt: on

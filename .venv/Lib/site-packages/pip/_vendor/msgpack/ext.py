@@ -56,7 +56,7 @@ class Timestamp(object):
         Note: Negative times (before the UNIX epoch) are represented as negative seconds + positive ns.
         """
         if not isinstance(seconds, int_types):
-            raise TypeError("seconds must be an interger")
+            raise TypeError("seconds must be an integer")
         if not isinstance(nanoseconds, int_types):
             raise TypeError("nanoseconds must be an integer")
         if not (0 <= nanoseconds < 10**9):

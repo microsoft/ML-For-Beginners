@@ -1,6 +1,7 @@
 from pip._vendor.packaging.specifiers import SpecifierSet
 from pip._vendor.packaging.utils import NormalizedName, canonicalize_name
 
+from pip._internal.req.constructors import install_req_drop_extras
 from pip._internal.req.req_install import InstallRequirement
 
 from .base import Candidate, CandidateLookup, Requirement, format_name
@@ -43,7 +44,7 @@ class SpecifierRequirement(Requirement):
     def __init__(self, ireq: InstallRequirement) -> None:
         assert ireq.link is None, "This is a link, not a specifier"
         self._ireq = ireq
-        self._extras = frozenset(ireq.extras)
+        self._extras = frozenset(canonicalize_name(e) for e in self._ireq.extras)
 
     def __str__(self) -> str:
         return str(self._ireq.req)
@@ -64,7 +65,6 @@ class SpecifierRequirement(Requirement):
         return format_name(self.project_name, self._extras)
 
     def format_for_error(self) -> str:
-
         # Convert comma-separated specifiers into "A, B, ..., F and G"
         # This makes the specifier a bit more "human readable", without
         # risking a change in meaning. (Hopefully! Not all edge cases have
@@ -91,6 +91,18 @@ class SpecifierRequirement(Requirement):
         assert self._ireq.req, "Specifier-backed ireq is always PEP 508"
         spec = self._ireq.req.specifier
         return spec.contains(candidate.version, prereleases=True)
+
+
+class SpecifierWithoutExtrasRequirement(SpecifierRequirement):
+    """
+    Requirement backed by an install requirement on a base package.
+    Trims extras from its install requirement if there are any.
+    """
+
+    def __init__(self, ireq: InstallRequirement) -> None:
+        assert ireq.link is None, "This is a link, not a specifier"
+        self._ireq = install_req_drop_extras(ireq)
+        self._extras = frozenset(canonicalize_name(e) for e in self._ireq.extras)
 
 
 class RequiresPythonRequirement(Requirement):

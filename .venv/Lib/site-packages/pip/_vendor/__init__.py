@@ -117,4 +117,5 @@ if DEBUNDLED:
     vendored("rich.traceback")
     vendored("tenacity")
     vendored("tomli")
+    vendored("truststore")
     vendored("urllib3")

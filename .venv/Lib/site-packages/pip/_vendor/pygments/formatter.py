@@ -4,7 +4,7 @@
 
     Base formatter class.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,7 +26,21 @@ class Formatter:
     """
     Converts a token stream to text.
 
-    Options accepted:
+    Formatters should have attributes to help selecting them. These
+    are similar to the corresponding :class:`~pygments.lexer.Lexer`
+    attributes.
+
+    .. autoattribute:: name
+       :no-value:
+
+    .. autoattribute:: aliases
+       :no-value:
+
+    .. autoattribute:: filenames
+       :no-value:
+
+    You can pass options as keyword arguments to the constructor.
+    All formatters accept these basic options:
 
     ``style``
         The style to use, can be a string or a Style subclass
@@ -47,15 +61,19 @@ class Formatter:
         support (default: None).
     ``outencoding``
         Overrides ``encoding`` if given.
+
     """
 
-    #: Name of the formatter
+    #: Full name for the formatter, in human-readable form.
     name = None
 
-    #: Shortcuts for the formatter
+    #: A list of short, unique identifiers that can be used to lookup
+    #: the formatter from a list, e.g. using :func:`.get_formatter_by_name()`.
     aliases = []
 
-    #: fn match rules
+    #: A list of fnmatch patterns that match filenames for which this
+    #: formatter can produce output. The patterns in this list should be unique
+    #: among all formatters.
     filenames = []
 
     #: If True, this formatter outputs Unicode strings when no encoding
@@ -63,6 +81,11 @@ class Formatter:
     unicodeoutput = True
 
     def __init__(self, **options):
+        """
+        As with lexers, this constructor takes arbitrary optional arguments,
+        and if you override it, you should first process your own options, then
+        call the base class implementation.
+        """
         self.style = _lookup_style(options.get('style', 'default'))
         self.full = get_bool_opt(options, 'full', False)
         self.title = options.get('title', '')
@@ -75,18 +98,25 @@ class Formatter:
 
     def get_style_defs(self, arg=''):
         """
-        Return the style definitions for the current style as a string.
+        This method must return statements or declarations suitable to define
+        the current style for subsequent highlighted text (e.g. CSS classes
+        in the `HTMLFormatter`).
 
-        ``arg`` is an additional argument whose meaning depends on the
-        formatter used. Note that ``arg`` can also be a list or tuple
-        for some formatters like the html formatter.
+        The optional argument `arg` can be used to modify the generation and
+        is formatter dependent (it is standardized because it can be given on
+        the command line).
+
+        This method is called by the ``-S`` :doc:`command-line option <cmdline>`,
+        the `arg` is then given by the ``-a`` option.
         """
         return ''
 
     def format(self, tokensource, outfile):
         """
-        Format ``tokensource``, an iterable of ``(tokentype, tokenstring)``
-        tuples and write it into ``outfile``.
+        This method must format the tokens from the `tokensource` iterable and
+        write the formatted version to the file object `outfile`.
+
+        Formatter options can control how exactly the tokens are converted.
         """
         if self.encoding:
             # wrap the outfile in a StreamWriter

@@ -103,8 +103,8 @@ def make_setuptools_clean_args(
 
 def make_setuptools_develop_args(
     setup_py_path: str,
+    *,
     global_options: Sequence[str],
-    install_options: Sequence[str],
     no_user_config: bool,
     prefix: Optional[str],
     home: Optional[str],
@@ -119,8 +119,6 @@ def make_setuptools_develop_args(
     )
 
     args += ["develop", "--no-deps"]
-
-    args += install_options
 
     if prefix:
         args += ["--prefix", prefix]
@@ -144,52 +142,5 @@ def make_setuptools_egg_info_args(
 
     if egg_info_dir:
         args += ["--egg-base", egg_info_dir]
-
-    return args
-
-
-def make_setuptools_install_args(
-    setup_py_path: str,
-    global_options: Sequence[str],
-    install_options: Sequence[str],
-    record_filename: str,
-    root: Optional[str],
-    prefix: Optional[str],
-    header_dir: Optional[str],
-    home: Optional[str],
-    use_user_site: bool,
-    no_user_config: bool,
-    pycompile: bool,
-) -> List[str]:
-    assert not (use_user_site and prefix)
-    assert not (use_user_site and root)
-
-    args = make_setuptools_shim_args(
-        setup_py_path,
-        global_options=global_options,
-        no_user_config=no_user_config,
-        unbuffered_output=True,
-    )
-    args += ["install", "--record", record_filename]
-    args += ["--single-version-externally-managed"]
-
-    if root is not None:
-        args += ["--root", root]
-    if prefix is not None:
-        args += ["--prefix", prefix]
-    if home is not None:
-        args += ["--home", home]
-    if use_user_site:
-        args += ["--user", "--prefix="]
-
-    if pycompile:
-        args += ["--compile"]
-    else:
-        args += ["--no-compile"]
-
-    if header_dir:
-        args += ["--install-headers", header_dir]
-
-    args += install_options
 
     return args

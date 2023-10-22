@@ -105,6 +105,13 @@ class Hashes:
         with open(path, "rb") as file:
             return self.check_against_file(file)
 
+    def has_one_of(self, hashes: Dict[str, str]) -> bool:
+        """Return whether any of the given hashes are allowed."""
+        for hash_name, hex_digest in hashes.items():
+            if self.is_hash_allowed(hash_name, hex_digest):
+                return True
+        return False
+
     def __bool__(self) -> bool:
         """Return whether I know any known-good hashes."""
         return bool(self._allowed)

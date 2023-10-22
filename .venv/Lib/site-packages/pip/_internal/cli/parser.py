@@ -229,7 +229,7 @@ class ConfigOptionParser(CustomOptionParser):
                     val = strtobool(val)
                 except ValueError:
                     self.error(
-                        "{} is not a valid value for {} option, "  # noqa
+                        "{} is not a valid value for {} option, "
                         "please specify a boolean value like yes/no, "
                         "true/false or 1/0 instead.".format(val, key)
                     )
@@ -240,7 +240,7 @@ class ConfigOptionParser(CustomOptionParser):
                     val = int(val)
                 if not isinstance(val, int) or val < 0:
                     self.error(
-                        "{} is not a valid value for {} option, "  # noqa
+                        "{} is not a valid value for {} option, "
                         "please instead specify either a non-negative integer "
                         "or a boolean value like yes/no or false/true "
                         "which is equivalent to 1/0.".format(val, key)

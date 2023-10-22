@@ -155,8 +155,8 @@ class RichPipStreamHandler(RichHandler):
 
         # If we are given a diagnostic error to present, present it with indentation.
         assert isinstance(record.args, tuple)
-        if record.msg == "[present-rich] %s" and len(record.args) == 1:
-            rich_renderable = record.args[0]
+        if getattr(record, "rich", False):
+            (rich_renderable,) = record.args
             assert isinstance(
                 rich_renderable, (ConsoleRenderable, RichCast, str)
             ), f"{rich_renderable} is not rich-console-renderable"

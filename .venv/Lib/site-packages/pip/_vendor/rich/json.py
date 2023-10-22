@@ -1,3 +1,4 @@
+from pathlib import Path
 from json import loads, dumps
 from typing import Any, Callable, Optional, Union
 
@@ -131,8 +132,7 @@ if __name__ == "__main__":
         if args.path == "-":
             json_data = sys.stdin.read()
         else:
-            with open(args.path, "rt") as json_file:
-                json_data = json_file.read()
+            json_data = Path(args.path).read_text()
     except Exception as error:
         error_console.print(f"Unable to read {args.path!r}; {error}")
         sys.exit(-1)

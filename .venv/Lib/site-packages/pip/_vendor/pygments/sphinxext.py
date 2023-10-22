@@ -5,7 +5,7 @@
     Sphinx extension to generate automatic documentation of lexers,
     formatters and filters.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -74,6 +74,8 @@ class PygmentsDoc(Directive):
             out = self.document_formatters()
         elif self.arguments[0] == 'filters':
             out = self.document_filters()
+        elif self.arguments[0] == 'lexers_overview':
+            out = self.document_lexers_overview()
         else:
             raise Exception('invalid argument for "pygmentsdoc" directive')
         node = nodes.compound()
@@ -82,6 +84,66 @@ class PygmentsDoc(Directive):
         for fn in self.filenames:
             self.state.document.settings.record_dependencies.add(fn)
         return node.children
+
+    def document_lexers_overview(self):
+        """Generate a tabular overview of all lexers.
+
+        The columns are the lexer name, the extensions handled by this lexer
+        (or "None"), the aliases and a link to the lexer class."""
+        from pip._vendor.pygments.lexers._mapping import LEXERS
+        from pip._vendor.pygments.lexers import find_lexer_class
+        out = []
+
+        table = []
+
+        def format_link(name, url):
+            if url:
+                return f'`{name} <{url}>`_'
+            return name
+
+        for classname, data in sorted(LEXERS.items(), key=lambda x: x[1][1].lower()):
+            lexer_cls = find_lexer_class(data[1])
+            extensions = lexer_cls.filenames + lexer_cls.alias_filenames
+
+            table.append({
+                'name': format_link(data[1], lexer_cls.url),
+                'extensions': ', '.join(extensions).replace('*', '\\*').replace('_', '\\') or 'None',
+                'aliases': ', '.join(data[2]),
+                'class': f'{data[0]}.{classname}'
+            })
+
+        column_names = ['name', 'extensions', 'aliases', 'class']
+        column_lengths = [max([len(row[column]) for row in table if row[column]])
+                          for column in column_names]
+
+        def write_row(*columns):
+            """Format a table row"""
+            out = []
+            for l, c in zip(column_lengths, columns):
+                if c:
+                    out.append(c.ljust(l))
+                else:
+                    out.append(' '*l)
+
+            return ' '.join(out)
+
+        def write_seperator():
+            """Write a table separator row"""
+            sep = ['='*c for c in column_lengths]
+            return write_row(*sep)
+
+        out.append(write_seperator())
+        out.append(write_row('Name', 'Extension(s)', 'Short name(s)', 'Lexer class'))
+        out.append(write_seperator())
+        for row in table:
+            out.append(write_row(
+                row['name'],
+                row['extensions'],
+                row['aliases'],
+                f':class:`~{row["class"]}`'))
+        out.append(write_seperator())
+
+        return '\n'.join(out)
 
     def document_lexers(self):
         from pip._vendor.pygments.lexers._mapping import LEXERS

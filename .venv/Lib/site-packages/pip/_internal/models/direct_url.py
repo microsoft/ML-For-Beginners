@@ -105,22 +105,31 @@ class ArchiveInfo:
         hash: Optional[str] = None,
         hashes: Optional[Dict[str, str]] = None,
     ) -> None:
-        if hash is not None:
+        # set hashes before hash, since the hash setter will further populate hashes
+        self.hashes = hashes
+        self.hash = hash
+
+    @property
+    def hash(self) -> Optional[str]:
+        return self._hash
+
+    @hash.setter
+    def hash(self, value: Optional[str]) -> None:
+        if value is not None:
             # Auto-populate the hashes key to upgrade to the new format automatically.
-            # We don't back-populate the legacy hash key.
+            # We don't back-populate the legacy hash key from hashes.
             try:
-                hash_name, hash_value = hash.split("=", 1)
+                hash_name, hash_value = value.split("=", 1)
             except ValueError:
                 raise DirectUrlValidationError(
-                    f"invalid archive_info.hash format: {hash!r}"
+                    f"invalid archive_info.hash format: {value!r}"
                 )
-            if hashes is None:
-                hashes = {hash_name: hash_value}
-            elif hash_name not in hash:
-                hashes = hashes.copy()
-                hashes[hash_name] = hash_value
-        self.hash = hash
-        self.hashes = hashes
+            if self.hashes is None:
+                self.hashes = {hash_name: hash_value}
+            elif hash_name not in self.hashes:
+                self.hashes = self.hashes.copy()
+                self.hashes[hash_name] = hash_value
+        self._hash = value
 
     @classmethod
     def _from_dict(cls, d: Optional[Dict[str, Any]]) -> Optional["ArchiveInfo"]:

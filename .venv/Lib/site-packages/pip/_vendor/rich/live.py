@@ -210,6 +210,8 @@ class Live(JupyterMixin, RenderHook):
             renderable (RenderableType): New renderable to use.
             refresh (bool, optional): Refresh the display. Defaults to False.
         """
+        if isinstance(renderable, str):
+            renderable = self.console.render_str(renderable)
         with self._lock:
             self._renderable = renderable
             if refresh:

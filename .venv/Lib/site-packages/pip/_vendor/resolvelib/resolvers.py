@@ -1,4 +1,5 @@
 import collections
+import itertools
 import operator
 
 from .providers import AbstractResolver
@@ -173,6 +174,31 @@ class Resolution(object):
             raise RequirementsConflicted(criterion)
         criteria[identifier] = criterion
 
+    def _remove_information_from_criteria(self, criteria, parents):
+        """Remove information from parents of criteria.
+
+        Concretely, removes all values from each criterion's ``information``
+        field that have one of ``parents`` as provider of the requirement.
+
+        :param criteria: The criteria to update.
+        :param parents: Identifiers for which to remove information from all criteria.
+        """
+        if not parents:
+            return
+        for key, criterion in criteria.items():
+            criteria[key] = Criterion(
+                criterion.candidates,
+                [
+                    information
+                    for information in criterion.information
+                    if (
+                        information.parent is None
+                        or self._p.identify(information.parent) not in parents
+                    )
+                ],
+                criterion.incompatibilities,
+            )
+
     def _get_preference(self, name):
         return self._p.get_preference(
             identifier=name,
@@ -212,6 +238,7 @@ class Resolution(object):
             try:
                 criteria = self._get_updated_criteria(candidate)
             except RequirementsConflicted as e:
+                self._r.rejecting_candidate(e.criterion, candidate)
                 causes.append(e.criterion)
                 continue
 
@@ -240,8 +267,8 @@ class Resolution(object):
         # end, signal for backtracking.
         return causes
 
-    def _backtrack(self):
-        """Perform backtracking.
+    def _backjump(self, causes):
+        """Perform backjumping.
 
         When we enter here, the stack is like this::
 
@@ -257,22 +284,46 @@ class Resolution(object):
 
         Each iteration of the loop will:
 
-        1.  Discard Z.
-        2.  Discard Y but remember its incompatibility information gathered
+        1.  Identify Z. The incompatibility is not always caused by the latest
+            state. For example, given three requirements A, B and C, with
+            dependencies A1, B1 and C1, where A1 and B1 are incompatible: the
+            last state might be related to C, so we want to discard the
+            previous state.
+        2.  Discard Z.
+        3.  Discard Y but remember its incompatibility information gathered
             previously, and the failure we're dealing with right now.
-        3.  Push a new state Y' based on X, and apply the incompatibility
+        4.  Push a new state Y' based on X, and apply the incompatibility
             information from Y to Y'.
-        4a. If this causes Y' to conflict, we need to backtrack again. Make Y'
+        5a. If this causes Y' to conflict, we need to backtrack again. Make Y'
             the new Z and go back to step 2.
-        4b. If the incompatibilities apply cleanly, end backtracking.
+        5b. If the incompatibilities apply cleanly, end backtracking.
         """
+        incompatible_reqs = itertools.chain(
+            (c.parent for c in causes if c.parent is not None),
+            (c.requirement for c in causes),
+        )
+        incompatible_deps = {self._p.identify(r) for r in incompatible_reqs}
         while len(self._states) >= 3:
             # Remove the state that triggered backtracking.
             del self._states[-1]
 
-            # Retrieve the last candidate pin and known incompatibilities.
-            broken_state = self._states.pop()
-            name, candidate = broken_state.mapping.popitem()
+            # Ensure to backtrack to a state that caused the incompatibility
+            incompatible_state = False
+            while not incompatible_state:
+                # Retrieve the last candidate pin and known incompatibilities.
+                try:
+                    broken_state = self._states.pop()
+                    name, candidate = broken_state.mapping.popitem()
+                except (IndexError, KeyError):
+                    raise ResolutionImpossible(causes)
+                current_dependencies = {
+                    self._p.identify(d)
+                    for d in self._p.get_dependencies(candidate)
+                }
+                incompatible_state = not current_dependencies.isdisjoint(
+                    incompatible_deps
+                )
+
             incompatibilities_from_broken = [
                 (k, list(v.incompatibilities))
                 for k, v in broken_state.criteria.items()
@@ -280,8 +331,6 @@ class Resolution(object):
 
             # Also mark the newly known incompatibility.
             incompatibilities_from_broken.append((name, [candidate]))
-
-            self._r.backtracking(candidate=candidate)
 
             # Create a new state from the last known-to-work one, and apply
             # the previously gathered incompatibility information.
@@ -368,22 +417,38 @@ class Resolution(object):
                 self._r.ending(state=self.state)
                 return self.state
 
+            # keep track of satisfied names to calculate diff after pinning
+            satisfied_names = set(self.state.criteria.keys()) - set(
+                unsatisfied_names
+            )
+
             # Choose the most preferred unpinned criterion to try.
             name = min(unsatisfied_names, key=self._get_preference)
             failure_causes = self._attempt_to_pin_criterion(name)
 
             if failure_causes:
                 causes = [i for c in failure_causes for i in c.information]
-                # Backtrack if pinning fails. The backtrack process puts us in
+                # Backjump if pinning fails. The backjump process puts us in
                 # an unpinned state, so we can work on it in the next round.
                 self._r.resolving_conflicts(causes=causes)
-                success = self._backtrack()
+                success = self._backjump(causes)
                 self.state.backtrack_causes[:] = causes
 
                 # Dead ends everywhere. Give up.
                 if not success:
                     raise ResolutionImpossible(self.state.backtrack_causes)
             else:
+                # discard as information sources any invalidated names
+                # (unsatisfied names that were previously satisfied)
+                newly_unsatisfied_names = {
+                    key
+                    for key, criterion in self.state.criteria.items()
+                    if key in satisfied_names
+                    and not self._is_current_pin_satisfying(key, criterion)
+                }
+                self._remove_information_from_criteria(
+                    self.state.criteria, newly_unsatisfied_names
+                )
                 # Pinning was successful. Push a new state to do another pin.
                 self._push_new_state()
 

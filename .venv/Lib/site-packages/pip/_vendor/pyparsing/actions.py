@@ -1,7 +1,7 @@
 # actions.py
 
 from .exceptions import ParseException
-from .util import col
+from .util import col, replaced_by_pep8
 
 
 class OnlyOnce:
@@ -38,7 +38,7 @@ def match_only_at_col(n):
 
     def verify_col(strg, locn, toks):
         if col(locn, strg) != n:
-            raise ParseException(strg, locn, "matched token not at column {}".format(n))
+            raise ParseException(strg, locn, f"matched token not at column {n}")
 
     return verify_col
 
@@ -148,15 +148,13 @@ def with_attribute(*args, **attr_dict):
                 raise ParseException(
                     s,
                     l,
-                    "attribute {!r} has value {!r}, must be {!r}".format(
-                        attrName, tokens[attrName], attrValue
-                    ),
+                    f"attribute {attrName!r} has value {tokens[attrName]!r}, must be {attrValue!r}",
                 )
 
     return pa
 
 
-with_attribute.ANY_VALUE = object()
+with_attribute.ANY_VALUE = object()  # type: ignore [attr-defined]
 
 
 def with_class(classname, namespace=""):
@@ -195,13 +193,25 @@ def with_class(classname, namespace=""):
         1 4 0 1 0
         1,3 2,3 1,1
     """
-    classattr = "{}:class".format(namespace) if namespace else "class"
+    classattr = f"{namespace}:class" if namespace else "class"
     return with_attribute(**{classattr: classname})
 
 
 # pre-PEP8 compatibility symbols
-replaceWith = replace_with
-removeQuotes = remove_quotes
-withAttribute = with_attribute
-withClass = with_class
-matchOnlyAtCol = match_only_at_col
+# fmt: off
+@replaced_by_pep8(replace_with)
+def replaceWith(): ...
+
+@replaced_by_pep8(remove_quotes)
+def removeQuotes(): ...
+
+@replaced_by_pep8(with_attribute)
+def withAttribute(): ...
+
+@replaced_by_pep8(with_class)
+def withClass(): ...
+
+@replaced_by_pep8(match_only_at_col)
+def matchOnlyAtCol(): ...
+
+# fmt: on

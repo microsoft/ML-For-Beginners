@@ -4,7 +4,7 @@
 
     Formatter for IRC output
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -128,38 +128,12 @@ class IRCFormatter(Formatter):
         self._lineno = 0
 
     def _write_lineno(self, outfile):
-        self._lineno += 1
-        outfile.write("\n%04d: " % self._lineno)
-
-    def _format_unencoded_with_lineno(self, tokensource, outfile):
-        self._write_lineno(outfile)
-
-        for ttype, value in tokensource:
-            if value.endswith("\n"):
-                self._write_lineno(outfile)
-                value = value[:-1]
-            color = self.colorscheme.get(ttype)
-            while color is None:
-                ttype = ttype.parent
-                color = self.colorscheme.get(ttype)
-            if color:
-                color = color[self.darkbg]
-                spl = value.split('\n')
-                for line in spl[:-1]:
-                    self._write_lineno(outfile)
-                    if line:
-                        outfile.write(ircformat(color, line[:-1]))
-                if spl[-1]:
-                    outfile.write(ircformat(color, spl[-1]))
-            else:
-                outfile.write(value)
-
-        outfile.write("\n")
+        if self.linenos:
+            self._lineno += 1
+            outfile.write("%04d: " % self._lineno)
 
     def format_unencoded(self, tokensource, outfile):
-        if self.linenos:
-            self._format_unencoded_with_lineno(tokensource, outfile)
-            return
+        self._write_lineno(outfile)
 
         for ttype, value in tokensource:
             color = self.colorscheme.get(ttype)
@@ -173,6 +147,7 @@ class IRCFormatter(Formatter):
                     if line:
                         outfile.write(ircformat(color, line))
                     outfile.write('\n')
+                    self._write_lineno(outfile)
                 if spl[-1]:
                     outfile.write(ircformat(color, spl[-1]))
             else:

@@ -1,6 +1,3 @@
-# The following comment should be removed at some point in the future.
-# mypy: strict-optional=False
-
 import contextlib
 import errno
 import getpass
@@ -14,9 +11,11 @@ import stat
 import sys
 import sysconfig
 import urllib.parse
+from functools import partial
 from io import StringIO
 from itertools import filterfalse, tee, zip_longest
-from types import TracebackType
+from pathlib import Path
+from types import FunctionType, TracebackType
 from typing import (
     Any,
     BinaryIO,
@@ -32,9 +31,11 @@ from typing import (
     Tuple,
     Type,
     TypeVar,
+    Union,
     cast,
 )
 
+from pip._vendor.packaging.requirements import Requirement
 from pip._vendor.pyproject_hooks import BuildBackendHookCaller
 from pip._vendor.tenacity import retry, stop_after_delay, wait_fixed
 
@@ -68,6 +69,8 @@ T = TypeVar("T")
 ExcInfo = Tuple[Type[BaseException], BaseException, TracebackType]
 VersionInfo = Tuple[int, int, int]
 NetlocTuple = Tuple[str, Tuple[Optional[str], Optional[str]]]
+OnExc = Callable[[FunctionType, Path, BaseException], Any]
+OnErr = Callable[[FunctionType, Path, ExcInfo], Any]
 
 
 def get_pip_version() -> str:
@@ -125,28 +128,75 @@ def get_prog() -> str:
 # Retry every half second for up to 3 seconds
 # Tenacity raises RetryError by default, explicitly raise the original exception
 @retry(reraise=True, stop=stop_after_delay(3), wait=wait_fixed(0.5))
-def rmtree(dir: str, ignore_errors: bool = False) -> None:
-    shutil.rmtree(dir, ignore_errors=ignore_errors, onerror=rmtree_errorhandler)
+def rmtree(
+    dir: str,
+    ignore_errors: bool = False,
+    onexc: Optional[OnExc] = None,
+) -> None:
+    if ignore_errors:
+        onexc = _onerror_ignore
+    if onexc is None:
+        onexc = _onerror_reraise
+    handler: OnErr = partial(
+        # `[func, path, Union[ExcInfo, BaseException]] -> Any` is equivalent to
+        # `Union[([func, path, ExcInfo] -> Any), ([func, path, BaseException] -> Any)]`.
+        cast(Union[OnExc, OnErr], rmtree_errorhandler),
+        onexc=onexc,
+    )
+    if sys.version_info >= (3, 12):
+        # See https://docs.python.org/3.12/whatsnew/3.12.html#shutil.
+        shutil.rmtree(dir, onexc=handler)
+    else:
+        shutil.rmtree(dir, onerror=handler)
 
 
-def rmtree_errorhandler(func: Callable[..., Any], path: str, exc_info: ExcInfo) -> None:
-    """On Windows, the files in .svn are read-only, so when rmtree() tries to
-    remove them, an exception is thrown.  We catch that here, remove the
-    read-only attribute, and hopefully continue without problems."""
+def _onerror_ignore(*_args: Any) -> None:
+    pass
+
+
+def _onerror_reraise(*_args: Any) -> None:
+    raise
+
+
+def rmtree_errorhandler(
+    func: FunctionType,
+    path: Path,
+    exc_info: Union[ExcInfo, BaseException],
+    *,
+    onexc: OnExc = _onerror_reraise,
+) -> None:
+    """
+    `rmtree` error handler to 'force' a file remove (i.e. like `rm -f`).
+
+    * If a file is readonly then it's write flag is set and operation is
+      retried.
+
+    * `onerror` is the original callback from `rmtree(... onerror=onerror)`
+      that is chained at the end if the "rm -f" still fails.
+    """
     try:
-        has_attr_readonly = not (os.stat(path).st_mode & stat.S_IWRITE)
+        st_mode = os.stat(path).st_mode
     except OSError:
         # it's equivalent to os.path.exists
         return
 
-    if has_attr_readonly:
+    if not st_mode & stat.S_IWRITE:
         # convert to read/write
-        os.chmod(path, stat.S_IWRITE)
-        # use the original function to repeat the operation
-        func(path)
-        return
-    else:
-        raise
+        try:
+            os.chmod(path, st_mode | stat.S_IWRITE)
+        except OSError:
+            pass
+        else:
+            # use the original function to repeat the operation
+            try:
+                func(path)
+                return
+            except OSError:
+                pass
+
+    if not isinstance(exc_info, BaseException):
+        _, exc_info, _ = exc_info
+    onexc(func, path, exc_info)
 
 
 def display_path(path: str) -> str:
@@ -338,17 +388,18 @@ def write_output(msg: Any, *args: Any) -> None:
 
 
 class StreamWrapper(StringIO):
-    orig_stream: TextIO = None
+    orig_stream: TextIO
 
     @classmethod
     def from_stream(cls, orig_stream: TextIO) -> "StreamWrapper":
-        cls.orig_stream = orig_stream
-        return cls()
+        ret = cls()
+        ret.orig_stream = orig_stream
+        return ret
 
     # compileall.compile_dir() needs stdout.encoding to print to stdout
-    # https://github.com/python/mypy/issues/4125
+    # type ignore is because TextIOBase.encoding is writeable
     @property
-    def encoding(self):  # type: ignore
+    def encoding(self) -> str:  # type: ignore
         return self.orig_stream.encoding
 
 
@@ -416,7 +467,7 @@ def build_url_from_netloc(netloc: str, scheme: str = "https") -> str:
     return f"{scheme}://{netloc}"
 
 
-def parse_netloc(netloc: str) -> Tuple[str, Optional[int]]:
+def parse_netloc(netloc: str) -> Tuple[Optional[str], Optional[int]]:
     """
     Return the host-port pair from a netloc.
     """
@@ -504,7 +555,9 @@ def _redact_netloc(netloc: str) -> Tuple[str]:
     return (redact_netloc(netloc),)
 
 
-def split_auth_netloc_from_url(url: str) -> Tuple[str, str, Tuple[str, str]]:
+def split_auth_netloc_from_url(
+    url: str,
+) -> Tuple[str, str, Tuple[Optional[str], Optional[str]]]:
     """
     Parse a url into separate netloc, auth, and url with no auth.
 
@@ -524,6 +577,13 @@ def remove_auth_from_url(url: str) -> str:
 def redact_auth_from_url(url: str) -> str:
     """Replace the password in a given url with ****."""
     return _transform_url(url, _redact_netloc)[0]
+
+
+def redact_auth_from_requirement(req: Requirement) -> str:
+    """Replace the password in a given requirement url with ****."""
+    if not req.url:
+        return str(req)
+    return str(req).replace(req.url, redact_auth_from_url(req.url))
 
 
 class HiddenText:
@@ -614,18 +674,6 @@ def hash_file(path: str, blocksize: int = 1 << 20) -> Tuple[Any, int]:
     return h, length
 
 
-def is_wheel_installed() -> bool:
-    """
-    Return whether the wheel package is installed.
-    """
-    try:
-        import wheel  # noqa: F401
-    except ImportError:
-        return False
-
-    return True
-
-
 def pairwise(iterable: Iterable[Any]) -> Iterator[Tuple[Any, Any]]:
     """
     Return paired elements.
@@ -669,7 +717,7 @@ class ConfiguredBuildBackendHookCaller(BuildBackendHookCaller):
     def build_wheel(
         self,
         wheel_directory: str,
-        config_settings: Optional[Dict[str, str]] = None,
+        config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
         metadata_directory: Optional[str] = None,
     ) -> str:
         cs = self.config_holder.config_settings
@@ -678,7 +726,9 @@ class ConfiguredBuildBackendHookCaller(BuildBackendHookCaller):
         )
 
     def build_sdist(
-        self, sdist_directory: str, config_settings: Optional[Dict[str, str]] = None
+        self,
+        sdist_directory: str,
+        config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
     ) -> str:
         cs = self.config_holder.config_settings
         return super().build_sdist(sdist_directory, config_settings=cs)
@@ -686,7 +736,7 @@ class ConfiguredBuildBackendHookCaller(BuildBackendHookCaller):
     def build_editable(
         self,
         wheel_directory: str,
-        config_settings: Optional[Dict[str, str]] = None,
+        config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
         metadata_directory: Optional[str] = None,
     ) -> str:
         cs = self.config_holder.config_settings
@@ -695,19 +745,19 @@ class ConfiguredBuildBackendHookCaller(BuildBackendHookCaller):
         )
 
     def get_requires_for_build_wheel(
-        self, config_settings: Optional[Dict[str, str]] = None
+        self, config_settings: Optional[Dict[str, Union[str, List[str]]]] = None
     ) -> List[str]:
         cs = self.config_holder.config_settings
         return super().get_requires_for_build_wheel(config_settings=cs)
 
     def get_requires_for_build_sdist(
-        self, config_settings: Optional[Dict[str, str]] = None
+        self, config_settings: Optional[Dict[str, Union[str, List[str]]]] = None
     ) -> List[str]:
         cs = self.config_holder.config_settings
         return super().get_requires_for_build_sdist(config_settings=cs)
 
     def get_requires_for_build_editable(
-        self, config_settings: Optional[Dict[str, str]] = None
+        self, config_settings: Optional[Dict[str, Union[str, List[str]]]] = None
     ) -> List[str]:
         cs = self.config_holder.config_settings
         return super().get_requires_for_build_editable(config_settings=cs)
@@ -715,7 +765,7 @@ class ConfiguredBuildBackendHookCaller(BuildBackendHookCaller):
     def prepare_metadata_for_build_wheel(
         self,
         metadata_directory: str,
-        config_settings: Optional[Dict[str, str]] = None,
+        config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
         _allow_fallback: bool = True,
     ) -> str:
         cs = self.config_holder.config_settings
@@ -728,7 +778,7 @@ class ConfiguredBuildBackendHookCaller(BuildBackendHookCaller):
     def prepare_metadata_for_build_editable(
         self,
         metadata_directory: str,
-        config_settings: Optional[Dict[str, str]] = None,
+        config_settings: Optional[Dict[str, Union[str, List[str]]]] = None,
         _allow_fallback: bool = True,
     ) -> str:
         cs = self.config_holder.config_settings

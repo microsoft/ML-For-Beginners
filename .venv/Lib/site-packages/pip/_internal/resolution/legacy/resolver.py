@@ -431,12 +431,12 @@ class Resolver(BaseResolver):
         if cache_entry is not None:
             logger.debug("Using cached wheel link: %s", cache_entry.link)
             if req.link is req.original_link and cache_entry.persistent:
-                req.original_link_is_in_wheel_cache = True
+                req.cached_wheel_source_link = req.link
             if cache_entry.origin is not None:
                 req.download_info = cache_entry.origin
             else:
                 # Legacy cache entry that does not have origin.json.
-                # download_info may miss the archive_info.hash field.
+                # download_info may miss the archive_info.hashes field.
                 req.download_info = direct_url_from_link(
                     req.link, link_is_in_wheel_cache=cache_entry.persistent
                 )

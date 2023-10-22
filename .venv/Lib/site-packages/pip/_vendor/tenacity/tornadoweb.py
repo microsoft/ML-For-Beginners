@@ -33,8 +33,8 @@ class TornadoRetrying(BaseRetrying):
         super().__init__(**kwargs)
         self.sleep = sleep
 
-    @gen.coroutine
-    def __call__(  # type: ignore  # Change signature from supertype
+    @gen.coroutine  # type: ignore[misc]
+    def __call__(
         self,
         fn: "typing.Callable[..., typing.Union[typing.Generator[typing.Any, typing.Any, _RetValT], Future[_RetValT]]]",
         *args: typing.Any,
@@ -49,7 +49,7 @@ class TornadoRetrying(BaseRetrying):
                 try:
                     result = yield fn(*args, **kwargs)
                 except BaseException:  # noqa: B902
-                    retry_state.set_exception(sys.exc_info())
+                    retry_state.set_exception(sys.exc_info())  # type: ignore[arg-type]
                 else:
                     retry_state.set_result(result)
             elif isinstance(do, DoSleep):

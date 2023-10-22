@@ -101,7 +101,7 @@ class Git(VersionControl):
         if not match:
             logger.warning("Can't parse git version: %s", version)
             return ()
-        return tuple(int(c) for c in match.groups())
+        return (int(match.group(1)), int(match.group(2)))
 
     @classmethod
     def get_current_branch(cls, location: str) -> Optional[str]:

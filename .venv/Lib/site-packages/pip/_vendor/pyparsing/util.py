@@ -1,12 +1,14 @@
 # util.py
+import inspect
 import warnings
 import types
 import collections
 import itertools
-from functools import lru_cache
-from typing import List, Union, Iterable
+from functools import lru_cache, wraps
+from typing import Callable, List, Union, Iterable, TypeVar, cast
 
 _bslash = chr(92)
+C = TypeVar("C", bound=Callable)
 
 
 class __config_flags:
@@ -20,18 +22,15 @@ class __config_flags:
     def _set(cls, dname, value):
         if dname in cls._fixed_names:
             warnings.warn(
-                "{}.{} {} is {} and cannot be overridden".format(
-                    cls.__name__,
-                    dname,
-                    cls._type_desc,
-                    str(getattr(cls, dname)).upper(),
-                )
+                f"{cls.__name__}.{dname} {cls._type_desc} is {str(getattr(cls, dname)).upper()}"
+                f" and cannot be overridden",
+                stacklevel=3,
             )
             return
         if dname in cls._all_names:
             setattr(cls, dname, value)
         else:
-            raise ValueError("no such {} {!r}".format(cls._type_desc, dname))
+            raise ValueError(f"no such {cls._type_desc} {dname!r}")
 
     enable = classmethod(lambda cls, name: cls._set(name, True))
     disable = classmethod(lambda cls, name: cls._set(name, False))
@@ -45,7 +44,7 @@ def col(loc: int, strg: str) -> int:
 
     Note: the default parsing behavior is to expand tabs in the input string
     before starting the parsing process.  See
-    :class:`ParserElement.parseString` for more
+    :class:`ParserElement.parse_string` for more
     information on parsing strings containing ``<TAB>`` s, and suggested
     methods to maintain a consistent view of the parsed string, the parse
     location, and line and column positions within the parsed string.
@@ -60,7 +59,7 @@ def lineno(loc: int, strg: str) -> int:
     The first line is number 1.
 
     Note - the default parsing behavior is to expand tabs in the input string
-    before starting the parsing process.  See :class:`ParserElement.parseString`
+    before starting the parsing process.  See :class:`ParserElement.parse_string`
     for more information on parsing strings containing ``<TAB>`` s, and
     suggested methods to maintain a consistent view of the parsed string, the
     parse location, and line and column positions within the parsed string.
@@ -102,19 +101,24 @@ class _UnboundedCache:
 class _FifoCache:
     def __init__(self, size):
         self.not_in_cache = not_in_cache = object()
-        cache = collections.OrderedDict()
+        cache = {}
+        keyring = [object()] * size
         cache_get = cache.get
+        cache_pop = cache.pop
+        keyiter = itertools.cycle(range(size))
 
         def get(_, key):
             return cache_get(key, not_in_cache)
 
         def set_(_, key, value):
             cache[key] = value
-            while len(cache) > size:
-                cache.popitem(last=False)
+            i = next(keyiter)
+            cache_pop(keyring[i], None)
+            keyring[i] = key
 
         def clear(_):
             cache.clear()
+            keyring[:] = [object()] * size
 
         self.size = size
         self.get = types.MethodType(get, self)
@@ -189,9 +193,9 @@ def _collapse_string_to_ranges(
             is_consecutive.value = next(is_consecutive.counter)
         return is_consecutive.value
 
-    is_consecutive.prev = 0
-    is_consecutive.counter = itertools.count()
-    is_consecutive.value = -1
+    is_consecutive.prev = 0  # type: ignore [attr-defined]
+    is_consecutive.counter = itertools.count()  # type: ignore [attr-defined]
+    is_consecutive.value = -1  # type: ignore [attr-defined]
 
     def escape_re_range_char(c):
         return "\\" + c if c in r"\^-][" else c
@@ -215,9 +219,7 @@ def _collapse_string_to_ranges(
             else:
                 sep = "" if ord(last) == ord(first) + 1 else "-"
                 ret.append(
-                    "{}{}{}".format(
-                        escape_re_range_char(first), sep, escape_re_range_char(last)
-                    )
+                    f"{escape_re_range_char(first)}{sep}{escape_re_range_char(last)}"
                 )
     else:
         ret = [escape_re_range_char(c) for c in s]
@@ -233,3 +235,50 @@ def _flatten(ll: list) -> list:
         else:
             ret.append(i)
     return ret
+
+
+def _make_synonym_function(compat_name: str, fn: C) -> C:
+    # In a future version, uncomment the code in the internal _inner() functions
+    # to begin emitting DeprecationWarnings.
+
+    # Unwrap staticmethod/classmethod
+    fn = getattr(fn, "__func__", fn)
+
+    # (Presence of 'self' arg in signature is used by explain_exception() methods, so we take
+    # some extra steps to add it if present in decorated function.)
+    if "self" == list(inspect.signature(fn).parameters)[0]:
+
+        @wraps(fn)
+        def _inner(self, *args, **kwargs):
+            # warnings.warn(
+            #     f"Deprecated - use {fn.__name__}", DeprecationWarning, stacklevel=3
+            # )
+            return fn(self, *args, **kwargs)
+
+    else:
+
+        @wraps(fn)
+        def _inner(*args, **kwargs):
+            # warnings.warn(
+            #     f"Deprecated - use {fn.__name__}", DeprecationWarning, stacklevel=3
+            # )
+            return fn(*args, **kwargs)
+
+    _inner.__doc__ = f"""Deprecated - use :class:`{fn.__name__}`"""
+    _inner.__name__ = compat_name
+    _inner.__annotations__ = fn.__annotations__
+    if isinstance(fn, types.FunctionType):
+        _inner.__kwdefaults__ = fn.__kwdefaults__
+    elif isinstance(fn, type) and hasattr(fn, "__init__"):
+        _inner.__kwdefaults__ = fn.__init__.__kwdefaults__
+    else:
+        _inner.__kwdefaults__ = None
+    _inner.__qualname__ = fn.__qualname__
+    return cast(C, _inner)
+
+
+def replaced_by_pep8(fn: C) -> Callable[[Callable], C]:
+    """
+    Decorator for pre-PEP8 compatibility synonyms, to link them to the new function.
+    """
+    return lambda other: _make_synonym_function(other.__name__, fn)

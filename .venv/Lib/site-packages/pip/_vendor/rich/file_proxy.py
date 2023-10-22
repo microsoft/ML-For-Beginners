@@ -34,7 +34,7 @@ class FileProxy(io.TextIOBase):
             line, new_line, text = text.partition("\n")
             if new_line:
                 lines.append("".join(buffer) + line)
-                del buffer[:]
+                buffer.clear()
             else:
                 buffer.append(line)
                 break
@@ -52,3 +52,6 @@ class FileProxy(io.TextIOBase):
         if output:
             self.__console.print(output)
         del self.__buffer[:]
+
+    def fileno(self) -> int:
+        return self.__file.fileno()

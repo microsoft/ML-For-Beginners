@@ -1,6 +1,5 @@
 import os
 import sys
-import warnings
 
 # Remove '' and current working directory from the first entry
 # of sys.path, if present to avoid using current directory
@@ -20,12 +19,6 @@ if __package__ == "":
     sys.path.insert(0, path)
 
 if __name__ == "__main__":
-    # Work around the error reported in #9540, pending a proper fix.
-    # Note: It is essential the warning filter is set *before* importing
-    #       pip, as the deprecation happens at import time, not runtime.
-    warnings.filterwarnings(
-        "ignore", category=DeprecationWarning, module=".*packaging\\.version"
-    )
     from pip._internal.cli.main import main as _main
 
     sys.exit(_main())

@@ -50,7 +50,7 @@ _variations = [
     "(?:(?:%(hex)s:){0,6}%(hex)s)?::",
 ]
 
-UNRESERVED_PAT = r"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._!\-~"
+UNRESERVED_PAT = r"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._\-~"
 IPV6_PAT = "(?:" + "|".join([x % _subs for x in _variations]) + ")"
 ZONE_ID_PAT = "(?:%25|%)(?:[" + UNRESERVED_PAT + "]|%[a-fA-F0-9]{2})+"
 IPV6_ADDRZ_PAT = r"\[" + IPV6_PAT + r"(?:" + ZONE_ID_PAT + r")?\]"
@@ -303,7 +303,7 @@ def _normalize_host(host, scheme):
 
 
 def _idna_encode(name):
-    if name and any([ord(x) > 128 for x in name]):
+    if name and any(ord(x) >= 128 for x in name):
         try:
             from pip._vendor import idna
         except ImportError:

@@ -316,7 +316,6 @@ class InsecureCacheControlAdapter(CacheControlAdapter):
 
 
 class PipSession(requests.Session):
-
     timeout: Optional[int] = None
 
     def __init__(
@@ -420,15 +419,17 @@ class PipSession(requests.Session):
                 msg += f" (from {source})"
             logger.info(msg)
 
-        host_port = parse_netloc(host)
-        if host_port not in self.pip_trusted_origins:
-            self.pip_trusted_origins.append(host_port)
+        parsed_host, parsed_port = parse_netloc(host)
+        if parsed_host is None:
+            raise ValueError(f"Trusted host URL must include a host part: {host!r}")
+        if (parsed_host, parsed_port) not in self.pip_trusted_origins:
+            self.pip_trusted_origins.append((parsed_host, parsed_port))
 
         self.mount(
             build_url_from_netloc(host, scheme="http") + "/", self._trusted_host_adapter
         )
         self.mount(build_url_from_netloc(host) + "/", self._trusted_host_adapter)
-        if not host_port[1]:
+        if not parsed_port:
             self.mount(
                 build_url_from_netloc(host, scheme="http") + ":",
                 self._trusted_host_adapter,

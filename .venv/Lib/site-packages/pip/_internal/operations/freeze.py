@@ -145,9 +145,10 @@ def freeze(
 
 
 def _format_as_name_version(dist: BaseDistribution) -> str:
-    if isinstance(dist.version, Version):
-        return f"{dist.raw_name}=={dist.version}"
-    return f"{dist.raw_name}==={dist.version}"
+    dist_version = dist.version
+    if isinstance(dist_version, Version):
+        return f"{dist.raw_name}=={dist_version}"
+    return f"{dist.raw_name}==={dist_version}"
 
 
 def _get_editable_info(dist: BaseDistribution) -> _EditableInfo:

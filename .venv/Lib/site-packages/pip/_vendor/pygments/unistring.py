@@ -7,7 +7,7 @@
 
     Inspired by chartypes_create.py from the MoinMoin project.
 
-    :copyright: Copyright 2006-2022 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -112,7 +112,7 @@ if __name__ == '__main__':  # pragma: no cover
 
     categories = {'xid_start': [], 'xid_continue': []}
 
-    with open(__file__) as fp:
+    with open(__file__, encoding='utf-8') as fp:
         content = fp.read()
 
     header = content[:content.find('Cc =')]
@@ -136,7 +136,7 @@ if __name__ == '__main__':  # pragma: no cover
         if ('a' + c).isidentifier():
             categories['xid_continue'].append(c)
 
-    with open(__file__, 'w') as fp:
+    with open(__file__, 'w', encoding='utf-8') as fp:
         fp.write(header)
 
         for cat in sorted(categories):

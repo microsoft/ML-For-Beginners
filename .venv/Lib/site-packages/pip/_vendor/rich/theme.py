@@ -56,17 +56,20 @@ class Theme:
         return theme
 
     @classmethod
-    def read(cls, path: str, inherit: bool = True) -> "Theme":
+    def read(
+        cls, path: str, inherit: bool = True, encoding: Optional[str] = None
+    ) -> "Theme":
         """Read a theme from a path.
 
         Args:
             path (str): Path to a config file readable by Python configparser module.
             inherit (bool, optional): Inherit default styles. Defaults to True.
+            encoding (str, optional): Encoding of the config file. Defaults to None.
 
         Returns:
             Theme: A new theme instance.
         """
-        with open(path, "rt") as config_file:
+        with open(path, "rt", encoding=encoding) as config_file:
             return cls.from_file(config_file, source=path, inherit=inherit)
 
 

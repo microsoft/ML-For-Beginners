@@ -1,18 +1,25 @@
 # results.py
-from collections.abc import MutableMapping, Mapping, MutableSequence, Iterator
+from collections.abc import (
+    MutableMapping,
+    Mapping,
+    MutableSequence,
+    Iterator,
+    Sequence,
+    Container,
+)
 import pprint
-from weakref import ref as wkref
-from typing import Tuple, Any
+from typing import Tuple, Any, Dict, Set, List
 
 str_type: Tuple[type, ...] = (str, bytes)
 _generator_type = type((_ for _ in ()))
 
 
 class _ParseResultsWithOffset:
+    tup: Tuple["ParseResults", int]
     __slots__ = ["tup"]
 
-    def __init__(self, p1, p2):
-        self.tup = (p1, p2)
+    def __init__(self, p1: "ParseResults", p2: int):
+        self.tup: Tuple[ParseResults, int] = (p1, p2)
 
     def __getitem__(self, i):
         return self.tup[i]
@@ -47,7 +54,7 @@ class ParseResults:
         result = date_str.parse_string("1999/12/31")
 
         def test(s, fn=repr):
-            print("{} -> {}".format(s, fn(eval(s))))
+            print(f"{s} -> {fn(eval(s))}")
         test("list(result)")
         test("result[0]")
         test("result['month']")
@@ -70,27 +77,33 @@ class ParseResults:
         - year: '1999'
     """
 
-    _null_values: Tuple[Any, ...] = (None, [], "", ())
+    _null_values: Tuple[Any, ...] = (None, [], ())
 
-    __slots__ = [
+    _name: str
+    _parent: "ParseResults"
+    _all_names: Set[str]
+    _modal: bool
+    _toklist: List[Any]
+    _tokdict: Dict[str, Any]
+
+    __slots__ = (
         "_name",
         "_parent",
         "_all_names",
         "_modal",
         "_toklist",
         "_tokdict",
-        "__weakref__",
-    ]
+    )
 
     class List(list):
         """
         Simple wrapper class to distinguish parsed list results that should be preserved
-        as actual Python lists, instead of being converted to :class:`ParseResults`:
+        as actual Python lists, instead of being converted to :class:`ParseResults`::
 
             LBRACK, RBRACK = map(pp.Suppress, "[]")
             element = pp.Forward()
             item = ppc.integer
-            element_list = LBRACK + pp.delimited_list(element) + RBRACK
+            element_list = LBRACK + pp.DelimitedList(element) + RBRACK
 
             # add parse actions to convert from ParseResults to actual Python collection types
             def as_python_list(t):
@@ -107,7 +120,7 @@ class ParseResults:
                 (2,3,4)
                 ''', post_parse=lambda s, r: (r[0], type(r[0])))
 
-        prints:
+        prints::
 
             100
             (100, <class 'int'>)
@@ -127,8 +140,7 @@ class ParseResults:
 
             if not isinstance(contained, list):
                 raise TypeError(
-                    "{} may only be constructed with a list,"
-                    " not {}".format(cls.__name__, type(contained).__name__)
+                    f"{cls.__name__} may only be constructed with a list, not {type(contained).__name__}"
                 )
 
             return list.__new__(cls)
@@ -159,6 +171,7 @@ class ParseResults:
     def __init__(
         self, toklist=None, name=None, asList=True, modal=True, isinstance=isinstance
     ):
+        self._tokdict: Dict[str, _ParseResultsWithOffset]
         self._modal = modal
         if name is not None and name != "":
             if isinstance(name, int):
@@ -210,7 +223,7 @@ class ParseResults:
             ]
             sub = v
         if isinstance(sub, ParseResults):
-            sub._parent = wkref(self)
+            sub._parent = self
 
     def __delitem__(self, i):
         if isinstance(i, (int, slice)):
@@ -263,7 +276,7 @@ class ParseResults:
         """
         Since ``keys()`` returns an iterator, this method is helpful in bypassing
         code that looks for the existence of any defined results names."""
-        return bool(self._tokdict)
+        return not not self._tokdict
 
     def pop(self, *args, **kwargs):
         """
@@ -311,9 +324,7 @@ class ParseResults:
             if k == "default":
                 args = (args[0], v)
             else:
-                raise TypeError(
-                    "pop() got an unexpected keyword argument {!r}".format(k)
-                )
+                raise TypeError(f"pop() got an unexpected keyword argument {k!r}")
         if isinstance(args[0], int) or len(args) == 1 or args[0] in self:
             index = args[0]
             ret = self[index]
@@ -423,12 +434,15 @@ class ParseResults:
                 raise AttributeError(name)
             return ""
 
-    def __add__(self, other) -> "ParseResults":
+    def __add__(self, other: "ParseResults") -> "ParseResults":
         ret = self.copy()
         ret += other
         return ret
 
-    def __iadd__(self, other) -> "ParseResults":
+    def __iadd__(self, other: "ParseResults") -> "ParseResults":
+        if not other:
+            return self
+
         if other._tokdict:
             offset = len(self._toklist)
             addoffset = lambda a: offset if a < 0 else a + offset
@@ -441,7 +455,7 @@ class ParseResults:
             for k, v in otherdictitems:
                 self[k] = v
                 if isinstance(v[0], ParseResults):
-                    v[0]._parent = wkref(self)
+                    v[0]._parent = self
 
         self._toklist += other._toklist
         self._all_names |= other._all_names
@@ -456,7 +470,7 @@ class ParseResults:
             return other + self
 
     def __repr__(self) -> str:
-        return "{}({!r}, {})".format(type(self).__name__, self._toklist, self.as_dict())
+        return f"{type(self).__name__}({self._toklist!r}, {self.as_dict()})"
 
     def __str__(self) -> str:
         return (
@@ -532,13 +546,37 @@ class ParseResults:
 
     def copy(self) -> "ParseResults":
         """
-        Returns a new copy of a :class:`ParseResults` object.
+        Returns a new shallow copy of a :class:`ParseResults` object. `ParseResults`
+        items contained within the source are shared with the copy. Use
+        :class:`ParseResults.deepcopy()` to create a copy with its own separate
+        content values.
         """
         ret = ParseResults(self._toklist)
         ret._tokdict = self._tokdict.copy()
         ret._parent = self._parent
         ret._all_names |= self._all_names
         ret._name = self._name
+        return ret
+
+    def deepcopy(self) -> "ParseResults":
+        """
+        Returns a new deep copy of a :class:`ParseResults` object.
+        """
+        ret = self.copy()
+        # replace values with copies if they are of known mutable types
+        for i, obj in enumerate(self._toklist):
+            if isinstance(obj, ParseResults):
+                self._toklist[i] = obj.deepcopy()
+            elif isinstance(obj, (str, bytes)):
+                pass
+            elif isinstance(obj, MutableMapping):
+                self._toklist[i] = dest = type(obj)()
+                for k, v in obj.items():
+                    dest[k] = v.deepcopy() if isinstance(v, ParseResults) else v
+            elif isinstance(obj, Container):
+                self._toklist[i] = type(obj)(
+                    v.deepcopy() if isinstance(v, ParseResults) else v for v in obj
+                )
         return ret
 
     def get_name(self):
@@ -569,20 +607,17 @@ class ParseResults:
         if self._name:
             return self._name
         elif self._parent:
-            par = self._parent()
-
-            def find_in_parent(sub):
-                return next(
-                    (
-                        k
-                        for k, vlist in par._tokdict.items()
-                        for v, loc in vlist
-                        if sub is v
-                    ),
-                    None,
-                )
-
-            return find_in_parent(self) if par else None
+            par: "ParseResults" = self._parent
+            parent_tokdict_items = par._tokdict.items()
+            return next(
+                (
+                    k
+                    for k, vlist in parent_tokdict_items
+                    for v, loc in vlist
+                    if v is self
+                ),
+                None,
+            )
         elif (
             len(self) == 1
             and len(self._tokdict) == 1
@@ -623,7 +658,7 @@ class ParseResults:
                 for k, v in items:
                     if out:
                         out.append(NL)
-                    out.append("{}{}- {}: ".format(indent, ("  " * _depth), k))
+                    out.append(f"{indent}{('  ' * _depth)}- {k}: ")
                     if isinstance(v, ParseResults):
                         if v:
                             out.append(
@@ -685,7 +720,7 @@ class ParseResults:
             num = Word(nums)
             func = Forward()
             term = ident | num | Group('(' + func + ')')
-            func <<= ident + Group(Optional(delimited_list(term)))
+            func <<= ident + Group(Optional(DelimitedList(term)))
             result = func.parse_string("fna a,b,(fnb c,d,200),100")
             result.pprint(width=40)
 
@@ -705,7 +740,7 @@ class ParseResults:
             self._toklist,
             (
                 self._tokdict.copy(),
-                self._parent is not None and self._parent() or None,
+                None,
                 self._all_names,
                 self._name,
             ),
@@ -714,10 +749,7 @@ class ParseResults:
     def __setstate__(self, state):
         self._toklist, (self._tokdict, par, inAccumNames, self._name) = state
         self._all_names = set(inAccumNames)
-        if par is not None:
-            self._parent = wkref(par)
-        else:
-            self._parent = None
+        self._parent = None
 
     def __getnewargs__(self):
         return self._toklist, self._name
@@ -738,6 +770,7 @@ class ParseResults:
                 iter(obj)
             except Exception:
                 return False
+            # str's are iterable, but in pyparsing, we don't want to iterate over them
             else:
                 return not isinstance(obj, str_type)
 
@@ -752,8 +785,11 @@ class ParseResults:
         return ret
 
     asList = as_list
+    """Deprecated - use :class:`as_list`"""
     asDict = as_dict
+    """Deprecated - use :class:`as_dict`"""
     getName = get_name
+    """Deprecated - use :class:`get_name`"""
 
 
 MutableMapping.register(ParseResults)

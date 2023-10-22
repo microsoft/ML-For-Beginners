@@ -89,7 +89,7 @@ def distutils_scheme(
     # finalize_options(); we only want to override here if the user
     # has explicitly requested it hence going back to the config
     if "install_lib" in d.get_option_dict("install"):
-        scheme.update(dict(purelib=i.install_lib, platlib=i.install_lib))
+        scheme.update({"purelib": i.install_lib, "platlib": i.install_lib})
 
     if running_under_virtualenv():
         if home:

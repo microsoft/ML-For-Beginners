@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pip._vendor.packaging.utils import canonicalize_name
 
 from pip._internal.distributions.base import AbstractDistribution
@@ -14,6 +16,10 @@ class WheelDistribution(AbstractDistribution):
 
     This does not need any preparation as wheels can be directly unpacked.
     """
+
+    @property
+    def build_tracker_id(self) -> Optional[str]:
+        return None
 
     def get_metadata_distribution(self) -> BaseDistribution:
         """Loads the metadata from the wheel file into memory and returns a

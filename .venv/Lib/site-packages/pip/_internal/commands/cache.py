@@ -3,10 +3,10 @@ import textwrap
 from optparse import Values
 from typing import Any, List
 
-import pip._internal.utils.filesystem as filesystem
 from pip._internal.cli.base_command import Command
 from pip._internal.cli.status_codes import ERROR, SUCCESS
 from pip._internal.exceptions import CommandError, PipError
+from pip._internal.utils import filesystem
 from pip._internal.utils.logging import getLogger
 
 logger = getLogger(__name__)
@@ -37,7 +37,6 @@ class CacheCommand(Command):
     """
 
     def add_options(self) -> None:
-
         self.cmd_opts.add_option(
             "--format",
             action="store",
@@ -94,24 +93,30 @@ class CacheCommand(Command):
         num_http_files = len(self._find_http_files(options))
         num_packages = len(self._find_wheels(options, "*"))
 
-        http_cache_location = self._cache_dir(options, "http")
+        http_cache_location = self._cache_dir(options, "http-v2")
+        old_http_cache_location = self._cache_dir(options, "http")
         wheels_cache_location = self._cache_dir(options, "wheels")
-        http_cache_size = filesystem.format_directory_size(http_cache_location)
+        http_cache_size = filesystem.format_size(
+            filesystem.directory_size(http_cache_location)
+            + filesystem.directory_size(old_http_cache_location)
+        )
         wheels_cache_size = filesystem.format_directory_size(wheels_cache_location)
 
         message = (
             textwrap.dedent(
                 """
-                    Package index page cache location: {http_cache_location}
+                    Package index page cache location (pip v23.3+): {http_cache_location}
+                    Package index page cache location (older pips): {old_http_cache_location}
                     Package index page cache size: {http_cache_size}
                     Number of HTTP files: {num_http_files}
                     Locally built wheels location: {wheels_cache_location}
                     Locally built wheels size: {wheels_cache_size}
                     Number of locally built wheels: {package_count}
-                """
+                """  # noqa: E501
             )
             .format(
                 http_cache_location=http_cache_location,
+                old_http_cache_location=old_http_cache_location,
                 http_cache_size=http_cache_size,
                 num_http_files=num_http_files,
                 wheels_cache_location=wheels_cache_location,
@@ -152,14 +157,8 @@ class CacheCommand(Command):
         logger.info("\n".join(sorted(results)))
 
     def format_for_abspath(self, files: List[str]) -> None:
-        if not files:
-            return
-
-        results = []
-        for filename in files:
-            results.append(filename)
-
-        logger.info("\n".join(sorted(results)))
+        if files:
+            logger.info("\n".join(sorted(files)))
 
     def remove_cache_items(self, options: Values, args: List[Any]) -> None:
         if len(args) > 1:
@@ -196,8 +195,11 @@ class CacheCommand(Command):
         return os.path.join(options.cache_dir, subdir)
 
     def _find_http_files(self, options: Values) -> List[str]:
-        http_dir = self._cache_dir(options, "http")
-        return filesystem.find_files(http_dir, "*")
+        old_http_dir = self._cache_dir(options, "http")
+        new_http_dir = self._cache_dir(options, "http-v2")
+        return filesystem.find_files(old_http_dir, "*") + filesystem.find_files(
+            new_http_dir, "*"
+        )
 
     def _find_wheels(self, options: Values, pattern: str) -> List[str]:
         wheel_dir = self._cache_dir(options, "wheels")

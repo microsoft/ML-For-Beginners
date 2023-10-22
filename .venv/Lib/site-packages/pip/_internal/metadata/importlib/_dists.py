@@ -27,7 +27,6 @@ from pip._internal.metadata.base import (
     Wheel,
 )
 from pip._internal.utils.misc import normalize_path
-from pip._internal.utils.packaging import safe_extra
 from pip._internal.utils.temp_dir import TempDirectory
 from pip._internal.utils.wheel import parse_wheel, read_wheel_metadata_file
 
@@ -208,12 +207,16 @@ class Distribution(BaseDistribution):
         return cast(email.message.Message, self._dist.metadata)
 
     def iter_provided_extras(self) -> Iterable[str]:
-        return (
-            safe_extra(extra) for extra in self.metadata.get_all("Provides-Extra", [])
+        return self.metadata.get_all("Provides-Extra", [])
+
+    def is_extra_provided(self, extra: str) -> bool:
+        return any(
+            canonicalize_name(provided_extra) == canonicalize_name(extra)
+            for provided_extra in self.metadata.get_all("Provides-Extra", [])
         )
 
     def iter_dependencies(self, extras: Collection[str] = ()) -> Iterable[Requirement]:
-        contexts: Sequence[Dict[str, str]] = [{"extra": safe_extra(e)} for e in extras]
+        contexts: Sequence[Dict[str, str]] = [{"extra": e} for e in extras]
         for req_string in self.metadata.get_all("Requires-Dist", []):
             req = Requirement(req_string)
             if not req.marker:

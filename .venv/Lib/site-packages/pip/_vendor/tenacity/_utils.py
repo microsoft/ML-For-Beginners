@@ -16,6 +16,7 @@
 
 import sys
 import typing
+from datetime import timedelta
 
 
 # sys.maxsize:
@@ -66,3 +67,10 @@ def get_callback_name(cb: typing.Callable[..., typing.Any]) -> str:
         except AttributeError:
             pass
         return ".".join(segments)
+
+
+time_unit_type = typing.Union[int, float, timedelta]
+
+
+def to_seconds(time_unit: time_unit_type) -> float:
+    return float(time_unit.total_seconds() if isinstance(time_unit, timedelta) else time_unit)

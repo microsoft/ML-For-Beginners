@@ -103,7 +103,10 @@ class ListCommand(IndexGroupCommand):
             dest="list_format",
             default="columns",
             choices=("columns", "freeze", "json"),
-            help="Select the output format among: columns (default), freeze, or json",
+            help=(
+                "Select the output format among: columns (default), freeze, or json. "
+                "The 'freeze' format cannot be used with the --outdated option."
+            ),
         )
 
         self.cmd_opts.add_option(
@@ -157,7 +160,7 @@ class ListCommand(IndexGroupCommand):
 
         if options.outdated and options.list_format == "freeze":
             raise CommandError(
-                "List format 'freeze' can not be used with the --outdated option."
+                "List format 'freeze' cannot be used with the --outdated option."
             )
 
         cmdoptions.check_list_path_option(options)
@@ -294,7 +297,7 @@ class ListCommand(IndexGroupCommand):
 
         # Create and add a separator.
         if len(data) > 0:
-            pkg_strings.insert(1, " ".join(map(lambda x: "-" * x, sizes)))
+            pkg_strings.insert(1, " ".join("-" * x for x in sizes))
 
         for val in pkg_strings:
             write_output(val)

@@ -1,12 +1,15 @@
+## import the needed libraries
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
 
-
+# filling in the flask boilerplate code
 app = Flask(__name__)
 
+## importing the model
 model = pickle.load(open("./ufo-model.pkl", "rb"))
 
+## routing the model onto the web application
 @app.route("/")
 def home():
     return render_template("index.html")

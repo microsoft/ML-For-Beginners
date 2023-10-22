@@ -1,6 +1,6 @@
 import sys
 from optparse import Values
-from typing import List
+from typing import AbstractSet, List
 
 from pip._internal.cli import cmdoptions
 from pip._internal.cli.base_command import Command
@@ -8,7 +8,18 @@ from pip._internal.cli.status_codes import SUCCESS
 from pip._internal.operations.freeze import freeze
 from pip._internal.utils.compat import stdlib_pkgs
 
-DEV_PKGS = {"pip", "setuptools", "distribute", "wheel"}
+
+def _should_suppress_build_backends() -> bool:
+    return sys.version_info < (3, 12)
+
+
+def _dev_pkgs() -> AbstractSet[str]:
+    pkgs = {"pip"}
+
+    if _should_suppress_build_backends():
+        pkgs |= {"setuptools", "distribute", "wheel"}
+
+    return pkgs
 
 
 class FreezeCommand(Command):
@@ -61,7 +72,7 @@ class FreezeCommand(Command):
             action="store_true",
             help=(
                 "Do not skip these packages in the output:"
-                " {}".format(", ".join(DEV_PKGS))
+                " {}".format(", ".join(_dev_pkgs()))
             ),
         )
         self.cmd_opts.add_option(
@@ -77,7 +88,7 @@ class FreezeCommand(Command):
     def run(self, options: Values, args: List[str]) -> int:
         skip = set(stdlib_pkgs)
         if not options.freeze_all:
-            skip.update(DEV_PKGS)
+            skip.update(_dev_pkgs())
 
         if options.excludes:
             skip.update(options.excludes)

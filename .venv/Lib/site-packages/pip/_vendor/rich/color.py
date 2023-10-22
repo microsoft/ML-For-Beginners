@@ -513,15 +513,14 @@ class Color(NamedTuple):
     def downgrade(self, system: ColorSystem) -> "Color":
         """Downgrade a color system to a system with fewer colors."""
 
-        if self.type in [ColorType.DEFAULT, system]:
+        if self.type in (ColorType.DEFAULT, system):
             return self
         # Convert to 8-bit color from truecolor color
         if system == ColorSystem.EIGHT_BIT and self.system == ColorSystem.TRUECOLOR:
             assert self.triplet is not None
-            red, green, blue = self.triplet.normalized
-            _h, l, s = rgb_to_hls(red, green, blue)
-            # If saturation is under 10% assume it is grayscale
-            if s < 0.1:
+            _h, l, s = rgb_to_hls(*self.triplet.normalized)
+            # If saturation is under 15% assume it is grayscale
+            if s < 0.15:
                 gray = round(l * 25.0)
                 if gray == 0:
                     color_number = 16
@@ -531,8 +530,13 @@ class Color(NamedTuple):
                     color_number = 231 + gray
                 return Color(self.name, ColorType.EIGHT_BIT, number=color_number)
 
+            red, green, blue = self.triplet
+            six_red = red / 95 if red < 95 else 1 + (red - 95) / 40
+            six_green = green / 95 if green < 95 else 1 + (green - 95) / 40
+            six_blue = blue / 95 if blue < 95 else 1 + (blue - 95) / 40
+
             color_number = (
-                16 + 36 * round(red * 5.0) + 6 * round(green * 5.0) + round(blue * 5.0)
+                16 + 36 * round(six_red) + 6 * round(six_green) + round(six_blue)
             )
             return Color(self.name, ColorType.EIGHT_BIT, number=color_number)
 

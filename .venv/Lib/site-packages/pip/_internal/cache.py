@@ -6,14 +6,13 @@ import json
 import logging
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional
 
 from pip._vendor.packaging.tags import Tag, interpreter_name, interpreter_version
 from pip._vendor.packaging.utils import canonicalize_name
 
 from pip._internal.exceptions import InvalidWheelFilename
 from pip._internal.models.direct_url import DirectUrl
-from pip._internal.models.format_control import FormatControl
 from pip._internal.models.link import Link
 from pip._internal.models.wheel import Wheel
 from pip._internal.utils.temp_dir import TempDirectory, tempdir_kinds
@@ -33,25 +32,13 @@ def _hash_dict(d: Dict[str, str]) -> str:
 class Cache:
     """An abstract class - provides cache directories for data from links
 
-
     :param cache_dir: The root of the cache.
-    :param format_control: An object of FormatControl class to limit
-        binaries being read from the cache.
-    :param allowed_formats: which formats of files the cache should store.
-        ('binary' and 'source' are the only allowed values)
     """
 
-    def __init__(
-        self, cache_dir: str, format_control: FormatControl, allowed_formats: Set[str]
-    ) -> None:
+    def __init__(self, cache_dir: str) -> None:
         super().__init__()
         assert not cache_dir or os.path.isabs(cache_dir)
         self.cache_dir = cache_dir or None
-        self.format_control = format_control
-        self.allowed_formats = allowed_formats
-
-        _valid_formats = {"source", "binary"}
-        assert self.allowed_formats.union(_valid_formats) == _valid_formats
 
     def _get_cache_path_parts(self, link: Link) -> List[str]:
         """Get parts of part that must be os.path.joined with cache_dir"""
@@ -91,16 +78,10 @@ class Cache:
         if can_not_cache:
             return []
 
-        formats = self.format_control.get_allowed_formats(canonical_package_name)
-        if not self.allowed_formats.intersection(formats):
-            return []
-
-        candidates = []
         path = self.get_path_for_link(link)
         if os.path.isdir(path):
-            for candidate in os.listdir(path):
-                candidates.append((candidate, path))
-        return candidates
+            return [(candidate, path) for candidate in os.listdir(path)]
+        return []
 
     def get_path_for_link(self, link: Link) -> str:
         """Return a directory to store cached items in for link."""
@@ -121,8 +102,8 @@ class Cache:
 class SimpleWheelCache(Cache):
     """A cache of wheels for future installs."""
 
-    def __init__(self, cache_dir: str, format_control: FormatControl) -> None:
-        super().__init__(cache_dir, format_control, {"binary"})
+    def __init__(self, cache_dir: str) -> None:
+        super().__init__(cache_dir)
 
     def get_path_for_link(self, link: Link) -> str:
         """Return a directory to store cached wheels for link
@@ -191,13 +172,13 @@ class SimpleWheelCache(Cache):
 class EphemWheelCache(SimpleWheelCache):
     """A SimpleWheelCache that creates it's own temporary cache directory"""
 
-    def __init__(self, format_control: FormatControl) -> None:
+    def __init__(self) -> None:
         self._temp_dir = TempDirectory(
             kind=tempdir_kinds.EPHEM_WHEEL_CACHE,
             globally_managed=True,
         )
 
-        super().__init__(self._temp_dir.path, format_control)
+        super().__init__(self._temp_dir.path)
 
 
 class CacheEntry:
@@ -211,7 +192,17 @@ class CacheEntry:
         self.origin: Optional[DirectUrl] = None
         origin_direct_url_path = Path(self.link.file_path).parent / ORIGIN_JSON_NAME
         if origin_direct_url_path.exists():
-            self.origin = DirectUrl.from_json(origin_direct_url_path.read_text())
+            try:
+                self.origin = DirectUrl.from_json(
+                    origin_direct_url_path.read_text(encoding="utf-8")
+                )
+            except Exception as e:
+                logger.warning(
+                    "Ignoring invalid cache entry origin file %s for %s (%s)",
+                    origin_direct_url_path,
+                    link.filename,
+                    e,
+                )
 
 
 class WheelCache(Cache):
@@ -221,14 +212,10 @@ class WheelCache(Cache):
     when a certain link is not found in the simple wheel cache first.
     """
 
-    def __init__(
-        self, cache_dir: str, format_control: Optional[FormatControl] = None
-    ) -> None:
-        if format_control is None:
-            format_control = FormatControl()
-        super().__init__(cache_dir, format_control, {"binary"})
-        self._wheel_cache = SimpleWheelCache(cache_dir, format_control)
-        self._ephem_cache = EphemWheelCache(format_control)
+    def __init__(self, cache_dir: str) -> None:
+        super().__init__(cache_dir)
+        self._wheel_cache = SimpleWheelCache(cache_dir)
+        self._ephem_cache = EphemWheelCache()
 
     def get_path_for_link(self, link: Link) -> str:
         return self._wheel_cache.get_path_for_link(link)
@@ -278,16 +265,26 @@ class WheelCache(Cache):
     @staticmethod
     def record_download_origin(cache_dir: str, download_info: DirectUrl) -> None:
         origin_path = Path(cache_dir) / ORIGIN_JSON_NAME
-        if origin_path.is_file():
-            origin = DirectUrl.from_json(origin_path.read_text())
-            # TODO: use DirectUrl.equivalent when https://github.com/pypa/pip/pull/10564
-            # is merged.
-            if origin.url != download_info.url:
+        if origin_path.exists():
+            try:
+                origin = DirectUrl.from_json(origin_path.read_text(encoding="utf-8"))
+            except Exception as e:
                 logger.warning(
-                    "Origin URL %s in cache entry %s does not match download URL %s. "
-                    "This is likely a pip bug or a cache corruption issue.",
-                    origin.url,
-                    cache_dir,
-                    download_info.url,
+                    "Could not read origin file %s in cache entry (%s). "
+                    "Will attempt to overwrite it.",
+                    origin_path,
+                    e,
                 )
+            else:
+                # TODO: use DirectUrl.equivalent when
+                # https://github.com/pypa/pip/pull/10564 is merged.
+                if origin.url != download_info.url:
+                    logger.warning(
+                        "Origin URL %s in cache entry %s does not match download URL "
+                        "%s. This is likely a pip bug or a cache corruption issue. "
+                        "Will overwrite it with the new value.",
+                        origin.url,
+                        cache_dir,
+                        download_info.url,
+                    )
         origin_path.write_text(download_info.to_json(), encoding="utf-8")
