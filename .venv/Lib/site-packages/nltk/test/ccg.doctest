@@ -1,0 +1,376 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==============================
+Combinatory Categorial Grammar
+==============================
+
+Relative Clauses
+----------------
+
+    >>> from nltk.ccg import chart, lexicon
+
+Construct a lexicon:
+
+    >>> lex = lexicon.fromstring('''
+    ...     :- S, NP, N, VP
+    ...
+    ...     Det :: NP/N
+    ...     Pro :: NP
+    ...     Modal :: S\\NP/VP
+    ...
+    ...     TV :: VP/NP
+    ...     DTV :: TV/NP
+    ...
+    ...     the => Det
+    ...
+    ...     that => Det
+    ...     that => NP
+    ...
+    ...     I => Pro
+    ...     you => Pro
+    ...     we => Pro
+    ...
+    ...     chef => N
+    ...     cake => N
+    ...     children => N
+    ...     dough => N
+    ...
+    ...     will => Modal
+    ...     should => Modal
+    ...     might => Modal
+    ...     must => Modal
+    ...
+    ...     and => var\\.,var/.,var
+    ...
+    ...     to => VP[to]/VP
+    ...
+    ...     without => (VP\\VP)/VP[ing]
+    ...
+    ...     be => TV
+    ...     cook => TV
+    ...     eat => TV
+    ...
+    ...     cooking => VP[ing]/NP
+    ...
+    ...     give => DTV
+    ...
+    ...     is => (S\\NP)/NP
+    ...     prefer => (S\\NP)/NP
+    ...
+    ...     which => (N\\N)/(S/NP)
+    ...
+    ...     persuade => (VP/VP[to])/NP
+    ...     ''')
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> for parse in parser.parse("you prefer that cake".split()):
+    ...     chart.printCCGDerivation(parse)
+    ...     break
+    ...
+     you    prefer      that   cake
+     NP   ((S\NP)/NP)  (NP/N)   N
+                      -------------->
+                            NP
+         --------------------------->
+                   (S\NP)
+    --------------------------------<
+                   S
+
+    >>> for parse in parser.parse("that is the cake which you prefer".split()):
+    ...     chart.printCCGDerivation(parse)
+    ...     break
+    ...
+     that      is        the    cake      which       you    prefer
+      NP   ((S\NP)/NP)  (NP/N)   N    ((N\N)/(S/NP))  NP   ((S\NP)/NP)
+                                                     ----->T
+                                                  (S/(S\NP))
+                                                     ------------------>B
+                                                           (S/NP)
+                                     ---------------------------------->
+                                                   (N\N)
+                               ----------------------------------------<
+                                                  N
+                       ------------------------------------------------>
+                                              NP
+          ------------------------------------------------------------->
+                                     (S\NP)
+    -------------------------------------------------------------------<
+                                     S
+
+
+Some other sentences to try:
+"that is the cake which we will persuade the chef to cook"
+"that is the cake which we will persuade the chef to give the children"
+
+    >>> sent = "that is the dough which you will eat without cooking".split()
+    >>> nosub_parser = chart.CCGChartParser(lex, chart.ApplicationRuleSet +
+    ...                       chart.CompositionRuleSet + chart.TypeRaiseRuleSet)
+
+Without Substitution (no output)
+
+    >>> for parse in nosub_parser.parse(sent):
+    ...     chart.printCCGDerivation(parse)
+
+With Substitution:
+
+    >>> for parse in parser.parse(sent):
+    ...     chart.printCCGDerivation(parse)
+    ...     break
+    ...
+     that      is        the    dough      which       you     will        eat          without           cooking
+      NP   ((S\NP)/NP)  (NP/N)    N    ((N\N)/(S/NP))  NP   ((S\NP)/VP)  (VP/NP)  ((VP\VP)/VP['ing'])  (VP['ing']/NP)
+                                                      ----->T
+                                                   (S/(S\NP))
+                                                                                 ------------------------------------->B
+                                                                                             ((VP\VP)/NP)
+                                                                        ----------------------------------------------<Sx
+                                                                                           (VP/NP)
+                                                           ----------------------------------------------------------->B
+                                                                                   ((S\NP)/NP)
+                                                      ---------------------------------------------------------------->B
+                                                                                   (S/NP)
+                                      -------------------------------------------------------------------------------->
+                                                                           (N\N)
+                               ---------------------------------------------------------------------------------------<
+                                                                          N
+                       ----------------------------------------------------------------------------------------------->
+                                                                     NP
+          ------------------------------------------------------------------------------------------------------------>
+                                                             (S\NP)
+    ------------------------------------------------------------------------------------------------------------------<
+                                                            S
+
+
+Conjunction
+-----------
+
+    >>> from nltk.ccg.chart import CCGChartParser, ApplicationRuleSet, CompositionRuleSet
+    >>> from nltk.ccg.chart import SubstitutionRuleSet, TypeRaiseRuleSet, printCCGDerivation
+    >>> from nltk.ccg import lexicon
+
+Lexicons for the tests:
+
+    >>> test1_lex = '''
+    ...        :- S,N,NP,VP
+    ...        I => NP
+    ...        you => NP
+    ...        will => S\\NP/VP
+    ...        cook => VP/NP
+    ...        which => (N\\N)/(S/NP)
+    ...        and => var\\.,var/.,var
+    ...        might => S\\NP/VP
+    ...        eat => VP/NP
+    ...        the => NP/N
+    ...        mushrooms => N
+    ...        parsnips => N'''
+    >>> test2_lex = '''
+    ...         :- N, S, NP, VP
+    ...         articles => N
+    ...         the => NP/N
+    ...         and => var\\.,var/.,var
+    ...         which => (N\\N)/(S/NP)
+    ...         I => NP
+    ...         anyone => NP
+    ...         will => (S/VP)\\NP
+    ...         file => VP/NP
+    ...         without => (VP\\VP)/VP[ing]
+    ...         forget => VP/NP
+    ...         reading => VP[ing]/NP
+    ...         '''
+
+Tests handling of conjunctions.
+Note that while the two derivations are different, they are semantically equivalent.
+
+    >>> lex = lexicon.fromstring(test1_lex)
+    >>> parser = CCGChartParser(lex, ApplicationRuleSet + CompositionRuleSet + SubstitutionRuleSet)
+    >>> for parse in parser.parse("I will cook and might eat the mushrooms and parsnips".split()):
+    ...     printCCGDerivation(parse)
+     I      will       cook               and                might       eat     the    mushrooms             and             parsnips
+     NP  ((S\NP)/VP)  (VP/NP)  ((_var0\.,_var0)/.,_var0)  ((S\NP)/VP)  (VP/NP)  (NP/N)      N      ((_var0\.,_var0)/.,_var0)     N
+        ---------------------->B
+             ((S\NP)/NP)
+                                                         ---------------------->B
+                                                              ((S\NP)/NP)
+                              ------------------------------------------------->
+                                         (((S\NP)/NP)\.,((S\NP)/NP))
+        -----------------------------------------------------------------------<
+                                      ((S\NP)/NP)
+                                                                                                  ------------------------------------->
+                                                                                                                 (N\.,N)
+                                                                                       ------------------------------------------------<
+                                                                                                              N
+                                                                               -------------------------------------------------------->
+                                                                                                          NP
+        ------------------------------------------------------------------------------------------------------------------------------->
+                                                                    (S\NP)
+    -----------------------------------------------------------------------------------------------------------------------------------<
+                                                                     S
+     I      will       cook               and                might       eat     the    mushrooms             and             parsnips
+     NP  ((S\NP)/VP)  (VP/NP)  ((_var0\.,_var0)/.,_var0)  ((S\NP)/VP)  (VP/NP)  (NP/N)      N      ((_var0\.,_var0)/.,_var0)     N
+        ---------------------->B
+             ((S\NP)/NP)
+                                                         ---------------------->B
+                                                              ((S\NP)/NP)
+                              ------------------------------------------------->
+                                         (((S\NP)/NP)\.,((S\NP)/NP))
+        -----------------------------------------------------------------------<
+                                      ((S\NP)/NP)
+        ------------------------------------------------------------------------------->B
+                                          ((S\NP)/N)
+                                                                                                  ------------------------------------->
+                                                                                                                 (N\.,N)
+                                                                                       ------------------------------------------------<
+                                                                                                              N
+        ------------------------------------------------------------------------------------------------------------------------------->
+                                                                    (S\NP)
+    -----------------------------------------------------------------------------------------------------------------------------------<
+                                                                     S
+
+
+Tests handling subject extraction.
+Interesting to point that the two parses are clearly semantically different.
+
+    >>> lex = lexicon.fromstring(test2_lex)
+    >>> parser = CCGChartParser(lex, ApplicationRuleSet + CompositionRuleSet + SubstitutionRuleSet)
+    >>> for parse in parser.parse("articles which I will file and forget without reading".split()):
+    ...     printCCGDerivation(parse)
+     articles      which       I      will       file               and             forget         without           reading
+        N      ((N\N)/(S/NP))  NP  ((S/VP)\NP)  (VP/NP)  ((_var0\.,_var0)/.,_var0)  (VP/NP)  ((VP\VP)/VP['ing'])  (VP['ing']/NP)
+                              -----------------<
+                                   (S/VP)
+                                                                                            ------------------------------------->B
+                                                                                                        ((VP\VP)/NP)
+                                                                                   ----------------------------------------------<Sx
+                                                                                                      (VP/NP)
+                                                        ------------------------------------------------------------------------->
+                                                                                   ((VP/NP)\.,(VP/NP))
+                                               ----------------------------------------------------------------------------------<
+                                                                                    (VP/NP)
+                              --------------------------------------------------------------------------------------------------->B
+                                                                            (S/NP)
+              ------------------------------------------------------------------------------------------------------------------->
+                                                                     (N\N)
+    -----------------------------------------------------------------------------------------------------------------------------<
+                                                                  N
+     articles      which       I      will       file               and             forget         without           reading
+        N      ((N\N)/(S/NP))  NP  ((S/VP)\NP)  (VP/NP)  ((_var0\.,_var0)/.,_var0)  (VP/NP)  ((VP\VP)/VP['ing'])  (VP['ing']/NP)
+                              -----------------<
+                                   (S/VP)
+                                                        ------------------------------------>
+                                                                ((VP/NP)\.,(VP/NP))
+                                               ---------------------------------------------<
+                                                                  (VP/NP)
+                                                                                            ------------------------------------->B
+                                                                                                        ((VP\VP)/NP)
+                                               ----------------------------------------------------------------------------------<Sx
+                                                                                    (VP/NP)
+                              --------------------------------------------------------------------------------------------------->B
+                                                                            (S/NP)
+              ------------------------------------------------------------------------------------------------------------------->
+                                                                     (N\N)
+    -----------------------------------------------------------------------------------------------------------------------------<
+                                                                  N
+
+
+Unicode support
+---------------
+
+Unicode words are supported.
+
+    >>> from nltk.ccg import chart, lexicon
+
+Lexicons for the tests:
+
+    >>> lex = lexicon.fromstring('''
+    ...        :- S, N, NP, PP
+    ...
+    ...        AdjI :: N\\N
+    ...        AdjD :: N/N
+    ...        AdvD :: S/S
+    ...        AdvI :: S\\S
+    ...        Det :: NP/N
+    ...        PrepNPCompl :: PP/NP
+    ...        PrepNAdjN :: S\\S/N
+    ...        PrepNAdjNP :: S\\S/NP
+    ...        VPNP :: S\\NP/NP
+    ...        VPPP :: S\\NP/PP
+    ...        VPser :: S\\NP/AdjI
+    ...
+    ...        auto => N
+    ...        bebidas => N
+    ...        cine => N
+    ...        ley => N
+    ...        libro => N
+    ...        ministro => N
+    ...        panadería => N
+    ...        presidente => N
+    ...        super => N
+    ...
+    ...        el => Det
+    ...        la => Det
+    ...        las => Det
+    ...        un => Det
+    ...
+    ...        Ana => NP
+    ...        Pablo => NP
+    ...
+    ...        y => var\\.,var/.,var
+    ...
+    ...        pero => (S/NP)\\(S/NP)/(S/NP)
+    ...
+    ...        anunció => VPNP
+    ...        compró => VPNP
+    ...        cree => S\\NP/S[dep]
+    ...        desmintió => VPNP
+    ...        lee => VPNP
+    ...        fueron => VPPP
+    ...
+    ...        es => VPser
+    ...
+    ...        interesante => AdjD
+    ...        interesante => AdjI
+    ...        nueva => AdjD
+    ...        nueva => AdjI
+    ...
+    ...        a => PrepNPCompl
+    ...        en => PrepNAdjN
+    ...        en => PrepNAdjNP
+    ...
+    ...        ayer => AdvI
+    ...
+    ...        que => (NP\\NP)/(S/NP)
+    ...        que => S[dep]/S
+    ...     ''')
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> for parse in parser.parse(u"el ministro anunció pero el presidente desmintió la nueva ley".split()):
+    ...     printCCGDerivation(parse) # doctest: +SKIP
+    ...     # it fails on python2.7 because of the unicode problem explained in https://github.com/nltk/nltk/pull/1354
+    ...     break
+       el    ministro    anunció              pero              el    presidente   desmintió     la    nueva  ley
+     (NP/N)     N      ((S\NP)/NP)  (((S/NP)\(S/NP))/(S/NP))  (NP/N)      N       ((S\NP)/NP)  (NP/N)  (N/N)   N
+    ------------------>
+            NP
+    ------------------>T
+        (S/(S\NP))
+                                                             -------------------->
+                                                                      NP
+                                                             -------------------->T
+                                                                  (S/(S\NP))
+                                                             --------------------------------->B
+                                                                          (S/NP)
+                                   ----------------------------------------------------------->
+                                                         ((S/NP)\(S/NP))
+                                                                                                      ------------>
+                                                                                                           N
+                                                                                              -------------------->
+                                                                                                       NP
+                                                                                              --------------------<T
+                                                                                                   (S\(S/NP))
+                                   -------------------------------------------------------------------------------<B
+                                                                     (S\(S/NP))
+                      --------------------------------------------------------------------------------------------<B
+                                                                 (S/NP)
+    -------------------------------------------------------------------------------------------------------------->
+                                                          S

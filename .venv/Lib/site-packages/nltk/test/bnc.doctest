@@ -1,0 +1,60 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+    >>> import os.path
+
+    >>> from nltk.corpus.reader import BNCCorpusReader
+    >>> import nltk.test
+
+    >>> root = os.path.dirname(nltk.test.__file__)
+    >>> bnc = BNCCorpusReader(root=root, fileids='FX8.xml')
+
+Checking the word access.
+-------------------------
+
+    >>> len(bnc.words())
+    151
+
+    >>> bnc.words()[:6]
+    ['Ah', 'there', 'we', 'are', ',', '.']
+    >>> bnc.words(stem=True)[:6]
+    ['ah', 'there', 'we', 'be', ',', '.']
+
+    >>> bnc.tagged_words()[:6]
+    [('Ah', 'INTERJ'), ('there', 'ADV'), ('we', 'PRON'), ('are', 'VERB'), (',', 'PUN'), ('.', 'PUN')]
+
+    >>> bnc.tagged_words(c5=True)[:6]
+    [('Ah', 'ITJ'), ('there', 'AV0'), ('we', 'PNP'), ('are', 'VBB'), (',', 'PUN'), ('.', 'PUN')]
+
+Testing access to the sentences.
+--------------------------------
+
+    >>> len(bnc.sents())
+    15
+
+    >>> bnc.sents()[0]
+    ['Ah', 'there', 'we', 'are', ',', '.']
+    >>> bnc.sents(stem=True)[0]
+    ['ah', 'there', 'we', 'be', ',', '.']
+
+    >>> bnc.tagged_sents()[0]
+    [('Ah', 'INTERJ'), ('there', 'ADV'), ('we', 'PRON'), ('are', 'VERB'), (',', 'PUN'), ('.', 'PUN')]
+    >>> bnc.tagged_sents(c5=True)[0]
+    [('Ah', 'ITJ'), ('there', 'AV0'), ('we', 'PNP'), ('are', 'VBB'), (',', 'PUN'), ('.', 'PUN')]
+
+A not lazy loader.
+------------------
+
+    >>> eager = BNCCorpusReader(root=root, fileids=r'FX8.xml', lazy=False)
+
+    >>> len(eager.words())
+    151
+    >>> eager.words(stem=True)[6:17]
+    ['right', 'abdominal', 'wound', ',', 'she', 'be', 'a', 'wee', 'bit', 'confuse', '.']
+
+    >>> eager.tagged_words()[6:11]
+    [('Right', 'ADV'), ('abdominal', 'ADJ'), ('wound', 'SUBST'), (',', 'PUN'), ('she', 'PRON')]
+    >>> eager.tagged_words(c5=True)[6:17]
+    [('Right', 'AV0'), ('abdominal', 'AJ0'), ('wound', 'NN1'), (',', 'PUN'), ('she', 'PNP'), ("'s", 'VBZ'), ('a', 'AT0'), ('wee', 'AJ0-NN1'), ('bit', 'NN1'), ('confused', 'VVN-AJ0'), ('.', 'PUN')]
+    >>> len(eager.sents())
+    15

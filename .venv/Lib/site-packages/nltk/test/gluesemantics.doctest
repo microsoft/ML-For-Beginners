@@ -1,0 +1,383 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==============================================================================
+ Glue Semantics
+==============================================================================
+
+
+
+======================
+Linear logic
+======================
+
+    >>> from nltk.sem import logic
+    >>> from nltk.sem.glue import *
+    >>> from nltk.sem.linearlogic import *
+
+    >>> from nltk.sem.linearlogic import Expression
+    >>> read_expr = Expression.fromstring
+
+Parser
+
+    >>> print(read_expr(r'f'))
+    f
+    >>> print(read_expr(r'(g -o f)'))
+    (g -o f)
+    >>> print(read_expr(r'(g -o (h -o f))'))
+    (g -o (h -o f))
+    >>> print(read_expr(r'((g -o G) -o G)'))
+    ((g -o G) -o G)
+    >>> print(read_expr(r'(g -o f)(g)'))
+    (g -o f)(g)
+    >>> print(read_expr(r'((g -o G) -o G)((g -o f))'))
+    ((g -o G) -o G)((g -o f))
+
+Simplify
+
+    >>> print(read_expr(r'f').simplify())
+    f
+    >>> print(read_expr(r'(g -o f)').simplify())
+    (g -o f)
+    >>> print(read_expr(r'((g -o G) -o G)').simplify())
+    ((g -o G) -o G)
+    >>> print(read_expr(r'(g -o f)(g)').simplify())
+    f
+    >>> try: read_expr(r'(g -o f)(f)').simplify()
+    ... except LinearLogicApplicationException as e: print(e)
+    ...
+    Cannot apply (g -o f) to f. Cannot unify g with f given {}
+    >>> print(read_expr(r'(G -o f)(g)').simplify())
+    f
+    >>> print(read_expr(r'((g -o G) -o G)((g -o f))').simplify())
+    f
+
+Test BindingDict
+
+    >>> h = ConstantExpression('h')
+    >>> g = ConstantExpression('g')
+    >>> f = ConstantExpression('f')
+
+    >>> H = VariableExpression('H')
+    >>> G = VariableExpression('G')
+    >>> F = VariableExpression('F')
+
+    >>> d1 = BindingDict({H: h})
+    >>> d2 = BindingDict({F: f, G: F})
+    >>> d12 = d1 + d2
+    >>> all12 = ['%s: %s' % (v, d12[v]) for v in d12.d]
+    >>> all12.sort()
+    >>> print(all12)
+    ['F: f', 'G: f', 'H: h']
+
+    >>> BindingDict([(F,f),(G,g),(H,h)]) == BindingDict({F:f, G:g, H:h})
+    True
+
+    >>> d4 = BindingDict({F: f})
+    >>> try: d4[F] = g
+    ... except VariableBindingException as e: print(e)
+    Variable F already bound to another value
+
+Test Unify
+
+    >>> try: f.unify(g, BindingDict())
+    ... except UnificationException as e: print(e)
+    ...
+    Cannot unify f with g given {}
+
+    >>> f.unify(G, BindingDict()) == BindingDict({G: f})
+    True
+    >>> try: f.unify(G, BindingDict({G: h}))
+    ... except UnificationException as e: print(e)
+    ...
+    Cannot unify f with G given {G: h}
+    >>> f.unify(G, BindingDict({G: f})) == BindingDict({G: f})
+    True
+    >>> f.unify(G, BindingDict({H: f})) == BindingDict({G: f, H: f})
+    True
+
+    >>> G.unify(f, BindingDict()) == BindingDict({G: f})
+    True
+    >>> try: G.unify(f, BindingDict({G: h}))
+    ... except UnificationException as e: print(e)
+    ...
+    Cannot unify G with f given {G: h}
+    >>> G.unify(f, BindingDict({G: f})) == BindingDict({G: f})
+    True
+    >>> G.unify(f, BindingDict({H: f})) == BindingDict({G: f, H: f})
+    True
+
+    >>> G.unify(F, BindingDict()) == BindingDict({G: F})
+    True
+    >>> try: G.unify(F, BindingDict({G: H}))
+    ... except UnificationException as e: print(e)
+    ...
+    Cannot unify G with F given {G: H}
+    >>> G.unify(F, BindingDict({G: F})) == BindingDict({G: F})
+    True
+    >>> G.unify(F, BindingDict({H: F})) == BindingDict({G: F, H: F})
+    True
+
+Test Compile
+
+    >>> print(read_expr('g').compile_pos(Counter(), GlueFormula))
+    (<ConstantExpression g>, [])
+    >>> print(read_expr('(g -o f)').compile_pos(Counter(), GlueFormula))
+    (<ImpExpression (g -o f)>, [])
+    >>> print(read_expr('(g -o (h -o f))').compile_pos(Counter(), GlueFormula))
+    (<ImpExpression (g -o (h -o f))>, [])
+
+
+======================
+Glue
+======================
+
+Demo of "John walks"
+--------------------
+
+    >>> john = GlueFormula("John", "g")
+    >>> print(john)
+    John : g
+    >>> walks = GlueFormula(r"\x.walks(x)", "(g -o f)")
+    >>> print(walks)
+    \x.walks(x) : (g -o f)
+    >>> print(walks.applyto(john))
+    \x.walks(x)(John) : (g -o f)(g)
+    >>> print(walks.applyto(john).simplify())
+    walks(John) : f
+
+
+Demo of "A dog walks"
+---------------------
+
+    >>> a = GlueFormula("\\P Q.some x.(P(x) and Q(x))", "((gv -o gr) -o ((g -o G) -o G))")
+    >>> print(a)
+    \P Q.exists x.(P(x) & Q(x)) : ((gv -o gr) -o ((g -o G) -o G))
+    >>> man = GlueFormula(r"\x.man(x)", "(gv -o gr)")
+    >>> print(man)
+    \x.man(x) : (gv -o gr)
+    >>> walks = GlueFormula(r"\x.walks(x)", "(g -o f)")
+    >>> print(walks)
+    \x.walks(x) : (g -o f)
+    >>> a_man = a.applyto(man)
+    >>> print(a_man.simplify())
+    \Q.exists x.(man(x) & Q(x)) : ((g -o G) -o G)
+    >>> a_man_walks = a_man.applyto(walks)
+    >>> print(a_man_walks.simplify())
+    exists x.(man(x) & walks(x)) : f
+
+
+Demo of 'every girl chases a dog'
+---------------------------------
+
+Individual words:
+
+    >>> every = GlueFormula("\\P Q.all x.(P(x) -> Q(x))", "((gv -o gr) -o ((g -o G) -o G))")
+    >>> print(every)
+    \P Q.all x.(P(x) -> Q(x)) : ((gv -o gr) -o ((g -o G) -o G))
+    >>> girl = GlueFormula(r"\x.girl(x)", "(gv -o gr)")
+    >>> print(girl)
+    \x.girl(x) : (gv -o gr)
+    >>> chases = GlueFormula(r"\x y.chases(x,y)", "(g -o (h -o f))")
+    >>> print(chases)
+    \x y.chases(x,y) : (g -o (h -o f))
+    >>> a = GlueFormula("\\P Q.some x.(P(x) and Q(x))", "((hv -o hr) -o ((h -o H) -o H))")
+    >>> print(a)
+    \P Q.exists x.(P(x) & Q(x)) : ((hv -o hr) -o ((h -o H) -o H))
+    >>> dog = GlueFormula(r"\x.dog(x)", "(hv -o hr)")
+    >>> print(dog)
+    \x.dog(x) : (hv -o hr)
+
+Noun Quantification can only be done one way:
+
+    >>> every_girl = every.applyto(girl)
+    >>> print(every_girl.simplify())
+    \Q.all x.(girl(x) -> Q(x)) : ((g -o G) -o G)
+    >>> a_dog = a.applyto(dog)
+    >>> print(a_dog.simplify())
+    \Q.exists x.(dog(x) & Q(x)) : ((h -o H) -o H)
+
+The first reading is achieved by combining 'chases' with 'a dog' first.
+Since 'a girl' requires something of the form '(h -o H)' we must
+get rid of the 'g' in the glue of 'see'.  We will do this with
+the '-o elimination' rule.  So, x1 will be our subject placeholder.
+
+    >>> xPrime = GlueFormula("x1", "g")
+    >>> print(xPrime)
+    x1 : g
+    >>> xPrime_chases = chases.applyto(xPrime)
+    >>> print(xPrime_chases.simplify())
+    \y.chases(x1,y) : (h -o f)
+    >>> xPrime_chases_a_dog = a_dog.applyto(xPrime_chases)
+    >>> print(xPrime_chases_a_dog.simplify())
+    exists x.(dog(x) & chases(x1,x)) : f
+
+Now we can retract our subject placeholder using lambda-abstraction and
+combine with the true subject.
+
+    >>> chases_a_dog = xPrime_chases_a_dog.lambda_abstract(xPrime)
+    >>> print(chases_a_dog.simplify())
+    \x1.exists x.(dog(x) & chases(x1,x)) : (g -o f)
+    >>> every_girl_chases_a_dog = every_girl.applyto(chases_a_dog)
+    >>> r1 = every_girl_chases_a_dog.simplify()
+    >>> r2 = GlueFormula(r'all x.(girl(x) -> exists z1.(dog(z1) & chases(x,z1)))', 'f')
+    >>> r1 == r2
+    True
+
+The second reading is achieved by combining 'every girl' with 'chases' first.
+
+    >>> xPrime = GlueFormula("x1", "g")
+    >>> print(xPrime)
+    x1 : g
+    >>> xPrime_chases = chases.applyto(xPrime)
+    >>> print(xPrime_chases.simplify())
+    \y.chases(x1,y) : (h -o f)
+    >>> yPrime = GlueFormula("x2", "h")
+    >>> print(yPrime)
+    x2 : h
+    >>> xPrime_chases_yPrime = xPrime_chases.applyto(yPrime)
+    >>> print(xPrime_chases_yPrime.simplify())
+    chases(x1,x2) : f
+    >>> chases_yPrime = xPrime_chases_yPrime.lambda_abstract(xPrime)
+    >>> print(chases_yPrime.simplify())
+    \x1.chases(x1,x2) : (g -o f)
+    >>> every_girl_chases_yPrime = every_girl.applyto(chases_yPrime)
+    >>> print(every_girl_chases_yPrime.simplify())
+    all x.(girl(x) -> chases(x,x2)) : f
+    >>> every_girl_chases = every_girl_chases_yPrime.lambda_abstract(yPrime)
+    >>> print(every_girl_chases.simplify())
+    \x2.all x.(girl(x) -> chases(x,x2)) : (h -o f)
+    >>> every_girl_chases_a_dog = a_dog.applyto(every_girl_chases)
+    >>> r1 = every_girl_chases_a_dog.simplify()
+    >>> r2 = GlueFormula(r'exists x.(dog(x) & all z2.(girl(z2) -> chases(z2,x)))', 'f')
+    >>> r1 == r2
+    True
+
+
+Compilation
+-----------
+
+    >>> for cp in GlueFormula('m', '(b -o a)').compile(Counter()): print(cp)
+    m : (b -o a) : {1}
+    >>> for cp in GlueFormula('m', '((c -o b) -o a)').compile(Counter()): print(cp)
+    v1 : c : {1}
+    m : (b[1] -o a) : {2}
+    >>> for cp in GlueFormula('m', '((d -o (c -o b)) -o a)').compile(Counter()): print(cp)
+    v1 : c : {1}
+    v2 : d : {2}
+    m : (b[1, 2] -o a) : {3}
+    >>> for cp in GlueFormula('m', '((d -o e) -o ((c -o b) -o a))').compile(Counter()): print(cp)
+    v1 : d : {1}
+    v2 : c : {2}
+    m : (e[1] -o (b[2] -o a)) : {3}
+    >>> for cp in GlueFormula('m', '(((d -o c) -o b) -o a)').compile(Counter()): print(cp)
+    v1 : (d -o c) : {1}
+    m : (b[1] -o a) : {2}
+    >>> for cp in GlueFormula('m', '((((e -o d) -o c) -o b) -o a)').compile(Counter()): print(cp)
+    v1 : e : {1}
+    v2 : (d[1] -o c) : {2}
+    m : (b[2] -o a) : {3}
+
+
+Demo of 'a man walks' using Compilation
+---------------------------------------
+
+Premises
+
+    >>> a = GlueFormula('\\P Q.some x.(P(x) and Q(x))', '((gv -o gr) -o ((g -o G) -o G))')
+    >>> print(a)
+    \P Q.exists x.(P(x) & Q(x)) : ((gv -o gr) -o ((g -o G) -o G))
+
+    >>> man = GlueFormula('\\x.man(x)', '(gv -o gr)')
+    >>> print(man)
+    \x.man(x) : (gv -o gr)
+
+    >>> walks = GlueFormula('\\x.walks(x)', '(g -o f)')
+    >>> print(walks)
+    \x.walks(x) : (g -o f)
+
+Compiled Premises:
+
+    >>> counter = Counter()
+    >>> ahc = a.compile(counter)
+    >>> g1 = ahc[0]
+    >>> print(g1)
+    v1 : gv : {1}
+    >>> g2 = ahc[1]
+    >>> print(g2)
+    v2 : g : {2}
+    >>> g3 = ahc[2]
+    >>> print(g3)
+    \P Q.exists x.(P(x) & Q(x)) : (gr[1] -o (G[2] -o G)) : {3}
+    >>> g4 = man.compile(counter)[0]
+    >>> print(g4)
+    \x.man(x) : (gv -o gr) : {4}
+    >>> g5 = walks.compile(counter)[0]
+    >>> print(g5)
+    \x.walks(x) : (g -o f) : {5}
+
+Derivation:
+
+    >>> g14 = g4.applyto(g1)
+    >>> print(g14.simplify())
+    man(v1) : gr : {1, 4}
+    >>> g134 = g3.applyto(g14)
+    >>> print(g134.simplify())
+    \Q.exists x.(man(x) & Q(x)) : (G[2] -o G) : {1, 3, 4}
+    >>> g25 = g5.applyto(g2)
+    >>> print(g25.simplify())
+    walks(v2) : f : {2, 5}
+    >>> g12345 = g134.applyto(g25)
+    >>> print(g12345.simplify())
+    exists x.(man(x) & walks(x)) : f : {1, 2, 3, 4, 5}
+
+---------------------------------
+Dependency Graph to Glue Formulas
+---------------------------------
+    >>> from nltk.corpus.reader.dependency import DependencyGraph
+
+    >>> depgraph = DependencyGraph("""1	John	_	NNP	NNP	_	2	SUBJ	_	_
+    ... 2	sees	_	VB	VB	_	0	ROOT	_	_
+    ... 3	a	_	ex_quant	ex_quant	_	4	SPEC	_	_
+    ... 4	dog	_	NN	NN	_	2	OBJ	_	_
+    ... """)
+    >>> gfl = GlueDict('nltk:grammars/sample_grammars/glue.semtype').to_glueformula_list(depgraph)
+    >>> print(gfl) # doctest: +SKIP
+    [\x y.sees(x,y) : (f -o (i -o g)),
+     \x.dog(x) : (iv -o ir),
+     \P Q.exists x.(P(x) & Q(x)) : ((iv -o ir) -o ((i -o I3) -o I3)),
+     \P Q.exists x.(P(x) & Q(x)) : ((fv -o fr) -o ((f -o F4) -o F4)),
+     \x.John(x) : (fv -o fr)]
+    >>> glue = Glue()
+    >>> for r in sorted([r.simplify().normalize() for r in glue.get_readings(glue.gfl_to_compiled(gfl))], key=str):
+    ...     print(r)
+    exists z1.(John(z1) & exists z2.(dog(z2) & sees(z1,z2)))
+    exists z1.(dog(z1) & exists z2.(John(z2) & sees(z2,z1)))
+
+-----------------------------------
+Dependency Graph to LFG f-structure
+-----------------------------------
+    >>> from nltk.sem.lfg import FStructure
+
+    >>> fstruct = FStructure.read_depgraph(depgraph)
+
+    >>> print(fstruct) # doctest: +SKIP
+    f:[pred 'sees'
+       obj h:[pred 'dog'
+              spec 'a']
+       subj g:[pred 'John']]
+
+    >>> fstruct.to_depgraph().tree().pprint()
+    (sees (dog a) John)
+
+---------------------------------
+LFG f-structure to Glue
+---------------------------------
+    >>> fstruct.to_glueformula_list(GlueDict('nltk:grammars/sample_grammars/glue.semtype')) # doctest: +SKIP
+    [\x y.sees(x,y) : (i -o (g -o f)),
+     \x.dog(x) : (gv -o gr),
+     \P Q.exists x.(P(x) & Q(x)) : ((gv -o gr) -o ((g -o G3) -o G3)),
+     \P Q.exists x.(P(x) & Q(x)) : ((iv -o ir) -o ((i -o I4) -o I4)),
+     \x.John(x) : (iv -o ir)]
+
+.. see gluesemantics_malt.doctest for more

@@ -1,0 +1,154 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+-------------------------------------------
+Unit tests for the TreeTransformation class
+-------------------------------------------
+
+    >>> from copy import deepcopy
+    >>> from nltk.tree import Tree, collapse_unary, chomsky_normal_form, un_chomsky_normal_form
+
+    >>> tree_string = "(TOP (S (S (VP (VBN Turned) (ADVP (RB loose)) (PP (IN in) (NP (NP (NNP Shane) (NNP Longman) (POS 's)) (NN trading) (NN room))))) (, ,) (NP (DT the) (NN yuppie) (NNS dealers)) (VP (AUX do) (NP (NP (RB little)) (ADJP (RB right)))) (. .)))"
+
+    >>> tree = Tree.fromstring(tree_string)
+    >>> print(tree)
+    (TOP
+      (S
+        (S
+          (VP
+            (VBN Turned)
+            (ADVP (RB loose))
+            (PP
+              (IN in)
+              (NP
+                (NP (NNP Shane) (NNP Longman) (POS 's))
+                (NN trading)
+                (NN room)))))
+        (, ,)
+        (NP (DT the) (NN yuppie) (NNS dealers))
+        (VP (AUX do) (NP (NP (RB little)) (ADJP (RB right))))
+        (. .)))
+
+Make a copy of the original tree and collapse the subtrees with only one child
+
+    >>> collapsedTree = deepcopy(tree)
+    >>> collapse_unary(collapsedTree)
+    >>> print(collapsedTree)
+    (TOP
+      (S
+        (S+VP
+          (VBN Turned)
+          (ADVP (RB loose))
+          (PP
+            (IN in)
+            (NP
+              (NP (NNP Shane) (NNP Longman) (POS 's))
+              (NN trading)
+              (NN room))))
+        (, ,)
+        (NP (DT the) (NN yuppie) (NNS dealers))
+        (VP (AUX do) (NP (NP (RB little)) (ADJP (RB right))))
+        (. .)))
+
+    >>> collapsedTree2 = deepcopy(tree)
+    >>> collapse_unary(collapsedTree2, collapsePOS=True, collapseRoot=True)
+    >>> print(collapsedTree2)
+    (TOP+S
+      (S+VP
+        (VBN Turned)
+        (ADVP+RB loose)
+        (PP
+          (IN in)
+          (NP
+            (NP (NNP Shane) (NNP Longman) (POS 's))
+            (NN trading)
+            (NN room))))
+      (, ,)
+      (NP (DT the) (NN yuppie) (NNS dealers))
+      (VP (AUX do) (NP (NP+RB little) (ADJP+RB right)))
+      (. .))
+
+Convert the tree to Chomsky Normal Form i.e. each subtree has either two
+subtree children or a single leaf value. This conversion can be performed
+using either left- or right-factoring.
+
+    >>> cnfTree = deepcopy(collapsedTree)
+    >>> chomsky_normal_form(cnfTree, factor='left')
+    >>> print(cnfTree)
+    (TOP
+      (S
+        (S|<S+VP-,-NP-VP>
+          (S|<S+VP-,-NP>
+            (S|<S+VP-,>
+              (S+VP
+                (S+VP|<VBN-ADVP> (VBN Turned) (ADVP (RB loose)))
+                (PP
+                  (IN in)
+                  (NP
+                    (NP|<NP-NN>
+                      (NP
+                        (NP|<NNP-NNP> (NNP Shane) (NNP Longman))
+                        (POS 's))
+                      (NN trading))
+                    (NN room))))
+              (, ,))
+            (NP (NP|<DT-NN> (DT the) (NN yuppie)) (NNS dealers)))
+          (VP (AUX do) (NP (NP (RB little)) (ADJP (RB right)))))
+        (. .)))
+
+    >>> cnfTree = deepcopy(collapsedTree)
+    >>> chomsky_normal_form(cnfTree, factor='right')
+    >>> print(cnfTree)
+    (TOP
+      (S
+        (S+VP
+          (VBN Turned)
+          (S+VP|<ADVP-PP>
+            (ADVP (RB loose))
+            (PP
+              (IN in)
+              (NP
+                (NP (NNP Shane) (NP|<NNP-POS> (NNP Longman) (POS 's)))
+                (NP|<NN-NN> (NN trading) (NN room))))))
+        (S|<,-NP-VP-.>
+          (, ,)
+          (S|<NP-VP-.>
+            (NP (DT the) (NP|<NN-NNS> (NN yuppie) (NNS dealers)))
+            (S|<VP-.>
+              (VP (AUX do) (NP (NP (RB little)) (ADJP (RB right))))
+              (. .))))))
+
+Employ some Markov smoothing to make the artificial node labels a bit more
+readable. See the treetransforms.py documentation for more details.
+
+    >>> markovTree = deepcopy(collapsedTree)
+    >>> chomsky_normal_form(markovTree, horzMarkov=2, vertMarkov=1)
+    >>> print(markovTree)
+    (TOP
+      (S^<TOP>
+        (S+VP^<S>
+          (VBN Turned)
+          (S+VP|<ADVP-PP>^<S>
+            (ADVP^<S+VP> (RB loose))
+            (PP^<S+VP>
+              (IN in)
+              (NP^<PP>
+                (NP^<NP>
+                  (NNP Shane)
+                  (NP|<NNP-POS>^<NP> (NNP Longman) (POS 's)))
+                (NP|<NN-NN>^<PP> (NN trading) (NN room))))))
+        (S|<,-NP>^<TOP>
+          (, ,)
+          (S|<NP-VP>^<TOP>
+            (NP^<S> (DT the) (NP|<NN-NNS>^<S> (NN yuppie) (NNS dealers)))
+            (S|<VP-.>^<TOP>
+              (VP^<S>
+                (AUX do)
+                (NP^<VP> (NP^<NP> (RB little)) (ADJP^<NP> (RB right))))
+              (. .))))))
+
+Convert the transformed tree back to its original form
+
+    >>> un_chomsky_normal_form(markovTree)
+    >>> tree == markovTree
+    True

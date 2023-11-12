@@ -1,0 +1,667 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=========
+Semantics
+=========
+
+    >>> # Setup tests by setting the counter to 0
+    >>> from nltk.sem import logic
+    >>> logic._counter._value = 0
+
+    >>> import nltk
+    >>> from nltk.sem import Valuation, Model
+    >>> v = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),
+    ... ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])),
+    ... ('dog', set(['d1'])),
+    ... ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]))]
+    >>> val = Valuation(v)
+    >>> dom = val.domain
+    >>> m = Model(dom, val)
+
+Evaluation
+----------
+
+The top-level method of a ``Model`` instance is ``evaluate()``, which
+assigns a semantic value to expressions of the ``logic`` module, under
+an assignment ``g``:
+
+    >>> dom = val.domain
+    >>> g = nltk.sem.Assignment(dom)
+    >>> m.evaluate('all x.(boy(x) -> - girl(x))', g)
+    True
+
+
+``evaluate()`` calls a recursive function ``satisfy()``, which in turn
+calls a function ``i()`` to interpret non-logical constants and
+individual variables. ``i()`` delegates the interpretation of these to
+the the model's ``Valuation`` and the variable assignment ``g``
+respectively. Any atomic expression which cannot be assigned a value
+by ``i`` raises an ``Undefined`` exception; this is caught by
+``evaluate``, which returns the string ``'Undefined'``.
+
+    >>> m.evaluate('walk(adam)', g, trace=2)
+    <BLANKLINE>
+    'walk(adam)' is undefined under M, g
+    'Undefined'
+
+Batch Processing
+----------------
+
+The utility functions ``interpret_sents()`` and ``evaluate_sents()`` are intended to
+help with processing multiple sentences. Here's an example of the first of these:
+
+    >>> sents = ['Mary walks']
+    >>> results = nltk.sem.util.interpret_sents(sents, 'grammars/sample_grammars/sem2.fcfg')
+    >>> for result in results:
+    ...     for (synrep, semrep) in result:
+    ...         print(synrep)
+    (S[SEM=<walk(mary)>]
+      (NP[-LOC, NUM='sg', SEM=<\P.P(mary)>]
+        (PropN[-LOC, NUM='sg', SEM=<\P.P(mary)>] Mary))
+      (VP[NUM='sg', SEM=<\x.walk(x)>]
+        (IV[NUM='sg', SEM=<\x.walk(x)>, TNS='pres'] walks)))
+
+In order to provide backwards compatibility with 'legacy' grammars where the semantics value
+is specified with a lowercase
+``sem`` feature, the relevant feature name can be passed to the function using the
+``semkey`` parameter, as shown here:
+
+    >>> sents = ['raining']
+    >>> g = nltk.grammar.FeatureGrammar.fromstring("""
+    ... % start S
+    ... S[sem=<raining>] -> 'raining'
+    ... """)
+    >>> results = nltk.sem.util.interpret_sents(sents, g, semkey='sem')
+    >>> for result in results:
+    ...     for (synrep, semrep) in result:
+    ...         print(semrep)
+    raining
+
+The function ``evaluate_sents()`` works in a similar manner, but also needs to be
+passed a ``Model`` against which the semantic representations are evaluated.
+
+Unit Tests
+==========
+
+
+Unit tests for relations and valuations
+---------------------------------------
+
+    >>> from nltk.sem import *
+
+Relations are sets of tuples, all of the same length.
+
+    >>> s1 = set([('d1', 'd2'), ('d1', 'd1'), ('d2', 'd1')])
+    >>> is_rel(s1)
+    True
+    >>> s2 = set([('d1', 'd2'), ('d1', 'd2'), ('d1',)])
+    >>> is_rel(s2)
+    Traceback (most recent call last):
+      . . .
+    ValueError: Set set([('d1', 'd2'), ('d1',)]) contains sequences of different lengths
+    >>> s3 = set(['d1', 'd2'])
+    >>> is_rel(s3)
+    Traceback (most recent call last):
+      . . .
+    ValueError: Set set(['d2', 'd1']) contains sequences of different lengths
+    >>> s4 = set2rel(s3)
+    >>> is_rel(s4)
+    True
+    >>> is_rel(set())
+    True
+    >>> null_binary_rel = set([(None, None)])
+    >>> is_rel(null_binary_rel)
+    True
+
+Sets of entities are converted into sets of singleton tuples
+(containing strings).
+
+    >>> sorted(set2rel(s3))
+    [('d1',), ('d2',)]
+    >>> sorted(set2rel(set([1,3,5,])))
+    ['1', '3', '5']
+    >>> set2rel(set()) == set()
+    True
+    >>> set2rel(set2rel(s3)) == set2rel(s3)
+    True
+
+Predication is evaluated by set membership.
+
+    >>> ('d1', 'd2') in s1
+    True
+    >>> ('d2', 'd2') in s1
+    False
+    >>> ('d1',) in s1
+    False
+    >>> 'd2' in s1
+    False
+    >>> ('d1',) in s4
+    True
+    >>> ('d1',) in set()
+    False
+    >>> 'd1' in  null_binary_rel
+    False
+
+
+    >>> val = Valuation([('Fido', 'd1'), ('dog', set(['d1', 'd2'])), ('walk', set())])
+    >>> sorted(val['dog'])
+    [('d1',), ('d2',)]
+    >>> val.domain == set(['d1', 'd2'])
+    True
+    >>> print(val.symbols)
+    ['Fido', 'dog', 'walk']
+
+
+Parse a valuation from a string.
+
+    >>> v = """
+    ... john => b1
+    ... mary => g1
+    ... suzie => g2
+    ... fido => d1
+    ... tess => d2
+    ... noosa => n
+    ... girl => {g1, g2}
+    ... boy => {b1, b2}
+    ... dog => {d1, d2}
+    ... bark => {d1, d2}
+    ... walk => {b1, g2, d1}
+    ... chase => {(b1, g1), (b2, g1), (g1, d1), (g2, d2)}
+    ... see => {(b1, g1), (b2, d2), (g1, b1),(d2, b1), (g2, n)}
+    ... in => {(b1, n), (b2, n), (d2, n)}
+    ... with => {(b1, g1), (g1, b1), (d1, b1), (b1, d1)}
+    ... """
+    >>> val = Valuation.fromstring(v)
+
+    >>> print(val) # doctest: +SKIP
+    {'bark': set([('d1',), ('d2',)]),
+     'boy': set([('b1',), ('b2',)]),
+     'chase': set([('b1', 'g1'), ('g2', 'd2'), ('g1', 'd1'), ('b2', 'g1')]),
+     'dog': set([('d1',), ('d2',)]),
+     'fido': 'd1',
+     'girl': set([('g2',), ('g1',)]),
+     'in': set([('d2', 'n'), ('b1', 'n'), ('b2', 'n')]),
+     'john': 'b1',
+     'mary': 'g1',
+     'noosa': 'n',
+     'see': set([('b1', 'g1'), ('b2', 'd2'), ('d2', 'b1'), ('g2', 'n'), ('g1', 'b1')]),
+     'suzie': 'g2',
+     'tess': 'd2',
+     'walk': set([('d1',), ('b1',), ('g2',)]),
+     'with': set([('b1', 'g1'), ('d1', 'b1'), ('b1', 'd1'), ('g1', 'b1')])}
+
+
+Unit tests for function argument application in a Model
+-------------------------------------------------------
+
+    >>> v = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),\
+    ...      ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])), ('dog', set(['d1'])),
+    ...      ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')])),
+    ...      ('kiss', null_binary_rel)]
+    >>> val = Valuation(v)
+    >>> dom = val.domain
+    >>> m = Model(dom, val)
+    >>> g = Assignment(dom)
+    >>> sorted(val['boy'])
+    [('b1',), ('b2',)]
+    >>> ('b1',) in val['boy']
+    True
+    >>> ('g1',) in val['boy']
+    False
+    >>> ('foo',) in val['boy']
+    False
+    >>> ('b1', 'g1') in val['love']
+    True
+    >>> ('b1', 'b1') in val['kiss']
+    False
+    >>> sorted(val.domain)
+    ['b1', 'b2', 'd1', 'g1', 'g2']
+
+
+Model Tests
+===========
+
+Extension of Lambda expressions
+
+    >>> v0 = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),\
+    ... ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])),
+    ... ('dog', set(['d1'])),
+    ... ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]))]
+
+    >>> val0 = Valuation(v0)
+    >>> dom0 = val0.domain
+    >>> m0 = Model(dom0, val0)
+    >>> g0 = Assignment(dom0)
+
+    >>> print(m0.evaluate(r'\x. \y. love(x, y)', g0) == {'g2': {'g2': False, 'b2': False, 'b1': True, 'g1': False, 'd1': False}, 'b2': {'g2': True, 'b2': False, 'b1': False, 'g1': False, 'd1': False}, 'b1': {'g2': False, 'b2': False, 'b1': False, 'g1': True, 'd1': False}, 'g1': {'g2': False, 'b2': False, 'b1': True, 'g1': False, 'd1': False}, 'd1': {'g2': False, 'b2': False, 'b1': False, 'g1': False, 'd1': False}})
+    True
+    >>> print(m0.evaluate(r'\x. dog(x) (adam)', g0))
+    False
+    >>> print(m0.evaluate(r'\x. (dog(x) | boy(x)) (adam)', g0))
+    True
+    >>> print(m0.evaluate(r'\x. \y. love(x, y)(fido)', g0) == {'g2': False, 'b2': False, 'b1': False, 'g1': False, 'd1': False})
+    True
+    >>> print(m0.evaluate(r'\x. \y. love(x, y)(adam)', g0) == {'g2': False, 'b2': False, 'b1': False, 'g1': True, 'd1': False})
+    True
+    >>> print(m0.evaluate(r'\x. \y. love(x, y)(betty)', g0) == {'g2': False, 'b2': False, 'b1': True, 'g1': False, 'd1': False})
+    True
+    >>> print(m0.evaluate(r'\x. \y. love(x, y)(betty)(adam)', g0))
+    True
+    >>> print(m0.evaluate(r'\x. \y. love(x, y)(betty, adam)', g0))
+    True
+    >>> print(m0.evaluate(r'\y. \x. love(x, y)(fido)(adam)', g0))
+    False
+    >>> print(m0.evaluate(r'\y. \x. love(x, y)(betty, adam)', g0))
+    True
+    >>> print(m0.evaluate(r'\x. exists y. love(x, y)', g0) == {'g2': True, 'b2': True, 'b1': True, 'g1': True, 'd1': False})
+    True
+    >>> print(m0.evaluate(r'\z. adam', g0) == {'g2': 'b1', 'b2': 'b1', 'b1': 'b1', 'g1': 'b1', 'd1': 'b1'})
+    True
+    >>> print(m0.evaluate(r'\z. love(x, y)', g0) == {'g2': False, 'b2': False, 'b1': False, 'g1': False, 'd1': False})
+    True
+
+
+Propositional Model Test
+------------------------
+
+    >>> tests = [
+    ...     ('P & Q', True),
+    ...     ('P & R', False),
+    ...     ('- P', False),
+    ...     ('- R', True),
+    ...     ('- - P', True),
+    ...     ('- (P & R)', True),
+    ...     ('P | R', True),
+    ...     ('R | P', True),
+    ...     ('R | R', False),
+    ...     ('- P | R', False),
+    ...     ('P | - P', True),
+    ...     ('P -> Q', True),
+    ...     ('P -> R', False),
+    ...     ('R -> P', True),
+    ...     ('P <-> P', True),
+    ...     ('R <-> R', True),
+    ...     ('P <-> R', False),
+    ...     ]
+    >>> val1 = Valuation([('P', True), ('Q', True), ('R', False)])
+    >>> dom = set([])
+    >>> m = Model(dom, val1)
+    >>> g = Assignment(dom)
+    >>> for (sent, testvalue) in tests:
+    ...     semvalue = m.evaluate(sent, g)
+    ...     if semvalue == testvalue:
+    ...         print('*', end=' ')
+    * * * * * * * * * * * * * * * * *
+
+
+Test of i Function
+------------------
+
+    >>> from nltk.sem import Expression
+    >>> v = [('adam', 'b1'), ('betty', 'g1'), ('fido', 'd1'),
+    ...      ('girl', set(['g1', 'g2'])), ('boy', set(['b1', 'b2'])), ('dog', set(['d1'])),
+    ...      ('love', set([('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]))]
+    >>> val = Valuation(v)
+    >>> dom = val.domain
+    >>> m = Model(dom, val)
+    >>> g = Assignment(dom, [('x', 'b1'), ('y', 'g2')])
+    >>> exprs = ['adam', 'girl', 'love', 'walks', 'x', 'y', 'z']
+    >>> parsed_exprs = [Expression.fromstring(e) for e in exprs]
+    >>> sorted_set = lambda x: sorted(x) if isinstance(x, set) else x
+    >>> for parsed in parsed_exprs:
+    ...     try:
+    ...         print("'%s' gets value %s" % (parsed, sorted_set(m.i(parsed, g))))
+    ...     except Undefined:
+    ...         print("'%s' is Undefined" % parsed)
+    'adam' gets value b1
+    'girl' gets value [('g1',), ('g2',)]
+    'love' gets value [('b1', 'g1'), ('b2', 'g2'), ('g1', 'b1'), ('g2', 'b1')]
+    'walks' is Undefined
+    'x' gets value b1
+    'y' gets value g2
+    'z' is Undefined
+
+Test for formulas in Model
+--------------------------
+
+    >>> tests = [
+    ...     ('love(adam, betty)', True),
+    ...     ('love(adam, sue)', 'Undefined'),
+    ...     ('dog(fido)', True),
+    ...     ('- dog(fido)', False),
+    ...     ('- - dog(fido)', True),
+    ...     ('- dog(sue)', 'Undefined'),
+    ...     ('dog(fido) & boy(adam)', True),
+    ...     ('- (dog(fido) & boy(adam))', False),
+    ...     ('- dog(fido) & boy(adam)', False),
+    ...     ('dog(fido) | boy(adam)', True),
+    ...     ('- (dog(fido) | boy(adam))', False),
+    ...     ('- dog(fido) | boy(adam)', True),
+    ...     ('- dog(fido) | - boy(adam)', False),
+    ...     ('dog(fido) -> boy(adam)', True),
+    ...     ('- (dog(fido) -> boy(adam))', False),
+    ...     ('- dog(fido) -> boy(adam)', True),
+    ...     ('exists x . love(adam, x)', True),
+    ...     ('all x . love(adam, x)', False),
+    ...     ('fido = fido', True),
+    ...     ('exists x . all y. love(x, y)', False),
+    ...     ('exists x . (x = fido)', True),
+    ...     ('all x . (dog(x) | - dog(x))', True),
+    ...     ('adam = mia', 'Undefined'),
+    ...     ('\\x. (boy(x) | girl(x))', {'g2': True, 'b2': True, 'b1': True, 'g1': True, 'd1': False}),
+    ...     ('\\x. exists y. (boy(x) & love(x, y))', {'g2': False, 'b2': True, 'b1': True, 'g1': False, 'd1': False}),
+    ...     ('exists z1. boy(z1)', True),
+    ...     ('exists x. (boy(x) & - (x = adam))', True),
+    ...     ('exists x. (boy(x) & all y. love(y, x))', False),
+    ...     ('all x. (boy(x) | girl(x))', False),
+    ...     ('all x. (girl(x) -> exists y. boy(y) & love(x, y))', False),
+    ...     ('exists x. (boy(x) & all y. (girl(y) -> love(y, x)))', True),
+    ...     ('exists x. (boy(x) & all y. (girl(y) -> love(x, y)))', False),
+    ...     ('all x. (dog(x) -> - girl(x))', True),
+    ...     ('exists x. exists y. (love(x, y) & love(x, y))', True),
+    ...     ]
+    >>> for (sent, testvalue) in tests:
+    ...     semvalue = m.evaluate(sent, g)
+    ...     if semvalue == testvalue:
+    ...         print('*', end=' ')
+    ...     else:
+    ...         print(sent, semvalue)
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+
+Satisfier Tests
+---------------
+
+    >>> formulas = [
+    ...     'boy(x)',
+    ...     '(x = x)',
+    ...     '(boy(x) | girl(x))',
+    ...     '(boy(x) & girl(x))',
+    ...     'love(adam, x)',
+    ...     'love(x, adam)',
+    ...     '- (x = adam)',
+    ...     'exists z22. love(x, z22)',
+    ...     'exists y. love(y, x)',
+    ...     'all y. (girl(y) -> love(x, y))',
+    ...     'all y. (girl(y) -> love(y, x))',
+    ...     'all y. (girl(y) -> (boy(x) & love(y, x)))',
+    ...     'boy(x) & all y. (girl(y) -> love(x, y))',
+    ...     'boy(x) & all y. (girl(y) -> love(y, x))',
+    ...     'boy(x) & exists y. (girl(y) & love(y, x))',
+    ...     'girl(x) -> dog(x)',
+    ...     'all y. (dog(y) -> (x = y))',
+    ...     '- exists y. love(y, x)',
+    ...     'exists y. (love(adam, y) & love(y, x))'
+    ...     ]
+    >>> g.purge()
+    >>> g.add('x', 'b1')
+    {'x': 'b1'}
+    >>> for f in formulas:
+    ...     try:
+    ...         print("'%s' gets value: %s" % (f, m.evaluate(f, g)))
+    ...     except Undefined:
+    ...         print("'%s' is Undefined" % f)
+    'boy(x)' gets value: True
+    '(x = x)' gets value: True
+    '(boy(x) | girl(x))' gets value: True
+    '(boy(x) & girl(x))' gets value: False
+    'love(adam, x)' gets value: False
+    'love(x, adam)' gets value: False
+    '- (x = adam)' gets value: False
+    'exists z22. love(x, z22)' gets value: True
+    'exists y. love(y, x)' gets value: True
+    'all y. (girl(y) -> love(x, y))' gets value: False
+    'all y. (girl(y) -> love(y, x))' gets value: True
+    'all y. (girl(y) -> (boy(x) & love(y, x)))' gets value: True
+    'boy(x) & all y. (girl(y) -> love(x, y))' gets value: False
+    'boy(x) & all y. (girl(y) -> love(y, x))' gets value: True
+    'boy(x) & exists y. (girl(y) & love(y, x))' gets value: True
+    'girl(x) -> dog(x)' gets value: True
+    'all y. (dog(y) -> (x = y))' gets value: False
+    '- exists y. love(y, x)' gets value: False
+    'exists y. (love(adam, y) & love(y, x))' gets value: True
+
+    >>> from nltk.sem import Expression
+    >>> for fmla in formulas:
+    ...     p = Expression.fromstring(fmla)
+    ...     g.purge()
+    ...     print("Satisfiers of '%s':\n\t%s" % (p, sorted(m.satisfiers(p, 'x', g))))
+    Satisfiers of 'boy(x)':
+    ['b1', 'b2']
+    Satisfiers of '(x = x)':
+    ['b1', 'b2', 'd1', 'g1', 'g2']
+    Satisfiers of '(boy(x) | girl(x))':
+    ['b1', 'b2', 'g1', 'g2']
+    Satisfiers of '(boy(x) & girl(x))':
+    []
+    Satisfiers of 'love(adam,x)':
+    ['g1']
+    Satisfiers of 'love(x,adam)':
+    ['g1', 'g2']
+    Satisfiers of '-(x = adam)':
+    ['b2', 'd1', 'g1', 'g2']
+    Satisfiers of 'exists z22.love(x,z22)':
+    ['b1', 'b2', 'g1', 'g2']
+    Satisfiers of 'exists y.love(y,x)':
+    ['b1', 'g1', 'g2']
+    Satisfiers of 'all y.(girl(y) -> love(x,y))':
+    []
+    Satisfiers of 'all y.(girl(y) -> love(y,x))':
+    ['b1']
+    Satisfiers of 'all y.(girl(y) -> (boy(x) & love(y,x)))':
+    ['b1']
+    Satisfiers of '(boy(x) & all y.(girl(y) -> love(x,y)))':
+    []
+    Satisfiers of '(boy(x) & all y.(girl(y) -> love(y,x)))':
+    ['b1']
+    Satisfiers of '(boy(x) & exists y.(girl(y) & love(y,x)))':
+    ['b1']
+    Satisfiers of '(girl(x) -> dog(x))':
+    ['b1', 'b2', 'd1']
+    Satisfiers of 'all y.(dog(y) -> (x = y))':
+    ['d1']
+    Satisfiers of '-exists y.love(y,x)':
+    ['b2', 'd1']
+    Satisfiers of 'exists y.(love(adam,y) & love(y,x))':
+    ['b1']
+
+
+Tests based on the Blackburn & Bos testsuite
+--------------------------------------------
+
+    >>> v1 = [('jules', 'd1'), ('vincent', 'd2'), ('pumpkin', 'd3'),
+    ...       ('honey_bunny', 'd4'), ('yolanda', 'd5'),
+    ...       ('customer', set(['d1', 'd2'])),
+    ...       ('robber', set(['d3', 'd4'])),
+    ...       ('love', set([('d3', 'd4')]))]
+    >>> val1 = Valuation(v1)
+    >>> dom1 = val1.domain
+    >>> m1 = Model(dom1, val1)
+    >>> g1 = Assignment(dom1)
+
+    >>> v2 = [('jules', 'd1'), ('vincent', 'd2'), ('pumpkin', 'd3'),
+    ...       ('honey_bunny', 'd4'), ('yolanda', 'd4'),
+    ...       ('customer', set(['d1', 'd2', 'd5', 'd6'])),
+    ...       ('robber', set(['d3', 'd4'])),
+    ...       ('love', set([(None, None)]))]
+    >>> val2 = Valuation(v2)
+    >>> dom2 = set(['d1', 'd2', 'd3', 'd4', 'd5', 'd6'])
+    >>> m2 = Model(dom2, val2)
+    >>> g2 = Assignment(dom2)
+    >>> g21 = Assignment(dom2)
+    >>> g21.add('y', 'd3')
+    {'y': 'd3'}
+
+    >>> v3 = [('mia', 'd1'), ('jody', 'd2'), ('jules', 'd3'),
+    ...       ('vincent', 'd4'),
+    ...       ('woman', set(['d1', 'd2'])), ('man', set(['d3', 'd4'])),
+    ...       ('joke', set(['d5', 'd6'])), ('episode', set(['d7', 'd8'])),
+    ...       ('in', set([('d5', 'd7'), ('d5', 'd8')])),
+    ...       ('tell', set([('d1', 'd5'), ('d2', 'd6')]))]
+    >>> val3 = Valuation(v3)
+    >>> dom3 = set(['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8'])
+    >>> m3 = Model(dom3, val3)
+    >>> g3 = Assignment(dom3)
+
+    >>> tests = [
+    ...     ('exists x. robber(x)', m1, g1, True),
+    ...     ('exists x. exists y. love(y, x)', m1, g1, True),
+    ...     ('exists x0. exists x1. love(x1, x0)', m2, g2, False),
+    ...     ('all x. all y. love(y, x)', m2, g2, False),
+    ...     ('- (all x. all y. love(y, x))', m2, g2, True),
+    ...     ('all x. all y. - love(y, x)', m2, g2, True),
+    ...     ('yolanda = honey_bunny', m2, g2, True),
+    ...     ('mia = honey_bunny', m2, g2, 'Undefined'),
+    ...     ('- (yolanda = honey_bunny)', m2, g2, False),
+    ...     ('- (mia = honey_bunny)', m2, g2, 'Undefined'),
+    ...     ('all x. (robber(x) | customer(x))', m2, g2, True),
+    ...     ('- (all x. (robber(x) | customer(x)))', m2, g2, False),
+    ...     ('(robber(x) | customer(x))', m2, g2, 'Undefined'),
+    ...     ('(robber(y) | customer(y))', m2, g21, True),
+    ...     ('exists x. (man(x) & exists x. woman(x))', m3, g3, True),
+    ...     ('exists x. (man(x) & exists x. woman(x))', m3, g3, True),
+    ...     ('- exists x. woman(x)', m3, g3, False),
+    ...     ('exists x. (tasty(x) & burger(x))', m3, g3, 'Undefined'),
+    ...     ('- exists x. (tasty(x) & burger(x))', m3, g3, 'Undefined'),
+    ...     ('exists x. (man(x) & - exists y. woman(y))', m3, g3, False),
+    ...     ('exists x. (man(x) & - exists x. woman(x))', m3, g3, False),
+    ...     ('exists x. (woman(x) & - exists x. customer(x))', m2, g2, 'Undefined'),
+    ... ]
+
+    >>> for item in tests:
+    ...     sentence, model, g, testvalue = item
+    ...     semvalue = model.evaluate(sentence, g)
+    ...     if semvalue == testvalue:
+    ...         print('*', end=' ')
+    ...     g.purge()
+    * * * * * * * * * * * * * * * * * * * * * *
+
+
+Tests for mapping from syntax to semantics
+------------------------------------------
+
+Load a valuation from a file.
+
+    >>> import nltk.data
+    >>> from nltk.sem.util import parse_sents
+    >>> val = nltk.data.load('grammars/sample_grammars/valuation1.val')
+    >>> dom = val.domain
+    >>> m = Model(dom, val)
+    >>> g = Assignment(dom)
+    >>> gramfile = 'grammars/sample_grammars/sem2.fcfg'
+    >>> inputs = ['John sees a girl', 'every dog barks']
+    >>> parses = parse_sents(inputs, gramfile)
+    >>> for sent, trees in zip(inputs, parses):
+    ...     print()
+    ...     print("Sentence: %s" % sent)
+    ...     for tree in trees:
+    ...         print("Parse:\n %s" %tree)
+    ...         print("Semantics: %s" %  root_semrep(tree))
+    <BLANKLINE>
+    Sentence: John sees a girl
+    Parse:
+     (S[SEM=<exists x.(girl(x) & see(john,x))>]
+      (NP[-LOC, NUM='sg', SEM=<\P.P(john)>]
+        (PropN[-LOC, NUM='sg', SEM=<\P.P(john)>] John))
+      (VP[NUM='sg', SEM=<\y.exists x.(girl(x) & see(y,x))>]
+        (TV[NUM='sg', SEM=<\X y.X(\x.see(y,x))>, TNS='pres'] sees)
+        (NP[NUM='sg', SEM=<\Q.exists x.(girl(x) & Q(x))>]
+          (Det[NUM='sg', SEM=<\P Q.exists x.(P(x) & Q(x))>] a)
+          (Nom[NUM='sg', SEM=<\x.girl(x)>]
+            (N[NUM='sg', SEM=<\x.girl(x)>] girl)))))
+    Semantics: exists x.(girl(x) & see(john,x))
+    <BLANKLINE>
+    Sentence: every dog barks
+    Parse:
+     (S[SEM=<all x.(dog(x) -> bark(x))>]
+      (NP[NUM='sg', SEM=<\Q.all x.(dog(x) -> Q(x))>]
+        (Det[NUM='sg', SEM=<\P Q.all x.(P(x) -> Q(x))>] every)
+        (Nom[NUM='sg', SEM=<\x.dog(x)>]
+          (N[NUM='sg', SEM=<\x.dog(x)>] dog)))
+      (VP[NUM='sg', SEM=<\x.bark(x)>]
+        (IV[NUM='sg', SEM=<\x.bark(x)>, TNS='pres'] barks)))
+    Semantics: all x.(dog(x) -> bark(x))
+
+    >>> sent = "every dog barks"
+    >>> result = nltk.sem.util.interpret_sents([sent], gramfile)[0]
+    >>> for (syntree, semrep) in result:
+    ...     print(syntree)
+    ...     print()
+    ...     print(semrep)
+    (S[SEM=<all x.(dog(x) -> bark(x))>]
+      (NP[NUM='sg', SEM=<\Q.all x.(dog(x) -> Q(x))>]
+        (Det[NUM='sg', SEM=<\P Q.all x.(P(x) -> Q(x))>] every)
+        (Nom[NUM='sg', SEM=<\x.dog(x)>]
+          (N[NUM='sg', SEM=<\x.dog(x)>] dog)))
+      (VP[NUM='sg', SEM=<\x.bark(x)>]
+        (IV[NUM='sg', SEM=<\x.bark(x)>, TNS='pres'] barks)))
+    <BLANKLINE>
+    all x.(dog(x) -> bark(x))
+
+    >>> result = nltk.sem.util.evaluate_sents([sent], gramfile, m, g)[0]
+    >>> for (syntree, semrel, value) in result:
+    ...     print(syntree)
+    ...     print()
+    ...     print(semrep)
+    ...     print()
+    ...     print(value)
+    (S[SEM=<all x.(dog(x) -> bark(x))>]
+      (NP[NUM='sg', SEM=<\Q.all x.(dog(x) -> Q(x))>]
+        (Det[NUM='sg', SEM=<\P Q.all x.(P(x) -> Q(x))>] every)
+        (Nom[NUM='sg', SEM=<\x.dog(x)>]
+          (N[NUM='sg', SEM=<\x.dog(x)>] dog)))
+      (VP[NUM='sg', SEM=<\x.bark(x)>]
+        (IV[NUM='sg', SEM=<\x.bark(x)>, TNS='pres'] barks)))
+    <BLANKLINE>
+    all x.(dog(x) -> bark(x))
+    <BLANKLINE>
+    True
+
+    >>> sents = ['Mary walks', 'John sees a dog']
+    >>> results = nltk.sem.util.interpret_sents(sents, 'grammars/sample_grammars/sem2.fcfg')
+    >>> for result in results:
+    ...     for (synrep, semrep) in result:
+    ...         print(synrep)
+    (S[SEM=<walk(mary)>]
+      (NP[-LOC, NUM='sg', SEM=<\P.P(mary)>]
+        (PropN[-LOC, NUM='sg', SEM=<\P.P(mary)>] Mary))
+      (VP[NUM='sg', SEM=<\x.walk(x)>]
+        (IV[NUM='sg', SEM=<\x.walk(x)>, TNS='pres'] walks)))
+    (S[SEM=<exists x.(dog(x) & see(john,x))>]
+      (NP[-LOC, NUM='sg', SEM=<\P.P(john)>]
+        (PropN[-LOC, NUM='sg', SEM=<\P.P(john)>] John))
+      (VP[NUM='sg', SEM=<\y.exists x.(dog(x) & see(y,x))>]
+        (TV[NUM='sg', SEM=<\X y.X(\x.see(y,x))>, TNS='pres'] sees)
+        (NP[NUM='sg', SEM=<\Q.exists x.(dog(x) & Q(x))>]
+          (Det[NUM='sg', SEM=<\P Q.exists x.(P(x) & Q(x))>] a)
+          (Nom[NUM='sg', SEM=<\x.dog(x)>]
+            (N[NUM='sg', SEM=<\x.dog(x)>] dog)))))
+
+Cooper Storage
+--------------
+
+    >>> from nltk.sem import cooper_storage as cs
+    >>> sentence = 'every girl chases a dog'
+    >>> trees = cs.parse_with_bindops(sentence, grammar='grammars/book_grammars/storage.fcfg')
+    >>> semrep = trees[0].label()['SEM']
+    >>> cs_semrep = cs.CooperStore(semrep)
+    >>> print(cs_semrep.core)
+    chase(z2,z4)
+    >>> for bo in cs_semrep.store:
+    ...     print(bo)
+    bo(\P.all x.(girl(x) -> P(x)),z2)
+    bo(\P.exists x.(dog(x) & P(x)),z4)
+    >>> cs_semrep.s_retrieve(trace=True)
+    Permutation 1
+       (\P.all x.(girl(x) -> P(x)))(\z2.chase(z2,z4))
+       (\P.exists x.(dog(x) & P(x)))(\z4.all x.(girl(x) -> chase(x,z4)))
+    Permutation 2
+       (\P.exists x.(dog(x) & P(x)))(\z4.chase(z2,z4))
+       (\P.all x.(girl(x) -> P(x)))(\z2.exists x.(dog(x) & chase(z2,x)))
+
+    >>> for reading in cs_semrep.readings:
+    ...     print(reading)
+    exists x.(dog(x) & all z3.(girl(z3) -> chase(z3,x)))
+    all x.(girl(x) -> exists z4.(dog(z4) & chase(x,z4)))

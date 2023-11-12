@@ -1,0 +1,224 @@
+Metadata-Version: 2.1
+Name: imbalanced-learn
+Version: 0.11.0
+Summary: Toolbox for imbalanced dataset in machine learning.
+Home-page: https://github.com/scikit-learn-contrib/imbalanced-learn
+Download-URL: https://github.com/scikit-learn-contrib/imbalanced-learn
+Maintainer: G. Lemaitre, C. Aridas
+Maintainer-email: g.lemaitre58@gmail.com, ichkoar@gmail.com
+License: MIT
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: numpy (>=1.17.3)
+Requires-Dist: scipy (>=1.5.0)
+Requires-Dist: scikit-learn (>=1.0.2)
+Requires-Dist: joblib (>=1.1.1)
+Requires-Dist: threadpoolctl (>=2.0.0)
+Provides-Extra: docs
+Requires-Dist: pandas (>=1.0.5) ; extra == 'docs'
+Requires-Dist: tensorflow (>=2.4.3) ; extra == 'docs'
+Requires-Dist: keras (>=2.4.3) ; extra == 'docs'
+Requires-Dist: matplotlib (>=3.1.2) ; extra == 'docs'
+Requires-Dist: seaborn (>=0.9.0) ; extra == 'docs'
+Requires-Dist: memory-profiler (>=0.57.0) ; extra == 'docs'
+Requires-Dist: sphinx (>=6.0.0) ; extra == 'docs'
+Requires-Dist: sphinx-gallery (>=0.13.0) ; extra == 'docs'
+Requires-Dist: sphinx-copybutton (>=0.5.2) ; extra == 'docs'
+Requires-Dist: numpydoc (>=1.5.0) ; extra == 'docs'
+Requires-Dist: sphinxcontrib-bibtex (>=2.4.1) ; extra == 'docs'
+Requires-Dist: pydata-sphinx-theme (>=0.13.3) ; extra == 'docs'
+Provides-Extra: examples
+Requires-Dist: pandas (>=1.0.5) ; extra == 'examples'
+Requires-Dist: tensorflow (>=2.4.3) ; extra == 'examples'
+Requires-Dist: keras (>=2.4.3) ; extra == 'examples'
+Requires-Dist: matplotlib (>=3.1.2) ; extra == 'examples'
+Requires-Dist: seaborn (>=0.9.0) ; extra == 'examples'
+Provides-Extra: optional
+Requires-Dist: pandas (>=1.0.5) ; extra == 'optional'
+Requires-Dist: tensorflow (>=2.4.3) ; extra == 'optional'
+Requires-Dist: keras (>=2.4.3) ; extra == 'optional'
+Provides-Extra: tests
+Requires-Dist: pandas (>=1.0.5) ; extra == 'tests'
+Requires-Dist: tensorflow (>=2.4.3) ; extra == 'tests'
+Requires-Dist: keras (>=2.4.3) ; extra == 'tests'
+Requires-Dist: pytest (>=5.0.1) ; extra == 'tests'
+Requires-Dist: pytest-cov (>=2.9.0) ; extra == 'tests'
+Requires-Dist: flake8 (>=3.8.2) ; extra == 'tests'
+Requires-Dist: black (>=23.3.0) ; extra == 'tests'
+Requires-Dist: mypy (>=1.3.0) ; extra == 'tests'
+
+.. -*- mode: rst -*-
+
+.. _scikit-learn: http://scikit-learn.org/stable/
+
+.. _scikit-learn-contrib: https://github.com/scikit-learn-contrib
+
+|Azure|_ |Codecov|_ |CircleCI|_ |PythonVersion|_ |Pypi|_ |Gitter|_ |Black|_
+
+.. |Azure| image:: https://dev.azure.com/imbalanced-learn/imbalanced-learn/_apis/build/status/scikit-learn-contrib.imbalanced-learn?branchName=master
+.. _Azure: https://dev.azure.com/imbalanced-learn/imbalanced-learn/_build
+
+.. |Codecov| image:: https://codecov.io/gh/scikit-learn-contrib/imbalanced-learn/branch/master/graph/badge.svg
+.. _Codecov: https://codecov.io/gh/scikit-learn-contrib/imbalanced-learn
+
+.. |CircleCI| image:: https://circleci.com/gh/scikit-learn-contrib/imbalanced-learn.svg?style=shield
+.. _CircleCI: https://circleci.com/gh/scikit-learn-contrib/imbalanced-learn/tree/master
+
+.. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/imbalanced-learn.svg
+.. _PythonVersion: https://img.shields.io/pypi/pyversions/imbalanced-learn.svg
+
+.. |Pypi| image:: https://badge.fury.io/py/imbalanced-learn.svg
+.. _Pypi: https://badge.fury.io/py/imbalanced-learn
+
+.. |Gitter| image:: https://badges.gitter.im/scikit-learn-contrib/imbalanced-learn.svg
+.. _Gitter: https://gitter.im/scikit-learn-contrib/imbalanced-learn?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
+.. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+.. _Black: :target: https://github.com/psf/black
+
+.. |PythonMinVersion| replace:: 3.8
+.. |NumPyMinVersion| replace:: 1.17.3
+.. |SciPyMinVersion| replace:: 1.5.0
+.. |ScikitLearnMinVersion| replace:: 1.0.2
+.. |MatplotlibMinVersion| replace:: 3.1.2
+.. |PandasMinVersion| replace:: 1.0.5
+.. |TensorflowMinVersion| replace:: 2.4.3
+.. |KerasMinVersion| replace:: 2.4.3
+.. |SeabornMinVersion| replace:: 0.9.0
+.. |PytestMinVersion| replace:: 5.0.1
+
+imbalanced-learn
+================
+
+imbalanced-learn is a python package offering a number of re-sampling techniques
+commonly used in datasets showing strong between-class imbalance.
+It is compatible with scikit-learn_ and is part of scikit-learn-contrib_
+projects.
+
+Documentation
+-------------
+
+Installation documentation, API documentation, and examples can be found on the
+documentation_.
+
+.. _documentation: https://imbalanced-learn.org/stable/
+
+Installation
+------------
+
+Dependencies
+~~~~~~~~~~~~
+
+`imbalanced-learn` requires the following dependencies:
+
+- Python (>= |PythonMinVersion|)
+- NumPy (>= |NumPyMinVersion|)
+- SciPy (>= |SciPyMinVersion|)
+- Scikit-learn (>= |ScikitLearnMinVersion|)
+
+Additionally, `imbalanced-learn` requires the following optional dependencies:
+
+- Pandas (>= |PandasMinVersion|) for dealing with dataframes
+- Tensorflow (>= |TensorflowMinVersion|) for dealing with TensorFlow models
+- Keras (>= |KerasMinVersion|) for dealing with Keras models
+
+The examples will requires the following additional dependencies:
+
+- Matplotlib (>= |MatplotlibMinVersion|)
+- Seaborn (>= |SeabornMinVersion|)
+
+Installation
+~~~~~~~~~~~~
+
+From PyPi or conda-forge repositories
+.....................................
+
+imbalanced-learn is currently available on the PyPi's repositories and you can
+install it via `pip`::
+
+  pip install -U imbalanced-learn
+
+The package is release also in Anaconda Cloud platform::
+
+  conda install -c conda-forge imbalanced-learn
+
+From source available on GitHub
+...............................
+
+If you prefer, you can clone it and run the setup.py file. Use the following
+commands to get a copy from Github and install all dependencies::
+
+  git clone https://github.com/scikit-learn-contrib/imbalanced-learn.git
+  cd imbalanced-learn
+  pip install .
+
+Be aware that you can install in developer mode with::
+
+  pip install --no-build-isolation --editable .
+
+If you wish to make pull-requests on GitHub, we advise you to install
+pre-commit::
+
+  pip install pre-commit
+  pre-commit install
+
+Testing
+~~~~~~~
+
+After installation, you can use `pytest` to run the test suite::
+
+  make coverage
+
+Development
+-----------
+
+The development of this scikit-learn-contrib is in line with the one
+of the scikit-learn community. Therefore, you can refer to their
+`Development Guide
+<http://scikit-learn.org/stable/developers>`_.
+
+About
+-----
+
+If you use imbalanced-learn in a scientific publication, we would appreciate
+citations to the following paper::
+
+  @article{JMLR:v18:16-365,
+  author  = {Guillaume  Lema{{\^i}}tre and Fernando Nogueira and Christos K. Aridas},
+  title   = {Imbalanced-learn: A Python Toolbox to Tackle the Curse of Imbalanced Datasets in Machine Learning},
+  journal = {Journal of Machine Learning Research},
+  year    = {2017},
+  volume  = {18},
+  number  = {17},
+  pages   = {1-5},
+  url     = {http://jmlr.org/papers/v18/16-365}
+  }
+
+Most classification algorithms will only perform optimally when the number of
+samples of each class is roughly the same. Highly skewed datasets, where the
+minority is heavily outnumbered by one or more classes, have proven to be a
+challenge while at the same time becoming more and more common.
+
+One way of addressing this issue is by re-sampling the dataset as to offset this
+imbalance with the hope of arriving at a more robust and fair decision boundary
+than you would otherwise.
+
+You can refer to the `imbalanced-learn`_ documentation to find details about
+the implemented algorithms.
+
+.. _imbalanced-learn: https://imbalanced-learn.org/stable/user_guide.html

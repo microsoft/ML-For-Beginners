@@ -1,0 +1,933 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=========
+ Parsing
+=========
+
+Unit tests for the Context Free Grammar class
+---------------------------------------------
+
+    >>> import pickle
+    >>> import subprocess
+    >>> import sys
+    >>> from nltk import Nonterminal, nonterminals, Production, CFG
+
+    >>> nt1 = Nonterminal('NP')
+    >>> nt2 = Nonterminal('VP')
+
+    >>> nt1.symbol()
+    'NP'
+
+    >>> nt1 == Nonterminal('NP')
+    True
+
+    >>> nt1 == nt2
+    False
+
+    >>> S, NP, VP, PP = nonterminals('S, NP, VP, PP')
+    >>> N, V, P, DT = nonterminals('N, V, P, DT')
+
+    >>> prod1 = Production(S, [NP, VP])
+    >>> prod2 = Production(NP, [DT, NP])
+
+    >>> prod1.lhs()
+    S
+
+    >>> prod1.rhs()
+    (NP, VP)
+
+    >>> prod1 == Production(S, [NP, VP])
+    True
+
+    >>> prod1 == prod2
+    False
+
+    >>> grammar = CFG.fromstring("""
+    ... S -> NP VP
+    ... PP -> P NP
+    ... NP -> 'the' N | N PP | 'the' N PP
+    ... VP -> V NP | V PP | V NP PP
+    ... N -> 'cat'
+    ... N -> 'dog'
+    ... N -> 'rug'
+    ... V -> 'chased'
+    ... V -> 'sat'
+    ... P -> 'in'
+    ... P -> 'on'
+    ... """)
+
+    >>> cmd = """import pickle
+    ... from nltk import Production
+    ... p = Production('S', ['NP', 'VP'])
+    ... print(pickle.dumps(p))
+    ... """
+
+    >>> # Start a subprocess to simulate pickling in another process
+    >>> proc = subprocess.run([sys.executable, '-c', cmd], stdout=subprocess.PIPE)
+    >>> p1 = pickle.loads(eval(proc.stdout))
+    >>> p2 = Production('S', ['NP', 'VP'])
+    >>> print(hash(p1) == hash(p2))
+    True
+
+Unit tests for the rd (Recursive Descent Parser) class
+------------------------------------------------------
+
+Create and run a recursive descent parser over both a syntactically ambiguous
+and unambiguous sentence.
+
+    >>> from nltk.parse import RecursiveDescentParser
+    >>> rd = RecursiveDescentParser(grammar)
+
+    >>> sentence1 = 'the cat chased the dog'.split()
+    >>> sentence2 = 'the cat chased the dog on the rug'.split()
+
+    >>> for t in rd.parse(sentence1):
+    ...     print(t)
+    (S (NP the (N cat)) (VP (V chased) (NP the (N dog))))
+
+    >>> for t in rd.parse(sentence2):
+    ...     print(t)
+    (S
+      (NP the (N cat))
+      (VP (V chased) (NP the (N dog) (PP (P on) (NP the (N rug))))))
+    (S
+      (NP the (N cat))
+      (VP (V chased) (NP the (N dog)) (PP (P on) (NP the (N rug)))))
+
+
+(dolist (expr doctest-font-lock-keywords)
+  (add-to-list 'font-lock-keywords expr))
+
+  font-lock-keywords
+(add-to-list 'font-lock-keywords
+  (car doctest-font-lock-keywords))
+
+
+Unit tests for the sr (Shift Reduce Parser) class
+-------------------------------------------------
+
+Create and run a shift reduce parser over both a syntactically ambiguous
+and unambiguous sentence. Note that unlike the recursive descent parser, one
+and only one parse is ever returned.
+
+    >>> from nltk.parse import ShiftReduceParser
+    >>> sr = ShiftReduceParser(grammar)
+
+    >>> sentence1 = 'the cat chased the dog'.split()
+    >>> sentence2 = 'the cat chased the dog on the rug'.split()
+
+    >>> for t in sr.parse(sentence1):
+    ...     print(t)
+    (S (NP the (N cat)) (VP (V chased) (NP the (N dog))))
+
+
+The shift reduce parser uses heuristics to decide what to do when there are
+multiple possible shift or reduce operations available - for the supplied
+grammar clearly the wrong operation is selected.
+
+    >>> for t in sr.parse(sentence2):
+    ...     print(t)
+
+
+Unit tests for the Chart Parser class
+-------------------------------------
+
+We use the demo() function for testing.
+We must turn off showing of times.
+
+    >>> import nltk
+
+First we test tracing with a short sentence
+
+    >>> nltk.parse.chart.demo(2, print_times=False, trace=1,
+    ...                       sent='I saw a dog', numparses=1)
+    * Sentence:
+    I saw a dog
+    ['I', 'saw', 'a', 'dog']
+    <BLANKLINE>
+    * Strategy: Bottom-up
+    <BLANKLINE>
+    |.    I    .   saw   .    a    .   dog   .|
+    |[---------]         .         .         .| [0:1] 'I'
+    |.         [---------]         .         .| [1:2] 'saw'
+    |.         .         [---------]         .| [2:3] 'a'
+    |.         .         .         [---------]| [3:4] 'dog'
+    |>         .         .         .         .| [0:0] NP -> * 'I'
+    |[---------]         .         .         .| [0:1] NP -> 'I' *
+    |>         .         .         .         .| [0:0] S  -> * NP VP
+    |>         .         .         .         .| [0:0] NP -> * NP PP
+    |[--------->         .         .         .| [0:1] S  -> NP * VP
+    |[--------->         .         .         .| [0:1] NP -> NP * PP
+    |.         >         .         .         .| [1:1] Verb -> * 'saw'
+    |.         [---------]         .         .| [1:2] Verb -> 'saw' *
+    |.         >         .         .         .| [1:1] VP -> * Verb NP
+    |.         >         .         .         .| [1:1] VP -> * Verb
+    |.         [--------->         .         .| [1:2] VP -> Verb * NP
+    |.         [---------]         .         .| [1:2] VP -> Verb *
+    |.         >         .         .         .| [1:1] VP -> * VP PP
+    |[-------------------]         .         .| [0:2] S  -> NP VP *
+    |.         [--------->         .         .| [1:2] VP -> VP * PP
+    |.         .         >         .         .| [2:2] Det -> * 'a'
+    |.         .         [---------]         .| [2:3] Det -> 'a' *
+    |.         .         >         .         .| [2:2] NP -> * Det Noun
+    |.         .         [--------->         .| [2:3] NP -> Det * Noun
+    |.         .         .         >         .| [3:3] Noun -> * 'dog'
+    |.         .         .         [---------]| [3:4] Noun -> 'dog' *
+    |.         .         [-------------------]| [2:4] NP -> Det Noun *
+    |.         .         >         .         .| [2:2] S  -> * NP VP
+    |.         .         >         .         .| [2:2] NP -> * NP PP
+    |.         [-----------------------------]| [1:4] VP -> Verb NP *
+    |.         .         [------------------->| [2:4] S  -> NP * VP
+    |.         .         [------------------->| [2:4] NP -> NP * PP
+    |[=======================================]| [0:4] S  -> NP VP *
+    |.         [----------------------------->| [1:4] VP -> VP * PP
+    Nr edges in chart: 33
+    (S (NP I) (VP (Verb saw) (NP (Det a) (Noun dog))))
+    <BLANKLINE>
+
+Then we test the different parsing Strategies.
+Note that the number of edges differ between the strategies.
+
+Top-down
+
+    >>> nltk.parse.chart.demo(1, print_times=False, trace=0,
+    ...                       sent='I saw John with a dog', numparses=2)
+    * Sentence:
+    I saw John with a dog
+    ['I', 'saw', 'John', 'with', 'a', 'dog']
+    <BLANKLINE>
+    * Strategy: Top-down
+    <BLANKLINE>
+    Nr edges in chart: 48
+    (S
+      (NP I)
+      (VP (Verb saw) (NP (NP John) (PP with (NP (Det a) (Noun dog))))))
+    (S
+      (NP I)
+      (VP (VP (Verb saw) (NP John)) (PP with (NP (Det a) (Noun dog)))))
+    <BLANKLINE>
+
+Bottom-up
+
+    >>> nltk.parse.chart.demo(2, print_times=False, trace=0,
+    ...                       sent='I saw John with a dog', numparses=2)
+    * Sentence:
+    I saw John with a dog
+    ['I', 'saw', 'John', 'with', 'a', 'dog']
+    <BLANKLINE>
+    * Strategy: Bottom-up
+    <BLANKLINE>
+    Nr edges in chart: 53
+    (S
+      (NP I)
+      (VP (VP (Verb saw) (NP John)) (PP with (NP (Det a) (Noun dog)))))
+    (S
+      (NP I)
+      (VP (Verb saw) (NP (NP John) (PP with (NP (Det a) (Noun dog))))))
+    <BLANKLINE>
+
+Bottom-up Left-Corner
+
+    >>> nltk.parse.chart.demo(3, print_times=False, trace=0,
+    ...                       sent='I saw John with a dog', numparses=2)
+    * Sentence:
+    I saw John with a dog
+    ['I', 'saw', 'John', 'with', 'a', 'dog']
+    <BLANKLINE>
+    * Strategy: Bottom-up left-corner
+    <BLANKLINE>
+    Nr edges in chart: 36
+    (S
+      (NP I)
+      (VP (VP (Verb saw) (NP John)) (PP with (NP (Det a) (Noun dog)))))
+    (S
+      (NP I)
+      (VP (Verb saw) (NP (NP John) (PP with (NP (Det a) (Noun dog))))))
+    <BLANKLINE>
+
+Left-Corner with Bottom-Up Filter
+
+    >>> nltk.parse.chart.demo(4, print_times=False, trace=0,
+    ...                       sent='I saw John with a dog', numparses=2)
+    * Sentence:
+    I saw John with a dog
+    ['I', 'saw', 'John', 'with', 'a', 'dog']
+    <BLANKLINE>
+    * Strategy: Filtered left-corner
+    <BLANKLINE>
+    Nr edges in chart: 28
+    (S
+      (NP I)
+      (VP (VP (Verb saw) (NP John)) (PP with (NP (Det a) (Noun dog)))))
+    (S
+      (NP I)
+      (VP (Verb saw) (NP (NP John) (PP with (NP (Det a) (Noun dog))))))
+    <BLANKLINE>
+
+The stepping chart parser
+
+    >>> nltk.parse.chart.demo(5, print_times=False, trace=1,
+    ...                       sent='I saw John with a dog', numparses=2)
+    * Sentence:
+    I saw John with a dog
+    ['I', 'saw', 'John', 'with', 'a', 'dog']
+    <BLANKLINE>
+    * Strategy: Stepping (top-down vs bottom-up)
+    <BLANKLINE>
+    *** SWITCH TO TOP DOWN
+    |[------]      .      .      .      .      .| [0:1] 'I'
+    |.      [------]      .      .      .      .| [1:2] 'saw'
+    |.      .      [------]      .      .      .| [2:3] 'John'
+    |.      .      .      [------]      .      .| [3:4] 'with'
+    |.      .      .      .      [------]      .| [4:5] 'a'
+    |.      .      .      .      .      [------]| [5:6] 'dog'
+    |>      .      .      .      .      .      .| [0:0] S  -> * NP VP
+    |>      .      .      .      .      .      .| [0:0] NP -> * NP PP
+    |>      .      .      .      .      .      .| [0:0] NP -> * Det Noun
+    |>      .      .      .      .      .      .| [0:0] NP -> * 'I'
+    |[------]      .      .      .      .      .| [0:1] NP -> 'I' *
+    |[------>      .      .      .      .      .| [0:1] S  -> NP * VP
+    |[------>      .      .      .      .      .| [0:1] NP -> NP * PP
+    |.      >      .      .      .      .      .| [1:1] VP -> * VP PP
+    |.      >      .      .      .      .      .| [1:1] VP -> * Verb NP
+    |.      >      .      .      .      .      .| [1:1] VP -> * Verb
+    |.      >      .      .      .      .      .| [1:1] Verb -> * 'saw'
+    |.      [------]      .      .      .      .| [1:2] Verb -> 'saw' *
+    |.      [------>      .      .      .      .| [1:2] VP -> Verb * NP
+    |.      [------]      .      .      .      .| [1:2] VP -> Verb *
+    |[-------------]      .      .      .      .| [0:2] S  -> NP VP *
+    |.      [------>      .      .      .      .| [1:2] VP -> VP * PP
+    *** SWITCH TO BOTTOM UP
+    |.      .      >      .      .      .      .| [2:2] NP -> * 'John'
+    |.      .      .      >      .      .      .| [3:3] PP -> * 'with' NP
+    |.      .      .      >      .      .      .| [3:3] Prep -> * 'with'
+    |.      .      .      .      >      .      .| [4:4] Det -> * 'a'
+    |.      .      .      .      .      >      .| [5:5] Noun -> * 'dog'
+    |.      .      [------]      .      .      .| [2:3] NP -> 'John' *
+    |.      .      .      [------>      .      .| [3:4] PP -> 'with' * NP
+    |.      .      .      [------]      .      .| [3:4] Prep -> 'with' *
+    |.      .      .      .      [------]      .| [4:5] Det -> 'a' *
+    |.      .      .      .      .      [------]| [5:6] Noun -> 'dog' *
+    |.      [-------------]      .      .      .| [1:3] VP -> Verb NP *
+    |[--------------------]      .      .      .| [0:3] S  -> NP VP *
+    |.      [------------->      .      .      .| [1:3] VP -> VP * PP
+    |.      .      >      .      .      .      .| [2:2] S  -> * NP VP
+    |.      .      >      .      .      .      .| [2:2] NP -> * NP PP
+    |.      .      .      .      >      .      .| [4:4] NP -> * Det Noun
+    |.      .      [------>      .      .      .| [2:3] S  -> NP * VP
+    |.      .      [------>      .      .      .| [2:3] NP -> NP * PP
+    |.      .      .      .      [------>      .| [4:5] NP -> Det * Noun
+    |.      .      .      .      [-------------]| [4:6] NP -> Det Noun *
+    |.      .      .      [--------------------]| [3:6] PP -> 'with' NP *
+    |.      [----------------------------------]| [1:6] VP -> VP PP *
+    *** SWITCH TO TOP DOWN
+    |.      .      >      .      .      .      .| [2:2] NP -> * Det Noun
+    |.      .      .      .      >      .      .| [4:4] NP -> * NP PP
+    |.      .      .      >      .      .      .| [3:3] VP -> * VP PP
+    |.      .      .      >      .      .      .| [3:3] VP -> * Verb NP
+    |.      .      .      >      .      .      .| [3:3] VP -> * Verb
+    |[=========================================]| [0:6] S  -> NP VP *
+    |.      [---------------------------------->| [1:6] VP -> VP * PP
+    |.      .      [---------------------------]| [2:6] NP -> NP PP *
+    |.      .      .      .      [------------->| [4:6] NP -> NP * PP
+    |.      [----------------------------------]| [1:6] VP -> Verb NP *
+    |.      .      [--------------------------->| [2:6] S  -> NP * VP
+    |.      .      [--------------------------->| [2:6] NP -> NP * PP
+    |[=========================================]| [0:6] S  -> NP VP *
+    |.      [---------------------------------->| [1:6] VP -> VP * PP
+    |.      .      .      .      .      .      >| [6:6] VP -> * VP PP
+    |.      .      .      .      .      .      >| [6:6] VP -> * Verb NP
+    |.      .      .      .      .      .      >| [6:6] VP -> * Verb
+    *** SWITCH TO BOTTOM UP
+    |.      .      .      .      >      .      .| [4:4] S  -> * NP VP
+    |.      .      .      .      [------------->| [4:6] S  -> NP * VP
+    *** SWITCH TO TOP DOWN
+    *** SWITCH TO BOTTOM UP
+    *** SWITCH TO TOP DOWN
+    *** SWITCH TO BOTTOM UP
+    *** SWITCH TO TOP DOWN
+    *** SWITCH TO BOTTOM UP
+    Nr edges in chart: 61
+    (S
+      (NP I)
+      (VP (VP (Verb saw) (NP John)) (PP with (NP (Det a) (Noun dog)))))
+    (S
+      (NP I)
+      (VP (Verb saw) (NP (NP John) (PP with (NP (Det a) (Noun dog))))))
+    <BLANKLINE>
+
+
+Unit tests for the Incremental Chart Parser class
+-------------------------------------------------
+
+The incremental chart parsers are defined in earleychart.py.
+We use the demo() function for testing. We must turn off showing of times.
+
+    >>> import nltk
+
+Earley Chart Parser
+
+    >>> nltk.parse.earleychart.demo(print_times=False, trace=1,
+    ...                             sent='I saw John with a dog', numparses=2)
+    * Sentence:
+    I saw John with a dog
+    ['I', 'saw', 'John', 'with', 'a', 'dog']
+    <BLANKLINE>
+    |.  I   . saw  . John . with .  a   . dog  .|
+    |[------]      .      .      .      .      .| [0:1] 'I'
+    |.      [------]      .      .      .      .| [1:2] 'saw'
+    |.      .      [------]      .      .      .| [2:3] 'John'
+    |.      .      .      [------]      .      .| [3:4] 'with'
+    |.      .      .      .      [------]      .| [4:5] 'a'
+    |.      .      .      .      .      [------]| [5:6] 'dog'
+    |>      .      .      .      .      .      .| [0:0] S  -> * NP VP
+    |>      .      .      .      .      .      .| [0:0] NP -> * NP PP
+    |>      .      .      .      .      .      .| [0:0] NP -> * Det Noun
+    |>      .      .      .      .      .      .| [0:0] NP -> * 'I'
+    |[------]      .      .      .      .      .| [0:1] NP -> 'I' *
+    |[------>      .      .      .      .      .| [0:1] S  -> NP * VP
+    |[------>      .      .      .      .      .| [0:1] NP -> NP * PP
+    |.      >      .      .      .      .      .| [1:1] VP -> * VP PP
+    |.      >      .      .      .      .      .| [1:1] VP -> * Verb NP
+    |.      >      .      .      .      .      .| [1:1] VP -> * Verb
+    |.      >      .      .      .      .      .| [1:1] Verb -> * 'saw'
+    |.      [------]      .      .      .      .| [1:2] Verb -> 'saw' *
+    |.      [------>      .      .      .      .| [1:2] VP -> Verb * NP
+    |.      [------]      .      .      .      .| [1:2] VP -> Verb *
+    |[-------------]      .      .      .      .| [0:2] S  -> NP VP *
+    |.      [------>      .      .      .      .| [1:2] VP -> VP * PP
+    |.      .      >      .      .      .      .| [2:2] NP -> * NP PP
+    |.      .      >      .      .      .      .| [2:2] NP -> * Det Noun
+    |.      .      >      .      .      .      .| [2:2] NP -> * 'John'
+    |.      .      [------]      .      .      .| [2:3] NP -> 'John' *
+    |.      [-------------]      .      .      .| [1:3] VP -> Verb NP *
+    |.      .      [------>      .      .      .| [2:3] NP -> NP * PP
+    |.      .      .      >      .      .      .| [3:3] PP -> * 'with' NP
+    |[--------------------]      .      .      .| [0:3] S  -> NP VP *
+    |.      [------------->      .      .      .| [1:3] VP -> VP * PP
+    |.      .      .      [------>      .      .| [3:4] PP -> 'with' * NP
+    |.      .      .      .      >      .      .| [4:4] NP -> * NP PP
+    |.      .      .      .      >      .      .| [4:4] NP -> * Det Noun
+    |.      .      .      .      >      .      .| [4:4] Det -> * 'a'
+    |.      .      .      .      [------]      .| [4:5] Det -> 'a' *
+    |.      .      .      .      [------>      .| [4:5] NP -> Det * Noun
+    |.      .      .      .      .      >      .| [5:5] Noun -> * 'dog'
+    |.      .      .      .      .      [------]| [5:6] Noun -> 'dog' *
+    |.      .      .      .      [-------------]| [4:6] NP -> Det Noun *
+    |.      .      .      [--------------------]| [3:6] PP -> 'with' NP *
+    |.      .      .      .      [------------->| [4:6] NP -> NP * PP
+    |.      .      [---------------------------]| [2:6] NP -> NP PP *
+    |.      [----------------------------------]| [1:6] VP -> VP PP *
+    |[=========================================]| [0:6] S  -> NP VP *
+    |.      [---------------------------------->| [1:6] VP -> VP * PP
+    |.      [----------------------------------]| [1:6] VP -> Verb NP *
+    |.      .      [--------------------------->| [2:6] NP -> NP * PP
+    |[=========================================]| [0:6] S  -> NP VP *
+    |.      [---------------------------------->| [1:6] VP -> VP * PP
+    (S
+      (NP I)
+      (VP (VP (Verb saw) (NP John)) (PP with (NP (Det a) (Noun dog)))))
+    (S
+      (NP I)
+      (VP (Verb saw) (NP (NP John) (PP with (NP (Det a) (Noun dog))))))
+
+
+Unit tests for LARGE context-free grammars
+------------------------------------------
+
+Reading the ATIS grammar.
+
+    >>> grammar = nltk.data.load('grammars/large_grammars/atis.cfg')
+    >>> grammar
+    <Grammar with 5517 productions>
+
+Reading the test sentences.
+
+    >>> sentences = nltk.data.load('grammars/large_grammars/atis_sentences.txt')
+    >>> sentences = nltk.parse.util.extract_test_sentences(sentences)
+    >>> len(sentences)
+    98
+    >>> testsentence = sentences[22]
+    >>> testsentence[0]
+    ['show', 'me', 'northwest', 'flights', 'to', 'detroit', '.']
+    >>> testsentence[1]
+    17
+    >>> sentence = testsentence[0]
+
+Now we test all different parsing strategies.
+Note that the number of edges differ between the strategies.
+
+Bottom-up parsing.
+
+    >>> parser = nltk.parse.BottomUpChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    7661
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Bottom-up Left-corner parsing.
+
+    >>> parser = nltk.parse.BottomUpLeftCornerChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    4986
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Left-corner parsing with bottom-up filter.
+
+    >>> parser = nltk.parse.LeftCornerChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    1342
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Top-down parsing.
+
+    >>> parser = nltk.parse.TopDownChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    28352
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Incremental Bottom-up parsing.
+
+    >>> parser = nltk.parse.IncrementalBottomUpChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    7661
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Incremental Bottom-up Left-corner parsing.
+
+    >>> parser = nltk.parse.IncrementalBottomUpLeftCornerChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    4986
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Incremental Left-corner parsing with bottom-up filter.
+
+    >>> parser = nltk.parse.IncrementalLeftCornerChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    1342
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Incremental Top-down parsing.
+
+    >>> parser = nltk.parse.IncrementalTopDownChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    28352
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+Earley parsing. This is similar to the incremental top-down algorithm.
+
+    >>> parser = nltk.parse.EarleyChartParser(grammar)
+    >>> chart = parser.chart_parse(sentence)
+    >>> print((chart.num_edges()))
+    28352
+    >>> print((len(list(chart.parses(grammar.start())))))
+    17
+
+
+Unit tests for the Probabilistic CFG class
+------------------------------------------
+
+    >>> from nltk.corpus import treebank
+    >>> from itertools import islice
+    >>> from nltk.grammar import PCFG, induce_pcfg
+    >>> toy_pcfg1 = PCFG.fromstring("""
+    ...     S -> NP VP [1.0]
+    ...     NP -> Det N [0.5] | NP PP [0.25] | 'John' [0.1] | 'I' [0.15]
+    ...     Det -> 'the' [0.8] | 'my' [0.2]
+    ...     N -> 'man' [0.5] | 'telescope' [0.5]
+    ...     VP -> VP PP [0.1] | V NP [0.7] | V [0.2]
+    ...     V -> 'ate' [0.35] | 'saw' [0.65]
+    ...     PP -> P NP [1.0]
+    ...     P -> 'with' [0.61] | 'under' [0.39]
+    ...     """)
+
+    >>> toy_pcfg2 = PCFG.fromstring("""
+    ...     S    -> NP VP         [1.0]
+    ...     VP   -> V NP          [.59]
+    ...     VP   -> V             [.40]
+    ...     VP   -> VP PP         [.01]
+    ...     NP   -> Det N         [.41]
+    ...     NP   -> Name          [.28]
+    ...     NP   -> NP PP         [.31]
+    ...     PP   -> P NP          [1.0]
+    ...     V    -> 'saw'         [.21]
+    ...     V    -> 'ate'         [.51]
+    ...     V    -> 'ran'         [.28]
+    ...     N    -> 'boy'         [.11]
+    ...     N    -> 'cookie'      [.12]
+    ...     N    -> 'table'       [.13]
+    ...     N    -> 'telescope'   [.14]
+    ...     N    -> 'hill'        [.5]
+    ...     Name -> 'Jack'        [.52]
+    ...     Name -> 'Bob'         [.48]
+    ...     P    -> 'with'        [.61]
+    ...     P    -> 'under'       [.39]
+    ...     Det  -> 'the'         [.41]
+    ...     Det  -> 'a'           [.31]
+    ...     Det  -> 'my'          [.28]
+    ...     """)
+
+Create a set of PCFG productions.
+
+    >>> grammar = PCFG.fromstring("""
+    ... A -> B B [.3] | C B C [.7]
+    ... B -> B D [.5] | C [.5]
+    ... C -> 'a' [.1] | 'b' [0.9]
+    ... D -> 'b' [1.0]
+    ... """)
+    >>> prod = grammar.productions()[0]
+    >>> prod
+    A -> B B [0.3]
+
+    >>> prod.lhs()
+    A
+
+    >>> prod.rhs()
+    (B, B)
+
+    >>> print((prod.prob()))
+    0.3
+
+    >>> grammar.start()
+    A
+
+    >>> grammar.productions()
+    [A -> B B [0.3], A -> C B C [0.7], B -> B D [0.5], B -> C [0.5], C -> 'a' [0.1], C -> 'b' [0.9], D -> 'b' [1.0]]
+
+Induce some productions using parsed Treebank data.
+
+    >>> productions = []
+    >>> for fileid in treebank.fileids()[:2]:
+    ...     for t in treebank.parsed_sents(fileid):
+    ...         productions += t.productions()
+
+    >>> grammar = induce_pcfg(S, productions)
+    >>> grammar
+    <Grammar with 71 productions>
+
+    >>> sorted(grammar.productions(lhs=Nonterminal('PP')))[:2]
+    [PP -> IN NP [1.0]]
+    >>> sorted(grammar.productions(lhs=Nonterminal('NNP')))[:2]
+    [NNP -> 'Agnew' [0.0714286], NNP -> 'Consolidated' [0.0714286]]
+    >>> sorted(grammar.productions(lhs=Nonterminal('JJ')))[:2]
+    [JJ -> 'British' [0.142857], JJ -> 'former' [0.142857]]
+    >>> sorted(grammar.productions(lhs=Nonterminal('NP')))[:2]
+    [NP -> CD NNS [0.133333], NP -> DT JJ JJ NN [0.0666667]]
+
+Unit tests for the Probabilistic Chart Parse classes
+----------------------------------------------------
+
+    >>> tokens = "Jack saw Bob with my cookie".split()
+    >>> grammar = toy_pcfg2
+    >>> print(grammar)
+    Grammar with 23 productions (start state = S)
+        S -> NP VP [1.0]
+        VP -> V NP [0.59]
+        VP -> V [0.4]
+        VP -> VP PP [0.01]
+        NP -> Det N [0.41]
+        NP -> Name [0.28]
+        NP -> NP PP [0.31]
+        PP -> P NP [1.0]
+        V -> 'saw' [0.21]
+        V -> 'ate' [0.51]
+        V -> 'ran' [0.28]
+        N -> 'boy' [0.11]
+        N -> 'cookie' [0.12]
+        N -> 'table' [0.13]
+        N -> 'telescope' [0.14]
+        N -> 'hill' [0.5]
+        Name -> 'Jack' [0.52]
+        Name -> 'Bob' [0.48]
+        P -> 'with' [0.61]
+        P -> 'under' [0.39]
+        Det -> 'the' [0.41]
+        Det -> 'a' [0.31]
+        Det -> 'my' [0.28]
+
+Create several parsers using different queuing strategies and show the
+resulting parses.
+
+    >>> from nltk.parse import pchart
+
+    >>> parser = pchart.InsideChartParser(grammar)
+    >>> for t in parser.parse(tokens):
+    ...     print(t)
+    (S
+      (NP (Name Jack))
+      (VP
+        (V saw)
+        (NP
+          (NP (Name Bob))
+          (PP (P with) (NP (Det my) (N cookie)))))) (p=6.31607e-06)
+    (S
+      (NP (Name Jack))
+      (VP
+        (VP (V saw) (NP (Name Bob)))
+        (PP (P with) (NP (Det my) (N cookie))))) (p=2.03744e-07)
+
+    >>> parser = pchart.RandomChartParser(grammar)
+    >>> for t in parser.parse(tokens):
+    ...     print(t)
+    (S
+      (NP (Name Jack))
+      (VP
+        (V saw)
+        (NP
+          (NP (Name Bob))
+          (PP (P with) (NP (Det my) (N cookie)))))) (p=6.31607e-06)
+    (S
+      (NP (Name Jack))
+      (VP
+        (VP (V saw) (NP (Name Bob)))
+        (PP (P with) (NP (Det my) (N cookie))))) (p=2.03744e-07)
+
+    >>> parser = pchart.UnsortedChartParser(grammar)
+    >>> for t in parser.parse(tokens):
+    ...     print(t)
+    (S
+      (NP (Name Jack))
+      (VP
+        (V saw)
+        (NP
+          (NP (Name Bob))
+          (PP (P with) (NP (Det my) (N cookie)))))) (p=6.31607e-06)
+    (S
+      (NP (Name Jack))
+      (VP
+        (VP (V saw) (NP (Name Bob)))
+        (PP (P with) (NP (Det my) (N cookie))))) (p=2.03744e-07)
+
+    >>> parser = pchart.LongestChartParser(grammar)
+    >>> for t in parser.parse(tokens):
+    ...     print(t)
+    (S
+      (NP (Name Jack))
+      (VP
+        (V saw)
+        (NP
+          (NP (Name Bob))
+          (PP (P with) (NP (Det my) (N cookie)))))) (p=6.31607e-06)
+    (S
+      (NP (Name Jack))
+      (VP
+        (VP (V saw) (NP (Name Bob)))
+        (PP (P with) (NP (Det my) (N cookie))))) (p=2.03744e-07)
+
+    >>> parser = pchart.InsideChartParser(grammar, beam_size = len(tokens)+1)
+    >>> for t in parser.parse(tokens):
+    ...     print(t)
+
+
+Unit tests for the Viterbi Parse classes
+----------------------------------------
+
+    >>> from nltk.parse import ViterbiParser
+    >>> tokens = "Jack saw Bob with my cookie".split()
+    >>> grammar = toy_pcfg2
+
+Parse the tokenized sentence.
+
+    >>> parser = ViterbiParser(grammar)
+    >>> for t in parser.parse(tokens):
+    ...     print(t)
+    (S
+      (NP (Name Jack))
+      (VP
+        (V saw)
+        (NP
+          (NP (Name Bob))
+          (PP (P with) (NP (Det my) (N cookie)))))) (p=6.31607e-06)
+
+
+Unit tests for the FeatStructNonterminal class
+----------------------------------------------
+
+    >>> from nltk.grammar import FeatStructNonterminal
+    >>> FeatStructNonterminal(
+    ...     pos='n', agr=FeatStructNonterminal(number='pl', gender='f'))
+    [agr=[gender='f', number='pl'], pos='n']
+
+    >>> FeatStructNonterminal('VP[+fin]/NP[+pl]')
+    VP[+fin]/NP[+pl]
+
+
+Tracing the Feature Chart Parser
+--------------------------------
+
+We use the featurechart.demo() function for tracing the Feature Chart Parser.
+
+    >>> nltk.parse.featurechart.demo(print_times=False,
+    ...                              print_grammar=True,
+    ...                              parser=nltk.parse.featurechart.FeatureChartParser,
+    ...                              sent='I saw John with a dog')
+    <BLANKLINE>
+    Grammar with 18 productions (start state = S[])
+        S[] -> NP[] VP[]
+        PP[] -> Prep[] NP[]
+        NP[] -> NP[] PP[]
+        VP[] -> VP[] PP[]
+        VP[] -> Verb[] NP[]
+        VP[] -> Verb[]
+        NP[] -> Det[pl=?x] Noun[pl=?x]
+        NP[] -> 'John'
+        NP[] -> 'I'
+        Det[] -> 'the'
+        Det[] -> 'my'
+        Det[-pl] -> 'a'
+        Noun[-pl] -> 'dog'
+        Noun[-pl] -> 'cookie'
+        Verb[] -> 'ate'
+        Verb[] -> 'saw'
+        Prep[] -> 'with'
+        Prep[] -> 'under'
+    <BLANKLINE>
+    * FeatureChartParser
+    Sentence: I saw John with a dog
+    |.I.s.J.w.a.d.|
+    |[-] . . . . .| [0:1] 'I'
+    |. [-] . . . .| [1:2] 'saw'
+    |. . [-] . . .| [2:3] 'John'
+    |. . . [-] . .| [3:4] 'with'
+    |. . . . [-] .| [4:5] 'a'
+    |. . . . . [-]| [5:6] 'dog'
+    |[-] . . . . .| [0:1] NP[] -> 'I' *
+    |[-> . . . . .| [0:1] S[] -> NP[] * VP[] {}
+    |[-> . . . . .| [0:1] NP[] -> NP[] * PP[] {}
+    |. [-] . . . .| [1:2] Verb[] -> 'saw' *
+    |. [-> . . . .| [1:2] VP[] -> Verb[] * NP[] {}
+    |. [-] . . . .| [1:2] VP[] -> Verb[] *
+    |. [-> . . . .| [1:2] VP[] -> VP[] * PP[] {}
+    |[---] . . . .| [0:2] S[] -> NP[] VP[] *
+    |. . [-] . . .| [2:3] NP[] -> 'John' *
+    |. . [-> . . .| [2:3] S[] -> NP[] * VP[] {}
+    |. . [-> . . .| [2:3] NP[] -> NP[] * PP[] {}
+    |. [---] . . .| [1:3] VP[] -> Verb[] NP[] *
+    |. [---> . . .| [1:3] VP[] -> VP[] * PP[] {}
+    |[-----] . . .| [0:3] S[] -> NP[] VP[] *
+    |. . . [-] . .| [3:4] Prep[] -> 'with' *
+    |. . . [-> . .| [3:4] PP[] -> Prep[] * NP[] {}
+    |. . . . [-] .| [4:5] Det[-pl] -> 'a' *
+    |. . . . [-> .| [4:5] NP[] -> Det[pl=?x] * Noun[pl=?x] {?x: False}
+    |. . . . . [-]| [5:6] Noun[-pl] -> 'dog' *
+    |. . . . [---]| [4:6] NP[] -> Det[-pl] Noun[-pl] *
+    |. . . . [--->| [4:6] S[] -> NP[] * VP[] {}
+    |. . . . [--->| [4:6] NP[] -> NP[] * PP[] {}
+    |. . . [-----]| [3:6] PP[] -> Prep[] NP[] *
+    |. . [-------]| [2:6] NP[] -> NP[] PP[] *
+    |. [---------]| [1:6] VP[] -> VP[] PP[] *
+    |. [--------->| [1:6] VP[] -> VP[] * PP[] {}
+    |[===========]| [0:6] S[] -> NP[] VP[] *
+    |. . [------->| [2:6] S[] -> NP[] * VP[] {}
+    |. . [------->| [2:6] NP[] -> NP[] * PP[] {}
+    |. [---------]| [1:6] VP[] -> Verb[] NP[] *
+    |. [--------->| [1:6] VP[] -> VP[] * PP[] {}
+    |[===========]| [0:6] S[] -> NP[] VP[] *
+    (S[]
+      (NP[] I)
+      (VP[]
+        (VP[] (Verb[] saw) (NP[] John))
+        (PP[] (Prep[] with) (NP[] (Det[-pl] a) (Noun[-pl] dog)))))
+    (S[]
+      (NP[] I)
+      (VP[]
+        (Verb[] saw)
+        (NP[]
+          (NP[] John)
+          (PP[] (Prep[] with) (NP[] (Det[-pl] a) (Noun[-pl] dog))))))
+
+
+Unit tests for the Feature Chart Parser classes
+-----------------------------------------------
+
+The list of parsers we want to test.
+
+    >>> parsers = [nltk.parse.featurechart.FeatureChartParser,
+    ...            nltk.parse.featurechart.FeatureTopDownChartParser,
+    ...            nltk.parse.featurechart.FeatureBottomUpChartParser,
+    ...            nltk.parse.featurechart.FeatureBottomUpLeftCornerChartParser,
+    ...            nltk.parse.earleychart.FeatureIncrementalChartParser,
+    ...            nltk.parse.earleychart.FeatureEarleyChartParser,
+    ...            nltk.parse.earleychart.FeatureIncrementalTopDownChartParser,
+    ...            nltk.parse.earleychart.FeatureIncrementalBottomUpChartParser,
+    ...            nltk.parse.earleychart.FeatureIncrementalBottomUpLeftCornerChartParser,
+    ...            ]
+
+A helper function that tests each parser on the given grammar and sentence.
+We check that the number of trees are correct, and that all parsers
+return the same trees. Otherwise an error is printed.
+
+    >>> def unittest(grammar, sentence, nr_trees):
+    ...     sentence = sentence.split()
+    ...     trees = None
+    ...     for P in parsers:
+    ...         result = P(grammar).parse(sentence)
+    ...         result = set(tree.freeze() for tree in result)
+    ...         if len(result) != nr_trees:
+    ...             print("Wrong nr of trees:", len(result))
+    ...         elif trees is None:
+    ...             trees = result
+    ...         elif result != trees:
+    ...             print("Trees differ for parser:", P.__name__)
+
+The demo grammar from before, with an ambiguous sentence.
+
+    >>> isawjohn = nltk.parse.featurechart.demo_grammar()
+    >>> unittest(isawjohn, "I saw John with a dog with my cookie", 5)
+
+This grammar tests that variables in different grammar rules are renamed
+before unification. (The problematic variable is in this case ?X).
+
+    >>> whatwasthat = nltk.grammar.FeatureGrammar.fromstring('''
+    ... S[] -> NP[num=?N] VP[num=?N, slash=?X]
+    ... NP[num=?X] -> "what"
+    ... NP[num=?X] -> "that"
+    ... VP[num=?P, slash=none] -> V[num=?P] NP[]
+    ... V[num=sg] -> "was"
+    ... ''')
+    >>> unittest(whatwasthat, "what was that", 1)
+
+This grammar tests that the same rule can be used in different places
+in another rule, and that the variables are properly renamed.
+
+    >>> thislovesthat = nltk.grammar.FeatureGrammar.fromstring('''
+    ... S[] -> NP[case=nom] V[] NP[case=acc]
+    ... NP[case=?X] -> Pron[case=?X]
+    ... Pron[] -> "this"
+    ... Pron[] -> "that"
+    ... V[] -> "loves"
+    ... ''')
+    >>> unittest(thislovesthat, "this loves that", 1)
+
+
+Tests for loading feature grammar files
+---------------------------------------
+
+Alternative 1: first load the grammar, then create the parser.
+
+    >>> fcfg = nltk.data.load('grammars/book_grammars/feat0.fcfg')
+    >>> fcp1 = nltk.parse.FeatureChartParser(fcfg)
+    >>> print((type(fcp1)))
+    <class 'nltk.parse.featurechart.FeatureChartParser'>
+
+Alternative 2: directly load the parser.
+
+    >>> fcp2 = nltk.parse.load_parser('grammars/book_grammars/feat0.fcfg')
+    >>> print((type(fcp2)))
+    <class 'nltk.parse.featurechart.FeatureChartParser'>

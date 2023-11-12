@@ -1,0 +1,475 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+Evaluation of Taggers
+=====================
+
+Evaluating the standard NLTK PerceptronTagger using Accuracy,
+Precision, Recall and F-measure for each of the tags.
+
+    >>> from nltk.tag import PerceptronTagger
+    >>> from nltk.corpus import treebank
+    >>> tagger = PerceptronTagger()
+    >>> gold_data = treebank.tagged_sents()[10:20]
+    >>> print(tagger.accuracy(gold_data)) # doctest: +ELLIPSIS
+    0.885931...
+
+    >>> print(tagger.evaluate_per_tag(gold_data))
+       Tag | Prec.  | Recall | F-measure
+    -------+--------+--------+-----------
+        '' | 1.0000 | 1.0000 | 1.0000
+         , | 1.0000 | 1.0000 | 1.0000
+    -NONE- | 0.0000 | 0.0000 | 0.0000
+         . | 1.0000 | 1.0000 | 1.0000
+         : | 1.0000 | 1.0000 | 1.0000
+        CC | 1.0000 | 1.0000 | 1.0000
+        CD | 0.7647 | 1.0000 | 0.8667
+        DT | 1.0000 | 1.0000 | 1.0000
+        IN | 1.0000 | 1.0000 | 1.0000
+        JJ | 0.5882 | 0.8333 | 0.6897
+       JJR | 1.0000 | 1.0000 | 1.0000
+       JJS | 1.0000 | 1.0000 | 1.0000
+        NN | 0.7647 | 0.9630 | 0.8525
+       NNP | 0.8929 | 1.0000 | 0.9434
+       NNS | 1.0000 | 1.0000 | 1.0000
+       POS | 1.0000 | 1.0000 | 1.0000
+       PRP | 1.0000 | 1.0000 | 1.0000
+        RB | 0.8000 | 1.0000 | 0.8889
+       RBR | 0.0000 | 0.0000 | 0.0000
+        TO | 1.0000 | 1.0000 | 1.0000
+        VB | 1.0000 | 1.0000 | 1.0000
+       VBD | 0.8571 | 0.9231 | 0.8889
+       VBG | 1.0000 | 1.0000 | 1.0000
+       VBN | 0.8333 | 0.5556 | 0.6667
+       VBP | 0.5714 | 0.8000 | 0.6667
+       VBZ | 1.0000 | 1.0000 | 1.0000
+        WP | 1.0000 | 1.0000 | 1.0000
+        `` | 1.0000 | 1.0000 | 1.0000
+    <BLANKLINE>
+
+List only the 10 most common tags:
+
+    >>> print(tagger.evaluate_per_tag(gold_data, truncate=10, sort_by_count=True))
+       Tag | Prec.  | Recall | F-measure
+    -------+--------+--------+-----------
+        IN | 1.0000 | 1.0000 | 1.0000
+        DT | 1.0000 | 1.0000 | 1.0000
+        NN | 0.7647 | 0.9630 | 0.8525
+       NNP | 0.8929 | 1.0000 | 0.9434
+       NNS | 1.0000 | 1.0000 | 1.0000
+    -NONE- | 0.0000 | 0.0000 | 0.0000
+        CD | 0.7647 | 1.0000 | 0.8667
+       VBD | 0.8571 | 0.9231 | 0.8889
+        JJ | 0.5882 | 0.8333 | 0.6897
+         , | 1.0000 | 1.0000 | 1.0000
+    <BLANKLINE>
+
+Similarly, we can display the confusion matrix for this tagger.
+
+    >>> print(tagger.confusion(gold_data))
+           |        -                                                                            |
+           |        N                                                                            |
+           |        O                                                                            |
+           |        N                       J  J     N  N  P  P     R        V  V  V  V  V       |
+           |  '     E        C  C  D  I  J  J  J  N  N  N  O  R  R  B  T  V  B  B  B  B  B  W  ` |
+           |  '  ,  -  .  :  C  D  T  N  J  R  S  N  P  S  S  P  B  R  O  B  D  G  N  P  Z  P  ` |
+    -------+-------------------------------------------------------------------------------------+
+        '' | <3> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+         , |  .<11> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+    -NONE- |  .  . <.> .  .  .  4  .  .  4  .  .  7  2  .  .  .  1  .  .  .  .  .  .  3  .  .  . |
+         . |  .  .  .<10> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+         : |  .  .  .  . <1> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+        CC |  .  .  .  .  . <5> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+        CD |  .  .  .  .  .  .<13> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+        DT |  .  .  .  .  .  .  .<28> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+        IN |  .  .  .  .  .  .  .  .<34> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+        JJ |  .  .  .  .  .  .  .  .  .<10> .  .  .  1  .  .  .  .  1  .  .  .  .  .  .  .  .  . |
+       JJR |  .  .  .  .  .  .  .  .  .  . <1> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+       JJS |  .  .  .  .  .  .  .  .  .  .  . <1> .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+        NN |  .  .  .  .  .  .  .  .  .  1  .  .<26> .  .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+       NNP |  .  .  .  .  .  .  .  .  .  .  .  .  .<25> .  .  .  .  .  .  .  .  .  .  .  .  .  . |
+       NNS |  .  .  .  .  .  .  .  .  .  .  .  .  .  .<22> .  .  .  .  .  .  .  .  .  .  .  .  . |
+       POS |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <1> .  .  .  .  .  .  .  .  .  .  .  . |
+       PRP |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <3> .  .  .  .  .  .  .  .  .  .  . |
+        RB |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <4> .  .  .  .  .  .  .  .  .  . |
+       RBR |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <.> .  .  .  .  .  .  .  .  . |
+        TO |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <2> .  .  .  .  .  .  .  . |
+        VB |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <1> .  .  .  .  .  .  . |
+       VBD |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<12> .  1  .  .  .  . |
+       VBG |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <3> .  .  .  .  . |
+       VBN |  .  .  .  .  .  .  .  .  .  2  .  .  .  .  .  .  .  .  .  .  .  2  . <5> .  .  .  . |
+       VBP |  .  .  .  .  .  .  .  .  .  .  .  .  1  .  .  .  .  .  .  .  .  .  .  . <4> .  .  . |
+       VBZ |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <2> .  . |
+        WP |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <3> . |
+        `` |  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . <3>|
+    -------+-------------------------------------------------------------------------------------+
+    (row = reference; col = test)
+    <BLANKLINE>
+
+Brill Trainer with evaluation
+=============================
+
+    >>> # Perform the relevant imports.
+    >>> from nltk.tbl.template import Template
+    >>> from nltk.tag.brill import Pos, Word
+    >>> from nltk.tag import untag, RegexpTagger, BrillTaggerTrainer, UnigramTagger
+
+    >>> # Load some data
+    >>> from nltk.corpus import treebank
+    >>> training_data = treebank.tagged_sents()[:100]
+    >>> baseline_data = treebank.tagged_sents()[100:200]
+    >>> gold_data = treebank.tagged_sents()[200:300]
+    >>> testing_data = [untag(s) for s in gold_data]
+
+    >>> backoff = RegexpTagger([
+    ... (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),   # cardinal numbers
+    ... (r'(The|the|A|a|An|an)$', 'AT'),   # articles
+    ... (r'.*able$', 'JJ'),                # adjectives
+    ... (r'.*ness$', 'NN'),                # nouns formed from adjectives
+    ... (r'.*ly$', 'RB'),                  # adverbs
+    ... (r'.*s$', 'NNS'),                  # plural nouns
+    ... (r'.*ing$', 'VBG'),                # gerunds
+    ... (r'.*ed$', 'VBD'),                 # past tense verbs
+    ... (r'.*', 'NN')                      # nouns (default)
+    ... ])
+
+We've now created a simple ``RegexpTagger``, which tags according to the regular expression
+rules it has been supplied. This tagger in and of itself does not have a great accuracy.
+
+    >>> backoff.accuracy(gold_data) #doctest: +ELLIPSIS
+    0.245014...
+
+Neither does a simple ``UnigramTagger``. This tagger is trained on some data,
+and will then first try to match unigrams (i.e. tokens) of the sentence it has
+to tag to the learned data.
+
+    >>> unigram_tagger = UnigramTagger(baseline_data)
+    >>> unigram_tagger.accuracy(gold_data) #doctest: +ELLIPSIS
+    0.581196...
+
+The lackluster accuracy here can be explained with the following example:
+
+    >>> unigram_tagger.tag(["I", "would", "like", "this", "sentence", "to", "be", "tagged"])
+    [('I', 'NNP'), ('would', 'MD'), ('like', None), ('this', 'DT'), ('sentence', None),
+    ('to', 'TO'), ('be', 'VB'), ('tagged', None)]
+
+As you can see, many tokens are tagged as ``None``, as these tokens are OOV (out of vocabulary).
+The ``UnigramTagger`` has never seen them, and as a result they are not in its database of known terms.
+
+In practice, a ``UnigramTagger`` is exclusively used in conjunction with a *backoff*. Our real
+baseline which will use such a backoff. We'll create a ``UnigramTagger`` like before, but now
+the ``RegexpTagger`` will be used as a backoff for the situations where the ``UnigramTagger``
+encounters an OOV token.
+
+    >>> baseline = UnigramTagger(baseline_data, backoff=backoff)
+    >>> baseline.accuracy(gold_data) #doctest: +ELLIPSIS
+    0.7537647...
+
+That is already much better. We can investigate the performance further by running
+``evaluate_per_tag``. This method will output the *Precision*, *Recall* and *F-measure*
+of each tag.
+
+    >>> print(baseline.evaluate_per_tag(gold_data, sort_by_count=True))
+       Tag | Prec.  | Recall | F-measure
+    -------+--------+--------+-----------
+       NNP | 0.9674 | 0.2738 | 0.4269
+        NN | 0.4111 | 0.9136 | 0.5670
+        IN | 0.9383 | 0.9580 | 0.9480
+        DT | 0.9819 | 0.8859 | 0.9314
+        JJ | 0.8167 | 0.2970 | 0.4356
+       NNS | 0.7393 | 0.9630 | 0.8365
+    -NONE- | 1.0000 | 0.8345 | 0.9098
+         , | 1.0000 | 1.0000 | 1.0000
+         . | 1.0000 | 1.0000 | 1.0000
+       VBD | 0.6429 | 0.8804 | 0.7431
+        CD | 1.0000 | 0.9872 | 0.9935
+        CC | 1.0000 | 0.9355 | 0.9667
+        VB | 0.7778 | 0.3684 | 0.5000
+       VBN | 0.9375 | 0.3000 | 0.4545
+        RB | 0.7778 | 0.7447 | 0.7609
+        TO | 1.0000 | 1.0000 | 1.0000
+       VBZ | 0.9643 | 0.6429 | 0.7714
+       VBG | 0.6415 | 0.9444 | 0.7640
+      PRP$ | 1.0000 | 1.0000 | 1.0000
+       PRP | 1.0000 | 0.5556 | 0.7143
+        MD | 1.0000 | 1.0000 | 1.0000
+       VBP | 0.6471 | 0.5789 | 0.6111
+       POS | 1.0000 | 1.0000 | 1.0000
+         $ | 1.0000 | 0.8182 | 0.9000
+        '' | 1.0000 | 1.0000 | 1.0000
+         : | 1.0000 | 1.0000 | 1.0000
+       WDT | 0.4000 | 0.2000 | 0.2667
+        `` | 1.0000 | 1.0000 | 1.0000
+       JJR | 1.0000 | 0.5000 | 0.6667
+      NNPS | 0.0000 | 0.0000 | 0.0000
+       RBR | 1.0000 | 1.0000 | 1.0000
+     -LRB- | 0.0000 | 0.0000 | 0.0000
+     -RRB- | 0.0000 | 0.0000 | 0.0000
+        RP | 0.6667 | 0.6667 | 0.6667
+        EX | 0.5000 | 0.5000 | 0.5000
+       JJS | 0.0000 | 0.0000 | 0.0000
+        WP | 1.0000 | 1.0000 | 1.0000
+       PDT | 0.0000 | 0.0000 | 0.0000
+        AT | 0.0000 | 0.0000 | 0.0000
+    <BLANKLINE>
+
+It's clear that although the precision of tagging `"NNP"` is high, the recall is very low.
+With other words, we're missing a lot of cases where the true label is `"NNP"`. We can see
+a similar effect with `"JJ"`.
+
+We can also see a very expected result: The precision of `"NN"` is low, while the recall
+is high. If a term is OOV (i.e. ``UnigramTagger`` defers it to ``RegexpTagger``) and
+``RegexpTagger`` doesn't have a good rule for it, then it will be tagged as `"NN"`. So,
+we catch almost all tokens that are truly labeled as `"NN"`, but we also tag as `"NN"`
+for many tokens that shouldn't be `"NN"`.
+
+This method gives us some insight in what parts of the tagger needs more attention, and why.
+However, it doesn't tell us what the terms with true label `"NNP"` or `"JJ"` are actually
+tagged as.
+To help that, we can create a confusion matrix.
+
+    >>> print(baseline.confusion(gold_data))
+           |                   -                                                                                                                                         |
+           |               -   N   -                                                                                                                                     |
+           |               L   O   R                                                           N                   P                                                     |
+           |               R   N   R                                       J   J           N   N   N   P   P   P   R       R               V   V   V   V   V   W         |
+           |       '       B   E   B           A   C   C   D   E   I   J   J   J   M   N   N   P   N   D   O   R   P   R   B   R   T   V   B   B   B   B   B   D   W   ` |
+           |   $   '   ,   -   -   -   .   :   T   C   D   T   X   N   J   R   S   D   N   P   S   S   T   S   P   $   B   R   P   O   B   D   G   N   P   Z   T   P   ` |
+    -------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         $ |  <9>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        '' |   . <10>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+         , |   .   .<115>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+     -LRB- |   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   3   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+    -NONE- |   .   .   .   .<121>  .   .   .   .   .   .   .   .   .   .   .   .   .  24   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+     -RRB- |   .   .   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   3   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+         . |   .   .   .   .   .   .<100>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+         : |   .   .   .   .   .   .   . <10>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        AT |   .   .   .   .   .   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        CC |   .   .   .   .   .   .   .   .   . <58>  .   .   .   .   .   .   .   .   4   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        CD |   .   .   .   .   .   .   .   .   .   . <77>  .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        DT |   .   .   .   .   .   .   .   .   1   .   .<163>  .   4   .   .   .   .  13   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   3   .   . |
+        EX |   .   .   .   .   .   .   .   .   .   .   .   .  <1>  .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        IN |   .   .   .   .   .   .   .   .   .   .   .   .   .<228>  .   .   .   .   8   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   .   . |
+        JJ |   .   .   .   .   .   .   .   .   .   .   .   .   .   . <49>  .   .   .  86   2   .   4   .   .   .   .   6   .   .   .   .  12   3   .   3   .   .   .   . |
+       JJR |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <3>  .   .   3   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       JJS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <.>  .   2   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        MD |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <19>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        NN |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   9   .   .   .<296>  .   .   5   .   .   .   .   .   .   .   .   5   .   9   .   .   .   .   .   . |
+       NNP |   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   .   . 199 <89>  .  26   .   .   .   .   2   .   .   .   .   2   5   .   .   .   .   .   . |
+      NNPS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   1  <.>  3   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       NNS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   5   .   .<156>  .   .   .   .   .   .   .   .   .   .   .   .   .   1   .   .   . |
+       PDT |   .   .   .   .   .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       POS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <14>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       PRP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  10   .   .   2   .   . <15>  .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+      PRP$ |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <28>  .   .   .   .   .   .   .   .   .   .   .   .   . |
+        RB |   .   .   .   .   .   .   .   .   .   .   .   .   1   4   .   .   .   .   6   .   .   .   .   .   .   . <35>  .   1   .   .   .   .   .   .   .   .   .   . |
+       RBR |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <4>  .   .   .   .   .   .   .   .   .   .   . |
+        RP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   1   .  <2>  .   .   .   .   .   .   .   .   .   . |
+        TO |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <47>  .   .   .   .   .   .   .   .   . |
+        VB |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .  30   .   .   .   .   .   .   .   1   .   .   . <21>  .   .   .   3   .   .   .   . |
+       VBD |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  10   .   .   .   .   .   .   .   .   .   .   .   . <81>  .   1   .   .   .   .   . |
+       VBG |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   .   .   .   .   .   .   .   .   . <34>  .   .   .   .   .   . |
+       VBN |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   4   .   .   .   .   .   .   .   .   .   .   .   .  31   . <15>  .   .   .   .   . |
+       VBP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   7   .   .   .   .   .   .   .   .   .   .   .   1   .   .   . <11>  .   .   .   . |
+       VBZ |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  15   .   .   .   .   .   .   .   .   .   .   .   .   . <27>  .   .   . |
+       WDT |   .   .   .   .   .   .   .   .   .   .   .   .   .   7   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <2>  .   . |
+        WP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <2>  . |
+        `` |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <10>|
+    -------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    (row = reference; col = test)
+    <BLANKLINE>
+
+Once again we can see that `"NN"` is the default if the tagger isn't sure. Beyond that,
+we can see why the recall for `"NNP"` is so low: these tokens are often tagged as `"NN"`.
+This effect can also be seen for `"JJ"`, where the majority of tokens that ought to be
+tagged as `"JJ"` are actually tagged as `"NN"` by our tagger.
+
+This tagger will only serve as a baseline for the ``BrillTaggerTrainer``, which uses
+templates to attempt to improve the performance of the tagger.
+
+    >>> # Set up templates
+    >>> Template._cleartemplates() #clear any templates created in earlier tests
+    >>> templates = [Template(Pos([-1])), Template(Pos([-1]), Word([0]))]
+
+    >>> # Construct a BrillTaggerTrainer
+    >>> tt = BrillTaggerTrainer(baseline, templates, trace=3)
+    >>> tagger1 = tt.train(training_data, max_rules=10)
+    TBL train (fast) (seqs: 100; tokens: 2417; tpls: 2; min score: 2; min acc: None)
+    Finding initial useful rules...
+        Found 618 useful rules.
+    <BLANKLINE>
+               B      |
+       S   F   r   O  |        Score = Fixed - Broken
+       c   i   o   t  |  R     Fixed = num tags changed incorrect -> correct
+       o   x   k   h  |  u     Broken = num tags changed correct -> incorrect
+       r   e   e   e  |  l     Other = num tags changed incorrect -> incorrect
+       e   d   n   r  |  e
+    ------------------+-------------------------------------------------------
+      13  14   1   4  | NN->VB if Pos:TO@[-1]
+       8   8   0   0  | NN->VB if Pos:MD@[-1]
+       7  10   3  22  | NN->IN if Pos:NNS@[-1]
+       5   5   0   0  | NN->VBP if Pos:PRP@[-1]
+       5   5   0   0  | VBD->VBN if Pos:VBZ@[-1]
+       5   5   0   0  | NNS->NN if Pos:IN@[-1] & Word:asbestos@[0]
+       4   4   0   0  | NN->-NONE- if Pos:WP@[-1]
+       4   4   0   3  | NN->NNP if Pos:-NONE-@[-1]
+       4   6   2   2  | NN->NNP if Pos:NNP@[-1]
+       4   4   0   0  | NNS->VBZ if Pos:PRP@[-1]
+
+    >>> tagger1.rules()[1:3]
+    (Rule('000', 'NN', 'VB', [(Pos([-1]),'MD')]), Rule('000', 'NN', 'IN', [(Pos([-1]),'NNS')]))
+
+    >>> tagger1.print_template_statistics(printunused=False)
+    TEMPLATE STATISTICS (TRAIN)  2 templates, 10 rules)
+    TRAIN (   2417 tokens) initial   555 0.7704 final:   496 0.7948
+    #ID | Score (train) |  #Rules     | Template
+    --------------------------------------------
+    000 |    54   0.915 |   9   0.900 | Template(Pos([-1]))
+    001 |     5   0.085 |   1   0.100 | Template(Pos([-1]),Word([0]))
+    <BLANKLINE>
+    <BLANKLINE>
+
+    >>> tagger1.accuracy(gold_data) # doctest: +ELLIPSIS
+    0.769230...
+
+    >>> print(tagger1.evaluate_per_tag(gold_data, sort_by_count=True))
+       Tag | Prec.  | Recall | F-measure
+    -------+--------+--------+-----------
+       NNP | 0.8298 | 0.3600 | 0.5021
+        NN | 0.4435 | 0.8364 | 0.5797
+        IN | 0.8476 | 0.9580 | 0.8994
+        DT | 0.9819 | 0.8859 | 0.9314
+        JJ | 0.8167 | 0.2970 | 0.4356
+       NNS | 0.7464 | 0.9630 | 0.8410
+    -NONE- | 1.0000 | 0.8414 | 0.9139
+         , | 1.0000 | 1.0000 | 1.0000
+         . | 1.0000 | 1.0000 | 1.0000
+       VBD | 0.6723 | 0.8696 | 0.7583
+        CD | 1.0000 | 0.9872 | 0.9935
+        CC | 1.0000 | 0.9355 | 0.9667
+        VB | 0.8103 | 0.8246 | 0.8174
+       VBN | 0.9130 | 0.4200 | 0.5753
+        RB | 0.7778 | 0.7447 | 0.7609
+        TO | 1.0000 | 1.0000 | 1.0000
+       VBZ | 0.9667 | 0.6905 | 0.8056
+       VBG | 0.6415 | 0.9444 | 0.7640
+      PRP$ | 1.0000 | 1.0000 | 1.0000
+       PRP | 1.0000 | 0.5556 | 0.7143
+        MD | 1.0000 | 1.0000 | 1.0000
+       VBP | 0.6316 | 0.6316 | 0.6316
+       POS | 1.0000 | 1.0000 | 1.0000
+         $ | 1.0000 | 0.8182 | 0.9000
+        '' | 1.0000 | 1.0000 | 1.0000
+         : | 1.0000 | 1.0000 | 1.0000
+       WDT | 0.4000 | 0.2000 | 0.2667
+        `` | 1.0000 | 1.0000 | 1.0000
+       JJR | 1.0000 | 0.5000 | 0.6667
+      NNPS | 0.0000 | 0.0000 | 0.0000
+       RBR | 1.0000 | 1.0000 | 1.0000
+     -LRB- | 0.0000 | 0.0000 | 0.0000
+     -RRB- | 0.0000 | 0.0000 | 0.0000
+        RP | 0.6667 | 0.6667 | 0.6667
+        EX | 0.5000 | 0.5000 | 0.5000
+       JJS | 0.0000 | 0.0000 | 0.0000
+        WP | 1.0000 | 1.0000 | 1.0000
+       PDT | 0.0000 | 0.0000 | 0.0000
+        AT | 0.0000 | 0.0000 | 0.0000
+    <BLANKLINE>
+
+    >>> print(tagger1.confusion(gold_data))
+           |                   -                                                                                                                                         |
+           |               -   N   -                                                                                                                                     |
+           |               L   O   R                                                           N                   P                                                     |
+           |               R   N   R                                       J   J           N   N   N   P   P   P   R       R               V   V   V   V   V   W         |
+           |       '       B   E   B           A   C   C   D   E   I   J   J   J   M   N   N   P   N   D   O   R   P   R   B   R   T   V   B   B   B   B   B   D   W   ` |
+           |   $   '   ,   -   -   -   .   :   T   C   D   T   X   N   J   R   S   D   N   P   S   S   T   S   P   $   B   R   P   O   B   D   G   N   P   Z   T   P   ` |
+    -------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         $ |  <9>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   . |
+        '' |   . <10>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+         , |   .   .<115>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+     -LRB- |   .   .   .  <.>  .   .   .   .   .   .   .   .   .   1   .   .   .   .   2   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+    -NONE- |   .   .   .   .<122>  .   .   .   .   .   .   .   .   1   .   .   .   .  22   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+     -RRB- |   .   .   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   2   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+         . |   .   .   .   .   .   .<100>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+         : |   .   .   .   .   .   .   . <10>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        AT |   .   .   .   .   .   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        CC |   .   .   .   .   .   .   .   .   . <58>  .   .   .   .   .   .   .   .   2   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   1   .   .   .   . |
+        CD |   .   .   .   .   .   .   .   .   .   . <77>  .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        DT |   .   .   .   .   .   .   .   .   1   .   .<163>  .   5   .   .   .   .  12   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   3   .   . |
+        EX |   .   .   .   .   .   .   .   .   .   .   .   .  <1>  .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        IN |   .   .   .   .   .   .   .   .   .   .   .   .   .<228>  .   .   .   .   8   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   .   . |
+        JJ |   .   .   .   .   .   .   .   .   .   .   .   .   .   4 <49>  .   .   .  79   4   .   4   .   .   .   .   6   .   .   .   1  12   3   .   3   .   .   .   . |
+       JJR |   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .  <3>  .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       JJS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <.>  .   2   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        MD |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <19>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+        NN |   .   .   .   .   .   .   .   .   .   .   .   .   .   7   9   .   .   .<271> 16   .   5   .   .   .   .   .   .   .   .   7   .   9   .   .   .   .   .   . |
+       NNP |   .   .   .   .   .   .   .   .   .   .   .   2   .   7   .   .   .   . 163<117>  .  26   .   .   .   .   2   .   .   .   1   2   5   .   .   .   .   .   . |
+      NNPS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   1  <.>  3   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       NNS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   5   .   .<156>  .   .   .   .   .   .   .   .   .   .   .   .   .   1   .   .   . |
+       PDT |   .   .   .   .   .   .   .   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .  <.>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       POS |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <14>  .   .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+       PRP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  10   .   .   2   .   . <15>  .   .   .   .   .   .   .   .   .   .   .   .   .   . |
+      PRP$ |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <28>  .   .   .   .   .   .   .   .   .   .   .   .   . |
+        RB |   .   .   .   .   .   .   .   .   .   .   .   .   1   4   .   .   .   .   6   .   .   .   .   .   .   . <35>  .   1   .   .   .   .   .   .   .   .   .   . |
+       RBR |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <4>  .   .   .   .   .   .   .   .   .   .   . |
+        RP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   1   .  <2>  .   .   .   .   .   .   .   .   .   . |
+        TO |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <47>  .   .   .   .   .   .   .   .   . |
+        VB |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   4   .   .   .   .   .   .   .   1   .   .   . <47>  .   .   .   3   .   .   .   . |
+       VBD |   .   .   .   .   .   .   .   .   .   .   .   .   .   1   .   .   .   .   8   1   .   .   .   .   .   .   .   .   .   .   . <80>  .   2   .   .   .   .   . |
+       VBG |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   .   .   .   .   .   .   .   .   . <34>  .   .   .   .   .   . |
+       VBN |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   4   .   .   .   .   .   .   .   .   .   .   .   .  25   . <21>  .   .   .   .   . |
+       VBP |   .   .   .   .   .   .   .   .   .   .   .   .   .   2   .   .   .   .   4   .   .   .   .   .   .   .   .   .   .   .   1   .   .   . <12>  .   .   .   . |
+       VBZ |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  13   .   .   .   .   .   .   .   .   .   .   .   .   . <29>  .   .   . |
+       WDT |   .   .   .   .   .   .   .   .   .   .   .   .   .   7   .   .   .   .   1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <2>  .   . |
+        WP |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .  <2>  . |
+        `` |   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . <10>|
+    -------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    (row = reference; col = test)
+    <BLANKLINE>
+
+    >>> tagged, test_stats = tagger1.batch_tag_incremental(testing_data, gold_data)
+    >>> tagged[33][12:]
+    [('foreign', 'NN'), ('debt', 'NN'), ('of', 'IN'), ('$', '$'), ('64', 'CD'),
+    ('billion', 'CD'), ('*U*', '-NONE-'), ('--', ':'), ('the', 'DT'), ('third-highest', 'NN'),
+    ('in', 'IN'), ('the', 'DT'), ('developing', 'VBG'), ('world', 'NN'), ('.', '.')]
+
+Regression Tests
+~~~~~~~~~~~~~~~~
+
+Sequential Taggers
+------------------
+
+Add tests for:
+  - make sure backoff is being done correctly.
+  - make sure ngram taggers don't use previous sentences for context.
+  - make sure ngram taggers see 'beginning of the sentence' as a
+    unique context
+  - make sure regexp tagger's regexps are tried in order
+  - train on some simple examples, & make sure that the size & the
+    generated models are correct.
+  - make sure cutoff works as intended
+  - make sure that ngram models only exclude contexts covered by the
+    backoff tagger if the backoff tagger gets that context correct at
+    *all* locations.
+
+
+Regression Testing for issue #1025
+==================================
+
+We want to ensure that a RegexpTagger can be created with more than 100 patterns
+and does not fail with: "AssertionError: sorry, but this version only supports 100 named groups"
+
+    >>> from nltk.tag import RegexpTagger
+    >>> patterns = [(str(i), 'NNP',) for i in range(200)]
+    >>> tagger = RegexpTagger(patterns)
+
+Regression Testing for issue #2483
+==================================
+
+Ensure that tagging with pos_tag (PerceptronTagger) does not throw an IndexError
+when attempting tagging an empty string. What it must return instead is not
+strictly defined.
+
+    >>> from nltk.tag import pos_tag
+    >>> pos_tag(['', 'is', 'a', 'beautiful', 'day'])
+    [...]

@@ -1,0 +1,69 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+.. see also: gluesemantics.doctest
+
+==============================================================================
+ Glue Semantics
+==============================================================================
+
+    >>> from nltk.test.gluesemantics_malt_fixt import setup_module
+    >>> setup_module()
+
+    >>> from nltk.sem.glue import *
+    >>> nltk.sem.logic._counter._value = 0
+
+--------------------------------
+Initialize the Dependency Parser
+--------------------------------
+    >>> from nltk.parse.malt import MaltParser
+
+    >>> tagger = RegexpTagger(
+    ...     [('^(John|Mary)$', 'NNP'),
+    ...      ('^(sees|chases)$', 'VB'),
+    ...      ('^(a)$', 'ex_quant'),
+    ...      ('^(every)$', 'univ_quant'),
+    ...      ('^(girl|dog)$', 'NN')
+    ... ]).tag
+    >>> depparser = MaltParser(tagger=tagger)
+
+--------------------
+Automated Derivation
+--------------------
+    >>> glue = Glue(depparser=depparser)
+    >>> readings = glue.parse_to_meaning('every girl chases a dog'.split())
+    >>> for reading in sorted([r.simplify().normalize() for r in readings], key=str):
+    ...     print(reading.normalize())
+    all z1.(girl(z1) -> exists z2.(dog(z2) & chases(z1,z2)))
+    exists z1.(dog(z1) & all z2.(girl(z2) -> chases(z2,z1)))
+
+    >>> drtglue = DrtGlue(depparser=depparser)
+    >>> readings = drtglue.parse_to_meaning('every girl chases a dog'.split())
+    >>> for reading in sorted([r.simplify().normalize() for r in readings], key=str):
+    ...     print(reading)
+    ([],[(([z1],[girl(z1)]) -> ([z2],[dog(z2), chases(z1,z2)]))])
+    ([z1],[dog(z1), (([z2],[girl(z2)]) -> ([],[chases(z2,z1)]))])
+
+--------------
+With inference
+--------------
+
+Checking for equality of two DRSs is very useful when generating readings of a sentence.
+For example, the ``glue`` module generates two readings for the sentence
+*John sees Mary*:
+
+    >>> from nltk.sem.glue import DrtGlue
+    >>> readings = drtglue.parse_to_meaning('John sees Mary'.split())
+    >>> for drs in sorted([r.simplify().normalize() for r in readings], key=str):
+    ...     print(drs)
+    ([z1,z2],[John(z1), Mary(z2), sees(z1,z2)])
+    ([z1,z2],[Mary(z1), John(z2), sees(z2,z1)])
+
+However, it is easy to tell that these two readings are logically the
+same, and therefore one of them is superfluous.  We can use the theorem prover
+to determine this equivalence, and then delete one of them.  A particular
+theorem prover may be specified, or the argument may be left off to use the
+default.
+
+    >>> readings[0].equiv(readings[1])
+    True

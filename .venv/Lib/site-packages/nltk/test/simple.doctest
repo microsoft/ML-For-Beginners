@@ -1,0 +1,83 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=================
+EasyInstall Tests
+=================
+
+This file contains some simple tests that will be run by EasyInstall in
+order to test the installation when NLTK-Data is absent.
+
+
+------------
+Tokenization
+------------
+
+    >>> from nltk.tokenize import wordpunct_tokenize
+    >>> s = ("Good muffins cost $3.88\nin New York.  Please buy me\n"
+    ...      "two of them.\n\nThanks.")
+    >>> wordpunct_tokenize(s)
+    ['Good', 'muffins', 'cost', '$', '3', '.', '88', 'in', 'New', 'York', '.',
+    'Please', 'buy', 'me', 'two', 'of', 'them', '.', 'Thanks', '.']
+
+-------
+Metrics
+-------
+
+    >>> from nltk.metrics import precision, recall, f_measure
+    >>> reference = 'DET NN VB DET JJ NN NN IN DET NN'.split()
+    >>> test    = 'DET VB VB DET NN NN NN IN DET NN'.split()
+    >>> reference_set = set(reference)
+    >>> test_set = set(test)
+    >>> precision(reference_set, test_set)
+    1.0
+    >>> print(recall(reference_set, test_set))
+    0.8
+    >>> print(f_measure(reference_set, test_set))
+    0.88888888888...
+
+------------------
+Feature Structures
+------------------
+
+    >>> from nltk import FeatStruct
+    >>> fs1 = FeatStruct(PER=3, NUM='pl', GND='fem')
+    >>> fs2 = FeatStruct(POS='N', AGR=fs1)
+    >>> print(fs2)
+    [       [ GND = 'fem' ] ]
+    [ AGR = [ NUM = 'pl'  ] ]
+    [       [ PER = 3     ] ]
+    [                       ]
+    [ POS = 'N'             ]
+    >>> print(fs2['AGR'])
+    [ GND = 'fem' ]
+    [ NUM = 'pl'  ]
+    [ PER = 3     ]
+    >>> print(fs2['AGR']['PER'])
+    3
+
+-------
+Parsing
+-------
+
+    >>> from nltk.parse.recursivedescent import RecursiveDescentParser
+    >>> from nltk.grammar import CFG
+    >>> grammar = CFG.fromstring("""
+    ... S -> NP VP
+    ... PP -> P NP
+    ... NP -> 'the' N | N PP | 'the' N PP
+    ... VP -> V NP | V PP | V NP PP
+    ... N -> 'cat' | 'dog' | 'rug'
+    ... V -> 'chased'
+    ... P -> 'on'
+    ... """)
+    >>> rd = RecursiveDescentParser(grammar)
+    >>> sent = 'the cat chased the dog on the rug'.split()
+    >>> for t in rd.parse(sent):
+    ...     print(t)
+    (S
+      (NP the (N cat))
+      (VP (V chased) (NP the (N dog) (PP (P on) (NP the (N rug))))))
+    (S
+      (NP the (N cat))
+      (VP (V chased) (NP the (N dog)) (PP (P on) (NP the (N rug)))))

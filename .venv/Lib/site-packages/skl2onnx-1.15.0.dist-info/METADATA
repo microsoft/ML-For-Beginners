@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: skl2onnx
+Version: 1.15.0
+Summary: Convert scikit-learn models to ONNX
+Home-page: https://github.com/onnx/sklearn-onnx
+Author: ONNX
+Author-email: onnx-technical-discuss@lists.lfaidata.foundation
+License: Apache License v2.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: NOTICE
+Requires-Dist: onnx (>=1.2.1)
+Requires-Dist: scikit-learn (>=0.19)
+Requires-Dist: onnxconverter-common (>=1.7.0)
+
+## Introduction
+*sklearn-onnx* converts [scikit-learn](https://scikit-learn.org/stable/) models to [ONNX](https://github.com/onnx/onnx).
+Once in the ONNX format, you can use tools like [ONNX Runtime](https://github.com/Microsoft/onnxruntime) for high performance scoring.
+All converters are tested with [onnxruntime](https://onnxruntime.ai/).
+Any external converter can be registered to convert scikit-learn pipeline
+including models or transformers coming from external libraries.
+
+## Documentation
+Full documentation including tutorials is available at [https://onnx.ai/sklearn-onnx/](https://onnx.ai/sklearn-onnx/).
+[Supported scikit-learn Models](https://onnx.ai/sklearn-onnx/supported.html)
+Last supported opset is 15.
+
+You may also find answers in [existing issues](https://github.com/onnx/sklearn-onnx/issues?utf8=%E2%9C%93&q=is%3Aissue)
+or submit a new one.
+
+## Installation
+You can install from [PyPi](https://pypi.org/project/skl2onnx/):
+```
+pip install skl2onnx
+```
+Or you can install from the source with the latest changes.
+```
+pip install git+https://github.com/onnx/sklearn-onnx.git
+```
+
+## Contribute
+We welcome contributions in the form of feedback, ideas, or code.
+
+## License
+[Apache License v2.0](LICENSE)

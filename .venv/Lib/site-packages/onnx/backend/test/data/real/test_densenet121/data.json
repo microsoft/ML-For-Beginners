@@ -1,0 +1,1 @@
+{"atol": 1e-07, "model_name": "densenet121", "rtol": 0.002, "url": "onnx/backend/test/data/light/light_densenet121.onnx"}

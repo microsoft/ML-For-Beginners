@@ -1,0 +1,105 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==========
+ Stemmers
+==========
+
+Overview
+~~~~~~~~
+
+Stemmers remove morphological affixes from words, leaving only the
+word stem.
+
+    >>> from nltk.stem import *
+
+Unit tests for the Porter stemmer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    >>> from nltk.stem.porter import *
+
+Create a new Porter stemmer.
+
+    >>> stemmer = PorterStemmer()
+
+Test the stemmer on various pluralised words.
+
+    >>> plurals = ['caresses', 'flies', 'dies', 'mules', 'denied',
+    ...            'died', 'agreed', 'owned', 'humbled', 'sized',
+    ...            'meeting', 'stating', 'siezing', 'itemization',
+    ...            'sensational', 'traditional', 'reference', 'colonizer',
+    ...            'plotted']
+
+    >>> singles = [stemmer.stem(plural) for plural in plurals]
+
+    >>> print(' '.join(singles))
+    caress fli die mule deni die agre own humbl size meet
+    state siez item sensat tradit refer colon plot
+
+
+Unit tests for Snowball stemmer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    >>> from nltk.stem.snowball import SnowballStemmer
+
+See which languages are supported.
+
+    >>> print(" ".join(SnowballStemmer.languages))
+    arabic danish dutch english finnish french german hungarian italian
+    norwegian porter portuguese romanian russian spanish swedish
+
+Create a new instance of a language specific subclass.
+
+    >>> stemmer = SnowballStemmer("english")
+
+Stem a word.
+
+    >>> print(stemmer.stem("running"))
+    run
+
+Decide not to stem stopwords.
+
+    >>> stemmer2 = SnowballStemmer("english", ignore_stopwords=True)
+    >>> print(stemmer.stem("having"))
+    have
+    >>> print(stemmer2.stem("having"))
+    having
+
+The 'english' stemmer is better than the original 'porter' stemmer.
+
+    >>> print(SnowballStemmer("english").stem("generously"))
+    generous
+    >>> print(SnowballStemmer("porter").stem("generously"))
+    gener
+
+.. note::
+
+    Extra stemmer tests can be found in `nltk.test.unit.test_stem`.
+
+Unit tests for ARLSTem Stemmer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    >>> from nltk.stem.arlstem import ARLSTem
+
+Create a Stemmer instance.
+
+    >>> stemmer = ARLSTem()
+
+Stem a word.
+
+    >>> stemmer.stem('يعمل')
+    'عمل'
+
+Unit tests for ARLSTem2 Stemmer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    >>> from nltk.stem.arlstem2 import ARLSTem2
+
+Create a Stemmer instance.
+
+    >>> stemmer = ARLSTem2()
+
+Stem a word.
+
+    >>> stemmer.stem('يعمل')
+    'عمل'

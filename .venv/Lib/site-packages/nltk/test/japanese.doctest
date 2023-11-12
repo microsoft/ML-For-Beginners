@@ -1,0 +1,48 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+============================
+Japanese Language Processing
+============================
+
+    >>> from nltk import *
+
+-------------
+Corpus Access
+-------------
+
+KNB Corpus
+----------
+
+    >>> from nltk.corpus import knbc
+
+Access the words: this should produce a list of strings:
+
+    >>> type(knbc.words()[0]) is not bytes
+    True
+
+Access the sentences: this should produce a list of lists of strings:
+
+    >>> type(knbc.sents()[0][0]) is not bytes
+    True
+
+Access the tagged words: this should produce a list of word, tag pairs:
+
+    >>> type(knbc.tagged_words()[0])
+    <... 'tuple'>
+
+Access the tagged sentences: this should produce a list of lists of word, tag pairs:
+
+    >>> type(knbc.tagged_sents()[0][0])
+    <... 'tuple'>
+
+
+JEITA Corpus
+------------
+
+    >>> from nltk.corpus import jeita
+
+Access the tagged words: this should produce a list of word, tag pairs, where a tag is a string:
+
+    >>> type(jeita.tagged_words()[0][1]) is not bytes
+    True

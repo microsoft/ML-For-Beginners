@@ -1,0 +1,5 @@
+[console_scripts]
+backend-test-tools = onnx.backend.test.cmd_tools:main
+check-model = onnx.bin.checker:check_model
+check-node = onnx.bin.checker:check_node
+

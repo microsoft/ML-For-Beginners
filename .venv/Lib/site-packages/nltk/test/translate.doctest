@@ -1,0 +1,240 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+.. -*- coding: utf-8 -*-
+
+=========
+Alignment
+=========
+
+Corpus Reader
+-------------
+
+    >>> from nltk.corpus import comtrans
+    >>> words = comtrans.words('alignment-en-fr.txt')
+    >>> for word in words[:6]:
+    ...     print(word)
+    Resumption
+    of
+    the
+    session
+    I
+    declare
+    >>> als = comtrans.aligned_sents('alignment-en-fr.txt')[0]
+    >>> als
+    AlignedSent(['Resumption', 'of', 'the', 'session'],
+    ['Reprise', 'de', 'la', 'session'],
+    Alignment([(0, 0), (1, 1), (2, 2), (3, 3)]))
+
+
+Alignment Objects
+-----------------
+
+Aligned sentences are simply a mapping between words in a sentence:
+
+    >>> print(" ".join(als.words))
+    Resumption of the session
+    >>> print(" ".join(als.mots))
+    Reprise de la session
+    >>> als.alignment
+    Alignment([(0, 0), (1, 1), (2, 2), (3, 3)])
+
+
+Usually we look at them from the perspective of a source to a target language,
+but they are easily inverted:
+
+    >>> als.invert()
+    AlignedSent(['Reprise', 'de', 'la', 'session'],
+    ['Resumption', 'of', 'the', 'session'],
+    Alignment([(0, 0), (1, 1), (2, 2), (3, 3)]))
+
+
+We can create new alignments, but these need to be in the correct range of
+the corresponding sentences:
+
+    >>> from nltk.translate import Alignment, AlignedSent
+    >>> als = AlignedSent(['Reprise', 'de', 'la', 'session'],
+    ...                   ['Resumption', 'of', 'the', 'session'],
+    ...                   Alignment([(0, 0), (1, 4), (2, 1), (3, 3)]))
+    Traceback (most recent call last):
+        ...
+    IndexError: Alignment is outside boundary of mots
+
+
+You can set alignments with any sequence of tuples, so long as the first two
+indexes of the tuple are the alignment indices:
+
+    >>> als.alignment = Alignment([(0, 0), (1, 1), (2, 2, "boat"), (3, 3, False, (1,2))])
+
+    >>> Alignment([(0, 0), (1, 1), (2, 2, "boat"), (3, 3, False, (1,2))])
+    Alignment([(0, 0), (1, 1), (2, 2, 'boat'), (3, 3, False, (1, 2))])
+
+
+Alignment Algorithms
+--------------------
+
+EM for IBM Model 1
+~~~~~~~~~~~~~~~~~~
+
+Here is an example from Koehn, 2010:
+
+    >>> from nltk.translate import IBMModel1
+    >>> corpus = [AlignedSent(['the', 'house'], ['das', 'Haus']),
+    ...           AlignedSent(['the', 'book'], ['das', 'Buch']),
+    ...           AlignedSent(['a', 'book'], ['ein', 'Buch'])]
+    >>> em_ibm1 = IBMModel1(corpus, 20)
+    >>> print(round(em_ibm1.translation_table['the']['das'], 1))
+    1.0
+    >>> print(round(em_ibm1.translation_table['book']['das'], 1))
+    0.0
+    >>> print(round(em_ibm1.translation_table['house']['das'], 1))
+    0.0
+    >>> print(round(em_ibm1.translation_table['the']['Buch'], 1))
+    0.0
+    >>> print(round(em_ibm1.translation_table['book']['Buch'], 1))
+    1.0
+    >>> print(round(em_ibm1.translation_table['a']['Buch'], 1))
+    0.0
+    >>> print(round(em_ibm1.translation_table['book']['ein'], 1))
+    0.0
+    >>> print(round(em_ibm1.translation_table['a']['ein'], 1))
+    1.0
+    >>> print(round(em_ibm1.translation_table['the']['Haus'], 1))
+    0.0
+    >>> print(round(em_ibm1.translation_table['house']['Haus'], 1))
+    1.0
+    >>> print(round(em_ibm1.translation_table['book'][None], 1))
+    0.5
+
+And using an NLTK corpus. We train on only 10 sentences, since it is so slow:
+
+    >>> from nltk.corpus import comtrans
+    >>> com_ibm1 = IBMModel1(comtrans.aligned_sents()[:10], 20)
+    >>> print(round(com_ibm1.translation_table['bitte']['Please'], 1))
+    0.2
+    >>> print(round(com_ibm1.translation_table['Sitzungsperiode']['session'], 1))
+    1.0
+
+
+Evaluation
+----------
+The evaluation metrics for alignments are usually not interested in the
+contents of alignments but more often the comparison to a "gold standard"
+alignment that has been been constructed by human experts. For this reason we
+often want to work just with raw set operations against the alignment points.
+This then gives us a very clean form for defining our evaluation metrics.
+
+.. Note::
+    The AlignedSent class has no distinction of "possible" or "sure"
+    alignments. Thus all alignments are treated as "sure".
+
+Consider the following aligned sentence for evaluation:
+
+    >>> my_als = AlignedSent(['Resumption', 'of', 'the', 'session'],
+    ...     ['Reprise', 'de', 'la', 'session'],
+    ...     Alignment([(0, 0), (3, 3), (1, 2), (1, 1), (1, 3)]))
+
+Precision
+~~~~~~~~~
+``precision = |A∩P| / |A|``
+
+**Precision** is probably the most well known evaluation metric and it is implemented
+in `nltk.metrics.scores.precision`_.  Since precision is simply interested in the
+proportion of correct alignments, we calculate the ratio of the number of our
+test alignments (*A*) that match a possible alignment (*P*), over the number of
+test alignments provided. There is no penalty for missing a possible alignment
+in our test alignments. An easy way to game this metric is to provide just one
+test alignment that is in *P* [OCH2000]_.
+
+Here are some examples:
+
+    >>> from nltk.metrics import precision
+    >>> als.alignment = Alignment([(0,0), (1,1), (2,2), (3,3)])
+    >>> precision(Alignment([]), als.alignment)
+    0.0
+    >>> precision(Alignment([(0,0), (1,1), (2,2), (3,3)]), als.alignment)
+    1.0
+    >>> precision(Alignment([(0,0), (3,3)]), als.alignment)
+    0.5
+    >>> precision(Alignment.fromstring('0-0 3-3'), als.alignment)
+    0.5
+    >>> precision(Alignment([(0,0), (1,1), (2,2), (3,3), (1,2), (2,1)]), als.alignment)
+    1.0
+    >>> precision(als.alignment, my_als.alignment)
+    0.6
+
+
+.. _nltk.metrics.scores.precision:
+    https://www.nltk.org/api/nltk.metrics.html#nltk.metrics.scores.precision
+
+
+Recall
+~~~~~~
+``recall = |A∩S| / |S|``
+
+**Recall** is another well known evaluation metric that has a set based
+implementation in NLTK as `nltk.metrics.scores.recall`_. Since recall is
+simply interested in the proportion of found alignments, we calculate the
+ratio of the number of our test alignments (*A*) that match a sure alignment
+(*S*) over the number of sure alignments. There is no penalty for producing
+a lot of test alignments. An easy way to game this metric is to include every
+possible alignment in our test alignments, regardless if they are correct or
+not [OCH2000]_.
+
+Here are some examples:
+
+    >>> from nltk.metrics import recall
+    >>> print(recall(Alignment([]), als.alignment))
+    None
+    >>> recall(Alignment([(0,0), (1,1), (2,2), (3,3)]), als.alignment)
+    1.0
+    >>> recall(Alignment.fromstring('0-0 3-3'), als.alignment)
+    1.0
+    >>> recall(Alignment([(0,0), (3,3)]), als.alignment)
+    1.0
+    >>> recall(Alignment([(0,0), (1,1), (2,2), (3,3), (1,2), (2,1)]), als.alignment)
+    0.66666...
+    >>> recall(als.alignment, my_als.alignment)
+    0.75
+
+
+.. _nltk.metrics.scores.recall:
+    https://www.nltk.org/api/nltk.metrics.html#nltk.metrics.scores.recall
+
+
+Alignment Error Rate (AER)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+``AER = 1 - (|A∩S| + |A∩P|) / (|A| + |S|)``
+
+**Alignment Error Rate** is commonly used metric for assessing sentence
+alignments. It combines precision and recall metrics together such that a
+perfect alignment must have all of the sure alignments and may have some
+possible alignments [MIHALCEA2003]_ [KOEHN2010]_.
+
+.. Note::
+    [KOEHN2010]_ defines the AER as ``AER = (|A∩S| + |A∩P|) / (|A| + |S|)``
+    in his book, but corrects it to the above in his online errata. This is
+    in line with [MIHALCEA2003]_.
+
+Here are some examples:
+
+    >>> from nltk.translate import alignment_error_rate
+    >>> alignment_error_rate(Alignment([]), als.alignment)
+    1.0
+    >>> alignment_error_rate(Alignment([(0,0), (1,1), (2,2), (3,3)]), als.alignment)
+    0.0
+    >>> alignment_error_rate(als.alignment, my_als.alignment)
+    0.333333...
+    >>> alignment_error_rate(als.alignment, my_als.alignment,
+    ...     als.alignment | Alignment([(1,2), (2,1)]))
+    0.222222...
+
+
+.. [OCH2000] Och, F. and Ney, H. (2000)
+    *Statistical Machine Translation*, EAMT Workshop
+
+.. [MIHALCEA2003] Mihalcea, R. and Pedersen, T. (2003)
+    *An evaluation exercise for word alignment*, HLT-NAACL 2003
+
+.. [KOEHN2010] Koehn, P. (2010)
+    *Statistical Machine Translation*, Cambridge University Press

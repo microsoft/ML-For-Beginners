@@ -1,0 +1,263 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+======================
+Information Extraction
+======================
+
+Information Extraction standardly consists of three subtasks:
+
+#. Named Entity Recognition
+
+#. Relation Extraction
+
+#. Template Filling
+
+Named Entities
+~~~~~~~~~~~~~~
+
+The IEER corpus is marked up for a variety of Named Entities. A Named
+Entity (more strictly, a Named Entity mention) is a name of an
+entity belonging to a specified class. For example, the Named Entity
+classes in IEER include PERSON, LOCATION, ORGANIZATION, DATE and so
+on. Within NLTK, Named Entities are represented as subtrees within a
+chunk structure: the class name is treated as node label, while the
+entity mention itself appears as the leaves of the subtree. This is
+illustrated below, where we have show an extract of the chunk
+representation of document NYT_19980315.064:
+
+    >>> from nltk.corpus import ieer
+    >>> docs = ieer.parsed_docs('NYT_19980315')
+    >>> tree = docs[1].text
+    >>> print(tree)
+    (DOCUMENT
+    ...
+      ``It's
+      a
+      chance
+      to
+      think
+      about
+      first-level
+      questions,''
+      said
+      Ms.
+      (PERSON Cohn)
+      ,
+      a
+      partner
+      in
+      the
+      (ORGANIZATION McGlashan &AMP; Sarrail)
+      firm
+      in
+      (LOCATION San Mateo)
+      ,
+      (LOCATION Calif.)
+      ...)
+
+Thus, the Named Entity mentions in this example are *Cohn*, *McGlashan &AMP;
+Sarrail*, *San Mateo* and *Calif.*.
+
+The CoNLL2002 Dutch and Spanish data is treated similarly, although in
+this case, the strings are also POS tagged.
+
+    >>> from nltk.corpus import conll2002
+    >>> for doc in conll2002.chunked_sents('ned.train')[27]:
+    ...     print(doc)
+    ('Het', 'Art')
+    (ORG Hof/N van/Prep Cassatie/N)
+    ('verbrak', 'V')
+    ('het', 'Art')
+    ('arrest', 'N')
+    ('zodat', 'Conj')
+    ('het', 'Pron')
+    ('moest', 'V')
+    ('worden', 'V')
+    ('overgedaan', 'V')
+    ('door', 'Prep')
+    ('het', 'Art')
+    ('hof', 'N')
+    ('van', 'Prep')
+    ('beroep', 'N')
+    ('van', 'Prep')
+    (LOC Antwerpen/N)
+    ('.', 'Punc')
+
+Relation Extraction
+~~~~~~~~~~~~~~~~~~~
+
+Relation Extraction standardly consists of identifying specified
+relations between Named Entities. For example, assuming that we can
+recognize ORGANIZATIONs and LOCATIONs in text, we might want to also
+recognize pairs *(o, l)* of these kinds of entities such that *o* is
+located in *l*.
+
+The `sem.relextract` module provides some tools to help carry out a
+simple version of this task. The `tree2semi_rel()` function splits a chunk
+document into a list of two-member lists, each of which consists of a
+(possibly empty) string followed by a `Tree` (i.e., a Named Entity):
+
+    >>> from nltk.sem import relextract
+    >>> pairs = relextract.tree2semi_rel(tree)
+    >>> for s, tree in pairs[18:22]:
+    ...     print('("...%s", %s)' % (" ".join(s[-5:]),tree))
+    ("...about first-level questions,'' said Ms.", (PERSON Cohn))
+    ("..., a partner in the", (ORGANIZATION McGlashan &AMP; Sarrail))
+    ("...firm in", (LOCATION San Mateo))
+    ("...,", (LOCATION Calif.))
+
+The function `semi_rel2reldict()` processes triples of these pairs, i.e.,
+pairs of the form ``((string1, Tree1), (string2, Tree2), (string3,
+Tree3))`` and outputs a dictionary (a `reldict`) in which ``Tree1`` is
+the subject of the relation, ``string2`` is the filler
+and ``Tree3`` is the object of the relation. ``string1`` and ``string3`` are
+stored as left and right context respectively.
+
+    >>> reldicts = relextract.semi_rel2reldict(pairs)
+    >>> for k, v in sorted(reldicts[0].items()):
+    ...     print(k, '=>', v)
+    filler => of messages to their own ``Cyberia'' ...
+    lcon => transactions.'' Each week, they post
+    objclass => ORGANIZATION
+    objsym => white_house
+    objtext => White House
+    rcon => for access to its planned
+    subjclass => CARDINAL
+    subjsym => hundreds
+    subjtext => hundreds
+    untagged_filler => of messages to their own ``Cyberia'' ...
+
+The next example shows some of the values for two `reldict`\ s
+corresponding to the ``'NYT_19980315'`` text extract shown earlier.
+
+    >>> for r in reldicts[18:20]:
+    ...     print('=' * 20)
+    ...     print(r['subjtext'])
+    ...     print(r['filler'])
+    ...     print(r['objtext'])
+    ====================
+    Cohn
+    , a partner in the
+    McGlashan &AMP; Sarrail
+    ====================
+    McGlashan &AMP; Sarrail
+    firm in
+    San Mateo
+
+The function `relextract()` allows us to filter the `reldict`\ s
+according to the classes of the subject and object named entities. In
+addition, we can specify that the filler text has to match a given
+regular expression, as illustrated in the next example. Here, we are
+looking for pairs of entities in the IN relation, where IN has
+signature <ORG, LOC>.
+
+    >>> import re
+    >>> IN = re.compile(r'.*\bin\b(?!\b.+ing\b)')
+    >>> for fileid in ieer.fileids():
+    ...     for doc in ieer.parsed_docs(fileid):
+    ...         for rel in relextract.extract_rels('ORG', 'LOC', doc, corpus='ieer', pattern = IN):
+    ...             print(relextract.rtuple(rel))
+    [ORG: 'Christian Democrats'] ', the leading political forces in' [LOC: 'Italy']
+    [ORG: 'AP'] ') _ Lebanese guerrillas attacked Israeli forces in southern' [LOC: 'Lebanon']
+    [ORG: 'Security Council'] 'adopted Resolution 425. Huge yellow banners hung across intersections in' [LOC: 'Beirut']
+    [ORG: 'U.N.'] 'failures in' [LOC: 'Africa']
+    [ORG: 'U.N.'] 'peacekeeping operation in' [LOC: 'Somalia']
+    [ORG: 'U.N.'] 'partners on a more effective role in' [LOC: 'Africa']
+    [ORG: 'AP'] ') _ A bomb exploded in a mosque in central' [LOC: 'San`a']
+    [ORG: 'Krasnoye Sormovo'] 'shipyard in the Soviet city of' [LOC: 'Gorky']
+    [ORG: 'Kelab Golf Darul Ridzuan'] 'in' [LOC: 'Perak']
+    [ORG: 'U.N.'] 'peacekeeping operation in' [LOC: 'Somalia']
+    [ORG: 'WHYY'] 'in' [LOC: 'Philadelphia']
+    [ORG: 'McGlashan &AMP; Sarrail'] 'firm in' [LOC: 'San Mateo']
+    [ORG: 'Freedom Forum'] 'in' [LOC: 'Arlington']
+    [ORG: 'Brookings Institution'] ', the research group in' [LOC: 'Washington']
+    [ORG: 'Idealab'] ', a self-described business incubator based in' [LOC: 'Los Angeles']
+    [ORG: 'Open Text'] ', based in' [LOC: 'Waterloo']
+    ...
+
+The next example illustrates a case where the pattern is a disjunction
+of roles that a PERSON can occupy in an ORGANIZATION.
+
+    >>> roles = r"""
+    ... (.*(
+    ... analyst|
+    ... chair(wo)?man|
+    ... commissioner|
+    ... counsel|
+    ... director|
+    ... economist|
+    ... editor|
+    ... executive|
+    ... foreman|
+    ... governor|
+    ... head|
+    ... lawyer|
+    ... leader|
+    ... librarian).*)|
+    ... manager|
+    ... partner|
+    ... president|
+    ... producer|
+    ... professor|
+    ... researcher|
+    ... spokes(wo)?man|
+    ... writer|
+    ... ,\sof\sthe?\s*  # "X, of (the) Y"
+    ... """
+    >>> ROLES = re.compile(roles, re.VERBOSE)
+    >>> for fileid in ieer.fileids():
+    ...     for doc in ieer.parsed_docs(fileid):
+    ...         for rel in relextract.extract_rels('PER', 'ORG', doc, corpus='ieer', pattern=ROLES):
+    ...             print(relextract.rtuple(rel))
+    [PER: 'Kivutha Kibwana'] ', of the' [ORG: 'National Convention Assembly']
+    [PER: 'Boban Boskovic'] ', chief executive of the' [ORG: 'Plastika']
+    [PER: 'Annan'] ', the first sub-Saharan African to head the' [ORG: 'United Nations']
+    [PER: 'Kiriyenko'] 'became a foreman at the' [ORG: 'Krasnoye Sormovo']
+    [PER: 'Annan'] ', the first sub-Saharan African to head the' [ORG: 'United Nations']
+    [PER: 'Mike Godwin'] ', chief counsel for the' [ORG: 'Electronic Frontier Foundation']
+    ...
+
+In the case of the CoNLL2002 data, we can include POS tags in the
+query pattern. This example also illustrates how the output can be
+presented as something that looks more like a clause in a logical language.
+
+    >>> de = """
+    ... .*
+    ... (
+    ... de/SP|
+    ... del/SP
+    ... )
+    ... """
+    >>> DE = re.compile(de, re.VERBOSE)
+    >>> rels = [rel for doc in conll2002.chunked_sents('esp.train')
+    ...         for rel in relextract.extract_rels('ORG', 'LOC', doc, corpus='conll2002', pattern = DE)]
+    >>> for r in rels[:10]:
+    ...     print(relextract.clause(r, relsym='DE'))
+    DE('tribunal_supremo', 'victoria')
+    DE('museo_de_arte', 'alcorc\xf3n')
+    DE('museo_de_bellas_artes', 'a_coru\xf1a')
+    DE('siria', 'l\xedbano')
+    DE('uni\xf3n_europea', 'pek\xedn')
+    DE('ej\xe9rcito', 'rogberi')
+    DE('juzgado_de_instrucci\xf3n_n\xfamero_1', 'san_sebasti\xe1n')
+    DE('psoe', 'villanueva_de_la_serena')
+    DE('ej\xe9rcito', 'l\xedbano')
+    DE('juzgado_de_lo_penal_n\xfamero_2', 'ceuta')
+    >>> vnv = """
+    ... (
+    ... is/V|
+    ... was/V|
+    ... werd/V|
+    ... wordt/V
+    ... )
+    ... .*
+    ... van/Prep
+    ... """
+    >>> VAN = re.compile(vnv, re.VERBOSE)
+    >>> for doc in conll2002.chunked_sents('ned.train'):
+    ...     for r in relextract.extract_rels('PER', 'ORG', doc, corpus='conll2002', pattern=VAN):
+    ...         print(relextract.clause(r, relsym="VAN"))
+    VAN("cornet_d'elzius", 'buitenlandse_handel')
+    VAN('johan_rottiers', 'kardinaal_van_roey_instituut')
+    VAN('annie_lennox', 'eurythmics')

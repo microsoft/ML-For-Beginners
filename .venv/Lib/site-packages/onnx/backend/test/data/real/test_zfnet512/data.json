@@ -1,0 +1,1 @@
+{"atol": 1e-07, "model_name": "zfnet512", "rtol": 0.001, "url": "onnx/backend/test/data/light/light_zfnet512.onnx"}

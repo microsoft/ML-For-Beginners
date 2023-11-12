@@ -1,0 +1,29 @@
+==========
+BLEU tests
+==========
+
+>>> from nltk.translate import bleu
+
+If the candidate has no alignment to any of the references, the BLEU score is 0.
+
+>>> bleu(
+...     ['The candidate has no alignment to any of the references'.split()],
+...     'John loves Mary'.split(),
+...     (1,),
+... )
+0
+
+This is an implementation of the smoothing techniques
+for segment-level BLEU scores that was presented in
+Boxing Chen and Collin Cherry (2014) A Systematic Comparison of
+Smoothing Techniques for Sentence-Level BLEU. In WMT14.
+http://acl2014.org/acl2014/W14-33/pdf/W14-3346.pdf
+>>> from nltk.translate.bleu_score import sentence_bleu,SmoothingFunction
+
+
+>>> sentence_bleu(
+...     ['It is a place of quiet contemplation .'.split()],
+...     'It is .'.split(),
+...     smoothing_function=SmoothingFunction().method4,
+... )*100
+4.4267...

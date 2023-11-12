@@ -1,0 +1,306 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+===========
+Probability
+===========
+
+    >>> from nltk.test.probability_fixt import setup_module
+    >>> setup_module()
+
+    >>> import nltk
+    >>> from nltk.probability import *
+
+FreqDist
+--------
+
+    >>> text1 = ['no', 'good', 'fish', 'goes', 'anywhere', 'without', 'a', 'porpoise', '!']
+    >>> text2 = ['no', 'good', 'porpoise', 'likes', 'to', 'fish', 'fish', 'anywhere', '.']
+
+    >>> fd1 = nltk.FreqDist(text1)
+    >>> fd1 == nltk.FreqDist(text1)
+    True
+
+Note that items are sorted in order of decreasing frequency; two items of the same frequency appear in indeterminate order.
+
+    >>> import itertools
+    >>> both = nltk.FreqDist(text1 + text2)
+    >>> both_most_common = both.most_common()
+    >>> list(itertools.chain(*(sorted(ys) for k, ys in itertools.groupby(both_most_common, key=lambda t: t[1]))))
+    [('fish', 3), ('anywhere', 2), ('good', 2), ('no', 2), ('porpoise', 2), ('!', 1), ('.', 1), ('a', 1), ('goes', 1), ('likes', 1), ('to', 1), ('without', 1)]
+
+    >>> both == fd1 + nltk.FreqDist(text2)
+    True
+    >>> fd1 == nltk.FreqDist(text1) # But fd1 is unchanged
+    True
+
+    >>> fd2 = nltk.FreqDist(text2)
+    >>> fd1.update(fd2)
+    >>> fd1 == both
+    True
+
+    >>> fd1 = nltk.FreqDist(text1)
+    >>> fd1.update(text2)
+    >>> fd1 == both
+    True
+
+    >>> fd1 = nltk.FreqDist(text1)
+    >>> fd2 = nltk.FreqDist(fd1)
+    >>> fd2 == fd1
+    True
+
+``nltk.FreqDist`` can be pickled:
+
+    >>> import pickle
+    >>> fd1 = nltk.FreqDist(text1)
+    >>> pickled = pickle.dumps(fd1)
+    >>> fd1 == pickle.loads(pickled)
+    True
+
+Mathematical operations:
+
+    >>> FreqDist('abbb') + FreqDist('bcc')
+    FreqDist({'b': 4, 'c': 2, 'a': 1})
+    >>> FreqDist('abbbc') - FreqDist('bccd')
+    FreqDist({'b': 2, 'a': 1})
+    >>> FreqDist('abbb') | FreqDist('bcc')
+    FreqDist({'b': 3, 'c': 2, 'a': 1})
+    >>> FreqDist('abbb') & FreqDist('bcc')
+    FreqDist({'b': 1})
+
+ConditionalFreqDist
+-------------------
+
+    >>> cfd1 = ConditionalFreqDist()
+    >>> cfd1[1] = FreqDist('abbbb')
+    >>> cfd1[2] = FreqDist('xxxxyy')
+    >>> cfd1
+    <ConditionalFreqDist with 2 conditions>
+
+    >>> cfd2 = ConditionalFreqDist()
+    >>> cfd2[1] = FreqDist('bbccc')
+    >>> cfd2[2] = FreqDist('xxxyyyzz')
+    >>> cfd2[3] = FreqDist('m')
+    >>> cfd2
+    <ConditionalFreqDist with 3 conditions>
+
+    >>> r = cfd1 + cfd2
+    >>> [(i,r[i]) for i in r.conditions()]
+    [(1, FreqDist({'b': 6, 'c': 3, 'a': 1})), (2, FreqDist({'x': 7, 'y': 5, 'z': 2})), (3, FreqDist({'m': 1}))]
+
+    >>> r = cfd1 - cfd2
+    >>> [(i,r[i]) for i in r.conditions()]
+    [(1, FreqDist({'b': 2, 'a': 1})), (2, FreqDist({'x': 1}))]
+
+    >>> r = cfd1 | cfd2
+    >>> [(i,r[i]) for i in r.conditions()]
+    [(1, FreqDist({'b': 4, 'c': 3, 'a': 1})), (2, FreqDist({'x': 4, 'y': 3, 'z': 2})), (3, FreqDist({'m': 1}))]
+
+    >>> r = cfd1 & cfd2
+    >>> [(i,r[i]) for i in r.conditions()]
+    [(1, FreqDist({'b': 2})), (2, FreqDist({'x': 3, 'y': 2}))]
+
+Testing some HMM estimators
+---------------------------
+
+We extract a small part (500 sentences) of the Brown corpus
+
+    >>> corpus = nltk.corpus.brown.tagged_sents(categories='adventure')[:500]
+    >>> print(len(corpus))
+    500
+
+We create a HMM trainer - note that we need the tags and symbols
+from the whole corpus, not just the training corpus
+
+    >>> from nltk.util import unique_list
+    >>> tag_set = unique_list(tag for sent in corpus for (word,tag) in sent)
+    >>> print(len(tag_set))
+    92
+    >>> symbols = unique_list(word for sent in corpus for (word,tag) in sent)
+    >>> print(len(symbols))
+    1464
+    >>> trainer = nltk.tag.HiddenMarkovModelTrainer(tag_set, symbols)
+
+We divide the corpus into 90% training and 10% testing
+
+    >>> train_corpus = []
+    >>> test_corpus = []
+    >>> for i in range(len(corpus)):
+    ...     if i % 10:
+    ...         train_corpus += [corpus[i]]
+    ...     else:
+    ...         test_corpus += [corpus[i]]
+    >>> print(len(train_corpus))
+    450
+    >>> print(len(test_corpus))
+    50
+
+And now we can test the estimators
+
+    >>> def train_and_test(est):
+    ...     hmm = trainer.train_supervised(train_corpus, estimator=est)
+    ...     print('%.2f%%' % (100 * hmm.accuracy(test_corpus)))
+
+Maximum Likelihood Estimation
+-----------------------------
+- this resulted in an initialization error before r7209
+
+    >>> mle = lambda fd, bins: MLEProbDist(fd)
+    >>> train_and_test(mle)
+    22.75%
+
+Laplace (= Lidstone with gamma==1)
+
+    >>> train_and_test(LaplaceProbDist)
+    66.04%
+
+Expected Likelihood Estimation (= Lidstone with gamma==0.5)
+
+    >>> train_and_test(ELEProbDist)
+    73.01%
+
+Lidstone Estimation, for gamma==0.1, 0.5 and 1
+(the later two should be exactly equal to MLE and ELE above)
+
+    >>> def lidstone(gamma):
+    ...     return lambda fd, bins: LidstoneProbDist(fd, gamma, bins)
+    >>> train_and_test(lidstone(0.1))
+    82.51%
+    >>> train_and_test(lidstone(0.5))
+    73.01%
+    >>> train_and_test(lidstone(1.0))
+    66.04%
+
+Witten Bell Estimation
+----------------------
+- This resulted in ZeroDivisionError before r7209
+
+    >>> train_and_test(WittenBellProbDist)
+    88.12%
+
+Good Turing Estimation
+
+    >>> gt = lambda fd, bins: SimpleGoodTuringProbDist(fd, bins=1e5)
+    >>> train_and_test(gt)
+    86.93%
+
+Kneser Ney Estimation
+---------------------
+Since the Kneser-Ney distribution is best suited for trigrams, we must adjust
+our testing accordingly.
+
+    >>> corpus = [[((x[0],y[0],z[0]),(x[1],y[1],z[1]))
+    ...     for x, y, z in nltk.trigrams(sent)]
+    ...         for sent in corpus[:100]]
+
+We will then need to redefine the rest of the training/testing variables
+
+    >>> tag_set = unique_list(tag for sent in corpus for (word,tag) in sent)
+    >>> len(tag_set)
+    906
+
+    >>> symbols = unique_list(word for sent in corpus for (word,tag) in sent)
+    >>> len(symbols)
+    1341
+
+    >>> trainer = nltk.tag.HiddenMarkovModelTrainer(tag_set, symbols)
+    >>> train_corpus = []
+    >>> test_corpus = []
+
+    >>> for i in range(len(corpus)):
+    ...    if i % 10:
+    ...        train_corpus += [corpus[i]]
+    ...    else:
+    ...        test_corpus += [corpus[i]]
+
+    >>> len(train_corpus)
+    90
+    >>> len(test_corpus)
+    10
+
+    >>> kn = lambda fd, bins: KneserNeyProbDist(fd)
+    >>> train_and_test(kn)
+    0.86%
+
+Remains to be added:
+- Tests for HeldoutProbDist, CrossValidationProbDist and MutableProbDist
+
+Squashed bugs
+-------------
+
+Issue 511: override pop and popitem to invalidate the cache
+
+    >>> fd = nltk.FreqDist('a')
+    >>> list(fd.keys())
+    ['a']
+    >>> fd.pop('a')
+    1
+    >>> list(fd.keys())
+    []
+
+Issue 533: access cumulative frequencies with no arguments
+
+    >>> fd = nltk.FreqDist('aab')
+    >>> list(fd._cumulative_frequencies(['a']))
+    [2.0]
+    >>> list(fd._cumulative_frequencies(['a', 'b']))
+    [2.0, 3.0]
+
+Issue 579: override clear to reset some variables
+
+    >>> fd = FreqDist('aab')
+    >>> fd.clear()
+    >>> fd.N()
+    0
+
+Issue 351: fix fileids method of CategorizedCorpusReader to inadvertently
+add errant categories
+
+    >>> from nltk.corpus import brown
+    >>> brown.fileids('blah')
+    Traceback (most recent call last):
+      ...
+    ValueError: Category blah not found
+    >>> brown.categories()
+    ['adventure', 'belles_lettres', 'editorial', 'fiction', 'government', 'hobbies', 'humor', 'learned', 'lore', 'mystery', 'news', 'religion', 'reviews', 'romance', 'science_fiction']
+
+Issue 175: add the unseen bin to SimpleGoodTuringProbDist by default
+otherwise any unseen events get a probability of zero, i.e.,
+they don't get smoothed
+
+    >>> from nltk import SimpleGoodTuringProbDist, FreqDist
+    >>> fd = FreqDist({'a':1, 'b':1, 'c': 2, 'd': 3, 'e': 4, 'f': 4, 'g': 4, 'h': 5, 'i': 5, 'j': 6, 'k': 6, 'l': 6, 'm': 7, 'n': 7, 'o': 8, 'p': 9, 'q': 10})
+    >>> p = SimpleGoodTuringProbDist(fd)
+    >>> p.prob('a')
+    0.017649766667026317...
+    >>> p.prob('o')
+    0.08433050215340411...
+    >>> p.prob('z')
+    0.022727272727272728...
+    >>> p.prob('foobar')
+    0.022727272727272728...
+
+``MLEProbDist``, ``ConditionalProbDist'', ``DictionaryConditionalProbDist`` and
+``ConditionalFreqDist`` can be pickled:
+
+    >>> import pickle
+    >>> pd = MLEProbDist(fd)
+    >>> sorted(pd.samples()) == sorted(pickle.loads(pickle.dumps(pd)).samples())
+    True
+    >>> dpd = DictionaryConditionalProbDist({'x': pd})
+    >>> unpickled = pickle.loads(pickle.dumps(dpd))
+    >>> dpd['x'].prob('a')
+    0.011363636...
+    >>> dpd['x'].prob('a') == unpickled['x'].prob('a')
+    True
+    >>> cfd = nltk.probability.ConditionalFreqDist()
+    >>> cfd['foo']['hello'] += 1
+    >>> cfd['foo']['hello'] += 1
+    >>> cfd['bar']['hello'] += 1
+    >>> cfd2 = pickle.loads(pickle.dumps(cfd))
+    >>> cfd2 == cfd
+    True
+    >>> cpd = ConditionalProbDist(cfd, SimpleGoodTuringProbDist)
+    >>> cpd2 = pickle.loads(pickle.dumps(cpd))
+    >>> cpd['foo'].prob('hello') == cpd2['foo'].prob('hello')
+    True

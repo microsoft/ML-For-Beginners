@@ -1,0 +1,307 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==============
+ Collocations
+==============
+
+Overview
+~~~~~~~~
+
+Collocations are expressions of multiple words which commonly co-occur. For
+example, the top ten bigram collocations in Genesis are listed below, as
+measured using Pointwise Mutual Information.
+
+    >>> import nltk
+    >>> from nltk.collocations import *
+    >>> bigram_measures = nltk.collocations.BigramAssocMeasures()
+    >>> trigram_measures = nltk.collocations.TrigramAssocMeasures()
+    >>> fourgram_measures = nltk.collocations.QuadgramAssocMeasures()
+    >>> finder = BigramCollocationFinder.from_words(
+    ...     nltk.corpus.genesis.words('english-web.txt'))
+    >>> finder.nbest(bigram_measures.pmi, 10)
+    [('Allon', 'Bacuth'), ('Ashteroth', 'Karnaim'), ('Ben', 'Ammi'),
+     ('En', 'Mishpat'), ('Jegar', 'Sahadutha'), ('Salt', 'Sea'),
+     ('Whoever', 'sheds'), ('appoint', 'overseers'), ('aromatic', 'resin'),
+     ('cutting', 'instrument')]
+
+While these words are highly collocated, the expressions are also very
+infrequent.  Therefore it is useful to apply filters, such as ignoring all
+bigrams which occur less than three times in the corpus:
+
+    >>> finder.apply_freq_filter(3)
+    >>> finder.nbest(bigram_measures.pmi, 10)
+    [('Beer', 'Lahai'), ('Lahai', 'Roi'), ('gray', 'hairs'),
+     ('ewe', 'lambs'), ('Most', 'High'), ('many', 'colors'),
+     ('burnt', 'offering'), ('Paddan', 'Aram'), ('east', 'wind'),
+     ('living', 'creature')]
+
+We may similarly find collocations among tagged words:
+
+    >>> finder = BigramCollocationFinder.from_words(
+    ...     nltk.corpus.brown.tagged_words('ca01', tagset='universal'))
+    >>> finder.nbest(bigram_measures.pmi, 5)
+    [(('1,119', 'NUM'), ('votes', 'NOUN')),
+     (('1962', 'NUM'), ("governor's", 'NOUN')),
+     (('637', 'NUM'), ('E.', 'NOUN')),
+     (('Alpharetta', 'NOUN'), ('prison', 'NOUN')),
+     (('Bar', 'NOUN'), ('Association', 'NOUN'))]
+
+Or tags alone:
+
+    >>> finder = BigramCollocationFinder.from_words(t for w, t in
+    ...     nltk.corpus.brown.tagged_words('ca01', tagset='universal'))
+    >>> finder.nbest(bigram_measures.pmi, 10)
+    [('PRT', 'VERB'), ('PRON', 'VERB'), ('ADP', 'DET'), ('.', 'PRON'), ('DET', 'ADJ'),
+     ('CONJ', 'PRON'), ('ADP', 'NUM'), ('NUM', '.'), ('ADV', 'ADV'), ('VERB', 'ADV')]
+
+Or spanning intervening words:
+
+    >>> finder = BigramCollocationFinder.from_words(
+    ...     nltk.corpus.genesis.words('english-web.txt'),
+    ...     window_size = 20)
+    >>> finder.apply_freq_filter(2)
+    >>> ignored_words = nltk.corpus.stopwords.words('english')
+    >>> finder.apply_word_filter(lambda w: len(w) < 3 or w.lower() in ignored_words)
+    >>> finder.nbest(bigram_measures.likelihood_ratio, 10)
+    [('chief', 'chief'), ('became', 'father'), ('years', 'became'),
+     ('hundred', 'years'), ('lived', 'became'), ('king', 'king'),
+     ('lived', 'years'), ('became', 'became'), ('chief', 'chiefs'),
+     ('hundred', 'became')]
+
+Finders
+~~~~~~~
+
+The collocations package provides collocation finders which by default
+consider all ngrams in a text as candidate collocations:
+
+    >>> text = "I do not like green eggs and ham, I do not like them Sam I am!"
+    >>> tokens = nltk.wordpunct_tokenize(text)
+    >>> finder = BigramCollocationFinder.from_words(tokens)
+    >>> scored = finder.score_ngrams(bigram_measures.raw_freq)
+    >>> sorted(bigram for bigram, score in scored)
+    [(',', 'I'), ('I', 'am'), ('I', 'do'), ('Sam', 'I'), ('am', '!'),
+     ('and', 'ham'), ('do', 'not'), ('eggs', 'and'), ('green', 'eggs'),
+     ('ham', ','), ('like', 'green'), ('like', 'them'), ('not', 'like'),
+     ('them', 'Sam')]
+
+We could otherwise construct the collocation finder from manually-derived
+FreqDists:
+
+    >>> word_fd = nltk.FreqDist(tokens)
+    >>> bigram_fd = nltk.FreqDist(nltk.bigrams(tokens))
+    >>> finder = BigramCollocationFinder(word_fd, bigram_fd)
+    >>> scored == finder.score_ngrams(bigram_measures.raw_freq)
+    True
+
+A similar interface is provided for trigrams:
+
+    >>> finder = TrigramCollocationFinder.from_words(tokens)
+    >>> scored = finder.score_ngrams(trigram_measures.raw_freq)
+    >>> set(trigram for trigram, score in scored) == set(nltk.trigrams(tokens))
+    True
+
+We may want to select only the top n results:
+
+    >>> sorted(finder.nbest(trigram_measures.raw_freq, 2))
+    [('I', 'do', 'not'), ('do', 'not', 'like')]
+
+Alternatively, we can select those above a minimum score value:
+
+    >>> sorted(finder.above_score(trigram_measures.raw_freq,
+    ...                           1.0 / len(tuple(nltk.trigrams(tokens)))))
+    [('I', 'do', 'not'), ('do', 'not', 'like')]
+
+Now spanning intervening words:
+
+    >>> finder = TrigramCollocationFinder.from_words(tokens)
+    >>> finder = TrigramCollocationFinder.from_words(tokens, window_size=4)
+    >>> sorted(finder.nbest(trigram_measures.raw_freq, 4))
+    [('I', 'do', 'like'), ('I', 'do', 'not'), ('I', 'not', 'like'), ('do', 'not', 'like')]
+
+A closer look at the finder's ngram frequencies:
+
+    >>> sorted(finder.ngram_fd.items(), key=lambda t: (-t[1], t[0]))[:10]
+    [(('I', 'do', 'like'), 2), (('I', 'do', 'not'), 2), (('I', 'not', 'like'), 2),
+     (('do', 'not', 'like'), 2), ((',', 'I', 'do'), 1), ((',', 'I', 'not'), 1),
+     ((',', 'do', 'not'), 1), (('I', 'am', '!'), 1), (('Sam', 'I', '!'), 1),
+     (('Sam', 'I', 'am'), 1)]
+
+A similar interface is provided for fourgrams:
+
+    >>> finder_4grams = QuadgramCollocationFinder.from_words(tokens)
+    >>> scored_4grams = finder_4grams.score_ngrams(fourgram_measures.raw_freq)
+    >>> set(fourgram for fourgram, score in scored_4grams) == set(nltk.ngrams(tokens, n=4))
+    True
+
+Filtering candidates
+~~~~~~~~~~~~~~~~~~~~
+
+All the ngrams in a text are often too many to be useful when finding
+collocations.  It is generally useful to remove some words or punctuation,
+and to require a minimum frequency for candidate collocations.
+
+Given our sample text above, if we remove all trigrams containing personal
+pronouns from candidature, score_ngrams should return 6 less results, and
+'do not like' will be the only candidate which occurs more than once:
+
+    >>> finder = TrigramCollocationFinder.from_words(tokens)
+    >>> len(finder.score_ngrams(trigram_measures.raw_freq))
+    14
+    >>> finder.apply_word_filter(lambda w: w in ('I', 'me'))
+    >>> len(finder.score_ngrams(trigram_measures.raw_freq))
+    8
+    >>> sorted(finder.above_score(trigram_measures.raw_freq,
+    ...                           1.0 / len(tuple(nltk.trigrams(tokens)))))
+    [('do', 'not', 'like')]
+
+Sometimes a filter is a function on the whole ngram, rather than each word,
+such as if we may permit 'and' to appear in the middle of a trigram, but
+not on either edge:
+
+    >>> finder.apply_ngram_filter(lambda w1, w2, w3: 'and' in (w1, w3))
+    >>> len(finder.score_ngrams(trigram_measures.raw_freq))
+    6
+
+Finally, it is often important to remove low frequency candidates, as we
+lack sufficient evidence about their significance as collocations:
+
+    >>> finder.apply_freq_filter(2)
+    >>> len(finder.score_ngrams(trigram_measures.raw_freq))
+    1
+
+Association measures
+~~~~~~~~~~~~~~~~~~~~
+
+A number of measures are available to score collocations or other associations.
+The arguments to measure functions are marginals of a contingency table, in the
+bigram case (n_ii, (n_ix, n_xi), n_xx)::
+
+            w1    ~w1
+         ------ ------
+     w2 | n_ii | n_oi | = n_xi
+         ------ ------
+    ~w2 | n_io | n_oo |
+         ------ ------
+         = n_ix        TOTAL = n_xx
+
+We test their calculation using some known values presented in Manning and
+Schutze's text and other papers.
+
+Student's t: examples from Manning and Schutze 5.3.2
+
+   >>> print('%0.4f' % bigram_measures.student_t(8, (15828, 4675), 14307668))
+   0.9999
+   >>> print('%0.4f' % bigram_measures.student_t(20, (42, 20), 14307668))
+   4.4721
+
+Chi-square: examples from Manning and Schutze 5.3.3
+
+   >>> print('%0.2f' % bigram_measures.chi_sq(8, (15828, 4675), 14307668))
+   1.55
+   >>> print('%0.0f' % bigram_measures.chi_sq(59, (67, 65), 571007))
+   456400
+
+Likelihood ratios: examples from Dunning, CL, 1993
+
+   >>> print('%0.2f' % bigram_measures.likelihood_ratio(110, (2552, 221), 31777))
+   270.72
+   >>> print('%0.2f' % bigram_measures.likelihood_ratio(8, (13, 32), 31777))
+   95.29
+
+Pointwise Mutual Information: examples from Manning and Schutze 5.4
+
+   >>> print('%0.2f' % bigram_measures.pmi(20, (42, 20), 14307668))
+   18.38
+   >>> print('%0.2f' % bigram_measures.pmi(20, (15019, 15629), 14307668))
+   0.29
+
+TODO: Find authoritative results for trigrams.
+
+Using contingency table values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+While frequency counts make marginals readily available for collocation
+finding, it is common to find published contingency table values. The
+collocations package therefore provides a wrapper, ContingencyMeasures, which
+wraps an association measures class, providing association measures which
+take contingency values as arguments, (n_ii, n_io, n_oi, n_oo) in the
+bigram case.
+
+   >>> from nltk.metrics import ContingencyMeasures
+   >>> cont_bigram_measures = ContingencyMeasures(bigram_measures)
+   >>> print('%0.2f' % cont_bigram_measures.likelihood_ratio(8, 5, 24, 31740))
+   95.29
+   >>> print('%0.2f' % cont_bigram_measures.chi_sq(8, 15820, 4667, 14287173))
+   1.55
+
+Ranking and correlation
+~~~~~~~~~~~~~~~~~~~~~~~
+
+It is useful to consider the results of finding collocations as a ranking, and
+the rankings output using different association measures can be compared using
+the Spearman correlation coefficient.
+
+Ranks can be assigned to a sorted list of results trivially by assigning
+strictly increasing ranks to each result:
+
+    >>> from nltk.metrics.spearman import *
+    >>> results_list = ['item1', 'item2', 'item3', 'item4', 'item5']
+    >>> print(list(ranks_from_sequence(results_list)))
+    [('item1', 0), ('item2', 1), ('item3', 2), ('item4', 3), ('item5', 4)]
+
+If scores are available for each result, we may allow sufficiently similar
+results (differing by no more than rank_gap) to be assigned the same rank:
+
+    >>> results_scored = [('item1', 50.0), ('item2', 40.0), ('item3', 38.0),
+    ...                   ('item4', 35.0), ('item5', 14.0)]
+    >>> print(list(ranks_from_scores(results_scored, rank_gap=5)))
+    [('item1', 0), ('item2', 1), ('item3', 1), ('item4', 1), ('item5', 4)]
+
+The Spearman correlation coefficient gives a number from -1.0 to 1.0 comparing
+two rankings.  A coefficient of 1.0 indicates identical rankings; -1.0 indicates
+exact opposite rankings.
+
+    >>> print('%0.1f' % spearman_correlation(
+    ...         ranks_from_sequence(results_list),
+    ...         ranks_from_sequence(results_list)))
+    1.0
+    >>> print('%0.1f' % spearman_correlation(
+    ...         ranks_from_sequence(reversed(results_list)),
+    ...         ranks_from_sequence(results_list)))
+    -1.0
+    >>> results_list2 = ['item2', 'item3', 'item1', 'item5', 'item4']
+    >>> print('%0.1f' % spearman_correlation(
+    ...        ranks_from_sequence(results_list),
+    ...        ranks_from_sequence(results_list2)))
+    0.6
+    >>> print('%0.1f' % spearman_correlation(
+    ...        ranks_from_sequence(reversed(results_list)),
+    ...        ranks_from_sequence(results_list2)))
+    -0.6
+
+Keywords
+~~~~~~~~
+
+Bigram association metrics can also be used to perform keyword analysis. . For example, this finds the keywords
+associated with the "romance" section of the Brown corpus as measured by likelihood ratio:
+
+    >>> romance = nltk.FreqDist(w.lower() for w in nltk.corpus.brown.words(categories='romance') if w.isalpha())
+    >>> freq = nltk.FreqDist(w.lower() for w in nltk.corpus.brown.words() if w.isalpha())
+
+    >>> key = nltk.FreqDist()
+    >>> for w in romance:
+    ...     key[w] = bigram_measures.likelihood_ratio(romance[w], (freq[w], romance.N()), freq.N())
+
+    >>> for k,v in key.most_common(10):
+    ...     print(f'{k:10s} {v:9.3f}')
+    she         1163.325
+    i            995.961
+    her          930.528
+    you          513.149
+    of           501.891
+    is           463.386
+    had          421.615
+    he           411.000
+    the          347.632
+    said         300.811

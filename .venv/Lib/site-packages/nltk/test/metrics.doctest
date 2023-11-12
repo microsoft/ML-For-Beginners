@@ -1,0 +1,321 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=======
+Metrics
+=======
+
+-----
+Setup
+-----
+
+    >>> import pytest
+    >>> _ = pytest.importorskip("numpy")
+
+
+The `nltk.metrics` package provides a variety of *evaluation measures*
+which can be used for a wide variety of NLP tasks.
+
+   >>> from nltk.metrics import *
+
+------------------
+Standard IR Scores
+------------------
+
+We can use standard scores from information retrieval to test the
+performance of taggers, chunkers, etc.
+
+    >>> reference = 'DET NN VB DET JJ NN NN IN DET NN'.split()
+    >>> test    = 'DET VB VB DET NN NN NN IN DET NN'.split()
+    >>> print(accuracy(reference, test))
+    0.8
+
+
+The following measures apply to sets:
+
+    >>> reference_set = set(reference)
+    >>> test_set = set(test)
+    >>> precision(reference_set, test_set)
+    1.0
+    >>> print(recall(reference_set, test_set))
+    0.8
+    >>> print(f_measure(reference_set, test_set))
+    0.88888888888...
+
+Measuring the likelihood of the data, given probability distributions:
+
+    >>> from nltk import FreqDist, MLEProbDist
+    >>> pdist1 = MLEProbDist(FreqDist("aldjfalskfjaldsf"))
+    >>> pdist2 = MLEProbDist(FreqDist("aldjfalssjjlldss"))
+    >>> print(log_likelihood(['a', 'd'], [pdist1, pdist2]))
+    -2.7075187496...
+
+
+----------------
+Distance Metrics
+----------------
+
+String edit distance (Levenshtein):
+
+    >>> edit_distance("rain", "shine")
+    3
+    >>> edit_distance_align("shine", "shine")
+    [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
+    >>> edit_distance_align("rain", "brainy")
+    [(0, 0), (0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (4, 6)]
+    >>> edit_distance_align("", "brainy")
+    [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6)]
+    >>> edit_distance_align("", "")
+    [(0, 0)]
+
+Other distance measures:
+
+    >>> s1 = set([1,2,3,4])
+    >>> s2 = set([3,4,5])
+    >>> binary_distance(s1, s2)
+    1.0
+    >>> print(jaccard_distance(s1, s2))
+    0.6
+    >>> print(masi_distance(s1, s2))
+    0.868
+
+----------------------
+Miscellaneous Measures
+----------------------
+
+Rank Correlation works with two dictionaries mapping keys to ranks.
+The dictionaries should have the same set of keys.
+
+    >>> spearman_correlation({'e':1, 't':2, 'a':3}, {'e':1, 'a':2, 't':3})
+    0.5
+
+Windowdiff uses a sliding window in comparing two segmentations of the same input (e.g. tokenizations, chunkings).
+Segmentations are represented using strings of zeros and ones.
+
+    >>> s1 = "000100000010"
+    >>> s2 = "000010000100"
+    >>> s3 = "100000010000"
+    >>> s4 = "000000000000"
+    >>> s5 = "111111111111"
+    >>> windowdiff(s1, s1, 3)
+    0.0
+    >>> abs(windowdiff(s1, s2, 3) - 0.3)  < 1e-6  # windowdiff(s1, s2, 3) == 0.3
+    True
+    >>> abs(windowdiff(s2, s3, 3) - 0.8)  < 1e-6  # windowdiff(s2, s3, 3) == 0.8
+    True
+    >>> windowdiff(s1, s4, 3)
+    0.5
+    >>> windowdiff(s1, s5, 3)
+    1.0
+
+----------------
+Confusion Matrix
+----------------
+
+    >>> reference = 'This is the reference data.  Testing 123.  aoaeoeoe'
+    >>> test =      'Thos iz_the rifirenci data.  Testeng 123.  aoaeoeoe'
+    >>> print(ConfusionMatrix(reference, test))
+      |   . 1 2 3 T _ a c d e f g h i n o r s t z |
+    --+-------------------------------------------+
+      |<8>. . . . . 1 . . . . . . . . . . . . . . |
+    . | .<2>. . . . . . . . . . . . . . . . . . . |
+    1 | . .<1>. . . . . . . . . . . . . . . . . . |
+    2 | . . .<1>. . . . . . . . . . . . . . . . . |
+    3 | . . . .<1>. . . . . . . . . . . . . . . . |
+    T | . . . . .<2>. . . . . . . . . . . . . . . |
+    _ | . . . . . .<.>. . . . . . . . . . . . . . |
+    a | . . . . . . .<4>. . . . . . . . . . . . . |
+    c | . . . . . . . .<1>. . . . . . . . . . . . |
+    d | . . . . . . . . .<1>. . . . . . . . . . . |
+    e | . . . . . . . . . .<6>. . . 3 . . . . . . |
+    f | . . . . . . . . . . .<1>. . . . . . . . . |
+    g | . . . . . . . . . . . .<1>. . . . . . . . |
+    h | . . . . . . . . . . . . .<2>. . . . . . . |
+    i | . . . . . . . . . . 1 . . .<1>. 1 . . . . |
+    n | . . . . . . . . . . . . . . .<2>. . . . . |
+    o | . . . . . . . . . . . . . . . .<3>. . . . |
+    r | . . . . . . . . . . . . . . . . .<2>. . . |
+    s | . . . . . . . . . . . . . . . . . .<2>. 1 |
+    t | . . . . . . . . . . . . . . . . . . .<3>. |
+    z | . . . . . . . . . . . . . . . . . . . .<.>|
+    --+-------------------------------------------+
+    (row = reference; col = test)
+    <BLANKLINE>
+
+    >>> cm = ConfusionMatrix(reference, test)
+    >>> print(cm.pretty_format(sort_by_count=True))
+      |   e a i o s t . T h n r 1 2 3 c d f g _ z |
+    --+-------------------------------------------+
+      |<8>. . . . . . . . . . . . . . . . . . 1 . |
+    e | .<6>. 3 . . . . . . . . . . . . . . . . . |
+    a | . .<4>. . . . . . . . . . . . . . . . . . |
+    i | . 1 .<1>1 . . . . . . . . . . . . . . . . |
+    o | . . . .<3>. . . . . . . . . . . . . . . . |
+    s | . . . . .<2>. . . . . . . . . . . . . . 1 |
+    t | . . . . . .<3>. . . . . . . . . . . . . . |
+    . | . . . . . . .<2>. . . . . . . . . . . . . |
+    T | . . . . . . . .<2>. . . . . . . . . . . . |
+    h | . . . . . . . . .<2>. . . . . . . . . . . |
+    n | . . . . . . . . . .<2>. . . . . . . . . . |
+    r | . . . . . . . . . . .<2>. . . . . . . . . |
+    1 | . . . . . . . . . . . .<1>. . . . . . . . |
+    2 | . . . . . . . . . . . . .<1>. . . . . . . |
+    3 | . . . . . . . . . . . . . .<1>. . . . . . |
+    c | . . . . . . . . . . . . . . .<1>. . . . . |
+    d | . . . . . . . . . . . . . . . .<1>. . . . |
+    f | . . . . . . . . . . . . . . . . .<1>. . . |
+    g | . . . . . . . . . . . . . . . . . .<1>. . |
+    _ | . . . . . . . . . . . . . . . . . . .<.>. |
+    z | . . . . . . . . . . . . . . . . . . . .<.>|
+    --+-------------------------------------------+
+    (row = reference; col = test)
+    <BLANKLINE>
+
+    >>> print(cm.pretty_format(sort_by_count=True, truncate=10))
+      |   e a i o s t . T h |
+    --+---------------------+
+      |<8>. . . . . . . . . |
+    e | .<6>. 3 . . . . . . |
+    a | . .<4>. . . . . . . |
+    i | . 1 .<1>1 . . . . . |
+    o | . . . .<3>. . . . . |
+    s | . . . . .<2>. . . . |
+    t | . . . . . .<3>. . . |
+    . | . . . . . . .<2>. . |
+    T | . . . . . . . .<2>. |
+    h | . . . . . . . . .<2>|
+    --+---------------------+
+    (row = reference; col = test)
+    <BLANKLINE>
+
+    >>> print(cm.pretty_format(sort_by_count=True, truncate=10, values_in_chart=False))
+       |                   1 |
+       | 1 2 3 4 5 6 7 8 9 0 |
+    ---+---------------------+
+     1 |<8>. . . . . . . . . |
+     2 | .<6>. 3 . . . . . . |
+     3 | . .<4>. . . . . . . |
+     4 | . 1 .<1>1 . . . . . |
+     5 | . . . .<3>. . . . . |
+     6 | . . . . .<2>. . . . |
+     7 | . . . . . .<3>. . . |
+     8 | . . . . . . .<2>. . |
+     9 | . . . . . . . .<2>. |
+    10 | . . . . . . . . .<2>|
+    ---+---------------------+
+    (row = reference; col = test)
+    Value key:
+         1:
+         2: e
+         3: a
+         4: i
+         5: o
+         6: s
+         7: t
+         8: .
+         9: T
+        10: h
+    <BLANKLINE>
+
+For "e", the number of true positives should be 6, while the number of false negatives is 3.
+So, the recall ought to be 6 / (6 + 3):
+
+    >>> cm.recall("e") # doctest: +ELLIPSIS
+    0.666666...
+
+For "e", the false positive is just 1, so the precision should be 6 / (6 + 1):
+
+    >>> cm.precision("e") # doctest: +ELLIPSIS
+    0.857142...
+
+The f-measure with default value of ``alpha = 0.5`` should then be:
+
+* *1/(alpha/p + (1-alpha)/r) =*
+* *1/(0.5/p + 0.5/r) =*
+* *2pr / (p + r) =*
+* *2 * 0.857142... * 0.666666... / (0.857142... + 0.666666...) =*
+* *0.749999...*
+
+    >>> cm.f_measure("e") # doctest: +ELLIPSIS
+    0.749999...
+
+--------------------
+Association measures
+--------------------
+
+These measures are useful to determine whether the coocurrence of two random
+events is meaningful. They are used, for instance, to distinguish collocations
+from other pairs of adjacent words.
+
+We bring some examples of bigram association calculations from Manning and
+Schutze's SNLP, 2nd Ed. chapter 5.
+
+    >>> n_new_companies, n_new, n_companies, N = 8, 15828, 4675, 14307668
+    >>> bam = BigramAssocMeasures
+    >>> bam.raw_freq(20, (42, 20), N) == 20. / N
+    True
+    >>> bam.student_t(n_new_companies, (n_new, n_companies), N)
+    0.999...
+    >>> bam.chi_sq(n_new_companies, (n_new, n_companies), N)
+    1.54...
+    >>> bam.likelihood_ratio(150, (12593, 932), N)
+    1291...
+
+For other associations, we ensure the ordering of the measures:
+
+    >>> bam.mi_like(20, (42, 20), N) > bam.mi_like(20, (41, 27), N)
+    True
+    >>> bam.pmi(20, (42, 20), N) > bam.pmi(20, (41, 27), N)
+    True
+    >>> bam.phi_sq(20, (42, 20), N) > bam.phi_sq(20, (41, 27), N)
+    True
+    >>> bam.poisson_stirling(20, (42, 20), N) > bam.poisson_stirling(20, (41, 27), N)
+    True
+    >>> bam.jaccard(20, (42, 20), N) > bam.jaccard(20, (41, 27), N)
+    True
+    >>> bam.dice(20, (42, 20), N) > bam.dice(20, (41, 27), N)
+    True
+    >>> bam.fisher(20, (42, 20), N) > bam.fisher(20, (41, 27), N) # doctest: +SKIP
+    False
+
+For trigrams, we have to provide more count information:
+
+    >>> n_w1_w2_w3 = 20
+    >>> n_w1_w2, n_w1_w3, n_w2_w3 = 35, 60, 40
+    >>> pair_counts = (n_w1_w2, n_w1_w3, n_w2_w3)
+    >>> n_w1, n_w2, n_w3 = 100, 200, 300
+    >>> uni_counts = (n_w1, n_w2, n_w3)
+    >>> N = 14307668
+    >>> tam = TrigramAssocMeasures
+    >>> tam.raw_freq(n_w1_w2_w3, pair_counts, uni_counts, N) == 1. * n_w1_w2_w3 / N
+    True
+    >>> uni_counts2 = (n_w1, n_w2, 100)
+    >>> tam.student_t(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.student_t(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+    >>> tam.chi_sq(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.chi_sq(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+    >>> tam.mi_like(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.mi_like(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+    >>> tam.pmi(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.pmi(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+    >>> tam.likelihood_ratio(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.likelihood_ratio(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+    >>> tam.poisson_stirling(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.poisson_stirling(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+    >>> tam.jaccard(n_w1_w2_w3, pair_counts, uni_counts2, N) > tam.jaccard(n_w1_w2_w3, pair_counts, uni_counts, N)
+    True
+
+
+For fourgrams, we have to provide more count information:
+
+    >>> n_w1_w2_w3_w4 = 5
+    >>> n_w1_w2, n_w1_w3, n_w2_w3 = 35, 60, 40
+    >>> n_w1_w2_w3, n_w2_w3_w4 = 20, 10
+    >>> pair_counts = (n_w1_w2, n_w1_w3, n_w2_w3)
+    >>> triplet_counts = (n_w1_w2_w3, n_w2_w3_w4)
+    >>> n_w1, n_w2, n_w3, n_w4 = 100, 200, 300, 400
+    >>> uni_counts = (n_w1, n_w2, n_w3, n_w4)
+    >>> N = 14307668
+    >>> qam = QuadgramAssocMeasures
+    >>> qam.raw_freq(n_w1_w2_w3_w4, pair_counts, triplet_counts, uni_counts, N) == 1. * n_w1_w2_w3_w4 / N
+    True

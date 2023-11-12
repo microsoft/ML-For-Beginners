@@ -1,0 +1,266 @@
+"","cond","anx","age","educ","gender","income","emo","p_harm","tone","eth","treat","english","immigr","anti_info","cong_mesg"
+"1","3","a little anxious",45,"high school","male",13,7,6,0,1,0,"Oppose",4,0,1
+"2","4","somewhat anxious",73,"bachelor's degree or higher","male",16,6,3,0,0,0,"Favor",3,0,0
+"3","2","a little anxious",53,"some college","female",3,8,7,1,0,0,"Strongly Oppose",3,0,0
+"4","1","not anxious at all",45,"high school","male",14,9,8,1,1,1,"Strongly Oppose",4,0,1
+"5","3","somewhat anxious",55,"some college","female",12,5,5,0,1,0,"Strongly Oppose",2,0,0
+"6","1","a little anxious",85,"high school","female",3,5,6,1,1,1,"Strongly Oppose",4,0,0
+"7","1","a little anxious",58,"high school","female",10,10,8,1,1,1,"Oppose",4,0,0
+"8","2","a little anxious",53,"some college","male",9,8,7,1,0,0,"Favor",4,1,1
+"9","1","a little anxious",52,"some college","female",14,8,5,1,1,1,"Strongly Oppose",3,0,0
+"10","4","very anxious",42,"some college","male",15,3,2,0,0,0,"Oppose",2,0,0
+"11","4","a little anxious",38,"bachelor's degree or higher","female",9,11,8,0,0,0,"Strongly Oppose",4,1,1
+"12","4","very anxious",38,"high school","male",6,9,8,0,0,0,"Strongly Oppose",4,1,1
+"13","4","a little anxious",26,"bachelor's degree or higher","female",10,8,6,0,0,0,"Oppose",3,0,1
+"14","1","not anxious at all",52,"some college","male",11,10,8,1,1,1,"Strongly Oppose",4,0,1
+"15","1","very anxious",48,"some college","male",19,3,3,1,1,1,"Oppose",2,0,0
+"16","2","not anxious at all",62,"high school","female",10,12,8,1,0,0,"Strongly Oppose",4,1,1
+"17","1","not anxious at all",41,"less than high school","female",7,9,8,1,1,1,"Oppose",4,0,0
+"18","3","somewhat anxious",54,"high school","male",11,6,6,0,1,0,"Strongly Oppose",4,0,0
+"19","1","a little anxious",69,"high school","female",9,8,7,1,1,1,"Strongly Oppose",4,0,0
+"20","1","somewhat anxious",71,"less than high school","male",6,6,6,1,1,1,"Strongly Oppose",1,0,0
+"21","3","somewhat anxious",62,"some college","male",14,4,5,0,1,0,"Oppose",2,0,0
+"22","2","very anxious",41,"some college","male",13,3,6,1,0,0,"Strongly Oppose",3,0,0
+"23","3","a little anxious",60,"high school","female",11,7,7,0,1,0,"Strongly Oppose",4,0,1
+"24","4","somewhat anxious",62,"some college","male",17,6,8,0,0,0,"Oppose",4,0,1
+"25","4","somewhat anxious",31,"bachelor's degree or higher","male",13,7,5,0,0,0,"Strongly Oppose",4,0,0
+"26","3","somewhat anxious",50,"some college","female",13,4,2,0,1,0,"Strongly Oppose",2,0,0
+"27","3","a little anxious",48,"high school","male",7,9,5,0,1,0,"Strongly Oppose",4,0,1
+"28","2","somewhat anxious",29,"some college","male",10,6,4,1,0,0,"Strongly Favor",2,0,0
+"29","3","a little anxious",64,"high school","female",5,9,5,0,1,0,"Oppose",4,0,0
+"30","3","very anxious",65,"high school","female",12,4,6,0,1,0,"Strongly Oppose",4,0,1
+"31","4","not anxious at all",66,"less than high school","female",4,12,8,0,0,0,"Oppose",4,0,0
+"32","1","not anxious at all",68,"high school","female",9,11,8,1,1,1,"Strongly Oppose",4,0,1
+"33","4","somewhat anxious",43,"high school","female",15,6,6,0,0,0,"Favor",3,0,0
+"34","3","a little anxious",57,"bachelor's degree or higher","female",12,7,5,0,1,0,"Oppose",3,0,0
+"35","3","somewhat anxious",41,"high school","male",11,9,4,0,1,0,"Strongly Oppose",4,0,0
+"36","2","somewhat anxious",85,"bachelor's degree or higher","male",13,7,7,1,0,0,"Strongly Oppose",3,0,1
+"37","4","a little anxious",70,"bachelor's degree or higher","male",15,8,8,0,0,0,"Strongly Oppose",4,0,1
+"38","3","a little anxious",65,"bachelor's degree or higher","male",14,8,6,0,1,0,"Strongly Oppose",4,0,0
+"39","2","a little anxious",67,"less than high school","female",11,11,8,1,0,0,"Strongly Oppose",4,1,1
+"40","1","a little anxious",68,"some college","female",9,6,5,1,1,1,"Favor",2,0,0
+"41","2","somewhat anxious",64,"some college","male",13,5,5,1,0,0,"Strongly Oppose",2,0,0
+"42","1","a little anxious",37,"some college","male",13,10,8,1,1,1,"Strongly Oppose",4,0,1
+"43","3","not anxious at all",45,"high school","female",7,10,7,0,1,0,"Strongly Oppose",4,0,0
+"44","3","a little anxious",81,"less than high school","female",14,9,7,0,1,0,"Oppose",4,0,1
+"45","2","somewhat anxious",51,"high school","female",10,6,6,1,0,0,"Strongly Oppose",3,0,0
+"46","1","a little anxious",53,"some college","male",12,10,8,1,1,1,"Strongly Oppose",4,0,1
+"47","4","somewhat anxious",62,"high school","female",9,6,5,0,0,0,"Strongly Oppose",4,0,0
+"48","2","a little anxious",42,"less than high school","male",8,9,8,1,0,0,"Oppose",4,0,1
+"49","1","a little anxious",71,"some college","female",12,8,8,1,1,1,"Strongly Oppose",4,0,0
+"50","1","a little anxious",56,"high school","male",11,11,8,1,1,1,"Strongly Oppose",4,0,1
+"51","1","a little anxious",67,"less than high school","female",8,10,5,1,1,1,"Oppose",4,0,1
+"52","4","a little anxious",77,"some college","female",6,7,6,0,0,0,"Strongly Oppose",2,1,0
+"53","1","not anxious at all",24,"some college","female",15,11,7,1,1,1,"Strongly Oppose",4,1,1
+"54","4","a little anxious",42,"high school","male",3,7,5,0,0,0,"Oppose",2,0,0
+"55","3","very anxious",25,"bachelor's degree or higher","female",11,3,4,0,1,0,"Oppose",2,0,0
+"56","1","a little anxious",60,"high school","female",12,8,6,1,1,1,"Oppose",4,0,0
+"57","1","somewhat anxious",43,"some college","male",14,10,8,1,1,1,"Strongly Oppose",1,0,1
+"58","1","a little anxious",60,"some college","male",6,9,6,1,1,1,"Strongly Oppose",3,0,0
+"59","4","not anxious at all",31,"high school","male",11,11,7,0,0,0,"Strongly Oppose",4,1,0
+"60","2","somewhat anxious",47,"some college","female",13,7,6,1,0,0,"Favor",3,0,0
+"61","1","very anxious",32,"bachelor's degree or higher","female",10,3,2,1,1,1,"Favor",2,0,0
+"62","2","somewhat anxious",66,"some college","male",8,8,7,1,0,0,"Strongly Oppose",3,0,0
+"63","2","very anxious",44,"high school","female",15,6,8,1,0,0,"Strongly Oppose",4,0,0
+"64","2","somewhat anxious",46,"high school","male",17,6,4,1,0,0,"Strongly Oppose",3,0,0
+"65","4","very anxious",41,"high school","female",10,3,3,0,0,0,"Strongly Oppose",2,0,0
+"66","2","a little anxious",75,"high school","female",9,7,4,1,0,0,"Strongly Oppose",3,0,0
+"67","1","not anxious at all",53,"bachelor's degree or higher","male",10,12,8,1,1,1,"Strongly Oppose",4,0,1
+"68","3","very anxious",60,"bachelor's degree or higher","male",12,3,4,0,1,0,"Favor",2,0,0
+"69","3","very anxious",75,"high school","female",2,4,6,0,1,0,"Favor",2,0,0
+"70","2","not anxious at all",45,"high school","male",9,12,8,1,0,0,"Strongly Oppose",4,0,0
+"71","2","not anxious at all",69,"less than high school","female",5,12,8,1,0,0,"Strongly Oppose",4,0,1
+"72","4","somewhat anxious",67,"high school","female",15,6,4,0,0,0,"Strongly Oppose",3,0,0
+"73","4","somewhat anxious",20,"high school","male",9,5,5,0,0,0,"Oppose",2,0,0
+"74","1","somewhat anxious",43,"bachelor's degree or higher","male",16,6,4,1,1,1,"Strongly Oppose",2,0,0
+"75","4","a little anxious",32,"some college","male",10,9,8,0,0,0,"Strongly Oppose",4,0,0
+"76","3","somewhat anxious",39,"high school","male",12,5,4,0,1,0,"Favor",3,0,0
+"77","3","very anxious",53,"bachelor's degree or higher","female",13,4,3,0,1,0,"Favor",2,0,0
+"78","2","not anxious at all",57,"some college","female",2,12,8,1,0,0,"Strongly Oppose",4,1,0
+"79","4","a little anxious",62,"high school","female",7,8,7,0,0,0,"Strongly Oppose",3,1,1
+"80","2","a little anxious",69,"high school","female",7,9,8,1,0,0,"Strongly Oppose",4,0,0
+"81","2","somewhat anxious",44,"high school","female",13,7,6,1,0,0,"Oppose",4,0,0
+"82","1","not anxious at all",57,"high school","male",11,12,8,1,1,1,"Strongly Oppose",4,0,0
+"83","4","a little anxious",27,"some college","female",15,7,4,0,0,0,"Strongly Oppose",2,0,0
+"84","3","somewhat anxious",82,"bachelor's degree or higher","female",17,7,5,0,1,0,"Oppose",2,0,0
+"85","4","somewhat anxious",84,"high school","male",12,6,6,0,0,0,"Strongly Oppose",3,1,1
+"86","3","somewhat anxious",54,"some college","female",13,5,6,0,1,0,"Oppose",2,0,0
+"87","2","very anxious",36,"less than high school","male",11,4,6,1,0,0,"Oppose",4,0,0
+"88","1","not anxious at all",47,"some college","male",13,12,8,1,1,1,"Strongly Oppose",4,1,1
+"89","1","very anxious",28,"bachelor's degree or higher","female",12,3,6,1,1,1,"Strongly Oppose",4,0,0
+"90","2","very anxious",42,"high school","female",14,4,8,1,0,0,"Strongly Oppose",4,0,1
+"91","3","very anxious",60,"high school","male",6,7,8,0,1,0,"Strongly Oppose",4,0,0
+"92","1","very anxious",55,"bachelor's degree or higher","male",15,3,4,1,1,1,"Strongly Oppose",3,0,0
+"93","2","a little anxious",55,"high school","female",6,9,7,1,0,0,"Strongly Oppose",4,0,0
+"94","4","not anxious at all",61,"some college","male",12,12,8,0,0,0,"Strongly Oppose",4,1,1
+"95","3","somewhat anxious",84,"high school","female",11,5,2,0,1,0,"Favor",2,0,0
+"96","4","not anxious at all",45,"high school","female",3,10,8,0,0,0,"Oppose",1,0,1
+"97","1","a little anxious",67,"some college","male",7,8,8,1,1,1,"Oppose",3,0,0
+"98","2","not anxious at all",24,"some college","male",12,11,8,1,0,0,"Strongly Oppose",4,0,0
+"99","2","not anxious at all",64,"less than high school","male",11,10,7,1,0,0,"Strongly Oppose",4,1,1
+"100","1","a little anxious",72,"high school","female",7,10,3,1,1,1,"Strongly Oppose",4,0,0
+"101","2","not anxious at all",40,"high school","female",4,12,8,1,0,0,"Strongly Favor",1,0,1
+"102","4","not anxious at all",35,"bachelor's degree or higher","female",11,9,8,0,0,0,"Strongly Oppose",4,1,1
+"103","1","not anxious at all",69,"high school","female",8,12,8,1,1,1,"Oppose",4,0,1
+"104","1","a little anxious",30,"less than high school","female",6,11,7,1,1,1,"Oppose",4,0,0
+"105","2","a little anxious",45,"high school","female",7,8,8,1,0,0,"Strongly Oppose",3,0,0
+"106","4","very anxious",35,"some college","male",9,3,4,0,0,0,"Oppose",2,0,0
+"107","4","not anxious at all",47,"high school","male",11,10,8,0,0,0,"Oppose",3,1,1
+"108","4","a little anxious",53,"some college","male",11,5,4,0,0,0,"Strongly Oppose",2,0,0
+"109","3","a little anxious",75,"high school","male",4,9,6,0,1,0,"Oppose",2,0,0
+"110","1","somewhat anxious",70,"high school","female",13,8,6,1,1,1,"Favor",3,0,0
+"111","1","somewhat anxious",56,"high school","female",8,7,8,1,1,1,"Strongly Oppose",4,0,1
+"112","3","a little anxious",70,"less than high school","female",7,8,8,0,1,0,"Strongly Oppose",3,0,0
+"113","4","somewhat anxious",35,"bachelor's degree or higher","male",11,4,3,0,0,0,"Strongly Oppose",2,0,0
+"114","1","not anxious at all",54,"bachelor's degree or higher","female",11,12,6,1,1,1,"Strongly Oppose",4,0,0
+"115","2","somewhat anxious",76,"bachelor's degree or higher","male",12,5,6,1,0,0,"Strongly Oppose",2,0,0
+"116","1","a little anxious",65,"high school","female",13,9,6,1,1,1,"Strongly Oppose",4,1,1
+"117","2","somewhat anxious",22,"high school","male",12,5,4,1,0,0,"Oppose",2,0,0
+"118","3","somewhat anxious",28,"high school","male",13,8,8,0,1,0,"Strongly Oppose",4,0,1
+"119","4","very anxious",26,"bachelor's degree or higher","male",11,3,5,0,0,0,"Favor",3,0,0
+"120","1","somewhat anxious",67,"high school","male",13,5,6,1,1,1,"Strongly Oppose",4,0,0
+"121","4","very anxious",58,"high school","male",13,5,4,0,0,0,"Strongly Oppose",3,0,1
+"122","3","somewhat anxious",34,"some college","female",16,6,3,0,1,0,"Strongly Oppose",3,0,0
+"123","2","very anxious",29,"bachelor's degree or higher","female",1,5,6,1,0,0,"Oppose",2,0,0
+"124","3","a little anxious",61,"less than high school","male",13,10,6,0,1,0,"Oppose",4,0,1
+"125","4","not anxious at all",58,"some college","female",6,11,8,0,0,0,"Strongly Oppose",4,0,0
+"126","1","very anxious",46,"some college","female",10,5,4,1,1,1,"Oppose",2,0,0
+"127","3","not anxious at all",73,"less than high school","female",6,8,6,0,1,0,"Strongly Oppose",4,0,1
+"128","4","very anxious",23,"bachelor's degree or higher","male",1,3,3,0,0,0,"Strongly Oppose",1,0,0
+"129","3","very anxious",19,"high school","male",15,4,6,0,1,0,"Strongly Oppose",3,0,0
+"130","2","somewhat anxious",35,"some college","male",8,4,4,1,0,0,"Strongly Oppose",2,0,0
+"131","2","very anxious",29,"bachelor's degree or higher","male",19,4,5,1,0,0,"Strongly Oppose",3,0,0
+"132","2","very anxious",53,"bachelor's degree or higher","male",8,3,3,1,0,0,"Strongly Oppose",3,0,0
+"133","3","a little anxious",72,"bachelor's degree or higher","male",12,7,6,0,1,0,"Oppose",3,0,1
+"134","3","somewhat anxious",36,"bachelor's degree or higher","male",14,5,4,0,1,0,"Favor",1,0,0
+"135","1","not anxious at all",26,"less than high school","male",5,11,8,1,1,1,"Strongly Oppose",3,0,0
+"136","2","a little anxious",46,"bachelor's degree or higher","female",13,7,8,1,0,0,"Strongly Oppose",4,0,1
+"137","3","a little anxious",31,"high school","male",6,9,8,0,1,0,"Strongly Oppose",4,0,0
+"138","2","a little anxious",70,"high school","female",1,8,7,1,0,0,"Strongly Oppose",4,0,0
+"139","4","a little anxious",65,"bachelor's degree or higher","male",13,7,6,0,0,0,"Strongly Oppose",3,0,1
+"140","4","very anxious",69,"less than high school","female",1,4,4,0,0,0,"Oppose",2,0,0
+"141","4","very anxious",72,"bachelor's degree or higher","male",11,4,4,0,0,0,"Oppose",2,0,0
+"142","1","not anxious at all",71,"less than high school","female",13,12,8,1,1,1,"Strongly Oppose",4,1,1
+"143","2","very anxious",62,"some college","male",12,4,6,1,0,0,"Oppose",3,0,0
+"144","3","a little anxious",37,"bachelor's degree or higher","male",13,7,5,0,1,0,"Oppose",3,0,0
+"145","2","very anxious",36,"high school","female",5,3,6,1,0,0,"Oppose",3,0,0
+"146","4","somewhat anxious",47,"some college","female",9,4,4,0,0,0,"Favor",3,0,0
+"147","3","somewhat anxious",47,"bachelor's degree or higher","male",16,5,4,0,1,0,"Oppose",3,0,0
+"148","1","very anxious",28,"bachelor's degree or higher","male",4,3,3,1,1,1,"Oppose",3,0,0
+"149","2","somewhat anxious",34,"bachelor's degree or higher","female",11,5,6,1,0,0,"Oppose",2,0,0
+"150","2","very anxious",69,"bachelor's degree or higher","male",10,3,4,1,0,0,"Favor",2,0,0
+"151","3","a little anxious",47,"high school","male",12,10,8,0,1,0,"Oppose",3,0,1
+"152","1","not anxious at all",73,"high school","male",11,11,8,1,1,1,"Strongly Oppose",4,0,1
+"153","3","very anxious",63,"high school","female",10,3,3,0,1,0,"Strongly Oppose",2,0,0
+"154","2","somewhat anxious",33,"less than high school","male",1,7,4,1,0,0,"Strongly Oppose",2,0,0
+"155","1","somewhat anxious",42,"high school","female",6,7,4,1,1,1,"Oppose",2,0,0
+"156","3","somewhat anxious",43,"high school","female",7,5,6,0,1,0,"Strongly Oppose",4,1,1
+"157","4","very anxious",50,"bachelor's degree or higher","female",16,3,4,0,0,0,"Oppose",2,0,0
+"158","2","somewhat anxious",56,"bachelor's degree or higher","male",10,6,7,1,0,0,"Strongly Oppose",3,0,1
+"159","3","somewhat anxious",28,"some college","female",11,6,6,0,1,0,"Strongly Oppose",2,0,0
+"160","1","somewhat anxious",44,"some college","female",13,8,8,1,1,1,"Oppose",4,0,0
+"161","3","somewhat anxious",38,"bachelor's degree or higher","female",9,5,6,0,1,0,"Oppose",1,0,0
+"162","1","not anxious at all",34,"bachelor's degree or higher","female",14,11,7,1,1,1,"Strongly Oppose",2,0,0
+"163","2","very anxious",56,"some college","male",16,3,3,1,0,0,"Strongly Oppose",2,0,0
+"164","3","somewhat anxious",47,"bachelor's degree or higher","male",11,4,6,0,1,0,"Oppose",2,0,0
+"165","4","somewhat anxious",42,"bachelor's degree or higher","male",7,7,6,0,0,0,"Strongly Oppose",4,0,1
+"166","3","somewhat anxious",53,"some college","female",16,4,5,0,1,0,"Strongly Oppose",2,0,0
+"167","3","very anxious",38,"bachelor's degree or higher","female",11,4,4,0,1,0,"Strongly Favor",1,0,0
+"168","2","somewhat anxious",50,"bachelor's degree or higher","female",11,6,4,1,0,0,"Favor",3,0,0
+"169","3","a little anxious",21,"high school","male",15,8,7,0,1,0,"Strongly Oppose",3,0,1
+"170","4","somewhat anxious",25,"some college","male",18,5,6,0,0,0,"Strongly Oppose",3,0,0
+"171","3","very anxious",58,"high school","female",16,5,8,0,1,0,"Oppose",4,0,1
+"172","4","somewhat anxious",39,"some college","male",10,5,7,0,0,0,"Strongly Oppose",3,1,0
+"173","4","not anxious at all",26,"some college","female",7,12,8,0,0,0,"Strongly Oppose",4,0,0
+"174","4","somewhat anxious",61,"some college","female",8,8,6,0,0,0,"Strongly Oppose",4,0,1
+"175","1","somewhat anxious",29,"some college","female",11,5,4,1,1,1,"Oppose",1,0,0
+"176","3","not anxious at all",39,"some college","female",12,12,7,0,1,0,"Strongly Oppose",4,0,1
+"177","2","somewhat anxious",40,"bachelor's degree or higher","male",11,7,6,1,0,0,"Strongly Oppose",4,0,1
+"178","1","somewhat anxious",30,"bachelor's degree or higher","female",11,4,4,1,1,1,"Strongly Favor",2,0,0
+"179","2","very anxious",64,"bachelor's degree or higher","female",10,3,5,1,0,0,"Oppose",1,0,0
+"180","2","a little anxious",50,"less than high school","male",5,10,7,1,0,0,"Strongly Oppose",3,0,1
+"181","2","somewhat anxious",33,"bachelor's degree or higher","female",12,9,8,1,0,0,"Strongly Oppose",4,0,0
+"182","3","somewhat anxious",35,"high school","male",9,6,6,0,1,0,"Oppose",4,0,1
+"183","1","somewhat anxious",26,"bachelor's degree or higher","female",16,6,5,1,1,1,"Oppose",3,0,0
+"184","1","not anxious at all",44,"some college","male",16,10,8,1,1,1,"Strongly Oppose",4,0,0
+"185","1","somewhat anxious",44,"some college","male",13,6,6,1,1,1,"Oppose",4,0,1
+"186","1","not anxious at all",25,"some college","male",11,12,8,1,1,1,"Strongly Oppose",4,1,1
+"187","3","very anxious",44,"bachelor's degree or higher","male",17,3,4,0,1,0,"Oppose",1,0,0
+"188","2","a little anxious",51,"bachelor's degree or higher","female",17,9,8,1,0,0,"Strongly Oppose",4,1,1
+"189","2","very anxious",62,"bachelor's degree or higher","female",14,5,6,1,0,0,"Strongly Oppose",3,0,0
+"190","4","very anxious",55,"bachelor's degree or higher","female",18,3,8,0,0,0,"Strongly Oppose",4,0,1
+"191","3","somewhat anxious",43,"bachelor's degree or higher","male",13,5,6,0,1,0,"Strongly Oppose",3,0,1
+"192","4","very anxious",53,"bachelor's degree or higher","male",12,3,3,0,0,0,"Strongly Oppose",3,1,1
+"193","3","a little anxious",49,"some college","female",10,6,4,0,1,0,"Oppose",3,0,1
+"194","3","somewhat anxious",34,"some college","male",11,5,4,0,1,0,"Favor",2,0,0
+"195","4","not anxious at all",36,"high school","male",11,9,7,0,0,0,"Strongly Oppose",4,0,0
+"196","2","very anxious",31,"bachelor's degree or higher","male",11,3,3,1,0,0,"Strongly Oppose",3,0,1
+"197","4","somewhat anxious",57,"bachelor's degree or higher","female",15,5,5,0,0,0,"Strongly Oppose",2,0,0
+"198","2","somewhat anxious",18,"less than high school","female",16,6,6,1,0,0,"Oppose",1,0,0
+"199","3","somewhat anxious",37,"bachelor's degree or higher","female",12,5,6,0,1,0,"Strongly Oppose",3,0,0
+"200","3","very anxious",63,"bachelor's degree or higher","male",16,3,4,0,1,0,"Strongly Oppose",1,0,0
+"201","2","a little anxious",48,"bachelor's degree or higher","female",16,8,8,1,0,0,"Oppose",3,0,0
+"202","4","not anxious at all",32,"high school","male",13,12,8,0,0,0,"Strongly Oppose",4,0,1
+"203","2","a little anxious",28,"some college","female",9,7,5,1,0,0,"Oppose",2,0,0
+"204","4","somewhat anxious",45,"high school","female",13,6,5,0,0,0,"Favor",3,0,0
+"205","1","a little anxious",59,"some college","male",13,7,8,1,1,1,"Oppose",4,1,1
+"206","4","not anxious at all",82,"high school","female",10,11,8,0,0,0,"Strongly Oppose",3,1,0
+"207","2","very anxious",62,"bachelor's degree or higher","female",2,4,4,1,0,0,"Favor",2,0,0
+"208","1","very anxious",35,"bachelor's degree or higher","female",19,4,5,1,1,1,"Oppose",3,0,0
+"209","4","very anxious",47,"some college","female",15,4,5,0,0,0,"Oppose",1,0,1
+"210","3","not anxious at all",65,"some college","male",15,11,8,0,1,0,"Strongly Oppose",2,0,0
+"211","1","a little anxious",62,"high school","male",13,8,8,1,1,1,"Strongly Oppose",4,0,0
+"212","4","a little anxious",59,"bachelor's degree or higher","female",18,7,7,0,0,0,"Strongly Oppose",4,0,1
+"213","4","somewhat anxious",51,"bachelor's degree or higher","female",9,6,6,0,0,0,"Oppose",2,0,0
+"214","1","somewhat anxious",33,"high school","female",12,8,6,1,1,1,"Strongly Oppose",4,0,0
+"215","1","a little anxious",27,"some college","female",8,9,6,1,1,1,"Oppose",3,0,0
+"216","2","somewhat anxious",54,"bachelor's degree or higher","female",10,5,3,1,0,0,"Strongly Oppose",2,1,0
+"217","3","very anxious",58,"bachelor's degree or higher","male",5,3,2,0,1,0,"Favor",1,0,0
+"218","2","very anxious",20,"some college","male",3,3,3,1,0,0,"Strongly Favor",2,0,0
+"219","3","very anxious",47,"bachelor's degree or higher","male",5,3,3,0,1,0,"Oppose",3,0,0
+"220","2","a little anxious",29,"high school","male",12,10,7,1,0,0,"Oppose",4,1,1
+"221","3","not anxious at all",54,"high school","female",4,12,8,0,1,0,"Strongly Oppose",4,0,0
+"222","1","a little anxious",24,"bachelor's degree or higher","female",7,7,6,1,1,1,"Oppose",3,0,0
+"223","2","not anxious at all",47,"high school","female",10,12,8,1,0,0,"Strongly Oppose",4,1,1
+"224","3","a little anxious",25,"some college","female",11,7,3,0,1,0,"Oppose",2,0,0
+"225","4","somewhat anxious",28,"high school","male",10,5,6,0,0,0,"Oppose",3,0,0
+"226","2","somewhat anxious",57,"bachelor's degree or higher","male",16,7,6,1,0,0,"Strongly Favor",3,0,1
+"227","4","a little anxious",26,"high school","male",8,10,6,0,0,0,"Strongly Oppose",4,0,0
+"228","1","a little anxious",43,"high school","male",7,7,7,1,1,1,"Strongly Favor",3,0,1
+"229","4","somewhat anxious",35,"high school","male",12,6,6,0,0,0,"Strongly Oppose",4,0,1
+"230","4","a little anxious",29,"bachelor's degree or higher","female",11,7,5,0,0,0,"Oppose",2,0,0
+"231","2","very anxious",26,"some college","female",14,5,4,1,0,0,"Oppose",3,0,0
+"232","3","not anxious at all",18,"high school","female",15,12,8,0,1,0,"Strongly Oppose",4,0,0
+"233","4","very anxious",60,"bachelor's degree or higher","female",12,3,2,0,0,0,"Oppose",1,0,0
+"234","4","very anxious",42,"bachelor's degree or higher","female",15,3,3,0,0,0,"Strongly Oppose",2,0,0
+"235","1","a little anxious",29,"high school","female",15,10,8,1,1,1,"Strongly Oppose",4,0,1
+"236","3","somewhat anxious",57,"bachelor's degree or higher","female",10,5,4,0,1,0,"Favor",1,0,0
+"237","2","not anxious at all",53,"high school","female",14,10,8,1,0,0,"Strongly Oppose",4,0,1
+"238","3","very anxious",27,"some college","male",6,3,6,0,1,0,"Strongly Oppose",3,0,0
+"239","1","a little anxious",25,"bachelor's degree or higher","male",8,9,7,1,1,1,"Strongly Oppose",4,0,1
+"240","3","somewhat anxious",37,"some college","female",7,7,4,0,1,0,"Strongly Oppose",2,0,0
+"241","1","a little anxious",25,"some college","female",12,7,7,1,1,1,"Oppose",3,0,1
+"242","1","very anxious",38,"bachelor's degree or higher","female",13,4,3,1,1,1,"Strongly Oppose",3,0,0
+"243","1","somewhat anxious",39,"bachelor's degree or higher","female",15,5,5,1,1,1,"Strongly Oppose",3,0,0
+"244","1","somewhat anxious",26,"some college","male",7,7,6,1,1,1,"Strongly Oppose",4,0,1
+"245","4","very anxious",45,"bachelor's degree or higher","female",18,5,3,0,0,0,"Strongly Oppose",3,0,0
+"246","2","somewhat anxious",27,"some college","male",13,5,7,1,0,0,"Favor",4,0,0
+"247","3","very anxious",46,"high school","male",12,3,5,0,1,0,"Oppose",2,0,0
+"248","1","somewhat anxious",62,"high school","male",3,5,2,1,1,1,"Strongly Oppose",3,0,0
+"249","3","somewhat anxious",44,"high school","female",12,6,5,0,1,0,"Oppose",2,0,0
+"250","3","somewhat anxious",65,"bachelor's degree or higher","male",9,6,8,0,1,0,"Strongly Oppose",3,0,0
+"251","2","not anxious at all",34,"bachelor's degree or higher","male",8,12,7,1,0,0,"Oppose",3,0,0
+"252","4","somewhat anxious",66,"high school","female",11,7,8,0,0,0,"Oppose",3,1,1
+"253","3","very anxious",44,"high school","female",14,3,4,0,1,0,"Favor",2,0,0
+"254","1","a little anxious",34,"high school","male",13,7,5,1,1,1,"Oppose",3,0,1
+"255","4","a little anxious",43,"some college","male",10,11,8,0,0,0,"Strongly Oppose",4,0,0
+"256","2","a little anxious",30,"high school","male",9,8,7,1,0,0,"Strongly Oppose",4,0,0
+"257","1","not anxious at all",27,"some college","female",17,12,7,1,1,1,"Strongly Oppose",4,0,1
+"258","1","a little anxious",20,"high school","female",17,8,4,1,1,1,"Oppose",2,0,1
+"259","2","a little anxious",56,"high school","female",10,10,8,1,0,0,"Strongly Oppose",3,0,0
+"260","2","not anxious at all",42,"high school","male",12,10,7,1,0,0,"Oppose",4,0,1
+"261","3","somewhat anxious",44,"bachelor's degree or higher","male",17,7,6,0,1,0,"Oppose",1,0,0
+"262","4","somewhat anxious",28,"bachelor's degree or higher","female",14,6,6,0,0,0,"Strongly Oppose",1,0,1
+"263","2","very anxious",38,"bachelor's degree or higher","female",14,3,6,1,0,0,"Favor",2,0,0
+"264","1","somewhat anxious",29,"bachelor's degree or higher","male",10,9,7,1,1,1,"Strongly Oppose",4,0,1
+"265","4","very anxious",52,"some college","female",1,3,2,0,0,0,"Oppose",2,0,0

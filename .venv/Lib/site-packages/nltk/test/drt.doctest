@@ -1,0 +1,515 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+================================
+ Discourse Representation Theory
+================================
+
+    >>> from nltk.sem import logic
+    >>> from nltk.inference import TableauProver
+
+Overview
+========
+
+A DRS can be created with the ``DRS()`` constructor. This takes two arguments: a list of
+discourse referents and list of conditions. .
+
+    >>> from nltk.sem.drt import *
+    >>> dexpr = DrtExpression.fromstring
+    >>> man_x = dexpr('man(x)')
+    >>> walk_x = dexpr('walk(x)')
+    >>> x = dexpr('x')
+    >>> print(DRS([x], [man_x, walk_x]))
+    ([x],[man(x), walk(x)])
+
+The ``parse()`` method can also be applied directly to DRS
+expressions, which allows them to be specified more
+easily.
+
+    >>> drs1 = dexpr('([x],[man(x),walk(x)])')
+    >>> print(drs1)
+    ([x],[man(x), walk(x)])
+
+DRSs can be *merged* using the ``+`` operator.
+
+    >>> drs2 = dexpr('([y],[woman(y),stop(y)])')
+    >>> drs3 = drs1 + drs2
+    >>> print(drs3)
+    (([x],[man(x), walk(x)]) + ([y],[woman(y), stop(y)]))
+    >>> print(drs3.simplify())
+    ([x,y],[man(x), walk(x), woman(y), stop(y)])
+
+We can embed DRSs as components of an ``implies`` condition.
+
+    >>> s = '([], [(%s -> %s)])' % (drs1, drs2)
+    >>> print(dexpr(s))
+    ([],[(([x],[man(x), walk(x)]) -> ([y],[woman(y), stop(y)]))])
+
+The ``fol()`` method converts DRSs into FOL formulae.
+
+    >>> print(dexpr(r'([x],[man(x), walks(x)])').fol())
+    exists x.(man(x) & walks(x))
+    >>> print(dexpr(r'([],[(([x],[man(x)]) -> ([],[walks(x)]))])').fol())
+    all x.(man(x) -> walks(x))
+
+In order to visualize a DRS, the ``pretty_format()`` method can be used.
+
+    >>> print(drs3.pretty_format())
+      _________     __________
+     | x       |   | y        |
+    (|---------| + |----------|)
+     | man(x)  |   | woman(y) |
+     | walk(x) |   | stop(y)  |
+     |_________|   |__________|
+
+
+Parse to semantics
+------------------
+
+..
+    >>> logic._counter._value = 0
+
+DRSs can be used for building compositional semantics in a feature
+based grammar. To specify that we want to use DRSs, the appropriate
+logic parser needs be passed as a parameter to ``load_earley()``
+
+    >>> from nltk.parse import load_parser
+    >>> from nltk.sem.drt import DrtParser
+    >>> parser = load_parser('grammars/book_grammars/drt.fcfg', trace=0, logic_parser=DrtParser())
+    >>> for tree in parser.parse('a dog barks'.split()):
+    ...     print(tree.label()['SEM'].simplify())
+    ...
+    ([x],[dog(x), bark(x)])
+
+Alternatively, a ``FeatStructReader`` can be passed with the ``logic_parser`` set on it
+
+    >>> from nltk.featstruct import FeatStructReader
+    >>> from nltk.grammar import FeatStructNonterminal
+    >>> parser = load_parser('grammars/book_grammars/drt.fcfg', trace=0, fstruct_reader=FeatStructReader(fdict_class=FeatStructNonterminal, logic_parser=DrtParser()))
+    >>> for tree in parser.parse('every girl chases a dog'.split()):
+    ...     print(tree.label()['SEM'].simplify().normalize())
+    ...
+    ([],[(([z1],[girl(z1)]) -> ([z2],[dog(z2), chase(z1,z2)]))])
+
+
+
+Unit Tests
+==========
+
+Parser
+------
+
+    >>> print(dexpr(r'([x,y],[sees(x,y)])'))
+    ([x,y],[sees(x,y)])
+    >>> print(dexpr(r'([x],[man(x), walks(x)])'))
+    ([x],[man(x), walks(x)])
+    >>> print(dexpr(r'\x.([],[man(x), walks(x)])'))
+    \x.([],[man(x), walks(x)])
+    >>> print(dexpr(r'\x.\y.([],[sees(x,y)])'))
+    \x y.([],[sees(x,y)])
+
+    >>> print(dexpr(r'([x,y],[(x = y)])'))
+    ([x,y],[(x = y)])
+    >>> print(dexpr(r'([x,y],[(x != y)])'))
+    ([x,y],[-(x = y)])
+
+    >>> print(dexpr(r'\x.([],[walks(x)])(john)'))
+    (\x.([],[walks(x)]))(john)
+    >>> print(dexpr(r'\R.\x.([],[big(x,R)])(\y.([],[mouse(y)]))'))
+    (\R x.([],[big(x,R)]))(\y.([],[mouse(y)]))
+
+    >>> print(dexpr(r'(([x],[walks(x)]) + ([y],[runs(y)]))'))
+    (([x],[walks(x)]) + ([y],[runs(y)]))
+    >>> print(dexpr(r'(([x,y],[walks(x), jumps(y)]) + (([z],[twos(z)]) + ([w],[runs(w)])))'))
+    (([x,y],[walks(x), jumps(y)]) + ([z],[twos(z)]) + ([w],[runs(w)]))
+    >>> print(dexpr(r'((([],[walks(x)]) + ([],[twos(x)])) + ([],[runs(x)]))'))
+    (([],[walks(x)]) + ([],[twos(x)]) + ([],[runs(x)]))
+    >>> print(dexpr(r'((([],[walks(x)]) + ([],[runs(x)])) + (([],[threes(x)]) + ([],[fours(x)])))'))
+    (([],[walks(x)]) + ([],[runs(x)]) + ([],[threes(x)]) + ([],[fours(x)]))
+
+    >>> print(dexpr(r'(([],[walks(x)]) -> ([],[runs(x)]))'))
+    (([],[walks(x)]) -> ([],[runs(x)]))
+
+    >>> print(dexpr(r'([x],[PRO(x), sees(John,x)])'))
+    ([x],[PRO(x), sees(John,x)])
+    >>> print(dexpr(r'([x],[man(x), -([],[walks(x)])])'))
+    ([x],[man(x), -([],[walks(x)])])
+    >>> print(dexpr(r'([],[(([x],[man(x)]) -> ([],[walks(x)]))])'))
+    ([],[(([x],[man(x)]) -> ([],[walks(x)]))])
+
+    >>> print(dexpr(r'DRS([x],[walk(x)])'))
+    ([x],[walk(x)])
+    >>> print(dexpr(r'DRS([x][walk(x)])'))
+    ([x],[walk(x)])
+    >>> print(dexpr(r'([x][walk(x)])'))
+    ([x],[walk(x)])
+
+``simplify()``
+--------------
+
+    >>> print(dexpr(r'\x.([],[man(x), walks(x)])(john)').simplify())
+    ([],[man(john), walks(john)])
+    >>> print(dexpr(r'\x.\y.([z],[dog(z),sees(x,y)])(john)(mary)').simplify())
+    ([z],[dog(z), sees(john,mary)])
+    >>> print(dexpr(r'\R x.([],[big(x,R)])(\y.([],[mouse(y)]))').simplify())
+    \x.([],[big(x,\y.([],[mouse(y)]))])
+
+    >>> print(dexpr(r'(([x],[walks(x)]) + ([y],[runs(y)]))').simplify())
+    ([x,y],[walks(x), runs(y)])
+    >>> print(dexpr(r'(([x,y],[walks(x), jumps(y)]) + (([z],[twos(z)]) + ([w],[runs(w)])))').simplify())
+    ([w,x,y,z],[walks(x), jumps(y), twos(z), runs(w)])
+    >>> print(dexpr(r'((([],[walks(x)]) + ([],[runs(x)]) + ([],[threes(x)]) + ([],[fours(x)])))').simplify())
+    ([],[walks(x), runs(x), threes(x), fours(x)])
+    >>> dexpr(r'([x],[man(x)])+([x],[walks(x)])').simplify() == \
+    ... dexpr(r'([x,z1],[man(x), walks(z1)])')
+    True
+    >>> dexpr(r'([y],[boy(y), (([x],[dog(x)]) -> ([],[chase(x,y)]))])+([x],[run(x)])').simplify() == \
+    ... dexpr(r'([y,z1],[boy(y), (([x],[dog(x)]) -> ([],[chase(x,y)])), run(z1)])')
+    True
+
+    >>> dexpr(r'\Q.(([x],[john(x),walks(x)]) + Q)(([x],[PRO(x),leaves(x)]))').simplify() == \
+    ... dexpr(r'([x,z1],[john(x), walks(x), PRO(z1), leaves(z1)])')
+    True
+
+    >>> logic._counter._value = 0
+    >>> print(dexpr('([],[(([x],[dog(x)]) -> ([e,y],[boy(y), chase(e), subj(e,x), obj(e,y)]))])+([e,x],[PRO(x), run(e), subj(e,x)])').simplify().normalize().normalize())
+    ([e02,z5],[(([z3],[dog(z3)]) -> ([e01,z4],[boy(z4), chase(e01), subj(e01,z3), obj(e01,z4)])), PRO(z5), run(e02), subj(e02,z5)])
+
+``fol()``
+-----------
+
+    >>> print(dexpr(r'([x,y],[sees(x,y)])').fol())
+    exists x y.sees(x,y)
+    >>> print(dexpr(r'([x],[man(x), walks(x)])').fol())
+    exists x.(man(x) & walks(x))
+    >>> print(dexpr(r'\x.([],[man(x), walks(x)])').fol())
+    \x.(man(x) & walks(x))
+    >>> print(dexpr(r'\x y.([],[sees(x,y)])').fol())
+    \x y.sees(x,y)
+
+    >>> print(dexpr(r'\x.([],[walks(x)])(john)').fol())
+    \x.walks(x)(john)
+    >>> print(dexpr(r'\R x.([],[big(x,R)])(\y.([],[mouse(y)]))').fol())
+    (\R x.big(x,R))(\y.mouse(y))
+
+    >>> print(dexpr(r'(([x],[walks(x)]) + ([y],[runs(y)]))').fol())
+    (exists x.walks(x) & exists y.runs(y))
+
+    >>> print(dexpr(r'(([],[walks(x)]) -> ([],[runs(x)]))').fol())
+    (walks(x) -> runs(x))
+
+    >>> print(dexpr(r'([x],[PRO(x), sees(John,x)])').fol())
+    exists x.(PRO(x) & sees(John,x))
+    >>> print(dexpr(r'([x],[man(x), -([],[walks(x)])])').fol())
+    exists x.(man(x) & -walks(x))
+    >>> print(dexpr(r'([],[(([x],[man(x)]) -> ([],[walks(x)]))])').fol())
+    all x.(man(x) -> walks(x))
+
+    >>> print(dexpr(r'([x],[man(x) | walks(x)])').fol())
+    exists x.(man(x) | walks(x))
+    >>> print(dexpr(r'P(x) + ([x],[walks(x)])').fol())
+    (P(x) & exists x.walks(x))
+
+``resolve_anaphora()``
+----------------------
+
+    >>> from nltk.sem.drt import AnaphoraResolutionException
+
+    >>> print(resolve_anaphora(dexpr(r'([x,y,z],[dog(x), cat(y), walks(z), PRO(z)])')))
+    ([x,y,z],[dog(x), cat(y), walks(z), (z = [x,y])])
+    >>> print(resolve_anaphora(dexpr(r'([],[(([x],[dog(x)]) -> ([y],[walks(y), PRO(y)]))])')))
+    ([],[(([x],[dog(x)]) -> ([y],[walks(y), (y = x)]))])
+    >>> print(resolve_anaphora(dexpr(r'(([x,y],[]) + ([],[PRO(x)]))')).simplify())
+    ([x,y],[(x = y)])
+    >>> try: print(resolve_anaphora(dexpr(r'([x],[walks(x), PRO(x)])')))
+    ... except AnaphoraResolutionException as e: print(e)
+    Variable 'x' does not resolve to anything.
+    >>> print(resolve_anaphora(dexpr('([e01,z6,z7],[boy(z6), PRO(z7), run(e01), subj(e01,z7)])')))
+    ([e01,z6,z7],[boy(z6), (z7 = z6), run(e01), subj(e01,z7)])
+
+``equiv()``:
+----------------
+
+    >>> a = dexpr(r'([x],[man(x), walks(x)])')
+    >>> b = dexpr(r'([x],[walks(x), man(x)])')
+    >>> print(a.equiv(b, TableauProver()))
+    True
+
+
+``replace()``:
+--------------
+
+    >>> a = dexpr(r'a')
+    >>> w = dexpr(r'w')
+    >>> x = dexpr(r'x')
+    >>> y = dexpr(r'y')
+    >>> z = dexpr(r'z')
+
+
+replace bound
+-------------
+
+    >>> print(dexpr(r'([x],[give(x,y,z)])').replace(x.variable, a, False))
+    ([x],[give(x,y,z)])
+    >>> print(dexpr(r'([x],[give(x,y,z)])').replace(x.variable, a, True))
+    ([a],[give(a,y,z)])
+
+replace unbound
+---------------
+
+    >>> print(dexpr(r'([x],[give(x,y,z)])').replace(y.variable, a, False))
+    ([x],[give(x,a,z)])
+    >>> print(dexpr(r'([x],[give(x,y,z)])').replace(y.variable, a, True))
+    ([x],[give(x,a,z)])
+
+replace unbound with bound
+--------------------------
+
+    >>> dexpr(r'([x],[give(x,y,z)])').replace(y.variable, x, False) == \
+    ... dexpr('([z1],[give(z1,x,z)])')
+    True
+    >>> dexpr(r'([x],[give(x,y,z)])').replace(y.variable, x, True) == \
+    ... dexpr('([z1],[give(z1,x,z)])')
+    True
+
+replace unbound with unbound
+----------------------------
+
+    >>> print(dexpr(r'([x],[give(x,y,z)])').replace(y.variable, z, False))
+    ([x],[give(x,z,z)])
+    >>> print(dexpr(r'([x],[give(x,y,z)])').replace(y.variable, z, True))
+    ([x],[give(x,z,z)])
+
+
+replace unbound
+---------------
+
+    >>> print(dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,z)])').replace(z.variable, a, False))
+    (([x],[P(x,y,a)]) + ([y],[Q(x,y,a)]))
+    >>> print(dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,z)])').replace(z.variable, a, True))
+    (([x],[P(x,y,a)]) + ([y],[Q(x,y,a)]))
+
+replace bound
+-------------
+
+    >>> print(dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,z)])').replace(x.variable, a, False))
+    (([x],[P(x,y,z)]) + ([y],[Q(x,y,z)]))
+    >>> print(dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,z)])').replace(x.variable, a, True))
+    (([a],[P(a,y,z)]) + ([y],[Q(a,y,z)]))
+
+replace unbound with unbound
+----------------------------
+
+    >>> print(dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,z)])').replace(z.variable, a, False))
+    (([x],[P(x,y,a)]) + ([y],[Q(x,y,a)]))
+    >>> print(dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,z)])').replace(z.variable, a, True))
+    (([x],[P(x,y,a)]) + ([y],[Q(x,y,a)]))
+
+replace unbound with bound on same side
+---------------------------------------
+
+    >>> dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,w)])').replace(z.variable, x, False) == \
+    ... dexpr(r'(([z1],[P(z1,y,x)]) + ([y],[Q(z1,y,w)]))')
+    True
+    >>> dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,w)])').replace(z.variable, x, True) == \
+    ... dexpr(r'(([z1],[P(z1,y,x)]) + ([y],[Q(z1,y,w)]))')
+    True
+
+replace unbound with bound on other side
+----------------------------------------
+
+    >>> dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,w)])').replace(w.variable, x, False) == \
+    ... dexpr(r'(([z1],[P(z1,y,z)]) + ([y],[Q(z1,y,x)]))')
+    True
+    >>> dexpr(r'([x],[P(x,y,z)])+([y],[Q(x,y,w)])').replace(w.variable, x, True) == \
+    ... dexpr(r'(([z1],[P(z1,y,z)]) + ([y],[Q(z1,y,x)]))')
+    True
+
+replace unbound with double bound
+---------------------------------
+
+    >>> dexpr(r'([x],[P(x,y,z)])+([x],[Q(x,y,w)])').replace(z.variable, x, False) == \
+    ... dexpr(r'(([z1],[P(z1,y,x)]) + ([z1],[Q(z1,y,w)]))')
+    True
+    >>> dexpr(r'([x],[P(x,y,z)])+([x],[Q(x,y,w)])').replace(z.variable, x, True) == \
+    ... dexpr(r'(([z1],[P(z1,y,x)]) + ([z1],[Q(z1,y,w)]))')
+    True
+
+
+regression tests
+----------------
+
+    >>> d = dexpr('([x],[A(c), ([y],[B(x,y,z,a)])->([z],[C(x,y,z,a)])])')
+    >>> print(d)
+    ([x],[A(c), (([y],[B(x,y,z,a)]) -> ([z],[C(x,y,z,a)]))])
+    >>> print(d.pretty_format())
+     ____________________________________
+    | x                                  |
+    |------------------------------------|
+    | A(c)                               |
+    |   ____________      ____________   |
+    |  | y          |    | z          |  |
+    | (|------------| -> |------------|) |
+    |  | B(x,y,z,a) |    | C(x,y,z,a) |  |
+    |  |____________|    |____________|  |
+    |____________________________________|
+    >>> print(str(d))
+    ([x],[A(c), (([y],[B(x,y,z,a)]) -> ([z],[C(x,y,z,a)]))])
+    >>> print(d.fol())
+    exists x.(A(c) & all y.(B(x,y,z,a) -> exists z.C(x,y,z,a)))
+    >>> print(d.replace(Variable('a'), DrtVariableExpression(Variable('r'))))
+    ([x],[A(c), (([y],[B(x,y,z,r)]) -> ([z],[C(x,y,z,r)]))])
+    >>> print(d.replace(Variable('x'), DrtVariableExpression(Variable('r'))))
+    ([x],[A(c), (([y],[B(x,y,z,a)]) -> ([z],[C(x,y,z,a)]))])
+    >>> print(d.replace(Variable('y'), DrtVariableExpression(Variable('r'))))
+    ([x],[A(c), (([y],[B(x,y,z,a)]) -> ([z],[C(x,y,z,a)]))])
+    >>> print(d.replace(Variable('z'), DrtVariableExpression(Variable('r'))))
+    ([x],[A(c), (([y],[B(x,y,r,a)]) -> ([z],[C(x,y,z,a)]))])
+    >>> print(d.replace(Variable('x'), DrtVariableExpression(Variable('r')), True))
+    ([r],[A(c), (([y],[B(r,y,z,a)]) -> ([z],[C(r,y,z,a)]))])
+    >>> print(d.replace(Variable('y'), DrtVariableExpression(Variable('r')), True))
+    ([x],[A(c), (([r],[B(x,r,z,a)]) -> ([z],[C(x,r,z,a)]))])
+    >>> print(d.replace(Variable('z'), DrtVariableExpression(Variable('r')), True))
+    ([x],[A(c), (([y],[B(x,y,r,a)]) -> ([r],[C(x,y,r,a)]))])
+    >>> print(d == dexpr('([l],[A(c), ([m],[B(l,m,z,a)])->([n],[C(l,m,n,a)])])'))
+    True
+    >>> d = dexpr('([],[([x,y],[B(x,y,h), ([a,b],[dee(x,a,g)])])->([z,w],[cee(x,y,f), ([c,d],[E(x,c,d,e)])])])')
+    >>> sorted(d.free())
+    [Variable('B'), Variable('E'), Variable('e'), Variable('f'), Variable('g'), Variable('h')]
+    >>> sorted(d.variables())
+    [Variable('B'), Variable('E'), Variable('e'), Variable('f'), Variable('g'), Variable('h')]
+    >>> sorted(d.get_refs(True))
+    [Variable('a'), Variable('b'), Variable('c'), Variable('d'), Variable('w'), Variable('x'), Variable('y'), Variable('z')]
+    >>> sorted(d.conds[0].get_refs(False))
+    [Variable('x'), Variable('y')]
+    >>> print(dexpr('([x,y],[A(x,y), (x=y), ([],[B(x,y)])->([],[C(x,y)]), ([x,y],[D(x,y)])->([],[E(x,y)]), ([],[F(x,y)])->([x,y],[G(x,y)])])').eliminate_equality())
+    ([x],[A(x,x), (([],[B(x,x)]) -> ([],[C(x,x)])), (([x,y],[D(x,y)]) -> ([],[E(x,y)])), (([],[F(x,x)]) -> ([x,y],[G(x,y)]))])
+    >>> print(dexpr('([x,y],[A(x,y), (x=y)]) -> ([],[B(x,y)])').eliminate_equality())
+    (([x],[A(x,x)]) -> ([],[B(x,x)]))
+    >>> print(dexpr('([x,y],[A(x,y)]) -> ([],[B(x,y), (x=y)])').eliminate_equality())
+    (([x,y],[A(x,y)]) -> ([],[B(x,x)]))
+    >>> print(dexpr('([x,y],[A(x,y), (x=y), ([],[B(x,y)])])').eliminate_equality())
+    ([x],[A(x,x), ([],[B(x,x)])])
+    >>> print(dexpr('([x,y],[A(x,y), ([],[B(x,y), (x=y)])])').eliminate_equality())
+    ([x,y],[A(x,y), ([],[B(x,x)])])
+    >>> print(dexpr('([z8 z9 z10],[A(z8), z8=z10, z9=z10, B(z9), C(z10), D(z10)])').eliminate_equality())
+    ([z9],[A(z9), B(z9), C(z9), D(z9)])
+
+    >>> print(dexpr('([x,y],[A(x,y), (x=y), ([],[B(x,y)]), ([x,y],[C(x,y)])])').eliminate_equality())
+    ([x],[A(x,x), ([],[B(x,x)]), ([x,y],[C(x,y)])])
+    >>> print(dexpr('([x,y],[A(x,y)]) + ([],[B(x,y), (x=y)]) + ([],[C(x,y)])').eliminate_equality())
+    ([x],[A(x,x), B(x,x), C(x,x)])
+    >>> print(dexpr('([x,y],[B(x,y)])+([x,y],[C(x,y)])').replace(Variable('y'), DrtVariableExpression(Variable('x'))))
+    (([x,y],[B(x,y)]) + ([x,y],[C(x,y)]))
+    >>> print(dexpr('(([x,y],[B(x,y)])+([],[C(x,y)]))+([],[D(x,y)])').replace(Variable('y'), DrtVariableExpression(Variable('x'))))
+    (([x,y],[B(x,y)]) + ([],[C(x,y)]) + ([],[D(x,y)]))
+    >>> print(dexpr('(([],[B(x,y)])+([],[C(x,y)]))+([],[D(x,y)])').replace(Variable('y'), DrtVariableExpression(Variable('x'))))
+    (([],[B(x,x)]) + ([],[C(x,x)]) + ([],[D(x,x)]))
+    >>> print(dexpr('(([],[B(x,y), ([x,y],[A(x,y)])])+([],[C(x,y)]))+([],[D(x,y)])').replace(Variable('y'), DrtVariableExpression(Variable('x'))).normalize())
+    (([],[B(z3,z1), ([z2,z3],[A(z3,z2)])]) + ([],[C(z3,z1)]) + ([],[D(z3,z1)]))
+
+
+Parse errors
+============
+
+    >>> def parse_error(drtstring):
+    ...     try: dexpr(drtstring)
+    ...     except logic.LogicalExpressionException as e: print(e)
+
+    >>> parse_error(r'')
+    End of input found.  Expression expected.
+    <BLANKLINE>
+    ^
+    >>> parse_error(r'(')
+    End of input found.  Expression expected.
+    (
+     ^
+    >>> parse_error(r'()')
+    Unexpected token: ')'.  Expression expected.
+    ()
+     ^
+    >>> parse_error(r'([')
+    End of input found.  Expected token ']'.
+    ([
+      ^
+    >>> parse_error(r'([,')
+    ',' is an illegal variable name.  Constants may not be quantified.
+    ([,
+      ^
+    >>> parse_error(r'([x,')
+    End of input found.  Variable expected.
+    ([x,
+        ^
+    >>> parse_error(r'([]')
+    End of input found.  Expected token '['.
+    ([]
+       ^
+    >>> parse_error(r'([][')
+    End of input found.  Expected token ']'.
+    ([][
+        ^
+    >>> parse_error(r'([][,')
+    Unexpected token: ','.  Expression expected.
+    ([][,
+        ^
+    >>> parse_error(r'([][]')
+    End of input found.  Expected token ')'.
+    ([][]
+         ^
+    >>> parse_error(r'([x][man(x)]) |')
+    End of input found.  Expression expected.
+    ([x][man(x)]) |
+                   ^
+
+Pretty Printing
+===============
+
+    >>> dexpr(r"([],[])").pretty_print()
+     __
+    |  |
+    |--|
+    |__|
+
+    >>> dexpr(r"([],[([x],[big(x), dog(x)]) -> ([],[bark(x)]) -([x],[walk(x)])])").pretty_print()
+     _____________________________
+    |                             |
+    |-----------------------------|
+    |   ________      _________   |
+    |  | x      |    |         |  |
+    | (|--------| -> |---------|) |
+    |  | big(x) |    | bark(x) |  |
+    |  | dog(x) |    |_________|  |
+    |  |________|                 |
+    |      _________              |
+    |     | x       |             |
+    | __  |---------|             |
+    |   | | walk(x) |             |
+    |     |_________|             |
+    |_____________________________|
+
+    >>> dexpr(r"([x,y],[x=y]) + ([z],[dog(z), walk(z)])").pretty_print()
+      _________     _________
+     | x y     |   | z       |
+    (|---------| + |---------|)
+     | (x = y) |   | dog(z)  |
+     |_________|   | walk(z) |
+                   |_________|
+
+    >>> dexpr(r"([],[([x],[]) | ([y],[]) | ([z],[dog(z), walk(z)])])").pretty_print()
+     _______________________________
+    |                               |
+    |-------------------------------|
+    |   ___     ___     _________   |
+    |  | x |   | y |   | z       |  |
+    | (|---| | |---| | |---------|) |
+    |  |___|   |___|   | dog(z)  |  |
+    |                  | walk(z) |  |
+    |                  |_________|  |
+    |_______________________________|
+
+    >>> dexpr(r"\P.\Q.(([x],[]) + P(x) + Q(x))(\x.([],[dog(x)]))").pretty_print()
+              ___                        ________
+     \       | x |                 \    |        |
+     /\ P Q.(|---| + P(x) + Q(x))( /\ x.|--------|)
+             |___|                      | dog(x) |
+                                        |________|

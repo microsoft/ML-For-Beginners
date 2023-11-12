@@ -1,0 +1,221 @@
+invest,value,capital,firm,year
+317.6,3078.5,2.8,General Motors,1935
+391.8,4661.7,52.6,General Motors,1936
+410.6,5387.1,156.9,General Motors,1937
+257.7,2792.2,209.2,General Motors,1938
+330.8,4313.2,203.4,General Motors,1939
+461.2,4643.9,207.2,General Motors,1940
+512,4551.2,255.2,General Motors,1941
+448,3244.1,303.7,General Motors,1942
+499.6,4053.7,264.1,General Motors,1943
+547.5,4379.3,201.6,General Motors,1944
+561.2,4840.9,265,General Motors,1945
+688.1,4900.9,402.2,General Motors,1946
+568.9,3526.5,761.5,General Motors,1947
+529.2,3254.7,922.4,General Motors,1948
+555.1,3700.2,1020.1,General Motors,1949
+642.9,3755.6,1099,General Motors,1950
+755.9,4833,1207.7,General Motors,1951
+891.2,4924.9,1430.5,General Motors,1952
+1304.4,6241.7,1777.3,General Motors,1953
+1486.7,5593.6,2226.3,General Motors,1954
+209.9,1362.4,53.8,US Steel,1935
+355.3,1807.1,50.5,US Steel,1936
+469.9,2676.3,118.1,US Steel,1937
+262.3,1801.9,260.2,US Steel,1938
+230.4,1957.3,312.7,US Steel,1939
+361.6,2202.9,254.2,US Steel,1940
+472.8,2380.5,261.4,US Steel,1941
+445.6,2168.6,298.7,US Steel,1942
+361.6,1985.1,301.8,US Steel,1943
+288.2,1813.9,279.1,US Steel,1944
+258.7,1850.2,213.8,US Steel,1945
+420.3,2067.7,132.6,US Steel,1946
+420.5,1796.7,264.8,US Steel,1947
+494.5,1625.8,306.9,US Steel,1948
+405.1,1667,351.1,US Steel,1949
+418.8,1677.4,357.8,US Steel,1950
+588.2,2289.5,342.1,US Steel,1951
+645.5,2159.4,444.2,US Steel,1952
+641,2031.3,623.6,US Steel,1953
+459.3,2115.5,669.7,US Steel,1954
+33.1,1170.6,97.8,General Electric,1935
+45,2015.8,104.4,General Electric,1936
+77.2,2803.3,118,General Electric,1937
+44.6,2039.7,156.2,General Electric,1938
+48.1,2256.2,172.6,General Electric,1939
+74.4,2132.2,186.6,General Electric,1940
+113,1834.1,220.9,General Electric,1941
+91.9,1588,287.8,General Electric,1942
+61.3,1749.4,319.9,General Electric,1943
+56.8,1687.2,321.3,General Electric,1944
+93.6,2007.7,319.6,General Electric,1945
+159.9,2208.3,346,General Electric,1946
+147.2,1656.7,456.4,General Electric,1947
+146.3,1604.4,543.4,General Electric,1948
+98.3,1431.8,618.3,General Electric,1949
+93.5,1610.5,647.4,General Electric,1950
+135.2,1819.4,671.3,General Electric,1951
+157.3,2079.7,726.1,General Electric,1952
+179.5,2371.6,800.3,General Electric,1953
+189.6,2759.9,888.9,General Electric,1954
+40.29,417.5,10.5,Chrysler,1935
+72.76,837.8,10.2,Chrysler,1936
+66.26,883.9,34.7,Chrysler,1937
+51.6,437.9,51.8,Chrysler,1938
+52.41,679.7,64.3,Chrysler,1939
+69.41,727.8,67.1,Chrysler,1940
+68.35,643.6,75.2,Chrysler,1941
+46.8,410.9,71.4,Chrysler,1942
+47.4,588.4,67.1,Chrysler,1943
+59.57,698.4,60.5,Chrysler,1944
+88.78,846.4,54.6,Chrysler,1945
+74.12,893.8,84.8,Chrysler,1946
+62.68,579,96.8,Chrysler,1947
+89.36,694.6,110.2,Chrysler,1948
+78.98,590.3,147.4,Chrysler,1949
+100.66,693.5,163.2,Chrysler,1950
+160.62,809,203.5,Chrysler,1951
+145,727,290.6,Chrysler,1952
+174.93,1001.5,346.1,Chrysler,1953
+172.49,703.2,414.9,Chrysler,1954
+39.68,157.7,183.2,Atlantic Refining,1935
+50.73,167.9,204,Atlantic Refining,1936
+74.24,192.9,236,Atlantic Refining,1937
+53.51,156.7,291.7,Atlantic Refining,1938
+42.65,191.4,323.1,Atlantic Refining,1939
+46.48,185.5,344,Atlantic Refining,1940
+61.4,199.6,367.7,Atlantic Refining,1941
+39.67,189.5,407.2,Atlantic Refining,1942
+62.24,151.2,426.6,Atlantic Refining,1943
+52.32,187.7,470,Atlantic Refining,1944
+63.21,214.7,499.2,Atlantic Refining,1945
+59.37,232.9,534.6,Atlantic Refining,1946
+58.02,249,566.6,Atlantic Refining,1947
+70.34,224.5,595.3,Atlantic Refining,1948
+67.42,237.3,631.4,Atlantic Refining,1949
+55.74,240.1,662.3,Atlantic Refining,1950
+80.3,327.3,683.9,Atlantic Refining,1951
+85.4,359.4,729.3,Atlantic Refining,1952
+91.9,398.4,774.3,Atlantic Refining,1953
+81.43,365.7,804.9,Atlantic Refining,1954
+20.36,197,6.5,IBM,1935
+25.98,210.3,15.8,IBM,1936
+25.94,223.1,27.7,IBM,1937
+27.53,216.7,39.2,IBM,1938
+24.6,286.4,48.6,IBM,1939
+28.54,298,52.5,IBM,1940
+43.41,276.9,61.5,IBM,1941
+42.81,272.6,80.5,IBM,1942
+27.84,287.4,94.4,IBM,1943
+32.6,330.3,92.6,IBM,1944
+39.03,324.4,92.3,IBM,1945
+50.17,401.9,94.2,IBM,1946
+51.85,407.4,111.4,IBM,1947
+64.03,409.2,127.4,IBM,1948
+68.16,482.2,149.3,IBM,1949
+77.34,673.8,164.4,IBM,1950
+95.3,676.9,177.2,IBM,1951
+99.49,702,200,IBM,1952
+127.52,793.5,211.5,IBM,1953
+135.72,927.3,238.7,IBM,1954
+24.43,138,100.2,Union Oil,1935
+23.21,200.1,125,Union Oil,1936
+32.78,210.1,142.4,Union Oil,1937
+32.54,161.2,165.1,Union Oil,1938
+26.65,161.7,194.8,Union Oil,1939
+33.71,145.1,222.9,Union Oil,1940
+43.5,110.6,252.1,Union Oil,1941
+34.46,98.1,276.3,Union Oil,1942
+44.28,108.8,300.3,Union Oil,1943
+70.8,118.2,318.2,Union Oil,1944
+44.12,126.5,336.2,Union Oil,1945
+48.98,156.7,351.2,Union Oil,1946
+48.51,119.4,373.6,Union Oil,1947
+50,129.1,389.4,Union Oil,1948
+50.59,134.8,406.7,Union Oil,1949
+42.53,140.8,429.5,Union Oil,1950
+64.77,179,450.6,Union Oil,1951
+72.68,178.1,466.9,Union Oil,1952
+73.86,186.8,486.2,Union Oil,1953
+89.51,192.7,511.3,Union Oil,1954
+12.93,191.5,1.8,Westinghouse,1935
+25.9,516,0.8,Westinghouse,1936
+35.05,729,7.4,Westinghouse,1937
+22.89,560.4,18.1,Westinghouse,1938
+18.84,519.9,23.5,Westinghouse,1939
+28.57,628.5,26.5,Westinghouse,1940
+48.51,537.1,36.2,Westinghouse,1941
+43.34,561.2,60.8,Westinghouse,1942
+37.02,617.2,84.4,Westinghouse,1943
+37.81,626.7,91.2,Westinghouse,1944
+39.27,737.2,92.4,Westinghouse,1945
+53.46,760.5,86,Westinghouse,1946
+55.56,581.4,111.1,Westinghouse,1947
+49.56,662.3,130.6,Westinghouse,1948
+32.04,583.8,141.8,Westinghouse,1949
+32.24,635.2,136.7,Westinghouse,1950
+54.38,723.8,129.7,Westinghouse,1951
+71.78,864.1,145.5,Westinghouse,1952
+90.08,1193.5,174.8,Westinghouse,1953
+68.6,1188.9,213.5,Westinghouse,1954
+26.63,290.6,162,Goodyear,1935
+23.39,291.1,174,Goodyear,1936
+30.65,335,183,Goodyear,1937
+20.89,246,198,Goodyear,1938
+28.78,356.2,208,Goodyear,1939
+26.93,289.8,223,Goodyear,1940
+32.08,268.2,234,Goodyear,1941
+32.21,213.3,248,Goodyear,1942
+35.69,348.2,274,Goodyear,1943
+62.47,374.2,282,Goodyear,1944
+52.32,387.2,316,Goodyear,1945
+56.95,347.4,302,Goodyear,1946
+54.32,291.9,333,Goodyear,1947
+40.53,297.2,359,Goodyear,1948
+32.54,276.9,370,Goodyear,1949
+43.48,274.6,376,Goodyear,1950
+56.49,339.9,391,Goodyear,1951
+65.98,474.8,414,Goodyear,1952
+66.11,496,443,Goodyear,1953
+49.34,474.5,468,Goodyear,1954
+2.54,70.91,4.5,Diamond Match,1935
+2,87.94,4.71,Diamond Match,1936
+2.19,82.2,4.57,Diamond Match,1937
+1.99,58.72,4.56,Diamond Match,1938
+2.03,80.54,4.38,Diamond Match,1939
+1.81,86.47,4.21,Diamond Match,1940
+2.14,77.68,4.12,Diamond Match,1941
+1.86,62.16,3.83,Diamond Match,1942
+0.93,62.24,3.58,Diamond Match,1943
+1.18,61.82,3.41,Diamond Match,1944
+1.36,65.85,3.31,Diamond Match,1945
+2.24,69.54,3.23,Diamond Match,1946
+3.81,64.97,3.9,Diamond Match,1947
+5.66,68,5.38,Diamond Match,1948
+4.21,71.24,7.39,Diamond Match,1949
+3.42,69.05,8.74,Diamond Match,1950
+4.67,83.04,9.07,Diamond Match,1951
+6,74.42,9.93,Diamond Match,1952
+6.53,63.51,11.68,Diamond Match,1953
+5.12,58.12,14.33,Diamond Match,1954
+2.938,30.284,52.011,American Steel,1935
+5.643,43.909,52.903,American Steel,1936
+10.233,107.02,54.499,American Steel,1937
+4.046,68.306,59.722,American Steel,1938
+3.326,84.164,61.659,American Steel,1939
+4.68,69.157,62.243,American Steel,1940
+5.732,60.148,63.361,American Steel,1941
+12.117,49.332,64.861,American Steel,1942
+15.276,75.18,67.953,American Steel,1943
+9.275,62.05,69.59,American Steel,1944
+9.577,59.152,69.144,American Steel,1945
+3.956,68.424,70.269,American Steel,1946
+3.834,48.505,71.051,American Steel,1947
+5.97,40.507,71.508,American Steel,1948
+6.433,39.961,73.827,American Steel,1949
+4.77,36.494,75.847,American Steel,1950
+6.532,46.082,77.367,American Steel,1951
+7.329,57.616,78.631,American Steel,1952
+9.02,57.441,80.215,American Steel,1953
+6.281,47.165,83.788,American Steel,1954

@@ -1,0 +1,1 @@
+{"atol": 1e-07, "model_name": "squeezenet", "rtol": 0.001, "url": "onnx/backend/test/data/light/light_squeezenet.onnx"}

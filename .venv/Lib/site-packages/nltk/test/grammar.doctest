@@ -1,0 +1,69 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+===============
+Grammar Parsing
+===============
+
+Grammars can be parsed from strings:
+
+    >>> from nltk import CFG
+    >>> grammar = CFG.fromstring("""
+    ... S -> NP VP
+    ... PP -> P NP
+    ... NP -> Det N | NP PP
+    ... VP -> V NP | VP PP
+    ... Det -> 'a' | 'the'
+    ... N -> 'dog' | 'cat'
+    ... V -> 'chased' | 'sat'
+    ... P -> 'on' | 'in'
+    ... """)
+    >>> grammar
+    <Grammar with 14 productions>
+    >>> grammar.start()
+    S
+    >>> grammar.productions()
+    [S -> NP VP, PP -> P NP, NP -> Det N, NP -> NP PP, VP -> V NP, VP -> VP PP,
+    Det -> 'a', Det -> 'the', N -> 'dog', N -> 'cat', V -> 'chased', V -> 'sat',
+    P -> 'on', P -> 'in']
+
+Probabilistic CFGs:
+
+    >>> from nltk import PCFG
+    >>> toy_pcfg1 = PCFG.fromstring("""
+    ... S -> NP VP [1.0]
+    ... NP -> Det N [0.5] | NP PP [0.25] | 'John' [0.1] | 'I' [0.15]
+    ... Det -> 'the' [0.8] | 'my' [0.2]
+    ... N -> 'man' [0.5] | 'telescope' [0.5]
+    ... VP -> VP PP [0.1] | V NP [0.7] | V [0.2]
+    ... V -> 'ate' [0.35] | 'saw' [0.65]
+    ... PP -> P NP [1.0]
+    ... P -> 'with' [0.61] | 'under' [0.39]
+    ... """)
+
+Chomsky Normal Form grammar (Test for bug 474)
+
+    >>> g = CFG.fromstring("VP^<TOP> -> VBP NP^<VP-TOP>")
+    >>> g.productions()[0].lhs()
+    VP^<TOP>
+
+Grammars can contain both empty strings and empty productions:
+
+    >>> from nltk.grammar import CFG
+    >>> from nltk.parse.generate import generate
+    >>> grammar = CFG.fromstring("""
+    ... S -> A B
+    ... A -> 'a'
+    ... # An empty string:
+    ... B -> 'b' | ''
+    ... """)
+    >>> list(generate(grammar))
+    [['a', 'b'], ['a', '']]
+    >>> grammar = CFG.fromstring("""
+    ... S -> A B
+    ... A -> 'a'
+    ... # An empty production:
+    ... B -> 'b' |
+    ... """)
+    >>> list(generate(grammar))
+    [['a', 'b'], ['a']]

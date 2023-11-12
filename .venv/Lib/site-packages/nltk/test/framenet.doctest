@@ -1,0 +1,288 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+========
+FrameNet
+========
+
+The FrameNet corpus is a lexical database of English that is both human-
+and machine-readable, based on annotating examples of how words are used
+in actual texts. FrameNet is based on a theory of meaning called Frame
+Semantics, deriving from the work of Charles J. Fillmore and colleagues.
+The basic idea is straightforward: that the meanings of most words can
+best be understood on the basis of a semantic frame: a description of a
+type of event, relation, or entity and the participants in it. For
+example, the concept of cooking typically involves a person doing the
+cooking (Cook), the food that is to be cooked (Food), something to hold
+the food while cooking (Container) and a source of heat
+(Heating_instrument). In the FrameNet project, this is represented as a
+frame called Apply_heat, and the Cook, Food, Heating_instrument and
+Container are called frame elements (FEs). Words that evoke this frame,
+such as fry, bake, boil, and broil, are called lexical units (LUs) of
+the Apply_heat frame. The job of FrameNet is to define the frames
+and to annotate sentences to show how the FEs fit syntactically around
+the word that evokes the frame.
+
+------
+Frames
+------
+
+A Frame is a script-like conceptual structure that describes a
+particular type of situation, object, or event along with the
+participants and props that are needed for that Frame. For
+example, the "Apply_heat" frame describes a common situation
+involving a Cook, some Food, and a Heating_Instrument, and is
+evoked by words such as bake, blanch, boil, broil, brown,
+simmer, steam, etc.
+
+We call the roles of a Frame "frame elements" (FEs) and the
+frame-evoking words are called "lexical units" (LUs).
+
+FrameNet includes relations between Frames. Several types of
+relations are defined, of which the most important are:
+
+- Inheritance: An IS-A relation. The child frame is a subtype
+  of the parent frame, and each FE in the parent is bound to
+  a corresponding FE in the child. An example is the
+  "Revenge" frame which inherits from the
+  "Rewards_and_punishments" frame.
+
+- Using: The child frame presupposes the parent frame as
+  background, e.g the "Speed" frame "uses" (or presupposes)
+  the "Motion" frame; however, not all parent FEs need to be
+  bound to child FEs.
+
+- Subframe: The child frame is a subevent of a complex event
+  represented by the parent, e.g. the "Criminal_process" frame
+  has subframes of "Arrest", "Arraignment", "Trial", and
+  "Sentencing".
+
+- Perspective_on: The child frame provides a particular
+  perspective on an un-perspectivized parent frame. A pair of
+  examples consists of the "Hiring" and "Get_a_job" frames,
+  which perspectivize the "Employment_start" frame from the
+  Employer's and the Employee's point of view, respectively.
+
+To get a list of all of the Frames in FrameNet, you can use the
+`frames()` function. If you supply a regular expression pattern to the
+`frames()` function, you will get a list of all Frames whose names match
+that pattern:
+
+    >>> from pprint import pprint
+    >>> from operator import itemgetter
+    >>> from nltk.corpus import framenet as fn
+    >>> from nltk.corpus.reader.framenet import PrettyList
+    >>> x = fn.frames(r'(?i)crim')
+    >>> x.sort(key=itemgetter('ID'))
+    >>> x
+    [<frame ID=200 name=Criminal_process>, <frame ID=500 name=Criminal_investigation>, ...]
+    >>> PrettyList(sorted(x, key=itemgetter('ID')))
+    [<frame ID=200 name=Criminal_process>, <frame ID=500 name=Criminal_investigation>, ...]
+
+To get the details of a particular Frame, you can use the `frame()`
+function passing in the frame number:
+
+    >>> from pprint import pprint
+    >>> from nltk.corpus import framenet as fn
+    >>> f = fn.frame(202)
+    >>> f.ID
+    202
+    >>> f.name
+    'Arrest'
+    >>> f.definition
+    "Authorities charge a Suspect, who is under suspicion of having committed a crime..."
+    >>> len(f.lexUnit)
+    11
+    >>> pprint(sorted([x for x in f.FE]))
+    ['Authorities',
+     'Charges',
+     'Co-participant',
+     'Manner',
+     'Means',
+     'Offense',
+     'Place',
+     'Purpose',
+     'Source_of_legal_authority',
+     'Suspect',
+     'Time',
+     'Type']
+    >>> pprint(f.frameRelations)
+    [<Parent=Intentionally_affect -- Inheritance -> Child=Arrest>, <Complex=Criminal_process -- Subframe -> Component=Arrest>, ...]
+
+The `frame()` function shown above returns a dict object containing
+detailed information about the Frame. See the documentation on the
+`frame()` function for the specifics.
+
+You can also search for Frames by their Lexical Units (LUs). The
+`frames_by_lemma()` function returns a list of all frames that contain
+LUs in which the 'name' attribute of the LU matches the given regular
+expression. Note that LU names are composed of "lemma.POS", where the
+"lemma" part can be made up of either a single lexeme (e.g. 'run') or
+multiple lexemes (e.g. 'a little') (see below).
+
+    >>> PrettyList(sorted(fn.frames_by_lemma(r'(?i)a little'), key=itemgetter('ID')))
+    [<frame ID=189 name=Quanti...>, <frame ID=2001 name=Degree>]
+
+-------------
+Lexical Units
+-------------
+
+A lexical unit (LU) is a pairing of a word with a meaning. For
+example, the "Apply_heat" Frame describes a common situation
+involving a Cook, some Food, and a Heating Instrument, and is
+_evoked_ by words such as bake, blanch, boil, broil, brown,
+simmer, steam, etc. These frame-evoking words are the LUs in the
+Apply_heat frame. Each sense of a polysemous word is a different
+LU.
+
+We have used the word "word" in talking about LUs. The reality
+is actually rather complex. When we say that the word "bake" is
+polysemous, we mean that the lemma "bake.v" (which has the
+word-forms "bake", "bakes", "baked", and "baking") is linked to
+three different frames:
+
+- Apply_heat: "Michelle baked the potatoes for 45 minutes."
+
+- Cooking_creation: "Michelle baked her mother a cake for her birthday."
+
+- Absorb_heat: "The potatoes have to bake for more than 30 minutes."
+
+These constitute three different LUs, with different
+definitions.
+
+Multiword expressions such as "given name" and hyphenated words
+like "shut-eye" can also be LUs. Idiomatic phrases such as
+"middle of nowhere" and "give the slip (to)" are also defined as
+LUs in the appropriate frames ("Isolated_places" and "Evading",
+respectively), and their internal structure is not analyzed.
+
+Framenet provides multiple annotated examples of each sense of a
+word (i.e. each LU).  Moreover, the set of examples
+(approximately 20 per LU) illustrates all of the combinatorial
+possibilities of the lexical unit.
+
+Each LU is linked to a Frame, and hence to the other words which
+evoke that Frame. This makes the FrameNet database similar to a
+thesaurus, grouping together semantically similar words.
+
+In the simplest case, frame-evoking words are verbs such as
+"fried" in:
+
+   "Matilde fried the catfish in a heavy iron skillet."
+
+Sometimes event nouns may evoke a Frame. For example,
+"reduction" evokes "Cause_change_of_scalar_position" in:
+
+   "...the reduction of debt levels to $665 million from $2.6 billion."
+
+Adjectives may also evoke a Frame. For example, "asleep" may
+evoke the "Sleep" frame as in:
+
+   "They were asleep for hours."
+
+Many common nouns, such as artifacts like "hat" or "tower",
+typically serve as dependents rather than clearly evoking their
+own frames.
+
+Details for a specific lexical unit can be obtained using this class's
+`lus()` function, which takes an optional regular expression
+pattern that will be matched against the name of the lexical unit:
+
+    >>> from pprint import pprint
+    >>> PrettyList(sorted(fn.lus(r'(?i)a little'), key=itemgetter('ID')))
+    [<lu ID=14733 name=a little.n>, <lu ID=14743 name=a little.adv>, ...]
+
+You can obtain detailed information on a particular LU by calling the
+`lu()` function and passing in an LU's 'ID' number:
+
+    >>> from pprint import pprint
+    >>> from nltk.corpus import framenet as fn
+    >>> fn.lu(256).name
+    'foresee.v'
+    >>> fn.lu(256).definition
+    'COD: be aware of beforehand; predict.'
+    >>> fn.lu(256).frame.name
+    'Expectation'
+    >>> fn.lu(256).lexemes[0].name
+    'foresee'
+
+Note that LU names take the form of a dotted string (e.g. "run.v" or "a
+little.adv") in which a lemma precedes the "." and a part of speech
+(POS) follows the dot. The lemma may be composed of a single lexeme
+(e.g. "run") or of multiple lexemes (e.g. "a little"). The list of
+POSs used in the LUs is:
+
+v    - verb
+n    - noun
+a    - adjective
+adv  - adverb
+prep - preposition
+num  - numbers
+intj - interjection
+art  - article
+c    - conjunction
+scon - subordinating conjunction
+
+For more detailed information about the info that is contained in the
+dict that is returned by the `lu()` function, see the documentation on
+the `lu()` function.
+
+-------------------
+Annotated Documents
+-------------------
+
+The FrameNet corpus contains a small set of annotated documents. A list
+of these documents can be obtained by calling the `docs()` function:
+
+    >>> from pprint import pprint
+    >>> from nltk.corpus import framenet as fn
+    >>> d = fn.docs('BellRinging')[0]
+    >>> d.corpname
+    'PropBank'
+    >>> d.sentence[49]
+    full-text sentence (...) in BellRinging:
+    <BLANKLINE>
+    <BLANKLINE>
+    [POS] 17 tags
+    <BLANKLINE>
+    [POS_tagset] PENN
+    <BLANKLINE>
+    [text] + [annotationSet]
+    <BLANKLINE>
+    `` I live in hopes that the ringers themselves will be drawn into
+                 *****          *******                    *****
+                 Desir          Cause_t                    Cause
+                 [1]            [3]                        [2]
+    <BLANKLINE>
+     that fuller life .
+          ******
+          Comple
+          [4]
+     (Desir=Desiring, Cause_t=Cause_to_make_noise, Cause=Cause_motion, Comple=Completeness)
+    <BLANKLINE>
+
+    >>> d.sentence[49].annotationSet[1]
+    annotation set (...):
+    <BLANKLINE>
+    [status] MANUAL
+    <BLANKLINE>
+    [LU] (6605) hope.n in Desiring
+    <BLANKLINE>
+    [frame] (366) Desiring
+    <BLANKLINE>
+    [GF] 2 relations
+    <BLANKLINE>
+    [PT] 2 phrases
+    <BLANKLINE>
+    [text] + [Target] + [FE] + [Noun]
+    <BLANKLINE>
+    `` I live in hopes that the ringers themselves will be drawn into
+       - ^^^^ ^^ ***** ----------------------------------------------
+       E supp su       Event
+    <BLANKLINE>
+     that fuller life .
+    -----------------
+    <BLANKLINE>
+     (E=Experiencer, su=supp)
+    <BLANKLINE>
+    <BLANKLINE>

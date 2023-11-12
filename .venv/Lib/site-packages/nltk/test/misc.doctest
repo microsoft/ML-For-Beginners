@@ -1,0 +1,118 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+--------------------------------------------------------------------------------
+Unit tests for the miscellaneous sort functions.
+--------------------------------------------------------------------------------
+
+    >>> from copy import deepcopy
+    >>> from nltk.misc.sort import *
+
+A (very) small list of unsorted integers.
+
+    >>> test_data = [12, 67, 7, 28, 92, 56, 53, 720, 91, 57, 20, 20]
+
+Test each sorting method - each method returns the number of operations
+required to sort the data, and sorts in-place (desctructively - hence the need
+for multiple copies).
+
+    >>> sorted_data = deepcopy(test_data)
+    >>> selection(sorted_data)
+    66
+
+    >>> sorted_data
+    [7, 12, 20, 20, 28, 53, 56, 57, 67, 91, 92, 720]
+
+    >>> sorted_data = deepcopy(test_data)
+    >>> bubble(sorted_data)
+    30
+
+    >>> sorted_data
+    [7, 12, 20, 20, 28, 53, 56, 57, 67, 91, 92, 720]
+
+    >>> sorted_data = deepcopy(test_data)
+    >>> merge(sorted_data)
+    30
+
+    >>> sorted_data
+    [7, 12, 20, 20, 28, 53, 56, 57, 67, 91, 92, 720]
+
+    >>> sorted_data = deepcopy(test_data)
+    >>> quick(sorted_data)
+    13
+
+    >>> sorted_data
+    [7, 12, 20, 20, 28, 53, 56, 57, 67, 91, 92, 720]
+
+--------------------------------------------------------------------------------
+Unit tests for Wordfinder class
+--------------------------------------------------------------------------------
+
+    >>> import random
+
+    >>> # The following is not enough for reproducibility under Python 2/3
+    >>> # (see https://bugs.python.org/issue9025) so this test is skipped.
+    >>> random.seed(12345)
+
+    >>> from nltk.misc import wordfinder
+    >>> wordfinder.word_finder() # doctest: +SKIP
+    Word Finder
+    <BLANKLINE>
+    J V L A I R O T A T I S I V O D E R E T
+    H U U B E A R O E P O C S O R E T N E P
+    A D A U Z E E S R A P P A L L M E N T R
+    C X A D Q S Z T P E O R S N G P J A D E
+    I G Y K K T I A A R G F I D T E L C N S
+    R E C N B H T R L T N N B W N T A O A I
+    A Y I L O E I A M E I A A Y U R P L L D
+    G L T V S T S F E A D I P H D O O H N I
+    R L S E C I N I L R N N M E C G R U E A
+    A A Y G I C E N L L E O I G Q R T A E L
+    M R C E T I S T A E T L L E U A E N R L
+    O U O T A S E E C S O O N H Y P A T G Y
+    E M H O M M D R E S F P U L T H C F N V
+    L A C A I M A M A N L B R U T E D O M I
+    O R I L N E E E E E U A R S C R Y L I P
+    H T R K E S N N M S I L A S R E V I N U
+    T X T A A O U T K S E T A R R E S I B J
+    A E D L E L J I F O O R P E L K N I R W
+    K H A I D E Q O P R I C K T I M B E R P
+    Z K D O O H G N I H T U R V E Y D R O P
+    <BLANKLINE>
+    1: INTERCHANGER
+    2: TEARLESSNESS
+    3: UNIVERSALISM
+    4: DESENSITIZER
+    5: INTERMENTION
+    6: TRICHOCYSTIC
+    7: EXTRAMURALLY
+    8: VEGETOALKALI
+    9: PALMELLACEAE
+    10: AESTHETICISM
+    11: PETROGRAPHER
+    12: VISITATORIAL
+    13: OLEOMARGARIC
+    14: WRINKLEPROOF
+    15: PRICKTIMBER
+    16: PRESIDIALLY
+    17: SCITAMINEAE
+    18: ENTEROSCOPE
+    19: APPALLMENT
+    20: TURVEYDROP
+    21: THINGHOOD
+    22: BISERRATE
+    23: GREENLAND
+    24: BRUTEDOM
+    25: POLONIAN
+    26: ACOLHUAN
+    27: LAPORTEA
+    28: TENDING
+    29: TEREDO
+    30: MESOLE
+    31: UNLIMP
+    32: OSTARA
+    33: PILY
+    34: DUNT
+    35: ONYX
+    36: KATH
+    37: JUNE

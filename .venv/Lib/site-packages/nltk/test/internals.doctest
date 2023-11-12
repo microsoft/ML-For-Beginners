@@ -1,0 +1,161 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==========================================
+ Unit tests for the nltk.utilities module
+==========================================
+
+overridden()
+~~~~~~~~~~~~
+    >>> from nltk.internals import overridden
+
+The typical use case is in defining methods for an interface or
+abstract base class, in such a way that subclasses don't have to
+implement all of the methods:
+
+    >>> class EaterI(object):
+    ...     '''Subclass must define eat() or batch_eat().'''
+    ...     def eat(self, food):
+    ...         if overridden(self.batch_eat):
+    ...             return self.batch_eat([food])[0]
+    ...         else:
+    ...             raise NotImplementedError()
+    ...     def batch_eat(self, foods):
+    ...         return [self.eat(food) for food in foods]
+
+As long as a subclass implements one method, it will be used to
+perform the other method:
+
+    >>> class GoodEater1(EaterI):
+    ...     def eat(self, food):
+    ...         return 'yum'
+    >>> GoodEater1().eat('steak')
+    'yum'
+    >>> GoodEater1().batch_eat(['steak', 'peas'])
+    ['yum', 'yum']
+
+    >>> class GoodEater2(EaterI):
+    ...     def batch_eat(self, foods):
+    ...         return ['yum' for food in foods]
+    >>> GoodEater2().eat('steak')
+    'yum'
+    >>> GoodEater2().batch_eat(['steak', 'peas'])
+    ['yum', 'yum']
+
+But if a subclass doesn't implement either one, then they'll get an
+error when they try to call them.  (nb this is better than infinite
+recursion):
+
+    >>> class BadEater1(EaterI):
+    ...     pass
+    >>> BadEater1().eat('steak')
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+    >>> BadEater1().batch_eat(['steak', 'peas'])
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+
+Trying to use the abstract base class itself will also result in an
+error:
+
+    >>> class EaterI(EaterI):
+    ...     pass
+    >>> EaterI().eat('steak')
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+    >>> EaterI().batch_eat(['steak', 'peas'])
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+
+It's ok to use intermediate abstract classes:
+
+    >>> class AbstractEater(EaterI):
+    ...     pass
+
+    >>> class GoodEater3(AbstractEater):
+    ...     def eat(self, food):
+    ...         return 'yum'
+    ...
+    >>> GoodEater3().eat('steak')
+    'yum'
+    >>> GoodEater3().batch_eat(['steak', 'peas'])
+    ['yum', 'yum']
+
+    >>> class GoodEater4(AbstractEater):
+    ...     def batch_eat(self, foods):
+    ...         return ['yum' for food in foods]
+    >>> GoodEater4().eat('steak')
+    'yum'
+    >>> GoodEater4().batch_eat(['steak', 'peas'])
+    ['yum', 'yum']
+
+    >>> class BadEater2(AbstractEater):
+    ...     pass
+    >>> BadEater2().eat('steak')
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+    >>> BadEater2().batch_eat(['steak', 'peas'])
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+
+Here's some extra tests:
+
+    >>> class A(object):
+    ...     def f(x): pass
+    >>> class B(A):
+    ...     def f(x): pass
+    >>> class C(A): pass
+    >>> class D(B): pass
+
+    >>> overridden(A().f)
+    False
+    >>> overridden(B().f)
+    True
+    >>> overridden(C().f)
+    False
+    >>> overridden(D().f)
+    True
+
+It works for classic classes, too:
+
+    >>> class A:
+    ...     def f(x): pass
+    >>> class B(A):
+    ...     def f(x): pass
+    >>> class C(A): pass
+    >>> class D(B): pass
+    >>> overridden(A().f)
+    False
+    >>> overridden(B().f)
+    True
+    >>> overridden(C().f)
+    False
+    >>> overridden(D().f)
+    True
+
+
+read_str()
+~~~~~~~~~~~~
+    >>> from nltk.internals import read_str
+
+Test valid scenarios
+
+    >>> read_str("'valid string'", 0)
+    ('valid string', 14)
+
+Now test invalid scenarios
+
+    >>> read_str("should error", 0)
+    Traceback (most recent call last):
+    ...
+    nltk.internals.ReadError: Expected open quote at 0
+    >>> read_str("'should error", 0)
+    Traceback (most recent call last):
+    ...
+    nltk.internals.ReadError: Expected close quote at 1

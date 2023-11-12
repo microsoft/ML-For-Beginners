@@ -1,0 +1,190 @@
+=======================
+ CHILDES Corpus Readers
+=======================
+
+Read the XML version of the CHILDES corpus.
+
+Setup
+=====
+
+    >>> from nltk.test.childes_fixt import setup_module
+    >>> setup_module()
+
+How to use CHILDESCorpusReader
+==============================
+
+Read the CHILDESCorpusReader class and read the CHILDES corpus saved in
+the nltk_data directory.
+
+    >>> import nltk
+    >>> from nltk.corpus.reader import CHILDESCorpusReader
+    >>> corpus_root = nltk.data.find('corpora/childes/data-xml/Eng-USA-MOR/')
+
+Reading files in the Valian corpus (Valian, 1991).
+
+    >>> valian = CHILDESCorpusReader(corpus_root, 'Valian/.*.xml')
+    >>> valian.fileids()
+    ['Valian/01a.xml', 'Valian/01b.xml', 'Valian/02a.xml', 'Valian/02b.xml',...
+
+Count the number of files
+
+    >>> len(valian.fileids())
+    43
+
+Printing properties of the corpus files.
+
+    >>> corpus_data = valian.corpus(valian.fileids())
+    >>> print(corpus_data[0]['Lang'])
+    eng
+    >>> for key in sorted(corpus_data[0].keys()):
+    ...    print(key, ": ", corpus_data[0][key])
+    Corpus :  valian
+    Date :  1986-03-04
+    Id :  01a
+    Lang :  eng
+    Version :  2.0.1
+    {http://www.w3.org/2001/XMLSchema-instance}schemaLocation :  http://www.talkbank.org/ns/talkbank http://talkbank.org/software/talkbank.xsd
+
+Printing information of participants of the corpus. The most common codes for
+the participants are 'CHI' (target child), 'MOT' (mother), and 'INV' (investigator).
+
+    >>> corpus_participants = valian.participants(valian.fileids())
+    >>> for this_corpus_participants in corpus_participants[:2]:
+    ...     for key in sorted(this_corpus_participants.keys()):
+    ...         dct = this_corpus_participants[key]
+    ...         print(key, ": ", [(k, dct[k]) for k in sorted(dct.keys())])
+    CHI :  [('age', 'P2Y1M3D'), ('group', 'normal'), ('id', 'CHI'), ('language', 'eng'), ('role', 'Target_Child'), ('sex', 'female')]
+    INV :  [('id', 'INV'), ('language', 'eng'), ('role', 'Investigator')]
+    MOT :  [('id', 'MOT'), ('language', 'eng'), ('role', 'Mother')]
+    CHI :  [('age', 'P2Y1M12D'), ('group', 'normal'), ('id', 'CHI'), ('language', 'eng'), ('role', 'Target_Child'), ('sex', 'female')]
+    INV :  [('id', 'INV'), ('language', 'eng'), ('role', 'Investigator')]
+    MOT :  [('id', 'MOT'), ('language', 'eng'), ('role', 'Mother')]
+
+printing words.
+
+    >>> valian.words('Valian/01a.xml')
+    ['at', 'Parent', "Lastname's", 'house', 'with', 'Child', 'Lastname', ...
+
+printing sentences.
+
+    >>> valian.sents('Valian/01a.xml')
+    [['at', 'Parent', "Lastname's", 'house', 'with', 'Child', 'Lastname',
+      'and', 'it', 'is', 'March', 'fourth', 'I', 'believe', 'and', 'when',
+      'was', "Parent's", 'birthday'], ["Child's"], ['oh', "I'm", 'sorry'],
+      ["that's", 'okay'], ...
+
+You can specify the participants with the argument *speaker*.
+
+    >>> valian.words('Valian/01a.xml',speaker=['INV'])
+    ['at', 'Parent', "Lastname's", 'house', 'with', 'Child', 'Lastname', ...
+    >>> valian.words('Valian/01a.xml',speaker=['MOT'])
+    ["Child's", "that's", 'okay', 'February', 'first', 'nineteen', ...
+    >>> valian.words('Valian/01a.xml',speaker=['CHI'])
+    ['tape', 'it', 'up', 'and', 'two', 'tape', 'players', 'have',...
+
+
+tagged_words() and tagged_sents() return the usual (word,pos) tuple lists.
+POS tags in the CHILDES are automatically assigned by MOR and POST programs
+(MacWhinney, 2000).
+
+    >>> valian.tagged_words('Valian/01a.xml')[:30]
+    [('at', 'prep'), ('Parent', 'n:prop'), ("Lastname's", 'n:prop'), ('house', 'n'),
+    ('with', 'prep'), ('Child', 'n:prop'), ('Lastname', 'n:prop'), ('and', 'coord'),
+    ('it', 'pro'), ('is', 'v:cop'), ('March', 'n:prop'), ('fourth', 'adj'),
+    ('I', 'pro:sub'), ('believe', 'v'), ('and', 'coord'), ('when', 'adv:wh'),
+    ('was', 'v:cop'), ("Parent's", 'n:prop'), ('birthday', 'n'), ("Child's", 'n:prop'),
+    ('oh', 'co'), ("I'm", 'pro:sub'), ('sorry', 'adj'), ("that's", 'pro:dem'),
+    ('okay', 'adj'), ('February', 'n:prop'), ('first', 'adj'),
+    ('nineteen', 'det:num'), ('eighty', 'det:num'), ('four', 'det:num')]
+
+    >>> valian.tagged_sents('Valian/01a.xml')[:10]
+    [[('at', 'prep'), ('Parent', 'n:prop'), ("Lastname's", 'n:prop'), ('house', 'n'),
+    ('with', 'prep'), ('Child', 'n:prop'), ('Lastname', 'n:prop'), ('and', 'coord'),
+    ('it', 'pro'), ('is', 'v:cop'), ('March', 'n:prop'), ('fourth', 'adj'),
+    ('I', 'pro:sub'), ('believe', 'v'), ('and', 'coord'), ('when', 'adv:wh'),
+    ('was', 'v:cop'), ("Parent's", 'n:prop'), ('birthday', 'n')],
+    [("Child's", 'n:prop')], [('oh', 'co'), ("I'm", 'pro:sub'), ('sorry', 'adj')],
+    [("that's", 'pro:dem'), ('okay', 'adj')],
+    [('February', 'n:prop'), ('first', 'adj'), ('nineteen', 'det:num'),
+    ('eighty', 'det:num'), ('four', 'det:num')],
+    [('great', 'adj')],
+    [('and', 'coord'), ("she's", 'pro:sub'), ('two', 'det:num'), ('years', 'n'), ('old', 'adj')],
+    [('correct', 'adj')],
+    [('okay', 'co')], [('she', 'pro:sub'), ('just', 'adv:int'), ('turned', 'part'), ('two', 'det:num'),
+    ('a', 'det'), ('month', 'n'), ('ago', 'adv')]]
+
+When the argument *stem* is true, the word stems (e.g., 'is' -> 'be-3PS') are
+used instead of the original words.
+
+    >>> valian.words('Valian/01a.xml')[:30]
+    ['at', 'Parent', "Lastname's", 'house', 'with', 'Child', 'Lastname', 'and', 'it', 'is', ...
+    >>> valian.words('Valian/01a.xml',stem=True)[:30]
+    ['at', 'Parent', 'Lastname', 's', 'house', 'with', 'Child', 'Lastname', 'and', 'it', 'be-3S', ...
+
+When the argument *replace* is true, the replaced words are used instead of
+the original words.
+
+    >>> valian.words('Valian/01a.xml',speaker='CHI')[247]
+    'tikteat'
+    >>> valian.words('Valian/01a.xml',speaker='CHI',replace=True)[247]
+    'trick'
+
+When the argument *relation* is true, the relational relationships in the
+sentence are returned. See Sagae et al. (2010) for details of the relational
+structure adopted in the CHILDES.
+
+    >>> valian.words('Valian/01a.xml',relation=True)[:10]
+    [[('at', 'prep', '1|0|ROOT'), ('Parent', 'n', '2|5|VOC'), ('Lastname', 'n', '3|5|MOD'), ('s', 'poss', '4|5|MOD'), ('house', 'n', '5|1|POBJ'), ('with', 'prep', '6|1|JCT'), ('Child', 'n', '7|8|NAME'), ('Lastname', 'n', '8|6|POBJ'), ('and', 'coord', '9|8|COORD'), ('it', 'pro', '10|11|SUBJ'), ('be-3S', 'v', '11|9|COMP'), ('March', 'n', '12|11|PRED'), ('fourth', 'adj', '13|12|MOD'), ('I', 'pro', '15|16|SUBJ'), ('believe', 'v', '16|14|ROOT'), ('and', 'coord', '18|17|ROOT'), ('when', 'adv', '19|20|PRED'), ('be-PAST', 'v', '20|18|COMP'), ('Parent', 'n', '21|23|MOD'), ('s', 'poss', '22|23|MOD'), ('birth', 'n', '23|20|SUBJ')], [('Child', 'n', '1|2|MOD'), ('s', 'poss', '2|0|ROOT')], [('oh', 'co', '1|4|COM'), ('I', 'pro', '3|4|SUBJ'), ('be', 'v', '4|0|ROOT'), ('sorry', 'adj', '5|4|PRED')], [('that', 'pro', '1|2|SUBJ'), ('be', 'v', '2|0|ROOT'), ('okay', 'adj', '3|2|PRED')], [('February', 'n', '1|6|VOC'), ('first', 'adj', '2|6|ENUM'), ('nineteen', 'det', '4|6|ENUM'), ('eighty', 'det', '5|6|ENUM'), ('four', 'det', '6|0|ROOT')], [('great', 'adj', '1|0|ROOT')], [('and', 'coord', '1|0|ROOT'), ('she', 'pro', '2|1|ROOT'), ('be', 'aux', '3|5|AUX'), ('two', 'det', '4|5|QUANT'), ('year-PL', 'n', '5|2|ROOT'), ('old', 'adj', '6|5|MOD')], [('correct', 'adj', '1|0|ROOT')], [('okay', 'co', '1|0|ROOT')], [('she', 'pro', '1|0|ROOT'), ('just', 'adv', '2|3|JCT'), ('turn-PERF', 'part', '3|1|XCOMP'), ('two', 'det', '4|6|QUANT'), ('a', 'det', '5|6|DET'), ('month', 'n', '6|3|OBJ'), ('ago', 'adv', '7|3|JCT')]]
+
+Printing age. When the argument *month* is true, the age information in
+the CHILDES format is converted into the number of months.
+
+    >>> valian.age()
+    ['P2Y1M3D', 'P2Y1M12D', 'P1Y9M21D', 'P1Y9M28D', 'P2Y1M23D', ...
+    >>> valian.age('Valian/01a.xml')
+    ['P2Y1M3D']
+    >>> valian.age('Valian/01a.xml',month=True)
+    [25]
+
+Printing MLU. The criteria for the MLU computation is broadly based on
+Brown (1973).
+
+    >>> valian.MLU()
+    [2.3574660633484..., 2.292682926829..., 3.492857142857..., 2.961783439490...,
+     2.0842696629213..., 3.169811320754..., 3.137404580152..., 3.0578034682080...,
+     4.090163934426..., 3.488372093023..., 2.8773584905660..., 3.4792899408284...,
+     4.0111940298507..., 3.456790123456..., 4.487603305785..., 4.007936507936...,
+     5.25, 5.154696132596..., ...]
+
+    >>> valian.MLU('Valian/01a.xml')
+    [2.35746606334...]
+
+
+Basic stuff
+==============================
+
+Count the number of words and sentences of each file.
+
+    >>> valian = CHILDESCorpusReader(corpus_root, 'Valian/.*.xml')
+    >>> for this_file in valian.fileids()[:6]:
+    ...     print(valian.corpus(this_file)[0]['Corpus'], valian.corpus(this_file)[0]['Id'])
+    ...     print("num of words: %i" % len(valian.words(this_file)))
+    ...     print("num of sents: %i" % len(valian.sents(this_file)))
+    valian 01a
+    num of words: 3606
+    num of sents: 1027
+    valian 01b
+    num of words: 4376
+    num of sents: 1274
+    valian 02a
+    num of words: 2673
+    num of sents: 801
+    valian 02b
+    num of words: 5020
+    num of sents: 1583
+    valian 03a
+    num of words: 2743
+    num of sents: 988
+    valian 03b
+    num of words: 4409
+    num of sents: 1397

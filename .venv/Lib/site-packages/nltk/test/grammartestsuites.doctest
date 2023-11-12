@@ -1,0 +1,109 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==========================
+ Test Suites for Grammars
+==========================
+
+Sentences in the test suite are divided into two classes:
+
+- grammatical (*accept*) and
+- ungrammatical (*reject*).
+
+If a sentence should parse according to the grammar, the value of
+``trees`` will be a non-empty list. If a sentence should be rejected
+according to the grammar, then the value of ``trees`` will be ``None``.
+
+    >>> from nltk.parse import TestGrammar
+    >>> germantest1 = {}
+    >>> germantest1['doc'] = "Tests for person agreement"
+    >>> germantest1['accept'] = [
+    ... 'ich komme',
+    ... 'ich sehe mich',
+    ... 'du kommst',
+    ... 'du siehst mich',
+    ... 'sie kommt',
+    ... 'sie sieht mich',
+    ... 'ihr kommt',
+    ... 'wir kommen',
+    ... 'sie kommen',
+    ... 'du magst mich',
+    ... 'er mag mich',
+    ... 'du folgst mir',
+    ... 'sie hilft mir',
+    ... ]
+    >>> germantest1['reject'] = [
+    ... 'ich kommt',
+    ... 'ich kommst',
+    ... 'ich siehst mich',
+    ... 'du komme',
+    ... 'du sehe mich',
+    ... 'du kommt',
+    ... 'er komme',
+    ... 'er siehst mich',
+    ... 'wir komme',
+    ... 'wir kommst',
+    ... 'die Katzen kommst',
+    ... 'sie komme',
+    ... 'sie kommst',
+    ... 'du mag mich',
+    ... 'er magst mich',
+    ... 'du folgt mir',
+    ... 'sie hilfst mir',
+    ... ]
+    >>> germantest2 = {}
+    >>> germantest2['doc'] = "Tests for number agreement"
+    >>> germantest2['accept'] = [
+    ... 'der Hund kommt',
+    ... 'die Hunde kommen',
+    ... 'ich komme',
+    ... 'wir kommen',
+    ... 'ich sehe die Katzen',
+    ... 'ich folge den Katzen',
+    ... 'ich sehe die Katzen',
+    ... 'ich folge den Katzen',
+    ... 'wir sehen die Katzen',
+    ... 'wir folgen den Katzen'
+    ... ]
+    >>> germantest2['reject'] = [
+    ... 'ich kommen',
+    ... 'wir komme',
+    ... 'der Hunde kommt',
+    ... 'der Hunde kommen',
+    ... 'die Katzen kommt',
+    ... 'ich sehe der Hunde',
+    ... 'ich folge den Hund',
+    ... 'ich sehen der Hunde',
+    ... 'ich folgen den Hund',
+    ... 'wir sehe die Katzen',
+    ... 'wir folge den Katzen'
+    ... ]
+    >>> germantest3 = {}
+    >>> germantest3['doc'] = "Tests for case government and subcategorization"
+    >>> germantest3['accept'] = [
+    ... 'der Hund sieht mich',
+    ... 'der Hund kommt',
+    ... 'ich sehe den Hund',
+    ... 'ich helfe dem Hund',
+    ... ]
+    >>> germantest3['reject'] = [
+    ... 'ich sehe',
+    ... 'ich helfe',
+    ... 'ich komme den Hund',
+    ... 'ich sehe den Hund die Katzen',
+    ... 'du hilfst mich',
+    ... 'du siehst mir',
+    ... 'du siehst ich',
+    ... 'der Hunde kommt mich',
+    ... 'die Hunde sehe die Hunde',
+    ... 'der Hund sehe die Hunde',
+    ... 'ich hilft den Hund',
+    ... 'ich hilft der Hund',
+    ... 'ich sehe dem Hund',
+    ... ]
+    >>> germantestsuites = [germantest1, germantest2, germantest3]
+    >>> tester = TestGrammar('grammars/book_grammars/german.fcfg', germantestsuites)
+    >>> tester.run()
+    Tests for person agreement: All tests passed!
+    Tests for number agreement: All tests passed!
+    Tests for case government and subcategorization: All tests passed!

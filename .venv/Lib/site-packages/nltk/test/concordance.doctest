@@ -1,0 +1,75 @@
+.. Copyright (C) 2001-2016 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==================================
+Concordance Example
+==================================
+
+A concordance view shows us every occurrence of a given
+word, together with some context. Here we look up the word monstrous
+in Moby Dick by entering text1 followed by a period, then the term
+concordance, and then placing "monstrous" in parentheses:
+
+>>> from nltk.corpus import gutenberg
+>>> from nltk.text import Text
+>>> corpus = gutenberg.words('melville-moby_dick.txt')
+>>> text = Text(corpus)
+
+>>> text.concordance("monstrous")
+Displaying 11 of 11 matches:
+ong the former , one was of a most monstrous size . ... This came towards us ,
+ON OF THE PSALMS . " Touching that monstrous bulk of the whale or ork we have r
+ll over with a heathenish array of monstrous clubs and spears . Some were thick
+d as you gazed , and wondered what monstrous cannibal and savage could ever hav
+that has survived the flood ; most monstrous and most mountainous ! That Himmal
+they might scout at Moby Dick as a monstrous fable , or still worse and more de
+th of Radney .'" CHAPTER 55 Of the Monstrous Pictures of Whales . I shall ere l
+ing Scenes . In connexion with the monstrous pictures of whales , I am strongly
+ere to enter upon those still more monstrous stories of them which are to be fo
+ght have been rummaged out of this monstrous cabinet there is no telling . But
+of Whale - Bones ; for Whales of a monstrous size are oftentimes cast up dead u
+
+>>> text.concordance("monstrous")
+Displaying 11 of 11 matches:
+ong the former , one was of a most monstrous size . ... This came towards us ,
+ON OF THE PSALMS . " Touching that monstrous bulk of the whale or ork we have r
+ll over with a heathenish array of monstrous clubs and spears . Some were thick
+...
+
+We can also search for a multi-word phrase by passing a list of strings:
+
+>>> text.concordance(["monstrous", "size"])
+Displaying 2 of 2 matches:
+the former , one was of a most monstrous size . ... This came towards us , op
+Whale - Bones ; for Whales of a monstrous size are oftentimes cast up dead upo
+
+=================================
+Concordance List
+=================================
+
+Often we need to store the results of concordance for further usage.
+To do so, call the concordance function with the stdout argument set
+to false:
+
+>>> from nltk.corpus import gutenberg
+>>> from nltk.text import Text
+>>> corpus = gutenberg.words('melville-moby_dick.txt')
+>>> text = Text(corpus)
+>>> con_list = text.concordance_list("monstrous")
+>>> con_list[2].line
+'ll over with a heathenish array of monstrous clubs and spears . Some were thick'
+>>> len(con_list)
+11
+
+=================================
+Patching Issue #2088
+=================================
+
+Patching https://github.com/nltk/nltk/issues/2088
+The left slice of the left context should be clip to 0 if the `i-context` < 0.
+
+>>> from nltk import Text, word_tokenize
+>>> jane_eyre = 'Chapter 1\nTHERE was no possibility of taking a walk that day. We had been wandering, indeed, in the leafless shrubbery an hour in the morning; but since dinner (Mrs. Reed, when there was no company, dined early) the cold winter wind had brought with it clouds so sombre, and a rain so penetrating, that further outdoor exercise was now out of the question.'
+>>> text = Text(word_tokenize(jane_eyre))
+>>> text.concordance_list('taking')[0].left
+['Chapter', '1', 'THERE', 'was', 'no', 'possibility', 'of']

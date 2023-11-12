@@ -1,0 +1,13 @@
+*** Sat, 3 Sep 2016 22:22:28 ***
+OPTIMAL ENDOGENOUS LAGS FROM INFORMATION CRITERIA
+
+endogenous variables:     realcons realgdp realinv 
+deterministic variables:  S1 S2 S3 
+sample range:             [1961 Q3, 2009 Q3], T = 193
+
+optimal number of lags (searched up to 10 lags of levels):
+Akaike Info Criterion:    4            
+Final Prediction Error:   4            
+Hannan-Quinn Criterion:   2            
+Schwarz Criterion:        2            
+

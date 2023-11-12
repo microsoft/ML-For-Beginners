@@ -1,0 +1,13 @@
+*** Mon, 25 Jul 2016 11:46:09 ***
+TEST FOR GRANGER-CAUSALITY:
+H0: "Dp" do not Granger-cause "R"
+
+Test statistic l = 1.0026
+pval-F( l; 4, 180) = 0.4076 
+
+TEST FOR INSTANTANEOUS CAUSALITY:
+H0: No instantaneous causality between "Dp" and "R"
+
+Test statistic: c = 1.2890
+pval-Chi( c; 1) = 0.2562 
+

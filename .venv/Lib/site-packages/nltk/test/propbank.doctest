@@ -1,0 +1,176 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+========
+PropBank
+========
+
+The PropBank Corpus provides predicate-argument annotation for the
+entire Penn Treebank.  Each verb in the treebank is annotated by a single
+instance in PropBank, containing information about the location of
+the verb, and the location and identity of its arguments:
+
+    >>> from nltk.corpus import propbank
+    >>> pb_instances = propbank.instances()
+    >>> print(pb_instances)
+    [<PropbankInstance: wsj_0001.mrg, sent 0, word 8>,
+     <PropbankInstance: wsj_0001.mrg, sent 1, word 10>, ...]
+
+Each propbank instance defines the following member variables:
+
+  - Location information: `fileid`, `sentnum`, `wordnum`
+  - Annotator information: `tagger`
+  - Inflection information: `inflection`
+  - Roleset identifier: `roleset`
+  - Verb (aka predicate) location: `predicate`
+  - Argument locations and types: `arguments`
+
+The following examples show the types of these arguments:
+
+    >>> inst = pb_instances[103]
+    >>> (inst.fileid, inst.sentnum, inst.wordnum)
+    ('wsj_0004.mrg', 8, 16)
+    >>> inst.tagger
+    'gold'
+    >>> inst.inflection
+    <PropbankInflection: vp--a>
+    >>> infl = inst.inflection
+    >>> infl.form, infl.tense, infl.aspect, infl.person, infl.voice
+    ('v', 'p', '-', '-', 'a')
+    >>> inst.roleset
+    'rise.01'
+    >>> inst.predicate
+    PropbankTreePointer(16, 0)
+    >>> inst.arguments
+    ((PropbankTreePointer(0, 2), 'ARG1'),
+     (PropbankTreePointer(13, 1), 'ARGM-DIS'),
+     (PropbankTreePointer(17, 1), 'ARG4-to'),
+     (PropbankTreePointer(20, 1), 'ARG3-from'))
+
+The location of the predicate and of the arguments are encoded using
+`PropbankTreePointer` objects, as well as `PropbankChainTreePointer`
+objects and `PropbankSplitTreePointer` objects.  A
+`PropbankTreePointer` consists of a `wordnum` and a `height`:
+
+    >>> print(inst.predicate.wordnum, inst.predicate.height)
+    16 0
+
+This identifies the tree constituent that is headed by the word that
+is the `wordnum`\ 'th token in the sentence, and whose span is found
+by going `height` nodes up in the tree.  This type of pointer is only
+useful if we also have the corresponding tree structure, since it
+includes empty elements such as traces in the word number count.  The
+trees for 10% of the standard PropBank Corpus are contained in the
+`treebank` corpus:
+
+    >>> tree = inst.tree
+
+    >>> from nltk.corpus import treebank
+    >>> assert tree == treebank.parsed_sents(inst.fileid)[inst.sentnum]
+
+    >>> inst.predicate.select(tree)
+    Tree('VBD', ['rose'])
+    >>> for (argloc, argid) in inst.arguments:
+    ...     print('%-10s %s' % (argid, argloc.select(tree).pformat(500)[:50]))
+    ARG1       (NP-SBJ (NP (DT The) (NN yield)) (PP (IN on) (NP (
+    ARGM-DIS   (PP (IN for) (NP (NN example)))
+    ARG4-to    (PP-DIR (TO to) (NP (CD 8.04) (NN %)))
+    ARG3-from  (PP-DIR (IN from) (NP (CD 7.90) (NN %)))
+
+Propbank tree pointers can be converted to standard tree locations,
+which are usually easier to work with, using the `treepos()` method:
+
+    >>> treepos = inst.predicate.treepos(tree)
+    >>> print (treepos, tree[treepos])
+    (4, 0) (VBD rose)
+
+In some cases, argument locations will be encoded using
+`PropbankChainTreePointer`\ s (for trace chains) or
+`PropbankSplitTreePointer`\ s (for discontinuous constituents).  Both
+of these objects contain a single member variable, `pieces`,
+containing a list of the constituent pieces.  They also define the
+method `select()`, which will return a tree containing all the
+elements of the argument.  (A new head node is created, labeled
+"*CHAIN*" or "*SPLIT*", since the argument is not a single constituent
+in the original tree).  Sentence #6 contains an example of an argument
+that is both discontinuous and contains a chain:
+
+    >>> inst = pb_instances[6]
+    >>> inst.roleset
+    'expose.01'
+    >>> argloc, argid = inst.arguments[2]
+    >>> argloc
+    <PropbankChainTreePointer: 22:1,24:0,25:1*27:0>
+    >>> argloc.pieces
+    [<PropbankSplitTreePointer: 22:1,24:0,25:1>, PropbankTreePointer(27, 0)]
+    >>> argloc.pieces[0].pieces
+    ...
+    [PropbankTreePointer(22, 1), PropbankTreePointer(24, 0),
+     PropbankTreePointer(25, 1)]
+    >>> print(argloc.select(inst.tree))
+    (*CHAIN*
+      (*SPLIT* (NP (DT a) (NN group)) (IN of) (NP (NNS workers)))
+      (-NONE- *))
+
+The PropBank Corpus also provides access to the frameset files, which
+define the argument labels used by the annotations, on a per-verb
+basis.  Each frameset file contains one or more predicates, such as
+'turn' or 'turn_on', each of which is divided into coarse-grained word
+senses called rolesets.  For each roleset, the frameset file provides
+descriptions of the argument roles, along with examples.
+
+    >>> expose_01 = propbank.roleset('expose.01')
+    >>> turn_01 = propbank.roleset('turn.01')
+    >>> print(turn_01)
+    <Element 'roleset' at ...>
+    >>> for role in turn_01.findall("roles/role"):
+    ...     print(role.attrib['n'], role.attrib['descr'])
+    0 turner
+    1 thing turning
+    m direction, location
+
+    >>> from xml.etree import ElementTree
+    >>> print(ElementTree.tostring(turn_01.find('example')).decode('utf8').strip())
+    <example name="transitive agentive">
+      <text>
+      John turned the key in the lock.
+      </text>
+      <arg n="0">John</arg>
+      <rel>turned</rel>
+      <arg n="1">the key</arg>
+      <arg f="LOC" n="m">in the lock</arg>
+    </example>
+
+Note that the standard corpus distribution only contains 10% of the
+treebank, so the parse trees are not available for instances starting
+at 9353:
+
+    >>> inst = pb_instances[9352]
+    >>> inst.fileid
+    'wsj_0199.mrg'
+    >>> print(inst.tree)
+    (S (NP-SBJ (NNP Trinity)) (VP (VBD said) (SBAR (-NONE- 0) ...))
+    >>> print(inst.predicate.select(inst.tree))
+    (VB begin)
+
+    >>> inst = pb_instances[9353]
+    >>> inst.fileid
+    'wsj_0200.mrg'
+    >>> print(inst.tree)
+    None
+    >>> print(inst.predicate.select(inst.tree))
+    Traceback (most recent call last):
+      . . .
+    ValueError: Parse tree not available
+
+However, if you supply your own version of the treebank corpus (by
+putting it before the nltk-provided version on `nltk.data.path`, or
+by creating a `ptb` directory as described above and using the
+`propbank_ptb` module), then you can access the trees for all
+instances.
+
+A list of the verb lemmas contained in PropBank is returned by the
+`propbank.verbs()` method:
+
+    >>> propbank.verbs()
+    ['abandon', 'abate', 'abdicate', 'abet', 'abide', ...]

@@ -1,0 +1,65 @@
+*** Fri, 7 Oct 2016 13:03:06 ***
+PORTMANTEAU TEST (H0:Rh=(r1,...,rh)=0)
+Reference: Lütkepohl (1993), Introduction to Multiple Time Series Analysis, 2ed, p. 150.
+tested order:             16 
+test statistic:           109.2188 
+ p-value:                 0.4491  
+adjusted test statistic:  114.6298 
+ p-value:                 0.3130  
+degrees of freedom:       108.0000 
+
+*** Fri, 7 Oct 2016 13:03:06 ***
+LM-TYPE TEST FOR AUTOCORRELATION with 5 lags
+Reference: Doornik (1996), LM test and LMF test (with F-approximation)
+LM statistic:             50.8056 
+ p-value:                 0.2556  
+ df:                      45.0000 
+LMF statistic:            1.0662  
+ p-value:                 0.3614  
+ df1:                     45.0000 
+ df2:                     505.0000 
+
+*** Fri, 7 Oct 2016 13:03:06 ***
+TESTS FOR NONNORMALITY
+
+Reference: Doornik & Hansen (1994)
+joint test statistic:     78.5845 
+ p-value:                 0.0000  
+degrees of freedom:       6.0000  
+skewness only:            8.0544  
+ p-value:                 0.0449  
+kurtosis only:            70.5301 
+ p-value:                 0.0000  
+
+Reference: Lütkepohl (1993), Introduction to Multiple Time Series Analysis, 2ed, p. 153
+joint test statistic:     39.3298 
+ p-value:                 0.0000  
+degrees of freedom:       6.0000  
+skewness only:            2.7843  
+ p-value:                 0.4261  
+kurtosis only:            36.5456 
+ p-value:                 0.0000  
+
+*** Fri, 7 Oct 2016 13:03:06 ***
+JARQUE-BERA TEST
+
+variable        teststat   p-Value(Chi^2)  skewness   kurtosis  
+u1              19.9339    0.0000         -0.2845     4.4424   
+u2              5.8476     0.0537          0.2463     3.6802   
+u3              51.4284    0.0000         -0.3003     5.4169   
+
+*** Fri, 7 Oct 2016 13:03:06 ***
+ARCH-LM TEST with 16 lags
+
+variable        teststat   p-Value(Chi^2)  F stat     p-Value(F)
+u1              9.7285     0.8804          0.6422     0.8458   
+u2              22.5410    0.1266          1.6067     0.0718   
+u3              19.1264    0.2622          1.3349     0.1815   
+
+*** Fri, 7 Oct 2016 13:03:06 ***
+MULTIVARIATE ARCH-LM TEST with 5 lags
+
+VARCHLM test statistic:   285.2274 
+ p-value(chi^2):          0.0000  
+ degrees of freedom:      180.0000 
+

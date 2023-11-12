@@ -1,0 +1,202 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=============
+ Classifiers
+=============
+
+    >>> from nltk.test.classify_fixt import setup_module
+    >>> setup_module()
+
+Classifiers label tokens with category labels (or *class labels*).
+Typically, labels are represented with strings (such as ``"health"``
+or ``"sports"``.  In NLTK, classifiers are defined using classes that
+implement the `ClassifierI` interface, which supports the following operations:
+
+- self.classify(featureset)
+- self.classify_many(featuresets)
+- self.labels()
+- self.prob_classify(featureset)
+- self.prob_classify_many(featuresets)
+
+NLTK defines several classifier classes:
+
+- `ConditionalExponentialClassifier`
+- `DecisionTreeClassifier`
+- `MaxentClassifier`
+- `NaiveBayesClassifier`
+- `WekaClassifier`
+
+Classifiers are typically created by training them on a training
+corpus.
+
+
+Regression Tests
+~~~~~~~~~~~~~~~~
+
+We define a very simple training corpus with 3 binary features: ['a',
+'b', 'c'], and are two labels: ['x', 'y'].  We use a simple feature set so
+that the correct answers can be calculated analytically (although we
+haven't done this yet for all tests).
+
+    >>> import nltk
+    >>> train = [
+    ...     (dict(a=1,b=1,c=1), 'y'),
+    ...     (dict(a=1,b=1,c=1), 'x'),
+    ...     (dict(a=1,b=1,c=0), 'y'),
+    ...     (dict(a=0,b=1,c=1), 'x'),
+    ...     (dict(a=0,b=1,c=1), 'y'),
+    ...     (dict(a=0,b=0,c=1), 'y'),
+    ...     (dict(a=0,b=1,c=0), 'x'),
+    ...     (dict(a=0,b=0,c=0), 'x'),
+    ...     (dict(a=0,b=1,c=1), 'y'),
+    ...     (dict(a=None,b=1,c=0), 'x'),
+    ...     ]
+    >>> test = [
+    ...     (dict(a=1,b=0,c=1)), # unseen
+    ...     (dict(a=1,b=0,c=0)), # unseen
+    ...     (dict(a=0,b=1,c=1)), # seen 3 times, labels=y,y,x
+    ...     (dict(a=0,b=1,c=0)), # seen 1 time, label=x
+    ...     ]
+
+Test the Naive Bayes classifier:
+
+    >>> classifier = nltk.classify.NaiveBayesClassifier.train(train)
+    >>> sorted(classifier.labels())
+    ['x', 'y']
+    >>> classifier.classify_many(test)
+    ['y', 'x', 'y', 'x']
+    >>> for pdist in classifier.prob_classify_many(test):
+    ...     print('%.4f %.4f' % (pdist.prob('x'), pdist.prob('y')))
+    0.2500 0.7500
+    0.5833 0.4167
+    0.3571 0.6429
+    0.7000 0.3000
+    >>> classifier.show_most_informative_features()
+    Most Informative Features
+                           c = 0                   x : y      =      2.3 : 1.0
+                           c = 1                   y : x      =      1.8 : 1.0
+                           a = 1                   y : x      =      1.7 : 1.0
+                           a = 0                   x : y      =      1.0 : 1.0
+                           b = 0                   x : y      =      1.0 : 1.0
+                           b = 1                   x : y      =      1.0 : 1.0
+
+Test the Decision Tree classifier (without None):
+
+    >>> classifier = nltk.classify.DecisionTreeClassifier.train(
+    ...     train[:-1], entropy_cutoff=0,
+    ...     support_cutoff=0)
+    >>> sorted(classifier.labels())
+    ['x', 'y']
+    >>> print(classifier)
+    c=0? .................................................. x
+      a=0? ................................................ x
+      a=1? ................................................ y
+    c=1? .................................................. y
+    <BLANKLINE>
+    >>> classifier.classify_many(test)
+    ['y', 'y', 'y', 'x']
+    >>> for pdist in classifier.prob_classify_many(test):
+    ...     print('%.4f %.4f' % (pdist.prob('x'), pdist.prob('y')))
+    Traceback (most recent call last):
+      . . .
+    NotImplementedError
+
+
+Test the Decision Tree classifier (with None):
+
+    >>> classifier = nltk.classify.DecisionTreeClassifier.train(
+    ...     train, entropy_cutoff=0,
+    ...     support_cutoff=0)
+    >>> sorted(classifier.labels())
+    ['x', 'y']
+    >>> print(classifier)
+    c=0? .................................................. x
+      a=0? ................................................ x
+      a=1? ................................................ y
+      a=None? ............................................. x
+    c=1? .................................................. y
+    <BLANKLINE>
+
+
+Test SklearnClassifier, which requires the scikit-learn package.
+
+    >>> from nltk.classify import SklearnClassifier
+    >>> from sklearn.naive_bayes import BernoulliNB
+    >>> from sklearn.svm import SVC
+    >>> train_data = [({"a": 4, "b": 1, "c": 0}, "ham"),
+    ...               ({"a": 5, "b": 2, "c": 1}, "ham"),
+    ...               ({"a": 0, "b": 3, "c": 4}, "spam"),
+    ...               ({"a": 5, "b": 1, "c": 1}, "ham"),
+    ...               ({"a": 1, "b": 4, "c": 3}, "spam")]
+    >>> classif = SklearnClassifier(BernoulliNB()).train(train_data)
+    >>> test_data = [{"a": 3, "b": 2, "c": 1},
+    ...              {"a": 0, "b": 3, "c": 7}]
+    >>> classif.classify_many(test_data)
+    ['ham', 'spam']
+    >>> classif = SklearnClassifier(SVC(), sparse=False).train(train_data)
+    >>> classif.classify_many(test_data)
+    ['ham', 'spam']
+
+Test the Maximum Entropy classifier training algorithms; they should all
+generate the same results.
+
+    >>> def print_maxent_test_header():
+    ...     print(' '*11+''.join(['      test[%s]  ' % i
+    ...                           for i in range(len(test))]))
+    ...     print(' '*11+'     p(x)  p(y)'*len(test))
+    ...     print('-'*(11+15*len(test)))
+
+    >>> def test_maxent(algorithm):
+    ...     print('%11s' % algorithm, end=' ')
+    ...     try:
+    ...         classifier = nltk.classify.MaxentClassifier.train(
+    ...                         train, algorithm, trace=0, max_iter=1000)
+    ...     except Exception as e:
+    ...         print('Error: %r' % e)
+    ...         return
+    ...
+    ...     for featureset in test:
+    ...         pdist = classifier.prob_classify(featureset)
+    ...         print('%8.2f%6.2f' % (pdist.prob('x'), pdist.prob('y')), end=' ')
+    ...     print()
+
+    >>> print_maxent_test_header(); test_maxent('GIS'); test_maxent('IIS')
+                     test[0]        test[1]        test[2]        test[3]
+                    p(x)  p(y)     p(x)  p(y)     p(x)  p(y)     p(x)  p(y)
+    -----------------------------------------------------------------------
+            GIS     0.16  0.84     0.46  0.54     0.41  0.59     0.76  0.24
+            IIS     0.16  0.84     0.46  0.54     0.41  0.59     0.76  0.24
+
+    >>> test_maxent('MEGAM'); test_maxent('TADM') # doctest: +SKIP
+            MEGAM   0.16  0.84     0.46  0.54     0.41  0.59     0.76  0.24
+            TADM    0.16  0.84     0.46  0.54     0.41  0.59     0.76  0.24
+
+
+
+Regression tests for TypedMaxentFeatureEncoding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    >>> from nltk.classify import maxent
+    >>> train = [
+    ...     ({'a': 1, 'b': 1, 'c': 1}, 'y'),
+    ...     ({'a': 5, 'b': 5, 'c': 5}, 'x'),
+    ...     ({'a': 0.9, 'b': 0.9, 'c': 0.9}, 'y'),
+    ...     ({'a': 5.5, 'b': 5.4, 'c': 5.3}, 'x'),
+    ...     ({'a': 0.8, 'b': 1.2, 'c': 1}, 'y'),
+    ...     ({'a': 5.1, 'b': 4.9, 'c': 5.2}, 'x')
+    ... ]
+
+    >>> test = [
+    ...     {'a': 1, 'b': 0.8, 'c': 1.2},
+    ...     {'a': 5.2, 'b': 5.1, 'c': 5}
+    ... ]
+
+    >>> encoding = maxent.TypedMaxentFeatureEncoding.train(
+    ...     train, count_cutoff=3, alwayson_features=True)
+
+    >>> classifier = maxent.MaxentClassifier.train(
+    ...     train, bernoulli=False, encoding=encoding, trace=0)
+
+    >>> classifier.classify_many(test)
+    ['y', 'x']

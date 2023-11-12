@@ -1,0 +1,552 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==============================================
+Combinatory Categorial Grammar with semantics
+==============================================
+
+-----
+Chart
+-----
+
+
+    >>> from nltk.ccg import chart, lexicon
+    >>> from nltk.ccg.chart import printCCGDerivation
+
+No semantics
+-------------------
+
+    >>> lex = lexicon.fromstring('''
+    ...     :- S, NP, N
+    ...     She => NP
+    ...     has => (S\\NP)/NP
+    ...     books => NP
+    ...     ''',
+    ...     False)
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> parses = list(parser.parse("She has books".split()))
+    >>> print(str(len(parses)) + " parses")
+    3 parses
+
+    >>> printCCGDerivation(parses[0])
+     She      has      books
+     NP   ((S\NP)/NP)   NP
+         -------------------->
+                (S\NP)
+    -------------------------<
+                S
+
+    >>> printCCGDerivation(parses[1])
+     She      has      books
+     NP   ((S\NP)/NP)   NP
+    ----->T
+    (S/(S\NP))
+         -------------------->
+                (S\NP)
+    ------------------------->
+                S
+
+
+    >>> printCCGDerivation(parses[2])
+     She      has      books
+     NP   ((S\NP)/NP)   NP
+    ----->T
+    (S/(S\NP))
+    ------------------>B
+          (S/NP)
+    ------------------------->
+                S
+
+Simple semantics
+-------------------
+
+    >>> lex = lexicon.fromstring('''
+    ...     :- S, NP, N
+    ...     She => NP {she}
+    ...     has => (S\\NP)/NP {\\x y.have(y, x)}
+    ...     a => NP/N {\\P.exists z.P(z)}
+    ...     book => N {book}
+    ...     ''',
+    ...     True)
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> parses = list(parser.parse("She has a book".split()))
+    >>> print(str(len(parses)) + " parses")
+    7 parses
+
+    >>> printCCGDerivation(parses[0])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+                                            ------------------------------------->
+                                                    NP {exists z.book(z)}
+              ------------------------------------------------------------------->
+                             (S\NP) {\y.have(y,exists z.book(z))}
+    -----------------------------------------------------------------------------<
+                           S {have(she,exists z.book(z))}
+
+    >>> printCCGDerivation(parses[1])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+              --------------------------------------------------------->B
+                       ((S\NP)/N) {\P y.have(y,exists z.P(z))}
+              ------------------------------------------------------------------->
+                             (S\NP) {\y.have(y,exists z.book(z))}
+    -----------------------------------------------------------------------------<
+                           S {have(she,exists z.book(z))}
+
+    >>> printCCGDerivation(parses[2])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+    ---------->T
+    (S/(S\NP)) {\F.F(she)}
+                                            ------------------------------------->
+                                                    NP {exists z.book(z)}
+              ------------------------------------------------------------------->
+                             (S\NP) {\y.have(y,exists z.book(z))}
+    ----------------------------------------------------------------------------->
+                           S {have(she,exists z.book(z))}
+
+    >>> printCCGDerivation(parses[3])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+    ---------->T
+    (S/(S\NP)) {\F.F(she)}
+              --------------------------------------------------------->B
+                       ((S\NP)/N) {\P y.have(y,exists z.P(z))}
+              ------------------------------------------------------------------->
+                             (S\NP) {\y.have(y,exists z.book(z))}
+    ----------------------------------------------------------------------------->
+                           S {have(she,exists z.book(z))}
+
+    >>> printCCGDerivation(parses[4])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+    ---------->T
+    (S/(S\NP)) {\F.F(she)}
+    ---------------------------------------->B
+            (S/NP) {\x.have(she,x)}
+                                            ------------------------------------->
+                                                    NP {exists z.book(z)}
+    ----------------------------------------------------------------------------->
+                           S {have(she,exists z.book(z))}
+
+    >>> printCCGDerivation(parses[5])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+    ---------->T
+    (S/(S\NP)) {\F.F(she)}
+              --------------------------------------------------------->B
+                       ((S\NP)/N) {\P y.have(y,exists z.P(z))}
+    ------------------------------------------------------------------->B
+                    (S/N) {\P.have(she,exists z.P(z))}
+    ----------------------------------------------------------------------------->
+                           S {have(she,exists z.book(z))}
+
+    >>> printCCGDerivation(parses[6])
+       She                 has                           a                book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (NP/N) {\P.exists z.P(z)}  N {book}
+    ---------->T
+    (S/(S\NP)) {\F.F(she)}
+    ---------------------------------------->B
+            (S/NP) {\x.have(she,x)}
+    ------------------------------------------------------------------->B
+                    (S/N) {\P.have(she,exists z.P(z))}
+    ----------------------------------------------------------------------------->
+                           S {have(she,exists z.book(z))}
+
+Complex semantics
+-------------------
+
+    >>> lex = lexicon.fromstring('''
+    ...     :- S, NP, N
+    ...     She => NP {she}
+    ...     has => (S\\NP)/NP {\\x y.have(y, x)}
+    ...     a => ((S\\NP)\\((S\\NP)/NP))/N {\\P R x.(exists z.P(z) & R(z,x))}
+    ...     book => N {book}
+    ...     ''',
+    ...     True)
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> parses = list(parser.parse("She has a book".split()))
+    >>> print(str(len(parses)) + " parses")
+    2 parses
+
+    >>> printCCGDerivation(parses[0])
+       She                 has                                           a                                 book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (((S\NP)\((S\NP)/NP))/N) {\P R x.(exists z.P(z) & R(z,x))}  N {book}
+                                            ---------------------------------------------------------------------->
+                                                   ((S\NP)\((S\NP)/NP)) {\R x.(exists z.book(z) & R(z,x))}
+              ----------------------------------------------------------------------------------------------------<
+                                           (S\NP) {\x.(exists z.book(z) & have(x,z))}
+    --------------------------------------------------------------------------------------------------------------<
+                                         S {(exists z.book(z) & have(she,z))}
+
+    >>> printCCGDerivation(parses[1])
+       She                 has                                           a                                 book
+     NP {she}  ((S\NP)/NP) {\x y.have(y,x)}  (((S\NP)\((S\NP)/NP))/N) {\P R x.(exists z.P(z) & R(z,x))}  N {book}
+    ---------->T
+    (S/(S\NP)) {\F.F(she)}
+                                            ---------------------------------------------------------------------->
+                                                   ((S\NP)\((S\NP)/NP)) {\R x.(exists z.book(z) & R(z,x))}
+              ----------------------------------------------------------------------------------------------------<
+                                           (S\NP) {\x.(exists z.book(z) & have(x,z))}
+    -------------------------------------------------------------------------------------------------------------->
+                                         S {(exists z.book(z) & have(she,z))}
+
+Using conjunctions
+---------------------
+
+    # TODO: The semantics of "and" should have been more flexible
+    >>> lex = lexicon.fromstring('''
+    ...     :- S, NP, N
+    ...     I => NP {I}
+    ...     cook => (S\\NP)/NP {\\x y.cook(x,y)}
+    ...     and => var\\.,var/.,var {\\P Q x y.(P(x,y) & Q(x,y))}
+    ...     eat => (S\\NP)/NP {\\x y.eat(x,y)}
+    ...     the => NP/N {\\x.the(x)}
+    ...     bacon => N {bacon}
+    ...     ''',
+    ...     True)
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> parses = list(parser.parse("I cook and eat the bacon".split()))
+    >>> print(str(len(parses)) + " parses")
+    7 parses
+
+    >>> printCCGDerivation(parses[0])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+                                                                                                                               ------------------------------->
+                                                                                                                                       NP {the(bacon)}
+            -------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           (S\NP) {\y.(eat(the(bacon),y) & cook(the(bacon),y))}
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------<
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+    >>> printCCGDerivation(parses[1])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+            --------------------------------------------------------------------------------------------------------------------------------------->B
+                                                      ((S\NP)/N) {\x y.(eat(the(x),y) & cook(the(x),y))}
+            -------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           (S\NP) {\y.(eat(the(bacon),y) & cook(the(bacon),y))}
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------<
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+    >>> printCCGDerivation(parses[2])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+                                                                                                                               ------------------------------->
+                                                                                                                                       NP {the(bacon)}
+            -------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           (S\NP) {\y.(eat(the(bacon),y) & cook(the(bacon),y))}
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+    >>> printCCGDerivation(parses[3])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+            --------------------------------------------------------------------------------------------------------------------------------------->B
+                                                      ((S\NP)/N) {\x y.(eat(the(x),y) & cook(the(x),y))}
+            -------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           (S\NP) {\y.(eat(the(bacon),y) & cook(the(bacon),y))}
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+    >>> printCCGDerivation(parses[4])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+    --------------------------------------------------------------------------------------------------------------------------->B
+                                                (S/NP) {\x.(eat(x,I) & cook(x,I))}
+                                                                                                                               ------------------------------->
+                                                                                                                                       NP {the(bacon)}
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+    >>> printCCGDerivation(parses[5])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+            --------------------------------------------------------------------------------------------------------------------------------------->B
+                                                      ((S\NP)/N) {\x y.(eat(the(x),y) & cook(the(x),y))}
+    ----------------------------------------------------------------------------------------------------------------------------------------------->B
+                                                      (S/N) {\x.(eat(the(x),I) & cook(the(x),I))}
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+    >>> printCCGDerivation(parses[6])
+       I                 cook                                       and                                        eat                     the            bacon
+     NP {I}  ((S\NP)/NP) {\x y.cook(x,y)}  ((_var0\.,_var0)/.,_var0) {\P Q x y.(P(x,y) & Q(x,y))}  ((S\NP)/NP) {\x y.eat(x,y)}  (NP/N) {\x.the(x)}  N {bacon}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+                                          ------------------------------------------------------------------------------------->
+                                                        (((S\NP)/NP)\.,((S\NP)/NP)) {\Q x y.(eat(x,y) & Q(x,y))}
+            -------------------------------------------------------------------------------------------------------------------<
+                                                 ((S\NP)/NP) {\x y.(eat(x,y) & cook(x,y))}
+    --------------------------------------------------------------------------------------------------------------------------->B
+                                                (S/NP) {\x.(eat(x,I) & cook(x,I))}
+    ----------------------------------------------------------------------------------------------------------------------------------------------->B
+                                                      (S/N) {\x.(eat(the(x),I) & cook(the(x),I))}
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                                           S {(eat(the(bacon),I) & cook(the(bacon),I))}
+
+Tests from published papers
+------------------------------
+
+An example from "CCGbank: A Corpus of CCG Derivations and Dependency Structures Extracted from the Penn Treebank", Hockenmaier and Steedman, 2007, Page 359, https://www.aclweb.org/anthology/J/J07/J07-3004.pdf
+
+    >>> lex = lexicon.fromstring('''
+    ...     :- S, NP
+    ...     I => NP {I}
+    ...     give => ((S\\NP)/NP)/NP {\\x y z.give(y,x,z)}
+    ...     them => NP {them}
+    ...     money => NP {money}
+    ...     ''',
+    ...     True)
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> parses = list(parser.parse("I give them money".split()))
+    >>> print(str(len(parses)) + " parses")
+    3 parses
+
+    >>> printCCGDerivation(parses[0])
+       I                     give                     them       money
+     NP {I}  (((S\NP)/NP)/NP) {\x y z.give(y,x,z)}  NP {them}  NP {money}
+            -------------------------------------------------->
+                    ((S\NP)/NP) {\y z.give(y,them,z)}
+            -------------------------------------------------------------->
+                            (S\NP) {\z.give(money,them,z)}
+    ----------------------------------------------------------------------<
+                            S {give(money,them,I)}
+
+    >>> printCCGDerivation(parses[1])
+       I                     give                     them       money
+     NP {I}  (((S\NP)/NP)/NP) {\x y z.give(y,x,z)}  NP {them}  NP {money}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+            -------------------------------------------------->
+                    ((S\NP)/NP) {\y z.give(y,them,z)}
+            -------------------------------------------------------------->
+                            (S\NP) {\z.give(money,them,z)}
+    ---------------------------------------------------------------------->
+                            S {give(money,them,I)}
+
+
+    >>> printCCGDerivation(parses[2])
+       I                     give                     them       money
+     NP {I}  (((S\NP)/NP)/NP) {\x y z.give(y,x,z)}  NP {them}  NP {money}
+    -------->T
+    (S/(S\NP)) {\F.F(I)}
+            -------------------------------------------------->
+                    ((S\NP)/NP) {\y z.give(y,them,z)}
+    ---------------------------------------------------------->B
+                    (S/NP) {\y.give(y,them,I)}
+    ---------------------------------------------------------------------->
+                            S {give(money,them,I)}
+
+
+An example from "CCGbank: A Corpus of CCG Derivations and Dependency Structures Extracted from the Penn Treebank", Hockenmaier and Steedman, 2007, Page 359, https://www.aclweb.org/anthology/J/J07/J07-3004.pdf
+
+    >>> lex = lexicon.fromstring('''
+    ...     :- N, NP, S
+    ...     money => N {money}
+    ...     that => (N\\N)/(S/NP) {\\P Q x.(P(x) & Q(x))}
+    ...     I => NP {I}
+    ...     give => ((S\\NP)/NP)/NP {\\x y z.give(y,x,z)}
+    ...     them => NP {them}
+    ...     ''',
+    ...     True)
+
+    >>> parser = chart.CCGChartParser(lex, chart.DefaultRuleSet)
+    >>> parses = list(parser.parse("money that I give them".split()))
+    >>> print(str(len(parses)) + " parses")
+    3 parses
+
+    >>> printCCGDerivation(parses[0])
+       money                    that                     I                     give                     them
+     N {money}  ((N\N)/(S/NP)) {\P Q x.(P(x) & Q(x))}  NP {I}  (((S\NP)/NP)/NP) {\x y z.give(y,x,z)}  NP {them}
+                                                      -------->T
+                                                (S/(S\NP)) {\F.F(I)}
+                                                              -------------------------------------------------->
+                                                                      ((S\NP)/NP) {\y z.give(y,them,z)}
+                                                      ---------------------------------------------------------->B
+                                                                      (S/NP) {\y.give(y,them,I)}
+               ------------------------------------------------------------------------------------------------->
+                                             (N\N) {\Q x.(give(x,them,I) & Q(x))}
+    ------------------------------------------------------------------------------------------------------------<
+                                         N {\x.(give(x,them,I) & money(x))}
+
+    >>> printCCGDerivation(parses[1])
+       money                    that                     I                     give                     them
+     N {money}  ((N\N)/(S/NP)) {\P Q x.(P(x) & Q(x))}  NP {I}  (((S\NP)/NP)/NP) {\x y z.give(y,x,z)}  NP {them}
+    ----------->T
+    (N/(N\N)) {\F.F(money)}
+                                                      -------->T
+                                                (S/(S\NP)) {\F.F(I)}
+                                                              -------------------------------------------------->
+                                                                      ((S\NP)/NP) {\y z.give(y,them,z)}
+                                                      ---------------------------------------------------------->B
+                                                                      (S/NP) {\y.give(y,them,I)}
+               ------------------------------------------------------------------------------------------------->
+                                             (N\N) {\Q x.(give(x,them,I) & Q(x))}
+    ------------------------------------------------------------------------------------------------------------>
+                                         N {\x.(give(x,them,I) & money(x))}
+
+    >>> printCCGDerivation(parses[2])
+       money                    that                     I                     give                     them
+     N {money}  ((N\N)/(S/NP)) {\P Q x.(P(x) & Q(x))}  NP {I}  (((S\NP)/NP)/NP) {\x y z.give(y,x,z)}  NP {them}
+    ----------->T
+    (N/(N\N)) {\F.F(money)}
+    -------------------------------------------------->B
+           (N/(S/NP)) {\P x.(P(x) & money(x))}
+                                                      -------->T
+                                                (S/(S\NP)) {\F.F(I)}
+                                                              -------------------------------------------------->
+                                                                      ((S\NP)/NP) {\y z.give(y,them,z)}
+                                                      ---------------------------------------------------------->B
+                                                                      (S/NP) {\y.give(y,them,I)}
+    ------------------------------------------------------------------------------------------------------------>
+                                         N {\x.(give(x,them,I) & money(x))}
+
+
+-------
+Lexicon
+-------
+
+    >>> from nltk.ccg import lexicon
+
+Parse lexicon with semantics
+
+    >>> print(str(lexicon.fromstring(
+    ...     '''
+    ...     :- S,NP
+    ...
+    ...     IntransVsg :: S\\NP[sg]
+    ...
+    ...     sleeps => IntransVsg {\\x.sleep(x)}
+    ...     eats => S\\NP[sg]/NP {\\x y.eat(x,y)}
+    ...
+    ...     and => var\\var/var {\\x y.x & y}
+    ...     ''',
+    ...     True
+    ... )))
+    and => ((_var0\_var0)/_var0) {(\x y.x & y)}
+    eats => ((S\NP['sg'])/NP) {\x y.eat(x,y)}
+    sleeps => (S\NP['sg']) {\x.sleep(x)}
+
+Parse lexicon without semantics
+
+    >>> print(str(lexicon.fromstring(
+    ...     '''
+    ...     :- S,NP
+    ...
+    ...     IntransVsg :: S\\NP[sg]
+    ...
+    ...     sleeps => IntransVsg
+    ...     eats => S\\NP[sg]/NP {sem=\\x y.eat(x,y)}
+    ...
+    ...     and => var\\var/var
+    ...     ''',
+    ...     False
+    ... )))
+    and => ((_var0\_var0)/_var0)
+    eats => ((S\NP['sg'])/NP)
+    sleeps => (S\NP['sg'])
+
+Semantics are missing
+
+    >>> print(str(lexicon.fromstring(
+    ...     '''
+    ...     :- S,NP
+    ...
+    ...     eats => S\\NP[sg]/NP
+    ...     ''',
+    ...     True
+    ... )))
+    Traceback (most recent call last):
+      ...
+    AssertionError: eats => S\NP[sg]/NP must contain semantics because include_semantics is set to True
+
+
+------------------------------------
+CCG combinator semantics computation
+------------------------------------
+
+    >>> from nltk.sem.logic import *
+    >>> from nltk.ccg.logic import *
+
+    >>> read_expr = Expression.fromstring
+
+Compute semantics from function application
+
+    >>> print(str(compute_function_semantics(read_expr(r'\x.P(x)'), read_expr(r'book'))))
+    P(book)
+
+    >>> print(str(compute_function_semantics(read_expr(r'\P.P(book)'), read_expr(r'read'))))
+    read(book)
+
+    >>> print(str(compute_function_semantics(read_expr(r'\P.P(book)'), read_expr(r'\x.read(x)'))))
+    read(book)
+
+Compute semantics from composition
+
+    >>> print(str(compute_composition_semantics(read_expr(r'\x.P(x)'), read_expr(r'\x.Q(x)'))))
+    \x.P(Q(x))
+
+    >>> print(str(compute_composition_semantics(read_expr(r'\x.P(x)'), read_expr(r'read'))))
+    Traceback (most recent call last):
+      ...
+    AssertionError: `read` must be a lambda expression
+
+Compute semantics from substitution
+
+    >>> print(str(compute_substitution_semantics(read_expr(r'\x y.P(x,y)'), read_expr(r'\x.Q(x)'))))
+    \x.P(x,Q(x))
+
+    >>> print(str(compute_substitution_semantics(read_expr(r'\x.P(x)'), read_expr(r'read'))))
+    Traceback (most recent call last):
+      ...
+    AssertionError: `\x.P(x)` must be a lambda expression with 2 arguments
+
+Compute type-raise semantics
+
+    >>> print(str(compute_type_raised_semantics(read_expr(r'\x.P(x)'))))
+    \F x.F(P(x))
+
+    >>> print(str(compute_type_raised_semantics(read_expr(r'\x.F(x)'))))
+    \F1 x.F1(F(x))
+
+    >>> print(str(compute_type_raised_semantics(read_expr(r'\x y z.P(x,y,z)'))))
+    \F x y z.F(P(x,y,z))

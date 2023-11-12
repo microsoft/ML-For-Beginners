@@ -1,0 +1,78 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+===============================================
+Generating sentences from context-free grammars
+===============================================
+
+An example grammar:
+
+    >>> from nltk.parse.generate import generate, demo_grammar
+    >>> from nltk import CFG
+    >>> grammar = CFG.fromstring(demo_grammar)
+    >>> print(grammar)
+    Grammar with 13 productions (start state = S)
+        S -> NP VP
+        NP -> Det N
+        PP -> P NP
+        VP -> 'slept'
+        VP -> 'saw' NP
+        VP -> 'walked' PP
+        Det -> 'the'
+        Det -> 'a'
+        N -> 'man'
+        N -> 'park'
+        N -> 'dog'
+        P -> 'in'
+        P -> 'with'
+
+The first 10 generated sentences:
+
+    >>> for sentence in generate(grammar, n=10):
+    ...     print(' '.join(sentence))
+    the man slept
+    the man saw the man
+    the man saw the park
+    the man saw the dog
+    the man saw a man
+    the man saw a park
+    the man saw a dog
+    the man walked in the man
+    the man walked in the park
+    the man walked in the dog
+
+All sentences of max depth 4:
+
+    >>> for sentence in generate(grammar, depth=4):
+    ...     print(' '.join(sentence))
+    the man slept
+    the park slept
+    the dog slept
+    a man slept
+    a park slept
+    a dog slept
+
+The number of sentences of different max depths:
+
+    >>> len(list(generate(grammar, depth=3)))
+    0
+    >>> len(list(generate(grammar, depth=4)))
+    6
+    >>> len(list(generate(grammar, depth=5)))
+    42
+    >>> len(list(generate(grammar, depth=6)))
+    114
+    >>> len(list(generate(grammar)))
+    114
+
+Infinite grammars will throw a RecursionError when not bounded by some ``depth``:
+
+    >>> grammar = CFG.fromstring("""
+    ... S -> A B
+    ... A -> B
+    ... B -> "b" | A
+    ... """)
+    >>> list(generate(grammar))
+    Traceback (most recent call last):
+    ...
+    RuntimeError: The grammar has rule(s) that yield infinite recursion!

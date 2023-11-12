@@ -1,0 +1,13 @@
+*** Sat, 3 Sep 2016 22:32:35 ***
+TEST FOR GRANGER-CAUSALITY:
+H0: "realgdp, realinv" do not Granger-cause "realcons"
+
+Test statistic l = 3.1404
+pval-F( l; 8, 555) = 0.0017 
+
+TEST FOR INSTANTANEOUS CAUSALITY:
+H0: No instantaneous causality between "realgdp, realinv" and "realcons"
+
+Test statistic: c = 71.0006
+pval-Chi( c; 2) = 0.0000 
+

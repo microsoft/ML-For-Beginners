@@ -1,0 +1,397 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+    >>> from nltk.tokenize import *
+
+Regression Tests: NLTKWordTokenizer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tokenizing some test strings.
+
+    >>> s1 = "On a $50,000 mortgage of 30 years at 8 percent, the monthly payment would be $366.88."
+    >>> word_tokenize(s1)
+    ['On', 'a', '$', '50,000', 'mortgage', 'of', '30', 'years', 'at', '8', 'percent', ',', 'the', 'monthly', 'payment', 'would', 'be', '$', '366.88', '.']
+    >>> s2 = "\"We beat some pretty good teams to get here,\" Slocum said."
+    >>> word_tokenize(s2)
+    ['``', 'We', 'beat', 'some', 'pretty', 'good', 'teams', 'to', 'get', 'here', ',', "''", 'Slocum', 'said', '.']
+    >>> s3 = "Well, we couldn't have this predictable, cliche-ridden, \"Touched by an Angel\" (a show creator John Masius worked on) wanna-be if she didn't."
+    >>> word_tokenize(s3)
+    ['Well', ',', 'we', 'could', "n't", 'have', 'this', 'predictable', ',', 'cliche-ridden', ',', '``', 'Touched', 'by', 'an', 'Angel', "''", '(', 'a', 'show', 'creator', 'John', 'Masius', 'worked', 'on', ')', 'wanna-be', 'if', 'she', 'did', "n't", '.']
+    >>> s4 = "I cannot cannot work under these conditions!"
+    >>> word_tokenize(s4)
+    ['I', 'can', 'not', 'can', 'not', 'work', 'under', 'these', 'conditions', '!']
+    >>> s5 = "The company spent $30,000,000 last year."
+    >>> word_tokenize(s5)
+    ['The', 'company', 'spent', '$', '30,000,000', 'last', 'year', '.']
+    >>> s6 = "The company spent 40.75% of its income last year."
+    >>> word_tokenize(s6)
+    ['The', 'company', 'spent', '40.75', '%', 'of', 'its', 'income', 'last', 'year', '.']
+    >>> s7 = "He arrived at 3:00 pm."
+    >>> word_tokenize(s7)
+    ['He', 'arrived', 'at', '3:00', 'pm', '.']
+    >>> s8 = "I bought these items: books, pencils, and pens."
+    >>> word_tokenize(s8)
+    ['I', 'bought', 'these', 'items', ':', 'books', ',', 'pencils', ',', 'and', 'pens', '.']
+    >>> s9 = "Though there were 150, 100 of them were old."
+    >>> word_tokenize(s9)
+    ['Though', 'there', 'were', '150', ',', '100', 'of', 'them', 'were', 'old', '.']
+    >>> s10 = "There were 300,000, but that wasn't enough."
+    >>> word_tokenize(s10)
+    ['There', 'were', '300,000', ',', 'but', 'that', 'was', "n't", 'enough', '.']
+    >>> s11 = "It's more'n enough."
+    >>> word_tokenize(s11)
+    ['It', "'s", 'more', "'n", 'enough', '.']
+
+Gathering the spans of the tokenized strings.
+
+    >>> s = '''Good muffins cost $3.88\nin New (York).  Please (buy) me\ntwo of them.\n(Thanks).'''
+    >>> expected = [(0, 4), (5, 12), (13, 17), (18, 19), (19, 23),
+    ... (24, 26), (27, 30), (31, 32), (32, 36), (36, 37), (37, 38),
+    ... (40, 46), (47, 48), (48, 51), (51, 52), (53, 55), (56, 59),
+    ... (60, 62), (63, 68), (69, 70), (70, 76), (76, 77), (77, 78)]
+    >>> list(NLTKWordTokenizer().span_tokenize(s)) == expected
+    True
+    >>> expected = ['Good', 'muffins', 'cost', '$', '3.88', 'in',
+    ... 'New', '(', 'York', ')', '.', 'Please', '(', 'buy', ')',
+    ... 'me', 'two', 'of', 'them.', '(', 'Thanks', ')', '.']
+    >>> [s[start:end] for start, end in NLTKWordTokenizer().span_tokenize(s)] == expected
+    True
+
+    >>> s = '''I said, "I'd like to buy some ''good muffins" which cost $3.88\n each in New (York)."'''
+    >>> expected = [(0, 1), (2, 6), (6, 7), (8, 9), (9, 10), (10, 12),
+    ... (13, 17), (18, 20), (21, 24), (25, 29), (30, 32), (32, 36),
+    ... (37, 44), (44, 45), (46, 51), (52, 56), (57, 58), (58, 62),
+    ... (64, 68), (69, 71), (72, 75), (76, 77), (77, 81), (81, 82),
+    ... (82, 83), (83, 84)]
+    >>> list(NLTKWordTokenizer().span_tokenize(s)) == expected
+    True
+    >>> expected = ['I', 'said', ',', '"', 'I', "'d", 'like', 'to',
+    ... 'buy', 'some', "''", "good", 'muffins', '"', 'which', 'cost',
+    ... '$', '3.88', 'each', 'in', 'New', '(', 'York', ')', '.', '"']
+    >>> [s[start:end] for start, end in NLTKWordTokenizer().span_tokenize(s)] == expected
+    True
+
+Testing improvement made to the TreebankWordTokenizer
+
+    >>> sx1 = '\xabNow that I can do.\xbb'
+    >>> expected = ['\xab', 'Now', 'that', 'I', 'can', 'do', '.', '\xbb']
+    >>> word_tokenize(sx1) == expected
+    True
+    >>> sx2 = 'The unicode 201C and 201D \u201cLEFT(RIGHT) DOUBLE QUOTATION MARK\u201d is also OPEN_PUNCT and CLOSE_PUNCT.'
+    >>> expected = ['The', 'unicode', '201C', 'and', '201D', '\u201c', 'LEFT', '(', 'RIGHT', ')', 'DOUBLE', 'QUOTATION', 'MARK', '\u201d', 'is', 'also', 'OPEN_PUNCT', 'and', 'CLOSE_PUNCT', '.']
+    >>> word_tokenize(sx2) == expected
+    True
+
+
+Testing treebank's detokenizer
+
+    >>> from nltk.tokenize.treebank import TreebankWordDetokenizer
+    >>> detokenizer = TreebankWordDetokenizer()
+    >>> s = "On a $50,000 mortgage of 30 years at 8 percent, the monthly payment would be $366.88."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'On a $50,000 mortgage of 30 years at 8 percent, the monthly payment would be $366.88.'
+    >>> s = "\"We beat some pretty good teams to get here,\" Slocum said."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    '"We beat some pretty good teams to get here," Slocum said.'
+    >>> s = "Well, we couldn't have this predictable, cliche-ridden, \"Touched by an Angel\" (a show creator John Masius worked on) wanna-be if she didn't."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'Well, we couldn\'t have this predictable, cliche-ridden, "Touched by an Angel" (a show creator John Masius worked on) wanna-be if she didn\'t.'
+    >>> s = "I cannot cannot work under these conditions!"
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'I cannot cannot work under these conditions!'
+    >>> s = "The company spent $30,000,000 last year."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'The company spent $30,000,000 last year.'
+    >>> s = "The company spent 40.75% of its income last year."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'The company spent 40.75% of its income last year.'
+    >>> s = "He arrived at 3:00 pm."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'He arrived at 3:00 pm.'
+    >>> s = "I bought these items: books, pencils, and pens."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'I bought these items: books, pencils, and pens.'
+    >>> s = "Though there were 150, 100 of them were old."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'Though there were 150, 100 of them were old.'
+    >>> s = "There were 300,000, but that wasn't enough."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    "There were 300,000, but that wasn't enough."
+    >>> s = 'How "are" you?'
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'How "are" you?'
+    >>> s = "Hello (world)"
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'Hello (world)'
+    >>> s = '<A sentence> with (many) [kinds] of {parentheses}. "Sometimes it\'s inside (quotes)". ("Sometimes the otherway around").'
+    >>> detokenizer.detokenize(word_tokenize(s))
+    '<A sentence> with (many) [kinds] of {parentheses}. "Sometimes it\'s inside (quotes)". ("Sometimes the otherway around").'
+    >>> s = "Sentence ending with (parentheses)"
+    >>> detokenizer.detokenize(word_tokenize(s))
+    'Sentence ending with (parentheses)'
+    >>> s = "(Sentence) starting with parentheses."
+    >>> detokenizer.detokenize(word_tokenize(s))
+    '(Sentence) starting with parentheses.'
+    >>> s = "I've"
+    >>> detokenizer.detokenize(word_tokenize(s))
+    "I've"
+    >>> s = "Don't"
+    >>> detokenizer.detokenize(word_tokenize(s))
+    "Don't"
+    >>> s = "I'd"
+    >>> detokenizer.detokenize(word_tokenize(s))
+    "I'd"
+
+
+Sentence tokenization in word_tokenize:
+
+    >>> s11 = "I called Dr. Jones. I called Dr. Jones."
+    >>> word_tokenize(s11)
+    ['I', 'called', 'Dr.', 'Jones', '.', 'I', 'called', 'Dr.', 'Jones', '.']
+    >>> s12 = ("Ich muss unbedingt daran denken, Mehl, usw. fur einen "
+    ...        "Kuchen einzukaufen. Ich muss.")
+    >>> word_tokenize(s12)
+    ['Ich', 'muss', 'unbedingt', 'daran', 'denken', ',', 'Mehl', ',', 'usw',
+     '.', 'fur', 'einen', 'Kuchen', 'einzukaufen', '.', 'Ich', 'muss', '.']
+    >>> word_tokenize(s12, 'german')
+    ['Ich', 'muss', 'unbedingt', 'daran', 'denken', ',', 'Mehl', ',', 'usw.',
+     'fur', 'einen', 'Kuchen', 'einzukaufen', '.', 'Ich', 'muss', '.']
+
+
+Regression Tests: Regexp Tokenizer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some additional test strings.
+
+    >>> s = ("Good muffins cost $3.88\nin New York.  Please buy me\n"
+    ...      "two of them.\n\nThanks.")
+    >>> s2 = ("Alas, it has not rained today. When, do you think, "
+    ...       "will it rain again?")
+    >>> s3 = ("<p>Although this is <b>not</b> the case here, we must "
+    ...       "not relax our vigilance!</p>")
+
+    >>> regexp_tokenize(s2, r'[,\.\?!"]\s*', gaps=False)
+    [', ', '. ', ', ', ', ', '?']
+    >>> regexp_tokenize(s2, r'[,\.\?!"]\s*', gaps=True)
+    ['Alas', 'it has not rained today', 'When', 'do you think',
+     'will it rain again']
+
+Take care to avoid using capturing groups:
+
+    >>> regexp_tokenize(s3, r'</?[bp]>', gaps=False)
+    ['<p>', '<b>', '</b>', '</p>']
+    >>> regexp_tokenize(s3, r'</?(?:b|p)>', gaps=False)
+    ['<p>', '<b>', '</b>', '</p>']
+    >>> regexp_tokenize(s3, r'</?(?:b|p)>', gaps=True)
+    ['Although this is ', 'not',
+     ' the case here, we must not relax our vigilance!']
+
+Named groups are capturing groups, and confuse the tokenizer:
+
+    >>> regexp_tokenize(s3, r'</?(?P<named>b|p)>', gaps=False)
+    ['p', 'b', 'b', 'p']
+    >>> regexp_tokenize(s3, r'</?(?P<named>b|p)>', gaps=True)
+    ['p', 'Although this is ', 'b', 'not', 'b',
+     ' the case here, we must not relax our vigilance!', 'p']
+
+Make sure that nested groups don't confuse the tokenizer:
+
+    >>> regexp_tokenize(s2, r'(?:h|r|l)a(?:s|(?:i|n0))', gaps=False)
+    ['las', 'has', 'rai', 'rai']
+    >>> regexp_tokenize(s2, r'(?:h|r|l)a(?:s|(?:i|n0))', gaps=True)
+    ['A', ', it ', ' not ', 'ned today. When, do you think, will it ',
+     'n again?']
+
+Back-references require capturing groups, and these are not supported:
+
+    >>> regexp_tokenize("aabbbcccc", r'(.)\1')
+    ['a', 'b', 'c', 'c']
+
+A simple sentence tokenizer '\.(\s+|$)'
+
+    >>> regexp_tokenize(s, pattern=r'\.(?:\s+|$)', gaps=True)
+    ['Good muffins cost $3.88\nin New York',
+     'Please buy me\ntwo of them', 'Thanks']
+
+
+Regression Tests: TweetTokenizer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TweetTokenizer is a tokenizer specifically designed for micro-blogging tokenization tasks.
+
+    >>> from nltk.tokenize import TweetTokenizer
+    >>> tknzr = TweetTokenizer()
+    >>> s0 = "This is a cooool #dummysmiley: :-) :-P <3 and some arrows < > -> <--"
+    >>> tknzr.tokenize(s0)
+    ['This', 'is', 'a', 'cooool', '#dummysmiley', ':', ':-)', ':-P', '<3', 'and', 'some', 'arrows', '<', '>', '->', '<--']
+    >>> s1 = "@Joyster2012 @CathStaincliffe Good for you, girl!! Best wishes :-)"
+    >>> tknzr.tokenize(s1)
+    ['@Joyster2012', '@CathStaincliffe', 'Good', 'for', 'you', ',', 'girl', '!', '!', 'Best', 'wishes', ':-)']
+    >>> s2 = "3Points for #DreamTeam Gooo BAILEY! :) #PBB737Gold @PBBabscbn"
+    >>> tknzr.tokenize(s2)
+    ['3Points', 'for', '#DreamTeam', 'Gooo', 'BAILEY', '!', ':)', '#PBB737Gold', '@PBBabscbn']
+    >>> s3 = "@Insanomania They do... Their mentality doesn't :("
+    >>> tknzr.tokenize(s3)
+    ['@Insanomania', 'They', 'do', '...', 'Their', 'mentality', "doesn't", ':(']
+    >>> s4 = "RT @facugambande: Ya por arrancar a grabar !!! #TirenTirenTiren vamoo !!"
+    >>> tknzr.tokenize(s4)
+    ['RT', '@facugambande', ':', 'Ya', 'por', 'arrancar', 'a', 'grabar', '!', '!', '!', '#TirenTirenTiren', 'vamoo', '!', '!']
+    >>> tknzr = TweetTokenizer(reduce_len=True)
+    >>> s5 = "@crushinghes the summer holidays are great but I'm so bored already :("
+    >>> tknzr.tokenize(s5)
+    ['@crushinghes', 'the', 'summer', 'holidays', 'are', 'great', 'but', "I'm", 'so', 'bored', 'already', ':(']
+
+It is possible to specify `strip_handles` and `reduce_len` parameters for a TweetTokenizer instance. Setting `strip_handles` to True, the tokenizer will remove Twitter handles (e.g. usernames). Setting `reduce_len` to True, repeated character sequences of length 3 or greater will be replaced with sequences of length 3.
+
+    >>> tknzr = TweetTokenizer(strip_handles=True, reduce_len=True)
+    >>> s6 = '@remy: This is waaaaayyyy too much for you!!!!!!'
+    >>> tknzr.tokenize(s6)
+    [':', 'This', 'is', 'waaayyy', 'too', 'much', 'for', 'you', '!', '!', '!']
+    >>> s7 = '@_willy65: No place for @chuck tonight. Sorry.'
+    >>> tknzr.tokenize(s7)
+    [':', 'No', 'place', 'for', 'tonight', '.', 'Sorry', '.']
+    >>> s8 = '@mar_tin is a great developer. Contact him at mar_tin@email.com.'
+    >>> tknzr.tokenize(s8)
+    ['is', 'a', 'great', 'developer', '.', 'Contact', 'him', 'at', 'mar_tin@email.com', '.']
+
+The `preserve_case` parameter (default: True) allows to convert uppercase tokens to lowercase tokens. Emoticons are not affected:
+
+    >>> tknzr = TweetTokenizer(preserve_case=False)
+    >>> s9 = "@jrmy: I'm REALLY HAPPYYY about that! NICEEEE :D :P"
+    >>> tknzr.tokenize(s9)
+    ['@jrmy', ':', "i'm", 'really', 'happyyy', 'about', 'that', '!', 'niceeee', ':D', ':P']
+
+It should not hang on long sequences of the same punctuation character.
+
+    >>> tknzr = TweetTokenizer()
+    >>> s10 = "Photo: Aujourd'hui sur http://t.co/0gebOFDUzn Projet... http://t.co/bKfIUbydz2.............................. http://fb.me/3b6uXpz0L"
+    >>> tknzr.tokenize(s10)
+    ['Photo', ':', "Aujourd'hui", 'sur', 'http://t.co/0gebOFDUzn', 'Projet', '...', 'http://t.co/bKfIUbydz2', '...', 'http://fb.me/3b6uXpz0L']
+
+Tokenizing multiple sentences at once:
+
+    >>> tknzr = TweetTokenizer()
+    >>> sentences = [
+    ...     "This is a cooool #dummysmiley: :-) :-P <3 and some arrows < > -> <--",
+    ...     "@jrmy: I'm REALLY HAPPYYY about that! NICEEEE :D :P",
+    ...     "@_willy65: No place for @chuck tonight. Sorry."
+    ... ]
+    >>> tknzr.tokenize_sents(sentences) # doctest: +NORMALIZE_WHITESPACE
+    [['This', 'is', 'a', 'cooool', '#dummysmiley', ':', ':-)', ':-P', '<3', 'and', 'some', 'arrows', '<', '>', '->', '<--'],
+    ['@jrmy', ':', "I'm", 'REALLY', 'HAPPYYY', 'about', 'that', '!', 'NICEEEE', ':D', ':P'],
+    ['@_willy65', ':', 'No', 'place', 'for', '@chuck', 'tonight', '.', 'Sorry', '.']]
+
+
+Regression Tests: PunktSentenceTokenizer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The sentence splitter should remove whitespace following the sentence boundary.
+
+    >>> pst = PunktSentenceTokenizer()
+    >>> pst.tokenize('See Section 3).  Or Section 2).  ')
+    ['See Section 3).', 'Or Section 2).']
+    >>> pst.tokenize('See Section 3.)  Or Section 2.)  ')
+    ['See Section 3.)', 'Or Section 2.)']
+    >>> pst.tokenize('See Section 3.)  Or Section 2.)  ', realign_boundaries=False)
+    ['See Section 3.', ')  Or Section 2.', ')']
+
+
+Two instances of PunktSentenceTokenizer should not share PunktParameters.
+
+    >>> pst = PunktSentenceTokenizer()
+    >>> pst2 = PunktSentenceTokenizer()
+    >>> pst._params is pst2._params
+    False
+
+Testing mutable default arguments for https://github.com/nltk/nltk/pull/2067
+
+    >>> from nltk.tokenize.punkt import PunktBaseClass, PunktTrainer, PunktSentenceTokenizer
+    >>> from nltk.tokenize.punkt import PunktLanguageVars, PunktParameters
+    >>> pbc = PunktBaseClass(lang_vars=None, params=None)
+    >>> type(pbc._params)
+    <class 'nltk.tokenize.punkt.PunktParameters'>
+    >>> type(pbc._lang_vars)
+    <class 'nltk.tokenize.punkt.PunktLanguageVars'>
+    >>> pt = PunktTrainer(lang_vars=None)
+    >>> type(pt._lang_vars)
+    <class 'nltk.tokenize.punkt.PunktLanguageVars'>
+    >>> pst = PunktSentenceTokenizer(lang_vars=None)
+    >>> type(pst._lang_vars)
+    <class 'nltk.tokenize.punkt.PunktLanguageVars'>
+
+Testing that inputs can start with dots.
+
+    >>> pst = PunktSentenceTokenizer(lang_vars=None)
+    >>> pst.tokenize(". This input starts with a dot. This used to cause issues.")
+    ['.', 'This input starts with a dot.', 'This used to cause issues.']
+
+Regression Tests: align_tokens
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Post-hoc alignment of tokens with a source string
+
+    >>> from nltk.tokenize.util import align_tokens
+    >>> list(align_tokens([''], ""))
+    [(0, 0)]
+    >>> list(align_tokens([''], " "))
+    [(0, 0)]
+    >>> list(align_tokens([], ""))
+    []
+    >>> list(align_tokens([], " "))
+    []
+    >>> list(align_tokens(['a'], "a"))
+    [(0, 1)]
+    >>> list(align_tokens(['abc', 'def'], "abcdef"))
+    [(0, 3), (3, 6)]
+    >>> list(align_tokens(['abc', 'def'], "abc def"))
+    [(0, 3), (4, 7)]
+    >>> list(align_tokens(['ab', 'cd'], "ab cd ef"))
+    [(0, 2), (3, 5)]
+    >>> list(align_tokens(['ab', 'cd', 'ef'], "ab cd ef"))
+    [(0, 2), (3, 5), (6, 8)]
+    >>> list(align_tokens(['ab', 'cd', 'efg'], "ab cd ef"))
+    Traceback (most recent call last):
+    ....
+    ValueError: substring "efg" not found in "ab cd ef"
+    >>> list(align_tokens(['ab', 'cd', 'ef', 'gh'], "ab cd ef"))
+    Traceback (most recent call last):
+    ....
+    ValueError: substring "gh" not found in "ab cd ef"
+    >>> list(align_tokens(['The', 'plane', ',', 'bound', 'for', 'St', 'Petersburg', ',', 'crashed', 'in', 'Egypt', "'s", 'Sinai', 'desert', 'just', '23', 'minutes', 'after', 'take-off', 'from', 'Sharm', 'el-Sheikh', 'on', 'Saturday', '.'], "The plane, bound for St Petersburg, crashed in Egypt's Sinai desert just 23 minutes after take-off from Sharm el-Sheikh on Saturday."))
+    [(0, 3), (4, 9), (9, 10), (11, 16), (17, 20), (21, 23), (24, 34), (34, 35), (36, 43), (44, 46), (47, 52), (52, 54), (55, 60), (61, 67), (68, 72), (73, 75), (76, 83), (84, 89), (90, 98), (99, 103), (104, 109), (110, 119), (120, 122), (123, 131), (131, 132)]
+
+
+Regression Tests: MWETokenizer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Pickle an MWETokenizer
+
+    >>> from nltk.tokenize import MWETokenizer
+    >>> import pickle
+
+    >>> tokenizer = MWETokenizer([('hors', "d'oeuvre")], separator='+')
+    >>> p = pickle.dumps(tokenizer)
+    >>> unpickeled = pickle.loads(p)
+    >>> unpickeled.tokenize("An hors d'oeuvre tonight, sir?".split())
+    ['An', "hors+d'oeuvre", 'tonight,', 'sir?']
+
+
+Regression Tests: TextTilingTokenizer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TextTilingTokenizer tokenizes text into coherent subtopic chunks based upon Hearst's TextTiling algorithm.
+
+    >>> from nltk.tokenize import TextTilingTokenizer
+    >>> from nltk.corpus import brown
+    >>> tt = TextTilingTokenizer()
+    >>> tt.tokenize(brown.raw()[0:1000])
+    ["\n\n\tThe/at Fulton/np-tl County/nn-tl Grand/jj-tl Jury/nn-tl said/vbd Friday/nr an/at investigation/nn of/in Atlanta's/np$ recent/jj primary/nn election/nn produced/vbd ``/`` no/at evidence/nn ''/'' that/cs any/dti irregularities/nns took/vbd place/nn ./.\n\n\n\tThe/at jury/nn further/rbr said/vbd in/in term-end/nn presentments/nns that/cs the/at City/nn-tl Executive/jj-tl Committee/nn-tl ,/, which/wdt had/hvd over-all/jj charge/nn of/in the/at election/nn ,/, ``/`` deserves/vbz the/at praise/nn and/cc thanks/nns of/in the/at City/nn-tl of/in-tl Atlanta/np-tl ''/'' for/in the/at manner/nn in/in which/wdt the/at election/nn was/bedz conducted/vbn ./.\n\n\n\tThe/at September-October/np term/nn jury/nn had/hvd been/ben charged/vbn by/in Fulton/np-tl Superior/jj-tl Court/nn-tl Judge/nn-tl Durwood/np Pye/np to/to investigate/vb reports/nns of/in possible/jj ``/`` irregularities/nns ''/'' in/in the/at hard-fought/jj primary/nn which/wdt was/bedz won/vbn by/in Mayor-nominate/nn-tl Ivan/np Allen/np Jr./"]
+
+Test that `ValueError` exceptions are raised when illegal arguments are used.
+
+    >>> TextTilingTokenizer(similarity_method='foo').tokenize(brown.raw()[0:1000])
+    Traceback (most recent call last):
+      ...
+    ValueError: Similarity method foo not recognized
+    >>> TextTilingTokenizer(smoothing_method='bar').tokenize(brown.raw()[0:1000])
+    Traceback (most recent call last):
+      ...
+    ValueError: Smoothing method bar not recognized

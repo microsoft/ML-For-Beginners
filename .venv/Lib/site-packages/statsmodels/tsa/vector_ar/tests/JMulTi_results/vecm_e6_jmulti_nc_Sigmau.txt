@@ -1,0 +1,14 @@
+*** Tue, 21 Jun 2016 11:25:25 ***
+VECM MODEL STATISTICS
+sample range:   [1973 Q2, 1998 Q4], T = 103
+
+Log Likelihood:       7.663536e+02 
+Determinant (Cov):    1.021192e-09 
+
+Covariance:   3.642544e-05 -3.485125e-06 
+             -3.485125e-06  2.836858e-05 
+             
+Correlation:  1.000000e+00 -1.084170e-01 
+             -1.084170e-01  1.000000e+00 
+             
+

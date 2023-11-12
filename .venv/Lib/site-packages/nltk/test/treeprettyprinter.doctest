@@ -1,0 +1,177 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=========================================================
+ Unit tests for nltk.tree.prettyprinter.TreePrettyPrinter
+=========================================================
+
+    >>> from nltk.tree import Tree, TreePrettyPrinter
+
+Tree nr 2170 from nltk.corpus.treebank:
+
+    >>> tree = Tree.fromstring(
+    ...     '(S (NP-SBJ (PRP I)) (VP (VBP feel) (ADJP-PRD (RB pretty) '
+    ...     '(JJ good)) (PP-CLR (IN about) (NP (PRP it)))) (. .))')
+    >>> tpp = TreePrettyPrinter(tree)
+    >>> print(tpp.text())
+                                 S
+       __________________________|_____________________
+      |                          VP                    |
+      |      ____________________|___________          |
+      |     |             |                PP-CLR      |
+      |     |             |             _____|_____    |
+    NP-SBJ  |          ADJP-PRD        |           NP  |
+      |     |      _______|______      |           |   |
+     PRP   VBP    RB             JJ    IN         PRP  .
+      |     |     |              |     |           |   |
+      I    feel pretty          good about         it  .
+
+    >>> print(tpp.text(unicodelines=True))
+                                 S
+      ┌──────────────────────────┼─────────────────────┐
+      │                          VP                    │
+      │     ┌─────────────┬──────┴───────────┐         │
+      │     │             │                PP-CLR      │
+      │     │             │            ┌─────┴─────┐   │
+    NP-SBJ  │          ADJP-PRD        │           NP  │
+      │     │     ┌───────┴──────┐     │           │   │
+     PRP   VBP    RB             JJ    IN         PRP  .
+      │     │     │              │     │           │   │
+      I    feel pretty          good about         it  .
+
+A tree with long labels:
+
+    >>> tree = Tree.fromstring(
+    ...     '(sentence (plural-noun-phrase (plural-noun Superconductors)) '
+    ...     '(verb-phrase (plural-verb conduct) '
+    ...     '(noun-phrase (singular-noun electricity))))')
+    >>> tpp = TreePrettyPrinter(tree)
+    >>> print(tpp.text(abbreviate=8, nodedist=2))
+                sentence
+         __________|__________
+        |                 verb-phr.
+        |           __________|__________
+    plural-n.      |                 noun-phr.
+        |          |                     |
+    plural-n.  plural-v.             singular.
+        |          |                     |
+    Supercon.   conduct              electric.
+
+    >>> print(tpp.text(maxwidth=8, nodedist=2))
+              sentence
+        _________|________
+       |                verb-
+       |                phrase
+       |          ________|_________
+    plural-      |                noun-
+     noun-       |                phrase
+     phrase      |                  |
+       |         |                  |
+    plural-   plural-           singular-
+      noun      verb               noun
+       |         |                  |
+    Supercon  conduct            electric
+    ductors                        ity
+
+A discontinuous tree:
+
+    >>> tree = Tree.fromstring(
+    ...     '(top (punct 8) (smain (noun 0) (verb 1) (inf (verb 5) (inf (verb 6) '
+    ...     '(conj (inf (pp (prep 2) (np (det 3) (noun 4))) (verb 7)) (inf (verb 9)) '
+    ...     '(vg 10) (inf (verb 11)))))) (punct 12))', read_leaf=int)
+    >>> sentence = ('Ze had met haar moeder kunnen gaan winkelen ,'
+    ...             ' zwemmen of terrassen .'.split())
+    >>> tpp = TreePrettyPrinter(tree, sentence)
+    >>> print(tpp.text())
+                                          top
+                                      _____|______________________________________________
+                                   smain                      |                           |
+      _______________________________|_____                   |                           |
+     |    |                               inf                 |                           |
+     |    |                           _____|____              |                           |
+     |    |                          |         inf            |                           |
+     |    |                          |      ____|_____        |                           |
+     |    |                          |     |         conj     |                           |
+     |    |                    _____ | ___ | _________|______ | __________________        |
+     |    |                  inf     |     |                  |      |     |      |       |
+     |    |          _________|_____ | ___ | _________        |      |     |      |       |
+     |    |         pp               |     |          |       |      |     |      |       |
+     |    |     ____|____            |     |          |       |      |     |      |       |
+     |    |    |         np          |     |          |       |     inf    |     inf      |
+     |    |    |     ____|____       |     |          |       |      |     |      |       |
+    noun verb prep det       noun   verb  verb       verb   punct   verb   vg    verb   punct
+     |    |    |    |         |      |     |          |       |      |     |      |       |
+     Ze  had  met  haar     moeder kunnen gaan     winkelen   ,   zwemmen  of terrassen   .
+
+    >>> print(tpp.text(unicodelines=True))
+                                          top
+                                     ┌─────┴──────────────────┬───────────────────────────┐
+                                   smain                      │                           │
+     ┌────┬──────────────────────────┴─────┐                  │                           │
+     │    │                               inf                 │                           │
+     │    │                          ┌─────┴────┐             │                           │
+     │    │                          │         inf            │                           │
+     │    │                          │     ┌────┴─────┐       │                           │
+     │    │                          │     │         conj     │                           │
+     │    │                   ┌───── │ ─── │ ─────────┴────── │ ─────┬─────┬──────┐       │
+     │    │                  inf     │     │                  │      │     │      │       │
+     │    │         ┌─────────┴───── │ ─── │ ─────────┐       │      │     │      │       │
+     │    │         pp               │     │          │       │      │     │      │       │
+     │    │    ┌────┴────┐           │     │          │       │      │     │      │       │
+     │    │    │         np          │     │          │       │     inf    │     inf      │
+     │    │    │    ┌────┴────┐      │     │          │       │      │     │      │       │
+    noun verb prep det       noun   verb  verb       verb   punct   verb   vg    verb   punct
+     │    │    │    │         │      │     │          │       │      │     │      │       │
+     Ze  had  met  haar     moeder kunnen gaan     winkelen   ,   zwemmen  of terrassen   .
+
+Importing TreePrettyPrinter
+---------------------------
+
+First of all, a simple tree will be constructed::
+
+  >>> from nltk.tree import Tree
+  >>> tree = Tree.fromstring('(S (NP Mary) (VP walks))')
+
+We'll use this sample tree to show that the method of importing `TreePrettyPrinter` work correctly:
+
+- Recommended::
+
+    >>> from nltk.tree import TreePrettyPrinter
+    >>> print(TreePrettyPrinter(tree).text())
+          S
+      ____|____
+     NP        VP
+     |         |
+    Mary     walks
+
+- Alternative but valid options::
+
+    >>> from nltk import TreePrettyPrinter
+    >>> print(TreePrettyPrinter(tree).text())
+          S
+      ____|____
+     NP        VP
+     |         |
+    Mary     walks
+
+    >>> from nltk.tree.prettyprinter import TreePrettyPrinter
+    >>> print(TreePrettyPrinter(tree).text())
+          S
+      ____|____
+     NP        VP
+     |         |
+    Mary     walks
+
+- Deprecated, do not use::
+
+    >>> from nltk.treeprettyprinter import TreePrettyPrinter
+    >>> print(TreePrettyPrinter(tree).text())
+          S
+      ____|____
+     NP        VP
+     |         |
+    Mary     walks
+
+  This method will throw a DeprecationWarning::
+
+    Import `TreePrettyPrinter` using `from nltk.tree import TreePrettyPrinter` instead.

@@ -1,0 +1,31 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+===========
+Collections
+===========
+
+    >>> import nltk
+    >>> from nltk.collections import *
+
+Trie
+----
+
+Trie can be pickled:
+
+    >>> import pickle
+    >>> trie = nltk.collections.Trie(['a'])
+    >>> s = pickle.dumps(trie)
+    >>> pickle.loads(s)
+    {'a': {True: None}}
+
+LazyIteratorList
+----------------
+
+Fetching the length of a LazyIteratorList object does not throw a StopIteration exception:
+
+    >>> lil = LazyIteratorList(i for i in range(1, 11))
+    >>> lil[-1]
+    10
+    >>> len(lil)
+    10

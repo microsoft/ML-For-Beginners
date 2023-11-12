@@ -1,0 +1,29 @@
+*** Tue, 16 Aug 2016 19:25:44 ***
+VECM Forecast Error Impulse Responses
+
+                   Selected  Impulse  Responses: "impulse variable -> response variable"
+
+time                            Dp                   R                  Dp                   R    
+                              ->Dp                ->Dp                 ->R                 ->R    
+
+    point estimate          1.0000              0.0000              0.0000              1.0000    
+  1 point estimate          0.0221              0.2173              0.1917              1.1713    
+  2 point estimate         -0.0215              0.1932              0.2102              1.1279    
+  3 point estimate          0.0619              0.1830              0.2961              1.2598    
+  4 point estimate          0.3939              0.2071              0.4502              1.2750    
+  5 point estimate          0.0912              0.2706              0.5263              1.2323    
+  6 point estimate          0.0595              0.2559              0.5285              1.2272    
+  7 point estimate          0.1138              0.2483              0.5723              1.2062    
+  8 point estimate          0.2273              0.2536              0.6201              1.1778    
+  9 point estimate          0.1299              0.2709              0.6340              1.1645    
+ 10 point estimate          0.1125              0.2644              0.6285              1.1541    
+ 11 point estimate          0.1382              0.2591              0.6366              1.1415    
+ 12 point estimate          0.1765              0.2599              0.6470              1.1343    
+ 13 point estimate          0.1438              0.2651              0.6475              1.1310    
+ 14 point estimate          0.1353              0.2624              0.6424              1.1282    
+ 15 point estimate          0.1460              0.2600              0.6427              1.1258    
+ 16 point estimate          0.1588              0.2602              0.6450              1.1247    
+ 17 point estimate          0.1475              0.2620              0.6443              1.1246    
+ 18 point estimate          0.1438              0.2611              0.6418              1.1245    
+ 19 point estimate          0.1479              0.2602              0.6416              1.1243    
+ 20 point estimate          0.1523              0.2603              0.6424              1.1243    

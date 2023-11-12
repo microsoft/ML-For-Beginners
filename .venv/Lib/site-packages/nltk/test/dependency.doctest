@@ -1,0 +1,241 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+===================
+Dependency Grammars
+===================
+
+    >>> from nltk.grammar import DependencyGrammar
+    >>> from nltk.parse import (
+    ...     DependencyGraph,
+    ...     ProjectiveDependencyParser,
+    ...     NonprojectiveDependencyParser,
+    ... )
+
+CoNLL Data
+----------
+
+    >>> treebank_data = """Pierre  NNP     2       NMOD
+    ... Vinken  NNP     8       SUB
+    ... ,       ,       2       P
+    ... 61      CD      5       NMOD
+    ... years   NNS     6       AMOD
+    ... old     JJ      2       NMOD
+    ... ,       ,       2       P
+    ... will    MD      0       ROOT
+    ... join    VB      8       VC
+    ... the     DT      11      NMOD
+    ... board   NN      9       OBJ
+    ... as      IN      9       VMOD
+    ... a       DT      15      NMOD
+    ... nonexecutive    JJ      15      NMOD
+    ... director        NN      12      PMOD
+    ... Nov.    NNP     9       VMOD
+    ... 29      CD      16      NMOD
+    ... .       .       9       VMOD
+    ... """
+
+    >>> dg = DependencyGraph(treebank_data)
+    >>> dg.tree().pprint()
+    (will
+      (Vinken Pierre , (old (years 61)) ,)
+      (join (board the) (as (director a nonexecutive)) (Nov. 29) .))
+    >>> for head, rel, dep in dg.triples():
+    ...     print(
+    ...         '({h[0]}, {h[1]}), {r}, ({d[0]}, {d[1]})'
+    ...         .format(h=head, r=rel, d=dep)
+    ...     )
+    (will, MD), SUB, (Vinken, NNP)
+    (Vinken, NNP), NMOD, (Pierre, NNP)
+    (Vinken, NNP), P, (,, ,)
+    (Vinken, NNP), NMOD, (old, JJ)
+    (old, JJ), AMOD, (years, NNS)
+    (years, NNS), NMOD, (61, CD)
+    (Vinken, NNP), P, (,, ,)
+    (will, MD), VC, (join, VB)
+    (join, VB), OBJ, (board, NN)
+    (board, NN), NMOD, (the, DT)
+    (join, VB), VMOD, (as, IN)
+    (as, IN), PMOD, (director, NN)
+    (director, NN), NMOD, (a, DT)
+    (director, NN), NMOD, (nonexecutive, JJ)
+    (join, VB), VMOD, (Nov., NNP)
+    (Nov., NNP), NMOD, (29, CD)
+    (join, VB), VMOD, (., .)
+
+Using a custom cell extractor.
+
+    >>> def custom_extractor(cells):
+    ...     _, tag, head, rel = cells
+    ...     return 'spam', 'spam', tag, tag, '', head, rel
+    >>> dg = DependencyGraph(treebank_data, cell_extractor=custom_extractor)
+    >>> dg.tree().pprint()
+    (spam
+      (spam spam spam (spam (spam spam)) spam)
+      (spam (spam spam) (spam (spam spam spam)) (spam spam) spam))
+
+Custom cell extractors can take in and return an index.
+
+    >>> def custom_extractor(cells, index):
+    ...     word, tag, head, rel = cells
+    ...     return (index, '{}-{}'.format(word, index), word,
+    ...             tag, tag, '', head, rel)
+    >>> dg = DependencyGraph(treebank_data, cell_extractor=custom_extractor)
+    >>> dg.tree().pprint()
+    (will-8
+      (Vinken-2 Pierre-1 ,-3 (old-6 (years-5 61-4)) ,-7)
+      (join-9
+        (board-11 the-10)
+        (as-12 (director-15 a-13 nonexecutive-14))
+        (Nov.-16 29-17)
+        .-18))
+
+Using the dependency-parsed version of the Penn Treebank corpus sample.
+
+    >>> from nltk.corpus import dependency_treebank
+    >>> t = dependency_treebank.parsed_sents()[0]
+    >>> print(t.to_conll(3))
+    Pierre      NNP     2
+    Vinken      NNP     8
+    ,   ,       2
+    61  CD      5
+    years       NNS     6
+    old JJ      2
+    ,   ,       2
+    will        MD      0
+    join        VB      8
+    the DT      11
+    board       NN      9
+    as  IN      9
+    a   DT      15
+    nonexecutive        JJ      15
+    director    NN      12
+    Nov.        NNP     9
+    29  CD      16
+    .   .       8
+
+Using the output of zpar (like Malt-TAB but with zero-based indexing)
+
+    >>> zpar_data = """
+    ... Pierre	NNP	1	NMOD
+    ... Vinken	NNP	7	SUB
+    ... ,	,	1	P
+    ... 61	CD	4	NMOD
+    ... years	NNS	5	AMOD
+    ... old	JJ	1	NMOD
+    ... ,	,	1	P
+    ... will	MD	-1	ROOT
+    ... join	VB	7	VC
+    ... the	DT	10	NMOD
+    ... board	NN	8	OBJ
+    ... as	IN	8	VMOD
+    ... a	DT	14	NMOD
+    ... nonexecutive	JJ	14	NMOD
+    ... director	NN	11	PMOD
+    ... Nov.	NNP	8	VMOD
+    ... 29	CD	15	NMOD
+    ... .	.	7	P
+    ... """
+
+    >>> zdg = DependencyGraph(zpar_data, zero_based=True)
+    >>> print(zdg.tree())
+    (will
+      (Vinken Pierre , (old (years 61)) ,)
+      (join (board the) (as (director a nonexecutive)) (Nov. 29))
+      .)
+
+
+Projective Dependency Parsing
+-----------------------------
+
+    >>> grammar = DependencyGrammar.fromstring("""
+    ... 'fell' -> 'price' | 'stock'
+    ... 'price' -> 'of' 'the'
+    ... 'of' -> 'stock'
+    ... 'stock' -> 'the'
+    ... """)
+    >>> print(grammar)
+    Dependency grammar with 5 productions
+      'fell' -> 'price'
+      'fell' -> 'stock'
+      'price' -> 'of' 'the'
+      'of' -> 'stock'
+      'stock' -> 'the'
+
+    >>> dp = ProjectiveDependencyParser(grammar)
+    >>> for t in sorted(dp.parse(['the', 'price', 'of', 'the', 'stock', 'fell'])):
+    ...     print(t)
+    (fell (price the (of (stock the))))
+    (fell (price the of) (stock the))
+    (fell (price the of the) stock)
+
+Non-Projective Dependency Parsing
+---------------------------------
+
+    >>> grammar = DependencyGrammar.fromstring("""
+    ... 'taught' -> 'play' | 'man'
+    ... 'man' -> 'the'
+    ... 'play' -> 'golf' | 'dog' | 'to'
+    ... 'dog' -> 'his'
+    ... """)
+    >>> print(grammar)
+    Dependency grammar with 7 productions
+      'taught' -> 'play'
+      'taught' -> 'man'
+      'man' -> 'the'
+      'play' -> 'golf'
+      'play' -> 'dog'
+      'play' -> 'to'
+      'dog' -> 'his'
+
+    >>> dp = NonprojectiveDependencyParser(grammar)
+    >>> g, = dp.parse(['the', 'man', 'taught', 'his', 'dog', 'to', 'play', 'golf'])
+
+    >>> print(g.root['word'])
+    taught
+
+    >>> for _, node in sorted(g.nodes.items()):
+    ...     if node['word'] is not None:
+    ...         print('{address} {word}: {d}'.format(d=node['deps'][''], **node))
+    1 the: []
+    2 man: [1]
+    3 taught: [2, 7]
+    4 his: []
+    5 dog: [4]
+    6 to: []
+    7 play: [5, 6, 8]
+    8 golf: []
+
+    >>> print(g.tree())
+    (taught (man the) (play (dog his) to golf))
+
+Integration with MALT parser
+============================
+
+In case the top relation is different from the default, we can set it. In case
+of MALT parser, it's set to `'null'`.
+
+>>> dg_str = """1       I       _       NN      NN      _       2       nn      _       _
+... 2   shot    _       NN      NN      _       0       null    _       _
+... 3   an      _       AT      AT      _       2       dep     _       _
+... 4   elephant        _       NN      NN      _       7       nn      _       _
+... 5   in      _       NN      NN      _       7       nn      _       _
+... 6   my      _       NN      NN      _       7       nn      _       _
+... 7   pajamas _       NNS     NNS     _       3       dobj    _       _
+... """
+>>> dg = DependencyGraph(dg_str, top_relation_label='null')
+
+>>> len(dg.nodes)
+8
+
+>>> dg.root['word'], dg.root['address']
+('shot', 2)
+
+>>> print(dg.to_conll(10))
+1   I       _       NN      NN      _       2       nn      _       _
+2   shot    _       NN      NN      _       0       null    _       _
+3   an      _       AT      AT      _       2       dep     _       _
+4   elephant        _       NN      NN      _       7       nn      _       _
+5   in      _       NN      NN      _       7       nn      _       _
+6   my      _       NN      NN      _       7       nn      _       _
+7   pajamas _       NNS     NNS     _       3       dobj    _       _

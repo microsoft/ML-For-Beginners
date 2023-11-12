@@ -1,0 +1,552 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+==================
+Discourse Checking
+==================
+
+    >>> from nltk import *
+    >>> from nltk.sem import logic
+    >>> logic._counter._value = 0
+
+Setup
+=====
+
+    >>> from nltk.test.childes_fixt import setup_module
+    >>> setup_module()
+
+Introduction
+============
+
+The NLTK discourse module makes it possible to test consistency and
+redundancy of simple discourses, using theorem-proving and
+model-building from `nltk.inference`.
+
+The ``DiscourseTester`` constructor takes a list of sentences as a
+parameter.
+
+    >>> dt = DiscourseTester(['a boxer walks', 'every boxer chases a girl'])
+
+The ``DiscourseTester`` parses each sentence into a list of logical
+forms.  Once we have created ``DiscourseTester`` object, we can
+inspect various properties of the discourse. First off, we might want
+to double-check what sentences are currently stored as the discourse.
+
+    >>> dt.sentences()
+    s0: a boxer walks
+    s1: every boxer chases a girl
+
+As you will see, each sentence receives an identifier `s`\ :subscript:`i`.
+We might also want to check what grammar the ``DiscourseTester`` is
+using (by default, ``book_grammars/discourse.fcfg``):
+
+    >>> dt.grammar()
+    % start S
+    # Grammar Rules
+    S[SEM = <app(?subj,?vp)>] -> NP[NUM=?n,SEM=?subj] VP[NUM=?n,SEM=?vp]
+    NP[NUM=?n,SEM=<app(?det,?nom)> ] -> Det[NUM=?n,SEM=?det]  Nom[NUM=?n,SEM=?nom]
+    NP[LOC=?l,NUM=?n,SEM=?np] -> PropN[LOC=?l,NUM=?n,SEM=?np]
+    ...
+
+A different grammar can be invoked by using the optional ``gramfile``
+parameter when a ``DiscourseTester`` object is created.
+
+Readings and Threads
+====================
+
+Depending on
+the grammar used, we may find some sentences have more than one
+logical form. To check this, use the ``readings()`` method. Given a
+sentence identifier of the form `s`\ :subscript:`i`, each reading of
+that sentence is given an identifier `s`\ :sub:`i`-`r`\ :sub:`j`.
+
+
+    >>> dt.readings()
+    <BLANKLINE>
+    s0 readings:
+    <BLANKLINE>
+    s0-r0: exists z1.(boxer(z1) & walk(z1))
+    s0-r1: exists z1.(boxerdog(z1) & walk(z1))
+    <BLANKLINE>
+    s1 readings:
+    <BLANKLINE>
+    s1-r0: all z2.(boxer(z2) -> exists z3.(girl(z3) & chase(z2,z3)))
+    s1-r1: all z1.(boxerdog(z1) -> exists z2.(girl(z2) & chase(z1,z2)))
+
+
+In this case, the only source of ambiguity lies in the word *boxer*,
+which receives two translations: ``boxer`` and ``boxerdog``. The
+intention is that one of these corresponds to the ``person`` sense and
+one to the ``dog`` sense. In principle, we would also expect to see a
+quantifier scope ambiguity in ``s1``. However, the simple grammar we
+are using, namely `sem4.fcfg <sem4.fcfg>`_, doesn't support quantifier
+scope ambiguity.
+
+We can also investigate the readings of a specific sentence:
+
+    >>> dt.readings('a boxer walks')
+    The sentence 'a boxer walks' has these readings:
+        exists x.(boxer(x) & walk(x))
+        exists x.(boxerdog(x) & walk(x))
+
+Given that each sentence is two-ways ambiguous, we potentially have
+four different discourse 'threads', taking all combinations of
+readings. To see these, specify the ``threaded=True`` parameter on
+the ``readings()`` method. Again, each thread is assigned an
+identifier of the form `d`\ :sub:`i`. Following the identifier is a
+list of the readings that constitute that thread.
+
+    >>> dt.readings(threaded=True)
+    d0: ['s0-r0', 's1-r0']
+    d1: ['s0-r0', 's1-r1']
+    d2: ['s0-r1', 's1-r0']
+    d3: ['s0-r1', 's1-r1']
+
+Of course, this simple-minded approach doesn't scale: a discourse with, say, three
+sentences, each of which has 3 readings, will generate 27 different
+threads. It is an interesting exercise to consider how to manage
+discourse ambiguity more efficiently.
+
+Checking Consistency
+====================
+
+Now, we can check whether some or all of the discourse threads are
+consistent, using the ``models()`` method. With no parameter, this
+method will try to find a model for every discourse thread in the
+current discourse. However, we can also specify just one thread, say ``d1``.
+
+    >>> dt.models('d1')
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d1
+    --------------------------------------------------------------------------------
+    % number = 1
+    % seconds = 0
+    <BLANKLINE>
+    % Interpretation of size 2
+    <BLANKLINE>
+    c1 = 0.
+    <BLANKLINE>
+    f1(0) = 0.
+    f1(1) = 0.
+    <BLANKLINE>
+      boxer(0).
+    - boxer(1).
+    <BLANKLINE>
+    - boxerdog(0).
+    - boxerdog(1).
+    <BLANKLINE>
+    - girl(0).
+    - girl(1).
+    <BLANKLINE>
+      walk(0).
+    - walk(1).
+    <BLANKLINE>
+    - chase(0,0).
+    - chase(0,1).
+    - chase(1,0).
+    - chase(1,1).
+    <BLANKLINE>
+    Consistent discourse: d1 ['s0-r0', 's1-r1']:
+        s0-r0: exists z1.(boxer(z1) & walk(z1))
+        s1-r1: all z1.(boxerdog(z1) -> exists z2.(girl(z2) & chase(z1,z2)))
+    <BLANKLINE>
+
+There are various formats for rendering **Mace4** models --- here,
+we have used the 'cooked' format (which is intended to be
+human-readable). There are a number of points to note.
+
+#. The entities in the domain are all treated as non-negative
+   integers. In this case, there are only two entities, ``0`` and
+   ``1``.
+
+#. The ``-`` symbol indicates negation. So ``0`` is the only
+   ``boxerdog`` and the only thing that ``walk``\ s. Nothing is a
+   ``boxer``, or a ``girl`` or in the ``chase`` relation. Thus the
+   universal sentence is vacuously true.
+
+#. ``c1`` is an introduced constant that denotes ``0``.
+
+#. ``f1`` is a Skolem function, but it plays no significant role in
+   this model.
+
+
+We might want to now add another sentence to the discourse, and there
+is method ``add_sentence()`` for doing just this.
+
+    >>> dt.add_sentence('John is a boxer')
+    >>> dt.sentences()
+    s0: a boxer walks
+    s1: every boxer chases a girl
+    s2: John is a boxer
+
+We can now test all the properties as before; here, we just show a
+couple of them.
+
+    >>> dt.readings()
+    <BLANKLINE>
+    s0 readings:
+    <BLANKLINE>
+    s0-r0: exists z1.(boxer(z1) & walk(z1))
+    s0-r1: exists z1.(boxerdog(z1) & walk(z1))
+    <BLANKLINE>
+    s1 readings:
+    <BLANKLINE>
+    s1-r0: all z1.(boxer(z1) -> exists z2.(girl(z2) & chase(z1,z2)))
+    s1-r1: all z1.(boxerdog(z1) -> exists z2.(girl(z2) & chase(z1,z2)))
+    <BLANKLINE>
+    s2 readings:
+    <BLANKLINE>
+    s2-r0: boxer(John)
+    s2-r1: boxerdog(John)
+    >>> dt.readings(threaded=True)
+    d0: ['s0-r0', 's1-r0', 's2-r0']
+    d1: ['s0-r0', 's1-r0', 's2-r1']
+    d2: ['s0-r0', 's1-r1', 's2-r0']
+    d3: ['s0-r0', 's1-r1', 's2-r1']
+    d4: ['s0-r1', 's1-r0', 's2-r0']
+    d5: ['s0-r1', 's1-r0', 's2-r1']
+    d6: ['s0-r1', 's1-r1', 's2-r0']
+    d7: ['s0-r1', 's1-r1', 's2-r1']
+
+If you are interested in a particular thread, the ``expand_threads()``
+method will remind you of what readings it consists of:
+
+    >>> thread = dt.expand_threads('d1')
+    >>> for rid, reading in thread:
+    ...     print(rid, str(reading.normalize()))
+    s0-r0 exists z1.(boxer(z1) & walk(z1))
+    s1-r0 all z1.(boxer(z1) -> exists z2.(girl(z2) & chase(z1,z2)))
+    s2-r1 boxerdog(John)
+
+Suppose we have already defined a discourse, as follows:
+
+    >>> dt = DiscourseTester(['A student dances', 'Every student is a person'])
+
+Now, when we add a new sentence, is it consistent with what we already
+have? The `` consistchk=True`` parameter of ``add_sentence()`` allows
+us to check:
+
+    >>> dt.add_sentence('No person dances', consistchk=True)
+    Inconsistent discourse: d0 ['s0-r0', 's1-r0', 's2-r0']:
+        s0-r0: exists z1.(student(z1) & dance(z1))
+        s1-r0: all z1.(student(z1) -> person(z1))
+        s2-r0: -exists z1.(person(z1) & dance(z1))
+    <BLANKLINE>
+    >>> dt.readings()
+    <BLANKLINE>
+    s0 readings:
+    <BLANKLINE>
+    s0-r0: exists z1.(student(z1) & dance(z1))
+    <BLANKLINE>
+    s1 readings:
+    <BLANKLINE>
+    s1-r0: all z1.(student(z1) -> person(z1))
+    <BLANKLINE>
+    s2 readings:
+    <BLANKLINE>
+    s2-r0: -exists z1.(person(z1) & dance(z1))
+
+So let's retract the inconsistent sentence:
+
+    >>> dt.retract_sentence('No person dances', verbose=True)
+    Current sentences are
+    s0: A student dances
+    s1: Every student is a person
+
+We can now verify that result is consistent.
+
+    >>> dt.models()
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d0
+    --------------------------------------------------------------------------------
+    % number = 1
+    % seconds = 0
+    <BLANKLINE>
+    % Interpretation of size 2
+    <BLANKLINE>
+    c1 = 0.
+    <BLANKLINE>
+      dance(0).
+    - dance(1).
+    <BLANKLINE>
+      person(0).
+    - person(1).
+    <BLANKLINE>
+      student(0).
+    - student(1).
+    <BLANKLINE>
+    Consistent discourse: d0 ['s0-r0', 's1-r0']:
+        s0-r0: exists z1.(student(z1) & dance(z1))
+        s1-r0: all z1.(student(z1) -> person(z1))
+    <BLANKLINE>
+
+Checking Informativity
+======================
+
+Let's assume that we are still trying to extend the discourse *A
+student dances.* *Every student is a person.* We add a new sentence,
+but this time, we check whether it is informative with respect to what
+has gone before.
+
+    >>> dt.add_sentence('A person dances', informchk=True)
+    Sentence 'A person dances' under reading 'exists x.(person(x) & dance(x))':
+    Not informative relative to thread 'd0'
+
+In fact, we are just checking whether the new sentence is entailed by
+the preceding discourse.
+
+    >>> dt.models()
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d0
+    --------------------------------------------------------------------------------
+    % number = 1
+    % seconds = 0
+    <BLANKLINE>
+    % Interpretation of size 2
+    <BLANKLINE>
+    c1 = 0.
+    <BLANKLINE>
+    c2 = 0.
+    <BLANKLINE>
+      dance(0).
+    - dance(1).
+    <BLANKLINE>
+      person(0).
+    - person(1).
+    <BLANKLINE>
+      student(0).
+    - student(1).
+    <BLANKLINE>
+    Consistent discourse: d0 ['s0-r0', 's1-r0', 's2-r0']:
+        s0-r0: exists z1.(student(z1) & dance(z1))
+        s1-r0: all z1.(student(z1) -> person(z1))
+        s2-r0: exists z1.(person(z1) & dance(z1))
+    <BLANKLINE>
+
+
+
+Adding Background Knowledge
+===========================
+
+Let's build a new discourse, and look at the readings of the component sentences:
+
+    >>> dt = DiscourseTester(['Vincent is a boxer', 'Fido is a boxer', 'Vincent is married', 'Fido barks'])
+    >>> dt.readings()
+    <BLANKLINE>
+    s0 readings:
+    <BLANKLINE>
+    s0-r0: boxer(Vincent)
+    s0-r1: boxerdog(Vincent)
+    <BLANKLINE>
+    s1 readings:
+    <BLANKLINE>
+    s1-r0: boxer(Fido)
+    s1-r1: boxerdog(Fido)
+    <BLANKLINE>
+    s2 readings:
+    <BLANKLINE>
+    s2-r0: married(Vincent)
+    <BLANKLINE>
+    s3 readings:
+    <BLANKLINE>
+    s3-r0: bark(Fido)
+
+This gives us a lot of threads:
+
+    >>> dt.readings(threaded=True)
+    d0: ['s0-r0', 's1-r0', 's2-r0', 's3-r0']
+    d1: ['s0-r0', 's1-r1', 's2-r0', 's3-r0']
+    d2: ['s0-r1', 's1-r0', 's2-r0', 's3-r0']
+    d3: ['s0-r1', 's1-r1', 's2-r0', 's3-r0']
+
+
+We can eliminate some of the readings, and hence some of the threads,
+by adding background information.
+
+    >>> import nltk.data
+    >>> bg = nltk.data.load('grammars/book_grammars/background.fol')
+    >>> dt.add_background(bg)
+    >>> dt.background()
+    all x.(boxerdog(x) -> dog(x))
+    all x.(boxer(x) -> person(x))
+    all x.-(dog(x) & person(x))
+    all x.(married(x) <-> exists y.marry(x,y))
+    all x.(bark(x) -> dog(x))
+    all x y.(marry(x,y) -> (person(x) & person(y)))
+    -(Vincent = Mia)
+    -(Vincent = Fido)
+    -(Mia = Fido)
+
+The background information allows us to reject three of the threads as
+inconsistent. To see what remains, use the ``filter=True`` parameter
+on ``readings()``.
+
+    >>> dt.readings(filter=True)
+    d1: ['s0-r0', 's1-r1', 's2-r0', 's3-r0']
+
+The ``models()`` method gives us more information about the surviving thread.
+
+    >>> dt.models()
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d0
+    --------------------------------------------------------------------------------
+    No model found!
+    <BLANKLINE>
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d1
+    --------------------------------------------------------------------------------
+    % number = 1
+    % seconds = 0
+    <BLANKLINE>
+    % Interpretation of size 3
+    <BLANKLINE>
+    Fido = 0.
+    <BLANKLINE>
+    Mia = 1.
+    <BLANKLINE>
+    Vincent = 2.
+    <BLANKLINE>
+    f1(0) = 0.
+    f1(1) = 0.
+    f1(2) = 2.
+    <BLANKLINE>
+      bark(0).
+    - bark(1).
+    - bark(2).
+    <BLANKLINE>
+    - boxer(0).
+    - boxer(1).
+      boxer(2).
+    <BLANKLINE>
+      boxerdog(0).
+    - boxerdog(1).
+    - boxerdog(2).
+    <BLANKLINE>
+      dog(0).
+    - dog(1).
+    - dog(2).
+    <BLANKLINE>
+    - married(0).
+    - married(1).
+      married(2).
+    <BLANKLINE>
+    - person(0).
+    - person(1).
+      person(2).
+    <BLANKLINE>
+    - marry(0,0).
+    - marry(0,1).
+    - marry(0,2).
+    - marry(1,0).
+    - marry(1,1).
+    - marry(1,2).
+    - marry(2,0).
+    - marry(2,1).
+      marry(2,2).
+    <BLANKLINE>
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d2
+    --------------------------------------------------------------------------------
+    No model found!
+    <BLANKLINE>
+    --------------------------------------------------------------------------------
+    Model for Discourse Thread d3
+    --------------------------------------------------------------------------------
+    No model found!
+    <BLANKLINE>
+    Inconsistent discourse: d0 ['s0-r0', 's1-r0', 's2-r0', 's3-r0']:
+        s0-r0: boxer(Vincent)
+        s1-r0: boxer(Fido)
+        s2-r0: married(Vincent)
+        s3-r0: bark(Fido)
+    <BLANKLINE>
+    Consistent discourse: d1 ['s0-r0', 's1-r1', 's2-r0', 's3-r0']:
+        s0-r0: boxer(Vincent)
+        s1-r1: boxerdog(Fido)
+        s2-r0: married(Vincent)
+        s3-r0: bark(Fido)
+    <BLANKLINE>
+    Inconsistent discourse: d2 ['s0-r1', 's1-r0', 's2-r0', 's3-r0']:
+        s0-r1: boxerdog(Vincent)
+        s1-r0: boxer(Fido)
+        s2-r0: married(Vincent)
+        s3-r0: bark(Fido)
+    <BLANKLINE>
+    Inconsistent discourse: d3 ['s0-r1', 's1-r1', 's2-r0', 's3-r0']:
+        s0-r1: boxerdog(Vincent)
+        s1-r1: boxerdog(Fido)
+        s2-r0: married(Vincent)
+        s3-r0: bark(Fido)
+    <BLANKLINE>
+
+
+..  This will not be visible in the html output: create a tempdir to
+    play in.
+    >>> import tempfile, os
+    >>> tempdir = tempfile.mkdtemp()
+    >>> old_dir = os.path.abspath('.')
+    >>> os.chdir(tempdir)
+
+In order to play around with your own version of background knowledge,
+you might want to start off with a local copy of ``background.fol``:
+
+    >>> nltk.data.retrieve('grammars/book_grammars/background.fol')
+    Retrieving 'nltk:grammars/book_grammars/background.fol', saving to 'background.fol'
+
+After you have modified the file, the ``load_fol()`` function will parse
+the strings in the file into expressions of ``nltk.sem.logic``.
+
+    >>> from nltk.inference.discourse import load_fol
+    >>> mybg = load_fol(open('background.fol').read())
+
+The result can be loaded as an argument of ``add_background()`` in the
+manner shown earlier.
+
+..  This will not be visible in the html output: clean up the tempdir.
+    >>> os.chdir(old_dir)
+    >>> for f in os.listdir(tempdir):
+    ...     os.remove(os.path.join(tempdir, f))
+    >>> os.rmdir(tempdir)
+    >>> nltk.data.clear_cache()
+
+
+Regression Testing from book
+============================
+
+    >>> logic._counter._value = 0
+
+    >>> from nltk.tag import RegexpTagger
+    >>> tagger = RegexpTagger(
+    ...     [('^(chases|runs)$', 'VB'),
+    ...      ('^(a)$', 'ex_quant'),
+    ...      ('^(every)$', 'univ_quant'),
+    ...      ('^(dog|boy)$', 'NN'),
+    ...      ('^(He)$', 'PRP')
+    ... ])
+    >>> rc = DrtGlueReadingCommand(depparser=MaltParser(tagger=tagger))
+    >>> dt = DiscourseTester(map(str.split, ['Every dog chases a boy', 'He runs']), rc)
+    >>> dt.readings()
+    <BLANKLINE>
+    s0 readings:
+    <BLANKLINE>
+    s0-r0: ([z2],[boy(z2), (([z5],[dog(z5)]) -> ([],[chases(z5,z2)]))])
+    s0-r1: ([],[(([z1],[dog(z1)]) -> ([z2],[boy(z2), chases(z1,z2)]))])
+    <BLANKLINE>
+    s1 readings:
+    <BLANKLINE>
+    s1-r0: ([z1],[PRO(z1), runs(z1)])
+    >>> dt.readings(show_thread_readings=True)
+    d0: ['s0-r0', 's1-r0'] : ([z1,z2],[boy(z1), (([z3],[dog(z3)]) -> ([],[chases(z3,z1)])), (z2 = z1), runs(z2)])
+    d1: ['s0-r1', 's1-r0'] : INVALID: AnaphoraResolutionException
+    >>> dt.readings(filter=True, show_thread_readings=True)
+    d0: ['s0-r0', 's1-r0'] : ([z1,z3],[boy(z1), (([z2],[dog(z2)]) -> ([],[chases(z2,z1)])), (z3 = z1), runs(z3)])
+
+    >>> logic._counter._value = 0
+
+    >>> from nltk.parse import FeatureEarleyChartParser
+    >>> from nltk.sem.drt import DrtParser
+    >>> grammar = nltk.data.load('grammars/book_grammars/drt.fcfg', logic_parser=DrtParser())
+    >>> parser = FeatureEarleyChartParser(grammar, trace=0)
+    >>> trees = parser.parse('Angus owns a dog'.split())
+    >>> print(list(trees)[0].label()['SEM'].simplify().normalize())
+    ([z1,z2],[Angus(z1), dog(z2), own(z1,z2)])

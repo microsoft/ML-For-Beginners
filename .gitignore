@@ -360,6 +360,4 @@ MigrationBackup/
 .Rdata
 .Rhistory
 ML-For-Beginners.Rproj
-.venv
 .obsidian
-.venv/Lib/site-packages/

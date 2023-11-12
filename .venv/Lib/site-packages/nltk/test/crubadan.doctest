@@ -1,0 +1,65 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+Crubadan Corpus Reader
+======================
+
+Crubadan is an NLTK corpus reader for ngram files provided
+by the Crubadan project. It supports several languages.
+
+    >>> from nltk.corpus import crubadan
+    >>> crubadan.langs()
+    ['abk', 'abn',..., 'zpa', 'zul']
+
+----------------------------------------
+Language code mapping and helper methods
+----------------------------------------
+
+The web crawler that generates the 3-gram frequencies works at the
+level of "writing systems" rather than languages. Writing systems
+are assigned internal 2-3 letter codes that require mapping to the
+standard ISO 639-3 codes. For more information, please refer to
+the README in nltk_data/crubadan folder after installing it.
+
+To translate ISO 639-3 codes to "Crubadan Code":
+
+    >>> crubadan.iso_to_crubadan('eng')
+    'en'
+    >>> crubadan.iso_to_crubadan('fra')
+    'fr'
+    >>> crubadan.iso_to_crubadan('aaa')
+
+In reverse, print ISO 639-3 code if we have the Crubadan Code:
+
+    >>> crubadan.crubadan_to_iso('en')
+    'eng'
+    >>> crubadan.crubadan_to_iso('fr')
+    'fra'
+    >>> crubadan.crubadan_to_iso('aa')
+
+---------------------------
+Accessing ngram frequencies
+---------------------------
+
+On initialization the reader will create a dictionary of every
+language supported by the Crubadan project, mapping the ISO 639-3
+language code to its corresponding ngram frequency.
+
+You can access individual language FreqDist and the ngrams within them as follows:
+
+    >>> english_fd = crubadan.lang_freq('eng')
+    >>> english_fd['the']
+    728135
+
+Above accesses the FreqDist of English and returns the frequency of the ngram 'the'.
+A ngram that isn't found within the language will return 0:
+
+    >>> english_fd['sometest']
+    0
+
+A language that isn't supported will raise an exception:
+
+    >>> crubadan.lang_freq('elvish')
+    Traceback (most recent call last):
+    ...
+    RuntimeError: Unsupported language.

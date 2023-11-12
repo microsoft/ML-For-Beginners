@@ -1,0 +1,12 @@
+*** Sun, 21 Aug 2016 09:32:02 ***
+OPTIMAL ENDOGENOUS LAGS FROM INFORMATION CRITERIA
+
+endogenous variables:     Dp R 
+sample range:             [1975 Q1, 1998 Q4], T = 96
+
+optimal number of lags (searched up to 10 lags of 1. differences):
+Akaike Info Criterion:    3            
+Final Prediction Error:   3            
+Hannan-Quinn Criterion:   3            
+Schwarz Criterion:        3            
+

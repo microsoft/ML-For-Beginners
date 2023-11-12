@@ -1,0 +1,14 @@
+Metadata-Version: 2.0
+Name: imblearn
+Version: 0.0
+Summary: Toolbox for imbalanced dataset in machine learning.
+Home-page: https://pypi.python.org/pypi/imbalanced-learn/
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: all
+Requires-Dist: imbalanced-learn
+
+Use `imbalanced-learn <https://pypi.python.org/pypi/imbalanced-learn/>`_ instead.
+
+

@@ -1,0 +1,54 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+.. -*- coding: utf-8 -*-
+
+=============
+METEOR tests
+=============
+
+No Alignment test
+------------------
+
+    >>> from nltk.translate import meteor
+    >>> from nltk import word_tokenize
+
+If the candidate has no alignment to any of the references, the METEOR score is 0.
+
+    >>> round(meteor(
+    ...     [word_tokenize('The candidate has no alignment to any of the references')],
+    ...     word_tokenize('John loves Mary')
+    ... ), 4)
+    0.0
+
+Tests based on wikipedia examples
+---------------------------------
+
+Testing on `wikipedia examples <https://en.wikipedia.org/wiki/METEOR#Examples>`_
+
+    >>> same_res = round(meteor(
+    ...       [word_tokenize('The cat sat on the mat')],
+    ...       word_tokenize('The cat sat on the mat')
+    ...       ), 4)
+    >>> abs(same_res - 0.9977) < 1e-2
+    True
+
+    >>> meteor(
+    ...       [word_tokenize('The cat sat on the mat')],
+    ...       word_tokenize('on the mat sat the cat')
+    ...       )
+    0.5
+
+    >>> round(meteor(
+    ...       [word_tokenize('The cat sat on the mat')],
+    ...       word_tokenize('The cat was sat on the mat')
+    ...       ), 4)
+    0.9654
+
+Test corresponding to issue #2751, where METEOR score > 1
+
+    >>> round(meteor(
+    ...       [word_tokenize('create or update a vm set')],
+    ...       word_tokenize('creates or updates a virtual machine scale set')
+    ...       ), 4)
+    0.7806

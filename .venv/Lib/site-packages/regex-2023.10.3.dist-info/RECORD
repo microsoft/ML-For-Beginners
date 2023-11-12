@@ -1,0 +1,15 @@
+regex-2023.10.3.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+regex-2023.10.3.dist-info/LICENSE.txt,sha256=PSIMBllLgmu6vxEDEvYPOF-Z5X5Sn6S55Tb3kJH4tMc,11792
+regex-2023.10.3.dist-info/METADATA,sha256=D6xnTQKyhdLtIPASl1ArA7uzGsvA4SjuiOt-09S02SI,41972
+regex-2023.10.3.dist-info/RECORD,,
+regex-2023.10.3.dist-info/WHEEL,sha256=yrvteVAZzxQvtDnzdCRh4dP01sPIxYhLXIXplC7o50E,102
+regex-2023.10.3.dist-info/top_level.txt,sha256=aQmiDMhNTF26cCK4_7D-qaVvhbxClG0wyCTnEhkzYBs,6
+regex/__init__.py,sha256=6giZBSRLmTZfvQrcVoS6MaL5gKcwtfZlSXATBex49lU,68
+regex/__pycache__/__init__.cpython-310.pyc,,
+regex/__pycache__/_regex_core.cpython-310.pyc,,
+regex/__pycache__/regex.cpython-310.pyc,,
+regex/__pycache__/test_regex.cpython-310.pyc,,
+regex/_regex.cp310-win_amd64.pyd,sha256=R34rCnqJP4y-WDXC16EJAnuEEgzkwI0RbN8R2YbZjsk,681472
+regex/_regex_core.py,sha256=vgBDgs3GocUiyyyQcZAvNHo35ObHMQmntvGEX67N5TA,145665
+regex/regex.py,sha256=kuqwaJSKFkUViSfw-a5lL1PIPcKT1d5bHbKsxecpLik,33561
+regex/test_regex.py,sha256=kUweiay9oH9OXCKgibO89A4Ko_P6MhuHX9JxiXZZBe0,224635

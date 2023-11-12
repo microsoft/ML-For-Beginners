@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: nltk
+Version: 3.8.1
+Summary: Natural Language Toolkit
+Home-page: https://www.nltk.org/
+Author: NLTK Team
+Author-email: nltk.team@gmail.com
+Maintainer: NLTK Team
+Maintainer-email: nltk.team@gmail.com
+License: Apache License, Version 2.0
+Project-URL: Documentation, https://www.nltk.org/
+Project-URL: Source Code, https://github.com/nltk/nltk
+Project-URL: Issue Tracker, https://github.com/nltk/nltk/issues
+Keywords: NLP,CL,natural language processing,computational linguistics,parsing,tagging,tokenizing,syntax,linguistics,language,natural language,text analytics
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Human Machine Interfaces
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Filters
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Text Processing :: Indexing
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >=3.7
+Requires-Dist: click
+Requires-Dist: joblib
+Requires-Dist: regex (>=2021.8.3)
+Requires-Dist: tqdm
+Provides-Extra: all
+Requires-Dist: scikit-learn ; extra == 'all'
+Requires-Dist: python-crfsuite ; extra == 'all'
+Requires-Dist: requests ; extra == 'all'
+Requires-Dist: numpy ; extra == 'all'
+Requires-Dist: pyparsing ; extra == 'all'
+Requires-Dist: twython ; extra == 'all'
+Requires-Dist: scipy ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Provides-Extra: corenlp
+Requires-Dist: requests ; extra == 'corenlp'
+Provides-Extra: machine_learning
+Requires-Dist: numpy ; extra == 'machine_learning'
+Requires-Dist: python-crfsuite ; extra == 'machine_learning'
+Requires-Dist: scikit-learn ; extra == 'machine_learning'
+Requires-Dist: scipy ; extra == 'machine_learning'
+Provides-Extra: plot
+Requires-Dist: matplotlib ; extra == 'plot'
+Provides-Extra: tgrep
+Requires-Dist: pyparsing ; extra == 'tgrep'
+Provides-Extra: twitter
+Requires-Dist: twython ; extra == 'twitter'
+
+The Natural Language Toolkit (NLTK) is a Python package for
+natural language processing.  NLTK requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
+

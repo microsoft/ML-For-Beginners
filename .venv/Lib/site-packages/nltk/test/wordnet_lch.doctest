@@ -1,0 +1,53 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+===============================
+WordNet Lowest Common Hypernyms
+===============================
+
+Wordnet's lowest_common_hypernyms() method is based used to locate the
+lowest single hypernym that is shared by two given words:
+
+    >>> from nltk.corpus import wordnet as wn
+    >>> wn.synset('kin.n.01').lowest_common_hypernyms(wn.synset('mother.n.01'))
+    [Synset('relative.n.01')]
+
+    >>> wn.synset('policeman.n.01').lowest_common_hypernyms(wn.synset('chef.n.01'))
+    [Synset('person.n.01')]
+
+This method generally returns a single result, but in some cases, more than one
+valid LCH is possible:
+
+    >>> wn.synset('body.n.09').lowest_common_hypernyms(wn.synset('sidereal_day.n.01'))
+    [Synset('attribute.n.02'), Synset('measure.n.02')]
+
+In some cases, lowest_common_hypernyms() can return one of the synsets which was
+passed to it as an argument:
+
+    >>> wn.synset('woman.n.01').lowest_common_hypernyms(wn.synset('girlfriend.n.02'))
+    [Synset('woman.n.01')]
+
+In NLTK 3.0a2 the behavior of lowest_common_hypernyms() was changed to give more
+accurate results in a small set of cases, generally when dealing with nouns describing
+social roles or jobs. To emulate the pre v3.0a2 behavior, you can set the use_min_depth=True
+flag:
+
+    >>> wn.synset('policeman.n.01').lowest_common_hypernyms(wn.synset('chef.n.01'))
+    [Synset('person.n.01')]
+    >>> wn.synset('policeman.n.01').lowest_common_hypernyms(wn.synset('chef.n.01'), use_min_depth=True)
+    [Synset('organism.n.01')]
+
+In some cases use_min_depth=True may return more or fewer results than the default
+behavior:
+
+    >>> wn.synset('woman.n.01').lowest_common_hypernyms(wn.synset('girlfriend.n.02'))
+    [Synset('woman.n.01')]
+    >>> wn.synset('woman.n.01').lowest_common_hypernyms(wn.synset('girlfriend.n.02'), use_min_depth=True)
+    [Synset('organism.n.01'), Synset('woman.n.01')]
+
+In the general case, however, they tend to return the same results:
+
+    >>> wn.synset('body.n.09').lowest_common_hypernyms(wn.synset('sidereal_day.n.01'))
+    [Synset('attribute.n.02'), Synset('measure.n.02')]
+    >>> wn.synset('body.n.09').lowest_common_hypernyms(wn.synset('sidereal_day.n.01'), use_min_depth=True)
+    [Synset('attribute.n.02'), Synset('measure.n.02')]

@@ -1,0 +1,3 @@
+
+[console_scripts]
+nltk=nltk.cli:cli

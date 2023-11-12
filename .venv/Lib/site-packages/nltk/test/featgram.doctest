@@ -1,0 +1,610 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=========================
+ Feature Grammar Parsing
+=========================
+
+.. definitions from nltk_book/definitions.rst
+
+.. role:: feat
+    :class: feature
+.. role:: fval
+     :class: fval
+.. |rarr| unicode:: U+2192 .. right arrow
+.. |dot| unicode:: U+2022 .. bullet
+.. |pi| unicode:: U+03C0
+
+Grammars can be parsed from strings.
+
+    >>> import nltk
+    >>> from nltk import grammar, parse
+    >>> g = """
+    ... % start DP
+    ... DP[AGR=?a] -> D[AGR=?a] N[AGR=?a]
+    ... D[AGR=[NUM='sg', PERS=3]] -> 'this' | 'that'
+    ... D[AGR=[NUM='pl', PERS=3]] -> 'these' | 'those'
+    ... D[AGR=[NUM='pl', PERS=1]] -> 'we'
+    ... D[AGR=[PERS=2]] -> 'you'
+    ... N[AGR=[NUM='sg', GND='m']] -> 'boy'
+    ... N[AGR=[NUM='pl', GND='m']] -> 'boys'
+    ... N[AGR=[NUM='sg', GND='f']] -> 'girl'
+    ... N[AGR=[NUM='pl', GND='f']] -> 'girls'
+    ... N[AGR=[NUM='sg']] -> 'student'
+    ... N[AGR=[NUM='pl']] -> 'students'
+    ... """
+    >>> grammar = grammar.FeatureGrammar.fromstring(g)
+    >>> tokens = 'these girls'.split()
+    >>> parser = parse.FeatureEarleyChartParser(grammar)
+    >>> trees = parser.parse(tokens)
+    >>> for tree in trees: print(tree)
+    (DP[AGR=[GND='f', NUM='pl', PERS=3]]
+      (D[AGR=[NUM='pl', PERS=3]] these)
+      (N[AGR=[GND='f', NUM='pl']] girls))
+
+In general, when we are trying to develop even a very small grammar,
+it is convenient to put the rules in a file where they can be edited,
+tested and revised. Let's assume that we have saved feat0cfg as a file named
+``'feat0.fcfg'`` and placed it in the NLTK ``data`` directory. We can
+inspect it as follows:
+
+    >>> nltk.data.show_cfg('grammars/book_grammars/feat0.fcfg')
+    % start S
+    # ###################
+    # Grammar Productions
+    # ###################
+    # S expansion productions
+    S -> NP[NUM=?n] VP[NUM=?n]
+    # NP expansion productions
+    NP[NUM=?n] -> N[NUM=?n]
+    NP[NUM=?n] -> PropN[NUM=?n]
+    NP[NUM=?n] -> Det[NUM=?n] N[NUM=?n]
+    NP[NUM=pl] -> N[NUM=pl]
+    # VP expansion productions
+    VP[TENSE=?t, NUM=?n] -> IV[TENSE=?t, NUM=?n]
+    VP[TENSE=?t, NUM=?n] -> TV[TENSE=?t, NUM=?n] NP
+    # ###################
+    # Lexical Productions
+    # ###################
+    Det[NUM=sg] -> 'this' | 'every'
+    Det[NUM=pl] -> 'these' | 'all'
+    Det -> 'the' | 'some' | 'several'
+    PropN[NUM=sg]-> 'Kim' | 'Jody'
+    N[NUM=sg] -> 'dog' | 'girl' | 'car' | 'child'
+    N[NUM=pl] -> 'dogs' | 'girls' | 'cars' | 'children'
+    IV[TENSE=pres,  NUM=sg] -> 'disappears' | 'walks'
+    TV[TENSE=pres, NUM=sg] -> 'sees' | 'likes'
+    IV[TENSE=pres,  NUM=pl] -> 'disappear' | 'walk'
+    TV[TENSE=pres, NUM=pl] -> 'see' | 'like'
+    IV[TENSE=past] -> 'disappeared' | 'walked'
+    TV[TENSE=past] -> 'saw' | 'liked'
+
+Assuming we have saved feat0cfg as a file named
+``'feat0.fcfg'``, the function ``parse.load_parser`` allows us to
+read the grammar into NLTK, ready for use in parsing.
+
+
+    >>> cp = parse.load_parser('grammars/book_grammars/feat0.fcfg', trace=1)
+    >>> sent = 'Kim likes children'
+    >>> tokens = sent.split()
+    >>> tokens
+    ['Kim', 'likes', 'children']
+    >>> trees = cp.parse(tokens)
+    |.Kim .like.chil.|
+    |[----]    .    .| [0:1] 'Kim'
+    |.    [----]    .| [1:2] 'likes'
+    |.    .    [----]| [2:3] 'children'
+    |[----]    .    .| [0:1] PropN[NUM='sg'] -> 'Kim' *
+    |[----]    .    .| [0:1] NP[NUM='sg'] -> PropN[NUM='sg'] *
+    |[---->    .    .| [0:1] S[] -> NP[NUM=?n] * VP[NUM=?n] {?n: 'sg'}
+    |.    [----]    .| [1:2] TV[NUM='sg', TENSE='pres'] -> 'likes' *
+    |.    [---->    .| [1:2] VP[NUM=?n, TENSE=?t] -> TV[NUM=?n, TENSE=?t] * NP[] {?n: 'sg', ?t: 'pres'}
+    |.    .    [----]| [2:3] N[NUM='pl'] -> 'children' *
+    |.    .    [----]| [2:3] NP[NUM='pl'] -> N[NUM='pl'] *
+    |.    .    [---->| [2:3] S[] -> NP[NUM=?n] * VP[NUM=?n] {?n: 'pl'}
+    |.    [---------]| [1:3] VP[NUM='sg', TENSE='pres'] -> TV[NUM='sg', TENSE='pres'] NP[] *
+    |[==============]| [0:3] S[] -> NP[NUM='sg'] VP[NUM='sg'] *
+    >>> for tree in trees: print(tree)
+    (S[]
+      (NP[NUM='sg'] (PropN[NUM='sg'] Kim))
+      (VP[NUM='sg', TENSE='pres']
+        (TV[NUM='sg', TENSE='pres'] likes)
+        (NP[NUM='pl'] (N[NUM='pl'] children))))
+
+The parser works directly with
+the underspecified productions given by the grammar. That is, the
+Predictor rule does not attempt to compile out all admissible feature
+combinations before trying to expand the non-terminals on the left hand
+side of a production. However, when the Scanner matches an input word
+against a lexical production that has been predicted, the new edge will
+typically contain fully specified features; e.g., the edge
+[PropN[`num`:feat: = `sg`:fval:] |rarr| 'Kim', (0, 1)]. Recall from
+Chapter 8 that the Fundamental (or Completer) Rule in
+standard CFGs is used to combine an incomplete edge that's expecting a
+nonterminal *B* with a following, complete edge whose left hand side
+matches *B*. In our current setting, rather than checking for a
+complete match, we test whether the expected category *B* will
+unify with the left hand side *B'* of a following complete
+edge. We will explain in more detail in Section 9.2 how
+unification works; for the moment, it is enough to know that as a
+result of unification, any variable values of features in *B* will be
+instantiated by constant values in the corresponding feature structure
+in *B'*, and these instantiated values will be used in the new edge
+added by the Completer. This instantiation can be seen, for example,
+in the edge
+[NP [`num`:feat:\ =\ `sg`:fval:] |rarr| PropN[`num`:feat:\ =\ `sg`:fval:] |dot|, (0, 1)]
+in Example 9.2, where the feature `num`:feat: has been assigned the value `sg`:fval:.
+
+Feature structures in NLTK are ... Atomic feature values can be strings or
+integers.
+
+    >>> fs1 = nltk.FeatStruct(TENSE='past', NUM='sg')
+    >>> print(fs1)
+    [ NUM   = 'sg'   ]
+    [ TENSE = 'past' ]
+
+We can think of a feature structure as being like a Python dictionary,
+and access its values by indexing in the usual way.
+
+    >>> fs1 = nltk.FeatStruct(PER=3, NUM='pl', GND='fem')
+    >>> print(fs1['GND'])
+    fem
+
+We can also define feature structures which have complex values, as
+discussed earlier.
+
+    >>> fs2 = nltk.FeatStruct(POS='N', AGR=fs1)
+    >>> print(fs2)
+    [       [ GND = 'fem' ] ]
+    [ AGR = [ NUM = 'pl'  ] ]
+    [       [ PER = 3     ] ]
+    [                       ]
+    [ POS = 'N'             ]
+    >>> print(fs2['AGR'])
+    [ GND = 'fem' ]
+    [ NUM = 'pl'  ]
+    [ PER = 3     ]
+    >>> print(fs2['AGR']['PER'])
+    3
+
+Feature structures can also be constructed using the ``parse()``
+method of the ``nltk.FeatStruct`` class. Note that in this case, atomic
+feature values do not need to be enclosed in quotes.
+
+    >>> f1 = nltk.FeatStruct("[NUMBER = sg]")
+    >>> f2 = nltk.FeatStruct("[PERSON = 3]")
+    >>> print(nltk.unify(f1, f2))
+    [ NUMBER = 'sg' ]
+    [ PERSON = 3    ]
+
+    >>> f1 = nltk.FeatStruct("[A = [B = b, D = d]]")
+    >>> f2 = nltk.FeatStruct("[A = [C = c, D = d]]")
+    >>> print(nltk.unify(f1, f2))
+    [     [ B = 'b' ] ]
+    [ A = [ C = 'c' ] ]
+    [     [ D = 'd' ] ]
+
+
+Feature Structures as Graphs
+----------------------------
+
+Feature structures are not inherently tied to linguistic objects; they are
+general purpose structures for representing knowledge. For example, we
+could encode information about a person in a feature structure:
+
+    >>> person01 = nltk.FeatStruct("[NAME=Lee, TELNO='01 27 86 42 96',AGE=33]")
+    >>> print(person01)
+    [ AGE   = 33               ]
+    [ NAME  = 'Lee'            ]
+    [ TELNO = '01 27 86 42 96' ]
+
+There are a number of notations for representing reentrancy in
+matrix-style representations of feature structures. In NLTK, we adopt
+the following convention: the first occurrence of a shared feature structure
+is prefixed with an integer in parentheses, such as ``(1)``, and any
+subsequent reference to that structure uses the notation
+``->(1)``, as shown below.
+
+
+    >>> fs = nltk.FeatStruct("""[NAME=Lee, ADDRESS=(1)[NUMBER=74, STREET='rue Pascal'],
+    ...                               SPOUSE=[NAME=Kim, ADDRESS->(1)]]""")
+    >>> print(fs)
+    [ ADDRESS = (1) [ NUMBER = 74           ] ]
+    [               [ STREET = 'rue Pascal' ] ]
+    [                                         ]
+    [ NAME    = 'Lee'                         ]
+    [                                         ]
+    [ SPOUSE  = [ ADDRESS -> (1)  ]           ]
+    [           [ NAME    = 'Kim' ]           ]
+
+There can be any number of tags within a single feature structure.
+
+    >>> fs3 = nltk.FeatStruct("[A=(1)[B=b], C=(2)[], D->(1), E->(2)]")
+    >>> print(fs3)
+    [ A = (1) [ B = 'b' ] ]
+    [                     ]
+    [ C = (2) []          ]
+    [                     ]
+    [ D -> (1)            ]
+    [ E -> (2)            ]
+    >>> fs1 = nltk.FeatStruct(NUMBER=74, STREET='rue Pascal')
+    >>> fs2 = nltk.FeatStruct(CITY='Paris')
+    >>> print(nltk.unify(fs1, fs2))
+    [ CITY   = 'Paris'      ]
+    [ NUMBER = 74           ]
+    [ STREET = 'rue Pascal' ]
+
+Unification is symmetric:
+
+    >>> nltk.unify(fs1, fs2) == nltk.unify(fs2, fs1)
+    True
+
+Unification is commutative:
+
+    >>> fs3 = nltk.FeatStruct(TELNO='01 27 86 42 96')
+    >>> nltk.unify(nltk.unify(fs1, fs2), fs3) == nltk.unify(fs1, nltk.unify(fs2, fs3))
+    True
+
+Unification between *FS*:math:`_0` and *FS*:math:`_1` will fail if the
+two feature structures share a path |pi|,
+but the value of |pi| in *FS*:math:`_0` is a distinct
+atom from the value of |pi| in *FS*:math:`_1`. In NLTK,
+this is implemented by setting the result of unification to be
+``None``.
+
+    >>> fs0 = nltk.FeatStruct(A='a')
+    >>> fs1 = nltk.FeatStruct(A='b')
+    >>> print(nltk.unify(fs0, fs1))
+    None
+
+Now, if we look at how unification interacts with structure-sharing,
+things become really interesting.
+
+
+
+    >>> fs0 = nltk.FeatStruct("""[NAME=Lee,
+    ...                                ADDRESS=[NUMBER=74,
+    ...                                         STREET='rue Pascal'],
+    ...                                SPOUSE= [NAME=Kim,
+    ...                                         ADDRESS=[NUMBER=74,
+    ...                                                  STREET='rue Pascal']]]""")
+    >>> print(fs0)
+    [ ADDRESS = [ NUMBER = 74           ]               ]
+    [           [ STREET = 'rue Pascal' ]               ]
+    [                                                   ]
+    [ NAME    = 'Lee'                                   ]
+    [                                                   ]
+    [           [ ADDRESS = [ NUMBER = 74           ] ] ]
+    [ SPOUSE  = [           [ STREET = 'rue Pascal' ] ] ]
+    [           [                                     ] ]
+    [           [ NAME    = 'Kim'                     ] ]
+
+
+    >>> fs1 = nltk.FeatStruct("[SPOUSE=[ADDRESS=[CITY=Paris]]]")
+    >>> print(nltk.unify(fs0, fs1))
+    [ ADDRESS = [ NUMBER = 74           ]               ]
+    [           [ STREET = 'rue Pascal' ]               ]
+    [                                                   ]
+    [ NAME    = 'Lee'                                   ]
+    [                                                   ]
+    [           [           [ CITY   = 'Paris'      ] ] ]
+    [           [ ADDRESS = [ NUMBER = 74           ] ] ]
+    [ SPOUSE  = [           [ STREET = 'rue Pascal' ] ] ]
+    [           [                                     ] ]
+    [           [ NAME    = 'Kim'                     ] ]
+
+    >>> fs2 = nltk.FeatStruct("""[NAME=Lee, ADDRESS=(1)[NUMBER=74, STREET='rue Pascal'],
+    ...                                SPOUSE=[NAME=Kim, ADDRESS->(1)]]""")
+
+
+    >>> print(fs2)
+    [ ADDRESS = (1) [ NUMBER = 74           ] ]
+    [               [ STREET = 'rue Pascal' ] ]
+    [                                         ]
+    [ NAME    = 'Lee'                         ]
+    [                                         ]
+    [ SPOUSE  = [ ADDRESS -> (1)  ]           ]
+    [           [ NAME    = 'Kim' ]           ]
+
+
+    >>> print(nltk.unify(fs2, fs1))
+    [               [ CITY   = 'Paris'      ] ]
+    [ ADDRESS = (1) [ NUMBER = 74           ] ]
+    [               [ STREET = 'rue Pascal' ] ]
+    [                                         ]
+    [ NAME    = 'Lee'                         ]
+    [                                         ]
+    [ SPOUSE  = [ ADDRESS -> (1)  ]           ]
+    [           [ NAME    = 'Kim' ]           ]
+
+
+    >>> fs1 = nltk.FeatStruct("[ADDRESS1=[NUMBER=74, STREET='rue Pascal']]")
+    >>> fs2 = nltk.FeatStruct("[ADDRESS1=?x, ADDRESS2=?x]")
+    >>> print(fs2)
+    [ ADDRESS1 = ?x ]
+    [ ADDRESS2 = ?x ]
+    >>> print(nltk.unify(fs1, fs2))
+    [ ADDRESS1 = (1) [ NUMBER = 74           ] ]
+    [                [ STREET = 'rue Pascal' ] ]
+    [                                          ]
+    [ ADDRESS2 -> (1)                          ]
+
+
+
+
+    >>> sent = 'who do you claim that you like'
+    >>> tokens = sent.split()
+    >>> cp = parse.load_parser('grammars/book_grammars/feat1.fcfg', trace=1)
+    >>> trees = cp.parse(tokens)
+    |.w.d.y.c.t.y.l.|
+    |[-] . . . . . .| [0:1] 'who'
+    |. [-] . . . . .| [1:2] 'do'
+    |. . [-] . . . .| [2:3] 'you'
+    |. . . [-] . . .| [3:4] 'claim'
+    |. . . . [-] . .| [4:5] 'that'
+    |. . . . . [-] .| [5:6] 'you'
+    |. . . . . . [-]| [6:7] 'like'
+    |# . . . . . . .| [0:0] NP[]/NP[] -> *
+    |. # . . . . . .| [1:1] NP[]/NP[] -> *
+    |. . # . . . . .| [2:2] NP[]/NP[] -> *
+    |. . . # . . . .| [3:3] NP[]/NP[] -> *
+    |. . . . # . . .| [4:4] NP[]/NP[] -> *
+    |. . . . . # . .| [5:5] NP[]/NP[] -> *
+    |. . . . . . # .| [6:6] NP[]/NP[] -> *
+    |. . . . . . . #| [7:7] NP[]/NP[] -> *
+    |[-] . . . . . .| [0:1] NP[+WH] -> 'who' *
+    |[-> . . . . . .| [0:1] S[-INV] -> NP[] * VP[] {}
+    |[-> . . . . . .| [0:1] S[-INV]/?x[] -> NP[] * VP[]/?x[] {}
+    |[-> . . . . . .| [0:1] S[-INV] -> NP[] * S[]/NP[] {}
+    |. [-] . . . . .| [1:2] V[+AUX] -> 'do' *
+    |. [-> . . . . .| [1:2] S[+INV] -> V[+AUX] * NP[] VP[] {}
+    |. [-> . . . . .| [1:2] S[+INV]/?x[] -> V[+AUX] * NP[] VP[]/?x[] {}
+    |. [-> . . . . .| [1:2] VP[] -> V[+AUX] * VP[] {}
+    |. [-> . . . . .| [1:2] VP[]/?x[] -> V[+AUX] * VP[]/?x[] {}
+    |. . [-] . . . .| [2:3] NP[-WH] -> 'you' *
+    |. . [-> . . . .| [2:3] S[-INV] -> NP[] * VP[] {}
+    |. . [-> . . . .| [2:3] S[-INV]/?x[] -> NP[] * VP[]/?x[] {}
+    |. . [-> . . . .| [2:3] S[-INV] -> NP[] * S[]/NP[] {}
+    |. [---> . . . .| [1:3] S[+INV] -> V[+AUX] NP[] * VP[] {}
+    |. [---> . . . .| [1:3] S[+INV]/?x[] -> V[+AUX] NP[] * VP[]/?x[] {}
+    |. . . [-] . . .| [3:4] V[-AUX, SUBCAT='clause'] -> 'claim' *
+    |. . . [-> . . .| [3:4] VP[] -> V[-AUX, SUBCAT='clause'] * SBar[] {}
+    |. . . [-> . . .| [3:4] VP[]/?x[] -> V[-AUX, SUBCAT='clause'] * SBar[]/?x[] {}
+    |. . . . [-] . .| [4:5] Comp[] -> 'that' *
+    |. . . . [-> . .| [4:5] SBar[] -> Comp[] * S[-INV] {}
+    |. . . . [-> . .| [4:5] SBar[]/?x[] -> Comp[] * S[-INV]/?x[] {}
+    |. . . . . [-] .| [5:6] NP[-WH] -> 'you' *
+    |. . . . . [-> .| [5:6] S[-INV] -> NP[] * VP[] {}
+    |. . . . . [-> .| [5:6] S[-INV]/?x[] -> NP[] * VP[]/?x[] {}
+    |. . . . . [-> .| [5:6] S[-INV] -> NP[] * S[]/NP[] {}
+    |. . . . . . [-]| [6:7] V[-AUX, SUBCAT='trans'] -> 'like' *
+    |. . . . . . [->| [6:7] VP[] -> V[-AUX, SUBCAT='trans'] * NP[] {}
+    |. . . . . . [->| [6:7] VP[]/?x[] -> V[-AUX, SUBCAT='trans'] * NP[]/?x[] {}
+    |. . . . . . [-]| [6:7] VP[]/NP[] -> V[-AUX, SUBCAT='trans'] NP[]/NP[] *
+    |. . . . . [---]| [5:7] S[-INV]/NP[] -> NP[] VP[]/NP[] *
+    |. . . . [-----]| [4:7] SBar[]/NP[] -> Comp[] S[-INV]/NP[] *
+    |. . . [-------]| [3:7] VP[]/NP[] -> V[-AUX, SUBCAT='clause'] SBar[]/NP[] *
+    |. . [---------]| [2:7] S[-INV]/NP[] -> NP[] VP[]/NP[] *
+    |. [-----------]| [1:7] S[+INV]/NP[] -> V[+AUX] NP[] VP[]/NP[] *
+    |[=============]| [0:7] S[-INV] -> NP[] S[]/NP[] *
+
+    >>> trees = list(trees)
+    >>> for tree in trees: print(tree)
+    (S[-INV]
+      (NP[+WH] who)
+      (S[+INV]/NP[]
+        (V[+AUX] do)
+        (NP[-WH] you)
+        (VP[]/NP[]
+          (V[-AUX, SUBCAT='clause'] claim)
+          (SBar[]/NP[]
+            (Comp[] that)
+            (S[-INV]/NP[]
+              (NP[-WH] you)
+              (VP[]/NP[] (V[-AUX, SUBCAT='trans'] like) (NP[]/NP[] )))))))
+
+A different parser should give the same parse trees, but perhaps in a different order:
+
+    >>> cp2 = parse.load_parser('grammars/book_grammars/feat1.fcfg', trace=1,
+    ...                         parser=parse.FeatureEarleyChartParser)
+    >>> trees2 = cp2.parse(tokens)
+    |.w.d.y.c.t.y.l.|
+    |[-] . . . . . .| [0:1] 'who'
+    |. [-] . . . . .| [1:2] 'do'
+    |. . [-] . . . .| [2:3] 'you'
+    |. . . [-] . . .| [3:4] 'claim'
+    |. . . . [-] . .| [4:5] 'that'
+    |. . . . . [-] .| [5:6] 'you'
+    |. . . . . . [-]| [6:7] 'like'
+    |> . . . . . . .| [0:0] S[-INV] -> * NP[] VP[] {}
+    |> . . . . . . .| [0:0] S[-INV]/?x[] -> * NP[] VP[]/?x[] {}
+    |> . . . . . . .| [0:0] S[-INV] -> * NP[] S[]/NP[] {}
+    |> . . . . . . .| [0:0] S[-INV] -> * Adv[+NEG] S[+INV] {}
+    |> . . . . . . .| [0:0] S[+INV] -> * V[+AUX] NP[] VP[] {}
+    |> . . . . . . .| [0:0] S[+INV]/?x[] -> * V[+AUX] NP[] VP[]/?x[] {}
+    |> . . . . . . .| [0:0] NP[+WH] -> * 'who' {}
+    |[-] . . . . . .| [0:1] NP[+WH] -> 'who' *
+    |[-> . . . . . .| [0:1] S[-INV] -> NP[] * VP[] {}
+    |[-> . . . . . .| [0:1] S[-INV]/?x[] -> NP[] * VP[]/?x[] {}
+    |[-> . . . . . .| [0:1] S[-INV] -> NP[] * S[]/NP[] {}
+    |. > . . . . . .| [1:1] S[-INV]/?x[] -> * NP[] VP[]/?x[] {}
+    |. > . . . . . .| [1:1] S[+INV]/?x[] -> * V[+AUX] NP[] VP[]/?x[] {}
+    |. > . . . . . .| [1:1] V[+AUX] -> * 'do' {}
+    |. > . . . . . .| [1:1] VP[]/?x[] -> * V[-AUX, SUBCAT='trans'] NP[]/?x[] {}
+    |. > . . . . . .| [1:1] VP[]/?x[] -> * V[-AUX, SUBCAT='clause'] SBar[]/?x[] {}
+    |. > . . . . . .| [1:1] VP[]/?x[] -> * V[+AUX] VP[]/?x[] {}
+    |. > . . . . . .| [1:1] VP[] -> * V[-AUX, SUBCAT='intrans'] {}
+    |. > . . . . . .| [1:1] VP[] -> * V[-AUX, SUBCAT='trans'] NP[] {}
+    |. > . . . . . .| [1:1] VP[] -> * V[-AUX, SUBCAT='clause'] SBar[] {}
+    |. > . . . . . .| [1:1] VP[] -> * V[+AUX] VP[] {}
+    |. [-] . . . . .| [1:2] V[+AUX] -> 'do' *
+    |. [-> . . . . .| [1:2] S[+INV]/?x[] -> V[+AUX] * NP[] VP[]/?x[] {}
+    |. [-> . . . . .| [1:2] VP[]/?x[] -> V[+AUX] * VP[]/?x[] {}
+    |. [-> . . . . .| [1:2] VP[] -> V[+AUX] * VP[] {}
+    |. . > . . . . .| [2:2] VP[] -> * V[-AUX, SUBCAT='intrans'] {}
+    |. . > . . . . .| [2:2] VP[] -> * V[-AUX, SUBCAT='trans'] NP[] {}
+    |. . > . . . . .| [2:2] VP[] -> * V[-AUX, SUBCAT='clause'] SBar[] {}
+    |. . > . . . . .| [2:2] VP[] -> * V[+AUX] VP[] {}
+    |. . > . . . . .| [2:2] VP[]/?x[] -> * V[-AUX, SUBCAT='trans'] NP[]/?x[] {}
+    |. . > . . . . .| [2:2] VP[]/?x[] -> * V[-AUX, SUBCAT='clause'] SBar[]/?x[] {}
+    |. . > . . . . .| [2:2] VP[]/?x[] -> * V[+AUX] VP[]/?x[] {}
+    |. . > . . . . .| [2:2] NP[-WH] -> * 'you' {}
+    |. . [-] . . . .| [2:3] NP[-WH] -> 'you' *
+    |. [---> . . . .| [1:3] S[+INV]/?x[] -> V[+AUX] NP[] * VP[]/?x[] {}
+    |. . . > . . . .| [3:3] VP[]/?x[] -> * V[-AUX, SUBCAT='trans'] NP[]/?x[] {}
+    |. . . > . . . .| [3:3] VP[]/?x[] -> * V[-AUX, SUBCAT='clause'] SBar[]/?x[] {}
+    |. . . > . . . .| [3:3] VP[]/?x[] -> * V[+AUX] VP[]/?x[] {}
+    |. . . > . . . .| [3:3] V[-AUX, SUBCAT='clause'] -> * 'claim' {}
+    |. . . [-] . . .| [3:4] V[-AUX, SUBCAT='clause'] -> 'claim' *
+    |. . . [-> . . .| [3:4] VP[]/?x[] -> V[-AUX, SUBCAT='clause'] * SBar[]/?x[] {}
+    |. . . . > . . .| [4:4] SBar[]/?x[] -> * Comp[] S[-INV]/?x[] {}
+    |. . . . > . . .| [4:4] Comp[] -> * 'that' {}
+    |. . . . [-] . .| [4:5] Comp[] -> 'that' *
+    |. . . . [-> . .| [4:5] SBar[]/?x[] -> Comp[] * S[-INV]/?x[] {}
+    |. . . . . > . .| [5:5] S[-INV]/?x[] -> * NP[] VP[]/?x[] {}
+    |. . . . . > . .| [5:5] NP[-WH] -> * 'you' {}
+    |. . . . . [-] .| [5:6] NP[-WH] -> 'you' *
+    |. . . . . [-> .| [5:6] S[-INV]/?x[] -> NP[] * VP[]/?x[] {}
+    |. . . . . . > .| [6:6] VP[]/?x[] -> * V[-AUX, SUBCAT='trans'] NP[]/?x[] {}
+    |. . . . . . > .| [6:6] VP[]/?x[] -> * V[-AUX, SUBCAT='clause'] SBar[]/?x[] {}
+    |. . . . . . > .| [6:6] VP[]/?x[] -> * V[+AUX] VP[]/?x[] {}
+    |. . . . . . > .| [6:6] V[-AUX, SUBCAT='trans'] -> * 'like' {}
+    |. . . . . . [-]| [6:7] V[-AUX, SUBCAT='trans'] -> 'like' *
+    |. . . . . . [->| [6:7] VP[]/?x[] -> V[-AUX, SUBCAT='trans'] * NP[]/?x[] {}
+    |. . . . . . . #| [7:7] NP[]/NP[] -> *
+    |. . . . . . [-]| [6:7] VP[]/NP[] -> V[-AUX, SUBCAT='trans'] NP[]/NP[] *
+    |. . . . . [---]| [5:7] S[-INV]/NP[] -> NP[] VP[]/NP[] *
+    |. . . . [-----]| [4:7] SBar[]/NP[] -> Comp[] S[-INV]/NP[] *
+    |. . . [-------]| [3:7] VP[]/NP[] -> V[-AUX, SUBCAT='clause'] SBar[]/NP[] *
+    |. [-----------]| [1:7] S[+INV]/NP[] -> V[+AUX] NP[] VP[]/NP[] *
+    |[=============]| [0:7] S[-INV] -> NP[] S[]/NP[] *
+
+    >>> sorted(trees) == sorted(trees2)
+    True
+
+
+Let's load a German grammar:
+
+    >>> cp = parse.load_parser('grammars/book_grammars/german.fcfg', trace=0)
+    >>> sent = 'die Katze sieht den Hund'
+    >>> tokens = sent.split()
+    >>> trees = cp.parse(tokens)
+    >>> for tree in trees: print(tree)
+    (S[]
+      (NP[AGR=[GND='fem', NUM='sg', PER=3], CASE='nom']
+        (Det[AGR=[GND='fem', NUM='sg', PER=3], CASE='nom'] die)
+        (N[AGR=[GND='fem', NUM='sg', PER=3]] Katze))
+      (VP[AGR=[NUM='sg', PER=3]]
+        (TV[AGR=[NUM='sg', PER=3], OBJCASE='acc'] sieht)
+        (NP[AGR=[GND='masc', NUM='sg', PER=3], CASE='acc']
+          (Det[AGR=[GND='masc', NUM='sg', PER=3], CASE='acc'] den)
+          (N[AGR=[GND='masc', NUM='sg', PER=3]] Hund))))
+
+Grammar with Binding Operators
+------------------------------
+The bindop.fcfg grammar is a semantic grammar that uses lambda
+calculus.  Each element has a core semantics, which is a single lambda
+calculus expression; and a set of binding operators, which bind
+variables.
+
+In order to make the binding operators work right, they need to
+instantiate their bound variable every time they are added to the
+chart.  To do this, we use a special subclass of `Chart`, called
+`InstantiateVarsChart`.
+
+    >>> from nltk.parse.featurechart import InstantiateVarsChart
+    >>> cp = parse.load_parser('grammars/sample_grammars/bindop.fcfg', trace=1,
+    ...                        chart_class=InstantiateVarsChart)
+    >>> print(cp.grammar())
+    Grammar with 15 productions (start state = S[])
+        S[SEM=[BO={?b1+?b2}, CORE=<?vp(?subj)>]] -> NP[SEM=[BO=?b1, CORE=?subj]] VP[SEM=[BO=?b2, CORE=?vp]]
+        VP[SEM=[BO={?b1+?b2}, CORE=<?v(?obj)>]] -> TV[SEM=[BO=?b1, CORE=?v]] NP[SEM=[BO=?b2, CORE=?obj]]
+        VP[SEM=?s] -> IV[SEM=?s]
+        NP[SEM=[BO={?b1+?b2+{bo(?det(?n),@x)}}, CORE=<@x>]] -> Det[SEM=[BO=?b1, CORE=?det]] N[SEM=[BO=?b2, CORE=?n]]
+        Det[SEM=[BO={/}, CORE=<\Q P.exists x.(Q(x) & P(x))>]] -> 'a'
+        N[SEM=[BO={/}, CORE=<dog>]] -> 'dog'
+        N[SEM=[BO={/}, CORE=<dog>]] -> 'cat'
+        N[SEM=[BO={/}, CORE=<dog>]] -> 'mouse'
+        IV[SEM=[BO={/}, CORE=<\x.bark(x)>]] -> 'barks'
+        IV[SEM=[BO={/}, CORE=<\x.bark(x)>]] -> 'eats'
+        IV[SEM=[BO={/}, CORE=<\x.bark(x)>]] -> 'walks'
+        TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] -> 'feeds'
+        TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] -> 'walks'
+        NP[SEM=[BO={bo(\P.P(John),@x)}, CORE=<@x>]] -> 'john'
+        NP[SEM=[BO={bo(\P.P(John),@x)}, CORE=<@x>]] -> 'alex'
+
+A simple intransitive sentence:
+
+    >>> from nltk.sem import logic
+    >>> logic._counter._value = 100
+
+    >>> trees = cp.parse('john barks'.split())
+    |. john.barks.|
+    |[-----]     .| [0:1] 'john'
+    |.     [-----]| [1:2] 'barks'
+    |[-----]     .| [0:1] NP[SEM=[BO={bo(\P.P(John),z101)}, CORE=<z101>]] -> 'john' *
+    |[----->     .| [0:1] S[SEM=[BO={?b1+?b2}, CORE=<?vp(?subj)>]] -> NP[SEM=[BO=?b1, CORE=?subj]] * VP[SEM=[BO=?b2, CORE=?vp]] {?b1: {bo(\P.P(John),z2)}, ?subj: <IndividualVariableExpression z2>}
+    |.     [-----]| [1:2] IV[SEM=[BO={/}, CORE=<\x.bark(x)>]] -> 'barks' *
+    |.     [-----]| [1:2] VP[SEM=[BO={/}, CORE=<\x.bark(x)>]] -> IV[SEM=[BO={/}, CORE=<\x.bark(x)>]] *
+    |[===========]| [0:2] S[SEM=[BO={bo(\P.P(John),z2)}, CORE=<bark(z2)>]] -> NP[SEM=[BO={bo(\P.P(John),z2)}, CORE=<z2>]] VP[SEM=[BO={/}, CORE=<\x.bark(x)>]] *
+    >>> for tree in trees: print(tree)
+    (S[SEM=[BO={bo(\P.P(John),z2)}, CORE=<bark(z2)>]]
+      (NP[SEM=[BO={bo(\P.P(John),z101)}, CORE=<z101>]] john)
+      (VP[SEM=[BO={/}, CORE=<\x.bark(x)>]]
+        (IV[SEM=[BO={/}, CORE=<\x.bark(x)>]] barks)))
+
+A transitive sentence:
+
+    >>> trees = cp.parse('john feeds a dog'.split())
+    |.joh.fee. a .dog.|
+    |[---]   .   .   .| [0:1] 'john'
+    |.   [---]   .   .| [1:2] 'feeds'
+    |.   .   [---]   .| [2:3] 'a'
+    |.   .   .   [---]| [3:4] 'dog'
+    |[---]   .   .   .| [0:1] NP[SEM=[BO={bo(\P.P(John),z102)}, CORE=<z102>]] -> 'john' *
+    |[--->   .   .   .| [0:1] S[SEM=[BO={?b1+?b2}, CORE=<?vp(?subj)>]] -> NP[SEM=[BO=?b1, CORE=?subj]] * VP[SEM=[BO=?b2, CORE=?vp]] {?b1: {bo(\P.P(John),z2)}, ?subj: <IndividualVariableExpression z2>}
+    |.   [---]   .   .| [1:2] TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] -> 'feeds' *
+    |.   [--->   .   .| [1:2] VP[SEM=[BO={?b1+?b2}, CORE=<?v(?obj)>]] -> TV[SEM=[BO=?b1, CORE=?v]] * NP[SEM=[BO=?b2, CORE=?obj]] {?b1: {/}, ?v: <LambdaExpression \x y.feed(y,x)>}
+    |.   .   [---]   .| [2:3] Det[SEM=[BO={/}, CORE=<\Q P.exists x.(Q(x) & P(x))>]] -> 'a' *
+    |.   .   [--->   .| [2:3] NP[SEM=[BO={?b1+?b2+{bo(?det(?n),@x)}}, CORE=<@x>]] -> Det[SEM=[BO=?b1, CORE=?det]] * N[SEM=[BO=?b2, CORE=?n]] {?b1: {/}, ?det: <LambdaExpression \Q P.exists x.(Q(x) & P(x))>}
+    |.   .   .   [---]| [3:4] N[SEM=[BO={/}, CORE=<dog>]] -> 'dog' *
+    |.   .   [-------]| [2:4] NP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z103)}, CORE=<z103>]] -> Det[SEM=[BO={/}, CORE=<\Q P.exists x.(Q(x) & P(x))>]] N[SEM=[BO={/}, CORE=<dog>]] *
+    |.   .   [------->| [2:4] S[SEM=[BO={?b1+?b2}, CORE=<?vp(?subj)>]] -> NP[SEM=[BO=?b1, CORE=?subj]] * VP[SEM=[BO=?b2, CORE=?vp]] {?b1: {bo(\P.exists x.(dog(x) & P(x)),z2)}, ?subj: <IndividualVariableExpression z2>}
+    |.   [-----------]| [1:4] VP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z2)}, CORE=<\y.feed(y,z2)>]] -> TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] NP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z2)}, CORE=<z2>]] *
+    |[===============]| [0:4] S[SEM=[BO={bo(\P.P(John),z2), bo(\P.exists x.(dog(x) & P(x)),z3)}, CORE=<feed(z2,z3)>]] -> NP[SEM=[BO={bo(\P.P(John),z2)}, CORE=<z2>]] VP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z3)}, CORE=<\y.feed(y,z3)>]] *
+
+    >>> for tree in trees: print(tree)
+    (S[SEM=[BO={bo(\P.P(John),z2), bo(\P.exists x.(dog(x) & P(x)),z3)}, CORE=<feed(z2,z3)>]]
+      (NP[SEM=[BO={bo(\P.P(John),z102)}, CORE=<z102>]] john)
+      (VP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z2)}, CORE=<\y.feed(y,z2)>]]
+        (TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] feeds)
+        (NP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z103)}, CORE=<z103>]]
+          (Det[SEM=[BO={/}, CORE=<\Q P.exists x.(Q(x) & P(x))>]] a)
+          (N[SEM=[BO={/}, CORE=<dog>]] dog))))
+
+Turn down the verbosity:
+
+    >>> cp = parse.load_parser('grammars/sample_grammars/bindop.fcfg', trace=0,
+    ...                       chart_class=InstantiateVarsChart)
+
+Reuse the same lexical item twice:
+
+    >>> trees = cp.parse('john feeds john'.split())
+    >>> for tree in trees: print(tree)
+    (S[SEM=[BO={bo(\P.P(John),z2), bo(\P.P(John),z3)}, CORE=<feed(z2,z3)>]]
+      (NP[SEM=[BO={bo(\P.P(John),z104)}, CORE=<z104>]] john)
+      (VP[SEM=[BO={bo(\P.P(John),z2)}, CORE=<\y.feed(y,z2)>]]
+        (TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] feeds)
+        (NP[SEM=[BO={bo(\P.P(John),z105)}, CORE=<z105>]] john)))
+
+    >>> trees = cp.parse('a dog feeds a dog'.split())
+    >>> for tree in trees: print(tree)
+    (S[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z2), bo(\P.exists x.(dog(x) & P(x)),z3)}, CORE=<feed(z2,z3)>]]
+      (NP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z106)}, CORE=<z106>]]
+        (Det[SEM=[BO={/}, CORE=<\Q P.exists x.(Q(x) & P(x))>]] a)
+        (N[SEM=[BO={/}, CORE=<dog>]] dog))
+      (VP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z2)}, CORE=<\y.feed(y,z2)>]]
+        (TV[SEM=[BO={/}, CORE=<\x y.feed(y,x)>]] feeds)
+        (NP[SEM=[BO={bo(\P.exists x.(dog(x) & P(x)),z107)}, CORE=<z107>]]
+          (Det[SEM=[BO={/}, CORE=<\Q P.exists x.(Q(x) & P(x))>]] a)
+          (N[SEM=[BO={/}, CORE=<dog>]] dog))))

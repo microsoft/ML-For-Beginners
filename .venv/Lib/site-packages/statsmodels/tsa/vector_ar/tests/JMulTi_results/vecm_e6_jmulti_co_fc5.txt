@@ -1,0 +1,23 @@
+*** Thu, 28 Jul 2016 16:36:26 ***
+FORECASTING
+Reference: Lütkepohl (1993), IMTSA, 2ed, ch. 5.2.6, ch. 10.5
+CI coverage:              0.95     
+forecast horizon:         5 periods 
+using standard confidence intervals
+
+            Dp                        
+time        forecast     lower CI     upper CI     +/-          
+1999 Q1    -0.0178      -0.0295      -0.0061       0.0117      
+1999 Q2    -0.0038      -0.0159       0.0083       0.0121      
+1999 Q3     0.0006      -0.0119       0.0131       0.0125      
+1999 Q4     0.0212       0.0086       0.0337       0.0125      
+2000 Q1    -0.0183      -0.0348      -0.0018       0.0165      
+
+            R                         
+time        forecast     lower CI     upper CI     +/-          
+1999 Q1     0.0390       0.0289       0.0492       0.0102      
+1999 Q2     0.0395       0.0241       0.0548       0.0154      
+1999 Q3     0.0399       0.0210       0.0589       0.0189      
+1999 Q4     0.0394       0.0166       0.0622       0.0228      
+2000 Q1     0.0401       0.0140       0.0663       0.0261      
+

@@ -1,0 +1,1096 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+=======================
+Logic & Lambda Calculus
+=======================
+
+The `nltk.logic` package allows expressions of First-Order Logic (FOL) to be
+parsed into ``Expression`` objects. In addition to FOL, the parser
+handles lambda-abstraction with variables of higher order.
+
+--------
+Overview
+--------
+
+    >>> from nltk.sem.logic import *
+
+The default inventory of logical constants is the following:
+
+    >>> boolean_ops()
+    negation           -
+    conjunction        &
+    disjunction        |
+    implication        ->
+    equivalence        <->
+    >>> equality_preds()
+    equality           =
+    inequality         !=
+    >>> binding_ops()
+    existential        exists
+    universal          all
+    lambda             \
+
+----------------
+Regression Tests
+----------------
+
+
+Untyped Logic
++++++++++++++
+
+Process logical expressions conveniently:
+
+    >>> read_expr = Expression.fromstring
+
+Test for equality under alpha-conversion
+========================================
+
+    >>> e1 = read_expr('exists x.P(x)')
+    >>> print(e1)
+    exists x.P(x)
+    >>> e2 = e1.alpha_convert(Variable('z'))
+    >>> print(e2)
+    exists z.P(z)
+    >>> e1 == e2
+    True
+
+
+    >>> l = read_expr(r'\X.\X.X(X)(1)').simplify()
+    >>> id = read_expr(r'\X.X(X)')
+    >>> l == id
+    True
+
+Test numerals
+=============
+
+    >>> zero = read_expr(r'\F x.x')
+    >>> one = read_expr(r'\F x.F(x)')
+    >>> two = read_expr(r'\F x.F(F(x))')
+    >>> three = read_expr(r'\F x.F(F(F(x)))')
+    >>> four = read_expr(r'\F x.F(F(F(F(x))))')
+    >>> succ = read_expr(r'\N F x.F(N(F,x))')
+    >>> plus = read_expr(r'\M N F x.M(F,N(F,x))')
+    >>> mult = read_expr(r'\M N F.M(N(F))')
+    >>> pred = read_expr(r'\N F x.(N(\G H.H(G(F)))(\u.x)(\u.u))')
+    >>> v1 = ApplicationExpression(succ, zero).simplify()
+    >>> v1 == one
+    True
+    >>> v2 = ApplicationExpression(succ, v1).simplify()
+    >>> v2 == two
+    True
+    >>> v3 = ApplicationExpression(ApplicationExpression(plus, v1), v2).simplify()
+    >>> v3 == three
+    True
+    >>> v4 = ApplicationExpression(ApplicationExpression(mult, v2), v2).simplify()
+    >>> v4 == four
+    True
+    >>> v5 = ApplicationExpression(pred, ApplicationExpression(pred, v4)).simplify()
+    >>> v5 == two
+    True
+
+Overloaded operators also exist, for convenience.
+
+    >>> print(succ(zero).simplify() == one)
+    True
+    >>> print(plus(one,two).simplify() == three)
+    True
+    >>> print(mult(two,two).simplify() == four)
+    True
+    >>> print(pred(pred(four)).simplify() == two)
+    True
+
+    >>> john = read_expr(r'john')
+    >>> man = read_expr(r'\x.man(x)')
+    >>> walk = read_expr(r'\x.walk(x)')
+    >>> man(john).simplify()
+    <ApplicationExpression man(john)>
+    >>> print(-walk(john).simplify())
+    -walk(john)
+    >>> print((man(john) & walk(john)).simplify())
+    (man(john) & walk(john))
+    >>> print((man(john) | walk(john)).simplify())
+    (man(john) | walk(john))
+    >>> print((man(john) > walk(john)).simplify())
+    (man(john) -> walk(john))
+    >>> print((man(john) < walk(john)).simplify())
+    (man(john) <-> walk(john))
+
+Python's built-in lambda operator can also be used with Expressions
+
+    >>> john = VariableExpression(Variable('john'))
+    >>> run_var = VariableExpression(Variable('run'))
+    >>> run = lambda x: run_var(x)
+    >>> run(john)
+    <ApplicationExpression run(john)>
+
+
+``betaConversionTestSuite.pl``
+------------------------------
+
+Tests based on Blackburn & Bos' book, *Representation and Inference
+for Natural Language*.
+
+    >>> x1 = read_expr(r'\P.P(mia)(\x.walk(x))').simplify()
+    >>> x2 = read_expr(r'walk(mia)').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'exists x.(man(x) & ((\P.exists x.(woman(x) & P(x)))(\y.love(x,y))))').simplify()
+    >>> x2 = read_expr(r'exists x.(man(x) & exists y.(woman(y) & love(x,y)))').simplify()
+    >>> x1 == x2
+    True
+    >>> x1 = read_expr(r'\a.sleep(a)(mia)').simplify()
+    >>> x2 = read_expr(r'sleep(mia)').simplify()
+    >>> x1 == x2
+    True
+    >>> x1 = read_expr(r'\a.\b.like(b,a)(mia)').simplify()
+    >>> x2 = read_expr(r'\b.like(b,mia)').simplify()
+    >>> x1 == x2
+    True
+    >>> x1 = read_expr(r'\a.(\b.like(b,a)(vincent))').simplify()
+    >>> x2 = read_expr(r'\a.like(vincent,a)').simplify()
+    >>> x1 == x2
+    True
+    >>> x1 = read_expr(r'\a.((\b.like(b,a)(vincent)) & sleep(a))').simplify()
+    >>> x2 = read_expr(r'\a.(like(vincent,a) & sleep(a))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\a.\b.like(b,a)(mia)(vincent))').simplify()
+    >>> x2 = read_expr(r'like(vincent,mia)').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'P((\a.sleep(a)(vincent)))').simplify()
+    >>> x2 = read_expr(r'P(sleep(vincent))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'\A.A((\b.sleep(b)(vincent)))').simplify()
+    >>> x2 = read_expr(r'\A.A(sleep(vincent))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'\A.A(sleep(vincent))').simplify()
+    >>> x2 = read_expr(r'\A.A(sleep(vincent))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\A.A(vincent)(\b.sleep(b)))').simplify()
+    >>> x2 = read_expr(r'sleep(vincent)').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'\A.believe(mia,A(vincent))(\b.sleep(b))').simplify()
+    >>> x2 = read_expr(r'believe(mia,sleep(vincent))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\A.(A(vincent) & A(mia)))(\b.sleep(b))').simplify()
+    >>> x2 = read_expr(r'(sleep(vincent) & sleep(mia))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'\A.\B.(\C.C(A(vincent))(\d.probably(d)) & (\C.C(B(mia))(\d.improbably(d))))(\f.walk(f))(\f.talk(f))').simplify()
+    >>> x2 = read_expr(r'(probably(walk(vincent)) & improbably(talk(mia)))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\a.\b.(\C.C(a,b)(\d.\f.love(d,f))))(jules)(mia)').simplify()
+    >>> x2 = read_expr(r'love(jules,mia)').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\A.\B.exists c.(A(c) & B(c)))(\d.boxer(d),\d.sleep(d))').simplify()
+    >>> x2 = read_expr(r'exists c.(boxer(c) & sleep(c))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'\A.Z(A)(\c.\a.like(a,c))').simplify()
+    >>> x2 = read_expr(r'Z(\c.\a.like(a,c))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'\A.\b.A(b)(\c.\b.like(b,c))').simplify()
+    >>> x2 = read_expr(r'\b.(\c.\b.like(b,c)(b))').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\a.\b.(\C.C(a,b)(\b.\a.loves(b,a))))(jules)(mia)').simplify()
+    >>> x2 = read_expr(r'loves(jules,mia)').simplify()
+    >>> x1 == x2
+    True
+
+    >>> x1 = read_expr(r'(\A.\b.(exists b.A(b) & A(b)))(\c.boxer(c))(vincent)').simplify()
+    >>> x2 = read_expr(r'((exists b.boxer(b)) & boxer(vincent))').simplify()
+    >>> x1 == x2
+    True
+
+Test Parser
+===========
+
+    >>> print(read_expr(r'john'))
+    john
+    >>> print(read_expr(r'x'))
+    x
+    >>> print(read_expr(r'-man(x)'))
+    -man(x)
+    >>> print(read_expr(r'--man(x)'))
+    --man(x)
+    >>> print(read_expr(r'(man(x))'))
+    man(x)
+    >>> print(read_expr(r'((man(x)))'))
+    man(x)
+    >>> print(read_expr(r'man(x) <-> tall(x)'))
+    (man(x) <-> tall(x))
+    >>> print(read_expr(r'(man(x) <-> tall(x))'))
+    (man(x) <-> tall(x))
+    >>> print(read_expr(r'(man(x) & tall(x) & walks(x))'))
+    (man(x) & tall(x) & walks(x))
+    >>> print(read_expr(r'(man(x) & tall(x) & walks(x))').first)
+    (man(x) & tall(x))
+    >>> print(read_expr(r'man(x) | tall(x) & walks(x)'))
+    (man(x) | (tall(x) & walks(x)))
+    >>> print(read_expr(r'((man(x) & tall(x)) | walks(x))'))
+    ((man(x) & tall(x)) | walks(x))
+    >>> print(read_expr(r'man(x) & (tall(x) | walks(x))'))
+    (man(x) & (tall(x) | walks(x)))
+    >>> print(read_expr(r'(man(x) & (tall(x) | walks(x)))'))
+    (man(x) & (tall(x) | walks(x)))
+    >>> print(read_expr(r'P(x) -> Q(x) <-> R(x) | S(x) & T(x)'))
+    ((P(x) -> Q(x)) <-> (R(x) | (S(x) & T(x))))
+    >>> print(read_expr(r'exists x.man(x)'))
+    exists x.man(x)
+    >>> print(read_expr(r'exists x.(man(x) & tall(x))'))
+    exists x.(man(x) & tall(x))
+    >>> print(read_expr(r'exists x.(man(x) & tall(x) & walks(x))'))
+    exists x.(man(x) & tall(x) & walks(x))
+    >>> print(read_expr(r'-P(x) & Q(x)'))
+    (-P(x) & Q(x))
+    >>> read_expr(r'-P(x) & Q(x)') == read_expr(r'(-P(x)) & Q(x)')
+    True
+    >>> print(read_expr(r'\x.man(x)'))
+    \x.man(x)
+    >>> print(read_expr(r'\x.man(x)(john)'))
+    \x.man(x)(john)
+    >>> print(read_expr(r'\x.man(x)(john) & tall(x)'))
+    (\x.man(x)(john) & tall(x))
+    >>> print(read_expr(r'\x.\y.sees(x,y)'))
+    \x y.sees(x,y)
+    >>> print(read_expr(r'\x  y.sees(x,y)'))
+    \x y.sees(x,y)
+    >>> print(read_expr(r'\x.\y.sees(x,y)(a)'))
+    (\x y.sees(x,y))(a)
+    >>> print(read_expr(r'\x  y.sees(x,y)(a)'))
+    (\x y.sees(x,y))(a)
+    >>> print(read_expr(r'\x.\y.sees(x,y)(a)(b)'))
+    ((\x y.sees(x,y))(a))(b)
+    >>> print(read_expr(r'\x  y.sees(x,y)(a)(b)'))
+    ((\x y.sees(x,y))(a))(b)
+    >>> print(read_expr(r'\x.\y.sees(x,y)(a,b)'))
+    ((\x y.sees(x,y))(a))(b)
+    >>> print(read_expr(r'\x  y.sees(x,y)(a,b)'))
+    ((\x y.sees(x,y))(a))(b)
+    >>> print(read_expr(r'((\x.\y.sees(x,y))(a))(b)'))
+    ((\x y.sees(x,y))(a))(b)
+    >>> print(read_expr(r'P(x)(y)(z)'))
+    P(x,y,z)
+    >>> print(read_expr(r'P(Q)'))
+    P(Q)
+    >>> print(read_expr(r'P(Q(x))'))
+    P(Q(x))
+    >>> print(read_expr(r'(\x.exists y.walks(x,y))(x)'))
+    (\x.exists y.walks(x,y))(x)
+    >>> print(read_expr(r'exists x.(x = john)'))
+    exists x.(x = john)
+    >>> print(read_expr(r'((\P.\Q.exists x.(P(x) & Q(x)))(\x.dog(x)))(\x.bark(x))'))
+    ((\P Q.exists x.(P(x) & Q(x)))(\x.dog(x)))(\x.bark(x))
+    >>> a = read_expr(r'exists c.exists b.A(b,c) & A(b,c)')
+    >>> b = read_expr(r'(exists c.(exists b.A(b,c))) & A(b,c)')
+    >>> print(a == b)
+    True
+    >>> a = read_expr(r'exists c.(exists b.A(b,c) & A(b,c))')
+    >>> b = read_expr(r'exists c.((exists b.A(b,c)) & A(b,c))')
+    >>> print(a == b)
+    True
+    >>> print(read_expr(r'exists x.x = y'))
+    exists x.(x = y)
+    >>> print(read_expr('A(B)(C)'))
+    A(B,C)
+    >>> print(read_expr('(A(B))(C)'))
+    A(B,C)
+    >>> print(read_expr('A((B)(C))'))
+    A(B(C))
+    >>> print(read_expr('A(B(C))'))
+    A(B(C))
+    >>> print(read_expr('(A)(B(C))'))
+    A(B(C))
+    >>> print(read_expr('(((A)))(((B))(((C))))'))
+    A(B(C))
+    >>> print(read_expr(r'A != B'))
+    -(A = B)
+    >>> print(read_expr('P(x) & x=y & P(y)'))
+    (P(x) & (x = y) & P(y))
+    >>> try: print(read_expr(r'\walk.walk(x)'))
+    ... except LogicalExpressionException as e: print(e)
+    'walk' is an illegal variable name.  Constants may not be abstracted.
+    \walk.walk(x)
+     ^
+    >>> try: print(read_expr(r'all walk.walk(john)'))
+    ... except LogicalExpressionException as e: print(e)
+    'walk' is an illegal variable name.  Constants may not be quantified.
+    all walk.walk(john)
+        ^
+    >>> try: print(read_expr(r'x(john)'))
+    ... except LogicalExpressionException as e: print(e)
+    'x' is an illegal predicate name.  Individual variables may not be used as predicates.
+    x(john)
+    ^
+
+    >>> from nltk.sem.logic import LogicParser # hack to give access to custom quote chars
+    >>> lpq = LogicParser()
+    >>> lpq.quote_chars = [("'", "'", "\\", False)]
+    >>> print(lpq.parse(r"(man(x) & 'tall\'s,' (x) & walks (x) )"))
+    (man(x) & tall's,(x) & walks(x))
+    >>> lpq.quote_chars = [("'", "'", "\\", True)]
+    >>> print(lpq.parse(r"'tall\'s,'"))
+    'tall\'s,'
+    >>> print(lpq.parse(r"'spaced name(x)'"))
+    'spaced name(x)'
+    >>> print(lpq.parse(r"-'tall\'s,'(x)"))
+    -'tall\'s,'(x)
+    >>> print(lpq.parse(r"(man(x) & 'tall\'s,' (x) & walks (x) )"))
+    (man(x) & 'tall\'s,'(x) & walks(x))
+
+
+Simplify
+========
+
+    >>> print(read_expr(r'\x.man(x)(john)').simplify())
+    man(john)
+    >>> print(read_expr(r'\x.((man(x)))(john)').simplify())
+    man(john)
+    >>> print(read_expr(r'\x.\y.sees(x,y)(john, mary)').simplify())
+    sees(john,mary)
+    >>> print(read_expr(r'\x  y.sees(x,y)(john, mary)').simplify())
+    sees(john,mary)
+    >>> print(read_expr(r'\x.\y.sees(x,y)(john)(mary)').simplify())
+    sees(john,mary)
+    >>> print(read_expr(r'\x  y.sees(x,y)(john)(mary)').simplify())
+    sees(john,mary)
+    >>> print(read_expr(r'\x.\y.sees(x,y)(john)').simplify())
+    \y.sees(john,y)
+    >>> print(read_expr(r'\x  y.sees(x,y)(john)').simplify())
+    \y.sees(john,y)
+    >>> print(read_expr(r'(\x.\y.sees(x,y)(john))(mary)').simplify())
+    sees(john,mary)
+    >>> print(read_expr(r'(\x  y.sees(x,y)(john))(mary)').simplify())
+    sees(john,mary)
+    >>> print(read_expr(r'exists x.(man(x) & (\x.exists y.walks(x,y))(x))').simplify())
+    exists x.(man(x) & exists y.walks(x,y))
+    >>> e1 = read_expr(r'exists x.(man(x) & (\x.exists y.walks(x,y))(y))').simplify()
+    >>> e2 = read_expr(r'exists x.(man(x) & exists z1.walks(y,z1))')
+    >>> e1 == e2
+    True
+    >>> print(read_expr(r'(\P Q.exists x.(P(x) & Q(x)))(\x.dog(x))').simplify())
+    \Q.exists x.(dog(x) & Q(x))
+    >>> print(read_expr(r'((\P.\Q.exists x.(P(x) & Q(x)))(\x.dog(x)))(\x.bark(x))').simplify())
+    exists x.(dog(x) & bark(x))
+    >>> print(read_expr(r'\P.(P(x)(y))(\a b.Q(a,b))').simplify())
+    Q(x,y)
+
+Replace
+=======
+
+    >>> a = read_expr(r'a')
+    >>> x = read_expr(r'x')
+    >>> y = read_expr(r'y')
+    >>> z = read_expr(r'z')
+
+    >>> print(read_expr(r'man(x)').replace(x.variable, a, False))
+    man(a)
+    >>> print(read_expr(r'(man(x) & tall(x))').replace(x.variable, a, False))
+    (man(a) & tall(a))
+    >>> print(read_expr(r'exists x.man(x)').replace(x.variable, a, False))
+    exists x.man(x)
+    >>> print(read_expr(r'exists x.man(x)').replace(x.variable, a, True))
+    exists a.man(a)
+    >>> print(read_expr(r'exists x.give(x,y,z)').replace(y.variable, a, False))
+    exists x.give(x,a,z)
+    >>> print(read_expr(r'exists x.give(x,y,z)').replace(y.variable, a, True))
+    exists x.give(x,a,z)
+    >>> e1 = read_expr(r'exists x.give(x,y,z)').replace(y.variable, x, False)
+    >>> e2 = read_expr(r'exists z1.give(z1,x,z)')
+    >>> e1 == e2
+    True
+    >>> e1 = read_expr(r'exists x.give(x,y,z)').replace(y.variable, x, True)
+    >>> e2 = read_expr(r'exists z1.give(z1,x,z)')
+    >>> e1 == e2
+    True
+    >>> print(read_expr(r'\x y z.give(x,y,z)').replace(y.variable, a, False))
+    \x y z.give(x,y,z)
+    >>> print(read_expr(r'\x y z.give(x,y,z)').replace(y.variable, a, True))
+    \x a z.give(x,a,z)
+    >>> print(read_expr(r'\x.\y.give(x,y,z)').replace(z.variable, a, False))
+    \x y.give(x,y,a)
+    >>> print(read_expr(r'\x.\y.give(x,y,z)').replace(z.variable, a, True))
+    \x y.give(x,y,a)
+    >>> e1 = read_expr(r'\x.\y.give(x,y,z)').replace(z.variable, x, False)
+    >>> e2 = read_expr(r'\z1.\y.give(z1,y,x)')
+    >>> e1 == e2
+    True
+    >>> e1 = read_expr(r'\x.\y.give(x,y,z)').replace(z.variable, x, True)
+    >>> e2 = read_expr(r'\z1.\y.give(z1,y,x)')
+    >>> e1 == e2
+    True
+    >>> print(read_expr(r'\x.give(x,y,z)').replace(z.variable, y, False))
+    \x.give(x,y,y)
+    >>> print(read_expr(r'\x.give(x,y,z)').replace(z.variable, y, True))
+    \x.give(x,y,y)
+
+    >>> from nltk.sem import logic
+    >>> logic._counter._value = 0
+    >>> e1 = read_expr('e1')
+    >>> e2 = read_expr('e2')
+    >>> print(read_expr('exists e1 e2.(walk(e1) & talk(e2))').replace(e1.variable, e2, True))
+    exists e2 e01.(walk(e2) & talk(e01))
+
+
+Variables / Free
+================
+
+    >>> examples = [r'walk(john)',
+    ...             r'walk(x)',
+    ...             r'?vp(?np)',
+    ...             r'see(john,mary)',
+    ...             r'exists x.walk(x)',
+    ...             r'\x.see(john,x)',
+    ...             r'\x.see(john,x)(mary)',
+    ...             r'P(x)',
+    ...             r'\P.P(x)',
+    ...             r'aa(x,bb(y),cc(z),P(w),u)',
+    ...             r'bo(?det(?n),@x)']
+    >>> examples = [read_expr(e) for e in examples]
+
+    >>> for e in examples:
+    ...     print('%-25s' % e, sorted(e.free()))
+    walk(john)                []
+    walk(x)                   [Variable('x')]
+    ?vp(?np)                  []
+    see(john,mary)            []
+    exists x.walk(x)          []
+    \x.see(john,x)            []
+    (\x.see(john,x))(mary)    []
+    P(x)                      [Variable('P'), Variable('x')]
+    \P.P(x)                   [Variable('x')]
+    aa(x,bb(y),cc(z),P(w),u)  [Variable('P'), Variable('u'), Variable('w'), Variable('x'), Variable('y'), Variable('z')]
+    bo(?det(?n),@x)           []
+
+    >>> for e in examples:
+    ...     print('%-25s' % e, sorted(e.constants()))
+    walk(john)                [Variable('john')]
+    walk(x)                   []
+    ?vp(?np)                  [Variable('?np')]
+    see(john,mary)            [Variable('john'), Variable('mary')]
+    exists x.walk(x)          []
+    \x.see(john,x)            [Variable('john')]
+    (\x.see(john,x))(mary)    [Variable('john'), Variable('mary')]
+    P(x)                      []
+    \P.P(x)                   []
+    aa(x,bb(y),cc(z),P(w),u)  []
+    bo(?det(?n),@x)           [Variable('?n'), Variable('@x')]
+
+    >>> for e in examples:
+    ...     print('%-25s' % e, sorted(e.predicates()))
+    walk(john)                [Variable('walk')]
+    walk(x)                   [Variable('walk')]
+    ?vp(?np)                  [Variable('?vp')]
+    see(john,mary)            [Variable('see')]
+    exists x.walk(x)          [Variable('walk')]
+    \x.see(john,x)            [Variable('see')]
+    (\x.see(john,x))(mary)    [Variable('see')]
+    P(x)                      []
+    \P.P(x)                   []
+    aa(x,bb(y),cc(z),P(w),u)  [Variable('aa'), Variable('bb'), Variable('cc')]
+    bo(?det(?n),@x)           [Variable('?det'), Variable('bo')]
+
+    >>> for e in examples:
+    ...     print('%-25s' % e, sorted(e.variables()))
+    walk(john)                []
+    walk(x)                   [Variable('x')]
+    ?vp(?np)                  [Variable('?np'), Variable('?vp')]
+    see(john,mary)            []
+    exists x.walk(x)          []
+    \x.see(john,x)            []
+    (\x.see(john,x))(mary)    []
+    P(x)                      [Variable('P'), Variable('x')]
+    \P.P(x)                   [Variable('x')]
+    aa(x,bb(y),cc(z),P(w),u)  [Variable('P'), Variable('u'), Variable('w'), Variable('x'), Variable('y'), Variable('z')]
+    bo(?det(?n),@x)           [Variable('?det'), Variable('?n'), Variable('@x')]
+
+
+
+`normalize`
+    >>> print(read_expr(r'\e083.(walk(e083, z472) & talk(e092, z938))').normalize())
+    \e01.(walk(e01,z3) & talk(e02,z4))
+
+Typed Logic
++++++++++++
+
+    >>> from nltk.sem.logic import LogicParser
+    >>> tlp = LogicParser(True)
+    >>> print(tlp.parse(r'man(x)').type)
+    ?
+    >>> print(tlp.parse(r'walk(angus)').type)
+    ?
+    >>> print(tlp.parse(r'-man(x)').type)
+    t
+    >>> print(tlp.parse(r'(man(x) <-> tall(x))').type)
+    t
+    >>> print(tlp.parse(r'exists x.(man(x) & tall(x))').type)
+    t
+    >>> print(tlp.parse(r'\x.man(x)').type)
+    <e,?>
+    >>> print(tlp.parse(r'john').type)
+    e
+    >>> print(tlp.parse(r'\x y.sees(x,y)').type)
+    <e,<e,?>>
+    >>> print(tlp.parse(r'\x.man(x)(john)').type)
+    ?
+    >>> print(tlp.parse(r'\x.\y.sees(x,y)(john)').type)
+    <e,?>
+    >>> print(tlp.parse(r'\x.\y.sees(x,y)(john)(mary)').type)
+    ?
+    >>> print(tlp.parse(r'\P.\Q.exists x.(P(x) & Q(x))').type)
+    <<e,t>,<<e,t>,t>>
+    >>> print(tlp.parse(r'\x.y').type)
+    <?,e>
+    >>> print(tlp.parse(r'\P.P(x)').type)
+    <<e,?>,?>
+
+    >>> parsed = tlp.parse('see(john,mary)')
+    >>> print(parsed.type)
+    ?
+    >>> print(parsed.function)
+    see(john)
+    >>> print(parsed.function.type)
+    <e,?>
+    >>> print(parsed.function.function)
+    see
+    >>> print(parsed.function.function.type)
+    <e,<e,?>>
+
+    >>> parsed = tlp.parse('P(x,y)')
+    >>> print(parsed)
+    P(x,y)
+    >>> print(parsed.type)
+    ?
+    >>> print(parsed.function)
+    P(x)
+    >>> print(parsed.function.type)
+    <e,?>
+    >>> print(parsed.function.function)
+    P
+    >>> print(parsed.function.function.type)
+    <e,<e,?>>
+
+    >>> print(tlp.parse(r'P').type)
+    ?
+
+    >>> print(tlp.parse(r'P', {'P': 't'}).type)
+    t
+
+    >>> a = tlp.parse(r'P(x)')
+    >>> print(a.type)
+    ?
+    >>> print(a.function.type)
+    <e,?>
+    >>> print(a.argument.type)
+    e
+
+    >>> a = tlp.parse(r'-P(x)')
+    >>> print(a.type)
+    t
+    >>> print(a.term.type)
+    t
+    >>> print(a.term.function.type)
+    <e,t>
+    >>> print(a.term.argument.type)
+    e
+
+    >>> a = tlp.parse(r'P & Q')
+    >>> print(a.type)
+    t
+    >>> print(a.first.type)
+    t
+    >>> print(a.second.type)
+    t
+
+    >>> a = tlp.parse(r'(P(x) & Q(x))')
+    >>> print(a.type)
+    t
+    >>> print(a.first.type)
+    t
+    >>> print(a.first.function.type)
+    <e,t>
+    >>> print(a.first.argument.type)
+    e
+    >>> print(a.second.type)
+    t
+    >>> print(a.second.function.type)
+    <e,t>
+    >>> print(a.second.argument.type)
+    e
+
+    >>> a = tlp.parse(r'\x.P(x)')
+    >>> print(a.type)
+    <e,?>
+    >>> print(a.term.function.type)
+    <e,?>
+    >>> print(a.term.argument.type)
+    e
+
+    >>> a = tlp.parse(r'\P.P(x)')
+    >>> print(a.type)
+    <<e,?>,?>
+    >>> print(a.term.function.type)
+    <e,?>
+    >>> print(a.term.argument.type)
+    e
+
+    >>> a = tlp.parse(r'(\x.P(x)(john)) & Q(x)')
+    >>> print(a.type)
+    t
+    >>> print(a.first.type)
+    t
+    >>> print(a.first.function.type)
+    <e,t>
+    >>> print(a.first.function.term.function.type)
+    <e,t>
+    >>> print(a.first.function.term.argument.type)
+    e
+    >>> print(a.first.argument.type)
+    e
+
+    >>> a = tlp.parse(r'\x y.P(x,y)(john)(mary) & Q(x)')
+    >>> print(a.type)
+    t
+    >>> print(a.first.type)
+    t
+    >>> print(a.first.function.type)
+    <e,t>
+    >>> print(a.first.function.function.type)
+    <e,<e,t>>
+
+    >>> a = tlp.parse(r'--P')
+    >>> print(a.type)
+    t
+    >>> print(a.term.type)
+    t
+    >>> print(a.term.term.type)
+    t
+
+    >>> tlp.parse(r'\x y.P(x,y)').type
+    <e,<e,?>>
+    >>> tlp.parse(r'\x y.P(x,y)', {'P': '<e,<e,t>>'}).type
+    <e,<e,t>>
+
+    >>> a = tlp.parse(r'\P y.P(john,y)(\x y.see(x,y))')
+    >>> a.type
+    <e,?>
+    >>> a.function.type
+    <<e,<e,?>>,<e,?>>
+    >>> a.function.term.term.function.function.type
+    <e,<e,?>>
+    >>> a.argument.type
+    <e,<e,?>>
+
+    >>> a = tlp.parse(r'exists c f.(father(c) = f)')
+    >>> a.type
+    t
+    >>> a.term.term.type
+    t
+    >>> a.term.term.first.type
+    e
+    >>> a.term.term.first.function.type
+    <e,e>
+    >>> a.term.term.second.type
+    e
+
+typecheck()
+
+    >>> a = tlp.parse('P(x)')
+    >>> b = tlp.parse('Q(x)')
+    >>> a.type
+    ?
+    >>> c = a & b
+    >>> c.first.type
+    ?
+    >>> c.typecheck()
+    {...}
+    >>> c.first.type
+    t
+
+    >>> a = tlp.parse('P(x)')
+    >>> b = tlp.parse('P(x) & Q(x)')
+    >>> a.type
+    ?
+    >>> typecheck([a,b])
+    {...}
+    >>> a.type
+    t
+
+    >>> e = tlp.parse(r'man(x)')
+    >>> print(dict((k,str(v)) for k,v in e.typecheck().items()) == {'x': 'e', 'man': '<e,?>'})
+    True
+    >>> sig = {'man': '<e, t>'}
+    >>> e = tlp.parse(r'man(x)', sig)
+    >>> print(e.function.type)
+    <e,t>
+    >>> print(dict((k,str(v)) for k,v in e.typecheck().items()) == {'x': 'e', 'man': '<e,t>'})
+    True
+    >>> print(e.function.type)
+    <e,t>
+    >>> print(dict((k,str(v)) for k,v in e.typecheck(sig).items()) == {'x': 'e', 'man': '<e,t>'})
+    True
+
+findtype()
+
+    >>> print(tlp.parse(r'man(x)').findtype(Variable('man')))
+    <e,?>
+    >>> print(tlp.parse(r'see(x,y)').findtype(Variable('see')))
+    <e,<e,?>>
+    >>> print(tlp.parse(r'P(Q(R(x)))').findtype(Variable('Q')))
+    ?
+
+reading types from strings
+
+    >>> Type.fromstring('e')
+    e
+    >>> Type.fromstring('<e,t>')
+    <e,t>
+    >>> Type.fromstring('<<e,t>,<e,t>>')
+    <<e,t>,<e,t>>
+    >>> Type.fromstring('<<e,?>,?>')
+    <<e,?>,?>
+
+alternative type format
+
+    >>> Type.fromstring('e').str()
+    'IND'
+    >>> Type.fromstring('<e,?>').str()
+    '(IND -> ANY)'
+    >>> Type.fromstring('<<e,t>,t>').str()
+    '((IND -> BOOL) -> BOOL)'
+
+Type.__eq__()
+
+    >>> from nltk.sem.logic import *
+
+    >>> e = ENTITY_TYPE
+    >>> t = TRUTH_TYPE
+    >>> a = ANY_TYPE
+    >>> et = ComplexType(e,t)
+    >>> eet = ComplexType(e,ComplexType(e,t))
+    >>> at = ComplexType(a,t)
+    >>> ea = ComplexType(e,a)
+    >>> aa = ComplexType(a,a)
+
+    >>> e == e
+    True
+    >>> t == t
+    True
+    >>> e == t
+    False
+    >>> a == t
+    False
+    >>> t == a
+    False
+    >>> a == a
+    True
+    >>> et == et
+    True
+    >>> a == et
+    False
+    >>> et == a
+    False
+    >>> a == ComplexType(a,aa)
+    True
+    >>> ComplexType(a,aa) == a
+    True
+
+matches()
+
+    >>> e.matches(t)
+    False
+    >>> a.matches(t)
+    True
+    >>> t.matches(a)
+    True
+    >>> a.matches(et)
+    True
+    >>> et.matches(a)
+    True
+    >>> ea.matches(eet)
+    True
+    >>> eet.matches(ea)
+    True
+    >>> aa.matches(et)
+    True
+    >>> aa.matches(t)
+    True
+
+Type error during parsing
+=========================
+
+    >>> try: print(tlp.parse(r'exists x y.(P(x) & P(x,y))'))
+    ... except InconsistentTypeHierarchyException as e: print(e)
+    The variable 'P' was found in multiple places with different types.
+    >>> try: tlp.parse(r'\x y.see(x,y)(\x.man(x))')
+    ... except TypeException as e: print(e)
+    The function '\x y.see(x,y)' is of type '<e,<e,?>>' and cannot be applied to '\x.man(x)' of type '<e,?>'.  Its argument must match type 'e'.
+    >>> try: tlp.parse(r'\P x y.-P(x,y)(\x.-man(x))')
+    ... except TypeException as e: print(e)
+    The function '\P x y.-P(x,y)' is of type '<<e,<e,t>>,<e,<e,t>>>' and cannot be applied to '\x.-man(x)' of type '<e,t>'.  Its argument must match type '<e,<e,t>>'.
+
+    >>> a = tlp.parse(r'-talk(x)')
+    >>> signature = a.typecheck()
+    >>> try: print(tlp.parse(r'-talk(x,y)', signature))
+    ... except InconsistentTypeHierarchyException as e: print(e)
+    The variable 'talk' was found in multiple places with different types.
+
+    >>> a = tlp.parse(r'-P(x)')
+    >>> b = tlp.parse(r'-P(x,y)')
+    >>> a.typecheck()
+    {...}
+    >>> b.typecheck()
+    {...}
+    >>> try: typecheck([a,b])
+    ... except InconsistentTypeHierarchyException as e: print(e)
+    The variable 'P' was found in multiple places with different types.
+
+    >>> a = tlp.parse(r'P(x)')
+    >>> b = tlp.parse(r'P(x,y)')
+    >>> signature = {'P': '<e,t>'}
+    >>> a.typecheck(signature)
+    {...}
+    >>> try: typecheck([a,b], signature)
+    ... except InconsistentTypeHierarchyException as e: print(e)
+    The variable 'P' was found in multiple places with different types.
+
+Parse errors
+============
+
+    >>> try: read_expr(r'')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    <BLANKLINE>
+    ^
+    >>> try: read_expr(r'(')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    (
+     ^
+    >>> try: read_expr(r')')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    )
+    ^
+    >>> try: read_expr(r'()')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    ()
+     ^
+    >>> try: read_expr(r'(P(x) & Q(x)')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expected token ')'.
+    (P(x) & Q(x)
+                ^
+    >>> try: read_expr(r'(P(x) &')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    (P(x) &
+           ^
+    >>> try: read_expr(r'(P(x) | )')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    (P(x) | )
+            ^
+    >>> try: read_expr(r'P(x) ->')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    P(x) ->
+           ^
+    >>> try: read_expr(r'P(x')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expected token ')'.
+    P(x
+       ^
+    >>> try: read_expr(r'P(x,')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    P(x,
+        ^
+    >>> try: read_expr(r'P(x,)')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    P(x,)
+        ^
+    >>> try: read_expr(r'exists')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Variable and Expression expected following quantifier 'exists'.
+    exists
+           ^
+    >>> try: read_expr(r'exists x')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    exists x
+             ^
+    >>> try: read_expr(r'exists x.')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    exists x.
+             ^
+    >>> try: read_expr(r'\  ')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Variable and Expression expected following lambda operator.
+    \
+      ^
+    >>> try: read_expr(r'\ x')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    \ x
+        ^
+    >>> try: read_expr(r'\ x y')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    \ x y
+          ^
+    >>> try: read_expr(r'\ x.')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    \ x.
+        ^
+    >>> try: read_expr(r'P(x)Q(x)')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: 'Q'.
+    P(x)Q(x)
+        ^
+    >>> try: read_expr(r'(P(x)Q(x)')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: 'Q'.  Expected token ')'.
+    (P(x)Q(x)
+         ^
+    >>> try: read_expr(r'exists x y')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    exists x y
+               ^
+    >>> try: read_expr(r'exists x y.')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expression expected.
+    exists x y.
+               ^
+    >>> try: read_expr(r'exists x -> y')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: '->'.  Expression expected.
+    exists x -> y
+             ^
+
+
+    >>> try: read_expr(r'A -> ((P(x) & Q(x)) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expected token ')'.
+    A -> ((P(x) & Q(x)) -> Z
+                            ^
+    >>> try: read_expr(r'A -> ((P(x) &) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> ((P(x) &) -> Z
+                 ^
+    >>> try: read_expr(r'A -> ((P(x) | )) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> ((P(x) | )) -> Z
+                  ^
+    >>> try: read_expr(r'A -> (P(x) ->) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (P(x) ->) -> Z
+                 ^
+    >>> try: read_expr(r'A -> (P(x) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    End of input found.  Expected token ')'.
+    A -> (P(x) -> Z
+                   ^
+    >>> try: read_expr(r'A -> (P(x,) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (P(x,) -> Z
+              ^
+    >>> try: read_expr(r'A -> (P(x,)) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (P(x,)) -> Z
+              ^
+    >>> try: read_expr(r'A -> (exists) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    ')' is an illegal variable name.  Constants may not be quantified.
+    A -> (exists) -> Z
+                ^
+    >>> try: read_expr(r'A -> (exists x) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (exists x) -> Z
+                  ^
+    >>> try: read_expr(r'A -> (exists x.) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (exists x.) -> Z
+                   ^
+    >>> try: read_expr(r'A -> (\  ) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    ')' is an illegal variable name.  Constants may not be abstracted.
+    A -> (\  ) -> Z
+             ^
+    >>> try: read_expr(r'A -> (\ x) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (\ x) -> Z
+             ^
+    >>> try: read_expr(r'A -> (\ x y) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (\ x y) -> Z
+               ^
+    >>> try: read_expr(r'A -> (\ x.) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (\ x.) -> Z
+              ^
+    >>> try: read_expr(r'A -> (P(x)Q(x)) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: 'Q'.  Expected token ')'.
+    A -> (P(x)Q(x)) -> Z
+              ^
+    >>> try: read_expr(r'A -> ((P(x)Q(x)) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: 'Q'.  Expected token ')'.
+    A -> ((P(x)Q(x)) -> Z
+               ^
+    >>> try: read_expr(r'A -> (all x y) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (all x y) -> Z
+                 ^
+    >>> try: read_expr(r'A -> (exists x y.) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: ')'.  Expression expected.
+    A -> (exists x y.) -> Z
+                     ^
+    >>> try: read_expr(r'A -> (exists x -> y) -> Z')
+    ... except LogicalExpressionException as e: print(e)
+    Unexpected token: '->'.  Expression expected.
+    A -> (exists x -> y) -> Z
+                   ^

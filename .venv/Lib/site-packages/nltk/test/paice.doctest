@@ -1,0 +1,35 @@
+
+=====================================================
+PAICE's evaluation statistics for stemming algorithms
+=====================================================
+
+Given a list of words with their real lemmas and stems according to stemming algorithm under evaluation,
+counts Understemming Index (UI), Overstemming Index (OI), Stemming Weight (SW) and Error-rate relative to truncation (ERRT).
+
+   >>> from nltk.metrics import Paice
+
+
+-------------------------------------
+Understemming and Overstemming values
+-------------------------------------
+
+    >>> lemmas = {'kneel': ['kneel', 'knelt'],
+    ...           'range': ['range', 'ranged'],
+    ...           'ring': ['ring', 'rang', 'rung']}
+    >>> stems = {'kneel': ['kneel'],
+    ...          'knelt': ['knelt'],
+    ...          'rang': ['rang', 'range', 'ranged'],
+    ...          'ring': ['ring'],
+    ...          'rung': ['rung']}
+    >>> p = Paice(lemmas, stems)
+    >>> p.gumt, p.gdmt, p.gwmt, p.gdnt
+    (4.0, 5.0, 2.0, 16.0)
+
+    >>> p.ui, p.oi, p.sw
+    (0.8..., 0.125..., 0.15625...)
+
+    >>> p.errt
+    1.0
+
+    >>> [('{0:.3f}'.format(a), '{0:.3f}'.format(b)) for a, b in p.coords]
+    [('0.000', '1.000'), ('0.000', '0.375'), ('0.600', '0.125'), ('0.800', '0.125')]

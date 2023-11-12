@@ -7,7 +7,7 @@ import pickle
 app = Flask(__name__)
 
 ## importing the model
-model = pickle.load(open("./ufo-model.pkl", "rb"))
+model = pickle.load(open('ufo-model.pkl', "rb"))
 
 ## routing the model onto the web application
 @app.route("/")

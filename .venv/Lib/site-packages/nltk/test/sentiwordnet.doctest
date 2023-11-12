@@ -1,0 +1,41 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+======================
+SentiWordNet Interface
+======================
+
+SentiWordNet can be imported like this:
+
+    >>> from nltk.corpus import sentiwordnet as swn
+
+------------
+SentiSynsets
+------------
+
+    >>> breakdown = swn.senti_synset('breakdown.n.03')
+    >>> print(breakdown)
+    <breakdown.n.03: PosScore=0.0 NegScore=0.25>
+    >>> breakdown.pos_score()
+    0.0
+    >>> breakdown.neg_score()
+    0.25
+    >>> breakdown.obj_score()
+    0.75
+
+
+------
+Lookup
+------
+
+    >>> list(swn.senti_synsets('slow'))
+    [SentiSynset('decelerate.v.01'), SentiSynset('slow.v.02'),
+    SentiSynset('slow.v.03'), SentiSynset('slow.a.01'),
+    SentiSynset('slow.a.02'), SentiSynset('dense.s.04'),
+    SentiSynset('slow.a.04'), SentiSynset('boring.s.01'),
+    SentiSynset('dull.s.08'), SentiSynset('slowly.r.01'),
+    SentiSynset('behind.r.03')]
+
+    >>> happy = swn.senti_synsets('happy', 'a')
+
+    >>> all = swn.all_senti_synsets()

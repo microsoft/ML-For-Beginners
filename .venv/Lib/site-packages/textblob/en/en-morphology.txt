@@ -1,0 +1,152 @@
+;;;   
+;;;   The morphological rules are based on Brill's rule based tagger v1.14,
+;;;   trained on Brown corpus and Penn Treebank.
+;;;   
+NN s fhassuf 1 NNS x
+NN . fchar CD x
+NN - fchar JJ x
+NN ed fhassuf 2 VBN x
+NN ing fhassuf 3 VBG x
+ly hassuf 2 RB x
+ly addsuf 2 JJ x
+NN $ fgoodright CD x
+NN al fhassuf 2 JJ x
+NN would fgoodright VB x
+NN 0 fchar CD x
+NN be fgoodright JJ x
+NNS us fhassuf 2 JJ x
+NNS it fgoodright VBZ x
+NN ble fhassuf 3 JJ x
+NN ic fhassuf 2 JJ x
+NN 1 fchar CD x
+NNS ss fhassuf 2 NN x
+un deletepref 2 JJ x
+NN ive fhassuf 3 JJ x
+NNP ed fhassuf 2 JJ x
+NN n't fgoodright VB x
+VB the fgoodright NN x
+NNS he fgoodright VBZ x
+VBN he fgoodright VBD x
+NN are fgoodright JJ x
+JJ was fgoodleft NN x
+NN est fhassuf 3 JJS x
+VBZ The fgoodright NNS x
+NNP ts fhassuf 2 NNS x
+NN 4 fchar CD x
+NN ize fhassuf 3 VB x
+.. hassuf 2 : x
+ful hassuf 3 JJ x
+NN ate fhassuf 3 VB x
+NNP ing fhassuf 3 VBG x
+VBG is fgoodleft NN x
+NN less fhassuf 4 JJ x
+NN ary fhassuf 3 JJ x
+Co. goodleft NNP x
+NN ant fhassuf 3 JJ x
+million goodleft CD x
+JJ their fgoodleft IN x
+NN he fgoodright VBD x
+Mr. goodright NNP x
+JJ of fgoodleft NN x
+NN so fgoodright JJ x
+NN y fdeletesuf 1 JJ x
+VBN which fgoodright VBD x
+VBD been fgoodright VBN x
+VB a fgoodright NN x
+NN economic fgoodleft JJ x
+9 char CD x
+CD t fchar JJ x
+NN can fgoodright VB x
+VB the fgoodright NN x
+JJ S-T-A-R-T fgoodright VBN x
+VBN - fchar JJ x
+NN lar fhassuf 3 JJ x
+NNP ans fhassuf 3 NNPS x
+NN men fhassuf 3 NNS x
+CD d fchar JJ x
+JJ n fdeletesuf 1 VBN x
+JJ 's fgoodleft NN x
+NNS is fhassuf 2 NN x
+ES hassuf 2 NNS x
+JJ er fdeletesuf 2 JJR x
+Inc. goodleft NNP x
+NN 2 fchar CD x
+VBD be fgoodleft MD x
+ons hassuf 3 NNS x
+RB - fchar JJ x
+NN very fgoodright JJ x
+ous hassuf 3 JJ x
+NN a fdeletepref 1 RB x
+NNP people fgoodleft JJ x
+VB have fgoodleft RB x
+NNS It fgoodright VBZ x
+NN id fhassuf 2 JJ x
+JJ may fgoodleft NN x
+VBN but fgoodright VBD x
+RS hassuf 2 NNS x
+JJ stry fhassuf 4 NN x
+NNS them fgoodleft VBZ x
+VBZ were fgoodleft NNS x
+NN ing faddsuf 3 VB x
+JJ s faddsuf 1 NN x
+NN 7 fchar CD x
+NN d faddsuf 1 VB x
+VB but fgoodleft NN x
+NN 3 fchar CD x
+NN est faddsuf 3 JJ x
+NN en fhassuf 2 VBN x
+NN costs fgoodright IN x
+NN 8 fchar CD x
+VB b fhaspref 1 NN x
+zes hassuf 3 VBZ x
+VBN s faddsuf 1 NN x
+some hassuf 4 JJ x
+NN ic fhassuf 2 JJ x
+ly addsuf 2 JJ x
+ness addsuf 4 JJ x
+JJS s faddsuf 1 NN x
+NN ier fhassuf 3 JJR x
+NN ky fhassuf 2 JJ x
+tyle hassuf 4 JJ x
+NNS ates fhassuf 4 VBZ x
+fy hassuf 2 VB x
+body addsuf 4 DT x
+NN ways fgoodleft JJ x
+NNP ies fhassuf 3 NNPS x
+VB negative fgoodright NN x
+ders hassuf 4 NNS x
+ds hassuf 2 NNS x
+-day addsuf 4 CD x
+nian hassuf 4 JJ x
+JJR s faddsuf 1 NN x
+ppy hassuf 3 JJ x
+NN ish fhassuf 3 JJ x
+tors hassuf 4 NNS x
+oses hassuf 4 VBZ x
+NNS oves fhassuf 4 VBZ x
+VBN un fhaspref 2 JJ x
+lent hassuf 4 JJ x
+NN ward fdeletesuf 4 RB x
+VB k fchar NN x
+VB r fhassuf 1 NN x
+VB e fdeletesuf 1 NN x
+NNS Engelken fgoodright VBZ x
+NN ient fhassuf 4 JJ x
+ED hassuf 2 VBD x
+VBG B fchar NNP x
+VB le fhassuf 2 NN x
+ment addsuf 4 VB x
+ING hassuf 3 NN x
+JJ ery fhassuf 3 NN x
+JJ tus fhassuf 3 NN x
+JJ car fhassuf 3 NN x
+NN 6 fchar CD x
+NNS 0 fchar CD x
+JJ ing fdeletesuf 3 VBG x
+here hassuf 4 RB x
+VBN scr fhaspref 3 VBD x
+uces hassuf 4 VBZ x
+fies hassuf 4 VBZ x
+self deletesuf 4 PRP x
+NNP $ fchar $ x
+VBN wa fhaspref 2 VBD x

@@ -1,0 +1,68 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+.. -*- coding: utf-8 -*-
+
+=========================
+Word Sense Disambiguation
+=========================
+
+
+Lesk Algorithm
+--------------
+
+
+Performs the classic Lesk algorithm for Word Sense Disambiguation (WSD) using
+a the definitions of the ambiguous word.
+
+Given an ambiguous word and the context in which the word occurs, Lesk returns
+a Synset with the highest number of overlapping words between the context
+sentence and different definitions from each Synset.
+
+    >>> from nltk.wsd import lesk
+    >>> sent = ['I', 'went', 'to', 'the', 'bank', 'to', 'deposit', 'money', '.']
+
+    >>> print(lesk(sent, 'bank', 'n'))
+    Synset('savings_bank.n.02')
+
+    >>> print(lesk(sent, 'bank'))
+    Synset('savings_bank.n.02')
+
+The definitions for "bank" are:
+
+    >>> from nltk.corpus import wordnet as wn
+    >>> for ss in wn.synsets('bank'):
+    ...     print(ss, ss.definition())
+    ...
+    Synset('bank.n.01') sloping land (especially the slope beside a body of water)
+    Synset('depository_financial_institution.n.01') a financial institution that accepts deposits and channels the money into lending activities
+    Synset('bank.n.03') a long ridge or pile
+    Synset('bank.n.04') an arrangement of similar objects in a row or in tiers
+    Synset('bank.n.05') a supply or stock held in reserve for future use (especially in emergencies)
+    Synset('bank.n.06') the funds held by a gambling house or the dealer in some gambling games
+    Synset('bank.n.07') a slope in the turn of a road or track; the outside is higher than the inside in order to reduce the effects of centrifugal force
+    Synset('savings_bank.n.02') a container (usually with a slot in the top) for keeping money at home
+    Synset('bank.n.09') a building in which the business of banking transacted
+    Synset('bank.n.10') a flight maneuver; aircraft tips laterally about its longitudinal axis (especially in turning)
+    Synset('bank.v.01') tip laterally
+    Synset('bank.v.02') enclose with a bank
+    Synset('bank.v.03') do business with a bank or keep an account at a bank
+    Synset('bank.v.04') act as the banker in a game or in gambling
+    Synset('bank.v.05') be in the banking business
+    Synset('deposit.v.02') put into a bank account
+    Synset('bank.v.07') cover with ashes so to control the rate of burning
+    Synset('trust.v.01') have confidence or faith in
+
+Test disambiguation of POS tagged `able`.
+
+    >>> [(s, s.pos()) for s in wn.synsets('able')]
+    [(Synset('able.a.01'), 'a'), (Synset('able.s.02'), 's'), (Synset('able.s.03'), 's'), (Synset('able.s.04'), 's')]
+    >>> sent = 'people should be able to marry a person of their choice'.split()
+    >>> lesk(sent, 'able')
+    Synset('able.s.04')
+    >>> lesk(sent, 'able', pos='a')
+    Synset('able.a.01')
+
+Test behavior if there is are no matching senses.
+
+    >>> lesk('John loves Mary'.split(), 'loves', synsets=[])

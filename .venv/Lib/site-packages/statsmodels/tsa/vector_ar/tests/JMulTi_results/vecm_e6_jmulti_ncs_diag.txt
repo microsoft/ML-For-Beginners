@@ -1,0 +1,59 @@
+*** Mon, 25 Jul 2016 13:55:40 ***
+PORTMANTEAU TEST (H0:Rh=(r1,...,rh)=0)
+
+tested order:             16 
+test statistic:           48.0815 
+ p-value:                 0.5507  
+adjusted test statistic:  53.8138 
+ p-value:                 0.3305  
+degrees of freedom:       50.0000 
+
+*** Mon, 25 Jul 2016 13:55:40 ***
+LM-TYPE TEST FOR AUTOCORRELATION with 5 lags
+
+LM statistic:             23.5983 
+ p-value:                 0.2604  
+ df:                      20.0000 
+
+*** Mon, 25 Jul 2016 13:55:40 ***
+TESTS FOR NONNORMALITY
+
+Reference: Doornik & Hansen (1994)
+joint test statistic:     1.2601  
+ p-value:                 0.8681  
+degrees of freedom:       4.0000  
+skewness only:            0.2625  
+ p-value:                 0.8770  
+kurtosis only:            0.9976  
+ p-value:                 0.6073  
+
+Reference: Lütkepohl (1993), Introduction to Multiple Time Series Analysis, 2ed, p. 153
+joint test statistic:     1.0210  
+ p-value:                 0.9066  
+degrees of freedom:       4.0000  
+skewness only:            0.2477  
+ p-value:                 0.8835  
+kurtosis only:            0.7733  
+ p-value:                 0.6793  
+
+*** Mon, 25 Jul 2016 13:55:40 ***
+JARQUE-BERA TEST
+
+variable        teststat   p-Value(Chi^2)  skewness   kurtosis  
+u1              0.5868     0.7457          0.0939     2.6815   
+u2              1.1219     0.5707         -0.0883     3.4798   
+
+*** Mon, 25 Jul 2016 13:55:40 ***
+ARCH-LM TEST with 16 lags
+
+variable        teststat   p-Value(Chi^2)  F stat     p-Value(F)
+u1              15.5197    0.4870          1.1806     0.3050   
+u2              26.9092    0.0425          2.4350     0.0056   
+
+*** Mon, 25 Jul 2016 13:55:40 ***
+MULTIVARIATE ARCH-LM TEST with 5 lags
+
+VARCHLM test statistic:   73.4831 
+ p-value(chi^2):          0.0047  
+ degrees of freedom:      45.0000 
+

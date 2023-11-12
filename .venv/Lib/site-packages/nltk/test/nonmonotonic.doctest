@@ -1,0 +1,293 @@
+.. Copyright (C) 2001-2023 NLTK Project
+.. For license information, see LICENSE.TXT
+
+======================
+Nonmonotonic Reasoning
+======================
+
+    >>> from nltk.test.setup_fixt import check_binary
+    >>> check_binary('mace4')
+
+    >>> from nltk import *
+    >>> from nltk.inference.nonmonotonic import *
+    >>> from nltk.sem import logic
+    >>> logic._counter._value = 0
+    >>> read_expr = logic.Expression.fromstring
+
+------------------------
+Closed Domain Assumption
+------------------------
+
+The only entities in the domain are those found in the assumptions or goal.
+If the domain only contains "A" and "B", then the expression "exists x.P(x)" can
+be replaced with "P(A) | P(B)" and an expression "all x.P(x)" can be replaced
+with "P(A) & P(B)".
+
+    >>> p1 = read_expr(r'all x.(man(x) -> mortal(x))')
+    >>> p2 = read_expr(r'man(Socrates)')
+    >>> c = read_expr(r'mortal(Socrates)')
+    >>> prover = Prover9Command(c, [p1,p2])
+    >>> prover.prove()
+    True
+    >>> cdp = ClosedDomainProver(prover)
+    >>> for a in cdp.assumptions(): print(a) # doctest: +SKIP
+    (man(Socrates) -> mortal(Socrates))
+    man(Socrates)
+    >>> cdp.prove()
+    True
+
+    >>> p1 = read_expr(r'exists x.walk(x)')
+    >>> p2 = read_expr(r'man(Socrates)')
+    >>> c = read_expr(r'walk(Socrates)')
+    >>> prover = Prover9Command(c, [p1,p2])
+    >>> prover.prove()
+    False
+    >>> cdp = ClosedDomainProver(prover)
+    >>> for a in cdp.assumptions(): print(a) # doctest: +SKIP
+    walk(Socrates)
+    man(Socrates)
+    >>> cdp.prove()
+    True
+
+    >>> p1 = read_expr(r'exists x.walk(x)')
+    >>> p2 = read_expr(r'man(Socrates)')
+    >>> p3 = read_expr(r'-walk(Bill)')
+    >>> c = read_expr(r'walk(Socrates)')
+    >>> prover = Prover9Command(c, [p1,p2,p3])
+    >>> prover.prove()
+    False
+    >>> cdp = ClosedDomainProver(prover)
+    >>> for a in cdp.assumptions(): print(a) # doctest: +SKIP
+    (walk(Socrates) | walk(Bill))
+    man(Socrates)
+    -walk(Bill)
+    >>> cdp.prove()
+    True
+
+    >>> p1 = read_expr(r'walk(Socrates)')
+    >>> p2 = read_expr(r'walk(Bill)')
+    >>> c = read_expr(r'all x.walk(x)')
+    >>> prover = Prover9Command(c, [p1,p2])
+    >>> prover.prove()
+    False
+    >>> cdp = ClosedDomainProver(prover)
+    >>> for a in cdp.assumptions(): print(a) # doctest: +SKIP
+    walk(Socrates)
+    walk(Bill)
+    >>> print(cdp.goal()) # doctest: +SKIP
+    (walk(Socrates) & walk(Bill))
+    >>> cdp.prove()
+    True
+
+    >>> p1 = read_expr(r'girl(mary)')
+    >>> p2 = read_expr(r'dog(rover)')
+    >>> p3 = read_expr(r'all x.(girl(x) -> -dog(x))')
+    >>> p4 = read_expr(r'all x.(dog(x) -> -girl(x))')
+    >>> p5 = read_expr(r'chase(mary, rover)')
+    >>> c = read_expr(r'exists y.(dog(y) & all x.(girl(x) -> chase(x,y)))')
+    >>> prover = Prover9Command(c, [p1,p2,p3,p4,p5])
+    >>> print(prover.prove())
+    False
+    >>> cdp = ClosedDomainProver(prover)
+    >>> for a in cdp.assumptions(): print(a) # doctest: +SKIP
+    girl(mary)
+    dog(rover)
+    ((girl(rover) -> -dog(rover)) & (girl(mary) -> -dog(mary)))
+    ((dog(rover) -> -girl(rover)) & (dog(mary) -> -girl(mary)))
+    chase(mary,rover)
+    >>> print(cdp.goal()) # doctest: +SKIP
+    ((dog(rover) & (girl(rover) -> chase(rover,rover)) & (girl(mary) -> chase(mary,rover))) | (dog(mary) & (girl(rover) -> chase(rover,mary)) & (girl(mary) -> chase(mary,mary))))
+    >>> print(cdp.prove())
+    True
+
+-----------------------
+Unique Names Assumption
+-----------------------
+
+No two entities in the domain represent the same entity unless it can be
+explicitly proven that they do.  Therefore, if the domain contains "A" and "B",
+then add the assumption "-(A = B)" if it is not the case that
+"<assumptions> \|- (A = B)".
+
+    >>> p1 = read_expr(r'man(Socrates)')
+    >>> p2 = read_expr(r'man(Bill)')
+    >>> c = read_expr(r'exists x.exists y.-(x = y)')
+    >>> prover = Prover9Command(c, [p1,p2])
+    >>> prover.prove()
+    False
+    >>> unp = UniqueNamesProver(prover)
+    >>> for a in unp.assumptions(): print(a) # doctest: +SKIP
+    man(Socrates)
+    man(Bill)
+    -(Socrates = Bill)
+    >>> unp.prove()
+    True
+
+    >>> p1 = read_expr(r'all x.(walk(x) -> (x = Socrates))')
+    >>> p2 = read_expr(r'Bill = William')
+    >>> p3 = read_expr(r'Bill = Billy')
+    >>> c = read_expr(r'-walk(William)')
+    >>> prover = Prover9Command(c, [p1,p2,p3])
+    >>> prover.prove()
+    False
+    >>> unp = UniqueNamesProver(prover)
+    >>> for a in unp.assumptions(): print(a) # doctest: +SKIP
+    all x.(walk(x) -> (x = Socrates))
+    (Bill = William)
+    (Bill = Billy)
+    -(William = Socrates)
+    -(Billy = Socrates)
+    -(Socrates = Bill)
+    >>> unp.prove()
+    True
+
+-----------------------
+Closed World Assumption
+-----------------------
+
+The only entities that have certain properties are those that is it stated
+have the properties.  We accomplish this assumption by "completing" predicates.
+
+If the assumptions contain "P(A)", then "all x.(P(x) -> (x=A))" is the completion
+of "P".  If the assumptions contain "all x.(ostrich(x) -> bird(x))", then
+"all x.(bird(x) -> ostrich(x))" is the completion of "bird".  If the
+assumptions don't contain anything that are "P", then "all x.-P(x)" is the
+completion of "P".
+
+    >>> p1 = read_expr(r'walk(Socrates)')
+    >>> p2 = read_expr(r'-(Socrates = Bill)')
+    >>> c = read_expr(r'-walk(Bill)')
+    >>> prover = Prover9Command(c, [p1,p2])
+    >>> prover.prove()
+    False
+    >>> cwp = ClosedWorldProver(prover)
+    >>> for a in cwp.assumptions(): print(a) # doctest: +SKIP
+    walk(Socrates)
+    -(Socrates = Bill)
+    all z1.(walk(z1) -> (z1 = Socrates))
+    >>> cwp.prove()
+    True
+
+    >>> p1 = read_expr(r'see(Socrates, John)')
+    >>> p2 = read_expr(r'see(John, Mary)')
+    >>> p3 = read_expr(r'-(Socrates = John)')
+    >>> p4 = read_expr(r'-(John = Mary)')
+    >>> c = read_expr(r'-see(Socrates, Mary)')
+    >>> prover = Prover9Command(c, [p1,p2,p3,p4])
+    >>> prover.prove()
+    False
+    >>> cwp = ClosedWorldProver(prover)
+    >>> for a in cwp.assumptions(): print(a) # doctest: +SKIP
+    see(Socrates,John)
+    see(John,Mary)
+    -(Socrates = John)
+    -(John = Mary)
+    all z3 z4.(see(z3,z4) -> (((z3 = Socrates) & (z4 = John)) | ((z3 = John) & (z4 = Mary))))
+    >>> cwp.prove()
+    True
+
+    >>> p1 = read_expr(r'all x.(ostrich(x) -> bird(x))')
+    >>> p2 = read_expr(r'bird(Tweety)')
+    >>> p3 = read_expr(r'-ostrich(Sam)')
+    >>> p4 = read_expr(r'Sam != Tweety')
+    >>> c = read_expr(r'-bird(Sam)')
+    >>> prover = Prover9Command(c, [p1,p2,p3,p4])
+    >>> prover.prove()
+    False
+    >>> cwp = ClosedWorldProver(prover)
+    >>> for a in cwp.assumptions(): print(a) # doctest: +SKIP
+    all x.(ostrich(x) -> bird(x))
+    bird(Tweety)
+    -ostrich(Sam)
+    -(Sam = Tweety)
+    all z7.-ostrich(z7)
+    all z8.(bird(z8) -> ((z8 = Tweety) | ostrich(z8)))
+    >>> print(cwp.prove())
+    True
+
+-----------------------
+Multi-Decorator Example
+-----------------------
+
+Decorators can be nested to utilize multiple assumptions.
+
+    >>> p1 = read_expr(r'see(Socrates, John)')
+    >>> p2 = read_expr(r'see(John, Mary)')
+    >>> c = read_expr(r'-see(Socrates, Mary)')
+    >>> prover = Prover9Command(c, [p1,p2])
+    >>> print(prover.prove())
+    False
+    >>> cmd = ClosedDomainProver(UniqueNamesProver(ClosedWorldProver(prover)))
+    >>> print(cmd.prove())
+    True
+
+-----------------
+Default Reasoning
+-----------------
+    >>> logic._counter._value = 0
+    >>> premises = []
+
+define the taxonomy
+
+    >>> premises.append(read_expr(r'all x.(elephant(x)        -> animal(x))'))
+    >>> premises.append(read_expr(r'all x.(bird(x)            -> animal(x))'))
+    >>> premises.append(read_expr(r'all x.(dove(x)            -> bird(x))'))
+    >>> premises.append(read_expr(r'all x.(ostrich(x)         -> bird(x))'))
+    >>> premises.append(read_expr(r'all x.(flying_ostrich(x)  -> ostrich(x))'))
+
+default the properties using abnormalities
+
+    >>> premises.append(read_expr(r'all x.((animal(x)  & -Ab1(x)) -> -fly(x))')) #normal animals don't fly
+    >>> premises.append(read_expr(r'all x.((bird(x)    & -Ab2(x)) -> fly(x))'))  #normal birds fly
+    >>> premises.append(read_expr(r'all x.((ostrich(x) & -Ab3(x)) -> -fly(x))')) #normal ostriches don't fly
+
+specify abnormal entities
+
+    >>> premises.append(read_expr(r'all x.(bird(x)           -> Ab1(x))')) #flight
+    >>> premises.append(read_expr(r'all x.(ostrich(x)        -> Ab2(x))')) #non-flying bird
+    >>> premises.append(read_expr(r'all x.(flying_ostrich(x) -> Ab3(x))')) #flying ostrich
+
+define entities
+
+    >>> premises.append(read_expr(r'elephant(el)'))
+    >>> premises.append(read_expr(r'dove(do)'))
+    >>> premises.append(read_expr(r'ostrich(os)'))
+
+print the augmented assumptions list
+
+    >>> prover = Prover9Command(None, premises)
+    >>> command = UniqueNamesProver(ClosedWorldProver(prover))
+    >>> for a in command.assumptions(): print(a) # doctest: +SKIP
+    all x.(elephant(x) -> animal(x))
+    all x.(bird(x) -> animal(x))
+    all x.(dove(x) -> bird(x))
+    all x.(ostrich(x) -> bird(x))
+    all x.(flying_ostrich(x) -> ostrich(x))
+    all x.((animal(x) & -Ab1(x)) -> -fly(x))
+    all x.((bird(x) & -Ab2(x)) -> fly(x))
+    all x.((ostrich(x) & -Ab3(x)) -> -fly(x))
+    all x.(bird(x) -> Ab1(x))
+    all x.(ostrich(x) -> Ab2(x))
+    all x.(flying_ostrich(x) -> Ab3(x))
+    elephant(el)
+    dove(do)
+    ostrich(os)
+    all z1.(animal(z1) -> (elephant(z1) | bird(z1)))
+    all z2.(Ab1(z2) -> bird(z2))
+    all z3.(bird(z3) -> (dove(z3) | ostrich(z3)))
+    all z4.(dove(z4) -> (z4 = do))
+    all z5.(Ab2(z5) -> ostrich(z5))
+    all z6.(Ab3(z6) -> flying_ostrich(z6))
+    all z7.(ostrich(z7) -> ((z7 = os) | flying_ostrich(z7)))
+    all z8.-flying_ostrich(z8)
+    all z9.(elephant(z9) -> (z9 = el))
+    -(el = os)
+    -(el = do)
+    -(os = do)
+
+    >>> UniqueNamesProver(ClosedWorldProver(Prover9Command(read_expr('-fly(el)'), premises))).prove()
+    True
+    >>> UniqueNamesProver(ClosedWorldProver(Prover9Command(read_expr('fly(do)'), premises))).prove()
+    True
+    >>> UniqueNamesProver(ClosedWorldProver(Prover9Command(read_expr('-fly(os)'), premises))).prove()
+    True

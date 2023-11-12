@@ -1,0 +1,646 @@
+50 Cent PERS
+AIDS
+AK-47
+AT&T ORG
+Abraham Lincoln PERS
+Acropolis LOC
+Adam Sandler PERS
+Adolf Hitler PERS
+Adriana Lima PERS
+Afghanistan LOC
+Africa LOC
+Al Capone PERS
+Al Pacino PERS
+Alaska LOC
+Albert Einstein PERS
+Albert Hofmann PERS
+Albert Schweitzer PERS
+Alexander the Great PERS
+Alfred Hitchcock PERS
+Alice Cooper PERS
+Alice in Wonderland
+Amazon.com ORG
+Amber Heard PERS
+Amelia Earhart PERS
+American Express
+American Idol
+Amsterdam LOC
+Amy Adams PERS
+Amy Winehouse PERS
+Ancient Egypt LOC
+Ancient Rome LOC
+Android
+Angelina Jolie PERS
+Angry Birds
+Anne Frank PERS
+Anne Hathaway PERS
+Antartica LOC
+Apple Inc. ORG
+Archimedes PERS
+Aretha Franklin PERS
+Argentina LOC
+Aristotle PERS
+Arnold Schwarzenegger PERS
+Audi ORG
+Audrey Hepburn PERS
+Aung San Suu Kyi PERS
+Australia LOC
+Austria LOC
+Avatar
+Avril Lavigne PERS
+Ayn Rand PERS
+Aztec
+BMW ORG
+Babe Ruth PERS
+Bacardi ORG
+Backstreet Boys
+Bangladesh LOC
+Barack Obama PERS
+Barbra Streisand PERS
+Barcelona LOC
+Batman PERS
+Beethoven PERS
+Belarus LOC
+Belgium LOC
+Ben Affleck PERS
+Ben Folds PERS
+Ben Stiller PERS
+Benazir Bhutto PERS
+Benjamin Franklin PERS
+Benjamin Millepied PERS
+Bernard Madoff PERS
+Beyoncé Knowles PERS
+Bill Clinton PERS
+Bill Gates PERS
+Billie Holiday PERS
+Billie Jean King PERS
+Bing Crosby PERS
+Black Sabbath
+Blake Edwards PERS
+Blake Lively PERS
+Bob Dylan PERS
+Bob Geldof PERS
+Bob Marley PERS
+Brad Pitt PERS
+Bradley Manning PERS
+Brazil LOC
+Brett Favre PERS
+Britney Spears PERS
+Bruce Lee PERS
+Bruce Willis PERS
+Bruno Mars PERS
+Buddhism
+Bulgaria LOC
+Burger King
+Burma LOC
+C.S. Lewis PERS
+Cadillac ORG
+California LOC
+Cameron Diaz PERS
+Cameron Newton PERS
+Canada LOC
+Captain Beefheart PERS
+Carl Lewis PERS
+Charles Darwin PERS
+Charles Dickens PERS
+Charles Kindbergh PERS
+Charles de Gaulle PERS
+Charlie Sheen PERS
+Che Guevara PERS
+Cheryl Cole PERS
+Chicago LOC
+China LOC
+Chopin PERS
+Chris Colfer PERS
+Christian Bale PERS
+Christiano Ronaldo PERS
+Christina Aguilera PERS
+Christmas
+Christopher Nolan PERS
+Chuck Norris PERS
+Clint Eastwood PERS
+Coca Cola ORG
+Coco Chanel ORG
+Coldplay
+Colombia LOC
+Conan PERS
+Cristiano Ronaldo PERS
+Crystal Harris PERS
+Cthulhu PERS
+Cuba LOC
+DNA
+Daft Punk
+Dalai Lama PERS
+Daniel Radcliffe PERS
+Darren Aronofsky PERS
+Darren Criss PERS
+Darth Vader PERS
+David Beckham PERS
+David Bowie PERS
+David Cook PERS
+Demi Lovato PERS
+Demi Moore PERS
+Denmark LOC
+Desmond Tutu PERS
+Dexter PERS
+Diana PERS
+Diego Maradona PERS
+Disney ORG
+Dmitry Medvedev PERS
+Doctor Who PERS
+Dr. Dre PERS
+Dr. Seuss PERS
+Dragon Ball
+Dubai LOC
+Dwayne Johnson PERS
+Earth LOC
+Ebenezer Scrooge PERS
+Eddie Murphy PERS
+Eduardo Saverin PERS
+Egypt LOC
+El Salvador LOC
+Elizabeth Edwards PERS
+Elizabeth Hurley PERS
+Ellen Page PERS
+Elton John PERS
+Elvis Presley PERS
+Emile Zatopek PERS
+Eminem PERS
+Emma Roberts PERS
+Emma Stone PERS
+Emma Watson PERS
+Emmeline Pankhurst PERS
+England LOC
+Enrique Iglesias PERS
+Ernest Hemingway PERS
+Ernest Hemingway PERS
+Europe LOC
+Eva Peron PERS
+Exxon Mobil PERS
+FC Barcelona ORG
+FIFA ORG
+Facebook ORG
+Fahrenheit
+Family Guy
+Faye Resnick PERS
+FedEx ORG
+Fidel Castro PERS
+Finland LOC
+Firefox ORG
+Florence Nightingale PERS
+Florida LOC
+Fort Wayne LOC
+France LOC
+Frank Sinatra PERS
+Franklin D. Roosevelt PERS
+Freddie Mercury PERS
+Frédéric Chopin PERS
+Futurama
+Garrett Hedlund PERS
+Gene Simmons PERS
+General Electric
+Genghis Khan PERS
+George Bush PERS
+George Clooney PERS
+George Harrison PERS
+George Orwell PERS
+George W. Bush PERS
+George Washington PERS
+Georges St-Pierre PERS
+Germany LOC
+Google ORG
+Google Chrome
+Gorillaz
+Grand Theft Auto
+Greece LOC
+Gucci ORG
+Gulf War
+Gulliver's Travels
+Guns N' Roses
+Gwyneth Paltrow PERS
+HIV
+HSBC
+Haile Selassie PERS
+Haiti LOC
+Halliburton ORG
+Halloween
+Hank Baskett PERS
+Hannah Montana PERS
+Hanukkah
+Harrison Ford PERS
+Harry Potter PERS
+Hawaii LOC
+He-Man PERS
+Heath Ledger PERS
+Helen Keller PERS
+Helena Bonham Carter PERS
+Henry Ford PERS
+Henry IV PERS
+Henry V PERS
+Henry VIII PERS
+Hilary Duff PERS
+Hillary Clinton PERS
+Honda ORG
+Hong Kong LOC
+Hotmail
+Hugh Hefner PERS
+Humphrey Bogart PERS
+Hungary LOC
+IBM ORG
+IKEA ORG
+Iceland LOC
+India LOC
+Indiana Jones PERS
+Indira Gandhi PERS
+Indonesia LOC
+Internet Explorer
+Iran LOC
+Ireland LOC
+Iron Man PERS
+Isaac Newton PERS
+Isabelle Caro PERS
+Islam
+Israel LOC
+Italy LOC
+Ivy League ORG
+J. Robert Oppenheimer PERS 
+J.K. Rowling PERS
+J.R.R. Tolkien PERS
+JFK PERS
+Jack the Ripper PERS
+Jackie Chan PERS
+Jacqueline Kennedy Onassis PERS
+Jaden Smith PERS
+Jake Gyllenhaal PERS
+James Bond PERS
+James Franco PERS
+Jane Austen PERS
+Janet Jackson PERS
+Japan LOC
+Jared Leto PERS
+Jason Statham PERS
+Jawaharlal Nehru PERS
+Jay-Z PERS
+Jeff Bridges PERS
+Jeff Buckley PERS
+Jenna Jameson PERS
+Jennifer Aniston PERS
+Jesse Owens PERS
+Jessica Alba PERS
+Jesus PERS
+Jim Carrey PERS
+Jim Morrisson PERS
+Jimi Hendrix PERS
+Jimmy Wales PERS
+Joaquin Phoenix PERS
+John Cena PERS
+John Edwards PERS
+John F. Kennedy PERS
+John Lennon PERS
+John M. Keynes PERS
+John McCain PERS
+John Wayne PERS
+Johnnie Walker PERS
+Johnny Cash PERS
+Johnny Depp PERS
+Joseph Stalin PERS
+Judy Garland PERS
+Julia Roberts PERS
+Julian Assange PERS
+Julie Andrews PERS
+Julius Caesar PERS
+Justin Bieber PERS
+Justin Timberlake PERS
+KFC ORG
+KLM ORG
+Kama Sutra
+Kanye West PERS
+Kate Middleton PERS
+Katherine Hepburn PERS
+Katrina Kaif PERS
+Katy Perry PERS
+Keira Knightley PERS
+Ken Livingstone PERS
+Keri Hilson PERS
+Kesha PERS
+Kevin Bacon PERS
+Kid Cudi PERS
+Kim Kardashian PERS
+Kinect
+King Arthur PERS
+Kobe Bryant PERS
+Kosovo LOC
+Kristallnacht
+Kristen Stewart PERS
+Kurt Cobain PERS
+L'Oreal ORG
+L. Ron Hubbard PERS
+Lady Gaga PERS
+Lea Michele PERS
+Lebanon LOC
+Lech Walesa PERS
+Led Zeppelin
+Lego
+Lenin PERS
+Leo Tolstoy PERS
+Leon Trotsky PERS
+Leonardo DiCaprio PERS
+Leonardo da Vinci PERS
+Leslie Nielsen PERS
+Lexus ORG
+Liam Neeson PERS
+Lil Wayne PERS
+Lindsay Lohan PERS
+Linkin Park PERS
+Lionel Messi PERS
+Loch Ness LOC
+London LOC
+Lord Baden Powell PERS
+Los Angeles LOC
+Louis Pasteur PERS
+Louis Vuitton PERS
+Louvre LOC
+Ludwig van Beethoven PERS
+Lyndon Johnson PERS
+MDMA
+Mac OS X
+Macaulay Culkin PERS
+Madagascar LOC
+Madonna PERS
+Mahatma Gandhi PERS
+Malaysia LOC
+Malcolm X PERS
+Manchester LOC
+Manchester United ORG
+Margaret Thatcher PERS
+Mariah Carey PERS
+Marilyn Monroe PERS
+Mario Gómez PERS
+Mario Kart
+Mark David Chapman PERS
+Mark Wahlberg PERS
+Mark Zuckerberg PERS
+Martin Luther King PERS
+Massachussetts LOC
+Mata Hari PERS
+Matt Damon PERS
+Mattel ORG
+Maya Angelou PERS
+McDonald's ORG
+McGill University ORG
+Megan Fox PERS
+Mercedes-Benz ORG
+Merlin PERS
+Metallica
+Mexico LOC
+Miami LOC
+Miami Vice
+Michael C. Hall PERS
+Michael Jackson PERS
+Michael Jordan PERS
+Michael Vick PERS
+Michelin ORG
+Michigan LOC
+Micky Ward PERS
+Microsoft ORG
+Microsoft Windows
+Middle Ages
+Mike Tyson PERS
+Mila Kunis PERS
+Miley Cyrus PERS
+Minecraft
+Mohammed Ali PERS
+Mona Lisa PERS
+Montreal LOC
+Morocco LOC
+Mother Teresa PERS
+Mother's Day
+Mozart PERS
+Mozilla Firefox
+Muhammad PERS
+Muhammad Ali PERS
+Myanmar LOC
+Napoleon PERS
+Narnia LOC
+Natalie Portman PERS
+Nazi Germany
+Neil Armstrong PERS
+Neil Patrick Harris PERS
+Nelson Mandela PERS
+Nepal LOC
+Netherlands LOC
+New York LOC
+New York City LOC
+New Zealand LOC
+Nicki Minaj PERS
+Nicolas Cage PERS
+Nicole Scherzinger PERS
+Nigeria LOC
+Nike ORG
+Nivea ORG
+North America LOC
+North Korea LOC
+Norway LOC
+Olivia Wilde PERS
+Oprah Winfrey PERS
+Osama Bin Laden PERS
+Oscar Wilde PERS
+Owen Wilson PERS
+Ozzfest
+Pablo Picasso PERS
+Pakistan LOC
+Panasonic ORG
+Paris LOC
+Paul McCartney PERS
+Pele PERS
+Pepsi ORG
+Peter Sellers PERS
+Philadelphia LOC
+Philips ORG
+Phillipines LOC
+Pink Floyd PERS
+PlayStation 3
+Pocahontas PERS
+Pokemon
+Pokémon
+Poland LOC
+Pope John Paul II PERS
+Premier League ORG
+Prince Charles PERS
+Priory of Sion LOC
+Procter & Gamble
+Puerto Rico LOC
+Qatar LOC
+Queen Elizabeth II PERS
+Queen Victoria PERS
+Rachmaninoff PERS
+Raiders of the Lost Ark
+Raisa Gorbachev PERS
+Real Madrid ORG
+Red Hot Chili Peppers PERS
+Reese Witherspoon PERS
+Resident Evil
+Richard PERS
+Richard Branson PERS
+Richard Dawkins PERS
+Richard Holbrooke PERS
+Richard Nixon PERS
+Rihanna PERS
+Ringo Starr PERS
+Robert De Niro PERS
+Robert Pattinson PERS
+Robin Hood PERS
+Roger Federer PERS
+Roman Empire ORG
+Romania LOC
+Rome LOC
+Romeo and Juliet
+Ronald Reagan PERS
+Ronnie O'Sullivan PERS
+Rosa Parks PERS
+Russell Brand PERS
+Russia LOC
+Ryan Reynolds PERS
+Saddam Hussein PERS
+Sahara LOC
+Saint Nicholas PERS
+Salman Khan PERS
+Samsung ORG
+Sandra Bullock PERS
+Santa Claus PERS
+Sarah Palin PERS
+Sasha Grey PERS
+Saudi Arabia LOC
+Scarlett Johansson PERS
+Scientology ORG
+Scotland LOC
+Sean Combs PERS
+Sean Parker PERS
+Selena Gomez PERS
+Serbia LOC
+Sergei Rachmaninoff PERS
+Shakira
+Shaquille O'Neal PERS
+Shaun Ryder PERS
+Sherlock Holmes PERS
+Shia LaBeouf PERS
+Shirley Temple PERS
+Siemens ORG
+Sigmund Freud PERS
+Silvio Berlusconi PERS
+Singapore LOC
+Skype
+Smirnoff ORG
+Snoop Dogg PERS
+Snow White PERS
+Socrates PERS
+Somalia LOC
+Sony ORG
+South Africa LOC
+South America LOC
+South Korea LOC
+South Park
+Soviet Union
+Spain LOC
+Spider-Man PERS
+Spiderman PERS
+Sri Lanka LOC
+Star Trek
+Star Wars
+Starbucks ORG
+Stephen Hawking PERS
+Stephen King PERS
+Steve Jobs PERS
+Steve Nash PERS
+Steven Spielberg PERS
+Sudan LOC
+Super Bowl
+Superman PERS
+Sweden LOC
+Switzerland LOC
+Sylvester Stallone PERS
+Taiwan LOC
+Taj Mahal LOC
+Take That
+Taylor Lautner PERS
+Taylor Momsem PERS
+Taylor Swift PERS
+Teena Marie PERS
+Tennessee LOC
+Texas LOC
+Thailand LOC
+The Beatles
+The Chronicles of Narnia
+The Godfather
+The Green Hornet
+The Lord of the Rings
+The Rolling Stones
+The Simpsons
+The Sims
+Theodore Roosevelt PERS
+Thomas Jefferson PERS
+Thor PERS
+Tiger Woods PERS
+Titanic
+Tom Brady PERS
+Tom Cruise PERS
+Tom Hanks PERS
+Toy Story
+Toyota ORG
+Transformers
+Tron
+Tupac Shakur PERS
+Twin Peaks
+Twitter
+UEFA Champions League
+Ubuntu
+Ukraine LOC
+United Kingdom LOC
+United Nations
+United States LOC
+Usain Bolt PERS
+Vanessa Hudgens PERS
+Venus LOC
+Vietnam LOC
+Vin Diesel PERS
+Virginia Woolf PERS
+Vladimir Putin PERS
+Vodafone ORG
+Volkswagen ORG
+Walmart ORG
+Walt Disney PERS
+Warren Buffet PERS
+Washington LOC
+Washington D.C. LOC
+Wesley Snipes PERS
+Wii
+WikiLeaks ORG
+Wikipedia ORG
+Will Ferrell PERS
+Will Smith PERS
+William Shakespeare PERS
+Willow Smith PERS
+Windows 7
+Windows 95
+Windows Vista
+Windows XP
+Winona Ryder PERS
+Winston Churchill PERS
+Wiz Khalifa PERS
+Wolfgang Amadeus Mozart PERS
+Woodrow Wilson PERS
+World War I
+World War II
+World of Warcraft
+Wright Brothers PERS
+X-Men
+Xbox 360
+Yoko Onen PERS
+Yoko Ono PERS
+YouTube ORG
+amazon.com ORG
+eBay ORG
+iPad
+iPhone
+iPod
+iPod touch
