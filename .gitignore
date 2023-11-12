@@ -361,3 +361,5 @@ MigrationBackup/
 .Rhistory
 ML-For-Beginners.Rproj
 .obsidian
+venv\
+.venv
