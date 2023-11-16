@@ -69,9 +69,9 @@ print(blob.translate(to="fr"))
 
 `TextBlob` does a pretty good job at the translation: "C'est une vérité universellement reconnue, qu'un homme célibataire en possession d'une bonne fortune doit avoir besoin d'une femme!". 
 
-It can be argued that TextBlob's translation is far more exact, in fact, than the 1932 French translation of the book by V. Leconte and Ch. Pressoir:
+It can be argued that TextBlob's translation may be more accurate than a human translator.
 
-"C'est une vérité universelle qu'un célibataire pourvu d'une belle fortune doit avoir envie de se marier, et, si peu que l'on sache de son sentiment à cet egard, lorsqu'il arrive dans une nouvelle résidence, cette idée est si bien fixée dans l'esprit de ses voisins qu'ils le considèrent sur-le-champ comme la propriété légitime de l'une ou l'autre de leurs filles."
+"C'est une vérité évidente et universelle qu'un célibataire pourvu d'une belle fortune et bien méritée aura toujours besoin de se marier."
 
 In this case, the translation informed by ML does a better job than the human translator who is unnecessarily putting words in the original author's mouth for 'clarity'.
 
