@@ -149,7 +149,7 @@ import time
 print("Loading data file now, this could take a while depending on file size")
 start = time.time()
 # df is 'DataFrame' - make sure you downloaded the file to the data folder
-df = pd.read_csv('../../data/Hotel_Reviews.csv')
+df = pd.read_csv('../data/Hotel_Reviews.csv')
 end = time.time()
 print("Loading took " + str(round(end - start, 2)) + " seconds")
 ```
