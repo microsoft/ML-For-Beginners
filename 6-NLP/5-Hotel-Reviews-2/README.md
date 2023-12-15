@@ -251,7 +251,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
 
 # Load the filtered hotel reviews from CSV
-df = pd.read_csv('../../data/Hotel_Reviews_Filtered.csv')
+df = pd.read_csv('../data/Hotel_Reviews_Filtered.csv')
 
 # You code will be added here
 
@@ -275,7 +275,7 @@ Removing the stop words is also a fast operation, removing the stop words from 2
 from nltk.corpus import stopwords
 
 # Load the hotel reviews from CSV
-df = pd.read_csv("../../data/Hotel_Reviews_Filtered.csv")
+df = pd.read_csv("../data/Hotel_Reviews_Filtered.csv")
 
 # Remove stop words - can be slow for a lot of text!
 # Ryan Han (ryanxjhan on Kaggle) has a great post measuring performance of different stop words removal approaches
