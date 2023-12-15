@@ -47,7 +47,7 @@ Alan Turing, a truly remarkable person who was voted [by the public in 2019](htt
 
 The lead researcher, mathematics professor John McCarthy, hoped "to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it." The participants included another luminary in the field, Marvin Minsky.
 
-The workshop is credited with having initiated and encouraged several discussions including "the rise of symbolic methods, systems focussed on limited domains (early expert systems), and deductive systems versus inductive systems." ([source](https://wikipedia.org/wiki/Dartmouth_workshop)).
+The workshop is credited with having initiated and encouraged several discussions including "the rise of symbolic methods, systems focused on limited domains (early expert systems), and deductive systems versus inductive systems." ([source](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
 ---
 ## 1956 - 1974: "The golden years"
