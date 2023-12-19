@@ -224,7 +224,7 @@ import random
 
     ```python
     def probs(v,eps=1e-4):
-        v = vv.min()+eps
+        v = v.min()+eps
         v = v/v.sum()
         return v
     
