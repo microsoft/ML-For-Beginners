@@ -245,3 +245,6 @@ Also, take a look at [this handout on K-Means](https://stanford.edu/~cpiech/cs22
 ## Assignment
 
 [Try different clustering methods](assignment.md)
+
+---
+[Next Lesson >>>](../../6-NLP/README.md)

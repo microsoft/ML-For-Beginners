@@ -116,3 +116,6 @@ Search online for interviews with data scientists who discuss their daily work. 
 ## Assignment
 
 [Interview a data scientist](assignment.md)
+
+---
+[Next Lesson >>>](../../2-Regression/README.md)

@@ -365,3 +365,6 @@ In this lesson we learned about Linear Regression. There are other important typ
 ## Assignment 
 
 [Build a Model](assignment.md)
+
+---
+[Next Lesson >>>](../4-Logistic/README.md)

@@ -343,3 +343,6 @@ There are many ways to build a web app to consume ML models. Make a list of the 
 ## Assignment
 
 [Try a different model](assignment.md)
+
+---
+[Next Lesson >>>](../../4-Classification/README.md)

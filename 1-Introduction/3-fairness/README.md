@@ -156,3 +156,6 @@ Read about Azure Machine Learning's tools to ensure fairness:
 ## Assignment
 
 [Explore RAI Toolbox](assignment.md) 
+
+---
+[Next Lesson >>>](../4-techniques-of-ML/README.md)

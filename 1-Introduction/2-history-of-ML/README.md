@@ -148,3 +148,6 @@ Here are items to watch and listen to:
 ## Assignment
 
 [Create a timeline](assignment.md)
+
+---
+[Next Lesson >>>](../3-fairness/README.md)

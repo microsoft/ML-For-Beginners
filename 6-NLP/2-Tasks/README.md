@@ -212,3 +212,6 @@ In the next few lessons you will learn more about sentiment analysis. Research t
 ## Assignment 
 
 [Make a bot talk back](assignment.md)
+
+---
+[Next Lesson >>>](../3-Translation-Sentiment/README.md)

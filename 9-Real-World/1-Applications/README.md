@@ -145,3 +145,6 @@ The Wayfair data science team has several interesting videos on how they use ML 
 ## Assignment
 
 [A ML scavenger hunt](assignment.md)
+
+---
+[Next Lesson >>>](../2-Debugging-ML-Models/README.md)

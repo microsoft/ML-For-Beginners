@@ -224,3 +224,6 @@ Read more about the concept of regression and think about what kinds of question
 ## Assignment
 
 [A different dataset](assignment.md)
+
+---
+[Next Lesson >>>](../2-Data/README.md)

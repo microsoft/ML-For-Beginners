@@ -185,3 +185,6 @@ There are many ways to extract sentiment from text. Think of the business applic
 ## Assignment 
 
 [Poetic license](assignment.md)
+
+---
+[Next Lesson >>>](../4-Hotel-Reviews-1/README.md)

@@ -372,3 +372,6 @@ Take [this Learn module](https://docs.microsoft.com/en-us/learn/modules/classify
 ## Assignment 
 
 [Try a different dataset](assignment.md)
+
+---
+[Next Lesson >>>](../../7-TimeSeries/README.md)

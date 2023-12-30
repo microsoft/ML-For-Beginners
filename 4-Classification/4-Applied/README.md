@@ -312,3 +312,6 @@ While this lesson just touched on the utility of creating a recommendation syste
 ## Assignment 
 
 [Build a new recommender](assignment.md)
+
+---
+[Next Lesson >>>](../../5-Clustering/README.md)

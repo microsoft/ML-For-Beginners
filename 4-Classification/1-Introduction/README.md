@@ -297,3 +297,6 @@ Explore SMOTE's API. What use cases is it best used for? What problems does it s
 ## Assignment 
 
 [Explore classification methods](assignment.md)
+
+---
+[Next Lesson >>>](../2-Classifiers-1/README.md)

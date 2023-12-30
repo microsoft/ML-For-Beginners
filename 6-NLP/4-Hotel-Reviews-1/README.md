@@ -402,3 +402,6 @@ Take [this Learning Path on NLP](https://docs.microsoft.com/learn/paths/explore-
 ## Assignment 
 
 [NLTK](assignment.md)
+
+---
+[Next Lesson >>>](../5-Hotel-Reviews-2/README.md)

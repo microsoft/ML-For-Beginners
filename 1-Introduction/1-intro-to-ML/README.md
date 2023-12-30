@@ -143,3 +143,6 @@ Take a [Learning Path](https://docs.microsoft.com/learn/modules/introduction-to-
 # Assignment
 
 [Get up and running](assignment.md)
+
+---
+[Next Lesson >>>](../2-history-of-ML/README.md)

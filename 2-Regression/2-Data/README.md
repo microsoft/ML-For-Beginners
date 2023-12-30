@@ -209,3 +209,6 @@ Take a look at the many ways to visualize data. Make a list of the various libra
 ## Assignment
 
 [Exploring visualization](assignment.md)
+
+---
+[Next Lesson >>>](../3-Linear/README.md)

@@ -392,3 +392,6 @@ This lesson touches on only the basics of Time Series Forecasting with ARIMA. Ta
 ## Assignment
 
 [A new ARIMA model](assignment.md)
+
+---
+[Next Lesson >>>](../3-SVR/README.md)

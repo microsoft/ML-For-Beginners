@@ -239,3 +239,6 @@ Dig a little more into the math behind logistic regression in [this lesson](http
 ## Assignment 
 
 [Study the solvers](assignment.md)
+
+---
+[Next Lesson >>>](../3-Classifiers-2/README.md)
