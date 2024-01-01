@@ -40,7 +40,7 @@ AI systems should treat everyone fairly and avoid affecting similar groups of pe
 - **Quality of service**. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service.  For instance, a hand soap dispenser that could not seem to be able to sense people with dark skin. [Reference](https://gizmodo.com/why-cant-this-soap-dispenser-identify-dark-skin-1797931773)
 - **Denigration**. To unfairly criticize and label something or someone. For example, an image labeling technology infamously mislabeled images of dark-skinned people as gorillas.
 - **Over- or under- representation**. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
-- **Stereotyping**. Associating a given group with pre-assigned attributes.  For example, a language translation system betweem English and Turkish may have inaccuraces due to words with stereotypical associations to gender.
+- **Stereotyping**. Associating a given group with pre-assigned attributes.  For example, a language translation system between English and Turkish may have inaccuraces due to words with stereotypical associations to gender.
 
 ![translation to Turkish](images/gender-bias-translate-en-tr.png)
 > translation to Turkish
