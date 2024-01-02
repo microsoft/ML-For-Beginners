@@ -163,7 +163,7 @@ An algorithm that we will discuss here is called **Q-Learning**. In this algorit
 It is called a Q-Table because it is often convenient to represent it as a table, or multi-dimensional array. Since our board has dimensions `width` x `height`, we can represent the Q-Table using a numpy array with shape `width` x `height` x `len(actions)`: (code block 6)
 
 ```python
-Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
+Q = np.ones((width,height,len(actions)),dtype=float)*1.0/len(actions)
 ```
 
 Notice that we initialize all the values of the Q-Table with an equal value, in our case - 0.25. This corresponds to the "random walk" policy, because all moves in each state are equally good. We can pass the Q-Table to the `plot` function in order to visualize the table on the board: `m.plot(Q)`.
