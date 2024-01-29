@@ -15,7 +15,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
-
+from __future__ import annotations
 
 import olefile
 
@@ -51,10 +51,11 @@ class MicImageFile(TiffImagePlugin.TiffImageFile):
         # find ACI subfiles with Image members (maybe not the
         # best way to identify MIC files, but what the... ;-)
 
-        self.images = []
-        for path in self.ole.listdir():
-            if path[1:] and path[0][-4:] == ".ACI" and path[1] == "Image":
-                self.images.append(path)
+        self.images = [
+            path
+            for path in self.ole.listdir()
+            if path[1:] and path[0][-4:] == ".ACI" and path[1] == "Image"
+        ]
 
         # if we didn't find any images, this is probably not
         # an MIC file.
@@ -66,6 +67,7 @@ class MicImageFile(TiffImagePlugin.TiffImageFile):
         self._n_frames = len(self.images)
         self.is_animated = self._n_frames > 1
 
+        self.__fp = self.fp
         self.seek(0)
 
     def seek(self, frame):
@@ -87,10 +89,12 @@ class MicImageFile(TiffImagePlugin.TiffImageFile):
         return self.frame
 
     def close(self):
+        self.__fp.close()
         self.ole.close()
         super().close()
 
     def __exit__(self, *args):
+        self.__fp.close()
         self.ole.close()
         super().__exit__()
 

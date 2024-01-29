@@ -16,7 +16,7 @@ from pandas import (
 import pandas._testing as tm
 
 
-def _get_with_delta(delta, freq="A-DEC"):
+def _get_with_delta(delta, freq="YE-DEC"):
     return date_range(
         to_datetime("1/1/2001") + delta,
         to_datetime("12/31/2009") + delta,
@@ -27,7 +27,7 @@ def _get_with_delta(delta, freq="A-DEC"):
 class TestToTimestamp:
     def test_to_timestamp(self, frame_or_series):
         K = 5
-        index = period_range(freq="A", start="1/1/2001", end="12/1/2009")
+        index = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
         obj = DataFrame(
             np.random.default_rng(2).standard_normal((len(index), K)),
             index=index,
@@ -36,7 +36,7 @@ class TestToTimestamp:
         obj["mix"] = "a"
         obj = tm.get_obj(obj, frame_or_series)
 
-        exp_index = date_range("1/1/2001", end="12/31/2009", freq="A-DEC")
+        exp_index = date_range("1/1/2001", end="12/31/2009", freq="YE-DEC")
         exp_index = exp_index + Timedelta(1, "D") - Timedelta(1, "ns")
         result = obj.to_timestamp("D", "end")
         tm.assert_index_equal(result.index, exp_index)
@@ -44,7 +44,7 @@ class TestToTimestamp:
         if frame_or_series is Series:
             assert result.name == "A"
 
-        exp_index = date_range("1/1/2001", end="1/1/2009", freq="AS-JAN")
+        exp_index = date_range("1/1/2001", end="1/1/2009", freq="YS-JAN")
         result = obj.to_timestamp("D", "start")
         tm.assert_index_equal(result.index, exp_index)
 
@@ -71,7 +71,7 @@ class TestToTimestamp:
 
     def test_to_timestamp_columns(self):
         K = 5
-        index = period_range(freq="A", start="1/1/2001", end="12/1/2009")
+        index = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
         df = DataFrame(
             np.random.default_rng(2).standard_normal((len(index), K)),
             index=index,
@@ -82,13 +82,13 @@ class TestToTimestamp:
         # columns
         df = df.T
 
-        exp_index = date_range("1/1/2001", end="12/31/2009", freq="A-DEC")
+        exp_index = date_range("1/1/2001", end="12/31/2009", freq="YE-DEC")
         exp_index = exp_index + Timedelta(1, "D") - Timedelta(1, "ns")
         result = df.to_timestamp("D", "end", axis=1)
         tm.assert_index_equal(result.columns, exp_index)
         tm.assert_numpy_array_equal(result.values, df.values)
 
-        exp_index = date_range("1/1/2001", end="1/1/2009", freq="AS-JAN")
+        exp_index = date_range("1/1/2001", end="1/1/2009", freq="YS-JAN")
         result = df.to_timestamp("D", "start", axis=1)
         tm.assert_index_equal(result.columns, exp_index)
 
@@ -99,7 +99,7 @@ class TestToTimestamp:
         tm.assert_index_equal(result.columns, exp_index)
 
         delta = timedelta(hours=23, minutes=59)
-        result = df.to_timestamp("T", "end", axis=1)
+        result = df.to_timestamp("min", "end", axis=1)
         exp_index = _get_with_delta(delta)
         exp_index = exp_index + Timedelta(1, "m") - Timedelta(1, "ns")
         tm.assert_index_equal(result.columns, exp_index)
@@ -110,19 +110,19 @@ class TestToTimestamp:
         exp_index = exp_index + Timedelta(1, "s") - Timedelta(1, "ns")
         tm.assert_index_equal(result.columns, exp_index)
 
-        result1 = df.to_timestamp("5t", axis=1)
-        result2 = df.to_timestamp("t", axis=1)
-        expected = date_range("2001-01-01", "2009-01-01", freq="AS")
+        result1 = df.to_timestamp("5min", axis=1)
+        result2 = df.to_timestamp("min", axis=1)
+        expected = date_range("2001-01-01", "2009-01-01", freq="YS")
         assert isinstance(result1.columns, DatetimeIndex)
         assert isinstance(result2.columns, DatetimeIndex)
         tm.assert_numpy_array_equal(result1.columns.asi8, expected.asi8)
         tm.assert_numpy_array_equal(result2.columns.asi8, expected.asi8)
         # PeriodIndex.to_timestamp always use 'infer'
-        assert result1.columns.freqstr == "AS-JAN"
-        assert result2.columns.freqstr == "AS-JAN"
+        assert result1.columns.freqstr == "YS-JAN"
+        assert result2.columns.freqstr == "YS-JAN"
 
     def test_to_timestamp_invalid_axis(self):
-        index = period_range(freq="A", start="1/1/2001", end="12/1/2009")
+        index = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
         obj = DataFrame(
             np.random.default_rng(2).standard_normal((len(index), 5)), index=index
         )
@@ -132,12 +132,12 @@ class TestToTimestamp:
             obj.to_timestamp(axis=2)
 
     def test_to_timestamp_hourly(self, frame_or_series):
-        index = period_range(freq="H", start="1/1/2001", end="1/2/2001")
+        index = period_range(freq="h", start="1/1/2001", end="1/2/2001")
         obj = Series(1, index=index, name="foo")
         if frame_or_series is not Series:
             obj = obj.to_frame()
 
-        exp_index = date_range("1/1/2001 00:59:59", end="1/2/2001 00:59:59", freq="H")
+        exp_index = date_range("1/1/2001 00:59:59", end="1/2/2001 00:59:59", freq="h")
         result = obj.to_timestamp(how="end")
         exp_index = exp_index + Timedelta(1, "s") - Timedelta(1, "ns")
         tm.assert_index_equal(result.index, exp_index)

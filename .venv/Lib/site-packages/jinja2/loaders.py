@@ -15,7 +15,6 @@ from types import ModuleType
 
 from .exceptions import TemplateNotFound
 from .utils import internalcode
-from .utils import open_if_exists
 
 if t.TYPE_CHECKING:
     from .environment import Environment
@@ -193,29 +192,30 @@ class FileSystemLoader(BaseLoader):
         self, environment: "Environment", template: str
     ) -> t.Tuple[str, str, t.Callable[[], bool]]:
         pieces = split_template_path(template)
+
         for searchpath in self.searchpath:
             # Use posixpath even on Windows to avoid "drive:" or UNC
             # segments breaking out of the search directory.
             filename = posixpath.join(searchpath, *pieces)
-            f = open_if_exists(filename)
-            if f is None:
-                continue
+
+            if os.path.isfile(filename):
+                break
+        else:
+            raise TemplateNotFound(template)
+
+        with open(filename, encoding=self.encoding) as f:
+            contents = f.read()
+
+        mtime = os.path.getmtime(filename)
+
+        def uptodate() -> bool:
             try:
-                contents = f.read().decode(self.encoding)
-            finally:
-                f.close()
+                return os.path.getmtime(filename) == mtime
+            except OSError:
+                return False
 
-            mtime = os.path.getmtime(filename)
-
-            def uptodate() -> bool:
-                try:
-                    return os.path.getmtime(filename) == mtime
-                except OSError:
-                    return False
-
-            # Use normpath to convert Windows altsep to sep.
-            return contents, os.path.normpath(filename), uptodate
-        raise TemplateNotFound(template)
+        # Use normpath to convert Windows altsep to sep.
+        return contents, os.path.normpath(filename), uptodate
 
     def list_templates(self) -> t.List[str]:
         found = set()
@@ -392,7 +392,7 @@ class PackageLoader(BaseLoader):
             )
             offset = len(prefix)
 
-            for name in self._loader._files.keys():  # type: ignore
+            for name in self._loader._files.keys():
                 # Find names under the templates directory that aren't directories.
                 if name.startswith(prefix) and name[-1] != os.path.sep:
                     results.append(name[offset:].replace(os.path.sep, "/"))

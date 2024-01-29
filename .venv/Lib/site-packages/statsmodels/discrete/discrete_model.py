@@ -2029,6 +2029,7 @@ class GeneralizedPoisson(CountModel):
             return score
 
     def score_factor(self, params, endog=None):
+        params = np.asarray(params)
         if self._transparams:
             alpha = np.exp(params[-1])
         else:
@@ -2182,6 +2183,7 @@ class GeneralizedPoisson(CountModel):
             parameter.
 
         """
+        params = np.asarray(params)
         if self._transparams:
             alpha = np.exp(params[-1])
         else:
@@ -4018,6 +4020,7 @@ class NegativeBinomialP(CountModel):
             The score vector of the model, i.e. the first derivative of the
             loglikelihood function, evaluated at `params`
         """
+        params = np.asarray(params)
         if self._transparams:
             alpha = np.exp(params[-1])
         else:
@@ -4135,6 +4138,7 @@ class NegativeBinomialP(CountModel):
         hessian : ndarray, 2-D
             The hessian matrix of the model.
         """
+        params = np.asarray(params)
         if self._transparams:
             alpha = np.exp(params[-1])
         else:

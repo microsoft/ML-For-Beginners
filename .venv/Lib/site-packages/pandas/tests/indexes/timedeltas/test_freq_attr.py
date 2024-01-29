@@ -12,7 +12,7 @@ from pandas.tseries.offsets import (
 
 class TestFreq:
     @pytest.mark.parametrize("values", [["0 days", "2 days", "4 days"], []])
-    @pytest.mark.parametrize("freq", ["2D", Day(2), "48H", Hour(48)])
+    @pytest.mark.parametrize("freq", ["2D", Day(2), "48h", Hour(48)])
     def test_freq_setter(self, values, freq):
         # GH#20678
         idx = TimedeltaIndex(values)

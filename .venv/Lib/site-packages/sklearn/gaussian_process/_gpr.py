@@ -38,6 +38,10 @@ class GaussianProcessRegressor(MultiOutputMixin, RegressorMixin, BaseEstimator):
          externally for other ways of selecting hyperparameters, e.g., via
          Markov chain Monte Carlo.
 
+    To learn the difference between a point-estimate approach vs. a more
+    Bayesian modelling approach, refer to the example entitled
+    :ref:`sphx_glr_auto_examples_gaussian_process_plot_compare_gpr_krr.py`.
+
     Read more in the :ref:`User Guide <gaussian_process>`.
 
     .. versionadded:: 0.18

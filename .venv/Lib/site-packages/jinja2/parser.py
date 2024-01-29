@@ -311,12 +311,14 @@ class Parser:
         # enforce that required blocks only contain whitespace or comments
         # by asserting that the body, if not empty, is just TemplateData nodes
         # with whitespace data
-        if node.required and not all(
-            isinstance(child, nodes.TemplateData) and child.data.isspace()
-            for body in node.body
-            for child in body.nodes  # type: ignore
-        ):
-            self.fail("Required blocks can only contain comments or whitespace")
+        if node.required:
+            for body_node in node.body:
+                if not isinstance(body_node, nodes.Output) or any(
+                    not isinstance(output_node, nodes.TemplateData)
+                    or not output_node.data.isspace()
+                    for output_node in body_node.nodes
+                ):
+                    self.fail("Required blocks can only contain comments or whitespace")
 
         self.stream.skip_if("name:" + node.name)
         return node
@@ -857,7 +859,7 @@ class Parser:
         else:
             args.append(None)
 
-        return nodes.Slice(lineno=lineno, *args)
+        return nodes.Slice(lineno=lineno, *args)  # noqa: B026
 
     def parse_call_args(self) -> t.Tuple:
         token = self.stream.expect("lparen")

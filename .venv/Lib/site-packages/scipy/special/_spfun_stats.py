@@ -99,8 +99,7 @@ def multigammaln(a, d):
     if not np.isscalar(d) or (np.floor(d) != d):
         raise ValueError("d should be a positive integer (dimension)")
     if np.any(a <= 0.5 * (d - 1)):
-        raise ValueError("condition a (%f) > 0.5 * (d-1) (%f) not met"
-                         % (a, 0.5 * (d-1)))
+        raise ValueError(f"condition a ({a:f}) > 0.5 * (d-1) ({0.5 * (d-1):f}) not met")
 
     res = (d * (d-1) * 0.25) * np.log(np.pi)
     res += np.sum(loggam([(a - (j - 1.)/2) for j in range(1, d+1)]), axis=0)

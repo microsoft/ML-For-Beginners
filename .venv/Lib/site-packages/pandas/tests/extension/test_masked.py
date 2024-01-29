@@ -13,12 +13,21 @@ classes (if they are relevant for the extension interface for all dtypes), or
 be added to the array-specific tests in `pandas/tests/arrays/`.
 
 """
+import warnings
+
 import numpy as np
 import pytest
 
 from pandas.compat import (
     IS64,
     is_platform_windows,
+)
+from pandas.compat.numpy import np_version_gt2
+
+from pandas.core.dtypes.common import (
+    is_float_dtype,
+    is_signed_integer_dtype,
+    is_unsigned_integer_dtype,
 )
 
 import pandas as pd
@@ -40,7 +49,7 @@ from pandas.core.arrays.integer import (
 )
 from pandas.tests.extension import base
 
-is_windows_or_32bit = is_platform_windows() or not IS64
+is_windows_or_32bit = (is_platform_windows() and not np_version_gt2) or not IS64
 
 pytestmark = [
     pytest.mark.filterwarnings(
@@ -159,11 +168,17 @@ def data_for_grouping(dtype):
     return pd.array([b, b, na, na, a, a, b, c], dtype=dtype)
 
 
-class TestDtype(base.BaseDtypeTests):
-    pass
+class TestMaskedArrays(base.ExtensionTests):
+    @pytest.mark.parametrize("na_action", [None, "ignore"])
+    def test_map(self, data_missing, na_action):
+        result = data_missing.map(lambda x: x, na_action=na_action)
+        if data_missing.dtype == Float32Dtype():
+            # map roundtrips through objects, which converts to float64
+            expected = data_missing.to_numpy(dtype="float64", na_value=np.nan)
+        else:
+            expected = data_missing.to_numpy()
+        tm.assert_numpy_array_equal(result, expected)
 
-
-class TestArithmeticOps(base.BaseArithmeticOpsTests):
     def _get_expected_exception(self, op_name, obj, other):
         try:
             dtype = tm.get_dtype(obj)
@@ -179,15 +194,25 @@ class TestArithmeticOps(base.BaseArithmeticOpsTests):
                 # exception message would include "numpy boolean subtract""
                 return TypeError
             return None
-        return super()._get_expected_exception(op_name, obj, other)
+        return None
 
     def _cast_pointwise_result(self, op_name: str, obj, other, pointwise_result):
         sdtype = tm.get_dtype(obj)
         expected = pointwise_result
 
+        if op_name in ("eq", "ne", "le", "ge", "lt", "gt"):
+            return expected.astype("boolean")
+
         if sdtype.kind in "iu":
             if op_name in ("__rtruediv__", "__truediv__", "__div__"):
-                expected = expected.fillna(np.nan).astype("Float64")
+                with warnings.catch_warnings():
+                    warnings.filterwarnings(
+                        "ignore",
+                        "Downcasting object dtype arrays",
+                        category=FutureWarning,
+                    )
+                    filled = expected.fillna(np.nan)
+                expected = filled.astype("Float64")
             else:
                 # combine method result in 'biggest' (int64) dtype
                 expected = expected.astype(sdtype)
@@ -219,11 +244,6 @@ class TestArithmeticOps(base.BaseArithmeticOpsTests):
             expected = expected.astype(sdtype)
         return expected
 
-    series_scalar_exc = None
-    series_array_exc = None
-    frame_scalar_exc = None
-    divmod_exc = None
-
     def test_divmod_series_array(self, data, data_for_twos, request):
         if data.dtype.kind == "b":
             mark = pytest.mark.xfail(
@@ -231,52 +251,9 @@ class TestArithmeticOps(base.BaseArithmeticOpsTests):
                 "floordiv but not for divmod. This matches what we do for "
                 "non-masked bool dtype."
             )
-            request.node.add_marker(mark)
+            request.applymarker(mark)
         super().test_divmod_series_array(data, data_for_twos)
 
-
-class TestComparisonOps(base.BaseComparisonOpsTests):
-    series_scalar_exc = None
-    series_array_exc = None
-    frame_scalar_exc = None
-
-    def _cast_pointwise_result(self, op_name: str, obj, other, pointwise_result):
-        return pointwise_result.astype("boolean")
-
-
-class TestInterface(base.BaseInterfaceTests):
-    pass
-
-
-class TestConstructors(base.BaseConstructorsTests):
-    pass
-
-
-class TestReshaping(base.BaseReshapingTests):
-    pass
-
-    # for test_concat_mixed_dtypes test
-    # concat of an Integer and Int coerces to object dtype
-    # TODO(jreback) once integrated this would
-
-
-class TestGetitem(base.BaseGetitemTests):
-    pass
-
-
-class TestSetitem(base.BaseSetitemTests):
-    pass
-
-
-class TestIndex(base.BaseIndexTests):
-    pass
-
-
-class TestMissing(base.BaseMissingTests):
-    pass
-
-
-class TestMethods(base.BaseMethodsTests):
     def test_combine_le(self, data_repeated):
         # TODO: patching self is a bad pattern here
         orig_data1, orig_data2 = data_repeated(2)
@@ -287,18 +264,8 @@ class TestMethods(base.BaseMethodsTests):
             self._combine_le_expected_dtype = object
         super().test_combine_le(data_repeated)
 
-
-class TestCasting(base.BaseCastingTests):
-    pass
-
-
-class TestGroupby(base.BaseGroupbyTests):
-    pass
-
-
-class TestReduce(base.BaseReduceTests):
-    def _supports_reduction(self, obj, op_name: str) -> bool:
-        if op_name in ["any", "all"] and tm.get_dtype(obj).kind != "b":
+    def _supports_reduction(self, ser: pd.Series, op_name: str) -> bool:
+        if op_name in ["any", "all"] and ser.dtype.kind != "b":
             pytest.skip(reason="Tested in tests/reductions/test_reductions.py")
         return True
 
@@ -315,18 +282,22 @@ class TestReduce(base.BaseReduceTests):
             if op_name in ["min", "max"]:
                 cmp_dtype = "bool"
 
+        # TODO: prod with integer dtypes does *not* match the result we would
+        #  get if we used object for cmp_dtype. In that cae the object result
+        #  is a large integer while the non-object case overflows and returns 0
+        alt = ser.dropna().astype(cmp_dtype)
         if op_name == "count":
             result = getattr(ser, op_name)()
-            expected = getattr(ser.dropna().astype(cmp_dtype), op_name)()
+            expected = getattr(alt, op_name)()
         else:
             result = getattr(ser, op_name)(skipna=skipna)
-            expected = getattr(ser.dropna().astype(cmp_dtype), op_name)(skipna=skipna)
+            expected = getattr(alt, op_name)(skipna=skipna)
             if not skipna and ser.isna().any() and op_name not in ["any", "all"]:
                 expected = pd.NA
         tm.assert_almost_equal(result, expected)
 
-    def _get_expected_reduction_dtype(self, arr, op_name: str):
-        if tm.is_float_dtype(arr.dtype):
+    def _get_expected_reduction_dtype(self, arr, op_name: str, skipna: bool):
+        if is_float_dtype(arr.dtype):
             cmp_dtype = arr.dtype.name
         elif op_name in ["mean", "median", "var", "std", "skew"]:
             cmp_dtype = "Float64"
@@ -334,25 +305,39 @@ class TestReduce(base.BaseReduceTests):
             cmp_dtype = arr.dtype.name
         elif arr.dtype in ["Int64", "UInt64"]:
             cmp_dtype = arr.dtype.name
-        elif tm.is_signed_integer_dtype(arr.dtype):
-            cmp_dtype = "Int32" if is_windows_or_32bit else "Int64"
-        elif tm.is_unsigned_integer_dtype(arr.dtype):
-            cmp_dtype = "UInt32" if is_windows_or_32bit else "UInt64"
+        elif is_signed_integer_dtype(arr.dtype):
+            # TODO: Why does Window Numpy 2.0 dtype depend on skipna?
+            cmp_dtype = (
+                "Int32"
+                if (is_platform_windows() and (not np_version_gt2 or not skipna))
+                or not IS64
+                else "Int64"
+            )
+        elif is_unsigned_integer_dtype(arr.dtype):
+            cmp_dtype = (
+                "UInt32"
+                if (is_platform_windows() and (not np_version_gt2 or not skipna))
+                or not IS64
+                else "UInt64"
+            )
         elif arr.dtype.kind == "b":
             if op_name in ["mean", "median", "var", "std", "skew"]:
                 cmp_dtype = "Float64"
             elif op_name in ["min", "max"]:
                 cmp_dtype = "boolean"
             elif op_name in ["sum", "prod"]:
-                cmp_dtype = "Int32" if is_windows_or_32bit else "Int64"
+                cmp_dtype = (
+                    "Int32"
+                    if (is_platform_windows() and (not np_version_gt2 or not skipna))
+                    or not IS64
+                    else "Int64"
+                )
             else:
                 raise TypeError("not supposed to reach this")
         else:
             raise TypeError("not supposed to reach this")
         return cmp_dtype
 
-
-class TestAccumulation(base.BaseAccumulateTests):
     def _supports_accumulation(self, ser: pd.Series, op_name: str) -> bool:
         return True
 
@@ -360,7 +345,7 @@ class TestAccumulation(base.BaseAccumulateTests):
         # overwrite to ensure pd.NA is tested instead of np.nan
         # https://github.com/pandas-dev/pandas/issues/30958
         length = 64
-        if not IS64 or is_platform_windows():
+        if is_windows_or_32bit:
             # Item "ExtensionDtype" of "Union[dtype[Any], ExtensionDtype]" has
             # no attribute "itemsize"
             if not ser.dtype.itemsize == 8:  # type: ignore[union-attr]
@@ -379,6 +364,13 @@ class TestAccumulation(base.BaseAccumulateTests):
                 expected_dtype = "boolean"
             else:
                 expected_dtype = f"Int{length}"
+
+        if expected_dtype == "Float32" and op_name == "cumprod" and skipna:
+            # TODO: xfail?
+            pytest.skip(
+                f"Float32 precision lead to large differences with op {op_name} "
+                f"and skipna={skipna}"
+            )
 
         if op_name == "cumsum":
             result = getattr(ser, op_name)(skipna=skipna)
@@ -410,25 +402,6 @@ class TestAccumulation(base.BaseAccumulateTests):
 
         else:
             raise NotImplementedError(f"{op_name} not supported")
-
-
-class TestUnaryOps(base.BaseUnaryOpsTests):
-    def test_invert(self, data, request):
-        if data.dtype.kind == "f":
-            mark = pytest.mark.xfail(
-                reason="Looks like the base class test implicitly assumes "
-                "boolean/integer dtypes"
-            )
-            request.node.add_marker(mark)
-        super().test_invert(data)
-
-
-class TestPrinting(base.BasePrintingTests):
-    pass
-
-
-class TestParsing(base.BaseParsingTests):
-    pass
 
 
 class Test2DCompat(base.Dim2CompatTests):

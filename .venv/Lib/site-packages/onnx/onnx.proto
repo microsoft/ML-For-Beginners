@@ -103,7 +103,7 @@ enum Version {
   // Deprecated since_version and operator status from FunctionProto
   IR_VERSION_2021_7_30 = 0x0000000000000008;
 
-  // IR VERSION 9 published on TBD
+  // IR VERSION 9 published on May 5, 2023
   // Added AttributeProto to FunctionProto so that default attribute values can be set.
   // Added FLOAT8E4M3FN, FLOAT8E4M3FNUZ, FLOAT8E5M2, FLOAT8E5M2FNUZ.
   IR_VERSION = 0x0000000000000009;
@@ -259,7 +259,7 @@ message TrainingInfoProto {
   //
   // An execution of the training algorithm step is performed by executing the
   // graph obtained by combining the inference graph (namely "ModelProto.graph")
-  // and the "algorithm" graph. That is, the actual the actual
+  // and the "algorithm" graph. That is, the actual
   // input/initializer/output/node/value_info/sparse_initializer list of
   // the training graph is the concatenation of
   // "ModelProto.graph.input/initializer/output/node/value_info/sparse_initializer"
@@ -401,7 +401,7 @@ message ModelProto {
   //
   // Name of the function "FunctionProto.name" should be unique within the domain "FunctionProto.domain".
   // In case of any conflicts the behavior (whether the model local functions are given higher priority,
-  // or standard opserator sets are given higher priotity or this is treated as error) is defined by
+  // or standard operator sets are given higher priotity or this is treated as error) is defined by
   // the runtimes.
   //
   // The operator sets imported by FunctionProto should be compatible with the ones

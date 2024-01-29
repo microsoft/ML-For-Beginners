@@ -82,10 +82,9 @@ def softmaxcrossentropy(x, target, weight=None, reduction="mean", ignore_index=N
     elif reduction == "sum":
         loss = np.sum(loss)
 
-    if get_log_prob is True:
+    if get_log_prob:
         return loss, log_prob
-    else:
-        return loss
+    return loss
 
 
 class SoftmaxCrossEntropyLoss(Base):

@@ -4,7 +4,6 @@ import enum
 
 
 class Visitor(object):
-
     defaultStop = False
 
     @classmethod
@@ -58,7 +57,6 @@ class Visitor(object):
         typ = type(thing)
 
         for celf in celf.mro():
-
             _visitors = getattr(celf, "_visitors", None)
             if _visitors is None:
                 break

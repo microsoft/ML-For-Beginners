@@ -66,11 +66,11 @@ def run_ucm(name, use_exact_diffuse=False):
         freqstr = freq[0] if freq is not None else values.index.freqstr[0]
         if 'cycle_period_bounds' in kwargs:
             cycle_period_bounds = kwargs['cycle_period_bounds']
-        elif freqstr == 'A':
+        elif freqstr in ('A', 'AS', 'Y', 'YS'):
             cycle_period_bounds = (1.5, 12)
-        elif freqstr == 'Q':
+        elif freqstr in ('Q', 'QS'):
             cycle_period_bounds = (1.5*4, 12*4)
-        elif freqstr == 'M':
+        elif freqstr in ('M', 'MS'):
             cycle_period_bounds = (1.5*12, 12*12)
         else:
             # If we have no information on data frequency, require the

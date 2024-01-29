@@ -15,11 +15,16 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['PastieStyle']
+
+
 class PastieStyle(Style):
     """
     Style similar to the pastie default style.
     """
 
+    name = 'pastie'
+    
     styles = {
         Whitespace:             '#bbbbbb',
         Comment:                '#888888',

@@ -5,11 +5,11 @@
     Lexers for Minecraft related languages.
     
     SNBT. A data communication format used in Minecraft.
-    wiki: https://minecraft.fandom.com/wiki/NBT_format
+    wiki: https://minecraft.wiki/w/NBT_format
     
     MCFunction. The Function file for Minecraft Data packs and Add-ons.
     official: https://learn.microsoft.com/en-us/minecraft/creator/documents/functionsintroduction
-    wiki: https://minecraft.fandom.com/wiki/Function
+    wiki: https://minecraft.wiki/w/Function
     
     MCSchema. A kind of data Schema for Minecraft Add-on Development.
     official: https://learn.microsoft.com/en-us/minecraft/creator/reference/content/schemasreference/
@@ -33,7 +33,7 @@ class SNBTLexer(RegexLexer):
     """
 
     name = "SNBT"
-    url = "https://minecraft.fandom.com/wiki/NBT_format"
+    url = "https://minecraft.wiki/w/NBT_format"
     aliases = ["snbt"]
     filenames = ["*.snbt"]
     mimetypes = ["text/snbt"]
@@ -107,7 +107,7 @@ class MCFunctionLexer(RegexLexer):
     """
 
     name = "MCFunction"
-    url = "https://minecraft.fandom.com/wiki/Commands"
+    url = "https://minecraft.wiki/w/Commands"
     aliases = ["mcfunction", "mcf"]
     filenames = ["*.mcfunction"]
     mimetypes = ["text/mcfunction"]

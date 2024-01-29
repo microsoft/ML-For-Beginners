@@ -125,18 +125,20 @@ def test_consistency():
 
 
 @pytest.mark.slow
-def test_hash_collisions():
+def test_hash_collisions(monkeypatch):
     # non-smoke test that we don't get hash collisions
+    size_cutoff = 50
+    with monkeypatch.context() as m:
+        m.setattr(libindex, "_SIZE_CUTOFF", size_cutoff)
+        index = MultiIndex.from_product(
+            [np.arange(8), np.arange(8)], names=["one", "two"]
+        )
+        result = index.get_indexer(index.values)
+        tm.assert_numpy_array_equal(result, np.arange(len(index), dtype="intp"))
 
-    index = MultiIndex.from_product(
-        [np.arange(1000), np.arange(1000)], names=["one", "two"]
-    )
-    result = index.get_indexer(index.values)
-    tm.assert_numpy_array_equal(result, np.arange(len(index), dtype="intp"))
-
-    for i in [0, 1, len(index) - 2, len(index) - 1]:
-        result = index.get_loc(index[i])
-        assert result == i
+        for i in [0, 1, len(index) - 2, len(index) - 1]:
+            result = index.get_loc(index[i])
+            assert result == i
 
 
 def test_dims():
@@ -170,22 +172,29 @@ def test_isna_behavior(idx):
         pd.isna(idx)
 
 
-def test_large_multiindex_error():
+def test_large_multiindex_error(monkeypatch):
     # GH12527
-    df_below_1000000 = pd.DataFrame(
-        1, index=MultiIndex.from_product([[1, 2], range(499999)]), columns=["dest"]
-    )
-    with pytest.raises(KeyError, match=r"^\(-1, 0\)$"):
-        df_below_1000000.loc[(-1, 0), "dest"]
-    with pytest.raises(KeyError, match=r"^\(3, 0\)$"):
-        df_below_1000000.loc[(3, 0), "dest"]
-    df_above_1000000 = pd.DataFrame(
-        1, index=MultiIndex.from_product([[1, 2], range(500001)]), columns=["dest"]
-    )
-    with pytest.raises(KeyError, match=r"^\(-1, 0\)$"):
-        df_above_1000000.loc[(-1, 0), "dest"]
-    with pytest.raises(KeyError, match=r"^\(3, 0\)$"):
-        df_above_1000000.loc[(3, 0), "dest"]
+    size_cutoff = 50
+    with monkeypatch.context() as m:
+        m.setattr(libindex, "_SIZE_CUTOFF", size_cutoff)
+        df_below_cutoff = pd.DataFrame(
+            1,
+            index=MultiIndex.from_product([[1, 2], range(size_cutoff - 1)]),
+            columns=["dest"],
+        )
+        with pytest.raises(KeyError, match=r"^\(-1, 0\)$"):
+            df_below_cutoff.loc[(-1, 0), "dest"]
+        with pytest.raises(KeyError, match=r"^\(3, 0\)$"):
+            df_below_cutoff.loc[(3, 0), "dest"]
+        df_above_cutoff = pd.DataFrame(
+            1,
+            index=MultiIndex.from_product([[1, 2], range(size_cutoff + 1)]),
+            columns=["dest"],
+        )
+        with pytest.raises(KeyError, match=r"^\(-1, 0\)$"):
+            df_above_cutoff.loc[(-1, 0), "dest"]
+        with pytest.raises(KeyError, match=r"^\(3, 0\)$"):
+            df_above_cutoff.loc[(3, 0), "dest"]
 
 
 def test_mi_hashtable_populated_attribute_error(monkeypatch):
@@ -241,7 +250,6 @@ def test_rangeindex_fallback_coercion_bug():
     )
     df.index.names = ["fizz", "buzz"]
 
-    str(df)
     expected = pd.DataFrame(
         {"df2": np.arange(100), "df1": np.arange(100)},
         index=MultiIndex.from_product([range(10), range(10)], names=["fizz", "buzz"]),

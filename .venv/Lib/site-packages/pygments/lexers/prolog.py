@@ -78,7 +78,12 @@ class PrologLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return ':-' in text
+        """Competes with IDL and Visual Prolog on *.pro"""
+        if ':-' in text:
+            # Visual Prolog also uses :-
+            return 0.5
+        else:
+            return 0
 
 
 class LogtalkLexer(RegexLexer):

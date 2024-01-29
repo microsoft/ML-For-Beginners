@@ -20,15 +20,13 @@ class TestReturnReal(util.F2PyTest):
         assert abs(t([234]) - 234) <= err
         assert abs(t((234, )) - 234.0) <= err
         assert abs(t(array(234)) - 234.0) <= err
-        assert abs(t(array([234])) - 234.0) <= err
-        assert abs(t(array([[234]])) - 234.0) <= err
-        assert abs(t(array([234]).astype("b")) + 22) <= err
-        assert abs(t(array([234], "h")) - 234.0) <= err
-        assert abs(t(array([234], "i")) - 234.0) <= err
-        assert abs(t(array([234], "l")) - 234.0) <= err
-        assert abs(t(array([234], "B")) - 234.0) <= err
-        assert abs(t(array([234], "f")) - 234.0) <= err
-        assert abs(t(array([234], "d")) - 234.0) <= err
+        assert abs(t(array(234).astype("b")) + 22) <= err
+        assert abs(t(array(234, "h")) - 234.0) <= err
+        assert abs(t(array(234, "i")) - 234.0) <= err
+        assert abs(t(array(234, "l")) - 234.0) <= err
+        assert abs(t(array(234, "B")) - 234.0) <= err
+        assert abs(t(array(234, "f")) - 234.0) <= err
+        assert abs(t(array(234, "d")) - 234.0) <= err
         if tname in ["t0", "t4", "s0", "s4"]:
             assert t(1e200) == t(1e300)  # inf
 

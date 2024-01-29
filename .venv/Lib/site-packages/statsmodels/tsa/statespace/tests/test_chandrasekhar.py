@@ -20,8 +20,12 @@ def check_output(res_chand, res_orig, memory_conserve=False):
     # Test loglike
     params = res_orig.params
     assert_allclose(res_chand.llf, res_orig.llf)
-    assert_allclose(res_chand.model.score_obs(params),
-                    res_orig.model.score_obs(params), atol=1e-10)
+    assert_allclose(
+        res_chand.model.score_obs(params),
+        res_orig.model.score_obs(params),
+        rtol=5e-5,
+        atol=5e-6
+    )
 
     # Test state space representation matrices
     for name in res_chand.model.ssm.shapes:

@@ -879,7 +879,7 @@ class SnowballLexer(ExtendedRegexLexer):
     """
 
     name = 'Snowball'
-    url = 'http://snowballstem.org/'
+    url = 'https://snowballstem.org/'
     aliases = ['snowball']
     filenames = ['*.sbl']
 
@@ -929,7 +929,8 @@ class SnowballLexer(ExtendedRegexLexer):
 
     tokens = {
         'root': [
-            (words(('len', 'lenof'), suffix=r'\b'), Operator.Word),
+            (r'len\b', Name.Builtin),
+            (r'lenof\b', Operator.Word),
             include('root1'),
         ],
         'root1': [

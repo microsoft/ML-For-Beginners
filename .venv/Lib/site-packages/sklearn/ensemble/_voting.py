@@ -30,6 +30,10 @@ from ..preprocessing import LabelEncoder
 from ..utils import Bunch
 from ..utils._estimator_html_repr import _VisualBlock
 from ..utils._param_validation import StrOptions
+from ..utils.metadata_routing import (
+    _raise_for_unsupported_routing,
+    _RoutingNotSupportedMixin,
+)
 from ..utils.metaestimators import available_if
 from ..utils.multiclass import check_classification_targets
 from ..utils.parallel import Parallel, delayed
@@ -148,11 +152,8 @@ class _BaseVoting(TransformerMixin, _BaseHeterogeneousEnsemble):
         names, estimators = zip(*self.estimators)
         return _VisualBlock("parallel", estimators, names=names)
 
-    def _more_tags(self):
-        return {"preserves_dtype": []}
 
-
-class VotingClassifier(ClassifierMixin, _BaseVoting):
+class VotingClassifier(_RoutingNotSupportedMixin, ClassifierMixin, _BaseVoting):
     """Soft Voting/Majority Rule classifier for unfitted estimators.
 
     Read more in the :ref:`User Guide <voting_classifier>`.
@@ -336,6 +337,7 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
         self : object
             Returns the instance itself.
         """
+        _raise_for_unsupported_routing(self, "fit", sample_weight=sample_weight)
         check_classification_targets(y)
         if isinstance(y, np.ndarray) and len(y.shape) > 1 and y.shape[1] > 1:
             raise NotImplementedError(
@@ -478,7 +480,7 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
         return np.asarray(names_out, dtype=object)
 
 
-class VotingRegressor(RegressorMixin, _BaseVoting):
+class VotingRegressor(_RoutingNotSupportedMixin, RegressorMixin, _BaseVoting):
     """Prediction voting regressor for unfitted estimators.
 
     A voting regressor is an ensemble meta-estimator that fits several base
@@ -601,6 +603,7 @@ class VotingRegressor(RegressorMixin, _BaseVoting):
         self : object
             Fitted estimator.
         """
+        _raise_for_unsupported_routing(self, "fit", sample_weight=sample_weight)
         y = column_or_1d(y, warn=True)
         return super().fit(X, y, sample_weight)
 

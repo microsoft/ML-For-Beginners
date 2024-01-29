@@ -23,6 +23,7 @@ from sklearn.utils._param_validation import (
     _CVObjects,
     _InstancesOf,
     _IterablesNotString,
+    _NanConstraint,
     _NoneConstraint,
     _PandasNAConstraint,
     _RandomStates,
@@ -74,16 +75,41 @@ class _Estimator(BaseEstimator):
 def test_interval_range(interval_type):
     """Check the range of values depending on closed."""
     interval = Interval(interval_type, -2, 2, closed="left")
-    assert -2 in interval and 2 not in interval
+    assert -2 in interval
+    assert 2 not in interval
 
     interval = Interval(interval_type, -2, 2, closed="right")
-    assert -2 not in interval and 2 in interval
+    assert -2 not in interval
+    assert 2 in interval
 
     interval = Interval(interval_type, -2, 2, closed="both")
-    assert -2 in interval and 2 in interval
+    assert -2 in interval
+    assert 2 in interval
 
     interval = Interval(interval_type, -2, 2, closed="neither")
-    assert -2 not in interval and 2 not in interval
+    assert -2 not in interval
+    assert 2 not in interval
+
+
+@pytest.mark.parametrize("interval_type", [Integral, Real])
+def test_interval_large_integers(interval_type):
+    """Check that Interval constraint work with large integers.
+
+    non-regression test for #26648.
+    """
+    interval = Interval(interval_type, 0, 2, closed="neither")
+    assert 2**65 not in interval
+    assert 2**128 not in interval
+    assert float(2**65) not in interval
+    assert float(2**128) not in interval
+
+    interval = Interval(interval_type, 0, 2**128, closed="neither")
+    assert 2**65 in interval
+    assert 2**128 not in interval
+    assert float(2**65) in interval
+    assert float(2**128) not in interval
+
+    assert 2**1024 not in interval
 
 
 def test_interval_inf_in_bounds():
@@ -387,8 +413,10 @@ def test_generate_valid_param(constraint):
         (Real, 0.5),
         ("boolean", False),
         ("verbose", 1),
+        ("nan", np.nan),
         (MissingValues(), -1),
         (MissingValues(), -1.0),
+        (MissingValues(), 2**1028),
         (MissingValues(), None),
         (MissingValues(), float("nan")),
         (MissingValues(), np.nan),
@@ -420,10 +448,11 @@ def test_is_satisfied_by(constraint_declaration, value):
         (MissingValues(numeric_only=True), MissingValues),
         (HasMethods("fit"), HasMethods),
         ("cv_object", _CVObjects),
+        ("nan", _NanConstraint),
     ],
 )
 def test_make_constraint(constraint_declaration, expected_constraint_class):
-    """Check that make_constraint dispaches to the appropriate constraint class"""
+    """Check that make_constraint dispatches to the appropriate constraint class"""
     constraint = make_constraint(constraint_declaration)
     assert constraint.__class__ is expected_constraint_class
 
@@ -597,12 +626,6 @@ def test_boolean_constraint_deprecated_int():
     # True/False and np.bool_(True/False) are valid params
     f(True)
     f(np.bool_(False))
-
-    # an int is also valid but deprecated
-    with pytest.warns(
-        FutureWarning, match="Passing an int for a boolean parameter is deprecated"
-    ):
-        f(1)
 
 
 def test_no_validation():

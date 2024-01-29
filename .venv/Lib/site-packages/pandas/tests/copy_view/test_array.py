@@ -116,7 +116,8 @@ def test_series_to_numpy(using_copy_on_write):
 @pytest.mark.parametrize("order", ["F", "C"])
 def test_ravel_read_only(using_copy_on_write, order):
     ser = Series([1, 2, 3])
-    arr = ser.ravel(order=order)
+    with tm.assert_produces_warning(FutureWarning, match="is deprecated"):
+        arr = ser.ravel(order=order)
     if using_copy_on_write:
         assert arr.flags.writeable is False
     assert np.shares_memory(get_array(ser), arr)
@@ -132,21 +133,25 @@ def test_series_array_ea_dtypes(using_copy_on_write):
         assert arr.flags.writeable is True
 
     arr = np.asarray(ser)
-    assert not np.shares_memory(arr, get_array(ser))
-    assert arr.flags.writeable is True
+    assert np.shares_memory(arr, get_array(ser))
+    if using_copy_on_write:
+        assert arr.flags.writeable is False
+    else:
+        assert arr.flags.writeable is True
 
 
 def test_dataframe_array_ea_dtypes(using_copy_on_write):
     df = DataFrame({"a": [1, 2, 3]}, dtype="Int64")
     arr = np.asarray(df, dtype="int64")
-    # TODO: This should be able to share memory, but we are roundtripping
-    # through object
-    assert not np.shares_memory(arr, get_array(df, "a"))
-    assert arr.flags.writeable is True
+    assert np.shares_memory(arr, get_array(df, "a"))
+    if using_copy_on_write:
+        assert arr.flags.writeable is False
+    else:
+        assert arr.flags.writeable is True
 
     arr = np.asarray(df)
+    assert np.shares_memory(arr, get_array(df, "a"))
     if using_copy_on_write:
-        # TODO(CoW): This should be True
         assert arr.flags.writeable is False
     else:
         assert arr.flags.writeable is True

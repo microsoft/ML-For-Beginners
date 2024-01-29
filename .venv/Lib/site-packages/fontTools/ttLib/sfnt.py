@@ -524,13 +524,11 @@ class DirectoryEntry(object):
 
 
 class SFNTDirectoryEntry(DirectoryEntry):
-
     format = sfntDirectoryEntryFormat
     formatSize = sfntDirectoryEntrySize
 
 
 class WOFFDirectoryEntry(DirectoryEntry):
-
     format = woffDirectoryEntryFormat
     formatSize = woffDirectoryEntrySize
 
@@ -571,7 +569,6 @@ class WOFFDirectoryEntry(DirectoryEntry):
 
 
 class WOFFFlavorData:
-
     Flavor = "woff"
 
     def __init__(self, reader=None):

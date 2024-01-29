@@ -1057,7 +1057,7 @@ class SmootherResults(FilterResults):
         return acov
 
     def news(self, previous, t=None, start=None, end=None,
-             revised=None, design=None, state_index=None):
+             revisions_details_start=True, design=None, state_index=None):
         r"""
         Compute the news and impacts associated with a data release
 
@@ -1080,6 +1080,15 @@ class SmootherResults(FilterResults):
             since it is an exclusive endpoint, the returned news do not include
             the value at this index. Cannot be used in combination with the `t`
             argument.
+        revisions_details_start : bool or int, optional
+            The period at which to beging computing the detailed impacts of
+            data revisions. Any revisions prior to this period will have their
+            impacts grouped together. If a negative integer, interpreted as
+            an offset from the end of the dataset. If set to True, detailed
+            impacts are computed for all revisions, while if set to False, all
+            revisions are grouped together. Default is False. Note that for
+            large models, setting this to be near the beginning of the sample
+            can cause this function to be slow.
         design : array, optional
             Design matrix for the period `t` in time-varying models. If this
             model has a time-varying design matrix, and the argument `t` is out
@@ -1102,8 +1111,8 @@ class SmootherResults(FilterResults):
               the news. It is equivalent to E[y^i | post] - E[y^i | revision],
               where y^i are the variables of interest. In [1]_, this is
               described as "revision" in equation (17).
-            - `revision_impacts`: update to forecasts of variables impacted
-              variables from data revisions. It is
+            - `revision_detailed_impacts`: update to forecasts of variables
+              impacted variables from data revisions. It is
               E[y^i | revision] - E[y^i | previous], and does not have a
               specific notation in [1]_, since there for simplicity they assume
               that there are no revisions.
@@ -1112,18 +1121,26 @@ class SmootherResults(FilterResults):
               were newly incorporated in a data release (but not including
               revisions to data points that already existed in the previous
               release). In [1]_, this is described as "news" in equation (17).
-            - `revisions`
+            - `revisions`: y^r(updated) - y^r(previous) for periods in
+              which detailed impacts were computed
+            - `revisions_all` : y^r(updated) - y^r(previous) for all revisions
             - `gain`: the gain matrix associated with the "Kalman-like" update
               from the news, E[y I'] E[I I']^{-1}. In [1]_, this can be found
               in the equation For E[y_{k,t_k} \mid I_{v+1}] in the middle of
               page 17.
-            - `revision_weights`
+            - `revision_weights` weights on observations for the smoothed
+              signal
             - `update_forecasts`: forecasts of the updated periods used to
               construct the news, E[y^u | previous].
             - `update_realized`: realizations of the updated periods used to
               construct the news, y^u.
-            - `revised_prev`
-            - `revised`
+            - `revised`: revised observations of the periods that were revised
+              and for which detailed impacts were computed
+            - `revised`: revised observations of the periods that were revised
+            - `revised_prev`: previous observations of the periods that were
+              revised and for which detailed impacts were computed
+            - `revised_prev_all`: previous observations of the periods that
+              were revised and for which detailed impacts were computed
             - `prev_impacted_forecasts`: previous forecast of the periods of
               interest, E[y^i | previous].
             - `post_impacted_forecasts`: forecast of the periods of interest
@@ -1131,8 +1148,18 @@ class SmootherResults(FilterResults):
               E[y^i | post].
             - `revision_results`: results object that updates the `previous`
               results to take into account data revisions.
+            - `revision_results`: results object associated with the revisions
+            - `revision_impacts`: total impacts from all revisions (both
+              grouped and detailed)
             - `revisions_ix`: list of `(t, i)` positions of revisions in endog
+            - `revisions_details`: list of `(t, i)` positions of revisions to
+              endog for which details of impacts were computed
+            - `revisions_grouped`: list of `(t, i)` positions of revisions to
+              endog for which impacts were grouped
+            - `revisions_details_start`: period in which revision details start
+              to be computed
             - `updates_ix`: list of `(t, i)` positions of updates to endog
+            - `state_index`: index of state variables used to compute impacts
 
         Notes
         -----
@@ -1233,21 +1260,67 @@ class SmootherResults(FilterResults):
         post_impacted_forecasts = self.predict(
             start=start, end=end).smoothed_forecasts
 
-        # Get revision weights, impacts, and forecasts
-        if len(revisions_ix) > 0:
-            revised_endog = self.endog[:, :previous.nobs].copy()
-            revised_endog[previous.missing.astype(bool)] = np.nan
+        # Separate revisions into those with detailed impacts and those where
+        # impacts are grouped together
+        if revisions_details_start is True:
+            revisions_details_start = 0
+        elif revisions_details_start is False:
+            revisions_details_start = previous.nobs
+        elif revisions_details_start < 0:
+            revisions_details_start = previous.nobs + revisions_details_start
 
-            # Compute the revisions
+        revisions_grouped = []
+        revisions_details = []
+        if revisions_details_start > 0:
+            for s, i in revisions_ix:
+                if s < revisions_details_start:
+                    revisions_grouped.append((s, i))
+                else:
+                    revisions_details.append((s, i))
+        else:
+            revisions_details = revisions_ix
+
+        # Practically, don't compute impacts of revisions prior to first
+        # point that was actually revised
+        if len(revisions_ix) > 0:
+            revisions_details_start = max(revisions_ix[0][0],
+                                          revisions_details_start)
+
+        # Setup default (empty) output for revisions
+        revised_endog = None
+        revised_all = None
+        revised_prev_all = None
+        revisions_all = None
+
+        revised = None
+        revised_prev = None
+        revisions = None
+        revision_weights = None
+        revision_detailed_impacts = None
+        revision_results = None
+        revision_impacts = None
+
+        # Get revisions datapoints for all revisions (regardless of whether
+        # or not we are computing detailed impacts)
+        if len(revisions_ix) > 0:
+            # Indexes
             revised_j, revised_p = zip(*revisions_ix)
             compute_j = np.arange(revised_j[0], revised_j[-1] + 1)
-            revised_prev = previous.endog.T[compute_j]
-            revised = revised_endog.T[compute_j]
-            revisions = (revised - revised_prev)
 
-            # Compute the weights of the smoothed state vector
-            compute_t = np.arange(start, end)
-            ix = np.ix_(compute_t, compute_j)
+            # Data from updated model
+            revised_endog = self.endog[:, :previous.nobs].copy()
+            # ("revisions" are points where data was previously published and
+            # then changed, so we need to ignore "updates", which are points
+            # that were not previously published)
+            revised_endog[previous.missing.astype(bool)] = np.nan
+            # subset to revision periods
+            revised_all = revised_endog.T[compute_j]
+
+            # Data from original model
+            revised_prev_all = previous.endog.T[compute_j]
+
+            # revision = updated - original
+            revisions_all = (revised_all - revised_prev_all)
 
             # Construct a model from which we can create weights for impacts
             # through `end`
@@ -1274,74 +1347,111 @@ class SmootherResults(FilterResults):
             rev_mod.initialize(init)
             revision_results = rev_mod.smooth()
 
-            smoothed_state_weights, _, _ = (
-                tools._compute_smoothed_state_weights(
-                    rev_mod, compute_t=compute_t, compute_j=compute_j,
-                    compute_prior_weights=False, scale=previous.scale))
-            smoothed_state_weights = smoothed_state_weights[ix]
+            # Get detailed revision weights, impacts, and forecasts
+            if len(revisions_details) > 0:
+                # Indexes for the subset of revisions for which we are
+                # computing detailed impacts
+                compute_j = np.arange(revisions_details_start,
+                                      revised_j[-1] + 1)
+                # Offset describing revisions for which we are not computing
+                # detailed impacts
+                offset = revisions_details_start - revised_j[0]
+                revised = revised_all[offset:]
+                revised_prev = revised_prev_all[offset:]
+                revisions = revisions_all[offset:]
 
-            # Convert the weights in terms of smoothed forecasts
-            # t, j, m, p, i
-            ZT = rev_mod.design.T
-            if ZT.shape[0] > 1:
-                ZT = ZT[compute_t]
+                # Compute the weights of the smoothed state vector
+                compute_t = np.arange(start, end)
 
-            # Subset the states used for the impacts if applicable
-            if state_index is not None:
-                ZT = ZT[:, state_index, :]
-                smoothed_state_weights = (
-                    smoothed_state_weights[:, :, state_index])
+                smoothed_state_weights, _, _ = (
+                    tools._compute_smoothed_state_weights(
+                        rev_mod, compute_t=compute_t, compute_j=compute_j,
+                        compute_prior_weights=False, scale=previous.scale))
 
-            # Multiplication gives: t, j, m, p * t, j, m, p, k
-            # Sum along axis=2 gives: t, j, p, k
-            # Transpose to: t, j, k, p (i.e. like t, j, m, p but with k instead
-            # of m)
-            revision_weights = np.nansum(
-                smoothed_state_weights[..., None]
-                * ZT[:, None, :, None, :], axis=2).transpose(0, 1, 3, 2)
+                # Convert the weights in terms of smoothed forecasts
+                # t, j, m, p, i
+                ZT = rev_mod.design.T
+                if ZT.shape[0] > 1:
+                    ZT = ZT[compute_t]
 
-            # Multiplication gives: t, j, k, p * t, j, k, p
-            # Sum along axes 1, 3 gives: t, k
-            # This is also a valid way to compute impacts, but it employes
-            # unnecessary multiplications with zeros; it is better to use the
-            # below method that flattens the revision indices before computing
-            # the impacts
-            # revision_impacts = np.nansum(
-            #     revision_weights * revisions[None, :, None, :], axis=(1, 3))
+                # Subset the states used for the impacts if applicable
+                if state_index is not None:
+                    ZT = ZT[:, state_index, :]
+                    smoothed_state_weights = (
+                        smoothed_state_weights[:, :, state_index])
 
-            # Flatten the weights and revisions along the revised j, k
-            # dimensions so that we only retain the actual revision elements
-            ix_j = revised_j - revised_j[0]
-            # Shape is: t, k, j * p
-            # Note: have to transpose first so that the two advanced indexes
-            # are next to each other, so that "the dimensions from the
-            # advanced indexing operations are inserted into the result
-            # array at the same spot as they were in the initial array"
-            # (see https://numpy.org/doc/stable/user/basics.indexing.html,
-            # "Combining advanced and basic indexing")
-            revision_weights = (
-                revision_weights.transpose(0, 2, 1, 3)[:, :, ix_j, revised_p])
-            # Shape is j * k
-            revisions = revisions[ix_j, revised_p]
-            # Shape is t, k
-            revision_impacts = revision_weights @ revisions
+                # Multiplication gives: t, j, m, p * t, j, m, p, k
+                # Sum along axis=2 gives: t, j, p, k
+                # Transpose to: t, j, k, p (i.e. like t, j, m, p but with k
+                # instead of m)
+                revision_weights = np.nansum(
+                    smoothed_state_weights[..., None]
+                    * ZT[:, None, :, None, :], axis=2).transpose(0, 1, 3, 2)
 
-            # Similarly, flatten the revised and revised_prev series
-            revised = revised[ix_j, revised_p]
-            revised_prev = revised_prev[ix_j, revised_p]
+                # Multiplication gives: t, j, k, p * t, j, k, p
+                # Sum along axes 1, 3 gives: t, k
+                # This is also a valid way to compute impacts, but it employs
+                # unnecessary multiplications with zeros; it is better to use
+                # the below method that flattens the revision indices before
+                # computing the impacts
+                # revision_detailed_impacts = np.nansum(
+                #     revision_weights * revisions[None, :, None, :],
+                #     axis=(1, 3))
 
-            # Squeeze if `t` argument used
+                # Flatten the weights and revisions along the revised j, k
+                # dimensions so that we only retain the actual revision
+                # elements
+                revised_j, revised_p = zip(*[
+                    s for s in revisions_ix
+                    if s[0] >= revisions_details_start])
+                ix_j = revised_j - revised_j[0]
+                # Shape is: t, k, j * p
+                # Note: have to transpose first so that the two advanced
+                # indexes are next to each other, so that "the dimensions from
+                # the advanced indexing operations are inserted into the result
+                # array at the same spot as they were in the initial array"
+                # (see https://numpy.org/doc/stable/user/basics.indexing.html,
+                # "Combining advanced and basic indexing")
+                revision_weights = (
+                    revision_weights.transpose(0, 2, 1, 3)[:, :,
+                                                           ix_j, revised_p])
+                # Shape is j * k
+                revisions = revisions[ix_j, revised_p]
+                # Shape is t, k
+                revision_detailed_impacts = revision_weights @ revisions
+
+                # Similarly, flatten the revised and revised_prev series
+                revised = revised[ix_j, revised_p]
+                revised_prev = revised_prev[ix_j, revised_p]
+
+                # Squeeze if `t` argument used
+                if t is not None:
+                    revision_weights = revision_weights[0]
+                    revision_detailed_impacts = revision_detailed_impacts[0]
+
+            # Get total revision impacts
+            revised_impact_forecasts = (
+                revision_results.smoothed_forecasts[..., start:end])
+            if end > revision_results.nobs:
+                predict_start = max(start, revision_results.nobs)
+                p = revision_results.predict(
+                    start=predict_start, end=end, **extend_kwargs)
+                revised_impact_forecasts = np.concatenate(
+                    (revised_impact_forecasts, p.forecasts), axis=1)
+
+            revision_impacts = (revised_impact_forecasts -
+                                prev_impacted_forecasts).T
             if t is not None:
-                revision_weights = revision_weights[0]
                 revision_impacts = revision_impacts[0]
-        else:
-            revised_endog = None
-            revised = None
-            revised_prev = None
-            revisions = None
-            revision_weights = None
-            revision_impacts = None
-            revision_results = None
+
+        # Need to also flatten the revisions items that contain all revisions
+        if len(revisions_ix) > 0:
+            revised_j, revised_p = zip(*revisions_ix)
+            ix_j = revised_j - revised_j[0]
+
+            revisions_all = revisions_all[ix_j, revised_p]
+            revised_all = revised_all[ix_j, revised_p]
+            revised_prev_all = revised_prev_all[ix_j, revised_p]
 
         # Now handle updates
         if len(updates_ix) > 0:
@@ -1417,11 +1527,14 @@ class SmootherResults(FilterResults):
             update_impacts=update_impacts,
             # update to forecast of variables of interest from revisions
             # = E[y^i | revision] - E[y^i | previous]
-            revision_impacts=revision_impacts,
+            revision_detailed_impacts=revision_detailed_impacts,
             # news = A = y^u - E[y^u | previous]
             news=update_forecasts_error,
-            # revivions y^r(updated) - y^r(previous)
+            # revivions y^r(updated) - y^r(previous) for periods in which
+            # detailed impacts were computed
             revisions=revisions,
+            # revivions y^r(updated) - y^r(previous)
+            revisions_all=revisions_all,
             # gain matrix = E[y A'] E[A A']^{-1}
             gain=obs_gain,
             # weights on observations for the smoothed signal
@@ -1432,20 +1545,38 @@ class SmootherResults(FilterResults):
             # realizations of the updated periods used to construct the news
             # = y^u
             update_realized=update_realized,
-            # revised observations of the periods that were revised
+            # revised observations of the periods that were revised and for
+            # which detailed impacts were computed
             # = y^r_{revised}
             revised=revised,
-            # previous observations of the periods that were revised
+            # revised observations of the periods that were revised
+            # = y^r_{revised}
+            revised_all=revised_all,
+            # previous observations of the periods that were revised and for
+            # which detailed impacts were computed
             # = y^r_{previous}
             revised_prev=revised_prev,
+            # previous observations of the periods that were revised
+            # = y^r_{previous}
+            revised_prev_all=revised_prev_all,
             # previous forecast of the periods of interest, E[y^i | previous]
             prev_impacted_forecasts=prev_impacted_forecasts,
             # post. forecast of the periods of interest, E[y^i | post]
             post_impacted_forecasts=post_impacted_forecasts,
             # results object associated with the revision
             revision_results=revision_results,
+            # total impacts from all revisions (both grouped and detailed)
+            revision_impacts=revision_impacts,
             # list of (x, y) positions of revisions to endog
             revisions_ix=revisions_ix,
+            # list of (x, y) positions of revisions to endog for which details
+            # of impacts were computed
+            revisions_details=revisions_details,
+            # list of (x, y) positions of revisions to endog for which impacts
+            # were grouped
+            revisions_grouped=revisions_grouped,
+            # period in which revision details start to be computed
+            revisions_details_start=revisions_details_start,
             # list of (x, y) positions of updates to endog
             updates_ix=updates_ix,
             # index of state variables used to compute impacts

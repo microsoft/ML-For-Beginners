@@ -51,6 +51,9 @@ def main(args=None):
     )
     parser.add_argument("font", metavar="font", nargs="*", help="Font file.")
     parser.add_argument(
+        "-t", "--table", metavar="table", nargs="*", help="Tables to decompile."
+    )
+    parser.add_argument(
         "-o", "--output", metavar="FILE", default=None, help="Output file."
     )
     parser.add_argument(
@@ -74,6 +77,7 @@ def main(args=None):
     outFile = options.output
     lazy = options.lazy
     flavor = options.flavor
+    tables = options.table if options.table is not None else []
 
     fonts = []
     for f in options.font:
@@ -83,6 +87,10 @@ def main(args=None):
         except TTLibFileIsCollectionError:
             collection = TTCollection(f, lazy=lazy)
             fonts.extend(collection.fonts)
+
+    for font in fonts:
+        for table in tables if "*" not in tables else font.keys():
+            font[table]  # Decompiles
 
     if outFile is not None:
         if len(fonts) == 1:

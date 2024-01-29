@@ -6,9 +6,11 @@ import pandas.util._test_decorators as td
 from pandas import (
     DataFrame,
     DatetimeIndex,
+    Index,
     IntervalIndex,
     Series,
     Timestamp,
+    bdate_range,
     date_range,
     timedelta_range,
 )
@@ -29,7 +31,8 @@ class TestTranspose:
 
     def test_transpose_empty_preserves_datetimeindex(self):
         # GH#41382
-        df = DataFrame(index=DatetimeIndex([]))
+        dti = DatetimeIndex([], dtype="M8[ns]")
+        df = DataFrame(index=dti)
 
         expected = DatetimeIndex([], dtype="datetime64[ns]", freq=None)
 
@@ -70,7 +73,7 @@ class TestTranspose:
     @pytest.mark.parametrize("tz", [None, "America/New_York"])
     def test_transpose_preserves_dtindex_equality_with_dst(self, tz):
         # GH#19970
-        idx = date_range("20161101", "20161130", freq="4H", tz=tz)
+        idx = date_range("20161101", "20161130", freq="4h", tz=tz)
         df = DataFrame({"a": range(len(idx)), "b": range(len(idx))}, index=idx)
         result = df.T == df.T
         expected = DataFrame(True, index=list("ab"), columns=idx)
@@ -87,9 +90,13 @@ class TestTranspose:
         res2 = df2.T
         assert (res2.dtypes == object).all()
 
-    def test_transpose_uint64(self, uint64_frame):
-        result = uint64_frame.T
-        expected = DataFrame(uint64_frame.values.T)
+    def test_transpose_uint64(self):
+        df = DataFrame(
+            {"A": np.arange(3), "B": [2**63, 2**63 + 5, 2**63 + 10]},
+            dtype=np.uint64,
+        )
+        result = df.T
+        expected = DataFrame(df.values.T)
         expected.index = ["A", "B"]
         tm.assert_frame_equal(result, expected)
 
@@ -103,9 +110,17 @@ class TestTranspose:
                 else:
                     assert value == frame[col][idx]
 
+    def test_transpose_mixed(self):
         # mixed type
-        index, data = tm.getMixedTypeDict()
-        mixed = DataFrame(data, index=index)
+        mixed = DataFrame(
+            {
+                "A": [0.0, 1.0, 2.0, 3.0, 4.0],
+                "B": [0.0, 1.0, 0.0, 1.0, 0.0],
+                "C": ["foo1", "foo2", "foo3", "foo4", "foo5"],
+                "D": bdate_range("1/1/2009", periods=5),
+            },
+            index=Index(["a", "b", "c", "d", "e"], dtype=object),
+        )
 
         mixed_T = mixed.T
         for col, s in mixed_T.items():

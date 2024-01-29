@@ -190,6 +190,12 @@ class Style(metaclass=StyleMeta):
     #: Style definitions for individual token types.
     styles = {}
 
+    #: user-friendly style name (used when selecting the style, so this
+    # should be all-lowercase, no spaces, hyphens)
+    name = 'unnamed'
+
+    aliases = []
+
     # Attribute for lexers defined within Pygments. If set
     # to True, the style is not shown in the style gallery
     # on the website. This is intended for language-specific

@@ -6,8 +6,10 @@ See build_and_import_extensions for usage hints
 
 import os
 import pathlib
+import subprocess
 import sys
 import sysconfig
+import textwrap
 
 __all__ = ['build_and_import_extension', 'compile_extension_module']
 
@@ -51,8 +53,6 @@ def build_and_import_extension(
     >>> assert not mod.test_bytes(u'abc')
     >>> assert mod.test_bytes(b'abc')
     """
-    from distutils.errors import CompileError
-
     body = prologue + _make_methods(functions, modname)
     init = """PyObject *mod = PyModule_Create(&moduledef);
            """
@@ -67,7 +67,7 @@ def build_and_import_extension(
     try:
         mod_so = compile_extension_module(
             modname, build_dir, include_dirs, source_string)
-    except CompileError as e:
+    except Exception as e:
         # shorten the exception chain
         raise RuntimeError(f"could not compile in {build_dir}:") from e
     import importlib.util
@@ -186,9 +186,9 @@ def _c_compile(cfile, outputfilename, include_dirs=[], libraries=[],
     elif sys.platform.startswith('linux'):
         compile_extra = [
             "-O0", "-g", "-Werror=implicit-function-declaration", "-fPIC"]
-        link_extra = None
+        link_extra = []
     else:
-        compile_extra = link_extra = None
+        compile_extra = link_extra = []
         pass
     if sys.platform == 'win32':
         link_extra = link_extra + ['/DEBUG']  # generate .pdb file
@@ -202,49 +202,46 @@ def _c_compile(cfile, outputfilename, include_dirs=[], libraries=[],
                 library_dirs.append(s + 'lib')
 
     outputfilename = outputfilename.with_suffix(get_so_suffix())
-    saved_environ = os.environ.copy()
-    try:
-        build(
-            cfile, outputfilename,
-            compile_extra, link_extra,
-            include_dirs, libraries, library_dirs)
-    finally:
-        # workaround for a distutils bugs where some env vars can
-        # become longer and longer every time it is used
-        for key, value in saved_environ.items():
-            if os.environ.get(key) != value:
-                os.environ[key] = value
+    build(
+        cfile, outputfilename,
+        compile_extra, link_extra,
+        include_dirs, libraries, library_dirs)
     return outputfilename
 
 
 def build(cfile, outputfilename, compile_extra, link_extra,
           include_dirs, libraries, library_dirs):
-    "cd into the directory where the cfile is, use distutils to build"
-    from numpy.distutils.ccompiler import new_compiler
+    "use meson to build"
 
-    compiler = new_compiler(force=1, verbose=2)
-    compiler.customize('')
-    objects = []
-
-    old = os.getcwd()
-    os.chdir(cfile.parent)
-    try:
-        res = compiler.compile(
-            [str(cfile.name)],
-            include_dirs=include_dirs,
-            extra_preargs=compile_extra
+    build_dir = cfile.parent / "build"
+    os.makedirs(build_dir, exist_ok=True)
+    so_name = outputfilename.parts[-1]
+    with open(cfile.parent / "meson.build", "wt") as fid:
+        includes = ['-I' + d for d in include_dirs]
+        link_dirs = ['-L' + d for d in library_dirs]
+        fid.write(textwrap.dedent(f"""\
+            project('foo', 'c')
+            shared_module('{so_name}', '{cfile.parts[-1]}',
+                c_args: {includes} + {compile_extra},
+                link_args: {link_dirs} + {link_extra},
+                link_with: {libraries},
+                name_prefix: '',
+                name_suffix: 'dummy',
             )
-        objects += [str(cfile.parent / r) for r in res]
-    finally:
-        os.chdir(old)
-
-    compiler.link_shared_object(
-        objects, str(outputfilename),
-        libraries=libraries,
-        extra_preargs=link_extra,
-        library_dirs=library_dirs)
-
-
+        """))
+    if sys.platform == "win32":
+        subprocess.check_call(["meson", "setup",
+                               "--buildtype=release", 
+                               "--vsenv", ".."],
+                              cwd=build_dir,
+                              )
+    else:
+        subprocess.check_call(["meson", "setup", "--vsenv", ".."],
+                              cwd=build_dir
+                              )
+    subprocess.check_call(["meson", "compile"], cwd=build_dir)
+    os.rename(str(build_dir / so_name) + ".dummy", cfile.parent / so_name)
+        
 def get_so_suffix():
     ret = sysconfig.get_config_var('EXT_SUFFIX')
     assert ret

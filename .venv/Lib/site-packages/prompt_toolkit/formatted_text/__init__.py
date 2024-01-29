@@ -16,6 +16,7 @@ from .ansi import ANSI
 from .base import (
     AnyFormattedText,
     FormattedText,
+    OneStyleAndTextTuple,
     StyleAndTextTuples,
     Template,
     is_formatted_text,
@@ -35,6 +36,7 @@ from .utils import (
 __all__ = [
     # Base.
     "AnyFormattedText",
+    "OneStyleAndTextTuple",
     "to_formatted_text",
     "is_formatted_text",
     "Template",

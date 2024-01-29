@@ -217,9 +217,10 @@ def geometric_slerp(
     # diameter of 2 within tolerance means antipodes, which is a problem
     # for all unit n-spheres (even the 0-sphere would have an ambiguous path)
     if np.allclose(coord_dist, 2.0, rtol=0, atol=tol):
-        warnings.warn("start and end are antipodes"
-                      " using the specified tolerance;"
-                      " this may cause ambiguous slerp paths")
+        warnings.warn("start and end are antipodes "
+                      "using the specified tolerance; "
+                      "this may cause ambiguous slerp paths",
+                      stacklevel=2)
 
     t = np.asarray(t, dtype=np.float64)
 

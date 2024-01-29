@@ -2,8 +2,7 @@
 # Use the `scipy.interpolate` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _fitpack2
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
@@ -34,13 +33,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.interpolate.fitpack2 is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.interpolate instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.interpolate` namespace, "
-                  "the `scipy.interpolate.fitpack2` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_fitpack2, name)
+    return _sub_module_deprecation(sub_package="interpolate", module="fitpack2",
+                                   private_modules=["_fitpack2"], all=__all__,
+                                   attribute=name)

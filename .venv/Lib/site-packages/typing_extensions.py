@@ -86,6 +86,7 @@ __all__ = [
     'TYPE_CHECKING',
     'Never',
     'NoReturn',
+    'ReadOnly',
     'Required',
     'NotRequired',
 
@@ -473,6 +474,7 @@ _EXCLUDED_ATTRS = {
     "__orig_bases__", "__module__", "_MutableMapping__marker", "__doc__",
     "__subclasshook__", "__orig_class__", "__init__", "__new__",
     "__protocol_attrs__", "__callable_proto_members_only__",
+    "__match_args__",
 }
 
 if sys.version_info >= (3, 9):
@@ -503,9 +505,9 @@ def _caller(depth=2):
         return None
 
 
-# The performance of runtime-checkable protocols is significantly improved on Python 3.12,
-# so we backport the 3.12 version of Protocol to Python <=3.11
-if sys.version_info >= (3, 12):
+# `__match_args__` attribute was removed from protocol members in 3.13,
+# we want to backport this change to older Python versions.
+if sys.version_info >= (3, 13):
     Protocol = typing.Protocol
 else:
     def _allow_reckless_class_checks(depth=3):
@@ -569,8 +571,13 @@ else:
                     not cls.__callable_proto_members_only__
                     and cls.__dict__.get("__subclasshook__") is _proto_hook
                 ):
+                    non_method_attrs = sorted(
+                        attr for attr in cls.__protocol_attrs__
+                        if not callable(getattr(cls, attr, None))
+                    )
                     raise TypeError(
-                        "Protocols with non-method members don't support issubclass()"
+                        "Protocols with non-method members don't support issubclass()."
+                        f" Non-method members: {str(non_method_attrs)[1:-1]}."
                     )
                 if not getattr(cls, '_is_runtime_protocol', False):
                     raise TypeError(
@@ -767,7 +774,7 @@ def _ensure_subclassable(mro_entries):
     return inner
 
 
-if sys.version_info >= (3, 13):
+if hasattr(typing, "ReadOnly"):
     # The standard library TypedDict in Python 3.8 does not store runtime information
     # about which (if any) keys are optional.  See https://bugs.python.org/issue38834
     # The standard library TypedDict in Python 3.9.0/1 does not honour the "total"
@@ -778,6 +785,7 @@ if sys.version_info >= (3, 13):
     # Aaaand on 3.12 we add __orig_bases__ to TypedDict
     # to enable better runtime introspection.
     # On 3.13 we deprecate some odd ways of creating TypedDicts.
+    # PEP 705 proposes adding the ReadOnly[] qualifier.
     TypedDict = typing.TypedDict
     _TypedDictMeta = typing._TypedDictMeta
     is_typeddict = typing.is_typeddict
@@ -785,8 +793,29 @@ else:
     # 3.10.0 and later
     _TAKES_MODULE = "module" in inspect.signature(typing._type_check).parameters
 
+    def _get_typeddict_qualifiers(annotation_type):
+        while True:
+            annotation_origin = get_origin(annotation_type)
+            if annotation_origin is Annotated:
+                annotation_args = get_args(annotation_type)
+                if annotation_args:
+                    annotation_type = annotation_args[0]
+                else:
+                    break
+            elif annotation_origin is Required:
+                yield Required
+                annotation_type, = get_args(annotation_type)
+            elif annotation_origin is NotRequired:
+                yield NotRequired
+                annotation_type, = get_args(annotation_type)
+            elif annotation_origin is ReadOnly:
+                yield ReadOnly
+                annotation_type, = get_args(annotation_type)
+            else:
+                break
+
     class _TypedDictMeta(type):
-        def __new__(cls, name, bases, ns, total=True):
+        def __new__(cls, name, bases, ns, *, total=True):
             """Create new typed dict class object.
 
             This method is called when TypedDict is subclassed,
@@ -829,33 +858,46 @@ else:
                 }
             required_keys = set()
             optional_keys = set()
+            readonly_keys = set()
+            mutable_keys = set()
 
             for base in bases:
-                annotations.update(base.__dict__.get('__annotations__', {}))
-                required_keys.update(base.__dict__.get('__required_keys__', ()))
-                optional_keys.update(base.__dict__.get('__optional_keys__', ()))
+                base_dict = base.__dict__
+
+                annotations.update(base_dict.get('__annotations__', {}))
+                required_keys.update(base_dict.get('__required_keys__', ()))
+                optional_keys.update(base_dict.get('__optional_keys__', ()))
+                readonly_keys.update(base_dict.get('__readonly_keys__', ()))
+                mutable_keys.update(base_dict.get('__mutable_keys__', ()))
 
             annotations.update(own_annotations)
             for annotation_key, annotation_type in own_annotations.items():
-                annotation_origin = get_origin(annotation_type)
-                if annotation_origin is Annotated:
-                    annotation_args = get_args(annotation_type)
-                    if annotation_args:
-                        annotation_type = annotation_args[0]
-                        annotation_origin = get_origin(annotation_type)
+                qualifiers = set(_get_typeddict_qualifiers(annotation_type))
 
-                if annotation_origin is Required:
+                if Required in qualifiers:
                     required_keys.add(annotation_key)
-                elif annotation_origin is NotRequired:
+                elif NotRequired in qualifiers:
                     optional_keys.add(annotation_key)
                 elif total:
                     required_keys.add(annotation_key)
                 else:
                     optional_keys.add(annotation_key)
+                if ReadOnly in qualifiers:
+                    if annotation_key in mutable_keys:
+                        raise TypeError(
+                            f"Cannot override mutable key {annotation_key!r}"
+                            " with read-only key"
+                        )
+                    readonly_keys.add(annotation_key)
+                else:
+                    mutable_keys.add(annotation_key)
+                    readonly_keys.discard(annotation_key)
 
             tp_dict.__annotations__ = annotations
             tp_dict.__required_keys__ = frozenset(required_keys)
             tp_dict.__optional_keys__ = frozenset(optional_keys)
+            tp_dict.__readonly_keys__ = frozenset(readonly_keys)
+            tp_dict.__mutable_keys__ = frozenset(mutable_keys)
             if not hasattr(tp_dict, '__total__'):
                 tp_dict.__total__ = total
             return tp_dict
@@ -936,6 +978,8 @@ else:
             raise TypeError("TypedDict takes either a dict or keyword arguments,"
                             " but not both")
         if kwargs:
+            if sys.version_info >= (3, 13):
+                raise TypeError("TypedDict takes no keyword arguments")
             warnings.warn(
                 "The kwargs-based syntax for TypedDict definitions is deprecated "
                 "in Python 3.11, will be removed in Python 3.13, and may not be "
@@ -1924,6 +1968,53 @@ else:  # 3.8
         """)
 
 
+if hasattr(typing, 'ReadOnly'):
+    ReadOnly = typing.ReadOnly
+elif sys.version_info[:2] >= (3, 9):  # 3.9-3.12
+    @_ExtensionsSpecialForm
+    def ReadOnly(self, parameters):
+        """A special typing construct to mark an item of a TypedDict as read-only.
+
+        For example:
+
+            class Movie(TypedDict):
+                title: ReadOnly[str]
+                year: int
+
+            def mutate_movie(m: Movie) -> None:
+                m["year"] = 1992  # allowed
+                m["title"] = "The Matrix"  # typechecker error
+
+        There is no runtime checking for this property.
+        """
+        item = typing._type_check(parameters, f'{self._name} accepts only a single type.')
+        return typing._GenericAlias(self, (item,))
+
+else:  # 3.8
+    class _ReadOnlyForm(_ExtensionsSpecialForm, _root=True):
+        def __getitem__(self, parameters):
+            item = typing._type_check(parameters,
+                                      f'{self._name} accepts only a single type.')
+            return typing._GenericAlias(self, (item,))
+
+    ReadOnly = _ReadOnlyForm(
+        'ReadOnly',
+        doc="""A special typing construct to mark a key of a TypedDict as read-only.
+
+        For example:
+
+            class Movie(TypedDict):
+                title: ReadOnly[str]
+                year: int
+
+            def mutate_movie(m: Movie) -> None:
+                m["year"] = 1992  # allowed
+                m["title"] = "The Matrix"  # typechecker error
+
+        There is no runtime checking for this propery.
+        """)
+
+
 _UNPACK_DOC = """\
 Type unpack operator.
 
@@ -2251,7 +2342,7 @@ else:  # <=3.11
         Usage:
 
             class Base:
-                def method(self) -> None: ...
+                def method(self) -> None:
                     pass
 
             class Child(Base):
@@ -2281,19 +2372,16 @@ else:  # <=3.11
         return arg
 
 
-if hasattr(typing, "deprecated"):
-    deprecated = typing.deprecated
+if hasattr(warnings, "deprecated"):
+    deprecated = warnings.deprecated
 else:
     _T = typing.TypeVar("_T")
 
-    def deprecated(
-        msg: str,
-        /,
-        *,
-        category: typing.Optional[typing.Type[Warning]] = DeprecationWarning,
-        stacklevel: int = 1,
-    ) -> typing.Callable[[_T], _T]:
+    class deprecated:
         """Indicate that a class, function or overload is deprecated.
+
+        When this decorator is applied to an object, the type checker
+        will generate a diagnostic on usage of the deprecated object.
 
         Usage:
 
@@ -2311,49 +2399,100 @@ else:
             @overload
             def g(x: str) -> int: ...
 
-        When this decorator is applied to an object, the type checker
-        will generate a diagnostic on usage of the deprecated object.
-
-        The warning specified by ``category`` will be emitted on use
-        of deprecated objects. For functions, that happens on calls;
-        for classes, on instantiation. If the ``category`` is ``None``,
-        no warning is emitted. The ``stacklevel`` determines where the
+        The warning specified by *category* will be emitted at runtime
+        on use of deprecated objects. For functions, that happens on calls;
+        for classes, on instantiation and on creation of subclasses.
+        If the *category* is ``None``, no warning is emitted at runtime.
+        The *stacklevel* determines where the
         warning is emitted. If it is ``1`` (the default), the warning
         is emitted at the direct caller of the deprecated object; if it
         is higher, it is emitted further up the stack.
+        Static type checker behavior is not affected by the *category*
+        and *stacklevel* arguments.
 
-        The decorator sets the ``__deprecated__``
-        attribute on the decorated object to the deprecation message
-        passed to the decorator. If applied to an overload, the decorator
+        The deprecation message passed to the decorator is saved in the
+        ``__deprecated__`` attribute on the decorated object.
+        If applied to an overload, the decorator
         must be after the ``@overload`` decorator for the attribute to
         exist on the overload as returned by ``get_overloads()``.
 
         See PEP 702 for details.
 
         """
-        def decorator(arg: _T, /) -> _T:
+        def __init__(
+            self,
+            message: str,
+            /,
+            *,
+            category: typing.Optional[typing.Type[Warning]] = DeprecationWarning,
+            stacklevel: int = 1,
+        ) -> None:
+            if not isinstance(message, str):
+                raise TypeError(
+                    "Expected an object of type str for 'message', not "
+                    f"{type(message).__name__!r}"
+                )
+            self.message = message
+            self.category = category
+            self.stacklevel = stacklevel
+
+        def __call__(self, arg: _T, /) -> _T:
+            # Make sure the inner functions created below don't
+            # retain a reference to self.
+            msg = self.message
+            category = self.category
+            stacklevel = self.stacklevel
             if category is None:
                 arg.__deprecated__ = msg
                 return arg
             elif isinstance(arg, type):
+                import functools
+                from types import MethodType
+
                 original_new = arg.__new__
-                has_init = arg.__init__ is not object.__init__
 
                 @functools.wraps(original_new)
                 def __new__(cls, *args, **kwargs):
-                    warnings.warn(msg, category=category, stacklevel=stacklevel + 1)
+                    if cls is arg:
+                        warnings.warn(msg, category=category, stacklevel=stacklevel + 1)
                     if original_new is not object.__new__:
                         return original_new(cls, *args, **kwargs)
                     # Mirrors a similar check in object.__new__.
-                    elif not has_init and (args or kwargs):
+                    elif cls.__init__ is object.__init__ and (args or kwargs):
                         raise TypeError(f"{cls.__name__}() takes no arguments")
                     else:
                         return original_new(cls)
 
                 arg.__new__ = staticmethod(__new__)
+
+                original_init_subclass = arg.__init_subclass__
+                # We need slightly different behavior if __init_subclass__
+                # is a bound method (likely if it was implemented in Python)
+                if isinstance(original_init_subclass, MethodType):
+                    original_init_subclass = original_init_subclass.__func__
+
+                    @functools.wraps(original_init_subclass)
+                    def __init_subclass__(*args, **kwargs):
+                        warnings.warn(msg, category=category, stacklevel=stacklevel + 1)
+                        return original_init_subclass(*args, **kwargs)
+
+                    arg.__init_subclass__ = classmethod(__init_subclass__)
+                # Or otherwise, which likely means it's a builtin such as
+                # object's implementation of __init_subclass__.
+                else:
+                    @functools.wraps(original_init_subclass)
+                    def __init_subclass__(*args, **kwargs):
+                        warnings.warn(msg, category=category, stacklevel=stacklevel + 1)
+                        return original_init_subclass(*args, **kwargs)
+
+                    arg.__init_subclass__ = __init_subclass__
+
                 arg.__deprecated__ = __new__.__deprecated__ = msg
+                __init_subclass__.__deprecated__ = msg
                 return arg
             elif callable(arg):
+                import functools
+
                 @functools.wraps(arg)
                 def wrapper(*args, **kwargs):
                     warnings.warn(msg, category=category, stacklevel=stacklevel + 1)
@@ -2366,8 +2505,6 @@ else:
                     "@deprecated decorator with non-None category must be applied to "
                     f"a class or callable, not {arg!r}"
                 )
-
-        return decorator
 
 
 # We have to do some monkey patching to deal with the dual nature of
@@ -2437,11 +2574,35 @@ else:
                     class_getitem = typing.Generic.__class_getitem__.__func__
                     nm_tpl.__class_getitem__ = classmethod(class_getitem)
             # update from user namespace without overriding special namedtuple attributes
-            for key in ns:
+            for key, val in ns.items():
                 if key in _prohibited_namedtuple_fields:
                     raise AttributeError("Cannot overwrite NamedTuple attribute " + key)
-                elif key not in _special_namedtuple_fields and key not in nm_tpl._fields:
-                    setattr(nm_tpl, key, ns[key])
+                elif key not in _special_namedtuple_fields:
+                    if key not in nm_tpl._fields:
+                        setattr(nm_tpl, key, ns[key])
+                    try:
+                        set_name = type(val).__set_name__
+                    except AttributeError:
+                        pass
+                    else:
+                        try:
+                            set_name(val, nm_tpl, key)
+                        except BaseException as e:
+                            msg = (
+                                f"Error calling __set_name__ on {type(val).__name__!r} "
+                                f"instance {key!r} in {typename!r}"
+                            )
+                            # BaseException.add_note() existed on py311,
+                            # but the __set_name__ machinery didn't start
+                            # using add_note() until py312.
+                            # Making sure exceptions are raised in the same way
+                            # as in "normal" classes seems most important here.
+                            if sys.version_info >= (3, 12):
+                                e.add_note(msg)
+                                raise
+                            else:
+                                raise RuntimeError(msg) from e
+
             if typing.Generic in bases:
                 nm_tpl.__init_subclass__()
             return nm_tpl
@@ -2600,7 +2761,7 @@ else:
             num = UserId(5) + 1     # type: int
         """
 
-        def __call__(self, obj):
+        def __call__(self, obj, /):
             return obj
 
         def __init__(self, name, tp):

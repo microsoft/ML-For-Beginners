@@ -7,7 +7,7 @@ import pytest
 
 
 def test_PsfontsMap(monkeypatch):
-    monkeypatch.setattr(dr, '_find_tex_file', lambda x: x)
+    monkeypatch.setattr(dr, 'find_tex_file', lambda x: x.decode())
 
     filename = str(Path(__file__).parent / 'baseline_images/dviread/test.map')
     fontmap = dr.PsfontsMap(filename)
@@ -18,15 +18,15 @@ def test_PsfontsMap(monkeypatch):
         assert entry.texname == key
         assert entry.psname == b'PSfont%d' % n
         if n not in [3, 5]:
-            assert entry.encoding == b'font%d.enc' % n
+            assert entry.encoding == 'font%d.enc' % n
         elif n == 3:
-            assert entry.encoding == b'enc3.foo'
+            assert entry.encoding == 'enc3.foo'
         # We don't care about the encoding of TeXfont5, which specifies
         # multiple encodings.
         if n not in [1, 5]:
-            assert entry.filename == b'font%d.pfa' % n
+            assert entry.filename == 'font%d.pfa' % n
         else:
-            assert entry.filename == b'font%d.pfb' % n
+            assert entry.filename == 'font%d.pfb' % n
         if n == 4:
             assert entry.effects == {'slant': -0.1, 'extend': 1.2}
         else:
@@ -37,13 +37,13 @@ def test_PsfontsMap(monkeypatch):
     assert entry.encoding is None
     entry = fontmap[b'TeXfont7']
     assert entry.filename is None
-    assert entry.encoding == b'font7.enc'
+    assert entry.encoding == 'font7.enc'
     entry = fontmap[b'TeXfont8']
-    assert entry.filename == b'font8.pfb'
+    assert entry.filename == 'font8.pfb'
     assert entry.encoding is None
     entry = fontmap[b'TeXfont9']
     assert entry.psname == b'TeXfont9'
-    assert entry.filename == b'/absolute/font9.pfb'
+    assert entry.filename == '/absolute/font9.pfb'
     # First of duplicates only.
     entry = fontmap[b'TeXfontA']
     assert entry.psname == b'PSfontA1'

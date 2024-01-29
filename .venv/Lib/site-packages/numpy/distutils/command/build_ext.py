@@ -458,7 +458,18 @@ class build_ext (old_build_ext):
             dispatch_hpath = os.path.join(bsrc_dir, dispatch_hpath)
             include_dirs.append(dispatch_hpath)
 
-            copt_build_src = None if self.inplace else bsrc_dir
+            # copt_build_src = None if self.inplace else bsrc_dir
+            # Always generate the generated config files and
+            # dispatch-able sources inside the build directory,
+            # even if the build option `inplace` is enabled.
+            # This approach prevents conflicts with Meson-generated
+            # config headers. Since `spin build --clean` will not remove
+            # these headers, they might overwrite the generated Meson headers,
+            # causing compatibility issues. Maintaining separate directories
+            # ensures compatibility between distutils dispatch config headers
+            # and Meson headers, avoiding build disruptions.
+            # See gh-24450 for more details.
+            copt_build_src = bsrc_dir
             for _srcs, _dst, _ext in (
                 ((c_sources,), copt_c_sources, ('.dispatch.c',)),
                 ((c_sources, cxx_sources), copt_cxx_sources,

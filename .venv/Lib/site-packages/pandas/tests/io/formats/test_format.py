@@ -1,28 +1,17 @@
 """
-Test output formatting for Series/DataFrame, including to_string & reprs
+Tests for the file pandas.io.formats.format, *not* tests for general formatting
+of pandas objects.
 """
-from contextlib import nullcontext
-from datetime import (
-    datetime,
-    time,
-    timedelta,
-)
+from datetime import datetime
 from io import StringIO
-import itertools
-import locale
-from operator import methodcaller
 from pathlib import Path
 import re
 from shutil import get_terminal_size
-import sys
-import textwrap
 
-import dateutil
 import numpy as np
 import pytest
-import pytz
 
-from pandas._config import config
+from pandas._config import using_pyarrow_string_dtype
 
 import pandas as pd
 from pandas import (
@@ -38,28 +27,9 @@ from pandas import (
     read_csv,
     reset_option,
 )
-import pandas._testing as tm
 
 from pandas.io.formats import printing
 import pandas.io.formats.format as fmt
-
-
-def get_local_am_pm():
-    """Return the AM and PM strings returned by strftime in current locale."""
-    am_local = time(1).strftime("%p")
-    pm_local = time(13).strftime("%p")
-    return am_local, pm_local
-
-
-@pytest.fixture(autouse=True)
-def clean_config():
-    curr_deprecated_options = config._deprecated_options.copy()
-    curr_registered_options = config._registered_options.copy()
-    curr_global_config = config._global_config.copy()
-    yield
-    config._deprecated_options = curr_deprecated_options
-    config._registered_options = curr_registered_options
-    config._global_config = curr_global_config
 
 
 @pytest.fixture(params=["string", "pathlike", "buffer"])
@@ -172,43 +142,6 @@ def has_expanded_repr(df):
 
 
 class TestDataFrameFormatting:
-    def test_eng_float_formatter(self, float_frame):
-        df = float_frame
-        df.loc[5] = 0
-
-        fmt.set_eng_float_format()
-        repr(df)
-
-        fmt.set_eng_float_format(use_eng_prefix=True)
-        repr(df)
-
-        fmt.set_eng_float_format(accuracy=0)
-        repr(df)
-        tm.reset_display_options()
-
-    @pytest.mark.parametrize(
-        "row, columns, show_counts, result",
-        [
-            [20, 20, None, True],
-            [20, 20, True, True],
-            [20, 20, False, False],
-            [5, 5, None, False],
-            [5, 5, True, False],
-            [5, 5, False, False],
-        ],
-    )
-    def test_show_counts(self, row, columns, show_counts, result):
-        # Explicit cast to float to avoid implicit cast when setting nan
-        df = DataFrame(1, columns=range(10), index=range(10)).astype({1: "float"})
-        df.iloc[1, 1] = np.nan
-
-        with option_context(
-            "display.max_info_rows", row, "display.max_info_columns", columns
-        ):
-            with StringIO() as buf:
-                df.info(buf=buf, show_counts=show_counts)
-                assert ("non-null" in buf.getvalue()) is result
-
     def test_repr_truncation(self):
         max_len = 20
         with option_context("display.max_colwidth", max_len):
@@ -225,7 +158,7 @@ class TestDataFrameFormatting:
             r = repr(df)
             r = r[r.find("\n") + 1 :]
 
-            adj = fmt.get_adjustment()
+            adj = printing.get_adjustment()
 
             for line, value in zip(r.split("\n"), df["B"]):
                 if adj.len(value) + 1 > max_len:
@@ -238,6 +171,12 @@ class TestDataFrameFormatting:
 
         with option_context("display.max_colwidth", max_len + 2):
             assert "..." not in repr(df)
+
+    def test_repr_truncation_preserves_na(self):
+        # https://github.com/pandas-dev/pandas/issues/55630
+        df = DataFrame({"a": [pd.NA for _ in range(10)]})
+        with option_context("display.max_rows", 2, "display.show_dimensions", False):
+            assert repr(df) == "       a\n0   <NA>\n..   ...\n9   <NA>"
 
     def test_max_colwidth_negative_int_raises(self):
         # Deprecation enforced from:
@@ -293,38 +232,6 @@ class TestDataFrameFormatting:
                 "2  30.0  2.000000e-09\n"
                 "3  40.0  0.000000e+00"
             )
-
-    def test_repr_obeys_max_seq_limit(self):
-        with option_context("display.max_seq_items", 2000):
-            assert len(printing.pprint_thing(list(range(1000)))) > 1000
-
-        with option_context("display.max_seq_items", 5):
-            assert len(printing.pprint_thing(list(range(1000)))) < 100
-
-        with option_context("display.max_seq_items", 1):
-            assert len(printing.pprint_thing(list(range(1000)))) < 9
-
-    def test_repr_set(self):
-        assert printing.pprint_thing({1}) == "{1}"
-
-    def test_repr_is_valid_construction_code(self):
-        # for the case of Index, where the repr is traditional rather than
-        # stylized
-        idx = Index(["a", "b"])
-        res = eval("pd." + repr(idx))
-        tm.assert_series_equal(Series(res), Series(idx))
-
-    def test_repr_should_return_str(self):
-        # https://docs.python.org/3/reference/datamodel.html#object.__repr__
-        # "...The return value must be a string object."
-
-        # (str on py2.x, str (unicode) on py3)
-
-        data = [8, 5, 3, 5]
-        index1 = ["\u03c3", "\u03c4", "\u03c5", "\u03c6"]
-        cols = ["\u03c8"]
-        df = DataFrame(data, columns=cols, index=index1)
-        assert type(df.__repr__()) == str  # both py2 / 3
 
     def test_repr_no_backslash(self):
         with option_context("mode.sim_interactive", True):
@@ -565,17 +472,7 @@ class TestDataFrameFormatting:
                 with option_context("display.max_columns", 0):
                     assert has_horizontally_truncated_repr(df)
 
-    def test_to_string_repr_unicode(self):
-        buf = StringIO()
-
-        unicode_values = ["\u03c3"] * 10
-        unicode_values = np.array(unicode_values, dtype=object)
-        df = DataFrame({"unicode": unicode_values})
-        df.to_string(col_space=10, buf=buf)
-
-        # it works!
-        repr(df)
-
+    def test_to_string_repr_unicode2(self):
         idx = Index(["abc", "\u03c3a", "aegdvg"])
         ser = Series(np.random.default_rng(2).standard_normal(len(idx)), idx)
         rs = repr(ser).split("\n")
@@ -587,14 +484,6 @@ class TestDataFrameFormatting:
                 pass
             if not line.startswith("dtype:"):
                 assert len(line) == line_len
-
-        # it works even if sys.stdin in None
-        _stdin = sys.stdin
-        try:
-            sys.stdin = None
-            repr(df)
-        finally:
-            sys.stdin = _stdin
 
     def test_east_asian_unicode_false(self):
         # not aligned properly because of east asian width
@@ -945,65 +834,22 @@ class TestDataFrameFormatting:
         # this should work
         buf.getvalue()
 
-    def test_to_string_with_col_space(self):
-        df = DataFrame(np.random.default_rng(2).random(size=(1, 3)))
-        c10 = len(df.to_string(col_space=10).split("\n")[1])
-        c20 = len(df.to_string(col_space=20).split("\n")[1])
-        c30 = len(df.to_string(col_space=30).split("\n")[1])
-        assert c10 < c20 < c30
-
-        # GH 8230
-        # col_space wasn't being applied with header=False
-        with_header = df.to_string(col_space=20)
-        with_header_row1 = with_header.splitlines()[1]
-        no_header = df.to_string(col_space=20, header=False)
-        assert len(with_header_row1) == len(no_header)
-
-    def test_to_string_with_column_specific_col_space_raises(self):
-        df = DataFrame(
-            np.random.default_rng(2).random(size=(3, 3)), columns=["a", "b", "c"]
-        )
-
-        msg = (
-            "Col_space length\\(\\d+\\) should match "
-            "DataFrame number of columns\\(\\d+\\)"
-        )
-        with pytest.raises(ValueError, match=msg):
-            df.to_string(col_space=[30, 40])
-
-        with pytest.raises(ValueError, match=msg):
-            df.to_string(col_space=[30, 40, 50, 60])
-
-        msg = "unknown column"
-        with pytest.raises(ValueError, match=msg):
-            df.to_string(col_space={"a": "foo", "b": 23, "d": 34})
-
-    def test_to_string_with_column_specific_col_space(self):
-        df = DataFrame(
-            np.random.default_rng(2).random(size=(3, 3)), columns=["a", "b", "c"]
-        )
-
-        result = df.to_string(col_space={"a": 10, "b": 11, "c": 12})
-        # 3 separating space + each col_space for (id, a, b, c)
-        assert len(result.split("\n")[1]) == (3 + 1 + 10 + 11 + 12)
-
-        result = df.to_string(col_space=[10, 11, 12])
-        assert len(result.split("\n")[1]) == (3 + 1 + 10 + 11 + 12)
-
     @pytest.mark.parametrize(
-        "index",
+        "index_scalar",
         [
-            tm.makeStringIndex,
-            tm.makeIntIndex,
-            tm.makeDateIndex,
-            tm.makePeriodIndex,
+            "a" * 10,
+            1,
+            Timestamp(2020, 1, 1),
+            pd.Period("2020-01-01"),
         ],
     )
     @pytest.mark.parametrize("h", [10, 20])
     @pytest.mark.parametrize("w", [10, 20])
-    def test_to_string_truncate_indices(self, index, h, w):
+    def test_to_string_truncate_indices(self, index_scalar, h, w):
         with option_context("display.expand_frame_repr", False):
-            df = DataFrame(index=index(h), columns=tm.makeStringIndex(w))
+            df = DataFrame(
+                index=[index_scalar] * h, columns=[str(i) * 10 for i in range(w)]
+            )
             with option_context("display.max_rows", 15):
                 if h == 20:
                     assert has_vertically_truncated_repr(df)
@@ -1029,23 +875,26 @@ class TestDataFrameFormatting:
         with option_context("display.max_rows", 7, "display.max_columns", 7):
             assert has_doubly_truncated_repr(df)
 
-    def test_truncate_with_different_dtypes(self):
+    @pytest.mark.parametrize("dtype", ["object", "datetime64[us]"])
+    def test_truncate_with_different_dtypes(self, dtype):
         # 11594, 12045
         # when truncated the dtypes of the splits can differ
 
         # 11594
-        s = Series(
+        ser = Series(
             [datetime(2012, 1, 1)] * 10
             + [datetime(1012, 1, 2)]
-            + [datetime(2012, 1, 3)] * 10
+            + [datetime(2012, 1, 3)] * 10,
+            dtype=dtype,
         )
 
         with option_context("display.max_rows", 8):
-            result = str(s)
-            assert "object" in result
+            result = str(ser)
+        assert dtype in result
 
+    def test_truncate_with_different_dtypes2(self):
         # 12045
-        df = DataFrame({"text": ["some words"] + [None] * 9})
+        df = DataFrame({"text": ["some words"] + [None] * 9}, dtype=object)
 
         with option_context("display.max_rows", 8, "display.max_columns", 3):
             result = str(df)
@@ -1139,16 +988,6 @@ class TestDataFrameFormatting:
         df = DataFrame({"A": range(5)}, index=dti)
         result = str(df.index)
         assert start_date in result
-
-    def test_nonunicode_nonascii_alignment(self):
-        df = DataFrame([["aa\xc3\xa4\xc3\xa4", 1], ["bbbb", 2]])
-        rep_str = df.to_string()
-        lines = rep_str.split("\n")
-        assert len(lines[1]) == len(lines[2])
-
-    def test_unicode_problem_decoding_as_ascii(self):
-        dm = DataFrame({"c/\u03c3": Series({"test": np.nan})})
-        str(dm.to_string())
 
     def test_string_repr_encoding(self, datapath):
         filepath = datapath("io", "parser", "data", "unicode_series.csv")
@@ -1291,377 +1130,6 @@ class TestDataFrameFormatting:
         nmatches = len(re.findall("dtype", str_rep))
         assert nmatches == 1
 
-    def test_index_with_nan(self):
-        #  GH 2850
-        df = DataFrame(
-            {
-                "id1": {0: "1a3", 1: "9h4"},
-                "id2": {0: np.nan, 1: "d67"},
-                "id3": {0: "78d", 1: "79d"},
-                "value": {0: 123, 1: 64},
-            }
-        )
-
-        # multi-index
-        y = df.set_index(["id1", "id2", "id3"])
-        result = y.to_string()
-        expected = (
-            "             value\nid1 id2 id3       \n"
-            "1a3 NaN 78d    123\n9h4 d67 79d     64"
-        )
-        assert result == expected
-
-        # index
-        y = df.set_index("id2")
-        result = y.to_string()
-        expected = (
-            "     id1  id3  value\nid2                 \n"
-            "NaN  1a3  78d    123\nd67  9h4  79d     64"
-        )
-        assert result == expected
-
-        # with append (this failed in 0.12)
-        y = df.set_index(["id1", "id2"]).set_index("id3", append=True)
-        result = y.to_string()
-        expected = (
-            "             value\nid1 id2 id3       \n"
-            "1a3 NaN 78d    123\n9h4 d67 79d     64"
-        )
-        assert result == expected
-
-        # all-nan in mi
-        df2 = df.copy()
-        df2.loc[:, "id2"] = np.nan
-        y = df2.set_index("id2")
-        result = y.to_string()
-        expected = (
-            "     id1  id3  value\nid2                 \n"
-            "NaN  1a3  78d    123\nNaN  9h4  79d     64"
-        )
-        assert result == expected
-
-        # partial nan in mi
-        df2 = df.copy()
-        df2.loc[:, "id2"] = np.nan
-        y = df2.set_index(["id2", "id3"])
-        result = y.to_string()
-        expected = (
-            "         id1  value\nid2 id3            \n"
-            "NaN 78d  1a3    123\n    79d  9h4     64"
-        )
-        assert result == expected
-
-        df = DataFrame(
-            {
-                "id1": {0: np.nan, 1: "9h4"},
-                "id2": {0: np.nan, 1: "d67"},
-                "id3": {0: np.nan, 1: "79d"},
-                "value": {0: 123, 1: 64},
-            }
-        )
-
-        y = df.set_index(["id1", "id2", "id3"])
-        result = y.to_string()
-        expected = (
-            "             value\nid1 id2 id3       \n"
-            "NaN NaN NaN    123\n9h4 d67 79d     64"
-        )
-        assert result == expected
-
-    def test_to_string(self):
-        # big mixed
-        biggie = DataFrame(
-            {
-                "A": np.random.default_rng(2).standard_normal(200),
-                "B": tm.makeStringIndex(200),
-            },
-        )
-
-        biggie.loc[:20, "A"] = np.nan
-        biggie.loc[:20, "B"] = np.nan
-        s = biggie.to_string()
-
-        buf = StringIO()
-        retval = biggie.to_string(buf=buf)
-        assert retval is None
-        assert buf.getvalue() == s
-
-        assert isinstance(s, str)
-
-        # print in right order
-        result = biggie.to_string(
-            columns=["B", "A"], col_space=17, float_format="%.5f".__mod__
-        )
-        lines = result.split("\n")
-        header = lines[0].strip().split()
-        joined = "\n".join([re.sub(r"\s+", " ", x).strip() for x in lines[1:]])
-        recons = read_csv(StringIO(joined), names=header, header=None, sep=" ")
-        tm.assert_series_equal(recons["B"], biggie["B"])
-        assert recons["A"].count() == biggie["A"].count()
-        assert (np.abs(recons["A"].dropna() - biggie["A"].dropna()) < 0.1).all()
-
-        # expected = ['B', 'A']
-        # assert header == expected
-
-        result = biggie.to_string(columns=["A"], col_space=17)
-        header = result.split("\n")[0].strip().split()
-        expected = ["A"]
-        assert header == expected
-
-        biggie.to_string(columns=["B", "A"], formatters={"A": lambda x: f"{x:.1f}"})
-
-        biggie.to_string(columns=["B", "A"], float_format=str)
-        biggie.to_string(columns=["B", "A"], col_space=12, float_format=str)
-
-        frame = DataFrame(index=np.arange(200))
-        frame.to_string()
-
-    def test_to_string_no_header(self):
-        df = DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]})
-
-        df_s = df.to_string(header=False)
-        expected = "0  1  4\n1  2  5\n2  3  6"
-
-        assert df_s == expected
-
-    def test_to_string_specified_header(self):
-        df = DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]})
-
-        df_s = df.to_string(header=["X", "Y"])
-        expected = "   X  Y\n0  1  4\n1  2  5\n2  3  6"
-
-        assert df_s == expected
-
-        msg = "Writing 2 cols but got 1 aliases"
-        with pytest.raises(ValueError, match=msg):
-            df.to_string(header=["X"])
-
-    def test_to_string_no_index(self):
-        # GH 16839, GH 13032
-        df = DataFrame({"x": [11, 22], "y": [33, -44], "z": ["AAA", "   "]})
-
-        df_s = df.to_string(index=False)
-        # Leading space is expected for positive numbers.
-        expected = " x   y   z\n11  33 AAA\n22 -44    "
-        assert df_s == expected
-
-        df_s = df[["y", "x", "z"]].to_string(index=False)
-        expected = "  y  x   z\n 33 11 AAA\n-44 22    "
-        assert df_s == expected
-
-    def test_to_string_line_width_no_index(self):
-        # GH 13998, GH 22505
-        df = DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1, index=False)
-        expected = " x  \\\n 1   \n 2   \n 3   \n\n y  \n 4  \n 5  \n 6  "
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, 33], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1, index=False)
-        expected = " x  \\\n11   \n22   \n33   \n\n y  \n 4  \n 5  \n 6  "
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, -33], "y": [4, 5, -6]})
-
-        df_s = df.to_string(line_width=1, index=False)
-        expected = "  x  \\\n 11   \n 22   \n-33   \n\n y  \n 4  \n 5  \n-6  "
-
-        assert df_s == expected
-
-    def test_to_string_line_width_no_header(self):
-        # GH 53054
-        df = DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1, header=False)
-        expected = "0  1  \\\n1  2   \n2  3   \n\n0  4  \n1  5  \n2  6  "
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, 33], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1, header=False)
-        expected = "0  11  \\\n1  22   \n2  33   \n\n0  4  \n1  5  \n2  6  "
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, -33], "y": [4, 5, -6]})
-
-        df_s = df.to_string(line_width=1, header=False)
-        expected = "0  11  \\\n1  22   \n2 -33   \n\n0  4  \n1  5  \n2 -6  "
-
-        assert df_s == expected
-
-    def test_to_string_line_width_no_index_no_header(self):
-        # GH 53054
-        df = DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1, index=False, header=False)
-        expected = "1  \\\n2   \n3   \n\n4  \n5  \n6  "
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, 33], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1, index=False, header=False)
-        expected = "11  \\\n22   \n33   \n\n4  \n5  \n6  "
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, -33], "y": [4, 5, -6]})
-
-        df_s = df.to_string(line_width=1, index=False, header=False)
-        expected = " 11  \\\n 22   \n-33   \n\n 4  \n 5  \n-6  "
-
-        assert df_s == expected
-
-    def test_to_string_line_width_with_both_index_and_header(self):
-        # GH 53054
-        df = DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1)
-        expected = (
-            "   x  \\\n0  1   \n1  2   \n2  3   \n\n   y  \n0  4  \n1  5  \n2  6  "
-        )
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, 33], "y": [4, 5, 6]})
-
-        df_s = df.to_string(line_width=1)
-        expected = (
-            "    x  \\\n0  11   \n1  22   \n2  33   \n\n   y  \n0  4  \n1  5  \n2  6  "
-        )
-
-        assert df_s == expected
-
-        df = DataFrame({"x": [11, 22, -33], "y": [4, 5, -6]})
-
-        df_s = df.to_string(line_width=1)
-        expected = (
-            "    x  \\\n0  11   \n1  22   \n2 -33   \n\n   y  \n0  4  \n1  5  \n2 -6  "
-        )
-
-        assert df_s == expected
-
-    def test_to_string_float_formatting(self):
-        tm.reset_display_options()
-        with option_context(
-            "display.precision",
-            5,
-            "display.notebook_repr_html",
-            False,
-        ):
-            df = DataFrame(
-                {"x": [0, 0.25, 3456.000, 12e45, 1.64e6, 1.7e8, 1.253456, np.pi, -1e6]}
-            )
-
-            df_s = df.to_string()
-
-            if _three_digit_exp():
-                expected = (
-                    "              x\n0  0.00000e+000\n1  2.50000e-001\n"
-                    "2  3.45600e+003\n3  1.20000e+046\n4  1.64000e+006\n"
-                    "5  1.70000e+008\n6  1.25346e+000\n7  3.14159e+000\n"
-                    "8 -1.00000e+006"
-                )
-            else:
-                expected = (
-                    "             x\n0  0.00000e+00\n1  2.50000e-01\n"
-                    "2  3.45600e+03\n3  1.20000e+46\n4  1.64000e+06\n"
-                    "5  1.70000e+08\n6  1.25346e+00\n7  3.14159e+00\n"
-                    "8 -1.00000e+06"
-                )
-            assert df_s == expected
-
-            df = DataFrame({"x": [3234, 0.253]})
-            df_s = df.to_string()
-
-            expected = "          x\n0  3234.000\n1     0.253"
-            assert df_s == expected
-
-        tm.reset_display_options()
-        assert get_option("display.precision") == 6
-
-        df = DataFrame({"x": [1e9, 0.2512]})
-        df_s = df.to_string()
-
-        if _three_digit_exp():
-            expected = "               x\n0  1.000000e+009\n1  2.512000e-001"
-        else:
-            expected = "              x\n0  1.000000e+09\n1  2.512000e-01"
-        assert df_s == expected
-
-    def test_to_string_float_format_no_fixed_width(self):
-        # GH 21625
-        df = DataFrame({"x": [0.19999]})
-        expected = "      x\n0 0.200"
-        assert df.to_string(float_format="%.3f") == expected
-
-        # GH 22270
-        df = DataFrame({"x": [100.0]})
-        expected = "    x\n0 100"
-        assert df.to_string(float_format="%.0f") == expected
-
-    def test_to_string_small_float_values(self):
-        df = DataFrame({"a": [1.5, 1e-17, -5.5e-7]})
-
-        result = df.to_string()
-        # sadness per above
-        if _three_digit_exp():
-            expected = (
-                "               a\n"
-                "0  1.500000e+000\n"
-                "1  1.000000e-017\n"
-                "2 -5.500000e-007"
-            )
-        else:
-            expected = (
-                "              a\n"
-                "0  1.500000e+00\n"
-                "1  1.000000e-17\n"
-                "2 -5.500000e-07"
-            )
-        assert result == expected
-
-        # but not all exactly zero
-        df = df * 0
-        result = df.to_string()
-        expected = "   0\n0  0\n1  0\n2 -0"
-
-    def test_to_string_float_index(self):
-        index = Index([1.5, 2, 3, 4, 5])
-        df = DataFrame(np.arange(5), index=index)
-
-        result = df.to_string()
-        expected = "     0\n1.5  0\n2.0  1\n3.0  2\n4.0  3\n5.0  4"
-        assert result == expected
-
-    def test_to_string_complex_float_formatting(self):
-        # GH #25514, 25745
-        with option_context("display.precision", 5):
-            df = DataFrame(
-                {
-                    "x": [
-                        (0.4467846931321966 + 0.0715185102060818j),
-                        (0.2739442392974528 + 0.23515228785438969j),
-                        (0.26974928742135185 + 0.3250604054898979j),
-                        (-1j),
-                    ]
-                }
-            )
-            result = df.to_string()
-            expected = (
-                "                  x\n0  0.44678+0.07152j\n"
-                "1  0.27394+0.23515j\n"
-                "2  0.26975+0.32506j\n"
-                "3 -0.00000-1.00000j"
-            )
-            assert result == expected
-
     def test_to_string_ascii_error(self):
         data = [
             (
@@ -1675,139 +1143,6 @@ class TestDataFrameFormatting:
 
         # it works!
         repr(df)
-
-    def test_to_string_int_formatting(self):
-        df = DataFrame({"x": [-15, 20, 25, -35]})
-        assert issubclass(df["x"].dtype.type, np.integer)
-
-        output = df.to_string()
-        expected = "    x\n0 -15\n1  20\n2  25\n3 -35"
-        assert output == expected
-
-    def test_to_string_index_formatter(self):
-        df = DataFrame([range(5), range(5, 10), range(10, 15)])
-
-        rs = df.to_string(formatters={"__index__": lambda x: "abc"[x]})
-
-        xp = """\
-    0   1   2   3   4
-a   0   1   2   3   4
-b   5   6   7   8   9
-c  10  11  12  13  14\
-"""
-
-        assert rs == xp
-
-    def test_to_string_left_justify_cols(self):
-        tm.reset_display_options()
-        df = DataFrame({"x": [3234, 0.253]})
-        df_s = df.to_string(justify="left")
-        expected = "   x       \n0  3234.000\n1     0.253"
-        assert df_s == expected
-
-    def test_to_string_format_na(self):
-        tm.reset_display_options()
-        df = DataFrame(
-            {
-                "A": [np.nan, -1, -2.1234, 3, 4],
-                "B": [np.nan, "foo", "foooo", "fooooo", "bar"],
-            }
-        )
-        result = df.to_string()
-
-        expected = (
-            "        A       B\n"
-            "0     NaN     NaN\n"
-            "1 -1.0000     foo\n"
-            "2 -2.1234   foooo\n"
-            "3  3.0000  fooooo\n"
-            "4  4.0000     bar"
-        )
-        assert result == expected
-
-        df = DataFrame(
-            {
-                "A": [np.nan, -1.0, -2.0, 3.0, 4.0],
-                "B": [np.nan, "foo", "foooo", "fooooo", "bar"],
-            }
-        )
-        result = df.to_string()
-
-        expected = (
-            "     A       B\n"
-            "0  NaN     NaN\n"
-            "1 -1.0     foo\n"
-            "2 -2.0   foooo\n"
-            "3  3.0  fooooo\n"
-            "4  4.0     bar"
-        )
-        assert result == expected
-
-    def test_to_string_format_inf(self):
-        # Issue #24861
-        tm.reset_display_options()
-        df = DataFrame(
-            {
-                "A": [-np.inf, np.inf, -1, -2.1234, 3, 4],
-                "B": [-np.inf, np.inf, "foo", "foooo", "fooooo", "bar"],
-            }
-        )
-        result = df.to_string()
-
-        expected = (
-            "        A       B\n"
-            "0    -inf    -inf\n"
-            "1     inf     inf\n"
-            "2 -1.0000     foo\n"
-            "3 -2.1234   foooo\n"
-            "4  3.0000  fooooo\n"
-            "5  4.0000     bar"
-        )
-        assert result == expected
-
-        df = DataFrame(
-            {
-                "A": [-np.inf, np.inf, -1.0, -2.0, 3.0, 4.0],
-                "B": [-np.inf, np.inf, "foo", "foooo", "fooooo", "bar"],
-            }
-        )
-        result = df.to_string()
-
-        expected = (
-            "     A       B\n"
-            "0 -inf    -inf\n"
-            "1  inf     inf\n"
-            "2 -1.0     foo\n"
-            "3 -2.0   foooo\n"
-            "4  3.0  fooooo\n"
-            "5  4.0     bar"
-        )
-        assert result == expected
-
-    def test_to_string_decimal(self):
-        # Issue #23614
-        df = DataFrame({"A": [6.0, 3.1, 2.2]})
-        expected = "     A\n0  6,0\n1  3,1\n2  2,2"
-        assert df.to_string(decimal=",") == expected
-
-    def test_to_string_line_width(self):
-        df = DataFrame(123, index=range(10, 15), columns=range(30))
-        s = df.to_string(line_width=80)
-        assert max(len(line) for line in s.split("\n")) == 80
-
-    def test_to_string_header_false(self):
-        # GH 49230
-        df = DataFrame([1, 2])
-        df.index.name = "a"
-        s = df.to_string(header=False)
-        expected = "a   \n0  1\n1  2"
-        assert s == expected
-
-        df = DataFrame([[1, 2], [3, 4]])
-        df.index.name = "a"
-        s = df.to_string(header=False)
-        expected = "a      \n0  1  2\n1  3  4"
-        assert s == expected
 
     def test_show_dimensions(self):
         df = DataFrame(123, index=range(10, 15), columns=range(30))
@@ -1869,145 +1204,6 @@ c  10  11  12  13  14\
             assert "5 rows" not in str(df)
             assert "5 rows" not in df._repr_html_()
 
-    def test_repr_html(self, float_frame):
-        df = float_frame
-        df._repr_html_()
-
-        with option_context("display.max_rows", 1, "display.max_columns", 1):
-            df._repr_html_()
-
-        with option_context("display.notebook_repr_html", False):
-            df._repr_html_()
-
-        tm.reset_display_options()
-
-        df = DataFrame([[1, 2], [3, 4]])
-        with option_context("display.show_dimensions", True):
-            assert "2 rows" in df._repr_html_()
-        with option_context("display.show_dimensions", False):
-            assert "2 rows" not in df._repr_html_()
-
-        tm.reset_display_options()
-
-    def test_repr_html_mathjax(self):
-        df = DataFrame([[1, 2], [3, 4]])
-        assert "tex2jax_ignore" not in df._repr_html_()
-
-        with option_context("display.html.use_mathjax", False):
-            assert "tex2jax_ignore" in df._repr_html_()
-
-    def test_repr_html_wide(self):
-        max_cols = 20
-        df = DataFrame([["a" * 25] * (max_cols - 1)] * 10)
-        with option_context("display.max_rows", 60, "display.max_columns", 20):
-            assert "..." not in df._repr_html_()
-
-        wide_df = DataFrame([["a" * 25] * (max_cols + 1)] * 10)
-        with option_context("display.max_rows", 60, "display.max_columns", 20):
-            assert "..." in wide_df._repr_html_()
-
-    def test_repr_html_wide_multiindex_cols(self):
-        max_cols = 20
-
-        mcols = MultiIndex.from_product(
-            [np.arange(max_cols // 2), ["foo", "bar"]], names=["first", "second"]
-        )
-        df = DataFrame([["a" * 25] * len(mcols)] * 10, columns=mcols)
-        reg_repr = df._repr_html_()
-        assert "..." not in reg_repr
-
-        mcols = MultiIndex.from_product(
-            (np.arange(1 + (max_cols // 2)), ["foo", "bar"]), names=["first", "second"]
-        )
-        df = DataFrame([["a" * 25] * len(mcols)] * 10, columns=mcols)
-        with option_context("display.max_rows", 60, "display.max_columns", 20):
-            assert "..." in df._repr_html_()
-
-    def test_repr_html_long(self):
-        with option_context("display.max_rows", 60):
-            max_rows = get_option("display.max_rows")
-            h = max_rows - 1
-            df = DataFrame({"A": np.arange(1, 1 + h), "B": np.arange(41, 41 + h)})
-            reg_repr = df._repr_html_()
-            assert ".." not in reg_repr
-            assert str(41 + max_rows // 2) in reg_repr
-
-            h = max_rows + 1
-            df = DataFrame({"A": np.arange(1, 1 + h), "B": np.arange(41, 41 + h)})
-            long_repr = df._repr_html_()
-            assert ".." in long_repr
-            assert str(41 + max_rows // 2) not in long_repr
-            assert f"{h} rows " in long_repr
-            assert "2 columns" in long_repr
-
-    def test_repr_html_float(self):
-        with option_context("display.max_rows", 60):
-            max_rows = get_option("display.max_rows")
-            h = max_rows - 1
-            df = DataFrame(
-                {
-                    "idx": np.linspace(-10, 10, h),
-                    "A": np.arange(1, 1 + h),
-                    "B": np.arange(41, 41 + h),
-                }
-            ).set_index("idx")
-            reg_repr = df._repr_html_()
-            assert ".." not in reg_repr
-            assert f"<td>{40 + h}</td>" in reg_repr
-
-            h = max_rows + 1
-            df = DataFrame(
-                {
-                    "idx": np.linspace(-10, 10, h),
-                    "A": np.arange(1, 1 + h),
-                    "B": np.arange(41, 41 + h),
-                }
-            ).set_index("idx")
-            long_repr = df._repr_html_()
-            assert ".." in long_repr
-            assert "<td>31</td>" not in long_repr
-            assert f"{h} rows " in long_repr
-            assert "2 columns" in long_repr
-
-    def test_repr_html_long_multiindex(self):
-        max_rows = 60
-        max_L1 = max_rows // 2
-
-        tuples = list(itertools.product(np.arange(max_L1), ["foo", "bar"]))
-        idx = MultiIndex.from_tuples(tuples, names=["first", "second"])
-        df = DataFrame(
-            np.random.default_rng(2).standard_normal((max_L1 * 2, 2)),
-            index=idx,
-            columns=["A", "B"],
-        )
-        with option_context("display.max_rows", 60, "display.max_columns", 20):
-            reg_repr = df._repr_html_()
-        assert "..." not in reg_repr
-
-        tuples = list(itertools.product(np.arange(max_L1 + 1), ["foo", "bar"]))
-        idx = MultiIndex.from_tuples(tuples, names=["first", "second"])
-        df = DataFrame(
-            np.random.default_rng(2).standard_normal(((max_L1 + 1) * 2, 2)),
-            index=idx,
-            columns=["A", "B"],
-        )
-        long_repr = df._repr_html_()
-        assert "..." in long_repr
-
-    def test_repr_html_long_and_wide(self):
-        max_cols = 20
-        max_rows = 60
-
-        h, w = max_rows - 1, max_cols - 1
-        df = DataFrame({k: np.arange(1, 1 + h) for k in np.arange(w)})
-        with option_context("display.max_rows", 60, "display.max_columns", 20):
-            assert "..." not in df._repr_html_()
-
-        h, w = max_rows + 1, max_cols + 1
-        df = DataFrame({k: np.arange(1, 1 + h) for k in np.arange(w)})
-        with option_context("display.max_rows", 60, "display.max_columns", 20):
-            assert "..." in df._repr_html_()
-
     def test_info_repr(self):
         # GH#21746 For tests inside a terminal (i.e. not CI) we need to detect
         # the terminal size to ensure that we try to print something "too big"
@@ -2054,42 +1250,9 @@ c  10  11  12  13  14\
         ):
             assert not has_non_verbose_info_repr(df)
 
+        # FIXME: don't leave commented-out
         # test verbose overrides
         # set_option('display.max_info_columns', 4)  # exceeded
-
-    def test_info_repr_html(self):
-        max_rows = 60
-        max_cols = 20
-        # Long
-        h, w = max_rows + 1, max_cols - 1
-        df = DataFrame({k: np.arange(1, 1 + h) for k in np.arange(w)})
-        assert r"&lt;class" not in df._repr_html_()
-        with option_context("display.large_repr", "info"):
-            assert r"&lt;class" in df._repr_html_()
-
-        # Wide
-        h, w = max_rows - 1, max_cols + 1
-        df = DataFrame({k: np.arange(1, 1 + h) for k in np.arange(w)})
-        assert "<class" not in df._repr_html_()
-        with option_context(
-            "display.large_repr", "info", "display.max_columns", max_cols
-        ):
-            assert "&lt;class" in df._repr_html_()
-
-    def test_fake_qtconsole_repr_html(self, float_frame):
-        df = float_frame
-
-        def get_ipython():
-            return {"config": {"KernelApp": {"parent_appname": "ipython-qtconsole"}}}
-
-        repstr = df._repr_html_()
-        assert repstr is not None
-
-        with option_context("display.max_rows", 5, "display.max_columns", 2):
-            repstr = df._repr_html_()
-
-        assert "class" in repstr  # info fallback
-        tm.reset_display_options()
 
     def test_pprint_pathological_object(self):
         """
@@ -2134,9 +1297,9 @@ c  10  11  12  13  14\
             ([3.50, None, "3.50"], "0     3.5\n1    None\n2    3.50\ndtype: object"),
         ],
     )
-    def test_repr_str_float_truncation(self, data, expected):
+    def test_repr_str_float_truncation(self, data, expected, using_infer_string):
         # GH#38708
-        series = Series(data)
+        series = Series(data, dtype=object if "3.50" in data else None)
         result = repr(series)
         assert result == expected
 
@@ -2155,22 +1318,6 @@ c  10  11  12  13  14\
 
         assert result == expected
 
-    def test_dict_entries(self):
-        df = DataFrame({"A": [{"a": 1, "b": 2}]})
-
-        val = df.to_string()
-        assert "'a': 1" in val
-        assert "'b': 2" in val
-
-    def test_categorical_columns(self):
-        # GH35439
-        data = [[4, 2], [3, 2], [4, 3]]
-        cols = ["aaaaaaaaa", "b"]
-        df = DataFrame(data, columns=cols)
-        df_cat_cols = DataFrame(data, columns=pd.CategoricalIndex(cols))
-
-        assert df.to_string() == df_cat_cols.to_string()
-
     def test_period(self):
         # GH 12615
         df = DataFrame(
@@ -2179,7 +1326,7 @@ c  10  11  12  13  14\
                 "B": [
                     pd.Period("2011-01", freq="M"),
                     pd.Period("2011-02-01", freq="D"),
-                    pd.Period("2011-03-01 09:00", freq="H"),
+                    pd.Period("2011-03-01 09:00", freq="h"),
                     pd.Period("2011-04", freq="M"),
                 ],
                 "C": list("abcd"),
@@ -2223,17 +1370,6 @@ c  10  11  12  13  14\
         result = formatter.max_rows_fitted
         assert result == expected
 
-    def test_no_extra_space(self):
-        # GH 52690: Check that no extra space is given
-        col1 = "TEST"
-        col2 = "PANDAS"
-        col3 = "to_string"
-        expected = f"{col1:<6s} {col2:<7s} {col3:<10s}"
-        df = DataFrame([{"col1": "TEST", "col2": "PANDAS", "col3": "to_string"}])
-        d = {"col1": "{:<6s}".format, "col2": "{:<7s}".format, "col3": "{:<10s}".format}
-        result = df.to_string(index=False, header=False, formatters=d)
-        assert result == expected
-
 
 def gen_series_formatting():
     s1 = Series(["a"] * 100)
@@ -2245,45 +1381,6 @@ def gen_series_formatting():
 
 
 class TestSeriesFormatting:
-    def test_repr_unicode(self):
-        s = Series(["\u03c3"] * 10)
-        repr(s)
-
-        a = Series(["\u05d0"] * 1000)
-        a.name = "title1"
-        repr(a)
-
-    def test_to_string(self):
-        ts = tm.makeTimeSeries()
-        buf = StringIO()
-
-        s = ts.to_string()
-
-        retval = ts.to_string(buf=buf)
-        assert retval is None
-        assert buf.getvalue().strip() == s
-
-        # pass float_format
-        format = "%.4f".__mod__
-        result = ts.to_string(float_format=format)
-        result = [x.split()[1] for x in result.split("\n")[:-1]]
-        expected = [format(x) for x in ts]
-        assert result == expected
-
-        # empty string
-        result = ts[:0].to_string()
-        assert result == "Series([], Freq: B)"
-
-        result = ts[:0].to_string(length=0)
-        assert result == "Series([], Freq: B)"
-
-        # name and length
-        cp = ts.copy()
-        cp.name = "foo"
-        result = cp.to_string(length=True, name=True, dtype=True)
-        last_line = result.split("\n")[-1].strip()
-        assert last_line == (f"Freq: B, Name: foo, Length: {len(cp)}, dtype: float64")
-
     def test_freq_name_separation(self):
         s = Series(
             np.random.default_rng(2).standard_normal(10),
@@ -2294,49 +1391,14 @@ class TestSeriesFormatting:
         result = repr(s)
         assert "Freq: D, Name: 0" in result
 
-    def test_to_string_mixed(self):
-        s = Series(["foo", np.nan, -1.23, 4.56])
-        result = s.to_string()
-        expected = "".join(["0     foo\n", "1     NaN\n", "2   -1.23\n", "3    4.56"])
-        assert result == expected
-
-        # but don't count NAs as floats
-        s = Series(["foo", np.nan, "bar", "baz"])
-        result = s.to_string()
-        expected = "".join(["0    foo\n", "1    NaN\n", "2    bar\n", "3    baz"])
-        assert result == expected
-
-        s = Series(["foo", 5, "bar", "baz"])
-        result = s.to_string()
-        expected = "".join(["0    foo\n", "1      5\n", "2    bar\n", "3    baz"])
-        assert result == expected
-
-    def test_to_string_float_na_spacing(self):
-        s = Series([0.0, 1.5678, 2.0, -3.0, 4.0])
-        s[::2] = np.nan
-
-        result = s.to_string()
-        expected = (
-            "0       NaN\n"
-            "1    1.5678\n"
-            "2       NaN\n"
-            "3   -3.0000\n"
-            "4       NaN"
-        )
-        assert result == expected
-
-    def test_to_string_without_index(self):
-        # GH 11729 Test index=False option
-        s = Series([1, 2, 3, 4])
-        result = s.to_string(index=False)
-        expected = "\n".join(["1", "2", "3", "4"])
-        assert result == expected
-
     def test_unicode_name_in_footer(self):
         s = Series([1, 2], name="\u05e2\u05d1\u05e8\u05d9\u05ea")
         sf = fmt.SeriesFormatter(s, name="\u05e2\u05d1\u05e8\u05d9\u05ea")
         sf._get_footer()  # should not raise exception
 
+    @pytest.mark.xfail(
+        using_pyarrow_string_dtype(), reason="Fixup when arrow is default"
+    )
     def test_east_asian_unicode_series(self):
         # not aligned properly because of east asian width
 
@@ -2580,22 +1642,6 @@ class TestSeriesFormatting:
             else:
                 assert "+10" in line
 
-    def test_datetimeindex(self):
-        index = date_range("20130102", periods=6)
-        s = Series(1, index=index)
-        result = s.to_string()
-        assert "2013-01-02" in result
-
-        # nat in index
-        s2 = Series(2, index=[Timestamp("20130111"), NaT])
-        s = pd.concat([s2, s])
-        result = s.to_string()
-        assert "NaT" in result
-
-        # nat in summary
-        result = str(s2.index)
-        assert "NaT" in result
-
     @pytest.mark.parametrize(
         "start_date",
         [
@@ -2619,63 +1665,6 @@ class TestSeriesFormatting:
         s2 = Series(3, index=dti)
         result = str(s2.index)
         assert start_date in result
-
-    def test_timedelta64(self):
-        Series(np.array([1100, 20], dtype="timedelta64[ns]")).to_string()
-
-        s = Series(date_range("2012-1-1", periods=3, freq="D"))
-
-        # GH2146
-
-        # adding NaTs
-        y = s - s.shift(1)
-        result = y.to_string()
-        assert "1 days" in result
-        assert "00:00:00" not in result
-        assert "NaT" in result
-
-        # with frac seconds
-        o = Series([datetime(2012, 1, 1, microsecond=150)] * 3)
-        y = s - o
-        result = y.to_string()
-        assert "-1 days +23:59:59.999850" in result
-
-        # rounding?
-        o = Series([datetime(2012, 1, 1, 1)] * 3)
-        y = s - o
-        result = y.to_string()
-        assert "-1 days +23:00:00" in result
-        assert "1 days 23:00:00" in result
-
-        o = Series([datetime(2012, 1, 1, 1, 1)] * 3)
-        y = s - o
-        result = y.to_string()
-        assert "-1 days +22:59:00" in result
-        assert "1 days 22:59:00" in result
-
-        o = Series([datetime(2012, 1, 1, 1, 1, microsecond=150)] * 3)
-        y = s - o
-        result = y.to_string()
-        assert "-1 days +22:58:59.999850" in result
-        assert "0 days 22:58:59.999850" in result
-
-        # neg time
-        td = timedelta(minutes=5, seconds=3)
-        s2 = Series(date_range("2012-1-1", periods=3, freq="D")) + td
-        y = s - s2
-        result = y.to_string()
-        assert "-1 days +23:54:57" in result
-
-        td = timedelta(microseconds=550)
-        s2 = Series(date_range("2012-1-1", periods=3, freq="D")) + td
-        y = s - td
-        result = y.to_string()
-        assert "2012-01-01 23:59:59.999450" in result
-
-        # no boxing of the actual elements
-        td = Series(pd.timedelta_range("1 days", periods=3))
-        result = td.to_string()
-        assert result == "0   1 days\n1   2 days\n2   3 days"
 
     def test_mixed_datetime64(self):
         df = DataFrame({"A": [1, 2], "B": ["2012-01-01", "2012-01-02"]})
@@ -2716,7 +1705,7 @@ class TestSeriesFormatting:
             [
                 pd.Period("2011-01", freq="M"),
                 pd.Period("2011-02-01", freq="D"),
-                pd.Period("2011-03-01 09:00", freq="H"),
+                pd.Period("2011-03-01 09:00", freq="h"),
             ]
         )
         exp = (
@@ -2778,15 +1767,15 @@ class TestSeriesFormatting:
         assert res == exp
 
     def chck_ncols(self, s):
-        with option_context("display.max_rows", 10):
-            res = repr(s)
-        lines = res.split("\n")
         lines = [
             line for line in repr(s).split("\n") if not re.match(r"[^\.]*\.+", line)
         ][:-1]
         ncolsizes = len({len(line.strip()) for line in lines})
         assert ncolsizes == 1
 
+    @pytest.mark.xfail(
+        using_pyarrow_string_dtype(), reason="change when arrow is default"
+    )
     def test_format_explicit(self):
         test_sers = gen_series_formatting()
         with option_context("display.max_rows", 4, "display.show_dimensions", False):
@@ -2882,73 +1871,12 @@ class TestSeriesFormatting:
             # max_rows of None -> never truncate
             assert ".." not in repr(s)
 
-    def test_to_string_name(self):
-        s = Series(range(100), dtype="int64")
-        s.name = "myser"
-        res = s.to_string(max_rows=2, name=True)
-        exp = "0      0\n      ..\n99    99\nName: myser"
-        assert res == exp
-        res = s.to_string(max_rows=2, name=False)
-        exp = "0      0\n      ..\n99    99"
-        assert res == exp
-
-    def test_to_string_dtype(self):
-        s = Series(range(100), dtype="int64")
-        res = s.to_string(max_rows=2, dtype=True)
-        exp = "0      0\n      ..\n99    99\ndtype: int64"
-        assert res == exp
-        res = s.to_string(max_rows=2, dtype=False)
-        exp = "0      0\n      ..\n99    99"
-        assert res == exp
-
-    def test_to_string_length(self):
-        s = Series(range(100), dtype="int64")
-        res = s.to_string(max_rows=2, length=True)
-        exp = "0      0\n      ..\n99    99\nLength: 100"
-        assert res == exp
-
-    def test_to_string_na_rep(self):
-        s = Series(index=range(100), dtype=np.float64)
-        res = s.to_string(na_rep="foo", max_rows=2)
-        exp = "0    foo\n      ..\n99   foo"
-        assert res == exp
-
-    def test_to_string_float_format(self):
-        s = Series(range(10), dtype="float64")
-        res = s.to_string(float_format=lambda x: f"{x:2.1f}", max_rows=2)
-        exp = "0   0.0\n     ..\n9   9.0"
-        assert res == exp
-
-    def test_to_string_header(self):
-        s = Series(range(10), dtype="int64")
-        s.index.name = "foo"
-        res = s.to_string(header=True, max_rows=2)
-        exp = "foo\n0    0\n    ..\n9    9"
-        assert res == exp
-        res = s.to_string(header=False, max_rows=2)
-        exp = "0    0\n    ..\n9    9"
-        assert res == exp
-
-    def test_to_string_multindex_header(self):
-        # GH 16718
-        df = DataFrame({"a": [0], "b": [1], "c": [2], "d": [3]}).set_index(["a", "b"])
-        res = df.to_string(header=["r1", "r2"])
-        exp = "    r1 r2\na b      \n0 1  2  3"
-        assert res == exp
-
-    def test_to_string_empty_col(self):
-        # GH 13653
-        s = Series(["", "Hello", "World", "", "", "Mooooo", "", ""])
-        res = s.to_string(index=False)
-        exp = "      \n Hello\n World\n      \n      \nMooooo\n      \n      "
-        assert re.match(exp, res)
-
 
 class TestGenericArrayFormatter:
     def test_1d_array(self):
-        # GenericArrayFormatter is used on types for which there isn't a dedicated
+        # _GenericArrayFormatter is used on types for which there isn't a dedicated
         # formatter. np.bool_ is one of those types.
-        obj = fmt.GenericArrayFormatter(np.array([True, False]))
+        obj = fmt._GenericArrayFormatter(np.array([True, False]))
         res = obj.get_result()
         assert len(res) == 2
         # Results should be right-justified.
@@ -2956,14 +1884,14 @@ class TestGenericArrayFormatter:
         assert res[1] == " False"
 
     def test_2d_array(self):
-        obj = fmt.GenericArrayFormatter(np.array([[True, False], [False, True]]))
+        obj = fmt._GenericArrayFormatter(np.array([[True, False], [False, True]]))
         res = obj.get_result()
         assert len(res) == 2
         assert res[0] == " [True, False]"
         assert res[1] == " [False, True]"
 
     def test_3d_array(self):
-        obj = fmt.GenericArrayFormatter(
+        obj = fmt._GenericArrayFormatter(
             np.array([[[True, True], [False, False]], [[False, True], [True, False]]])
         )
         res = obj.get_result()
@@ -2998,7 +1926,7 @@ class TestGenericArrayFormatter:
         series = Series(ExtTypeStub(), copy=False)
         res = repr(series)  # This line crashed before #33770 was fixed.
         expected = "\n".join(
-            ["0    [False  True]", "1    [ True False]", "dtype: DtypeStub"]
+            ["0    [False True]", "1    [True False]", "dtype: DtypeStub"]
         )
         assert res == expected
 
@@ -3132,132 +2060,67 @@ class TestFloatArrayFormatter:
             assert str(df) == "            x\n0  1.2346e+04\n1  2.0000e+06"
 
 
-class TestRepr_timedelta64:
-    def test_none(self):
-        delta_1d = pd.to_timedelta(1, unit="D")
-        delta_0d = pd.to_timedelta(0, unit="D")
-        delta_1s = pd.to_timedelta(1, unit="s")
-        delta_500ms = pd.to_timedelta(500, unit="ms")
-
-        drepr = lambda x: x._repr_base()
-        assert drepr(delta_1d) == "1 days"
-        assert drepr(-delta_1d) == "-1 days"
-        assert drepr(delta_0d) == "0 days"
-        assert drepr(delta_1s) == "0 days 00:00:01"
-        assert drepr(delta_500ms) == "0 days 00:00:00.500000"
-        assert drepr(delta_1d + delta_1s) == "1 days 00:00:01"
-        assert drepr(-delta_1d + delta_1s) == "-1 days +00:00:01"
-        assert drepr(delta_1d + delta_500ms) == "1 days 00:00:00.500000"
-        assert drepr(-delta_1d + delta_500ms) == "-1 days +00:00:00.500000"
-
-    def test_sub_day(self):
-        delta_1d = pd.to_timedelta(1, unit="D")
-        delta_0d = pd.to_timedelta(0, unit="D")
-        delta_1s = pd.to_timedelta(1, unit="s")
-        delta_500ms = pd.to_timedelta(500, unit="ms")
-
-        drepr = lambda x: x._repr_base(format="sub_day")
-        assert drepr(delta_1d) == "1 days"
-        assert drepr(-delta_1d) == "-1 days"
-        assert drepr(delta_0d) == "00:00:00"
-        assert drepr(delta_1s) == "00:00:01"
-        assert drepr(delta_500ms) == "00:00:00.500000"
-        assert drepr(delta_1d + delta_1s) == "1 days 00:00:01"
-        assert drepr(-delta_1d + delta_1s) == "-1 days +00:00:01"
-        assert drepr(delta_1d + delta_500ms) == "1 days 00:00:00.500000"
-        assert drepr(-delta_1d + delta_500ms) == "-1 days +00:00:00.500000"
-
-    def test_long(self):
-        delta_1d = pd.to_timedelta(1, unit="D")
-        delta_0d = pd.to_timedelta(0, unit="D")
-        delta_1s = pd.to_timedelta(1, unit="s")
-        delta_500ms = pd.to_timedelta(500, unit="ms")
-
-        drepr = lambda x: x._repr_base(format="long")
-        assert drepr(delta_1d) == "1 days 00:00:00"
-        assert drepr(-delta_1d) == "-1 days +00:00:00"
-        assert drepr(delta_0d) == "0 days 00:00:00"
-        assert drepr(delta_1s) == "0 days 00:00:01"
-        assert drepr(delta_500ms) == "0 days 00:00:00.500000"
-        assert drepr(delta_1d + delta_1s) == "1 days 00:00:01"
-        assert drepr(-delta_1d + delta_1s) == "-1 days +00:00:01"
-        assert drepr(delta_1d + delta_500ms) == "1 days 00:00:00.500000"
-        assert drepr(-delta_1d + delta_500ms) == "-1 days +00:00:00.500000"
-
-    def test_all(self):
-        delta_1d = pd.to_timedelta(1, unit="D")
-        delta_0d = pd.to_timedelta(0, unit="D")
-        delta_1ns = pd.to_timedelta(1, unit="ns")
-
-        drepr = lambda x: x._repr_base(format="all")
-        assert drepr(delta_1d) == "1 days 00:00:00.000000000"
-        assert drepr(-delta_1d) == "-1 days +00:00:00.000000000"
-        assert drepr(delta_0d) == "0 days 00:00:00.000000000"
-        assert drepr(delta_1ns) == "0 days 00:00:00.000000001"
-        assert drepr(-delta_1d + delta_1ns) == "-1 days +00:00:00.000000001"
-
-
 class TestTimedelta64Formatter:
     def test_days(self):
-        x = pd.to_timedelta(list(range(5)) + [NaT], unit="D")
-        result = fmt.Timedelta64Formatter(x, box=True).get_result()
-        assert result[0].strip() == "'0 days'"
-        assert result[1].strip() == "'1 days'"
-
-        result = fmt.Timedelta64Formatter(x[1:2], box=True).get_result()
-        assert result[0].strip() == "'1 days'"
-
-        result = fmt.Timedelta64Formatter(x, box=False).get_result()
+        x = pd.to_timedelta(list(range(5)) + [NaT], unit="D")._values
+        result = fmt._Timedelta64Formatter(x).get_result()
         assert result[0].strip() == "0 days"
         assert result[1].strip() == "1 days"
 
-        result = fmt.Timedelta64Formatter(x[1:2], box=False).get_result()
+        result = fmt._Timedelta64Formatter(x[1:2]).get_result()
+        assert result[0].strip() == "1 days"
+
+        result = fmt._Timedelta64Formatter(x).get_result()
+        assert result[0].strip() == "0 days"
+        assert result[1].strip() == "1 days"
+
+        result = fmt._Timedelta64Formatter(x[1:2]).get_result()
         assert result[0].strip() == "1 days"
 
     def test_days_neg(self):
-        x = pd.to_timedelta(list(range(5)) + [NaT], unit="D")
-        result = fmt.Timedelta64Formatter(-x, box=True).get_result()
-        assert result[0].strip() == "'0 days'"
-        assert result[1].strip() == "'-1 days'"
+        x = pd.to_timedelta(list(range(5)) + [NaT], unit="D")._values
+        result = fmt._Timedelta64Formatter(-x).get_result()
+        assert result[0].strip() == "0 days"
+        assert result[1].strip() == "-1 days"
 
     def test_subdays(self):
-        y = pd.to_timedelta(list(range(5)) + [NaT], unit="s")
-        result = fmt.Timedelta64Formatter(y, box=True).get_result()
-        assert result[0].strip() == "'0 days 00:00:00'"
-        assert result[1].strip() == "'0 days 00:00:01'"
+        y = pd.to_timedelta(list(range(5)) + [NaT], unit="s")._values
+        result = fmt._Timedelta64Formatter(y).get_result()
+        assert result[0].strip() == "0 days 00:00:00"
+        assert result[1].strip() == "0 days 00:00:01"
 
     def test_subdays_neg(self):
-        y = pd.to_timedelta(list(range(5)) + [NaT], unit="s")
-        result = fmt.Timedelta64Formatter(-y, box=True).get_result()
-        assert result[0].strip() == "'0 days 00:00:00'"
-        assert result[1].strip() == "'-1 days +23:59:59'"
+        y = pd.to_timedelta(list(range(5)) + [NaT], unit="s")._values
+        result = fmt._Timedelta64Formatter(-y).get_result()
+        assert result[0].strip() == "0 days 00:00:00"
+        assert result[1].strip() == "-1 days +23:59:59"
 
     def test_zero(self):
-        x = pd.to_timedelta(list(range(1)) + [NaT], unit="D")
-        result = fmt.Timedelta64Formatter(x, box=True).get_result()
-        assert result[0].strip() == "'0 days'"
+        x = pd.to_timedelta(list(range(1)) + [NaT], unit="D")._values
+        result = fmt._Timedelta64Formatter(x).get_result()
+        assert result[0].strip() == "0 days"
 
-        x = pd.to_timedelta(list(range(1)), unit="D")
-        result = fmt.Timedelta64Formatter(x, box=True).get_result()
-        assert result[0].strip() == "'0 days'"
+        x = pd.to_timedelta(list(range(1)), unit="D")._values
+        result = fmt._Timedelta64Formatter(x).get_result()
+        assert result[0].strip() == "0 days"
 
 
 class TestDatetime64Formatter:
     def test_mixed(self):
-        x = Series([datetime(2013, 1, 1), datetime(2013, 1, 1, 12), NaT])
-        result = fmt.Datetime64Formatter(x).get_result()
+        x = Series([datetime(2013, 1, 1), datetime(2013, 1, 1, 12), NaT])._values
+        result = fmt._Datetime64Formatter(x).get_result()
         assert result[0].strip() == "2013-01-01 00:00:00"
         assert result[1].strip() == "2013-01-01 12:00:00"
 
     def test_dates(self):
-        x = Series([datetime(2013, 1, 1), datetime(2013, 1, 2), NaT])
-        result = fmt.Datetime64Formatter(x).get_result()
+        x = Series([datetime(2013, 1, 1), datetime(2013, 1, 2), NaT])._values
+        result = fmt._Datetime64Formatter(x).get_result()
         assert result[0].strip() == "2013-01-01"
         assert result[1].strip() == "2013-01-02"
 
     def test_date_nanos(self):
-        x = Series([Timestamp(200)])
-        result = fmt.Datetime64Formatter(x).get_result()
+        x = Series([Timestamp(200)])._values
+        result = fmt._Datetime64Formatter(x).get_result()
         assert result[0].strip() == "1970-01-01 00:00:00.000000200"
 
     def test_dates_display(self):
@@ -3265,347 +2128,129 @@ class TestDatetime64Formatter:
         # make sure that we are consistently display date formatting
         x = Series(date_range("20130101 09:00:00", periods=5, freq="D"))
         x.iloc[1] = np.nan
-        result = fmt.Datetime64Formatter(x).get_result()
+        result = fmt._Datetime64Formatter(x._values).get_result()
         assert result[0].strip() == "2013-01-01 09:00:00"
         assert result[1].strip() == "NaT"
         assert result[4].strip() == "2013-01-05 09:00:00"
 
         x = Series(date_range("20130101 09:00:00", periods=5, freq="s"))
         x.iloc[1] = np.nan
-        result = fmt.Datetime64Formatter(x).get_result()
+        result = fmt._Datetime64Formatter(x._values).get_result()
         assert result[0].strip() == "2013-01-01 09:00:00"
         assert result[1].strip() == "NaT"
         assert result[4].strip() == "2013-01-01 09:00:04"
 
         x = Series(date_range("20130101 09:00:00", periods=5, freq="ms"))
         x.iloc[1] = np.nan
-        result = fmt.Datetime64Formatter(x).get_result()
+        result = fmt._Datetime64Formatter(x._values).get_result()
         assert result[0].strip() == "2013-01-01 09:00:00.000"
         assert result[1].strip() == "NaT"
         assert result[4].strip() == "2013-01-01 09:00:00.004"
 
         x = Series(date_range("20130101 09:00:00", periods=5, freq="us"))
         x.iloc[1] = np.nan
-        result = fmt.Datetime64Formatter(x).get_result()
+        result = fmt._Datetime64Formatter(x._values).get_result()
         assert result[0].strip() == "2013-01-01 09:00:00.000000"
         assert result[1].strip() == "NaT"
         assert result[4].strip() == "2013-01-01 09:00:00.000004"
 
-        x = Series(date_range("20130101 09:00:00", periods=5, freq="N"))
+        x = Series(date_range("20130101 09:00:00", periods=5, freq="ns"))
         x.iloc[1] = np.nan
-        result = fmt.Datetime64Formatter(x).get_result()
+        result = fmt._Datetime64Formatter(x._values).get_result()
         assert result[0].strip() == "2013-01-01 09:00:00.000000000"
         assert result[1].strip() == "NaT"
         assert result[4].strip() == "2013-01-01 09:00:00.000000004"
 
     def test_datetime64formatter_yearmonth(self):
-        x = Series([datetime(2016, 1, 1), datetime(2016, 2, 2)])
+        x = Series([datetime(2016, 1, 1), datetime(2016, 2, 2)])._values
 
         def format_func(x):
             return x.strftime("%Y-%m")
 
-        formatter = fmt.Datetime64Formatter(x, formatter=format_func)
+        formatter = fmt._Datetime64Formatter(x, formatter=format_func)
         result = formatter.get_result()
         assert result == ["2016-01", "2016-02"]
 
     def test_datetime64formatter_hoursecond(self):
         x = Series(
             pd.to_datetime(["10:10:10.100", "12:12:12.120"], format="%H:%M:%S.%f")
-        )
+        )._values
 
         def format_func(x):
             return x.strftime("%H:%M")
 
-        formatter = fmt.Datetime64Formatter(x, formatter=format_func)
+        formatter = fmt._Datetime64Formatter(x, formatter=format_func)
         result = formatter.get_result()
         assert result == ["10:10", "12:12"]
 
     def test_datetime64formatter_tz_ms(self):
-        x = Series(
-            np.array(["2999-01-01", "2999-01-02", "NaT"], dtype="datetime64[ms]")
-        ).dt.tz_localize("US/Pacific")
-        result = fmt.Datetime64TZFormatter(x).get_result()
+        x = (
+            Series(
+                np.array(["2999-01-01", "2999-01-02", "NaT"], dtype="datetime64[ms]")
+            )
+            .dt.tz_localize("US/Pacific")
+            ._values
+        )
+        result = fmt._Datetime64TZFormatter(x).get_result()
         assert result[0].strip() == "2999-01-01 00:00:00-08:00"
         assert result[1].strip() == "2999-01-02 00:00:00-08:00"
 
 
-class TestNaTFormatting:
-    def test_repr(self):
-        assert repr(NaT) == "NaT"
-
-    def test_str(self):
-        assert str(NaT) == "NaT"
-
-
-class TestPeriodIndexFormat:
-    def test_period_format_and_strftime_default(self):
-        per = pd.PeriodIndex([datetime(2003, 1, 1, 12), None], freq="H")
-
-        # Default formatting
-        formatted = per.format()
-        assert formatted[0] == "2003-01-01 12:00"  # default: minutes not shown
-        assert formatted[1] == "NaT"
-        # format is equivalent to strftime(None)...
-        assert formatted[0] == per.strftime(None)[0]
-        assert per.strftime(None)[1] is np.nan  # ...except for NaTs
-
-        # Same test with nanoseconds freq
-        per = pd.period_range("2003-01-01 12:01:01.123456789", periods=2, freq="n")
-        formatted = per.format()
-        assert (formatted == per.strftime(None)).all()
-        assert formatted[0] == "2003-01-01 12:01:01.123456789"
-        assert formatted[1] == "2003-01-01 12:01:01.123456790"
-
-    def test_period_custom(self):
-        # GH#46252 custom formatting directives %l (ms) and %u (us)
-
-        # 3 digits
-        per = pd.period_range("2003-01-01 12:01:01.123", periods=2, freq="l")
-        formatted = per.format(date_format="%y %I:%M:%S (ms=%l us=%u ns=%n)")
-        assert formatted[0] == "03 12:01:01 (ms=123 us=123000 ns=123000000)"
-        assert formatted[1] == "03 12:01:01 (ms=124 us=124000 ns=124000000)"
-
-        # 6 digits
-        per = pd.period_range("2003-01-01 12:01:01.123456", periods=2, freq="u")
-        formatted = per.format(date_format="%y %I:%M:%S (ms=%l us=%u ns=%n)")
-        assert formatted[0] == "03 12:01:01 (ms=123 us=123456 ns=123456000)"
-        assert formatted[1] == "03 12:01:01 (ms=123 us=123457 ns=123457000)"
-
-        # 9 digits
-        per = pd.period_range("2003-01-01 12:01:01.123456789", periods=2, freq="n")
-        formatted = per.format(date_format="%y %I:%M:%S (ms=%l us=%u ns=%n)")
-        assert formatted[0] == "03 12:01:01 (ms=123 us=123456 ns=123456789)"
-        assert formatted[1] == "03 12:01:01 (ms=123 us=123456 ns=123456790)"
-
-    def test_period_tz(self):
-        # Formatting periods created from a datetime with timezone.
-
-        # This timestamp is in 2013 in Europe/Paris but is 2012 in UTC
-        dt = pd.to_datetime(["2013-01-01 00:00:00+01:00"], utc=True)
-
-        # Converting to a period looses the timezone information
-        # Since tz is currently set as utc, we'll see 2012
-        with tm.assert_produces_warning(UserWarning, match="will drop timezone"):
-            per = dt.to_period(freq="H")
-        assert per.format()[0] == "2012-12-31 23:00"
-
-        # If tz is currently set as paris before conversion, we'll see 2013
-        dt = dt.tz_convert("Europe/Paris")
-        with tm.assert_produces_warning(UserWarning, match="will drop timezone"):
-            per = dt.to_period(freq="H")
-        assert per.format()[0] == "2013-01-01 00:00"
-
+class TestFormatPercentiles:
     @pytest.mark.parametrize(
-        "locale_str",
+        "percentiles, expected",
         [
-            pytest.param(None, id=str(locale.getlocale())),
-            "it_IT.utf8",
-            "it_IT",  # Note: encoding will be 'ISO8859-1'
-            "zh_CN.utf8",
-            "zh_CN",  # Note: encoding will be 'gb2312'
+            (
+                [0.01999, 0.02001, 0.5, 0.666666, 0.9999],
+                ["1.999%", "2.001%", "50%", "66.667%", "99.99%"],
+            ),
+            (
+                [0, 0.5, 0.02001, 0.5, 0.666666, 0.9999],
+                ["0%", "50%", "2.0%", "50%", "66.67%", "99.99%"],
+            ),
+            ([0.281, 0.29, 0.57, 0.58], ["28.1%", "29%", "57%", "58%"]),
+            ([0.28, 0.29, 0.57, 0.58], ["28%", "29%", "57%", "58%"]),
+            (
+                [0.9, 0.99, 0.999, 0.9999, 0.99999],
+                ["90%", "99%", "99.9%", "99.99%", "99.999%"],
+            ),
         ],
     )
-    def test_period_non_ascii_fmt(self, locale_str):
-        # GH#46468 non-ascii char in input format string leads to wrong output
-
-        # Skip if locale cannot be set
-        if locale_str is not None and not tm.can_set_locale(locale_str, locale.LC_ALL):
-            pytest.skip(f"Skipping as locale '{locale_str}' cannot be set on host.")
-
-        # Change locale temporarily for this test.
-        with tm.set_locale(locale_str, locale.LC_ALL) if locale_str else nullcontext():
-            # Scalar
-            per = pd.Period("2018-03-11 13:00", freq="H")
-            assert per.strftime("%y é") == "18 é"
-
-            # Index
-            per = pd.period_range("2003-01-01 01:00:00", periods=2, freq="12h")
-            formatted = per.format(date_format="%y é")
-            assert formatted[0] == "03 é"
-            assert formatted[1] == "03 é"
+    def test_format_percentiles(self, percentiles, expected):
+        result = fmt.format_percentiles(percentiles)
+        assert result == expected
 
     @pytest.mark.parametrize(
-        "locale_str",
+        "percentiles",
         [
-            pytest.param(None, id=str(locale.getlocale())),
-            "it_IT.utf8",
-            "it_IT",  # Note: encoding will be 'ISO8859-1'
-            "zh_CN.utf8",
-            "zh_CN",  # Note: encoding will be 'gb2312'
+            ([0.1, np.nan, 0.5]),
+            ([-0.001, 0.1, 0.5]),
+            ([2, 0.1, 0.5]),
+            ([0.1, 0.5, "a"]),
         ],
     )
-    def test_period_custom_locale_directive(self, locale_str):
-        # GH#46319 locale-specific directive leads to non-utf8 c strftime char* result
+    def test_error_format_percentiles(self, percentiles):
+        msg = r"percentiles should all be in the interval \[0,1\]"
+        with pytest.raises(ValueError, match=msg):
+            fmt.format_percentiles(percentiles)
 
-        # Skip if locale cannot be set
-        if locale_str is not None and not tm.can_set_locale(locale_str, locale.LC_ALL):
-            pytest.skip(f"Skipping as locale '{locale_str}' cannot be set on host.")
-
-        # Change locale temporarily for this test.
-        with tm.set_locale(locale_str, locale.LC_ALL) if locale_str else nullcontext():
-            # Get locale-specific reference
-            am_local, pm_local = get_local_am_pm()
-
-            # Scalar
-            per = pd.Period("2018-03-11 13:00", freq="H")
-            assert per.strftime("%p") == pm_local
-
-            # Index
-            per = pd.period_range("2003-01-01 01:00:00", periods=2, freq="12h")
-            formatted = per.format(date_format="%y %I:%M:%S%p")
-            assert formatted[0] == f"03 01:00:00{am_local}"
-            assert formatted[1] == f"03 01:00:00{pm_local}"
-
-
-class TestDatetimeIndexFormat:
-    def test_datetime(self):
-        formatted = pd.to_datetime([datetime(2003, 1, 1, 12), NaT]).format()
-        assert formatted[0] == "2003-01-01 12:00:00"
-        assert formatted[1] == "NaT"
-
-    def test_date(self):
-        formatted = pd.to_datetime([datetime(2003, 1, 1), NaT]).format()
-        assert formatted[0] == "2003-01-01"
-        assert formatted[1] == "NaT"
-
-    def test_date_tz(self):
-        formatted = pd.to_datetime([datetime(2013, 1, 1)], utc=True).format()
-        assert formatted[0] == "2013-01-01 00:00:00+00:00"
-
-        formatted = pd.to_datetime([datetime(2013, 1, 1), NaT], utc=True).format()
-        assert formatted[0] == "2013-01-01 00:00:00+00:00"
-
-    def test_date_explicit_date_format(self):
-        formatted = pd.to_datetime([datetime(2003, 2, 1), NaT]).format(
-            date_format="%m-%d-%Y", na_rep="UT"
-        )
-        assert formatted[0] == "02-01-2003"
-        assert formatted[1] == "UT"
-
-
-class TestDatetimeIndexUnicode:
-    def test_dates(self):
-        text = str(pd.to_datetime([datetime(2013, 1, 1), datetime(2014, 1, 1)]))
-        assert "['2013-01-01'," in text
-        assert ", '2014-01-01']" in text
-
-    def test_mixed(self):
-        text = str(
-            pd.to_datetime(
-                [datetime(2013, 1, 1), datetime(2014, 1, 1, 12), datetime(2014, 1, 1)]
-            )
-        )
-        assert "'2013-01-01 00:00:00'," in text
-        assert "'2014-01-01 00:00:00']" in text
-
-
-class TestStringRepTimestamp:
-    def test_no_tz(self):
-        dt_date = datetime(2013, 1, 2)
-        assert str(dt_date) == str(Timestamp(dt_date))
-
-        dt_datetime = datetime(2013, 1, 2, 12, 1, 3)
-        assert str(dt_datetime) == str(Timestamp(dt_datetime))
-
-        dt_datetime_us = datetime(2013, 1, 2, 12, 1, 3, 45)
-        assert str(dt_datetime_us) == str(Timestamp(dt_datetime_us))
-
-        ts_nanos_only = Timestamp(200)
-        assert str(ts_nanos_only) == "1970-01-01 00:00:00.000000200"
-
-        ts_nanos_micros = Timestamp(1200)
-        assert str(ts_nanos_micros) == "1970-01-01 00:00:00.000001200"
-
-    def test_tz_pytz(self):
-        dt_date = datetime(2013, 1, 2, tzinfo=pytz.utc)
-        assert str(dt_date) == str(Timestamp(dt_date))
-
-        dt_datetime = datetime(2013, 1, 2, 12, 1, 3, tzinfo=pytz.utc)
-        assert str(dt_datetime) == str(Timestamp(dt_datetime))
-
-        dt_datetime_us = datetime(2013, 1, 2, 12, 1, 3, 45, tzinfo=pytz.utc)
-        assert str(dt_datetime_us) == str(Timestamp(dt_datetime_us))
-
-    def test_tz_dateutil(self):
-        utc = dateutil.tz.tzutc()
-
-        dt_date = datetime(2013, 1, 2, tzinfo=utc)
-        assert str(dt_date) == str(Timestamp(dt_date))
-
-        dt_datetime = datetime(2013, 1, 2, 12, 1, 3, tzinfo=utc)
-        assert str(dt_datetime) == str(Timestamp(dt_datetime))
-
-        dt_datetime_us = datetime(2013, 1, 2, 12, 1, 3, 45, tzinfo=utc)
-        assert str(dt_datetime_us) == str(Timestamp(dt_datetime_us))
-
-    def test_nat_representations(self):
-        for f in (str, repr, methodcaller("isoformat")):
-            assert f(NaT) == "NaT"
-
-
-@pytest.mark.parametrize(
-    "percentiles, expected",
-    [
-        (
-            [0.01999, 0.02001, 0.5, 0.666666, 0.9999],
-            ["1.999%", "2.001%", "50%", "66.667%", "99.99%"],
-        ),
-        (
-            [0, 0.5, 0.02001, 0.5, 0.666666, 0.9999],
-            ["0%", "50%", "2.0%", "50%", "66.67%", "99.99%"],
-        ),
-        ([0.281, 0.29, 0.57, 0.58], ["28.1%", "29%", "57%", "58%"]),
-        ([0.28, 0.29, 0.57, 0.58], ["28%", "29%", "57%", "58%"]),
-    ],
-)
-def test_format_percentiles(percentiles, expected):
-    result = fmt.format_percentiles(percentiles)
-    assert result == expected
-
-
-@pytest.mark.parametrize(
-    "percentiles",
-    [([0.1, np.nan, 0.5]), ([-0.001, 0.1, 0.5]), ([2, 0.1, 0.5]), ([0.1, 0.5, "a"])],
-)
-def test_error_format_percentiles(percentiles):
-    msg = r"percentiles should all be in the interval \[0,1\]"
-    with pytest.raises(ValueError, match=msg):
-        fmt.format_percentiles(percentiles)
-
-
-def test_format_percentiles_integer_idx():
-    # Issue #26660
-    result = fmt.format_percentiles(np.linspace(0, 1, 10 + 1))
-    expected = [
-        "0%",
-        "10%",
-        "20%",
-        "30%",
-        "40%",
-        "50%",
-        "60%",
-        "70%",
-        "80%",
-        "90%",
-        "100%",
-    ]
-    assert result == expected
-
-
-def test_repr_html_ipython_config(ip):
-    code = textwrap.dedent(
-        """\
-    from pandas import DataFrame
-    df = DataFrame({"A": [1, 2]})
-    df._repr_html_()
-
-    cfg = get_ipython().config
-    cfg['IPKernelApp']['parent_appname']
-    df._repr_html_()
-    """
-    )
-    result = ip.run_cell(code)
-    assert not result.error_in_exec
+    def test_format_percentiles_integer_idx(self):
+        # Issue #26660
+        result = fmt.format_percentiles(np.linspace(0, 1, 10 + 1))
+        expected = [
+            "0%",
+            "10%",
+            "20%",
+            "30%",
+            "40%",
+            "50%",
+            "60%",
+            "70%",
+            "80%",
+            "90%",
+            "100%",
+        ]
+        assert result == expected
 
 
 @pytest.mark.parametrize("method", ["to_string", "to_html", "to_latex"])

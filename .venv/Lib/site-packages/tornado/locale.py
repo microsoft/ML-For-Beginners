@@ -333,7 +333,7 @@ class Locale(object):
         shorter: bool = False,
         full_format: bool = False,
     ) -> str:
-        """Formats the given date (which should be GMT).
+        """Formats the given date.
 
         By default, we return a relative time (e.g., "2 minutes ago"). You
         can return an absolute date string with ``relative=False``.
@@ -343,10 +343,16 @@ class Locale(object):
 
         This method is primarily intended for dates in the past.
         For dates in the future, we fall back to full format.
+
+        .. versionchanged:: 6.4
+           Aware `datetime.datetime` objects are now supported (naive
+           datetimes are still assumed to be UTC).
         """
         if isinstance(date, (int, float)):
-            date = datetime.datetime.utcfromtimestamp(date)
-        now = datetime.datetime.utcnow()
+            date = datetime.datetime.fromtimestamp(date, datetime.timezone.utc)
+        if date.tzinfo is None:
+            date = date.replace(tzinfo=datetime.timezone.utc)
+        now = datetime.datetime.now(datetime.timezone.utc)
         if date > now:
             if relative and (date - now).seconds < 60:
                 # Due to click skew, things are some things slightly

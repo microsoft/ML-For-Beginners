@@ -202,7 +202,7 @@ def minimize(fun, x0, args=(), method=None, jac=None, hess=None,
         All methods except TNC, SLSQP, and COBYLA support a callable with
         the signature:
 
-            ``callback(OptimizeResult: intermediate_result)``
+            ``callback(intermediate_result: OptimizeResult)``
 
         where ``intermediate_result`` is a keyword parameter containing an
         `OptimizeResult` with attributes ``x`` and ``fun``, the present values
@@ -344,13 +344,13 @@ def minimize(fun, x0, args=(), method=None, jac=None, hess=None,
     large floating values.
 
     Method :ref:`trust-constr <optimize.minimize-trustconstr>` is a
-    trust-region algorithm for constrained optimization. It swiches
+    trust-region algorithm for constrained optimization. It switches
     between two implementations depending on the problem definition.
     It is the most versatile constrained minimization algorithm
     implemented in SciPy and the most appropriate for large-scale problems.
     For equality constrained problems it is an implementation of Byrd-Omojokun
     Trust-Region SQP method described in [17]_ and in [5]_, p. 549. When
-    inequality constraints are imposed as well, it swiches to the trust-region
+    inequality constraints are imposed as well, it switches to the trust-region
     interior point method described in [16]_. This interior point algorithm,
     in turn, solves inequality constraints by introducing slack variables
     and solving a sequence of equality-constrained barrier problems
@@ -497,11 +497,13 @@ def minimize(fun, x0, args=(), method=None, jac=None, hess=None,
     >>> print(res.message)
     Optimization terminated successfully.
     >>> res.hess_inv
-    array([[ 0.00749589,  0.01255155,  0.02396251,  0.04750988,  0.09495377],  # may vary
-           [ 0.01255155,  0.02510441,  0.04794055,  0.09502834,  0.18996269],
-           [ 0.02396251,  0.04794055,  0.09631614,  0.19092151,  0.38165151],
-           [ 0.04750988,  0.09502834,  0.19092151,  0.38341252,  0.7664427 ],
-           [ 0.09495377,  0.18996269,  0.38165151,  0.7664427,   1.53713523]])
+    array([
+        [ 0.00749589,  0.01255155,  0.02396251,  0.04750988,  0.09495377],  # may vary
+        [ 0.01255155,  0.02510441,  0.04794055,  0.09502834,  0.18996269],
+        [ 0.02396251,  0.04794055,  0.09631614,  0.19092151,  0.38165151],
+        [ 0.04750988,  0.09502834,  0.19092151,  0.38341252,  0.7664427 ],
+        [ 0.09495377,  0.18996269,  0.38165151,  0.7664427,   1.53713523]
+    ])
 
 
     Next, consider a minimization problem with several constraints (namely
@@ -558,32 +560,33 @@ def minimize(fun, x0, args=(), method=None, jac=None, hess=None,
     # - jac
     if meth in ('nelder-mead', 'powell', 'cobyla') and bool(jac):
         warn('Method %s does not use gradient information (jac).' % method,
-             RuntimeWarning)
+             RuntimeWarning, stacklevel=2)
     # - hess
     if meth not in ('newton-cg', 'dogleg', 'trust-ncg', 'trust-constr',
                     'trust-krylov', 'trust-exact', '_custom') and hess is not None:
         warn('Method %s does not use Hessian information (hess).' % method,
-             RuntimeWarning)
+             RuntimeWarning, stacklevel=2)
     # - hessp
     if meth not in ('newton-cg', 'trust-ncg', 'trust-constr',
                     'trust-krylov', '_custom') \
        and hessp is not None:
         warn('Method %s does not use Hessian-vector product '
-             'information (hessp).' % method, RuntimeWarning)
+             'information (hessp).' % method,
+             RuntimeWarning, stacklevel=2)
     # - constraints or bounds
     if (meth not in ('cobyla', 'slsqp', 'trust-constr', '_custom') and
             np.any(constraints)):
         warn('Method %s cannot handle constraints.' % method,
-             RuntimeWarning)
+             RuntimeWarning, stacklevel=2)
     if meth not in ('nelder-mead', 'powell', 'l-bfgs-b', 'cobyla', 'slsqp',
                     'tnc', 'trust-constr', '_custom') and bounds is not None:
         warn('Method %s cannot handle bounds.' % method,
-             RuntimeWarning)
+             RuntimeWarning, stacklevel=2)
     # - return_all
     if (meth in ('l-bfgs-b', 'tnc', 'cobyla', 'slsqp') and
             options.get('return_all', False)):
         warn('Method %s does not support the return_all option.' % method,
-             RuntimeWarning)
+             RuntimeWarning, stacklevel=2)
 
     # check gradient vector
     if callable(jac):
@@ -753,7 +756,7 @@ def minimize(fun, x0, args=(), method=None, jac=None, hess=None,
 
 def minimize_scalar(fun, bracket=None, bounds=None, args=(),
                     method=None, tol=None, options=None):
-    """Minimization of scalar function of one variable.
+    """Local minimization of scalar function of one variable.
 
     Parameters
     ----------
@@ -833,6 +836,12 @@ def minimize_scalar(fun, bracket=None, bounds=None, args=(),
     perform bounded minimization [2]_ [3]_. It uses the Brent method to find a
     local minimum in the interval x1 < xopt < x2.
 
+    Note that the Brent and Golden methods do not guarantee success unless a
+    valid ``bracket`` triple is provided. If a three-point bracket cannot be
+    found, consider `scipy.optimize.minimize`. Also, all methods are intended
+    only for local minimization. When the function of interest has more than
+    one local minimum, consider :ref:`global_optimization`.
+
     **Custom minimizers**
 
     It may be useful to pass a custom minimization method, for example
@@ -911,7 +920,8 @@ def minimize_scalar(fun, bracket=None, bounds=None, args=(),
         options = dict(options)
         if meth == 'bounded' and 'xatol' not in options:
             warn("Method 'bounded' does not support relative tolerance in x; "
-                 "defaulting to absolute tolerance.", RuntimeWarning)
+                 "defaulting to absolute tolerance.",
+                 RuntimeWarning, stacklevel=2)
             options['xatol'] = tol
         elif meth == '_custom':
             options.setdefault('tol', tol)

@@ -20,7 +20,7 @@ def test_complex_fixed(tmp_path, setup_path):
     )
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df")
+    df.to_hdf(path, key="df")
     reread = read_hdf(path, "df")
     tm.assert_frame_equal(df, reread)
 
@@ -30,7 +30,7 @@ def test_complex_fixed(tmp_path, setup_path):
         columns=list("ABCDE"),
     )
     path = tmp_path / setup_path
-    df.to_hdf(path, "df")
+    df.to_hdf(path, key="df")
     reread = read_hdf(path, "df")
     tm.assert_frame_equal(df, reread)
 
@@ -43,8 +43,8 @@ def test_complex_table(tmp_path, setup_path):
     )
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", format="table")
-    reread = read_hdf(path, "df")
+    df.to_hdf(path, key="df", format="table")
+    reread = read_hdf(path, key="df")
     tm.assert_frame_equal(df, reread)
 
     df = DataFrame(
@@ -54,7 +54,7 @@ def test_complex_table(tmp_path, setup_path):
     )
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", format="table", mode="w")
+    df.to_hdf(path, key="df", format="table", mode="w")
     reread = read_hdf(path, "df")
     tm.assert_frame_equal(df, reread)
 
@@ -77,7 +77,7 @@ def test_complex_mixed_fixed(tmp_path, setup_path):
         index=list("abcd"),
     )
     path = tmp_path / setup_path
-    df.to_hdf(path, "df")
+    df.to_hdf(path, key="df")
     reread = read_hdf(path, "df")
     tm.assert_frame_equal(df, reread)
 
@@ -106,7 +106,7 @@ def test_complex_mixed_table(tmp_path, setup_path):
         tm.assert_frame_equal(df.loc[df.A > 2], result)
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", format="table")
+    df.to_hdf(path, key="df", format="table")
     reread = read_hdf(path, "df")
     tm.assert_frame_equal(df, reread)
 
@@ -120,7 +120,7 @@ def test_complex_across_dimensions_fixed(tmp_path, setup_path):
     comps = [tm.assert_series_equal, tm.assert_frame_equal]
     for obj, comp in zip(objs, comps):
         path = tmp_path / setup_path
-        obj.to_hdf(path, "obj", format="fixed")
+        obj.to_hdf(path, key="obj", format="fixed")
         reread = read_hdf(path, "obj")
         comp(obj, reread)
 
@@ -131,7 +131,7 @@ def test_complex_across_dimensions(tmp_path, setup_path):
     df = DataFrame({"A": s, "B": s})
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "obj", format="table")
+    df.to_hdf(path, key="obj", format="table")
     reread = read_hdf(path, "obj")
     tm.assert_frame_equal(df, reread)
 
@@ -172,10 +172,10 @@ def test_complex_series_error(tmp_path, setup_path):
 
     path = tmp_path / setup_path
     with pytest.raises(TypeError, match=msg):
-        s.to_hdf(path, "obj", format="t")
+        s.to_hdf(path, key="obj", format="t")
 
     path = tmp_path / setup_path
-    s.to_hdf(path, "obj", format="t", index=False)
+    s.to_hdf(path, key="obj", format="t", index=False)
     reread = read_hdf(path, "obj")
     tm.assert_series_equal(s, reread)
 

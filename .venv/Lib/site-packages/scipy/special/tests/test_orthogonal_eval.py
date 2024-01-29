@@ -8,7 +8,7 @@ from scipy.special._testutils import FuncData
 
 
 def test_eval_chebyt():
-    n = np.arange(0, 10000, 7)
+    n = np.arange(0, 10000, 7, dtype=np.dtype("long"))
     x = 2*np.random.rand() - 1
     v1 = np.cos(n*np.arccos(x))
     v2 = _ufuncs.eval_chebyt(n, x)
@@ -61,7 +61,7 @@ class TestPolys:
         dataset = np.concatenate(dataset, axis=0)
 
         def polyfunc(*p):
-            p = (p[0].astype(int),) + p[1:]
+            p = (p[0].astype(np.dtype("long")),) + p[1:]
             return func(*p)
 
         with np.errstate(all='raise'):

@@ -48,7 +48,7 @@ class FloatAttrArray(ExtensionArray):
         self.attr = attr
 
     @classmethod
-    def _from_sequence(cls, scalars, dtype=None, copy=False):
+    def _from_sequence(cls, scalars, *, dtype=None, copy=False):
         data = np.array(scalars, dtype="float64", copy=copy)
         return cls(data)
 

@@ -231,7 +231,7 @@ class TestFrameLegend:
             "line",
             "bar",
             "barh",
-            pytest.param("kde", marks=td.skip_if_no_scipy),
+            pytest.param("kde", marks=td.skip_if_no("scipy")),
             "area",
             "hist",
         ],

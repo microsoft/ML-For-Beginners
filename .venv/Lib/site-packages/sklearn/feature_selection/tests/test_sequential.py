@@ -1,6 +1,5 @@
 import numpy as np
 import pytest
-import scipy
 from numpy.testing import assert_array_equal
 
 from sklearn.cluster import KMeans
@@ -12,6 +11,7 @@ from sklearn.model_selection import LeaveOneGroupOut, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 
 def test_bad_n_features_to_select():
@@ -184,11 +184,12 @@ def test_sanity(seed, direction, n_features_to_select, expected_selected_feature
     assert_array_equal(sfs.get_support(indices=True), expected_selected_features)
 
 
-def test_sparse_support():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_sparse_support(csr_container):
     # Make sure sparse data is supported
 
     X, y = make_regression(n_features=10)
-    X = scipy.sparse.csr_matrix(X)
+    X = csr_container(X)
     sfs = SequentialFeatureSelector(
         LinearRegression(), n_features_to_select="auto", cv=2
     )

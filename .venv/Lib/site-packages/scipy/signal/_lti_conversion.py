@@ -85,7 +85,7 @@ def tf2ss(num, den):
                 array([], float))
 
     # pad numerator to have same number of columns has denominator
-    num = r_['-1', zeros((num.shape[0], K - M), num.dtype), num]
+    num = np.hstack((np.zeros((num.shape[0], K - M), dtype=num.dtype), num))
 
     if num.shape[-1] > 0:
         D = atleast_2d(num[:, 0])

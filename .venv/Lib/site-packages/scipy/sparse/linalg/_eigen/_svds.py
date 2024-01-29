@@ -200,10 +200,10 @@ def svds(A, k=6, ncv=None, tol=0, which='LM', v0=None,
 
     Choices of the input matrix `A` numeric dtype may be limited.
     Only ``solver="lobpcg"`` supports all floating point dtypes
-    real: 'np.single', 'np.double', 'np.longdouble' and
-    complex: 'np.csingle', 'np.cdouble', 'np.clongdouble'.
+    real: 'np.float32', 'np.float64', 'np.longdouble' and
+    complex: 'np.complex64', 'np.complex128', 'np.clongdouble'.
     The ``solver="arpack"`` supports only
-    'np.single', 'np.double', and 'np.cdouble'.
+    'np.float32', 'np.float64', and 'np.complex128'.
 
     Examples
     --------

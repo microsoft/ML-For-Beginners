@@ -244,8 +244,9 @@ def test_itemset_no_segfault_on_readonly():
 
     filename = pjoin(TEST_DATA_PATH, 'example_1.nc')
     with suppress_warnings() as sup:
-        sup.filter(RuntimeWarning,
-                   "Cannot close a netcdf_file opened with mmap=True, when netcdf_variables or arrays referring to its data still exist")
+        message = ("Cannot close a netcdf_file opened with mmap=True, when "
+                   "netcdf_variables or arrays referring to its data still exist")
+        sup.filter(RuntimeWarning, message)
         with netcdf_file(filename, 'r', mmap=True) as f:
             time_var = f.variables['time']
 
@@ -346,8 +347,9 @@ def test_mmaps_segfault():
 
     # should not crash
     with suppress_warnings() as sup:
-        sup.filter(RuntimeWarning,
-                   "Cannot close a netcdf_file opened with mmap=True, when netcdf_variables or arrays referring to its data still exist")
+        message = ("Cannot close a netcdf_file opened with mmap=True, when "
+                   "netcdf_variables or arrays referring to its data still exist")
+        sup.filter(RuntimeWarning, message)
         x = doit()
     x.sum()
 
@@ -426,7 +428,8 @@ def test_append_recordDimension():
             # Read the file and check that append worked
             with netcdf_file('withRecordDimension.nc') as f:
                 assert_equal(f.variables['time'][-1], i)
-                assert_equal(f.variables['testData'][-1, :, :].copy(), np.full((dataSize, dataSize), i))
+                assert_equal(f.variables['testData'][-1, :, :].copy(),
+                             np.full((dataSize, dataSize), i))
                 assert_equal(f.variables['time'].data.shape[0], i+1)
                 assert_equal(f.variables['testData'].data.shape[0], i+1)
 

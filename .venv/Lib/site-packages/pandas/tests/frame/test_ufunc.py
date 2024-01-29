@@ -31,7 +31,7 @@ def test_unary_unary(dtype):
 def test_unary_binary(request, dtype):
     # unary input, binary output
     if is_extension_array_dtype(dtype) or isinstance(dtype, dict):
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 reason="Extension / mixed with multiple outputs not implemented."
             )
@@ -106,7 +106,7 @@ def test_binary_input_aligns_columns(request, dtype_a, dtype_b):
         or is_extension_array_dtype(dtype_b)
         or isinstance(dtype_b, dict)
     ):
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 reason="Extension / mixed with multiple inputs not implemented."
             )
@@ -135,7 +135,7 @@ def test_binary_input_aligns_columns(request, dtype_a, dtype_b):
 @pytest.mark.parametrize("dtype", dtypes)
 def test_binary_input_aligns_index(request, dtype):
     if is_extension_array_dtype(dtype) or isinstance(dtype, dict):
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 reason="Extension / mixed with multiple inputs not implemented."
             )

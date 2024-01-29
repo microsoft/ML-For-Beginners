@@ -12,7 +12,7 @@ from pandas.tseries import offsets
 
 
 class TestPickle:
-    @pytest.mark.parametrize("freq", ["D", "M", "A"])
+    @pytest.mark.parametrize("freq", ["D", "M", "Y"])
     def test_pickle_round_trip(self, freq):
         idx = PeriodIndex(["2016-05-16", "NaT", NaT, np.nan], freq=freq)
         result = tm.round_trip_pickle(idx)

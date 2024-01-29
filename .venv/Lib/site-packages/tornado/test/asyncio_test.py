@@ -11,6 +11,8 @@
 # under the License.
 
 import asyncio
+import threading
+import time
 import unittest
 import warnings
 
@@ -21,6 +23,7 @@ from tornado.platform.asyncio import (
     AsyncIOLoop,
     to_asyncio_future,
     AnyThreadEventLoopPolicy,
+    AddThreadSelectorEventLoop,
 )
 from tornado.testing import AsyncTestCase, gen_test
 
@@ -41,15 +44,8 @@ class AsyncIOLoopTest(AsyncTestCase):
     @gen_test
     def test_asyncio_future(self):
         # Test that we can yield an asyncio future from a tornado coroutine.
-        # Without 'yield from', we must wrap coroutines in ensure_future,
-        # which was introduced during Python 3.4, deprecating the prior "async".
-        if hasattr(asyncio, "ensure_future"):
-            ensure_future = asyncio.ensure_future
-        else:
-            # async is a reserved word in Python 3.7
-            ensure_future = getattr(asyncio, "async")
-
-        x = yield ensure_future(
+        # Without 'yield from', we must wrap coroutines in ensure_future.
+        x = yield asyncio.ensure_future(
             asyncio.get_event_loop().run_in_executor(None, lambda: 42)
         )
         self.assertEqual(x, 42)
@@ -105,6 +101,11 @@ class AsyncIOLoopTest(AsyncTestCase):
             42,
         )
 
+    def test_add_thread_close_idempotent(self):
+        loop = AddThreadSelectorEventLoop(asyncio.get_event_loop())  # type: ignore
+        loop.close()
+        loop.close()
+
 
 class LeakTest(unittest.TestCase):
     def setUp(self):
@@ -149,6 +150,57 @@ class LeakTest(unittest.TestCase):
         # Because the cleanup is run on new loop creation, we have one
         # dangling entry in the map (but only one).
         self.assertEqual(new_count, 1)
+
+
+class SelectorThreadLeakTest(unittest.TestCase):
+    # These tests are only relevant on windows, but they should pass anywhere.
+    def setUp(self):
+        # As a precaution, ensure that we've run an event loop at least once
+        # so if it spins up any singleton threads they're already there.
+        asyncio.run(self.dummy_tornado_coroutine())
+        self.orig_thread_count = threading.active_count()
+
+    def assert_no_thread_leak(self):
+        # For some reason we see transient failures here, but I haven't been able
+        # to catch it to identify which thread is causing it. Whatever thread it
+        # is, it appears to quickly clean up on its own, so just retry a few times.
+        # At least some of the time the errant thread was running at the time we
+        # captured self.orig_thread_count, so use inequalities.
+        deadline = time.time() + 1
+        while time.time() < deadline:
+            threads = list(threading.enumerate())
+            if len(threads) <= self.orig_thread_count:
+                break
+            time.sleep(0.1)
+        self.assertLessEqual(len(threads), self.orig_thread_count, threads)
+
+    async def dummy_tornado_coroutine(self):
+        # Just access the IOLoop to initialize the selector thread.
+        IOLoop.current()
+
+    def test_asyncio_run(self):
+        for i in range(10):
+            # asyncio.run calls shutdown_asyncgens for us.
+            asyncio.run(self.dummy_tornado_coroutine())
+        self.assert_no_thread_leak()
+
+    def test_asyncio_manual(self):
+        for i in range(10):
+            loop = asyncio.new_event_loop()
+            loop.run_until_complete(self.dummy_tornado_coroutine())
+            # Without this step, we'd leak the thread.
+            loop.run_until_complete(loop.shutdown_asyncgens())
+            loop.close()
+        self.assert_no_thread_leak()
+
+    def test_tornado(self):
+        for i in range(10):
+            # The IOLoop interfaces are aware of the selector thread and
+            # (synchronously) shut it down.
+            loop = IOLoop(make_current=False)
+            loop.run_sync(self.dummy_tornado_coroutine)
+            loop.close()
+        self.assert_no_thread_leak()
 
 
 class AnyThreadEventLoopPolicyTest(unittest.TestCase):

@@ -171,7 +171,7 @@ def test_old_bounds_to_new():
 class TestBounds:
     def test_repr(self):
         # so that eval works
-        from numpy import array, inf  # noqa
+        from numpy import array, inf  # noqa: F401
         for args in (
             (-1.0, 5.0),
             (-1.0, np.inf, True),

@@ -3,6 +3,8 @@ import sys
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas.compat import PYPY
 
 from pandas.core.dtypes.common import (
@@ -80,7 +82,10 @@ def test_ndarray_compat_properties(index_or_series_obj):
     assert Series([1]).item() == 1
 
 
-@pytest.mark.skipif(PYPY, reason="not relevant for PyPy")
+@pytest.mark.skipif(
+    PYPY or using_pyarrow_string_dtype(),
+    reason="not relevant for PyPy doesn't work properly for arrow strings",
+)
 def test_memory_usage(index_or_series_memory_obj):
     obj = index_or_series_memory_obj
     # Clear index caches so that len(obj) == 0 report 0 memory usage
@@ -127,7 +132,7 @@ def test_memory_usage_components_series(series_with_simple_index):
 
 @pytest.mark.parametrize("dtype", tm.NARROW_NP_DTYPES)
 def test_memory_usage_components_narrow_series(dtype):
-    series = tm.make_rand_series(name="a", dtype=dtype)
+    series = Series(range(5), dtype=dtype, index=[f"i-{i}" for i in range(5)], name="a")
     total_usage = series.memory_usage(index=True)
     non_index_usage = series.memory_usage(index=False)
     index_usage = series.index.memory_usage()
@@ -141,7 +146,7 @@ def test_searchsorted(request, index_or_series_obj):
 
     if isinstance(obj, pd.MultiIndex):
         # See gh-14833
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 reason="np.searchsorted doesn't work on pd.MultiIndex: GH 14833"
             )
@@ -150,7 +155,7 @@ def test_searchsorted(request, index_or_series_obj):
         # TODO: Should Series cases also raise? Looks like they use numpy
         #  comparison semantics https://github.com/numpy/numpy/issues/15981
         mark = pytest.mark.xfail(reason="complex objects are not comparable")
-        request.node.add_marker(mark)
+        request.applymarker(mark)
 
     max_obj = max(obj, default=0)
     index = np.searchsorted(obj, max_obj)
@@ -175,7 +180,9 @@ def test_access_by_position(index_flat):
     assert index[-1] == index[size - 1]
 
     msg = f"index {size} is out of bounds for axis 0 with size {size}"
-    if is_dtype_equal(index.dtype, "string[pyarrow]"):
+    if is_dtype_equal(index.dtype, "string[pyarrow]") or is_dtype_equal(
+        index.dtype, "string[pyarrow_numpy]"
+    ):
         msg = "index out of bounds"
     with pytest.raises(IndexError, match=msg):
         index[size]

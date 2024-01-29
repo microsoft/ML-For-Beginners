@@ -155,7 +155,7 @@ def _g34(x): return 2 * x
 def _g35(x): return 2 * x - 0.5
 def _g36(x): return 2 * x - 1
 
-gfunc = {i: globals()["_g{}".format(i)] for i in range(37)}
+gfunc = {i: globals()[f"_g{i}"] for i in range(37)}
 
 _gnuplot_data = {
         'red': gfunc[7],

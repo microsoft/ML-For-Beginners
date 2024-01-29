@@ -34,6 +34,7 @@ from IPython.core.completer import (
 # Test functions
 # -----------------------------------------------------------------------------
 
+
 def recompute_unicode_ranges():
     """
     utility to recompute the largest unicode range without any characters
@@ -42,8 +43,9 @@ def recompute_unicode_ranges():
     """
     import itertools
     import unicodedata
+
     valid = []
-    for c in range(0,0x10FFFF + 1):
+    for c in range(0, 0x10FFFF + 1):
         try:
             unicodedata.name(chr(c))
         except ValueError:
@@ -58,14 +60,20 @@ def recompute_unicode_ranges():
     rg = list(ranges(valid))
     lens = []
     gap_lens = []
-    pstart, pstop = 0,0
+    pstart, pstop = 0, 0
     for start, stop in rg:
-        lens.append(stop-start)
-        gap_lens.append((start - pstop, hex(pstop), hex(start), f'{round((start - pstop)/0xe01f0*100)}%'))
+        lens.append(stop - start)
+        gap_lens.append(
+            (
+                start - pstop,
+                hex(pstop + 1),
+                hex(start),
+                f"{round((start - pstop)/0xe01f0*100)}%",
+            )
+        )
         pstart, pstop = start, stop
 
     return sorted(gap_lens)[-1]
-
 
 
 def test_unicode_range():
@@ -73,7 +81,7 @@ def test_unicode_range():
     Test that the ranges we test for unicode names give the same number of
     results than testing the full length.
     """
-    from IPython.core.completer import  _unicode_name_compute, _UNICODE_RANGES
+    from IPython.core.completer import _unicode_name_compute, _UNICODE_RANGES
 
     expected_list = _unicode_name_compute([(0, 0x110000)])
     test = _unicode_name_compute(_UNICODE_RANGES)
@@ -98,8 +106,8 @@ def test_unicode_range():
         """
     assert len_exp == len_test, message
 
-    # fail if new unicode symbols have been added. 
-    assert len_exp <= 143041, message
+    # fail if new unicode symbols have been added.
+    assert len_exp <= 143668, message
 
 
 @contextmanager
@@ -428,6 +436,10 @@ class TestCompleter(unittest.TestCase):
             c = _("%ls foo")[0]
             self.assertEqual(c.text, escaped)
 
+    @pytest.mark.xfail(
+        sys.version_info.releaselevel in ("alpha",),
+        reason="Parso does not yet parse 3.13",
+    )
     def test_all_completions_dups(self):
         """
         Make sure the output of `IPCompleter.all_completions` does not have
@@ -446,6 +458,10 @@ class TestCompleter(unittest.TestCase):
                 matches = c.all_completions("TestClass.a")
                 assert matches == ['TestClass.a', 'TestClass.a1'], jedi_status
 
+    @pytest.mark.xfail(
+        sys.version_info.releaselevel in ("alpha",),
+        reason="Parso does not yet parse 3.13",
+    )
     def test_jedi(self):
         """
         A couple of issue we had with Jedi
@@ -481,6 +497,10 @@ class TestCompleter(unittest.TestCase):
 
         _test_not_complete("does not mix types", 'a=(1,"foo");a[0].', "capitalize")
 
+    @pytest.mark.xfail(
+        sys.version_info.releaselevel in ("alpha",),
+        reason="Parso does not yet parse 3.13",
+    )
     def test_completion_have_signature(self):
         """
         Lets make sure jedi is capable of pulling out the signature of the function we are completing.
@@ -496,6 +516,10 @@ class TestCompleter(unittest.TestCase):
             "encoding" in c.signature
         ), "Signature of function was not found by completer"
 
+    @pytest.mark.xfail(
+        sys.version_info.releaselevel in ("alpha",),
+        reason="Parso does not yet parse 3.13",
+    )
     def test_completions_have_type(self):
         """
         Lets make sure matchers provide completion type.
@@ -531,6 +555,10 @@ class TestCompleter(unittest.TestCase):
         assert len(l) == 1, "Completions (Z.z<tab>) correctly deduplicate: %s " % l
         assert l[0].text == "zoo"  # and not `it.accumulate`
 
+    @pytest.mark.xfail(
+        sys.version_info.releaselevel in ("alpha",),
+        reason="Parso does not yet parse 3.13",
+    )
     def test_greedy_completions(self):
         """
         Test the capability of the Greedy completer.
@@ -1608,6 +1636,10 @@ class TestCompleter(unittest.TestCase):
             configure(None)
             _("--", ["completion_iter", "completion_list"])
 
+    @pytest.mark.xfail(
+        sys.version_info.releaselevel in ("alpha",),
+        reason="Parso does not yet parse 3.13",
+    )
     def test_matcher_suppression_with_jedi(self):
         ip = get_ipython()
         c = ip.Completer

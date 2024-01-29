@@ -13,13 +13,17 @@ from pandas.io.excel import (
     ExcelWriter,
     _OpenpyxlWriter,
 )
+from pandas.io.excel._openpyxl import OpenpyxlReader
 
 openpyxl = pytest.importorskip("openpyxl")
 
-pytestmark = pytest.mark.parametrize("ext", [".xlsx"])
+
+@pytest.fixture
+def ext():
+    return ".xlsx"
 
 
-def test_to_excel_styleconverter(ext):
+def test_to_excel_styleconverter():
     from openpyxl import styles
 
     hstyle = {
@@ -128,6 +132,31 @@ def test_engine_kwargs_append_data_only(ext, data_only, expected):
             assert writer.sheets["Sheet1"]["B2"].value == expected
             # ExcelWriter needs us to writer something to close properly?
             DataFrame().to_excel(writer, sheet_name="Sheet2")
+
+        # ensure that data_only also works for reading
+        #  and that formulas/values roundtrip
+        assert (
+            pd.read_excel(
+                f,
+                sheet_name="Sheet1",
+                engine="openpyxl",
+                engine_kwargs={"data_only": data_only},
+            ).iloc[0, 1]
+            == expected
+        )
+
+
+@pytest.mark.parametrize("kwarg_name", ["read_only", "data_only"])
+@pytest.mark.parametrize("kwarg_value", [True, False])
+def test_engine_kwargs_append_reader(datapath, ext, kwarg_name, kwarg_value):
+    # GH 55027
+    # test that `read_only` and `data_only` can be passed to
+    #  `openpyxl.reader.excel.load_workbook` via `engine_kwargs`
+    filename = datapath("io", "data", "excel", "test1" + ext)
+    with contextlib.closing(
+        OpenpyxlReader(filename, engine_kwargs={kwarg_name: kwarg_value})
+    ) as reader:
+        assert getattr(reader.book, kwarg_name) == kwarg_value
 
 
 @pytest.mark.parametrize(
@@ -241,7 +270,7 @@ def test_if_sheet_exists_raises(ext, if_sheet_exists, msg):
     df = DataFrame({"fruit": ["pear"]})
     with tm.ensure_clean(ext) as f:
         with pytest.raises(ValueError, match=re.escape(msg)):
-            df.to_excel(f, "foo", engine="openpyxl")
+            df.to_excel(f, sheet_name="foo", engine="openpyxl")
             with ExcelWriter(
                 f, engine="openpyxl", mode="a", if_sheet_exists=if_sheet_exists
             ) as writer:

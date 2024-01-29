@@ -17,6 +17,7 @@
 the server into multiple processes and managing subprocesses.
 """
 
+import asyncio
 import os
 import multiprocessing
 import signal
@@ -210,7 +211,6 @@ class Subprocess(object):
 
     _initialized = False
     _waiting = {}  # type: ignore
-    _old_sigchld = None
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         self.io_loop = ioloop.IOLoop.current()
@@ -322,11 +322,8 @@ class Subprocess(object):
         """
         if cls._initialized:
             return
-        io_loop = ioloop.IOLoop.current()
-        cls._old_sigchld = signal.signal(
-            signal.SIGCHLD,
-            lambda sig, frame: io_loop.add_callback_from_signal(cls._cleanup),
-        )
+        loop = asyncio.get_event_loop()
+        loop.add_signal_handler(signal.SIGCHLD, cls._cleanup)
         cls._initialized = True
 
     @classmethod
@@ -334,7 +331,8 @@ class Subprocess(object):
         """Removes the ``SIGCHLD`` handler."""
         if not cls._initialized:
             return
-        signal.signal(signal.SIGCHLD, cls._old_sigchld)
+        loop = asyncio.get_event_loop()
+        loop.remove_signal_handler(signal.SIGCHLD)
         cls._initialized = False
 
     @classmethod
@@ -352,7 +350,7 @@ class Subprocess(object):
             return
         assert ret_pid == pid
         subproc = cls._waiting.pop(pid)
-        subproc.io_loop.add_callback_from_signal(subproc._set_returncode, status)
+        subproc.io_loop.add_callback(subproc._set_returncode, status)
 
     def _set_returncode(self, status: int) -> None:
         if sys.platform == "win32":

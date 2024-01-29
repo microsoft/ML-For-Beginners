@@ -5,6 +5,7 @@ import numpy as np
 from numpy.testing import assert_, assert_allclose, assert_equal
 from pytest import raises as assert_raises
 from scipy.optimize._linprog_util import _clean_inputs, _LPProblem
+from scipy._lib._util import VisibleDeprecationWarning
 from copy import deepcopy
 from datetime import date
 
@@ -113,7 +114,7 @@ def test_inconsistent_dimensions():
     assert_raises(ValueError, _clean_inputs, _LPProblem(c=c, A_eq=Agood, b_eq=bbad))
     assert_raises(ValueError, _clean_inputs, _LPProblem(c=c, bounds=boundsbad))
     with np.testing.suppress_warnings() as sup:
-        sup.filter(np.VisibleDeprecationWarning, "Creating an ndarray from ragged")
+        sup.filter(VisibleDeprecationWarning, "Creating an ndarray from ragged")
         assert_raises(ValueError, _clean_inputs,
                       _LPProblem(c=c, bounds=[[1, 2], [2, 3], [3, 4], [4, 5, 6]]))
 
@@ -141,7 +142,8 @@ def test_type_errors():
     assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[("hi")]))
     assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[(1, "")]))
     assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[(1, 2), (1, "")]))
-    assert_raises(TypeError, _clean_inputs, lp._replace(bounds=[(1, date(2020, 2, 29))]))
+    assert_raises(TypeError, _clean_inputs,
+                  lp._replace(bounds=[(1, date(2020, 2, 29))]))
     assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[[[1, 2]]]))
 
 
@@ -245,14 +247,16 @@ def test_bad_bounds():
     assert_raises(ValueError, _clean_inputs, lp._replace(bounds=(1, 2, 2)))
     assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[(1, 2, 2)]))
     with np.testing.suppress_warnings() as sup:
-        sup.filter(np.VisibleDeprecationWarning, "Creating an ndarray from ragged")
+        sup.filter(VisibleDeprecationWarning, "Creating an ndarray from ragged")
         assert_raises(ValueError, _clean_inputs,
                       lp._replace(bounds=[(1, 2), (1, 2, 2)]))
-    assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[(1, 2), (1, 2), (1, 2)]))
+    assert_raises(ValueError, _clean_inputs,
+                  lp._replace(bounds=[(1, 2), (1, 2), (1, 2)]))
 
     lp = _LPProblem(c=[1, 2, 3, 4])
 
-    assert_raises(ValueError, _clean_inputs, lp._replace(bounds=[(1, 2, 3, 4), (1, 2, 3, 4)]))
+    assert_raises(ValueError, _clean_inputs,
+                  lp._replace(bounds=[(1, 2, 3, 4), (1, 2, 3, 4)]))
 
 
 def test_good_bounds():
@@ -299,5 +303,8 @@ def test_good_bounds():
     lp_cleaned = _clean_inputs(lp._replace(bounds=[(None, 1)]))
     assert_equal(lp_cleaned.bounds, [(-np.inf, 1)] * 4)
 
-    lp_cleaned = _clean_inputs(lp._replace(bounds=[(None, None), (-np.inf, None), (None, np.inf), (-np.inf, np.inf)]))
+    lp_cleaned = _clean_inputs(lp._replace(bounds=[(None, None),
+                                                   (-np.inf, None),
+                                                   (None, np.inf),
+                                                   (-np.inf, np.inf)]))
     assert_equal(lp_cleaned.bounds, [(-np.inf, np.inf)] * 4)

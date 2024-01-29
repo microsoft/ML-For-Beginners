@@ -1,5 +1,4 @@
 import functools
-import re
 import string
 import sys
 import typing as t
@@ -14,10 +13,7 @@ if t.TYPE_CHECKING:
     _P = te.ParamSpec("_P")
 
 
-__version__ = "2.1.3"
-
-_strip_comments_re = re.compile(r"<!--.*?-->", re.DOTALL)
-_strip_tags_re = re.compile(r"<.*?>", re.DOTALL)
+__version__ = "2.1.4"
 
 
 def _simple_escaping_wrapper(func: "t.Callable[_P, str]") -> "t.Callable[_P, Markup]":
@@ -162,10 +158,41 @@ class Markup(str):
         >>> Markup("Main &raquo;\t<em>About</em>").striptags()
         'Main » About'
         """
-        # Use two regexes to avoid ambiguous matches.
-        value = _strip_comments_re.sub("", self)
-        value = _strip_tags_re.sub("", value)
-        value = " ".join(value.split())
+        # collapse spaces
+        value = " ".join(self.split())
+
+        # Look for comments then tags separately. Otherwise, a comment that
+        # contains a tag would end early, leaving some of the comment behind.
+
+        while True:
+            # keep finding comment start marks
+            start = value.find("<!--")
+
+            if start == -1:
+                break
+
+            # find a comment end mark beyond the start, otherwise stop
+            end = value.find("-->", start)
+
+            if end == -1:
+                break
+
+            value = f"{value[:start]}{value[end + 3:]}"
+
+        # remove tags using the same method
+        while True:
+            start = value.find("<")
+
+            if start == -1:
+                break
+
+            end = value.find(">", start)
+
+            if end == -1:
+                break
+
+            value = f"{value[:start]}{value[end + 1:]}"
+
         return self.__class__(value).unescape()
 
     @classmethod

@@ -26,10 +26,13 @@ from __version__ import version
 def configuration(parent_package='', top_path=None):
     config = Configuration('f2py', parent_package, top_path)
     config.add_subpackage('tests')
+    config.add_subpackage('_backends')
     config.add_data_dir('tests/src')
     config.add_data_files(
         'src/fortranobject.c',
-        'src/fortranobject.h')
+        'src/fortranobject.h',
+        '_backends/meson.build.template',
+    )
     config.add_data_files('*.pyi')
     return config
 

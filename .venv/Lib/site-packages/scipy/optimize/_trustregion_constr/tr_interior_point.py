@@ -196,9 +196,9 @@ class BarrierSubproblem:
     def lagrangian_hessian_x(self, z, v):
         """Returns Lagrangian Hessian (in relation to `x`) -> Hx"""
         x = self.get_variables(z)
-        # Get lagrange multipliers relatated to nonlinear equality constraints
+        # Get lagrange multipliers related to nonlinear equality constraints
         v_eq = v[:self.n_eq]
-        # Get lagrange multipliers relatated to nonlinear ineq. constraints
+        # Get lagrange multipliers related to nonlinear ineq. constraints
         v_ineq = v[self.n_eq:self.n_eq+self.n_ineq]
         lagr_hess = self.lagr_hess
         return lagr_hess(x, v_eq, v_ineq)

@@ -1,6 +1,4 @@
-"""
-Displays Agg images in the browser, with interactivity
-"""
+"""Displays Agg images in the browser, with interactivity."""
 
 # The WebAgg backend is divided into two modules:
 #
@@ -20,7 +18,6 @@ from pathlib import Path
 import random
 import sys
 import signal
-import socket
 import threading
 
 try:
@@ -65,9 +62,9 @@ class FigureManagerWebAgg(core.FigureManagerWebAgg):
         if mpl.rcParams['webagg.open_in_browser']:
             import webbrowser
             if not webbrowser.open(url):
-                print("To view figure, visit {0}".format(url))
+                print(f"To view figure, visit {url}")
         else:
-            print("To view figure, visit {0}".format(url))
+            print(f"To view figure, visit {url}")
 
         WebAggApplication.start()
 
@@ -95,8 +92,7 @@ class WebAggApplication(tornado.web.Application):
             fignum = int(fignum)
             manager = Gcf.get_fig_manager(fignum)
 
-            ws_uri = 'ws://{req.host}{prefix}/'.format(req=self.request,
-                                                       prefix=self.url_prefix)
+            ws_uri = f'ws://{self.request.host}{self.url_prefix}/'
             self.render(
                 "single_figure.html",
                 prefix=self.url_prefix,
@@ -111,8 +107,7 @@ class WebAggApplication(tornado.web.Application):
             super().__init__(application, request, **kwargs)
 
         def get(self):
-            ws_uri = 'ws://{req.host}{prefix}/'.format(req=self.request,
-                                                       prefix=self.url_prefix)
+            ws_uri = f'ws://{self.request.host}{self.url_prefix}/'
             self.render(
                 "all_figures.html",
                 prefix=self.url_prefix,
@@ -173,7 +168,7 @@ class WebAggApplication(tornado.web.Application):
             if self.supports_binary:
                 self.write_message(blob, binary=True)
             else:
-                data_uri = "data:image/png;base64,{0}".format(
+                data_uri = "data:image/png;base64,{}".format(
                     blob.encode('base64').replace('\n', ''))
                 self.write_message(data_uri)
 
@@ -250,7 +245,7 @@ class WebAggApplication(tornado.web.Application):
                                  mpl.rcParams['webagg.port_retries']):
             try:
                 app.listen(port, cls.address)
-            except socket.error as e:
+            except OSError as e:
                 if e.errno != errno.EADDRINUSE:
                     raise
             else:

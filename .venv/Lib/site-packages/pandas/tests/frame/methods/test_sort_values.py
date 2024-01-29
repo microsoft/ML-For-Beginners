@@ -863,7 +863,7 @@ class TestSortValuesLevelAsStr:
             Version(np.__version__) >= Version("1.25")
             and request.node.callspec.id == "df_idx0-inner-True"
         ):
-            request.node.add_marker(
+            request.applymarker(
                 pytest.mark.xfail(
                     reason=(
                         "pandas default unstable sorting of duplicates"
@@ -907,7 +907,7 @@ class TestSortValuesLevelAsStr:
         result = df_idx.T.sort_values(by=sort_names, ascending=ascending, axis=1)
 
         if Version(np.__version__) >= Version("1.25"):
-            request.node.add_marker(
+            request.applymarker(
                 pytest.mark.xfail(
                     reason=(
                         "pandas default unstable sorting of duplicates"

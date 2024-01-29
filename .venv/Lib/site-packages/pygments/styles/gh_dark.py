@@ -14,6 +14,9 @@ from pygments.token import Keyword, Name, Comment, Error, Number, Operator, \
     Generic, Text, Literal, String, Token
 
 
+__all__ = ['GhDarkStyle']
+
+
 # vars are defined to match the defs in
 # - [GitHub's VS Code theme](https://github.com/primer/github-vscode-theme) and
 # - [Primer styles](https://github.com/primer/primitives)
@@ -40,6 +43,8 @@ class GhDarkStyle(Style):
     """
     Github's Dark-Colorscheme based theme for Pygments
     """
+    
+    name = 'github-dark'
 
     background_color = BG_DEFAULT
 

@@ -22,7 +22,7 @@ def frame_with_period_index():
     return DataFrame(
         data=np.arange(20).reshape(4, 5),
         columns=list("abcde"),
-        index=period_range(start="2000", freq="A", periods=4),
+        index=period_range(start="2000", freq="Y", periods=4),
     )
 
 
@@ -158,9 +158,14 @@ def test_join_invalid_validate(left_no_dup, right_no_dup):
         left_no_dup.merge(right_no_dup, on="a", validate="invalid")
 
 
-def test_join_on_single_col_dup_on_right(left_no_dup, right_w_dups):
+@pytest.mark.parametrize("dtype", ["object", "string[pyarrow]"])
+def test_join_on_single_col_dup_on_right(left_no_dup, right_w_dups, dtype):
     # GH 46622
     # Dups on right allowed by one_to_many constraint
+    if dtype == "string[pyarrow]":
+        pytest.importorskip("pyarrow")
+    left_no_dup = left_no_dup.astype(dtype)
+    right_w_dups.index = right_w_dups.index.astype(dtype)
     left_no_dup.join(
         right_w_dups,
         on="a",
@@ -553,13 +558,13 @@ class TestDataFrameJoin:
         test1 = DataFrame(
             np.zeros((6, 3)),
             index=date_range(
-                "2012-11-15 00:00:00", periods=6, freq="100L", tz="US/Central"
+                "2012-11-15 00:00:00", periods=6, freq="100ms", tz="US/Central"
             ),
         )
         test2 = DataFrame(
             np.zeros((3, 3)),
             index=date_range(
-                "2012-11-15 00:00:00", periods=3, freq="250L", tz="US/Central"
+                "2012-11-15 00:00:00", periods=3, freq="250ms", tz="US/Central"
             ),
             columns=range(3, 6),
         )

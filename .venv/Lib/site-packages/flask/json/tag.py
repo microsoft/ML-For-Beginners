@@ -61,9 +61,9 @@ class JSONTag:
 
     __slots__ = ("serializer",)
 
-    #: The tag to mark the serialized object with. If ``None``, this tag is
+    #: The tag to mark the serialized object with. If empty, this tag is
     #: only used as an intermediate step during tagging.
-    key: str | None = None
+    key: str = ""
 
     def __init__(self, serializer: TaggedJSONSerializer) -> None:
         """Create a tagger for the given serializer."""
@@ -83,7 +83,7 @@ class JSONTag:
         will already be removed."""
         raise NotImplementedError
 
-    def tag(self, value: t.Any) -> t.Any:
+    def tag(self, value: t.Any) -> dict[str, t.Any]:
         """Convert the value to a valid JSON type and add the tag structure
         around it."""
         return {self.key: self.to_json(value)}
@@ -274,7 +274,7 @@ class TaggedJSONSerializer:
         tag = tag_class(self)
         key = tag.key
 
-        if key is not None:
+        if key:
             if not force and key in self.tags:
                 raise KeyError(f"Tag '{key}' is already registered.")
 
@@ -285,7 +285,7 @@ class TaggedJSONSerializer:
         else:
             self.order.insert(index, tag)
 
-    def tag(self, value: t.Any) -> dict[str, t.Any]:
+    def tag(self, value: t.Any) -> t.Any:
         """Convert a value to a tagged representation if necessary."""
         for tag in self.order:
             if tag.check(value):
@@ -305,10 +305,22 @@ class TaggedJSONSerializer:
 
         return self.tags[key].to_python(value[key])
 
+    def _untag_scan(self, value: t.Any) -> t.Any:
+        if isinstance(value, dict):
+            # untag each item recursively
+            value = {k: self._untag_scan(v) for k, v in value.items()}
+            # untag the dict itself
+            value = self.untag(value)
+        elif isinstance(value, list):
+            # untag each item recursively
+            value = [self._untag_scan(item) for item in value]
+
+        return value
+
     def dumps(self, value: t.Any) -> str:
         """Tag the value and dump it to a compact JSON string."""
         return dumps(self.tag(value), separators=(",", ":"))
 
     def loads(self, value: str) -> t.Any:
         """Load data from a JSON string and deserialized any tagged objects."""
-        return loads(value, object_hook=self.untag)
+        return self._untag_scan(loads(value))

@@ -52,7 +52,8 @@ from .errors import VarLibError, VarLibValidationError
 log = logging.getLogger("fontTools.varLib")
 
 # This is a lib key for the designspace document. The value should be
-# an OpenType feature tag, to be used as the FeatureVariations feature.
+# a comma-separated list of OpenType feature tag(s), to be used as the
+# FeatureVariations feature.
 # If present, the DesignSpace <rules processing="..."> flag is ignored.
 FEAVAR_FEATURETAG_LIB_KEY = "com.github.fonttools.varLib.featureVarsFeatureTag"
 
@@ -781,7 +782,9 @@ def _merge_OTL(font, model, master_fonts, axisTags):
         font["GPOS"].table.remap_device_varidxes(varidx_map)
 
 
-def _add_GSUB_feature_variations(font, axes, internal_axis_supports, rules, featureTag):
+def _add_GSUB_feature_variations(
+    font, axes, internal_axis_supports, rules, featureTags
+):
     def normalize(name, value):
         return models.normalizeLocation({name: value}, internal_axis_supports)[name]
 
@@ -812,7 +815,7 @@ def _add_GSUB_feature_variations(font, axes, internal_axis_supports, rules, feat
 
         conditional_subs.append((region, subs))
 
-    addFeatureVariations(font, conditional_subs, featureTag)
+    addFeatureVariations(font, conditional_subs, featureTags)
 
 
 _DesignSpaceData = namedtuple(
@@ -860,7 +863,7 @@ def _add_COLR(font, model, master_fonts, axisTags, colr_layer_reuse=True):
         colr.VarIndexMap = builder.buildDeltaSetIndexMap(varIdxes)
 
 
-def load_designspace(designspace):
+def load_designspace(designspace, log_enabled=True):
     # TODO: remove this and always assume 'designspace' is a DesignSpaceDocument,
     # never a file path, as that's already handled by caller
     if hasattr(designspace, "sources"):  # Assume a DesignspaceDocument
@@ -908,10 +911,11 @@ def load_designspace(designspace):
                 axis.labelNames["en"] = tostr(axis_name)
 
         axes[axis_name] = axis
-    log.info("Axes:\n%s", pformat([axis.asdict() for axis in axes.values()]))
+    if log_enabled:
+        log.info("Axes:\n%s", pformat([axis.asdict() for axis in axes.values()]))
 
     axisMappings = ds.axisMappings
-    if axisMappings:
+    if axisMappings and log_enabled:
         log.info("Mappings:\n%s", pformat(axisMappings))
 
     # Check all master and instance locations are valid and fill in defaults
@@ -941,20 +945,23 @@ def load_designspace(designspace):
     # Normalize master locations
 
     internal_master_locs = [o.getFullDesignLocation(ds) for o in masters]
-    log.info("Internal master locations:\n%s", pformat(internal_master_locs))
+    if log_enabled:
+        log.info("Internal master locations:\n%s", pformat(internal_master_locs))
 
     # TODO This mapping should ideally be moved closer to logic in _add_fvar/avar
     internal_axis_supports = {}
     for axis in axes.values():
         triple = (axis.minimum, axis.default, axis.maximum)
         internal_axis_supports[axis.name] = [axis.map_forward(v) for v in triple]
-    log.info("Internal axis supports:\n%s", pformat(internal_axis_supports))
+    if log_enabled:
+        log.info("Internal axis supports:\n%s", pformat(internal_axis_supports))
 
     normalized_master_locs = [
         models.normalizeLocation(m, internal_axis_supports)
         for m in internal_master_locs
     ]
-    log.info("Normalized master locations:\n%s", pformat(normalized_master_locs))
+    if log_enabled:
+        log.info("Normalized master locations:\n%s", pformat(normalized_master_locs))
 
     # Find base master
     base_idx = None
@@ -969,7 +976,8 @@ def load_designspace(designspace):
         raise VarLibValidationError(
             "Base master not found; no master at default location?"
         )
-    log.info("Index of base master: %s", base_idx)
+    if log_enabled:
+        log.info("Index of base master: %s", base_idx)
 
     return _DesignSpaceData(
         axes,
@@ -1204,11 +1212,9 @@ def build(
     if "cvar" not in exclude and "glyf" in vf:
         _merge_TTHinting(vf, model, master_fonts)
     if "GSUB" not in exclude and ds.rules:
-        featureTag = ds.lib.get(
-            FEAVAR_FEATURETAG_LIB_KEY, "rclt" if ds.rulesProcessingLast else "rvrn"
-        )
+        featureTags = _feature_variations_tags(ds)
         _add_GSUB_feature_variations(
-            vf, ds.axes, ds.internal_axis_supports, ds.rules, featureTag
+            vf, ds.axes, ds.internal_axis_supports, ds.rules, featureTags
         )
     if "CFF2" not in exclude and ("CFF " in vf or "CFF2" in vf):
         _add_CFF2(vf, model, master_fonts)
@@ -1297,6 +1303,38 @@ class MasterFinder(object):
             ext=ext,
         )
         return os.path.normpath(path)
+
+
+def _feature_variations_tags(ds):
+    raw_tags = ds.lib.get(
+        FEAVAR_FEATURETAG_LIB_KEY,
+        "rclt" if ds.rulesProcessingLast else "rvrn",
+    )
+    return sorted({t.strip() for t in raw_tags.split(",")})
+
+
+def addGSUBFeatureVariations(vf, designspace, featureTags=(), *, log_enabled=False):
+    """Add GSUB FeatureVariations table to variable font, based on DesignSpace rules.
+
+    Args:
+        vf: A TTFont object representing the variable font.
+        designspace: A DesignSpaceDocument object.
+        featureTags: Optional feature tag(s) to use for the FeatureVariations records.
+            If unset, the key 'com.github.fonttools.varLib.featureVarsFeatureTag' is
+            looked up in the DS <lib> and used; otherwise the default is 'rclt' if
+            the <rules processing="last"> attribute is set, else 'rvrn'.
+            See <https://fonttools.readthedocs.io/en/latest/designspaceLib/xml.html#rules-element>
+        log_enabled: If True, log info about DS axes and sources. Default is False, as
+            the same info may have already been logged as part of varLib.build.
+    """
+    ds = load_designspace(designspace, log_enabled=log_enabled)
+    if not ds.rules:
+        return
+    if not featureTags:
+        featureTags = _feature_variations_tags(ds)
+    _add_GSUB_feature_variations(
+        vf, ds.axes, ds.internal_axis_supports, ds.rules, featureTags
+    )
 
 
 def main(args=None):

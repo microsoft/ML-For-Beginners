@@ -274,7 +274,7 @@ class TestNumpyReductions:
 
         if isinstance(values, pd.core.arrays.SparseArray):
             mark = pytest.mark.xfail(reason="SparseArray has no 'prod'")
-            request.node.add_marker(mark)
+            request.applymarker(mark)
 
         if values.dtype.kind in "iuf":
             result = np.multiply.reduce(obj)
@@ -413,7 +413,7 @@ def test_outer():
     ser = pd.Series([1, 2, 3])
     obj = np.array([1, 2, 3])
 
-    with pytest.raises(NotImplementedError, match=tm.EMPTY_STRING_PATTERN):
+    with pytest.raises(NotImplementedError, match=""):
         np.subtract.outer(ser, obj)
 
 

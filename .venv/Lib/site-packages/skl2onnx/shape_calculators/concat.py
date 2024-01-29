@@ -94,7 +94,6 @@ def calculate_sklearn_concat(operator):
 
 register_shape_calculator("SklearnConcat", calculate_sklearn_concat)
 register_shape_calculator("SklearnGenericUnivariateSelect", calculate_sklearn_concat)
-register_shape_calculator("SklearnMultiply", calculate_sklearn_concat)
 register_shape_calculator("SklearnRFE", calculate_sklearn_concat)
 register_shape_calculator("SklearnRFECV", calculate_sklearn_concat)
 register_shape_calculator("SklearnSelectFdr", calculate_sklearn_concat)

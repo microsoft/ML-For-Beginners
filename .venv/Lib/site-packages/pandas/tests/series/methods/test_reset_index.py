@@ -11,6 +11,7 @@ from pandas import (
     RangeIndex,
     Series,
     date_range,
+    option_context,
 )
 import pandas._testing as tm
 
@@ -33,7 +34,11 @@ class TestResetIndex:
         assert df.reset_index()["Date"].iloc[0] == stamp
 
     def test_reset_index(self):
-        df = tm.makeDataFrame()[:5]
+        df = DataFrame(
+            1.1 * np.arange(120).reshape((30, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=Index([f"i-{i}" for i in range(30)], dtype=object),
+        )[:5]
         ser = df.stack(future_stack=True)
         ser.index.names = ["hash", "category"]
 
@@ -136,8 +141,16 @@ class TestResetIndex:
         with pytest.raises(KeyError, match="not found"):
             s.reset_index("wrong", drop=True)
 
-    def test_reset_index_with_drop(self, series_with_multilevel_index):
-        ser = series_with_multilevel_index
+    def test_reset_index_with_drop(self):
+        arrays = [
+            ["bar", "bar", "baz", "baz", "qux", "qux", "foo", "foo"],
+            ["one", "two", "one", "two", "one", "two", "one", "two"],
+        ]
+        tuples = zip(*arrays)
+        index = MultiIndex.from_tuples(tuples)
+        data = np.random.default_rng(2).standard_normal(8)
+        ser = Series(data, index=index)
+        ser.iloc[3] = np.nan
 
         deleveled = ser.reset_index()
         assert isinstance(deleveled, DataFrame)
@@ -155,6 +168,14 @@ class TestResetIndex:
         expected = Series(range(2), name="old")
         tm.assert_series_equal(ser, expected)
 
+    def test_reset_index_drop_infer_string(self):
+        # GH#56160
+        pytest.importorskip("pyarrow")
+        ser = Series(["a", "b", "c"], dtype=object)
+        with option_context("future.infer_string", True):
+            result = ser.reset_index(drop=True)
+        tm.assert_series_equal(result, ser)
+
 
 @pytest.mark.parametrize(
     "array, dtype",
@@ -166,12 +187,20 @@ class TestResetIndex:
         ),
     ],
 )
-def test_reset_index_dtypes_on_empty_series_with_multiindex(array, dtype):
+def test_reset_index_dtypes_on_empty_series_with_multiindex(
+    array, dtype, using_infer_string
+):
     # GH 19602 - Preserve dtype on empty Series with MultiIndex
     idx = MultiIndex.from_product([[0, 1], [0.5, 1.0], array])
     result = Series(dtype=object, index=idx)[:0].reset_index().dtypes
+    exp = "string" if using_infer_string else object
     expected = Series(
-        {"level_0": np.int64, "level_1": np.float64, "level_2": dtype, 0: object}
+        {
+            "level_0": np.int64,
+            "level_1": np.float64,
+            "level_2": exp if dtype == object else dtype,
+            0: object,
+        }
     )
     tm.assert_series_equal(result, expected)
 

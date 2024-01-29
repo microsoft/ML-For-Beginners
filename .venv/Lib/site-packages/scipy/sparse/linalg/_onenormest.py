@@ -450,17 +450,17 @@ def _onenormest_core(A, AT, t, itmax):
         if t > 1:
             # (5)
             # Break if the most promising t vectors have been visited already.
-            if np.in1d(ind[:t], ind_hist).all():
+            if np.isin(ind[:t], ind_hist).all():
                 break
             # Put the most promising unvisited vectors at the front of the list
             # and put the visited vectors at the end of the list.
             # Preserve the order of the indices induced by the ordering of h.
-            seen = np.in1d(ind, ind_hist)
+            seen = np.isin(ind, ind_hist)
             ind = np.concatenate((ind[~seen], ind[seen]))
         for j in range(t):
             X[:, j] = elementary_vector(n, ind[j])
 
-        new_ind = ind[:t][~np.in1d(ind[:t], ind_hist)]
+        new_ind = ind[:t][~np.isin(ind[:t], ind_hist)]
         ind_hist = np.concatenate((ind_hist, new_ind))
         k += 1
     v = elementary_vector(n, ind_best)

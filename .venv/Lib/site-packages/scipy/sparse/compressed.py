@@ -2,8 +2,7 @@
 # Use the `scipy.sparse` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _compressed
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
@@ -19,7 +18,6 @@ __all__ = [  # noqa: F822
     'csr_todense',
     'downcast_intp_index',
     'get_csr_submatrix',
-    'get_index_dtype',
     'get_sum_dtype',
     'getdtype',
     'is_pydata_spmatrix',
@@ -27,9 +25,7 @@ __all__ = [  # noqa: F822
     'isintlike',
     'isscalarlike',
     'isshape',
-    'isspmatrix',
     'operator',
-    'spmatrix',
     'to_native',
     'upcast',
     'upcast_char',
@@ -42,13 +38,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.sparse.compressed is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.sparse instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.sparse` namespace, "
-                  "the `scipy.sparse.compressed` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_compressed, name)
+    return _sub_module_deprecation(sub_package="sparse", module="compressed",
+                                   private_modules=["_compressed"], all=__all__,
+                                   attribute=name)

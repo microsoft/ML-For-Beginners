@@ -68,7 +68,7 @@ class TestDropna:
 
         tm.assert_series_equal(result, expected)
 
-    def test_datetime64_tz_dropna(self):
+    def test_datetime64_tz_dropna(self, unit):
         # DatetimeLikeBlock
         ser = Series(
             [
@@ -76,20 +76,23 @@ class TestDropna:
                 NaT,
                 Timestamp("2011-01-03 10:00"),
                 NaT,
-            ]
+            ],
+            dtype=f"M8[{unit}]",
         )
         result = ser.dropna()
         expected = Series(
-            [Timestamp("2011-01-01 10:00"), Timestamp("2011-01-03 10:00")], index=[0, 2]
+            [Timestamp("2011-01-01 10:00"), Timestamp("2011-01-03 10:00")],
+            index=[0, 2],
+            dtype=f"M8[{unit}]",
         )
         tm.assert_series_equal(result, expected)
 
         # DatetimeTZBlock
         idx = DatetimeIndex(
             ["2011-01-01 10:00", NaT, "2011-01-03 10:00", NaT], tz="Asia/Tokyo"
-        )
+        ).as_unit(unit)
         ser = Series(idx)
-        assert ser.dtype == "datetime64[ns, Asia/Tokyo]"
+        assert ser.dtype == f"datetime64[{unit}, Asia/Tokyo]"
         result = ser.dropna()
         expected = Series(
             [
@@ -97,8 +100,9 @@ class TestDropna:
                 Timestamp("2011-01-03 10:00", tz="Asia/Tokyo"),
             ],
             index=[0, 2],
+            dtype=f"datetime64[{unit}, Asia/Tokyo]",
         )
-        assert result.dtype == "datetime64[ns, Asia/Tokyo]"
+        assert result.dtype == f"datetime64[{unit}, Asia/Tokyo]"
         tm.assert_series_equal(result, expected)
 
     @pytest.mark.parametrize("val", [1, 1.5])

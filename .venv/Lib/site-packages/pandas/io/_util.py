@@ -28,4 +28,7 @@ def _arrow_dtype_mapping() -> dict:
 def arrow_string_types_mapper() -> Callable:
     pa = import_optional_dependency("pyarrow")
 
-    return {pa.string(): pd.StringDtype(storage="pyarrow_numpy")}.get
+    return {
+        pa.string(): pd.StringDtype(storage="pyarrow_numpy"),
+        pa.large_string(): pd.StringDtype(storage="pyarrow_numpy"),
+    }.get

@@ -33,6 +33,18 @@ class SafeFileCache(SeparateBodyBaseCache):
     """
     A file based cache which is safe to use even when the target directory may
     not be accessible or writable.
+
+    There is a race condition when two processes try to write and/or read the
+    same entry at the same time, since each entry consists of two separate
+    files (https://github.com/psf/cachecontrol/issues/324).  We therefore have
+    additional logic that makes sure that both files to be present before
+    returning an entry; this fixes the read side of the race condition.
+
+    For the write side, we assume that the server will only ever return the
+    same data for the same URL, which ought to be the case for files pip is
+    downloading.  PyPI does not have a mechanism to swap out a wheel for
+    another wheel, for example.  If this assumption is not true, the
+    CacheControl issue will need to be fixed.
     """
 
     def __init__(self, directory: str) -> None:
@@ -49,9 +61,13 @@ class SafeFileCache(SeparateBodyBaseCache):
         return os.path.join(self.directory, *parts)
 
     def get(self, key: str) -> Optional[bytes]:
-        path = self._get_cache_path(key)
+        # The cache entry is only valid if both metadata and body exist.
+        metadata_path = self._get_cache_path(key)
+        body_path = metadata_path + ".body"
+        if not (os.path.exists(metadata_path) and os.path.exists(body_path)):
+            return None
         with suppressed_cache_errors():
-            with open(path, "rb") as f:
+            with open(metadata_path, "rb") as f:
                 return f.read()
 
     def _write(self, path: str, data: bytes) -> None:
@@ -77,9 +93,13 @@ class SafeFileCache(SeparateBodyBaseCache):
             os.remove(path + ".body")
 
     def get_body(self, key: str) -> Optional[BinaryIO]:
-        path = self._get_cache_path(key) + ".body"
+        # The cache entry is only valid if both metadata and body exist.
+        metadata_path = self._get_cache_path(key)
+        body_path = metadata_path + ".body"
+        if not (os.path.exists(metadata_path) and os.path.exists(body_path)):
+            return None
         with suppressed_cache_errors():
-            return open(path, "rb")
+            return open(body_path, "rb")
 
     def set_body(self, key: str, body: bytes) -> None:
         path = self._get_cache_path(key) + ".body"

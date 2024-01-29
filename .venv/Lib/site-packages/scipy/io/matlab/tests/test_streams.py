@@ -134,7 +134,8 @@ class TestZlibInputStream:
         compressed_data = zlib.compress(data)
 
         # break checksum
-        compressed_data = compressed_data[:-1] + bytes([(compressed_data[-1] + 1) & 255])
+        compressed_data = (compressed_data[:-1]
+                           + bytes([(compressed_data[-1] + 1) & 255]))
 
         compressed_stream = BytesIO(compressed_data)
         stream = ZlibInputStream(compressed_stream, len(compressed_data))
@@ -176,7 +177,8 @@ class TestZlibInputStream:
         compressed_data = zlib.compress(data)
 
         # break checksum
-        compressed_data = compressed_data[:-1] + bytes([(compressed_data[-1] + 1) & 255])
+        compressed_data = (compressed_data[:-1]
+                           + bytes([(compressed_data[-1] + 1) & 255]))
 
         compressed_stream = BytesIO(compressed_data)
         stream = ZlibInputStream(compressed_stream, len(compressed_data))
@@ -219,7 +221,8 @@ class TestZlibInputStream:
         assert_(compressed_data_len == BLOCK_SIZE + 2)
 
         # break checksum
-        compressed_data = compressed_data[:-1] + bytes([(compressed_data[-1] + 1) & 255])
+        compressed_data = (compressed_data[:-1]
+                           + bytes([(compressed_data[-1] + 1) & 255]))
 
         compressed_stream = BytesIO(compressed_data)
         stream = ZlibInputStream(compressed_stream, compressed_data_len)

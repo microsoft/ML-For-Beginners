@@ -116,6 +116,13 @@ def label(input, structure=None, output=None):
     entry 2 in the input is connected to 1,
     but 1 is not connected to 2.
 
+    References
+    ----------
+    .. [1] James R. Weaver, "Centrosymmetric (cross-symmetric)
+       matrices, their basic properties, eigenvalues, and
+       eigenvectors." The American Mathematical Monthly 92.10
+       (1985): 711-717.
+
     Examples
     --------
     Create an image with some features, then label it using the default
@@ -164,14 +171,6 @@ def label(input, structure=None, output=None):
            [0, 0, 0, 1, 0, 0],
            [2, 2, 0, 0, 1, 0],
            [0, 0, 0, 1, 0, 0]])
-
-    References
-    ----------
-
-    .. [1] James R. Weaver, "Centrosymmetric (cross-symmetric)
-       matrices, their basic properties, eigenvalues, and
-       eigenvectors." The American Mathematical Monthly 92.10
-       (1985): 711-717.
 
     """
     input = numpy.asarray(input)
@@ -285,7 +284,9 @@ def find_objects(input, max_label=0):
            [0, 0, 0, 0, 1, 0],
            [0, 0, 0, 0, 0, 0]])
     >>> ndimage.find_objects(a)
-    [(slice(2, 5, None), slice(2, 5, None)), (slice(0, 2, None), slice(0, 3, None)), (slice(0, 1, None), slice(5, 6, None))]
+    [(slice(2, 5, None), slice(2, 5, None)),
+     (slice(0, 2, None), slice(0, 3, None)),
+     (slice(0, 1, None), slice(5, 6, None))]
     >>> ndimage.find_objects(a, max_label=2)
     [(slice(2, 5, None), slice(2, 5, None)), (slice(0, 2, None), slice(0, 3, None))]
     >>> ndimage.find_objects(a == 1, max_label=2)
@@ -332,6 +333,11 @@ def value_indices(arr, *, ignore_value=None):
         This dictionary can occupy significant memory, usually several times
         the size of the input array.
 
+    See Also
+    --------
+    label, maximum, median, minimum_position, extrema, sum, mean, variance,
+    standard_deviation, numpy.where, numpy.unique
+
     Notes
     -----
     For a small array with few distinct values, one might use
@@ -359,11 +365,6 @@ def value_indices(arr, *, ignore_value=None):
     function).
 
     .. versionadded:: 1.10.0
-
-    See Also
-    --------
-    label, maximum, median, minimum_position, extrema, sum, mean, variance,
-    standard_deviation, numpy.where, numpy.unique
 
     Examples
     --------
@@ -422,7 +423,8 @@ def value_indices(arr, *, ignore_value=None):
     return val_indices
 
 
-def labeled_comprehension(input, labels, index, func, out_dtype, default, pass_positions=False):
+def labeled_comprehension(input, labels, index, func, out_dtype, default,
+                          pass_positions=False):
     """
     Roughly equivalent to [func(input[labels == i]) for i in index].
 
@@ -520,13 +522,13 @@ def labeled_comprehension(input, labels, index, func, out_dtype, default, pass_p
 
     index = numpy.atleast_1d(index)
     if np.any(index.astype(labels.dtype).astype(index.dtype) != index):
-        raise ValueError("Cannot convert index values from <%s> to <%s> "
-                            "(labels' type) without loss of precision" %
-                            (index.dtype, labels.dtype))
+        raise ValueError(f"Cannot convert index values from <{index.dtype}> to "
+                         f"<{labels.dtype}> (labels' type) without loss of precision")
 
     index = index.astype(labels.dtype)
 
-    # optimization: find min/max in index, and select those parts of labels, input, and positions
+    # optimization: find min/max in index,
+    # and select those parts of labels, input, and positions
     lo = index.min()
     hi = index.max()
     mask = (labels >= lo) & (labels <= hi)
@@ -1345,7 +1347,7 @@ def maximum_position(input, labels=None, index=None):
         returned specifying the location of the ``first`` maximal value
         of `input`.
 
-    See also
+    See Also
     --------
     label, minimum, median, maximum_position, extrema, sum, mean, variance,
     standard_deviation
@@ -1462,8 +1464,12 @@ def extrema(input, labels=None, index=None):
         return (minimums, maximums, tuple((min_positions // dim_prod) % dims),
                 tuple((max_positions // dim_prod) % dims))
 
-    min_positions = [tuple(v) for v in (min_positions.reshape(-1, 1) // dim_prod) % dims]
-    max_positions = [tuple(v) for v in (max_positions.reshape(-1, 1) // dim_prod) % dims]
+    min_positions = [
+        tuple(v) for v in (min_positions.reshape(-1, 1) // dim_prod) % dims
+    ]
+    max_positions = [
+        tuple(v) for v in (max_positions.reshape(-1, 1) // dim_prod) % dims
+    ]
 
     return minimums, maximums, min_positions, max_positions
 
@@ -1656,7 +1662,6 @@ def watershed_ift(input, markers, structure=None, output=None):
     integral_types = [numpy.int8,
                       numpy.int16,
                       numpy.int32,
-                      numpy.int_,
                       numpy.int64,
                       numpy.intc,
                       numpy.intp]

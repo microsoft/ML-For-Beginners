@@ -1492,7 +1492,6 @@ _import_array(void)
   c_api = PyObject_GetAttrString(numpy, "_ARRAY_API");
   Py_DECREF(numpy);
   if (c_api == NULL) {
-      PyErr_SetString(PyExc_AttributeError, "_ARRAY_API not found");
       return -1;
   }
 

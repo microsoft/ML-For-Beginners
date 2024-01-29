@@ -2,9 +2,7 @@
 # Use the `scipy.io.matlab` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _streams
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'BLOCK_SIZE', 'GenericStream', 'ZlibInputStream', 'make_stream'
@@ -15,13 +13,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.matlab.streams is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.matlab instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.matlab` namespace, "
-                  "the `scipy.io.matlab.streams` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_streams, name)
+    return _sub_module_deprecation(sub_package="io.matlab", module="streams",
+                                   private_modules=["_streams"], all=__all__,
+                                   attribute=name)

@@ -9,7 +9,6 @@ class Classifier(object):
     """
 
     def __init__(self, sort=True):
-
         self._things = set()  # set of all things known so far
         self._sets = []  # list of class sets produced so far
         self._mapping = {}  # map from things to their class set

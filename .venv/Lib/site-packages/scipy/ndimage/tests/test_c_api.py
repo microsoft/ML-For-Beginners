@@ -9,23 +9,31 @@ from scipy._lib._ccallback import LowLevelCallable
 FILTER1D_FUNCTIONS = [
     lambda filter_size: _ctest.filter1d(filter_size),
     lambda filter_size: _cytest.filter1d(filter_size, with_signature=False),
-    lambda filter_size: LowLevelCallable(_cytest.filter1d(filter_size, with_signature=True)),
-    lambda filter_size: LowLevelCallable.from_cython(_cytest, "_filter1d",
-                                                     _cytest.filter1d_capsule(filter_size)),
+    lambda filter_size: LowLevelCallable(
+                            _cytest.filter1d(filter_size, with_signature=True)
+                        ),
+    lambda filter_size: LowLevelCallable.from_cython(
+                            _cytest, "_filter1d",
+                            _cytest.filter1d_capsule(filter_size),
+                        ),
 ]
 
 FILTER2D_FUNCTIONS = [
     lambda weights: _ctest.filter2d(weights),
     lambda weights: _cytest.filter2d(weights, with_signature=False),
     lambda weights: LowLevelCallable(_cytest.filter2d(weights, with_signature=True)),
-    lambda weights: LowLevelCallable.from_cython(_cytest, "_filter2d", _cytest.filter2d_capsule(weights)),
+    lambda weights: LowLevelCallable.from_cython(_cytest,
+                                                 "_filter2d",
+                                                 _cytest.filter2d_capsule(weights),),
 ]
 
 TRANSFORM_FUNCTIONS = [
     lambda shift: _ctest.transform(shift),
     lambda shift: _cytest.transform(shift, with_signature=False),
     lambda shift: LowLevelCallable(_cytest.transform(shift, with_signature=True)),
-    lambda shift: LowLevelCallable.from_cython(_cytest, "_transform", _cytest.transform_capsule(shift)),
+    lambda shift: LowLevelCallable.from_cython(_cytest,
+                                               "_transform",
+                                               _cytest.transform_capsule(shift),),
 ]
 
 

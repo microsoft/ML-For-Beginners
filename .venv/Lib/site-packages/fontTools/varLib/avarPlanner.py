@@ -802,13 +802,13 @@ def processAxis(
 
 def main(args=None):
     """Plan the standard axis mappings for a variable font"""
-    from fontTools import configLogger
 
     if args is None:
         import sys
 
         args = sys.argv[1:]
 
+    from fontTools import configLogger
     from fontTools.ttLib import TTFont
     import argparse
 
@@ -816,7 +816,7 @@ def main(args=None):
         "fonttools varLib.avarPlanner",
         description="Plan `avar` table for variable font",
     )
-    parser.add_argument("font", metavar="font.ttf", help="Font file.")
+    parser.add_argument("font", metavar="varfont.ttf", help="Variable-font file.")
     parser.add_argument(
         "-o",
         "--output-file",
@@ -906,7 +906,7 @@ def main(args=None):
     font = TTFont(options.font)
     if not "fvar" in font:
         log.error("Not a variable font.")
-        sys.exit(1)
+        return 1
 
     if options.glyphs is not None:
         glyphs = options.glyphs.split()

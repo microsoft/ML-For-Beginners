@@ -74,7 +74,7 @@ def iterate_structure(structure, iterations, origin=None):
         A new structuring element obtained by dilating `structure`
         (`iterations` - 1) times with itself.
 
-    See also
+    See Also
     --------
     generate_binary_structure
 
@@ -144,7 +144,7 @@ def generate_binary_structure(rank, connectivity):
          Structuring element which may be used for binary morphological
          operations, with `rank` dimensions and all dimensions equal to 3.
 
-    See also
+    See Also
     --------
     iterate_structure, binary_dilation, binary_erosion
 
@@ -333,7 +333,7 @@ def binary_erosion(input, structure=None, iterations=1, mask=None, output=None,
     binary_erosion : ndarray of bools
         Erosion of the input by the structuring element.
 
-    See also
+    See Also
     --------
     grey_erosion, binary_dilation, binary_closing, binary_opening,
     generate_binary_structure
@@ -430,7 +430,7 @@ def binary_dilation(input, structure=None, iterations=1, mask=None,
     binary_dilation : ndarray of bools
         Dilation of the input by the structuring element.
 
-    See also
+    See Also
     --------
     grey_dilation, binary_erosion, binary_closing, binary_opening,
     generate_binary_structure
@@ -573,7 +573,7 @@ def binary_opening(input, structure=None, iterations=1, output=None,
     binary_opening : ndarray of bools
         Opening of the input by the structuring element.
 
-    See also
+    See Also
     --------
     grey_opening, binary_closing, binary_erosion, binary_dilation,
     generate_binary_structure
@@ -697,7 +697,7 @@ def binary_closing(input, structure=None, iterations=1, output=None,
     binary_closing : ndarray of bools
         Closing of the input by the structuring element.
 
-    See also
+    See Also
     --------
     grey_closing, binary_opening, binary_dilation, binary_erosion,
     generate_binary_structure
@@ -829,7 +829,7 @@ def binary_hit_or_miss(input, structure1=None, structure2=None,
         Hit-or-miss transform of `input` with the given structuring
         element (`structure1`, `structure2`).
 
-    See also
+    See Also
     --------
     binary_erosion
 
@@ -1061,7 +1061,7 @@ def binary_fill_holes(input, structure=None, output=None, origin=0):
         Transformation of the initial image `input` where holes have been
         filled.
 
-    See also
+    See Also
     --------
     binary_dilation, binary_propagation, label
 
@@ -1161,7 +1161,7 @@ def grey_erosion(input, size=None, footprint=None, structure=None,
     output : ndarray
         Grayscale erosion of `input`.
 
-    See also
+    See Also
     --------
     binary_erosion, grey_dilation, grey_opening, grey_closing
     generate_binary_structure, minimum_filter
@@ -1213,7 +1213,7 @@ def grey_erosion(input, size=None, footprint=None, structure=None,
            [ True,  True,  True],
            [False,  True, False]], dtype=bool)
     >>> # Diagonally-connected elements are not considered neighbors
-    >>> ndimage.grey_erosion(a, size=(3,3), footprint=footprint)
+    >>> ndimage.grey_erosion(a, footprint=footprint)
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 1, 1, 1, 0, 0],
@@ -1272,7 +1272,7 @@ def grey_dilation(input, size=None, footprint=None, structure=None,
     grey_dilation : ndarray
         Grayscale dilation of `input`.
 
-    See also
+    See Also
     --------
     binary_dilation, grey_erosion, grey_closing, grey_opening
     generate_binary_structure, maximum_filter
@@ -1418,7 +1418,7 @@ def grey_opening(input, size=None, footprint=None, structure=None,
     grey_opening : ndarray
         Result of the grayscale opening of `input` with `structure`.
 
-    See also
+    See Also
     --------
     binary_opening, grey_dilation, grey_erosion, grey_closing
     generate_binary_structure
@@ -1456,7 +1456,8 @@ def grey_opening(input, size=None, footprint=None, structure=None,
 
     """
     if (size is not None) and (footprint is not None):
-        warnings.warn("ignoring size because footprint is set", UserWarning, stacklevel=2)
+        warnings.warn("ignoring size because footprint is set",
+                      UserWarning, stacklevel=2)
     tmp = grey_erosion(input, size, footprint, structure, None, mode,
                        cval, origin)
     return grey_dilation(tmp, size, footprint, structure, output, mode,
@@ -1502,7 +1503,7 @@ def grey_closing(input, size=None, footprint=None, structure=None,
     grey_closing : ndarray
         Result of the grayscale closing of `input` with `structure`.
 
-    See also
+    See Also
     --------
     binary_closing, grey_dilation, grey_erosion, grey_opening,
     generate_binary_structure
@@ -1540,7 +1541,8 @@ def grey_closing(input, size=None, footprint=None, structure=None,
 
     """
     if (size is not None) and (footprint is not None):
-        warnings.warn("ignoring size because footprint is set", UserWarning, stacklevel=2)
+        warnings.warn("ignoring size because footprint is set",
+                      UserWarning, stacklevel=2)
     tmp = grey_dilation(input, size, footprint, structure, None, mode,
                         cval, origin)
     return grey_erosion(tmp, size, footprint, structure, output, mode,
@@ -1589,7 +1591,7 @@ def morphological_gradient(input, size=None, footprint=None, structure=None,
     morphological_gradient : ndarray
         Morphological gradient of `input`.
 
-    See also
+    See Also
     --------
     grey_dilation, grey_erosion, gaussian_gradient_magnitude
 
@@ -1748,6 +1750,10 @@ def white_tophat(input, size=None, footprint=None, structure=None,
     output : ndarray
         Result of the filter of `input` with `structure`.
 
+    See Also
+    --------
+    black_tophat
+
     Examples
     --------
     Subtract gray background from a bright peak.
@@ -1767,13 +1773,10 @@ def white_tophat(input, size=None, footprint=None, structure=None,
            [0, 0, 1, 0, 0],
            [0, 0, 0, 0, 0]])
 
-    See also
-    --------
-    black_tophat
-
     """
     if (size is not None) and (footprint is not None):
-        warnings.warn("ignoring size because footprint is set", UserWarning, stacklevel=2)
+        warnings.warn("ignoring size because footprint is set",
+                      UserWarning, stacklevel=2)
     tmp = grey_erosion(input, size, footprint, structure, None, mode,
                        cval, origin)
     tmp = grey_dilation(tmp, size, footprint, structure, output, mode,
@@ -1825,6 +1828,10 @@ def black_tophat(input, size=None, footprint=None,
     black_tophat : ndarray
         Result of the filter of `input` with `structure`.
 
+    See Also
+    --------
+    white_tophat, grey_opening, grey_closing
+
     Examples
     --------
     Change dark peak to bright peak and subtract background.
@@ -1844,13 +1851,10 @@ def black_tophat(input, size=None, footprint=None,
            [0, 0, 1, 0, 0],
            [0, 0, 0, 0, 0]])
 
-    See also
-    --------
-    white_tophat, grey_opening, grey_closing
-
     """
     if (size is not None) and (footprint is not None):
-        warnings.warn("ignoring size because footprint is set", UserWarning, stacklevel=2)
+        warnings.warn("ignoring size because footprint is set",
+                      UserWarning, stacklevel=2)
     tmp = grey_dilation(input, size, footprint, structure, None, mode,
                         cval, origin)
     tmp = grey_erosion(tmp, size, footprint, structure, output, mode,
@@ -1930,7 +1934,7 @@ def distance_transform_bf(input, metric="euclidean", sampling=None,
 
     Notes
     -----
-    This function employs a slow brute force algorithm, see also the
+    This function employs a slow brute force algorithm. See also the
     function `distance_transform_cdt` for more efficient taxicab [1]_ and
     chessboard algorithms [2]_.
 

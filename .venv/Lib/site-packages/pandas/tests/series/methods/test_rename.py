@@ -8,6 +8,7 @@ from pandas import (
     Index,
     MultiIndex,
     Series,
+    array,
 )
 import pandas._testing as tm
 
@@ -45,22 +46,28 @@ class TestRename:
         expected = Series(range(5), index=[0, 10, 20, 3, 4], name="foo")
         tm.assert_series_equal(result, expected)
 
-    def test_rename_set_name(self):
+    def test_rename_set_name(self, using_infer_string):
         ser = Series(range(4), index=list("abcd"))
         for name in ["foo", 123, 123.0, datetime(2001, 11, 11), ("foo",)]:
             result = ser.rename(name)
             assert result.name == name
-            tm.assert_numpy_array_equal(result.index.values, ser.index.values)
+            if using_infer_string:
+                tm.assert_extension_array_equal(result.index.values, ser.index.values)
+            else:
+                tm.assert_numpy_array_equal(result.index.values, ser.index.values)
             assert ser.name is None
 
-    def test_rename_set_name_inplace(self):
+    def test_rename_set_name_inplace(self, using_infer_string):
         ser = Series(range(3), index=list("abc"))
         for name in ["foo", 123, 123.0, datetime(2001, 11, 11), ("foo",)]:
             ser.rename(name, inplace=True)
             assert ser.name == name
-
             exp = np.array(["a", "b", "c"], dtype=np.object_)
-            tm.assert_numpy_array_equal(ser.index.values, exp)
+            if using_infer_string:
+                exp = array(exp, dtype="string[pyarrow_numpy]")
+                tm.assert_extension_array_equal(ser.index.values, exp)
+            else:
+                tm.assert_numpy_array_equal(ser.index.values, exp)
 
     def test_rename_axis_supported(self):
         # Supporting axis for compatibility, detailed in GH-18589
@@ -162,12 +169,13 @@ class TestRename:
         with pytest.raises(KeyError, match=match):
             ser.rename({2: 9}, errors="raise")
 
-    def test_rename_copy_false(self, using_copy_on_write):
+    def test_rename_copy_false(self, using_copy_on_write, warn_copy_on_write):
         # GH 46889
         ser = Series(["foo", "bar"])
         ser_orig = ser.copy()
         shallow_copy = ser.rename({1: 9}, copy=False)
-        ser[0] = "foobar"
+        with tm.assert_cow_warning(warn_copy_on_write):
+            ser[0] = "foobar"
         if using_copy_on_write:
             assert ser_orig[0] == shallow_copy[0]
             assert ser_orig[1] == shallow_copy[9]

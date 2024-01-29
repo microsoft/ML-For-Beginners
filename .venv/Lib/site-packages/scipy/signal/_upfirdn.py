@@ -92,7 +92,7 @@ class _UpFIRDn:
         output_len = _output_len(self._h_len_orig, x.shape[axis],
                                  self._up, self._down)
         # Explicit use of np.int64 for output_shape dtype avoids OverflowError
-        # when allocating large array on platforms where np.int_ is 32 bits
+        # when allocating large array on platforms where intp is 32 bits.
         output_shape = np.asarray(x.shape, dtype=np.int64)
         output_shape[axis] = output_len
         out = np.zeros(output_shape, dtype=self._output_type, order='C')

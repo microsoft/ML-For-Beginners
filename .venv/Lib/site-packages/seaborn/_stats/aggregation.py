@@ -8,7 +8,10 @@ from pandas import DataFrame
 from seaborn._core.scales import Scale
 from seaborn._core.groupby import GroupBy
 from seaborn._stats.base import Stat
-from seaborn._statistics import EstimateAggregator
+from seaborn._statistics import (
+    EstimateAggregator,
+    WeightedAggregator,
+)
 from seaborn._core.typing import Vector
 
 
@@ -54,8 +57,14 @@ class Est(Stat):
     """
     Calculate a point estimate and error bar interval.
 
-    For additional information about the various `errorbar` choices, see
-    the :doc:`errorbar tutorial </tutorial/error_bars>`.
+    For more information about the various `errorbar` choices, see the
+    :doc:`errorbar tutorial </tutorial/error_bars>`.
+
+    Additional variables:
+
+    - **weight**: When passed to a layer that uses this stat, a weighted estimate
+      will be computed. Note that use of weights currently limits the choice of
+      function and error bar method  to `"mean"` and `"ci"`, respectively.
 
     Parameters
     ----------
@@ -95,7 +104,10 @@ class Est(Stat):
     ) -> DataFrame:
 
         boot_kws = {"n_boot": self.n_boot, "seed": self.seed}
-        engine = EstimateAggregator(self.func, self.errorbar, **boot_kws)
+        if "weight" in data:
+            engine = WeightedAggregator(self.func, self.errorbar, **boot_kws)
+        else:
+            engine = EstimateAggregator(self.func, self.errorbar, **boot_kws)
 
         var = {"x": "y", "y": "x"}[orient]
         res = (

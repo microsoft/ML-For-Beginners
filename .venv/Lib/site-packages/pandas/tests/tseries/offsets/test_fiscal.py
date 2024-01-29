@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 import pytest
 
 from pandas import Timestamp
+import pandas._testing as tm
 from pandas.tests.tseries.offsets.common import (
     WeekDay,
     assert_is_on_offset,
@@ -295,15 +296,18 @@ class TestFY5253NearestEndMonth:
 
 class TestFY5253LastOfMonthQuarter:
     def test_is_anchored(self):
-        assert makeFY5253LastOfMonthQuarter(
-            startingMonth=1, weekday=WeekDay.SAT, qtr_with_extra_week=4
-        ).is_anchored()
-        assert makeFY5253LastOfMonthQuarter(
-            weekday=WeekDay.SAT, startingMonth=3, qtr_with_extra_week=4
-        ).is_anchored()
-        assert not makeFY5253LastOfMonthQuarter(
-            2, startingMonth=1, weekday=WeekDay.SAT, qtr_with_extra_week=4
-        ).is_anchored()
+        msg = "FY5253Quarter.is_anchored is deprecated "
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            assert makeFY5253LastOfMonthQuarter(
+                startingMonth=1, weekday=WeekDay.SAT, qtr_with_extra_week=4
+            ).is_anchored()
+            assert makeFY5253LastOfMonthQuarter(
+                weekday=WeekDay.SAT, startingMonth=3, qtr_with_extra_week=4
+            ).is_anchored()
+            assert not makeFY5253LastOfMonthQuarter(
+                2, startingMonth=1, weekday=WeekDay.SAT, qtr_with_extra_week=4
+            ).is_anchored()
 
     def test_equality(self):
         assert makeFY5253LastOfMonthQuarter(

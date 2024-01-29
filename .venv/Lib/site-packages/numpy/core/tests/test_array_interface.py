@@ -128,6 +128,9 @@ def get_module(tmp_path):
                                                more_init=more_init)
 
 
+# FIXME: numpy.testing.extbuild uses `numpy.distutils`, so this won't work on
+# Python 3.12 and up.
+@pytest.mark.skipif(sys.version_info >= (3, 12), reason="no numpy.distutils")
 @pytest.mark.slow
 def test_cstruct(get_module):
 

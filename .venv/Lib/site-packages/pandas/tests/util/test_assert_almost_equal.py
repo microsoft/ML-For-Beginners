@@ -340,7 +340,7 @@ def test_mismatched_na_assert_almost_equal_deprecation(left, right):
 
         # TODO: to get the same deprecation in assert_numpy_array_equal we need
         #  to change/deprecate the default for strict_nan to become True
-        # TODO: to get the same deprecateion in assert_index_equal we need to
+        # TODO: to get the same deprecation in assert_index_equal we need to
         #  change/deprecate array_equivalent_object to be stricter, as
         #  assert_index_equal uses Index.equal which uses array_equivalent.
         with tm.assert_produces_warning(FutureWarning, match=msg):

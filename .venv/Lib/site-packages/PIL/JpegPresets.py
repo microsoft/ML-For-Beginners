@@ -62,6 +62,7 @@ Libjpeg ref.:
 https://web.archive.org/web/20120328125543/http://www.jpegcameras.com/libjpeg/libjpeg-3.html
 
 """
+from __future__ import annotations
 
 # fmt: off
 presets = {

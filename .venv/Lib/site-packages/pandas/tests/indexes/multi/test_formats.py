@@ -6,24 +6,31 @@ from pandas import (
     Index,
     MultiIndex,
 )
+import pandas._testing as tm
 
 
 def test_format(idx):
-    idx.format()
-    idx[:0].format()
+    msg = "MultiIndex.format is deprecated"
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        idx.format()
+        idx[:0].format()
 
 
 def test_format_integer_names():
     index = MultiIndex(
         levels=[[0, 1], [0, 1]], codes=[[0, 0, 1, 1], [0, 1, 0, 1]], names=[0, 1]
     )
-    index.format(names=True)
+    msg = "MultiIndex.format is deprecated"
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        index.format(names=True)
 
 
 def test_format_sparse_config(idx):
     # GH1538
+    msg = "MultiIndex.format is deprecated"
     with pd.option_context("display.multi_sparse", False):
-        result = idx.format()
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = idx.format()
     assert result[1] == "foo  two"
 
 
@@ -37,8 +44,9 @@ def test_format_sparse_display():
             [0, 0, 0, 0, 0, 0],
         ],
     )
-
-    result = index.format()
+    msg = "MultiIndex.format is deprecated"
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = index.format()
     assert result[3] == "1  0  0  0"
 
 
@@ -131,8 +139,11 @@ MultiIndex([...
            names=['first', ...], length=6)"""
             assert result == expected
 
-    def test_rjust(self, narrow_multi_index):
-        mi = narrow_multi_index
+    def test_rjust(self):
+        n = 1000
+        ci = pd.CategoricalIndex(list("a" * n) + (["abc"] * n))
+        dti = pd.date_range("2000-01-01", freq="s", periods=n * 2)
+        mi = MultiIndex.from_arrays([ci, ci.codes + 9, dti], names=["a", "b", "dti"])
         result = mi[:1].__repr__()
         expected = """\
 MultiIndex([('a', 9, '2000-01-01 00:00:00')],
@@ -174,8 +185,13 @@ MultiIndex([(  'a',  9, '2000-01-01 00:00:00'),
            names=['a', 'b', 'dti'], length=2000)"""
         assert result == expected
 
-    def test_tuple_width(self, wide_multi_index):
-        mi = wide_multi_index
+    def test_tuple_width(self):
+        n = 1000
+        ci = pd.CategoricalIndex(list("a" * n) + (["abc"] * n))
+        dti = pd.date_range("2000-01-01", freq="s", periods=n * 2)
+        levels = [ci, ci.codes + 9, dti, dti, dti]
+        names = ["a", "b", "dti_1", "dti_2", "dti_3"]
+        mi = MultiIndex.from_arrays(levels, names=names)
         result = mi[:1].__repr__()
         expected = """MultiIndex([('a', 9, '2000-01-01 00:00:00', '2000-01-01 00:00:00', ...)],
            names=['a', 'b', 'dti_1', 'dti_2', 'dti_3'])"""  # noqa: E501
@@ -221,3 +237,13 @@ MultiIndex([(  'a',  9, '2000-01-01 00:00:00', '2000-01-01 00:00:00', ...),
             ('abc', 10, '2000-01-01 00:33:19', '2000-01-01 00:33:19', ...)],
            names=['a', 'b', 'dti_1', 'dti_2', 'dti_3'], length=2000)"""
         assert result == expected
+
+    def test_multiindex_long_element(self):
+        # Non-regression test towards GH#52960
+        data = MultiIndex.from_tuples([("c" * 62,)])
+
+        expected = (
+            "MultiIndex([('cccccccccccccccccccccccccccccccccccccccc"
+            "cccccccccccccccccccccc',)],\n           )"
+        )
+        assert str(data) == expected

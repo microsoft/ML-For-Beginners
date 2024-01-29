@@ -6,6 +6,9 @@
 
 #include "attr_proto_util.h"
 
+#include <string>
+#include <vector>
+
 namespace ONNX_NAMESPACE {
 
 #define ADD_BASIC_ATTR_IMPL(type, enumType, field)                                \

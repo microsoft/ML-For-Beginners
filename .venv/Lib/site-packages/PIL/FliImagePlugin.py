@@ -14,6 +14,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import os
 
@@ -56,7 +57,7 @@ class FliImageFile(ImageFile.ImageFile):
         self.is_animated = self.n_frames > 1
 
         # image characteristics
-        self.mode = "P"
+        self._mode = "P"
         self._size = i16(s, 8), i16(s, 10)
 
         # animation speed
@@ -150,7 +151,8 @@ class FliImageFile(ImageFile.ImageFile):
 
         s = self.fp.read(4)
         if not s:
-            raise EOFError
+            msg = "missing frame size"
+            raise EOFError(msg)
 
         framesize = i32(s)
 

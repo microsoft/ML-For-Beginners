@@ -75,12 +75,14 @@ def cythonize_extensions(extension):
         "initializedcheck": False,
         "nonecheck": False,
         "cdivision": True,
+        "profile": False,
     }
 
     return cythonize(
         extension,
         nthreads=n_jobs,
         compiler_directives=compiler_directives,
+        annotate=False,
     )
 
 

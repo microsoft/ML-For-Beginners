@@ -282,7 +282,7 @@ class HTMLFormatter:
                 sentinel = lib.no_default
             else:
                 sentinel = False
-            levels = self.columns.format(sparsify=sentinel, adjoin=False, names=False)
+            levels = self.columns._format_multi(sparsify=sentinel, include_names=False)
             level_lengths = get_level_lengths(levels, sentinel)
             inner_lvl = len(level_lengths) - 1
             for lnum, (records, values) in enumerate(zip(level_lengths, levels)):
@@ -437,7 +437,8 @@ class HTMLFormatter:
             if fmt is not None:
                 index_values = self.fmt.tr_frame.index.map(fmt)
             else:
-                index_values = self.fmt.tr_frame.index.format()
+                # only reached with non-Multi index
+                index_values = self.fmt.tr_frame.index._format_flat(include_name=False)
 
         row: list[str] = []
         for i in range(nrows):
@@ -480,13 +481,13 @@ class HTMLFormatter:
         nrows = len(frame)
 
         assert isinstance(frame.index, MultiIndex)
-        idx_values = frame.index.format(sparsify=False, adjoin=False, names=False)
+        idx_values = frame.index._format_multi(sparsify=False, include_names=False)
         idx_values = list(zip(*idx_values))
 
         if self.fmt.sparsify:
             # GH3547
             sentinel = lib.no_default
-            levels = frame.index.format(sparsify=sentinel, adjoin=False, names=False)
+            levels = frame.index._format_multi(sparsify=sentinel, include_names=False)
 
             level_lengths = get_level_lengths(levels, sentinel)
             inner_lvl = len(level_lengths) - 1
@@ -579,7 +580,7 @@ class HTMLFormatter:
                     )
 
                 idx_values = list(
-                    zip(*frame.index.format(sparsify=False, adjoin=False, names=False))
+                    zip(*frame.index._format_multi(sparsify=False, include_names=False))
                 )
                 row = []
                 row.extend(idx_values[i])
@@ -606,7 +607,8 @@ class NotebookFormatter(HTMLFormatter):
         return {i: self.fmt.format_col(i) for i in range(self.ncols)}
 
     def _get_columns_formatted_values(self) -> list[str]:
-        return self.columns.format()
+        # only reached with non-Multi Index
+        return self.columns._format_flat(include_name=False)
 
     def write_style(self) -> None:
         # We use the "scoped" attribute here so that the desired
@@ -633,7 +635,7 @@ class NotebookFormatter(HTMLFormatter):
         else:
             element_props.append(("thead th", "text-align", "right"))
         template_mid = "\n\n".join(template_select % t for t in element_props)
-        template = dedent("\n".join((template_first, template_mid, template_last)))
+        template = dedent(f"{template_first}\n{template_mid}\n{template_last}")
         self.write(template)
 
     def render(self) -> list[str]:

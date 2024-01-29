@@ -13,6 +13,7 @@ from pandas._libs.algos import (
 
 from pandas import (
     DataFrame,
+    Index,
     Series,
 )
 import pandas._testing as tm
@@ -469,22 +470,41 @@ class TestRank:
             ("top", False, [2.0, 3.0, 1.0, 4.0]),
         ],
     )
-    def test_rank_object_first(self, frame_or_series, na_option, ascending, expected):
+    def test_rank_object_first(
+        self, frame_or_series, na_option, ascending, expected, using_infer_string
+    ):
         obj = frame_or_series(["foo", "foo", None, "foo"])
         result = obj.rank(method="first", na_option=na_option, ascending=ascending)
         expected = frame_or_series(expected)
+        if using_infer_string and isinstance(obj, Series):
+            expected = expected.astype("uint64")
         tm.assert_equal(result, expected)
 
     @pytest.mark.parametrize(
         "data,expected",
         [
-            ({"a": [1, 2, "a"], "b": [4, 5, 6]}, DataFrame({"b": [1.0, 2.0, 3.0]})),
+            (
+                {"a": [1, 2, "a"], "b": [4, 5, 6]},
+                DataFrame({"b": [1.0, 2.0, 3.0]}, columns=Index(["b"], dtype=object)),
+            ),
             ({"a": [1, 2, "a"]}, DataFrame(index=range(3), columns=[])),
         ],
     )
     def test_rank_mixed_axis_zero(self, data, expected):
-        df = DataFrame(data)
+        df = DataFrame(data, columns=Index(list(data.keys()), dtype=object))
         with pytest.raises(TypeError, match="'<' not supported between instances of"):
             df.rank()
         result = df.rank(numeric_only=True)
         tm.assert_frame_equal(result, expected)
+
+    @pytest.mark.parametrize(
+        "dtype, exp_dtype",
+        [("string[pyarrow]", "Int64"), ("string[pyarrow_numpy]", "float64")],
+    )
+    def test_rank_string_dtype(self, dtype, exp_dtype):
+        # GH#55362
+        pytest.importorskip("pyarrow")
+        obj = Series(["foo", "foo", None, "foo"], dtype=dtype)
+        result = obj.rank(method="first")
+        expected = Series([1, 2, None, 3], dtype=exp_dtype)
+        tm.assert_series_equal(result, expected)

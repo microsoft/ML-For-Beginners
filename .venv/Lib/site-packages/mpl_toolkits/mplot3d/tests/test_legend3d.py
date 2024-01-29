@@ -1,6 +1,6 @@
-
 import numpy as np
 
+import matplotlib as mpl
 from matplotlib.colors import same_color
 from matplotlib.testing.decorators import image_comparison
 import matplotlib.pyplot as plt
@@ -8,8 +8,7 @@ from mpl_toolkits.mplot3d import art3d
 
 
 # Update style when regenerating the test image
-@image_comparison(['legend_plot.png'], remove_text=True,
-                  style=('classic', '_classic_test_patch'))
+@image_comparison(['legend_plot.png'], remove_text=True, style=('mpl20'))
 def test_legend_plot():
     fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
     x = np.arange(10)
@@ -19,8 +18,7 @@ def test_legend_plot():
 
 
 # Update style when regenerating the test image
-@image_comparison(['legend_bar.png'], remove_text=True,
-                  style=('classic', '_classic_test_patch'))
+@image_comparison(['legend_bar.png'], remove_text=True, style=('mpl20'))
 def test_legend_bar():
     fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
     x = np.arange(10)
@@ -30,8 +28,7 @@ def test_legend_bar():
 
 
 # Update style when regenerating the test image
-@image_comparison(['fancy.png'], remove_text=True,
-                  style=('classic', '_classic_test_patch'))
+@image_comparison(['fancy.png'], remove_text=True, style=('mpl20'))
 def test_fancy():
     fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
     ax.plot(np.arange(10), np.full(10, 5), np.full(10, 5), 'o--', label='line')
@@ -71,7 +68,6 @@ def test_handlerline3d():
 
 
 def test_contour_legend_elements():
-    from matplotlib.collections import LineCollection
     x, y = np.mgrid[1:10, 1:10]
     h = x * y
     colors = ['blue', '#00FF00', 'red']
@@ -81,13 +77,12 @@ def test_contour_legend_elements():
 
     artists, labels = cs.legend_elements()
     assert labels == ['$x = 10.0$', '$x = 30.0$', '$x = 50.0$']
-    assert all(isinstance(a, LineCollection) for a in artists)
+    assert all(isinstance(a, mpl.lines.Line2D) for a in artists)
     assert all(same_color(a.get_color(), c)
                for a, c in zip(artists, colors))
 
 
 def test_contourf_legend_elements():
-    from matplotlib.patches import Rectangle
     x, y = np.mgrid[1:10, 1:10]
     h = x * y
 
@@ -104,6 +99,19 @@ def test_contourf_legend_elements():
                       '$30.0 < x \\leq 50.0$',
                       '$x > 1e+250s$']
     expected_colors = ('blue', '#FFFF00', '#FF00FF', 'red')
-    assert all(isinstance(a, Rectangle) for a in artists)
+    assert all(isinstance(a, mpl.patches.Rectangle) for a in artists)
     assert all(same_color(a.get_facecolor(), c)
                for a, c in zip(artists, expected_colors))
+
+
+def test_legend_Poly3dCollection():
+
+    verts = np.asarray([[0, 0, 0], [0, 1, 1], [1, 0, 1]])
+    mesh = art3d.Poly3DCollection([verts], label="surface")
+
+    fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+    mesh.set_edgecolor('k')
+    handle = ax.add_collection3d(mesh)
+    leg = ax.legend()
+    assert (leg.legend_handles[0].get_facecolor()
+            == handle.get_facecolor()).all()

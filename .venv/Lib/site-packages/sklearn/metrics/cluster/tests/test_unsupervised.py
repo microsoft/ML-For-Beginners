@@ -3,7 +3,7 @@ import warnings
 import numpy as np
 import pytest
 from numpy.testing import assert_allclose
-from scipy.sparse import csc_matrix, csr_matrix, dok_matrix, issparse, lil_matrix
+from scipy.sparse import issparse
 
 from sklearn import datasets
 from sklearn.metrics import pairwise_distances
@@ -15,48 +15,38 @@ from sklearn.metrics.cluster import (
 )
 from sklearn.metrics.cluster._unsupervised import _silhouette_reduce
 from sklearn.utils._testing import assert_array_equal
+from sklearn.utils.fixes import (
+    CSC_CONTAINERS,
+    CSR_CONTAINERS,
+    DOK_CONTAINERS,
+    LIL_CONTAINERS,
+)
 
 
-def test_silhouette():
+@pytest.mark.parametrize(
+    "sparse_container",
+    [None] + CSR_CONTAINERS + CSC_CONTAINERS + DOK_CONTAINERS + LIL_CONTAINERS,
+)
+@pytest.mark.parametrize("sample_size", [None, "half"])
+def test_silhouette(sparse_container, sample_size):
     # Tests the Silhouette Coefficient.
     dataset = datasets.load_iris()
-    X_dense = dataset.data
-    X_csr = csr_matrix(X_dense)
-    X_csc = csc_matrix(X_dense)
-    X_dok = dok_matrix(X_dense)
-    X_lil = lil_matrix(X_dense)
-    y = dataset.target
+    X, y = dataset.data, dataset.target
+    if sparse_container is not None:
+        X = sparse_container(X)
+    sample_size = int(X.shape[0] / 2) if sample_size == "half" else sample_size
 
-    for X in [X_dense, X_csr, X_csc, X_dok, X_lil]:
-        D = pairwise_distances(X, metric="euclidean")
-        # Given that the actual labels are used, we can assume that S would be
-        # positive.
-        score_precomputed = silhouette_score(D, y, metric="precomputed")
-        assert score_precomputed > 0
-        # Test without calculating D
-        score_euclidean = silhouette_score(X, y, metric="euclidean")
-        pytest.approx(score_precomputed, score_euclidean)
-
-        if X is X_dense:
-            score_dense_without_sampling = score_precomputed
-        else:
-            pytest.approx(score_euclidean, score_dense_without_sampling)
-
-        # Test with sampling
-        score_precomputed = silhouette_score(
-            D, y, metric="precomputed", sample_size=int(X.shape[0] / 2), random_state=0
-        )
-        score_euclidean = silhouette_score(
-            X, y, metric="euclidean", sample_size=int(X.shape[0] / 2), random_state=0
-        )
-        assert score_precomputed > 0
-        assert score_euclidean > 0
-        pytest.approx(score_euclidean, score_precomputed)
-
-        if X is X_dense:
-            score_dense_with_sampling = score_precomputed
-        else:
-            pytest.approx(score_euclidean, score_dense_with_sampling)
+    D = pairwise_distances(X, metric="euclidean")
+    # Given that the actual labels are used, we can assume that S would be positive.
+    score_precomputed = silhouette_score(
+        D, y, metric="precomputed", sample_size=sample_size, random_state=0
+    )
+    score_euclidean = silhouette_score(
+        X, y, metric="euclidean", sample_size=sample_size, random_state=0
+    )
+    assert score_precomputed > 0
+    assert score_euclidean > 0
+    assert score_precomputed == pytest.approx(score_euclidean)
 
 
 def test_cluster_size_1():
@@ -286,38 +276,46 @@ def test_silhouette_nonzero_diag(dtype):
         silhouette_samples(dists, labels, metric="precomputed")
 
 
-@pytest.mark.parametrize("to_sparse", (csr_matrix, csc_matrix, dok_matrix, lil_matrix))
-def test_silhouette_samples_precomputed_sparse(to_sparse):
+@pytest.mark.parametrize(
+    "sparse_container",
+    CSC_CONTAINERS + CSR_CONTAINERS + DOK_CONTAINERS + LIL_CONTAINERS,
+)
+def test_silhouette_samples_precomputed_sparse(sparse_container):
     """Check that silhouette_samples works for sparse matrices correctly."""
     X = np.array([[0.2, 0.1, 0.1, 0.2, 0.1, 1.6, 0.2, 0.1]], dtype=np.float32).T
     y = [0, 0, 0, 0, 1, 1, 1, 1]
     pdist_dense = pairwise_distances(X)
-    pdist_sparse = to_sparse(pdist_dense)
+    pdist_sparse = sparse_container(pdist_dense)
     assert issparse(pdist_sparse)
     output_with_sparse_input = silhouette_samples(pdist_sparse, y, metric="precomputed")
     output_with_dense_input = silhouette_samples(pdist_dense, y, metric="precomputed")
     assert_allclose(output_with_sparse_input, output_with_dense_input)
 
 
-@pytest.mark.parametrize("to_sparse", (csr_matrix, csc_matrix, dok_matrix, lil_matrix))
-def test_silhouette_samples_euclidean_sparse(to_sparse):
+@pytest.mark.parametrize(
+    "sparse_container",
+    CSC_CONTAINERS + CSR_CONTAINERS + DOK_CONTAINERS + LIL_CONTAINERS,
+)
+def test_silhouette_samples_euclidean_sparse(sparse_container):
     """Check that silhouette_samples works for sparse matrices correctly."""
     X = np.array([[0.2, 0.1, 0.1, 0.2, 0.1, 1.6, 0.2, 0.1]], dtype=np.float32).T
     y = [0, 0, 0, 0, 1, 1, 1, 1]
     pdist_dense = pairwise_distances(X)
-    pdist_sparse = to_sparse(pdist_dense)
+    pdist_sparse = sparse_container(pdist_dense)
     assert issparse(pdist_sparse)
     output_with_sparse_input = silhouette_samples(pdist_sparse, y)
     output_with_dense_input = silhouette_samples(pdist_dense, y)
     assert_allclose(output_with_sparse_input, output_with_dense_input)
 
 
-@pytest.mark.parametrize("to_non_csr_sparse", (csc_matrix, dok_matrix, lil_matrix))
-def test_silhouette_reduce(to_non_csr_sparse):
+@pytest.mark.parametrize(
+    "sparse_container", CSC_CONTAINERS + DOK_CONTAINERS + LIL_CONTAINERS
+)
+def test_silhouette_reduce(sparse_container):
     """Check for non-CSR input to private method `_silhouette_reduce`."""
     X = np.array([[0.2, 0.1, 0.1, 0.2, 0.1, 1.6, 0.2, 0.1]], dtype=np.float32).T
     pdist_dense = pairwise_distances(X)
-    pdist_sparse = to_non_csr_sparse(pdist_dense)
+    pdist_sparse = sparse_container(pdist_dense)
     y = [0, 0, 0, 0, 1, 1, 1, 1]
     label_freqs = np.bincount(y)
     with pytest.raises(

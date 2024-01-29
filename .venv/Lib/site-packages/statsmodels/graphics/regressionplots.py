@@ -427,7 +427,7 @@ def plot_partregress(endog, exog_i, exog_others, data=None,
         ax.plot(xaxis_resid, yaxis_resid, 'o', **kwargs)
         fitted_line = OLS(yaxis_resid, xaxis_resid).fit()
 
-    fig = abline_plot(0, fitted_line.params[0], color='k', ax=ax)
+    fig = abline_plot(0, np.asarray(fitted_line.params)[0], color='k', ax=ax)
 
     if x_axis_endog_name == 'y':  # for no names regression will just get a y
         x_axis_endog_name = 'x'  # this is misleading, so use x

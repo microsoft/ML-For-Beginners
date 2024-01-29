@@ -28,7 +28,9 @@ class TestEmptyFrameSetitemExpansion:
 
         df["series"] = series
         expected = DataFrame(
-            {"series": [1.23] * 4}, index=pd.RangeIndex(4, name="df_index")
+            {"series": [1.23] * 4},
+            index=pd.RangeIndex(4, name="df_index"),
+            columns=Index(["series"], dtype=object),
         )
 
         tm.assert_frame_equal(df, expected)
@@ -39,7 +41,9 @@ class TestEmptyFrameSetitemExpansion:
         series = Series(1.23, index=pd.RangeIndex(4, name="series_index"))
         df["series"] = series
         expected = DataFrame(
-            {"series": [1.23] * 4}, index=pd.RangeIndex(4, name="series_index")
+            {"series": [1.23] * 4},
+            index=pd.RangeIndex(4, name="series_index"),
+            columns=Index(["series"], dtype=object),
         )
         tm.assert_frame_equal(df, expected)
 
@@ -92,7 +96,9 @@ class TestEmptyFrameSetitemExpansion:
         # these work as they don't really change
         # anything but the index
         # GH#5632
-        expected = DataFrame(columns=["foo"], index=Index([], dtype="object"))
+        expected = DataFrame(
+            columns=Index(["foo"], dtype=object), index=Index([], dtype="object")
+        )
 
         df = DataFrame(index=Index([], dtype="object"))
         df["foo"] = Series([], dtype="object")
@@ -110,7 +116,9 @@ class TestEmptyFrameSetitemExpansion:
         tm.assert_frame_equal(df, expected)
 
     def test_partial_set_empty_frame3(self):
-        expected = DataFrame(columns=["foo"], index=Index([], dtype="int64"))
+        expected = DataFrame(
+            columns=Index(["foo"], dtype=object), index=Index([], dtype="int64")
+        )
         expected["foo"] = expected["foo"].astype("float64")
 
         df = DataFrame(index=Index([], dtype="int64"))
@@ -127,7 +135,9 @@ class TestEmptyFrameSetitemExpansion:
         df = DataFrame(index=Index([], dtype="int64"))
         df["foo"] = range(len(df))
 
-        expected = DataFrame(columns=["foo"], index=Index([], dtype="int64"))
+        expected = DataFrame(
+            columns=Index(["foo"], dtype=object), index=Index([], dtype="int64")
+        )
         # range is int-dtype-like, so we get int64 dtype
         expected["foo"] = expected["foo"].astype("int64")
         tm.assert_frame_equal(df, expected)
@@ -147,14 +157,10 @@ class TestEmptyFrameSetitemExpansion:
 
         df = DataFrame(columns=["A", "B"])
         df[0] = Series(1, index=range(4))
-        df.dtypes
-        str(df)
         tm.assert_frame_equal(df, expected)
 
         df = DataFrame(columns=["A", "B"])
         df.loc[:, 0] = Series(1, index=range(4))
-        df.dtypes
-        str(df)
         tm.assert_frame_equal(df, expected)
 
     def test_partial_set_empty_frame_row(self):
@@ -204,10 +210,10 @@ class TestEmptyFrameSetitemExpansion:
         df = DataFrame(index=[0])
         df = df.copy()
         df["a"] = 0
-        expected = DataFrame(0, index=[0], columns=["a"])
+        expected = DataFrame(0, index=[0], columns=Index(["a"], dtype=object))
         tm.assert_frame_equal(df, expected)
 
-    def test_partial_set_empty_frame_empty_consistencies(self):
+    def test_partial_set_empty_frame_empty_consistencies(self, using_infer_string):
         # GH#6171
         # consistency on empty frames
         df = DataFrame(columns=["x", "y"])
@@ -217,7 +223,15 @@ class TestEmptyFrameSetitemExpansion:
 
         df = DataFrame(columns=["x", "y"])
         df["x"] = ["1", "2"]
-        expected = DataFrame({"x": ["1", "2"], "y": [np.nan, np.nan]}, dtype=object)
+        expected = DataFrame(
+            {
+                "x": Series(
+                    ["1", "2"],
+                    dtype=object if not using_infer_string else "string[pyarrow_numpy]",
+                ),
+                "y": Series([np.nan, np.nan], dtype=object),
+            }
+        )
         tm.assert_frame_equal(df, expected)
 
         df = DataFrame(columns=["x", "y"])
@@ -264,6 +278,7 @@ class TestPartialSetting:
         with pytest.raises(IndexError, match=msg):
             s.iat[3] = 5.0
 
+    @pytest.mark.filterwarnings("ignore:Setting a value on a view:FutureWarning")
     def test_partial_setting_frame(self, using_array_manager):
         df_orig = DataFrame(
             np.arange(6).reshape(3, 2), columns=["A", "B"], dtype="int64"
@@ -402,7 +417,7 @@ class TestPartialSetting:
 
         # raises as nothing is in the index
         msg = (
-            rf"\"None of \[Index\(\[3, 3, 3\], dtype='{np.int_().dtype}'\)\] "
+            rf"\"None of \[Index\(\[3, 3, 3\], dtype='{np.dtype(int)}'\)\] "
             r"are in the \[index\]\""
         )
         with pytest.raises(KeyError, match=msg):
@@ -483,7 +498,7 @@ class TestPartialSetting:
 
         # raises as nothing is in the index
         msg = (
-            rf"\"None of \[Index\(\[3, 3, 3\], dtype='{np.int_().dtype}', "
+            rf"\"None of \[Index\(\[3, 3, 3\], dtype='{np.dtype(int)}', "
             r"name='idx'\)\] are in the \[index\]\""
         )
         with pytest.raises(KeyError, match=msg):
@@ -521,7 +536,11 @@ class TestPartialSetting:
     @pytest.mark.parametrize("key", [100, 100.0])
     def test_setitem_with_expansion_numeric_into_datetimeindex(self, key):
         # GH#4940 inserting non-strings
-        orig = tm.makeTimeDataFrame()
+        orig = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
         df = orig.copy()
 
         df.loc[key, :] = df.iloc[0]
@@ -535,7 +554,11 @@ class TestPartialSetting:
         # GH 4940
         # allow only setting of 'valid' values
 
-        orig = tm.makeTimeDataFrame()
+        orig = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
 
         # allow object conversion here
         df = orig.copy()
@@ -621,7 +644,7 @@ class TestPartialSetting:
         [
             (
                 period_range(start="2000", periods=20, freq="D"),
-                ["4D", "8D"],
+                Index(["4D", "8D"], dtype=object),
                 (
                     r"None of \[Index\(\['4D', '8D'\], dtype='object'\)\] "
                     r"are in the \[index\]"
@@ -629,7 +652,7 @@ class TestPartialSetting:
             ),
             (
                 date_range(start="2000", periods=20, freq="D"),
-                ["4D", "8D"],
+                Index(["4D", "8D"], dtype=object),
                 (
                     r"None of \[Index\(\['4D', '8D'\], dtype='object'\)\] "
                     r"are in the \[index\]"
@@ -637,7 +660,7 @@ class TestPartialSetting:
             ),
             (
                 pd.timedelta_range(start="1 day", periods=20),
-                ["2000-01-04", "2000-01-08"],
+                Index(["2000-01-04", "2000-01-08"], dtype=object),
                 (
                     r"None of \[Index\(\['2000-01-04', '2000-01-08'\], "
                     r"dtype='object'\)\] are in the \[index\]"

@@ -558,7 +558,7 @@ class TestProjectCG(TestCase):
         assert_array_almost_equal(x, x_kkt)
 
     # The box constraints active and the termination is
-    # by maximum iterations (infeasible iteraction).
+    # by maximum iterations (infeasible interaction).
     def test_active_box_constraints_maximum_iterations_reached(self):
         H = csc_matrix([[6, 2, 1, 3],
                         [2, 5, 2, 4],
@@ -580,7 +580,7 @@ class TestProjectCG(TestCase):
         assert_array_almost_equal(x[0], 0.8)
 
     # The box constraints are active and the termination is
-    # because it hits boundary (without infeasible iteraction).
+    # because it hits boundary (without infeasible interaction).
     def test_active_box_constraints_hits_boundaries(self):
         H = csc_matrix([[6, 2, 1, 3],
                         [2, 5, 2, 4],
@@ -602,7 +602,7 @@ class TestProjectCG(TestCase):
         assert_array_almost_equal(x[2], 1.6)
 
     # The box constraints are active and the termination is
-    # because it hits boundary (infeasible iteraction).
+    # because it hits boundary (infeasible interaction).
     def test_active_box_constraints_hits_boundaries_infeasible_iter(self):
         H = csc_matrix([[6, 2, 1, 3],
                         [2, 5, 2, 4],
@@ -624,7 +624,7 @@ class TestProjectCG(TestCase):
         assert_array_almost_equal(x[1], 0.1)
 
     # The box constraints are active and the termination is
-    # because it hits boundary (no infeasible iteraction).
+    # because it hits boundary (no infeasible interaction).
     def test_active_box_constraints_negative_curvature(self):
         H = csc_matrix([[1, 2, 1, 3],
                         [2, 0, 2, 4],

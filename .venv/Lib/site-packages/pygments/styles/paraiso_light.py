@@ -17,6 +17,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, Text, \
     Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
 
 
+__all__ = ['ParaisoLightStyle']
+
+
 BACKGROUND = "#e7e9db"
 CURRENT_LINE = "#b9b6b0"
 SELECTION = "#a39e9b"
@@ -32,7 +35,8 @@ PURPLE = "#815ba4"
 
 
 class ParaisoLightStyle(Style):
-
+    name = 'paraiso-light'
+    
     background_color = BACKGROUND
     highlight_color = SELECTION
 

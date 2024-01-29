@@ -199,20 +199,9 @@ class Lexer(metaclass=LexerMeta):
         it's the same as if the return values was ``0.0``.
         """
 
-    def get_tokens(self, text, unfiltered=False):
-        """
-        This method is the basic interface of a lexer. It is called by
-        the `highlight()` function. It must process the text and return an
-        iterable of ``(tokentype, value)`` pairs from `text`.
+    def _preprocess_lexer_input(self, text):
+        """Apply preprocessing such as decoding the input, removing BOM and normalizing newlines."""
 
-        Normally, you don't need to override this method. The default
-        implementation processes the options recognized by all lexers
-        (`stripnl`, `stripall` and so on), and then yields all tokens
-        from `get_tokens_unprocessed()`, with the ``index`` dropped.
-
-        If `unfiltered` is set to `True`, the filtering mechanism is
-        bypassed even if filters are defined.
-        """
         if not isinstance(text, str):
             if self.encoding == 'guess':
                 text, _ = guess_decode(text)
@@ -254,6 +243,24 @@ class Lexer(metaclass=LexerMeta):
             text = text.expandtabs(self.tabsize)
         if self.ensurenl and not text.endswith('\n'):
             text += '\n'
+
+        return text
+
+    def get_tokens(self, text, unfiltered=False):
+        """
+        This method is the basic interface of a lexer. It is called by
+        the `highlight()` function. It must process the text and return an
+        iterable of ``(tokentype, value)`` pairs from `text`.
+
+        Normally, you don't need to override this method. The default
+        implementation processes the options recognized by all lexers
+        (`stripnl`, `stripall` and so on), and then yields all tokens
+        from `get_tokens_unprocessed()`, with the ``index`` dropped.
+
+        If `unfiltered` is set to `True`, the filtering mechanism is
+        bypassed even if filters are defined.
+        """
+        text = self._preprocess_lexer_input(text)
 
         def streamer():
             for _, t, v in self.get_tokens_unprocessed(text):

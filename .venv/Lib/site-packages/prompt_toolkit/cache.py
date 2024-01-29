@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections import deque
 from functools import wraps
-from typing import Any, Callable, Deque, Dict, Generic, Hashable, Tuple, TypeVar, cast
+from typing import Any, Callable, Dict, Generic, Hashable, Tuple, TypeVar, cast
 
 __all__ = [
     "SimpleCache",
@@ -26,7 +26,7 @@ class SimpleCache(Generic[_T, _U]):
         assert maxsize > 0
 
         self._data: dict[_T, _U] = {}
-        self._keys: Deque[_T] = deque()
+        self._keys: deque[_T] = deque()
         self.maxsize: int = maxsize
 
     def get(self, key: _T, getter_func: Callable[[], _U]) -> _U:
@@ -86,7 +86,7 @@ class FastDictCache(Dict[_K, _V]):
     def __init__(self, get_value: Callable[..., _V], size: int = 1000000) -> None:
         assert size > 0
 
-        self._keys: Deque[_K] = deque()
+        self._keys: deque[_K] = deque()
         self.get_value = get_value
         self.size = size
 

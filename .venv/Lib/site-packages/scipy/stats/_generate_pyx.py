@@ -5,15 +5,11 @@ import os
 import argparse
 
 
-def make_boost(outdir, distutils_build=False):
+def make_boost(outdir):
     # Call code generator inside _boost directory
     code_gen = pathlib.Path(__file__).parent / '_boost/include/code_gen.py'
-    if distutils_build:
-        subprocess.run([sys.executable, str(code_gen), '-o', outdir,
-                        '--distutils-build', 'True'], check=True)
-    else:
-        subprocess.run([sys.executable, str(code_gen), '-o', outdir],
-                       check=True)
+    subprocess.run([sys.executable, str(code_gen), '-o', outdir],
+                   check=True)
 
 
 if __name__ == '__main__':
@@ -23,12 +19,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if not args.outdir:
-        # We're dealing with a distutils build here, write in-place:
-        outdir_abs = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
-        outdir_abs_boost = outdir_abs / '_boost' / 'src'
-        if not os.path.exists(outdir_abs_boost):
-            os.makedirs(outdir_abs_boost)
-        make_boost(outdir_abs_boost, distutils_build=True)
+        raise ValueError("A path to the output directory is required")
     else:
         # Meson build
         srcdir_abs = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))

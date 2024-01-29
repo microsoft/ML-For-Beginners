@@ -1,8 +1,11 @@
 # Copyright (c) IPython Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
+
+from typing import Any, Dict
 
 
-def nested_update(this, that):
+def nested_update(this: Dict[Any, Any], that: Dict[Any, Any]) -> Dict[Any, Any]:
     """Merge two nested dictionaries.
 
     Effectively a recursive ``dict.update``.

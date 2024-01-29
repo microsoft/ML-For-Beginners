@@ -567,12 +567,11 @@ class OpenpyxlReader(BaseExcelReader["Workbook"]):
     ) -> Workbook:
         from openpyxl import load_workbook
 
+        default_kwargs = {"read_only": True, "data_only": True, "keep_links": False}
+
         return load_workbook(
             filepath_or_buffer,
-            read_only=True,
-            data_only=True,
-            keep_links=False,
-            **engine_kwargs,
+            **(default_kwargs | engine_kwargs),
         )
 
     @property

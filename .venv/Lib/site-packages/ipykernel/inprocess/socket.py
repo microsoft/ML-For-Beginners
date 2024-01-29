@@ -39,4 +39,3 @@ class DummySocket(HasTraits):
 
     def flush(self, timeout=1.0):
         """no-op to comply with stream API"""
-        pass

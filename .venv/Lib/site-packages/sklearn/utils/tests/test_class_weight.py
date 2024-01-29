@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
 from numpy.testing import assert_allclose
-from scipy import sparse
 
 from sklearn.datasets import make_blobs
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils._testing import assert_almost_equal, assert_array_almost_equal
 from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
+from sklearn.utils.fixes import CSC_CONTAINERS
 
 
 def test_compute_class_weight():
@@ -22,33 +22,53 @@ def test_compute_class_weight():
     assert cw[0] < cw[1] < cw[2]
 
 
-def test_compute_class_weight_not_present():
+@pytest.mark.parametrize(
+    "y_type, class_weight, classes, err_msg",
+    [
+        (
+            "numeric",
+            "balanced",
+            np.arange(4),
+            "classes should have valid labels that are in y",
+        ),
+        # Non-regression for https://github.com/scikit-learn/scikit-learn/issues/8312
+        (
+            "numeric",
+            {"label_not_present": 1.0},
+            np.arange(4),
+            r"The classes, \[0, 1, 2, 3\], are not in class_weight",
+        ),
+        (
+            "numeric",
+            "balanced",
+            np.arange(2),
+            "classes should include all valid labels",
+        ),
+        (
+            "numeric",
+            {0: 1.0, 1: 2.0},
+            np.arange(2),
+            "classes should include all valid labels",
+        ),
+        (
+            "string",
+            {"dogs": 3, "cat": 2},
+            np.array(["dog", "cat"]),
+            r"The classes, \['dog'\], are not in class_weight",
+        ),
+    ],
+)
+def test_compute_class_weight_not_present(y_type, class_weight, classes, err_msg):
     # Raise error when y does not contain all class labels
-    classes = np.arange(4)
-    y = np.asarray([0, 0, 0, 1, 1, 2])
-    with pytest.raises(ValueError):
-        compute_class_weight("balanced", classes=classes, y=y)
-    # Fix exception in error message formatting when missing label is a string
-    # https://github.com/scikit-learn/scikit-learn/issues/8312
-    with pytest.raises(
-        ValueError, match=r"The classes, \[0, 1, 2, 3\], are not in class_weight"
-    ):
-        compute_class_weight({"label_not_present": 1.0}, classes=classes, y=y)
-    # Raise error when y has items not in classes
-    classes = np.arange(2)
-    with pytest.raises(ValueError):
-        compute_class_weight("balanced", classes=classes, y=y)
-    with pytest.raises(ValueError):
-        compute_class_weight({0: 1.0, 1: 2.0}, classes=classes, y=y)
+    y = (
+        np.asarray([0, 0, 0, 1, 1, 2])
+        if y_type == "numeric"
+        else np.asarray(["dog", "cat", "dog"])
+    )
 
-    # y contains a unweighted class that is not in class_weights
-    classes = np.asarray(["cat", "dog"])
-    y = np.asarray(["dog", "cat", "dog"])
-    class_weights = {"dogs": 3, "cat": 2}
-    msg = r"The classes, \['dog'\], are not in class_weight"
-
-    with pytest.raises(ValueError, match=msg):
-        compute_class_weight(class_weights, classes=classes, y=y)
+    print(y)
+    with pytest.raises(ValueError, match=err_msg):
+        compute_class_weight(class_weight, classes=classes, y=y)
 
 
 def test_compute_class_weight_dict():
@@ -235,32 +255,38 @@ def test_compute_sample_weight_with_subsample():
     assert_array_almost_equal(sample_weight, [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0])
 
 
-def test_compute_sample_weight_errors():
+@pytest.mark.parametrize(
+    "y_type, class_weight, indices, err_msg",
+    [
+        (
+            "single-output",
+            {1: 2, 2: 1},
+            range(4),
+            "The only valid class_weight for subsampling is 'balanced'.",
+        ),
+        (
+            "multi-output",
+            {1: 2, 2: 1},
+            None,
+            "For multi-output, class_weight should be a list of dicts, or the string",
+        ),
+        (
+            "multi-output",
+            [{1: 2, 2: 1}],
+            None,
+            r"Got 1 element\(s\) while having 2 outputs",
+        ),
+    ],
+)
+def test_compute_sample_weight_errors(y_type, class_weight, indices, err_msg):
     # Test compute_sample_weight raises errors expected.
     # Invalid preset string
-    y = np.asarray([1, 1, 1, 2, 2, 2])
-    y_ = np.asarray([[1, 0], [1, 0], [1, 0], [2, 1], [2, 1], [2, 1]])
+    y_single_output = np.asarray([1, 1, 1, 2, 2, 2])
+    y_multi_output = np.asarray([[1, 0], [1, 0], [1, 0], [2, 1], [2, 1], [2, 1]])
 
-    with pytest.raises(ValueError):
-        compute_sample_weight("ni", y)
-    with pytest.raises(ValueError):
-        compute_sample_weight("ni", y, indices=range(4))
-    with pytest.raises(ValueError):
-        compute_sample_weight("ni", y_)
-    with pytest.raises(ValueError):
-        compute_sample_weight("ni", y_, indices=range(4))
-
-    # Not "balanced" for subsample
-    with pytest.raises(ValueError):
-        compute_sample_weight({1: 2, 2: 1}, y, indices=range(4))
-
-    # Not a list or preset for multi-output
-    with pytest.raises(ValueError):
-        compute_sample_weight({1: 2, 2: 1}, y_)
-
-    # Incorrect length list for multi-output
-    with pytest.raises(ValueError):
-        compute_sample_weight([{1: 2, 2: 1}], y_)
+    y = y_single_output if y_type == "single-output" else y_multi_output
+    with pytest.raises(ValueError, match=err_msg):
+        compute_sample_weight(class_weight, y, indices=indices)
 
 
 def test_compute_sample_weight_more_than_32():
@@ -282,8 +308,9 @@ def test_class_weight_does_not_contains_more_classes():
     tree.fit([[0, 0, 1], [1, 0, 1], [1, 2, 0]], [0, 0, 1])
 
 
-def test_compute_sample_weight_sparse():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_compute_sample_weight_sparse(csc_container):
     """Check that we can compute weight for sparse `y`."""
-    y = sparse.csc_matrix(np.asarray([0, 1, 1])).T
+    y = csc_container(np.asarray([[0], [1], [1]]))
     sample_weight = compute_sample_weight("balanced", y)
     assert_allclose(sample_weight, [1.5, 0.75, 0.75])

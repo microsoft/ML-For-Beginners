@@ -9,6 +9,7 @@
 #include <memory>
 #include <ostream>
 #include <string>
+#include <utility>
 
 namespace ONNX_NAMESPACE {
 namespace Common {

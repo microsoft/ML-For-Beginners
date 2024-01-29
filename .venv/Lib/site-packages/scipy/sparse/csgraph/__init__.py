@@ -152,7 +152,7 @@ using ``directed=True`` generally leads to more efficient computation.
 The routines in this module accept as input either scipy.sparse representations
 (csr, csc, or lil format), masked representations, or dense representations
 with non-edges indicated by zeros, infinities, and NaN entries.
-"""
+"""  # noqa: E501
 
 __docformat__ = "restructuredtext en"
 

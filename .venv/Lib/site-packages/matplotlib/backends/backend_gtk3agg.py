@@ -1,6 +1,6 @@
 import numpy as np
 
-from .. import _api, cbook, transforms
+from .. import cbook, transforms
 from . import backend_agg, backend_gtk3
 from .backend_gtk3 import Gtk, _BackendGTK3
 
@@ -62,11 +62,6 @@ class FigureCanvasGTK3Agg(backend_agg.FigureCanvasAgg,
 
         self._bbox_queue.append(bbox)
         self.queue_draw_area(x, y, width, height)
-
-
-@_api.deprecated("3.6", alternative="backend_gtk3.FigureManagerGTK3")
-class FigureManagerGTK3Agg(backend_gtk3.FigureManagerGTK3):
-    pass
 
 
 @_BackendGTK3.export

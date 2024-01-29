@@ -236,7 +236,7 @@ def get_win_folder_via_ctypes(csidl_name: str) -> str:
     windll = getattr(ctypes, "windll")  # noqa: B009 # using getattr to avoid false positive with mypy type checker
     windll.shell32.SHGetFolderPathW(None, csidl_const, None, 0, buf)
 
-    # Downgrade to short path name if it has highbit chars.
+    # Downgrade to short path name if it has high-bit chars.
     if any(ord(c) > 255 for c in buf):  # noqa: PLR2004
         buf2 = ctypes.create_unicode_buffer(1024)
         if windll.kernel32.GetShortPathNameW(buf.value, buf2, 1024):

@@ -3,8 +3,10 @@ import pytest
 
 import pandas as pd
 from pandas import (
+    DatetimeIndex,
     Index,
     Series,
+    date_range,
 )
 import pandas._testing as tm
 
@@ -168,7 +170,9 @@ def test_get_with_default():
     "arr",
     [
         np.random.default_rng(2).standard_normal(10),
-        tm.makeDateIndex(10, name="a").tz_localize(tz="US/Eastern"),
+        DatetimeIndex(date_range("2020-01-01", periods=10), name="a").tz_localize(
+            tz="US/Eastern"
+        ),
     ],
 )
 def test_get_with_ea(arr):

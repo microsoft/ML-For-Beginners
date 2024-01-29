@@ -113,11 +113,11 @@ class Duration:
 
     def __str__(self):
         """Print the Duration."""
-        return "%g %s" % (self._seconds, self._frame)
+        return f"{self._seconds:g} {self._frame}"
 
     def __repr__(self):
         """Print the Duration."""
-        return "Duration('%s', %g)" % (self._frame, self._seconds)
+        return f"Duration('{self._frame}', {self._seconds:g})"
 
     def checkSameFrame(self, rhs, func):
         """

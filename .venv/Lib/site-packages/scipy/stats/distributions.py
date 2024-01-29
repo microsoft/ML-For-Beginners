@@ -10,13 +10,13 @@ from ._distn_infrastructure import (rv_discrete, rv_continuous, rv_frozen)  # no
 from . import _continuous_distns
 from . import _discrete_distns
 
-from ._continuous_distns import *
+from ._continuous_distns import *  # noqa: F403
 from ._levy_stable import levy_stable
-from ._discrete_distns import *
+from ._discrete_distns import *  # noqa: F403
 from ._entropy import entropy
 
 # For backwards compatibility e.g. pymc expects distributions.__all__.
-__all__ = ['rv_discrete', 'rv_continuous', 'rv_histogram', 'entropy']
+__all__ = ['rv_discrete', 'rv_continuous', 'rv_histogram', 'entropy']  # noqa: F405
 
 # Add only the distribution names, not the *_gen names.
 __all__ += _continuous_distns._distn_names

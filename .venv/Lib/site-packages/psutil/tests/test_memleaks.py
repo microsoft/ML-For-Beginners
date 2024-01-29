@@ -4,8 +4,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-"""
-Tests for detecting function memory leaks (typically the ones
+"""Tests for detecting function memory leaks (typically the ones
 implemented in C). It does so by calling a function many times and
 checking whether process memory usage keeps increasing between
 calls or over time.
@@ -63,6 +62,7 @@ def fewtimes_if_linux():
     """Decorator for those Linux functions which are implemented in pure
     Python, and which we want to run faster.
     """
+
     def decorator(fun):
         @functools.wraps(fun)
         def wrapper(self, *args, **kwargs):
@@ -75,7 +75,9 @@ def fewtimes_if_linux():
                     self.__class__.times = before
             else:
                 return fun(self, *args, **kwargs)
+
         return wrapper
+
     return decorator
 
 
@@ -220,8 +222,7 @@ class TestProcessObjectLeaks(TestMemoryLeak):
     def test_cpu_affinity_set(self):
         affinity = thisproc.cpu_affinity()
         self.execute(lambda: self.proc.cpu_affinity(affinity))
-        self.execute_w_exc(
-            ValueError, lambda: self.proc.cpu_affinity([-1]))
+        self.execute_w_exc(ValueError, lambda: self.proc.cpu_affinity([-1]))
 
     @fewtimes_if_linux()
     def test_open_files(self):
@@ -322,7 +323,6 @@ class TestTerminatedProcessLeaks(TestProcessObjectLeaks):
 
 @unittest.skipIf(not WINDOWS, "WINDOWS only")
 class TestProcessDualImplementation(TestMemoryLeak):
-
     def test_cmdline_peb_true(self):
         self.execute(lambda: cext.proc_cmdline(os.getpid(), use_peb=True))
 
@@ -366,8 +366,9 @@ class TestModuleFunctionsLeaks(TestMemoryLeak):
 
     @fewtimes_if_linux()
     # TODO: remove this once 1892 is fixed
-    @unittest.skipIf(MACOS and platform.machine() == 'arm64',
-                     "skipped due to #1892")
+    @unittest.skipIf(
+        MACOS and platform.machine() == 'arm64', "skipped due to #1892"
+    )
     @unittest.skipIf(not HAS_CPU_FREQ, "not supported")
     def test_cpu_freq(self):
         self.execute(psutil.cpu_freq)
@@ -400,8 +401,10 @@ class TestModuleFunctionsLeaks(TestMemoryLeak):
     def test_disk_partitions(self):
         self.execute(psutil.disk_partitions)
 
-    @unittest.skipIf(LINUX and not os.path.exists('/proc/diskstats'),
-                     '/proc/diskstats not available on this Linux version')
+    @unittest.skipIf(
+        LINUX and not os.path.exists('/proc/diskstats'),
+        '/proc/diskstats not available on this Linux version',
+    )
     @fewtimes_if_linux()
     def test_disk_io_counters(self):
         self.execute(lambda: psutil.disk_io_counters(nowrap=False))
@@ -489,4 +492,5 @@ class TestModuleFunctionsLeaks(TestMemoryLeak):
 
 if __name__ == '__main__':
     from psutil.tests.runner import run_from_name
+
     run_from_name(__file__)

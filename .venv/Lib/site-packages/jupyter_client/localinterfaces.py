@@ -1,21 +1,23 @@
 """Utilities for identifying local IP addresses."""
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
+
 import os
 import re
 import socket
 import subprocess
 from subprocess import PIPE, Popen
-from typing import Iterable, List
+from typing import Any, Callable, Iterable, Sequence
 from warnings import warn
 
-LOCAL_IPS: List = []
-PUBLIC_IPS: List = []
+LOCAL_IPS: list = []
+PUBLIC_IPS: list = []
 
-LOCALHOST = ""
+LOCALHOST: str = ""
 
 
-def _uniq_stable(elems: Iterable) -> List:
+def _uniq_stable(elems: Iterable) -> list:
     """uniq_stable(elems) -> list
 
     Return from an iterable, a list of all the unique elements in the input,
@@ -30,7 +32,7 @@ def _uniq_stable(elems: Iterable) -> List:
     return value
 
 
-def _get_output(cmd):
+def _get_output(cmd: str | Sequence[str]) -> str:
     """Get output of a command, raising IOError if it fails"""
     startupinfo = None
     if os.name == "nt":
@@ -44,24 +46,24 @@ def _get_output(cmd):
     return stdout.decode("utf8", "replace")
 
 
-def _only_once(f):
+def _only_once(f: Callable) -> Callable:
     """decorator to only run a function once"""
-    f.called = False
+    f.called = False  # type:ignore[attr-defined]
 
-    def wrapped(**kwargs):
-        if f.called:
+    def wrapped(**kwargs: Any) -> Any:
+        if f.called:  # type:ignore[attr-defined]
             return
         ret = f(**kwargs)
-        f.called = True
+        f.called = True  # type:ignore[attr-defined]
         return ret
 
     return wrapped
 
 
-def _requires_ips(f):
+def _requires_ips(f: Callable) -> Callable:
     """decorator to ensure load_ips has been run before f"""
 
-    def ips_loaded(*args, **kwargs):
+    def ips_loaded(*args: Any, **kwargs: Any) -> Any:
         _load_ips()
         return f(*args, **kwargs)
 
@@ -73,7 +75,7 @@ class NoIPAddresses(Exception):  # noqa
     pass
 
 
-def _populate_from_list(addrs):
+def _populate_from_list(addrs: Sequence[str] | None) -> None:
     """populate local and public IPs from flat list of all IPs"""
     if not addrs:
         raise NoIPAddresses
@@ -102,7 +104,7 @@ def _populate_from_list(addrs):
 _ifconfig_ipv4_pat = re.compile(r"inet\b.*?(\d+\.\d+\.\d+\.\d+)", re.IGNORECASE)
 
 
-def _load_ips_ifconfig():
+def _load_ips_ifconfig() -> None:
     """load ip addresses from `ifconfig` output (posix)"""
 
     try:
@@ -120,7 +122,7 @@ def _load_ips_ifconfig():
     _populate_from_list(addrs)
 
 
-def _load_ips_ip():
+def _load_ips_ip() -> None:
     """load ip addresses from `ip addr` output (Linux)"""
     out = _get_output(["ip", "-f", "inet", "addr"])
 
@@ -136,7 +138,7 @@ def _load_ips_ip():
 _ipconfig_ipv4_pat = re.compile(r"ipv4.*?(\d+\.\d+\.\d+\.\d+)$", re.IGNORECASE)
 
 
-def _load_ips_ipconfig():
+def _load_ips_ipconfig() -> None:
     """load ip addresses from `ipconfig` output (Windows)"""
     out = _get_output("ipconfig")
 
@@ -149,9 +151,9 @@ def _load_ips_ipconfig():
     _populate_from_list(addrs)
 
 
-def _load_ips_netifaces():
+def _load_ips_netifaces() -> None:
     """load ip addresses with netifaces"""
-    import netifaces  # type: ignore
+    import netifaces  # type: ignore[import-not-found]
 
     global LOCALHOST
     local_ips = []
@@ -179,7 +181,7 @@ def _load_ips_netifaces():
     PUBLIC_IPS[:] = _uniq_stable(public_ips)
 
 
-def _load_ips_gethostbyname():
+def _load_ips_gethostbyname() -> None:
     """load ip addresses with socket.gethostbyname_ex
 
     This can be slow.
@@ -211,7 +213,7 @@ def _load_ips_gethostbyname():
     LOCALHOST = LOCAL_IPS[0]
 
 
-def _load_ips_dumb():
+def _load_ips_dumb() -> None:
     """Fallback in case of unexpected failure"""
     global LOCALHOST
     LOCALHOST = "127.0.0.1"
@@ -220,7 +222,7 @@ def _load_ips_dumb():
 
 
 @_only_once
-def _load_ips(suppress_exceptions=True):
+def _load_ips(suppress_exceptions: bool = True) -> None:
     """load the IPs that point to this machine
 
     This function will only ever be called once.
@@ -266,30 +268,30 @@ def _load_ips(suppress_exceptions=True):
 
 
 @_requires_ips
-def local_ips():
+def local_ips() -> list[str]:
     """return the IP addresses that point to this machine"""
     return LOCAL_IPS
 
 
 @_requires_ips
-def public_ips():
+def public_ips() -> list[str]:
     """return the IP addresses for this machine that are visible to other machines"""
     return PUBLIC_IPS
 
 
 @_requires_ips
-def localhost():
+def localhost() -> str:
     """return ip for localhost (almost always 127.0.0.1)"""
     return LOCALHOST
 
 
 @_requires_ips
-def is_local_ip(ip):
+def is_local_ip(ip: str) -> bool:
     """does `ip` point to this machine?"""
     return ip in LOCAL_IPS
 
 
 @_requires_ips
-def is_public_ip(ip):
+def is_public_ip(ip: str) -> bool:
     """is `ip` a publicly visible address?"""
     return ip in PUBLIC_IPS

@@ -617,5 +617,5 @@ class FuncNode:
         self.name = name
         self.func = getattr(np, name)
 
-    def __call__(self, *args):
+    def __call__(self, *args) -> MathCall:
         return MathCall(self, args)

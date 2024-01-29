@@ -1,7 +1,5 @@
 import copy
-import inspect
 import numbers
-import warnings
 from copy import deepcopy
 
 import numpy as np
@@ -66,6 +64,10 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
         The SAMME.R algorithm typically converges faster than SAMME,
         achieving a lower test error with fewer boosting iterations.
 
+        .. deprecated:: 0.12
+            `"SAMME.R"` is deprecated and will be removed in version 0.14.
+            '"SAMME"' will become the default.
+
     {sampling_strategy}
 
     replacement : bool, default=False
@@ -73,31 +75,12 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
 
     {random_state}
 
-    base_estimator : estimator object, default=None
-        The base estimator from which the boosted ensemble is built.
-        Support for sample weighting is required, as well as proper
-        ``classes_`` and ``n_classes_`` attributes. If ``None``, then
-        the base estimator is ``DecisionTreeClassifier(max_depth=1)``.
-
-        .. deprecated:: 0.10
-           `base_estimator` is deprecated in version 0.10 and will be removed
-           in 0.12. Use `estimator` instead.
-
     Attributes
     ----------
     estimator_ : estimator
         The base estimator from which the ensemble is grown.
 
         .. versionadded:: 0.10
-
-    base_estimator_ : estimator
-        The base estimator from which the ensemble is grown.
-
-        .. deprecated:: 1.2
-           `base_estimator_` is deprecated in `scikit-learn` 1.2 and will be
-           removed in 1.4. Use `estimator_` instead. When the minimum version
-           of `scikit-learn` supported by `imbalanced-learn` will reach 1.4,
-           this attribute will be removed.
 
     estimators_ : list of classifiers
         The collection of fitted sub-estimators.
@@ -172,7 +155,7 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
     """
 
     # make a deepcopy to not modify the original dictionary
-    if sklearn_version >= parse_version("1.3"):
+    if sklearn_version >= parse_version("1.4"):
         _parameter_constraints = copy.deepcopy(
             AdaBoostClassifier._parameter_constraints
         )
@@ -192,6 +175,9 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
             "replacement": ["boolean"],
         }
     )
+    # TODO: remove when minimum supported version of scikit-learn is 1.4
+    if "base_estimator" in _parameter_constraints:
+        del _parameter_constraints["base_estimator"]
 
     def __init__(
         self,
@@ -203,23 +189,14 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
         sampling_strategy="auto",
         replacement=False,
         random_state=None,
-        base_estimator="deprecated",
     ):
-        # TODO: remove when supporting scikit-learn>=1.2
-        bagging_classifier_signature = inspect.signature(super().__init__)
-        estimator_params = {"base_estimator": base_estimator}
-        if "estimator" in bagging_classifier_signature.parameters:
-            estimator_params["estimator"] = estimator
-        else:
-            self.estimator = estimator
-
         super().__init__(
-            **estimator_params,
             n_estimators=n_estimators,
             learning_rate=learning_rate,
             algorithm=algorithm,
             random_state=random_state,
         )
+        self.estimator = estimator
         self.sampling_strategy = sampling_strategy
         self.replacement = replacement
 
@@ -257,36 +234,15 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
 
         Sets the `estimator_` attributes.
         """
-        if self.estimator is not None and (
-            self.base_estimator not in [None, "deprecated"]
-        ):
-            raise ValueError(
-                "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-            )
-
         default = DecisionTreeClassifier(max_depth=1)
         if self.estimator is not None:
-            base_estimator = clone(self.estimator)
-        elif self.base_estimator not in [None, "deprecated"]:
-            warnings.warn(
-                "`base_estimator` was renamed to `estimator` in version 0.10 and "
-                "will be removed in 0.12.",
-                FutureWarning,
-            )
-            base_estimator = clone(self.base_estimator)
+            self.estimator_ = clone(self.estimator)
         else:
-            base_estimator = clone(default)
-
-        self._estimator = base_estimator
-        try:
-            # scikit-learn < 1.2
-            self.base_estimator_ = self._estimator
-        except AttributeError:
-            pass
+            self.estimator_ = clone(default)
 
         #  SAMME-R requires predict_proba-enabled estimators
         if self.algorithm == "SAMME.R":
-            if not hasattr(self._estimator, "predict_proba"):
+            if not hasattr(self.estimator_, "predict_proba"):
                 raise TypeError(
                     "AdaBoostClassifier with algorithm='SAMME.R' requires "
                     "that the weak learner supports the calculation of class "
@@ -294,9 +250,9 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
                     "Please change the base estimator or set "
                     "algorithm='SAMME' instead."
                 )
-        if not has_fit_parameter(self._estimator, "sample_weight"):
+        if not has_fit_parameter(self.estimator_, "sample_weight"):
             raise ValueError(
-                f"{self._estimator.__class__.__name__} doesn't support sample_weight."
+                f"{self.estimator_.__class__.__name__} doesn't support sample_weight."
             )
 
         self.base_sampler_ = RandomUnderSampler(
@@ -309,7 +265,7 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
         Warning: This method should be used to properly instantiate new
         sub-estimators.
         """
-        estimator = clone(self._estimator)
+        estimator = clone(self.estimator_)
         estimator.set_params(**{p: getattr(self, p) for p in self.estimator_params})
         sampler = clone(self.base_sampler_)
 
@@ -437,9 +393,3 @@ class RUSBoostClassifier(_ParamsValidationMixin, AdaBoostClassifier):
             sample_weight *= np.exp(estimator_weight * incorrect * (sample_weight > 0))
 
         return sample_weight, estimator_weight, estimator_error
-
-    # TODO: remove when supporting scikit-learn>=1.4
-    @property
-    def estimator_(self):
-        """Estimator used to grow the ensemble."""
-        return self._estimator

@@ -9,6 +9,8 @@
 #pragma once
 
 #include <functional>
+#include <memory>
+#include <string>
 
 #include "onnx/onnx_pb.h"
 #include "onnx/version_converter/helper.h"

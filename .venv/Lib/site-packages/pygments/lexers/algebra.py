@@ -25,7 +25,7 @@ class GAPLexer(RegexLexer):
     .. versionadded:: 2.0
     """
     name = 'GAP'
-    url = 'http://www.gap-system.org'
+    url = 'https://www.gap-system.org'
     aliases = ['gap']
     filenames = ['*.g', '*.gd', '*.gi', '*.gap']
 

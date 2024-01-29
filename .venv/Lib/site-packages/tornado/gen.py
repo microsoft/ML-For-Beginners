@@ -840,13 +840,17 @@ class Runner(object):
             return False
 
 
-# Convert Awaitables into Futures.
-try:
-    _wrap_awaitable = asyncio.ensure_future
-except AttributeError:
-    # asyncio.ensure_future was introduced in Python 3.4.4, but
-    # Debian jessie still ships with 3.4.2 so try the old name.
-    _wrap_awaitable = getattr(asyncio, "async")
+def _wrap_awaitable(awaitable: Awaitable) -> Future:
+    # Convert Awaitables into Futures.
+    # Note that we use ensure_future, which handles both awaitables
+    # and coroutines, rather than create_task, which only accepts
+    # coroutines. (ensure_future calls create_task if given a coroutine)
+    fut = asyncio.ensure_future(awaitable)
+    # See comments on IOLoop._pending_tasks.
+    loop = IOLoop.current()
+    loop._register_task(fut)
+    fut.add_done_callback(lambda f: loop._unregister_task(f))
+    return fut
 
 
 def convert_yielded(yielded: _Yieldable) -> Future:

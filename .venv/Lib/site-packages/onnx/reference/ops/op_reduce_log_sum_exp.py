@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221
+
 
 import numpy as np
 
@@ -25,6 +25,9 @@ def compute_log_sum_exp(data, axes, keepdims):
 class ReduceLogSumExp_1(OpRunReduceNumpy):
     def _run(self, data, axes=None, keepdims=None):  # type: ignore
         tax = tuple(axes) if axes is not None else None
+
+        if data.size == 0:
+            return self.reduce_constant(data, -np.inf, tax, keepdims)
         return compute_log_sum_exp(data, tax, keepdims)
 
 
@@ -35,5 +38,8 @@ class ReduceLogSumExp_18(OpRunReduceNumpy):
 
         axes = self.handle_axes(axes)
         keepdims = keepdims != 0  # type: ignore
+
+        if data.size == 0:
+            return self.reduce_constant(data, -np.inf, axes, keepdims)
 
         return compute_log_sum_exp(data, axes, keepdims)

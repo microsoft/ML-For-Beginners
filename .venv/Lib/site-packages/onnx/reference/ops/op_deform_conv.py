@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0912,R0913,R0914,R0915,R1702,W0221
+
 
 import numpy as np
 
@@ -51,7 +51,6 @@ def _deform_conv_implementation(  # type: ignore
         mask = np.ones((n, offset_group * np.prod(kernel_shape), *output_shape))
     mask = mask.reshape((n, offset_group, *kernel_shape, *output_shape))
 
-    # pylint: disable=import-outside-toplevel
     from onnx.reference.ops._op_list import GridSample
 
     if len(X.shape) == 4:

@@ -80,7 +80,7 @@ def sublists(lst, min_elmts=0, max_elmts=None):
     result = itertools.chain.from_iterable(
                 itertools.combinations(lst, sublist_len)
                 for sublist_len in range(min_elmts, max_elmts+1))
-    if type(result) != list:
+    if type(result) is not list:
         result = list(result)
     return result
 

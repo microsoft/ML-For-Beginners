@@ -9,6 +9,7 @@ from pandas import (
     DataFrame,
     DatetimeIndex,
     Index,
+    MultiIndex,
     Series,
     Timedelta,
     Timestamp,
@@ -194,7 +195,7 @@ class TestSlicing:
             s["2004-12-31"]
 
     def test_partial_slice_daily(self):
-        rng = date_range(freq="H", start=datetime(2005, 1, 31), periods=500)
+        rng = date_range(freq="h", start=datetime(2005, 1, 31), periods=500)
         s = Series(np.arange(len(rng)), index=rng)
 
         result = s["2005-1-31"]
@@ -204,7 +205,7 @@ class TestSlicing:
             s["2004-12-31 00"]
 
     def test_partial_slice_hourly(self):
-        rng = date_range(freq="T", start=datetime(2005, 1, 1, 20, 0, 0), periods=500)
+        rng = date_range(freq="min", start=datetime(2005, 1, 1, 20, 0, 0), periods=500)
         s = Series(np.arange(len(rng)), index=rng)
 
         result = s["2005-1-1"]
@@ -218,7 +219,7 @@ class TestSlicing:
             s["2004-12-31 00:15"]
 
     def test_partial_slice_minutely(self):
-        rng = date_range(freq="S", start=datetime(2005, 1, 1, 23, 59, 0), periods=500)
+        rng = date_range(freq="s", start=datetime(2005, 1, 1, 23, 59, 0), periods=500)
         s = Series(np.arange(len(rng)), index=rng)
 
         result = s["2005-1-1 23:59"]
@@ -235,7 +236,7 @@ class TestSlicing:
         rng = date_range(
             start=datetime(2005, 1, 1, 0, 0, 59, microsecond=999990),
             periods=20,
-            freq="US",
+            freq="us",
         )
         s = Series(np.arange(20), rng)
 
@@ -336,7 +337,7 @@ class TestSlicing:
                 "TICKER": ["ABC", "MNP", "XYZ", "XYZ"],
                 "val": [1, 2, 3, 4],
             },
-            index=date_range("2013-06-19 09:30:00", periods=4, freq="5T"),
+            index=date_range("2013-06-19 09:30:00", periods=4, freq="5min"),
         )
         df_multi = df.set_index(["ACCOUNT", "TICKER"], append=True)
 
@@ -360,10 +361,12 @@ class TestSlicing:
     def test_partial_slicing_with_multiindex_series(self):
         # GH 4294
         # partial slice on a series mi
-        ser = DataFrame(
-            np.random.default_rng(2).random((1000, 1000)),
-            index=date_range("2000-1-1", periods=1000),
-        ).stack(future_stack=True)
+        ser = Series(
+            range(250),
+            index=MultiIndex.from_product(
+                [date_range("2000-1-1", periods=50), range(5)]
+            ),
+        )
 
         s2 = ser[:-1].copy()
         expected = s2["2000-1-4"]
@@ -453,9 +456,11 @@ class TestSlicing:
 
     def test_slice_reduce_to_series(self):
         # GH 27516
-        df = DataFrame({"A": range(24)}, index=date_range("2000", periods=24, freq="M"))
+        df = DataFrame(
+            {"A": range(24)}, index=date_range("2000", periods=24, freq="ME")
+        )
         expected = Series(
-            range(12), index=date_range("2000", periods=12, freq="M"), name="A"
+            range(12), index=date_range("2000", periods=12, freq="ME"), name="A"
         )
         result = df.loc["2000", "A"]
         tm.assert_series_equal(result, expected)

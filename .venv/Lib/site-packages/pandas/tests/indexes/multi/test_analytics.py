@@ -98,8 +98,8 @@ def test_numpy_repeat():
 
 def test_append_mixed_dtypes():
     # GH 13660
-    dti = date_range("2011-01-01", freq="M", periods=3)
-    dti_tz = date_range("2011-01-01", freq="M", periods=3, tz="US/Eastern")
+    dti = date_range("2011-01-01", freq="ME", periods=3)
+    dti_tz = date_range("2011-01-01", freq="ME", periods=3, tz="US/Eastern")
     pi = period_range("2011-01", freq="M", periods=3)
 
     mi = MultiIndex.from_arrays(

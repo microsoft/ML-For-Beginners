@@ -841,17 +841,8 @@ _env_type = type(os.environ)
 if _env_type is not dict:
     _type_pprinters[_env_type] = _dict_pprinter_factory('environ{', '}')
 
-try:
-    # In PyPy, types.DictProxyType is dict, setting the dictproxy printer
-    # using dict.setdefault avoids overwriting the dict printer
-    _type_pprinters.setdefault(types.DictProxyType,
-                               _dict_pprinter_factory('dict_proxy({', '})'))
-    _type_pprinters[types.ClassType] = _type_pprint
-    _type_pprinters[types.SliceType] = _repr_pprint
-except AttributeError: # Python 3
-    _type_pprinters[types.MappingProxyType] = \
-        _dict_pprinter_factory('mappingproxy({', '})')
-    _type_pprinters[slice] = _repr_pprint
+_type_pprinters[types.MappingProxyType] = _dict_pprinter_factory("mappingproxy({", "})")
+_type_pprinters[slice] = _repr_pprint
 
 _type_pprinters[range] = _repr_pprint
 _type_pprinters[bytes] = _repr_pprint

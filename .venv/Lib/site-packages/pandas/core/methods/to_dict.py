@@ -3,30 +3,87 @@ from __future__ import annotations
 from typing import (
     TYPE_CHECKING,
     Literal,
+    overload,
 )
 import warnings
 
 import numpy as np
 
+from pandas._libs import (
+    lib,
+    missing as libmissing,
+)
 from pandas.util._exceptions import find_stack_level
 
 from pandas.core.dtypes.cast import maybe_box_native
-from pandas.core.dtypes.dtypes import ExtensionDtype
+from pandas.core.dtypes.dtypes import (
+    BaseMaskedDtype,
+    ExtensionDtype,
+)
 
 from pandas.core import common as com
 
 if TYPE_CHECKING:
+    from pandas._typing import MutableMappingT
+
     from pandas import DataFrame
 
 
+@overload
+def to_dict(
+    df: DataFrame,
+    orient: Literal["dict", "list", "series", "split", "tight", "index"] = ...,
+    *,
+    into: type[MutableMappingT] | MutableMappingT,
+    index: bool = ...,
+) -> MutableMappingT:
+    ...
+
+
+@overload
+def to_dict(
+    df: DataFrame,
+    orient: Literal["records"],
+    *,
+    into: type[MutableMappingT] | MutableMappingT,
+    index: bool = ...,
+) -> list[MutableMappingT]:
+    ...
+
+
+@overload
+def to_dict(
+    df: DataFrame,
+    orient: Literal["dict", "list", "series", "split", "tight", "index"] = ...,
+    *,
+    into: type[dict] = ...,
+    index: bool = ...,
+) -> dict:
+    ...
+
+
+@overload
+def to_dict(
+    df: DataFrame,
+    orient: Literal["records"],
+    *,
+    into: type[dict] = ...,
+    index: bool = ...,
+) -> list[dict]:
+    ...
+
+
+# error: Incompatible default for argument "into" (default has type "type[dict
+# [Any, Any]]", argument has type "type[MutableMappingT] | MutableMappingT")
 def to_dict(
     df: DataFrame,
     orient: Literal[
         "dict", "list", "series", "split", "tight", "records", "index"
     ] = "dict",
-    into: type[dict] = dict,
+    *,
+    into: type[MutableMappingT] | MutableMappingT = dict,  # type: ignore[assignment]
     index: bool = True,
-) -> dict | list[dict]:
+) -> MutableMappingT | list[MutableMappingT]:
     """
     Convert the DataFrame to a dictionary.
 
@@ -54,7 +111,7 @@ def to_dict(
             'tight' as an allowed value for the ``orient`` argument
 
     into : class, default dict
-        The collections.abc.Mapping subclass used for all Mappings
+        The collections.abc.MutableMapping subclass used for all Mappings
         in the return value.  Can be the actual class or an empty
         instance of the mapping type you want.  If you want a
         collections.defaultdict, you must pass it initialized.
@@ -69,8 +126,8 @@ def to_dict(
     Returns
     -------
     dict, list or collections.abc.Mapping
-        Return a collections.abc.Mapping object representing the DataFrame.
-        The resulting transformation depends on the `orient` parameter.
+        Return a collections.abc.MutableMapping object representing the
+        DataFrame. The resulting transformation depends on the `orient` parameter.
     """
     if not df.columns.is_unique:
         warnings.warn(
@@ -100,19 +157,27 @@ def to_dict(
         for i, col_dtype in enumerate(df.dtypes.values)
         if col_dtype == np.dtype(object) or isinstance(col_dtype, ExtensionDtype)
     ]
+    box_na_values = [
+        lib.no_default if not isinstance(col_dtype, BaseMaskedDtype) else libmissing.NA
+        for i, col_dtype in enumerate(df.dtypes.values)
+    ]
     are_all_object_dtype_cols = len(box_native_indices) == len(df.dtypes)
 
     if orient == "dict":
-        return into_c((k, v.to_dict(into)) for k, v in df.items())
+        return into_c((k, v.to_dict(into=into)) for k, v in df.items())
 
     elif orient == "list":
-        object_dtype_indices_as_set = set(box_native_indices)
+        object_dtype_indices_as_set: set[int] = set(box_native_indices)
         return into_c(
             (
                 k,
-                list(map(maybe_box_native, v.tolist()))
+                list(
+                    map(
+                        maybe_box_native, v.to_numpy(na_value=box_na_values[i]).tolist()
+                    )
+                )
                 if i in object_dtype_indices_as_set
-                else v.tolist(),
+                else v.to_numpy().tolist(),
             )
             for i, (k, v) in enumerate(df.items())
         )

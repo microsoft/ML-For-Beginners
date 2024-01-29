@@ -76,16 +76,3 @@ class CallbackTests(unittest.TestCase):
         self.em.trigger('ping_received')
         self.assertEqual([True, True, False], invoked)
         self.assertEqual([func3], self.em.callbacks['ping_received'])
-    
-    def test_ignore_event_arguments_if_no_argument_required(self):
-        call_count = [0]
-        def event_with_no_argument():
-            call_count[0] += 1
-
-        self.em.register('event_with_argument', event_with_no_argument)
-        self.em.trigger('event_with_argument', 'the argument')
-        self.assertEqual(call_count[0], 1)
-        
-        self.em.unregister('event_with_argument', event_with_no_argument)
-        self.em.trigger('ping_received')
-        self.assertEqual(call_count[0], 1)

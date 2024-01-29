@@ -1117,3 +1117,24 @@ def test_partial_dependence_display_with_constant_sample_weight(
     assert np.array_equal(
         disp.pd_results[0]["average"], disp_sw.pd_results[0]["average"]
     )
+
+
+def test_subclass_named_constructors_return_type_is_subclass(
+    pyplot, diabetes, clf_diabetes
+):
+    """Check that named constructors return the correct type when subclassed.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/pull/27675
+    """
+
+    class SubclassOfDisplay(PartialDependenceDisplay):
+        pass
+
+    curve = SubclassOfDisplay.from_estimator(
+        clf_diabetes,
+        diabetes.data,
+        [0, 2, (0, 2)],
+    )
+
+    assert isinstance(curve, SubclassOfDisplay)

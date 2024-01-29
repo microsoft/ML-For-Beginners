@@ -7,15 +7,15 @@ class TestResolution:
     @pytest.mark.parametrize(
         "freq,expected",
         [
-            ("A", "year"),
+            ("Y", "year"),
             ("Q", "quarter"),
             ("M", "month"),
             ("D", "day"),
-            ("H", "hour"),
-            ("T", "minute"),
-            ("S", "second"),
-            ("L", "millisecond"),
-            ("U", "microsecond"),
+            ("h", "hour"),
+            ("min", "minute"),
+            ("s", "second"),
+            ("ms", "millisecond"),
+            ("us", "microsecond"),
         ],
     )
     def test_resolution(self, freq, expected):

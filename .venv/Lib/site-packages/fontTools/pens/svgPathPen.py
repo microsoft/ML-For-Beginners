@@ -246,7 +246,7 @@ def main(args=None):
     for tag_v in options.variations.split():
         fields = tag_v.split("=")
         tag = fields[0].strip()
-        v = int(fields[1])
+        v = float(fields[1])
         location[tag] = v
 
     hhea = font["hhea"]

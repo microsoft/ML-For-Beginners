@@ -147,6 +147,11 @@ class TestSetState:
         # arguments without truncation.
         self.prng.negative_binomial(0.5, 0.5)
 
+    def test_set_invalid_state(self):
+        # gh-25402
+        with pytest.raises(IndexError):
+            self.prng.set_state(())
+
 
 class TestRandint:
 
@@ -276,7 +281,7 @@ class TestRandint:
             sample = self.rfunc(lbnd, ubnd, dtype=dt)
             assert_equal(sample.dtype, np.dtype(dt))
 
-        for dt in (bool, int, np.compat.long):
+        for dt in (bool, int):
             lbnd = 0 if dt is bool else np.iinfo(dt).min
             ubnd = 2 if dt is bool else np.iinfo(dt).max + 1
 

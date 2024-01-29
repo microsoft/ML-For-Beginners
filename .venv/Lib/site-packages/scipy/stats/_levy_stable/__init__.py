@@ -128,6 +128,25 @@ _pdf_single_value_cf_integrate_Z1 = partial(
 )
 
 
+def _nolan_round_x_near_zeta(x0, alpha, zeta, x_tol_near_zeta):
+    """Round x close to zeta for Nolan's method in [NO]."""
+    #   "8. When |x0-beta*tan(pi*alpha/2)| is small, the
+    #   computations of the density and cumulative have numerical problems.
+    #   The program works around this by setting
+    #   z = beta*tan(pi*alpha/2) when
+    #   |z-beta*tan(pi*alpha/2)| < tol(5)*alpha**(1/alpha).
+    #   (The bound on the right is ad hoc, to get reasonable behavior
+    #   when alpha is small)."
+    # where tol(5) = 0.5e-2 by default.
+    #
+    # We seem to have partially addressed this through re-expression of
+    # g(theta) here, but it still needs to be used in some extreme cases.
+    # Perhaps tol(5) = 0.5e-2 could be reduced for our implementation.
+    if np.abs(x0 - zeta) < x_tol_near_zeta * alpha ** (1 / alpha):
+        x0 = zeta
+    return x0
+
+
 def _nolan_round_difficult_input(
     x0, alpha, beta, zeta, x_tol_near_zeta, alpha_tol_near_one
 ):
@@ -145,21 +164,7 @@ def _nolan_round_difficult_input(
     #   problems.  The current version sets beta=0."
     # We seem to have addressed this through re-expression of g(theta) here
 
-    #   "8. When |x0-beta*tan(pi*alpha/2)| is small, the
-    #   computations of the density and cumulative have numerical problems.
-    #   The program works around this by setting
-    #   z = beta*tan(pi*alpha/2) when
-    #   |z-beta*tan(pi*alpha/2)| < tol(5)*alpha**(1/alpha).
-    #   (The bound on the right is ad hoc, to get reasonable behavior
-    #   when alpha is small)."
-    # where tol(5) = 0.5e-2 by default.
-    #
-    # We seem to have partially addressed this through re-expression of
-    # g(theta) here, but it still needs to be used in some extreme cases.
-    # Perhaps tol(5) = 0.5e-2 could be reduced for our implementation.
-    if np.abs(x0 - zeta) < x_tol_near_zeta * alpha ** (1 / alpha):
-        x0 = zeta
-
+    x0 = _nolan_round_x_near_zeta(x0, alpha, zeta, x_tol_near_zeta)
     return x0, alpha, beta
 
 
@@ -211,13 +216,13 @@ def _pdf_single_value_piecewise_Z0(x0, alpha, beta, **kwds):
         return 1 / (1 + x0 ** 2) / np.pi
 
     return _pdf_single_value_piecewise_post_rounding_Z0(
-        x0, alpha, beta, quad_eps
+        x0, alpha, beta, quad_eps, x_tol_near_zeta
     )
 
 
-def _pdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps):
-    """Calculate pdf using Nolan's methods as detailed in [NO].
-    """
+def _pdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps,
+                                                 x_tol_near_zeta):
+    """Calculate pdf using Nolan's methods as detailed in [NO]."""
 
     _nolan = Nolan(alpha, beta, x0)
     zeta = _nolan.zeta
@@ -225,6 +230,10 @@ def _pdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps):
     c2 = _nolan.c2
     g = _nolan.g
 
+    # round x0 to zeta again if needed. zeta was recomputed and may have
+    # changed due to floating point differences.
+    # See https://github.com/scipy/scipy/pull/18133
+    x0 = _nolan_round_x_near_zeta(x0, alpha, zeta, x_tol_near_zeta)
     # handle Nolan's initial case logic
     if x0 == zeta:
         return (
@@ -235,7 +244,7 @@ def _pdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps):
         )
     elif x0 < zeta:
         return _pdf_single_value_piecewise_post_rounding_Z0(
-            -x0, alpha, -beta, quad_eps
+            -x0, alpha, -beta, quad_eps, x_tol_near_zeta
         )
 
     # following Nolan, we may now assume
@@ -328,13 +337,13 @@ def _cdf_single_value_piecewise_Z0(x0, alpha, beta, **kwds):
         return 0.5 + np.arctan(x0) / np.pi
 
     return _cdf_single_value_piecewise_post_rounding_Z0(
-        x0, alpha, beta, quad_eps
+        x0, alpha, beta, quad_eps, x_tol_near_zeta
     )
 
 
-def _cdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps):
-    """Calculate cdf using Nolan's methods as detailed in [NO].
-    """
+def _cdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps,
+                                                 x_tol_near_zeta):
+    """Calculate cdf using Nolan's methods as detailed in [NO]."""
     _nolan = Nolan(alpha, beta, x0)
     zeta = _nolan.zeta
     xi = _nolan.xi
@@ -342,7 +351,10 @@ def _cdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps):
     # c2 = _nolan.c2
     c3 = _nolan.c3
     g = _nolan.g
-
+    # round x0 to zeta again if needed. zeta was recomputed and may have
+    # changed due to floating point differences.
+    # See https://github.com/scipy/scipy/pull/18133
+    x0 = _nolan_round_x_near_zeta(x0, alpha, zeta, x_tol_near_zeta)
     # handle Nolan's initial case logic
     if (alpha == 1 and beta < 0) or x0 < zeta:
         # NOTE: Nolan's paper has a typo here!
@@ -350,7 +362,7 @@ def _cdf_single_value_piecewise_post_rounding_Z0(x0, alpha, beta, quad_eps):
         # incorrect since F(-infty) would be 1.0 in this case
         # Indeed, the alpha != 1, x0 < zeta case is correct here.
         return 1 - _cdf_single_value_piecewise_post_rounding_Z0(
-            -x0, alpha, -beta, quad_eps
+            -x0, alpha, -beta, quad_eps, x_tol_near_zeta
         )
     elif x0 == zeta:
         return 0.5 - xi / np.pi
@@ -760,7 +772,18 @@ class levy_stable_gen(rv_continuous):
         For cdf calculations FFT calculation is considered experimental. Use
         Zolatarev's method instead (default).
 
-    %(after_notes)s
+    The probability density above is defined in the "standardized" form. To
+    shift and/or scale the distribution use the ``loc`` and ``scale``
+    parameters.
+    Generally ``%(name)s.pdf(x, %(shapes)s, loc, scale)`` is identically
+    equivalent to ``%(name)s.pdf(y, %(shapes)s) / scale`` with
+    ``y = (x - loc) / scale``, except in the ``S1`` parameterization if
+    ``alpha == 1``.  In that case ``%(name)s.pdf(x, %(shapes)s, loc, scale)``
+    is identically equivalent to ``%(name)s.pdf(y, %(shapes)s) / scale`` with
+    ``y = (x - loc - 2 * beta * scale * np.log(scale) / np.pi) / scale``.
+    See [NO2]_ Definition 1.8 for more information.
+    Note that shifting the location of a distribution
+    does not make it a "noncentral" distribution.
 
     References
     ----------
@@ -771,6 +794,8 @@ class levy_stable_gen(rv_continuous):
         to compute densities of stable distribution.
     .. [NO] Nolan, J., 1997. Numerical Calculation of Stable Densities and
         distributions Functions.
+    .. [NO2] Nolan, J., 2018. Stable Distributions: Models for Heavy Tailed
+        Data.
     .. [HO] Hopcraft, K. I., Jakeman, E., Tanner, R. M. J., 1999. Lévy random
         walks with fluctuating step number and multiscale behavior.
 
@@ -778,7 +803,7 @@ class levy_stable_gen(rv_continuous):
 
     """
     # Configurable options as class variables
-    # (accesible from self by attribute lookup).
+    # (accessible from self by attribute lookup).
     parameterization = "S1"
     pdf_default_method = "piecewise"
     cdf_default_method = "piecewise"
@@ -812,8 +837,8 @@ class levy_stable_gen(rv_continuous):
     def rvs(self, *args, **kwds):
         X1 = super().rvs(*args, **kwds)
 
-        discrete = kwds.pop("discrete", None)  # noqa
-        rndm = kwds.pop("random_state", None)  # noqa
+        kwds.pop("discrete", None)
+        kwds.pop("random_state", None)
         (alpha, beta), delta, gamma, size = self._parse_args_rvs(*args, **kwds)
 
         # shift location for this parameterisation (S1)
@@ -888,7 +913,7 @@ class levy_stable_gen(rv_continuous):
         data_in = np.dstack((x, alpha, beta))[0]
         data_out = np.empty(shape=(len(data_in), 1))
 
-        pdf_default_method_name = levy_stable_gen.pdf_default_method
+        pdf_default_method_name = self.pdf_default_method
         if pdf_default_method_name in ("piecewise", "best", "zolotarev"):
             pdf_single_value_method = _pdf_single_value_piecewise
         elif pdf_default_method_name in ("dni", "quadrature"):
@@ -928,7 +953,7 @@ class levy_stable_gen(rv_continuous):
                 warnings.warn(
                     "Density calculations experimental for FFT method."
                     + " Use combination of piecewise and dni methods instead.",
-                    RuntimeWarning,
+                    RuntimeWarning, stacklevel=3,
                 )
                 _alpha, _beta = pair
                 _x = data_subset[:, (0,)]
@@ -1068,7 +1093,7 @@ class levy_stable_gen(rv_continuous):
                 warnings.warn(
                     "Cumulative density calculations experimental for FFT"
                     + " method. Use piecewise method instead.",
-                    RuntimeWarning,
+                    RuntimeWarning, stacklevel=3,
                 )
                 _alpha, _beta = pair
                 _x = data_subset[:, (0,)]
@@ -1147,7 +1172,7 @@ def pdf_from_cf_with_fft(cf, h=0.01, q=9, level=3):
     h : Optional[float]
         Step size for Newton-Cotes integration. Default: 0.01
     q : Optional[int]
-        Use 2**q steps when peforming Newton-Cotes integration.
+        Use 2**q steps when performing Newton-Cotes integration.
         The infinite integral in the inverse Fourier transform will then
         be restricted to the interval [-2**q * h / 2, 2**q * h / 2]. Setting
         the number of steps equal to a power of 2 allows the fft to be

@@ -121,6 +121,11 @@ class _User2DTransform(Transform):
 
 
 class GridFinder:
+    """
+    Internal helper for `~.grid_helper_curvelinear.GridHelperCurveLinear`, with
+    the same constructor parameters; should not be directly instantiated.
+    """
+
     def __init__(self,
                  transform,
                  extreme_finder=None,
@@ -128,14 +133,6 @@ class GridFinder:
                  grid_locator2=None,
                  tick_formatter1=None,
                  tick_formatter2=None):
-        """
-        transform : transform from the image coordinate (which will be
-        the transData of the axes to the world coordinate).
-
-        or transform = (transform_xy, inv_transform_xy)
-
-        locator1, locator2 : grid locator for 1st and 2nd axis.
-        """
         if extreme_finder is None:
             extreme_finder = ExtremeFinderSimple(20, 20)
         if grid_locator1 is None:

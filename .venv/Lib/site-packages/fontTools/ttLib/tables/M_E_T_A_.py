@@ -68,7 +68,6 @@ def getLabelString(labelID):
 
 
 class table_M_E_T_A_(DefaultTable.DefaultTable):
-
     dependencies = []
 
     def decompile(self, data, ttFont):

@@ -9,9 +9,12 @@ import numpy as np
 
 from onnx import OptionalProto, SequenceProto, TensorProto
 
-TensorDtypeMap = NamedTuple(
-    "TensorDtypeMap", [("np_dtype", np.dtype), ("storage_dtype", int), ("name", str)]
-)
+
+class TensorDtypeMap(NamedTuple):
+    np_dtype: np.dtype
+    storage_dtype: int
+    name: str
+
 
 # tensor_dtype: (numpy type, storage type, string name)
 TENSOR_TYPE_MAP = {

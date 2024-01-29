@@ -51,7 +51,7 @@ def simple(
 def random(
     shape: tuple[int, int], seed: int = 2187, mask_fraction: float = 0.0,
 ) -> tuple[CoordinateArray, CoordinateArray, CoordinateArray | np.ma.MaskedArray[Any, Any]]:
-    """Return random test data..
+    """Return random test data.
 
     Args:
         shape (tuple(int, int)): 2D shape of data to return.

@@ -18,7 +18,9 @@ def axis_slice(a, start=None, stop=None, step=None, axis=-1):
 
     Examples
     --------
-    >>> a = array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> import numpy as np
+    >>> from scipy.signal._arraytools import axis_slice
+    >>> a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     >>> axis_slice(a, start=0, stop=1, axis=1)
     array([[1],
            [4],
@@ -69,6 +71,7 @@ def odd_ext(x, n, axis=-1):
 
     Examples
     --------
+    >>> import numpy as np
     >>> from scipy.signal._arraytools import odd_ext
     >>> a = np.array([[1, 2, 3, 4, 5], [0, 1, 4, 9, 16]])
     >>> odd_ext(a, 2)
@@ -82,8 +85,8 @@ def odd_ext(x, n, axis=-1):
     >>> a = 0.9 * np.sin(2 * np.pi * t**2)
     >>> b = odd_ext(a, 40)
     >>> import matplotlib.pyplot as plt
-    >>> plt.plot(arange(-40, 140), b, 'b', lw=1, label='odd extension')
-    >>> plt.plot(arange(100), a, 'r', lw=2, label='original')
+    >>> plt.plot(np.arange(-40, 140), b, 'b', lw=1, label='odd extension')
+    >>> plt.plot(np.arange(100), a, 'r', lw=2, label='original')
     >>> plt.legend(loc='best')
     >>> plt.show()
     """
@@ -121,6 +124,7 @@ def even_ext(x, n, axis=-1):
 
     Examples
     --------
+    >>> import numpy as np
     >>> from scipy.signal._arraytools import even_ext
     >>> a = np.array([[1, 2, 3, 4, 5], [0, 1, 4, 9, 16]])
     >>> even_ext(a, 2)
@@ -133,8 +137,8 @@ def even_ext(x, n, axis=-1):
     >>> a = 0.9 * np.sin(2 * np.pi * t**2)
     >>> b = even_ext(a, 40)
     >>> import matplotlib.pyplot as plt
-    >>> plt.plot(arange(-40, 140), b, 'b', lw=1, label='even extension')
-    >>> plt.plot(arange(100), a, 'r', lw=2, label='original')
+    >>> plt.plot(np.arange(-40, 140), b, 'b', lw=1, label='even extension')
+    >>> plt.plot(np.arange(100), a, 'r', lw=2, label='original')
     >>> plt.legend(loc='best')
     >>> plt.show()
     """
@@ -173,6 +177,7 @@ def const_ext(x, n, axis=-1):
 
     Examples
     --------
+    >>> import numpy as np
     >>> from scipy.signal._arraytools import const_ext
     >>> a = np.array([[1, 2, 3, 4, 5], [0, 1, 4, 9, 16]])
     >>> const_ext(a, 2)
@@ -186,8 +191,8 @@ def const_ext(x, n, axis=-1):
     >>> a = 0.9 * np.sin(2 * np.pi * t**2)
     >>> b = const_ext(a, 40)
     >>> import matplotlib.pyplot as plt
-    >>> plt.plot(arange(-40, 140), b, 'b', lw=1, label='constant extension')
-    >>> plt.plot(arange(100), a, 'r', lw=2, label='original')
+    >>> plt.plot(np.arange(-40, 140), b, 'b', lw=1, label='constant extension')
+    >>> plt.plot(np.arange(100), a, 'r', lw=2, label='original')
     >>> plt.legend(loc='best')
     >>> plt.show()
     """
@@ -226,6 +231,7 @@ def zero_ext(x, n, axis=-1):
 
     Examples
     --------
+    >>> import numpy as np
     >>> from scipy.signal._arraytools import zero_ext
     >>> a = np.array([[1, 2, 3, 4, 5], [0, 1, 4, 9, 16]])
     >>> zero_ext(a, 2)

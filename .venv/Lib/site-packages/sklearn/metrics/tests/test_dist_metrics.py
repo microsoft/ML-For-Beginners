@@ -4,7 +4,6 @@ import pickle
 
 import numpy as np
 import pytest
-import scipy.sparse as sp
 from scipy.spatial.distance import cdist
 
 from sklearn.metrics import DistanceMetric
@@ -15,6 +14,7 @@ from sklearn.metrics._dist_metrics import (
 )
 from sklearn.utils import check_random_state
 from sklearn.utils._testing import assert_allclose, create_memmap_backed_data
+from sklearn.utils.fixes import CSR_CONTAINERS, parse_version, sp_version
 
 
 def dist_func(x1, x2, p):
@@ -42,18 +42,17 @@ Y_bool = (Y64 < 0.7).astype(np.float64)  # not too sparse
 V = rng.random_sample((d, d))
 VI = np.dot(V, V.T)
 
-
 METRICS_DEFAULT_PARAMS = [
     ("euclidean", {}),
     ("cityblock", {}),
-    ("minkowski", dict(p=(1, 1.5, 2, 3))),
+    ("minkowski", dict(p=(0.5, 1, 1.5, 2, 3))),
     ("chebyshev", {}),
     ("seuclidean", dict(V=(rng.random_sample(d),))),
     ("mahalanobis", dict(VI=(VI,))),
     ("hamming", {}),
     ("canberra", {}),
     ("braycurtis", {}),
-    ("minkowski", dict(p=(1, 1.5, 3), w=(rng.random_sample(d),))),
+    ("minkowski", dict(p=(0.5, 1, 1.5, 3), w=(rng.random_sample(d),))),
 ]
 
 
@@ -61,10 +60,11 @@ METRICS_DEFAULT_PARAMS = [
     "metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0]
 )
 @pytest.mark.parametrize("X, Y", [(X64, Y64), (X32, Y32), (X_mmap, Y_mmap)])
-def test_cdist(metric_param_grid, X, Y):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_cdist(metric_param_grid, X, Y, csr_container):
     metric, param_grid = metric_param_grid
     keys = param_grid.keys()
-    X_csr, Y_csr = sp.csr_matrix(X), sp.csr_matrix(Y)
+    X_csr, Y_csr = csr_container(X), csr_container(Y)
     for vals in itertools.product(*param_grid.values()):
         kwargs = dict(zip(keys, vals))
         rtol_dict = {}
@@ -75,6 +75,13 @@ def test_cdist(metric_param_grid, X, Y):
             # TODO: Inspect slight numerical discrepancy
             # with scipy
             rtol_dict = {"rtol": 1e-6}
+
+        # TODO: Remove when scipy minimum version >= 1.7.0
+        # scipy supports 0<p<1 for minkowski metric >= 1.7.0
+        if metric == "minkowski":
+            p = kwargs["p"]
+            if sp_version < parse_version("1.7.0") and p < 1:
+                pytest.skip("scipy does not support 0<p<1 for minkowski metric < 1.7.0")
 
         D_scipy_cdist = cdist(X, Y, metric, **kwargs)
 
@@ -103,7 +110,8 @@ def test_cdist(metric_param_grid, X, Y):
 @pytest.mark.parametrize(
     "X_bool, Y_bool", [(X_bool, Y_bool), (X_bool_mmap, Y_bool_mmap)]
 )
-def test_cdist_bool_metric(metric, X_bool, Y_bool):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_cdist_bool_metric(metric, X_bool, Y_bool, csr_container):
     D_scipy_cdist = cdist(X_bool, Y_bool, metric)
 
     dm = DistanceMetric.get_metric(metric)
@@ -112,7 +120,7 @@ def test_cdist_bool_metric(metric, X_bool, Y_bool):
 
     # DistanceMetric.pairwise must be consistent
     # on all combinations of format in {sparse, dense}².
-    X_bool_csr, Y_bool_csr = sp.csr_matrix(X_bool), sp.csr_matrix(Y_bool)
+    X_bool_csr, Y_bool_csr = csr_container(X_bool), csr_container(Y_bool)
 
     D_sklearn = dm.pairwise(X_bool, Y_bool)
     assert D_sklearn.flags.c_contiguous
@@ -135,10 +143,11 @@ def test_cdist_bool_metric(metric, X_bool, Y_bool):
     "metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0]
 )
 @pytest.mark.parametrize("X", [X64, X32, X_mmap])
-def test_pdist(metric_param_grid, X):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_pdist(metric_param_grid, X, csr_container):
     metric, param_grid = metric_param_grid
     keys = param_grid.keys()
-    X_csr = sp.csr_matrix(X)
+    X_csr = csr_container(X)
     for vals in itertools.product(*param_grid.values()):
         kwargs = dict(zip(keys, vals))
         rtol_dict = {}
@@ -150,6 +159,12 @@ def test_pdist(metric_param_grid, X):
             # with scipy
             rtol_dict = {"rtol": 1e-6}
 
+        # TODO: Remove when scipy minimum version >= 1.7.0
+        # scipy supports 0<p<1 for minkowski metric >= 1.7.0
+        if metric == "minkowski":
+            p = kwargs["p"]
+            if sp_version < parse_version("1.7.0") and p < 1:
+                pytest.skip("scipy does not support 0<p<1 for minkowski metric < 1.7.0")
         D_scipy_pdist = cdist(X, X, metric, **kwargs)
 
         dm = DistanceMetric.get_metric(metric, X.dtype, **kwargs)
@@ -187,11 +202,8 @@ def test_distance_metrics_dtype_consistency(metric_param_grid):
         D64 = dm64.pairwise(X64)
         D32 = dm32.pairwise(X32)
 
-        # Both results are np.float64 dtype because the accumulation across
-        # features is done in float64. However the input data and the element
-        # wise arithmetic operations are done in float32 so we can expect a
-        # small discrepancy.
-        assert D64.dtype == D32.dtype == np.float64
+        assert D64.dtype == np.float64
+        assert D32.dtype == np.float32
 
         # assert_allclose introspects the dtype of the input arrays to decide
         # which rtol value to use by default but in this case we know that D32
@@ -205,13 +217,14 @@ def test_distance_metrics_dtype_consistency(metric_param_grid):
 
 @pytest.mark.parametrize("metric", BOOL_METRICS)
 @pytest.mark.parametrize("X_bool", [X_bool, X_bool_mmap])
-def test_pdist_bool_metrics(metric, X_bool):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_pdist_bool_metrics(metric, X_bool, csr_container):
     D_scipy_pdist = cdist(X_bool, X_bool, metric)
     dm = DistanceMetric.get_metric(metric)
     D_sklearn = dm.pairwise(X_bool)
     assert_allclose(D_sklearn, D_scipy_pdist)
 
-    X_bool_csr = sp.csr_matrix(X_bool)
+    X_bool_csr = csr_container(X_bool)
     D_sklearn = dm.pairwise(X_bool_csr)
     assert_allclose(D_sklearn, D_scipy_pdist)
 
@@ -249,12 +262,13 @@ def test_pickle_bool_metrics(metric, X_bool):
 
 
 @pytest.mark.parametrize("X, Y", [(X64, Y64), (X32, Y32), (X_mmap, Y_mmap)])
-def test_haversine_metric(X, Y):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_haversine_metric(X, Y, csr_container):
     # The Haversine DistanceMetric only works on 2 features.
     X = np.asarray(X[:, :2])
     Y = np.asarray(Y[:, :2])
 
-    X_csr, Y_csr = sp.csr_matrix(X), sp.csr_matrix(Y)
+    X_csr, Y_csr = csr_container(X), csr_container(Y)
 
     # Haversine is not supported by scipy.special.distance.{cdist,pdist}
     # So we reimplement it to have a reference.
@@ -350,11 +364,14 @@ def test_readonly_kwargs():
     [
         (np.array([1, 1.5, -13]), ValueError, "w cannot contain negative weights"),
         (np.array([1, 1.5, np.nan]), ValueError, "w contains NaN"),
-        (
-            sp.csr_matrix([1, 1.5, 1]),
-            TypeError,
-            "A sparse matrix was passed, but dense data is required",
-        ),
+        *[
+            (
+                csr_container([[1, 1.5, 1]]),
+                TypeError,
+                "Sparse data was passed for w, but dense data is required",
+            )
+            for csr_container in CSR_CONTAINERS
+        ],
         (np.array(["a", "b", "c"]), ValueError, "could not convert string to float"),
         (np.array([]), ValueError, "a minimum of 1 is required"),
     ],
@@ -397,3 +414,9 @@ def test_get_metric_bad_dtype():
     msg = r"Unexpected dtype .* provided. Please select a dtype from"
     with pytest.raises(ValueError, match=msg):
         DistanceMetric.get_metric("manhattan", dtype)
+
+
+def test_minkowski_metric_validate_bad_p_parameter():
+    msg = "p must be greater than 0"
+    with pytest.raises(ValueError, match=msg):
+        DistanceMetric.get_metric("minkowski", p=0)

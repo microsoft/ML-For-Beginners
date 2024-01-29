@@ -72,11 +72,11 @@ Leap	2016	Dec	31	23:59:60	+	S
 # Any additional leap seconds will come after this.
 # This Expires line is commented out for now,
 # so that pre-2020a zic implementations do not reject this file.
-#Expires 2023	Dec	28	00:00:00
+#Expires 2024	Jun	28	00:00:00
 
 # POSIX timestamps for the data in this file:
 #updated 1467936000 (2016-07-08 00:00:00 UTC)
-#expires 1703721600 (2023-12-28 00:00:00 UTC)
+#expires 1719532800 (2024-06-28 00:00:00 UTC)
 
-#	Updated through IERS Bulletin C65
-#	File expires on:  28 December 2023
+#	Updated through IERS Bulletin C66
+#	File expires on:  28 June 2024

@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=C3001,R0912,R0913,R0914,R0915,W0108,W0221
+
 
 import numpy as np
 
@@ -34,7 +34,7 @@ def scatter_elements(data, indices, updates, axis=0, reduction=None):  # type: i
 
     else:
 
-        def f(x, y):  # pylint: disable=unused-argument
+        def f(x, y):
             return y
 
     if axis < 0:

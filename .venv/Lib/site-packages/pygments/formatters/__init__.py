@@ -131,7 +131,7 @@ def get_formatter_for_filename(fn, **options):
                 if name not in _formatter_cache:
                     _load_formatters(modname)
                 return _formatter_cache[name](**options)
-    for cls in find_plugin_formatters():
+    for _name, cls in find_plugin_formatters():
         for filename in cls.filenames:
             if _fn_matches(fn, filename):
                 return cls(**options)

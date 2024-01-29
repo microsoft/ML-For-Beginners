@@ -220,6 +220,8 @@ def get_default_val(pat: str):
 class DictWrapper:
     """provide attribute-style access to a nested dict"""
 
+    d: dict[str, Any]
+
     def __init__(self, d: dict[str, Any], prefix: str = "") -> None:
         object.__setattr__(self, "d", d)
         object.__setattr__(self, "prefix", prefix)
@@ -250,7 +252,7 @@ class DictWrapper:
         else:
             return _get_option(prefix)
 
-    def __dir__(self) -> Iterable[str]:
+    def __dir__(self) -> list[str]:
         return list(self.d.keys())
 
 

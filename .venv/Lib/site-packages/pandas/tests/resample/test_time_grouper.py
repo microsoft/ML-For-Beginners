@@ -7,6 +7,7 @@ import pytest
 import pandas as pd
 from pandas import (
     DataFrame,
+    Index,
     Series,
     Timestamp,
 )
@@ -24,7 +25,7 @@ def test_series():
 
 
 def test_apply(test_series):
-    grouper = Grouper(freq="A", label="right", closed="right")
+    grouper = Grouper(freq="YE", label="right", closed="right")
 
     grouped = test_series.groupby(grouper)
 
@@ -44,18 +45,18 @@ def test_count(test_series):
 
     expected = test_series.groupby(lambda x: x.year).count()
 
-    grouper = Grouper(freq="A", label="right", closed="right")
+    grouper = Grouper(freq="YE", label="right", closed="right")
     result = test_series.groupby(grouper).count()
     expected.index = result.index
     tm.assert_series_equal(result, expected)
 
-    result = test_series.resample("A").count()
+    result = test_series.resample("YE").count()
     expected.index = result.index
     tm.assert_series_equal(result, expected)
 
 
 def test_numpy_reduction(test_series):
-    result = test_series.resample("A", closed="right").prod()
+    result = test_series.resample("YE", closed="right").prod()
 
     msg = "using SeriesGroupBy.prod"
     with tm.assert_produces_warning(FutureWarning, match=msg):
@@ -70,7 +71,7 @@ def test_apply_iteration():
     N = 1000
     ind = date_range(start="2000-01-01", freq="D", periods=N)
     df = DataFrame({"open": 1, "close": 2}, index=ind)
-    tg = Grouper(freq="M")
+    tg = Grouper(freq="ME")
 
     grouper, _ = tg._get_grouper(df)
 
@@ -86,19 +87,17 @@ def test_apply_iteration():
 
 
 @pytest.mark.parametrize(
-    "func",
+    "index",
     [
-        tm.makeIntIndex,
-        tm.makeStringIndex,
-        tm.makeFloatIndex,
-        (lambda m: tm.makeCustomIndex(m, 2)),
+        Index([1, 2]),
+        Index(["a", "b"]),
+        Index([1.1, 2.2]),
+        pd.MultiIndex.from_arrays([[1, 2], ["a", "b"]]),
     ],
 )
-def test_fails_on_no_datetime_index(func):
-    n = 2
-    index = func(n)
+def test_fails_on_no_datetime_index(index):
     name = type(index).__name__
-    df = DataFrame({"a": np.random.default_rng(2).standard_normal(n)}, index=index)
+    df = DataFrame({"a": range(len(index))}, index=index)
 
     msg = (
         "Only valid with DatetimeIndex, TimedeltaIndex "
@@ -138,13 +137,17 @@ def test_aggregate_normal(resample_method):
     normal_df["key"] = [1, 2, 3, 4, 5] * 4
 
     dt_df = DataFrame(data, columns=["A", "B", "C", "D"])
-    dt_df["key"] = [
-        datetime(2013, 1, 1),
-        datetime(2013, 1, 2),
-        datetime(2013, 1, 3),
-        datetime(2013, 1, 4),
-        datetime(2013, 1, 5),
-    ] * 4
+    dt_df["key"] = Index(
+        [
+            datetime(2013, 1, 1),
+            datetime(2013, 1, 2),
+            datetime(2013, 1, 3),
+            datetime(2013, 1, 4),
+            datetime(2013, 1, 5),
+        ]
+        * 4,
+        dtype="M8[ns]",
+    )
 
     normal_grouped = normal_df.groupby("key")
     dt_grouped = dt_df.groupby(Grouper(key="key", freq="D"))
@@ -193,11 +196,11 @@ def test_aggregate_nth():
     ],
 )
 def test_resample_entirely_nat_window(method, method_args, unit):
-    s = Series([0] * 2 + [np.nan] * 2, index=date_range("2017", periods=4))
-    result = methodcaller(method, **method_args)(s.resample("2d"))
-    expected = Series(
-        [0.0, unit], index=pd.DatetimeIndex(["2017-01-01", "2017-01-03"], freq="2D")
-    )
+    ser = Series([0] * 2 + [np.nan] * 2, index=date_range("2017", periods=4))
+    result = methodcaller(method, **method_args)(ser.resample("2d"))
+
+    exp_dti = pd.DatetimeIndex(["2017-01-01", "2017-01-03"], dtype="M8[ns]", freq="2D")
+    expected = Series([0.0, unit], index=exp_dti)
     tm.assert_series_equal(result, expected)
 
 
@@ -216,13 +219,17 @@ def test_aggregate_with_nat(func, fill_value):
     normal_df["key"] = [1, 2, np.nan, 4, 5] * 4
 
     dt_df = DataFrame(data, columns=["A", "B", "C", "D"])
-    dt_df["key"] = [
-        datetime(2013, 1, 1),
-        datetime(2013, 1, 2),
-        pd.NaT,
-        datetime(2013, 1, 4),
-        datetime(2013, 1, 5),
-    ] * 4
+    dt_df["key"] = Index(
+        [
+            datetime(2013, 1, 1),
+            datetime(2013, 1, 2),
+            pd.NaT,
+            datetime(2013, 1, 4),
+            datetime(2013, 1, 5),
+        ]
+        * 4,
+        dtype="M8[ns]",
+    )
 
     normal_grouped = normal_df.groupby("key")
     dt_grouped = dt_df.groupby(Grouper(key="key", freq="D"))
@@ -233,7 +240,13 @@ def test_aggregate_with_nat(func, fill_value):
     pad = DataFrame([[fill_value] * 4], index=[3], columns=["A", "B", "C", "D"])
     expected = pd.concat([normal_result, pad])
     expected = expected.sort_index()
-    dti = date_range(start="2013-01-01", freq="D", periods=5, name="key")
+    dti = date_range(
+        start="2013-01-01",
+        freq="D",
+        periods=5,
+        name="key",
+        unit=dt_df["key"]._values.unit,
+    )
     expected.index = dti._with_freq(None)  # TODO: is this desired?
     tm.assert_frame_equal(expected, dt_result)
     assert dt_result.index.name == "key"
@@ -247,13 +260,17 @@ def test_aggregate_with_nat_size():
     normal_df["key"] = [1, 2, np.nan, 4, 5] * 4
 
     dt_df = DataFrame(data, columns=["A", "B", "C", "D"])
-    dt_df["key"] = [
-        datetime(2013, 1, 1),
-        datetime(2013, 1, 2),
-        pd.NaT,
-        datetime(2013, 1, 4),
-        datetime(2013, 1, 5),
-    ] * 4
+    dt_df["key"] = Index(
+        [
+            datetime(2013, 1, 1),
+            datetime(2013, 1, 2),
+            pd.NaT,
+            datetime(2013, 1, 4),
+            datetime(2013, 1, 5),
+        ]
+        * 4,
+        dtype="M8[ns]",
+    )
 
     normal_grouped = normal_df.groupby("key")
     dt_grouped = dt_df.groupby(Grouper(key="key", freq="D"))
@@ -265,7 +282,11 @@ def test_aggregate_with_nat_size():
     expected = pd.concat([normal_result, pad])
     expected = expected.sort_index()
     expected.index = date_range(
-        start="2013-01-01", freq="D", periods=5, name="key"
+        start="2013-01-01",
+        freq="D",
+        periods=5,
+        name="key",
+        unit=dt_df["key"]._values.unit,
     )._with_freq(None)
     tm.assert_series_equal(expected, dt_result)
     assert dt_result.index.name == "key"
@@ -273,7 +294,7 @@ def test_aggregate_with_nat_size():
 
 def test_repr():
     # GH18203
-    result = repr(Grouper(key="A", freq="H"))
+    result = repr(Grouper(key="A", freq="h"))
     expected = (
         "TimeGrouper(key='A', freq=<Hour>, axis=0, sort=True, dropna=True, "
         "closed='left', label='left', how='mean', "
@@ -281,7 +302,7 @@ def test_repr():
     )
     assert result == expected
 
-    result = repr(Grouper(key="A", freq="H", origin="2000-01-01"))
+    result = repr(Grouper(key="A", freq="h", origin="2000-01-01"))
     expected = (
         "TimeGrouper(key='A', freq=<Hour>, axis=0, sort=True, dropna=True, "
         "closed='left', label='left', how='mean', "
@@ -304,11 +325,12 @@ def test_repr():
     ],
 )
 def test_upsample_sum(method, method_args, expected_values):
-    s = Series(1, index=date_range("2017", periods=2, freq="H"))
-    resampled = s.resample("30T")
+    ser = Series(1, index=date_range("2017", periods=2, freq="h"))
+    resampled = ser.resample("30min")
     index = pd.DatetimeIndex(
         ["2017-01-01T00:00:00", "2017-01-01T00:30:00", "2017-01-01T01:00:00"],
-        freq="30T",
+        dtype="M8[ns]",
+        freq="30min",
     )
     result = methodcaller(method, **method_args)(resampled)
     expected = Series(expected_values, index=index)
@@ -323,32 +345,21 @@ def test_groupby_resample_interpolate():
 
     df["week_starting"] = date_range("01/01/2018", periods=3, freq="W")
 
-    result = (
-        df.set_index("week_starting")
-        .groupby("volume")
-        .resample("1D")
-        .interpolate(method="linear")
-    )
+    msg = "DataFrameGroupBy.resample operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = (
+            df.set_index("week_starting")
+            .groupby("volume")
+            .resample("1D")
+            .interpolate(method="linear")
+        )
 
-    expected_ind = pd.MultiIndex.from_tuples(
-        [
-            (50, Timestamp("2018-01-07")),
-            (50, Timestamp("2018-01-08")),
-            (50, Timestamp("2018-01-09")),
-            (50, Timestamp("2018-01-10")),
-            (50, Timestamp("2018-01-11")),
-            (50, Timestamp("2018-01-12")),
-            (50, Timestamp("2018-01-13")),
-            (50, Timestamp("2018-01-14")),
-            (50, Timestamp("2018-01-15")),
-            (50, Timestamp("2018-01-16")),
-            (50, Timestamp("2018-01-17")),
-            (50, Timestamp("2018-01-18")),
-            (50, Timestamp("2018-01-19")),
-            (50, Timestamp("2018-01-20")),
-            (50, Timestamp("2018-01-21")),
-            (60, Timestamp("2018-01-14")),
-        ],
+    volume = [50] * 15 + [60]
+    week_starting = list(date_range("2018-01-07", "2018-01-21")) + [
+        Timestamp("2018-01-14")
+    ]
+    expected_ind = pd.MultiIndex.from_arrays(
+        [volume, week_starting],
         names=["volume", "week_starting"],
     )
 

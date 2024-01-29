@@ -7,7 +7,7 @@ covered in the _loss module.
 import numpy as np
 import pytest
 from numpy.testing import assert_allclose
-from scipy import linalg, optimize, sparse
+from scipy import linalg, optimize
 
 from sklearn._loss.loss import (
     HalfBinomialLoss,
@@ -17,6 +17,7 @@ from sklearn._loss.loss import (
 from sklearn.datasets import make_low_rank_matrix
 from sklearn.linear_model._linear_loss import LinearModelLoss
 from sklearn.utils.extmath import squared_norm
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 # We do not need to test all losses, just what LinearModelLoss does on top of the
 # base losses.
@@ -104,8 +105,9 @@ def test_init_zero_coef(base_loss, fit_intercept, n_features, dtype):
 @pytest.mark.parametrize("fit_intercept", [False, True])
 @pytest.mark.parametrize("sample_weight", [None, "range"])
 @pytest.mark.parametrize("l2_reg_strength", [0, 1])
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
 def test_loss_grad_hess_are_the_same(
-    base_loss, fit_intercept, sample_weight, l2_reg_strength
+    base_loss, fit_intercept, sample_weight, l2_reg_strength, csr_container
 ):
     """Test that loss and gradient are the same across different functions."""
     loss = LinearModelLoss(base_loss=base_loss(), fit_intercept=fit_intercept)
@@ -150,7 +152,7 @@ def test_loss_grad_hess_are_the_same(
         assert_allclose(h4 @ g4, h3(g3))
 
     # same for sparse X
-    X = sparse.csr_matrix(X)
+    X = csr_container(X)
     l1_sp = loss.loss(
         coef, X, y, sample_weight=sample_weight, l2_reg_strength=l2_reg_strength
     )
@@ -182,9 +184,9 @@ def test_loss_grad_hess_are_the_same(
 @pytest.mark.parametrize("base_loss", LOSSES)
 @pytest.mark.parametrize("sample_weight", [None, "range"])
 @pytest.mark.parametrize("l2_reg_strength", [0, 1])
-@pytest.mark.parametrize("X_sparse", [False, True])
+@pytest.mark.parametrize("X_container", CSR_CONTAINERS + [None])
 def test_loss_gradients_hessp_intercept(
-    base_loss, sample_weight, l2_reg_strength, X_sparse
+    base_loss, sample_weight, l2_reg_strength, X_container
 ):
     """Test that loss and gradient handle intercept correctly."""
     loss = LinearModelLoss(base_loss=base_loss(), fit_intercept=False)
@@ -199,8 +201,8 @@ def test_loss_gradients_hessp_intercept(
         :, :-1
     ]  # exclude intercept column as it is added automatically by loss_inter
 
-    if X_sparse:
-        X = sparse.csr_matrix(X)
+    if X_container is not None:
+        X = X_container(X)
 
     if sample_weight == "range":
         sample_weight = np.linspace(1, y.shape[0], num=y.shape[0])

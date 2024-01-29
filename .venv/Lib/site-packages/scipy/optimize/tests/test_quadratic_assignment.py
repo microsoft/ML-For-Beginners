@@ -325,7 +325,7 @@ class Test2opt(QAPCommonTests):
             )
 
 
-class TestQAPOnce():
+class TestQAPOnce:
     def setup_method(self):
         np.random.seed(0)
 

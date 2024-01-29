@@ -435,8 +435,9 @@ def test_constraints_stata():
 
     # See tests/results/test_rls.do
     desired = [.4699552366, .0005369357, .0005369357]
-    assert_allclose(res.bse[0], desired[0], atol=1e-1)
-    assert_allclose(res.bse[1:], desired[1:], atol=1e-4)
+    bse = np.asarray(res.bse)
+    assert_allclose(bse[0], desired[0], atol=1e-1)
+    assert_allclose(bse[1:], desired[1:], atol=1e-4)
 
     # See tests/results/test_rls.do
     desired = -534.4292052931121
@@ -469,8 +470,9 @@ def test_multiple_constraints():
 
     # See tests/results/test_rls.do
     desired = [.4699552366, .0005369357, .0005369357, 0]
-    assert_allclose(res.bse[0], desired[0], atol=1e-1)
-    assert_allclose(res.bse[1:-1], desired[1:-1], atol=1e-4)
+    bse = np.asarray(res.bse)
+    assert_allclose(bse[0], desired[0], atol=1e-1)
+    assert_allclose(bse[1:-1], desired[1:-1], atol=1e-4)
 
     # See tests/results/test_rls.do
     desired = -534.4292052931121

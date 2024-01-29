@@ -170,7 +170,7 @@ def launch_kernel(
         raise ex
 
     if sys.platform == "win32":
-        # Attach the interrupt event to the Popen objet so it can be used later.
+        # Attach the interrupt event to the Popen object so it can be used later.
         proc.win32_interrupt_event = interrupt_event
 
     # Clean up pipes created to work around Popen bug.

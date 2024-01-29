@@ -100,7 +100,7 @@ def schur(a, output='real', lwork=None, overwrite_a=False, sort=None,
 
     >>> T2, Z2 = schur(A, output='complex')
     >>> T2
-    array([[ 2.65896708, -1.22839825+1.32378589j,  0.42590089+1.51937378j],
+    array([[ 2.65896708, -1.22839825+1.32378589j,  0.42590089+1.51937378j], # may vary
            [ 0.        , -0.32948354+0.80225456j, -0.59877807+0.56192146j],
            [ 0.        ,  0.                    , -0.32948354-0.80225456j]])
     >>> eigvals(T2)
@@ -166,8 +166,7 @@ def schur(a, output='real', lwork=None, overwrite_a=False, sort=None,
 
     info = result[-1]
     if info < 0:
-        raise ValueError('illegal value in {}-th argument of internal gees'
-                         ''.format(-info))
+        raise ValueError(f'illegal value in {-info}-th argument of internal gees')
     elif info == a1.shape[0] + 1:
         raise LinAlgError('Eigenvalues could not be separated for reordering.')
     elif info == a1.shape[0] + 2:
@@ -277,8 +276,8 @@ def rsf2csf(T, Z, check_finite=True):
             raise ValueError("Input '{}' must be square.".format('ZT'[ind]))
 
     if T.shape[0] != Z.shape[0]:
-        raise ValueError("Input array shapes must match: Z: {} vs. T: {}"
-                         "".format(Z.shape, T.shape))
+        message = f"Input array shapes must match: Z: {Z.shape} vs. T: {T.shape}"
+        raise ValueError(message)
     N = T.shape[0]
     t = _commonType(Z, T, array([3.0], 'F'))
     Z, T = _castCopy(t, Z, T)

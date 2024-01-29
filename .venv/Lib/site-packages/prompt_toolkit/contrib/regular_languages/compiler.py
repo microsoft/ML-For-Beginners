@@ -41,9 +41,8 @@ Partial matches are possible::
 from __future__ import annotations
 
 import re
-from typing import Callable, Dict, Iterable, Iterator
+from typing import Callable, Dict, Iterable, Iterator, Pattern
 from typing import Match as RegexMatch
-from typing import Pattern
 
 from .regex_parser import (
     AnyNode,
@@ -170,10 +169,7 @@ class _CompiledGrammar:
 
             # A `Variable` wraps the children into a named group.
             elif isinstance(node, Variable):
-                return "(?P<{}>{})".format(
-                    create_group_func(node),
-                    transform(node.childnode),
-                )
+                return f"(?P<{create_group_func(node)}>{transform(node.childnode)})"
 
             # `Repeat`.
             elif isinstance(node, Repeat):

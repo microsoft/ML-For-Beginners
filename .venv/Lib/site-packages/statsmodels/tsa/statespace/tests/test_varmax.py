@@ -830,7 +830,7 @@ def test_specifications():
     endog = np.arange(20).reshape(10, 2)
     exog = np.arange(10)
     exog2 = pd.Series(exog, index=pd.date_range('2000-01-01', '2009-01-01',
-                                                freq='AS'))
+                                                freq='YS'))
 
     # Test successful model creation
     varmax.VARMAX(endog, exog=exog, order=(1, 0))

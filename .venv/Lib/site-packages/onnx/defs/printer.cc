@@ -3,7 +3,10 @@
  */
 
 #include "onnx/defs/printer.h"
+
 #include <iomanip>
+#include <vector>
+
 #include "onnx/defs/tensor_proto_util.h"
 
 namespace ONNX_NAMESPACE {
@@ -31,7 +34,7 @@ class ProtoPrinter {
 
   void print(const TypeProto_SparseTensor& sparseType);
 
-  void print(const TensorProto& tensor);
+  void print(const TensorProto& tensor, bool is_initializer = false);
 
   void print(const ValueInfoProto& value_info);
 
@@ -183,13 +186,16 @@ void ProtoPrinter::print(const TypeProto& type) {
     print(type.sparse_tensor_type());
 }
 
-void ProtoPrinter::print(const TensorProto& tensor) {
+void ProtoPrinter::print(const TensorProto& tensor, bool is_initializer) {
   output_ << PrimitiveTypeNameMap::ToString(tensor.data_type());
   if (tensor.dims_size() > 0)
     printSet("[", ",", "]", tensor.dims());
 
   if (!tensor.name().empty()) {
     output_ << " " << tensor.name();
+  }
+  if (is_initializer) {
+    output_ << " = ";
   }
   // TODO: does not yet handle all types or externally stored data.
   if (tensor.has_raw_data()) {
@@ -265,7 +271,7 @@ void ProtoPrinter::print(const AttributeProto& attr) {
     return;
   }
   // General case:
-  output_ << attr.name() << " = ";
+  output_ << attr.name() << ": " << AttributeTypeNameMap::ToString(attr.type()) << " = ";
   switch (attr.type()) {
     case AttributeProto_AttributeType_INT:
       output_ << attr.i();
@@ -353,6 +359,21 @@ void ProtoPrinter::print(const NodeList& nodelist) {
 
 void ProtoPrinter::print(const GraphProto& graph) {
   output_ << graph.name() << " " << graph.input() << " => " << graph.output() << " ";
+  if ((graph.initializer_size() > 0) || (graph.value_info_size() > 0)) {
+    output_ << std::endl << std::setw(indent_level) << ' ' << '<';
+    const char* sep = "";
+    for (auto& init : graph.initializer()) {
+      output_ << sep;
+      print(init, true);
+      sep = ", ";
+    }
+    for (auto& vi : graph.value_info()) {
+      output_ << sep;
+      print(vi);
+      sep = ", ";
+    }
+    output_ << ">" << std::endl;
+  }
   print(graph.node());
 }
 

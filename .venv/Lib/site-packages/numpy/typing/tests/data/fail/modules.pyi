@@ -6,7 +6,7 @@ np.bob  # E: Module has no attribute
 # Stdlib modules in the namespace by accident
 np.warnings  # E: Module has no attribute
 np.sys  # E: Module has no attribute
-np.os  # E: Module has no attribute
+np.os  # E: Module "numpy" does not explicitly export
 np.math  # E: Module has no attribute
 
 # Public sub-modules that are not imported to their parent module by default;

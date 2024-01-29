@@ -576,8 +576,8 @@ class TestSpecialComplexAVX:
                             complex(0.,     0.),
                             complex(np.nan, np.nan),
                             complex(np.nan, np.nan)], dtype=astype)
-        assert_equal(np.abs(arr[::stride]), abs_true[::stride])
         with np.errstate(invalid='ignore'):
+            assert_equal(np.abs(arr[::stride]), abs_true[::stride])
             assert_equal(np.square(arr[::stride]), sq_true[::stride])
 
 class TestComplexAbsoluteAVX:

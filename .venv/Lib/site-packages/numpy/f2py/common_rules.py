@@ -1,23 +1,18 @@
-#!/usr/bin/env python3
 """
-
 Build common block mechanism for f2py2e.
 
-Copyright 2000 Pearu Peterson all rights reserved,
-Pearu Peterson <pearu@ioc.ee>
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
 Permission to use, modify, and distribute this software is given under the
 terms of the NumPy License
 
 NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
-$Date: 2005/05/06 10:57:33 $
-Pearu Peterson
-
 """
 from . import __version__
 f2py_version = __version__.version
 
 from .auxfuncs import (
-    hasbody, hascommon, hasnote, isintent_hide, outmess
+    hasbody, hascommon, hasnote, isintent_hide, outmess, getuseblocks
 )
 from . import capi_maps
 from . import func2subr
@@ -78,6 +73,8 @@ def buildhooks(m):
             outmess('\t\tConstructing COMMON block support for "%s"...\n\t\t  %s\n' % (
                 name, ','.join(inames)))
         fadd('subroutine f2pyinit%s(setupfunc)' % name)
+        for usename in getuseblocks(m):
+            fadd(f'use {usename}')
         fadd('external setupfunc')
         for n in vnames:
             fadd(func2subr.var2fixfortran(vars, n))

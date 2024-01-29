@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0912,R0914,W0221,W0613
+
 
 import numpy as np
 
@@ -102,11 +102,11 @@ class Scan(OpRun):
         # TODO: support overridden attributes.
         (
             num_loop_state_vars,
-            num_scan_outputs,  # pylint: disable=W0612
-            output_directions,  # pylint: disable=W0612
-            max_dir_out,  # pylint: disable=W0612
-            output_axes,  # pylint: disable=W0612
-            max_axe_out,  # pylint: disable=W0612
+            num_scan_outputs,
+            output_directions,
+            max_dir_out,
+            output_axes,
+            max_axe_out,
             state_names_in,
             state_names_out,
             scan_names_in,

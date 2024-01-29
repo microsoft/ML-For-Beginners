@@ -283,8 +283,11 @@ Spectral analysis
    spectrogram    -- Compute the spectrogram.
    lombscargle    -- Computes the Lomb-Scargle periodogram.
    vectorstrength -- Computes the vector strength.
-   stft           -- Compute the Short Time Fourier Transform.
-   istft          -- Compute the Inverse Short Time Fourier Transform.
+   ShortTimeFFT   -- Interface for calculating the \
+                     :ref:`Short Time Fourier Transform <tutorial_stft>` and \
+                     its inverse.
+   stft           -- Compute the Short Time Fourier Transform (legacy).
+   istft          -- Compute the Inverse Short Time Fourier Transform (legacy).
    check_COLA     -- Check the COLA constraint for iSTFT reconstruction.
    check_NOLA     -- Check the NOLA constraint for iSTFT reconstruction.
 
@@ -307,13 +310,14 @@ use the classes to create a reusable function instead.
 
 """
 import warnings
+import inspect
 
 from . import _sigtools, windows
 from ._waveforms import *
 from ._max_len_seq import max_len_seq
 from ._upfirdn import upfirdn
 
-from ._spline import (  # noqa: F401
+from ._spline import (
     cspline2d,
     qspline2d,
     sepfir2d,
@@ -329,6 +333,7 @@ from ._lti_conversion import *
 from ._signaltools import *
 from ._savitzky_golay import savgol_coeffs, savgol_filter
 from ._spectral_py import *
+from ._short_time_fft import *
 from ._wavelets import *
 from ._peak_finding import *
 from ._czt import *
@@ -354,14 +359,15 @@ def deco(name):
 
     def wrapped(*args, **kwargs):
         warnings.warn(f"Importing {name} from 'scipy.signal' is deprecated "
-                      "and will raise an error in SciPy 1.13.0. Please use "
-                      f"'scipy.signal.windows.{name}' or the convenience "
-                      "function 'scipy.signal.get_window' instead.",
+                      f"since SciPy 1.1.0 and will raise an error in SciPy 1.13.0. "
+                      f"Please use 'scipy.signal.windows.{name}' or the convenience "
+                      f"function 'scipy.signal.get_window' instead.",
                       DeprecationWarning, stacklevel=2)
         return f(*args, **kwargs)
 
     wrapped.__name__ = name
     wrapped.__module__ = 'scipy.signal'
+    wrapped.__signature__ = inspect.signature(f)  # noqa: F821
     if hasattr(f, '__qualname__'):
         wrapped.__qualname__ = f.__qualname__
 
@@ -373,8 +379,9 @@ def deco(name):
         else:
             raise RuntimeError('dev error: badly formatted doc')
         spacing = ' ' * line.find('P')
-        lines.insert(li, ('{0}.. warning:: scipy.signal.{1} is deprecated,\n'
-                          '{0}             use scipy.signal.windows.{1} '
+        lines.insert(li, ('{0}.. warning:: `scipy.signal.{1}` is deprecated since\n'
+                          '{0}             SciPy 1.1.0 and will be removed in 1.13.0\n'
+                          '{0}             use `scipy.signal.windows.{1}`'
                           'instead.\n'.format(spacing, name)))
         wrapped.__doc__ = '\n'.join(lines)
 
@@ -386,8 +393,10 @@ for name in deprecated_windows:
 
 del deprecated_windows, name, deco
 
-__all__ = [s for s in dir() if not s.startswith('_') and s != "warnings"]
+__all__ = [
+    s for s in dir() if not s.startswith("_") and s not in {"warnings", "inspect"}
+]
 
 from scipy._lib._testutils import PytestTester
 test = PytestTester(__name__)
-del PytestTester
+del PytestTester, inspect

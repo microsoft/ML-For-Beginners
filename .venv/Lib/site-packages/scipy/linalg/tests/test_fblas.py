@@ -513,7 +513,7 @@ class BaseGer:
         return alpha,a,x,y
     def test_simple(self):
         alpha,a,x,y = self.get_data()
-        # tranpose takes care of Fortran vs. C(and Python) memory layout
+        # transpose takes care of Fortran vs. C(and Python) memory layout
         desired_a = alpha*transpose(x[:,newaxis]*y) + a
         self.blas_func(x,y,a)
         assert_array_almost_equal(desired_a,a)
@@ -563,7 +563,7 @@ class BaseGerComplex(BaseGer):
         return alpha,a,x,y
     def test_simple(self):
         alpha,a,x,y = self.get_data()
-        # tranpose takes care of Fortran vs. C(and Python) memory layout
+        # transpose takes care of Fortran vs. C(and Python) memory layout
         a = a * array(0.,dtype = self.dtype)
         #desired_a = alpha*transpose(x[:,newaxis]*self.transform(y)) + a
         desired_a = alpha*transpose(x[:,newaxis]*y) + a

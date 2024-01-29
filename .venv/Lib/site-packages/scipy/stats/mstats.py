@@ -128,8 +128,13 @@ Other
    rsh
 
 """
-from ._mstats_basic import *
-from ._mstats_extras import *
+from . import _mstats_basic
+from . import _mstats_extras
+from ._mstats_basic import *  # noqa: F403
+from ._mstats_extras import *  # noqa: F403
 # Functions that support masked array input in stats but need to be kept in the
 # mstats namespace for backwards compatibility:
 from scipy.stats import gmean, hmean, zmap, zscore, chisquare
+
+__all__ = _mstats_basic.__all__ + _mstats_extras.__all__
+__all__ += ['gmean', 'hmean', 'zmap', 'zscore', 'chisquare']

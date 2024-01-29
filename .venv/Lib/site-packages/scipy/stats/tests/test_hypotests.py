@@ -63,12 +63,6 @@ class TestEppsSingleton:
         # raise error if there are non-finite values
         x, y = (1, 2, 3, 4, 5, np.inf), np.arange(10)
         assert_raises(ValueError, epps_singleton_2samp, x, y)
-        x, y = np.arange(10), (1, 2, 3, 4, 5, np.nan)
-        assert_raises(ValueError, epps_singleton_2samp, x, y)
-
-    def test_epps_singleton_1d_input(self):
-        x = np.arange(100).reshape(-1, 1)
-        assert_raises(ValueError, epps_singleton_2samp, x, x)
 
     def test_names(self):
         x, y = np.arange(20), np.arange(30)
@@ -121,7 +115,7 @@ class TestCvm:
         # for large values of x and n, the series used to compute the cdf
         # converges slowly.
         # this leads to bug in R package goftest and MAPLE code that is
-        # the basis of the implemenation in scipy
+        # the basis of the implementation in scipy
         # note: cdf = 1 for x >= 1000/3 and n = 1000
         assert_(0.99999 < _cdf_cvm(333.3, 1000) < 1.0)
         assert_(0.99999 < _cdf_cvm(333.3) < 1.0)
@@ -135,8 +129,6 @@ class TestCvm:
         assert_equal(res.pvalue, 0)
 
     def test_invalid_input(self):
-        x = np.arange(10).reshape((2, 5))
-        assert_raises(ValueError, cramervonmises, x, "norm")
         assert_raises(ValueError, cramervonmises, [1.5], "norm")
         assert_raises(ValueError, cramervonmises, (), "norm")
 
@@ -173,7 +165,7 @@ class TestMannWhitneyU:
     def setup_method(self):
         _mwu_state._recursive = True
 
-    # All magic numbers are from R wilcox.test unless otherwise specied
+    # All magic numbers are from R wilcox.test unless otherwise specified
     # https://rdrr.io/r/stats/wilcox.test.html
 
     # --- Test Input Validation ---
@@ -1322,13 +1314,7 @@ class TestBoschlooExact:
 
 class TestCvm_2samp:
     def test_invalid_input(self):
-        x = np.arange(10).reshape((2, 5))
         y = np.arange(5)
-        msg = 'The samples must be one-dimensional'
-        with pytest.raises(ValueError, match=msg):
-            cramervonmises_2samp(x, y)
-        with pytest.raises(ValueError, match=msg):
-            cramervonmises_2samp(y, x)
         msg = 'x and y must contain at least two observations.'
         with pytest.raises(ValueError, match=msg):
             cramervonmises_2samp([], y)
@@ -1735,3 +1721,122 @@ class TestPoissonMeansTest:
         message = 'Alternative must be one of ...'
         with assert_raises(ValueError, match=message):
             stats.poisson_means_test(1, 2, 1, 2, alternative='error')
+
+
+class TestBWSTest:
+
+    def test_bws_input_validation(self):
+        rng = np.random.default_rng(4571775098104213308)
+
+        x, y = rng.random(size=(2, 7))
+
+        message = '`x` and `y` must be exactly one-dimensional.'
+        with pytest.raises(ValueError, match=message):
+            stats.bws_test([x, x], [y, y])
+
+        message = '`x` and `y` must not contain NaNs.'
+        with pytest.raises(ValueError, match=message):
+            stats.bws_test([np.nan], y)
+
+        message = '`x` and `y` must be of nonzero size.'
+        with pytest.raises(ValueError, match=message):
+            stats.bws_test(x, [])
+
+        message = 'alternative` must be one of...'
+        with pytest.raises(ValueError, match=message):
+            stats.bws_test(x, y, alternative='ekki-ekki')
+
+        message = 'method` must be an instance of...'
+        with pytest.raises(ValueError, match=message):
+            stats.bws_test(x, y, method=42)
+
+
+    def test_against_published_reference(self):
+        # Test against Example 2 in bws_test Reference [1], pg 9
+        # https://link.springer.com/content/pdf/10.1007/BF02762032.pdf
+        x = [1, 2, 3, 4, 6, 7, 8]
+        y = [5, 9, 10, 11, 12, 13, 14]
+        res = stats.bws_test(x, y, alternative='two-sided')
+        assert_allclose(res.statistic, 5.132, atol=1e-3)
+        assert_equal(res.pvalue, 10/3432)
+
+
+    @pytest.mark.parametrize(('alternative', 'statistic', 'pvalue'),
+                             [('two-sided', 1.7510204081633, 0.1264422777777),
+                              ('less', -1.7510204081633, 0.05754662004662),
+                              ('greater', -1.7510204081633, 0.9424533799534)])
+    def test_against_R(self, alternative, statistic, pvalue):
+        # Test against R library BWStest function bws_test
+        # library(BWStest)
+        # options(digits=16)
+        # x = c(...)
+        # y = c(...)
+        # bws_test(x, y, alternative='two.sided')
+        rng = np.random.default_rng(4571775098104213308)
+        x, y = rng.random(size=(2, 7))
+        res = stats.bws_test(x, y, alternative=alternative)
+        assert_allclose(res.statistic, statistic, rtol=1e-13)
+        assert_allclose(res.pvalue, pvalue, atol=1e-2, rtol=1e-1)
+
+    @pytest.mark.parametrize(('alternative', 'statistic', 'pvalue'),
+                             [('two-sided', 1.142629265891, 0.2903950180801),
+                              ('less', 0.99629665877411, 0.8545660222131),
+                              ('greater', 0.99629665877411, 0.1454339777869)])
+    def test_against_R_imbalanced(self, alternative, statistic, pvalue):
+        # Test against R library BWStest function bws_test
+        # library(BWStest)
+        # options(digits=16)
+        # x = c(...)
+        # y = c(...)
+        # bws_test(x, y, alternative='two.sided')
+        rng = np.random.default_rng(5429015622386364034)
+        x = rng.random(size=9)
+        y = rng.random(size=8)
+        res = stats.bws_test(x, y, alternative=alternative)
+        assert_allclose(res.statistic, statistic, rtol=1e-13)
+        assert_allclose(res.pvalue, pvalue, atol=1e-2, rtol=1e-1)
+
+    def test_method(self):
+        # Test that `method` parameter has the desired effect
+        rng = np.random.default_rng(1520514347193347862)
+        x, y = rng.random(size=(2, 10))
+
+        rng = np.random.default_rng(1520514347193347862)
+        method = stats.PermutationMethod(n_resamples=10, random_state=rng)
+        res1 = stats.bws_test(x, y, method=method)
+
+        assert len(res1.null_distribution) == 10
+
+        rng = np.random.default_rng(1520514347193347862)
+        method = stats.PermutationMethod(n_resamples=10, random_state=rng)
+        res2 = stats.bws_test(x, y, method=method)
+
+        assert_allclose(res1.null_distribution, res2.null_distribution)
+
+        rng = np.random.default_rng(5205143471933478621)
+        method = stats.PermutationMethod(n_resamples=10, random_state=rng)
+        res3 = stats.bws_test(x, y, method=method)
+
+        assert not np.allclose(res3.null_distribution, res1.null_distribution)
+
+    def test_directions(self):
+        # Sanity check of the sign of the one-sided statistic
+        rng = np.random.default_rng(1520514347193347862)
+        x = rng.random(size=5)
+        y = x - 1
+
+        res = stats.bws_test(x, y, alternative='greater')
+        assert res.statistic > 0
+        assert_equal(res.pvalue, 1 / len(res.null_distribution))
+
+        res = stats.bws_test(x, y, alternative='less')
+        assert res.statistic > 0
+        assert_equal(res.pvalue, 1)
+
+        res = stats.bws_test(y, x, alternative='less')
+        assert res.statistic < 0
+        assert_equal(res.pvalue, 1 / len(res.null_distribution))
+
+        res = stats.bws_test(y, x, alternative='greater')
+        assert res.statistic < 0
+        assert_equal(res.pvalue, 1)

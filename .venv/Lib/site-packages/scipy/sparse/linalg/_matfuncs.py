@@ -8,18 +8,19 @@ Sparse matrix functions
 #          Jake Vanderplas, August 2012 (Sparse Updates)
 #
 
-__all__ = ['expm', 'inv']
+__all__ = ['expm', 'inv', 'matrix_power']
 
 import numpy as np
 from scipy.linalg._basic import solve, solve_triangular
 
 from scipy.sparse._base import issparse
 from scipy.sparse.linalg import spsolve
-from scipy.sparse._sputils import is_pydata_spmatrix
+from scipy.sparse._sputils import is_pydata_spmatrix, isintlike
 
 import scipy.sparse
 import scipy.sparse.linalg
 from scipy.sparse.linalg._interface import LinearOperator
+from scipy.sparse._construct import eye
 
 from ._expm_multiply import _ident_like, _exact_1_norm as _onenorm
 
@@ -861,3 +862,79 @@ def _ell(A, m):
     log2_alpha_div_u = np.log2(alpha/u)
     value = int(np.ceil(log2_alpha_div_u / (2 * m)))
     return max(value, 0)
+
+def matrix_power(A, power):
+    """
+    Raise a square matrix to the integer power, `power`.
+
+    For non-negative integers, ``A**power`` is computed using repeated
+    matrix multiplications. Negative integers are not supported. 
+
+    Parameters
+    ----------
+    A : (M, M) square sparse array or matrix
+        sparse array that will be raised to power `power`
+    power : int
+        Exponent used to raise sparse array `A`
+
+    Returns
+    -------
+    A**power : (M, M) sparse array or matrix
+        The output matrix will be the same shape as A, and will preserve
+        the class of A, but the format of the output may be changed.
+    
+    Notes
+    -----
+    This uses a recursive implementation of the matrix power. For computing
+    the matrix power using a reasonably large `power`, this may be less efficient
+    than computing the product directly, using A @ A @ ... @ A.
+    This is contingent upon the number of nonzero entries in the matrix. 
+
+    .. versionadded:: 1.12.0
+
+    Examples
+    --------
+    >>> from scipy import sparse
+    >>> A = sparse.csc_array([[0,1,0],[1,0,1],[0,1,0]])
+    >>> A.todense()
+    array([[0, 1, 0],
+           [1, 0, 1],
+           [0, 1, 0]])
+    >>> (A @ A).todense()
+    array([[1, 0, 1],
+           [0, 2, 0],
+           [1, 0, 1]])
+    >>> A2 = sparse.linalg.matrix_power(A, 2)
+    >>> A2.todense()
+    array([[1, 0, 1],
+           [0, 2, 0],
+           [1, 0, 1]])
+    >>> A4 = sparse.linalg.matrix_power(A, 4)
+    >>> A4.todense()
+    array([[2, 0, 2],
+           [0, 4, 0],
+           [2, 0, 2]])
+
+    """
+    M, N = A.shape
+    if M != N:
+        raise TypeError('sparse matrix is not square')
+
+    if isintlike(power):
+        power = int(power)
+        if power < 0:
+            raise ValueError('exponent must be >= 0')
+
+        if power == 0:
+            return eye(M, dtype=A.dtype)
+
+        if power == 1:
+            return A.copy()
+
+        tmp = matrix_power(A, power // 2)
+        if power % 2:
+            return A @ tmp @ tmp
+        else:
+            return tmp @ tmp
+    else:
+        raise ValueError("exponent must be an integer")

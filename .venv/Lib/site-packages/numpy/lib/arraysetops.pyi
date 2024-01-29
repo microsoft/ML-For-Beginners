@@ -333,6 +333,8 @@ def isin(
     test_elements: ArrayLike,
     assume_unique: bool = ...,
     invert: bool = ...,
+    *,
+    kind: None | str = ...,
 ) -> NDArray[bool_]: ...
 
 @overload

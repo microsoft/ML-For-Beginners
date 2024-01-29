@@ -1,10 +1,13 @@
 from statsmodels.compat.pandas import assert_frame_equal
 
+from numpy.testing import (
+    assert_array_almost_equal,
+    assert_equal,
+    assert_raises,
+)
 import pandas as pd
-import numpy as np
+
 from statsmodels.stats.anova import AnovaRM
-from numpy.testing import (assert_array_almost_equal, assert_raises,
-                           assert_equal)
 
 DV = [7, 3, 6, 6, 5, 8, 6, 7,
       7, 11, 9, 11, 10, 10, 11, 11,
@@ -141,7 +144,7 @@ def test_repeated_measures_aggregation():
     df1 = AnovaRM(data, 'DV', 'id', within=['A', 'B', 'D']).fit()
     double_data = pd.concat([data, data], axis=0)
     df2 = AnovaRM(double_data, 'DV', 'id', within=['A', 'B', 'D'],
-                  aggregate_func=np.mean).fit()
+                  aggregate_func=pd.Series.mean).fit()
 
     assert_frame_equal(df1.anova_table, df2.anova_table)
 
@@ -152,7 +155,7 @@ def test_repeated_measures_aggregation_one_subject_duplicated():
     data2 = data2.reset_index()
     df2 = AnovaRM(data2,
                   'DV', 'id', within=['A', 'B', 'D'],
-                  aggregate_func=np.mean).fit()
+                  aggregate_func=pd.Series.mean).fit()
 
     assert_frame_equal(df1.anova_table, df2.anova_table)
 
@@ -163,9 +166,9 @@ def test_repeated_measures_aggregate_func():
                   within=['A', 'B', 'D'])
 
     m1 = AnovaRM(double_data, 'DV', 'id', within=['A', 'B', 'D'],
-                 aggregate_func=np.mean)
+                 aggregate_func=pd.Series.mean)
     m2 = AnovaRM(double_data, 'DV', 'id', within=['A', 'B', 'D'],
-                 aggregate_func=np.median)
+                 aggregate_func=pd.Series.median)
 
     assert_raises(AssertionError, assert_equal,
                   m1.aggregate_func, m2.aggregate_func)
@@ -175,7 +178,7 @@ def test_repeated_measures_aggregate_func():
 def test_repeated_measures_aggregate_func_mean():
     double_data = pd.concat([data, data], axis=0)
     m1 = AnovaRM(double_data, 'DV', 'id', within=['A', 'B', 'D'],
-                 aggregate_func=np.mean)
+                 aggregate_func=pd.Series.mean)
 
     m2 = AnovaRM(double_data, 'DV', 'id', within=['A', 'B', 'D'],
                  aggregate_func='mean')
@@ -197,7 +200,7 @@ def test_repeated_measures_aggregate_compare_with_ezANOVA():
 
     double_data = pd.concat([data, data], axis=0)
     df = (AnovaRM(double_data, 'DV', 'id', within=['A', 'B', 'D'],
-                  aggregate_func=np.mean)
+                  aggregate_func=pd.Series.mean)
           .fit()
           .anova_table)
 

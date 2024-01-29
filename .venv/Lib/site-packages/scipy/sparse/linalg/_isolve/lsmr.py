@@ -18,7 +18,7 @@ Dept of MS&E, Stanford University.
 
 __all__ = ['lsmr']
 
-from numpy import zeros, infty, atleast_1d, result_type
+from numpy import zeros, inf, atleast_1d, result_type
 from numpy.linalg import norm
 from math import sqrt
 from scipy.sparse.linalg._interface import aslinearoperator
@@ -419,7 +419,7 @@ def lsmr(A, b, damp=0.0, atol=1e-6, btol=1e-6, conlim=1e8,
         if (normA * normr) != 0:
             test2 = normar / (normA * normr)
         else:
-            test2 = infty
+            test2 = inf
         test3 = 1 / condA
         t1 = test1 / (1 + normA * normx / normb)
         rtol = btol + atol * normA * normx / normb

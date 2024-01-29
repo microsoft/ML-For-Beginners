@@ -1,8 +1,12 @@
-from io import StringIO
+from io import (
+    BytesIO,
+    StringIO,
+)
 
 import pytest
 
 import pandas as pd
+import pandas._testing as tm
 
 pytest.importorskip("tabulate")
 
@@ -88,3 +92,15 @@ def test_showindex_disallowed_in_kwargs():
     df = pd.DataFrame([1, 2, 3])
     with pytest.raises(ValueError, match="Pass 'index' instead of 'showindex"):
         df.to_markdown(index=True, showindex=True)
+
+
+def test_markdown_pos_args_deprecatation():
+    # GH-54229
+    df = pd.DataFrame({"a": [1, 2, 3]})
+    msg = (
+        r"Starting with pandas version 3.0 all arguments of to_markdown except for the "
+        r"argument 'buf' will be keyword-only."
+    )
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        buffer = BytesIO()
+        df.to_markdown(buffer, "grid")

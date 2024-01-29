@@ -501,7 +501,7 @@ class KDTree(cKDTree):
 
             .. versionadded:: 1.6.0
         return_sorted : bool, optional
-            Sorts returned indicies if True and does not sort them if False. If
+            Sorts returned indices if True and does not sort them if False. If
             None, does not sort single point queries, but does sort
             multi-point queries which was the behavior before this option
             was added.

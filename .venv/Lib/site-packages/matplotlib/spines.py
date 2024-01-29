@@ -214,15 +214,22 @@ class Spine(mpatches.Patch):
         properties when needed.
         """
         self.axis = axis
-        if self.axis is not None:
-            self.axis.clear()
         self.stale = True
 
     def clear(self):
         """Clear the current spine."""
-        self._position = None  # clear position
+        self._clear()
         if self.axis is not None:
             self.axis.clear()
+
+    def _clear(self):
+        """
+        Clear things directly related to the spine.
+
+        In this way it is possible to avoid clearing the Axis as well when calling
+        from library code where it is known that the Axis is cleared separately.
+        """
+        self._position = None  # clear position
 
     def _adjust_location(self):
         """Automatically set spine bounds to the view interval."""
@@ -437,7 +444,7 @@ class Spine(mpatches.Patch):
         else:
             raise ValueError('unable to make path for spine "%s"' % spine_type)
         result = cls(axes, spine_type, path, **kwargs)
-        result.set_visible(mpl.rcParams['axes.spines.{0}'.format(spine_type)])
+        result.set_visible(mpl.rcParams[f'axes.spines.{spine_type}'])
 
         return result
 
@@ -479,7 +486,7 @@ class Spine(mpatches.Patch):
 
 class SpinesProxy:
     """
-    A proxy to broadcast ``set_*`` method calls to all contained `.Spines`.
+    A proxy to broadcast ``set_*()`` and ``set()`` method calls to contained `.Spines`.
 
     The proxy cannot be used for any other operations on its members.
 
@@ -493,7 +500,7 @@ class SpinesProxy:
     def __getattr__(self, name):
         broadcast_targets = [spine for spine in self._spine_dict.values()
                              if hasattr(spine, name)]
-        if not name.startswith('set_') or not broadcast_targets:
+        if (name != 'set' and not name.startswith('set_')) or not broadcast_targets:
             raise AttributeError(
                 f"'SpinesProxy' object has no attribute '{name}'")
 
@@ -531,8 +538,8 @@ class Spines(MutableMapping):
 
         spines[:].set_visible(False)
 
-    The latter two indexing methods will return a `SpinesProxy` that broadcasts
-    all ``set_*`` calls to its members, but cannot be used for any other
+    The latter two indexing methods will return a `SpinesProxy` that broadcasts all
+    ``set_*()`` and ``set()`` calls to its members, but cannot be used for any other
     operation.
     """
     def __init__(self, **kwargs):

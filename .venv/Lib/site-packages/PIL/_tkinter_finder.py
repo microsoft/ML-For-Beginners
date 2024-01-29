@@ -1,5 +1,7 @@
 """ Find compiled module linking to Tcl / Tk libraries
 """
+from __future__ import annotations
+
 import sys
 import tkinter
 from tkinter import _tkinter as tk

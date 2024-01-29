@@ -11,13 +11,13 @@ class TestJoinInt64Index:
 
         joined, lidx, ridx = left.join(left, return_indexers=True)
 
-        exp_joined = Index([3, 3, 3, 3, 4, 4, 4, 4])
+        exp_joined = Index([4, 4, 4, 4, 3, 3, 3, 3])
         tm.assert_index_equal(joined, exp_joined)
 
-        exp_lidx = np.array([2, 2, 3, 3, 0, 0, 1, 1], dtype=np.intp)
+        exp_lidx = np.array([0, 0, 1, 1, 2, 2, 3, 3], dtype=np.intp)
         tm.assert_numpy_array_equal(lidx, exp_lidx)
 
-        exp_ridx = np.array([2, 3, 2, 3, 0, 1, 0, 1], dtype=np.intp)
+        exp_ridx = np.array([0, 1, 0, 1, 2, 3, 2, 3], dtype=np.intp)
         tm.assert_numpy_array_equal(ridx, exp_ridx)
 
     def test_join_inner(self):

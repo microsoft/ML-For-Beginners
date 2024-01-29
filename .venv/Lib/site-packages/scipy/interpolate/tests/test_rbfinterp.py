@@ -47,7 +47,7 @@ def _is_conditionally_positive_definite(kernel, m):
     ntests = 100
     for ndim in [1, 2, 3, 4, 5]:
         # Generate sample points with a Halton sequence to avoid samples that
-        # are too close to eachother, which can make the matrix singular.
+        # are too close to each other, which can make the matrix singular.
         seq = Halton(ndim, scramble=False, seed=np.random.RandomState())
         for _ in range(ntests):
             x = 2*seq.random(nx) - 1

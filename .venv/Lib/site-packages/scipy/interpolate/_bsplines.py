@@ -2,7 +2,7 @@ import operator
 from math import prod
 
 import numpy as np
-from numpy.core.multiarray import normalize_axis_index
+from scipy._lib._util import normalize_axis_index
 from scipy.linalg import (get_lapack_funcs, LinAlgError,
                           cholesky_banded, cho_solve_banded,
                           solve, solve_banded)
@@ -20,9 +20,9 @@ __all__ = ["BSpline", "make_interp_spline", "make_lsq_spline",
 def _get_dtype(dtype):
     """Return np.complex128 for complex dtypes, np.float64 otherwise."""
     if np.issubdtype(dtype, np.complexfloating):
-        return np.complex_
+        return np.complex128
     else:
-        return np.float_
+        return np.float64
 
 
 def _as_float_array(x, check_finite=False):
@@ -487,7 +487,7 @@ class BSpline:
             extrapolate = self.extrapolate
         x = np.asarray(x)
         x_shape, x_ndim = x.shape, x.ndim
-        x = np.ascontiguousarray(x.ravel(), dtype=np.float_)
+        x = np.ascontiguousarray(x.ravel(), dtype=np.float64)
 
         # With periodic extrapolation we map x to the segment
         # [self.t[k], self.t[n]].
@@ -683,7 +683,7 @@ class BSpline:
 
             if n_periods > 0:
                 # Evaluate the difference of antiderivatives.
-                x = np.asarray([ts, te], dtype=np.float_)
+                x = np.asarray([ts, te], dtype=np.float64)
                 _bspl.evaluate_spline(ta, ca.reshape(ca.shape[0], -1),
                                       ka, x, 0, False, out)
                 integral = out[1] - out[0]
@@ -699,23 +699,23 @@ class BSpline:
             # If b <= te then we need to integrate over [a, b], otherwise
             # over [a, te] and from xs to what is remained.
             if b <= te:
-                x = np.asarray([a, b], dtype=np.float_)
+                x = np.asarray([a, b], dtype=np.float64)
                 _bspl.evaluate_spline(ta, ca.reshape(ca.shape[0], -1),
                                       ka, x, 0, False, out)
                 integral += out[1] - out[0]
             else:
-                x = np.asarray([a, te], dtype=np.float_)
+                x = np.asarray([a, te], dtype=np.float64)
                 _bspl.evaluate_spline(ta, ca.reshape(ca.shape[0], -1),
                                       ka, x, 0, False, out)
                 integral += out[1] - out[0]
 
-                x = np.asarray([ts, ts + b - te], dtype=np.float_)
+                x = np.asarray([ts, ts + b - te], dtype=np.float64)
                 _bspl.evaluate_spline(ta, ca.reshape(ca.shape[0], -1),
                                       ka, x, 0, False, out)
                 integral += out[1] - out[0]
         else:
             # Evaluate the difference of antiderivatives.
-            x = np.asarray([a, b], dtype=np.float_)
+            x = np.asarray([a, b], dtype=np.float64)
             _bspl.evaluate_spline(ta, ca.reshape(ca.shape[0], -1),
                                   ka, x, 0, extrapolate, out)
             integral = out[1] - out[0]
@@ -910,7 +910,7 @@ def _woodbury_algorithm(A, ur, ll, b, k):
     The system is solved with the following steps:
         1.  New systems of linear equations are constructed:
             A @ z_i = u_i,
-            u_i - columnn vector of U,
+            u_i - column vector of U,
             i = 1, ..., k - 1
         2.  Matrix Z is formed from vectors z_i:
             Z = [ z_1 | z_2 | ... | z_{k - 1} ]
@@ -986,7 +986,7 @@ def _periodic_knots(x, k):
 def _make_interp_per_full_matr(x, y, t, k):
     '''
     Returns a solution of a system for B-spline interpolation with periodic
-    boundary conditions. First ``k - 1`` rows of matrix are condtions of
+    boundary conditions. First ``k - 1`` rows of matrix are conditions of
     periodicity (continuity of ``k - 1`` derivatives at the boundary points).
     Last ``n`` rows are interpolation conditions.
     RHS is ``k - 1`` zeros and ``n`` ordinates in this case.
@@ -1104,7 +1104,7 @@ def _make_periodic_spline(x, y, t, k, axis):
     kul = int(k / 2)
 
     # kl = ku = k
-    ab = np.zeros((3 * k + 1, nt), dtype=np.float_, order='F')
+    ab = np.zeros((3 * k + 1, nt), dtype=np.float64, order='F')
 
     # upper right and lower left blocks
     ur = np.zeros((kul, kul))
@@ -1291,8 +1291,7 @@ def make_interp_spline(x, y, k=3, t=None, bc_type=None, axis=0,
         raise ValueError("First and last points does not match while "
                          "periodic case expected")
     if x.size != y.shape[0]:
-        raise ValueError('Shapes of x {} and y {} are incompatible'
-                         .format(x.shape, y.shape))
+        raise ValueError(f'Shapes of x {x.shape} and y {y.shape} are incompatible')
     if np.any(x[1:] == x[:-1]):
         raise ValueError("Expect x to not have duplicates")
     if x.ndim != 1 or np.any(x[1:] < x[:-1]):
@@ -1371,7 +1370,7 @@ def make_interp_spline(x, y, k=3, t=None, bc_type=None, axis=0,
 
     if nt - n != nleft + nright:
         raise ValueError("The number of derivatives at boundaries does not "
-                         "match: expected {}, got {}+{}".format(nt-n, nleft, nright))
+                         f"match: expected {nt-n}, got {nleft}+{nright}")
 
     # bail out if the `y` array is zero-sized
     if y.size == 0:
@@ -1380,12 +1379,14 @@ def make_interp_spline(x, y, k=3, t=None, bc_type=None, axis=0,
 
     # set up the LHS: the collocation matrix + derivatives at boundaries
     kl = ku = k
-    ab = np.zeros((2*kl + ku + 1, nt), dtype=np.float_, order='F')
+    ab = np.zeros((2*kl + ku + 1, nt), dtype=np.float64, order='F')
     _bspl._colloc(x, t, k, ab, offset=nleft)
     if nleft > 0:
-        _bspl._handle_lhs_derivatives(t, k, x[0], ab, kl, ku, deriv_l_ords)
+        _bspl._handle_lhs_derivatives(t, k, x[0], ab, kl, ku,
+                                      deriv_l_ords.astype(np.dtype("long")))
     if nright > 0:
-        _bspl._handle_lhs_derivatives(t, k, x[-1], ab, kl, ku, deriv_r_ords,
+        _bspl._handle_lhs_derivatives(t, k, x[-1], ab, kl, ku,
+                                      deriv_r_ords.astype(np.dtype("long")),
                                       offset=nt-nright)
 
     # set up the RHS: values to interpolate (+ derivative values, if any)
@@ -1542,13 +1543,11 @@ def make_lsq_spline(x, y, t, k=3, w=None, axis=0, check_finite=True):
     if t.ndim != 1 or np.any(t[1:] - t[:-1] < 0):
         raise ValueError("Expect t to be a 1-D sorted array_like.")
     if x.size != y.shape[0]:
-        raise ValueError('Shapes of x {} and y {} are incompatible'
-                         .format(x.shape, y.shape))
+        raise ValueError(f'Shapes of x {x.shape} and y {y.shape} are incompatible')
     if k > 0 and np.any((x < t[k]) | (x > t[-k])):
         raise ValueError('Out of bounds w/ x = %s.' % x)
     if x.size != w.size:
-        raise ValueError('Shapes of x {} and w {} are incompatible'
-                         .format(x.shape, w.shape))
+        raise ValueError(f'Shapes of x {x.shape} and w {w.shape} are incompatible')
 
     # number of coefficients
     n = t.size - k - 1
@@ -1557,7 +1556,7 @@ def make_lsq_spline(x, y, t, k=3, w=None, axis=0, check_finite=True):
     # rhs = A.T @ y for solving the LSQ problem  ``A.T @ A @ c = A.T @ y``
     lower = True
     extradim = prod(y.shape[1:])
-    ab = np.zeros((k+1, n), dtype=np.float_, order='F')
+    ab = np.zeros((k+1, n), dtype=np.float64, order='F')
     rhs = np.zeros((n, extradim), dtype=y.dtype, order='F')
     _bspl._norm_eq_lsq(x, t, k,
                        y.reshape(-1, extradim),
@@ -1877,9 +1876,9 @@ def make_smoothing_spline(x, y, w=None, lam=None):
     Parameters
     ----------
     x : array_like, shape (n,)
-        Abscissas. `n` must be larger than 5.
+        Abscissas. `n` must be at least 5.
     y : array_like, shape (n,)
-        Ordinates. `n` must be larger than 5.
+        Ordinates. `n` must be at least 5.
     w : array_like, shape (n,), optional
         Vector of weights. Default is ``np.ones_like(x)``.
     lam : float, (:math:`\lambda \geq 0`), optional
@@ -1981,7 +1980,7 @@ def make_smoothing_spline(x, y, w=None, lam=None):
     n = x.shape[0]
 
     if n <= 4:
-        raise ValueError('``x`` and ``y`` length must be larger than 5')
+        raise ValueError('``x`` and ``y`` length must be at least 5')
 
     # It is known that the solution to the stated minimization problem exists
     # and is a natural cubic spline with vector of knots equal to the unique

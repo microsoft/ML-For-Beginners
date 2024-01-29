@@ -1,5 +1,5 @@
 from itertools import product
-from numpy.testing import (assert_, assert_allclose,
+from numpy.testing import (assert_, assert_allclose, assert_array_less,
                            assert_equal, assert_no_warnings, suppress_warnings)
 import pytest
 from pytest import raises as assert_raises
@@ -135,6 +135,18 @@ def sol_complex(t):
     return y.reshape((1, -1))
 
 
+def fun_event_dense_output_LSODA(t, y):
+    return y * (t - 2)
+
+
+def jac_event_dense_output_LSODA(t, y):
+    return t - 2
+
+
+def sol_event_dense_output_LSODA(t):
+    return np.exp(t ** 2 / 2 - 2 * t + np.log(0.05) - 6)
+
+
 def compute_error(y, y_true, rtol, atol):
     e = (y - y_true) / (atol + rtol * np.abs(y_true))
     return np.linalg.norm(e, axis=0) / np.sqrt(e.shape[0])
@@ -201,11 +213,7 @@ def test_integration():
         e = compute_error(yc, yc_true, rtol, atol)
         assert_(np.all(e < 5))
 
-        # LSODA for some reasons doesn't pass the polynomial through the
-        # previous points exactly after the order change. It might be some
-        # bug in LSOSA implementation or maybe we missing something.
-        if method != 'LSODA':
-            assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
+        assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
 
 
 def test_integration_complex():
@@ -430,7 +438,8 @@ def test_events():
         assert_(np.all(e < 5))
 
         # Test that the y_event matches solution
-        assert np.allclose(sol_rational(res.t_events[0][0]), res.y_events[0][0], rtol=1e-3, atol=1e-6)
+        assert np.allclose(sol_rational(res.t_events[0][0]), res.y_events[0][0],
+                           rtol=1e-3, atol=1e-6)
 
     # Test in backward direction.
     event_rational_1.direction = 0
@@ -507,8 +516,10 @@ def test_events():
         e = compute_error(yc, yc_true, 1e-3, 1e-6)
         assert_(np.all(e < 5))
 
-        assert np.allclose(sol_rational(res.t_events[1][0]), res.y_events[1][0], rtol=1e-3, atol=1e-6)
-        assert np.allclose(sol_rational(res.t_events[2][0]), res.y_events[2][0], rtol=1e-3, atol=1e-6)
+        assert np.allclose(sol_rational(res.t_events[1][0]), res.y_events[1][0],
+                           rtol=1e-3, atol=1e-6)
+        assert np.allclose(sol_rational(res.t_events[2][0]), res.y_events[2][0],
+                           rtol=1e-3, atol=1e-6)
 
 
 def test_max_step():
@@ -538,9 +549,7 @@ def test_max_step():
             e = compute_error(yc, yc_true, rtol, atol)
             assert_(np.all(e < 5))
 
-            # See comment in test_integration.
-            if method is not LSODA:
-                assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
+            assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
 
             assert_raises(ValueError, method, fun_rational, t_span[0], y0,
                           t_span[1], max_step=-1)
@@ -584,9 +593,7 @@ def test_first_step():
             e = compute_error(yc, yc_true, rtol, atol)
             assert_(np.all(e < 5))
 
-            # See comment in test_integration.
-            if method is not LSODA:
-                assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
+            assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
 
             assert_raises(ValueError, method, fun_rational, t_span[0], y0,
                           t_span[1], first_step=-1)
@@ -709,6 +716,48 @@ def test_t_eval_early_event():
         assert len(res.t_events) == 1
         assert res.t_events[0].size == 1
         assert res.t_events[0][0] == 7
+
+
+def test_event_dense_output_LSODA():
+    def event_lsoda(t, y):
+        return y[0] - 2.02e-5
+
+    rtol = 1e-3
+    atol = 1e-6
+    y0 = [0.05]
+    t_span = [-2, 2]
+    first_step = 1e-3
+    res = solve_ivp(
+        fun_event_dense_output_LSODA,
+        t_span,
+        y0,
+        method="LSODA",
+        dense_output=True,
+        events=event_lsoda,
+        first_step=first_step,
+        max_step=1,
+        rtol=rtol,
+        atol=atol,
+        jac=jac_event_dense_output_LSODA,
+    )
+
+    assert_equal(res.t[0], t_span[0])
+    assert_equal(res.t[-1], t_span[-1])
+    assert_allclose(first_step, np.abs(res.t[1] - t_span[0]))
+    assert res.success
+    assert_equal(res.status, 0)
+
+    y_true = sol_event_dense_output_LSODA(res.t)
+    e = compute_error(res.y, y_true, rtol, atol)
+    assert_array_less(e, 5)
+
+    tc = np.linspace(*t_span)
+    yc_true = sol_event_dense_output_LSODA(tc)
+    yc = res.sol(tc)
+    e = compute_error(yc, yc_true, rtol, atol)
+    assert_array_less(e, 5)
+
+    assert_allclose(res.sol(res.t), res.y, rtol=1e-15, atol=1e-15)
 
 
 def test_no_integration():

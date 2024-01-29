@@ -701,7 +701,7 @@ class AutoreloadMagics(Magics):
                     # Inject module to user namespace
                     self.shell.push({top_name: top_module})
 
-    def pre_run_cell(self):
+    def pre_run_cell(self, info):
         if self._reloader.enabled:
             try:
                 self._reloader.check()

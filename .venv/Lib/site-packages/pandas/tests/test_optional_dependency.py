@@ -50,6 +50,20 @@ def test_bad_version(monkeypatch):
     result = import_optional_dependency("fakemodule")
     assert result is module
 
+    with pytest.raises(ImportError, match="Pandas requires version '1.1.0'"):
+        import_optional_dependency("fakemodule", min_version="1.1.0")
+
+    with tm.assert_produces_warning(UserWarning):
+        result = import_optional_dependency(
+            "fakemodule", errors="warn", min_version="1.1.0"
+        )
+    assert result is None
+
+    result = import_optional_dependency(
+        "fakemodule", errors="ignore", min_version="1.1.0"
+    )
+    assert result is None
+
 
 def test_submodule(monkeypatch):
     # Create a fake module with a submodule

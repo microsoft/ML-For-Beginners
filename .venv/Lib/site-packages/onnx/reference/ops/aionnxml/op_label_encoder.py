@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0913,R0914,W0221
+
 
 import numpy as np
 
@@ -15,38 +15,36 @@ class LabelEncoder(OpRunAiOnnxMl):
         default_float=None,
         default_int64=None,
         default_string=None,
+        default_tensor=None,
         keys_floats=None,
         keys_int64s=None,
         keys_strings=None,
         values_floats=None,
         values_int64s=None,
         values_strings=None,
+        keys_tensor=None,
+        values_tensor=None,
     ):
-        keys = keys_floats or keys_int64s or keys_strings
-        values = values_floats or values_int64s or values_strings
+        keys = keys_floats or keys_int64s or keys_strings or keys_tensor
+        values = values_floats or values_int64s or values_strings or values_tensor
         classes = dict(zip(keys, values))
-        if id(keys) == id(keys_floats):
-            cast = float
-        elif id(keys) == id(keys_int64s):
-            cast = int  # type: ignore
-        else:
-            cast = str  # type: ignore
-        if id(values) == id(values_floats):
+
+        if values is values_tensor:
+            defval = default_tensor.item()
+            otype = default_tensor.dtype
+        elif values is values_floats:
             defval = default_float
-            dtype = np.float32
-        elif id(values) == id(values_int64s):
+            otype = np.float32
+        elif values is values_int64s:
             defval = default_int64
-            dtype = np.int64  # type: ignore
-        else:
+            otype = np.int64
+        elif values is values_strings:
             defval = default_string
+            otype = np.str_
             if not isinstance(defval, str):
                 defval = ""
-            dtype = np.str_  # type: ignore
-        shape = x.shape
-        if len(x.shape) > 1:
-            x = x.flatten()
-        res = []
-        for i in range(0, x.shape[0]):
-            v = classes.get(cast(x[i]), defval)
-            res.append(v)
-        return (np.array(res, dtype=dtype).reshape(shape),)
+        lookup_func = np.vectorize(lambda x: classes.get(x, defval), otypes=[otype])
+        output = lookup_func(x)
+        if output.dtype == object:
+            output = output.astype(np.str_)
+        return (output,)

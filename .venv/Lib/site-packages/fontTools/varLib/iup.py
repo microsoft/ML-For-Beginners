@@ -15,16 +15,6 @@ from typing import (
 )
 from numbers import Integral, Real
 
-try:
-    import cython
-
-    COMPILED = cython.compiled
-except (AttributeError, ImportError):
-    # if cython not installed, use mock module with no-op decorators and types
-    from fontTools.misc import cython
-
-    COMPILED = False
-
 
 _Point = Tuple[Real, Real]
 _Delta = Tuple[Real, Real]
@@ -177,7 +167,7 @@ def iup_delta(
 @cython.locals(
     i=cython.int,
     j=cython.int,
-    tolerance=cython.double,
+    # tolerance=cython.double, # https://github.com/fonttools/fonttools/issues/3282
     x=cython.double,
     y=cython.double,
     p=cython.double,

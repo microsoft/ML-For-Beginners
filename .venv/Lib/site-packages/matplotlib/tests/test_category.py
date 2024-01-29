@@ -1,4 +1,6 @@
 """Catch all for categorical functions"""
+import warnings
+
 import pytest
 import numpy as np
 
@@ -309,3 +311,13 @@ def test_hist():
     n, bins, patches = ax.hist(['a', 'b', 'a', 'c', 'ff'])
     assert n.shape == (10,)
     np.testing.assert_allclose(n, [2., 0., 0., 1., 0., 0., 1., 0., 0., 1.])
+
+
+def test_set_lim():
+    # Numpy 1.25 deprecated casting [2.] to float, catch_warnings added to error
+    # with numpy 1.25 and prior to the change from gh-26597
+    # can be removed once the minimum numpy version has expired the warning
+    f, ax = plt.subplots()
+    ax.plot(["a", "b", "c", "d"], [1, 2, 3, 4])
+    with warnings.catch_warnings():
+        ax.set_xlim("b", "c")

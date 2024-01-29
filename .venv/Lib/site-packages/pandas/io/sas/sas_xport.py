@@ -288,7 +288,7 @@ class XportReader(ReaderBase, abc.Iterator):
     def _get_row(self):
         return self.filepath_or_buffer.read(80).decode()
 
-    def _read_header(self):
+    def _read_header(self) -> None:
         self.filepath_or_buffer.seek(0)
 
         # read file header

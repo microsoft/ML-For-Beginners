@@ -13,10 +13,14 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['ColorfulStyle']
+
+
 class ColorfulStyle(Style):
     """
     A colorful style, inspired by CodeRay.
     """
+    name = 'colorful'
 
     styles = {
         Whitespace:                "#bbbbbb",

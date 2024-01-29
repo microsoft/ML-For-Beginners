@@ -50,9 +50,6 @@ def to_feather(
     df : DataFrame
     path : str, path object, or file-like object
     {storage_options}
-
-        .. versionadded:: 1.2.0
-
     **kwargs :
         Additional keywords passed to `pyarrow.feather.write_feather`.
 
@@ -93,8 +90,6 @@ def read_feather(
         Whether to parallelize reading using multiple threads.
     {storage_options}
 
-        .. versionadded:: 1.2.0
-
     dtype_backend : {{'numpy_nullable', 'pyarrow'}}, default 'numpy_nullable'
         Back-end data type applied to the resultant :class:`DataFrame`
         (still experimental). Behaviour is as follows:
@@ -116,6 +111,9 @@ def read_feather(
     """
     import_optional_dependency("pyarrow")
     from pyarrow import feather
+
+    # import utils to register the pyarrow extension types
+    import pandas.core.arrays.arrow.extension_types  # pyright: ignore[reportUnusedImport] # noqa: F401
 
     check_dtype_backend(dtype_backend)
 

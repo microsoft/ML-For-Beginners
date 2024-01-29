@@ -84,7 +84,8 @@ class HBInfo:
             elif values.dtype.kind in np.typecodes["AllInteger"]:
                 values_fmt = IntFormat.from_number(-np.max(np.abs(values)))
             else:
-                raise NotImplementedError("type %s not implemented yet" % values.dtype.kind)
+                message = f"type {values.dtype.kind} not implemented yet"
+                raise NotImplementedError(message)
         else:
             raise NotImplementedError("fmt argument not supported yet.")
 
@@ -221,7 +222,8 @@ class HBInfo:
         if key is None:
             key = "|No Key"
         if len(key) > 8:
-            warnings.warn("key is > 8 characters (key is %s)" % key, LineOverflow)
+            warnings.warn("key is > 8 characters (key is %s)" % key,
+                          LineOverflow, stacklevel=3)
 
         self.total_nlines = total_nlines
         self.pointer_nlines = pointer_nlines
@@ -242,13 +244,13 @@ class HBInfo:
         values_format = parser.parse(values_format_str)
         if isinstance(values_format, ExpFormat):
             if mxtype.value_type not in ["real", "complex"]:
-                raise ValueError("Inconsistency between matrix type {} and "
-                                 "value type {}".format(mxtype, values_format))
+                raise ValueError(f"Inconsistency between matrix type {mxtype} and "
+                                 f"value type {values_format}")
             values_dtype = np.float64
         elif isinstance(values_format, IntFormat):
             if mxtype.value_type not in ["integer"]:
-                raise ValueError("Inconsistency between matrix type {} and "
-                                 "value type {}".format(mxtype, values_format))
+                raise ValueError(f"Inconsistency between matrix type {mxtype} and "
+                                 f"value type {values_format}")
             # XXX: fortran int -> dtype association ?
             values_dtype = int
         else:
@@ -415,8 +417,7 @@ class HBMatrixType:
                self._q2f_storage[self.storage]
 
     def __repr__(self):
-        return "HBMatrixType(%s, %s, %s)" % \
-               (self.value_type, self.structure, self.storage)
+        return f"HBMatrixType({self.value_type}, {self.structure}, {self.storage})"
 
 
 class HBFile:

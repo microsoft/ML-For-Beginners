@@ -47,36 +47,36 @@ Options
 
 The ``.. plot::`` directive supports the following options:
 
-    ``:format:`` : {'python', 'doctest'}
-        The format of the input.  If unset, the format is auto-detected.
+``:format:`` : {'python', 'doctest'}
+    The format of the input.  If unset, the format is auto-detected.
 
-    ``:include-source:`` : bool
-        Whether to display the source code. The default can be changed using
-        the ``plot_include_source`` variable in :file:`conf.py` (which itself
-        defaults to False).
+``:include-source:`` : bool
+    Whether to display the source code. The default can be changed using
+    the ``plot_include_source`` variable in :file:`conf.py` (which itself
+    defaults to False).
 
-    ``:show-source-link:`` : bool
-        Whether to show a link to the source in HTML. The default can be
-        changed using the ``plot_html_show_source_link`` variable in
-        :file:`conf.py` (which itself defaults to True).
+``:show-source-link:`` : bool
+    Whether to show a link to the source in HTML. The default can be
+    changed using the ``plot_html_show_source_link`` variable in
+    :file:`conf.py` (which itself defaults to True).
 
-    ``:context:`` : bool or str
-        If provided, the code will be run in the context of all previous plot
-        directives for which the ``:context:`` option was specified.  This only
-        applies to inline code plot directives, not those run from files. If
-        the ``:context: reset`` option is specified, the context is reset
-        for this and future plots, and previous figures are closed prior to
-        running the code. ``:context: close-figs`` keeps the context but closes
-        previous figures before running the code.
+``:context:`` : bool or str
+    If provided, the code will be run in the context of all previous plot
+    directives for which the ``:context:`` option was specified.  This only
+    applies to inline code plot directives, not those run from files. If
+    the ``:context: reset`` option is specified, the context is reset
+    for this and future plots, and previous figures are closed prior to
+    running the code. ``:context: close-figs`` keeps the context but closes
+    previous figures before running the code.
 
-    ``:nofigs:`` : bool
-        If specified, the code block will be run, but no figures will be
-        inserted.  This is usually useful with the ``:context:`` option.
+``:nofigs:`` : bool
+    If specified, the code block will be run, but no figures will be
+    inserted.  This is usually useful with the ``:context:`` option.
 
-    ``:caption:`` : str
-        If specified, the option's argument will be used as a caption for the
-        figure. This overwrites the caption given in the content, when the plot
-        is generated from a file.
+``:caption:`` : str
+    If specified, the option's argument will be used as a caption for the
+    figure. This overwrites the caption given in the content, when the plot
+    is generated from a file.
 
 Additionally, this directive supports all the options of the `image directive
 <https://docutils.sourceforge.io/docs/ref/rst/directives.html#image>`_,
@@ -88,57 +88,81 @@ Configuration options
 
 The plot directive has the following configuration options:
 
-    plot_include_source
-        Default value for the include-source option (default: False).
+plot_include_source
+    Default value for the include-source option (default: False).
 
-    plot_html_show_source_link
-        Whether to show a link to the source in HTML (default: True).
+plot_html_show_source_link
+    Whether to show a link to the source in HTML (default: True).
 
-    plot_pre_code
-        Code that should be executed before each plot. If None (the default),
-        it will default to a string containing::
+plot_pre_code
+    Code that should be executed before each plot. If None (the default),
+    it will default to a string containing::
 
-            import numpy as np
-            from matplotlib import pyplot as plt
+        import numpy as np
+        from matplotlib import pyplot as plt
 
-    plot_basedir
-        Base directory, to which ``plot::`` file names are relative to.
-        If None or empty (the default), file names are relative to the
-        directory where the file containing the directive is.
+plot_basedir
+    Base directory, to which ``plot::`` file names are relative to.
+    If None or empty (the default), file names are relative to the
+    directory where the file containing the directive is.
 
-    plot_formats
-        File formats to generate (default: ['png', 'hires.png', 'pdf']).
-        List of tuples or strings::
+plot_formats
+    File formats to generate (default: ['png', 'hires.png', 'pdf']).
+    List of tuples or strings::
 
-            [(suffix, dpi), suffix, ...]
+        [(suffix, dpi), suffix, ...]
 
-        that determine the file format and the DPI. For entries whose
-        DPI was omitted, sensible defaults are chosen. When passing from
-        the command line through sphinx_build the list should be passed as
-        suffix:dpi,suffix:dpi, ...
+    that determine the file format and the DPI. For entries whose
+    DPI was omitted, sensible defaults are chosen. When passing from
+    the command line through sphinx_build the list should be passed as
+    suffix:dpi,suffix:dpi, ...
 
-    plot_html_show_formats
-        Whether to show links to the files in HTML (default: True).
+plot_html_show_formats
+    Whether to show links to the files in HTML (default: True).
 
-    plot_rcparams
-        A dictionary containing any non-standard rcParams that should
-        be applied before each plot (default: {}).
+plot_rcparams
+    A dictionary containing any non-standard rcParams that should
+    be applied before each plot (default: {}).
 
-    plot_apply_rcparams
-        By default, rcParams are applied when ``:context:`` option is not used
-        in a plot directive.  If set, this configuration option overrides this
-        behavior and applies rcParams before each plot.
+plot_apply_rcparams
+    By default, rcParams are applied when ``:context:`` option is not used
+    in a plot directive.  If set, this configuration option overrides this
+    behavior and applies rcParams before each plot.
 
-    plot_working_directory
-        By default, the working directory will be changed to the directory of
-        the example, so the code can get at its data files, if any.  Also its
-        path will be added to `sys.path` so it can import any helper modules
-        sitting beside it.  This configuration option can be used to specify
-        a central directory (also added to `sys.path`) where data files and
-        helper modules for all code are located.
+plot_working_directory
+    By default, the working directory will be changed to the directory of
+    the example, so the code can get at its data files, if any.  Also its
+    path will be added to `sys.path` so it can import any helper modules
+    sitting beside it.  This configuration option can be used to specify
+    a central directory (also added to `sys.path`) where data files and
+    helper modules for all code are located.
 
-    plot_template
-        Provide a customized template for preparing restructured text.
+plot_template
+    Provide a customized template for preparing restructured text.
+
+plot_srcset
+    Allow the srcset image option for responsive image resolutions. List of
+    strings with the multiplicative factors followed by an "x".
+    e.g. ["2.0x", "1.5x"].  "2.0x" will create a png with the default "png"
+    resolution from plot_formats, multiplied by 2. If plot_srcset is
+    specified, the plot directive uses the
+    :doc:`/api/sphinxext_figmpl_directive_api` (instead of the usual figure
+    directive) in the intermediary rst file that is generated.
+    The plot_srcset option is incompatible with *singlehtml* builds, and an
+    error will be raised.
+
+Notes on how it works
+---------------------
+
+The plot directive runs the code it is given, either in the source file or the
+code under the directive. The figure created (if any) is saved in the sphinx
+build directory under a subdirectory named ``plot_directive``.  It then creates
+an intermediate rst file that calls a ``.. figure:`` directive (or
+``.. figmpl::`` directive if ``plot_srcset`` is being used) and has links to
+the ``*.png`` files in the ``plot_directive`` directory.  These translations can
+be customized by changing the *plot_template*.  See the source of
+:doc:`/api/sphinxext_plot_directive_api` for the templates defined in *TEMPLATE*
+and *TEMPLATE_SRCSET*.
 """
 
 import contextlib
@@ -157,6 +181,8 @@ import traceback
 from docutils.parsers.rst import directives, Directive
 from docutils.parsers.rst.directives.images import Image
 import jinja2  # Sphinx dependency.
+
+from sphinx.errors import ExtensionError
 
 import matplotlib
 from matplotlib.backend_bases import FigureManagerBase
@@ -280,6 +306,7 @@ def setup(app):
     app.add_config_value('plot_apply_rcparams', False, True)
     app.add_config_value('plot_working_directory', None, True)
     app.add_config_value('plot_template', None, True)
+    app.add_config_value('plot_srcset', [], True)
     app.connect('doctree-read', mark_plot_labels)
     app.add_css_file('plot_directive.css')
     app.connect('build-finished', _copy_css_file)
@@ -331,7 +358,7 @@ def _split_code_at_show(text, function_name):
 # Template
 # -----------------------------------------------------------------------------
 
-TEMPLATE = """
+_SOURCECODE = """
 {{ source_code }}
 
 .. only:: html
@@ -351,6 +378,50 @@ TEMPLATE = """
    {%- endif -%}
    )
    {% endif %}
+"""
+
+TEMPLATE_SRCSET = _SOURCECODE + """
+   {% for img in images %}
+   .. figure-mpl:: {{ build_dir }}/{{ img.basename }}.{{ default_fmt }}
+      {% for option in options -%}
+      {{ option }}
+      {% endfor %}
+      {%- if caption -%}
+      {{ caption }}  {# appropriate leading whitespace added beforehand #}
+      {% endif -%}
+      {%- if srcset -%}
+        :srcset: {{ build_dir }}/{{ img.basename }}.{{ default_fmt }}
+        {%- for sr in srcset -%}
+            , {{ build_dir }}/{{ img.basename }}.{{ sr }}.{{ default_fmt }} {{sr}}
+        {%- endfor -%}
+      {% endif %}
+
+   {% if html_show_formats and multi_image %}
+   (
+    {%- for fmt in img.formats -%}
+    {%- if not loop.first -%}, {% endif -%}
+    :download:`{{ fmt }} <{{ build_dir }}/{{ img.basename }}.{{ fmt }}>`
+    {%- endfor -%}
+   )
+   {% endif %}
+
+
+   {% endfor %}
+
+.. only:: not html
+
+   {% for img in images %}
+   .. figure-mpl:: {{ build_dir }}/{{ img.basename }}.*
+      {% for option in options -%}
+      {{ option }}
+      {% endfor -%}
+
+      {{ caption }}  {# appropriate leading whitespace added beforehand #}
+   {% endfor %}
+
+"""
+
+TEMPLATE = _SOURCECODE + """
 
    {% for img in images %}
    .. figure:: {{ build_dir }}/{{ img.basename }}.{{ default_fmt }}
@@ -404,7 +475,7 @@ class ImageFile:
         self.formats = []
 
     def filename(self, format):
-        return os.path.join(self.dirname, "%s.%s" % (self.basename, format))
+        return os.path.join(self.dirname, f"{self.basename}.{format}")
 
     def filenames(self):
         return [self.filename(fmt) for fmt in self.formats]
@@ -514,6 +585,21 @@ def get_plot_formats(config):
     return formats
 
 
+def _parse_srcset(entries):
+    """
+    Parse srcset for multiples...
+    """
+    srcset = {}
+    for entry in entries:
+        entry = entry.strip()
+        if len(entry) >= 2:
+            mult = entry[:-1]
+            srcset[float(mult)] = entry
+        else:
+            raise ExtensionError(f'srcset argument {entry!r} is invalid.')
+    return srcset
+
+
 def render_figures(code, code_path, output_dir, output_base, context,
                    function_name, config, context_reset=False,
                    close_figs=False,
@@ -524,6 +610,7 @@ def render_figures(code, code_path, output_dir, output_base, context,
     Save the images under *output_dir* with file names derived from
     *output_base*
     """
+
     if function_name is not None:
         output_base = f'{output_base}_{function_name}'
     formats = get_plot_formats(config)
@@ -531,7 +618,6 @@ def render_figures(code, code_path, output_dir, output_base, context,
     # Try to determine if all images already exist
 
     is_doctest, code_pieces = _split_code_at_show(code, function_name)
-
     # Look for single-figure output files first
     img = ImageFile(output_base, output_dir)
     for format, dpi in formats:
@@ -610,9 +696,18 @@ def render_figures(code, code_path, output_dir, output_base, context,
                 img = ImageFile("%s_%02d_%02d" % (output_base, i, j),
                                 output_dir)
             images.append(img)
+
             for fmt, dpi in formats:
                 try:
                     figman.canvas.figure.savefig(img.filename(fmt), dpi=dpi)
+                    if fmt == formats[0][0] and config.plot_srcset:
+                        # save a 2x, 3x etc version of the default...
+                        srcset = _parse_srcset(config.plot_srcset)
+                        for mult, suffix in srcset.items():
+                            fm = f'{suffix}.{fmt}'
+                            img.formats.append(fm)
+                            figman.canvas.figure.savefig(img.filename(fm),
+                                                         dpi=int(dpi * mult))
                 except Exception as err:
                     raise PlotError(traceback.format_exc()) from err
                 img.formats.append(fmt)
@@ -630,11 +725,16 @@ def run(arguments, content, options, state_machine, state, lineno):
     config = document.settings.env.config
     nofigs = 'nofigs' in options
 
+    if config.plot_srcset and setup.app.builder.name == 'singlehtml':
+        raise ExtensionError(
+            'plot_srcset option not compatible with single HTML writer')
+
     formats = get_plot_formats(config)
     default_fmt = formats[0][0]
 
     options.setdefault('include-source', config.plot_include_source)
     options.setdefault('show-source-link', config.plot_html_show_source_link)
+
     if 'class' in options:
         # classes are parsed into a list of string, and output by simply
         # printing the list, abusing the fact that RST guarantees to strip
@@ -655,7 +755,6 @@ def run(arguments, content, options, state_machine, state, lineno):
         else:
             source_file_name = os.path.join(setup.confdir, config.plot_basedir,
                                             directives.uri(arguments[0]))
-
         # If there is content, it will be passed as a caption.
         caption = '\n'.join(content)
 
@@ -776,9 +875,11 @@ def run(arguments, content, options, state_machine, state, lineno):
         errors = [sm]
 
     # Properly indent the caption
-    caption = '\n' + '\n'.join('      ' + line.strip()
-                               for line in caption.split('\n'))
-
+    if caption and config.plot_srcset:
+        caption = f':caption: {caption}'
+    elif caption:
+        caption = '\n' + '\n'.join('      ' + line.strip()
+                                   for line in caption.split('\n'))
     # generate output restructuredtext
     total_lines = []
     for j, (code_piece, images) in enumerate(results):
@@ -796,7 +897,7 @@ def run(arguments, content, options, state_machine, state, lineno):
             images = []
 
         opts = [
-            ':%s: %s' % (key, val) for key, val in options.items()
+            f':{key}: {val}' for key, val in options.items()
             if key in ('alt', 'height', 'width', 'scale', 'align', 'class')]
 
         # Not-None src_name signals the need for a source download in the
@@ -805,18 +906,24 @@ def run(arguments, content, options, state_machine, state, lineno):
             src_name = output_base + source_ext
         else:
             src_name = None
+        if config.plot_srcset:
+            srcset = [*_parse_srcset(config.plot_srcset).values()]
+            template = TEMPLATE_SRCSET
+        else:
+            srcset = None
+            template = TEMPLATE
 
-        result = jinja2.Template(config.plot_template or TEMPLATE).render(
+        result = jinja2.Template(config.plot_template or template).render(
             default_fmt=default_fmt,
             build_dir=build_dir_link,
             src_name=src_name,
             multi_image=len(images) > 1,
             options=opts,
+            srcset=srcset,
             images=images,
             source_code=source_code,
             html_show_formats=config.plot_html_show_formats and len(images),
             caption=caption)
-
         total_lines.extend(result.split("\n"))
         total_lines.extend("\n")
 

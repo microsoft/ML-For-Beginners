@@ -15,7 +15,11 @@ import pandas._testing as tm
 
 class TestSeriesConcat:
     def test_concat_series(self):
-        ts = tm.makeTimeSeries()
+        ts = Series(
+            np.arange(20, dtype=np.float64),
+            index=date_range("2020-01-01", periods=20),
+            name="foo",
+        )
         ts.name = "foo"
 
         pieces = [ts[:5], ts[5:15], ts[15:]]
@@ -46,7 +50,9 @@ class TestSeriesConcat:
         tm.assert_series_equal(result, expected)
 
     def test_concat_series_axis1(self):
-        ts = tm.makeTimeSeries()
+        ts = Series(
+            np.arange(10, dtype=np.float64), index=date_range("2020-01-01", periods=10)
+        )
 
         pieces = [ts[:-2], ts[2:], ts[2:-2]]
 

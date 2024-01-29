@@ -142,7 +142,7 @@ class TestSurvival:
     d1 = [0, 0, 1, 1, 0, 0, 0, 1, 1, 1]  # 1 means deaths (not censored)
     r1 = [1, 1, 0.875, 0.75, 0.75, 0.75, 0.75, 0.5, 0.25, 0]  # reference SF
 
-    # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/BS704_Survival5.html  # noqa
+    # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/BS704_Survival5.html
     t2 = [8, 12, 26, 14, 21, 27, 8, 32, 20, 40]
     d2 = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0]
     r2 = [0.9, 0.788, 0.675, 0.675, 0.54, 0.405, 0.27, 0.27, 0.27]
@@ -150,14 +150,14 @@ class TestSurvival:
     d3 = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0]
     r3 = [1, 0.875, 0.75, 0.75, 0.6, 0.6, 0.6]
 
-    # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/bs704_survival4.html  # noqa
+    # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/bs704_survival4.html
     t4 = [24, 3, 11, 19, 24, 13, 14, 2, 18, 17,
           24, 21, 12, 1, 10, 23, 6, 5, 9, 17]
     d4 = [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1]
     r4 = [0.95, 0.95, 0.897, 0.844, 0.844, 0.844, 0.844, 0.844, 0.844,
           0.844, 0.76, 0.676, 0.676, 0.676, 0.676, 0.507, 0.507]
 
-    # https://www.real-statistics.com/survival-analysis/kaplan-meier-procedure/confidence-interval-for-the-survival-function/  # noqa
+    # https://www.real-statistics.com/survival-analysis/kaplan-meier-procedure/confidence-interval-for-the-survival-function/
     t5 = [3, 5, 8, 10, 5, 5, 8, 12, 15, 14, 2, 11, 10, 9, 12, 5, 8, 11]
     d5 = [1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1]
     r5 = [0.944, 0.889, 0.722, 0.542, 0.542, 0.542, 0.361, 0.181, 0.181, 0.181]
@@ -379,7 +379,7 @@ class TestSurvival:
         res = stats.ecdf(sample)
 
         try:
-            import matplotlib.pyplot as plt  # noqa
+            import matplotlib.pyplot as plt  # noqa: F401
             res.sf.plot()  # no other errors occur
         except (ModuleNotFoundError, ImportError):
             message = r"matplotlib must be installed to use method `plot`."
@@ -414,7 +414,7 @@ class TestLogRank:
         # logrank.test(futime, fustat, rx, alternative = "two.sided")
         # res["test"]
         [(
-              # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/BS704_Survival5.html  # noqa
+              # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/BS704_Survival5.html
               # uncensored, censored
               [[8, 12, 26, 14, 21, 27], [8, 32, 20, 40]],
               [[33, 28, 41], [48, 48, 25, 37, 48, 25, 43]],
@@ -423,7 +423,7 @@ class TestLogRank:
               [0.008542873404, 0.9957285632979385, 0.004271436702061537]
          ),
          (
-              # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/BS704_Survival5.html  # noqa
+              # https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_survival/BS704_Survival5.html
               [[19, 6, 5, 4], [20, 19, 17, 14]],
               [[16, 21, 7], [21, 15, 18, 18, 5]],
               0.835004855038,

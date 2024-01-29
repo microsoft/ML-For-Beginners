@@ -38,6 +38,10 @@ import pickle
 import platform as pl
 import sys
 
+# Remove script directory from path, otherwise Python will try to
+# import the JSON test directory as the json module
+sys.path.pop(0)
+
 import numpy as np
 
 import pandas
@@ -124,7 +128,7 @@ def _create_sp_frame():
     return DataFrame(data, index=dates).apply(SparseArray)
 
 
-def create_data():
+def create_pickle_data():
     """create the pickle data"""
     data = {
         "A": [0.0, 1.0, 2.0, 3.0, np.nan],
@@ -142,7 +146,7 @@ def create_data():
         "period": period_range("2013-01-01", freq="M", periods=10),
         "float": Index(np.arange(10, dtype=np.float64)),
         "uint": Index(np.arange(10, dtype=np.uint64)),
-        "timedelta": timedelta_range("00:00:00", freq="30T", periods=10),
+        "timedelta": timedelta_range("00:00:00", freq="30min", periods=10),
     }
 
     index["range"] = RangeIndex(10)
@@ -282,12 +286,6 @@ def create_data():
     }
 
 
-def create_pickle_data():
-    data = create_data()
-
-    return data
-
-
 def platform_name():
     return "_".join(
         [
@@ -320,7 +318,7 @@ def write_legacy_pickles(output_dir):
 
 def write_legacy_file():
     # force our cwd to be the first searched
-    sys.path.insert(0, ".")
+    sys.path.insert(0, "")
 
     if not 3 <= len(sys.argv) <= 4:
         sys.exit(
@@ -330,6 +328,9 @@ def write_legacy_file():
 
     output_dir = str(sys.argv[1])
     storage_type = str(sys.argv[2])
+
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
 
     if storage_type == "pickle":
         write_legacy_pickles(output_dir=output_dir)

@@ -38,14 +38,14 @@ from . import dfitpack
 dfitpack_int = dfitpack.types.intvar.dtype
 
 
-def _int_overflow(x, msg=None):
+def _int_overflow(x, exception, msg=None):
     """Cast the value to an dfitpack_int and raise an OverflowError if the value
     cannot fit.
     """
     if x > iinfo(dfitpack_int).max:
         if msg is None:
             msg = f'{x!r} cannot fit into an {dfitpack_int!r}'
-        raise OverflowError(msg)
+        raise exception(msg)
     return dfitpack_int.type(x)
 
 
@@ -118,7 +118,8 @@ def splprep(x, w=None, u=None, ub=None, ue=None, k=3, task=0, s=None, t=None,
             if x[i][0] != x[i][-1]:
                 if not quiet:
                     warnings.warn(RuntimeWarning('Setting x[%d][%d]=x[%d][0]' %
-                                                 (i, m, i)))
+                                                 (i, m, i)),
+                                  stacklevel=2)
                 x[i][-1] = x[i][0]
     if not 0 < idim < 11:
         raise TypeError('0 < idim < 11 must hold')
@@ -188,10 +189,11 @@ def splprep(x, w=None, u=None, ub=None, ue=None, k=3, task=0, s=None, t=None,
     if ier <= 0 and not quiet:
         warnings.warn(RuntimeWarning(_iermess[ier][0] +
                                      "\tk=%d n=%d m=%d fp=%f s=%f" %
-                                     (k, len(t), m, fp, s)))
+                                     (k, len(t), m, fp, s)),
+                      stacklevel=2)
     if ier > 0 and not full_output:
         if ier in [1, 2, 3]:
-            warnings.warn(RuntimeWarning(_iermess[ier][0]))
+            warnings.warn(RuntimeWarning(_iermess[ier][0]), stacklevel=2)
         else:
             try:
                 raise _iermess[ier][1](_iermess[ier][0])
@@ -279,10 +281,10 @@ def splrep(x, y, w=None, xb=None, xe=None, k=3, task=0, s=None, t=None,
     if ier <= 0 and not quiet:
         _mess = (_iermess[ier][0] + "\tk=%d n=%d m=%d fp=%f s=%f" %
                  (k, len(t), m, fp, s))
-        warnings.warn(RuntimeWarning(_mess))
+        warnings.warn(RuntimeWarning(_mess), stacklevel=2)
     if ier > 0 and not full_output:
         if ier in [1, 2, 3]:
-            warnings.warn(RuntimeWarning(_iermess[ier][0]))
+            warnings.warn(RuntimeWarning(_iermess[ier][0]), stacklevel=2)
         else:
             try:
                 raise _iermess[ier][1](_iermess[ier][0])
@@ -374,7 +376,8 @@ def sproot(tck, mest=10):
         if ier == 0:
             return z[:m]
         if ier == 1:
-            warnings.warn(RuntimeWarning("The number of zeros exceeds mest"))
+            warnings.warn(RuntimeWarning("The number of zeros exceeds mest"),
+                          stacklevel=2)
             return z[:m]
         raise TypeError("Unknown error")
 
@@ -569,8 +572,9 @@ def bisplrep(x, y, z, w=None, xb=None, xe=None, yb=None, ye=None,
     msg = "Too many data points to interpolate"
     lwrk1 = _int_overflow(u*v*(2 + b1 + b2) +
                           2*(u + v + km*(m + ne) + ne - kx - ky) + b2 + 1,
+                          OverflowError,
                           msg=msg)
-    lwrk2 = _int_overflow(u*v*(b2 + 1) + b2, msg=msg)
+    lwrk2 = _int_overflow(u*v*(b2 + 1) + b2, OverflowError, msg=msg)
     tx, ty, c, o = _fitpack._surfit(x, y, z, w, xb, xe, yb, ye, kx, ky,
                                     task, s, eps, tx, ty, nxest, nyest,
                                     wrk, lwrk1, lwrk2)
@@ -585,12 +589,12 @@ def bisplrep(x, y, z, w=None, xb=None, xe=None, yb=None, ye=None,
         _mess = (_iermess2[ierm][0] +
                  "\tkx,ky=%d,%d nx,ny=%d,%d m=%d fp=%f s=%f" %
                  (kx, ky, len(tx), len(ty), m, fp, s))
-        warnings.warn(RuntimeWarning(_mess))
+        warnings.warn(RuntimeWarning(_mess), stacklevel=2)
     if ierm > 0 and not full_output:
         if ier in [1, 2, 3, 4, 5]:
             _mess = ("\n\tkx,ky=%d,%d nx,ny=%d,%d m=%d fp=%f s=%f" %
                      (kx, ky, len(tx), len(ty), m, fp, s))
-            warnings.warn(RuntimeWarning(_iermess2[ierm][0] + _mess))
+            warnings.warn(RuntimeWarning(_iermess2[ierm][0] + _mess), stacklevel=2)
         else:
             try:
                 raise _iermess2[ierm][1](_iermess2[ierm][0])
@@ -665,7 +669,18 @@ def bisplev(x, y, tck, dx=0, dy=0):
     x, y = map(atleast_1d, [x, y])
     if (len(x.shape) != 1) or (len(y.shape) != 1):
         raise ValueError("First two entries should be rank-1 arrays.")
-    z, ier = _fitpack._bispev(tx, ty, c, kx, ky, x, y, dx, dy)
+
+    msg = "Too many data points to interpolate."
+
+    _int_overflow(x.size * y.size, MemoryError, msg=msg)
+
+    if dx != 0 or dy != 0:
+        _int_overflow((tx.size - kx - 1)*(ty.size - ky - 1),
+                      MemoryError, msg=msg)
+        z, ier = dfitpack.parder(tx, ty, c, kx, ky, dx, dy, x, y)
+    else:
+        z, ier = dfitpack.bispev(tx, ty, c, kx, ky, x, y)
+
     if ier == 10:
         raise ValueError("Invalid input data")
     if ier:
@@ -732,8 +747,8 @@ def splder(tck, n=1):
     t, c, k = tck
 
     if n > k:
-        raise ValueError(("Order of derivative (n = {!r}) must be <= "
-                          "order of spline (k = {!r})").format(n, tck[2]))
+        raise ValueError(f"Order of derivative (n = {n!r}) must be <= "
+                         f"order of spline (k = {tck[2]!r})")
 
     # Extra axes for the trailing dims of the `c` array:
     sh = (slice(None),) + ((None,)*len(c.shape[1:]))
@@ -744,7 +759,7 @@ def splder(tck, n=1):
                 # See e.g. Schumaker, Spline Functions: Basic Theory, Chapter 5
 
                 # Compute the denominator in the differentiation formula.
-                # (and append traling dims, if necessary)
+                # (and append trailing dims, if necessary)
                 dt = t[k+1:-1] - t[1:-k-1]
                 dt = dt[sh]
                 # Compute the new coefficients

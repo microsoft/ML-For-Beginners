@@ -5,17 +5,26 @@ Author: Chad Fulton
 License: Simplified-BSD
 """
 
+from statsmodels.compat.pandas import MONTH_END
+
 import numpy as np
-import pandas as pd
 from numpy.testing import assert_, assert_allclose, assert_equal
+import pandas as pd
 import pytest
 from scipy.signal import lfilter
 
+from statsmodels.tools.sm_exceptions import (
+    EstimationWarning,
+    SpecificationWarning,
+)
+from statsmodels.tsa.statespace import (
+    dynamic_factor,
+    sarimax,
+    structural,
+    varmax,
+)
+
 from .test_impulse_responses import TVSS
-from statsmodels.tools.sm_exceptions import SpecificationWarning, \
-    EstimationWarning
-from statsmodels.tsa.statespace import (sarimax, structural, varmax,
-                                        dynamic_factor)
 
 
 def test_arma_lfilter():
@@ -1578,7 +1587,7 @@ def test_pandas_univariate_rangeindex_repetitions():
 
 def test_pandas_univariate_dateindex():
     # Simulation will maintain have date index
-    ix = pd.date_range(start='2000', periods=2, freq='M')
+    ix = pd.date_range(start='2000', periods=2, freq=MONTH_END)
     endog = pd.Series(np.zeros(2), index=ix)
     mod = sarimax.SARIMAX(endog)
     res = mod.filter([0.5, 1.])
@@ -1586,7 +1595,7 @@ def test_pandas_univariate_dateindex():
     # Default simulate anchors to the start of the sample
     actual = res.simulate(2, state_shocks=np.zeros(2),
                           initial_state=np.zeros(1))
-    ix = pd.date_range(start='2000-01', periods=2, freq='M')
+    ix = pd.date_range(start='2000-01', periods=2, freq=MONTH_END)
     desired = pd.Series([0, 0], index=ix)
     assert_allclose(actual, desired)
     assert_(actual.index.equals(desired.index))
@@ -1594,14 +1603,14 @@ def test_pandas_univariate_dateindex():
     # Alternative anchor changes the index
     actual = res.simulate(2, anchor=2, state_shocks=np.zeros(2),
                           initial_state=np.zeros(1))
-    ix = pd.date_range(start='2000-03', periods=2, freq='M')
+    ix = pd.date_range(start='2000-03', periods=2, freq=MONTH_END)
     desired = pd.Series([0, 0], index=ix)
     assert_allclose(actual, desired)
 
 
 def test_pandas_univariate_dateindex_repetitions():
     # Simulation will maintain have date index
-    ix = pd.date_range(start='2000', periods=2, freq='M')
+    ix = pd.date_range(start='2000', periods=2, freq=MONTH_END)
     endog = pd.Series(np.zeros(2), index=ix)
     mod = sarimax.SARIMAX(endog)
     res = mod.filter([0.5, 1.])
@@ -1609,7 +1618,7 @@ def test_pandas_univariate_dateindex_repetitions():
     # Default simulate anchors to the start of the sample
     actual = res.simulate(2, state_shocks=np.zeros(2),
                           initial_state=np.zeros(1), repetitions=2)
-    ix = pd.date_range(start='2000-01', periods=2, freq='M')
+    ix = pd.date_range(start='2000-01', periods=2, freq=MONTH_END)
     columns = pd.MultiIndex.from_product([['y'], [0, 1]])
     desired = pd.DataFrame(np.zeros((2, 2)), index=ix, columns=columns)
     assert_allclose(actual, desired)
@@ -1618,7 +1627,7 @@ def test_pandas_univariate_dateindex_repetitions():
     # Alternative anchor changes the index
     actual = res.simulate(2, anchor=2, state_shocks=np.zeros(2),
                           initial_state=np.zeros(1), repetitions=2)
-    ix = pd.date_range(start='2000-03', periods=2, freq='M')
+    ix = pd.date_range(start='2000-03', periods=2, freq=MONTH_END)
     columns = pd.MultiIndex.from_product([['y'], [0, 1]])
     desired = pd.DataFrame(np.zeros((2, 2)), index=ix, columns=columns)
     assert_allclose(actual, desired)
@@ -1674,7 +1683,7 @@ def test_pandas_multivariate_rangeindex_repetitions():
 
 def test_pandas_multivariate_dateindex():
     # Simulate will also have RangeIndex
-    ix = pd.date_range(start='2000', periods=2, freq='M')
+    ix = pd.date_range(start='2000', periods=2, freq=MONTH_END)
     endog = pd.DataFrame(np.zeros((2, 2)), index=ix)
     mod = varmax.VARMAX(endog, trend='n')
     res = mod.filter([0.5, 0., 0., 0.2, 1., 0., 1.])
@@ -1688,7 +1697,7 @@ def test_pandas_multivariate_dateindex():
     # Alternative anchor changes the index
     actual = res.simulate(2, anchor=2, state_shocks=np.zeros((2, 2)),
                           initial_state=np.zeros(2))
-    ix = pd.date_range(start='2000-03', periods=2, freq='M')
+    ix = pd.date_range(start='2000-03', periods=2, freq=MONTH_END)
     desired = pd.DataFrame(np.zeros((2, 2)), index=ix)
     assert_allclose(actual, desired)
     assert_(actual.index.equals(desired.index))
@@ -1696,7 +1705,7 @@ def test_pandas_multivariate_dateindex():
 
 def test_pandas_multivariate_dateindex_repetitions():
     # Simulate will also have RangeIndex
-    ix = pd.date_range(start='2000', periods=2, freq='M')
+    ix = pd.date_range(start='2000', periods=2, freq=MONTH_END)
     endog = pd.DataFrame(np.zeros((2, 2)), columns=['y1', 'y2'], index=ix)
     mod = varmax.VARMAX(endog, trend='n')
     res = mod.filter([0.5, 0., 0., 0.2, 1., 0., 1.])
@@ -1712,7 +1721,7 @@ def test_pandas_multivariate_dateindex_repetitions():
     # Alternative anchor changes the index
     actual = res.simulate(2, anchor=2, state_shocks=np.zeros((2, 2)),
                           initial_state=np.zeros(2), repetitions=2)
-    ix = pd.date_range(start='2000-03', periods=2, freq='M')
+    ix = pd.date_range(start='2000-03', periods=2, freq=MONTH_END)
     columns = pd.MultiIndex.from_product([['y1', 'y2'], [0, 1]])
     desired = pd.DataFrame(np.zeros((2, 4)), index=ix, columns=columns)
     assert_allclose(actual, desired)
@@ -1722,7 +1731,7 @@ def test_pandas_multivariate_dateindex_repetitions():
 
 def test_pandas_anchor():
     # Test that anchor with dates works
-    ix = pd.date_range(start='2000', periods=2, freq='M')
+    ix = pd.date_range(start='2000', periods=2, freq=MONTH_END)
     endog = pd.Series(np.zeros(2), index=ix)
     mod = sarimax.SARIMAX(endog)
     res = mod.filter([0.5, 1.])

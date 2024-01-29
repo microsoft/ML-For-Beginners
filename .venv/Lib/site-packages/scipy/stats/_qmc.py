@@ -26,6 +26,7 @@ if TYPE_CHECKING:
 
 import scipy.stats as stats
 from scipy._lib._util import rng_integers, _rng_spawn
+from scipy.sparse.csgraph import minimum_spanning_tree
 from scipy.spatial import distance, Voronoi
 from scipy.special import gammainc
 from ._sobol import (
@@ -43,7 +44,7 @@ from ._qmc_cy import (
 )
 
 
-__all__ = ['scale', 'discrepancy', 'update_discrepancy',
+__all__ = ['scale', 'discrepancy', 'geometric_discrepancy', 'update_discrepancy',
            'QMCEngine', 'Sobol', 'Halton', 'LatinHypercube', 'PoissonDisk',
            'MultinomialQMC', 'MultivariateNormalQMC']
 
@@ -64,7 +65,7 @@ def check_random_state(seed=None):
 
     Parameters
     ----------
-    seed : {None, int, `numpy.random.Generator`, `numpy.random.RandomState`}, optional  # noqa
+    seed : {None, int, `numpy.random.Generator`, `numpy.random.RandomState`}, optional
         If `seed` is an int or None, a new `numpy.random.Generator` is
         created using ``np.random.default_rng(seed)``.
         If `seed` is already a ``Generator`` or ``RandomState`` instance, then
@@ -168,6 +169,36 @@ def scale(
         return (sample - lower) / (upper - lower)
 
 
+def _ensure_in_unit_hypercube(sample: npt.ArrayLike) -> np.ndarray:
+    """Ensure that sample is a 2D array and is within a unit hypercube
+
+    Parameters
+    ----------
+    sample : array_like (n, d)
+        A 2D array of points.
+
+    Returns
+    -------
+    np.ndarray
+        The array interpretation of the input sample
+
+    Raises
+    ------
+    ValueError
+        If the input is not a 2D array or contains points outside of
+        a unit hypercube.
+    """
+    sample = np.asarray(sample, dtype=np.float64, order="C")
+
+    if not sample.ndim == 2:
+        raise ValueError("Sample is not a 2D array")
+
+    if (sample.max() > 1.) or (sample.min() < 0.):
+        raise ValueError("Sample is not in unit hypercube")
+
+    return sample
+
+
 def discrepancy(
         sample: npt.ArrayLike,
         *,
@@ -194,6 +225,10 @@ def discrepancy(
     -------
     discrepancy : float
         Discrepancy.
+
+    See Also
+    --------
+    geometric_discrepancy
 
     Notes
     -----
@@ -281,14 +316,7 @@ def discrepancy(
     0.008142039609053513
 
     """
-    sample = np.asarray(sample, dtype=np.float64, order="C")
-
-    # Checking that sample is within the hypercube and 2D
-    if not sample.ndim == 2:
-        raise ValueError("Sample is not a 2D array")
-
-    if (sample.max() > 1.) or (sample.min() < 0.):
-        raise ValueError("Sample is not in unit hypercube")
+    sample = _ensure_in_unit_hypercube(sample)
 
     workers = _validate_workers(workers)
 
@@ -304,6 +332,131 @@ def discrepancy(
     else:
         raise ValueError(f"{method!r} is not a valid method. It must be one of"
                          f" {set(methods)!r}")
+
+
+def geometric_discrepancy(
+        sample: npt.ArrayLike,
+        method: Literal["mindist", "mst"] = "mindist",
+        metric: str = "euclidean") -> float:
+    """Discrepancy of a given sample based on its geometric properties.
+
+    Parameters
+    ----------
+    sample : array_like (n, d)
+        The sample to compute the discrepancy from.
+    method : {"mindist", "mst"}, optional
+        The method to use. One of ``mindist`` for minimum distance (default)
+        or ``mst`` for minimum spanning tree.
+    metric : str or callable, optional
+        The distance metric to use. See the documentation
+        for `scipy.spatial.distance.pdist` for the available metrics and
+        the default.
+
+    Returns
+    -------
+    discrepancy : float
+        Discrepancy (higher values correspond to greater sample uniformity).
+
+    See Also
+    --------
+    discrepancy
+
+    Notes
+    -----
+    The discrepancy can serve as a simple measure of quality of a random sample.
+    This measure is based on the geometric properties of the distribution of points
+    in the sample, such as the minimum distance between any pair of points, or
+    the mean edge length in a minimum spanning tree.
+
+    The higher the value is, the better the coverage of the parameter space is.
+    Note that this is different from `scipy.stats.qmc.discrepancy`, where lower
+    values correspond to higher quality of the sample.
+
+    Also note that when comparing different sampling strategies using this function,
+    the sample size must be kept constant.
+
+    It is possible to calculate two metrics from the minimum spanning tree:
+    the mean edge length and the standard deviation of edges lengths. Using
+    both metrics offers a better picture of uniformity than either metric alone,
+    with higher mean and lower standard deviation being preferable (see [1]_
+    for a brief discussion). This function currently only calculates the mean
+    edge length.
+
+    References
+    ----------
+    .. [1] Franco J. et al. "Minimum Spanning Tree: A new approach to assess the quality
+       of the design of computer experiments." Chemometrics and Intelligent Laboratory
+       Systems, 97 (2), pp. 164-169, 2009.
+
+    Examples
+    --------
+    Calculate the quality of the sample using the minimum euclidean distance
+    (the defaults):
+
+    >>> import numpy as np
+    >>> from scipy.stats import qmc
+    >>> rng = np.random.default_rng(191468432622931918890291693003068437394)
+    >>> sample = qmc.LatinHypercube(d=2, seed=rng).random(50)
+    >>> qmc.geometric_discrepancy(sample)
+    0.03708161435687876
+
+    Calculate the quality using the mean edge length in the minimum
+    spanning tree:
+
+    >>> qmc.geometric_discrepancy(sample, method='mst')
+    0.1105149978798376
+
+    Display the minimum spanning tree and the points with
+    the smallest distance:
+
+    >>> import matplotlib.pyplot as plt
+    >>> from matplotlib.lines import Line2D
+    >>> from scipy.sparse.csgraph import minimum_spanning_tree
+    >>> from scipy.spatial.distance import pdist, squareform
+    >>> dist = pdist(sample)
+    >>> mst = minimum_spanning_tree(squareform(dist))
+    >>> edges = np.where(mst.toarray() > 0)
+    >>> edges = np.asarray(edges).T
+    >>> min_dist = np.min(dist)
+    >>> min_idx = np.argwhere(squareform(dist) == min_dist)[0]
+    >>> fig, ax = plt.subplots(figsize=(10, 5))
+    >>> _ = ax.set(aspect='equal', xlabel=r'$x_1$', ylabel=r'$x_2$',
+    ...            xlim=[0, 1], ylim=[0, 1])
+    >>> for edge in edges:
+    ...     ax.plot(sample[edge, 0], sample[edge, 1], c='k')
+    >>> ax.scatter(sample[:, 0], sample[:, 1])
+    >>> ax.add_patch(plt.Circle(sample[min_idx[0]], min_dist, color='red', fill=False))
+    >>> markers = [
+    ...     Line2D([0], [0], marker='o', lw=0, label='Sample points'),
+    ...     Line2D([0], [0], color='k', label='Minimum spanning tree'),
+    ...     Line2D([0], [0], marker='o', lw=0, markerfacecolor='w', markeredgecolor='r',
+    ...            label='Minimum point-to-point distance'),
+    ... ]
+    >>> ax.legend(handles=markers, loc='center left', bbox_to_anchor=(1, 0.5));
+    >>> plt.show()
+
+    """
+    sample = _ensure_in_unit_hypercube(sample)
+    if sample.shape[0] < 2:
+        raise ValueError("Sample must contain at least two points")
+
+    distances = distance.pdist(sample, metric=metric)  # type: ignore[call-overload]
+
+    if np.any(distances == 0.0):
+        warnings.warn("Sample contains duplicate points.", stacklevel=2)
+
+    if method == "mindist":
+        return np.min(distances[distances.nonzero()])
+    elif method == "mst":
+        fully_connected_graph = distance.squareform(distances)
+        mst = minimum_spanning_tree(fully_connected_graph)
+        distances = mst[mst.nonzero()]
+        # TODO consider returning both the mean and the standard deviation
+        # see [1] for a discussion
+        return np.mean(distances)
+    else:
+        raise ValueError(f"{method!r} is not a valid method. "
+                         f"It must be one of {{'mindist', 'mst'}}")
 
 
 def update_discrepancy(
@@ -627,6 +780,7 @@ def van_der_corput(
         else:
             permutations = np.asarray(permutations)
 
+        permutations = permutations.astype(np.int64)
         return _cy_van_der_corput_scrambled(n, base, start_index,
                                             permutations, workers)
 
@@ -1091,15 +1245,6 @@ class LatinHypercube(QMCEngine):
     ----------
     d : int
         Dimension of the parameter space.
-    centered : bool, optional
-        Center samples within cells of a multi-dimensional grid.
-        Default is False.
-
-        .. deprecated:: 1.10.0
-            `centered` is deprecated as of SciPy 1.10.0 and will be removed in
-            1.12.0. Use `scramble` instead. ``centered=True`` corresponds to
-            ``scramble=False``.
-
     scramble : bool, optional
         When False, center samples within cells of a multi-dimensional grid.
         Otherwise, samples are randomly placed within cells of the grid.
@@ -1273,21 +1418,12 @@ class LatinHypercube(QMCEngine):
     """
 
     def __init__(
-        self, d: IntNumber, *, centered: bool = False,
+        self, d: IntNumber, *,
         scramble: bool = True,
         strength: int = 1,
         optimization: Literal["random-cd", "lloyd"] | None = None,
         seed: SeedType = None
     ) -> None:
-        if centered:
-            scramble = False
-            warnings.warn(
-                "'centered' is deprecated and will be removed in SciPy 1.12."
-                " Please use 'scramble' instead. 'centered=True' corresponds"
-                " to 'scramble=False'.",
-                stacklevel=2
-            )
-
         # Used in `scipy.integrate.qmc_quad`
         self._init_quad = {'d': d, 'scramble': True, 'strength': strength,
                            'optimization': optimization}
@@ -1757,7 +1893,7 @@ class PoissonDisk(QMCEngine):
     -----
     Poisson disk sampling is an iterative sampling strategy. Starting from
     a seed sample, `ncandidates` are sampled in the hypersphere
-    surrounding the seed. Candidates bellow a certain `radius` or outside the
+    surrounding the seed. Candidates below a certain `radius` or outside the
     domain are rejected. New samples are added in a pool of sample seed. The
     process stops when the pool is empty or when the number of required
     samples is reached.
@@ -2180,7 +2316,7 @@ class MultivariateNormalQMC:
         if self._inv_transform:
             # apply inverse transform
             # (values to close to 0/1 result in inf values)
-            return stats.norm.ppf(0.5 + (1 - 1e-10) * (samples - 0.5))  # type: ignore[attr-defined]
+            return stats.norm.ppf(0.5 + (1 - 1e-10) * (samples - 0.5))  # type: ignore[attr-defined]  # noqa: E501
         else:
             # apply Box-Muller transform (note: indexes starting from 1)
             even = np.arange(0, samples.shape[-1], 2)
@@ -2281,7 +2417,7 @@ class MultinomialQMC:
             base_draws = self.engine.random(self.n_trials).ravel()
             p_cumulative = np.empty_like(self.pvals, dtype=float)
             _fill_p_cumulative(np.array(self.pvals, dtype=float), p_cumulative)
-            sample_ = np.zeros_like(self.pvals, dtype=int)
+            sample_ = np.zeros_like(self.pvals, dtype=np.intp)
             _categorize(base_draws, p_cumulative, sample_)
             sample[i] = sample_
         return sample
@@ -2324,7 +2460,7 @@ def _random_cd(
     Create a base LHS and do random permutations of coordinates to
     lower the centered discrepancy.
     Because it starts with a normal LHS, it also works with the
-    `centered` keyword argument.
+    `scramble` keyword argument.
 
     Two stopping criterion are used to stop the algorithm: at most,
     `n_iters` iterations are performed; or if there is no improvement
@@ -2519,6 +2655,7 @@ def _lloyd_centroidal_voronoi_tessellation(
     --------
     >>> import numpy as np
     >>> from scipy.spatial import distance
+    >>> from scipy.stats._qmc import _lloyd_centroidal_voronoi_tessellation
     >>> rng = np.random.default_rng()
     >>> sample = rng.random((128, 2))
 

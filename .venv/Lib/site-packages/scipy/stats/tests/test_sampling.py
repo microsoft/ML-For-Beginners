@@ -13,9 +13,11 @@ from scipy.stats.sampling import (
     DiscreteGuideTable,
     NumericalInversePolynomial,
     NumericalInverseHermite,
+    RatioUniforms,
     SimpleRatioUniforms,
     UNURANError
 )
+from pytest import raises as assert_raises
 from scipy import stats
 from scipy import special
 from scipy.stats import chisquare, cramervonmises
@@ -63,7 +65,7 @@ bad_pdfs_common = [
     # Returning wrong type
     (lambda x: [], TypeError, floaterr),
     # Undefined name inside the function
-    (lambda x: foo, NameError, r"name 'foo' is not defined"),  # type: ignore[name-defined]  # noqa
+    (lambda x: foo, NameError, r"name 'foo' is not defined"),  # type: ignore[name-defined]  # noqa: F821, E501
     # Infinite value returned => Overflow error.
     (lambda x: np.inf, UNURANError, r"..."),
     # NaN value => internal error in UNU.RAN
@@ -82,7 +84,7 @@ bad_dpdf_common = [
     # Returning wrong type
     (lambda x: [], TypeError, floaterr),
     # Undefined name inside the function
-    (lambda x: foo, NameError, r"name 'foo' is not defined"),  # type: ignore[name-defined]  # noqa
+    (lambda x: foo, NameError, r"name 'foo' is not defined"),  # type: ignore[name-defined]  # noqa: F821, E501
     # signature of dPDF wrong
     (lambda: 1.0, TypeError, r"takes 0 positional arguments but 1 was given")
 ]
@@ -93,7 +95,7 @@ bad_logpdfs_common = [
     # Returning wrong type
     (lambda x: [], TypeError, floaterr),
     # Undefined name inside the function
-    (lambda x: foo, NameError, r"name 'foo' is not defined"),  # type: ignore[name-defined]  # noqa
+    (lambda x: foo, NameError, r"name 'foo' is not defined"),  # type: ignore[name-defined]  # noqa: F821, E501
     # Infinite value returned => Overflow error.
     (lambda x: np.inf, UNURANError, r"..."),
     # NaN value => internal error in UNU.RAN
@@ -292,12 +294,12 @@ def test_with_scipy_distribution():
     check_discr_samples(rng, pv, dist.stats())
 
 
-def check_cont_samples(rng, dist, mv_ex):
+def check_cont_samples(rng, dist, mv_ex, rtol=1e-7, atol=1e-1):
     rvs = rng.rvs(100000)
     mv = rvs.mean(), rvs.var()
     # test the moments only if the variance is finite
     if np.isfinite(mv_ex[1]):
-        assert_allclose(mv, mv_ex, rtol=1e-7, atol=1e-1)
+        assert_allclose(mv, mv_ex, rtol=rtol, atol=atol)
     # Cramer Von Mises test for goodness-of-fit
     rvs = rng.rvs(500)
     dist.cdf = np.vectorize(dist.cdf)
@@ -305,11 +307,11 @@ def check_cont_samples(rng, dist, mv_ex):
     assert pval > 0.1
 
 
-def check_discr_samples(rng, pv, mv_ex):
+def check_discr_samples(rng, pv, mv_ex, rtol=1e-3, atol=1e-1):
     rvs = rng.rvs(100000)
     # test if the first few moments match
     mv = rvs.mean(), rvs.var()
-    assert_allclose(mv, mv_ex, rtol=1e-3, atol=1e-1)
+    assert_allclose(mv, mv_ex, rtol=rtol, atol=atol)
     # normalize
     pv = pv / pv.sum()
     # chi-squared test for goodness-of-fit
@@ -632,8 +634,8 @@ class TestDiscreteAliasUrn:
     # DAU fails on these probably because of large domains and small
     # computation errors in PMF. Mean/SD match but chi-squared test fails.
     basic_fail_dists = {
-        'nchypergeom_fisher',  # numerical erros on tails
-        'nchypergeom_wallenius',  # numerical erros on tails
+        'nchypergeom_fisher',  # numerical errors on tails
+        'nchypergeom_wallenius',  # numerical errors on tails
         'randint'  # fails on 32-bit ubuntu
     }
 
@@ -672,7 +674,7 @@ class TestDiscreteAliasUrn:
         (lambda x: 0.0, ValueError,
          r"must contain at least one non-zero value"),
         # Undefined name inside the function
-        (lambda x: foo, NameError,  # type: ignore[name-defined]  # noqa
+        (lambda x: foo, NameError,  # type: ignore[name-defined]  # noqa: F821
          r"name 'foo' is not defined"),
         # Returning wrong type.
         (lambda x: [], ValueError,
@@ -736,6 +738,13 @@ class TestDiscreteAliasUrn:
 
         with pytest.raises(ValueError, match=msg):
             DiscreteAliasUrn(dist)
+
+    def test_gh19359(self):
+        pv = special.softmax(np.ones((1533,)))
+        rng = DiscreteAliasUrn(pv, random_state=42)
+        # check the correctness
+        check_discr_samples(rng, pv, (1532 / 2, (1532**2 - 1) / 12),
+                            rtol=5e-3)
 
 
 class TestNumericalInversePolynomial:
@@ -981,7 +990,7 @@ class TestNumericalInversePolynomial:
         class MyDist:
             pass
 
-        # create genrator from dist with only pdf
+        # create generator from dist with only pdf
         dist_pdf = MyDist()
         dist_pdf.pdf = lambda x: math.exp(-x*x/2)
         rng1 = NumericalInversePolynomial(dist_pdf)
@@ -1363,3 +1372,74 @@ class TestSimpleRatioUniforms:
         # pdf_area < 0
         with pytest.raises(ValueError, match=r"`pdf_area` must be > 0"):
             SimpleRatioUniforms(StandardNormal(), mode=0, pdf_area=-1)
+
+
+class TestRatioUniforms:
+    """ Tests for rvs_ratio_uniforms.
+    """
+
+    def test_rv_generation(self):
+        # use KS test to check distribution of rvs
+        # normal distribution
+        f = stats.norm.pdf
+        v = np.sqrt(f(np.sqrt(2))) * np.sqrt(2)
+        u = np.sqrt(f(0))
+        gen = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=12345)
+        assert_equal(stats.kstest(gen.rvs(2500), 'norm')[1] > 0.25, True)
+
+        # exponential distribution
+        gen = RatioUniforms(lambda x: np.exp(-x), umax=1,
+                            vmin=0, vmax=2*np.exp(-1), random_state=12345)
+        assert_equal(stats.kstest(gen.rvs(1000), 'expon')[1] > 0.25, True)
+
+    def test_shape(self):
+        # test shape of return value depending on size parameter
+        f = stats.norm.pdf
+        v = np.sqrt(f(np.sqrt(2))) * np.sqrt(2)
+        u = np.sqrt(f(0))
+
+        gen1 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=1234)
+        gen2 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=1234)
+        gen3 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=1234)
+        r1, r2, r3 = gen1.rvs(3), gen2.rvs((3,)), gen3.rvs((3, 1))
+        assert_equal(r1, r2)
+        assert_equal(r2, r3.flatten())
+        assert_equal(r1.shape, (3,))
+        assert_equal(r3.shape, (3, 1))
+
+        gen4 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=12)
+        gen5 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=12)
+        r4, r5 = gen4.rvs(size=(3, 3, 3)), gen5.rvs(size=27)
+        assert_equal(r4.flatten(), r5)
+        assert_equal(r4.shape, (3, 3, 3))
+
+        gen6 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=1234)
+        gen7 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=1234)
+        gen8 = RatioUniforms(f, umax=u, vmin=-v, vmax=v, random_state=1234)
+        r6, r7, r8 = gen6.rvs(), gen7.rvs(1), gen8.rvs((1,))
+        assert_equal(r6, r7)
+        assert_equal(r7, r8)
+
+    def test_random_state(self):
+        f = stats.norm.pdf
+        v = np.sqrt(f(np.sqrt(2))) * np.sqrt(2)
+        umax = np.sqrt(f(0))
+        gen1 = RatioUniforms(f, umax=umax, vmin=-v, vmax=v, random_state=1234)
+        r1 = gen1.rvs(10)
+        np.random.seed(1234)
+        gen2 = RatioUniforms(f, umax=umax, vmin=-v, vmax=v)
+        r2 = gen2.rvs(10)
+        assert_equal(r1, r2)
+
+    def test_exceptions(self):
+        f = stats.norm.pdf
+        # need vmin < vmax
+        with assert_raises(ValueError, match="vmin must be smaller than vmax"):
+            RatioUniforms(pdf=f, umax=1, vmin=3, vmax=1)
+        with assert_raises(ValueError, match="vmin must be smaller than vmax"):
+            RatioUniforms(pdf=f, umax=1, vmin=1, vmax=1)
+        # need umax > 0
+        with assert_raises(ValueError, match="umax must be positive"):
+            RatioUniforms(pdf=f, umax=-1, vmin=1, vmax=3)
+        with assert_raises(ValueError, match="umax must be positive"):
+            RatioUniforms(pdf=f, umax=0, vmin=1, vmax=3)

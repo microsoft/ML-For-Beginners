@@ -57,7 +57,7 @@ class ThreadedZMQSocketChannel:
         self.ioloop = loop
         f: Future = Future()
 
-        def setup_stream():
+        def setup_stream() -> None:
             try:
                 assert self.socket is not None
                 self.stream = zmqstream.ZMQStream(self.socket, self.ioloop)
@@ -92,7 +92,7 @@ class ThreadedZMQSocketChannel:
             # c.f.Future for threadsafe results
             f: Future = Future()
 
-            def close_stream():
+            def close_stream() -> None:
                 try:
                     if self.stream is not None:
                         self.stream.close(linger=0)
@@ -129,7 +129,7 @@ class ThreadedZMQSocketChannel:
         thread control of the action.
         """
 
-        def thread_send():
+        def thread_send() -> None:
             assert self.session is not None
             self.session.send(self.stream, msg)
 
@@ -147,7 +147,7 @@ class ThreadedZMQSocketChannel:
         msg = self.session.deserialize(smsg)
         # let client inspect messages
         if self._inspect:
-            self._inspect(msg)
+            self._inspect(msg)  # type:ignore[unreachable]
         self.call_handlers(msg)
 
     def call_handlers(self, msg: Dict[str, Any]) -> None:
@@ -192,7 +192,7 @@ class ThreadedZMQSocketChannel:
             _msg = "Attempt to flush closed stream"
             raise OSError(_msg)
 
-        def flush(f):
+        def flush(f: Any) -> None:
             try:
                 self._flush()
             except Exception as e:
@@ -224,7 +224,7 @@ class IOLoopThread(Thread):
     _exiting = False
     ioloop = None
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize an io loop thread."""
         super().__init__()
         self.daemon = True
@@ -254,7 +254,7 @@ class IOLoopThread(Thread):
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
 
-            async def assign_ioloop():
+            async def assign_ioloop() -> None:
                 self.ioloop = IOLoop.current()
 
             loop.run_until_complete(assign_ioloop())
@@ -265,7 +265,7 @@ class IOLoopThread(Thread):
 
         loop.run_until_complete(self._async_run())
 
-    async def _async_run(self):
+    async def _async_run(self) -> None:
         """Run forever (until self._exiting is set)"""
         while not self._exiting:
             await asyncio.sleep(1)
@@ -282,7 +282,7 @@ class IOLoopThread(Thread):
         self.close()
         self.ioloop = None
 
-    def __del__(self):
+    def __del__(self) -> None:
         self.close()
 
     def close(self) -> None:
@@ -298,8 +298,10 @@ class ThreadedKernelClient(KernelClient):
     """A KernelClient that provides thread-safe sockets with async callbacks on message replies."""
 
     @property
-    def ioloop(self):
-        return self.ioloop_thread.ioloop
+    def ioloop(self) -> Optional[IOLoop]:  # type:ignore[override]
+        if self.ioloop_thread:
+            return self.ioloop_thread.ioloop
+        return None
 
     ioloop_thread = Instance(IOLoopThread, allow_none=True)
 
@@ -329,14 +331,14 @@ class ThreadedKernelClient(KernelClient):
     def stop_channels(self) -> None:
         """Stop the channels on the client."""
         super().stop_channels()
-        if self.ioloop_thread.is_alive():
+        if self.ioloop_thread and self.ioloop_thread.is_alive():
             self.ioloop_thread.stop()
 
-    iopub_channel_class = Type(ThreadedZMQSocketChannel)
-    shell_channel_class = Type(ThreadedZMQSocketChannel)
-    stdin_channel_class = Type(ThreadedZMQSocketChannel)
-    hb_channel_class = Type(HBChannel)
-    control_channel_class = Type(ThreadedZMQSocketChannel)
+    iopub_channel_class = Type(ThreadedZMQSocketChannel)  # type:ignore[arg-type]
+    shell_channel_class = Type(ThreadedZMQSocketChannel)  # type:ignore[arg-type]
+    stdin_channel_class = Type(ThreadedZMQSocketChannel)  # type:ignore[arg-type]
+    hb_channel_class = Type(HBChannel)  # type:ignore[arg-type]
+    control_channel_class = Type(ThreadedZMQSocketChannel)  # type:ignore[arg-type]
 
     def is_alive(self) -> bool:
         """Is the kernel process still running?"""

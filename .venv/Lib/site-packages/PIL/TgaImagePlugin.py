@@ -15,7 +15,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
-
+from __future__ import annotations
 
 import warnings
 
@@ -76,17 +76,17 @@ class TgaImageFile(ImageFile.ImageFile):
 
         # image mode
         if imagetype in (3, 11):
-            self.mode = "L"
+            self._mode = "L"
             if depth == 1:
-                self.mode = "1"  # ???
+                self._mode = "1"  # ???
             elif depth == 16:
-                self.mode = "LA"
+                self._mode = "LA"
         elif imagetype in (1, 9):
-            self.mode = "P"
+            self._mode = "P"
         elif imagetype in (2, 10):
-            self.mode = "RGB"
+            self._mode = "RGB"
             if depth == 32:
-                self.mode = "RGBA"
+                self._mode = "RGBA"
         else:
             msg = "unknown TGA mode"
             raise SyntaxError(msg)

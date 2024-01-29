@@ -158,6 +158,12 @@ class InteractiveShellEmbed(TerminalInteractiveShell):
         assert (
             "user_global_ns" not in kw
         ), "Key word argument `user_global_ns` has been replaced by `user_module` since IPython 4.0."
+        # temporary fix for https://github.com/ipython/ipython/issues/14164
+        cls = type(self)
+        if cls._instance is None:
+            for subclass in cls._walk_mro():
+                subclass._instance = self
+            cls._instance = self
 
         clid = kw.pop('_init_location_id', None)
         if not clid:

@@ -99,19 +99,19 @@ class TestDataFrameToDict:
             for k2, v2 in v.items():
                 assert v2 == recons_data[k][k2]
 
-        recons_data = DataFrame(test_data).to_dict("list", mapping)
+        recons_data = DataFrame(test_data).to_dict("list", into=mapping)
 
         for k, v in test_data.items():
             for k2, v2 in v.items():
                 assert v2 == recons_data[k][int(k2) - 1]
 
-        recons_data = DataFrame(test_data).to_dict("series", mapping)
+        recons_data = DataFrame(test_data).to_dict("series", into=mapping)
 
         for k, v in test_data.items():
             for k2, v2 in v.items():
                 assert v2 == recons_data[k][k2]
 
-        recons_data = DataFrame(test_data).to_dict("split", mapping)
+        recons_data = DataFrame(test_data).to_dict("split", into=mapping)
         expected_split = {
             "columns": ["A", "B"],
             "index": ["1", "2", "3"],
@@ -119,7 +119,7 @@ class TestDataFrameToDict:
         }
         tm.assert_dict_equal(recons_data, expected_split)
 
-        recons_data = DataFrame(test_data).to_dict("records", mapping)
+        recons_data = DataFrame(test_data).to_dict("records", into=mapping)
         expected_records = [
             {"A": 1.0, "B": "1"},
             {"A": 2.0, "B": "2"},
@@ -165,6 +165,21 @@ class TestDataFrameToDict:
         df = DataFrame([[1, 2, 3]], columns=["a", "a", "b"])
         with tm.assert_produces_warning(UserWarning):
             df.to_dict()
+
+    @pytest.mark.filterwarnings("ignore::UserWarning")
+    @pytest.mark.parametrize(
+        "orient,expected",
+        [
+            ("list", {"A": [2, 5], "B": [3, 6]}),
+            ("dict", {"A": {0: 2, 1: 5}, "B": {0: 3, 1: 6}}),
+        ],
+    )
+    def test_to_dict_not_unique(self, orient, expected):
+        # GH#54824: This is to make sure that dataframes with non-unique column
+        # would have uniform behavior throughout different orients
+        df = DataFrame([[1, 2, 3], [4, 5, 6]], columns=["A", "A", "B"])
+        result = df.to_dict(orient)
+        assert result == expected
 
     # orient - orient argument to to_dict function
     # item_getter - function for extracting value from
@@ -489,8 +504,18 @@ class TestDataFrameToDict:
         # GH#34665
         df = DataFrame({"a": Series([1, 2], dtype="Int64"), "B": 1})
         result = df.to_dict(orient="records")
-        assert type(result[0]["a"]) is int
+        assert isinstance(result[0]["a"], int)
 
         df = DataFrame({"a": Series([1, NA], dtype="Int64"), "B": 1})
         result = df.to_dict(orient="records")
-        assert type(result[0]["a"]) is int
+        assert isinstance(result[0]["a"], int)
+
+    def test_to_dict_pos_args_deprecation(self):
+        # GH-54229
+        df = DataFrame({"a": [1, 2, 3]})
+        msg = (
+            r"Starting with pandas version 3.0 all arguments of to_dict except for the "
+            r"argument 'orient' will be keyword-only."
+        )
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            df.to_dict("records", {})

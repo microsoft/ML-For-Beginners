@@ -4,7 +4,6 @@ import re
 
 import numpy as np
 import pytest
-from scipy import sparse
 from scipy.linalg import LinAlgError
 
 from sklearn.cluster import SpectralClustering, spectral_clustering
@@ -16,6 +15,7 @@ from sklearn.metrics.pairwise import kernel_metrics, rbf_kernel
 from sklearn.neighbors import NearestNeighbors
 from sklearn.utils import check_random_state
 from sklearn.utils._testing import assert_array_equal
+from sklearn.utils.fixes import COO_CONTAINERS, CSR_CONTAINERS
 
 try:
     from pyamg import smoothed_aggregation_solver  # noqa
@@ -35,9 +35,10 @@ X, _ = make_blobs(
 )
 
 
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
 @pytest.mark.parametrize("eigen_solver", ("arpack", "lobpcg"))
 @pytest.mark.parametrize("assign_labels", ("kmeans", "discretize", "cluster_qr"))
-def test_spectral_clustering(eigen_solver, assign_labels):
+def test_spectral_clustering(eigen_solver, assign_labels, csr_container):
     S = np.array(
         [
             [1.0, 1.0, 1.0, 0.2, 0.0, 0.0, 0.0],
@@ -50,7 +51,7 @@ def test_spectral_clustering(eigen_solver, assign_labels):
         ]
     )
 
-    for mat in (S, sparse.csr_matrix(S)):
+    for mat in (S, csr_container(S)):
         model = SpectralClustering(
             random_state=0,
             n_clusters=2,
@@ -70,15 +71,16 @@ def test_spectral_clustering(eigen_solver, assign_labels):
         assert_array_equal(model_copy.labels_, model.labels_)
 
 
+@pytest.mark.parametrize("coo_container", COO_CONTAINERS)
 @pytest.mark.parametrize("assign_labels", ("kmeans", "discretize", "cluster_qr"))
-def test_spectral_clustering_sparse(assign_labels):
+def test_spectral_clustering_sparse(assign_labels, coo_container):
     X, y = make_blobs(
         n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
     )
 
     S = rbf_kernel(X, gamma=1)
     S = np.maximum(S - 1e-4, 0)
-    S = sparse.coo_matrix(S)
+    S = coo_container(S)
 
     labels = (
         SpectralClustering(
@@ -191,8 +193,9 @@ def test_cluster_qr_permutation_invariance():
     )
 
 
+@pytest.mark.parametrize("coo_container", COO_CONTAINERS)
 @pytest.mark.parametrize("n_samples", [50, 100, 150, 500])
-def test_discretize(n_samples):
+def test_discretize(n_samples, coo_container):
     # Test the discretize using a noise assignment matrix
     random_state = np.random.RandomState(seed=8)
     for n_class in range(2, 10):
@@ -200,7 +203,7 @@ def test_discretize(n_samples):
         y_true = random_state.randint(0, n_class + 1, n_samples)
         y_true = np.array(y_true, float)
         # noise class assignment matrix
-        y_indicator = sparse.coo_matrix(
+        y_indicator = coo_container(
             (np.ones(n_samples), (np.arange(n_samples), y_true)),
             shape=(n_samples, n_class + 1),
         )
@@ -223,6 +226,10 @@ def test_discretize(n_samples):
 # TODO: Remove when pyamg removes the use of pinv2
 @pytest.mark.filterwarnings(
     "ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*"
+)
+# TODO: Remove when pyamg removes the use of np.find_common_type
+@pytest.mark.filterwarnings(
+    "ignore:np.find_common_type is deprecated:DeprecationWarning:pyamg.*"
 )
 def test_spectral_clustering_with_arpack_amg_solvers():
     # Test that spectral_clustering is the same for arpack and amg solver

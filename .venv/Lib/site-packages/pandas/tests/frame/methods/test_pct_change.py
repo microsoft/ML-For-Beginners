@@ -29,7 +29,7 @@ class TestDataFramePctChange:
         obj = frame_or_series(vals)
 
         msg = (
-            "The 'fill_method' and 'limit' keywords in "
+            "The 'fill_method' keyword being not None and the 'limit' keyword in "
             f"{type(obj).__name__}.pct_change are deprecated"
         )
         with tm.assert_produces_warning(FutureWarning, match=msg):
@@ -46,7 +46,7 @@ class TestDataFramePctChange:
         pnl.iat[2, 3] = 60
 
         msg = (
-            "The 'fill_method' and 'limit' keywords in "
+            "The 'fill_method' keyword being not None and the 'limit' keyword in "
             "DataFrame.pct_change are deprecated"
         )
 
@@ -59,12 +59,11 @@ class TestDataFramePctChange:
 
     def test_pct_change(self, datetime_frame):
         msg = (
-            "The 'fill_method' and 'limit' keywords in "
+            "The 'fill_method' keyword being not None and the 'limit' keyword in "
             "DataFrame.pct_change are deprecated"
         )
 
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            rs = datetime_frame.pct_change(fill_method=None)
+        rs = datetime_frame.pct_change(fill_method=None)
         tm.assert_frame_equal(rs, datetime_frame / datetime_frame.shift(1) - 1)
 
         rs = datetime_frame.pct_change(2)
@@ -110,7 +109,7 @@ class TestDataFramePctChange:
         self, datetime_frame, freq, periods, fill_method, limit
     ):
         msg = (
-            "The 'fill_method' and 'limit' keywords in "
+            "The 'fill_method' keyword being not None and the 'limit' keyword in "
             "DataFrame.pct_change are deprecated"
         )
 
@@ -144,11 +143,12 @@ def test_pct_change_with_duplicated_indices(fill_method):
         {0: [np.nan, 1, 2, 3, 9, 18], 1: [0, 1, np.nan, 3, 9, 18]}, index=["a", "b"] * 3
     )
 
+    warn = None if fill_method is None else FutureWarning
     msg = (
-        "The 'fill_method' and 'limit' keywords in "
+        "The 'fill_method' keyword being not None and the 'limit' keyword in "
         "DataFrame.pct_change are deprecated"
     )
-    with tm.assert_produces_warning(FutureWarning, match=msg):
+    with tm.assert_produces_warning(warn, match=msg):
         result = data.pct_change(fill_method=fill_method)
 
     if fill_method is None:
@@ -158,5 +158,23 @@ def test_pct_change_with_duplicated_indices(fill_method):
     expected = DataFrame(
         {0: [np.nan, np.nan, 1.0, 0.5, 2.0, 1.0], 1: second_column},
         index=["a", "b"] * 3,
+    )
+    tm.assert_frame_equal(result, expected)
+
+
+def test_pct_change_none_beginning_no_warning():
+    # GH#54481
+    df = DataFrame(
+        [
+            [1, None],
+            [2, 1],
+            [3, 2],
+            [4, 3],
+            [5, 4],
+        ]
+    )
+    result = df.pct_change()
+    expected = DataFrame(
+        {0: [np.nan, 1, 0.5, 1 / 3, 0.25], 1: [np.nan, np.nan, 1, 0.5, 1 / 3]}
     )
     tm.assert_frame_equal(result, expected)

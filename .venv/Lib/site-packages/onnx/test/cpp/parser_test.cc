@@ -5,7 +5,6 @@
  */
 
 #include "gtest/gtest.h"
-
 #include "onnx/checker.h"
 #include "onnx/defs/parser.h"
 #include "onnx/defs/printer.h"
@@ -186,6 +185,10 @@ TEST(ParserTest, AttributeTest) {
   Parse(attr, "x : ints = @xyz");
   EXPECT_EQ(attr.ref_attr_name(), "xyz");
   EXPECT_EQ(attr.type(), AttributeProto_AttributeType::AttributeProto_AttributeType_INTS);
+
+  Parse(attr, "x : ints = []");
+  EXPECT_EQ(attr.type(), AttributeProto_AttributeType::AttributeProto_AttributeType_INTS);
+  EXPECT_EQ(attr.ints_size(), 0);
 
   Parse(attr, R"ONNX(
     body = somegraph (float[N] y, float[N] z) => (float[N] w)

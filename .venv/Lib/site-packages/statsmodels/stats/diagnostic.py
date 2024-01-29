@@ -32,12 +32,22 @@ import pandas as pd
 from scipy import stats
 
 from statsmodels.regression.linear_model import OLS, RegressionResultsWrapper
+from statsmodels.stats._adnorm import anderson_statistic, normal_ad
+from statsmodels.stats._lilliefors import (
+    kstest_exponential,
+    kstest_fit,
+    kstest_normal,
+    lilliefors,
+)
+from statsmodels.tools.validation import (
+    array_like,
+    bool_like,
+    dict_like,
+    float_like,
+    int_like,
+    string_like,
+)
 from statsmodels.tsa.tsatools import lagmat
-from statsmodels.tools.validation import (array_like, int_like, bool_like,
-                                          string_like, dict_like, float_like)
-from statsmodels.stats._lilliefors import (kstest_fit, lilliefors,
-                                           kstest_normal, kstest_exponential)
-from statsmodels.stats._adnorm import normal_ad, anderson_statistic
 
 __all__ = ["kstest_fit", "lilliefors", "kstest_normal", "kstest_exponential",
            "normal_ad", "compare_cox", "compare_j", "acorr_breusch_godfrey",
@@ -1062,7 +1072,7 @@ def linear_reset(res, power=3, test_type="fitted", use_f=False,
             raise ValueError("power must contains distinct integers all >= 2")
     exog = res.model.exog
     if test_type == "fitted":
-        aug = res.fittedvalues[:, None]
+        aug = np.asarray(res.fittedvalues)[:, None]
     elif test_type == "exog":
         # Remove constant and binary
         aug = res.model.exog
@@ -1283,7 +1293,7 @@ def linear_lm(resid, exog, func=None):
     if func is None:
         def func(x):
             return np.power(x, 2)
-
+    exog = np.asarray(exog)
     exog_aux = np.column_stack((exog, func(exog[:, 1:])))
 
     nobs, k_vars = exog.shape
@@ -1609,7 +1619,7 @@ def breaks_cusumolsresid(resid, ddof=0):
     Ploberger, Werner, and Walter Kramer. “The Cusum Test with OLS Residuals.”
     Econometrica 60, no. 2 (March 1992): 271-285.
     """
-    resid = resid.ravel()
+    resid = np.asarray(resid).ravel()
     nobs = len(resid)
     nobssigma2 = (resid ** 2).sum()
     if ddof > 0:

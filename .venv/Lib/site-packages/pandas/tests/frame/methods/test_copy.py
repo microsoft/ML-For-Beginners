@@ -56,7 +56,7 @@ class TestCopy:
             }
         )
 
-        for i in range(0, 10):
+        for i in range(10):
             df.loc[:, f"n_{i}"] = np.random.default_rng(2).integers(0, 100, size=55)
 
         assert len(df._mgr.blocks) == 11

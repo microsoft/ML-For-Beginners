@@ -2,8 +2,7 @@
 # Use the `scipy.interpolate` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _rbf
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
@@ -21,13 +20,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.interpolate.rbf is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.interpolate instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.interpolate` namespace, "
-                  "the `scipy.interpolate.rbf` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_rbf, name)
+    return _sub_module_deprecation(sub_package="interpolate", module="rbf",
+                                   private_modules=["_rbf"], all=__all__,
+                                   attribute=name)

@@ -2948,7 +2948,7 @@ def _handle_missing(data, groups, formula, re_formula, vc_formula):
 
     data = data[tokens]
     ii = pd.notnull(data).all(1)
-    if type(groups) != "str":
+    if type(groups) is not str:
         ii &= pd.notnull(groups)
 
     return data.loc[ii, :], groups[np.asarray(ii)]

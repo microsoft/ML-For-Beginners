@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "onnx/common/ir.h"
 
 namespace ONNX_NAMESPACE {

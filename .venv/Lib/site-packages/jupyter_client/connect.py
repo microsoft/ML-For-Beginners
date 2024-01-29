@@ -5,6 +5,8 @@ related to writing and reading connections files.
 """
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
+
 import errno
 import glob
 import json
@@ -14,7 +16,7 @@ import stat
 import tempfile
 import warnings
 from getpass import getpass
-from typing import Any, Dict, List, Optional, Set, Tuple, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, Union, cast
 
 import zmq
 from jupyter_core.paths import jupyter_data_dir, jupyter_runtime_dir, secure_write
@@ -24,12 +26,17 @@ from traitlets.config import LoggingConfigurable, SingletonConfigurable
 from .localinterfaces import localhost
 from .utils import _filefind
 
+if TYPE_CHECKING:
+    from jupyter_client import BlockingKernelClient
+
+    from .session import Session
+
 # Define custom type for kernel connection info
 KernelConnectionInfo = Dict[str, Union[int, str, bytes]]
 
 
 def write_connection_file(
-    fname: Optional[str] = None,
+    fname: str | None = None,
     shell_port: int = 0,
     iopub_port: int = 0,
     stdin_port: int = 0,
@@ -41,7 +48,7 @@ def write_connection_file(
     signature_scheme: str = "hmac-sha256",
     kernel_name: str = "",
     **kwargs: Any,
-) -> Tuple[str, KernelConnectionInfo]:
+) -> tuple[str, KernelConnectionInfo]:
     """Generates a JSON config file, including the selection of random ports.
 
     Parameters
@@ -91,8 +98,8 @@ def write_connection_file(
 
     # Find open ports as necessary.
 
-    ports: List[int] = []
-    sockets: List[socket.socket] = []
+    ports: list[int] = []
+    sockets: list[socket.socket] = []
     ports_needed = (
         int(shell_port <= 0)
         + int(iopub_port <= 0)
@@ -169,8 +176,8 @@ def write_connection_file(
 
 def find_connection_file(
     filename: str = "kernel-*.json",
-    path: Optional[Union[str, List[str]]] = None,
-    profile: Optional[str] = None,
+    path: str | list[str] | None = None,
+    profile: str | None = None,
 ) -> str:
     """find a connection file, and return its absolute path.
 
@@ -232,10 +239,10 @@ def find_connection_file(
 
 
 def tunnel_to_kernel(
-    connection_info: Union[str, KernelConnectionInfo],
+    connection_info: str | KernelConnectionInfo,
     sshserver: str,
-    sshkey: Optional[str] = None,
-) -> Tuple[Any, ...]:
+    sshkey: str | None = None,
+) -> tuple[Any, ...]:
     """tunnel connections to a kernel via ssh
 
     This will open five SSH tunnels from localhost on this machine to the
@@ -282,7 +289,7 @@ def tunnel_to_kernel(
     remote_ip = cf["ip"]
 
     if tunnel.try_passwordless_ssh(sshserver, sshkey):
-        password: Union[bool, str] = False
+        password: bool | str = False
     else:
         password = getpass("SSH Password for %s: " % sshserver)
 
@@ -310,9 +317,9 @@ port_names = ["%s_port" % channel for channel in ("shell", "stdin", "iopub", "hb
 class ConnectionFileMixin(LoggingConfigurable):
     """Mixin for configurable classes that work with connection files"""
 
-    data_dir: Union[str, Unicode] = Unicode()
+    data_dir: str | Unicode = Unicode()
 
-    def _data_dir_default(self):
+    def _data_dir_default(self) -> str:
         return jupyter_data_dir()
 
     # The addresses for the communication channels
@@ -329,7 +336,7 @@ class ConnectionFileMixin(LoggingConfigurable):
     _connection_file_written = Bool(False)
 
     transport = CaselessStrEnum(["tcp", "ipc"], default_value="tcp", config=True)
-    kernel_name: Union[str, Unicode] = Unicode()
+    kernel_name: str | Unicode = Unicode()
 
     context = Instance(zmq.Context)
 
@@ -341,7 +348,7 @@ class ConnectionFileMixin(LoggingConfigurable):
         to the Kernel, so be careful!""",
     )
 
-    def _ip_default(self):
+    def _ip_default(self) -> str:
         if self.transport == "ipc":
             if self.connection_file:
                 return os.path.splitext(self.connection_file)[0] + "-ipc"
@@ -351,7 +358,7 @@ class ConnectionFileMixin(LoggingConfigurable):
             return localhost()
 
     @observe("ip")
-    def _ip_changed(self, change):
+    def _ip_changed(self, change: Any) -> None:
         if change["new"] == "*":
             self.ip = "0.0.0.0"  # noqa
 
@@ -364,16 +371,16 @@ class ConnectionFileMixin(LoggingConfigurable):
     control_port = Integer(0, config=True, help="set the control (ROUTER) port [default: random]")
 
     # names of the ports with random assignment
-    _random_port_names: Optional[List[str]] = None
+    _random_port_names: list[str] | None = None
 
     @property
-    def ports(self) -> List[int]:
+    def ports(self) -> list[int]:
         return [getattr(self, name) for name in port_names]
 
     # The Session to use for communication with the kernel.
     session = Instance("jupyter_client.session.Session")
 
-    def _session_default(self):
+    def _session_default(self) -> Session:
         from .session import Session
 
         return Session(parent=self)
@@ -423,10 +430,10 @@ class ConnectionFileMixin(LoggingConfigurable):
     # factory for blocking clients
     blocking_class = Type(klass=object, default_value="jupyter_client.BlockingKernelClient")
 
-    def blocking_client(self):
+    def blocking_client(self) -> BlockingKernelClient:
         """Make a blocking client connected to my kernel"""
         info = self.get_connection_info()
-        bc = self.blocking_class(parent=self)
+        bc = self.blocking_class(parent=self)  # type:ignore[operator]
         bc.load_connection_info(info)
         return bc
 
@@ -511,7 +518,7 @@ class ConnectionFileMixin(LoggingConfigurable):
 
         self._connection_file_written = True
 
-    def load_connection_file(self, connection_file: Optional[str] = None) -> None:
+    def load_connection_file(self, connection_file: str | None = None) -> None:
         """Load connection info from JSON dict in self.connection_file.
 
         Parameters
@@ -540,7 +547,7 @@ class ConnectionFileMixin(LoggingConfigurable):
             See the connection_file spec for details.
         """
         self.transport = info.get("transport", self.transport)
-        self.ip = info.get("ip", self._ip_default())
+        self.ip = info.get("ip", self._ip_default())  # type:ignore[assignment]
 
         self._record_random_port_names()
         for name in port_names:
@@ -638,7 +645,7 @@ class ConnectionFileMixin(LoggingConfigurable):
             return f"{transport}://{ip}-{port}"
 
     def _create_connected_socket(
-        self, channel: str, identity: Optional[bytes] = None
+        self, channel: str, identity: bytes | None = None
     ) -> zmq.sugar.socket.Socket:
         """Create a zmq Socket and connect it to the kernel."""
         url = self._make_url(channel)
@@ -652,25 +659,25 @@ class ConnectionFileMixin(LoggingConfigurable):
         sock.connect(url)
         return sock
 
-    def connect_iopub(self, identity: Optional[bytes] = None) -> zmq.sugar.socket.Socket:
+    def connect_iopub(self, identity: bytes | None = None) -> zmq.sugar.socket.Socket:
         """return zmq Socket connected to the IOPub channel"""
         sock = self._create_connected_socket("iopub", identity=identity)
         sock.setsockopt(zmq.SUBSCRIBE, b"")
         return sock
 
-    def connect_shell(self, identity: Optional[bytes] = None) -> zmq.sugar.socket.Socket:
+    def connect_shell(self, identity: bytes | None = None) -> zmq.sugar.socket.Socket:
         """return zmq Socket connected to the Shell channel"""
         return self._create_connected_socket("shell", identity=identity)
 
-    def connect_stdin(self, identity: Optional[bytes] = None) -> zmq.sugar.socket.Socket:
+    def connect_stdin(self, identity: bytes | None = None) -> zmq.sugar.socket.Socket:
         """return zmq Socket connected to the StdIn channel"""
         return self._create_connected_socket("stdin", identity=identity)
 
-    def connect_hb(self, identity: Optional[bytes] = None) -> zmq.sugar.socket.Socket:
+    def connect_hb(self, identity: bytes | None = None) -> zmq.sugar.socket.Socket:
         """return zmq Socket connected to the Heartbeat channel"""
         return self._create_connected_socket("hb", identity=identity)
 
-    def connect_control(self, identity: Optional[bytes] = None) -> zmq.sugar.socket.Socket:
+    def connect_control(self, identity: bytes | None = None) -> zmq.sugar.socket.Socket:
         """return zmq Socket connected to the Control channel"""
         return self._create_connected_socket("control", identity=identity)
 
@@ -688,7 +695,7 @@ class LocalPortCache(SingletonConfigurable):
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
-        self.currently_used_ports: Set[int] = set()
+        self.currently_used_ports: set[int] = set()
 
     def find_available_port(self, ip: str) -> int:
         while True:

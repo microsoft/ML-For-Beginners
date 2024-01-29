@@ -37,7 +37,7 @@ def do_solve(**kw):
     count[0] = 0
     with suppress_warnings() as sup:
         sup.filter(DeprecationWarning, ".*called without specifying.*")
-        x0, flag = gcrotmk(A, b, x0=zeros(A.shape[0]), tol=1e-14, **kw)
+        x0, flag = gcrotmk(A, b, x0=zeros(A.shape[0]), rtol=1e-14, **kw)
     count_0 = count[0]
     assert_(allclose(A@x0, b, rtol=1e-12, atol=1e-12), norm(A@x0-b))
     return x0, count_0
@@ -91,7 +91,7 @@ class TestGCROTMK:
                 assert_equal(info, 0)
                 assert_allclose(A.dot(x) - b, 0, atol=1e-14)
 
-                x, info = gcrotmk(A, b, tol=0, maxiter=10)
+                x, info = gcrotmk(A, b, rtol=0, maxiter=10)
                 if info == 0:
                     assert_allclose(A.dot(x) - b, 0, atol=1e-14)
 
@@ -100,7 +100,7 @@ class TestGCROTMK:
                 assert_equal(info, 0)
                 assert_allclose(A.dot(x) - b, 0, atol=1e-14)
 
-                x, info = gcrotmk(A, b, tol=0, maxiter=10)
+                x, info = gcrotmk(A, b, rtol=0, maxiter=10)
                 if info == 0:
                     assert_allclose(A.dot(x) - b, 0, atol=1e-14)
 
@@ -111,7 +111,7 @@ class TestGCROTMK:
 
         with suppress_warnings() as sup:
             sup.filter(DeprecationWarning, ".*called without specifying.*")
-            x, info = gcrotmk(A, b, tol=0, maxiter=10)
+            x, info = gcrotmk(A, b, rtol=0, maxiter=10)
             assert_equal(info, 1)
 
     def test_truncate(self):
@@ -122,8 +122,8 @@ class TestGCROTMK:
         for truncate in ['oldest', 'smallest']:
             with suppress_warnings() as sup:
                 sup.filter(DeprecationWarning, ".*called without specifying.*")
-                x, info = gcrotmk(A, b, m=10, k=10, truncate=truncate, tol=1e-4,
-                                  maxiter=200)
+                x, info = gcrotmk(A, b, m=10, k=10, truncate=truncate,
+                                  rtol=1e-4, maxiter=200)
             assert_equal(info, 0)
             assert_allclose(A.dot(x) - b, 0, atol=1e-3)
 

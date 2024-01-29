@@ -8,7 +8,6 @@ from collections import deque
 from typing import (
     Callable,
     ContextManager,
-    Deque,
     Dict,
     Generator,
     Generic,
@@ -136,7 +135,7 @@ class _CharSizesCache(Dict[str, int]):
     def __init__(self) -> None:
         super().__init__()
         # Keep track of the "long" strings in this cache.
-        self._long_strings: Deque[str] = deque()
+        self._long_strings: deque[str] = deque()
 
     def __missing__(self, string: str) -> int:
         # Note: We use the `max(0, ...` because some non printable control

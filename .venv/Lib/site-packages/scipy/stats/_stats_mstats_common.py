@@ -319,7 +319,7 @@ def theilslopes(y, x=None, alpha=0.95, method='separate'):
     """
     if method not in ['joint', 'separate']:
         raise ValueError("method must be either 'joint' or 'separate'."
-                         "'{}' is invalid.".format(method))
+                         f"'{method}' is invalid.")
     # We copy both x and y so we can use _find_repeats.
     y = np.array(y).flatten()
     if x is None:
@@ -327,8 +327,7 @@ def theilslopes(y, x=None, alpha=0.95, method='separate'):
     else:
         x = np.array(x, dtype=float).flatten()
         if len(x) != len(y):
-            raise ValueError("Incompatible lengths ! (%s<>%s)" %
-                             (len(y), len(x)))
+            raise ValueError(f"Incompatible lengths ! ({len(y)}<>{len(x)})")
 
     # Compute sorted slopes only when deltax > 0
     deltax = x[:, np.newaxis] - x
@@ -493,8 +492,7 @@ def siegelslopes(y, x=None, method="hierarchical"):
     else:
         x = np.asarray(x, dtype=float).ravel()
         if len(x) != len(y):
-            raise ValueError("Incompatible lengths ! (%s<>%s)" %
-                             (len(y), len(x)))
+            raise ValueError(f"Incompatible lengths ! ({len(y)}<>{len(x)})")
     dtype = np.result_type(x, y, np.float32)  # use at least float32
     y, x = y.astype(dtype), x.astype(dtype)
     medslope, medinter = siegelslopes_pythran(y, x, method)

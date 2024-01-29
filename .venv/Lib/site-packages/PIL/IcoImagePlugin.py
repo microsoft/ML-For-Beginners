@@ -20,7 +20,7 @@
 # Icon format references:
 #   * https://en.wikipedia.org/wiki/ICO_(file_format)
 #   * https://msdn.microsoft.com/en-us/library/ms997538.aspx
-
+from __future__ import annotations
 
 import warnings
 from io import BytesIO
@@ -174,9 +174,7 @@ class IcoFile:
 
         self.entry = sorted(self.entry, key=lambda x: x["color_depth"])
         # ICO images are usually squares
-        # self.entry = sorted(self.entry, key=lambda x: x['width'])
-        self.entry = sorted(self.entry, key=lambda x: x["square"])
-        self.entry.reverse()
+        self.entry = sorted(self.entry, key=lambda x: x["square"], reverse=True)
 
     def sizes(self):
         """
@@ -330,7 +328,7 @@ class IcoImageFile(ImageFile.ImageFile):
         im.load()
         self.im = im.im
         self.pyaccess = None
-        self.mode = im.mode
+        self._mode = im.mode
         if im.size != self.size:
             warnings.warn("Image was not the expected size")
 

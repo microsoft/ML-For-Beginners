@@ -570,7 +570,7 @@ class MultivariateTestResults:
             summ.add_dict({'': ''})
             df = self.results[key]['stat'].copy()
             df = df.reset_index()
-            c = df.columns.values
+            c = list(df.columns)
             c[0] = key
             df.columns = c
             df.index = ['', '', '', '']

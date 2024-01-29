@@ -385,7 +385,8 @@ class TestCategoricalAPI:
 
 
 class TestCategoricalAPIWithFactor:
-    def test_describe(self, factor):
+    def test_describe(self):
+        factor = Categorical(["a", "b", "b", "a", "a", "c", "c", "c"], ordered=True)
         # string type
         desc = factor.describe()
         assert factor.ordered

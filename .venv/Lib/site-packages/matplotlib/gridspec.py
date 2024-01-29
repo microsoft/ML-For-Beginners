@@ -7,8 +7,7 @@ the grid are referenced by `SubplotSpec`\s.
 
 Often, users need not access this module directly, and can use higher-level
 methods like `~.pyplot.subplots`, `~.pyplot.subplot_mosaic` and
-`~.Figure.subfigures`. See the tutorial
-:doc:`/tutorials/intermediate/arranging_axes` for a guide.
+`~.Figure.subfigures`. See the tutorial :ref:`arranging_axes` for a guide.
 """
 
 import copy
@@ -56,9 +55,9 @@ class GridSpecBase:
         self.set_width_ratios(width_ratios)
 
     def __repr__(self):
-        height_arg = (', height_ratios=%r' % (self._row_height_ratios,)
+        height_arg = (f', height_ratios={self._row_height_ratios!r}'
                       if len(set(self._row_height_ratios)) != 1 else '')
-        width_arg = (', width_ratios=%r' % (self._col_width_ratios,)
+        width_arg = (f', width_ratios={self._col_width_ratios!r}'
                      if len(set(self._col_width_ratios)) != 1 else '')
         return '{clsname}({nrows}, {ncols}{optionals})'.format(
             clsname=self.__class__.__name__,
@@ -302,10 +301,10 @@ class GridSpecBase:
         # turn off redundant tick labeling
         if sharex in ["col", "all"]:
             for ax in axarr.flat:
-                ax._label_outer_xaxis(check_patch=True)
+                ax._label_outer_xaxis(skip_non_rectangular_axes=True)
         if sharey in ["row", "all"]:
             for ax in axarr.flat:
-                ax._label_outer_yaxis(check_patch=True)
+                ax._label_outer_yaxis(skip_non_rectangular_axes=True)
 
         if squeeze:
             # Discarding unneeded dimensions that equal 1.  If we only have one

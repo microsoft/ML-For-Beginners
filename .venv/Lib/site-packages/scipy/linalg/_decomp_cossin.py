@@ -113,14 +113,12 @@ def cossin(X, p=None, q=None, separate=False,
         X = _asarray_validated(X, check_finite=True)
         if not np.equal(*X.shape):
             raise ValueError("Cosine Sine decomposition only supports square"
-                             " matrices, got {}".format(X.shape))
+                             f" matrices, got {X.shape}")
         m = X.shape[0]
         if p >= m or p <= 0:
-            raise ValueError("invalid p={}, 0<p<{} must hold"
-                             .format(p, X.shape[0]))
+            raise ValueError(f"invalid p={p}, 0<p<{X.shape[0]} must hold")
         if q >= m or q <= 0:
-            raise ValueError("invalid q={}, 0<q<{} must hold"
-                             .format(q, X.shape[0]))
+            raise ValueError(f"invalid q={q}, 0<q<{X.shape[0]} must hold")
 
         x11, x12, x21, x22 = X[:p, :q], X[:p, q:], X[p:, :q], X[p:, q:]
     elif not isinstance(X, Iterable):
@@ -129,7 +127,7 @@ def cossin(X, p=None, q=None, separate=False,
     else:
         if len(X) != 4:
             raise ValueError("When p and q are None, exactly four arrays"
-                             " should be in X, got {}".format(len(X)))
+                             f" should be in X, got {len(X)}")
 
         x11, x12, x21, x22 = (np.atleast_2d(x) for x in X)
         for name, block in zip(["x11", "x12", "x21", "x22"],
@@ -140,12 +138,12 @@ def cossin(X, p=None, q=None, separate=False,
         mmp, mmq = x22.shape
 
         if x12.shape != (p, mmq):
-            raise ValueError("Invalid x12 dimensions: desired {}, "
-                             "got {}".format((p, mmq), x12.shape))
+            raise ValueError(f"Invalid x12 dimensions: desired {(p, mmq)}, "
+                             f"got {x12.shape}")
 
         if x21.shape != (mmp, q):
-            raise ValueError("Invalid x21 dimensions: desired {}, "
-                             "got {}".format((mmp, q), x21.shape))
+            raise ValueError(f"Invalid x21 dimensions: desired {(mmp, q)}, "
+                             f"got {x21.shape}")
 
         if p + mmp != q + mmq:
             raise ValueError("The subblocks have compatible sizes but "
@@ -172,8 +170,7 @@ def cossin(X, p=None, q=None, separate=False,
 
     method_name = csd.typecode + driver
     if info < 0:
-        raise ValueError('illegal value in argument {} of internal {}'
-                         .format(-info, method_name))
+        raise ValueError(f'illegal value in argument {-info} of internal {method_name}')
     if info > 0:
         raise LinAlgError(f"{method_name} did not converge: {info}")
 

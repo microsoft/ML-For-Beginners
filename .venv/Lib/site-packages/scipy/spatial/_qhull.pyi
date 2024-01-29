@@ -63,7 +63,7 @@ class _Qhull:
 
 def _get_barycentric_transforms(
     points: NDArray[np.float64],
-    simplices: NDArray[np.int_],
+    simplices: NDArray[np.intc],
     eps: float
 ) -> NDArray[np.float64]: ...
 
@@ -210,4 +210,4 @@ class HalfspaceIntersection(_QhullUser):
     @property
     def halfspaces(self) -> NDArray[np.float64]: ...
     @property
-    def dual_vertices(self) -> NDArray[np.int_]: ...
+    def dual_vertices(self) -> NDArray[np.integer]: ...

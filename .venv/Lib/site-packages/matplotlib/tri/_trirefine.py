@@ -203,9 +203,9 @@ class UniformTriRefiner(TriRefiner):
             ancestors = np.asarray(ancestors)
             if np.shape(ancestors) != (ntri,):
                 raise ValueError(
-                    "Incompatible shapes provide for triangulation"
-                    ".masked_triangles and ancestors: {0} and {1}".format(
-                        np.shape(triangles), np.shape(ancestors)))
+                    "Incompatible shapes provide for "
+                    "triangulation.masked_triangles and ancestors: "
+                    f"{np.shape(triangles)} and {np.shape(ancestors)}")
 
         # Initiating tables refi_x and refi_y of the refined triangulation
         # points

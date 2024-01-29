@@ -1,8 +1,8 @@
 import ctypes
 
 from .backend_cairo import cairo, FigureCanvasCairo
-from .backend_qt import QtCore, QtGui, _BackendQT, FigureCanvasQT
-from .qt_compat import QT_API, _enum
+from .backend_qt import _BackendQT, FigureCanvasQT
+from .qt_compat import QT_API, QtCore, QtGui
 
 
 class FigureCanvasQTCairo(FigureCanvasCairo, FigureCanvasQT):
@@ -28,7 +28,7 @@ class FigureCanvasQTCairo(FigureCanvasCairo, FigureCanvasQT):
             ptr = buf
         qimage = QtGui.QImage(
             ptr, width, height,
-            _enum("QtGui.QImage.Format").Format_ARGB32_Premultiplied)
+            QtGui.QImage.Format.Format_ARGB32_Premultiplied)
         # Adjust the buf reference count to work around a memory leak bug in
         # QImage under PySide.
         if QT_API == "PySide2" and QtCore.__version_info__ < (5, 12):

@@ -65,6 +65,7 @@ class TrioRunner:
             self._cell_cancel_scope = trio.CancelScope()
             with self._cell_cancel_scope:
                 return await coro
-            self._cell_cancel_scope = None
+            self._cell_cancel_scope = None  # type:ignore[unreachable]
+            return None
 
         return trio.from_thread.run(loc, async_fn, trio_token=self._trio_token)

@@ -31,16 +31,30 @@ from ..common._registration import register_converter
 from .._supported_operators import sklearn_operator_name_map
 
 
-def _scikit_learn_before_022():
+def _scikit_learn_before_any(any_version: str) -> bool:
     if ".dev" in __version__:
-        return pv.Version(__version__.split(".dev")[0]) < pv.Version("0.22")
+        return pv.Version(__version__.split(".dev")[0]) < pv.Version(any_version)
     if ".post" in __version__:
-        return pv.Version(__version__.split(".post")[0]) < pv.Version("0.22")
-    return pv.Version(__version__) < pv.Version("0.22")
+        return pv.Version(__version__.split(".post")[0]) < pv.Version(any_version)
+    return pv.Version(__version__) < pv.Version(any_version)
+
+
+def _scikit_learn_before_022() -> bool:
+    return _scikit_learn_before_any("0.22")
+
+
+def _scikit_learn_before_131():
+    return _scikit_learn_before_any("1.3.1")
 
 
 def _samme_proba(
-    scope, container, proba_name, weight, zero_name, classes_ind_name, one_name
+    scope,
+    container,
+    proba_name,
+    weight,
+    zero_name_or_symmetric,
+    classes_ind_name,
+    one_name,
 ):
     weight_name = scope.get_unique_variable_name("weight")
     container.add_initializer(weight_name, onnx_proto.TensorProto.FLOAT, [], [weight])
@@ -64,7 +78,7 @@ def _samme_proba(
     max_proba_name = scope.get_unique_variable_name("probsmax")
     container.add_node(
         "Where",
-        [equal_name, one_name, zero_name],
+        [equal_name, one_name, zero_name_or_symmetric],
         max_proba_name,
         name=scope.get_unique_operator_name("Where"),
     )
@@ -394,6 +408,7 @@ def convert_sklearn_ada_boost_classifier(
     zero_name = None
     one_name = None
     classes_ind_name = None
+    symmetric_weight = None
 
     proto_dtype = guess_proto_type(operator.inputs[0].type)
     proba_type = operator.inputs[0].type.__class__
@@ -487,12 +502,21 @@ def convert_sklearn_ada_boost_classifier(
                         ),
                     )
 
+                if not _scikit_learn_before_131() and symmetric_weight is None:
+                    symmetric_weight = scope.get_unique_variable_name(
+                        "symmetrix_weight"
+                    )
+                    container.add_initializer(
+                        symmetric_weight, proto_dtype, [1], [-1 / (len(classes) - 1)]
+                    )
+
                 cur_proba_name = _samme_proba(
                     scope,
                     container,
                     proba_name.onnx_name,
                     op.estimator_weights_[i_est],
-                    zero_name,
+                    # See https://github.com/scikit-learn/scikit-learn/pull/26521
+                    zero_name if _scikit_learn_before_131() else symmetric_weight,
                     classes_ind_name,
                     one_name,
                 )

@@ -173,12 +173,12 @@ class KernelDensity(BaseEstimator):
         # algorithm to compute the result.
         if algorithm == "auto":
             # use KD Tree if possible
-            if metric in KDTree.valid_metrics():
+            if metric in KDTree.valid_metrics:
                 return "kd_tree"
-            elif metric in BallTree.valid_metrics():
+            elif metric in BallTree.valid_metrics:
                 return "ball_tree"
         else:  # kd_tree or ball_tree
-            if metric not in TREE_DICT[algorithm].valid_metrics():
+            if metric not in TREE_DICT[algorithm].valid_metrics:
                 raise ValueError(
                     "invalid metric for {0}: '{1}'".format(TREE_DICT[algorithm], metric)
                 )

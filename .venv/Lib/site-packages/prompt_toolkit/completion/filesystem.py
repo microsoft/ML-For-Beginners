@@ -115,4 +115,4 @@ class ExecutableCompleter(PathCompleter):
             get_paths=lambda: os.environ.get("PATH", "").split(os.pathsep),
             file_filter=lambda name: os.access(name, os.X_OK),
             expanduser=True,
-        ),
+        )

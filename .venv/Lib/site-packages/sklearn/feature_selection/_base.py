@@ -12,6 +12,7 @@ from scipy.sparse import csc_matrix, issparse
 
 from ..base import TransformerMixin
 from ..utils import (
+    _is_pandas_df,
     _safe_indexing,
     check_array,
     safe_sqr,
@@ -81,7 +82,7 @@ class SelectorMixin(TransformerMixin, metaclass=ABCMeta):
         # Preserve X when X is a dataframe and the output is configured to
         # be pandas.
         output_config_dense = _get_output_config("transform", estimator=self)["dense"]
-        preserve_X = hasattr(X, "iloc") and output_config_dense == "pandas"
+        preserve_X = output_config_dense != "default" and _is_pandas_df(X)
 
         # note: we use _safe_tags instead of _get_tags because this is a
         # public Mixin.

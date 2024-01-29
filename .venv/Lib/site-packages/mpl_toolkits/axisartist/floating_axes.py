@@ -33,7 +33,10 @@ class FixedAxisArtistHelper(grid_helper_curvelinear.FloatingAxisArtistHelper):
         nth_coord = along which coordinate value varies.
          nth_coord = 0 ->  x axis, nth_coord = 1 -> y axis
         """
-        value, nth_coord = grid_helper.get_data_boundary(side)
+        lon1, lon2, lat1, lat2 = grid_helper.grid_finder.extreme_finder(*[None] * 5)
+        value, nth_coord = _api.check_getitem(
+            dict(left=(lon1, 0), right=(lon2, 0), bottom=(lat1, 1), top=(lat2, 1)),
+            side=side)
         super().__init__(grid_helper, nth_coord, value, axis_direction=side)
         if nth_coord_ticks is None:
             nth_coord_ticks = nth_coord
@@ -58,7 +61,7 @@ class FixedAxisArtistHelper(grid_helper_curvelinear.FloatingAxisArtistHelper):
         lon_levs, lon_n, lon_factor = self._grid_info["lon_info"]
         xx0 = lon_levs / lon_factor
 
-        extremes = self.grid_helper._extremes
+        extremes = self.grid_helper.grid_finder.extreme_finder(*[None] * 5)
         xmin, xmax = sorted(extremes[:2])
         ymin, ymax = sorted(extremes[2:])
 
@@ -137,20 +140,19 @@ class GridHelperCurveLinear(grid_helper_curvelinear.GridHelperCurveLinear):
                  tick_formatter1=None,
                  tick_formatter2=None):
         # docstring inherited
-        self._extremes = extremes
-        extreme_finder = ExtremeFinderFixed(extremes)
         super().__init__(aux_trans,
-                         extreme_finder,
+                         extreme_finder=ExtremeFinderFixed(extremes),
                          grid_locator1=grid_locator1,
                          grid_locator2=grid_locator2,
                          tick_formatter1=tick_formatter1,
                          tick_formatter2=tick_formatter2)
 
+    @_api.deprecated("3.8")
     def get_data_boundary(self, side):
         """
         Return v=0, nth=1.
         """
-        lon1, lon2, lat1, lat2 = self._extremes
+        lon1, lon2, lat1, lat2 = self.grid_finder.extreme_finder(*[None] * 5)
         return dict(left=(lon1, 0),
                     right=(lon2, 0),
                     bottom=(lat1, 1),
@@ -167,9 +169,9 @@ class GridHelperCurveLinear(grid_helper_curvelinear.GridHelperCurveLinear):
             axis_direction = loc
         # This is not the same as the FixedAxisArtistHelper class used by
         # grid_helper_curvelinear.GridHelperCurveLinear.new_fixed_axis!
-        _helper = FixedAxisArtistHelper(
+        helper = FixedAxisArtistHelper(
             self, loc, nth_coord_ticks=nth_coord)
-        axisline = AxisArtist(axes, _helper, axis_direction=axis_direction)
+        axisline = AxisArtist(axes, helper, axis_direction=axis_direction)
         # Perhaps should be moved to the base class?
         axisline.line.set_clip_on(True)
         axisline.line.set_clip_box(axisline.axes.bbox)
@@ -258,14 +260,10 @@ class FloatingAxesBase:
         _api.check_isinstance(GridHelperCurveLinear, grid_helper=grid_helper)
         super().__init__(*args, grid_helper=grid_helper, **kwargs)
         self.set_aspect(1.)
-        self.adjust_axes_lim()
 
     def _gen_axes_patch(self):
         # docstring inherited
-        # Using a public API to access _extremes.
-        (x0, _), (x1, _), (y0, _), (y1, _) = map(
-            self.get_grid_helper().get_data_boundary,
-            ["left", "right", "bottom", "top"])
+        x0, x1, y0, y1 = self.get_grid_helper().grid_finder.extreme_finder(*[None] * 5)
         patch = mpatches.Polygon([(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
         patch.get_path()._interpolation_steps = 100
         return patch
@@ -282,6 +280,7 @@ class FloatingAxesBase:
         orig_patch.set_transform(self.transAxes)
         self.patch.set_clip_path(orig_patch)
         self.gridlines.set_clip_path(orig_patch)
+        self.adjust_axes_lim()
 
     def adjust_axes_lim(self):
         bbox = self.patch.get_path().get_extents(

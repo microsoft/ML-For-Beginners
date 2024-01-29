@@ -592,25 +592,3 @@ def test_balanced_bagging_classifier_n_features():
     estimator = BalancedBaggingClassifier().fit(X, y)
     with pytest.warns(FutureWarning, match="`n_features_` was deprecated"):
         estimator.n_features_
-
-
-@pytest.mark.skipif(
-    sklearn_version < parse_version("1.2"), reason="requires scikit-learn>=1.2"
-)
-def test_balanced_bagging_classifier_base_estimator():
-    """Check that we raise a FutureWarning when accessing `base_estimator_`."""
-    X, y = load_iris(return_X_y=True)
-    estimator = BalancedBaggingClassifier().fit(X, y)
-    with pytest.warns(FutureWarning, match="`base_estimator_` was deprecated"):
-        estimator.base_estimator_
-
-
-def test_balanced_bagging_classifier_set_both_estimator_and_base_estimator():
-    """Check that we raise a ValueError when setting both `estimator` and
-    `base_estimator`."""
-    X, y = load_iris(return_X_y=True)
-    err_msg = "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-    with pytest.raises(ValueError, match=err_msg):
-        BalancedBaggingClassifier(
-            estimator=KNeighborsClassifier(), base_estimator=KNeighborsClassifier()
-        ).fit(X, y)

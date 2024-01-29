@@ -293,14 +293,15 @@ class BayesianRidge(RegressorMixin, LinearModel):
         max_iter = _deprecate_n_iter(self.n_iter, self.max_iter)
 
         X, y = self._validate_data(X, y, dtype=[np.float64, np.float32], y_numeric=True)
+        dtype = X.dtype
 
         if sample_weight is not None:
-            sample_weight = _check_sample_weight(sample_weight, X, dtype=X.dtype)
+            sample_weight = _check_sample_weight(sample_weight, X, dtype=dtype)
 
         X, y, X_offset_, y_offset_, X_scale_ = _preprocess_data(
             X,
             y,
-            self.fit_intercept,
+            fit_intercept=self.fit_intercept,
             copy=self.copy_X,
             sample_weight=sample_weight,
         )
@@ -323,6 +324,10 @@ class BayesianRidge(RegressorMixin, LinearModel):
             alpha_ = 1.0 / (np.var(y) + eps)
         if lambda_ is None:
             lambda_ = 1.0
+
+        # Avoid unintended type promotion to float64 with numpy 2
+        alpha_ = np.asarray(alpha_, dtype=dtype)
+        lambda_ = np.asarray(lambda_, dtype=dtype)
 
         verbose = self.verbose
         lambda_1 = self.lambda_1
@@ -689,12 +694,13 @@ class ARDRegression(RegressorMixin, LinearModel):
         X, y = self._validate_data(
             X, y, dtype=[np.float64, np.float32], y_numeric=True, ensure_min_samples=2
         )
+        dtype = X.dtype
 
         n_samples, n_features = X.shape
-        coef_ = np.zeros(n_features, dtype=X.dtype)
+        coef_ = np.zeros(n_features, dtype=dtype)
 
         X, y, X_offset_, y_offset_, X_scale_ = _preprocess_data(
-            X, y, self.fit_intercept, copy=self.copy_X
+            X, y, fit_intercept=self.fit_intercept, copy=self.copy_X
         )
 
         self.X_offset_ = X_offset_
@@ -712,9 +718,10 @@ class ARDRegression(RegressorMixin, LinearModel):
         # Initialization of the values of the parameters
         eps = np.finfo(np.float64).eps
         # Add `eps` in the denominator to omit division by zero if `np.var(y)`
-        # is zero
-        alpha_ = 1.0 / (np.var(y) + eps)
-        lambda_ = np.ones(n_features, dtype=X.dtype)
+        # is zero.
+        # Explicitly set dtype to avoid unintended type promotion with numpy 2.
+        alpha_ = np.asarray(1.0 / (np.var(y) + eps), dtype=dtype)
+        lambda_ = np.ones(n_features, dtype=dtype)
 
         self.scores_ = list()
         coef_old_ = None

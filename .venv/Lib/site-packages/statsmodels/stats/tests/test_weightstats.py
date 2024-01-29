@@ -677,6 +677,45 @@ ztest_larger_mu_1s.alternative = 'greater'
 ztest_larger_mu_1s.method = 'One-sample z-Test'
 ztest_larger_mu_1s.data_name = 'x'
 
+# > zt = z.test(x, sigma.x=0.46436662631627995, y, sigma.y=0.7069805008424409)
+# > cat_items(zt, "ztest_unequal.")
+ztest_unequal = Holder()
+ztest_unequal.statistic = 6.12808151466544
+ztest_unequal.p_value = 8.89450168270109e-10
+ztest_unequal.conf_int = np.array([1.19415646579981, 2.31720717056382])
+ztest_unequal.estimate = np.array([7.01818181818182, 5.2625])
+ztest_unequal.null_value = 0
+ztest_unequal.alternative = 'two.sided'
+ztest_unequal.usevar = 'unequal'
+ztest_unequal.method = 'Two-sample z-Test'
+ztest_unequal.data_name = 'x and y'
+
+# > zt = z.test(x, sigma.x=0.46436662631627995, y, sigma.y=0.7069805008424409, alternative="less")
+# > cat_items(zt, "ztest_smaller_unequal.")
+ztest_smaller_unequal = Holder()
+ztest_smaller_unequal.statistic = 6.12808151466544
+ztest_smaller_unequal.p_value = 0.999999999555275
+ztest_smaller_unequal.conf_int = np.array([np.nan, 2.22692874913371])
+ztest_smaller_unequal.estimate = np.array([7.01818181818182, 5.2625])
+ztest_smaller_unequal.null_value = 0
+ztest_smaller_unequal.alternative = 'less'
+ztest_smaller_unequal.usevar = 'unequal'
+ztest_smaller_unequal.method = 'Two-sample z-Test'
+ztest_smaller_unequal.data_name = 'x and y'
+
+# > zt = z.test(x, sigma.x=0.46436662631627995, y, sigma.y=0.7069805008424409, alternative="greater")
+# > cat_items(zt, "ztest_larger_unequal.")
+ztest_larger_unequal = Holder()
+ztest_larger_unequal.statistic = 6.12808151466544
+ztest_larger_unequal.p_value = 4.44725034576265e-10
+ztest_larger_unequal.conf_int = np.array([1.28443488722992, np.nan])
+ztest_larger_unequal.estimate = np.array([7.01818181818182, 5.2625])
+ztest_larger_unequal.null_value = 0
+ztest_larger_unequal.alternative = 'greater'
+ztest_larger_unequal.usevar = 'unequal'
+ztest_larger_unequal.method = 'Two-sample z-Test'
+ztest_larger_unequal.data_name = 'x and y'
+
 
 alternatives = {'less': 'smaller',
                 'greater': 'larger',
@@ -732,6 +771,14 @@ class TestZTest:
             ci = zconfint(x1, x2, value=tc.null_value,
                           alternative=alternatives[tc.alternative])
             assert_allclose(ci, tc_conf_int - tc.null_value, rtol=1e-10)
+
+        # unequal variances
+        for tc in [ztest_unequal, ztest_smaller_unequal, ztest_larger_unequal]:
+            zstat, pval = ztest(x1, x2, value=tc.null_value,
+                                alternative=alternatives[tc.alternative],
+                                usevar="unequal")
+            assert_allclose(zstat, tc.statistic, rtol=1e-10)
+            assert_allclose(pval, tc.p_value, rtol=1e-10, atol=1e-16)
 
         # 1 sample test copy-paste
         d1 = self.d1

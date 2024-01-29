@@ -312,7 +312,7 @@ class SourceDescriptor(SimpleDescriptor):
         return self.designLocation
 
     @location.setter
-    def location(self, location: Optional[AnisotropicLocationDict]):
+    def location(self, location: Optional[SimpleLocationDict]):
         self.designLocation = location or {}
 
     def setFamilyName(self, familyName, languageCode="en"):
@@ -329,15 +329,13 @@ class SourceDescriptor(SimpleDescriptor):
         """
         return self.localisedFamilyName.get(languageCode)
 
-    def getFullDesignLocation(
-        self, doc: "DesignSpaceDocument"
-    ) -> AnisotropicLocationDict:
+    def getFullDesignLocation(self, doc: "DesignSpaceDocument") -> SimpleLocationDict:
         """Get the complete design location of this source, from its
         :attr:`designLocation` and the document's axis defaults.
 
         .. versionadded:: 5.0
         """
-        result: AnisotropicLocationDict = {}
+        result: SimpleLocationDict = {}
         for axis in doc.axes:
             if axis.name in self.designLocation:
                 result[axis.name] = self.designLocation[axis.name]

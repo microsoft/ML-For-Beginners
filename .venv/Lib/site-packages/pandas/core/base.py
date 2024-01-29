@@ -108,7 +108,7 @@ class PandasObject(DirNamesMixin):
     @property
     def _constructor(self):
         """
-        Class constructor (for this class it's just `__class__`.
+        Class constructor (for this class it's just `__class__`).
         """
         return type(self)
 
@@ -485,8 +485,8 @@ class IndexOpsMixin(OpsMixin):
             types, this is the actual array. For NumPy native types, this
             is a thin (no copy) wrapper around :class:`numpy.ndarray`.
 
-            ``.array`` differs ``.values`` which may require converting the
-            data to a different form.
+            ``.array`` differs from ``.values``, which may require converting
+            the data to a different form.
 
         See Also
         --------
@@ -1310,12 +1310,10 @@ class IndexOpsMixin(OpsMixin):
     # This overload is needed so that the call to searchsorted in
     # pandas.core.resample.TimeGrouper._get_period_bins picks the correct result
 
-    @overload
-    # The following ignore is also present in numpy/__init__.pyi
-    # Possibly a mypy bug??
     # error: Overloaded function signatures 1 and 2 overlap with incompatible
-    # return types  [misc]
-    def searchsorted(  # type: ignore[misc]
+    # return types
+    @overload
+    def searchsorted(  # type: ignore[overload-overlap]
         self,
         value: ScalarLike_co,
         side: Literal["left", "right"] = ...,
@@ -1365,7 +1363,10 @@ class IndexOpsMixin(OpsMixin):
 
     @final
     def _duplicated(self, keep: DropKeep = "first") -> npt.NDArray[np.bool_]:
-        return algorithms.duplicated(self._values, keep=keep)
+        arr = self._values
+        if isinstance(arr, ExtensionArray):
+            return arr.duplicated(keep=keep)
+        return algorithms.duplicated(arr, keep=keep)
 
     def _arith_method(self, other, op):
         res_name = ops.get_op_result_name(self, other)

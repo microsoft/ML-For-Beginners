@@ -60,9 +60,6 @@ def test_Axes():
 @image_comparison(['ParasiteAxesAuxTrans_meshplot.png'],
                   remove_text=True, style='default', tol=0.075)
 def test_ParasiteAxesAuxTrans():
-    # Remove this line when this test image is regenerated.
-    plt.rcParams['pcolormesh.snap'] = False
-
     data = np.ones((6, 6))
     data[2, 2] = 2
     data[0, :] = 0

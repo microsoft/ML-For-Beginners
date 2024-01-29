@@ -4,6 +4,6 @@
         integer(int64), intent(in) :: n
         real(real64), intent(in) :: x(n)
         real(real64), intent(out) :: res
-Cf2py   intent(hide) :: n
+!f2py   intent(hide) :: n
         res = sum(x)
       end

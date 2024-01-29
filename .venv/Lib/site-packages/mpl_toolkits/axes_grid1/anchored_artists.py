@@ -1,4 +1,4 @@
-from matplotlib import transforms
+from matplotlib import _api, transforms
 from matplotlib.offsetbox import (AnchoredOffsetbox, AuxTransformBox,
                                   DrawingArea, TextArea, VPacker)
 from matplotlib.patches import (Rectangle, Ellipse, ArrowStyle,
@@ -124,6 +124,7 @@ class AnchoredAuxTransformBox(AnchoredOffsetbox):
                          **kwargs)
 
 
+@_api.deprecated("3.8")
 class AnchoredEllipse(AnchoredOffsetbox):
     def __init__(self, transform, width, height, angle, loc,
                  pad=0.1, borderpad=0.1, prop=None, frameon=True, **kwargs):

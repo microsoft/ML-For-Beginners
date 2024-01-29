@@ -1,6 +1,6 @@
 # Author: Travis Oliphant
 
-__all__ = ['odeint']
+__all__ = ['odeint', 'ODEintWarning']
 
 import numpy as np
 from . import _odepack
@@ -9,6 +9,7 @@ import warnings
 
 
 class ODEintWarning(Warning):
+    """Warning raised during the execution of `odeint`."""
     pass
 
 
@@ -126,9 +127,9 @@ def odeint(func, y0, t, args=(), Dfun=None, col_deriv=0, full_output=0,
         Thus, the return matrix `jac` from `Dfun` should have shape
         ``(ml + mu + 1, len(y0))`` when ``ml >=0`` or ``mu >=0``.
         The data in `jac` must be stored such that ``jac[i - j + mu, j]``
-        holds the derivative of the `i`th equation with respect to the `j`th
-        state variable.  If `col_deriv` is True, the transpose of this
-        `jac` must be returned.
+        holds the derivative of the ``i``\\ th equation with respect to the
+        ``j``\\ th state variable.  If `col_deriv` is True, the transpose of
+        this `jac` must be returned.
     rtol, atol : float, optional
         The input parameters `rtol` and `atol` determine the error
         control performed by the solver.  The solver will control the
@@ -244,11 +245,12 @@ def odeint(func, y0, t, args=(), Dfun=None, col_deriv=0, full_output=0,
                              ixpr, mxstep, mxhnil, mxordn, mxords,
                              int(bool(tfirst)))
     if output[-1] < 0:
-        warning_msg = _msgs[output[-1]] + " Run with full_output = 1 to get quantitative information."
-        warnings.warn(warning_msg, ODEintWarning)
+        warning_msg = (f"{_msgs[output[-1]]} Run with full_output = 1 to "
+                       f"get quantitative information.")
+        warnings.warn(warning_msg, ODEintWarning, stacklevel=2)
     elif printmessg:
         warning_msg = _msgs[output[-1]]
-        warnings.warn(warning_msg, ODEintWarning)
+        warnings.warn(warning_msg, ODEintWarning, stacklevel=2)
 
     if full_output:
         output[1]['message'] = _msgs[output[-1]]

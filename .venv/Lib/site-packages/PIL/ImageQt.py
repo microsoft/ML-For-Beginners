@@ -15,6 +15,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import sys
 from io import BytesIO
@@ -83,16 +84,6 @@ def fromqimage(im):
 
 def fromqpixmap(im):
     return fromqimage(im)
-    # buffer = QBuffer()
-    # buffer.open(QIODevice.ReadWrite)
-    # # im.save(buffer)
-    # # What if png doesn't support some image features like animation?
-    # im.save(buffer, 'ppm')
-    # bytes_io = BytesIO()
-    # bytes_io.write(buffer.data())
-    # buffer.close()
-    # bytes_io.seek(0)
-    # return Image.open(bytes_io)
 
 
 def align8to32(bytes, width, mode):
@@ -113,12 +104,10 @@ def align8to32(bytes, width, mode):
     if not extra_padding:
         return bytes
 
-    new_data = []
-    for i in range(len(bytes) // bytes_per_line):
-        new_data.append(
-            bytes[i * bytes_per_line : (i + 1) * bytes_per_line]
-            + b"\x00" * extra_padding
-        )
+    new_data = [
+        bytes[i * bytes_per_line : (i + 1) * bytes_per_line] + b"\x00" * extra_padding
+        for i in range(len(bytes) // bytes_per_line)
+    ]
 
     return b"".join(new_data)
 
@@ -141,15 +130,11 @@ def _toqclass_helper(im):
         format = qt_format.Format_Mono
     elif im.mode == "L":
         format = qt_format.Format_Indexed8
-        colortable = []
-        for i in range(256):
-            colortable.append(rgb(i, i, i))
+        colortable = [rgb(i, i, i) for i in range(256)]
     elif im.mode == "P":
         format = qt_format.Format_Indexed8
-        colortable = []
         palette = im.getpalette()
-        for i in range(0, len(palette), 3):
-            colortable.append(rgb(*palette[i : i + 3]))
+        colortable = [rgb(*palette[i : i + 3]) for i in range(0, len(palette), 3)]
     elif im.mode == "RGB":
         # Populate the 4th channel with 255
         im = im.convert("RGBA")
@@ -208,9 +193,5 @@ def toqimage(im):
 
 
 def toqpixmap(im):
-    # # This doesn't work. For now using a dumb approach.
-    # im_data = _toqclass_helper(im)
-    # result = QPixmap(im_data["size"][0], im_data["size"][1])
-    # result.loadFromData(im_data["data"])
     qimage = toqimage(im)
     return QPixmap.fromImage(qimage)

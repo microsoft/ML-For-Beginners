@@ -82,6 +82,7 @@ def test_curvelinear4():
         tick_formatter1=angle_helper.FormatterDMS(),
         tick_formatter2=None)
     ax1 = fig.add_subplot(axes_class=FloatingAxes, grid_helper=grid_helper)
+    ax1.clear()  # Check that clear() also restores the correct limits on ax1.
 
     ax1.axis["left"].label.set_text("Test 1")
     ax1.axis["right"].label.set_text("Test 2")

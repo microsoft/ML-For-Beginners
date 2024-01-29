@@ -8,6 +8,7 @@ from pandas import (
     DataFrame,
     Series,
     _testing as tm,
+    option_context,
 )
 
 
@@ -56,7 +57,8 @@ def test_string_array(nullable_string_dtype, any_string_method):
         columns = expected.select_dtypes(include="object").columns
         assert all(result[columns].dtypes == nullable_string_dtype)
         result[columns] = result[columns].astype(object)
-        expected[columns] = expected[columns].fillna(NA)  # GH#18463
+        with option_context("future.no_silent_downcasting", True):
+            expected[columns] = expected[columns].fillna(NA)  # GH#18463
 
     tm.assert_equal(result, expected)
 

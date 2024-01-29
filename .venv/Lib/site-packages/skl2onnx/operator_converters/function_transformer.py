@@ -31,6 +31,7 @@ def convert_sklearn_function_transformer(
             [i.full_name for i in operator.inputs],
             operator.outputs[0].full_name,
             container,
+            axis=1,
         )
 
 

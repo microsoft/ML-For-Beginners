@@ -29,7 +29,10 @@ from pandas._libs.tslibs.offsets import (
     YearBegin,
     YearEnd,
 )
+from pandas.errors import PerformanceWarning
 
+from pandas import DatetimeIndex
+import pandas._testing as tm
 from pandas.util.version import Version
 
 # error: Module has no attribute "__version__"
@@ -82,6 +85,29 @@ class TestDST:
 
     def _test_offset(self, offset_name, offset_n, tstart, expected_utc_offset):
         offset = DateOffset(**{offset_name: offset_n})
+
+        if (
+            offset_name in ["hour", "minute", "second", "microsecond"]
+            and offset_n == 1
+            and tstart == Timestamp("2013-11-03 01:59:59.999999-0500", tz="US/Eastern")
+        ):
+            # This addition results in an ambiguous wall time
+            err_msg = {
+                "hour": "2013-11-03 01:59:59.999999",
+                "minute": "2013-11-03 01:01:59.999999",
+                "second": "2013-11-03 01:59:01.999999",
+                "microsecond": "2013-11-03 01:59:59.000001",
+            }[offset_name]
+            with pytest.raises(pytz.AmbiguousTimeError, match=err_msg):
+                tstart + offset
+            # While we're here, let's check that we get the same behavior in a
+            #  vectorized path
+            dti = DatetimeIndex([tstart])
+            warn_msg = "Non-vectorized DateOffset"
+            with pytest.raises(pytz.AmbiguousTimeError, match=err_msg):
+                with tm.assert_produces_warning(PerformanceWarning, match=warn_msg):
+                    dti + offset
+            return
 
         t = tstart + offset
         if expected_utc_offset is not None:

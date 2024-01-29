@@ -2,7 +2,6 @@ _accessstrings = {0: "", 1: "readonly", 2: "executeonly", 3: "noaccess"}
 
 
 class ps_object(object):
-
     literal = 1
     access = 0
     value = None
@@ -16,7 +15,6 @@ class ps_object(object):
 
 
 class ps_operator(ps_object):
-
     literal = 0
 
     def __init__(self, name, function):

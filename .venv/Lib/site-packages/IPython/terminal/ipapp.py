@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # encoding: utf-8
 """
 The :class:`~traitlets.config.application.Application` object for the command
@@ -337,7 +336,3 @@ def load_default_config(ipython_dir=None):
     return app.config
 
 launch_new_instance = TerminalIPythonApp.launch_instance
-
-
-if __name__ == '__main__':
-    launch_new_instance()

@@ -18,6 +18,7 @@ from ..utils import (
 )
 from ..utils._mask import _get_mask
 from ..utils._param_validation import HasMethods, Interval, StrOptions
+from ..utils.metadata_routing import _RoutingNotSupportedMixin
 from ..utils.validation import FLOAT_DTYPES, _check_feature_names_in, check_is_fitted
 from ._base import SimpleImputer, _BaseImputer, _check_inputs_dtype
 
@@ -46,7 +47,7 @@ def _assign_where(X1, X2, cond):
         X1[cond] = X2[cond]
 
 
-class IterativeImputer(_BaseImputer):
+class IterativeImputer(_RoutingNotSupportedMixin, _BaseImputer):
     """Multivariate imputer that estimates each feature from all the others.
 
     A strategy for imputing missing values by modeling each feature with
@@ -273,6 +274,10 @@ class IterativeImputer(_BaseImputer):
     array([[ 6.9584...,  2.       ,  3.        ],
            [ 4.       ,  2.6000...,  6.        ],
            [10.       ,  4.9999...,  9.        ]])
+
+    For a more detailed example see
+    :ref:`sphx_glr_auto_examples_impute_plot_missing_values.py` or
+    :ref:`sphx_glr_auto_examples_impute_plot_iterative_imputer_variants_comparison.py`.
     """
 
     _parameter_constraints: dict = {

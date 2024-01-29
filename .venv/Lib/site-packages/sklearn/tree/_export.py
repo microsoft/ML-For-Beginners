@@ -78,8 +78,8 @@ SENTINEL = Sentinel()
     {
         "decision_tree": [DecisionTreeClassifier, DecisionTreeRegressor],
         "max_depth": [Interval(Integral, 0, None, closed="left"), None],
-        "feature_names": [list, None],
-        "class_names": [list, None],
+        "feature_names": ["array-like", None],
+        "class_names": ["array-like", "boolean", None],
         "label": [StrOptions({"all", "root", "none"})],
         "filled": ["boolean"],
         "impurity": ["boolean"],
@@ -130,11 +130,11 @@ def plot_tree(
         The maximum depth of the representation. If None, the tree is fully
         generated.
 
-    feature_names : list of str, default=None
+    feature_names : array-like of str, default=None
         Names of each of the features.
         If None, generic names will be used ("x[0]", "x[1]", ...).
 
-    class_names : list of str or bool, default=None
+    class_names : array-like of str or True, default=None
         Names of each of the target classes in ascending numerical order.
         Only relevant for classification and not supported for multi-output.
         If ``True``, shows a symbolic representation of the class name.
@@ -271,14 +271,15 @@ class _BaseTreeExporter:
                 # Find max and min values in leaf nodes for regression
                 self.colors["bounds"] = (np.min(tree.value), np.max(tree.value))
         if tree.n_outputs == 1:
-            node_val = tree.value[node_id][0, :] / tree.weighted_n_node_samples[node_id]
-            if tree.n_classes[0] == 1:
-                # Regression or degraded classification with single class
-                node_val = tree.value[node_id][0, :]
-                if isinstance(node_val, Iterable) and self.colors["bounds"] is not None:
-                    # Only unpack the float only for the regression tree case.
-                    # Classification tree requires an Iterable in `get_color`.
-                    node_val = node_val.item()
+            node_val = tree.value[node_id][0, :]
+            if (
+                tree.n_classes[0] == 1
+                and isinstance(node_val, Iterable)
+                and self.colors["bounds"] is not None
+            ):
+                # Unpack the float only for the regression tree case.
+                # Classification tree requires an Iterable in `get_color`.
+                node_val = node_val.item()
         else:
             # If multi-output color node by impurity
             node_val = -tree.impurity[node_id]
@@ -347,9 +348,9 @@ class _BaseTreeExporter:
             node_string += str(tree.n_node_samples[node_id]) + characters[4]
 
         # Write node class distribution / regression value
-        if self.proportion and tree.n_classes[0] != 1:
+        if not self.proportion and tree.n_classes[0] != 1:
             # For classification this will show the proportion of samples
-            value = value / tree.weighted_n_node_samples[node_id]
+            value = value * tree.weighted_n_node_samples[node_id]
         if labels:
             node_string += "value = "
         if tree.n_classes[0] == 1:
@@ -1072,14 +1073,20 @@ def export_text(
 
     export_text.report = ""
 
-    def _add_leaf(value, class_name, indent):
+    def _add_leaf(value, weighted_n_node_samples, class_name, indent):
         val = ""
-        is_classification = isinstance(decision_tree, DecisionTreeClassifier)
-        if show_weights or not is_classification:
+        if isinstance(decision_tree, DecisionTreeClassifier):
+            if show_weights:
+                val = [
+                    "{1:.{0}f}, ".format(decimals, v * weighted_n_node_samples)
+                    for v in value
+                ]
+                val = "[" + "".join(val)[:-2] + "]"
+                weighted_n_node_samples
+            val += " class: " + str(class_name)
+        else:
             val = ["{1:.{0}f}, ".format(decimals, v) for v in value]
             val = "[" + "".join(val)[:-2] + "]"
-        if is_classification:
-            val += " class: " + str(class_name)
         export_text.report += value_fmt.format(indent, "", val)
 
     def print_tree_recurse(node, depth):
@@ -1095,6 +1102,8 @@ def export_text(
 
         if tree_.n_classes[0] != 1 and tree_.n_outputs == 1:
             class_name = class_names[class_name]
+
+        weighted_n_node_samples = tree_.weighted_n_node_samples[node]
 
         if depth <= max_depth + 1:
             info_fmt = ""
@@ -1113,11 +1122,11 @@ def export_text(
                 export_text.report += info_fmt_right
                 print_tree_recurse(tree_.children_right[node], depth + 1)
             else:  # leaf
-                _add_leaf(value, class_name, indent)
+                _add_leaf(value, weighted_n_node_samples, class_name, indent)
         else:
             subtree_depth = _compute_depth(tree_, node)
             if subtree_depth == 1:
-                _add_leaf(value, class_name, indent)
+                _add_leaf(value, weighted_n_node_samples, class_name, indent)
             else:
                 trunc_report = "truncated branch of depth %d" % subtree_depth
                 export_text.report += truncation_fmt.format(indent, trunc_report)

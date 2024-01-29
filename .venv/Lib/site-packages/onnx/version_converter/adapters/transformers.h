@@ -7,6 +7,9 @@
 #pragma once
 
 #include <cinttypes>
+#include <string>
+#include <utility>
+#include <vector>
 
 // Node transformers commonly used in version-adapters:
 

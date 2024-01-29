@@ -5,8 +5,8 @@ Default legend handlers.
 
     This is a low-level legend API, which most end users do not need.
 
-    We recommend that you are familiar with the :doc:`legend guide
-    </tutorials/intermediate/legend_guide>` before reading this documentation.
+    We recommend that you are familiar with the :ref:`legend guide
+    <legend_guide>` before reading this documentation.
 
 Legend handlers are expected to be a callable object with a following
 signature::
@@ -31,7 +31,7 @@ from itertools import cycle
 
 import numpy as np
 
-from matplotlib import _api, cbook
+from matplotlib import cbook
 from matplotlib.lines import Line2D
 from matplotlib.patches import Rectangle
 import matplotlib.collections as mcoll
@@ -63,7 +63,6 @@ class HandlerBase:
         """
         Parameters
         ----------
-
         xpad : float, optional
             Padding in x-direction.
         ypad : float, optional
@@ -156,7 +155,7 @@ class HandlerBase:
         fontsize : int
             The fontsize in pixels. The legend artists being created should
             be scaled according to the given fontsize.
-        trans :  `~matplotlib.transforms.Transform`
+        trans : `~matplotlib.transforms.Transform`
             The transform that is applied to the legend artists being created.
             Typically from unit coordinates in the handler box to screen
             coordinates.
@@ -472,7 +471,6 @@ class HandlerRegularPolyCollection(HandlerNpointsYoffsets):
         legend_handle.set_clip_box(None)
         legend_handle.set_clip_path(None)
 
-    @_api.rename_parameter("3.6", "transOffset", "offset_transform")
     def create_collection(self, orig_handle, sizes, offsets, offset_transform):
         return type(orig_handle)(
             orig_handle.get_numsides(),
@@ -505,7 +503,6 @@ class HandlerRegularPolyCollection(HandlerNpointsYoffsets):
 class HandlerPathCollection(HandlerRegularPolyCollection):
     r"""Handler for `.PathCollection`\s, which are used by `~.Axes.scatter`."""
 
-    @_api.rename_parameter("3.6", "transOffset", "offset_transform")
     def create_collection(self, orig_handle, sizes, offsets, offset_transform):
         return type(orig_handle)(
             [orig_handle.get_paths()[0]], sizes=sizes,
@@ -516,7 +513,6 @@ class HandlerPathCollection(HandlerRegularPolyCollection):
 class HandlerCircleCollection(HandlerRegularPolyCollection):
     r"""Handler for `.CircleCollection`\s."""
 
-    @_api.rename_parameter("3.6", "transOffset", "offset_transform")
     def create_collection(self, orig_handle, sizes, offsets, offset_transform):
         return type(orig_handle)(
             sizes, offsets=offsets, offset_transform=offset_transform)
@@ -729,7 +725,7 @@ class HandlerTuple(HandlerBase):
         """
         Parameters
         ----------
-        ndivide : int, default: 1
+        ndivide : int or None, default: 1
             The number of sections to divide the legend area into.  If None,
             use the length of the input tuple.
         pad : float, default: :rc:`legend.borderpad`

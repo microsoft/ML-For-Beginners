@@ -16,6 +16,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import shuffle
+from sklearn.utils.fixes import trapezoid
 
 # TODO: Remove when https://github.com/numpy/numpy/issues/14397 is resolved
 pytestmark = pytest.mark.filterwarnings(
@@ -73,6 +74,9 @@ def test_precision_recall_display_plotting(
 
     assert display.ax_.get_xlabel() == "Recall (Positive label: 1)"
     assert display.ax_.get_ylabel() == "Precision (Positive label: 1)"
+    assert display.ax_.get_adjustable() == "box"
+    assert display.ax_.get_aspect() in ("equal", 1.0)
+    assert display.ax_.get_xlim() == display.ax_.get_ylim() == (-0.01, 1.01)
 
     # plotting passing some new parameters
     display.plot(alpha=0.8, name="MySpecialEstimator")
@@ -286,7 +290,7 @@ def test_plot_precision_recall_pos_label(pyplot, constructor_name, response_meth
     # we should obtain the statistics of the "cancer" class
     avg_prec_limit = 0.65
     assert display.average_precision < avg_prec_limit
-    assert -np.trapz(display.precision, display.recall) < avg_prec_limit
+    assert -trapezoid(display.precision, display.recall) < avg_prec_limit
 
     # otherwise we should obtain the statistics of the "not cancer" class
     if constructor_name == "from_estimator":
@@ -305,7 +309,7 @@ def test_plot_precision_recall_pos_label(pyplot, constructor_name, response_meth
         )
     avg_prec_limit = 0.95
     assert display.average_precision > avg_prec_limit
-    assert -np.trapz(display.precision, display.recall) > avg_prec_limit
+    assert -trapezoid(display.precision, display.recall) > avg_prec_limit
 
 
 @pytest.mark.parametrize("constructor_name", ["from_estimator", "from_predictions"])

@@ -681,14 +681,16 @@ def test_partition_sep_kwarg(any_string_dtype, method):
 def test_get():
     ser = Series(["a_b_c", "c_d_e", np.nan, "f_g_h"])
     result = ser.str.split("_").str.get(1)
-    expected = Series(["b", "d", np.nan, "g"])
+    expected = Series(["b", "d", np.nan, "g"], dtype=object)
     tm.assert_series_equal(result, expected)
 
 
 def test_get_mixed_object():
     ser = Series(["a_b_c", np.nan, "c_d_e", True, datetime.today(), None, 1, 2.0])
     result = ser.str.split("_").str.get(1)
-    expected = Series(["b", np.nan, "d", np.nan, np.nan, None, np.nan, np.nan])
+    expected = Series(
+        ["b", np.nan, "d", np.nan, np.nan, None, np.nan, np.nan], dtype=object
+    )
     tm.assert_series_equal(result, expected)
 
 
@@ -696,7 +698,7 @@ def test_get_mixed_object():
 def test_get_bounds(idx):
     ser = Series(["1_2_3_4_5", "6_7_8_9_10", "11_12"])
     result = ser.str.split("_").str.get(idx)
-    expected = Series(["3", "8", np.nan])
+    expected = Series(["3", "8", np.nan], dtype=object)
     tm.assert_series_equal(result, expected)
 
 

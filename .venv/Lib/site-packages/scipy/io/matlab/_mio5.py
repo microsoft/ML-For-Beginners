@@ -152,7 +152,7 @@ class MatFile5Reader(MatFileReader):
     uint16_codec - char codec to use for uint16 char arrays
         (defaults to system default codec)
 
-    Uses variable reader that has the following stardard interface (see
+    Uses variable reader that has the following standard interface (see
     abstract class in ``miobase``::
 
        __init__(self, file_reader)
@@ -330,8 +330,7 @@ class MatFile5Reader(MatFileReader):
                 res = self.read_var_array(hdr, process)
             except MatReadError as err:
                 warnings.warn(
-                    'Unreadable variable "%s", because "%s"' %
-                    (name, err),
+                    f'Unreadable variable "{name}", because "{err}"',
                     Warning, stacklevel=2)
                 res = "Read error: %s" % err
             self.mat_stream.seek(next_position)
@@ -403,10 +402,9 @@ def varmats_from_mat(file_obj):
     Examples
     --------
     >>> import scipy.io
-
-    BytesIO is from the ``io`` module in Python 3, and is ``cStringIO`` for
-    Python < 3.
-
+    >>> import numpy as np
+    >>> from io import BytesIO
+    >>> from scipy.io.matlab._mio5 import varmats_from_mat
     >>> mat_fileobj = BytesIO()
     >>> scipy.io.savemat(mat_fileobj, {'b': np.arange(10), 'a': 'a string'})
     >>> varmats = varmats_from_mat(mat_fileobj)
@@ -534,7 +532,7 @@ class VarWriter5:
             mdtype = NP_TO_MTYPES[arr.dtype.str[1:]]
         # Array needs to be in native byte order
         if arr.dtype.byteorder == swapped_code:
-            arr = arr.byteswap().newbyteorder()
+            arr = arr.byteswap().view(arr.dtype.newbyteorder())
         byte_count = arr.size*arr.itemsize
         if byte_count <= 4:
             self.write_smalldata_element(arr, mdtype, byte_count)
@@ -653,8 +651,7 @@ class VarWriter5:
         # Try to convert things that aren't arrays
         narr = to_writeable(arr)
         if narr is None:
-            raise TypeError('Could not convert %s (type %s) to array'
-                            % (arr, type(arr)))
+            raise TypeError(f'Could not convert {arr} (type {type(arr)}) to array')
         if isinstance(narr, MatlabObject):
             self.write_object(narr)
         elif isinstance(narr, MatlabFunction):
@@ -846,8 +843,8 @@ class MatFile5Writer:
     def write_file_header(self):
         # write header
         hdr = np.zeros((), NDT_FILE_HDR)
-        hdr['description'] = 'MATLAB 5.0 MAT-file Platform: %s, Created on: %s' \
-            % (os.name,time.asctime())
+        hdr['description'] = (f'MATLAB 5.0 MAT-file Platform: {os.name}, '
+                              f'Created on: {time.asctime()}')
         hdr['version'] = 0x0100
         hdr['endian_test'] = np.ndarray(shape=(),
                                       dtype='S2',

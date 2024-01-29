@@ -4,6 +4,7 @@ __all__ = [
     "normalizeValue",
     "normalizeLocation",
     "supportScalar",
+    "piecewiseLinearMap",
     "VariationModel",
 ]
 
@@ -248,7 +249,6 @@ class VariationModel(object):
     """
 
     def __init__(self, locations, axisOrder=None, extrapolate=False):
-
         if len(set(tuple(sorted(l.items())) for l in locations)) != len(locations):
             raise VariationModelError("Locations must be unique.")
 
@@ -271,6 +271,12 @@ class VariationModel(object):
         self._subModels = {}
 
     def getSubModel(self, items):
+        """Return a sub-model and the items that are not None.
+
+        The sub-model is necessary for working with the subset
+        of items when some are None.
+
+        The sub-model is cached."""
         if None not in items:
             return self, items
         key = tuple(v is not None for v in items)
@@ -465,6 +471,10 @@ class VariationModel(object):
         return model.getDeltas(items, round=round), model.supports
 
     def getScalars(self, loc):
+        """Return scalars for each delta, for the given location.
+        If interpolating many master-values at the same location,
+        this function allows speed up by fetching the scalars once
+        and using them with interpolateFromMastersAndScalars()."""
         return [
             supportScalar(
                 loc, support, extrapolate=self.extrapolate, axisRanges=self.axisRanges
@@ -472,29 +482,65 @@ class VariationModel(object):
             for support in self.supports
         ]
 
+    def getMasterScalars(self, targetLocation):
+        """Return multipliers for each master, for the given location.
+        If interpolating many master-values at the same location,
+        this function allows speed up by fetching the scalars once
+        and using them with interpolateFromValuesAndScalars().
+
+        Note that the scalars used in interpolateFromMastersAndScalars(),
+        are *not* the same as the ones returned here. They are the result
+        of getScalars()."""
+        out = self.getScalars(targetLocation)
+        for i, weights in reversed(list(enumerate(self.deltaWeights))):
+            for j, weight in weights.items():
+                out[j] -= out[i] * weight
+
+        out = [out[self.mapping[i]] for i in range(len(out))]
+        return out
+
     @staticmethod
-    def interpolateFromDeltasAndScalars(deltas, scalars):
+    def interpolateFromValuesAndScalars(values, scalars):
+        """Interpolate from values and scalars coefficients.
+
+        If the values are master-values, then the scalars should be
+        fetched from getMasterScalars().
+
+        If the values are deltas, then the scalars should be fetched
+        from getScalars(); in which case this is the same as
+        interpolateFromDeltasAndScalars().
+        """
         v = None
-        assert len(deltas) == len(scalars)
-        for delta, scalar in zip(deltas, scalars):
+        assert len(values) == len(scalars)
+        for value, scalar in zip(values, scalars):
             if not scalar:
                 continue
-            contribution = delta * scalar
+            contribution = value * scalar
             if v is None:
                 v = contribution
             else:
                 v += contribution
         return v
 
+    @staticmethod
+    def interpolateFromDeltasAndScalars(deltas, scalars):
+        """Interpolate from deltas and scalars fetched from getScalars()."""
+        return VariationModel.interpolateFromValuesAndScalars(deltas, scalars)
+
     def interpolateFromDeltas(self, loc, deltas):
+        """Interpolate from deltas, at location loc."""
         scalars = self.getScalars(loc)
         return self.interpolateFromDeltasAndScalars(deltas, scalars)
 
     def interpolateFromMasters(self, loc, masterValues, *, round=noRound):
-        deltas = self.getDeltas(masterValues, round=round)
-        return self.interpolateFromDeltas(loc, deltas)
+        """Interpolate from master-values, at location loc."""
+        scalars = self.getMasterScalars(loc)
+        return self.interpolateFromValuesAndScalars(masterValues, scalars)
 
     def interpolateFromMastersAndScalars(self, masterValues, scalars, *, round=noRound):
+        """Interpolate from master-values, and scalars fetched from
+        getScalars(), which is useful when you want to interpolate
+        multiple master-values with the same location."""
         deltas = self.getDeltas(masterValues, round=round)
         return self.interpolateFromDeltasAndScalars(deltas, scalars)
 

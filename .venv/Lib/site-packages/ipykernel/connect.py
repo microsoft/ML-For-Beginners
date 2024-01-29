@@ -2,17 +2,21 @@
 """
 # Copyright (c) IPython Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
 
 import json
 import sys
 from subprocess import PIPE, Popen
-from typing import Any, Dict
+from typing import TYPE_CHECKING, Any
 
 import jupyter_client
 from jupyter_client import write_connection_file
 
+if TYPE_CHECKING:
+    from ipykernel.kernelapp import IPKernelApp
 
-def get_connection_file(app=None):
+
+def get_connection_file(app: IPKernelApp | None = None) -> str:
     """Return the path to the connection file of an app
 
     Parameters
@@ -42,11 +46,12 @@ def _find_connection_file(connection_file):
     if connection_file is None:
         # get connection file from current kernel
         return get_connection_file()
-    else:
-        return jupyter_client.find_connection_file(connection_file)
+    return jupyter_client.find_connection_file(connection_file)
 
 
-def get_connection_info(connection_file=None, unpack=False):
+def get_connection_info(
+    connection_file: str | None = None, unpack: bool = False
+) -> str | dict[str, Any]:
     """Return the connection information for the current Kernel.
 
     Parameters
@@ -77,12 +82,14 @@ def get_connection_info(connection_file=None, unpack=False):
         info = json.loads(info_str)
         # ensure key is bytes:
         info["key"] = info.get("key", "").encode()
-        return info
+        return info  # type:ignore[no-any-return]
 
     return info_str
 
 
-def connect_qtconsole(connection_file=None, argv=None):
+def connect_qtconsole(
+    connection_file: str | None = None, argv: list[str] | None = None
+) -> Popen[Any]:
     """Connect a qtconsole to the current kernel.
 
     This is useful for connecting a second qtconsole to a kernel, or to a
@@ -111,13 +118,13 @@ def connect_qtconsole(connection_file=None, argv=None):
 
     cmd = ";".join(["from qtconsole import qtconsoleapp", "qtconsoleapp.main()"])
 
-    kwargs: Dict[str, Any] = {}
+    kwargs: dict[str, Any] = {}
     # Launch the Qt console in a separate session & process group, so
     # interrupting the kernel doesn't kill it.
     kwargs["start_new_session"] = True
 
     return Popen(
-        [sys.executable, "-c", cmd, "--existing", cf, *argv],  # noqa
+        [sys.executable, "-c", cmd, "--existing", cf, *argv],
         stdout=PIPE,
         stderr=PIPE,
         close_fds=(sys.platform != "win32"),

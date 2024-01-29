@@ -2,8 +2,7 @@
 # Use the `scipy.special` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _orthogonal
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 _polyfuns = ['legendre', 'chebyt', 'chebyu', 'chebyc', 'chebys',
@@ -43,13 +42,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.special.orthogonal is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.special instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.special` namespace, "
-                  "the `scipy.special.orthogonal` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_orthogonal, name)
+    return _sub_module_deprecation(sub_package="special", module="orthogonal",
+                                   private_modules=["_orthogonal"], all=__all__,
+                                   attribute=name)

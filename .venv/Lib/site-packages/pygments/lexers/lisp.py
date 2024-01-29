@@ -471,6 +471,16 @@ class CommonLispLexer(RegexLexer):
         ],
     }
 
+    def analyse_text(text):
+        """Competes with Visual Prolog on *.cl"""
+        # This is a *really* good indicator (and not conflicting with Visual Prolog)
+        # '(defun ' first on a line
+        # section keyword alone on line e.g. 'clauses'
+        if re.search(r'^\s*\(defun\s', text):
+            return 0.8
+        else:
+            return 0
+
 
 class HyLexer(RegexLexer):
     """

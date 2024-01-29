@@ -22,7 +22,7 @@ from ..base import (
 )
 from ..utils import check_random_state, gen_even_slices
 from ..utils._param_validation import Interval
-from ..utils.extmath import log_logistic, safe_sparse_dot
+from ..utils.extmath import safe_sparse_dot
 from ..utils.validation import check_is_fitted
 
 
@@ -370,14 +370,18 @@ class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
         ind = (np.arange(v.shape[0]), rng.randint(0, v.shape[1], v.shape[0]))
         if sp.issparse(v):
             data = -2 * v[ind] + 1
-            v_ = v + sp.csr_matrix((data.A.ravel(), ind), shape=v.shape)
+            if isinstance(data, np.matrix):  # v is a sparse matrix
+                v_ = v + sp.csr_matrix((data.A.ravel(), ind), shape=v.shape)
+            else:  # v is a sparse array
+                v_ = v + sp.csr_array((data.ravel(), ind), shape=v.shape)
         else:
             v_ = v.copy()
             v_[ind] = 1 - v_[ind]
 
         fe = self._free_energy(v)
         fe_ = self._free_energy(v_)
-        return v.shape[1] * log_logistic(fe_ - fe)
+        # log(expit(x)) = log(1 / (1 + exp(-x)) = -np.logaddexp(0, -x)
+        return -v.shape[1] * np.logaddexp(0, -(fe_ - fe))
 
     @_fit_context(prefer_skip_nested_validation=True)
     def fit(self, X, y=None):

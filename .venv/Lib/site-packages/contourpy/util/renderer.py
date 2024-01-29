@@ -33,7 +33,7 @@ class Renderer(ABC):
     def filled(
         self,
         filled: FillReturn,
-        fill_type: FillType,
+        fill_type: FillType | str,
         ax: Any = 0,
         color: str = "C0",
         alpha: float = 0.7,
@@ -57,7 +57,7 @@ class Renderer(ABC):
     def lines(
         self,
         lines: LineReturn,
-        line_type: LineType,
+        line_type: LineType | str,
         ax: Any = 0,
         color: str = "C0",
         alpha: float = 1.0,

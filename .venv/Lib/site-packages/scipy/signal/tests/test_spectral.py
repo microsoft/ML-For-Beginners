@@ -9,9 +9,15 @@ from pytest import raises as assert_raises
 
 from scipy import signal
 from scipy.fft import fftfreq
-from scipy.signal import (periodogram, welch, lombscargle, csd, coherence,
-                          spectrogram, stft, istft, check_COLA, check_NOLA)
+from scipy.integrate import trapezoid
+from scipy.signal import (periodogram, welch, lombscargle, coherence,
+                          spectrogram, check_COLA, check_NOLA)
 from scipy.signal._spectral_py import _spectral_helper
+
+# Compare ShortTimeFFT.stft() / ShortTimeFFT.istft() with stft() / istft():
+from scipy.signal.tests._scipy_spectral_test_shim import stft_compare as stft
+from scipy.signal.tests._scipy_spectral_test_shim import istft_compare as istft
+from scipy.signal.tests._scipy_spectral_test_shim import csd_compare as csd
 
 
 class TestPeriodogram:
@@ -409,7 +415,8 @@ class TestWelch:
         #for string-like window, input signal length < nperseg value gives
         #UserWarning, sets nperseg to x.shape[-1]
         with suppress_warnings() as sup:
-            sup.filter(UserWarning, "nperseg = 256 is greater than input length  = 8, using nperseg = 8")
+            msg = "nperseg = 256 is greater than input length  = 8, using nperseg = 8"
+            sup.filter(UserWarning, msg)
             f, p = welch(x,window='hann')  # default nperseg
             f1, p1 = welch(x,window='hann', nperseg=256)  # user-specified nperseg
         f2, p2 = welch(x, nperseg=8)  # valid nperseg, doesn't give warning
@@ -520,7 +527,7 @@ class TestWelch:
             # Check peak height at signal frequency for 'spectrum'
             assert_allclose(p_spec[ii], A**2/2.0)
             # Check integrated spectrum RMS for 'density'
-            assert_allclose(np.sqrt(np.trapz(p_dens, freq)), A*np.sqrt(2)/2,
+            assert_allclose(np.sqrt(trapezoid(p_dens, freq)), A*np.sqrt(2)/2,
                             rtol=1e-3)
 
     def test_axis_rolling(self):
@@ -771,7 +778,8 @@ class TestCSD:
         #for string-like window, input signal length < nperseg value gives
         #UserWarning, sets nperseg to x.shape[-1]
         with suppress_warnings() as sup:
-            sup.filter(UserWarning, "nperseg = 256 is greater than input length  = 8, using nperseg = 8")
+            msg = "nperseg = 256 is greater than input length  = 8, using nperseg = 8"
+            sup.filter(UserWarning, msg)
             f, p = csd(x, x, window='hann')  # default nperseg
             f1, p1 = csd(x, x, window='hann', nperseg=256)  # user-specified nperseg
         f2, p2 = csd(x, x, nperseg=8)  # valid nperseg, doesn't give warning
@@ -950,7 +958,8 @@ class TestSpectrogram:
         f, _, p = spectrogram(x, fs, window=('tukey',0.25))  # default nperseg
         with suppress_warnings() as sup:
             sup.filter(UserWarning,
-                       "nperseg = 1025 is greater than input length  = 1024, using nperseg = 1024")
+                       "nperseg = 1025 is greater than input length  = 1024, "
+                       "using nperseg = 1024",)
             f1, _, p1 = spectrogram(x, fs, window=('tukey',0.25),
                                     nperseg=1025)  # user-specified nperseg
         f2, _, p2 = spectrogram(x, fs, nperseg=256)  # to compare w/default

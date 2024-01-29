@@ -450,10 +450,11 @@ class TestApproxDerivativesDense:
 
         # parameter vector is float64, func output is float32
         def err_fp32(p):
+            assert p.dtype == np.float32
             return err(p, x, y).astype(np.float32)
-        jac_fp = approx_derivative(err_fp32, p0,
+
+        jac_fp = approx_derivative(err_fp32, p0.astype(np.float32),
                                    method='2-point')
-        assert err_fp32(p0).dtype == np.float32
         assert_allclose(jac_fp, jac_fp64, atol=1e-3)
 
         # check upper bound of error on the derivative for 2-point

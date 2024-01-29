@@ -31,11 +31,6 @@ frame_mi_data = ({"A": [1, 2, 3, 4]}, mi)
 # - Callable: pass the constructed value with attrs set to this.
 
 _all_methods = [
-    (
-        pd.Series,
-        (np.array([0], dtype="float64")),
-        operator.methodcaller("view", "int64"),
-    ),
     (pd.Series, ([0],), operator.methodcaller("take", [])),
     (pd.Series, ([0],), operator.methodcaller("__getitem__", [True])),
     (pd.Series, ([0],), operator.methodcaller("repeat", 2)),
@@ -281,12 +276,12 @@ _all_methods = [
     (
         pd.Series,
         (1, pd.date_range("2000", periods=4)),
-        operator.methodcaller("asfreq", "H"),
+        operator.methodcaller("asfreq", "h"),
     ),
     (
         pd.DataFrame,
         ({"A": [1, 1, 1, 1]}, pd.date_range("2000", periods=4)),
-        operator.methodcaller("asfreq", "H"),
+        operator.methodcaller("asfreq", "h"),
     ),
     (
         pd.Series,
@@ -490,7 +485,7 @@ def test_binops(request, args, annotate, all_binary_operators):
     if not (isinstance(left, int) or isinstance(right, int)) and annotate != "both":
         if not all_binary_operators.__name__.startswith("r"):
             if annotate == "right" and isinstance(left, type(right)):
-                request.node.add_marker(
+                request.applymarker(
                     pytest.mark.xfail(
                         reason=f"{all_binary_operators} doesn't work when right has "
                         f"attrs and both are {type(left)}"
@@ -498,14 +493,14 @@ def test_binops(request, args, annotate, all_binary_operators):
                 )
             if not isinstance(left, type(right)):
                 if annotate == "left" and isinstance(left, pd.Series):
-                    request.node.add_marker(
+                    request.applymarker(
                         pytest.mark.xfail(
                             reason=f"{all_binary_operators} doesn't work when the "
                             "objects are different Series has attrs"
                         )
                     )
                 elif annotate == "right" and isinstance(right, pd.Series):
-                    request.node.add_marker(
+                    request.applymarker(
                         pytest.mark.xfail(
                             reason=f"{all_binary_operators} doesn't work when the "
                             "objects are different Series has attrs"
@@ -513,7 +508,7 @@ def test_binops(request, args, annotate, all_binary_operators):
                     )
         else:
             if annotate == "left" and isinstance(left, type(right)):
-                request.node.add_marker(
+                request.applymarker(
                     pytest.mark.xfail(
                         reason=f"{all_binary_operators} doesn't work when left has "
                         f"attrs and both are {type(left)}"
@@ -521,14 +516,14 @@ def test_binops(request, args, annotate, all_binary_operators):
                 )
             if not isinstance(left, type(right)):
                 if annotate == "right" and isinstance(right, pd.Series):
-                    request.node.add_marker(
+                    request.applymarker(
                         pytest.mark.xfail(
                             reason=f"{all_binary_operators} doesn't work when the "
                             "objects are different Series has attrs"
                         )
                     )
                 elif annotate == "left" and isinstance(left, pd.Series):
-                    request.node.add_marker(
+                    request.applymarker(
                         pytest.mark.xfail(
                             reason=f"{all_binary_operators} doesn't work when the "
                             "objects are different Series has attrs"
@@ -628,9 +623,9 @@ def test_string_method(method):
         operator.methodcaller("tz_localize", "CET"),
         operator.methodcaller("normalize"),
         operator.methodcaller("strftime", "%Y"),
-        operator.methodcaller("round", "H"),
-        operator.methodcaller("floor", "H"),
-        operator.methodcaller("ceil", "H"),
+        operator.methodcaller("round", "h"),
+        operator.methodcaller("floor", "h"),
+        operator.methodcaller("ceil", "h"),
         operator.methodcaller("month_name"),
         operator.methodcaller("day_name"),
     ],

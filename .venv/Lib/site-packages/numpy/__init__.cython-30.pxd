@@ -21,7 +21,7 @@ cdef extern from *:
 
 
 cdef extern from "Python.h":
-    ctypedef Py_ssize_t Py_intptr_t
+    ctypedef int Py_intptr_t
 
 cdef extern from "numpy/arrayobject.h":
     ctypedef Py_intptr_t npy_intp
@@ -852,6 +852,7 @@ cdef extern from "numpy/arrayscalars.h":
         NPY_FR_ps
         NPY_FR_fs
         NPY_FR_as
+        NPY_FR_GENERIC
 
 
 #

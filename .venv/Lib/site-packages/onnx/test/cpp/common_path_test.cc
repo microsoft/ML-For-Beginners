@@ -6,8 +6,8 @@
 
 #include <list>
 #include <utility>
-#include "gtest/gtest.h"
 
+#include "gtest/gtest.h"
 #include "onnx/common/path.h"
 
 #ifdef _WIN32

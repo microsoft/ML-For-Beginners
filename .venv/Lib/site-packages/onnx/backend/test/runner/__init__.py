@@ -15,19 +15,7 @@ import tempfile
 import time
 import unittest
 from collections import defaultdict
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    List,
-    Optional,
-    Pattern,
-    Sequence,
-    Set,
-    Type,
-    Union,
-)
+from typing import Any, Callable, Iterable, Pattern, Sequence
 from urllib.request import urlretrieve
 
 import numpy as np
@@ -67,19 +55,23 @@ def retry_execute(times: int) -> Callable[[Callable[..., Any]], Callable[..., An
 
 class Runner:
     def __init__(
-        self, backend: Type[Backend], parent_module: Optional[str] = None
+        self,
+        backend: type[Backend],
+        parent_module: str | None = None,
+        test_kwargs: dict | None = None,
     ) -> None:
         self.backend = backend
         self._parent_module = parent_module
-        self._include_patterns: Set[Pattern[str]] = set()
-        self._exclude_patterns: Set[Pattern[str]] = set()
-        self._xfail_patterns: Set[Pattern[str]] = set()
+        self._include_patterns: set[Pattern[str]] = set()
+        self._exclude_patterns: set[Pattern[str]] = set()
+        self._xfail_patterns: set[Pattern[str]] = set()
+        self._test_kwargs: dict = test_kwargs or {}
 
         # This is the source of the truth of all test functions.
         # Properties `test_cases`, `test_suite` and `tests` will be
         # derived from it.
         # {category: {name: func}}
-        self._test_items: Dict[str, Dict[str, TestItem]] = defaultdict(dict)
+        self._test_items: dict[str, dict[str, TestItem]] = defaultdict(dict)
 
         for rt in load_model_tests(kind="node"):
             self._add_model_test(rt, "Node")
@@ -96,7 +88,7 @@ class Runner:
         for ot in load_model_tests(kind="pytorch-operator"):
             self._add_model_test(ot, "PyTorchOperator")
 
-    def _get_test_case(self, name: str) -> Type[unittest.TestCase]:
+    def _get_test_case(self, name: str) -> type[unittest.TestCase]:
         test_case = type(str(name), (unittest.TestCase,), {})
         if self._parent_module:
             test_case.__module__ = self._parent_module
@@ -123,8 +115,8 @@ class Runner:
         return self
 
     @property
-    def _filtered_test_items(self) -> Dict[str, Dict[str, TestItem]]:
-        filtered: Dict[str, Dict[str, TestItem]] = {}
+    def _filtered_test_items(self) -> dict[str, dict[str, TestItem]]:
+        filtered: dict[str, dict[str, TestItem]] = {}
         for category, items_map in self._test_items.items():
             filtered[category] = {}
             for name, item in items_map.items():
@@ -144,7 +136,7 @@ class Runner:
         return filtered
 
     @property
-    def test_cases(self) -> Dict[str, Type[unittest.TestCase]]:
+    def test_cases(self) -> dict[str, type[unittest.TestCase]]:
         """
         List of test cases to be applied on the parent scope
         Example usage:
@@ -175,7 +167,7 @@ class Runner:
 
     # For backward compatibility (we used to expose `.tests`)
     @property
-    def tests(self) -> Type[unittest.TestCase]:
+    def tests(self) -> type[unittest.TestCase]:
         """
         One single unittest.TestCase that hosts all the test functions
         Example usage:
@@ -266,8 +258,9 @@ class Runner:
         category: str,
         test_name: str,
         test_func: Callable[..., Any],
-        report_item: List[Optional[Union[ModelProto, NodeProto]]],
+        report_item: list[ModelProto | NodeProto | None],
         devices: Iterable[str] = ("CPU", "CUDA"),
+        **kwargs: Any,
     ) -> None:
         # We don't prepend the 'test_' prefix to improve greppability
         if not test_name.startswith("test_"):
@@ -285,9 +278,10 @@ class Runner:
                 f"Backend doesn't support device {device}",
             )
             @functools.wraps(test_func)
-            def device_test_func(*args: Any, **kwargs: Any) -> Any:
+            def device_test_func(*args: Any, **device_test_kwarg: Any) -> Any:
                 try:
-                    return test_func(*args, device=device, **kwargs)
+                    merged_kwargs = {**kwargs, **device_test_kwarg}
+                    return test_func(*args, device, **merged_kwargs)
                 except BackendIsNotSupposedToImplementIt as e:
                     # hacky verbose reporting
                     if "-v" in sys.argv or "--verbose" in sys.argv:
@@ -330,9 +324,9 @@ class Runner:
     def _add_model_test(self, model_test: TestCase, kind: str) -> None:
         # model is loaded at runtime, note sometimes it could even
         # never loaded if the test skipped
-        model_marker: List[Optional[Union[ModelProto, NodeProto]]] = [None]
+        model_marker: list[ModelProto | NodeProto | None] = [None]
 
-        def run(test_self: Any, device: str) -> None:
+        def run(test_self: Any, device: str, **kwargs) -> None:
             if model_test.url is not None and model_test.url.startswith(
                 "onnx/backend/test/data/light/"
             ):
@@ -379,7 +373,7 @@ class Runner:
             ):
                 raise unittest.SkipTest("Not compatible with backend")
 
-            prepared_model = self.backend.prepare(model, device)
+            prepared_model = self.backend.prepare(model, device, **kwargs)
             assert prepared_model is not None
 
             if use_dummy:
@@ -396,7 +390,7 @@ class Runner:
                 if not os.path.exists(test_data_set):
                     os.mkdir(test_data_set)
                 feeds = {}
-                inits = set(i.name for i in onx.graph.initializer)
+                inits = {i.name for i in onx.graph.initializer}
                 n_input = 0
                 inputs = []
                 for i in range(len(onx.graph.input)):
@@ -468,12 +462,21 @@ class Runner:
                     ref_outputs, outputs, rtol=model_test.rtol, atol=model_test.atol
                 )
 
-        self._add_test(kind + "Model", model_test.name, run, model_marker)
+        if model_test.name in self._test_kwargs:
+            self._add_test(
+                kind + "Model",
+                model_test.name,
+                run,
+                model_marker,
+                **self._test_kwargs[model_test.name],
+            )
+        else:
+            self._add_test(kind + "Model", model_test.name, run, model_marker)
 
     def _load_proto(
         self,
         proto_filename: str,
-        target_list: List[Union[np.ndarray, List[Any]]],
+        target_list: list[np.ndarray | list[Any]],
         model_type_proto: TypeProto,
     ) -> None:
         with open(proto_filename, "rb") as f:

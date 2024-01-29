@@ -2,8 +2,7 @@
 # Use the `scipy.constants` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _constants
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
@@ -49,13 +48,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.constants.constants is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.constants instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.constants` namespace, "
-                  "the `scipy.constants.constants` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_constants, name)
+    return _sub_module_deprecation(sub_package="constants", module="constants",
+                                   private_modules=["_constants"], all=__all__,
+                                   attribute=name)

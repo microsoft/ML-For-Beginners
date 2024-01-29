@@ -304,6 +304,7 @@ def get_environment_description(header):
             swallow_exception(
                 "Error evaluating {0}",
                 repr(expr) if expr else util.srcnameof(get_paths),
+                level="info",
             )
             return
 
@@ -360,7 +361,9 @@ def get_environment_description(header):
             for pkg in importlib_metadata.distributions():
                 report("    {0}=={1}\n", pkg.name, pkg.version)
         except Exception:  # pragma: no cover
-            swallow_exception("Error while enumerating installed packages.")
+            swallow_exception(
+                "Error while enumerating installed packages.", level="info"
+            )
 
     return "".join(result).rstrip("\n")
 

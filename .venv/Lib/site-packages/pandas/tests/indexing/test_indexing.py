@@ -8,6 +8,8 @@ import weakref
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas.errors import IndexingError
 
 from pandas.core.dtypes.common import (
@@ -189,7 +191,7 @@ class TestFancy:
         ):
             df.loc[0, "c"] = "foo"
         expected = DataFrame(
-            [{"a": 1, "b": np.nan, "c": "foo"}, {"a": 3, "b": 2, "c": np.nan}]
+            {"a": [1, 3], "b": [np.nan, 2], "c": Series(["foo", np.nan], dtype=object)}
         )
         tm.assert_frame_equal(df, expected)
 
@@ -241,8 +243,7 @@ class TestFancy:
     def test_dups_fancy_indexing(self):
         # GH 3455
 
-        df = tm.makeCustomDataframe(10, 3)
-        df.columns = ["a", "a", "b"]
+        df = DataFrame(np.eye(3), columns=["a", "a", "b"])
         result = df[["b", "a"]].columns
         expected = Index(["b", "a", "a"])
         tm.assert_index_equal(result, expected)
@@ -250,8 +251,6 @@ class TestFancy:
     def test_dups_fancy_indexing_across_dtypes(self):
         # across dtypes
         df = DataFrame([[1, 2, 1.0, 2.0, 3.0, "foo", "bar"]], columns=list("aaaaaaa"))
-        df.head()
-        str(df)
         result = DataFrame([[1, 2, 1.0, 2.0, 3.0, "foo", "bar"]])
         result.columns = list("aaaaaaa")  # GH#3468
 
@@ -286,18 +285,27 @@ class TestFancy:
         with pytest.raises(KeyError, match="not in index"):
             df.loc[rows]
 
-    def test_dups_fancy_indexing_only_missing_label(self):
+    def test_dups_fancy_indexing_only_missing_label(self, using_infer_string):
         # List containing only missing label
         dfnu = DataFrame(
             np.random.default_rng(2).standard_normal((5, 3)), index=list("AABCD")
         )
-        with pytest.raises(
-            KeyError,
-            match=re.escape(
-                "\"None of [Index(['E'], dtype='object')] are in the [index]\""
-            ),
-        ):
-            dfnu.loc[["E"]]
+        if using_infer_string:
+            with pytest.raises(
+                KeyError,
+                match=re.escape(
+                    "\"None of [Index(['E'], dtype='string')] are in the [index]\""
+                ),
+            ):
+                dfnu.loc[["E"]]
+        else:
+            with pytest.raises(
+                KeyError,
+                match=re.escape(
+                    "\"None of [Index(['E'], dtype='object')] are in the [index]\""
+                ),
+            ):
+                dfnu.loc[["E"]]
 
     @pytest.mark.parametrize("vals", [[0, 1, 2], list("abc")])
     def test_dups_fancy_indexing_missing_label(self, vals):
@@ -453,6 +461,9 @@ class TestFancy:
         )
         tm.assert_frame_equal(result, df)
 
+    @pytest.mark.xfail(
+        using_pyarrow_string_dtype(), reason="can't multiply arrow strings"
+    )
     def test_multi_assign(self):
         # GH 3626, an assignment of a sub-df to a df
         # set float64 to avoid upcast when setting nan
@@ -517,7 +528,7 @@ class TestFancy:
         for col in ["A", "B"]:
             expected.loc[mask, col] = df["D"]
 
-        df.loc[df["A"] == 0, ["A", "B"]] = df["D"]
+        df.loc[df["A"] == 0, ["A", "B"]] = df["D"].copy()
         tm.assert_frame_equal(df, expected)
 
     def test_setitem_list(self):
@@ -555,7 +566,7 @@ class TestFancy:
         with pytest.raises(KeyError, match="^0$"):
             df.loc["2011", 0]
 
-    def test_astype_assignment(self):
+    def test_astype_assignment(self, using_infer_string):
         # GH4312 (iloc)
         df_orig = DataFrame(
             [["1", "2", "3", ".4", 5, 6.0, "foo"]], columns=list("ABCDEFG")
@@ -569,8 +580,9 @@ class TestFancy:
         expected = DataFrame(
             [[1, 2, "3", ".4", 5, 6.0, "foo"]], columns=list("ABCDEFG")
         )
-        expected["A"] = expected["A"].astype(object)
-        expected["B"] = expected["B"].astype(object)
+        if not using_infer_string:
+            expected["A"] = expected["A"].astype(object)
+            expected["B"] = expected["B"].astype(object)
         tm.assert_frame_equal(df, expected)
 
         # GH5702 (loc)
@@ -579,7 +591,8 @@ class TestFancy:
         expected = DataFrame(
             [[1, "2", "3", ".4", 5, 6.0, "foo"]], columns=list("ABCDEFG")
         )
-        expected["A"] = expected["A"].astype(object)
+        if not using_infer_string:
+            expected["A"] = expected["A"].astype(object)
         tm.assert_frame_equal(df, expected)
 
         df = df_orig.copy()
@@ -587,8 +600,9 @@ class TestFancy:
         expected = DataFrame(
             [["1", 2, 3, ".4", 5, 6.0, "foo"]], columns=list("ABCDEFG")
         )
-        expected["B"] = expected["B"].astype(object)
-        expected["C"] = expected["C"].astype(object)
+        if not using_infer_string:
+            expected["B"] = expected["B"].astype(object)
+            expected["C"] = expected["C"].astype(object)
         tm.assert_frame_equal(df, expected)
 
     def test_astype_assignment_full_replacements(self):
@@ -675,6 +689,7 @@ class TestMisc:
         df.loc[df.index] = df.loc[df.index]
         tm.assert_frame_equal(df, df2)
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="can't set int into string")
     def test_rhs_alignment(self):
         # GH8258, tests that both rows & columns are aligned to what is
         # assigned to. covers both uniform data-type & multi-type cases

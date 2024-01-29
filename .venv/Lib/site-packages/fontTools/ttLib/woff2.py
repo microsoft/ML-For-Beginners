@@ -42,7 +42,6 @@ except ImportError:
 
 
 class WOFF2Reader(SFNTReader):
-
     flavor = "woff2"
 
     def __init__(self, file, checkChecksums=0, fontNumber=-1):
@@ -177,7 +176,6 @@ class WOFF2Reader(SFNTReader):
 
 
 class WOFF2Writer(SFNTWriter):
-
     flavor = "woff2"
 
     def __init__(
@@ -1291,7 +1289,6 @@ class WOFF2HmtxTable(getTableClass("hmtx")):
 
 
 class WOFF2FlavorData(WOFFFlavorData):
-
     Flavor = "woff2"
 
     def __init__(self, reader=None, data=None, transformedTables=None):

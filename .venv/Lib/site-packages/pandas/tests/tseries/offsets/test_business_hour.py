@@ -148,17 +148,17 @@ class TestBusinessHour:
         offset9,
         offset10,
     ):
-        assert repr(offset1) == "<BusinessHour: BH=09:00-17:00>"
-        assert repr(offset2) == "<3 * BusinessHours: BH=09:00-17:00>"
-        assert repr(offset3) == "<-1 * BusinessHour: BH=09:00-17:00>"
-        assert repr(offset4) == "<-4 * BusinessHours: BH=09:00-17:00>"
+        assert repr(offset1) == "<BusinessHour: bh=09:00-17:00>"
+        assert repr(offset2) == "<3 * BusinessHours: bh=09:00-17:00>"
+        assert repr(offset3) == "<-1 * BusinessHour: bh=09:00-17:00>"
+        assert repr(offset4) == "<-4 * BusinessHours: bh=09:00-17:00>"
 
-        assert repr(offset5) == "<BusinessHour: BH=11:00-14:30>"
-        assert repr(offset6) == "<BusinessHour: BH=20:00-05:00>"
-        assert repr(offset7) == "<-2 * BusinessHours: BH=21:30-06:30>"
-        assert repr(offset8) == "<BusinessHour: BH=09:00-12:00,13:00-17:00>"
-        assert repr(offset9) == "<3 * BusinessHours: BH=09:00-13:00,22:00-03:00>"
-        assert repr(offset10) == "<-1 * BusinessHour: BH=13:00-17:00,23:00-02:00>"
+        assert repr(offset5) == "<BusinessHour: bh=11:00-14:30>"
+        assert repr(offset6) == "<BusinessHour: bh=20:00-05:00>"
+        assert repr(offset7) == "<-2 * BusinessHours: bh=21:30-06:30>"
+        assert repr(offset8) == "<BusinessHour: bh=09:00-12:00,13:00-17:00>"
+        assert repr(offset9) == "<3 * BusinessHours: bh=09:00-13:00,22:00-03:00>"
+        assert repr(offset10) == "<-1 * BusinessHour: bh=13:00-17:00,23:00-02:00>"
 
     def test_with_offset(self, dt):
         expected = Timestamp("2014-07-01 13:00")
@@ -946,47 +946,16 @@ class TestBusinessHour:
             for base, expected in cases.items():
                 assert_offset_equal(offset, base, expected)
 
-    def test_datetimeindex(self):
-        idx1 = date_range(start="2014-07-04 15:00", end="2014-07-08 10:00", freq="BH")
-        idx2 = date_range(start="2014-07-04 15:00", periods=12, freq="BH")
-        idx3 = date_range(end="2014-07-08 10:00", periods=12, freq="BH")
-        expected = DatetimeIndex(
-            [
-                "2014-07-04 15:00",
-                "2014-07-04 16:00",
-                "2014-07-07 09:00",
-                "2014-07-07 10:00",
-                "2014-07-07 11:00",
-                "2014-07-07 12:00",
-                "2014-07-07 13:00",
-                "2014-07-07 14:00",
-                "2014-07-07 15:00",
-                "2014-07-07 16:00",
-                "2014-07-08 09:00",
-                "2014-07-08 10:00",
-            ],
-            freq="BH",
-        )
-        for idx in [idx1, idx2, idx3]:
-            tm.assert_index_equal(idx, expected)
+    @pytest.mark.parametrize("td_unit", ["s", "ms", "us", "ns"])
+    @pytest.mark.parametrize("unit", ["s", "ms", "us", "ns"])
+    def test_bday_ignores_timedeltas(self, unit, td_unit):
+        # GH#55608
+        idx = date_range("2010/02/01", "2010/02/10", freq="12h", unit=unit)
+        td = Timedelta(3, unit="h").as_unit(td_unit)
+        off = BDay(offset=td)
+        t1 = idx + off
 
-        idx1 = date_range(start="2014-07-04 15:45", end="2014-07-08 10:45", freq="BH")
-        idx2 = date_range(start="2014-07-04 15:45", periods=12, freq="BH")
-        idx3 = date_range(end="2014-07-08 10:45", periods=12, freq="BH")
-
-        expected = idx1
-        for idx in [idx1, idx2, idx3]:
-            tm.assert_index_equal(idx, expected)
-
-    def test_short_datetimeindex_creation(self):
-        # gh-49835
-        idx4 = date_range(start="2014-07-01 10:00", freq="BH", periods=1)
-        expected4 = DatetimeIndex(["2014-07-01 10:00"], freq="BH")
-        tm.assert_index_equal(idx4, expected4)
-
-    def test_bday_ignores_timedeltas(self):
-        idx = date_range("2010/02/01", "2010/02/10", freq="12H")
-        t1 = idx + BDay(offset=Timedelta(3, unit="H"))
+        exp_unit = tm.get_finest_unit(td.unit, idx.unit)
 
         expected = DatetimeIndex(
             [
@@ -1011,8 +980,21 @@ class TestBusinessHour:
                 "2010-02-11 03:00:00",
             ],
             freq=None,
-        )
+        ).as_unit(exp_unit)
         tm.assert_index_equal(t1, expected)
+
+        # TODO(GH#55564): as_unit will be unnecessary
+        pointwise = DatetimeIndex([x + off for x in idx]).as_unit(exp_unit)
+        tm.assert_index_equal(pointwise, expected)
+
+    def test_add_bday_offset_nanos(self):
+        # GH#55608
+        idx = date_range("2010/02/01", "2010/02/10", freq="12h", unit="ns")
+        off = BDay(offset=Timedelta(3, unit="ns"))
+
+        result = idx + off
+        expected = DatetimeIndex([x + off for x in idx])
+        tm.assert_index_equal(result, expected)
 
 
 class TestOpeningTimes:

@@ -13,15 +13,12 @@ import re
 import string
 import sys
 import textwrap
+import warnings
 from string import Formatter
 from pathlib import Path
 
+from typing import List, Dict, Tuple
 
-# datetime.strftime date format for ipython
-if sys.platform == 'win32':
-    date_format = "%B %d, %Y"
-else:
-    date_format = "%B %-d, %Y"
 
 class LSString(str):
     """String derivative with a special access attributes.
@@ -336,7 +333,13 @@ ini_spaces_re = re.compile(r'^(\s+)')
 
 def num_ini_spaces(strng):
     """Return the number of initial spaces in a string"""
-
+    warnings.warn(
+        "`num_ini_spaces` is Pending Deprecation since IPython 8.17."
+        "It is considered fro removal in in future version. "
+        "Please open an issue if you believe it should be kept.",
+        stacklevel=2,
+        category=PendingDeprecationWarning,
+    )
     ini_spaces = ini_spaces_re.match(strng)
     if ini_spaces:
         return ini_spaces.end()
@@ -354,7 +357,7 @@ def format_screen(strng):
     return strng
 
 
-def dedent(text):
+def dedent(text: str) -> str:
     """Equivalent of textwrap.dedent that ignores unindented first line.
 
     This means it will still dedent strings like:
@@ -391,6 +394,13 @@ def wrap_paragraphs(text, ncols=80):
     -------
     list of complete paragraphs, wrapped to fill `ncols` columns.
     """
+    warnings.warn(
+        "`wrap_paragraphs` is Pending Deprecation since IPython 8.17."
+        "It is considered fro removal in in future version. "
+        "Please open an issue if you believe it should be kept.",
+        stacklevel=2,
+        category=PendingDeprecationWarning,
+    )
     paragraph_re = re.compile(r'\n(\s*\n)+', re.MULTILINE)
     text = dedent(text).strip()
     paragraphs = paragraph_re.split(text)[::2] # every other entry is space
@@ -465,6 +475,14 @@ def strip_ansi(source):
     source : str
         Source to remove the ansi from
     """
+    warnings.warn(
+        "`strip_ansi` is Pending Deprecation since IPython 8.17."
+        "It is considered fro removal in in future version. "
+        "Please open an issue if you believe it should be kept.",
+        stacklevel=2,
+        category=PendingDeprecationWarning,
+    )
+
     return re.sub(r'\033\[(\d|;)+?m', '', source)
 
 
@@ -611,7 +629,7 @@ def _col_chunks(l, max_rows, row_first=False):
             yield l[i:(i + max_rows)]
 
 
-def _find_optimal(rlist, row_first=False, separator_size=2, displaywidth=80):
+def _find_optimal(rlist, row_first: bool, separator_size: int, displaywidth: int):
     """Calculate optimal info to columnize a list of string"""
     for max_rows in range(1, len(rlist) + 1):
         col_widths = list(map(max, _col_chunks(rlist, max_rows, row_first)))
@@ -634,7 +652,9 @@ def _get_or_default(mylist, i, default=None):
         return mylist[i]
 
 
-def compute_item_matrix(items, row_first=False, empty=None, *args, **kwargs) :
+def compute_item_matrix(
+    items, row_first: bool = False, empty=None, *, separator_size=2, displaywidth=80
+) -> Tuple[List[List[int]], Dict[str, int]]:
     """Returns a nested list, and info to columnize items
 
     Parameters
@@ -682,8 +702,20 @@ def compute_item_matrix(items, row_first=False, empty=None, *args, **kwargs) :
         In [5]: all((info[k] == ideal[k] for k in ideal.keys()))
         Out[5]: True
     """
-    info = _find_optimal(list(map(len, items)), row_first, *args, **kwargs)
-    nrow, ncol = info['max_rows'], info['num_columns']
+    warnings.warn(
+        "`compute_item_matrix` is Pending Deprecation since IPython 8.17."
+        "It is considered fro removal in in future version. "
+        "Please open an issue if you believe it should be kept.",
+        stacklevel=2,
+        category=PendingDeprecationWarning,
+    )
+    info = _find_optimal(
+        list(map(len, items)),
+        row_first,
+        separator_size=separator_size,
+        displaywidth=displaywidth,
+    )
+    nrow, ncol = info["max_rows"], info["num_columns"]
     if row_first:
         return ([[_get_or_default(items, r * ncol + c, default=empty) for c in range(ncol)] for r in range(nrow)], info)
     else:
@@ -709,14 +741,29 @@ def columnize(items, row_first=False, separator="  ", displaywidth=80, spread=Fa
     -------
     The formatted string.
     """
+    warnings.warn(
+        "`columnize` is Pending Deprecation since IPython 8.17."
+        "It is considered fro removal in in future version. "
+        "Please open an issue if you believe it should be kept.",
+        stacklevel=2,
+        category=PendingDeprecationWarning,
+    )
     if not items:
-        return '\n'
-    matrix, info = compute_item_matrix(items, row_first=row_first, separator_size=len(separator), displaywidth=displaywidth)
+        return "\n"
+    matrix: List[List[int]]
+    matrix, info = compute_item_matrix(
+        items,
+        row_first=row_first,
+        separator_size=len(separator),
+        displaywidth=displaywidth,
+    )
     if spread:
-        separator = separator.ljust(int(info['optimal_separator_width']))
-    fmatrix = [filter(None, x) for x in matrix]
-    sjoin = lambda x : separator.join([ y.ljust(w, ' ') for y, w in zip(x, info['column_widths'])])
-    return '\n'.join(map(sjoin, fmatrix))+'\n'
+        separator = separator.ljust(int(info["optimal_separator_width"]))
+    fmatrix: List[filter[int]] = [filter(None, x) for x in matrix]
+    sjoin = lambda x: separator.join(
+        [y.ljust(w, " ") for y, w in zip(x, info["column_widths"])]
+    )
+    return "\n".join(map(sjoin, fmatrix)) + "\n"
 
 
 def get_text_list(list_, last_sep=' and ', sep=", ", wrap_item_with=""):

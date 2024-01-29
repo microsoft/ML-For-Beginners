@@ -362,6 +362,20 @@ class TestScalarFunction(TestCase):
         assert_equal(sf._lowest_f, 0.0)
         assert_equal(sf._lowest_x, [1.0, 1.0, 1.0])
 
+    def test_float_size(self):
+        x0 = np.array([2, 3, 4]).astype(np.float32)
+
+        # check that ScalarFunction/approx_derivative always send the correct
+        # float width
+        def rosen_(x):
+            assert x.dtype == np.float32
+            return rosen(x)
+
+        sf = ScalarFunction(rosen_, x0, (), '2-point', rosen_hess,
+                            None, (-np.inf, np.inf))
+        res = sf.fun(x0)
+        assert res.dtype == np.float32
+
 
 class ExVectorialFunction:
 
@@ -373,12 +387,12 @@ class ExVectorialFunction:
     def fun(self, x):
         self.nfev += 1
         return np.array([2*(x[0]**2 + x[1]**2 - 1) - x[0],
-                         4*(x[0]**3 + x[1]**2 - 4) - 3*x[0]])
+                         4*(x[0]**3 + x[1]**2 - 4) - 3*x[0]], dtype=x.dtype)
 
     def jac(self, x):
         self.njev += 1
         return np.array([[4*x[0]-1, 4*x[1]],
-                         [12*x[0]**2-3, 8*x[1]]])
+                         [12*x[0]**2-3, 8*x[1]]], dtype=x.dtype)
 
     def hess(self, x, v):
         self.nhev += 1
@@ -654,6 +668,19 @@ class TestVectorialFunction(TestCase):
             x0[0] = 1.
             assert_equal(vf.fun(x0), ex.fun(x0))
             assert x0 is not vf.x
+
+    def test_float_size(self):
+        ex = ExVectorialFunction()
+        x0 = np.array([1.0, 0.0]).astype(np.float32)
+
+        vf = VectorFunction(ex.fun, x0, ex.jac, ex.hess, None, None,
+                            (-np.inf, np.inf), None)
+
+        res = vf.fun(x0)
+        assert res.dtype == np.float32
+
+        res = vf.jac(x0)
+        assert res.dtype == np.float32
 
 
 def test_LinearVectorFunction():

@@ -422,7 +422,9 @@ Gamma and related functions
    beta         -- Beta function.
    betaln       -- Natural logarithm of absolute value of beta function.
    betainc      -- Incomplete beta integral.
+   betaincc     -- Complemented incomplete beta integral.
    betaincinv   -- Inverse function to beta integral.
+   betainccinv  -- Inverse of the complemented incomplete beta integral.
    psi          -- The digamma function.
    rgamma       -- Gamma function inverted.
    polygamma    -- Polygamma function n.
@@ -644,7 +646,7 @@ Spheroidal wave functions
 
    pro_ang1   -- Prolate spheroidal angular function of the first kind and its derivative.
    pro_rad1   -- Prolate spheroidal radial function of the first kind and its derivative.
-   pro_rad2   -- Prolate spheroidal radial function of the secon kind and its derivative.
+   pro_rad2   -- Prolate spheroidal radial function of the second kind and its derivative.
    obl_ang1   -- Oblate spheroidal angular function of the first kind and its derivative.
    obl_rad1   -- Oblate spheroidal radial function of the first kind and its derivative.
    obl_rad2   -- Oblate spheroidal radial function of the second kind and its derivative.
@@ -705,6 +707,7 @@ Combinatorics
 
    comb -- The number of combinations of N things taken k at a time.
    perm -- Permutations of N things taken k at a time, i.e., k-permutations of N.
+   stirling2 -- Stirling numbers of the second kind.
 
 Lambert W and related functions
 -------------------------------
@@ -765,12 +768,19 @@ Convenience functions
    exprel    -- Relative error exponential, (exp(x)-1)/x, for use when `x` is near zero.
    sinc      -- Return the sinc function.
 
-"""
+"""  # noqa: E501
+
+import warnings
 
 from ._sf_error import SpecialFunctionWarning, SpecialFunctionError
 
 from . import _ufuncs
 from ._ufuncs import *
+
+# Replace some function definitions from _ufuncs to add Array API support
+from ._support_alternative_backends import (
+    log_ndtr, ndtr, ndtri, erf, erfc, i0, i0e, i1, i1e,
+    gammaln, gammainc, gammaincc, logit, expit)
 
 from . import _basic
 from ._basic import *
@@ -797,7 +807,11 @@ from ._spherical_bessel import (
 # Deprecated namespaces, to be removed in v2.0.0
 from . import add_newdocs, basic, orthogonal, specfun, sf_error, spfun_stats
 
-__all__ = _ufuncs.__all__ + _basic.__all__ + _orthogonal.__all__ + [
+# We replace some function definitions from _ufuncs with those from
+# _support_alternative_backends above, but those are all listed in _ufuncs.__all__,
+# so there is no need to consider _support_alternative_backends.__all__ here.
+__all__ = _ufuncs.__all__ + _basic.__all__ + _orthogonal.__all__
+__all__ += [
     'SpecialFunctionWarning',
     'SpecialFunctionError',
     'logsumexp',
@@ -817,3 +831,33 @@ __all__ = _ufuncs.__all__ + _basic.__all__ + _orthogonal.__all__ + [
 from scipy._lib._testutils import PytestTester
 test = PytestTester(__name__)
 del PytestTester
+
+_depr_msg = ('\nThis function was deprecated in SciPy 1.12.0, and will be '
+             'removed in SciPy 1.14.0.  Use scipy.special.{} instead.')
+
+
+def btdtr(*args, **kwargs):  # type: ignore [no-redef]
+    warnings.warn(_depr_msg.format('betainc'), category=DeprecationWarning,
+                  stacklevel=2)
+    return _ufuncs.btdtr(*args, **kwargs)
+
+
+btdtr.__doc__ = _ufuncs.btdtr.__doc__  # type: ignore [misc]
+
+
+def btdtri(*args, **kwargs):  # type: ignore [no-redef]
+    warnings.warn(_depr_msg.format('betaincinv'), category=DeprecationWarning,
+                  stacklevel=2)
+    return _ufuncs.btdtri(*args, **kwargs)
+
+
+btdtri.__doc__ = _ufuncs.btdtri.__doc__  # type: ignore [misc]
+
+
+def _get_include():
+    """This function is for development purposes only.
+
+    This function could disappear or its behavior could change at any time.
+    """
+    import os
+    return os.path.dirname(__file__)

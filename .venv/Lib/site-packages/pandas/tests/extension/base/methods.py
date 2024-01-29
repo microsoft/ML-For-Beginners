@@ -7,6 +7,7 @@ import pytest
 from pandas._typing import Dtype
 
 from pandas.core.dtypes.common import is_bool_dtype
+from pandas.core.dtypes.dtypes import NumpyEADtype
 from pandas.core.dtypes.missing import na_value_for_dtype
 
 import pandas as pd
@@ -247,10 +248,22 @@ class BaseMethodsTests:
         )
         tm.assert_frame_equal(result, expected)
 
+    @pytest.mark.parametrize("keep", ["first", "last", False])
+    def test_duplicated(self, data, keep):
+        arr = data.take([0, 1, 0, 1])
+        result = arr.duplicated(keep=keep)
+        if keep == "first":
+            expected = np.array([False, False, True, True])
+        elif keep == "last":
+            expected = np.array([True, True, False, False])
+        else:
+            expected = np.array([True, True, True, True])
+        tm.assert_numpy_array_equal(result, expected)
+
     @pytest.mark.parametrize("box", [pd.Series, lambda x: x])
     @pytest.mark.parametrize("method", [lambda x: x.unique(), pd.unique])
     def test_unique(self, data, box, method):
-        duplicated = box(data._from_sequence([data[0], data[0]]))
+        duplicated = box(data._from_sequence([data[0], data[0]], dtype=data.dtype))
 
         result = method(duplicated)
 
@@ -319,7 +332,7 @@ class BaseMethodsTests:
             data_missing.fillna(data_missing.take([1]))
 
     # Subclasses can override if we expect e.g Sparse[bool], boolean, pyarrow[bool]
-    _combine_le_expected_dtype: Dtype = np.dtype(bool)
+    _combine_le_expected_dtype: Dtype = NumpyEADtype("bool")
 
     def test_combine_le(self, data_repeated):
         # GH 20825
@@ -329,16 +342,20 @@ class BaseMethodsTests:
         s2 = pd.Series(orig_data2)
         result = s1.combine(s2, lambda x1, x2: x1 <= x2)
         expected = pd.Series(
-            [a <= b for (a, b) in zip(list(orig_data1), list(orig_data2))],
-            dtype=self._combine_le_expected_dtype,
+            pd.array(
+                [a <= b for (a, b) in zip(list(orig_data1), list(orig_data2))],
+                dtype=self._combine_le_expected_dtype,
+            )
         )
         tm.assert_series_equal(result, expected)
 
         val = s1.iloc[0]
         result = s1.combine(val, lambda x1, x2: x1 <= x2)
         expected = pd.Series(
-            [a <= val for a in list(orig_data1)],
-            dtype=self._combine_le_expected_dtype,
+            pd.array(
+                [a <= val for a in list(orig_data1)],
+                dtype=self._combine_le_expected_dtype,
+            )
         )
         tm.assert_series_equal(result, expected)
 

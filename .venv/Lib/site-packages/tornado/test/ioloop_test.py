@@ -127,7 +127,8 @@ class TestIOLoop(AsyncTestCase):
     def test_add_callback_from_signal(self):
         # cheat a little bit and just run this normally, since we can't
         # easily simulate the races that happen with real signal handlers
-        self.io_loop.add_callback_from_signal(self.stop)
+        with ignore_deprecation():
+            self.io_loop.add_callback_from_signal(self.stop)
         self.wait()
 
     def test_add_callback_from_signal_other_thread(self):
@@ -137,7 +138,8 @@ class TestIOLoop(AsyncTestCase):
         other_ioloop = IOLoop()
         thread = threading.Thread(target=other_ioloop.start)
         thread.start()
-        other_ioloop.add_callback_from_signal(other_ioloop.stop)
+        with ignore_deprecation():
+            other_ioloop.add_callback_from_signal(other_ioloop.stop)
         thread.join()
         other_ioloop.close()
 

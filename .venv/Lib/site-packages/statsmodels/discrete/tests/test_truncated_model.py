@@ -278,8 +278,10 @@ class TestTruncatedLFPoissonSt(CheckTruncatedST):
         res1 = self.res1
         reso = self.res_offset
 
-        assert_allclose(reso.params[1:], res1.params[1:], rtol=1e-8)
-        assert_allclose(reso.params[0], res1.params[0] - 1, rtol=1e-8)
+        paramso = np.asarray(reso.params)
+        params1 = np.asarray(res1.params)
+        assert_allclose(paramso[1:], params1[1:], rtol=1e-8)
+        assert_allclose(paramso[0], params1[0] - 1, rtol=1e-8)
         pred1 = res1.predict()
         predo = reso.predict()
         assert_allclose(predo, pred1, rtol=1e-8)
@@ -311,8 +313,10 @@ class TestTruncatedNegBinSt(CheckTruncatedST):
         res1 = self.res1
         reso = self.res_offset
 
-        assert_allclose(reso.params[1:], res1.params[1:], rtol=1e-8)
-        assert_allclose(reso.params[0], res1.params[0] - 1, rtol=1e-8)
+        paramso = np.asarray(reso.params)
+        params1 = np.asarray(res1.params)
+        assert_allclose(paramso[1:], params1[1:], rtol=1e-8)
+        assert_allclose(paramso[0], params1[0] - 1, rtol=1e-8)
         pred1 = res1.predict()
         predo = reso.predict()
         assert_allclose(predo, pred1, rtol=1e-8)

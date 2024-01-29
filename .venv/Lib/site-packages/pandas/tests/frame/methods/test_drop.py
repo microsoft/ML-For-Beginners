@@ -57,7 +57,7 @@ def test_drop_with_non_unique_datetime_index_and_invalid_keys():
     df = DataFrame(
         np.random.default_rng(2).standard_normal((5, 3)),
         columns=["a", "b", "c"],
-        index=pd.date_range("2012", freq="H", periods=5),
+        index=pd.date_range("2012", freq="h", periods=5),
     )
     # create dataframe with non-unique datetime index
     df = df.iloc[[0, 2, 2, 3]].copy()
@@ -510,7 +510,7 @@ class TestDataFrameDrop:
 
     def test_drop_inplace_no_leftover_column_reference(self):
         # GH 13934
-        df = DataFrame({"a": [1, 2, 3]})
+        df = DataFrame({"a": [1, 2, 3]}, columns=Index(["a"], dtype="object"))
         a = df.a
         df.drop(["a"], axis=1, inplace=True)
         tm.assert_index_equal(df.columns, Index([], dtype="object"))

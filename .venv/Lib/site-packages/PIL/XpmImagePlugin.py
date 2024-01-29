@@ -13,7 +13,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
-
+from __future__ import annotations
 
 import re
 
@@ -98,7 +98,7 @@ class XpmImageFile(ImageFile.ImageFile):
                 msg = "cannot read this XPM file"
                 raise ValueError(msg)
 
-        self.mode = "P"
+        self._mode = "P"
         self.palette = ImagePalette.raw("RGB", b"".join(palette))
 
         self.tile = [("raw", (0, 0) + self.size, self.fp.tell(), ("P", 0, 1))]

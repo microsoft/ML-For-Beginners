@@ -59,7 +59,7 @@ def stateful_transform(class_):
 #         self._kwargs = kwargs
 #
 #     def memorize_finish(self):
-#         all_data = np.row_stack(self._data)
+#         all_data = np.vstack(self._data)
 #         args = self._args
 #         kwargs = self._kwargs
 #         del self._data

@@ -19,6 +19,7 @@ from pandas import (
     Timedelta,
     TimedeltaIndex,
     array,
+    date_range,
 )
 import pandas._testing as tm
 from pandas.core import ops
@@ -29,10 +30,45 @@ from pandas.tests.arithmetic.common import (
 )
 
 
+@pytest.fixture(autouse=True, params=[0, 1000000], ids=["numexpr", "python"])
+def switch_numexpr_min_elements(request, monkeypatch):
+    with monkeypatch.context() as m:
+        m.setattr(expr, "_MIN_ELEMENTS", request.param)
+        yield request.param
+
+
 @pytest.fixture(params=[Index, Series, tm.to_array])
 def box_pandas_1d_array(request):
     """
     Fixture to test behavior for Index, Series and tm.to_array classes
+    """
+    return request.param
+
+
+@pytest.fixture(
+    params=[
+        # TODO: add more  dtypes here
+        Index(np.arange(5, dtype="float64")),
+        Index(np.arange(5, dtype="int64")),
+        Index(np.arange(5, dtype="uint64")),
+        RangeIndex(5),
+    ],
+    ids=lambda x: type(x).__name__,
+)
+def numeric_idx(request):
+    """
+    Several types of numeric-dtypes Index objects
+    """
+    return request.param
+
+
+@pytest.fixture(
+    params=[Index, Series, tm.to_array, np.array, list], ids=lambda x: x.__name__
+)
+def box_1d_array(request):
+    """
+    Fixture to test behavior for Index, Series, tm.to_array, numpy Array and list
+    classes
     """
     return request.param
 
@@ -263,6 +299,12 @@ class TestNumericArraylikeArithmeticWithDatetimeLike:
             expected = expected.astype(dtype)
         elif type(three_days) is timedelta:
             expected = expected.astype("m8[us]")
+        elif isinstance(
+            three_days,
+            (pd.offsets.Day, pd.offsets.Hour, pd.offsets.Minute, pd.offsets.Second),
+        ):
+            # closest reso is Second
+            expected = expected.astype("m8[s]")
 
         index = tm.box_expected(index, box)
         expected = tm.box_expected(expected, box)
@@ -377,7 +419,7 @@ class TestDivisionByZero:
     def test_div_negative_zero(self, zero, numeric_idx, op):
         # Check that -1 / -0.0 returns np.inf, not -np.inf
         if numeric_idx.dtype == np.uint64:
-            pytest.skip(f"Not relevant for {numeric_idx.dtype}")
+            pytest.skip(f"Div by negative 0 not relevant for {numeric_idx.dtype}")
         idx = numeric_idx - 3
 
         expected = Index([-np.inf, -np.inf, -np.inf, np.nan, np.inf], dtype=np.float64)
@@ -698,7 +740,7 @@ class TestMultiplicationDivision:
         idx = numeric_idx
         msg = "cannot perform __rmul__ with this index type"
         with pytest.raises(TypeError, match=msg):
-            idx * pd.date_range("20130101", periods=5)
+            idx * date_range("20130101", periods=5)
 
     def test_mul_size_mismatch_raises(self, numeric_idx):
         idx = numeric_idx
@@ -785,7 +827,11 @@ class TestMultiplicationDivision:
     # TODO: This came from series.test.test_operators, needs cleanup
     def test_operators_frame(self):
         # rpow does not work with DataFrame
-        ts = tm.makeTimeSeries()
+        ts = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         ts.name = "ts"
 
         df = pd.DataFrame({"A": ts})
@@ -881,7 +927,7 @@ class TestAdditionSubtraction:
     # TODO: This came from series.test.test_operators, needs cleanup
     def test_series_frame_radd_bug(self, fixed_now_ts):
         # GH#353
-        vals = Series(tm.makeStringIndex())
+        vals = Series([str(i) for i in range(5)])
         result = "foo_" + vals
         expected = vals.map(lambda x: "foo_" + x)
         tm.assert_series_equal(result, expected)
@@ -891,8 +937,11 @@ class TestAdditionSubtraction:
         expected = pd.DataFrame({"vals": vals.map(lambda x: "foo_" + x)})
         tm.assert_frame_equal(result, expected)
 
-        ts = tm.makeTimeSeries()
-        ts.name = "ts"
+        ts = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
 
         # really raise this time
         fix_now = fixed_now_ts.to_pydatetime()
@@ -920,8 +969,8 @@ class TestAdditionSubtraction:
         # GH#4629
         # arithmetic datetime64 ops with an index
         ser = Series(
-            pd.date_range("20130101", periods=5),
-            index=pd.date_range("20130101", periods=5),
+            date_range("20130101", periods=5),
+            index=date_range("20130101", periods=5),
         )
         expected = ser - ser.index.to_series()
         result = ser - ser.index
@@ -934,7 +983,7 @@ class TestAdditionSubtraction:
 
         df = pd.DataFrame(
             np.random.default_rng(2).standard_normal((5, 2)),
-            index=pd.date_range("20130101", periods=5),
+            index=date_range("20130101", periods=5),
         )
         df["date"] = pd.Timestamp("20130102")
         df["expected"] = df["date"] - df.index.to_series()
@@ -996,7 +1045,11 @@ class TestAdditionSubtraction:
     )
     def test_series_operators_arithmetic(self, all_arithmetic_functions, func):
         op = all_arithmetic_functions
-        series = tm.makeTimeSeries().rename("ts")
+        series = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         other = func(series)
         compare_op(series, other, op)
 
@@ -1005,7 +1058,11 @@ class TestAdditionSubtraction:
     )
     def test_series_operators_compare(self, comparison_op, func):
         op = comparison_op
-        series = tm.makeTimeSeries().rename("ts")
+        series = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         other = func(series)
         compare_op(series, other, op)
 
@@ -1015,7 +1072,11 @@ class TestAdditionSubtraction:
         ids=["multiply", "slice", "constant"],
     )
     def test_divmod(self, func):
-        series = tm.makeTimeSeries().rename("ts")
+        series = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         other = func(series)
         results = divmod(series, other)
         if isinstance(other, abc.Iterable) and len(series) != len(other):
@@ -1046,7 +1107,11 @@ class TestAdditionSubtraction:
         #  -1/0 == -np.inf
         #  1/-0.0 == -np.inf
         #  -1/-0.0 == np.inf
-        tser = tm.makeTimeSeries().rename("ts")
+        tser = Series(
+            np.arange(1, 11, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         other = tser * 0
 
         result = divmod(tser, other)
@@ -1385,6 +1450,18 @@ class TestNumericArithmeticUnsorted:
         tm.assert_index_equal(index + index, 2 * index)
         tm.assert_index_equal(index - index, 0 * index)
         assert not (index - index).empty
+
+    def test_pow_nan_with_zero(self, box_with_array):
+        left = Index([np.nan, np.nan, np.nan])
+        right = Index([0, 0, 0])
+        expected = Index([1.0, 1.0, 1.0])
+
+        left = tm.box_expected(left, box_with_array)
+        right = tm.box_expected(right, box_with_array)
+        expected = tm.box_expected(expected, box_with_array)
+
+        result = left**right
+        tm.assert_equal(result, expected)
 
 
 def test_fill_value_inf_masking():

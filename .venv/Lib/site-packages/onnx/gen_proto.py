@@ -42,14 +42,14 @@ def process_ifs(lines: Iterable[str], onnx_ml: bool) -> Iterable[str]:
             assert in_if == 1
             in_if = 2
         elif ENDIF_ONNX_ML_REGEX.match(line):
-            assert in_if == 1 or in_if == 2  # pylint: disable=consider-using-in
+            assert in_if == 1 or in_if == 2  # noqa: PLR1714, PLR2004
             in_if = 0
-        else:
+        else:  # noqa: PLR5501
             if in_if == 0:
                 yield line
             elif in_if == 1 and onnx_ml:
                 yield line
-            elif in_if == 2 and not onnx_ml:
+            elif in_if == 2 and not onnx_ml:  # noqa: PLR2004
                 yield line
 
 
@@ -114,10 +114,10 @@ def translate(source: str, proto: int, onnx_ml: bool, package_name: str) -> str:
     lines: Iterable[str] = source.splitlines()
     lines = process_ifs(lines, onnx_ml=onnx_ml)
     lines = process_package_name(lines, package_name=package_name)
-    if proto == 3:
+    if proto == 3:  # noqa: PLR2004
         lines = convert_to_proto3(lines)
     else:
-        assert proto == 2
+        assert proto == 2  # noqa: PLR2004
     return "\n".join(lines)  # TODO: not Windows friendly
 
 
@@ -127,7 +127,7 @@ def qualify(f: str, pardir: Optional[str] = None) -> str:
     return os.path.join(pardir, f)
 
 
-def convert(  # pylint: disable=too-many-branches,too-many-statements
+def convert(
     stem: str,
     package_name: str,
     output: str,
@@ -194,7 +194,7 @@ def convert(  # pylint: disable=too-many-branches,too-many-statements
     pb_py = qualify(f"{stem.replace('-', '_')}_pb.py", pardir=output)
     if need_rename:
         pb2_py = qualify(f"{proto_base.replace('-', '_')}_pb2.py", pardir=output)
-    else:
+    else:  # noqa: PLR5501
         if do_onnx_ml:
             pb2_py = qualify(f"{stem.replace('-', '_')}_ml_pb2.py", pardir=output)
         else:
@@ -222,7 +222,7 @@ def main() -> None:
         "-p",
         "--package",
         default="onnx",
-        help="package name in the generated proto files" " (default: %(default)s)",
+        help="package name in the generated proto files (default: %(default)s)",
     )
     parser.add_argument("-m", "--ml", action="store_true", help="ML mode")
     parser.add_argument(
@@ -244,7 +244,7 @@ def main() -> None:
         "stems",
         nargs="*",
         default=["onnx", "onnx-operators", "onnx-data"],
-        help="list of .in.proto file stems " "(default: %(default)s)",
+        help="list of .in.proto file stems (default: %(default)s)",
     )
     args = parser.parse_args()
 

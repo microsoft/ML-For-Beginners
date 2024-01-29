@@ -278,8 +278,6 @@ class Nominal(Scale):
         # major_formatter = new._get_formatter(major_locator, **new._label_params)
 
         class CatScale(mpl.scale.LinearScale):
-            name = None  # To work around mpl<3.4 compat issues
-
             def set_default_locators_and_formatters(self, axis):
                 ...
                 # axis.set_major_locator(major_locator)

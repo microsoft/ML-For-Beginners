@@ -1,52 +1,61 @@
+import sys
+from typing import Literal
+
 import numpy as np
+from numpy.core._type_aliases import _SCTypes
 
-reveal_type(np.Inf)  # E: float
-reveal_type(np.Infinity)  # E: float
-reveal_type(np.NAN)  # E: float
-reveal_type(np.NINF)  # E: float
-reveal_type(np.NZERO)  # E: float
-reveal_type(np.NaN)  # E: float
-reveal_type(np.PINF)  # E: float
-reveal_type(np.PZERO)  # E: float
-reveal_type(np.e)  # E: float
-reveal_type(np.euler_gamma)  # E: float
-reveal_type(np.inf)  # E: float
-reveal_type(np.infty)  # E: float
-reveal_type(np.nan)  # E: float
-reveal_type(np.pi)  # E: float
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
-reveal_type(np.ALLOW_THREADS)  # E: int
-reveal_type(np.BUFSIZE)  # E: Literal[8192]
-reveal_type(np.CLIP)  # E: Literal[0]
-reveal_type(np.ERR_CALL)  # E: Literal[3]
-reveal_type(np.ERR_DEFAULT)  # E: Literal[521]
-reveal_type(np.ERR_IGNORE)  # E: Literal[0]
-reveal_type(np.ERR_LOG)  # E: Literal[5]
-reveal_type(np.ERR_PRINT)  # E: Literal[4]
-reveal_type(np.ERR_RAISE)  # E: Literal[2]
-reveal_type(np.ERR_WARN)  # E: Literal[1]
-reveal_type(np.FLOATING_POINT_SUPPORT)  # E: Literal[1]
-reveal_type(np.FPE_DIVIDEBYZERO)  # E: Literal[1]
-reveal_type(np.FPE_INVALID)  # E: Literal[8]
-reveal_type(np.FPE_OVERFLOW)  # E: Literal[2]
-reveal_type(np.FPE_UNDERFLOW)  # E: Literal[4]
-reveal_type(np.MAXDIMS)  # E: Literal[32]
-reveal_type(np.MAY_SHARE_BOUNDS)  # E: Literal[0]
-reveal_type(np.MAY_SHARE_EXACT)  # E: Literal[-1]
-reveal_type(np.RAISE)  # E: Literal[2]
-reveal_type(np.SHIFT_DIVIDEBYZERO)  # E: Literal[0]
-reveal_type(np.SHIFT_INVALID)  # E: Literal[9]
-reveal_type(np.SHIFT_OVERFLOW)  # E: Literal[3]
-reveal_type(np.SHIFT_UNDERFLOW)  # E: Literal[6]
-reveal_type(np.UFUNC_BUFSIZE_DEFAULT)  # E: Literal[8192]
-reveal_type(np.WRAP)  # E: Literal[1]
-reveal_type(np.tracemalloc_domain)  # E: Literal[389047]
+assert_type(np.Inf, float)
+assert_type(np.Infinity, float)
+assert_type(np.NAN, float)
+assert_type(np.NINF, float)
+assert_type(np.NZERO, float)
+assert_type(np.NaN, float)
+assert_type(np.PINF, float)
+assert_type(np.PZERO, float)
+assert_type(np.e, float)
+assert_type(np.euler_gamma, float)
+assert_type(np.inf, float)
+assert_type(np.infty, float)
+assert_type(np.nan, float)
+assert_type(np.pi, float)
 
-reveal_type(np.little_endian)  # E: bool
-reveal_type(np.True_)  # E: bool_
-reveal_type(np.False_)  # E: bool_
+assert_type(np.ALLOW_THREADS, int)
+assert_type(np.BUFSIZE, Literal[8192])
+assert_type(np.CLIP, Literal[0])
+assert_type(np.ERR_CALL, Literal[3])
+assert_type(np.ERR_DEFAULT, Literal[521])
+assert_type(np.ERR_IGNORE, Literal[0])
+assert_type(np.ERR_LOG, Literal[5])
+assert_type(np.ERR_PRINT, Literal[4])
+assert_type(np.ERR_RAISE, Literal[2])
+assert_type(np.ERR_WARN, Literal[1])
+assert_type(np.FLOATING_POINT_SUPPORT, Literal[1])
+assert_type(np.FPE_DIVIDEBYZERO, Literal[1])
+assert_type(np.FPE_INVALID, Literal[8])
+assert_type(np.FPE_OVERFLOW, Literal[2])
+assert_type(np.FPE_UNDERFLOW, Literal[4])
+assert_type(np.MAXDIMS, Literal[32])
+assert_type(np.MAY_SHARE_BOUNDS, Literal[0])
+assert_type(np.MAY_SHARE_EXACT, Literal[-1])
+assert_type(np.RAISE, Literal[2])
+assert_type(np.SHIFT_DIVIDEBYZERO, Literal[0])
+assert_type(np.SHIFT_INVALID, Literal[9])
+assert_type(np.SHIFT_OVERFLOW, Literal[3])
+assert_type(np.SHIFT_UNDERFLOW, Literal[6])
+assert_type(np.UFUNC_BUFSIZE_DEFAULT, Literal[8192])
+assert_type(np.WRAP, Literal[1])
+assert_type(np.tracemalloc_domain, Literal[389047])
 
-reveal_type(np.UFUNC_PYVALS_NAME)  # E: Literal['UFUNC_PYVALS']
+assert_type(np.little_endian, bool)
+assert_type(np.True_, np.bool_)
+assert_type(np.False_, np.bool_)
 
-reveal_type(np.sctypeDict)  # E: dict
-reveal_type(np.sctypes)  # E: TypedDict
+assert_type(np.UFUNC_PYVALS_NAME, Literal["UFUNC_PYVALS"])
+
+assert_type(np.sctypeDict, dict[int | str, type[np.generic]])
+assert_type(np.sctypes, _SCTypes)

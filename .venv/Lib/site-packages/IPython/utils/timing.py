@@ -23,8 +23,8 @@ import time
 # If possible (Unix), use the resource module instead of time.clock()
 try:
     import resource
-except ImportError:
-    resource = None
+except ModuleNotFoundError:
+    resource = None  # type: ignore [assignment]
 
 # Some implementations (like jyputerlite) don't have getrusage
 if resource is not None and hasattr(resource, "getrusage"):

@@ -5,6 +5,7 @@ from collections import defaultdict
 from collections.abc import Mapping
 from functools import partial
 from io import StringIO
+from itertools import product
 
 import numpy as np
 import pytest
@@ -25,13 +26,14 @@ from sklearn.feature_extraction.text import (
 from sklearn.model_selection import GridSearchCV, cross_val_score, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
-from sklearn.utils import IS_PYPY
+from sklearn.utils import _IS_WASM, IS_PYPY
 from sklearn.utils._testing import (
     assert_allclose_dense_sparse,
     assert_almost_equal,
     fails_if_pypy,
     skip_if_32bit,
 )
+from sklearn.utils.fixes import CSC_CONTAINERS, CSR_CONTAINERS
 
 JUNK_FOOD_DOCS = (
     "the pizza pizza beer copyright",
@@ -473,6 +475,13 @@ def test_tf_idf_smoothing():
     assert (tfidf >= 0).all()
 
 
+@pytest.mark.xfail(
+    _IS_WASM,
+    reason=(
+        "no floating point exceptions, see"
+        " https://github.com/numpy/numpy/pull/21895#issuecomment-1311525881"
+    ),
+)
 def test_tfidf_no_smoothing():
     X = [[1, 1, 1], [1, 1, 0], [1, 0, 0]]
     tr = TfidfTransformer(smooth_idf=False, norm="l2")
@@ -1284,10 +1293,13 @@ def test_tfidf_transformer_type(X_dtype):
     assert X_trans.dtype == X.dtype
 
 
-def test_tfidf_transformer_sparse():
+@pytest.mark.parametrize(
+    "csc_container, csr_container", product(CSC_CONTAINERS, CSR_CONTAINERS)
+)
+def test_tfidf_transformer_sparse(csc_container, csr_container):
     X = sparse.rand(10, 20000, dtype=np.float64, random_state=42)
-    X_csc = sparse.csc_matrix(X)
-    X_csr = sparse.csr_matrix(X)
+    X_csc = csc_container(X)
+    X_csr = csr_container(X)
 
     X_trans_csc = TfidfTransformer().fit_transform(X_csc)
     X_trans_csr = TfidfTransformer().fit_transform(X_csr)
@@ -1385,7 +1397,8 @@ def test_vectorizer_stop_words_inconsistent():
 
 
 @skip_if_32bit
-def test_countvectorizer_sort_features_64bit_sparse_indices():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_countvectorizer_sort_features_64bit_sparse_indices(csr_container):
     """
     Check that CountVectorizer._sort_features preserves the dtype of its sparse
     feature matrix.
@@ -1395,7 +1408,7 @@ def test_countvectorizer_sort_features_64bit_sparse_indices():
     for more details.
     """
 
-    X = sparse.csr_matrix((5, 5), dtype=np.int64)
+    X = csr_container((5, 5), dtype=np.int64)
 
     # force indices and indptr to int64.
     INDICES_DTYPE = np.int64

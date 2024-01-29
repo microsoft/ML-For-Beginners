@@ -1,10 +1,10 @@
 import numpy as np
 import pytest
 from numpy.testing import assert_array_equal
-from scipy import sparse as sp
 
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection._base import SelectorMixin
+from sklearn.utils.fixes import CSC_CONTAINERS
 
 
 class StepSelector(SelectorMixin, BaseEstimator):
@@ -60,17 +60,18 @@ def test_transform_dense():
         sel.transform(np.array([[1], [2]]))
 
 
-def test_transform_sparse():
-    sparse = sp.csc_matrix
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_transform_sparse(csc_container):
+    X_sp = csc_container(X)
     sel = StepSelector()
-    Xt_actual = sel.fit(sparse(X)).transform(sparse(X))
-    Xt_actual2 = sel.fit_transform(sparse(X))
+    Xt_actual = sel.fit(X_sp).transform(X_sp)
+    Xt_actual2 = sel.fit_transform(X_sp)
     assert_array_equal(Xt, Xt_actual.toarray())
     assert_array_equal(Xt, Xt_actual2.toarray())
 
     # Check dtype matches
-    assert np.int32 == sel.transform(sparse(X).astype(np.int32)).dtype
-    assert np.float32 == sel.transform(sparse(X).astype(np.float32)).dtype
+    assert np.int32 == sel.transform(X_sp.astype(np.int32)).dtype
+    assert np.float32 == sel.transform(X_sp.astype(np.float32)).dtype
 
     # Check wrong shape raises error
     with pytest.raises(ValueError):
@@ -95,15 +96,17 @@ def test_inverse_transform_dense():
         sel.inverse_transform(np.array([[1], [2]]))
 
 
-def test_inverse_transform_sparse():
-    sparse = sp.csc_matrix
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_inverse_transform_sparse(csc_container):
+    X_sp = csc_container(X)
+    Xt_sp = csc_container(Xt)
     sel = StepSelector()
-    Xinv_actual = sel.fit(sparse(X)).inverse_transform(sparse(Xt))
+    Xinv_actual = sel.fit(X_sp).inverse_transform(Xt_sp)
     assert_array_equal(Xinv, Xinv_actual.toarray())
 
     # Check dtype matches
-    assert np.int32 == sel.inverse_transform(sparse(Xt).astype(np.int32)).dtype
-    assert np.float32 == sel.inverse_transform(sparse(Xt).astype(np.float32)).dtype
+    assert np.int32 == sel.inverse_transform(Xt_sp.astype(np.int32)).dtype
+    assert np.float32 == sel.inverse_transform(Xt_sp.astype(np.float32)).dtype
 
     # Check wrong shape raises error
     with pytest.raises(ValueError):

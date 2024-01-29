@@ -4,8 +4,10 @@ import pytest
 from pandas._libs.tslibs import IncompatibleFrequency
 
 from pandas import (
+    DataFrame,
     Index,
     PeriodIndex,
+    date_range,
     period_range,
 )
 import pandas._testing as tm
@@ -35,12 +37,10 @@ class TestJoin:
         assert index is res
 
     def test_join_does_not_recur(self):
-        df = tm.makeCustomDataframe(
-            3,
-            2,
-            data_gen_f=lambda *args: np.random.default_rng(2).integers(2),
-            c_idx_type="p",
-            r_idx_type="dt",
+        df = DataFrame(
+            np.ones((3, 2)),
+            index=date_range("2020-01-01", periods=3),
+            columns=period_range("2020-01-01", periods=2),
         )
         ser = df.iloc[:2, 0]
 

@@ -75,10 +75,20 @@ class OpSet_OnnxML_ver3 {
   }
 };
 
+class ONNX_OPERATOR_SET_SCHEMA_CLASS_NAME(OnnxML, 4, LabelEncoder);
+
+class OpSet_OnnxML_ver4 {
+ public:
+  static void ForEachSchema(std::function<void(OpSchema&&)> fn) {
+    fn(GetOpSchema<ONNX_OPERATOR_SET_SCHEMA_CLASS_NAME(OnnxML, 4, LabelEncoder)>());
+  }
+};
+
 inline void RegisterOnnxMLOperatorSetSchema() {
   RegisterOpSetSchema<OpSet_OnnxML_ver1>();
   RegisterOpSetSchema<OpSet_OnnxML_ver2>();
   RegisterOpSetSchema<OpSet_OnnxML_ver3>();
+  RegisterOpSetSchema<OpSet_OnnxML_ver4>();
 }
 } // namespace ONNX_NAMESPACE
 

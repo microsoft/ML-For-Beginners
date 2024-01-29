@@ -35,8 +35,8 @@ class PythonLexer(RegexLexer):
     """
 
     name = 'Python'
-    url = 'http://www.python.org'
-    aliases = ['python', 'py', 'sage', 'python3', 'py3']
+    url = 'https://www.python.org'
+    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark']
     filenames = [
         '*.py',
         '*.pyw',
@@ -425,7 +425,7 @@ class Python2Lexer(RegexLexer):
     """
 
     name = 'Python 2.x'
-    url = 'http://www.python.org'
+    url = 'https://www.python.org'
     aliases = ['python2', 'py2']
     filenames = []  # now taken over by PythonLexer (3.x)
     mimetypes = ['text/x-python2', 'application/x-python2']
@@ -830,7 +830,7 @@ class CythonLexer(RegexLexer):
     """
 
     name = 'Cython'
-    url = 'http://cython.org'
+    url = 'https://cython.org'
     aliases = ['cython', 'pyx', 'pyrex']
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']

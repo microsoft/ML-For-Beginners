@@ -1,9 +1,15 @@
 import os.path
 
 import numpy as np
-from numpy.testing import (assert_, assert_array_almost_equal, assert_equal,
-                           assert_almost_equal, assert_array_equal,
-                           suppress_warnings)
+from numpy.testing import (
+    assert_,
+    assert_allclose,
+    assert_almost_equal,
+    assert_array_almost_equal,
+    assert_array_equal,
+    assert_equal,
+    suppress_warnings,
+)
 from pytest import raises as assert_raises
 
 import scipy.ndimage as ndimage
@@ -1390,3 +1396,14 @@ class TestWatershedIft:
         expected = [[1, 1],
                     [1, 1]]
         assert_array_almost_equal(out, expected)
+
+    def test_watershed_ift09(self):
+        # Test large cost. See gh-19575
+        data = np.array([[np.iinfo(np.uint16).max, 0],
+                         [0, 0]], np.uint16)
+        markers = np.array([[1, 0],
+                            [0, 0]], np.int8)
+        out = ndimage.watershed_ift(data, markers)
+        expected = [[1, 1],
+                    [1, 1]]
+        assert_allclose(out, expected)

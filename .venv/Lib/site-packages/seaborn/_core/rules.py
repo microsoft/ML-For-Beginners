@@ -97,7 +97,12 @@ def variable_type(
                 boolean_dtypes = ["bool"]
             boolean_vector = vector.dtype in boolean_dtypes
         else:
-            boolean_vector = bool(np.isin(vector, [0, 1]).all())
+            try:
+                boolean_vector = bool(np.isin(vector, [0, 1]).all())
+            except TypeError:
+                # .isin comparison is not guaranteed to be possible under NumPy
+                # casting rules, depending on the (unknown) dtype of 'vector'
+                boolean_vector = False
         if boolean_vector:
             return VarType(boolean_type)
 

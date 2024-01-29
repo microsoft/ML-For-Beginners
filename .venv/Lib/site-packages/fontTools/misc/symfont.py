@@ -61,7 +61,6 @@ class _BezierFuncsLazy(dict):
 
 
 class GreenPen(BasePen):
-
     _BezierFuncs = {}
 
     @classmethod
@@ -115,7 +114,6 @@ MomentXYPen = partial(GreenPen, func=x * y)
 
 
 def printGreenPen(penName, funcs, file=sys.stdout, docstring=None):
-
     if docstring is not None:
         print('"""%s"""' % docstring)
 
@@ -167,7 +165,6 @@ class %s(BasePen):
     )
 
     for n in (1, 2, 3):
-
         subs = {P[i][j]: [X, Y][j][i] for i in range(n + 1) for j in range(2)}
         greens = [green(f, BezierCurve[n]) for name, f in funcs]
         greens = [sp.gcd_terms(f.collect(sum(P, ()))) for f in greens]  # Optimize

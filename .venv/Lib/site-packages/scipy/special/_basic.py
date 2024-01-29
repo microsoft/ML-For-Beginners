@@ -6,14 +6,18 @@ import operator
 import numpy as np
 import math
 import warnings
+from collections import defaultdict
+from heapq import heapify, heappop
 from numpy import (pi, asarray, floor, isscalar, iscomplex, real,
                    imag, sqrt, where, mgrid, sin, place, issubdtype,
                    extract, inexact, nan, zeros, sinc)
 from . import _ufuncs
 from ._ufuncs import (mathieu_a, mathieu_b, iv, jv, gamma,
-                      psi, hankel1, hankel2, yv, kv, poch, binom)
+                      psi, hankel1, hankel2, yv, kv, poch, binom,
+                      _stirling2_inexact)
 from . import _specfun
 from ._comb import _comb_int
+from scipy._lib.deprecation import _NoValue, _deprecate_positional_args
 
 
 __all__ = [
@@ -68,6 +72,7 @@ __all__ = [
     'riccati_jn',
     'riccati_yn',
     'sinc',
+    'stirling2',
     'y0_zeros',
     'y1_zeros',
     'y1p_zeros',
@@ -919,14 +924,14 @@ def yvp(v, z, n=1):
     n : int, default 1
         Order of derivative. For 0 returns the BEssel function `yv`
 
-    See Also
-    --------
-    yv
-
     Returns
     -------
     scalar or ndarray
         nth derivative of the Bessel function.
+
+    See Also
+    --------
+    yv : Bessel functions of the second kind
 
     Notes
     -----
@@ -1393,8 +1398,8 @@ def riccati_yn(n, x):
 def erf_zeros(nt):
     """Compute the first nt zero in the first quadrant, ordered by absolute value.
 
-    Zeros in the other quadrants can be obtained by using the symmetries erf(-z) = erf(z) and
-    erf(conj(z)) = conj(erf(z)).
+    Zeros in the other quadrants can be obtained by using the symmetries
+    erf(-z) = erf(z) and erf(conj(z)) = conj(erf(z)).
 
 
     Parameters
@@ -1407,6 +1412,12 @@ def erf_zeros(nt):
     The locations of the zeros of erf : ndarray (complex)
         Complex values at which zeros of erf(z)
 
+    References
+    ----------
+    .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
+           Functions", John Wiley and Sons, 1996.
+           https://people.sc.fsu.edu/~jburkardt/f77_src/special_functions/special_functions.html
+
     Examples
     --------
     >>> from scipy import special
@@ -1418,12 +1429,6 @@ def erf_zeros(nt):
     >>> special.erf(special.erf_zeros(1))
     array([4.95159469e-14-1.16407394e-16j])
 
-    References
-    ----------
-    .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
-           Functions", John Wiley and Sons, 1996.
-           https://people.sc.fsu.edu/~jburkardt/f77_src/special_functions/special_functions.html
-
     """
     if (floor(nt) != nt) or (nt <= 0) or not isscalar(nt):
         raise ValueError("Argument must be positive scalar integer.")
@@ -1432,6 +1437,16 @@ def erf_zeros(nt):
 
 def fresnelc_zeros(nt):
     """Compute nt complex zeros of cosine Fresnel integral C(z).
+
+    Parameters
+    ----------
+    nt : int
+        Number of zeros to compute
+
+    Returns
+    -------
+    fresnelc_zeros: ndarray
+        Zeros of the cosine Fresnel integral
 
     References
     ----------
@@ -1448,6 +1463,16 @@ def fresnelc_zeros(nt):
 def fresnels_zeros(nt):
     """Compute nt complex zeros of sine Fresnel integral S(z).
 
+    Parameters
+    ----------
+    nt : int
+        Number of zeros to compute
+
+    Returns
+    -------
+    fresnels_zeros: ndarray
+        Zeros of the sine Fresnel integral
+
     References
     ----------
     .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
@@ -1462,6 +1487,18 @@ def fresnels_zeros(nt):
 
 def fresnel_zeros(nt):
     """Compute nt complex zeros of sine and cosine Fresnel integrals S(z) and C(z).
+
+    Parameters
+    ----------
+    nt : int
+        Number of zeros to compute
+
+    Returns
+    -------
+    zeros_sine: ndarray
+        Zeros of the sine Fresnel integral
+    zeros_cosine : ndarray
+        Zeros of the cosine Fresnel integral
 
     References
     ----------
@@ -1480,6 +1517,20 @@ def assoc_laguerre(x, n, k=0.0):
 
     The polynomial :math:`L^{(k)}_n(x)` is orthogonal over ``[0, inf)``,
     with weighting function ``exp(-x) * x**k`` with ``k > -1``.
+
+    Parameters
+    ----------
+    x : float or ndarray
+        Points where to evaluate the Laguerre polynomial
+    n : int
+        Degree of the Laguerre polynomial
+    k : int
+        Order of the Laguerre polynomial
+
+    Returns
+    -------
+    assoc_laguerre: float or ndarray
+        Associated laguerre polynomial values
 
     Notes
     -----
@@ -1544,7 +1595,8 @@ def mathieu_even_coef(m, q):
 
     .. math:: \mathrm{ce}_{2n}(z, q) = \sum_{k=0}^{\infty} A_{(2n)}^{(2k)} \cos 2kz
 
-    .. math:: \mathrm{ce}_{2n+1}(z, q) = \sum_{k=0}^{\infty} A_{(2n+1)}^{(2k+1)} \cos (2k+1)z
+    .. math:: \mathrm{ce}_{2n+1}(z, q) = 
+              \sum_{k=0}^{\infty} A_{(2n+1)}^{(2k+1)} \cos (2k+1)z
 
     This function returns the coefficients :math:`A_{(2n)}^{(2k)}` for even
     input m=2n, and the coefficients :math:`A_{(2n+1)}^{(2k+1)}` for odd input
@@ -1584,7 +1636,7 @@ def mathieu_even_coef(m, q):
         qm = 17.0 + 3.1*sqrt(q) - .126*q + .0037*sqrt(q)*q
     km = int(qm + 0.5*m)
     if km > 251:
-        warnings.warn("Too many predicted coefficients.", RuntimeWarning, 2)
+        warnings.warn("Too many predicted coefficients.", RuntimeWarning, stacklevel=2)
     kd = 1
     m = int(floor(m))
     if m % 2:
@@ -1601,9 +1653,11 @@ def mathieu_odd_coef(m, q):
     The Fourier series of the odd solutions of the Mathieu differential
     equation are of the form
 
-    .. math:: \mathrm{se}_{2n+1}(z, q) = \sum_{k=0}^{\infty} B_{(2n+1)}^{(2k+1)} \sin (2k+1)z
+    .. math:: \mathrm{se}_{2n+1}(z, q) =
+              \sum_{k=0}^{\infty} B_{(2n+1)}^{(2k+1)} \sin (2k+1)z
 
-    .. math:: \mathrm{se}_{2n+2}(z, q) = \sum_{k=0}^{\infty} B_{(2n+2)}^{(2k+2)} \sin (2k+2)z
+    .. math:: \mathrm{se}_{2n+2}(z, q) =
+              \sum_{k=0}^{\infty} B_{(2n+2)}^{(2k+2)} \sin (2k+2)z
 
     This function returns the coefficients :math:`B_{(2n+2)}^{(2k+2)}` for even
     input m=2n+2, and the coefficients :math:`B_{(2n+1)}^{(2k+1)}` for odd
@@ -1641,7 +1695,7 @@ def mathieu_odd_coef(m, q):
         qm = 17.0 + 3.1*sqrt(q) - .126*q + .0037*sqrt(q)*q
     km = int(qm + 0.5*m)
     if km > 251:
-        warnings.warn("Too many predicted coefficients.", RuntimeWarning, 2)
+        warnings.warn("Too many predicted coefficients.", RuntimeWarning, stacklevel=2)
     kd = 4
     m = int(floor(m))
     if m % 2:
@@ -2046,6 +2100,12 @@ def ai_zeros(nt):
     aip : ndarray
         Values of Ai'(x) evaluated at first `nt` zeros of Ai(x)
 
+    References
+    ----------
+    .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
+           Functions", John Wiley and Sons, 1996.
+           https://people.sc.fsu.edu/~jburkardt/f77_src/special_functions/special_functions.html
+
     Examples
     --------
     >>> from scipy import special
@@ -2058,12 +2118,6 @@ def ai_zeros(nt):
     array([ 0.53565666, -0.41901548,  0.38040647])
     >>> aip
     array([ 0.70121082, -0.80311137,  0.86520403])
-
-    References
-    ----------
-    .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
-           Functions", John Wiley and Sons, 1996.
-           https://people.sc.fsu.edu/~jburkardt/f77_src/special_functions/special_functions.html
 
     """
     kf = 1
@@ -2097,6 +2151,12 @@ def bi_zeros(nt):
     bip : ndarray
         Values of Bi'(x) evaluated at first `nt` zeros of Bi(x)
 
+    References
+    ----------
+    .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
+           Functions", John Wiley and Sons, 1996.
+           https://people.sc.fsu.edu/~jburkardt/f77_src/special_functions/special_functions.html
+
     Examples
     --------
     >>> from scipy import special
@@ -2109,12 +2169,6 @@ def bi_zeros(nt):
     array([-0.45494438,  0.39652284, -0.36796916])
     >>> bip
     array([ 0.60195789, -0.76031014,  0.83699101])
-
-    References
-    ----------
-    .. [1] Zhang, Shanjie and Jin, Jianming. "Computation of Special
-           Functions", John Wiley and Sons, 1996.
-           https://people.sc.fsu.edu/~jburkardt/f77_src/special_functions/special_functions.html
 
     """
     kf = 2
@@ -2588,7 +2642,8 @@ def obl_cv_seq(m, n, c):
     return _specfun.segv(m, n, c, -1)[1][:maxL]
 
 
-def comb(N, k, exact=False, repetition=False, legacy=None):
+@_deprecate_positional_args(version="1.14")
+def comb(N, k, *, exact=False, repetition=False, legacy=_NoValue):
     """The number of combinations of N things taken k at a time.
 
     This is often expressed as "N choose k".
@@ -2613,7 +2668,7 @@ def comb(N, k, exact=False, repetition=False, legacy=None):
 
         .. deprecated:: 1.9.0
             Using `legacy` is deprecated and will removed by
-            Scipy 1.13.0. If you want to keep the legacy behaviour, cast
+            Scipy 1.14.0. If you want to keep the legacy behaviour, cast
             your inputs directly, e.g.
             ``comb(int(your_N), int(your_k), exact=True)``.
 
@@ -2647,17 +2702,17 @@ def comb(N, k, exact=False, repetition=False, legacy=None):
     220
 
     """
-    if legacy is not None:
+    if legacy is not _NoValue:
         warnings.warn(
             "Using 'legacy' keyword is deprecated and will be removed by "
-            "Scipy 1.13.0. If you want to keep the legacy behaviour, cast "
+            "Scipy 1.14.0. If you want to keep the legacy behaviour, cast "
             "your inputs directly, e.g. "
             "'comb(int(your_N), int(your_k), exact=True)'.",
             DeprecationWarning,
             stacklevel=2
         )
     if repetition:
-        return comb(N + k - 1, k, exact, legacy=legacy)
+        return comb(N + k - 1, k, exact=exact, legacy=legacy)
     if exact:
         if int(N) == N and int(k) == k:
             # _comb_int casts inputs to integers, which is safe & intended here
@@ -2792,7 +2847,7 @@ def _exact_factorialx_array(n, k=1):
             # e.g. k=3: 26!!! > np.iinfo(np.int32).max
             dt = np.int64
         else:
-            dt = np.int_
+            dt = np.dtype("long")
     else:
         # for k >= 10, we always use object
         dt = object
@@ -3090,6 +3145,142 @@ def factorialk(n, k, exact=True):
     return _exact_factorialx_array(n, k=k)
 
 
+def stirling2(N, K, *, exact=False):
+    r"""Generate Stirling number(s) of the second kind.
+
+    Stirling numbers of the second kind count the number of ways to
+    partition a set with N elements into K non-empty subsets.
+
+    The values this function returns are calculated using a dynamic
+    program which avoids redundant computation across the subproblems
+    in the solution. For array-like input, this implementation also 
+    avoids redundant computation across the different Stirling number
+    calculations.
+
+    The numbers are sometimes denoted
+
+    .. math::
+
+        {N \brace{K}}
+
+    see [1]_ for details. This is often expressed-verbally-as
+    "N subset K".
+
+    Parameters
+    ----------
+    N : int, ndarray
+        Number of things.
+    K : int, ndarray
+        Number of non-empty subsets taken.
+    exact : bool, optional
+        Uses dynamic programming (DP) with floating point
+        numbers for smaller arrays and uses a second order approximation due to
+        Temme for larger entries  of `N` and `K` that allows trading speed for
+        accuracy. See [2]_ for a description. Temme approximation is used for
+        values `n>50`. The max error from the DP has max relative error
+        `4.5*10^-16` for `n<=50` and the max error from the Temme approximation
+        has max relative error `5*10^-5` for `51 <= n < 70` and
+        `9*10^-6` for `70 <= n < 101`. Note that these max relative errors will
+        decrease further as `n` increases.
+
+    Returns
+    -------
+    val : int, float, ndarray
+        The number of partitions.
+
+    See Also
+    --------
+    comb : The number of combinations of N things taken k at a time.
+
+    Notes
+    -----
+    - If N < 0, or K < 0, then 0 is returned.
+    - If K > N, then 0 is returned.
+
+    The output type will always be `int` or ndarray of `object`.
+    The input must contain either numpy or python integers otherwise a
+    TypeError is raised.
+
+    References
+    ----------
+    .. [1] R. L. Graham, D. E. Knuth and O. Patashnik, "Concrete
+        Mathematics: A Foundation for Computer Science," Addison-Wesley
+        Publishing Company, Boston, 1989. Chapter 6, page 258.
+
+    .. [2] Temme, Nico M. "Asymptotic estimates of Stirling numbers."
+        Studies in Applied Mathematics 89.3 (1993): 233-243.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from scipy.special import stirling2
+    >>> k = np.array([3, -1, 3])
+    >>> n = np.array([10, 10, 9])
+    >>> stirling2(n, k)
+    array([9330, 0, 3025], dtype=object)
+
+    """
+    output_is_scalar = np.isscalar(N) and np.isscalar(K)
+    # make a min-heap of unique (n,k) pairs
+    N, K = asarray(N), asarray(K)
+    if not np.issubdtype(N.dtype, np.integer):
+        raise TypeError("Argument `N` must contain only integers")
+    if not np.issubdtype(K.dtype, np.integer):
+        raise TypeError("Argument `K` must contain only integers")
+    if not exact:
+        # NOTE: here we allow np.uint via casting to double types prior to
+        # passing to private ufunc dispatcher. All dispatched functions
+        # take double type for (n,k) arguments and return double.
+        return _stirling2_inexact(N.astype(float), K.astype(float))
+    nk_pairs = list(
+        set([(n.take(0), k.take(0))
+             for n, k in np.nditer([N, K], ['refs_ok'])])
+    )
+    heapify(nk_pairs)
+    # base mapping for small values
+    snsk_vals = defaultdict(int)
+    for pair in [(0, 0), (1, 1), (2, 1), (2, 2)]:
+        snsk_vals[pair] = 1
+    # for each pair in the min-heap, calculate the value, store for later
+    n_old, n_row = 2, [0, 1, 1]
+    while nk_pairs:
+        n, k = heappop(nk_pairs)
+        if n < 2 or k > n or k <= 0:
+            continue
+        elif k == n or k == 1:
+            snsk_vals[(n, k)] = 1
+            continue
+        elif n != n_old:
+            num_iters = n - n_old
+            while num_iters > 0:
+                n_row.append(1)
+                # traverse from back to remove second row
+                for j in range(len(n_row)-2, 1, -1):
+                    n_row[j] = n_row[j]*j + n_row[j-1]
+                num_iters -= 1
+            snsk_vals[(n, k)] = n_row[k]
+        else:
+            snsk_vals[(n, k)] = n_row[k]
+        n_old, n_row = n, n_row
+    out_types = [object, object, object] if exact else [float, float, float]
+    # for each pair in the map, fetch the value, and populate the array
+    it = np.nditer(
+        [N, K, None],
+        ['buffered', 'refs_ok'],
+        [['readonly'], ['readonly'], ['writeonly', 'allocate']],
+        op_dtypes=out_types,
+    )
+    with it:
+        while not it.finished:
+            it[2] = snsk_vals[(int(it[0]), int(it[1]))]
+            it.iternext()
+        output = it.operands[2]
+        # If N and K were both scalars, convert output to scalar.
+        if output_is_scalar:
+            output = output.take(0)
+    return output
+
+
 def zeta(x, q=None, out=None):
     r"""
     Riemann or Hurwitz zeta function.
@@ -3108,6 +3299,10 @@ def zeta(x, q=None, out=None):
     out : array_like
         Values of zeta(x).
 
+    See Also
+    --------
+    zetac
+
     Notes
     -----
     The two-argument version is the Hurwitz zeta function
@@ -3118,10 +3313,6 @@ def zeta(x, q=None, out=None):
 
     see [dlmf]_ for details. The Riemann zeta function corresponds to
     the case when ``q = 1``.
-
-    See Also
-    --------
-    zetac
 
     References
     ----------

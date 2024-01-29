@@ -105,7 +105,7 @@ Warnings / Errors used in :mod:`scipy.spatial`
    :toctree: generated/
 
    QhullError
-"""
+"""  # noqa: E501
 
 from ._kdtree import *
 from ._ckdtree import *

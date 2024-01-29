@@ -9,6 +9,7 @@ from numpy.fft import irfft, fft, ifft
 from scipy.special import sinc
 from scipy.linalg import (toeplitz, hankel, solve, LinAlgError, LinAlgWarning,
                           lstsq)
+from scipy._lib.deprecation import _NoValue, _deprecate_positional_args
 
 from . import _sigtools
 
@@ -20,15 +21,18 @@ def _get_fs(fs, nyq):
     """
     Utility for replacing the argument 'nyq' (with default 1) with 'fs'.
     """
-    if nyq is None and fs is None:
+    if nyq is _NoValue and fs is None:
         fs = 2
-    elif nyq is not None:
+    elif nyq is not _NoValue:
         if fs is not None:
             raise ValueError("Values cannot be given for both 'nyq' and 'fs'.")
         msg = ("Keyword argument 'nyq' is deprecated in favour of 'fs' and "
-               "will be removed in SciPy 1.12.0.")
+               "will be removed in SciPy 1.14.0.")
         warnings.warn(msg, DeprecationWarning, stacklevel=3)
-        fs = 2*nyq
+        if nyq is None:
+            fs = 2
+        else:
+            fs = 2*nyq
     return fs
 
 
@@ -251,7 +255,7 @@ def kaiserord(ripple, width):
     A = abs(ripple)  # in case somebody is confused as to what's meant
     if A < 8:
         # Formula for N is not valid in this range.
-        raise ValueError("Requested maximum ripple attentuation %f is too "
+        raise ValueError("Requested maximum ripple attenuation %f is too "
                          "small for the Kaiser formula." % A)
     beta = kaiser_beta(A)
 
@@ -262,8 +266,9 @@ def kaiserord(ripple, width):
     return int(ceil(numtaps)), beta
 
 
-def firwin(numtaps, cutoff, width=None, window='hamming', pass_zero=True,
-           scale=True, nyq=None, fs=None):
+@_deprecate_positional_args(version="1.14")
+def firwin(numtaps, cutoff, *, width=None, window='hamming', pass_zero=True,
+           scale=True, nyq=_NoValue, fs=None):
     """
     FIR filter design using the window method.
 
@@ -319,7 +324,7 @@ def firwin(numtaps, cutoff, width=None, window='hamming', pass_zero=True,
 
         .. deprecated:: 1.0.0
            `firwin` keyword argument `nyq` is deprecated in favour of `fs` and
-           will be removed in SciPy 1.12.0.
+           will be removed in SciPy 1.14.0.
     fs : float, optional
         The sampling frequency of the signal. Each frequency in `cutoff`
         must be between 0 and ``fs/2``.  Default is 2.
@@ -386,7 +391,7 @@ def firwin(numtaps, cutoff, width=None, window='hamming', pass_zero=True,
     >>> signal.firwin(numtaps, [f1, f2, f3, f4], pass_zero=False)
     array([ 0.04890915,  0.91284326,  0.04890915])
 
-    """  # noqa: E501
+    """
     # The major enhancements to this function added in November 2010 were
     # developed by Tom Krauss (see ticket #902).
 
@@ -419,28 +424,24 @@ def firwin(numtaps, cutoff, width=None, window='hamming', pass_zero=True,
             if pass_zero == 'lowpass':
                 if cutoff.size != 1:
                     raise ValueError('cutoff must have one element if '
-                                     'pass_zero=="lowpass", got %s'
-                                     % (cutoff.shape,))
+                                     f'pass_zero=="lowpass", got {cutoff.shape}')
             elif cutoff.size <= 1:
                 raise ValueError('cutoff must have at least two elements if '
-                                 'pass_zero=="bandstop", got %s'
-                                 % (cutoff.shape,))
+                                 f'pass_zero=="bandstop", got {cutoff.shape}')
             pass_zero = True
         elif pass_zero in ('bandpass', 'highpass'):
             if pass_zero == 'highpass':
                 if cutoff.size != 1:
                     raise ValueError('cutoff must have one element if '
-                                     'pass_zero=="highpass", got %s'
-                                     % (cutoff.shape,))
+                                     f'pass_zero=="highpass", got {cutoff.shape}')
             elif cutoff.size <= 1:
                 raise ValueError('cutoff must have at least two elements if '
-                                 'pass_zero=="bandpass", got %s'
-                                 % (cutoff.shape,))
+                                 f'pass_zero=="bandpass", got {cutoff.shape}')
             pass_zero = False
         else:
             raise ValueError('pass_zero must be True, False, "bandpass", '
                              '"lowpass", "highpass", or "bandstop", got '
-                             '{}'.format(pass_zero))
+                             f'{pass_zero}')
     pass_zero = bool(operator.index(pass_zero))  # ensure bool-like
 
     pass_nyquist = bool(cutoff.size & 1) ^ pass_zero
@@ -489,8 +490,8 @@ def firwin(numtaps, cutoff, width=None, window='hamming', pass_zero=True,
 # Original version of firwin2 from scipy ticket #457, submitted by "tash".
 #
 # Rewritten by Warren Weckesser, 2010.
-
-def firwin2(numtaps, freq, gain, nfreqs=None, window='hamming', nyq=None,
+@_deprecate_positional_args(version="1.14")
+def firwin2(numtaps, freq, gain, *, nfreqs=None, window='hamming', nyq=_NoValue,
             antisymmetric=False, fs=None):
     """
     FIR filter design using the window method.
@@ -531,7 +532,7 @@ def firwin2(numtaps, freq, gain, nfreqs=None, window='hamming', nyq=None,
 
         .. deprecated:: 1.0.0
            `firwin2` keyword argument `nyq` is deprecated in favour of `fs` and
-           will be removed in SciPy 1.12.0.
+           will be removed in SciPy 1.14.0.
     antisymmetric : bool, optional
         Whether resulting impulse response is symmetric/antisymmetric.
         See Notes for more details.
@@ -658,7 +659,7 @@ def firwin2(numtaps, freq, gain, nfreqs=None, window='hamming', nyq=None,
         if (d <= 0).any():
             raise ValueError("freq cannot contain numbers that are too close "
                              "(within eps * (fs/2): "
-                             "{}) to a repeated value".format(eps))
+                             f"{eps}) to a repeated value")
 
     # Linearly interpolate the desired response on a uniform mesh `x`.
     x = np.linspace(0.0, nyq, nfreqs)
@@ -692,7 +693,8 @@ def firwin2(numtaps, freq, gain, nfreqs=None, window='hamming', nyq=None,
     return out
 
 
-def remez(numtaps, bands, desired, weight=None, Hz=None, type='bandpass',
+@_deprecate_positional_args(version="1.14")
+def remez(numtaps, bands, desired, *, weight=None, Hz=_NoValue, type='bandpass',
           maxiter=25, grid_density=16, fs=None):
     """
     Calculate the minimax optimal filter using the Remez exchange algorithm.
@@ -722,7 +724,7 @@ def remez(numtaps, bands, desired, weight=None, Hz=None, type='bandpass',
 
         .. deprecated:: 1.0.0
            `remez` keyword argument `Hz` is deprecated in favour of `fs` and
-           will be removed in SciPy 1.12.0.
+           will be removed in SciPy 1.14.0.
     type : {'bandpass', 'differentiator', 'hilbert'}, optional
         The type of filter:
 
@@ -850,13 +852,13 @@ def remez(numtaps, bands, desired, weight=None, Hz=None, type='bandpass',
     >>> plt.show()
 
     """
-    if Hz is None and fs is None:
+    if Hz is _NoValue and fs is None:
         fs = 1.0
-    elif Hz is not None:
+    elif Hz is not _NoValue:
         if fs is not None:
             raise ValueError("Values cannot be given for both 'Hz' and 'fs'.")
         msg = ("'remez' keyword argument 'Hz' is deprecated in favour of 'fs'"
-               " and will be removed in SciPy 1.12.0.")
+               " and will be removed in SciPy 1.14.0.")
         warnings.warn(msg, DeprecationWarning, stacklevel=2)
         fs = Hz
 
@@ -876,7 +878,8 @@ def remez(numtaps, bands, desired, weight=None, Hz=None, type='bandpass',
                             maxiter, grid_density)
 
 
-def firls(numtaps, bands, desired, weight=None, nyq=None, fs=None):
+@_deprecate_positional_args(version="1.14")
+def firls(numtaps, bands, desired, *, weight=None, nyq=_NoValue, fs=None):
     """
     FIR filter design using least-squares error minimization.
 
@@ -912,7 +915,7 @@ def firls(numtaps, bands, desired, weight=None, nyq=None, fs=None):
 
         .. deprecated:: 1.0.0
            `firls` keyword argument `nyq` is deprecated in favour of `fs` and
-           will be removed in SciPy 1.12.0.
+           will be removed in SciPy 1.14.0.
     fs : float, optional
         The sampling frequency of the signal. Each frequency in `bands`
         must be between 0 and ``fs/2`` (inclusive). Default is 2.
@@ -992,7 +995,7 @@ def firls(numtaps, bands, desired, weight=None, nyq=None, fs=None):
     >>> fig.tight_layout()
     >>> plt.show()
 
-    """  # noqa
+    """
     nyq = 0.5 * _get_fs(fs, nyq)
 
     numtaps = int(numtaps)
@@ -1014,9 +1017,8 @@ def firls(numtaps, bands, desired, weight=None, nyq=None, fs=None):
     # check remaining params
     desired = np.asarray(desired).flatten()
     if bands.size != desired.size:
-        raise ValueError("desired must have one entry per frequency, got %s "
-                         "gains for %s frequencies."
-                         % (desired.size, bands.size))
+        raise ValueError("desired must have one entry per frequency, got {} "
+                         "gains for {} frequencies.".format(desired.size, bands.size))
     desired.shape = (-1, 2)
     if (np.diff(bands) <= 0).any() or (np.diff(bands[:, 0]) < 0).any():
         raise ValueError("bands must be monotonically nondecreasing and have "
@@ -1030,7 +1032,7 @@ def firls(numtaps, bands, desired, weight=None, nyq=None, fs=None):
     weight = np.asarray(weight).flatten()
     if len(weight) != len(desired):
         raise ValueError("weight must be the same size as the number of "
-                         "band pairs ({}).".format(len(bands)))
+                         f"band pairs ({len(bands)}).")
     if (weight < 0).any():
         raise ValueError("weight must be non-negative.")
 
@@ -1047,7 +1049,7 @@ def firls(numtaps, bands, desired, weight=None, nyq=None, fs=None):
 
     # We have that:
     #     q(n) = 1/π ∫W(ω)cos(nω)dω (over 0->π)
-    # Using our nomalization ω=πf and with a constant weight W over each
+    # Using our normalization ω=πf and with a constant weight W over each
     # interval f1->f2 we get:
     #     q(n) = W∫cos(πnf)df (0->1) = Wf sin(πnf)/πnf
     # integrated over each f1->f2 pair (i.e., value at f2 - value at f1).
@@ -1241,7 +1243,7 @@ def minimum_phase(h, method='homomorphic', n_fft=None):
     >>> axs[3].set(ylabel='Group delay')
     >>> plt.tight_layout()
 
-    """  # noqa
+    """
     h = np.asarray(h)
     if np.iscomplexobj(h):
         raise ValueError('Complex filters not supported')
@@ -1249,12 +1251,11 @@ def minimum_phase(h, method='homomorphic', n_fft=None):
         raise ValueError('h must be 1-D and at least 2 samples long')
     n_half = len(h) // 2
     if not np.allclose(h[-n_half:][::-1], h[:n_half]):
-        warnings.warn('h does not appear to by symmetric, conversion may '
-                      'fail', RuntimeWarning)
+        warnings.warn('h does not appear to by symmetric, conversion may fail',
+                      RuntimeWarning, stacklevel=2)
     if not isinstance(method, str) or method not in \
             ('homomorphic', 'hilbert',):
-        raise ValueError('method must be "homomorphic" or "hilbert", got %r'
-                         % (method,))
+        raise ValueError(f'method must be "homomorphic" or "hilbert", got {method!r}')
     if n_fft is None:
         n_fft = 2 ** int(np.ceil(np.log2(2 * (len(h) - 1) / 0.01)))
     n_fft = int(n_fft)

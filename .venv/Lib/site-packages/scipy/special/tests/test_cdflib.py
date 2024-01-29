@@ -45,7 +45,7 @@ class ProbArg:
         self.b = 1
 
     def values(self, n):
-        """Return an array containing approximatively n numbers."""
+        """Return an array containing approximately n numbers."""
         m = max(1, n//3)
         v1 = np.logspace(-30, np.log10(0.3), m)
         v2 = np.linspace(0.3, 0.7, m + 1, endpoint=False)[1:]

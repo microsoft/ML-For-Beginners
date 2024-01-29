@@ -162,3 +162,26 @@ def test_random_under_sampling_datetime():
     pd.testing.assert_series_equal(X_res.dtypes, X.dtypes)
     pd.testing.assert_index_equal(X_res.index, y_res.index)
     assert_array_equal(y_res.to_numpy(), np.array([0, 1]))
+
+
+def test_random_under_sampler_full_nat():
+    """Check that we can return timedelta columns full of NaT.
+
+    Non-regression test for:
+    https://github.com/scikit-learn-contrib/imbalanced-learn/issues/1055
+    """
+    pd = pytest.importorskip("pandas")
+
+    X = pd.DataFrame(
+        {
+            "col_str": ["abc", "def", "xyz"],
+            "col_timedelta": pd.to_timedelta([np.nan, np.nan, np.nan]),
+        }
+    )
+    y = np.array([0, 0, 1])
+
+    X_res, y_res = RandomUnderSampler().fit_resample(X, y)
+    assert X_res.shape == (2, 2)
+    assert y_res.shape == (2,)
+
+    assert X_res["col_timedelta"].dtype == "timedelta64[ns]"

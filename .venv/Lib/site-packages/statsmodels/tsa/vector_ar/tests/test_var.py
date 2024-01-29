@@ -2,7 +2,7 @@
 """
 Test VAR Model
 """
-from statsmodels.compat.pandas import assert_index_equal
+from statsmodels.compat.pandas import QUARTER_END, assert_index_equal
 from statsmodels.compat.python import lrange
 
 from io import BytesIO, StringIO
@@ -600,7 +600,7 @@ class TestVARResultsLutkepohl:
         adj_data = np.diff(np.log(data), axis=0)
         # est = VAR(adj_data, p=2, dates=dates[1:], names=names)
 
-        cls.model = VAR(adj_data[:-16], dates=dates[1:-16], freq="BQ-MAR")
+        cls.model = VAR(adj_data[:-16], dates=dates[1:-16], freq=f"B{QUARTER_END}-MAR")
         cls.res = cls.model.fit(maxlags=cls.p)
         cls.irf = cls.res.irf(10)
         cls.lut = E1_Results()

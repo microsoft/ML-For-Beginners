@@ -62,9 +62,10 @@ def qr(a, overwrite_a=False, lwork=None, mode='full', pivoting=False,
     -------
     Q : float or complex ndarray
         Of shape (M, M), or (M, K) for ``mode='economic'``. Not returned
-        if ``mode='r'``.
+        if ``mode='r'``. Replaced by tuple ``(Q, TAU)`` if ``mode='raw'``.
     R : float or complex ndarray
-        Of shape (M, N), or (K, N) for ``mode='economic'``. ``K = min(M, N)``.
+        Of shape (M, N), or (K, N) for ``mode in ['economic', 'raw']``.
+        ``K = min(M, N)``.
     P : int ndarray
         Of shape (N,) for ``pivoting=True``. Not returned if
         ``pivoting=False``.
@@ -253,7 +254,7 @@ def qr_multiply(a, c, mode='right', pivoting=False, conjugate=False,
     """
     if mode not in ['left', 'right']:
         raise ValueError("Mode argument can only be 'left' or 'right' but "
-                         "not '{}'".format(mode))
+                         f"not '{mode}'")
     c = numpy.asarray_chkfinite(c)
     if c.ndim < 2:
         onedim = True
@@ -269,11 +270,11 @@ def qr_multiply(a, c, mode='right', pivoting=False, conjugate=False,
     if mode == 'left':
         if c.shape[0] != min(M, N + overwrite_c*(M-N)):
             raise ValueError('Array shapes are not compatible for Q @ c'
-                             ' operation: {} vs {}'.format(a.shape, c.shape))
+                             f' operation: {a.shape} vs {c.shape}')
     else:
         if M != c.shape[1]:
             raise ValueError('Array shapes are not compatible for c @ Q'
-                             ' operation: {} vs {}'.format(c.shape, a.shape))
+                             f' operation: {c.shape} vs {a.shape}')
 
     raw = qr(a, overwrite_a, None, "raw", pivoting)
     Q, tau = raw[0]

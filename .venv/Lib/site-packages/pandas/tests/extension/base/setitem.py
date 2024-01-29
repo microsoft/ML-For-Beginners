@@ -43,7 +43,13 @@ class BaseSetitemTests:
                 # This fixture is auto-used, but we want to not-skip
                 # test_is_immutable.
                 return
-            pytest.skip("__setitem__ test not applicable with immutable dtype")
+
+            # When BaseSetitemTests is mixed into ExtensionTests, we only
+            #  want this fixture to operate on the tests defined in this
+            #  class/file.
+            defined_in = node.function.__qualname__.split(".")[0]
+            if defined_in == "BaseSetitemTests":
+                pytest.skip("__setitem__ test not applicable with immutable dtype")
 
     def test_is_immutable(self, data):
         if data.dtype._is_immutable:
@@ -73,7 +79,7 @@ class BaseSetitemTests:
         original = ser.copy()
         value = [data[0]]
         if as_array:
-            value = data._from_sequence(value)
+            value = data._from_sequence(value, dtype=data.dtype)
 
         xpr = "cannot set using a {} indexer with a different length"
         with pytest.raises(ValueError, match=xpr.format("list-like")):
@@ -351,11 +357,11 @@ class BaseSetitemTests:
 
     def test_setitem_with_expansion_dataframe_column(self, data, full_indexer):
         # https://github.com/pandas-dev/pandas/issues/32395
-        df = expected = pd.DataFrame({"data": pd.Series(data)})
+        df = expected = pd.DataFrame({0: pd.Series(data)})
         result = pd.DataFrame(index=df.index)
 
         key = full_indexer(df)
-        result.loc[key, "data"] = df["data"]
+        result.loc[key, 0] = df[0]
 
         tm.assert_frame_equal(result, expected)
 
@@ -401,10 +407,10 @@ class BaseSetitemTests:
 
         orig = df.copy()
 
-        df.iloc[:] = df
+        df.iloc[:] = df.copy()
         tm.assert_frame_equal(df, orig)
 
-        df.iloc[:-1] = df.iloc[:-1]
+        df.iloc[:-1] = df.iloc[:-1].copy()
         tm.assert_frame_equal(df, orig)
 
         df.iloc[:] = df.values

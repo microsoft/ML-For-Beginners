@@ -44,32 +44,6 @@ STYLE_BLACKLIST = {
     'toolbar', 'timezone', 'figure.max_open_warning',
     'figure.raise_window', 'savefig.directory', 'tk.window_focus',
     'docstring.hardcopy', 'date.epoch'}
-_DEPRECATED_SEABORN_STYLES = {
-    s: s.replace("seaborn", "seaborn-v0_8")
-    for s in [
-        "seaborn",
-        "seaborn-bright",
-        "seaborn-colorblind",
-        "seaborn-dark",
-        "seaborn-darkgrid",
-        "seaborn-dark-palette",
-        "seaborn-deep",
-        "seaborn-muted",
-        "seaborn-notebook",
-        "seaborn-paper",
-        "seaborn-pastel",
-        "seaborn-poster",
-        "seaborn-talk",
-        "seaborn-ticks",
-        "seaborn-white",
-        "seaborn-whitegrid",
-    ]
-}
-_DEPRECATED_SEABORN_MSG = (
-    "The seaborn styles shipped by Matplotlib are deprecated since %(since)s, "
-    "as they no longer correspond to the styles shipped by seaborn. However, "
-    "they will remain available as 'seaborn-v0_8-<style>'. Alternatively, "
-    "directly use the seaborn API instead.")
 
 
 @_docstring.Substitution(
@@ -135,9 +109,6 @@ def use(style):
     for style in styles:
         if isinstance(style, str):
             style = style_alias.get(style, style)
-            if style in _DEPRECATED_SEABORN_STYLES:
-                _api.warn_deprecated("3.6", message=_DEPRECATED_SEABORN_MSG)
-                style = _DEPRECATED_SEABORN_STYLES[style]
             if style == "default":
                 # Deprecation warnings were already handled when creating
                 # rcParamsDefault, no need to reemit them here.
@@ -164,8 +135,8 @@ def use(style):
         if isinstance(style, (str, Path)):
             try:
                 style = _rc_params_in_file(style)
-            except IOError as err:
-                raise IOError(
+            except OSError as err:
+                raise OSError(
                     f"{style!r} is not a valid package style, path of style "
                     f"file, URL of style file, or library style name (library "
                     f"styles are listed in `style.available`)") from err
@@ -257,19 +228,10 @@ def update_nested_dict(main_dict, new_dict):
     return main_dict
 
 
-class _StyleLibrary(dict):
-    def __getitem__(self, key):
-        if key in _DEPRECATED_SEABORN_STYLES:
-            _api.warn_deprecated("3.6", message=_DEPRECATED_SEABORN_MSG)
-            key = _DEPRECATED_SEABORN_STYLES[key]
-
-        return dict.__getitem__(self, key)
-
-
 # Load style library
 # ==================
 _base_library = read_style_directory(BASE_LIBRARY_PATH)
-library = _StyleLibrary()
+library = {}
 available = []
 
 

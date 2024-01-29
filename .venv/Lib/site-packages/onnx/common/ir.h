@@ -10,15 +10,19 @@
 #pragma once
 
 #include <stdint.h>
+
 #include <algorithm>
 #include <atomic>
 #include <cstdint>
 #include <functional>
 #include <iostream>
+#include <limits>
 #include <memory>
+#include <set>
 #include <sstream>
 #include <string>
 #include <unordered_set>
+#include <utility>
 #include <vector>
 
 #include "onnx/common/array_ref.h"

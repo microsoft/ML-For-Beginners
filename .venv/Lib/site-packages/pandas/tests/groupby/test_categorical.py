@@ -82,7 +82,7 @@ def test_apply_use_categorical_name(df):
     assert result.index.names[0] == "C"
 
 
-def test_basic():  # TODO: split this test
+def test_basic(using_infer_string):  # TODO: split this test
     cats = Categorical(
         ["a", "a", "a", "b", "b", "b", "c", "c", "c"],
         categories=["a", "b", "c", "d"],
@@ -124,10 +124,13 @@ def test_basic():  # TODO: split this test
     def f(x):
         return x.drop_duplicates("person_name").iloc[0]
 
-    result = g.apply(f)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = g.apply(f)
     expected = x.iloc[[0, 1]].copy()
     expected.index = Index([1, 2], name="person_id")
-    expected["person_name"] = expected["person_name"].astype("object")
+    dtype = "string[pyarrow_numpy]" if using_infer_string else object
+    expected["person_name"] = expected["person_name"].astype(dtype)
     tm.assert_frame_equal(result, expected)
 
     # GH 9921
@@ -268,7 +271,10 @@ def test_level_get_group(observed):
             names=["Index1", "Index2"],
         ),
     )
-    result = g.get_group("a")
+    msg = "you will need to pass a length-1 tuple"
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        # GH#25971 - warn when not passing a length-1 tuple
+        result = g.get_group("a")
 
     tm.assert_frame_equal(result, expected)
 
@@ -326,7 +332,9 @@ def test_apply(ordered):
     # but for transform we should still get back the original index
     idx = MultiIndex.from_arrays([missing, dense], names=["missing", "dense"])
     expected = Series(1, index=idx)
-    result = grouped.apply(lambda x: 1)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = grouped.apply(lambda x: 1)
     tm.assert_series_equal(result, expected)
 
 
@@ -1147,7 +1155,7 @@ def test_groupby_multiindex_categorical_datetime():
         {
             "key1": Categorical(list("abcbabcba")),
             "key2": Categorical(
-                list(pd.date_range("2018-06-01 00", freq="1T", periods=3)) * 3
+                list(pd.date_range("2018-06-01 00", freq="1min", periods=3)) * 3
             ),
             "values": np.arange(9),
         }
@@ -1157,7 +1165,7 @@ def test_groupby_multiindex_categorical_datetime():
     idx = MultiIndex.from_product(
         [
             Categorical(["a", "b", "c"]),
-            Categorical(pd.date_range("2018-06-01 00", freq="1T", periods=3)),
+            Categorical(pd.date_range("2018-06-01 00", freq="1min", periods=3)),
         ],
         names=["key1", "key2"],
     )
@@ -1409,6 +1417,15 @@ def test_series_groupby_on_2_categoricals_unobserved(reduction_func, observed):
         return
 
     agg = getattr(series_groupby, reduction_func)
+
+    if not observed and reduction_func in ["idxmin", "idxmax"]:
+        # idxmin and idxmax are designed to fail on empty inputs
+        with pytest.raises(
+            ValueError, match="empty group due to unobserved categories"
+        ):
+            agg(*args)
+        return
+
     result = agg(*args)
 
     assert len(result) == expected_length
@@ -1427,7 +1444,7 @@ def test_series_groupby_on_2_categoricals_unobserved_zeroes_or_nans(
         mark = pytest.mark.xfail(
             reason="TODO: implemented SeriesGroupBy.corrwith. See GH 32293"
         )
-        request.node.add_marker(mark)
+        request.applymarker(mark)
 
     df = DataFrame(
         {
@@ -1441,6 +1458,15 @@ def test_series_groupby_on_2_categoricals_unobserved_zeroes_or_nans(
 
     series_groupby = df.groupby(["cat_1", "cat_2"], observed=False)["value"]
     agg = getattr(series_groupby, reduction_func)
+
+    if reduction_func in ["idxmin", "idxmax"]:
+        # idxmin and idxmax are designed to fail on empty inputs
+        with pytest.raises(
+            ValueError, match="empty group due to unobserved categories"
+        ):
+            agg(*args)
+        return
+
     result = agg(*args)
 
     zero_or_nan = _results_for_groupbys_with_missing_categories[reduction_func]
@@ -1507,6 +1533,15 @@ def test_dataframe_groupby_on_2_categoricals_when_observed_is_false(
     df_grp = df.groupby(["cat_1", "cat_2"], observed=observed)
 
     args = get_groupby_method_args(reduction_func, df)
+
+    if not observed and reduction_func in ["idxmin", "idxmax"]:
+        # idxmin and idxmax are designed to fail on empty inputs
+        with pytest.raises(
+            ValueError, match="empty group due to unobserved categories"
+        ):
+            getattr(df_grp, reduction_func)(*args)
+        return
+
     res = getattr(df_grp, reduction_func)(*args)
 
     expected = _results_for_groupbys_with_missing_categories[reduction_func]
@@ -1876,16 +1911,9 @@ def test_category_order_reducer(
     request, as_index, sort, observed, reduction_func, index_kind, ordered
 ):
     # GH#48749
-    if (
-        reduction_func in ("idxmax", "idxmin")
-        and not observed
-        and index_kind != "multi"
-    ):
-        msg = "GH#10694 - idxmax/min fail with unused categories"
-        request.node.add_marker(pytest.mark.xfail(reason=msg))
-    elif reduction_func == "corrwith" and not as_index:
+    if reduction_func == "corrwith" and not as_index:
         msg = "GH#49950 - corrwith with as_index=False may not have grouping column"
-        request.node.add_marker(pytest.mark.xfail(reason=msg))
+        request.applymarker(pytest.mark.xfail(reason=msg))
     elif index_kind != "range" and not as_index:
         pytest.skip(reason="Result doesn't have categories, nothing to test")
     df = DataFrame(
@@ -1905,6 +1933,15 @@ def test_category_order_reducer(
         df = df.set_index(keys)
     args = get_groupby_method_args(reduction_func, df)
     gb = df.groupby(keys, as_index=as_index, sort=sort, observed=observed)
+
+    if not observed and reduction_func in ["idxmin", "idxmax"]:
+        # idxmin and idxmax are designed to fail on empty inputs
+        with pytest.raises(
+            ValueError, match="empty group due to unobserved categories"
+        ):
+            getattr(gb, reduction_func)(*args)
+        return
+
     op_result = getattr(gb, reduction_func)(*args)
     if as_index:
         result = op_result.index.get_level_values("a").categories
@@ -1939,7 +1976,10 @@ def test_category_order_transformer(
         df = df.set_index(keys)
     args = get_groupby_method_args(transformation_func, df)
     gb = df.groupby(keys, as_index=as_index, sort=sort, observed=observed)
-    op_result = getattr(gb, transformation_func)(*args)
+    warn = FutureWarning if transformation_func == "fillna" else None
+    msg = "DataFrameGroupBy.fillna is deprecated"
+    with tm.assert_produces_warning(warn, match=msg):
+        op_result = getattr(gb, transformation_func)(*args)
     result = op_result.index.get_level_values("a").categories
     expected = Index([1, 4, 3, 2])
     tm.assert_index_equal(result, expected)
@@ -2010,7 +2050,10 @@ def test_category_order_apply(as_index, sort, observed, method, index_kind, orde
         df["a2"] = df["a"]
         df = df.set_index(keys)
     gb = df.groupby(keys, as_index=as_index, sort=sort, observed=observed)
-    op_result = getattr(gb, method)(lambda x: x.sum(numeric_only=True))
+    warn = DeprecationWarning if method == "apply" and index_kind == "range" else None
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(warn, match=msg):
+        op_result = getattr(gb, method)(lambda x: x.sum(numeric_only=True))
     if (method == "transform" or not as_index) and index_kind == "range":
         result = op_result["a"].cat.categories
     else:
@@ -2084,7 +2127,7 @@ def test_agg_list(request, as_index, observed, reduction_func, test_series, keys
         pytest.skip("corrwith not implemented for SeriesGroupBy")
     elif reduction_func == "corrwith":
         msg = "GH#32293: attempts to call SeriesGroupBy.corrwith"
-        request.node.add_marker(pytest.mark.xfail(reason=msg))
+        request.applymarker(pytest.mark.xfail(reason=msg))
     elif (
         reduction_func == "nunique"
         and not test_series
@@ -2093,7 +2136,7 @@ def test_agg_list(request, as_index, observed, reduction_func, test_series, keys
         and not as_index
     ):
         msg = "GH#52848 - raises a ValueError"
-        request.node.add_marker(pytest.mark.xfail(reason=msg))
+        request.applymarker(pytest.mark.xfail(reason=msg))
 
     df = DataFrame({"a1": [0, 0, 1], "a2": [2, 3, 3], "b": [4, 5, 6]})
     df = df.astype({"a1": "category", "a2": "category"})
@@ -2103,6 +2146,13 @@ def test_agg_list(request, as_index, observed, reduction_func, test_series, keys
     if test_series:
         gb = gb["b"]
     args = get_groupby_method_args(reduction_func, df)
+
+    if not observed and reduction_func in ["idxmin", "idxmax"] and keys == ["a1", "a2"]:
+        with pytest.raises(
+            ValueError, match="empty group due to unobserved categories"
+        ):
+            gb.agg([reduction_func], *args)
+        return
 
     result = gb.agg([reduction_func], *args)
     expected = getattr(gb, reduction_func)(*args)

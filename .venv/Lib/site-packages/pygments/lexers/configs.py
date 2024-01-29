@@ -542,15 +542,14 @@ class SquidConfLexer(RegexLexer):
         "dst", "time", "dstdomain", "ident", "snmp_community",
     )
 
-    ip_re = (
-        r'(?:(?:(?:[3-9]\d?|2(?:5[0-5]|[0-4]?\d)?|1\d{0,2}|0x0*[0-9a-f]{1,2}|'
-        r'0+[1-3]?[0-7]{0,2})(?:\.(?:[3-9]\d?|2(?:5[0-5]|[0-4]?\d)?|1\d{0,2}|'
-        r'0x0*[0-9a-f]{1,2}|0+[1-3]?[0-7]{0,2})){3})|(?!.*::.*::)(?:(?!:)|'
-        r':(?=:))(?:[0-9a-f]{0,4}(?:(?<=::)|(?<!::):)){6}(?:[0-9a-f]{0,4}'
-        r'(?:(?<=::)|(?<!::):)[0-9a-f]{0,4}(?:(?<=::)|(?<!:)|(?<=:)(?<!::):)|'
-        r'(?:25[0-4]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\.(?:25[0-4]|2[0-4]\d|1\d\d|'
-        r'[1-9]?\d)){3}))'
-    )
+    ipv4_group = r'(\d+|0x[0-9a-f]+)'
+    ipv4 = rf'({ipv4_group}(\.{ipv4_group}){{3}})'
+    ipv6_group = r'([0-9a-f]{0,4})'
+    ipv6 = rf'({ipv6_group}(:{ipv6_group}){{1,7}})'
+    bare_ip = rf'({ipv4}|{ipv6})'
+    # XXX: /integer is a subnet mark, but what is /IP ?
+    # There is no test where it is used.
+    ip = rf'{bare_ip}(/({bare_ip}|\d+))?'
 
     tokens = {
         'root': [
@@ -563,7 +562,7 @@ class SquidConfLexer(RegexLexer):
             (words(actions_stats, prefix=r'stats/', suffix=r'\b'), String),
             (words(actions_log, prefix=r'log/', suffix=r'='), String),
             (words(acls, prefix=r'\b', suffix=r'\b'), Keyword),
-            (ip_re + r'(?:/(?:' + ip_re + r'|\b\d+\b))?', Number.Float),
+            (ip, Number.Float),
             (r'(?:\b\d+\b(?:-\b\d+|%)?)', Number),
             (r'\S+', Text),
         ],
@@ -1114,54 +1113,171 @@ class AugeasLexer(RegexLexer):
 
 class TOMLLexer(RegexLexer):
     """
-    Lexer for TOML, a simple language
-    for config files.
+    Lexer for TOML, a simple language for config files.
 
     .. versionadded:: 2.4
     """
 
     name = 'TOML'
-    url = 'https://github.com/toml-lang/toml'
     aliases = ['toml']
     filenames = ['*.toml', 'Pipfile', 'poetry.lock']
+    mimetypes = ['application/toml']
+    url = 'https://toml.io'
+
+    # Based on the TOML spec: https://toml.io/en/v1.0.0
+
+    # The following is adapted from CPython's tomllib:
+    _time = r"\d\d:\d\d:\d\d(\.\d+)?"
+    _datetime = rf"""(?x)
+                  \d\d\d\d-\d\d-\d\d # date, e.g., 1988-10-27
+                (
+                  [Tt ] {_time} # optional time
+                  (
+                    [Zz]|[+-]\d\d:\d\d # optional time offset
+                  )?
+                )?
+              """
 
     tokens = {
         'root': [
-            # Table
-            (r'^(\s*)(\[.*?\])$', bygroups(Whitespace, Keyword)),
+            # Note that we make an effort in order to distinguish
+            # moments at which we're parsing a key and moments at
+            # which we're parsing a value. In the TOML code
+            #
+            #   1234 = 1234
+            #
+            # the first "1234" should be Name, the second Integer.
 
-            # Basics, comments, strings
-            (r'[ \t]+', Whitespace),
-            (r'\n', Whitespace),
-            (r'#.*?$', Comment.Single),
-            # Basic string
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
-            # Literal string
-            (r'\'\'\'(.*)\'\'\'', String),
-            (r'\'[^\']*\'', String),
-            (r'(true|false)$', Keyword.Constant),
-            (r'[a-zA-Z_][\w\-]*', Name),
+            # Whitespace
+            (r'\s+', Whitespace),
 
-            # Datetime
-            # TODO this needs to be expanded, as TOML is rather flexible:
-            # https://github.com/toml-lang/toml#offset-date-time
-            (r'\d{4}-\d{2}-\d{2}(?:T| )\d{2}:\d{2}:\d{2}(?:Z|[-+]\d{2}:\d{2})', Number.Integer),
+            # Comment
+            (r'#.*', Comment.Single),
 
-            # Numbers
-            (r'(\d+\.\d*|\d*\.\d+)([eE][+-]?[0-9]+)?j?', Number.Float),
-            (r'\d+[eE][+-]?[0-9]+j?', Number.Float),
-            # Handle +-inf, +-infinity, +-nan
-            (r'[+-]?(?:(inf(?:inity)?)|nan)', Number.Float),
-            (r'[+-]?\d+', Number.Integer),
+            # Assignment keys
+            include('key'),
 
-            # Punctuation
-            (r'[]{}:(),;[]', Punctuation),
+            # After "=", find a value
+            (r'(=)(\s*)', bygroups(Operator, Whitespace), 'value'),
+
+            # Table header
+            (r'\[\[?', Keyword, 'table-key'),
+        ],
+        'key': [
+            # Start of bare key (only ASCII is allowed here).
+            (r'[A-Za-z0-9_-]+', Name),
+            # Quoted key
+            (r'"', String.Double, 'basic-string'),
+            (r"'", String.Single, 'literal-string'),
+            # Dots act as separators in keys
             (r'\.', Punctuation),
+        ],
+        'table-key': [
+            # This is like 'key', but highlights the name components
+            # and separating dots as Keyword because it looks better
+            # when the whole table header is Keyword. We do highlight
+            # strings as strings though.
+            # Start of bare key (only ASCII is allowed here).
+            (r'[A-Za-z0-9_-]+', Keyword),
+            (r'"', String.Double, 'basic-string'),
+            (r"'", String.Single, 'literal-string'),
+            (r'\.', Keyword),
+            (r'\]\]?', Keyword, '#pop'),
 
-            # Operators
-            (r'=', Operator)
+            # Inline whitespace allowed
+            (r'[ \t]+', Whitespace),
+        ],
+        'value': [
+            # Datetime, baretime
+            (_datetime, Literal.Date, '#pop'),
+            (_time, Literal.Date, '#pop'),
 
-        ]
+            # Recognize as float if there is a fractional part
+            # and/or an exponent.
+            (r'[+-]?\d[0-9_]*[eE][+-]?\d[0-9_]*', Number.Float, '#pop'),
+            (r'[+-]?\d[0-9_]*\.\d[0-9_]*([eE][+-]?\d[0-9_]*)?',
+             Number.Float, '#pop'),
+
+            # Infinities and NaN
+            (r'[+-]?(inf|nan)', Number.Float, '#pop'),
+
+            # Integers
+            (r'-?0b[01_]+', Number.Bin, '#pop'),
+            (r'-?0o[0-7_]+', Number.Oct, '#pop'),
+            (r'-?0x[0-9a-fA-F_]+', Number.Hex, '#pop'),
+            (r'[+-]?[0-9_]+', Number.Integer, '#pop'),
+
+            # Strings
+            (r'"""', String.Double, ('#pop', 'multiline-basic-string')),
+            (r'"', String.Double, ('#pop', 'basic-string')),
+            (r"'''", String.Single, ('#pop', 'multiline-literal-string')),
+            (r"'", String.Single, ('#pop', 'literal-string')),
+
+            # Booleans
+            (r'true|false', Keyword.Constant, '#pop'),
+
+            # Start of array
+            (r'\[', Punctuation, ('#pop', 'array')),
+
+            # Start of inline table
+            (r'\{', Punctuation, ('#pop', 'inline-table')),
+        ],
+        'array': [
+            # Whitespace, including newlines, is ignored inside arrays,
+            # and comments are allowed.
+            (r'\s+', Whitespace),
+            (r'#.*', Comment.Single),
+
+            # Delimiters
+            (r',', Punctuation),
+
+            # End of array
+            (r'\]', Punctuation, '#pop'),
+
+            # Parse a value and come back
+            default('value'),
+        ],
+        'inline-table': [
+            # Note that unlike inline arrays, inline tables do not
+            # allow newlines or comments.
+            (r'[ \t]+', Whitespace),
+
+            # Keys
+            include('key'),
+
+            # Values
+            (r'(=)(\s*)', bygroups(Punctuation, Whitespace), 'value'),
+
+            # Delimiters
+            (r',', Punctuation),
+
+            # End of inline table
+            (r'\}', Punctuation, '#pop'),
+        ],
+        'basic-string': [
+            (r'"', String.Double, '#pop'),
+            include('escapes'),
+            (r'[^"\\]+', String.Double),
+        ],
+        'literal-string': [
+            (r".*?'", String.Single, '#pop'),
+        ],
+        'multiline-basic-string': [
+            (r'"""', String.Double, '#pop'),
+            (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),
+            include('escapes'),
+            (r'[^"\\]+', String.Double),
+            (r'"', String.Double),
+        ],
+        'multiline-literal-string': [
+            (r"'''", String.Single, '#pop'),
+            (r"[^']+", String.Single),
+            (r"'", String.Single),
+        ],
+        'escapes': [
+            (r'\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}', String.Escape),
+            (r'\\.', String.Escape),
+        ],
     }
 
 class NestedTextLexer(RegexLexer):

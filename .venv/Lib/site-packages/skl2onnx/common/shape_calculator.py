@@ -54,6 +54,10 @@ def _calculate_linear_classifier_output_shapes(
             ],
         )
 
+    _infer_linear_classifier_output_types(operator)
+
+
+def _infer_linear_classifier_output_types(operator):
     N = operator.inputs[0].get_first_dimension()
     op = operator.raw_operator
     class_labels = get_label_classes(operator.scope_inst, op)
@@ -144,6 +148,10 @@ def _calculate_linear_regressor_output_shapes(operator, enable_type_checking=Tru
             ],
         )
 
+    _infer_linear_regressor_output_types(operator)
+
+
+def _infer_linear_regressor_output_types(operator):
     inp0 = operator.inputs[0].type
     if isinstance(inp0, (FloatTensorType, DoubleTensorType)):
         cls_type = inp0.__class__

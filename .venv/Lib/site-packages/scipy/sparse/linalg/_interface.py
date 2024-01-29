@@ -13,6 +13,7 @@ able to represent such matrices efficiently. First, we need a compact way to
 represent an all-ones matrix::
 
     >>> import numpy as np
+    >>> from scipy.sparse.linalg._interface import LinearOperator
     >>> class Ones(LinearOperator):
     ...     def __init__(self, shape):
     ...         super().__init__(dtype=None, shape=shape)
@@ -24,6 +25,7 @@ amount of storage, independent of ``shape``. The ``_matvec`` method specifies
 how this linear operator multiplies with (operates on) a vector. We can now
 add this operator to a sparse matrix that stores only offsets from one::
 
+    >>> from scipy.sparse.linalg._interface import aslinearoperator
     >>> from scipy.sparse import csr_matrix
     >>> offsets = csr_matrix([[1, 0, 2], [0, -1, 0], [0, 0, 3]])
     >>> A = aslinearoperator(offsets) + Ones(offsets.shape)

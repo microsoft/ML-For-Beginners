@@ -104,6 +104,57 @@ def test_corner_center():
     assert_almost_equal(ellipse.get_corners(), corners_rot)
 
 
+def test_ellipse_vertices():
+    # expect 0 for 0 ellipse width, height
+    ellipse = Ellipse(xy=(0, 0), width=0, height=0, angle=0)
+    assert_almost_equal(
+        ellipse.get_vertices(),
+        [(0.0, 0.0), (0.0, 0.0)],
+    )
+    assert_almost_equal(
+        ellipse.get_co_vertices(),
+        [(0.0, 0.0), (0.0, 0.0)],
+    )
+
+    ellipse = Ellipse(xy=(0, 0), width=2, height=1, angle=30)
+    assert_almost_equal(
+        ellipse.get_vertices(),
+        [
+            (
+                ellipse.center[0] + ellipse.width / 4 * np.sqrt(3),
+                ellipse.center[1] + ellipse.width / 4,
+            ),
+            (
+                ellipse.center[0] - ellipse.width / 4 * np.sqrt(3),
+                ellipse.center[1] - ellipse.width / 4,
+            ),
+        ],
+    )
+    assert_almost_equal(
+        ellipse.get_co_vertices(),
+        [
+            (
+                ellipse.center[0] - ellipse.height / 4,
+                ellipse.center[1] + ellipse.height / 4 * np.sqrt(3),
+            ),
+            (
+                ellipse.center[0] + ellipse.height / 4,
+                ellipse.center[1] - ellipse.height / 4 * np.sqrt(3),
+            ),
+        ],
+    )
+    v1, v2 = np.array(ellipse.get_vertices())
+    np.testing.assert_almost_equal((v1 + v2) / 2, ellipse.center)
+    v1, v2 = np.array(ellipse.get_co_vertices())
+    np.testing.assert_almost_equal((v1 + v2) / 2, ellipse.center)
+
+    ellipse = Ellipse(xy=(2.252, -10.859), width=2.265, height=1.98, angle=68.78)
+    v1, v2 = np.array(ellipse.get_vertices())
+    np.testing.assert_almost_equal((v1 + v2) / 2, ellipse.center)
+    v1, v2 = np.array(ellipse.get_co_vertices())
+    np.testing.assert_almost_equal((v1 + v2) / 2, ellipse.center)
+
+
 def test_rotate_rect():
     loc = np.asarray([1.0, 2.0])
     width = 2
@@ -246,8 +297,8 @@ def test_patch_alpha_coloring():
                                edgecolor=(0, 0, 1, 0.75))
     ax.add_patch(patch)
 
-    ax.set_xlim([-1, 2])
-    ax.set_ylim([-1, 2])
+    ax.set_xlim(-1, 2)
+    ax.set_ylim(-1, 2)
 
 
 @image_comparison(['patch_alpha_override'], remove_text=True)
@@ -278,8 +329,8 @@ def test_patch_alpha_override():
                                edgecolor=(0, 0, 1, 0.75))
     ax.add_patch(patch)
 
-    ax.set_xlim([-1, 2])
-    ax.set_ylim([-1, 2])
+    ax.set_xlim(-1, 2)
+    ax.set_ylim(-1, 2)
 
 
 @mpl.style.context('default')
@@ -315,8 +366,8 @@ def test_patch_custom_linestyle():
         facecolor=(1, 0, 0), edgecolor=(0, 0, 1))
     ax.add_patch(patch)
 
-    ax.set_xlim([-1, 2])
-    ax.set_ylim([-1, 2])
+    ax.set_xlim(-1, 2)
+    ax.set_ylim(-1, 2)
 
 
 def test_patch_linestyle_accents():
@@ -413,8 +464,8 @@ def test_wedge_range():
 
         ax.add_artist(wedge)
 
-    ax.set_xlim([-2, 8])
-    ax.set_ylim([-2, 9])
+    ax.set_xlim(-2, 8)
+    ax.set_ylim(-2, 9)
 
 
 def test_patch_str():
@@ -488,14 +539,14 @@ def test_multi_color_hatch():
     rects = ax.bar(range(5), range(1, 6))
     for i, rect in enumerate(rects):
         rect.set_facecolor('none')
-        rect.set_edgecolor('C{}'.format(i))
+        rect.set_edgecolor(f'C{i}')
         rect.set_hatch('/')
 
     ax.autoscale_view()
     ax.autoscale(False)
 
     for i in range(5):
-        with mpl.style.context({'hatch.color': 'C{}'.format(i)}):
+        with mpl.style.context({'hatch.color': f'C{i}'}):
             r = Rectangle((i - .8 / 2, 5), .8, 1, hatch='//', fc='none')
         ax.add_patch(r)
 

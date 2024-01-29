@@ -79,17 +79,26 @@ def do_plot(is_h=True):
     plt.cla()
 
     plt.hold(1)
-    plt.contourf(vs, zs, np.log10(err_p).T, levels=levels, colors=['r', 'r'], alpha=0.1)
-    plt.contourf(vs, zs, np.log10(err_a).T, levels=levels, colors=['b', 'b'], alpha=0.1)
-    plt.contourf(vs, zs, np.log10(err_b).T, levels=levels, colors=['g', 'g'], alpha=0.1)
+    plt.contourf(vs, zs, np.log10(err_p).T,
+                 levels=levels, colors=['r', 'r'], alpha=0.1)
+    plt.contourf(vs, zs, np.log10(err_a).T,
+                 levels=levels, colors=['b', 'b'], alpha=0.1)
+    plt.contourf(vs, zs, np.log10(err_b).T,
+                 levels=levels, colors=['g', 'g'], alpha=0.1)
 
-    plt.contour(vs, zs, np.log10(err_p).T, levels=levels, colors=['r', 'r'], linestyles=[':', ':'])
-    plt.contour(vs, zs, np.log10(err_a).T, levels=levels, colors=['b', 'b'], linestyles=[':', ':'])
-    plt.contour(vs, zs, np.log10(err_b).T, levels=levels, colors=['g', 'g'], linestyles=[':', ':'])
+    plt.contour(vs, zs, np.log10(err_p).T,
+                levels=levels, colors=['r', 'r'], linestyles=[':', ':'])
+    plt.contour(vs, zs, np.log10(err_a).T,
+                levels=levels, colors=['b', 'b'], linestyles=[':', ':'])
+    plt.contour(vs, zs, np.log10(err_b).T,
+                levels=levels, colors=['g', 'g'], linestyles=[':', ':'])
 
-    lp = plt.contour(vs, zs, np.log10(err_est_p).T, levels=levels, colors=['r', 'r'], linestyles=['-', '-'])
-    la = plt.contour(vs, zs, np.log10(err_est_a).T, levels=levels, colors=['b', 'b'], linestyles=['-', '-'])
-    lb = plt.contour(vs, zs, np.log10(err_est_b).T, levels=levels, colors=['g', 'g'], linestyles=['-', '-'])
+    lp = plt.contour(vs, zs, np.log10(err_est_p).T,
+                     levels=levels, colors=['r', 'r'], linestyles=['-', '-'])
+    la = plt.contour(vs, zs, np.log10(err_est_a).T,
+                     levels=levels, colors=['b', 'b'], linestyles=['-', '-'])
+    lb = plt.contour(vs, zs, np.log10(err_est_b).T,
+                     levels=levels, colors=['g', 'g'], linestyles=['-', '-'])
 
     plt.clabel(lp, fmt={-1000: 'P', -12: 'P'})
     plt.clabel(la, fmt={-1000: 'A', -12: 'A'})

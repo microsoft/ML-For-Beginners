@@ -9,6 +9,7 @@ from pandas import (
     CategoricalIndex,
     DataFrame,
     HDFStore,
+    Index,
     MultiIndex,
     _testing as tm,
     date_range,
@@ -25,7 +26,11 @@ pytestmark = pytest.mark.single_cpu
 
 
 def test_pass_spec_to_storer(setup_path):
-    df = tm.makeDataFrame()
+    df = DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
 
     with ensure_clean_store(setup_path) as store:
         store.put("df", df)
@@ -49,7 +54,7 @@ def test_table_index_incompatible_dtypes(setup_path):
 
     with ensure_clean_store(setup_path) as store:
         store.put("frame", df1, format="table")
-        msg = re.escape("incompatible kind in col [integer - datetime64]")
+        msg = re.escape("incompatible kind in col [integer - datetime64[ns]]")
         with pytest.raises(TypeError, match=msg):
             store.put("frame", df2, format="table", append=True)
 
@@ -60,14 +65,22 @@ def test_unimplemented_dtypes_table_columns(setup_path):
 
         # currently not supported dtypes ####
         for n, f in dtypes:
-            df = tm.makeDataFrame()
+            df = DataFrame(
+                1.1 * np.arange(120).reshape((30, 4)),
+                columns=Index(list("ABCD"), dtype=object),
+                index=Index([f"i-{i}" for i in range(30)], dtype=object),
+            )
             df[n] = f
             msg = re.escape(f"[{n}] is not implemented as a table column")
             with pytest.raises(TypeError, match=msg):
                 store.append(f"df1_{n}", df)
 
     # frame
-    df = tm.makeDataFrame()
+    df = DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
     df["obj1"] = "foo"
     df["obj2"] = "bar"
     df["datetime1"] = datetime.date(2001, 1, 2)
@@ -85,7 +98,11 @@ because its data contents are not [string] but [date] object dtype"""
 
 def test_invalid_terms(tmp_path, setup_path):
     with ensure_clean_store(setup_path) as store:
-        df = tm.makeTimeDataFrame()
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
         df["string"] = "foo"
         df.loc[df.index[0:4], "string"] = "bar"
 
@@ -115,7 +132,7 @@ def test_invalid_terms(tmp_path, setup_path):
         columns=list("ABCD"),
         index=date_range("20130101", periods=10),
     )
-    dfq.to_hdf(path, "dfq", format="table", data_columns=True)
+    dfq.to_hdf(path, key="dfq", format="table", data_columns=True)
 
     # check ok
     read_hdf(path, "dfq", where="index>Timestamp('20130104') & columns=['A', 'B']")
@@ -128,7 +145,7 @@ def test_invalid_terms(tmp_path, setup_path):
         columns=list("ABCD"),
         index=date_range("20130101", periods=10),
     )
-    dfq.to_hdf(path, "dfq", format="table")
+    dfq.to_hdf(path, key="dfq", format="table")
 
     msg = (
         r"The passed where expression: A>0 or C>0\n\s*"
@@ -169,7 +186,7 @@ def test_invalid_complib(setup_path):
     with tm.ensure_clean(setup_path) as path:
         msg = r"complib only supports \[.*\] compression."
         with pytest.raises(ValueError, match=msg):
-            df.to_hdf(path, "df", complib="foolib")
+            df.to_hdf(path, key="df", complib="foolib")
 
 
 @pytest.mark.parametrize(
@@ -185,7 +202,7 @@ def test_to_hdf_multiindex_extension_dtype(idx, tmp_path, setup_path):
     df = DataFrame(0, index=mi, columns=["a"])
     path = tmp_path / setup_path
     with pytest.raises(NotImplementedError, match="Saving a MultiIndex"):
-        df.to_hdf(path, "df")
+        df.to_hdf(path, key="df")
 
 
 def test_unsuppored_hdf_file_error(datapath):
@@ -212,7 +229,7 @@ def test_read_hdf_errors(setup_path, tmp_path):
     with pytest.raises(OSError, match=msg):
         read_hdf(path, "key")
 
-    df.to_hdf(path, "df")
+    df.to_hdf(path, key="df")
     store = HDFStore(path, mode="r")
     store.close()
 

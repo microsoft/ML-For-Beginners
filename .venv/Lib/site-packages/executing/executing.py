@@ -25,115 +25,41 @@ SOFTWARE.
 import __future__
 import ast
 import dis
-import functools
 import inspect
 import io
 import linecache
 import re
 import sys
 import types
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 from copy import deepcopy
+from functools import lru_cache
 from itertools import islice
+from itertools import zip_longest
 from operator import attrgetter
+from pathlib import Path
 from threading import RLock
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, Iterator, List, Optional, Sequence, Set, Sized, Tuple, Type, TypeVar, Union, cast
+from tokenize import detect_encoding
+from typing import TYPE_CHECKING, Any, Callable, Dict, Iterable, Iterator, List, Optional, Sequence, Set, Sized, Tuple, \
+    Type, TypeVar, Union, cast
 
 if TYPE_CHECKING:  # pragma: no cover
     from asttokens import ASTTokens, ASTText
     from asttokens.asttokens import ASTTextBase
 
-function_node_types = (ast.FunctionDef,) # type: Tuple[Type, ...]
-if sys.version_info[0] == 3:
-    function_node_types += (ast.AsyncFunctionDef,)
 
+function_node_types = (ast.FunctionDef, ast.AsyncFunctionDef) # type: Tuple[Type, ...]
 
-if sys.version_info[0] == 3:
-    # noinspection PyUnresolvedReferences
-    from functools import lru_cache
-    # noinspection PyUnresolvedReferences
-    from tokenize import detect_encoding
-    from itertools import zip_longest
-    # noinspection PyUnresolvedReferences,PyCompatibility
-    from pathlib import Path
-
-    cache = lru_cache(maxsize=None)
-    text_type = str
-else:
-    from lib2to3.pgen2.tokenize import detect_encoding, cookie_re as encoding_pattern # type: ignore[attr-defined]
-    from itertools import izip_longest as zip_longest
-
-    class Path(object):
-        pass
-
-
-    def cache(func):
-        # type: (Callable) -> Callable
-        d = {} # type: Dict[Tuple, Callable]        
-
-        @functools.wraps(func)
-        def wrapper(*args):
-            # type: (Any) -> Any
-            if args in d:
-                return d[args]
-            result = d[args] = func(*args)
-            return result
-
-        return wrapper
-
-
-    # noinspection PyUnresolvedReferences
-    text_type = unicode
+cache = lru_cache(maxsize=None)
 
 # Type class used to expand out the definition of AST to include fields added by this library
 # It's not actually used for anything other than type checking though!
 class EnhancedAST(ast.AST):
     parent = None  # type: EnhancedAST
 
-if sys.version_info >= (3, 4):
-    # noinspection PyUnresolvedReferences
-    _get_instructions = dis.get_instructions
-    from dis import Instruction as _Instruction
-    
-    class Instruction(_Instruction):
-        lineno = None  # type: int
-else:
-    class Instruction(namedtuple('Instruction', 'offset argval opname starts_line')):
-        lineno = None # type: int
 
-    from dis import HAVE_ARGUMENT, EXTENDED_ARG, hasconst, opname, findlinestarts, hasname
-
-    # Based on dis.disassemble from 2.7
-    # Left as similar as possible for easy diff
-
-    def _get_instructions(co):
-        # type: (types.CodeType) -> Iterator[Instruction]
-        code = co.co_code
-        linestarts = dict(findlinestarts(co))
-        n = len(code)
-        i = 0
-        extended_arg = 0
-        while i < n:
-            offset = i
-            c = code[i]
-            op = ord(c)
-            lineno = linestarts.get(i)
-            argval = None
-            i = i + 1
-            if op >= HAVE_ARGUMENT:
-                oparg = ord(code[i]) + ord(code[i + 1]) * 256 + extended_arg
-                extended_arg = 0
-                i = i + 2
-                if op == EXTENDED_ARG:
-                    extended_arg = oparg * 65536
-
-                if op in hasconst:
-                    argval = co.co_consts[oparg]
-                elif op in hasname:
-                    argval = co.co_names[oparg]
-                elif opname[op] == 'LOAD_FAST':
-                    argval = co.co_varnames[oparg]
-            yield Instruction(offset, argval, opname[op], lineno)
+class Instruction(dis.Instruction):
+    lineno = None  # type: int
 
 
 # Type class used to expand out the definition of AST to include fields added by this library
@@ -157,7 +83,7 @@ def assert_(condition, message=""):
 def get_instructions(co):
     # type: (types.CodeType) -> Iterator[EnhancedInstruction]
     lineno = co.co_firstlineno
-    for inst in _get_instructions(co):
+    for inst in dis.get_instructions(co):
         inst = cast(EnhancedInstruction, inst)
         lineno = inst.starts_line or lineno
         assert_(lineno)
@@ -224,28 +150,8 @@ class Source(object):
         """
 
         self.filename = filename
-        text = ''.join(lines)
-
-        if not isinstance(text, text_type):
-            encoding = self.detect_encoding(text)
-            # noinspection PyUnresolvedReferences
-            text = text.decode(encoding)
-            lines = [line.decode(encoding) for line in lines]
-
-        self.text = text
+        self.text = ''.join(lines)
         self.lines = [line.rstrip('\r\n') for line in lines]
-
-        if sys.version_info[0] == 3:
-            ast_text = text
-        else:
-            # In python 2 it's a syntax error to parse unicode
-            # with an encoding declaration, so we remove it but
-            # leave empty lines in its place to keep line numbers the same
-            ast_text = ''.join([
-                '\n' if i < 2 and encoding_pattern.match(line)
-                else line
-                for i, line in enumerate(lines)
-            ])
 
         self._nodes_by_line = defaultdict(list)
         self.tree = None
@@ -254,7 +160,7 @@ class Source(object):
         self._asttext = None  # type: Optional[ASTText]
 
         try:
-            self.tree = ast.parse(ast_text, filename=filename)
+            self.tree = ast.parse(self.text, filename=filename)
         except (SyntaxError, ValueError):
             pass
         else:
@@ -289,7 +195,7 @@ class Source(object):
 
         def get_lines():
             # type: () -> List[str]
-            return linecache.getlines(cast(text_type, filename), module_globals)
+            return linecache.getlines(cast(str, filename), module_globals)
 
         # Save the current linecache entry, then ensure the cache is up to date.
         entry = linecache.cache.get(filename) # type: ignore[attr-defined]
@@ -320,8 +226,7 @@ class Source(object):
     @classmethod
     def lazycache(cls, frame):
         # type: (types.FrameType) -> None
-        if sys.version_info >= (3, 5):
-            linecache.lazycache(frame.f_code.co_filename, frame.f_globals)
+        linecache.lazycache(frame.f_code.co_filename, frame.f_globals)
 
     @classmethod
     def executing(cls, frame_or_tb):
@@ -456,7 +361,7 @@ class Source(object):
 
     @staticmethod
     def decode_source(source):
-        # type: (Union[str, bytes]) -> text_type
+        # type: (Union[str, bytes]) -> str
         if isinstance(source, bytes):
             encoding = Source.detect_encoding(source)
             return source.decode(encoding)
@@ -548,10 +453,7 @@ class QualnameVisitor(ast.NodeVisitor):
 
     def visit_FunctionDef(self, node, name=None):
         # type: (ast.AST, Optional[str]) -> None
-        if sys.version_info[0] == 3:
-            assert isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)), node
-        else:
-            assert isinstance(node, (ast.FunctionDef, ast.Lambda)), node
+        assert isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)), node
         self.add_qualname(node, name)
         self.stack.append('<locals>')
         children = [] # type: Sequence[ast.AST]
@@ -684,8 +586,7 @@ class SentinelNodeFinder(object):
         elif op_name in ('LOAD_NAME', 'LOAD_GLOBAL', 'LOAD_FAST', 'LOAD_DEREF', 'LOAD_CLASSDEREF'):
             typ = ast.Name
             ctx = ast.Load
-            if sys.version_info[0] == 3 or instruction.argval:
-                extra_filter = lambda e: e.id == instruction.argval
+            extra_filter = lambda e: e.id == instruction.argval
         elif op_name in ('COMPARE_OP', 'IS_OP', 'CONTAINS_OP'):
             typ = ast.Compare
             extra_filter = lambda e: len(e.ops) == 1

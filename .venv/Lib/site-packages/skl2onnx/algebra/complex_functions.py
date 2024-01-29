@@ -6,15 +6,17 @@ import numpy as np
 from ..common.data_types import FloatTensorType, DoubleTensorType
 from ..common.utils import get_unique_subgraph
 from .onnx_ops import (
-    OnnxIdentity,
-    OnnxScan,
-    OnnxTranspose,
-    OnnxSub,
-    OnnxReduceSumSquareApi18,
-    OnnxSqrt,
-    OnnxPow,
     OnnxAbs,
+    OnnxDiv,
+    OnnxIdentity,
+    OnnxMatMul,
+    OnnxPow,
+    OnnxScan,
+    OnnxSqrt,
+    OnnxSub,
     OnnxReduceSumApi11,
+    OnnxReduceSumSquareApi18,
+    OnnxTranspose,
 )
 
 logger = getLogger("skl2onnx")
@@ -70,7 +72,7 @@ def _onnx_squareform_pdist_sqeuclidean(X, dtype=None, op_version=None, **kwargs)
         num_scan_inputs=1,
         body=(scan_body.graph, [id_next, flat]),
         op_version=op_version,
-        **kwargs
+        **kwargs,
     )
     logger.debug("[_onnx_squareform_pdist_sqeuclidean] +Scan dtype=%r", dtype)
     return node[1]
@@ -84,7 +86,7 @@ def onnx_cdist(
     op_version=None,
     dim_in=None,
     dim_out=None,
-    **kwargs
+    **kwargs,
 ):
     """
     Returns the ONNX graph which computes
@@ -110,14 +112,14 @@ def onnx_cdist(
             op_version=op_version,
             dim_in=dim_in,
             dim_out=dim_out,
-            **kwargs
+            **kwargs,
         )
-    elif metric == "euclidean":
+    if metric == "euclidean":
         res = _onnx_cdist_sqeuclidean(
             XA, XB, dtype=dtype, op_version=op_version, dim_in=dim_in, dim_out=dim_out
         )
         return OnnxSqrt(res, op_version=op_version, **kwargs)
-    elif metric == "minkowski":
+    if metric == "minkowski":
         p = kwargs.pop("p")
         res = _onnx_cdist_minkowski(
             XA,
@@ -131,7 +133,7 @@ def onnx_cdist(
         return OnnxPow(
             res, np.array([1.0 / p], dtype=dtype), op_version=op_version, **kwargs
         )
-    elif metric in ("manhattan", "cityblock"):
+    if metric in ("manhattan", "cityblock"):
         return _onnx_cdist_manhattan(
             XA,
             XB,
@@ -139,10 +141,19 @@ def onnx_cdist(
             op_version=op_version,
             dim_in=dim_in,
             dim_out=dim_out,
-            **kwargs
+            **kwargs,
         )
-    else:
-        raise NotImplementedError("metric='{}' is not implemented.".format(metric))
+    if metric == "cosine":
+        return _onnx_cdist_cosine(
+            XA,
+            XB,
+            dtype=dtype,
+            op_version=op_version,
+            dim_in=dim_in,
+            dim_out=dim_out,
+            **kwargs,
+        )
+    raise NotImplementedError(f"metric={metric!r} is not implemented.")
 
 
 def _onnx_cdist_begin(op_version):
@@ -204,7 +215,7 @@ def _onnx_cdist_sqeuclidean(
         op_version,
         dim_in=dim_in,
         dim_out=dim_out,
-        **kwargs
+        **kwargs,
     )
 
 
@@ -233,7 +244,7 @@ def _onnx_cdist_minkowski(
         op_version,
         dim_in=dim_in,
         dim_out=dim_out,
-        **kwargs
+        **kwargs,
     )
 
 
@@ -258,5 +269,34 @@ def _onnx_cdist_manhattan(
         op_version,
         dim_in=dim_in,
         dim_out=dim_out,
-        **kwargs
+        **kwargs,
+    )
+
+
+def _onnx_cdist_cosine(
+    XA, XB, dtype=None, op_version=None, dim_in=None, dim_out=None, **kwargs
+):
+    """
+    Returns the ONNX graph which computes
+    ``cdist(X, metric='cosine')``.
+    """
+    txb = OnnxTranspose(XB, perm=[1, 0], op_version=op_version)
+    scal = OnnxMatMul(XA, txb, op_version=op_version)
+    norma = OnnxSqrt(
+        OnnxReduceSumSquareApi18(XA, axes=[1], keepdims=1, op_version=op_version),
+        op_version=op_version,
+    )
+    normb = OnnxSqrt(
+        OnnxReduceSumSquareApi18(txb, axes=[0], keepdims=1, op_version=op_version),
+        op_version=op_version,
+    )
+    return OnnxSub(
+        np.array([1], dtype=dtype),
+        OnnxDiv(
+            scal,
+            OnnxMatMul(norma, normb, op_version=op_version),
+            op_version=op_version,
+        ),
+        op_version=op_version,
+        **kwargs,
     )

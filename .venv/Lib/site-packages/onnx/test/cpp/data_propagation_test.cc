@@ -5,13 +5,13 @@
  */
 
 #include <iostream>
+
 #include "gtest/gtest.h"
 #include "onnx/checker.h"
 #include "onnx/defs/parser.h"
 #include "onnx/defs/schema.h"
 #include "onnx/defs/shape_inference.h"
 #include "onnx/onnx_pb.h"
-
 #include "onnx/shape_inference/implementation.h"
 
 using namespace ONNX_NAMESPACE::shape_inference;

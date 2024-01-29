@@ -55,7 +55,7 @@ class NearestNeighbors(KNeighborsMixin, RadiusNeighborsMixin, NeighborsBase):
         between those vectors. This works for Scipy's metrics, but is less
         efficient than passing the metric name as a string.
 
-    p : float, default=2
+    p : float (positive), default=2
         Parameter for the Minkowski metric from
         sklearn.metrics.pairwise.pairwise_distances. When p = 1, this is
         equivalent to using manhattan_distance (l1), and euclidean_distance
@@ -116,14 +116,11 @@ class NearestNeighbors(KNeighborsMixin, RadiusNeighborsMixin, NeighborsBase):
     >>> import numpy as np
     >>> from sklearn.neighbors import NearestNeighbors
     >>> samples = [[0, 0, 2], [1, 0, 0], [0, 0, 1]]
-
     >>> neigh = NearestNeighbors(n_neighbors=2, radius=0.4)
     >>> neigh.fit(samples)
     NearestNeighbors(...)
-
     >>> neigh.kneighbors([[0, 0, 1.3]], 2, return_distance=False)
     array([[2, 0]]...)
-
     >>> nbrs = neigh.radius_neighbors(
     ...    [[0, 0, 1.3]], 0.4, return_distance=False
     ... )

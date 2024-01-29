@@ -94,7 +94,7 @@ def _svdp(A, k, which='LM', irl_mode=True, kmax=None,
     k : int
         Number of singular values/vectors to compute
     which : {"LM", "SM"}
-        Which singluar triplets to compute:
+        Which singular triplets to compute:
         - 'LM': compute triplets corresponding to the `k` largest singular
                 values
         - 'SM': compute triplets corresponding to the `k` smallest singular
@@ -140,7 +140,7 @@ def _svdp(A, k, which='LM', irl_mode=True, kmax=None,
     shifts : int, optional
         Number of shifts per restart in IRL mode.  Default is determined
         to satisfy ``k <= min(kmax-shifts, m, n)``.  Must be
-        >= 0, but choosing 0 might lead to performance degredation.
+        >= 0, but choosing 0 might lead to performance degradation.
         Accessed only if ``irl_mode=True``.
     maxiter : int, optional
         Maximum number of restarts in IRL mode.  Default is `1000`.
@@ -316,6 +316,6 @@ def _svdp(A, k, which='LM', irl_mode=True, kmax=None,
             f"kmax={kmax} iterations")
 
     # info == 0: The K largest (or smallest) singular triplets were computed
-    # succesfully!
+    # successfully!
 
     return u[:, :k], sigma, v[:, :k].conj().T, bnd

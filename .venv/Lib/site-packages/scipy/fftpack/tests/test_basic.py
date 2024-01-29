@@ -148,8 +148,8 @@ class _TestFFTBase:
 
 class TestDoubleFFT(_TestFFTBase):
     def setup_method(self):
-        self.cdt = np.cdouble
-        self.rdt = np.double
+        self.cdt = np.complex128
+        self.rdt = np.float64
 
 
 class TestSingleFFT(_TestFFTBase):
@@ -157,7 +157,10 @@ class TestSingleFFT(_TestFFTBase):
         self.cdt = np.complex64
         self.rdt = np.float32
 
-    @pytest.mark.xfail(run=False, reason="single-precision FFT implementation is partially disabled, until accuracy issues with large prime powers are resolved")
+    reason = ("single-precision FFT implementation is partially disabled, "
+              "until accuracy issues with large prime powers are resolved")
+
+    @pytest.mark.xfail(run=False, reason=reason)
     def test_notice(self):
         pass
 
@@ -255,8 +258,8 @@ class _TestIFFTBase:
 
 class TestDoubleIFFT(_TestIFFTBase):
     def setup_method(self):
-        self.cdt = np.cdouble
-        self.rdt = np.double
+        self.cdt = np.complex128
+        self.rdt = np.float64
 
 
 class TestSingleIFFT(_TestIFFTBase):
@@ -291,8 +294,7 @@ class _TestRFFTBase:
                 return getattr(self.data, item)
             except AttributeError as e:
                 raise AttributeError("'MockSeries' object "
-                                      "has no attribute '{attr}'".
-                                      format(attr=item)) from e
+                                      f"has no attribute '{item}'") from e
 
     def test_non_ndarray_with_dtype(self):
         x = np.array([1., 2., 3., 4., 5.])
@@ -311,8 +313,8 @@ class _TestRFFTBase:
 
 class TestRFFTDouble(_TestRFFTBase):
     def setup_method(self):
-        self.cdt = np.cdouble
-        self.rdt = np.double
+        self.cdt = np.complex128
+        self.rdt = np.float64
 
 
 class TestRFFTSingle(_TestRFFTBase):
@@ -381,8 +383,8 @@ class _TestIRFFTBase:
 
 class TestIRFFTDouble(_TestIRFFTBase):
     def setup_method(self):
-        self.cdt = np.cdouble
-        self.rdt = np.double
+        self.cdt = np.complex128
+        self.rdt = np.float64
         self.ndec = 14
 
 

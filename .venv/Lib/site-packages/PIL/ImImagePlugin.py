@@ -24,7 +24,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
-
+from __future__ import annotations
 
 import os
 import re
@@ -205,7 +205,7 @@ class ImImageFile(ImageFile.ImageFile):
 
         # Basic attributes
         self._size = self.info[SIZE]
-        self.mode = self.info[MODE]
+        self._mode = self.info[MODE]
 
         # Skip forward to start of image data
         while s and s[:1] != b"\x1A":
@@ -231,9 +231,9 @@ class ImImageFile(ImageFile.ImageFile):
                         self.lut = list(palette[:256])
                 else:
                     if self.mode in ["L", "P"]:
-                        self.mode = self.rawmode = "P"
+                        self._mode = self.rawmode = "P"
                     elif self.mode in ["LA", "PA"]:
-                        self.mode = "PA"
+                        self._mode = "PA"
                         self.rawmode = "PA;L"
                     self.palette = ImagePalette.raw("RGB;L", palette)
             elif self.mode == "RGB":

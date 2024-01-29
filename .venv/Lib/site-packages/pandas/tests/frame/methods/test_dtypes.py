@@ -142,9 +142,12 @@ class TestDataFrameDataTypes:
         )
         tm.assert_series_equal(result, expected)
 
-    def test_frame_apply_np_array_return_type(self):
+    def test_frame_apply_np_array_return_type(self, using_infer_string):
         # GH 35517
         df = DataFrame([["foo"]])
         result = df.apply(lambda col: np.array("bar"))
-        expected = Series(["bar"])
+        if using_infer_string:
+            expected = Series([np.array(["bar"])])
+        else:
+            expected = Series(["bar"])
         tm.assert_series_equal(result, expected)

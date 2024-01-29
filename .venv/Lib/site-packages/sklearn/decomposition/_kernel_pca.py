@@ -41,6 +41,9 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
     components to extract. It can also use a randomized truncated SVD by the
     method proposed in [3]_, see `eigen_solver`.
 
+    For a usage example, see
+    :ref:`sphx_glr_auto_examples_decomposition_plot_kernel_pca.py`.
+
     Read more in the :ref:`User Guide <kernel_PCA>`.
 
     Parameters
@@ -56,7 +59,7 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
         Kernel coefficient for rbf, poly and sigmoid kernels. Ignored by other
         kernels. If ``gamma`` is ``None``, then it is set to ``1/n_features``.
 
-    degree : int, default=3
+    degree : float, default=3
         Degree for poly kernels. Ignored by other kernels.
 
     coef0 : float, default=1
@@ -251,7 +254,7 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
             Interval(Real, 0, None, closed="left"),
             None,
         ],
-        "degree": [Interval(Integral, 0, None, closed="left")],
+        "degree": [Interval(Real, 0, None, closed="left")],
         "coef0": [Interval(Real, None, None, closed="neither")],
         "kernel_params": [dict, None],
         "alpha": [Interval(Real, 0, None, closed="left")],
@@ -432,7 +435,7 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
             raise ValueError("Cannot fit_inverse_transform with a precomputed kernel.")
         X = self._validate_data(X, accept_sparse="csr", copy=self.copy_X)
         self.gamma_ = 1 / X.shape[1] if self.gamma is None else self.gamma
-        self._centerer = KernelCenterer()
+        self._centerer = KernelCenterer().set_output(transform="default")
         K = self._get_kernel(X)
         self._fit_transform(K)
 

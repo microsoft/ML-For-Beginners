@@ -21,6 +21,7 @@ from typing import (
 import numpy as np
 
 from pandas._libs import writers as libwriters
+from pandas._typing import SequenceNotStr
 from pandas.util._decorators import cache_readonly
 
 from pandas.core.dtypes.generic import (
@@ -43,6 +44,7 @@ if TYPE_CHECKING:
         IndexLabel,
         StorageOptions,
         WriteBuffer,
+        npt,
     )
 
     from pandas.io.formats.format import DataFrameFormatter
@@ -52,7 +54,7 @@ _DEFAULT_CHUNKSIZE_CELLS = 100_000
 
 
 class CSVFormatter:
-    cols: np.ndarray
+    cols: npt.NDArray[np.object_]
 
     def __init__(
         self,
@@ -109,7 +111,7 @@ class CSVFormatter:
         return self.fmt.decimal
 
     @property
-    def header(self) -> bool | list[str]:
+    def header(self) -> bool | SequenceNotStr[str]:
         return self.fmt.header
 
     @property
@@ -148,7 +150,9 @@ class CSVFormatter:
     def has_mi_columns(self) -> bool:
         return bool(isinstance(self.obj.columns, ABCMultiIndex))
 
-    def _initialize_columns(self, cols: Iterable[Hashable] | None) -> np.ndarray:
+    def _initialize_columns(
+        self, cols: Iterable[Hashable] | None
+    ) -> npt.NDArray[np.object_]:
         # validate mi options
         if self.has_mi_columns:
             if cols is not None:
@@ -157,7 +161,7 @@ class CSVFormatter:
 
         if cols is not None:
             if isinstance(cols, ABCIndex):
-                cols = cols._format_native_types(**self._number_format)
+                cols = cols._get_values_for_csv(**self._number_format)
             else:
                 cols = list(cols)
             self.obj = self.obj.loc[:, cols]
@@ -165,7 +169,7 @@ class CSVFormatter:
         # update columns to include possible multiplicity of dupes
         # and make sure cols is just a list of labels
         new_cols = self.obj.columns
-        return new_cols._format_native_types(**self._number_format)
+        return new_cols._get_values_for_csv(**self._number_format)
 
     def _initialize_chunksize(self, chunksize: int | None) -> int:
         if chunksize is None:
@@ -213,7 +217,7 @@ class CSVFormatter:
         return bool(self._has_aliases or self.header)
 
     @property
-    def write_cols(self) -> Sequence[Hashable]:
+    def write_cols(self) -> SequenceNotStr[Hashable]:
         if self._has_aliases:
             assert not isinstance(self.header, bool)
             if len(self.header) != len(self.cols):
@@ -222,9 +226,9 @@ class CSVFormatter:
                 )
             return self.header
         else:
-            # self.cols is an ndarray derived from Index._format_native_types,
+            # self.cols is an ndarray derived from Index._get_values_for_csv,
             #  so its entries are strings, i.e. hashable
-            return cast(Sequence[Hashable], self.cols)
+            return cast(SequenceNotStr[Hashable], self.cols)
 
     @property
     def encoded_labels(self) -> list[Hashable]:
@@ -313,10 +317,10 @@ class CSVFormatter:
         slicer = slice(start_i, end_i)
         df = self.obj.iloc[slicer]
 
-        res = df._mgr.to_native_types(**self._number_format)
-        data = [res.iget_values(i) for i in range(len(res.items))]
+        res = df._get_values_for_csv(**self._number_format)
+        data = list(res._iter_column_arrays())
 
-        ix = self.data_index[slicer]._format_native_types(**self._number_format)
+        ix = self.data_index[slicer]._get_values_for_csv(**self._number_format)
         libwriters.write_csv_rows(
             data,
             ix,

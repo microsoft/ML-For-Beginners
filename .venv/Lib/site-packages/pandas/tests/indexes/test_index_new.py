@@ -4,11 +4,14 @@ Tests for the Index constructor conducting inference.
 from datetime import (
     datetime,
     timedelta,
+    timezone,
 )
 from decimal import Decimal
 
 import numpy as np
 import pytest
+
+from pandas._libs.tslibs.timezones import maybe_get_tz
 
 from pandas import (
     NA,
@@ -146,7 +149,7 @@ class TestIndexConstructorInference:
         if nulls_fixture is NA:
             expected = Index([NA, NaT])
             mark = pytest.mark.xfail(reason="Broken with np.NaT ctor; see GH 31884")
-            request.node.add_marker(mark)
+            request.applymarker(mark)
             # GH#35942 numpy will emit a DeprecationWarning within the
             #  assert_index_equal calls.  Since we can't do anything
             #  about it until GH#31884 is fixed, we suppress that warning.
@@ -182,6 +185,15 @@ class TestIndexConstructorInference:
 
         tm.assert_index_equal(Index(data), expected)
         tm.assert_index_equal(Index(np.array(data, dtype=object)), expected)
+
+    def test_constructor_datetimes_mixed_tzs(self):
+        # https://github.com/pandas-dev/pandas/pull/55793/files#r1383719998
+        tz = maybe_get_tz("US/Central")
+        dt1 = datetime(2020, 1, 1, tzinfo=tz)
+        dt2 = datetime(2020, 1, 1, tzinfo=timezone.utc)
+        result = Index([dt1, dt2])
+        expected = Index([dt1, dt2], dtype=object)
+        tm.assert_index_equal(result, expected)
 
 
 class TestDtypeEnforced:
@@ -349,6 +361,23 @@ class TestDtypeEnforced:
         else:
             index = Index(vals)
             assert isinstance(index, TimedeltaIndex)
+
+    def test_pass_timedeltaindex_to_index(self):
+        rng = timedelta_range("1 days", "10 days")
+        idx = Index(rng, dtype=object)
+
+        expected = Index(rng.to_pytimedelta(), dtype=object)
+
+        tm.assert_numpy_array_equal(idx.values, expected.values)
+
+    def test_pass_datetimeindex_to_index(self):
+        # GH#1396
+        rng = date_range("1/1/2000", "3/1/2000")
+        idx = Index(rng, dtype=object)
+
+        expected = Index(rng.to_pydatetime(), dtype=object)
+
+        tm.assert_numpy_array_equal(idx.values, expected.values)
 
 
 class TestIndexConstructorUnwrapping:

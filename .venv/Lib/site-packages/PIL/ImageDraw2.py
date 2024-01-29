@@ -22,7 +22,7 @@
 
 .. seealso:: :py:mod:`PIL.ImageDraw`
 """
-
+from __future__ import annotations
 
 from . import Image, ImageColor, ImageDraw, ImageFont, ImagePath
 

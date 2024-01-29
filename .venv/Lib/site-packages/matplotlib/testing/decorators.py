@@ -7,7 +7,6 @@ from pathlib import Path
 import shutil
 import string
 import sys
-import unittest
 import warnings
 
 from packaging.version import parse as parse_version
@@ -15,8 +14,7 @@ from packaging.version import parse as parse_version
 import matplotlib.style
 import matplotlib.units
 import matplotlib.testing
-from matplotlib import (_api, _pylab_helpers, cbook, ft2font, pyplot as plt,
-                        ticker)
+from matplotlib import _pylab_helpers, cbook, ft2font, pyplot as plt, ticker
 from .compare import comparable_formats, compare_images, make_test_filename
 from .exceptions import ImageComparisonFailure
 
@@ -31,68 +29,6 @@ def _cleanup_cm():
         matplotlib.units.registry.clear()
         matplotlib.units.registry.update(orig_units_registry)
         plt.close("all")
-
-
-@_api.deprecated("3.6", alternative="a vendored copy of the existing code, "
-                 "including the private function _cleanup_cm")
-class CleanupTestCase(unittest.TestCase):
-    """A wrapper for unittest.TestCase that includes cleanup operations."""
-    @classmethod
-    def setUpClass(cls):
-        cls._cm = _cleanup_cm().__enter__()
-
-    @classmethod
-    def tearDownClass(cls):
-        cls._cm.__exit__(None, None, None)
-
-
-@_api.deprecated("3.6", alternative="a vendored copy of the existing code, "
-                 "including the private function _cleanup_cm")
-def cleanup(style=None):
-    """
-    A decorator to ensure that any global state is reset before
-    running a test.
-
-    Parameters
-    ----------
-    style : str, dict, or list, optional
-        The style(s) to apply.  Defaults to ``["classic",
-        "_classic_test_patch"]``.
-    """
-
-    # If cleanup is used without arguments, *style* will be a callable, and we
-    # pass it directly to the wrapper generator.  If cleanup if called with an
-    # argument, it is a string naming a style, and the function will be passed
-    # as an argument to what we return.  This is a confusing, but somewhat
-    # standard, pattern for writing a decorator with optional arguments.
-
-    def make_cleanup(func):
-        if inspect.isgeneratorfunction(func):
-            @functools.wraps(func)
-            def wrapped_callable(*args, **kwargs):
-                with _cleanup_cm(), matplotlib.style.context(style):
-                    yield from func(*args, **kwargs)
-        else:
-            @functools.wraps(func)
-            def wrapped_callable(*args, **kwargs):
-                with _cleanup_cm(), matplotlib.style.context(style):
-                    func(*args, **kwargs)
-
-        return wrapped_callable
-
-    if callable(style):
-        result = make_cleanup(style)
-        # Default of mpl_test_settings fixture and image_comparison too.
-        style = ["classic", "_classic_test_patch"]
-        return result
-    else:
-        return make_cleanup
-
-
-@_api.deprecated("3.6", alternative="a vendored copy of the existing code "
-                 "of _check_freetype_version")
-def check_freetype_version(ver):
-    return _check_freetype_version(ver)
 
 
 def _check_freetype_version(ver):
@@ -297,8 +233,8 @@ def _pytest_image_comparison(baseline_images, extensions, tol,
                     'baseline_images')
 
             assert len(figs) == len(our_baseline_images), (
-                "Test generated {} images but there are {} baseline images"
-                .format(len(figs), len(our_baseline_images)))
+                f"Test generated {len(figs)} images but there are "
+                f"{len(our_baseline_images)} baseline images")
             for fig, baseline in zip(figs, our_baseline_images):
                 img.compare(fig, baseline, extension, _lock=needs_lock)
 

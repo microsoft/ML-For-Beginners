@@ -238,7 +238,10 @@ class _PLS(
             Y, input_name="Y", dtype=np.float64, copy=self.copy, ensure_2d=False
         )
         if Y.ndim == 1:
+            self._predict_1d = True
             Y = Y.reshape(-1, 1)
+        else:
+            self._predict_1d = False
 
         n = X.shape[0]
         p = X.shape[1]
@@ -469,8 +472,8 @@ class _PLS(
         # Normalize
         X -= self._x_mean
         X /= self._x_std
-        Ypred = X @ self.coef_.T
-        return Ypred + self.intercept_
+        Ypred = X @ self.coef_.T + self.intercept_
+        return Ypred.ravel() if self._predict_1d else Ypred
 
     def fit_transform(self, X, y=None):
         """Learn and apply the dimension reduction on the train data.
@@ -554,7 +557,7 @@ class PLSRegression(_PLS):
     x_rotations_ : ndarray of shape (n_features, n_components)
         The projection matrix used to transform `X`.
 
-    y_rotations_ : ndarray of shape (n_features, n_components)
+    y_rotations_ : ndarray of shape (n_targets, n_components)
         The projection matrix used to transform `Y`.
 
     coef_ : ndarray of shape (n_target, n_features)
@@ -698,7 +701,7 @@ class PLSCanonical(_PLS):
     x_rotations_ : ndarray of shape (n_features, n_components)
         The projection matrix used to transform `X`.
 
-    y_rotations_ : ndarray of shape (n_features, n_components)
+    y_rotations_ : ndarray of shape (n_targets, n_components)
         The projection matrix used to transform `Y`.
 
     coef_ : ndarray of shape (n_targets, n_features)
@@ -820,7 +823,7 @@ class CCA(_PLS):
     x_rotations_ : ndarray of shape (n_features, n_components)
         The projection matrix used to transform `X`.
 
-    y_rotations_ : ndarray of shape (n_features, n_components)
+    y_rotations_ : ndarray of shape (n_targets, n_components)
         The projection matrix used to transform `Y`.
 
     coef_ : ndarray of shape (n_targets, n_features)

@@ -1,3 +1,5 @@
+from statsmodels.compat.pandas import MONTH_END
+
 import numpy as np
 from numpy.testing import assert_allclose
 import pandas as pd
@@ -20,7 +22,7 @@ from statsmodels.tsa.statespace.exponential_smoothing import (
 def data(request):
     rs = np.random.RandomState(987654321)
     err = rs.standard_normal(500)
-    index = pd.date_range("1980-1-1", freq="M", periods=500)
+    index = pd.date_range("1980-1-1", freq=MONTH_END, periods=500)
     fourier = Fourier(12, 1)
     terms = fourier.in_sample(index)
     det = np.squeeze(np.asarray(terms @ np.array([[2], [1]])))

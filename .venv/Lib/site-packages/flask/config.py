@@ -8,27 +8,48 @@ import typing as t
 
 from werkzeug.utils import import_string
 
+if t.TYPE_CHECKING:
+    import typing_extensions as te
 
-class ConfigAttribute:
+    from .sansio.app import App
+
+
+T = t.TypeVar("T")
+
+
+class ConfigAttribute(t.Generic[T]):
     """Makes an attribute forward to the config"""
 
-    def __init__(self, name: str, get_converter: t.Callable | None = None) -> None:
+    def __init__(
+        self, name: str, get_converter: t.Callable[[t.Any], T] | None = None
+    ) -> None:
         self.__name__ = name
         self.get_converter = get_converter
 
-    def __get__(self, obj: t.Any, owner: t.Any = None) -> t.Any:
+    @t.overload
+    def __get__(self, obj: None, owner: None) -> te.Self:
+        ...
+
+    @t.overload
+    def __get__(self, obj: App, owner: type[App]) -> T:
+        ...
+
+    def __get__(self, obj: App | None, owner: type[App] | None = None) -> T | te.Self:
         if obj is None:
             return self
+
         rv = obj.config[self.__name__]
+
         if self.get_converter is not None:
             rv = self.get_converter(rv)
-        return rv
 
-    def __set__(self, obj: t.Any, value: t.Any) -> None:
+        return rv  # type: ignore[no-any-return]
+
+    def __set__(self, obj: App, value: t.Any) -> None:
         obj.config[self.__name__] = value
 
 
-class Config(dict):
+class Config(dict):  # type: ignore[type-arg]
     """Works exactly like a dict but provides ways to fill it from files
     or special dictionaries.  There are two common patterns to populate the
     config.
@@ -73,7 +94,9 @@ class Config(dict):
     """
 
     def __init__(
-        self, root_path: str | os.PathLike, defaults: dict | None = None
+        self,
+        root_path: str | os.PathLike[str],
+        defaults: dict[str, t.Any] | None = None,
     ) -> None:
         super().__init__(defaults or {})
         self.root_path = root_path
@@ -166,7 +189,9 @@ class Config(dict):
 
         return True
 
-    def from_pyfile(self, filename: str | os.PathLike, silent: bool = False) -> bool:
+    def from_pyfile(
+        self, filename: str | os.PathLike[str], silent: bool = False
+    ) -> bool:
         """Updates the values in the config from a Python file.  This function
         behaves as if the file was imported as module with the
         :meth:`from_object` function.
@@ -235,8 +260,8 @@ class Config(dict):
 
     def from_file(
         self,
-        filename: str | os.PathLike,
-        load: t.Callable[[t.IO[t.Any]], t.Mapping],
+        filename: str | os.PathLike[str],
+        load: t.Callable[[t.IO[t.Any]], t.Mapping[str, t.Any]],
         silent: bool = False,
         text: bool = True,
     ) -> bool:

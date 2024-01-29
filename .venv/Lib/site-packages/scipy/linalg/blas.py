@@ -225,7 +225,7 @@ except ImportError:
 
 # Expose all functions (only fblas --- cblas is an implementation detail)
 empty_module = None
-from scipy.linalg._fblas import *
+from scipy.linalg._fblas import *  # noqa: E402, F403
 del empty_module
 
 # all numeric dtypes '?bBhHiIlLqQefdgFDGO' that are safe to be converted to

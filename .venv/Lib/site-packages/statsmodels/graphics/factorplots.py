@@ -10,7 +10,7 @@ from statsmodels.graphics.plottools import rainbow
 import statsmodels.graphics.utils as utils
 
 
-def interaction_plot(x, trace, response, func=np.mean, ax=None, plottype='b',
+def interaction_plot(x, trace, response, func="mean", ax=None, plottype='b',
                      xlabel=None, ylabel=None, colors=None, markers=None,
                      linestyles=None, legendloc='best', legendtitle=None,
                      **kwargs):
@@ -96,7 +96,8 @@ def interaction_plot(x, trace, response, func=np.mean, ax=None, plottype='b',
     fig, ax = utils.create_mpl_ax(ax)
 
     response_name = ylabel or getattr(response, 'name', 'response')
-    ylabel = '%s of %s' % (func.__name__, response_name)
+    func_name = getattr(func, "__name__", str(func))
+    ylabel = '%s of %s' % (func_name, response_name)
     xlabel = xlabel or getattr(x, 'name', 'X')
     legendtitle = legendtitle or getattr(trace, 'name', 'Trace')
 

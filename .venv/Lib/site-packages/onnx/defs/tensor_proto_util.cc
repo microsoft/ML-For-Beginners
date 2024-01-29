@@ -3,7 +3,10 @@
  */
 
 #include "tensor_proto_util.h"
+
+#include <string>
 #include <vector>
+
 #include "onnx/common/platform_helpers.h"
 #include "onnx/defs/data_type_utils.h"
 #include "onnx/defs/shape_inference.h"

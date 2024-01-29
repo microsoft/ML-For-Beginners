@@ -340,7 +340,7 @@ def _inverse_squaring_helper(T0, theta):
     as lines 4--35 in algorithm (3.1) of [1]_, and
     as lines 3--34 in algorithm (4.1) of [2]_.
     The instances of 'goto line 38' in algorithm (3.1) of [1]_
-    probably mean 'goto line 36' and have been intepreted accordingly.
+    probably mean 'goto line 36' and have been interpreted accordingly.
 
     References
     ----------
@@ -824,7 +824,7 @@ def _logm_force_nonsingular_triangular_matrix(T, inplace=False):
     abs_diag = np.absolute(np.diag(T))
     if np.any(abs_diag == 0):
         exact_singularity_msg = 'The logm input matrix is exactly singular.'
-        warnings.warn(exact_singularity_msg, LogmExactlySingularWarning)
+        warnings.warn(exact_singularity_msg, LogmExactlySingularWarning, stacklevel=3)
         if not inplace:
             T = T.copy()
         n = T.shape[0]
@@ -833,7 +833,7 @@ def _logm_force_nonsingular_triangular_matrix(T, inplace=False):
                 T[i, i] = tri_eps
     elif np.any(abs_diag < tri_eps):
         near_singularity_msg = 'The logm input matrix may be nearly singular.'
-        warnings.warn(near_singularity_msg, LogmNearlySingularWarning)
+        warnings.warn(near_singularity_msg, LogmNearlySingularWarning, stacklevel=3)
     return T
 
 

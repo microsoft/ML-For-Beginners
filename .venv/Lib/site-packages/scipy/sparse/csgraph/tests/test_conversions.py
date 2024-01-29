@@ -42,7 +42,7 @@ def test_csgraph_to_dense():
 
 
 def test_multiple_edges():
-    # create a random sqare matrix with an even number of elements
+    # create a random square matrix with an even number of elements
     np.random.seed(1234)
     X = np.random.random((10, 10))
     Xcsr = csr_matrix(X)

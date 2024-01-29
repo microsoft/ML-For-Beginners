@@ -76,9 +76,9 @@ class BlockingInProcessKernelClient(InProcessKernelClient):
     """A blocking in-process kernel client."""
 
     # The classes to use for the various channels.
-    shell_channel_class = Type(BlockingInProcessChannel)
-    iopub_channel_class = Type(BlockingInProcessChannel)
-    stdin_channel_class = Type(BlockingInProcessStdInChannel)
+    shell_channel_class = Type(BlockingInProcessChannel)  # type:ignore[arg-type]
+    iopub_channel_class = Type(BlockingInProcessChannel)  # type:ignore[arg-type]
+    stdin_channel_class = Type(BlockingInProcessStdInChannel)  # type:ignore[arg-type]
 
     def wait_for_ready(self):
         """Wait for kernel info reply on shell channel."""

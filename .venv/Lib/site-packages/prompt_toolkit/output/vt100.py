@@ -529,7 +529,7 @@ class Vt100_Output(Output):
 
     def erase_screen(self) -> None:
         """
-        Erases the screen with the background colour and moves the cursor to
+        Erases the screen with the background color and moves the cursor to
         home.
         """
         self.write_raw("\x1b[2J")

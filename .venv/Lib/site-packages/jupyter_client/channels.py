@@ -54,7 +54,7 @@ class HBChannel(Thread):
         context: t.Optional[zmq.Context] = None,
         session: t.Optional[Session] = None,
         address: t.Union[t.Tuple[str, int], str] = "",
-    ):
+    ) -> None:
         """Create the heartbeat monitor thread.
 
         Parameters
@@ -98,7 +98,7 @@ class HBChannel(Thread):
     def _create_socket(self) -> None:
         if self.socket is not None:
             # close previous socket, before opening a new one
-            self.poller.unregister(self.socket)
+            self.poller.unregister(self.socket)  # type:ignore[unreachable]
             self.socket.close()
         assert self.context is not None
         self.socket = self.context.socket(zmq.REQ)
@@ -290,7 +290,7 @@ class AsyncZMQSocketChannel(ZMQSocketChannel):
             Unused here, for other implementations
         """
         if not isinstance(socket, zmq.asyncio.Socket):
-            msg = 'Socket must be asyncio'
+            msg = "Socket must be asyncio"  # type:ignore[unreachable]
             raise ValueError(msg)
         super().__init__(socket, session)
 

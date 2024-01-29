@@ -1310,8 +1310,8 @@ class TestMaskedArrayArithmetic:
         m1 = [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
         xm = masked_array(x, mask=m1)
         xm.set_fill_value(1e+20)
-        float_dtypes = [np.half, np.single, np.double,
-                        np.longdouble, np.cfloat, np.cdouble, np.clongdouble]
+        float_dtypes = [np.float16, np.float32, np.float64, np.longdouble,
+                        np.complex64, np.complex128, np.clongdouble]
         for float_dtype in float_dtypes:
             assert_equal(masked_array(x, mask=m1, dtype=float_dtype).max(),
                          float_dtype(a10))
@@ -1614,6 +1614,23 @@ class TestMaskedArrayArithmetic:
         assert_equal(test.mask, [[False, False], [False, True]])
         assert_(test.fill_value == True)
 
+    def test_eq_ne_structured_with_non_masked(self):
+        a = array([(1, 1), (2, 2), (3, 4)],
+                  mask=[(0, 1), (0, 0), (1, 1)], dtype='i4,i4')
+        eq = a == a.data
+        ne = a.data != a
+        # Test the obvious.
+        assert_(np.all(eq))
+        assert_(not np.any(ne))
+        # Expect the mask set only for items with all fields masked.
+        expected_mask = a.mask == np.ones((), a.mask.dtype)
+        assert_array_equal(eq.mask, expected_mask)
+        assert_array_equal(ne.mask, expected_mask)
+        # The masked element will indicated not equal, because the
+        # masks did not match.
+        assert_equal(eq.data, [True, True, False])
+        assert_array_equal(eq.data, ~ne.data)
+
     def test_eq_ne_structured_extra(self):
         # ensure simple examples are symmetric and make sense.
         # from https://github.com/numpy/numpy/pull/8590#discussion_r101126465
@@ -1744,6 +1761,23 @@ class TestMaskedArrayArithmetic:
         assert_equal(test.data, [False, False])
         assert_equal(test.mask, [True, False])
         assert_(test.fill_value == True)
+
+    @pytest.mark.parametrize("op", [operator.eq, operator.lt])
+    def test_eq_broadcast_with_unmasked(self, op):
+        a = array([0, 1], mask=[0, 1])
+        b = np.arange(10).reshape(5, 2)
+        result = op(a, b)
+        assert_(result.mask.shape == b.shape)
+        assert_equal(result.mask, np.zeros(b.shape, bool) | a.mask)
+
+    @pytest.mark.parametrize("op", [operator.eq, operator.gt])
+    def test_comp_no_mask_not_broadcast(self, op):
+        # Regression test for failing doctest in MaskedArray.nonzero
+        # after gh-24556.
+        a = array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        result = op(a, 3)
+        assert_(not result.mask.shape)
+        assert_(result.mask is nomask)
 
     @pytest.mark.parametrize('dt1', num_dts, ids=num_ids)
     @pytest.mark.parametrize('dt2', num_dts, ids=num_ids)
@@ -3444,7 +3478,7 @@ class TestMaskedArrayMethods:
         raveled = x.ravel(order)
         assert (raveled.filled(0) == 0).all()
 
-        # NOTE: Can be wrong if arr order is neither C nor F and `order="K"` 
+        # NOTE: Can be wrong if arr order is neither C nor F and `order="K"`
         assert_array_equal(arr.ravel(order), x.ravel(order)._data)
 
     def test_reshape(self):

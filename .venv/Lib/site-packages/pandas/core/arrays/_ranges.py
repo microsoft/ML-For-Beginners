@@ -54,12 +54,10 @@ def generate_regular_range(
     iend = end._value if end is not None else None
     freq.nanos  # raises if non-fixed frequency
     td = Timedelta(freq)
-    b: int | np.int64 | np.uint64
-    e: int | np.int64 | np.uint64
+    b: int
+    e: int
     try:
-        td = td.as_unit(  # pyright: ignore[reportGeneralTypeIssues]
-            unit, round_ok=False
-        )
+        td = td.as_unit(unit, round_ok=False)
     except ValueError as err:
         raise ValueError(
             f"freq={freq} is incompatible with unit={unit}. "
@@ -98,7 +96,7 @@ def generate_regular_range(
 
 def _generate_range_overflow_safe(
     endpoint: int, periods: int, stride: int, side: str = "start"
-) -> np.int64 | np.uint64:
+) -> int:
     """
     Calculate the second endpoint for passing to np.arange, checking
     to avoid an integer overflow.  Catch OverflowError and re-raise
@@ -117,7 +115,7 @@ def _generate_range_overflow_safe(
 
     Returns
     -------
-    other_end : np.int64 | np.uint64
+    other_end : int
 
     Raises
     ------
@@ -165,7 +163,7 @@ def _generate_range_overflow_safe(
 
 def _generate_range_overflow_safe_signed(
     endpoint: int, periods: int, stride: int, side: str
-) -> np.int64 | np.uint64:
+) -> int:
     """
     A special case for _generate_range_overflow_safe where `periods * stride`
     can be calculated without overflowing int64 bounds.
@@ -183,7 +181,7 @@ def _generate_range_overflow_safe_signed(
                 # Putting this into a DatetimeArray/TimedeltaArray
                 #  would incorrectly be interpreted as NaT
                 raise OverflowError
-            return result
+            return int(result)
         except (FloatingPointError, OverflowError):
             # with endpoint negative and addend positive we risk
             #  FloatingPointError; with reversed signed we risk OverflowError
@@ -202,7 +200,7 @@ def _generate_range_overflow_safe_signed(
             i64max = np.uint64(i8max)
             assert uresult > i64max
             if uresult <= i64max + np.uint64(stride):
-                return uresult
+                return int(uresult)
 
     raise OutOfBoundsDatetime(
         f"Cannot generate range with {side}={endpoint} and periods={periods}"

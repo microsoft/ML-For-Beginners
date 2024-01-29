@@ -45,6 +45,7 @@ from prompt_toolkit.cursor_shapes import (
 )
 from prompt_toolkit.document import Document
 from prompt_toolkit.enums import DEFAULT_BUFFER, SEARCH_BUFFER, EditingMode
+from prompt_toolkit.eventloop import InputHook
 from prompt_toolkit.filters import (
     Condition,
     FilterOrBool,
@@ -892,6 +893,7 @@ class PromptSession(Generic[_T]):
         set_exception_handler: bool = True,
         handle_sigint: bool = True,
         in_thread: bool = False,
+        inputhook: InputHook | None = None,
     ) -> _T:
         """
         Display the prompt.
@@ -1025,6 +1027,7 @@ class PromptSession(Generic[_T]):
             set_exception_handler=set_exception_handler,
             in_thread=in_thread,
             handle_sigint=handle_sigint,
+            inputhook=inputhook,
         )
 
     @contextmanager
@@ -1393,11 +1396,14 @@ def prompt(
     enable_open_in_editor: FilterOrBool | None = None,
     tempfile_suffix: str | Callable[[], str] | None = None,
     tempfile: str | Callable[[], str] | None = None,
-    in_thread: bool = False,
     # Following arguments are specific to the current `prompt()` call.
     default: str = "",
     accept_default: bool = False,
     pre_run: Callable[[], None] | None = None,
+    set_exception_handler: bool = True,
+    handle_sigint: bool = True,
+    in_thread: bool = False,
+    inputhook: InputHook | None = None,
 ) -> str:
     """
     The global `prompt` function. This will create a new `PromptSession`
@@ -1448,7 +1454,10 @@ def prompt(
         default=default,
         accept_default=accept_default,
         pre_run=pre_run,
+        set_exception_handler=set_exception_handler,
+        handle_sigint=handle_sigint,
         in_thread=in_thread,
+        inputhook=inputhook,
     )
 
 

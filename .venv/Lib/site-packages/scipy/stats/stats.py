@@ -2,25 +2,22 @@
 # Use the `scipy.stats` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _stats_py
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
     'find_repeats', 'gmean', 'hmean', 'pmean', 'mode', 'tmean', 'tvar',
     'tmin', 'tmax', 'tstd', 'tsem', 'moment',
     'skew', 'kurtosis', 'describe', 'skewtest', 'kurtosistest',
-    'normaltest', 'jarque_bera', 'itemfreq',
+    'normaltest', 'jarque_bera',
     'scoreatpercentile', 'percentileofscore',
     'cumfreq', 'relfreq', 'obrientransform',
     'sem', 'zmap', 'zscore', 'gzscore', 'iqr', 'gstd',
-    'median_absolute_deviation', 'median_abs_deviation',
+    'median_abs_deviation',
     'sigmaclip', 'trimboth', 'trim1', 'trim_mean',
-    'f_oneway', 'F_onewayConstantInputWarning',
-    'F_onewayBadInputSizesWarning',
-    'PearsonRConstantInputWarning', 'PearsonRNearConstantInputWarning',
+    'f_oneway',
     'pearsonr', 'fisher_exact',
-    'SpearmanRConstantInputWarning', 'spearmanr', 'pointbiserialr',
+    'spearmanr', 'pointbiserialr',
     'kendalltau', 'weightedtau', 'multiscale_graphcorr',
     'linregress', 'siegelslopes', 'theilslopes', 'ttest_1samp',
     'ttest_ind', 'ttest_ind_from_stats', 'ttest_rel',
@@ -34,11 +31,11 @@ __all__ = [  # noqa: F822
     'rng_integers', 'float_factorial', 'linalg', 'distributions',
     'mstats_basic', 'ModeResult', 'DescribeResult',
     'SkewtestResult', 'KurtosistestResult', 'NormaltestResult',
-    'Jarque_beraResult', 'HistogramResult', 'CumfreqResult',
+    'HistogramResult', 'CumfreqResult',
     'RelfreqResult', 'SigmaclipResult', 'F_onewayResult',
-    'AlexanderGovernResult', 'AlexanderGovernConstantInputWarning',
-    'SpearmanrResult', 'PointbiserialrResult', 'KendalltauResult',
-    'WeightedTauResult', 'MGCResult', 'Ttest_1sampResult', 'Ttest_indResult',
+    'AlexanderGovernResult',
+    'PointbiserialrResult',
+    'MGCResult', 'Ttest_1sampResult', 'Ttest_indResult',
     'Ttest_relResult', 'Power_divergenceResult', 'KstestResult',
     'Ks_2sampResult', 'RanksumsResult', 'KruskalResult',
     'FriedmanchisquareResult', 'BrunnerMunzelResult', 'RepeatedResults'
@@ -50,13 +47,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.stats.stats is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.stats instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.stats` namespace, "
-                  "the `scipy.stats.stats` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_stats_py, name)
+    return _sub_module_deprecation(sub_package="stats", module="stats",
+                                   private_modules=["_stats_py"], all=__all__,
+                                   attribute=name)

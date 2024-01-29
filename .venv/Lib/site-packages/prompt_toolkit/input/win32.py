@@ -314,10 +314,10 @@ class ConsoleInputReader:
 
                 # Process if this is a key event. (We also have mouse, menu and
                 # focus events.)
-                if type(ev) == KEY_EVENT_RECORD and ev.KeyDown:
+                if isinstance(ev, KEY_EVENT_RECORD) and ev.KeyDown:
                     yield from self._event_to_key_presses(ev)
 
-                elif type(ev) == MOUSE_EVENT_RECORD:
+                elif isinstance(ev, MOUSE_EVENT_RECORD):
                     yield from self._handle_mouse(ev)
 
     @staticmethod
@@ -379,7 +379,7 @@ class ConsoleInputReader:
         """
         For this `KEY_EVENT_RECORD`, return a list of `KeyPress` instances.
         """
-        assert type(ev) == KEY_EVENT_RECORD and ev.KeyDown
+        assert isinstance(ev, KEY_EVENT_RECORD) and ev.KeyDown
 
         result: KeyPress | None = None
 

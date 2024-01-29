@@ -4,6 +4,7 @@ from collections.abc import (
     Hashable,
     Iterator,
     Mapping,
+    MutableMapping,
     Sequence,
 )
 from datetime import (
@@ -24,6 +25,7 @@ from typing import (
     Type as type_t,
     TypeVar,
     Union,
+    overload,
 )
 
 import numpy as np
@@ -85,6 +87,8 @@ if TYPE_CHECKING:
     # Name "npt._ArrayLikeInt_co" is not defined  [name-defined]
     NumpySorter = Optional[npt._ArrayLikeInt_co]  # type: ignore[name-defined]
 
+    from typing import SupportsIndex
+
     if sys.version_info >= (3, 10):
         from typing import TypeGuard  # pyright: ignore[reportUnusedImport]
     else:
@@ -100,6 +104,7 @@ else:
     TypeGuard: Any = None
 
 HashableT = TypeVar("HashableT", bound=Hashable)
+MutableMappingT = TypeVar("MutableMappingT", bound=MutableMapping)
 
 # array-like
 
@@ -109,10 +114,40 @@ TimeArrayLike = Union["DatetimeArray", "TimedeltaArray"]
 
 # list-like
 
-# Cannot use `Sequence` because a string is a sequence, and we don't want to
-# accept that.  Could refine if https://github.com/python/typing/issues/256 is
-# resolved to differentiate between Sequence[str] and str
-ListLike = Union[AnyArrayLike, list, range]
+# from https://github.com/hauntsaninja/useful_types
+# includes Sequence-like objects but excludes str and bytes
+_T_co = TypeVar("_T_co", covariant=True)
+
+
+class SequenceNotStr(Protocol[_T_co]):
+    @overload
+    def __getitem__(self, index: SupportsIndex, /) -> _T_co:
+        ...
+
+    @overload
+    def __getitem__(self, index: slice, /) -> Sequence[_T_co]:
+        ...
+
+    def __contains__(self, value: object, /) -> bool:
+        ...
+
+    def __len__(self) -> int:
+        ...
+
+    def __iter__(self) -> Iterator[_T_co]:
+        ...
+
+    def index(self, value: Any, /, start: int = 0, stop: int = ...) -> int:
+        ...
+
+    def count(self, value: Any, /) -> int:
+        ...
+
+    def __reversed__(self) -> Iterator[_T_co]:
+        ...
+
+
+ListLike = Union[AnyArrayLike, SequenceNotStr, range]
 
 # scalars
 
@@ -120,7 +155,7 @@ PythonScalar = Union[str, float, bool]
 DatetimeLikeScalar = Union["Period", "Timestamp", "Timedelta"]
 PandasScalar = Union["Period", "Timestamp", "Timedelta", "Interval"]
 Scalar = Union[PythonScalar, PandasScalar, np.datetime64, np.timedelta64, date]
-IntStrT = TypeVar("IntStrT", int, str)
+IntStrT = TypeVar("IntStrT", bound=Union[int, str])
 
 
 # timestamp and timedelta convertible types
@@ -199,7 +234,9 @@ IndexKeyFunc = Optional[Callable[["Index"], Union["Index", AnyArrayLike]]]
 
 # types of `func` kwarg for DataFrame.aggregate and Series.aggregate
 AggFuncTypeBase = Union[Callable, str]
-AggFuncTypeDict = dict[Hashable, Union[AggFuncTypeBase, list[AggFuncTypeBase]]]
+AggFuncTypeDict = MutableMapping[
+    Hashable, Union[AggFuncTypeBase, list[AggFuncTypeBase]]
+]
 AggFuncType = Union[
     AggFuncTypeBase,
     list[AggFuncTypeBase],
@@ -375,6 +412,9 @@ JSONEngine = Literal["ujson", "pyarrow"]
 # read_xml parsers
 XMLParsers = Literal["lxml", "etree"]
 
+# read_html flavors
+HTMLFlavors = Literal["lxml", "html5lib", "bs4"]
+
 # Interval closed type
 IntervalLeftRight = Literal["left", "right"]
 IntervalClosedType = Union[IntervalLeftRight, Literal["both", "neither"]]
@@ -474,3 +514,12 @@ ExcelWriterIfSheetExists = Literal["error", "new", "replace", "overlay"]
 
 # Offsets
 OffsetCalendar = Union[np.busdaycalendar, "AbstractHolidayCalendar"]
+
+# read_csv: usecols
+UsecolsArgType = Union[
+    SequenceNotStr[Hashable],
+    range,
+    AnyArrayLike,
+    Callable[[HashableT], bool],
+    None,
+]

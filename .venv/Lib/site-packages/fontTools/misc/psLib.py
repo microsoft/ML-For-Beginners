@@ -100,7 +100,6 @@ class PSTokenizer(object):
         commentmatch=commentRE.match,
         endmatch=endofthingRE.match,
     ):
-
         self.skipwhite()
         if self.pos >= self.len:
             return None, None

@@ -756,6 +756,11 @@ def iter_struct_object_dtypes():
     yield pytest.param(dt, p, 12, obj, id="<structured subarray 2>")
 
 
+@pytest.mark.skipif(
+    sys.version_info >= (3, 12),
+    reason="Python 3.12 has immortal refcounts, this test will no longer "
+           "work. See gh-23986"
+)
 @pytest.mark.skipif(not HAS_REFCOUNT, reason="Python lacks refcounts")
 class TestStructuredObjectRefcounting:
     """These tests cover various uses of complicated structured types which
@@ -1893,3 +1898,9 @@ def test_result_type_integers_and_unitless_timedelta64():
     td = np.timedelta64(4)
     result = np.result_type(0, td)
     assert_dtype_equal(result, td.dtype)
+
+
+def test_creating_dtype_with_dtype_class_errors():
+    # Regression test for #25031, calling `np.dtype` with itself segfaulted.
+    with pytest.raises(TypeError, match="Cannot convert np.dtype into a"):
+        np.array(np.ones(10), dtype=np.dtype)

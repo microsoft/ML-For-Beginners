@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221,R0913,W0613
+
 
 import numpy as np
 

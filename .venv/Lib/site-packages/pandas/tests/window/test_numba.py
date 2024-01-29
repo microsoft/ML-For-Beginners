@@ -1,11 +1,6 @@
 import numpy as np
 import pytest
 
-from pandas.compat import (
-    is_ci_environment,
-    is_platform_mac,
-    is_platform_windows,
-)
 from pandas.errors import NumbaUtilError
 import pandas.util._test_decorators as td
 
@@ -17,15 +12,7 @@ from pandas import (
 )
 import pandas._testing as tm
 
-pytestmark = [
-    pytest.mark.single_cpu,
-    pytest.mark.skipif(
-        is_ci_environment() and (is_platform_windows() or is_platform_mac()),
-        reason="On GHA CI, Windows can fail with "
-        "'Windows fatal exception: stack overflow' "
-        "and macOS can timeout",
-    ),
-]
+pytestmark = pytest.mark.single_cpu
 
 
 @pytest.fixture(params=["single", "table"])
@@ -459,3 +446,10 @@ class TestTableMethod:
             engine_kwargs=engine_kwargs, engine="numba"
         )
         tm.assert_frame_equal(result, expected)
+
+
+@td.skip_if_no("numba")
+def test_npfunc_no_warnings():
+    df = DataFrame({"col1": [1, 2, 3, 4, 5]})
+    with tm.assert_produces_warning(False):
+        df.col1.rolling(2).apply(np.prod, raw=True, engine="numba")

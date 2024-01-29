@@ -7,7 +7,10 @@ It is an incomplete base class, and must be subclassed.
 """
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
+
 import time
+import typing as t
 
 from traitlets import Bool, Dict, Float, Instance, Integer, default
 from traitlets.config.configurable import LoggingConfigurable
@@ -52,25 +55,25 @@ class KernelRestarter(LoggingConfigurable):
     _last_dead = Float()
 
     @default("_last_dead")
-    def _default_last_dead(self):
+    def _default_last_dead(self) -> float:
         return time.time()
 
     callbacks = Dict()
 
-    def _callbacks_default(self):
+    def _callbacks_default(self) -> dict[str, list]:
         return {"restart": [], "dead": []}
 
-    def start(self):
+    def start(self) -> None:
         """Start the polling of the kernel."""
         msg = "Must be implemented in a subclass"
         raise NotImplementedError(msg)
 
-    def stop(self):
+    def stop(self) -> None:
         """Stop the kernel polling."""
         msg = "Must be implemented in a subclass"
         raise NotImplementedError(msg)
 
-    def add_callback(self, f, event="restart"):
+    def add_callback(self, f: t.Callable[..., t.Any], event: str = "restart") -> None:
         """register a callback to fire on a particular event
 
         Possible values for event:
@@ -81,7 +84,7 @@ class KernelRestarter(LoggingConfigurable):
         """
         self.callbacks[event].append(f)
 
-    def remove_callback(self, f, event="restart"):
+    def remove_callback(self, f: t.Callable[..., t.Any], event: str = "restart") -> None:
         """unregister a callback to fire on a particular event
 
         Possible values for event:
@@ -95,7 +98,7 @@ class KernelRestarter(LoggingConfigurable):
         except ValueError:
             pass
 
-    def _fire_callbacks(self, event):
+    def _fire_callbacks(self, event: t.Any) -> None:
         """fire our callbacks for a particular event"""
         for callback in self.callbacks[event]:
             try:
@@ -108,7 +111,7 @@ class KernelRestarter(LoggingConfigurable):
                     exc_info=True,
                 )
 
-    def poll(self):
+    def poll(self) -> None:
         if self.debug:
             self.log.debug("Polling kernel...")
         if self.kernel_manager.shutting_down:

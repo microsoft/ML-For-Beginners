@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 import datetime
+import json
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -9,8 +10,6 @@ from typing import (
     cast,
     overload,
 )
-
-from pandas._libs import json
 
 from pandas.io.excel._base import ExcelWriter
 from pandas.io.excel._util import (
@@ -193,7 +192,15 @@ class ODSWriter(ExcelWriter):
         if isinstance(val, bool):
             value = str(val).lower()
             pvalue = str(val).upper()
-        if isinstance(val, datetime.datetime):
+            return (
+                pvalue,
+                TableCell(
+                    valuetype="boolean",
+                    booleanvalue=value,
+                    attributes=attributes,
+                ),
+            )
+        elif isinstance(val, datetime.datetime):
             # Fast formatting
             value = val.isoformat()
             # Slow but locale-dependent
@@ -211,17 +218,20 @@ class ODSWriter(ExcelWriter):
                 pvalue,
                 TableCell(valuetype="date", datevalue=value, attributes=attributes),
             )
-        else:
-            class_to_cell_type = {
-                str: "string",
-                int: "float",
-                float: "float",
-                bool: "boolean",
-            }
+        elif isinstance(val, str):
             return (
                 pvalue,
                 TableCell(
-                    valuetype=class_to_cell_type[type(val)],
+                    valuetype="string",
+                    stringvalue=value,
+                    attributes=attributes,
+                ),
+            )
+        else:
+            return (
+                pvalue,
+                TableCell(
+                    valuetype="float",
                     value=value,
                     attributes=attributes,
                 ),
@@ -257,7 +267,7 @@ class ODSWriter(ExcelWriter):
 
         if style is None:
             return None
-        style_key = json.ujson_dumps(style)
+        style_key = json.dumps(style)
         if style_key in self._style_dict:
             return self._style_dict[style_key]
         name = f"pd{len(self._style_dict)+1}"

@@ -101,7 +101,7 @@ mapping_estimator_error = {
     "BaseBadSampler": (AssertionError, "ValueError not raised by fit"),
     "SamplerSingleClass": (AssertionError, "Sampler can't balance when only"),
     "NotFittedSampler": (AssertionError, "No fitted attribute"),
-    "NoAcceptingSparseSampler": (TypeError, "A sparse matrix was passed"),
+    "NoAcceptingSparseSampler": (TypeError, "dense data is required"),
     "NotPreservingDtypeSampler": (AssertionError, "X dtype is not preserved"),
 }
 

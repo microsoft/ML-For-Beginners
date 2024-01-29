@@ -21,6 +21,7 @@ import textwrap
 import shutil
 import random
 import time
+import traceback
 from io import StringIO
 from dataclasses import dataclass
 
@@ -31,6 +32,7 @@ from unittest import TestCase
 from IPython.extensions.autoreload import AutoreloadMagics
 from IPython.core.events import EventManager, pre_run_cell
 from IPython.testing.decorators import skipif_not_numpy
+from IPython.core.interactiveshell import ExecutionInfo
 
 if platform.python_implementation() == "PyPy":
     pytest.skip(
@@ -56,8 +58,27 @@ class FakeShell:
 
     register_magics = set_hook = noop
 
+    def showtraceback(
+        self,
+        exc_tuple=None,
+        filename=None,
+        tb_offset=None,
+        exception_only=False,
+        running_compiled_code=False,
+    ):
+        traceback.print_exc()
+
     def run_code(self, code):
-        self.events.trigger("pre_run_cell")
+        self.events.trigger(
+            "pre_run_cell",
+            ExecutionInfo(
+                raw_cell="",
+                store_history=False,
+                silent=False,
+                shell_futures=False,
+                cell_id=None,
+            ),
+        )
         exec(code, self.user_ns)
         self.auto_magics.post_execute_hook()
 
@@ -279,6 +300,7 @@ class TestAutoreload(Fixture):
     @skipif_not_numpy
     def test_comparing_numpy_structures(self):
         self.shell.magic_autoreload("2")
+        self.shell.run_code("1+1")
         mod_name, mod_fn = self.new_module(
             textwrap.dedent(
                 """

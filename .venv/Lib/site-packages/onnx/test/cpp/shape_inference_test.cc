@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+
 #include "gtest/gtest.h"
 #include "onnx/defs/parser.h"
 #include "onnx/defs/schema.h"
@@ -411,6 +412,7 @@ static void doInferencingTest(bool use_scan_opset8) {
   std::vector<const TypeProto*> subgraphInputTypes = {&simple_tensor, &simple_tensor};
 
   std::vector<const TensorProto*> subgraphInputData = {};
+  ShapeInferenceOptions options{false, 0, false};
   auto output = graphInferencer.doInferencing(subgraphInputTypes, subgraphInputData);
 
   // check the subgraph outputs had their shape inferred when we called
@@ -484,7 +486,7 @@ static void doInferencingTest(bool use_scan_opset8) {
   valueTypesByName["loop_state_start"] = &loop_state_in_tensor;
   valueTypesByName["scan_op_in"] = &scan_in_tensor;
 
-  InferenceContextImpl ctx(scan, valueTypesByName, {}, {}, {}, &graphInfCtx);
+  InferenceContextImpl ctx(scan, valueTypesByName, {}, {}, options, {}, &graphInfCtx);
   if (use_scan_opset8)
     ScanInferenceFunctionOpset8(ctx);
   else
@@ -601,6 +603,21 @@ agraph (float[1, 196608] m) => (float[?, ?, ?] z)
   expectedShape.mutable_dim()->Add()->set_dim_value(256);
 
   RunReshapeShapeInfTest(modelStr, expectedShape);
+}
+
+TEST(ShapeInferenceTest, CheckShapesAndTypesTest) {
+#ifndef ONNX_NO_EXCEPTIONS
+  // Tensor element types mis-match should cause an exception.
+  TypeProto tensor_infer;
+  auto* tensor_infer_type = tensor_infer.mutable_tensor_type();
+  tensor_infer_type->set_elem_type(TensorProto_DataType_FLOAT);
+
+  TypeProto tensor_exist;
+  auto* tensor_exist_type = tensor_exist.mutable_tensor_type();
+  tensor_exist_type->set_elem_type(TensorProto_DataType_UINT8);
+
+  EXPECT_THROW(checkShapesAndTypes(tensor_infer, tensor_exist), ONNX_NAMESPACE::InferenceError);
+#endif
 }
 
 } // namespace Test

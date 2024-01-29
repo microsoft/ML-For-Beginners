@@ -33,6 +33,9 @@ import numpy as np
 from . import _mvn
 from ._stats import gaussian_kernel_estimate, gaussian_kernel_estimate_log
 
+# deprecated import to be removed in SciPy 1.13.0
+from scipy.special import logsumexp  # noqa: F401
+
 
 __all__ = ['gaussian_kde']
 
@@ -390,7 +393,7 @@ class gaussian_kde:
         if inform:
             msg = ('An integral in _mvn.mvnun requires more points than %s' %
                    (self.d * 1000))
-            warnings.warn(msg)
+            warnings.warn(msg, stacklevel=2)
 
         return value
 
@@ -466,7 +469,7 @@ class gaussian_kde:
         resample : (self.d, `size`) ndarray
             The sampled dataset.
 
-        """
+        """ # numpy/numpydoc#87  # noqa: E501
         if size is None:
             size = int(self.neff)
 

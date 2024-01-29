@@ -48,7 +48,8 @@ class TestSeriesQuantile:
         with pytest.raises(ValueError, match=msg):
             s.quantile(percentile_array)
 
-    def test_quantile_multi(self, datetime_series):
+    def test_quantile_multi(self, datetime_series, unit):
+        datetime_series.index = datetime_series.index.as_unit(unit)
         qs = [0.1, 0.9]
         result = datetime_series.quantile(qs)
         expected = Series(
@@ -68,6 +69,7 @@ class TestSeriesQuantile:
             [Timestamp("2000-01-10 19:12:00"), Timestamp("2000-01-10 19:12:00")],
             index=[0.2, 0.2],
             name="xxx",
+            dtype=f"M8[{unit}]",
         )
         tm.assert_series_equal(result, expected)
 
@@ -103,8 +105,8 @@ class TestSeriesQuantile:
 
     def test_quantile_nan(self):
         # GH 13098
-        s = Series([1, 2, 3, 4, np.nan])
-        result = s.quantile(0.5)
+        ser = Series([1, 2, 3, 4, np.nan])
+        result = ser.quantile(0.5)
         expected = 2.5
         assert result == expected
 
@@ -112,14 +114,14 @@ class TestSeriesQuantile:
         s1 = Series([], dtype=object)
         cases = [s1, Series([np.nan, np.nan])]
 
-        for s in cases:
-            res = s.quantile(0.5)
+        for ser in cases:
+            res = ser.quantile(0.5)
             assert np.isnan(res)
 
-            res = s.quantile([0.5])
+            res = ser.quantile([0.5])
             tm.assert_series_equal(res, Series([np.nan], index=[0.5]))
 
-            res = s.quantile([0.2, 0.3])
+            res = ser.quantile([0.2, 0.3])
             tm.assert_series_equal(res, Series([np.nan, np.nan], index=[0.2, 0.3]))
 
     @pytest.mark.parametrize(
@@ -158,11 +160,11 @@ class TestSeriesQuantile:
         ],
     )
     def test_quantile_box(self, case):
-        s = Series(case, name="XXX")
-        res = s.quantile(0.5)
+        ser = Series(case, name="XXX")
+        res = ser.quantile(0.5)
         assert res == case[1]
 
-        res = s.quantile([0.5])
+        res = ser.quantile([0.5])
         exp = Series([case[1]], index=[0.5], name="XXX")
         tm.assert_series_equal(res, exp)
 
@@ -188,35 +190,37 @@ class TestSeriesQuantile:
         expected = Series(np.asarray(ser)).quantile([0.5]).astype("Sparse[float]")
         tm.assert_series_equal(result, expected)
 
-    def test_quantile_empty(self):
+    def test_quantile_empty_float64(self):
         # floats
-        s = Series([], dtype="float64")
+        ser = Series([], dtype="float64")
 
-        res = s.quantile(0.5)
+        res = ser.quantile(0.5)
         assert np.isnan(res)
 
-        res = s.quantile([0.5])
+        res = ser.quantile([0.5])
         exp = Series([np.nan], index=[0.5])
         tm.assert_series_equal(res, exp)
 
+    def test_quantile_empty_int64(self):
         # int
-        s = Series([], dtype="int64")
+        ser = Series([], dtype="int64")
 
-        res = s.quantile(0.5)
+        res = ser.quantile(0.5)
         assert np.isnan(res)
 
-        res = s.quantile([0.5])
+        res = ser.quantile([0.5])
         exp = Series([np.nan], index=[0.5])
         tm.assert_series_equal(res, exp)
 
+    def test_quantile_empty_dt64(self):
         # datetime
-        s = Series([], dtype="datetime64[ns]")
+        ser = Series([], dtype="datetime64[ns]")
 
-        res = s.quantile(0.5)
+        res = ser.quantile(0.5)
         assert res is pd.NaT
 
-        res = s.quantile([0.5])
-        exp = Series([pd.NaT], index=[0.5])
+        res = ser.quantile([0.5])
+        exp = Series([pd.NaT], index=[0.5], dtype=ser.dtype)
         tm.assert_series_equal(res, exp)
 
     @pytest.mark.parametrize("dtype", [int, float, "Int64"])

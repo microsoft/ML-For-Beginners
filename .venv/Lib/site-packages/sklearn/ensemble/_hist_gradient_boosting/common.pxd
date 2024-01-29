@@ -1,4 +1,5 @@
 cimport numpy as cnp
+from sklearn.utils._typedefs cimport intp_t
 
 cnp.import_array()
 
@@ -23,7 +24,7 @@ cdef packed struct node_struct:
     # needs to be packed since by default numpy dtypes aren't aligned
     Y_DTYPE_C value
     unsigned int count
-    unsigned int feature_idx
+    intp_t feature_idx
     X_DTYPE_C num_threshold
     unsigned char missing_go_to_left
     unsigned int left

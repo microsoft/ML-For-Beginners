@@ -10,7 +10,7 @@ using `~matplotlib.gridspec.GridSpecFromSubplotSpec`).  Axes placed using
 ``figure.subplots()`` or ``figure.add_subplots()`` will participate in the
 layout.  Axes manually placed via ``figure.add_axes()`` will not.
 
-See Tutorial: :doc:`/tutorials/intermediate/constrainedlayout_guide`
+See Tutorial: :ref:`constrainedlayout_guide`
 
 General idea:
 -------------
@@ -43,7 +43,7 @@ With these constraints, the solver then finds appropriate bounds for the
 columns and rows.  It's possible that the margins take up the whole figure,
 in which case the algorithm is not applied and a warning is raised.
 
-See the tutorial doc:`/tutorials/intermediate/constrainedlayout_guide`
+See the tutorial :ref:`constrainedlayout_guide`
 for more discussion of the algorithm with examples.
 """
 
@@ -69,11 +69,8 @@ def do_constrained_layout(fig, h_pad, w_pad,
 
     Parameters
     ----------
-    fig : Figure
-        ``Figure`` instance to do the layout in.
-
-    renderer : Renderer
-        Renderer to use.
+    fig : `~matplotlib.figure.Figure`
+        `.Figure` instance to do the layout in.
 
     h_pad, w_pad : float
       Padding around the axes elements in figure-normalized units.
@@ -274,7 +271,7 @@ def compress_fixed_aspect(layoutgrids, fig):
             extrah = np.zeros(gs.nrows)
         elif _gs != gs:
             raise ValueError('Cannot do compressed layout if axes are not'
-                                'all from the same gridspec')
+                             'all from the same gridspec')
         orig = ax.get_position(original=True)
         actual = ax.get_position(original=False)
         dw = orig.width - actual.width
@@ -343,6 +340,19 @@ def make_layout_margins(layoutgrids, fig, renderer, *, w_pad=0, h_pad=0,
     decorations on the axis.
 
     Then make room for colorbars.
+
+    Parameters
+    ----------
+    layoutgrids : dict
+    fig : `~matplotlib.figure.Figure`
+        `.Figure` instance to do the layout in.
+    renderer : `~matplotlib.backend_bases.RendererBase` subclass.
+        The renderer to use.
+    w_pad, h_pad : float, default: 0
+        Width and height padding (in fraction of figure).
+    hspace, wspace : float, default: 0
+        Width and height padding as fraction of figure size divided by
+        number of columns or rows.
     """
     for sfig in fig.subfigs:  # recursively make child panel margins
         ss = sfig._subplotspec
@@ -448,7 +458,7 @@ def make_margin_suptitles(layoutgrids, fig, renderer, *, w_pad=0, h_pad=0):
     # get the h_pad and w_pad as distances in the local subfigure coordinates:
     padbox = mtransforms.Bbox([[0, 0], [w_pad, h_pad]])
     padbox = (fig.transFigure -
-                   fig.transSubfigure).transform_bbox(padbox)
+              fig.transSubfigure).transform_bbox(padbox)
     h_pad_local = padbox.height
     w_pad_local = padbox.width
 
@@ -578,7 +588,12 @@ def match_submerged_margins(layoutgrids, fig):
 
 def get_cb_parent_spans(cbax):
     """
-    Figure out which subplotspecs this colorbar belongs to:
+    Figure out which subplotspecs this colorbar belongs to.
+
+    Parameters
+    ----------
+    cbax : `~matplotlib.axes.Axes`
+        Axes for the colorbar.
     """
     rowstart = np.inf
     rowstop = -np.inf
@@ -602,14 +617,14 @@ def get_pos_and_bbox(ax, renderer):
 
     Parameters
     ----------
-    ax
-    renderer
+    ax : `~matplotlib.axes.Axes`
+    renderer : `~matplotlib.backend_bases.RendererBase` subclass.
 
     Returns
     -------
-    pos : Bbox
+    pos : `~matplotlib.transforms.Bbox`
         Position in figure coordinates.
-    bbox : Bbox
+    bbox : `~matplotlib.transforms.Bbox`
         Tight bounding box in figure coordinates.
     """
     fig = ax.figure
@@ -672,18 +687,14 @@ def reposition_colorbar(layoutgrids, cbax, renderer, *, offset=None):
 
     Parameters
     ----------
-    cbax : Axes
-        Axes for the colorbar
-
-    renderer :
-    w_pad, h_pad : float
-        width and height padding (in fraction of figure)
-    hspace, wspace : float
-        width and height padding as fraction of figure size divided by
-        number of  columns or rows
-    margin : array-like
-        offset the colorbar needs to be pushed to in order to
-        account for multiple colorbars
+    layoutgrids : dict
+    cbax : `~matplotlib.axes.Axes`
+        Axes for the colorbar.
+    renderer : `~matplotlib.backend_bases.RendererBase` subclass.
+        The renderer to use.
+    offset : array-like
+        Offset the colorbar needs to be pushed to in order to
+        account for multiple colorbars.
     """
 
     parents = cbax._colorbar_info['parents']
@@ -753,7 +764,7 @@ def reposition_colorbar(layoutgrids, cbax, renderer, *, offset=None):
 
 def reset_margins(layoutgrids, fig):
     """
-    Reset the margins in the layoutboxes of fig.
+    Reset the margins in the layoutboxes of *fig*.
 
     Margins are usually set as a minimum, so if the figure gets smaller
     the minimum needs to be zero in order for it to grow again.

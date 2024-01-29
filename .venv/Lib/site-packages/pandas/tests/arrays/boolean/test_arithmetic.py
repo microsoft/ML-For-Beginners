@@ -90,8 +90,15 @@ def test_op_int8(left_array, right_array, opname):
 # -----------------------------------------------------------------------------
 
 
-def test_error_invalid_values(data, all_arithmetic_operators):
+def test_error_invalid_values(data, all_arithmetic_operators, using_infer_string):
     # invalid ops
+
+    if using_infer_string:
+        import pyarrow as pa
+
+        err = (TypeError, pa.lib.ArrowNotImplementedError, NotImplementedError)
+    else:
+        err = TypeError
 
     op = all_arithmetic_operators
     s = pd.Series(data)
@@ -110,9 +117,10 @@ def test_error_invalid_values(data, all_arithmetic_operators):
         [
             r"unsupported operand type\(s\) for",
             "Concatenation operation is not implemented for NumPy arrays",
+            "has no kernel",
         ]
     )
-    with pytest.raises(TypeError, match=msg):
+    with pytest.raises(err, match=msg):
         ops(pd.Timestamp("20180101"))
 
     # invalid array-likes
@@ -123,7 +131,9 @@ def test_error_invalid_values(data, all_arithmetic_operators):
                 r"unsupported operand type\(s\) for",
                 "can only concatenate str",
                 "not all arguments converted during string formatting",
+                "has no kernel",
+                "not implemented",
             ]
         )
-        with pytest.raises(TypeError, match=msg):
+        with pytest.raises(err, match=msg):
             ops(pd.Series("foo", index=s.index))

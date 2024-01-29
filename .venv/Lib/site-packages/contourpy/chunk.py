@@ -14,10 +14,10 @@ def calc_chunk_sizes(
 
     Args:
         chunk_size (int or tuple(int, int), optional): Chunk size in (y, x) directions, or the same
-            size in both directions if only one is specified.
+            size in both directions if only one is specified. Cannot be negative.
         chunk_count (int or tuple(int, int), optional): Chunk count in (y, x) directions, or the
-            same count in both irections if only one is specified.
-        total_chunk_count (int, optional): Total number of chunks.
+            same count in both directions if only one is specified. If less than 1, set to 1.
+        total_chunk_count (int, optional): Total number of chunks. If less than 1, set to 1.
         ny (int): Number of grid points in y-direction.
         nx (int): Number of grid points in x-direction.
 
@@ -25,11 +25,14 @@ def calc_chunk_sizes(
         tuple(int, int): Chunk sizes (y_chunk_size, x_chunk_size).
 
     Note:
-        A maximum of one of ``chunk_size``, ``chunk_count`` and ``total_chunk_count`` may be
+        Zero or one of ``chunk_size``, ``chunk_count`` and ``total_chunk_count`` should be
         specified.
     """
     if sum([chunk_size is not None, chunk_count is not None, total_chunk_count is not None]) > 1:
         raise ValueError("Only one of chunk_size, chunk_count and total_chunk_count should be set")
+
+    if nx < 2 or ny < 2:
+        raise ValueError(f"(ny, nx) must be at least (2, 2), not ({ny}, {nx})")
 
     if total_chunk_count is not None:
         max_chunk_count = (nx-1)*(ny-1)
@@ -74,11 +77,14 @@ def two_factors(n: int) -> tuple[int, int]:
     order.  Worst case returns (n, 1).
 
     Args:
-        n (int): The integer to factorize.
+        n (int): The integer to factorize, must be positive.
 
     Return:
         tuple(int, int): The two factors of n, in decreasing order.
     """
+    if n < 0:
+        raise ValueError(f"two_factors expects positive integer not {n}")
+
     i = math.ceil(math.sqrt(n))
     while n % i != 0:
         i -= 1

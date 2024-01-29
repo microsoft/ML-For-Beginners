@@ -13,10 +13,16 @@ def test_group_by_copy():
         }
     ).set_index("name")
 
-    grp_by_same_value = df.groupby(["age"], group_keys=False).apply(lambda group: group)
-    grp_by_copy = df.groupby(["age"], group_keys=False).apply(
-        lambda group: group.copy()
-    )
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        grp_by_same_value = df.groupby(["age"], group_keys=False).apply(
+            lambda group: group
+        )
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        grp_by_copy = df.groupby(["age"], group_keys=False).apply(
+            lambda group: group.copy()
+        )
     tm.assert_frame_equal(grp_by_same_value, grp_by_copy)
 
 
@@ -47,8 +53,11 @@ def test_mutate_groups():
         x["rank"] = x.val.rank(method="min")
         return x.groupby("cat2")["rank"].min()
 
-    grpby_copy = df.groupby("cat1").apply(f_copy)
-    grpby_no_copy = df.groupby("cat1").apply(f_no_copy)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        grpby_copy = df.groupby("cat1").apply(f_copy)
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        grpby_no_copy = df.groupby("cat1").apply(f_no_copy)
     tm.assert_series_equal(grpby_copy, grpby_no_copy)
 
 
@@ -58,12 +67,15 @@ def test_no_mutate_but_looks_like():
     # second does not, but should yield the same results
     df = pd.DataFrame({"key": [1, 1, 1, 2, 2, 2, 3, 3, 3], "value": range(9)})
 
-    result1 = df.groupby("key", group_keys=True).apply(lambda x: x[:].key)
-    result2 = df.groupby("key", group_keys=True).apply(lambda x: x.key)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result1 = df.groupby("key", group_keys=True).apply(lambda x: x[:].key)
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result2 = df.groupby("key", group_keys=True).apply(lambda x: x.key)
     tm.assert_series_equal(result1, result2)
 
 
-def test_apply_function_with_indexing():
+def test_apply_function_with_indexing(warn_copy_on_write):
     # GH: 33058
     df = pd.DataFrame(
         {"col1": ["A", "A", "A", "B", "B", "B"], "col2": [1, 2, 3, 4, 5, 6]}
@@ -73,7 +85,11 @@ def test_apply_function_with_indexing():
         x.loc[x.index[-1], "col2"] = 0
         return x.col2
 
-    result = df.groupby(["col1"], as_index=False).apply(fn)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(
+        DeprecationWarning, match=msg, raise_on_extra_warnings=not warn_copy_on_write
+    ):
+        result = df.groupby(["col1"], as_index=False).apply(fn)
     expected = pd.Series(
         [1, 2, 0, 4, 5, 0],
         index=pd.MultiIndex.from_tuples(

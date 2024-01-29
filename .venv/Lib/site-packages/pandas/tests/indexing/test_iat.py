@@ -5,6 +5,7 @@ from pandas import (
     Series,
     period_range,
 )
+import pandas._testing as tm
 
 
 def test_iat(float_frame):
@@ -30,7 +31,9 @@ def test_iat_getitem_series_with_period_index():
     assert expected == result
 
 
-def test_iat_setitem_item_cache_cleared(indexer_ial, using_copy_on_write):
+def test_iat_setitem_item_cache_cleared(
+    indexer_ial, using_copy_on_write, warn_copy_on_write
+):
     # GH#45684
     data = {"x": np.arange(8, dtype=np.int64), "y": np.int64(0)}
     df = DataFrame(data).copy()
@@ -38,9 +41,11 @@ def test_iat_setitem_item_cache_cleared(indexer_ial, using_copy_on_write):
 
     # previously this iat setting would split the block and fail to clear
     #  the item_cache.
-    indexer_ial(df)[7, 0] = 9999
+    with tm.assert_cow_warning(warn_copy_on_write):
+        indexer_ial(df)[7, 0] = 9999
 
-    indexer_ial(df)[7, 1] = 1234
+    with tm.assert_cow_warning(warn_copy_on_write):
+        indexer_ial(df)[7, 1] = 1234
 
     assert df.iat[7, 1] == 1234
     if not using_copy_on_write:

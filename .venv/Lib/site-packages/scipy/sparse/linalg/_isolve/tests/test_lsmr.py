@@ -99,7 +99,7 @@ class TestLSMR:
         x_ref, _, itn_ref, normr_ref, *_ = lsmr(G, b)
         assert_allclose(norm(b - G@x_ref), normr_ref, atol=1e-6)
 
-        # Test passing zeros yields similiar result
+        # Test passing zeros yields similar result
         x0 = zeros(b.shape)
         x = lsmr(G, b, x0=x0)[0]
         assert_allclose(x, x_ref)

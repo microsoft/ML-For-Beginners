@@ -265,7 +265,7 @@ def test_groupby_timedelta_cython_count():
 
 def test_count():
     n = 1 << 15
-    dr = date_range("2015-08-30", periods=n // 10, freq="T")
+    dr = date_range("2015-08-30", periods=n // 10, freq="min")
 
     df = DataFrame(
         {
@@ -289,7 +289,9 @@ def test_count():
 
     for key in ["1st", "2nd", ["1st", "2nd"]]:
         left = df.groupby(key).count()
-        right = df.groupby(key).apply(DataFrame.count).drop(key, axis=1)
+        msg = "DataFrameGroupBy.apply operated on the grouping columns"
+        with tm.assert_produces_warning(DeprecationWarning, match=msg):
+            right = df.groupby(key).apply(DataFrame.count).drop(key, axis=1)
         tm.assert_frame_equal(left, right)
 
 

@@ -39,16 +39,34 @@ __all__ = [
     "set_eventloop_with_inputhook",
     "InputHookSelector",
     "InputHookContext",
+    "InputHook",
 ]
 
 if TYPE_CHECKING:
     from _typeshed import FileDescriptorLike
+    from typing_extensions import TypeAlias
 
     _EventMask = int
 
 
+class InputHookContext:
+    """
+    Given as a parameter to the inputhook.
+    """
+
+    def __init__(self, fileno: int, input_is_ready: Callable[[], bool]) -> None:
+        self._fileno = fileno
+        self.input_is_ready = input_is_ready
+
+    def fileno(self) -> int:
+        return self._fileno
+
+
+InputHook: TypeAlias = Callable[[InputHookContext], None]
+
+
 def new_eventloop_with_inputhook(
-    inputhook: Callable[[InputHookContext], None]
+    inputhook: Callable[[InputHookContext], None],
 ) -> AbstractEventLoop:
     """
     Create a new event loop with the given inputhook.
@@ -59,11 +77,13 @@ def new_eventloop_with_inputhook(
 
 
 def set_eventloop_with_inputhook(
-    inputhook: Callable[[InputHookContext], None]
+    inputhook: Callable[[InputHookContext], None],
 ) -> AbstractEventLoop:
     """
     Create a new event loop with the given inputhook, and activate it.
     """
+    # Deprecated!
+
     loop = new_eventloop_with_inputhook(inputhook)
     asyncio.set_event_loop(loop)
     return loop
@@ -168,16 +188,3 @@ class InputHookSelector(BaseSelector):
 
     def get_map(self) -> Mapping[FileDescriptorLike, SelectorKey]:
         return self.selector.get_map()
-
-
-class InputHookContext:
-    """
-    Given as a parameter to the inputhook.
-    """
-
-    def __init__(self, fileno: int, input_is_ready: Callable[[], bool]) -> None:
-        self._fileno = fileno
-        self.input_is_ready = input_is_ready
-
-    def fileno(self) -> int:
-        return self._fileno

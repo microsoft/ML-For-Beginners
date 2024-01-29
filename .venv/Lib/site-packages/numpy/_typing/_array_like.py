@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import sys
 from collections.abc import Collection, Callable, Sequence
 from typing import Any, Protocol, Union, TypeVar, runtime_checkable
+
 from numpy import (
     ndarray,
     dtype,
@@ -76,17 +78,18 @@ _DualArrayLike = Union[
     _NestedSequence[_T],
 ]
 
-# TODO: support buffer protocols once
-#
-# https://bugs.python.org/issue27501
-#
-# is resolved. See also the mypy issue:
-#
-# https://github.com/python/typing/issues/593
-ArrayLike = _DualArrayLike[
-    dtype[Any],
-    Union[bool, int, float, complex, str, bytes],
-]
+if sys.version_info >= (3, 12):
+    from collections.abc import Buffer
+
+    ArrayLike = Buffer | _DualArrayLike[
+        dtype[Any],
+        Union[bool, int, float, complex, str, bytes],
+    ]
+else:
+    ArrayLike = _DualArrayLike[
+        dtype[Any],
+        Union[bool, int, float, complex, str, bytes],
+    ]
 
 # `ArrayLike<X>_co`: array-like objects that can be coerced into `X`
 # given the casting rules `same_kind`

@@ -101,7 +101,6 @@ class table__k_e_r_n(DefaultTable.DefaultTable):
 
 
 class KernTable_format_0(object):
-
     # 'version' is kept for backward compatibility
     version = format = 0
 

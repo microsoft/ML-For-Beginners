@@ -1617,6 +1617,8 @@ class TestUfunc:
         assert_equal(np.minimum.reduce(a, axis=()), a)
 
     @requires_memory(6 * 1024**3)
+    @pytest.mark.skipif(sys.maxsize < 2**32,
+            reason="test array too large for 32bit platform")
     def test_identityless_reduction_huge_array(self):
         # Regression test for gh-20921 (copying identity incorrectly failed)
         arr = np.zeros((2, 2**31), 'uint8')

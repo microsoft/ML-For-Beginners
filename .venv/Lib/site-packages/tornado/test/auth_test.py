@@ -550,7 +550,6 @@ class GoogleLoginHandler(RequestHandler, GoogleOAuth2Mixin):
             self.authorize_redirect(
                 redirect_uri=self._OAUTH_REDIRECT_URI,
                 client_id=self.settings["google_oauth"]["key"],
-                client_secret=self.settings["google_oauth"]["secret"],
                 scope=["profile", "email"],
                 response_type="code",
                 extra_params={"prompt": "select_account"},

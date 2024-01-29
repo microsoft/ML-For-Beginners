@@ -17,13 +17,17 @@ __all__ = ['approx_jacobian', 'fmin_slsqp']
 
 import numpy as np
 from scipy.optimize._slsqp import slsqp
-from numpy import (zeros, array, linalg, append, asfarray, concatenate, finfo,
+from numpy import (zeros, array, linalg, append, concatenate, finfo,
                    sqrt, vstack, isfinite, atleast_1d)
 from ._optimize import (OptimizeResult, _check_unknown_options,
                         _prepare_scalar_function, _clip_x_for_func,
                         _check_clip_x)
 from ._numdiff import approx_derivative
 from ._constraints import old_bound_to_new, _arr_to_scalar
+from scipy._lib._array_api import atleast_nd, array_namespace
+
+# deprecated imports to be removed in SciPy 1.13.0
+from numpy import exp, inf  # noqa: F401
 
 
 __docformat__ = "restructuredtext en"
@@ -248,7 +252,12 @@ def _minimize_slsqp(func, x0, args=(), jac=None, bounds=None,
         iprint = 0
 
     # Transform x0 into an array.
-    x = asfarray(x0).flatten()
+    xp = array_namespace(x0)
+    x0 = atleast_nd(x0, ndim=1, xp=xp)
+    dtype = xp.float64
+    if xp.isdtype(x0.dtype, "real floating"):
+        dtype = x0.dtype
+    x = xp.reshape(xp.astype(x0, dtype), -1)
 
     # SLSQP is sent 'old-style' bounds, 'new-style' bounds are required by
     # ScalarFunction

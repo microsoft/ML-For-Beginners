@@ -13,7 +13,7 @@ web page of Sam Roweis:
 # Copyright (c) 2011 David Warde-Farley <wardefar at iro dot umontreal dot ca>
 # License: BSD 3 clause
 
-from os import makedirs, remove
+from os import PathLike, makedirs, remove
 from os.path import exists
 
 import joblib
@@ -36,7 +36,7 @@ FACES = RemoteFileMetadata(
 
 @validate_params(
     {
-        "data_home": [str, None],
+        "data_home": [str, PathLike, None],
         "shuffle": ["boolean"],
         "random_state": ["random_state"],
         "download_if_missing": ["boolean"],
@@ -67,7 +67,7 @@ def fetch_olivetti_faces(
 
     Parameters
     ----------
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By default
         all scikit-learn data is stored in '~/scikit_learn_data' subfolders.
 

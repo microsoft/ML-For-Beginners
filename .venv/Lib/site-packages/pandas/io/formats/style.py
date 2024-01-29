@@ -161,9 +161,6 @@ class Styler(StylerRenderer):
     uuid_len : int, default 5
         If ``uuid`` is not specified, the length of the ``uuid`` to randomly generate
         expressed in hex characters, in range [0, 32].
-
-        .. versionadded:: 1.2.0
-
     decimal : str, optional
         Character used as decimal separator for floats, complex and integers. If not
         given uses ``pandas.options.styler.format.decimal``.
@@ -2517,23 +2514,14 @@ class Styler(StylerRenderer):
             in their respective tuple form. The dict values should be
             a list as specified in the form with CSS selectors and
             props that will be applied to the specified row or column.
-
-            .. versionchanged:: 1.2.0
-
         axis : {0 or 'index', 1 or 'columns', None}, default 0
             Apply to each column (``axis=0`` or ``'index'``), to each row
             (``axis=1`` or ``'columns'``). Only used if `table_styles` is
             dict.
-
-            .. versionadded:: 1.2.0
-
         overwrite : bool, default True
             Styles are replaced if `True`, or extended if `False`. CSS
             rules are preserved so most recent styles set will dominate
             if selectors intersect.
-
-            .. versionadded:: 1.2.0
-
         css_class_names : dict, optional
             A dict of strings used to replace the default CSS classes described below.
 
@@ -2722,7 +2710,7 @@ class Styler(StylerRenderer):
              - Boolean
              - ValueError: cannot supply ``subset`` and ``level`` simultaneously.
 
-        Note this method only hides the identifed elements so can be chained to hide
+        Note this method only hides the identified elements so can be chained to hide
         multiple elements in sequence.
 
         Examples
@@ -4082,8 +4070,9 @@ def _bar(
             return ret
 
     values = data.to_numpy()
-    left = np.nanmin(values) if vmin is None else vmin
-    right = np.nanmax(values) if vmax is None else vmax
+    # A tricky way to address the issue where np.nanmin/np.nanmax fail to handle pd.NA.
+    left = np.nanmin(data.min(skipna=True)) if vmin is None else vmin
+    right = np.nanmax(data.max(skipna=True)) if vmax is None else vmax
     z: float = 0  # adjustment to translate data
 
     if align == "mid":

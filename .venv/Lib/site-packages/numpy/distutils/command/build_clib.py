@@ -320,8 +320,8 @@ class build_clib(old_build_clib):
             dispatch_hpath = os.path.join("numpy", "distutils", "include")
             dispatch_hpath = os.path.join(bsrc_dir, dispatch_hpath)
             include_dirs.append(dispatch_hpath)
-
-            copt_build_src = None if self.inplace else bsrc_dir
+            # copt_build_src = None if self.inplace else bsrc_dir
+            copt_build_src = bsrc_dir
             for _srcs, _dst, _ext in (
                 ((c_sources,), copt_c_sources, ('.dispatch.c',)),
                 ((c_sources, cxx_sources), copt_cxx_sources,

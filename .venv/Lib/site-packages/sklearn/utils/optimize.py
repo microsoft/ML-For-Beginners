@@ -16,6 +16,7 @@ significant speedups.
 import warnings
 
 import numpy as np
+import scipy
 
 from ..exceptions import ConvergenceWarning
 from .fixes import line_search_wolfe1, line_search_wolfe2
@@ -40,7 +41,36 @@ def _line_search_wolfe12(f, fprime, xk, pk, gfk, old_fval, old_old_fval, **kwarg
     ret = line_search_wolfe1(f, fprime, xk, pk, gfk, old_fval, old_old_fval, **kwargs)
 
     if ret[0] is None:
+        # Have a look at the line_search method of our NewtonSolver class. We borrow
+        # the logic from there
+        # Deal with relative loss differences around machine precision.
+        args = kwargs.get("args", tuple())
+        fval = f(xk + pk, *args)
+        eps = 16 * np.finfo(np.asarray(old_fval).dtype).eps
+        tiny_loss = np.abs(old_fval * eps)
+        loss_improvement = fval - old_fval
+        check = np.abs(loss_improvement) <= tiny_loss
+        if check:
+            # 2.1 Check sum of absolute gradients as alternative condition.
+            sum_abs_grad_old = scipy.linalg.norm(gfk, ord=1)
+            grad = fprime(xk + pk, *args)
+            sum_abs_grad = scipy.linalg.norm(grad, ord=1)
+            check = sum_abs_grad < sum_abs_grad_old
+            if check:
+                ret = (
+                    1.0,  # step size
+                    ret[1] + 1,  # number of function evaluations
+                    ret[2] + 1,  # number of gradient evaluations
+                    fval,
+                    old_fval,
+                    grad,
+                )
+
+    if ret[0] is None:
         # line search failed: try different one.
+        # TODO: It seems that the new check for the sum of absolute gradients above
+        # catches all cases that, earlier, ended up here. In fact, our tests never
+        # trigger this "if branch" here and we can consider to remove it.
         ret = line_search_wolfe2(
             f, fprime, xk, pk, gfk, old_fval, old_old_fval, **kwargs
         )
@@ -77,10 +107,12 @@ def _cg(fhess_p, fgrad, maxiter, tol):
         Estimated solution.
     """
     xsupi = np.zeros(len(fgrad), dtype=fgrad.dtype)
-    ri = fgrad
+    ri = np.copy(fgrad)
     psupi = -ri
     i = 0
     dri0 = np.dot(ri, ri)
+    # We also track of |p_i|^2.
+    psupi_norm2 = dri0
 
     while i <= maxiter:
         if np.sum(np.abs(ri)) <= tol:
@@ -89,7 +121,8 @@ def _cg(fhess_p, fgrad, maxiter, tol):
         Ap = fhess_p(psupi)
         # check curvature
         curv = np.dot(psupi, Ap)
-        if 0 <= curv <= 3 * np.finfo(np.float64).eps:
+        if 0 <= curv <= 16 * np.finfo(np.float64).eps * psupi_norm2:
+            # See https://arxiv.org/abs/1803.02924, Algo 1 Capped Conjugate Gradient.
             break
         elif curv < 0:
             if i > 0:
@@ -100,10 +133,12 @@ def _cg(fhess_p, fgrad, maxiter, tol):
                 break
         alphai = dri0 / curv
         xsupi += alphai * psupi
-        ri = ri + alphai * Ap
+        ri += alphai * Ap
         dri1 = np.dot(ri, ri)
         betai = dri1 / dri0
         psupi = -ri + betai * psupi
+        # We use  |p_i|^2 = |r_i|^2 + beta_i^2 |p_{i-1}|^2
+        psupi_norm2 = dri1 + betai**2 * psupi_norm2
         i = i + 1
         dri0 = dri1  # update np.dot(ri,ri) for next time.
 
@@ -168,7 +203,7 @@ def _newton_cg(
         Estimated minimum.
     """
     x0 = np.asarray(x0).flatten()
-    xk = x0
+    xk = np.copy(x0)
     k = 0
 
     if line_search:
@@ -204,7 +239,7 @@ def _newton_cg(
                 warnings.warn("Line Search failed")
                 break
 
-        xk = xk + alphak * xsupi  # upcast if necessary
+        xk += alphak * xsupi  # upcast if necessary
         k += 1
 
     if warn and k >= maxiter:

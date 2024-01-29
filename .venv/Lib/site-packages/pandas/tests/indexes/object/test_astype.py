@@ -20,7 +20,7 @@ def test_astype_str_from_bytes():
 
     # while we're here, check that Series.astype behaves the same
     result = Series(idx).astype(str)
-    expected = Series(expected)
+    expected = Series(expected, dtype=object)
     tm.assert_series_equal(result, expected)
 
 

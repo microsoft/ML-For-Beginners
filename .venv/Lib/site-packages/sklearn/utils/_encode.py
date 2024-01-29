@@ -177,7 +177,7 @@ def _unique_python(values, *, return_inverse, return_counts):
     except TypeError:
         types = sorted(t.__qualname__ for t in set(type(v) for v in values))
         raise TypeError(
-            "Encoders require their input to be uniformly "
+            "Encoders require their input argument must be uniformly "
             f"strings or numbers. Got {types}"
         )
     ret = (uniques,)
@@ -296,7 +296,7 @@ def _check_unknown(values, known_values, return_mask=False):
         diff = np.setdiff1d(unique_values, known_values, assume_unique=True)
         if return_mask:
             if diff.size:
-                valid_mask = np.in1d(values, known_values)
+                valid_mask = np.isin(values, known_values)
             else:
                 valid_mask = np.ones(len(values), dtype=bool)
 

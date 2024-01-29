@@ -1,6 +1,7 @@
 import textwrap, re, sys, subprocess, shlex
 from pathlib import Path
 from collections import namedtuple
+import platform
 
 import pytest
 
@@ -72,6 +73,15 @@ def gh23598_warn(tmpdir_factory):
 
 
 @pytest.fixture(scope="session")
+def gh22819_cli(tmpdir_factory):
+    """F90 file for testing disallowed CLI arguments in ghff819"""
+    fdat = util.getpath("tests", "src", "cli", "gh_22819.pyf").read_text()
+    fn = tmpdir_factory.getbasetemp() / "gh_22819.pyf"
+    fn.write_text(fdat, encoding="ascii")
+    return fn
+
+
+@pytest.fixture(scope="session")
 def hello_world_f77(tmpdir_factory):
     """Generates a single f77 file for testing"""
     fdat = util.getpath("tests", "src", "cli", "hi77.f").read_text()
@@ -98,6 +108,38 @@ def f2cmap_f90(tmpdir_factory):
     fn.write_text(fdat, encoding="ascii")
     fmap.write_text(f2cmap, encoding="ascii")
     return fn
+
+
+def test_gh22819_cli(capfd, gh22819_cli, monkeypatch):
+    """Check that module names are handled correctly
+    gh-22819
+    Essentially, the -m name cannot be used to import the module, so the module
+    named in the .pyf needs to be used instead
+
+    CLI :: -m and a .pyf file
+    """
+    ipath = Path(gh22819_cli)
+    monkeypatch.setattr(sys, "argv", f"f2py -m blah {ipath}".split())
+    with util.switchdir(ipath.parent):
+        f2pycli()
+        gen_paths = [item.name for item in ipath.parent.rglob("*") if item.is_file()]
+        assert "blahmodule.c" not in gen_paths # shouldn't be generated
+        assert "blah-f2pywrappers.f" not in gen_paths
+        assert "test_22819-f2pywrappers.f" in gen_paths
+        assert "test_22819module.c" in gen_paths
+        assert "Ignoring blah"
+
+
+def test_gh22819_many_pyf(capfd, gh22819_cli, monkeypatch):
+    """Only one .pyf file allowed
+    gh-22819
+    CLI :: .pyf files
+    """
+    ipath = Path(gh22819_cli)
+    monkeypatch.setattr(sys, "argv", f"f2py -m blah {ipath} hello.pyf".split())
+    with util.switchdir(ipath.parent):
+        with pytest.raises(ValueError, match="Only one .pyf file per call"):
+            f2pycli()
 
 
 def test_gh23598_warn(capfd, gh23598_warn, monkeypatch):
@@ -154,6 +196,53 @@ def test_gen_pyf_no_overwrite(capfd, hello_world_f90, monkeypatch):
             f2pycli()  # Refuse to overwrite
             _, err = capfd.readouterr()
             assert "Use --overwrite-signature to overwrite" in err
+
+
+@pytest.mark.skipif((platform.system() != 'Linux') or (sys.version_info <= (3, 12)),
+                    reason='Compiler and 3.12 required')
+def test_untitled_cli(capfd, hello_world_f90, monkeypatch):
+    """Check that modules are named correctly
+
+    CLI :: defaults
+    """
+    ipath = Path(hello_world_f90)
+    monkeypatch.setattr(sys, "argv", f"f2py --backend meson -c {ipath}".split())
+    with util.switchdir(ipath.parent):
+        f2pycli()
+        out, _ = capfd.readouterr()
+        assert "untitledmodule.c" in out
+
+
+@pytest.mark.skipif((platform.system() != 'Linux') or (sys.version_info <= (3, 12)), reason='Compiler and 3.12 required')
+def test_no_py312_distutils_fcompiler(capfd, hello_world_f90, monkeypatch):
+    """Check that no distutils imports are performed on 3.12
+    CLI :: --fcompiler --help-link --backend distutils
+    """
+    MNAME = "hi"
+    foutl = get_io_paths(hello_world_f90, mname=MNAME)
+    ipath = foutl.f90inp
+    monkeypatch.setattr(
+        sys, "argv", f"f2py {ipath} -c --fcompiler=gfortran -m {MNAME}".split()
+    )
+    with util.switchdir(ipath.parent):
+        f2pycli()
+        out, _ = capfd.readouterr()
+        assert "--fcompiler cannot be used with meson" in out
+    monkeypatch.setattr(
+        sys, "argv", f"f2py --help-link".split()
+    )
+    with util.switchdir(ipath.parent):
+        f2pycli()
+        out, _ = capfd.readouterr()
+        assert "Use --dep for meson builds" in out
+    MNAME = "hi2" # Needs to be different for a new -c
+    monkeypatch.setattr(
+        sys, "argv", f"f2py {ipath} -c -m {MNAME} --backend distutils".split()
+    )
+    with util.switchdir(ipath.parent):
+        f2pycli()
+        out, _ = capfd.readouterr()
+        assert "Cannot use distutils backend with Python>=3.12" in out
 
 
 @pytest.mark.xfail
@@ -248,6 +337,22 @@ def test_mod_gen_f77(capfd, hello_world_f90, monkeypatch):
     assert Path.exists(foutl.cmodf)
     # File contains a function, check for F77 wrappers
     assert Path.exists(foutl.wrap77)
+
+
+def test_mod_gen_gh25263(capfd, hello_world_f77, monkeypatch):
+    """Check that pyf files are correctly generated with module structure
+    CLI :: -m <name> -h pyf_file
+    BUG: numpy-gh #20520
+    """
+    MNAME = "hi"
+    foutl = get_io_paths(hello_world_f77, mname=MNAME)
+    ipath = foutl.finp
+    monkeypatch.setattr(sys, "argv", f'f2py {ipath} -m {MNAME} -h hi.pyf'.split())
+    with util.switchdir(ipath.parent):
+        f2pycli()
+        with Path('hi.pyf').open() as hipyf:
+            pyfdat = hipyf.read()
+            assert "python module hi" in pyfdat
 
 
 def test_lower_cmod(capfd, hello_world_f77, monkeypatch):

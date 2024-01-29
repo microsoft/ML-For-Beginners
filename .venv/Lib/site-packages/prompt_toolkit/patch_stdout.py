@@ -43,7 +43,7 @@ def patch_stdout(raw: bool = False) -> Generator[None, None, None]:
 
     Writing to this proxy will make sure that the text appears above the
     prompt, and that it doesn't destroy the output from the renderer.  If no
-    application is curring, the behaviour should be identical to writing to
+    application is curring, the behavior should be identical to writing to
     `sys.stdout` directly.
 
     Warning: If a new event loop is installed using `asyncio.set_event_loop()`,
@@ -203,6 +203,13 @@ class StdoutProxy:
         """
 
         def write_and_flush() -> None:
+            # Ensure that autowrap is enabled before calling `write`.
+            # XXX: On Windows, the `Windows10_Output` enables/disables VT
+            #      terminal processing for every flush. It turns out that this
+            #      causes autowrap to be reset (disabled) after each flush. So,
+            #      we have to enable it again before writing text.
+            self._output.enable_autowrap()
+
             if self.raw:
                 self._output.write_raw(text)
             else:

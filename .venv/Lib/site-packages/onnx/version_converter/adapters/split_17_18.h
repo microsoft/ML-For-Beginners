@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "onnx/version_converter/adapters/adapter.h"
 #include "onnx/version_converter/adapters/transformers.h"
 

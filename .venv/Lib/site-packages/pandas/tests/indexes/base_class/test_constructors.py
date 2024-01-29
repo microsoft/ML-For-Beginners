@@ -5,6 +5,7 @@ import pandas as pd
 from pandas import (
     Index,
     MultiIndex,
+    Series,
 )
 import pandas._testing as tm
 
@@ -57,3 +58,16 @@ class TestIndexConstructor:
         with pd.option_context("future.infer_string", True):
             ser = Index(["a", 1])
         tm.assert_index_equal(ser, expected)
+
+    def test_inference_on_pandas_objects(self):
+        # GH#56012
+        idx = Index([pd.Timestamp("2019-12-31")], dtype=object)
+        with tm.assert_produces_warning(FutureWarning, match="Dtype inference"):
+            result = Index(idx)
+        assert result.dtype != np.object_
+
+        ser = Series([pd.Timestamp("2019-12-31")], dtype=object)
+
+        with tm.assert_produces_warning(FutureWarning, match="Dtype inference"):
+            result = Index(ser)
+        assert result.dtype != np.object_

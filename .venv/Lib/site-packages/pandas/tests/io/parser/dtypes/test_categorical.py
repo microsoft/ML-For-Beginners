@@ -20,11 +20,14 @@ from pandas import (
 )
 import pandas._testing as tm
 
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
+
 xfail_pyarrow = pytest.mark.usefixtures("pyarrow_xfail")
-skip_pyarrow = pytest.mark.usefixtures("pyarrow_skip")
 
 
-@xfail_pyarrow
+@xfail_pyarrow  # AssertionError: Attributes of DataFrame.iloc[:, 0] are different
 @pytest.mark.parametrize(
     "dtype",
     [
@@ -51,9 +54,8 @@ def test_categorical_dtype(all_parsers, dtype):
     tm.assert_frame_equal(actual, expected)
 
 
-@skip_pyarrow  # Flaky
 @pytest.mark.parametrize("dtype", [{"b": "category"}, {1: "category"}])
-def test_categorical_dtype_single(all_parsers, dtype):
+def test_categorical_dtype_single(all_parsers, dtype, request):
     # see gh-10153
     parser = all_parsers
     data = """a,b,c
@@ -63,11 +65,18 @@ def test_categorical_dtype_single(all_parsers, dtype):
     expected = DataFrame(
         {"a": [1, 1, 2], "b": Categorical(["a", "a", "b"]), "c": [3.4, 3.4, 4.5]}
     )
+    if parser.engine == "pyarrow":
+        mark = pytest.mark.xfail(
+            strict=False,
+            reason="Flaky test sometimes gives object dtype instead of Categorical",
+        )
+        request.applymarker(mark)
+
     actual = parser.read_csv(StringIO(data), dtype=dtype)
     tm.assert_frame_equal(actual, expected)
 
 
-@xfail_pyarrow
+@xfail_pyarrow  # AssertionError: Attributes of DataFrame.iloc[:, 0] are different
 def test_categorical_dtype_unsorted(all_parsers):
     # see gh-10153
     parser = all_parsers
@@ -86,7 +95,7 @@ def test_categorical_dtype_unsorted(all_parsers):
     tm.assert_frame_equal(actual, expected)
 
 
-@xfail_pyarrow
+@xfail_pyarrow  # AssertionError: Attributes of DataFrame.iloc[:, 0] are different
 def test_categorical_dtype_missing(all_parsers):
     # see gh-10153
     parser = all_parsers
@@ -105,7 +114,7 @@ def test_categorical_dtype_missing(all_parsers):
     tm.assert_frame_equal(actual, expected)
 
 
-@xfail_pyarrow
+@xfail_pyarrow  # AssertionError: Attributes of DataFrame.iloc[:, 0] are different
 @pytest.mark.slow
 def test_categorical_dtype_high_cardinality_numeric(all_parsers, monkeypatch):
     # see gh-18186
@@ -137,7 +146,6 @@ def test_categorical_dtype_utf16(all_parsers, csv_dir_path):
     tm.assert_frame_equal(actual, expected)
 
 
-@xfail_pyarrow
 def test_categorical_dtype_chunksize_infer_categories(all_parsers):
     # see gh-10153
     parser = all_parsers
@@ -150,6 +158,13 @@ def test_categorical_dtype_chunksize_infer_categories(all_parsers):
         DataFrame({"a": [1, 1], "b": Categorical(["a", "b"])}),
         DataFrame({"a": [1, 2], "b": Categorical(["b", "c"])}, index=[2, 3]),
     ]
+
+    if parser.engine == "pyarrow":
+        msg = "The 'chunksize' option is not supported with the 'pyarrow' engine"
+        with pytest.raises(ValueError, match=msg):
+            parser.read_csv(StringIO(data), dtype={"b": "category"}, chunksize=2)
+        return
+
     with parser.read_csv(
         StringIO(data), dtype={"b": "category"}, chunksize=2
     ) as actuals:
@@ -157,7 +172,6 @@ def test_categorical_dtype_chunksize_infer_categories(all_parsers):
             tm.assert_frame_equal(actual, expected)
 
 
-@xfail_pyarrow
 def test_categorical_dtype_chunksize_explicit_categories(all_parsers):
     # see gh-10153
     parser = all_parsers
@@ -175,6 +189,13 @@ def test_categorical_dtype_chunksize_explicit_categories(all_parsers):
         ),
     ]
     dtype = CategoricalDtype(cats)
+
+    if parser.engine == "pyarrow":
+        msg = "The 'chunksize' option is not supported with the 'pyarrow' engine"
+        with pytest.raises(ValueError, match=msg):
+            parser.read_csv(StringIO(data), dtype={"b": dtype}, chunksize=2)
+        return
+
     with parser.read_csv(StringIO(data), dtype={"b": dtype}, chunksize=2) as actuals:
         for actual, expected in zip(actuals, expecteds):
             tm.assert_frame_equal(actual, expected)
@@ -249,7 +270,6 @@ def test_categorical_coerces_numeric(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
-@skip_pyarrow  # Flaky
 def test_categorical_coerces_datetime(all_parsers):
     parser = all_parsers
     dti = pd.DatetimeIndex(["2017-01-01", "2018-01-01", "2019-01-01"], freq=None)
@@ -275,9 +295,9 @@ def test_categorical_coerces_timestamp(all_parsers):
 
 def test_categorical_coerces_timedelta(all_parsers):
     parser = all_parsers
-    dtype = {"b": CategoricalDtype(pd.to_timedelta(["1H", "2H", "3H"]))}
+    dtype = {"b": CategoricalDtype(pd.to_timedelta(["1h", "2h", "3h"]))}
 
-    data = "b\n1H\n2H\n3H"
+    data = "b\n1h\n2h\n3h"
     expected = DataFrame({"b": Categorical(dtype["b"].categories)})
 
     result = parser.read_csv(StringIO(data), dtype=dtype)

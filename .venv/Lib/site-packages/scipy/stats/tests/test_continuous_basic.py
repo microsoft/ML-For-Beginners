@@ -68,12 +68,12 @@ slow_fit_test_mm = ['argus', 'exponpow', 'exponweib', 'gausshyper', 'genexpon',
 # pearson3 fails due to something weird
 # the first list fails due to non-finite distribution moments encountered
 # most of the rest fail due to integration warnings
-# pearson3 is overriden as not implemented due to gh-11746
+# pearson3 is overridden as not implemented due to gh-11746
 fail_fit_test_mm = (['alpha', 'betaprime', 'bradford', 'burr', 'burr12',
                      'cauchy', 'crystalball', 'f', 'fisk', 'foldcauchy',
                      'genextreme', 'genpareto', 'halfcauchy', 'invgamma',
-                     'kappa3', 'levy', 'levy_l', 'loglaplace', 'lomax',
-                     'mielke', 'nakagami', 'ncf', 'skewcauchy', 't',
+                     'jf_skew_t', 'kappa3', 'levy', 'levy_l', 'loglaplace',
+                     'lomax', 'mielke', 'nakagami', 'ncf', 'skewcauchy', 't',
                      'tukeylambda', 'invweibull', 'rel_breitwigner']
                      + ['genhyperbolic', 'johnsonsu', 'ksone', 'kstwo',
                         'nct', 'pareto', 'powernorm', 'powerlognorm']
@@ -92,13 +92,13 @@ skip_fit_fix_test_mle = ['burr', 'exponpow', 'exponweib', 'gausshyper',
                          'studentized_range']
 # the first list fails due to non-finite distribution moments encountered
 # most of the rest fail due to integration warnings
-# pearson3 is overriden as not implemented due to gh-11746
+# pearson3 is overridden as not implemented due to gh-11746
 fail_fit_fix_test_mm = (['alpha', 'betaprime', 'burr', 'burr12', 'cauchy',
                          'crystalball', 'f', 'fisk', 'foldcauchy',
                          'genextreme', 'genpareto', 'halfcauchy', 'invgamma',
-                         'kappa3', 'levy', 'levy_l', 'loglaplace', 'lomax',
-                         'mielke', 'nakagami', 'ncf', 'nct', 'skewcauchy', 't',
-                         'truncpareto', 'invweibull']
+                         'jf_skew_t', 'kappa3', 'levy', 'levy_l', 'loglaplace',
+                         'lomax', 'mielke', 'nakagami', 'ncf', 'nct',
+                         'skewcauchy', 't', 'truncpareto', 'invweibull']
                         + ['genhyperbolic', 'johnsonsu', 'ksone', 'kstwo',
                            'pareto', 'powernorm', 'powerlognorm']
                         + ['pearson3'])
@@ -113,7 +113,7 @@ fails_cmplx = {'argus', 'beta', 'betaprime', 'chi', 'chi2', 'cosine',
                'dgamma', 'dweibull', 'erlang', 'f', 'foldcauchy', 'gamma',
                'gausshyper', 'gengamma', 'genhyperbolic',
                'geninvgauss', 'gennorm', 'genpareto',
-               'halfcauchy', 'halfgennorm', 'invgamma',
+               'halfcauchy', 'halfgennorm', 'invgamma', 'jf_skew_t',
                'ksone', 'kstwo', 'kstwobign', 'levy_l', 'loggamma',
                'logistic', 'loguniform', 'maxwell', 'nakagami',
                'ncf', 'nct', 'ncx2', 'norminvgauss', 'pearson3',
@@ -168,6 +168,8 @@ def test_cont_basic(distname, arg, sn, n_fit_samples):
         check_sample_meanvar_(m, v, rvs)
     check_cdf_ppf(distfn, arg, distname)
     check_sf_isf(distfn, arg, distname)
+    check_cdf_sf(distfn, arg, distname)
+    check_ppf_isf(distfn, arg, distname)
     check_pdf(distfn, arg, distname)
     check_pdf_logpdf(distfn, arg, distname)
     check_pdf_logpdf_at_endpoints(distfn, arg, distname)
@@ -458,27 +460,36 @@ def test_nomodify_gh9900_regression():
     # Regression test for gh-9990
     # Prior to gh-9990, calls to stats.truncnorm._cdf() use what ever was
     # set inside the stats.truncnorm instance during stats.truncnorm.cdf().
-    # This could cause issues wth multi-threaded code.
+    # This could cause issues with multi-threaded code.
     # Since then, the calls to cdf() are not permitted to modify the global
     # stats.truncnorm instance.
     tn = stats.truncnorm
     # Use the right-half truncated normal
     # Check that the cdf and _cdf return the same result.
-    npt.assert_almost_equal(tn.cdf(1, 0, np.inf), 0.6826894921370859)
-    npt.assert_almost_equal(tn._cdf([1], [0], [np.inf]), 0.6826894921370859)
+    npt.assert_almost_equal(tn.cdf(1, 0, np.inf),
+                            0.6826894921370859)
+    npt.assert_almost_equal(tn._cdf([1], [0], [np.inf]),
+                            0.6826894921370859)
 
     # Now use the left-half truncated normal
-    npt.assert_almost_equal(tn.cdf(-1, -np.inf, 0), 0.31731050786291415)
-    npt.assert_almost_equal(tn._cdf([-1], [-np.inf], [0]), 0.31731050786291415)
+    npt.assert_almost_equal(tn.cdf(-1, -np.inf, 0),
+                            0.31731050786291415)
+    npt.assert_almost_equal(tn._cdf([-1], [-np.inf], [0]),
+                            0.31731050786291415)
 
     # Check that the right-half truncated normal _cdf hasn't changed
-    npt.assert_almost_equal(tn._cdf([1], [0], [np.inf]), 0.6826894921370859)  # noqa, NOT 1.6826894921370859
-    npt.assert_almost_equal(tn.cdf(1, 0, np.inf), 0.6826894921370859)
+    npt.assert_almost_equal(tn._cdf([1], [0], [np.inf]),
+                            0.6826894921370859)  # Not 1.6826894921370859
+    npt.assert_almost_equal(tn.cdf(1, 0, np.inf),
+                            0.6826894921370859)
 
     # Check that the left-half truncated normal _cdf hasn't changed
-    npt.assert_almost_equal(tn._cdf([-1], [-np.inf], [0]), 0.31731050786291415)  # noqa, Not -0.6826894921370859
-    npt.assert_almost_equal(tn.cdf(1, -np.inf, 0), 1)                     # Not 1.6826894921370859
-    npt.assert_almost_equal(tn.cdf(-1, -np.inf, 0), 0.31731050786291415)  # Not -0.6826894921370859
+    npt.assert_almost_equal(tn._cdf([-1], [-np.inf], [0]),
+                            0.31731050786291415)  # Not -0.6826894921370859
+    npt.assert_almost_equal(tn.cdf(1, -np.inf, 0),
+                            1)  # Not 1.6826894921370859
+    npt.assert_almost_equal(tn.cdf(-1, -np.inf, 0),
+                            0.31731050786291415)  # Not -0.6826894921370859
 
 
 def test_broadcast_gh9990_regression():
@@ -542,7 +553,7 @@ def test_method_of_moments():
     x = [0, 0, 0, 0, 1]
     a = 1/5 - 2*np.sqrt(3)/5
     b = 1/5 + 2*np.sqrt(3)/5
-    # force use of method of moments (uniform.fit is overriden)
+    # force use of method of moments (uniform.fit is overridden)
     loc, scale = super(type(stats.uniform), stats.uniform).fit(x, method="MM")
     npt.assert_almost_equal(loc, a, decimal=4)
     npt.assert_almost_equal(loc+scale, b, decimal=4)
@@ -586,10 +597,20 @@ def check_sf_isf(distfn, arg, msg):
     npt.assert_almost_equal(distfn.sf(distfn.isf([0.1, 0.5, 0.9], *arg), *arg),
                             [0.1, 0.5, 0.9], decimal=DECIMAL, err_msg=msg +
                             ' - sf-isf roundtrip')
+
+
+def check_cdf_sf(distfn, arg, msg):
     npt.assert_almost_equal(distfn.cdf([0.1, 0.9], *arg),
                             1.0 - distfn.sf([0.1, 0.9], *arg),
                             decimal=DECIMAL, err_msg=msg +
                             ' - cdf-sf relationship')
+
+
+def check_ppf_isf(distfn, arg, msg):
+    p = np.array([0.1, 0.9])
+    npt.assert_almost_equal(distfn.isf(p, *arg), distfn.ppf(1-p, *arg),
+                            decimal=DECIMAL, err_msg=msg +
+                            ' - ppf-isf relationship')
 
 
 def check_pdf(distfn, arg, msg):

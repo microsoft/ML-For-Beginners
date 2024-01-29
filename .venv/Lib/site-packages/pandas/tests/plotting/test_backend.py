@@ -80,7 +80,7 @@ def test_setting_backend_without_plot_raises(monkeypatch):
     assert pandas.options.plotting.backend == "matplotlib"
 
 
-@td.skip_if_mpl
+@td.skip_if_installed("matplotlib")
 def test_no_matplotlib_ok():
     msg = (
         'matplotlib is required for plotting when the default backend "matplotlib" is '

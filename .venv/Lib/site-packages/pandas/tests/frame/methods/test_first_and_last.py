@@ -1,12 +1,15 @@
 """
 Note: includes tests for `last`
 """
+import numpy as np
 import pytest
 
 import pandas as pd
 from pandas import (
     DataFrame,
+    Index,
     bdate_range,
+    date_range,
 )
 import pandas._testing as tm
 
@@ -16,20 +19,28 @@ last_deprecated_msg = "last is deprecated"
 
 class TestFirst:
     def test_first_subset(self, frame_or_series):
-        ts = tm.makeTimeDataFrame(freq="12h")
+        ts = DataFrame(
+            np.random.default_rng(2).standard_normal((100, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=100, freq="12h"),
+        )
         ts = tm.get_obj(ts, frame_or_series)
         with tm.assert_produces_warning(FutureWarning, match=deprecated_msg):
             result = ts.first("10d")
             assert len(result) == 20
 
-        ts = tm.makeTimeDataFrame(freq="D")
+        ts = DataFrame(
+            np.random.default_rng(2).standard_normal((100, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=100, freq="D"),
+        )
         ts = tm.get_obj(ts, frame_or_series)
         with tm.assert_produces_warning(FutureWarning, match=deprecated_msg):
             result = ts.first("10d")
             assert len(result) == 10
 
         with tm.assert_produces_warning(FutureWarning, match=deprecated_msg):
-            result = ts.first("3M")
+            result = ts.first("3ME")
             expected = ts[:"3/31/2000"]
             tm.assert_equal(result, expected)
 
@@ -39,7 +50,7 @@ class TestFirst:
             tm.assert_equal(result, expected)
 
         with tm.assert_produces_warning(FutureWarning, match=deprecated_msg):
-            result = ts[:0].first("3M")
+            result = ts[:0].first("3ME")
             tm.assert_equal(result, ts[:0])
 
     def test_first_last_raises(self, frame_or_series):
@@ -64,13 +75,21 @@ class TestFirst:
             obj.last("1D")
 
     def test_last_subset(self, frame_or_series):
-        ts = tm.makeTimeDataFrame(freq="12h")
+        ts = DataFrame(
+            np.random.default_rng(2).standard_normal((100, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=100, freq="12h"),
+        )
         ts = tm.get_obj(ts, frame_or_series)
         with tm.assert_produces_warning(FutureWarning, match=last_deprecated_msg):
             result = ts.last("10d")
         assert len(result) == 20
 
-        ts = tm.makeTimeDataFrame(nper=30, freq="D")
+        ts = DataFrame(
+            np.random.default_rng(2).standard_normal((30, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=30, freq="D"),
+        )
         ts = tm.get_obj(ts, frame_or_series)
         with tm.assert_produces_warning(FutureWarning, match=last_deprecated_msg):
             result = ts.last("10d")
@@ -87,7 +106,7 @@ class TestFirst:
         tm.assert_equal(result, expected)
 
         with tm.assert_produces_warning(FutureWarning, match=last_deprecated_msg):
-            result = ts[:0].last("3M")
+            result = ts[:0].last("3ME")
         tm.assert_equal(result, ts[:0])
 
     @pytest.mark.parametrize("start, periods", [("2010-03-31", 1), ("2010-03-30", 2)])
@@ -95,7 +114,7 @@ class TestFirst:
         # GH#29623
         x = frame_or_series([1] * 100, index=bdate_range(start, periods=100))
         with tm.assert_produces_warning(FutureWarning, match=deprecated_msg):
-            result = x.first("1M")
+            result = x.first("1ME")
         expected = frame_or_series(
             [1] * periods, index=bdate_range(start, periods=periods)
         )
@@ -105,7 +124,7 @@ class TestFirst:
         # GH#29623
         x = frame_or_series([1] * 100, index=bdate_range("2010-03-31", periods=100))
         with tm.assert_produces_warning(FutureWarning, match=deprecated_msg):
-            result = x.first("2M")
+            result = x.first("2ME")
         expected = frame_or_series(
             [1] * 23, index=bdate_range("2010-03-31", "2010-04-30")
         )

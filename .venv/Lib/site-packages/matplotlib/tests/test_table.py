@@ -1,9 +1,11 @@
-import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.testing.decorators import image_comparison, check_figures_equal
+import pytest
 
-from matplotlib.table import CustomCell, Table
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 from matplotlib.path import Path
+from matplotlib.table import CustomCell, Table
+from matplotlib.testing.decorators import image_comparison, check_figures_equal
 from matplotlib.transforms import Bbox
 
 
@@ -176,7 +178,12 @@ def test_auto_column():
         loc="center")
     tb4.auto_set_font_size(False)
     tb4.set_fontsize(12)
-    tb4.auto_set_column_width("-101")
+    with pytest.warns(mpl.MatplotlibDeprecationWarning,
+                      match="'col' must be an int or sequence of ints"):
+        tb4.auto_set_column_width("-101")  # type: ignore [arg-type]
+    with pytest.warns(mpl.MatplotlibDeprecationWarning,
+                      match="'col' must be an int or sequence of ints"):
+        tb4.auto_set_column_width(["-101"])  # type: ignore [list-item]
 
 
 def test_table_cells():

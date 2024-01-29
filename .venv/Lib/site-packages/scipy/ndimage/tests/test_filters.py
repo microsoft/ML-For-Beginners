@@ -2005,13 +2005,13 @@ def test_gaussian_truncate():
     # Test gaussian_laplace
     y = ndimage.gaussian_laplace(x, sigma=2, truncate=3.5)
     nonzero_indices = numpy.nonzero(y != 0)[0]
-    n = nonzero_indices.ptp() + 1
+    n = numpy.ptp(nonzero_indices) + 1
     assert_equal(n, 15)
 
     # Test gaussian_gradient_magnitude
     y = ndimage.gaussian_gradient_magnitude(x, sigma=2, truncate=3.5)
     nonzero_indices = numpy.nonzero(y != 0)[0]
-    n = nonzero_indices.ptp() + 1
+    n = numpy.ptp(nonzero_indices) + 1
     assert_equal(n, 15)
 
 

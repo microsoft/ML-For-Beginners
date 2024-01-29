@@ -43,7 +43,7 @@ def test_sparse_encode_shapes_omp():
     for n_components, n_samples in itertools.product([1, 5], [1, 9]):
         X_ = rng.randn(n_samples, n_features)
         dictionary = rng.randn(n_components, n_features)
-        for algorithm, n_jobs in itertools.product(algorithms, [1, 3]):
+        for algorithm, n_jobs in itertools.product(algorithms, [1, 2]):
             code = sparse_encode(X_, dictionary, algorithm=algorithm, n_jobs=n_jobs)
             assert code.shape == (n_samples, n_components)
 
@@ -655,44 +655,6 @@ def test_sparse_coder_n_features_in():
     assert sc.n_features_in_ == d.shape[1]
 
 
-def test_minibatch_dict_learning_n_iter_deprecated():
-    # check the deprecation warning of n_iter
-    # TODO(1.4) remove
-    depr_msg = (
-        "'n_iter' is deprecated in version 1.1 and will be removed in version 1.4"
-    )
-    est = MiniBatchDictionaryLearning(
-        n_components=2, batch_size=4, n_iter=5, random_state=0
-    )
-
-    with pytest.warns(FutureWarning, match=depr_msg):
-        est.fit(X)
-
-
-@pytest.mark.parametrize(
-    "arg, val",
-    [
-        ("iter_offset", 0),
-        ("inner_stats", None),
-        ("return_inner_stats", False),
-        ("return_n_iter", False),
-        ("n_iter", 5),
-    ],
-)
-def test_dict_learning_online_deprecated_args(arg, val):
-    # check the deprecation warning for the deprecated args of
-    # dict_learning_online
-    # TODO(1.4) remove
-    depr_msg = (
-        f"'{arg}' is deprecated in version 1.1 and will be removed in version 1.4."
-    )
-
-    with pytest.warns(FutureWarning, match=depr_msg):
-        dict_learning_online(
-            X, n_components=2, batch_size=4, random_state=0, **{arg: val}
-        )
-
-
 def test_update_dict():
     # Check the dict update in batch mode vs online mode
     # Non-regression test for #4866
@@ -714,15 +676,6 @@ def test_update_dict():
     _update_dict(newd_online, X, code, A, B)
 
     assert_allclose(newd_batch, newd_online)
-
-
-# TODO(1.4) remove
-def test_dict_learning_online_n_iter_deprecated():
-    # Check that an error is raised when a deprecated argument is set when max_iter
-    # is also set.
-    msg = "The following arguments are incompatible with 'max_iter'"
-    with pytest.raises(ValueError, match=msg):
-        dict_learning_online(X, max_iter=10, return_inner_stats=True)
 
 
 @pytest.mark.parametrize(
@@ -942,18 +895,24 @@ def test_dict_learning_online_numerical_consistency(method):
     U_64, V_64 = dict_learning_online(
         X.astype(np.float64),
         n_components=n_components,
+        max_iter=1_000,
         alpha=alpha,
         batch_size=10,
         random_state=0,
         method=method,
+        tol=0.0,
+        max_no_improvement=None,
     )
     U_32, V_32 = dict_learning_online(
         X.astype(np.float32),
         n_components=n_components,
+        max_iter=1_000,
         alpha=alpha,
         batch_size=10,
         random_state=0,
         method=method,
+        tol=0.0,
+        max_no_improvement=None,
     )
 
     # Optimal solution (U*, V*) is not unique.
@@ -1015,12 +974,10 @@ def test_cd_work_on_joblib_memmapped_data(monkeypatch):
     dict_learner.fit(X_train)
 
 
-# TODO(1.4) remove
-def test_minibatch_dictionary_learning_warns_and_ignore_n_iter():
-    """Check that we always raise a warning when `n_iter` is set even if it is
-    ignored if `max_iter` is set.
-    """
-    warn_msg = "'n_iter' is deprecated in version 1.1"
+# TODO(1.6): remove in 1.6
+def test_xxx():
+    warn_msg = "`max_iter=None` is deprecated in version 1.4 and will be removed"
     with pytest.warns(FutureWarning, match=warn_msg):
-        model = MiniBatchDictionaryLearning(batch_size=256, n_iter=2, max_iter=2).fit(X)
-    assert model.n_iter_ == 2
+        MiniBatchDictionaryLearning(max_iter=None, random_state=0).fit(X)
+    with pytest.warns(FutureWarning, match=warn_msg):
+        dict_learning_online(X, max_iter=None, random_state=0)

@@ -29,7 +29,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import numpy
-from numpy.core.multiarray import normalize_axis_index
+from scipy._lib._util import normalize_axis_index
 from . import _ni_support
 from . import _nd_image
 

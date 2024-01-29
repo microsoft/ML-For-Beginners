@@ -13,7 +13,6 @@ def apply(loop=None):
     """Patch asyncio to make its event loop reentrant."""
     _patch_asyncio()
     _patch_policy()
-    _patch_task()
     _patch_tornado()
 
     loop = loop or asyncio.get_event_loop()
@@ -126,7 +125,17 @@ def _patch_loop(loop):
                 break
             handle = ready.popleft()
             if not handle._cancelled:
-                handle._run()
+                # preempt the current task so that that checks in
+                # Task.__step do not raise
+                curr_task = curr_tasks.pop(self, None)
+
+                try:
+                    handle._run()
+                finally:
+                    # restore the current task
+                    if curr_task is not None:
+                        curr_tasks[self] = curr_task
+
         handle = None
 
     @contextmanager
@@ -188,48 +197,14 @@ def _patch_loop(loop):
     cls._run_once = _run_once
     cls._check_running = _check_running
     cls._check_runnung = _check_running  # typo in Python 3.7 source
-    cls._num_runs_pending = 0
+    cls._num_runs_pending = 1 if loop.is_running() else 0
     cls._is_proactorloop = (
         os.name == 'nt' and issubclass(cls, asyncio.ProactorEventLoop))
     if sys.version_info < (3, 7, 0):
         cls._set_coroutine_origin_tracking = cls._set_coroutine_wrapper
+    curr_tasks = asyncio.tasks._current_tasks \
+        if sys.version_info >= (3, 7, 0) else asyncio.Task._current_tasks
     cls._nest_patched = True
-
-
-def _patch_task():
-    """Patch the Task's step and enter/leave methods to make it reentrant."""
-
-    def step(task, exc=None):
-        curr_task = curr_tasks.get(task._loop)
-        try:
-            step_orig(task, exc)
-        finally:
-            if curr_task is None:
-                curr_tasks.pop(task._loop, None)
-            else:
-                curr_tasks[task._loop] = curr_task
-
-    Task = asyncio.Task
-    if hasattr(Task, '_nest_patched'):
-        return
-    if sys.version_info >= (3, 7, 0):
-
-        def enter_task(loop, task):
-            curr_tasks[loop] = task
-
-        def leave_task(loop, task):
-            curr_tasks.pop(loop, None)
-
-        asyncio.tasks._enter_task = enter_task
-        asyncio.tasks._leave_task = leave_task
-        curr_tasks = asyncio.tasks._current_tasks
-        step_orig = Task._Task__step
-        Task._Task__step = step
-    else:
-        curr_tasks = Task._current_tasks
-        step_orig = Task._step
-        Task._step = step
-    Task._nest_patched = True
 
 
 def _patch_tornado():

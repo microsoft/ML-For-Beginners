@@ -31,8 +31,6 @@ from pandas._libs.tslibs.timezones import (
     tz_compare,
 )
 from pandas.compat import IS64
-from pandas.errors import OutOfBoundsDatetime
-import pandas.util._test_decorators as td
 
 from pandas import (
     NaT,
@@ -262,6 +260,14 @@ class TestTimestampProperties:
 
 
 class TestTimestamp:
+    @pytest.mark.parametrize("tz", [None, pytz.timezone("US/Pacific")])
+    def test_disallow_setting_tz(self, tz):
+        # GH#3746
+        ts = Timestamp("2010")
+        msg = "Cannot directly set timezone"
+        with pytest.raises(AttributeError, match=msg):
+            ts.tz = tz
+
     def test_default_to_stdlib_utc(self):
         assert Timestamp.utcnow().tz is timezone.utc
         assert Timestamp.now("UTC").tz is timezone.utc
@@ -299,12 +305,13 @@ class TestTimestamp:
 
         assert Timestamp("nat").asm8.view("i8") == np.datetime64("nat", "ns").view("i8")
 
-    def test_class_ops_pytz(self):
+    def test_class_ops(self):
         def compare(x, y):
             assert int((Timestamp(x)._value - Timestamp(y)._value) / 1e9) == 0
 
         compare(Timestamp.now(), datetime.now())
         compare(Timestamp.now("UTC"), datetime.now(pytz.timezone("UTC")))
+        compare(Timestamp.now("UTC"), datetime.now(tzutc()))
         compare(Timestamp.utcnow(), datetime.now(timezone.utc))
         compare(Timestamp.today(), datetime.today())
         current_time = calendar.timegm(datetime.now().utctimetuple())
@@ -332,36 +339,6 @@ class TestTimestamp:
             datetime.combine(date_component, time_component),
         )
 
-    def test_class_ops_dateutil(self):
-        def compare(x, y):
-            assert (
-                int(
-                    np.round(Timestamp(x)._value / 1e9)
-                    - np.round(Timestamp(y)._value / 1e9)
-                )
-                == 0
-            )
-
-        compare(Timestamp.now(), datetime.now())
-        compare(Timestamp.now("UTC"), datetime.now(tzutc()))
-        compare(Timestamp.utcnow(), datetime.now(timezone.utc))
-        compare(Timestamp.today(), datetime.today())
-        current_time = calendar.timegm(datetime.now().utctimetuple())
-
-        ts_utc = Timestamp.utcfromtimestamp(current_time)
-        assert ts_utc.timestamp() == current_time
-
-        compare(
-            Timestamp.fromtimestamp(current_time), datetime.fromtimestamp(current_time)
-        )
-
-        date_component = datetime.now(timezone.utc)
-        time_component = (date_component + timedelta(minutes=10)).time()
-        compare(
-            Timestamp.combine(date_component, time_component),
-            datetime.combine(date_component, time_component),
-        )
-
     def test_basics_nanos(self):
         val = np.int64(946_684_800_000_000_000).view("M8[ns]")
         stamp = Timestamp(val.view("i8") + 500)
@@ -378,52 +355,6 @@ class TestTimestamp:
         assert stamp.day == 21
         assert stamp.microsecond == 145224
         assert stamp.nanosecond == 192
-
-    @pytest.mark.parametrize(
-        "value, check_kwargs",
-        [
-            [946688461000000000, {}],
-            [946688461000000000 / 1000, {"unit": "us"}],
-            [946688461000000000 / 1_000_000, {"unit": "ms"}],
-            [946688461000000000 / 1_000_000_000, {"unit": "s"}],
-            [10957, {"unit": "D", "h": 0}],
-            [
-                (946688461000000000 + 500000) / 1000000000,
-                {"unit": "s", "us": 499, "ns": 964},
-            ],
-            [
-                (946688461000000000 + 500000000) / 1000000000,
-                {"unit": "s", "us": 500000},
-            ],
-            [(946688461000000000 + 500000) / 1000000, {"unit": "ms", "us": 500}],
-            [(946688461000000000 + 500000) / 1000, {"unit": "us", "us": 500}],
-            [(946688461000000000 + 500000000) / 1000000, {"unit": "ms", "us": 500000}],
-            [946688461000000000 / 1000.0 + 5, {"unit": "us", "us": 5}],
-            [946688461000000000 / 1000.0 + 5000, {"unit": "us", "us": 5000}],
-            [946688461000000000 / 1000000.0 + 0.5, {"unit": "ms", "us": 500}],
-            [946688461000000000 / 1000000.0 + 0.005, {"unit": "ms", "us": 5, "ns": 5}],
-            [946688461000000000 / 1000000000.0 + 0.5, {"unit": "s", "us": 500000}],
-            [10957 + 0.5, {"unit": "D", "h": 12}],
-        ],
-    )
-    def test_unit(self, value, check_kwargs):
-        def check(value, unit=None, h=1, s=1, us=0, ns=0):
-            stamp = Timestamp(value, unit=unit)
-            assert stamp.year == 2000
-            assert stamp.month == 1
-            assert stamp.day == 1
-            assert stamp.hour == h
-            if unit != "D":
-                assert stamp.minute == 1
-                assert stamp.second == s
-                assert stamp.microsecond == us
-            else:
-                assert stamp.minute == 0
-                assert stamp.second == 0
-                assert stamp.microsecond == 0
-            assert stamp.nanosecond == ns
-
-        check(value, **check_kwargs)
 
     def test_roundtrip(self):
         # test value to string and back conversions
@@ -545,28 +476,6 @@ class TestTimestampNsOperations:
         assert t.nanosecond == 10
 
 
-class TestTimestampToJulianDate:
-    def test_compare_1700(self):
-        r = Timestamp("1700-06-23").to_julian_date()
-        assert r == 2_342_145.5
-
-    def test_compare_2000(self):
-        r = Timestamp("2000-04-12").to_julian_date()
-        assert r == 2_451_646.5
-
-    def test_compare_2100(self):
-        r = Timestamp("2100-08-12").to_julian_date()
-        assert r == 2_488_292.5
-
-    def test_compare_hour01(self):
-        r = Timestamp("2000-08-12T01:00:00").to_julian_date()
-        assert r == 2_451_768.5416666666666666
-
-    def test_compare_hour13(self):
-        r = Timestamp("2000-08-12T13:00:00").to_julian_date()
-        assert r == 2_451_769.0416666666666666
-
-
 class TestTimestampConversion:
     def test_conversion(self):
         # GH#9255
@@ -582,73 +491,6 @@ class TestTimestampConversion:
         assert result == expected
         assert type(result) == type(expected)
         assert result.dtype == expected.dtype
-
-    def test_to_pydatetime_fold(self):
-        # GH#45087
-        tzstr = "dateutil/usr/share/zoneinfo/America/Chicago"
-        ts = Timestamp(year=2013, month=11, day=3, hour=1, minute=0, fold=1, tz=tzstr)
-        dt = ts.to_pydatetime()
-        assert dt.fold == 1
-
-    def test_to_pydatetime_nonzero_nano(self):
-        ts = Timestamp("2011-01-01 9:00:00.123456789")
-
-        # Warn the user of data loss (nanoseconds).
-        with tm.assert_produces_warning(UserWarning):
-            expected = datetime(2011, 1, 1, 9, 0, 0, 123456)
-            result = ts.to_pydatetime()
-            assert result == expected
-
-    def test_timestamp_to_datetime(self):
-        stamp = Timestamp("20090415", tz="US/Eastern")
-        dtval = stamp.to_pydatetime()
-        assert stamp == dtval
-        assert stamp.tzinfo == dtval.tzinfo
-
-    def test_timestamp_to_datetime_dateutil(self):
-        stamp = Timestamp("20090415", tz="dateutil/US/Eastern")
-        dtval = stamp.to_pydatetime()
-        assert stamp == dtval
-        assert stamp.tzinfo == dtval.tzinfo
-
-    def test_timestamp_to_datetime_explicit_pytz(self):
-        stamp = Timestamp("20090415", tz=pytz.timezone("US/Eastern"))
-        dtval = stamp.to_pydatetime()
-        assert stamp == dtval
-        assert stamp.tzinfo == dtval.tzinfo
-
-    @td.skip_if_windows
-    def test_timestamp_to_datetime_explicit_dateutil(self):
-        stamp = Timestamp("20090415", tz=gettz("US/Eastern"))
-        dtval = stamp.to_pydatetime()
-        assert stamp == dtval
-        assert stamp.tzinfo == dtval.tzinfo
-
-    def test_to_datetime_bijective(self):
-        # Ensure that converting to datetime and back only loses precision
-        # by going from nanoseconds to microseconds.
-        exp_warning = None if Timestamp.max.nanosecond == 0 else UserWarning
-        with tm.assert_produces_warning(exp_warning):
-            pydt_max = Timestamp.max.to_pydatetime()
-
-        assert (
-            Timestamp(pydt_max).as_unit("ns")._value / 1000
-            == Timestamp.max._value / 1000
-        )
-
-        exp_warning = None if Timestamp.min.nanosecond == 0 else UserWarning
-        with tm.assert_produces_warning(exp_warning):
-            pydt_min = Timestamp.min.to_pydatetime()
-
-        # The next assertion can be enabled once GH#39221 is merged
-        #  assert pydt_min < Timestamp.min  # this is bc nanos are dropped
-        tdus = timedelta(microseconds=1)
-        assert pydt_min + tdus > Timestamp.min
-
-        assert (
-            Timestamp(pydt_min + tdus).as_unit("ns")._value / 1000
-            == Timestamp.min._value / 1000
-        )
 
     def test_to_period_tz_warning(self):
         # GH#21333 make sure a warning is issued when timezone
@@ -669,26 +511,6 @@ class TestTimestampConversion:
             ts.to_numpy("M8[s]")
         with pytest.raises(ValueError, match=msg):
             ts.to_numpy(copy=True)
-
-
-class SubDatetime(datetime):
-    pass
-
-
-@pytest.mark.parametrize(
-    "lh,rh",
-    [
-        (SubDatetime(2000, 1, 1), Timedelta(hours=1)),
-        (Timedelta(hours=1), SubDatetime(2000, 1, 1)),
-    ],
-)
-def test_dt_subclass_add_timedelta(lh, rh):
-    # GH#25851
-    # ensure that subclassed datetime works for
-    # Timedelta operations
-    result = lh + rh
-    expected = SubDatetime(2000, 1, 1, 1)
-    assert result == expected
 
 
 class TestNonNano:
@@ -1058,86 +880,6 @@ def test_timestamp_class_min_max_resolution():
 
     assert Timestamp.resolution == Timedelta(1)
     assert Timestamp.resolution._creso == NpyDatetimeUnit.NPY_FR_ns.value
-
-
-class TestAsUnit:
-    def test_as_unit(self):
-        ts = Timestamp("1970-01-01").as_unit("ns")
-        assert ts.unit == "ns"
-
-        assert ts.as_unit("ns") is ts
-
-        res = ts.as_unit("us")
-        assert res._value == ts._value // 1000
-        assert res._creso == NpyDatetimeUnit.NPY_FR_us.value
-
-        rt = res.as_unit("ns")
-        assert rt._value == ts._value
-        assert rt._creso == ts._creso
-
-        res = ts.as_unit("ms")
-        assert res._value == ts._value // 1_000_000
-        assert res._creso == NpyDatetimeUnit.NPY_FR_ms.value
-
-        rt = res.as_unit("ns")
-        assert rt._value == ts._value
-        assert rt._creso == ts._creso
-
-        res = ts.as_unit("s")
-        assert res._value == ts._value // 1_000_000_000
-        assert res._creso == NpyDatetimeUnit.NPY_FR_s.value
-
-        rt = res.as_unit("ns")
-        assert rt._value == ts._value
-        assert rt._creso == ts._creso
-
-    def test_as_unit_overflows(self):
-        # microsecond that would be just out of bounds for nano
-        us = 9223372800000000
-        ts = Timestamp._from_value_and_reso(us, NpyDatetimeUnit.NPY_FR_us.value, None)
-
-        msg = "Cannot cast 2262-04-12 00:00:00 to unit='ns' without overflow"
-        with pytest.raises(OutOfBoundsDatetime, match=msg):
-            ts.as_unit("ns")
-
-        res = ts.as_unit("ms")
-        assert res._value == us // 1000
-        assert res._creso == NpyDatetimeUnit.NPY_FR_ms.value
-
-    def test_as_unit_rounding(self):
-        ts = Timestamp(1_500_000)  # i.e. 1500 microseconds
-        res = ts.as_unit("ms")
-
-        expected = Timestamp(1_000_000)  # i.e. 1 millisecond
-        assert res == expected
-
-        assert res._creso == NpyDatetimeUnit.NPY_FR_ms.value
-        assert res._value == 1
-
-        with pytest.raises(ValueError, match="Cannot losslessly convert units"):
-            ts.as_unit("ms", round_ok=False)
-
-    def test_as_unit_non_nano(self):
-        # case where we are going neither to nor from nano
-        ts = Timestamp("1970-01-02").as_unit("ms")
-        assert ts.year == 1970
-        assert ts.month == 1
-        assert ts.day == 2
-        assert ts.hour == ts.minute == ts.second == ts.microsecond == ts.nanosecond == 0
-
-        res = ts.as_unit("s")
-        assert res._value == 24 * 3600
-        assert res.year == 1970
-        assert res.month == 1
-        assert res.day == 2
-        assert (
-            res.hour
-            == res.minute
-            == res.second
-            == res.microsecond
-            == res.nanosecond
-            == 0
-        )
 
 
 def test_delimited_date():

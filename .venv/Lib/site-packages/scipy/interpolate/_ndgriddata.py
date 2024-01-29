@@ -20,7 +20,7 @@ __all__ = ['griddata', 'NearestNDInterpolator', 'LinearNDInterpolator',
 class NearestNDInterpolator(NDInterpolatorBase):
     """NearestNDInterpolator(x, y).
 
-    Nearest-neighbor interpolation in N > 1 dimensions.
+    Nearest-neighbor interpolator in N > 1 dimensions.
 
     .. versionadded:: 0.9
 
@@ -50,11 +50,11 @@ class NearestNDInterpolator(NDInterpolatorBase):
     griddata :
         Interpolate unstructured D-D data.
     LinearNDInterpolator :
-        Piecewise linear interpolant in N dimensions.
+        Piecewise linear interpolator in N dimensions.
     CloughTocher2DInterpolator :
-        Piecewise cubic, C1 smooth, curvature-minimizing interpolant in 2D.
+        Piecewise cubic, C1 smooth, curvature-minimizing interpolator in 2D.
     interpn : Interpolation on a regular grid or rectilinear grid.
-    RegularGridInterpolator : Interpolation on a regular or rectilinear grid
+    RegularGridInterpolator : Interpolator on a regular or rectilinear grid
                               in arbitrary dimensions (`interpn` wraps this
                               class).
 
@@ -98,7 +98,7 @@ class NearestNDInterpolator(NDInterpolatorBase):
         self.tree = cKDTree(self.points, **tree_options)
         self.values = np.asarray(y)
 
-    def __call__(self, *args):
+    def __call__(self, *args, **query_options):
         """
         Evaluate interpolator at given points.
 
@@ -108,18 +108,68 @@ class NearestNDInterpolator(NDInterpolatorBase):
             Points where to interpolate data at.
             x1, x2, ... xn can be array-like of float with broadcastable shape.
             or x1 can be array-like of float with shape ``(..., ndim)``
+        **query_options
+            This allows ``eps``, ``p``, ``distance_upper_bound``, and ``workers``
+            being passed to the cKDTree's query function to be explicitly set.
+            See `scipy.spatial.cKDTree.query` for an overview of the different options.
+
+            .. versionadded:: 1.12.0
 
         """
+        # For the sake of enabling subclassing, NDInterpolatorBase._set_xi performs
+        # some operations which are not required by NearestNDInterpolator.__call__, 
+        # hence here we operate on xi directly, without calling a parent class function.
         xi = _ndim_coords_from_arrays(args, ndim=self.points.shape[1])
         xi = self._check_call_shape(xi)
         xi = self._scale_x(xi)
-        dist, i = self.tree.query(xi)
-        return self.values[i]
+
+        # We need to handle two important cases:
+        # (1) the case where xi has trailing dimensions (..., ndim), and
+        # (2) the case where y has trailing dimensions
+        # We will first flatten xi to deal with case (1),
+        # do the computation in flattened array while retaining y's dimensionality,
+        # and then reshape the interpolated values back to match xi's shape.
+
+        # Flatten xi for the query
+        xi_flat = xi.reshape(-1, xi.shape[-1])
+        original_shape = xi.shape
+        flattened_shape = xi_flat.shape
+
+        # if distance_upper_bound is set to not be infinite,
+        # then we need to consider the case where cKDtree
+        # does not find any points within distance_upper_bound to return.
+        # It marks those points as having infinte distance, which is what will be used
+        # below to mask the array and return only the points that were deemed
+        # to have a close enough neighbor to return something useful.
+        dist, i = self.tree.query(xi_flat, **query_options)
+        valid_mask = np.isfinite(dist)
+
+        # create a holder interp_values array and fill with nans.
+        if self.values.ndim > 1:
+            interp_shape = flattened_shape[:-1] + self.values.shape[1:]
+        else:
+            interp_shape = flattened_shape[:-1]
+
+        if np.issubdtype(self.values.dtype, np.complexfloating):
+            interp_values = np.full(interp_shape, np.nan, dtype=self.values.dtype)
+        else:
+            interp_values = np.full(interp_shape, np.nan)
+
+        interp_values[valid_mask] = self.values[i[valid_mask], ...]
+
+        if self.values.ndim > 1:
+            new_shape = original_shape[:-1] + self.values.shape[1:]
+        else:
+            new_shape = original_shape[:-1]
+        interp_values = interp_values.reshape(new_shape)
+
+        return interp_values
 
 
 #------------------------------------------------------------------------------
 # Convenience interface function
 #------------------------------------------------------------------------------
+
 
 def griddata(points, values, xi, method='linear', fill_value=np.nan,
              rescale=False):
@@ -176,13 +226,13 @@ def griddata(points, values, xi, method='linear', fill_value=np.nan,
     See Also
     --------
     LinearNDInterpolator :
-        Piecewise linear interpolant in N dimensions.
+        Piecewise linear interpolator in N dimensions.
     NearestNDInterpolator :
-        Nearest-neighbor interpolation in N dimensions.
+        Nearest-neighbor interpolator in N dimensions.
     CloughTocher2DInterpolator :
-        Piecewise cubic, C1 smooth, curvature-minimizing interpolant in 2D.
+        Piecewise cubic, C1 smooth, curvature-minimizing interpolator in 2D.
     interpn : Interpolation on a regular grid or rectilinear grid.
-    RegularGridInterpolator : Interpolation on a regular or rectilinear grid
+    RegularGridInterpolator : Interpolator on a regular or rectilinear grid
                               in arbitrary dimensions (`interpn` wraps this
                               class).
 
@@ -241,7 +291,7 @@ def griddata(points, values, xi, method='linear', fill_value=np.nan,
     >>> plt.gcf().set_size_inches(6, 6)
     >>> plt.show()
 
-    """
+    """ # numpy/numpydoc#87  # noqa: E501
 
     points = _ndim_coords_from_arrays(points)
 

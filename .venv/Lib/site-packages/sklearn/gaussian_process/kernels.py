@@ -1,17 +1,22 @@
-"""Kernels for Gaussian process regression and classification.
-
-The kernels in this module allow kernel-engineering, i.e., they can be
-combined via the "+" and "*" operators or be exponentiated with a scalar
-via "**". These sum and product expressions can also contain scalar values,
-which are automatically converted to a constant kernel.
-
-All kernels allow (analytic) gradient-based hyperparameter optimization.
-The space of hyperparameters can be specified by giving lower und upper
-boundaries for the value of each hyperparameter (the search space is thus
-rectangular). Instead of specifying bounds, hyperparameters can also be
-declared to be "fixed", which causes these hyperparameters to be excluded from
-optimization.
 """
+The :mod:`sklearn.gaussian_process.kernels` module implements a set of kernels that
+can be combined by operators and used in Gaussian processes.
+"""
+
+# Kernels for Gaussian process regression and classification.
+#
+# The kernels in this module allow kernel-engineering, i.e., they can be
+# combined via the "+" and "*" operators or be exponentiated with a scalar
+# via "**". These sum and product expressions can also contain scalar values,
+# which are automatically converted to a constant kernel.
+#
+# All kernels allow (analytic) gradient-based hyperparameter optimization.
+# The space of hyperparameters can be specified by giving lower und upper
+# boundaries for the value of each hyperparameter (the search space is thus
+# rectangular). Instead of specifying bounds, hyperparameters can also be
+# declared to be "fixed", which causes these hyperparameters to be excluded from
+# optimization.
+
 
 # Author: Jan Hendrik Metzen <jhm@informatik.uni-bremen.de>
 # License: BSD 3 clause
@@ -1944,7 +1949,7 @@ class ExpSineSquared(StationaryKernelMixin, NormalizedKernelMixin, Kernel):
         \frac{ 2\sin^2(\pi d(x_i, x_j)/p) }{ l^ 2} \right)
 
     where :math:`l` is the length scale of the kernel, :math:`p` the
-    periodicity of the kernel and :math:`d(\\cdot,\\cdot)` is the
+    periodicity of the kernel and :math:`d(\cdot,\cdot)` is the
     Euclidean distance.
 
     Read more in the :ref:`User Guide <gp_kernels>`.

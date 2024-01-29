@@ -3,6 +3,8 @@ import shutil
 import tempfile
 import warnings
 from functools import partial
+from importlib import resources
+from pathlib import Path
 from pickle import dumps, loads
 
 import numpy as np
@@ -28,7 +30,16 @@ from sklearn.datasets._base import (
 from sklearn.datasets.tests.test_common import check_as_frame
 from sklearn.preprocessing import scale
 from sklearn.utils import Bunch
-from sklearn.utils.fixes import _is_resource
+
+
+class _DummyPath:
+    """Minimal class that implements the os.PathLike interface."""
+
+    def __init__(self, path):
+        self.path = path
+
+    def __fspath__(self):
+        return self.path
 
 
 def _remove_dir(path):
@@ -67,13 +78,18 @@ def test_category_dir_2(load_files_root):
     _remove_dir(test_category_dir2)
 
 
-def test_data_home(data_home):
+@pytest.mark.parametrize("path_container", [None, Path, _DummyPath])
+def test_data_home(path_container, data_home):
     # get_data_home will point to a pre-existing folder
+    if path_container is not None:
+        data_home = path_container(data_home)
     data_home = get_data_home(data_home=data_home)
     assert data_home == data_home
     assert os.path.exists(data_home)
 
     # clear_data_home will delete both the content and the folder it-self
+    if path_container is not None:
+        data_home = path_container(data_home)
     clear_data_home(data_home=data_home)
     assert not os.path.exists(data_home)
 
@@ -275,7 +291,8 @@ def test_loader(loader_func, data_shape, target_shape, n_target, has_descr, file
         assert "data_module" in bunch
         assert all(
             [
-                f in bunch and _is_resource(bunch["data_module"], bunch[f])
+                f in bunch
+                and (resources.files(bunch["data_module"]) / bunch[f]).is_file()
                 for f in filenames
             ]
         )

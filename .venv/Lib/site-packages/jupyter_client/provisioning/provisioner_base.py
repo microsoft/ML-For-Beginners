@@ -10,7 +10,7 @@ from traitlets.config import Instance, LoggingConfigurable, Unicode
 from ..connect import KernelConnectionInfo
 
 
-class KernelProvisionerMeta(ABCMeta, type(LoggingConfigurable)):  # type: ignore
+class KernelProvisionerMeta(ABCMeta, type(LoggingConfigurable)):  # type: ignore[misc]
     pass
 
 
@@ -29,7 +29,7 @@ class KernelProvisionerBase(  # type:ignore[misc]
     """
 
     # The kernel specification associated with this provisioner
-    kernel_spec: Any = Instance('jupyter_client.kernelspec.KernelSpec', allow_none=True)
+    kernel_spec: Any = Instance("jupyter_client.kernelspec.KernelSpec", allow_none=True)
     kernel_id: Union[str, Unicode] = Unicode(None, allow_none=True)
     connection_info: KernelConnectionInfo = {}
 
@@ -154,10 +154,10 @@ class KernelProvisionerBase(  # type:ignore[misc]
         Returns the (potentially updated) keyword arguments that are passed to
         :meth:`launch_kernel()`.
         """
-        env = kwargs.pop('env', os.environ).copy()
+        env = kwargs.pop("env", os.environ).copy()
         env.update(self.__apply_env_substitutions(env))
         self._finalize_env(env)
-        kwargs['env'] = env
+        kwargs["env"] = env
 
         return kwargs
 
@@ -181,8 +181,8 @@ class KernelProvisionerBase(  # type:ignore[misc]
         NOTE: The superclass method must always be called first to ensure proper serialization.
         """
         provisioner_info: Dict[str, Any] = {}
-        provisioner_info['kernel_id'] = self.kernel_id
-        provisioner_info['connection_info'] = self.connection_info
+        provisioner_info["kernel_id"] = self.kernel_id
+        provisioner_info["connection_info"] = self.connection_info
         return provisioner_info
 
     async def load_provisioner_info(self, provisioner_info: Dict) -> None:
@@ -196,8 +196,8 @@ class KernelProvisionerBase(  # type:ignore[misc]
 
         NOTE: The superclass method must always be called first to ensure proper deserialization.
         """
-        self.kernel_id = provisioner_info['kernel_id']
-        self.connection_info = provisioner_info['connection_info']
+        self.kernel_id = provisioner_info["kernel_id"]
+        self.connection_info = provisioner_info["connection_info"]
 
     def get_shutdown_wait_time(self, recommended: float = 5.0) -> float:
         """
@@ -231,7 +231,7 @@ class KernelProvisionerBase(  # type:ignore[misc]
         if self.kernel_spec.language and self.kernel_spec.language.lower().startswith("python"):
             # Don't allow PYTHONEXECUTABLE to be passed to kernel process.
             # If set, it can bork all the things.
-            env.pop('PYTHONEXECUTABLE', None)
+            env.pop("PYTHONEXECUTABLE", None)
 
     def __apply_env_substitutions(self, substitution_values: Dict[str, str]) -> Dict[str, str]:
         """

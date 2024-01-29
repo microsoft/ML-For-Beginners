@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221,R0913,R0914
+
 
 import itertools
 from typing import Optional, Tuple
@@ -21,7 +21,7 @@ def _get_pad_shape(
 ) -> Tuple[int]:
     pad_shape = [0] * len(input_spatial_shape)
     if auto_pad in ("SAME_UPPER", "SAME_LOWER"):
-        for i in range(len(input_spatial_shape)):  # pylint: disable=C0200
+        for i in range(len(input_spatial_shape)):
             pad_shape[i] = (
                 (output_spatial_shape[i] - 1) * strides_spatial[i]
                 + kernel_spatial_shape[i]
@@ -47,12 +47,12 @@ def _get_output_shape_no_ceil(
 ) -> Tuple[int]:
     out_shape = [0] * len(input_spatial_shape)
     if auto_pad in ("SAME_UPPER", "SAME_LOWER"):
-        for i in range(len(input_spatial_shape)):  # pylint: disable=C0200
+        for i in range(len(input_spatial_shape)):
             out_shape[i] = int(
                 np.ceil(float(input_spatial_shape[i]) / float(strides_spatial[i]))
             )
     elif auto_pad == "VALID":
-        for i in range(len(input_spatial_shape)):  # pylint: disable=C0200
+        for i in range(len(input_spatial_shape)):
             out_shape[i] = int(
                 np.ceil(
                     float(input_spatial_shape[i] - (kernel_spatial_shape[i] - 1))
@@ -78,7 +78,7 @@ def _get_output_shape(
         round_fct = np.ceil if ceil_mode else np.floor
         out_shape = [0] * len(input_spatial_shape)  # type: ignore
         if auto_pad in ("SAME_UPPER", "SAME_LOWER"):
-            for i in range(len(input_spatial_shape)):  # pylint: disable=C0200
+            for i in range(len(input_spatial_shape)):
                 out_shape[i] = int(  # type: ignore
                     round_fct(float(input_spatial_shape[i]) / float(strides_spatial[i]))  # type: ignore
                 )
@@ -88,7 +88,7 @@ def _get_output_shape(
                     "pad_shape cannot be None if auto_pad is "
                     "'VALID' and ceil_mode is 1."
                 )
-            for i in range(len(input_spatial_shape)):  # pylint: disable=C0200
+            for i in range(len(input_spatial_shape)):
                 out_shape[i] = int(  # type: ignore
                     round_fct(  # type: ignore
                         float(
@@ -210,7 +210,7 @@ class CommonPool(OpRun):
         dilations=None,
         kernel_shape=None,
         pads=None,
-        storage_order=None,  # pylint: disable=W0613
+        storage_order=None,
         strides=None,
     ):
         if pooling_type == "MAX" and dilations is None:

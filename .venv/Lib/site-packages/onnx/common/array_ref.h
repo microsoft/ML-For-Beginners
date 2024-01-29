@@ -24,6 +24,7 @@
 
 #pragma once
 #include <assert.h>
+
 #include <array>
 #include <vector>
 

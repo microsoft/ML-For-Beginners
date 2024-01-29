@@ -13,10 +13,14 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['FriendlyStyle']
+
+
 class FriendlyStyle(Style):
     """
     A modern style based on the VIM pyte theme.
     """
+    name = 'friendly'
 
     background_color = "#f0f0f0"
     line_number_color = "#666666"

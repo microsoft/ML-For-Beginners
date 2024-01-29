@@ -20,21 +20,18 @@ SAMPLE_IMPLEMENTATIONS = collect_sample_implementations()
 ONNX_ML = not bool(os.getenv("ONNX_ML") == "0")
 
 
-ext = "-ml.md" if ONNX_ML else ".md"
-
-
 def display_number(v: int) -> str:
     if defs.OpSchema.is_infinite(v):
         return "&#8734;"
     return str(v)
 
 
-def should_render_domain(domain: str) -> bool:
-    if domain == ONNX_ML_DOMAIN and not ONNX_ML:
-        return False
-    if ONNX_ML and domain != ONNX_ML_DOMAIN:
-        return False
-    return True
+def should_render_domain(domain: str, output: str) -> bool:
+    is_ml = "-ml" in output
+    if domain == ONNX_ML_DOMAIN:
+        return is_ml
+    else:
+        return not is_ml
 
 
 def format_name_with_domain(domain: str, schema_name: str) -> str:
@@ -47,8 +44,8 @@ def format_function_versions(function_versions: Sequence[int]) -> str:
     return f"{', '.join([str(v) for v in function_versions])}"
 
 
-def format_versions(versions: Sequence[OpSchema]) -> str:
-    return f"{', '.join(display_version_link(format_name_with_domain(v.domain, v.name), v.since_version) for v in versions[::-1])}"
+def format_versions(versions: Sequence[OpSchema], changelog: str) -> str:
+    return f"{', '.join(display_version_link(format_name_with_domain(v.domain, v.name), v.since_version, changelog) for v in versions[::-1])}"
 
 
 def display_attr_type(v: OpSchema.AttrType) -> str:
@@ -72,10 +69,9 @@ def display_domain_short(domain: str) -> str:
     return "ai.onnx (default)"
 
 
-def display_version_link(name: str, version: int) -> str:
-    changelog_md = "Changelog" + ext
+def display_version_link(name: str, version: int, changelog: str) -> str:
     name_with_ver = f"{name}-{version}"
-    return f'<a href="{changelog_md}#{name_with_ver}">{version}</a>'
+    return f'<a href="{changelog}#{name_with_ver}">{version}</a>'
 
 
 def generate_formal_parameter_tags(formal_parameter: OpSchema.FormalParameter) -> str:
@@ -101,8 +97,8 @@ def generate_formal_parameter_tags(formal_parameter: OpSchema.FormalParameter) -
     return "" if len(tags) == 0 else " (" + ", ".join(tags) + ")"
 
 
-def display_schema(  # pylint: disable=too-many-branches,too-many-statements
-    schema: OpSchema, versions: Sequence[OpSchema]
+def display_schema(
+    schema: OpSchema, versions: Sequence[OpSchema], changelog: str
 ) -> str:
     s = ""
 
@@ -127,10 +123,12 @@ def display_schema(  # pylint: disable=too-many-branches,too-many-statements
         s += f" of {display_domain(schema.domain)}.\n"
         if len(versions) > 1:
             # TODO: link to the Changelog.md
-            s += "\nOther versions of this operator: {}\n".format(  # pylint: disable=consider-using-f-string
+            s += "\nOther versions of this operator: {}\n".format(
                 ", ".join(
                     display_version_link(
-                        format_name_with_domain(v.domain, v.name), v.since_version
+                        format_name_with_domain(v.domain, v.name),
+                        v.since_version,
+                        changelog,
                     )
                     for v in versions[:-1]
                 )
@@ -151,12 +149,13 @@ def display_schema(  # pylint: disable=too-many-branches,too-many-statements
                 opt = "required"
             elif attr.default_value.name:
                 default_value = helper.get_attribute_value(attr.default_value)
+                doc_string = attr.default_value.doc_string
 
                 def format_value(value: Any) -> str:
                     if isinstance(value, float):
                         formatted = str(np.round(value, 5))
                         # use default formatting, unless too long.
-                        if len(formatted) > 10:
+                        if len(formatted) > 10:  # noqa: PLR2004
                             formatted = str(f"({value:e})")
                         return formatted
                     if isinstance(value, (bytes, bytearray)):
@@ -167,7 +166,7 @@ def display_schema(  # pylint: disable=too-many-branches,too-many-statements
                     default_value = [format_value(val) for val in default_value]
                 else:
                     default_value = format_value(default_value)
-                opt = f"default is {default_value}"
+                opt = f"default is {default_value}{doc_string}"
 
             s += f"<dt><tt>{attr.name}</tt> : {display_attr_type(attr.type)}{f' ({opt})' if opt else ''}</dt>\n"
             s += f"<dd>{attr.description}</dd>\n"
@@ -235,8 +234,15 @@ class Args(NamedTuple):
     changelog: str
 
 
-def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-statements
-    with open(args.changelog, "w", newline="", encoding="utf-8") as fout:
+def main(args: Args) -> None:
+    base_dir = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    )
+    docs_dir = os.path.join(base_dir, "docs")
+
+    with open(
+        os.path.join(docs_dir, args.changelog), "w", newline="", encoding="utf-8"
+    ) as fout:
         fout.write("<!--- SPDX-License-Identifier: Apache-2.0 -->\n")
         fout.write("## Operator Changelog\n")
         fout.write(
@@ -259,7 +265,7 @@ def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-stat
         fout.write("\n")
 
         for domain, versionmap in sorted(dv_index.items()):
-            if not should_render_domain(domain):
+            if not should_render_domain(domain, args.output):
                 continue
 
             s = f"# {display_domain_short(domain)}\n"
@@ -273,12 +279,14 @@ def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-stat
                         + (" (deprecated)" if schema.deprecated else "")
                         + "</a>\n"
                     ).format(name_with_ver, name_with_ver)
-                    s += display_schema(schema, [schema])
+                    s += display_schema(schema, [schema], args.changelog)
                     s += "\n"
 
             fout.write(s)
 
-    with open(args.output, "w", newline="", encoding="utf-8") as fout:
+    with open(
+        os.path.join(docs_dir, args.output), "w", newline="", encoding="utf-8"
+    ) as fout:
         fout.write("<!--- SPDX-License-Identifier: Apache-2.0 -->\n")
         fout.write("## Operator Schemas\n")
         fout.write(
@@ -307,7 +315,7 @@ def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-stat
         ] = []
         existing_ops: Set[str] = set()
         for domain, _supportmap in sorted(index.items()):
-            if not should_render_domain(domain):
+            if not should_render_domain(domain, args.output):
                 continue
 
             processed_supportmap = []
@@ -338,22 +346,22 @@ def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-stat
                         function_versions = schema.all_function_opset_versions  # type: ignore
                         function_ops.append((n, schema, versions, function_versions))
                         continue
-                    s = '|{}<a href="#{}">{}</a>{}|{}|\n'.format(  # pylint: disable=consider-using-f-string
+                    s = '|{}<a href="#{}">{}</a>{}|{}|\n'.format(
                         support_level_str(schema.support_level),
                         format_name_with_domain(domain, n),
                         format_name_with_domain(domain, n),
                         " (deprecated)" if schema.deprecated else "",
-                        format_versions(versions),
+                        format_versions(versions, args.changelog),
                     )
                     fout.write(s)
             if function_ops:
                 fout.write("|**Function**|**Since version**|**Function version**|\n")
                 for n, schema, versions, function_versions in function_ops:
-                    s = '|{}<a href="#{}">{}</a>|{}|{}|\n'.format(  # pylint: disable=consider-using-f-string
+                    s = '|{}<a href="#{}">{}</a>|{}|{}|\n'.format(
                         support_level_str(schema.support_level),
                         format_name_with_domain(domain, n),
                         format_name_with_domain(domain, n),
-                        format_versions(versions),
+                        format_versions(versions, args.changelog),
                         format_function_versions(function_versions),
                     )
                     fout.write(s)
@@ -380,7 +388,7 @@ def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-stat
                         format_name_with_domain(domain, op_type),
                     )
 
-                    s += display_schema(schema, versions)
+                    s += display_schema(schema, versions, args.changelog)
 
                     s += "\n\n"
 
@@ -404,14 +412,16 @@ def main(args: Args) -> None:  # pylint: disable=too-many-branches,too-many-stat
 
 
 if __name__ == "__main__":
-    base_dir = os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-    )
-    docs_dir = os.path.join(base_dir, "docs")
-
+    if ONNX_ML:
+        main(
+            Args(
+                "Operators-ml.md",
+                "Changelog-ml.md",
+            )
+        )
     main(
         Args(
-            os.path.join(docs_dir, "Operators" + ext),
-            os.path.join(docs_dir, "Changelog" + ext),
+            "Operators.md",
+            "Changelog.md",
         )
     )

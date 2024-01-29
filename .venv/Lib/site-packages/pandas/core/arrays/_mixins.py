@@ -13,6 +13,7 @@ import numpy as np
 
 from pandas._libs import lib
 from pandas._libs.arrays import NDArrayBacked
+from pandas._libs.tslibs import is_supported_dtype
 from pandas._typing import (
     ArrayLike,
     AxisInt,
@@ -128,17 +129,24 @@ class NDArrayBackedExtensionArray(NDArrayBacked, ExtensionArray):
         dtype = pandas_dtype(dtype)
         arr = self._ndarray
 
-        if isinstance(dtype, (PeriodDtype, DatetimeTZDtype)):
+        if isinstance(dtype, PeriodDtype):
             cls = dtype.construct_array_type()
             return cls(arr.view("i8"), dtype=dtype)
-        elif dtype == "M8[ns]":
+        elif isinstance(dtype, DatetimeTZDtype):
+            dt_cls = dtype.construct_array_type()
+            dt64_values = arr.view(f"M8[{dtype.unit}]")
+            return dt_cls._simple_new(dt64_values, dtype=dtype)
+        elif lib.is_np_dtype(dtype, "M") and is_supported_dtype(dtype):
             from pandas.core.arrays import DatetimeArray
 
-            return DatetimeArray(arr.view("i8"), dtype=dtype)
-        elif dtype == "m8[ns]":
+            dt64_values = arr.view(dtype)
+            return DatetimeArray._simple_new(dt64_values, dtype=dtype)
+
+        elif lib.is_np_dtype(dtype, "m") and is_supported_dtype(dtype):
             from pandas.core.arrays import TimedeltaArray
 
-            return TimedeltaArray(arr.view("i8"), dtype=dtype)
+            td64_values = arr.view(dtype)
+            return TimedeltaArray._simple_new(td64_values, dtype=dtype)
 
         # error: Argument "dtype" to "view" of "_ArrayOrScalarCommon" has incompatible
         # type "Union[ExtensionDtype, dtype[Any]]"; expected "Union[dtype[Any], None,
@@ -297,7 +305,12 @@ class NDArrayBackedExtensionArray(NDArrayBacked, ExtensionArray):
         func(self._ndarray.T, limit=limit, mask=mask.T)
 
     def _pad_or_backfill(
-        self, *, method: FillnaOptions, limit: int | None = None, copy: bool = True
+        self,
+        *,
+        method: FillnaOptions,
+        limit: int | None = None,
+        limit_area: Literal["inside", "outside"] | None = None,
+        copy: bool = True,
     ) -> Self:
         mask = self.isna()
         if mask.any():
@@ -307,7 +320,7 @@ class NDArrayBackedExtensionArray(NDArrayBacked, ExtensionArray):
             npvalues = self._ndarray.T
             if copy:
                 npvalues = npvalues.copy()
-            func(npvalues, limit=limit, mask=mask.T)
+            func(npvalues, limit=limit, limit_area=limit_area, mask=mask.T)
             npvalues = npvalues.T
 
             if copy:
@@ -414,6 +427,12 @@ class NDArrayBackedExtensionArray(NDArrayBacked, ExtensionArray):
         value = self._validate_setitem_value(value)
 
         res_values = np.where(mask, self._ndarray, value)
+        if res_values.dtype != self._ndarray.dtype:
+            raise AssertionError(
+                # GH#56410
+                "Something has gone wrong, please report a bug at "
+                "github.com/pandas-dev/pandas/"
+            )
         return self._from_backing_data(res_values)
 
     # ------------------------------------------------------------------------

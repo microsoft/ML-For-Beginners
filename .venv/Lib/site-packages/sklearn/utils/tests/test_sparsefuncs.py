@@ -7,7 +7,9 @@ from scipy import linalg
 
 from sklearn.datasets import make_classification
 from sklearn.utils._testing import assert_allclose
+from sklearn.utils.fixes import CSC_CONTAINERS, CSR_CONTAINERS, LIL_CONTAINERS
 from sklearn.utils.sparsefuncs import (
+    _implicit_column_offset,
     count_nonzero,
     csc_median_axis_0,
     incr_mean_variance_axis,
@@ -26,21 +28,24 @@ from sklearn.utils.sparsefuncs_fast import (
 )
 
 
-def test_mean_variance_axis0():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+@pytest.mark.parametrize("lil_container", LIL_CONTAINERS)
+def test_mean_variance_axis0(csc_container, csr_container, lil_container):
     X, _ = make_classification(5, 4, random_state=0)
     # Sparsify the array a little bit
     X[0, 0] = 0
     X[2, 1] = 0
     X[4, 3] = 0
-    X_lil = sp.lil_matrix(X)
+    X_lil = lil_container(X)
     X_lil[1, 0] = 0
     X[1, 0] = 0
 
     with pytest.raises(TypeError):
         mean_variance_axis(X_lil, axis=0)
 
-    X_csr = sp.csr_matrix(X_lil)
-    X_csc = sp.csc_matrix(X_lil)
+    X_csr = csr_container(X_lil)
+    X_csc = csc_container(X_lil)
 
     expected_dtypes = [
         (np.float32, np.float32),
@@ -61,7 +66,7 @@ def test_mean_variance_axis0():
 
 
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
-@pytest.mark.parametrize("sparse_constructor", [sp.csr_matrix, sp.csc_matrix])
+@pytest.mark.parametrize("sparse_constructor", CSC_CONTAINERS + CSR_CONTAINERS)
 def test_mean_variance_axis0_precision(dtype, sparse_constructor):
     # Check that there's no big loss of precision when the real variance is
     # exactly 0. (#19766)
@@ -80,21 +85,24 @@ def test_mean_variance_axis0_precision(dtype, sparse_constructor):
     assert var < np.finfo(dtype).eps
 
 
-def test_mean_variance_axis1():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+@pytest.mark.parametrize("lil_container", LIL_CONTAINERS)
+def test_mean_variance_axis1(csc_container, csr_container, lil_container):
     X, _ = make_classification(5, 4, random_state=0)
     # Sparsify the array a little bit
     X[0, 0] = 0
     X[2, 1] = 0
     X[4, 3] = 0
-    X_lil = sp.lil_matrix(X)
+    X_lil = lil_container(X)
     X_lil[1, 0] = 0
     X[1, 0] = 0
 
     with pytest.raises(TypeError):
         mean_variance_axis(X_lil, axis=1)
 
-    X_csr = sp.csr_matrix(X_lil)
-    X_csc = sp.csc_matrix(X_lil)
+    X_csr = csr_container(X_lil)
+    X_csc = csc_container(X_lil)
 
     expected_dtypes = [
         (np.float32, np.float32),
@@ -144,7 +152,7 @@ def test_mean_variance_axis1():
         ),
     ],
 )
-@pytest.mark.parametrize("sparse_constructor", [sp.csc_matrix, sp.csr_matrix])
+@pytest.mark.parametrize("sparse_constructor", CSC_CONTAINERS + CSR_CONTAINERS)
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
 def test_incr_mean_variance_axis_weighted_axis1(
     Xw, X, weights, sparse_constructor, dtype
@@ -241,7 +249,7 @@ def test_incr_mean_variance_axis_weighted_axis1(
         ),
     ],
 )
-@pytest.mark.parametrize("sparse_constructor", [sp.csc_matrix, sp.csr_matrix])
+@pytest.mark.parametrize("sparse_constructor", CSC_CONTAINERS + CSR_CONTAINERS)
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
 def test_incr_mean_variance_axis_weighted_axis0(
     Xw, X, weights, sparse_constructor, dtype
@@ -311,7 +319,10 @@ def test_incr_mean_variance_axis_weighted_axis0(
     assert n_incr_w1.dtype == dtype
 
 
-def test_incr_mean_variance_axis():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+@pytest.mark.parametrize("lil_container", LIL_CONTAINERS)
+def test_incr_mean_variance_axis(csc_container, csr_container, lil_container):
     for axis in [0, 1]:
         rng = np.random.RandomState(0)
         n_features = 50
@@ -330,8 +341,8 @@ def test_incr_mean_variance_axis():
         X = np.array(data_chunks[0])
         X = np.atleast_2d(X)
         X = X.T if axis == 1 else X
-        X_lil = sp.lil_matrix(X)
-        X_csr = sp.csr_matrix(X_lil)
+        X_lil = lil_container(X)
+        X_csr = csr_container(X_lil)
 
         with pytest.raises(TypeError):
             incr_mean_variance_axis(
@@ -352,7 +363,7 @@ def test_incr_mean_variance_axis():
         # X.shape[axis] picks # samples
         assert_array_equal(X.shape[axis], n_incr)
 
-        X_csc = sp.csc_matrix(X_lil)
+        X_csc = csc_container(X_lil)
         X_means, X_vars = mean_variance_axis(X_csc, axis)
         assert_array_almost_equal(X_means, X_means_incr)
         assert_array_almost_equal(X_vars, X_vars_incr)
@@ -361,9 +372,9 @@ def test_incr_mean_variance_axis():
         # Test _incremental_mean_and_var with whole data
         X = np.vstack(data_chunks)
         X = X.T if axis == 1 else X
-        X_lil = sp.lil_matrix(X)
-        X_csr = sp.csr_matrix(X_lil)
-        X_csc = sp.csc_matrix(X_lil)
+        X_lil = lil_container(X)
+        X_csr = csr_container(X_lil)
+        X_csc = csc_container(X_lil)
 
         expected_dtypes = [
             (np.float32, np.float32),
@@ -392,7 +403,7 @@ def test_incr_mean_variance_axis():
                 assert_array_equal(X.shape[axis], n_incr)
 
 
-@pytest.mark.parametrize("sparse_constructor", [sp.csc_matrix, sp.csr_matrix])
+@pytest.mark.parametrize("sparse_constructor", CSC_CONTAINERS + CSR_CONTAINERS)
 def test_incr_mean_variance_axis_dim_mismatch(sparse_constructor):
     """Check that we raise proper error when axis=1 and the dimension mismatch.
     Non-regression test for:
@@ -432,7 +443,7 @@ def test_incr_mean_variance_axis_dim_mismatch(sparse_constructor):
             sp.random(5, 2, density=0.8, format="csr", random_state=0),
             sp.hstack(
                 [
-                    sp.csr_matrix(np.full((13, 1), fill_value=np.nan)),
+                    np.full((13, 1), fill_value=np.nan),
                     sp.random(13, 1, density=0.8, random_state=42),
                 ],
                 format="csr",
@@ -440,11 +451,14 @@ def test_incr_mean_variance_axis_dim_mismatch(sparse_constructor):
         ),
     ],
 )
-def test_incr_mean_variance_axis_equivalence_mean_variance(X1, X2):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_incr_mean_variance_axis_equivalence_mean_variance(X1, X2, csr_container):
     # non-regression test for:
     # https://github.com/scikit-learn/scikit-learn/issues/16448
     # check that computing the incremental mean and variance is equivalent to
     # computing the mean and variance on the stacked dataset.
+    X1 = csr_container(X1)
+    X2 = csr_container(X2)
     axis = 0
     last_mean, last_var = np.zeros(X1.shape[1]), np.zeros(X1.shape[1])
     last_n = np.zeros(X1.shape[1], dtype=np.int64)
@@ -455,9 +469,9 @@ def test_incr_mean_variance_axis_equivalence_mean_variance(X1, X2):
         X2, axis=axis, last_mean=updated_mean, last_var=updated_var, last_n=updated_n
     )
     X = sp.vstack([X1, X2])
-    assert_allclose(updated_mean, np.nanmean(X.A, axis=axis))
-    assert_allclose(updated_var, np.nanvar(X.A, axis=axis))
-    assert_allclose(updated_n, np.count_nonzero(~np.isnan(X.A), axis=0))
+    assert_allclose(updated_mean, np.nanmean(X.toarray(), axis=axis))
+    assert_allclose(updated_var, np.nanvar(X.toarray(), axis=axis))
+    assert_allclose(updated_n, np.count_nonzero(~np.isnan(X.toarray()), axis=0))
 
 
 def test_incr_mean_variance_no_new_n():
@@ -492,7 +506,7 @@ def test_incr_mean_variance_n_float():
 
 
 @pytest.mark.parametrize("axis", [0, 1])
-@pytest.mark.parametrize("sparse_constructor", [sp.csc_matrix, sp.csr_matrix])
+@pytest.mark.parametrize("sparse_constructor", CSC_CONTAINERS + CSR_CONTAINERS)
 def test_incr_mean_variance_axis_ignore_nan(axis, sparse_constructor):
     old_means = np.array([535.0, 535.0, 535.0, 535.0])
     old_variances = np.array([4225.0, 4225.0, 4225.0, 4225.0])
@@ -540,13 +554,14 @@ def test_incr_mean_variance_axis_ignore_nan(axis, sparse_constructor):
     assert_allclose(X_nan_sample_count, X_sample_count)
 
 
-def test_mean_variance_illegal_axis():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_mean_variance_illegal_axis(csr_container):
     X, _ = make_classification(5, 4, random_state=0)
     # Sparsify the array a little bit
     X[0, 0] = 0
     X[2, 1] = 0
     X[4, 3] = 0
-    X_csr = sp.csr_matrix(X)
+    X_csr = csr_container(X)
     with pytest.raises(ValueError):
         mean_variance_axis(X_csr, axis=-3)
     with pytest.raises(ValueError):
@@ -570,9 +585,10 @@ def test_mean_variance_illegal_axis():
         )
 
 
-def test_densify_rows():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_densify_rows(csr_container):
     for dtype in (np.float32, np.float64):
-        X = sp.csr_matrix(
+        X = csr_container(
             [[0, 3, 0], [2, 4, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=dtype
         )
         X_rows = np.array([0, 2, 3], dtype=np.intp)
@@ -650,12 +666,14 @@ def test_inplace_row_scale():
         inplace_column_scale(X.tolil(), scale)
 
 
-def test_inplace_swap_row():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_inplace_swap_row(csc_container, csr_container):
     X = np.array(
         [[0, 3, 0], [2, 4, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=np.float64
     )
-    X_csr = sp.csr_matrix(X)
-    X_csc = sp.csc_matrix(X)
+    X_csr = csr_container(X)
+    X_csc = csc_container(X)
 
     swap = linalg.get_blas_funcs(("swap",), (X,))
     swap = swap[0]
@@ -678,8 +696,8 @@ def test_inplace_swap_row():
     X = np.array(
         [[0, 3, 0], [2, 4, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=np.float32
     )
-    X_csr = sp.csr_matrix(X)
-    X_csc = sp.csc_matrix(X)
+    X_csr = csr_container(X)
+    X_csc = csc_container(X)
     swap = linalg.get_blas_funcs(("swap",), (X,))
     swap = swap[0]
     X[0], X[-1] = swap(X[0], X[-1])
@@ -698,12 +716,14 @@ def test_inplace_swap_row():
         inplace_swap_row(X_csr.tolil())
 
 
-def test_inplace_swap_column():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_inplace_swap_column(csc_container, csr_container):
     X = np.array(
         [[0, 3, 0], [2, 4, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=np.float64
     )
-    X_csr = sp.csr_matrix(X)
-    X_csc = sp.csc_matrix(X)
+    X_csr = csr_container(X)
+    X_csc = csc_container(X)
 
     swap = linalg.get_blas_funcs(("swap",), (X,))
     swap = swap[0]
@@ -726,8 +746,8 @@ def test_inplace_swap_column():
     X = np.array(
         [[0, 3, 0], [2, 4, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=np.float32
     )
-    X_csr = sp.csr_matrix(X)
-    X_csc = sp.csc_matrix(X)
+    X_csr = csr_container(X)
+    X_csc = csc_container(X)
     swap = linalg.get_blas_funcs(("swap",), (X,))
     swap = swap[0]
     X[:, 0], X[:, -1] = swap(X[:, 0], X[:, -1])
@@ -748,7 +768,7 @@ def test_inplace_swap_column():
 
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
 @pytest.mark.parametrize("axis", [0, 1, None])
-@pytest.mark.parametrize("sparse_format", [sp.csr_matrix, sp.csc_matrix])
+@pytest.mark.parametrize("sparse_format", CSC_CONTAINERS + CSR_CONTAINERS)
 @pytest.mark.parametrize(
     "missing_values, min_func, max_func, ignore_nan",
     [(0, np.min, np.max, False), (np.nan, np.nanmin, np.nanmax, True)],
@@ -775,6 +795,7 @@ def test_min_max(
         dtype=dtype,
     )
     X_sparse = sparse_format(X)
+
     if large_indices:
         X_sparse.indices = X_sparse.indices.astype("int64")
         X_sparse.indptr = X_sparse.indptr.astype("int64")
@@ -784,12 +805,14 @@ def test_min_max(
     assert_array_equal(maxs_sparse, max_func(X, axis=axis))
 
 
-def test_min_max_axis_errors():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_min_max_axis_errors(csc_container, csr_container):
     X = np.array(
         [[0, 3, 0], [2, -1, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=np.float64
     )
-    X_csr = sp.csr_matrix(X)
-    X_csc = sp.csc_matrix(X)
+    X_csr = csr_container(X)
+    X_csc = csc_container(X)
     with pytest.raises(TypeError):
         min_max_axis(X_csr.tolil(), axis=0)
     with pytest.raises(ValueError):
@@ -798,12 +821,14 @@ def test_min_max_axis_errors():
         min_max_axis(X_csc, axis=-3)
 
 
-def test_count_nonzero():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_count_nonzero(csc_container, csr_container):
     X = np.array(
         [[0, 3, 0], [2, -1, 0], [0, 0, 0], [9, 8, 7], [4, 0, 5]], dtype=np.float64
     )
-    X_csr = sp.csr_matrix(X)
-    X_csc = sp.csc_matrix(X)
+    X_csr = csr_container(X)
+    X_csc = csc_container(X)
     X_nonzero = X != 0
     sample_weight = [0.5, 0.2, 0.3, 0.1, 0.1]
     X_nonzero_weighted = X_nonzero * np.array(sample_weight)[:, None]
@@ -842,14 +867,16 @@ def test_count_nonzero():
         assert "according to the rule 'safe'" in e.args[0] and np.intp().nbytes < 8, e
 
 
-def test_csc_row_median():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_csc_row_median(csc_container, csr_container):
     # Test csc_row_median actually calculates the median.
 
     # Test that it gives the same output when X is dense.
     rng = np.random.RandomState(0)
     X = rng.rand(100, 50)
     dense_median = np.median(X, axis=0)
-    csc = sp.csc_matrix(X)
+    csc = csc_container(X)
     sparse_median = csc_median_axis_0(csc)
     assert_array_equal(sparse_median, dense_median)
 
@@ -858,48 +885,52 @@ def test_csc_row_median():
     X[X < 0.7] = 0.0
     ind = rng.randint(0, 50, 10)
     X[ind] = -X[ind]
-    csc = sp.csc_matrix(X)
+    csc = csc_container(X)
     dense_median = np.median(X, axis=0)
     sparse_median = csc_median_axis_0(csc)
     assert_array_equal(sparse_median, dense_median)
 
     # Test for toy data.
     X = [[0, -2], [-1, -1], [1, 0], [2, 1]]
-    csc = sp.csc_matrix(X)
+    csc = csc_container(X)
     assert_array_equal(csc_median_axis_0(csc), np.array([0.5, -0.5]))
     X = [[0, -2], [-1, -5], [1, -3]]
-    csc = sp.csc_matrix(X)
+    csc = csc_container(X)
     assert_array_equal(csc_median_axis_0(csc), np.array([0.0, -3]))
 
     # Test that it raises an Error for non-csc matrices.
     with pytest.raises(TypeError):
-        csc_median_axis_0(sp.csr_matrix(X))
+        csc_median_axis_0(csr_container(X))
 
 
-def test_inplace_normalize():
-    ones = np.ones((10, 1))
+@pytest.mark.parametrize(
+    "inplace_csr_row_normalize",
+    (inplace_csr_row_normalize_l1, inplace_csr_row_normalize_l2),
+)
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_inplace_normalize(csr_container, inplace_csr_row_normalize):
+    if csr_container is sp.csr_matrix:
+        ones = np.ones((10, 1))
+    else:
+        ones = np.ones(10)
     rs = RandomState(10)
 
-    for inplace_csr_row_normalize in (
-        inplace_csr_row_normalize_l1,
-        inplace_csr_row_normalize_l2,
-    ):
-        for dtype in (np.float64, np.float32):
-            X = rs.randn(10, 5).astype(dtype)
-            X_csr = sp.csr_matrix(X)
-            for index_dtype in [np.int32, np.int64]:
-                # csr_matrix will use int32 indices by default,
-                # up-casting those to int64 when necessary
-                if index_dtype is np.int64:
-                    X_csr.indptr = X_csr.indptr.astype(index_dtype)
-                    X_csr.indices = X_csr.indices.astype(index_dtype)
-                assert X_csr.indices.dtype == index_dtype
-                assert X_csr.indptr.dtype == index_dtype
-                inplace_csr_row_normalize(X_csr)
-                assert X_csr.dtype == dtype
-                if inplace_csr_row_normalize is inplace_csr_row_normalize_l2:
-                    X_csr.data **= 2
-                assert_array_almost_equal(np.abs(X_csr).sum(axis=1), ones)
+    for dtype in (np.float64, np.float32):
+        X = rs.randn(10, 5).astype(dtype)
+        X_csr = csr_container(X)
+        for index_dtype in [np.int32, np.int64]:
+            # csr_matrix will use int32 indices by default,
+            # up-casting those to int64 when necessary
+            if index_dtype is np.int64:
+                X_csr.indptr = X_csr.indptr.astype(index_dtype)
+                X_csr.indices = X_csr.indices.astype(index_dtype)
+            assert X_csr.indices.dtype == index_dtype
+            assert X_csr.indptr.dtype == index_dtype
+            inplace_csr_row_normalize(X_csr)
+            assert X_csr.dtype == dtype
+            if inplace_csr_row_normalize is inplace_csr_row_normalize_l2:
+                X_csr.data **= 2
+            assert_array_almost_equal(np.abs(X_csr).sum(axis=1), ones)
 
 
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
@@ -914,3 +945,54 @@ def test_csr_row_norms(dtype):
     assert norms.dtype == dtype
     rtol = 1e-6 if dtype == np.float32 else 1e-7
     assert_allclose(norms, scipy_norms, rtol=rtol)
+
+
+@pytest.fixture(scope="module", params=CSR_CONTAINERS + CSC_CONTAINERS)
+def centered_matrices(request):
+    """Returns equivalent tuple[sp.linalg.LinearOperator, np.ndarray]."""
+    sparse_container = request.param
+
+    random_state = np.random.default_rng(42)
+
+    X_sparse = sparse_container(
+        sp.random(500, 100, density=0.1, format="csr", random_state=random_state)
+    )
+    X_dense = X_sparse.toarray()
+    mu = np.asarray(X_sparse.mean(axis=0)).ravel()
+
+    X_sparse_centered = _implicit_column_offset(X_sparse, mu)
+    X_dense_centered = X_dense - mu
+
+    return X_sparse_centered, X_dense_centered
+
+
+def test_implicit_center_matmat(global_random_seed, centered_matrices):
+    X_sparse_centered, X_dense_centered = centered_matrices
+    rng = np.random.default_rng(global_random_seed)
+    Y = rng.standard_normal((X_dense_centered.shape[1], 50))
+    assert_allclose(X_dense_centered @ Y, X_sparse_centered.matmat(Y))
+    assert_allclose(X_dense_centered @ Y, X_sparse_centered @ Y)
+
+
+def test_implicit_center_matvec(global_random_seed, centered_matrices):
+    X_sparse_centered, X_dense_centered = centered_matrices
+    rng = np.random.default_rng(global_random_seed)
+    y = rng.standard_normal(X_dense_centered.shape[1])
+    assert_allclose(X_dense_centered @ y, X_sparse_centered.matvec(y))
+    assert_allclose(X_dense_centered @ y, X_sparse_centered @ y)
+
+
+def test_implicit_center_rmatmat(global_random_seed, centered_matrices):
+    X_sparse_centered, X_dense_centered = centered_matrices
+    rng = np.random.default_rng(global_random_seed)
+    Y = rng.standard_normal((X_dense_centered.shape[0], 50))
+    assert_allclose(X_dense_centered.T @ Y, X_sparse_centered.rmatmat(Y))
+    assert_allclose(X_dense_centered.T @ Y, X_sparse_centered.T @ Y)
+
+
+def test_implit_center_rmatvec(global_random_seed, centered_matrices):
+    X_sparse_centered, X_dense_centered = centered_matrices
+    rng = np.random.default_rng(global_random_seed)
+    y = rng.standard_normal(X_dense_centered.shape[0])
+    assert_allclose(X_dense_centered.T @ y, X_sparse_centered.rmatvec(y))
+    assert_allclose(X_dense_centered.T @ y, X_sparse_centered.T @ y)

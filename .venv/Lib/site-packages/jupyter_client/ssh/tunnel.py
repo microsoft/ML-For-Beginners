@@ -5,6 +5,8 @@ zeromq connections.
 # Copyright (C) 2011- PyZMQ Developers
 #
 # Redistributed from IPython under the terms of the BSD License.
+from __future__ import annotations
+
 import atexit
 import os
 import re
@@ -14,6 +16,7 @@ import sys
 import warnings
 from getpass import getpass, getuser
 from multiprocessing import Process
+from typing import Any, cast
 
 try:
     with warnings.catch_warnings():
@@ -24,19 +27,19 @@ try:
 except ImportError:
     paramiko = None  # type:ignore[assignment]
 
-    class SSHException(Exception):  # type: ignore  # noqa
+    class SSHException(Exception):  # type:ignore[no-redef]  # noqa
         pass
 
 else:
     from .forward import forward_tunnel
 
 try:
-    import pexpect  # type: ignore
+    import pexpect  # type: ignore[import-untyped]
 except ImportError:
     pexpect = None
 
 
-def select_random_ports(n):
+def select_random_ports(n: int) -> list[int]:
     """Select and return n random ports that are available."""
     ports = []
     sockets = []
@@ -53,10 +56,10 @@ def select_random_ports(n):
 # -----------------------------------------------------------------------------
 # Check for passwordless login
 # -----------------------------------------------------------------------------
-_password_pat = re.compile((br"pass(word|phrase):"), re.IGNORECASE)
+_password_pat = re.compile((rb"pass(word|phrase):"), re.IGNORECASE)
 
 
-def try_passwordless_ssh(server, keyfile, paramiko=None):
+def try_passwordless_ssh(server: str, keyfile: str | None, paramiko: Any = None) -> Any:
     """Attempt to make an ssh connection without a password.
     This is mainly used for requiring password input only once
     when many tunnels may be connected to the same server.
@@ -69,7 +72,7 @@ def try_passwordless_ssh(server, keyfile, paramiko=None):
     return f(server, keyfile)
 
 
-def _try_passwordless_openssh(server, keyfile):
+def _try_passwordless_openssh(server: str, keyfile: str | None) -> bool:
     """Try passwordless login with shell ssh command."""
     if pexpect is None:
         msg = "pexpect unavailable, use paramiko"
@@ -99,10 +102,10 @@ def _try_passwordless_openssh(server, keyfile):
             return False
 
 
-def _try_passwordless_paramiko(server, keyfile):
+def _try_passwordless_paramiko(server: str, keyfile: str | None) -> bool:
     """Try passwordless login with paramiko."""
     if paramiko is None:
-        msg = "Paramiko unavailable, "
+        msg = "Paramiko unavailable, "  # type:ignore[unreachable]
         if sys.platform == "win32":
             msg += "Paramiko is required for ssh tunneled connections on Windows."
         else:
@@ -121,7 +124,15 @@ def _try_passwordless_paramiko(server, keyfile):
         return True
 
 
-def tunnel_connection(socket, addr, server, keyfile=None, password=None, paramiko=None, timeout=60):
+def tunnel_connection(
+    socket: socket.socket,
+    addr: str,
+    server: str,
+    keyfile: str | None = None,
+    password: str | None = None,
+    paramiko: Any = None,
+    timeout: int = 60,
+) -> int:
     """Connect a socket to an address via an ssh tunnel.
 
     This is a wrapper for socket.connect(addr), when addr is not accessible
@@ -142,7 +153,14 @@ def tunnel_connection(socket, addr, server, keyfile=None, password=None, paramik
     return tunnel
 
 
-def open_tunnel(addr, server, keyfile=None, password=None, paramiko=None, timeout=60):
+def open_tunnel(
+    addr: str,
+    server: str,
+    keyfile: str | None = None,
+    password: str | None = None,
+    paramiko: Any = None,
+    timeout: int = 60,
+) -> tuple[str, int]:
     """Open a tunneled connection from a 0MQ url.
 
     For use inside tunnel_connection.
@@ -157,25 +175,31 @@ def open_tunnel(addr, server, keyfile=None, password=None, paramiko=None, timeou
     lport = select_random_ports(1)[0]
     _, addr = addr.split("://")
     ip, rport = addr.split(":")
-    rport = int(rport)
+    rport_int = int(rport)
     paramiko = sys.platform == "win32" if paramiko is None else paramiko_tunnel
     tunnelf = paramiko_tunnel if paramiko else openssh_tunnel
 
     tunnel = tunnelf(
         lport,
-        rport,
+        rport_int,
         server,
         remoteip=ip,
         keyfile=keyfile,
         password=password,
         timeout=timeout,
     )
-    return "tcp://127.0.0.1:%i" % lport, tunnel
+    return "tcp://127.0.0.1:%i" % lport, cast(int, tunnel)
 
 
 def openssh_tunnel(
-    lport, rport, server, remoteip="127.0.0.1", keyfile=None, password=None, timeout=60
-):
+    lport: int,
+    rport: int,
+    server: str,
+    remoteip: str = "127.0.0.1",
+    keyfile: str | None = None,
+    password: str | None | bool = None,
+    timeout: int = 60,
+) -> int:
     """Create an ssh tunnel using command-line ssh that connects port lport
     on this machine to localhost:rport on server.  The tunnel
     will automatically close when not in use, remaining open
@@ -277,26 +301,32 @@ def openssh_tunnel(
             failed = True
 
 
-def _stop_tunnel(cmd):
+def _stop_tunnel(cmd: Any) -> None:
     pexpect.run(cmd)
 
 
-def _split_server(server):
+def _split_server(server: str) -> tuple[str, str, int]:
     if "@" in server:
         username, server = server.split("@", 1)
     else:
         username = getuser()
     if ":" in server:
-        server, port = server.split(":")
-        port = int(port)
+        server, port_str = server.split(":")
+        port = int(port_str)
     else:
         port = 22
     return username, server, port
 
 
 def paramiko_tunnel(
-    lport, rport, server, remoteip="127.0.0.1", keyfile=None, password=None, timeout=60
-):
+    lport: int,
+    rport: int,
+    server: str,
+    remoteip: str = "127.0.0.1",
+    keyfile: str | None = None,
+    password: str | None = None,
+    timeout: float = 60,
+) -> Process:
     """launch a tunner with paramiko in a subprocess. This should only be used
     when shell ssh is unavailable (e.g. Windows).
 
@@ -337,7 +367,7 @@ def paramiko_tunnel(
 
     """
     if paramiko is None:
-        msg = "Paramiko not available"
+        msg = "Paramiko not available"  # type:ignore[unreachable]
         raise ImportError(msg)
 
     if password is None and not _try_passwordless_paramiko(server, keyfile):
@@ -353,7 +383,14 @@ def paramiko_tunnel(
     return p
 
 
-def _paramiko_tunnel(lport, rport, server, remoteip, keyfile=None, password=None):
+def _paramiko_tunnel(
+    lport: int,
+    rport: int,
+    server: str,
+    remoteip: str,
+    keyfile: str | None = None,
+    password: str | None = None,
+) -> None:
     """Function for actually starting a paramiko tunnel, to be passed
     to multiprocessing.Process(target=this), and not called directly.
     """

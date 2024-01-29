@@ -8,6 +8,7 @@
 
 #pragma once
 #include <limits>
+#include <memory>
 
 namespace ONNX_NAMESPACE {
 namespace version_conversion {

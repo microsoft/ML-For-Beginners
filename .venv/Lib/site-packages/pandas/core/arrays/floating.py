@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import ClassVar
+
 import numpy as np
 
 from pandas.core.dtypes.base import register_extension_dtype
@@ -54,8 +56,6 @@ class FloatingDtype(NumericDtype):
 class FloatingArray(NumericArray):
     """
     Array of floating (optional missing) values.
-
-    .. versionadded:: 1.2.0
 
     .. warning::
 
@@ -156,14 +156,14 @@ Float64Dtype()
 @register_extension_dtype
 class Float32Dtype(FloatingDtype):
     type = np.float32
-    name = "Float32"
+    name: ClassVar[str] = "Float32"
     __doc__ = _dtype_docstring.format(dtype="float32")
 
 
 @register_extension_dtype
 class Float64Dtype(FloatingDtype):
     type = np.float64
-    name = "Float64"
+    name: ClassVar[str] = "Float64"
     __doc__ = _dtype_docstring.format(dtype="float64")
 
 

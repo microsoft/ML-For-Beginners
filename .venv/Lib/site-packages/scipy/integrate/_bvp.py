@@ -1014,8 +1014,8 @@ def solve_bvp(fun, bc, x, y, p=None, S=None, fun_jac=None, bc_jac=None,
     if y.ndim != 2:
         raise ValueError("`y` must be 2 dimensional.")
     if y.shape[1] != x.shape[0]:
-        raise ValueError("`y` is expected to have {} columns, but actually "
-                         "has {}.".format(x.shape[0], y.shape[1]))
+        raise ValueError(f"`y` is expected to have {x.shape[0]} columns, but actually "
+                         f"has {y.shape[1]}.")
 
     if p is None:
         p = np.array([])
@@ -1025,7 +1025,7 @@ def solve_bvp(fun, bc, x, y, p=None, S=None, fun_jac=None, bc_jac=None,
         raise ValueError("`p` must be 1 dimensional.")
 
     if tol < 100 * EPS:
-        warn(f"`tol` is too low, setting to {100 * EPS:.2e}")
+        warn(f"`tol` is too low, setting to {100 * EPS:.2e}", stacklevel=2)
         tol = 100 * EPS
 
     if verbose not in [0, 1, 2]:
@@ -1037,8 +1037,8 @@ def solve_bvp(fun, bc, x, y, p=None, S=None, fun_jac=None, bc_jac=None,
     if S is not None:
         S = np.asarray(S, dtype=dtype)
         if S.shape != (n, n):
-            raise ValueError("`S` is expected to have shape {}, "
-                             "but actually has {}".format((n, n), S.shape))
+            raise ValueError(f"`S` is expected to have shape {(n, n)}, "
+                             f"but actually has {S.shape}")
 
         # Compute I - S^+ S to impose necessary boundary conditions.
         B = np.identity(n) - np.dot(pinv(S), S)
@@ -1062,13 +1062,13 @@ def solve_bvp(fun, bc, x, y, p=None, S=None, fun_jac=None, bc_jac=None,
 
     f = fun_wrapped(x, y, p)
     if f.shape != y.shape:
-        raise ValueError("`fun` return is expected to have shape {}, "
-                         "but actually has {}.".format(y.shape, f.shape))
+        raise ValueError(f"`fun` return is expected to have shape {y.shape}, "
+                         f"but actually has {f.shape}.")
 
     bc_res = bc_wrapped(y[:, 0], y[:, -1], p)
     if bc_res.shape != (n + k,):
-        raise ValueError("`bc` return is expected to have shape {}, "
-                         "but actually has {}.".format((n + k,), bc_res.shape))
+        raise ValueError(f"`bc` return is expected to have shape {(n + k,)}, "
+                         f"but actually has {bc_res.shape}.")
 
     status = 0
     iteration = 0
@@ -1129,27 +1129,23 @@ def solve_bvp(fun, bc, x, y, p=None, S=None, fun_jac=None, bc_jac=None,
 
     if verbose > 0:
         if status == 0:
-            print("Solved in {} iterations, number of nodes {}. \n"
-                  "Maximum relative residual: {:.2e} \n"
-                  "Maximum boundary residual: {:.2e}"
-                  .format(iteration, x.shape[0], max_rms_res, max_bc_res))
+            print(f"Solved in {iteration} iterations, number of nodes {x.shape[0]}. \n"
+                  f"Maximum relative residual: {max_rms_res:.2e} \n"
+                  f"Maximum boundary residual: {max_bc_res:.2e}")
         elif status == 1:
-            print("Number of nodes is exceeded after iteration {}. \n"
-                  "Maximum relative residual: {:.2e} \n"
-                  "Maximum boundary residual: {:.2e}"
-                  .format(iteration, max_rms_res, max_bc_res))
+            print(f"Number of nodes is exceeded after iteration {iteration}. \n"
+                  f"Maximum relative residual: {max_rms_res:.2e} \n"
+                  f"Maximum boundary residual: {max_bc_res:.2e}")
         elif status == 2:
             print("Singular Jacobian encountered when solving the collocation "
-                  "system on iteration {}. \n"
-                  "Maximum relative residual: {:.2e} \n"
-                  "Maximum boundary residual: {:.2e}"
-                  .format(iteration, max_rms_res, max_bc_res))
+                  f"system on iteration {iteration}. \n"
+                  f"Maximum relative residual: {max_rms_res:.2e} \n"
+                  f"Maximum boundary residual: {max_bc_res:.2e}")
         elif status == 3:
             print("The solver was unable to satisfy boundary conditions "
-                  "tolerance on iteration {}. \n"
-                  "Maximum relative residual: {:.2e} \n"
-                  "Maximum boundary residual: {:.2e}"
-                  .format(iteration, max_rms_res, max_bc_res))
+                  f"tolerance on iteration {iteration}. \n"
+                  f"Maximum relative residual: {max_rms_res:.2e} \n"
+                  f"Maximum boundary residual: {max_bc_res:.2e}")
 
     if p.size == 0:
         p = None

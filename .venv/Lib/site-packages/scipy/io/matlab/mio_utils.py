@@ -2,9 +2,7 @@
 # Use the `scipy.io.matlab` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _mio_utils
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = ['squeeze_element', 'chars_to_strings']  # noqa: F822
 
@@ -14,13 +12,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.matlab.mio_utils is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.matlab instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.matlab` namespace, "
-                  "the `scipy.io.matlab.mio_utils` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_mio_utils, name)
+    return _sub_module_deprecation(sub_package="io.matlab", module="mio_utils",
+                                   private_modules=["_mio_utils"], all=__all__,
+                                   attribute=name)

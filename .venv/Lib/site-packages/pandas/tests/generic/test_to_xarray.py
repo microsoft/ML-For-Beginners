@@ -18,18 +18,18 @@ class TestDataFrameToXArray:
     def df(self):
         return DataFrame(
             {
-                "a": list("abc"),
-                "b": list(range(1, 4)),
-                "c": np.arange(3, 6).astype("u1"),
-                "d": np.arange(4.0, 7.0, dtype="float64"),
-                "e": [True, False, True],
-                "f": Categorical(list("abc")),
-                "g": date_range("20130101", periods=3),
-                "h": date_range("20130101", periods=3, tz="US/Eastern"),
+                "a": list("abcd"),
+                "b": list(range(1, 5)),
+                "c": np.arange(3, 7).astype("u1"),
+                "d": np.arange(4.0, 8.0, dtype="float64"),
+                "e": [True, False, True, False],
+                "f": Categorical(list("abcd")),
+                "g": date_range("20130101", periods=4),
+                "h": date_range("20130101", periods=4, tz="US/Eastern"),
             }
         )
 
-    def test_to_xarray_index_types(self, index_flat, df):
+    def test_to_xarray_index_types(self, index_flat, df, using_infer_string):
         index = index_flat
         # MultiIndex is tested in test_to_xarray_with_multiindex
         if len(index) == 0:
@@ -37,11 +37,11 @@ class TestDataFrameToXArray:
 
         from xarray import Dataset
 
-        df.index = index[:3]
+        df.index = index[:4]
         df.index.name = "foo"
         df.columns.name = "bar"
         result = df.to_xarray()
-        assert result.dims["foo"] == 3
+        assert result.sizes["foo"] == 4
         assert len(result.coords) == 1
         assert len(result.data_vars) == 8
         tm.assert_almost_equal(list(result.coords.keys()), ["foo"])
@@ -51,7 +51,9 @@ class TestDataFrameToXArray:
         # datetimes w/tz are preserved
         # column names are lost
         expected = df.copy()
-        expected["f"] = expected["f"].astype(object)
+        expected["f"] = expected["f"].astype(
+            object if not using_infer_string else "string[pyarrow_numpy]"
+        )
         expected.columns.name = None
         tm.assert_frame_equal(result.to_dataframe(), expected)
 
@@ -60,17 +62,17 @@ class TestDataFrameToXArray:
 
         df.index.name = "foo"
         result = df[0:0].to_xarray()
-        assert result.dims["foo"] == 0
+        assert result.sizes["foo"] == 0
         assert isinstance(result, Dataset)
 
-    def test_to_xarray_with_multiindex(self, df):
+    def test_to_xarray_with_multiindex(self, df, using_infer_string):
         from xarray import Dataset
 
         # MultiIndex
-        df.index = MultiIndex.from_product([["a"], range(3)], names=["one", "two"])
+        df.index = MultiIndex.from_product([["a"], range(4)], names=["one", "two"])
         result = df.to_xarray()
-        assert result.dims["one"] == 1
-        assert result.dims["two"] == 3
+        assert result.sizes["one"] == 1
+        assert result.sizes["two"] == 4
         assert len(result.coords) == 2
         assert len(result.data_vars) == 8
         tm.assert_almost_equal(list(result.coords.keys()), ["one", "two"])
@@ -78,7 +80,9 @@ class TestDataFrameToXArray:
 
         result = result.to_dataframe()
         expected = df.copy()
-        expected["f"] = expected["f"].astype(object)
+        expected["f"] = expected["f"].astype(
+            object if not using_infer_string else "string[pyarrow_numpy]"
+        )
         expected.columns.name = None
         tm.assert_frame_equal(result, expected)
 

@@ -179,6 +179,7 @@ class CMakeLexer(RegexLexer):
             (r'(\$<)(.+?)(>)', bygroups(Operator, Name.Variable, Operator)),
             (r'(?s)".*?"', String.Double),
             (r'\\\S+', String),
+            (r'\[(?P<level>=*)\[[\w\W]*?\](?P=level)\]', String.Multiline),
             (r'[^)$"# \t\n]+', String),
             (r'\n', Whitespace),  # explicitly legal
             include('keywords'),

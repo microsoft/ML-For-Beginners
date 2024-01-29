@@ -70,11 +70,11 @@ class TestTZLocalize:
             ["foo", "invalid"],
         ],
     )
-    def test_tz_localize_nonexistent(self, warsaw, method, exp):
+    def test_tz_localize_nonexistent(self, warsaw, method, exp, unit):
         # GH 8917
         tz = warsaw
         n = 60
-        dti = date_range(start="2015-03-29 02:00:00", periods=n, freq="min")
+        dti = date_range(start="2015-03-29 02:00:00", periods=n, freq="min", unit=unit)
         ser = Series(1, index=dti)
         df = ser.to_frame()
 
@@ -101,7 +101,7 @@ class TestTZLocalize:
 
         else:
             result = ser.tz_localize(tz, nonexistent=method)
-            expected = Series(1, index=DatetimeIndex([exp] * n, tz=tz))
+            expected = Series(1, index=DatetimeIndex([exp] * n, tz=tz).as_unit(unit))
             tm.assert_series_equal(result, expected)
 
             result = df.tz_localize(tz, nonexistent=method)

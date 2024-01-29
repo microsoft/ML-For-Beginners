@@ -221,8 +221,8 @@ def decorator(caller, _func=None):
     if inspect.isclass(caller):
         name = caller.__name__.lower()
         callerfunc = get_init(caller)
-        doc = 'decorator({}) converts functions/generators into ' \
-            'factories of {} objects'.format(caller.__name__, caller.__name__)
+        doc = (f'decorator({caller.__name__}) converts functions/generators into ' 
+               f'factories of {caller.__name__} objects')
     elif inspect.isfunction(caller):
         if caller.__name__ == '<lambda>':
             name = '_lambda_'

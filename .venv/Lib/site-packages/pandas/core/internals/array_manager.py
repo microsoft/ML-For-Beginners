@@ -68,6 +68,7 @@ from pandas.core.indexes.api import (
     Index,
     ensure_index,
 )
+from pandas.core.indexes.base import get_values_for_csv
 from pandas.core.internals.base import (
     DataManager,
     SingleDataManager,
@@ -81,7 +82,6 @@ from pandas.core.internals.blocks import (
     extract_pandas_array,
     maybe_coerce_values,
     new_block,
-    to_native_types,
 )
 from pandas.core.internals.managers import make_na_array
 
@@ -309,7 +309,7 @@ class BaseArrayManager(DataManager):
 
         return type(self)(result_arrays, self._axes)
 
-    def setitem(self, indexer, value) -> Self:
+    def setitem(self, indexer, value, warn: bool = True) -> Self:
         return self.apply_with_block("setitem", indexer=indexer, value=value)
 
     def diff(self, n: int) -> Self:
@@ -343,8 +343,17 @@ class BaseArrayManager(DataManager):
 
         return self.apply(_convert)
 
-    def to_native_types(self, **kwargs) -> Self:
-        return self.apply(to_native_types, **kwargs)
+    def get_values_for_csv(
+        self, *, float_format, date_format, decimal, na_rep: str = "nan", quoting=None
+    ) -> Self:
+        return self.apply(
+            get_values_for_csv,
+            na_rep=na_rep,
+            quoting=quoting,
+            float_format=float_format,
+            date_format=date_format,
+            decimal=decimal,
+        )
 
     @property
     def any_extension_types(self) -> bool:
@@ -1103,7 +1112,7 @@ class SingleArrayManager(BaseArrayManager, SingleDataManager):
     def _normalize_axis(axis):
         return axis
 
-    def make_empty(self, axes=None) -> SingleArrayManager:
+    def make_empty(self, axes=None) -> Self:
         """Return an empty ArrayManager with index/array of length 0"""
         if axes is None:
             axes = [Index([], dtype=object)]
@@ -1178,7 +1187,7 @@ class SingleArrayManager(BaseArrayManager, SingleDataManager):
             new_array = getattr(self.array, func)(**kwargs)
         return type(self)([new_array], self._axes)
 
-    def setitem(self, indexer, value) -> SingleArrayManager:
+    def setitem(self, indexer, value, warn: bool = True) -> SingleArrayManager:
         """
         Set values with indexer.
 

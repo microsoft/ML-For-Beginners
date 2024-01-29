@@ -13,6 +13,7 @@ from tornado.httputil import (
 from tornado.escape import utf8, native_str
 from tornado.log import gen_log
 from tornado.testing import ExpectLog
+from tornado.test.util import ignore_deprecation
 
 import copy
 import datetime
@@ -412,8 +413,29 @@ class FormatTimestampTest(unittest.TestCase):
         self.assertEqual(9, len(tup))
         self.check(tup)
 
-    def test_datetime(self):
-        self.check(datetime.datetime.utcfromtimestamp(self.TIMESTAMP))
+    def test_utc_naive_datetime(self):
+        self.check(
+            datetime.datetime.fromtimestamp(
+                self.TIMESTAMP, datetime.timezone.utc
+            ).replace(tzinfo=None)
+        )
+
+    def test_utc_naive_datetime_deprecated(self):
+        with ignore_deprecation():
+            self.check(datetime.datetime.utcfromtimestamp(self.TIMESTAMP))
+
+    def test_utc_aware_datetime(self):
+        self.check(
+            datetime.datetime.fromtimestamp(self.TIMESTAMP, datetime.timezone.utc)
+        )
+
+    def test_other_aware_datetime(self):
+        # Other timezones are ignored; the timezone is always printed as GMT
+        self.check(
+            datetime.datetime.fromtimestamp(
+                self.TIMESTAMP, datetime.timezone(datetime.timedelta(hours=-4))
+            )
+        )
 
 
 # HTTPServerRequest is mainly tested incidentally to the server itself,

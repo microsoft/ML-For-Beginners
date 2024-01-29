@@ -1799,7 +1799,7 @@ class AutoRegResults(tsa_model.TimeSeriesModelResults):
         --------
         >>> import pandas as pd
         >>> from statsmodels.tsa.ar_model import AutoReg
-        >>> index = pd.period_range(start='2000', periods=3, freq='A')
+        >>> index = pd.period_range(start='2000', periods=3, freq='Y')
         >>> original_observations = pd.Series([1.2, 1.5, 1.8], index=index)
         >>> mod = AutoReg(original_observations, lags=1, trend="n")
         >>> res = mod.fit()
@@ -1814,7 +1814,7 @@ class AutoRegResults(tsa_model.TimeSeriesModelResults):
         2003    2.195122
         Freq: A-DEC, dtype: float64
 
-        >>> new_index = pd.period_range(start='1980', periods=3, freq='A')
+        >>> new_index = pd.period_range(start='1980', periods=3, freq='Y')
         >>> new_observations = pd.Series([1.4, 0.3, 1.2], index=new_index)
         >>> new_res = res.apply(new_observations)
         >>> print(new_res.params)
@@ -1940,7 +1940,7 @@ class AutoRegResults(tsa_model.TimeSeriesModelResults):
         --------
         >>> import pandas as pd
         >>> from statsmodels.tsa.ar_model import AutoReg
-        >>> index = pd.period_range(start='2000', periods=3, freq='A')
+        >>> index = pd.period_range(start='2000', periods=3, freq='Y')
         >>> original_observations = pd.Series([1.2, 1.4, 1.8], index=index)
         >>> mod = AutoReg(original_observations, lags=1, trend="n")
         >>> res = mod.fit()
@@ -1955,7 +1955,7 @@ class AutoRegResults(tsa_model.TimeSeriesModelResults):
         2003    2.223529
         Freq: A-DEC, dtype: float64
 
-        >>> new_index = pd.period_range(start='2003', periods=3, freq='A')
+        >>> new_index = pd.period_range(start='2003', periods=3, freq='Y')
         >>> new_observations = pd.Series([2.1, 2.4, 2.7], index=new_index)
         >>> updated_res = res.append(new_observations)
         >>> print(updated_res.params)

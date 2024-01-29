@@ -1,17 +1,13 @@
-#!/usr/bin/env python3
 """
 
 Rules for building C/API module with f2py2e.
 
-Copyright 1999,2000 Pearu Peterson all rights reserved,
-Pearu Peterson <pearu@ioc.ee>
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
 Permission to use, modify, and distribute this software is given under the
 terms of the NumPy License.
 
 NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
-$Date: 2004/11/26 11:13:06 $
-Pearu Peterson
-
 """
 import copy
 
@@ -21,6 +17,7 @@ from .auxfuncs import (
     issubroutine, issubroutine_wrap, outmess, show
 )
 
+from ._isocbind import isoc_kindmap
 
 def var2fixfortran(vars, a, fa=None, f90mode=None):
     if fa is None:
@@ -70,6 +67,13 @@ def var2fixfortran(vars, a, fa=None, f90mode=None):
         vardef = '%s(%s)' % (vardef, ','.join(vars[a]['dimension']))
     return vardef
 
+def useiso_c_binding(rout):
+    useisoc = False
+    for key, value in rout['vars'].items():
+        kind_value = value.get('kindselector', {}).get('kind')
+        if kind_value in isoc_kindmap:
+            return True
+    return useisoc
 
 def createfuncwrapper(rout, signature=0):
     assert isfunction(rout)
@@ -117,6 +121,7 @@ def createfuncwrapper(rout, signature=0):
     l1 = l_tmpl.replace('@@@NAME@@@', newname)
     rl = None
 
+    useisoc = useiso_c_binding(rout)
     sargs = ', '.join(args)
     if f90mode:
         # gh-23598 fix warning
@@ -129,8 +134,12 @@ def createfuncwrapper(rout, signature=0):
             (rout['modulename'], name, sargs))
         if not signature:
             add('use %s, only : %s' % (rout['modulename'], fortranname))
+        if useisoc:
+            add('use iso_c_binding')
     else:
         add('subroutine f2pywrap%s (%s)' % (name, sargs))
+        if useisoc:
+            add('use iso_c_binding')
         if not need_interface:
             add('external %s' % (fortranname))
             rl = l_tmpl.replace('@@@NAME@@@', '') + ' ' + fortranname
@@ -218,14 +227,19 @@ def createsubrwrapper(rout, signature=0):
 
     args = rout['args']
 
+    useisoc = useiso_c_binding(rout)
     sargs = ', '.join(args)
     if f90mode:
         add('subroutine f2pywrap_%s_%s (%s)' %
             (rout['modulename'], name, sargs))
+        if useisoc:
+            add('use iso_c_binding')
         if not signature:
             add('use %s, only : %s' % (rout['modulename'], fortranname))
     else:
         add('subroutine f2pywrap%s (%s)' % (name, sargs))
+        if useisoc:
+            add('use iso_c_binding')
         if not need_interface:
             add('external %s' % (fortranname))
 

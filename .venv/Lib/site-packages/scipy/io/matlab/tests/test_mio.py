@@ -34,6 +34,8 @@ from scipy.io.matlab._mio5 import (
     MatFile5Writer, MatFile5Reader, varmats_from_mat, to_writeable,
     EmptyStructMarker)
 import scipy.io.matlab._mio5_params as mio5p
+from scipy._lib._util import VisibleDeprecationWarning
+
 
 test_data_path = pjoin(dirname(__file__), 'data')
 
@@ -258,8 +260,7 @@ def _check_level(label, expected, actual):
         return
     # Check types are as expected
     assert_(types_compatible(expected, actual),
-            "Expected type %s, got %s at %s" %
-            (type(expected), type(actual), label))
+            f"Expected type {type(expected)}, got {type(actual)} at {label}")
     # A field in a record array may not be an ndarray
     # A scalar from a record array will be type np.void
     if not isinstance(expected,
@@ -268,9 +269,7 @@ def _check_level(label, expected, actual):
         return
     # This is an ndarray-like thing
     assert_(expected.shape == actual.shape,
-            msg='Expected shape {}, got {} at {}'.format(expected.shape,
-                                                     actual.shape,
-                                                     label))
+            msg=f'Expected shape {expected.shape}, got {actual.shape} at {label}')
     ex_dtype = expected.dtype
     if ex_dtype.hasobject:  # array of objects
         if isinstance(expected, MatlabObject):
@@ -286,7 +285,7 @@ def _check_level(label, expected, actual):
                          expected[fn], actual[fn])
         return
     if ex_dtype.type in (str,  # string or bool
-                         np.unicode_,
+                         np.str_,
                          np.bool_):
         assert_equal(actual, expected, err_msg=label)
         return
@@ -917,9 +916,11 @@ def test_write_opposite_endian():
     int_arr = np.arange(6).reshape((2, 3))
     uni_arr = np.array(['hello', 'world'], dtype='U')
     stream = BytesIO()
-    savemat(stream, {'floats': float_arr.byteswap().newbyteorder(),
-                            'ints': int_arr.byteswap().newbyteorder(),
-                            'uni_arr': uni_arr.byteswap().newbyteorder()})
+    savemat(stream, {
+        'floats': float_arr.byteswap().view(float_arr.dtype.newbyteorder()),
+        'ints': int_arr.byteswap().view(int_arr.dtype.newbyteorder()),
+        'uni_arr': uni_arr.byteswap().view(uni_arr.dtype.newbyteorder()),
+    })
     rdr = MatFile5Reader(stream)
     d = rdr.get_variables()
     assert_array_equal(d['floats'], float_arr)
@@ -1300,11 +1301,11 @@ def test_deprecation():
     """Test that access to previous attributes still works."""
     # This should be accessible immediately from scipy.io import
     with assert_warns(DeprecationWarning):
-        scipy.io.matlab.mio5_params.MatlabOpaque  # noqa
+        scipy.io.matlab.mio5_params.MatlabOpaque
 
     # These should be importable but warn as well
     with assert_warns(DeprecationWarning):
-        from scipy.io.matlab.miobase import MatReadError  # noqa
+        from scipy.io.matlab.miobase import MatReadError  # noqa: F401
 
 
 def test_gh_17992(tmp_path):
@@ -1315,7 +1316,7 @@ def test_gh_17992(tmp_path):
     list_of_arrays = [array_one, array_two]
     # warning suppression only needed for NumPy < 1.24.0
     with np.testing.suppress_warnings() as sup:
-        sup.filter(np.VisibleDeprecationWarning)
+        sup.filter(VisibleDeprecationWarning)
         savemat(outfile,
                 {'data': list_of_arrays},
                 long_field_names=True,

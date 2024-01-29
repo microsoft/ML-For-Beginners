@@ -92,7 +92,7 @@ class TestSortValues:
         tm.assert_numpy_array_equal(indexer, np.array([2, 1, 0], dtype=np.intp))
         check_freq_ascending(ordered, idx, False)
 
-    @pytest.mark.parametrize("freq", ["D", "H"])
+    @pytest.mark.parametrize("freq", ["D", "h"])
     def test_sort_values_with_freq_timedeltaindex(self, freq):
         # GH#10295
         idx = timedelta_range(start=f"1{freq}", periods=3, freq=freq).rename("idx")
@@ -107,7 +107,7 @@ class TestSortValues:
             ),
             DatetimeIndex(
                 ["2011-01-01 09:00", "2011-01-01 10:00", "2011-01-01 11:00"],
-                freq="H",
+                freq="h",
                 name="tzidx",
                 tz="Asia/Tokyo",
             ),
@@ -127,7 +127,7 @@ class TestSortValues:
     @pytest.mark.parametrize(
         "idx",
         [
-            PeriodIndex(["2011", "2012", "2013"], name="pidx", freq="A"),
+            PeriodIndex(["2011", "2012", "2013"], name="pidx", freq="Y"),
             Index([2011, 2012, 2013], name="idx"),  # for compatibility check
         ],
     )
@@ -275,10 +275,10 @@ class TestSortValues:
             ),
             (
                 PeriodIndex(
-                    ["2011", "2013", "2015", "2012", "2011"], name="pidx", freq="A"
+                    ["2011", "2013", "2015", "2012", "2011"], name="pidx", freq="Y"
                 ),
                 PeriodIndex(
-                    ["2011", "2011", "2012", "2013", "2015"], name="pidx", freq="A"
+                    ["2011", "2011", "2012", "2013", "2015"], name="pidx", freq="Y"
                 ),
             ),
             (
@@ -308,7 +308,7 @@ class TestSortValues:
 
 def test_order_stability_compat():
     # GH#35922. sort_values is stable both for normal and datetime-like Index
-    pidx = PeriodIndex(["2011", "2013", "2015", "2012", "2011"], name="pidx", freq="A")
+    pidx = PeriodIndex(["2011", "2013", "2015", "2012", "2011"], name="pidx", freq="Y")
     iidx = Index([2011, 2013, 2015, 2012, 2011], name="idx")
     ordered1, indexer1 = pidx.sort_values(return_indexer=True, ascending=False)
     ordered2, indexer2 = iidx.sort_values(return_indexer=True, ascending=False)

@@ -38,6 +38,7 @@ from ..utils import (
 from ..utils._encode import _encode, _unique
 from ..utils._param_validation import Interval, StrOptions, validate_params
 from ..utils.extmath import stable_cumsum
+from ..utils.fixes import trapezoid
 from ..utils.multiclass import type_of_target
 from ..utils.sparsefuncs import count_nonzero
 from ..utils.validation import _check_pos_label_consistency, _check_sample_weight
@@ -104,9 +105,9 @@ def auc(x, y):
         else:
             raise ValueError("x is neither increasing nor decreasing : {}.".format(x))
 
-    area = direction * np.trapz(y, x)
+    area = direction * trapezoid(y, x)
     if isinstance(area, np.memmap):
-        # Reductions such as .sum used internally in np.trapz do not return a
+        # Reductions such as .sum used internally in trapezoid do not return a
         # scalar by default for numpy.memmap instances contrary to
         # regular numpy.ndarray instances.
         area = area.dtype.type(area)
@@ -313,7 +314,7 @@ def det_curve(y_true, y_score, pos_label=None, sample_weight=None):
     fpr : ndarray of shape (n_thresholds,)
         False positive rate (FPR) such that element i is the false positive
         rate of predictions with score >= thresholds[i]. This is occasionally
-        referred to as false acceptance propability or fall-out.
+        referred to as false acceptance probability or fall-out.
 
     fnr : ndarray of shape (n_thresholds,)
         False negative rate (FNR) such that element i is the false negative
@@ -1718,9 +1719,6 @@ def ndcg_score(y_true, y_score, *, k=None, sample_weight=None, ignore_ties=False
         to be ranked. Negative values in `y_true` may result in an output
         that is not between 0 and 1.
 
-        .. versionchanged:: 1.2
-            These negative values are deprecated, and will raise an error in v1.4.
-
     y_score : array-like of shape (n_samples, n_labels)
         Target scores, can either be probability estimates, confidence values,
         or non-thresholded measure of decisions (as returned by
@@ -1802,15 +1800,7 @@ def ndcg_score(y_true, y_score, *, k=None, sample_weight=None, ignore_ties=False
     check_consistent_length(y_true, y_score, sample_weight)
 
     if y_true.min() < 0:
-        # TODO(1.4): Replace warning w/ ValueError
-        warnings.warn(
-            (
-                "ndcg_score should not be used on negative y_true values. ndcg_score"
-                " will raise a ValueError on negative y_true values starting from"
-                " version 1.4."
-            ),
-            FutureWarning,
-        )
+        raise ValueError("ndcg_score should not be used on negative y_true values.")
     if y_true.ndim > 1 and y_true.shape[1] <= 1:
         raise ValueError(
             "Computing NDCG is only meaningful when there is more than 1 document. "

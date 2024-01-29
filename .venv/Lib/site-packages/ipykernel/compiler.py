@@ -45,7 +45,7 @@ def murmur2_x86(data, seed):
     return h
 
 
-convert_to_long_pathname = lambda filename: filename  # noqa
+convert_to_long_pathname = lambda filename: filename
 
 if sys.platform == "win32":
     try:
@@ -80,8 +80,7 @@ def get_tmp_directory():
 
 def get_tmp_hash_seed():
     """Get a temp hash seed."""
-    hash_seed = 0xC70F6907
-    return hash_seed
+    return 0xC70F6907
 
 
 def get_file_name(code):

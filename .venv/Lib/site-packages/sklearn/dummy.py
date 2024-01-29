@@ -227,7 +227,7 @@ class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
                         "The constant target value must be present in "
                         "the training data. You provided constant={}. "
                         "Possible values are: {}.".format(
-                            self.constant, list(self.classes_[k])
+                            self.constant, self.classes_[k].tolist()
                         )
                     )
                     raise ValueError(err_msg)

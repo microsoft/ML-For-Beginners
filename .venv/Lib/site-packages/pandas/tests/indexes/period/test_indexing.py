@@ -174,8 +174,8 @@ class TestGetItem:
     @pytest.mark.arm_slow
     def test_getitem_seconds(self):
         # GH#6716
-        didx = date_range(start="2013/01/01 09:00:00", freq="S", periods=4000)
-        pidx = period_range(start="2013/01/01 09:00:00", freq="S", periods=4000)
+        didx = date_range(start="2013/01/01 09:00:00", freq="s", periods=4000)
+        pidx = period_range(start="2013/01/01 09:00:00", freq="s", periods=4000)
 
         for idx in [didx, pidx]:
             # getitem against index should raise ValueError
@@ -183,7 +183,7 @@ class TestGetItem:
                 "2014",
                 "2013/02",
                 "2013/01/02",
-                "2013/02/01 9H",
+                "2013/02/01 9h",
                 "2013/02/01 09:00",
             ]
             for val in values:
@@ -195,7 +195,7 @@ class TestGetItem:
 
             ser = Series(np.random.default_rng(2).random(len(idx)), index=idx)
             tm.assert_series_equal(ser["2013/01/01 10:00"], ser[3600:3660])
-            tm.assert_series_equal(ser["2013/01/01 9H"], ser[:3600])
+            tm.assert_series_equal(ser["2013/01/01 9h"], ser[:3600])
             for d in ["2013/01/01", "2013/01", "2013"]:
                 tm.assert_series_equal(ser[d], ser)
 
@@ -215,7 +215,7 @@ class TestGetItem:
             "2014",
             "2013/02",
             "2013/01/02",
-            "2013/02/01 9H",
+            "2013/02/01 9h",
             "2013/02/01 09:00",
         ]
         for val in values:
@@ -230,7 +230,7 @@ class TestGetItem:
         tm.assert_series_equal(ser["2013/02"], ser[31:59])
         tm.assert_series_equal(ser["2014"], ser[365:])
 
-        invalid = ["2013/02/01 9H", "2013/02/01 09:00"]
+        invalid = ["2013/02/01 9h", "2013/02/01 09:00"]
         for val in invalid:
             with pytest.raises(KeyError, match=val):
                 ser[val]
@@ -238,9 +238,9 @@ class TestGetItem:
 
 class TestGetLoc:
     def test_get_loc_msg(self):
-        idx = period_range("2000-1-1", freq="A", periods=10)
-        bad_period = Period("2012", "A")
-        with pytest.raises(KeyError, match=r"^Period\('2012', 'A-DEC'\)$"):
+        idx = period_range("2000-1-1", freq="Y", periods=10)
+        bad_period = Period("2012", "Y")
+        with pytest.raises(KeyError, match=r"^Period\('2012', 'Y-DEC'\)$"):
             idx.get_loc(bad_period)
 
         try:
@@ -479,13 +479,13 @@ class TestGetIndexer:
 
     # TODO: This method came from test_period; de-dup with version above
     def test_get_indexer2(self):
-        idx = period_range("2000-01-01", periods=3).asfreq("H", how="start")
+        idx = period_range("2000-01-01", periods=3).asfreq("h", how="start")
         tm.assert_numpy_array_equal(
             idx.get_indexer(idx), np.array([0, 1, 2], dtype=np.intp)
         )
 
         target = PeriodIndex(
-            ["1999-12-31T23", "2000-01-01T12", "2000-01-02T01"], freq="H"
+            ["1999-12-31T23", "2000-01-01T12", "2000-01-02T01"], freq="h"
         )
         tm.assert_numpy_array_equal(
             idx.get_indexer(target, "pad"), np.array([-1, 0, 1], dtype=np.intp)
@@ -501,7 +501,7 @@ class TestGetIndexer:
             np.array([0, -1, 1], dtype=np.intp),
         )
 
-        msg = "Input has different freq=None from PeriodArray\\(freq=H\\)"
+        msg = "Input has different freq=None from PeriodArray\\(freq=h\\)"
         with pytest.raises(ValueError, match=msg):
             idx.get_indexer(target, "nearest", tolerance="1 minute")
 
@@ -579,7 +579,7 @@ class TestWhere:
         result = pi.where(mask, tdi)
         tm.assert_index_equal(result, expected)
 
-        dti = i2.to_timestamp("S")
+        dti = i2.to_timestamp("s")
         expected = pd.Index([dti[0], dti[1]] + tail, dtype=object)
         assert expected[0] is NaT
         result = pi.where(mask, dti)
@@ -714,7 +714,7 @@ class TestTake:
 
 
 class TestGetValue:
-    @pytest.mark.parametrize("freq", ["H", "D"])
+    @pytest.mark.parametrize("freq", ["h", "D"])
     def test_get_value_datetime_hourly(self, freq):
         # get_loc and get_value should treat datetime objects symmetrically
         # TODO: this test used to test get_value, which is removed in 2.0.
@@ -730,7 +730,7 @@ class TestGetValue:
         assert ser.loc[ts] == 7
 
         ts2 = ts + Timedelta(hours=3)
-        if freq == "H":
+        if freq == "h":
             with pytest.raises(KeyError, match="2016-01-01 03:00"):
                 pi.get_loc(ts2)
             with pytest.raises(KeyError, match="2016-01-01 03:00"):
@@ -795,7 +795,7 @@ class TestAsOfLocs:
     def test_asof_locs_mismatched_type(self):
         dti = date_range("2016-01-01", periods=3)
         pi = dti.to_period("D")
-        pi2 = dti.to_period("H")
+        pi2 = dti.to_period("h")
 
         mask = np.array([0, 1, 0], dtype=bool)
 
@@ -810,6 +810,6 @@ class TestAsOfLocs:
             # TimedeltaIndex
             pi.asof_locs(dti - dti, mask)
 
-        msg = "Input has different freq=H"
+        msg = "Input has different freq=h"
         with pytest.raises(libperiod.IncompatibleFrequency, match=msg):
             pi.asof_locs(pi2, mask)

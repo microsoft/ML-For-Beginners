@@ -1,9 +1,11 @@
+from pathlib import Path
+
 import pytest
 
 
 @pytest.fixture
-def xml_data_path(tests_io_data_path, datapath):
-    return tests_io_data_path / "xml"
+def xml_data_path():
+    return Path(__file__).parent.parent / "data" / "xml"
 
 
 @pytest.fixture

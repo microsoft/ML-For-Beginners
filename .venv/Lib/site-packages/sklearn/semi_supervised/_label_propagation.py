@@ -61,7 +61,6 @@ from numbers import Integral, Real
 
 import numpy as np
 from scipy import sparse
-from scipy.sparse import csgraph
 
 from ..base import BaseEstimator, ClassifierMixin, _fit_context
 from ..exceptions import ConvergenceWarning
@@ -69,6 +68,7 @@ from ..metrics.pairwise import rbf_kernel
 from ..neighbors import NearestNeighbors
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import safe_sparse_dot
+from ..utils.fixes import laplacian as csgraph_laplacian
 from ..utils.multiclass import check_classification_targets
 from ..utils.validation import check_is_fitted
 
@@ -294,7 +294,7 @@ class BaseLabelPropagation(ClassifierMixin, BaseEstimator, metaclass=ABCMeta):
         l_previous = np.zeros((self.X_.shape[0], n_classes))
 
         unlabeled = unlabeled[:, np.newaxis]
-        if sparse.isspmatrix(graph_matrix):
+        if sparse.issparse(graph_matrix):
             graph_matrix = graph_matrix.tocsr()
 
         for self.n_iter_ in range(self.max_iter):
@@ -397,7 +397,6 @@ class LabelPropagation(BaseLabelPropagation):
 
     See Also
     --------
-    BaseLabelPropagation : Base class for label propagation module.
     LabelSpreading : Alternate label propagation strategy more robust to noise.
 
     References
@@ -456,7 +455,7 @@ class LabelPropagation(BaseLabelPropagation):
             self.nn_fit = None
         affinity_matrix = self._get_kernel(self.X_)
         normalizer = affinity_matrix.sum(axis=0)
-        if sparse.isspmatrix(affinity_matrix):
+        if sparse.issparse(affinity_matrix):
             affinity_matrix.data /= np.diag(np.array(normalizer))
         else:
             affinity_matrix /= normalizer[:, np.newaxis]
@@ -614,9 +613,9 @@ class LabelSpreading(BaseLabelPropagation):
             self.nn_fit = None
         n_samples = self.X_.shape[0]
         affinity_matrix = self._get_kernel(self.X_)
-        laplacian = csgraph.laplacian(affinity_matrix, normed=True)
+        laplacian = csgraph_laplacian(affinity_matrix, normed=True)
         laplacian = -laplacian
-        if sparse.isspmatrix(laplacian):
+        if sparse.issparse(laplacian):
             diag_mask = laplacian.row == laplacian.col
             laplacian.data[diag_mask] = 0.0
         else:

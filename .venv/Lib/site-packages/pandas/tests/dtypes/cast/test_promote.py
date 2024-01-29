@@ -229,24 +229,24 @@ def test_maybe_promote_float_with_int(float_numpy_dtype, any_int_numpy_dtype):
     [
         # float filled with float
         ("float32", 1, "float32"),
-        ("float32", np.finfo("float32").max * 1.1, "float64"),
+        ("float32", float(np.finfo("float32").max) * 1.1, "float64"),
         ("float64", 1, "float64"),
-        ("float64", np.finfo("float32").max * 1.1, "float64"),
+        ("float64", float(np.finfo("float32").max) * 1.1, "float64"),
         # complex filled with float
         ("complex64", 1, "complex64"),
-        ("complex64", np.finfo("float32").max * 1.1, "complex128"),
+        ("complex64", float(np.finfo("float32").max) * 1.1, "complex128"),
         ("complex128", 1, "complex128"),
-        ("complex128", np.finfo("float32").max * 1.1, "complex128"),
+        ("complex128", float(np.finfo("float32").max) * 1.1, "complex128"),
         # float filled with complex
         ("float32", 1 + 1j, "complex64"),
-        ("float32", np.finfo("float32").max * (1.1 + 1j), "complex128"),
+        ("float32", float(np.finfo("float32").max) * (1.1 + 1j), "complex128"),
         ("float64", 1 + 1j, "complex128"),
-        ("float64", np.finfo("float32").max * (1.1 + 1j), "complex128"),
+        ("float64", float(np.finfo("float32").max) * (1.1 + 1j), "complex128"),
         # complex filled with complex
         ("complex64", 1 + 1j, "complex64"),
-        ("complex64", np.finfo("float32").max * (1.1 + 1j), "complex128"),
+        ("complex64", float(np.finfo("float32").max) * (1.1 + 1j), "complex128"),
         ("complex128", 1 + 1j, "complex128"),
-        ("complex128", np.finfo("float32").max * (1.1 + 1j), "complex128"),
+        ("complex128", float(np.finfo("float32").max) * (1.1 + 1j), "complex128"),
     ],
 )
 def test_maybe_promote_float_with_float(dtype, fill_value, expected_dtype):

@@ -41,19 +41,16 @@ else:
 # pandas.
 have_pandas_categorical = (have_pandas and hasattr(pandas, "Categorical"))
 if not have_pandas:
-    have_pandas_categorical_dtype = False
     _pandas_is_categorical_dtype = None
 else:
-    if hasattr(pandas, "api"):
-        # This is available starting in pandas v0.19.0
-        have_pandas_categorical_dtype = True
-        _pandas_is_categorical_dtype = pandas.api.types.is_categorical_dtype
-    else:
-        # This is needed for pandas v0.18.0 and earlier
+    if hasattr(pandas, "CategoricalDtype"):  # pandas >= 0.25
+        _pandas_is_categorical_dtype = lambda x: isinstance(getattr(x, "dtype", x), pandas.CategoricalDtype)
+    elif hasattr(pandas, "api"):  # pandas >= 0.19
+        _pandas_is_categorical_dtype = getattr(pandas.api.types, "is_categorical_dtype", None)
+    else:  # pandas <=0.18
         _pandas_is_categorical_dtype = getattr(pandas.core.common,
                                                "is_categorical_dtype", None)
-        have_pandas_categorical_dtype = (_pandas_is_categorical_dtype
-                                         is not None)
+have_pandas_categorical_dtype = _pandas_is_categorical_dtype is not None
 
 
 # Passes through Series and DataFrames, call np.asarray() on everything else

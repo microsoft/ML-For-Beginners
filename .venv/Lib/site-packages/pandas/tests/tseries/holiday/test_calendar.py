@@ -57,8 +57,11 @@ def test_calendar_caching():
     jan2 = TestCalendar(rules=[Holiday("jan2", year=2015, month=1, day=2)])
 
     # Getting holidays for Jan 1 should not alter results for Jan 2.
-    tm.assert_index_equal(jan1.holidays(), DatetimeIndex(["01-Jan-2015"]))
-    tm.assert_index_equal(jan2.holidays(), DatetimeIndex(["02-Jan-2015"]))
+    expected = DatetimeIndex(["01-Jan-2015"]).as_unit("ns")
+    tm.assert_index_equal(jan1.holidays(), expected)
+
+    expected2 = DatetimeIndex(["02-Jan-2015"]).as_unit("ns")
+    tm.assert_index_equal(jan2.holidays(), expected2)
 
 
 def test_calendar_observance_dates():

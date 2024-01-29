@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221
+
 
 import numpy as np
 
@@ -27,14 +27,14 @@ class _CommonRandom(OpRun):
         if dtype_first and numpy_type is not None:
             if dtype != 0:  # type: ignore
                 return numpy_type
-            if len(data) > 0:
+            if data:
                 return data[0].dtype
             raise RuntimeError(
                 f"dtype cannot be None for a random operator {_CommonRandom.__name__!r}, "
                 f"numpy_type={numpy_type}, len(data)={len(data)}."
             )
         res = None
-        if len(data) == 0:
+        if not data:
             res = numpy_type
         elif numpy_type is not None:
             res = numpy_type

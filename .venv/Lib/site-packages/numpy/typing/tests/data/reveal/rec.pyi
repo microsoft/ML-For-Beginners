@@ -1,8 +1,14 @@
 import io
+import sys
 from typing import Any
 
 import numpy as np
 import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 AR_i8: npt.NDArray[np.int64]
 REC_AR_V: np.recarray[Any, np.dtype[np.record]]
@@ -12,117 +18,150 @@ format_parser: np.format_parser
 record: np.record
 file_obj: io.BufferedIOBase
 
-reveal_type(np.format_parser(  # E: format_parser
+assert_type(np.format_parser(
     formats=[np.float64, np.int64, np.bool_],
     names=["f8", "i8", "?"],
     titles=None,
     aligned=True,
-))
-reveal_type(format_parser.dtype)  # E: dtype[void]
+), np.format_parser)
+assert_type(format_parser.dtype, np.dtype[np.void])
 
-reveal_type(record.field_a)  # E: Any
-reveal_type(record.field_b)  # E: Any
-reveal_type(record["field_a"])  # E: Any
-reveal_type(record["field_b"])  # E: Any
-reveal_type(record.pprint())  # E: str
+assert_type(record.field_a, Any)
+assert_type(record.field_b, Any)
+assert_type(record["field_a"], Any)
+assert_type(record["field_b"], Any)
+assert_type(record.pprint(), str)
 record.field_c = 5
 
-reveal_type(REC_AR_V.field(0))  # E: Any
-reveal_type(REC_AR_V.field("field_a"))  # E: Any
-reveal_type(REC_AR_V.field(0, AR_i8))  # E: None
-reveal_type(REC_AR_V.field("field_a", AR_i8))  # E: None
-reveal_type(REC_AR_V["field_a"])  # E: Any
-reveal_type(REC_AR_V.field_a)  # E: Any
-reveal_type(REC_AR_V.__array_finalize__(object()))  # E: None
+assert_type(REC_AR_V.field(0), Any)
+assert_type(REC_AR_V.field("field_a"), Any)
+assert_type(REC_AR_V.field(0, AR_i8), None)
+assert_type(REC_AR_V.field("field_a", AR_i8), None)
+assert_type(REC_AR_V["field_a"], npt.NDArray[Any])
+assert_type(REC_AR_V.field_a, Any)
+assert_type(REC_AR_V.__array_finalize__(object()), None)
 
-reveal_type(np.recarray(  # recarray[Any, dtype[record]]
-    shape=(10, 5),
-    formats=[np.float64, np.int64, np.bool_],
-    order="K",
-    byteorder="|",
-))
-reveal_type(np.recarray(  # recarray[Any, dtype[Any]]
-    shape=(10, 5),
-    dtype=[("f8", np.float64), ("i8", np.int64)],
-    strides=(5, 5),
-))
+assert_type(
+    np.recarray(
+        shape=(10, 5),
+        formats=[np.float64, np.int64, np.bool_],
+        order="K",
+        byteorder="|",
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
 
-reveal_type(np.rec.fromarrays(  # recarray[Any, dtype[record]]
-    AR_LIST,
-))
-reveal_type(np.rec.fromarrays(  # recarray[Any, dtype[Any]]
-    AR_LIST,
-    dtype=np.int64,
-))
-reveal_type(np.rec.fromarrays(  # recarray[Any, dtype[Any]]
-    AR_LIST,
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"]
-))
+assert_type(
+    np.recarray(
+        shape=(10, 5),
+        dtype=[("f8", np.float64), ("i8", np.int64)],
+        strides=(5, 5),
+    ),
+    np.recarray[Any, np.dtype[Any]],
+)
 
-reveal_type(np.rec.fromrecords(  # recarray[Any, dtype[record]]
-    (1, 1.5),
-))
-reveal_type(np.rec.fromrecords(  # recarray[Any, dtype[record]]
-    [(1, 1.5)],
-    dtype=[("i8", np.int64), ("f8", np.float64)],
-))
-reveal_type(np.rec.fromrecords(  # recarray[Any, dtype[record]]
-    REC_AR_V,
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"]
-))
+assert_type(np.rec.fromarrays(AR_LIST), np.recarray[Any, np.dtype[Any]])
+assert_type(
+    np.rec.fromarrays(AR_LIST, dtype=np.int64),
+    np.recarray[Any, np.dtype[Any]],
+)
+assert_type(
+    np.rec.fromarrays(
+        AR_LIST,
+        formats=[np.int64, np.float64],
+        names=["i8", "f8"]
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
 
-reveal_type(np.rec.fromstring(  # recarray[Any, dtype[record]]
-    b"(1, 1.5)",
-    dtype=[("i8", np.int64), ("f8", np.float64)],
-))
-reveal_type(np.rec.fromstring(  # recarray[Any, dtype[record]]
-    REC_AR_V,
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"]
-))
+assert_type(np.rec.fromrecords((1, 1.5)), np.recarray[Any, np.dtype[np.record]])
+assert_type(
+    np.rec.fromrecords(
+        [(1, 1.5)],
+        dtype=[("i8", np.int64), ("f8", np.float64)],
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
+assert_type(
+    np.rec.fromrecords(
+        REC_AR_V,
+        formats=[np.int64, np.float64],
+        names=["i8", "f8"]
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
 
-reveal_type(np.rec.fromfile(  # recarray[Any, dtype[Any]]
+assert_type(
+    np.rec.fromstring(
+        b"(1, 1.5)",
+        dtype=[("i8", np.int64), ("f8", np.float64)],
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
+assert_type(
+    np.rec.fromstring(
+        REC_AR_V,
+        formats=[np.int64, np.float64],
+        names=["i8", "f8"]
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
+
+assert_type(np.rec.fromfile(
     "test_file.txt",
     dtype=[("i8", np.int64), ("f8", np.float64)],
-))
-reveal_type(np.rec.fromfile(  # recarray[Any, dtype[record]]
-    file_obj,
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"]
-))
+), np.recarray[Any, np.dtype[Any]])
 
-reveal_type(np.rec.array(  # recarray[Any, dtype[{int64}]]
-    AR_i8,
-))
-reveal_type(np.rec.array(  # recarray[Any, dtype[Any]]
-    [(1, 1.5)],
-    dtype=[("i8", np.int64), ("f8", np.float64)],
-))
-reveal_type(np.rec.array(  # recarray[Any, dtype[record]]
-    [(1, 1.5)],
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"]
-))
+assert_type(
+    np.rec.fromfile(
+        file_obj,
+        formats=[np.int64, np.float64],
+        names=["i8", "f8"]
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
 
-reveal_type(np.rec.array(  # recarray[Any, dtype[Any]]
-    None,
-    dtype=np.float64,
-    shape=(10, 3),
-))
-reveal_type(np.rec.array(  # recarray[Any, dtype[Any]]
-    None,
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"],
-    shape=(10, 3),
-))
-reveal_type(np.rec.array(  # recarray[Any, dtype[Any]]
-    file_obj,
-    dtype=np.float64,
-))
-reveal_type(np.rec.array(  # recarray[Any, dtype[Any]]
-    file_obj,
-    formats=[np.int64, np.float64],
-    names=["i8", "f8"],
-))
+assert_type(np.rec.array(AR_i8), np.recarray[Any, np.dtype[np.int64]])
+
+assert_type(
+    np.rec.array([(1, 1.5)], dtype=[("i8", np.int64), ("f8", np.float64)]),
+    np.recarray[Any, np.dtype[Any]],
+)
+
+assert_type(
+    np.rec.array(
+        [(1, 1.5)],
+        formats=[np.int64, np.float64],
+        names=["i8", "f8"]
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
+
+assert_type(
+    np.rec.array(
+        None,
+        dtype=np.float64,
+        shape=(10, 3),
+    ),
+    np.recarray[Any, np.dtype[Any]],
+)
+
+assert_type(
+    np.rec.array(
+        None,
+        formats=[np.int64, np.float64],
+        names=["i8", "f8"],
+        shape=(10, 3),
+    ),
+    np.recarray[Any, np.dtype[np.record]],
+)
+
+assert_type(
+    np.rec.array(file_obj, dtype=np.float64),
+    np.recarray[Any, np.dtype[Any]],
+)
+
+assert_type(
+    np.rec.array(file_obj, formats=[np.int64, np.float64], names=["i8", "f8"]),
+    np.recarray[Any, np.dtype[np.record]],
+)

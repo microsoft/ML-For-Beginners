@@ -15,6 +15,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import struct
 
@@ -58,7 +59,7 @@ class McIdasImageFile(ImageFile.ImageFile):
             msg = "unsupported McIdas format"
             raise SyntaxError(msg)
 
-        self.mode = mode
+        self._mode = mode
         self._size = w[10], w[9]
 
         offset = w[34] + w[15]

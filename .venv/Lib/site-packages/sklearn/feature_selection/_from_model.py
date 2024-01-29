@@ -10,6 +10,12 @@ from ..base import BaseEstimator, MetaEstimatorMixin, _fit_context, clone
 from ..exceptions import NotFittedError
 from ..utils._param_validation import HasMethods, Interval, Options
 from ..utils._tags import _safe_tags
+from ..utils.metadata_routing import (
+    MetadataRouter,
+    MethodMapping,
+    _routing_enabled,
+    process_routing,
+)
 from ..utils.metaestimators import available_if
 from ..utils.validation import _num_features, check_is_fitted, check_scalar
 from ._base import SelectorMixin, _get_feature_importances
@@ -205,9 +211,9 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
     >>> y = [0, 1, 0, 1]
     >>> selector = SelectFromModel(estimator=LogisticRegression()).fit(X, y)
     >>> selector.estimator_.coef_
-    array([[-0.3252302 ,  0.83462377,  0.49750423]])
+    array([[-0.3252...,  0.8345...,  0.4976...]])
     >>> selector.threshold_
-    0.55245...
+    0.55249...
     >>> selector.get_support()
     array([False,  True, False])
     >>> selector.transform(X)
@@ -335,7 +341,19 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
             classification, real numbers in regression).
 
         **fit_params : dict
-            Other estimator specific parameters.
+            - If `enable_metadata_routing=False` (default):
+
+                Parameters directly passed to the `partial_fit` method of the
+                sub-estimator. They are ignored if `prefit=True`.
+
+            - If `enable_metadata_routing=True`:
+
+                Parameters safely routed to the `partial_fit` method of the
+                sub-estimator. They are ignored if `prefit=True`.
+
+                .. versionchanged:: 1.4
+                    See :ref:`Metadata Routing User Guide <metadata_routing>` for
+                    more details.
 
         Returns
         -------
@@ -354,8 +372,14 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
                 ) from exc
             self.estimator_ = deepcopy(self.estimator)
         else:
-            self.estimator_ = clone(self.estimator)
-            self.estimator_.fit(X, y, **fit_params)
+            if _routing_enabled():
+                routed_params = process_routing(self, "fit", **fit_params)
+                self.estimator_ = clone(self.estimator)
+                self.estimator_.fit(X, y, **routed_params.estimator.fit)
+            else:
+                # TODO(SLEP6): remove when metadata routing cannot be disabled.
+                self.estimator_ = clone(self.estimator)
+                self.estimator_.fit(X, y, **fit_params)
 
         if hasattr(self.estimator_, "feature_names_in_"):
             self.feature_names_in_ = self.estimator_.feature_names_in_
@@ -380,7 +404,7 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
         # SelectFromModel.estimator is not validated yet
         prefer_skip_nested_validation=False
     )
-    def partial_fit(self, X, y=None, **fit_params):
+    def partial_fit(self, X, y=None, **partial_fit_params):
         """Fit the SelectFromModel meta-transformer only once.
 
         Parameters
@@ -392,8 +416,24 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
             The target values (integers that correspond to classes in
             classification, real numbers in regression).
 
-        **fit_params : dict
-            Other estimator specific parameters.
+        **partial_fit_params : dict
+            - If `enable_metadata_routing=False` (default):
+
+                Parameters directly passed to the `partial_fit` method of the
+                sub-estimator.
+
+            - If `enable_metadata_routing=True`:
+
+                Parameters passed to the `partial_fit` method of the
+                sub-estimator. They are ignored if `prefit=True`.
+
+                .. versionchanged:: 1.4
+                    `**partial_fit_params` are routed to the sub-estimator, if
+                    `enable_metadata_routing=True` is set via
+                    :func:`~sklearn.set_config`, which allows for aliasing.
+
+                See :ref:`Metadata Routing User Guide <metadata_routing>` for
+                more details.
 
         Returns
         -------
@@ -419,7 +459,13 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
 
         if first_call:
             self.estimator_ = clone(self.estimator)
-        self.estimator_.partial_fit(X, y, **fit_params)
+        if _routing_enabled():
+            routed_params = process_routing(self, "partial_fit", **partial_fit_params)
+            self.estimator_ = clone(self.estimator)
+            self.estimator_.partial_fit(X, y, **routed_params.estimator.partial_fit)
+        else:
+            # TODO(SLEP6): remove when metadata routing cannot be disabled.
+            self.estimator_.partial_fit(X, y, **partial_fit_params)
 
         if hasattr(self.estimator_, "feature_names_in_"):
             self.feature_names_in_ = self.estimator_.feature_names_in_
@@ -443,6 +489,28 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
             ) from nfe
 
         return self.estimator_.n_features_in_
+
+    def get_metadata_routing(self):
+        """Get metadata routing of this object.
+
+        Please check :ref:`User Guide <metadata_routing>` on how the routing
+        mechanism works.
+
+        .. versionadded:: 1.4
+
+        Returns
+        -------
+        routing : MetadataRouter
+            A :class:`~sklearn.utils.metadata_routing.MetadataRouter` encapsulating
+            routing information.
+        """
+        router = MetadataRouter(owner=self.__class__.__name__).add(
+            estimator=self.estimator,
+            method_mapping=MethodMapping()
+            .add(callee="partial_fit", caller="partial_fit")
+            .add(callee="fit", caller="fit"),
+        )
+        return router
 
     def _more_tags(self):
         return {"allow_nan": _safe_tags(self.estimator, key="allow_nan")}

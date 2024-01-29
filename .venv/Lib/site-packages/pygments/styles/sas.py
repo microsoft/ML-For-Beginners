@@ -15,6 +15,9 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Other, Whitespace, Generic
 
 
+__all__ = ['SasStyle']
+
+
 class SasStyle(Style):
     """
     Style inspired by SAS' enhanced program editor. Note This is not
@@ -22,6 +25,8 @@ class SasStyle(Style):
     program editor syntax highlighting.
     """
 
+    name = 'sas'
+    
     styles = {
         Whitespace:            '#bbbbbb',
         Comment:               'italic #008800',

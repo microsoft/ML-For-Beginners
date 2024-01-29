@@ -162,7 +162,7 @@ class TraceableCountVectorizer(CountVectorizer, NGramsMixin):
         self.same_ = same
         if self.stop_words != same.stop_words:
             raise AssertionError(
-                f"Different stop_words {self.stop_words} " f"!= {same.stop_words}."
+                f"Different stop_words {self.stop_words} != {same.stop_words}."
             )
         update, dups = self._fix_vocabulary(same.vocabulary_, self.vocabulary_)
         self.updated_vocabulary_ = update
@@ -228,7 +228,7 @@ class TraceableTfidfVectorizer(TfidfVectorizer, NGramsMixin):
         self.same_ = same
         if self.stop_words != same.stop_words:
             raise AssertionError(
-                f"Different stop_words {self.stop_words} " f"!= {same.stop_words}."
+                f"Different stop_words {self.stop_words} != {same.stop_words}."
             )
         update, dups = self._fix_vocabulary(same.vocabulary_, self.vocabulary_)
         self.updated_vocabulary_ = update

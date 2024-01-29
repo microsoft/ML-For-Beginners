@@ -303,11 +303,11 @@ def test_chunksize_fails():
     gc.set_foreground('r')
 
     gc.set_hatch('/')
-    with pytest.raises(OverflowError, match='can not split hatched path'):
+    with pytest.raises(OverflowError, match='cannot split hatched path'):
         ra.draw_path(gc, path, IdentityTransform())
     gc.set_hatch(None)
 
-    with pytest.raises(OverflowError, match='can not split filled path'):
+    with pytest.raises(OverflowError, match='cannot split filled path'):
         ra.draw_path(gc, path, IdentityTransform(), (1, 0, 0))
 
     # Set to zero to disable, currently defaults to 0, but let's be sure.

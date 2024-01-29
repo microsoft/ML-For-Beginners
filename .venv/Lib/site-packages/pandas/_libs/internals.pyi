@@ -15,7 +15,6 @@ from pandas._typing import (
 )
 
 from pandas import Index
-from pandas.core.arrays._mixins import NDArrayBackedExtensionArray
 from pandas.core.internals.blocks import Block as B
 
 def slice_len(slc: slice, objlen: int = ...) -> int: ...
@@ -60,7 +59,7 @@ class BlockPlacement:
     def append(self, others: list[BlockPlacement]) -> BlockPlacement: ...
     def tile_for_unstack(self, factor: int) -> npt.NDArray[np.intp]: ...
 
-class SharedBlock:
+class Block:
     _mgr_locs: BlockPlacement
     ndim: int
     values: ArrayLike
@@ -72,18 +71,7 @@ class SharedBlock:
         ndim: int,
         refs: BlockValuesRefs | None = ...,
     ) -> None: ...
-
-class NumpyBlock(SharedBlock):
-    values: np.ndarray
-    @final
     def slice_block_rows(self, slicer: slice) -> Self: ...
-
-class NDArrayBackedBlock(SharedBlock):
-    values: NDArrayBackedExtensionArray
-    @final
-    def slice_block_rows(self, slicer: slice) -> Self: ...
-
-class Block(SharedBlock): ...
 
 class BlockManager:
     blocks: tuple[B, ...]
@@ -100,7 +88,7 @@ class BlockManager:
 
 class BlockValuesRefs:
     referenced_blocks: list[weakref.ref]
-    def __init__(self, blk: SharedBlock | None = ...) -> None: ...
-    def add_reference(self, blk: SharedBlock) -> None: ...
+    def __init__(self, blk: Block | None = ...) -> None: ...
+    def add_reference(self, blk: Block) -> None: ...
     def add_index_reference(self, index: Index) -> None: ...
     def has_reference(self) -> bool: ...

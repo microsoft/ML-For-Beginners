@@ -30,7 +30,10 @@ from scipy.optimize._root_scalar import ROOT_SCALAR_METHODS
 from scipy.optimize._qap import QUADRATIC_ASSIGNMENT_METHODS
 from scipy.optimize._differentiable_functions import ScalarFunction, FD_METHODS
 from scipy.optimize._optimize import MemoizeJac, show_options, OptimizeResult
+from scipy.optimize import rosen, rosen_der, rosen_hess
 
+from scipy.sparse import (coo_matrix, csc_matrix, csr_matrix, coo_array,
+                          csr_array, csc_array)
 
 def test_check_grad():
     # Verify if check_grad is able to estimate the derivative of the
@@ -210,7 +213,40 @@ class CheckOptimizeParameterized(CheckOptimize):
                         [[0, -5.25060743e-01, 4.87748473e-01],
                          [0, -5.24885582e-01, 4.87530347e-01]],
                         atol=1e-14, rtol=1e-7)
-
+    
+    def test_bfgs_hess_inv0_neg(self):
+        # Ensure that BFGS does not accept neg. def. initial inverse 
+        # Hessian estimate.
+        with pytest.raises(ValueError, match="'hess_inv0' matrix isn't "
+                           "positive definite."):
+            x0 = np.array([1.3, 0.7, 0.8, 1.9, 1.2])
+            opts = {'disp': self.disp, 'hess_inv0': -np.eye(5)}
+            optimize.minimize(optimize.rosen, x0=x0, method='BFGS', args=(),
+                              options=opts)
+    
+    def test_bfgs_hess_inv0_semipos(self):
+        # Ensure that BFGS does not accept semi pos. def. initial inverse 
+        # Hessian estimate.
+        with pytest.raises(ValueError, match="'hess_inv0' matrix isn't "
+                           "positive definite."):
+            x0 = np.array([1.3, 0.7, 0.8, 1.9, 1.2])
+            hess_inv0 = np.eye(5)
+            hess_inv0[0, 0] = 0
+            opts = {'disp': self.disp, 'hess_inv0': hess_inv0}
+            optimize.minimize(optimize.rosen, x0=x0, method='BFGS', args=(),
+                              options=opts)
+    
+    def test_bfgs_hess_inv0_sanity(self):
+        # Ensure that BFGS handles `hess_inv0` parameter correctly.
+        fun = optimize.rosen
+        x0 = np.array([1.3, 0.7, 0.8, 1.9, 1.2])
+        opts = {'disp': self.disp, 'hess_inv0': 1e-2 * np.eye(5)}
+        res = optimize.minimize(fun, x0=x0, method='BFGS', args=(), 
+                                options=opts)
+        res_true = optimize.minimize(fun, x0=x0, method='BFGS', args=(), 
+                                     options={'disp': self.disp})
+        assert_allclose(res.fun, res_true.fun, atol=1e-6)
+            
     @pytest.mark.filterwarnings('ignore::UserWarning')
     def test_bfgs_infinite(self):
         # Test corner case where -Inf is the minimum.  See gh-2019.
@@ -236,6 +272,36 @@ class CheckOptimizeParameterized(CheckOptimize):
         ref = optimize.minimize(optimize.rosen,
                                 x0, method='bfgs', options={'gtol': 1e-3})
         assert res.nit != ref.nit
+
+    def test_bfgs_c1(self):
+        # test for #18977 insufficiently low value of c1 leads to precision loss
+        # for poor starting parameters
+        x0 = [10.3, 20.7, 10.8, 1.9, -1.2]
+        res_c1_small = optimize.minimize(optimize.rosen,
+                                         x0, method='bfgs', options={'c1': 1e-8})
+        res_c1_big = optimize.minimize(optimize.rosen,
+                                       x0, method='bfgs', options={'c1': 1e-1})
+
+        assert res_c1_small.nfev > res_c1_big.nfev
+
+    def test_bfgs_c2(self):
+        # test that modification of c2 parameter
+        # results in different number of iterations
+        x0 = [1.3, 0.7, 0.8, 1.9, 1.2]
+        res_default = optimize.minimize(optimize.rosen,
+                                        x0, method='bfgs', options={'c2': .9})
+        res_mod = optimize.minimize(optimize.rosen,
+                                    x0, method='bfgs', options={'c2': 1e-2})
+        assert res_default.nit > res_mod.nit
+    
+    @pytest.mark.parametrize(["c1", "c2"], [[0.5, 2],
+                                            [-0.1, 0.1],
+                                            [0.2, 0.1]])
+    def test_invalid_c1_c2(self, c1, c2):
+        with pytest.raises(ValueError, match="'c1' and 'c2'"):
+            x0 = [10.3, 20.7, 10.8, 1.9, -1.2]
+            optimize.minimize(optimize.rosen, x0, method='cg',
+                              options={'c1': c1, 'c2': c2})
 
     def test_powell(self):
         # Powell (direction set) optimization routine
@@ -1166,7 +1232,8 @@ class TestOptimizeSimple(CheckOptimize):
                                      method=method)
             sol2 = optimize.minimize(func, [1, 1], jac=jac, tol=1.0,
                                      method=method)
-            assert func(sol1.x) < func(sol2.x), f"{method}: {func(sol1.x)} vs. {func(sol2.x)}"
+            assert func(sol1.x) < func(sol2.x), \
+                   f"{method}: {func(sol1.x)} vs. {func(sol2.x)}"
 
     @pytest.mark.filterwarnings('ignore::UserWarning')
     @pytest.mark.filterwarnings('ignore::RuntimeWarning')  # See gh-18547
@@ -1232,7 +1299,8 @@ class TestOptimizeSimple(CheckOptimize):
         # and have no memory overlap
         assert len(results) > 2
         assert all(np.all(x == y) for x, y in results)
-        assert not any(np.may_share_memory(x[0], y[0]) for x, y in itertools.combinations(results, 2))
+        combinations = itertools.combinations(results, 2)
+        assert not any(np.may_share_memory(x[0], y[0]) for x, y in combinations)
 
     @pytest.mark.parametrize('method', ['nelder-mead', 'powell', 'cg',
                                         'bfgs', 'newton-cg', 'l-bfgs-b',
@@ -1416,9 +1484,7 @@ class TestOptimizeSimple(CheckOptimize):
             res = optimize.minimize(f, x0, jac=g, method=method,
                                     options=options)
 
-            err_msg = "{} {}: {}: {}".format(method, scale,
-                                                 first_step_size,
-                                                 res)
+            err_msg = f"{method} {scale}: {first_step_size}: {res}"
 
             assert res.success, err_msg
             assert_allclose(res.x, [1.0], err_msg=err_msg)
@@ -2497,8 +2563,8 @@ class TestBrute:
         def func(z, *params):
             return rng.random(1) * 1000  # never converged problem
 
-        with pytest.warns(RuntimeWarning,
-                          match=r'Either final optimization did not succeed'):
+        msg = "final optimization did not succeed.*|Maximum number of function eval.*"
+        with pytest.warns(RuntimeWarning, match=msg):
             optimize.brute(func, self.rranges, args=self.params, disp=True)
 
     def test_coerce_args_param(self):
@@ -2607,7 +2673,8 @@ class TestIterationLimits:
                     else:
                         assert res["nit"] <= default_iters*2
                 else:
-                    assert res["nfev"] >= default_iters*2 or res["nit"] >= default_iters*2
+                    assert (res["nfev"] >= default_iters*2
+                            or res["nit"] >= default_iters*2)
 
 
 def test_result_x_shape_when_len_x_is_one():
@@ -2844,7 +2911,7 @@ def test_equal_bounds(method, kwds, bound_type, constraints, callback):
 
     # compare the output of a solution with FD vs that of an analytic grad
     assert res.success
-    assert_allclose(res.fun, expected.fun, rtol=1e-6)
+    assert_allclose(res.fun, expected.fun, rtol=1.5e-6)
     assert_allclose(res.x, expected.x, rtol=5e-4)
 
     if fd_needed or kwds['jac'] is False:
@@ -2869,7 +2936,7 @@ def test_equal_bounds(method, kwds, bound_type, constraints, callback):
         # above, down to res.nfev. However, testing found that when TNC is
         # called with or without a callback the output is different. The two
         # should be the same! This indicates that the TNC callback may be
-        # mutating something when it should't.
+        # mutating something when it shouldn't.
         assert_allclose(res.x[[0, 2]], fd_res.x, rtol=2e-6)
 
 
@@ -3061,3 +3128,29 @@ def test_gh12594():
 
     assert_allclose(res.fun, ref.fun)
     assert_allclose(res.x, ref.x)
+
+
+@pytest.mark.parametrize('method', ['Newton-CG', 'trust-constr'])
+@pytest.mark.parametrize('sparse_type', [coo_matrix, csc_matrix, csr_matrix,
+                                         coo_array, csr_array, csc_array])
+def test_sparse_hessian(method, sparse_type):
+    # gh-8792 reported an error for minimization with `newton_cg` when `hess`
+    # returns a sparse matrix. Check that results are the same whether `hess`
+    # returns a dense or sparse matrix for optimization methods that accept
+    # sparse Hessian matrices.
+
+    def sparse_rosen_hess(x):
+        return sparse_type(rosen_hess(x))
+
+    x0 = [2., 2.]
+
+    res_sparse = optimize.minimize(rosen, x0, method=method,
+                                   jac=rosen_der, hess=sparse_rosen_hess)
+    res_dense = optimize.minimize(rosen, x0, method=method,
+                                  jac=rosen_der, hess=rosen_hess)
+
+    assert_allclose(res_dense.fun, res_sparse.fun)
+    assert_allclose(res_dense.x, res_sparse.x)
+    assert res_dense.nfev == res_sparse.nfev
+    assert res_dense.njev == res_sparse.njev
+    assert res_dense.nhev == res_sparse.nhev

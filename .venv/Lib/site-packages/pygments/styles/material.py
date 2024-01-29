@@ -14,24 +14,30 @@ from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Escape, \
     Error, Text, Number, Operator, Generic, Punctuation, Literal
 
+
+__all__ = ['MaterialStyle']
+
+
 class MaterialStyle(Style):
     """
     This style mimics the Material Theme color scheme.
     """
+    name = 'material'
+    
     dark_teal = '#263238'
-    white= '#FFFFFF'
-    black= '#000000'
-    red= '#FF5370'
-    orange= '#F78C6C'
-    yellow= '#FFCB6B'
-    green= '#C3E88D'
-    cyan= '#89DDFF'
-    blue= '#82AAFF'
-    paleblue= '#B2CCD6'
-    purple= '#C792EA'
-    brown= '#C17E70'
-    pink= '#F07178'
-    violet= '#BB80B3'
+    white = '#FFFFFF'
+    black = '#000000'
+    red = '#FF5370'
+    orange = '#F78C6C'
+    yellow = '#FFCB6B'
+    green = '#C3E88D'
+    cyan = '#89DDFF'
+    blue = '#82AAFF'
+    paleblue = '#B2CCD6'
+    purple = '#C792EA'
+    brown = '#C17E70'
+    pink = '#F07178'
+    violet = '#BB80B3'
     foreground = '#EEFFFF'
     faded = '#546E7A'
 

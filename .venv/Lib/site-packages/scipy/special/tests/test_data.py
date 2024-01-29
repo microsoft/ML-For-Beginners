@@ -195,60 +195,102 @@ def clog1p(x, y):
 
 
 BOOST_TESTS = [
-        data(assoc_legendre_p_boost_, 'assoc_legendre_p_ipp-assoc_legendre_p', (0,1,2), 3, rtol=1e-11),
+        data(assoc_legendre_p_boost_, 'assoc_legendre_p_ipp-assoc_legendre_p',
+             (0,1,2), 3, rtol=1e-11),
 
-        data(legendre_p_via_assoc_, 'legendre_p_ipp-legendre_p', (0,1), 2, rtol=1e-11),
-        data(legendre_p_via_assoc_, 'legendre_p_large_ipp-legendre_p_large', (0,1), 2, rtol=9.6e-14),
-        data(legendre_p_via_lpmn, 'legendre_p_ipp-legendre_p', (0,1), 2, rtol=5e-14, vectorized=False),
-        data(legendre_p_via_lpmn, 'legendre_p_large_ipp-legendre_p_large', (0,1), 2, rtol=9.6e-14, vectorized=False),
-        data(lpn_, 'legendre_p_ipp-legendre_p', (0,1), 2, rtol=5e-14, vectorized=False),
-        data(lpn_, 'legendre_p_large_ipp-legendre_p_large', (0,1), 2, rtol=3e-13, vectorized=False),
-        data(eval_legendre_ld, 'legendre_p_ipp-legendre_p', (0,1), 2, rtol=6e-14),
-        data(eval_legendre_ld, 'legendre_p_large_ipp-legendre_p_large', (0,1), 2, rtol=2e-13),
-        data(eval_legendre_dd, 'legendre_p_ipp-legendre_p', (0,1), 2, rtol=2e-14),
-        data(eval_legendre_dd, 'legendre_p_large_ipp-legendre_p_large', (0,1), 2, rtol=2e-13),
+        data(legendre_p_via_assoc_, 'legendre_p_ipp-legendre_p',
+             (0,1), 2, rtol=1e-11),
+        data(legendre_p_via_assoc_, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 2, rtol=9.6e-14),
+        data(legendre_p_via_lpmn, 'legendre_p_ipp-legendre_p',
+             (0,1), 2, rtol=5e-14, vectorized=False),
+        data(legendre_p_via_lpmn, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 2, rtol=9.6e-14, vectorized=False),
+        data(lpn_, 'legendre_p_ipp-legendre_p',
+             (0,1), 2, rtol=5e-14, vectorized=False),
+        data(lpn_, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 2, rtol=3e-13, vectorized=False),
+        data(eval_legendre_ld, 'legendre_p_ipp-legendre_p',
+             (0,1), 2, rtol=6e-14),
+        data(eval_legendre_ld, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 2, rtol=2e-13),
+        data(eval_legendre_dd, 'legendre_p_ipp-legendre_p',
+             (0,1), 2, rtol=2e-14),
+        data(eval_legendre_dd, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 2, rtol=2e-13),
 
-        data(lqn_, 'legendre_p_ipp-legendre_p', (0,1), 3, rtol=2e-14, vectorized=False),
-        data(lqn_, 'legendre_p_large_ipp-legendre_p_large', (0,1), 3, rtol=2e-12, vectorized=False),
-        data(legendre_q_via_lqmn, 'legendre_p_ipp-legendre_p', (0,1), 3, rtol=2e-14, vectorized=False),
-        data(legendre_q_via_lqmn, 'legendre_p_large_ipp-legendre_p_large', (0,1), 3, rtol=2e-12, vectorized=False),
+        data(lqn_, 'legendre_p_ipp-legendre_p',
+             (0,1), 3, rtol=2e-14, vectorized=False),
+        data(lqn_, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 3, rtol=2e-12, vectorized=False),
+        data(legendre_q_via_lqmn, 'legendre_p_ipp-legendre_p',
+             (0,1), 3, rtol=2e-14, vectorized=False),
+        data(legendre_q_via_lqmn, 'legendre_p_large_ipp-legendre_p_large',
+             (0,1), 3, rtol=2e-12, vectorized=False),
 
-        data(beta, 'beta_exp_data_ipp-beta_exp_data', (0,1), 2, rtol=1e-13),
-        data(beta, 'beta_exp_data_ipp-beta_exp_data', (0,1), 2, rtol=1e-13),
-        data(beta, 'beta_med_data_ipp-beta_med_data', (0,1), 2, rtol=5e-13),
+        data(beta, 'beta_exp_data_ipp-beta_exp_data',
+             (0,1), 2, rtol=1e-13),
+        data(beta, 'beta_exp_data_ipp-beta_exp_data',
+             (0,1), 2, rtol=1e-13),
+        data(beta, 'beta_med_data_ipp-beta_med_data',
+             (0,1), 2, rtol=5e-13),
 
-        data(betainc, 'ibeta_small_data_ipp-ibeta_small_data', (0,1,2), 5, rtol=6e-15),
-        data(betainc, 'ibeta_data_ipp-ibeta_data', (0,1,2), 5, rtol=5e-13),
-        data(betainc, 'ibeta_int_data_ipp-ibeta_int_data', (0,1,2), 5, rtol=2e-14),
-        data(betainc, 'ibeta_large_data_ipp-ibeta_large_data', (0,1,2), 5, rtol=4e-10),
+        data(betainc, 'ibeta_small_data_ipp-ibeta_small_data',
+             (0,1,2), 5, rtol=6e-15),
+        data(betainc, 'ibeta_data_ipp-ibeta_data',
+             (0,1,2), 5, rtol=5e-13),
+        data(betainc, 'ibeta_int_data_ipp-ibeta_int_data',
+             (0,1,2), 5, rtol=2e-14),
+        data(betainc, 'ibeta_large_data_ipp-ibeta_large_data',
+             (0,1,2), 5, rtol=4e-10),
 
-        data(betaincinv, 'ibeta_inv_data_ipp-ibeta_inv_data', (0,1,2), 3, rtol=1e-5),
+        data(betaincinv, 'ibeta_inv_data_ipp-ibeta_inv_data',
+             (0,1,2), 3, rtol=1e-5),
 
-        data(btdtr, 'ibeta_small_data_ipp-ibeta_small_data', (0,1,2), 5, rtol=6e-15),
-        data(btdtr, 'ibeta_data_ipp-ibeta_data', (0,1,2), 5, rtol=4e-13),
-        data(btdtr, 'ibeta_int_data_ipp-ibeta_int_data', (0,1,2), 5, rtol=2e-14),
-        data(btdtr, 'ibeta_large_data_ipp-ibeta_large_data', (0,1,2), 5, rtol=4e-10),
+        data(btdtr, 'ibeta_small_data_ipp-ibeta_small_data',
+             (0,1,2), 5, rtol=6e-15),
+        data(btdtr, 'ibeta_data_ipp-ibeta_data',
+             (0,1,2), 5, rtol=4e-13),
+        data(btdtr, 'ibeta_int_data_ipp-ibeta_int_data',
+             (0,1,2), 5, rtol=2e-14),
+        data(btdtr, 'ibeta_large_data_ipp-ibeta_large_data',
+             (0,1,2), 5, rtol=4e-10),
 
-        data(btdtri, 'ibeta_inv_data_ipp-ibeta_inv_data', (0,1,2), 3, rtol=1e-5),
-        data(btdtri_comp, 'ibeta_inv_data_ipp-ibeta_inv_data', (0,1,2), 4, rtol=8e-7),
+        data(btdtri, 'ibeta_inv_data_ipp-ibeta_inv_data',
+             (0,1,2), 3, rtol=1e-5),
+        data(btdtri_comp, 'ibeta_inv_data_ipp-ibeta_inv_data',
+             (0,1,2), 4, rtol=8e-7),
 
-        data(btdtria, 'ibeta_inva_data_ipp-ibeta_inva_data', (2,0,1), 3, rtol=5e-9),
-        data(btdtria_comp, 'ibeta_inva_data_ipp-ibeta_inva_data', (2,0,1), 4, rtol=5e-9),
+        data(btdtria, 'ibeta_inva_data_ipp-ibeta_inva_data',
+             (2,0,1), 3, rtol=5e-9),
+        data(btdtria_comp, 'ibeta_inva_data_ipp-ibeta_inva_data',
+             (2,0,1), 4, rtol=5e-9),
 
-        data(btdtrib, 'ibeta_inva_data_ipp-ibeta_inva_data', (0,2,1), 5, rtol=5e-9),
-        data(btdtrib_comp, 'ibeta_inva_data_ipp-ibeta_inva_data', (0,2,1), 6, rtol=5e-9),
+        data(btdtrib, 'ibeta_inva_data_ipp-ibeta_inva_data',
+             (0,2,1), 5, rtol=5e-9),
+        data(btdtrib_comp, 'ibeta_inva_data_ipp-ibeta_inva_data',
+             (0,2,1), 6, rtol=5e-9),
 
-        data(binom, 'binomial_data_ipp-binomial_data', (0,1), 2, rtol=1e-13),
-        data(binom, 'binomial_large_data_ipp-binomial_large_data', (0,1), 2, rtol=5e-13),
+        data(binom, 'binomial_data_ipp-binomial_data',
+             (0,1), 2, rtol=1e-13),
+        data(binom, 'binomial_large_data_ipp-binomial_large_data',
+             (0,1), 2, rtol=5e-13),
 
-        data(bdtrik, 'binomial_quantile_ipp-binomial_quantile_data', (2,0,1), 3, rtol=5e-9),
-        data(bdtrik_comp, 'binomial_quantile_ipp-binomial_quantile_data', (2,0,1), 4, rtol=5e-9),
+        data(bdtrik, 'binomial_quantile_ipp-binomial_quantile_data',
+             (2,0,1), 3, rtol=5e-9),
+        data(bdtrik_comp, 'binomial_quantile_ipp-binomial_quantile_data',
+             (2,0,1), 4, rtol=5e-9),
 
-        data(nbdtrik, 'negative_binomial_quantile_ipp-negative_binomial_quantile_data', (2,0,1), 3, rtol=4e-9),
-        data(nbdtrik_comp, 'negative_binomial_quantile_ipp-negative_binomial_quantile_data', (2,0,1), 4, rtol=4e-9),
+        data(nbdtrik, 'negative_binomial_quantile_ipp-negative_binomial_quantile_data',
+             (2,0,1), 3, rtol=4e-9),
+        data(nbdtrik_comp,
+             'negative_binomial_quantile_ipp-negative_binomial_quantile_data',
+             (2,0,1), 4, rtol=4e-9),
 
-        data(pdtrik, 'poisson_quantile_ipp-poisson_quantile_data', (1,0), 2, rtol=3e-9),
-        data(pdtrik_comp, 'poisson_quantile_ipp-poisson_quantile_data', (1,0), 3, rtol=4e-9),
+        data(pdtrik, 'poisson_quantile_ipp-poisson_quantile_data',
+             (1,0), 2, rtol=3e-9),
+        data(pdtrik_comp, 'poisson_quantile_ipp-poisson_quantile_data', 
+             (1,0), 3, rtol=4e-9),
 
         data(cbrt, 'cbrt_data_ipp-cbrt_data', 1, 0),
 
@@ -278,7 +320,8 @@ BOOST_TESTS = [
 
         data(erfinv, 'erf_inv_data_ipp-erf_inv_data', 0, 1),
         data(erfcinv, 'erfc_inv_data_ipp-erfc_inv_data', 0, 1),
-        data(erfcinv, 'erfc_inv_big_data_ipp-erfc_inv_big_data', 0, 1, param_filter=(lambda s: s > 0)),
+        data(erfcinv, 'erfc_inv_big_data_ipp-erfc_inv_big_data', 0, 1,
+             param_filter=(lambda s: s > 0)),
 
         data(exp1, 'expint_1_data_ipp-expint_1_data', 1, 2, rtol=1e-13),
         data(exp1, 'expint_1_data_ipp-expint_1_data', 1j, 2, rtol=5e-9),
@@ -318,10 +361,14 @@ BOOST_TESTS = [
         data(gdtr_, 'igamma_int_data_ipp-igamma_int_data', (0,1), 5, rtol=2e-13),
         data(gdtr_, 'igamma_big_data_ipp-igamma_big_data', (0,1), 5, rtol=2e-9),
 
-        data(gammaincc, 'igamma_small_data_ipp-igamma_small_data', (0,1), 3, rtol=1e-13),
-        data(gammaincc, 'igamma_med_data_ipp-igamma_med_data', (0,1), 3, rtol=2e-13),
-        data(gammaincc, 'igamma_int_data_ipp-igamma_int_data', (0,1), 3, rtol=4e-14),
-        data(gammaincc, 'igamma_big_data_ipp-igamma_big_data', (0,1), 3, rtol=1e-11),
+        data(gammaincc, 'igamma_small_data_ipp-igamma_small_data',
+             (0,1), 3, rtol=1e-13),
+        data(gammaincc, 'igamma_med_data_ipp-igamma_med_data',
+             (0,1), 3, rtol=2e-13),
+        data(gammaincc, 'igamma_int_data_ipp-igamma_int_data',
+             (0,1), 3, rtol=4e-14),
+        data(gammaincc, 'igamma_big_data_ipp-igamma_big_data',
+             (0,1), 3, rtol=1e-11),
 
         data(gdtrc_, 'igamma_small_data_ipp-igamma_small_data', (0,1), 3, rtol=1e-13),
         data(gdtrc_, 'igamma_med_data_ipp-igamma_med_data', (0,1), 3, rtol=2e-13),
@@ -331,30 +378,47 @@ BOOST_TESTS = [
         data(gdtrib_, 'igamma_inva_data_ipp-igamma_inva_data', (1,0), 2, rtol=5e-9),
         data(gdtrib_comp, 'igamma_inva_data_ipp-igamma_inva_data', (1,0), 3, rtol=5e-9),
 
-        data(poch_, 'tgamma_delta_ratio_data_ipp-tgamma_delta_ratio_data', (0,1), 2, rtol=2e-13),
-        data(poch_, 'tgamma_delta_ratio_int_ipp-tgamma_delta_ratio_int', (0,1), 2,),
-        data(poch_, 'tgamma_delta_ratio_int2_ipp-tgamma_delta_ratio_int2', (0,1), 2,),
-        data(poch_minus, 'tgamma_delta_ratio_data_ipp-tgamma_delta_ratio_data', (0,1), 3, rtol=2e-13),
-        data(poch_minus, 'tgamma_delta_ratio_int_ipp-tgamma_delta_ratio_int', (0,1), 3),
-        data(poch_minus, 'tgamma_delta_ratio_int2_ipp-tgamma_delta_ratio_int2', (0,1), 3),
+        data(poch_, 'tgamma_delta_ratio_data_ipp-tgamma_delta_ratio_data',
+             (0,1), 2, rtol=2e-13),
+        data(poch_, 'tgamma_delta_ratio_int_ipp-tgamma_delta_ratio_int',
+             (0,1), 2,),
+        data(poch_, 'tgamma_delta_ratio_int2_ipp-tgamma_delta_ratio_int2',
+             (0,1), 2,),
+        data(poch_minus, 'tgamma_delta_ratio_data_ipp-tgamma_delta_ratio_data',
+             (0,1), 3, rtol=2e-13),
+        data(poch_minus, 'tgamma_delta_ratio_int_ipp-tgamma_delta_ratio_int',
+             (0,1), 3),
+        data(poch_minus, 'tgamma_delta_ratio_int2_ipp-tgamma_delta_ratio_int2',
+             (0,1), 3),
 
-        data(eval_hermite_ld, 'hermite_ipp-hermite', (0,1), 2, rtol=2e-14),
+        data(eval_hermite_ld, 'hermite_ipp-hermite',
+             (0,1), 2, rtol=2e-14),
 
-        data(eval_laguerre_ld, 'laguerre2_ipp-laguerre2', (0,1), 2, rtol=7e-12),
-        data(eval_laguerre_dd, 'laguerre2_ipp-laguerre2', (0,1), 2, knownfailure='hyp2f1 insufficiently accurate.'),
-        data(eval_genlaguerre_ldd, 'laguerre3_ipp-laguerre3', (0,1,2), 3, rtol=2e-13),
-        data(eval_genlaguerre_ddd, 'laguerre3_ipp-laguerre3', (0,1,2), 3, knownfailure='hyp2f1 insufficiently accurate.'),
+        data(eval_laguerre_ld, 'laguerre2_ipp-laguerre2',
+             (0,1), 2, rtol=7e-12),
+        data(eval_laguerre_dd, 'laguerre2_ipp-laguerre2',
+             (0,1), 2, knownfailure='hyp2f1 insufficiently accurate.'),
+        data(eval_genlaguerre_ldd, 'laguerre3_ipp-laguerre3',
+             (0,1,2), 3, rtol=2e-13),
+        data(eval_genlaguerre_ddd, 'laguerre3_ipp-laguerre3',
+             (0,1,2), 3, knownfailure='hyp2f1 insufficiently accurate.'),
 
         data(log1p, 'log1p_expm1_data_ipp-log1p_expm1_data', 0, 1),
         data(expm1, 'log1p_expm1_data_ipp-log1p_expm1_data', 0, 2),
 
-        data(iv, 'bessel_i_data_ipp-bessel_i_data', (0,1), 2, rtol=1e-12),
-        data(iv, 'bessel_i_data_ipp-bessel_i_data', (0,1j), 2, rtol=2e-10, atol=1e-306),
-        data(iv, 'bessel_i_int_data_ipp-bessel_i_int_data', (0,1), 2, rtol=1e-9),
-        data(iv, 'bessel_i_int_data_ipp-bessel_i_int_data', (0,1j), 2, rtol=2e-10),
+        data(iv, 'bessel_i_data_ipp-bessel_i_data',
+             (0,1), 2, rtol=1e-12),
+        data(iv, 'bessel_i_data_ipp-bessel_i_data',
+             (0,1j), 2, rtol=2e-10, atol=1e-306),
+        data(iv, 'bessel_i_int_data_ipp-bessel_i_int_data',
+             (0,1), 2, rtol=1e-9),
+        data(iv, 'bessel_i_int_data_ipp-bessel_i_int_data',
+             (0,1j), 2, rtol=2e-10),
 
-        data(ivp, 'bessel_i_prime_int_data_ipp-bessel_i_prime_int_data', (0,1), 2, rtol=1.2e-13),
-        data(ivp, 'bessel_i_prime_int_data_ipp-bessel_i_prime_int_data', (0,1j), 2, rtol=1.2e-13, atol=1e-300),
+        data(ivp, 'bessel_i_prime_int_data_ipp-bessel_i_prime_int_data',
+             (0,1), 2, rtol=1.2e-13),
+        data(ivp, 'bessel_i_prime_int_data_ipp-bessel_i_prime_int_data',
+             (0,1j), 2, rtol=1.2e-13, atol=1e-300),
 
         data(jn, 'bessel_j_int_data_ipp-bessel_j_int_data', (0,1), 2, rtol=1e-12),
         data(jn, 'bessel_j_int_data_ipp-bessel_j_int_data', (0,1j), 2, rtol=1e-12),
@@ -366,10 +430,14 @@ BOOST_TESTS = [
         data(jv, 'bessel_j_data_ipp-bessel_j_data', (0,1), 2, rtol=1e-12),
         data(jv, 'bessel_j_data_ipp-bessel_j_data', (0,1j), 2, rtol=1e-12),
 
-        data(jvp, 'bessel_j_prime_int_data_ipp-bessel_j_prime_int_data', (0,1), 2, rtol=1e-13),
-        data(jvp, 'bessel_j_prime_int_data_ipp-bessel_j_prime_int_data', (0,1j), 2, rtol=1e-13),
-        data(jvp, 'bessel_j_prime_large_data_ipp-bessel_j_prime_large_data', (0,1), 2, rtol=1e-11),
-        data(jvp, 'bessel_j_prime_large_data_ipp-bessel_j_prime_large_data', (0,1j), 2, rtol=1e-11),
+        data(jvp, 'bessel_j_prime_int_data_ipp-bessel_j_prime_int_data',
+             (0,1), 2, rtol=1e-13),
+        data(jvp, 'bessel_j_prime_int_data_ipp-bessel_j_prime_int_data',
+             (0,1j), 2, rtol=1e-13),
+        data(jvp, 'bessel_j_prime_large_data_ipp-bessel_j_prime_large_data',
+             (0,1), 2, rtol=1e-11),
+        data(jvp, 'bessel_j_prime_large_data_ipp-bessel_j_prime_large_data',
+             (0,1j), 2, rtol=1e-11),
 
         data(kn, 'bessel_k_int_data_ipp-bessel_k_int_data', (0,1), 2, rtol=1e-12),
 
@@ -378,8 +446,10 @@ BOOST_TESTS = [
         data(kv, 'bessel_k_data_ipp-bessel_k_data', (0,1), 2, rtol=1e-12),
         data(kv, 'bessel_k_data_ipp-bessel_k_data', (0,1j), 2, rtol=1e-12),
 
-        data(kvp, 'bessel_k_prime_int_data_ipp-bessel_k_prime_int_data', (0,1), 2, rtol=3e-14),
-        data(kvp, 'bessel_k_prime_int_data_ipp-bessel_k_prime_int_data', (0,1j), 2, rtol=3e-14),
+        data(kvp, 'bessel_k_prime_int_data_ipp-bessel_k_prime_int_data',
+             (0,1), 2, rtol=3e-14),
+        data(kvp, 'bessel_k_prime_int_data_ipp-bessel_k_prime_int_data',
+             (0,1j), 2, rtol=3e-14),
         data(kvp, 'bessel_k_prime_data_ipp-bessel_k_prime_data', (0,1), 2, rtol=7e-14),
         data(kvp, 'bessel_k_prime_data_ipp-bessel_k_prime_data', (0,1j), 2, rtol=7e-14),
 
@@ -391,43 +461,68 @@ BOOST_TESTS = [
         data(yv, 'bessel_yv_data_ipp-bessel_yv_data', (0,1), 2, rtol=1e-10),
         data(yv, 'bessel_yv_data_ipp-bessel_yv_data', (0,1j), 2, rtol=1e-10),
 
-        data(yvp, 'bessel_yv_prime_data_ipp-bessel_yv_prime_data', (0, 1), 2, rtol=4e-9),
-        data(yvp, 'bessel_yv_prime_data_ipp-bessel_yv_prime_data', (0, 1j), 2, rtol=4e-9),
+        data(yvp, 'bessel_yv_prime_data_ipp-bessel_yv_prime_data',
+             (0, 1), 2, rtol=4e-9),
+        data(yvp, 'bessel_yv_prime_data_ipp-bessel_yv_prime_data',
+             (0, 1j), 2, rtol=4e-9),
 
-        data(zeta_, 'zeta_data_ipp-zeta_data', 0, 1, param_filter=(lambda s: s > 1)),
-        data(zeta_, 'zeta_neg_data_ipp-zeta_neg_data', 0, 1, param_filter=(lambda s: s > 1)),
-        data(zeta_, 'zeta_1_up_data_ipp-zeta_1_up_data', 0, 1, param_filter=(lambda s: s > 1)),
-        data(zeta_, 'zeta_1_below_data_ipp-zeta_1_below_data', 0, 1, param_filter=(lambda s: s > 1)),
+        data(zeta_, 'zeta_data_ipp-zeta_data', 0, 1,
+             param_filter=(lambda s: s > 1)),
+        data(zeta_, 'zeta_neg_data_ipp-zeta_neg_data', 0, 1,
+             param_filter=(lambda s: s > 1)),
+        data(zeta_, 'zeta_1_up_data_ipp-zeta_1_up_data', 0, 1,
+             param_filter=(lambda s: s > 1)),
+        data(zeta_, 'zeta_1_below_data_ipp-zeta_1_below_data', 0, 1,
+             param_filter=(lambda s: s > 1)),
 
-        data(gammaincinv, 'gamma_inv_small_data_ipp-gamma_inv_small_data', (0,1), 2, rtol=1e-11),
-        data(gammaincinv, 'gamma_inv_data_ipp-gamma_inv_data', (0,1), 2, rtol=1e-14),
-        data(gammaincinv, 'gamma_inv_big_data_ipp-gamma_inv_big_data', (0,1), 2, rtol=1e-11),
+        data(gammaincinv, 'gamma_inv_small_data_ipp-gamma_inv_small_data',
+             (0,1), 2, rtol=1e-11),
+        data(gammaincinv, 'gamma_inv_data_ipp-gamma_inv_data',
+             (0,1), 2, rtol=1e-14),
+        data(gammaincinv, 'gamma_inv_big_data_ipp-gamma_inv_big_data',
+             (0,1), 2, rtol=1e-11),
 
-        data(gammainccinv, 'gamma_inv_small_data_ipp-gamma_inv_small_data', (0,1), 3, rtol=1e-12),
-        data(gammainccinv, 'gamma_inv_data_ipp-gamma_inv_data', (0,1), 3, rtol=1e-14),
-        data(gammainccinv, 'gamma_inv_big_data_ipp-gamma_inv_big_data', (0,1), 3, rtol=1e-14),
+        data(gammainccinv, 'gamma_inv_small_data_ipp-gamma_inv_small_data',
+             (0,1), 3, rtol=1e-12),
+        data(gammainccinv, 'gamma_inv_data_ipp-gamma_inv_data',
+             (0,1), 3, rtol=1e-14),
+        data(gammainccinv, 'gamma_inv_big_data_ipp-gamma_inv_big_data',
+             (0,1), 3, rtol=1e-14),
 
-        data(gdtrix_, 'gamma_inv_small_data_ipp-gamma_inv_small_data', (0,1), 2, rtol=3e-13, knownfailure='gdtrix unflow some points'),
-        data(gdtrix_, 'gamma_inv_data_ipp-gamma_inv_data', (0,1), 2, rtol=3e-15),
-        data(gdtrix_, 'gamma_inv_big_data_ipp-gamma_inv_big_data', (0,1), 2),
-        data(gdtrix_comp, 'gamma_inv_small_data_ipp-gamma_inv_small_data', (0,1), 2, knownfailure='gdtrix bad some points'),
-        data(gdtrix_comp, 'gamma_inv_data_ipp-gamma_inv_data', (0,1), 3, rtol=6e-15),
-        data(gdtrix_comp, 'gamma_inv_big_data_ipp-gamma_inv_big_data', (0,1), 3),
+        data(gdtrix_, 'gamma_inv_small_data_ipp-gamma_inv_small_data',
+             (0,1), 2, rtol=3e-13, knownfailure='gdtrix unflow some points'),
+        data(gdtrix_, 'gamma_inv_data_ipp-gamma_inv_data',
+             (0,1), 2, rtol=3e-15),
+        data(gdtrix_, 'gamma_inv_big_data_ipp-gamma_inv_big_data',
+             (0,1), 2),
+        data(gdtrix_comp, 'gamma_inv_small_data_ipp-gamma_inv_small_data',
+             (0,1), 2, knownfailure='gdtrix bad some points'),
+        data(gdtrix_comp, 'gamma_inv_data_ipp-gamma_inv_data',
+             (0,1), 3, rtol=6e-15),
+        data(gdtrix_comp, 'gamma_inv_big_data_ipp-gamma_inv_big_data',
+             (0,1), 3),
 
-        data(chndtr, 'nccs_ipp-nccs', (2,0,1), 3, rtol=3e-5),
-        data(chndtr, 'nccs_big_ipp-nccs_big', (2,0,1), 3, rtol=5e-4, knownfailure='chndtr inaccurate some points'),
+        data(chndtr, 'nccs_ipp-nccs',
+             (2,0,1), 3, rtol=3e-5),
+        data(chndtr, 'nccs_big_ipp-nccs_big',
+             (2,0,1), 3, rtol=5e-4, knownfailure='chndtr inaccurate some points'),
 
-        data(sph_harm_, 'spherical_harmonic_ipp-spherical_harmonic', (1,0,3,2), (4,5), rtol=5e-11,
+        data(sph_harm_, 'spherical_harmonic_ipp-spherical_harmonic',
+             (1,0,3,2), (4,5), rtol=5e-11,
              param_filter=(lambda p: np.ones(p.shape, '?'),
                            lambda p: np.ones(p.shape, '?'),
                            lambda p: np.logical_and(p < 2*np.pi, p >= 0),
                            lambda p: np.logical_and(p < np.pi, p >= 0))),
 
-        data(spherical_jn_, 'sph_bessel_data_ipp-sph_bessel_data', (0,1), 2, rtol=1e-13),
-        data(spherical_yn_, 'sph_neumann_data_ipp-sph_neumann_data', (0,1), 2, rtol=8e-15),
+        data(spherical_jn_, 'sph_bessel_data_ipp-sph_bessel_data',
+             (0,1), 2, rtol=1e-13),
+        data(spherical_yn_, 'sph_neumann_data_ipp-sph_neumann_data',
+             (0,1), 2, rtol=8e-15),
 
-        data(owens_t, 'owens_t_ipp-owens_t', (0, 1), 2, rtol=5e-14),
-        data(owens_t, 'owens_t_large_data_ipp-owens_t_large_data', (0, 1), 2, rtol=8e-12),
+        data(owens_t, 'owens_t_ipp-owens_t',
+             (0, 1), 2, rtol=5e-14),
+        data(owens_t, 'owens_t_large_data_ipp-owens_t_large_data',
+             (0, 1), 2, rtol=8e-12),
 
         # -- test data exists in boost but is not used in scipy --
 
@@ -460,7 +555,7 @@ BOOST_TESTS = [
         # work around some hard cases in the Boost test where we get slightly
         # larger error than the ideal bound when the x (==y) input is close to
         # zero.
-        # Also the accuracy on 32-bit buids with g++ may suffer from excess
+        # Also the accuracy on 32-bit builds with g++ may suffer from excess
         # loss of precision; see GCC bugzilla 323
         # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=323
         data(elliprd, 'ellint_rd_xxz_ipp-ellint_rd_xxz', (0, 1, 2), 3,
@@ -533,8 +628,8 @@ BOOST_TESTS = [
         # hypergeometric_1F1_ipp/hypergeometric_1F1.txt
         # hypergeometric_1F1_small_random_ipp/hypergeometric_1F1_small_random.txt
         # hypergeometric_1F2_ipp/hypergeometric_1F2.txt
-        # hypergeometric_1f1_large_regularized_ipp/hypergeometric_1f1_large_regularized.txt
-        # hypergeometric_1f1_log_large_unsolved_ipp/hypergeometric_1f1_log_large_unsolved.txt
+        # hypergeometric_1f1_large_regularized_ipp/hypergeometric_1f1_large_regularized.txt  # noqa: E501
+        # hypergeometric_1f1_log_large_unsolved_ipp/hypergeometric_1f1_log_large_unsolved.txt  # noqa: E501
         # hypergeometric_2F0_half_ipp/hypergeometric_2F0_half.txt
         # hypergeometric_2F0_integer_a2_ipp/hypergeometric_2F0_integer_a2.txt
         # hypergeometric_2F0_ipp/hypergeometric_2F0.txt
@@ -562,7 +657,12 @@ BOOST_TESTS = [
 
 @pytest.mark.parametrize('test', BOOST_TESTS, ids=repr)
 def test_boost(test):
-    _test_factory(test)
+    # Filter deprecation warnings of any deprecated functions.
+    if test.func in [btdtr, btdtri, btdtri_comp]:
+        with pytest.deprecated_call():
+            _test_factory(test)
+    else:
+        _test_factory(test)
 
 
 GSL_TESTS = [
@@ -573,11 +673,15 @@ GSL_TESTS = [
         data_gsl(mathieu_ce_rad, 'mathieu_ce_se', (0, 1, 2), 3, rtol=1e-7, atol=1e-13),
         data_gsl(mathieu_se_rad, 'mathieu_ce_se', (0, 1, 2), 4, rtol=1e-7, atol=1e-13),
 
-        data_gsl(mathieu_mc1_scaled, 'mathieu_mc_ms', (0, 1, 2), 3, rtol=1e-7, atol=1e-13),
-        data_gsl(mathieu_ms1_scaled, 'mathieu_mc_ms', (0, 1, 2), 4, rtol=1e-7, atol=1e-13),
+        data_gsl(mathieu_mc1_scaled, 'mathieu_mc_ms',
+                 (0, 1, 2), 3, rtol=1e-7, atol=1e-13),
+        data_gsl(mathieu_ms1_scaled, 'mathieu_mc_ms',
+                 (0, 1, 2), 4, rtol=1e-7, atol=1e-13),
 
-        data_gsl(mathieu_mc2_scaled, 'mathieu_mc_ms', (0, 1, 2), 5, rtol=1e-7, atol=1e-13),
-        data_gsl(mathieu_ms2_scaled, 'mathieu_mc_ms', (0, 1, 2), 6, rtol=1e-7, atol=1e-13),
+        data_gsl(mathieu_mc2_scaled, 'mathieu_mc_ms',
+                 (0, 1, 2), 5, rtol=1e-7, atol=1e-13),
+        data_gsl(mathieu_ms2_scaled, 'mathieu_mc_ms',
+                 (0, 1, 2), 6, rtol=1e-7, atol=1e-13),
 ]
 
 
@@ -605,7 +709,7 @@ def test_local(test):
     _test_factory(test)
 
 
-def _test_factory(test, dtype=np.double):
+def _test_factory(test, dtype=np.float64):
     """Boost test"""
     with suppress_warnings() as sup:
         sup.filter(IntegrationWarning, "The occurrence of roundoff error is detected")

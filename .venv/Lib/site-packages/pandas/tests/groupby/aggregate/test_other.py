@@ -106,7 +106,7 @@ def test_agg_dict_parameter_cast_result_dtypes():
     df = DataFrame(
         {
             "class": ["A", "A", "B", "B", "C", "C", "D", "D"],
-            "time": date_range("1/1/2011", periods=8, freq="H"),
+            "time": date_range("1/1/2011", periods=8, freq="h"),
         }
     )
     df.loc[[0, 1, 2, 5], "time"] = None
@@ -296,7 +296,9 @@ def test_agg_item_by_item_raise_typeerror():
 
 
 def test_series_agg_multikey():
-    ts = tm.makeTimeSeries()
+    ts = Series(
+        np.arange(10, dtype=np.float64), index=date_range("2020-01-01", periods=10)
+    )
     grouped = ts.groupby([lambda x: x.year, lambda x: x.month])
 
     result = grouped.agg("sum")
@@ -499,13 +501,17 @@ def test_agg_timezone_round_trip():
     assert ts == grouped.first()["B"].iloc[0]
 
     # GH#27110 applying iloc should return a DataFrame
-    assert ts == grouped.apply(lambda x: x.iloc[0]).iloc[0, 1]
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        assert ts == grouped.apply(lambda x: x.iloc[0]).iloc[0, 1]
 
     ts = df["B"].iloc[2]
     assert ts == grouped.last()["B"].iloc[0]
 
     # GH#27110 applying iloc should return a DataFrame
-    assert ts == grouped.apply(lambda x: x.iloc[-1]).iloc[0, 1]
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        assert ts == grouped.apply(lambda x: x.iloc[-1]).iloc[0, 1]
 
 
 def test_sum_uint64_overflow():

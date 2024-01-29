@@ -2,18 +2,32 @@
 
 import numpy as np
 
-def func1(a: str, b: int) -> None: ...
-def func2(a: str, b: int, c: float = ...) -> None: ...
-def func3(a: str, b: int) -> int: ...
+
+def func1(a: str, b: int) -> None:
+    return None
+
+
+def func2(a: str, b: int, c: float = 1.0) -> None:
+    return None
+
+
+def func3(a: str, b: int) -> int:
+    return 0
+
 
 class Write1:
-    def write(self, a: str) -> None: ...
+    def write(self, a: str) -> None:
+        return None
+
 
 class Write2:
-    def write(self, a: str, b: int = ...) -> None: ...
+    def write(self, a: str, b: int = 1) -> None:
+        return None
+
 
 class Write3:
-    def write(self, a: str) -> int: ...
+    def write(self, a: str) -> int:
+        return 0
 
 
 _err_default = np.geterr()

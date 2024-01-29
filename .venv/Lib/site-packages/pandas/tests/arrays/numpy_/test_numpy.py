@@ -87,7 +87,7 @@ def test_constructor_from_string():
     assert result == expected
 
 
-def test_dtype_univalent(any_numpy_dtype):
+def test_dtype_idempotent(any_numpy_dtype):
     dtype = NumpyEADtype(any_numpy_dtype)
 
     result = NumpyEADtype(dtype)

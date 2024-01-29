@@ -4,7 +4,6 @@ import numpy as np
 import pytest
 from scipy import sparse
 from scipy.linalg import eigh
-from scipy.sparse import csgraph
 from scipy.sparse.linalg import eigsh, lobpcg
 
 from sklearn.cluster import KMeans
@@ -19,6 +18,14 @@ from sklearn.metrics.pairwise import rbf_kernel
 from sklearn.neighbors import NearestNeighbors
 from sklearn.utils._testing import assert_array_almost_equal, assert_array_equal
 from sklearn.utils.extmath import _deterministic_vector_sign_flip
+from sklearn.utils.fixes import (
+    COO_CONTAINERS,
+    CSC_CONTAINERS,
+    CSR_CONTAINERS,
+    parse_version,
+    sp_version,
+)
+from sklearn.utils.fixes import laplacian as csgraph_laplacian
 
 try:
     from pyamg import smoothed_aggregation_solver  # noqa
@@ -56,7 +63,8 @@ def _assert_equal_with_sign_flipping(A, B, tol=0.0):
         )
 
 
-def test_sparse_graph_connected_component():
+@pytest.mark.parametrize("coo_container", COO_CONTAINERS)
+def test_sparse_graph_connected_component(coo_container):
     rng = np.random.RandomState(42)
     n_samples = 300
     boundaries = [0, 42, 121, 200, n_samples]
@@ -80,7 +88,7 @@ def test_sparse_graph_connected_component():
     # Build a symmetric affinity matrix
     row_idx, column_idx = tuple(np.array(connections).T)
     data = rng.uniform(0.1, 42, size=len(connections))
-    affinity = sparse.coo_matrix((data, (row_idx, column_idx)))
+    affinity = coo_container((data, (row_idx, column_idx)))
     affinity = 0.5 * (affinity + affinity.T)
 
     for start, stop in zip(boundaries[:-1], boundaries[1:]):
@@ -152,7 +160,7 @@ def test_spectral_embedding_two_components(eigen_solver, dtype, seed=0):
     assert normalized_mutual_info_score(true_label, label_) == pytest.approx(1.0)
 
 
-@pytest.mark.parametrize("X", [S, sparse.csr_matrix(S)], ids=["dense", "sparse"])
+@pytest.mark.parametrize("sparse_container", [None, *CSR_CONTAINERS])
 @pytest.mark.parametrize(
     "eigen_solver",
     [
@@ -162,9 +170,13 @@ def test_spectral_embedding_two_components(eigen_solver, dtype, seed=0):
     ],
 )
 @pytest.mark.parametrize("dtype", (np.float32, np.float64))
-def test_spectral_embedding_precomputed_affinity(X, eigen_solver, dtype, seed=36):
+def test_spectral_embedding_precomputed_affinity(
+    sparse_container, eigen_solver, dtype, seed=36
+):
     # Test spectral embedding with precomputed kernel
     gamma = 1.0
+    X = S if sparse_container is None else sparse_container(S)
+
     se_precomp = SpectralEmbedding(
         n_components=2,
         affinity="precomputed",
@@ -206,11 +218,13 @@ def test_precomputed_nearest_neighbors_filtering():
     assert_array_equal(results[0], results[1])
 
 
-@pytest.mark.parametrize("X", [S, sparse.csr_matrix(S)], ids=["dense", "sparse"])
-def test_spectral_embedding_callable_affinity(X, seed=36):
+@pytest.mark.parametrize("sparse_container", [None, *CSR_CONTAINERS])
+def test_spectral_embedding_callable_affinity(sparse_container, seed=36):
     # Test spectral embedding with callable affinity
     gamma = 0.9
     kern = rbf_kernel(S, gamma=gamma)
+    X = S if sparse_container is None else sparse_container(S)
+
     se_callable = SpectralEmbedding(
         n_components=2,
         affinity=(lambda x: rbf_kernel(x, gamma=gamma)),
@@ -243,11 +257,15 @@ def test_spectral_embedding_callable_affinity(X, seed=36):
 @pytest.mark.filterwarnings(
     "ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*"
 )
+@pytest.mark.filterwarnings(
+    "ignore:np.find_common_type is deprecated:DeprecationWarning:pyamg.*"
+)
 @pytest.mark.skipif(
     not pyamg_available, reason="PyAMG is required for the tests in this function."
 )
 @pytest.mark.parametrize("dtype", (np.float32, np.float64))
-def test_spectral_embedding_amg_solver(dtype, seed=36):
+@pytest.mark.parametrize("coo_container", COO_CONTAINERS)
+def test_spectral_embedding_amg_solver(dtype, coo_container, seed=36):
     se_amg = SpectralEmbedding(
         n_components=2,
         affinity="nearest_neighbors",
@@ -269,18 +287,36 @@ def test_spectral_embedding_amg_solver(dtype, seed=36):
     # same with special case in which amg is not actually used
     # regression test for #10715
     # affinity between nodes
-    row = [0, 0, 1, 2, 3, 3, 4]
-    col = [1, 2, 2, 3, 4, 5, 5]
-    val = [100, 100, 100, 1, 100, 100, 100]
+    row = np.array([0, 0, 1, 2, 3, 3, 4], dtype=np.int32)
+    col = np.array([1, 2, 2, 3, 4, 5, 5], dtype=np.int32)
+    val = np.array([100, 100, 100, 1, 100, 100, 100], dtype=np.int64)
 
-    affinity = sparse.coo_matrix(
-        (val + val, (row + col, col + row)), shape=(6, 6)
-    ).toarray()
+    affinity = coo_container(
+        (np.hstack([val, val]), (np.hstack([row, col]), np.hstack([col, row]))),
+        shape=(6, 6),
+    )
     se_amg.affinity = "precomputed"
     se_arpack.affinity = "precomputed"
     embed_amg = se_amg.fit_transform(affinity.astype(dtype))
     embed_arpack = se_arpack.fit_transform(affinity.astype(dtype))
     _assert_equal_with_sign_flipping(embed_amg, embed_arpack, 1e-5)
+
+    # Check that passing a sparse matrix with `np.int64` indices dtype raises an error
+    # or is successful based on the version of SciPy which is installed.
+    # Use a CSR matrix to avoid any conversion during the validation
+    affinity = affinity.tocsr()
+    affinity.indptr = affinity.indptr.astype(np.int64)
+    affinity.indices = affinity.indices.astype(np.int64)
+
+    # PR: https://github.com/scipy/scipy/pull/18913
+    # First integration in 1.11.3: https://github.com/scipy/scipy/pull/19279
+    scipy_graph_traversal_supports_int64_index = sp_version >= parse_version("1.11.3")
+    if scipy_graph_traversal_supports_int64_index:
+        se_amg.fit_transform(affinity)
+    else:
+        err_msg = "Only sparse matrices with 32-bit integer indices are accepted"
+        with pytest.raises(ValueError, match=err_msg):
+            se_amg.fit_transform(affinity)
 
 
 # TODO: Remove filterwarnings when pyamg does replaces sp.rand call with
@@ -299,6 +335,10 @@ def test_spectral_embedding_amg_solver(dtype, seed=36):
 )
 @pytest.mark.skipif(
     not pyamg_available, reason="PyAMG is required for the tests in this function."
+)
+# TODO: Remove when pyamg removes the use of np.find_common_type
+@pytest.mark.filterwarnings(
+    "ignore:np.find_common_type is deprecated:DeprecationWarning:pyamg.*"
 )
 @pytest.mark.parametrize("dtype", (np.float32, np.float64))
 def test_spectral_embedding_amg_solver_failure(dtype, seed=36):
@@ -353,8 +393,11 @@ def test_connectivity(seed=36):
         ]
     )
     assert not _graph_is_connected(graph)
-    assert not _graph_is_connected(sparse.csr_matrix(graph))
-    assert not _graph_is_connected(sparse.csc_matrix(graph))
+    for csr_container in CSR_CONTAINERS:
+        assert not _graph_is_connected(csr_container(graph))
+    for csc_container in CSC_CONTAINERS:
+        assert not _graph_is_connected(csc_container(graph))
+
     graph = np.array(
         [
             [1, 1, 0, 0, 0],
@@ -365,8 +408,10 @@ def test_connectivity(seed=36):
         ]
     )
     assert _graph_is_connected(graph)
-    assert _graph_is_connected(sparse.csr_matrix(graph))
-    assert _graph_is_connected(sparse.csc_matrix(graph))
+    for csr_container in CSR_CONTAINERS:
+        assert _graph_is_connected(csr_container(graph))
+    for csc_container in CSC_CONTAINERS:
+        assert _graph_is_connected(csc_container(graph))
 
 
 def test_spectral_embedding_deterministic():
@@ -391,7 +436,7 @@ def test_spectral_embedding_unnormalized():
     )
 
     # Verify using manual computation with dense eigh
-    laplacian, dd = csgraph.laplacian(sims, normed=False, return_diag=True)
+    laplacian, dd = csgraph_laplacian(sims, normed=False, return_diag=True)
     _, diffusion_map = eigh(laplacian)
     embedding_2 = diffusion_map.T[:n_components]
     embedding_2 = _deterministic_vector_sign_flip(embedding_2).T
@@ -464,8 +509,13 @@ def test_error_pyamg_not_available():
         se_precomp.fit_transform(S)
 
 
+# TODO: Remove when pyamg removes the use of np.find_common_type
+@pytest.mark.filterwarnings(
+    "ignore:np.find_common_type is deprecated:DeprecationWarning:pyamg.*"
+)
 @pytest.mark.parametrize("solver", ["arpack", "amg", "lobpcg"])
-def test_spectral_eigen_tol_auto(monkeypatch, solver):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_spectral_eigen_tol_auto(monkeypatch, solver, csr_container):
     """Test that `eigen_tol="auto"` is resolved correctly"""
     if solver == "amg" and not pyamg_available:
         pytest.skip("PyAMG is not available.")
@@ -478,7 +528,7 @@ def test_spectral_eigen_tol_auto(monkeypatch, solver):
     solver_func = eigsh if solver == "arpack" else lobpcg
     default_value = 0 if solver == "arpack" else None
     if solver == "amg":
-        S = sparse.csr_matrix(S)
+        S = csr_container(S)
 
     mocked_solver = Mock(side_effect=solver_func)
 

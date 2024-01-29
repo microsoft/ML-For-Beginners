@@ -37,11 +37,15 @@ if TYPE_CHECKING:
 
     from pandas._typing import IndexLabel
 
-    from pandas import DataFrame
+    from pandas import (
+        DataFrame,
+        Series,
+    )
+    from pandas.core.groupby.generic import DataFrameGroupBy
 
 
 def hist_series(
-    self,
+    self: Series,
     by=None,
     ax=None,
     grid: bool = True,
@@ -237,10 +241,10 @@ def hist_frame(
     .. plot::
         :context: close-figs
 
-        >>> df = pd.DataFrame({
-        ...     'length': [1.5, 0.5, 1.2, 0.9, 3],
-        ...     'width': [0.7, 0.2, 0.15, 0.2, 1.1]
-        ...     }, index=['pig', 'rabbit', 'duck', 'chicken', 'horse'])
+        >>> data = {'length': [1.5, 0.5, 1.2, 0.9, 3],
+        ...         'width': [0.7, 0.2, 0.15, 0.2, 1.1]}
+        >>> index = ['pig', 'rabbit', 'duck', 'chicken', 'horse']
+        >>> df = pd.DataFrame(data, index=index)
         >>> hist = df.hist(bins=3)
     """
     plot_backend = _get_plot_backend(backend)
@@ -512,7 +516,7 @@ def boxplot(
 @Substitution(data="", backend=_backend_doc)
 @Appender(_boxplot_doc)
 def boxplot_frame(
-    self,
+    self: DataFrame,
     column=None,
     by=None,
     ax=None,
@@ -542,7 +546,7 @@ def boxplot_frame(
 
 
 def boxplot_frame_groupby(
-    grouped,
+    grouped: DataFrameGroupBy,
     subplots: bool = True,
     column=None,
     fontsize: int | None = None,
@@ -603,10 +607,10 @@ def boxplot_frame_groupby(
         >>> import itertools
         >>> tuples = [t for t in itertools.product(range(1000), range(4))]
         >>> index = pd.MultiIndex.from_tuples(tuples, names=['lvl0', 'lvl1'])
-        >>> data = np.random.randn(len(index),4)
+        >>> data = np.random.randn(len(index), 4)
         >>> df = pd.DataFrame(data, columns=list('ABCD'), index=index)
         >>> grouped = df.groupby(level='lvl1')
-        >>> grouped.boxplot(rot=45, fontsize=12, figsize=(8,10))  # doctest: +SKIP
+        >>> grouped.boxplot(rot=45, fontsize=12, figsize=(8, 10))  # doctest: +SKIP
 
     The ``subplots=False`` option shows the boxplots in a single figure.
 
@@ -721,10 +725,6 @@ class PlotAccessor(PandasObject):
         Name to use for the xlabel on x-axis. Default uses index name as xlabel, or the
         x-column name for planar plots.
 
-        .. versionchanged:: 1.2.0
-
-           Now applicable to planar plots (`scatter`, `hexbin`).
-
         .. versionchanged:: 2.0.0
 
             Now applicable to histograms.
@@ -732,10 +732,6 @@ class PlotAccessor(PandasObject):
     ylabel : label, optional
         Name to use for the ylabel on y-axis. Default will show no ylabel, or the
         y-column name for planar plots.
-
-        .. versionchanged:: 1.2.0
-
-           Now applicable to planar plots (`scatter`, `hexbin`).
 
         .. versionchanged:: 2.0.0
 
@@ -843,11 +839,11 @@ class PlotAccessor(PandasObject):
     _kind_aliases = {"density": "kde"}
     _all_kinds = _common_kinds + _series_kinds + _dataframe_kinds
 
-    def __init__(self, data) -> None:
+    def __init__(self, data: Series | DataFrame) -> None:
         self._parent = data
 
     @staticmethod
-    def _get_call_args(backend_name: str, data, args, kwargs):
+    def _get_call_args(backend_name: str, data: Series | DataFrame, args, kwargs):
         """
         This function makes calls to this accessor `__call__` method compatible
         with the previous `SeriesPlotMethods.__call__` and
@@ -961,7 +957,10 @@ class PlotAccessor(PandasObject):
             return plot_backend.plot(self._parent, x=x, y=y, kind=kind, **kwargs)
 
         if kind not in self._all_kinds:
-            raise ValueError(f"{kind} is not a valid plot kind")
+            raise ValueError(
+                f"{kind} is not a valid plot kind "
+                f"Valid plot kinds: {self._all_kinds}"
+            )
 
         # The original data structured can be transformed before passed to the
         # backend. For example, for DataFrame is common to set the index as the
@@ -1393,9 +1392,7 @@ class PlotAccessor(PandasObject):
         .. plot::
             :context: close-figs
 
-            >>> df = pd.DataFrame(
-            ...     np.random.randint(1, 7, 6000),
-            ...     columns = ['one'])
+            >>> df = pd.DataFrame(np.random.randint(1, 7, 6000), columns=['one'])
             >>> df['two'] = df['one'] + np.random.randint(1, 7, 6000)
             >>> ax = df.plot.hist(bins=12, alpha=0.5)
 
@@ -1573,7 +1570,7 @@ class PlotAccessor(PandasObject):
             ...     'signups': [5, 5, 6, 12, 14, 13],
             ...     'visits': [20, 42, 28, 62, 81, 50],
             ... }, index=pd.date_range(start='2018/01/01', end='2018/07/01',
-            ...                        freq='M'))
+            ...                        freq='ME'))
             >>> ax = df.plot.area()
 
         Area plots are stacked by default. To produce an unstacked plot,
@@ -1887,7 +1884,7 @@ def _load_backend(backend: str) -> types.ModuleType:
     # entry_points lost dict API ~ PY 3.10
     # https://github.com/python/importlib_metadata/issues/298
     if hasattr(eps, "select"):
-        entry = eps.select(group=key)  # pyright: ignore[reportGeneralTypeIssues]
+        entry = eps.select(group=key)
     else:
         # Argument 2 to "get" of "dict" has incompatible type "Tuple[]";
         # expected "EntryPoints"  [arg-type]

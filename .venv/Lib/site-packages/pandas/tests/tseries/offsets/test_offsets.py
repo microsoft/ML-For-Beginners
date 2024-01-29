@@ -22,6 +22,7 @@ import pandas._libs.tslibs.offsets as liboffsets
 from pandas._libs.tslibs.offsets import (
     _get_offset,
     _offset_map,
+    to_offset,
 )
 from pandas._libs.tslibs.period import INVALID_FREQ_ERR_MSG
 from pandas.errors import PerformanceWarning
@@ -99,6 +100,33 @@ def _create_offset(klass, value=1, normalize=False):
     else:
         klass = klass(value, normalize=normalize)
     return klass
+
+
+@pytest.fixture(
+    params=[
+        getattr(offsets, o)
+        for o in offsets.__all__
+        if issubclass(getattr(offsets, o), liboffsets.MonthOffset)
+        and o != "MonthOffset"
+    ]
+)
+def month_classes(request):
+    """
+    Fixture for month based datetime offsets available for a time series.
+    """
+    return request.param
+
+
+@pytest.fixture(
+    params=[
+        getattr(offsets, o) for o in offsets.__all__ if o not in ("Tick", "BaseOffset")
+    ]
+)
+def offset_types(request):
+    """
+    Fixture for all the datetime offsets available for a time series.
+    """
+    return request.param
 
 
 @pytest.fixture
@@ -228,18 +256,9 @@ class TestCommon:
         assert result == expected
 
         # see gh-14101
-        exp_warning = None
         ts = Timestamp(dt) + Nano(5)
-
-        if (
-            type(offset_s).__name__ == "DateOffset"
-            and (funcname in ["apply", "_apply"] or normalize)
-            and ts.nanosecond > 0
-        ):
-            exp_warning = UserWarning
-
         # test nanosecond is preserved
-        with tm.assert_produces_warning(exp_warning):
+        with tm.assert_produces_warning(None):
             result = func(ts)
 
         assert isinstance(result, Timestamp)
@@ -273,18 +292,9 @@ class TestCommon:
             assert result == expected_localize
 
             # see gh-14101
-            exp_warning = None
             ts = Timestamp(dt, tz=tz) + Nano(5)
-
-            if (
-                type(offset_s).__name__ == "DateOffset"
-                and (funcname in ["apply", "_apply"] or normalize)
-                and ts.nanosecond > 0
-            ):
-                exp_warning = UserWarning
-
             # test nanosecond is preserved
-            with tm.assert_produces_warning(exp_warning):
+            with tm.assert_produces_warning(None):
                 result = func(ts)
             assert isinstance(result, Timestamp)
             if normalize is False:
@@ -494,7 +504,7 @@ class TestCommon:
         # GH#12724, GH#30336
         offset_s = _create_offset(offset_types)
 
-        dti = DatetimeIndex([], tz=tz_naive_fixture)
+        dti = DatetimeIndex([], tz=tz_naive_fixture).as_unit("ns")
 
         warn = None
         if isinstance(
@@ -560,29 +570,27 @@ class TestCommon:
         off = _create_offset(offset_types)
         assert hash(off) is not None
 
+    # TODO: belongs in arithmetic tests?
     @pytest.mark.filterwarnings(
         "ignore:Non-vectorized DateOffset being applied to Series or DatetimeIndex"
     )
     @pytest.mark.parametrize("unit", ["s", "ms", "us"])
-    def test_add_dt64_ndarray_non_nano(self, offset_types, unit, request):
+    def test_add_dt64_ndarray_non_nano(self, offset_types, unit):
         # check that the result with non-nano matches nano
         off = _create_offset(offset_types)
 
-        dti = date_range("2016-01-01", periods=35, freq="D")
+        dti = date_range("2016-01-01", periods=35, freq="D", unit=unit)
 
-        arr = dti._data._ndarray.astype(f"M8[{unit}]")
-        dta = type(dti._data)._simple_new(arr, dtype=arr.dtype)
-
-        expected = dti._data + off
-        result = dta + off
+        result = (dti + off)._with_freq(None)
 
         exp_unit = unit
-        if isinstance(off, Tick) and off._creso > dta._creso:
+        if isinstance(off, Tick) and off._creso > dti._data._creso:
             # cast to higher reso like we would with Timedelta scalar
             exp_unit = Timedelta(off).unit
-        expected = expected.as_unit(exp_unit)
+        # TODO(GH#55564): as_unit will be unnecessary
+        expected = DatetimeIndex([x + off for x in dti]).as_unit(exp_unit)
 
-        tm.assert_numpy_array_equal(result._ndarray, expected._ndarray)
+        tm.assert_index_equal(result, expected)
 
 
 class TestDateOffset:
@@ -602,7 +610,7 @@ class TestDateOffset:
     @pytest.mark.parametrize("kwd", sorted(liboffsets._relativedelta_kwds))
     def test_constructor(self, kwd, request):
         if kwd == "millisecond":
-            request.node.add_marker(
+            request.applymarker(
                 pytest.mark.xfail(
                     raises=NotImplementedError,
                     reason="Constructing DateOffset object with `millisecond` is not "
@@ -617,8 +625,11 @@ class TestDateOffset:
         assert (dt + DateOffset(2)) == datetime(2008, 1, 4)
 
     def test_is_anchored(self):
-        assert not DateOffset(2).is_anchored()
-        assert DateOffset(1).is_anchored()
+        msg = "DateOffset.is_anchored is deprecated "
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            assert not DateOffset(2).is_anchored()
+            assert DateOffset(1).is_anchored()
 
     def test_copy(self):
         assert DateOffset(months=2).copy() == DateOffset(months=2)
@@ -757,7 +768,7 @@ class TestOffsetNames:
     def test_get_offset_name(self):
         assert BDay().freqstr == "B"
         assert BDay(2).freqstr == "2B"
-        assert BMonthEnd().freqstr == "BM"
+        assert BMonthEnd().freqstr == "BME"
         assert Week(weekday=0).freqstr == "W-MON"
         assert Week(weekday=1).freqstr == "W-TUE"
         assert Week(weekday=2).freqstr == "W-WED"
@@ -776,8 +787,8 @@ def test_get_offset():
     pairs = [
         ("B", BDay()),
         ("b", BDay()),
-        ("bm", BMonthEnd()),
-        ("Bm", BMonthEnd()),
+        ("bme", BMonthEnd()),
+        ("Bme", BMonthEnd()),
         ("W-MON", Week(weekday=0)),
         ("W-TUE", Week(weekday=1)),
         ("W-WED", Week(weekday=2)),
@@ -811,7 +822,7 @@ class TestOffsetAliases:
             assert k == v.copy()
 
     def test_rule_code(self):
-        lst = ["M", "MS", "BM", "BMS", "D", "B", "H", "T", "S", "L", "U"]
+        lst = ["ME", "MS", "BME", "BMS", "D", "B", "h", "min", "s", "ms", "us"]
         for k in lst:
             assert k == _get_offset(k).rule_code
             # should be cached - this is kind of an internals test...
@@ -839,7 +850,7 @@ class TestOffsetAliases:
             "NOV",
             "DEC",
         ]
-        base_lst = ["A", "AS", "BA", "BAS", "Q", "QS", "BQ", "BQS"]
+        base_lst = ["YE", "YS", "BYE", "BYS", "QE", "QS", "BQE", "BQS"]
         for base in base_lst:
             for v in suffix_lst:
                 alias = "-".join([base, v])
@@ -858,7 +869,7 @@ def test_freq_offsets():
 class TestReprNames:
     def test_str_for_named_is_name(self):
         # look at all the amazing combinations!
-        month_prefixes = ["A", "AS", "BA", "BAS", "Q", "BQ", "BQS", "QS"]
+        month_prefixes = ["YE", "YS", "BYE", "BYS", "QE", "BQE", "BQS", "QS"]
         names = [
             prefix + "-" + month
             for prefix in month_prefixes
@@ -916,7 +927,7 @@ def test_month_offset_name(month_classes):
 @pytest.mark.parametrize("kwd", sorted(liboffsets._relativedelta_kwds))
 def test_valid_relativedelta_kwargs(kwd, request):
     if kwd == "millisecond":
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 raises=NotImplementedError,
                 reason="Constructing DateOffset object with `millisecond` is not "
@@ -1010,6 +1021,14 @@ def test_dateoffset_add_sub_timestamp_with_nano():
     assert result == ts
     result = offset + ts
     assert result == expected
+
+    offset2 = DateOffset(minutes=2, nanoseconds=9, hour=1)
+    assert offset2._use_relativedelta
+    with tm.assert_produces_warning(None):
+        # no warning about Discarding nonzero nanoseconds
+        result2 = ts + offset2
+    expected2 = Timestamp("1970-01-01 01:02:00.000000013")
+    assert result2 == expected2
 
 
 @pytest.mark.parametrize(
@@ -1116,3 +1135,51 @@ def test_dateoffset_operations_on_dataframes():
 
     assert frameresult1[0] == expecteddate
     assert frameresult2[0] == expecteddate
+
+
+def test_is_yqm_start_end():
+    freq_m = to_offset("ME")
+    bm = to_offset("BME")
+    qfeb = to_offset("QE-FEB")
+    qsfeb = to_offset("QS-FEB")
+    bq = to_offset("BQE")
+    bqs_apr = to_offset("BQS-APR")
+    as_nov = to_offset("YS-NOV")
+
+    tests = [
+        (freq_m.is_month_start(Timestamp("2013-06-01")), 1),
+        (bm.is_month_start(Timestamp("2013-06-01")), 0),
+        (freq_m.is_month_start(Timestamp("2013-06-03")), 0),
+        (bm.is_month_start(Timestamp("2013-06-03")), 1),
+        (qfeb.is_month_end(Timestamp("2013-02-28")), 1),
+        (qfeb.is_quarter_end(Timestamp("2013-02-28")), 1),
+        (qfeb.is_year_end(Timestamp("2013-02-28")), 1),
+        (qfeb.is_month_start(Timestamp("2013-03-01")), 1),
+        (qfeb.is_quarter_start(Timestamp("2013-03-01")), 1),
+        (qfeb.is_year_start(Timestamp("2013-03-01")), 1),
+        (qsfeb.is_month_end(Timestamp("2013-03-31")), 1),
+        (qsfeb.is_quarter_end(Timestamp("2013-03-31")), 0),
+        (qsfeb.is_year_end(Timestamp("2013-03-31")), 0),
+        (qsfeb.is_month_start(Timestamp("2013-02-01")), 1),
+        (qsfeb.is_quarter_start(Timestamp("2013-02-01")), 1),
+        (qsfeb.is_year_start(Timestamp("2013-02-01")), 1),
+        (bq.is_month_end(Timestamp("2013-06-30")), 0),
+        (bq.is_quarter_end(Timestamp("2013-06-30")), 0),
+        (bq.is_year_end(Timestamp("2013-06-30")), 0),
+        (bq.is_month_end(Timestamp("2013-06-28")), 1),
+        (bq.is_quarter_end(Timestamp("2013-06-28")), 1),
+        (bq.is_year_end(Timestamp("2013-06-28")), 0),
+        (bqs_apr.is_month_end(Timestamp("2013-06-30")), 0),
+        (bqs_apr.is_quarter_end(Timestamp("2013-06-30")), 0),
+        (bqs_apr.is_year_end(Timestamp("2013-06-30")), 0),
+        (bqs_apr.is_month_end(Timestamp("2013-06-28")), 1),
+        (bqs_apr.is_quarter_end(Timestamp("2013-06-28")), 1),
+        (bqs_apr.is_year_end(Timestamp("2013-03-29")), 1),
+        (as_nov.is_year_start(Timestamp("2013-11-01")), 1),
+        (as_nov.is_year_end(Timestamp("2013-10-31")), 1),
+        (Timestamp("2012-02-01").days_in_month, 29),
+        (Timestamp("2013-02-01").days_in_month, 28),
+    ]
+
+    for ts, value in tests:
+        assert ts == value

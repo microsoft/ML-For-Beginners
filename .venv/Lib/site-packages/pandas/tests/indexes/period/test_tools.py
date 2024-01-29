@@ -20,14 +20,14 @@ class TestPeriodRepresentation:
             ("W-THU", "1970-01-01"),
             ("D", "1970-01-01"),
             ("B", "1970-01-01"),
-            ("H", "1970-01-01"),
-            ("T", "1970-01-01"),
-            ("S", "1970-01-01"),
-            ("L", "1970-01-01"),
-            ("U", "1970-01-01"),
-            ("N", "1970-01-01"),
+            ("h", "1970-01-01"),
+            ("min", "1970-01-01"),
+            ("s", "1970-01-01"),
+            ("ms", "1970-01-01"),
+            ("us", "1970-01-01"),
+            ("ns", "1970-01-01"),
             ("M", "1970-01"),
-            ("A", 1970),
+            ("Y", 1970),
         ],
     )
     @pytest.mark.filterwarnings(r"ignore:PeriodDtype\[B\] is deprecated:FutureWarning")
@@ -43,7 +43,7 @@ class TestPeriodRepresentation:
 
 class TestPeriodIndexConversion:
     def test_tolist(self):
-        index = period_range(freq="A", start="1/1/2001", end="12/1/2009")
+        index = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
         rs = index.tolist()
         for x in rs:
             assert isinstance(x, Period)

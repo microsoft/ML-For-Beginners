@@ -34,7 +34,7 @@ def test_is_monotonic_with_nat():
         assert obj.is_unique
 
     dti2 = dti.insert(3, NaT)
-    pi2 = dti2.to_period("H")
+    pi2 = dti2.to_period("h")
     tdi2 = Index(dti2.view("timedelta64[ns]"))
 
     for obj in [pi2, pi2._engine, dti2, dti2._engine, tdi2, tdi2._engine]:

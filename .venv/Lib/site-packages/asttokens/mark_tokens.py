@@ -24,7 +24,7 @@ import six
 from . import util
 from .asttokens import ASTTokens
 from .util import AstConstant
-from .astroid_compat import astroid_node_classes as nc
+from .astroid_compat import astroid_node_classes as nc, BaseContainer as AstroidBaseContainer
 
 if TYPE_CHECKING:
   from .util import AstNode
@@ -229,7 +229,7 @@ class MarkTokens(object):
     # type: (AstNode, util.Token, util.Token) -> Tuple[util.Token, util.Token]
     # With astroid, nodes that start with a doc-string can have an empty body, in which case we
     # need to adjust the last token to include the doc string.
-    if not node.body and getattr(node, 'doc', None): # type: ignore[union-attr]
+    if not node.body and (getattr(node, 'doc_node', None) or getattr(node, 'doc', None)): # type: ignore[union-attr]
       last_token = self._code.find_token(last_token, token.STRING)
 
     # Include @ from decorator
@@ -312,7 +312,7 @@ class MarkTokens(object):
     # In Python3.8 parsed tuples include parentheses when present.
     def handle_tuple_nonempty(self, node, first_token, last_token):
       # type: (AstNode, util.Token, util.Token) -> Tuple[util.Token, util.Token]
-      assert isinstance(node, ast.Tuple) or isinstance(node, nc._BaseContainer)
+      assert isinstance(node, ast.Tuple) or isinstance(node, AstroidBaseContainer)
       # It's a bare tuple if the first token belongs to the first child. The first child may
       # include extraneous parentheses (which don't create new nodes), so account for those too.
       child = node.elts[0]
@@ -331,7 +331,7 @@ class MarkTokens(object):
 
   def visit_tuple(self, node, first_token, last_token):
     # type: (AstNode, util.Token, util.Token) -> Tuple[util.Token, util.Token]
-    assert isinstance(node, ast.Tuple) or isinstance(node, nc._BaseContainer)
+    assert isinstance(node, ast.Tuple) or isinstance(node, AstroidBaseContainer)
     if not node.elts:
       # An empty tuple is just "()", and we need no further info.
       return (first_token, last_token)

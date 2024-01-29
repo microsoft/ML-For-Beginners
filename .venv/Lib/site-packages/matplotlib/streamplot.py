@@ -57,7 +57,7 @@ def streamplot(axes, x, y, u, v, density=1, linewidth=None, color=None,
         See `~matplotlib.patches.FancyArrowPatch`.
     minlength : float
         Minimum length of streamline in axes coordinates.
-    start_points : Nx2 array
+    start_points : (N, 2) array
         Coordinates of starting points for the streamlines in data coordinates
         (the same coordinates as the *x* and *y* arrays).
     zorder : float
@@ -162,8 +162,8 @@ def streamplot(axes, x, y, u, v, density=1, linewidth=None, color=None,
         for xs, ys in sp2:
             if not (grid.x_origin <= xs <= grid.x_origin + grid.width and
                     grid.y_origin <= ys <= grid.y_origin + grid.height):
-                raise ValueError("Starting point ({}, {}) outside of data "
-                                 "boundaries".format(xs, ys))
+                raise ValueError(f"Starting point ({xs}, {ys}) outside of "
+                                 "data boundaries")
 
         # Convert start_points from data to array coords
         # Shift the seed points from the bottom left of the data so that
@@ -198,8 +198,13 @@ def streamplot(axes, x, y, u, v, density=1, linewidth=None, color=None,
         tx += grid.x_origin
         ty += grid.y_origin
 
-        points = np.transpose([tx, ty]).reshape(-1, 1, 2)
-        streamlines.extend(np.hstack([points[:-1], points[1:]]))
+        # Create multiple tiny segments if varying width or color is given
+        if isinstance(linewidth, np.ndarray) or use_multicolor_lines:
+            points = np.transpose([tx, ty]).reshape(-1, 1, 2)
+            streamlines.extend(np.hstack([points[:-1], points[1:]]))
+        else:
+            points = np.transpose([tx, ty])
+            streamlines.append(points)
 
         # Add arrows halfway along each trajectory.
         s = np.cumsum(np.hypot(np.diff(tx), np.diff(ty)))

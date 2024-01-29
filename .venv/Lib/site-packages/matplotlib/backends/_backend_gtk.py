@@ -301,7 +301,7 @@ class _NavigationToolbar2GTK(NavigationToolbar2):
 
     def set_history_buttons(self):
         can_backward = self._nav_stack._pos > 0
-        can_forward = self._nav_stack._pos < len(self._nav_stack._elements) - 1
+        can_forward = self._nav_stack._pos < len(self._nav_stack) - 1
         if 'Back' in self._gtk_ids:
             self._gtk_ids['Back'].set_sensitive(can_backward)
         if 'Forward' in self._gtk_ids:
@@ -324,7 +324,7 @@ class ConfigureSubplotsGTK(backend_tools.ConfigureSubplotsBase):
 
 
 class _BackendGTK(_Backend):
-    backend_version = "%s.%s.%s" % (
+    backend_version = "{}.{}.{}".format(
         Gtk.get_major_version(),
         Gtk.get_minor_version(),
         Gtk.get_micro_version(),

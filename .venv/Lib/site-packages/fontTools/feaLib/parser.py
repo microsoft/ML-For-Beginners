@@ -45,7 +45,6 @@ class Parser(object):
     def __init__(
         self, featurefile, glyphNames=(), followIncludes=True, includeDir=None, **kwargs
     ):
-
         if "glyphMap" in kwargs:
             from fontTools.misc.loggingTools import deprecateArgument
 
@@ -1754,7 +1753,8 @@ class Parser(object):
 
     def parse_featureNames_(self, tag):
         """Parses a ``featureNames`` statement found in stylistic set features.
-        See section `8.c <https://adobe-type-tools.github.io/afdko/OpenTypeFeatureFileSpecification.html#8.c>`_."""
+        See section `8.c <https://adobe-type-tools.github.io/afdko/OpenTypeFeatureFileSpecification.html#8.c>`_.
+        """
         assert self.cur_token_ == "featureNames", self.cur_token_
         block = self.ast.NestedBlock(
             tag, self.cur_token_, location=self.cur_token_location_

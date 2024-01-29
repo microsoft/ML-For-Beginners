@@ -53,7 +53,7 @@ PROC_STATUSES = {
     cext.SIDL: _common.STATUS_IDLE,
     cext.SZOMB: _common.STATUS_ZOMBIE,
     cext.SACTIVE: _common.STATUS_RUNNING,
-    cext.SSWAP: _common.STATUS_RUNNING,      # TODO what status is this?
+    cext.SSWAP: _common.STATUS_RUNNING,  # TODO what status is this?
     cext.SSTOP: _common.STATUS_STOPPED,
 }
 
@@ -80,7 +80,8 @@ proc_info_map = dict(
     nice=4,
     num_threads=5,
     status=6,
-    ttynr=7)
+    ttynr=7,
+)
 
 
 # =====================================================================
@@ -123,13 +124,13 @@ def swap_memory():
 
 
 def cpu_times():
-    """Return system-wide CPU times as a named tuple"""
+    """Return system-wide CPU times as a named tuple."""
     ret = cext.per_cpu_times()
     return scputimes(*[sum(x) for x in zip(*ret)])
 
 
 def per_cpu_times():
-    """Return system per-CPU times as a list of named tuples"""
+    """Return system per-CPU times as a list of named tuples."""
     ret = cext.per_cpu_times()
     return [scputimes(*x) for x in ret]
 
@@ -144,13 +145,13 @@ def cpu_count_logical():
 
 
 def cpu_count_cores():
-    cmd = "lsdev -Cc processor"
-    p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE)
+    cmd = ["lsdev", "-Cc", "processor"]
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = p.communicate()
     if PY3:
-        stdout, stderr = [x.decode(sys.stdout.encoding)
-                          for x in (stdout, stderr)]
+        stdout, stderr = (
+            x.decode(sys.stdout.encoding) for x in (stdout, stderr)
+        )
     if p.returncode != 0:
         raise RuntimeError("%r command error\n%s" % (cmd, stderr))
     processors = stdout.strip().splitlines()
@@ -161,7 +162,8 @@ def cpu_stats():
     """Return various CPU stats as a named tuple."""
     ctx_switches, interrupts, soft_interrupts, syscalls = cext.cpu_stats()
     return _common.scpustats(
-        ctx_switches, interrupts, soft_interrupts, syscalls)
+        ctx_switches, interrupts, soft_interrupts, syscalls
+    )
 
 
 # =====================================================================
@@ -190,8 +192,9 @@ def disk_partitions(all=False):
             if not disk_usage(mountpoint).total:
                 continue
         maxfile = maxpath = None  # set later
-        ntuple = _common.sdiskpart(device, mountpoint, fstype, opts,
-                                   maxfile, maxpath)
+        ntuple = _common.sdiskpart(
+            device, mountpoint, fstype, opts, maxfile, maxpath
+        )
         retlist.append(ntuple)
     return retlist
 
@@ -213,8 +216,10 @@ def net_connections(kind, _pid=-1):
     """
     cmap = _common.conn_tmap
     if kind not in cmap:
-        raise ValueError("invalid %r kind argument; choose between %s"
-                         % (kind, ', '.join([repr(x) for x in cmap])))
+        raise ValueError(
+            "invalid %r kind argument; choose between %s"
+            % (kind, ', '.join([repr(x) for x in cmap]))
+        )
     families, types = _common.conn_tmap[kind]
     rawlist = cext.net_connections(_pid)
     ret = []
@@ -224,16 +229,23 @@ def net_connections(kind, _pid=-1):
             continue
         if type_ not in types:
             continue
-        nt = conn_to_ntuple(fd, fam, type_, laddr, raddr, status,
-                            TCP_STATUSES, pid=pid if _pid == -1 else None)
+        nt = conn_to_ntuple(
+            fd,
+            fam,
+            type_,
+            laddr,
+            raddr,
+            status,
+            TCP_STATUSES,
+            pid=pid if _pid == -1 else None,
+        )
         ret.append(nt)
     return ret
 
 
 def net_if_stats():
     """Get NIC stats (isup, duplex, speed, mtu)."""
-    duplex_map = {"Full": NIC_DUPLEX_FULL,
-                  "Half": NIC_DUPLEX_HALF}
+    duplex_map = {"Full": NIC_DUPLEX_FULL, "Half": NIC_DUPLEX_HALF}
     names = set([x[0] for x in net_if_addrs()])
     ret = {}
     for name in names:
@@ -245,15 +257,20 @@ def net_if_stats():
         # looks like it is using an undocumented ioctl?)
         duplex = ""
         speed = 0
-        p = subprocess.Popen(["/usr/bin/entstat", "-d", name],
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(
+            ["/usr/bin/entstat", "-d", name],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         stdout, stderr = p.communicate()
         if PY3:
-            stdout, stderr = [x.decode(sys.stdout.encoding)
-                              for x in (stdout, stderr)]
+            stdout, stderr = (
+                x.decode(sys.stdout.encoding) for x in (stdout, stderr)
+            )
         if p.returncode == 0:
             re_result = re.search(
-                r"Running: (\d+) Mbps.*?(\w+) Duplex", stdout)
+                r"Running: (\d+) Mbps.*?(\w+) Duplex", stdout
+            )
             if re_result is not None:
                 speed = int(re_result.group(1))
                 duplex = re_result.group(2)
@@ -313,6 +330,7 @@ def wrap_exceptions(fun):
     """Call callable into a try/except clause and translate ENOENT,
     EACCES and EPERM in NoSuchProcess or AccessDenied exceptions.
     """
+
     @functools.wraps(fun)
     def wrapper(self, *args, **kwargs):
         try:
@@ -327,10 +345,11 @@ def wrap_exceptions(fun):
                 raise ZombieProcess(self.pid, self._name, self._ppid)
         except PermissionError:
             raise AccessDenied(self.pid, self._name)
+
     return wrapper
 
 
-class Process(object):
+class Process:
     """Wrapper class around underlying C implementation."""
 
     __slots__ = ["pid", "_name", "_ppid", "_procfs_path", "_cache"]
@@ -379,17 +398,20 @@ class Process(object):
             if not os.path.isabs(exe):
                 # if cwd has changed, we're out of luck - this may be wrong!
                 exe = os.path.abspath(os.path.join(self.cwd(), exe))
-            if (os.path.isabs(exe) and
-                    os.path.isfile(exe) and
-                    os.access(exe, os.X_OK)):
+            if (
+                os.path.isabs(exe)
+                and os.path.isfile(exe)
+                and os.access(exe, os.X_OK)
+            ):
                 return exe
             # not found, move to search in PATH using basename only
             exe = os.path.basename(exe)
         # search for exe name PATH
         for path in os.environ["PATH"].split(":"):
             possible_exe = os.path.abspath(os.path.join(path, exe))
-            if (os.path.isfile(possible_exe) and
-                    os.access(possible_exe, os.X_OK)):
+            if os.path.isfile(possible_exe) and os.access(
+                possible_exe, os.X_OK
+            ):
                 return possible_exe
         return ''
 
@@ -410,6 +432,7 @@ class Process(object):
         return self._proc_basic_info()[proc_info_map['num_threads']]
 
     if HAS_THREADS:
+
         @wrap_exceptions
         def threads(self):
             rawlist = cext.proc_threads(self.pid)
@@ -472,7 +495,7 @@ class Process(object):
     def terminal(self):
         ttydev = self._proc_basic_info()[proc_info_map['ttynr']]
         # convert from 64-bit dev_t to 32-bit dev_t and then map the device
-        ttydev = (((ttydev & 0x0000FFFF00000000) >> 16) | (ttydev & 0xFFFF))
+        ttydev = ((ttydev & 0x0000FFFF00000000) >> 16) | (ttydev & 0xFFFF)
         # try to match rdev of /dev/pts/* files ttydev
         for dev in glob.glob("/dev/**/*"):
             if os.stat(dev).st_rdev == ttydev:
@@ -507,12 +530,16 @@ class Process(object):
     def open_files(self):
         # TODO rewrite without using procfiles (stat /proc/pid/fd/* and then
         # find matching name of the inode)
-        p = subprocess.Popen(["/usr/bin/procfiles", "-n", str(self.pid)],
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(
+            ["/usr/bin/procfiles", "-n", str(self.pid)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
         stdout, stderr = p.communicate()
         if PY3:
-            stdout, stderr = [x.decode(sys.stdout.encoding)
-                              for x in (stdout, stderr)]
+            stdout, stderr = (
+                x.decode(sys.stdout.encoding) for x in (stdout, stderr)
+            )
         if "no such process" in stderr.lower():
             raise NoSuchProcess(self.pid, self._name)
         procfiles = re.findall(r"(\d+): S_IFREG.*\s*.*name:(.*)\n", stdout)
@@ -528,20 +555,20 @@ class Process(object):
 
     @wrap_exceptions
     def num_fds(self):
-        if self.pid == 0:       # no /proc/0/fd
+        if self.pid == 0:  # no /proc/0/fd
             return 0
         return len(os.listdir("%s/%s/fd" % (self._procfs_path, self.pid)))
 
     @wrap_exceptions
     def num_ctx_switches(self):
-        return _common.pctxsw(
-            *cext.proc_num_ctx_switches(self.pid))
+        return _common.pctxsw(*cext.proc_num_ctx_switches(self.pid))
 
     @wrap_exceptions
     def wait(self, timeout=None):
         return _psposix.wait_pid(self.pid, timeout, self._name)
 
     if HAS_PROC_IO_COUNTERS:
+
         @wrap_exceptions
         def io_counters(self):
             try:

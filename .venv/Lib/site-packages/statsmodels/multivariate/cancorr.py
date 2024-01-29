@@ -34,9 +34,9 @@ class CanCorr(Model):
         See Parameters.
     cancorr : ndarray
         The canonical correlation values
-    y_cancoeff : ndarray
+    y_cancoef : ndarray
         The canonical coefficients for endog
-    x_cancoeff : ndarray
+    x_cancoef : ndarray
         The canonical coefficients for exog
 
     References

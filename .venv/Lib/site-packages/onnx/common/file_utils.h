@@ -6,10 +6,11 @@
 
 #pragma once
 
+#include <fstream>
+#include <string>
+
 #include "onnx/checker.h"
 #include "onnx/common/path.h"
-
-#include <fstream>
 
 namespace ONNX_NAMESPACE {
 

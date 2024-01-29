@@ -18,7 +18,7 @@ from numpy import (eye, ones, zeros, zeros_like, triu, tril, tril_indices,
 from numpy.random import rand, randint, seed
 
 from scipy.linalg import (_flapack as flapack, lapack, inv, svd, cholesky,
-                          solve, ldl, norm, block_diag, qr, eigh)
+                          solve, ldl, norm, block_diag, qr, eigh, qz)
 
 from scipy.linalg.lapack import _compute_lwork
 from scipy.stats import ortho_group, unitary_group
@@ -662,8 +662,8 @@ def test_lartg():
 
         if np.iscomplexobj(g):
             assert_allclose(sn, -4.0j/5.0)
-            assert_(type(r) == complex)
-            assert_(type(cs) == float)
+            assert_(isinstance(r, complex))
+            assert_(isinstance(cs, float))
         else:
             assert_allclose(sn, 4.0/5.0)
 
@@ -1031,7 +1031,7 @@ def test_sygst():
 
         eig, _, info = syevd(a)
         assert_(info == 0)
-        assert_allclose(eig, eig_gvd, rtol=1e-4)
+        assert_allclose(eig, eig_gvd, rtol=1.2e-4)
 
 
 def test_hegst():
@@ -1142,7 +1142,7 @@ def test_tfsm():
 
 def test_ormrz_unmrz():
     """
-    This test performs a matrix multiplication with an arbitrary m x n matric C
+    This test performs a matrix multiplication with an arbitrary m x n matrix C
     and a unitary matrix Q without explicitly forming the array. The array data
     is encoded in the rectangular part of A which is obtained from ?TZRZF. Q
     size is inferred by m, n, side keywords.
@@ -1408,8 +1408,7 @@ def test_sfrk_hfrk():
             A = A + A.T + n*eye(n)
 
         prefix = 's'if ind < 2 else 'h'
-        trttf, tfttr, shfrk = get_lapack_funcs(('trttf', 'tfttr', '{}frk'
-                                                ''.format(prefix)),
+        trttf, tfttr, shfrk = get_lapack_funcs(('trttf', 'tfttr', f'{prefix}frk'),
                                                dtype=dtype)
 
         Afp, _ = trttf(A)
@@ -1994,7 +1993,7 @@ def test_gejsv_NAG(A, sva_expect, u_expect, v_expect):
 @pytest.mark.parametrize("dtype", DTYPES)
 def test_gttrf_gttrs(dtype):
     # The test uses ?gttrf and ?gttrs to solve a random system for each dtype,
-    # tests that the output of ?gttrf define LU matricies, that input
+    # tests that the output of ?gttrf define LU matrices, that input
     # parameters are unmodified, transposal options function correctly, that
     # incompatible matrix shapes raise an error, and singular matrices return
     # non zero info.
@@ -2229,8 +2228,7 @@ def test_pttrf_pttrs_errors_singular_nonSPD(ddtype, dtype):
     e[0] = 0
     _d, _e, info = pttrf(d, e)
     assert_equal(_d[info - 1], 0,
-                 "?pttrf: _d[info-1] is {}, not the illegal value :0."
-                 .format(_d[info - 1]))
+                 f"?pttrf: _d[info-1] is {_d[info - 1]}, not the illegal value :0.")
 
     # test with non-spd matrix
     d = generate_random_dtype_array((n,), ddtype)
@@ -2420,7 +2418,7 @@ def test_geqrfp(dtype, matrix_size):
     # Tests for all dytpes, tall, wide, and square matrices.
     # Using the routine with random matrix A, Q and R are obtained and then
     # tested such that R is upper triangular and non-negative on the diagonal,
-    # and Q is an orthagonal matrix. Verifies that A=Q@R. It also
+    # and Q is an orthogonal matrix. Verifies that A=Q@R. It also
     # tests against a matrix that for which the  linalg.qr method returns
     # negative diagonals, and for error messaging.
 
@@ -2434,7 +2432,7 @@ def test_geqrfp(dtype, matrix_size):
 
     m, n = matrix_size
 
-    # create random matrix of dimentions m x n
+    # create random matrix of dimensions m x n
     A = generate_random_dtype_array((m, n), dtype=dtype)
     # create qr matrix using geqrfp
     qr_A, tau, info = geqrfp(A)
@@ -2498,8 +2496,7 @@ def test_standard_eigh_lworks(pfx, driver):
         _compute_lwork(sc_dlw, n, lower=1)
         _compute_lwork(dz_dlw, n, lower=1)
     except Exception as e:
-        pytest.fail("{}_lwork raised unexpected exception: {}"
-                    "".format(pfx+driver, e))
+        pytest.fail(f"{pfx+driver}_lwork raised unexpected exception: {e}")
 
 
 @pytest.mark.parametrize("driver", ['gv', 'gvx'])
@@ -2514,8 +2511,7 @@ def test_generalized_eigh_lworks(pfx, driver):
         _compute_lwork(sc_dlw, n, uplo="L")
         _compute_lwork(dz_dlw, n, uplo="L")
     except Exception as e:
-        pytest.fail("{}_lwork raised unexpected exception: {}"
-                    "".format(pfx+driver, e))
+        pytest.fail(f"{pfx+driver}_lwork raised unexpected exception: {e}")
 
 
 @pytest.mark.parametrize("dtype_", DTYPES)
@@ -2633,10 +2629,10 @@ def test_gtsvx(dtype, trans_bool, fact):
     assert_(hasattr(rcond, "__len__") is not True,
             f"rcond should be scalar but is {rcond}")
     # ferr should be length of # of cols in x
-    assert_(ferr.shape[0] == b.shape[1], "ferr.shape is {} but shoud be {},"
+    assert_(ferr.shape[0] == b.shape[1], "ferr.shape is {} but should be {},"
             .format(ferr.shape[0], b.shape[1]))
     # berr should be length of # of cols in x
-    assert_(berr.shape[0] == b.shape[1], "berr.shape is {} but shoud be {},"
+    assert_(berr.shape[0] == b.shape[1], "berr.shape is {} but should be {},"
             .format(berr.shape[0], b.shape[1]))
 
 
@@ -2825,10 +2821,10 @@ def test_ptsvx(dtype, realtype, fact, df_de_lambda):
     assert not hasattr(rcond, "__len__"), \
         f"rcond should be scalar but is {rcond}"
     # ferr should be length of # of cols in x
-    assert_(ferr.shape == (2,), "ferr.shape is {} but shoud be ({},)"
+    assert_(ferr.shape == (2,), "ferr.shape is {} but should be ({},)"
             .format(ferr.shape, x_soln.shape[1]))
     # berr should be length of # of cols in x
-    assert_(berr.shape == (2,), "berr.shape is {} but shoud be ({},)"
+    assert_(berr.shape == (2,), "berr.shape is {} but should be ({},)"
             .format(berr.shape, x_soln.shape[1]))
 
 
@@ -3298,3 +3294,106 @@ def test_gges_tgsen(dtype):
 
     assert_allclose(s[0, 0] / t[0, 0], d2, rtol=0, atol=atol)
     assert_allclose(s[1, 1] / t[1, 1], d1, rtol=0, atol=atol)
+
+
+@pytest.mark.parametrize(
+    "a, b, c, d, e, f, rans, lans",
+    [(np.array([[4.0,   1.0,  1.0,  2.0],
+                [0.0,   3.0,  4.0,  1.0],
+                [0.0,   1.0,  3.0,  1.0],
+                [0.0,   0.0,  0.0,  6.0]]),
+      np.array([[1.0,   1.0,  1.0,  1.0],
+                [0.0,   3.0,  4.0,  1.0],
+                [0.0,   1.0,  3.0,  1.0],
+                [0.0,   0.0,  0.0,  4.0]]),
+      np.array([[-4.0,  7.0,  1.0, 12.0],
+                [-9.0,  2.0, -2.0, -2.0],
+                [-4.0,  2.0, -2.0,  8.0],
+                [-7.0,  7.0, -6.0, 19.0]]),
+      np.array([[2.0,   1.0,  1.0,  3.0],
+                [0.0,   1.0,  2.0,  1.0],
+                [0.0,   0.0,  1.0,  1.0],
+                [0.0,   0.0,  0.0,  2.0]]),
+      np.array([[1.0,   1.0,  1.0,  2.0],
+                [0.0,   1.0,  4.0,  1.0],
+                [0.0,   0.0,  1.0,  1.0],
+                [0.0,   0.0,  0.0,  1.0]]),
+      np.array([[-7.0,  5.0,  0.0,  7.0],
+                [-5.0,  1.0, -8.0,  0.0],
+                [-1.0,  2.0, -3.0,  5.0],
+                [-3.0,  2.0,  0.0,  5.0]]),
+      np.array([[1.0,   1.0,  1.0,  1.0],
+                [-1.0,  2.0, -1.0, -1.0],
+                [-1.0,  1.0,  3.0,  1.0],
+                [-1.0,  1.0, -1.0,  4.0]]),
+      np.array([[4.0,  -1.0,  1.0, -1.0],
+                [1.0,   3.0, -1.0,  1.0],
+                [-1.0,  1.0,  2.0, -1.0],
+                [1.0,  -1.0,  1.0,  1.0]]))])
+@pytest.mark.parametrize('dtype', REAL_DTYPES)
+def test_tgsyl_NAG(a, b, c, d, e, f, rans, lans, dtype):
+    atol = 1e-4
+
+    tgsyl = get_lapack_funcs(('tgsyl'), dtype=dtype)
+    rout, lout, scale, dif, info = tgsyl(a, b, c, d, e, f)
+
+    assert_equal(info, 0)
+    assert_allclose(scale, 1.0, rtol=0, atol=np.finfo(dtype).eps*100,
+                    err_msg="SCALE must be 1.0")
+    assert_allclose(dif, 0.0, rtol=0, atol=np.finfo(dtype).eps*100,
+                    err_msg="DIF must be nearly 0")
+    assert_allclose(rout, rans, atol=atol,
+                    err_msg="Solution for R is incorrect")
+    assert_allclose(lout, lans, atol=atol,
+                    err_msg="Solution for L is incorrect")
+
+
+@pytest.mark.parametrize('dtype', REAL_DTYPES)
+@pytest.mark.parametrize('trans', ('N', 'T'))
+@pytest.mark.parametrize('ijob', [0, 1, 2, 3, 4])
+def test_tgsyl(dtype, trans, ijob):
+
+    atol = 1e-3 if dtype == np.float32 else 1e-10
+    rng = np.random.default_rng(1685779866898198)
+    m, n = 10, 15
+
+    a, d, *_ = qz(rng.uniform(-10, 10, [m, m]).astype(dtype),
+                  rng.uniform(-10, 10, [m, m]).astype(dtype),
+                  output='real')
+
+    b, e, *_ = qz(rng.uniform(-10, 10, [n, n]).astype(dtype),
+                  rng.uniform(-10, 10, [n, n]).astype(dtype),
+                  output='real')
+
+    c = rng.uniform(-2, 2, [m, n]).astype(dtype)
+    f = rng.uniform(-2, 2, [m, n]).astype(dtype)
+
+    tgsyl = get_lapack_funcs(('tgsyl'), dtype=dtype)
+    rout, lout, scale, dif, info = tgsyl(a, b, c, d, e, f,
+                                         trans=trans, ijob=ijob)
+
+    assert info == 0, "INFO is non-zero"
+    assert scale >= 0.0, "SCALE must be non-negative"
+    if ijob == 0:
+        assert_allclose(dif, 0.0, rtol=0, atol=np.finfo(dtype).eps*100,
+                        err_msg="DIF must be 0 for ijob =0")
+    else:
+        assert dif >= 0.0, "DIF must be non-negative"
+
+    # Only DIF is calculated for ijob = 3/4
+    if ijob <= 2:
+        if trans == 'N':
+            lhs1 = a @ rout - lout @ b
+            rhs1 = scale*c
+            lhs2 = d @ rout - lout @ e
+            rhs2 = scale*f
+        elif trans == 'T':
+            lhs1 = np.transpose(a) @ rout + np.transpose(d) @ lout
+            rhs1 = scale*c
+            lhs2 = rout @ np.transpose(b) + lout @ np.transpose(e)
+            rhs2 = -1.0*scale*f
+
+        assert_allclose(lhs1, rhs1, atol=atol, rtol=0.,
+                        err_msg='lhs1 and rhs1 do not match')
+        assert_allclose(lhs2, rhs2, atol=atol, rtol=0.,
+                        err_msg='lhs2 and rhs2 do not match')

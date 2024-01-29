@@ -1,8 +1,12 @@
 import numpy as np
 import pytest
 
-from pandas import DataFrame
-import pandas._testing as tm
+from pandas import (
+    DataFrame,
+    Index,
+    Series,
+    date_range,
+)
 from pandas.core.groupby.base import (
     reduction_kernels,
     transformation_kernels,
@@ -25,18 +29,8 @@ def dropna(request):
 
 
 @pytest.fixture(params=[True, False])
-def skipna(request):
-    return request.param
-
-
-@pytest.fixture(params=[True, False])
 def observed(request):
     return request.param
-
-
-@pytest.fixture
-def mframe(multiindex_dataframe_random_data):
-    return multiindex_dataframe_random_data
 
 
 @pytest.fixture
@@ -53,28 +47,18 @@ def df():
 
 @pytest.fixture
 def ts():
-    return tm.makeTimeSeries()
+    return Series(
+        np.random.default_rng(2).standard_normal(30),
+        index=date_range("2000-01-01", periods=30, freq="B"),
+    )
 
 
 @pytest.fixture
-def tsd():
-    return tm.getTimeSeriesData()
-
-
-@pytest.fixture
-def tsframe(tsd):
-    return DataFrame(tsd)
-
-
-@pytest.fixture
-def df_mixed_floats():
+def tsframe():
     return DataFrame(
-        {
-            "A": ["foo", "bar", "foo", "bar", "foo", "bar", "foo", "foo"],
-            "B": ["one", "one", "two", "three", "two", "two", "one", "three"],
-            "C": np.random.default_rng(2).standard_normal(8),
-            "D": np.array(np.random.default_rng(2).standard_normal(8), dtype="float32"),
-        }
+        np.random.default_rng(2).standard_normal((30, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=date_range("2000-01-01", periods=30, freq="B"),
     )
 
 

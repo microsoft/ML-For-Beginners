@@ -129,7 +129,16 @@ def concat_compat(
         # i.e. isinstance(to_concat[0], ExtensionArray)
         to_concat_eas = cast("Sequence[ExtensionArray]", to_concat)
         cls = type(to_concat[0])
-        return cls._concat_same_type(to_concat_eas)
+        # GH#53640: eg. for datetime array, axis=1 but 0 is default
+        # However, class method `_concat_same_type()` for some classes
+        # may not support the `axis` keyword
+        if ea_compat_axis or axis == 0:
+            return cls._concat_same_type(to_concat_eas)
+        else:
+            return cls._concat_same_type(
+                to_concat_eas,
+                axis=axis,  # type: ignore[call-arg]
+            )
     else:
         to_concat_arrs = cast("Sequence[np.ndarray]", to_concat)
         result = np.concatenate(to_concat_arrs, axis=axis)

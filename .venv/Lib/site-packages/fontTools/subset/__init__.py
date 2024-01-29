@@ -407,6 +407,10 @@ Other font-specific options
     *not* be switched on if an intersection is found.  [default]
 --no-prune-unicode-ranges
     Don't change the 'OS/2 ulUnicodeRange*' bits.
+--prune-codepage-ranges
+    Update the 'OS/2 ulCodePageRange*' bits after subsetting.  [default]
+--no-prune-codepage-ranges
+    Don't change the 'OS/2 ulCodePageRange*' bits.
 --recalc-average-width
     Update the 'OS/2 xAvgCharWidth' field after subsetting.
 --no-recalc-average-width
@@ -870,6 +874,8 @@ def subset_glyphs(self, s):
         for m in self.MarkArray.MarkRecord:
             m.Class = class_indices.index(m.Class)
         for l in self.LigatureArray.LigatureAttach:
+            if l is None:
+                continue
             for c in l.ComponentRecord:
                 c.LigatureAnchor = _list_subset(c.LigatureAnchor, class_indices)
         return bool(
@@ -888,6 +894,8 @@ def prune_post_subset(self, font, options):
             if m.MarkAnchor:
                 m.MarkAnchor.prune_hints()
         for l in self.LigatureArray.LigatureAttach:
+            if l is None:
+                continue
             for c in l.ComponentRecord:
                 for a in c.LigatureAnchor:
                     if a:
@@ -3004,6 +3012,7 @@ class Options(object):
         "rand": ["rand"],
         "justify": ["jalt"],
         "private": ["Harf", "HARF", "Buzz", "BUZZ"],
+        "east_asian_spacing": ["chws", "vchw", "halt", "vhal"],
         # Complex shapers
         "arabic": [
             "init",
@@ -3081,6 +3090,7 @@ class Options(object):
         self.recalc_bounds = False  # Recalculate font bounding boxes
         self.recalc_timestamp = False  # Recalculate font modified timestamp
         self.prune_unicode_ranges = True  # Clear unused 'ulUnicodeRange' bits
+        self.prune_codepage_ranges = True  # Clear unused 'ulCodePageRange' bits
         self.recalc_average_width = False  # update 'xAvgCharWidth'
         self.recalc_max_context = False  # update 'usMaxContext'
         self.canonical_order = None  # Order tables as recommended
@@ -3445,6 +3455,17 @@ class Subsetter(object):
                         log.info(
                             "%s Unicode ranges pruned: %s", tag, sorted(new_uniranges)
                         )
+                if self.options.prune_codepage_ranges and font[tag].version >= 1:
+                    # codepage range fields were added with OS/2 format 1
+                    # https://learn.microsoft.com/en-us/typography/opentype/spec/os2#version-1
+                    old_codepages = font[tag].getCodePageRanges()
+                    new_codepages = font[tag].recalcCodePageRanges(font, pruneOnly=True)
+                    if old_codepages != new_codepages:
+                        log.info(
+                            "%s CodePage ranges pruned: %s",
+                            tag,
+                            sorted(new_codepages),
+                        )
                 if self.options.recalc_average_width:
                     old_avg_width = font[tag].xAvgCharWidth
                     new_avg_width = font[tag].recalcAvgCharWidth(font)
@@ -3666,7 +3687,10 @@ def main(args=None):
     )
 
     if outfile is None:
-        outfile = makeOutputFileName(fontfile, overWrite=True, suffix=".subset")
+        ext = "." + options.flavor.lower() if options.flavor is not None else None
+        outfile = makeOutputFileName(
+            fontfile, extension=ext, overWrite=True, suffix=".subset"
+        )
 
     with timer("compile glyph list"):
         if wildcard_glyphs:

@@ -263,7 +263,10 @@ def array_ufunc(self, ufunc: np.ufunc, method: str, *inputs: Any, **kwargs: Any)
         Series,
     )
     from pandas.core.generic import NDFrame
-    from pandas.core.internals import BlockManager
+    from pandas.core.internals import (
+        ArrayManager,
+        BlockManager,
+    )
 
     cls = type(self)
 
@@ -347,7 +350,7 @@ def array_ufunc(self, ufunc: np.ufunc, method: str, *inputs: Any, **kwargs: Any)
             if method == "outer":
                 raise NotImplementedError
             return result
-        if isinstance(result, BlockManager):
+        if isinstance(result, (BlockManager, ArrayManager)):
             # we went through BlockManager.apply e.g. np.sqrt
             result = self._constructor_from_mgr(result, axes=result.axes)
         else:

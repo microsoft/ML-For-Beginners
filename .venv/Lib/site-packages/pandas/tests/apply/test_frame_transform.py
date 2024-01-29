@@ -156,7 +156,7 @@ frame_kernels_raise = [x for x in frame_transform_kernels if x not in wont_fail]
 def test_transform_bad_dtype(op, frame_or_series, request):
     # GH 35964
     if op == "ngroup":
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(raises=ValueError, reason="ngroup not valid for NDFrame")
         )
 
@@ -185,7 +185,7 @@ def test_transform_failure_typeerror(request, op):
     # GH 35964
 
     if op == "ngroup":
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(raises=ValueError, reason="ngroup not valid for NDFrame")
         )
 

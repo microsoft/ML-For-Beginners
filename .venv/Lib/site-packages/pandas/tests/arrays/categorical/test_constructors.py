@@ -6,6 +6,8 @@ from datetime import (
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas.core.dtypes.common import (
     is_float_dtype,
     is_integer_dtype,
@@ -447,6 +449,7 @@ class TestCategoricalConstructors:
         with pytest.raises(ValueError, match="Unknown dtype"):
             Categorical([1, 2], dtype="foo")
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="Can't be NumPy strings")
     def test_constructor_np_strs(self):
         # GH#31499 Hashtable.map_locations needs to work on np.str_ objects
         cat = Categorical(["1", "0", "1"], [np.str_("0"), np.str_("1")])
@@ -742,7 +745,9 @@ class TestCategoricalConstructors:
 
     def test_categorical_extension_array_nullable(self, nulls_fixture):
         # GH:
-        arr = pd.arrays.StringArray._from_sequence([nulls_fixture] * 2)
+        arr = pd.arrays.StringArray._from_sequence(
+            [nulls_fixture] * 2, dtype=pd.StringDtype()
+        )
         result = Categorical(arr)
         assert arr.dtype == result.categories.dtype
         expected = Categorical(Series([pd.NA, pd.NA], dtype=arr.dtype))
@@ -750,12 +755,12 @@ class TestCategoricalConstructors:
 
     def test_from_sequence_copy(self):
         cat = Categorical(np.arange(5).repeat(2))
-        result = Categorical._from_sequence(cat, dtype=None, copy=False)
+        result = Categorical._from_sequence(cat, dtype=cat.dtype, copy=False)
 
         # more generally, we'd be OK with a view
         assert result._codes is cat._codes
 
-        result = Categorical._from_sequence(cat, dtype=None, copy=True)
+        result = Categorical._from_sequence(cat, dtype=cat.dtype, copy=True)
 
         assert not tm.shares_memory(result, cat)
 

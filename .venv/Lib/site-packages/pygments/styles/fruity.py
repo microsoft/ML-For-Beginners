@@ -12,10 +12,16 @@ from pygments.style import Style
 from pygments.token import Token, Comment, Name, Keyword, \
     Generic, Number, String, Whitespace
 
+
+__all__ = ['FruityStyle']
+
+
 class FruityStyle(Style):
     """
     Pygments version of the "native" vim theme.
     """
+
+    name = 'fruity'
 
     background_color = '#111111'
     highlight_color = '#333333'

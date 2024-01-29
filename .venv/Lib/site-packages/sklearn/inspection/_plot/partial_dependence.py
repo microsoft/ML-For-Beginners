@@ -744,7 +744,7 @@ class PartialDependenceDisplay:
                     X_col = _safe_indexing(X, fx, axis=1)
                     deciles[fx] = mquantiles(X_col, prob=np.arange(0.1, 1.0, 0.1))
 
-        display = PartialDependenceDisplay(
+        display = cls(
             pd_results=pd_results,
             features=features,
             feature_names=feature_names,

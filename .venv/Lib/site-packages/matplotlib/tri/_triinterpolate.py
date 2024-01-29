@@ -159,7 +159,7 @@ class TriInterpolator:
         sh_ret = x.shape
         if x.shape != y.shape:
             raise ValueError("x and y shall have same shapes."
-                             " Given: {0} and {1}".format(x.shape, y.shape))
+                             f" Given: {x.shape} and {y.shape}")
         x = np.ravel(x)
         y = np.ravel(y)
         x_scaled = x/self._unit_x
@@ -174,7 +174,7 @@ class TriInterpolator:
                 raise ValueError(
                     "tri_index array is provided and shall"
                     " have same shape as x and y. Given: "
-                    "{0} and {1}".format(tri_index.shape, sh_ret))
+                    f"{tri_index.shape} and {sh_ret}")
             tri_index = np.ravel(tri_index)
 
         mask_in = (tri_index != -1)
@@ -355,13 +355,13 @@ class CubicTriInterpolator(TriInterpolator):
     curvature (implementation based on an algorithm from [2]_ - PCG sparse
     solver):
 
-        .. math::
+    .. math::
 
-            E(z) = \frac{1}{2} \int_{\Omega} \left(
-                \left( \frac{\partial^2{z}}{\partial{x}^2} \right)^2 +
-                \left( \frac{\partial^2{z}}{\partial{y}^2} \right)^2 +
-                2\left( \frac{\partial^2{z}}{\partial{y}\partial{x}} \right)^2
-            \right) dx\,dy
+        E(z) = \frac{1}{2} \int_{\Omega} \left(
+            \left( \frac{\partial^2{z}}{\partial{x}^2} \right)^2 +
+            \left( \frac{\partial^2{z}}{\partial{y}^2} \right)^2 +
+            2\left( \frac{\partial^2{z}}{\partial{y}\partial{x}} \right)^2
+        \right) dx\,dy
 
     If the case *kind* ='geom' is chosen by the user, a simple geometric
     approximation is used (weighted average of the triangle normal

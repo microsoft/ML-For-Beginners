@@ -586,15 +586,26 @@ class TestHelpFunctions:
         expected = (np.arange(N) + N).astype(dtype)
         values = np.repeat(expected, 5)
         values.flags.writeable = writable
-        keys, counts = ht.value_count(values, False)
+        keys, counts, _ = ht.value_count(values, False)
         tm.assert_numpy_array_equal(np.sort(keys), expected)
         assert np.all(counts == 5)
+
+    def test_value_count_mask(self, dtype):
+        if dtype == np.object_:
+            pytest.skip("mask not implemented for object dtype")
+        values = np.array([1] * 5, dtype=dtype)
+        mask = np.zeros((5,), dtype=np.bool_)
+        mask[1] = True
+        mask[4] = True
+        keys, counts, na_counter = ht.value_count(values, False, mask=mask)
+        assert len(keys) == 2
+        assert na_counter == 2
 
     def test_value_count_stable(self, dtype, writable):
         # GH12679
         values = np.array([2, 1, 5, 22, 3, -1, 8]).astype(dtype)
         values.flags.writeable = writable
-        keys, counts = ht.value_count(values, False)
+        keys, counts, _ = ht.value_count(values, False)
         tm.assert_numpy_array_equal(keys, values)
         assert np.all(counts == 1)
 
@@ -633,13 +644,13 @@ class TestHelpFunctions:
         values = np.repeat(np.arange(N).astype(dtype), 5)
         values[0] = 42
         values.flags.writeable = writable
-        result = ht.mode(values, False)
+        result = ht.mode(values, False)[0]
         assert result == 42
 
     def test_mode_stable(self, dtype, writable):
         values = np.array([2, 1, 5, 22, 3, -1, 8]).astype(dtype)
         values.flags.writeable = writable
-        keys = ht.mode(values, False)
+        keys = ht.mode(values, False)[0]
         tm.assert_numpy_array_equal(keys, values)
 
 
@@ -647,7 +658,7 @@ def test_modes_with_nans():
     # GH42688, nans aren't mangled
     nulls = [pd.NA, np.nan, pd.NaT, None]
     values = np.array([True] + nulls * 2, dtype=np.object_)
-    modes = ht.mode(values, False)
+    modes = ht.mode(values, False)[0]
     assert modes.size == len(nulls)
 
 
@@ -685,9 +696,9 @@ def test_unique_label_indices():
 class TestHelpFunctionsWithNans:
     def test_value_count(self, dtype):
         values = np.array([np.nan, np.nan, np.nan], dtype=dtype)
-        keys, counts = ht.value_count(values, True)
+        keys, counts, _ = ht.value_count(values, True)
         assert len(keys) == 0
-        keys, counts = ht.value_count(values, False)
+        keys, counts, _ = ht.value_count(values, False)
         assert len(keys) == 1 and np.all(np.isnan(keys))
         assert counts[0] == 3
 
@@ -713,8 +724,8 @@ class TestHelpFunctionsWithNans:
 
     def test_mode(self, dtype):
         values = np.array([42, np.nan, np.nan, np.nan], dtype=dtype)
-        assert ht.mode(values, True) == 42
-        assert np.isnan(ht.mode(values, False))
+        assert ht.mode(values, True)[0] == 42
+        assert np.isnan(ht.mode(values, False)[0])
 
 
 def test_ismember_tuple_with_nans():

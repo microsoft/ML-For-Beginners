@@ -91,7 +91,7 @@ def fmin_l_bfgs_b(func, x0, fprime=None, args=(),
     pgtol : float, optional
         The iteration will stop when
         ``max{|proj g_i | i = 1, ..., n} <= pgtol``
-        where ``pg_i`` is the i-th component of the projected gradient.
+        where ``proj g_i`` is the i-th component of the projected gradient.
     epsilon : float, optional
         Step size used when `approx_grad` is True, for numerically
         calculating the gradient
@@ -234,7 +234,7 @@ def _minimize_lbfgsb(fun, x0, args=(), jac=None, bounds=None,
         f^{k+1})/max{|f^k|,|f^{k+1}|,1} <= ftol``.
     gtol : float
         The iteration will stop when ``max{|proj g_i | i = 1, ..., n}
-        <= gtol`` where ``pg_i`` is the i-th component of the
+        <= gtol`` where ``proj g_i`` is the i-th component of the
         projected gradient.
     eps : float or ndarray
         If `jac is None` the absolute step size used for numerical
@@ -279,24 +279,25 @@ def _minimize_lbfgsb(fun, x0, args=(), jac=None, bounds=None,
     x0 = asarray(x0).ravel()
     n, = x0.shape
 
+    # historically old-style bounds were/are expected by lbfgsb.
+    # That's still the case but we'll deal with new-style from here on,
+    # it's easier
     if bounds is None:
-        bounds = [(None, None)] * n
-    if len(bounds) != n:
+        pass
+    elif len(bounds) != n:
         raise ValueError('length of x0 != length of bounds')
+    else:
+        bounds = np.array(old_bound_to_new(bounds))
 
-    # unbounded variables must use None, not +-inf, for optimizer to work properly
-    bounds = [(None if l == -np.inf else l, None if u == np.inf else u) for l, u in bounds]
-    # LBFGSB is sent 'old-style' bounds, 'new-style' bounds are required by
-    # approx_derivative and ScalarFunction
-    new_bounds = old_bound_to_new(bounds)
+        # check bounds
+        if (bounds[0] > bounds[1]).any():
+            raise ValueError(
+                "LBFGSB - one of the lower bounds is greater than an upper bound."
+            )
 
-    # check bounds
-    if (new_bounds[0] > new_bounds[1]).any():
-        raise ValueError("LBFGSB - one of the lower bounds is greater than an upper bound.")
-
-    # initial vector must lie within the bounds. Otherwise ScalarFunction and
-    # approx_derivative will cause problems
-    x0 = np.clip(x0, new_bounds[0], new_bounds[1])
+        # initial vector must lie within the bounds. Otherwise ScalarFunction and
+        # approx_derivative will cause problems
+        x0 = np.clip(x0, bounds[0], bounds[1])
 
     if disp is not None:
         if disp == 0:
@@ -304,8 +305,9 @@ def _minimize_lbfgsb(fun, x0, args=(), jac=None, bounds=None,
         else:
             iprint = disp
 
+    # _prepare_scalar_function can use bounds=None to represent no bounds
     sf = _prepare_scalar_function(fun, x0, jac=jac, args=args, epsilon=eps,
-                                  bounds=new_bounds,
+                                  bounds=bounds,
                                   finite_diff_rel_step=finite_diff_rel_step)
 
     func_and_grad = sf.fun_and_grad
@@ -315,19 +317,21 @@ def _minimize_lbfgsb(fun, x0, args=(), jac=None, bounds=None,
     nbd = zeros(n, fortran_int)
     low_bnd = zeros(n, float64)
     upper_bnd = zeros(n, float64)
-    bounds_map = {(None, None): 0,
-                  (1, None): 1,
+    bounds_map = {(-np.inf, np.inf): 0,
+                  (1, np.inf): 1,
                   (1, 1): 2,
-                  (None, 1): 3}
-    for i in range(0, n):
-        l, u = bounds[i]
-        if l is not None:
-            low_bnd[i] = l
-            l = 1
-        if u is not None:
-            upper_bnd[i] = u
-            u = 1
-        nbd[i] = bounds_map[l, u]
+                  (-np.inf, 1): 3}
+
+    if bounds is not None:
+        for i in range(0, n):
+            l, u = bounds[0, i], bounds[1, i]
+            if not np.isinf(l):
+                low_bnd[i] = l
+                l = 1
+            if not np.isinf(u):
+                upper_bnd[i] = u
+                u = 1
+            nbd[i] = bounds_map[l, u]
 
     if not maxls > 0:
         raise ValueError('maxls must be positive.')

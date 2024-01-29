@@ -240,7 +240,7 @@ def lobpcg(
     Notes
     -----
     The iterative loop runs ``maxit=maxiter`` (20 if ``maxit=None``)
-    iterations at most and finishes earler if the tolerance is met.
+    iterations at most and finishes earlier if the tolerance is met.
     Breaking backward compatibility with the previous version, LOBPCG
     now returns the block of iterative vectors with the best accuracy rather
     than the last one iterated, as a cure for possible divergence.
@@ -356,26 +356,57 @@ def lobpcg(
     >>> eigenvalues.dtype
     dtype('float32')
 
-    LOBPCG needs only access the matrix product with `A` rather
+    `lobpcg` needs only access the matrix product with `A` rather
     then the matrix itself. Since the matrix `A` is diagonal in
-    this example, one can write a function of the product
+    this example, one can write a function of the matrix product
     ``A @ X`` using the diagonal values ``vals`` only, e.g., by
-    element-wise multiplication with broadcasting
+    element-wise multiplication with broadcasting in the lambda-function
 
-    >>> A_f = lambda X: vals[:, np.newaxis] * X
+    >>> A_lambda = lambda X: vals[:, np.newaxis] * X
 
-    and use the handle ``A_f`` to this callable function as an input
+    or the regular function
 
-    >>> eigenvalues, _ = lobpcg(A_f, X, maxiter=60)
+    >>> def A_matmat(X):
+    ...     return vals[:, np.newaxis] * X
+
+    and use the handle to one of these callables as an input
+
+    >>> eigenvalues, _ = lobpcg(A_lambda, X, maxiter=60)
+    >>> eigenvalues
+    array([100.])
+    >>> eigenvalues, _ = lobpcg(A_matmat, X, maxiter=60)
     >>> eigenvalues
     array([100.])
 
-    The next example illustrates computing 3 smallest eigenvalues of
-    the same matrix given by the function handle ``A_f`` with
-    constraints and preconditioning.
+    The traditional callable `LinearOperator` is no longer
+    necessary but still supported as the input to `lobpcg`.
+    Specifying ``matmat=A_matmat`` explicitly improves performance. 
+
+    >>> A_lo = LinearOperator((n, n), matvec=A_matmat, matmat=A_matmat, dtype=np.int16)
+    >>> eigenvalues, _ = lobpcg(A_lo, X, maxiter=80)
+    >>> eigenvalues
+    array([100.])
+
+    The least efficient callable option is `aslinearoperator`:
+
+    >>> eigenvalues, _ = lobpcg(aslinearoperator(A), X, maxiter=80)
+    >>> eigenvalues
+    array([100.])
+
+    We now switch to computing the three smallest eigenvalues specifying
 
     >>> k = 3
-    >>> X = rng.normal(size=(n, k))
+    >>> X = np.random.default_rng().normal(size=(n, k))
+
+    and ``largest=False`` parameter
+
+    >>> eigenvalues, _ = lobpcg(A, X, largest=False, maxiter=80)
+    >>> print(eigenvalues)  
+    [1. 2. 3.]
+
+    The next example illustrates computing 3 smallest eigenvalues of
+    the same matrix `A` given by the function handle ``A_matmat`` but
+    with constraints and preconditioning.
 
     Constraints - an optional input parameter is a 2D array comprising
     of column vectors that the eigenvectors must be orthogonal to
@@ -393,7 +424,7 @@ def lobpcg(
     Let us now solve the eigenvalue problem for the matrix `A` first
     without preconditioning requesting 80 iterations
 
-    >>> eigenvalues, _ = lobpcg(A_f, X, Y=Y, largest=False, maxiter=80)
+    >>> eigenvalues, _ = lobpcg(A_matmat, X, Y=Y, largest=False, maxiter=80)
     >>> eigenvalues
     array([4., 5., 6.])
     >>> eigenvalues.dtype
@@ -401,23 +432,23 @@ def lobpcg(
 
     With preconditioning we need only 20 iterations from the same `X`
 
-    >>> eigenvalues, _ = lobpcg(A_f, X, Y=Y, M=M, largest=False, maxiter=20)
+    >>> eigenvalues, _ = lobpcg(A_matmat, X, Y=Y, M=M, largest=False, maxiter=20)
     >>> eigenvalues
     array([4., 5., 6.])
 
     Note that the vectors passed in `Y` are the eigenvectors of the 3
     smallest eigenvalues. The results returned above are orthogonal to those.
 
-    Finally, the primary matrix `A` may be indefinite, e.g., after shifting
+    The primary matrix `A` may be indefinite, e.g., after shifting
     ``vals`` by 50 from 1, ..., 100 to -49, ..., 50, we still can compute
     the 3 smallest or largest eigenvalues.
 
     >>> vals = vals - 50
     >>> X = rng.normal(size=(n, k))
-    >>> eigenvalues, _ = lobpcg(A_f, X, largest=False, maxiter=99)
+    >>> eigenvalues, _ = lobpcg(A_matmat, X, largest=False, maxiter=99)
     >>> eigenvalues
     array([-49., -48., -47.])
-    >>> eigenvalues, _ = lobpcg(A_f, X, largest=True, maxiter=99)
+    >>> eigenvalues, _ = lobpcg(A_matmat, X, largest=True, maxiter=99)
     >>> eigenvalues
     array([50., 49., 48.])
 
@@ -795,7 +826,7 @@ def lobpcg(
             # Once explicitGramFlag, forever explicitGramFlag.
             explicitGramFlag = True
 
-        # Shared memory assingments to simplify the code
+        # Shared memory assignments to simplify the code
         if B is None:
             blockVectorBX = blockVectorX
             activeBlockVectorBR = activeBlockVectorR

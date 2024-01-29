@@ -911,10 +911,9 @@ class RegexTests(unittest.TestCase):
         p = regex.compile('(?iu)' + lower_char)
         self.assertEqual(bool(p.match(upper_char)), True)
 
+        # Changed to positional flags in regex 2023.12.23.
         self.assertEqual(bool(regex.match(r"(?i)a", "A")), True)
-        self.assertEqual(bool(regex.match(r"a(?i)", "A")), True)
-        self.assertEqual(bool(regex.match(r"(?iV1)a", "A")), True)
-        self.assertEqual(regex.match(r"a(?iV1)", "A"), None)
+        self.assertEqual(regex.match(r"a(?i)", "A"), None)
 
     def test_dollar_matches_twice(self):
         # $ matches the end of string, and just before the terminating \n.
@@ -1396,18 +1395,15 @@ class RegexTests(unittest.TestCase):
         # Issues 433028, 433024, 433027.
         self.assertEqual(regex.search(r"(?i)Ab", "ab").span(), (0, 2))
         self.assertEqual(regex.search(r"(?i:A)b", "ab").span(), (0, 2))
-        self.assertEqual(regex.search(r"A(?i)b", "ab").span(), (0, 2))
-        self.assertEqual(regex.search(r"A(?iV1)b", "ab"), None)
-
-        self.assertRaisesRegex(regex.error, self.CANT_TURN_OFF, lambda:
-          regex.search(r"(?V0-i)Ab", "ab", flags=regex.I))
+        # Changed to positional flags in regex 2023.12.23.
+        self.assertEqual(regex.search(r"A(?i)b", "ab"), None)
 
         self.assertEqual(regex.search(r"(?V0)Ab", "ab"), None)
         self.assertEqual(regex.search(r"(?V1)Ab", "ab"), None)
-        self.assertEqual(regex.search(r"(?V1-i)Ab", "ab", flags=regex.I), None)
+        self.assertEqual(regex.search(r"(?-i)Ab", "ab", flags=regex.I), None)
         self.assertEqual(regex.search(r"(?-i:A)b", "ab", flags=regex.I), None)
-        self.assertEqual(regex.search(r"A(?V1-i)b", "ab",
-          flags=regex.I).span(), (0, 2))
+        self.assertEqual(regex.search(r"A(?-i)b", "ab", flags=regex.I).span(),
+          (0, 2))
 
     def test_repeated_repeats(self):
         # Issue 2537.
@@ -1820,12 +1816,10 @@ class RegexTests(unittest.TestCase):
             ('a.*b', 'acc\nccb', '', ascii(None)),
             ('a.{4,5}b', 'acc\nccb', '', ascii(None)),
             ('a.b', 'a\rb', '0', ascii('a\rb')),
-            # The new behaviour is that the inline flag affects only what follows.
-            ('a.b(?s)', 'a\nb', '0', ascii('a\nb')),
-            ('a.b(?sV1)', 'a\nb', '', ascii(None)),
+            # Changed to positional flags in regex 2023.12.23.
+            ('a.b(?s)', 'a\nb', '', ascii(None)),
             ('(?s)a.b', 'a\nb', '0', ascii('a\nb')),
-            ('a.*(?s)b', 'acc\nccb', '0', ascii('acc\nccb')),
-            ('a.*(?sV1)b', 'acc\nccb', '', ascii(None)),
+            ('a.*(?s)b', 'acc\nccb', '', ascii(None)),
             ('(?s)a.*b', 'acc\nccb', '0', ascii('acc\nccb')),
             ('(?s)a.{4,5}b', 'acc\nccb', '0', ascii('acc\nccb')),
 
@@ -2345,12 +2339,9 @@ class RegexTests(unittest.TestCase):
             # Not an error under PCRE/PRE:
             # When the new behaviour is turned on positional inline flags affect
             # only what follows.
-            ('w(?i)', 'W', '0', ascii('W')),
-            ('w(?iV1)', 'W', '0', ascii(None)),
+            ('w(?i)', 'W', '0', ascii(None)),
             ('w(?i)', 'w', '0', ascii('w')),
-            ('w(?iV1)', 'w', '0', ascii('w')),
             ('(?i)w', 'W', '0', ascii('W')),
-            ('(?iV1)w', 'W', '0', ascii('W')),
 
             # Comments using the x embedded pattern modifier.
             ("""(?x)w# comment 1
@@ -2403,14 +2394,10 @@ xyzabc
             # Bug 114033: nothing to repeat.
             (r'(x?)?', 'x', '0', ascii('x')),
             # Bug 115040: rescan if flags are modified inside pattern.
-            # If the new behaviour is turned on then positional inline flags
-            # affect only what follows.
-            (r' (?x)foo ', 'foo', '0', ascii('foo')),
-            (r' (?V1x)foo ', 'foo', '0', ascii(None)),
+            # Changed to positional flags in regex 2023.12.23.
+            (r' (?x)foo ', 'foo', '0', ascii(None)),
             (r'(?x) foo ', 'foo', '0', ascii('foo')),
-            (r'(?V1x) foo ', 'foo', '0', ascii('foo')),
             (r'(?x)foo ', 'foo', '0', ascii('foo')),
-            (r'(?V1x)foo ', 'foo', '0', ascii('foo')),
             # Bug 115618: negative lookahead.
             (r'(?<!abc)(d.f)', 'abcdefdof', '0', ascii('dof')),
             # Bug 116251: character class bug.
@@ -3154,10 +3141,8 @@ xyzabc
 
         # Hg issue 39: regex.search("((?i)blah)\\s+\\1", "blah BLAH") doesn't
         # return None
-        self.assertEqual(regex.search(r"(?V0)((?i)blah)\s+\1",
-          "blah BLAH").group(0, 1), ("blah BLAH", "blah"))
-        self.assertEqual(regex.search(r"(?V1)((?i)blah)\s+\1", "blah BLAH"),
-          None)
+        # Changed to positional flags in regex 2023.12.23.
+        self.assertEqual(regex.search(r"((?i)blah)\s+\1", "blah BLAH"), None)
 
         # Hg issue 40: regex.search("(\()?[^()]+(?(1)\)|)", "(abcd").group(0)
         # returns "bcd" instead of "abcd"
@@ -4336,10 +4321,10 @@ thing
         self.assertEqual(regex.search(r"^a?(a?)b?c\1$", "abca").span(), (0, 4))
 
         # Git issue 498: Conditional negative lookahead inside positive lookahead fails to match
-        self.assertEqual(regex.match(r"(?(?=a).|..)", "ab").span(), (0, 1))
-        self.assertEqual(regex.match(r"(?(?=b).|..)", "ab").span(), (0, 2))
-        self.assertEqual(regex.match(r"(?(?!a).|..)", "ab").span(), (0, 2))
-        self.assertEqual(regex.match(r"(?(?!b).|..)", "ab").span(), (0, 1))
+        self.assertEqual(regex.match(r'(?(?=a).|..)', 'ab').span(), (0, 1))
+        self.assertEqual(regex.match(r'(?(?=b).|..)', 'ab').span(), (0, 2))
+        self.assertEqual(regex.match(r'(?(?!a).|..)', 'ab').span(), (0, 2))
+        self.assertEqual(regex.match(r'(?(?!b).|..)', 'ab').span(), (0, 1))
 
     def test_fuzzy_ext(self):
         self.assertEqual(bool(regex.fullmatch(r'(?r)(?:a){e<=1:[a-z]}', 'e')),
@@ -4459,6 +4444,12 @@ thing
               'a::bc')], [(0, 0), (1, 1), (1, 3), (3, 3), (5, 5)])
             self.assertEqual([m.span() for m in regex.finditer(r'(?m)^\s*?$',
               'foo\n\n\nbar')], [(4, 4), (4, 5), (5, 5)])
+
+    def test_line_ending(self):
+      self.assertEqual(regex.findall(r'\R', '\r\n\n\x0B\f\r\x85\u2028\u2029'),
+        ['\r\n', '\n', '\x0B', '\f', '\r', '\x85', '\u2028', '\u2029'])
+      self.assertEqual(regex.findall(br'\R', b'\r\n\n\x0B\f\r\x85'), [b'\r\n',
+        b'\n', b'\x0B', b'\f', b'\r'])
 
 def test_main():
     unittest.main(verbosity=2)

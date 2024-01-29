@@ -24,7 +24,7 @@ except ImportError:
 
 __all__ = ['fmin_cobyla']
 
-# Workarund as _cobyla.minimize is not threadsafe
+# Workaround as _cobyla.minimize is not threadsafe
 # due to an unknown f2py bug and can segfault,
 # see gh-9658.
 _module_lock = RLock()

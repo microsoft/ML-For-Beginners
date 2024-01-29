@@ -10,7 +10,7 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
     It is recommend to use
     :func:`~sklearn.metrics.PrecisionRecallDisplay.from_estimator` or
     :func:`~sklearn.metrics.PrecisionRecallDisplay.from_predictions` to create
-    a :class:`~sklearn.metrics.PredictionRecallDisplay`. All parameters are
+    a :class:`~sklearn.metrics.PrecisionRecallDisplay`. All parameters are
     stored as attributes.
 
     Read more in the :ref:`User Guide <visualizations>`.
@@ -69,7 +69,7 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
 
     Notes
     -----
-    The average precision (cf. :func:`~sklearn.metrics.average_precision`) in
+    The average precision (cf. :func:`~sklearn.metrics.average_precision_score`) in
     scikit-learn is computed without any interpolation. To be consistent with
     this metric, the precision-recall curve is plotted without any
     interpolation as well (step-wise style).
@@ -164,7 +164,7 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
 
         Notes
         -----
-        The average precision (cf. :func:`~sklearn.metrics.average_precision`)
+        The average precision (cf. :func:`~sklearn.metrics.average_precision_score`)
         in scikit-learn is computed without any interpolation. To be consistent
         with this metric, the precision-recall curve is plotted without any
         interpolation as well (step-wise style).
@@ -192,7 +192,13 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
 
         xlabel = "Recall" + info_pos_label
         ylabel = "Precision" + info_pos_label
-        self.ax_.set(xlabel=xlabel, ylabel=ylabel)
+        self.ax_.set(
+            xlabel=xlabel,
+            xlim=(-0.01, 1.01),
+            ylabel=ylabel,
+            ylim=(-0.01, 1.01),
+            aspect="equal",
+        )
 
         if plot_chance_level:
             if self.prevalence_pos_label is None:
@@ -312,7 +318,7 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
 
         Notes
         -----
-        The average precision (cf. :func:`~sklearn.metrics.average_precision`)
+        The average precision (cf. :func:`~sklearn.metrics.average_precision_score`)
         in scikit-learn is computed without any interpolation. To be consistent
         with this metric, the precision-recall curve is plotted without any
         interpolation as well (step-wise style).
@@ -434,7 +440,7 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
 
         Notes
         -----
-        The average precision (cf. :func:`~sklearn.metrics.average_precision`)
+        The average precision (cf. :func:`~sklearn.metrics.average_precision_score`)
         in scikit-learn is computed without any interpolation. To be consistent
         with this metric, the precision-recall curve is plotted without any
         interpolation as well (step-wise style).
@@ -480,7 +486,7 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
         class_count = Counter(y_true)
         prevalence_pos_label = class_count[pos_label] / sum(class_count.values())
 
-        viz = PrecisionRecallDisplay(
+        viz = cls(
             precision=precision,
             recall=recall,
             average_precision=average_precision,

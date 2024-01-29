@@ -6,8 +6,8 @@ import warnings
 import numpy
 import numpy as np
 from numpy import (atleast_1d, poly, polyval, roots, real, asarray,
-                   resize, pi, absolute, logspace, r_, sqrt, tan, log10,
-                   arctan, arcsinh, sin, exp, cosh, arccosh, ceil, conjugate,
+                   resize, pi, absolute, sqrt, tan, log10,
+                   arcsinh, sin, exp, cosh, arccosh, ceil, conjugate,
                    zeros, sinh, append, concatenate, prod, ones, full, array,
                    mintypecode)
 from numpy.polynomial.polynomial import polyval as npp_polyval
@@ -102,17 +102,15 @@ def findfreqs(num, den, N, kind='ba'):
     if len(ep) == 0:
         ep = atleast_1d(-1000) + 0j
 
-    ez = r_['-1',
-            numpy.compress(ep.imag >= 0, ep, axis=-1),
-            numpy.compress((abs(tz) < 1e5) & (tz.imag >= 0), tz, axis=-1)]
+    ez = np.r_[ep[ep.imag >= 0], tz[(np.abs(tz) < 1e5) & (tz.imag >= 0)]]
 
-    integ = abs(ez) < 1e-10
-    hfreq = numpy.around(numpy.log10(numpy.max(3 * abs(ez.real + integ) +
-                                               1.5 * ez.imag)) + 0.5)
-    lfreq = numpy.around(numpy.log10(0.1 * numpy.min(abs(real(ez + integ)) +
-                                                     2 * ez.imag)) - 0.5)
+    integ = np.abs(ez) < 1e-10
+    hfreq = np.round(np.log10(np.max(3 * np.abs(ez.real + integ) +
+                                     1.5 * ez.imag)) + 0.5)
+    lfreq = np.round(np.log10(0.1 * np.min(np.abs((ez + integ).real) +
+                                           2 * ez.imag)) - 0.5)
 
-    w = logspace(lfreq, hfreq, N)
+    w = np.logspace(lfreq, hfreq, N)
     return w
 
 
@@ -447,12 +445,12 @@ def freqz(b, a=1, worN=512, whole=False, plot=None, fs=2*pi,
         lastpoint = 2 * pi if whole else pi
         # if include_nyquist is true and whole is false, w should
         # include end point
-        w = np.linspace(0, lastpoint, N, endpoint=include_nyquist and not whole)
-        if (a.size == 1 and N >= b.shape[0] and
-                sp_fft.next_fast_len(N) == N and
-                (b.ndim == 1 or (b.shape[-1] == 1))):
-            # if N is fast, 2 * N will be fast, too, so no need to check
-            n_fft = N if whole else N * 2
+        w = np.linspace(0, lastpoint, N,
+                        endpoint=include_nyquist and not whole)
+        n_fft = N if whole else 2 * (N - 1) if include_nyquist else 2 * N
+        if (a.size == 1 and (b.ndim == 1 or (b.shape[-1] == 1))
+                and n_fft >= b.shape[0]
+                and n_fft > 0):  # TODO: review threshold acc. to benchmark?
             if np.isrealobj(b) and np.isrealobj(a):
                 fft_func = sp_fft.rfft
             else:
@@ -480,7 +478,7 @@ def freqz(b, a=1, worN=512, whole=False, plot=None, fs=2*pi,
         h = (npp_polyval(zm1, b, tensor=False) /
              npp_polyval(zm1, a, tensor=False))
 
-    w = w*fs/(2*pi)
+    w = w*(fs/(2*pi))
 
     if plot is not None:
         plot(w, h)
@@ -590,7 +588,7 @@ def freqz_zpk(z, p, k, worN=512, whole=False, fs=2*pi):
     zm1 = exp(1j * w)
     h = k * polyvalfromroots(zm1, z) / polyvalfromroots(zm1, p)
 
-    w = w*fs/(2*pi)
+    w = w*(fs/(2*pi))
 
     return w, h
 
@@ -710,7 +708,7 @@ def group_delay(system, w=512, whole=False, fs=2*pi):
             stacklevel=2
         )
 
-    w = w*fs/(2*pi)
+    w = w*(fs/(2*pi))
 
     return w, gd
 
@@ -893,6 +891,7 @@ def _cplxreal(z, tol=None):
 
     Examples
     --------
+    >>> from scipy.signal._filter_design import _cplxreal
     >>> a = [4, 3, 1, 2-2j, 2+2j, 2-1j, 2+1j, 2-1j, 2+1j, 1+1j, 1-1j]
     >>> zc, zr = _cplxreal(a)
     >>> print(zc)
@@ -1000,6 +999,7 @@ def _cplxpair(z, tol=None):
 
     Examples
     --------
+    >>> from scipy.signal._filter_design import _cplxpair
     >>> a = [4, 3, 1, 2-2j, 2+2j, 2-1j, 2+1j, 2-1j, 2+1j, 1+1j, 1-1j]
     >>> z = _cplxpair(a)
     >>> print(z)
@@ -1083,6 +1083,20 @@ def tf2zpk(b, a):
     transfer function coefficients must first be converted to the "positive
     powers" form before finding the poles and zeros.
 
+    Examples
+    --------
+    Find the zeroes, poles and gain of 
+    a filter with the transfer function
+
+    .. math::
+    
+        H(s) = \frac{3s^2}{s^2 + 5s + 13}
+        
+    >>> from scipy.signal import tf2zpk
+    >>> tf2zpk([3, 0, 0], [1, 5, 13])
+    (   array([ 0.               ,  0.              ]), 
+        array([ -2.5+2.59807621j ,  -2.5-2.59807621j]), 
+        3.0)
     """
     b, a = normalize(b, a)
     b = (b + 0.0) / a[0]
@@ -1095,7 +1109,7 @@ def tf2zpk(b, a):
 
 
 def zpk2tf(z, p, k):
-    """
+    r"""
     Return polynomial transfer function representation from zeros and poles
 
     Parameters
@@ -1114,6 +1128,23 @@ def zpk2tf(z, p, k):
     a : ndarray
         Denominator polynomial coefficients.
 
+    Examples
+    --------
+    Find the polynomial representation of a transfer function H(s)
+    using its 'zpk' (Zero-Pole-Gain) representation.
+    
+    .. math::
+            
+        H(z) = 5 \frac
+        { (s - 2)(s - 6) }
+        { (s - 1)(s - 8) }
+
+    >>> from scipy.signal import zpk2tf
+    >>> z   = [2,   6]
+    >>> p   = [1,   8]
+    >>> k   = 5
+    >>> zpk2tf(z, p, k)
+    (   array([  5., -40.,  60.]), array([ 1., -9.,  8.]))
     """
     z = atleast_1d(z)
     k = atleast_1d(k)
@@ -1154,7 +1185,7 @@ def zpk2tf(z, p, k):
 
 
 def tf2sos(b, a, pairing=None, *, analog=False):
-    """
+    r"""
     Return second-order sections from transfer function representation
 
     Parameters
@@ -1192,12 +1223,26 @@ def tf2sos(b, a, pairing=None, *, analog=False):
     ZPK to SOS.
 
     .. versionadded:: 0.16.0
+
+    Examples
+    --------
+    Find the 'sos' (second-order sections) of the transfer function H(s)
+    using its polynomial representation.
+    
+    .. math::
+    
+        H(s) = \frac{s^2 - 3.5s - 2}{s^4 + 3s^3 - 15s^2 - 19s + 30}
+        
+    >>> from scipy.signal import tf2sos
+    >>> tf2sos([1, -3.5, -2], [1, 3, -15, -19, 30], analog=True)
+    array([[  0. ,   0. ,   1. ,   1. ,   2. , -15. ],
+           [  1. ,  -3.5,  -2. ,   1. ,   1. ,  -2. ]])
     """
     return zpk2sos(*tf2zpk(b, a), pairing=pairing, analog=analog)
 
 
 def sos2tf(sos):
-    """
+    r"""
     Return a single transfer function from a series of second-order sections
 
     Parameters
@@ -1217,6 +1262,18 @@ def sos2tf(sos):
     Notes
     -----
     .. versionadded:: 0.16.0
+
+    Examples
+    --------
+    Find the polynomial representation of an elliptic filter 
+    using its 'sos' (second-order sections) format.
+   
+    >>> from scipy.signal import sos2tf
+    >>> from scipy import signal
+    >>> sos = signal.ellip(1, 0.001, 50, 0.1, output='sos')
+    >>> sos2tf(sos)
+    (   array([0.91256522, 0.91256522, 0.        ]),
+        array([1.        , 0.82513043, 0.        ]))
     """
     sos = np.asarray(sos)
     result_type = sos.dtype
@@ -1487,8 +1544,7 @@ def zpk2sos(z, p, k, pairing=None, *, analog=False):
 
     valid_pairings = ['nearest', 'keep_odd', 'minimal']
     if pairing not in valid_pairings:
-        raise ValueError('pairing must be one of %s, not %s'
-                         % (valid_pairings, pairing))
+        raise ValueError(f'pairing must be one of {valid_pairings}, not {pairing}')
 
     if analog and pairing != 'minimal':
         raise ValueError('for analog zpk2sos conversion, '
@@ -1744,7 +1800,8 @@ def normalize(b, a):
     # Trim leading zeros of numerator
     if leading_zeros > 0:
         warnings.warn("Badly conditioned filter coefficients (numerator): the "
-                      "results may be meaningless", BadCoefficients)
+                      "results may be meaningless",
+                      BadCoefficients, stacklevel=2)
         # Make sure at least one column remains
         if leading_zeros == num.shape[1]:
             leading_zeros -= 1
@@ -2325,8 +2382,7 @@ def iirdesign(wp, ws, gpass, gstop, analog=False, ftype='ellip', output='ba',
 
     if wp.shape[0] != ws.shape[0] or wp.shape not in [(1,), (2,)]:
         raise ValueError("wp and ws must have one or two elements each, and"
-                         "the same shape, got %s and %s"
-                         % (wp.shape, ws.shape))
+                         f"the same shape, got {wp.shape} and {ws.shape}")
 
     if any(wp <= 0) or any(ws <= 0):
         raise ValueError("Values for wp, ws must be greater than 0")
@@ -2337,7 +2393,7 @@ def iirdesign(wp, ws, gpass, gstop, analog=False, ftype='ellip', output='ba',
                 raise ValueError("Values for wp, ws must be less than 1")
         elif any(wp >= fs/2) or any(ws >= fs/2):
             raise ValueError("Values for wp, ws must be less than fs/2"
-                             " (fs={} -> fs/2={})".format(fs, fs/2))
+                             f" (fs={fs} -> fs/2={fs/2})")
 
     if wp.shape[0] == 2:
         if not ((ws[0] < wp[0] and wp[1] < ws[1]) or
@@ -2734,6 +2790,18 @@ def lp2lp_zpk(z, p, k, wo=1.0):
 
     .. versionadded:: 1.1.0
 
+    Examples
+    --------
+    Use the 'zpk' (Zero-Pole-Gain) representation of a lowpass filter to 
+    transform it to a new 'zpk' representation associated with a cutoff frequency wo.
+
+    >>> from scipy.signal import lp2lp_zpk
+    >>> z   = [7,   2]
+    >>> p   = [5,   13]
+    >>> k   = 0.8
+    >>> wo  = 0.4
+    >>> lp2lp_zpk(z, p, k, wo)
+    (   array([2.8, 0.8]), array([2. , 5.2]), 0.8)
     """
     z = atleast_1d(z)
     p = atleast_1d(p)
@@ -2796,7 +2864,21 @@ def lp2hp_zpk(z, p, k, wo=1.0):
     logarithmic scale.
 
     .. versionadded:: 1.1.0
-
+    
+    Examples
+    --------
+    Use the 'zpk' (Zero-Pole-Gain) representation of a lowpass filter to 
+    transform it to a highpass filter with a cutoff frequency wo.
+    
+    >>> from scipy.signal import lp2hp_zpk
+    >>> z   = [ -2 + 3j ,  -0.5 - 0.8j ]
+    >>> p   = [ -1      ,  -4          ]
+    >>> k   = 10
+    >>> wo  = 0.6
+    >>> lp2hp_zpk(z, p, k, wo)
+    (   array([-0.09230769-0.13846154j, -0.33707865+0.53932584j]),
+        array([-0.6 , -0.15]),
+        8.5)
     """
     z = atleast_1d(z)
     p = atleast_1d(p)
@@ -2865,7 +2947,24 @@ def lp2bp_zpk(z, p, k, wo=1.0, bw=1.0):
     geometric (log frequency) symmetry about `wo`.
 
     .. versionadded:: 1.1.0
-
+    
+    Examples
+    --------
+    Use the 'zpk' (Zero-Pole-Gain) representation of a lowpass filter to 
+    transform it to a bandpass filter with a center frequency wo and
+    bandwidth bw.
+    
+    >>> from scipy.signal import lp2bp_zpk
+    >>> z   = [ 5 + 2j ,  5 - 2j ]
+    >>> p   = [ 7      ,  -16    ]
+    >>> k   = 0.8
+    >>> wo  = 0.62
+    >>> bw  = 15
+    >>> lp2bp_zpk(z, p, k, wo, bw)
+    (   array([7.49955815e+01+3.00017676e+01j, 7.49955815e+01-3.00017676e+01j,
+               4.41850748e-03-1.76761126e-03j, 4.41850748e-03+1.76761126e-03j]), 
+        array([1.04996339e+02+0.j, -1.60167736e-03+0.j,  3.66108003e-03+0.j,
+               -2.39998398e+02+0.j]), 0.8)
     """
     z = atleast_1d(z)
     p = atleast_1d(p)
@@ -2945,6 +3044,22 @@ def lp2bs_zpk(z, p, k, wo=1.0, bw=1.0):
 
     .. versionadded:: 1.1.0
 
+    Examples
+    --------
+    Transform a low-pass filter represented in 'zpk' (Zero-Pole-Gain) form 
+    into a bandstop filter represented in 'zpk' form, with a center frequency wo and
+    bandwidth bw.
+    
+    >>> from scipy.signal import lp2bs_zpk
+    >>> z   = [             ]
+    >>> p   = [ 0.7 ,    -1 ]
+    >>> k   = 9
+    >>> wo  = 0.5
+    >>> bw  = 10
+    >>> lp2bs_zpk(z, p, k, wo, bw)
+    (   array([0.+0.5j, 0.+0.5j, 0.-0.5j, 0.-0.5j]), 
+        array([14.2681928 +0.j, -0.02506281+0.j,  0.01752149+0.j, -9.97493719+0.j]), 
+        -12.857142857142858)
     """
     z = atleast_1d(z)
     p = atleast_1d(p)
@@ -3687,6 +3802,73 @@ def band_stop_obj(wp, ind, passb, stopb, gpass, gstop, type):
     return n
 
 
+def _pre_warp(wp, ws, analog):
+    # Pre-warp frequencies for digital filter design
+    if not analog:
+        passb = np.tan(pi * wp / 2.0)
+        stopb = np.tan(pi * ws / 2.0)
+    else:
+        passb = wp * 1.0
+        stopb = ws * 1.0
+    return passb, stopb
+
+
+def _validate_wp_ws(wp, ws, fs, analog):
+    wp = atleast_1d(wp)
+    ws = atleast_1d(ws)
+    if fs is not None:
+        if analog:
+            raise ValueError("fs cannot be specified for an analog filter")
+        wp = 2 * wp / fs
+        ws = 2 * ws / fs
+
+    filter_type = 2 * (len(wp) - 1) + 1
+    if wp[0] >= ws[0]:
+        filter_type += 1
+
+    return wp, ws, filter_type
+
+
+def _find_nat_freq(stopb, passb, gpass, gstop, filter_type, filter_kind):
+    if filter_type == 1:            # low
+        nat = stopb / passb
+    elif filter_type == 2:          # high
+        nat = passb / stopb
+    elif filter_type == 3:          # stop
+
+       ### breakpoint()
+
+        wp0 = optimize.fminbound(band_stop_obj, passb[0], stopb[0] - 1e-12,
+                                 args=(0, passb, stopb, gpass, gstop,
+                                       filter_kind),
+                                 disp=0)
+        passb[0] = wp0
+        wp1 = optimize.fminbound(band_stop_obj, stopb[1] + 1e-12, passb[1],
+                                 args=(1, passb, stopb, gpass, gstop,
+                                       filter_kind),
+                                 disp=0)
+        passb[1] = wp1
+        nat = ((stopb * (passb[0] - passb[1])) /
+               (stopb ** 2 - passb[0] * passb[1]))
+    elif filter_type == 4:          # pass
+        nat = ((stopb ** 2 - passb[0] * passb[1]) /
+               (stopb * (passb[0] - passb[1])))
+    else:
+        raise ValueError(f"should not happen: {filter_type =}.")
+
+    nat = min(abs(nat))
+    return nat, passb
+
+
+def _postprocess_wn(WN, analog, fs):
+    wn = WN if analog else np.arctan(WN) * 2.0 / pi
+    if len(wn) == 1:
+        wn = wn[0]
+    if fs is not None:
+        wn = wn * fs / 2
+    return wn
+
+
 def buttord(wp, ws, gpass, gstop, analog=False, fs=None):
     """Butterworth filter order selection.
 
@@ -3765,52 +3947,10 @@ def buttord(wp, ws, gpass, gstop, analog=False, fs=None):
     >>> plt.show()
 
     """
-
     _validate_gpass_gstop(gpass, gstop)
-
-    wp = atleast_1d(wp)
-    ws = atleast_1d(ws)
-    if fs is not None:
-        if analog:
-            raise ValueError("fs cannot be specified for an analog filter")
-        wp = 2*wp/fs
-        ws = 2*ws/fs
-
-    filter_type = 2 * (len(wp) - 1)
-    filter_type += 1
-    if wp[0] >= ws[0]:
-        filter_type += 1
-
-    # Pre-warp frequencies for digital filter design
-    if not analog:
-        passb = tan(pi * wp / 2.0)
-        stopb = tan(pi * ws / 2.0)
-    else:
-        passb = wp * 1.0
-        stopb = ws * 1.0
-
-    if filter_type == 1:            # low
-        nat = stopb / passb
-    elif filter_type == 2:          # high
-        nat = passb / stopb
-    elif filter_type == 3:          # stop
-        wp0 = optimize.fminbound(band_stop_obj, passb[0], stopb[0] - 1e-12,
-                                 args=(0, passb, stopb, gpass, gstop,
-                                       'butter'),
-                                 disp=0)
-        passb[0] = wp0
-        wp1 = optimize.fminbound(band_stop_obj, stopb[1] + 1e-12, passb[1],
-                                 args=(1, passb, stopb, gpass, gstop,
-                                       'butter'),
-                                 disp=0)
-        passb[1] = wp1
-        nat = ((stopb * (passb[0] - passb[1])) /
-               (stopb ** 2 - passb[0] * passb[1]))
-    elif filter_type == 4:          # pass
-        nat = ((stopb ** 2 - passb[0] * passb[1]) /
-               (stopb * (passb[0] - passb[1])))
-
-    nat = min(abs(nat))
+    wp, ws, filter_type = _validate_wp_ws(wp, ws, fs, analog)
+    passb, stopb = _pre_warp(wp, ws, analog)
+    nat, passb = _find_nat_freq(stopb, passb, gpass, gstop, filter_type, 'butter')
 
     GSTOP = 10 ** (0.1 * abs(gstop))
     GPASS = 10 ** (0.1 * abs(gpass))
@@ -3823,7 +3963,7 @@ def buttord(wp, ws, gpass, gstop, analog=False, fs=None):
     except ZeroDivisionError:
         W0 = 1.0
         warnings.warn("Order is zero...check input parameters.",
-                      RuntimeWarning, 2)
+                      RuntimeWarning, stacklevel=2)
 
     # now convert this frequency back from lowpass prototype
     # to the original analog filter
@@ -3848,16 +3988,7 @@ def buttord(wp, ws, gpass, gstop, analog=False, fs=None):
     else:
         raise ValueError("Bad type: %s" % filter_type)
 
-    if not analog:
-        wn = (2.0 / pi) * arctan(WN)
-    else:
-        wn = WN
-
-    if len(wn) == 1:
-        wn = wn[0]
-
-    if fs is not None:
-        wn = wn*fs/2
+    wn = _postprocess_wn(WN, analog, fs)
 
     return ord, wn
 
@@ -3938,68 +4069,18 @@ def cheb1ord(wp, ws, gpass, gstop, analog=False, fs=None):
     >>> plt.show()
 
     """
-
     _validate_gpass_gstop(gpass, gstop)
-
-    wp = atleast_1d(wp)
-    ws = atleast_1d(ws)
-    if fs is not None:
-        if analog:
-            raise ValueError("fs cannot be specified for an analog filter")
-        wp = 2*wp/fs
-        ws = 2*ws/fs
-
-    filter_type = 2 * (len(wp) - 1)
-    if wp[0] < ws[0]:
-        filter_type += 1
-    else:
-        filter_type += 2
-
-    # Pre-warp frequencies for digital filter design
-    if not analog:
-        passb = tan(pi * wp / 2.0)
-        stopb = tan(pi * ws / 2.0)
-    else:
-        passb = wp * 1.0
-        stopb = ws * 1.0
-
-    if filter_type == 1:           # low
-        nat = stopb / passb
-    elif filter_type == 2:          # high
-        nat = passb / stopb
-    elif filter_type == 3:     # stop
-        wp0 = optimize.fminbound(band_stop_obj, passb[0], stopb[0] - 1e-12,
-                                 args=(0, passb, stopb, gpass, gstop, 'cheby'),
-                                 disp=0)
-        passb[0] = wp0
-        wp1 = optimize.fminbound(band_stop_obj, stopb[1] + 1e-12, passb[1],
-                                 args=(1, passb, stopb, gpass, gstop, 'cheby'),
-                                 disp=0)
-        passb[1] = wp1
-        nat = ((stopb * (passb[0] - passb[1])) /
-               (stopb ** 2 - passb[0] * passb[1]))
-    elif filter_type == 4:  # pass
-        nat = ((stopb ** 2 - passb[0] * passb[1]) /
-               (stopb * (passb[0] - passb[1])))
-
-    nat = min(abs(nat))
+    wp, ws, filter_type = _validate_wp_ws(wp, ws, fs, analog)
+    passb, stopb = _pre_warp(wp, ws, analog)
+    nat, passb = _find_nat_freq(stopb, passb, gpass, gstop, filter_type, 'cheby')
 
     GSTOP = 10 ** (0.1 * abs(gstop))
     GPASS = 10 ** (0.1 * abs(gpass))
-    ord = int(ceil(arccosh(sqrt((GSTOP - 1.0) / (GPASS - 1.0))) /
-                   arccosh(nat)))
+    v_pass_stop = np.arccosh(np.sqrt((GSTOP - 1.0) / (GPASS - 1.0)))
+    ord = int(ceil(v_pass_stop / np.arccosh(nat)))
 
     # Natural frequencies are just the passband edges
-    if not analog:
-        wn = (2.0 / pi) * arctan(passb)
-    else:
-        wn = passb
-
-    if len(wn) == 1:
-        wn = wn[0]
-
-    if fs is not None:
-        wn = wn*fs/2
+    wn = _postprocess_wn(passb, analog, fs)
 
     return ord, wn
 
@@ -4082,61 +4163,20 @@ def cheb2ord(wp, ws, gpass, gstop, analog=False, fs=None):
     >>> plt.show()
 
     """
-
     _validate_gpass_gstop(gpass, gstop)
-
-    wp = atleast_1d(wp)
-    ws = atleast_1d(ws)
-    if fs is not None:
-        if analog:
-            raise ValueError("fs cannot be specified for an analog filter")
-        wp = 2*wp/fs
-        ws = 2*ws/fs
-
-    filter_type = 2 * (len(wp) - 1)
-    if wp[0] < ws[0]:
-        filter_type += 1
-    else:
-        filter_type += 2
-
-    # Pre-warp frequencies for digital filter design
-    if not analog:
-        passb = tan(pi * wp / 2.0)
-        stopb = tan(pi * ws / 2.0)
-    else:
-        passb = wp * 1.0
-        stopb = ws * 1.0
-
-    if filter_type == 1:           # low
-        nat = stopb / passb
-    elif filter_type == 2:          # high
-        nat = passb / stopb
-    elif filter_type == 3:     # stop
-        wp0 = optimize.fminbound(band_stop_obj, passb[0], stopb[0] - 1e-12,
-                                 args=(0, passb, stopb, gpass, gstop, 'cheby'),
-                                 disp=0)
-        passb[0] = wp0
-        wp1 = optimize.fminbound(band_stop_obj, stopb[1] + 1e-12, passb[1],
-                                 args=(1, passb, stopb, gpass, gstop, 'cheby'),
-                                 disp=0)
-        passb[1] = wp1
-        nat = ((stopb * (passb[0] - passb[1])) /
-               (stopb ** 2 - passb[0] * passb[1]))
-    elif filter_type == 4:  # pass
-        nat = ((stopb ** 2 - passb[0] * passb[1]) /
-               (stopb * (passb[0] - passb[1])))
-
-    nat = min(abs(nat))
+    wp, ws, filter_type = _validate_wp_ws(wp, ws, fs, analog)
+    passb, stopb = _pre_warp(wp, ws, analog)
+    nat, passb = _find_nat_freq(stopb, passb, gpass, gstop, filter_type, 'cheby')
 
     GSTOP = 10 ** (0.1 * abs(gstop))
     GPASS = 10 ** (0.1 * abs(gpass))
-    ord = int(ceil(arccosh(sqrt((GSTOP - 1.0) / (GPASS - 1.0))) /
-                   arccosh(nat)))
+    v_pass_stop = np.arccosh(np.sqrt((GSTOP - 1.0) / (GPASS - 1.0)))
+    ord = int(ceil(v_pass_stop / arccosh(nat)))
 
     # Find frequency where analog response is -gpass dB.
     # Then convert back from low-pass prototype to the original filter.
 
-    new_freq = cosh(1.0 / ord * arccosh(sqrt((GSTOP - 1.0) / (GPASS - 1.0))))
+    new_freq = cosh(1.0 / ord * v_pass_stop)
     new_freq = 1.0 / new_freq
 
     if filter_type == 1:
@@ -4156,16 +4196,7 @@ def cheb2ord(wp, ws, gpass, gstop, analog=False, fs=None):
                        passb[1] * passb[0]))
         nat[1] = passb[0] * passb[1] / nat[0]
 
-    if not analog:
-        wn = (2.0 / pi) * arctan(nat)
-    else:
-        wn = nat
-
-    if len(wn) == 1:
-        wn = wn[0]
-
-    if fs is not None:
-        wn = wn*fs/2
+    wn = _postprocess_wn(nat, analog, fs)
 
     return ord, wn
 
@@ -4256,48 +4287,9 @@ def ellipord(wp, ws, gpass, gstop, analog=False, fs=None):
     """
 
     _validate_gpass_gstop(gpass, gstop)
-
-    wp = atleast_1d(wp)
-    ws = atleast_1d(ws)
-    if fs is not None:
-        if analog:
-            raise ValueError("fs cannot be specified for an analog filter")
-        wp = 2*wp/fs
-        ws = 2*ws/fs
-
-    filter_type = 2 * (len(wp) - 1)
-    filter_type += 1
-    if wp[0] >= ws[0]:
-        filter_type += 1
-
-    # Pre-warp frequencies for digital filter design
-    if not analog:
-        passb = tan(pi * wp / 2.0)
-        stopb = tan(pi * ws / 2.0)
-    else:
-        passb = wp * 1.0
-        stopb = ws * 1.0
-
-    if filter_type == 1:           # low
-        nat = stopb / passb
-    elif filter_type == 2:          # high
-        nat = passb / stopb
-    elif filter_type == 3:     # stop
-        wp0 = optimize.fminbound(band_stop_obj, passb[0], stopb[0] - 1e-12,
-                                 args=(0, passb, stopb, gpass, gstop, 'ellip'),
-                                 disp=0)
-        passb[0] = wp0
-        wp1 = optimize.fminbound(band_stop_obj, stopb[1] + 1e-12, passb[1],
-                                 args=(1, passb, stopb, gpass, gstop, 'ellip'),
-                                 disp=0)
-        passb[1] = wp1
-        nat = ((stopb * (passb[0] - passb[1])) /
-               (stopb ** 2 - passb[0] * passb[1]))
-    elif filter_type == 4:  # pass
-        nat = ((stopb ** 2 - passb[0] * passb[1]) /
-               (stopb * (passb[0] - passb[1])))
-
-    nat = min(abs(nat))
+    wp, ws, filter_type = _validate_wp_ws(wp, ws, fs, analog)
+    passb, stopb = _pre_warp(wp, ws, analog)
+    nat, passb = _find_nat_freq(stopb, passb, gpass, gstop, filter_type, 'ellip')
 
     arg1_sq = _pow10m1(0.1 * gpass) / _pow10m1(0.1 * gstop)
     arg0 = 1.0 / nat
@@ -4305,16 +4297,7 @@ def ellipord(wp, ws, gpass, gstop, analog=False, fs=None):
     d1 = special.ellipk(arg1_sq), special.ellipkm1(arg1_sq)
     ord = int(ceil(d0[0] * d1[1] / (d0[1] * d1[0])))
 
-    if not analog:
-        wn = arctan(passb) * 2.0 / pi
-    else:
-        wn = passb
-
-    if len(wn) == 1:
-        wn = wn[0]
-
-    if fs is not None:
-        wn = wn*fs/2
+    wn = _postprocess_wn(passb, analog, fs)
 
     return ord, wn
 
@@ -4379,12 +4362,13 @@ def cheb1ap(N, rp):
 
 def cheb2ap(N, rs):
     """
-    Return (z,p,k) for Nth-order Chebyshev type I analog lowpass filter.
+    Return (z,p,k) for Nth-order Chebyshev type II analog lowpass filter.
 
-    The returned filter prototype has `rs` decibels of ripple in the stopband.
+    The returned filter prototype has attenuation of at least ``rs`` decibels
+    in the stopband.
 
     The filter's angular (e.g. rad/s) cutoff frequency is normalized to 1,
-    defined as the point at which the gain first reaches ``-rs``.
+    defined as the point at which the attenuation first reaches ``rs``.
 
     See Also
     --------
@@ -4671,6 +4655,7 @@ def _bessel_poly(n, reverse=False):
     Sequence is http://oeis.org/A001498, and output can be confirmed to
     match http://oeis.org/A001498/b001498.txt :
 
+    >>> from scipy.signal._filter_design import _bessel_poly
     >>> i = 0
     >>> for n in range(51):
     ...     for x in _bessel_poly(n, reverse=True):
@@ -5315,8 +5300,8 @@ def iircomb(w0, Q, ftype='notch', fs=2.0, *, pass_zero=False):
     # Check for invalid cutoff frequency or filter type
     ftype = ftype.lower()
     if not 0 < w0 < fs / 2:
-        raise ValueError("w0 must be between 0 and {}"
-                         " (nyquist), but given {}.".format(fs / 2, w0))
+        raise ValueError(f"w0 must be between 0 and {fs / 2}"
+                         f" (nyquist), but given {w0}.")
     if ftype not in ('notch', 'peak'):
         raise ValueError('ftype must be either notch or peak.')
 
@@ -5483,8 +5468,8 @@ def gammatone(freq, ftype, order=None, numtaps=None, fs=None):
     ftype = ftype.lower()
     filter_types = ['fir', 'iir']
     if not 0 < freq < fs / 2:
-        raise ValueError("The frequency must be between 0 and {}"
-                         " (nyquist), but given {}.".format(fs / 2, freq))
+        raise ValueError(f"The frequency must be between 0 and {fs / 2}"
+                         f" (nyquist), but given {freq}.")
     if ftype not in filter_types:
         raise ValueError('ftype must be either fir or iir.')
 
@@ -5522,9 +5507,9 @@ def gammatone(freq, ftype, order=None, numtaps=None, fs=None):
     elif ftype == 'iir':
         # Raise warning if order and/or numtaps is passed
         if order is not None:
-            warnings.warn('order is not used for IIR gammatone filter.')
+            warnings.warn('order is not used for IIR gammatone filter.', stacklevel=2)
         if numtaps is not None:
-            warnings.warn('numtaps is not used for IIR gammatone filter.')
+            warnings.warn('numtaps is not used for IIR gammatone filter.', stacklevel=2)
 
         # Gammatone impulse response settings
         T = 1./fs

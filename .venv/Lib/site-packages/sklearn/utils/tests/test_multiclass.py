@@ -2,25 +2,26 @@ from itertools import product
 
 import numpy as np
 import pytest
-import scipy.sparse as sp
-from scipy.sparse import (
-    coo_matrix,
-    csc_matrix,
-    csr_matrix,
-    dok_matrix,
-    issparse,
-    lil_matrix,
-)
+from scipy.sparse import issparse
 
-from sklearn import datasets
+from sklearn import config_context, datasets
 from sklearn.model_selection import ShuffleSplit
 from sklearn.svm import SVC
+from sklearn.utils._array_api import yield_namespace_device_dtype_combinations
 from sklearn.utils._testing import (
+    _array_api_for_tests,
     assert_allclose,
     assert_array_almost_equal,
     assert_array_equal,
 )
 from sklearn.utils.estimator_checks import _NotAnArray
+from sklearn.utils.fixes import (
+    COO_CONTAINERS,
+    CSC_CONTAINERS,
+    CSR_CONTAINERS,
+    DOK_CONTAINERS,
+    LIL_CONTAINERS,
+)
 from sklearn.utils.metaestimators import _safe_split
 from sklearn.utils.multiclass import (
     _ovr_decision_function,
@@ -31,18 +32,24 @@ from sklearn.utils.multiclass import (
     unique_labels,
 )
 
-sparse_multilable_explicit_zero = csc_matrix(np.array([[0, 1], [1, 0]]))
-sparse_multilable_explicit_zero[:, 0] = 0
+multilabel_explicit_zero = np.array([[0, 1], [1, 0]])
+multilabel_explicit_zero[:, 0] = 0
 
 
 def _generate_sparse(
-    matrix,
-    matrix_types=(csr_matrix, csc_matrix, coo_matrix, dok_matrix, lil_matrix),
+    data,
+    sparse_containers=tuple(
+        COO_CONTAINERS
+        + CSC_CONTAINERS
+        + CSR_CONTAINERS
+        + DOK_CONTAINERS
+        + LIL_CONTAINERS
+    ),
     dtypes=(bool, int, np.int8, np.uint8, float, np.float32),
 ):
     return [
-        matrix_type(matrix, dtype=dtype)
-        for matrix_type in matrix_types
+        sparse_container(data, dtype=dtype)
+        for sparse_container in sparse_containers
         for dtype in dtypes
     ]
 
@@ -51,10 +58,16 @@ EXAMPLES = {
     "multilabel-indicator": [
         # valid when the data is formatted as sparse or dense, identified
         # by CSR format when the testing takes place
-        csr_matrix(np.random.RandomState(42).randint(2, size=(10, 10))),
+        *_generate_sparse(
+            np.random.RandomState(42).randint(2, size=(10, 10)),
+            sparse_containers=CSR_CONTAINERS,
+            dtypes=(int,),
+        ),
         [[0, 1], [1, 0]],
         [[0, 1]],
-        sparse_multilable_explicit_zero,
+        *_generate_sparse(
+            multilabel_explicit_zero, sparse_containers=CSC_CONTAINERS, dtypes=(int,)
+        ),
         *_generate_sparse([[0, 1], [1, 0]]),
         *_generate_sparse([[0, 0], [0, 0]]),
         *_generate_sparse([[0, 1]]),
@@ -89,7 +102,7 @@ EXAMPLES = {
         np.array([[1, 0, 2, 2], [1, 4, 2, 4]], dtype=np.float32),
         *_generate_sparse(
             [[1, 0, 2, 2], [1, 4, 2, 4]],
-            matrix_types=(csr_matrix, csc_matrix),
+            sparse_containers=CSC_CONTAINERS + CSR_CONTAINERS,
             dtypes=(int, np.int8, np.uint8, float, np.float32),
         ),
         np.array([["a", "b"], ["c", "d"]]),
@@ -132,12 +145,12 @@ EXAMPLES = {
         np.array([[0, 0.5]]),
         *_generate_sparse(
             [[0, 0.5], [0.5, 0]],
-            matrix_types=(csr_matrix, csc_matrix),
+            sparse_containers=CSC_CONTAINERS + CSR_CONTAINERS,
             dtypes=(float, np.float32),
         ),
         *_generate_sparse(
             [[0, 0.5]],
-            matrix_types=(csr_matrix, csc_matrix),
+            sparse_containers=CSC_CONTAINERS + CSR_CONTAINERS,
             dtypes=(float, np.float32),
         ),
     ],
@@ -160,6 +173,75 @@ EXAMPLES = {
         np.array([[[0, 1], [2, 3]], [[4, 5], [6, 7]]]),
     ],
 }
+
+ARRAY_API_EXAMPLES = {
+    "multilabel-indicator": [
+        np.random.RandomState(42).randint(2, size=(10, 10)),
+        [[0, 1], [1, 0]],
+        [[0, 1]],
+        multilabel_explicit_zero,
+        [[0, 0], [0, 0]],
+        [[-1, 1], [1, -1]],
+        np.array([[-1, 1], [1, -1]]),
+        np.array([[-3, 3], [3, -3]]),
+        _NotAnArray(np.array([[-3, 3], [3, -3]])),
+    ],
+    "multiclass": [
+        [1, 0, 2, 2, 1, 4, 2, 4, 4, 4],
+        np.array([1, 0, 2]),
+        np.array([1, 0, 2], dtype=np.int8),
+        np.array([1, 0, 2], dtype=np.uint8),
+        np.array([1, 0, 2], dtype=float),
+        np.array([1, 0, 2], dtype=np.float32),
+        np.array([[1], [0], [2]]),
+        _NotAnArray(np.array([1, 0, 2])),
+        [0, 1, 2],
+    ],
+    "multiclass-multioutput": [
+        [[1, 0, 2, 2], [1, 4, 2, 4]],
+        np.array([[1, 0, 2, 2], [1, 4, 2, 4]]),
+        np.array([[1, 0, 2, 2], [1, 4, 2, 4]], dtype=np.int8),
+        np.array([[1, 0, 2, 2], [1, 4, 2, 4]], dtype=np.uint8),
+        np.array([[1, 0, 2, 2], [1, 4, 2, 4]], dtype=float),
+        np.array([[1, 0, 2, 2], [1, 4, 2, 4]], dtype=np.float32),
+        np.array([[1, 0, 2]]),
+        _NotAnArray(np.array([[1, 0, 2]])),
+    ],
+    "binary": [
+        [0, 1],
+        [1, 1],
+        [],
+        [0],
+        np.array([0, 1, 1, 1, 0, 0, 0, 1, 1, 1]),
+        np.array([0, 1, 1, 1, 0, 0, 0, 1, 1, 1], dtype=bool),
+        np.array([0, 1, 1, 1, 0, 0, 0, 1, 1, 1], dtype=np.int8),
+        np.array([0, 1, 1, 1, 0, 0, 0, 1, 1, 1], dtype=np.uint8),
+        np.array([0, 1, 1, 1, 0, 0, 0, 1, 1, 1], dtype=float),
+        np.array([0, 1, 1, 1, 0, 0, 0, 1, 1, 1], dtype=np.float32),
+        np.array([[0], [1]]),
+        _NotAnArray(np.array([[0], [1]])),
+        [1, -1],
+        [3, 5],
+    ],
+    "continuous": [
+        [1e-5],
+        [0, 0.5],
+        np.array([[0], [0.5]]),
+        np.array([[0], [0.5]], dtype=np.float32),
+    ],
+    "continuous-multioutput": [
+        np.array([[0, 0.5], [0.5, 0]]),
+        np.array([[0, 0.5], [0.5, 0]], dtype=np.float32),
+        np.array([[0, 0.5]]),
+    ],
+    "unknown": [
+        [[]],
+        [()],
+        np.array(0),
+        np.array([[[0, 1], [2, 3]], [[4, 5], [6, 7]]]),
+    ],
+}
+
 
 NON_ARRAY_LIKE_EXAMPLES = [
     {1, 2, 3},
@@ -259,18 +341,12 @@ def test_unique_labels_mixed_types():
 
 def test_is_multilabel():
     for group, group_examples in EXAMPLES.items():
-        if group in ["multilabel-indicator"]:
-            dense_exp = True
-        else:
-            dense_exp = False
+        dense_exp = group == "multilabel-indicator"
 
         for example in group_examples:
             # Only mark explicitly defined sparse examples as valid sparse
             # multilabel-indicators
-            if group == "multilabel-indicator" and issparse(example):
-                sparse_exp = True
-            else:
-                sparse_exp = False
+            sparse_exp = dense_exp and issparse(example)
 
             if issparse(example) or (
                 hasattr(example, "__array__")
@@ -279,19 +355,19 @@ def test_is_multilabel():
                 and np.asarray(example).shape[1] > 0
             ):
                 examples_sparse = [
-                    sparse_matrix(example)
-                    for sparse_matrix in [
-                        coo_matrix,
-                        csc_matrix,
-                        csr_matrix,
-                        dok_matrix,
-                        lil_matrix,
-                    ]
+                    sparse_container(example)
+                    for sparse_container in (
+                        COO_CONTAINERS
+                        + CSC_CONTAINERS
+                        + CSR_CONTAINERS
+                        + DOK_CONTAINERS
+                        + LIL_CONTAINERS
+                    )
                 ]
                 for exmpl_sparse in examples_sparse:
                     assert sparse_exp == is_multilabel(
                         exmpl_sparse
-                    ), "is_multilabel(%r) should be %s" % (exmpl_sparse, sparse_exp)
+                    ), f"is_multilabel({exmpl_sparse!r}) should be {sparse_exp}"
 
             # Densify sparse examples before testing
             if issparse(example):
@@ -299,7 +375,29 @@ def test_is_multilabel():
 
             assert dense_exp == is_multilabel(
                 example
-            ), "is_multilabel(%r) should be %s" % (example, dense_exp)
+            ), f"is_multilabel({example!r}) should be {dense_exp}"
+
+
+@pytest.mark.parametrize(
+    "array_namespace, device, dtype_name",
+    yield_namespace_device_dtype_combinations(),
+)
+def test_is_multilabel_array_api_compliance(array_namespace, device, dtype_name):
+    xp = _array_api_for_tests(array_namespace, device)
+
+    for group, group_examples in ARRAY_API_EXAMPLES.items():
+        dense_exp = group == "multilabel-indicator"
+        for example in group_examples:
+            if np.asarray(example).dtype.kind == "f":
+                example = np.asarray(example, dtype=dtype_name)
+            else:
+                example = np.asarray(example)
+            example = xp.asarray(example, device=device)
+
+            with config_context(array_api_dispatch=True):
+                assert dense_exp == is_multilabel(
+                    example
+                ), f"is_multilabel({example!r}) should be {dense_exp}"
 
 
 def test_check_classification_targets():
@@ -386,7 +484,8 @@ def test_unique_labels_pandas_nullable(dtype):
     assert_array_equal(labels, [0, 1])
 
 
-def test_class_distribution():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_class_distribution(csc_container):
     y = np.array(
         [
             [1, 0, 0, 1],
@@ -401,7 +500,7 @@ def test_class_distribution():
     data = np.array([1, 2, 1, 4, 2, 1, 0, 2, 3, 2, 3, 1, 1, 1, 1, 1, 1])
     indices = np.array([0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 5, 0, 1, 2, 3, 4, 5])
     indptr = np.array([0, 6, 11, 11, 17])
-    y_sp = sp.csc_matrix((data, indices, indptr), shape=(6, 4))
+    y_sp = csc_container((data, indices, indptr), shape=(6, 4))
 
     classes, n_classes, class_prior = class_distribution(y)
     classes_sp, n_classes_sp, class_prior_sp = class_distribution(y_sp)

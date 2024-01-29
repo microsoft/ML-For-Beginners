@@ -8,6 +8,10 @@ from pandas import (
 )
 import pandas._testing as tm
 
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Setting a value on a view:FutureWarning"
+)
+
 
 @pytest.mark.parametrize(
     "cons",

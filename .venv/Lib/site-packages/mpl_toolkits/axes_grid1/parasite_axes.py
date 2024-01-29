@@ -105,7 +105,7 @@ class HostAxesBase:
         axes_class : subclass type of `~matplotlib.axes.Axes`, optional
             The `~.axes.Axes` subclass that is instantiated.  If None, the base
             class of the host axes is used.
-        kwargs
+        **kwargs
             Other parameters are forwarded to the parasite axes constructor.
         """
         if axes_class is None:
@@ -215,6 +215,7 @@ class HostAxesBase:
         self.axis[tuple(restore)].set_visible(True)
         self.axis[tuple(restore)].toggle(ticklabels=False, label=False)
 
+    @_api.make_keyword_only("3.8", "call_axes_locator")
     def get_tightbbox(self, renderer=None, call_axes_locator=True,
                       bbox_extra_artists=None):
         bbs = [

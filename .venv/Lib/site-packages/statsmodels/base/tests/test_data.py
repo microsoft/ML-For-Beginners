@@ -1,5 +1,8 @@
-from statsmodels.compat.pandas import assert_series_equal, assert_frame_equal,\
-    make_dataframe
+from statsmodels.compat.pandas import (
+    assert_series_equal,
+    assert_frame_equal,
+    make_dataframe,
+)
 
 import numpy as np
 from numpy.testing import assert_equal, assert_, assert_raises

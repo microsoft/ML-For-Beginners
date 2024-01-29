@@ -97,5 +97,8 @@ def test_pade_complex():
     assert_array_almost_equal(denomp.c, [x + x.conjugate(), 1.0])
 
     nump, denomp = pade(an, 2, 2)
-    assert_array_almost_equal(nump.c, [x**2 + x*x.conjugate() + x.conjugate()**2, 2*(x + x.conjugate()), 1.0])
+    assert_array_almost_equal(
+        nump.c,
+        [x**2 + x*x.conjugate() + x.conjugate()**2, 2*(x + x.conjugate()), 1.0]
+    )
     assert_array_almost_equal(denomp.c, [x.conjugate()**2, x + 2*x.conjugate(), 1.0])

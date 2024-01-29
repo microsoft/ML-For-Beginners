@@ -31,7 +31,7 @@ class TestInferObjects:
         expected = index_or_series([1.0, 2.0, 3.0, np.nan])
         tm.assert_equal(actual, expected)
 
-        # only soft conversions, unconvertable pass thru unchanged
+        # only soft conversions, unconvertible pass thru unchanged
 
         obj = index_or_series(np.array([1, 2, 3, None, "a"], dtype="O"))
         actual = obj.infer_objects()

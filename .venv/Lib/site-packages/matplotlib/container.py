@@ -11,8 +11,7 @@ class Container(tuple):
     """
 
     def __repr__(self):
-        return ("<{} object of {} artists>"
-                .format(type(self).__name__, len(self)))
+        return f"<{type(self).__name__} object of {len(self)} artists>"
 
     def __new__(cls, *args, **kwargs):
         return tuple.__new__(cls, args[0])
@@ -20,7 +19,7 @@ class Container(tuple):
     def __init__(self, kl, label=None):
         self._callbacks = cbook.CallbackRegistry(signals=["pchanged"])
         self._remove_method = None
-        self.set_label(label)
+        self._label = str(label) if label is not None else None
 
     def remove(self):
         for c in cbook.flatten(

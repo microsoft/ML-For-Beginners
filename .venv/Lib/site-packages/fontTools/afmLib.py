@@ -82,7 +82,10 @@ kernRE = re.compile(
 # regular expressions to parse composite info lines of the form:
 # Aacute 2 ; PCC A 0 0 ; PCC acute 182 211 ;
 compositeRE = re.compile(
-    r"([.A-Za-z0-9_]+)" r"\s+" r"(\d+)" r"\s*;\s*"  # char name  # number of parts
+    r"([.A-Za-z0-9_]+)"  # char name
+    r"\s+"
+    r"(\d+)"  # number of parts
+    r"\s*;\s*"
 )
 componentRE = re.compile(
     r"PCC\s+"  # PPC
@@ -119,7 +122,6 @@ class error(Exception):
 
 
 class AFM(object):
-
     _attrs = None
 
     _keywords = [

@@ -39,11 +39,11 @@ class InProcessKernelClient(KernelClient):
     """
 
     # The classes to use for the various channels.
-    shell_channel_class = Type(InProcessChannel)
-    iopub_channel_class = Type(InProcessChannel)
-    stdin_channel_class = Type(InProcessChannel)
-    control_channel_class = Type(InProcessChannel)
-    hb_channel_class = Type(InProcessHBChannel)
+    shell_channel_class = Type(InProcessChannel)  # type:ignore[arg-type]
+    iopub_channel_class = Type(InProcessChannel)  # type:ignore[arg-type]
+    stdin_channel_class = Type(InProcessChannel)  # type:ignore[arg-type]
+    control_channel_class = Type(InProcessChannel)  # type:ignore[arg-type]
+    hb_channel_class = Type(InProcessHBChannel)  # type:ignore[arg-type]
 
     kernel = Instance("ipykernel.inprocess.ipkernel.InProcessKernel", allow_none=True)
 
@@ -60,42 +60,43 @@ class InProcessKernelClient(KernelClient):
     def get_connection_info(self):
         """Get the connection info for the client."""
         d = super().get_connection_info()
-        d["kernel"] = self.kernel
+        d["kernel"] = self.kernel  # type:ignore[assignment]
         return d
 
     def start_channels(self, *args, **kwargs):
         """Start the channels on the client."""
         super().start_channels()
-        self.kernel.frontends.append(self)
+        if self.kernel:
+            self.kernel.frontends.append(self)
 
     @property
     def shell_channel(self):
         if self._shell_channel is None:
-            self._shell_channel = self.shell_channel_class(self)
+            self._shell_channel = self.shell_channel_class(self)  # type:ignore[abstract,call-arg]
         return self._shell_channel
 
     @property
     def iopub_channel(self):
         if self._iopub_channel is None:
-            self._iopub_channel = self.iopub_channel_class(self)
+            self._iopub_channel = self.iopub_channel_class(self)  # type:ignore[abstract,call-arg]
         return self._iopub_channel
 
     @property
     def stdin_channel(self):
         if self._stdin_channel is None:
-            self._stdin_channel = self.stdin_channel_class(self)
+            self._stdin_channel = self.stdin_channel_class(self)  # type:ignore[abstract,call-arg]
         return self._stdin_channel
 
     @property
     def control_channel(self):
         if self._control_channel is None:
-            self._control_channel = self.control_channel_class(self)
+            self._control_channel = self.control_channel_class(self)  # type:ignore[abstract,call-arg]
         return self._control_channel
 
     @property
     def hb_channel(self):
         if self._hb_channel is None:
-            self._hb_channel = self.hb_channel_class(self)
+            self._hb_channel = self.hb_channel_class(self)  # type:ignore[abstract,call-arg]
         return self._hb_channel
 
     # Methods for sending specific messages
@@ -193,7 +194,7 @@ class InProcessKernelClient(KernelClient):
             dispatch_shell = run_sync(kernel.dispatch_shell)
             dispatch_shell(msg_parts)
         else:
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_event_loop()  # type:ignore[unreachable]
             loop.run_until_complete(kernel.dispatch_shell(msg_parts))
         idents, reply_msg = self.session.recv(stream, copy=False)
         self.shell_channel.call_handlers_later(reply_msg)

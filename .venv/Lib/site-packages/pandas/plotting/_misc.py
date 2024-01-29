@@ -329,7 +329,7 @@ def andrews_curves(
     **kwargs,
 ) -> Axes:
     """
-    Generate a matplotlib plot for visualising clusters of multivariate data.
+    Generate a matplotlib plot for visualizing clusters of multivariate data.
 
     Andrews curves have the functional form:
 
@@ -439,7 +439,7 @@ def bootstrap_plot(
         :context: close-figs
 
         >>> s = pd.Series(np.random.uniform(size=100))
-        >>> pd.plotting.bootstrap_plot(s)
+        >>> pd.plotting.bootstrap_plot(s)  # doctest: +SKIP
         <Figure size 640x480 with 6 Axes>
     """
     plot_backend = _get_plot_backend("matplotlib")

@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0913,R0914,W0221
+
 
 import numpy as np
 
@@ -36,11 +36,15 @@ class QLinearConv(OpRun):
         strides = strides or self.strides  # type: ignore
 
         X = x.astype(np.int32)
-        if x_zero_point:
+        if x_zero_point is not None:
             X -= x_zero_point
         W = w.astype(np.int32)
-        if w_zero_point:
-            W -= w_zero_point
+        if w_zero_point is not None:
+            if len(w_zero_point.shape) == 1 and w_zero_point.shape[0] == W.shape[0]:
+                missing = (w_zero_point.shape[0],) + (1,) * (len(W.shape) - 1)
+                W -= w_zero_point.reshape(missing)
+            else:
+                W -= w_zero_point
 
         res = _conv_implementation(
             X, W, B, auto_pad, dilations, group, kernel_shape, pads, strides

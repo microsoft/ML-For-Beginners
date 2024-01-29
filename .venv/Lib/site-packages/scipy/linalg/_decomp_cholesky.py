@@ -19,12 +19,11 @@ def _cholesky(a, lower=False, overwrite_a=False, clean=True,
 
     # Dimension check
     if a1.ndim != 2:
-        raise ValueError('Input array needs to be 2D but received '
-                         'a {}d-array.'.format(a1.ndim))
+        raise ValueError(f'Input array needs to be 2D but received a {a1.ndim}d-array.')
     # Squareness check
     if a1.shape[0] != a1.shape[1]:
         raise ValueError('Input array is expected to be square but has '
-                         'the shape: {}.'.format(a1.shape))
+                         f'the shape: {a1.shape}.')
 
     # Quick return for square empty array
     if a1.size == 0:
@@ -37,8 +36,8 @@ def _cholesky(a, lower=False, overwrite_a=False, clean=True,
         raise LinAlgError("%d-th leading minor of the array is not positive "
                           "definite" % info)
     if info < 0:
-        raise ValueError('LAPACK reported an illegal value in {}-th argument'
-                         'on entry to "POTRF".'.format(-info))
+        raise ValueError(f'LAPACK reported an illegal value in {-info}-th argument'
+                         'on entry to "POTRF".')
     return c, lower
 
 
@@ -202,8 +201,7 @@ def cho_solve(c_and_lower, b, overwrite_b=False, check_finite=True):
     if c.ndim != 2 or c.shape[0] != c.shape[1]:
         raise ValueError("The factored matrix c is not square.")
     if c.shape[1] != b1.shape[0]:
-        raise ValueError("incompatible dimensions ({} and {})"
-                         .format(c.shape, b1.shape))
+        raise ValueError(f"incompatible dimensions ({c.shape} and {b1.shape})")
 
     overwrite_b = overwrite_b or _datacopied(b1, b)
 

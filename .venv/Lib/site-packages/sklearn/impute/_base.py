@@ -5,6 +5,7 @@
 import numbers
 import warnings
 from collections import Counter
+from functools import partial
 
 import numpy as np
 import numpy.ma as ma
@@ -115,7 +116,13 @@ class _BaseImputer(TransformerMixin, BaseEstimator):
         if not self.add_indicator:
             return X_imputed
 
-        hstack = sp.hstack if sp.issparse(X_imputed) else np.hstack
+        if sp.issparse(X_imputed):
+            # sp.hstack may result in different formats between sparse arrays and
+            # matrices; specify the format to keep consistent behavior
+            hstack = partial(sp.hstack, format=X_imputed.format)
+        else:
+            hstack = np.hstack
+
         if X_indicator is None:
             raise ValueError(
                 "Data from the missing indicator are not provided. Call "
@@ -256,6 +263,9 @@ class SimpleImputer(_BaseImputer):
     [[ 7.   2.   3. ]
      [ 4.   3.5  6. ]
      [10.   3.5  9. ]]
+
+    For a more detailed example see
+    :ref:`sphx_glr_auto_examples_impute_plot_missing_values.py`.
     """
 
     _parameter_constraints: dict = {
@@ -695,8 +705,10 @@ class MissingIndicator(TransformerMixin, BaseEstimator):
     """Binary indicators for missing values.
 
     Note that this component typically should not be used in a vanilla
-    :class:`Pipeline` consisting of transformers and a classifier, but rather
-    could be added using a :class:`FeatureUnion` or :class:`ColumnTransformer`.
+    :class:`~sklearn.pipeline.Pipeline` consisting of transformers and a
+    classifier, but rather could be added using a
+    :class:`~sklearn.pipeline.FeatureUnion` or
+    :class:`~sklearn.compose.ColumnTransformer`.
 
     Read more in the :ref:`User Guide <impute>`.
 

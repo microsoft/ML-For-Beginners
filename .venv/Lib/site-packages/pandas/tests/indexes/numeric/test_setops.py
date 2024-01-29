@@ -133,7 +133,10 @@ class TestSetOps:
         index2 = Index([2, 3, 4, 1])
         result = index1.symmetric_difference(index2, sort=sort)
         expected = Index([5, 1])
-        assert tm.equalContents(result, expected)
+        if sort is not None:
+            tm.assert_index_equal(result, expected)
+        else:
+            tm.assert_index_equal(result, expected.sort_values())
         assert result.name is None
         if sort is None:
             expected = expected.sort_values()

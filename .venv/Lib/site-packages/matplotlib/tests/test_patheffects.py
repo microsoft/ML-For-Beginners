@@ -32,10 +32,7 @@ def test_patheffect2():
     arr = np.arange(25).reshape((5, 5))
     ax2.imshow(arr, interpolation='nearest')
     cntr = ax2.contour(arr, colors="k")
-
-    plt.setp(cntr.collections,
-             path_effects=[path_effects.withStroke(linewidth=3,
-                                                   foreground="w")])
+    cntr.set(path_effects=[path_effects.withStroke(linewidth=3, foreground="w")])
 
     clbls = ax2.clabel(cntr, fmt="%2.0f", use_clabeltext=True)
     plt.setp(clbls,
@@ -84,7 +81,7 @@ def test_patheffects_stroked_text():
     ]
     font_size = 50
 
-    ax = plt.axes([0, 0, 1, 1])
+    ax = plt.axes((0, 0, 1, 1))
     for i, chunk in enumerate(text_chunks):
         text = ax.text(x=0.01, y=(0.9 - i * 0.13), s=chunk,
                        fontdict={'ha': 'left', 'va': 'center',
@@ -122,13 +119,9 @@ def test_collection():
     x, y = np.meshgrid(np.linspace(0, 10, 150), np.linspace(-5, 5, 100))
     data = np.sin(x) + np.cos(y)
     cs = plt.contour(data)
-    pe = [path_effects.PathPatchEffect(edgecolor='black', facecolor='none',
-                                       linewidth=12),
-          path_effects.Stroke(linewidth=5)]
-
-    for collection in cs.collections:
-        collection.set_path_effects(pe)
-
+    cs.set(path_effects=[
+        path_effects.PathPatchEffect(edgecolor='black', facecolor='none', linewidth=12),
+        path_effects.Stroke(linewidth=5)])
     for text in plt.clabel(cs, colors='white'):
         text.set_path_effects([path_effects.withStroke(foreground='k',
                                                        linewidth=3)])
@@ -176,16 +169,13 @@ def test_tickedstroke():
     g3 = .8 + x1 ** -3 - x2
 
     cg1 = ax3.contour(x1, x2, g1, [0], colors=('k',))
-    plt.setp(cg1.collections,
-             path_effects=[path_effects.withTickedStroke(angle=135)])
+    cg1.set(path_effects=[path_effects.withTickedStroke(angle=135)])
 
     cg2 = ax3.contour(x1, x2, g2, [0], colors=('r',))
-    plt.setp(cg2.collections,
-             path_effects=[path_effects.withTickedStroke(angle=60, length=2)])
+    cg2.set(path_effects=[path_effects.withTickedStroke(angle=60, length=2)])
 
     cg3 = ax3.contour(x1, x2, g3, [0], colors=('b',))
-    plt.setp(cg3.collections,
-             path_effects=[path_effects.withTickedStroke(spacing=7)])
+    cg3.set(path_effects=[path_effects.withTickedStroke(spacing=7)])
 
     ax3.set_xlim(0, 4)
     ax3.set_ylim(0, 4)

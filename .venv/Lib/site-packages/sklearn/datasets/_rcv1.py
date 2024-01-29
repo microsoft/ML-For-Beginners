@@ -10,7 +10,7 @@ The dataset page is available at
 
 import logging
 from gzip import GzipFile
-from os import makedirs, remove
+from os import PathLike, makedirs, remove
 from os.path import exists, join
 
 import joblib
@@ -74,7 +74,7 @@ logger = logging.getLogger(__name__)
 
 @validate_params(
     {
-        "data_home": [str, None],
+        "data_home": [str, PathLike, None],
         "subset": [StrOptions({"train", "test", "all"})],
         "download_if_missing": ["boolean"],
         "random_state": ["random_state"],
@@ -111,7 +111,7 @@ def fetch_rcv1(
 
     Parameters
     ----------
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By default
         all scikit-learn data is stored in '~/scikit_learn_data' subfolders.
 

@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# pylint: disable=unidiomatic-typecheck
 
 from typing import Dict, List, MutableMapping, Optional, Set, Tuple
 
@@ -50,19 +49,19 @@ def check_overlapping_names(
 
     # Edges already cover input/output
     overlap = _overlapping(_edge_names(g1), _edge_names(g2, exclude=io_map_inputs))
-    if len(overlap) > 0:
+    if overlap:
         result.append(("edge", overlap))
 
     overlap = _overlapping(
         [e.name for e in g1.value_info], [e.name for e in g2.value_info]
     )
-    if len(overlap) > 0:
+    if overlap:
         result.append(("value_info", overlap))
 
     overlap = _overlapping(
         [e.name for e in g1.initializer], [e.name for e in g2.initializer]
     )
-    if len(overlap) > 0:
+    if overlap:
         result.append(("initializer", overlap))
 
     overlap = _overlapping(
@@ -72,13 +71,13 @@ def check_overlapping_names(
         [e.indices.name for e in g1.sparse_initializer],
         [e.indices.name for e in g2.sparse_initializer],
     )
-    if len(overlap) > 0:
+    if overlap:
         result.append(("sparse_initializer", overlap))
 
     return result
 
 
-def merge_graphs(  # pylint: disable=too-many-branches,too-many-statements
+def merge_graphs(
     g1: GraphProto,
     g2: GraphProto,
     io_map: List[Tuple[str, str]],
@@ -162,8 +161,8 @@ def merge_graphs(  # pylint: disable=too-many-branches,too-many-statements
             ]
 
         if not outputs:
-            g1_outputs = [o.name for o in g1.input]
-            g2_outputs = [o.name for o in g2.input]
+            g1_outputs = [o.name for o in g1.output]
+            g2_outputs = [o.name for o in g2.output]
         else:
             output_set = set(outputs)
             g1_outputs = [
@@ -265,7 +264,7 @@ def merge_graphs(  # pylint: disable=too-many-branches,too-many-statements
     return g
 
 
-def merge_models(  # pylint: disable=too-many-branches
+def merge_models(
     m1: ModelProto,
     m2: ModelProto,
     io_map: List[Tuple[str, str]],
@@ -411,7 +410,7 @@ def merge_models(  # pylint: disable=too-many-branches
     return model
 
 
-def add_prefix_graph(  # pylint: disable=too-many-branches
+def add_prefix_graph(
     graph: GraphProto,
     prefix: str,
     rename_nodes: Optional[bool] = True,

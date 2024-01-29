@@ -13,11 +13,16 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Literal
 
 
+__all__ = ['XcodeStyle']
+
+
 class XcodeStyle(Style):
     """
     Style similar to the Xcode default colouring theme.
     """
 
+    name = 'xcode'
+    
     styles = {
         Comment:                '#177500',
         Comment.Preproc:        '#633820',

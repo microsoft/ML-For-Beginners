@@ -105,10 +105,11 @@ class KNNImputer(_BaseImputer):
 
     References
     ----------
-    * Olga Troyanskaya, Michael Cantor, Gavin Sherlock, Pat Brown, Trevor
+    * `Olga Troyanskaya, Michael Cantor, Gavin Sherlock, Pat Brown, Trevor
       Hastie, Robert Tibshirani, David Botstein and Russ B. Altman, Missing
       value estimation methods for DNA microarrays, BIOINFORMATICS Vol. 17
       no. 6, 2001 Pages 520-525.
+      <https://academic.oup.com/bioinformatics/article/17/6/520/272365>`_
 
     Examples
     --------
@@ -121,6 +122,9 @@ class KNNImputer(_BaseImputer):
            [3. , 4. , 3. ],
            [5.5, 6. , 5. ],
            [8. , 8. , 7. ]])
+
+    For a more detailed example see
+    :ref:`sphx_glr_auto_examples_impute_plot_missing_values.py`.
     """
 
     _parameter_constraints: dict = {
@@ -282,7 +286,12 @@ class KNNImputer(_BaseImputer):
                 Xc[:, ~valid_mask] = 0
             else:
                 Xc = X[:, valid_mask]
-            return Xc
+
+            # Even if there are no missing values in X, we still concatenate Xc
+            # with the missing value indicator matrix, X_indicator.
+            # This is to ensure that the output maintains consistency in terms
+            # of columns, regardless of whether missing values exist in X or not.
+            return super()._concatenate_indicator(Xc, X_indicator)
 
         row_missing_idx = np.flatnonzero(mask.any(axis=1))
 

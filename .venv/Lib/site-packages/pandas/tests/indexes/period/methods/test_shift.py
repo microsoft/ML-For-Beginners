@@ -29,16 +29,16 @@ class TestPeriodIndexShift:
         tm.assert_index_equal(result, expected)
 
     def test_shift(self):
-        pi1 = period_range(freq="A", start="1/1/2001", end="12/1/2009")
-        pi2 = period_range(freq="A", start="1/1/2002", end="12/1/2010")
+        pi1 = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
+        pi2 = period_range(freq="Y", start="1/1/2002", end="12/1/2010")
 
         tm.assert_index_equal(pi1.shift(0), pi1)
 
         assert len(pi1) == len(pi2)
         tm.assert_index_equal(pi1.shift(1), pi2)
 
-        pi1 = period_range(freq="A", start="1/1/2001", end="12/1/2009")
-        pi2 = period_range(freq="A", start="1/1/2000", end="12/1/2008")
+        pi1 = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
+        pi2 = period_range(freq="Y", start="1/1/2000", end="12/1/2008")
         assert len(pi1) == len(pi2)
         tm.assert_index_equal(pi1.shift(-1), pi2)
 
@@ -64,12 +64,12 @@ class TestPeriodIndexShift:
 
     def test_shift_corner_cases(self):
         # GH#9903
-        idx = PeriodIndex([], name="xxx", freq="H")
+        idx = PeriodIndex([], name="xxx", freq="h")
 
         msg = "`freq` argument is not supported for PeriodIndex.shift"
         with pytest.raises(TypeError, match=msg):
             # period shift doesn't accept freq
-            idx.shift(1, freq="H")
+            idx.shift(1, freq="h")
 
         tm.assert_index_equal(idx.shift(0), idx)
         tm.assert_index_equal(idx.shift(3), idx)
@@ -77,19 +77,19 @@ class TestPeriodIndexShift:
         idx = PeriodIndex(
             ["2011-01-01 10:00", "2011-01-01 11:00", "2011-01-01 12:00"],
             name="xxx",
-            freq="H",
+            freq="h",
         )
         tm.assert_index_equal(idx.shift(0), idx)
         exp = PeriodIndex(
             ["2011-01-01 13:00", "2011-01-01 14:00", "2011-01-01 15:00"],
             name="xxx",
-            freq="H",
+            freq="h",
         )
         tm.assert_index_equal(idx.shift(3), exp)
         exp = PeriodIndex(
             ["2011-01-01 07:00", "2011-01-01 08:00", "2011-01-01 09:00"],
             name="xxx",
-            freq="H",
+            freq="h",
         )
         tm.assert_index_equal(idx.shift(-3), exp)
 
@@ -117,6 +117,6 @@ class TestPeriodIndexShift:
 
     def test_shift_periods(self):
         # GH #22458 : argument 'n' was deprecated in favor of 'periods'
-        idx = period_range(freq="A", start="1/1/2001", end="12/1/2009")
+        idx = period_range(freq="Y", start="1/1/2001", end="12/1/2009")
         tm.assert_index_equal(idx.shift(periods=0), idx)
         tm.assert_index_equal(idx.shift(0), idx)

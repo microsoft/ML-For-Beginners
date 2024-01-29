@@ -28,6 +28,7 @@ from . import linear_regressor
 from . import local_outlier_factor
 from . import mixture
 from . import multioutput
+from . import multiply
 from . import nearest_neighbours
 from . import one_hot_encoder
 from . import ordinal_encoder
@@ -78,6 +79,7 @@ __all__ = [
     local_outlier_factor,
     mixture,
     multioutput,
+    multiply,
     nearest_neighbours,
     one_hot_encoder,
     ordinal_encoder,

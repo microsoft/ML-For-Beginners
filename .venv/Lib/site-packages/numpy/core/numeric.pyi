@@ -8,7 +8,10 @@ from typing import (
     SupportsIndex,
     NoReturn,
 )
-from typing_extensions import TypeGuard
+if sys.version_info >= (3, 10):
+    from typing import TypeGuard
+else:
+    from typing_extensions import TypeGuard
 
 from numpy import (
     ComplexWarning as ComplexWarning,
@@ -597,7 +600,7 @@ def isscalar(element: object) -> TypeGuard[
     generic | bool | int | float | complex | str | bytes | memoryview
 ]: ...
 
-def binary_repr(num: int, width: None | int = ...) -> str: ...
+def binary_repr(num: SupportsIndex, width: None | int = ...) -> str: ...
 
 def base_repr(
     number: SupportsAbs[float],

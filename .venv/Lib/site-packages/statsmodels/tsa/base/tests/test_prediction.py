@@ -1,3 +1,5 @@
+from statsmodels.compat.pandas import MONTH_END
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -12,7 +14,7 @@ def data(request):
     variance = np.arange(1, 11.0)
     if not request.param:
         return mean, variance
-    idx = pd.date_range("2000-1-1", periods=10, freq="M")
+    idx = pd.date_range("2000-1-1", periods=10, freq=MONTH_END)
     return pd.Series(mean, index=idx), pd.Series(variance, index=idx)
 
 

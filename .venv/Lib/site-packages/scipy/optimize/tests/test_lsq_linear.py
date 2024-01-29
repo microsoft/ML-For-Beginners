@@ -155,6 +155,7 @@ class BaseMixin:
         result = lsq_linear(A, b, method=self.method)
         assert_(result.cost < 1.1e-8)
 
+    @pytest.mark.xslow
     def test_large_rank_deficient(self):
         np.random.seed(0)
         n, m = np.sort(np.random.randint(2, 1000, size=2))

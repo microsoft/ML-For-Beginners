@@ -39,7 +39,7 @@ For an example of using this dataset, see
 
 import logging
 from io import BytesIO
-from os import makedirs, remove
+from os import PathLike, makedirs, remove
 from os.path import exists
 
 import joblib
@@ -136,7 +136,7 @@ def construct_grids(batch):
 
 
 @validate_params(
-    {"data_home": [str, None], "download_if_missing": ["boolean"]},
+    {"data_home": [str, PathLike, None], "download_if_missing": ["boolean"]},
     prefer_skip_nested_validation=True,
 )
 def fetch_species_distributions(*, data_home=None, download_if_missing=True):
@@ -146,7 +146,7 @@ def fetch_species_distributions(*, data_home=None, download_if_missing=True):
 
     Parameters
     ----------
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By default
         all scikit-learn data is stored in '~/scikit_learn_data' subfolders.
 

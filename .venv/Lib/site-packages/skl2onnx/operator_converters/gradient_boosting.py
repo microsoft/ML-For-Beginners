@@ -39,7 +39,10 @@ def convert_sklearn_gradient_boosting_classifier(
     transform = "LOGISTIC" if op.n_classes_ == 2 else "SOFTMAX"
     if op.init == "zero":
         loss = op._loss if hasattr(op, "_loss") else op.loss_
-        base_values = np.zeros(loss.K)
+        if hasattr(loss, "K"):
+            base_values = np.zeros(loss.K)
+        else:
+            base_values = np.zeros(1)
     elif op.init is None:
         if hasattr(op.estimators_[0, 0], "n_features_in_"):
             # sklearn >= 1.2
@@ -142,11 +145,17 @@ def convert_sklearn_gradient_boosting_regressor(
 
     if op.init == "zero":
         loss = op._loss if hasattr(op, "_loss") else op.loss_
-        cst = np.zeros(loss.K)
+        if hasattr(loss, "K"):
+            cst = np.zeros(loss.K)
+        else:
+            cst = np.zeros(1)
     elif op.init is None:
         # constant_ was introduced in scikit-learn 0.21.
         if hasattr(op.init_, "constant_"):
-            cst = [float(x) for x in op.init_.constant_]
+            if len(op.init_.constant_.shape) == 0:
+                cst = [float(op.init_.constant_)]
+            else:
+                cst = [float(x) for x in op.init_.constant_.ravel().tolist()]
         elif op.loss == "ls":
             cst = [op.init_.mean]
         else:

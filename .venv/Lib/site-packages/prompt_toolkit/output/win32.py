@@ -6,14 +6,6 @@ assert sys.platform == "win32"
 
 import os
 from ctypes import ArgumentError, byref, c_char, c_long, c_uint, c_ulong, pointer
-
-from ..utils import SPHINX_AUTODOC_RUNNING
-
-# Do not import win32-specific stuff when generating documentation.
-# Otherwise RTD would be unable to generate docs for this module.
-if not SPHINX_AUTODOC_RUNNING:
-    from ctypes import windll
-
 from ctypes.wintypes import DWORD, HANDLE
 from typing import Callable, TextIO, TypeVar
 
@@ -29,8 +21,15 @@ from prompt_toolkit.win32_types import (
     STD_OUTPUT_HANDLE,
 )
 
+from ..utils import SPHINX_AUTODOC_RUNNING
 from .base import Output
 from .color_depth import ColorDepth
+
+# Do not import win32-specific stuff when generating documentation.
+# Otherwise RTD would be unable to generate docs for this module.
+if not SPHINX_AUTODOC_RUNNING:
+    from ctypes import windll
+
 
 __all__ = [
     "Win32Output",

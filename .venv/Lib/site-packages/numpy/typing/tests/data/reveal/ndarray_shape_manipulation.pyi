@@ -1,35 +1,44 @@
-import numpy as np
+import sys
+from typing import Any
 
-nd = np.array([[1, 2], [3, 4]])
+import numpy as np
+import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
+
+nd: npt.NDArray[np.int64]
 
 # reshape
-reveal_type(nd.reshape())  # E: ndarray
-reveal_type(nd.reshape(4))  # E: ndarray
-reveal_type(nd.reshape(2, 2))  # E: ndarray
-reveal_type(nd.reshape((2, 2)))  # E: ndarray
+assert_type(nd.reshape(), npt.NDArray[np.int64])
+assert_type(nd.reshape(4), npt.NDArray[np.int64])
+assert_type(nd.reshape(2, 2), npt.NDArray[np.int64])
+assert_type(nd.reshape((2, 2)), npt.NDArray[np.int64])
 
-reveal_type(nd.reshape((2, 2), order="C"))  # E: ndarray
-reveal_type(nd.reshape(4, order="C"))  # E: ndarray
+assert_type(nd.reshape((2, 2), order="C"), npt.NDArray[np.int64])
+assert_type(nd.reshape(4, order="C"), npt.NDArray[np.int64])
 
 # resize does not return a value
 
 # transpose
-reveal_type(nd.transpose())  # E: ndarray
-reveal_type(nd.transpose(1, 0))  # E: ndarray
-reveal_type(nd.transpose((1, 0)))  # E: ndarray
+assert_type(nd.transpose(), npt.NDArray[np.int64])
+assert_type(nd.transpose(1, 0), npt.NDArray[np.int64])
+assert_type(nd.transpose((1, 0)), npt.NDArray[np.int64])
 
 # swapaxes
-reveal_type(nd.swapaxes(0, 1))  # E: ndarray
+assert_type(nd.swapaxes(0, 1), npt.NDArray[np.int64])
 
 # flatten
-reveal_type(nd.flatten())  # E: ndarray
-reveal_type(nd.flatten("C"))  # E: ndarray
+assert_type(nd.flatten(), npt.NDArray[np.int64])
+assert_type(nd.flatten("C"), npt.NDArray[np.int64])
 
 # ravel
-reveal_type(nd.ravel())  # E: ndarray
-reveal_type(nd.ravel("C"))  # E: ndarray
+assert_type(nd.ravel(), npt.NDArray[np.int64])
+assert_type(nd.ravel("C"), npt.NDArray[np.int64])
 
 # squeeze
-reveal_type(nd.squeeze())  # E: ndarray
-reveal_type(nd.squeeze(0))  # E: ndarray
-reveal_type(nd.squeeze((0, 2)))  # E: ndarray
+assert_type(nd.squeeze(), npt.NDArray[np.int64])
+assert_type(nd.squeeze(0), npt.NDArray[np.int64])
+assert_type(nd.squeeze((0, 2)), npt.NDArray[np.int64])

@@ -1,6 +1,7 @@
 import numpy as np
 
 from pandas import (
+    DataFrame,
     Index,
     Timedelta,
     timedelta_range,
@@ -25,16 +26,7 @@ class TestJoin:
         tm.assert_index_equal(index, joined)
 
     def test_does_not_convert_mixed_integer(self):
-        df = tm.makeCustomDataframe(
-            10,
-            10,
-            data_gen_f=lambda *args, **kwargs: np.random.default_rng(
-                2
-            ).standard_normal(),
-            r_idx_type="i",
-            c_idx_type="td",
-        )
-        str(df)
+        df = DataFrame(np.ones((5, 5)), columns=timedelta_range("1 day", periods=5))
 
         cols = df.columns.join(df.index, how="outer")
         joined = cols.join(df.columns)

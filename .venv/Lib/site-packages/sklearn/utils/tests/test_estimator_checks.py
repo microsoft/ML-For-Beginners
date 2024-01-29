@@ -18,7 +18,7 @@ from sklearn.cluster import MiniBatchKMeans
 from sklearn.datasets import make_multilabel_classification
 from sklearn.decomposition import PCA
 from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.exceptions import SkipTestWarning
+from sklearn.exceptions import ConvergenceWarning, SkipTestWarning
 from sklearn.linear_model import (
     LinearRegression,
     LogisticRegression,
@@ -64,6 +64,7 @@ from sklearn.utils.estimator_checks import (
     check_requires_y_none,
     set_random_state,
 )
+from sklearn.utils.fixes import CSR_CONTAINERS
 from sklearn.utils.metaestimators import available_if
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
@@ -379,6 +380,9 @@ class LargeSparseNotSupportedClassifier(BaseEstimator):
 
 
 class SparseTransformer(BaseEstimator):
+    def __init__(self, sparse_container=None):
+        self.sparse_container = sparse_container
+
     def fit(self, X, y=None):
         self.X_shape_ = self._validate_data(X).shape
         return self
@@ -390,7 +394,7 @@ class SparseTransformer(BaseEstimator):
         X = check_array(X)
         if X.shape[1] != self.X_shape_[1]:
             raise ValueError("Bad number of features")
-        return sp.csr_matrix(X)
+        return self.sparse_container(X)
 
 
 class EstimatorInconsistentForPandas(BaseEstimator):
@@ -512,7 +516,10 @@ def test_check_array_api_input():
 
     with raises(AssertionError, match="Not equal to tolerance"):
         check_array_api_input(
-            "BrokenArrayAPI", BrokenArrayAPI(), array_namespace="numpy.array_api"
+            "BrokenArrayAPI",
+            BrokenArrayAPI(),
+            array_namespace="numpy.array_api",
+            check_values=True,
         )
 
 
@@ -656,8 +663,9 @@ def test_check_estimator():
     with raises(ValueError, match=msg):
         check_estimator(UntaggedBinaryClassifier())
 
-    # non-regression test for estimators transforming to sparse data
-    check_estimator(SparseTransformer())
+    for csr_container in CSR_CONTAINERS:
+        # non-regression test for estimators transforming to sparse data
+        check_estimator(SparseTransformer(sparse_container=csr_container))
 
     # doesn't error on actual estimator
     check_estimator(LogisticRegression())
@@ -707,22 +715,20 @@ def test_check_estimator_clones():
         ExtraTreesClassifier,
         MiniBatchKMeans,
     ]:
-        with ignore_warnings(category=FutureWarning):
-            # when 'est = SGDClassifier()'
+        # without fitting
+        with ignore_warnings(category=ConvergenceWarning):
             est = Estimator()
             _set_checking_parameters(est)
             set_random_state(est)
-            # without fitting
             old_hash = joblib.hash(est)
             check_estimator(est)
         assert old_hash == joblib.hash(est)
 
-        with ignore_warnings(category=FutureWarning):
-            # when 'est = SGDClassifier()'
+        # with fitting
+        with ignore_warnings(category=ConvergenceWarning):
             est = Estimator()
             _set_checking_parameters(est)
             set_random_state(est)
-            # with fitting
             est.fit(iris.data + 10, iris.target)
             old_hash = joblib.hash(est)
             check_estimator(est)
@@ -915,18 +921,19 @@ def test_check_classifiers_multilabel_output_format_predict_proba():
         def predict_proba(self, X):
             return self.response_output
 
-    # 1. unknown output type
-    clf = MultiLabelClassifierPredictProba(response_output=sp.csr_matrix(y_test))
-    err_msg = (
-        "Unknown returned type .*csr_matrix.* by "
-        r"MultiLabelClassifierPredictProba.predict_proba. A list or a Numpy "
-        r"array is expected."
-    )
-    with raises(ValueError, match=err_msg):
-        check_classifiers_multilabel_output_format_predict_proba(
-            clf.__class__.__name__,
-            clf,
+    for csr_container in CSR_CONTAINERS:
+        # 1. unknown output type
+        clf = MultiLabelClassifierPredictProba(response_output=csr_container(y_test))
+        err_msg = (
+            f"Unknown returned type .*{csr_container.__name__}.* by "
+            r"MultiLabelClassifierPredictProba.predict_proba. A list or a Numpy "
+            r"array is expected."
         )
+        with raises(ValueError, match=err_msg):
+            check_classifiers_multilabel_output_format_predict_proba(
+                clf.__class__.__name__,
+                clf,
+            )
     # 2. for list output
     # 2.1. inconsistent length
     clf = MultiLabelClassifierPredictProba(response_output=y_test.tolist())

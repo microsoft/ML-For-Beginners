@@ -323,6 +323,7 @@ class HtmlFormatter(Formatter):
         If set to the path of a ctags file, wrap names in anchor tags that
         link to their definitions. `lineanchors` should be used, and the
         tags file should specify line numbers (see the `-n` option to ctags).
+        The tags file is assumed to be encoded in UTF-8.
 
         .. versionadded:: 1.6
 
@@ -908,7 +909,7 @@ class HtmlFormatter(Formatter):
     def _lookup_ctag(self, token):
         entry = ctags.TagEntry()
         if self._ctags.find(entry, token.encode(), 0):
-            return entry['file'], entry['lineNumber']
+            return entry['file'].decode(), entry['lineNumber']
         else:
             return None, None
 

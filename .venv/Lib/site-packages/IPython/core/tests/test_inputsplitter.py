@@ -77,7 +77,8 @@ def test_spaces():
              ('\tx', 1),
              ('\t x', 2),
              ]
-    tt.check_pairs(isp.num_ini_spaces, tests)
+    with pytest.warns(PendingDeprecationWarning):
+        tt.check_pairs(isp.num_ini_spaces, tests)
 
 
 def test_remove_comments():
@@ -321,7 +322,7 @@ class InputSplitterTestCase(unittest.TestCase):
 
     @pytest.mark.xfail(
         reason="Bug in python 3.9.8 – bpo 45738",
-        condition=sys.version_info in [(3, 9, 8, "final", 0), (3, 11, 0, "alpha", 2)],
+        condition=sys.version_info in [(3, 11, 0, "alpha", 2)],
         raises=SystemError,
         strict=True,
     )

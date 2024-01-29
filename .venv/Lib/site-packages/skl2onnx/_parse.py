@@ -25,7 +25,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import NearestNeighbors, LocalOutlierFactor
 from sklearn.mixture import GaussianMixture, BayesianGaussianMixture
 from sklearn.multioutput import MultiOutputClassifier
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC, NuSVC, SVC
 
@@ -65,7 +65,9 @@ from .common.utils_sklearn import _process_options
 
 
 do_not_merge_columns = tuple(
-    filter(lambda op: op is not None, [OneHotEncoder, ColumnTransformer])
+    filter(
+        lambda op: op is not None, [OrdinalEncoder, OneHotEncoder, ColumnTransformer]
+    )
 )
 
 

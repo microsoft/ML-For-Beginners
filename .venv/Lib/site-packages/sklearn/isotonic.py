@@ -14,12 +14,19 @@ from scipy.stats import spearmanr
 from ._isotonic import _inplace_contiguous_isotonic_regression, _make_unique
 from .base import BaseEstimator, RegressorMixin, TransformerMixin, _fit_context
 from .utils import check_array, check_consistent_length
-from .utils._param_validation import Interval, StrOptions
+from .utils._param_validation import Interval, StrOptions, validate_params
 from .utils.validation import _check_sample_weight, check_is_fitted
 
 __all__ = ["check_increasing", "isotonic_regression", "IsotonicRegression"]
 
 
+@validate_params(
+    {
+        "x": ["array-like"],
+        "y": ["array-like"],
+    },
+    prefer_skip_nested_validation=True,
+)
 def check_increasing(x, y):
     """Determine whether y is monotonically correlated with x.
 
@@ -51,6 +58,16 @@ def check_increasing(x, y):
     ----------
     Fisher transformation. Wikipedia.
     https://en.wikipedia.org/wiki/Fisher_transformation
+
+    Examples
+    --------
+    >>> from sklearn.isotonic import check_increasing
+    >>> x, y = [1, 2, 3, 4, 5], [2, 4, 6, 8, 10]
+    >>> check_increasing(x, y)
+    True
+    >>> y = [10, 8, 6, 4, 2]
+    >>> check_increasing(x, y)
+    False
     """
 
     # Calculate Spearman rho estimate and set return accordingly.
@@ -79,6 +96,16 @@ def check_increasing(x, y):
     return increasing_bool
 
 
+@validate_params(
+    {
+        "y": ["array-like"],
+        "sample_weight": ["array-like", None],
+        "y_min": [Interval(Real, None, None, closed="both"), None],
+        "y_max": [Interval(Real, None, None, closed="both"), None],
+        "increasing": ["boolean"],
+    },
+    prefer_skip_nested_validation=True,
+)
 def isotonic_regression(
     y, *, sample_weight=None, y_min=None, y_max=None, increasing=True
 ):
@@ -116,6 +143,13 @@ def isotonic_regression(
     ----------
     "Active set algorithms for isotonic regression; A unifying framework"
     by Michael J. Best and Nilotpal Chakravarti, section 3.
+
+    Examples
+    --------
+    >>> from sklearn.isotonic import isotonic_regression
+    >>> isotonic_regression([5, 3, 1, 2, 8, 10, 7, 9, 6, 4])
+    array([2.75   , 2.75   , 2.75   , 2.75   , 7.33...,
+           7.33..., 7.33..., 7.33..., 7.33..., 7.33...])
     """
     order = np.s_[:] if increasing else np.s_[::-1]
     y = check_array(y, ensure_2d=False, input_name="y", dtype=[np.float64, np.float32])

@@ -8,16 +8,15 @@ import math
 
 import numpy as np
 from numpy import array, eye, exp, random
-from numpy.linalg import matrix_power
 from numpy.testing import (
         assert_allclose, assert_, assert_array_almost_equal, assert_equal,
         assert_array_almost_equal_nulp, suppress_warnings)
 
-from scipy.sparse import csc_matrix, SparseEfficiencyWarning
+from scipy.sparse import csc_matrix, csc_array, SparseEfficiencyWarning
 from scipy.sparse._construct import eye as speye
 from scipy.sparse.linalg._matfuncs import (expm, _expm,
         ProductOperator, MatrixPowerOperator,
-        _onenorm_matrix_power_nnm)
+        _onenorm_matrix_power_nnm, matrix_power)
 from scipy.sparse._sputils import matrix
 from scipy.linalg import logm
 from scipy.special import factorial, binom
@@ -66,6 +65,20 @@ def test_onenorm_matrix_power_nnm():
             observed = _onenorm_matrix_power_nnm(M, p)
             expected = np.linalg.norm(Mp, 1)
             assert_allclose(observed, expected)
+
+def test_matrix_power():
+    np.random.seed(1234)
+    row, col = np.random.randint(0, 4, size=(2, 6))
+    data = np.random.random(size=(6,))
+    Amat = csc_matrix((data, (row, col)), shape=(4, 4))
+    A = csc_array((data, (row, col)), shape=(4, 4))
+    Adense = A.toarray()
+    for power in (2, 5, 6):
+        Apow = matrix_power(A, power).toarray()
+        Amat_pow = (Amat**power).toarray()
+        Adense_pow = np.linalg.matrix_power(Adense, power)
+        assert_allclose(Apow, Adense_pow)
+        assert_allclose(Apow, Amat_pow)
 
 
 class TestExpM:
@@ -131,8 +144,10 @@ class TestExpM:
             a = scale * speye(3, 3, dtype=dtype, format='csc')
             e = exp(scale, dtype=dtype) * eye(3, dtype=dtype)
             with suppress_warnings() as sup:
-                sup.filter(SparseEfficiencyWarning,
-                           "Changing the sparsity structure of a csc_matrix is expensive.")
+                sup.filter(
+                    SparseEfficiencyWarning,
+                    "Changing the sparsity structure of a csc_matrix is expensive."
+                )
                 exact_onenorm = _expm(a, use_exact_onenorm=True).toarray()
                 inexact_onenorm = _expm(a, use_exact_onenorm=False).toarray()
             assert_array_almost_equal_nulp(exact_onenorm, e, nulp=100)
@@ -145,8 +160,10 @@ class TestExpM:
             a = scale * speye(3, 3, dtype=dtype, format='csc')
             e = exp(scale) * eye(3, dtype=dtype)
             with suppress_warnings() as sup:
-                sup.filter(SparseEfficiencyWarning,
-                           "Changing the sparsity structure of a csc_matrix is expensive.")
+                sup.filter(
+                    SparseEfficiencyWarning,
+                    "Changing the sparsity structure of a csc_matrix is expensive."
+                )
                 assert_array_almost_equal_nulp(expm(a).toarray(), e, nulp=100)
 
     def test_logm_consistency(self):
@@ -459,7 +476,7 @@ class TestExpM:
         # This is Ward's example #4.
         # This is a version of the Forsythe matrix.
         # The eigenvector problem is badly conditioned.
-        # Ward's algorithm has difficulty esimating the accuracy
+        # Ward's algorithm has difficulty estimating the accuracy
         # of its results for this problem.
         #
         # Check the construction of one instance of this family of matrices.
@@ -577,5 +594,5 @@ class TestOperators:
             A = np.random.randn(n, n)
             B = np.random.randn(n, k)
             op = MatrixPowerOperator(A, p)
-            assert_allclose(op.matmat(B), matrix_power(A, p).dot(B))
-            assert_allclose(op.T.matmat(B), matrix_power(A, p).T.dot(B))
+            assert_allclose(op.matmat(B), np.linalg.matrix_power(A, p).dot(B))
+            assert_allclose(op.T.matmat(B), np.linalg.matrix_power(A, p).T.dot(B))

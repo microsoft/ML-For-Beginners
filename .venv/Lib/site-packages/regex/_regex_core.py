@@ -1150,22 +1150,7 @@ def parse_flags_subpattern(source, info):
 
 def parse_positional_flags(source, info, flags_on, flags_off):
     "Parses positional flags."
-    version = (info.flags & _ALL_VERSIONS) or DEFAULT_VERSION
-    if version == VERSION0:
-        # Positional flags are global and can only be turned on.
-        if flags_off:
-            raise error("bad inline flags: cannot turn flags off",
-              source.string, source.pos)
-
-        new_global_flags = flags_on & ~info.global_flags
-        if new_global_flags:
-            info.global_flags |= new_global_flags
-
-            # A global has been turned on, so reparse the pattern.
-            raise _UnscopedFlagSet(info.global_flags)
-    else:
-        info.flags = (info.flags | flags_on) & ~flags_off
-
+    info.flags = (info.flags | flags_on) & ~flags_off
     source.ignore_space = bool(info.flags & VERBOSE)
 
 def parse_name(source, allow_numeric=False, allow_group_0=False):
@@ -1233,6 +1218,14 @@ def parse_escape(source, info, in_set):
     elif ch in "pP":
         # A Unicode property, positive or negative.
         return parse_property(source, info, ch == "p", in_set)
+    elif ch == "R" and not in_set:
+        # A line ending.
+        charset = [0x0A, 0x0B, 0x0C, 0x0D]
+        if info.guess_encoding == UNICODE:
+            charset.extend([0x85, 0x2028, 0x2029])
+
+        return Atomic(Branch([String([0x0D, 0x0A]), SetUnion(info, [Character(c)
+          for c in charset])]))
     elif ch == "X" and not in_set:
         # A grapheme cluster.
         return Grapheme()

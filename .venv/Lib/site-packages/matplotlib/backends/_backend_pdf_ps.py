@@ -28,7 +28,7 @@ def get_glyphs_subset(fontfile, characters):
 
     Parameters
     ----------
-    symbol : str
+    fontfile : str
         Path to the font file
     characters : str
         Continuous set of characters to include in subset

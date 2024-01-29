@@ -99,11 +99,13 @@ def _solve(tent, axisLimit, negative=False):
     #                axisDef    |  axisMax
     #                           |
     #                      crossing
-    if gain > outGain:
+    if gain >= outGain:
+        # Note that this is the branch taken if both gain and outGain are 0.
+
         # Crossing point on the axis.
         crossing = peak + (1 - gain) * (upper - peak)
 
-        loc = (axisDef, peak, crossing)
+        loc = (max(lower, axisDef), peak, crossing)
         scalar = 1
 
         # The part before the crossing point.
@@ -175,8 +177,10 @@ def _solve(tent, axisLimit, negative=False):
         #              axisDef      axisMax
         #
         newUpper = peak + (1 - gain) * (upper - peak)
-        assert axisMax <= newUpper  # Because outGain >= gain
-        if newUpper <= axisDef + (axisMax - axisDef) * 2:
+        assert axisMax <= newUpper  # Because outGain > gain
+        # Disabled because ots doesn't like us:
+        # https://github.com/fonttools/fonttools/issues/3350
+        if False and newUpper <= axisDef + (axisMax - axisDef) * 2:
             upper = newUpper
             if not negative and axisDef + (axisMax - axisDef) * MAX_F2DOT14 < upper:
                 # we clamp +2.0 to the max F2Dot14 (~1.99994) for convenience

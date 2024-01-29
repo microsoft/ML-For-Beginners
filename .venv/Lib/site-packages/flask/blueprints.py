@@ -39,7 +39,7 @@ class Blueprint(SansioBlueprint):
         if isinstance(value, timedelta):
             return int(value.total_seconds())
 
-        return value
+        return value  # type: ignore[no-any-return]
 
     def send_static_file(self, filename: str) -> Response:
         """The view function used to serve files from

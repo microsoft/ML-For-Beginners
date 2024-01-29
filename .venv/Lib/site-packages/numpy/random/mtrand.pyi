@@ -1,3 +1,4 @@
+import builtins
 from collections.abc import Callable
 from typing import Any, Union, overload, Literal
 
@@ -224,7 +225,7 @@ class RandomState:
         size: None | _ShapeLike = ...,
         dtype: dtype[uint] | type[uint] | _UIntCodes | _SupportsDType[dtype[uint]] = ...,
     ) -> ndarray[Any, dtype[uint]]: ...
-    def bytes(self, length: int) -> bytes: ...
+    def bytes(self, length: int) -> builtins.bytes: ...
     @overload
     def choice(
         self,

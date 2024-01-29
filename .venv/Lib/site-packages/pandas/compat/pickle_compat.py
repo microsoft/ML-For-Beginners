@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     from collections.abc import Generator
 
 
-def load_reduce(self):
+def load_reduce(self) -> None:
     stack = self.stack
     args = stack.pop()
     func = stack[-1]
@@ -65,6 +65,12 @@ _class_locations_map = {
     ("pandas.core.sparse.array", "SparseArray"): ("pandas.core.arrays", "SparseArray"),
     # 15477
     ("pandas.core.base", "FrozenNDArray"): ("numpy", "ndarray"),
+    # Re-routing unpickle block logic to go through _unpickle_block instead
+    # for pandas <= 1.3.5
+    ("pandas.core.internals.blocks", "new_block"): (
+        "pandas._libs.internals",
+        "_unpickle_block",
+    ),
     ("pandas.core.indexes.frozen", "FrozenNDArray"): ("numpy", "ndarray"),
     ("pandas.core.base", "FrozenList"): ("pandas.core.indexes.frozen", "FrozenList"),
     # 10890

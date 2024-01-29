@@ -253,16 +253,36 @@ def test_method_descriptor():
     assert guarded_eval("list.copy.__name__", context) == "copy"
 
 
+class HeapType:
+    pass
+
+
+class CallCreatesHeapType:
+    def __call__(self) -> HeapType:
+        return HeapType()
+
+
+class CallCreatesBuiltin:
+    def __call__(self) -> frozenset:
+        return frozenset()
+
+
 @pytest.mark.parametrize(
-    "data,good,bad,expected",
+    "data,good,bad,expected, equality",
     [
-        [[1, 2, 3], "data.index(2)", "data.append(4)", 1],
-        [{"a": 1}, "data.keys().isdisjoint({})", "data.update()", True],
+        [[1, 2, 3], "data.index(2)", "data.append(4)", 1, True],
+        [{"a": 1}, "data.keys().isdisjoint({})", "data.update()", True, True],
+        [CallCreatesHeapType(), "data()", "data.__class__()", HeapType, False],
+        [CallCreatesBuiltin(), "data()", "data.__class__()", frozenset, False],
     ],
 )
-def test_evaluates_calls(data, good, bad, expected):
+def test_evaluates_calls(data, good, bad, expected, equality):
     context = limited(data=data)
-    assert guarded_eval(good, context) == expected
+    value = guarded_eval(good, context)
+    if equality:
+        assert value == expected
+    else:
+        assert isinstance(value, expected)
 
     with pytest.raises(GuardRejection):
         guarded_eval(bad, context)
@@ -534,7 +554,7 @@ def test_unbind_method():
 def test_assumption_instance_attr_do_not_matter():
     """This is semi-specified in Python documentation.
 
-    However, since the specification says 'not guaranted
+    However, since the specification says 'not guaranteed
     to work' rather than 'is forbidden to work', future
     versions could invalidate this assumptions. This test
     is meant to catch such a change if it ever comes true.

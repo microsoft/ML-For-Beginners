@@ -1,6 +1,6 @@
 import builtins
+from warnings import catch_warnings, simplefilter
 import numpy as np
-from numpy.testing import suppress_warnings
 from operator import index
 from collections import namedtuple
 
@@ -646,8 +646,8 @@ def binned_statistic_dd(sample, values, statistic='mean',
             i = np.argsort(values[vv])
             result[vv, binnumbers[i]] = values[vv, i]
     elif callable(statistic):
-        with np.errstate(invalid='ignore'), suppress_warnings() as sup:
-            sup.filter(RuntimeWarning)
+        with np.errstate(invalid='ignore'), catch_warnings():
+            simplefilter("ignore", RuntimeWarning)
             try:
                 null = statistic([])
             except Exception:

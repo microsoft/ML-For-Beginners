@@ -1,6 +1,7 @@
 import scipy._lib.uarray as ua
-from . import _fftlog
-from . import _pocketfft
+from . import _basic_backend
+from . import _realtransforms_backend
+from . import _fftlog_backend
 
 
 class _ScipyBackend:
@@ -17,9 +18,11 @@ class _ScipyBackend:
     @staticmethod
     def __ua_function__(method, args, kwargs):
 
-        fn = getattr(_pocketfft, method.__name__, None)
+        fn = getattr(_basic_backend, method.__name__, None)
         if fn is None:
-            fn = getattr(_fftlog, method.__name__, None)
+            fn = getattr(_realtransforms_backend, method.__name__, None)
+        if fn is None:
+            fn = getattr(_fftlog_backend, method.__name__, None)
         if fn is None:
             return NotImplemented
         return fn(*args, **kwargs)
@@ -81,7 +84,7 @@ def set_global_backend(backend, coerce=False, only=False, try_last=False):
     We can set the global fft backend:
 
     >>> from scipy.fft import fft, set_global_backend
-    >>> set_global_backend("scipy")  # Sets global backend. "scipy" is the default backend.
+    >>> set_global_backend("scipy")  # Sets global backend (default is "scipy").
     >>> fft([1])  # Calls the global backend
     array([1.+0.j])
     """
@@ -118,7 +121,9 @@ def register_backend(backend):
     ...          return NotImplemented
     >>> set_global_backend(NoopBackend())  # Set the invalid backend as global
     >>> register_backend("scipy")  # Register a new backend
-    >>> fft([1])  # The registered backend is called because the global backend returns `NotImplemented`
+    # The registered backend is called because
+    # the global backend returns `NotImplemented`
+    >>> fft([1])
     array([1.+0.j])
     >>> set_global_backend("scipy")  # Restore global backend to default
 

@@ -14,11 +14,15 @@ from pygments.token import Keyword, Name, Comment, String, Error, Number, \
     Operator, Generic, Whitespace, Punctuation, Text, Token
 
 
+__all__ = ['NordStyle', 'NordDarkerStyle']
+
+
 class NordStyle(Style):
     """
     Pygments version of the "nord" theme by Arctic Ice Studio.
     """
-
+    name = 'nord'
+    
     line_number_color = "#D8DEE9"
     line_number_background_color = "#242933"
     line_number_special_color = "#242933"
@@ -87,7 +91,8 @@ class NordDarkerStyle(Style):
     """
     Pygments version of a darker "nord" theme by Arctic Ice Studio
     """
-
+    name = 'nord-darker'
+    
     line_number_color = "#D8DEE9"
     line_number_background_color = "#242933"
     line_number_special_color = "#242933"

@@ -401,7 +401,7 @@ def is_sequence(obj) -> bool:
         return False
 
 
-def is_dataclass(item):
+def is_dataclass(item) -> bool:
     """
     Checks if the object is a data-class instance
 

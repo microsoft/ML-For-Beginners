@@ -155,7 +155,7 @@ def _linprog_highs_doc(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None,
         until the computation is too costly or inexact and then switches to
         the devex method.
 
-        Curently, ``None`` always selects ``'steepest-devex'``, but this
+        Currently, ``None`` always selects ``'steepest-devex'``, but this
         may change as new options become available.
     mip_rel_gap : double (default: None)
         Termination criterion for MIP solver: solver will terminate when the
@@ -402,7 +402,7 @@ def _linprog_highs_ds_doc(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None,
         until the computation is too costly or inexact and then switches to
         the devex method.
 
-        Curently, ``None`` always selects ``'steepest-devex'``, but this
+        Currently, ``None`` always selects ``'steepest-devex'``, but this
         may change as new options become available.
     unknown_options : dict
         Optional arguments not used by this particular solver. If

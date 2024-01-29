@@ -3,6 +3,7 @@ from __future__ import annotations
 import numbers
 from typing import (
     TYPE_CHECKING,
+    ClassVar,
     cast,
 )
 
@@ -60,7 +61,7 @@ class BooleanDtype(BaseMaskedDtype):
     BooleanDtype
     """
 
-    name = "boolean"
+    name: ClassVar[str] = "boolean"
 
     # https://github.com/python/mypy/issues/4125
     # error: Signature of "type" incompatible with supertype "BaseMaskedDtype"

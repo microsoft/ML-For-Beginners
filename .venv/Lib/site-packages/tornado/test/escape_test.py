@@ -220,7 +220,7 @@ class EscapeTestCase(unittest.TestCase):
             ("<foo>", "&lt;foo&gt;"),
             ("<foo>", "&lt;foo&gt;"),
             (b"<foo>", b"&lt;foo&gt;"),
-            ("<>&\"'", "&lt;&gt;&amp;&quot;&#39;"),
+            ("<>&\"'", "&lt;&gt;&amp;&quot;&#x27;"),
             ("&amp;", "&amp;amp;"),
             ("<\u00e9>", "&lt;\u00e9&gt;"),
             (b"<\xc3\xa9>", b"&lt;\xc3\xa9&gt;"),

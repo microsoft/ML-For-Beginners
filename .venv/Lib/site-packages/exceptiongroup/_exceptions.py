@@ -27,7 +27,7 @@ def check_direct_subclass(
 def get_condition_filter(
     condition: type[_BaseExceptionT]
     | tuple[type[_BaseExceptionT], ...]
-    | Callable[[_BaseExceptionT_co], bool]
+    | Callable[[_BaseExceptionT_co], bool],
 ) -> Callable[[_BaseExceptionT_co], bool]:
     if isclass(condition) and issubclass(
         cast(Type[BaseException], condition), BaseException

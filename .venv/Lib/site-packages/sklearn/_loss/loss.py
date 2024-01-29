@@ -113,7 +113,7 @@ class BaseLoss:
         Indicates whether n_classes > 2 is allowed.
     """
 
-    # For decision trees:
+    # For gradient boosted decision trees:
     # This variable indicates whether the loss requires the leaves values to
     # be updated once the tree has been trained. The trees are trained to
     # predict a Newton-Raphson step (see grower._finalize_leaf()). But for
@@ -122,8 +122,8 @@ class BaseLoss:
     # procedure. See the original paper Greedy Function Approximation: A
     # Gradient Boosting Machine by Friedman
     # (https://statweb.stanford.edu/~jhf/ftp/trebst.pdf) for the theory.
-    need_update_leaves_values = False
     differentiable = True
+    need_update_leaves_values = False
     is_multiclass = False
 
     def __init__(self, closs, link, n_classes=None):
@@ -189,13 +189,14 @@ class BaseLoss:
         if raw_prediction.ndim == 2 and raw_prediction.shape[1] == 1:
             raw_prediction = raw_prediction.squeeze(1)
 
-        return self.closs.loss(
+        self.closs.loss(
             y_true=y_true,
             raw_prediction=raw_prediction,
             sample_weight=sample_weight,
             loss_out=loss_out,
             n_threads=n_threads,
         )
+        return loss_out
 
     def loss_gradient(
         self,
@@ -250,7 +251,7 @@ class BaseLoss:
         if gradient_out.ndim == 2 and gradient_out.shape[1] == 1:
             gradient_out = gradient_out.squeeze(1)
 
-        return self.closs.loss_gradient(
+        self.closs.loss_gradient(
             y_true=y_true,
             raw_prediction=raw_prediction,
             sample_weight=sample_weight,
@@ -258,6 +259,7 @@ class BaseLoss:
             gradient_out=gradient_out,
             n_threads=n_threads,
         )
+        return loss_out, gradient_out
 
     def gradient(
         self,
@@ -299,13 +301,14 @@ class BaseLoss:
         if gradient_out.ndim == 2 and gradient_out.shape[1] == 1:
             gradient_out = gradient_out.squeeze(1)
 
-        return self.closs.gradient(
+        self.closs.gradient(
             y_true=y_true,
             raw_prediction=raw_prediction,
             sample_weight=sample_weight,
             gradient_out=gradient_out,
             n_threads=n_threads,
         )
+        return gradient_out
 
     def gradient_hessian(
         self,
@@ -363,7 +366,7 @@ class BaseLoss:
         if hessian_out.ndim == 2 and hessian_out.shape[1] == 1:
             hessian_out = hessian_out.squeeze(1)
 
-        return self.closs.gradient_hessian(
+        self.closs.gradient_hessian(
             y_true=y_true,
             raw_prediction=raw_prediction,
             sample_weight=sample_weight,
@@ -371,6 +374,7 @@ class BaseLoss:
             hessian_out=hessian_out,
             n_threads=n_threads,
         )
+        return gradient_out, hessian_out
 
     def __call__(self, y_true, raw_prediction, sample_weight=None, n_threads=1):
         """Compute the weighted average loss.
@@ -543,6 +547,10 @@ class AbsoluteError(BaseLoss):
     For a given sample x_i, the absolute error is defined as::
 
         loss(x_i) = |y_true_i - raw_prediction_i|
+
+    Note that the exact hessian = 0 almost everywhere (except at one point, therefore
+    differentiable = False). Optimization routines like in HGBT, however, need a
+    hessian > 0. Therefore, we assign 1.
     """
 
     differentiable = False
@@ -584,6 +592,10 @@ class PinballLoss(BaseLoss):
                              u * quantile       if u >= 0
 
     Note: 2 * PinballLoss(quantile=0.5) equals AbsoluteError().
+
+    Note that the exact hessian = 0 almost everywhere (except at one point, therefore
+    differentiable = False). Optimization routines like in HGBT, however, need a
+    hessian > 0. Therefore, we assign 1.
 
     Additional Attributes
     ---------------------
@@ -1067,7 +1079,7 @@ class HalfMultinomialLoss(BaseLoss):
         elif proba_out is None:
             proba_out = np.empty_like(gradient_out)
 
-        return self.closs.gradient_proba(
+        self.closs.gradient_proba(
             y_true=y_true,
             raw_prediction=raw_prediction,
             sample_weight=sample_weight,
@@ -1075,6 +1087,7 @@ class HalfMultinomialLoss(BaseLoss):
             proba_out=proba_out,
             n_threads=n_threads,
         )
+        return gradient_out, proba_out
 
 
 class ExponentialLoss(BaseLoss):

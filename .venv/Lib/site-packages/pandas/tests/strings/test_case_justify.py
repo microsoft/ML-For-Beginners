@@ -21,7 +21,8 @@ def test_title_mixed_object():
     s = Series(["FOO", np.nan, "bar", True, datetime.today(), "blah", None, 1, 2.0])
     result = s.str.title()
     expected = Series(
-        ["Foo", np.nan, "Bar", np.nan, np.nan, "Blah", None, np.nan, np.nan]
+        ["Foo", np.nan, "Bar", np.nan, np.nan, "Blah", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_almost_equal(result, expected)
 
@@ -41,11 +42,15 @@ def test_lower_upper_mixed_object():
     s = Series(["a", np.nan, "b", True, datetime.today(), "foo", None, 1, 2.0])
 
     result = s.str.upper()
-    expected = Series(["A", np.nan, "B", np.nan, np.nan, "FOO", None, np.nan, np.nan])
+    expected = Series(
+        ["A", np.nan, "B", np.nan, np.nan, "FOO", None, np.nan, np.nan], dtype=object
+    )
     tm.assert_series_equal(result, expected)
 
     result = s.str.lower()
-    expected = Series(["a", np.nan, "b", np.nan, np.nan, "foo", None, np.nan, np.nan])
+    expected = Series(
+        ["a", np.nan, "b", np.nan, np.nan, "foo", None, np.nan, np.nan], dtype=object
+    )
     tm.assert_series_equal(result, expected)
 
 
@@ -71,7 +76,8 @@ def test_capitalize_mixed_object():
     s = Series(["FOO", np.nan, "bar", True, datetime.today(), "blah", None, 1, 2.0])
     result = s.str.capitalize()
     expected = Series(
-        ["Foo", np.nan, "Bar", np.nan, np.nan, "Blah", None, np.nan, np.nan]
+        ["Foo", np.nan, "Bar", np.nan, np.nan, "Blah", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -87,7 +93,8 @@ def test_swapcase_mixed_object():
     s = Series(["FOO", np.nan, "bar", True, datetime.today(), "Blah", None, 1, 2.0])
     result = s.str.swapcase()
     expected = Series(
-        ["foo", np.nan, "BAR", np.nan, np.nan, "bLAH", None, np.nan, np.nan]
+        ["foo", np.nan, "BAR", np.nan, np.nan, "bLAH", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -138,19 +145,22 @@ def test_pad_mixed_object():
 
     result = s.str.pad(5, side="left")
     expected = Series(
-        ["    a", np.nan, "    b", np.nan, np.nan, "   ee", None, np.nan, np.nan]
+        ["    a", np.nan, "    b", np.nan, np.nan, "   ee", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
     result = s.str.pad(5, side="right")
     expected = Series(
-        ["a    ", np.nan, "b    ", np.nan, np.nan, "ee   ", None, np.nan, np.nan]
+        ["a    ", np.nan, "b    ", np.nan, np.nan, "ee   ", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
     result = s.str.pad(5, side="both")
     expected = Series(
-        ["  a  ", np.nan, "  b  ", np.nan, np.nan, "  ee ", None, np.nan, np.nan]
+        ["  a  ", np.nan, "  b  ", np.nan, np.nan, "  ee ", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -238,7 +248,8 @@ def test_center_ljust_rjust_mixed_object():
             None,
             np.nan,
             np.nan,
-        ]
+        ],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -255,7 +266,8 @@ def test_center_ljust_rjust_mixed_object():
             None,
             np.nan,
             np.nan,
-        ]
+        ],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -272,7 +284,8 @@ def test_center_ljust_rjust_mixed_object():
             None,
             np.nan,
             np.nan,
-        ]
+        ],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 

@@ -54,7 +54,9 @@ class TestToTime:
         assert to_time(arg, infer_time_format=True) == expected_arr
         assert to_time(arg, format="%I:%M%p", errors="coerce") == [None, None]
 
-        res = to_time(arg, format="%I:%M%p", errors="ignore")
+        msg = "errors='ignore' is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            res = to_time(arg, format="%I:%M%p", errors="ignore")
         tm.assert_numpy_array_equal(res, np.array(arg, dtype=np.object_))
 
         msg = "Cannot convert.+to a time with given format"

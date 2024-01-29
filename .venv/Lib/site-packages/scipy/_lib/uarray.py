@@ -22,10 +22,10 @@ else:
 
 
 if _has_uarray:
-    from uarray import *
+    from uarray import *  # noqa: F403
     from uarray import _Function
 else:
-    from ._uarray import *
-    from ._uarray import _Function
+    from ._uarray import *  # noqa: F403
+    from ._uarray import _Function  # noqa: F401
 
 del _has_uarray

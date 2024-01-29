@@ -12,7 +12,6 @@ import numpy as np
 from scipy import sparse
 from scipy.linalg import eigh
 from scipy.sparse.csgraph import connected_components
-from scipy.sparse.csgraph import laplacian as csgraph_laplacian
 from scipy.sparse.linalg import eigsh, lobpcg
 
 from ..base import BaseEstimator, _fit_context
@@ -26,6 +25,8 @@ from ..utils import (
 from ..utils._arpack import _init_arpack_v0
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import _deterministic_vector_sign_flip
+from ..utils.fixes import laplacian as csgraph_laplacian
+from ..utils.fixes import parse_version, sp_version
 
 
 def _graph_connected_component(graph, node_id):
@@ -64,7 +65,9 @@ def _graph_connected_component(graph, node_id):
         nodes_to_explore.fill(False)
         for i in indices:
             if sparse.issparse(graph):
-                neighbors = graph[i].toarray().ravel()
+                # scipy not yet implemented 1D sparse slices; can be changed back to
+                # `neighbors = graph[i].toarray().ravel()` once implemented
+                neighbors = graph[[i], :].toarray().ravel()
             else:
                 neighbors = graph[i]
             np.logical_or(nodes_to_explore, neighbors, out=nodes_to_explore)
@@ -85,7 +88,16 @@ def _graph_is_connected(graph):
     is_connected : bool
         True means the graph is fully connected and False means not.
     """
-    if sparse.isspmatrix(graph):
+    if sparse.issparse(graph):
+        # Before Scipy 1.11.3, `connected_components` only supports 32-bit indices.
+        # PR: https://github.com/scipy/scipy/pull/18913
+        # First integration in 1.11.3: https://github.com/scipy/scipy/pull/19279
+        # TODO(jjerphan): Once SciPy 1.11.3 is the minimum supported version, use
+        # `accept_large_sparse=True`.
+        accept_large_sparse = sp_version >= parse_version("1.11.3")
+        graph = check_array(
+            graph, accept_sparse=True, accept_large_sparse=accept_large_sparse
+        )
         # sparse graph, find all the connected components
         n_connected_components, _ = connected_components(graph)
         return n_connected_components == 1
@@ -118,7 +130,7 @@ def _set_diag(laplacian, value, norm_laplacian):
     """
     n_nodes = laplacian.shape[0]
     # We need all entries in the diagonal to values
-    if not sparse.isspmatrix(laplacian):
+    if not sparse.issparse(laplacian):
         if norm_laplacian:
             laplacian.flat[:: n_nodes + 1] = value
     else:
@@ -246,10 +258,10 @@ def spectral_embedding(
     """
     adjacency = check_symmetric(adjacency)
 
-    try:
-        from pyamg import smoothed_aggregation_solver
-    except ImportError as e:
-        if eigen_solver == "amg":
+    if eigen_solver == "amg":
+        try:
+            from pyamg import smoothed_aggregation_solver
+        except ImportError as e:
             raise ValueError(
                 "The eigen_solver was set to 'amg', but pyamg is not available."
             ) from e
@@ -280,7 +292,7 @@ def spectral_embedding(
     if (
         eigen_solver == "arpack"
         or eigen_solver != "lobpcg"
-        and (not sparse.isspmatrix(laplacian) or n_nodes < 5 * n_components)
+        and (not sparse.issparse(laplacian) or n_nodes < 5 * n_components)
     ):
         # lobpcg used with eigen_solver='amg' has bugs for low number of nodes
         # for details see the source code in scipy:
@@ -310,6 +322,9 @@ def spectral_embedding(
             tol = 0 if eigen_tol == "auto" else eigen_tol
             laplacian *= -1
             v0 = _init_arpack_v0(laplacian.shape[0], random_state)
+            laplacian = check_array(
+                laplacian, accept_sparse="csr", accept_large_sparse=False
+            )
             _, diffusion_map = eigsh(
                 laplacian, k=n_components, sigma=1.0, which="LM", tol=tol, v0=v0
             )
@@ -345,6 +360,10 @@ def spectral_embedding(
         # matrix to the solver and afterward set it back to the original.
         diag_shift = 1e-5 * sparse.eye(laplacian.shape[0])
         laplacian += diag_shift
+        if hasattr(sparse, "csr_array") and isinstance(laplacian, sparse.csr_array):
+            # `pyamg` does not work with `csr_array` and we need to convert it to a
+            # `csr_matrix` object.
+            laplacian = sparse.csr_matrix(laplacian)
         ml = smoothed_aggregation_solver(check_array(laplacian, accept_sparse="csr"))
         laplacian -= diag_shift
 
@@ -371,7 +390,7 @@ def spectral_embedding(
             # see note above under arpack why lobpcg has problems with small
             # number of nodes
             # lobpcg will fallback to eigh, so we short circuit it
-            if sparse.isspmatrix(laplacian):
+            if sparse.issparse(laplacian):
                 laplacian = laplacian.toarray()
             _, diffusion_map = eigh(laplacian, check_finite=False)
             embedding = diffusion_map.T[:n_components]

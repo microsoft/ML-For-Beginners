@@ -5,7 +5,7 @@ from ..common._registration import register_converter
 from ..common._topology import Scope, Operator
 from ..common._container import ModelComponentContainer
 from ..common._apply_operation import apply_mul
-from ..common.data_types import guess_proto_type, FloatTensorType, DoubleTensorType
+from ..common.data_types import guess_proto_type
 from .._supported_operators import sklearn_operator_name_map
 
 
@@ -16,15 +16,7 @@ def convert_voting_regressor(
     Converts a *VotingRegressor* into *ONNX* format.
     """
     op = operator.raw_operator
-
-    if not isinstance(operator.inputs[0].type, (FloatTensorType, DoubleTensorType)):
-        this_operator = scope.declare_local_operator("SklearnCast")
-        this_operator.inputs = operator.inputs
-        var_name = scope.declare_local_variable("cast", FloatTensorType())
-        this_operator.outputs.append(var_name)
-        inputs = this_operator.outputs
-    else:
-        inputs = operator.inputs
+    proto_dtype = guess_proto_type(operator.outputs[0].type)
 
     vars_names = []
     for i, estimator in enumerate(op.estimators_):
@@ -34,10 +26,10 @@ def convert_voting_regressor(
         op_type = sklearn_operator_name_map[type(estimator)]
 
         this_operator = scope.declare_local_operator(op_type, estimator)
-        this_operator.inputs = inputs
+        this_operator.inputs = operator.inputs
 
         var_name = scope.declare_local_variable(
-            "var_%d" % i, inputs[0].type.__class__()
+            "var_%d" % i, operator.outputs[0].type.__class__()
         )
         this_operator.outputs.append(var_name)
         var_name = var_name.onnx_name
@@ -48,7 +40,6 @@ def convert_voting_regressor(
             val = 1.0 / len(op.estimators_)
 
         weights_name = scope.get_unique_variable_name("w%d" % i)
-        proto_dtype = guess_proto_type(inputs[0].type)
         container.add_initializer(weights_name, proto_dtype, [1], [val])
         wvar_name = scope.get_unique_variable_name("wvar_%d" % i)
         apply_mul(scope, [var_name, weights_name], wvar_name, container, broadcast=1)

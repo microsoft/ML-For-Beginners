@@ -5,7 +5,9 @@
  */
 
 #include "status.h"
+
 #include <assert.h>
+
 #include "onnx/string_utils.h"
 
 namespace ONNX_NAMESPACE {

@@ -41,10 +41,10 @@ class TestPeriodIndexAsType:
         tm.assert_index_equal(result, expected)
 
         result = idx.astype(str)
-        expected = Index([str(x) for x in idx], name="idx")
+        expected = Index([str(x) for x in idx], name="idx", dtype=object)
         tm.assert_index_equal(result, expected)
 
-        idx = period_range("1990", "2009", freq="A", name="idx")
+        idx = period_range("1990", "2009", freq="Y", name="idx")
         result = idx.astype("i8")
         tm.assert_index_equal(result, Index(idx.asi8, name="idx"))
         tm.assert_numpy_array_equal(result.values, idx.asi8)
@@ -139,10 +139,13 @@ class TestPeriodIndexAsType:
         expected = np.array([True, True])
         tm.assert_numpy_array_equal(result, expected)
 
-    def test_period_astype_to_timestamp(self):
+    def test_period_astype_to_timestamp(self, unit):
+        # GH#55958
         pi = PeriodIndex(["2011-01", "2011-02", "2011-03"], freq="M")
 
-        exp = DatetimeIndex(["2011-01-01", "2011-02-01", "2011-03-01"], tz="US/Eastern")
-        res = pi.astype("datetime64[ns, US/Eastern]")
+        exp = DatetimeIndex(
+            ["2011-01-01", "2011-02-01", "2011-03-01"], tz="US/Eastern"
+        ).as_unit(unit)
+        res = pi.astype(f"datetime64[{unit}, US/Eastern]")
         tm.assert_index_equal(res, exp)
         assert res.freq == exp.freq

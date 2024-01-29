@@ -28,7 +28,7 @@ class Triangulation:
         For each triangle, the indices of the three points that make
         up the triangle, ordered in an anticlockwise manner. If you want to
         take the *mask* into account, use `get_masked_triangles` instead.
-    mask : (ntri, 3) array of bool
+    mask : (ntri, 3) array of bool or None
         Masked out triangles.
     is_delaunay : bool
         Whether the Triangulation is a calculated Delaunay

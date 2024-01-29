@@ -15,6 +15,7 @@ from pandas import (
     Index,
     Series,
     _testing as tm,
+    date_range,
     read_hdf,
 )
 from pandas.tests.io.pytables.common import (
@@ -32,35 +33,35 @@ def test_read_missing_key_close_store(tmp_path, setup_path):
     # GH 25766
     path = tmp_path / setup_path
     df = DataFrame({"a": range(2), "b": range(2)})
-    df.to_hdf(path, "k1")
+    df.to_hdf(path, key="k1")
 
     with pytest.raises(KeyError, match="'No object named k2 in the file'"):
         read_hdf(path, "k2")
 
     # smoke test to test that file is properly closed after
     # read with KeyError before another write
-    df.to_hdf(path, "k2")
+    df.to_hdf(path, key="k2")
 
 
 def test_read_index_error_close_store(tmp_path, setup_path):
     # GH 25766
     path = tmp_path / setup_path
     df = DataFrame({"A": [], "B": []}, index=[])
-    df.to_hdf(path, "k1")
+    df.to_hdf(path, key="k1")
 
     with pytest.raises(IndexError, match=r"list index out of range"):
         read_hdf(path, "k1", stop=0)
 
     # smoke test to test that file is properly closed after
     # read with IndexError before another write
-    df.to_hdf(path, "k1")
+    df.to_hdf(path, key="k1")
 
 
 def test_read_missing_key_opened_store(tmp_path, setup_path):
     # GH 28699
     path = tmp_path / setup_path
     df = DataFrame({"a": range(2), "b": range(2)})
-    df.to_hdf(path, "k1")
+    df.to_hdf(path, key="k1")
 
     with HDFStore(path, "r") as store:
         with pytest.raises(KeyError, match="'No object named k2 in the file'"):
@@ -72,7 +73,11 @@ def test_read_missing_key_opened_store(tmp_path, setup_path):
 
 
 def test_read_column(setup_path):
-    df = tm.makeTimeDataFrame()
+    df = DataFrame(
+        np.random.default_rng(2).standard_normal((10, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=date_range("2000-01-01", periods=10, freq="B"),
+    )
 
     with ensure_clean_store(setup_path) as store:
         _maybe_remove(store, "df")
@@ -154,7 +159,7 @@ def test_pytables_native_read(datapath):
         datapath("io", "data", "legacy_hdf/pytables_native.h5"), mode="r"
     ) as store:
         d2 = store["detector/readout"]
-        assert isinstance(d2, DataFrame)
+    assert isinstance(d2, DataFrame)
 
 
 @pytest.mark.skipif(is_platform_windows(), reason="native2 read fails oddly on windows")
@@ -164,7 +169,7 @@ def test_pytables_native2_read(datapath):
     ) as store:
         str(store)
         d1 = store["detector"]
-        assert isinstance(d1, DataFrame)
+    assert isinstance(d1, DataFrame)
 
 
 def test_legacy_table_fixed_format_read_py2(datapath):
@@ -174,28 +179,29 @@ def test_legacy_table_fixed_format_read_py2(datapath):
         datapath("io", "data", "legacy_hdf", "legacy_table_fixed_py2.h5"), mode="r"
     ) as store:
         result = store.select("df")
-        expected = DataFrame(
-            [[1, 2, 3, "D"]],
-            columns=["A", "B", "C", "D"],
-            index=Index(["ABC"], name="INDEX_NAME"),
-        )
-        tm.assert_frame_equal(expected, result)
+    expected = DataFrame(
+        [[1, 2, 3, "D"]],
+        columns=["A", "B", "C", "D"],
+        index=Index(["ABC"], name="INDEX_NAME"),
+    )
+    tm.assert_frame_equal(expected, result)
 
 
 def test_legacy_table_fixed_format_read_datetime_py2(datapath):
     # GH 31750
     # legacy table with fixed format and datetime64 column written in Python 2
+    expected = DataFrame(
+        [[Timestamp("2020-02-06T18:00")]],
+        columns=["A"],
+        index=Index(["date"]),
+        dtype="M8[ns]",
+    )
     with ensure_clean_store(
         datapath("io", "data", "legacy_hdf", "legacy_table_fixed_datetime_py2.h5"),
         mode="r",
     ) as store:
         result = store.select("df")
-        expected = DataFrame(
-            [[Timestamp("2020-02-06T18:00")]],
-            columns=["A"],
-            index=Index(["date"]),
-        )
-        tm.assert_frame_equal(expected, result)
+    tm.assert_frame_equal(expected, result)
 
 
 def test_legacy_table_read_py2(datapath):
@@ -222,7 +228,7 @@ def test_read_hdf_open_store(tmp_path, setup_path):
     df = df.set_index(keys="E", append=True)
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", mode="w")
+    df.to_hdf(path, key="df", mode="w")
     direct = read_hdf(path, "df")
     with HDFStore(path, mode="r") as store:
         indirect = read_hdf(store, "df")
@@ -241,7 +247,7 @@ def test_read_hdf_index_not_view(tmp_path, setup_path):
     )
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", mode="w", format="table")
+    df.to_hdf(path, key="df", mode="w", format="table")
 
     df2 = read_hdf(path, "df")
     assert df2.index._data.base is None
@@ -258,13 +264,13 @@ def test_read_hdf_iterator(tmp_path, setup_path):
     df = df.set_index(keys="E", append=True)
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", mode="w", format="t")
+    df.to_hdf(path, key="df", mode="w", format="t")
     direct = read_hdf(path, "df")
     iterator = read_hdf(path, "df", iterator=True)
     with closing(iterator.store):
         assert isinstance(iterator, TableIterator)
         indirect = next(iterator.__iter__())
-        tm.assert_frame_equal(direct, indirect)
+    tm.assert_frame_equal(direct, indirect)
 
 
 def test_read_nokey(tmp_path, setup_path):
@@ -278,10 +284,10 @@ def test_read_nokey(tmp_path, setup_path):
     # Categorical dtype not supported for "fixed" format. So no need
     # to test with that dtype in the dataframe here.
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", mode="a")
+    df.to_hdf(path, key="df", mode="a")
     reread = read_hdf(path)
     tm.assert_frame_equal(df, reread)
-    df.to_hdf(path, "df2", mode="a")
+    df.to_hdf(path, key="df2", mode="a")
 
     msg = "key must be provided when HDF5 file contains multiple datasets."
     with pytest.raises(ValueError, match=msg):
@@ -293,10 +299,10 @@ def test_read_nokey_table(tmp_path, setup_path):
     df = DataFrame({"i": range(5), "c": Series(list("abacd"), dtype="category")})
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", mode="a", format="table")
+    df.to_hdf(path, key="df", mode="a", format="table")
     reread = read_hdf(path)
     tm.assert_frame_equal(df, reread)
-    df.to_hdf(path, "df2", mode="a", format="table")
+    df.to_hdf(path, key="df2", mode="a", format="table")
 
     msg = "key must be provided when HDF5 file contains multiple datasets."
     with pytest.raises(ValueError, match=msg):
@@ -325,8 +331,8 @@ def test_read_from_pathlib_path(tmp_path, setup_path):
     filename = tmp_path / setup_path
     path_obj = Path(filename)
 
-    expected.to_hdf(path_obj, "df", mode="a")
-    actual = read_hdf(path_obj, "df")
+    expected.to_hdf(path_obj, key="df", mode="a")
+    actual = read_hdf(path_obj, key="df")
 
     tm.assert_frame_equal(expected, actual)
 
@@ -344,8 +350,8 @@ def test_read_from_py_localpath(tmp_path, setup_path):
     filename = tmp_path / setup_path
     path_obj = LocalPath(filename)
 
-    expected.to_hdf(path_obj, "df", mode="a")
-    actual = read_hdf(path_obj, "df")
+    expected.to_hdf(path_obj, key="df", mode="a")
+    actual = read_hdf(path_obj, key="df")
 
     tm.assert_frame_equal(expected, actual)
 
@@ -355,7 +361,7 @@ def test_read_hdf_series_mode_r(tmp_path, format, setup_path):
     # GH 16583
     # Tests that reading a Series saved to an HDF file
     # still works if a mode='r' argument is supplied
-    series = tm.makeFloatSeries()
+    series = Series(range(10), dtype=np.float64)
     path = tmp_path / setup_path
     series.to_hdf(path, key="data", format=format)
     result = read_hdf(path, key="data", mode="r")
@@ -387,7 +393,7 @@ def test_read_py2_hdf_file_in_py3(datapath):
         mode="r",
     ) as store:
         result = store["p"]
-        tm.assert_frame_equal(result, expected)
+    tm.assert_frame_equal(result, expected)
 
 
 def test_read_infer_string(tmp_path, setup_path):

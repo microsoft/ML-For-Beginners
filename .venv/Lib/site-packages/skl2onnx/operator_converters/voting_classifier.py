@@ -33,7 +33,7 @@ def convert_voting_classifier(
                 operator.raw_operator.__class__.__name__
             )
         )
-    proto_dtype = guess_proto_type(operator.inputs[0].type)
+    proto_dtype = guess_proto_type(operator.outputs[1].type)
     if proto_dtype != onnx_proto.TensorProto.DOUBLE:
         proto_dtype = onnx_proto.TensorProto.FLOAT
     op = operator.raw_operator
@@ -60,7 +60,7 @@ def convert_voting_classifier(
 
         label_name = scope.declare_local_variable("label_%d" % i, Int64TensorType())
         prob_name = scope.declare_local_variable(
-            "voting_proba_%d" % i, operator.inputs[0].type.__class__()
+            "voting_proba_%d" % i, operator.outputs[1].type.__class__()
         )
         this_operator.outputs.append(label_name)
         this_operator.outputs.append(prob_name)

@@ -22,7 +22,7 @@ from ._linprog_highs import _linprog_highs
 from ._linprog_ip import _linprog_ip
 from ._linprog_simplex import _linprog_simplex
 from ._linprog_rs import _linprog_rs
-from ._linprog_doc import (_linprog_highs_doc, _linprog_ip_doc,
+from ._linprog_doc import (_linprog_highs_doc, _linprog_ip_doc,  # noqa: F401
                            _linprog_rs_doc, _linprog_simplex_doc,
                            _linprog_highs_ipm_doc, _linprog_highs_ds_doc)
 from ._linprog_util import (
@@ -34,7 +34,9 @@ __all__ = ['linprog', 'linprog_verbose_callback', 'linprog_terse_callback']
 
 __docformat__ = "restructuredtext en"
 
-LINPROG_METHODS = ['simplex', 'revised simplex', 'interior-point', 'highs', 'highs-ds', 'highs-ipm']
+LINPROG_METHODS = [
+    'simplex', 'revised simplex', 'interior-point', 'highs', 'highs-ds', 'highs-ipm'
+]
 
 
 def linprog_verbose_callback(res):
@@ -614,13 +616,13 @@ def linprog(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None,
 
     if x0 is not None and meth != "revised simplex":
         warning_message = "x0 is used only when method is 'revised simplex'. "
-        warn(warning_message, OptimizeWarning)
+        warn(warning_message, OptimizeWarning, stacklevel=2)
 
     if np.any(integrality) and not meth == "highs":
         integrality = None
         warning_message = ("Only `method='highs'` supports integer "
                            "constraints. Ignoring `integrality`.")
-        warn(warning_message, OptimizeWarning)
+        warn(warning_message, OptimizeWarning, stacklevel=2)
     elif np.any(integrality):
         integrality = np.broadcast_to(integrality, np.shape(c))
 

@@ -21,7 +21,6 @@ import struct
 
 
 class table_C_B_D_T_(E_B_D_T_.table_E_B_D_T_):
-
     # Change the data locator table being referenced.
     locatorName = "CBLC"
 
@@ -42,7 +41,6 @@ def _removeUnsupportedForColor(dataFunctions):
 
 
 class ColorBitmapGlyph(BitmapGlyph):
-
     fileExtension = ".png"
     xmlDataFunctions = _removeUnsupportedForColor(BitmapGlyph.xmlDataFunctions)
 

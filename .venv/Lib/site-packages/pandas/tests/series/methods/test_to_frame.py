@@ -1,3 +1,5 @@
+import pytest
+
 from pandas import (
     DataFrame,
     Index,
@@ -40,6 +42,9 @@ class TestToFrame:
         )
         tm.assert_frame_equal(rs, xp)
 
+    @pytest.mark.filterwarnings(
+        "ignore:Passing a BlockManager|Passing a SingleBlockManager:DeprecationWarning"
+    )
     def test_to_frame_expanddim(self):
         # GH#9762
 

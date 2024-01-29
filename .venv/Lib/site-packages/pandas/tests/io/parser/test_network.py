@@ -2,16 +2,13 @@
 Tests parsers ability to read and parse non-local files
 and hence require a network connection to be read.
 """
-from io import (
-    BytesIO,
-    StringIO,
-)
+from io import BytesIO
 import logging
+import re
 
 import numpy as np
 import pytest
 
-from pandas.compat import is_ci_environment
 import pandas.util._test_decorators as td
 
 from pandas import DataFrame
@@ -19,6 +16,10 @@ import pandas._testing as tm
 
 from pandas.io.feather_format import read_feather
 from pandas.io.parsers import read_csv
+
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
 
 
 @pytest.mark.network
@@ -288,39 +289,23 @@ class TestS3:
         tm.assert_frame_equal(result, expected)
 
     @pytest.mark.single_cpu
-    @pytest.mark.skipif(
-        is_ci_environment(),
-        reason="GH: 45651: This test can hang in our CI min_versions build",
-    )
     def test_read_csv_chunked_download(self, s3_public_bucket, caplog, s3so):
         # 8 MB, S3FS uses 5MB chunks
-        import s3fs
-
-        df = DataFrame(
-            np.random.default_rng(2).standard_normal((100000, 4)), columns=list("abcd")
-        )
-        str_buf = StringIO()
-
-        df.to_csv(str_buf)
-
-        buf = BytesIO(str_buf.getvalue().encode("utf-8"))
-
-        s3_public_bucket.put_object(Key="large-file.csv", Body=buf)
-
-        # Possibly some state leaking in between tests.
-        # If we don't clear this cache, we saw `GetObject operation: Forbidden`.
-        # Presumably the s3fs instance is being cached, with the directory listing
-        # from *before* we add the large-file.csv in the s3_public_bucket_with_data.
-        s3fs.S3FileSystem.clear_instance_cache()
-
-        with caplog.at_level(logging.DEBUG, logger="s3fs"):
-            read_csv(
-                f"s3://{s3_public_bucket.name}/large-file.csv",
-                nrows=5,
-                storage_options=s3so,
-            )
-            # log of fetch_range (start, stop)
-            assert (0, 5505024) in (x.args[-2:] for x in caplog.records)
+        df = DataFrame(np.zeros((100000, 4)), columns=list("abcd"))
+        with BytesIO(df.to_csv().encode("utf-8")) as buf:
+            s3_public_bucket.put_object(Key="large-file.csv", Body=buf)
+            uri = f"{s3_public_bucket.name}/large-file.csv"
+            match_re = re.compile(rf"^Fetch: {uri}, 0-(?P<stop>\d+)$")
+            with caplog.at_level(logging.DEBUG, logger="s3fs"):
+                read_csv(
+                    f"s3://{uri}",
+                    nrows=5,
+                    storage_options=s3so,
+                )
+                for log in caplog.messages:
+                    if match := re.match(match_re, log):
+                        # Less than 8 MB
+                        assert int(match.group("stop")) < 8000000
 
     def test_read_s3_with_hash_in_key(self, s3_public_bucket_with_data, tips_df, s3so):
         # GH 25945

@@ -12,11 +12,16 @@ from pygments.style import Style
 from pygments.token import Comment, Error, Literal, Name, Token
 
 
+__all__ = ['StarofficeStyle']
+
+
 class StarofficeStyle(Style):
     """
     Style similar to StarOffice style, also in OpenOffice and LibreOffice.
     """
+    name = 'staroffice'
 
+    
     styles = {
         Token:                  '#000080',   # Blue
         Comment:                '#696969',   # DimGray

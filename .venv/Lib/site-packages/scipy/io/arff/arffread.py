@@ -2,8 +2,7 @@
 # Use the `scipy.io.arff` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _arffread
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'MetaData', 'loadarff', 'ArffError', 'ParseArffError',
@@ -24,13 +23,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.arff.arffread is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.arff instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.arff` namespace, "
-                  "the `scipy.io.arff.arffread` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_arffread, name)
+    return _sub_module_deprecation(sub_package="io.arff", module="arffread",
+                                   private_modules=["_arffread"], all=__all__,
+                                   attribute=name)

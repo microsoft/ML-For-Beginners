@@ -527,6 +527,7 @@ def test_load_padded_dtype(tmpdir, dt):
     assert_array_equal(arr, arr1)
 
 
+@pytest.mark.skipif(sys.version_info >= (3, 12), reason="see gh-23988")
 @pytest.mark.xfail(IS_WASM, reason="Emscripten NODEFS has a buggy dup")
 def test_python2_python3_interoperability():
     fname = 'win64python2.npy'

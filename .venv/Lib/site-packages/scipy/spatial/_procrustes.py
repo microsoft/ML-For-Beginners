@@ -97,8 +97,8 @@ def procrustes(data1, data2):
     0.0
 
     """
-    mtx1 = np.array(data1, dtype=np.double, copy=True)
-    mtx2 = np.array(data2, dtype=np.double, copy=True)
+    mtx1 = np.array(data1, dtype=np.float64, copy=True)
+    mtx2 = np.array(data2, dtype=np.float64, copy=True)
 
     if mtx1.ndim != 2 or mtx2.ndim != 2:
         raise ValueError("Input matrices must be two-dimensional")

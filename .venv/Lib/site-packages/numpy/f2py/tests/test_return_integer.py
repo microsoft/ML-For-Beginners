@@ -13,15 +13,13 @@ class TestReturnInteger(util.F2PyTest):
         assert t([123]) == 123
         assert t((123, )) == 123
         assert t(array(123)) == 123
-        assert t(array([123])) == 123
-        assert t(array([[123]])) == 123
-        assert t(array([123], "b")) == 123
-        assert t(array([123], "h")) == 123
-        assert t(array([123], "i")) == 123
-        assert t(array([123], "l")) == 123
-        assert t(array([123], "B")) == 123
-        assert t(array([123], "f")) == 123
-        assert t(array([123], "d")) == 123
+        assert t(array(123, "b")) == 123
+        assert t(array(123, "h")) == 123
+        assert t(array(123, "i")) == 123
+        assert t(array(123, "l")) == 123
+        assert t(array(123, "B")) == 123
+        assert t(array(123, "f")) == 123
+        assert t(array(123, "d")) == 123
 
         # pytest.raises(ValueError, t, array([123],'S3'))
         pytest.raises(ValueError, t, "abc")

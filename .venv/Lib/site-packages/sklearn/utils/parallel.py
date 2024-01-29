@@ -1,4 +1,6 @@
-"""Module that customize joblib tools for scikit-learn usage."""
+"""
+The :mod:`sklearn.utils.parallel` customizes `joblib` tools for scikit-learn usage.
+"""
 
 import functools
 import warnings
@@ -70,7 +72,7 @@ def delayed(function):
     """Decorator used to capture the arguments of a function.
 
     This alternative to `joblib.delayed` is meant to be used in conjunction
-    with `sklearn.utils.parallel.Parallel`. The latter captures the the scikit-
+    with `sklearn.utils.parallel.Parallel`. The latter captures the scikit-
     learn configuration by calling `sklearn.get_config()` in the current
     thread, prior to dispatching the first task. The captured configuration is
     then propagated and enabled for the duration of the execution of the

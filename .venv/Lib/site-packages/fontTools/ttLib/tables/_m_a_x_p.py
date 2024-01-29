@@ -27,7 +27,6 @@ maxpFormat_1_0_add = """
 
 
 class table__m_a_x_p(DefaultTable.DefaultTable):
-
     dependencies = ["glyf"]
 
     def decompile(self, data, ttFont):

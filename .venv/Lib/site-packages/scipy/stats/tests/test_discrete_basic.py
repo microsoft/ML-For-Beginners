@@ -91,7 +91,7 @@ def test_moments(distname, arg):
     check_mean_expect(distfn, arg, m, distname)
     check_var_expect(distfn, arg, m, v, distname)
     check_skew_expect(distfn, arg, m, v, s, distname)
-    if distname not in ['zipf', 'yulesimon']:
+    if distname not in ['zipf', 'yulesimon', 'betanbinom']:
         check_kurt_expect(distfn, arg, m, v, k, distname)
 
     # frozen distr moments
@@ -111,8 +111,9 @@ def test_rvs_broadcast(dist, shape_args):
     # implementation detail of the distribution, not a requirement.  If
     # the implementation the rvs() method of a distribution changes, this
     # test might also have to be changed.
-    shape_only = dist in ['betabinom', 'skellam', 'yulesimon', 'dlaplace',
-                          'nchypergeom_fisher', 'nchypergeom_wallenius']
+    shape_only = dist in ['betabinom', 'betanbinom', 'skellam', 'yulesimon',
+                          'dlaplace', 'nchypergeom_fisher',
+                          'nchypergeom_wallenius']
 
     try:
         distfunc = getattr(stats, dist)
@@ -133,7 +134,9 @@ def test_rvs_broadcast(dist, shape_args):
     bshape.append(loc.size)
     # bshape holds the expected shape when loc, scale, and the shape
     # parameters are all broadcast together.
-    check_rvs_broadcast(distfunc, dist, allargs, bshape, shape_only, [np.int_])
+    check_rvs_broadcast(
+        distfunc, dist, allargs, bshape, shape_only, [np.dtype(int)]
+    )
 
 
 @pytest.mark.parametrize('dist,args', distdiscrete)
@@ -300,9 +303,10 @@ def check_discrete_chisquare(distfn, arg, rvs, alpha, msg):
     freq, hsupp = np.histogram(rvs, histsupp)
     chis, pval = stats.chisquare(np.array(freq), len(rvs)*distmass)
 
-    npt.assert_(pval > alpha,
-                'chisquare - test for %s at arg = %s with pval = %s' %
-                (msg, str(arg), str(pval)))
+    npt.assert_(
+        pval > alpha,
+        f'chisquare - test for {msg} at arg = {str(arg)} with pval = {str(pval)}'
+    )
 
 
 def check_scale_docstring(distfn):
@@ -346,7 +350,7 @@ def test_cdf_gh13280_regression(distname, args):
 def cases_test_discrete_integer_shapes():
     # distributions parameters that are only allowed to be integral when
     # fitting, but are allowed to be real as input to PDF, etc.
-    integrality_exceptions = {'nbinom': {'n'}}
+    integrality_exceptions = {'nbinom': {'n'}, 'betanbinom': {'n'}}
 
     seen = set()
     for distname, shapes in distdiscrete:
@@ -423,6 +427,7 @@ def test_interval(distname, shapes):
     npt.assert_equal(dist.interval(1, *shapes), (a-1, b))
 
 
+@pytest.mark.xfail_on_32bit("Sensible to machine precision")
 def test_rv_sample():
     # Thoroughly test rv_sample and check that gh-3758 is resolved
 

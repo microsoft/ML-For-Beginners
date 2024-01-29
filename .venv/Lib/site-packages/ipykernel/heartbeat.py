@@ -13,8 +13,8 @@
 # -----------------------------------------------------------------------------
 
 import errno
-import os
 import socket
+from pathlib import Path
 from threading import Thread
 
 import zmq
@@ -54,7 +54,7 @@ class Heartbeat(Thread):
             s.close()
         elif self.transport == "ipc":
             self.port = 1
-            while os.path.exists(f"{self.ip}-{self.port}"):
+            while Path(f"{self.ip}-{self.port}").exists():
                 self.port = self.port + 1
         else:
             raise ValueError("Unrecognized zmq transport: %s" % self.transport)
@@ -108,7 +108,7 @@ class Heartbeat(Thread):
                 if e.errno == errno.EINTR:
                     # signal interrupt, resume heartbeat
                     continue
-                elif e.errno == zmq.ETERM:
+                if e.errno == zmq.ETERM:
                     # context terminated, close socket and exit
                     try:
                         self.socket.close()
@@ -117,10 +117,9 @@ class Heartbeat(Thread):
                         # this shouldn't happen, though
                         pass
                     break
-                elif e.errno == zmq.ENOTSOCK:
+                if e.errno == zmq.ENOTSOCK:
                     # socket closed elsewhere, exit
                     break
-                else:
-                    raise
+                raise
             else:
                 break

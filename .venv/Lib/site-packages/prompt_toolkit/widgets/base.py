@@ -58,9 +58,8 @@ from prompt_toolkit.layout.controls import (
     FormattedTextControl,
     GetLinePrefixCallable,
 )
-from prompt_toolkit.layout.dimension import AnyDimension
+from prompt_toolkit.layout.dimension import AnyDimension, to_dimension
 from prompt_toolkit.layout.dimension import Dimension as D
-from prompt_toolkit.layout.dimension import to_dimension
 from prompt_toolkit.layout.margins import (
     ConditionalMargin,
     NumberedMargin,
@@ -100,6 +99,7 @@ E = KeyPressEvent
 
 class Border:
     "Box drawing characters. (Thin)"
+
     HORIZONTAL = "\u2500"
     VERTICAL = "\u2502"
     TOP_LEFT = "\u250c"

@@ -23,23 +23,35 @@ class TestSmirnov:
                    (3, 0.875, 0.125 * 0.125 * 0.125)]
 
         dataset = np.asarray(dataset)
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_x_equals_0(self):
         dataset = [(n, 0, 1) for n in itertools.chain(range(2, 20), range(1010, 1020))]
         dataset = np.asarray(dataset)
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_x_equals_1(self):
         dataset = [(n, 1, 0) for n in itertools.chain(range(2, 20), range(1010, 1020))]
         dataset = np.asarray(dataset)
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_x_equals_0point5(self):
         dataset = [(1, 0.5, 0.5),
@@ -54,34 +66,50 @@ class TestSmirnov:
                    (10, 0.5, 0.003888705)]
 
         dataset = np.asarray(dataset)
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_equals_1(self):
         x = np.linspace(0, 1, 101, endpoint=True)
         dataset = np.column_stack([[1]*len(x), x, 1-x])
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_equals_2(self):
         x = np.linspace(0.5, 1, 101, endpoint=True)
         p = np.power(1-x, 2)
         n = np.array([2] * len(x))
         dataset = np.column_stack([n, x, p])
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_equals_3(self):
         x = np.linspace(0.7, 1, 31, endpoint=True)
         p = np.power(1-x, 3)
         n = np.array([3] * len(x))
         dataset = np.column_stack([n, x, p])
-        FuncData(smirnov, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnov, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, -1] = 1 - dataset[:, -1]
-        FuncData(_smirnovc, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovc, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_large(self):
         # test for large values of n
@@ -106,49 +134,73 @@ class TestSmirnovi:
                    (10, 1.0 / 16 ** 10, 1 - 1.0 / 16)]
 
         dataset = np.asarray(dataset)
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_x_equals_0(self):
         dataset = [(n, 0, 1) for n in itertools.chain(range(2, 20), range(1010, 1020))]
         dataset = np.asarray(dataset)
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_x_equals_1(self):
         dataset = [(n, 1, 0) for n in itertools.chain(range(2, 20), range(1010, 1020))]
         dataset = np.asarray(dataset)
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_equals_1(self):
         pp = np.linspace(0, 1, 101, endpoint=True)
         # dataset = np.array([(1, p, 1-p) for p in pp])
         dataset = np.column_stack([[1]*len(pp), pp, 1-pp])
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_equals_2(self):
         x = np.linspace(0.5, 1, 101, endpoint=True)
         p = np.power(1-x, 2)
         n = np.array([2] * len(x))
         dataset = np.column_stack([n, p, x])
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_n_equals_3(self):
         x = np.linspace(0.7, 1, 31, endpoint=True)
         p = np.power(1-x, 3)
         n = np.array([3] * len(x))
         dataset = np.column_stack([n, p, x])
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_round_trip(self):
         def _sm_smi(n, p):
@@ -166,8 +218,12 @@ class TestSmirnovi:
                    (10, 0.0001, 0.0001)]
 
         dataset = np.asarray(dataset)
-        FuncData(_sm_smi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
-        FuncData(_smc_smci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _sm_smi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
+        FuncData(
+            _smc_smci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_x_equals_0point5(self):
         dataset = [(1, 0.5, 0.5),
@@ -183,9 +239,13 @@ class TestSmirnovi:
                    (10, 0.5, 0.17157867006)]
 
         dataset = np.asarray(dataset)
-        FuncData(smirnovi, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            smirnovi, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
         dataset[:, 1] = 1 - dataset[:, 1]
-        FuncData(_smirnovci, dataset, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovci, dataset, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
 
 class TestSmirnovp:
@@ -195,12 +255,20 @@ class TestSmirnovp:
     def test_basic(self):
         # Check derivative at endpoints
         n1_10 = np.arange(1, 10)
-        dataset0 = np.column_stack([n1_10, np.full_like(n1_10, 0), np.full_like(n1_10, -1)])
-        FuncData(_smirnovp, dataset0, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        dataset0 = np.column_stack([n1_10,
+                                    np.full_like(n1_10, 0),
+                                    np.full_like(n1_10, -1)])
+        FuncData(
+            _smirnovp, dataset0, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
         n2_10 = np.arange(2, 10)
-        dataset1 = np.column_stack([n2_10, np.full_like(n2_10, 1.0), np.full_like(n2_10, 0)])
-        FuncData(_smirnovp, dataset1, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        dataset1 = np.column_stack([n2_10,
+                                    np.full_like(n2_10, 1.0),
+                                    np.full_like(n2_10, 0)])
+        FuncData(
+            _smirnovp, dataset1, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_oneminusoneovern(self):
         # Check derivative at x=1-1/n
@@ -210,7 +278,9 @@ class TestSmirnovp:
         pp1 = -n * x**(n-1)
         pp1 -= (1-np.sign(n-2)**2) * 0.5  # n=2, x=0.5, 1-1/n = 0.5, need to adjust
         dataset1 = np.column_stack([n, xm1, pp1])
-        FuncData(_smirnovp, dataset1, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovp, dataset1, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_oneovertwon(self):
         # Check derivative at x=1/2n  (Discontinuous at x=1/n, so check at x=1/2n)
@@ -218,31 +288,41 @@ class TestSmirnovp:
         x = 1.0/2/n
         pp = -(n*x+1) * (1+x)**(n-2)
         dataset0 = np.column_stack([n, x, pp])
-        FuncData(_smirnovp, dataset0, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovp, dataset0, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     def test_oneovern(self):
-        # Check derivative at x=1/n  (Discontinuous at x=1/n, hard to tell if x==1/n, only use n=power of 2)
+        # Check derivative at x=1/n
+        # (Discontinuous at x=1/n, hard to tell if x==1/n, only use n=power of 2)
         n = 2**np.arange(1, 10)
         x = 1.0/n
         pp = -(n*x+1) * (1+x)**(n-2) + 0.5
         dataset0 = np.column_stack([n, x, pp])
-        FuncData(_smirnovp, dataset0, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovp, dataset0, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
     @pytest.mark.xfail(sys.maxsize <= 2**32,
                        reason="requires 64-bit platform")
     def test_oneovernclose(self):
-        # Check derivative at x=1/n  (Discontinuous at x=1/n, test on either side: x=1/n +/- 2epsilon)
+        # Check derivative at x=1/n
+        # (Discontinuous at x=1/n, test on either side: x=1/n +/- 2epsilon)
         n = np.arange(3, 20)
 
         x = 1.0/n - 2*np.finfo(float).eps
         pp = -(n*x+1) * (1+x)**(n-2)
         dataset0 = np.column_stack([n, x, pp])
-        FuncData(_smirnovp, dataset0, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovp, dataset0, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
         x = 1.0/n + 2*np.finfo(float).eps
         pp = -(n*x+1) * (1+x)**(n-2) + 1
         dataset1 = np.column_stack([n, x, pp])
-        FuncData(_smirnovp, dataset1, (0, 1), 2, rtol=_rtol).check(dtypes=[int, float, float])
+        FuncData(
+            _smirnovp, dataset1, (0, 1), 2, rtol=_rtol
+        ).check(dtypes=[int, float, float])
 
 
 class TestKolmogorov:
@@ -323,7 +403,8 @@ class TestKolmogorov:
             return _kolmogci(_kolmogc(_x))
 
         x = np.linspace(0.0, 2.0, 21, endpoint=True)
-        x02 = x[(x == 0) | (x > 0.21)]  # Exclude 0.1, 0.2.  0.2 almost makes succeeds, but 0.1 has no chance.
+        # Exclude 0.1, 0.2.  0.2 almost makes succeeds, but 0.1 has no chance.
+        x02 = x[(x == 0) | (x > 0.21)]
         dataset02 = np.column_stack([x02, x02])
         FuncData(_ki_k, dataset02, (0,), 1, rtol=_rtol).check()
 
@@ -349,7 +430,8 @@ class TestKolmogi:
     def test_smallpcdf(self):
         epsilon = 0.5 ** np.arange(1, 55, 3)
         # kolmogi(1-p) == _kolmogci(p) if  1-(1-p) == p, but not necessarily otherwise
-        # Use epsilon s.t. 1-(1-epsilon)) == epsilon, so can use same x-array for both results
+        # Use epsilon s.t. 1-(1-epsilon)) == epsilon,
+        # so can use same x-array for both results
 
         x = np.array([0.8275735551899077, 0.5345255069097583, 0.4320114038786941,
                       0.3736868442620478, 0.3345161714909591, 0.3057833329315859,
@@ -367,7 +449,8 @@ class TestKolmogi:
     def test_smallpsf(self):
         epsilon = 0.5 ** np.arange(1, 55, 3)
         # kolmogi(p) == _kolmogci(1-p) if  1-(1-p) == p, but not necessarily otherwise
-        # Use epsilon s.t. 1-(1-epsilon)) == epsilon, so can use same x-array for both results
+        # Use epsilon s.t. 1-(1-epsilon)) == epsilon,
+        # so can use same x-array for both results
 
         x = np.array([0.8275735551899077, 1.3163786275161036, 1.6651092133663343,
                       1.9525136345289607, 2.2027324540033235, 2.4272929437460848,

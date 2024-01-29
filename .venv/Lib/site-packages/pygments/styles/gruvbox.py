@@ -14,10 +14,15 @@ from pygments.token import Token, Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic
 
 
+__all__ = ['GruvboxDarkStyle', 'GruvboxLightStyle']
+
+
 class GruvboxDarkStyle(Style):
     """
     Pygments version of the "gruvbox" dark vim theme.
     """
+    
+    name = 'gruvbox-dark'
 
     background_color = '#282828'
     highlight_color = '#ebdbb2'
@@ -63,10 +68,13 @@ class GruvboxDarkStyle(Style):
         Error:              'bg:#fb4934 #282828'
     }
 
+
 class GruvboxLightStyle(Style):
     """
     Pygments version of the "gruvbox" Light vim theme.
     """
+
+    name = 'gruvbox-light'
 
     background_color = '#fbf1c7'
     highlight_color = '#3c3836'

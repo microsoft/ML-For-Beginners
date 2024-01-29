@@ -7,7 +7,7 @@ from __future__ import annotations
 from asyncio import FIRST_COMPLETED, Future, ensure_future, sleep, wait
 from collections import deque
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Callable, Deque, Dict, Hashable
+from typing import TYPE_CHECKING, Any, Callable, Dict, Hashable
 
 from prompt_toolkit.application.current import get_app
 from prompt_toolkit.cursor_shapes import CursorShape
@@ -233,7 +233,7 @@ def _output_screen_diff(
     # output. That way, we're sure that the terminal scrolls up, even when the
     # lower lines of the canvas just contain whitespace.
 
-    # The most obvious reason that we actually want this behaviour is the avoid
+    # The most obvious reason that we actually want this behavior is the avoid
     # the artifact of the input scrolling when the completion menu is shown.
     # (If the scrolling is actually wanted, the layout can still be build in a
     # way to behave that way by setting a dynamic height.)
@@ -319,6 +319,7 @@ class _StyleStringHasStyleCache(Dict[str, bool]):
 
 class CPR_Support(Enum):
     "Enum: whether or not CPR is supported."
+
     SUPPORTED = "SUPPORTED"
     NOT_SUPPORTED = "NOT_SUPPORTED"
     UNKNOWN = "UNKNOWN"
@@ -357,7 +358,7 @@ class Renderer:
         self._cursor_key_mode_reset = False
 
         # Future set when we are waiting for a CPR flag.
-        self._waiting_for_cpr_futures: Deque[Future[None]] = deque()
+        self._waiting_for_cpr_futures: deque[Future[None]] = deque()
         self.cpr_support = CPR_Support.UNKNOWN
 
         if not output.responds_to_cpr:

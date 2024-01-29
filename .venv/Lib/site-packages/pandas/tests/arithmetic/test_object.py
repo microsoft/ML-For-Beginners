@@ -8,10 +8,15 @@ import operator
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
+import pandas.util._test_decorators as td
+
 import pandas as pd
 from pandas import (
     Series,
     Timestamp,
+    option_context,
 )
 import pandas._testing as tm
 from pandas.core import ops
@@ -31,20 +36,24 @@ class TestObjectComparisons:
         expected = func(ser.astype(float), shifted.astype(float))
         tm.assert_series_equal(result, expected)
 
-    def test_object_comparisons(self):
-        ser = Series(["a", "b", np.nan, "c", "a"])
+    @pytest.mark.parametrize(
+        "infer_string", [False, pytest.param(True, marks=td.skip_if_no("pyarrow"))]
+    )
+    def test_object_comparisons(self, infer_string):
+        with option_context("future.infer_string", infer_string):
+            ser = Series(["a", "b", np.nan, "c", "a"])
 
-        result = ser == "a"
-        expected = Series([True, False, False, False, True])
-        tm.assert_series_equal(result, expected)
+            result = ser == "a"
+            expected = Series([True, False, False, False, True])
+            tm.assert_series_equal(result, expected)
 
-        result = ser < "a"
-        expected = Series([False, False, False, False, False])
-        tm.assert_series_equal(result, expected)
+            result = ser < "a"
+            expected = Series([False, False, False, False, False])
+            tm.assert_series_equal(result, expected)
 
-        result = ser != "a"
-        expected = -(ser == "a")
-        tm.assert_series_equal(result, expected)
+            result = ser != "a"
+            expected = -(ser == "a")
+            tm.assert_series_equal(result, expected)
 
     @pytest.mark.parametrize("dtype", [None, object])
     def test_more_na_comparisons(self, dtype):
@@ -167,12 +176,16 @@ class TestArithmetic:
         # invalid ops
         box = box_with_array
 
-        obj_ser = tm.makeObjectSeries()
-        obj_ser.name = "objects"
+        obj_ser = Series(list("abc"), dtype=object, name="objects")
 
         obj_ser = tm.box_expected(obj_ser, box)
         msg = "|".join(
-            ["can only concatenate str", "unsupported operand type", "must be str"]
+            [
+                "can only concatenate str",
+                "unsupported operand type",
+                "must be str",
+                "has no kernel",
+            ]
         )
         with pytest.raises(Exception, match=msg):
             op(obj_ser, 1)
@@ -290,8 +303,9 @@ class TestArithmetic:
         index += "_x"
         assert "a_x" in index
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="add doesn't work")
     def test_add(self):
-        index = tm.makeStringIndex(100)
+        index = pd.Index([str(i) for i in range(10)])
         expected = pd.Index(index.values * 2)
         tm.assert_index_equal(index + index, expected)
         tm.assert_index_equal(index + index.tolist(), expected)
@@ -304,17 +318,24 @@ class TestArithmetic:
         expected = pd.Index(["1a", "1b", "1c"])
         tm.assert_index_equal("1" + index, expected)
 
-    def test_sub_fail(self):
-        index = tm.makeStringIndex(100)
+    def test_sub_fail(self, using_infer_string):
+        index = pd.Index([str(i) for i in range(10)])
 
-        msg = "unsupported operand type|Cannot broadcast"
-        with pytest.raises(TypeError, match=msg):
+        if using_infer_string:
+            import pyarrow as pa
+
+            err = pa.lib.ArrowNotImplementedError
+            msg = "has no kernel"
+        else:
+            err = TypeError
+            msg = "unsupported operand type|Cannot broadcast"
+        with pytest.raises(err, match=msg):
             index - "a"
-        with pytest.raises(TypeError, match=msg):
+        with pytest.raises(err, match=msg):
             index - index
-        with pytest.raises(TypeError, match=msg):
+        with pytest.raises(err, match=msg):
             index - index.tolist()
-        with pytest.raises(TypeError, match=msg):
+        with pytest.raises(err, match=msg):
             index.tolist() - index
 
     def test_sub_object(self):

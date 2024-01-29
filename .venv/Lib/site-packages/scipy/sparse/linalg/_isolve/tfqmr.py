@@ -1,12 +1,15 @@
 import numpy as np
+from .iterative import _get_atol_rtol
 from .utils import make_system
+from scipy._lib.deprecation import _NoValue, _deprecate_positional_args
 
 
 __all__ = ['tfqmr']
 
 
-def tfqmr(A, b, x0=None, tol=1e-5, maxiter=None, M=None,
-          callback=None, atol=None, show=False):
+@_deprecate_positional_args(version="1.14.0")
+def tfqmr(A, b, x0=None, *, tol=_NoValue, maxiter=None, M=None,
+          callback=None, atol=None, rtol=1e-5, show=False):
     """
     Use Transpose-Free Quasi-Minimal Residual iteration to solve ``Ax = b``.
 
@@ -21,15 +24,15 @@ def tfqmr(A, b, x0=None, tol=1e-5, maxiter=None, M=None,
         Right hand side of the linear system. Has shape (N,) or (N,1).
     x0 : {ndarray}
         Starting guess for the solution.
-    tol, atol : float, optional
-        Tolerances for convergence, ``norm(residual) <= max(tol*norm(b-Ax0), atol)``.
-        The default for `tol` is 1.0e-5.
-        The default for `atol` is ``tol * norm(b-Ax0)``.
+    rtol, atol : float, optional
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``rtol=1e-5``, the default for ``atol`` is ``rtol``.
 
         .. warning::
 
-           The default value for `atol` will be changed in a future release.
-           For future compatibility, specify `atol` explicitly.
+           The default value for ``atol`` will be changed to ``0.0`` in
+           SciPy 1.14.0.
     maxiter : int, optional
         Maximum number of iterations.  Iteration will stop after maxiter
         steps even if the specified tolerance has not been achieved.
@@ -47,6 +50,11 @@ def tfqmr(A, b, x0=None, tol=1e-5, maxiter=None, M=None,
         Specify ``show = True`` to show the convergence, ``show = False`` is
         to close the output of the convergence.
         Default is `False`.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `tfqmr` keyword argument ``tol`` is deprecated in favor of ``rtol``
+           and will be removed in SciPy 1.14.0.
 
     Returns
     -------
@@ -123,17 +131,16 @@ def tfqmr(A, b, x0=None, tol=1e-5, maxiter=None, M=None,
     v = M.matvec(A.matvec(r))
     uhat = v
     d = theta = eta = 0.
-    rho = np.inner(rstar.conjugate(), r)
+    # at this point we know rstar == r, so rho is always real
+    rho = np.inner(rstar.conjugate(), r).real
     rhoLast = rho
     r0norm = np.sqrt(rho)
     tau = r0norm
     if r0norm == 0:
         return (postprocess(x), 0)
 
-    if atol is None:
-        atol = tol * r0norm
-    else:
-        atol = max(atol, tol * r0norm)
+    # we call this to get the right atol and raise warnings as necessary
+    atol, _ = _get_atol_rtol('tfqmr', r0norm, tol, atol, rtol)
 
     for iter in range(maxiter):
         even = iter % 2 == 0
@@ -158,11 +165,11 @@ def tfqmr(A, b, x0=None, tol=1e-5, maxiter=None, M=None,
         if callback is not None:
             callback(x)
 
-        # Convergence criteron
+        # Convergence criterion
         if tau * np.sqrt(iter+1) < atol:
             if (show):
                 print("TFQMR: Linear solve converged due to reach TOL "
-                      "iterations {}".format(iter+1))
+                      f"iterations {iter+1}")
             return (postprocess(x), 0)
 
         if (not even):
@@ -180,5 +187,5 @@ def tfqmr(A, b, x0=None, tol=1e-5, maxiter=None, M=None,
 
     if (show):
         print("TFQMR: Linear solve not converged due to reach MAXIT "
-              "iterations {}".format(iter+1))
+              f"iterations {iter+1}")
     return (postprocess(x), maxiter)

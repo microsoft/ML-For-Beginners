@@ -50,7 +50,7 @@ import typing
 from typing import Union, Any, Type, Optional, Callable, TypeVar, Tuple, Awaitable
 
 if typing.TYPE_CHECKING:
-    from typing import Dict, List  # noqa: F401
+    from typing import Dict, List, Set  # noqa: F401
 
     from typing_extensions import Protocol
 else:
@@ -158,6 +158,18 @@ class IOLoop(Configurable):
 
     # In Python 3, _ioloop_for_asyncio maps from asyncio loops to IOLoops.
     _ioloop_for_asyncio = dict()  # type: Dict[asyncio.AbstractEventLoop, IOLoop]
+
+    # Maintain a set of all pending tasks to follow the warning in the docs
+    # of asyncio.create_tasks:
+    # https://docs.python.org/3.11/library/asyncio-task.html#asyncio.create_task
+    # This ensures that all pending tasks have a strong reference so they
+    # will not be garbage collected before they are finished.
+    # (Thus avoiding "task was destroyed but it is pending" warnings)
+    # An analogous change has been proposed in cpython for 3.13:
+    # https://github.com/python/cpython/issues/91887
+    # If that change is accepted, this can eventually be removed.
+    # If it is not, we will consider the rationale and may remove this.
+    _pending_tasks = set()  # type: Set[Future]
 
     @classmethod
     def configure(
@@ -632,9 +644,6 @@ class IOLoop(Configurable):
         other interaction with the `IOLoop` must be done from that
         `IOLoop`'s thread.  `add_callback()` may be used to transfer
         control from other threads to the `IOLoop`'s thread.
-
-        To add a callback from a signal handler, see
-        `add_callback_from_signal`.
         """
         raise NotImplementedError()
 
@@ -643,8 +652,13 @@ class IOLoop(Configurable):
     ) -> None:
         """Calls the given callback on the next I/O loop iteration.
 
-        Safe for use from a Python signal handler; should not be used
-        otherwise.
+        Intended to be afe for use from a Python signal handler; should not be
+        used otherwise.
+
+        .. deprecated:: 6.4
+           Use ``asyncio.AbstractEventLoop.add_signal_handler`` instead.
+           This method is suspected to have been broken since Tornado 5.0 and
+           will be removed in version 7.0.
         """
         raise NotImplementedError()
 
@@ -682,22 +696,20 @@ class IOLoop(Configurable):
             # the error logging (i.e. it goes to tornado.log.app_log
             # instead of asyncio's log).
             future.add_done_callback(
-                lambda f: self._run_callback(functools.partial(callback, future))
+                lambda f: self._run_callback(functools.partial(callback, f))
             )
         else:
             assert is_future(future)
             # For concurrent futures, we use self.add_callback, so
             # it's fine if future_add_done_callback inlines that call.
-            future_add_done_callback(
-                future, lambda f: self.add_callback(callback, future)
-            )
+            future_add_done_callback(future, lambda f: self.add_callback(callback, f))
 
     def run_in_executor(
         self,
         executor: Optional[concurrent.futures.Executor],
         func: Callable[..., _T],
         *args: Any
-    ) -> Awaitable[_T]:
+    ) -> "Future[_T]":
         """Runs a function in a ``concurrent.futures.Executor``. If
         ``executor`` is ``None``, the IO loop's default executor will be used.
 
@@ -802,6 +814,12 @@ class IOLoop(Configurable):
                 fd.close()
         except OSError:
             pass
+
+    def _register_task(self, f: Future) -> None:
+        self._pending_tasks.add(f)
+
+    def _unregister_task(self, f: Future) -> None:
+        self._pending_tasks.discard(f)
 
 
 class _Timeout(object):

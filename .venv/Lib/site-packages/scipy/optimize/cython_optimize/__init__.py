@@ -22,7 +22,7 @@ The zeros functions in `~scipy.optimize.cython_optimize` expect a callback that
 takes a double for the scalar independent variable as the 1st argument and a
 user defined ``struct`` with any extra parameters as the 2nd argument. ::
 
-    double (*callback_type)(double, void*)
+    double (*callback_type)(double, void*) noexcept
 
 
 Examples
@@ -55,7 +55,7 @@ These are the basic steps:
 
 
        # user-defined callback
-       cdef double f(double x, void *args):
+       cdef double f(double x, void *args) noexcept:
            cdef test_params *myargs = <test_params *> args
            return myargs.C0 - math.exp(-(x - myargs.C1))
 

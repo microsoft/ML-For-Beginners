@@ -6,33 +6,37 @@ from numpy.testing import assert_
 import pytest
 
 from scipy.optimize import _nonlin as nonlin, root
+from scipy.sparse import csr_array
 from numpy import diag, dot
 from numpy.linalg import inv
 import numpy as np
 
 from .test_minpack import pressure_network
 
-SOLVERS = {'anderson': nonlin.anderson, 'diagbroyden': nonlin.diagbroyden,
-           'linearmixing': nonlin.linearmixing, 'excitingmixing': nonlin.excitingmixing,
-           'broyden1': nonlin.broyden1, 'broyden2': nonlin.broyden2,
+SOLVERS = {'anderson': nonlin.anderson,
+           'diagbroyden': nonlin.diagbroyden,
+           'linearmixing': nonlin.linearmixing,
+           'excitingmixing': nonlin.excitingmixing,
+           'broyden1': nonlin.broyden1,
+           'broyden2': nonlin.broyden2,
            'krylov': nonlin.newton_krylov}
 MUST_WORK = {'anderson': nonlin.anderson, 'broyden1': nonlin.broyden1,
              'broyden2': nonlin.broyden2, 'krylov': nonlin.newton_krylov}
 
-#-------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Test problems
-#-------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 
 def F(x):
     x = np.asarray(x).T
-    d = diag([3,2,1.5,1,0.5])
+    d = diag([3, 2, 1.5, 1, 0.5])
     c = 0.01
     f = -d @ x - c * float(x.T @ x) * x
     return f
 
 
-F.xin = [1,1,1,1,1]
+F.xin = [1, 1, 1, 1, 1]
 F.KNOWN_BAD = {}
 F.JAC_KSP_BAD = {}
 F.ROOT_JAC_KSP_BAD = {}
@@ -42,7 +46,7 @@ def F2(x):
     return x
 
 
-F2.xin = [1,2,3,4,5,6]
+F2.xin = [1, 2, 3, 4, 5, 6]
 F2.KNOWN_BAD = {'linearmixing': nonlin.linearmixing,
                 'excitingmixing': nonlin.excitingmixing}
 F2.JAC_KSP_BAD = {}
@@ -53,7 +57,7 @@ def F2_lucky(x):
     return x
 
 
-F2_lucky.xin = [0,0,0,0,0,0]
+F2_lucky.xin = [0, 0, 0, 0, 0, 0]
 F2_lucky.KNOWN_BAD = {}
 F2_lucky.JAC_KSP_BAD = {}
 F2_lucky.ROOT_JAC_KSP_BAD = {}
@@ -65,7 +69,7 @@ def F3(x):
     return A @ x - b
 
 
-F3.xin = [1,2,3]
+F3.xin = [1, 2, 3]
 F3.KNOWN_BAD = {}
 F3.JAC_KSP_BAD = {}
 F3.ROOT_JAC_KSP_BAD = {}
@@ -105,7 +109,7 @@ F5.ROOT_JAC_KSP_BAD = {'minres'}
 def F6(x):
     x1, x2 = x
     J0 = np.array([[-4.256, 14.7],
-                [0.8394989, 0.59964207]])
+                   [0.8394989, 0.59964207]])
     v = np.array([(x1 + 3) * (x2**5 - 7) + 3*6,
                   np.sin(x2 * np.exp(x1) - 1)])
     return -np.linalg.solve(J0, v)
@@ -119,9 +123,9 @@ F6.JAC_KSP_BAD = {}
 F6.ROOT_JAC_KSP_BAD = {}
 
 
-#-------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Tests
-#-------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 
 class TestNonlin:
@@ -168,6 +172,7 @@ class TestNonlin:
     def _check_func_fail(self, *a, **kw):
         pass
 
+    @pytest.mark.filterwarnings('ignore::DeprecationWarning')
     def test_problem_nonlin(self):
         for f in [F, F2, F2_lucky, F3, F4_powell, F5, F6]:
             for func in SOLVERS.values():
@@ -177,6 +182,7 @@ class TestNonlin:
                     continue
                 self._check_nonlin_func(f, func)
 
+    @pytest.mark.filterwarnings('ignore::DeprecationWarning')
     @pytest.mark.parametrize("method", ['lgmres', 'gmres', 'bicgstab', 'cgs',
                                         'minres', 'tfqmr'])
     def test_tol_norm_called(self, method):
@@ -192,6 +198,7 @@ class TestNonlin:
                              tol_norm=local_norm_func)
         assert_(self._tol_norm_used)
 
+    @pytest.mark.filterwarnings('ignore::DeprecationWarning')
     def test_problem_root(self):
         for f in [F, F2, F2_lucky, F3, F4_powell, F5, F6]:
             for meth in SOLVERS:
@@ -205,14 +212,14 @@ class TestNonlin:
 class TestSecant:
     """Check that some Jacobian approximations satisfy the secant condition"""
 
-    xs = [np.array([1,2,3,4,5], float),
-          np.array([2,3,4,5,1], float),
-          np.array([3,4,5,1,2], float),
-          np.array([4,5,1,2,3], float),
-          np.array([9,1,9,1,3], float),
-          np.array([0,1,9,1,3], float),
-          np.array([5,5,7,1,1], float),
-          np.array([1,2,7,5,1], float),]
+    xs = [np.array([1., 2., 3., 4., 5.]),
+          np.array([2., 3., 4., 5., 1.]),
+          np.array([3., 4., 5., 1., 2.]),
+          np.array([4., 5., 1., 2., 3.]),
+          np.array([9., 1., 9., 1., 3.]),
+          np.array([0., 1., 9., 1., 3.]),
+          np.array([5., 5., 7., 1., 1.]),
+          np.array([1., 2., 7., 5., 1.]),]
     fs = [x**2 - 1 for x in xs]
 
     def _check_secant(self, jac_cls, npoints=1, **kw):
@@ -252,7 +259,7 @@ class TestSecant:
         for last_j, (x, f) in enumerate(zip(self.xs[1:], self.fs[1:])):
             df = f - self.fs[last_j]
             dx = x - self.xs[last_j]
-            B += (df - dot(B, dx))[:,None] * dx[None,:] / dot(dx, dx)
+            B += (df - dot(B, dx))[:, None] * dx[None, :] / dot(dx, dx)
             jac.update(x, f)
             assert_(np.allclose(jac.todense(), B, rtol=1e-10, atol=1e-13))
 
@@ -266,7 +273,7 @@ class TestSecant:
         for last_j, (x, f) in enumerate(zip(self.xs[1:], self.fs[1:])):
             df = f - self.fs[last_j]
             dx = x - self.xs[last_j]
-            H += (dx - dot(H, df))[:,None] * df[None,:] / dot(df, df)
+            H += (dx - dot(H, df))[:, None] * df[None, :] / dot(df, df)
             jac.update(x, f)
             assert_(np.allclose(jac.todense(), inv(H), rtol=1e-10, atol=1e-13))
 
@@ -319,9 +326,38 @@ class TestLinear:
         self._check(nonlin.KrylovJacobian, 20, 2, False, inner_m=10)
         self._check(nonlin.KrylovJacobian, 20, 2, True, inner_m=10)
 
+    def _check_autojac(self, A, b):
+        def func(x):
+            return A.dot(x) - b
+
+        def jac(v):
+            return A
+
+        sol = nonlin.nonlin_solve(func, np.zeros(b.shape[0]), jac, maxiter=2,
+                                  f_tol=1e-6, line_search=None, verbose=0)
+        np.testing.assert_allclose(A @ sol, b, atol=1e-6)
+        # test jac input as array -- not a function
+        sol = nonlin.nonlin_solve(func, np.zeros(b.shape[0]), A, maxiter=2,
+                                  f_tol=1e-6, line_search=None, verbose=0)
+        np.testing.assert_allclose(A @ sol, b, atol=1e-6)
+
+    def test_jac_sparse(self):
+        A = csr_array([[1, 2], [2, 1]])
+        b = np.array([1, -1])
+        self._check_autojac(A, b)
+        self._check_autojac((1 + 2j) * A, (2 + 2j) * b)
+
+    def test_jac_ndarray(self):
+        A = np.array([[1, 2], [2, 1]])
+        b = np.array([1, -1])
+        self._check_autojac(A, b)
+        self._check_autojac((1 + 2j) * A, (2 + 2j) * b)
+
 
 class TestJacobianDotSolve:
-    """Check that solve/dot methods in Jacobian approximations are consistent"""
+    """
+    Check that solve/dot methods in Jacobian approximations are consistent
+    """
 
     def _func(self, x):
         return x**2 - 1 + np.dot(self.A, x)
@@ -422,31 +458,31 @@ class TestNonlinOldTests:
     """
 
     def test_broyden1(self):
-        x = nonlin.broyden1(F,F.xin,iter=12,alpha=1)
+        x = nonlin.broyden1(F, F.xin, iter=12, alpha=1)
         assert_(nonlin.norm(x) < 1e-9)
         assert_(nonlin.norm(F(x)) < 1e-9)
 
     def test_broyden2(self):
-        x = nonlin.broyden2(F,F.xin,iter=12,alpha=1)
+        x = nonlin.broyden2(F, F.xin, iter=12, alpha=1)
         assert_(nonlin.norm(x) < 1e-9)
         assert_(nonlin.norm(F(x)) < 1e-9)
 
     def test_anderson(self):
-        x = nonlin.anderson(F,F.xin,iter=12,alpha=0.03,M=5)
+        x = nonlin.anderson(F, F.xin, iter=12, alpha=0.03, M=5)
         assert_(nonlin.norm(x) < 0.33)
 
     def test_linearmixing(self):
-        x = nonlin.linearmixing(F,F.xin,iter=60,alpha=0.5)
+        x = nonlin.linearmixing(F, F.xin, iter=60, alpha=0.5)
         assert_(nonlin.norm(x) < 1e-7)
         assert_(nonlin.norm(F(x)) < 1e-7)
 
     def test_exciting(self):
-        x = nonlin.excitingmixing(F,F.xin,iter=20,alpha=0.5)
+        x = nonlin.excitingmixing(F, F.xin, iter=20, alpha=0.5)
         assert_(nonlin.norm(x) < 1e-5)
         assert_(nonlin.norm(F(x)) < 1e-5)
 
     def test_diagbroyden(self):
-        x = nonlin.diagbroyden(F,F.xin,iter=11,alpha=1)
+        x = nonlin.diagbroyden(F, F.xin, iter=11, alpha=1)
         assert_(nonlin.norm(x) < 1e-8)
         assert_(nonlin.norm(F(x)) < 1e-8)
 

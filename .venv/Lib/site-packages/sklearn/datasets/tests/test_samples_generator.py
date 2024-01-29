@@ -22,12 +22,14 @@ from sklearn.datasets import (
     make_regression,
     make_s_curve,
     make_sparse_coded_signal,
+    make_sparse_spd_matrix,
     make_sparse_uncorrelated,
     make_spd_matrix,
     make_swiss_roll,
 )
 from sklearn.utils._testing import (
     assert_allclose,
+    assert_allclose_dense_sparse,
     assert_almost_equal,
     assert_array_almost_equal,
     assert_array_equal,
@@ -134,7 +136,7 @@ def test_make_classification_informative_features():
 
             # Cluster by sign, viewed as strings to allow uniquing
             signs = np.sign(X)
-            signs = signs.view(dtype="|S{0}".format(signs.strides[0]))
+            signs = signs.view(dtype="|S{0}".format(signs.strides[0])).ravel()
             unique_signs, cluster_index = np.unique(signs, return_inverse=True)
 
             assert (
@@ -549,9 +551,61 @@ def test_make_spd_matrix():
     from numpy.linalg import eig
 
     eigenvalues, _ = eig(X)
-    assert_array_equal(
-        eigenvalues > 0, np.array([True] * 5), "X is not positive-definite"
+    assert np.all(eigenvalues > 0), "X is not positive-definite"
+
+
+@pytest.mark.parametrize("norm_diag", [True, False])
+@pytest.mark.parametrize(
+    "sparse_format", [None, "bsr", "coo", "csc", "csr", "dia", "dok", "lil"]
+)
+def test_make_sparse_spd_matrix(norm_diag, sparse_format, global_random_seed):
+    n_dim = 5
+    X = make_sparse_spd_matrix(
+        n_dim=n_dim,
+        norm_diag=norm_diag,
+        sparse_format=sparse_format,
+        random_state=global_random_seed,
     )
+
+    assert X.shape == (n_dim, n_dim), "X shape mismatch"
+    if sparse_format is None:
+        assert not sp.issparse(X)
+        assert_allclose(X, X.T)
+        Xarr = X
+    else:
+        assert sp.issparse(X) and X.format == sparse_format
+        assert_allclose_dense_sparse(X, X.T)
+        Xarr = X.toarray()
+
+    from numpy.linalg import eig
+
+    # Do not use scipy.sparse.linalg.eigs because it cannot find all eigenvalues
+    eigenvalues, _ = eig(Xarr)
+    assert np.all(eigenvalues > 0), "X is not positive-definite"
+
+    if norm_diag:
+        # Check that leading diagonal elements are 1
+        assert_array_almost_equal(Xarr.diagonal(), np.ones(n_dim))
+
+
+# TODO(1.6): remove
+def test_make_sparse_spd_matrix_deprecation_warning():
+    """Check the message for future deprecation."""
+    warn_msg = "dim was deprecated in version 1.4"
+    with pytest.warns(FutureWarning, match=warn_msg):
+        make_sparse_spd_matrix(
+            dim=1,
+        )
+
+    error_msg = "`dim` and `n_dim` cannot be both specified"
+    with pytest.raises(ValueError, match=error_msg):
+        make_sparse_spd_matrix(
+            dim=1,
+            n_dim=1,
+        )
+
+    X = make_sparse_spd_matrix()
+    assert X.shape[1] == 1
 
 
 @pytest.mark.parametrize("hole", [False, True])

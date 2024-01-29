@@ -52,7 +52,7 @@ def generate_online_numba_ewma_func(
         exponentially weighted mean accounting minimum periods.
         """
         result = np.empty(values.shape)
-        weighted_avg = values[0]
+        weighted_avg = values[0].copy()
         nobs = (~np.isnan(weighted_avg)).astype(np.int64)
         result[0] = np.where(nobs >= minimum_periods, weighted_avg, np.nan)
 

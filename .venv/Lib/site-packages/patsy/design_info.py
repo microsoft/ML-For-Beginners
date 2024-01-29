@@ -471,7 +471,7 @@ class DesignInfo(object):
         """
         if isinstance(columns_specifier, slice):
             return columns_specifier
-        if np.issubsctype(type(columns_specifier), np.integer):
+        if np.issubdtype(type(columns_specifier), np.integer):
             return slice(columns_specifier, columns_specifier + 1)
         if (self.term_slices is not None
             and columns_specifier in self.term_slices):

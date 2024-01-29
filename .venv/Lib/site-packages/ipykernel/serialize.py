@@ -122,7 +122,7 @@ def deserialize_object(buffers, g=None):
     """
     bufs = list(buffers)
     pobj = bufs.pop(0)
-    canned = pickle.loads(pobj)  # noqa
+    canned = pickle.loads(pobj)
     if istype(canned, sequence_types) and len(canned) < MAX_ITEMS:
         for c in canned:
             _restore_buffers(c, bufs)
@@ -183,9 +183,9 @@ def unpack_apply_message(bufs, g=None, copy=True):
     bufs = list(bufs)  # allow us to pop
     assert len(bufs) >= 2, "not enough buffers!"
     pf = bufs.pop(0)
-    f = uncan(pickle.loads(pf), g)  # noqa
+    f = uncan(pickle.loads(pf), g)
     pinfo = bufs.pop(0)
-    info = pickle.loads(pinfo)  # noqa
+    info = pickle.loads(pinfo)
     arg_bufs, kwarg_bufs = bufs[: info["narg_bufs"]], bufs[info["narg_bufs"] :]
 
     args_list = []

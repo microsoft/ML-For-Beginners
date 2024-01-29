@@ -25,11 +25,11 @@ from pandas.compat._constants import (
 import pandas.compat.compressors
 from pandas.compat.numpy import is_numpy_dev
 from pandas.compat.pyarrow import (
-    pa_version_under7p0,
-    pa_version_under8p0,
-    pa_version_under9p0,
+    pa_version_under10p1,
     pa_version_under11p0,
     pa_version_under13p0,
+    pa_version_under14p0,
+    pa_version_under14p1,
 )
 
 if TYPE_CHECKING:
@@ -181,11 +181,11 @@ def get_bz2_file() -> type[pandas.compat.compressors.BZ2File]:
 
 __all__ = [
     "is_numpy_dev",
-    "pa_version_under7p0",
-    "pa_version_under8p0",
-    "pa_version_under9p0",
+    "pa_version_under10p1",
     "pa_version_under11p0",
     "pa_version_under13p0",
+    "pa_version_under14p0",
+    "pa_version_under14p1",
     "IS64",
     "ISMUSL",
     "PY310",

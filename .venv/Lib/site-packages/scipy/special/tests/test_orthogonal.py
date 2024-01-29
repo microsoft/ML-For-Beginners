@@ -278,7 +278,7 @@ def verify_gauss_quad(root_func, eval_func, weight_func, a, b, N,
     # this test is copied from numpy's TestGauss in test_hermite.py
     x, w, mu = root_func(N, True)
 
-    n = np.arange(N)
+    n = np.arange(N, dtype=np.dtype("long"))
     v = eval_func(n[:,np.newaxis], x)
     vv = np.dot(v*w, v.T)
     vd = 1 / np.sqrt(vv.diagonal())
@@ -592,7 +592,8 @@ def test_roots_chebyt():
     weightf = orth.chebyt(5).weight_func
     verify_gauss_quad(sc.roots_chebyt, sc.eval_chebyt, weightf, -1., 1., 5)
     verify_gauss_quad(sc.roots_chebyt, sc.eval_chebyt, weightf, -1., 1., 25)
-    verify_gauss_quad(sc.roots_chebyt, sc.eval_chebyt, weightf, -1., 1., 100, atol=1e-12)
+    verify_gauss_quad(sc.roots_chebyt, sc.eval_chebyt, weightf, -1., 1., 100,
+                      atol=1e-12)
 
     x, w = sc.roots_chebyt(5, False)
     y, v, m = sc.roots_chebyt(5, True)
@@ -632,7 +633,8 @@ def test_roots_chebyc():
     weightf = orth.chebyc(5).weight_func
     verify_gauss_quad(sc.roots_chebyc, sc.eval_chebyc, weightf, -2., 2., 5)
     verify_gauss_quad(sc.roots_chebyc, sc.eval_chebyc, weightf, -2., 2., 25)
-    verify_gauss_quad(sc.roots_chebyc, sc.eval_chebyc, weightf, -2., 2., 100, atol=1e-12)
+    verify_gauss_quad(sc.roots_chebyc, sc.eval_chebyc, weightf, -2., 2., 100,
+                      atol=1e-12)
 
     x, w = sc.roots_chebyc(5, False)
     y, v, m = sc.roots_chebyc(5, True)
@@ -798,5 +800,5 @@ def test_roots_genlaguerre():
 
 
 def test_gh_6721():
-    # Regresssion test for gh_6721. This should not raise.
+    # Regression test for gh_6721. This should not raise.
     sc.chebyt(65)(0.2)

@@ -14,22 +14,7 @@ pytestmark = td.skip_array_manager_invalid_test
 
 
 class TestToDictOfBlocks:
-    def test_copy_blocks(self, float_frame):
-        # GH#9607
-        df = DataFrame(float_frame, copy=True)
-        column = df.columns[0]
-
-        # use the default copy=True, change a column
-        _last_df = None
-        blocks = df._to_dict_of_blocks(copy=True)
-        for _df in blocks.values():
-            _last_df = _df
-            if column in _df:
-                _df.loc[:, column] = _df[column] + 1
-
-        # make sure we did not change the original DataFrame
-        assert _last_df is not None and not _last_df[column].equals(df[column])
-
+    @pytest.mark.filterwarnings("ignore:Setting a value on a view:FutureWarning")
     def test_no_copy_blocks(self, float_frame, using_copy_on_write):
         # GH#9607
         df = DataFrame(float_frame, copy=True)
@@ -37,7 +22,7 @@ class TestToDictOfBlocks:
 
         _last_df = None
         # use the copy=False, change a column
-        blocks = df._to_dict_of_blocks(copy=False)
+        blocks = df._to_dict_of_blocks()
         for _df in blocks.values():
             _last_df = _df
             if column in _df:
@@ -50,9 +35,7 @@ class TestToDictOfBlocks:
             assert _last_df is not None and not _last_df[column].equals(df[column])
 
 
-def test_to_dict_of_blocks_item_cache(request, using_copy_on_write):
-    if using_copy_on_write:
-        request.node.add_marker(pytest.mark.xfail(reason="CoW - not yet implemented"))
+def test_to_dict_of_blocks_item_cache(using_copy_on_write, warn_copy_on_write):
     # Calling to_dict_of_blocks should not poison item_cache
     df = DataFrame({"a": [1, 2, 3, 4], "b": ["a", "b", "c", "d"]})
     df["c"] = NumpyExtensionArray(np.array([1, 2, None, 3], dtype=object))
@@ -64,10 +47,13 @@ def test_to_dict_of_blocks_item_cache(request, using_copy_on_write):
     df._to_dict_of_blocks()
 
     if using_copy_on_write:
-        # TODO(CoW) we should disallow this, so `df` doesn't get updated,
-        # this currently still updates df, so this test fails
+        with pytest.raises(ValueError, match="read-only"):
+            ser.values[0] = "foo"
+    elif warn_copy_on_write:
         ser.values[0] = "foo"
-        assert df.loc[0, "b"] == "a"
+        assert df.loc[0, "b"] == "foo"
+        # with warning mode, the item cache is disabled
+        assert df["b"] is not ser
     else:
         # Check that the to_dict_of_blocks didn't break link between ser and df
         ser.values[0] = "foo"

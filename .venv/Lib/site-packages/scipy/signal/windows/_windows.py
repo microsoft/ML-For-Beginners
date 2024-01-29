@@ -976,8 +976,8 @@ def general_hamming(M, alpha, sym=True):
     -----
     The generalized Hamming window is defined as
 
-    .. math:: w(n) = \alpha - \left(1 - \alpha\right) \cos\left(\frac{2\pi{n}}{M-1}\right)
-              \qquad 0 \leq n \leq M-1
+    .. math:: w(n) = \alpha - \left(1 - \alpha\right)
+              \cos\left(\frac{2\pi{n}}{M-1}\right) \qquad 0 \leq n \leq M-1
 
     Both the common Hamming window and Hann window are special cases of the
     generalized Hamming window with :math:`\alpha` = 0.54 and :math:`\alpha` =
@@ -1545,7 +1545,8 @@ def chebwin(M, at, sym=True):
                       "the equivalent noise bandwidth of a Chebyshev window "
                       "does not grow monotonically with increasing sidelobe "
                       "attenuation when the attenuation is smaller than "
-                      "about 45 dB.")
+                      "about 45 dB.",
+                      stacklevel=2)
     if _len_guards(M):
         return np.ones(M)
     M, needs_trunc = _extend(M, sym)
@@ -1737,7 +1738,7 @@ def taylor(M, nbar=4, sll=30, norm=True, sym=True):
     constant sidelobe level for a parameterized number of near-in sidelobes,
     but then allows a taper beyond [2]_.
 
-    The SAR (synthetic aperature radar) community commonly uses Taylor
+    The SAR (synthetic aperture radar) community commonly uses Taylor
     weighting for image formation processing because it provides strong,
     selectable sidelobe suppression with minimum broadening of the
     mainlobe [1]_.
@@ -2007,15 +2008,14 @@ def dpss(M, NW, Kmax=None, sym=True, norm=None, return_ratios=False):
     ...                 'Corrected (subsample)'])
     >>> fig.tight_layout()
 
-    """  # noqa: E501
+    """
     if _len_guards(M):
         return np.ones(M)
     if norm is None:
         norm = 'approximate' if Kmax is None else 2
     known_norms = (2, 'approximate', 'subsample')
     if norm not in known_norms:
-        raise ValueError('norm must be one of %s, got %s'
-                         % (known_norms, norm))
+        raise ValueError(f'norm must be one of {known_norms}, got {norm}')
     if Kmax is None:
         singleton = True
         Kmax = 1

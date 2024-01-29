@@ -261,9 +261,8 @@ class Data:
         self.x = _conv(x)
 
         if not isinstance(self.x, numpy.ndarray):
-            raise ValueError(("Expected an 'ndarray' of data for 'x', "
-                              "but instead got data of type '{name}'").format(
-                    name=type(self.x).__name__))
+            raise ValueError("Expected an 'ndarray' of data for 'x', "
+                             f"but instead got data of type '{type(self.x).__name__}'")
 
         self.y = _conv(y)
         self.we = _conv(we)
@@ -375,9 +374,8 @@ class RealData(Data):
         self.x = _conv(x)
 
         if not isinstance(self.x, numpy.ndarray):
-            raise ValueError(("Expected an 'ndarray' of data for 'x', "
-                              "but instead got data of type '{name}'").format(
-                    name=type(self.x).__name__))
+            raise ValueError("Expected an 'ndarray' of data for 'x', "
+                              f"but instead got data of type '{type(self.x).__name__}'")
 
         self.y = _conv(y)
         self.sx = _conv(sx)
@@ -746,7 +744,7 @@ class ODR:
                 self.beta0 = _conv(self.model.estimate(self.data))
             else:
                 raise ValueError(
-                  "must specify beta0 or provide an estimater with the model"
+                  "must specify beta0 or provide an estimator with the model"
                 )
         else:
             self.beta0 = _conv(beta0)
@@ -871,9 +869,9 @@ class ODR:
                 "delta0 is not a %s-shaped array" % repr(self.data.x.shape))
 
         if self.data.x.size == 0:
-            warn(("Empty data detected for ODR instance. "
-                  "Do not expect any fitting to occur"),
-                 OdrWarning)
+            warn("Empty data detected for ODR instance. "
+                 "Do not expect any fitting to occur",
+                 OdrWarning, stacklevel=3)
 
     def _gen_work(self):
         """ Generate a suitable work array if one does not already exist.
@@ -1088,7 +1086,7 @@ class ODR:
         -------
         output : Output instance
             This object is also assigned to the attribute .output .
-        """
+        """  # noqa: E501
 
         args = (self.model.fcn, self.beta0, self.data.y, self.data.x)
         kwds = {'full_output': 1}

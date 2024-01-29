@@ -32,7 +32,7 @@ import itertools
 import warnings
 
 import numpy
-from numpy.core.multiarray import normalize_axis_index
+from scipy._lib._util import normalize_axis_index
 
 from scipy import special
 from . import _ni_support
@@ -71,6 +71,10 @@ def spline_filter1d(input, order=3, axis=-1, output=numpy.float64,
     spline_filter1d : ndarray
         The filtered input.
 
+    See Also
+    --------
+    spline_filter : Multidimensional spline filter.
+
     Notes
     -----
     All of the interpolation functions in `ndimage` do spline interpolation of
@@ -88,10 +92,6 @@ def spline_filter1d(input, order=3, axis=-1, output=numpy.float64,
 
     .. versionadded:: 1.6.0
         Complex-valued support added.
-
-    See Also
-    --------
-    spline_filter : Multidimensional spline filter.
 
     Examples
     --------
@@ -132,12 +132,25 @@ def spline_filter1d(input, order=3, axis=-1, output=numpy.float64,
         _nd_image.spline_filter1d(input, order, axis, output, mode)
     return output
 
-
+@docfiller
 def spline_filter(input, order=3, output=numpy.float64, mode='mirror'):
     """
     Multidimensional spline filter.
 
-    For more details, see `spline_filter1d`.
+    Parameters
+    ----------
+    %(input)s
+    order : int, optional
+        The order of the spline, default is 3.
+    output : ndarray or dtype, optional
+        The array in which to place the output, or the dtype of the returned
+        array. Default is ``numpy.float64``.
+    %(mode_interp_mirror)s
+
+    Returns
+    -------
+    spline_filter : ndarray
+        Filtered array. Has the same shape as `input`.
 
     See Also
     --------
@@ -606,7 +619,8 @@ def affine_transform(input, matrix, offset=0.0, output_shape=None,
         warnings.warn(
             "The behavior of affine_transform with a 1-D "
             "array supplied for the matrix parameter has changed in "
-            "SciPy 0.18.0."
+            "SciPy 0.18.0.",
+            stacklevel=2
         )
         _nd_image.zoom_shift(filtered, matrix, offset/matrix, output, order,
                              mode, cval, npad, False)
@@ -646,6 +660,10 @@ def shift(input, shift, output=None, order=3, mode='constant', cval=0.0,
     shift : ndarray
         The shifted input.
 
+    See Also
+    --------
+    affine_transform : Affine transformations
+
     Notes
     -----
     For complex-valued `input`, this function shifts the real and imaginary
@@ -654,6 +672,37 @@ def shift(input, shift, output=None, order=3, mode='constant', cval=0.0,
     .. versionadded:: 1.6.0
         Complex-valued support added.
 
+    Examples
+    --------
+    Import the necessary modules and an exemplary image.
+
+    >>> from scipy.ndimage import shift
+    >>> import matplotlib.pyplot as plt
+    >>> from scipy import datasets
+    >>> image = datasets.ascent()
+
+    Shift the image vertically by 20 pixels.
+
+    >>> image_shifted_vertically = shift(image, (20, 0))
+
+    Shift the image vertically by -200 pixels and horizontally by 100 pixels.
+
+    >>> image_shifted_both_directions = shift(image, (-200, 100))
+
+    Plot the original and the shifted images.
+
+    >>> fig, axes = plt.subplots(3, 1, figsize=(4, 12))
+    >>> plt.gray()  # show the filtered result in grayscale
+    >>> top, middle, bottom = axes
+    >>> for ax in axes:
+    ...     ax.set_axis_off()  # remove coordinate system
+    >>> top.imshow(image)
+    >>> top.set_title("Original image")
+    >>> middle.imshow(image_shifted_vertically)
+    >>> middle.set_title("Vertically shifted image")
+    >>> bottom.imshow(image_shifted_both_directions)
+    >>> bottom.set_title("Image shifted in both directions")
+    >>> fig.tight_layout()
     """
     if order < 0 or order > 5:
         raise RuntimeError('spline order not supported')
@@ -800,7 +849,8 @@ def zoom(input, zoom, output=None, order=3, mode='constant', cval=0.0,
         if suggest_mode is not None:
             warnings.warn(
                 ("It is recommended to use mode = {} instead of {} when "
-                 "grid_mode is True.").format(suggest_mode, mode)
+                 "grid_mode is True.").format(suggest_mode, mode),
+                stacklevel=2
             )
     mode = _ni_support._extend_mode_to_code(mode)
 
@@ -923,7 +973,7 @@ def rotate(input, angle, axes=(1, 0), reshape=True, output=None, order=3,
         out_bounds = rot_matrix @ [[0, 0, iy, iy],
                                    [0, ix, 0, ix]]
         # Compute the shape of the transformed input plane
-        out_plane_shape = (out_bounds.ptp(axis=1) + 0.5).astype(int)
+        out_plane_shape = (numpy.ptp(out_bounds, axis=1) + 0.5).astype(int)
     else:
         out_plane_shape = img_shape[axes]
 

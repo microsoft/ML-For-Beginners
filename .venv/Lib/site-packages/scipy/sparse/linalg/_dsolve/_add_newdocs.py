@@ -34,12 +34,13 @@ add_newdoc('scipy.sparse.linalg._dsolve._superlu', 'SuperLU',
     The LU decomposition can be used to solve matrix equations. Consider:
 
     >>> import numpy as np
-    >>> from scipy.sparse import csc_matrix, linalg as sla
-    >>> A = csc_matrix([[1,2,0,4],[1,0,0,1],[1,0,2,1],[2,2,1,0.]])
+    >>> from scipy.sparse import csc_matrix
+    >>> from scipy.sparse.linalg import splu
+    >>> A = csc_matrix([[1,2,0,4], [1,0,0,1], [1,0,2,1], [2,2,1,0.]])
 
     This can be solved for a given right-hand side:
 
-    >>> lu = sla.splu(A)
+    >>> lu = splu(A)
     >>> b = np.array([1, 2, 3, 4])
     >>> x = lu.solve(b)
     >>> A.dot(x)
@@ -50,22 +51,22 @@ add_newdoc('scipy.sparse.linalg._dsolve._superlu', 'SuperLU',
     indices:
 
     >>> lu.perm_r
-    array([0, 2, 1, 3], dtype=int32)
+    array([2, 1, 3, 0], dtype=int32)  # may vary
     >>> lu.perm_c
-    array([2, 0, 1, 3], dtype=int32)
+    array([0, 1, 3, 2], dtype=int32)  # may vary
 
     The L and U factors are sparse matrices in CSC format:
 
-    >>> lu.L.A
-    array([[ 1. ,  0. ,  0. ,  0. ],
-           [ 0. ,  1. ,  0. ,  0. ],
-           [ 0. ,  0. ,  1. ,  0. ],
-           [ 1. ,  0.5,  0.5,  1. ]])
-    >>> lu.U.A
-    array([[ 2.,  0.,  1.,  4.],
-           [ 0.,  2.,  1.,  1.],
-           [ 0.,  0.,  1.,  1.],
-           [ 0.,  0.,  0., -5.]])
+    >>> lu.L.toarray()
+    array([[ 1. ,  0. ,  0. ,  0. ],  # may vary
+           [ 0.5,  1. ,  0. ,  0. ],
+           [ 0.5, -1. ,  1. ,  0. ],
+           [ 0.5,  1. ,  0. ,  1. ]])
+    >>> lu.U.toarray()
+    array([[ 2. ,  2. ,  0. ,  1. ],  # may vary
+           [ 0. , -1. ,  1. , -0.5],
+           [ 0. ,  0. ,  5. , -1. ],
+           [ 0. ,  0. ,  0. ,  2. ]])
 
     The permutation matrices can be constructed:
 
@@ -74,7 +75,7 @@ add_newdoc('scipy.sparse.linalg._dsolve._superlu', 'SuperLU',
 
     We can reassemble the original matrix:
 
-    >>> (Pr.T @ (lu.L @ lu.U) @ Pc.T).A
+    >>> (Pr.T @ (lu.L @ lu.U) @ Pc.T).toarray()
     array([[ 1.,  2.,  0.,  4.],
            [ 1.,  0.,  0.,  1.],
            [ 1.,  0.,  2.,  1.],

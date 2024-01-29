@@ -9,7 +9,7 @@ def _validate_names(typename, field_names, extra_field_names):
     among field_names + extra_field_names.
     """
     for name in [typename] + field_names + extra_field_names:
-        if type(name) is not str:
+        if not isinstance(name, str):
             raise TypeError('typename and all field names must be strings')
         if not name.isidentifier():
             raise ValueError('typename and all field names must be valid '

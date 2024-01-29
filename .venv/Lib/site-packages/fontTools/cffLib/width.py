@@ -22,7 +22,6 @@ class missingdict(dict):
 
 
 def cumSum(f, op=add, start=0, decreasing=False):
-
     keys = sorted(f.keys())
     minx, maxx = keys[0], keys[-1]
 
@@ -46,7 +45,6 @@ def cumSum(f, op=add, start=0, decreasing=False):
 
 
 def byteCost(widths, default, nominal):
-
     if not hasattr(widths, "items"):
         d = defaultdict(int)
         for w in widths:

@@ -286,7 +286,7 @@ class DisplayObject(object):
         in the frontend. The MIME type of the data should match the
         subclasses used, so the Png subclass should be used for 'image/png'
         data. If the data is a URL, the data will first be downloaded
-        and then displayed. If
+        and then displayed.
 
         Parameters
         ----------

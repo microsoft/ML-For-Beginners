@@ -1,6 +1,7 @@
 """An application to launch a kernel by name in a local subprocess."""
 import os
 import signal
+import typing as t
 import uuid
 
 from jupyter_core.application import JupyterApp, base_flags
@@ -30,7 +31,7 @@ class KernelApp(JupyterApp):
         config=True
     )
 
-    def initialize(self, argv=None):
+    def initialize(self, argv: t.Union[str, t.Sequence[str], None] = None) -> None:
         """Initialize the application."""
         super().initialize(argv)
 
@@ -48,7 +49,7 @@ class KernelApp(JupyterApp):
         if os.name == "nt":
             return
 
-        def shutdown_handler(signo, frame):
+        def shutdown_handler(signo: int, frame: t.Any) -> None:
             self.loop.add_callback_from_signal(self.shutdown, signo)
 
         for sig in [signal.SIGTERM, signal.SIGINT]:

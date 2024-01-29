@@ -5,6 +5,10 @@ from typing import final
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
+from pandas.core.dtypes.common import is_string_dtype
+
 import pandas as pd
 import pandas._testing as tm
 from pandas.core import ops
@@ -25,13 +29,23 @@ class BaseOpsUtil:
         # The self.obj_bar_exc pattern isn't great in part because it can depend
         #  on op_name or dtypes, but we use it here for backward-compatibility.
         if op_name in ["__divmod__", "__rdivmod__"]:
-            return self.divmod_exc
-        if isinstance(obj, pd.Series) and isinstance(other, pd.Series):
-            return self.series_array_exc
+            result = self.divmod_exc
+        elif isinstance(obj, pd.Series) and isinstance(other, pd.Series):
+            result = self.series_array_exc
         elif isinstance(obj, pd.Series):
-            return self.series_scalar_exc
+            result = self.series_scalar_exc
         else:
-            return self.frame_scalar_exc
+            result = self.frame_scalar_exc
+
+        if using_pyarrow_string_dtype() and result is not None:
+            import pyarrow as pa
+
+            result = (  # type: ignore[assignment]
+                result,
+                pa.lib.ArrowNotImplementedError,
+                NotImplementedError,
+            )
+        return result
 
     def _cast_pointwise_result(self, op_name: str, obj, other, pointwise_result):
         # In _check_op we check that the result of a pointwise operation
@@ -128,12 +142,18 @@ class BaseArithmeticOpsTests(BaseOpsUtil):
 
     def test_arith_series_with_scalar(self, data, all_arithmetic_operators):
         # series & scalar
+        if all_arithmetic_operators == "__rmod__" and is_string_dtype(data.dtype):
+            pytest.skip("Skip testing Python string formatting")
+
         op_name = all_arithmetic_operators
         ser = pd.Series(data)
         self.check_opname(ser, op_name, ser.iloc[0])
 
     def test_arith_frame_with_scalar(self, data, all_arithmetic_operators):
         # frame & scalar
+        if all_arithmetic_operators == "__rmod__" and is_string_dtype(data.dtype):
+            pytest.skip("Skip testing Python string formatting")
+
         op_name = all_arithmetic_operators
         df = pd.DataFrame({"A": data})
         self.check_opname(df, op_name, data[0])
@@ -239,9 +259,23 @@ class BaseComparisonOpsTests(BaseOpsUtil):
 class BaseUnaryOpsTests(BaseOpsUtil):
     def test_invert(self, data):
         ser = pd.Series(data, name="name")
-        result = ~ser
-        expected = pd.Series(~data, name="name")
-        tm.assert_series_equal(result, expected)
+        try:
+            # 10 is an arbitrary choice here, just avoid iterating over
+            #  the whole array to trim test runtime
+            [~x for x in data[:10]]
+        except TypeError:
+            # scalars don't support invert -> we don't expect the vectorized
+            #  operation to succeed
+            with pytest.raises(TypeError):
+                ~ser
+            with pytest.raises(TypeError):
+                ~data
+        else:
+            # Note we do not reuse the pointwise result to construct expected
+            #  because python semantics for negating bools are weird see GH#54569
+            result = ~ser
+            expected = pd.Series(~data, name="name")
+            tm.assert_series_equal(result, expected)
 
     @pytest.mark.parametrize("ufunc", [np.positive, np.negative, np.abs])
     def test_unary_ufunc_dunder_equivalence(self, data, ufunc):

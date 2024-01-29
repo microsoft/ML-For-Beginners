@@ -233,7 +233,7 @@ def test_gumbel():
     This R calculation should match gumbel_r.
 
     > library(evd)
-    > libary(fitdistrplus)
+    > library(fitdistrplus)
     > data = data.frame(left=c(0, 2, 3, 9, 10, 10),
     +                   right=c(1, 2, 3, 9, NA, NA))
     > result = fitdistcens(data, 'gumbel',
@@ -356,7 +356,7 @@ def test_invweibull():
     is fixed at 0.
 
     > library(evd)
-    > libary(fitdistrplus)
+    > library(fitdistrplus)
     > data = data.frame(left=c(0, 2, 3, 9, 10, 10),
     +                   right=c(1, 2, 3, 9, NA, NA))
     > result = fitdistcens(data, 'frechet',

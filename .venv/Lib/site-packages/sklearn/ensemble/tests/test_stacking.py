@@ -7,8 +7,8 @@ from unittest.mock import Mock
 
 import numpy as np
 import pytest
-import scipy.sparse as sparse
 from numpy.testing import assert_array_equal
+from scipy import sparse
 
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, clone
 from sklearn.datasets import (
@@ -44,6 +44,7 @@ from sklearn.utils._testing import (
     assert_allclose_dense_sparse,
     ignore_warnings,
 )
+from sklearn.utils.fixes import COO_CONTAINERS, CSC_CONTAINERS, CSR_CONTAINERS
 
 diabetes = load_diabetes()
 X_diabetes, y_diabetes = diabetes.data, diabetes.target
@@ -217,11 +218,13 @@ def test_stacking_regressor_diabetes(cv, final_estimator, predict_params, passth
         assert_allclose(X_test, X_trans[:, -10:])
 
 
-@pytest.mark.parametrize("fmt", ["csc", "csr", "coo"])
-def test_stacking_regressor_sparse_passthrough(fmt):
+@pytest.mark.parametrize(
+    "sparse_container", COO_CONTAINERS + CSC_CONTAINERS + CSR_CONTAINERS
+)
+def test_stacking_regressor_sparse_passthrough(sparse_container):
     # Check passthrough behavior on a sparse X matrix
     X_train, X_test, y_train, _ = train_test_split(
-        sparse.coo_matrix(scale(X_diabetes)).asformat(fmt), y_diabetes, random_state=42
+        sparse_container(scale(X_diabetes)), y_diabetes, random_state=42
     )
     estimators = [("lr", LinearRegression()), ("svr", LinearSVR(dual="auto"))]
     rf = RandomForestRegressor(n_estimators=10, random_state=42)
@@ -235,11 +238,13 @@ def test_stacking_regressor_sparse_passthrough(fmt):
     assert X_test.format == X_trans.format
 
 
-@pytest.mark.parametrize("fmt", ["csc", "csr", "coo"])
-def test_stacking_classifier_sparse_passthrough(fmt):
+@pytest.mark.parametrize(
+    "sparse_container", COO_CONTAINERS + CSC_CONTAINERS + CSR_CONTAINERS
+)
+def test_stacking_classifier_sparse_passthrough(sparse_container):
     # Check passthrough behavior on a sparse X matrix
     X_train, X_test, y_train, _ = train_test_split(
-        sparse.coo_matrix(scale(X_iris)).asformat(fmt), y_iris, random_state=42
+        sparse_container(scale(X_iris)), y_iris, random_state=42
     )
     estimators = [("lr", LogisticRegression()), ("svc", LinearSVC(dual="auto"))]
     rf = RandomForestClassifier(n_estimators=10, random_state=42)

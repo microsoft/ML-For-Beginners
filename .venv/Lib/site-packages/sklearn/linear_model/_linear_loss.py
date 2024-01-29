@@ -12,18 +12,19 @@ class LinearModelLoss:
 
     Note that raw_prediction is also known as linear predictor.
 
-    The loss is the sum of per sample losses and includes a term for L2
+    The loss is the average of per sample losses and includes a term for L2
     regularization::
 
-        loss = sum_i s_i loss(y_i, X_i @ coef + intercept)
+        loss = 1 / s_sum * sum_i s_i loss(y_i, X_i @ coef + intercept)
                + 1/2 * l2_reg_strength * ||coef||_2^2
 
-    with sample weights s_i=1 if sample_weight=None.
+    with sample weights s_i=1 if sample_weight=None and s_sum=sum_i s_i.
 
     Gradient and hessian, for simplicity without intercept, are::
 
-        gradient = X.T @ loss.gradient + l2_reg_strength * coef
-        hessian = X.T @ diag(loss.hessian) @ X + l2_reg_strength * identity
+        gradient = 1 / s_sum * X.T @ loss.gradient + l2_reg_strength * coef
+        hessian = 1 / s_sum * X.T @ diag(loss.hessian) @ X
+                  + l2_reg_strength * identity
 
     Conventions:
         if fit_intercept:
@@ -182,7 +183,7 @@ class LinearModelLoss:
         n_threads=1,
         raw_prediction=None,
     ):
-        """Compute the loss as sum over point-wise losses.
+        """Compute the loss as weighted average over point-wise losses.
 
         Parameters
         ----------
@@ -209,7 +210,7 @@ class LinearModelLoss:
         Returns
         -------
         loss : float
-            Sum of losses per sample plus penalty.
+            Weighted average of losses per sample, plus penalty.
         """
         if raw_prediction is None:
             weights, intercept, raw_prediction = self.weight_intercept_raw(coef, X)
@@ -219,10 +220,10 @@ class LinearModelLoss:
         loss = self.base_loss.loss(
             y_true=y,
             raw_prediction=raw_prediction,
-            sample_weight=sample_weight,
+            sample_weight=None,
             n_threads=n_threads,
         )
-        loss = loss.sum()
+        loss = np.average(loss, weights=sample_weight)
 
         return loss + self.l2_penalty(weights, l2_reg_strength)
 
@@ -263,12 +264,12 @@ class LinearModelLoss:
         Returns
         -------
         loss : float
-            Sum of losses per sample plus penalty.
+            Weighted average of losses per sample, plus penalty.
 
         gradient : ndarray of shape coef.shape
              The gradient of the loss.
         """
-        n_features, n_classes = X.shape[1], self.base_loss.n_classes
+        (n_samples, n_features), n_classes = X.shape, self.base_loss.n_classes
         n_dof = n_features + int(self.fit_intercept)
 
         if raw_prediction is None:
@@ -282,8 +283,11 @@ class LinearModelLoss:
             sample_weight=sample_weight,
             n_threads=n_threads,
         )
-        loss = loss.sum()
+        sw_sum = n_samples if sample_weight is None else np.sum(sample_weight)
+        loss = loss.sum() / sw_sum
         loss += self.l2_penalty(weights, l2_reg_strength)
+
+        grad_pointwise /= sw_sum
 
         if not self.base_loss.is_multiclass:
             grad = np.empty_like(coef, dtype=weights.dtype)
@@ -340,7 +344,7 @@ class LinearModelLoss:
         gradient : ndarray of shape coef.shape
              The gradient of the loss.
         """
-        n_features, n_classes = X.shape[1], self.base_loss.n_classes
+        (n_samples, n_features), n_classes = X.shape, self.base_loss.n_classes
         n_dof = n_features + int(self.fit_intercept)
 
         if raw_prediction is None:
@@ -354,6 +358,8 @@ class LinearModelLoss:
             sample_weight=sample_weight,
             n_threads=n_threads,
         )
+        sw_sum = n_samples if sample_weight is None else np.sum(sample_weight)
+        grad_pointwise /= sw_sum
 
         if not self.base_loss.is_multiclass:
             grad = np.empty_like(coef, dtype=weights.dtype)
@@ -439,6 +445,9 @@ class LinearModelLoss:
             sample_weight=sample_weight,
             n_threads=n_threads,
         )
+        sw_sum = n_samples if sample_weight is None else np.sum(sample_weight)
+        grad_pointwise /= sw_sum
+        hess_pointwise /= sw_sum
 
         # For non-canonical link functions and far away from the optimum, the pointwise
         # hessian can be negative. We take care that 75% of the hessian entries are
@@ -543,6 +552,7 @@ class LinearModelLoss:
         (n_samples, n_features), n_classes = X.shape, self.base_loss.n_classes
         n_dof = n_features + int(self.fit_intercept)
         weights, intercept, raw_prediction = self.weight_intercept_raw(coef, X)
+        sw_sum = n_samples if sample_weight is None else np.sum(sample_weight)
 
         if not self.base_loss.is_multiclass:
             grad_pointwise, hess_pointwise = self.base_loss.gradient_hessian(
@@ -551,6 +561,8 @@ class LinearModelLoss:
                 sample_weight=sample_weight,
                 n_threads=n_threads,
             )
+            grad_pointwise /= sw_sum
+            hess_pointwise /= sw_sum
             grad = np.empty_like(coef, dtype=weights.dtype)
             grad[:n_features] = X.T @ grad_pointwise + l2_reg_strength * weights
             if self.fit_intercept:
@@ -603,6 +615,7 @@ class LinearModelLoss:
                 sample_weight=sample_weight,
                 n_threads=n_threads,
             )
+            grad_pointwise /= sw_sum
             grad = np.empty((n_classes, n_dof), dtype=weights.dtype, order="F")
             grad[:, :n_features] = grad_pointwise.T @ X + l2_reg_strength * weights
             if self.fit_intercept:
@@ -644,9 +657,9 @@ class LinearModelLoss:
                 # hess_prod = empty_like(grad), but we ravel grad below and this
                 # function is run after that.
                 hess_prod = np.empty((n_classes, n_dof), dtype=weights.dtype, order="F")
-                hess_prod[:, :n_features] = tmp.T @ X + l2_reg_strength * s
+                hess_prod[:, :n_features] = (tmp.T @ X) / sw_sum + l2_reg_strength * s
                 if self.fit_intercept:
-                    hess_prod[:, -1] = tmp.sum(axis=0)
+                    hess_prod[:, -1] = tmp.sum(axis=0) / sw_sum
                 if coef.ndim == 1:
                     return hess_prod.ravel(order="F")
                 else:

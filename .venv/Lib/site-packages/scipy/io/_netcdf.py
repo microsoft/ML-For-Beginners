@@ -124,7 +124,7 @@ class netcdf_file:
     version : {1, 2}, optional
         version of netcdf to read / write, where 1 means *Classic
         format* and 2 means *64-bit offset format*.  Default is 1.  See
-        `here <https://www.unidata.ucar.edu/software/netcdf/docs/netcdf_introduction.html#select_format>`__
+        `here <https://docs.unidata.ucar.edu/nug/current/netcdf_introduction.html#select_format>`__
         for more info.
     maskandscale : bool, optional
         Whether to automatically scale and/or mask data based on attributes.
@@ -215,6 +215,7 @@ class netcdf_file:
     to be copied to main memory:
 
     >>> data = time[:].copy()
+    >>> del time
     >>> f.close()
     >>> data.mean()
     4.5
@@ -302,13 +303,15 @@ class netcdf_file:
                     else:
                         # we cannot close self._mm, since self._mm_buf is
                         # alive and there may still be arrays referring to it
-                        warnings.warn((
+                        warnings.warn(
                             "Cannot close a netcdf_file opened with mmap=True, when "
-                            "netcdf_variables or arrays referring to its data still exist. "
-                            "All data arrays obtained from such files refer directly to "
-                            "data on disk, and must be copied before the file can be cleanly "
-                            "closed. (See netcdf_file docstring for more information on mmap.)"
-                        ), category=RuntimeWarning)
+                            "netcdf_variables or arrays referring to its data still "
+                            "exist. All data arrays obtained from such files refer "
+                            "directly to data on disk, and must be copied before the "
+                            "file can be cleanly closed. "
+                            "(See netcdf_file docstring for more information on mmap.)",
+                            category=RuntimeWarning, stacklevel=2,
+                        )
                 self._mm = None
                 self.fp.close()
     __del__ = close
@@ -384,7 +387,8 @@ class netcdf_file:
         if (typecode, size) not in REVERSE:
             raise ValueError("NetCDF 3 does not support type %s" % type)
 
-        data = empty(shape_, dtype=type.newbyteorder("B"))  # convert to big endian always for NetCDF 3
+        # convert to big endian always for NetCDF 3
+        data = empty(shape_, dtype=type.newbyteorder("B"))
         self.variables[name] = netcdf_variable(
                 data, typecode, size, shape, dimensions,
                 maskandscale=self.maskandscale)
@@ -528,7 +532,8 @@ class netcdf_file:
                 try:
                     var.data.resize(shape)
                 except ValueError:
-                    var.__dict__['data'] = np.resize(var.data, shape).astype(var.data.dtype)
+                    dtype = var.data.dtype
+                    var.__dict__['data'] = np.resize(var.data, shape).astype(dtype)
 
             pos0 = pos = self.fp.tell()
             for rec in var.data:
@@ -710,7 +715,8 @@ class netcdf_file:
 
             # Build rec array.
             if self.use_mmap:
-                rec_array = self._mm_buf[begin:begin+self._recs*self._recsize].view(dtype=dtypes)
+                buf = self._mm_buf[begin:begin+self._recs*self._recsize]
+                rec_array = buf.view(dtype=dtypes)
                 rec_array.shape = (self._recs,)
             else:
                 pos = self.fp.tell()
@@ -934,7 +940,7 @@ class netcdf_variable:
             # of NumPy still supported by scipy contains the fix for #1622.
             raise RuntimeError("variable is not writeable")
 
-        self.data.itemset(value)
+        self.data[:] = value
 
     def typecode(self):
         """
@@ -1008,7 +1014,8 @@ class netcdf_variable:
                 try:
                     self.data.resize(shape)
                 except ValueError:
-                    self.__dict__['data'] = np.resize(self.data, shape).astype(self.data.dtype)
+                    dtype = self.data.dtype
+                    self.__dict__['data'] = np.resize(self.data, shape).astype(dtype)
         self.data[index] = data
 
     def _default_encoded_fill_value(self):

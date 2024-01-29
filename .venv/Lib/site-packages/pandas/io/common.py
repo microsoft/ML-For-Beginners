@@ -30,6 +30,7 @@ import re
 import tarfile
 from typing import (
     IO,
+    TYPE_CHECKING,
     Any,
     AnyStr,
     DefaultDict,
@@ -51,13 +52,7 @@ import zipfile
 
 from pandas._typing import (
     BaseBuffer,
-    CompressionDict,
-    CompressionOptions,
-    FilePath,
-    ReadBuffer,
     ReadCsvBuffer,
-    StorageOptions,
-    WriteBuffer,
 )
 from pandas.compat import (
     get_bz2_file,
@@ -73,8 +68,8 @@ from pandas.core.dtypes.common import (
     is_integer,
     is_list_like,
 )
+from pandas.core.dtypes.generic import ABCMultiIndex
 
-from pandas.core.indexes.api import MultiIndex
 from pandas.core.shared_docs import _shared_docs
 
 _VALID_URLS = set(uses_relative + uses_netloc + uses_params)
@@ -82,6 +77,21 @@ _VALID_URLS.discard("")
 _RFC_3986_PATTERN = re.compile(r"^[A-Za-z][A-Za-z0-9+\-+.]*://")
 
 BaseBufferT = TypeVar("BaseBufferT", bound=BaseBuffer)
+
+
+if TYPE_CHECKING:
+    from types import TracebackType
+
+    from pandas._typing import (
+        CompressionDict,
+        CompressionOptions,
+        FilePath,
+        ReadBuffer,
+        StorageOptions,
+        WriteBuffer,
+    )
+
+    from pandas import MultiIndex
 
 
 @dataclasses.dataclass
@@ -138,7 +148,12 @@ class IOHandles(Generic[AnyStr]):
     def __enter__(self) -> IOHandles[AnyStr]:
         return self
 
-    def __exit__(self, *args: Any) -> None:
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
         self.close()
 
 
@@ -314,11 +329,8 @@ def _get_filepath_or_buffer(
 
     {storage_options}
 
-        .. versionadded:: 1.2.0
 
-    ..versionchange:: 1.2.0
-
-      Returns the dataclass IOArgs.
+    Returns the dataclass IOArgs.
     """
     filepath_or_buffer = stringify_path(filepath_or_buffer)
 
@@ -695,8 +707,6 @@ def get_handle(
         of options.
     storage_options: StorageOptions = None
         Passed to _get_filepath_or_buffer
-
-    .. versionchanged:: 1.2.0
 
     Returns the dataclass IOHandles
     """
@@ -1215,7 +1225,7 @@ def is_potential_multi_index(
 
     return bool(
         len(columns)
-        and not isinstance(columns, MultiIndex)
+        and not isinstance(columns, ABCMultiIndex)
         and all(isinstance(c, tuple) for c in columns if c not in list(index_col))
     )
 

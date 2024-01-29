@@ -12,6 +12,7 @@ import pytest
 
 import pandas._libs.parsers as parser
 from pandas._libs.parsers import TextReader
+from pandas.errors import ParserWarning
 
 from pandas import DataFrame
 import pandas._testing as tm
@@ -125,7 +126,7 @@ class TestTextReader:
         expected = DataFrame([123456, 12500])
         tm.assert_frame_equal(result, expected)
 
-    def test_skip_bad_lines(self, capsys):
+    def test_skip_bad_lines(self):
         # too many lines, see #2430 for why
         data = "a:b:c\nd:e:f\ng:h:i\nj:k:l:m\nl:m:n\no:p:q:r"
 
@@ -145,14 +146,11 @@ class TestTextReader:
         }
         assert_array_dicts_equal(result, expected)
 
-        reader = TextReader(
-            StringIO(data), delimiter=":", header=None, on_bad_lines=1  # Warn
-        )
-        reader.read()
-        captured = capsys.readouterr()
-
-        assert "Skipping line 4" in captured.err
-        assert "Skipping line 6" in captured.err
+        with tm.assert_produces_warning(ParserWarning, match="Skipping line"):
+            reader = TextReader(
+                StringIO(data), delimiter=":", header=None, on_bad_lines=1  # Warn
+            )
+            reader.read()
 
     def test_header_not_enough_lines(self):
         data = "skip this\nskip this\na,b,c\n1,2,3\n4,5,6"
@@ -300,6 +298,8 @@ a,b,c
         }
         assert_array_dicts_equal(result, expected)
 
+    @pytest.mark.parametrize("repeat", range(10))
+    def test_empty_field_eof_mem_access_bug(self, repeat):
         # GH5664
         a = DataFrame([["b"], [np.nan]], columns=["a"], index=["a", "c"])
         b = DataFrame([[1, 1, 1, 0], [1, 1, 1, 0]], columns=list("abcd"), index=[1, 1])
@@ -314,21 +314,20 @@ a,b,c
             index=[0, 5, 7, 12],
         )
 
-        for _ in range(100):
-            df = read_csv(StringIO("a,b\nc\n"), skiprows=0, names=["a"], engine="c")
-            tm.assert_frame_equal(df, a)
+        df = read_csv(StringIO("a,b\nc\n"), skiprows=0, names=["a"], engine="c")
+        tm.assert_frame_equal(df, a)
 
-            df = read_csv(
-                StringIO("1,1,1,1,0\n" * 2 + "\n" * 2), names=list("abcd"), engine="c"
-            )
-            tm.assert_frame_equal(df, b)
+        df = read_csv(
+            StringIO("1,1,1,1,0\n" * 2 + "\n" * 2), names=list("abcd"), engine="c"
+        )
+        tm.assert_frame_equal(df, b)
 
-            df = read_csv(
-                StringIO("0,1,2,3,4\n5,6\n7,8,9,10,11\n12,13,14"),
-                names=list("abcd"),
-                engine="c",
-            )
-            tm.assert_frame_equal(df, c)
+        df = read_csv(
+            StringIO("0,1,2,3,4\n5,6\n7,8,9,10,11\n12,13,14"),
+            names=list("abcd"),
+            engine="c",
+        )
+        tm.assert_frame_equal(df, c)
 
     def test_empty_csv_input(self):
         # GH14867

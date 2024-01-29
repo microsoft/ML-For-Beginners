@@ -993,7 +993,6 @@ class CodeGenerator(NodeVisitor):
         # far, we don't have to add a check if something extended
         # the template before this one.
         if self.extends_so_far > 0:
-
             # if we have a known extends we just add a template runtime
             # error into the generated code.  We could catch that at compile
             # time too, but i welcome it not to confuse users by throwing the
@@ -1407,7 +1406,7 @@ class CodeGenerator(NodeVisitor):
 
             if pass_arg is None:
 
-                def finalize(value: t.Any) -> t.Any:
+                def finalize(value: t.Any) -> t.Any:  # noqa: F811
                     return default(env_finalize(value))
 
             else:
@@ -1415,7 +1414,7 @@ class CodeGenerator(NodeVisitor):
 
                 if pass_arg == "environment":
 
-                    def finalize(value: t.Any) -> t.Any:
+                    def finalize(value: t.Any) -> t.Any:  # noqa: F811
                         return default(env_finalize(self.environment, value))
 
         self._finalize = self._FinalizeInfo(finalize, src)

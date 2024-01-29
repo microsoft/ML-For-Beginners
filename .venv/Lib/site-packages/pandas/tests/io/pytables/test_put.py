@@ -1,4 +1,3 @@
-import datetime
 import re
 
 import numpy as np
@@ -15,6 +14,7 @@ from pandas import (
     Series,
     _testing as tm,
     concat,
+    date_range,
 )
 from pandas.tests.io.pytables.common import (
     _maybe_remove,
@@ -47,7 +47,11 @@ def test_format_kwarg_in_constructor(tmp_path, setup_path):
 def test_api_default_format(tmp_path, setup_path):
     # default_format option
     with ensure_clean_store(setup_path) as store:
-        df = tm.makeDataFrame()
+        df = DataFrame(
+            1.1 * np.arange(120).reshape((30, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=Index([f"i-{i}" for i in range(30)], dtype=object),
+        )
 
         with pd.option_context("io.hdf.default_format", "fixed"):
             _maybe_remove(store, "df")
@@ -68,28 +72,38 @@ def test_api_default_format(tmp_path, setup_path):
             assert store.get_storer("df").is_table
 
     path = tmp_path / setup_path
-    df = tm.makeDataFrame()
+    df = DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
 
     with pd.option_context("io.hdf.default_format", "fixed"):
-        df.to_hdf(path, "df")
+        df.to_hdf(path, key="df")
         with HDFStore(path) as store:
             assert not store.get_storer("df").is_table
         with pytest.raises(ValueError, match=msg):
-            df.to_hdf(path, "df2", append=True)
+            df.to_hdf(path, key="df2", append=True)
 
     with pd.option_context("io.hdf.default_format", "table"):
-        df.to_hdf(path, "df3")
+        df.to_hdf(path, key="df3")
         with HDFStore(path) as store:
             assert store.get_storer("df3").is_table
-        df.to_hdf(path, "df4", append=True)
+        df.to_hdf(path, key="df4", append=True)
         with HDFStore(path) as store:
             assert store.get_storer("df4").is_table
 
 
 def test_put(setup_path):
     with ensure_clean_store(setup_path) as store:
-        ts = tm.makeTimeSeries()
-        df = tm.makeTimeDataFrame()
+        ts = Series(
+            np.arange(10, dtype=np.float64), index=date_range("2020-01-01", periods=10)
+        )
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((20, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=20, freq="B"),
+        )
         store["a"] = ts
         store["b"] = df[:10]
         store["foo/bar/bah"] = df[:10]
@@ -145,7 +159,11 @@ def test_put_string_index(setup_path):
 
 def test_put_compression(setup_path):
     with ensure_clean_store(setup_path) as store:
-        df = tm.makeTimeDataFrame()
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
 
         store.put("c", df, format="table", complib="zlib")
         tm.assert_frame_equal(store["c"], df)
@@ -158,7 +176,11 @@ def test_put_compression(setup_path):
 
 @td.skip_if_windows
 def test_put_compression_blosc(setup_path):
-    df = tm.makeTimeDataFrame()
+    df = DataFrame(
+        np.random.default_rng(2).standard_normal((10, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=date_range("2000-01-01", periods=10, freq="B"),
+    )
 
     with ensure_clean_store(setup_path) as store:
         # can't compress if format='fixed'
@@ -171,7 +193,11 @@ def test_put_compression_blosc(setup_path):
 
 
 def test_put_mixed_type(setup_path):
-    df = tm.makeTimeDataFrame()
+    df = DataFrame(
+        np.random.default_rng(2).standard_normal((10, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=date_range("2000-01-01", periods=10, freq="B"),
+    )
     df["obj1"] = "foo"
     df["obj2"] = "bar"
     df["bool1"] = df["A"] > 0
@@ -196,32 +222,27 @@ def test_put_mixed_type(setup_path):
         tm.assert_frame_equal(expected, df)
 
 
+@pytest.mark.parametrize("format", ["table", "fixed"])
 @pytest.mark.parametrize(
-    "format, index",
+    "index",
     [
-        ["table", tm.makeFloatIndex],
-        ["table", tm.makeStringIndex],
-        ["table", tm.makeIntIndex],
-        ["table", tm.makeDateIndex],
-        ["fixed", tm.makeFloatIndex],
-        ["fixed", tm.makeStringIndex],
-        ["fixed", tm.makeIntIndex],
-        ["fixed", tm.makeDateIndex],
-        ["table", tm.makePeriodIndex],  # GH#7796
-        ["fixed", tm.makePeriodIndex],
+        Index([str(i) for i in range(10)]),
+        Index(np.arange(10, dtype=float)),
+        Index(np.arange(10)),
+        date_range("2020-01-01", periods=10),
+        pd.period_range("2020-01-01", periods=10),
     ],
 )
-@pytest.mark.filterwarnings(r"ignore:PeriodDtype\[B\] is deprecated:FutureWarning")
 def test_store_index_types(setup_path, format, index):
     # GH5386
     # test storing various index types
 
     with ensure_clean_store(setup_path) as store:
         df = DataFrame(
-            np.random.default_rng(2).standard_normal((10, 2)), columns=list("AB")
+            np.random.default_rng(2).standard_normal((10, 2)),
+            columns=list("AB"),
+            index=index,
         )
-        df.index = index(len(df))
-
         _maybe_remove(store, "df")
         store.put("df", df, format=format)
         tm.assert_frame_equal(df, store["df"])
@@ -279,15 +300,9 @@ def test_store_multiindex(setup_path):
     with ensure_clean_store(setup_path) as store:
 
         def make_index(names=None):
-            return MultiIndex.from_tuples(
-                [
-                    (datetime.datetime(2013, 12, d), s, t)
-                    for d in range(1, 3)
-                    for s in range(2)
-                    for t in range(3)
-                ],
-                names=names,
-            )
+            dti = date_range("2013-12-01", "2013-12-02")
+            mi = MultiIndex.from_product([dti, range(2), range(3)], names=names)
+            return mi
 
         # no names
         _maybe_remove(store, "df")
@@ -306,11 +321,11 @@ def test_store_multiindex(setup_path):
         tm.assert_frame_equal(store.select("df"), df)
 
         # series
-        _maybe_remove(store, "s")
-        s = Series(np.zeros(12), index=make_index(["date", None, None]))
-        store.append("s", s)
+        _maybe_remove(store, "ser")
+        ser = Series(np.zeros(12), index=make_index(["date", None, None]))
+        store.append("ser", ser)
         xp = Series(np.zeros(12), index=make_index(["date", "level_1", "level_2"]))
-        tm.assert_series_equal(store.select("s"), xp)
+        tm.assert_series_equal(store.select("ser"), xp)
 
         # dup with column
         _maybe_remove(store, "df")
@@ -354,6 +369,6 @@ def test_store_periodindex(tmp_path, setup_path, format):
     )
 
     path = tmp_path / setup_path
-    df.to_hdf(path, "df", mode="w", format=format)
+    df.to_hdf(path, key="df", mode="w", format=format)
     expected = pd.read_hdf(path, "df")
     tm.assert_frame_equal(df, expected)

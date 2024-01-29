@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0902,R0912,R0913,R0914,R0915,R1702,W0221
+
 
 from typing import Tuple
 
@@ -235,20 +235,12 @@ class RoiAlign(OpRun):
                                 for _ix in range(roi_bin_grid_w):
                                     pc = pre_calc[pre_calc_index]
                                     val = max(
-                                        max(
-                                            max(
-                                                pc.w1
-                                                * bottom_data[
-                                                    offset_bottom_data + pc.pos1
-                                                ],
-                                                pc.w2
-                                                * bottom_data[
-                                                    offset_bottom_data + pc.pos2
-                                                ],
-                                            ),
-                                            pc.w3
-                                            * bottom_data[offset_bottom_data + pc.pos3],
-                                        ),
+                                        pc.w1
+                                        * bottom_data[offset_bottom_data + pc.pos1],
+                                        pc.w2
+                                        * bottom_data[offset_bottom_data + pc.pos2],
+                                        pc.w3
+                                        * bottom_data[offset_bottom_data + pc.pos3],
                                         pc.w4
                                         * bottom_data[offset_bottom_data + pc.pos4],
                                     )
@@ -301,4 +293,4 @@ class RoiAlign(OpRun):
             coordinate_transformation_mode.lower() == "half_pixel",
             batch_indices.flatten(),
         )
-        return (Y.reshape((y_dims)).astype(X.dtype),)
+        return (Y.reshape(y_dims).astype(X.dtype),)

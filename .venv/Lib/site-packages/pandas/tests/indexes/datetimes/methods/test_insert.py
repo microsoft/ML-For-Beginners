@@ -52,13 +52,15 @@ class TestInsert:
         result = dti.insert(0, item)
         assert result.freq is None
 
-    def test_insert(self):
-        idx = DatetimeIndex(["2000-01-04", "2000-01-01", "2000-01-02"], name="idx")
+    def test_insert(self, unit):
+        idx = DatetimeIndex(
+            ["2000-01-04", "2000-01-01", "2000-01-02"], name="idx"
+        ).as_unit(unit)
 
         result = idx.insert(2, datetime(2000, 1, 5))
         exp = DatetimeIndex(
             ["2000-01-04", "2000-01-01", "2000-01-05", "2000-01-02"], name="idx"
-        )
+        ).as_unit(unit)
         tm.assert_index_equal(result, exp)
 
         # insertion of non-datetime should coerce to object index
@@ -76,31 +78,32 @@ class TestInsert:
         tm.assert_index_equal(result, expected)
         assert result.name == expected.name
 
-        idx = date_range("1/1/2000", periods=3, freq="M", name="idx")
+    def test_insert2(self, unit):
+        idx = date_range("1/1/2000", periods=3, freq="ME", name="idx", unit=unit)
 
         # preserve freq
         expected_0 = DatetimeIndex(
             ["1999-12-31", "2000-01-31", "2000-02-29", "2000-03-31"],
             name="idx",
-            freq="M",
-        )
+            freq="ME",
+        ).as_unit(unit)
         expected_3 = DatetimeIndex(
             ["2000-01-31", "2000-02-29", "2000-03-31", "2000-04-30"],
             name="idx",
-            freq="M",
-        )
+            freq="ME",
+        ).as_unit(unit)
 
         # reset freq to None
         expected_1_nofreq = DatetimeIndex(
             ["2000-01-31", "2000-01-31", "2000-02-29", "2000-03-31"],
             name="idx",
             freq=None,
-        )
+        ).as_unit(unit)
         expected_3_nofreq = DatetimeIndex(
             ["2000-01-31", "2000-02-29", "2000-03-31", "2000-01-02"],
             name="idx",
             freq=None,
-        )
+        ).as_unit(unit)
 
         cases = [
             (0, datetime(1999, 12, 31), expected_0),
@@ -116,22 +119,28 @@ class TestInsert:
             assert result.name == expected.name
             assert result.freq == expected.freq
 
+    def test_insert3(self, unit):
+        idx = date_range("1/1/2000", periods=3, freq="ME", name="idx", unit=unit)
+
         # reset freq to None
         result = idx.insert(3, datetime(2000, 1, 2))
         expected = DatetimeIndex(
             ["2000-01-31", "2000-02-29", "2000-03-31", "2000-01-02"],
             name="idx",
             freq=None,
-        )
+        ).as_unit(unit)
         tm.assert_index_equal(result, expected)
         assert result.name == expected.name
         assert result.freq is None
 
+    def test_insert4(self, unit):
         for tz in ["US/Pacific", "Asia/Singapore"]:
-            idx = date_range("1/1/2000 09:00", periods=6, freq="H", tz=tz, name="idx")
+            idx = date_range(
+                "1/1/2000 09:00", periods=6, freq="h", tz=tz, name="idx", unit=unit
+            )
             # preserve freq
             expected = date_range(
-                "1/1/2000 09:00", periods=7, freq="H", tz=tz, name="idx"
+                "1/1/2000 09:00", periods=7, freq="h", tz=tz, name="idx", unit=unit
             )
             for d in [
                 Timestamp("2000-01-01 15:00", tz=tz),
@@ -156,7 +165,7 @@ class TestInsert:
                 name="idx",
                 tz=tz,
                 freq=None,
-            )
+            ).as_unit(unit)
             # reset freq to None
             for d in [
                 Timestamp("2000-01-01 10:00", tz=tz),

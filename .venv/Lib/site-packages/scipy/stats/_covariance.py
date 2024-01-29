@@ -15,7 +15,7 @@ class Covariance:
     Calculations involving covariance matrices (e.g. data whitening,
     multivariate normal function evaluation) are often performed more
     efficiently using a decomposition of the covariance matrix instead of the
-    covariance metrix itself. This class allows the user to construct an
+    covariance matrix itself. This class allows the user to construct an
     object representing a covariance matrix using any of several
     decompositions and perform calculations using a common interface.
 
@@ -198,7 +198,7 @@ class Covariance:
 
         Notes
         -----
-        Let the covariance matrix be :math:`A`and :math:`L` be the lower
+        Let the covariance matrix be :math:`A` and :math:`L` be the lower
         Cholesky factor such that :math:`L L^T = A`.
         Whitening of a data point :math:`x` is performed by computing
         :math:`L^{-1} x`. :math:`\log\det{A}` is calculated as
@@ -541,9 +541,12 @@ class CovViaCholesky(Covariance):
         self._factor = L
         self._log_pdet = 2*np.log(np.diag(self._factor)).sum(axis=-1)
         self._rank = L.shape[-1]  # must be full rank for cholesky
-        self._covariance = L @ L.T
         self._shape = L.shape
         self._allow_singular = False
+
+    @cached_property
+    def _covariance(self):
+        return self._factor @ self._factor.T
 
     def _whiten(self, x):
         res = linalg.solve_triangular(self._factor, x.T, lower=True).T
@@ -579,7 +582,7 @@ class CovViaEigendecomposition(Covariance):
         psuedo_reciprocals[i_zero] = 0
 
         self._LP = eigenvectors * psuedo_reciprocals
-        self._LA = eigenvectors * np.sqrt(positive_eigenvalues)
+        self._LA = eigenvectors * np.sqrt(eigenvalues)
         self._rank = positive_eigenvalues.shape[-1] - i_zero.sum(axis=-1)
         self._w = eigenvalues
         self._v = eigenvectors

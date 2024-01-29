@@ -5,6 +5,7 @@
 #pragma once
 
 #include <pybind11/pybind11.h>
+
 #include "onnx/proto_utils.h"
 
 namespace ONNX_NAMESPACE {

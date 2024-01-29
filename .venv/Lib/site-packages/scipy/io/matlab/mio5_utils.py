@@ -2,13 +2,11 @@
 # Use the `scipy.io.matlab` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _mio5_utils
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'VarHeader5', 'VarReader5', 'byteswap_u4', 'chars_to_strings',
-    'csc_matrix', 'mio5p', 'miob', 'pycopy', 'swapped_code', 'squeeze_element'
+    'csc_matrix', 'mio5p', 'pycopy', 'swapped_code', 'squeeze_element'
 ]
 
 def __dir__():
@@ -16,13 +14,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.matlab.mio5_utils is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.matlab instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.matlab` namespace, "
-                  "the `scipy.io.matlab.mio5_utils` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_mio5_utils, name)
+    return _sub_module_deprecation(sub_package="io.matlab", module="mio5_utils",
+                                   private_modules=["_mio5_utils"], all=__all__,
+                                   attribute=name)

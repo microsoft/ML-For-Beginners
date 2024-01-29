@@ -16,6 +16,9 @@ from pygments.token import Comment, Error, Generic, Keyword, Name, Number, \
     Operator, String, Token
 
 
+__all__ = ['SolarizedLightStyle', 'SolarizedDarkStyle']
+
+
 def make_style(colors):
     return {
         Token:               colors['base0'],
@@ -118,6 +121,8 @@ class SolarizedDarkStyle(Style):
     The solarized style, dark.
     """
 
+    name = 'solarized-dark'
+    
     styles = make_style(DARK_COLORS)
     background_color = DARK_COLORS['base03']
     highlight_color = DARK_COLORS['base02']
@@ -130,6 +135,8 @@ class SolarizedLightStyle(SolarizedDarkStyle):
     The solarized style, light.
     """
 
+    name = 'solarized-light'
+    
     styles = make_style(LIGHT_COLORS)
     background_color = LIGHT_COLORS['base03']
     highlight_color = LIGHT_COLORS['base02']

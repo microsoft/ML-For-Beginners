@@ -13,7 +13,9 @@ from pandas.errors import ParserWarning
 from pandas import DataFrame
 import pandas._testing as tm
 
-pytestmark = pytest.mark.usefixtures("pyarrow_skip")
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
 
 
 @pytest.fixture
@@ -40,6 +42,13 @@ index2,b,d,f
 
     dia = csv.excel()
     dia.quoting = csv.QUOTE_NONE
+
+    if parser.engine == "pyarrow":
+        msg = "The 'dialect' option is not supported with the 'pyarrow' engine"
+        with pytest.raises(ValueError, match=msg):
+            parser.read_csv(StringIO(data), dialect=dia)
+        return
+
     df = parser.read_csv(StringIO(data), dialect=dia)
 
     data = """\
@@ -63,6 +72,12 @@ pear:tomato
     exp = DataFrame({"fruit": ["apple", "pear"], "vegetable": ["broccoli", "tomato"]})
 
     with tm.with_csv_dialect(dialect_name, delimiter=":"):
+        if parser.engine == "pyarrow":
+            msg = "The 'dialect' option is not supported with the 'pyarrow' engine"
+            with pytest.raises(ValueError, match=msg):
+                parser.read_csv(StringIO(data), dialect=dialect_name)
+            return
+
         df = parser.read_csv(StringIO(data), dialect=dialect_name)
         tm.assert_frame_equal(df, exp)
 
@@ -108,6 +123,18 @@ def test_dialect_conflict_except_delimiter(all_parsers, custom_dialect, arg, val
             kwds[arg] = "blah"
 
     with tm.with_csv_dialect(dialect_name, **dialect_kwargs):
+        if parser.engine == "pyarrow":
+            msg = "The 'dialect' option is not supported with the 'pyarrow' engine"
+            with pytest.raises(ValueError, match=msg):
+                parser.read_csv_check_warnings(
+                    # No warning bc we raise
+                    None,
+                    "Conflicting values for",
+                    StringIO(data),
+                    dialect=dialect_name,
+                    **kwds,
+                )
+            return
         result = parser.read_csv_check_warnings(
             warning_klass,
             "Conflicting values for",
@@ -146,6 +173,18 @@ def test_dialect_conflict_delimiter(all_parsers, custom_dialect, kwargs, warning
     data = "a:b\n1:2"
 
     with tm.with_csv_dialect(dialect_name, **dialect_kwargs):
+        if parser.engine == "pyarrow":
+            msg = "The 'dialect' option is not supported with the 'pyarrow' engine"
+            with pytest.raises(ValueError, match=msg):
+                parser.read_csv_check_warnings(
+                    # no warning bc we raise
+                    None,
+                    "Conflicting values for 'delimiter'",
+                    StringIO(data),
+                    dialect=dialect_name,
+                    **kwargs,
+                )
+            return
         result = parser.read_csv_check_warnings(
             warning_klass,
             "Conflicting values for 'delimiter'",

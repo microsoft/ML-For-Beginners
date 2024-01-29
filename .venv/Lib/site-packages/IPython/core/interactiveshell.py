@@ -21,6 +21,7 @@ import inspect
 import os
 import re
 import runpy
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -36,7 +37,30 @@ from typing import List as ListType, Dict as DictType, Any as AnyType
 from typing import Optional, Sequence, Tuple
 from warnings import warn
 
-from pickleshare import PickleShareDB
+try:
+    from pickleshare import PickleShareDB
+except ModuleNotFoundError:
+
+    class PickleShareDB:  # type: ignore [no-redef]
+        _mock = True
+
+        def __init__(self, path):
+            pass
+
+        def get(self, key, default):
+            warn(
+                f"using {key} requires you to install the `pickleshare` library.",
+                stacklevel=2,
+            )
+            return default
+
+        def __setitem__(self, key, value):
+            warn(
+                f"using {key} requires you to install the `pickleshare` library.",
+                stacklevel=2,
+            )
+
+
 from tempfile import TemporaryDirectory
 from traitlets import (
     Any,
@@ -2615,7 +2639,10 @@ class InteractiveShell(SingletonConfigurable):
         """
         cmd = self.var_expand(cmd, depth=1)
         # warn if there is an IPython magic alternative.
-        main_cmd = cmd.split()[0]
+        if cmd == "":
+            main_cmd = ""
+        else:
+            main_cmd = cmd.split()[0]
         has_magic_alternatives = ("pip", "conda", "cd")
 
         if main_cmd in has_magic_alternatives:
@@ -3577,7 +3604,7 @@ class InteractiveShell(SingletonConfigurable):
     # Things related to GUI support and pylab
     #-------------------------------------------------------------------------
 
-    active_eventloop = None
+    active_eventloop: Optional[str] = None
 
     def enable_gui(self, gui=None):
         raise NotImplementedError('Implement enable_gui in a subclass')
@@ -3902,7 +3929,7 @@ class InteractiveShell(SingletonConfigurable):
         del self.tempfiles
         for tdir in self.tempdirs:
             try:
-                tdir.rmdir()
+                shutil.rmtree(tdir)
                 self.tempdirs.remove(tdir)
             except FileNotFoundError:
                 pass

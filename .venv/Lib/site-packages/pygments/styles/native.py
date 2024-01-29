@@ -13,11 +13,15 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Token, Whitespace
 
 
+__all__ = ['NativeStyle']
+
+
 class NativeStyle(Style):
     """
     Pygments version of the "native" vim theme.
     """
-
+    name = 'native'
+    
     background_color = '#202020'
     highlight_color = '#404040'
     line_number_color = '#aaaaaa'

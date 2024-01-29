@@ -30,7 +30,7 @@ What can we do with this grammar?
 ---------------------------------
 
 - Syntax highlighting: We could use this for instance to give file names
-                       different colour.
+                       different color.
 - Parse the result: .. We can extract the file names and commands by using a
                        regular expression with named groups.
 - Input validation: .. Don't accept anything that does not match this grammar.

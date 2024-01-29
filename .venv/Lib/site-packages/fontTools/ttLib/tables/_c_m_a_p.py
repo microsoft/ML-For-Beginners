@@ -1291,7 +1291,6 @@ class cmap_format_12_or_13(CmapSubtable):
 
 
 class cmap_format_12(cmap_format_12_or_13):
-
     _format_step = 1
 
     def __init__(self, format=12):
@@ -1305,7 +1304,6 @@ class cmap_format_12(cmap_format_12_or_13):
 
 
 class cmap_format_13(cmap_format_12_or_13):
-
     _format_step = 0
 
     def __init__(self, format=13):

@@ -6,7 +6,7 @@ By default, Matplotlib uses the units machinery described in
 `~matplotlib.units` to convert `datetime.datetime`, and `numpy.datetime64`
 objects when plotted on an x- or y-axis. The user does not
 need to do anything for dates to be formatted, but dates often have strict
-formatting needs, so this module provides many axis locators and formatters.
+formatting needs, so this module provides many tick locators and formatters.
 A basic example using `numpy.datetime64` is::
 
     import numpy as np
@@ -82,12 +82,12 @@ objects and Matplotlib dates:
      In [1]: date(2006, 4, 1).toordinal() - date(1, 1, 1).toordinal()
      Out[1]: 732401
 
-All the Matplotlib date converters, tickers and formatters are timezone aware.
+All the Matplotlib date converters, locators and formatters are timezone aware.
 If no explicit timezone is provided, :rc:`timezone` is assumed, provided as a
 string.  If you want to use a different timezone, pass the *tz* keyword
-argument of `num2date` to any date tickers or locators you create.  This can
-be either a `datetime.tzinfo` instance or a string with the timezone name that
-can be parsed by `~dateutil.tz.gettz`.
+argument of `num2date` to any date tick locators or formatters you create. This
+can be either a `datetime.tzinfo` instance or a string with the timezone name
+that can be parsed by `~dateutil.tz.gettz`.
 
 A wide range of specific and general purpose date tick locators and
 formatters are provided in this module.  See
@@ -99,10 +99,12 @@ easy to place ticks on any kinds of dates.  See examples below.
 
 .. _dateutil: https://dateutil.readthedocs.io
 
-Date tickers
-------------
+.. _date-locators:
 
-Most of the date tickers can locate single or multiple values.  For example::
+Date tick locators
+------------------
+
+Most of the date tick locators can locate single or multiple ticks. For example::
 
     # import constants for the days of the week
     from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
@@ -124,7 +126,7 @@ The rrule locator allows completely general date ticking::
     rule = rrulewrapper(YEARLY, byeaster=1, interval=5)
     loc = RRuleLocator(rule)
 
-The available date tickers are:
+The available date tick locators are:
 
 * `MicrosecondLocator`: Locate microseconds.
 
@@ -154,6 +156,8 @@ The available date tickers are:
   4 hours, it will pick hours 0, 4, 8, etc. as ticks.  This behaviour is not
   guaranteed by default.
 
+.. _date-formatters:
+
 Date formatters
 ---------------
 
@@ -172,7 +176,6 @@ The available date formatters are:
 import datetime
 import functools
 import logging
-import math
 import re
 
 from dateutil.rrule import (rrule, MO, TU, WE, TH, FR, SA, SU, YEARLY,
@@ -219,10 +222,9 @@ def _get_tzinfo(tz=None):
     Generate `~datetime.tzinfo` from a string or return `~datetime.tzinfo`.
     If None, retrieve the preferred timezone from the rcParams dictionary.
     """
-    if tz is None:
-        tz = mpl.rcParams['timezone']
-        if tz == 'UTC':
-            return UTC
+    tz = mpl._val_or_rc(tz, 'timezone')
+    if tz == 'UTC':
+        return UTC
     if isinstance(tz, str):
         tzinfo = dateutil.tz.gettz(tz)
         if tzinfo is None:
@@ -231,7 +233,7 @@ def _get_tzinfo(tz=None):
         return tzinfo
     if isinstance(tz, datetime.tzinfo):
         return tz
-    raise TypeError("tz must be string or tzinfo subclass.")
+    raise TypeError(f"tz must be string or tzinfo subclass, not {tz!r}.")
 
 
 # Time-related constants.
@@ -313,8 +315,7 @@ def get_epoch():
     """
     global _epoch
 
-    if _epoch is None:
-        _epoch = mpl.rcParams['date.epoch']
+    _epoch = mpl._val_or_rc(_epoch, 'date.epoch')
     return _epoch
 
 
@@ -383,8 +384,6 @@ def _from_ordinalf(x, tz=None):
 
 # a version of _from_ordinalf that can operate on numpy arrays
 _from_ordinalf_np_vectorized = np.vectorize(_from_ordinalf, otypes="O")
-
-
 # a version of dateutil.parser.parse that can operate on numpy arrays
 _dateutil_parser_parse_np_vectorized = np.vectorize(dateutil.parser.parse)
 
@@ -621,7 +620,7 @@ def _wrap_in_tex(text):
     return ret_text
 
 
-## date tickers and formatters ###
+## date tick locators and formatters ###
 
 
 class DateFormatter(ticker.Formatter):
@@ -644,8 +643,7 @@ class DateFormatter(ticker.Formatter):
         """
         self.tz = _get_tzinfo(tz)
         self.fmt = fmt
-        self._usetex = (usetex if usetex is not None else
-                        mpl.rcParams['text.usetex'])
+        self._usetex = mpl._val_or_rc(usetex, 'text.usetex')
 
     def __call__(self, x, pos=0):
         result = num2date(x, self.tz).strftime(self.fmt)
@@ -782,8 +780,7 @@ class ConciseDateFormatter(ticker.Formatter):
                                    '%Y-%b-%d %H:%M']
         self.offset_string = ''
         self.show_offset = show_offset
-        self._usetex = (usetex if usetex is not None else
-                        mpl.rcParams['text.usetex'])
+        self._usetex = mpl._val_or_rc(usetex, 'text.usetex')
 
     def __call__(self, x, pos=None):
         formatter = DateFormatter(self.defaultfmt, self._tz,
@@ -960,8 +957,7 @@ class AutoDateFormatter(ticker.Formatter):
         self.defaultfmt = defaultfmt
         self._formatter = DateFormatter(self.defaultfmt, tz)
         rcParams = mpl.rcParams
-        self._usetex = (usetex if usetex is not None else
-                        mpl.rcParams['text.usetex'])
+        self._usetex = mpl._val_or_rc(usetex, 'text.usetex')
         self.scaled = {
             DAYS_PER_YEAR: rcParams['date.autoformatter.year'],
             DAYS_PER_MONTH: rcParams['date.autoformatter.month'],
@@ -991,7 +987,7 @@ class AutoDateFormatter(ticker.Formatter):
         elif callable(fmt):
             result = fmt(x, pos)
         else:
-            raise TypeError('Unexpected type passed to {0!r}.'.format(self))
+            raise TypeError(f'Unexpected type passed to {self!r}.')
 
         return result
 
@@ -1777,50 +1773,6 @@ class MicrosecondLocator(DateLocator):
     def _get_interval(self):
         # docstring inherited
         return self._interval
-
-
-@_api.deprecated("3.6", alternative="`AutoDateLocator` and `AutoDateFormatter`"
-                 " or vendor the code")
-def date_ticker_factory(span, tz=None, numticks=5):
-    """
-    Create a date locator with *numticks* (approx) and a date formatter
-    for *span* in days.  Return value is (locator, formatter).
-    """
-
-    if span == 0:
-        span = 1 / HOURS_PER_DAY
-
-    mins = span * MINUTES_PER_DAY
-    hrs = span * HOURS_PER_DAY
-    days = span
-    wks = span / DAYS_PER_WEEK
-    months = span / DAYS_PER_MONTH      # Approx
-    years = span / DAYS_PER_YEAR        # Approx
-
-    if years > numticks:
-        locator = YearLocator(int(years / numticks), tz=tz)  # define
-        fmt = '%Y'
-    elif months > numticks:
-        locator = MonthLocator(tz=tz)
-        fmt = '%b %Y'
-    elif wks > numticks:
-        locator = WeekdayLocator(tz=tz)
-        fmt = '%a, %b %d'
-    elif days > numticks:
-        locator = DayLocator(interval=math.ceil(days / numticks), tz=tz)
-        fmt = '%b %d'
-    elif hrs > numticks:
-        locator = HourLocator(interval=math.ceil(hrs / numticks), tz=tz)
-        fmt = '%H:%M\n%b %d'
-    elif mins > numticks:
-        locator = MinuteLocator(interval=math.ceil(mins / numticks), tz=tz)
-        fmt = '%H:%M:%S'
-    else:
-        locator = MinuteLocator(tz=tz)
-        fmt = '%H:%M:%S'
-
-    formatter = DateFormatter(fmt, tz=tz)
-    return locator, formatter
 
 
 class DateConverter(units.ConversionInterface):

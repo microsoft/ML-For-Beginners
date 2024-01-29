@@ -409,9 +409,9 @@ class MarkovSwitchingParams:
         elif _type is tuple:
             if not len(key) == 2:
                 raise IndexError('Invalid index')
-            if type(key[1]) == str and type(key[0]) == int:
+            if type(key[1]) is str and type(key[0]) is int:
                 return self.index_regime_purpose[key[0]][key[1]]
-            elif type(key[0]) == str and type(key[1]) == int:
+            elif type(key[0]) is str and type(key[1]) is int:
                 return self.index_regime_purpose[key[1]][key[0]]
             else:
                 raise IndexError('Invalid index')

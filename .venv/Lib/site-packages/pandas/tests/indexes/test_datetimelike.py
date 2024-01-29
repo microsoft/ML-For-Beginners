@@ -89,7 +89,9 @@ class TestDatetimeLike:
         result = type(simple_index)(idx)
         tm.assert_index_equal(result, idx)
 
-        idx_view = idx.view(type(simple_index))
+        msg = "Passing a type in .*Index.view is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            idx_view = idx.view(type(simple_index))
         result = type(simple_index)(idx)
         tm.assert_index_equal(result, idx_view)
 
@@ -158,4 +160,12 @@ class TestDatetimeLike:
         tm.assert_index_equal(result, expected)
 
         result = index.where(mask, ["foo"])
+        tm.assert_index_equal(result, expected)
+
+    @pytest.mark.parametrize("unit", ["ns", "us", "ms", "s"])
+    def test_diff(self, unit):
+        # GH 55080
+        dti = pd.to_datetime([10, 20, 30], unit=unit).as_unit(unit)
+        result = dti.diff(1)
+        expected = pd.to_timedelta([pd.NaT, 10, 10], unit=unit).as_unit(unit)
         tm.assert_index_equal(result, expected)

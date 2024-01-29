@@ -44,7 +44,7 @@ class BaseMissingTests:
         tm.assert_series_equal(result, expected)
 
     def test_dropna_frame(self, data_missing):
-        df = pd.DataFrame({"A": data_missing})
+        df = pd.DataFrame({"A": data_missing}, columns=pd.Index(["A"], dtype=object))
 
         # defaults
         result = df.dropna()
@@ -75,6 +75,28 @@ class BaseMissingTests:
         arr = data_missing.take([1, 0, 0, 0, 1])
         result = pd.Series(arr).ffill(limit=2)
         expected = pd.Series(data_missing.take([1, 1, 1, 0, 1]))
+        tm.assert_series_equal(result, expected)
+
+    @pytest.mark.parametrize(
+        "limit_area, input_ilocs, expected_ilocs",
+        [
+            ("outside", [1, 0, 0, 0, 1], [1, 0, 0, 0, 1]),
+            ("outside", [1, 0, 1, 0, 1], [1, 0, 1, 0, 1]),
+            ("outside", [0, 1, 1, 1, 0], [0, 1, 1, 1, 1]),
+            ("outside", [0, 1, 0, 1, 0], [0, 1, 0, 1, 1]),
+            ("inside", [1, 0, 0, 0, 1], [1, 1, 1, 1, 1]),
+            ("inside", [1, 0, 1, 0, 1], [1, 1, 1, 1, 1]),
+            ("inside", [0, 1, 1, 1, 0], [0, 1, 1, 1, 0]),
+            ("inside", [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]),
+        ],
+    )
+    def test_ffill_limit_area(
+        self, data_missing, limit_area, input_ilocs, expected_ilocs
+    ):
+        # GH#56616
+        arr = data_missing.take(input_ilocs)
+        result = pd.Series(arr).ffill(limit_area=limit_area)
+        expected = pd.Series(data_missing.take(expected_ilocs))
         tm.assert_series_equal(result, expected)
 
     @pytest.mark.filterwarnings(

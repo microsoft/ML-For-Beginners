@@ -269,7 +269,9 @@ def _is_single_string_color(color: Color) -> bool:
     """
     conv = matplotlib.colors.ColorConverter()
     try:
-        conv.to_rgba(color)
+        # error: Argument 1 to "to_rgba" of "ColorConverter" has incompatible type
+        # "str | Sequence[float]"; expected "tuple[float, float, float] | ..."
+        conv.to_rgba(color)  # type: ignore[arg-type]
     except ValueError:
         return False
     else:

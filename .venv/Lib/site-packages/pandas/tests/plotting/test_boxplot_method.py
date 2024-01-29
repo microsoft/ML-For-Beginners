@@ -330,6 +330,22 @@ class TestDataFramePlots:
         assert ax.get_ylabel() == ylabel
 
     @pytest.mark.parametrize("vert", [True, False])
+    def test_plot_box(self, vert):
+        # GH 54941
+        rng = np.random.default_rng(2)
+        df1 = DataFrame(rng.integers(0, 100, size=(100, 4)), columns=list("ABCD"))
+        df2 = DataFrame(rng.integers(0, 100, size=(100, 4)), columns=list("ABCD"))
+
+        xlabel, ylabel = "x", "y"
+        _, axs = plt.subplots(ncols=2, figsize=(10, 7), sharey=True)
+        df1.plot.box(ax=axs[0], vert=vert, xlabel=xlabel, ylabel=ylabel)
+        df2.plot.box(ax=axs[1], vert=vert, xlabel=xlabel, ylabel=ylabel)
+        for ax in axs:
+            assert ax.get_xlabel() == xlabel
+            assert ax.get_ylabel() == ylabel
+        mpl.pyplot.close()
+
+    @pytest.mark.parametrize("vert", [True, False])
     def test_boxplot_xlabel_ylabel(self, vert):
         df = DataFrame(
             {

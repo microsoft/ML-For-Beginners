@@ -5,6 +5,8 @@ import operator
 import math
 from math import prod as _prod
 import timeit
+import warnings
+
 from scipy.spatial import cKDTree
 from . import _sigtools
 from ._ltisys import dlti
@@ -19,7 +21,6 @@ from ._arraytools import axis_slice, axis_reverse, odd_ext, even_ext, const_ext
 from ._filter_design import cheby1, _validate_sos, zpk2sos
 from ._fir_filter_design import firwin
 from ._sosfilt import _sosfilt
-import warnings
 
 
 __all__ = ['correlate', 'correlation_lags', 'correlate2d',
@@ -436,7 +437,7 @@ def _init_freq_conv_axes(in1, in2, mode, axes, sorted_axes=False):
     if not noaxes and not len(axes):
         raise ValueError("when provided, axes cannot be empty")
 
-    # Axes of length 1 can rely on broadcasting rules for multipy,
+    # Axes of length 1 can rely on broadcasting rules for multiply,
     # no fft needed.
     axes = [a for a in axes if s1[a] != 1 and s2[a] != 1]
 
@@ -446,7 +447,7 @@ def _init_freq_conv_axes(in1, in2, mode, axes, sorted_axes=False):
     if not all(s1[a] == s2[a] or s1[a] == 1 or s2[a] == 1
                for a in range(in1.ndim) if a not in axes):
         raise ValueError("incompatible shapes for in1 and in2:"
-                         " {} and {}".format(s1, s2))
+                         f" {s1} and {s2}")
 
     # Check that input sizes are compatible with 'valid' mode.
     if _inputs_swap_needed(mode, s1, s2, axes=axes):
@@ -1029,7 +1030,7 @@ def _conv_ops(x_shape, h_shape, mode):
         out_shape = x_shape
     else:
         raise ValueError("Acceptable mode flags are 'valid',"
-                         " 'same', or 'full', not mode={}".format(mode))
+                         f" 'same', or 'full', not mode={mode}")
 
     s1, s2 = x_shape, h_shape
     if len(x_shape) == 1:
@@ -1497,7 +1498,7 @@ def order_filter(a, domain, rank):
     a = np.asarray(a)
     if a.dtype in [object, 'float128']:
         mesg = (f"Using order_filter with arrays of dtype {a.dtype} is "
-                f"deprecated in SciPy 1.11 and will be removed in SciPy 1.13")
+                f"deprecated in SciPy 1.11 and will be removed in SciPy 1.14")
         warnings.warn(mesg, DeprecationWarning, stacklevel=2)
 
         result = _sigtools._order_filterND(a, domain, rank)
@@ -1561,20 +1562,21 @@ def medfilt(volume, kernel_size=None):
             raise ValueError("Each element of kernel_size should be odd.")
     if any(k > s for k, s in zip(kernel_size, volume.shape)):
         warnings.warn('kernel_size exceeds volume extent: the volume will be '
-                      'zero-padded.')
+                      'zero-padded.',
+                      stacklevel=2)
 
     domain = np.ones(kernel_size, dtype=volume.dtype)
 
     numels = np.prod(kernel_size, axis=0)
     order = numels // 2
 
-    if volume.dtype in [np.bool_, np.cfloat, np.cdouble, np.clongdouble,
+    if volume.dtype in [np.bool_, np.complex64, np.complex128, np.clongdouble,
                         np.float16]:
         raise ValueError(f"dtype={volume.dtype} is not supported by medfilt")
 
     if volume.dtype.char in ['O', 'g']:
         mesg = (f"Using medfilt with arrays of dtype {volume.dtype} is "
-                f"deprecated in SciPy 1.11 and will be removed in SciPy 1.13")
+                f"deprecated in SciPy 1.11 and will be removed in SciPy 1.14")
         warnings.warn(mesg, DeprecationWarning, stacklevel=2)
 
         result = _sigtools._order_filterND(volume, domain, order)
@@ -1945,7 +1947,7 @@ def medfilt2d(input, kernel_size=3):
 
     # checking dtype.type, rather than just dtype, is necessary for
     # excluding np.longdouble with MS Visual C.
-    if image.dtype.type not in (np.ubyte, np.single, np.double):
+    if image.dtype.type not in (np.ubyte, np.float32, np.float64):
         return medfilt(image, kernel_size)
 
     if kernel_size is None:
@@ -2119,8 +2121,7 @@ def lfilter(b, a, x, axis=-1, zi=None):
                         strides[k] = 0
                     else:
                         raise ValueError('Unexpected shape for zi: expected '
-                                         '%s, found %s.' %
-                                         (expected_shape, zi.shape))
+                                         f'{expected_shape}, found {zi.shape}.')
                 zi = np.lib.stride_tricks.as_strided(zi, expected_shape,
                                                      strides)
             inputs.append(zi)
@@ -2444,16 +2445,14 @@ def hilbert2(x, N=None):
     Xf = sp_fft.fft2(x, N, axes=(0, 1))
     h1 = np.zeros(N[0], dtype=Xf.dtype)
     h2 = np.zeros(N[1], dtype=Xf.dtype)
-    for p in range(2):
-        h = eval("h%d" % (p + 1))
-        N1 = N[p]
+    for h in (h1, h2):
+        N1 = h.shape[0]
         if N1 % 2 == 0:
             h[0] = h[N1 // 2] = 1
             h[1:N1 // 2] = 2
         else:
             h[0] = 1
             h[1:(N1 + 1) // 2] = 2
-        exec("h%d = h" % (p + 1), globals(), locals())
 
     h = h1[:, np.newaxis] * h2[np.newaxis, :]
     k = x.ndim
@@ -2464,7 +2463,19 @@ def hilbert2(x, N=None):
     return x
 
 
+_msg_cplx_sort="""cmplx_sort was deprecated in SciPy 1.12 and will be removed
+in SciPy 1.15. The exact equivalent for a numpy array argument is
+>>> def cmplx_sort(p):
+...    idx = np.argsort(abs(p))
+...    return np.take(p, idx, 0), idx
+"""
+
 def cmplx_sort(p):
+    warnings.warn(_msg_cplx_sort, DeprecationWarning, stacklevel=2)
+    return _cmplx_sort(p)
+
+
+def _cmplx_sort(p):
     """Sort roots based on magnitude.
 
     Parameters
@@ -2802,7 +2813,7 @@ def residue(b, a, tol=1e-3, rtype='avg'):
 
     poles = np.roots(a)
     if b.size == 0:
-        return np.zeros(poles.shape), cmplx_sort(poles)[0], np.array([])
+        return np.zeros(poles.shape), _cmplx_sort(poles)[0], np.array([])
 
     if len(b) < len(a):
         k = np.empty(0)
@@ -2810,7 +2821,7 @@ def residue(b, a, tol=1e-3, rtype='avg'):
         k, b = np.polydiv(b, a)
 
     unique_poles, multiplicity = unique_roots(poles, tol=tol, rtype=rtype)
-    unique_poles, order = cmplx_sort(unique_poles)
+    unique_poles, order = _cmplx_sort(unique_poles)
     multiplicity = multiplicity[order]
 
     residues = _compute_residues(unique_poles, multiplicity, b)
@@ -2900,7 +2911,7 @@ def residuez(b, a, tol=1e-3, rtype='avg'):
 
     poles = np.roots(a)
     if b.size == 0:
-        return np.zeros(poles.shape), cmplx_sort(poles)[0], np.array([])
+        return np.zeros(poles.shape), _cmplx_sort(poles)[0], np.array([])
 
     b_rev = b[::-1]
     a_rev = a[::-1]
@@ -2911,7 +2922,7 @@ def residuez(b, a, tol=1e-3, rtype='avg'):
         k_rev, b_rev = np.polydiv(b_rev, a_rev)
 
     unique_poles, multiplicity = unique_roots(poles, tol=tol, rtype=rtype)
-    unique_poles, order = cmplx_sort(unique_poles)
+    unique_poles, order = _cmplx_sort(unique_poles)
     multiplicity = multiplicity[order]
 
     residues = _compute_residues(1 / unique_poles, multiplicity, b_rev)
@@ -3121,7 +3132,7 @@ def resample(x, num, t=None, axis=0, window=None, domain='time'):
 
     if domain not in ('time', 'freq'):
         raise ValueError("Acceptable domain flags are 'time' or"
-                         " 'freq', not domain={}".format(domain))
+                         f" 'freq', not domain={domain}")
 
     x = np.asarray(x)
     Nx = x.shape[axis]
@@ -3161,7 +3172,7 @@ def resample(x, num, t=None, axis=0, window=None, domain='time'):
             X *= W.reshape(newshape_W)
 
     # Copy each half of the original spectrum to the output spectrum, either
-    # truncating high frequences (downsampling) or zero-padding them
+    # truncating high frequencies (downsampling) or zero-padding them
     # (upsampling)
 
     # Placeholder array for output spectrum

@@ -10,7 +10,6 @@ from fontTools.misc.textTools import strjoin, tobytes, tostr
 
 
 class table_T_S_I__1(LogMixin, DefaultTable.DefaultTable):
-
     extras = {0xFFFA: "ppgm", 0xFFFB: "cvt", 0xFFFC: "reserved", 0xFFFD: "fpgm"}
 
     indextable = "TSI0"

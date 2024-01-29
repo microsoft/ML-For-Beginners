@@ -5,7 +5,6 @@
 # License: MIT
 
 import copy
-import inspect
 import numbers
 import warnings
 
@@ -15,6 +14,7 @@ from sklearn.base import clone
 from sklearn.ensemble import AdaBoostClassifier, BaggingClassifier
 from sklearn.ensemble._bagging import _parallel_decision_function
 from sklearn.ensemble._base import _partition_estimators
+from sklearn.exceptions import NotFittedError
 from sklearn.utils import parse_version
 from sklearn.utils._tags import _safe_tags
 from sklearn.utils.validation import check_is_fitted
@@ -85,29 +85,12 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
     verbose : int, default=0
         Controls the verbosity of the building process.
 
-    base_estimator : estimator object, default=AdaBoostClassifier()
-        The base AdaBoost classifier used in the inner ensemble. Note that you
-        can set the number of inner learner by passing your own instance.
-
-        .. deprecated:: 0.10
-           `base_estimator` was renamed to `estimator` in version 0.10 and will
-           be removed in 0.12.
-
     Attributes
     ----------
     estimator_ : estimator
         The base estimator from which the ensemble is grown.
 
         .. versionadded:: 0.10
-
-    base_estimator_ : estimator
-        The base estimator from which the ensemble is grown.
-
-        .. deprecated:: 1.2
-           `base_estimator_` is deprecated in `scikit-learn` 1.2 and will be
-           removed in 1.4. Use `estimator_` instead. When the minimum version
-           of `scikit-learn` supported by `imbalanced-learn` will reach 1.4,
-           this attribute will be removed.
 
     estimators_ : list of estimators
         The collection of fitted base estimators.
@@ -191,7 +174,7 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
     """
 
     # make a deepcopy to not modify the original dictionary
-    if sklearn_version >= parse_version("1.3"):
+    if sklearn_version >= parse_version("1.4"):
         _parameter_constraints = copy.deepcopy(BaggingClassifier._parameter_constraints)
     else:
         _parameter_constraints = copy.deepcopy(_bagging_parameter_constraints)
@@ -217,6 +200,9 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
             "replacement": ["boolean"],
         }
     )
+    # TODO: remove when minimum supported version of scikit-learn is 1.4
+    if "base_estimator" in _parameter_constraints:
+        del _parameter_constraints["base_estimator"]
 
     def __init__(
         self,
@@ -229,18 +215,8 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
         n_jobs=None,
         random_state=None,
         verbose=0,
-        base_estimator="deprecated",
     ):
-        # TODO: remove when supporting scikit-learn>=1.2
-        bagging_classifier_signature = inspect.signature(super().__init__)
-        estimator_params = {"base_estimator": base_estimator}
-        if "estimator" in bagging_classifier_signature.parameters:
-            estimator_params["estimator"] = estimator
-        else:
-            self.estimator = estimator
-
         super().__init__(
-            **estimator_params,
             n_estimators=n_estimators,
             max_samples=1.0,
             max_features=1.0,
@@ -252,6 +228,7 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
             random_state=random_state,
             verbose=verbose,
         )
+        self.estimator = estimator
         self.sampling_strategy = sampling_strategy
         self.replacement = replacement
 
@@ -270,46 +247,19 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
             self._sampling_strategy = self.sampling_strategy
         return y_encoded
 
-    def _validate_estimator(self, default=AdaBoostClassifier()):
+    def _validate_estimator(self, default=AdaBoostClassifier(algorithm="SAMME")):
         """Check the estimator and the n_estimator attribute, set the
         `estimator_` attribute."""
-        if self.estimator is not None and (
-            self.base_estimator not in [None, "deprecated"]
-        ):
-            raise ValueError(
-                "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-            )
-
         if self.estimator is not None:
-            base_estimator = clone(self.estimator)
-        elif self.base_estimator not in [None, "deprecated"]:
-            warnings.warn(
-                "`base_estimator` was renamed to `estimator` in version 0.10 and "
-                "will be removed in 0.12.",
-                FutureWarning,
-            )
-            base_estimator = clone(self.base_estimator)
+            estimator = clone(self.estimator)
         else:
-            base_estimator = clone(default)
+            estimator = clone(default)
 
         sampler = RandomUnderSampler(
             sampling_strategy=self._sampling_strategy,
             replacement=self.replacement,
         )
-        self._estimator = Pipeline(
-            [("sampler", sampler), ("classifier", base_estimator)]
-        )
-        try:
-            self.base_estimator_ = self._estimator
-        except AttributeError:
-            # scikit-learn < 1.2
-            pass
-
-    # TODO: remove when supporting scikit-learn>=1.4
-    @property
-    def estimator_(self):
-        """Estimator used to grow the ensemble."""
-        return self._estimator
+        self.estimator_ = Pipeline([("sampler", sampler), ("classifier", estimator)])
 
     # TODO: remove when supporting scikit-learn>=1.2
     @property
@@ -399,9 +349,25 @@ class EasyEnsembleClassifier(_ParamsValidationMixin, BaggingClassifier):
 
         return decisions
 
+    @property
+    def base_estimator_(self):
+        """Attribute for older sklearn version compatibility."""
+        error = AttributeError(
+            f"{self.__class__.__name__} object has no attribute 'base_estimator_'."
+        )
+        if sklearn_version < parse_version("1.2"):
+            # The base class require to have the attribute defined. For scikit-learn
+            # > 1.2, we are going to raise an error.
+            try:
+                check_is_fitted(self)
+                return self.estimator_
+            except NotFittedError:
+                raise error
+        raise error
+
     def _more_tags(self):
         if self.estimator is None:
-            estimator = AdaBoostClassifier()
+            estimator = AdaBoostClassifier(algorithm="SAMME")
         else:
             estimator = self.estimator
         return {"allow_nan": _safe_tags(estimator, "allow_nan")}

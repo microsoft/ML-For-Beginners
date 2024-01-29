@@ -3,7 +3,7 @@ Defines classes for path effects. The path effects are supported in `.Text`,
 `.Line2D` and `.Patch`.
 
 .. seealso::
-   :doc:`/tutorials/advanced/patheffects_guide`
+   :ref:`patheffects_guide`
 """
 
 from matplotlib.backend_bases import RendererBase
@@ -52,7 +52,7 @@ class AbstractPathEffect:
         for k, v in new_gc_dict.items():
             set_method = getattr(gc, 'set_' + k, None)
             if not callable(set_method):
-                raise AttributeError('Unknown property {0}'.format(k))
+                raise AttributeError(f'Unknown property {k}')
             set_method(v)
         return gc
 
@@ -180,12 +180,12 @@ def _subclass_with_normal(effect_class):
 
     With this class you can use ::
 
-        artist.set_path_effects([path_effects.with{effect_class.__name__}()])
+        artist.set_path_effects([patheffects.with{effect_class.__name__}()])
 
     as a shortcut for ::
 
-        artist.set_path_effects([path_effects.{effect_class.__name__}(),
-                                 path_effects.Normal()])
+        artist.set_path_effects([patheffects.{effect_class.__name__}(),
+                                 patheffects.Normal()])
     """
     # Docstring inheritance doesn't work for locally-defined subclasses.
     withEffect.draw_path.__doc__ = effect_class.draw_path.__doc__
@@ -368,7 +368,7 @@ class PathPatchEffect(AbstractPathEffect):
         self.patch.set_transform(affine + self._offset_transform(renderer))
         self.patch.set_clip_box(gc.get_clip_rectangle())
         clip_path = gc.get_clip_path()
-        if clip_path:
+        if clip_path and self.patch.get_clip_path() is None:
             self.patch.set_clip_path(*clip_path)
         self.patch.draw(renderer)
 

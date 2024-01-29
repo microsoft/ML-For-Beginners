@@ -83,11 +83,11 @@ def test_copy_names():
         multi_idx.copy(names=[["mario"], ["luigi"]])
 
 
-def test_names(idx, index_names):
+def test_names(idx):
     # names are assigned in setup
-    assert index_names == ["first", "second"]
+    assert idx.names == ["first", "second"]
     level_names = [level.name for level in idx.levels]
-    assert level_names == index_names
+    assert level_names == idx.names
 
     # setting bad names on existing
     index = idx

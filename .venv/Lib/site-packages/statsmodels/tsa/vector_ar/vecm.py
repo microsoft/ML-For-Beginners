@@ -564,7 +564,7 @@ def select_coint_rank(
         )
 
     if det_order not in [-1, 0, 1]:
-        if type(det_order) == int and det_order > 1:
+        if type(det_order) is int and det_order > 1:
             raise ValueError(
                 "A det_order greather than 1 is not supported."
                 "Use a value of -1, 0, or 1."
@@ -2023,7 +2023,7 @@ class VECMResults:
                 "caused has to be of type string or int (or a "
                 "sequence of these types)."
             )
-        caused = [self.names[c] if type(c) == int else c for c in caused]
+        caused = [self.names[c] if type(c) is int else c for c in caused]
         caused_ind = [get_index(self.names, c) for c in caused]
 
         if causing is not None:
@@ -2035,7 +2035,7 @@ class VECMResults:
                     "causing has to be of type string or int (or "
                     "a sequence of these types) or None."
                 )
-            causing = [self.names[c] if type(c) == int else c for c in causing]
+            causing = [self.names[c] if type(c) is int else c for c in causing]
             causing_ind = [get_index(self.names, c) for c in causing]
 
         if causing is None:

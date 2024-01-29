@@ -31,6 +31,9 @@ import pandas._testing as tm
         ([1, 2, "3"], "5", ["5", "5", 3], True),
     ],
 )
+@pytest.mark.filterwarnings(
+    "ignore:.*with CategoricalDtype is deprecated:FutureWarning"
+)
 def test_replace_categorical_series(to_replace, value, expected, flip_categories):
     # GH 31720
 
@@ -60,7 +63,13 @@ def test_replace_categorical(to_replace, value, result, expected_error_msg):
     # GH#26988
     cat = Categorical(["a", "b"])
     expected = Categorical(result)
-    result = pd.Series(cat, copy=False).replace(to_replace, value)._values
+    msg = (
+        r"The behavior of Series\.replace \(and DataFrame.replace\) "
+        "with CategoricalDtype"
+    )
+    warn = FutureWarning if expected_error_msg is not None else None
+    with tm.assert_produces_warning(warn, match=msg):
+        result = pd.Series(cat, copy=False).replace(to_replace, value)._values
 
     tm.assert_categorical_equal(result, expected)
     if to_replace == "b":  # the "c" test is supposed to be unchanged
@@ -69,14 +78,20 @@ def test_replace_categorical(to_replace, value, result, expected_error_msg):
             tm.assert_categorical_equal(cat, expected)
 
     ser = pd.Series(cat, copy=False)
-    ser.replace(to_replace, value, inplace=True)
+    with tm.assert_produces_warning(warn, match=msg):
+        ser.replace(to_replace, value, inplace=True)
     tm.assert_categorical_equal(cat, expected)
 
 
 def test_replace_categorical_ea_dtype():
     # GH49404
     cat = Categorical(pd.array(["a", "b"], dtype="string"))
-    result = pd.Series(cat).replace(["a", "b"], ["c", pd.NA])._values
+    msg = (
+        r"The behavior of Series\.replace \(and DataFrame.replace\) "
+        "with CategoricalDtype"
+    )
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = pd.Series(cat).replace(["a", "b"], ["c", pd.NA])._values
     expected = Categorical(pd.array(["c", pd.NA], dtype="string"))
     tm.assert_categorical_equal(result, expected)
 
@@ -85,7 +100,12 @@ def test_replace_maintain_ordering():
     # GH51016
     dtype = pd.CategoricalDtype([0, 1, 2], ordered=True)
     ser = pd.Series([0, 1, 2], dtype=dtype)
-    result = ser.replace(0, 2)
+    msg = (
+        r"The behavior of Series\.replace \(and DataFrame.replace\) "
+        "with CategoricalDtype"
+    )
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = ser.replace(0, 2)
     expected_dtype = pd.CategoricalDtype([1, 2], ordered=True)
     expected = pd.Series([2, 1, 2], dtype=expected_dtype)
     tm.assert_series_equal(expected, result, check_category_order=True)

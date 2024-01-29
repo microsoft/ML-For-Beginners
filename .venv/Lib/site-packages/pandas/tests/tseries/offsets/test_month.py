@@ -23,7 +23,6 @@ from pandas import (
     DatetimeIndex,
     Series,
     _testing as tm,
-    date_range,
 )
 from pandas.tests.tseries.offsets.common import (
     assert_is_on_offset,
@@ -72,11 +71,6 @@ class TestSemiMonthEnd:
             result = SemiMonthEnd() + shift
 
         exp = DatetimeIndex(dates[1:])
-        tm.assert_index_equal(result, exp)
-
-        # ensure generating a range with DatetimeIndex gives same result
-        result = date_range(start=dates[0], end=dates[-1], freq="SM")
-        exp = DatetimeIndex(dates, freq="SM")
         tm.assert_index_equal(result, exp)
 
     offset_cases = []
@@ -328,11 +322,6 @@ class TestSemiMonthBegin:
             result = SemiMonthBegin() + shift
 
         exp = DatetimeIndex(dates[1:])
-        tm.assert_index_equal(result, exp)
-
-        # ensure generating a range with DatetimeIndex gives same result
-        result = date_range(start=dates[0], end=dates[-1], freq="SMS")
-        exp = DatetimeIndex(dates, freq="SMS")
         tm.assert_index_equal(result, exp)
 
     offset_cases = [

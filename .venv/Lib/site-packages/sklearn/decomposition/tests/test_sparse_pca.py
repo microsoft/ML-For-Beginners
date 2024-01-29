@@ -120,12 +120,12 @@ def test_initialization():
 def test_mini_batch_correct_shapes():
     rng = np.random.RandomState(0)
     X = rng.randn(12, 10)
-    pca = MiniBatchSparsePCA(n_components=8, random_state=rng)
+    pca = MiniBatchSparsePCA(n_components=8, max_iter=1, random_state=rng)
     U = pca.fit_transform(X)
     assert pca.components_.shape == (8, 10)
     assert U.shape == (12, 8)
     # test overcomplete decomposition
-    pca = MiniBatchSparsePCA(n_components=13, random_state=rng)
+    pca = MiniBatchSparsePCA(n_components=13, max_iter=1, random_state=rng)
     U = pca.fit_transform(X)
     assert pca.components_.shape == (13, 10)
     assert U.shape == (12, 13)
@@ -268,33 +268,16 @@ def test_spca_feature_names_out(SPCA):
     assert_array_equal([f"{estimator_name}{i}" for i in range(4)], names)
 
 
-# TODO (1.4): remove this test
-def test_spca_n_iter_deprecation():
-    """Check that we raise a warning for the deprecation of `n_iter` and it is ignored
-    when `max_iter` is specified.
-    """
+# TODO(1.6): remove in 1.6
+def test_spca_max_iter_None_deprecation():
+    """Check that we raise a warning for the deprecation of `max_iter=None`."""
     rng = np.random.RandomState(0)
     n_samples, n_features = 12, 10
     X = rng.randn(n_samples, n_features)
 
-    warn_msg = "'n_iter' is deprecated in version 1.1 and will be removed"
+    warn_msg = "`max_iter=None` is deprecated in version 1.4 and will be removed"
     with pytest.warns(FutureWarning, match=warn_msg):
-        MiniBatchSparsePCA(n_iter=2).fit(X)
-
-    n_iter, max_iter = 1, 100
-    with pytest.warns(FutureWarning, match=warn_msg):
-        model = MiniBatchSparsePCA(
-            n_iter=n_iter, max_iter=max_iter, random_state=0
-        ).fit(X)
-    assert model.n_iter_ > 1
-    assert model.n_iter_ <= max_iter
-
-
-def test_pca_n_features_deprecation():
-    X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
-    pca = PCA(n_components=2).fit(X)
-    with pytest.warns(FutureWarning, match="`n_features_` was deprecated"):
-        pca.n_features_
+        MiniBatchSparsePCA(max_iter=None).fit(X)
 
 
 def test_spca_early_stopping(global_random_seed):

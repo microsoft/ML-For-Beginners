@@ -124,7 +124,7 @@ class TestReductions:
 
         # axis = 1
         result = arr.median(axis=1)
-        expected = type(arr)._from_sequence([arr1d.median()])
+        expected = type(arr)._from_sequence([arr1d.median()], dtype=arr.dtype)
         tm.assert_equal(result, expected)
 
         result = arr.median(axis=1, skipna=False)

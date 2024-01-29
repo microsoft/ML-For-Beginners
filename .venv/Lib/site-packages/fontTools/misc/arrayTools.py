@@ -47,7 +47,7 @@ def updateBounds(bounds, p, min=min, max=max):
 
     Args:
         bounds: A bounding rectangle expressed as a tuple
-            ``(xMin, yMin, xMax, yMax)``.
+            ``(xMin, yMin, xMax, yMax), or None``.
         p: A 2D tuple representing a point.
         min,max: functions to compute the minimum and maximum.
 
@@ -55,6 +55,8 @@ def updateBounds(bounds, p, min=min, max=max):
         The updated bounding rectangle ``(xMin, yMin, xMax, yMax)``.
     """
     (x, y) = p
+    if bounds is None:
+        return x, y, x, y
     xMin, yMin, xMax, yMax = bounds
     return min(xMin, x), min(yMin, y), max(xMax, x), max(yMax, y)
 

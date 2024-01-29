@@ -1,19 +1,27 @@
+import sys
+from typing import Any
+
 import numpy as np
 import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 AR_i8: npt.NDArray[np.int64]
 AR_f8: npt.NDArray[np.float64]
 
-reveal_type(np.histogram_bin_edges(AR_i8, bins="auto"))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.histogram_bin_edges(AR_i8, bins="rice", range=(0, 3)))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.histogram_bin_edges(AR_i8, bins="scott", weights=AR_f8))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.histogram_bin_edges(AR_i8, bins="auto"), npt.NDArray[Any])
+assert_type(np.histogram_bin_edges(AR_i8, bins="rice", range=(0, 3)), npt.NDArray[Any])
+assert_type(np.histogram_bin_edges(AR_i8, bins="scott", weights=AR_f8), npt.NDArray[Any])
 
-reveal_type(np.histogram(AR_i8, bins="auto"))  # E: Tuple[ndarray[Any, dtype[Any]], ndarray[Any, dtype[Any]]]
-reveal_type(np.histogram(AR_i8, bins="rice", range=(0, 3)))  # E: Tuple[ndarray[Any, dtype[Any]], ndarray[Any, dtype[Any]]]
-reveal_type(np.histogram(AR_i8, bins="scott", weights=AR_f8))  # E: Tuple[ndarray[Any, dtype[Any]], ndarray[Any, dtype[Any]]]
-reveal_type(np.histogram(AR_f8, bins=1, density=True))  # E: Tuple[ndarray[Any, dtype[Any]], ndarray[Any, dtype[Any]]]
+assert_type(np.histogram(AR_i8, bins="auto"), tuple[npt.NDArray[Any], npt.NDArray[Any]])
+assert_type(np.histogram(AR_i8, bins="rice", range=(0, 3)), tuple[npt.NDArray[Any], npt.NDArray[Any]])
+assert_type(np.histogram(AR_i8, bins="scott", weights=AR_f8), tuple[npt.NDArray[Any], npt.NDArray[Any]])
+assert_type(np.histogram(AR_f8, bins=1, density=True), tuple[npt.NDArray[Any], npt.NDArray[Any]])
 
-reveal_type(np.histogramdd(AR_i8, bins=[1]))  # E: Tuple[ndarray[Any, dtype[Any]], builtins.list[ndarray[Any, dtype[Any]]]]
-reveal_type(np.histogramdd(AR_i8, range=[(0, 3)]))  # E: Tuple[ndarray[Any, dtype[Any]], builtins.list[ndarray[Any, dtype[Any]]]]
-reveal_type(np.histogramdd(AR_i8, weights=AR_f8))  # E: Tuple[ndarray[Any, dtype[Any]], builtins.list[ndarray[Any, dtype[Any]]]]
-reveal_type(np.histogramdd(AR_f8, density=True))  # E: Tuple[ndarray[Any, dtype[Any]], builtins.list[ndarray[Any, dtype[Any]]]]
+assert_type(np.histogramdd(AR_i8, bins=[1]), tuple[npt.NDArray[Any], list[npt.NDArray[Any]]])
+assert_type(np.histogramdd(AR_i8, range=[(0, 3)]), tuple[npt.NDArray[Any], list[npt.NDArray[Any]]])
+assert_type(np.histogramdd(AR_i8, weights=AR_f8), tuple[npt.NDArray[Any], list[npt.NDArray[Any]]])
+assert_type(np.histogramdd(AR_f8, density=True), tuple[npt.NDArray[Any], list[npt.NDArray[Any]]])

@@ -3,17 +3,21 @@ utils:
 - provides utility wrappers to run asynchronous functions in a blocking environment.
 - vendor functions from ipython_genutils that should be retired at some point.
 """
+from __future__ import annotations
+
 import os
-from datetime import datetime, timedelta, tzinfo
+from typing import Sequence
 
 from jupyter_core.utils import ensure_async, run_sync  # noqa: F401  # noqa: F401
 
+from .session import utcnow  # noqa
 
-def _filefind(filename, path_dirs=None):
+
+def _filefind(filename: str, path_dirs: str | Sequence[str] | None = None) -> str:
     """Find a file by looking through a sequence of paths.
 
     This iterates through a sequence of paths looking for a file and returns
-    the full, absolute path of the first occurence of the file.  If no set of
+    the full, absolute path of the first occurrence of the file.  If no set of
     path dirs is given, the filename is tested as is, after running through
     :func:`expandvars` and :func:`expanduser`.  Thus a simple call::
 
@@ -63,7 +67,7 @@ def _filefind(filename, path_dirs=None):
     raise OSError(msg)
 
 
-def _expand_path(s):
+def _expand_path(s: str) -> str:
     """Expand $VARS and ~names in a string, like a shell
 
     :Examples:
@@ -84,35 +88,3 @@ def _expand_path(s):
     if os.name == "nt":
         s = s.replace("IPYTHON_TEMP", "$\\")
     return s
-
-
-# constant for zero offset
-ZERO = timedelta(0)
-
-
-class tzUTC(tzinfo):  # noqa
-    """tzinfo object for UTC (zero offset)"""
-
-    def utcoffset(self, d):
-        """Compute utcoffset."""
-        return ZERO
-
-    def dst(self, d):
-        """Compute dst."""
-        return ZERO
-
-
-UTC = tzUTC()  # type:ignore
-
-
-def utc_aware(unaware):
-    """decorator for adding UTC tzinfo to datetime's utcfoo methods"""
-
-    def utc_method(*args, **kwargs):
-        dt = unaware(*args, **kwargs)
-        return dt.replace(tzinfo=UTC)
-
-    return utc_method
-
-
-utcnow = utc_aware(datetime.utcnow)

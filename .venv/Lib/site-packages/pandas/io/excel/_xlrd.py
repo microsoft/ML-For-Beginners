@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import time
+import math
 from typing import TYPE_CHECKING
 
 import numpy as np
@@ -120,9 +121,11 @@ class XlrdReader(BaseExcelReader["Book"]):
             elif cell_typ == XL_CELL_NUMBER:
                 # GH5394 - Excel 'numbers' are always floats
                 # it's a minimal perf hit and less surprising
-                val = int(cell_contents)
-                if val == cell_contents:
-                    cell_contents = val
+                if math.isfinite(cell_contents):
+                    # GH54564 - don't attempt to convert NaN/Inf
+                    val = int(cell_contents)
+                    if val == cell_contents:
+                        cell_contents = val
             return cell_contents
 
         data = []

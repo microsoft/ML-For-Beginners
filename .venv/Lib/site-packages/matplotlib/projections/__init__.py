@@ -55,7 +55,15 @@ A full-fledged and heavily annotated example is in
 from .. import axes, _docstring
 from .geo import AitoffAxes, HammerAxes, LambertAxes, MollweideAxes
 from .polar import PolarAxes
-from mpl_toolkits.mplot3d import Axes3D
+
+try:
+    from mpl_toolkits.mplot3d import Axes3D
+except Exception:
+    import warnings
+    warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+                  "Matplotlib being installed (e.g. as a system package and as a pip "
+                  "package). As a result, the 3D projection is not available.")
+    Axes3D = None
 
 
 class ProjectionRegistry:
@@ -87,8 +95,12 @@ projection_registry.register(
     HammerAxes,
     LambertAxes,
     MollweideAxes,
-    Axes3D,
 )
+if Axes3D is not None:
+    projection_registry.register(Axes3D)
+else:
+    # remove from namespace if not importable
+    del Axes3D
 
 
 def register_projection(cls):

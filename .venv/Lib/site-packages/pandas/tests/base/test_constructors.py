@@ -138,7 +138,9 @@ class TestConstruction:
             "object-string",
         ],
     )
-    def test_constructor_datetime_outofbound(self, a, constructor):
+    def test_constructor_datetime_outofbound(
+        self, a, constructor, request, using_infer_string
+    ):
         # GH-26853 (+ bug GH-26206 out of bound non-ns unit)
 
         # No dtype specified (dtype inference)
@@ -150,7 +152,10 @@ class TestConstruction:
             assert result.dtype == "M8[s]"
         else:
             result = constructor(a)
-            assert result.dtype == "object"
+            if using_infer_string and "object-string" in request.node.callspec.id:
+                assert result.dtype == "string"
+            else:
+                assert result.dtype == "object"
             tm.assert_numpy_array_equal(result.to_numpy(), a)
 
         # Explicit dtype specified

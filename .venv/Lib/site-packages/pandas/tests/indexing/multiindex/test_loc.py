@@ -566,7 +566,7 @@ def test_loc_setitem_single_column_slice():
     tm.assert_frame_equal(df, expected)
 
 
-def test_loc_nan_multiindex():
+def test_loc_nan_multiindex(using_infer_string):
     # GH 5286
     tups = [
         ("Good Things", "C", np.nan),
@@ -586,8 +586,12 @@ def test_loc_nan_multiindex():
     result = df.loc["Good Things"].loc["C"]
     expected = DataFrame(
         np.ones((1, 4)),
-        index=Index([np.nan], dtype="object", name="u3"),
-        columns=Index(["d1", "d2", "d3", "d4"], dtype="object"),
+        index=Index(
+            [np.nan],
+            dtype="object" if not using_infer_string else "string[pyarrow_numpy]",
+            name="u3",
+        ),
+        columns=Index(["d1", "d2", "d3", "d4"]),
     )
     tm.assert_frame_equal(result, expected)
 
@@ -698,10 +702,19 @@ def test_loc_mi_with_level1_named_0():
     tm.assert_series_equal(result, expected)
 
 
-def test_getitem_str_slice(datapath):
+def test_getitem_str_slice():
     # GH#15928
-    path = datapath("reshape", "merge", "data", "quotes2.csv")
-    df = pd.read_csv(path, parse_dates=["time"])
+    df = DataFrame(
+        [
+            ["20160525 13:30:00.023", "MSFT", "51.95", "51.95"],
+            ["20160525 13:30:00.048", "GOOG", "720.50", "720.93"],
+            ["20160525 13:30:00.076", "AAPL", "98.55", "98.56"],
+            ["20160525 13:30:00.131", "AAPL", "98.61", "98.62"],
+            ["20160525 13:30:00.135", "MSFT", "51.92", "51.95"],
+            ["20160525 13:30:00.135", "AAPL", "98.61", "98.62"],
+        ],
+        columns="time,ticker,bid,ask".split(","),
+    )
     df2 = df.set_index(["ticker", "time"]).sort_index()
 
     res = df2.loc[("AAPL", slice("2016-05-25 13:30:00")), :].droplevel(0)

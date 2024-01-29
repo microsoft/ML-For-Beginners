@@ -6,10 +6,11 @@ are available in the main ``numpy`` namespace - use that instead.
 
 """
 
-from numpy.version import version as __version__
-
 import os
 import warnings
+
+from numpy.version import version as __version__
+
 
 # disables OpenBLAS affinity setting of the main thread that limits
 # python threads or processes to one core

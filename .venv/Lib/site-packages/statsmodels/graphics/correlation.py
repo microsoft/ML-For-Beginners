@@ -59,7 +59,7 @@ def plot_corr(dcorr, xnames=None, ynames=None, title=None, normcolor=False,
     >>> smg.plot_corr(corr_matrix, xnames=hie_data.names)
     >>> plt.show()
 
-    ..plot :: plots/graphics_correlation_plot_corr.py
+    .. plot:: plots/graphics_correlation_plot_corr.py
     """
     if ax is None:
         create_colorbar = True
@@ -180,7 +180,7 @@ def plot_corr_grid(dcorrs, titles=None, ncols=None, normcolor=False, xnames=None
     >>> sm.graphics.plot_corr_grid([corr_matrix] * 8, xnames=hie_data.names)
     >>> plt.show()
 
-    ..plot :: plots/graphics_correlation_plot_corr_grid.py
+    .. plot:: plots/graphics_correlation_plot_corr_grid.py
     """
     if ynames is None:
         ynames = xnames

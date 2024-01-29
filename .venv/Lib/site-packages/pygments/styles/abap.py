@@ -13,7 +13,11 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator
 
 
+__all__ = ['AbapStyle']
+
+
 class AbapStyle(Style):
+    name = 'abap'
 
     styles = {
         Comment:                'italic #888',

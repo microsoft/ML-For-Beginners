@@ -22,6 +22,7 @@
 # Figure 206. Windows Paint Version 2: "LinS" Format. Used in Windows V2.03
 #
 # See also: https://www.fileformat.info/format/mspaint/egff.htm
+from __future__ import annotations
 
 import io
 import struct
@@ -62,7 +63,7 @@ class MspImageFile(ImageFile.ImageFile):
             msg = "bad MSP checksum"
             raise SyntaxError(msg)
 
-        self.mode = "1"
+        self._mode = "1"
         self._size = i16(s, 4), i16(s, 6)
 
         if s[:4] == b"DanM":

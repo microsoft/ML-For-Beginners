@@ -54,6 +54,7 @@ from statsmodels.tools.validation import float_like
 # need import in module instead of lazily to copy `__doc__`
 from . import families
 
+
 __all__ = ['GLM', 'PredictionResultsMean']
 
 
@@ -623,6 +624,90 @@ class GLM(base.LikelihoodModel):
         """
         scale = float_like(scale, "scale", optional=True)
         return self.hessian(params, scale=scale, observed=False)
+
+    def _derivative_exog(self, params, exog=None, transform="dydx",
+                         dummy_idx=None, count_idx=None,
+                         offset=None, exposure=None):
+        """
+        Derivative of mean, expected endog with respect to the parameters
+        """
+        if exog is None:
+            exog = self.exog
+        if (offset is not None) or (exposure is not None):
+            raise NotImplementedError("offset and exposure not supported")
+
+        lin_pred = self.predict(params, exog, which="linear",
+                                offset=offset, exposure=exposure)
+
+        k_extra = getattr(self, 'k_extra', 0)
+        params_exog = params if k_extra == 0 else params[:-k_extra]
+
+        margeff = (self.family.link.inverse_deriv(lin_pred)[:, None] *
+                   params_exog)
+        if 'ex' in transform:
+            margeff *= exog
+        if 'ey' in transform:
+            mean = self.family.link.inverse(lin_pred)
+            margeff /= mean[:,None]
+
+        return self._derivative_exog_helper(margeff, params, exog,
+                                            dummy_idx, count_idx, transform)
+
+    def _derivative_exog_helper(self, margeff, params, exog, dummy_idx,
+                                count_idx, transform):
+        """
+        Helper for _derivative_exog to wrap results appropriately
+        """
+        from statsmodels.discrete.discrete_margins import (
+            _get_count_effects,
+            _get_dummy_effects,
+            )
+
+        if count_idx is not None:
+            margeff = _get_count_effects(margeff, exog, count_idx, transform,
+                                         self, params)
+        if dummy_idx is not None:
+            margeff = _get_dummy_effects(margeff, exog, dummy_idx, transform,
+                                         self, params)
+
+        return margeff
+
+    def _derivative_predict(self, params, exog=None, transform='dydx',
+                            offset=None, exposure=None):
+        """
+        Derivative of the expected endog with respect to the parameters.
+
+        Parameters
+        ----------
+        params : ndarray
+            parameter at which score is evaluated
+        exog : ndarray or None
+            Explanatory variables at which derivative are computed.
+            If None, then the estimation exog is used.
+        offset, exposure : None
+            Not yet implemented.
+
+        Returns
+        -------
+        The value of the derivative of the expected endog with respect
+        to the parameter vector.
+        """
+        # core part is same as derivative_mean_params
+        # additionally handles exog and transform
+        if exog is None:
+            exog = self.exog
+        if (offset is not None) or (exposure is not None) or (
+                getattr(self, 'offset', None) is not None):
+            raise NotImplementedError("offset and exposure not supported")
+
+        lin_pred = self.predict(params, exog=exog, which="linear")
+        idl = self.family.link.inverse_deriv(lin_pred)
+        dmat = exog * idl[:, None]
+        if 'ey' in transform:
+            mean = self.family.link.inverse(lin_pred)
+            dmat /= mean[:, None]
+
+        return dmat
 
     def _deriv_mean_dparams(self, params):
         """
@@ -2210,6 +2295,92 @@ class GLMResults(base.LikelihoodModelResults):
             mu, scale, var_weights=var_weights, **kwds)
         return distr
 
+    def get_margeff(self, at='overall', method='dydx', atexog=None,
+            dummy=False, count=False):
+        """Get marginal effects of the fitted model.
+
+        Warning: offset, exposure and weights (var_weights and freq_weights)
+        are not supported by margeff.
+
+        Parameters
+        ----------
+        at : str, optional
+            Options are:
+
+            - 'overall', The average of the marginal effects at each
+              observation.
+            - 'mean', The marginal effects at the mean of each regressor.
+            - 'median', The marginal effects at the median of each regressor.
+            - 'zero', The marginal effects at zero for each regressor.
+            - 'all', The marginal effects at each observation. If `at` is all
+              only margeff will be available from the returned object.
+
+            Note that if `exog` is specified, then marginal effects for all
+            variables not specified by `exog` are calculated using the `at`
+            option.
+        method : str, optional
+            Options are:
+
+            - 'dydx' - dy/dx - No transformation is made and marginal effects
+              are returned.  This is the default.
+            - 'eyex' - estimate elasticities of variables in `exog` --
+              d(lny)/d(lnx)
+            - 'dyex' - estimate semi-elasticity -- dy/d(lnx)
+            - 'eydx' - estimate semi-elasticity -- d(lny)/dx
+
+            Note that tranformations are done after each observation is
+            calculated.  Semi-elasticities for binary variables are computed
+            using the midpoint method. 'dyex' and 'eyex' do not make sense
+            for discrete variables. For interpretations of these methods
+            see notes below.
+        atexog : array_like, optional
+            Optionally, you can provide the exogenous variables over which to
+            get the marginal effects.  This should be a dictionary with the key
+            as the zero-indexed column number and the value of the dictionary.
+            Default is None for all independent variables less the constant.
+        dummy : bool, optional
+            If False, treats binary variables (if present) as continuous.  This
+            is the default.  Else if True, treats binary variables as
+            changing from 0 to 1.  Note that any variable that is either 0 or 1
+            is treated as binary.  Each binary variable is treated separately
+            for now.
+        count : bool, optional
+            If False, treats count variables (if present) as continuous.  This
+            is the default.  Else if True, the marginal effect is the
+            change in probabilities when each observation is increased by one.
+
+        Returns
+        -------
+        DiscreteMargins : marginal effects instance
+            Returns an object that holds the marginal effects, standard
+            errors, confidence intervals, etc. See
+            `statsmodels.discrete.discrete_margins.DiscreteMargins` for more
+            information.
+
+        Notes
+        -----
+        Interpretations of methods:
+
+        - 'dydx' - change in `endog` for a change in `exog`.
+        - 'eyex' - proportional change in `endog` for a proportional change
+          in `exog`.
+        - 'dyex' - change in `endog` for a proportional change in `exog`.
+        - 'eydx' - proportional change in `endog` for a change in `exog`.
+
+        When using after Poisson, returns the expected number of events per
+        period, assuming that the model is loglinear.
+
+        Status : unsupported features offset, exposure and weights. Default
+        handling of freq_weights for average effect "overall" might change.
+
+        """
+        if getattr(self.model, "offset", None) is not None:
+            raise NotImplementedError("Margins with offset are not available.")
+        if (np.any(self.model.var_weights != 1) or
+                np.any(self.model.freq_weights != 1)):
+            warnings.warn("weights are not taken into account by margeff")
+        from statsmodels.discrete.discrete_margins import DiscreteMargins
+        return DiscreteMargins(self, (at, method, atexog, dummy, count))
 
     @Appender(base.LikelihoodModelResults.remove_data.__doc__)
     def remove_data(self):

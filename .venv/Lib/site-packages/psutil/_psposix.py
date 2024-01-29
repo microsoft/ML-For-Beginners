@@ -28,7 +28,7 @@ if MACOS:
     from . import _psutil_osx
 
 
-if sys.version_info >= (3, 4):
+if PY3:
     import enum
 else:
     enum = None
@@ -63,7 +63,8 @@ def pid_exists(pid):
 # https://bugs.python.org/issue21076
 if enum is not None and hasattr(signal, "Signals"):
     Negsignal = enum.IntEnum(
-        'Negsignal', dict([(x.name, -x.value) for x in signal.Signals]))
+        'Negsignal', dict([(x.name, -x.value) for x in signal.Signals])
+    )
 
     def negsig_to_enum(num):
         """Convert a negative signal value to an enum."""
@@ -71,17 +72,23 @@ if enum is not None and hasattr(signal, "Signals"):
             return Negsignal(num)
         except ValueError:
             return num
+
 else:  # pragma: no cover
+
     def negsig_to_enum(num):
         return num
 
 
-def wait_pid(pid, timeout=None, proc_name=None,
-             _waitpid=os.waitpid,
-             _timer=getattr(time, 'monotonic', time.time),
-             _min=min,
-             _sleep=time.sleep,
-             _pid_exists=pid_exists):
+def wait_pid(
+    pid,
+    timeout=None,
+    proc_name=None,
+    _waitpid=os.waitpid,
+    _timer=getattr(time, 'monotonic', time.time),  # noqa: B008
+    _min=min,
+    _sleep=time.sleep,
+    _pid_exists=pid_exists,
+):
     """Wait for a process PID to terminate.
 
     If the process terminated normally by calling exit(3) or _exit(2),
@@ -100,7 +107,9 @@ def wait_pid(pid, timeout=None, proc_name=None,
     timeout=0 is also possible (either return immediately or raise).
     """
     if pid <= 0:
-        raise ValueError("can't wait for PID 0")  # see "man waitpid"
+        # see "man waitpid"
+        msg = "can't wait for PID 0"
+        raise ValueError(msg)
     interval = 0.0001
     flags = 0
     if timeout is not None:
@@ -136,7 +145,8 @@ def wait_pid(pid, timeout=None, proc_name=None,
                 # WNOHANG flag was used and PID is still running.
                 interval = sleep(interval)
                 continue
-            elif os.WIFEXITED(status):
+
+            if os.WIFEXITED(status):
                 # Process terminated normally by calling exit(3) or _exit(2),
                 # or by returning from main(). The return value is the
                 # positive integer passed to *exit().
@@ -191,13 +201,13 @@ def disk_usage(path):
 
     # Total space which is only available to root (unless changed
     # at system level).
-    total = (st.f_blocks * st.f_frsize)
+    total = st.f_blocks * st.f_frsize
     # Remaining free space usable by root.
-    avail_to_root = (st.f_bfree * st.f_frsize)
+    avail_to_root = st.f_bfree * st.f_frsize
     # Remaining free space usable by user.
-    avail_to_user = (st.f_bavail * st.f_frsize)
+    avail_to_user = st.f_bavail * st.f_frsize
     # Total space being used in general.
-    used = (total - avail_to_root)
+    used = total - avail_to_root
     if MACOS:
         # see: https://github.com/giampaolo/psutil/pull/2152
         used = _psutil_osx.disk_usage_used(path, used)
@@ -213,13 +223,14 @@ def disk_usage(path):
     # reserved blocks that we are currently not considering:
     # https://github.com/giampaolo/psutil/issues/829#issuecomment-223750462
     return sdiskusage(
-        total=total, used=used, free=avail_to_user, percent=usage_percent_user)
+        total=total, used=used, free=avail_to_user, percent=usage_percent_user
+    )
 
 
 @memoize
 def get_terminal_map():
     """Get a map of device-id -> path as a dict.
-    Used by Process.terminal()
+    Used by Process.terminal().
     """
     ret = {}
     ls = glob.glob('/dev/tty*') + glob.glob('/dev/pts/*')

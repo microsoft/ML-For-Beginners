@@ -166,9 +166,16 @@ class TestTake:
         tm.assert_sp_array_equal(arr.take([0, 1, 2]), exp)
 
     def test_take_all_empty(self):
-        a = pd.array([0, 0], dtype=SparseDtype("int64"))
-        result = a.take([0, 1], allow_fill=True, fill_value=np.nan)
-        tm.assert_sp_array_equal(a, result)
+        sparse = pd.array([0, 0], dtype=SparseDtype("int64"))
+        result = sparse.take([0, 1], allow_fill=True, fill_value=np.nan)
+        tm.assert_sp_array_equal(sparse, result)
+
+    def test_take_different_fill_value(self):
+        # Take with a different fill value shouldn't overwrite the original
+        sparse = pd.array([0.0], dtype=SparseDtype("float64", fill_value=0.0))
+        result = sparse.take([0, -1], allow_fill=True, fill_value=np.nan)
+        expected = pd.array([0, np.nan], dtype=sparse.dtype)
+        tm.assert_sp_array_equal(expected, result)
 
     def test_take_fill_value(self):
         data = np.array([1, np.nan, 0, 3, 0])

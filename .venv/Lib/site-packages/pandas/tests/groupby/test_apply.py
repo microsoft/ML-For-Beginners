@@ -2,7 +2,6 @@ from datetime import (
     date,
     datetime,
 )
-from io import StringIO
 
 import numpy as np
 import pytest
@@ -28,7 +27,9 @@ def test_apply_func_that_appends_group_to_list_without_copy():
     def store(group):
         groups.append(group)
 
-    df.groupby("index").apply(store)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        df.groupby("index").apply(store)
     expected_value = DataFrame(
         {"index": [0] * 10, 0: [1] * 10}, index=pd.RangeIndex(0, 100, 10)
     )
@@ -36,55 +37,100 @@ def test_apply_func_that_appends_group_to_list_without_copy():
     tm.assert_frame_equal(groups[0], expected_value)
 
 
-def test_apply_issues():
+def test_apply_index_date(using_infer_string):
     # GH 5788
-
-    s = """2011.05.16,00:00,1.40893
-2011.05.16,01:00,1.40760
-2011.05.16,02:00,1.40750
-2011.05.16,03:00,1.40649
-2011.05.17,02:00,1.40893
-2011.05.17,03:00,1.40760
-2011.05.17,04:00,1.40750
-2011.05.17,05:00,1.40649
-2011.05.18,02:00,1.40893
-2011.05.18,03:00,1.40760
-2011.05.18,04:00,1.40750
-2011.05.18,05:00,1.40649"""
-
-    df = pd.read_csv(
-        StringIO(s),
-        header=None,
-        names=["date", "time", "value"],
-        parse_dates=[["date", "time"]],
+    ts = [
+        "2011-05-16 00:00",
+        "2011-05-16 01:00",
+        "2011-05-16 02:00",
+        "2011-05-16 03:00",
+        "2011-05-17 02:00",
+        "2011-05-17 03:00",
+        "2011-05-17 04:00",
+        "2011-05-17 05:00",
+        "2011-05-18 02:00",
+        "2011-05-18 03:00",
+        "2011-05-18 04:00",
+        "2011-05-18 05:00",
+    ]
+    df = DataFrame(
+        {
+            "value": [
+                1.40893,
+                1.40760,
+                1.40750,
+                1.40649,
+                1.40893,
+                1.40760,
+                1.40750,
+                1.40649,
+                1.40893,
+                1.40760,
+                1.40750,
+                1.40649,
+            ],
+        },
+        index=Index(pd.to_datetime(ts), name="date_time"),
     )
-    df = df.set_index("date_time")
-
     expected = df.groupby(df.index.date).idxmax()
     result = df.groupby(df.index.date).apply(lambda x: x.idxmax())
     tm.assert_frame_equal(result, expected)
 
+
+def test_apply_index_date_object(using_infer_string):
     # GH 5789
     # don't auto coerce dates
-    df = pd.read_csv(StringIO(s), header=None, names=["date", "time", "value"])
+    ts = [
+        "2011-05-16 00:00",
+        "2011-05-16 01:00",
+        "2011-05-16 02:00",
+        "2011-05-16 03:00",
+        "2011-05-17 02:00",
+        "2011-05-17 03:00",
+        "2011-05-17 04:00",
+        "2011-05-17 05:00",
+        "2011-05-18 02:00",
+        "2011-05-18 03:00",
+        "2011-05-18 04:00",
+        "2011-05-18 05:00",
+    ]
+    df = DataFrame([row.split() for row in ts], columns=["date", "time"])
+    df["value"] = [
+        1.40893,
+        1.40760,
+        1.40750,
+        1.40649,
+        1.40893,
+        1.40760,
+        1.40750,
+        1.40649,
+        1.40893,
+        1.40760,
+        1.40750,
+        1.40649,
+    ]
+    dtype = "string[pyarrow_numpy]" if using_infer_string else object
     exp_idx = Index(
-        ["2011.05.16", "2011.05.17", "2011.05.18"], dtype=object, name="date"
+        ["2011-05-16", "2011-05-17", "2011-05-18"], dtype=dtype, name="date"
     )
     expected = Series(["00:00", "02:00", "02:00"], index=exp_idx)
-    result = df.groupby("date", group_keys=False).apply(
-        lambda x: x["time"][x["value"].idxmax()]
-    )
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("date", group_keys=False).apply(
+            lambda x: x["time"][x["value"].idxmax()]
+        )
     tm.assert_series_equal(result, expected)
 
 
-def test_apply_trivial():
+def test_apply_trivial(using_infer_string):
     # GH 20066
     # trivial apply: ignore input and return a constant dataframe.
     df = DataFrame(
         {"key": ["a", "a", "b", "b", "a"], "data": [1.0, 2.0, 3.0, 4.0, 5.0]},
         columns=["key", "data"],
     )
-    expected = pd.concat([df.iloc[1:], df.iloc[1:]], axis=1, keys=["float64", "object"])
+    dtype = "string" if using_infer_string else "object"
+    expected = pd.concat([df.iloc[1:], df.iloc[1:]], axis=1, keys=["float64", dtype])
 
     msg = "DataFrame.groupby with axis=1 is deprecated"
     with tm.assert_produces_warning(FutureWarning, match=msg):
@@ -94,13 +140,14 @@ def test_apply_trivial():
     tm.assert_frame_equal(result, expected)
 
 
-def test_apply_trivial_fail():
+def test_apply_trivial_fail(using_infer_string):
     # GH 20066
     df = DataFrame(
         {"key": ["a", "a", "b", "b", "a"], "data": [1.0, 2.0, 3.0, 4.0, 5.0]},
         columns=["key", "data"],
     )
-    expected = pd.concat([df, df], axis=1, keys=["float64", "object"])
+    dtype = "string" if using_infer_string else "object"
+    expected = pd.concat([df, df], axis=1, keys=["float64", dtype])
     msg = "DataFrame.groupby with axis=1 is deprecated"
     with tm.assert_produces_warning(FutureWarning, match=msg):
         gb = df.groupby([str(x) for x in df.dtypes], axis=1, group_keys=True)
@@ -179,7 +226,9 @@ def test_group_apply_once_per_group(df, group_names):
     for func in [f_copy, f_nocopy, f_scalar, f_none, f_constant_df]:
         del names[:]
 
-        df.groupby("a", group_keys=False).apply(func)
+        msg = "DataFrameGroupBy.apply operated on the grouping columns"
+        with tm.assert_produces_warning(DeprecationWarning, match=msg):
+            df.groupby("a", group_keys=False).apply(func)
         assert names == group_names
 
 
@@ -197,9 +246,11 @@ def test_group_apply_once_per_group2(capsys):
         index=["0", "2", "4", "6", "8", "10", "12", "14"],
     )
 
-    df.groupby("group_by_column", group_keys=False).apply(
-        lambda df: print("function_called")
-    )
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        df.groupby("group_by_column", group_keys=False).apply(
+            lambda df: print("function_called")
+        )
 
     result = capsys.readouterr().out.count("function_called")
     # If `groupby` behaves unexpectedly, this test will break
@@ -219,8 +270,11 @@ def test_apply_fast_slow_identical():
     def fast(group):
         return group.copy()
 
-    fast_df = df.groupby("A", group_keys=False).apply(fast)
-    slow_df = df.groupby("A", group_keys=False).apply(slow)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        fast_df = df.groupby("A", group_keys=False).apply(fast)
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        slow_df = df.groupby("A", group_keys=False).apply(slow)
 
     tm.assert_frame_equal(fast_df, slow_df)
 
@@ -242,7 +296,9 @@ def test_groupby_apply_identity_maybecopy_index_identical(func):
 
     df = DataFrame({"g": [1, 2, 2, 2], "a": [1, 2, 3, 4], "b": [5, 6, 7, 8]})
 
-    result = df.groupby("g", group_keys=False).apply(func)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("g", group_keys=False).apply(func)
     tm.assert_frame_equal(result, df)
 
 
@@ -285,8 +341,11 @@ def test_groupby_as_index_apply():
     tm.assert_index_equal(res_as, exp)
     tm.assert_index_equal(res_not_as, exp)
 
-    res_as_apply = g_as.apply(lambda x: x.head(2)).index
-    res_not_as_apply = g_not_as.apply(lambda x: x.head(2)).index
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        res_as_apply = g_as.apply(lambda x: x.head(2)).index
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        res_not_as_apply = g_not_as.apply(lambda x: x.head(2)).index
 
     # apply doesn't maintain the original ordering
     # changed in GH5610 as the as_index=False returns a MI here
@@ -299,7 +358,9 @@ def test_groupby_as_index_apply():
 
     ind = Index(list("abcde"))
     df = DataFrame([[1, 2], [2, 3], [1, 4], [1, 5], [2, 6]], index=ind)
-    res = df.groupby(0, as_index=False, group_keys=False).apply(lambda x: x).index
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        res = df.groupby(0, as_index=False, group_keys=False).apply(lambda x: x).index
     tm.assert_index_equal(res, ind)
 
 
@@ -328,13 +389,19 @@ def test_apply_concat_preserve_names(three_group):
         # weirdo
         return result
 
-    result = grouped.apply(desc)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = grouped.apply(desc)
     assert result.index.names == ("A", "B", "stat")
 
-    result2 = grouped.apply(desc2)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result2 = grouped.apply(desc2)
     assert result2.index.names == ("A", "B", "stat")
 
-    result3 = grouped.apply(desc3)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result3 = grouped.apply(desc3)
     assert result3.index.names == ("A", "B", None)
 
 
@@ -364,7 +431,9 @@ def test_apply_series_yield_constant(df):
 
 def test_apply_frame_yield_constant(df):
     # GH13568
-    result = df.groupby(["A", "B"]).apply(len)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby(["A", "B"]).apply(len)
     assert isinstance(result, Series)
     assert result.name is None
 
@@ -375,7 +444,9 @@ def test_apply_frame_yield_constant(df):
 
 def test_apply_frame_to_series(df):
     grouped = df.groupby(["A", "B"])
-    result = grouped.apply(len)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = grouped.apply(len)
     expected = grouped.count()["C"]
     tm.assert_index_equal(result.index, expected.index)
     tm.assert_numpy_array_equal(result.values, expected.values)
@@ -384,7 +455,9 @@ def test_apply_frame_to_series(df):
 def test_apply_frame_not_as_index_column_name(df):
     # GH 35964 - path within _wrap_applied_output not hit by a test
     grouped = df.groupby(["A", "B"], as_index=False)
-    result = grouped.apply(len)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = grouped.apply(len)
     expected = grouped.count().rename(columns={"C": np.nan}).drop(columns="D")
     # TODO(GH#34306): Use assert_frame_equal when column name is not np.nan
     tm.assert_index_equal(result.index, expected.index)
@@ -407,7 +480,9 @@ def test_apply_frame_concat_series():
         }
     )
 
-    result = df.groupby("A").apply(trans)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("A").apply(trans)
     exp = df.groupby("A")["C"].apply(trans2)
     tm.assert_series_equal(result, exp, check_names=False)
     assert result.name == "C"
@@ -436,7 +511,9 @@ def test_apply_chunk_view(group_keys):
     # Low level tinkering could be unsafe, make sure not
     df = DataFrame({"key": [1, 1, 1, 2, 2, 2, 3, 3, 3], "value": range(9)})
 
-    result = df.groupby("key", group_keys=group_keys).apply(lambda x: x.iloc[:2])
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("key", group_keys=group_keys).apply(lambda x: x.iloc[:2])
     expected = df.take([0, 1, 3, 4, 6, 7])
     if group_keys:
         expected.index = MultiIndex.from_arrays(
@@ -457,7 +534,9 @@ def test_apply_no_name_column_conflict():
 
     # it works! #2605
     grouped = df.groupby(["name", "name2"])
-    grouped.apply(lambda x: x.sort_values("value", inplace=True))
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        grouped.apply(lambda x: x.sort_values("value", inplace=True))
 
 
 def test_apply_typecast_fail():
@@ -474,7 +553,9 @@ def test_apply_typecast_fail():
         group["v2"] = (v - v.min()) / (v.max() - v.min())
         return group
 
-    result = df.groupby("d", group_keys=False).apply(f)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("d", group_keys=False).apply(f)
 
     expected = df.copy()
     expected["v2"] = np.tile([0.0, 0.5, 1], 2)
@@ -498,7 +579,9 @@ def test_apply_multiindex_fail():
         group["v2"] = (v - v.min()) / (v.max() - v.min())
         return group
 
-    result = df.groupby("d", group_keys=False).apply(f)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("d", group_keys=False).apply(f)
 
     expected = df.copy()
     expected["v2"] = np.tile([0.0, 0.5, 1], 2)
@@ -536,8 +619,11 @@ def test_apply_without_copy():
         else:
             return x[x.category == "c"]
 
-    expected = data.groupby("id_field").apply(filt1)
-    result = data.groupby("id_field").apply(filt2)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected = data.groupby("id_field").apply(filt1)
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = data.groupby("id_field").apply(filt2)
     tm.assert_frame_equal(result, expected)
 
 
@@ -556,7 +642,9 @@ def test_apply_with_duplicated_non_sorted_axis(test_series):
         expected = ser.sort_index()
         tm.assert_series_equal(result, expected)
     else:
-        result = df.groupby("Y", group_keys=False).apply(lambda x: x)
+        msg = "DataFrameGroupBy.apply operated on the grouping columns"
+        with tm.assert_produces_warning(DeprecationWarning, match=msg):
+            result = df.groupby("Y", group_keys=False).apply(lambda x: x)
 
         # not expecting the order to remain the same for duplicated axis
         result = result.sort_values("Y")
@@ -601,7 +689,9 @@ def test_apply_corner_cases():
         g["value3"] = g["value1"] * 2
         return g
 
-    result = grouped.apply(f)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = grouped.apply(f)
     assert "value3" in result
 
 
@@ -615,9 +705,13 @@ def test_apply_numeric_coercion_when_datetime():
     df = DataFrame(
         {"Number": [1, 2], "Date": ["2017-03-02"] * 2, "Str": ["foo", "inf"]}
     )
-    expected = df.groupby(["Number"]).apply(lambda x: x.iloc[0])
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected = df.groupby(["Number"]).apply(lambda x: x.iloc[0])
     df.Date = pd.to_datetime(df.Date)
-    result = df.groupby(["Number"]).apply(lambda x: x.iloc[0])
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby(["Number"]).apply(lambda x: x.iloc[0])
     tm.assert_series_equal(result["Str"], expected["Str"])
 
     # GH 15421
@@ -628,7 +722,9 @@ def test_apply_numeric_coercion_when_datetime():
     def get_B(g):
         return g.iloc[0][["B"]]
 
-    result = df.groupby("A").apply(get_B)["B"]
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("A").apply(get_B)["B"]
     expected = df.B
     expected.index = df.A
     tm.assert_series_equal(result, expected)
@@ -653,8 +749,11 @@ def test_apply_numeric_coercion_when_datetime():
     )
     df2 = df1.copy()
     df2.oTime = pd.to_datetime(df2.oTime)
-    expected = df1.groupby("Key").apply(predictions).p1
-    result = df2.groupby("Key").apply(predictions).p1
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected = df1.groupby("Key").apply(predictions).p1
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df2.groupby("Key").apply(predictions).p1
     tm.assert_series_equal(expected, result)
 
 
@@ -669,11 +768,13 @@ def test_apply_aggregating_timedelta_and_datetime():
         }
     )
     df["time_delta_zero"] = df.datetime - df.datetime
-    result = df.groupby("clientid").apply(
-        lambda ddf: Series(
-            {"clientid_age": ddf.time_delta_zero.min(), "date": ddf.datetime.min()}
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("clientid").apply(
+            lambda ddf: Series(
+                {"clientid_age": ddf.time_delta_zero.min(), "date": ddf.datetime.min()}
+            )
         )
-    )
     expected = DataFrame(
         {
             "clientid": ["A", "B", "C"],
@@ -716,11 +817,15 @@ def test_time_field_bug():
     def func_with_date(batch):
         return Series({"b": datetime(2015, 1, 1), "c": 2})
 
-    dfg_no_conversion = df.groupby(by=["a"]).apply(func_with_no_date)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        dfg_no_conversion = df.groupby(by=["a"]).apply(func_with_no_date)
     dfg_no_conversion_expected = DataFrame({"c": 2}, index=[1])
     dfg_no_conversion_expected.index.name = "a"
 
-    dfg_conversion = df.groupby(by=["a"]).apply(func_with_date)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        dfg_conversion = df.groupby(by=["a"]).apply(func_with_date)
     dfg_conversion_expected = DataFrame(
         {"b": pd.Timestamp(2015, 1, 1).as_unit("ns"), "c": 2}, index=[1]
     )
@@ -764,7 +869,9 @@ def test_groupby_apply_all_none():
     def test_func(x):
         pass
 
-    result = test_df.groupby("groups").apply(test_func)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = test_df.groupby("groups").apply(test_func)
     expected = DataFrame()
     tm.assert_frame_equal(result, expected)
 
@@ -779,8 +886,11 @@ def test_groupby_apply_none_first():
             return None
         return x.iloc[[0, -1]]
 
-    result1 = test_df1.groupby("groups").apply(test_func)
-    result2 = test_df2.groupby("groups").apply(test_func)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result1 = test_df1.groupby("groups").apply(test_func)
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result2 = test_df2.groupby("groups").apply(test_func)
     index1 = MultiIndex.from_arrays([[1, 1], [0, 2]], names=["groups", None])
     index2 = MultiIndex.from_arrays([[2, 2], [1, 3]], names=["groups", None])
     expected1 = DataFrame({"groups": [1, 1], "vars": [0, 2]}, index=index1)
@@ -793,7 +903,9 @@ def test_groupby_apply_return_empty_chunk():
     # GH 22221: apply filter which returns some empty groups
     df = DataFrame({"value": [0, 1], "group": ["filled", "empty"]})
     groups = df.groupby("group")
-    result = groups.apply(lambda group: group[group.value != 1]["value"])
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = groups.apply(lambda group: group[group.value != 1]["value"])
     expected = Series(
         [0],
         name="value",
@@ -820,7 +932,9 @@ def test_apply_with_mixed_types():
 def test_func_returns_object():
     # GH 28652
     df = DataFrame({"a": [1, 2]}, index=Index([1, 2]))
-    result = df.groupby("a").apply(lambda g: g.index)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("a").apply(lambda g: g.index)
     expected = Series([Index([1]), Index([2])], index=Index([1, 2], name="a"))
 
     tm.assert_series_equal(result, expected)
@@ -830,18 +944,19 @@ def test_func_returns_object():
     "group_column_dtlike",
     [datetime.today(), datetime.today().date(), datetime.today().time()],
 )
-def test_apply_datetime_issue(group_column_dtlike):
+def test_apply_datetime_issue(group_column_dtlike, using_infer_string):
     # GH-28247
     # groupby-apply throws an error if one of the columns in the DataFrame
     #   is a datetime object and the column labels are different from
     #   standard int values in range(len(num_columns))
 
     df = DataFrame({"a": ["foo"], "b": [group_column_dtlike]})
-    result = df.groupby("a").apply(lambda x: Series(["spam"], index=[42]))
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("a").apply(lambda x: Series(["spam"], index=[42]))
 
-    expected = DataFrame(
-        ["spam"], Index(["foo"], dtype="object", name="a"), columns=[42]
-    )
+    dtype = "string" if using_infer_string else "object"
+    expected = DataFrame(["spam"], Index(["foo"], dtype=dtype, name="a"), columns=[42])
     tm.assert_frame_equal(result, expected)
 
 
@@ -876,7 +991,9 @@ def test_apply_series_return_dataframe_groups():
     def most_common_values(df):
         return Series({c: s.value_counts().index[0] for c, s in df.items()})
 
-    result = tdf.groupby("day").apply(most_common_values)["userId"]
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = tdf.groupby("day").apply(most_common_values)["userId"]
     expected = Series(
         ["17661101"], index=pd.DatetimeIndex(["2015-02-24"], name="day"), name="userId"
     )
@@ -906,7 +1023,7 @@ def test_apply_multi_level_name(category):
     assert df.index.names == ["A", "B"]
 
 
-def test_groupby_apply_datetime_result_dtypes():
+def test_groupby_apply_datetime_result_dtypes(using_infer_string):
     # GH 14849
     data = DataFrame.from_records(
         [
@@ -917,9 +1034,12 @@ def test_groupby_apply_datetime_result_dtypes():
         ],
         columns=["observation", "color", "mood", "intensity", "score"],
     )
-    result = data.groupby("color").apply(lambda g: g.iloc[0]).dtypes
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = data.groupby("color").apply(lambda g: g.iloc[0]).dtypes
+    dtype = "string" if using_infer_string else object
     expected = Series(
-        [np.dtype("datetime64[ns]"), object, object, np.int64, object],
+        [np.dtype("datetime64[ns]"), dtype, dtype, np.int64, dtype],
         index=["observation", "color", "mood", "intensity", "score"],
     )
     tm.assert_series_equal(result, expected)
@@ -937,7 +1057,9 @@ def test_groupby_apply_datetime_result_dtypes():
 def test_apply_index_has_complex_internals(index):
     # GH 31248
     df = DataFrame({"group": [1, 1, 2], "value": [0, 1, 0]}, index=index)
-    result = df.groupby("group", group_keys=False).apply(lambda x: x)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("group", group_keys=False).apply(lambda x: x)
     tm.assert_frame_equal(result, df)
 
 
@@ -960,7 +1082,9 @@ def test_apply_index_has_complex_internals(index):
 def test_apply_function_returns_non_pandas_non_scalar(function, expected_values):
     # GH 31441
     df = DataFrame(["A", "A", "B", "B"], columns=["groups"])
-    result = df.groupby("groups").apply(function)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("groups").apply(function)
     expected = Series(expected_values, index=Index(["A", "B"], name="groups"))
     tm.assert_series_equal(result, expected)
 
@@ -972,7 +1096,9 @@ def test_apply_function_returns_numpy_array():
 
     df = DataFrame({"A": ["a", "a", "b", "none"], "B": [1, 2, 3, np.nan]})
 
-    result = df.groupby("A").apply(fct)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("A").apply(fct)
     expected = Series(
         [[1.0, 2.0], [3.0], [np.nan]], index=Index(["a", "b", "none"], name="A")
     )
@@ -983,7 +1109,9 @@ def test_apply_function_returns_numpy_array():
 def test_apply_function_index_return(function):
     # GH: 22541
     df = DataFrame([1, 2, 2, 2, 1, 2, 3, 1, 3, 1], columns=["id"])
-    result = df.groupby("id").apply(function)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("id").apply(function)
     expected = Series(
         [Index([0, 4, 7, 9]), Index([1, 2, 3, 5]), Index([6, 8])],
         index=Index([1, 2, 3], name="id"),
@@ -1019,7 +1147,9 @@ def test_apply_result_type(group_keys, udf):
     # We'd like to control whether the group keys end up in the index
     # regardless of whether the UDF happens to be a transform.
     df = DataFrame({"A": ["a", "b"], "B": [1, 2]})
-    df_result = df.groupby("A", group_keys=group_keys).apply(udf)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        df_result = df.groupby("A", group_keys=group_keys).apply(udf)
     series_result = df.B.groupby(df.A, group_keys=group_keys).apply(udf)
 
     if group_keys:
@@ -1034,8 +1164,11 @@ def test_result_order_group_keys_false():
     # GH 34998
     # apply result order should not depend on whether index is the same or just equal
     df = DataFrame({"A": [2, 1, 2], "B": [1, 2, 3]})
-    result = df.groupby("A", group_keys=False).apply(lambda x: x)
-    expected = df.groupby("A", group_keys=False).apply(lambda x: x.copy())
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("A", group_keys=False).apply(lambda x: x)
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected = df.groupby("A", group_keys=False).apply(lambda x: x.copy())
     tm.assert_frame_equal(result, expected)
 
 
@@ -1047,8 +1180,15 @@ def test_apply_with_timezones_aware():
     df1 = DataFrame({"x": list(range(2)) * 3, "y": range(6), "t": index_no_tz})
     df2 = DataFrame({"x": list(range(2)) * 3, "y": range(6), "t": index_tz})
 
-    result1 = df1.groupby("x", group_keys=False).apply(lambda df: df[["x", "y"]].copy())
-    result2 = df2.groupby("x", group_keys=False).apply(lambda df: df[["x", "y"]].copy())
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result1 = df1.groupby("x", group_keys=False).apply(
+            lambda df: df[["x", "y"]].copy()
+        )
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result2 = df2.groupby("x", group_keys=False).apply(
+            lambda df: df[["x", "y"]].copy()
+        )
 
     tm.assert_frame_equal(result1, result2)
 
@@ -1065,7 +1205,7 @@ def test_apply_is_unchanged_when_other_methods_are_called_first(reduction_func):
     )
 
     expected = DataFrame(
-        {"a": [264, 297], "b": [15, 6], "c": [150, 60]},
+        {"b": [15, 6], "c": [150, 60]},
         index=Index([88, 99], name="a"),
     )
 
@@ -1073,7 +1213,7 @@ def test_apply_is_unchanged_when_other_methods_are_called_first(reduction_func):
     grp = df.groupby(by="a")
     msg = "The behavior of DataFrame.sum with axis=None is deprecated"
     with tm.assert_produces_warning(FutureWarning, match=msg, check_stacklevel=False):
-        result = grp.apply(sum)
+        result = grp.apply(sum, include_groups=False)
     tm.assert_frame_equal(result, expected)
 
     # Check output when another method is called before .apply()
@@ -1081,7 +1221,7 @@ def test_apply_is_unchanged_when_other_methods_are_called_first(reduction_func):
     args = get_groupby_method_args(reduction_func, df)
     _ = getattr(grp, reduction_func)(*args)
     with tm.assert_produces_warning(FutureWarning, match=msg, check_stacklevel=False):
-        result = grp.apply(sum)
+        result = grp.apply(sum, include_groups=False)
     tm.assert_frame_equal(result, expected)
 
 
@@ -1103,7 +1243,9 @@ def test_apply_with_date_in_multiindex_does_not_convert_to_timestamp():
     )
 
     grp = df.groupby(["A", "B"])
-    result = grp.apply(lambda x: x.head(1))
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = grp.apply(lambda x: x.head(1))
 
     expected = df.iloc[[0, 2, 3]]
     expected = expected.reset_index()
@@ -1151,7 +1293,9 @@ def test_apply_dropna_with_indexed_same(dropna):
         },
         index=list("xxyxz"),
     )
-    result = df.groupby("group", dropna=dropna, group_keys=False).apply(lambda x: x)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("group", dropna=dropna, group_keys=False).apply(lambda x: x)
     expected = df.dropna() if dropna else df.iloc[[0, 3, 1, 2, 4]]
     tm.assert_frame_equal(result, expected)
 
@@ -1176,7 +1320,9 @@ def test_apply_dropna_with_indexed_same(dropna):
 def test_apply_as_index_constant_lambda(as_index, expected):
     # GH 13217
     df = DataFrame({"a": [1, 1, 2, 2], "b": [1, 1, 2, 2], "c": [1, 1, 1, 1]})
-    result = df.groupby(["a", "b"], as_index=as_index).apply(lambda x: 1)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby(["a", "b"], as_index=as_index).apply(lambda x: 1)
     tm.assert_equal(result, expected)
 
 
@@ -1186,7 +1332,9 @@ def test_sort_index_groups():
         {"A": [1, 2, 3, 4, 5], "B": [6, 7, 8, 9, 0], "C": [1, 1, 1, 2, 2]},
         index=range(5),
     )
-    result = df.groupby("C").apply(lambda x: x.A.sort_index())
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("C").apply(lambda x: x.A.sort_index())
     expected = Series(
         range(1, 6),
         index=MultiIndex.from_tuples(
@@ -1201,14 +1349,16 @@ def test_positional_slice_groups_datetimelike():
     # GH 21651
     expected = DataFrame(
         {
-            "date": pd.date_range("2010-01-01", freq="12H", periods=5),
+            "date": pd.date_range("2010-01-01", freq="12h", periods=5),
             "vals": range(5),
             "let": list("abcde"),
         }
     )
-    result = expected.groupby(
-        [expected.let, expected.date.dt.date], group_keys=False
-    ).apply(lambda x: x.iloc[0:])
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = expected.groupby(
+            [expected.let, expected.date.dt.date], group_keys=False
+        ).apply(lambda x: x.iloc[0:])
     tm.assert_frame_equal(result, expected)
 
 
@@ -1251,24 +1401,29 @@ def test_apply_na(dropna):
         {"grp": [1, 1, 2, 2], "y": [1, 0, 2, 5], "z": [1, 2, np.nan, np.nan]}
     )
     dfgrp = df.groupby("grp", dropna=dropna)
-    result = dfgrp.apply(lambda grp_df: grp_df.nlargest(1, "z"))
-    expected = dfgrp.apply(lambda x: x.sort_values("z", ascending=False).head(1))
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = dfgrp.apply(lambda grp_df: grp_df.nlargest(1, "z"))
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected = dfgrp.apply(lambda x: x.sort_values("z", ascending=False).head(1))
     tm.assert_frame_equal(result, expected)
 
 
 def test_apply_empty_string_nan_coerce_bug():
     # GH#24903
-    result = (
-        DataFrame(
-            {
-                "a": [1, 1, 2, 2],
-                "b": ["", "", "", ""],
-                "c": pd.to_datetime([1, 2, 3, 4], unit="s"),
-            }
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = (
+            DataFrame(
+                {
+                    "a": [1, 1, 2, 2],
+                    "b": ["", "", "", ""],
+                    "c": pd.to_datetime([1, 2, 3, 4], unit="s"),
+                }
+            )
+            .groupby(["a", "b"])
+            .apply(lambda df: df.iloc[-1])
         )
-        .groupby(["a", "b"])
-        .apply(lambda df: df.iloc[-1])
-    )
     expected = DataFrame(
         [[1, "", pd.to_datetime(2, unit="s")], [2, "", pd.to_datetime(4, unit="s")]],
         columns=["a", "b", "c"],
@@ -1293,9 +1448,11 @@ def test_apply_index_key_error_bug(index_values):
         },
         index=Index(["a2", "a3", "aa"], name="a"),
     )
-    result = result.groupby("a").apply(
-        lambda df: Series([df["b"].mean()], index=["b_mean"])
-    )
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = result.groupby("a").apply(
+            lambda df: Series([df["b"].mean()], index=["b_mean"])
+        )
     tm.assert_frame_equal(result, expected)
 
 
@@ -1343,7 +1500,9 @@ def test_apply_index_key_error_bug(index_values):
 def test_apply_nonmonotonic_float_index(arg, idx):
     # GH 34455
     expected = DataFrame({"col": arg}, index=idx)
-    result = expected.groupby("col", group_keys=False).apply(lambda x: x)
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = expected.groupby("col", group_keys=False).apply(lambda x: x)
     tm.assert_frame_equal(result, expected)
 
 
@@ -1390,33 +1549,58 @@ def test_empty_df(method, op):
     tm.assert_series_equal(result, expected)
 
 
-@pytest.mark.parametrize(
-    "group_col",
-    [([0.0, np.nan, 0.0, 0.0]), ([np.nan, 0.0, 0.0, 0.0]), ([0, 0.0, 0.0, np.nan])],
-)
-def test_apply_inconsistent_output(group_col):
-    # GH 34478
-    df = DataFrame({"group_col": group_col, "value_col": [2, 2, 2, 2]})
-
-    result = df.groupby("group_col").value_col.apply(
-        lambda x: x.value_counts().reindex(index=[1, 2, 3])
-    )
-    expected = Series(
-        [np.nan, 3.0, np.nan],
-        name="value_col",
-        index=MultiIndex.from_product([[0.0], [1, 2, 3]], names=["group_col", 0.0]),
-    )
-
-    tm.assert_series_equal(result, expected)
+@pytest.mark.parametrize("include_groups", [True, False])
+def test_include_groups(include_groups):
+    # GH#7155
+    df = DataFrame({"a": [1, 1, 2], "b": [3, 4, 5]})
+    gb = df.groupby("a")
+    warn = DeprecationWarning if include_groups else None
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(warn, match=msg):
+        result = gb.apply(lambda x: x.sum(), include_groups=include_groups)
+    expected = DataFrame({"a": [2, 2], "b": [7, 5]}, index=Index([1, 2], name="a"))
+    if not include_groups:
+        expected = expected[["b"]]
+    tm.assert_frame_equal(result, expected)
 
 
-def test_apply_array_output_multi_getitem():
-    # GH 18930
-    df = DataFrame(
-        {"A": {"a": 1, "b": 2}, "B": {"a": 1, "b": 2}, "C": {"a": 1, "b": 2}}
-    )
-    result = df.groupby("A")[["B", "C"]].apply(lambda x: np.array([0]))
-    expected = Series(
-        [np.array([0])] * 2, index=Index([1, 2], name="A"), name=("B", "C")
-    )
-    tm.assert_series_equal(result, expected)
+@pytest.mark.parametrize("f", [max, min, sum])
+@pytest.mark.parametrize("keys", ["jim", ["jim", "joe"]])  # Single key  # Multi-key
+def test_builtins_apply(keys, f):
+    # see gh-8155
+    rs = np.random.default_rng(2)
+    df = DataFrame(rs.integers(1, 7, (10, 2)), columns=["jim", "joe"])
+    df["jolie"] = rs.standard_normal(10)
+
+    gb = df.groupby(keys)
+
+    fname = f.__name__
+
+    warn = None if f is not sum else FutureWarning
+    msg = "The behavior of DataFrame.sum with axis=None is deprecated"
+    with tm.assert_produces_warning(
+        warn, match=msg, check_stacklevel=False, raise_on_extra_warnings=False
+    ):
+        # Also warns on deprecation GH#53425
+        result = gb.apply(f)
+    ngroups = len(df.drop_duplicates(subset=keys))
+
+    assert_msg = f"invalid frame shape: {result.shape} (expected ({ngroups}, 3))"
+    assert result.shape == (ngroups, 3), assert_msg
+
+    npfunc = lambda x: getattr(np, fname)(x, axis=0)  # numpy's equivalent function
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected = gb.apply(npfunc)
+    tm.assert_frame_equal(result, expected)
+
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        expected2 = gb.apply(lambda x: npfunc(x))
+    tm.assert_frame_equal(result, expected2)
+
+    if f != sum:
+        expected = gb.agg(fname).reset_index()
+        expected.set_index(keys, inplace=True, drop=False)
+        tm.assert_frame_equal(result, expected, check_dtype=False)
+
+    tm.assert_series_equal(getattr(result, fname)(axis=0), getattr(df, fname)(axis=0))

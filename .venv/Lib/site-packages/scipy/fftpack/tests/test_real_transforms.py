@@ -26,7 +26,7 @@ FFTWDATA_SIZES = FFTWDATA_DOUBLE['sizes']
 def fftw_dct_ref(type, size, dt):
     x = np.linspace(0, size-1, size).astype(dt)
     dt = np.result_type(np.float32, dt)
-    if dt == np.double:
+    if dt == np.float64:
         data = FFTWDATA_DOUBLE
     elif dt == np.float32:
         data = FFTWDATA_SINGLE
@@ -39,7 +39,7 @@ def fftw_dct_ref(type, size, dt):
 def fftw_dst_ref(type, size, dt):
     x = np.linspace(0, size-1, size).astype(dt)
     dt = np.result_type(np.float32, dt)
-    if dt == np.double:
+    if dt == np.float64:
         data = FFTWDATA_DOUBLE
     elif dt == np.float32:
         data = FFTWDATA_SINGLE
@@ -267,7 +267,7 @@ class _TestDCTIVBase(_TestDCTBase):
 
 class TestDCTIDouble(_TestDCTIBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 10
         self.type = 1
 
@@ -288,7 +288,7 @@ class TestDCTIInt(_TestDCTIBase):
 
 class TestDCTIIDouble(_TestDCTIIBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 10
         self.type = 2
 
@@ -309,7 +309,7 @@ class TestDCTIIInt(_TestDCTIIBase):
 
 class TestDCTIIIDouble(_TestDCTIIIBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 14
         self.type = 3
 
@@ -330,7 +330,7 @@ class TestDCTIIIInt(_TestDCTIIIBase):
 
 class TestDCTIVDouble(_TestDCTIVBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 12
         self.type = 3
 
@@ -374,7 +374,7 @@ class _TestIDCTBase:
 
 class TestIDCTIDouble(_TestIDCTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 10
         self.type = 1
 
@@ -395,7 +395,7 @@ class TestIDCTIInt(_TestIDCTBase):
 
 class TestIDCTIIDouble(_TestIDCTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 10
         self.type = 2
 
@@ -416,7 +416,7 @@ class TestIDCTIIInt(_TestIDCTBase):
 
 class TestIDCTIIIDouble(_TestIDCTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 14
         self.type = 3
 
@@ -436,7 +436,7 @@ class TestIDCTIIIInt(_TestIDCTBase):
 
 class TestIDCTIVDouble(_TestIDCTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 12
         self.type = 4
 
@@ -497,7 +497,7 @@ class _TestDSTIVBase(_TestDSTBase):
 
 class TestDSTIDouble(_TestDSTIBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 12
         self.type = 1
 
@@ -518,7 +518,7 @@ class TestDSTIInt(_TestDSTIBase):
 
 class TestDSTIIDouble(_TestDSTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 14
         self.type = 2
 
@@ -539,7 +539,7 @@ class TestDSTIIInt(_TestDSTBase):
 
 class TestDSTIIIDouble(_TestDSTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 14
         self.type = 3
 
@@ -560,7 +560,7 @@ class TestDSTIIIInt(_TestDSTBase):
 
 class TestDSTIVDouble(_TestDSTIVBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 12
         self.type = 4
 
@@ -604,7 +604,7 @@ class _TestIDSTBase:
 
 class TestIDSTIDouble(_TestIDSTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 12
         self.type = 1
 
@@ -625,7 +625,7 @@ class TestIDSTIInt(_TestIDSTBase):
 
 class TestIDSTIIDouble(_TestIDSTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 14
         self.type = 2
 
@@ -646,7 +646,7 @@ class TestIDSTIIInt(_TestIDSTBase):
 
 class TestIDSTIIIDouble(_TestIDSTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 14
         self.type = 3
 
@@ -667,7 +667,7 @@ class TestIDSTIIIInt(_TestIDSTBase):
 
 class TestIDSTIVDouble(_TestIDSTBase):
     def setup_method(self):
-        self.rdt = np.double
+        self.rdt = np.float64
         self.dec = 12
         self.type = 4
 

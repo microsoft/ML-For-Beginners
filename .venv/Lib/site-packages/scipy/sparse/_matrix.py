@@ -1,12 +1,8 @@
-from ._sputils import isintlike, isscalarlike
-
-
 class spmatrix:
     """This class provides a base class for all sparse matrix classes.
 
     It cannot be instantiated.  Most of the work is provided by subclasses.
     """
-    _is_array = False
 
     @property
     def _bsr_container(self):
@@ -51,32 +47,10 @@ class spmatrix:
         return self._rmul_dispatch(other)
 
     # Restore matrix power
-    def __pow__(self, other):
-        M, N = self.shape
-        if M != N:
-            raise TypeError('sparse matrix is not square')
+    def __pow__(self, power):
+        from .linalg import matrix_power
 
-        if isintlike(other):
-            other = int(other)
-            if other < 0:
-                raise ValueError('exponent must be >= 0')
-
-            if other == 0:
-                from ._construct import eye
-                return eye(M, dtype=self.dtype)
-
-            if other == 1:
-                return self.copy()
-
-            tmp = self.__pow__(other // 2)
-            if other % 2:
-                return self @ tmp @ tmp
-            else:
-                return tmp @ tmp
-
-        if isscalarlike(other):
-            raise ValueError('exponent must be an integer')
-        return NotImplemented
+        return matrix_power(self, power)
 
     ## Backward compatibility
 
@@ -95,7 +69,7 @@ class spmatrix:
                      doc="Shape of the matrix")
 
     def asfptype(self):
-        """Upcast array to a floating point format (if necessary)"""
+        """Upcast matrix to a floating point format (if necessary)"""
         return self._asfptype()
 
     def getmaxprint(self):
@@ -118,7 +92,7 @@ class spmatrix:
         return self._getnnz(axis=axis)
 
     def getH(self):
-        """Return the Hermitian transpose of this array.
+        """Return the Hermitian transpose of this matrix.
 
         See Also
         --------
@@ -127,23 +101,13 @@ class spmatrix:
         return self.conjugate().transpose()
 
     def getcol(self, j):
-        """Returns a copy of column j of the array, as an (m x 1) sparse
-        array (column vector).
+        """Returns a copy of column j of the matrix, as an (m x 1) sparse
+        matrix (column vector).
         """
         return self._getcol(j)
 
     def getrow(self, i):
-        """Returns a copy of row i of the array, as a (1 x n) sparse
-        array (row vector).
+        """Returns a copy of row i of the matrix, as a (1 x n) sparse
+        matrix (row vector).
         """
         return self._getrow(i)
-
-
-def _array_doc_to_matrix(docstr):
-    # For opimized builds with stripped docstrings
-    if docstr is None:
-        return None
-    return (
-        docstr.replace('sparse arrays', 'sparse matrices')
-              .replace('sparse array', 'sparse matrix')
-    )

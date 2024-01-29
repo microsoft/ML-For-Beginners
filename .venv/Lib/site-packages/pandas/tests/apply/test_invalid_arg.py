@@ -18,15 +18,17 @@ from pandas import (
     DataFrame,
     Series,
     date_range,
-    notna,
 )
 import pandas._testing as tm
 
 
 @pytest.mark.parametrize("result_type", ["foo", 1])
-def test_result_type_error(result_type, int_frame_const_col):
+def test_result_type_error(result_type):
     # allowed result_type
-    df = int_frame_const_col
+    df = DataFrame(
+        np.tile(np.arange(3, dtype="int64"), 6).reshape(6, -1) + 1,
+        columns=["A", "B", "C"],
+    )
 
     msg = (
         "invalid value for result_type, must be one of "
@@ -202,11 +204,6 @@ def test_apply_modify_traceback():
             row["D"] = 7
         return row
 
-    def transform2(row):
-        if notna(row["C"]) and row["C"].startswith("shin") and row["A"] == "foo":
-            row["D"] = 7
-        return row
-
     msg = "'float' object has no attribute 'startswith'"
     with pytest.raises(AttributeError, match=msg):
         data.apply(transform, axis=1)
@@ -218,9 +215,14 @@ def test_apply_modify_traceback():
         DataFrame([["a", "b"], ["b", "a"]]), [["cumprod", TypeError]]
     ),
 )
-def test_agg_cython_table_raises_frame(df, func, expected, axis):
+def test_agg_cython_table_raises_frame(df, func, expected, axis, using_infer_string):
     # GH 21224
-    msg = "can't multiply sequence by non-int of type 'str'"
+    if using_infer_string:
+        import pyarrow as pa
+
+        expected = (expected, pa.lib.ArrowNotImplementedError)
+
+    msg = "can't multiply sequence by non-int of type 'str'|has no kernel"
     warn = None if isinstance(func, str) else FutureWarning
     with pytest.raises(expected, match=msg):
         with tm.assert_produces_warning(warn, match="using DataFrame.cumprod"):
@@ -243,11 +245,18 @@ def test_agg_cython_table_raises_frame(df, func, expected, axis):
         )
     ),
 )
-def test_agg_cython_table_raises_series(series, func, expected):
+def test_agg_cython_table_raises_series(series, func, expected, using_infer_string):
     # GH21224
     msg = r"[Cc]ould not convert|can't multiply sequence by non-int of type"
     if func == "median" or func is np.nanmedian or func is np.median:
         msg = r"Cannot convert \['a' 'b' 'c'\] to numeric"
+
+    if using_infer_string:
+        import pyarrow as pa
+
+        expected = (expected, pa.lib.ArrowNotImplementedError)
+
+    msg = msg + "|does not support|has no kernel"
     warn = None if isinstance(func, str) else FutureWarning
 
     with pytest.raises(expected, match=msg):
@@ -280,8 +289,11 @@ def test_transform_none_to_type():
         lambda x: Series([1, 2]),
     ],
 )
-def test_apply_broadcast_error(int_frame_const_col, func):
-    df = int_frame_const_col
+def test_apply_broadcast_error(func):
+    df = DataFrame(
+        np.tile(np.arange(3, dtype="int64"), 6).reshape(6, -1) + 1,
+        columns=["A", "B", "C"],
+    )
 
     # > 1 ndim
     msg = "too many dims to broadcast|cannot broadcast result"
@@ -330,11 +342,8 @@ def test_transform_wont_agg_series(string_series, func):
     # we are trying to transform with an aggregator
     msg = "Function did not transform"
 
-    warn = RuntimeWarning if func[0] == "sqrt" else None
-    warn_msg = "invalid value encountered in sqrt"
     with pytest.raises(ValueError, match=msg):
-        with tm.assert_produces_warning(warn, match=warn_msg, check_stacklevel=False):
-            string_series.transform(func)
+        string_series.transform(func)
 
 
 @pytest.mark.parametrize(

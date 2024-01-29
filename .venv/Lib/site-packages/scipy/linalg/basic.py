@@ -2,8 +2,8 @@
 # Use the `scipy.linalg` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _basic
+from scipy._lib.deprecation import _sub_module_deprecation
+
 
 __all__ = [  # noqa: F822
     'solve', 'solve_triangular', 'solveh_banded', 'solve_banded',
@@ -19,13 +19,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.linalg.basic is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.linalg instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.linalg` namespace, "
-                  "the `scipy.linalg.basic` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_basic, name)
+    return _sub_module_deprecation(sub_package="linalg", module="basic",
+                                   private_modules=["_basic"], all=__all__,
+                                   attribute=name)

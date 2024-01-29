@@ -739,6 +739,7 @@ class TestMultiIndexSlicers:
         expected = s.reindex(s.index[5:])
         tm.assert_series_equal(result, expected)
 
+        s = ymd["A"].copy()
         exp = ymd["A"].copy()
         s[5:] = 0
         exp.iloc[5:] = 0

@@ -1,24 +1,33 @@
+import sys
 from typing import Any
+from collections.abc import Generator
+
 import numpy as np
+import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 AR_i8: np.ndarray[Any, np.dtype[np.int64]]
 ar_iter = np.lib.Arrayterator(AR_i8)
 
-reveal_type(ar_iter.var)  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(ar_iter.buf_size)  # E: Union[None, builtins.int]
-reveal_type(ar_iter.start)  # E: builtins.list[builtins.int]
-reveal_type(ar_iter.stop)  # E: builtins.list[builtins.int]
-reveal_type(ar_iter.step)  # E: builtins.list[builtins.int]
-reveal_type(ar_iter.shape)  # E: builtins.tuple[builtins.int, ...]
-reveal_type(ar_iter.flat)  # E: typing.Generator[{int64}, None, None]
+assert_type(ar_iter.var, npt.NDArray[np.int64])
+assert_type(ar_iter.buf_size, None | int)
+assert_type(ar_iter.start, list[int])
+assert_type(ar_iter.stop, list[int])
+assert_type(ar_iter.step, list[int])
+assert_type(ar_iter.shape, tuple[int, ...])
+assert_type(ar_iter.flat, Generator[np.int64, None, None])
 
-reveal_type(ar_iter.__array__())  # E: ndarray[Any, dtype[{int64}]]
+assert_type(ar_iter.__array__(), npt.NDArray[np.int64])
 
 for i in ar_iter:
-    reveal_type(i)  # E: ndarray[Any, dtype[{int64}]]
+    assert_type(i, npt.NDArray[np.int64])
 
-reveal_type(ar_iter[0])  # E: lib.arrayterator.Arrayterator[Any, dtype[{int64}]]
-reveal_type(ar_iter[...])  # E: lib.arrayterator.Arrayterator[Any, dtype[{int64}]]
-reveal_type(ar_iter[:])  # E: lib.arrayterator.Arrayterator[Any, dtype[{int64}]]
-reveal_type(ar_iter[0, 0, 0])  # E: lib.arrayterator.Arrayterator[Any, dtype[{int64}]]
-reveal_type(ar_iter[..., 0, :])  # E: lib.arrayterator.Arrayterator[Any, dtype[{int64}]]
+assert_type(ar_iter[0], np.lib.Arrayterator[Any, np.dtype[np.int64]])
+assert_type(ar_iter[...], np.lib.Arrayterator[Any, np.dtype[np.int64]])
+assert_type(ar_iter[:], np.lib.Arrayterator[Any, np.dtype[np.int64]])
+assert_type(ar_iter[0, 0, 0], np.lib.Arrayterator[Any, np.dtype[np.int64]])
+assert_type(ar_iter[..., 0, :], np.lib.Arrayterator[Any, np.dtype[np.int64]])

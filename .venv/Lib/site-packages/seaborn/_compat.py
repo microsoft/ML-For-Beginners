@@ -1,22 +1,11 @@
+from __future__ import annotations
+from typing import Literal
+
 import numpy as np
+import pandas as pd
 import matplotlib as mpl
+from matplotlib.figure import Figure
 from seaborn.utils import _version_predates
-
-
-def MarkerStyle(marker=None, fillstyle=None):
-    """
-    Allow MarkerStyle to accept a MarkerStyle object as parameter.
-
-    Supports matplotlib < 3.3.0
-    https://github.com/matplotlib/matplotlib/pull/16692
-
-    """
-    if isinstance(marker, mpl.markers.MarkerStyle):
-        if fillstyle is None:
-            return marker
-        else:
-            marker = marker.get_marker()
-    return mpl.markers.MarkerStyle(marker, fillstyle)
 
 
 def norm_from_scale(scale, norm):
@@ -67,66 +56,6 @@ def norm_from_scale(scale, norm):
     return new_norm
 
 
-def scale_factory(scale, axis, **kwargs):
-    """
-    Backwards compatability for creation of independent scales.
-
-    Matplotlib scales require an Axis object for instantiation on < 3.4.
-    But the axis is not used, aside from extraction of the axis_name in LogScale.
-
-    """
-    modify_transform = False
-    if _version_predates(mpl, "3.4"):
-        if axis[0] in "xy":
-            modify_transform = True
-            axis = axis[0]
-            base = kwargs.pop("base", None)
-            if base is not None:
-                kwargs[f"base{axis}"] = base
-            nonpos = kwargs.pop("nonpositive", None)
-            if nonpos is not None:
-                kwargs[f"nonpos{axis}"] = nonpos
-
-    if isinstance(scale, str):
-        class Axis:
-            axis_name = axis
-        axis = Axis()
-
-    scale = mpl.scale.scale_factory(scale, axis, **kwargs)
-
-    if modify_transform:
-        transform = scale.get_transform()
-        transform.base = kwargs.get("base", 10)
-        if kwargs.get("nonpositive") == "mask":
-            # Setting a private attribute, but we only get here
-            # on an old matplotlib, so this won't break going forwards
-            transform._clip = False
-
-    return scale
-
-
-def set_scale_obj(ax, axis, scale):
-    """Handle backwards compatability with setting matplotlib scale."""
-    if _version_predates(mpl, "3.4"):
-        # The ability to pass a BaseScale instance to Axes.set_{}scale was added
-        # to matplotlib in version 3.4.0: GH: matplotlib/matplotlib/pull/19089
-        # Workaround: use the scale name, which is restrictive only if the user
-        # wants to define a custom scale; they'll need to update the registry too.
-        if scale.name is None:
-            # Hack to support our custom Formatter-less CatScale
-            return
-        method = getattr(ax, f"set_{axis}scale")
-        kws = {}
-        if scale.name == "function":
-            trans = scale.get_transform()
-            kws["functions"] = (trans._forward, trans._inverse)
-        method(scale.name, **kws)
-        axis_obj = getattr(ax, f"{axis}axis")
-        scale.set_default_locators_and_formatters(axis_obj)
-    else:
-        ax.set(**{f"{axis}scale": scale})
-
-
 def get_colormap(name):
     """Handle changes to matplotlib colormap interface in 3.6."""
     try:
@@ -144,19 +73,31 @@ def register_colormap(name, cmap):
         mpl.cm.register_cmap(name, cmap)
 
 
-def set_layout_engine(fig, engine):
+def set_layout_engine(
+    fig: Figure,
+    engine: Literal["constrained", "compressed", "tight", "none"],
+) -> None:
     """Handle changes to auto layout engine interface in 3.6"""
     if hasattr(fig, "set_layout_engine"):
         fig.set_layout_engine(engine)
     else:
         # _version_predates(mpl, 3.6)
         if engine == "tight":
-            fig.set_tight_layout(True)
+            fig.set_tight_layout(True)  # type: ignore  # predates typing
         elif engine == "constrained":
-            fig.set_constrained_layout(True)
+            fig.set_constrained_layout(True)  # type: ignore
         elif engine == "none":
-            fig.set_tight_layout(False)
-            fig.set_constrained_layout(False)
+            fig.set_tight_layout(False)  # type: ignore
+            fig.set_constrained_layout(False)  # type: ignore
+
+
+def get_layout_engine(fig: Figure) -> mpl.layout_engine.LayoutEngine | None:
+    """Handle changes to auto layout engine interface in 3.6"""
+    if hasattr(fig, "get_layout_engine"):
+        return fig.get_layout_engine()
+    else:
+        # _version_predates(mpl, 3.6)
+        return None
 
 
 def share_axis(ax0, ax1, which):
@@ -174,3 +115,9 @@ def get_legend_handles(legend):
         return legend.legendHandles
     else:
         return legend.legend_handles
+
+
+def groupby_apply_include_groups(val):
+    if _version_predates(pd, "2.2.0"):
+        return {}
+    return {"include_groups": val}

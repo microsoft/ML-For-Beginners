@@ -109,12 +109,16 @@ def test_empty_dtypes(check_dtype):
 
 
 @pytest.mark.parametrize("check_like", [True, False])
-def test_frame_equal_index_mismatch(check_like, obj_fixture):
+def test_frame_equal_index_mismatch(check_like, obj_fixture, using_infer_string):
+    if using_infer_string:
+        dtype = "string"
+    else:
+        dtype = "object"
     msg = f"""{obj_fixture}\\.index are different
 
 {obj_fixture}\\.index values are different \\(33\\.33333 %\\)
-\\[left\\]:  Index\\(\\['a', 'b', 'c'\\], dtype='object'\\)
-\\[right\\]: Index\\(\\['a', 'b', 'd'\\], dtype='object'\\)
+\\[left\\]:  Index\\(\\['a', 'b', 'c'\\], dtype='{dtype}'\\)
+\\[right\\]: Index\\(\\['a', 'b', 'd'\\], dtype='{dtype}'\\)
 At positional index 2, first diff: c != d"""
 
     df1 = DataFrame({"A": [1, 2, 3], "B": [4, 5, 6]}, index=["a", "b", "c"])
@@ -125,12 +129,16 @@ At positional index 2, first diff: c != d"""
 
 
 @pytest.mark.parametrize("check_like", [True, False])
-def test_frame_equal_columns_mismatch(check_like, obj_fixture):
+def test_frame_equal_columns_mismatch(check_like, obj_fixture, using_infer_string):
+    if using_infer_string:
+        dtype = "string"
+    else:
+        dtype = "object"
     msg = f"""{obj_fixture}\\.columns are different
 
 {obj_fixture}\\.columns values are different \\(50\\.0 %\\)
-\\[left\\]:  Index\\(\\['A', 'B'\\], dtype='object'\\)
-\\[right\\]: Index\\(\\['A', 'b'\\], dtype='object'\\)"""
+\\[left\\]:  Index\\(\\['A', 'B'\\], dtype='{dtype}'\\)
+\\[right\\]: Index\\(\\['A', 'b'\\], dtype='{dtype}'\\)"""
 
     df1 = DataFrame({"A": [1, 2, 3], "B": [4, 5, 6]}, index=["a", "b", "c"])
     df2 = DataFrame({"A": [1, 2, 3], "b": [4, 5, 6]}, index=["a", "b", "c"])
@@ -228,11 +236,17 @@ def test_assert_frame_equal_interval_dtype_mismatch():
         tm.assert_frame_equal(left, right, check_dtype=True)
 
 
-@pytest.mark.parametrize("right_dtype", ["Int32", "int64"])
-def test_assert_frame_equal_ignore_extension_dtype_mismatch(right_dtype):
+def test_assert_frame_equal_ignore_extension_dtype_mismatch():
     # https://github.com/pandas-dev/pandas/issues/35715
     left = DataFrame({"a": [1, 2, 3]}, dtype="Int64")
-    right = DataFrame({"a": [1, 2, 3]}, dtype=right_dtype)
+    right = DataFrame({"a": [1, 2, 3]}, dtype="Int32")
+    tm.assert_frame_equal(left, right, check_dtype=False)
+
+
+def test_assert_frame_equal_ignore_extension_dtype_mismatch_cross_class():
+    # https://github.com/pandas-dev/pandas/issues/35715
+    left = DataFrame({"a": [1, 2, 3]}, dtype="Int64")
+    right = DataFrame({"a": [1, 2, 3]}, dtype="int64")
     tm.assert_frame_equal(left, right, check_dtype=False)
 
 
@@ -282,9 +296,7 @@ def test_frame_equal_mixed_dtypes(frame_or_series, any_numeric_ea_dtype, indexer
     dtypes = (any_numeric_ea_dtype, "int64")
     obj1 = frame_or_series([1, 2], dtype=dtypes[indexer[0]])
     obj2 = frame_or_series([1, 2], dtype=dtypes[indexer[1]])
-    msg = r'(Series|DataFrame.iloc\[:, 0\] \(column name="0"\) classes) are different'
-    with pytest.raises(AssertionError, match=msg):
-        tm.assert_equal(obj1, obj2, check_exact=True, check_dtype=False)
+    tm.assert_equal(obj1, obj2, check_exact=True, check_dtype=False)
 
 
 def test_assert_frame_equal_check_like_different_indexes():

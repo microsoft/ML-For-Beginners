@@ -338,7 +338,7 @@ def chi2_contingency(observed, correction=True, lambda_=None):
         # the exception message.
         zeropos = list(zip(*np.nonzero(expected == 0)))[0]
         raise ValueError("The internally computed table of expected "
-                         "frequencies has a zero element at {}.".format(zeropos))
+                         f"frequencies has a zero element at {zeropos}.")
 
     # The degrees of freedom
     dof = expected.size - sum(expected.shape) + expected.ndim - 1

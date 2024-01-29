@@ -24,7 +24,8 @@ def check_shared(axs, x_shared, y_shared):
                 i1, i2, "not " if shared[i1, i2] else "", name)
 
 
-def check_visible(axs, x_visible, y_visible):
+def check_ticklabel_visible(axs, x_visible, y_visible):
+    """Check that the x and y ticklabel visibility is as specified."""
     for i, (ax, vx, vy) in enumerate(zip(axs, x_visible, y_visible)):
         for l in ax.get_xticklabels() + [ax.xaxis.offsetText]:
             assert l.get_visible() == vx, \
@@ -38,6 +39,20 @@ def check_visible(axs, x_visible, y_visible):
             assert ax.get_xlabel() == ""
         if not vy:
             assert ax.get_ylabel() == ""
+
+
+def check_tick1_visible(axs, x_visible, y_visible):
+    """
+    Check that the x and y tick visibility is as specified.
+
+    Note: This only checks the tick1line, i.e. bottom / left ticks.
+    """
+    for ax, visible, in zip(axs, x_visible):
+        for tick in ax.xaxis.get_major_ticks():
+            assert tick.tick1line.get_visible() == visible
+    for ax, y_visible, in zip(axs, y_visible):
+        for tick in ax.yaxis.get_major_ticks():
+            assert tick.tick1line.get_visible() == visible
 
 
 def test_shared():
@@ -90,16 +105,24 @@ def test_shared():
             f, ((a1, a2), (a3, a4)) = plt.subplots(2, 2, sharex=xo, sharey=yo)
             axs = [a1, a2, a3, a4]
             check_shared(axs, share[xo], share[yo])
-            check_visible(axs, visible['x'][xo], visible['y'][yo])
+            check_ticklabel_visible(axs, visible['x'][xo], visible['y'][yo])
             plt.close(f)
 
-    # test label_outer
-    f, ((a1, a2), (a3, a4)) = plt.subplots(2, 2, sharex=True, sharey=True)
-    axs = [a1, a2, a3, a4]
-    for ax in axs:
+
+@pytest.mark.parametrize('remove_ticks', [True, False])
+def test_label_outer(remove_ticks):
+    f, axs = plt.subplots(2, 2, sharex=True, sharey=True)
+    for ax in axs.flat:
         ax.set(xlabel="foo", ylabel="bar")
-        ax.label_outer()
-    check_visible(axs, [False, False, True, True], [True, False, True, False])
+        ax.label_outer(remove_inner_ticks=remove_ticks)
+    check_ticklabel_visible(
+        axs.flat, [False, False, True, True], [True, False, True, False])
+    if remove_ticks:
+        check_tick1_visible(
+            axs.flat, [False, False, True, True], [True, False, True, False])
+    else:
+        check_tick1_visible(
+            axs.flat, [True, True, True, True], [True, True, True, True])
 
 
 def test_label_outer_span():
@@ -118,28 +141,28 @@ def test_label_outer_span():
     a4 = fig.add_subplot(gs[2, 1])
     for ax in fig.axes:
         ax.label_outer()
-    check_visible(
+    check_ticklabel_visible(
         fig.axes, [False, True, False, True], [True, True, False, False])
 
 
 def test_label_outer_non_gridspec():
-    ax = plt.axes([0, 0, 1, 1])
+    ax = plt.axes((0, 0, 1, 1))
     ax.label_outer()  # Does nothing.
-    check_visible([ax], [True], [True])
+    check_ticklabel_visible([ax], [True], [True])
 
 
 def test_shared_and_moved():
     # test if sharey is on, but then tick_left is called that labels don't
     # re-appear.  Seaborn does this just to be sure yaxis is on left...
     f, (a1, a2) = plt.subplots(1, 2, sharey=True)
-    check_visible([a2], [True], [False])
+    check_ticklabel_visible([a2], [True], [False])
     a2.yaxis.tick_left()
-    check_visible([a2], [True], [False])
+    check_ticklabel_visible([a2], [True], [False])
 
     f, (a1, a2) = plt.subplots(2, 1, sharex=True)
-    check_visible([a1], [False], [True])
+    check_ticklabel_visible([a1], [False], [True])
     a2.xaxis.tick_bottom()
-    check_visible([a1], [False], [True])
+    check_ticklabel_visible([a1], [False], [True])
 
 
 def test_exceptions():

@@ -5,6 +5,7 @@ all of these occurrences but should catch almost all.
 import pytest
 
 from pathlib import Path
+import sys
 import ast
 import tokenize
 import numpy
@@ -56,6 +57,8 @@ class FindFuncs(ast.NodeVisitor):
 
 
 @pytest.mark.slow
+@pytest.mark.skipif(sys.version_info >= (3, 12),
+                    reason="Deprecation warning in ast")
 def test_warning_calls():
     # combined "ignore" and stacklevel error
     base = Path(numpy.__file__).parent

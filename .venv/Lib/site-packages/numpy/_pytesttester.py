@@ -135,12 +135,13 @@ class PytestTester:
         # offset verbosity. The "-q" cancels a "-v".
         pytest_args += ["-q"]
 
-        with warnings.catch_warnings():
-            warnings.simplefilter("always")
-            # Filter out distutils cpu warnings (could be localized to
-            # distutils tests). ASV has problems with top level import,
-            # so fetch module for suppression here.
-            from numpy.distutils import cpuinfo
+        if sys.version_info < (3, 12):
+            with warnings.catch_warnings():
+                warnings.simplefilter("always")
+                # Filter out distutils cpu warnings (could be localized to
+                # distutils tests). ASV has problems with top level import,
+                # so fetch module for suppression here.
+                from numpy.distutils import cpuinfo
 
         with warnings.catch_warnings(record=True):
             # Ignore the warning from importing the array_api submodule. This

@@ -20,7 +20,10 @@ from typing import (
     Final,
     SupportsIndex,
 )
-from typing_extensions import ParamSpec
+if sys.version_info >= (3, 10):
+    from typing import ParamSpec
+else:
+    from typing_extensions import ParamSpec
 
 from numpy import generic, dtype, number, object_, bool_, _FloatValue
 from numpy._typing import (

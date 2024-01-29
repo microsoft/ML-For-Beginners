@@ -17,7 +17,8 @@ from numpy.testing import (
     assert_, assert_equal, assert_raises, assert_raises_regex,
     assert_array_equal, assert_almost_equal, assert_array_almost_equal,
     assert_array_max_ulp, assert_allclose, assert_no_warnings, suppress_warnings,
-    _gen_alignment_data, assert_array_almost_equal_nulp, IS_WASM, IS_MUSL
+    _gen_alignment_data, assert_array_almost_equal_nulp, IS_WASM, IS_MUSL,
+    IS_PYPY
     )
 from numpy.testing._private.utils import _glibc_older_than
 
@@ -1646,6 +1647,8 @@ class TestSpecialFloats:
                           np.array(1200.0, dtype='d'))
 
     @pytest.mark.skipif(IS_WASM, reason="fp errors don't work in wasm")
+    @pytest.mark.skipif('bsd' in sys.platform,
+            reason="fallback implementation may not raise, see gh-2487")
     def test_cosh(self):
         in_ = [np.nan, -np.nan, np.inf, -np.inf]
         out = [np.nan, np.nan, np.inf, np.inf]
@@ -1710,6 +1713,9 @@ class TestSpecialFloats:
                     assert_raises(FloatingPointError, np.arctanh,
                                   np.array(value, dtype=dt))
 
+        # Make sure glibc < 2.18 atanh is not used, issue 25087
+        assert np.signbit(np.arctanh(-1j).real)
+
     # See: https://github.com/numpy/numpy/issues/20448
     @pytest.mark.xfail(
         _glibc_older_than("2.17"),
@@ -1764,6 +1770,8 @@ class TestSpecialFloats:
         np.log, np.log2, np.log10, np.reciprocal, np.arccosh
     ]
 
+    @pytest.mark.skipif(sys.platform == "win32" and sys.maxsize < 2**31 + 1,
+                        reason='failures on 32-bit Python, see FIXME below')
     @pytest.mark.parametrize("ufunc", UFUNCS_UNARY_FP)
     @pytest.mark.parametrize("dtype", ('e', 'f', 'd'))
     @pytest.mark.parametrize("data, escape", (
@@ -1810,11 +1818,25 @@ class TestSpecialFloats:
         # FIXME: NAN raises FP invalid exception:
         #  - ceil/float16 on MSVC:32-bit
         #  - spacing/float16 on almost all platforms
+        # FIXME: skipped on MSVC:32-bit during switch to Meson, 10 cases fail
+        #        when SIMD support not present / disabled
         if ufunc in (np.spacing, np.ceil) and dtype == 'e':
             return
         array = np.array(data, dtype=dtype)
         with assert_no_warnings():
             ufunc(array)
+
+    @pytest.mark.parametrize("dtype", ('e', 'f', 'd'))
+    def test_divide_spurious_fpexception(self, dtype):
+        dt = np.dtype(dtype)
+        dt_info = np.finfo(dt)
+        subnorm = dt_info.smallest_subnormal
+        # Verify a bug fix caused due to filling the remaining lanes of the
+        # partially loaded dividend SIMD vector with ones, which leads to
+        # raising an overflow warning when the divisor is denormal.
+        # see https://github.com/numpy/numpy/issues/25097
+        with assert_no_warnings():
+            np.zeros(128 + 1, dtype=dt) / subnorm
 
 class TestFPClass:
     @pytest.mark.parametrize("stride", [-5, -4, -3, -2, -1, 1,
@@ -4171,8 +4193,16 @@ class TestComplexFunctions:
             for p in points:
                 a = complex(func(np.complex_(p)))
                 b = cfunc(p)
-                assert_(abs(a - b) < atol, "%s %s: %s; cmath: %s" % (fname, p, a, b))
+                assert_(
+                    abs(a - b) < atol,
+                    "%s %s: %s; cmath: %s" % (fname, p, a, b)
+                )
 
+    @pytest.mark.xfail(
+        # manylinux2014 uses glibc2.17
+        _glibc_older_than("2.18"),
+        reason="Older glibc versions are imprecise (maybe passes with SIMD?)"
+    )
     @pytest.mark.xfail(IS_MUSL, reason="gh23049")
     @pytest.mark.xfail(IS_WASM, reason="doesn't work")
     @pytest.mark.parametrize('dtype', [np.complex64, np.complex_, np.longcomplex])

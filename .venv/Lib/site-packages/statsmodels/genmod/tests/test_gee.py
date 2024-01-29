@@ -1327,7 +1327,7 @@ class TestGEE:
         x2_new = np.random.normal(size=10)
         new_exog = pd.DataFrame({"X1": x1_new, "X2": x2_new})
         pred6 = result.predict(exog=new_exog)
-        params = result.params
+        params = np.asarray(result.params)
         pred6_correct = params[0] + params[1] * x1_new + params[2] * x2_new
         assert_allclose(pred6, pred6_correct)
 
@@ -1530,7 +1530,7 @@ class TestGEE:
                             [0.0, 0.5])
 
         # Regression test
-        assert_almost_equal([x.params[0] for x in ps],
+        assert_almost_equal([np.asarray(x.params)[0] for x in ps],
                             [0.1696214707458818, 0.17836097387799127])
 
     def test_equivalence(self):

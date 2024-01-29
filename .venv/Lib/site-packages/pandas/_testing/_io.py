@@ -118,7 +118,7 @@ def round_trip_localpath(writer, reader, path: str | None = None):
     return obj
 
 
-def write_to_compressed(compression, path, data, dest: str = "test"):
+def write_to_compressed(compression, path, data, dest: str = "test") -> None:
     """
     Write data to a compressed file.
 

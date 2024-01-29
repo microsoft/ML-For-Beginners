@@ -6,6 +6,7 @@ import re
 
 from dateutil.parser import parse as du_parse
 from dateutil.tz import tzlocal
+from hypothesis import given
 import numpy as np
 import pytest
 
@@ -21,6 +22,7 @@ from pandas.compat import (
 import pandas.util._test_decorators as td
 
 import pandas._testing as tm
+from pandas._testing._hypothesis import DATETIME_NO_TZ
 
 
 @pytest.mark.skipif(
@@ -138,8 +140,8 @@ def test_parsers_quarterly_with_freq_error(date_str, kwargs, msg):
     "date_str,freq,expected",
     [
         ("2013Q2", None, datetime(2013, 4, 1)),
-        ("2013Q2", "A-APR", datetime(2012, 8, 1)),
-        ("2013-Q2", "A-DEC", datetime(2013, 4, 1)),
+        ("2013Q2", "Y-APR", datetime(2012, 8, 1)),
+        ("2013-Q2", "Y-DEC", datetime(2013, 4, 1)),
     ],
 )
 def test_parsers_quarterly_with_freq(date_str, freq, expected):
@@ -148,7 +150,7 @@ def test_parsers_quarterly_with_freq(date_str, freq, expected):
 
 
 @pytest.mark.parametrize(
-    "date_str", ["2Q 2005", "2Q-200A", "2Q-200", "22Q2005", "2Q200.", "6Q-20"]
+    "date_str", ["2Q 2005", "2Q-200Y", "2Q-200", "22Q2005", "2Q200.", "6Q-20"]
 )
 def test_parsers_quarter_invalid(date_str):
     if date_str == "6Q-20":
@@ -168,7 +170,7 @@ def test_parsers_quarter_invalid(date_str):
     [("201101", datetime(2011, 1, 1, 0, 0)), ("200005", datetime(2000, 5, 1, 0, 0))],
 )
 def test_parsers_month_freq(date_str, expected):
-    result, _ = parsing.parse_datetime_string_with_reso(date_str, freq="M")
+    result, _ = parsing.parse_datetime_string_with_reso(date_str, freq="ME")
     assert result == expected
 
 
@@ -366,4 +368,47 @@ def test_guess_datetime_format_f(input):
     # https://github.com/pandas-dev/pandas/issues/49043
     result = parsing.guess_datetime_format(input)
     expected = "%Y-%m-%dT%H:%M:%S.%f"
+    assert result == expected
+
+
+def _helper_hypothesis_delimited_date(call, date_string, **kwargs):
+    msg, result = None, None
+    try:
+        result = call(date_string, **kwargs)
+    except ValueError as err:
+        msg = str(err)
+    return msg, result
+
+
+@given(DATETIME_NO_TZ)
+@pytest.mark.parametrize("delimiter", list(" -./"))
+@pytest.mark.parametrize("dayfirst", [True, False])
+@pytest.mark.parametrize(
+    "date_format",
+    ["%d %m %Y", "%m %d %Y", "%m %Y", "%Y %m %d", "%y %m %d", "%Y%m%d", "%y%m%d"],
+)
+def test_hypothesis_delimited_date(
+    request, date_format, dayfirst, delimiter, test_datetime
+):
+    if date_format == "%m %Y" and delimiter == ".":
+        request.applymarker(
+            pytest.mark.xfail(
+                reason="parse_datetime_string cannot reliably tell whether "
+                "e.g. %m.%Y is a float or a date"
+            )
+        )
+    date_string = test_datetime.strftime(date_format.replace(" ", delimiter))
+
+    except_out_dateutil, result = _helper_hypothesis_delimited_date(
+        parsing.py_parse_datetime_string, date_string, dayfirst=dayfirst
+    )
+    except_in_dateutil, expected = _helper_hypothesis_delimited_date(
+        du_parse,
+        date_string,
+        default=datetime(1, 1, 1),
+        dayfirst=dayfirst,
+        yearfirst=False,
+    )
+
+    assert except_out_dateutil == except_in_dateutil
     assert result == expected

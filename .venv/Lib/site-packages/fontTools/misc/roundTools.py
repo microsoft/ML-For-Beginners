@@ -13,6 +13,7 @@ __all__ = [
     "otRound",
     "maybeRound",
     "roundFunc",
+    "nearestMultipleShortestRepr",
 ]
 
 

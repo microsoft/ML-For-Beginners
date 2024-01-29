@@ -11,12 +11,11 @@ import pandas._testing as tm
 class TestSeriesPctChange:
     def test_pct_change(self, datetime_series):
         msg = (
-            "The 'fill_method' and 'limit' keywords in "
+            "The 'fill_method' keyword being not None and the 'limit' keyword in "
             "Series.pct_change are deprecated"
         )
 
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            rs = datetime_series.pct_change(fill_method=None)
+        rs = datetime_series.pct_change(fill_method=None)
         tm.assert_series_equal(rs, datetime_series / datetime_series.shift(1) - 1)
 
         rs = datetime_series.pct_change(2)
@@ -69,7 +68,7 @@ class TestSeriesPctChange:
         self, freq, periods, fill_method, limit, datetime_series
     ):
         msg = (
-            "The 'fill_method' and 'limit' keywords in "
+            "The 'fill_method' keyword being not None and the 'limit' keyword in "
             "Series.pct_change are deprecated"
         )
 
@@ -101,9 +100,21 @@ def test_pct_change_with_duplicated_indices(fill_method):
     # GH30463
     s = Series([np.nan, 1, 2, 3, 9, 18], index=["a", "b"] * 3)
 
-    msg = "The 'fill_method' and 'limit' keywords in Series.pct_change are deprecated"
-    with tm.assert_produces_warning(FutureWarning, match=msg):
+    warn = None if fill_method is None else FutureWarning
+    msg = (
+        "The 'fill_method' keyword being not None and the 'limit' keyword in "
+        "Series.pct_change are deprecated"
+    )
+    with tm.assert_produces_warning(warn, match=msg):
         result = s.pct_change(fill_method=fill_method)
 
     expected = Series([np.nan, np.nan, 1.0, 0.5, 2.0, 1.0], index=["a", "b"] * 3)
+    tm.assert_series_equal(result, expected)
+
+
+def test_pct_change_no_warning_na_beginning():
+    # GH#54981
+    ser = Series([None, None, 1, 2, 3])
+    result = ser.pct_change()
+    expected = Series([np.nan, np.nan, np.nan, 1, 0.5])
     tm.assert_series_equal(result, expected)

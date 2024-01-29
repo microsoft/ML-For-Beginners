@@ -258,7 +258,7 @@ class TestCommon:
                 reason="IntervalIndex.searchsorted does not support Interval arg",
                 raises=NotImplementedError,
             )
-            request.node.add_marker(mark)
+            request.applymarker(mark)
 
         # nothing to test if the index is empty
         if index.empty:
@@ -459,7 +459,7 @@ def test_sort_values_with_missing(index_with_missing, na_position, request):
     # sort non-missing and place missing according to na_position
 
     if isinstance(index_with_missing, CategoricalIndex):
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 reason="missing value sorting order not well-defined", strict=False
             )

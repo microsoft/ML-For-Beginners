@@ -1267,7 +1267,7 @@ class KalmanFilter(Representation):
             steps += 1
 
         # Check for what kind of impulse we want
-        if type(impulse) == int:
+        if type(impulse) is int:
             if impulse >= self.k_posdef or impulse < 0:
                 raise ValueError('Invalid value for `impulse`. Must be the'
                                  ' index of one of the state innovations.')

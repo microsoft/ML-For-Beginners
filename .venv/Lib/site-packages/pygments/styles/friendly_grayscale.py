@@ -16,12 +16,16 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['FriendlyGrayscaleStyle']
+
+
 class FriendlyGrayscaleStyle(Style):
     """
     A modern grayscale style based on the friendly style.
 
     .. versionadded:: 2.11
     """
+    name = 'friendly_grayscale'
 
     background_color = "#f0f0f0"
 

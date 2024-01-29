@@ -1,10 +1,10 @@
 from __future__ import annotations
 
+import collections.abc as cabc
 import os
 import sys
 import typing as t
 import weakref
-from collections.abc import Iterator as _abc_Iterator
 from datetime import timedelta
 from inspect import iscoroutinefunction
 from itertools import chain
@@ -54,6 +54,9 @@ from .wrappers import Request
 from .wrappers import Response
 
 if t.TYPE_CHECKING:  # pragma: no cover
+    from _typeshed.wsgi import StartResponse
+    from _typeshed.wsgi import WSGIEnvironment
+
     from .testing import FlaskClient
     from .testing import FlaskCliRunner
 
@@ -200,11 +203,11 @@ class Flask(App):
 
     #: The class that is used for request objects.  See :class:`~flask.Request`
     #: for more information.
-    request_class = Request
+    request_class: type[Request] = Request
 
     #: The class that is used for response objects.  See
     #: :class:`~flask.Response` for more information.
-    response_class = Response
+    response_class: type[Response] = Response
 
     #: the session interface to use.  By default an instance of
     #: :class:`~flask.sessions.SecureCookieSessionInterface` is used here.
@@ -216,11 +219,11 @@ class Flask(App):
         self,
         import_name: str,
         static_url_path: str | None = None,
-        static_folder: str | os.PathLike | None = "static",
+        static_folder: str | os.PathLike[str] | None = "static",
         static_host: str | None = None,
         host_matching: bool = False,
         subdomain_matching: bool = False,
-        template_folder: str | os.PathLike | None = "templates",
+        template_folder: str | os.PathLike[str] | None = "templates",
         instance_path: str | None = None,
         instance_relative_config: bool = False,
         root_path: str | None = None,
@@ -282,7 +285,7 @@ class Flask(App):
         if isinstance(value, timedelta):
             return int(value.total_seconds())
 
-        return value
+        return value  # type: ignore[no-any-return]
 
     def send_static_file(self, filename: str) -> Response:
         """The view function used to serve files from
@@ -447,13 +450,13 @@ class Flask(App):
             or request.routing_exception.code in {307, 308}
             or request.method in {"GET", "HEAD", "OPTIONS"}
         ):
-            raise request.routing_exception  # type: ignore
+            raise request.routing_exception  # type: ignore[misc]
 
         from .debughelpers import FormDataRoutingRedirect
 
         raise FormDataRoutingRedirect(request)
 
-    def update_template_context(self, context: dict) -> None:
+    def update_template_context(self, context: dict[str, t.Any]) -> None:
         """Update the template context with some commonly used variables.
         This injects request, session, config and g into the template
         context as well as everything template context processors want
@@ -481,7 +484,7 @@ class Flask(App):
 
         context.update(orig_ctx)
 
-    def make_shell_context(self) -> dict:
+    def make_shell_context(self) -> dict[str, t.Any]:
         """Returns the shell context for an interactive shell for this
         application.  This runs all the registered shell context
         processors.
@@ -724,7 +727,7 @@ class Flask(App):
         handler = self._find_error_handler(e, request.blueprints)
         if handler is None:
             return e
-        return self.ensure_sync(handler)(e)
+        return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
 
     def handle_user_exception(
         self, e: Exception
@@ -756,7 +759,7 @@ class Flask(App):
         if handler is None:
             raise
 
-        return self.ensure_sync(handler)(e)
+        return self.ensure_sync(handler)(e)  # type: ignore[no-any-return]
 
     def handle_exception(self, e: Exception) -> Response:
         """Handle an exception that did not have an error handler
@@ -849,7 +852,7 @@ class Flask(App):
             return self.make_default_options_response()
         # otherwise dispatch to the handler for that endpoint
         view_args: dict[str, t.Any] = req.view_args  # type: ignore[assignment]
-        return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+        return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
 
     def full_dispatch_request(self) -> Response:
         """Dispatches the request and on top of that performs request
@@ -913,7 +916,7 @@ class Flask(App):
         rv.allow.update(methods)
         return rv
 
-    def ensure_sync(self, func: t.Callable) -> t.Callable:
+    def ensure_sync(self, func: t.Callable[..., t.Any]) -> t.Callable[..., t.Any]:
         """Ensure that the function is synchronous for WSGI workers.
         Plain ``def`` functions are returned as-is. ``async def``
         functions are wrapped to run and wait for the response.
@@ -928,7 +931,7 @@ class Flask(App):
         return func
 
     def async_to_sync(
-        self, func: t.Callable[..., t.Coroutine]
+        self, func: t.Callable[..., t.Coroutine[t.Any, t.Any, t.Any]]
     ) -> t.Callable[..., t.Any]:
         """Return a sync function that will run the coroutine function.
 
@@ -1166,7 +1169,7 @@ class Flask(App):
 
         # make sure the body is an instance of the response class
         if not isinstance(rv, self.response_class):
-            if isinstance(rv, (str, bytes, bytearray)) or isinstance(rv, _abc_Iterator):
+            if isinstance(rv, (str, bytes, bytearray)) or isinstance(rv, cabc.Iterator):
                 # let the response class set the status and headers instead of
                 # waiting to do it manually, so that the class can handle any
                 # special logic
@@ -1183,7 +1186,8 @@ class Flask(App):
                 # class to the correct type
                 try:
                     rv = self.response_class.force_type(
-                        rv, request.environ  # type: ignore[arg-type]
+                        rv,  # type: ignore[arg-type]
+                        request.environ,
                     )
                 except TypeError as e:
                     raise TypeError(
@@ -1239,7 +1243,7 @@ class Flask(App):
                     rv = self.ensure_sync(before_func)()
 
                     if rv is not None:
-                        return rv
+                        return rv  # type: ignore[no-any-return]
 
         return None
 
@@ -1272,7 +1276,8 @@ class Flask(App):
         return response
 
     def do_teardown_request(
-        self, exc: BaseException | None = _sentinel  # type: ignore
+        self,
+        exc: BaseException | None = _sentinel,  # type: ignore[assignment]
     ) -> None:
         """Called after the request is dispatched and the response is
         returned, right before the request context is popped.
@@ -1305,7 +1310,8 @@ class Flask(App):
         request_tearing_down.send(self, _async_wrapper=self.ensure_sync, exc=exc)
 
     def do_teardown_appcontext(
-        self, exc: BaseException | None = _sentinel  # type: ignore
+        self,
+        exc: BaseException | None = _sentinel,  # type: ignore[assignment]
     ) -> None:
         """Called right before the application context is popped.
 
@@ -1350,7 +1356,7 @@ class Flask(App):
         """
         return AppContext(self)
 
-    def request_context(self, environ: dict) -> RequestContext:
+    def request_context(self, environ: WSGIEnvironment) -> RequestContext:
         """Create a :class:`~flask.ctx.RequestContext` representing a
         WSGI environment. Use a ``with`` block to push the context,
         which will make :data:`request` point at this request.
@@ -1422,7 +1428,9 @@ class Flask(App):
         finally:
             builder.close()
 
-    def wsgi_app(self, environ: dict, start_response: t.Callable) -> t.Any:
+    def wsgi_app(
+        self, environ: WSGIEnvironment, start_response: StartResponse
+    ) -> cabc.Iterable[bytes]:
         """The actual WSGI application. This is not implemented in
         :meth:`__call__` so that middlewares can be applied without
         losing a reference to the app object. Instead of doing this::
@@ -1470,7 +1478,9 @@ class Flask(App):
 
             ctx.pop(error)
 
-    def __call__(self, environ: dict, start_response: t.Callable) -> t.Any:
+    def __call__(
+        self, environ: WSGIEnvironment, start_response: StartResponse
+    ) -> cabc.Iterable[bytes]:
         """The WSGI server calls the Flask application object as the
         WSGI application. This calls :meth:`wsgi_app`, which can be
         wrapped to apply middleware.

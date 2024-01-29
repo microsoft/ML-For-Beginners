@@ -172,6 +172,7 @@ def _window_too_small() -> Window:
 
 class VerticalAlign(Enum):
     "Alignment for `HSplit`."
+
     TOP = "TOP"
     CENTER = "CENTER"
     BOTTOM = "BOTTOM"
@@ -180,6 +181,7 @@ class VerticalAlign(Enum):
 
 class HorizontalAlign(Enum):
     "Alignment for `VSplit`."
+
     LEFT = "LEFT"
     CENTER = "CENTER"
     RIGHT = "RIGHT"
@@ -2048,7 +2050,7 @@ class Window(Container):
                         new_buffer_row[x + xpos] = char
 
                         # When we print a multi width character, make sure
-                        # to erase the neighbours positions in the screen.
+                        # to erase the neighbors positions in the screen.
                         # (The empty string if different from everything,
                         # so next redraw this cell will repaint anyway.)
                         if char_width > 1:
@@ -2535,7 +2537,7 @@ class Window(Container):
             scroll_offset_end=offsets.right,
             cursor_pos=get_cwidth(current_line_text[: ui_content.cursor_position.x]),
             window_size=width - current_line_prefix_width,
-            # We can only analyse the current line. Calculating the width off
+            # We can only analyze the current line. Calculating the width off
             # all the lines is too expensive.
             content_size=max(
                 get_cwidth(current_line_text), self.horizontal_scroll + width

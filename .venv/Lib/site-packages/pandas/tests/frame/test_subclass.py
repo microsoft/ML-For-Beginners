@@ -10,6 +10,10 @@ from pandas import (
 )
 import pandas._testing as tm
 
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager|Passing a SingleBlockManager:DeprecationWarning"
+)
+
 
 @pytest.fixture()
 def gpd_style_subclass_df():
@@ -734,8 +738,77 @@ class TestDataFrameSubclassing:
         # https://github.com/pandas-dev/pandas/pull/46018
         df = tm.SubclassedDataFrame({"A": [0, 1, 2]})
         msg = "The 'method' keyword in SubclassedDataFrame.replace is deprecated"
-        with tm.assert_produces_warning(FutureWarning, match=msg):
+        with tm.assert_produces_warning(
+            FutureWarning, match=msg, raise_on_extra_warnings=False
+        ):
             result = df.replace([1, 2], method="ffill")
         expected = tm.SubclassedDataFrame({"A": [0, 0, 0]})
         assert isinstance(result, tm.SubclassedDataFrame)
         tm.assert_frame_equal(result, expected)
+
+
+class MySubclassWithMetadata(DataFrame):
+    _metadata = ["my_metadata"]
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+        my_metadata = kwargs.pop("my_metadata", None)
+        if args and isinstance(args[0], MySubclassWithMetadata):
+            my_metadata = args[0].my_metadata  # type: ignore[has-type]
+        self.my_metadata = my_metadata
+
+    @property
+    def _constructor(self):
+        return MySubclassWithMetadata
+
+
+def test_constructor_with_metadata():
+    # https://github.com/pandas-dev/pandas/pull/54922
+    # https://github.com/pandas-dev/pandas/issues/55120
+    df = MySubclassWithMetadata(
+        np.random.default_rng(2).random((5, 3)), columns=["A", "B", "C"]
+    )
+    subset = df[["A", "B"]]
+    assert isinstance(subset, MySubclassWithMetadata)
+
+
+class SimpleDataFrameSubClass(DataFrame):
+    """A subclass of DataFrame that does not define a constructor."""
+
+
+class SimpleSeriesSubClass(Series):
+    """A subclass of Series that does not define a constructor."""
+
+
+class TestSubclassWithoutConstructor:
+    def test_copy_df(self):
+        expected = DataFrame({"a": [1, 2, 3]})
+        result = SimpleDataFrameSubClass(expected).copy()
+
+        assert (
+            type(result) is DataFrame
+        )  # assert_frame_equal only checks isinstance(lhs, type(rhs))
+        tm.assert_frame_equal(result, expected)
+
+    def test_copy_series(self):
+        expected = Series([1, 2, 3])
+        result = SimpleSeriesSubClass(expected).copy()
+
+        tm.assert_series_equal(result, expected)
+
+    def test_series_to_frame(self):
+        orig = Series([1, 2, 3])
+        expected = orig.to_frame()
+        result = SimpleSeriesSubClass(orig).to_frame()
+
+        assert (
+            type(result) is DataFrame
+        )  # assert_frame_equal only checks isinstance(lhs, type(rhs))
+        tm.assert_frame_equal(result, expected)
+
+    def test_groupby(self):
+        df = SimpleDataFrameSubClass(DataFrame({"a": [1, 2, 3]}))
+
+        for _, v in df.groupby("a"):
+            assert type(v) is DataFrame

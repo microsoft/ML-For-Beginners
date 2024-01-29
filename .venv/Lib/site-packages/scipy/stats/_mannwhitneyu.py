@@ -278,6 +278,14 @@ def mannwhitneyu(x, y, use_continuity=True, alternative="two-sided",
         * 'greater': the distribution underlying `x` is stochastically greater
           than the distribution underlying `y`, i.e. *F(u) < G(u)* for all *u*.
 
+        Note that the mathematical expressions in the alternative hypotheses
+        above describe the CDFs of the underlying distributions. The directions
+        of the inequalities appear inconsistent with the natural language
+        description at first glance, but they are not. For example, suppose
+        *X* and *Y* are random variables that follow distributions with CDFs
+        *F* and *G*, respectively. If *F(u) > G(u)* for all *u*, samples drawn
+        from *X* tend to be less than those drawn from *Y*.
+
         Under a more restrictive set of assumptions, the alternative hypotheses
         can be expressed in terms of the locations of the distributions;
         see [5] section 5.1.
@@ -311,7 +319,7 @@ def mannwhitneyu(x, y, use_continuity=True, alternative="two-sided",
     -----
     If ``U1`` is the statistic corresponding with sample `x`, then the
     statistic corresponding with sample `y` is
-    `U2 = `x.shape[axis] * y.shape[axis] - U1``.
+    ``U2 = x.shape[axis] * y.shape[axis] - U1``.
 
     `mannwhitneyu` is for independent samples. For related / paired samples,
     consider `scipy.stats.wilcoxon`.

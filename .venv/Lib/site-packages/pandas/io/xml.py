@@ -88,7 +88,7 @@ class _XMLFrameParser:
         Parse only the attributes at the specified ``xpath``.
 
     names : list
-        Column names for :class:`~pandas.DataFrame`of parsed XML data.
+        Column names for :class:`~pandas.DataFrame` of parsed XML data.
 
     dtype : dict
         Data type for data or columns. E.g. {{'a': np.float64,
@@ -1058,7 +1058,7 @@ def read_xml(
 
     Examples
     --------
-    >>> import io
+    >>> from io import StringIO
     >>> xml = '''<?xml version='1.0' encoding='utf-8'?>
     ... <data xmlns="http://example.com">
     ...  <row>
@@ -1078,7 +1078,7 @@ def read_xml(
     ...  </row>
     ... </data>'''
 
-    >>> df = pd.read_xml(io.StringIO(xml))
+    >>> df = pd.read_xml(StringIO(xml))
     >>> df
           shape  degrees  sides
     0    square      360    4.0
@@ -1092,7 +1092,7 @@ def read_xml(
     ...   <row shape="triangle" degrees="180" sides="3.0"/>
     ... </data>'''
 
-    >>> df = pd.read_xml(io.StringIO(xml), xpath=".//row")
+    >>> df = pd.read_xml(StringIO(xml), xpath=".//row")
     >>> df
           shape  degrees  sides
     0    square      360    4.0
@@ -1118,7 +1118,7 @@ def read_xml(
     ...   </doc:row>
     ... </doc:data>'''
 
-    >>> df = pd.read_xml(io.StringIO(xml),
+    >>> df = pd.read_xml(StringIO(xml),
     ...                  xpath="//doc:row",
     ...                  namespaces={{"doc": "https://example.com"}})
     >>> df
@@ -1126,6 +1126,34 @@ def read_xml(
     0    square      360    4.0
     1    circle      360    NaN
     2  triangle      180    3.0
+
+    >>> xml_data = '''
+    ...         <data>
+    ...            <row>
+    ...               <index>0</index>
+    ...               <a>1</a>
+    ...               <b>2.5</b>
+    ...               <c>True</c>
+    ...               <d>a</d>
+    ...               <e>2019-12-31 00:00:00</e>
+    ...            </row>
+    ...            <row>
+    ...               <index>1</index>
+    ...               <b>4.5</b>
+    ...               <c>False</c>
+    ...               <d>b</d>
+    ...               <e>2019-12-31 00:00:00</e>
+    ...            </row>
+    ...         </data>
+    ...         '''
+
+    >>> df = pd.read_xml(StringIO(xml_data),
+    ...                  dtype_backend="numpy_nullable",
+    ...                  parse_dates=["e"])
+    >>> df
+       index     a    b      c  d          e
+    0      0     1  2.5   True  a 2019-12-31
+    1      1  <NA>  4.5  False  b 2019-12-31
     """
     check_dtype_backend(dtype_backend)
 

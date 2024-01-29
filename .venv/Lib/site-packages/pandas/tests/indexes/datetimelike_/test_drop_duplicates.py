@@ -68,7 +68,7 @@ class DropDuplicates:
 
 
 class TestDropDuplicatesPeriodIndex(DropDuplicates):
-    @pytest.fixture(params=["D", "3D", "H", "2H", "T", "2T", "S", "3S"])
+    @pytest.fixture(params=["D", "3D", "h", "2h", "min", "2min", "s", "3s"])
     def freq(self, request):
         return request.param
 

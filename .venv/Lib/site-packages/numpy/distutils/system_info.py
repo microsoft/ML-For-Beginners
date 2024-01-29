@@ -47,6 +47,7 @@ Currently, the following classes are available, along with their section names:
     _numpy_info:Numeric
     _pkg_config_info:None
     accelerate_info:accelerate
+    accelerate_lapack_info:accelerate
     agg2_info:agg2
     amd_info:amd
     atlas_3_10_blas_info:atlas
@@ -534,6 +535,7 @@ def get_info(name, notfound_action=0):
           'lapack_ssl2': lapack_ssl2_info,      
           'blas_ssl2': blas_ssl2_info,          
           'accelerate': accelerate_info,      # use blas_opt instead
+          'accelerate_lapack': accelerate_lapack_info,
           'openblas64_': openblas64__info,
           'openblas64__lapack': openblas64__lapack_info,
           'openblas_ilp64': openblas_ilp64_info,
@@ -2015,14 +2017,17 @@ class _ilp64_opt_info_mixin:
 
 class lapack_ilp64_opt_info(lapack_opt_info, _ilp64_opt_info_mixin):
     notfounderror = LapackILP64NotFoundError
-    lapack_order = ['openblas64_', 'openblas_ilp64']
+    lapack_order = ['openblas64_', 'openblas_ilp64', 'accelerate']
     order_env_var_name = 'NPY_LAPACK_ILP64_ORDER'
 
     def _calc_info(self, name):
+        print('lapack_ilp64_opt_info._calc_info(name=%s)' % (name))
         info = get_info(name + '_lapack')
         if self._check_info(info):
             self.set_info(**info)
             return True
+        else:
+            print('%s_lapack does not exist' % (name))
         return False
 
 
@@ -2163,7 +2168,7 @@ class blas_opt_info(system_info):
 
 class blas_ilp64_opt_info(blas_opt_info, _ilp64_opt_info_mixin):
     notfounderror = BlasILP64NotFoundError
-    blas_order = ['openblas64_', 'openblas_ilp64']
+    blas_order = ['openblas64_', 'openblas_ilp64', 'accelerate']
     order_env_var_name = 'NPY_BLAS_ILP64_ORDER'
 
     def _calc_info(self, name):
@@ -2352,7 +2357,10 @@ class openblas_info(blas_info):
         if self.symbol_prefix:
             info['define_macros'] += [('BLAS_SYMBOL_PREFIX', self.symbol_prefix)]
         if self.symbol_suffix:
-            info['define_macros'] += [('BLAS_SYMBOL_SUFFIX', self.symbol_suffix)]
+            info['define_macros'] += [
+                    ('BLAS_SYMBOL_SUFFIX', self.symbol_suffix),
+                    ('OPENBLAS_ILP64_NAMING_SCHEME', None),
+            ]
 
         return info
 
@@ -2625,12 +2633,26 @@ class accelerate_info(system_info):
                 link_args.extend(['-Wl,-framework', '-Wl,vecLib'])
 
             if args:
+                macros = [
+                    ('NO_ATLAS_INFO', 3),
+                    ('HAVE_CBLAS', None),
+                    ('ACCELERATE_NEW_LAPACK', None),
+                ]
+                if(os.getenv('NPY_USE_BLAS_ILP64', None)):
+                    print('Setting HAVE_BLAS_ILP64')
+                    macros += [
+                        ('HAVE_BLAS_ILP64', None),
+                        ('ACCELERATE_LAPACK_ILP64', None),
+                    ]
                 self.set_info(extra_compile_args=args,
                               extra_link_args=link_args,
-                              define_macros=[('NO_ATLAS_INFO', 3),
-                                             ('HAVE_CBLAS', None)])
+                              define_macros=macros)
 
         return
+
+class accelerate_lapack_info(accelerate_info):
+    def _calc_info(self):
+        return super()._calc_info()
 
 class blas_src_info(system_info):
     # BLAS_SRC is deprecated, please do not use this!

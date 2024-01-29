@@ -131,7 +131,7 @@ def test_append_with_timezones(setup_path, gettz):
 def test_append_with_timezones_as_index(setup_path, gettz):
     # GH#4098 example
 
-    dti = date_range("2000-1-1", periods=3, freq="H", tz=gettz("US/Eastern"))
+    dti = date_range("2000-1-1", periods=3, freq="h", tz=gettz("US/Eastern"))
     dti = dti._with_freq(None)  # freq doesn't round-trip
 
     df = DataFrame({"A": Series(range(3), index=dti)})
@@ -148,16 +148,20 @@ def test_append_with_timezones_as_index(setup_path, gettz):
         tm.assert_frame_equal(result, df)
 
 
-def test_roundtrip_tz_aware_index(setup_path):
+def test_roundtrip_tz_aware_index(setup_path, unit):
     # GH 17618
-    time = Timestamp("2000-01-01 01:00:00", tz="US/Eastern")
-    df = DataFrame(data=[0], index=[time])
+    ts = Timestamp("2000-01-01 01:00:00", tz="US/Eastern")
+    dti = DatetimeIndex([ts]).as_unit(unit)
+    df = DataFrame(data=[0], index=dti)
 
     with ensure_clean_store(setup_path) as store:
         store.put("frame", df, format="fixed")
         recons = store["frame"]
         tm.assert_frame_equal(recons, df)
-        assert recons.index[0]._value == 946706400000000000
+
+    value = recons.index[0]._value
+    denom = {"ns": 1, "us": 1000, "ms": 10**6, "s": 10**9}[unit]
+    assert value == 946706400000000000 // denom
 
 
 def test_store_index_name_with_tz(setup_path):
@@ -332,7 +336,7 @@ def test_dst_transitions(setup_path):
             "2013-10-26 23:00",
             "2013-10-27 01:00",
             tz="Europe/London",
-            freq="H",
+            freq="h",
             ambiguous="infer",
         )
         times = times._with_freq(None)  # freq doesn't round-trip
@@ -365,7 +369,7 @@ def test_py2_created_with_datetimez(datapath):
     # Python 3.
     #
     # GH26443
-    index = [Timestamp("2019-01-01T18:00").tz_localize("America/New_York")]
+    index = DatetimeIndex(["2019-01-01T18:00"], dtype="M8[ns, America/New_York]")
     expected = DataFrame({"data": 123}, index=index)
     with ensure_clean_store(
         datapath("io", "data", "legacy_hdf", "gh26443.h5"), mode="r"

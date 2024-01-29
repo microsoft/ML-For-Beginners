@@ -63,6 +63,7 @@ from pandas import (
 from pandas.core import algorithms
 from pandas.core.arrays import (
     ArrowExtensionArray,
+    BaseMaskedArray,
     BooleanArray,
     Categorical,
     ExtensionArray,
@@ -711,7 +712,7 @@ class ParserBase:
                     values,
                     na_values,
                     False,
-                    convert_to_masked_nullable=non_default_dtype_backend,  # type: ignore[arg-type]  # noqa: E501
+                    convert_to_masked_nullable=non_default_dtype_backend,  # type: ignore[arg-type]
                 )
             except (ValueError, TypeError):
                 # e.g. encountering datetime string gets ValueError
@@ -747,7 +748,7 @@ class ParserBase:
                 np.asarray(values),
                 true_values=self.true_values,
                 false_values=self.false_values,
-                convert_to_masked_nullable=non_default_dtype_backend,  # type: ignore[arg-type]  # noqa: E501
+                convert_to_masked_nullable=non_default_dtype_backend,  # type: ignore[arg-type]
             )
             if result.dtype == np.bool_ and non_default_dtype_backend:
                 if bool_mask is None:
@@ -756,14 +757,23 @@ class ParserBase:
             elif result.dtype == np.object_ and non_default_dtype_backend:
                 # read_excel sends array of datetime objects
                 if not lib.is_datetime_array(result, skipna=True):
-                    result = StringDtype().construct_array_type()._from_sequence(values)
+                    dtype = StringDtype()
+                    cls = dtype.construct_array_type()
+                    result = cls._from_sequence(values, dtype=dtype)
 
         if dtype_backend == "pyarrow":
             pa = import_optional_dependency("pyarrow")
             if isinstance(result, np.ndarray):
                 result = ArrowExtensionArray(pa.array(result, from_pandas=True))
+            elif isinstance(result, BaseMaskedArray):
+                if result._mask.all():
+                    # We want an arrow null array here
+                    result = ArrowExtensionArray(pa.array([None] * len(result)))
+                else:
+                    result = ArrowExtensionArray(
+                        pa.array(result._data, mask=result._mask)
+                    )
             else:
-                # ExtensionArray
                 result = ArrowExtensionArray(
                     pa.array(result.to_numpy(), from_pandas=True)
                 )
@@ -810,7 +820,7 @@ class ParserBase:
                 if isinstance(cast_type, BooleanDtype):
                     # error: Unexpected keyword argument "true_values" for
                     # "_from_sequence_of_strings" of "ExtensionArray"
-                    return array_type._from_sequence_of_strings(  # type: ignore[call-arg]  # noqa: E501
+                    return array_type._from_sequence_of_strings(  # type: ignore[call-arg]
                         values,
                         dtype=cast_type,
                         true_values=self.true_values,
@@ -1147,17 +1157,22 @@ def _make_date_converter(
             with warnings.catch_warnings():
                 warnings.filterwarnings(
                     "ignore",
-                    ".*parsing datetimes with mixed time zones will raise a warning",
+                    ".*parsing datetimes with mixed time zones will raise an error",
                     category=FutureWarning,
                 )
-                result = tools.to_datetime(
-                    ensure_object(strs),
-                    format=date_fmt,
-                    utc=False,
-                    dayfirst=dayfirst,
-                    errors="ignore",
-                    cache=cache_dates,
-                )
+                str_objs = ensure_object(strs)
+                try:
+                    result = tools.to_datetime(
+                        str_objs,
+                        format=date_fmt,
+                        utc=False,
+                        dayfirst=dayfirst,
+                        cache=cache_dates,
+                    )
+                except (ValueError, TypeError):
+                    # test_usecols_with_parse_dates4
+                    return str_objs
+
             if isinstance(result, DatetimeIndex):
                 arr = result.to_numpy()
                 arr.flags.writeable = True
@@ -1169,34 +1184,41 @@ def _make_date_converter(
                     warnings.filterwarnings(
                         "ignore",
                         ".*parsing datetimes with mixed time zones "
-                        "will raise a warning",
+                        "will raise an error",
                         category=FutureWarning,
                     )
-                    result = tools.to_datetime(
-                        date_parser(
-                            *(unpack_if_single_element(arg) for arg in date_cols)
-                        ),
-                        errors="ignore",
-                        cache=cache_dates,
+                    pre_parsed = date_parser(
+                        *(unpack_if_single_element(arg) for arg in date_cols)
                     )
+                    try:
+                        result = tools.to_datetime(
+                            pre_parsed,
+                            cache=cache_dates,
+                        )
+                    except (ValueError, TypeError):
+                        # test_read_csv_with_custom_date_parser
+                        result = pre_parsed
                 if isinstance(result, datetime.datetime):
                     raise Exception("scalar parser")
                 return result
             except Exception:
+                # e.g. test_datetime_fractional_seconds
                 with warnings.catch_warnings():
                     warnings.filterwarnings(
                         "ignore",
                         ".*parsing datetimes with mixed time zones "
-                        "will raise a warning",
+                        "will raise an error",
                         category=FutureWarning,
                     )
-                    return tools.to_datetime(
-                        parsing.try_parse_dates(
-                            parsing.concat_date_cols(date_cols),
-                            parser=date_parser,
-                        ),
-                        errors="ignore",
+                    pre_parsed = parsing.try_parse_dates(
+                        parsing.concat_date_cols(date_cols),
+                        parser=date_parser,
                     )
+                    try:
+                        return tools.to_datetime(pre_parsed)
+                    except (ValueError, TypeError):
+                        # TODO: not reached in tests 2023-10-27; needed?
+                        return pre_parsed
 
     return converter
 

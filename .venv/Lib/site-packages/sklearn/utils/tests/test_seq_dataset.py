@@ -3,9 +3,10 @@
 #
 # License: BSD 3 clause
 
+from itertools import product
+
 import numpy as np
 import pytest
-import scipy.sparse as sp
 from numpy.testing import assert_array_equal
 
 from sklearn.datasets import load_iris
@@ -16,17 +17,18 @@ from sklearn.utils._seq_dataset import (
     CSRDataset64,
 )
 from sklearn.utils._testing import assert_allclose
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 iris = load_iris()
 X64 = iris.data.astype(np.float64)
 y64 = iris.target.astype(np.float64)
-X_csr64 = sp.csr_matrix(X64)
 sample_weight64 = np.arange(y64.size, dtype=np.float64)
 
 X32 = iris.data.astype(np.float32)
 y32 = iris.target.astype(np.float32)
-X_csr32 = sp.csr_matrix(X32)
 sample_weight32 = np.arange(y32.size, dtype=np.float32)
+
+floating = [np.float32, np.float64]
 
 
 def assert_csr_equal_values(current, expected):
@@ -40,65 +42,72 @@ def assert_csr_equal_values(current, expected):
     assert_array_equal(current.indptr, expected.indptr)
 
 
-def make_dense_dataset_32():
-    return ArrayDataset32(X32, y32, sample_weight32, seed=42)
-
-
-def make_dense_dataset_64():
+def _make_dense_dataset(float_dtype):
+    if float_dtype == np.float32:
+        return ArrayDataset32(X32, y32, sample_weight32, seed=42)
     return ArrayDataset64(X64, y64, sample_weight64, seed=42)
 
 
-def make_sparse_dataset_32():
-    return CSRDataset32(
-        X_csr32.data, X_csr32.indptr, X_csr32.indices, y32, sample_weight32, seed=42
-    )
+def _make_sparse_dataset(csr_container, float_dtype):
+    if float_dtype == np.float32:
+        X, y, sample_weight, csr_dataset = X32, y32, sample_weight32, CSRDataset32
+    else:
+        X, y, sample_weight, csr_dataset = X64, y64, sample_weight64, CSRDataset64
+    X = csr_container(X)
+    return csr_dataset(X.data, X.indptr, X.indices, y, sample_weight, seed=42)
 
 
-def make_sparse_dataset_64():
-    return CSRDataset64(
-        X_csr64.data, X_csr64.indptr, X_csr64.indices, y64, sample_weight64, seed=42
-    )
+def _make_dense_datasets():
+    return [_make_dense_dataset(float_dtype) for float_dtype in floating]
 
 
-@pytest.mark.parametrize(
-    "dataset_constructor",
-    [
-        make_dense_dataset_32,
-        make_dense_dataset_64,
-        make_sparse_dataset_32,
-        make_sparse_dataset_64,
-    ],
-)
-def test_seq_dataset_basic_iteration(dataset_constructor):
+def _make_sparse_datasets():
+    return [
+        _make_sparse_dataset(csr_container, float_dtype)
+        for csr_container, float_dtype in product(CSR_CONTAINERS, floating)
+    ]
+
+
+def _make_fused_types_datasets():
+    all_datasets = _make_dense_datasets() + _make_sparse_datasets()
+    # group dataset by array types to get a tuple (float32, float64)
+    return (all_datasets[idx : idx + 2] for idx in range(0, len(all_datasets), 2))
+
+
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+@pytest.mark.parametrize("dataset", _make_dense_datasets() + _make_sparse_datasets())
+def test_seq_dataset_basic_iteration(dataset, csr_container):
     NUMBER_OF_RUNS = 5
-    dataset = dataset_constructor()
+    X_csr64 = csr_container(X64)
     for _ in range(NUMBER_OF_RUNS):
         # next sample
         xi_, yi, swi, idx = dataset._next_py()
-        xi = sp.csr_matrix((xi_), shape=(1, X64.shape[1]))
+        xi = csr_container(xi_, shape=(1, X64.shape[1]))
 
-        assert_csr_equal_values(xi, X_csr64[idx])
+        assert_csr_equal_values(xi, X_csr64[[idx]])
         assert yi == y64[idx]
         assert swi == sample_weight64[idx]
 
         # random sample
         xi_, yi, swi, idx = dataset._random_py()
-        xi = sp.csr_matrix((xi_), shape=(1, X64.shape[1]))
+        xi = csr_container(xi_, shape=(1, X64.shape[1]))
 
-        assert_csr_equal_values(xi, X_csr64[idx])
+        assert_csr_equal_values(xi, X_csr64[[idx]])
         assert yi == y64[idx]
         assert swi == sample_weight64[idx]
 
 
 @pytest.mark.parametrize(
-    "make_dense_dataset,make_sparse_dataset",
+    "dense_dataset,sparse_dataset",
     [
-        (make_dense_dataset_32, make_sparse_dataset_32),
-        (make_dense_dataset_64, make_sparse_dataset_64),
+        (
+            _make_dense_dataset(float_dtype),
+            _make_sparse_dataset(csr_container, float_dtype),
+        )
+        for float_dtype, csr_container in product(floating, CSR_CONTAINERS)
     ],
 )
-def test_seq_dataset_shuffle(make_dense_dataset, make_sparse_dataset):
-    dense_dataset, sparse_dataset = make_dense_dataset(), make_sparse_dataset()
+def test_seq_dataset_shuffle(dense_dataset, sparse_dataset):
     # not shuffled
     for i in range(5):
         _, _, _, idx1 = dense_dataset._next_py()
@@ -130,15 +139,8 @@ def test_seq_dataset_shuffle(make_dense_dataset, make_sparse_dataset):
         assert idx2 == j
 
 
-@pytest.mark.parametrize(
-    "make_dataset_32,make_dataset_64",
-    [
-        (make_dense_dataset_32, make_dense_dataset_64),
-        (make_sparse_dataset_32, make_sparse_dataset_64),
-    ],
-)
-def test_fused_types_consistency(make_dataset_32, make_dataset_64):
-    dataset_32, dataset_64 = make_dataset_32(), make_dataset_64()
+@pytest.mark.parametrize("dataset_32,dataset_64", _make_fused_types_datasets())
+def test_fused_types_consistency(dataset_32, dataset_64):
     NUMBER_OF_RUNS = 5
     for _ in range(NUMBER_OF_RUNS):
         # next sample
@@ -159,12 +161,25 @@ def test_buffer_dtype_mismatch_error():
     with pytest.raises(ValueError, match="Buffer dtype mismatch"):
         ArrayDataset32(X64, y64, sample_weight64, seed=42),
 
-    with pytest.raises(ValueError, match="Buffer dtype mismatch"):
-        CSRDataset64(
-            X_csr32.data, X_csr32.indptr, X_csr32.indices, y32, sample_weight32, seed=42
-        ),
+    for csr_container in CSR_CONTAINERS:
+        X_csr32 = csr_container(X32)
+        X_csr64 = csr_container(X64)
+        with pytest.raises(ValueError, match="Buffer dtype mismatch"):
+            CSRDataset64(
+                X_csr32.data,
+                X_csr32.indptr,
+                X_csr32.indices,
+                y32,
+                sample_weight32,
+                seed=42,
+            ),
 
-    with pytest.raises(ValueError, match="Buffer dtype mismatch"):
-        CSRDataset32(
-            X_csr64.data, X_csr64.indptr, X_csr64.indices, y64, sample_weight64, seed=42
-        ),
+        with pytest.raises(ValueError, match="Buffer dtype mismatch"):
+            CSRDataset32(
+                X_csr64.data,
+                X_csr64.indptr,
+                X_csr64.indices,
+                y64,
+                sample_weight64,
+                seed=42,
+            ),

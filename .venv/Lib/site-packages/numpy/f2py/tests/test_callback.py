@@ -228,3 +228,16 @@ class TestGH18335(util.F2PyTest):
 
         r = self.module.gh18335(foo)
         assert r == 123 + 1
+
+
+class TestGH25211(util.F2PyTest):
+    sources = [util.getpath("tests", "src", "callback", "gh25211.f"),
+               util.getpath("tests", "src", "callback", "gh25211.pyf")]
+    module_name = "callback2"
+
+    def test_gh18335(self):
+        def bar(x):
+            return x*x
+
+        res = self.module.foo(bar)
+        assert res == 110

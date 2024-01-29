@@ -35,16 +35,13 @@ class CypherLexer(RegexLexer):
 
     tokens = {
         'root': [
-            include('comment'),
             include('clauses'),
             include('keywords'),
             include('relations'),
             include('strings'),
             include('whitespace'),
             include('barewords'),
-        ],
-        'comment': [
-            (r'^.*//.*$', Comment.Single),
+            include('comment'),
         ],
         'keywords': [
             (r'(create|order|match|limit|set|skip|start|return|with|where|'
@@ -76,12 +73,16 @@ class CypherLexer(RegexLexer):
                 bygroups(Keyword, Whitespace, Keyword)),
             (r'(using)(\s+)(periodic)(\s+)(commit)\b',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword)),
+            (r'(using)(\s+)(index)\b',
+                bygroups(Keyword, Whitespace, Keyword)),
+            (r'(using)(\s+)(range|text|point)(\s+)(index)\b',
+                bygroups(Keyword, Whitespace, Name, Whitespace, Keyword)),
             (words((
                 'all', 'any', 'as', 'asc', 'ascending', 'assert', 'call', 'case', 'create',
                 'delete', 'desc', 'descending', 'distinct', 'end', 'fieldterminator',
                 'foreach', 'in', 'limit', 'match', 'merge', 'none', 'not', 'null',
                 'remove', 'return', 'set', 'skip', 'single', 'start', 'then', 'union',
-                'unwind', 'yield', 'where', 'when', 'with'), suffix=r'\b'), Keyword),
+                'unwind', 'yield', 'where', 'when', 'with', 'collect'), suffix=r'\b'), Keyword),
         ],
         'relations': [
             (r'(-\[)(.*?)(\]->)', bygroups(Operator, using(this), Operator)),
@@ -92,7 +93,7 @@ class CypherLexer(RegexLexer):
             (r'[.*{}]', Punctuation),
         ],
         'strings': [
-            (r'"(?:\\[tbnrf\'"\\]|[^\\"])*"', String),
+            (r'([\'"])(?:\\[tbnrf\'"\\]|[^\\])*?\1', String),
             (r'`(?:``|[^`])+`', Name.Variable),
         ],
         'whitespace': [
@@ -101,5 +102,8 @@ class CypherLexer(RegexLexer):
         'barewords': [
             (r'[a-z]\w*', Name),
             (r'\d+', Number),
+        ],
+        'comment': [
+            (r'//.*$', Comment.Single),
         ],
     }

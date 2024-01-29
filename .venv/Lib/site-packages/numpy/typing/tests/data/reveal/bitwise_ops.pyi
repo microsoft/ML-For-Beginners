@@ -1,4 +1,14 @@
+import sys
+from typing import Any
+
 import numpy as np
+import numpy.typing as npt
+from numpy._typing import _64Bit, _32Bit
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 i8 = np.int64(1)
 u8 = np.uint64(1)
@@ -15,117 +25,111 @@ AR = np.array([0, 1, 2], dtype=np.int32)
 AR.setflags(write=False)
 
 
-reveal_type(i8 << i8)  # E: {int64}
-reveal_type(i8 >> i8)  # E: {int64}
-reveal_type(i8 | i8)  # E: {int64}
-reveal_type(i8 ^ i8)  # E: {int64}
-reveal_type(i8 & i8)  # E: {int64}
+assert_type(i8 << i8, np.int64)
+assert_type(i8 >> i8, np.int64)
+assert_type(i8 | i8, np.int64)
+assert_type(i8 ^ i8, np.int64)
+assert_type(i8 & i8, np.int64)
 
-reveal_type(i8 << AR)  # E: Any
-reveal_type(i8 >> AR)  # E: Any
-reveal_type(i8 | AR)  # E: Any
-reveal_type(i8 ^ AR)  # E: Any
-reveal_type(i8 & AR)  # E: Any
+assert_type(i8 << AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(i8 >> AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(i8 | AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(i8 ^ AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(i8 & AR, npt.NDArray[np.signedinteger[Any]])
 
-reveal_type(i4 << i4)  # E: {int32}
-reveal_type(i4 >> i4)  # E: {int32}
-reveal_type(i4 | i4)  # E: {int32}
-reveal_type(i4 ^ i4)  # E: {int32}
-reveal_type(i4 & i4)  # E: {int32}
+assert_type(i4 << i4, np.int32)
+assert_type(i4 >> i4, np.int32)
+assert_type(i4 | i4, np.int32)
+assert_type(i4 ^ i4, np.int32)
+assert_type(i4 & i4, np.int32)
 
-reveal_type(i8 << i4)  # E: {int64}
-reveal_type(i8 >> i4)  # E: {int64}
-reveal_type(i8 | i4)  # E: {int64}
-reveal_type(i8 ^ i4)  # E: {int64}
-reveal_type(i8 & i4)  # E: {int64}
+assert_type(i8 << i4, np.signedinteger[_32Bit | _64Bit])
+assert_type(i8 >> i4, np.signedinteger[_32Bit | _64Bit])
+assert_type(i8 | i4, np.signedinteger[_32Bit | _64Bit])
+assert_type(i8 ^ i4, np.signedinteger[_32Bit | _64Bit])
+assert_type(i8 & i4, np.signedinteger[_32Bit | _64Bit])
 
-reveal_type(i8 << i)  # E: {int64}
-reveal_type(i8 >> i)  # E: {int64}
-reveal_type(i8 | i)  # E: {int64}
-reveal_type(i8 ^ i)  # E: {int64}
-reveal_type(i8 & i)  # E: {int64}
+assert_type(i8 << b_, np.int64)
+assert_type(i8 >> b_, np.int64)
+assert_type(i8 | b_, np.int64)
+assert_type(i8 ^ b_, np.int64)
+assert_type(i8 & b_, np.int64)
 
-reveal_type(i8 << b_)  # E: {int64}
-reveal_type(i8 >> b_)  # E: {int64}
-reveal_type(i8 | b_)  # E: {int64}
-reveal_type(i8 ^ b_)  # E: {int64}
-reveal_type(i8 & b_)  # E: {int64}
+assert_type(i8 << b, np.int64)
+assert_type(i8 >> b, np.int64)
+assert_type(i8 | b, np.int64)
+assert_type(i8 ^ b, np.int64)
+assert_type(i8 & b, np.int64)
 
-reveal_type(i8 << b)  # E: {int64}
-reveal_type(i8 >> b)  # E: {int64}
-reveal_type(i8 | b)  # E: {int64}
-reveal_type(i8 ^ b)  # E: {int64}
-reveal_type(i8 & b)  # E: {int64}
+assert_type(u8 << u8, np.uint64)
+assert_type(u8 >> u8, np.uint64)
+assert_type(u8 | u8, np.uint64)
+assert_type(u8 ^ u8, np.uint64)
+assert_type(u8 & u8, np.uint64)
 
-reveal_type(u8 << u8)  # E: {uint64}
-reveal_type(u8 >> u8)  # E: {uint64}
-reveal_type(u8 | u8)  # E: {uint64}
-reveal_type(u8 ^ u8)  # E: {uint64}
-reveal_type(u8 & u8)  # E: {uint64}
+assert_type(u8 << AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(u8 >> AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(u8 | AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(u8 ^ AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(u8 & AR, npt.NDArray[np.signedinteger[Any]])
 
-reveal_type(u8 << AR)  # E: Any
-reveal_type(u8 >> AR)  # E: Any
-reveal_type(u8 | AR)  # E: Any
-reveal_type(u8 ^ AR)  # E: Any
-reveal_type(u8 & AR)  # E: Any
+assert_type(u4 << u4, np.uint32)
+assert_type(u4 >> u4, np.uint32)
+assert_type(u4 | u4, np.uint32)
+assert_type(u4 ^ u4, np.uint32)
+assert_type(u4 & u4, np.uint32)
 
-reveal_type(u4 << u4)  # E: {uint32}
-reveal_type(u4 >> u4)  # E: {uint32}
-reveal_type(u4 | u4)  # E: {uint32}
-reveal_type(u4 ^ u4)  # E: {uint32}
-reveal_type(u4 & u4)  # E: {uint32}
+assert_type(u4 << i4, np.signedinteger[Any])
+assert_type(u4 >> i4, np.signedinteger[Any])
+assert_type(u4 | i4, np.signedinteger[Any])
+assert_type(u4 ^ i4, np.signedinteger[Any])
+assert_type(u4 & i4, np.signedinteger[Any])
 
-reveal_type(u4 << i4)  # E: signedinteger[Any]
-reveal_type(u4 >> i4)  # E: signedinteger[Any]
-reveal_type(u4 | i4)  # E: signedinteger[Any]
-reveal_type(u4 ^ i4)  # E: signedinteger[Any]
-reveal_type(u4 & i4)  # E: signedinteger[Any]
+assert_type(u4 << i, np.signedinteger[Any])
+assert_type(u4 >> i, np.signedinteger[Any])
+assert_type(u4 | i, np.signedinteger[Any])
+assert_type(u4 ^ i, np.signedinteger[Any])
+assert_type(u4 & i, np.signedinteger[Any])
 
-reveal_type(u4 << i)  # E: signedinteger[Any]
-reveal_type(u4 >> i)  # E: signedinteger[Any]
-reveal_type(u4 | i)  # E: signedinteger[Any]
-reveal_type(u4 ^ i)  # E: signedinteger[Any]
-reveal_type(u4 & i)  # E: signedinteger[Any]
+assert_type(u8 << b_, np.uint64)
+assert_type(u8 >> b_, np.uint64)
+assert_type(u8 | b_, np.uint64)
+assert_type(u8 ^ b_, np.uint64)
+assert_type(u8 & b_, np.uint64)
 
-reveal_type(u8 << b_)  # E: {uint64}
-reveal_type(u8 >> b_)  # E: {uint64}
-reveal_type(u8 | b_)  # E: {uint64}
-reveal_type(u8 ^ b_)  # E: {uint64}
-reveal_type(u8 & b_)  # E: {uint64}
+assert_type(u8 << b, np.uint64)
+assert_type(u8 >> b, np.uint64)
+assert_type(u8 | b, np.uint64)
+assert_type(u8 ^ b, np.uint64)
+assert_type(u8 & b, np.uint64)
 
-reveal_type(u8 << b)  # E: {uint64}
-reveal_type(u8 >> b)  # E: {uint64}
-reveal_type(u8 | b)  # E: {uint64}
-reveal_type(u8 ^ b)  # E: {uint64}
-reveal_type(u8 & b)  # E: {uint64}
+assert_type(b_ << b_, np.int8)
+assert_type(b_ >> b_, np.int8)
+assert_type(b_ | b_, np.bool_)
+assert_type(b_ ^ b_, np.bool_)
+assert_type(b_ & b_, np.bool_)
 
-reveal_type(b_ << b_)  # E: {int8}
-reveal_type(b_ >> b_)  # E: {int8}
-reveal_type(b_ | b_)  # E: bool_
-reveal_type(b_ ^ b_)  # E: bool_
-reveal_type(b_ & b_)  # E: bool_
+assert_type(b_ << AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(b_ >> AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(b_ | AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(b_ ^ AR, npt.NDArray[np.signedinteger[Any]])
+assert_type(b_ & AR, npt.NDArray[np.signedinteger[Any]])
 
-reveal_type(b_ << AR)  # E: Any
-reveal_type(b_ >> AR)  # E: Any
-reveal_type(b_ | AR)  # E: Any
-reveal_type(b_ ^ AR)  # E: Any
-reveal_type(b_ & AR)  # E: Any
+assert_type(b_ << b, np.int8)
+assert_type(b_ >> b, np.int8)
+assert_type(b_ | b, np.bool_)
+assert_type(b_ ^ b, np.bool_)
+assert_type(b_ & b, np.bool_)
 
-reveal_type(b_ << b)  # E: {int8}
-reveal_type(b_ >> b)  # E: {int8}
-reveal_type(b_ | b)  # E: bool_
-reveal_type(b_ ^ b)  # E: bool_
-reveal_type(b_ & b)  # E: bool_
+assert_type(b_ << i, np.int_)
+assert_type(b_ >> i, np.int_)
+assert_type(b_ | i, np.int_)
+assert_type(b_ ^ i, np.int_)
+assert_type(b_ & i, np.int_)
 
-reveal_type(b_ << i)  # E: {int_}
-reveal_type(b_ >> i)  # E: {int_}
-reveal_type(b_ | i)  # E: {int_}
-reveal_type(b_ ^ i)  # E: {int_}
-reveal_type(b_ & i)  # E: {int_}
-
-reveal_type(~i8)  # E: {int64}
-reveal_type(~i4)  # E: {int32}
-reveal_type(~u8)  # E: {uint64}
-reveal_type(~u4)  # E: {uint32}
-reveal_type(~b_)  # E: bool_
-reveal_type(~AR)  # E: Any
+assert_type(~i8, np.int64)
+assert_type(~i4, np.int32)
+assert_type(~u8, np.uint64)
+assert_type(~u4, np.uint32)
+assert_type(~b_, np.bool_)
+assert_type(~AR, npt.NDArray[np.int32])

@@ -21,7 +21,7 @@ import pandas._testing as tm
 class TestGetItem:
     def test_getitem_slice_keeps_name(self):
         # GH#4226
-        tdi = timedelta_range("1d", "5d", freq="H", name="timebucket")
+        tdi = timedelta_range("1d", "5d", freq="h", name="timebucket")
         assert tdi[1:].name == tdi.name
 
     def test_getitem(self):
@@ -230,7 +230,7 @@ class TestTake:
 
     def test_take_equiv_getitem(self):
         tds = ["1day 02:00:00", "1 day 04:00:00", "1 day 10:00:00"]
-        idx = timedelta_range(start="1d", end="2d", freq="H", name="idx")
+        idx = timedelta_range(start="1d", end="2d", freq="h", name="idx")
         expected = TimedeltaIndex(tds, freq=None, name="idx")
 
         taken1 = idx.take([2, 4, 10])

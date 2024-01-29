@@ -4,8 +4,7 @@ from ._hessian_update_strategy import BFGS
 from ._differentiable_functions import (
     VectorFunction, LinearVectorFunction, IdentityVectorFunction)
 from ._optimize import OptimizeWarning
-from warnings import warn, catch_warnings, simplefilter
-from numpy.testing import suppress_warnings
+from warnings import warn, catch_warnings, simplefilter, filterwarnings
 from scipy.sparse import issparse
 
 
@@ -386,8 +385,12 @@ class PreparedConstraint:
             How much the constraint is exceeded by, for each of the
             constraints specified by `PreparedConstraint.fun`.
         """
-        with suppress_warnings() as sup:
-            sup.filter(UserWarning)
+        with catch_warnings():
+            # Ignore the following warning, it's not important when
+            # figuring out total violation
+            # UserWarning: delta_grad == 0.0. Check if the approximated
+            # function is linear
+            filterwarnings("ignore", "delta_grad", UserWarning)
             ev = self.fun.fun(np.asarray(x))
 
         excess_lb = np.maximum(self.bounds[0] - ev, 0)
@@ -456,7 +459,8 @@ def new_constraint_to_old(con, x0):
                 con.keep_feasible):
             warn("Constraint options `finite_diff_jac_sparsity`, "
                  "`finite_diff_rel_step`, `keep_feasible`, and `hess`"
-                 "are ignored by this method.", OptimizeWarning)
+                 "are ignored by this method.",
+                 OptimizeWarning, stacklevel=3)
 
         fun = con.fun
         if callable(con.jac):
@@ -466,8 +470,8 @@ def new_constraint_to_old(con, x0):
 
     else:  # LinearConstraint
         if np.any(con.keep_feasible):
-            warn("Constraint option `keep_feasible` is ignored by this "
-                 "method.", OptimizeWarning)
+            warn("Constraint option `keep_feasible` is ignored by this method.",
+                 OptimizeWarning, stacklevel=3)
 
         A = con.A
         if issparse(A):
@@ -489,7 +493,8 @@ def new_constraint_to_old(con, x0):
 
     if np.any(i_unbounded):
         warn("At least one constraint is unbounded above and below. Such "
-             "constraints are ignored.", OptimizeWarning)
+             "constraints are ignored.",
+             OptimizeWarning, stacklevel=3)
 
     ceq = []
     if np.any(i_eq):
@@ -537,7 +542,8 @@ def new_constraint_to_old(con, x0):
         warn("Equality and inequality constraints are specified in the same "
              "element of the constraint list. For efficient use with this "
              "method, equality and inequality constraints should be specified "
-             "in separate elements of the constraint list. ", OptimizeWarning)
+             "in separate elements of the constraint list. ",
+             OptimizeWarning, stacklevel=3)
     return old_constraints
 
 

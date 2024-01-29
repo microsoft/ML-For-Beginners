@@ -135,6 +135,7 @@ Pairs = Dict[
     Tuple[otBase.ValueRecord, otBase.ValueRecord],
 ]
 
+
 # Adapted from https://github.com/fonttools/fonttools/blob/f64f0b42f2d1163b2d85194e0979def539f5dca3/Lib/fontTools/ttLib/tables/otTables.py#L935-L958
 def _getClassRanges(glyphIDs: Iterable[int]):
     glyphIDs = sorted(glyphIDs)
@@ -274,7 +275,7 @@ class Cluster:
         )
         merged_range_count = 0
         last = None
-        for (start, end) in ranges:
+        for start, end in ranges:
             if last is not None and start != last + 1:
                 merged_range_count += 1
             last = end

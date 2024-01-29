@@ -109,7 +109,7 @@ ONNX_ML_OPERATOR_SET_SCHEMA(
         .Attr("nodes_falsenodeids", "Child node if expression is false.", AttributeProto::INTS, OPTIONAL_VALUE)
         .Attr(
             "nodes_missing_value_tracks_true",
-            "For each node, define what to do in the presence of a missing value: if a value is missing (NaN), use the 'true' or 'false' branch based on the value in this array.<br>This attribute may be left undefined, and the defalt value is false (0) for all nodes.",
+            "For each node, define what to do in the presence of a missing value: if a value is missing (NaN), use the 'true' or 'false' branch based on the value in this array.<br>This attribute may be left undefined, and the default value is false (0) for all nodes.",
             AttributeProto::INTS,
             OPTIONAL_VALUE)
         .Attr("class_treeids", "The id of the tree that this node is in.", AttributeProto::INTS, OPTIONAL_VALUE)
@@ -198,7 +198,7 @@ ONNX_ML_OPERATOR_SET_SCHEMA(
         .Attr("nodes_falsenodeids", "Child node if expression is false", AttributeProto::INTS, OPTIONAL_VALUE)
         .Attr(
             "nodes_missing_value_tracks_true",
-            "For each node, define what to do in the presence of a NaN: use the 'true' (if the attribute value is 1) or 'false' (if the attribute value is 0) branch based on the value in this array.<br>This attribute may be left undefined and the defalt value is false (0) for all nodes.",
+            "For each node, define what to do in the presence of a NaN: use the 'true' (if the attribute value is 1) or 'false' (if the attribute value is 0) branch based on the value in this array.<br>This attribute may be left undefined and the default value is false (0) for all nodes.",
             AttributeProto::INTS,
             OPTIONAL_VALUE)
         .Attr("target_treeids", "The id of the tree that each node is in.", AttributeProto::INTS, OPTIONAL_VALUE)
@@ -221,6 +221,122 @@ ONNX_ML_OPERATOR_SET_SCHEMA(
             "Base values for classification, added to final class score; the size must be the same as the classes or can be left unassigned (assumed 0)",
             AttributeProto::FLOATS,
             OPTIONAL_VALUE));
+
+static const char* LabelEncoder_ver2_doc = R"DOC(
+    Maps each element in the input tensor to another value.<br>
+    The mapping is determined by the two parallel attributes, 'keys_*' and
+    'values_*' attribute. The i-th value in the specified 'keys_*' attribute
+    would be mapped to the i-th value in the specified 'values_*' attribute. It
+    implies that input's element type and the element type of the specified
+    'keys_*' should be identical while the output type is identical to the
+    specified 'values_*' attribute. If an input element can not be found in the
+    specified 'keys_*' attribute, the 'default_*' that matches the specified
+    'values_*' attribute may be used as its output value.<br>
+    Let's consider an example which maps a string tensor to an integer tensor.
+    Assume and 'keys_strings' is ["Amy", "Sally"], 'values_int64s' is [5, 6],
+    and 'default_int64' is '-1'.  The input ["Dori", "Amy", "Amy", "Sally",
+    "Sally"] would be mapped to [-1, 5, 5, 6, 6].<br>
+    Since this operator is an one-to-one mapping, its input and output shapes
+    are the same. Notice that only one of 'keys_*'/'values_*' can be set.<br>
+    For key look-up, bit-wise comparison is used so even a float NaN can be
+    mapped to a value in 'values_*' attribute.<br>
+)DOC";
+
+ONNX_ML_OPERATOR_SET_SCHEMA(
+    LabelEncoder,
+    2,
+    OpSchema()
+        .SetDoc(LabelEncoder_ver2_doc)
+        .Input(0, "X", "Input data. It can be either tensor or scalar.", "T1")
+        .Output(0, "Y", "Output data.", "T2")
+        .TypeConstraint(
+            "T1",
+            {"tensor(string)", "tensor(int64)", "tensor(float)"},
+            "The input type is a tensor of any shape.")
+        .TypeConstraint(
+            "T2",
+            {"tensor(string)", "tensor(int64)", "tensor(float)"},
+            "Output type is determined by the specified 'values_*' attribute.")
+        .Attr(
+            "keys_strings",
+            "A list of strings. One and only one of 'keys_*'s should be set.",
+            AttributeProto::STRINGS,
+            OPTIONAL_VALUE)
+        .Attr("keys_int64s", "A list of ints.", AttributeProto::INTS, OPTIONAL_VALUE)
+        .Attr("keys_floats", "A list of floats.", AttributeProto::FLOATS, OPTIONAL_VALUE)
+        .Attr(
+            "values_strings",
+            "A list of strings. One and only one of 'value_*'s should be set.",
+            AttributeProto::STRINGS,
+            OPTIONAL_VALUE)
+        .Attr("values_int64s", "A list of ints.", AttributeProto::INTS, OPTIONAL_VALUE)
+        .Attr("values_floats", "A list of floats.", AttributeProto::FLOATS, OPTIONAL_VALUE)
+        .Attr("default_string", "A string.", AttributeProto::STRING, std::string("_Unused"))
+        .Attr("default_int64", "An integer.", AttributeProto::INT, static_cast<int64_t>(-1))
+        .Attr("default_float", "A float.", AttributeProto::FLOAT, -0.f)
+        .TypeAndShapeInferenceFunction([](InferenceContext& ctx) {
+          // Label encoder is one-to-one mapping.
+          if (ctx.getNumInputs() != 1) {
+            fail_shape_inference("Label encoder has only one input.");
+          }
+          if (ctx.getNumOutputs() != 1) {
+            fail_shape_inference("Label encoder has only one output.");
+          }
+
+          // Load all key_* attributes.
+          std::vector<std::string> keys_strings;
+          bool keys_strings_result = getRepeatedAttribute(ctx, "keys_strings", keys_strings);
+          std::vector<int64_t> keys_int64s;
+          bool keys_int64s_result = getRepeatedAttribute(ctx, "keys_int64s", keys_int64s);
+          std::vector<float> keys_floats;
+          bool keys_floats_result = getRepeatedAttribute(ctx, "keys_floats", keys_floats);
+
+          // Check if only one keys_* attribute is set.
+          if (static_cast<int>(keys_strings_result) + static_cast<int>(keys_int64s_result) +
+                  static_cast<int>(keys_floats_result) !=
+              1) {
+            fail_shape_inference("Only one of keys_*'s can be set in label encoder.");
+          }
+
+          // Check if the specified keys_* matches input type.
+          auto input_elem_type = ctx.getInputType(0)->tensor_type().elem_type();
+          if (keys_strings_result && input_elem_type != TensorProto::STRING) {
+            fail_shape_inference("Input type is not string tensor but key_strings is set");
+          }
+          if (keys_int64s_result && input_elem_type != TensorProto::INT64) {
+            fail_shape_inference("Input type is not int64 tensor but keys_int64s is set");
+          }
+          if (keys_floats_result && input_elem_type != TensorProto::FLOAT) {
+            fail_shape_inference("Input type is not float tensor but keys_floats is set");
+          }
+
+          // Load all values_* attributes.
+          std::vector<std::string> values_strings;
+          bool values_strings_result = getRepeatedAttribute(ctx, "values_strings", values_strings);
+          std::vector<int64_t> values_int64s;
+          bool values_int64s_result = getRepeatedAttribute(ctx, "values_int64s", values_int64s);
+          std::vector<float> values_floats;
+          bool values_floats_result = getRepeatedAttribute(ctx, "values_floats", values_floats);
+
+          // Check if only one values_* attribute is set.
+          if (static_cast<int>(values_strings_result) + static_cast<int>(values_int64s_result) +
+                  static_cast<int>(values_floats_result) !=
+              1) {
+            fail_shape_inference("Only one of values_*'s can be set in label encoder.");
+          }
+
+          // Assign output type based on the specified values_*.
+          auto output_elem_type = ctx.getOutputType(0)->mutable_tensor_type();
+          if (values_strings_result)
+            output_elem_type->set_elem_type(TensorProto::STRING);
+          if (values_int64s_result)
+            output_elem_type->set_elem_type(TensorProto::INT64);
+          if (values_floats_result)
+            output_elem_type->set_elem_type(TensorProto::FLOAT);
+
+          // Input and output shapes are the same.
+          propagateShapeFromInputToOutput(ctx, 0, 0);
+        }));
 
 } // namespace ONNX_NAMESPACE
 #endif

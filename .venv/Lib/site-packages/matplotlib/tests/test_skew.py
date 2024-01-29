@@ -160,7 +160,7 @@ def test_skew_rectangle():
         xdeg, ydeg = 45 * xrots, 45 * yrots
         t = transforms.Affine2D().skew_deg(xdeg, ydeg)
 
-        ax.set_title('Skew of {0} in X and {1} in Y'.format(xdeg, ydeg))
+        ax.set_title(f'Skew of {xdeg} in X and {ydeg} in Y')
         ax.add_patch(mpatch.Rectangle([-1, -1], 2, 2,
                                       transform=t + ax.transData,
                                       alpha=0.5, facecolor='coral'))

@@ -21,17 +21,13 @@ from pandas._libs.tslibs.offsets import (
     CDay,
 )
 
-from pandas import (
-    _testing as tm,
-    date_range,
-)
+import pandas._testing as tm
 from pandas.tests.tseries.offsets.common import (
     assert_is_on_offset,
     assert_offset_equal,
 )
 
 from pandas.tseries import offsets
-from pandas.tseries.holiday import USFederalHolidayCalendar
 
 
 @pytest.fixture
@@ -200,14 +196,6 @@ class TestCustomBusinessMonthBegin:
 
         assert dt + bm_offset == datetime(2012, 1, 2)
         assert dt + 2 * bm_offset == datetime(2012, 2, 3)
-
-    @pytest.mark.filterwarnings("ignore:Non:pandas.errors.PerformanceWarning")
-    def test_datetimeindex(self):
-        hcal = USFederalHolidayCalendar()
-        cbmb = CBMonthBegin(calendar=hcal)
-        assert date_range(start="20120101", end="20130101", freq=cbmb).tolist()[
-            0
-        ] == datetime(2012, 1, 3)
 
     @pytest.mark.parametrize(
         "case",
@@ -396,15 +384,6 @@ class TestCustomBusinessMonthEnd:
         dt = datetime(2012, 1, 1)
         assert dt + bm_offset == datetime(2012, 1, 30)
         assert dt + 2 * bm_offset == datetime(2012, 2, 27)
-
-    @pytest.mark.filterwarnings("ignore:Non:pandas.errors.PerformanceWarning")
-    def test_datetimeindex(self):
-        hcal = USFederalHolidayCalendar()
-        freq = CBMonthEnd(calendar=hcal)
-
-        assert date_range(start="20120101", end="20130101", freq=freq).tolist()[
-            0
-        ] == datetime(2012, 1, 31)
 
     @pytest.mark.parametrize(
         "case",

@@ -2,17 +2,13 @@
 # Use the `scipy.signal` namespace for importing the functions
 # included below.
 
-
-import warnings
-from . import _fir_filter_design
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'kaiser_beta', 'kaiser_atten', 'kaiserord',
     'firwin', 'firwin2', 'remez', 'firls', 'minimum_phase',
     'ceil', 'log', 'irfft', 'fft', 'ifft', 'sinc', 'toeplitz',
     'hankel', 'solve', 'LinAlgError', 'LinAlgWarning', 'lstsq'
-
 ]
 
 
@@ -21,13 +17,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.signal.fir_filter_design is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.signal instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.signal` namespace, "
-                  "the `scipy.signal.fir_filter_design` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_fir_filter_design, name)
+    return _sub_module_deprecation(sub_package="signal", module="fir_filter_design",
+                                   private_modules=["_fir_filter_design"], all=__all__,
+                                   attribute=name)

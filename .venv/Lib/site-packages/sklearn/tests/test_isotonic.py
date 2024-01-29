@@ -595,7 +595,7 @@ def test_isotonic_thresholds(increasing):
     # the data is already strictly monotonic which is not the case with
     # this random data)
     assert X_thresholds.shape[0] < X.shape[0]
-    assert np.in1d(X_thresholds, X).all()
+    assert np.isin(X_thresholds, X).all()
 
     # Output thresholds lie in the range of the training set:
     assert y_thresholds.max() <= y.max()

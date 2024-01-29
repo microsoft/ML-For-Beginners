@@ -145,6 +145,23 @@ def test_frame_getitem_simple_key_error(
         indexer(df)
 
 
+def test_tuple_string_column_names():
+    # GH#50372
+    mi = MultiIndex.from_tuples([("a", "aa"), ("a", "ab"), ("b", "ba"), ("b", "bb")])
+    df = DataFrame([range(4), range(1, 5), range(2, 6)], columns=mi)
+    df["single_index"] = 0
+
+    df_flat = df.copy()
+    df_flat.columns = df_flat.columns.to_flat_index()
+    df_flat["new_single_index"] = 0
+
+    result = df_flat[[("a", "aa"), "new_single_index"]]
+    expected = DataFrame(
+        [[0, 0], [1, 0], [2, 0]], columns=Index([("a", "aa"), "new_single_index"])
+    )
+    tm.assert_frame_equal(result, expected)
+
+
 def test_frame_getitem_multicolumn_empty_level():
     df = DataFrame({"a": ["1", "2", "3"], "b": ["2", "3", "4"]})
     df.columns = [

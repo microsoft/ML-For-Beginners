@@ -89,7 +89,7 @@ class TestDataFramePlotsSubplots:
 
     @pytest.mark.parametrize("kind", ["line", "area"])
     def test_subplots_timeseries(self, kind):
-        idx = date_range(start="2014-07-01", freq="M", periods=10)
+        idx = date_range(start="2014-07-01", freq="ME", periods=10)
         df = DataFrame(np.random.default_rng(2).random((10, 3)), index=idx)
 
         axes = df.plot(kind=kind, subplots=True, sharex=True)
@@ -112,7 +112,7 @@ class TestDataFramePlotsSubplots:
 
     @pytest.mark.parametrize("kind", ["line", "area"])
     def test_subplots_timeseries_rot(self, kind):
-        idx = date_range(start="2014-07-01", freq="M", periods=10)
+        idx = date_range(start="2014-07-01", freq="ME", periods=10)
         df = DataFrame(np.random.default_rng(2).random((10, 3)), index=idx)
         axes = df.plot(kind=kind, subplots=True, sharex=False, rot=45, fontsize=7)
         for ax in axes:
@@ -361,7 +361,7 @@ class TestDataFramePlotsSubplots:
         mpl.pyplot.subplots_adjust(left=0.05, right=0.95, hspace=0.3, wspace=0.3)
         df = DataFrame(
             np.random.default_rng(2).standard_normal((10, 9)),
-            index=date_range(start="2014-07-01", freq="M", periods=10),
+            index=date_range(start="2014-07-01", freq="ME", periods=10),
         )
         for i, ax in enumerate(axes.ravel()):
             df[i].plot(ax=ax, fontsize=5)

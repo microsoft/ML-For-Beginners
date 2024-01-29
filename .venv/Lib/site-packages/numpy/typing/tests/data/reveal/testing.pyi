@@ -1,13 +1,20 @@
-from __future__ import annotations
-
 import re
 import sys
+import warnings
+import types
+import unittest
+import contextlib
 from collections.abc import Callable
 from typing import Any, TypeVar
 from pathlib import Path
 
 import numpy as np
 import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 AR_f8: npt.NDArray[np.float64]
 AR_i8: npt.NDArray[np.int64]
@@ -23,154 +30,174 @@ def func2(
     y: npt.NDArray[np.number[Any]],
 ) -> npt.NDArray[np.bool_]: ...
 
-reveal_type(np.testing.KnownFailureException())  # E: KnownFailureException
-reveal_type(np.testing.IgnoreException())  # E: IgnoreException
+assert_type(np.testing.KnownFailureException(), np.testing.KnownFailureException)
+assert_type(np.testing.IgnoreException(), np.testing.IgnoreException)
 
-reveal_type(np.testing.clear_and_catch_warnings(modules=[np.testing]))  # E: _clear_and_catch_warnings_without_records
-reveal_type(np.testing.clear_and_catch_warnings(True))  # E: _clear_and_catch_warnings_with_records
-reveal_type(np.testing.clear_and_catch_warnings(False))  # E: _clear_and_catch_warnings_without_records
-reveal_type(np.testing.clear_and_catch_warnings(bool_obj))  # E: clear_and_catch_warnings
-reveal_type(np.testing.clear_and_catch_warnings.class_modules)  # E: tuple[types.ModuleType, ...]
-reveal_type(np.testing.clear_and_catch_warnings.modules)  # E: set[types.ModuleType]
+assert_type(
+    np.testing.clear_and_catch_warnings(modules=[np.testing]),
+    np.testing._private.utils._clear_and_catch_warnings_without_records,
+)
+assert_type(
+    np.testing.clear_and_catch_warnings(True),
+    np.testing._private.utils._clear_and_catch_warnings_with_records,
+)
+assert_type(
+    np.testing.clear_and_catch_warnings(False),
+    np.testing._private.utils._clear_and_catch_warnings_without_records,
+)
+assert_type(
+    np.testing.clear_and_catch_warnings(bool_obj),
+    np.testing.clear_and_catch_warnings,
+)
+assert_type(
+    np.testing.clear_and_catch_warnings.class_modules,
+    tuple[types.ModuleType, ...],
+)
+assert_type(
+    np.testing.clear_and_catch_warnings.modules,
+    set[types.ModuleType],
+)
 
 with np.testing.clear_and_catch_warnings(True) as c1:
-    reveal_type(c1)  # E: builtins.list[warnings.WarningMessage]
+    assert_type(c1, list[warnings.WarningMessage])
 with np.testing.clear_and_catch_warnings() as c2:
-    reveal_type(c2)  # E: None
+    assert_type(c2, None)
 
-reveal_type(np.testing.suppress_warnings("once"))  # E: suppress_warnings
-reveal_type(np.testing.suppress_warnings()(func))  # E: def () -> builtins.int
-reveal_type(suppress_obj.filter(RuntimeWarning))  # E: None
-reveal_type(suppress_obj.record(RuntimeWarning))  # E: list[warnings.WarningMessage]
+assert_type(np.testing.suppress_warnings("once"), np.testing.suppress_warnings)
+assert_type(np.testing.suppress_warnings()(func), Callable[[], int])
+assert_type(suppress_obj.filter(RuntimeWarning), None)
+assert_type(suppress_obj.record(RuntimeWarning), list[warnings.WarningMessage])
 with suppress_obj as c3:
-    reveal_type(c3)  # E: suppress_warnings
+    assert_type(c3, np.testing.suppress_warnings)
 
-reveal_type(np.testing.verbose)  # E: int
-reveal_type(np.testing.IS_PYPY)  # E: bool
-reveal_type(np.testing.HAS_REFCOUNT)  # E: bool
-reveal_type(np.testing.HAS_LAPACK64)  # E: bool
+assert_type(np.testing.verbose, int)
+assert_type(np.testing.IS_PYPY, bool)
+assert_type(np.testing.HAS_REFCOUNT, bool)
+assert_type(np.testing.HAS_LAPACK64, bool)
 
-reveal_type(np.testing.assert_(1, msg="test"))  # E: None
-reveal_type(np.testing.assert_(2, msg=lambda: "test"))  # E: None
+assert_type(np.testing.assert_(1, msg="test"), None)
+assert_type(np.testing.assert_(2, msg=lambda: "test"), None)
 
 if sys.platform == "win32" or sys.platform == "cygwin":
-    reveal_type(np.testing.memusage())  # E: builtins.int
+    assert_type(np.testing.memusage(), int)
 elif sys.platform == "linux":
-    reveal_type(np.testing.memusage())  # E: Union[None, builtins.int]
-else:
-    reveal_type(np.testing.memusage())  # E: <nothing>
+    assert_type(np.testing.memusage(), None | int)
 
-reveal_type(np.testing.jiffies())  # E: builtins.int
+assert_type(np.testing.jiffies(), int)
 
-reveal_type(np.testing.build_err_msg([0, 1, 2], "test"))  # E: str
-reveal_type(np.testing.build_err_msg(range(2), "test", header="header"))  # E: str
-reveal_type(np.testing.build_err_msg(np.arange(9).reshape(3, 3), "test", verbose=False))  # E: str
-reveal_type(np.testing.build_err_msg("abc", "test", names=["x", "y"]))  # E: str
-reveal_type(np.testing.build_err_msg([1.0, 2.0], "test", precision=5))  # E: str
+assert_type(np.testing.build_err_msg([0, 1, 2], "test"), str)
+assert_type(np.testing.build_err_msg(range(2), "test", header="header"), str)
+assert_type(np.testing.build_err_msg(np.arange(9).reshape(3, 3), "test", verbose=False), str)
+assert_type(np.testing.build_err_msg("abc", "test", names=["x", "y"]), str)
+assert_type(np.testing.build_err_msg([1.0, 2.0], "test", precision=5), str)
 
-reveal_type(np.testing.assert_equal({1}, {1}))  # E: None
-reveal_type(np.testing.assert_equal([1, 2, 3], [1, 2, 3], err_msg="fail"))  # E: None
-reveal_type(np.testing.assert_equal(1, 1.0, verbose=True))  # E: None
+assert_type(np.testing.assert_equal({1}, {1}), None)
+assert_type(np.testing.assert_equal([1, 2, 3], [1, 2, 3], err_msg="fail"), None)
+assert_type(np.testing.assert_equal(1, 1.0, verbose=True), None)
 
-reveal_type(np.testing.print_assert_equal('Test XYZ of func xyz', [0, 1], [0, 1]))  # E: None
+assert_type(np.testing.print_assert_equal('Test XYZ of func xyz', [0, 1], [0, 1]), None)
 
-reveal_type(np.testing.assert_almost_equal(1.0, 1.1))  # E: None
-reveal_type(np.testing.assert_almost_equal([1, 2, 3], [1, 2, 3], err_msg="fail"))  # E: None
-reveal_type(np.testing.assert_almost_equal(1, 1.0, verbose=True))  # E: None
-reveal_type(np.testing.assert_almost_equal(1, 1.0001, decimal=2))  # E: None
+assert_type(np.testing.assert_almost_equal(1.0, 1.1), None)
+assert_type(np.testing.assert_almost_equal([1, 2, 3], [1, 2, 3], err_msg="fail"), None)
+assert_type(np.testing.assert_almost_equal(1, 1.0, verbose=True), None)
+assert_type(np.testing.assert_almost_equal(1, 1.0001, decimal=2), None)
 
-reveal_type(np.testing.assert_approx_equal(1.0, 1.1))  # E: None
-reveal_type(np.testing.assert_approx_equal("1", "2", err_msg="fail"))  # E: None
-reveal_type(np.testing.assert_approx_equal(1, 1.0, verbose=True))  # E: None
-reveal_type(np.testing.assert_approx_equal(1, 1.0001, significant=2))  # E: None
+assert_type(np.testing.assert_approx_equal(1.0, 1.1), None)
+assert_type(np.testing.assert_approx_equal("1", "2", err_msg="fail"), None)
+assert_type(np.testing.assert_approx_equal(1, 1.0, verbose=True), None)
+assert_type(np.testing.assert_approx_equal(1, 1.0001, significant=2), None)
 
-reveal_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, err_msg="test"))  # E: None
-reveal_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, verbose=True))  # E: None
-reveal_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, header="header"))  # E: None
-reveal_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, precision=np.int64()))  # E: None
-reveal_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, equal_nan=False))  # E: None
-reveal_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, equal_inf=True))  # E: None
+assert_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, err_msg="test"), None)
+assert_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, verbose=True), None)
+assert_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, header="header"), None)
+assert_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, precision=np.int64()), None)
+assert_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, equal_nan=False), None)
+assert_type(np.testing.assert_array_compare(func2, AR_i8, AR_f8, equal_inf=True), None)
 
-reveal_type(np.testing.assert_array_equal(AR_i8, AR_f8))  # E: None
-reveal_type(np.testing.assert_array_equal(AR_i8, AR_f8, err_msg="test"))  # E: None
-reveal_type(np.testing.assert_array_equal(AR_i8, AR_f8, verbose=True))  # E: None
+assert_type(np.testing.assert_array_equal(AR_i8, AR_f8), None)
+assert_type(np.testing.assert_array_equal(AR_i8, AR_f8, err_msg="test"), None)
+assert_type(np.testing.assert_array_equal(AR_i8, AR_f8, verbose=True), None)
 
-reveal_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8))  # E: None
-reveal_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8, err_msg="test"))  # E: None
-reveal_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8, verbose=True))  # E: None
-reveal_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8, decimal=1))  # E: None
+assert_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8), None)
+assert_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8, err_msg="test"), None)
+assert_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8, verbose=True), None)
+assert_type(np.testing.assert_array_almost_equal(AR_i8, AR_f8, decimal=1), None)
 
-reveal_type(np.testing.assert_array_less(AR_i8, AR_f8))  # E: None
-reveal_type(np.testing.assert_array_less(AR_i8, AR_f8, err_msg="test"))  # E: None
-reveal_type(np.testing.assert_array_less(AR_i8, AR_f8, verbose=True))  # E: None
+assert_type(np.testing.assert_array_less(AR_i8, AR_f8), None)
+assert_type(np.testing.assert_array_less(AR_i8, AR_f8, err_msg="test"), None)
+assert_type(np.testing.assert_array_less(AR_i8, AR_f8, verbose=True), None)
 
-reveal_type(np.testing.runstring("1 + 1", {}))  # E: Any
-reveal_type(np.testing.runstring("int64() + 1", {"int64": np.int64}))  # E: Any
+assert_type(np.testing.runstring("1 + 1", {}), Any)
+assert_type(np.testing.runstring("int64() + 1", {"int64": np.int64}), Any)
 
-reveal_type(np.testing.assert_string_equal("1", "1"))  # E: None
+assert_type(np.testing.assert_string_equal("1", "1"), None)
 
-reveal_type(np.testing.rundocs())  # E: None
-reveal_type(np.testing.rundocs("test.py"))  # E: None
-reveal_type(np.testing.rundocs(Path("test.py"), raise_on_error=True))  # E: None
+assert_type(np.testing.rundocs(), None)
+assert_type(np.testing.rundocs("test.py"), None)
+assert_type(np.testing.rundocs(Path("test.py"), raise_on_error=True), None)
 
 def func3(a: int) -> bool: ...
 
-reveal_type(func3)  # E: def (a: builtins.int) -> builtins.bool
+assert_type(
+    np.testing.assert_raises(RuntimeWarning),
+    unittest.case._AssertRaisesContext[RuntimeWarning],
+)
+assert_type(np.testing.assert_raises(RuntimeWarning, func3, 5), None)
 
-reveal_type(np.testing.assert_raises(RuntimeWarning))  # E: _AssertRaisesContext[builtins.RuntimeWarning]
-reveal_type(np.testing.assert_raises(RuntimeWarning, func3, 5))  # E: None
-
-reveal_type(np.testing.assert_raises_regex(RuntimeWarning, r"test"))  # E: _AssertRaisesContext[builtins.RuntimeWarning]
-reveal_type(np.testing.assert_raises_regex(RuntimeWarning, b"test", func3, 5))  # E: None
-reveal_type(np.testing.assert_raises_regex(RuntimeWarning, re.compile(b"test"), func3, 5))  # E: None
+assert_type(
+    np.testing.assert_raises_regex(RuntimeWarning, r"test"),
+    unittest.case._AssertRaisesContext[RuntimeWarning],
+)
+assert_type(np.testing.assert_raises_regex(RuntimeWarning, b"test", func3, 5), None)
+assert_type(np.testing.assert_raises_regex(RuntimeWarning, re.compile(b"test"), func3, 5), None)
 
 class Test: ...
 
 def decorate(a: FT) -> FT:
     return a
 
-reveal_type(np.testing.decorate_methods(Test, decorate))  # E: None
-reveal_type(np.testing.decorate_methods(Test, decorate, None))  # E: None
-reveal_type(np.testing.decorate_methods(Test, decorate, "test"))  # E: None
-reveal_type(np.testing.decorate_methods(Test, decorate, b"test"))  # E: None
-reveal_type(np.testing.decorate_methods(Test, decorate, re.compile("test")))  # E: None
+assert_type(np.testing.decorate_methods(Test, decorate), None)
+assert_type(np.testing.decorate_methods(Test, decorate, None), None)
+assert_type(np.testing.decorate_methods(Test, decorate, "test"), None)
+assert_type(np.testing.decorate_methods(Test, decorate, b"test"), None)
+assert_type(np.testing.decorate_methods(Test, decorate, re.compile("test")), None)
 
-reveal_type(np.testing.measure("for i in range(1000): np.sqrt(i**2)"))  # E: float
-reveal_type(np.testing.measure(b"for i in range(1000): np.sqrt(i**2)", times=5))  # E: float
+assert_type(np.testing.measure("for i in range(1000): np.sqrt(i**2)"), float)
+assert_type(np.testing.measure(b"for i in range(1000): np.sqrt(i**2)", times=5), float)
 
-reveal_type(np.testing.assert_allclose(AR_i8, AR_f8))  # E: None
-reveal_type(np.testing.assert_allclose(AR_i8, AR_f8, rtol=0.005))  # E: None
-reveal_type(np.testing.assert_allclose(AR_i8, AR_f8, atol=1))  # E: None
-reveal_type(np.testing.assert_allclose(AR_i8, AR_f8, equal_nan=True))  # E: None
-reveal_type(np.testing.assert_allclose(AR_i8, AR_f8, err_msg="err"))  # E: None
-reveal_type(np.testing.assert_allclose(AR_i8, AR_f8, verbose=False))  # E: None
+assert_type(np.testing.assert_allclose(AR_i8, AR_f8), None)
+assert_type(np.testing.assert_allclose(AR_i8, AR_f8, rtol=0.005), None)
+assert_type(np.testing.assert_allclose(AR_i8, AR_f8, atol=1), None)
+assert_type(np.testing.assert_allclose(AR_i8, AR_f8, equal_nan=True), None)
+assert_type(np.testing.assert_allclose(AR_i8, AR_f8, err_msg="err"), None)
+assert_type(np.testing.assert_allclose(AR_i8, AR_f8, verbose=False), None)
 
-reveal_type(np.testing.assert_array_almost_equal_nulp(AR_i8, AR_f8, nulp=2))  # E: None
+assert_type(np.testing.assert_array_almost_equal_nulp(AR_i8, AR_f8, nulp=2), None)
 
-reveal_type(np.testing.assert_array_max_ulp(AR_i8, AR_f8, maxulp=2))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.testing.assert_array_max_ulp(AR_i8, AR_f8, dtype=np.float32))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.testing.assert_array_max_ulp(AR_i8, AR_f8, maxulp=2), npt.NDArray[Any])
+assert_type(np.testing.assert_array_max_ulp(AR_i8, AR_f8, dtype=np.float32), npt.NDArray[Any])
 
-reveal_type(np.testing.assert_warns(RuntimeWarning))  # E: _GeneratorContextManager[None]
-reveal_type(np.testing.assert_warns(RuntimeWarning, func3, 5))  # E: bool
+assert_type(np.testing.assert_warns(RuntimeWarning), contextlib._GeneratorContextManager[None])
+assert_type(np.testing.assert_warns(RuntimeWarning, func3, 5), bool)
 
 def func4(a: int, b: str) -> bool: ...
 
-reveal_type(np.testing.assert_no_warnings())  # E: _GeneratorContextManager[None]
-reveal_type(np.testing.assert_no_warnings(func3, 5))  # E: bool
-reveal_type(np.testing.assert_no_warnings(func4, a=1, b="test"))  # E: bool
-reveal_type(np.testing.assert_no_warnings(func4, 1, "test"))  # E: bool
+assert_type(np.testing.assert_no_warnings(), contextlib._GeneratorContextManager[None])
+assert_type(np.testing.assert_no_warnings(func3, 5), bool)
+assert_type(np.testing.assert_no_warnings(func4, a=1, b="test"), bool)
+assert_type(np.testing.assert_no_warnings(func4, 1, "test"), bool)
 
-reveal_type(np.testing.tempdir("test_dir"))  # E: _GeneratorContextManager[builtins.str]
-reveal_type(np.testing.tempdir(prefix=b"test"))  # E: _GeneratorContextManager[builtins.bytes]
-reveal_type(np.testing.tempdir("test_dir", dir=Path("here")))  # E: _GeneratorContextManager[builtins.str]
+assert_type(np.testing.tempdir("test_dir"), contextlib._GeneratorContextManager[str])
+assert_type(np.testing.tempdir(prefix=b"test"), contextlib._GeneratorContextManager[bytes])
+assert_type(np.testing.tempdir("test_dir", dir=Path("here")), contextlib._GeneratorContextManager[str])
 
-reveal_type(np.testing.temppath("test_dir", text=True))  # E: _GeneratorContextManager[builtins.str]
-reveal_type(np.testing.temppath(prefix=b"test"))  # E: _GeneratorContextManager[builtins.bytes]
-reveal_type(np.testing.temppath("test_dir", dir=Path("here")))  # E: _GeneratorContextManager[builtins.str]
+assert_type(np.testing.temppath("test_dir", text=True), contextlib._GeneratorContextManager[str])
+assert_type(np.testing.temppath(prefix=b"test"), contextlib._GeneratorContextManager[bytes])
+assert_type(np.testing.temppath("test_dir", dir=Path("here")), contextlib._GeneratorContextManager[str])
 
-reveal_type(np.testing.assert_no_gc_cycles())  # E: _GeneratorContextManager[None]
-reveal_type(np.testing.assert_no_gc_cycles(func3, 5))  # E: None
+assert_type(np.testing.assert_no_gc_cycles(), contextlib._GeneratorContextManager[None])
+assert_type(np.testing.assert_no_gc_cycles(func3, 5), None)
 
-reveal_type(np.testing.break_cycles())  # E: None
+assert_type(np.testing.break_cycles(), None)
 
-reveal_type(np.testing.TestCase())  # E: unittest.case.TestCase
+assert_type(np.testing.TestCase(), unittest.case.TestCase)

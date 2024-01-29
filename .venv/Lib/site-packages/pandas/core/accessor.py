@@ -187,7 +187,7 @@ def delegate_names(
     return add_delegate_accessors
 
 
-# Ported with modifications from xarray
+# Ported with modifications from xarray; licence at LICENSES/XARRAY_LICENSE
 # https://github.com/pydata/xarray/blob/master/xarray/core/extensions.py
 # 1. We don't need to catch and re-raise AttributeErrors as RuntimeErrors
 # 2. We use a UserWarning instead of a custom Warning

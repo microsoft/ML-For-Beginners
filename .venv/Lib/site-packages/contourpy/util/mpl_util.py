@@ -6,18 +6,17 @@ import matplotlib.path as mpath
 import numpy as np
 
 from contourpy import FillType, LineType
+from contourpy.array import codes_from_offsets
 
 if TYPE_CHECKING:
-    from contourpy._contourpy import (
-        CodeArray, FillReturn, LineReturn, LineReturn_Separate, OffsetArray,
-    )
+    from contourpy._contourpy import FillReturn, LineReturn, LineReturn_Separate
 
 
 def filled_to_mpl_paths(filled: FillReturn, fill_type: FillType) -> list[mpath.Path]:
     if fill_type in (FillType.OuterCode, FillType.ChunkCombinedCode):
         paths = [mpath.Path(points, codes) for points, codes in zip(*filled) if points is not None]
     elif fill_type in (FillType.OuterOffset, FillType.ChunkCombinedOffset):
-        paths = [mpath.Path(points, offsets_to_mpl_codes(offsets))
+        paths = [mpath.Path(points, codes_from_offsets(offsets))
                  for points, offsets in zip(*filled) if points is not None]
     elif fill_type == FillType.ChunkCombinedCodeOffset:
         paths = []
@@ -35,7 +34,7 @@ def filled_to_mpl_paths(filled: FillReturn, fill_type: FillType) -> list[mpath.P
             for i in range(len(outer_offsets)-1):
                 offs = offsets[outer_offsets[i]:outer_offsets[i+1]+1]
                 pts = points[offs[0]:offs[-1]]
-                paths += [mpath.Path(pts, offsets_to_mpl_codes(offs - offs[0]))]
+                paths += [mpath.Path(pts, codes_from_offsets(offs - offs[0]))]
     else:
         raise RuntimeError(f"Conversion of FillType {fill_type} to MPL Paths is not implemented")
     return paths
@@ -61,19 +60,17 @@ def lines_to_mpl_paths(lines: LineReturn, line_type: LineType) -> list[mpath.Pat
                 line = points[offsets[i]:offsets[i+1]]
                 closed = line[0, 0] == line[-1, 0] and line[0, 1] == line[-1, 1]
                 paths.append(mpath.Path(line, closed=closed))
+    elif line_type == LineType.ChunkCombinedNan:
+        paths = []
+        for points in lines[0]:
+            if points is None:
+                continue
+            nan_offsets = np.nonzero(np.isnan(points[:, 0]))[0]
+            nan_offsets = np.concatenate([[-1], nan_offsets, [len(points)]])
+            for s, e in zip(nan_offsets[:-1], nan_offsets[1:]):
+                line = points[s+1:e]
+                closed = line[0, 0] == line[-1, 0] and line[0, 1] == line[-1, 1]
+                paths.append(mpath.Path(line, closed=closed))
     else:
         raise RuntimeError(f"Conversion of LineType {line_type} to MPL Paths is not implemented")
     return paths
-
-
-def mpl_codes_to_offsets(codes: CodeArray) -> OffsetArray:
-    offsets = np.nonzero(codes == 1)[0].astype(np.uint32)
-    offsets = np.append(offsets, len(codes))
-    return offsets
-
-
-def offsets_to_mpl_codes(offsets: OffsetArray) -> CodeArray:
-    codes = np.full(offsets[-1]-offsets[0], 2, dtype=np.uint8)  # LINETO = 2
-    codes[offsets[:-1]] = 1  # MOVETO = 1
-    codes[offsets[1:]-1] = 79  # CLOSEPOLY 79
-    return codes

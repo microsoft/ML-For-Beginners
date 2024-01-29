@@ -66,8 +66,8 @@ def test_memory_no_likelihood_extras(concentrate, univariate, diffuse,
     # Test that adds extra features (missing data, exog variables) to the
     # variety of special filtering cases in a univariate model
     endog = dta['infl'].iloc[:20].copy()
-    endog[0] = np.nan
-    endog[4:6] = np.nan
+    endog.iloc[0] = np.nan
+    endog.iloc[4:6] = np.nan
     exog = dta['realint'].iloc[:20]
     mod = sarimax.SARIMAX(endog, order=(1, 0, 0), exog=exog,
                           concentrate_scale=concentrate)

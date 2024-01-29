@@ -7,14 +7,16 @@
 // ATTENTION: The code in this file is highly EXPERIMENTAL.
 // Adventurous users should note that the APIs will probably change.
 
+#include "onnx/common/interned_strings.h"
+
 #include <stdint.h>
+
 #include <mutex>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "onnx/common/assertions.h"
-#include "onnx/common/interned_strings.h"
 
 namespace ONNX_NAMESPACE {
 

@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221
+
 
 import numpy as np
 
@@ -20,18 +20,6 @@ class ConstantOfShape(OpRun):
             self.cst = np.float64(self.cst)
         elif self.cst is None:
             self.cst = np.float32(0)
-        if not isinstance(
-            self.cst,
-            (
-                np.float32,
-                np.float64,
-                np.int64,
-                np.int32,
-                np.bool_,
-                np.float16,
-            ),
-        ):
-            raise TypeError(f"cst must be a real not {type(self.cst)}")
 
     def _run(self, data, value=None):  # type: ignore
         try:

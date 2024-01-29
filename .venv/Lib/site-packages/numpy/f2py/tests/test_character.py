@@ -574,7 +574,6 @@ class TestMiscCharacter(util.F2PyTest):
 class TestStringScalarArr(util.F2PyTest):
     sources = [util.getpath("tests", "src", "string", "scalar_string.f90")]
 
-    @pytest.mark.slow
     def test_char(self):
         for out in (self.module.string_test.string,
                     self.module.string_test.string77):
@@ -583,7 +582,6 @@ class TestStringScalarArr(util.F2PyTest):
             expected = '|S8'
             assert out.dtype == expected
 
-    @pytest.mark.slow
     def test_char_arr(self):
         for out in (self.module.string_test.strarr,
                     self.module.string_test.strarr77):
@@ -591,3 +589,48 @@ class TestStringScalarArr(util.F2PyTest):
             assert out.shape == expected
             expected = '|S12'
             assert out.dtype == expected
+
+class TestStringAssumedLength(util.F2PyTest):
+    sources = [util.getpath("tests", "src", "string", "gh24008.f")]
+
+    def test_gh24008(self):
+        self.module.greet("joe", "bob")
+
+class TestStringOptionalInOut(util.F2PyTest):
+    sources = [util.getpath("tests", "src", "string", "gh24662.f90")]
+
+    def test_gh24662(self):
+        self.module.string_inout_optional()
+        a = np.array('hi', dtype='S32')
+        self.module.string_inout_optional(a)
+        assert "output string" in a.tobytes().decode()
+        with pytest.raises(Exception):
+            aa = "Hi"
+            self.module.string_inout_optional(aa)
+
+
+@pytest.mark.slow
+class TestNewCharHandling(util.F2PyTest):
+    # from v1.24 onwards, gh-19388
+    sources = [
+        util.getpath("tests", "src", "string", "gh25286.pyf"),
+        util.getpath("tests", "src", "string", "gh25286.f90")
+    ]
+    module_name = "_char_handling_test"
+
+    def test_gh25286(self):
+        info = self.module.charint('T')
+        assert info == 2
+
+@pytest.mark.slow
+class TestBCCharHandling(util.F2PyTest):
+    # SciPy style, "incorrect" bindings with a hook
+    sources = [
+        util.getpath("tests", "src", "string", "gh25286_bc.pyf"),
+        util.getpath("tests", "src", "string", "gh25286.f90")
+    ]
+    module_name = "_char_handling_test"
+
+    def test_gh25286(self):
+        info = self.module.charint('T')
+        assert info == 2

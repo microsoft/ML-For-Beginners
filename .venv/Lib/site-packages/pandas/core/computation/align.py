@@ -110,7 +110,7 @@ def _align_core(terms):
                 ax, itm = axis, items
 
             if not axes[ax].is_(itm):
-                axes[ax] = axes[ax].join(itm, how="outer")
+                axes[ax] = axes[ax].union(itm)
 
     for i, ndim in ndims.items():
         for axis, items in zip(range(ndim), axes):

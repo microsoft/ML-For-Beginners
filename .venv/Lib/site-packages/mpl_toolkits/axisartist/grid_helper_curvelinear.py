@@ -10,7 +10,8 @@ import numpy as np
 import matplotlib as mpl
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D, IdentityTransform
-from .axislines import AxisArtistHelper, GridHelperBase
+from .axislines import (
+    _FixedAxisArtistHelperBase, _FloatingAxisArtistHelperBase, GridHelperBase)
 from .axis_artist import AxisArtist
 from .grid_finder import GridFinder
 
@@ -40,7 +41,7 @@ def _value_and_jacobian(func, xs, ys, xlims, ylims):
     return (val, (val_dx - val) / xeps, (val_dy - val) / yeps)
 
 
-class FixedAxisArtistHelper(AxisArtistHelper.Fixed):
+class FixedAxisArtistHelper(_FixedAxisArtistHelperBase):
     """
     Helper class for a fixed axis.
     """
@@ -80,7 +81,8 @@ class FixedAxisArtistHelper(AxisArtistHelper.Fixed):
         return chain(ti1, ti2), iter([])
 
 
-class FloatingAxisArtistHelper(AxisArtistHelper.Floating):
+class FloatingAxisArtistHelper(_FloatingAxisArtistHelperBase):
+
     def __init__(self, grid_helper, nth_coord, value, axis_direction=None):
         """
         nth_coord = along which coordinate value varies.
@@ -234,18 +236,27 @@ class GridHelperCurveLinear(GridHelperBase):
                  tick_formatter1=None,
                  tick_formatter2=None):
         """
-        aux_trans : a transform from the source (curved) coordinate to
-        target (rectilinear) coordinate. An instance of MPL's Transform
-        (inverse transform should be defined) or a tuple of two callable
-        objects which defines the transform and its inverse. The callables
-        need take two arguments of array of source coordinates and
-        should return two target coordinates.
+        Parameters
+        ----------
+        aux_trans : `.Transform` or tuple[Callable, Callable]
+            The transform from curved coordinates to rectilinear coordinate:
+            either a `.Transform` instance (which provides also its inverse),
+            or a pair of callables ``(trans, inv_trans)`` that define the
+            transform and its inverse.  The callables should have signature::
 
-        e.g., ``x2, y2 = trans(x1, y1)``
+                x_rect, y_rect = trans(x_curved, y_curved)
+                x_curved, y_curved = inv_trans(x_rect, y_rect)
+
+        extreme_finder
+
+        grid_locator1, grid_locator2
+            Grid locators for each axis.
+
+        tick_formatter1, tick_formatter2
+            Tick formatters for each axis.
         """
         super().__init__()
         self._grid_info = None
-        self._aux_trans = aux_trans
         self.grid_finder = GridFinder(aux_trans,
                                       extreme_finder,
                                       grid_locator1,
@@ -268,8 +279,8 @@ class GridHelperCurveLinear(GridHelperBase):
             axes = self.axes
         if axis_direction is None:
             axis_direction = loc
-        _helper = FixedAxisArtistHelper(self, loc, nth_coord_ticks=nth_coord)
-        axisline = AxisArtist(axes, _helper, axis_direction=axis_direction)
+        helper = FixedAxisArtistHelper(self, loc, nth_coord_ticks=nth_coord)
+        axisline = AxisArtist(axes, helper, axis_direction=axis_direction)
         # Why is clip not set on axisline, unlike in new_floating_axis or in
         # the floating_axig.GridHelperCurveLinear subclass?
         return axisline
@@ -279,27 +290,15 @@ class GridHelperCurveLinear(GridHelperBase):
                           axes=None,
                           axis_direction="bottom"
                           ):
-
         if axes is None:
             axes = self.axes
-
-        _helper = FloatingAxisArtistHelper(
+        helper = FloatingAxisArtistHelper(
             self, nth_coord, value, axis_direction)
-
-        axisline = AxisArtist(axes, _helper)
-
-        # _helper = FloatingAxisArtistHelper(self, nth_coord,
-        #                                    value,
-        #                                    label_direction=label_direction,
-        #                                    )
-
-        # axisline = AxisArtistFloating(axes, _helper,
-        #                               axis_direction=axis_direction)
+        axisline = AxisArtist(axes, helper)
         axisline.line.set_clip_on(True)
         axisline.line.set_clip_box(axisline.axes.bbox)
         # axisline.major_ticklabels.set_visible(True)
         # axisline.minor_ticklabels.set_visible(False)
-
         return axisline
 
     def _update_grid(self, x1, y1, x2, y2):

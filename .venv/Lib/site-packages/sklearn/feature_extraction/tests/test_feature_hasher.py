@@ -125,7 +125,7 @@ def test_hash_empty_input():
     feature_hasher = FeatureHasher(n_features=n_features, input_type="string")
     X = feature_hasher.transform(raw_X)
 
-    assert_array_equal(X.A, np.zeros((len(raw_X), n_features)))
+    assert_array_equal(X.toarray(), np.zeros((len(raw_X), n_features)))
 
 
 def test_hasher_zeros():

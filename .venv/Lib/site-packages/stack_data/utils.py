@@ -92,12 +92,13 @@ def is_frame(frame_or_tb: Union[FrameType, TracebackType]) -> bool:
 
 
 def iter_stack(frame_or_tb: Union[FrameType, TracebackType]) -> Iterator[Union[FrameType, TracebackType]]:
-    while frame_or_tb:
-        yield frame_or_tb
-        if is_frame(frame_or_tb):
-            frame_or_tb = frame_or_tb.f_back
+    current: Union[FrameType, TracebackType, None] = frame_or_tb
+    while current:
+        yield current
+        if is_frame(current):
+            current = current.f_back
         else:
-            frame_or_tb = frame_or_tb.tb_next
+            current = current.tb_next
 
 
 def frame_and_lineno(frame_or_tb: Union[FrameType, TracebackType]) -> Tuple[FrameType, int]:

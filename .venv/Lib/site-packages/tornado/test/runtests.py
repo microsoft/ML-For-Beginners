@@ -22,6 +22,7 @@ TEST_MODULES = [
     "tornado.test.asyncio_test",
     "tornado.test.auth_test",
     "tornado.test.autoreload_test",
+    "tornado.test.circlerefs_test",
     "tornado.test.concurrent_test",
     "tornado.test.curl_httpclient_test",
     "tornado.test.escape_test",
@@ -127,37 +128,6 @@ def main():
     warnings.filterwarnings("ignore", category=PendingDeprecationWarning)
     warnings.filterwarnings(
         "error", category=PendingDeprecationWarning, module=r"tornado\..*"
-    )
-    # The unittest module is aggressive about deprecating redundant methods,
-    # leaving some without non-deprecated spellings that work on both
-    # 2.7 and 3.2
-    warnings.filterwarnings(
-        "ignore", category=DeprecationWarning, message="Please use assert.* instead"
-    )
-    warnings.filterwarnings(
-        "ignore",
-        category=PendingDeprecationWarning,
-        message="Please use assert.* instead",
-    )
-    # Twisted 15.0.0 triggers some warnings on py3 with -bb.
-    warnings.filterwarnings("ignore", category=BytesWarning, module=r"twisted\..*")
-    if (3,) < sys.version_info < (3, 6):
-        # Prior to 3.6, async ResourceWarnings were rather noisy
-        # and even
-        # `python3.4 -W error -c 'import asyncio; asyncio.get_event_loop()'`
-        # would generate a warning.
-        warnings.filterwarnings(
-            "ignore", category=ResourceWarning, module=r"asyncio\..*"
-        )
-    # This deprecation warning is introduced in Python 3.8 and is
-    # triggered by pycurl. Unforunately, because it is raised in the C
-    # layer it can't be filtered by module and we must match the
-    # message text instead (Tornado's C module uses PY_SSIZE_T_CLEAN
-    # so it's not at risk of running into this issue).
-    warnings.filterwarnings(
-        "ignore",
-        category=DeprecationWarning,
-        message="PY_SSIZE_T_CLEAN will be required",
     )
 
     logging.getLogger("tornado.access").setLevel(logging.CRITICAL)

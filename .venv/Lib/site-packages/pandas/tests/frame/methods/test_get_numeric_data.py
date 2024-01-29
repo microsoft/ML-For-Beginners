@@ -15,12 +15,12 @@ from pandas.core.arrays import IntervalArray
 class TestGetNumericData:
     def test_get_numeric_data_preserve_dtype(self):
         # get the numeric data
-        obj = DataFrame({"A": [1, "2", 3.0]})
+        obj = DataFrame({"A": [1, "2", 3.0]}, columns=Index(["A"], dtype="object"))
         result = obj._get_numeric_data()
         expected = DataFrame(dtype=object, index=pd.RangeIndex(3), columns=[])
         tm.assert_frame_equal(result, expected)
 
-    def test_get_numeric_data(self):
+    def test_get_numeric_data(self, using_infer_string):
         datetime64name = np.dtype("M8[s]").name
         objectname = np.dtype(np.object_).name
 
@@ -33,7 +33,7 @@ class TestGetNumericData:
             [
                 np.dtype("float64"),
                 np.dtype("int64"),
-                np.dtype(objectname),
+                np.dtype(objectname) if not using_infer_string else "string",
                 np.dtype(datetime64name),
             ],
             index=["a", "b", "c", "f"],

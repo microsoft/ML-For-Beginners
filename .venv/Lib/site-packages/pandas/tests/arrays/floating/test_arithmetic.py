@@ -122,10 +122,17 @@ def test_arith_zero_dim_ndarray(other):
 # -----------------------------------------------------------------------------
 
 
-def test_error_invalid_values(data, all_arithmetic_operators):
+def test_error_invalid_values(data, all_arithmetic_operators, using_infer_string):
     op = all_arithmetic_operators
     s = pd.Series(data)
     ops = getattr(s, op)
+
+    if using_infer_string:
+        import pyarrow as pa
+
+        errs = (TypeError, pa.lib.ArrowNotImplementedError, NotImplementedError)
+    else:
+        errs = TypeError
 
     # invalid scalars
     msg = "|".join(
@@ -140,15 +147,17 @@ def test_error_invalid_values(data, all_arithmetic_operators):
             "ufunc '.*' not supported for the input types, and the inputs could not",
             "ufunc '.*' did not contain a loop with signature matching types",
             "Concatenation operation is not implemented for NumPy arrays",
+            "has no kernel",
+            "not implemented",
         ]
     )
-    with pytest.raises(TypeError, match=msg):
+    with pytest.raises(errs, match=msg):
         ops("foo")
-    with pytest.raises(TypeError, match=msg):
+    with pytest.raises(errs, match=msg):
         ops(pd.Timestamp("20180101"))
 
     # invalid array-likes
-    with pytest.raises(TypeError, match=msg):
+    with pytest.raises(errs, match=msg):
         ops(pd.Series("foo", index=s.index))
 
     msg = "|".join(
@@ -167,9 +176,11 @@ def test_error_invalid_values(data, all_arithmetic_operators):
             ),
             r"ufunc 'add' cannot use operands with types dtype\('float\d{2}'\)",
             "cannot subtract DatetimeArray from ndarray",
+            "has no kernel",
+            "not implemented",
         ]
     )
-    with pytest.raises(TypeError, match=msg):
+    with pytest.raises(errs, match=msg):
         ops(pd.Series(pd.date_range("20180101", periods=len(s))))
 
 

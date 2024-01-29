@@ -30,6 +30,7 @@ from psutil import OPENBSD
 from psutil import POSIX
 from psutil import SUNOS
 from psutil import WINDOWS
+from psutil._compat import PY3
 from psutil._compat import FileNotFoundError
 from psutil._compat import long
 from psutil.tests import ASCII_FS
@@ -61,7 +62,6 @@ from psutil.tests import retry_on_failure
 
 
 class TestProcessAPIs(PsutilTestCase):
-
     def test_process_iter(self):
         self.assertIn(os.getpid(), [x.pid for x in psutil.process_iter()])
         sproc = self.spawn_testproc()
@@ -71,11 +71,20 @@ class TestProcessAPIs(PsutilTestCase):
         p.wait()
         self.assertNotIn(sproc.pid, [x.pid for x in psutil.process_iter()])
 
-        with mock.patch('psutil.Process',
-                        side_effect=psutil.NoSuchProcess(os.getpid())):
+        # assert there are no duplicates
+        ls = [x for x in psutil.process_iter()]
+        self.assertEqual(
+            sorted(ls, key=lambda x: x.pid),
+            sorted(set(ls), key=lambda x: x.pid),
+        )
+
+        with mock.patch(
+            'psutil.Process', side_effect=psutil.NoSuchProcess(os.getpid())
+        ):
             self.assertEqual(list(psutil.process_iter()), [])
-        with mock.patch('psutil.Process',
-                        side_effect=psutil.AccessDenied(os.getpid())):
+        with mock.patch(
+            'psutil.Process', side_effect=psutil.AccessDenied(os.getpid())
+        ):
             with self.assertRaises(psutil.AccessDenied):
                 list(psutil.process_iter())
 
@@ -84,23 +93,29 @@ class TestProcessAPIs(PsutilTestCase):
             self.assertEqual(list(p.info.keys()), ['pid'])
         with self.assertRaises(ValueError):
             list(psutil.process_iter(attrs=['foo']))
-        with mock.patch("psutil._psplatform.Process.cpu_times",
-                        side_effect=psutil.AccessDenied(0, "")) as m:
+        with mock.patch(
+            "psutil._psplatform.Process.cpu_times",
+            side_effect=psutil.AccessDenied(0, ""),
+        ) as m:
             for p in psutil.process_iter(attrs=["pid", "cpu_times"]):
                 self.assertIsNone(p.info['cpu_times'])
                 self.assertGreaterEqual(p.info['pid'], 0)
             assert m.called
-        with mock.patch("psutil._psplatform.Process.cpu_times",
-                        side_effect=psutil.AccessDenied(0, "")) as m:
+        with mock.patch(
+            "psutil._psplatform.Process.cpu_times",
+            side_effect=psutil.AccessDenied(0, ""),
+        ) as m:
             flag = object()
             for p in psutil.process_iter(
-                    attrs=["pid", "cpu_times"], ad_value=flag):
+                attrs=["pid", "cpu_times"], ad_value=flag
+            ):
                 self.assertIs(p.info['cpu_times'], flag)
                 self.assertGreaterEqual(p.info['pid'], 0)
             assert m.called
 
-    @unittest.skipIf(PYPY and WINDOWS,
-                     "spawn_testproc() unreliable on PYPY + WINDOWS")
+    @unittest.skipIf(
+        PYPY and WINDOWS, "spawn_testproc() unreliable on PYPY + WINDOWS"
+    )
     def test_wait_procs(self):
         def callback(p):
             pids.append(p.pid)
@@ -124,8 +139,9 @@ class TestProcessAPIs(PsutilTestCase):
 
         @retry_on_failure(30)
         def test_1(procs, callback):
-            gone, alive = psutil.wait_procs(procs, timeout=0.03,
-                                            callback=callback)
+            gone, alive = psutil.wait_procs(
+                procs, timeout=0.03, callback=callback
+            )
             self.assertEqual(len(gone), 1)
             self.assertEqual(len(alive), 2)
             return gone, alive
@@ -143,8 +159,9 @@ class TestProcessAPIs(PsutilTestCase):
 
         @retry_on_failure(30)
         def test_2(procs, callback):
-            gone, alive = psutil.wait_procs(procs, timeout=0.03,
-                                            callback=callback)
+            gone, alive = psutil.wait_procs(
+                procs, timeout=0.03, callback=callback
+            )
             self.assertEqual(len(gone), 3)
             self.assertEqual(len(alive), 0)
             return gone, alive
@@ -156,8 +173,9 @@ class TestProcessAPIs(PsutilTestCase):
         for p in gone:
             self.assertTrue(hasattr(p, 'returncode'))
 
-    @unittest.skipIf(PYPY and WINDOWS,
-                     "spawn_testproc() unreliable on PYPY + WINDOWS")
+    @unittest.skipIf(
+        PYPY and WINDOWS, "spawn_testproc() unreliable on PYPY + WINDOWS"
+    )
     def test_wait_procs_no_timeout(self):
         sproc1 = self.spawn_testproc()
         sproc2 = self.spawn_testproc()
@@ -185,7 +203,7 @@ class TestProcessAPIs(PsutilTestCase):
             except AssertionError:
                 # in case the process disappeared in meantime fail only
                 # if it is no longer in psutil.pids()
-                time.sleep(.1)
+                time.sleep(0.1)
                 self.assertNotIn(pid, psutil.pids())
         pids = range(max(pids) + 15000, max(pids) + 16000)
         for pid in pids:
@@ -193,7 +211,6 @@ class TestProcessAPIs(PsutilTestCase):
 
 
 class TestMiscAPIs(PsutilTestCase):
-
     def test_boot_time(self):
         bt = psutil.boot_time()
         self.assertIsInstance(bt, float)
@@ -205,19 +222,20 @@ class TestMiscAPIs(PsutilTestCase):
         users = psutil.users()
         self.assertNotEqual(users, [])
         for user in users:
-            assert user.name, user
-            self.assertIsInstance(user.name, str)
-            self.assertIsInstance(user.terminal, (str, type(None)))
-            if user.host is not None:
-                self.assertIsInstance(user.host, (str, type(None)))
-            user.terminal
-            user.host
-            assert user.started > 0.0, user
-            datetime.datetime.fromtimestamp(user.started)
-            if WINDOWS or OPENBSD:
-                self.assertIsNone(user.pid)
-            else:
-                psutil.Process(user.pid)
+            with self.subTest(user=user):
+                assert user.name
+                self.assertIsInstance(user.name, str)
+                self.assertIsInstance(user.terminal, (str, type(None)))
+                if user.host is not None:
+                    self.assertIsInstance(user.host, (str, type(None)))
+                user.terminal  # noqa
+                user.host  # noqa
+                self.assertGreater(user.started, 0.0)
+                datetime.datetime.fromtimestamp(user.started)
+                if WINDOWS or OPENBSD:
+                    self.assertIsNone(user.pid)
+                else:
+                    psutil.Process(user.pid)
 
     def test_test(self):
         # test for psutil.test() function
@@ -229,8 +247,17 @@ class TestMiscAPIs(PsutilTestCase):
             sys.stdout = stdout
 
     def test_os_constants(self):
-        names = ["POSIX", "WINDOWS", "LINUX", "MACOS", "FREEBSD", "OPENBSD",
-                 "NETBSD", "BSD", "SUNOS"]
+        names = [
+            "POSIX",
+            "WINDOWS",
+            "LINUX",
+            "MACOS",
+            "FREEBSD",
+            "OPENBSD",
+            "NETBSD",
+            "BSD",
+            "SUNOS",
+        ]
         for name in names:
             self.assertIsInstance(getattr(psutil, name), bool, msg=name)
 
@@ -243,14 +270,20 @@ class TestMiscAPIs(PsutilTestCase):
                 names.remove("LINUX")
             elif "bsd" in sys.platform.lower():
                 assert psutil.BSD
-                self.assertEqual([psutil.FREEBSD, psutil.OPENBSD,
-                                  psutil.NETBSD].count(True), 1)
+                self.assertEqual(
+                    [psutil.FREEBSD, psutil.OPENBSD, psutil.NETBSD].count(
+                        True
+                    ),
+                    1,
+                )
                 names.remove("BSD")
                 names.remove("FREEBSD")
                 names.remove("OPENBSD")
                 names.remove("NETBSD")
-            elif "sunos" in sys.platform.lower() or \
-                    "solaris" in sys.platform.lower():
+            elif (
+                "sunos" in sys.platform.lower()
+                or "solaris" in sys.platform.lower()
+            ):
                 assert psutil.SUNOS
                 names.remove("SUNOS")
             elif "darwin" in sys.platform.lower():
@@ -263,11 +296,10 @@ class TestMiscAPIs(PsutilTestCase):
 
         # assert all other constants are set to False
         for name in names:
-            self.assertIs(getattr(psutil, name), False, msg=name)
+            self.assertFalse(getattr(psutil, name), msg=name)
 
 
 class TestMemoryAPIs(PsutilTestCase):
-
     def test_virtual_memory(self):
         mem = psutil.virtual_memory()
         assert mem.total > 0, mem
@@ -283,13 +315,16 @@ class TestMemoryAPIs(PsutilTestCase):
                 if not value >= 0:
                     raise self.fail("%r < 0 (%s)" % (name, value))
                 if value > mem.total:
-                    raise self.fail("%r > total (total=%s, %s=%s)"
-                                    % (name, mem.total, name, value))
+                    raise self.fail(
+                        "%r > total (total=%s, %s=%s)"
+                        % (name, mem.total, name, value)
+                    )
 
     def test_swap_memory(self):
         mem = psutil.swap_memory()
         self.assertEqual(
-            mem._fields, ('total', 'used', 'free', 'percent', 'sin', 'sout'))
+            mem._fields, ('total', 'used', 'free', 'percent', 'sin', 'sout')
+        )
 
         assert mem.total >= 0, mem
         assert mem.used >= 0, mem
@@ -304,7 +339,6 @@ class TestMemoryAPIs(PsutilTestCase):
 
 
 class TestCpuAPIs(PsutilTestCase):
-
     def test_cpu_count_logical(self):
         logical = psutil.cpu_count()
         self.assertIsNotNone(logical)
@@ -331,12 +365,14 @@ class TestCpuAPIs(PsutilTestCase):
     def test_cpu_count_none(self):
         # https://github.com/giampaolo/psutil/issues/1085
         for val in (-1, 0, None):
-            with mock.patch('psutil._psplatform.cpu_count_logical',
-                            return_value=val) as m:
+            with mock.patch(
+                'psutil._psplatform.cpu_count_logical', return_value=val
+            ) as m:
                 self.assertIsNone(psutil.cpu_count())
                 assert m.called
-            with mock.patch('psutil._psplatform.cpu_count_cores',
-                            return_value=val) as m:
+            with mock.patch(
+                'psutil._psplatform.cpu_count_cores', return_value=val
+            ) as m:
                 self.assertIsNone(psutil.cpu_count(logical=False))
                 assert m.called
 
@@ -349,7 +385,7 @@ class TestCpuAPIs(PsutilTestCase):
             self.assertIsInstance(cp_time, float)
             self.assertGreaterEqual(cp_time, 0.0)
             total += cp_time
-        self.assertEqual(total, sum(times))
+        self.assertAlmostEqual(total, sum(times))
         str(times)
         # CPU times are always supposed to increase over time
         # or at least remain the same and that's because time
@@ -388,10 +424,12 @@ class TestCpuAPIs(PsutilTestCase):
                 self.assertIsInstance(cp_time, float)
                 self.assertGreaterEqual(cp_time, 0.0)
                 total += cp_time
-            self.assertEqual(total, sum(times))
+            self.assertAlmostEqual(total, sum(times))
             str(times)
-        self.assertEqual(len(psutil.cpu_times(percpu=True)[0]),
-                         len(psutil.cpu_times(percpu=False)))
+        self.assertEqual(
+            len(psutil.cpu_times(percpu=True)[0]),
+            len(psutil.cpu_times(percpu=False)),
+        )
 
         # Note: in theory CPU times are always supposed to increase over
         # time or remain the same but never go backwards. In practice
@@ -427,15 +465,21 @@ class TestCpuAPIs(PsutilTestCase):
                 if difference >= 0.05:
                     return
 
+    @unittest.skipIf(CI_TESTING and OPENBSD, "unreliable on OPENBSD + CI")
     def test_cpu_times_comparison(self):
         # Make sure the sum of all per cpu times is almost equal to
-        # base "one cpu" times.
+        # base "one cpu" times. On OpenBSD the sum of per-CPUs is
+        # higher for some reason.
         base = psutil.cpu_times()
         per_cpu = psutil.cpu_times(percpu=True)
         summed_values = base._make([sum(num) for num in zip(*per_cpu)])
         for field in base._fields:
-            self.assertAlmostEqual(
-                getattr(base, field), getattr(summed_values, field), delta=1)
+            with self.subTest(field=field, base=base, per_cpu=per_cpu):
+                self.assertAlmostEqual(
+                    getattr(base, field),
+                    getattr(summed_values, field),
+                    delta=1,
+                )
 
     def _test_cpu_percent(self, percent, last_ret, new_ret):
         try:
@@ -444,8 +488,10 @@ class TestCpuAPIs(PsutilTestCase):
             self.assertIsNot(percent, -0.0)
             self.assertLessEqual(percent, 100.0 * psutil.cpu_count())
         except AssertionError as err:
-            raise AssertionError("\n%s\nlast=%s\nnew=%s" % (
-                err, pprint.pformat(last_ret), pprint.pformat(new_ret)))
+            raise AssertionError(
+                "\n%s\nlast=%s\nnew=%s"
+                % (err, pprint.pformat(last_ret), pprint.pformat(new_ret))
+            )
 
     def test_cpu_percent(self):
         last = psutil.cpu_percent(interval=0.001)
@@ -492,8 +538,10 @@ class TestCpuAPIs(PsutilTestCase):
     def test_per_cpu_times_percent_negative(self):
         # see: https://github.com/giampaolo/psutil/issues/645
         psutil.cpu_times_percent(percpu=True)
-        zero_times = [x._make([0 for x in range(len(x._fields))])
-                      for x in psutil.cpu_times(percpu=True)]
+        zero_times = [
+            x._make([0 for x in range(len(x._fields))])
+            for x in psutil.cpu_times(percpu=True)
+        ]
         with mock.patch('psutil.cpu_times', return_value=zero_times):
             for cpu in psutil.cpu_times_percent(percpu=True):
                 for percent in cpu:
@@ -504,7 +552,8 @@ class TestCpuAPIs(PsutilTestCase):
         infos = psutil.cpu_stats()
         self.assertEqual(
             infos._fields,
-            ('ctx_switches', 'interrupts', 'soft_interrupts', 'syscalls'))
+            ('ctx_switches', 'interrupts', 'soft_interrupts', 'syscalls'),
+        )
         for name in infos._fields:
             value = getattr(infos, name)
             self.assertGreaterEqual(value, 0)
@@ -513,8 +562,9 @@ class TestCpuAPIs(PsutilTestCase):
                 self.assertGreater(value, 0)
 
     # TODO: remove this once 1892 is fixed
-    @unittest.skipIf(MACOS and platform.machine() == 'arm64',
-                     "skipped due to #1892")
+    @unittest.skipIf(
+        MACOS and platform.machine() == 'arm64', "skipped due to #1892"
+    )
     @unittest.skipIf(not HAS_CPU_FREQ, "not supported")
     def test_cpu_freq(self):
         def check_ls(ls):
@@ -547,7 +597,6 @@ class TestCpuAPIs(PsutilTestCase):
 
 
 class TestDiskAPIs(PsutilTestCase):
-
     @unittest.skipIf(PYPY and not IS_64BIT, "unreliable on PYPY32 + 32BIT")
     def test_disk_usage(self):
         usage = psutil.disk_usage(os.getcwd())
@@ -564,12 +613,14 @@ class TestDiskAPIs(PsutilTestCase):
             shutil_usage = shutil.disk_usage(os.getcwd())
             tolerance = 5 * 1024 * 1024  # 5MB
             self.assertEqual(usage.total, shutil_usage.total)
-            self.assertAlmostEqual(usage.free, shutil_usage.free,
-                                   delta=tolerance)
+            self.assertAlmostEqual(
+                usage.free, shutil_usage.free, delta=tolerance
+            )
             if not MACOS_12PLUS:
                 # see https://github.com/giampaolo/psutil/issues/2147
-                self.assertAlmostEqual(usage.used, shutil_usage.used,
-                                       delta=tolerance)
+                self.assertAlmostEqual(
+                    usage.used, shutil_usage.used, delta=tolerance
+                )
 
         # if path does not exist OSError ENOENT is expected across
         # all platforms
@@ -611,7 +662,7 @@ class TestDiskAPIs(PsutilTestCase):
             else:
                 # we cannot make any assumption about this, see:
                 # http://goo.gl/p9c43
-                disk.device
+                disk.device  # noqa
             # on modern systems mount points can also be files
             assert os.path.exists(disk.mountpoint), disk
             assert disk.fstype, disk
@@ -643,14 +694,20 @@ class TestDiskAPIs(PsutilTestCase):
             return path.lower()
 
         mount = find_mount_point(__file__)
-        mounts = [x.mountpoint.lower() for x in
-                  psutil.disk_partitions(all=True) if x.mountpoint]
+        mounts = [
+            x.mountpoint.lower()
+            for x in psutil.disk_partitions(all=True)
+            if x.mountpoint
+        ]
         self.assertIn(mount, mounts)
 
-    @unittest.skipIf(LINUX and not os.path.exists('/proc/diskstats'),
-                     '/proc/diskstats not available on this linux version')
-    @unittest.skipIf(CI_TESTING and not psutil.disk_io_counters(),
-                     "unreliable on CI")  # no visible disks
+    @unittest.skipIf(
+        LINUX and not os.path.exists('/proc/diskstats'),
+        '/proc/diskstats not available on this linux version',
+    )
+    @unittest.skipIf(
+        CI_TESTING and not psutil.disk_io_counters(), "unreliable on CI"
+    )  # no visible disks
     def test_disk_io_counters(self):
         def check_ntuple(nt):
             self.assertEqual(nt[0], nt.read_count)
@@ -682,15 +739,15 @@ class TestDiskAPIs(PsutilTestCase):
     def test_disk_io_counters_no_disks(self):
         # Emulate a case where no disks are installed, see:
         # https://github.com/giampaolo/psutil/issues/1062
-        with mock.patch('psutil._psplatform.disk_io_counters',
-                        return_value={}) as m:
+        with mock.patch(
+            'psutil._psplatform.disk_io_counters', return_value={}
+        ) as m:
             self.assertIsNone(psutil.disk_io_counters(perdisk=False))
             self.assertEqual(psutil.disk_io_counters(perdisk=True), {})
             assert m.called
 
 
 class TestNetAPIs(PsutilTestCase):
-
     @unittest.skipIf(not HAS_NET_IO_COUNTERS, 'not supported')
     def test_net_io_counters(self):
         def check_ntuple(nt):
@@ -724,8 +781,9 @@ class TestNetAPIs(PsutilTestCase):
     def test_net_io_counters_no_nics(self):
         # Emulate a case where no NICs are installed, see:
         # https://github.com/giampaolo/psutil/issues/1062
-        with mock.patch('psutil._psplatform.net_io_counters',
-                        return_value={}) as m:
+        with mock.patch(
+            'psutil._psplatform.net_io_counters', return_value={}
+        ) as m:
             self.assertIsNone(psutil.net_io_counters(pernic=False))
             self.assertEqual(psutil.net_io_counters(pernic=True), {})
             assert m.called
@@ -751,7 +809,7 @@ class TestNetAPIs(PsutilTestCase):
                 self.assertIsInstance(addr.netmask, (str, type(None)))
                 self.assertIsInstance(addr.broadcast, (str, type(None)))
                 self.assertIn(addr.family, families)
-                if sys.version_info >= (3, 4) and not PYPY:
+                if PY3 and not PYPY:
                     self.assertIsInstance(addr.family, enum.IntEnum)
                 if nic_stats[nic].isup:
                     # Do not test binding to addresses of interfaces
@@ -762,14 +820,23 @@ class TestNetAPIs(PsutilTestCase):
                             s.bind((addr.address, 0))
                     elif addr.family == socket.AF_INET6:
                         info = socket.getaddrinfo(
-                            addr.address, 0, socket.AF_INET6,
-                            socket.SOCK_STREAM, 0, socket.AI_PASSIVE)[0]
+                            addr.address,
+                            0,
+                            socket.AF_INET6,
+                            socket.SOCK_STREAM,
+                            0,
+                            socket.AI_PASSIVE,
+                        )[0]
                         af, socktype, proto, canonname, sa = info
                         s = socket.socket(af, socktype, proto)
                         with contextlib.closing(s):
                             s.bind(sa)
-                for ip in (addr.address, addr.netmask, addr.broadcast,
-                           addr.ptp):
+                for ip in (
+                    addr.address,
+                    addr.netmask,
+                    addr.broadcast,
+                    addr.ptp,
+                ):
                     if ip is not None:
                         # TODO: skip AF_INET6 for now because I get:
                         # AddressValueError: Only hex digits permitted in
@@ -798,8 +865,9 @@ class TestNetAPIs(PsutilTestCase):
             ret = [('em1', psutil.AF_LINK, '06:3d:29', None, None, None)]
         else:
             ret = [('em1', -1, '06-3d-29', None, None, None)]
-        with mock.patch('psutil._psplatform.net_if_addrs',
-                        return_value=ret) as m:
+        with mock.patch(
+            'psutil._psplatform.net_if_addrs', return_value=ret
+        ) as m:
             addr = psutil.net_if_addrs()['em1'][0]
             assert m.called
             if POSIX:
@@ -810,9 +878,11 @@ class TestNetAPIs(PsutilTestCase):
     def test_net_if_stats(self):
         nics = psutil.net_if_stats()
         assert nics, nics
-        all_duplexes = (psutil.NIC_DUPLEX_FULL,
-                        psutil.NIC_DUPLEX_HALF,
-                        psutil.NIC_DUPLEX_UNKNOWN)
+        all_duplexes = (
+            psutil.NIC_DUPLEX_FULL,
+            psutil.NIC_DUPLEX_HALF,
+            psutil.NIC_DUPLEX_UNKNOWN,
+        )
         for name, stats in nics.items():
             self.assertIsInstance(name, str)
             isup, duplex, speed, mtu, flags = stats
@@ -823,19 +893,21 @@ class TestNetAPIs(PsutilTestCase):
             self.assertGreaterEqual(mtu, 0)
             self.assertIsInstance(flags, str)
 
-    @unittest.skipIf(not (LINUX or BSD or MACOS),
-                     "LINUX or BSD or MACOS specific")
+    @unittest.skipIf(
+        not (LINUX or BSD or MACOS), "LINUX or BSD or MACOS specific"
+    )
     def test_net_if_stats_enodev(self):
         # See: https://github.com/giampaolo/psutil/issues/1279
-        with mock.patch('psutil._psutil_posix.net_if_mtu',
-                        side_effect=OSError(errno.ENODEV, "")) as m:
+        with mock.patch(
+            'psutil._psutil_posix.net_if_mtu',
+            side_effect=OSError(errno.ENODEV, ""),
+        ) as m:
             ret = psutil.net_if_stats()
             self.assertEqual(ret, {})
             assert m.called
 
 
 class TestSensorsAPIs(PsutilTestCase):
-
     @unittest.skipIf(not HAS_SENSORS_TEMPERATURES, "not supported")
     def test_sensors_temperatures(self):
         temps = psutil.sensors_temperatures()
@@ -853,10 +925,10 @@ class TestSensorsAPIs(PsutilTestCase):
     @unittest.skipIf(not HAS_SENSORS_TEMPERATURES, "not supported")
     def test_sensors_temperatures_fahreneit(self):
         d = {'coretemp': [('label', 50.0, 60.0, 70.0)]}
-        with mock.patch("psutil._psplatform.sensors_temperatures",
-                        return_value=d) as m:
-            temps = psutil.sensors_temperatures(
-                fahrenheit=True)['coretemp'][0]
+        with mock.patch(
+            "psutil._psplatform.sensors_temperatures", return_value=d
+        ) as m:
+            temps = psutil.sensors_temperatures(fahrenheit=True)['coretemp'][0]
             assert m.called
             self.assertEqual(temps.current, 122.0)
             self.assertEqual(temps.high, 140.0)
@@ -868,8 +940,10 @@ class TestSensorsAPIs(PsutilTestCase):
         ret = psutil.sensors_battery()
         self.assertGreaterEqual(ret.percent, 0)
         self.assertLessEqual(ret.percent, 100)
-        if ret.secsleft not in (psutil.POWER_TIME_UNKNOWN,
-                                psutil.POWER_TIME_UNLIMITED):
+        if ret.secsleft not in (
+            psutil.POWER_TIME_UNKNOWN,
+            psutil.POWER_TIME_UNLIMITED,
+        ):
             self.assertGreaterEqual(ret.secsleft, 0)
         else:
             if ret.secsleft == psutil.POWER_TIME_UNLIMITED:
@@ -889,4 +963,5 @@ class TestSensorsAPIs(PsutilTestCase):
 
 if __name__ == '__main__':
     from psutil.tests.runner import run_from_name
+
     run_from_name(__file__)

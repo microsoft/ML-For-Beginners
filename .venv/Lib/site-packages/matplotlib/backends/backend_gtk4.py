@@ -288,9 +288,7 @@ class FigureCanvasGTK4(_FigureCanvasGTK, Gtk.DrawingArea):
 
 
 class NavigationToolbar2GTK4(_NavigationToolbar2GTK, Gtk.Box):
-    @_api.delete_parameter("3.6", "window")
-    def __init__(self, canvas, window=None):
-        self._win = window
+    def __init__(self, canvas):
         Gtk.Box.__init__(self)
 
         self.add_css_class('toolbar')
@@ -331,8 +329,6 @@ class NavigationToolbar2GTK4(_NavigationToolbar2GTK, Gtk.Box):
         self.append(self.message)
 
         _NavigationToolbar2GTK.__init__(self, canvas)
-
-    win = _api.deprecated("3.6")(property(lambda self: self._win))
 
     def save_figure(self, *args):
         dialog = Gtk.FileChooserNative(

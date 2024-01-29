@@ -1,4 +1,4 @@
-# version 2023c
+# version 2023d
 # This zic input file is in the public domain.
 R d 1916 o - Jun 14 23s 1 S
 R d 1916 1919 - O Su>=1 23s 0 -
@@ -394,7 +394,12 @@ Z Antarctica/Casey 0 - -00 1969
 8 - +08 2019 O 4 3
 11 - +11 2020 Mar 8 3
 8 - +08 2020 O 4 0:1
-11 - +11
+11 - +11 2021 Mar 14
+8 - +08 2021 O 3 0:1
+11 - +11 2022 Mar 13
+8 - +08 2022 O 2 0:1
+11 - +11 2023 Mar 9 3
+8 - +08
 Z Antarctica/Davis 0 - -00 1957 Ja 13
 7 - +07 1964 N
 0 - -00 1969 F
@@ -410,6 +415,11 @@ R Tr 2005 ma - Mar lastSu 1u 2 +02
 R Tr 2004 ma - O lastSu 1u 0 +00
 Z Antarctica/Troll 0 - -00 2005 F 12
 0 Tr %s
+Z Antarctica/Vostok 0 - -00 1957 D 16
+7 - +07 1994 F
+0 - -00 1994 N
+7 - +07 2023 D 18 2
+5 - +05
 Z Antarctica/Rothera 0 - -00 1976 D
 -3 - -03
 Z Asia/Kabul 4:36:48 - LMT 1890
@@ -1050,13 +1060,13 @@ R P 2070 o - O 4 2 0 -
 R P 2071 o - S 19 2 0 -
 R P 2072 o - S 10 2 0 -
 R P 2072 o - O 15 2 1 S
+R P 2072 ma - O Sa<=30 2 0 -
 R P 2073 o - S 2 2 0 -
 R P 2073 o - O 7 2 1 S
 R P 2074 o - Au 18 2 0 -
 R P 2074 o - S 29 2 1 S
 R P 2075 o - Au 10 2 0 -
 R P 2075 o - S 14 2 1 S
-R P 2075 ma - O Sa<=30 2 0 -
 R P 2076 o - Jul 25 2 0 -
 R P 2076 o - S 5 2 1 S
 R P 2077 o - Jul 17 2 0 -
@@ -1831,10 +1841,12 @@ Z America/Danmarkshavn -1:14:40 - LMT 1916 Jul 28
 Z America/Scoresbysund -1:27:52 - LMT 1916 Jul 28
 -2 - -02 1980 Ap 6 2
 -2 c -02/-01 1981 Mar 29
--1 E -01/+00
+-1 E -01/+00 2024 Mar 31
+-2 E -02/-01
 Z America/Nuuk -3:26:56 - LMT 1916 Jul 28
 -3 - -03 1980 Ap 6 2
--3 E -03/-02 2023 O 29 1u
+-3 E -03/-02 2023 Mar 26 1u
+-2 - -02 2023 O 29 1u
 -2 E -02/-01
 Z America/Thule -4:35:8 - LMT 1916 Jul 28
 -4 Th A%sT
@@ -4185,7 +4197,6 @@ L America/Puerto_Rico America/Tortola
 L Pacific/Port_Moresby Antarctica/DumontDUrville
 L Pacific/Auckland Antarctica/McMurdo
 L Asia/Riyadh Antarctica/Syowa
-L Asia/Urumqi Antarctica/Vostok
 L Europe/Berlin Arctic/Longyearbyen
 L Asia/Riyadh Asia/Aden
 L Asia/Qatar Asia/Bahrain

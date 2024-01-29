@@ -174,7 +174,7 @@ class Epoch:
 
     def __str__(self):
         """Print the Epoch."""
-        return "%22.15e %s" % (self.julianDate(self._frame), self._frame)
+        return f"{self.julianDate(self._frame):22.15e} {self._frame}"
 
     def __repr__(self):
         """Print the Epoch."""

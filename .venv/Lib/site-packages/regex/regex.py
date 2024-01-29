@@ -241,7 +241,7 @@ __all__ = ["cache_all", "compile", "DEFAULT_VERSION", "escape", "findall",
   "VERSION1", "X", "VERBOSE", "W", "WORD", "error", "Regex", "__version__",
   "__doc__", "RegexFlag"]
 
-__version__ = "2.5.135"
+__version__ = "2.5.140"
 
 # --------------------------------------------------------------------
 # Public interface.
@@ -392,8 +392,6 @@ def escape(pattern, special_only=True, literal_spaces=False):
             elif c in _METACHARS or c.isspace():
                 s.append("\\")
                 s.append(c)
-            elif c == "\x00":
-                s.append("\\000")
             else:
                 s.append(c)
     else:
@@ -402,8 +400,6 @@ def escape(pattern, special_only=True, literal_spaces=False):
                 s.append(c)
             elif c in _ALNUM:
                 s.append(c)
-            elif c == "\x00":
-                s.append("\\000")
             else:
                 s.append("\\")
                 s.append(c)

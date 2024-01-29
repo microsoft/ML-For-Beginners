@@ -14,11 +14,11 @@ class TestEquals:
         df2 = DataFrame({"a": ["s", "d"], "b": [1, 2]})
         assert df1.equals(df2) is False
 
-    def test_equals_different_blocks(self, using_array_manager):
+    def test_equals_different_blocks(self, using_array_manager, using_infer_string):
         # GH#9330
         df0 = DataFrame({"A": ["x", "y"], "B": [1, 2], "C": ["w", "z"]})
         df1 = df0.reset_index()[["A", "B", "C"]]
-        if not using_array_manager:
+        if not using_array_manager and not using_infer_string:
             # this assert verifies that the above operations have
             # induced a block rearrangement
             assert df0._mgr.blocks[0].dtype != df1._mgr.blocks[0].dtype
@@ -35,7 +35,7 @@ class TestEquals:
             np.random.default_rng(2).random(10), index=index, columns=["floats"]
         )
         df1["text"] = "the sky is so blue. we could use more chocolate.".split()
-        df1["start"] = date_range("2000-1-1", periods=10, freq="T")
+        df1["start"] = date_range("2000-1-1", periods=10, freq="min")
         df1["end"] = date_range("2000-1-1", periods=10, freq="D")
         df1["diff"] = df1["end"] - df1["start"]
         # Explicitly cast to object, to avoid implicit cast when setting np.nan
@@ -66,7 +66,7 @@ class TestEquals:
         assert not df1.equals(different)
 
         # DatetimeIndex
-        index = date_range("2000-1-1", periods=10, freq="T")
+        index = date_range("2000-1-1", periods=10, freq="min")
         df1 = df1.set_index(index)
         df2 = df1.copy()
         assert df1.equals(df2)

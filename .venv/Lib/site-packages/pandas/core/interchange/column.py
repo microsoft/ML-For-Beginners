@@ -116,7 +116,7 @@ class PandasColumn(Column):
                 Endianness.NATIVE,
             )
         elif is_string_dtype(dtype):
-            if infer_dtype(self._col) == "string":
+            if infer_dtype(self._col) in ("string", "empty"):
                 return (
                     DtypeKind.STRING,
                     8,
@@ -301,12 +301,9 @@ class PandasColumn(Column):
             buffer = PandasBuffer(np.frombuffer(b, dtype="uint8"))
 
             # Define the dtype for the returned buffer
-            dtype = (
-                DtypeKind.STRING,
-                8,
-                ArrowCTypes.STRING,
-                Endianness.NATIVE,
-            )  # note: currently only support native endianness
+            # TODO: this will need correcting
+            # https://github.com/pandas-dev/pandas/issues/54781
+            dtype = self.dtype
         else:
             raise NotImplementedError(f"Data type {self._col.dtype} not handled yet")
 

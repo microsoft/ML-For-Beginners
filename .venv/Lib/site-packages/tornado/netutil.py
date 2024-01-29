@@ -594,7 +594,7 @@ def ssl_options_to_context(
     `~ssl.SSLContext` object.
 
     The ``ssl_options`` dictionary contains keywords to be passed to
-    `ssl.wrap_socket`.  In Python 2.7.9+, `ssl.SSLContext` objects can
+    ``ssl.SSLContext.wrap_socket``.  In Python 2.7.9+, `ssl.SSLContext` objects can
     be used instead.  This function converts the dict form to its
     `~ssl.SSLContext` equivalent, and may be used when a component which
     accepts both forms needs to upgrade to the `~ssl.SSLContext` version
@@ -652,9 +652,7 @@ def ssl_wrap_socket(
 
     ``ssl_options`` may be either an `ssl.SSLContext` object or a
     dictionary (as accepted by `ssl_options_to_context`).  Additional
-    keyword arguments are passed to ``wrap_socket`` (either the
-    `~ssl.SSLContext` method or the `ssl` module function as
-    appropriate).
+    keyword arguments are passed to `ssl.SSLContext.wrap_socket`.
 
     .. versionchanged:: 6.2
 
@@ -664,14 +662,10 @@ def ssl_wrap_socket(
     context = ssl_options_to_context(ssl_options, server_side=server_side)
     if server_side is None:
         server_side = False
-    if ssl.HAS_SNI:
-        # In python 3.4, wrap_socket only accepts the server_hostname
-        # argument if HAS_SNI is true.
-        # TODO: add a unittest (python added server-side SNI support in 3.4)
-        # In the meantime it can be manually tested with
-        # python3 -m tornado.httpclient https://sni.velox.ch
-        return context.wrap_socket(
-            socket, server_hostname=server_hostname, server_side=server_side, **kwargs
-        )
-    else:
-        return context.wrap_socket(socket, server_side=server_side, **kwargs)
+    assert ssl.HAS_SNI
+    # TODO: add a unittest for hostname validation (python added server-side SNI support in 3.4)
+    # In the meantime it can be manually tested with
+    # python3 -m tornado.httpclient https://sni.velox.ch
+    return context.wrap_socket(
+        socket, server_hostname=server_hostname, server_side=server_side, **kwargs
+    )

@@ -48,3 +48,25 @@ def test_read_newlines_between_xml_elements_table():
     result = pd.read_excel("test_newlines.ods")
 
     tm.assert_frame_equal(result, expected)
+
+
+def test_read_unempty_cells():
+    expected = pd.DataFrame(
+        [1, np.nan, 3, np.nan, 5],
+        columns=["Column 1"],
+    )
+
+    result = pd.read_excel("test_unempty_cells.ods")
+
+    tm.assert_frame_equal(result, expected)
+
+
+def test_read_cell_annotation():
+    expected = pd.DataFrame(
+        ["test", np.nan, "test 3"],
+        columns=["Column 1"],
+    )
+
+    result = pd.read_excel("test_cell_annotation.ods")
+
+    tm.assert_frame_equal(result, expected)

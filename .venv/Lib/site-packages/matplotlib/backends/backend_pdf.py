@@ -93,11 +93,6 @@ _log = logging.getLogger(__name__)
 # * draw_quad_mesh
 
 
-@_api.deprecated("3.6", alternative="a vendored copy of _fill")
-def fill(strings, linelen=75):
-    return _fill(strings, linelen=linelen)
-
-
 def _fill(strings, linelen=75):
     """
     Make one string from sequence of strings, with whitespace in between.
@@ -371,8 +366,8 @@ def pdfRepr(obj):
         return _fill([pdfRepr(val) for val in obj.bounds])
 
     else:
-        raise TypeError("Don't know a PDF representation for {} objects"
-                        .format(type(obj)))
+        raise TypeError(f"Don't know a PDF representation for {type(obj)} "
+                        "objects")
 
 
 def _font_supports_glyph(fonttype, glyph):
@@ -443,27 +438,8 @@ class Name:
     def __hash__(self):
         return hash(self.name)
 
-    @staticmethod
-    @_api.deprecated("3.6")
-    def hexify(match):
-        return '#%02x' % ord(match.group())
-
     def pdfRepr(self):
         return b'/' + self.name
-
-
-@_api.deprecated("3.6")
-class Operator:
-    __slots__ = ('op',)
-
-    def __init__(self, op):
-        self.op = op
-
-    def __repr__(self):
-        return '<Operator %s>' % self.op
-
-    def pdfRepr(self):
-        return self.op
 
 
 class Verbatim:
@@ -515,8 +491,6 @@ class Op(Enum):
     setlinewidth = b'w'
     clip = b'W'
     shading = b'sh'
-
-    op = _api.deprecated('3.6')(property(lambda self: self.value))
 
     def pdfRepr(self):
         return self.value
@@ -715,7 +689,7 @@ class PdfFile:
         if not opened:
             try:
                 self.tell_base = filename.tell()
-            except IOError:
+            except OSError:
                 fh = BytesIO()
                 self.original_file_like = filename
             else:
@@ -960,7 +934,7 @@ class PdfFile:
         if dvi_info is not None:
             return dvi_info.pdfname
 
-        tex_font_map = dviread.PsfontsMap(dviread._find_tex_file('pdftex.map'))
+        tex_font_map = dviread.PsfontsMap(dviread.find_tex_file('pdftex.map'))
         psfont = tex_font_map[dvifont.texname]
         if psfont.filename is None:
             raise ValueError(
@@ -2285,7 +2259,7 @@ class RendererPdf(_backend_pdf_ps.RendererPDFPSBase):
         # font. A text entry is ['text', x, y, glyphs, x+w] where x
         # and y are the starting coordinates, w is the width, and
         # glyphs is a list; in this phase it will always contain just
-        # one one-character string, but later it may have longer
+        # one single-character string, but later it may have longer
         # strings interspersed with kern amounts.
         oldfont, seq = None, []
         for x1, y1, dvifont, glyph, width in page.text:
@@ -2695,18 +2669,19 @@ class PdfPages:
     In reality `PdfPages` is a thin wrapper around `PdfFile`, in order to avoid
     confusion when using `~.pyplot.savefig` and forgetting the format argument.
     """
-    __slots__ = ('_file', 'keep_empty')
 
-    def __init__(self, filename, keep_empty=True, metadata=None):
+    _UNSET = object()
+
+    def __init__(self, filename, keep_empty=_UNSET, metadata=None):
         """
         Create a new PdfPages object.
 
         Parameters
         ----------
         filename : str or path-like or file-like
-            Plots using `PdfPages.savefig` will be written to a file at this
-            location. The file is opened at once and any older file with the
-            same name is overwritten.
+            Plots using `PdfPages.savefig` will be written to a file at this location.
+            The file is opened when a figure is saved for the first time (overwriting
+            any older file with the same name).
 
         keep_empty : bool, optional
             If set to False, then empty pdf files will be deleted automatically
@@ -2722,8 +2697,16 @@ class PdfPages:
             'Trapped'. Values have been predefined for 'Creator', 'Producer'
             and 'CreationDate'. They can be removed by setting them to `None`.
         """
-        self._file = PdfFile(filename, metadata=metadata)
-        self.keep_empty = keep_empty
+        self._filename = filename
+        self._metadata = metadata
+        self._file = None
+        if keep_empty and keep_empty is not self._UNSET:
+            _api.warn_deprecated("3.8", message=(
+                "Keeping empty pdf files is deprecated since %(since)s and support "
+                "will be removed %(removal)s."))
+        self._keep_empty = keep_empty
+
+    keep_empty = _api.deprecate_privatize_attribute("3.8")
 
     def __enter__(self):
         return self
@@ -2731,17 +2714,25 @@ class PdfPages:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 
+    def _ensure_file(self):
+        if self._file is None:
+            self._file = PdfFile(self._filename, metadata=self._metadata)  # init.
+        return self._file
+
     def close(self):
         """
         Finalize this object, making the underlying file a complete
         PDF file.
         """
-        self._file.finalize()
-        self._file.close()
-        if (self.get_pagecount() == 0 and not self.keep_empty and
-                not self._file.passed_in_file_object):
-            os.remove(self._file.fh.name)
-        self._file = None
+        if self._file is not None:
+            self._file.finalize()
+            self._file.close()
+            self._file = None
+        elif self._keep_empty:  # True *or* UNSET.
+            _api.warn_deprecated("3.8", message=(
+                "Keeping empty pdf files is deprecated since %(since)s and support "
+                "will be removed %(removal)s."))
+            PdfFile(self._filename, metadata=self._metadata)  # touch the file.
 
     def infodict(self):
         """
@@ -2749,7 +2740,7 @@ class PdfPages:
         (see PDF reference section 10.2.1 'Document Information
         Dictionary').
         """
-        return self._file.infoDict
+        return self._ensure_file().infoDict
 
     def savefig(self, figure=None, **kwargs):
         """
@@ -2768,19 +2759,15 @@ class PdfPages:
             else:
                 manager = Gcf.get_fig_manager(figure)
             if manager is None:
-                raise ValueError("No figure {}".format(figure))
+                raise ValueError(f"No figure {figure}")
             figure = manager.canvas.figure
         # Force use of pdf backend, as PdfPages is tightly coupled with it.
-        try:
-            orig_canvas = figure.canvas
-            figure.canvas = FigureCanvasPdf(figure)
+        with cbook._setattr_cm(figure, canvas=FigureCanvasPdf(figure)):
             figure.savefig(self, format="pdf", **kwargs)
-        finally:
-            figure.canvas = orig_canvas
 
     def get_pagecount(self):
         """Return the current number of pages in the multipage pdf file."""
-        return len(self._file.pageList)
+        return len(self._ensure_file().pageList)
 
     def attach_note(self, text, positionRect=[-100, -100, 0, 0]):
         """
@@ -2789,7 +2776,7 @@ class PdfPages:
         page. It is outside the page per default to make sure it is
         invisible on printouts.
         """
-        self._file.newTextnote(text, positionRect)
+        self._ensure_file().newTextnote(text, positionRect)
 
 
 class FigureCanvasPdf(FigureCanvasBase):
@@ -2808,7 +2795,7 @@ class FigureCanvasPdf(FigureCanvasBase):
         self.figure.dpi = 72  # there are 72 pdf points to an inch
         width, height = self.figure.get_size_inches()
         if isinstance(filename, PdfPages):
-            file = filename._file
+            file = filename._ensure_file()
         else:
             file = PdfFile(filename, metadata=metadata)
         try:

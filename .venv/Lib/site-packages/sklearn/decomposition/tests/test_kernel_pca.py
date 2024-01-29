@@ -2,9 +2,9 @@ import warnings
 
 import numpy as np
 import pytest
-import scipy.sparse as sp
 
-from sklearn.datasets import make_blobs, make_circles
+import sklearn
+from sklearn.datasets import load_iris, make_blobs, make_circles
 from sklearn.decomposition import PCA, KernelPCA
 from sklearn.exceptions import NotFittedError
 from sklearn.linear_model import Perceptron
@@ -17,6 +17,7 @@ from sklearn.utils._testing import (
     assert_array_almost_equal,
     assert_array_equal,
 )
+from sklearn.utils.fixes import CSR_CONTAINERS
 from sklearn.utils.validation import _check_psd_eigenvalues
 
 
@@ -116,15 +117,16 @@ def test_kernel_pca_deterministic_output():
         assert_allclose(transformed_X, np.tile(transformed_X[0, :], 20).reshape(20, 2))
 
 
-def test_kernel_pca_sparse():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_kernel_pca_sparse(csr_container):
     """Test that kPCA works on a sparse data input.
 
     Same test as ``test_kernel_pca except inverse_transform`` since it's not
     implemented for sparse matrices.
     """
     rng = np.random.RandomState(0)
-    X_fit = sp.csr_matrix(rng.random_sample((5, 4)))
-    X_pred = sp.csr_matrix(rng.random_sample((2, 4)))
+    X_fit = csr_container(rng.random_sample((5, 4)))
+    X_pred = csr_container(rng.random_sample((2, 4)))
 
     for eigen_solver in ("auto", "arpack", "randomized"):
         for kernel in ("linear", "rbf", "poly"):
@@ -550,3 +552,15 @@ def test_kernel_pca_inverse_correct_gamma():
     X2_recon = kpca2.inverse_transform(kpca1.transform(X))
 
     assert_allclose(X1_recon, X2_recon)
+
+
+def test_kernel_pca_pandas_output():
+    """Check that KernelPCA works with pandas output when the solver is arpack.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/issues/27579
+    """
+    pytest.importorskip("pandas")
+    X, _ = load_iris(as_frame=True, return_X_y=True)
+    with sklearn.config_context(transform_output="pandas"):
+        KernelPCA(n_components=2, eigen_solver="arpack").fit_transform(X)

@@ -12,6 +12,9 @@ def test_spine_class():
         def __init__(self):
             self.val = None
 
+        def set(self, **kwargs):
+            vars(self).update(kwargs)
+
         def set_val(self, val):
             self.val = val
 
@@ -34,6 +37,9 @@ def test_spine_class():
 
     spines[:].set_val('y')
     assert all(spine.val == 'y' for spine in spines.values())
+
+    spines[:].set(foo='bar')
+    assert all(spine.foo == 'bar' for spine in spines.values())
 
     with pytest.raises(AttributeError, match='foo'):
         spines.foo

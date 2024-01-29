@@ -62,7 +62,8 @@ mxUINT64_CLASS = 15
 mxFUNCTION_CLASS = 16
 # Not doing anything with these at the moment.
 mxOPAQUE_CLASS = 17  # This appears to be a function workspace
-# Thread 'saving/loading symbol table of annymous functions', octave-maintainers, April-May 2007
+# Thread 'saving/loading symbol table of annymous functions',
+# octave-maintainers, April-May 2007
 # https://lists.gnu.org/archive/html/octave-maintainers/2007-04/msg00031.html
 # https://lists.gnu.org/archive/html/octave-maintainers/2007-05/msg00032.html
 # (Was/Deprecated: https://www-old.cae.wisc.edu/pipermail/octave-maintainers/2007-May/002824.html)

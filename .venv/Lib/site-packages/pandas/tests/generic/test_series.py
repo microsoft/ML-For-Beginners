@@ -111,13 +111,13 @@ class TestSeries:
             index=date_range("20130101", periods=1000, freq="s"),
             name="foo",
         )
-        result = ts.resample("1T").mean()
+        result = ts.resample("1min").mean()
         tm.assert_metadata_equivalent(ts, result)
 
-        result = ts.resample("1T").min()
+        result = ts.resample("1min").min()
         tm.assert_metadata_equivalent(ts, result)
 
-        result = ts.resample("1T").apply(lambda x: x.sum())
+        result = ts.resample("1min").apply(lambda x: x.sum())
         tm.assert_metadata_equivalent(ts, result)
 
     def test_metadata_propagation_indiv(self, monkeypatch):

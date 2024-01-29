@@ -118,7 +118,7 @@ def test_cython_agg_nothing_to_agg_with_dates():
         {
             "a": np.random.default_rng(2).integers(0, 5, 50),
             "b": ["foo", "bar"] * 25,
-            "dates": pd.date_range("now", periods=50, freq="T"),
+            "dates": pd.date_range("now", periods=50, freq="min"),
         }
     )
     msg = "Cannot use numeric_only=True with SeriesGroupBy.mean and non-numeric dtypes"
@@ -229,7 +229,7 @@ def test_cython_agg_empty_buckets_nanops(observed):
     # GH-18869 can't call nanops on empty groups, so hardcode expected
     # for these
     df = DataFrame([11, 12, 13], columns=["a"])
-    grps = np.arange(0, 25, 5, dtype=np.int_)
+    grps = np.arange(0, 25, 5, dtype=int)
     # add / sum
     result = df.groupby(pd.cut(df["a"], grps), observed=observed)._cython_agg_general(
         "sum", alt=None, numeric_only=True

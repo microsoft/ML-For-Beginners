@@ -8,6 +8,7 @@ from pandas import (
     MultiIndex,
     Series,
     concat,
+    date_range,
     timedelta_range,
 )
 import pandas._testing as tm
@@ -134,7 +135,7 @@ def test_agg_mapping_func_deprecated():
 
 def test_series_apply_map_box_timestamps(by_row):
     # GH#2689, GH#2627
-    ser = Series(pd.date_range("1/1/2000", periods=10))
+    ser = Series(date_range("1/1/2000", periods=10))
 
     def func(x):
         return (x.hour, x.day, x.month)
@@ -150,51 +151,55 @@ def test_series_apply_map_box_timestamps(by_row):
     tm.assert_series_equal(result, expected)
 
 
-def test_apply_box():
+def test_apply_box_dt64():
     # ufunc will not be boxed. Same test cases as the test_map_box
     vals = [pd.Timestamp("2011-01-01"), pd.Timestamp("2011-01-02")]
-    s = Series(vals)
-    assert s.dtype == "datetime64[ns]"
+    ser = Series(vals, dtype="M8[ns]")
+    assert ser.dtype == "datetime64[ns]"
     # boxed value must be Timestamp instance
-    res = s.apply(lambda x: f"{type(x).__name__}_{x.day}_{x.tz}", by_row="compat")
+    res = ser.apply(lambda x: f"{type(x).__name__}_{x.day}_{x.tz}", by_row="compat")
     exp = Series(["Timestamp_1_None", "Timestamp_2_None"])
     tm.assert_series_equal(res, exp)
 
+
+def test_apply_box_dt64tz():
     vals = [
         pd.Timestamp("2011-01-01", tz="US/Eastern"),
         pd.Timestamp("2011-01-02", tz="US/Eastern"),
     ]
-    s = Series(vals)
-    assert s.dtype == "datetime64[ns, US/Eastern]"
-    res = s.apply(lambda x: f"{type(x).__name__}_{x.day}_{x.tz}", by_row="compat")
+    ser = Series(vals, dtype="M8[ns, US/Eastern]")
+    assert ser.dtype == "datetime64[ns, US/Eastern]"
+    res = ser.apply(lambda x: f"{type(x).__name__}_{x.day}_{x.tz}", by_row="compat")
     exp = Series(["Timestamp_1_US/Eastern", "Timestamp_2_US/Eastern"])
     tm.assert_series_equal(res, exp)
 
+
+def test_apply_box_td64():
     # timedelta
     vals = [pd.Timedelta("1 days"), pd.Timedelta("2 days")]
-    s = Series(vals)
-    assert s.dtype == "timedelta64[ns]"
-    res = s.apply(lambda x: f"{type(x).__name__}_{x.days}", by_row="compat")
+    ser = Series(vals)
+    assert ser.dtype == "timedelta64[ns]"
+    res = ser.apply(lambda x: f"{type(x).__name__}_{x.days}", by_row="compat")
     exp = Series(["Timedelta_1", "Timedelta_2"])
     tm.assert_series_equal(res, exp)
 
+
+def test_apply_box_period():
     # period
     vals = [pd.Period("2011-01-01", freq="M"), pd.Period("2011-01-02", freq="M")]
-    s = Series(vals)
-    assert s.dtype == "Period[M]"
-    res = s.apply(lambda x: f"{type(x).__name__}_{x.freqstr}", by_row="compat")
+    ser = Series(vals)
+    assert ser.dtype == "Period[M]"
+    res = ser.apply(lambda x: f"{type(x).__name__}_{x.freqstr}", by_row="compat")
     exp = Series(["Period_M", "Period_M"])
     tm.assert_series_equal(res, exp)
 
 
 def test_apply_datetimetz(by_row):
-    values = pd.date_range("2011-01-01", "2011-01-02", freq="H").tz_localize(
-        "Asia/Tokyo"
-    )
+    values = date_range("2011-01-01", "2011-01-02", freq="h").tz_localize("Asia/Tokyo")
     s = Series(values, name="XX")
 
     result = s.apply(lambda x: x + pd.offsets.Day(), by_row=by_row)
-    exp_values = pd.date_range("2011-01-02", "2011-01-03", freq="H").tz_localize(
+    exp_values = date_range("2011-01-02", "2011-01-03", freq="h").tz_localize(
         "Asia/Tokyo"
     )
     exp = Series(exp_values, name="XX")
@@ -213,10 +218,10 @@ def test_apply_datetimetz(by_row):
         exp = Series(["Asia/Tokyo"] * 25, name="XX")
         tm.assert_series_equal(result, exp)
     else:
-        result == "Asia/Tokyo"
+        assert result == "Asia/Tokyo"
 
 
-def test_apply_categorical(by_row):
+def test_apply_categorical(by_row, using_infer_string):
     values = pd.Categorical(list("ABBABCD"), categories=list("DCBA"), ordered=True)
     ser = Series(values, name="XX", index=list("abcdefg"))
 
@@ -239,7 +244,7 @@ def test_apply_categorical(by_row):
     result = ser.apply(lambda x: "A")
     exp = Series(["A"] * 7, name="XX", index=list("abcdefg"))
     tm.assert_series_equal(result, exp)
-    assert result.dtype == object
+    assert result.dtype == object if not using_infer_string else "string[pyarrow_numpy]"
 
 
 @pytest.mark.parametrize("series", [["1-1", "1-1", np.nan], ["1-1", "1-2", np.nan]])
@@ -261,7 +266,7 @@ def test_apply_categorical_with_nan_values(series, by_row):
 
 def test_apply_empty_integer_series_with_datetime_index(by_row):
     # GH 21245
-    s = Series([], index=pd.date_range(start="2018-01-01", periods=0), dtype=int)
+    s = Series([], index=date_range(start="2018-01-01", periods=0), dtype=int)
     result = s.apply(lambda x: x, by_row=by_row)
     tm.assert_series_equal(result, s)
 
@@ -321,7 +326,7 @@ def test_transform(string_series, by_row):
 def test_transform_partial_failure(op, request):
     # GH 35964
     if op in ("ffill", "bfill", "pad", "backfill", "shift"):
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(reason=f"{op} is successful on any dtype")
         )
 
@@ -420,13 +425,18 @@ def test_agg_evaluate_lambdas(string_series):
 def test_with_nested_series(datetime_series, op_name):
     # GH 2316
     # .agg with a reducer and a transform, what to do
-    msg = "Returning a DataFrame from Series.apply when the supplied function"
-    with tm.assert_produces_warning(FutureWarning, match=msg):
+    msg = "cannot aggregate"
+    warning = FutureWarning if op_name == "agg" else None
+    with tm.assert_produces_warning(warning, match=msg):
         # GH52123
         result = getattr(datetime_series, op_name)(
             lambda x: Series([x, x**2], index=["x", "x^2"])
         )
     expected = DataFrame({"x": datetime_series, "x^2": datetime_series**2})
+    tm.assert_frame_equal(result, expected)
+
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = datetime_series.agg(lambda x: Series([x, x**2], index=["x", "x^2"]))
     tm.assert_frame_equal(result, expected)
 
 
@@ -499,8 +509,12 @@ def test_series_apply_no_suffix_index(by_row):
             DataFrame(np.repeat([[1, 2]], 2, axis=0), dtype="int64"),
         ),
         (
-            tm.makeTimeSeries(nper=30),
-            DataFrame(np.repeat([[1, 2]], 30, axis=0), dtype="int64"),
+            Series(
+                np.arange(10, dtype=np.float64),
+                index=date_range("2020-01-01", periods=10),
+                name="ts",
+            ),
+            DataFrame(np.repeat([[1, 2]], 10, axis=0), dtype="int64"),
         ),
     ],
 )
@@ -512,20 +526,20 @@ def test_apply_series_on_date_time_index_aware_series(dti, exp, aware):
         index = dti.tz_localize("UTC").index
     else:
         index = dti.index
-    msg = "Returning a DataFrame from Series.apply when the supplied function"
-    with tm.assert_produces_warning(FutureWarning, match=msg):
-        # GH52123
-        result = Series(index).apply(lambda x: Series([1, 2]))
+    result = Series(index).apply(lambda x: Series([1, 2]))
     tm.assert_frame_equal(result, exp)
 
 
 @pytest.mark.parametrize(
-    "by_row, expected", [("compat", Series(np.ones(30), dtype="int64")), (False, 1)]
+    "by_row, expected", [("compat", Series(np.ones(10), dtype="int64")), (False, 1)]
 )
 def test_apply_scalar_on_date_time_index_aware_series(by_row, expected):
     # GH 25959
     # Calling apply on a localized time series should not cause an error
-    series = tm.makeTimeSeries(nper=30).tz_localize("UTC")
+    series = Series(
+        np.arange(10, dtype=np.float64),
+        index=date_range("2020-01-01", periods=10, tz="UTC"),
+    )
     result = Series(series.index).apply(lambda x: 1, by_row=by_row)
     tm.assert_equal(result, expected)
 
@@ -662,19 +676,7 @@ def test_apply_dictlike_lambda(ops, by_row, expected):
 def test_apply_retains_column_name(by_row):
     # GH 16380
     df = DataFrame({"x": range(3)}, Index(range(3), name="x"))
-    func = lambda x: Series(range(x + 1), Index(range(x + 1), name="y"))
-
-    if not by_row:
-        # GH53400
-        msg = "'Series' object cannot be interpreted as an integer"
-        with pytest.raises(TypeError, match=msg):
-            df.x.apply(func, by_row=by_row)
-        return
-
-    msg = "Returning a DataFrame from Series.apply when the supplied function"
-    with tm.assert_produces_warning(FutureWarning, match=msg):
-        # GH52123
-        result = df.x.apply(func, by_row=by_row)
+    result = df.x.apply(lambda x: Series(range(x + 1), Index(range(x + 1), name="y")))
     expected = DataFrame(
         [[0.0, np.nan, np.nan], [0.0, 1.0, np.nan], [0.0, 1.0, 2.0]],
         columns=Index(range(3), name="y"),
@@ -689,3 +691,11 @@ def test_apply_type():
     result = s.apply(type)
     expected = Series([int, str, type], index=["a", "b", "c"])
     tm.assert_series_equal(result, expected)
+
+
+def test_series_apply_unpack_nested_data():
+    # GH#55189
+    ser = Series([[1, 2, 3], [4, 5, 6, 7]])
+    result = ser.apply(lambda x: Series(x))
+    expected = DataFrame({0: [1.0, 4.0], 1: [2.0, 5.0], 2: [3.0, 6.0], 3: [np.nan, 7]})
+    tm.assert_frame_equal(result, expected)

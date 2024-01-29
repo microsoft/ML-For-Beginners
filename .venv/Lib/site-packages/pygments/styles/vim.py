@@ -13,11 +13,16 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace, Token
 
 
+__all__ = ['VimStyle']
+
+
 class VimStyle(Style):
     """
     Styles somewhat like vim 7.0
     """
 
+    name = 'vim'
+    
     background_color = "#000000"
     highlight_color = "#222222"
 

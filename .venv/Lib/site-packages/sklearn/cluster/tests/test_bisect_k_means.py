@@ -1,10 +1,10 @@
 import numpy as np
 import pytest
-import scipy.sparse as sp
 
 from sklearn.cluster import BisectingKMeans
 from sklearn.metrics import v_measure_score
 from sklearn.utils._testing import assert_allclose, assert_array_equal
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 
 @pytest.mark.parametrize("bisecting_strategy", ["biggest_inertia", "largest_cluster"])
@@ -33,7 +33,8 @@ def test_three_clusters(bisecting_strategy, init):
     assert_allclose(v_measure_score(expected_labels, bisect_means.labels_), 1.0)
 
 
-def test_sparse():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_sparse(csr_container):
     """Test Bisecting K-Means with sparse data.
 
     Checks if labels and centers are the same between dense and sparse.
@@ -43,7 +44,7 @@ def test_sparse():
 
     X = rng.rand(20, 2)
     X[X < 0.8] = 0
-    X_csr = sp.csr_matrix(X)
+    X_csr = csr_container(X)
 
     bisect_means = BisectingKMeans(n_clusters=3, random_state=0)
 
@@ -84,16 +85,16 @@ def test_one_cluster():
     assert_allclose(bisect_means.cluster_centers_, X.mean(axis=0).reshape(1, -1))
 
 
-@pytest.mark.parametrize("is_sparse", [True, False])
-def test_fit_predict(is_sparse):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS + [None])
+def test_fit_predict(csr_container):
     """Check if labels from fit(X) method are same as from fit(X).predict(X)."""
     rng = np.random.RandomState(0)
 
     X = rng.rand(10, 2)
 
-    if is_sparse:
+    if csr_container is not None:
         X[X < 0.8] = 0
-        X = sp.csr_matrix(X)
+        X = csr_container(X)
 
     bisect_means = BisectingKMeans(n_clusters=3, random_state=0)
     bisect_means.fit(X)
@@ -101,15 +102,15 @@ def test_fit_predict(is_sparse):
     assert_array_equal(bisect_means.labels_, bisect_means.predict(X))
 
 
-@pytest.mark.parametrize("is_sparse", [True, False])
-def test_dtype_preserved(is_sparse, global_dtype):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS + [None])
+def test_dtype_preserved(csr_container, global_dtype):
     """Check that centers dtype is the same as input data dtype."""
     rng = np.random.RandomState(0)
     X = rng.rand(10, 2).astype(global_dtype, copy=False)
 
-    if is_sparse:
+    if csr_container is not None:
         X[X < 0.8] = 0
-        X = sp.csr_matrix(X)
+        X = csr_container(X)
 
     km = BisectingKMeans(n_clusters=3, random_state=0)
     km.fit(X)
@@ -117,18 +118,41 @@ def test_dtype_preserved(is_sparse, global_dtype):
     assert km.cluster_centers_.dtype == global_dtype
 
 
-@pytest.mark.parametrize("is_sparse", [True, False])
-def test_float32_float64_equivalence(is_sparse):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS + [None])
+def test_float32_float64_equivalence(csr_container):
     """Check that the results are the same between float32 and float64."""
     rng = np.random.RandomState(0)
     X = rng.rand(10, 2)
 
-    if is_sparse:
+    if csr_container is not None:
         X[X < 0.8] = 0
-        X = sp.csr_matrix(X)
+        X = csr_container(X)
 
     km64 = BisectingKMeans(n_clusters=3, random_state=0).fit(X)
     km32 = BisectingKMeans(n_clusters=3, random_state=0).fit(X.astype(np.float32))
 
     assert_allclose(km32.cluster_centers_, km64.cluster_centers_)
     assert_array_equal(km32.labels_, km64.labels_)
+
+
+@pytest.mark.parametrize("algorithm", ("lloyd", "elkan"))
+def test_no_crash_on_empty_bisections(algorithm):
+    # Non-regression test for:
+    # https://github.com/scikit-learn/scikit-learn/issues/27081
+    rng = np.random.RandomState(0)
+    X_train = rng.rand(3000, 10)
+    bkm = BisectingKMeans(n_clusters=10, algorithm=algorithm).fit(X_train)
+
+    # predict on scaled data to trigger pathologic case
+    # where the inner mask leads to empty bisections.
+    X_test = 50 * rng.rand(100, 10)
+    labels = bkm.predict(X_test)  # should not crash with idiv by 0
+    assert np.isin(np.unique(labels), np.arange(10)).all()
+
+
+def test_one_feature():
+    # Check that no error is raised when there is only one feature
+    # Non-regression test for:
+    # https://github.com/scikit-learn/scikit-learn/issues/27236
+    X = np.random.normal(size=(128, 1))
+    BisectingKMeans(bisecting_strategy="biggest_inertia", random_state=0).fit(X)

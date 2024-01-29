@@ -14,11 +14,16 @@ from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Token, \
      Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
 
+
+__all__ = ['MonokaiStyle']
+
+
 class MonokaiStyle(Style):
     """
     This style mimics the Monokai color scheme.
     """
-
+    name = 'monokai'
+    
     background_color = "#272822"
     highlight_color = "#49483e"
 

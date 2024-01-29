@@ -114,7 +114,8 @@ def convert_model_to_external_data(
         model (ModelProto): Model to be converted.
         all_tensors_to_one_file (bool): If true, save all tensors to one external file specified by location.
             If false, save each tensor to a file named with the tensor name.
-        location: specify the external file that all tensors to save to.
+        location: specify the external file relative to the model that all tensors to save to.
+            Path is relative to the model path.
             If not specified, will use the model name.
         size_threshold: Threshold for size of data. Only when tensor's data is >= the size_threshold
             it will be converted to external data. To convert every tensor with raw data to external data set size_threshold=0.
@@ -128,6 +129,10 @@ def convert_model_to_external_data(
     if all_tensors_to_one_file:
         file_name = str(uuid.uuid1())
         if location:
+            if os.path.isabs(location):
+                raise ValueError(
+                    "location must be a relative path that is relative to the model path."
+                )
             file_name = location
         for tensor in tensors:
             if (

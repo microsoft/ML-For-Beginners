@@ -8,7 +8,7 @@ import scipy.sparse as sp
 
 from ..base import _fit_context
 from ..utils._openmp_helpers import _openmp_effective_n_threads
-from ..utils._param_validation import StrOptions
+from ..utils._param_validation import Integral, Interval, StrOptions
 from ..utils.extmath import row_norms
 from ..utils.validation import _check_sample_weight, check_is_fitted, check_random_state
 from ._k_means_common import _inertia_dense, _inertia_sparse
@@ -207,6 +207,7 @@ class BisectingKMeans(_BaseKMeans):
     _parameter_constraints: dict = {
         **_BaseKMeans._parameter_constraints,
         "init": [StrOptions({"k-means++", "random"}), callable],
+        "n_init": [Interval(Integral, 1, None, closed="left")],
         "copy_x": ["boolean"],
         "algorithm": [StrOptions({"lloyd", "elkan"})],
         "bisecting_strategy": [StrOptions({"biggest_inertia", "largest_cluster"})],
@@ -257,7 +258,7 @@ class BisectingKMeans(_BaseKMeans):
         X : {ndarray, csr_matrix} of shape (n_samples, n_features)
             The input samples.
 
-        centers : ndarray of shape (n_clusters, n_features)
+        centers : ndarray of shape (n_clusters=2, n_features)
             The cluster centers.
 
         labels : ndarray of shape (n_samples,)
@@ -268,13 +269,14 @@ class BisectingKMeans(_BaseKMeans):
 
         Returns
         -------
-        inertia_per_cluster : ndarray of shape (n_clusters,)
+        inertia_per_cluster : ndarray of shape (n_clusters=2,)
             Sum of squared errors (inertia) for each cluster.
         """
+        n_clusters = centers.shape[0]  # = 2 since centers comes from a bisection
         _inertia = _inertia_sparse if sp.issparse(X) else _inertia_dense
 
-        inertia_per_cluster = np.empty(centers.shape[1])
-        for label in range(centers.shape[0]):
+        inertia_per_cluster = np.empty(n_clusters)
+        for label in range(n_clusters):
             inertia_per_cluster[label] = _inertia(
                 X, sample_weight, centers, labels, self._n_threads, single_label=label
             )

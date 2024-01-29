@@ -444,7 +444,7 @@ class TestNdimageMorphology:
 
     @pytest.mark.parametrize('dtype', types)
     def test_distance_transform_cdt05(self, dtype):
-        # test custom metric type per dicussion on issue #17381
+        # test custom metric type per discussion on issue #17381
         data = numpy.array([[0, 0, 0, 0, 0, 0, 0, 0, 0],
                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
                             [0, 0, 0, 1, 1, 1, 0, 0, 0],

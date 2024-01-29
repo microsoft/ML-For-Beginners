@@ -1,12 +1,12 @@
-from typing import (overload, Any, Union, SupportsFloat,
-                    Literal, Protocol, SupportsIndex)
+from __future__ import annotations
+from typing import (overload, Any, SupportsFloat, Literal, Protocol, SupportsIndex)
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
 
 # Anything that can be parsed by `np.float64.__init__` and is thus
 # compatible with `ndarray.__setitem__` (for a float64 array)
-_FloatValue = Union[None, str, bytes, SupportsFloat, SupportsIndex]
+_FloatValue = None | str | bytes | SupportsFloat | SupportsIndex
 
 class _MetricCallback1(Protocol):
     def __call__(
@@ -20,7 +20,7 @@ class _MetricCallback2(Protocol):
 
 # TODO: Use a single protocol with a parameter specification variable
 # once available (PEP 612)
-_MetricCallback = Union[_MetricCallback1, _MetricCallback2]
+_MetricCallback = _MetricCallback1 | _MetricCallback2
 
 _MetricKind = Literal[
     'braycurtis',

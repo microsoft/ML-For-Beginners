@@ -236,13 +236,16 @@ class BaseReshapingTests:
         result = pd.merge(df1, df2, on="key")
         expected = pd.DataFrame(
             {
-                "key": key.take([0, 0, 0, 0, 1]),
-                "val_x": [1, 1, 3, 3, 2],
-                "val_y": [1, 3, 1, 3, 2],
+                "key": key.take([0, 0, 1, 2, 2]),
+                "val_x": [1, 1, 2, 3, 3],
+                "val_y": [1, 3, 2, 1, 3],
             }
         )
         tm.assert_frame_equal(result, expected)
 
+    @pytest.mark.filterwarnings(
+        "ignore:The previous implementation of stack is deprecated"
+    )
     @pytest.mark.parametrize(
         "columns",
         [
@@ -334,7 +337,7 @@ class BaseReshapingTests:
         assert type(result) == type(data)
 
         if data.dtype._is_immutable:
-            pytest.skip("test_ravel assumes mutability")
+            pytest.skip(f"test_ravel assumes mutability and {data.dtype} is immutable")
 
         # Check that we have a view, not a copy
         result[0] = result[1]
@@ -351,7 +354,9 @@ class BaseReshapingTests:
         assert result.shape == data.shape[::-1]
 
         if data.dtype._is_immutable:
-            pytest.skip("test_transpose assumes mutability")
+            pytest.skip(
+                f"test_transpose assumes mutability and {data.dtype} is immutable"
+            )
 
         # Check that we have a view, not a copy
         result[0] = result[1]

@@ -46,7 +46,7 @@ class TestBetweenTime:
     def test_localized_between_time(self, tzstr, frame_or_series):
         tz = timezones.maybe_get_tz(tzstr)
 
-        rng = date_range("4/16/2012", "5/1/2012", freq="H")
+        rng = date_range("4/16/2012", "5/1/2012", freq="h")
         ts = Series(np.random.default_rng(2).standard_normal(len(rng)), index=rng)
         if frame_or_series is DataFrame:
             ts = ts.to_frame()

@@ -8,8 +8,10 @@ from sklearn.datasets import load_iris
 from sklearn.exceptions import NotFittedError
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
+    ConfusionMatrixDisplay,
     DetCurveDisplay,
     PrecisionRecallDisplay,
+    PredictionErrorDisplay,
     RocCurveDisplay,
 )
 from sklearn.pipeline import make_pipeline
@@ -223,3 +225,45 @@ def test_display_curve_error_pos_label(pyplot, data_binary, Display):
     msg = r"y_true takes value in {10, 11} and pos_label is not specified"
     with pytest.raises(ValueError, match=msg):
         Display.from_predictions(y, y_pred)
+
+
+@pytest.mark.parametrize(
+    "Display",
+    [
+        CalibrationDisplay,
+        DetCurveDisplay,
+        PrecisionRecallDisplay,
+        RocCurveDisplay,
+        PredictionErrorDisplay,
+        ConfusionMatrixDisplay,
+    ],
+)
+@pytest.mark.parametrize(
+    "constructor",
+    ["from_predictions", "from_estimator"],
+)
+def test_classifier_display_curve_named_constructor_return_type(
+    pyplot, data_binary, Display, constructor
+):
+    """Check that named constructors return the correct type when subclassed.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/pull/27675
+    """
+    X, y = data_binary
+
+    # This can be anything - we just need to check the named constructor return
+    # type so the only requirement here is instantiating the class without error
+    y_pred = y
+
+    classifier = LogisticRegression().fit(X, y)
+
+    class SubclassOfDisplay(Display):
+        pass
+
+    if constructor == "from_predictions":
+        curve = SubclassOfDisplay.from_predictions(y, y_pred)
+    else:  # constructor == "from_estimator"
+        curve = SubclassOfDisplay.from_estimator(classifier, X, y)
+
+    assert isinstance(curve, SubclassOfDisplay)

@@ -9,6 +9,7 @@ import signal
 import sys
 import typing as t
 import uuid
+import warnings
 from asyncio.futures import Future
 from concurrent.futures import Future as CFuture
 from contextlib import contextmanager
@@ -19,6 +20,7 @@ from jupyter_core.utils import run_sync
 from traitlets import (
     Any,
     Bool,
+    Dict,
     DottedObjectName,
     Float,
     Instance,
@@ -55,7 +57,7 @@ class _ShutdownStatus(Enum):
     SigkillRequest = "SigkillRequest"
 
 
-F = t.TypeVar('F', bound=t.Callable[..., t.Any])
+F = t.TypeVar("F", bound=t.Callable[..., t.Any])
 
 
 def _get_future() -> t.Union[Future, CFuture]:
@@ -76,7 +78,7 @@ def in_pending_state(method: F) -> F:
 
     @t.no_type_check
     @functools.wraps(method)
-    async def wrapper(self, *args, **kwargs):
+    async def wrapper(self: t.Any, *args: t.Any, **kwargs: t.Any) -> t.Any:
         """Create a future for the decorated method."""
         if self._attempted_start or not self._ready:
             self._ready = _get_future()
@@ -104,8 +106,17 @@ class KernelManager(ConnectionFileMixin):
 
     _ready: t.Optional[t.Union[Future, CFuture]]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -> None:
         """Initialize a kernel manager."""
+        if args:
+            warnings.warn(
+                "Passing positional only arguments to "
+                "`KernelManager.__init__` is deprecated since jupyter_client"
+                " 8.6, and will become an error on future versions. Positional "
+                " arguments have been ignored since jupyter_client 7.0",
+                DeprecationWarning,
+                stacklevel=2,
+            )
         self._owns_kernel = kwargs.pop("owns_kernel", True)
         super().__init__(**kwargs)
         self._shutdown_status = _ShutdownStatus.Unset
@@ -117,7 +128,7 @@ class KernelManager(ConnectionFileMixin):
     # The PyZMQ Context to use for communication with the kernel.
     context: Instance = Instance(zmq.Context)
 
-    @default("context")  # type:ignore[misc]
+    @default("context")
     def _context_default(self) -> zmq.Context:
         self._created_context = True
         return zmq.Context()
@@ -128,11 +139,11 @@ class KernelManager(ConnectionFileMixin):
     )
     client_factory: Type = Type(klass=KernelClient)
 
-    @default("client_factory")  # type:ignore[misc]
+    @default("client_factory")
     def _client_factory_default(self) -> Type:
         return import_item(self.client_class)
 
-    @observe("client_class")  # type:ignore[misc]
+    @observe("client_class")
     def _client_class_changed(self, change: t.Dict[str, DottedObjectName]) -> None:
         self.client_factory = import_item(str(change["new"]))
 
@@ -145,12 +156,12 @@ class KernelManager(ConnectionFileMixin):
 
     kernel_spec_manager: Instance = Instance(kernelspec.KernelSpecManager)
 
-    @default("kernel_spec_manager")  # type:ignore[misc]
+    @default("kernel_spec_manager")
     def _kernel_spec_manager_default(self) -> kernelspec.KernelSpecManager:
         return kernelspec.KernelSpecManager(data_dir=self.data_dir)
 
-    @observe("kernel_spec_manager")  # type:ignore[misc]
-    @observe_compat  # type:ignore[misc]
+    @observe("kernel_spec_manager")
+    @observe_compat
     def _kernel_spec_manager_changed(self, change: t.Dict[str, Instance]) -> None:
         self._kernel_spec = None
 
@@ -170,7 +181,7 @@ class KernelManager(ConnectionFileMixin):
 
     kernel_name: t.Union[str, Unicode] = Unicode(kernelspec.NATIVE_KERNEL_NAME)
 
-    @observe("kernel_name")  # type:ignore[misc]
+    @observe("kernel_name")
     def _kernel_name_changed(self, change: t.Dict[str, str]) -> None:
         self._kernel_spec = None
         if change["new"] == "python":
@@ -190,7 +201,7 @@ class KernelManager(ConnectionFileMixin):
         help="True if the MultiKernelManager should cache ports for this KernelManager instance",
     )
 
-    @default("cache_ports")  # type:ignore[misc]
+    @default("cache_ports")
     def _default_cache_ports(self) -> bool:
         return self.transport == "tcp"
 
@@ -206,7 +217,7 @@ class KernelManager(ConnectionFileMixin):
         return self.kernel_name in {"python", "python2", "python3"}
 
     # Protected traits
-    _launch_args: Any = Any()
+    _launch_args: t.Optional["Dict[str, Any]"] = Dict(allow_none=True)
     _control_socket: Any = Any()
 
     _restarter: Any = Any()
@@ -268,6 +279,27 @@ class KernelManager(ConnectionFileMixin):
     # Kernel management
     # --------------------------------------------------------------------------
 
+    def update_env(self, *, env: t.Dict[str, str]) -> None:
+        """
+        Allow to update the environment of a kernel manager.
+
+        This will take effect only after kernel restart when the new env is
+        passed to the new kernel.
+
+        This is useful as some of the information of the current kernel reflect
+        the state of the session that started it, and those session information
+        (like the attach file path, or name), are mutable.
+
+        .. version-added: 8.5
+        """
+        # Mypy think this is unreachable as it see _launch_args as Dict, not t.Dict
+        if (
+            isinstance(self._launch_args, dict)
+            and "env" in self._launch_args
+            and isinstance(self._launch_args["env"], dict)  # type: ignore [unreachable]
+        ):
+            self._launch_args["env"].update(env)  # type: ignore [unreachable]
+
     def format_kernel_cmd(self, extra_arguments: t.Optional[t.List[str]] = None) -> t.List[str]:
         """Replace templated args (e.g. {connection_file})"""
         extra_arguments = extra_arguments or []
@@ -292,19 +324,20 @@ class KernelManager(ConnectionFileMixin):
         # is not usable by non python kernels because the path is being rerouted when
         # inside of a store app.
         # See this bug here: https://bugs.python.org/issue41196
-        ns = {
+        ns: t.Dict[str, t.Any] = {
             "connection_file": os.path.realpath(self.connection_file),
             "prefix": sys.prefix,
         }
 
-        if self.kernel_spec:
+        if self.kernel_spec:  # type:ignore[truthy-bool]
             ns["resource_dir"] = self.kernel_spec.resource_dir
+        assert isinstance(self._launch_args, dict)
 
         ns.update(self._launch_args)
 
         pat = re.compile(r"\{([A-Za-z0-9_]+)\}")
 
-        def from_ns(match):
+        def from_ns(match: t.Any) -> t.Any:
             """Get the key out of ns if it's there, otherwise no change."""
             return ns.get(match.group(1), match.group())
 
@@ -354,9 +387,10 @@ class KernelManager(ConnectionFileMixin):
              and launching the kernel (e.g. Popen kwargs).
         """
         self.shutting_down = False
-        self.kernel_id = self.kernel_id or kw.pop('kernel_id', str(uuid.uuid4()))
+        self.kernel_id = self.kernel_id or kw.pop("kernel_id", str(uuid.uuid4()))
         # save kwargs for use in restart
-        self._launch_args = kw.copy()
+        # assigning Traitlets Dicts to Dict make mypy unhappy but is ok
+        self._launch_args = kw.copy()  # type:ignore [assignment]
         if self.provisioner is None:  # will not be None on restarts
             self.provisioner = KPF.instance(parent=self.parent).create_provisioner_instance(
                 self.kernel_id,
@@ -364,7 +398,7 @@ class KernelManager(ConnectionFileMixin):
                 parent=self,
             )
         kw = await self.provisioner.pre_launch(**kw)
-        kernel_cmd = kw.pop('cmd')
+        kernel_cmd = kw.pop("cmd")
         return kernel_cmd, kw
 
     pre_start_kernel = run_sync(_async_pre_start_kernel)
@@ -688,51 +722,31 @@ class AsyncKernelManager(KernelManager):
     # The PyZMQ Context to use for communication with the kernel.
     context: Instance = Instance(zmq.asyncio.Context)
 
-    @default("context")  # type:ignore[misc]
+    @default("context")
     def _context_default(self) -> zmq.asyncio.Context:
         self._created_context = True
         return zmq.asyncio.Context()
 
-    def client(self, **kwargs: t.Any) -> AsyncKernelClient:  # type:ignore
+    def client(  # type:ignore[override]
+        self, **kwargs: t.Any
+    ) -> AsyncKernelClient:
         """Get a client for the manager."""
-        return super().client(**kwargs)  # type:ignore
+        return super().client(**kwargs)  # type:ignore[return-value]
 
     _launch_kernel = KernelManager._async_launch_kernel  # type:ignore[assignment]
-    start_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_start_kernel  # type:ignore[assignment]
-    pre_start_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_pre_start_kernel  # type:ignore[assignment]
-    post_start_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_post_start_kernel  # type:ignore[assignment]
-    request_shutdown: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_request_shutdown  # type:ignore[assignment]
-    finish_shutdown: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_finish_shutdown  # type:ignore[assignment]
-    cleanup_resources: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_cleanup_resources  # type:ignore[assignment]
-    shutdown_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_shutdown_kernel  # type:ignore[assignment]
-    restart_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_restart_kernel  # type:ignore[assignment]
+    start_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_start_kernel  # type:ignore[assignment]
+    pre_start_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_pre_start_kernel  # type:ignore[assignment]
+    post_start_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_post_start_kernel  # type:ignore[assignment]
+    request_shutdown: t.Callable[..., t.Awaitable] = KernelManager._async_request_shutdown  # type:ignore[assignment]
+    finish_shutdown: t.Callable[..., t.Awaitable] = KernelManager._async_finish_shutdown  # type:ignore[assignment]
+    cleanup_resources: t.Callable[..., t.Awaitable] = KernelManager._async_cleanup_resources  # type:ignore[assignment]
+    shutdown_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_shutdown_kernel  # type:ignore[assignment]
+    restart_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_restart_kernel  # type:ignore[assignment]
     _send_kernel_sigterm = KernelManager._async_send_kernel_sigterm  # type:ignore[assignment]
     _kill_kernel = KernelManager._async_kill_kernel  # type:ignore[assignment]
-    interrupt_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_interrupt_kernel  # type:ignore[assignment]
-    signal_kernel: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_signal_kernel  # type:ignore[assignment]
-    is_alive: t.Callable[
-        ..., t.Awaitable
-    ] = KernelManager._async_is_alive  # type:ignore[assignment]
+    interrupt_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_interrupt_kernel  # type:ignore[assignment]
+    signal_kernel: t.Callable[..., t.Awaitable] = KernelManager._async_signal_kernel  # type:ignore[assignment]
+    is_alive: t.Callable[..., t.Awaitable] = KernelManager._async_is_alive  # type:ignore[assignment]
 
 
 KernelManagerABC.register(KernelManager)

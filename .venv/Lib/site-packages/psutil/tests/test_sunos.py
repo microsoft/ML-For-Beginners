@@ -17,7 +17,6 @@ from psutil.tests import sh
 
 @unittest.skipIf(not SUNOS, "SUNOS only")
 class SunOSSpecificTestCase(PsutilTestCase):
-
     def test_swap_memory(self):
         out = sh('env PATH=/usr/sbin:/sbin:%s swap -l' % os.environ['PATH'])
         lines = out.strip().split('\n')[1:]
@@ -25,10 +24,9 @@ class SunOSSpecificTestCase(PsutilTestCase):
             raise ValueError('no swap device(s) configured')
         total = free = 0
         for line in lines:
-            line = line.split()
-            t, f = line[-2:]
-            total += int(int(t) * 512)
-            free += int(int(f) * 512)
+            fields = line.split()
+            total = int(fields[3]) * 512
+            free = int(fields[4]) * 512
         used = total - free
 
         psutil_swap = psutil.swap_memory()
@@ -43,4 +41,5 @@ class SunOSSpecificTestCase(PsutilTestCase):
 
 if __name__ == '__main__':
     from psutil.tests.runner import run_from_name
+
     run_from_name(__file__)

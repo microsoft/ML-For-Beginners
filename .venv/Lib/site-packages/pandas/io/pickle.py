@@ -67,8 +67,6 @@ def to_pickle(
 
     {storage_options}
 
-        .. versionadded:: 1.2.0
-
         .. [1] https://docs.python.org/3/library/pickle.html
 
     See Also
@@ -142,8 +140,6 @@ def read_pickle(
         .. versionchanged:: 1.4.0 Zstandard support.
 
     {storage_options}
-
-        .. versionadded:: 1.2.0
 
     Returns
     -------

@@ -1,12 +1,12 @@
+from __future__ import annotations
 import numpy as np
-from typing import (Union, overload, Callable, NamedTuple,
-                    Protocol)
+from typing import (overload, Callable, NamedTuple, Protocol)
 import numpy.typing as npt
 from scipy._lib._util import SeedType
 import scipy.stats as stats
 
 
-ArrayLike0D = Union[bool, int, float, complex, str, bytes, np.generic]
+ArrayLike0D = bool | int | float | complex | str | bytes | np.generic
 
 
 __all__: list[str]

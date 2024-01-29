@@ -485,7 +485,7 @@ def test_set_pipeline_steps():
     pipeline.set_params(steps=[("junk", ())])
     with raises(TypeError):
         pipeline.fit([[1]], [1])
-    with raises(TypeError):
+    with raises(AttributeError):
         pipeline.fit_transform([[1]], [1])
 
 

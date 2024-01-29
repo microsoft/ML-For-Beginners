@@ -22,6 +22,7 @@ def register():
             "separators": None,
             "nan": [True, False],
             "keep_empty_string": [True, False],
+            "locale": None,
         },
     )
 
@@ -35,5 +36,6 @@ def register():
             "separators": None,
             "nan": [True, False],
             "keep_empty_string": [True, False],
+            "locale": None,
         },
     )

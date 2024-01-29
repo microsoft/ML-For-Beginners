@@ -2,8 +2,7 @@
 # Use the `scipy.signal` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _bsplines
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'spline_filter', 'bspline', 'gauss_spline', 'cubic', 'quadratic',
@@ -20,13 +19,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.signal.bsplines is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.signal instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.signal` namespace, "
-                  "the `scipy.signal.bsplines` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_bsplines, name)
+    return _sub_module_deprecation(sub_package="signal", module="bsplines",
+                                   private_modules=["_bsplines"], all=__all__,
+                                   attribute=name)

@@ -1,6 +1,7 @@
 import datetime
 
 import numpy as np
+import pytest
 
 from pandas.compat import (
     IS64,
@@ -39,7 +40,7 @@ class TestIteration:
             assert v.name == k
 
     def test_iter(self, float_frame):
-        assert tm.equalContents(list(float_frame), float_frame.columns)
+        assert list(float_frame) == list(float_frame.columns)
 
     def test_iterrows(self, float_frame, float_string_frame):
         for k, v in float_frame.iterrows():
@@ -55,7 +56,7 @@ class TestIteration:
         s = DataFrame(
             {
                 "non_iso8601": ["M1701", "M1802", "M1903", "M2004"],
-                "iso8601": date_range("2000-01-01", periods=4, freq="M"),
+                "iso8601": date_range("2000-01-01", periods=4, freq="ME"),
             }
         )
         for k, v in s.iterrows():
@@ -91,6 +92,7 @@ class TestIteration:
             expected = float_frame.iloc[i, :].reset_index(drop=True)
             tm.assert_series_equal(ser, expected)
 
+    def test_itertuples_index_false(self):
         df = DataFrame(
             {"floats": np.random.default_rng(2).standard_normal(5), "ints": range(5)},
             columns=["floats", "ints"],
@@ -99,6 +101,7 @@ class TestIteration:
         for tup in df.itertuples(index=False):
             assert isinstance(tup[1], int)
 
+    def test_itertuples_duplicate_cols(self):
         df = DataFrame(data={"a": [1, 2, 3], "b": [4, 5, 6]})
         dfaa = df[["a", "a"]]
 
@@ -111,32 +114,27 @@ class TestIteration:
                 == "[(0, 1, 4), (1, 2, 5), (2, 3, 6)]"
             )
 
+    def test_itertuples_tuple_name(self):
+        df = DataFrame(data={"a": [1, 2, 3], "b": [4, 5, 6]})
         tup = next(df.itertuples(name="TestName"))
         assert tup._fields == ("Index", "a", "b")
         assert (tup.Index, tup.a, tup.b) == tup
         assert type(tup).__name__ == "TestName"
 
-        df.columns = ["def", "return"]
+    def test_itertuples_disallowed_col_labels(self):
+        df = DataFrame(data={"def": [1, 2, 3], "return": [4, 5, 6]})
         tup2 = next(df.itertuples(name="TestName"))
         assert tup2 == (0, 1, 4)
         assert tup2._fields == ("Index", "_1", "_2")
 
-        df3 = DataFrame({"f" + str(i): [i] for i in range(1024)})
-        # will raise SyntaxError if trying to create namedtuple
-        tup3 = next(df3.itertuples())
-        assert isinstance(tup3, tuple)
-        assert hasattr(tup3, "_fields")
-
+    @pytest.mark.parametrize("limit", [254, 255, 1024])
+    @pytest.mark.parametrize("index", [True, False])
+    def test_itertuples_py2_3_field_limit_namedtuple(self, limit, index):
         # GH#28282
-        df_254_columns = DataFrame([{f"foo_{i}": f"bar_{i}" for i in range(254)}])
-        result_254_columns = next(df_254_columns.itertuples(index=False))
-        assert isinstance(result_254_columns, tuple)
-        assert hasattr(result_254_columns, "_fields")
-
-        df_255_columns = DataFrame([{f"foo_{i}": f"bar_{i}" for i in range(255)}])
-        result_255_columns = next(df_255_columns.itertuples(index=False))
-        assert isinstance(result_255_columns, tuple)
-        assert hasattr(result_255_columns, "_fields")
+        df = DataFrame([{f"foo_{i}": f"bar_{i}" for i in range(limit)}])
+        result = next(df.itertuples(index=index))
+        assert isinstance(result, tuple)
+        assert hasattr(result, "_fields")
 
     def test_sequence_like_with_categorical(self):
         # GH#7839

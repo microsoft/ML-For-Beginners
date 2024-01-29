@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 import io
 from typing import TYPE_CHECKING, Any, cast
 
@@ -8,7 +9,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from contourpy import FillType, LineType
-from contourpy.util.mpl_util import filled_to_mpl_paths, lines_to_mpl_paths, mpl_codes_to_offsets
+from contourpy.convert import convert_filled, convert_lines
+from contourpy.enum_util import as_fill_type, as_line_type
+from contourpy.util.mpl_util import filled_to_mpl_paths, lines_to_mpl_paths
 from contourpy.util.renderer import Renderer
 
 if TYPE_CHECKING:
@@ -20,10 +23,6 @@ if TYPE_CHECKING:
 
 
 class MplRenderer(Renderer):
-    _axes: Axes
-    _fig: Figure
-    _want_tight: bool
-
     """Utility renderer using Matplotlib to render a grid of plots over the same (x, y) range.
 
     Args:
@@ -36,6 +35,10 @@ class MplRenderer(Renderer):
         gridspec_kw (dict, optional): Gridspec keyword arguments to pass to ``plt.subplots``,
             default None.
     """
+    _axes: Sequence[Axes]
+    _fig: Figure
+    _want_tight: bool
+
     def __init__(
         self,
         nrows: int = 1,
@@ -49,7 +52,7 @@ class MplRenderer(Renderer):
             import matplotlib
             matplotlib.use(backend)
 
-        kwargs = dict(figsize=figsize, squeeze=False, sharex=True, sharey=True)
+        kwargs: dict[str, Any] = dict(figsize=figsize, squeeze=False, sharex=True, sharey=True)
         if gridspec_kw is not None:
             kwargs["gridspec_kw"] = gridspec_kw
         else:
@@ -74,7 +77,7 @@ class MplRenderer(Renderer):
         for ax in self._axes:
             if getattr(ax, "_need_autoscale", False):
                 ax.autoscale_view(tight=True)
-                ax._need_autoscale = False
+                ax._need_autoscale = False  # type: ignore[attr-defined]
         if self._want_tight and len(self._axes) > 1:
             self._fig.tight_layout()
 
@@ -86,7 +89,7 @@ class MplRenderer(Renderer):
     def filled(
         self,
         filled: cpy.FillReturn,
-        fill_type: FillType,
+        fill_type: FillType | str,
         ax: Axes | int = 0,
         color: str = "C0",
         alpha: float = 0.7,
@@ -96,20 +99,21 @@ class MplRenderer(Renderer):
         Args:
             filled (sequence of arrays): Filled contour data as returned by
                 :func:`~contourpy.ContourGenerator.filled`.
-            fill_type (FillType): Type of ``filled`` data, as returned by
-                :attr:`~contourpy.ContourGenerator.fill_type`.
+            fill_type (FillType or str): Type of ``filled`` data as returned by
+                :attr:`~contourpy.ContourGenerator.fill_type`, or string equivalent
             ax (int or Maplotlib Axes, optional): Which axes to plot on, default ``0``.
             color (str, optional): Color to plot with. May be a string color or the letter ``"C"``
                 followed by an integer in the range ``"C0"`` to ``"C9"`` to use a color from the
                 ``tab10`` colormap. Default ``"C0"``.
             alpha (float, optional): Opacity to plot with, default ``0.7``.
         """
+        fill_type = as_fill_type(fill_type)
         ax = self._get_ax(ax)
         paths = filled_to_mpl_paths(filled, fill_type)
         collection = mcollections.PathCollection(
             paths, facecolors=color, edgecolors="none", lw=0, alpha=alpha)
         ax.add_collection(collection)
-        ax._need_autoscale = True
+        ax._need_autoscale = True  # type: ignore[attr-defined]
 
     def grid(
         self,
@@ -141,7 +145,7 @@ class MplRenderer(Renderer):
         """
         ax = self._get_ax(ax)
         x, y = self._grid_as_2d(x, y)
-        kwargs = dict(color=color, alpha=alpha)
+        kwargs: dict[str, Any] = dict(color=color, alpha=alpha)
         ax.plot(x, y, x.T, y.T, **kwargs)
         if quad_as_tri_alpha > 0:
             # Assumes no quad mask.
@@ -156,12 +160,12 @@ class MplRenderer(Renderer):
                 **kwargs)
         if point_color is not None:
             ax.plot(x, y, color=point_color, alpha=alpha, marker="o", lw=0)
-        ax._need_autoscale = True
+        ax._need_autoscale = True  # type: ignore[attr-defined]
 
     def lines(
         self,
         lines: cpy.LineReturn,
-        line_type: LineType,
+        line_type: LineType | str,
         ax: Axes | int = 0,
         color: str = "C0",
         alpha: float = 1.0,
@@ -172,8 +176,8 @@ class MplRenderer(Renderer):
         Args:
             lines (sequence of arrays): Contour line data as returned by
                 :func:`~contourpy.ContourGenerator.lines`.
-            line_type (LineType): Type of ``lines`` data, as returned by
-                :attr:`~contourpy.ContourGenerator.line_type`.
+            line_type (LineType or str): Type of ``lines`` data as returned by
+                :attr:`~contourpy.ContourGenerator.line_type`, or string equivalent.
             ax (int or Matplotlib Axes, optional): Which Axes to plot on, default ``0``.
             color (str, optional): Color to plot lines. May be a string color or the letter ``"C"``
                 followed by an integer in the range ``"C0"`` to ``"C9"`` to use a color from the
@@ -181,12 +185,13 @@ class MplRenderer(Renderer):
             alpha (float, optional): Opacity to plot lines with, default ``1.0``.
             linewidth (float, optional): Width of lines, default ``1``.
         """
+        line_type = as_line_type(line_type)
         ax = self._get_ax(ax)
         paths = lines_to_mpl_paths(lines, line_type)
         collection = mcollections.PathCollection(
             paths, facecolors="none", edgecolors=color, lw=linewidth, alpha=alpha)
         ax.add_collection(collection)
-        ax._need_autoscale = True
+        ax._need_autoscale = True  # type: ignore[attr-defined]
 
     def mask(
         self,
@@ -370,104 +375,10 @@ class MplDebugRenderer(MplRenderer):
         ))
         ax.plot(arrow[:, 0], arrow[:, 1], "-", c=color, alpha=alpha)
 
-    def _filled_to_lists_of_points_and_offsets(
-        self,
-        filled: cpy.FillReturn,
-        fill_type: FillType,
-    ) -> tuple[list[cpy.PointArray], list[cpy.OffsetArray]]:
-        if fill_type == FillType.OuterCode:
-            if TYPE_CHECKING:
-                filled = cast(cpy.FillReturn_OuterCode, filled)
-            all_points = filled[0]
-            all_offsets = [mpl_codes_to_offsets(codes) for codes in filled[1]]
-        elif fill_type == FillType.ChunkCombinedCode:
-            if TYPE_CHECKING:
-                filled = cast(cpy.FillReturn_ChunkCombinedCode, filled)
-            all_points = [points for points in filled[0] if points is not None]
-            all_offsets = [mpl_codes_to_offsets(codes) for codes in filled[1] if codes is not None]
-        elif fill_type == FillType.OuterOffset:
-            if TYPE_CHECKING:
-                filled = cast(cpy.FillReturn_OuterOffset, filled)
-            all_points = filled[0]
-            all_offsets = filled[1]
-        elif fill_type == FillType.ChunkCombinedOffset:
-            if TYPE_CHECKING:
-                filled = cast(cpy.FillReturn_ChunkCombinedOffset, filled)
-            all_points = [points for points in filled[0] if points is not None]
-            all_offsets = [offsets for offsets in filled[1] if offsets is not None]
-        elif fill_type == FillType.ChunkCombinedCodeOffset:
-            if TYPE_CHECKING:
-                filled = cast(cpy.FillReturn_ChunkCombinedCodeOffset, filled)
-            all_points = []
-            all_offsets = []
-            for points, codes, outer_offsets in zip(*filled):
-                if points is None:
-                    continue
-                if TYPE_CHECKING:
-                    assert codes is not None and outer_offsets is not None
-                all_points += np.split(points, outer_offsets[1:-1])
-                all_codes = np.split(codes, outer_offsets[1:-1])
-                all_offsets += [mpl_codes_to_offsets(codes) for codes in all_codes]
-        elif fill_type == FillType.ChunkCombinedOffsetOffset:
-            if TYPE_CHECKING:
-                filled = cast(cpy.FillReturn_ChunkCombinedOffsetOffset, filled)
-            all_points = []
-            all_offsets = []
-            for points, offsets, outer_offsets in zip(*filled):
-                if points is None:
-                    continue
-                if TYPE_CHECKING:
-                    assert offsets is not None and outer_offsets is not None
-                for i in range(len(outer_offsets)-1):
-                    offs = offsets[outer_offsets[i]:outer_offsets[i+1]+1]
-                    all_points.append(points[offs[0]:offs[-1]])
-                    all_offsets.append(offs - offs[0])
-        else:
-            raise RuntimeError(f"Rendering FillType {fill_type} not implemented")
-
-        return all_points, all_offsets
-
-    def _lines_to_list_of_points(
-        self, lines: cpy.LineReturn, line_type: LineType,
-    ) -> list[cpy.PointArray]:
-        if line_type == LineType.Separate:
-            if TYPE_CHECKING:
-                lines = cast(cpy.LineReturn_Separate, lines)
-            all_lines = lines
-        elif line_type == LineType.SeparateCode:
-            if TYPE_CHECKING:
-                lines = cast(cpy.LineReturn_SeparateCode, lines)
-            all_lines = lines[0]
-        elif line_type == LineType.ChunkCombinedCode:
-            if TYPE_CHECKING:
-                lines = cast(cpy.LineReturn_ChunkCombinedCode, lines)
-            all_lines = []
-            for points, codes in zip(*lines):
-                if points is not None:
-                    if TYPE_CHECKING:
-                        assert codes is not None
-                    offsets = mpl_codes_to_offsets(codes)
-                    for i in range(len(offsets)-1):
-                        all_lines.append(points[offsets[i]:offsets[i+1]])
-        elif line_type == LineType.ChunkCombinedOffset:
-            if TYPE_CHECKING:
-                lines = cast(cpy.LineReturn_ChunkCombinedOffset, lines)
-            all_lines = []
-            for points, all_offsets in zip(*lines):
-                if points is not None:
-                    if TYPE_CHECKING:
-                        assert all_offsets is not None
-                    for i in range(len(all_offsets)-1):
-                        all_lines.append(points[all_offsets[i]:all_offsets[i+1]])
-        else:
-            raise RuntimeError(f"Rendering LineType {line_type} not implemented")
-
-        return all_lines
-
     def filled(
         self,
         filled: cpy.FillReturn,
-        fill_type: FillType,
+        fill_type: FillType | str,
         ax: Axes | int = 0,
         color: str = "C1",
         alpha: float = 0.7,
@@ -477,17 +388,20 @@ class MplDebugRenderer(MplRenderer):
         start_point_color: str = "red",
         arrow_size: float = 0.1,
     ) -> None:
+        fill_type = as_fill_type(fill_type)
         super().filled(filled, fill_type, ax, color, alpha)
 
         if line_color is None and point_color is None:
             return
 
         ax = self._get_ax(ax)
-        all_points, all_offsets = self._filled_to_lists_of_points_and_offsets(filled, fill_type)
+        filled = convert_filled(filled, fill_type, FillType.ChunkCombinedOffset)
 
         # Lines.
         if line_color is not None:
-            for points, offsets in zip(all_points, all_offsets):
+            for points, offsets in zip(*filled):
+                if points is None:
+                    continue
                 for start, end in zip(offsets[:-1], offsets[1:]):
                     xys = points[start:end]
                     ax.plot(xys[:, 0], xys[:, 1], c=line_color, alpha=line_alpha)
@@ -499,7 +413,9 @@ class MplDebugRenderer(MplRenderer):
 
         # Points.
         if point_color is not None:
-            for points, offsets in zip(all_points, all_offsets):
+            for points, offsets in zip(*filled):
+                if points is None:
+                    continue
                 mask = np.ones(offsets[-1], dtype=bool)
                 mask[offsets[1:]-1] = False  # Exclude end points.
                 if start_point_color is not None:
@@ -515,7 +431,7 @@ class MplDebugRenderer(MplRenderer):
     def lines(
         self,
         lines: cpy.LineReturn,
-        line_type: LineType,
+        line_type: LineType | str,
         ax: Axes | int = 0,
         color: str = "C0",
         alpha: float = 1.0,
@@ -524,21 +440,24 @@ class MplDebugRenderer(MplRenderer):
         start_point_color: str = "red",
         arrow_size: float = 0.1,
     ) -> None:
+        line_type = as_line_type(line_type)
         super().lines(lines, line_type, ax, color, alpha, linewidth)
 
         if arrow_size == 0.0 and point_color is None:
             return
 
         ax = self._get_ax(ax)
-        all_lines = self._lines_to_list_of_points(lines, line_type)
+        separate_lines = convert_lines(lines, line_type, LineType.Separate)
+        if TYPE_CHECKING:
+            separate_lines = cast(cpy.LineReturn_Separate, separate_lines)
 
         if arrow_size > 0.0:
-            for line in all_lines:
+            for line in separate_lines:
                 for i in range(len(line)-1):
                     self._arrow(ax, line[i], line[i+1], color, alpha, arrow_size)
 
         if point_color is not None:
-            for line in all_lines:
+            for line in separate_lines:
                 start_index = 0
                 end_index = len(line)
                 if start_point_color is not None:
@@ -609,5 +528,5 @@ class MplDebugRenderer(MplRenderer):
                     z_level = 1
                 else:
                     z_level = 0
-                ax.text(x[j, i], y[j, i], z_level, ha="left", va="bottom", color=color,
+                ax.text(x[j, i], y[j, i], str(z_level), ha="left", va="bottom", color=color,
                         clip_on=True)

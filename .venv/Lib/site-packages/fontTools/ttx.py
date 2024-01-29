@@ -124,7 +124,6 @@ opentypeheaderRE = re.compile("""sfntVersion=['"]OTTO["']""")
 
 
 class Options(object):
-
     listTables = False
     outputDir = None
     outputFile = None

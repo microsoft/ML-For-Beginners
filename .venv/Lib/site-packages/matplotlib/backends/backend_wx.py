@@ -15,7 +15,7 @@ import sys
 import weakref
 
 import numpy as np
-import PIL
+import PIL.Image
 
 import matplotlib as mpl
 from matplotlib.backend_bases import (
@@ -37,18 +37,6 @@ _log = logging.getLogger(__name__)
 # http://groups.google.com/d/msg/comp.lang.postscript/-/omHAc9FEuAsJ?hl=en
 # for some info about screen dpi
 PIXELS_PER_INCH = 75
-
-
-@_api.deprecated("3.6")
-def error_msg_wx(msg, parent=None):
-    """Signal an error condition with a popup error dialog."""
-    dialog = wx.MessageDialog(parent=parent,
-                              message=msg,
-                              caption='Matplotlib backend_wx error',
-                              style=wx.OK | wx.CENTRE)
-    dialog.ShowModal()
-    dialog.Destroy()
-    return None
 
 
 # lru_cache holds a reference to the App and prevents it from being gc'ed.
@@ -148,10 +136,6 @@ class RendererWx(RendererBase):
 
     def flipy(self):
         # docstring inherited
-        return True
-
-    @_api.deprecated("3.6")
-    def offset_text_height(self):
         return True
 
     def get_text_width_height_descent(self, s, prop, ismath):
@@ -537,8 +521,8 @@ class _FigureCanvasWxBase(FigureCanvasBase, wx.Panel):
             open_success = wx.TheClipboard.Open()
             if open_success:
                 wx.TheClipboard.SetData(bmp_obj)
-                wx.TheClipboard.Close()
                 wx.TheClipboard.Flush()
+                wx.TheClipboard.Close()
 
     def draw_idle(self):
         # docstring inherited
@@ -584,7 +568,7 @@ class _FigureCanvasWxBase(FigureCanvasBase, wx.Panel):
         for i, (name, exts) in enumerate(sorted_filetypes):
             ext_list = ';'.join(['*.%s' % ext for ext in exts])
             extensions.append(exts[0])
-            wildcard = '%s (%s)|%s' % (name, ext_list, ext_list)
+            wildcard = f'{name} ({ext_list})|{ext_list}'
             if default_filetype in exts:
                 filter_index = i
             wildcards.append(wildcard)
@@ -595,8 +579,6 @@ class _FigureCanvasWxBase(FigureCanvasBase, wx.Panel):
         """
         Update the displayed image on the GUI canvas, using the supplied
         wx.PaintDC device context.
-
-        The 'WXAgg' backend sets origin accordingly.
         """
         _log.debug("%s - gui_repaint()", type(self))
         # The "if self" check avoids a "wrapped C/C++ object has been deleted"
@@ -605,7 +587,7 @@ class _FigureCanvasWxBase(FigureCanvasBase, wx.Panel):
             return
         if not drawDC:  # not called from OnPaint use a ClientDC
             drawDC = wx.ClientDC(self)
-        # For 'WX' backend on Windows, the bitmap can not be in use by another
+        # For 'WX' backend on Windows, the bitmap cannot be in use by another
         # DC (see GraphicsContextWx._cache).
         bmp = (self.bitmap.ConvertToImage().ConvertToBitmap()
                if wx.Platform == '__WXMSW__'
@@ -631,15 +613,6 @@ class _FigureCanvasWxBase(FigureCanvasBase, wx.Panel):
         'tiff': 'Tagged Image Format File',
         'xpm': 'X pixmap',
     }
-
-    def print_figure(self, filename, *args, **kwargs):
-        # docstring inherited
-        super().print_figure(filename, *args, **kwargs)
-        # Restore the current view; this is needed because the artist contains
-        # methods rely on particular attributes of the rendered figure for
-        # determining things like bounding boxes.
-        if self._isDrawn:
-            self.draw()
 
     def _on_paint(self, event):
         """Called when wxPaintEvt is generated."""
@@ -902,7 +875,7 @@ class FigureCanvasWx(_FigureCanvasWxBase):
 
 
 class FigureFrameWx(wx.Frame):
-    def __init__(self, num, fig, *, canvas_class=None):
+    def __init__(self, num, fig, *, canvas_class):
         # On non-Windows platform, explicitly set the position - fix
         # positioning bug on some Linux platforms
         if wx.Platform == '__WXMSW__':
@@ -914,16 +887,7 @@ class FigureFrameWx(wx.Frame):
         _log.debug("%s - __init__()", type(self))
         _set_frame_icon(self)
 
-        # The parameter will become required after the deprecation elapses.
-        if canvas_class is not None:
-            self.canvas = canvas_class(self, -1, fig)
-        else:
-            _api.warn_deprecated(
-                "3.6", message="The canvas_class parameter will become "
-                "required after the deprecation period starting in Matplotlib "
-                "%(since)s elapses.")
-            self.canvas = self.get_canvas(fig)
-
+        self.canvas = canvas_class(self, -1, fig)
         # Auto-attaches itself to self.canvas.manager
         manager = FigureManagerWx(self.canvas, num, self)
 
@@ -941,28 +905,6 @@ class FigureFrameWx(wx.Frame):
         self.Fit()
 
         self.Bind(wx.EVT_CLOSE, self._on_close)
-
-    sizer = _api.deprecated("3.6", alternative="frame.GetSizer()")(
-        property(lambda self: self.GetSizer()))
-    figmgr = _api.deprecated("3.6", alternative="frame.canvas.manager")(
-        property(lambda self: self.canvas.manager))
-    num = _api.deprecated("3.6", alternative="frame.canvas.manager.num")(
-        property(lambda self: self.canvas.manager.num))
-    toolbar = _api.deprecated("3.6", alternative="frame.GetToolBar()")(
-        property(lambda self: self.GetToolBar()))
-    toolmanager = _api.deprecated(
-        "3.6", alternative="frame.canvas.manager.toolmanager")(
-            property(lambda self: self.canvas.manager.toolmanager))
-
-    @_api.deprecated(
-        "3.6", alternative="the canvas_class constructor parameter")
-    def get_canvas(self, fig):
-        return FigureCanvasWx(self, -1, fig)
-
-    @_api.deprecated("3.6", alternative="frame.canvas.manager")
-    def get_figure_manager(self):
-        _log.debug("%s - get_figure_manager()", type(self))
-        return self.canvas.manager
 
     def _on_close(self, event):
         _log.debug("%s - on_close()", type(self))
@@ -1194,7 +1136,7 @@ class NavigationToolbar2Wx(NavigationToolbar2, wx.ToolBar):
 
     def set_history_buttons(self):
         can_backward = self._nav_stack._pos > 0
-        can_forward = self._nav_stack._pos < len(self._nav_stack._elements) - 1
+        can_forward = self._nav_stack._pos < len(self._nav_stack) - 1
         if 'Back' in self.wx_ids:
             self.EnableTool(self.wx_ids['Back'], can_backward)
         if 'Forward' in self.wx_ids:

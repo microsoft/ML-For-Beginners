@@ -1,46 +1,55 @@
+import sys
+from typing import Any
+
 import numpy as np
+import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 nditer_obj: np.nditer
 
-reveal_type(np.nditer([0, 1], flags=["c_index"]))  # E: nditer
-reveal_type(np.nditer([0, 1], op_flags=[["readonly", "readonly"]]))  # E: nditer
-reveal_type(np.nditer([0, 1], op_dtypes=np.int_))  # E: nditer
-reveal_type(np.nditer([0, 1], order="C", casting="no"))  # E: nditer
+assert_type(np.nditer([0, 1], flags=["c_index"]), np.nditer)
+assert_type(np.nditer([0, 1], op_flags=[["readonly", "readonly"]]), np.nditer)
+assert_type(np.nditer([0, 1], op_dtypes=np.int_), np.nditer)
+assert_type(np.nditer([0, 1], order="C", casting="no"), np.nditer)
 
-reveal_type(nditer_obj.dtypes)  # E: tuple[dtype[Any], ...]
-reveal_type(nditer_obj.finished)  # E: bool
-reveal_type(nditer_obj.has_delayed_bufalloc)  # E: bool
-reveal_type(nditer_obj.has_index)  # E: bool
-reveal_type(nditer_obj.has_multi_index)  # E: bool
-reveal_type(nditer_obj.index)  # E: int
-reveal_type(nditer_obj.iterationneedsapi)  # E: bool
-reveal_type(nditer_obj.iterindex)  # E: int
-reveal_type(nditer_obj.iterrange)  # E: tuple[builtins.int, ...]
-reveal_type(nditer_obj.itersize)  # E: int
-reveal_type(nditer_obj.itviews)  # E: tuple[ndarray[Any, dtype[Any]], ...]
-reveal_type(nditer_obj.multi_index)  # E: tuple[builtins.int, ...]
-reveal_type(nditer_obj.ndim)  # E: int
-reveal_type(nditer_obj.nop)  # E: int
-reveal_type(nditer_obj.operands)  # E: tuple[ndarray[Any, dtype[Any]], ...]
-reveal_type(nditer_obj.shape)  # E: tuple[builtins.int, ...]
-reveal_type(nditer_obj.value)  # E: tuple[ndarray[Any, dtype[Any]], ...]
+assert_type(nditer_obj.dtypes, tuple[np.dtype[Any], ...])
+assert_type(nditer_obj.finished, bool)
+assert_type(nditer_obj.has_delayed_bufalloc, bool)
+assert_type(nditer_obj.has_index, bool)
+assert_type(nditer_obj.has_multi_index, bool)
+assert_type(nditer_obj.index, int)
+assert_type(nditer_obj.iterationneedsapi, bool)
+assert_type(nditer_obj.iterindex, int)
+assert_type(nditer_obj.iterrange, tuple[int, ...])
+assert_type(nditer_obj.itersize, int)
+assert_type(nditer_obj.itviews, tuple[npt.NDArray[Any], ...])
+assert_type(nditer_obj.multi_index, tuple[int, ...])
+assert_type(nditer_obj.ndim, int)
+assert_type(nditer_obj.nop, int)
+assert_type(nditer_obj.operands, tuple[npt.NDArray[Any], ...])
+assert_type(nditer_obj.shape, tuple[int, ...])
+assert_type(nditer_obj.value, tuple[npt.NDArray[Any], ...])
 
-reveal_type(nditer_obj.close())  # E: None
-reveal_type(nditer_obj.copy())  # E: nditer
-reveal_type(nditer_obj.debug_print())  # E: None
-reveal_type(nditer_obj.enable_external_loop())  # E: None
-reveal_type(nditer_obj.iternext())  # E: bool
-reveal_type(nditer_obj.remove_axis(0))  # E: None
-reveal_type(nditer_obj.remove_multi_index())  # E: None
-reveal_type(nditer_obj.reset())  # E: None
+assert_type(nditer_obj.close(), None)
+assert_type(nditer_obj.copy(), np.nditer)
+assert_type(nditer_obj.debug_print(), None)
+assert_type(nditer_obj.enable_external_loop(), None)
+assert_type(nditer_obj.iternext(), bool)
+assert_type(nditer_obj.remove_axis(0), None)
+assert_type(nditer_obj.remove_multi_index(), None)
+assert_type(nditer_obj.reset(), None)
 
-reveal_type(len(nditer_obj))  # E: int
-reveal_type(iter(nditer_obj))  # E: nditer
-reveal_type(next(nditer_obj))  # E: tuple[ndarray[Any, dtype[Any]], ...]
-reveal_type(nditer_obj.__copy__())  # E: nditer
+assert_type(len(nditer_obj), int)
+assert_type(iter(nditer_obj), np.nditer)
+assert_type(next(nditer_obj), tuple[npt.NDArray[Any], ...])
+assert_type(nditer_obj.__copy__(), np.nditer)
 with nditer_obj as f:
-    reveal_type(f)  # E: nditer
-reveal_type(nditer_obj[0])  # E: ndarray[Any, dtype[Any]]
-reveal_type(nditer_obj[:])  # E: tuple[ndarray[Any, dtype[Any]], ...]
+    assert_type(f, np.nditer)
+assert_type(nditer_obj[0], npt.NDArray[Any])
+assert_type(nditer_obj[:], tuple[npt.NDArray[Any], ...])
 nditer_obj[0] = 0
 nditer_obj[:] = [0, 1]

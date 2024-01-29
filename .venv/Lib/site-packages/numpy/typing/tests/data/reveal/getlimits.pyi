@@ -1,4 +1,13 @@
+import sys
+from typing import Any
+
 import numpy as np
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
+
 f: float
 f8: np.float64
 c8: np.complex64
@@ -10,38 +19,38 @@ u4: np.uint32
 finfo_f8: np.finfo[np.float64]
 iinfo_i8: np.iinfo[np.int64]
 
-reveal_type(np.finfo(f))  # E: finfo[{double}]
-reveal_type(np.finfo(f8))  # E: finfo[{float64}]
-reveal_type(np.finfo(c8))  # E: finfo[{float32}]
-reveal_type(np.finfo('f2'))  # E: finfo[floating[Any]]
+assert_type(np.finfo(f), np.finfo[np.double])
+assert_type(np.finfo(f8), np.finfo[np.float64])
+assert_type(np.finfo(c8), np.finfo[np.float32])
+assert_type(np.finfo('f2'), np.finfo[np.floating[Any]])
 
-reveal_type(finfo_f8.dtype)  # E: dtype[{float64}]
-reveal_type(finfo_f8.bits)  # E: int
-reveal_type(finfo_f8.eps)  # E: {float64}
-reveal_type(finfo_f8.epsneg)  # E: {float64}
-reveal_type(finfo_f8.iexp)  # E: int
-reveal_type(finfo_f8.machep)  # E: int
-reveal_type(finfo_f8.max)  # E: {float64}
-reveal_type(finfo_f8.maxexp)  # E: int
-reveal_type(finfo_f8.min)  # E: {float64}
-reveal_type(finfo_f8.minexp)  # E: int
-reveal_type(finfo_f8.negep)  # E: int
-reveal_type(finfo_f8.nexp)  # E: int
-reveal_type(finfo_f8.nmant)  # E: int
-reveal_type(finfo_f8.precision)  # E: int
-reveal_type(finfo_f8.resolution)  # E: {float64}
-reveal_type(finfo_f8.tiny)  # E: {float64}
-reveal_type(finfo_f8.smallest_normal)  # E: {float64}
-reveal_type(finfo_f8.smallest_subnormal)  # E: {float64}
+assert_type(finfo_f8.dtype, np.dtype[np.float64])
+assert_type(finfo_f8.bits, int)
+assert_type(finfo_f8.eps, np.float64)
+assert_type(finfo_f8.epsneg, np.float64)
+assert_type(finfo_f8.iexp, int)
+assert_type(finfo_f8.machep, int)
+assert_type(finfo_f8.max, np.float64)
+assert_type(finfo_f8.maxexp, int)
+assert_type(finfo_f8.min, np.float64)
+assert_type(finfo_f8.minexp, int)
+assert_type(finfo_f8.negep, int)
+assert_type(finfo_f8.nexp, int)
+assert_type(finfo_f8.nmant, int)
+assert_type(finfo_f8.precision, int)
+assert_type(finfo_f8.resolution, np.float64)
+assert_type(finfo_f8.tiny, np.float64)
+assert_type(finfo_f8.smallest_normal, np.float64)
+assert_type(finfo_f8.smallest_subnormal, np.float64)
 
-reveal_type(np.iinfo(i))  # E: iinfo[{int_}]
-reveal_type(np.iinfo(i8))  # E: iinfo[{int64}]
-reveal_type(np.iinfo(u4))  # E: iinfo[{uint32}]
-reveal_type(np.iinfo('i2'))  # E: iinfo[Any]
+assert_type(np.iinfo(i), np.iinfo[np.int_])
+assert_type(np.iinfo(i8), np.iinfo[np.int64])
+assert_type(np.iinfo(u4), np.iinfo[np.uint32])
+assert_type(np.iinfo('i2'), np.iinfo[Any])
 
-reveal_type(iinfo_i8.dtype)  # E: dtype[{int64}]
-reveal_type(iinfo_i8.kind)  # E: str
-reveal_type(iinfo_i8.bits)  # E: int
-reveal_type(iinfo_i8.key)  # E: str
-reveal_type(iinfo_i8.min)  # E: int
-reveal_type(iinfo_i8.max)  # E: int
+assert_type(iinfo_i8.dtype, np.dtype[np.int64])
+assert_type(iinfo_i8.kind, str)
+assert_type(iinfo_i8.bits, int)
+assert_type(iinfo_i8.key, str)
+assert_type(iinfo_i8.min, int)
+assert_type(iinfo_i8.max, int)

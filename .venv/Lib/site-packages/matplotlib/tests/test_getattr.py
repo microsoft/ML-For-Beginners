@@ -18,6 +18,7 @@ module_names = [
 
 @pytest.mark.parametrize('module_name', module_names)
 @pytest.mark.filterwarnings('ignore::DeprecationWarning')
+@pytest.mark.filterwarnings('ignore::ImportWarning')
 def test_getattr(module_name):
     """
     Test that __getattr__ methods raise AttributeError for unknown keys.

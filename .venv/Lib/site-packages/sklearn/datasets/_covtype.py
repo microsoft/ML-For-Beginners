@@ -65,7 +65,7 @@ TARGET_NAMES = ["Cover_Type"]
 
 @validate_params(
     {
-        "data_home": [str, None],
+        "data_home": [str, os.PathLike, None],
         "download_if_missing": ["boolean"],
         "random_state": ["random_state"],
         "shuffle": ["boolean"],
@@ -98,7 +98,7 @@ def fetch_covtype(
 
     Parameters
     ----------
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By default
         all scikit-learn data is stored in '~/scikit_learn_data' subfolders.
 
@@ -156,6 +156,18 @@ def fetch_covtype(
         ndarray of shape (n_samples,) containing the target samples.
 
         .. versionadded:: 0.20
+
+    Examples
+    --------
+    >>> from sklearn.datasets import fetch_covtype
+    >>> cov_type = fetch_covtype()
+    >>> cov_type.data.shape
+    (581012, 54)
+    >>> cov_type.target.shape
+    (581012,)
+    >>> # Let's check the 4 first feature names
+    >>> cov_type.feature_names[:4]
+    ['Elevation', 'Aspect', 'Slope', 'Horizontal_Distance_To_Hydrology']
     """
     data_home = get_data_home(data_home=data_home)
     covtype_dir = join(data_home, "covertype")

@@ -14,14 +14,11 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import builtins
 
 from . import Image, _imagingmath
-
-
-def _isconstant(v):
-    return isinstance(v, (int, float))
 
 
 class _Operand:
@@ -43,7 +40,7 @@ class _Operand:
                 raise ValueError(msg)
         else:
             # argument was a constant
-            if _isconstant(im1) and self.im.mode in ("1", "L", "I"):
+            if isinstance(im1, (int, float)) and self.im.mode in ("1", "L", "I"):
                 return Image.new("I", self.im.size, im1)
             else:
                 return Image.new("F", self.im.size, im1)
@@ -237,9 +234,14 @@ def eval(expression, _dict={}, **kw):
 
     # build execution namespace
     args = ops.copy()
+    for k in list(_dict.keys()) + list(kw.keys()):
+        if "__" in k or hasattr(builtins, k):
+            msg = f"'{k}' not allowed"
+            raise ValueError(msg)
+
     args.update(_dict)
     args.update(kw)
-    for k, v in list(args.items()):
+    for k, v in args.items():
         if hasattr(v, "im"):
             args[k] = _Operand(v)
 
@@ -247,7 +249,7 @@ def eval(expression, _dict={}, **kw):
 
     def scan(code):
         for const in code.co_consts:
-            if type(const) == type(compiled_code):
+            if type(const) is type(compiled_code):
                 scan(const)
 
         for name in code.co_names:

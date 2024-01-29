@@ -12,7 +12,7 @@ from sklearn import config_context
 
 
 # Ignore flake8 (lots of line too long issues)
-# flake8: noqa
+# ruff: noqa
 
 
 # Constructors excerpted to test pprinting

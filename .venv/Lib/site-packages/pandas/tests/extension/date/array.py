@@ -176,9 +176,13 @@ class DateArray(ExtensionArray):
     @classmethod
     def _from_sequence(cls, scalars, *, dtype: Dtype | None = None, copy=False):
         if isinstance(scalars, dt.date):
-            pass
+            raise TypeError
         elif isinstance(scalars, DateArray):
-            pass
+            if dtype is not None:
+                return scalars.astype(dtype, copy=copy)
+            if copy:
+                return scalars.copy()
+            return scalars[:]
         elif isinstance(scalars, np.ndarray):
             scalars = scalars.astype("U10")  # 10 chars for yyyy-mm-dd
             return DateArray(scalars)

@@ -188,7 +188,7 @@ def face(gray=False):
     Returns
     -------
     face : ndarray
-        image of a racoon face
+        image of a raccoon face
 
     Examples
     --------

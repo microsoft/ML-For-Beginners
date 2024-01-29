@@ -1,4 +1,3 @@
-# distutils: language=c++
 # cython: language_level=3
 
 from .HighsStatus cimport HighsStatus

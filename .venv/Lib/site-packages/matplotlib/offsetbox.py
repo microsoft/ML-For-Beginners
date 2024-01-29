@@ -107,7 +107,7 @@ def _get_packed_offsets(widths, total, sep, mode="fixed"):
         Widths of boxes to be packed.
     total : float or None
         Intended total length. *None* if not used.
-    sep : float
+    sep : float or None
         Spacing between boxes.
     mode : {'fixed', 'expand', 'equal'}
         The packing mode.
@@ -268,9 +268,8 @@ class OffsetBox(martist.Artist):
         --------
         .Artist.contains
         """
-        inside, info = self._default_contains(mouseevent)
-        if inside is not None:
-            return inside, info
+        if self._different_canvas(mouseevent):
+            return False, {}
         for c in self.get_children():
             a, b = c.contains(mouseevent)
             if a:
@@ -533,8 +532,7 @@ class PaddedBox(OffsetBox):
     it when rendering.
     """
 
-    @_api.make_keyword_only("3.6", name="draw_frame")
-    def __init__(self, child, pad=0., draw_frame=False, patch_attrs=None):
+    def __init__(self, child, pad=0., *, draw_frame=False, patch_attrs=None):
         """
         Parameters
         ----------
@@ -715,8 +713,8 @@ class TextArea(OffsetBox):
     child text.
     """
 
-    @_api.make_keyword_only("3.6", name="textprops")
     def __init__(self, s,
+                 *,
                  textprops=None,
                  multilinebaseline=False,
                  ):
@@ -929,8 +927,7 @@ class AnchoredOffsetbox(OffsetBox):
              'center': 10,
              }
 
-    @_api.make_keyword_only("3.6", name="pad")
-    def __init__(self, loc,
+    def __init__(self, loc, *,
                  pad=0.4, borderpad=0.5,
                  child=None, prop=None, frameon=True,
                  bbox_to_anchor=None,
@@ -1103,8 +1100,7 @@ class AnchoredText(AnchoredOffsetbox):
     AnchoredOffsetbox with Text.
     """
 
-    @_api.make_keyword_only("3.6", name="pad")
-    def __init__(self, s, loc, pad=0.4, borderpad=0.5, prop=None, **kwargs):
+    def __init__(self, s, loc, *, pad=0.4, borderpad=0.5, prop=None, **kwargs):
         """
         Parameters
         ----------
@@ -1144,8 +1140,7 @@ class AnchoredText(AnchoredOffsetbox):
 
 class OffsetImage(OffsetBox):
 
-    @_api.make_keyword_only("3.6", name="zoom")
-    def __init__(self, arr,
+    def __init__(self, arr, *,
                  zoom=1,
                  cmap=None,
                  norm=None,
@@ -1226,14 +1221,10 @@ class AnnotationBbox(martist.Artist, mtext._AnnotationBase):
     zorder = 3
 
     def __str__(self):
-        return "AnnotationBbox(%g,%g)" % (self.xy[0], self.xy[1])
+        return f"AnnotationBbox({self.xy[0]:g},{self.xy[1]:g})"
 
     @_docstring.dedent_interpd
-    @_api.make_keyword_only("3.6", name="xycoords")
-    def __init__(self, offsetbox, xy,
-                 xybox=None,
-                 xycoords='data',
-                 boxcoords=None,
+    def __init__(self, offsetbox, xy, xybox=None, xycoords='data', boxcoords=None, *,
                  frameon=True, pad=0.4,  # FancyBboxPatch boxstyle.
                  annotation_clip=None,
                  box_alignment=(0.5, 0.5),
@@ -1359,9 +1350,8 @@ or callable, default: value of *xycoords*
         self.stale = True
 
     def contains(self, mouseevent):
-        inside, info = self._default_contains(mouseevent)
-        if inside is not None:
-            return inside, info
+        if self._different_canvas(mouseevent):
+            return False, {}
         if not self._check_xy(None):
             return False, {}
         return self.offsetbox.contains(mouseevent)
@@ -1412,19 +1402,9 @@ or callable, default: value of *xycoords*
                            for child in self.get_children()])
 
     def update_positions(self, renderer):
-        """
-        Update pixel positions for the annotated point, the text and the arrow.
-        """
+        """Update pixel positions for the annotated point, the text, and the arrow."""
 
-        x, y = self.xybox
-        if isinstance(self.boxcoords, tuple):
-            xcoord, ycoord = self.boxcoords
-            x1, y1 = self._get_xy(renderer, x, y, xcoord)
-            x2, y2 = self._get_xy(renderer, x, y, ycoord)
-            ox0, oy0 = x1, y2
-        else:
-            ox0, oy0 = self._get_xy(renderer, x, y, self.boxcoords)
-
+        ox0, oy0 = self._get_xy(renderer, self.xybox, self.boxcoords)
         bbox = self.offsetbox.get_bbox(renderer)
         fw, fh = self._box_alignment
         self.offsetbox.set_offset(

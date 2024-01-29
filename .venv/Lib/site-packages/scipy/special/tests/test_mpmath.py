@@ -39,7 +39,7 @@ def test_expi_complex():
         for p in np.linspace(0, 2*np.pi, 30):
             z = r*np.exp(1j*p)
             dataset.append((z, complex(mpmath.ei(z))))
-    dataset = np.array(dataset, dtype=np.complex_)
+    dataset = np.array(dataset, dtype=np.cdouble)
 
     FuncData(sc.expi, dataset, 0, 1).check()
 
@@ -135,7 +135,7 @@ def test_hyp2f1_strange_points():
     ]
     kw = dict(eliminate=True)
     dataset = [p + (float(mpmath.hyp2f1(*p, **kw)),) for p in pts]
-    dataset = np.array(dataset, dtype=np.float_)
+    dataset = np.array(dataset, dtype=np.float64)
 
     FuncData(sc.hyp2f1, dataset, (0,1,2,3), 4, rtol=1e-10).check()
 
@@ -166,7 +166,7 @@ def test_hyp2f1_real_some_points():
         (0.5, 1 - 270.5, 1.5, 0.999**2),  # from issue 1561
     ]
     dataset = [p + (float(mpmath.hyp2f1(*p)),) for p in pts]
-    dataset = np.array(dataset, dtype=np.float_)
+    dataset = np.array(dataset, dtype=np.float64)
 
     with np.errstate(invalid='ignore'):
         FuncData(sc.hyp2f1, dataset, (0,1,2,3), 4, rtol=1e-10).check()
@@ -189,7 +189,7 @@ def test_hyp2f1_some_points_2():
             return x
 
     dataset = [tuple(map(fev, p)) + (float(mpmath.hyp2f1(*p)),) for p in pts]
-    dataset = np.array(dataset, dtype=np.float_)
+    dataset = np.array(dataset, dtype=np.float64)
 
     FuncData(sc.hyp2f1, dataset, (0,1,2,3), 4, rtol=1e-10).check()
 
@@ -206,7 +206,7 @@ def test_hyp2f1_real_some():
                     except Exception:
                         continue
                     dataset.append((a, b, c, z, v))
-    dataset = np.array(dataset, dtype=np.float_)
+    dataset = np.array(dataset, dtype=np.float64)
 
     with np.errstate(invalid='ignore'):
         FuncData(sc.hyp2f1, dataset, (0,1,2,3), 4, rtol=1e-9,
@@ -217,7 +217,7 @@ def test_hyp2f1_real_some():
 @pytest.mark.slow
 def test_hyp2f1_real_random():
     npoints = 500
-    dataset = np.zeros((npoints, 5), np.float_)
+    dataset = np.zeros((npoints, 5), np.float64)
 
     np.random.seed(1234)
     dataset[:, 0] = np.random.pareto(1.5, npoints)
@@ -308,7 +308,7 @@ def test_lpmv():
         return mpmath.legenp(nu, mu, x)
 
     dataset = [p + (mplegenp(p[1], p[0], p[2]),) for p in pts]
-    dataset = np.array(dataset, dtype=np.float_)
+    dataset = np.array(dataset, dtype=np.float64)
 
     def evf(mu, nu, x):
         return sc.lpmv(mu.astype(int), nu, x)
@@ -755,50 +755,68 @@ class TestSystematic:
                             rtol=1e-9, n=13000)
 
     def test_besseli(self):
-        assert_mpmath_equal(sc.iv,
-                            exception_to_nan(lambda v, z: mpmath.besseli(v, z, **HYPERKW)),
-                            [Arg(-1e100, 1e100), Arg()],
-                            atol=1e-270)
+        assert_mpmath_equal(
+            sc.iv,
+            exception_to_nan(lambda v, z: mpmath.besseli(v, z, **HYPERKW)),
+            [Arg(-1e100, 1e100), Arg()],
+            atol=1e-270,
+        )
 
     def test_besseli_complex(self):
-        assert_mpmath_equal(lambda v, z: sc.iv(v.real, z),
-                            exception_to_nan(lambda v, z: mpmath.besseli(v, z, **HYPERKW)),
-                            [Arg(-1e100, 1e100), ComplexArg()])
+        assert_mpmath_equal(
+            lambda v, z: sc.iv(v.real, z),
+            exception_to_nan(lambda v, z: mpmath.besseli(v, z, **HYPERKW)),
+            [Arg(-1e100, 1e100), ComplexArg()],
+        )
 
     def test_besselj(self):
-        assert_mpmath_equal(sc.jv,
-                            exception_to_nan(lambda v, z: mpmath.besselj(v, z, **HYPERKW)),
-                            [Arg(-1e100, 1e100), Arg(-1e3, 1e3)],
-                            ignore_inf_sign=True)
+        assert_mpmath_equal(
+            sc.jv,
+            exception_to_nan(lambda v, z: mpmath.besselj(v, z, **HYPERKW)),
+            [Arg(-1e100, 1e100), Arg(-1e3, 1e3)],
+            ignore_inf_sign=True,
+        )
 
         # loss of precision at large arguments due to oscillation
-        assert_mpmath_equal(sc.jv,
-                            exception_to_nan(lambda v, z: mpmath.besselj(v, z, **HYPERKW)),
-                            [Arg(-1e100, 1e100), Arg(-1e8, 1e8)],
-                            ignore_inf_sign=True,
-                            rtol=1e-5)
+        assert_mpmath_equal(
+            sc.jv,
+            exception_to_nan(lambda v, z: mpmath.besselj(v, z, **HYPERKW)),
+            [Arg(-1e100, 1e100), Arg(-1e8, 1e8)],
+            ignore_inf_sign=True,
+            rtol=1e-5,
+        )
 
     def test_besselj_complex(self):
-        assert_mpmath_equal(lambda v, z: sc.jv(v.real, z),
-                            exception_to_nan(lambda v, z: mpmath.besselj(v, z, **HYPERKW)),
-                            [Arg(), ComplexArg()])
+        assert_mpmath_equal(
+            lambda v, z: sc.jv(v.real, z),
+            exception_to_nan(lambda v, z: mpmath.besselj(v, z, **HYPERKW)),
+            [Arg(), ComplexArg()]
+        )
 
     def test_besselk(self):
-        assert_mpmath_equal(sc.kv,
-                            mpmath.besselk,
-                            [Arg(-200, 200), Arg(0, np.inf)],
-                            nan_ok=False, rtol=1e-12)
+        assert_mpmath_equal(
+            sc.kv,
+            mpmath.besselk,
+            [Arg(-200, 200), Arg(0, np.inf)],
+            nan_ok=False,
+            rtol=1e-12,
+        )
 
     def test_besselk_int(self):
-        assert_mpmath_equal(sc.kn,
-                            mpmath.besselk,
-                            [IntArg(-200, 200), Arg(0, np.inf)],
-                            nan_ok=False, rtol=1e-12)
+        assert_mpmath_equal(
+            sc.kn,
+            mpmath.besselk,
+            [IntArg(-200, 200), Arg(0, np.inf)],
+            nan_ok=False,
+            rtol=1e-12,
+        )
 
     def test_besselk_complex(self):
-        assert_mpmath_equal(lambda v, z: sc.kv(v.real, z),
-                            exception_to_nan(lambda v, z: mpmath.besselk(v, z, **HYPERKW)),
-                            [Arg(-1e100, 1e100), ComplexArg()])
+        assert_mpmath_equal(
+            lambda v, z: sc.kv(v.real, z),
+            exception_to_nan(lambda v, z: mpmath.besselk(v, z, **HYPERKW)),
+            [Arg(-1e100, 1e100), ComplexArg()],
+        )
 
     def test_bessely(self):
         def mpbessely(v, x):
@@ -810,10 +828,12 @@ class TestSystematic:
                 # invalid result from mpmath, point x=0 is a divergence
                 return np.nan
             return r
-        assert_mpmath_equal(sc.yv,
-                            exception_to_nan(mpbessely),
-                            [Arg(-1e100, 1e100), Arg(-1e8, 1e8)],
-                            n=5000)
+        assert_mpmath_equal(
+            sc.yv,
+            exception_to_nan(mpbessely),
+            [Arg(-1e100, 1e100), Arg(-1e8, 1e8)],
+            n=5000,
+        )
 
     def test_bessely_complex(self):
         def mpbessely(v, x):
@@ -823,10 +843,12 @@ class TestSystematic:
                 with np.errstate(invalid='ignore'):
                     r = np.inf * np.sign(r)
             return r
-        assert_mpmath_equal(lambda v, z: sc.yv(v.real, z),
-                            exception_to_nan(mpbessely),
-                            [Arg(), ComplexArg()],
-                            n=15000)
+        assert_mpmath_equal(
+            lambda v, z: sc.yv(v.real, z),
+            exception_to_nan(mpbessely),
+            [Arg(), ComplexArg()],
+            n=15000,
+        )
 
     def test_bessely_int(self):
         def mpbessely(v, x):
@@ -835,9 +857,11 @@ class TestSystematic:
                 # invalid result from mpmath, point x=0 is a divergence
                 return np.nan
             return r
-        assert_mpmath_equal(lambda v, z: sc.yn(int(v), z),
-                            exception_to_nan(mpbessely),
-                            [IntArg(-1000, 1000), Arg(-1e8, 1e8)])
+        assert_mpmath_equal(
+            lambda v, z: sc.yn(int(v), z),
+            exception_to_nan(mpbessely),
+            [IntArg(-1000, 1000), Arg(-1e8, 1e8)],
+        )
 
     def test_beta(self):
         bad_points = []
@@ -857,23 +881,45 @@ class TestSystematic:
                     return np.nan
             return mpmath.beta(a, b)
 
-        assert_mpmath_equal(sc.beta,
-                            lambda a, b: beta(a, b, nonzero=True),
-                            [Arg(), Arg()],
-                            dps=400,
-                            ignore_inf_sign=True)
+        assert_mpmath_equal(
+            sc.beta,
+            lambda a, b: beta(a, b, nonzero=True),
+            [Arg(), Arg()],
+            dps=400,
+            ignore_inf_sign=True,
+        )
 
-        assert_mpmath_equal(sc.beta,
-                            beta,
-                            np.array(bad_points),
-                            dps=400,
-                            ignore_inf_sign=True,
-                            atol=1e-11)
+        assert_mpmath_equal(
+            sc.beta,
+            beta,
+            np.array(bad_points),
+            dps=400,
+            ignore_inf_sign=True,
+            atol=1e-11,
+        )
 
     def test_betainc(self):
-        assert_mpmath_equal(sc.betainc,
-                            time_limited()(exception_to_nan(lambda a, b, x: mpmath.betainc(a, b, 0, x, regularized=True))),
-                            [Arg(), Arg(), Arg()])
+        assert_mpmath_equal(
+            sc.betainc,
+            time_limited()(
+                exception_to_nan(
+                    lambda a, b, x: mpmath.betainc(a, b, 0, x, regularized=True)
+                )
+            ),
+            [Arg(), Arg(), Arg()],
+        )
+
+    def test_betaincc(self):
+        assert_mpmath_equal(
+            sc.betaincc,
+            time_limited()(
+                exception_to_nan(
+                    lambda a, b, x: mpmath.betainc(a, b, x, 1, regularized=True)
+                )
+            ),
+            [Arg(), Arg(), Arg()],
+            dps=400,
+        )
 
     def test_binom(self):
         bad_points = []
@@ -893,38 +939,57 @@ class TestSystematic:
                     return np.nan
             return mpmath.binomial(n, k)
 
-        assert_mpmath_equal(sc.binom,
-                            lambda n, k: binomial(n, k, nonzero=True),
-                            [Arg(), Arg()],
-                            dps=400)
+        assert_mpmath_equal(
+            sc.binom,
+            lambda n, k: binomial(n, k, nonzero=True),
+            [Arg(), Arg()],
+            dps=400,
+        )
 
-        assert_mpmath_equal(sc.binom,
-                            binomial,
-                            np.array(bad_points),
-                            dps=400,
-                            atol=1e-14)
+        assert_mpmath_equal(
+            sc.binom,
+            binomial,
+            np.array(bad_points),
+            dps=400,
+            atol=1e-14,
+        )
 
     def test_chebyt_int(self):
-        assert_mpmath_equal(lambda n, x: sc.eval_chebyt(int(n), x),
-                            exception_to_nan(lambda n, x: mpmath.chebyt(n, x, **HYPERKW)),
-                            [IntArg(), Arg()], dps=50)
+        assert_mpmath_equal(
+            lambda n, x: sc.eval_chebyt(int(n), x),
+            exception_to_nan(lambda n, x: mpmath.chebyt(n, x, **HYPERKW)),
+            [IntArg(), Arg()],
+            dps=50,
+        )
 
     @pytest.mark.xfail(run=False, reason="some cases in hyp2f1 not fully accurate")
     def test_chebyt(self):
-        assert_mpmath_equal(sc.eval_chebyt,
-                            lambda n, x: time_limited()(exception_to_nan(mpmath.chebyt))(n, x, **HYPERKW),
-                            [Arg(-101, 101), Arg()], n=10000)
+        assert_mpmath_equal(
+            sc.eval_chebyt,
+            lambda n, x: time_limited()(
+                exception_to_nan(mpmath.chebyt)
+            )(n, x, **HYPERKW),
+            [Arg(-101, 101), Arg()],
+            n=10000,
+        )
 
     def test_chebyu_int(self):
-        assert_mpmath_equal(lambda n, x: sc.eval_chebyu(int(n), x),
-                            exception_to_nan(lambda n, x: mpmath.chebyu(n, x, **HYPERKW)),
-                            [IntArg(), Arg()], dps=50)
+        assert_mpmath_equal(
+            lambda n, x: sc.eval_chebyu(int(n), x),
+            exception_to_nan(lambda n, x: mpmath.chebyu(n, x, **HYPERKW)),
+            [IntArg(), Arg()],
+            dps=50,
+        )
 
     @pytest.mark.xfail(run=False, reason="some cases in hyp2f1 not fully accurate")
     def test_chebyu(self):
-        assert_mpmath_equal(sc.eval_chebyu,
-                            lambda n, x: time_limited()(exception_to_nan(mpmath.chebyu))(n, x, **HYPERKW),
-                            [Arg(-101, 101), Arg()])
+        assert_mpmath_equal(
+            sc.eval_chebyu,
+            lambda n, x: time_limited()(
+                exception_to_nan(mpmath.chebyu)
+            )(n, x, **HYPERKW),
+            [Arg(-101, 101), Arg()],
+        )
 
     def test_chi(self):
         def chi(x):
@@ -937,43 +1002,51 @@ class TestSystematic:
         def chi(z):
             return sc.shichi(z)[1]
         # chi oscillates as Im[z] -> +- inf, so limit range
-        assert_mpmath_equal(chi,
-                            mpmath.chi,
-                            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
-                            rtol=1e-12)
+        assert_mpmath_equal(
+            chi,
+            mpmath.chi,
+            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
+            rtol=1e-12,
+        )
 
     def test_ci(self):
         def ci(x):
             return sc.sici(x)[1]
         # oscillating function: limit range
-        assert_mpmath_equal(ci,
-                            mpmath.ci,
-                            [Arg(-1e8, 1e8)])
+        assert_mpmath_equal(ci, mpmath.ci, [Arg(-1e8, 1e8)])
 
     def test_ci_complex(self):
         def ci(z):
             return sc.sici(z)[1]
         # ci oscillates as Re[z] -> +- inf, so limit range
-        assert_mpmath_equal(ci,
-                            mpmath.ci,
-                            [ComplexArg(complex(-1e8, -np.inf), complex(1e8, np.inf))],
-                            rtol=1e-8)
+        assert_mpmath_equal(
+            ci,
+            mpmath.ci,
+            [ComplexArg(complex(-1e8, -np.inf), complex(1e8, np.inf))],
+            rtol=1e-8,
+        )
 
     def test_cospi(self):
         eps = np.finfo(float).eps
-        assert_mpmath_equal(_cospi,
-                            mpmath.cospi,
-                            [Arg()], nan_ok=False, rtol=2*eps)
+        assert_mpmath_equal(_cospi, mpmath.cospi, [Arg()], nan_ok=False, rtol=2*eps)
 
     def test_cospi_complex(self):
-        assert_mpmath_equal(_cospi,
-                            mpmath.cospi,
-                            [ComplexArg()], nan_ok=False, rtol=1e-13)
+        assert_mpmath_equal(
+            _cospi,
+            mpmath.cospi,
+            [ComplexArg()],
+            nan_ok=False,
+            rtol=1e-13,
+        )
 
     def test_digamma(self):
-        assert_mpmath_equal(sc.digamma,
-                            exception_to_nan(mpmath.digamma),
-                            [Arg()], rtol=1e-12, dps=50)
+        assert_mpmath_equal(
+            sc.digamma,
+            exception_to_nan(mpmath.digamma),
+            [Arg()],
+            rtol=1e-12,
+            dps=50,
+        )
 
     def test_digamma_complex(self):
         # Test on a cut plane because mpmath will hang. See
@@ -981,123 +1054,143 @@ class TestSystematic:
         def param_filter(z):
             return np.where((z.real < 0) & (np.abs(z.imag) < 1.12), False, True)
 
-        assert_mpmath_equal(sc.digamma,
-                            exception_to_nan(mpmath.digamma),
-                            [ComplexArg()], rtol=1e-13, dps=40,
-                            param_filter=param_filter)
+        assert_mpmath_equal(
+            sc.digamma,
+            exception_to_nan(mpmath.digamma),
+            [ComplexArg()],
+            rtol=1e-13,
+            dps=40,
+            param_filter=param_filter
+        )
 
     def test_e1(self):
-        assert_mpmath_equal(sc.exp1,
-                            mpmath.e1,
-                            [Arg()], rtol=1e-14)
+        assert_mpmath_equal(
+            sc.exp1,
+            mpmath.e1,
+            [Arg()],
+            rtol=1e-14,
+        )
 
     def test_e1_complex(self):
         # E_1 oscillates as Im[z] -> +- inf, so limit range
-        assert_mpmath_equal(sc.exp1,
-                            mpmath.e1,
-                            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
-                            rtol=1e-11)
+        assert_mpmath_equal(
+            sc.exp1,
+            mpmath.e1,
+            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
+            rtol=1e-11,
+        )
 
         # Check cross-over region
-        assert_mpmath_equal(sc.exp1,
-                            mpmath.e1,
-                            (np.linspace(-50, 50, 171)[:, None] +
-                             np.r_[0, np.logspace(-3, 2, 61),
-                                   -np.logspace(-3, 2, 11)]*1j).ravel(),
-                            rtol=1e-11)
-        assert_mpmath_equal(sc.exp1,
-                            mpmath.e1,
-                            (np.linspace(-50, -35, 10000) + 0j),
-                            rtol=1e-11)
+        assert_mpmath_equal(
+            sc.exp1,
+            mpmath.e1,
+            (np.linspace(-50, 50, 171)[:, None]
+             + np.r_[0, np.logspace(-3, 2, 61), -np.logspace(-3, 2, 11)]*1j).ravel(),
+            rtol=1e-11,
+        )
+        assert_mpmath_equal(
+            sc.exp1,
+            mpmath.e1,
+            (np.linspace(-50, -35, 10000) + 0j),
+            rtol=1e-11,
+        )
 
     def test_exprel(self):
-        assert_mpmath_equal(sc.exprel,
-                            lambda x: mpmath.expm1(x)/x if x != 0 else mpmath.mpf('1.0'),
-                            [Arg(a=-np.log(np.finfo(np.double).max), b=np.log(np.finfo(np.double).max))])
-        assert_mpmath_equal(sc.exprel,
-                            lambda x: mpmath.expm1(x)/x if x != 0 else mpmath.mpf('1.0'),
-                            np.array([1e-12, 1e-24, 0, 1e12, 1e24, np.inf]), rtol=1e-11)
+        assert_mpmath_equal(
+            sc.exprel,
+            lambda x: mpmath.expm1(x)/x if x != 0 else mpmath.mpf('1.0'),
+            [Arg(a=-np.log(np.finfo(np.float64).max),
+                 b=np.log(np.finfo(np.float64).max))],
+        )
+        assert_mpmath_equal(
+            sc.exprel,
+            lambda x: mpmath.expm1(x)/x if x != 0 else mpmath.mpf('1.0'),
+            np.array([1e-12, 1e-24, 0, 1e12, 1e24, np.inf]),
+            rtol=1e-11,
+        )
         assert_(np.isinf(sc.exprel(np.inf)))
         assert_(sc.exprel(-np.inf) == 0)
 
     def test_expm1_complex(self):
         # Oscillates as a function of Im[z], so limit range to avoid loss of precision
-        assert_mpmath_equal(sc.expm1,
-                            mpmath.expm1,
-                            [ComplexArg(complex(-np.inf, -1e7), complex(np.inf, 1e7))])
+        assert_mpmath_equal(
+            sc.expm1,
+            mpmath.expm1,
+            [ComplexArg(complex(-np.inf, -1e7), complex(np.inf, 1e7))],
+        )
 
     def test_log1p_complex(self):
-        assert_mpmath_equal(sc.log1p,
-                            lambda x: mpmath.log(x+1),
-                            [ComplexArg()], dps=60)
+        assert_mpmath_equal(
+            sc.log1p,
+            lambda x: mpmath.log(x+1),
+            [ComplexArg()],
+            dps=60,
+        )
 
     def test_log1pmx(self):
-        assert_mpmath_equal(_log1pmx,
-                            lambda x: mpmath.log(x + 1) - x,
-                            [Arg()], dps=60, rtol=1e-14)
+        assert_mpmath_equal(
+            _log1pmx,
+            lambda x: mpmath.log(x + 1) - x,
+            [Arg()],
+            dps=60,
+            rtol=1e-14,
+        )
 
     def test_ei(self):
-        assert_mpmath_equal(sc.expi,
-                            mpmath.ei,
-                            [Arg()],
-                            rtol=1e-11)
+        assert_mpmath_equal(sc.expi, mpmath.ei, [Arg()], rtol=1e-11)
 
     def test_ei_complex(self):
         # Ei oscillates as Im[z] -> +- inf, so limit range
-        assert_mpmath_equal(sc.expi,
-                            mpmath.ei,
-                            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
-                            rtol=1e-9)
+        assert_mpmath_equal(
+            sc.expi,
+            mpmath.ei,
+            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
+            rtol=1e-9,
+        )
 
     def test_ellipe(self):
-        assert_mpmath_equal(sc.ellipe,
-                            mpmath.ellipe,
-                            [Arg(b=1.0)])
+        assert_mpmath_equal(sc.ellipe, mpmath.ellipe, [Arg(b=1.0)])
 
     def test_ellipeinc(self):
-        assert_mpmath_equal(sc.ellipeinc,
-                            mpmath.ellipe,
-                            [Arg(-1e3, 1e3), Arg(b=1.0)])
+        assert_mpmath_equal(sc.ellipeinc, mpmath.ellipe, [Arg(-1e3, 1e3), Arg(b=1.0)])
 
     def test_ellipeinc_largephi(self):
-        assert_mpmath_equal(sc.ellipeinc,
-                            mpmath.ellipe,
-                            [Arg(), Arg()])
+        assert_mpmath_equal(sc.ellipeinc, mpmath.ellipe, [Arg(), Arg()])
 
     def test_ellipf(self):
-        assert_mpmath_equal(sc.ellipkinc,
-                            mpmath.ellipf,
-                            [Arg(-1e3, 1e3), Arg()])
+        assert_mpmath_equal(sc.ellipkinc, mpmath.ellipf, [Arg(-1e3, 1e3), Arg()])
 
     def test_ellipf_largephi(self):
-        assert_mpmath_equal(sc.ellipkinc,
-                            mpmath.ellipf,
-                            [Arg(), Arg()])
+        assert_mpmath_equal(sc.ellipkinc, mpmath.ellipf, [Arg(), Arg()])
 
     def test_ellipk(self):
-        assert_mpmath_equal(sc.ellipk,
-                            mpmath.ellipk,
-                            [Arg(b=1.0)])
-        assert_mpmath_equal(sc.ellipkm1,
-                            lambda m: mpmath.ellipk(1 - m),
-                            [Arg(a=0.0)],
-                            dps=400)
+        assert_mpmath_equal(sc.ellipk, mpmath.ellipk, [Arg(b=1.0)])
+        assert_mpmath_equal(
+            sc.ellipkm1,
+            lambda m: mpmath.ellipk(1 - m),
+            [Arg(a=0.0)],
+            dps=400,
+        )
 
     def test_ellipkinc(self):
         def ellipkinc(phi, m):
             return mpmath.ellippi(0, phi, m)
-        assert_mpmath_equal(sc.ellipkinc,
-                            ellipkinc,
-                            [Arg(-1e3, 1e3), Arg(b=1.0)],
-                            ignore_inf_sign=True)
+        assert_mpmath_equal(
+            sc.ellipkinc,
+            ellipkinc,
+            [Arg(-1e3, 1e3), Arg(b=1.0)],
+            ignore_inf_sign=True,
+        )
 
     def test_ellipkinc_largephi(self):
         def ellipkinc(phi, m):
             return mpmath.ellippi(0, phi, m)
-        assert_mpmath_equal(sc.ellipkinc,
-                            ellipkinc,
-                            [Arg(), Arg(b=1.0)],
-                            ignore_inf_sign=True)
+        assert_mpmath_equal(
+            sc.ellipkinc,
+            ellipkinc,
+            [Arg(), Arg(b=1.0)],
+            ignore_inf_sign=True,
+        )
 
     def test_ellipfun_sn(self):
         def sn(u, m):
@@ -1110,124 +1203,147 @@ class TestSystematic:
         # Oscillating function --- limit range of first argument; the
         # loss of precision there is an expected numerical feature
         # rather than an actual bug
-        assert_mpmath_equal(lambda u, m: sc.ellipj(u, m)[0],
-                            sn,
-                            [Arg(-1e6, 1e6), Arg(a=0, b=1)],
-                            rtol=1e-8)
+        assert_mpmath_equal(
+            lambda u, m: sc.ellipj(u, m)[0],
+            sn,
+            [Arg(-1e6, 1e6), Arg(a=0, b=1)],
+            rtol=1e-8,
+        )
 
     def test_ellipfun_cn(self):
         # see comment in ellipfun_sn
-        assert_mpmath_equal(lambda u, m: sc.ellipj(u, m)[1],
-                            lambda u, m: mpmath.ellipfun("cn", u=u, m=m),
-                            [Arg(-1e6, 1e6), Arg(a=0, b=1)],
-                            rtol=1e-8)
+        assert_mpmath_equal(
+            lambda u, m: sc.ellipj(u, m)[1],
+            lambda u, m: mpmath.ellipfun("cn", u=u, m=m),
+            [Arg(-1e6, 1e6), Arg(a=0, b=1)],
+            rtol=1e-8,
+        )
 
     def test_ellipfun_dn(self):
         # see comment in ellipfun_sn
-        assert_mpmath_equal(lambda u, m: sc.ellipj(u, m)[2],
-                            lambda u, m: mpmath.ellipfun("dn", u=u, m=m),
-                            [Arg(-1e6, 1e6), Arg(a=0, b=1)],
-                            rtol=1e-8)
+        assert_mpmath_equal(
+            lambda u, m: sc.ellipj(u, m)[2],
+            lambda u, m: mpmath.ellipfun("dn", u=u, m=m),
+            [Arg(-1e6, 1e6), Arg(a=0, b=1)],
+            rtol=1e-8,
+        )
 
     def test_erf(self):
-        assert_mpmath_equal(sc.erf,
-                            lambda z: mpmath.erf(z),
-                            [Arg()])
+        assert_mpmath_equal(sc.erf, lambda z: mpmath.erf(z), [Arg()])
 
     def test_erf_complex(self):
-        assert_mpmath_equal(sc.erf,
-                            lambda z: mpmath.erf(z),
-                            [ComplexArg()], n=200)
+        assert_mpmath_equal(sc.erf, lambda z: mpmath.erf(z), [ComplexArg()], n=200)
 
     def test_erfc(self):
-        assert_mpmath_equal(sc.erfc,
-                            exception_to_nan(lambda z: mpmath.erfc(z)),
-                            [Arg()], rtol=1e-13)
+        assert_mpmath_equal(
+            sc.erfc,
+            exception_to_nan(lambda z: mpmath.erfc(z)),
+            [Arg()],
+            rtol=1e-13,
+        )
 
     def test_erfc_complex(self):
-        assert_mpmath_equal(sc.erfc,
-                            exception_to_nan(lambda z: mpmath.erfc(z)),
-                            [ComplexArg()], n=200)
+        assert_mpmath_equal(
+            sc.erfc,
+            exception_to_nan(lambda z: mpmath.erfc(z)),
+            [ComplexArg()],
+            n=200,
+        )
 
     def test_erfi(self):
-        assert_mpmath_equal(sc.erfi,
-                            mpmath.erfi,
-                            [Arg()], n=200)
+        assert_mpmath_equal(sc.erfi, mpmath.erfi, [Arg()], n=200)
 
     def test_erfi_complex(self):
-        assert_mpmath_equal(sc.erfi,
-                            mpmath.erfi,
-                            [ComplexArg()], n=200)
+        assert_mpmath_equal(sc.erfi, mpmath.erfi, [ComplexArg()], n=200)
 
     def test_ndtr(self):
-        assert_mpmath_equal(sc.ndtr,
-                            exception_to_nan(lambda z: mpmath.ncdf(z)),
-                            [Arg()], n=200)
+        assert_mpmath_equal(
+            sc.ndtr,
+            exception_to_nan(lambda z: mpmath.ncdf(z)),
+            [Arg()],
+            n=200,
+        )
 
     def test_ndtr_complex(self):
-        assert_mpmath_equal(sc.ndtr,
-                            lambda z: mpmath.erfc(-z/np.sqrt(2.))/2.,
-                            [ComplexArg(a=complex(-10000, -10000), b=complex(10000, 10000))], n=400)
+        assert_mpmath_equal(
+            sc.ndtr,
+            lambda z: mpmath.erfc(-z/np.sqrt(2.))/2.,
+            [ComplexArg(a=complex(-10000, -10000), b=complex(10000, 10000))],
+            n=400,
+        )
 
     def test_log_ndtr(self):
-        assert_mpmath_equal(sc.log_ndtr,
-                            exception_to_nan(lambda z: mpmath.log(mpmath.ncdf(z))),
-                            [Arg()], n=600, dps=300, rtol=1e-13)
+        assert_mpmath_equal(
+            sc.log_ndtr,
+            exception_to_nan(lambda z: mpmath.log(mpmath.ncdf(z))),
+            [Arg()], n=600, dps=300, rtol=1e-13,
+        )
 
     def test_log_ndtr_complex(self):
-        assert_mpmath_equal(sc.log_ndtr,
-                            exception_to_nan(lambda z: mpmath.log(mpmath.erfc(-z/np.sqrt(2.))/2.)),
-                            [ComplexArg(a=complex(-10000, -100),
-                                        b=complex(10000, 100))], n=200, dps=300)
+        assert_mpmath_equal(
+            sc.log_ndtr,
+            exception_to_nan(lambda z: mpmath.log(mpmath.erfc(-z/np.sqrt(2.))/2.)),
+            [ComplexArg(a=complex(-10000, -100), b=complex(10000, 100))],
+            n=200, dps=300,
+        )
 
     def test_eulernum(self):
-        assert_mpmath_equal(lambda n: sc.euler(n)[-1],
-                            mpmath.eulernum,
-                            [IntArg(1, 10000)], n=10000)
+        assert_mpmath_equal(
+            lambda n: sc.euler(n)[-1],
+            mpmath.eulernum,
+            [IntArg(1, 10000)],
+            n=10000,
+        )
 
     def test_expint(self):
-        assert_mpmath_equal(sc.expn,
-                            mpmath.expint,
-                            [IntArg(0, 200), Arg(0, np.inf)],
-                            rtol=1e-13, dps=160)
+        assert_mpmath_equal(
+            sc.expn,
+            mpmath.expint,
+            [IntArg(0, 200), Arg(0, np.inf)],
+            rtol=1e-13,
+            dps=160,
+        )
 
     def test_fresnels(self):
         def fresnels(x):
             return sc.fresnel(x)[0]
-        assert_mpmath_equal(fresnels,
-                            mpmath.fresnels,
-                            [Arg()])
+        assert_mpmath_equal(fresnels, mpmath.fresnels, [Arg()])
 
     def test_fresnelc(self):
         def fresnelc(x):
             return sc.fresnel(x)[1]
-        assert_mpmath_equal(fresnelc,
-                            mpmath.fresnelc,
-                            [Arg()])
+        assert_mpmath_equal(fresnelc, mpmath.fresnelc, [Arg()])
 
     def test_gamma(self):
-        assert_mpmath_equal(sc.gamma,
-                            exception_to_nan(mpmath.gamma),
-                            [Arg()])
+        assert_mpmath_equal(sc.gamma, exception_to_nan(mpmath.gamma), [Arg()])
 
     def test_gamma_complex(self):
-        assert_mpmath_equal(sc.gamma,
-                            exception_to_nan(mpmath.gamma),
-                            [ComplexArg()], rtol=5e-13)
+        assert_mpmath_equal(
+            sc.gamma,
+            exception_to_nan(mpmath.gamma),
+            [ComplexArg()], 
+            rtol=5e-13,
+        )
 
     def test_gammainc(self):
         # Larger arguments are tested in test_data.py:test_local
-        assert_mpmath_equal(sc.gammainc,
-                            lambda z, b: mpmath.gammainc(z, b=b, regularized=True),
-                            [Arg(0, 1e4, inclusive_a=False), Arg(0, 1e4)],
-                            nan_ok=False, rtol=1e-11)
+        assert_mpmath_equal(
+            sc.gammainc,
+            lambda z, b: mpmath.gammainc(z, b=b, regularized=True),
+            [Arg(0, 1e4, inclusive_a=False), Arg(0, 1e4)],
+            nan_ok=False,
+            rtol=1e-11,
+        )
 
     def test_gammaincc(self):
         # Larger arguments are tested in test_data.py:test_local
-        assert_mpmath_equal(sc.gammaincc,
-                            lambda z, a: mpmath.gammainc(z, a=a, regularized=True),
-                            [Arg(0, 1e4, inclusive_a=False), Arg(0, 1e4)],
-                            nan_ok=False, rtol=1e-11)
+        assert_mpmath_equal(
+            sc.gammaincc,
+            lambda z, a: mpmath.gammainc(z, a=a, regularized=True),
+            [Arg(0, 1e4, inclusive_a=False), Arg(0, 1e4)],
+            nan_ok=False,
+            rtol=1e-11,
+        )
 
     def test_gammaln(self):
         # The real part of loggamma is log(|gamma(z)|).
@@ -1238,9 +1354,11 @@ class TestSystematic:
 
     @pytest.mark.xfail(run=False)
     def test_gegenbauer(self):
-        assert_mpmath_equal(sc.eval_gegenbauer,
-                            exception_to_nan(mpmath.gegenbauer),
-                            [Arg(-1e3, 1e3), Arg(), Arg()])
+        assert_mpmath_equal(
+            sc.eval_gegenbauer,
+            exception_to_nan(mpmath.gegenbauer),
+            [Arg(-1e3, 1e3), Arg(), Arg()],
+        )
 
     def test_gegenbauer_int(self):
         # Redefine functions to deal with numerical + mpmath issues
@@ -1277,47 +1395,58 @@ class TestSystematic:
             if abs(r) > 1e270:
                 return np.inf
             return r
-        assert_mpmath_equal(sc_gegenbauer,
-                            exception_to_nan(gegenbauer),
-                            [IntArg(0, 100), Arg(-1e9, 1e9), Arg()],
-                            n=40000, dps=100,
-                            ignore_inf_sign=True, rtol=1e-6)
+        assert_mpmath_equal(
+            sc_gegenbauer,
+            exception_to_nan(gegenbauer),
+            [IntArg(0, 100), Arg(-1e9, 1e9), Arg()],
+            n=40000, dps=100, ignore_inf_sign=True, rtol=1e-6,
+        )
 
         # Check the small-x expansion
-        assert_mpmath_equal(sc_gegenbauer,
-                            exception_to_nan(gegenbauer),
-                            [IntArg(0, 100), Arg(), FixedArg(np.logspace(-30, -4, 30))],
-                            dps=100,
-                            ignore_inf_sign=True)
+        assert_mpmath_equal(
+            sc_gegenbauer,
+            exception_to_nan(gegenbauer),
+            [IntArg(0, 100), Arg(), FixedArg(np.logspace(-30, -4, 30))],
+            dps=100, ignore_inf_sign=True,
+        )
 
     @pytest.mark.xfail(run=False)
     def test_gegenbauer_complex(self):
-        assert_mpmath_equal(lambda n, a, x: sc.eval_gegenbauer(int(n), a.real, x),
-                            exception_to_nan(mpmath.gegenbauer),
-                            [IntArg(0, 100), Arg(), ComplexArg()])
+        assert_mpmath_equal(
+            lambda n, a, x: sc.eval_gegenbauer(int(n), a.real, x),
+            exception_to_nan(mpmath.gegenbauer),
+            [IntArg(0, 100), Arg(), ComplexArg()],
+        )
 
     @nonfunctional_tooslow
     def test_gegenbauer_complex_general(self):
-        assert_mpmath_equal(lambda n, a, x: sc.eval_gegenbauer(n.real, a.real, x),
-                            exception_to_nan(mpmath.gegenbauer),
-                            [Arg(-1e3, 1e3), Arg(), ComplexArg()])
+        assert_mpmath_equal(
+            lambda n, a, x: sc.eval_gegenbauer(n.real, a.real, x),
+            exception_to_nan(mpmath.gegenbauer),
+            [Arg(-1e3, 1e3), Arg(), ComplexArg()],
+        )
 
     def test_hankel1(self):
-        assert_mpmath_equal(sc.hankel1,
-                            exception_to_nan(lambda v, x: mpmath.hankel1(v, x,
-                                                                          **HYPERKW)),
-                            [Arg(-1e20, 1e20), Arg()])
+        assert_mpmath_equal(
+            sc.hankel1,
+            exception_to_nan(lambda v, x: mpmath.hankel1(v, x, **HYPERKW)),
+            [Arg(-1e20, 1e20), Arg()],
+        )
 
     def test_hankel2(self):
-        assert_mpmath_equal(sc.hankel2,
-                            exception_to_nan(lambda v, x: mpmath.hankel2(v, x, **HYPERKW)),
-                            [Arg(-1e20, 1e20), Arg()])
+        assert_mpmath_equal(
+            sc.hankel2,
+            exception_to_nan(lambda v, x: mpmath.hankel2(v, x, **HYPERKW)),
+            [Arg(-1e20, 1e20), Arg()],
+        )
 
     @pytest.mark.xfail(run=False, reason="issues at intermediately large orders")
     def test_hermite(self):
-        assert_mpmath_equal(lambda n, x: sc.eval_hermite(int(n), x),
-                            exception_to_nan(mpmath.hermite),
-                            [IntArg(0, 10000), Arg()])
+        assert_mpmath_equal(
+            lambda n, x: sc.eval_hermite(int(n), x),
+            exception_to_nan(mpmath.hermite),
+            [IntArg(0, 10000), Arg()],
+        )
 
     # hurwitz: same as zeta
 
@@ -1325,19 +1454,23 @@ class TestSystematic:
         # mpmath reports no convergence unless maxterms is large enough
         KW = dict(maxprec=400, maxterms=1500)
         # n=500 (non-xslow default) fails for one bad point
-        assert_mpmath_equal(sc.hyp0f1,
-                            lambda a, x: mpmath.hyp0f1(a, x, **KW),
-                            [Arg(-1e7, 1e7), Arg(0, 1e5)],
-                            n=5000)
+        assert_mpmath_equal(
+            sc.hyp0f1,
+            lambda a, x: mpmath.hyp0f1(a, x, **KW),
+            [Arg(-1e7, 1e7), Arg(0, 1e5)],
+            n=5000,
+        )
         # NB: The range of the second parameter ("z") is limited from below
         # because of an overflow in the intermediate calculations. The way
         # for fix it is to implement an asymptotic expansion for Bessel J
         # (similar to what is implemented for Bessel I here).
 
     def test_hyp0f1_complex(self):
-        assert_mpmath_equal(lambda a, z: sc.hyp0f1(a.real, z),
-                            exception_to_nan(lambda a, x: mpmath.hyp0f1(a, x, **HYPERKW)),
-                            [Arg(-10, 10), ComplexArg(complex(-120, -120), complex(120, 120))])
+        assert_mpmath_equal(
+            lambda a, z: sc.hyp0f1(a.real, z),
+            exception_to_nan(lambda a, x: mpmath.hyp0f1(a, x, **HYPERKW)),
+            [Arg(-10, 10), ComplexArg(complex(-120, -120), complex(120, 120))],
+        )
         # NB: The range of the first parameter ("v") are limited by an overflow
         # in the intermediate calculations. Can be fixed by implementing an
         # asymptotic expansion for Bessel functions for large order.
@@ -1354,39 +1487,48 @@ class TestSystematic:
             mpmath_hyp1f1,
             [Arg(-50, 50), Arg(1, 50, inclusive_a=False), Arg(-50, 50)],
             n=500,
-            nan_ok=False
+            nan_ok=False,
         )
 
     @pytest.mark.xfail(run=False)
     def test_hyp1f1_complex(self):
-        assert_mpmath_equal(inf_to_nan(lambda a, b, x: sc.hyp1f1(a.real, b.real, x)),
-                            exception_to_nan(lambda a, b, x: mpmath.hyp1f1(a, b, x, **HYPERKW)),
-                            [Arg(-1e3, 1e3), Arg(-1e3, 1e3), ComplexArg()],
-                            n=2000)
+        assert_mpmath_equal(
+            inf_to_nan(lambda a, b, x: sc.hyp1f1(a.real, b.real, x)),
+            exception_to_nan(lambda a, b, x: mpmath.hyp1f1(a, b, x, **HYPERKW)),
+            [Arg(-1e3, 1e3), Arg(-1e3, 1e3), ComplexArg()],
+            n=2000,
+        )
 
     @nonfunctional_tooslow
     def test_hyp2f1_complex(self):
         # SciPy's hyp2f1 seems to have performance and accuracy problems
-        assert_mpmath_equal(lambda a, b, c, x: sc.hyp2f1(a.real, b.real, c.real, x),
-                            exception_to_nan(lambda a, b, c, x: mpmath.hyp2f1(a, b, c, x, **HYPERKW)),
-                            [Arg(-1e2, 1e2), Arg(-1e2, 1e2), Arg(-1e2, 1e2), ComplexArg()],
-                            n=10)
+        assert_mpmath_equal(
+            lambda a, b, c, x: sc.hyp2f1(a.real, b.real, c.real, x),
+            exception_to_nan(lambda a, b, c, x: mpmath.hyp2f1(a, b, c, x, **HYPERKW)),
+            [Arg(-1e2, 1e2), Arg(-1e2, 1e2), Arg(-1e2, 1e2), ComplexArg()],
+            n=10,
+        )
 
     @pytest.mark.xfail(run=False)
     def test_hyperu(self):
-        assert_mpmath_equal(sc.hyperu,
-                            exception_to_nan(lambda a, b, x: mpmath.hyperu(a, b, x, **HYPERKW)),
-                            [Arg(), Arg(), Arg()])
+        assert_mpmath_equal(
+            sc.hyperu,
+            exception_to_nan(lambda a, b, x: mpmath.hyperu(a, b, x, **HYPERKW)),
+            [Arg(), Arg(), Arg()],
+        )
 
-    @pytest.mark.xfail_on_32bit("mpmath issue gh-342: unsupported operand mpz, long for pow")
+    @pytest.mark.xfail_on_32bit("mpmath issue gh-342: "
+                                "unsupported operand mpz, long for pow")
     def test_igam_fac(self):
         def mp_igam_fac(a, x):
             return mpmath.power(x, a)*mpmath.exp(-x)/mpmath.gamma(a)
 
-        assert_mpmath_equal(_igam_fac,
-                            mp_igam_fac,
-                            [Arg(0, 1e14, inclusive_a=False), Arg(0, 1e14)],
-                            rtol=1e-10)
+        assert_mpmath_equal(
+            _igam_fac,
+            mp_igam_fac,
+            [Arg(0, 1e14, inclusive_a=False), Arg(0, 1e14)],
+            rtol=1e-10,
+        )
 
     def test_j0(self):
         # The Bessel function at large arguments is j0(x) ~ cos(x + phi)/sqrt(x)
@@ -1394,32 +1536,26 @@ class TestSystematic:
         #
         # This is numerically expected behavior, so we compare only up to
         # 1e8 = 1e15 * 1e-7
-        assert_mpmath_equal(sc.j0,
-                            mpmath.j0,
-                            [Arg(-1e3, 1e3)])
-        assert_mpmath_equal(sc.j0,
-                            mpmath.j0,
-                            [Arg(-1e8, 1e8)],
-                            rtol=1e-5)
+        assert_mpmath_equal(sc.j0, mpmath.j0, [Arg(-1e3, 1e3)])
+        assert_mpmath_equal(sc.j0, mpmath.j0, [Arg(-1e8, 1e8)], rtol=1e-5)
 
     def test_j1(self):
         # See comment in test_j0
-        assert_mpmath_equal(sc.j1,
-                            mpmath.j1,
-                            [Arg(-1e3, 1e3)])
-        assert_mpmath_equal(sc.j1,
-                            mpmath.j1,
-                            [Arg(-1e8, 1e8)],
-                            rtol=1e-5)
+        assert_mpmath_equal(sc.j1, mpmath.j1, [Arg(-1e3, 1e3)])
+        assert_mpmath_equal(sc.j1, mpmath.j1, [Arg(-1e8, 1e8)], rtol=1e-5)
 
     @pytest.mark.xfail(run=False)
     def test_jacobi(self):
-        assert_mpmath_equal(sc.eval_jacobi,
-                            exception_to_nan(lambda a, b, c, x: mpmath.jacobi(a, b, c, x, **HYPERKW)),
-                            [Arg(), Arg(), Arg(), Arg()])
-        assert_mpmath_equal(lambda n, b, c, x: sc.eval_jacobi(int(n), b, c, x),
-                            exception_to_nan(lambda a, b, c, x: mpmath.jacobi(a, b, c, x, **HYPERKW)),
-                            [IntArg(), Arg(), Arg(), Arg()])
+        assert_mpmath_equal(
+            sc.eval_jacobi,
+            exception_to_nan(lambda a, b, c, x: mpmath.jacobi(a, b, c, x, **HYPERKW)),
+            [Arg(), Arg(), Arg(), Arg()],
+        )
+        assert_mpmath_equal(
+            lambda n, b, c, x: sc.eval_jacobi(int(n), b, c, x),
+            exception_to_nan(lambda a, b, c, x: mpmath.jacobi(a, b, c, x, **HYPERKW)),
+            [IntArg(), Arg(), Arg(), Arg()],
+        )
 
     def test_jacobi_int(self):
         # Redefine functions to deal with numerical + mpmath issues
@@ -1428,10 +1564,13 @@ class TestSystematic:
             if n == 0:
                 return 1.0
             return mpmath.jacobi(n, a, b, x)
-        assert_mpmath_equal(lambda n, a, b, x: sc.eval_jacobi(int(n), a, b, x),
-                            lambda n, a, b, x: exception_to_nan(jacobi)(n, a, b, x, **HYPERKW),
-                            [IntArg(), Arg(), Arg(), Arg()],
-                            n=20000, dps=50)
+        assert_mpmath_equal(
+            lambda n, a, b, x: sc.eval_jacobi(int(n), a, b, x),
+            lambda n, a, b, x: exception_to_nan(jacobi)(n, a, b, x, **HYPERKW),
+            [IntArg(), Arg(), Arg(), Arg()],
+            n=20000,
+            dps=50,
+        )
 
     def test_kei(self):
         def kei(x):
@@ -1439,32 +1578,40 @@ class TestSystematic:
                 # work around mpmath issue at x=0
                 return -pi/4
             return exception_to_nan(mpmath.kei)(0, x, **HYPERKW)
-        assert_mpmath_equal(sc.kei,
-                            kei,
-                            [Arg(-1e30, 1e30)], n=1000)
+        assert_mpmath_equal(sc.kei, kei, [Arg(-1e30, 1e30)], n=1000)
 
     def test_ker(self):
-        assert_mpmath_equal(sc.ker,
-                            exception_to_nan(lambda x: mpmath.ker(0, x, **HYPERKW)),
-                            [Arg(-1e30, 1e30)], n=1000)
+        assert_mpmath_equal(
+            sc.ker,
+            exception_to_nan(lambda x: mpmath.ker(0, x, **HYPERKW)),
+            [Arg(-1e30, 1e30)],
+            n=1000,
+        )
 
     @nonfunctional_tooslow
     def test_laguerre(self):
-        assert_mpmath_equal(trace_args(sc.eval_laguerre),
-                            lambda n, x: exception_to_nan(mpmath.laguerre)(n, x, **HYPERKW),
-                            [Arg(), Arg()])
+        assert_mpmath_equal(
+            trace_args(sc.eval_laguerre),
+            lambda n, x: exception_to_nan(mpmath.laguerre)(n, x, **HYPERKW),
+            [Arg(), Arg()],
+        )
 
     def test_laguerre_int(self):
-        assert_mpmath_equal(lambda n, x: sc.eval_laguerre(int(n), x),
-                            lambda n, x: exception_to_nan(mpmath.laguerre)(n, x, **HYPERKW),
-                            [IntArg(), Arg()], n=20000)
+        assert_mpmath_equal(
+            lambda n, x: sc.eval_laguerre(int(n), x),
+            lambda n, x: exception_to_nan(mpmath.laguerre)(n, x, **HYPERKW),
+            [IntArg(), Arg()],
+            n=20000,
+        )
 
     @pytest.mark.xfail_on_32bit("see gh-3551 for bad points")
     def test_lambertw_real(self):
-        assert_mpmath_equal(lambda x, k: sc.lambertw(x, int(k.real)),
-                            lambda x, k: mpmath.lambertw(x, int(k.real)),
-                            [ComplexArg(-np.inf, np.inf), IntArg(0, 10)],
-                            rtol=1e-13, nan_ok=False)
+        assert_mpmath_equal(
+            lambda x, k: sc.lambertw(x, int(k.real)),
+            lambda x, k: mpmath.lambertw(x, int(k.real)),
+            [ComplexArg(-np.inf, np.inf), IntArg(0, 10)],
+            rtol=1e-13, nan_ok=False,
+        )
 
     def test_lanczos_sum_expg_scaled(self):
         maxgamma = 171.624376956302725
@@ -1482,27 +1629,31 @@ class TestSystematic:
                     res *= fac
             return res
 
-        assert_mpmath_equal(gamma,
-                            mpmath.gamma,
-                            [Arg(0, maxgamma, inclusive_a=False)],
-                            rtol=1e-13)
+        assert_mpmath_equal(
+            gamma,
+            mpmath.gamma,
+            [Arg(0, maxgamma, inclusive_a=False)],
+            rtol=1e-13,
+        )
 
     @nonfunctional_tooslow
     def test_legendre(self):
-        assert_mpmath_equal(sc.eval_legendre,
-                            mpmath.legendre,
-                            [Arg(), Arg()])
+        assert_mpmath_equal(sc.eval_legendre, mpmath.legendre, [Arg(), Arg()])
 
     def test_legendre_int(self):
-        assert_mpmath_equal(lambda n, x: sc.eval_legendre(int(n), x),
-                            lambda n, x: exception_to_nan(mpmath.legendre)(n, x, **HYPERKW),
-                            [IntArg(), Arg()],
-                            n=20000)
+        assert_mpmath_equal(
+            lambda n, x: sc.eval_legendre(int(n), x),
+            lambda n, x: exception_to_nan(mpmath.legendre)(n, x, **HYPERKW),
+            [IntArg(), Arg()],
+            n=20000,
+        )
 
         # Check the small-x expansion
-        assert_mpmath_equal(lambda n, x: sc.eval_legendre(int(n), x),
-                            lambda n, x: exception_to_nan(mpmath.legendre)(n, x, **HYPERKW),
-                            [IntArg(), FixedArg(np.logspace(-30, -4, 20))])
+        assert_mpmath_equal(
+            lambda n, x: sc.eval_legendre(int(n), x),
+            lambda n, x: exception_to_nan(mpmath.legendre)(n, x, **HYPERKW),
+            [IntArg(), FixedArg(np.logspace(-30, -4, 20))],
+        )
 
     def test_legenp(self):
         def lpnm(n, m, z):
@@ -1546,14 +1697,14 @@ class TestSystematic:
 
             return v
 
-        assert_mpmath_equal(lpnm,
-                            legenp,
-                            [IntArg(-100, 100), IntArg(-100, 100), Arg()])
+        assert_mpmath_equal(lpnm, legenp, [IntArg(-100, 100), IntArg(-100, 100), Arg()])
 
-        assert_mpmath_equal(lpnm_2,
-                            legenp,
-                            [IntArg(-100, 100), Arg(-100, 100), Arg(-1, 1)],
-                            atol=1e-10)
+        assert_mpmath_equal(
+            lpnm_2,
+            legenp,
+            [IntArg(-100, 100), Arg(-100, 100), Arg(-1, 1)],
+            atol=1e-10,
+        )
 
     def test_legenp_complex_2(self):
         def clpnm(n, m, z):
@@ -1573,11 +1724,15 @@ class TestSystematic:
         y = np.array([-1e3, -0.5, 0.5, 1.3])
         z = (x[:,None] + 1j*y[None,:]).ravel()
 
-        assert_mpmath_equal(clpnm,
-                            legenp,
-                            [FixedArg([-2, -1, 0, 1, 2, 10]), FixedArg([-2, -1, 0, 1, 2, 10]), FixedArg(z)],
-                            rtol=1e-6,
-                            n=500)
+        assert_mpmath_equal(
+            clpnm,
+            legenp,
+            [FixedArg([-2, -1, 0, 1, 2, 10]),
+             FixedArg([-2, -1, 0, 1, 2, 10]),
+             FixedArg(z)],
+            rtol=1e-6,
+            n=500,
+        )
 
     def test_legenp_complex_3(self):
         def clpnm(n, m, z):
@@ -1597,11 +1752,15 @@ class TestSystematic:
         y = np.array([-1e3, -0.5, 0.5, 1.3])
         z = (x[:,None] + 1j*y[None,:]).ravel()
 
-        assert_mpmath_equal(clpnm,
-                            legenp,
-                            [FixedArg([-2, -1, 0, 1, 2, 10]), FixedArg([-2, -1, 0, 1, 2, 10]), FixedArg(z)],
-                            rtol=1e-6,
-                            n=500)
+        assert_mpmath_equal(
+            clpnm,
+            legenp,
+            [FixedArg([-2, -1, 0, 1, 2, 10]),
+             FixedArg([-2, -1, 0, 1, 2, 10]),
+             FixedArg(z)],
+            rtol=1e-6,
+            n=500,
+        )
 
     @pytest.mark.xfail(run=False, reason="apparently picks wrong function at |z| > 1")
     def test_legenq(self):
@@ -1614,9 +1773,11 @@ class TestSystematic:
                 return np.nan
             return exception_to_nan(mpmath.legenq)(n, m, z, type=2)
 
-        assert_mpmath_equal(lqnm,
-                            legenq,
-                            [IntArg(0, 100), IntArg(0, 100), Arg()])
+        assert_mpmath_equal(
+            lqnm,
+            legenq,
+            [IntArg(0, 100), IntArg(0, 100), Arg()],
+        )
 
     @nonfunctional_tooslow
     def test_legenq_complex(self):
@@ -1629,10 +1790,12 @@ class TestSystematic:
                 return np.nan
             return exception_to_nan(mpmath.legenq)(int(n.real), int(m.real), z, type=2)
 
-        assert_mpmath_equal(lqnm,
-                            legenq,
-                            [IntArg(0, 100), IntArg(0, 100), ComplexArg()],
-                            n=100)
+        assert_mpmath_equal(
+            lqnm,
+            legenq,
+            [IntArg(0, 100), IntArg(0, 100), ComplexArg()],
+            n=100,
+        )
 
     def test_lgam1p(self):
         def param_filter(x):
@@ -1643,10 +1806,14 @@ class TestSystematic:
             # The real part of loggamma is log(|gamma(z)|)
             return mpmath.loggamma(1 + z).real
 
-        assert_mpmath_equal(_lgam1p,
-                            mp_lgam1p,
-                            [Arg()], rtol=1e-13, dps=100,
-                            param_filter=param_filter)
+        assert_mpmath_equal(
+            _lgam1p,
+            mp_lgam1p,
+            [Arg()],
+            rtol=1e-13,
+            dps=100,
+            param_filter=param_filter,
+        )
 
     def test_loggamma(self):
         def mpmath_loggamma(z):
@@ -1656,26 +1823,36 @@ class TestSystematic:
                 res = complex(np.nan, np.nan)
             return res
 
-        assert_mpmath_equal(sc.loggamma,
-                            mpmath_loggamma,
-                            [ComplexArg()], nan_ok=False,
-                            distinguish_nan_and_inf=False, rtol=5e-14)
+        assert_mpmath_equal(
+            sc.loggamma,
+            mpmath_loggamma,
+            [ComplexArg()],
+            nan_ok=False,
+            distinguish_nan_and_inf=False,
+            rtol=5e-14,
+        )
 
     @pytest.mark.xfail(run=False)
     def test_pcfd(self):
         def pcfd(v, x):
             return sc.pbdv(v, x)[0]
-        assert_mpmath_equal(pcfd,
-                            exception_to_nan(lambda v, x: mpmath.pcfd(v, x, **HYPERKW)),
-                            [Arg(), Arg()])
+        assert_mpmath_equal(
+            pcfd,
+            exception_to_nan(lambda v, x: mpmath.pcfd(v, x, **HYPERKW)),
+            [Arg(), Arg()],
+        )
 
-    @pytest.mark.xfail(run=False, reason="it's not the same as the mpmath function --- maybe different definition?")
+    @pytest.mark.xfail(run=False, reason="it's not the same as the mpmath function --- "
+                                         "maybe different definition?")
     def test_pcfv(self):
         def pcfv(v, x):
             return sc.pbvv(v, x)[0]
-        assert_mpmath_equal(pcfv,
-                            lambda v, x: time_limited()(exception_to_nan(mpmath.pcfv))(v, x, **HYPERKW),
-                            [Arg(), Arg()], n=1000)
+        assert_mpmath_equal(
+            pcfv,
+            lambda v, x: time_limited()(exception_to_nan(mpmath.pcfv))(v, x, **HYPERKW),
+            [Arg(), Arg()],
+            n=1000,
+        )
 
     def test_pcfw(self):
         def pcfw(a, x):
@@ -1689,19 +1866,31 @@ class TestSystematic:
 
         # The Zhang and Jin implementation only uses Taylor series and
         # is thus accurate in only a very small range.
-        assert_mpmath_equal(pcfw,
-                            mpmath.pcfw,
-                            [Arg(-5, 5), Arg(-5, 5)], rtol=2e-8, n=100)
+        assert_mpmath_equal(
+            pcfw,
+            mpmath.pcfw,
+            [Arg(-5, 5), Arg(-5, 5)],
+            rtol=2e-8,
+            n=100,
+        )
 
-        assert_mpmath_equal(dpcfw,
-                            mpmath_dpcfw,
-                            [Arg(-5, 5), Arg(-5, 5)], rtol=2e-9, n=100)
+        assert_mpmath_equal(
+            dpcfw,
+            mpmath_dpcfw,
+            [Arg(-5, 5), Arg(-5, 5)],
+            rtol=2e-9,
+            n=100,
+        )
 
-    @pytest.mark.xfail(run=False, reason="issues at large arguments (atol OK, rtol not) and <eps-close to z=0")
+    @pytest.mark.xfail(run=False,
+                       reason="issues at large arguments (atol OK, rtol not) "
+                              "and <eps-close to z=0")
     def test_polygamma(self):
-        assert_mpmath_equal(sc.polygamma,
-                            time_limited()(exception_to_nan(mpmath.polygamma)),
-                            [IntArg(0, 1000), Arg()])
+        assert_mpmath_equal(
+            sc.polygamma,
+            time_limited()(exception_to_nan(mpmath.polygamma)),
+            [IntArg(0, 1000), Arg()],
+        )
 
     def test_rgamma(self):
         assert_mpmath_equal(
@@ -1714,9 +1903,12 @@ class TestSystematic:
         )
 
     def test_rgamma_complex(self):
-        assert_mpmath_equal(sc.rgamma,
-                            exception_to_nan(mpmath.rgamma),
-                            [ComplexArg()], rtol=5e-13)
+        assert_mpmath_equal(
+            sc.rgamma,
+            exception_to_nan(mpmath.rgamma),
+            [ComplexArg()],
+            rtol=5e-13,
+        )
 
     @pytest.mark.xfail(reason=("see gh-3551 for bad points on 32 bit "
                                "systems and gh-8095 for another bad "
@@ -1735,19 +1927,26 @@ class TestSystematic:
                     m = int(a + m) - a
                 return mpmath.rf(a, m)
 
-        assert_mpmath_equal(sc.poch,
-                            mppoch,
-                            [Arg(), Arg()],
-                            dps=400)
+        assert_mpmath_equal(sc.poch, mppoch, [Arg(), Arg()], dps=400)
 
     def test_sinpi(self):
         eps = np.finfo(float).eps
-        assert_mpmath_equal(_sinpi, mpmath.sinpi,
-                            [Arg()], nan_ok=False, rtol=2*eps)
+        assert_mpmath_equal(
+            _sinpi,
+            mpmath.sinpi,
+            [Arg()],
+            nan_ok=False,
+            rtol=2*eps,
+        )
 
     def test_sinpi_complex(self):
-        assert_mpmath_equal(_sinpi, mpmath.sinpi,
-                            [ComplexArg()], nan_ok=False, rtol=2e-14)
+        assert_mpmath_equal(
+            _sinpi,
+            mpmath.sinpi,
+            [ComplexArg()],
+            nan_ok=False,
+            rtol=2e-14,
+        )
 
     def test_shi(self):
         def shi(x):
@@ -1760,10 +1959,12 @@ class TestSystematic:
         def shi(z):
             return sc.shichi(z)[0]
         # shi oscillates as Im[z] -> +- inf, so limit range
-        assert_mpmath_equal(shi,
-                            mpmath.shi,
-                            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
-                            rtol=1e-12)
+        assert_mpmath_equal(
+            shi,
+            mpmath.shi,
+            [ComplexArg(complex(-np.inf, -1e8), complex(np.inf, 1e8))],
+            rtol=1e-12,
+        )
 
     def test_si(self):
         def si(x):
@@ -1774,44 +1975,56 @@ class TestSystematic:
         def si(z):
             return sc.sici(z)[0]
         # si oscillates as Re[z] -> +- inf, so limit range
-        assert_mpmath_equal(si,
-                            mpmath.si,
-                            [ComplexArg(complex(-1e8, -np.inf), complex(1e8, np.inf))],
-                            rtol=1e-12)
+        assert_mpmath_equal(
+            si,
+            mpmath.si,
+            [ComplexArg(complex(-1e8, -np.inf), complex(1e8, np.inf))],
+            rtol=1e-12,
+        )
 
     def test_spence(self):
         # mpmath uses a different convention for the dilogarithm
         def dilog(x):
             return mpmath.polylog(2, 1 - x)
         # Spence has a branch cut on the negative real axis
-        assert_mpmath_equal(sc.spence,
-                            exception_to_nan(dilog),
-                            [Arg(0, np.inf)], rtol=1e-14)
+        assert_mpmath_equal(
+            sc.spence,
+            exception_to_nan(dilog),
+            [Arg(0, np.inf)],
+            rtol=1e-14,
+        )
 
     def test_spence_complex(self):
         def dilog(z):
             return mpmath.polylog(2, 1 - z)
-        assert_mpmath_equal(sc.spence,
-                            exception_to_nan(dilog),
-                            [ComplexArg()], rtol=1e-14)
+        assert_mpmath_equal(
+            sc.spence,
+            exception_to_nan(dilog),
+            [ComplexArg()],
+            rtol=1e-14,
+        )
 
     def test_spherharm(self):
         def spherharm(l, m, theta, phi):
             if m > l:
                 return np.nan
             return sc.sph_harm(m, l, phi, theta)
-        assert_mpmath_equal(spherharm,
-                            mpmath.spherharm,
-                            [IntArg(0, 100), IntArg(0, 100),
-                             Arg(a=0, b=pi), Arg(a=0, b=2*pi)],
-                            atol=1e-8, n=6000,
-                            dps=150)
+        assert_mpmath_equal(
+            spherharm,
+            mpmath.spherharm,
+            [IntArg(0, 100), IntArg(0, 100), Arg(a=0, b=pi), Arg(a=0, b=2*pi)],
+            atol=1e-8,
+            n=6000,
+            dps=150,
+        )
 
     def test_struveh(self):
-        assert_mpmath_equal(sc.struve,
-                            exception_to_nan(mpmath.struveh),
-                            [Arg(-1e4, 1e4), Arg(0, 1e4)],
-                            rtol=5e-10)
+        assert_mpmath_equal(
+            sc.struve,
+            exception_to_nan(mpmath.struveh),
+            [Arg(-1e4, 1e4), Arg(0, 1e4)],
+            rtol=5e-10,
+        )
 
     def test_struvel(self):
         def mp_struvel(v, z):
@@ -1825,11 +2038,13 @@ class TestSystematic:
                     mpmath.mp.dps = old_dps
             return mpmath.struvel(v, z)
 
-        assert_mpmath_equal(sc.modstruve,
-                            exception_to_nan(mp_struvel),
-                            [Arg(-1e4, 1e4), Arg(0, 1e4)],
-                            rtol=5e-10,
-                            ignore_inf_sign=True)
+        assert_mpmath_equal(
+            sc.modstruve,
+            exception_to_nan(mp_struvel),
+            [Arg(-1e4, 1e4), Arg(0, 1e4)],
+            rtol=5e-10,
+            ignore_inf_sign=True,
+        )
 
     def test_wrightomega_real(self):
         def mpmath_wrightomega_real(x):
@@ -1848,15 +2063,20 @@ class TestSystematic:
         )
 
     def test_wrightomega(self):
-        assert_mpmath_equal(sc.wrightomega,
-                            lambda z: _mpmath_wrightomega(z, 25),
-                            [ComplexArg()], rtol=1e-14, nan_ok=False)
+        assert_mpmath_equal(
+            sc.wrightomega,
+            lambda z: _mpmath_wrightomega(z, 25),
+            [ComplexArg()],
+            rtol=1e-14,
+            nan_ok=False,
+        )
 
     def test_hurwitz_zeta(self):
-        assert_mpmath_equal(sc.zeta,
-                            exception_to_nan(mpmath.zeta),
-                            [Arg(a=1, b=1e10, inclusive_a=False),
-                             Arg(a=0, inclusive_a=False)])
+        assert_mpmath_equal(
+            sc.zeta,
+            exception_to_nan(mpmath.zeta),
+            [Arg(a=1, b=1e10, inclusive_a=False), Arg(a=0, inclusive_a=False)],
+        )
 
     def test_riemann_zeta(self):
         assert_mpmath_equal(
@@ -1868,11 +2088,14 @@ class TestSystematic:
         )
 
     def test_zetac(self):
-        assert_mpmath_equal(sc.zetac,
-                            lambda x: (mpmath.zeta(x) - 1
-                                       if x != 1 else mpmath.inf),
-                            [Arg(-100, 100)],
-                            nan_ok=False, dps=45, rtol=5e-13)
+        assert_mpmath_equal(
+            sc.zetac,
+            lambda x: mpmath.zeta(x) - 1 if x != 1 else mpmath.inf,
+            [Arg(-100, 100)],
+            nan_ok=False,
+            dps=45,
+            rtol=5e-13,
+        )
 
     def test_boxcox(self):
 
@@ -1884,12 +2107,14 @@ class TestSystematic:
             else:
                 return mpmath.mp.powm1(x, lmbda) / lmbda
 
-        assert_mpmath_equal(sc.boxcox,
-                            exception_to_nan(mp_boxcox),
-                            [Arg(a=0, inclusive_a=False), Arg()],
-                            n=200,
-                            dps=60,
-                            rtol=1e-13)
+        assert_mpmath_equal(
+            sc.boxcox,
+            exception_to_nan(mp_boxcox),
+            [Arg(a=0, inclusive_a=False), Arg()],
+            n=200,
+            dps=60,
+            rtol=1e-13,
+        )
 
     def test_boxcox1p(self):
 
@@ -1902,12 +2127,14 @@ class TestSystematic:
             else:
                 return mpmath.mp.powm1(one + x, lmbda) / lmbda
 
-        assert_mpmath_equal(sc.boxcox1p,
-                            exception_to_nan(mp_boxcox1p),
-                            [Arg(a=-1, inclusive_a=False), Arg()],
-                            n=200,
-                            dps=60,
-                            rtol=1e-13)
+        assert_mpmath_equal(
+            sc.boxcox1p,
+            exception_to_nan(mp_boxcox1p),
+            [Arg(a=-1, inclusive_a=False), Arg()],
+            n=200,
+            dps=60,
+            rtol=1e-13,
+        )
 
     def test_spherical_jn(self):
         def mp_spherical_jn(n, z):
@@ -1919,10 +2146,12 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_jn(int(n), z),
-                            exception_to_nan(mp_spherical_jn),
-                            [IntArg(0, 200), Arg(-1e8, 1e8)],
-                            dps=300)
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_jn(int(n), z),
+            exception_to_nan(mp_spherical_jn),
+            [IntArg(0, 200), Arg(-1e8, 1e8)],
+            dps=300,
+        )
 
     def test_spherical_jn_complex(self):
         def mp_spherical_jn(n, z):
@@ -1934,9 +2163,11 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_jn(int(n.real), z),
-                            exception_to_nan(mp_spherical_jn),
-                            [IntArg(0, 200), ComplexArg()])
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_jn(int(n.real), z),
+            exception_to_nan(mp_spherical_jn),
+            [IntArg(0, 200), ComplexArg()]
+        )
 
     def test_spherical_yn(self):
         def mp_spherical_yn(n, z):
@@ -1948,10 +2179,12 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_yn(int(n), z),
-                            exception_to_nan(mp_spherical_yn),
-                            [IntArg(0, 200), Arg(-1e10, 1e10)],
-                            dps=100)
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_yn(int(n), z),
+            exception_to_nan(mp_spherical_yn),
+            [IntArg(0, 200), Arg(-1e10, 1e10)],
+            dps=100,
+        )
 
     def test_spherical_yn_complex(self):
         def mp_spherical_yn(n, z):
@@ -1963,9 +2196,11 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_yn(int(n.real), z),
-                            exception_to_nan(mp_spherical_yn),
-                            [IntArg(0, 200), ComplexArg()])
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_yn(int(n.real), z),
+            exception_to_nan(mp_spherical_yn),
+            [IntArg(0, 200), ComplexArg()],
+        )
 
     def test_spherical_in(self):
         def mp_spherical_in(n, z):
@@ -1977,10 +2212,13 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_in(int(n), z),
-                            exception_to_nan(mp_spherical_in),
-                            [IntArg(0, 200), Arg()],
-                            dps=200, atol=10**(-278))
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_in(int(n), z),
+            exception_to_nan(mp_spherical_in),
+            [IntArg(0, 200), Arg()],
+            dps=200,
+            atol=10**(-278),
+        )
 
     def test_spherical_in_complex(self):
         def mp_spherical_in(n, z):
@@ -1992,9 +2230,11 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_in(int(n.real), z),
-                            exception_to_nan(mp_spherical_in),
-                            [IntArg(0, 200), ComplexArg()])
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_in(int(n.real), z),
+            exception_to_nan(mp_spherical_in),
+            [IntArg(0, 200), ComplexArg()],
+        )
 
     def test_spherical_kn(self):
         def mp_spherical_kn(n, z):
@@ -2005,12 +2245,15 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_kn(int(n), z),
-                            exception_to_nan(mp_spherical_kn),
-                            [IntArg(0, 150), Arg()],
-                            dps=100)
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_kn(int(n), z),
+            exception_to_nan(mp_spherical_kn),
+            [IntArg(0, 150), Arg()],
+            dps=100,
+        )
 
-    @pytest.mark.xfail(run=False, reason="Accuracy issues near z = -1 inherited from kv.")
+    @pytest.mark.xfail(run=False,
+                       reason="Accuracy issues near z = -1 inherited from kv.")
     def test_spherical_kn_complex(self):
         def mp_spherical_kn(n, z):
             arg = mpmath.mpmathify(z)
@@ -2021,7 +2264,9 @@ class TestSystematic:
             else:
                 return out
 
-        assert_mpmath_equal(lambda n, z: sc.spherical_kn(int(n.real), z),
-                            exception_to_nan(mp_spherical_kn),
-                            [IntArg(0, 200), ComplexArg()],
-                            dps=200)
+        assert_mpmath_equal(
+            lambda n, z: sc.spherical_kn(int(n.real), z),
+            exception_to_nan(mp_spherical_kn),
+            [IntArg(0, 200), ComplexArg()],
+            dps=200,
+        )

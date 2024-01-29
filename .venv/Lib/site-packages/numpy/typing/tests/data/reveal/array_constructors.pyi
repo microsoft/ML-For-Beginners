@@ -1,8 +1,15 @@
+import sys
 from typing import Any, TypeVar
 from pathlib import Path
+from collections import deque
 
 import numpy as np
 import numpy.typing as npt
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 _SCT = TypeVar("_SCT", bound=np.generic, covariant=True)
 
@@ -16,190 +23,199 @@ C: list[int]
 
 def func(i: int, j: int, **kwargs: Any) -> SubClass[np.float64]: ...
 
-reveal_type(np.empty_like(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.empty_like(B))  # E: SubClass[{float64}]
-reveal_type(np.empty_like([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.empty_like(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.empty_like(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.empty_like(A), npt.NDArray[np.float64])
+assert_type(np.empty_like(B), SubClass[np.float64])
+assert_type(np.empty_like([1, 1.0]), npt.NDArray[Any])
+assert_type(np.empty_like(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.empty_like(A, dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.array(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.array(B))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.array(B, subok=True))  # E: SubClass[{float64}]
-reveal_type(np.array([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.array(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.array(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.array(A, like=A))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(np.array(A), npt.NDArray[np.float64])
+assert_type(np.array(B), npt.NDArray[np.float64])
+assert_type(np.array(B, subok=True), SubClass[np.float64])
+assert_type(np.array([1, 1.0]), npt.NDArray[Any])
+assert_type(np.array(deque([1, 2, 3])), npt.NDArray[Any])
+assert_type(np.array(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.array(A, dtype='c16'), npt.NDArray[Any])
+assert_type(np.array(A, like=A), npt.NDArray[np.float64])
 
-reveal_type(np.zeros([1, 5, 6]))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.zeros([1, 5, 6], dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.zeros([1, 5, 6], dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.zeros([1, 5, 6]), npt.NDArray[np.float64])
+assert_type(np.zeros([1, 5, 6], dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.zeros([1, 5, 6], dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.empty([1, 5, 6]))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.empty([1, 5, 6], dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.empty([1, 5, 6], dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.empty([1, 5, 6]), npt.NDArray[np.float64])
+assert_type(np.empty([1, 5, 6], dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.empty([1, 5, 6], dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.concatenate(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.concatenate([A, A]))  # E: Any
-reveal_type(np.concatenate([[1], A]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.concatenate([[1], [1]]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.concatenate((A, A)))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.concatenate(([1], [1])))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.concatenate([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.concatenate(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.concatenate(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.concatenate([1, 1.0], out=A))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(np.concatenate(A), npt.NDArray[np.float64])
+assert_type(np.concatenate([A, A]), Any)
+assert_type(np.concatenate([[1], A]), npt.NDArray[Any])
+assert_type(np.concatenate([[1], [1]]), npt.NDArray[Any])
+assert_type(np.concatenate((A, A)), npt.NDArray[np.float64])
+assert_type(np.concatenate(([1], [1])), npt.NDArray[Any])
+assert_type(np.concatenate([1, 1.0]), npt.NDArray[Any])
+assert_type(np.concatenate(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.concatenate(A, dtype='c16'), npt.NDArray[Any])
+assert_type(np.concatenate([1, 1.0], out=A), npt.NDArray[np.float64])
 
-reveal_type(np.asarray(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.asarray(B))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.asarray([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.asarray(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.asarray(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.asarray(A), npt.NDArray[np.float64])
+assert_type(np.asarray(B), npt.NDArray[np.float64])
+assert_type(np.asarray([1, 1.0]), npt.NDArray[Any])
+assert_type(np.asarray(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.asarray(A, dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.asanyarray(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.asanyarray(B))  # E: SubClass[{float64}]
-reveal_type(np.asanyarray([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.asanyarray(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.asanyarray(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.asanyarray(A), npt.NDArray[np.float64])
+assert_type(np.asanyarray(B), SubClass[np.float64])
+assert_type(np.asanyarray([1, 1.0]), npt.NDArray[Any])
+assert_type(np.asanyarray(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.asanyarray(A, dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.ascontiguousarray(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.ascontiguousarray(B))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.ascontiguousarray([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.ascontiguousarray(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.ascontiguousarray(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.ascontiguousarray(A), npt.NDArray[np.float64])
+assert_type(np.ascontiguousarray(B), npt.NDArray[np.float64])
+assert_type(np.ascontiguousarray([1, 1.0]), npt.NDArray[Any])
+assert_type(np.ascontiguousarray(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.ascontiguousarray(A, dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.asfortranarray(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.asfortranarray(B))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.asfortranarray([1, 1.0]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.asfortranarray(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.asfortranarray(A, dtype='c16'))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.asfortranarray(A), npt.NDArray[np.float64])
+assert_type(np.asfortranarray(B), npt.NDArray[np.float64])
+assert_type(np.asfortranarray([1, 1.0]), npt.NDArray[Any])
+assert_type(np.asfortranarray(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.asfortranarray(A, dtype='c16'), npt.NDArray[Any])
 
-reveal_type(np.fromstring("1 1 1", sep=" "))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.fromstring(b"1 1 1", sep=" "))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.fromstring("1 1 1", dtype=np.int64, sep=" "))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.fromstring(b"1 1 1", dtype=np.int64, sep=" "))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.fromstring("1 1 1", dtype="c16", sep=" "))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.fromstring(b"1 1 1", dtype="c16", sep=" "))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.fromstring("1 1 1", sep=" "), npt.NDArray[np.float64])
+assert_type(np.fromstring(b"1 1 1", sep=" "), npt.NDArray[np.float64])
+assert_type(np.fromstring("1 1 1", dtype=np.int64, sep=" "), npt.NDArray[np.int64])
+assert_type(np.fromstring(b"1 1 1", dtype=np.int64, sep=" "), npt.NDArray[np.int64])
+assert_type(np.fromstring("1 1 1", dtype="c16", sep=" "), npt.NDArray[Any])
+assert_type(np.fromstring(b"1 1 1", dtype="c16", sep=" "), npt.NDArray[Any])
 
-reveal_type(np.fromfile("test.txt", sep=" "))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.fromfile("test.txt", dtype=np.int64, sep=" "))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.fromfile("test.txt", dtype="c16", sep=" "))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.fromfile("test.txt", sep=" "), npt.NDArray[np.float64])
+assert_type(np.fromfile("test.txt", dtype=np.int64, sep=" "), npt.NDArray[np.int64])
+assert_type(np.fromfile("test.txt", dtype="c16", sep=" "), npt.NDArray[Any])
 with open("test.txt") as f:
-    reveal_type(np.fromfile(f, sep=" "))  # E: ndarray[Any, dtype[{float64}]]
-    reveal_type(np.fromfile(b"test.txt", sep=" "))  # E: ndarray[Any, dtype[{float64}]]
-    reveal_type(np.fromfile(Path("test.txt"), sep=" "))  # E: ndarray[Any, dtype[{float64}]]
+    assert_type(np.fromfile(f, sep=" "), npt.NDArray[np.float64])
+    assert_type(np.fromfile(b"test.txt", sep=" "), npt.NDArray[np.float64])
+    assert_type(np.fromfile(Path("test.txt"), sep=" "), npt.NDArray[np.float64])
 
-reveal_type(np.fromiter("12345", np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.fromiter("12345", float))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.fromiter("12345", np.float64), npt.NDArray[np.float64])
+assert_type(np.fromiter("12345", float), npt.NDArray[Any])
 
-reveal_type(np.frombuffer(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.frombuffer(A, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.frombuffer(A, dtype="c16"))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.frombuffer(A), npt.NDArray[np.float64])
+assert_type(np.frombuffer(A, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.frombuffer(A, dtype="c16"), npt.NDArray[Any])
 
-reveal_type(np.arange(False, True))  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(np.arange(10))  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(np.arange(0, 10, step=2))  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(np.arange(10.0))  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(np.arange(start=0, stop=10.0))  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(np.arange(np.timedelta64(0)))  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(np.arange(0, np.timedelta64(10)))  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(np.arange(np.datetime64("0"), np.datetime64("10")))  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(np.arange(10, dtype=np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.arange(0, 10, step=2, dtype=np.int16))  # E: ndarray[Any, dtype[{int16}]]
-reveal_type(np.arange(10, dtype=int))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.arange(0, 10, dtype="f8"))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.arange(False, True), npt.NDArray[np.signedinteger[Any]])
+assert_type(np.arange(10), npt.NDArray[np.signedinteger[Any]])
+assert_type(np.arange(0, 10, step=2), npt.NDArray[np.signedinteger[Any]])
+assert_type(np.arange(10.0), npt.NDArray[np.floating[Any]])
+assert_type(np.arange(start=0, stop=10.0), npt.NDArray[np.floating[Any]])
+assert_type(np.arange(np.timedelta64(0)), npt.NDArray[np.timedelta64])
+assert_type(np.arange(0, np.timedelta64(10)), npt.NDArray[np.timedelta64])
+assert_type(np.arange(np.datetime64("0"), np.datetime64("10")), npt.NDArray[np.datetime64])
+assert_type(np.arange(10, dtype=np.float64), npt.NDArray[np.float64])
+assert_type(np.arange(0, 10, step=2, dtype=np.int16), npt.NDArray[np.int16])
+assert_type(np.arange(10, dtype=int), npt.NDArray[Any])
+assert_type(np.arange(0, 10, dtype="f8"), npt.NDArray[Any])
 
-reveal_type(np.require(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.require(B))  # E: SubClass[{float64}]
-reveal_type(np.require(B, requirements=None))  # E: SubClass[{float64}]
-reveal_type(np.require(B, dtype=int))  # E: ndarray[Any, Any]
-reveal_type(np.require(B, requirements="E"))  # E: ndarray[Any, Any]
-reveal_type(np.require(B, requirements=["ENSUREARRAY"]))  # E: ndarray[Any, Any]
-reveal_type(np.require(B, requirements={"F", "E"}))  # E: ndarray[Any, Any]
-reveal_type(np.require(B, requirements=["C", "OWNDATA"]))  # E: SubClass[{float64}]
-reveal_type(np.require(B, requirements="W"))  # E: SubClass[{float64}]
-reveal_type(np.require(B, requirements="A"))  # E: SubClass[{float64}]
-reveal_type(np.require(C))  # E: ndarray[Any, Any]
+assert_type(np.require(A), npt.NDArray[np.float64])
+assert_type(np.require(B), SubClass[np.float64])
+assert_type(np.require(B, requirements=None), SubClass[np.float64])
+assert_type(np.require(B, dtype=int), np.ndarray[Any, Any])
+assert_type(np.require(B, requirements="E"), np.ndarray[Any, Any])
+assert_type(np.require(B, requirements=["ENSUREARRAY"]), np.ndarray[Any, Any])
+assert_type(np.require(B, requirements={"F", "E"}), np.ndarray[Any, Any])
+assert_type(np.require(B, requirements=["C", "OWNDATA"]), SubClass[np.float64])
+assert_type(np.require(B, requirements="W"), SubClass[np.float64])
+assert_type(np.require(B, requirements="A"), SubClass[np.float64])
+assert_type(np.require(C), np.ndarray[Any, Any])
 
-reveal_type(np.linspace(0, 10))  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(np.linspace(0, 10j))  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(np.linspace(0, 10, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.linspace(0, 10, dtype=int))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.linspace(0, 10, retstep=True))  # E: Tuple[ndarray[Any, dtype[floating[Any]]], floating[Any]]
-reveal_type(np.linspace(0j, 10, retstep=True))  # E: Tuple[ndarray[Any, dtype[complexfloating[Any, Any]]], complexfloating[Any, Any]]
-reveal_type(np.linspace(0, 10, retstep=True, dtype=np.int64))  # E: Tuple[ndarray[Any, dtype[{int64}]], {int64}]
-reveal_type(np.linspace(0j, 10, retstep=True, dtype=int))  # E: Tuple[ndarray[Any, dtype[Any]], Any]
+assert_type(np.linspace(0, 10), npt.NDArray[np.floating[Any]])
+assert_type(np.linspace(0, 10j), npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(np.linspace(0, 10, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.linspace(0, 10, dtype=int), npt.NDArray[Any])
+assert_type(np.linspace(0, 10, retstep=True), tuple[npt.NDArray[np.floating[Any]], np.floating[Any]])
+assert_type(np.linspace(0j, 10, retstep=True), tuple[npt.NDArray[np.complexfloating[Any, Any]], np.complexfloating[Any, Any]])
+assert_type(np.linspace(0, 10, retstep=True, dtype=np.int64), tuple[npt.NDArray[np.int64], np.int64])
+assert_type(np.linspace(0j, 10, retstep=True, dtype=int), tuple[npt.NDArray[Any], Any])
 
-reveal_type(np.logspace(0, 10))  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(np.logspace(0, 10j))  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(np.logspace(0, 10, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.logspace(0, 10, dtype=int))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.logspace(0, 10), npt.NDArray[np.floating[Any]])
+assert_type(np.logspace(0, 10j), npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(np.logspace(0, 10, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.logspace(0, 10, dtype=int), npt.NDArray[Any])
 
-reveal_type(np.geomspace(0, 10))  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(np.geomspace(0, 10j))  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(np.geomspace(0, 10, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.geomspace(0, 10, dtype=int))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.geomspace(0, 10), npt.NDArray[np.floating[Any]])
+assert_type(np.geomspace(0, 10j), npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(np.geomspace(0, 10, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.geomspace(0, 10, dtype=int), npt.NDArray[Any])
 
-reveal_type(np.zeros_like(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.zeros_like(C))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.zeros_like(A, dtype=float))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.zeros_like(B))  # E: SubClass[{float64}]
-reveal_type(np.zeros_like(B, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
+assert_type(np.zeros_like(A), npt.NDArray[np.float64])
+assert_type(np.zeros_like(C), npt.NDArray[Any])
+assert_type(np.zeros_like(A, dtype=float), npt.NDArray[Any])
+assert_type(np.zeros_like(B), SubClass[np.float64])
+assert_type(np.zeros_like(B, dtype=np.int64), npt.NDArray[np.int64])
 
-reveal_type(np.ones_like(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.ones_like(C))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.ones_like(A, dtype=float))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.ones_like(B))  # E: SubClass[{float64}]
-reveal_type(np.ones_like(B, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
+assert_type(np.ones_like(A), npt.NDArray[np.float64])
+assert_type(np.ones_like(C), npt.NDArray[Any])
+assert_type(np.ones_like(A, dtype=float), npt.NDArray[Any])
+assert_type(np.ones_like(B), SubClass[np.float64])
+assert_type(np.ones_like(B, dtype=np.int64), npt.NDArray[np.int64])
 
-reveal_type(np.full_like(A, i8))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.full_like(C, i8))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.full_like(A, i8, dtype=int))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.full_like(B, i8))  # E: SubClass[{float64}]
-reveal_type(np.full_like(B, i8, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
+assert_type(np.full_like(A, i8), npt.NDArray[np.float64])
+assert_type(np.full_like(C, i8), npt.NDArray[Any])
+assert_type(np.full_like(A, i8, dtype=int), npt.NDArray[Any])
+assert_type(np.full_like(B, i8), SubClass[np.float64])
+assert_type(np.full_like(B, i8, dtype=np.int64), npt.NDArray[np.int64])
 
-reveal_type(np.ones(1))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.ones([1, 1, 1]))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.ones(5, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.ones(5, dtype=int))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.ones(1), npt.NDArray[np.float64])
+assert_type(np.ones([1, 1, 1]), npt.NDArray[np.float64])
+assert_type(np.ones(5, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.ones(5, dtype=int), npt.NDArray[Any])
 
-reveal_type(np.full(1, i8))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.full([1, 1, 1], i8))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.full(1, i8, dtype=np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.full(1, i8, dtype=float))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.full(1, i8), npt.NDArray[Any])
+assert_type(np.full([1, 1, 1], i8), npt.NDArray[Any])
+assert_type(np.full(1, i8, dtype=np.float64), npt.NDArray[np.float64])
+assert_type(np.full(1, i8, dtype=float), npt.NDArray[Any])
 
-reveal_type(np.indices([1, 2, 3]))  # E: ndarray[Any, dtype[{int_}]]
-reveal_type(np.indices([1, 2, 3], sparse=True))  # E: tuple[ndarray[Any, dtype[{int_}]], ...]
+assert_type(np.indices([1, 2, 3]), npt.NDArray[np.int_])
+assert_type(np.indices([1, 2, 3], sparse=True), tuple[npt.NDArray[np.int_], ...])
 
-reveal_type(np.fromfunction(func, (3, 5)))  # E: SubClass[{float64}]
+assert_type(np.fromfunction(func, (3, 5)), SubClass[np.float64])
 
-reveal_type(np.identity(10))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.identity(10, dtype=np.int64))  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(np.identity(10, dtype=int))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.identity(10), npt.NDArray[np.float64])
+assert_type(np.identity(10, dtype=np.int64), npt.NDArray[np.int64])
+assert_type(np.identity(10, dtype=int), npt.NDArray[Any])
 
-reveal_type(np.atleast_1d(A))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.atleast_1d(C))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.atleast_1d(A, A))  # E: list[ndarray[Any, dtype[Any]]]
-reveal_type(np.atleast_1d(A, C))  # E: list[ndarray[Any, dtype[Any]]]
-reveal_type(np.atleast_1d(C, C))  # E: list[ndarray[Any, dtype[Any]]]
+assert_type(np.atleast_1d(A), npt.NDArray[np.float64])
+assert_type(np.atleast_1d(C), npt.NDArray[Any])
+assert_type(np.atleast_1d(A, A), list[npt.NDArray[Any]])
+assert_type(np.atleast_1d(A, C), list[npt.NDArray[Any]])
+assert_type(np.atleast_1d(C, C), list[npt.NDArray[Any]])
 
-reveal_type(np.atleast_2d(A))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(np.atleast_2d(A), npt.NDArray[np.float64])
 
-reveal_type(np.atleast_3d(A))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(np.atleast_3d(A), npt.NDArray[np.float64])
 
-reveal_type(np.vstack([A, A]))  # E: ndarray[Any, Any]
-reveal_type(np.vstack([A, A], dtype=np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.vstack([A, C]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.vstack([C, C]))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.vstack([A, A]), np.ndarray[Any, Any])
+assert_type(np.vstack([A, A], dtype=np.float64), npt.NDArray[np.float64])
+assert_type(np.vstack([A, C]), npt.NDArray[Any])
+assert_type(np.vstack([C, C]), npt.NDArray[Any])
 
-reveal_type(np.hstack([A, A]))  # E: ndarray[Any, Any]
-reveal_type(np.hstack([A, A], dtype=np.float64))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(np.hstack([A, A]), np.ndarray[Any, Any])
+assert_type(np.hstack([A, A], dtype=np.float64), npt.NDArray[np.float64])
 
-reveal_type(np.stack([A, A]))  # E: Any
-reveal_type(np.stack([A, A], dtype=np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(np.stack([A, C]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.stack([C, C]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.stack([A, A], axis=0))  # E: Any
-reveal_type(np.stack([A, A], out=B))  # E: SubClass[{float64}]
+assert_type(np.stack([A, A]), Any)
+assert_type(np.stack([A, A], dtype=np.float64), npt.NDArray[np.float64])
+assert_type(np.stack([A, C]), npt.NDArray[Any])
+assert_type(np.stack([C, C]), npt.NDArray[Any])
+assert_type(np.stack([A, A], axis=0), Any)
+assert_type(np.stack([A, A], out=B), SubClass[np.float64])
 
-reveal_type(np.block([[A, A], [A, A]]))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.block(C))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.block([[A, A], [A, A]]), npt.NDArray[Any])
+assert_type(np.block(C), npt.NDArray[Any])
+
+if sys.version_info >= (3, 12):
+    from collections.abc import Buffer
+
+    def create_array(obj: npt.ArrayLike) -> npt.NDArray[Any]: ...
+
+    buffer: Buffer
+    assert_type(create_array(buffer), npt.NDArray[Any])

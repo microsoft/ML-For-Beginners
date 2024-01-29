@@ -1,8 +1,11 @@
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas import (
     DataFrame,
+    DatetimeIndex,
     Index,
     Interval,
     IntervalIndex,
@@ -14,15 +17,7 @@ import pandas._testing as tm
 
 
 class TestIntervalIndexRendering:
-    def test_frame_repr(self):
-        # https://github.com/pandas-dev/pandas/pull/24134/files
-        df = DataFrame(
-            {"A": [1, 2, 3, 4]}, index=IntervalIndex.from_breaks([0, 1, 2, 3, 4])
-        )
-        result = repr(df)
-        expected = "        A\n(0, 1]  1\n(1, 2]  2\n(2, 3]  3\n(3, 4]  4"
-        assert result == expected
-
+    # TODO: this is a test for DataFrame/Series, not IntervalIndex
     @pytest.mark.parametrize(
         "constructor,expected",
         [
@@ -38,13 +33,16 @@ class TestIntervalIndexRendering:
             (DataFrame, ("            0\n(0.0, 1.0]  a\nNaN         b\n(2.0, 3.0]  c")),
         ],
     )
-    def test_repr_missing(self, constructor, expected):
+    def test_repr_missing(self, constructor, expected, using_infer_string, request):
         # GH 25984
+        if using_infer_string and constructor is Series:
+            request.applymarker(pytest.mark.xfail(reason="repr different"))
         index = IntervalIndex.from_tuples([(0, 1), np.nan, (2, 3)])
         obj = constructor(list("abc"), index=index)
         result = repr(obj)
         assert result == expected
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="repr different")
     def test_repr_floats(self):
         # GH 32553
 
@@ -80,7 +78,11 @@ class TestIntervalIndexRendering:
                     ((Timestamp("20180102"), Timestamp("20180103"))),
                 ],
                 "both",
-                ["[2018-01-01, 2018-01-02]", "NaN", "[2018-01-02, 2018-01-03]"],
+                [
+                    "[2018-01-01 00:00:00, 2018-01-02 00:00:00]",
+                    "NaN",
+                    "[2018-01-02 00:00:00, 2018-01-03 00:00:00]",
+                ],
             ),
             (
                 [
@@ -97,9 +99,21 @@ class TestIntervalIndexRendering:
             ),
         ],
     )
-    def test_to_native_types(self, tuples, closed, expected_data):
+    def test_get_values_for_csv(self, tuples, closed, expected_data):
         # GH 28210
         index = IntervalIndex.from_tuples(tuples, closed=closed)
-        result = index._format_native_types()
+        result = index._get_values_for_csv(na_rep="NaN")
         expected = np.array(expected_data)
         tm.assert_numpy_array_equal(result, expected)
+
+    def test_timestamp_with_timezone(self, unit):
+        # GH 55035
+        left = DatetimeIndex(["2020-01-01"], dtype=f"M8[{unit}, UTC]")
+        right = DatetimeIndex(["2020-01-02"], dtype=f"M8[{unit}, UTC]")
+        index = IntervalIndex.from_arrays(left, right)
+        result = repr(index)
+        expected = (
+            "IntervalIndex([(2020-01-01 00:00:00+00:00, 2020-01-02 00:00:00+00:00]], "
+            f"dtype='interval[datetime64[{unit}, UTC], right]')"
+        )
+        assert result == expected

@@ -5,6 +5,8 @@ Tests for np.foo applied to Series, not necessarily ufuncs.
 import numpy as np
 import pytest
 
+import pandas.util._test_decorators as td
+
 from pandas import Series
 import pandas._testing as tm
 
@@ -33,3 +35,12 @@ def test_numpy_argwhere(index):
     expected = np.array([[3], [4]], dtype=np.int64)
 
     tm.assert_numpy_array_equal(result, expected)
+
+
+@td.skip_if_no("pyarrow")
+def test_log_arrow_backed_missing_value():
+    # GH#56285
+    ser = Series([1, 2, None], dtype="float64[pyarrow]")
+    result = np.log(ser)
+    expected = np.log(Series([1, 2, None], dtype="float64"))
+    tm.assert_series_equal(result, expected)

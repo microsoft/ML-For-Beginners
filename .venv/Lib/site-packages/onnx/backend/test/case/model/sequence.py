@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 import typing
-from typing import List, Optional, Union
 
 import numpy as np
 
@@ -15,46 +14,46 @@ from onnx.backend.test.case.base import Base
 from onnx.backend.test.case.model import expect
 
 
-def SequenceEmptyImpl() -> List[Optional[np.ndarray]]:
+def SequenceEmptyImpl() -> list[np.ndarray | None]:
     return []
 
 
-def SequenceConstructImpl(*tensors: np.ndarray) -> List[np.ndarray]:
+def SequenceConstructImpl(*tensors: np.ndarray) -> list[np.ndarray]:
     return list(tensors)
 
 
 def SequenceInsertImpl(
-    sequence: List[np.ndarray], tensor: np.ndarray, position: Optional[int] = None
-) -> List[np.ndarray]:
+    sequence: list[np.ndarray], tensor: np.ndarray, position: int | None = None
+) -> list[np.ndarray]:
     if position is None:
         position = len(sequence)
     sequence.insert(position, tensor)
     return sequence
 
 
-def SequenceAtImpl(sequence: List[np.ndarray], position: int) -> np.ndarray:
+def SequenceAtImpl(sequence: list[np.ndarray], position: int) -> np.ndarray:
     return sequence[position]
 
 
 def SequenceEraseImpl(
-    sequence: List[np.ndarray], position: Optional[int] = None
-) -> List[Optional[np.ndarray]]:
+    sequence: list[np.ndarray], position: int | None = None
+) -> list[np.ndarray | None]:
     if position is None:
         position = -1
     del sequence[position]
     return sequence
 
 
-def SequenceLengthImpl(sequence: List[np.ndarray]) -> np.int64:
+def SequenceLengthImpl(sequence: list[np.ndarray]) -> np.int64:
     return np.int64(len(sequence))
 
 
 def SplitToSequenceImpl(
     tensor: np.ndarray,
-    split: Optional[Union[int, List[int]]] = None,
+    split: int | list[int] | None = None,
     axis: int = 0,
     keepdims: int = 1,
-) -> List[np.ndarray]:
+) -> list[np.ndarray]:
     dim_size = tensor.shape[axis]
     if split is None:
         split = 1
@@ -72,26 +71,25 @@ def SplitToSequenceImpl(
 
 
 def ConcatFromSequenceImpl(
-    sequence: List[np.ndarray], axis: int, new_axis: Optional[int] = 0
+    sequence: list[np.ndarray], axis: int, new_axis: int | None = 0
 ) -> np.ndarray:
     if not new_axis:
         return np.concatenate(sequence, axis)
-    else:
-        return np.stack(sequence, axis)
+    return np.stack(sequence, axis)
 
 
 class Sequence(Base):
     @staticmethod
     def export() -> None:
         def make_graph(
-            nodes: List[onnx.helper.NodeProto],
-            input_shapes: List[Optional[typing.Sequence[Union[str, int]]]],
-            output_shapes: List[Optional[typing.Sequence[Union[str, int]]]],
-            input_names: List[str],
-            output_names: List[str],
-            input_types: List[TensorProto.DataType],
-            output_types: List[TensorProto.DataType],
-            initializers: Optional[List[TensorProto]] = None,
+            nodes: list[onnx.helper.NodeProto],
+            input_shapes: list[typing.Sequence[str | int] | None],
+            output_shapes: list[typing.Sequence[str | int] | None],
+            input_names: list[str],
+            output_names: list[str],
+            input_types: list[TensorProto.DataType],
+            output_types: list[TensorProto.DataType],
+            initializers: list[TensorProto] | None = None,
         ) -> onnx.helper.GraphProto:
             graph = onnx.helper.make_graph(
                 nodes=nodes,

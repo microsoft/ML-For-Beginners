@@ -25,14 +25,16 @@ class TestIntervalIndex:
 
         expected = monotonic_index(0, 13, closed=closed)
         result = index[::-1].union(other, sort=sort)
-        if sort is None:
+        if sort in (None, True):
             tm.assert_index_equal(result, expected)
-        assert tm.equalContents(result, expected)
+        else:
+            tm.assert_index_equal(result.sort_values(), expected)
 
         result = other[::-1].union(index, sort=sort)
-        if sort is None:
+        if sort in (None, True):
             tm.assert_index_equal(result, expected)
-        assert tm.equalContents(result, expected)
+        else:
+            tm.assert_index_equal(result.sort_values(), expected)
 
         tm.assert_index_equal(index.union(index, sort=sort), index)
         tm.assert_index_equal(index.union(index[:1], sort=sort), index)
@@ -65,14 +67,16 @@ class TestIntervalIndex:
 
         expected = monotonic_index(5, 11, closed=closed)
         result = index[::-1].intersection(other, sort=sort)
-        if sort is None:
+        if sort in (None, True):
             tm.assert_index_equal(result, expected)
-        assert tm.equalContents(result, expected)
+        else:
+            tm.assert_index_equal(result.sort_values(), expected)
 
         result = other[::-1].intersection(index, sort=sort)
-        if sort is None:
+        if sort in (None, True):
             tm.assert_index_equal(result, expected)
-        assert tm.equalContents(result, expected)
+        else:
+            tm.assert_index_equal(result.sort_values(), expected)
 
         tm.assert_index_equal(index.intersection(index, sort=sort), index)
 
@@ -148,16 +152,18 @@ class TestIntervalIndex:
         index = monotonic_index(0, 11, closed=closed)
         result = index[1:].symmetric_difference(index[:-1], sort=sort)
         expected = IntervalIndex([index[0], index[-1]])
-        if sort is None:
+        if sort in (None, True):
             tm.assert_index_equal(result, expected)
-        assert tm.equalContents(result, expected)
+        else:
+            tm.assert_index_equal(result.sort_values(), expected)
 
         # GH 19101: empty result, same dtype
         result = index.symmetric_difference(index, sort=sort)
         expected = empty_index(dtype="int64", closed=closed)
-        if sort is None:
+        if sort in (None, True):
             tm.assert_index_equal(result, expected)
-        assert tm.equalContents(result, expected)
+        else:
+            tm.assert_index_equal(result.sort_values(), expected)
 
         # GH 19101: empty result, different dtypes
         other = IntervalIndex.from_arrays(

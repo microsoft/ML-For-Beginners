@@ -89,7 +89,8 @@ proc_info_map = dict(
     uid=8,
     euid=9,
     gid=10,
-    egid=11)
+    egid=11,
+)
 
 
 # =====================================================================
@@ -100,19 +101,22 @@ proc_info_map = dict(
 # psutil.cpu_times()
 scputimes = namedtuple('scputimes', ['user', 'system', 'idle', 'iowait'])
 # psutil.cpu_times(percpu=True)
-pcputimes = namedtuple('pcputimes',
-                       ['user', 'system', 'children_user', 'children_system'])
+pcputimes = namedtuple(
+    'pcputimes', ['user', 'system', 'children_user', 'children_system']
+)
 # psutil.virtual_memory()
 svmem = namedtuple('svmem', ['total', 'available', 'percent', 'used', 'free'])
 # psutil.Process.memory_info()
 pmem = namedtuple('pmem', ['rss', 'vms'])
 pfullmem = pmem
 # psutil.Process.memory_maps(grouped=True)
-pmmap_grouped = namedtuple('pmmap_grouped',
-                           ['path', 'rss', 'anonymous', 'locked'])
+pmmap_grouped = namedtuple(
+    'pmmap_grouped', ['path', 'rss', 'anonymous', 'locked']
+)
 # psutil.Process.memory_maps(grouped=False)
 pmmap_ext = namedtuple(
-    'pmmap_ext', 'addr perms ' + ' '.join(pmmap_grouped._fields))
+    'pmmap_ext', 'addr perms ' + ' '.join(pmmap_grouped._fields)
+)
 
 
 # =====================================================================
@@ -140,9 +144,15 @@ def swap_memory():
     #     usr/src/cmd/swap/swap.c
     # ...nevertheless I can't manage to obtain the same numbers as 'swap'
     # cmdline utility, so let's parse its output (sigh!)
-    p = subprocess.Popen(['/usr/bin/env', 'PATH=/usr/sbin:/sbin:%s' %
-                          os.environ['PATH'], 'swap', '-l'],
-                         stdout=subprocess.PIPE)
+    p = subprocess.Popen(
+        [
+            '/usr/bin/env',
+            'PATH=/usr/sbin:/sbin:%s' % os.environ['PATH'],
+            'swap',
+            '-l',
+        ],
+        stdout=subprocess.PIPE,
+    )
     stdout, _ = p.communicate()
     if PY3:
         stdout = stdout.decode(sys.stdout.encoding)
@@ -151,7 +161,8 @@ def swap_memory():
 
     lines = stdout.strip().split('\n')[1:]
     if not lines:
-        raise RuntimeError('no swap device(s) configured')
+        msg = 'no swap device(s) configured'
+        raise RuntimeError(msg)
     total = free = 0
     for line in lines:
         line = line.split()
@@ -160,8 +171,9 @@ def swap_memory():
         free += int(int(f) * 512)
     used = total - free
     percent = usage_percent(used, total, round_=1)
-    return _common.sswap(total, used, free, percent,
-                         sin * PAGE_SIZE, sout * PAGE_SIZE)
+    return _common.sswap(
+        total, used, free, percent, sin * PAGE_SIZE, sout * PAGE_SIZE
+    )
 
 
 # =====================================================================
@@ -170,13 +182,13 @@ def swap_memory():
 
 
 def cpu_times():
-    """Return system-wide CPU times as a named tuple"""
+    """Return system-wide CPU times as a named tuple."""
     ret = cext.per_cpu_times()
     return scputimes(*[sum(x) for x in zip(*ret)])
 
 
 def per_cpu_times():
-    """Return system per-CPU times as a list of named tuples"""
+    """Return system per-CPU times as a list of named tuples."""
     ret = cext.per_cpu_times()
     return [scputimes(*x) for x in ret]
 
@@ -199,8 +211,9 @@ def cpu_stats():
     """Return various CPU stats as a named tuple."""
     ctx_switches, interrupts, syscalls, traps = cext.cpu_stats()
     soft_interrupts = 0
-    return _common.scpustats(ctx_switches, interrupts, soft_interrupts,
-                             syscalls)
+    return _common.scpustats(
+        ctx_switches, interrupts, soft_interrupts, syscalls
+    )
 
 
 # =====================================================================
@@ -234,8 +247,9 @@ def disk_partitions(all=False):
                 debug("skipping %r: %s" % (mountpoint, err))
                 continue
         maxfile = maxpath = None  # set later
-        ntuple = _common.sdiskpart(device, mountpoint, fstype, opts,
-                                   maxfile, maxpath)
+        ntuple = _common.sdiskpart(
+            device, mountpoint, fstype, opts, maxfile, maxpath
+        )
         retlist.append(ntuple)
     return retlist
 
@@ -258,8 +272,10 @@ def net_connections(kind, _pid=-1):
     if _pid == -1:
         cmap.pop('unix', 0)
     if kind not in cmap:
-        raise ValueError("invalid %r kind argument; choose between %s"
-                         % (kind, ', '.join([repr(x) for x in cmap])))
+        raise ValueError(
+            "invalid %r kind argument; choose between %s"
+            % (kind, ', '.join([repr(x) for x in cmap]))
+        )
     families, types = _common.conn_tmap[kind]
     rawlist = cext.net_connections(_pid)
     ret = set()
@@ -345,6 +361,7 @@ def wrap_exceptions(fun):
     """Call callable into a try/except clause and translate ENOENT,
     EACCES and EPERM in NoSuchProcess or AccessDenied exceptions.
     """
+
     @functools.wraps(fun)
     def wrapper(self, *args, **kwargs):
         try:
@@ -366,10 +383,11 @@ def wrap_exceptions(fun):
                 else:
                     raise
             raise
+
     return wrapper
 
 
-class Process(object):
+class Process:
     """Wrapper class around underlying C implementation."""
 
     __slots__ = ["pid", "_name", "_ppid", "_procfs_path", "_cache"]
@@ -404,8 +422,9 @@ class Process(object):
     @wrap_exceptions
     @memoize_when_activated
     def _proc_basic_info(self):
-        if self.pid == 0 and not \
-                os.path.exists('%s/%s/psinfo' % (self._procfs_path, self.pid)):
+        if self.pid == 0 and not os.path.exists(
+            '%s/%s/psinfo' % (self._procfs_path, self.pid)
+        ):
             raise AccessDenied(self.pid)
         ret = cext.proc_basic_info(self.pid, self._procfs_path)
         assert len(ret) == len(proc_info_map)
@@ -425,9 +444,10 @@ class Process(object):
     def exe(self):
         try:
             return os.readlink(
-                "%s/%s/path/a.out" % (self._procfs_path, self.pid))
+                "%s/%s/path/a.out" % (self._procfs_path, self.pid)
+            )
         except OSError:
-            pass    # continue and guess the exe name from the cmdline
+            pass  # continue and guess the exe name from the cmdline
         # Will be guessed later from cmdline but we want to explicitly
         # invoke cmdline here in order to get an AccessDenied
         # exception if the user has not enough privileges.
@@ -518,13 +538,13 @@ class Process(object):
     def terminal(self):
         procfs_path = self._procfs_path
         hit_enoent = False
-        tty = wrap_exceptions(
-            self._proc_basic_info()[proc_info_map['ttynr']])
+        tty = wrap_exceptions(self._proc_basic_info()[proc_info_map['ttynr']])
         if tty != cext.PRNODEV:
             for x in (0, 1, 2, 255):
                 try:
                     return os.readlink(
-                        '%s/%d/path/%d' % (procfs_path, self.pid, x))
+                        '%s/%d/path/%d' % (procfs_path, self.pid, x)
+                    )
                 except FileNotFoundError:
                     hit_enoent = True
                     continue
@@ -569,7 +589,8 @@ class Process(object):
             tid = int(tid)
             try:
                 utime, stime = cext.query_process_thread(
-                    self.pid, tid, procfs_path)
+                    self.pid, tid, procfs_path
+                )
             except EnvironmentError as err:
                 if err.errno == errno.EOVERFLOW and not IS_64_BIT:
                     # We may get here if we attempt to query a 64bit process
@@ -617,13 +638,15 @@ class Process(object):
         """Get UNIX sockets used by process by parsing 'pfiles' output."""
         # TODO: rewrite this in C (...but the damn netstat source code
         # does not include this part! Argh!!)
-        cmd = "pfiles %s" % pid
-        p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE)
+        cmd = ["pfiles", str(pid)]
+        p = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
         stdout, stderr = p.communicate()
         if PY3:
-            stdout, stderr = [x.decode(sys.stdout.encoding)
-                              for x in (stdout, stderr)]
+            stdout, stderr = (
+                x.decode(sys.stdout.encoding) for x in (stdout, stderr)
+            )
         if p.returncode != 0:
             if 'permission denied' in stderr.lower():
                 raise AccessDenied(self.pid, self._name)
@@ -659,8 +682,10 @@ class Process(object):
 
         # UNIX sockets
         if kind in ('all', 'unix'):
-            ret.extend([_common.pconn(*conn) for conn in
-                        self._get_unix_sockets(self.pid)])
+            ret.extend([
+                _common.pconn(*conn)
+                for conn in self._get_unix_sockets(self.pid)
+            ])
         return ret
 
     nt_mmap_grouped = namedtuple('mmap', 'path rss anon locked')
@@ -669,8 +694,10 @@ class Process(object):
     @wrap_exceptions
     def memory_maps(self):
         def toaddr(start, end):
-            return '%s-%s' % (hex(start)[2:].strip('L'),
-                              hex(end)[2:].strip('L'))
+            return '%s-%s' % (
+                hex(start)[2:].strip('L'),
+                hex(end)[2:].strip('L'),
+            )
 
         procfs_path = self._procfs_path
         retlist = []
@@ -695,7 +722,8 @@ class Process(object):
             if not name.startswith('['):
                 try:
                     name = os.readlink(
-                        '%s/%s/path/%s' % (procfs_path, self.pid, name))
+                        '%s/%s/path/%s' % (procfs_path, self.pid, name)
+                    )
                 except OSError as err:
                     if err.errno == errno.ENOENT:
                         # sometimes the link may not be resolved by
@@ -720,7 +748,8 @@ class Process(object):
     @wrap_exceptions
     def num_ctx_switches(self):
         return _common.pctxsw(
-            *cext.proc_num_ctx_switches(self.pid, self._procfs_path))
+            *cext.proc_num_ctx_switches(self.pid, self._procfs_path)
+        )
 
     @wrap_exceptions
     def wait(self, timeout=None):

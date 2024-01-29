@@ -10,7 +10,9 @@ from pandas.core.dtypes.common import is_scalar
 
 from pandas import (
     DataFrame,
+    Index,
     Series,
+    date_range,
 )
 import pandas._testing as tm
 
@@ -316,7 +318,11 @@ class TestNDFrame:
     # tests that don't fit elsewhere
 
     @pytest.mark.parametrize(
-        "ser", [tm.makeFloatSeries(), tm.makeStringSeries(), tm.makeObjectSeries()]
+        "ser",
+        [
+            Series(range(10), dtype=np.float64),
+            Series([str(i) for i in range(10)], dtype=object),
+        ],
     )
     def test_squeeze_series_noop(self, ser):
         # noop
@@ -324,12 +330,16 @@ class TestNDFrame:
 
     def test_squeeze_frame_noop(self):
         # noop
-        df = tm.makeTimeDataFrame()
+        df = DataFrame(np.eye(2))
         tm.assert_frame_equal(df.squeeze(), df)
 
     def test_squeeze_frame_reindex(self):
         # squeezing
-        df = tm.makeTimeDataFrame().reindex(columns=["A"])
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        ).reindex(columns=["A"])
         tm.assert_series_equal(df.squeeze(), df["A"])
 
     def test_squeeze_0_len_dim(self):
@@ -341,7 +351,11 @@ class TestNDFrame:
 
     def test_squeeze_axis(self):
         # axis argument
-        df = tm.makeTimeDataFrame(nper=1).iloc[:, :1]
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((1, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=1, freq="B"),
+        ).iloc[:, :1]
         assert df.shape == (1, 1)
         tm.assert_series_equal(df.squeeze(axis=0), df.iloc[0])
         tm.assert_series_equal(df.squeeze(axis="index"), df.iloc[0])
@@ -356,29 +370,49 @@ class TestNDFrame:
             df.squeeze(axis="x")
 
     def test_squeeze_axis_len_3(self):
-        df = tm.makeTimeDataFrame(3)
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((3, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=3, freq="B"),
+        )
         tm.assert_frame_equal(df.squeeze(axis=0), df)
 
     def test_numpy_squeeze(self):
-        s = tm.makeFloatSeries()
+        s = Series(range(2), dtype=np.float64)
         tm.assert_series_equal(np.squeeze(s), s)
 
-        df = tm.makeTimeDataFrame().reindex(columns=["A"])
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        ).reindex(columns=["A"])
         tm.assert_series_equal(np.squeeze(df), df["A"])
 
     @pytest.mark.parametrize(
-        "ser", [tm.makeFloatSeries(), tm.makeStringSeries(), tm.makeObjectSeries()]
+        "ser",
+        [
+            Series(range(10), dtype=np.float64),
+            Series([str(i) for i in range(10)], dtype=object),
+        ],
     )
     def test_transpose_series(self, ser):
         # calls implementation in pandas/core/base.py
         tm.assert_series_equal(ser.transpose(), ser)
 
     def test_transpose_frame(self):
-        df = tm.makeTimeDataFrame()
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
         tm.assert_frame_equal(df.transpose().transpose(), df)
 
     def test_numpy_transpose(self, frame_or_series):
-        obj = tm.makeTimeDataFrame()
+        obj = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
         obj = tm.get_obj(obj, frame_or_series)
 
         if frame_or_series is Series:
@@ -393,7 +427,11 @@ class TestNDFrame:
             np.transpose(obj, axes=1)
 
     @pytest.mark.parametrize(
-        "ser", [tm.makeFloatSeries(), tm.makeStringSeries(), tm.makeObjectSeries()]
+        "ser",
+        [
+            Series(range(10), dtype=np.float64),
+            Series([str(i) for i in range(10)], dtype=object),
+        ],
     )
     def test_take_series(self, ser):
         indices = [1, 5, -2, 6, 3, -1]
@@ -407,7 +445,11 @@ class TestNDFrame:
 
     def test_take_frame(self):
         indices = [1, 5, -2, 6, 3, -1]
-        df = tm.makeTimeDataFrame()
+        df = DataFrame(
+            np.random.default_rng(2).standard_normal((10, 4)),
+            columns=Index(list("ABCD"), dtype=object),
+            index=date_range("2000-01-01", periods=10, freq="B"),
+        )
         out = df.take(indices)
         expected = DataFrame(
             data=df.values.take(indices, axis=0),
@@ -419,7 +461,7 @@ class TestNDFrame:
     def test_take_invalid_kwargs(self, frame_or_series):
         indices = [-3, 2, 0, 1]
 
-        obj = tm.makeTimeDataFrame()
+        obj = DataFrame(range(5))
         obj = tm.get_obj(obj, frame_or_series)
 
         msg = r"take\(\) got an unexpected keyword argument 'foo'"

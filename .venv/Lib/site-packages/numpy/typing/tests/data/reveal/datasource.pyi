@@ -1,5 +1,13 @@
+import sys
 from pathlib import Path
+from typing import IO, Any
+
 import numpy as np
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 path1: Path
 path2: str
@@ -8,14 +16,14 @@ d1 = np.DataSource(path1)
 d2 = np.DataSource(path2)
 d3 = np.DataSource(None)
 
-reveal_type(d1.abspath("..."))  # E: str
-reveal_type(d2.abspath("..."))  # E: str
-reveal_type(d3.abspath("..."))  # E: str
+assert_type(d1.abspath("..."), str)
+assert_type(d2.abspath("..."), str)
+assert_type(d3.abspath("..."), str)
 
-reveal_type(d1.exists("..."))  # E: bool
-reveal_type(d2.exists("..."))  # E: bool
-reveal_type(d3.exists("..."))  # E: bool
+assert_type(d1.exists("..."), bool)
+assert_type(d2.exists("..."), bool)
+assert_type(d3.exists("..."), bool)
 
-reveal_type(d1.open("...", "r"))  # E: IO[Any]
-reveal_type(d2.open("...", encoding="utf8"))  # E: IO[Any]
-reveal_type(d3.open("...", newline="/n"))  # E: IO[Any]
+assert_type(d1.open("...", "r"), IO[Any])
+assert_type(d2.open("...", encoding="utf8"), IO[Any])
+assert_type(d3.open("...", newline="/n"), IO[Any])

@@ -2236,7 +2236,7 @@ class IPCompleter(Completer):
         self, cursor_column: int, cursor_line: int, text: str
     ) -> Iterator[_JediCompletionLike]:
         """
-        Return a list of :any:`jedi.api.Completion`s object from a ``text`` and
+        Return a list of :any:`jedi.api.Completion`\\s object from a ``text`` and
         cursor position.
 
         Parameters

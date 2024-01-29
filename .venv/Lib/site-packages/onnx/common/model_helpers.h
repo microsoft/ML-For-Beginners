@@ -6,6 +6,7 @@
 
 #include <string>
 #include <vector>
+
 #include "onnx/common/status.h"
 #include "onnx/onnx-operators_pb.h"
 

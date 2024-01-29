@@ -34,8 +34,6 @@ scalar, Series or DataFrame
     * scalar : when Series.agg is called with single function
     * Series : when DataFrame.agg is called with a single function
     * DataFrame : when DataFrame.agg is called with several functions
-
-    Return scalar, Series or DataFrame.
 {see_also}
 Notes
 -----
@@ -113,6 +111,12 @@ by : mapping, function, label, pd.Grouper or list of such
 axis : {0 or 'index', 1 or 'columns'}, default 0
     Split along rows (0) or columns (1). For `Series` this parameter
     is unused and defaults to 0.
+
+    .. deprecated:: 2.1.0
+
+        Will be removed and behave like axis=0 in a future version.
+        For ``axis=1``, do ``frame.T.groupby(...)`` instead.
+
 level : int, level name, or sequence of such, default None
     If the axis is a MultiIndex (hierarchical), group by a particular
     level or levels. Do not specify both ``by`` and ``level``.
@@ -204,17 +208,17 @@ the row axis, leaving just two non-identifier columns, 'variable' and
 
 Parameters
 ----------
-id_vars : tuple, list, or ndarray, optional
+id_vars : scalar, tuple, list, or ndarray, optional
     Column(s) to use as identifier variables.
-value_vars : tuple, list, or ndarray, optional
+value_vars : scalar, tuple, list, or ndarray, optional
     Column(s) to unpivot. If not specified, uses all columns that
     are not set as `id_vars`.
-var_name : scalar
+var_name : scalar, default None
     Name to use for the 'variable' column. If None it uses
     ``frame.columns.name`` or 'variable'.
 value_name : scalar, default 'value'
-    Name to use for the 'value' column.
-col_level : int or str, optional
+    Name to use for the 'value' column, can't be an existing column label.
+col_level : scalar, optional
     If columns are a MultiIndex then use this level to melt.
 ignore_index : bool, default True
     If True, original index is ignored. If False, the original index is retained.
@@ -566,8 +570,7 @@ _shared_docs[
         .. deprecated:: 2.1.0
     regex : bool or same types as `to_replace`, default False
         Whether to interpret `to_replace` and/or `value` as regular
-        expressions. If this is ``True`` then `to_replace` *must* be a
-        string. Alternatively, this could be a regular expression or a
+        expressions. Alternatively, this could be a regular expression or a
         list, dict, or array of regular expressions in which case
         `to_replace` must be ``None``.
     method : {{'pad', 'ffill', 'bfill'}}
@@ -786,6 +789,32 @@ _shared_docs[
 
         .. versionchanged:: 1.4.0
             Previously the explicit ``None`` was silently ignored.
+
+    When ``regex=True``, ``value`` is not ``None`` and `to_replace` is a string,
+    the replacement will be applied in all columns of the DataFrame.
+
+    >>> df = pd.DataFrame({{'A': [0, 1, 2, 3, 4],
+    ...                    'B': ['a', 'b', 'c', 'd', 'e'],
+    ...                    'C': ['f', 'g', 'h', 'i', 'j']}})
+
+    >>> df.replace(to_replace='^[a-g]', value='e', regex=True)
+        A  B  C
+    0  0  e  e
+    1  1  e  e
+    2  2  e  h
+    3  3  e  i
+    4  4  e  j
+
+    If ``value`` is not ``None`` and `to_replace` is a dictionary, the dictionary
+    keys will be the DataFrame columns that the replacement will be applied.
+
+    >>> df.replace(to_replace={{'B': '^[a-c]', 'C': '^[h-j]'}}, value='e', regex=True)
+        A  B  C
+    0  0  e  f
+    1  1  e  g
+    2  2  e  e
+    3  3  d  e
+    4  4  e  e
 """
 
 _shared_docs[

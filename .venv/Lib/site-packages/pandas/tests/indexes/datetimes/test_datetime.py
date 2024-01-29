@@ -1,8 +1,11 @@
+import datetime as dt
 from datetime import date
+import re
 
-import dateutil
 import numpy as np
 import pytest
+
+from pandas.compat.numpy import np_long
 
 import pandas as pd
 from pandas import (
@@ -17,35 +20,11 @@ import pandas._testing as tm
 
 
 class TestDatetimeIndex:
-    def test_sub_datetime_preserves_freq(self, tz_naive_fixture):
-        # GH#48818
-        dti = date_range("2016-01-01", periods=12, tz=tz_naive_fixture)
-
-        res = dti - dti[0]
-        expected = pd.timedelta_range("0 Days", "11 Days")
-        tm.assert_index_equal(res, expected)
-        assert res.freq == expected.freq
-
-    @pytest.mark.xfail(
-        reason="The inherited freq is incorrect bc dti.freq is incorrect "
-        "https://github.com/pandas-dev/pandas/pull/48818/files#r982793461"
-    )
-    def test_sub_datetime_preserves_freq_across_dst(self):
-        # GH#48818
-        ts = Timestamp("2016-03-11", tz="US/Pacific")
-        dti = date_range(ts, periods=4)
-
-        res = dti - dti[0]
-        expected = pd.TimedeltaIndex(
-            [
-                pd.Timedelta(days=0),
-                pd.Timedelta(days=1),
-                pd.Timedelta(days=2),
-                pd.Timedelta(days=2, hours=23),
-            ]
-        )
-        tm.assert_index_equal(res, expected)
-        assert res.freq == expected.freq
+    def test_is_(self):
+        dti = date_range(start="1/1/2005", end="12/1/2005", freq="ME")
+        assert dti.is_(dti)
+        assert dti.is_(dti.view())
+        assert not dti.is_(dti.copy())
 
     def test_time_overflow_for_32bit_machines(self):
         # GH8943.  On some machines NumPy defaults to np.int32 (for example,
@@ -54,12 +33,12 @@ class TestDatetimeIndex:
         # (which has value 1e9) and since the max value for np.int32 is ~2e9,
         # and since those machines won't promote np.int32 to np.int64, we get
         # overflow.
-        periods = np.int_(1000)
+        periods = np_long(1000)
 
-        idx1 = date_range(start="2000", periods=periods, freq="S")
+        idx1 = date_range(start="2000", periods=periods, freq="s")
         assert len(idx1) == periods
 
-        idx2 = date_range(end="2000", periods=periods, freq="S")
+        idx2 = date_range(end="2000", periods=periods, freq="s")
         assert len(idx2) == periods
 
     def test_nat(self):
@@ -79,12 +58,6 @@ class TestDatetimeIndex:
         expected = DatetimeIndex([d1, d3, d2])
         tm.assert_index_equal(result_union, expected)
 
-        # GH 5115
-        result = date_range("2013-1-1", periods=4, freq="WOM-1SAT")
-        dates = ["2013-01-05", "2013-02-02", "2013-03-02", "2013-04-06"]
-        expected = DatetimeIndex(dates, freq="WOM-1SAT")
-        tm.assert_index_equal(result, expected)
-
     def test_append_nondatetimeindex(self):
         rng = date_range("1/1/2000", periods=10)
         idx = Index(["a", "b", "c", "d"])
@@ -92,51 +65,12 @@ class TestDatetimeIndex:
         result = rng.append(idx)
         assert isinstance(result[0], Timestamp)
 
-    def test_iteration_preserves_tz(self):
-        # see gh-8890
-        index = date_range("2012-01-01", periods=3, freq="H", tz="US/Eastern")
-
-        for i, ts in enumerate(index):
-            result = ts
-            expected = index[i]  # pylint: disable=unnecessary-list-index-lookup
-            assert result == expected
-
-        index = date_range(
-            "2012-01-01", periods=3, freq="H", tz=dateutil.tz.tzoffset(None, -28800)
-        )
-
-        for i, ts in enumerate(index):
-            result = ts
-            expected = index[i]  # pylint: disable=unnecessary-list-index-lookup
-            assert result._repr_base == expected._repr_base
-            assert result == expected
-
-        # 9100
-        index = DatetimeIndex(
-            ["2014-12-01 03:32:39.987000-08:00", "2014-12-01 04:12:34.987000-08:00"]
-        )
-        for i, ts in enumerate(index):
-            result = ts
-            expected = index[i]  # pylint: disable=unnecessary-list-index-lookup
-            assert result._repr_base == expected._repr_base
-            assert result == expected
-
-    @pytest.mark.parametrize("periods", [0, 9999, 10000, 10001])
-    def test_iteration_over_chunksize(self, periods):
-        # GH21012
-
-        index = date_range("2000-01-01 00:00:00", periods=periods, freq="min")
-        num = 0
-        for stamp in index:
-            assert index[num] == stamp
-            num += 1
-        assert num == len(index)
-
     def test_misc_coverage(self):
         rng = date_range("1/1/2000", periods=5)
         result = rng.groupby(rng.day)
         assert isinstance(next(iter(result.values()))[0], Timestamp)
 
+    # TODO: belongs in frame groupby tests?
     def test_groupby_function_tuple_1677(self):
         df = DataFrame(
             np.random.default_rng(2).random(100),
@@ -148,8 +82,8 @@ class TestDatetimeIndex:
         assert isinstance(result.index[0], tuple)
 
     def assert_index_parameters(self, index):
-        assert index.freq == "40960N"
-        assert index.inferred_freq == "40960N"
+        assert index.freq == "40960ns"
+        assert index.inferred_freq == "40960ns"
 
     def test_ns_index(self):
         nsamples = 400
@@ -199,3 +133,84 @@ class TestDatetimeIndex:
         result = np.asarray(idx, dtype=object)
 
         tm.assert_numpy_array_equal(result, expected)
+
+    def test_CBH_deprecated(self):
+        msg = "'CBH' is deprecated and will be removed in a future version."
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            expected = date_range(
+                dt.datetime(2022, 12, 11), dt.datetime(2022, 12, 13), freq="CBH"
+            )
+        result = DatetimeIndex(
+            [
+                "2022-12-12 09:00:00",
+                "2022-12-12 10:00:00",
+                "2022-12-12 11:00:00",
+                "2022-12-12 12:00:00",
+                "2022-12-12 13:00:00",
+                "2022-12-12 14:00:00",
+                "2022-12-12 15:00:00",
+                "2022-12-12 16:00:00",
+            ],
+            dtype="datetime64[ns]",
+            freq="cbh",
+        )
+
+        tm.assert_index_equal(result, expected)
+
+    @pytest.mark.parametrize(
+        "freq_depr, expected_values, expected_freq",
+        [
+            (
+                "AS-AUG",
+                ["2021-08-01", "2022-08-01", "2023-08-01"],
+                "YS-AUG",
+            ),
+            (
+                "1BAS-MAY",
+                ["2021-05-03", "2022-05-02", "2023-05-01"],
+                "1BYS-MAY",
+            ),
+        ],
+    )
+    def test_AS_BAS_deprecated(self, freq_depr, expected_values, expected_freq):
+        # GH#55479
+        freq_msg = re.split("[0-9]*", freq_depr, maxsplit=1)[1]
+        msg = f"'{freq_msg}' is deprecated and will be removed in a future version."
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            expected = date_range(
+                dt.datetime(2020, 12, 1), dt.datetime(2023, 12, 1), freq=freq_depr
+            )
+        result = DatetimeIndex(
+            expected_values,
+            dtype="datetime64[ns]",
+            freq=expected_freq,
+        )
+
+        tm.assert_index_equal(result, expected)
+
+    @pytest.mark.parametrize(
+        "freq, expected_values, freq_depr",
+        [
+            ("2BYE-MAR", ["2016-03-31"], "2BA-MAR"),
+            ("2BYE-JUN", ["2016-06-30"], "2BY-JUN"),
+            ("2BME", ["2016-02-29", "2016-04-29", "2016-06-30"], "2BM"),
+            ("2BQE", ["2016-03-31"], "2BQ"),
+            ("1BQE-MAR", ["2016-03-31", "2016-06-30"], "1BQ-MAR"),
+        ],
+    )
+    def test_BM_BQ_BY_deprecated(self, freq, expected_values, freq_depr):
+        # GH#52064
+        msg = f"'{freq_depr[1:]}' is deprecated and will be removed "
+        f"in a future version, please use '{freq[1:]}' instead."
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            expected = date_range(start="2016-02-21", end="2016-08-21", freq=freq_depr)
+        result = DatetimeIndex(
+            data=expected_values,
+            dtype="datetime64[ns]",
+            freq=freq,
+        )
+
+        tm.assert_index_equal(result, expected)

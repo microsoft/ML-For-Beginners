@@ -2,7 +2,6 @@ import numpy as np
 
 from matplotlib import _api
 from matplotlib.collections import PolyCollection, TriMesh
-from matplotlib.colors import Normalize
 from matplotlib.tri._triangulation import Triangulation
 
 
@@ -81,10 +80,7 @@ def tripcolor(ax, *args, alpha=1.0, norm=None, cmap=None, vmin=None,
                 "tripcolor() missing 1 required positional argument: 'c'; or "
                 "1 required keyword-only argument: 'facecolors'")
         elif len(args) > 1:
-            _api.warn_deprecated(
-                "3.6", message=f"Additional positional parameters "
-                f"{args[1:]!r} are ignored; support for them is deprecated "
-                f"since %(since)s and will be removed %(removal)s")
+            raise TypeError(f"Unexpected positional parameters: {args[1:]!r}")
         c = np.asarray(args[0])
         if len(c) == len(tri.x):
             # having this before the len(tri.triangles) comparison gives
@@ -115,7 +111,6 @@ def tripcolor(ax, *args, alpha=1.0, norm=None, cmap=None, vmin=None,
     if 'antialiaseds' not in kwargs and ec.lower() == "none":
         kwargs['antialiaseds'] = False
 
-    _api.check_isinstance((Normalize, None), norm=norm)
     if shading == 'gouraud':
         if facecolors is not None:
             raise ValueError(

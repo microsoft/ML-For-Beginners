@@ -38,7 +38,7 @@ def test_lsqr_basic():
     assert_allclose(xo, svx, atol=atol_test, rtol=rtol_test)
 
     # Now the same but with damp > 0.
-    # This is equivalent to solving the extented system:
+    # This is equivalent to solving the extended system:
     # ( G      ) @ x = ( b )
     # ( damp*I )       ( 0 )
     damp = 1.5

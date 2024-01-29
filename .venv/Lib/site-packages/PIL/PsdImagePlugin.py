@@ -15,6 +15,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import io
 
@@ -79,7 +80,7 @@ class PsdImageFile(ImageFile.ImageFile):
             mode = "RGBA"
             channels = 4
 
-        self.mode = mode
+        self._mode = mode
         self._size = i32(s, 18), i32(s, 14)
 
         #
@@ -146,7 +147,7 @@ class PsdImageFile(ImageFile.ImageFile):
         # seek to given layer (1..max)
         try:
             name, mode, bbox, tile = self.layers[layer - 1]
-            self.mode = mode
+            self._mode = mode
             self.tile = tile
             self.frame = layer
             self.fp = self._fp
@@ -186,6 +187,9 @@ def _layerinfo(fp, ct_bytes):
         ct_types = i16(read(2))
         types = list(range(ct_types))
         if len(types) > 4:
+            fp.seek(len(types) * 6 + 12, io.SEEK_CUR)
+            size = i32(read(4))
+            fp.seek(size, io.SEEK_CUR)
             continue
 
         for _ in types:

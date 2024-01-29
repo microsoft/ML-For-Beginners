@@ -3,30 +3,31 @@
 display environment information that is frequently
 used to troubleshoot installations of Jupyter or IPython
 """
+from __future__ import annotations
 
 import os
 import platform
 import subprocess
 import sys
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 
-def subs(cmd: Union[List[str], str]) -> Optional[str]:
+def subs(cmd: Union[list[str], str]) -> Optional[str]:
     """
     get data from commands that we need to run outside of python
     """
     try:
-        stdout = subprocess.check_output(cmd)  # noqa
+        stdout = subprocess.check_output(cmd)  # noqa: S603
         return stdout.decode("utf-8", "replace").strip()
     except (OSError, subprocess.CalledProcessError):
         return None
 
 
-def get_data() -> Dict[str, Any]:
+def get_data() -> dict[str, Any]:
     """
     returns a dict of various user environment data
     """
-    env: Dict[str, Any] = {}
+    env: dict[str, Any] = {}
     env["path"] = os.environ.get("PATH")
     env["sys_path"] = sys.path
     env["sys_exe"] = sys.executable
@@ -45,7 +46,7 @@ def get_data() -> Dict[str, Any]:
     return env
 
 
-def main() -> None:  # noqa
+def main() -> None:
     """
     print out useful info
     """

@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221
+
 
 from typing import Optional, Tuple
 
@@ -40,7 +40,13 @@ class DequantizeLinear(OpRun):
         if len(value.shape) == 0:
             return value
         dims = [1] * len(shape)
-        dims[axis] = value.size
+        try:
+            dims[axis] = value.size
+        except IndexError as e:
+            raise IndexError(
+                f"axis is out of boundary, axis={axis}, "
+                f"value.shape={value.shape}, shape={shape}."
+            ) from e
         return value.reshape(tuple(dims))
 
     def _run(
@@ -54,26 +60,31 @@ class DequantizeLinear(OpRun):
             raise RuntimeError("Input 2 must be a vector or a number.")
 
         x_type = self.get_x_type(x)
-        if x_zero_point is not None:
+        f8_type = x_type in {
+            TensorProto.FLOAT8E4M3FN,
+            TensorProto.FLOAT8E4M3FNUZ,
+            TensorProto.FLOAT8E5M2,
+            TensorProto.FLOAT8E5M2FNUZ,
+        }
+        if x_zero_point is not None and not f8_type:
             zero_type = self.get_x_type(x_zero_point)
             if x_type != zero_type:
                 raise RuntimeError(
                     f"Type mismatch {x_type} != {zero_type} in DequantizeLinear."
-                )
-            if x_type in (
-                TensorProto.FLOAT8E4M3FN,
-                TensorProto.FLOAT8E4M3FNUZ,
-                TensorProto.FLOAT8E5M2,
-                TensorProto.FLOAT8E5M2FNUZ,
-            ):
-                raise RuntimeError(
-                    f"x_zero_point not supported for float 8 type {x_type}."
                 )
 
             dx = x.astype(np.float32) - DequantizeLinear.reshape_input(
                 x_zero_point, x.shape, axis
             )
         else:
+            if f8_type and x_zero_point is not None:
+                u_x_zero_point = x_zero_point.astype(np.uint8)
+                umi = u_x_zero_point.min()
+                uma = u_x_zero_point.max()
+                if umi != uma or umi != np.uint8(0):
+                    raise RuntimeError(
+                        "x_zero_point is not null but should be zero for float 8 types."
+                    )
             if x_type == TensorProto.FLOAT8E4M3FN:
                 dx = float8e4m3_to_float32(x)
             elif x_type == TensorProto.FLOAT8E4M3FNUZ:
@@ -85,4 +96,4 @@ class DequantizeLinear(OpRun):
             else:
                 dx = x.astype(np.float32)
         y = dx * DequantizeLinear.reshape_input(x_scale, x.shape, axis)
-        return (y.astype(np.float32),)
+        return (y.astype(x_scale.dtype),)

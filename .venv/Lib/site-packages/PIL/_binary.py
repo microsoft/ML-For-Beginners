@@ -13,21 +13,21 @@
 
 
 """Binary input/output support routines."""
-
+from __future__ import annotations
 
 from struct import pack, unpack_from
 
 
-def i8(c):
-    return c if c.__class__ is int else c[0]
+def i8(c: bytes) -> int:
+    return c[0]
 
 
-def o8(i):
+def o8(i: int) -> bytes:
     return bytes((i & 255,))
 
 
 # Input, le = little endian, be = big endian
-def i16le(c, o=0):
+def i16le(c: bytes, o: int = 0) -> int:
     """
     Converts a 2-bytes (16 bits) string to an unsigned integer.
 
@@ -37,7 +37,7 @@ def i16le(c, o=0):
     return unpack_from("<H", c, o)[0]
 
 
-def si16le(c, o=0):
+def si16le(c: bytes, o: int = 0) -> int:
     """
     Converts a 2-bytes (16 bits) string to a signed integer.
 
@@ -47,7 +47,7 @@ def si16le(c, o=0):
     return unpack_from("<h", c, o)[0]
 
 
-def si16be(c, o=0):
+def si16be(c: bytes, o: int = 0) -> int:
     """
     Converts a 2-bytes (16 bits) string to a signed integer, big endian.
 
@@ -57,7 +57,7 @@ def si16be(c, o=0):
     return unpack_from(">h", c, o)[0]
 
 
-def i32le(c, o=0):
+def i32le(c: bytes, o: int = 0) -> int:
     """
     Converts a 4-bytes (32 bits) string to an unsigned integer.
 
@@ -67,7 +67,7 @@ def i32le(c, o=0):
     return unpack_from("<I", c, o)[0]
 
 
-def si32le(c, o=0):
+def si32le(c: bytes, o: int = 0) -> int:
     """
     Converts a 4-bytes (32 bits) string to a signed integer.
 
@@ -77,26 +77,26 @@ def si32le(c, o=0):
     return unpack_from("<i", c, o)[0]
 
 
-def i16be(c, o=0):
+def i16be(c: bytes, o: int = 0) -> int:
     return unpack_from(">H", c, o)[0]
 
 
-def i32be(c, o=0):
+def i32be(c: bytes, o: int = 0) -> int:
     return unpack_from(">I", c, o)[0]
 
 
 # Output, le = little endian, be = big endian
-def o16le(i):
+def o16le(i: int) -> bytes:
     return pack("<H", i)
 
 
-def o32le(i):
+def o32le(i: int) -> bytes:
     return pack("<I", i)
 
 
-def o16be(i):
+def o16be(i: int) -> bytes:
     return pack(">H", i)
 
 
-def o32be(i):
+def o32be(i: int) -> bytes:
     return pack(">I", i)

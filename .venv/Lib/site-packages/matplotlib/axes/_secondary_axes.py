@@ -235,16 +235,12 @@ class SecondaryAxis(_AxesBase):
         ----------
         color : color
         """
-        if self._orientation == 'x':
-            self.tick_params(axis='x', colors=color)
-            self.spines.bottom.set_color(color)
-            self.spines.top.set_color(color)
-            self.xaxis.label.set_color(color)
-        else:  # 'y'
-            self.tick_params(axis='y', colors=color)
-            self.spines.left.set_color(color)
-            self.spines.right.set_color(color)
-            self.yaxis.label.set_color(color)
+        axis = self._axis_map[self._orientation]
+        axis.set_tick_params(colors=color)
+        for spine in self.spines.values():
+            if spine.axis is axis:
+                spine.set_color(color)
+        axis.label.set_color(color)
 
 
 _secax_docstring = '''

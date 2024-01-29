@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import TYPE_CHECKING, Callable, DefaultDict
+from typing import TYPE_CHECKING, Callable
 
 from prompt_toolkit.mouse_events import MouseEvent
 
@@ -34,8 +34,8 @@ class MouseHandlers:
         # over the mouse handlers of the visible region in the scrollable pane.
 
         # Map y (row) to x (column) to handlers.
-        self.mouse_handlers: DefaultDict[
-            int, DefaultDict[int, MouseHandler]
+        self.mouse_handlers: defaultdict[
+            int, defaultdict[int, MouseHandler]
         ] = defaultdict(lambda: defaultdict(lambda: dummy_callback))
 
     def set_mouse_handler_for_range(

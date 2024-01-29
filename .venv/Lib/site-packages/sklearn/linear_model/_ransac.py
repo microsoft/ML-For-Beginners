@@ -24,6 +24,10 @@ from ..utils._param_validation import (
     RealNotInt,
     StrOptions,
 )
+from ..utils.metadata_routing import (
+    _raise_for_unsupported_routing,
+    _RoutingNotSupportedMixin,
+)
 from ..utils.random import sample_without_replacement
 from ..utils.validation import _check_sample_weight, check_is_fitted, has_fit_parameter
 from ._base import LinearRegression
@@ -66,7 +70,11 @@ def _dynamic_max_trials(n_inliers, n_samples, min_samples, probability):
 
 
 class RANSACRegressor(
-    MetaEstimatorMixin, RegressorMixin, MultiOutputMixin, BaseEstimator
+    _RoutingNotSupportedMixin,
+    MetaEstimatorMixin,
+    RegressorMixin,
+    MultiOutputMixin,
+    BaseEstimator,
 ):
     """RANSAC (RANdom SAmple Consensus) algorithm.
 
@@ -101,10 +109,11 @@ class RANSACRegressor(
         relative number `ceil(min_samples * X.shape[0])` for
         `min_samples < 1`. This is typically chosen as the minimal number of
         samples necessary to estimate the given `estimator`. By default a
-        ``sklearn.linear_model.LinearRegression()`` estimator is assumed and
+        :class:`~sklearn.linear_model.LinearRegression` estimator is assumed and
         `min_samples` is chosen as ``X.shape[1] + 1``. This parameter is highly
         dependent upon the model, so if a `estimator` other than
-        :class:`linear_model.LinearRegression` is used, the user must provide a value.
+        :class:`~sklearn.linear_model.LinearRegression` is used, the user must
+        provide a value.
 
     residual_threshold : float, default=None
         Maximum residual for a data sample to be classified as an inlier.
@@ -327,6 +336,7 @@ class RANSACRegressor(
             `is_data_valid` and `is_model_valid` return False for all
             `max_trials` randomly chosen sub-samples.
         """
+        _raise_for_unsupported_routing(self, "fit", sample_weight=sample_weight)
         # Need to validate separately here. We can't pass multi_output=True
         # because that would allow y to be csr. Delay expensive finiteness
         # check to the estimator's own input validation.

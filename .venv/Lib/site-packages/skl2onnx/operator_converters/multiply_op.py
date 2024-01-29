@@ -5,24 +5,25 @@ from ..common._apply_operation import apply_mul
 from ..common._registration import register_converter
 from ..common._topology import Scope, Operator
 from ..common._container import ModelComponentContainer
-from ..proto import onnx_proto
+from ..common.data_types import guess_proto_type
 
 
 def convert_sklearn_multiply(
     scope: Scope, operator: Operator, container: ModelComponentContainer
 ):
-    operand_name = scope.get_unique_variable_name("operand")
+    for input, output in zip(operator.inputs, operator.outputs):
+        operand_name = scope.get_unique_variable_name("operand")
 
-    container.add_initializer(
-        operand_name, onnx_proto.TensorProto.FLOAT, [], [operator.operand]
-    )
+        container.add_initializer(
+            operand_name, guess_proto_type(input.type), [], [operator.operand]
+        )
 
-    apply_mul(
-        scope,
-        [operator.inputs[0].full_name, operand_name],
-        operator.outputs[0].full_name,
-        container,
-    )
+        apply_mul(
+            scope,
+            [input.full_name, operand_name],
+            output.full_name,
+            container,
+        )
 
 
 register_converter("SklearnMultiply", convert_sklearn_multiply)

@@ -4,7 +4,7 @@ Pyperclip
 A cross-platform clipboard module for Python,
 with copy & paste functions for plain text.
 By Al Sweigart al@inventwithpython.com
-BSD License
+Licence at LICENSES/PYPERCLIP_LICENSE
 
 Usage:
   import pyperclip
@@ -17,9 +17,12 @@ Usage:
 On Windows, no additional modules are needed.
 On Mac, the pyobjc module is used, falling back to the pbcopy and pbpaste cli
     commands. (These commands should come with OS X.).
-On Linux, install xclip or xsel via package manager. For example, in Debian:
+On Linux, install xclip, xsel, or wl-clipboard (for "wayland" sessions) via
+package manager.
+For example, in Debian:
     sudo apt-get install xclip
     sudo apt-get install xsel
+    sudo apt-get install wl-clipboard
 
 Otherwise on Linux, you will need the PyQt5 modules installed.
 
@@ -28,12 +31,11 @@ This module does not work with PyGObject yet.
 Cygwin is currently not supported.
 
 Security Note: This module runs programs with these names:
-    - which
-    - where
     - pbcopy
     - pbpaste
     - xclip
     - xsel
+    - wl-copy/wl-paste
     - klipper
     - qdbus
 A malicious user could rename or add programs with these names, tricking
@@ -41,7 +43,7 @@ Pyperclip into running them with whatever permissions the Python process has.
 
 """
 
-__version__ = "1.7.0"
+__version__ = "1.8.2"
 
 
 import contextlib
@@ -55,7 +57,7 @@ from ctypes import (
 )
 import os
 import platform
-from shutil import which
+from shutil import which as _executable_exists
 import subprocess
 import time
 import warnings
@@ -74,25 +76,14 @@ HAS_DISPLAY = os.getenv("DISPLAY")
 EXCEPT_MSG = """
     Pyperclip could not find a copy/paste mechanism for your system.
     For more information, please visit
-    https://pyperclip.readthedocs.io/en/latest/#not-implemented-error
+    https://pyperclip.readthedocs.io/en/latest/index.html#not-implemented-error
     """
 
 ENCODING = "utf-8"
 
-# The "which" unix command finds where a command is.
-if platform.system() == "Windows":
-    WHICH_CMD = "where"
-else:
-    WHICH_CMD = "which"
 
-
-def _executable_exists(name):
-    return (
-        subprocess.call(
-            [WHICH_CMD, name], stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        )
-        == 0
-    )
+class PyperclipTimeoutException(PyperclipException):
+    pass
 
 
 def _stringifyText(text) -> str:
@@ -227,6 +218,32 @@ def init_xsel_clipboard():
         return stdout.decode(ENCODING)
 
     return copy_xsel, paste_xsel
+
+
+def init_wl_clipboard():
+    PRIMARY_SELECTION = "-p"
+
+    def copy_wl(text, primary=False):
+        text = _stringifyText(text)  # Converts non-str values to str.
+        args = ["wl-copy"]
+        if primary:
+            args.append(PRIMARY_SELECTION)
+        if not text:
+            args.append("--clear")
+            subprocess.check_call(args, close_fds=True)
+        else:
+            p = subprocess.Popen(args, stdin=subprocess.PIPE, close_fds=True)
+            p.communicate(input=text.encode(ENCODING))
+
+    def paste_wl(primary=False):
+        args = ["wl-paste", "-n"]
+        if primary:
+            args.append(PRIMARY_SELECTION)
+        p = subprocess.Popen(args, stdout=subprocess.PIPE, close_fds=True)
+        stdout, _stderr = p.communicate()
+        return stdout.decode(ENCODING)
+
+    return copy_wl, paste_wl
 
 
 def init_klipper_clipboard():
@@ -534,7 +551,7 @@ def determine_clipboard():
         return init_windows_clipboard()
 
     if platform.system() == "Linux":
-        if which("wslconfig.exe"):
+        if _executable_exists("wslconfig.exe"):
             return init_wsl_clipboard()
 
     # Setup for the macOS platform:
@@ -549,6 +566,8 @@ def determine_clipboard():
 
     # Setup for the LINUX platform:
     if HAS_DISPLAY:
+        if os.environ.get("WAYLAND_DISPLAY") and _executable_exists("wl-copy"):
+            return init_wl_clipboard()
         if _executable_exists("xsel"):
             return init_xsel_clipboard()
         if _executable_exists("xclip"):
@@ -602,6 +621,7 @@ def set_clipboard(clipboard):
         "qt": init_qt_clipboard,  # TODO - split this into 'qtpy', 'pyqt4', and 'pyqt5'
         "xclip": init_xclip_clipboard,
         "xsel": init_xsel_clipboard,
+        "wl-clipboard": init_wl_clipboard,
         "klipper": init_klipper_clipboard,
         "windows": init_windows_clipboard,
         "no": init_no_clipboard,
@@ -671,7 +691,56 @@ def is_available() -> bool:
 copy, paste = lazy_load_stub_copy, lazy_load_stub_paste
 
 
-__all__ = ["copy", "paste", "set_clipboard", "determine_clipboard"]
+def waitForPaste(timeout=None):
+    """This function call blocks until a non-empty text string exists on the
+    clipboard. It returns this text.
+
+    This function raises PyperclipTimeoutException if timeout was set to
+    a number of seconds that has elapsed without non-empty text being put on
+    the clipboard."""
+    startTime = time.time()
+    while True:
+        clipboardText = paste()
+        if clipboardText != "":
+            return clipboardText
+        time.sleep(0.01)
+
+        if timeout is not None and time.time() > startTime + timeout:
+            raise PyperclipTimeoutException(
+                "waitForPaste() timed out after " + str(timeout) + " seconds."
+            )
+
+
+def waitForNewPaste(timeout=None):
+    """This function call blocks until a new text string exists on the
+    clipboard that is different from the text that was there when the function
+    was first called. It returns this text.
+
+    This function raises PyperclipTimeoutException if timeout was set to
+    a number of seconds that has elapsed without non-empty text being put on
+    the clipboard."""
+    startTime = time.time()
+    originalText = paste()
+    while True:
+        currentText = paste()
+        if currentText != originalText:
+            return currentText
+        time.sleep(0.01)
+
+        if timeout is not None and time.time() > startTime + timeout:
+            raise PyperclipTimeoutException(
+                "waitForNewPaste() timed out after " + str(timeout) + " seconds."
+            )
+
+
+__all__ = [
+    "copy",
+    "paste",
+    "waitForPaste",
+    "waitForNewPaste",
+    "set_clipboard",
+    "determine_clipboard",
+]
 
 # pandas aliases
 clipboard_get = paste

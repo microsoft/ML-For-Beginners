@@ -190,9 +190,9 @@ def test_filter_pdna_is_false():
     tm.assert_series_equal(res, ser[[]])
 
 
-def test_filter_against_workaround():
+def test_filter_against_workaround_ints():
     # Series of ints
-    s = Series(np.random.default_rng(2).integers(0, 100, 1000))
+    s = Series(np.random.default_rng(2).integers(0, 100, 100))
     grouper = s.apply(lambda x: np.round(x, -1))
     grouped = s.groupby(grouper)
     f = lambda x: x.mean() > 10
@@ -201,8 +201,10 @@ def test_filter_against_workaround():
     new_way = grouped.filter(f)
     tm.assert_series_equal(new_way.sort_values(), old_way.sort_values())
 
+
+def test_filter_against_workaround_floats():
     # Series of floats
-    s = 100 * Series(np.random.default_rng(2).random(1000))
+    s = 100 * Series(np.random.default_rng(2).random(100))
     grouper = s.apply(lambda x: np.round(x, -1))
     grouped = s.groupby(grouper)
     f = lambda x: x.mean() > 10
@@ -210,9 +212,11 @@ def test_filter_against_workaround():
     new_way = grouped.filter(f)
     tm.assert_series_equal(new_way.sort_values(), old_way.sort_values())
 
+
+def test_filter_against_workaround_dataframe():
     # Set up DataFrame of ints, floats, strings.
     letters = np.array(list(ascii_lowercase))
-    N = 1000
+    N = 100
     random_letters = letters.take(
         np.random.default_rng(2).integers(0, 26, N, dtype=int)
     )

@@ -8,6 +8,10 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+#include <vector>
+
 #include "onnx/defs/tensor_proto_util.h"
 #include "onnx/defs/tensor_util.h"
 #include "onnx/version_converter/adapters/adapter.h"

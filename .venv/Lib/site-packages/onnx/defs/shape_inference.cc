@@ -3,6 +3,9 @@
  */
 
 #include "shape_inference.h"
+
+#include <vector>
+
 #include "onnx/defs/tensor_proto_util.h"
 
 namespace ONNX_NAMESPACE {
@@ -117,9 +120,9 @@ void mergeInShapeInfo(const TensorShapeProto& source, TensorShapeProto& target) 
   auto num_target_dims = target.dim_size();
   if (num_source_dims != num_target_dims) {
     fail_shape_inference(
-        "Mismatch between number of source and target dimensions. Source=",
+        "Mismatch between number of inferred and declared dimensions. inferred=",
         num_source_dims,
-        " Target=",
+        " declared=",
         num_target_dims);
   }
 
@@ -258,7 +261,8 @@ void UnionShapeInfo(const TensorShapeProto& source_shape, TypeProto_SparseTensor
 
 void UnionTypeInfo(const TypeProto& source_type, TypeProto& target_type) {
   if (source_type.value_case() != target_type.value_case()) {
-    fail_type_inference("Mismatched type:", " source=", source_type.value_case(), " target=", target_type.value_case());
+    fail_type_inference(
+        "Mismatched type:", " inferred=", source_type.value_case(), " declared=", target_type.value_case());
   }
 
   const auto target_case = target_type.value_case();
@@ -268,7 +272,7 @@ void UnionTypeInfo(const TypeProto& source_type, TypeProto& target_type) {
 
     if (source_elem_type != target_elem_type) {
       fail_type_inference(
-          "Mismatched tensor element type:", " source=", source_elem_type, " target=", target_elem_type);
+          "Mismatched tensor element type:", " inferred=", source_elem_type, " declared=", target_elem_type);
     }
 
     UnionShapeInfo(source_type.tensor_type(), *target_type.mutable_tensor_type());
@@ -277,7 +281,7 @@ void UnionTypeInfo(const TypeProto& source_type, TypeProto& target_type) {
     auto target_elem_type = target_type.sparse_tensor_type().elem_type();
     if (source_elem_type != target_elem_type) {
       fail_type_inference(
-          "Mismatched sparse tensor element type:", " source=", source_elem_type, " target=", target_elem_type);
+          "Mismatched sparse tensor element type:", " inferred=", source_elem_type, " declared=", target_elem_type);
     }
     UnionShapeInfo(source_type.sparse_tensor_type(), *target_type.mutable_sparse_tensor_type());
   } else if (target_case == TypeProto::ValueCase::kSequenceType) {
@@ -308,9 +312,9 @@ void UnionTypeInfo(const TypeProto& source_type, TypeProto& target_type) {
     if (source_key_type != target_key_type) {
       fail_type_inference(
           "Mismatched map tensor key type:",
-          " source=",
+          " inferred=",
           Utils::DataTypeUtils::ToDataTypeString(source_key_type),
-          " target=",
+          " declared=",
           Utils::DataTypeUtils::ToDataTypeString(target_key_type));
     }
 
@@ -446,7 +450,7 @@ void propagateElemTypeWithValidation(const TypeProto* input_type, TypeProto* out
   }
 }
 
-TensorShapeProto getShapeInput(InferenceContext& ctx, size_t input_index, bool& found) {
+TensorShapeProto getShapeInput(const InferenceContext& ctx, size_t input_index, bool& found) {
   TensorShapeProto shape_input;
 
   // First, check initializer.
@@ -488,6 +492,50 @@ TensorShapeProto getShapeInput(InferenceContext& ctx, size_t input_index, bool& 
   // Shape input was not found.
   found = false;
   return shape_input;
+}
+
+template <typename Container>
+std::string stringify(const Container& elements) {
+  std::stringstream ss;
+  for (const auto& element : elements) {
+    ss << element << ", ";
+  }
+  return ss.str();
+}
+
+std::pair<int, int> getAttributeElementTypeAndLength(
+    const InferenceContext& ctx,
+    const std::initializer_list<std::string>& attribute_names) {
+  // Get element type and lengths of 1D attribute lists
+  int32_t elem_type = TensorProto::UNDEFINED;
+  int32_t length = 0;
+  for (const auto& attribute : attribute_names) {
+    const AttributeProto* attr_proto = ctx.getAttribute(attribute);
+    if (attr_proto != nullptr) {
+      if (elem_type != TensorProto::UNDEFINED) {
+        // Another attribute was already set
+        fail_shape_inference("One and only one attribute must be set out of ", stringify(attribute_names));
+      }
+      if (attr_proto->ints_size()) {
+        elem_type = TensorProto_DataType_INT64;
+        length = attr_proto->ints_size();
+      } else if (attr_proto->floats_size()) {
+        elem_type = TensorProto_DataType_FLOAT;
+        length = attr_proto->floats_size();
+      } else if (attr_proto->strings_size()) {
+        elem_type = TensorProto_DataType_STRING;
+        length = attr_proto->strings_size();
+      } else if (attr_proto->has_t()) {
+        if (attr_proto->t().dims_size() != 1) {
+          fail_type_inference(
+              "Attribute ", attribute, " expected to be a 1D tensor but was ", attr_proto->t().dims_size(), "D");
+        }
+        elem_type = attr_proto->t().data_type();
+        length = attr_proto->t().dims(0);
+      }
+    }
+  }
+  return {elem_type, length};
 }
 
 } // namespace ONNX_NAMESPACE

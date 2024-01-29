@@ -144,7 +144,7 @@ class _BinMapper(TransformerMixin, BaseEstimator):
     missing_values_bin_idx_ : np.uint8
         The index of the bin where missing values are mapped. This is a
         constant across all features. This corresponds to the last bin, and
-        it is always equal to ``n_bins - 1``. Note that if ``n_bins_missing_``
+        it is always equal to ``n_bins - 1``. Note that if ``n_bins_non_missing_``
         is less than ``n_bins - 1`` for a given feature, then there are
         empty (and unused) bins.
     """

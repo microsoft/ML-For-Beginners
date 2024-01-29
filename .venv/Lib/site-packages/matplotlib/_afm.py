@@ -154,7 +154,7 @@ def _parse_header(fh):
         try:
             converter = header_converters[key]
         except KeyError:
-            _log.error('Found an unknown keyword in AFM header (was %r)' % key)
+            _log.error("Found an unknown keyword in AFM header (was %r)", key)
             continue
         try:
             d[key] = converter(val)

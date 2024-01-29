@@ -36,8 +36,7 @@ class MomentsPen(BasePen):
     def _endPath(self):
         p0 = self._getCurrentPoint()
         if p0 != self.__startPoint:
-            # Green theorem is not defined on open contours.
-            raise OpenContourError("Green theorem is not defined on open contours.")
+            raise OpenContourError("Glyph statistics not defined on open contours.")
 
     @cython.locals(r0=cython.double)
     @cython.locals(r1=cython.double)

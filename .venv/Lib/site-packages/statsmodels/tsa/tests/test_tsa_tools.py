@@ -1,7 +1,13 @@
 """tests for some time series analysis functions
 
 """
-from statsmodels.compat.pandas import assert_frame_equal, assert_series_equal
+from statsmodels.compat.pandas import (
+    PD_LT_2_2_0,
+    QUARTER_END,
+    YEAR_END,
+    assert_frame_equal,
+    assert_series_equal,
+)
 
 import numpy as np
 from numpy.testing import (
@@ -11,6 +17,7 @@ from numpy.testing import (
     assert_raises,
 )
 import pandas as pd
+from pandas.tseries.frequencies import to_offset
 import pytest
 
 from statsmodels import regression
@@ -465,14 +472,28 @@ class TestLagmat:
             stattools.lagmat(df, maxlag=2, use_pandas=True)
 
 
-def test_freq_to_period():
-    from pandas.tseries.frequencies import to_offset
+ANNUAL = "A" if PD_LT_2_2_0 else YEAR_END
+freqs = [
+    YEAR_END,
+    f"{ANNUAL}-MAR",
+    QUARTER_END,
+    "QS",
+    "QS-APR",
+    "W",
+    "W-MON",
+    "B",
+    "D",
+    "h",
+]
+expected = [1, 1, 4, 4, 4, 52, 52, 5, 7, 24]
+freq_expected = [(f, e) for f, e in zip(freqs, expected)]
 
-    freqs = ["A", "AS-MAR", "Q", "QS", "QS-APR", "W", "W-MON", "B", "D", "H"]
-    expected = [1, 1, 4, 4, 4, 52, 52, 5, 7, 24]
-    for i, j in zip(freqs, expected):
-        assert_equal(tools.freq_to_period(i), j)
-        assert_equal(tools.freq_to_period(to_offset(i)), j)
+
+@pytest.mark.parametrize("freq_expected", freq_expected)
+def test_freq_to_period(freq_expected):
+    freq, expected = freq_expected
+    assert_equal(tools.freq_to_period(freq), expected)
+    assert_equal(tools.freq_to_period(to_offset(freq)), expected)
 
 
 class TestDetrend:

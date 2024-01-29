@@ -48,7 +48,7 @@ class SpiceLexer(RegexLexer):
             (r'(true|false|nil)\b', Keyword.Constant),
             (words(('double', 'int', 'short', 'long', 'byte', 'char', 'string',
                     'bool', 'dyn'), suffix=r'\b'), Keyword.Type),
-            (words(('printf', 'sizeof', 'alignof', 'len'), suffix=r'\b(\()'),
+            (words(('printf', 'sizeof', 'alignof', 'len', 'panic'), suffix=r'\b(\()'),
              bygroups(Name.Builtin, Punctuation)),
             # numeric literals
             (r'[-]?[0-9]*[.][0-9]+([eE][+-]?[0-9]+)?', Number.Double),
@@ -62,7 +62,7 @@ class SpiceLexer(RegexLexer):
             (r'\'(\\\\|\\[^\\]|[^\'\\])\'', String.Char),
             # tokens
             (r'<<=|>>=|<<|>>|<=|>=|\+=|-=|\*=|/=|\%=|\|=|&=|\^=|&&|\|\||&|\||'
-             r'\+\+|--|\%|\^|\~|==|!=|::|[.]{3}|#!|#|[+\-*/&]', Operator),
+             r'\+\+|--|\%|\^|\~|==|!=|->|::|[.]{3}|#!|#|[+\-*/&]', Operator),
             (r'[|<>=!()\[\]{}.,;:\?]', Punctuation),
             # identifiers
             (r'[^\W\d]\w*', Name.Other),

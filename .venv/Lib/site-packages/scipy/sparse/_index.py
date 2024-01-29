@@ -1,4 +1,4 @@
-"""Indexing mixin for sparse matrix classes.
+"""Indexing mixin for sparse array/matrix classes.
 """
 import numpy as np
 from warnings import warn
@@ -34,7 +34,9 @@ class IndexMixin:
 
         Once 1D sparse arrays are implemented, it should be removed.
         """
-        if self._is_array:
+        from scipy.sparse import sparray
+
+        if isinstance(self, sparray):
             raise NotImplementedError(
                 'We have not yet implemented 1D sparse slices; '
                 'please index using explicit indices, e.g. `x[:, [0]]`'

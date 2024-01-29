@@ -16,13 +16,17 @@ from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Token
 
 
+__all__ = ['OneDarkStyle']
+
+
 class OneDarkStyle(Style):
     """
     Theme inspired by One Dark Pro for Atom.
 
     .. versionadded:: 2.11
     """
-
+    name = 'one-dark'
+    
     background_color = '#282C34'
 
     styles = {

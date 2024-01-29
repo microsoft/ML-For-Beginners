@@ -48,7 +48,7 @@ AR	-3124-06411	America/Argentina/Cordoba	Argentina (most areas: CB, CC, CN, ER, 
 AR	-2447-06525	America/Argentina/Salta	Salta (SA, LP, NQ, RN)
 AR	-2411-06518	America/Argentina/Jujuy	Jujuy (JY)
 AR	-2649-06513	America/Argentina/Tucuman	Tucuman (TM)
-AR	-2828-06547	America/Argentina/Catamarca	Catamarca (CT); Chubut (CH)
+AR	-2828-06547	America/Argentina/Catamarca	Catamarca (CT), Chubut (CH)
 AR	-2926-06651	America/Argentina/La_Rioja	La Rioja (LR)
 AR	-3132-06831	America/Argentina/San_Juan	San Juan (SJ)
 AR	-3253-06849	America/Argentina/Mendoza	Mendoza (MZ)
@@ -87,7 +87,7 @@ BN	+0456+11455	Asia/Brunei
 BO	-1630-06809	America/La_Paz
 BQ	+120903-0681636	America/Kralendijk
 BR	-0351-03225	America/Noronha	Atlantic islands
-BR	-0127-04829	America/Belem	Para (east); Amapa
+BR	-0127-04829	America/Belem	Para (east), Amapa
 BR	-0343-03830	America/Fortaleza	Brazil (northeast: MA, PI, CE, RN, PB)
 BR	-0803-03454	America/Recife	Pernambuco
 BR	-0712-04812	America/Araguaina	Tocantins
@@ -107,21 +107,21 @@ BT	+2728+08939	Asia/Thimphu
 BW	-2439+02555	Africa/Gaborone
 BY	+5354+02734	Europe/Minsk
 BZ	+1730-08812	America/Belize
-CA	+4734-05243	America/St_Johns	Newfoundland; Labrador (southeast)
-CA	+4439-06336	America/Halifax	Atlantic - NS (most areas); PE
+CA	+4734-05243	America/St_Johns	Newfoundland, Labrador (SE)
+CA	+4439-06336	America/Halifax	Atlantic - NS (most areas), PE
 CA	+4612-05957	America/Glace_Bay	Atlantic - NS (Cape Breton)
 CA	+4606-06447	America/Moncton	Atlantic - New Brunswick
 CA	+5320-06025	America/Goose_Bay	Atlantic - Labrador (most areas)
 CA	+5125-05707	America/Blanc-Sablon	AST - QC (Lower North Shore)
-CA	+4339-07923	America/Toronto	Eastern - ON, QC (most areas)
+CA	+4339-07923	America/Toronto	Eastern - ON & QC (most areas)
 CA	+6344-06828	America/Iqaluit	Eastern - NU (most areas)
-CA	+484531-0913718	America/Atikokan	EST - ON (Atikokan); NU (Coral H)
-CA	+4953-09709	America/Winnipeg	Central - ON (west); Manitoba
+CA	+484531-0913718	America/Atikokan	EST - ON (Atikokan), NU (Coral H)
+CA	+4953-09709	America/Winnipeg	Central - ON (west), Manitoba
 CA	+744144-0944945	America/Resolute	Central - NU (Resolute)
 CA	+624900-0920459	America/Rankin_Inlet	Central - NU (central)
 CA	+5024-10439	America/Regina	CST - SK (most areas)
 CA	+5017-10750	America/Swift_Current	CST - SK (midwest)
-CA	+5333-11328	America/Edmonton	Mountain - AB; BC (E); NT (E); SK (W)
+CA	+5333-11328	America/Edmonton	Mountain - AB, BC(E), NT(E), SK(W)
 CA	+690650-1050310	America/Cambridge_Bay	Mountain - NU (west)
 CA	+682059-1334300	America/Inuvik	Mountain - NT (west)
 CA	+4906-11631	America/Creston	MST - BC (Creston)
@@ -207,8 +207,8 @@ HT	+1832-07220	America/Port-au-Prince
 HU	+4730+01905	Europe/Budapest
 ID	-0610+10648	Asia/Jakarta	Java, Sumatra
 ID	-0002+10920	Asia/Pontianak	Borneo (west, central)
-ID	-0507+11924	Asia/Makassar	Borneo (east, south); Sulawesi/Celebes, Bali, Nusa Tengarra; Timor (west)
-ID	-0232+14042	Asia/Jayapura	New Guinea (West Papua / Irian Jaya); Malukus/Moluccas
+ID	-0507+11924	Asia/Makassar	Borneo (east, south), Sulawesi/Celebes, Bali, Nusa Tengarra, Timor (west)
+ID	-0232+14042	Asia/Jayapura	New Guinea (West Papua / Irian Jaya), Malukus/Moluccas
 IE	+5320-00615	Europe/Dublin
 IL	+314650+0351326	Asia/Jerusalem
 IM	+5409-00428	Europe/Isle_of_Man
@@ -355,7 +355,7 @@ RU	+4310+13156	Asia/Vladivostok	MSK+07 - Amur River
 RU	+643337+1431336	Asia/Ust-Nera	MSK+07 - Oymyakonsky
 RU	+5934+15048	Asia/Magadan	MSK+08 - Magadan
 RU	+4658+14242	Asia/Sakhalin	MSK+08 - Sakhalin Island
-RU	+6728+15343	Asia/Srednekolymsk	MSK+08 - Sakha (E); N Kuril Is
+RU	+6728+15343	Asia/Srednekolymsk	MSK+08 - Sakha (E), N Kuril Is
 RU	+5301+15839	Asia/Kamchatka	MSK+09 - Kamchatka
 RU	+6445+17729	Asia/Anadyr	MSK+09 - Bering Sea
 RW	-0157+03004	Africa/Kigali
@@ -418,7 +418,7 @@ US	+470659-1011757	America/North_Dakota/Center	Central - ND (Oliver)
 US	+465042-1012439	America/North_Dakota/New_Salem	Central - ND (Morton rural)
 US	+471551-1014640	America/North_Dakota/Beulah	Central - ND (Mercer)
 US	+394421-1045903	America/Denver	Mountain (most areas)
-US	+433649-1161209	America/Boise	Mountain - ID (south); OR (east)
+US	+433649-1161209	America/Boise	Mountain - ID (south), OR (east)
 US	+332654-1120424	America/Phoenix	MST - AZ (except Navajo)
 US	+340308-1181434	America/Los_Angeles	Pacific
 US	+611305-1495401	America/Anchorage	Alaska (most areas)

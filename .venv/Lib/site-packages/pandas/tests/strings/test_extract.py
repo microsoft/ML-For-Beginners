@@ -4,6 +4,8 @@ import re
 import numpy as np
 import pytest
 
+from pandas.core.dtypes.dtypes import ArrowDtype
+
 from pandas import (
     DataFrame,
     Index,
@@ -45,13 +47,16 @@ def test_extract_expand_False_mixed_object():
     # two groups
     result = ser.str.extract(".*(BAD[_]+).*(BAD)", expand=False)
     er = [np.nan, np.nan]  # empty row
-    expected = DataFrame([["BAD_", "BAD"], er, ["BAD_", "BAD"], er, er, er, er, er, er])
+    expected = DataFrame(
+        [["BAD_", "BAD"], er, ["BAD_", "BAD"], er, er, er, er, er, er], dtype=object
+    )
     tm.assert_frame_equal(result, expected)
 
     # single group
     result = ser.str.extract(".*(BAD[_]+).*BAD", expand=False)
     expected = Series(
-        ["BAD_", np.nan, "BAD_", np.nan, np.nan, np.nan, None, np.nan, np.nan]
+        ["BAD_", np.nan, "BAD_", np.nan, np.nan, np.nan, None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -236,7 +241,9 @@ def test_extract_expand_True_mixed_object():
     )
 
     result = mixed.str.extract(".*(BAD[_]+).*(BAD)", expand=True)
-    expected = DataFrame([["BAD_", "BAD"], er, ["BAD_", "BAD"], er, er, er, er, er, er])
+    expected = DataFrame(
+        [["BAD_", "BAD"], er, ["BAD_", "BAD"], er, er, er, er, er, er], dtype=object
+    )
     tm.assert_frame_equal(result, expected)
 
 
@@ -358,7 +365,7 @@ def test_extract_dataframe_capture_groups_index(index, any_string_dtype):
     data = ["A1", "B2", "C"]
 
     if len(index) < len(data):
-        pytest.skip("Index too short")
+        pytest.skip(f"Index needs more than {len(data)} values")
 
     index = index[: len(data)]
     s = Series(data, index=index, dtype=any_string_dtype)
@@ -601,8 +608,8 @@ def test_extractall_stringindex(any_string_dtype):
     # index.name doesn't affect to the result
     if any_string_dtype == "object":
         for idx in [
-            Index(["a1a2", "b1", "c1"]),
-            Index(["a1a2", "b1", "c1"], name="xxx"),
+            Index(["a1a2", "b1", "c1"], dtype=object),
+            Index(["a1a2", "b1", "c1"], name="xxx", dtype=object),
         ]:
             result = idx.str.extractall(r"[ab](?P<digit>\d)")
             tm.assert_frame_equal(result, expected)
@@ -706,3 +713,12 @@ def test_extractall_same_as_extract_subject_index(any_string_dtype):
     has_match_index = s.str.extractall(pattern_one_noname)
     no_match_index = has_match_index.xs(0, level="match")
     tm.assert_frame_equal(extract_one_noname, no_match_index)
+
+
+def test_extractall_preserves_dtype():
+    # Ensure that when extractall is called on a series with specific dtypes set, that
+    # the dtype is preserved in the resulting DataFrame's column.
+    pa = pytest.importorskip("pyarrow")
+
+    result = Series(["abc", "ab"], dtype=ArrowDtype(pa.string())).str.extractall("(ab)")
+    assert result.dtypes[0] == "string[pyarrow]"

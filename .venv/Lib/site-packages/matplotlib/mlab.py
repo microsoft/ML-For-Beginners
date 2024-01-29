@@ -45,9 +45,6 @@ Spectral functions
 
 `detrend_none`
     Return the original line.
-
-`stride_windows`
-    Get all windows in an array in a memory-efficient manner
 """
 
 import functools
@@ -213,81 +210,6 @@ def detrend_linear(y):
     return y - (b*x + a)
 
 
-@_api.deprecated("3.6")
-def stride_windows(x, n, noverlap=None, axis=0):
-    """
-    Get all windows of *x* with length *n* as a single array,
-    using strides to avoid data duplication.
-
-    .. warning::
-
-        It is not safe to write to the output array.  Multiple
-        elements may point to the same piece of memory,
-        so modifying one value may change others.
-
-    Parameters
-    ----------
-    x : 1D array or sequence
-        Array or sequence containing the data.
-    n : int
-        The number of data points in each window.
-    noverlap : int, default: 0 (no overlap)
-        The overlap between adjacent windows.
-    axis : int
-        The axis along which the windows will run.
-
-    References
-    ----------
-    `stackoverflow: Rolling window for 1D arrays in Numpy?
-    <https://stackoverflow.com/a/6811241>`_
-    `stackoverflow: Using strides for an efficient moving average filter
-    <https://stackoverflow.com/a/4947453>`_
-    """
-    if noverlap is None:
-        noverlap = 0
-    if np.ndim(x) != 1:
-        raise ValueError('only 1-dimensional arrays can be used')
-    return _stride_windows(x, n, noverlap, axis)
-
-
-def _stride_windows(x, n, noverlap=0, axis=0):
-    # np>=1.20 provides sliding_window_view, and we only ever use axis=0.
-    if hasattr(np.lib.stride_tricks, "sliding_window_view") and axis == 0:
-        if noverlap >= n:
-            raise ValueError('noverlap must be less than n')
-        return np.lib.stride_tricks.sliding_window_view(
-            x, n, axis=0)[::n - noverlap].T
-
-    if noverlap >= n:
-        raise ValueError('noverlap must be less than n')
-    if n < 1:
-        raise ValueError('n cannot be less than 1')
-
-    x = np.asarray(x)
-
-    if n == 1 and noverlap == 0:
-        if axis == 0:
-            return x[np.newaxis]
-        else:
-            return x[np.newaxis].T
-    if n > x.size:
-        raise ValueError('n cannot be greater than the length of x')
-
-    # np.lib.stride_tricks.as_strided easily leads to memory corruption for
-    # non integer shape and strides, i.e. noverlap or n. See #3845.
-    noverlap = int(noverlap)
-    n = int(n)
-
-    step = n - noverlap
-    if axis == 0:
-        shape = (n, (x.shape[-1]-noverlap)//step)
-        strides = (x.strides[0], step*x.strides[0])
-    else:
-        shape = ((x.shape[-1]-noverlap)//step, n)
-        strides = (step*x.strides[0], x.strides[0])
-    return np.lib.stride_tricks.as_strided(x, shape=shape, strides=strides)
-
-
 def _spectral_helper(x, y=None, NFFT=None, Fs=None, detrend_func=None,
                      window=None, noverlap=None, pad_to=None,
                      sides=None, scale_by_freq=None, mode=None):
@@ -316,6 +238,9 @@ def _spectral_helper(x, y=None, NFFT=None, Fs=None, detrend_func=None,
     # if NFFT is set to None use the whole signal
     if NFFT is None:
         NFFT = 256
+
+    if noverlap >= NFFT:
+        raise ValueError('noverlap must be less than NFFT')
 
     if mode is None or mode == 'default':
         mode = 'psd'
@@ -379,7 +304,8 @@ def _spectral_helper(x, y=None, NFFT=None, Fs=None, detrend_func=None,
         raise ValueError(
             "The window length must match the data's first dimension")
 
-    result = _stride_windows(x, NFFT, noverlap)
+    result = np.lib.stride_tricks.sliding_window_view(
+        x, NFFT, axis=0)[::NFFT - noverlap].T
     result = detrend(result, detrend_func, axis=0)
     result = result * window.reshape((-1, 1))
     result = np.fft.fft(result, n=pad_to, axis=0)[:numFreqs, :]
@@ -387,7 +313,8 @@ def _spectral_helper(x, y=None, NFFT=None, Fs=None, detrend_func=None,
 
     if not same_data:
         # if same_data is False, mode must be 'psd'
-        resultY = _stride_windows(y, NFFT, noverlap)
+        resultY = np.lib.stride_tricks.sliding_window_view(
+            y, NFFT, axis=0)[::NFFT - noverlap].T
         resultY = detrend(resultY, detrend_func, axis=0)
         resultY = resultY * window.reshape((-1, 1))
         resultY = np.fft.fft(resultY, n=pad_to, axis=0)[:numFreqs, :]
@@ -960,8 +887,8 @@ class GaussianKDE:
 
         dim, num_m = np.array(points).shape
         if dim != self.dim:
-            raise ValueError("points have dimension {}, dataset has dimension "
-                             "{}".format(dim, self.dim))
+            raise ValueError(f"points have dimension {dim}, dataset has "
+                             f"dimension {self.dim}")
 
         result = np.zeros(num_m)
 

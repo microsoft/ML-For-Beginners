@@ -58,7 +58,7 @@ Interpolation
    :toctree: generated/
 
    affine_transform - Apply an affine transformation
-   geometric_transform - Apply an arbritrary geometric transform
+   geometric_transform - Apply an arbitrary geometric transform
    map_coordinates - Map input array to new coordinates by interpolation
    rotate - Rotate an array
    shift - Shift an array
@@ -149,18 +149,18 @@ Morphology
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from ._filters import *  # noqa: F401 F403
-from ._fourier import *  # noqa: F401 F403
-from ._interpolation import *  # noqa: F401 F403
-from ._measurements import *  # noqa: F401 F403
-from ._morphology import *  # noqa: F401 F403
+from ._filters import *
+from ._fourier import *
+from ._interpolation import *
+from ._measurements import *
+from ._morphology import *
 
 # Deprecated namespaces, to be removed in v2.0.0
-from . import filters  # noqa: F401
-from . import fourier  # noqa: F401
-from . import interpolation  # noqa: F401
-from . import measurements  # noqa: F401
-from . import morphology  # noqa: F401
+from . import filters
+from . import fourier
+from . import interpolation
+from . import measurements
+from . import morphology
 
 __all__ = [s for s in dir() if not s.startswith('_')]
 

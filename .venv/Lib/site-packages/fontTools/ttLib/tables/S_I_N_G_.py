@@ -20,7 +20,6 @@ SINGFormat = """
 
 
 class table_S_I_N_G_(DefaultTable.DefaultTable):
-
     dependencies = []
 
     def decompile(self, data, ttFont):

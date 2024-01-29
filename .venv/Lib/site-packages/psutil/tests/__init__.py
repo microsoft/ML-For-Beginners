@@ -4,9 +4,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-"""
-Test utilities.
-"""
+"""Test utilities."""
 
 from __future__ import print_function
 
@@ -43,10 +41,13 @@ import psutil
 from psutil import AIX
 from psutil import LINUX
 from psutil import MACOS
+from psutil import NETBSD
+from psutil import OPENBSD
 from psutil import POSIX
 from psutil import SUNOS
 from psutil import WINDOWS
 from psutil._common import bytes2human
+from psutil._common import debug
 from psutil._common import memoize
 from psutil._common import print_color
 from psutil._common import supports_ipv6
@@ -67,7 +68,7 @@ except ImportError:
         warnings.simplefilter("ignore")
         import mock  # NOQA - requires "pip install mock"
 
-if sys.version_info >= (3, 4):
+if PY3:
     import enum
 else:
     enum = None
@@ -76,6 +77,7 @@ if POSIX:
     from psutil._psposix import wait_pid
 
 
+# fmt: off
 __all__ = [
     # constants
     'APPVEYOR', 'DEVNULL', 'GLOBAL_TIMEOUT', 'TOLERANCE_SYS_MEM', 'NO_RETRIES',
@@ -96,14 +98,15 @@ __all__ = [
     'unittest', 'skip_on_access_denied', 'skip_on_not_implemented',
     'retry_on_failure', 'TestMemoryLeak', 'PsutilTestCase',
     'process_namespace', 'system_namespace', 'print_sysinfo',
+    'is_win_secure_system_proc',
     # fs utils
-    'chdir', 'safe_rmpath', 'create_exe', 'get_testfn',
+    'chdir', 'safe_rmpath', 'create_py_exe', 'create_c_exe', 'get_testfn',
     # os
     'get_winver', 'kernel_version',
     # sync primitives
     'call_until', 'wait_for_pid', 'wait_for_file',
     # network
-    'check_net_address',
+    'check_net_address', 'filter_proc_connections',
     'get_free_port', 'bind_socket', 'bind_unix_socket', 'tcp_socketpair',
     'unix_socketpair', 'create_sockets',
     # compat
@@ -111,6 +114,7 @@ __all__ = [
     # others
     'warn', 'copyload_shared_lib', 'is_namedtuple',
 ]
+# fmt: on
 
 
 # ===================================================================
@@ -126,7 +130,7 @@ GITHUB_ACTIONS = 'GITHUB_ACTIONS' in os.environ or 'CIBUILDWHEEL' in os.environ
 CI_TESTING = APPVEYOR or GITHUB_ACTIONS
 COVERAGE = 'COVERAGE_RUN' in os.environ
 # are we a 64 bit process?
-IS_64BIT = sys.maxsize > 2 ** 32
+IS_64BIT = sys.maxsize > 2**32
 
 
 @memoize
@@ -193,10 +197,10 @@ ASCII_FS = sys.getfilesystemencoding().lower() in ('ascii', 'us-ascii')
 # --- paths
 
 ROOT_DIR = os.path.realpath(
-    os.path.join(os.path.dirname(__file__), '..', '..'))
+    os.path.join(os.path.dirname(__file__), '..', '..')
+)
 SCRIPTS_DIR = os.environ.get(
-    "PSUTIL_SCRIPTS_DIR",
-    os.path.join(ROOT_DIR, 'scripts')
+    "PSUTIL_SCRIPTS_DIR", os.path.join(ROOT_DIR, 'scripts')
 )
 HERE = os.path.realpath(os.path.dirname(__file__))
 
@@ -216,7 +220,7 @@ HAS_RLIMIT = hasattr(psutil.Process, "rlimit")
 HAS_SENSORS_BATTERY = hasattr(psutil, "sensors_battery")
 try:
     HAS_BATTERY = HAS_SENSORS_BATTERY and bool(psutil.sensors_battery())
-except Exception:
+except Exception:  # noqa: BLE001
     HAS_BATTERY = False
 HAS_SENSORS_FANS = hasattr(psutil, "sensors_fans")
 HAS_SENSORS_TEMPERATURES = hasattr(psutil, "sensors_temperatures")
@@ -230,8 +234,9 @@ def _get_py_exe():
     def attempt(exe):
         try:
             subprocess.check_call(
-                [exe, "-V"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        except Exception:
+                [exe, "-V"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            )
+        except subprocess.CalledProcessError:
             return None
         else:
             return exe
@@ -252,11 +257,12 @@ def _get_py_exe():
     elif GITHUB_ACTIONS:
         return sys.executable, env
     elif MACOS:
-        exe = \
-            attempt(sys.executable) or \
-            attempt(os.path.realpath(sys.executable)) or \
-            attempt(which("python%s.%s" % sys.version_info[:2])) or \
-            attempt(psutil.Process().exe())
+        exe = (
+            attempt(sys.executable)
+            or attempt(os.path.realpath(sys.executable))
+            or attempt(which("python%s.%s" % sys.version_info[:2]))
+            or attempt(psutil.Process().exe())
+        )
         if not exe:
             raise ValueError("can't find python exe real abspath")
         return exe, env
@@ -270,8 +276,9 @@ PYTHON_EXE, PYTHON_EXE_ENV = _get_py_exe()
 DEVNULL = open(os.devnull, 'r+')
 atexit.register(DEVNULL.close)
 
-VALID_PROC_STATUSES = [getattr(psutil, x) for x in dir(psutil)
-                       if x.startswith('STATUS_')]
+VALID_PROC_STATUSES = [
+    getattr(psutil, x) for x in dir(psutil) if x.startswith('STATUS_')
+]
 AF_UNIX = getattr(socket, "AF_UNIX", object())
 
 _subprocesses_started = set()
@@ -339,12 +346,13 @@ def _reap_children_on_err(fun):
         except Exception:
             reap_children()
             raise
+
     return wrapper
 
 
 @_reap_children_on_err
 def spawn_testproc(cmd=None, **kwds):
-    """Creates a python subprocess which does nothing for 60 secs and
+    """Create a python subprocess which does nothing for some secs and
     return it as a subprocess.Popen instance.
     If "cmd" is specified that is used instead of python.
     By default stdin and stdout are redirected to /dev/null.
@@ -363,12 +371,14 @@ def spawn_testproc(cmd=None, **kwds):
         CREATE_NO_WINDOW = 0x8000000
         kwds.setdefault("creationflags", CREATE_NO_WINDOW)
     if cmd is None:
-        testfn = get_testfn()
+        testfn = get_testfn(dir=os.getcwd())
         try:
             safe_rmpath(testfn)
-            pyline = "from time import sleep;" \
-                     "open(r'%s', 'w').close();" \
-                     "sleep(60);" % testfn
+            pyline = (
+                "import time;"
+                + "open(r'%s', 'w').close();" % testfn
+                + "[time.sleep(0.1) for x in range(100)];"  # 10 secs
+            )
             cmd = [PYTHON_EXE, "-c", pyline]
             sproc = subprocess.Popen(cmd, **kwds)
             _subprocesses_started.add(sproc)
@@ -476,7 +486,7 @@ def pyrun(src, **kwds):
     kwds.setdefault("stderr", None)
     srcfile = get_testfn()
     try:
-        with open(srcfile, 'wt') as f:
+        with open(srcfile, "w") as f:
             f.write(src)
         subp = spawn_testproc([PYTHON_EXE, f.name], **kwds)
         wait_for_pid(subp.pid)
@@ -488,7 +498,7 @@ def pyrun(src, **kwds):
 
 @_reap_children_on_err
 def sh(cmd, **kwds):
-    """run cmd in a subprocess and return its output.
+    """Run cmd in a subprocess and return its output.
     raises RuntimeError on error.
     """
     # Prevents subprocess to open error dialogs in case of error.
@@ -524,6 +534,7 @@ def terminate(proc_or_pid, sig=signal.SIGTERM, wait_timeout=GLOBAL_TIMEOUT):
     Does nothing if the process does not exist.
     Return process exit status.
     """
+
     def wait(proc, timeout):
         if isinstance(proc, subprocess.Popen) and not PY3:
             proc.wait()
@@ -668,10 +679,7 @@ def get_winver():
         sp = wv.service_pack_major or 0
     else:
         r = re.search(r"\s\d$", wv[4])
-        if r:
-            sp = int(r.group(0))
-        else:
-            sp = 0
+        sp = int(r.group(0)) if r else 0
     return (wv[0], wv[1], sp)
 
 
@@ -680,16 +688,17 @@ def get_winver():
 # ===================================================================
 
 
-class retry(object):
+class retry:
     """A retry decorator."""
 
-    def __init__(self,
-                 exception=Exception,
-                 timeout=None,
-                 retries=None,
-                 interval=0.001,
-                 logfun=None,
-                 ):
+    def __init__(
+        self,
+        exception=Exception,
+        timeout=None,
+        retries=None,
+        interval=0.001,
+        logfun=None,
+    ):
         if timeout and retries:
             raise ValueError("timeout and retries args are mutually exclusive")
         self.exception = exception
@@ -738,20 +747,27 @@ class retry(object):
         return wrapper
 
 
-@retry(exception=psutil.NoSuchProcess, logfun=None, timeout=GLOBAL_TIMEOUT,
-       interval=0.001)
+@retry(
+    exception=psutil.NoSuchProcess,
+    logfun=None,
+    timeout=GLOBAL_TIMEOUT,
+    interval=0.001,
+)
 def wait_for_pid(pid):
     """Wait for pid to show up in the process list then return.
     Used in the test suite to give time the sub process to initialize.
     """
+    if pid not in psutil.pids():
+        raise psutil.NoSuchProcess(pid)
     psutil.Process(pid)
-    if WINDOWS:
-        # give it some more time to allow better initialization
-        time.sleep(0.01)
 
 
-@retry(exception=(FileNotFoundError, AssertionError), logfun=None,
-       timeout=GLOBAL_TIMEOUT, interval=0.001)
+@retry(
+    exception=(FileNotFoundError, AssertionError),
+    logfun=None,
+    timeout=GLOBAL_TIMEOUT,
+    interval=0.001,
+)
 def wait_for_file(fname, delete=True, empty=False):
     """Wait for a file to be written on disk with some content."""
     with open(fname, "rb") as f:
@@ -763,14 +779,18 @@ def wait_for_file(fname, delete=True, empty=False):
     return data
 
 
-@retry(exception=AssertionError, logfun=None, timeout=GLOBAL_TIMEOUT,
-       interval=0.001)
+@retry(
+    exception=AssertionError,
+    logfun=None,
+    timeout=GLOBAL_TIMEOUT,
+    interval=0.001,
+)
 def call_until(fun, expr):
     """Keep calling function for timeout secs and exit if eval()
     expression is True.
     """
     ret = fun()
-    assert eval(expr)
+    assert eval(expr)  # noqa
     return ret
 
 
@@ -781,6 +801,7 @@ def call_until(fun, expr):
 
 def safe_rmpath(path):
     """Convenience function for removing temporary test files or dirs."""
+
     def retry_fun(fun):
         # On Windows it could happen that the file or directory has
         # open handles or references preventing the delete operation
@@ -831,34 +852,41 @@ def chdir(dirname):
         os.chdir(curdir)
 
 
-def create_exe(outpath, c_code=None):
-    """Creates an executable file in the given location."""
-    assert not os.path.exists(outpath), outpath
-    if c_code:
-        if not which("gcc"):
-            raise unittest.SkipTest("gcc is not installed")
-        if isinstance(c_code, bool):        # c_code is True
-            c_code = textwrap.dedent(
-                """
-                #include <unistd.h>
-                int main() {
-                    pause();
-                    return 1;
-                }
-                """)
-        assert isinstance(c_code, str), c_code
-        with open(get_testfn(suffix='.c'), 'wt') as f:
-            f.write(c_code)
-        try:
-            subprocess.check_call(["gcc", f.name, "-o", outpath])
-        finally:
-            safe_rmpath(f.name)
+def create_py_exe(path):
+    """Create a Python executable file in the given location."""
+    assert not os.path.exists(path), path
+    atexit.register(safe_rmpath, path)
+    shutil.copyfile(PYTHON_EXE, path)
+    if POSIX:
+        st = os.stat(path)
+        os.chmod(path, st.st_mode | stat.S_IEXEC)
+    return path
+
+
+def create_c_exe(path, c_code=None):
+    """Create a compiled C executable in the given location."""
+    assert not os.path.exists(path), path
+    if not which("gcc"):
+        raise unittest.SkipTest("gcc is not installed")
+    if c_code is None:
+        c_code = textwrap.dedent("""
+            #include <unistd.h>
+            int main() {
+                pause();
+                return 1;
+            }
+            """)
     else:
-        # copy python executable
-        shutil.copyfile(PYTHON_EXE, outpath)
-        if POSIX:
-            st = os.stat(outpath)
-            os.chmod(outpath, st.st_mode | stat.S_IEXEC)
+        assert isinstance(c_code, str), c_code
+
+    atexit.register(safe_rmpath, path)
+    with open(get_testfn(suffix='.c'), "w") as f:
+        f.write(c_code)
+    try:
+        subprocess.check_call(["gcc", f.name, "-o", path])
+    finally:
+        safe_rmpath(f.name)
+    return path
 
 
 def get_testfn(suffix="", dir=None):
@@ -870,7 +898,9 @@ def get_testfn(suffix="", dir=None):
     while True:
         name = tempfile.mktemp(prefix=TESTFN_PREFIX, suffix=suffix, dir=dir)
         if not os.path.exists(name):  # also include dirs
-            return os.path.realpath(name)  # needed for OSX
+            path = os.path.realpath(name)  # needed for OSX
+            atexit.register(safe_rmpath, path)
+            return path
 
 
 # ===================================================================
@@ -887,15 +917,19 @@ class TestCase(unittest.TestCase):
         if not fqmod.startswith('psutil.'):
             fqmod = 'psutil.tests.' + fqmod
         return "%s.%s.%s" % (
-            fqmod, self.__class__.__name__, self._testMethodName)
+            fqmod,
+            self.__class__.__name__,
+            self._testMethodName,
+        )
 
     # assertRaisesRegexp renamed to assertRaisesRegex in 3.3;
     # add support for the new name.
     if not hasattr(unittest.TestCase, 'assertRaisesRegex'):
-        assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
+        assertRaisesRegex = unittest.TestCase.assertRaisesRegexp  # noqa
 
     # ...otherwise multiprocessing.Pool complains
     if not PY3:
+
         def runTest(self):
             pass
 
@@ -942,20 +976,114 @@ class PsutilTestCase(TestCase):
         self.addCleanup(terminate, sproc)  # executed first
         return sproc
 
-    def assertProcessGone(self, proc):
-        self.assertRaises(psutil.NoSuchProcess, psutil.Process, proc.pid)
-        if isinstance(proc, (psutil.Process, psutil.Popen)):
-            assert not proc.is_running()
+    def _check_proc_exc(self, proc, exc):
+        self.assertIsInstance(exc, psutil.Error)
+        self.assertEqual(exc.pid, proc.pid)
+        self.assertEqual(exc.name, proc._name)
+        if exc.name:
+            self.assertNotEqual(exc.name, "")
+        if isinstance(exc, psutil.ZombieProcess):
+            self.assertEqual(exc.ppid, proc._ppid)
+            if exc.ppid is not None:
+                self.assertGreaterEqual(exc.ppid, 0)
+        str(exc)
+        repr(exc)
+
+    def assertPidGone(self, pid):
+        with self.assertRaises(psutil.NoSuchProcess) as cm:
             try:
-                status = proc.status()
-            except psutil.NoSuchProcess:
-                pass
-            else:
-                raise AssertionError("Process.status() didn't raise exception "
-                                     "(status=%s)" % status)
-            proc.wait(timeout=0)  # assert not raise TimeoutExpired
-        assert not psutil.pid_exists(proc.pid), proc.pid
-        self.assertNotIn(proc.pid, psutil.pids())
+                psutil.Process(pid)
+            except psutil.ZombieProcess:
+                raise AssertionError("wasn't supposed to raise ZombieProcess")
+        self.assertEqual(cm.exception.pid, pid)
+        self.assertEqual(cm.exception.name, None)
+        assert not psutil.pid_exists(pid), pid
+        self.assertNotIn(pid, psutil.pids())
+        self.assertNotIn(pid, [x.pid for x in psutil.process_iter()])
+
+    def assertProcessGone(self, proc):
+        self.assertPidGone(proc.pid)
+        ns = process_namespace(proc)
+        for fun, name in ns.iter(ns.all, clear_cache=True):
+            with self.subTest(proc=proc, name=name):
+                try:
+                    ret = fun()
+                except psutil.ZombieProcess:
+                    raise
+                except psutil.NoSuchProcess as exc:
+                    self._check_proc_exc(proc, exc)
+                else:
+                    msg = "Process.%s() didn't raise NSP and returned %r" % (
+                        name,
+                        ret,
+                    )
+                    raise AssertionError(msg)
+        proc.wait(timeout=0)  # assert not raise TimeoutExpired
+
+    def assertProcessZombie(self, proc):
+        # A zombie process should always be instantiable.
+        clone = psutil.Process(proc.pid)
+        # Cloned zombie on Open/NetBSD has null creation time, see:
+        # https://github.com/giampaolo/psutil/issues/2287
+        self.assertEqual(proc, clone)
+        if not (OPENBSD or NETBSD):
+            self.assertEqual(hash(proc), hash(clone))
+        # Its status always be querable.
+        self.assertEqual(proc.status(), psutil.STATUS_ZOMBIE)
+        # It should be considered 'running'.
+        assert proc.is_running()
+        assert psutil.pid_exists(proc.pid)
+        # as_dict() shouldn't crash.
+        proc.as_dict()
+        # It should show up in pids() and process_iter().
+        self.assertIn(proc.pid, psutil.pids())
+        self.assertIn(proc.pid, [x.pid for x in psutil.process_iter()])
+        psutil._pmap = {}
+        self.assertIn(proc.pid, [x.pid for x in psutil.process_iter()])
+        # Call all methods.
+        ns = process_namespace(proc)
+        for fun, name in ns.iter(ns.all, clear_cache=True):
+            with self.subTest(proc=proc, name=name):
+                try:
+                    fun()
+                except (psutil.ZombieProcess, psutil.AccessDenied) as exc:
+                    self._check_proc_exc(proc, exc)
+        if LINUX:
+            # https://github.com/giampaolo/psutil/pull/2288
+            with self.assertRaises(psutil.ZombieProcess) as cm:
+                proc.cmdline()
+            self._check_proc_exc(proc, cm.exception)
+            with self.assertRaises(psutil.ZombieProcess) as cm:
+                proc.exe()
+            self._check_proc_exc(proc, cm.exception)
+            with self.assertRaises(psutil.ZombieProcess) as cm:
+                proc.memory_maps()
+            self._check_proc_exc(proc, cm.exception)
+        # Zombie cannot be signaled or terminated.
+        proc.suspend()
+        proc.resume()
+        proc.terminate()
+        proc.kill()
+        assert proc.is_running()
+        assert psutil.pid_exists(proc.pid)
+        self.assertIn(proc.pid, psutil.pids())
+        self.assertIn(proc.pid, [x.pid for x in psutil.process_iter()])
+        psutil._pmap = {}
+        self.assertIn(proc.pid, [x.pid for x in psutil.process_iter()])
+
+        # Its parent should 'see' it (edit: not true on BSD and MACOS).
+        # descendants = [x.pid for x in psutil.Process().children(
+        #                recursive=True)]
+        # self.assertIn(proc.pid, descendants)
+
+        # __eq__ can't be relied upon because creation time may not be
+        # querable.
+        # self.assertEqual(proc, psutil.Process(proc.pid))
+
+        # XXX should we also assume ppid() to be usable? Note: this
+        # would be an important use case as the only way to get
+        # rid of a zombie is to kill its parent.
+        # self.assertEqual(proc.ppid(), os.getpid())
 
 
 @unittest.skipIf(PYPY, "unreliable on PYPY")
@@ -989,6 +1117,7 @@ class TestMemoryLeak(PsutilTestCase):
             def test_fun(self):
                 self.execute(some_function)
     """
+
     # Configurable class attrs.
     times = 200
     warmup_times = 10
@@ -1032,8 +1161,10 @@ class TestMemoryLeak(PsutilTestCase):
         after = self._get_num_fds()
         diff = after - before
         if diff < 0:
-            raise self.fail("negative diff %r (gc probably collected a "
-                            "resource from a previous test)" % diff)
+            raise self.fail(
+                "negative diff %r (gc probably collected a "
+                "resource from a previous test)" % diff
+            )
         if diff > 0:
             type_ = "fd" if POSIX else "handle"
             if diff > 1:
@@ -1063,7 +1194,11 @@ class TestMemoryLeak(PsutilTestCase):
         for idx in range(1, retries + 1):
             mem = self._call_ntimes(fun, times)
             msg = "Run #%s: extra-mem=%s, per-call=%s, calls=%s" % (
-                idx, bytes2human(mem), bytes2human(mem / times), times)
+                idx,
+                bytes2human(mem),
+                bytes2human(mem / times),
+                times,
+            )
             messages.append(msg)
             success = mem <= tolerance or mem <= prev_mem
             if success:
@@ -1083,12 +1218,14 @@ class TestMemoryLeak(PsutilTestCase):
     def call(self, fun):
         return fun()
 
-    def execute(self, fun, times=None, warmup_times=None, retries=None,
-                tolerance=None):
+    def execute(
+        self, fun, times=None, warmup_times=None, retries=None, tolerance=None
+    ):
         """Test a callable."""
         times = times if times is not None else self.times
-        warmup_times = warmup_times if warmup_times is not None \
-            else self.warmup_times
+        warmup_times = (
+            warmup_times if warmup_times is not None else self.warmup_times
+        )
         retries = retries if retries is not None else self.retries
         tolerance = tolerance if tolerance is not None else self.tolerance
         try:
@@ -1107,6 +1244,7 @@ class TestMemoryLeak(PsutilTestCase):
         """Convenience method to test a callable while making sure it
         raises an exception on every call.
         """
+
         def call():
             self.assertRaises(exc, fun)
 
@@ -1119,6 +1257,7 @@ def print_sysinfo():
     import getpass
     import locale
     import pprint
+
     try:
         import pip
     except ImportError:
@@ -1136,14 +1275,14 @@ def print_sysinfo():
     elif psutil.OSX:
         info['OS'] = 'Darwin %s' % platform.mac_ver()[0]
     elif psutil.WINDOWS:
-        info['OS'] = "Windows " + ' '.join(
-            map(str, platform.win32_ver()))
+        info['OS'] = "Windows " + ' '.join(map(str, platform.win32_ver()))
         if hasattr(platform, 'win32_edition'):
             info['OS'] += ", " + platform.win32_edition()
     else:
         info['OS'] = "%s %s" % (platform.system(), platform.version())
     info['arch'] = ', '.join(
-        list(platform.architecture()) + [platform.machine()])
+        list(platform.architecture()) + [platform.machine()]
+    )
     if psutil.POSIX:
         info['kernel'] = platform.uname()[2]
 
@@ -1151,7 +1290,8 @@ def print_sysinfo():
     info['python'] = ', '.join([
         platform.python_implementation(),
         platform.python_version(),
-        platform.python_compiler()])
+        platform.python_compiler(),
+    ])
     info['pip'] = getattr(pip, '__version__', 'not installed')
     if wheel is not None:
         info['pip'] += " (wheel=%s)" % wheel.__version__
@@ -1172,7 +1312,8 @@ def print_sysinfo():
     lang = locale.getlocale()
     info['lang'] = '%s, %s' % (lang[0], lang[1])
     info['boot-time'] = datetime.datetime.fromtimestamp(
-        psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S")
+        psutil.boot_time()
+    ).strftime("%Y-%m-%d %H:%M:%S")
     info['time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     info['user'] = getpass.getuser()
     info['home'] = os.path.expanduser("~")
@@ -1184,13 +1325,20 @@ def print_sysinfo():
     # metrics
     info['cpus'] = psutil.cpu_count()
     info['loadavg'] = "%.1f%%, %.1f%%, %.1f%%" % (
-        tuple([x / psutil.cpu_count() * 100 for x in psutil.getloadavg()]))
+        tuple([x / psutil.cpu_count() * 100 for x in psutil.getloadavg()])
+    )
     mem = psutil.virtual_memory()
     info['memory'] = "%s%%, used=%s, total=%s" % (
-        int(mem.percent), bytes2human(mem.used), bytes2human(mem.total))
+        int(mem.percent),
+        bytes2human(mem.used),
+        bytes2human(mem.total),
+    )
     swap = psutil.swap_memory()
     info['swap'] = "%s%%, used=%s, total=%s" % (
-        int(swap.percent), bytes2human(swap.used), bytes2human(swap.total))
+        int(swap.percent),
+        bytes2human(swap.used),
+        bytes2human(swap.total),
+    )
     info['pids'] = len(psutil.pids())
     pinfo = psutil.Process().as_dict()
     pinfo.pop('memory_maps', None)
@@ -1201,6 +1349,31 @@ def print_sysinfo():
         print("%-17s %s" % (k + ':', v), file=sys.stderr)  # NOQA
     print("=" * 70, file=sys.stderr)  # NOQA
     sys.stdout.flush()
+
+    if WINDOWS:
+        os.system("tasklist")
+    elif which("ps"):
+        os.system("ps aux")
+    print("=" * 70, file=sys.stderr)  # NOQA
+    sys.stdout.flush()
+
+
+def is_win_secure_system_proc(pid):
+    # see: https://github.com/giampaolo/psutil/issues/2338
+    @memoize
+    def get_procs():
+        ret = {}
+        out = sh("tasklist.exe /NH /FO csv")
+        for line in out.splitlines()[1:]:
+            bits = [x.replace('"', "") for x in line.split(",")]
+            name, pid = bits[0], int(bits[1])
+            ret[pid] = name
+        return ret
+
+    try:
+        return get_procs()[pid] == "Secure System"
+    except KeyError:
+        return False
 
 
 def _get_eligible_cpu():
@@ -1221,10 +1394,8 @@ class process_namespace:
     >>> for fun, name in ns.iter(ns.getters):
     ...    fun()
     """
-    utils = [
-        ('cpu_percent', (), {}),
-        ('memory_percent', (), {}),
-    ]
+
+    utils = [('cpu_percent', (), {}), ('memory_percent', (), {})]
 
     ignored = [
         ('as_dict', (), {}),
@@ -1235,7 +1406,7 @@ class process_namespace:
         ('parent', (), {}),
         ('parents', (), {}),
         ('pid', (), {}),
-        ('wait', (0, ), {}),
+        ('wait', (0,), {}),
     ]
 
     getters = [
@@ -1267,7 +1438,7 @@ class process_namespace:
     if HAS_IONICE:
         getters += [('ionice', (), {})]
     if HAS_RLIMIT:
-        getters += [('rlimit', (psutil.RLIMIT_NOFILE, ), {})]
+        getters += [('rlimit', (psutil.RLIMIT_NOFILE,), {})]
     if HAS_CPU_AFFINITY:
         getters += [('cpu_affinity', (), {})]
     if HAS_PROC_CPU_NUM:
@@ -1281,29 +1452,29 @@ class process_namespace:
 
     setters = []
     if POSIX:
-        setters += [('nice', (0, ), {})]
+        setters += [('nice', (0,), {})]
     else:
-        setters += [('nice', (psutil.NORMAL_PRIORITY_CLASS, ), {})]
+        setters += [('nice', (psutil.NORMAL_PRIORITY_CLASS,), {})]
     if HAS_RLIMIT:
         setters += [('rlimit', (psutil.RLIMIT_NOFILE, (1024, 4096)), {})]
     if HAS_IONICE:
         if LINUX:
             setters += [('ionice', (psutil.IOPRIO_CLASS_NONE, 0), {})]
         else:
-            setters += [('ionice', (psutil.IOPRIO_NORMAL, ), {})]
+            setters += [('ionice', (psutil.IOPRIO_NORMAL,), {})]
     if HAS_CPU_AFFINITY:
-        setters += [('cpu_affinity', ([_get_eligible_cpu()], ), {})]
+        setters += [('cpu_affinity', ([_get_eligible_cpu()],), {})]
 
     killers = [
-        ('send_signal', (signal.SIGTERM, ), {}),
+        ('send_signal', (signal.SIGTERM,), {}),
         ('suspend', (), {}),
         ('resume', (), {}),
         ('terminate', (), {}),
         ('kill', (), {}),
     ]
     if WINDOWS:
-        killers += [('send_signal', (signal.CTRL_C_EVENT, ), {})]
-        killers += [('send_signal', (signal.CTRL_BREAK_EVENT, ), {})]
+        killers += [('send_signal', (signal.CTRL_C_EVENT,), {})]
+        killers += [('send_signal', (signal.CTRL_BREAK_EVENT,), {})]
 
     all = utils + getters + setters + killers
 
@@ -1336,7 +1507,9 @@ class process_namespace:
             meth_name = 'test_' + fun_name
             if not hasattr(test_class, meth_name):
                 msg = "%r class should define a '%s' method" % (
-                    test_class.__class__.__name__, meth_name)
+                    test_class.__class__.__name__,
+                    meth_name,
+                )
                 raise AttributeError(msg)
 
     @classmethod
@@ -1357,6 +1530,7 @@ class system_namespace:
     >>> for fun, name in ns.iter(ns.getters):
     ...    fun()
     """
+
     getters = [
         ('boot_time', (), {}),
         ('cpu_count', (), {'logical': False}),
@@ -1366,12 +1540,12 @@ class system_namespace:
         ('cpu_times', (), {'percpu': True}),
         ('disk_io_counters', (), {'perdisk': True}),
         ('disk_partitions', (), {'all': True}),
-        ('disk_usage', (os.getcwd(), ), {}),
+        ('disk_usage', (os.getcwd(),), {}),
         ('net_connections', (), {'kind': 'all'}),
         ('net_if_addrs', (), {}),
         ('net_if_stats', (), {}),
         ('net_io_counters', (), {'pernic': True}),
-        ('pid_exists', (os.getpid(), ), {}),
+        ('pid_exists', (os.getpid(),), {}),
         ('pids', (), {}),
         ('swap_memory', (), {}),
         ('users', (), {}),
@@ -1389,11 +1563,11 @@ class system_namespace:
         getters += [('sensors_battery', (), {})]
     if WINDOWS:
         getters += [('win_service_iter', (), {})]
-        getters += [('win_service_get', ('alg', ), {})]
+        getters += [('win_service_get', ('alg',), {})]
 
     ignored = [
         ('process_iter', (), {}),
-        ('wait_procs', ([psutil.Process()], ), {}),
+        ('wait_procs', ([psutil.Process()],), {}),
         ('cpu_percent', (), {}),
         ('cpu_times_percent', (), {}),
     ]
@@ -1429,15 +1603,18 @@ def retry_on_failure(retries=NO_RETRIES):
     """Decorator which runs a test function and retries N times before
     actually failing.
     """
+
     def logfun(exc):
         print("%r, retrying" % exc, file=sys.stderr)  # NOQA
 
-    return retry(exception=AssertionError, timeout=None, retries=retries,
-                 logfun=logfun)
+    return retry(
+        exception=AssertionError, timeout=None, retries=retries, logfun=logfun
+    )
 
 
 def skip_on_access_denied(only_if=None):
     """Decorator to Ignore AccessDenied exceptions."""
+
     def decorator(fun):
         @functools.wraps(fun)
         def wrapper(*args, **kwargs):
@@ -1448,12 +1625,15 @@ def skip_on_access_denied(only_if=None):
                     if not only_if:
                         raise
                 raise unittest.SkipTest("raises AccessDenied")
+
         return wrapper
+
     return decorator
 
 
 def skip_on_not_implemented(only_if=None):
     """Decorator to Ignore NotImplementedError exceptions."""
+
     def decorator(fun):
         @functools.wraps(fun)
         def wrapper(*args, **kwargs):
@@ -1463,10 +1643,14 @@ def skip_on_not_implemented(only_if=None):
                 if only_if is not None:
                     if not only_if:
                         raise
-                msg = "%r was skipped because it raised NotImplementedError" \
-                      % fun.__name__
+                msg = (
+                    "%r was skipped because it raised NotImplementedError"
+                    % fun.__name__
+                )
                 raise unittest.SkipTest(msg)
+
         return wrapper
+
     return decorator
 
 
@@ -1593,6 +1777,7 @@ def check_net_address(addr, family):
     IPv6 and MAC addresses.
     """
     import ipaddress  # python >= 3.3 / requires "pip install ipaddress"
+
     if enum and PY3 and not PYPY:
         assert isinstance(family, enum.IntEnum), family
     if family == socket.AF_INET:
@@ -1616,6 +1801,7 @@ def check_net_address(addr, family):
 
 def check_connection_ntuple(conn):
     """Check validity of a connection namedtuple."""
+
     def check_ntuple(conn):
         has_pid = len(conn) == 7
         assert len(conn) in (6, 7), len(conn)
@@ -1652,8 +1838,11 @@ def check_connection_ntuple(conn):
     def check_type(conn):
         # SOCK_SEQPACKET may happen in case of AF_UNIX socks
         SOCK_SEQPACKET = getattr(socket, "SOCK_SEQPACKET", object())
-        assert conn.type in (socket.SOCK_STREAM, socket.SOCK_DGRAM,
-                             SOCK_SEQPACKET), conn.type
+        assert conn.type in (
+            socket.SOCK_STREAM,
+            socket.SOCK_DGRAM,
+            SOCK_SEQPACKET,
+        ), conn.type
         if enum is not None:
             assert isinstance(conn.type, enum.IntEnum), conn
         else:
@@ -1676,8 +1865,9 @@ def check_connection_ntuple(conn):
 
     def check_status(conn):
         assert isinstance(conn.status, str), conn.status
-        valids = [getattr(psutil, x) for x in dir(psutil)
-                  if x.startswith('CONN_')]
+        valids = [
+            getattr(psutil, x) for x in dir(psutil) if x.startswith('CONN_')
+        ]
         assert conn.status in valids, conn.status
         if conn.family in (AF_INET, AF_INET6) and conn.type == SOCK_STREAM:
             assert conn.status != psutil.CONN_NONE, conn.status
@@ -1691,6 +1881,20 @@ def check_connection_ntuple(conn):
     check_status(conn)
 
 
+def filter_proc_connections(cons):
+    """Our process may start with some open UNIX sockets which are not
+    initialized by us, invalidating unit tests.
+    """
+    new = []
+    for conn in cons:
+        if POSIX and conn.family == socket.AF_UNIX:
+            if MACOS and "/syslog" in conn.raddr:
+                debug("skipping %s" % str(conn))
+                continue
+        new.append(conn)
+    return new
+
+
 # ===================================================================
 # --- compatibility
 # ===================================================================
@@ -1700,10 +1904,12 @@ def reload_module(module):
     """Backport of importlib.reload of Python 3.3+."""
     try:
         import importlib
+
         if not hasattr(importlib, 'reload'):  # python <=3.3
             raise ImportError
     except ImportError:
         import imp
+
         return imp.reload(module)
     else:
         return importlib.reload(module)
@@ -1711,14 +1917,13 @@ def reload_module(module):
 
 def import_module_by_path(path):
     name = os.path.splitext(os.path.basename(path))[0]
-    if sys.version_info[0] == 2:
+    if sys.version_info[0] < 3:
         import imp
+
         return imp.load_source(name, path)
-    elif sys.version_info[:2] <= (3, 4):
-        from importlib.machinery import SourceFileLoader
-        return SourceFileLoader(name, path).load_module()
     else:
         import importlib.util
+
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
@@ -1744,10 +1949,11 @@ def is_namedtuple(x):
     f = getattr(t, '_fields', None)
     if not isinstance(f, tuple):
         return False
-    return all(type(n) == str for n in f)
+    return all(isinstance(n, str) for n in f)
 
 
 if POSIX:
+
     @contextlib.contextmanager
     def copyload_shared_lib(suffix=""):
         """Ctx manager which picks up a random shared CO lib used
@@ -1757,9 +1963,11 @@ if POSIX:
         exe = 'pypy' if PYPY else 'python'
         ext = ".so"
         dst = get_testfn(suffix=suffix + ext)
-        libs = [x.path for x in psutil.Process().memory_maps() if
-                os.path.splitext(x.path)[1] == ext and
-                exe in x.path.lower()]
+        libs = [
+            x.path
+            for x in psutil.Process().memory_maps()
+            if os.path.splitext(x.path)[1] == ext and exe in x.path.lower()
+        ]
         src = random.choice(libs)
         shutil.copyfile(src, dst)
         try:
@@ -1767,7 +1975,9 @@ if POSIX:
             yield dst
         finally:
             safe_rmpath(dst)
+
 else:
+
     @contextlib.contextmanager
     def copyload_shared_lib(suffix=""):
         """Ctx manager which picks up a random shared DLL lib used
@@ -1777,15 +1987,22 @@ else:
         """
         from ctypes import WinError
         from ctypes import wintypes
+
         ext = ".dll"
         dst = get_testfn(suffix=suffix + ext)
-        libs = [x.path for x in psutil.Process().memory_maps() if
-                x.path.lower().endswith(ext) and
-                'python' in os.path.basename(x.path).lower() and
-                'wow64' not in x.path.lower()]
+        libs = [
+            x.path
+            for x in psutil.Process().memory_maps()
+            if x.path.lower().endswith(ext)
+            and 'python' in os.path.basename(x.path).lower()
+            and 'wow64' not in x.path.lower()
+        ]
         if PYPY and not libs:
-            libs = [x.path for x in psutil.Process().memory_maps() if
-                    'pypy' in os.path.basename(x.path).lower()]
+            libs = [
+                x.path
+                for x in psutil.Process().memory_maps()
+                if 'pypy' in os.path.basename(x.path).lower()
+            ]
         src = random.choice(libs)
         shutil.copyfile(src, dst)
         cfile = None
@@ -1823,4 +2040,4 @@ def cleanup_test_procs():
 # module. With this it will. See:
 # https://gmpy.dev/blog/2016/how-to-always-execute-exit-functions-in-python
 if POSIX:
-    signal.signal(signal.SIGTERM, lambda sig, frame: sys.exit(sig))
+    signal.signal(signal.SIGTERM, lambda sig, _: sys.exit(sig))

@@ -21,6 +21,13 @@ from numpy.testing import (
     assert_almost_equal, assert_allclose, suppress_warnings,
     assert_raises_regex, HAS_LAPACK64, IS_WASM
     )
+try:
+    import numpy.linalg.lapack_lite
+except ImportError:
+    # May be broken when numpy was built without BLAS/LAPACK present
+    # If so, ensure we don't break the whole test suite - the `lapack_lite`
+    # submodule should be removed, it's only used in two tests in this file.
+    pass
 
 
 def consistent_subclass(out, in_):

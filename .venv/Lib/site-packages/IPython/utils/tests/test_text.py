@@ -26,37 +26,93 @@ from IPython.utils import text
 # Globals
 #-----------------------------------------------------------------------------
 
-def test_columnize():
+
+@pytest.mark.parametrize(
+    "expected, width, row_first, spread",
+    (
+        (
+            "aaaaa  bbbbb  ccccc  ddddd\n",
+            80,
+            False,
+            False,
+        ),
+        (
+            "aaaaa  ccccc\nbbbbb  ddddd\n",
+            25,
+            False,
+            False,
+        ),
+        (
+            "aaaaa  ccccc\nbbbbb  ddddd\n",
+            12,
+            False,
+            False,
+        ),
+        (
+            "aaaaa\nbbbbb\nccccc\nddddd\n",
+            10,
+            False,
+            False,
+        ),
+        (
+            "aaaaa  bbbbb  ccccc  ddddd\n",
+            80,
+            True,
+            False,
+        ),
+        (
+            "aaaaa  bbbbb\nccccc  ddddd\n",
+            25,
+            True,
+            False,
+        ),
+        (
+            "aaaaa  bbbbb\nccccc  ddddd\n",
+            12,
+            True,
+            False,
+        ),
+        (
+            "aaaaa\nbbbbb\nccccc\nddddd\n",
+            10,
+            True,
+            False,
+        ),
+        (
+            "aaaaa      bbbbb      ccccc      ddddd\n",
+            40,
+            False,
+            True,
+        ),
+        (
+            "aaaaa          ccccc\nbbbbb          ddddd\n",
+            20,
+            False,
+            True,
+        ),
+        (
+            "aaaaa  ccccc\nbbbbb  ddddd\n",
+            12,
+            False,
+            True,
+        ),
+        (
+            "aaaaa\nbbbbb\nccccc\nddddd\n",
+            10,
+            False,
+            True,
+        ),
+    ),
+)
+def test_columnize(expected, width, row_first, spread):
     """Basic columnize tests."""
     size = 5
     items = [l*size for l in 'abcd']
-
-    out = text.columnize(items, displaywidth=80)
-    assert out == "aaaaa  bbbbb  ccccc  ddddd\n"
-    out = text.columnize(items, displaywidth=25)
-    assert out == "aaaaa  ccccc\nbbbbb  ddddd\n"
-    out = text.columnize(items, displaywidth=12)
-    assert out == "aaaaa  ccccc\nbbbbb  ddddd\n"
-    out = text.columnize(items, displaywidth=10)
-    assert out == "aaaaa\nbbbbb\nccccc\nddddd\n"
-
-    out = text.columnize(items, row_first=True, displaywidth=80)
-    assert out == "aaaaa  bbbbb  ccccc  ddddd\n"
-    out = text.columnize(items, row_first=True, displaywidth=25)
-    assert out == "aaaaa  bbbbb\nccccc  ddddd\n"
-    out = text.columnize(items, row_first=True, displaywidth=12)
-    assert out == "aaaaa  bbbbb\nccccc  ddddd\n"
-    out = text.columnize(items, row_first=True, displaywidth=10)
-    assert out == "aaaaa\nbbbbb\nccccc\nddddd\n"
-
-    out = text.columnize(items, displaywidth=40, spread=True)
-    assert out == "aaaaa      bbbbb      ccccc      ddddd\n"
-    out = text.columnize(items, displaywidth=20, spread=True)
-    assert out == "aaaaa          ccccc\nbbbbb          ddddd\n"
-    out = text.columnize(items, displaywidth=12, spread=True)
-    assert out == "aaaaa  ccccc\nbbbbb  ddddd\n"
-    out = text.columnize(items, displaywidth=10, spread=True)
-    assert out == "aaaaa\nbbbbb\nccccc\nddddd\n"
+    with pytest.warns(PendingDeprecationWarning):
+        out = text.columnize(
+            items, displaywidth=width, row_first=row_first, spread=spread
+        )
+        assert out == expected
 
 
 def test_columnize_random():
@@ -66,8 +122,11 @@ def test_columnize_random():
             displaywidth = random.randint(20,200)
             rand_len = [random.randint(2,displaywidth) for i in range(nitems)]
             items = ['x'*l for l in rand_len]
-            out = text.columnize(items, row_first=row_first, displaywidth=displaywidth)
-            longer_line = max([len(x) for x in out.split('\n')])
+            with pytest.warns(PendingDeprecationWarning):
+                out = text.columnize(
+                    items, row_first=row_first, displaywidth=displaywidth
+                )
+            longer_line = max([len(x) for x in out.split("\n")])
             longer_element = max(rand_len)
             assert longer_line <= displaywidth, (
                 f"Columnize displayed something lager than displaywidth : {longer_line}\n"
@@ -84,7 +143,8 @@ def test_columnize_medium(row_first):
     """Test with inputs than shouldn't be wider than 80"""
     size = 40
     items = [l*size for l in 'abc']
-    out = text.columnize(items, row_first=row_first, displaywidth=80)
+    with pytest.warns(PendingDeprecationWarning):
+        out = text.columnize(items, row_first=row_first, displaywidth=80)
     assert out == "\n".join(items + [""]), "row_first={0}".format(row_first)
 
 
@@ -93,7 +153,8 @@ def test_columnize_long(row_first):
     """Test columnize with inputs longer than the display window"""
     size = 11
     items = [l*size for l in 'abc']
-    out = text.columnize(items, row_first=row_first, displaywidth=size - 1)
+    with pytest.warns(PendingDeprecationWarning):
+        out = text.columnize(items, row_first=row_first, displaywidth=size - 1)
     assert out == "\n".join(items + [""]), "row_first={0}".format(row_first)
 
 

@@ -2,6 +2,7 @@
 Unit tests for optimization routines from _root.py.
 """
 from numpy.testing import assert_, assert_equal
+import pytest
 from pytest import raises as assert_raises, warns as assert_warns
 import numpy as np
 
@@ -109,3 +110,14 @@ class TestRoot:
         assert_equal(res1.x, ref.x)
         assert_equal(res2.x, ref.x)
         assert res1.success is res2.success is ref.success is True
+    
+    @pytest.mark.parametrize("method", ["hybr", "lm", "broyden1", "broyden2",
+                                        "anderson", "linearmixing",
+                                        "diagbroyden", "excitingmixing",
+                                        "krylov", "df-sane"])
+    def test_method_in_result(self, method):
+        def func(x):
+            return x - 1
+        
+        res = root(func, x0=[1], method=method)
+        assert res.method == method

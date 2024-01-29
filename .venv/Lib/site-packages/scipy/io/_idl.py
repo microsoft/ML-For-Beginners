@@ -241,7 +241,7 @@ def _read_structure(f, array_desc, struct_desc):
                 raise Exception("Variable type %i not implemented" %
                                                             col['typecode'])
 
-    structure = np.recarray((nrows, ), dtype=dtype)
+    structure = np.rec.recarray((nrows, ), dtype=dtype)
 
     for i in range(nrows):
         for col in columns:
@@ -276,7 +276,8 @@ def _read_array(f, typecode, array_desc):
         if typecode == 1:
             nbytes = _read_int32(f)
             if nbytes != array_desc['nbytes']:
-                warnings.warn("Not able to verify number of bytes from header")
+                warnings.warn("Not able to verify number of bytes from header",
+                              stacklevel=3)
 
         # Read bytes as numpy array
         array = np.frombuffer(f.read(array_desc['nbytes']),
@@ -318,7 +319,7 @@ def _read_record(f):
     record = {'rectype': _read_long(f)}
 
     nextrec = _read_uint32(f)
-    nextrec += _read_uint32(f) * 2**32
+    nextrec += _read_uint32(f).astype(np.int64) * 2**32
 
     _skip_bytes(f, 4)
 
@@ -405,16 +406,15 @@ def _read_record(f):
 
     elif record['rectype'] == "UNKNOWN":
 
-        warnings.warn("Skipping UNKNOWN record")
+        warnings.warn("Skipping UNKNOWN record", stacklevel=3)
 
     elif record['rectype'] == "SYSTEM_VARIABLE":
 
-        warnings.warn("Skipping SYSTEM_VARIABLE record")
+        warnings.warn("Skipping SYSTEM_VARIABLE record", stacklevel=3)
 
     else:
 
-        raise Exception("record['rectype']=%s not implemented" %
-                                                            record['rectype'])
+        raise Exception(f"record['rectype']={record['rectype']} not implemented")
 
     f.seek(nextrec)
 
@@ -462,7 +462,7 @@ def _read_arraydesc(f):
 
     elif arraydesc['arrstart'] == 18:
 
-        warnings.warn("Using experimental 64-bit array read")
+        warnings.warn("Using experimental 64-bit array read", stacklevel=3)
 
         _skip_bytes(f, 8)
 
@@ -574,7 +574,8 @@ def _replace_heap(variable, heap):
                     variable = heap[variable.index]
                 else:
                     warnings.warn("Variable referenced by pointer not found "
-                                  "in heap: variable will be set to None")
+                                  "in heap: variable will be set to None",
+                                  stacklevel=3)
                     variable = None
 
         replace, new = _replace_heap(variable, heap)
@@ -584,7 +585,7 @@ def _replace_heap(variable, heap):
 
         return True, variable
 
-    elif isinstance(variable, np.core.records.recarray):
+    elif isinstance(variable, np.rec.recarray):
 
         # Loop over records
         for ir, record in enumerate(variable):
@@ -596,7 +597,7 @@ def _replace_heap(variable, heap):
 
         return False, variable
 
-    elif isinstance(variable, np.core.records.record):
+    elif isinstance(variable, np.record):
 
         # Loop over values
         for iv, value in enumerate(variable):
@@ -618,7 +619,7 @@ def _replace_heap(variable, heap):
                 replace, new = _replace_heap(variable.item(iv), heap)
 
                 if replace:
-                    variable.itemset(iv, new)
+                    variable.reshape(-1)[iv] = new
 
         return False, variable
 
@@ -632,6 +633,7 @@ class AttrDict(dict):
     A case-insensitive dictionary with access via item, attribute, and call
     notations:
 
+        >>> from scipy.io._idl import AttrDict
         >>> d = AttrDict()
         >>> d['Variable'] = 123
         >>> d['Variable']
@@ -788,7 +790,7 @@ def readsav(file_name, idict=None, python_dict=False,
 
             # Read position of next record and return as int
             nextrec = _read_uint32(f)
-            nextrec += _read_uint32(f) * 2**32
+            nextrec += _read_uint32(f).astype(np.int64) * 2**32
 
             # Read the unknown 4 bytes
             unknown = f.read(4)
@@ -797,7 +799,9 @@ def readsav(file_name, idict=None, python_dict=False,
             if RECTYPE_DICT[rectype] == 'END_MARKER':
                 modval = np.int64(2**32)
                 fout.write(struct.pack('>I', int(nextrec) % modval))
-                fout.write(struct.pack('>I', int((nextrec - (nextrec % modval)) / modval)))
+                fout.write(
+                    struct.pack('>I', int((nextrec - (nextrec % modval)) / modval))
+                )
                 fout.write(unknown)
                 break
 

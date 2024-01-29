@@ -13,7 +13,18 @@ namespace ONNX_NAMESPACE {
 constexpr const char* AI_ONNX_ML_DOMAIN = "ai.onnx.ml";
 constexpr const char* AI_ONNX_TRAINING_DOMAIN = "ai.onnx.training";
 constexpr const char* AI_ONNX_PREVIEW_TRAINING_DOMAIN = "ai.onnx.preview.training";
+// The following two are equivalent in an onnx proto representation.
 constexpr const char* ONNX_DOMAIN = "";
+constexpr const char* AI_ONNX_DOMAIN = "ai.onnx";
+
+inline std::string NormalizeDomain(const std::string& domain) {
+  return (domain == AI_ONNX_DOMAIN) ? ONNX_DOMAIN : domain;
+}
+
+inline bool IsOnnxDomain(const std::string& domain) {
+  return (domain == AI_ONNX_DOMAIN) || ((domain == ONNX_DOMAIN));
+}
+
 constexpr bool OPTIONAL_VALUE = false;
 
 // For dimension denotation.

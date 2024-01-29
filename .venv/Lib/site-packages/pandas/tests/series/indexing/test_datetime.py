@@ -76,7 +76,7 @@ def test_getitem_setitem_datetime_tz(tz_source):
 
     N = 50
     # testing with timezone, GH #2785
-    rng = date_range("1/1/1990", periods=N, freq="H", tz=tzget("US/Eastern"))
+    rng = date_range("1/1/1990", periods=N, freq="h", tz=tzget("US/Eastern"))
     ts = Series(np.random.default_rng(2).standard_normal(N), index=rng)
 
     # also test Timestamp tz handling, GH #2789
@@ -107,7 +107,7 @@ def test_getitem_setitem_datetime_tz(tz_source):
 def test_getitem_setitem_datetimeindex():
     N = 50
     # testing with timezone, GH #2785
-    rng = date_range("1/1/1990", periods=N, freq="H", tz="US/Eastern")
+    rng = date_range("1/1/1990", periods=N, freq="h", tz="US/Eastern")
     ts = Series(np.random.default_rng(2).standard_normal(N), index=rng)
 
     result = ts["1990-01-01 04:00:00"]
@@ -213,7 +213,7 @@ def test_getitem_setitem_datetimeindex():
 
 def test_getitem_setitem_periodindex():
     N = 50
-    rng = period_range("1/1/1990", periods=N, freq="H")
+    rng = period_range("1/1/1990", periods=N, freq="h")
     ts = Series(np.random.default_rng(2).standard_normal(N), index=rng)
 
     result = ts["1990-01-01 04"]
@@ -355,7 +355,7 @@ def test_indexing_over_size_cutoff_period_index(monkeypatch):
     monkeypatch.setattr(libindex, "_SIZE_CUTOFF", 1000)
 
     n = 1100
-    idx = period_range("1/1/2000", freq="T", periods=n)
+    idx = period_range("1/1/2000", freq="min", periods=n)
     assert idx._engine.over_size_threshold
 
     s = Series(np.random.default_rng(2).standard_normal(len(idx)), index=idx)
@@ -411,7 +411,7 @@ def test_indexing_unordered():
 
 def test_indexing_unordered2():
     # diff freq
-    rng = date_range(datetime(2005, 1, 1), periods=20, freq="M")
+    rng = date_range(datetime(2005, 1, 1), periods=20, freq="ME")
     ts = Series(np.arange(len(rng)), index=rng)
     ts = ts.take(np.random.default_rng(2).permutation(20))
 
@@ -421,16 +421,16 @@ def test_indexing_unordered2():
 
 
 def test_indexing():
-    idx = date_range("2001-1-1", periods=20, freq="M")
+    idx = date_range("2001-1-1", periods=20, freq="ME")
     ts = Series(np.random.default_rng(2).random(len(idx)), index=idx)
 
     # getting
 
     # GH 3070, make sure semantics work on Series/Frame
-    expected = ts["2001"]
-    expected.name = "A"
+    result = ts["2001"]
+    tm.assert_series_equal(result, ts.iloc[:12])
 
-    df = DataFrame({"A": ts})
+    df = DataFrame({"A": ts.copy()})
 
     # GH#36179 pre-2.0 df["2001"] operated as slicing on rows. in 2.0 it behaves
     #  like any other key, so raises
@@ -438,24 +438,26 @@ def test_indexing():
         df["2001"]
 
     # setting
+    ts = Series(np.random.default_rng(2).random(len(idx)), index=idx)
+    expected = ts.copy()
+    expected.iloc[:12] = 1
     ts["2001"] = 1
-    expected = ts["2001"]
-    expected.name = "A"
+    tm.assert_series_equal(ts, expected)
 
+    expected = df.copy()
+    expected.iloc[:12, 0] = 1
     df.loc["2001", "A"] = 1
-
-    with pytest.raises(KeyError, match="2001"):
-        df["2001"]
+    tm.assert_frame_equal(df, expected)
 
 
 def test_getitem_str_month_with_datetimeindex():
     # GH3546 (not including times on the last day)
-    idx = date_range(start="2013-05-31 00:00", end="2013-05-31 23:00", freq="H")
+    idx = date_range(start="2013-05-31 00:00", end="2013-05-31 23:00", freq="h")
     ts = Series(range(len(idx)), index=idx)
     expected = ts["2013-05"]
     tm.assert_series_equal(expected, ts)
 
-    idx = date_range(start="2013-05-31 00:00", end="2013-05-31 23:59", freq="S")
+    idx = date_range(start="2013-05-31 00:00", end="2013-05-31 23:59", freq="s")
     ts = Series(range(len(idx)), index=idx)
     expected = ts["2013-05"]
     tm.assert_series_equal(expected, ts)
@@ -486,3 +488,12 @@ def test_getitem_str_second_with_datetimeindex():
     msg = r"Timestamp\('2012-01-02 18:01:02-0600', tz='US/Central'\)"
     with pytest.raises(KeyError, match=msg):
         df[df.index[2]]
+
+
+def test_compare_datetime_with_all_none():
+    # GH#54870
+    ser = Series(["2020-01-01", "2020-01-02"], dtype="datetime64[ns]")
+    ser2 = Series([None, None])
+    result = ser > ser2
+    expected = Series([False, False])
+    tm.assert_series_equal(result, expected)

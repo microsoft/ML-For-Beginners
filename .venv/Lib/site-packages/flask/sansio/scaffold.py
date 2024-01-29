@@ -8,6 +8,7 @@ import typing as t
 from collections import defaultdict
 from functools import update_wrapper
 
+import click
 from jinja2 import FileSystemLoader
 from werkzeug.exceptions import default_exceptions
 from werkzeug.exceptions import HTTPException
@@ -22,7 +23,7 @@ from ..templating import _default_template_ctx_processor
 _sentinel = object()
 
 F = t.TypeVar("F", bound=t.Callable[..., t.Any])
-T_after_request = t.TypeVar("T_after_request", bound=ft.AfterRequestCallable)
+T_after_request = t.TypeVar("T_after_request", bound=ft.AfterRequestCallable[t.Any])
 T_before_request = t.TypeVar("T_before_request", bound=ft.BeforeRequestCallable)
 T_error_handler = t.TypeVar("T_error_handler", bound=ft.ErrorHandlerCallable)
 T_teardown = t.TypeVar("T_teardown", bound=ft.TeardownCallable)
@@ -39,7 +40,7 @@ T_route = t.TypeVar("T_route", bound=ft.RouteCallable)
 def setupmethod(f: F) -> F:
     f_name = f.__name__
 
-    def wrapper_func(self, *args: t.Any, **kwargs: t.Any) -> t.Any:
+    def wrapper_func(self: Scaffold, *args: t.Any, **kwargs: t.Any) -> t.Any:
         self._check_setup_finished(f_name)
         return f(self, *args, **kwargs)
 
@@ -71,9 +72,9 @@ class Scaffold:
     def __init__(
         self,
         import_name: str,
-        static_folder: str | os.PathLike | None = None,
+        static_folder: str | os.PathLike[str] | None = None,
         static_url_path: str | None = None,
-        template_folder: str | os.PathLike | None = None,
+        template_folder: str | os.PathLike[str] | None = None,
         root_path: str | None = None,
     ):
         #: The name of the package or module that this object belongs
@@ -99,7 +100,7 @@ class Scaffold:
         #: object. The commands are available from the ``flask`` command
         #: once the application has been discovered and blueprints have
         #: been registered.
-        self.cli = AppGroup()
+        self.cli: click.Group = AppGroup()
 
         #: A dictionary mapping endpoint names to view functions.
         #:
@@ -107,7 +108,7 @@ class Scaffold:
         #:
         #: This data structure is internal. It should not be modified
         #: directly and its format may change at any time.
-        self.view_functions: dict[str, t.Callable] = {}
+        self.view_functions: dict[str, ft.RouteCallable] = {}
 
         #: A data structure of registered error handlers, in the format
         #: ``{scope: {code: {class: handler}}}``. The ``scope`` key is
@@ -152,7 +153,7 @@ class Scaffold:
         #: This data structure is internal. It should not be modified
         #: directly and its format may change at any time.
         self.after_request_funcs: dict[
-            ft.AppOrBlueprintKey, list[ft.AfterRequestCallable]
+            ft.AppOrBlueprintKey, list[ft.AfterRequestCallable[t.Any]]
         ] = defaultdict(list)
 
         #: A data structure of functions to call at the end of each
@@ -233,7 +234,7 @@ class Scaffold:
             return None
 
     @static_folder.setter
-    def static_folder(self, value: str | os.PathLike | None) -> None:
+    def static_folder(self, value: str | os.PathLike[str] | None) -> None:
         if value is not None:
             value = os.fspath(value).rstrip(r"\/")
 
@@ -287,7 +288,7 @@ class Scaffold:
         self,
         method: str,
         rule: str,
-        options: dict,
+        options: dict[str, t.Any],
     ) -> t.Callable[[T_route], T_route]:
         if "methods" in options:
             raise TypeError("Use the 'route' decorator to use the 'methods' argument.")
@@ -700,7 +701,7 @@ class Scaffold:
             return exc_class, None
 
 
-def _endpoint_from_view_func(view_func: t.Callable) -> str:
+def _endpoint_from_view_func(view_func: ft.RouteCallable) -> str:
     """Internal helper that returns the default endpoint for a given
     function.  This always is the function name.
     """
@@ -717,7 +718,7 @@ def _path_is_relative_to(path: pathlib.PurePath, base: str) -> bool:
         return False
 
 
-def _find_package_path(import_name):
+def _find_package_path(import_name: str) -> str:
     """Find the path that contains the package or module."""
     root_mod_name, _, _ = import_name.partition(".")
 
@@ -734,34 +735,35 @@ def _find_package_path(import_name):
         #    - we raised `ValueError` due to `root_spec` being `None`
         return os.getcwd()
 
-    if root_spec.origin in {"namespace", None}:
-        # namespace package
-        package_spec = importlib.util.find_spec(import_name)
+    if root_spec.submodule_search_locations:
+        if root_spec.origin is None or root_spec.origin == "namespace":
+            # namespace package
+            package_spec = importlib.util.find_spec(import_name)
 
-        if package_spec is not None and package_spec.submodule_search_locations:
-            # Pick the path in the namespace that contains the submodule.
-            package_path = pathlib.Path(
-                os.path.commonpath(package_spec.submodule_search_locations)
-            )
-            search_location = next(
-                location
-                for location in root_spec.submodule_search_locations
-                if _path_is_relative_to(package_path, location)
-            )
+            if package_spec is not None and package_spec.submodule_search_locations:
+                # Pick the path in the namespace that contains the submodule.
+                package_path = pathlib.Path(
+                    os.path.commonpath(package_spec.submodule_search_locations)
+                )
+                search_location = next(
+                    location
+                    for location in root_spec.submodule_search_locations
+                    if _path_is_relative_to(package_path, location)
+                )
+            else:
+                # Pick the first path.
+                search_location = root_spec.submodule_search_locations[0]
+
+            return os.path.dirname(search_location)
         else:
-            # Pick the first path.
-            search_location = root_spec.submodule_search_locations[0]
-
-        return os.path.dirname(search_location)
-    elif root_spec.submodule_search_locations:
-        # package with __init__.py
-        return os.path.dirname(os.path.dirname(root_spec.origin))
+            # package with __init__.py
+            return os.path.dirname(os.path.dirname(root_spec.origin))
     else:
         # module
-        return os.path.dirname(root_spec.origin)
+        return os.path.dirname(root_spec.origin)  # type: ignore[type-var, return-value]
 
 
-def find_package(import_name: str):
+def find_package(import_name: str) -> tuple[str | None, str]:
     """Find the prefix that a package is installed under, and the path
     that it would be imported from.
 

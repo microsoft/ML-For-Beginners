@@ -9,7 +9,10 @@ from pandas.io.excel import ExcelWriter
 
 xlsxwriter = pytest.importorskip("xlsxwriter")
 
-pytestmark = pytest.mark.parametrize("ext", [".xlsx"])
+
+@pytest.fixture
+def ext():
+    return ".xlsx"
 
 
 def test_column_format(ext):

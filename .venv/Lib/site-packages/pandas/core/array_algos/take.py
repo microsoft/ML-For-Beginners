@@ -66,8 +66,7 @@ def take_nd(
     """
     Specialized Cython take which sets NaN values in one pass
 
-    This dispatches to ``take`` defined on ExtensionArrays. It does not
-    currently dispatch to ``SparseArray.take`` for sparse ``arr``.
+    This dispatches to ``take`` defined on ExtensionArrays.
 
     Note: this function assumes that the indexer is a valid(ated) indexer with
     no out of bound indices.

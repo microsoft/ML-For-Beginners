@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
+
 import numpy as np
 
 
@@ -17,7 +18,7 @@ def compute_softmax_zero(values: np.ndarray) -> np.ndarray:
     v_max = values.max()
     exp_neg_v_max = np.exp(-v_max)
     s = 0
-    for i in range(len(values)):  # pylint: disable=C0200
+    for i in range(len(values)):
         v = values[i]
         if v > 0.0000001 or v < -0.0000001:
             values[i] = np.exp(v - v_max)
@@ -63,7 +64,7 @@ def erf_inv(x: float) -> float:
     if x == 0:
         return 0
     log = np.log(x)
-    v = 2.0 / (3.14159 * 0.147) + 0.5 * log
+    v = 2.0 / (np.pi * 0.147) + 0.5 * log
     v2 = 1.0 / 0.147 * log
     v3 = -v + np.sqrt(v * v - v2)
     x = sgn * np.sqrt(v3)

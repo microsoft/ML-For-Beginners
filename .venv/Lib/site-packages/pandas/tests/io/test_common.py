@@ -15,6 +15,7 @@ from pathlib import Path
 import pickle
 import tempfile
 
+import numpy as np
 import pytest
 
 from pandas.compat import is_platform_windows
@@ -24,6 +25,10 @@ import pandas as pd
 import pandas._testing as tm
 
 import pandas.io.common as icom
+
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
 
 
 class CustomFSPath:
@@ -436,7 +441,11 @@ class TestMMapWrapper:
 
     def test_unknown_engine(self):
         with tm.ensure_clean() as path:
-            df = tm.makeDataFrame()
+            df = pd.DataFrame(
+                1.1 * np.arange(120).reshape((30, 4)),
+                columns=pd.Index(list("ABCD"), dtype=object),
+                index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+            )
             df.to_csv(path)
             with pytest.raises(ValueError, match="Unknown engine"):
                 pd.read_csv(path, engine="pyt")
@@ -448,7 +457,11 @@ class TestMMapWrapper:
         GH 35058
         """
         with tm.ensure_clean() as path:
-            df = tm.makeDataFrame()
+            df = pd.DataFrame(
+                1.1 * np.arange(120).reshape((30, 4)),
+                columns=pd.Index(list("ABCD"), dtype=object),
+                index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+            )
             df.to_csv(path, mode="w+b")
             tm.assert_frame_equal(df, pd.read_csv(path, index_col=0))
 
@@ -462,7 +475,11 @@ class TestMMapWrapper:
 
         GH 35681
         """
-        df = tm.makeDataFrame()
+        df = pd.DataFrame(
+            1.1 * np.arange(120).reshape((30, 4)),
+            columns=pd.Index(list("ABCD"), dtype=object),
+            index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+        )
         with tm.ensure_clean() as path:
             with tm.assert_produces_warning(UnicodeWarning):
                 df.to_csv(path, compression=compression_, encoding=encoding)
@@ -492,7 +509,11 @@ def test_is_fsspec_url():
 @pytest.mark.parametrize("format", ["csv", "json"])
 def test_codecs_encoding(encoding, format):
     # GH39247
-    expected = tm.makeDataFrame()
+    expected = pd.DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=pd.Index(list("ABCD"), dtype=object),
+        index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
     with tm.ensure_clean() as path:
         with codecs.open(path, mode="w", encoding=encoding) as handle:
             getattr(expected, f"to_{format}")(handle)
@@ -506,7 +527,11 @@ def test_codecs_encoding(encoding, format):
 
 def test_codecs_get_writer_reader():
     # GH39247
-    expected = tm.makeDataFrame()
+    expected = pd.DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=pd.Index(list("ABCD"), dtype=object),
+        index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
     with tm.ensure_clean() as path:
         with open(path, "wb") as handle:
             with codecs.getwriter("utf-8")(handle) as encoded:
@@ -528,7 +553,11 @@ def test_explicit_encoding(io_class, mode, msg):
     # GH39247; this test makes sure that if a user provides mode="*t" or "*b",
     # it is used. In the case of this test it leads to an error as intentionally the
     # wrong mode is requested
-    expected = tm.makeDataFrame()
+    expected = pd.DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=pd.Index(list("ABCD"), dtype=object),
+        index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
     with io_class() as buffer:
         with pytest.raises(TypeError, match=msg):
             expected.to_csv(buffer, mode=f"w{mode}")

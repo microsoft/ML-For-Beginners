@@ -12,7 +12,9 @@ from pandas import (
 )
 import pandas._testing as tm
 
-pytestmark = pytest.mark.usefixtures("pyarrow_skip")
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
 
 
 def test_iterator(all_parsers):
@@ -29,6 +31,13 @@ bar2,12,13,14,15
     kwargs = {"index_col": 0}
 
     expected = parser.read_csv(StringIO(data), **kwargs)
+
+    if parser.engine == "pyarrow":
+        msg = "The 'iterator' option is not supported with the 'pyarrow' engine"
+        with pytest.raises(ValueError, match=msg):
+            parser.read_csv(StringIO(data), iterator=True, **kwargs)
+        return
+
     with parser.read_csv(StringIO(data), iterator=True, **kwargs) as reader:
         first_chunk = reader.read(3)
         tm.assert_frame_equal(first_chunk, expected[:3])
@@ -44,6 +53,12 @@ foo,1,2,3
 bar,4,5,6
 baz,7,8,9
 """
+
+    if parser.engine == "pyarrow":
+        msg = "The 'iterator' option is not supported with the 'pyarrow' engine"
+        with pytest.raises(ValueError, match=msg):
+            parser.read_csv(StringIO(data), iterator=True)
+        return
 
     with parser.read_csv(StringIO(data), iterator=True) as reader:
         result = list(reader)
@@ -64,6 +79,11 @@ foo,1,2,3
 bar,4,5,6
 baz,7,8,9
 """
+    if parser.engine == "pyarrow":
+        msg = "The 'chunksize' option is not supported with the 'pyarrow' engine"
+        with pytest.raises(ValueError, match=msg):
+            parser.read_csv(StringIO(data), chunksize=1)
+        return
 
     with parser.read_csv(StringIO(data), chunksize=1) as reader:
         result = list(reader)
@@ -84,6 +104,12 @@ def test_iterator_skipfooter_errors(all_parsers, kwargs):
     msg = "'skipfooter' not supported for iteration"
     parser = all_parsers
     data = "a\n1\n2"
+
+    if parser.engine == "pyarrow":
+        msg = (
+            "The '(chunksize|iterator)' option is not supported with the "
+            "'pyarrow' engine"
+        )
 
     with pytest.raises(ValueError, match=msg):
         with parser.read_csv(StringIO(data), skipfooter=1, **kwargs) as _:

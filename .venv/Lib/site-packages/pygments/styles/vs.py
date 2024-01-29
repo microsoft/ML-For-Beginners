@@ -13,8 +13,12 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Operator, Generic
 
 
-class VisualStudioStyle(Style):
+__all__ = ['VisualStudioStyle']
 
+
+class VisualStudioStyle(Style):
+    name = 'vs'
+    
     background_color = "#ffffff"
 
     styles = {

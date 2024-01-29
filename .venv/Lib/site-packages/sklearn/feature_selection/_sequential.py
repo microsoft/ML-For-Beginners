@@ -10,11 +10,14 @@ from ..metrics import get_scorer_names
 from ..model_selection import check_cv, cross_val_score
 from ..utils._param_validation import HasMethods, Interval, RealNotInt, StrOptions
 from ..utils._tags import _safe_tags
+from ..utils.metadata_routing import _RoutingNotSupportedMixin
 from ..utils.validation import check_is_fitted
 from ._base import SelectorMixin
 
 
-class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator):
+class SequentialFeatureSelector(
+    _RoutingNotSupportedMixin, SelectorMixin, MetaEstimatorMixin, BaseEstimator
+):
     """Transformer that performs Sequential Feature Selection.
 
     This Sequential Feature Selector adds (forward selection) or
@@ -83,9 +86,11 @@ class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator
         - An iterable yielding (train, test) splits as arrays of indices.
 
         For integer/None inputs, if the estimator is a classifier and ``y`` is
-        either binary or multiclass, :class:`StratifiedKFold` is used. In all
-        other cases, :class:`KFold` is used. These splitters are instantiated
-        with `shuffle=False` so the splits will be the same across calls.
+        either binary or multiclass,
+        :class:`~sklearn.model_selection.StratifiedKFold` is used. In all other
+        cases, :class:`~sklearn.model_selection.KFold` is used. These splitters
+        are instantiated with `shuffle=False` so the splits will be the same
+        across calls.
 
         Refer :ref:`User Guide <cross_validation>` for the various
         cross-validation strategies that can be used here.

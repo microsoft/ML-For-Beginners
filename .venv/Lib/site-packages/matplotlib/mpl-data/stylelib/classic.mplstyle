@@ -91,7 +91,7 @@ font.size           : 12.0
 font.serif     : DejaVu Serif, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif
 font.sans-serif: DejaVu Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
 font.cursive   : Apple Chancery, Textile, Zapf Chancery, Sand, Script MT, Felipa, cursive
-font.fantasy   : Comic Sans MS, Chicago, Charcoal, ImpactWestern, Humor Sans, fantasy
+font.fantasy   : Comic Sans MS, Chicago, Charcoal, ImpactWestern, xkcd script, fantasy
 font.monospace : DejaVu Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
 
 ### TEXT
@@ -158,7 +158,7 @@ mathtext.sf  : sans\-serif
 mathtext.fontset : cm # Should be 'cm' (Computer Modern), 'stix',
                       # 'stixsans' or 'custom'
 mathtext.fallback: cm  # Select fallback font from ['cm' (Computer Modern), 'stix'
-                       # 'stixsans'] when a symbol can not be found in one of the
+                       # 'stixsans'] when a symbol cannot be found in one of the
                        # custom math fonts. Select 'None' to not perform fallback
                        # and replace the missing character by a dummy.
 

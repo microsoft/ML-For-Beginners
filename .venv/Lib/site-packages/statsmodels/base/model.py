@@ -518,7 +518,7 @@ class LikelihoodModel(Model):
                 start_params = self.start_params
             elif self.exog is not None:
                 # fails for shape (K,)?
-                start_params = [0] * self.exog.shape[1]
+                start_params = [0.0] * self.exog.shape[1]
             else:
                 raise ValueError("If exog is None, then start_params should "
                                  "be specified")
@@ -1639,7 +1639,11 @@ class LikelihoodModelResults(Results):
         """
         from patsy import DesignInfo
         use_t = bool_like(use_t, "use_t", strict=True, optional=True)
-        names = self.model.data.cov_names
+        if self.params.ndim == 2:
+            names = ['y{}_{}'.format(i[0], i[1])
+                     for i in self.model.data.cov_names]
+        else:
+            names = self.model.data.cov_names
         LC = DesignInfo(names).linear_constraint(r_matrix)
         r_matrix, q_matrix = LC.coefs, LC.constants
         num_ttests = r_matrix.shape[0]
@@ -1649,7 +1653,7 @@ class LikelihoodModelResults(Results):
                 not hasattr(self, 'cov_params_default')):
             raise ValueError('Need covariance of parameters for computing '
                              'T statistics')
-        params = self.params.ravel()
+        params = self.params.ravel(order="F")
         if num_params != params.shape[0]:
             raise ValueError('r_matrix and params are not aligned')
         if q_matrix is None:
@@ -1853,8 +1857,12 @@ class LikelihoodModelResults(Results):
             use_f = (hasattr(self, 'use_t') and self.use_t)
 
         from patsy import DesignInfo
-        names = self.model.data.cov_names
-        params = self.params.ravel()
+        if self.params.ndim == 2:
+            names = ['y{}_{}'.format(i[0], i[1])
+                     for i in self.model.data.cov_names]
+        else:
+            names = self.model.data.cov_names
+        params = self.params.ravel(order="F")
         LC = DesignInfo(names).linear_constraint(r_matrix)
         r_matrix, q_matrix = LC.coefs, LC.constants
 

@@ -204,7 +204,7 @@ def _remove_redundancy_pivot_dense(A, rhs, true_rank=None):
         js = js_candidates[js_mask]
         batch = 50
 
-        # This is a tiny bit faster than looping over columns indivually,
+        # This is a tiny bit faster than looping over columns individually,
         # like for j in js: if abs(A[:,j].transpose().dot(pi)) > tolapiv:
         for j_index in range(0, len(js), batch):
             j_indices = js[j_index: min(j_index+batch, len(js))]

@@ -449,7 +449,7 @@ class FormattedTextControl(UIControl):
                             # Handler found. Call it.
                             # (Handler can return NotImplemented, so return
                             # that result.)
-                            handler = item[2]  # type: ignore
+                            handler = item[2]
                             return handler(mouse_event)
                         else:
                             break
@@ -477,9 +477,7 @@ class DummyControl(UIControl):
         def get_line(i: int) -> StyleAndTextTuples:
             return []
 
-        return UIContent(
-            get_line=get_line, line_count=100**100
-        )  # Something very big.
+        return UIContent(get_line=get_line, line_count=100**100)  # Something very big.
 
     def is_focusable(self) -> bool:
         return False
@@ -493,7 +491,7 @@ class _ProcessedLine(NamedTuple):
 
 class BufferControl(UIControl):
     """
-    Control for visualising the content of a :class:`.Buffer`.
+    Control for visualizing the content of a :class:`.Buffer`.
 
     :param buffer: The :class:`.Buffer` object to be displayed.
     :param input_processors: A list of
@@ -605,7 +603,7 @@ class BufferControl(UIControl):
               width can be done by calculating the longest line, but this would
               require applying all the processors to each line. This is
               unfeasible for a larger document, and doing it for small
-              documents only would result in inconsistent behaviour.
+              documents only would result in inconsistent behavior.
         """
         return None
 

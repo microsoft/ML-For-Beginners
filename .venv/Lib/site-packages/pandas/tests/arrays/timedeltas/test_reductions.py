@@ -34,15 +34,18 @@ class TestReductions:
         assert isinstance(result, Timedelta)
         assert result == Timedelta(0)
 
-    def test_min_max(self):
-        arr = TimedeltaArray._from_sequence(["3H", "3H", "NaT", "2H", "5H", "4H"])
+    def test_min_max(self, unit):
+        dtype = f"m8[{unit}]"
+        arr = TimedeltaArray._from_sequence(
+            ["3h", "3h", "NaT", "2h", "5h", "4h"], dtype=dtype
+        )
 
         result = arr.min()
-        expected = Timedelta("2H")
+        expected = Timedelta("2h")
         assert result == expected
 
         result = arr.max()
-        expected = Timedelta("5H")
+        expected = Timedelta("5h")
         assert result == expected
 
         result = arr.min(skipna=False)
@@ -52,7 +55,7 @@ class TestReductions:
         assert result is pd.NaT
 
     def test_sum(self):
-        tdi = pd.TimedeltaIndex(["3H", "3H", "NaT", "2H", "5H", "4H"])
+        tdi = pd.TimedeltaIndex(["3h", "3h", "NaT", "2h", "5h", "4h"])
         arr = tdi.array
 
         result = arr.sum(skipna=True)
@@ -86,7 +89,7 @@ class TestReductions:
 
     def test_npsum(self):
         # GH#25282, GH#25335 np.sum should return a Timedelta, not timedelta64
-        tdi = pd.TimedeltaIndex(["3H", "3H", "2H", "5H", "4H"])
+        tdi = pd.TimedeltaIndex(["3h", "3h", "2h", "5h", "4h"])
         arr = tdi.array
 
         result = np.sum(tdi)
@@ -102,7 +105,7 @@ class TestReductions:
         arr = np.arange(8).astype(np.int64).view("m8[s]").astype("m8[ns]").reshape(4, 2)
         arr[-1, -1] = "Nat"
 
-        tda = TimedeltaArray(arr)
+        tda = TimedeltaArray._from_sequence(arr)
 
         result = tda.sum(skipna=False)
         assert result is pd.NaT
@@ -133,7 +136,7 @@ class TestReductions:
         ],
     )
     def test_std(self, add):
-        tdi = pd.TimedeltaIndex(["0H", "4H", "NaT", "4H", "0H", "2H"]) + add
+        tdi = pd.TimedeltaIndex(["0h", "4h", "NaT", "4h", "0h", "2h"]) + add
         arr = tdi.array
 
         result = arr.std(skipna=True)
@@ -162,7 +165,7 @@ class TestReductions:
             assert np.isnat(result)
 
     def test_median(self):
-        tdi = pd.TimedeltaIndex(["0H", "3H", "NaT", "5H06m", "0H", "2H"])
+        tdi = pd.TimedeltaIndex(["0h", "3h", "NaT", "5h06m", "0h", "2h"])
         arr = tdi.array
 
         result = arr.median(skipna=True)
@@ -181,7 +184,7 @@ class TestReductions:
         assert result is pd.NaT
 
     def test_mean(self):
-        tdi = pd.TimedeltaIndex(["0H", "3H", "NaT", "5H06m", "0H", "2H"])
+        tdi = pd.TimedeltaIndex(["0h", "3h", "NaT", "5h06m", "0h", "2h"])
         arr = tdi._data
 
         # manually verified result

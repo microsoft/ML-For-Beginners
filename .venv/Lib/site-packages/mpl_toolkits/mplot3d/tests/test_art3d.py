@@ -1,6 +1,9 @@
+import numpy as np
+
 import matplotlib.pyplot as plt
 
 from matplotlib.backend_bases import MouseEvent
+from mpl_toolkits.mplot3d.art3d import Line3DCollection
 
 
 def test_scatter_3d_projection_conservation():
@@ -36,3 +39,18 @@ def test_scatter_3d_projection_conservation():
             assert contains is True
             assert len(ind["ind"]) == 1
             assert ind["ind"][0] == i
+
+
+def test_zordered_error():
+    # Smoke test for https://github.com/matplotlib/matplotlib/issues/26497
+    lc = [(np.fromiter([0.0, 0.0, 0.0], dtype="float"),
+           np.fromiter([1.0, 1.0, 1.0], dtype="float"))]
+    pc = [np.fromiter([0.0, 0.0], dtype="float"),
+          np.fromiter([0.0, 1.0], dtype="float"),
+          np.fromiter([1.0, 1.0], dtype="float")]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(projection="3d")
+    ax.add_collection(Line3DCollection(lc))
+    ax.scatter(*pc, visible=False)
+    plt.draw()

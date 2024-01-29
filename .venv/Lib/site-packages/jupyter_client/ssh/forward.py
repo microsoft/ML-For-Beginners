@@ -14,7 +14,7 @@ connection to a destination reachable from the SSH server machine.
 # Software Foundation; either version 2.1 of the License, or (at your option)
 # any later version.
 #
-# Paramiko is distrubuted in the hope that it will be useful, but WITHOUT ANY
+# Paramiko is distributed in the hope that it will be useful, but WITHOUT ANY
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
 # A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
 # details.
@@ -85,7 +85,7 @@ class Handler(socketserver.BaseRequestHandler):
         logger.debug("Tunnel closed ")
 
 
-def forward_tunnel(local_port, remote_host, remote_port, transport):
+def forward_tunnel(local_port: int, remote_host: str, remote_port: int, transport: t.Any) -> None:
     """Forward an ssh tunnel."""
 
     # this is a little convoluted, but lets me configure things for the Handler

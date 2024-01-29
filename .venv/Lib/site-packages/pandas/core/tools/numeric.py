@@ -4,10 +4,12 @@ from typing import (
     TYPE_CHECKING,
     Literal,
 )
+import warnings
 
 import numpy as np
 
 from pandas._libs import lib
+from pandas.util._exceptions import find_stack_level
 from pandas.util._validators import check_dtype_backend
 
 from pandas.core.dtypes.cast import maybe_downcast_numeric
@@ -68,6 +70,11 @@ def to_numeric(
         - If 'raise', then invalid parsing will raise an exception.
         - If 'coerce', then invalid parsing will be set as NaN.
         - If 'ignore', then invalid parsing will return the input.
+
+        .. versionchanged:: 2.2
+
+        "ignore" is deprecated. Catch exceptions explicitly instead.
+
     downcast : str, default None
         Can be 'integer', 'signed', 'unsigned', or 'float'.
         If not None, and if the data has been successfully cast to a
@@ -134,12 +141,6 @@ def to_numeric(
     2   -3
     dtype: int8
     >>> s = pd.Series(['apple', '1.0', '2', -3])
-    >>> pd.to_numeric(s, errors='ignore')
-    0    apple
-    1      1.0
-    2        2
-    3       -3
-    dtype: object
     >>> pd.to_numeric(s, errors='coerce')
     0    NaN
     1    1.0
@@ -167,6 +168,15 @@ def to_numeric(
 
     if errors not in ("ignore", "raise", "coerce"):
         raise ValueError("invalid error value specified")
+    if errors == "ignore":
+        # GH#54467
+        warnings.warn(
+            "errors='ignore' is deprecated and will raise in a future version. "
+            "Use to_numeric without passing `errors` and catch exceptions "
+            "explicitly instead",
+            FutureWarning,
+            stacklevel=find_stack_level(),
+        )
 
     check_dtype_backend(dtype_backend)
 
@@ -219,12 +229,13 @@ def to_numeric(
         values = ensure_object(values)
         coerce_numeric = errors not in ("ignore", "raise")
         try:
-            values, new_mask = lib.maybe_convert_numeric(  # type: ignore[call-overload]  # noqa: E501
+            values, new_mask = lib.maybe_convert_numeric(  # type: ignore[call-overload]
                 values,
                 set(),
                 coerce_numeric=coerce_numeric,
                 convert_to_masked_nullable=dtype_backend is not lib.no_default
-                or isinstance(values_dtype, StringDtype),
+                or isinstance(values_dtype, StringDtype)
+                and not values_dtype.storage == "pyarrow_numpy",
             )
         except (ValueError, TypeError):
             if errors == "raise":
@@ -239,6 +250,7 @@ def to_numeric(
         dtype_backend is not lib.no_default
         and new_mask is None
         or isinstance(values_dtype, StringDtype)
+        and not values_dtype.storage == "pyarrow_numpy"
     ):
         new_mask = np.zeros(values.shape, dtype=np.bool_)
 
@@ -291,7 +303,7 @@ def to_numeric(
             IntegerArray,
         )
 
-        klass: type[IntegerArray] | type[BooleanArray] | type[FloatingArray]
+        klass: type[IntegerArray | BooleanArray | FloatingArray]
         if is_integer_dtype(data.dtype):
             klass = IntegerArray
         elif is_bool_dtype(data.dtype):

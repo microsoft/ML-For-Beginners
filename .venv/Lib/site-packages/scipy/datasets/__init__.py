@@ -77,7 +77,7 @@ the internet connectivity.
 """
 
 
-from ._fetchers import face, ascent, electrocardiogram  # noqa: E402
+from ._fetchers import face, ascent, electrocardiogram
 from ._download_all import download_all
 from ._utils import clear_cache
 

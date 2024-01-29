@@ -14,14 +14,14 @@ import matplotlib.backends.qt_editor.figureoptions as figureoptions
 from . import qt_compat
 from .qt_compat import (
     QtCore, QtGui, QtWidgets, __version__, QT_API,
-    _enum, _to_int, _isdeleted, _maybe_allow_interrupt
+    _to_int, _isdeleted, _maybe_allow_interrupt
 )
 
 
 # SPECIAL_KEYS are Qt::Key that do *not* return their Unicode name
 # instead they have manually specified names.
 SPECIAL_KEYS = {
-    _to_int(getattr(_enum("QtCore.Qt.Key"), k)): v for k, v in [
+    _to_int(getattr(QtCore.Qt.Key, k)): v for k, v in [
         ("Key_Escape", "escape"),
         ("Key_Tab", "tab"),
         ("Key_Backspace", "backspace"),
@@ -66,8 +66,8 @@ SPECIAL_KEYS = {
 # Elements are (Qt::KeyboardModifiers, Qt::Key) tuples.
 # Order determines the modifier order (ctrl+alt+...) reported by Matplotlib.
 _MODIFIER_KEYS = [
-    (_to_int(getattr(_enum("QtCore.Qt.KeyboardModifier"), mod)),
-     _to_int(getattr(_enum("QtCore.Qt.Key"), key)))
+    (_to_int(getattr(QtCore.Qt.KeyboardModifier, mod)),
+     _to_int(getattr(QtCore.Qt.Key, key)))
     for mod, key in [
         ("ControlModifier", "Key_Control"),
         ("AltModifier", "Key_Alt"),
@@ -76,7 +76,7 @@ _MODIFIER_KEYS = [
     ]
 ]
 cursord = {
-    k: getattr(_enum("QtCore.Qt.CursorShape"), v) for k, v in [
+    k: getattr(QtCore.Qt.CursorShape, v) for k, v in [
         (cursors.MOVE, "SizeAllCursor"),
         (cursors.HAND, "PointingHandCursor"),
         (cursors.POINTER, "ArrowCursor"),
@@ -86,13 +86,6 @@ cursord = {
         (cursors.RESIZE_VERTICAL, "SizeVerCursor"),
     ]
 }
-
-
-@_api.caching_module_getattr
-class __getattr__:
-    qApp = _api.deprecated(
-        "3.6", alternative="QtWidgets.QApplication.instance()")(
-            property(lambda self: QtWidgets.QApplication.instance()))
 
 
 # lru_cache keeps a reference to the QApplication instance, keeping it from
@@ -147,9 +140,8 @@ def _create_qApp():
             image = str(cbook._get_data_path('images/matplotlib.svg'))
             icon = QtGui.QIcon(image)
             app.setWindowIcon(icon)
-        app.lastWindowClosed.connect(app.quit)
+        app.setQuitOnLastWindowClosed(True)
         cbook._setup_new_guiapp()
-
         if qt_version == 5:
             app.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps)
 
@@ -191,7 +183,7 @@ class FigureCanvasQT(FigureCanvasBase, QtWidgets.QWidget):
     manager_class = _api.classproperty(lambda cls: FigureManagerQT)
 
     buttond = {
-        getattr(_enum("QtCore.Qt.MouseButton"), k): v for k, v in [
+        getattr(QtCore.Qt.MouseButton, k): v for k, v in [
             ("LeftButton", MouseButton.LEFT),
             ("RightButton", MouseButton.RIGHT),
             ("MiddleButton", MouseButton.MIDDLE),
@@ -209,8 +201,7 @@ class FigureCanvasQT(FigureCanvasBase, QtWidgets.QWidget):
         self._draw_rect_callback = lambda painter: None
         self._in_resize_event = False
 
-        self.setAttribute(
-            _enum("QtCore.Qt.WidgetAttribute").WA_OpaquePaintEvent)
+        self.setAttribute(QtCore.Qt.WidgetAttribute.WA_OpaquePaintEvent)
         self.setMouseTracking(True)
         self.resize(*self.get_width_height())
 
@@ -561,7 +552,7 @@ class FigureManagerQT(FigureManagerBase):
         # StrongFocus accepts both tab and click to focus and will enable the
         # canvas to process event without clicking.
         # https://doc.qt.io/qt-5/qt.html#FocusPolicy-enum
-        self.canvas.setFocusPolicy(_enum("QtCore.Qt.FocusPolicy").StrongFocus)
+        self.canvas.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
         self.canvas.setFocus()
 
         self.window.raise_()
@@ -627,7 +618,8 @@ class FigureManagerQT(FigureManagerBase):
 
 
 class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
-    message = QtCore.Signal(str)
+    _message = QtCore.Signal(str)  # Remove once deprecation below elapses.
+    message = _api.deprecate_privatize_attribute("3.8")
 
     toolitems = [*NavigationToolbar2.toolitems]
     toolitems.insert(
@@ -640,9 +632,8 @@ class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
         """coordinates: should we show the coordinates on the right?"""
         QtWidgets.QToolBar.__init__(self, parent)
         self.setAllowedAreas(QtCore.Qt.ToolBarArea(
-            _to_int(_enum("QtCore.Qt.ToolBarArea").TopToolBarArea) |
-            _to_int(_enum("QtCore.Qt.ToolBarArea").BottomToolBarArea)))
-
+            _to_int(QtCore.Qt.ToolBarArea.TopToolBarArea) |
+            _to_int(QtCore.Qt.ToolBarArea.BottomToolBarArea)))
         self.coordinates = coordinates
         self._actions = {}  # mapping of toolitem method names to QActions.
         self._subplot_dialog = None
@@ -665,11 +656,12 @@ class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
         if self.coordinates:
             self.locLabel = QtWidgets.QLabel("", self)
             self.locLabel.setAlignment(QtCore.Qt.AlignmentFlag(
-                _to_int(_enum("QtCore.Qt.AlignmentFlag").AlignRight) |
-                _to_int(_enum("QtCore.Qt.AlignmentFlag").AlignVCenter)))
+                _to_int(QtCore.Qt.AlignmentFlag.AlignRight) |
+                _to_int(QtCore.Qt.AlignmentFlag.AlignVCenter)))
+
             self.locLabel.setSizePolicy(QtWidgets.QSizePolicy(
-                _enum("QtWidgets.QSizePolicy.Policy").Expanding,
-                _enum("QtWidgets.QSizePolicy.Policy").Ignored,
+                QtWidgets.QSizePolicy.Policy.Expanding,
+                QtWidgets.QSizePolicy.Policy.Ignored,
             ))
             labelAction = self.addWidget(self.locLabel)
             labelAction.setVisible(True)
@@ -695,7 +687,7 @@ class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
             icon_color = self.palette().color(self.foregroundRole())
             mask = pm.createMaskFromColor(
                 QtGui.QColor('black'),
-                _enum("QtCore.Qt.MaskMode").MaskOutColor)
+                QtCore.Qt.MaskMode.MaskOutColor)
             pm.fill(icon_color)
             pm.setMask(mask)
         return QtGui.QIcon(pm)
@@ -746,7 +738,7 @@ class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
         self._update_buttons_checked()
 
     def set_message(self, s):
-        self.message.emit(s)
+        self._message.emit(s)
         if self.coordinates:
             self.locLabel.setText(s)
 
@@ -781,13 +773,13 @@ class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
         selectedFilter = None
         for name, exts in sorted_filetypes:
             exts_list = " ".join(['*.%s' % ext for ext in exts])
-            filter = '%s (%s)' % (name, exts_list)
+            filter = f'{name} ({exts_list})'
             if default_filetype in exts:
                 selectedFilter = filter
             filters.append(filter)
         filters = ';;'.join(filters)
 
-        fname, filter = qt_compat._getSaveFileName(
+        fname, filter = QtWidgets.QFileDialog.getSaveFileName(
             self.canvas.parent(), "Choose a filename to save to", start,
             filters, selectedFilter)
         if fname:
@@ -799,12 +791,12 @@ class NavigationToolbar2QT(NavigationToolbar2, QtWidgets.QToolBar):
             except Exception as e:
                 QtWidgets.QMessageBox.critical(
                     self, "Error saving file", str(e),
-                    _enum("QtWidgets.QMessageBox.StandardButton").Ok,
-                    _enum("QtWidgets.QMessageBox.StandardButton").NoButton)
+                    QtWidgets.QMessageBox.StandardButton.Ok,
+                    QtWidgets.QMessageBox.StandardButton.NoButton)
 
     def set_history_buttons(self):
         can_backward = self._nav_stack._pos > 0
-        can_forward = self._nav_stack._pos < len(self._nav_stack._elements) - 1
+        can_forward = self._nav_stack._pos < len(self._nav_stack) - 1
         if 'back' in self._actions:
             self._actions['back'].setEnabled(can_backward)
         if 'forward' in self._actions:
@@ -914,15 +906,15 @@ class ToolbarQt(ToolContainerBase, QtWidgets.QToolBar):
         ToolContainerBase.__init__(self, toolmanager)
         QtWidgets.QToolBar.__init__(self, parent)
         self.setAllowedAreas(QtCore.Qt.ToolBarArea(
-            _to_int(_enum("QtCore.Qt.ToolBarArea").TopToolBarArea) |
-            _to_int(_enum("QtCore.Qt.ToolBarArea").BottomToolBarArea)))
+            _to_int(QtCore.Qt.ToolBarArea.TopToolBarArea) |
+            _to_int(QtCore.Qt.ToolBarArea.BottomToolBarArea)))
         message_label = QtWidgets.QLabel("")
         message_label.setAlignment(QtCore.Qt.AlignmentFlag(
-            _to_int(_enum("QtCore.Qt.AlignmentFlag").AlignRight) |
-            _to_int(_enum("QtCore.Qt.AlignmentFlag").AlignVCenter)))
+            _to_int(QtCore.Qt.AlignmentFlag.AlignRight) |
+            _to_int(QtCore.Qt.AlignmentFlag.AlignVCenter)))
         message_label.setSizePolicy(QtWidgets.QSizePolicy(
-            _enum("QtWidgets.QSizePolicy.Policy").Expanding,
-            _enum("QtWidgets.QSizePolicy.Policy").Ignored,
+            QtWidgets.QSizePolicy.Policy.Expanding,
+            QtWidgets.QSizePolicy.Policy.Ignored,
         ))
         self._message_action = self.addWidget(message_label)
         self._toolitems = {}

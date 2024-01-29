@@ -1567,8 +1567,8 @@ class ConstantWarning(DeprecationWarning):
 
 def _check_obsolete(key: str) -> None:
     if key in _obsolete_constants and key not in _aliases:
-        warnings.warn("Constant '{}' is not in current {} data set".format(
-            key, _current_codata), ConstantWarning)
+        warnings.warn(f"Constant '{key}' is not in current {_current_codata} data set",
+                      ConstantWarning, stacklevel=3)
 
 
 def value(key: str) -> float:

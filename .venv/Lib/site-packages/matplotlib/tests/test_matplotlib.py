@@ -17,9 +17,9 @@ def test_parse_to_version_info(version_str, version_tuple):
     assert matplotlib._parse_to_version_info(version_str) == version_tuple
 
 
-@pytest.mark.skipif(
-    os.name == "nt", reason="chmod() doesn't work as is on Windows")
-@pytest.mark.skipif(os.name != "nt" and os.geteuid() == 0,
+@pytest.mark.skipif(sys.platform == "win32",
+                    reason="chmod() doesn't work as is on Windows")
+@pytest.mark.skipif(sys.platform != "win32" and os.geteuid() == 0,
                     reason="chmod() doesn't work as root")
 def test_tmpconfigdir_warning(tmpdir):
     """Test that a warning is emitted if a temporary configdir must be used."""
@@ -29,7 +29,7 @@ def test_tmpconfigdir_warning(tmpdir):
         proc = subprocess.run(
             [sys.executable, "-c", "import matplotlib"],
             env={**os.environ, "MPLCONFIGDIR": str(tmpdir)},
-            stderr=subprocess.PIPE, universal_newlines=True, check=True)
+            stderr=subprocess.PIPE, text=True, check=True)
         assert "set the MPLCONFIGDIR" in proc.stderr
     finally:
         os.chmod(tmpdir, mode)

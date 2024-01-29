@@ -31,7 +31,7 @@ class TestFreq:
             idx._data.freq = "foo"
 
     @pytest.mark.parametrize("values", [["20180101", "20180103", "20180105"], []])
-    @pytest.mark.parametrize("freq", ["2D", Day(2), "2B", BDay(2), "48H", Hour(48)])
+    @pytest.mark.parametrize("freq", ["2D", Day(2), "2B", BDay(2), "48h", Hour(48)])
     @pytest.mark.parametrize("tz", [None, "US/Eastern"])
     def test_freq_setter(self, values, freq, tz):
         # GH#20678

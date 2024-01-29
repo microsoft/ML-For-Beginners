@@ -13,7 +13,7 @@ Optimization and root finding (:mod:`scipy.optimize`)
 SciPy ``optimize`` provides functions for minimizing (or maximizing)
 objective functions, possibly subject to constraints. It includes
 solvers for nonlinear problems (with support for both local and global
-optimization algorithms), linear programing, constrained
+optimization algorithms), linear programming, constrained
 and nonlinear least-squares, root finding, and curve fitting.
 
 Common functions and objects, shared across different solvers, are:
@@ -100,6 +100,8 @@ quasi-Newton methods implementing this interface are:
    BFGS - Broyden-Fletcher-Goldfarb-Shanno (BFGS) Hessian update strategy.
    SR1 - Symmetric-rank-1 Hessian update strategy.
 
+.. _global_optimization:
+
 Global optimization
 -------------------
 
@@ -133,6 +135,7 @@ Linear least-squares
 
    nnls - Linear least-squares problem with non-negativity constraint.
    lsq_linear - Linear least-squares problem with bound constraints.
+   isotonic_regression - Least squares problem of isotonic regression via PAVA.
 
 Curve fitting
 -------------
@@ -423,6 +426,7 @@ from ._linprog import linprog, linprog_verbose_callback
 from ._lsap import linear_sum_assignment
 from ._differentialevolution import differential_evolution
 from ._lsq import least_squares, lsq_linear
+from ._isotonic import isotonic_regression
 from ._constraints import (NonlinearConstraint,
                            LinearConstraint,
                            Bounds)

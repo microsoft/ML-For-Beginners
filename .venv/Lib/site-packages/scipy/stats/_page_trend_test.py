@@ -110,7 +110,7 @@ def page_trend_test(data, ranked=False, predicted_ranks=None, method='auto'):
     [1]_, is:
 
     1. "Predetermine with careful logic the appropriate hypotheses
-       concerning the predicted ording of the experimental results.
+       concerning the predicted ordering of the experimental results.
        If no reasonable basis for ordering any treatments is known, the
        :math:`L` test is not appropriate."
     2. "As in other experiments, determine at what level of confidence
@@ -348,7 +348,7 @@ def page_trend_test(data, ranked=False, predicted_ranks=None, method='auto'):
                              f"from 1 to {n} (the number of columns in "
                              f"`data`) exactly once.")
 
-    if type(ranked) is not bool:
+    if not isinstance(ranked, bool):
         raise TypeError("`ranked` must be boolean.")
 
     # Calculate the L statistic
@@ -388,7 +388,7 @@ def _l_p_asymptotic(L, m, n):
     # Using [1] as a reference, the asymptotic p-value would be calculated as:
     # chi_L = (12*L - 3*m*n*(n+1)**2)**2/(m*n**2*(n**2-1)*(n+1))
     # p = chi2.sf(chi_L, df=1, loc=0, scale=1)/2
-    # but this is insentive to the direction of the hypothesized ranking
+    # but this is insensitive to the direction of the hypothesized ranking
 
     # See [2] page 151
     E0 = (m*n*(n+1)**2)/4

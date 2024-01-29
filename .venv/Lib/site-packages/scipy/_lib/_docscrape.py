@@ -13,7 +13,7 @@ import copy
 import sys
 
 
-def strip_blank_lines(l):  # noqa
+def strip_blank_lines(l):
     "Remove leading and trailing blank lines from a list of lines"
     while l and not l[0].strip():
         del l[0]
@@ -56,7 +56,7 @@ class Reader:
             return ''
 
     def seek_next_non_empty_line(self):
-        for l in self[self._l:]:  # noqa
+        for l in self[self._l:]:
             if l.strip():
                 break
             else:
@@ -414,12 +414,11 @@ class NumpyDocString(Mapping):
                 filename = inspect.getsourcefile(self._obj)
             except TypeError:
                 filename = None
-            msg = msg + (" in the docstring of %s in %s."
-                         % (self._obj, filename))
+            msg = msg + (f" in the docstring of {self._obj} in {filename}.")
         if error:
             raise ValueError(msg)
         else:
-            warn(msg)
+            warn(msg, stacklevel=3)
 
     # string conversion routines
 
@@ -542,12 +541,12 @@ class NumpyDocString(Mapping):
         return '\n'.join(out)
 
 
-def indent(str, indent=4):  # noqa
+def indent(str, indent=4):
     indent_str = ' '*indent
     if str is None:
         return indent_str
     lines = str.split('\n')
-    return '\n'.join(indent_str + l for l in lines)  # noqa
+    return '\n'.join(indent_str + l for l in lines)
 
 
 def dedent_lines(lines):

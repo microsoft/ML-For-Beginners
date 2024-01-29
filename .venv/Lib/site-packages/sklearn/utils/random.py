@@ -1,3 +1,7 @@
+"""
+The mod:`sklearn.utils.random` module includes utilities for random sampling.
+"""
+
 # Author: Hamzeh Alsalhi <ha258@cornell.edu>
 #
 # License: BSD 3 clause

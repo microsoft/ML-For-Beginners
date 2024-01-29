@@ -66,7 +66,10 @@ class ConsistencyTests:
         i = ii[np.argmax(dd)]
         assert_almost_equal(d**2, np.sum((x-self.data[i])**2))
         eps = 1e-8
-        assert_equal(np.sum(np.sum((self.data-x[np.newaxis, :])**2, axis=1) < d**2+eps), m)
+        assert_equal(
+            np.sum(np.sum((self.data-x[np.newaxis, :])**2, axis=1) < d**2+eps),
+            m,
+        )
 
     def test_points_near(self):
         x = self.x
@@ -336,11 +339,15 @@ class _Test_random_ball_periodic(ball_consistency):
         c = np.ones(self.T.n, dtype=bool)
         l = self.T.query_ball_point(self.x + 1.0, self.d, p=self.p, eps=self.eps)
         c[l] = False
-        assert_(np.all(self.distance(self.data[c], self.x, self.p) >= self.d/(1.+self.eps)))
+        assert np.all(
+            self.distance(self.data[c], self.x, self.p) >= self.d/(1.+self.eps)
+        )
 
         l = self.T.query_ball_point(self.x - 1.0, self.d, p=self.p, eps=self.eps)
         c[l] = False
-        assert_(np.all(self.distance(self.data[c], self.x, self.p) >= self.d/(1.+self.eps)))
+        assert np.all(
+            self.distance(self.data[c], self.x, self.p) >= self.d/(1.+self.eps)
+        )
 
 
 @KDTreeTest
@@ -447,14 +454,16 @@ class two_trees_consistency:
         r = self.T1.query_ball_tree(self.T2, self.d, p=self.p, eps=self.eps)
         for i, l in enumerate(r):
             for j in l:
-                assert_(self.distance(self.data1[i], self.data2[j], self.p) <= self.d*(1.+self.eps))
+                assert (self.distance(self.data1[i], self.data2[j], self.p)
+                        <= self.d*(1.+self.eps))
 
     def test_found_all(self):
         r = self.T1.query_ball_tree(self.T2, self.d, p=self.p, eps=self.eps)
         for i, l in enumerate(r):
             c = np.ones(self.T2.n, dtype=bool)
             c[l] = False
-            assert_(np.all(self.distance(self.data2[c], self.data1[i], self.p) >= self.d/(1.+self.eps)))
+            assert np.all(self.distance(self.data2[c], self.data1[i], self.p)
+                          >= self.d/(1.+self.eps))
 
 
 @KDTreeTest
@@ -541,7 +550,8 @@ class Test_rectangle:
         assert_almost_equal(self.rect.max_distance_point([0.5, 0.5]), 1/np.sqrt(2))
 
     def test_max_one_side(self):
-        assert_almost_equal(self.rect.max_distance_point([0.5, 1.5]), np.hypot(0.5, 1.5))
+        assert_almost_equal(self.rect.max_distance_point([0.5, 1.5]),
+                            np.hypot(0.5, 1.5))
 
     def test_max_two_sides(self):
         assert_almost_equal(self.rect.max_distance_point([2, 2]), 2*np.sqrt(2))
@@ -611,9 +621,11 @@ class sparse_distance_matrix_consistency:
         r = self.T1.query_ball_tree(self.T2, self.r)
         for i, l in enumerate(r):
             for j in l:
-                assert_almost_equal(M[i, j],
-                                    self.distance(self.T1.data[i], self.T2.data[j], self.p),
-                                    decimal=14)
+                assert_almost_equal(
+                    M[i, j],
+                    self.distance(self.T1.data[i], self.T2.data[j], self.p),
+                    decimal=14
+                )
         for ((i, j), d) in M.items():
             assert_(j in r[i])
 
@@ -1488,3 +1500,34 @@ def test_nonfinite_inputs_gh_18223():
         KDTree(coords, balanced_tree=True, compact_nodes=True)
     with pytest.raises(ValueError, match="must be finite"):
         KDTree(coords, balanced_tree=False, compact_nodes=False)
+
+
+@pytest.mark.parametrize("incantation", [cKDTree, KDTree])
+def test_gh_18800(incantation):
+    # our prohibition on non-finite values
+    # in kd-tree workflows means we need
+    # coercion to NumPy arrays enforced
+
+    class ArrLike(np.ndarray):
+        def __new__(cls, input_array):
+            obj = np.asarray(input_array).view(cls)
+            # we override all() to mimic the problem
+            # pandas DataFrames encountered in gh-18800
+            obj.all = None
+            return obj
+
+        def __array_finalize__(self, obj):
+            if obj is None:
+                return
+            self.all = getattr(obj, 'all', None)
+
+    points = [
+        [66.22, 32.54],
+        [22.52, 22.39],
+        [31.01, 81.21],
+        ]
+    arr = np.array(points)
+    arr_like = ArrLike(arr)
+    tree = incantation(points, 10)
+    tree.query(arr_like, 1)
+    tree.query_ball_point(arr_like, 200)

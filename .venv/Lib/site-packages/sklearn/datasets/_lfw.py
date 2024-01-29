@@ -10,7 +10,7 @@ over the internet, all details are available on the official website:
 
 import logging
 from numbers import Integral, Real
-from os import listdir, makedirs, remove
+from os import PathLike, listdir, makedirs, remove
 from os.path import exists, isdir, join
 
 import numpy as np
@@ -234,7 +234,7 @@ def _fetch_lfw_people(
 
 @validate_params(
     {
-        "data_home": [str, None],
+        "data_home": [str, PathLike, None],
         "funneled": ["boolean"],
         "resize": [Interval(Real, 0, None, closed="neither"), None],
         "min_faces_per_person": [Interval(Integral, 0, None, closed="left"), None],
@@ -272,7 +272,7 @@ def fetch_lfw_people(
 
     Parameters
     ----------
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By default
         all scikit-learn data is stored in '~/scikit_learn_data' subfolders.
 
@@ -431,7 +431,7 @@ def _fetch_lfw_pairs(
 @validate_params(
     {
         "subset": [StrOptions({"train", "test", "10_folds"})],
-        "data_home": [str, None],
+        "data_home": [str, PathLike, None],
         "funneled": ["boolean"],
         "resize": [Interval(Real, 0, None, closed="neither"), None],
         "color": ["boolean"],
@@ -480,7 +480,7 @@ def fetch_lfw_pairs(
         official evaluation set that is meant to be used with a 10-folds
         cross validation.
 
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By
         default all scikit-learn data is stored in '~/scikit_learn_data'
         subfolders.

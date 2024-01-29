@@ -6,6 +6,7 @@ import pytest
 
 import sklearn
 from sklearn import config_context, get_config, set_config
+from sklearn.utils import _IS_WASM
 from sklearn.utils.parallel import Parallel, delayed
 
 
@@ -138,6 +139,7 @@ def test_config_threadsafe_joblib(backend):
     assert items == [False, True, False, True]
 
 
+@pytest.mark.xfail(_IS_WASM, reason="cannot start threads")
 def test_config_threadsafe():
     """Uses threads directly to test that the global config does not change
     between threads. Same test as `test_config_threadsafe_joblib` but with

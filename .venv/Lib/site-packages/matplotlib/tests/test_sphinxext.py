@@ -4,9 +4,9 @@ import filecmp
 import os
 from pathlib import Path
 import shutil
-from subprocess import Popen, PIPE
 import sys
 
+from matplotlib.testing import subprocess_run_for_testing
 import pytest
 
 
@@ -19,9 +19,11 @@ def build_sphinx_html(source_dir, doctree_dir, html_dir, extra_args=None):
     extra_args = [] if extra_args is None else extra_args
     cmd = [sys.executable, '-msphinx', '-W', '-b', 'html',
            '-d', str(doctree_dir), str(source_dir), str(html_dir), *extra_args]
-    proc = Popen(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True,
-                 env={**os.environ, "MPLBACKEND": ""})
-    out, err = proc.communicate()
+    proc = subprocess_run_for_testing(
+        cmd, capture_output=True, text=True,
+        env={**os.environ, "MPLBACKEND": ""})
+    out = proc.stdout
+    err = proc.stderr
 
     assert proc.returncode == 0, \
         f"sphinx build failed with stdout:\n{out}\nstderr:\n{err}\n"
@@ -44,10 +46,12 @@ def test_tinypages(tmp_path):
     # On CI, gcov emits warnings (due to agg headers being included with the
     # same name in multiple extension modules -- but we don't care about their
     # coverage anyways); hide them using GCOV_ERROR_FILE.
-    proc = Popen(
-        cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True,
-        env={**os.environ, "MPLBACKEND": "", "GCOV_ERROR_FILE": os.devnull})
-    out, err = proc.communicate()
+    proc = subprocess_run_for_testing(
+        cmd, capture_output=True, text=True,
+        env={**os.environ, "MPLBACKEND": "", "GCOV_ERROR_FILE": os.devnull}
+    )
+    out = proc.stdout
+    err = proc.stderr
 
     # Build the pages with warnings turned into errors
     build_sphinx_html(tmp_path, doctree_dir, html_dir)
@@ -178,3 +182,44 @@ def test_show_source_link_false(tmp_path, plot_html_show_source_link):
     build_sphinx_html(tmp_path, doctree_dir, html_dir, extra_args=[
         '-D', f'plot_html_show_source_link={plot_html_show_source_link}'])
     assert len(list(html_dir.glob("**/index-1.py"))) == 0
+
+
+def test_srcset_version(tmp_path):
+    shutil.copytree(Path(__file__).parent / 'tinypages', tmp_path,
+                    dirs_exist_ok=True)
+    html_dir = tmp_path / '_build' / 'html'
+    img_dir = html_dir / '_images'
+    doctree_dir = tmp_path / 'doctrees'
+
+    build_sphinx_html(tmp_path, doctree_dir, html_dir, extra_args=[
+        '-D', 'plot_srcset=2x'])
+
+    def plot_file(num, suff=''):
+        return img_dir / f'some_plots-{num}{suff}.png'
+
+    # check some-plots
+    for ind in [1, 2, 3, 5, 7, 11, 13, 15, 17]:
+        assert plot_file(ind).exists()
+        assert plot_file(ind, suff='.2x').exists()
+
+    assert (img_dir / 'nestedpage-index-1.png').exists()
+    assert (img_dir / 'nestedpage-index-1.2x.png').exists()
+    assert (img_dir / 'nestedpage-index-2.png').exists()
+    assert (img_dir / 'nestedpage-index-2.2x.png').exists()
+    assert (img_dir / 'nestedpage2-index-1.png').exists()
+    assert (img_dir / 'nestedpage2-index-1.2x.png').exists()
+    assert (img_dir / 'nestedpage2-index-2.png').exists()
+    assert (img_dir / 'nestedpage2-index-2.2x.png').exists()
+
+    # Check html for srcset
+
+    assert ('srcset="_images/some_plots-1.png, _images/some_plots-1.2x.png 2.00x"'
+            in (html_dir / 'some_plots.html').read_text(encoding='utf-8'))
+
+    st = ('srcset="../_images/nestedpage-index-1.png, '
+          '../_images/nestedpage-index-1.2x.png 2.00x"')
+    assert st in (html_dir / 'nestedpage/index.html').read_text(encoding='utf-8')
+
+    st = ('srcset="../_images/nestedpage2-index-2.png, '
+          '../_images/nestedpage2-index-2.2x.png 2.00x"')
+    assert st in (html_dir / 'nestedpage2/index.html').read_text(encoding='utf-8')

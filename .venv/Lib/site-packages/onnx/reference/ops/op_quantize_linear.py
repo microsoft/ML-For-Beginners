@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=W0221
+
 
 from typing import Optional, Tuple
 
@@ -47,7 +47,7 @@ class _CommonQuantizeLinear(OpRun):
             return TensorProto.FLOAT8E5M2FNUZ
         return np_dtype_to_tensor_dtype(zero_point.dtype)
 
-    def common_run(  # pylint: disable=too-many-branches
+    def common_run(  # noqa: PLR0911
         self,
         x: np.ndarray,
         y_scale: np.ndarray,
@@ -70,24 +70,22 @@ class _CommonQuantizeLinear(OpRun):
             tensor_type = self.get_zero_point_type(zero_point)
 
             if tensor_type == TensorProto.UINT8:
+                xi = np.rint(x).astype(np.int32)
                 if len(y_scale.shape) > 0:
-                    x += zero_point.reshape(new_shape)
+                    xi += zero_point.reshape(new_shape)
                 else:
-                    x += zero_point
-                np.floor(x + 0.5, out=x)
-                np.clip(x, 0, 255, out=x)
+                    xi += zero_point
                 dtype = tensor_dtype_to_np_dtype(tensor_type)
-                return (np.ceil(x).astype(dtype),)
+                return (np.clip(xi, 0, 255).astype(dtype),)
 
             if tensor_type == TensorProto.INT8:
+                xi = np.rint(x).astype(np.int32)
                 if len(y_scale.shape) > 0:
-                    x += zero_point.reshape(new_shape)
+                    xi += zero_point.reshape(new_shape)
                 else:
-                    x += zero_point
-                np.floor(x + 0.5, out=x)
-                np.clip(x, -128, 127, out=x)
+                    xi += zero_point
                 dtype = tensor_dtype_to_np_dtype(tensor_type)
-                return (np.ceil(x).astype(dtype),)
+                return (np.clip(xi, -128, 127).astype(dtype),)
 
             if tensor_type == TensorProto.FLOAT8E4M3FN:
                 f8 = _CommonQuantizeLinear.float32_to_float8e4m3(x, saturate=saturate)
@@ -115,10 +113,8 @@ class _CommonQuantizeLinear(OpRun):
             )
 
         dtype = np.uint8  # type: ignore[assignment]
-        # np.around(x, 0, out=x)
-        np.floor(x + 0.5, out=x)
-        np.clip(x, 0, 255, out=x)
-        return (x.astype(dtype),)
+        xi = np.rint(x).astype(np.int32)
+        return (np.clip(xi, 0, 255).astype(dtype),)
 
 
 class QuantizeLinear_10(_CommonQuantizeLinear):

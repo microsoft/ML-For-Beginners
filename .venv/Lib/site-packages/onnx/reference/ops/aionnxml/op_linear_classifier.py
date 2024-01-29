@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0912,R0913,R0914,W0221
+
 
 import numpy as np
 
@@ -31,7 +31,7 @@ class LinearClassifier(OpRunAiOnnxMl):
         classlabels_strings=None,
         coefficients=None,
         intercepts=None,
-        multi_class=None,  # pylint: disable=W0613
+        multi_class=None,
         post_transform=None,
     ):
         # multi_class is unused
@@ -59,7 +59,7 @@ class LinearClassifier(OpRunAiOnnxMl):
         elif post_transform == "SOFTMAX":
             np.subtract(
                 scores,
-                scores.max(axis=1, keepdims=1),  # pylint: disable=E1123
+                scores.max(axis=1, keepdims=1),
                 out=scores,
             )
             scores = np.exp(scores)

@@ -64,7 +64,7 @@ def test_inspect_getfile_raises_exception():
     """Check oinspect.find_file/getsource/find_source_lines expectations"""
     with pytest.raises(TypeError):
         inspect.getfile(type)
-    with pytest.raises(OSError if sys.version_info >= (3, 10) else TypeError):
+    with pytest.raises(OSError):
         inspect.getfile(SourceModuleMainTest)
 
 

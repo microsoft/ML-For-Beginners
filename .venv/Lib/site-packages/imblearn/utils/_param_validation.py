@@ -6,7 +6,6 @@ import functools
 import math
 import operator
 import re
-import warnings
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from inspect import signature
@@ -22,16 +21,14 @@ from ..utils.fixes import _is_arraylike_not_scalar
 
 sklearn_version = parse_version(sklearn.__version__)
 
-if sklearn_version < parse_version("1.3"):
-    # TODO: remove `if True` when we have clear support for:
-    # - ignoring `*args` and `**kwargs` in the signature
+if sklearn_version < parse_version("1.4"):
 
     class InvalidParameterError(ValueError, TypeError):
-        """Custom exception to be raised when the parameter of a
-        class/method/function does not have a valid type or value.
+        """Custom exception to be raised when the parameter of a class/method/function
+        does not have a valid type or value.
         """
 
-    # Inherits from ValueError and TypeError to keep backward compatibility.
+        # Inherits from ValueError and TypeError to keep backward compatibility.
 
     def validate_parameter_constraints(parameter_constraints, params, caller_name):
         """Validate types and values of given parameters.
@@ -56,14 +53,15 @@ if sklearn_version < parse_version("1.3"):
             - the string "boolean"
             - the string "verbose"
             - the string "cv_object"
+            - the string "nan"
             - a MissingValues object representing markers for missing values
             - a HasMethods object, representing method(s) an object must have
             - a Hidden object, representing a constraint not meant to be exposed to the
               user
 
         params : dict
-            A dictionary `param_name: param_value`. The parameters to validate
-            against the constraints.
+            A dictionary `param_name: param_value`. The parameters to validate against
+            the constraints.
 
         caller_name : str
             The name of the estimator or function or method that called this function.
@@ -148,6 +146,8 @@ if sklearn_version < parse_version("1.3"):
             constraint = make_constraint(constraint.constraint)
             constraint.hidden = True
             return constraint
+        if isinstance(constraint, str) and constraint == "nan":
+            return _NanConstraint()
         raise ValueError(f"Unknown constraint type: {constraint}")
 
     def validate_params(parameter_constraints, *, prefer_skip_nested_validation):
@@ -156,12 +156,12 @@ if sklearn_version < parse_version("1.3"):
         Parameters
         ----------
         parameter_constraints : dict
-            A dictionary `param_name: list of constraints`. See the docstring
-            of `validate_parameter_constraints` for a description of the
-            accepted constraints.
+            A dictionary `param_name: list of constraints`. See the docstring of
+            `validate_parameter_constraints` for a description of the accepted
+            constraints.
 
-            Note that the *args and **kwargs parameters are not validated and
-            must not be present in the parameter_constraints dictionary.
+            Note that the *args and **kwargs parameters are not validated and must not
+            be present in the parameter_constraints dictionary.
 
         prefer_skip_nested_validation : bool
             If True, the validation of parameters of inner estimators or functions
@@ -223,11 +223,10 @@ if sklearn_version < parse_version("1.3"):
                     ):
                         return func(*args, **kwargs)
                 except InvalidParameterError as e:
-                    # When the function is just a wrapper around an estimator,
-                    # we allow the function to delegate validation to the
-                    # estimator, but we replace the name of the estimator by
-                    # the name of the function in the error message to avoid
-                    # confusion.
+                    # When the function is just a wrapper around an estimator, we allow
+                    # the function to delegate validation to the estimator, but we
+                    # replace the name of the estimator by the name of the function in
+                    # the error message to avoid confusion.
                     msg = re.sub(
                         r"parameter of \w+ must be",
                         f"parameter of {func.__qualname__} must be",
@@ -318,7 +317,11 @@ if sklearn_version < parse_version("1.3"):
         """Constraint representing the indicator `np.nan`."""
 
         def is_satisfied_by(self, val):
-            return isinstance(val, Real) and math.isnan(val)
+            return (
+                not isinstance(val, Integral)
+                and isinstance(val, Real)
+                and math.isnan(val)
+            )
 
         def __str__(self):
             return "numpy.nan"
@@ -484,7 +487,7 @@ if sklearn_version < parse_version("1.3"):
                 )
 
         def __contains__(self, val):
-            if np.isnan(val):
+            if not isinstance(val, Integral) and np.isnan(val):
                 return False
 
             left_cmp = operator.lt if self.closed in ("left", "both") else operator.le
@@ -586,20 +589,9 @@ if sklearn_version < parse_version("1.3"):
             self._constraints = [
                 _InstancesOf(bool),
                 _InstancesOf(np.bool_),
-                _InstancesOf(Integral),
             ]
 
         def is_satisfied_by(self, val):
-            # TODO(1.4) remove support for Integral.
-            if isinstance(val, Integral) and not isinstance(val, bool):
-                warnings.warn(
-                    (
-                        "Passing an int for a boolean parameter is deprecated in "
-                        " version 1.2 and won't be supported anymore in version 1.4."
-                    ),
-                    FutureWarning,
-                )
-
             return any(c.is_satisfied_by(val) for c in self._constraints)
 
         def __str__(self):
@@ -680,8 +672,8 @@ if sklearn_version < parse_version("1.3"):
     class HasMethods(_Constraint):
         """Constraint representing objects that expose specific methods.
 
-        It is useful for parameters following a protocol and where we don't
-        want to impose an affiliation to a specific module or class.
+        It is useful for parameters following a protocol and where we don't want to
+        impose an affiliation to a specific module or class.
 
         Parameters
         ----------
@@ -931,6 +923,7 @@ else:
         _CVObjects,
         _InstancesOf,
         _IterablesNotString,
+        _NanConstraint,
         _NoneConstraint,
         _PandasNAConstraint,
         _RandomStates,

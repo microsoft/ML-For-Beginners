@@ -26,6 +26,10 @@ from ..preprocessing import LabelEncoder
 from ..utils import Bunch
 from ..utils._estimator_html_repr import _VisualBlock
 from ..utils._param_validation import HasMethods, StrOptions
+from ..utils.metadata_routing import (
+    _raise_for_unsupported_routing,
+    _RoutingNotSupportedMixin,
+)
 from ..utils.metaestimators import available_if
 from ..utils.multiclass import check_classification_targets, type_of_target
 from ..utils.parallel import Parallel, delayed
@@ -254,7 +258,7 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
                     cv=deepcopy(cv),
                     method=meth,
                     n_jobs=self.n_jobs,
-                    fit_params=fit_params,
+                    params=fit_params,
                     verbose=self.verbose,
                 )
                 for est, meth in zip(all_estimators, self.stack_method_)
@@ -380,7 +384,7 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
         return _VisualBlock("serial", (parallel, final_block), dash_wrapped=False)
 
 
-class StackingClassifier(ClassifierMixin, _BaseStacking):
+class StackingClassifier(_RoutingNotSupportedMixin, ClassifierMixin, _BaseStacking):
     """Stack of estimators with a final classifier.
 
     Stacked generalization consists in stacking the output of individual
@@ -641,6 +645,7 @@ class StackingClassifier(ClassifierMixin, _BaseStacking):
         self : object
             Returns a fitted instance of estimator.
         """
+        _raise_for_unsupported_routing(self, "fit", sample_weight=sample_weight)
         check_classification_targets(y)
         if type_of_target(y) == "multilabel-indicator":
             self._label_encoder = [LabelEncoder().fit(yk) for yk in y.T]
@@ -761,7 +766,7 @@ class StackingClassifier(ClassifierMixin, _BaseStacking):
         return super()._sk_visual_block_with_final_estimator(final_estimator)
 
 
-class StackingRegressor(RegressorMixin, _BaseStacking):
+class StackingRegressor(_RoutingNotSupportedMixin, RegressorMixin, _BaseStacking):
     """Stack of estimators with a final regressor.
 
     Stacked generalization consists in stacking the output of individual
@@ -952,6 +957,7 @@ class StackingRegressor(RegressorMixin, _BaseStacking):
         self : object
             Returns a fitted instance.
         """
+        _raise_for_unsupported_routing(self, "fit", sample_weight=sample_weight)
         y = column_or_1d(y, warn=True)
         return super().fit(X, y, sample_weight)
 

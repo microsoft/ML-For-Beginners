@@ -13,11 +13,16 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['TracStyle']
+
+
 class TracStyle(Style):
     """
     Port of the default trac highlighter design.
     """
 
+    name = 'trac'
+    
     styles = {
         Whitespace:             '#bbbbbb',
         Comment:                'italic #999988',

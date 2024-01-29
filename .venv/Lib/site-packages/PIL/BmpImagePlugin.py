@@ -22,7 +22,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
-
+from __future__ import annotations
 
 import os
 
@@ -163,7 +163,7 @@ class BmpImageFile(ImageFile.ImageFile):
             offset += 4 * file_info["colors"]
 
         # ---------------------- Check bit depth for unusual unsupported values
-        self.mode, raw_mode = BIT2MODE.get(file_info["bits"], (None, None))
+        self._mode, raw_mode = BIT2MODE.get(file_info["bits"], (None, None))
         if self.mode is None:
             msg = f"Unsupported BMP pixel depth ({file_info['bits']})"
             raise OSError(msg)
@@ -200,7 +200,7 @@ class BmpImageFile(ImageFile.ImageFile):
                     and file_info["rgba_mask"] in SUPPORTED[file_info["bits"]]
                 ):
                     raw_mode = MASK_MODES[(file_info["bits"], file_info["rgba_mask"])]
-                    self.mode = "RGBA" if "A" in raw_mode else self.mode
+                    self._mode = "RGBA" if "A" in raw_mode else self.mode
                 elif (
                     file_info["bits"] in (24, 16)
                     and file_info["rgb_mask"] in SUPPORTED[file_info["bits"]]
@@ -214,7 +214,7 @@ class BmpImageFile(ImageFile.ImageFile):
                 raise OSError(msg)
         elif file_info["compression"] == self.RAW:
             if file_info["bits"] == 32 and header == 22:  # 32-bit .cur offset
-                raw_mode, self.mode = "BGRA", "RGBA"
+                raw_mode, self._mode = "BGRA", "RGBA"
         elif file_info["compression"] in (self.RLE8, self.RLE4):
             decoder_name = "bmp_rle"
         else:
@@ -230,25 +230,25 @@ class BmpImageFile(ImageFile.ImageFile):
             else:
                 padding = file_info["palette_padding"]
                 palette = read(padding * file_info["colors"])
-                greyscale = True
+                grayscale = True
                 indices = (
                     (0, 255)
                     if file_info["colors"] == 2
                     else list(range(file_info["colors"]))
                 )
 
-                # ----------------- Check if greyscale and ignore palette if so
+                # ----------------- Check if grayscale and ignore palette if so
                 for ind, val in enumerate(indices):
                     rgb = palette[ind * padding : ind * padding + 3]
                     if rgb != o8(val) * 3:
-                        greyscale = False
+                        grayscale = False
 
-                # ------- If all colors are grey, white or black, ditch palette
-                if greyscale:
-                    self.mode = "1" if file_info["colors"] == 2 else "L"
+                # ------- If all colors are gray, white or black, ditch palette
+                if grayscale:
+                    self._mode = "1" if file_info["colors"] == 2 else "L"
                     raw_mode = self.mode
                 else:
-                    self.mode = "P"
+                    self._mode = "P"
                     self.palette = ImagePalette.raw(
                         "BGRX" if padding == 4 else "BGR", palette
                     )
@@ -396,7 +396,7 @@ def _save(im, fp, filename, bitmap_header=True):
     dpi = info.get("dpi", (96, 96))
 
     # 1 meter == 39.3701 inches
-    ppm = tuple(map(lambda x: int(x * 39.3701 + 0.5), dpi))
+    ppm = tuple(int(x * 39.3701 + 0.5) for x in dpi)
 
     stride = ((im.size[0] * bits + 7) // 8 + 3) & (~3)
     header = 40  # or 64 for OS/2 version 2

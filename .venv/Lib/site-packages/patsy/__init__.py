@@ -15,6 +15,7 @@ import os
 if os.environ.get("PATSY_FORCE_NO_WARNINGS"):
     import warnings
     warnings.filterwarnings("error", module="^patsy")
+    warnings.filterwarnings("ignore", "is_categorical_dtype is deprecated", DeprecationWarning, module="^patsy")
     del warnings
 del os
 

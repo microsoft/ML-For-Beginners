@@ -538,7 +538,6 @@ class FeatureParamsCharacterVariants(FeatureParams):
 
 
 class Coverage(FormatSwitchingBaseTable):
-
     # manual implementation to get rid of glyphID dependencies
 
     def populateDefaults(self, propagator=None):

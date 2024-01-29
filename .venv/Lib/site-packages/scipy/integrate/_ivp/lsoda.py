@@ -177,10 +177,33 @@ class LSODA(OdeSolver):
         iwork = self._lsoda_solver._integrator.iwork
         rwork = self._lsoda_solver._integrator.rwork
 
-        order = iwork[14]
+        # We want to produce the Nordsieck history array, yh, up to the order
+        # used in the last successful iteration. The step size is unimportant
+        # because it will be scaled out in LsodaDenseOutput. Some additional
+        # work may be required because ODEPACK's LSODA implementation produces
+        # the Nordsieck history in the state needed for the next iteration.
+
+        # iwork[13] contains order from last successful iteration, while
+        # iwork[14] contains order to be attempted next.
+        order = iwork[13]
+
+        # rwork[11] contains the step size to be attempted next, while
+        # rwork[10] contains step size from last successful iteration.
         h = rwork[11]
+
+        # rwork[20:20 + (iwork[14] + 1) * self.n] contains entries of the
+        # Nordsieck array in state needed for next iteration. We want
+        # the entries up to order for the last successful step so use the 
+        # following.
         yh = np.reshape(rwork[20:20 + (order + 1) * self.n],
                         (self.n, order + 1), order='F').copy()
+        if iwork[14] < order:
+            # If the order is set to decrease then the final column of yh
+            # has not been updated within ODEPACK's LSODA
+            # implementation because this column will not be used in the
+            # next iteration. We must rescale this column to make the
+            # associated step size consistent with the other columns.
+            yh[:, -1] *= (h / rwork[10]) ** order
 
         return LsodaDenseOutput(self.t_old, self.t, h, order, yh)
 

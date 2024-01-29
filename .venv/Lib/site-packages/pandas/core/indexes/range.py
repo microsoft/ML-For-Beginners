@@ -11,7 +11,9 @@ from typing import (
     TYPE_CHECKING,
     Any,
     Callable,
+    Literal,
     cast,
+    overload,
 )
 
 import numpy as np
@@ -25,6 +27,7 @@ from pandas._libs.lib import no_default
 from pandas.compat.numpy import function as nv
 from pandas.util._decorators import (
     cache_readonly,
+    deprecate_nonkeyword_arguments,
     doc,
 )
 
@@ -139,12 +142,12 @@ class RangeIndex(Index):
         dtype: Dtype | None = None,
         copy: bool = False,
         name: Hashable | None = None,
-    ) -> RangeIndex:
+    ) -> Self:
         cls._validate_dtype(dtype)
         name = maybe_extract_name(name, start, cls)
 
         # RangeIndex
-        if isinstance(start, RangeIndex):
+        if isinstance(start, cls):
             return start.copy(name=name)
         elif isinstance(start, range):
             return cls._simple_new(start, name=name)
@@ -240,7 +243,7 @@ class RangeIndex(Index):
         """
         return np.arange(self.start, self.stop, self.step, dtype=np.int64)
 
-    def _get_data_as_items(self):
+    def _get_data_as_items(self) -> list[tuple[str, int]]:
         """return a list of tuples of start, stop, step"""
         rng = self._range
         return [("start", rng.start), ("stop", rng.stop), ("step", rng.step)]
@@ -257,16 +260,12 @@ class RangeIndex(Index):
         """
         Return a list of tuples of the (attr, formatted_value)
         """
-        attrs = self._get_data_as_items()
+        attrs = cast("list[tuple[str, str | int]]", self._get_data_as_items())
         if self._name is not None:
             attrs.append(("name", ibase.default_pprint(self._name)))
         return attrs
 
-    def _format_data(self, name=None):
-        # we are formatting thru the attributes
-        return None
-
-    def _format_with_header(self, header: list[str], na_rep: str) -> list[str]:
+    def _format_with_header(self, *, header: list[str], na_rep: str) -> list[str]:
         # Equivalent to Index implementation, but faster
         if not len(self._range):
             return header
@@ -407,7 +406,7 @@ class RangeIndex(Index):
     # Indexing Methods
 
     @doc(Index.get_loc)
-    def get_loc(self, key):
+    def get_loc(self, key) -> int:
         if is_integer(key) or (is_float(key) and key.is_integer()):
             new_key = int(key)
             try:
@@ -559,13 +558,50 @@ class RangeIndex(Index):
             return self._range == other._range
         return super().equals(other)
 
+    # error: Signature of "sort_values" incompatible with supertype "Index"
+    @overload  # type: ignore[override]
+    def sort_values(
+        self,
+        *,
+        return_indexer: Literal[False] = ...,
+        ascending: bool = ...,
+        na_position: NaPosition = ...,
+        key: Callable | None = ...,
+    ) -> Self:
+        ...
+
+    @overload
+    def sort_values(
+        self,
+        *,
+        return_indexer: Literal[True],
+        ascending: bool = ...,
+        na_position: NaPosition = ...,
+        key: Callable | None = ...,
+    ) -> tuple[Self, np.ndarray | RangeIndex]:
+        ...
+
+    @overload
+    def sort_values(
+        self,
+        *,
+        return_indexer: bool = ...,
+        ascending: bool = ...,
+        na_position: NaPosition = ...,
+        key: Callable | None = ...,
+    ) -> Self | tuple[Self, np.ndarray | RangeIndex]:
+        ...
+
+    @deprecate_nonkeyword_arguments(
+        version="3.0", allowed_args=["self"], name="sort_values"
+    )
     def sort_values(
         self,
         return_indexer: bool = False,
         ascending: bool = True,
         na_position: NaPosition = "last",
         key: Callable | None = None,
-    ):
+    ) -> Self | tuple[Self, np.ndarray | RangeIndex]:
         if key is not None:
             return super().sort_values(
                 return_indexer=return_indexer,
@@ -1107,14 +1143,16 @@ class RangeIndex(Index):
             # test_arithmetic_explicit_conversions
             return super()._arith_method(other, op)
 
-    def take(
+    # error: Return type "Index" of "take" incompatible with return type
+    # "RangeIndex" in supertype "Index"
+    def take(  # type: ignore[override]
         self,
         indices,
         axis: Axis = 0,
         allow_fill: bool = True,
         fill_value=None,
         **kwargs,
-    ):
+    ) -> Index:
         if kwargs:
             nv.validate_take((), kwargs)
         if is_scalar(indices):

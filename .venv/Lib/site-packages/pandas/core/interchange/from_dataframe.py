@@ -266,10 +266,9 @@ def string_column_to_ndarray(col: Column) -> tuple[np.ndarray, Any]:
 
     assert buffers["offsets"], "String buffers must contain offsets"
     # Retrieve the data buffer containing the UTF-8 code units
-    data_buff, protocol_data_dtype = buffers["data"]
+    data_buff, _ = buffers["data"]
     # We're going to reinterpret the buffer as uint8, so make sure we can do it safely
-    assert protocol_data_dtype[1] == 8
-    assert protocol_data_dtype[2] in (
+    assert col.dtype[2] in (
         ArrowCTypes.STRING,
         ArrowCTypes.LARGE_STRING,
     )  # format_str == utf-8
@@ -377,15 +376,16 @@ def datetime_column_to_ndarray(col: Column) -> tuple[np.ndarray | pd.Series, Any
     """
     buffers = col.get_buffers()
 
-    _, _, format_str, _ = col.dtype
-    dbuf, dtype = buffers["data"]
+    _, col_bit_width, format_str, _ = col.dtype
+    dbuf, _ = buffers["data"]
     # Consider dtype being `uint` to get number of units passed since the 01.01.1970
+
     data = buffer_to_ndarray(
         dbuf,
         (
-            DtypeKind.UINT,
-            dtype[1],
-            getattr(ArrowCTypes, f"UINT{dtype[1]}"),
+            DtypeKind.INT,
+            col_bit_width,
+            getattr(ArrowCTypes, f"INT{col_bit_width}"),
             Endianness.NATIVE,
         ),
         offset=col.offset,

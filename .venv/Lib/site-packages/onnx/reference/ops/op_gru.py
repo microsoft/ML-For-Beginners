@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0913,R0914,W0221,W0613
+
 
 import numpy as np
 
@@ -38,7 +38,7 @@ class CommonGRU(OpRun):
         H_t = H_0
         for x in np.split(X, X.shape[0], axis=0):
             gates = np.dot(x, gates_w) + np.dot(H_t, gates_r) + gates_b
-            z, r = np.split(gates, 2, -1)  # pylint: disable=W0632
+            z, r = np.split(gates, 2, -1)
             z = self.f(z)
             r = self.f(r)
             h_default = self.g(

@@ -15,6 +15,10 @@ from ._lsq import least_squares
 from ._lsq.least_squares import prepare_bounds
 from scipy.optimize._minimize import Bounds
 
+# deprecated imports to be removed in SciPy 1.13.0
+from numpy import dot, eye, take  # noqa: F401
+from numpy.linalg import inv  # noqa: F401
+
 error = _minpack.error
 
 __all__ = ['fsolve', 'leastsq', 'fixed_point', 'curve_fit']
@@ -28,8 +32,8 @@ def _check_func(checker, argname, thefunc, x0, args, numinputs,
             if len(output_shape) > 1:
                 if output_shape[1] == 1:
                     return shape(res)
-            msg = "{}: there is a mismatch between the input and output " \
-                  "shape of the '{}' argument".format(checker, argname)
+            msg = f"{checker}: there is a mismatch between the input and output " \
+                  f"shape of the '{argname}' argument"
             func_name = getattr(thefunc, '__name__', None)
             if func_name:
                 msg += " '%s'." % func_name
@@ -174,7 +178,7 @@ def fsolve(func, x0, args=(), fprime=None, full_output=0,
         elif status == 1:
             pass
         elif status in [2, 3, 4, 5]:
-            warnings.warn(msg, RuntimeWarning)
+            warnings.warn(msg, RuntimeWarning, stacklevel=2)
         else:
             raise TypeError(msg)
         return res['x']
@@ -264,7 +268,8 @@ def _root_hybr(func, x0, args=(), jac=None,
 
     info = retval[1]
     info['fun'] = info.pop('fvec')
-    sol = OptimizeResult(x=x, success=(status == 1), status=status)
+    sol = OptimizeResult(x=x, success=(status == 1), status=status,
+                         method="hybr")
     sol.update(info)
     try:
         sol['message'] = errors[status]
@@ -444,9 +449,9 @@ def leastsq(func, x0, args=(), Dfun=None, full_output=False,
               2: ["The relative error between two consecutive "
                   "iterates is at most %f" % xtol, None],
               3: ["Both actual and predicted relative reductions in "
-                  "the sum of squares\n  are at most {:f} and the "
+                  f"the sum of squares\n  are at most {ftol:f} and the "
                   "relative error between two consecutive "
-                  "iterates is at \n  most {:f}".format(ftol, xtol), None],
+                  f"iterates is at \n  most {xtol:f}", None],
               4: ["The cosine of the angle between func(x) and any "
                   "column of the\n  Jacobian is at most %f in "
                   "absolute value" % gtol, None],
@@ -480,7 +485,7 @@ def leastsq(func, x0, args=(), Dfun=None, full_output=False,
             r = triu(transpose(retval[1]['fjac'])[:n, :])
             inv_triu = linalg.get_lapack_funcs('trtri', (r,))
             try:
-                # inverse of permuted matrix is a permuation of matrix inverse
+                # inverse of permuted matrix is a permutation of matrix inverse
                 invR, trtri_info = inv_triu(r)  # default: upper, non-unit diag
                 if trtri_info != 0:  # explicit comparison for readability
                     raise LinAlgError(f'trtri returned info {trtri_info}')
@@ -491,18 +496,24 @@ def leastsq(func, x0, args=(), Dfun=None, full_output=False,
         return (retval[0], cov_x) + retval[1:-1] + (errors[info][0], info)
     else:
         if info in LEASTSQ_FAILURE:
-            warnings.warn(errors[info][0], RuntimeWarning)
+            warnings.warn(errors[info][0], RuntimeWarning, stacklevel=2)
         elif info == 0:
             raise errors[info][1](errors[info][0])
         return retval[0], info
 
 
 def _lightweight_memoizer(f):
-    # very shallow memoization - only remember the first set of parameters
-    # and corresponding function value to address gh-13670
+    # very shallow memoization to address gh-13670: only remember the first set
+    # of parameters and corresponding function value, and only attempt to use
+    # them twice (the number of times the function is evaluated at x0).
     def _memoized_func(params):
+        if _memoized_func.skip_lookup:
+            return f(params)
+
         if np.all(_memoized_func.last_params == params):
             return _memoized_func.last_val
+        elif _memoized_func.last_params is not None:
+            _memoized_func.skip_lookup = True
 
         val = f(params)
 
@@ -514,6 +525,7 @@ def _lightweight_memoizer(f):
 
     _memoized_func.last_params = None
     _memoized_func.last_val = None
+    _memoized_func.skip_lookup = False
     return _memoized_func
 
 
@@ -521,7 +533,7 @@ def _wrap_func(func, xdata, ydata, transform):
     if transform is None:
         def func_wrapped(params):
             return func(xdata, *params) - ydata
-    elif transform.ndim == 1:
+    elif transform.size == 1 or transform.ndim == 1:
         def func_wrapped(params):
             return transform * (func(xdata, *params) - ydata)
     else:
@@ -547,7 +559,9 @@ def _wrap_jac(jac, xdata, transform):
             return transform[:, np.newaxis] * np.asarray(jac(xdata, *params))
     else:
         def jac_wrapped(params):
-            return solve_triangular(transform, np.asarray(jac(xdata, *params)), lower=True)
+            return solve_triangular(transform,
+                                    np.asarray(jac(xdata, *params)),
+                                    lower=True)
     return jac_wrapped
 
 
@@ -595,12 +609,12 @@ def curve_fit(f, xdata, ydata, p0=None, sigma=None, absolute_sigma=False,
         initial values will all be 1 (if the number of parameters for the
         function can be determined using introspection, otherwise a
         ValueError is raised).
-    sigma : None or M-length sequence or MxM array, optional
+    sigma : None or scalar or M-length sequence or MxM array, optional
         Determines the uncertainty in `ydata`. If we define residuals as
         ``r = ydata - f(xdata, *popt)``, then the interpretation of `sigma`
         depends on its number of dimensions:
 
-            - A 1-D `sigma` should contain values of standard deviations of
+            - A scalar or 1-D `sigma` should contain values of standard deviations of
               errors in `ydata`. In this case, the optimized function is
               ``chisq = sum((r / sigma) ** 2)``.
 
@@ -739,7 +753,7 @@ def curve_fit(f, xdata, ydata, p0=None, sigma=None, absolute_sigma=False,
         A string message giving information about the solution.
 
         .. versionadded:: 1.9
-    ier : int (returnned only if `full_output` is True)
+    ier : int (returned only if `full_output` is True)
         An integer flag. If it is equal to 1, 2, 3 or 4, the solution was
         found. Otherwise, the solution was not found. In either case, the
         optional output variable `mesg` gives more information.
@@ -850,7 +864,7 @@ def curve_fit(f, xdata, ydata, p0=None, sigma=None, absolute_sigma=False,
     suggesting that the optimal values of these parameters are ambiguous and
     that only one of these parameters is needed in the model.
 
-    """  # noqa
+    """
     if p0 is None:
         # determine number of parameters by inspecting the function
         sig = _getfullargspec(f)
@@ -926,8 +940,8 @@ def curve_fit(f, xdata, ydata, p0=None, sigma=None, absolute_sigma=False,
     if sigma is not None:
         sigma = np.asarray(sigma)
 
-        # if 1-D, sigma are errors, define transform = 1/sigma
-        if sigma.shape == (ydata.size, ):
+        # if 1-D or a scalar, sigma are errors, define transform = 1/sigma
+        if sigma.size == 1 or sigma.shape == (ydata.size, ):
             transform = 1.0 / sigma
         # if 2-D, sigma is the covariance matrix,
         # define transform = L such that L L^T = C
@@ -1008,7 +1022,7 @@ def curve_fit(f, xdata, ydata, p0=None, sigma=None, absolute_sigma=False,
 
     if warn_cov:
         warnings.warn('Covariance of the parameters could not be estimated',
-                      category=OptimizeWarning)
+                      category=OptimizeWarning, stacklevel=2)
 
     if full_output:
         return popt, pcov, infodict, errmsg, ier

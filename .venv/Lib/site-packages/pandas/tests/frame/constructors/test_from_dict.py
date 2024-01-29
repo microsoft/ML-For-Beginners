@@ -3,6 +3,8 @@ from collections import OrderedDict
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas import (
     DataFrame,
     Index,
@@ -42,6 +44,9 @@ class TestFromDict:
         )
         tm.assert_frame_equal(result, expected)
 
+    @pytest.mark.skipif(
+        using_pyarrow_string_dtype(), reason="columns inferring logic broken"
+    )
     def test_constructor_list_of_series(self):
         data = [
             OrderedDict([["a", 1.5], ["b", 3.0], ["c", 4.0]]),
@@ -200,3 +205,24 @@ class TestFromDict:
         )
         with pytest.raises(ValueError, match=msg):
             DataFrame.from_dict({"foo": 1, "baz": 3, "bar": 2}, orient="abc")
+
+    def test_from_dict_order_with_single_column(self):
+        data = {
+            "alpha": {
+                "value2": 123,
+                "value1": 532,
+                "animal": 222,
+                "plant": False,
+                "name": "test",
+            }
+        }
+        result = DataFrame.from_dict(
+            data,
+            orient="columns",
+        )
+        expected = DataFrame(
+            [[123], [532], [222], [False], ["test"]],
+            index=["value2", "value1", "animal", "plant", "name"],
+            columns=["alpha"],
+        )
+        tm.assert_frame_equal(result, expected)

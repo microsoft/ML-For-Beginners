@@ -15,7 +15,7 @@ import tempfile
 from collections import deque
 from enum import Enum
 from functools import wraps
-from typing import Any, Awaitable, Callable, Coroutine, Deque, Iterable, TypeVar, cast
+from typing import Any, Callable, Coroutine, Iterable, TypeVar, cast
 
 from .application.current import get_app
 from .application.run_in_terminal import run_in_terminal
@@ -56,6 +56,7 @@ class EditReadOnlyBuffer(Exception):
 
 class ValidationState(Enum):
     "The validation state of a buffer. This is set after the validation."
+
     VALID = "VALID"
     INVALID = "INVALID"
     UNKNOWN = "UNKNOWN"
@@ -366,7 +367,7 @@ class Buffer:
         #: Ctrl-C should reset this, and copy the whole history back in here.
         #: Enter should process the current command and append to the real
         #: history.
-        self._working_lines: Deque[str] = deque([document.text])
+        self._working_lines: deque[str] = deque([document.text])
         self.__working_index = 0
 
     def load_history_if_not_yet_loaded(self) -> None:
@@ -1890,7 +1891,7 @@ class Buffer:
                 self.reset()
 
 
-_T = TypeVar("_T", bound=Callable[..., Awaitable[None]])
+_T = TypeVar("_T", bound=Callable[..., Coroutine[Any, Any, None]])
 
 
 def _only_one_at_a_time(coroutine: _T) -> _T:
@@ -1936,18 +1937,18 @@ def indent(buffer: Buffer, from_row: int, to_row: int, count: int = 1) -> None:
     Indent text of a :class:`.Buffer` object.
     """
     current_row = buffer.document.cursor_position_row
+    current_col = buffer.document.cursor_position_col
     line_range = range(from_row, to_row)
 
     # Apply transformation.
-    new_text = buffer.transform_lines(line_range, lambda l: "    " * count + l)
+    indent_content = "    " * count
+    new_text = buffer.transform_lines(line_range, lambda l: indent_content + l)
     buffer.document = Document(
         new_text, Document(new_text).translate_row_col_to_index(current_row, 0)
     )
 
-    # Go to the start of the line.
-    buffer.cursor_position += buffer.document.get_start_of_line_position(
-        after_whitespace=True
-    )
+    # Place cursor in the same position in text after indenting
+    buffer.cursor_position += current_col + len(indent_content)
 
 
 def unindent(buffer: Buffer, from_row: int, to_row: int, count: int = 1) -> None:
@@ -1955,10 +1956,13 @@ def unindent(buffer: Buffer, from_row: int, to_row: int, count: int = 1) -> None
     Unindent text of a :class:`.Buffer` object.
     """
     current_row = buffer.document.cursor_position_row
+    current_col = buffer.document.cursor_position_col
     line_range = range(from_row, to_row)
 
+    indent_content = "    " * count
+
     def transform(text: str) -> str:
-        remove = "    " * count
+        remove = indent_content
         if text.startswith(remove):
             return text[len(remove) :]
         else:
@@ -1970,10 +1974,8 @@ def unindent(buffer: Buffer, from_row: int, to_row: int, count: int = 1) -> None
         new_text, Document(new_text).translate_row_col_to_index(current_row, 0)
     )
 
-    # Go to the start of the line.
-    buffer.cursor_position += buffer.document.get_start_of_line_position(
-        after_whitespace=True
-    )
+    # Place cursor in the same position in text after dedent
+    buffer.cursor_position += current_col - len(indent_content)
 
 
 def reshape_text(buffer: Buffer, from_row: int, to_row: int) -> None:

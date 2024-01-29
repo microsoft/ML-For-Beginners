@@ -5,21 +5,72 @@ import email.parser
 import email.policy
 import sys
 import typing
-from typing import Dict, List, Optional, Tuple, Union, cast
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generic,
+    List,
+    Optional,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
-if sys.version_info >= (3, 8):  # pragma: no cover
-    from typing import TypedDict
+from . import requirements, specifiers, utils, version as version_module
+
+T = typing.TypeVar("T")
+if sys.version_info[:2] >= (3, 8):  # pragma: no cover
+    from typing import Literal, TypedDict
 else:  # pragma: no cover
     if typing.TYPE_CHECKING:
-        from typing_extensions import TypedDict
+        from typing_extensions import Literal, TypedDict
     else:
         try:
-            from typing_extensions import TypedDict
+            from typing_extensions import Literal, TypedDict
         except ImportError:
+
+            class Literal:
+                def __init_subclass__(*_args, **_kwargs):
+                    pass
 
             class TypedDict:
                 def __init_subclass__(*_args, **_kwargs):
                     pass
+
+
+try:
+    ExceptionGroup = __builtins__.ExceptionGroup  # type: ignore[attr-defined]
+except AttributeError:
+
+    class ExceptionGroup(Exception):  # type: ignore[no-redef]  # noqa: N818
+        """A minimal implementation of :external:exc:`ExceptionGroup` from Python 3.11.
+
+        If :external:exc:`ExceptionGroup` is already defined by Python itself,
+        that version is used instead.
+        """
+
+        message: str
+        exceptions: List[Exception]
+
+        def __init__(self, message: str, exceptions: List[Exception]) -> None:
+            self.message = message
+            self.exceptions = exceptions
+
+        def __repr__(self) -> str:
+            return f"{self.__class__.__name__}({self.message!r}, {self.exceptions!r})"
+
+
+class InvalidMetadata(ValueError):
+    """A metadata field contains invalid data."""
+
+    field: str
+    """The name of the field that contains invalid data."""
+
+    def __init__(self, field: str, message: str) -> None:
+        self.field = field
+        super().__init__(message)
 
 
 # The RawMetadata class attempts to make as few assumptions about the underlying
@@ -33,7 +84,8 @@ class RawMetadata(TypedDict, total=False):
     provided). The key is lower-case and underscores are used instead of dashes
     compared to the equivalent core metadata field. Any core metadata field that
     can be specified multiple times or can hold multiple values in a single
-    field have a key with a plural name.
+    field have a key with a plural name. See :class:`Metadata` whose attributes
+    match the keys of this dictionary.
 
     Core metadata fields that can be specified multiple times are stored as a
     list or dict depending on which is appropriate for the field. Any fields
@@ -77,7 +129,7 @@ class RawMetadata(TypedDict, total=False):
     # but got stuck without ever being able to build consensus on
     # it and ultimately ended up withdrawn.
     #
-    # However, a number of tools had started emiting METADATA with
+    # However, a number of tools had started emitting METADATA with
     # `2.0` Metadata-Version, so for historical reasons, this version
     # was skipped.
 
@@ -110,7 +162,7 @@ _STRING_FIELDS = {
     "version",
 }
 
-_LIST_STRING_FIELDS = {
+_LIST_FIELDS = {
     "classifiers",
     "dynamic",
     "obsoletes",
@@ -123,6 +175,10 @@ _LIST_STRING_FIELDS = {
     "requires_dist",
     "requires_external",
     "supported_platforms",
+}
+
+_DICT_FIELDS = {
+    "project_urls",
 }
 
 
@@ -230,10 +286,11 @@ _EMAIL_TO_RAW_MAPPING = {
     "supported-platform": "supported_platforms",
     "version": "version",
 }
+_RAW_TO_EMAIL_MAPPING = {raw: email for email, raw in _EMAIL_TO_RAW_MAPPING.items()}
 
 
 def parse_email(data: Union[bytes, str]) -> Tuple[RawMetadata, Dict[str, List[str]]]:
-    """Parse a distribution's metadata.
+    """Parse a distribution's metadata stored as email headers (e.g. from ``METADATA``).
 
     This function returns a two-item tuple of dicts. The first dict is of
     recognized fields from the core metadata specification. Fields that can be
@@ -267,7 +324,7 @@ def parse_email(data: Union[bytes, str]) -> Tuple[RawMetadata, Dict[str, List[st
         # We use get_all() here, even for fields that aren't multiple use,
         # because otherwise someone could have e.g. two Name fields, and we
         # would just silently ignore it rather than doing something about it.
-        headers = parsed.get_all(name)
+        headers = parsed.get_all(name) or []
 
         # The way the email module works when parsing bytes is that it
         # unconditionally decodes the bytes as ascii using the surrogateescape
@@ -349,7 +406,7 @@ def parse_email(data: Union[bytes, str]) -> Tuple[RawMetadata, Dict[str, List[st
         # If this is one of our list of string fields, then we can just assign
         # the value, since email *only* has strings, and our get_all() call
         # above ensures that this is a list.
-        elif raw_name in _LIST_STRING_FIELDS:
+        elif raw_name in _LIST_FIELDS:
             raw[raw_name] = value
         # Special Case: Keywords
         # The keywords field is implemented in the metadata spec as a str,
@@ -406,3 +463,360 @@ def parse_email(data: Union[bytes, str]) -> Tuple[RawMetadata, Dict[str, List[st
     # way this function is implemented, our `TypedDict` can only have valid key
     # names.
     return cast(RawMetadata, raw), unparsed
+
+
+_NOT_FOUND = object()
+
+
+# Keep the two values in sync.
+_VALID_METADATA_VERSIONS = ["1.0", "1.1", "1.2", "2.1", "2.2", "2.3"]
+_MetadataVersion = Literal["1.0", "1.1", "1.2", "2.1", "2.2", "2.3"]
+
+_REQUIRED_ATTRS = frozenset(["metadata_version", "name", "version"])
+
+
+class _Validator(Generic[T]):
+    """Validate a metadata field.
+
+    All _process_*() methods correspond to a core metadata field. The method is
+    called with the field's raw value. If the raw value is valid it is returned
+    in its "enriched" form (e.g. ``version.Version`` for the ``Version`` field).
+    If the raw value is invalid, :exc:`InvalidMetadata` is raised (with a cause
+    as appropriate).
+    """
+
+    name: str
+    raw_name: str
+    added: _MetadataVersion
+
+    def __init__(
+        self,
+        *,
+        added: _MetadataVersion = "1.0",
+    ) -> None:
+        self.added = added
+
+    def __set_name__(self, _owner: "Metadata", name: str) -> None:
+        self.name = name
+        self.raw_name = _RAW_TO_EMAIL_MAPPING[name]
+
+    def __get__(self, instance: "Metadata", _owner: Type["Metadata"]) -> T:
+        # With Python 3.8, the caching can be replaced with functools.cached_property().
+        # No need to check the cache as attribute lookup will resolve into the
+        # instance's __dict__ before __get__ is called.
+        cache = instance.__dict__
+        try:
+            value = instance._raw[self.name]  # type: ignore[literal-required]
+        except KeyError:
+            if self.name in _STRING_FIELDS:
+                value = ""
+            elif self.name in _LIST_FIELDS:
+                value = []
+            elif self.name in _DICT_FIELDS:
+                value = {}
+            else:  # pragma: no cover
+                assert False
+
+        try:
+            converter: Callable[[Any], T] = getattr(self, f"_process_{self.name}")
+        except AttributeError:
+            pass
+        else:
+            value = converter(value)
+
+        cache[self.name] = value
+        try:
+            del instance._raw[self.name]  # type: ignore[misc]
+        except KeyError:
+            pass
+
+        return cast(T, value)
+
+    def _invalid_metadata(
+        self, msg: str, cause: Optional[Exception] = None
+    ) -> InvalidMetadata:
+        exc = InvalidMetadata(
+            self.raw_name, msg.format_map({"field": repr(self.raw_name)})
+        )
+        exc.__cause__ = cause
+        return exc
+
+    def _process_metadata_version(self, value: str) -> _MetadataVersion:
+        # Implicitly makes Metadata-Version required.
+        if value not in _VALID_METADATA_VERSIONS:
+            raise self._invalid_metadata(f"{value!r} is not a valid metadata version")
+        return cast(_MetadataVersion, value)
+
+    def _process_name(self, value: str) -> str:
+        if not value:
+            raise self._invalid_metadata("{field} is a required field")
+        # Validate the name as a side-effect.
+        try:
+            utils.canonicalize_name(value, validate=True)
+        except utils.InvalidName as exc:
+            raise self._invalid_metadata(
+                f"{value!r} is invalid for {{field}}", cause=exc
+            )
+        else:
+            return value
+
+    def _process_version(self, value: str) -> version_module.Version:
+        if not value:
+            raise self._invalid_metadata("{field} is a required field")
+        try:
+            return version_module.parse(value)
+        except version_module.InvalidVersion as exc:
+            raise self._invalid_metadata(
+                f"{value!r} is invalid for {{field}}", cause=exc
+            )
+
+    def _process_summary(self, value: str) -> str:
+        """Check the field contains no newlines."""
+        if "\n" in value:
+            raise self._invalid_metadata("{field} must be a single line")
+        return value
+
+    def _process_description_content_type(self, value: str) -> str:
+        content_types = {"text/plain", "text/x-rst", "text/markdown"}
+        message = email.message.EmailMessage()
+        message["content-type"] = value
+
+        content_type, parameters = (
+            # Defaults to `text/plain` if parsing failed.
+            message.get_content_type().lower(),
+            message["content-type"].params,
+        )
+        # Check if content-type is valid or defaulted to `text/plain` and thus was
+        # not parseable.
+        if content_type not in content_types or content_type not in value.lower():
+            raise self._invalid_metadata(
+                f"{{field}} must be one of {list(content_types)}, not {value!r}"
+            )
+
+        charset = parameters.get("charset", "UTF-8")
+        if charset != "UTF-8":
+            raise self._invalid_metadata(
+                f"{{field}} can only specify the UTF-8 charset, not {list(charset)}"
+            )
+
+        markdown_variants = {"GFM", "CommonMark"}
+        variant = parameters.get("variant", "GFM")  # Use an acceptable default.
+        if content_type == "text/markdown" and variant not in markdown_variants:
+            raise self._invalid_metadata(
+                f"valid Markdown variants for {{field}} are {list(markdown_variants)}, "
+                f"not {variant!r}",
+            )
+        return value
+
+    def _process_dynamic(self, value: List[str]) -> List[str]:
+        for dynamic_field in map(str.lower, value):
+            if dynamic_field in {"name", "version", "metadata-version"}:
+                raise self._invalid_metadata(
+                    f"{value!r} is not allowed as a dynamic field"
+                )
+            elif dynamic_field not in _EMAIL_TO_RAW_MAPPING:
+                raise self._invalid_metadata(f"{value!r} is not a valid dynamic field")
+        return list(map(str.lower, value))
+
+    def _process_provides_extra(
+        self,
+        value: List[str],
+    ) -> List[utils.NormalizedName]:
+        normalized_names = []
+        try:
+            for name in value:
+                normalized_names.append(utils.canonicalize_name(name, validate=True))
+        except utils.InvalidName as exc:
+            raise self._invalid_metadata(
+                f"{name!r} is invalid for {{field}}", cause=exc
+            )
+        else:
+            return normalized_names
+
+    def _process_requires_python(self, value: str) -> specifiers.SpecifierSet:
+        try:
+            return specifiers.SpecifierSet(value)
+        except specifiers.InvalidSpecifier as exc:
+            raise self._invalid_metadata(
+                f"{value!r} is invalid for {{field}}", cause=exc
+            )
+
+    def _process_requires_dist(
+        self,
+        value: List[str],
+    ) -> List[requirements.Requirement]:
+        reqs = []
+        try:
+            for req in value:
+                reqs.append(requirements.Requirement(req))
+        except requirements.InvalidRequirement as exc:
+            raise self._invalid_metadata(f"{req!r} is invalid for {{field}}", cause=exc)
+        else:
+            return reqs
+
+
+class Metadata:
+    """Representation of distribution metadata.
+
+    Compared to :class:`RawMetadata`, this class provides objects representing
+    metadata fields instead of only using built-in types. Any invalid metadata
+    will cause :exc:`InvalidMetadata` to be raised (with a
+    :py:attr:`~BaseException.__cause__` attribute as appropriate).
+    """
+
+    _raw: RawMetadata
+
+    @classmethod
+    def from_raw(cls, data: RawMetadata, *, validate: bool = True) -> "Metadata":
+        """Create an instance from :class:`RawMetadata`.
+
+        If *validate* is true, all metadata will be validated. All exceptions
+        related to validation will be gathered and raised as an :class:`ExceptionGroup`.
+        """
+        ins = cls()
+        ins._raw = data.copy()  # Mutations occur due to caching enriched values.
+
+        if validate:
+            exceptions: List[InvalidMetadata] = []
+            try:
+                metadata_version = ins.metadata_version
+                metadata_age = _VALID_METADATA_VERSIONS.index(metadata_version)
+            except InvalidMetadata as metadata_version_exc:
+                exceptions.append(metadata_version_exc)
+                metadata_version = None
+
+            # Make sure to check for the fields that are present, the required
+            # fields (so their absence can be reported).
+            fields_to_check = frozenset(ins._raw) | _REQUIRED_ATTRS
+            # Remove fields that have already been checked.
+            fields_to_check -= {"metadata_version"}
+
+            for key in fields_to_check:
+                try:
+                    if metadata_version:
+                        # Can't use getattr() as that triggers descriptor protocol which
+                        # will fail due to no value for the instance argument.
+                        try:
+                            field_metadata_version = cls.__dict__[key].added
+                        except KeyError:
+                            exc = InvalidMetadata(key, f"unrecognized field: {key!r}")
+                            exceptions.append(exc)
+                            continue
+                        field_age = _VALID_METADATA_VERSIONS.index(
+                            field_metadata_version
+                        )
+                        if field_age > metadata_age:
+                            field = _RAW_TO_EMAIL_MAPPING[key]
+                            exc = InvalidMetadata(
+                                field,
+                                "{field} introduced in metadata version "
+                                "{field_metadata_version}, not {metadata_version}",
+                            )
+                            exceptions.append(exc)
+                            continue
+                    getattr(ins, key)
+                except InvalidMetadata as exc:
+                    exceptions.append(exc)
+
+            if exceptions:
+                raise ExceptionGroup("invalid metadata", exceptions)
+
+        return ins
+
+    @classmethod
+    def from_email(
+        cls, data: Union[bytes, str], *, validate: bool = True
+    ) -> "Metadata":
+        """Parse metadata from email headers.
+
+        If *validate* is true, the metadata will be validated. All exceptions
+        related to validation will be gathered and raised as an :class:`ExceptionGroup`.
+        """
+        exceptions: list[InvalidMetadata] = []
+        raw, unparsed = parse_email(data)
+
+        if validate:
+            for unparsed_key in unparsed:
+                if unparsed_key in _EMAIL_TO_RAW_MAPPING:
+                    message = f"{unparsed_key!r} has invalid data"
+                else:
+                    message = f"unrecognized field: {unparsed_key!r}"
+                exceptions.append(InvalidMetadata(unparsed_key, message))
+
+            if exceptions:
+                raise ExceptionGroup("unparsed", exceptions)
+
+        try:
+            return cls.from_raw(raw, validate=validate)
+        except ExceptionGroup as exc_group:
+            exceptions.extend(exc_group.exceptions)
+            raise ExceptionGroup("invalid or unparsed metadata", exceptions) from None
+
+    metadata_version: _Validator[_MetadataVersion] = _Validator()
+    """:external:ref:`core-metadata-metadata-version`
+    (required; validated to be a valid metadata version)"""
+    name: _Validator[str] = _Validator()
+    """:external:ref:`core-metadata-name`
+    (required; validated using :func:`~packaging.utils.canonicalize_name` and its
+    *validate* parameter)"""
+    version: _Validator[version_module.Version] = _Validator()
+    """:external:ref:`core-metadata-version` (required)"""
+    dynamic: _Validator[List[str]] = _Validator(
+        added="2.2",
+    )
+    """:external:ref:`core-metadata-dynamic`
+    (validated against core metadata field names and lowercased)"""
+    platforms: _Validator[List[str]] = _Validator()
+    """:external:ref:`core-metadata-platform`"""
+    supported_platforms: _Validator[List[str]] = _Validator(added="1.1")
+    """:external:ref:`core-metadata-supported-platform`"""
+    summary: _Validator[str] = _Validator()
+    """:external:ref:`core-metadata-summary` (validated to contain no newlines)"""
+    description: _Validator[str] = _Validator()  # TODO 2.1: can be in body
+    """:external:ref:`core-metadata-description`"""
+    description_content_type: _Validator[str] = _Validator(added="2.1")
+    """:external:ref:`core-metadata-description-content-type` (validated)"""
+    keywords: _Validator[List[str]] = _Validator()
+    """:external:ref:`core-metadata-keywords`"""
+    home_page: _Validator[str] = _Validator()
+    """:external:ref:`core-metadata-home-page`"""
+    download_url: _Validator[str] = _Validator(added="1.1")
+    """:external:ref:`core-metadata-download-url`"""
+    author: _Validator[str] = _Validator()
+    """:external:ref:`core-metadata-author`"""
+    author_email: _Validator[str] = _Validator()
+    """:external:ref:`core-metadata-author-email`"""
+    maintainer: _Validator[str] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-maintainer`"""
+    maintainer_email: _Validator[str] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-maintainer-email`"""
+    license: _Validator[str] = _Validator()
+    """:external:ref:`core-metadata-license`"""
+    classifiers: _Validator[List[str]] = _Validator(added="1.1")
+    """:external:ref:`core-metadata-classifier`"""
+    requires_dist: _Validator[List[requirements.Requirement]] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-requires-dist`"""
+    requires_python: _Validator[specifiers.SpecifierSet] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-requires-python`"""
+    # Because `Requires-External` allows for non-PEP 440 version specifiers, we
+    # don't do any processing on the values.
+    requires_external: _Validator[List[str]] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-requires-external`"""
+    project_urls: _Validator[Dict[str, str]] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-project-url`"""
+    # PEP 685 lets us raise an error if an extra doesn't pass `Name` validation
+    # regardless of metadata version.
+    provides_extra: _Validator[List[utils.NormalizedName]] = _Validator(
+        added="2.1",
+    )
+    """:external:ref:`core-metadata-provides-extra`"""
+    provides_dist: _Validator[List[str]] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-provides-dist`"""
+    obsoletes_dist: _Validator[List[str]] = _Validator(added="1.2")
+    """:external:ref:`core-metadata-obsoletes-dist`"""
+    requires: _Validator[List[str]] = _Validator(added="1.1")
+    """``Requires`` (deprecated)"""
+    provides: _Validator[List[str]] = _Validator(added="1.1")
+    """``Provides`` (deprecated)"""
+    obsoletes: _Validator[List[str]] = _Validator(added="1.1")
+    """``Obsoletes`` (deprecated)"""

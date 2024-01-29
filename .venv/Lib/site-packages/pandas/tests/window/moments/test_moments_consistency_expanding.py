@@ -19,7 +19,7 @@ def test_expanding_apply_consistency_sum_nans(request, all_data, min_periods, f)
         if not no_nans(all_data) and not (
             all_na(all_data) and not all_data.empty and min_periods > 0
         ):
-            request.node.add_marker(
+            request.applymarker(
                 pytest.mark.xfail(reason="np.sum has different behavior with NaNs")
             )
     expanding_f_result = all_data.expanding(min_periods=min_periods).sum()

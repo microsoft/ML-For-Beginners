@@ -30,3 +30,6 @@ def get_dt64_unit(obj):
 
 def is_integer(obj):
     return isinstance(obj, (cnp.integer, int))
+
+def conv_intp(cnp.intp_t val):
+    return val

@@ -2,7 +2,6 @@ import functools
 import logging
 import os
 from pathlib import Path
-import sys
 
 import matplotlib as mpl
 from matplotlib import _api, backend_tools, cbook
@@ -35,17 +34,7 @@ from ._backend_gtk import (  # noqa: F401 # pylint: disable=W0611
 _log = logging.getLogger(__name__)
 
 
-@_api.caching_module_getattr  # module-level deprecations
-class __getattr__:
-    icon_filename = _api.deprecated("3.6", obj_type="")(property(
-        lambda self:
-        "matplotlib.png" if sys.platform == "win32" else "matplotlib.svg"))
-    window_icon = _api.deprecated("3.6", obj_type="")(property(
-        lambda self:
-        str(cbook._get_data_path("images", __getattr__("icon_filename")))))
-
-
-@functools.lru_cache()
+@functools.cache
 def _mpl_to_gtk_cursor(mpl_cursor):
     return Gdk.Cursor.new_from_name(
         Gdk.Display.get_default(),
@@ -299,9 +288,7 @@ class FigureCanvasGTK3(_FigureCanvasGTK, Gtk.DrawingArea):
 
 
 class NavigationToolbar2GTK3(_NavigationToolbar2GTK, Gtk.Toolbar):
-    @_api.delete_parameter("3.6", "window")
-    def __init__(self, canvas, window=None):
-        self._win = window
+    def __init__(self, canvas):
         GObject.GObject.__init__(self)
 
         self.set_style(Gtk.ToolbarStyle.ICONS)
@@ -348,8 +335,6 @@ class NavigationToolbar2GTK3(_NavigationToolbar2GTK, Gtk.Toolbar):
         self.show_all()
 
         _NavigationToolbar2GTK.__init__(self, canvas)
-
-    win = _api.deprecated("3.6")(property(lambda self: self._win))
 
     def save_figure(self, *args):
         dialog = Gtk.FileChooserDialog(
@@ -582,21 +567,6 @@ class ToolCopyToClipboardGTK3(backend_tools.ToolCopyToClipboardBase):
         x, y, width, height = window.get_geometry()
         pb = Gdk.pixbuf_get_from_window(window, x, y, width, height)
         clipboard.set_image(pb)
-
-
-@_api.deprecated("3.6")
-def error_msg_gtk(msg, parent=None):
-    if parent is not None:  # find the toplevel Gtk.Window
-        parent = parent.get_toplevel()
-        if not parent.is_toplevel():
-            parent = None
-    if not isinstance(msg, str):
-        msg = ','.join(map(str, msg))
-    dialog = Gtk.MessageDialog(
-        parent=parent, type=Gtk.MessageType.ERROR, buttons=Gtk.ButtonsType.OK,
-        message_format=msg)
-    dialog.run()
-    dialog.destroy()
 
 
 Toolbar = ToolbarGTK3

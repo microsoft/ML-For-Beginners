@@ -5,7 +5,12 @@ import numpy as np
 from ..base import OneToOneFeatureMixin, _fit_context
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.multiclass import type_of_target
-from ..utils.validation import _check_y, check_consistent_length
+from ..utils.validation import (
+    _check_feature_names_in,
+    _check_y,
+    check_consistent_length,
+    check_is_fitted,
+)
 from ._encoders import _BaseEncoder
 from ._target_encoder_fast import _fit_encoding_fast, _fit_encoding_fast_auto_smooth
 
@@ -16,19 +21,31 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
     Each category is encoded based on a shrunk estimate of the average target
     values for observations belonging to the category. The encoding scheme mixes
     the global target mean with the target mean conditioned on the value of the
-    category. [MIC]_
+    category (see [MIC]_).
+
+    When the target type is "multiclass", encodings are based
+    on the conditional probability estimate for each class. The target is first
+    binarized using the "one-vs-all" scheme via
+    :class:`~sklearn.preprocessing.LabelBinarizer`, then the average target
+    value for each class and each category is used for encoding, resulting in
+    `n_features` * `n_classes` encoded output features.
 
     :class:`TargetEncoder` considers missing values, such as `np.nan` or `None`,
     as another category and encodes them like any other category. Categories
     that are not seen during :meth:`fit` are encoded with the target mean, i.e.
     `target_mean_`.
 
-    Read more in the :ref:`User Guide <target_encoder>`.
+    For a demo on the importance of the `TargetEncoder` internal cross-fitting,
+    see
+    :ref:`sphx_glr_auto_examples_preprocessing_plot_target_encoder_cross_val.py`.
+    For a comparison of different encoders, refer to
+    :ref:`sphx_glr_auto_examples_preprocessing_plot_target_encoder.py`. Read
+    more in the :ref:`User Guide <target_encoder>`.
 
     .. note::
         `fit(X, y).transform(X)` does not equal `fit_transform(X, y)` because a
-        cross fitting scheme is used in `fit_transform` for encoding. See the
-        :ref:`User Guide <target_encoder>` for details.
+        :term:`cross fitting` scheme is used in `fit_transform` for encoding.
+        See the :ref:`User Guide <target_encoder>` for details.
 
     .. versionadded:: 1.3
 
@@ -44,13 +61,14 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
         The used categories are stored in the `categories_` fitted attribute.
 
-    target_type : {"auto", "continuous", "binary"}, default="auto"
+    target_type : {"auto", "continuous", "binary", "multiclass"}, default="auto"
         Type of target.
 
         - `"auto"` : Type of target is inferred with
           :func:`~sklearn.utils.multiclass.type_of_target`.
         - `"continuous"` : Continuous target
         - `"binary"` : Binary target
+        - `"multiclass"` : Multiclass target
 
         .. note::
             The type of target inferred with `"auto"` may not be the desired target
@@ -61,6 +79,9 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
             problem. The `target_type_` attribute gives the target type used by the
             encoder.
 
+        .. versionchanged:: 1.4
+           Added the option 'multiclass'.
+
     smooth : "auto" or float, default="auto"
         The amount of mixing of the target mean conditioned on the value of the
         category with the global target mean. A larger `smooth` value will put
@@ -68,7 +89,7 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
         If `"auto"`, then `smooth` is set to an empirical Bayes estimate.
 
     cv : int, default=5
-        Determines the number of folds in the cross fitting strategy used in
+        Determines the number of folds in the :term:`cross fitting` strategy used in
         :meth:`fit_transform`. For classification targets, `StratifiedKFold` is used
         and for continuous targets, `KFold` is used.
 
@@ -85,14 +106,19 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
     Attributes
     ----------
-    encodings_ : list of shape (n_features,) of ndarray
+    encodings_ : list of shape (n_features,) or (n_features * n_classes) of \
+                    ndarray
         Encodings learnt on all of `X`.
         For feature `i`, `encodings_[i]` are the encodings matching the
-        categories listed in `categories_[i]`.
+        categories listed in `categories_[i]`. When `target_type_` is
+        "multiclass", the encoding for feature `i` and class `j` is stored in
+        `encodings_[j + (i * len(classes_))]`. E.g., for 2 features (f) and
+        3 classes (c), encodings are ordered:
+        f0_c0, f0_c1, f0_c2, f1_c0, f1_c1, f1_c2,
 
     categories_ : list of shape (n_features,) of ndarray
-        The categories of each feature determined during fitting or specified
-        in `categories`
+        The categories of each input feature determined during fitting or
+        specified in `categories`
         (in order of the features in `X` and corresponding with the output
         of :meth:`transform`).
 
@@ -109,6 +135,10 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
     feature_names_in_ : ndarray of shape (`n_features_in_`,)
         Names of features seen during :term:`fit`. Defined only when `X`
         has feature names that are all strings.
+
+    classes_ : ndarray or None
+        If `target_type_` is 'binary' or 'multiclass', holds the label for each class,
+        otherwise `None`.
 
     See Also
     --------
@@ -155,7 +185,7 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
     _parameter_constraints: dict = {
         "categories": [StrOptions({"auto"}), list],
-        "target_type": [StrOptions({"auto", "continuous", "binary"})],
+        "target_type": [StrOptions({"auto", "continuous", "binary", "multiclass"})],
         "smooth": [StrOptions({"auto"}), Interval(Real, 0, None, closed="left")],
         "cv": [Interval(Integral, 2, None, closed="left")],
         "shuffle": ["boolean"],
@@ -204,8 +234,8 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
         .. note::
             `fit(X, y).transform(X)` does not equal `fit_transform(X, y)` because a
-            cross fitting scheme is used in `fit_transform` for encoding. See the
-            :ref:`User Guide <target_encoder>`. for details.
+            :term:`cross fitting` scheme is used in `fit_transform` for encoding.
+            See the :ref:`User Guide <target_encoder>`. for details.
 
         Parameters
         ----------
@@ -217,12 +247,13 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
         Returns
         -------
-        X_trans : ndarray of shape (n_samples, n_features)
+        X_trans : ndarray of shape (n_samples, n_features) or \
+                    (n_samples, (n_features * n_classes))
             Transformed input.
         """
         from ..model_selection import KFold, StratifiedKFold  # avoid circular import
 
-        X_ordinal, X_known_mask, y, n_categories = self._fit_encodings_all(X, y)
+        X_ordinal, X_known_mask, y_encoded, n_categories = self._fit_encodings_all(X, y)
 
         # The cv splitter is voluntarily restricted to *KFold to enforce non
         # overlapping validation folds, otherwise the fit_transform output will
@@ -234,24 +265,40 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
                 self.cv, shuffle=self.shuffle, random_state=self.random_state
             )
 
-        X_out = np.empty_like(X_ordinal, dtype=np.float64)
-        X_unknown_mask = ~X_known_mask
+        # If 'multiclass' multiply axis=1 by num classes else keep shape the same
+        if self.target_type_ == "multiclass":
+            X_out = np.empty(
+                (X_ordinal.shape[0], X_ordinal.shape[1] * len(self.classes_)),
+                dtype=np.float64,
+            )
+        else:
+            X_out = np.empty_like(X_ordinal, dtype=np.float64)
 
         for train_idx, test_idx in cv.split(X, y):
-            X_train, y_train = X_ordinal[train_idx, :], y[train_idx]
-            y_mean = np.mean(y_train)
+            X_train, y_train = X_ordinal[train_idx, :], y_encoded[train_idx]
+            y_train_mean = np.mean(y_train, axis=0)
 
-            if self.smooth == "auto":
-                y_variance = np.var(y_train)
-                encodings = _fit_encoding_fast_auto_smooth(
-                    X_train, y_train, n_categories, y_mean, y_variance
+            if self.target_type_ == "multiclass":
+                encodings = self._fit_encoding_multiclass(
+                    X_train,
+                    y_train,
+                    n_categories,
+                    y_train_mean,
                 )
             else:
-                encodings = _fit_encoding_fast(
-                    X_train, y_train, n_categories, self.smooth, y_mean
+                encodings = self._fit_encoding_binary_or_continuous(
+                    X_train,
+                    y_train,
+                    n_categories,
+                    y_train_mean,
                 )
             self._transform_X_ordinal(
-                X_out, X_ordinal, X_unknown_mask, test_idx, encodings, y_mean
+                X_out,
+                X_ordinal,
+                ~X_known_mask,
+                test_idx,
+                encodings,
+                y_train_mean,
             )
         return X_out
 
@@ -260,8 +307,8 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
         .. note::
             `fit(X, y).transform(X)` does not equal `fit_transform(X, y)` because a
-            cross fitting scheme is used in `fit_transform` for encoding. See the
-            :ref:`User Guide <target_encoder>`. for details.
+            :term:`cross fitting` scheme is used in `fit_transform` for encoding.
+            See the :ref:`User Guide <target_encoder>`. for details.
 
         Parameters
         ----------
@@ -270,17 +317,27 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
         Returns
         -------
-        X_trans : ndarray of shape (n_samples, n_features)
+        X_trans : ndarray of shape (n_samples, n_features) or \
+                    (n_samples, (n_features * n_classes))
             Transformed input.
         """
-        X_ordinal, X_valid = self._transform(
+        X_ordinal, X_known_mask = self._transform(
             X, handle_unknown="ignore", force_all_finite="allow-nan"
         )
-        X_out = np.empty_like(X_ordinal, dtype=np.float64)
+
+        # If 'multiclass' multiply axis=1 by num of classes else keep shape the same
+        if self.target_type_ == "multiclass":
+            X_out = np.empty(
+                (X_ordinal.shape[0], X_ordinal.shape[1] * len(self.classes_)),
+                dtype=np.float64,
+            )
+        else:
+            X_out = np.empty_like(X_ordinal, dtype=np.float64)
+
         self._transform_X_ordinal(
             X_out,
             X_ordinal,
-            ~X_valid,
+            ~X_known_mask,
             slice(None),
             self.encodings_,
             self.target_mean_,
@@ -289,29 +346,41 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
     def _fit_encodings_all(self, X, y):
         """Fit a target encoding with all the data."""
-        from ..preprocessing import LabelEncoder  # avoid circular import
+        # avoid circular import
+        from ..preprocessing import (
+            LabelBinarizer,
+            LabelEncoder,
+        )
 
         check_consistent_length(X, y)
         self._fit(X, handle_unknown="ignore", force_all_finite="allow-nan")
 
         if self.target_type == "auto":
-            accepted_target_types = ("binary", "continuous")
+            accepted_target_types = ("binary", "multiclass", "continuous")
             inferred_type_of_target = type_of_target(y, input_name="y")
             if inferred_type_of_target not in accepted_target_types:
                 raise ValueError(
-                    f"Target type was inferred to be {inferred_type_of_target!r}. Only"
-                    f" {accepted_target_types} are supported."
+                    "Unknown label type: Target type was inferred to be "
+                    f"{inferred_type_of_target!r}. Only {accepted_target_types} are "
+                    "supported."
                 )
             self.target_type_ = inferred_type_of_target
         else:
             self.target_type_ = self.target_type
 
+        self.classes_ = None
         if self.target_type_ == "binary":
-            y = LabelEncoder().fit_transform(y)
+            label_encoder = LabelEncoder()
+            y = label_encoder.fit_transform(y)
+            self.classes_ = label_encoder.classes_
+        elif self.target_type_ == "multiclass":
+            label_binarizer = LabelBinarizer()
+            y = label_binarizer.fit_transform(y)
+            self.classes_ = label_binarizer.classes_
         else:  # continuous
             y = _check_y(y, y_numeric=True, estimator=self)
 
-        self.target_mean_ = np.mean(y)
+        self.target_mean_ = np.mean(y, axis=0)
 
         X_ordinal, X_known_mask = self._transform(
             X, handle_unknown="ignore", force_all_finite="allow-nan"
@@ -321,26 +390,142 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
             dtype=np.int64,
             count=len(self.categories_),
         )
-        if self.smooth == "auto":
-            y_variance = np.var(y)
-            self.encodings_ = _fit_encoding_fast_auto_smooth(
-                X_ordinal, y, n_categories, self.target_mean_, y_variance
+        if self.target_type_ == "multiclass":
+            encodings = self._fit_encoding_multiclass(
+                X_ordinal,
+                y,
+                n_categories,
+                self.target_mean_,
             )
         else:
-            self.encodings_ = _fit_encoding_fast(
-                X_ordinal, y, n_categories, self.smooth, self.target_mean_
+            encodings = self._fit_encoding_binary_or_continuous(
+                X_ordinal,
+                y,
+                n_categories,
+                self.target_mean_,
             )
+        self.encodings_ = encodings
 
         return X_ordinal, X_known_mask, y, n_categories
 
-    @staticmethod
-    def _transform_X_ordinal(
-        X_out, X_ordinal, X_unknown_mask, indices, encodings, y_mean
+    def _fit_encoding_binary_or_continuous(
+        self, X_ordinal, y, n_categories, target_mean
     ):
-        """Transform X_ordinal using encodings."""
-        for f_idx, encoding in enumerate(encodings):
-            X_out[indices, f_idx] = encoding[X_ordinal[indices, f_idx]]
-            X_out[X_unknown_mask[:, f_idx], f_idx] = y_mean
+        """Learn target encodings."""
+        if self.smooth == "auto":
+            y_variance = np.var(y)
+            encodings = _fit_encoding_fast_auto_smooth(
+                X_ordinal,
+                y,
+                n_categories,
+                target_mean,
+                y_variance,
+            )
+        else:
+            encodings = _fit_encoding_fast(
+                X_ordinal,
+                y,
+                n_categories,
+                self.smooth,
+                target_mean,
+            )
+        return encodings
+
+    def _fit_encoding_multiclass(self, X_ordinal, y, n_categories, target_mean):
+        """Learn multiclass encodings.
+
+        Learn encodings for each class (c) then reorder encodings such that
+        the same features (f) are grouped together. `reorder_index` enables
+        converting from:
+        f0_c0, f1_c0, f0_c1, f1_c1, f0_c2, f1_c2
+        to:
+        f0_c0, f0_c1, f0_c2, f1_c0, f1_c1, f1_c2
+        """
+        n_features = self.n_features_in_
+        n_classes = len(self.classes_)
+
+        encodings = []
+        for i in range(n_classes):
+            y_class = y[:, i]
+            encoding = self._fit_encoding_binary_or_continuous(
+                X_ordinal,
+                y_class,
+                n_categories,
+                target_mean[i],
+            )
+            encodings.extend(encoding)
+
+        reorder_index = (
+            idx
+            for start in range(n_features)
+            for idx in range(start, (n_classes * n_features), n_features)
+        )
+        return [encodings[idx] for idx in reorder_index]
+
+    def _transform_X_ordinal(
+        self,
+        X_out,
+        X_ordinal,
+        X_unknown_mask,
+        row_indices,
+        encodings,
+        target_mean,
+    ):
+        """Transform X_ordinal using encodings.
+
+        In the multiclass case, `X_ordinal` and `X_unknown_mask` have column
+        (axis=1) size `n_features`, while `encodings` has length of size
+        `n_features * n_classes`. `feat_idx` deals with this by repeating
+        feature indices by `n_classes` E.g., for 3 features, 2 classes:
+        0,0,1,1,2,2
+
+        Additionally, `target_mean` is of shape (`n_classes`,) so `mean_idx`
+        cycles through 0 to `n_classes` - 1, `n_features` times.
+        """
+        if self.target_type_ == "multiclass":
+            n_classes = len(self.classes_)
+            for e_idx, encoding in enumerate(encodings):
+                # Repeat feature indices by n_classes
+                feat_idx = e_idx // n_classes
+                # Cycle through each class
+                mean_idx = e_idx % n_classes
+                X_out[row_indices, e_idx] = encoding[X_ordinal[row_indices, feat_idx]]
+                X_out[X_unknown_mask[:, feat_idx], e_idx] = target_mean[mean_idx]
+        else:
+            for e_idx, encoding in enumerate(encodings):
+                X_out[row_indices, e_idx] = encoding[X_ordinal[row_indices, e_idx]]
+                X_out[X_unknown_mask[:, e_idx], e_idx] = target_mean
+
+    def get_feature_names_out(self, input_features=None):
+        """Get output feature names for transformation.
+
+        Parameters
+        ----------
+        input_features : array-like of str or None, default=None
+            Not used, present here for API consistency by convention.
+
+        Returns
+        -------
+        feature_names_out : ndarray of str objects
+            Transformed feature names. `feature_names_in_` is used unless it is
+            not defined, in which case the following input feature names are
+            generated: `["x0", "x1", ..., "x(n_features_in_ - 1)"]`.
+            When `type_of_target_` is "multiclass" the names are of the format
+            '<feature_name>_<class_name>'.
+        """
+        check_is_fitted(self, "n_features_in_")
+        feature_names = _check_feature_names_in(self, input_features)
+        if self.target_type_ == "multiclass":
+            feature_names = [
+                f"{feature_name}_{class_name}"
+                for feature_name in feature_names
+                for class_name in self.classes_
+            ]
+            return np.asarray(feature_names, dtype=object)
+        else:
+            return feature_names
 
     def _more_tags(self):
-        return {"requires_y": True}
+        return {
+            "requires_y": True,
+        }

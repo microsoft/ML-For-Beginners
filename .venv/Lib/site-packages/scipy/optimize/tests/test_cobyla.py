@@ -52,8 +52,11 @@ class TestCobyla:
         assert_(sol.fun < self.fun(self.solution) + 1e-3, sol)
         assert_(sol.nfev == callback.n_calls,
                 "Callback is not called exactly once for every function eval.")
-        assert_array_equal(sol.x, callback.last_x,
-                           "Last design vector sent to the callback is not equal to returned value.")
+        assert_array_equal(
+            sol.x,
+            callback.last_x,
+            "Last design vector sent to the callback is not equal to returned value.",
+        )
 
     def test_minimize_constraint_violation(self):
         np.random.seed(1234)

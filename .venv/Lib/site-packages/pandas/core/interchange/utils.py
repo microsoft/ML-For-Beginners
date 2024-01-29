@@ -37,6 +37,7 @@ PYARROW_CTYPES = {
     "float": "f",  # float32
     "double": "g",  # float64
     "string": "u",
+    "large_string": "U",
     "binary": "z",
     "time32[s]": "tts",
     "time32[ms]": "ttm",

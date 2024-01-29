@@ -11,7 +11,7 @@ def test_webagg_fallback(backend):
     if backend == "nbagg":
         pytest.importorskip("IPython")
     env = dict(os.environ)
-    if os.name != "nt":
+    if sys.platform != "win32":
         env["DISPLAY"] = ""
 
     env["MPLBACKEND"] = backend

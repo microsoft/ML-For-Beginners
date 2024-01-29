@@ -18,7 +18,7 @@ class BaseConstructorsTests:
 
     def test_array_from_scalars(self, data):
         scalars = [data[0], data[1], data[2]]
-        result = data._from_sequence(scalars)
+        result = data._from_sequence(scalars, dtype=data.dtype)
         assert isinstance(result, type(data))
 
     def test_series_constructor(self, data):

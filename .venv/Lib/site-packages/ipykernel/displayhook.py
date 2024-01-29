@@ -2,9 +2,11 @@
 
 # Copyright (c) IPython Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
 
 import builtins
 import sys
+import typing as t
 
 from IPython.core.displayhook import DisplayHook
 from jupyter_client.session import Session, extract_header
@@ -61,6 +63,7 @@ class ZMQShellDisplayHook(DisplayHook):
     session = Instance(Session, allow_none=True)
     pub_socket = Any(allow_none=True)
     parent_header = Dict({})
+    msg: dict[str, t.Any] | None
 
     def set_parent(self, parent):
         """Set the parent for outbound messages."""
@@ -68,28 +71,31 @@ class ZMQShellDisplayHook(DisplayHook):
 
     def start_displayhook(self):
         """Start the display hook."""
-        self.msg = self.session.msg(
-            "execute_result",
-            {
-                "data": {},
-                "metadata": {},
-            },
-            parent=self.parent_header,
-        )
+        if self.session:
+            self.msg = self.session.msg(
+                "execute_result",
+                {
+                    "data": {},
+                    "metadata": {},
+                },
+                parent=self.parent_header,
+            )
 
     def write_output_prompt(self):
         """Write the output prompt."""
-        self.msg["content"]["execution_count"] = self.prompt_count
+        if self.msg:
+            self.msg["content"]["execution_count"] = self.prompt_count
 
     def write_format_data(self, format_dict, md_dict=None):
         """Write format data to the message."""
-        self.msg["content"]["data"] = json_clean(encode_images(format_dict))
-        self.msg["content"]["metadata"] = md_dict
+        if self.msg:
+            self.msg["content"]["data"] = json_clean(encode_images(format_dict))
+            self.msg["content"]["metadata"] = md_dict
 
     def finish_displayhook(self):
         """Finish up all displayhook activities."""
         sys.stdout.flush()
         sys.stderr.flush()
-        if self.msg["content"]["data"]:
+        if self.msg and self.msg["content"]["data"] and self.session:
             self.session.send(self.pub_socket, self.msg, ident=self.topic)
         self.msg = None

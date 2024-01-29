@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+
 #include "gtest/gtest.h"
 #include "onnx/defs/schema.h"
 

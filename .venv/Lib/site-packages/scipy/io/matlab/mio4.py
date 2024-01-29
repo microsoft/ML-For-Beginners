@@ -2,9 +2,7 @@
 # Use the `scipy.io.matlab` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _mio4
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'MatFile4Reader', 'MatFile4Writer', 'SYS_LITTLE_ENDIAN',
@@ -21,13 +19,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.matlab.mio4 is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.matlab instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.matlab` namespace, "
-                  "the `scipy.io.matlab.mio4` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_mio4, name)
+    return _sub_module_deprecation(sub_package="io.matlab", module="mio4",
+                                   private_modules=["_mio4"], all=__all__,
+                                   attribute=name)

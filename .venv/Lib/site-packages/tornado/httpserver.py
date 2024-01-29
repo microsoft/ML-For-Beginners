@@ -74,7 +74,7 @@ class HTTPServer(TCPServer, Configurable, httputil.HTTPServerConnectionDelegate)
     To make this server serve SSL traffic, send the ``ssl_options`` keyword
     argument with an `ssl.SSLContext` object. For compatibility with older
     versions of Python ``ssl_options`` may also be a dictionary of keyword
-    arguments for the `ssl.wrap_socket` method.::
+    arguments for the `ssl.SSLContext.wrap_socket` method.::
 
        ssl_ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
        ssl_ctx.load_cert_chain(os.path.join(data_dir, "mydomain.crt"),

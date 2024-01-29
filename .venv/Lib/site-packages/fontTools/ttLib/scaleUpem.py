@@ -139,7 +139,6 @@ def visit(visitor, obj, attr, glyphs):
 
 @ScalerVisitor.register_attr(ttLib.getTableClass("gvar"), "variations")
 def visit(visitor, obj, attr, variations):
-
     # VarComposites are a pain to handle :-(
     glyfTable = visitor.font["glyf"]
 

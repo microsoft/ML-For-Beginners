@@ -22,8 +22,8 @@ from scipy.optimize._minimize import Bounds
 class ReturnShape:
     """This class exists to create a callable that does not have a '__name__' attribute.
 
-    __init__ takes the argument 'shape', which should be a tuple of ints. When an instance
-    is called with a single argument 'x', it returns numpy.ones(shape).
+    __init__ takes the argument 'shape', which should be a tuple of ints.
+    When an instance is called with a single argument 'x', it returns numpy.ones(shape).
     """
 
     def __init__(self, shape):
@@ -84,7 +84,7 @@ def pressure_network_jacobian(flow_rates, Qtot, k):
     """Return the jacobian of the equation system F(flow_rates)
     computed by `pressure_network` with respect to
     *flow_rates*. See `pressure_network` for the detailed
-    description of parrameters.
+    description of parameters.
 
     Returns
     -------
@@ -812,11 +812,15 @@ class TestCurveFit:
     def test_curvefit_covariance(self):
 
         def funcp(x, a, b):
-            rotn = np.array([[1./np.sqrt(2), -1./np.sqrt(2), 0], [1./np.sqrt(2), 1./np.sqrt(2), 0], [0, 0, 1.0]])
+            rotn = np.array([[1./np.sqrt(2), -1./np.sqrt(2), 0],
+                             [1./np.sqrt(2), 1./np.sqrt(2), 0],
+                             [0, 0, 1.0]])
             return rotn.dot(a * np.exp(-b*x))
 
         def jacp(x, a, b):
-            rotn = np.array([[1./np.sqrt(2), -1./np.sqrt(2), 0], [1./np.sqrt(2), 1./np.sqrt(2), 0], [0, 0, 1.0]])
+            rotn = np.array([[1./np.sqrt(2), -1./np.sqrt(2), 0],
+                             [1./np.sqrt(2), 1./np.sqrt(2), 0],
+                             [0, 0, 1.0]])
             e = np.exp(-b*x)
             return rotn.dot(np.vstack((e, -a * x * e)).T)
 
@@ -839,7 +843,9 @@ class TestCurveFit:
         #       = ydatap^T Cp^{-1} ydatap
         # Cp^{-1} = R C^{-1} R^T
         # Cp      = R C R^T, since R^-1 = R^T
-        rotn = np.array([[1./np.sqrt(2), -1./np.sqrt(2), 0], [1./np.sqrt(2), 1./np.sqrt(2), 0], [0, 0, 1.0]])
+        rotn = np.array([[1./np.sqrt(2), -1./np.sqrt(2), 0],
+                         [1./np.sqrt(2), 1./np.sqrt(2), 0],
+                         [0, 0, 1.0]])
         ydatap = rotn.dot(ydata)
         covarp = rotn.dot(covar).dot(rotn.T)
 
@@ -852,6 +858,19 @@ class TestCurveFit:
 
                 assert_allclose(popt1, popt2, rtol=1.2e-7, atol=1e-14)
                 assert_allclose(pcov1, pcov2, rtol=1.2e-7, atol=1e-14)
+
+    @pytest.mark.parametrize("absolute_sigma", [False, True])
+    def test_curvefit_scalar_sigma(self, absolute_sigma):
+        def func(x, a, b):
+            return a * x + b
+
+        x, y = self.x, self.y
+        _, pcov1 = curve_fit(func, x, y, sigma=2, absolute_sigma=absolute_sigma)
+        # Explicitly building the sigma 1D array
+        _, pcov2 = curve_fit(
+                func, x, y, sigma=np.full_like(y, 2), absolute_sigma=absolute_sigma
+        )
+        assert np.all(pcov1 == pcov2)
 
     def test_dtypes(self):
         # regression test for gh-9581: curve_fit fails if x and y dtypes differ

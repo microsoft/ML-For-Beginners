@@ -26,5 +26,4 @@ class EnginePUBHandler(PUBHandler):
         before the engine gets registered with an id"""
         if isinstance(getattr(self.engine, "id", None), int):
             return "engine.%i" % self.engine.id  # type:ignore[union-attr]
-        else:
-            return "engine"
+        return "engine"

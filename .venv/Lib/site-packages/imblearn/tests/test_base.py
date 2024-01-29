@@ -26,9 +26,10 @@ X, y = make_imbalance(
 def test_function_sampler_reject_sparse():
     X_sparse = sparse.csr_matrix(X)
     sampler = FunctionSampler(accept_sparse=False)
+    err_msg = "dense data is required"
     with pytest.raises(
         TypeError,
-        match="A sparse matrix was passed, but dense data is required",
+        match=err_msg,
     ):
         sampler.fit_resample(X_sparse, y)
 

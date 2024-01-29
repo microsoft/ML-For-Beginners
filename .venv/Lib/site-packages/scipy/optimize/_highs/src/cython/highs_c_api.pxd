@@ -1,4 +1,3 @@
-# distutils: language=c++
 # cython: language_level=3
 
 cdef extern from "highs_c_api.h" nogil:

@@ -9,11 +9,16 @@
 #pragma once
 
 #include <stdlib.h>
+
 #include <iostream>
+#include <map>
+#include <memory>
+#include <string>
+#include <unordered_map>
 #include <utility>
+
 #include "onnx/common/ir.h"
 #include "onnx/common/ir_pb_converter.h"
-#include "onnx/common/stl_backports.h"
 #include "onnx/defs/schema.h"
 #include "onnx/proto_utils.h"
 #include "onnx/version_converter/adapters/adapter.h"
@@ -83,7 +88,7 @@ class BaseVersionConverter {
   }
 
   void registerAdapter(const char* op, int64_t from, int64_t to, NodeTransformerFunction transformer) {
-    registerAdapter(make_unique<GenericAdapter>(op, from, to, transformer));
+    registerAdapter(std::make_unique<GenericAdapter>(op, from, to, transformer));
   }
 };
 

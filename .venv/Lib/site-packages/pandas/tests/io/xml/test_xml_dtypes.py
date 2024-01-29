@@ -9,6 +9,7 @@ import pandas.util._test_decorators as td
 
 from pandas import (
     DataFrame,
+    DatetimeIndex,
     Series,
     to_datetime,
 )
@@ -146,7 +147,9 @@ def test_dtypes_with_names(parser):
             "Col1": ["square", "circle", "triangle"],
             "Col2": Series(["00360", "00360", "00180"]).astype("string"),
             "Col3": Series([4.0, float("nan"), 3.0]).astype("Int64"),
-            "Col4": to_datetime(["2020-01-01", "2021-01-01", "2022-01-01"]),
+            "Col4": DatetimeIndex(
+                ["2020-01-01", "2021-01-01", "2022-01-01"], dtype="M8[ns]"
+            ),
         }
     )
 

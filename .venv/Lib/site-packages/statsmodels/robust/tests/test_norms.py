@@ -84,7 +84,7 @@ def test_norms_consistent(case):
     psi_deriv = norm.psi_deriv(x)
 
     # check location and u-shape of rho
-    assert rho[4] == 0
+    assert_allclose(rho[4], 0, atol=1e-12)
     assert np.all(np.diff(rho[4:]) >= 0)
     assert np.all(np.diff(rho[:4]) <= 0)
 

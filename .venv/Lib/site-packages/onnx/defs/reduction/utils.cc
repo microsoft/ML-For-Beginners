@@ -3,38 +3,54 @@
  */
 
 #include "onnx/defs/reduction/utils.h"
+
 #include <algorithm>
+#include <string>
+#include <vector>
 
 namespace ONNX_NAMESPACE {
-std::vector<std::string> GetSupportedDataTypesForReductionOps(bool supports8bit) {
+
+std::vector<std::string> GetSupportedDataTypesForReductionOps(bool supports8bit, bool supports_bool) {
+  auto data_types = OpSchema::numeric_types_for_math_reduction_ir4();
   if (supports8bit) {
-    auto data_types = OpSchema::numeric_types_for_math_reduction_ir4();
     data_types.push_back("tensor(uint8)");
     data_types.push_back("tensor(int8)");
-
-    return data_types;
+  }
+  if (supports_bool) {
+    data_types.push_back("tensor(bool)");
   }
 
-  return OpSchema::numeric_types_for_math_reduction_ir4();
+  return data_types;
 }
 
-std::function<void(OpSchema&)> ReduceDocGenerator_opset13_18(
+std::function<void(OpSchema&)> ReduceOpGenerator(
     const char* name,
+    const char* empty_value,
     bool supports_8bit_datatypes,
     bool axes_input,
     const char* func_body,
-    ContextDependentFunctionBodyBuilder function_builder) {
+    ContextDependentFunctionBodyBuilder function_builder,
+    bool supports_boolean_datatype /* = false */) {
   return [=](OpSchema& schema) {
-    std::string doc;
-    POPULATE_OP_DOC_STR(doc = R"DOC(
+    std::string doc = R"DOC(
 Computes the {name} of the input tensor's elements along the provided axes. The resulting
-tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
+tensor has the same rank as the input if `keepdims` equals 1. If `keepdims` equals 0, then
 the resulting tensor has the reduced dimension pruned. Input tensors of rank zero are
-valid.
+valid. Reduction over an empty set of values yields {empty_value}.
+)DOC";
+    if (supports_boolean_datatype) {
+      doc += R"DOC(
 
-The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
-False instead of True.)DOC";
-                        ReplaceAll(doc, "{name}", name););
+If the input data type is Boolean, the comparison should consider `False < True`.)DOC";
+    }
+    doc += R"DOC(
+
+The above behavior is similar to numpy, with the exception that numpy defaults `keepdims`
+to `False` instead of `True`.)DOC";
+
+    ReplaceAll(doc, "{name}", name);
+    ReplaceAll(doc, "{empty_value}", empty_value);
+    POPULATE_OP_DOC_STR(doc = doc;);
     schema.SetDoc(doc.c_str());
     schema.Attr(
         "keepdims",
@@ -73,9 +89,9 @@ False instead of True.)DOC";
     schema.Output(0, "reduced", "Reduced output tensor.", "T", OpSchema::Single, true, 1, OpSchema::Differentiable);
     schema.TypeConstraint(
         "T",
-        GetSupportedDataTypesForReductionOps(supports_8bit_datatypes),
-        supports_8bit_datatypes ? "Constrain input and output types to high-precision and 8 bit numeric tensors."
-                                : "Constrain input and output types to high-precision numeric tensors.");
+        GetSupportedDataTypesForReductionOps(supports_8bit_datatypes, supports_boolean_datatype),
+        supports_boolean_datatype ? "Constrain input and output types to numeric and Boolean tensors."
+                                  : "Constrain input and output types to numeric tensors.");
     if (func_body) {
       schema.FunctionBody(func_body);
     } else if (function_builder) {

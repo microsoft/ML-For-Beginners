@@ -1,6 +1,6 @@
 import numpy as np
 
-from .. import _api, cbook
+from .. import cbook
 from . import backend_agg, backend_gtk4
 from .backend_gtk4 import Gtk, _BackendGTK4
 
@@ -29,11 +29,6 @@ class FigureCanvasGTK4Agg(backend_agg.FigureCanvasAgg,
         ctx.paint()
 
         return False
-
-
-@_api.deprecated("3.6", alternative="backend_gtk4.FigureManagerGTK4")
-class FigureManagerGTK4Agg(backend_gtk4.FigureManagerGTK4):
-    pass
 
 
 @_BackendGTK4.export

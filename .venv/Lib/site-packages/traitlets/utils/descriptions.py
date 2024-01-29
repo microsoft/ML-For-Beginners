@@ -1,9 +1,18 @@
+from __future__ import annotations
+
 import inspect
 import re
 import types
+from typing import Any
 
 
-def describe(article, value, name=None, verbose=False, capital=False):
+def describe(
+    article: str | None,
+    value: Any,
+    name: str | None = None,
+    verbose: bool = False,
+    capital: bool = False,
+) -> str:
     """Return string that describes a value
 
     Parameters
@@ -11,7 +20,7 @@ def describe(article, value, name=None, verbose=False, capital=False):
     article : str or None
         A definite or indefinite article. If the article is
         indefinite (i.e. "a" or "an") the appropriate one
-        will be infered. Thus, the arguments of ``describe``
+        will be inferred. Thus, the arguments of ``describe``
         can themselves represent what the resulting string
         will actually look like. If None, then no article
         will be prepended to the result. For non-articled
@@ -22,7 +31,7 @@ def describe(article, value, name=None, verbose=False, capital=False):
     name : str or None (default: None)
         Only applies when ``article`` is "the" - this
         ``name`` is a definite reference to the value.
-        By default one will be infered from the value's
+        By default one will be inferred from the value's
         type and repr methods.
     verbose : bool (default: False)
         Whether the name should be concise or verbose. When
@@ -110,7 +119,7 @@ def describe(article, value, name=None, verbose=False, capital=False):
         )
 
 
-def _prefix(value):
+def _prefix(value: Any) -> str:
     if isinstance(value, types.MethodType):
         name = describe(None, value.__self__, verbose=True) + "."
     else:
@@ -122,7 +131,7 @@ def _prefix(value):
     return name
 
 
-def class_of(value):
+def class_of(value: Any) -> Any:
     """Returns a string of the value's type with an indefinite article.
 
     For example 'an Image' or 'a PlotValue'.
@@ -133,10 +142,10 @@ def class_of(value):
         return class_of(type(value))
 
 
-def add_article(name, definite=False, capital=False):
+def add_article(name: str, definite: bool = False, capital: bool = False) -> str:
     """Returns the string with a prepended article.
 
-    The input does not need to begin with a charater.
+    The input does not need to begin with a character.
 
     Parameters
     ----------
@@ -164,11 +173,10 @@ def add_article(name, definite=False, capital=False):
         return result
 
 
-def repr_type(obj):
+def repr_type(obj: Any) -> str:
     """Return a string representation of a value and its type for readable
 
     error messages.
     """
     the_type = type(obj)
-    msg = f"{obj!r} {the_type!r}"
-    return msg
+    return f"{obj!r} {the_type!r}"

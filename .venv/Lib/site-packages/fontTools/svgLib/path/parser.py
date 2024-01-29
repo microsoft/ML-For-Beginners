@@ -125,7 +125,6 @@ def parse_path(pathdef, pen, current_pos=(0, 0), arc_class=EllipticalArc):
     have_arcTo = hasattr(pen, "arcTo")
 
     while elements:
-
         if elements[-1] in COMMANDS:
             # New command.
             last_command = command  # Used by S and T

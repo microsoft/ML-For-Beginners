@@ -4,8 +4,10 @@ from datetime import (
     timezone,
 )
 
+from dateutil.tz import gettz
 import numpy as np
 import pytest
+import pytz
 
 from pandas._libs.tslibs import (
     OutOfBoundsDatetime,
@@ -40,17 +42,12 @@ class TestTimestampArithmetic:
 
         stamp = Timestamp("2017-01-13 00:00:00").as_unit("ns")
         offset_overflow = 20169940 * offsets.Day(1)
-        msg = (
-            "the add operation between "
-            r"\<-?\d+ \* Days\> and \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} "
-            "will overflow"
-        )
         lmsg2 = r"Cannot cast -?20169940 days \+?00:00:00 to unit='ns' without overflow"
 
         with pytest.raises(OutOfBoundsTimedelta, match=lmsg2):
             stamp + offset_overflow
 
-        with pytest.raises(OverflowError, match=msg):
+        with pytest.raises(OutOfBoundsTimedelta, match=lmsg2):
             offset_overflow + stamp
 
         with pytest.raises(OutOfBoundsTimedelta, match=lmsg2):
@@ -68,7 +65,7 @@ class TestTimestampArithmetic:
         with pytest.raises(OutOfBoundsTimedelta, match=lmsg3):
             stamp + offset_overflow
 
-        with pytest.raises(OverflowError, match=msg):
+        with pytest.raises(OutOfBoundsTimedelta, match=lmsg3):
             offset_overflow + stamp
 
         with pytest.raises(OutOfBoundsTimedelta, match=lmsg3):
@@ -293,3 +290,45 @@ class TestTimestampArithmetic:
         result = ts1 - ts2
         expected = Timedelta(0)
         assert result == expected
+
+    @pytest.mark.parametrize(
+        "tz",
+        [
+            pytz.timezone("US/Eastern"),
+            gettz("US/Eastern"),
+            "US/Eastern",
+            "dateutil/US/Eastern",
+        ],
+    )
+    def test_timestamp_add_timedelta_push_over_dst_boundary(self, tz):
+        # GH#1389
+
+        # 4 hours before DST transition
+        stamp = Timestamp("3/10/2012 22:00", tz=tz)
+
+        result = stamp + timedelta(hours=6)
+
+        # spring forward, + "7" hours
+        expected = Timestamp("3/11/2012 05:00", tz=tz)
+
+        assert result == expected
+
+
+class SubDatetime(datetime):
+    pass
+
+
+@pytest.mark.parametrize(
+    "lh,rh",
+    [
+        (SubDatetime(2000, 1, 1), Timedelta(hours=1)),
+        (Timedelta(hours=1), SubDatetime(2000, 1, 1)),
+    ],
+)
+def test_dt_subclass_add_timedelta(lh, rh):
+    # GH#25851
+    # ensure that subclassed datetime works for
+    # Timedelta operations
+    result = lh + rh
+    expected = SubDatetime(2000, 1, 1, 1)
+    assert result == expected

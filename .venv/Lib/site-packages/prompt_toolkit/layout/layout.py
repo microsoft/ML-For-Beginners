@@ -133,8 +133,7 @@ class Layout:
                 # This is a `Window`: focus that.
                 if value not in self.find_all_windows():
                     raise ValueError(
-                        "Invalid value. Window does not appear in the layout: %r"
-                        % (value,)
+                        f"Invalid value. Window does not appear in the layout: {value!r}"
                     )
 
                 self.current_window = value

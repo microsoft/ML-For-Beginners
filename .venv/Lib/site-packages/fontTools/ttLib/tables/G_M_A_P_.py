@@ -81,7 +81,6 @@ class GMAPRecord(object):
 
 
 class table_G_M_A_P_(DefaultTable.DefaultTable):
-
     dependencies = []
 
     def decompile(self, data, ttFont):

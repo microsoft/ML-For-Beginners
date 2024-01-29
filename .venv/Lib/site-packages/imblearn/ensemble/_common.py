@@ -101,4 +101,5 @@ _random_forest_classifier_parameter_constraints = {
         list,
         None,
     ],
+    "monotonic_cst": ["array-like", None],
 }

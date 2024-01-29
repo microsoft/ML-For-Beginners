@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Callable
 
+from prompt_toolkit.eventloop import InputHook
 from prompt_toolkit.formatted_text import AnyFormattedText
 from prompt_toolkit.input import DummyInput
 from prompt_toolkit.output import DummyOutput
@@ -28,6 +29,7 @@ class DummyApplication(Application[None]):
         set_exception_handler: bool = True,
         handle_sigint: bool = True,
         in_thread: bool = False,
+        inputhook: InputHook | None = None,
     ) -> None:
         raise NotImplementedError("A DummyApplication is not supposed to run.")
 

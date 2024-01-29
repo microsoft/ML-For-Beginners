@@ -1,6 +1,7 @@
 from pandas import (
     DataFrame,
     DatetimeIndex,
+    date_range,
 )
 import pandas._testing as tm
 
@@ -18,3 +19,10 @@ def test_isocalendar_returns_correct_values_close_to_new_year_with_tz():
         dtype="UInt32",
     )
     tm.assert_frame_equal(result, expected_data_frame)
+
+
+def test_dti_timestamp_isocalendar_fields():
+    idx = date_range("2020-01-01", periods=10)
+    expected = tuple(idx.isocalendar().iloc[-1].to_list())
+    result = idx[-1].isocalendar()
+    assert result == expected

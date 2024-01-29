@@ -23,8 +23,8 @@ def c2c(forward, x, n=None, axis=-1, norm=None, overwrite_x=False,
         tmp, copied = _fix_shape_1d(tmp, n, axis)
         overwrite_x = overwrite_x or copied
     elif tmp.shape[axis] < 1:
-        raise ValueError("invalid number of data points ({}) specified"
-                         .format(tmp.shape[axis]))
+        message = f"invalid number of data points ({tmp.shape[axis]}) specified"
+        raise ValueError(message)
 
     out = (tmp if overwrite_x and tmp.dtype.kind == 'c' else None)
 
@@ -55,8 +55,7 @@ def r2c(forward, x, n=None, axis=-1, norm=None, overwrite_x=False,
     if n is not None:
         tmp, _ = _fix_shape_1d(tmp, n, axis)
     elif tmp.shape[axis] < 1:
-        raise ValueError("invalid number of data points ({}) specified"
-                         .format(tmp.shape[axis]))
+        raise ValueError(f"invalid number of data points ({tmp.shape[axis]}) specified")
 
     # Note: overwrite_x is not utilised
     return pfft.r2c(tmp, (axis,), forward, norm, None, workers)
@@ -88,8 +87,7 @@ def c2r(forward, x, n=None, axis=-1, norm=None, overwrite_x=False,
     if n is None:
         n = (tmp.shape[axis] - 1) * 2
         if n < 1:
-            raise ValueError("Invalid number of data points ({}) specified"
-                             .format(n))
+            raise ValueError(f"Invalid number of data points ({n}) specified")
     else:
         tmp, _ = _fix_shape_1d(tmp, (n//2) + 1, axis)
 
@@ -101,50 +99,6 @@ hfft = functools.partial(c2r, True)
 hfft.__name__ = 'hfft'
 irfft = functools.partial(c2r, False)
 irfft.__name__ = 'irfft'
-
-
-def fft2(x, s=None, axes=(-2,-1), norm=None, overwrite_x=False, workers=None,
-         *, plan=None):
-    """
-    2-D discrete Fourier transform.
-    """
-    if plan is not None:
-        raise NotImplementedError('Passing a precomputed plan is not yet '
-                                  'supported by scipy.fft functions')
-    return fftn(x, s, axes, norm, overwrite_x, workers)
-
-
-def ifft2(x, s=None, axes=(-2,-1), norm=None, overwrite_x=False, workers=None,
-          *, plan=None):
-    """
-    2-D discrete inverse Fourier transform of real or complex sequence.
-    """
-    if plan is not None:
-        raise NotImplementedError('Passing a precomputed plan is not yet '
-                                  'supported by scipy.fft functions')
-    return ifftn(x, s, axes, norm, overwrite_x, workers)
-
-
-def rfft2(x, s=None, axes=(-2,-1), norm=None, overwrite_x=False, workers=None,
-          *, plan=None):
-    """
-    2-D discrete Fourier transform of a real sequence
-    """
-    if plan is not None:
-        raise NotImplementedError('Passing a precomputed plan is not yet '
-                                  'supported by scipy.fft functions')
-    return rfftn(x, s, axes, norm, overwrite_x, workers)
-
-
-def irfft2(x, s=None, axes=(-2,-1), norm=None, overwrite_x=False, workers=None,
-           *, plan=None):
-    """
-    2-D discrete inverse Fourier transform of a real sequence
-    """
-    if plan is not None:
-        raise NotImplementedError('Passing a precomputed plan is not yet '
-                                  'supported by scipy.fft functions')
-    return irfftn(x, s, axes, norm, overwrite_x, workers)
 
 
 def hfft2(x, s=None, axes=(-2,-1), norm=None, overwrite_x=False, workers=None,
@@ -247,6 +201,7 @@ def c2rn(forward, x, s=None, axes=None, norm=None, overwrite_x=False,
     if len(axes) == 0:
         raise ValueError("at least 1 axis must be transformed")
 
+    shape = list(shape)
     if noshape:
         shape[-1] = (x.shape[axes[-1]] - 1) * 2
 
@@ -257,7 +212,7 @@ def c2rn(forward, x, s=None, axes=None, norm=None, overwrite_x=False,
     lastsize = shape[-1]
     shape[-1] = (shape[-1] // 2) + 1
 
-    tmp, _ = _fix_shape(tmp, shape, axes)
+    tmp, _ = tuple(_fix_shape(tmp, shape, axes))
 
     # Note: overwrite_x is not utilized
     return pfft.c2r(tmp, axes, lastsize, forward, norm, None, workers)
@@ -283,8 +238,7 @@ def r2r_fftpack(forward, x, n=None, axis=-1, norm=None, overwrite_x=False):
         tmp, copied = _fix_shape_1d(tmp, n, axis)
         overwrite_x = overwrite_x or copied
     elif tmp.shape[axis] < 1:
-        raise ValueError("invalid number of data points ({}) specified"
-                         .format(tmp.shape[axis]))
+        raise ValueError(f"invalid number of data points ({tmp.shape[axis]}) specified")
 
     out = (tmp if overwrite_x else None)
 

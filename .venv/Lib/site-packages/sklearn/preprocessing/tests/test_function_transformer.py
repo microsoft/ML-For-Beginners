@@ -2,16 +2,15 @@ import warnings
 
 import numpy as np
 import pytest
-from scipy import sparse
 
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import FunctionTransformer
-from sklearn.utils import _safe_indexing
 from sklearn.utils._testing import (
     _convert_container,
     assert_allclose_dense_sparse,
     assert_array_equal,
 )
+from sklearn.utils.fixes import CSC_CONTAINERS, CSR_CONTAINERS
 
 
 def _make_func(args_store, kwargs_store, func=lambda X, *a, **k: X):
@@ -122,59 +121,59 @@ def test_inverse_transform():
     )
 
 
-def test_check_inverse():
-    X_dense = np.array([1, 4, 9, 16], dtype=np.float64).reshape((2, 2))
+@pytest.mark.parametrize("sparse_container", [None] + CSC_CONTAINERS + CSR_CONTAINERS)
+def test_check_inverse(sparse_container):
+    X = np.array([1, 4, 9, 16], dtype=np.float64).reshape((2, 2))
+    if sparse_container is not None:
+        X = sparse_container(X)
 
-    X_list = [X_dense, sparse.csr_matrix(X_dense), sparse.csc_matrix(X_dense)]
+    trans = FunctionTransformer(
+        func=np.sqrt,
+        inverse_func=np.around,
+        accept_sparse=sparse_container is not None,
+        check_inverse=True,
+        validate=True,
+    )
+    warning_message = (
+        "The provided functions are not strictly"
+        " inverse of each other. If you are sure you"
+        " want to proceed regardless, set"
+        " 'check_inverse=False'."
+    )
+    with pytest.warns(UserWarning, match=warning_message):
+        trans.fit(X)
 
-    for X in X_list:
-        if sparse.issparse(X):
-            accept_sparse = True
-        else:
-            accept_sparse = False
-        trans = FunctionTransformer(
-            func=np.sqrt,
-            inverse_func=np.around,
-            accept_sparse=accept_sparse,
-            check_inverse=True,
-            validate=True,
-        )
-        warning_message = (
-            "The provided functions are not strictly"
-            " inverse of each other. If you are sure you"
-            " want to proceed regardless, set"
-            " 'check_inverse=False'."
-        )
-        with pytest.warns(UserWarning, match=warning_message):
-            trans.fit(X)
+    trans = FunctionTransformer(
+        func=np.expm1,
+        inverse_func=np.log1p,
+        accept_sparse=sparse_container is not None,
+        check_inverse=True,
+        validate=True,
+    )
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", UserWarning)
+        Xt = trans.fit_transform(X)
 
-        trans = FunctionTransformer(
-            func=np.expm1,
-            inverse_func=np.log1p,
-            accept_sparse=accept_sparse,
-            check_inverse=True,
-            validate=True,
-        )
-        with warnings.catch_warnings():
-            warnings.simplefilter("error", UserWarning)
-            Xt = trans.fit_transform(X)
+    assert_allclose_dense_sparse(X, trans.inverse_transform(Xt))
 
-        assert_allclose_dense_sparse(X, trans.inverse_transform(Xt))
 
+def test_check_inverse_func_or_inverse_not_provided():
     # check that we don't check inverse when one of the func or inverse is not
     # provided.
+    X = np.array([1, 4, 9, 16], dtype=np.float64).reshape((2, 2))
+
     trans = FunctionTransformer(
         func=np.expm1, inverse_func=None, check_inverse=True, validate=True
     )
     with warnings.catch_warnings():
         warnings.simplefilter("error", UserWarning)
-        trans.fit(X_dense)
+        trans.fit(X)
     trans = FunctionTransformer(
         func=None, inverse_func=np.expm1, check_inverse=True, validate=True
     )
     with warnings.catch_warnings():
         warnings.simplefilter("error", UserWarning)
-        trans.fit(X_dense)
+        trans.fit(X)
 
 
 def test_function_transformer_frame():
@@ -196,9 +195,7 @@ def test_function_transformer_raise_error_with_mixed_dtype(X_type):
     data = _convert_container(data, X_type, columns_name=["value"], dtype=dtype)
 
     def func(X):
-        return np.array(
-            [mapping[_safe_indexing(X, i)] for i in range(X.size)], dtype=object
-        )
+        return np.array([mapping[X[i]] for i in range(X.size)], dtype=object)
 
     def inverse_func(X):
         return _convert_container(
@@ -333,7 +330,7 @@ def test_function_transformer_get_feature_names_out(
     transformer = FunctionTransformer(
         feature_names_out=feature_names_out, validate=validate
     )
-    transformer.fit_transform(X)
+    transformer.fit(X)
     names = transformer.get_feature_names_out(input_features)
     assert isinstance(names, np.ndarray)
     assert names.dtype == object
@@ -424,7 +421,14 @@ def test_get_feature_names_out_dataframe_with_string_data(
     pd = pytest.importorskip("pandas")
     X = pd.DataFrame({"pet": ["dog", "cat"], "color": ["red", "green"]})
 
-    transformer = FunctionTransformer(feature_names_out=feature_names_out)
+    def func(X):
+        if feature_names_out == "one-to-one":
+            return X
+        else:
+            name = feature_names_out(None, X.columns)
+            return X.rename(columns=dict(zip(X.columns, name)))
+
+    transformer = FunctionTransformer(func=func, feature_names_out=feature_names_out)
     if in_pipeline:
         transformer = make_pipeline(transformer)
 
@@ -454,13 +458,82 @@ def test_set_output_func():
     assert isinstance(X_trans, pd.DataFrame)
     assert_array_equal(X_trans.columns, ["a", "b"])
 
-    # If feature_names_out is not defined, then a warning is raised in
-    # `set_output`
     ft = FunctionTransformer(lambda x: 2 * x)
-    msg = "should return a DataFrame to follow the set_output API"
-    with pytest.warns(UserWarning, match=msg):
-        ft.set_output(transform="pandas")
+    ft.set_output(transform="pandas")
 
-    X_trans = ft.fit_transform(X)
+    # no warning is raised when func returns a panda dataframe
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", UserWarning)
+        X_trans = ft.fit_transform(X)
     assert isinstance(X_trans, pd.DataFrame)
     assert_array_equal(X_trans.columns, ["a", "b"])
+
+    # Warning is raised when func returns a ndarray
+    ft_np = FunctionTransformer(lambda x: np.asarray(x))
+    ft_np.set_output(transform="pandas")
+
+    msg = "When `set_output` is configured to be 'pandas'"
+    with pytest.warns(UserWarning, match=msg):
+        ft_np.fit_transform(X)
+
+    # default transform does not warn
+    ft_np.set_output(transform="default")
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", UserWarning)
+        ft_np.fit_transform(X)
+
+
+def test_function_transformer_ufunc_inconsistent_feature_names_out():
+    """Check that we raise an error when the column names of the transformed container
+    do not match the ones provided by `feature_names_out`.
+
+    Here, `func` is set to a NumPy `ufunc`.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/issues/27695
+    """
+    pd = pytest.importorskip("pandas")
+    X = pd.DataFrame({"a": [1, 2, 3], "b": [10, 20, 100]})
+
+    def feature_names_out(self, names):
+        return [f"{n}_out" for n in names]
+
+    transformer = FunctionTransformer(
+        func=np.log1p, feature_names_out=feature_names_out
+    )
+
+    err_msg = (
+        "The output generated by `func` have different column names than "
+        "the one generated by the method `get_feature_names_out`"
+    )
+    with pytest.raises(ValueError, match=err_msg):
+        transformer.fit_transform(X)
+
+
+def test_function_transformer_func_output_inconsistent_feature_names_out():
+    """Check that we raise an error when the column names of the transformed container
+    do not match the ones provided by `feature_names_out`.
+
+    Here, `func` is set to a custom callable that returns a container with different
+    column names.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/issues/27695
+    """
+    pd = pytest.importorskip("pandas")
+    X = np.ones((3, 2))
+
+    def feature_names_out(self, names):
+        return [f"{n}_out" for n in names]
+
+    def func(X):
+        return pd.DataFrame(X, columns=["a", "b"])
+
+    transformer = FunctionTransformer(func=func, feature_names_out=feature_names_out)
+
+    err_msg = (
+        "The output generated by `func` have different column names than "
+        "the one generated by the method `get_feature_names_out`"
+    )
+    with pytest.raises(ValueError, match=err_msg):
+        transformer.fit_transform(X)

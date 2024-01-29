@@ -183,6 +183,9 @@ class TestMultinomial:
         with pytest.raises(ValueError, match=match):
             random.multinomial(1, pvals)
 
+    def test_multinomial_n_float(self):
+        # Non-index integer types should gracefully truncate floats
+        random.multinomial(100.5, [0.2, 0.8])
 
 class TestSetState:
     def setup_method(self):
@@ -422,7 +425,7 @@ class TestRandint:
             sample = self.rfunc(lbnd, ubnd, dtype=dt)
             assert_equal(sample.dtype, np.dtype(dt))
 
-        for dt in (bool, int, np.compat.long):
+        for dt in (bool, int):
             lbnd = 0 if dt is bool else np.iinfo(dt).min
             ubnd = 2 if dt is bool else np.iinfo(dt).max + 1
 
@@ -811,10 +814,6 @@ class TestRandomDist:
         # gh-2089
         alpha = np.array([5.4e-01, -1.0e-16])
         assert_raises(ValueError, random.dirichlet, alpha)
-
-    def test_dirichlet_zero_alpha(self):
-        y = random.default_rng().dirichlet([5, 9, 0, 8])
-        assert_equal(y[2], 0)
 
     def test_dirichlet_alpha_non_contiguous(self):
         a = np.array([51.72840233779265162, -1.0, 39.74494232180943953])
@@ -2060,6 +2059,7 @@ def test_randomstate_ctor_old_style_pickle():
     assert_array_equal(state_a['state']['pos'], state_b['state']['pos'])
     assert_equal(state_a['has_gauss'], state_b['has_gauss'])
     assert_equal(state_a['gauss'], state_b['gauss'])
+
 
 def test_hot_swap(restore_singleton_bitgen):
     # GH 21808

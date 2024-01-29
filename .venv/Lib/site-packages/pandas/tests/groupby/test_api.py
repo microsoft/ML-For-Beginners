@@ -24,8 +24,8 @@ from pandas.core.groupby.generic import (
 )
 
 
-def test_tab_completion(mframe):
-    grp = mframe.groupby(level="second")
+def test_tab_completion(multiindex_dataframe_random_data):
+    grp = multiindex_dataframe_random_data.groupby(level="second")
     results = {v for v in dir(grp) if not v.startswith("_")}
     expected = {
         "A",
@@ -98,9 +98,13 @@ def test_tab_completion(mframe):
     assert results == expected
 
 
-def test_all_methods_categorized(mframe):
-    grp = mframe.groupby(mframe.iloc[:, 0])
-    names = {_ for _ in dir(grp) if not _.startswith("_")} - set(mframe.columns)
+def test_all_methods_categorized(multiindex_dataframe_random_data):
+    grp = multiindex_dataframe_random_data.groupby(
+        multiindex_dataframe_random_data.iloc[:, 0]
+    )
+    names = {_ for _ in dir(grp) if not _.startswith("_")} - set(
+        multiindex_dataframe_random_data.columns
+    )
     new_names = set(names)
     new_names -= reduction_kernels
     new_names -= transformation_kernels
@@ -179,7 +183,7 @@ def test_frame_consistency(groupby_func):
     elif groupby_func in ("median", "prod", "sem"):
         exclude_expected = {"axis", "kwargs", "skipna"}
     elif groupby_func in ("backfill", "bfill", "ffill", "pad"):
-        exclude_expected = {"downcast", "inplace", "axis"}
+        exclude_expected = {"downcast", "inplace", "axis", "limit_area"}
     elif groupby_func in ("cummax", "cummin"):
         exclude_expected = {"skipna", "args"}
         exclude_result = {"numeric_only"}
@@ -236,7 +240,7 @@ def test_series_consistency(request, groupby_func):
     elif groupby_func in ("median", "prod", "sem"):
         exclude_expected = {"axis", "kwargs", "skipna"}
     elif groupby_func in ("backfill", "bfill", "ffill", "pad"):
-        exclude_expected = {"downcast", "inplace", "axis"}
+        exclude_expected = {"downcast", "inplace", "axis", "limit_area"}
     elif groupby_func in ("cummax", "cummin"):
         exclude_expected = {"skipna", "args"}
         exclude_result = {"numeric_only"}

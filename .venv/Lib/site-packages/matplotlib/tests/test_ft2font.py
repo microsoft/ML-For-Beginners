@@ -14,12 +14,12 @@ def test_fallback_errors():
 
     with pytest.raises(TypeError, match="Fallback list must be a list"):
         # failing to be a list will fail before the 0
-        ft2font.FT2Font(file_name, _fallback_list=(0,))
+        ft2font.FT2Font(file_name, _fallback_list=(0,))  # type: ignore[arg-type]
 
     with pytest.raises(
             TypeError, match="Fallback fonts must be FT2Font objects."
     ):
-        ft2font.FT2Font(file_name, _fallback_list=[0])
+        ft2font.FT2Font(file_name, _fallback_list=[0])  # type: ignore[list-item]
 
 
 def test_ft2font_positive_hinting_factor():

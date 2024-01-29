@@ -11,7 +11,6 @@ from unittest.mock import Mock, patch
 
 import numpy as np
 import pytest
-from scipy.sparse import csc_matrix, csr_matrix
 
 from sklearn.datasets import load_diabetes, load_iris, make_classification
 from sklearn.ensemble import IsolationForest
@@ -25,6 +24,7 @@ from sklearn.utils._testing import (
     assert_array_equal,
     ignore_warnings,
 )
+from sklearn.utils.fixes import CSC_CONTAINERS, CSR_CONTAINERS
 
 # load iris & diabetes dataset
 iris = load_iris()
@@ -47,30 +47,30 @@ def test_iforest(global_random_seed):
             ).predict(X_test)
 
 
-def test_iforest_sparse(global_random_seed):
+@pytest.mark.parametrize("sparse_container", CSC_CONTAINERS + CSR_CONTAINERS)
+def test_iforest_sparse(global_random_seed, sparse_container):
     """Check IForest for various parameter settings on sparse input."""
     rng = check_random_state(global_random_seed)
     X_train, X_test = train_test_split(diabetes.data[:50], random_state=rng)
     grid = ParameterGrid({"max_samples": [0.5, 1.0], "bootstrap": [True, False]})
 
-    for sparse_format in [csc_matrix, csr_matrix]:
-        X_train_sparse = sparse_format(X_train)
-        X_test_sparse = sparse_format(X_test)
+    X_train_sparse = sparse_container(X_train)
+    X_test_sparse = sparse_container(X_test)
 
-        for params in grid:
-            # Trained on sparse format
-            sparse_classifier = IsolationForest(
-                n_estimators=10, random_state=global_random_seed, **params
-            ).fit(X_train_sparse)
-            sparse_results = sparse_classifier.predict(X_test_sparse)
+    for params in grid:
+        # Trained on sparse format
+        sparse_classifier = IsolationForest(
+            n_estimators=10, random_state=global_random_seed, **params
+        ).fit(X_train_sparse)
+        sparse_results = sparse_classifier.predict(X_test_sparse)
 
-            # Trained on dense format
-            dense_classifier = IsolationForest(
-                n_estimators=10, random_state=global_random_seed, **params
-            ).fit(X_train)
-            dense_results = dense_classifier.predict(X_test)
+        # Trained on dense format
+        dense_classifier = IsolationForest(
+            n_estimators=10, random_state=global_random_seed, **params
+        ).fit(X_train)
+        dense_results = dense_classifier.predict(X_test)
 
-            assert_array_equal(sparse_results, dense_results)
+        assert_array_equal(sparse_results, dense_results)
 
 
 def test_iforest_error():
@@ -314,29 +314,15 @@ def test_iforest_with_uniform_data():
     assert all(iforest.predict(np.ones((100, 10))) == 1)
 
 
-def test_iforest_with_n_jobs_does_not_segfault():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_iforest_with_n_jobs_does_not_segfault(csc_container):
     """Check that Isolation Forest does not segfault with n_jobs=2
 
     Non-regression test for #23252
     """
     X, _ = make_classification(n_samples=85_000, n_features=100, random_state=0)
-    X = csc_matrix(X)
+    X = csc_container(X)
     IsolationForest(n_estimators=10, max_samples=256, n_jobs=2).fit(X)
-
-
-# TODO(1.4): remove in 1.4
-def test_base_estimator_property_deprecated():
-    X = np.array([[1, 2], [3, 4]])
-    y = np.array([1, 0])
-    model = IsolationForest()
-    model.fit(X, y)
-
-    warn_msg = (
-        "Attribute `base_estimator_` was deprecated in version 1.2 and "
-        "will be removed in 1.4. Use `estimator_` instead."
-    )
-    with pytest.warns(FutureWarning, match=warn_msg):
-        model.base_estimator_
 
 
 def test_iforest_preserve_feature_names():
@@ -355,3 +341,23 @@ def test_iforest_preserve_feature_names():
     with warnings.catch_warnings():
         warnings.simplefilter("error", UserWarning)
         model.fit(X)
+
+
+@pytest.mark.parametrize("sparse_container", CSC_CONTAINERS + CSR_CONTAINERS)
+def test_iforest_sparse_input_float_contamination(sparse_container):
+    """Check that `IsolationForest` accepts sparse matrix input and float value for
+    contamination.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/issues/27626
+    """
+    X, _ = make_classification(n_samples=50, n_features=4, random_state=0)
+    X = sparse_container(X)
+    X.sort_indices()
+    contamination = 0.1
+    iforest = IsolationForest(
+        n_estimators=5, contamination=contamination, random_state=0
+    ).fit(X)
+
+    X_decision = iforest.decision_function(X)
+    assert (X_decision < 0).sum() / X.shape[0] == pytest.approx(contamination)

@@ -6,6 +6,7 @@ __all__ = [
     "format_exception_only",
     "print_exception",
     "print_exc",
+    "suppress",
 ]
 
 import os
@@ -38,3 +39,8 @@ else:
 
     BaseExceptionGroup = BaseExceptionGroup
     ExceptionGroup = ExceptionGroup
+
+if sys.version_info < (3, 12, 1):
+    from ._suppress import suppress
+else:
+    from contextlib import suppress

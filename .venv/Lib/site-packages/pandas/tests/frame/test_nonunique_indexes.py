@@ -10,13 +10,6 @@ from pandas import (
 import pandas._testing as tm
 
 
-def check(result, expected=None):
-    if expected is not None:
-        tm.assert_frame_equal(result, expected)
-    result.dtypes
-    str(result)
-
-
 class TestDataFrameNonuniqueIndexes:
     def test_setattr_columns_vs_construct_with_columns(self):
         # assignment
@@ -26,16 +19,16 @@ class TestDataFrameNonuniqueIndexes:
         df = DataFrame(arr, columns=["A", "A"])
         df.columns = idx
         expected = DataFrame(arr, columns=idx)
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
     def test_setattr_columns_vs_construct_with_columns_datetimeindx(self):
-        idx = date_range("20130101", periods=4, freq="Q-NOV")
+        idx = date_range("20130101", periods=4, freq="QE-NOV")
         df = DataFrame(
             [[1, 1, 1, 5], [1, 1, 2, 5], [2, 1, 3, 5]], columns=["a", "a", "a", "a"]
         )
         df.columns = idx
         expected = DataFrame([[1, 1, 1, 5], [1, 1, 2, 5], [2, 1, 3, 5]], columns=idx)
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
     def test_insert_with_duplicate_columns(self):
         # insert
@@ -48,7 +41,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, 1, 5, "bah"], [1, 1, 2, 5, "bah"], [2, 1, 3, 5, "bah"]],
             columns=["foo", "bar", "foo", "hello", "string"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
         with pytest.raises(ValueError, match="Length of value"):
             df.insert(0, "AnotherColumn", range(len(df.index) - 1))
 
@@ -58,7 +51,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, 1, 5, "bah", 3], [1, 1, 2, 5, "bah", 3], [2, 1, 3, 5, "bah", 3]],
             columns=["foo", "bar", "foo", "hello", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         # set (non-dup)
         df["foo2"] = 4
@@ -66,7 +59,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, 1, 5, "bah", 4], [1, 1, 2, 5, "bah", 4], [2, 1, 3, 5, "bah", 4]],
             columns=["foo", "bar", "foo", "hello", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
         df["foo2"] = 3
 
         # delete (non dup)
@@ -75,7 +68,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, 5, "bah", 3], [1, 2, 5, "bah", 3], [2, 3, 5, "bah", 3]],
             columns=["foo", "foo", "hello", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         # try to delete again (its not consolidated)
         del df["hello"]
@@ -83,7 +76,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, "bah", 3], [1, 2, "bah", 3], [2, 3, "bah", 3]],
             columns=["foo", "foo", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         # consolidate
         df = df._consolidate()
@@ -91,7 +84,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, "bah", 3], [1, 2, "bah", 3], [2, 3, "bah", 3]],
             columns=["foo", "foo", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         # insert
         df.insert(2, "new_col", 5.0)
@@ -99,7 +92,7 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, 5.0, "bah", 3], [1, 2, 5.0, "bah", 3], [2, 3, 5.0, "bah", 3]],
             columns=["foo", "foo", "new_col", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         # insert a dup
         with pytest.raises(ValueError, match="cannot insert"):
@@ -114,7 +107,7 @@ class TestDataFrameNonuniqueIndexes:
             ],
             columns=["foo", "foo", "new_col", "new_col", "string", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         # delete (dup)
         del df["foo"]
@@ -130,18 +123,17 @@ class TestDataFrameNonuniqueIndexes:
             [[1, 1, 1.0, 5], [1, 1, 2.0, 5], [2, 1, 3.0, 5]],
             columns=["foo", "bar", "foo", "hello"],
         )
-        check(df)
 
         df["foo2"] = 7.0
         expected = DataFrame(
             [[1, 1, 1.0, 5, 7.0], [1, 1, 2.0, 5, 7.0], [2, 1, 3.0, 5, 7.0]],
             columns=["foo", "bar", "foo", "hello", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         result = df["foo"]
         expected = DataFrame([[1, 1.0], [1, 2.0], [2, 3.0]], columns=["foo", "foo"])
-        check(result, expected)
+        tm.assert_frame_equal(result, expected)
 
         # multiple replacements
         df["foo"] = "string"
@@ -153,13 +145,13 @@ class TestDataFrameNonuniqueIndexes:
             ],
             columns=["foo", "bar", "foo", "hello", "foo2"],
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         del df["foo"]
         expected = DataFrame(
             [[1, 5, 7.0], [1, 5, 7.0], [1, 5, 7.0]], columns=["bar", "hello", "foo2"]
         )
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
     def test_column_dups_indexes(self):
         # check column dups with index equal and not equal to df's index
@@ -176,7 +168,7 @@ class TestDataFrameNonuniqueIndexes:
                 columns=["A", "B", "A"],
             )
             this_df["A"] = index
-            check(this_df, expected_df)
+            tm.assert_frame_equal(this_df, expected_df)
 
     def test_changing_dtypes_with_duplicate_columns(self):
         # multiple assignments that change dtypes
@@ -188,7 +180,7 @@ class TestDataFrameNonuniqueIndexes:
         expected = DataFrame(1.0, index=range(5), columns=["that", "that"])
 
         df["that"] = 1.0
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
         df = DataFrame(
             np.random.default_rng(2).random((5, 2)), columns=["that", "that"]
@@ -196,7 +188,7 @@ class TestDataFrameNonuniqueIndexes:
         expected = DataFrame(1, index=range(5), columns=["that", "that"])
 
         df["that"] = 1
-        check(df, expected)
+        tm.assert_frame_equal(df, expected)
 
     def test_dup_columns_comparisons(self):
         # equality
@@ -231,7 +223,7 @@ class TestDataFrameNonuniqueIndexes:
         )
         expected = pd.concat([dfbool["one"], dfbool["three"], dfbool["one"]], axis=1)
         result = dfbool[["one", "three", "one"]]
-        check(result, expected)
+        tm.assert_frame_equal(result, expected)
 
     def test_multi_axis_dups(self):
         # multi-axis dups
@@ -251,7 +243,7 @@ class TestDataFrameNonuniqueIndexes:
         )
         z = df[["A", "C", "A"]]
         result = z.loc[["a", "c", "a"]]
-        check(result, expected)
+        tm.assert_frame_equal(result, expected)
 
     def test_columns_with_dups(self):
         # GH 3468 related
@@ -259,13 +251,11 @@ class TestDataFrameNonuniqueIndexes:
         # basic
         df = DataFrame([[1, 2]], columns=["a", "a"])
         df.columns = ["a", "a.1"]
-        str(df)
         expected = DataFrame([[1, 2]], columns=["a", "a.1"])
         tm.assert_frame_equal(df, expected)
 
         df = DataFrame([[1, 2, 3]], columns=["b", "a", "a"])
         df.columns = ["b", "a", "a.1"]
-        str(df)
         expected = DataFrame([[1, 2, 3]], columns=["b", "a", "a.1"])
         tm.assert_frame_equal(df, expected)
 
@@ -273,7 +263,6 @@ class TestDataFrameNonuniqueIndexes:
         # with a dup index
         df = DataFrame([[1, 2]], columns=["a", "a"])
         df.columns = ["b", "b"]
-        str(df)
         expected = DataFrame([[1, 2]], columns=["b", "b"])
         tm.assert_frame_equal(df, expected)
 
@@ -284,7 +273,6 @@ class TestDataFrameNonuniqueIndexes:
             columns=["a", "a", "b", "b", "d", "c", "c"],
         )
         df.columns = list("ABCDEFG")
-        str(df)
         expected = DataFrame(
             [[1, 2, 1.0, 2.0, 3.0, "foo", "bar"]], columns=list("ABCDEFG")
         )
@@ -293,7 +281,6 @@ class TestDataFrameNonuniqueIndexes:
     def test_multi_dtype2(self):
         df = DataFrame([[1, 2, "foo", "bar"]], columns=["a", "a", "a", "a"])
         df.columns = ["a", "a.1", "a.2", "a.3"]
-        str(df)
         expected = DataFrame([[1, 2, "foo", "bar"]], columns=["a", "a.1", "a.2", "a.3"])
         tm.assert_frame_equal(df, expected)
 
@@ -335,7 +322,7 @@ class TestDataFrameNonuniqueIndexes:
 
         df = DataFrame(np.arange(9).reshape(3, 3).T)
         df.columns = list("AAA")
-        expected = df.iloc[:, 2]
+        expected = df.iloc[:, 2].copy()
 
         with tm.assert_produces_warning(warn, match=msg):
             df.iloc[:, 0] = 3
@@ -343,7 +330,7 @@ class TestDataFrameNonuniqueIndexes:
 
         df = DataFrame(np.arange(9).reshape(3, 3).T)
         df.columns = [2, float(2), str(2)]
-        expected = df.iloc[:, 1]
+        expected = df.iloc[:, 1].copy()
 
         with tm.assert_produces_warning(warn, match=msg):
             df.iloc[:, 0] = 3

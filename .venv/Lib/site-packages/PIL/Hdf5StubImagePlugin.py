@@ -8,6 +8,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 from . import Image, ImageFile
 
@@ -46,7 +47,7 @@ class HDF5StubImageFile(ImageFile.StubImageFile):
         self.fp.seek(offset)
 
         # make something up
-        self.mode = "F"
+        self._mode = "F"
         self._size = 1, 1
 
         loader = self._load()

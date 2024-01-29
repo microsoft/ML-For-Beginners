@@ -97,7 +97,7 @@ def _percentile_along_axis(theta_hat_b, alpha):
                 " This problem is known to occur when the distribution"
                 " is degenerate or the statistic is np.min."
             )
-            warnings.warn(DegenerateDataWarning(msg))
+            warnings.warn(DegenerateDataWarning(msg), stacklevel=3)
             percentiles[indices] = np.nan
         else:
             theta_hat_b_i = theta_hat_b[indices]
@@ -326,7 +326,7 @@ def bootstrap(data, statistic, *, n_resamples=9999, batch=None,
         of the statistic.
     batch : int, optional
         The number of resamples to process in each vectorized call to
-        `statistic`. Memory usage is O(`batch`*``n``), where ``n`` is the
+        `statistic`. Memory usage is O( `batch` * ``n`` ), where ``n`` is the
         sample size. Default is ``None``, in which case ``batch = n_resamples``
         (or ``batch = max(n_resamples, n)`` for ``method='BCa'``).
     vectorized : bool, optional
@@ -788,7 +788,7 @@ def monte_carlo_test(data, rvs, statistic, *, vectorized=None,
         used as the Monte Carlo null distribution.
     batch : int, optional
         The number of Monte Carlo samples to process in each call to
-        `statistic`. Memory usage is O(`batch`*``sample.size[axis]``). Default
+        `statistic`. Memory usage is O( `batch` * ``sample.size[axis]`` ). Default
         is ``None``, in which case `batch` equals `n_resamples`.
     alternative : {'two-sided', 'less', 'greater'}
         The alternative hypothesis for which the p-value is calculated.
@@ -1300,7 +1300,7 @@ def permutation_test(data, statistic, *, permutation_type='independent',
         data sets.
     batch : int, optional
         The number of permutations to process in each call to `statistic`.
-        Memory usage is O(`batch`*``n``), where ``n`` is the total size
+        Memory usage is O( `batch` * ``n`` ), where ``n`` is the total size
         of all samples, regardless of the value of `vectorized`. Default is
         ``None``, in which case ``batch`` is the number of permutations.
     alternative : {'two-sided', 'less', 'greater'}, optional
@@ -1546,7 +1546,7 @@ def permutation_test(data, statistic, *, permutation_type='independent',
 
     Indeed, the test statistic is negative, suggesting that the true mean of
     the distribution underlying ``x`` is less than that of the distribution
-    underlying ``y``. To determine the probability of this occuring by chance
+    underlying ``y``. To determine the probability of this occurring by chance
     if the two samples were drawn from the same distribution, we perform
     a permutation test.
 

@@ -76,7 +76,8 @@ def test_repeat_mixed_object():
     ser = Series(["a", np.nan, "b", True, datetime.today(), "foo", None, 1, 2.0])
     result = ser.str.repeat(3)
     expected = Series(
-        ["aaa", np.nan, "bbb", np.nan, np.nan, "foofoofoo", None, np.nan, np.nan]
+        ["aaa", np.nan, "bbb", np.nan, np.nan, "foofoofoo", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -270,7 +271,8 @@ def test_spilt_join_roundtrip_mixed_object():
     )
     result = ser.str.split("_").str.join("_")
     expected = Series(
-        ["a_b", np.nan, "asdf_cas_asdf", np.nan, np.nan, "foo", None, np.nan, np.nan]
+        ["a_b", np.nan, "asdf_cas_asdf", np.nan, np.nan, "foo", None, np.nan, np.nan],
+        dtype=object,
     )
     tm.assert_series_equal(result, expected)
 
@@ -398,7 +400,7 @@ def test_slice(start, stop, step, expected, any_string_dtype):
 def test_slice_mixed_object(start, stop, step, expected):
     ser = Series(["aafootwo", np.nan, "aabartwo", True, datetime.today(), None, 1, 2.0])
     result = ser.str.slice(start, stop, step)
-    expected = Series(expected)
+    expected = Series(expected, dtype=object)
     tm.assert_series_equal(result, expected)
 
 
@@ -453,7 +455,7 @@ def test_strip_lstrip_rstrip_mixed_object(method, exp):
     ser = Series(["  aa  ", np.nan, " bb \t\n", True, datetime.today(), None, 1, 2.0])
 
     result = getattr(ser.str, method)()
-    expected = Series(exp + [np.nan, np.nan, None, np.nan, np.nan])
+    expected = Series(exp + [np.nan, np.nan, None, np.nan, np.nan], dtype=object)
     tm.assert_series_equal(result, expected)
 
 
@@ -529,7 +531,7 @@ def test_string_slice_out_of_bounds(any_string_dtype):
 def test_encode_decode(any_string_dtype):
     ser = Series(["a", "b", "a\xe4"], dtype=any_string_dtype).str.encode("utf-8")
     result = ser.str.decode("utf-8")
-    expected = ser.map(lambda x: x.decode("utf-8"))
+    expected = ser.map(lambda x: x.decode("utf-8")).astype(object)
     tm.assert_series_equal(result, expected)
 
 
@@ -559,7 +561,7 @@ def test_decode_errors_kwarg():
         ser.str.decode("cp1252")
 
     result = ser.str.decode("cp1252", "ignore")
-    expected = ser.map(lambda x: x.decode("cp1252", "ignore"))
+    expected = ser.map(lambda x: x.decode("cp1252", "ignore")).astype(object)
     tm.assert_series_equal(result, expected)
 
 
@@ -672,7 +674,7 @@ def test_str_accessor_in_apply_func():
 def test_zfill():
     # https://github.com/pandas-dev/pandas/issues/20868
     value = Series(["-1", "1", "1000", 10, np.nan])
-    expected = Series(["-01", "001", "1000", np.nan, np.nan])
+    expected = Series(["-01", "001", "1000", np.nan, np.nan], dtype=object)
     tm.assert_series_equal(value.str.zfill(3), expected)
 
     value = Series(["-2", "+5"])
@@ -704,10 +706,10 @@ def test_get_with_dict_label():
         ]
     )
     result = s.str.get("name")
-    expected = Series(["Hello", "Goodbye", None])
+    expected = Series(["Hello", "Goodbye", None], dtype=object)
     tm.assert_series_equal(result, expected)
     result = s.str.get("value")
-    expected = Series(["World", "Planet", "Sea"])
+    expected = Series(["World", "Planet", "Sea"], dtype=object)
     tm.assert_series_equal(result, expected)
 
 

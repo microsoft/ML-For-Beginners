@@ -354,7 +354,7 @@ class Holiday:
         Dates with rules applied
         """
         if dates.empty:
-            return DatetimeIndex([])
+            return dates.copy()
 
         if self.observance is not None:
             return dates.map(lambda d: self.observance(d))

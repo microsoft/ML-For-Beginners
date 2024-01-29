@@ -1392,7 +1392,7 @@ class VARResults(VARProcess):
     @property
     def df_model(self):
         """
-        Number of estimated parameters, including the intercept / trends
+        Number of estimated parameters per variable, including the intercept / trends
         """
         return self.neqs * self.k_ar + self.k_exog
 
@@ -1962,7 +1962,7 @@ class VARResults(VARProcess):
                 "caused has to be of type string or int (or a "
                 "sequence of these types)."
             )
-        caused = [self.names[c] if type(c) == int else c for c in caused]
+        caused = [self.names[c] if type(c) is int else c for c in caused]
         caused_ind = [util.get_index(self.names, c) for c in caused]
 
         if causing is not None:
@@ -1974,7 +1974,7 @@ class VARResults(VARProcess):
                     "causing has to be of type string or int (or "
                     "a sequence of these types) or None."
                 )
-            causing = [self.names[c] if type(c) == int else c for c in causing]
+            causing = [self.names[c] if type(c) is int else c for c in causing]
             causing_ind = [util.get_index(self.names, c) for c in causing]
         else:
             causing_ind = [i for i in range(self.neqs) if i not in caused_ind]
@@ -2105,7 +2105,7 @@ class VARResults(VARProcess):
                 "causing has to be of type string or int (or a "
                 + "a sequence of these types)."
             )
-        causing = [self.names[c] if type(c) == int else c for c in causing]
+        causing = [self.names[c] if type(c) is int else c for c in causing]
         causing_ind = [util.get_index(self.names, c) for c in causing]
 
         caused_ind = [i for i in range(self.neqs) if i not in causing_ind]

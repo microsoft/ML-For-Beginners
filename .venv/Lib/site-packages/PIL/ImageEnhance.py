@@ -17,6 +17,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 from . import Image, ImageFilter, ImageStat
 
@@ -59,7 +60,7 @@ class Contrast(_Enhance):
 
     This class can be used to control the contrast of an image, similar
     to the contrast control on a TV set. An enhancement factor of 0.0
-    gives a solid grey image. A factor of 1.0 gives the original image.
+    gives a solid gray image. A factor of 1.0 gives the original image.
     """
 
     def __init__(self, image):

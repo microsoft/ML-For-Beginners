@@ -51,7 +51,7 @@ class TestCategoricalConcat:
         exp["h"] = exp["h"].astype(df2["h"].dtype)
         tm.assert_frame_equal(res, exp)
 
-    def test_categorical_concat_dtypes(self):
+    def test_categorical_concat_dtypes(self, using_infer_string):
         # GH8143
         index = ["cat", "obj", "num"]
         cat = Categorical(["a", "b", "c"])
@@ -59,7 +59,9 @@ class TestCategoricalConcat:
         num = Series([1, 2, 3])
         df = pd.concat([Series(cat), obj, num], axis=1, keys=index)
 
-        result = df.dtypes == "object"
+        result = df.dtypes == (
+            object if not using_infer_string else "string[pyarrow_numpy]"
+        )
         expected = Series([False, True, False], index=index)
         tm.assert_series_equal(result, expected)
 
@@ -220,7 +222,7 @@ class TestCategoricalConcat:
 
     def test_categorical_index_upcast(self):
         # GH 17629
-        # test upcasting to object when concatinating on categorical indexes
+        # test upcasting to object when concatenating on categorical indexes
         # with non-identical categories
 
         a = DataFrame({"foo": [1, 2]}, index=Categorical(["foo", "bar"]))

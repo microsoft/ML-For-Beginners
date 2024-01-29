@@ -4,12 +4,11 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-"""
-Unit test runner, providing new features on top of unittest module:
+"""Unit test runner, providing new features on top of unittest module:
 - colourized output
 - parallel run (UNIX only)
 - print failures/tracebacks on CTRL+C
-- re-run failed tests only (make test-failed)
+- re-run failed tests only (make test-failed).
 
 Invocation examples:
 - make test
@@ -59,7 +58,9 @@ NWORKERS = psutil.cpu_count() or 1
 USE_COLORS = not CI_TESTING and term_supports_colors()
 
 HERE = os.path.abspath(os.path.dirname(__file__))
-loadTestsFromTestCase = unittest.defaultTestLoader.loadTestsFromTestCase
+loadTestsFromTestCase = (  # noqa: N816
+    unittest.defaultTestLoader.loadTestsFromTestCase
+)
 
 
 def cprint(msg, color, bold=False, file=None):
@@ -79,10 +80,13 @@ class TestLoader:
         skip_files.extend(['test_osx.py', 'test_linux.py', 'test_posix.py'])
 
     def _get_testmods(self):
-        return [os.path.join(self.testdir, x)
-                for x in os.listdir(self.testdir)
-                if x.startswith('test_') and x.endswith('.py') and
-                x not in self.skip_files]
+        return [
+            os.path.join(self.testdir, x)
+            for x in os.listdir(self.testdir)
+            if x.startswith('test_')
+            and x.endswith('.py')
+            and x not in self.skip_files
+        ]
 
     def _iter_testmod_classes(self):
         """Iterate over all test files in this directory and return
@@ -92,8 +96,9 @@ class TestLoader:
             mod = import_module_by_path(path)
             for name in dir(mod):
                 obj = getattr(mod, name)
-                if isinstance(obj, type) and \
-                        issubclass(obj, unittest.TestCase):
+                if isinstance(obj, type) and issubclass(
+                    obj, unittest.TestCase
+                ):
                     yield obj
 
     def all(self):
@@ -108,7 +113,7 @@ class TestLoader:
         suite = unittest.TestSuite()
         if not os.path.isfile(FAILED_TESTS_FNAME):
             return suite
-        with open(FAILED_TESTS_FNAME, 'rt') as f:
+        with open(FAILED_TESTS_FNAME) as f:
             names = f.read().split()
         for n in names:
             test = unittest.defaultTestLoader.loadTestsFromName(n)
@@ -122,7 +127,6 @@ class TestLoader:
 
 
 class ColouredResult(unittest.TextTestResult):
-
     def addSuccess(self, test):
         unittest.TestResult.addSuccess(self, test)
         cprint("OK", "green")
@@ -145,10 +149,11 @@ class ColouredResult(unittest.TextTestResult):
 
 
 class ColouredTextRunner(unittest.TextTestRunner):
+    """A coloured text runner which also prints failed tests on
+    KeyboardInterrupt and save failed tests in a file so that they can
+    be re-run.
     """
-    A coloured text runner which also prints failed tests on KeyboardInterrupt
-    and save failed tests in a file so that they can be re-run.
-    """
+
     resultclass = ColouredResult if USE_COLORS else unittest.TextTestResult
 
     def __init__(self, *args, **kwargs):
@@ -163,7 +168,7 @@ class ColouredTextRunner(unittest.TextTestRunner):
 
     def _write_last_failed(self):
         if self.failed_tnames:
-            with open(FAILED_TESTS_FNAME, 'wt') as f:
+            with open(FAILED_TESTS_FNAME, "w") as f:
                 for tname in self.failed_tnames:
                     f.write(tname + '\n')
 
@@ -200,7 +205,6 @@ class ColouredTextRunner(unittest.TextTestRunner):
 
 
 class ParallelRunner(ColouredTextRunner):
-
     @staticmethod
     def _parallelize(suite):
         def fdopen(fd, mode, *kwds):
@@ -222,7 +226,7 @@ class ParallelRunner(ColouredTextRunner):
         for test in suite:
             if test.countTestCases() == 0:
                 continue
-            elif isinstance(test, unittest.TestSuite):
+            if isinstance(test, unittest.TestSuite):
                 test_class = test._tests[0].__class__
             elif isinstance(test, unittest.TestCase):
                 test_class = test
@@ -240,8 +244,11 @@ class ParallelRunner(ColouredTextRunner):
         par_suite = self._parallelize(par_suite)
 
         # run parallel
-        cprint("starting parallel tests using %s workers" % NWORKERS,
-               "green", bold=True)
+        cprint(
+            "starting parallel tests using %s workers" % NWORKERS,
+            "green",
+            bold=True,
+        )
         t = time.time()
         par = self._run(par_suite)
         par_elapsed = time.time() - t
@@ -262,13 +269,15 @@ class ParallelRunner(ColouredTextRunner):
         # print
         if not par.wasSuccessful() and ser_suite.countTestCases() > 0:
             par.printErrors()  # print them again at the bottom
-        par_fails, par_errs, par_skips = map(len, (par.failures,
-                                                   par.errors,
-                                                   par.skipped))
-        ser_fails, ser_errs, ser_skips = map(len, (ser.failures,
-                                                   ser.errors,
-                                                   ser.skipped))
-        print(textwrap.dedent("""
+        par_fails, par_errs, par_skips = map(
+            len, (par.failures, par.errors, par.skipped)
+        )
+        ser_fails, ser_errs, ser_skips = map(
+            len, (ser.failures, ser.errors, ser.skipped)
+        )
+        print(
+            textwrap.dedent(
+                """
             +----------+----------+----------+----------+----------+----------+
             |          |    total | failures |   errors |  skipped |     time |
             +----------+----------+----------+----------+----------+----------+
@@ -276,10 +285,29 @@ class ParallelRunner(ColouredTextRunner):
             +----------+----------+----------+----------+----------+----------+
             | serial   |      %3s |      %3s |      %3s |      %3s |    %.2fs |
             +----------+----------+----------+----------+----------+----------+
-            """ % (par.testsRun, par_fails, par_errs, par_skips, par_elapsed,
-                   ser.testsRun, ser_fails, ser_errs, ser_skips, ser_elapsed)))
-        print("Ran %s tests in %.3fs using %s workers" % (
-            par.testsRun + ser.testsRun, par_elapsed + ser_elapsed, NWORKERS))
+            """
+                % (
+                    par.testsRun,
+                    par_fails,
+                    par_errs,
+                    par_skips,
+                    par_elapsed,
+                    ser.testsRun,
+                    ser_fails,
+                    ser_errs,
+                    ser_skips,
+                    ser_elapsed,
+                )
+            )
+        )
+        print(
+            "Ran %s tests in %.3fs using %s workers"
+            % (
+                par.testsRun + ser.testsRun,
+                par_elapsed + ser_elapsed,
+                NWORKERS,
+            )
+        )
         ok = par.wasSuccessful() and ser.wasSuccessful()
         self._exit(ok)
 
@@ -287,6 +315,7 @@ class ParallelRunner(ColouredTextRunner):
 def get_runner(parallel=False):
     def warn(msg):
         cprint(msg + " Running serial tests instead.", "red")
+
     if parallel:
         if psutil.WINDOWS:
             warn("Can't run parallel tests on Windows.")
@@ -316,12 +345,18 @@ def main():
     setup()
     usage = "python3 -m psutil.tests [opts] [test-name]"
     parser = optparse.OptionParser(usage=usage, description="run unit tests")
-    parser.add_option("--last-failed",
-                      action="store_true", default=False,
-                      help="only run last failed tests")
-    parser.add_option("--parallel",
-                      action="store_true", default=False,
-                      help="run tests in parallel")
+    parser.add_option(
+        "--last-failed",
+        action="store_true",
+        default=False,
+        help="only run last failed tests",
+    )
+    parser.add_option(
+        "--parallel",
+        action="store_true",
+        default=False,
+        help="run tests in parallel",
+    )
     opts, args = parser.parse_args()
 
     if not opts.last_failed:

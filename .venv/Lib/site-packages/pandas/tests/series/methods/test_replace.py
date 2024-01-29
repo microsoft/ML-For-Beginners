@@ -3,6 +3,8 @@ import re
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 import pandas as pd
 import pandas._testing as tm
 from pandas.core.arrays import IntervalArray
@@ -50,7 +52,7 @@ class TestSeriesReplace:
         assert res.dtype == object
 
     def test_replace(self):
-        N = 100
+        N = 50
         ser = pd.Series(np.random.default_rng(2).standard_normal(N))
         ser[0:4] = np.nan
         ser[6:10] = 0
@@ -68,7 +70,7 @@ class TestSeriesReplace:
 
         ser = pd.Series(
             np.fabs(np.random.default_rng(2).standard_normal(N)),
-            tm.makeDateIndex(N),
+            pd.date_range("2020-01-01", periods=N),
             dtype=object,
         )
         ser[:5] = np.nan
@@ -76,7 +78,9 @@ class TestSeriesReplace:
         ser[20:30] = "bar"
 
         # replace list with a single value
-        rs = ser.replace([np.nan, "foo", "bar"], -1)
+        msg = "Downcasting behavior in `replace`"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            rs = ser.replace([np.nan, "foo", "bar"], -1)
 
         assert (rs[:5] == -1).all()
         assert (rs[6:10] == -1).all()
@@ -84,7 +88,8 @@ class TestSeriesReplace:
         assert (pd.isna(ser[:5])).all()
 
         # replace with different values
-        rs = ser.replace({np.nan: -1, "foo": -2, "bar": -3})
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            rs = ser.replace({np.nan: -1, "foo": -2, "bar": -3})
 
         assert (rs[:5] == -1).all()
         assert (rs[6:10] == -2).all()
@@ -92,11 +97,13 @@ class TestSeriesReplace:
         assert (pd.isna(ser[:5])).all()
 
         # replace with different values with 2 lists
-        rs2 = ser.replace([np.nan, "foo", "bar"], [-1, -2, -3])
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            rs2 = ser.replace([np.nan, "foo", "bar"], [-1, -2, -3])
         tm.assert_series_equal(rs, rs2)
 
         # replace inplace
-        return_value = ser.replace([np.nan, "foo", "bar"], -1, inplace=True)
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            return_value = ser.replace([np.nan, "foo", "bar"], -1, inplace=True)
         assert return_value is None
 
         assert (ser[:5] == -1).all()
@@ -283,10 +290,10 @@ class TestSeriesReplace:
         tm.assert_series_equal(result, expected)
 
     def test_replace2(self):
-        N = 100
+        N = 50
         ser = pd.Series(
             np.fabs(np.random.default_rng(2).standard_normal(N)),
-            tm.makeDateIndex(N),
+            pd.date_range("2020-01-01", periods=N),
             dtype=object,
         )
         ser[:5] = np.nan
@@ -294,7 +301,9 @@ class TestSeriesReplace:
         ser[20:30] = "bar"
 
         # replace list with a single value
-        rs = ser.replace([np.nan, "foo", "bar"], -1)
+        msg = "Downcasting behavior in `replace`"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            rs = ser.replace([np.nan, "foo", "bar"], -1)
 
         assert (rs[:5] == -1).all()
         assert (rs[6:10] == -1).all()
@@ -302,7 +311,8 @@ class TestSeriesReplace:
         assert (pd.isna(ser[:5])).all()
 
         # replace with different values
-        rs = ser.replace({np.nan: -1, "foo": -2, "bar": -3})
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            rs = ser.replace({np.nan: -1, "foo": -2, "bar": -3})
 
         assert (rs[:5] == -1).all()
         assert (rs[6:10] == -2).all()
@@ -310,11 +320,13 @@ class TestSeriesReplace:
         assert (pd.isna(ser[:5])).all()
 
         # replace with different values with 2 lists
-        rs2 = ser.replace([np.nan, "foo", "bar"], [-1, -2, -3])
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            rs2 = ser.replace([np.nan, "foo", "bar"], [-1, -2, -3])
         tm.assert_series_equal(rs, rs2)
 
         # replace inplace
-        return_value = ser.replace([np.nan, "foo", "bar"], -1, inplace=True)
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            return_value = ser.replace([np.nan, "foo", "bar"], -1, inplace=True)
         assert return_value is None
         assert (ser[:5] == -1).all()
         assert (ser[6:10] == -1).all()
@@ -373,10 +385,13 @@ class TestSeriesReplace:
     def test_replace_mixed_types_with_string(self):
         # Testing mixed
         s = pd.Series([1, 2, 3, "4", 4, 5])
-        result = s.replace([2, "4"], np.nan)
+        msg = "Downcasting behavior in `replace`"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = s.replace([2, "4"], np.nan)
         expected = pd.Series([1, np.nan, 3, np.nan, 4, 5])
         tm.assert_series_equal(expected, result)
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="can't fill 0 in string")
     @pytest.mark.parametrize(
         "categorical, numeric",
         [
@@ -387,7 +402,10 @@ class TestSeriesReplace:
     def test_replace_categorical(self, categorical, numeric):
         # GH 24971, GH#23305
         ser = pd.Series(categorical)
-        result = ser.replace({"A": 1, "B": 2})
+        msg = "Downcasting behavior in `replace`"
+        msg = "with CategoricalDtype is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = ser.replace({"A": 1, "B": 2})
         expected = pd.Series(numeric).astype("category")
         if 2 not in expected.cat.categories:
             # i.e. categories should be [1, 2] even if there are no "B"s present
@@ -401,7 +419,9 @@ class TestSeriesReplace:
     def test_replace_categorical_inplace(self, data, data_exp):
         # GH 53358
         result = pd.Series(data, dtype="category")
-        result.replace(to_replace="a", value="b", inplace=True)
+        msg = "with CategoricalDtype is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result.replace(to_replace="a", value="b", inplace=True)
         expected = pd.Series(data_exp, dtype="category")
         tm.assert_series_equal(result, expected)
 
@@ -417,16 +437,22 @@ class TestSeriesReplace:
         expected = expected.cat.remove_unused_categories()
         assert c[2] != "foo"
 
-        result = c.replace(c[2], "foo")
+        msg = "with CategoricalDtype is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = c.replace(c[2], "foo")
         tm.assert_series_equal(expected, result)
         assert c[2] != "foo"  # ensure non-inplace call does not alter original
 
-        return_value = c.replace(c[2], "foo", inplace=True)
+        msg = "with CategoricalDtype is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            return_value = c.replace(c[2], "foo", inplace=True)
         assert return_value is None
         tm.assert_series_equal(expected, c)
 
         first_value = c[0]
-        return_value = c.replace(c[1], c[0], inplace=True)
+        msg = "with CategoricalDtype is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            return_value = c.replace(c[1], c[0], inplace=True)
         assert return_value is None
         assert c[0] == c[1] == first_value  # test replacing with existing value
 
@@ -705,12 +731,15 @@ class TestSeriesReplace:
         with pytest.raises(TypeError, match="Invalid value"):
             ints.replace(1, 9.5)
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="can't fill 1 in string")
     @pytest.mark.parametrize("regex", [False, True])
     def test_replace_regex_dtype_series(self, regex):
         # GH-48644
         series = pd.Series(["0"])
         expected = pd.Series([1])
-        result = series.replace(to_replace="0", value=1, regex=regex)
+        msg = "Downcasting behavior in `replace`"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = series.replace(to_replace="0", value=1, regex=regex)
         tm.assert_series_equal(result, expected)
 
     def test_replace_different_int_types(self, any_int_numpy_dtype):
@@ -732,10 +761,12 @@ class TestSeriesReplace:
         expected = pd.Series([1, None], dtype=object)
         tm.assert_series_equal(result, expected)
 
-    def test_replace_change_dtype_series(self):
+    def test_replace_change_dtype_series(self, using_infer_string):
         # GH#25797
         df = pd.DataFrame.from_dict({"Test": ["0.5", True, "0.6"]})
-        df["Test"] = df["Test"].replace([True], [np.nan])
+        warn = FutureWarning if using_infer_string else None
+        with tm.assert_produces_warning(warn, match="Downcasting"):
+            df["Test"] = df["Test"].replace([True], [np.nan])
         expected = pd.DataFrame.from_dict({"Test": ["0.5", np.nan, "0.6"]})
         tm.assert_frame_equal(df, expected)
 
@@ -768,3 +799,15 @@ class TestSeriesReplace:
 
         ser.replace(to_replace=1, value=pd.NA, inplace=True)
         tm.assert_series_equal(ser, expected)
+
+    def test_replace_ea_float_with_bool(self):
+        # GH#55398
+        ser = pd.Series([0.0], dtype="Float64")
+        expected = ser.copy()
+        result = ser.replace(False, 1.0)
+        tm.assert_series_equal(result, expected)
+
+        ser = pd.Series([False], dtype="boolean")
+        expected = ser.copy()
+        result = ser.replace(0.0, True)
+        tm.assert_series_equal(result, expected)

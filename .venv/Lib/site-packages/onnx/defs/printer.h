@@ -5,10 +5,10 @@
 #pragma once
 
 #include <iostream>
-
-#include "onnx/onnx_pb.h"
+#include <string>
 
 #include "onnx/defs/parser.h"
+#include "onnx/onnx_pb.h"
 
 namespace ONNX_NAMESPACE {
 

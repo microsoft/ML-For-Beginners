@@ -65,7 +65,8 @@ def _dict_append(d, **kws):
         elif isinstance(dv, dict):
             _dict_append(dv, **v)
         elif is_string(dv):
-            d[k] = dv + v
+            assert is_string(v)
+            d[k] = v
         else:
             raise TypeError(repr(type(dv)))
 

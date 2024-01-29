@@ -8,7 +8,6 @@ log = logging.getLogger(__name__)
 
 
 class table__l_o_c_a(DefaultTable.DefaultTable):
-
     dependencies = ["glyf"]
 
     def decompile(self, data, ttFont):

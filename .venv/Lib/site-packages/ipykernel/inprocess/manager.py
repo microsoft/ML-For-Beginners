@@ -49,8 +49,9 @@ class InProcessKernelManager(KernelManager):
 
     def shutdown_kernel(self):
         """Shutdown the kernel."""
-        self.kernel.iopub_thread.stop()
-        self._kill_kernel()
+        if self.kernel:
+            self.kernel.iopub_thread.stop()
+            self._kill_kernel()
 
     def restart_kernel(self, now=False, **kwds):
         """Restart the kernel."""

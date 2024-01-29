@@ -21,8 +21,11 @@ class TestHalf:
         # An array of all possible float16 values
         self.all_f16 = np.arange(0x10000, dtype=uint16)
         self.all_f16.dtype = float16
-        self.all_f32 = np.array(self.all_f16, dtype=float32)
-        self.all_f64 = np.array(self.all_f16, dtype=float64)
+
+        # NaN value can cause an invalid FP exception if HW is been used
+        with np.errstate(invalid='ignore'):
+            self.all_f32 = np.array(self.all_f16, dtype=float32)
+            self.all_f64 = np.array(self.all_f16, dtype=float64)
 
         # An array of all non-NaN float16 values, in sorted order
         self.nonan_f16 = np.concatenate(
@@ -44,14 +47,19 @@ class TestHalf:
         # value is preserved when converting to/from other floats.
 
         # Convert from float32 back to float16
-        b = np.array(self.all_f32, dtype=float16)
-        assert_equal(self.all_f16.view(dtype=uint16),
-                     b.view(dtype=uint16))
+        with np.errstate(invalid='ignore'):
+            b = np.array(self.all_f32, dtype=float16)
+        # avoid testing NaNs due to differ bits wither Q/SNaNs
+        b_nn = b == b
+        assert_equal(self.all_f16[b_nn].view(dtype=uint16),
+                     b[b_nn].view(dtype=uint16))
 
         # Convert from float64 back to float16
-        b = np.array(self.all_f64, dtype=float16)
-        assert_equal(self.all_f16.view(dtype=uint16),
-                     b.view(dtype=uint16))
+        with np.errstate(invalid='ignore'):
+            b = np.array(self.all_f64, dtype=float16)
+        b_nn = b == b
+        assert_equal(self.all_f16[b_nn].view(dtype=uint16),
+                     b[b_nn].view(dtype=uint16))
 
         # Convert float16 to longdouble and back
         # This doesn't necessarily preserve the extra NaN bits,
@@ -266,8 +274,8 @@ class TestHalf:
         if len(a32_fail) != 0:
             bad_index = a32_fail[0]
             assert_equal(self.finite_f32, a_manual,
-                 "First non-equal is half value %x -> %g != %g" %
-                            (self.finite_f16[bad_index],
+                 "First non-equal is half value 0x%x -> %g != %g" %
+                            (a_bits[bad_index],
                              self.finite_f32[bad_index],
                              a_manual[bad_index]))
 
@@ -275,8 +283,8 @@ class TestHalf:
         if len(a64_fail) != 0:
             bad_index = a64_fail[0]
             assert_equal(self.finite_f64, a_manual,
-                 "First non-equal is half value %x -> %g != %g" %
-                            (self.finite_f16[bad_index],
+                 "First non-equal is half value 0x%x -> %g != %g" %
+                            (a_bits[bad_index],
                              self.finite_f64[bad_index],
                              a_manual[bad_index]))
 
@@ -319,7 +327,8 @@ class TestHalf:
         a = np.array([0, 0, -1, -1/1e20, 0, 2.0**-24, 7.629e-6], dtype=float16)
         assert_equal(a.nonzero()[0],
                      [2, 5, 6])
-        a = a.byteswap().newbyteorder()
+        a = a.byteswap()
+        a = a.view(a.dtype.newbyteorder())
         assert_equal(a.nonzero()[0],
                      [2, 5, 6])
 

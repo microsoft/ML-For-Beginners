@@ -41,14 +41,15 @@ OTHER DEALINGS IN THE SOFTWARE.
 __version__ = '1.0.10'
 __license__ = __doc__
 
+from ast import literal_eval
+
 import copy
 import datetime
 import logging
 from numbers import Integral, Real
 
 from matplotlib import _api, colors as mcolors
-from matplotlib.backends.qt_compat import (
-    QtGui, QtWidgets, QtCore, _enum, _to_int)
+from matplotlib.backends.qt_compat import _to_int, QtGui, QtWidgets, QtCore
 
 _log = logging.getLogger(__name__)
 
@@ -71,7 +72,7 @@ class ColorButton(QtWidgets.QPushButton):
     def choose_color(self):
         color = QtWidgets.QColorDialog.getColor(
             self._color, self.parentWidget(), "",
-            _enum("QtWidgets.QColorDialog.ColorDialogOption").ShowAlphaChannel)
+            QtWidgets.QColorDialog.ColorDialogOption.ShowAlphaChannel)
         if color.isValid():
             self.set_color(color)
 
@@ -204,7 +205,7 @@ class FontLayout(QtWidgets.QGridLayout):
 def is_edit_valid(edit):
     text = edit.text()
     state = edit.validator().validate(text, 0)[0]
-    return state == _enum("QtGui.QDoubleValidator.State").Acceptable
+    return state == QtGui.QDoubleValidator.State.Acceptable
 
 
 class FormWidget(QtWidgets.QWidget):
@@ -351,7 +352,7 @@ class FormWidget(QtWidgets.QWidget):
                 else:
                     value = date_.toPython()
             else:
-                value = eval(str(field.text()))
+                value = literal_eval(str(field.text()))
             valuelist.append(value)
         return valuelist
 
@@ -442,15 +443,13 @@ class FormDialog(QtWidgets.QDialog):
         # Button box
         self.bbox = bbox = QtWidgets.QDialogButtonBox(
             QtWidgets.QDialogButtonBox.StandardButton(
-                _to_int(
-                    _enum("QtWidgets.QDialogButtonBox.StandardButton").Ok) |
-                _to_int(
-                    _enum("QtWidgets.QDialogButtonBox.StandardButton").Cancel)
+                    _to_int(QtWidgets.QDialogButtonBox.StandardButton.Ok) |
+                    _to_int(QtWidgets.QDialogButtonBox.StandardButton.Cancel)
             ))
         self.formwidget.update_buttons.connect(self.update_buttons)
         if self.apply_callback is not None:
             apply_btn = bbox.addButton(
-                _enum("QtWidgets.QDialogButtonBox.StandardButton").Apply)
+                QtWidgets.QDialogButtonBox.StandardButton.Apply)
             apply_btn.clicked.connect(self.apply)
 
         bbox.accepted.connect(self.accept)
@@ -475,7 +474,7 @@ class FormDialog(QtWidgets.QDialog):
                 valid = False
         for btn_type in ["Ok", "Apply"]:
             btn = self.bbox.button(
-                getattr(_enum("QtWidgets.QDialogButtonBox.StandardButton"),
+                getattr(QtWidgets.QDialogButtonBox.StandardButton,
                         btn_type))
             if btn is not None:
                 btn.setEnabled(valid)

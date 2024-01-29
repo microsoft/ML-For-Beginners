@@ -15,6 +15,7 @@ import numpy as np
 
 from pandas._libs import missing as libmissing
 from pandas._libs.hashtable import object_hash
+from pandas._libs.properties import cache_readonly
 from pandas.errors import AbstractMethodError
 
 from pandas.core.dtypes.generic import (
@@ -32,6 +33,7 @@ if TYPE_CHECKING:
         type_t,
     )
 
+    from pandas import Index
     from pandas.core.arrays import ExtensionArray
 
     # To parameterize on same ExtensionDtype
@@ -110,7 +112,7 @@ class ExtensionDtype:
     def __str__(self) -> str:
         return self.name
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         """
         Check whether 'other' is equal to self.
 
@@ -144,7 +146,7 @@ class ExtensionDtype:
         # we need to avoid that and thus use hash function with old behavior
         return object_hash(tuple(getattr(self, attr) for attr in self._metadata))
 
-    def __ne__(self, other: Any) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -240,7 +242,7 @@ class ExtensionDtype:
 
         This is useful mainly for data types that accept parameters.
         For example, a period dtype accepts a frequency parameter that
-        can be set as ``period[H]`` (where H means hourly frequency).
+        can be set as ``period[h]`` (where H means hourly frequency).
 
         By default, in the abstract class, just the name of the type is
         expected. But subclasses can overwrite this method to accept
@@ -406,6 +408,43 @@ class ExtensionDtype:
         """
         return False
 
+    @cache_readonly
+    def index_class(self) -> type_t[Index]:
+        """
+        The Index subclass to return from Index.__new__ when this dtype is
+        encountered.
+        """
+        from pandas import Index
+
+        return Index
+
+    @property
+    def _supports_2d(self) -> bool:
+        """
+        Do ExtensionArrays with this dtype support 2D arrays?
+
+        Historically ExtensionArrays were limited to 1D. By returning True here,
+        authors can indicate that their arrays support 2D instances. This can
+        improve performance in some cases, particularly operations with `axis=1`.
+
+        Arrays that support 2D values should:
+
+            - implement Array.reshape
+            - subclass the Dim2CompatTests in tests.extension.base
+            - _concat_same_type should support `axis` keyword
+            - _reduce and reductions should support `axis` keyword
+        """
+        return False
+
+    @property
+    def _can_fast_transpose(self) -> bool:
+        """
+        Is transposing an array with this dtype zero-copy?
+
+        Only relevant for cases where _supports_2d is True.
+        """
+        return False
+
 
 class StorageExtensionDtype(ExtensionDtype):
     """ExtensionDtype that may be backed by more than one implementation."""
@@ -422,7 +461,7 @@ class StorageExtensionDtype(ExtensionDtype):
     def __str__(self) -> str:
         return self.name
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, str) and other == self.name:
             return True
         return super().__eq__(other)

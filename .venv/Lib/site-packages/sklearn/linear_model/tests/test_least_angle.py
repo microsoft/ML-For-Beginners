@@ -19,7 +19,6 @@ from sklearn.linear_model._least_angle import _lars_path_residues
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.utils import check_random_state
 from sklearn.utils._testing import (
     TempMemmap,
     assert_allclose,
@@ -33,35 +32,6 @@ X, y = diabetes.data, diabetes.target
 G = np.dot(X.T, X)
 Xy = np.dot(X.T, y)
 n_samples = y.size
-
-# TODO(1.4): 'normalize' to be removed
-filterwarnings_normalize = pytest.mark.filterwarnings(
-    "ignore:'normalize' was deprecated"
-)
-
-
-# TODO(1.4) 'normalize' to be removed
-@pytest.mark.parametrize(
-    "LeastAngleModel", [Lars, LassoLars, LarsCV, LassoLarsCV, LassoLarsIC]
-)
-@pytest.mark.parametrize(
-    "normalize, n_warnings", [(True, 1), (False, 1), ("deprecated", 0)]
-)
-def test_assure_warning_when_normalize(LeastAngleModel, normalize, n_warnings):
-    # check that we issue a FutureWarning when normalize was set
-    rng = check_random_state(0)
-    n_samples = 200
-    n_features = 2
-    X = rng.randn(n_samples, n_features)
-    X[X < 0.1] = 0.0
-    y = rng.rand(n_samples)
-
-    model = LeastAngleModel(normalize=normalize)
-    with warnings.catch_warnings(record=True) as rec:
-        warnings.simplefilter("always", FutureWarning)
-        model.fit(X, y)
-
-    assert len([w.message for w in rec]) == n_warnings
 
 
 def test_simple():
@@ -132,7 +102,7 @@ def test_lars_path_gram_equivalent(method, return_path):
 def test_x_none_gram_none_raises_value_error():
     # Test that lars_path with no X and Gram raises exception
     Xy = np.dot(X.T, y)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="X and Gram cannot both be unspecified"):
         linear_model.lars_path(None, y, Gram=None, Xy=Xy)
 
 
@@ -147,8 +117,6 @@ def test_all_precomputed():
             assert_array_almost_equal(expected, got)
 
 
-# TODO(1.4): 'normalize' to be removed
-@filterwarnings_normalize
 @pytest.mark.filterwarnings("ignore: `rcond` parameter will change")
 # numpy deprecation
 def test_lars_lstsq():
@@ -237,7 +205,6 @@ def test_no_path_all_precomputed():
     assert alpha_ == alphas_[-1]
 
 
-@filterwarnings_normalize
 @pytest.mark.parametrize(
     "classifier", [linear_model.Lars, linear_model.LarsCV, linear_model.LassoLarsIC]
 )
@@ -319,7 +286,6 @@ def test_lasso_lars_vs_lasso_cd():
         assert error < 0.01
 
 
-@filterwarnings_normalize
 def test_lasso_lars_vs_lasso_cd_early_stopping():
     # Test that LassoLars and Lasso using coordinate descent give the
     # same results when early stopping is used.
@@ -353,7 +319,6 @@ def test_lasso_lars_vs_lasso_cd_early_stopping():
         assert error < 0.01
 
 
-@filterwarnings_normalize
 def test_lasso_lars_path_length():
     # Test that the path length of the LassoLars is right
     lasso = linear_model.LassoLars()
@@ -424,7 +389,6 @@ def test_lasso_lars_vs_lasso_cd_ill_conditioned2():
     assert lars_obj < cd_obj * (1.0 + 1e-8)
 
 
-@filterwarnings_normalize
 def test_lars_add_features():
     # assure that at least some features get added if necessary
     # test for 6d2b4c
@@ -435,7 +399,6 @@ def test_lars_add_features():
     assert np.all(np.isfinite(clf.coef_))
 
 
-@filterwarnings_normalize
 def test_lars_n_nonzero_coefs(verbose=False):
     lars = linear_model.Lars(n_nonzero_coefs=6, verbose=verbose)
     lars.fit(X, y)
@@ -445,7 +408,6 @@ def test_lars_n_nonzero_coefs(verbose=False):
     assert len(lars.alphas_) == 7
 
 
-@filterwarnings_normalize
 @ignore_warnings
 def test_multitarget():
     # Assure that estimators receiving multidimensional y do the right thing
@@ -478,7 +440,6 @@ def test_multitarget():
             assert_array_almost_equal(Y_pred[:, k], y_pred)
 
 
-@filterwarnings_normalize
 def test_lars_cv():
     # Test the LassoLarsCV object by checking that the optimal alpha
     # increases as the number of samples increases.
@@ -586,7 +547,6 @@ estimator_parameter_map = {
 }
 
 
-@filterwarnings_normalize
 def test_estimatorclasses_positive_constraint():
     # testing the transmissibility for the positive option of all estimator
     # classes in this same function here
@@ -747,7 +707,6 @@ def test_lasso_lars_vs_R_implementation():
     assert_array_almost_equal(r, skl_betas, decimal=12)
 
 
-@filterwarnings_normalize
 @pytest.mark.parametrize("copy_X", [True, False])
 def test_lasso_lars_copyX_behaviour(copy_X):
     """
@@ -764,7 +723,6 @@ def test_lasso_lars_copyX_behaviour(copy_X):
     assert copy_X == np.array_equal(X, X_copy)
 
 
-@filterwarnings_normalize
 @pytest.mark.parametrize("copy_X", [True, False])
 def test_lasso_lars_fit_copyX_behaviour(copy_X):
     """
@@ -780,7 +738,6 @@ def test_lasso_lars_fit_copyX_behaviour(copy_X):
     assert copy_X == np.array_equal(X, X_copy)
 
 
-@filterwarnings_normalize
 @pytest.mark.parametrize("est", (LassoLars(alpha=1e-3), Lars()))
 def test_lars_with_jitter(est):
     # Test that a small amount of jitter helps stability,
@@ -804,7 +761,7 @@ def test_lars_with_jitter(est):
 
 def test_X_none_gram_not_none():
     with pytest.raises(ValueError, match="X cannot be None if Gram is not None"):
-        lars_path(X=None, y=[1], Gram="not None")
+        lars_path(X=None, y=np.array([1]), Gram=True)
 
 
 def test_copy_X_with_auto_gram():
@@ -832,7 +789,6 @@ def test_copy_X_with_auto_gram():
     ),
 )
 @pytest.mark.parametrize("dtype", (np.float32, np.float64))
-@filterwarnings_normalize
 def test_lars_dtype_match(LARS, has_coef_path, args, dtype):
     # The test ensures that the fit method preserves input dtype
     rng = np.random.RandomState(0)
@@ -858,7 +814,6 @@ def test_lars_dtype_match(LARS, has_coef_path, args, dtype):
         (LassoLarsCV, True, {"max_iter": 5}),
     ),
 )
-@filterwarnings_normalize
 def test_lars_numeric_consistency(LARS, has_coef_path, args):
     # The test ensures numerical consistency between trained coefficients
     # of float32 and float64.

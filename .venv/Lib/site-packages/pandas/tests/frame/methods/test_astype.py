@@ -3,7 +3,6 @@ import re
 import numpy as np
 import pytest
 
-from pandas.compat import pa_version_under7p0
 import pandas.util._test_decorators as td
 
 import pandas as pd
@@ -68,9 +67,19 @@ class TestAstype:
         casted = mixed_float_frame.reindex(columns=["A", "B"]).astype("float16")
         _check_cast(casted, "float16")
 
-    def test_astype_mixed_type(self, mixed_type_frame):
+    def test_astype_mixed_type(self):
         # mixed casting
-        mn = mixed_type_frame._get_numeric_data().copy()
+        df = DataFrame(
+            {
+                "a": 1.0,
+                "b": 2,
+                "c": "foo",
+                "float32": np.array([1.0] * 10, dtype="float32"),
+                "int32": np.array([1] * 10, dtype="int32"),
+            },
+            index=np.arange(10),
+        )
+        mn = df._get_numeric_data().copy()
         mn["little_float"] = np.array(12345.0, dtype="float16")
         mn["big_float"] = np.array(123456789101112.0, dtype="float64")
 
@@ -157,7 +166,8 @@ class TestAstype:
                 "c": [Timedelta(x)._repr_base() for x in c._values],
                 "d": list(map(str, d._values)),
                 "e": list(map(str, e._values)),
-            }
+            },
+            dtype="object",
         )
 
         tm.assert_frame_equal(result, expected)
@@ -165,13 +175,13 @@ class TestAstype:
     def test_astype_str_float(self):
         # see GH#11302
         result = DataFrame([np.nan]).astype(str)
-        expected = DataFrame(["nan"])
+        expected = DataFrame(["nan"], dtype="object")
 
         tm.assert_frame_equal(result, expected)
         result = DataFrame([1.12345678901234567890]).astype(str)
 
         val = "1.1234567890123457"
-        expected = DataFrame([val])
+        expected = DataFrame([val], dtype="object")
         tm.assert_frame_equal(result, expected)
 
     @pytest.mark.parametrize("dtype_class", [dict, Series])
@@ -190,7 +200,7 @@ class TestAstype:
         expected = DataFrame(
             {
                 "a": a,
-                "b": Series(["0", "1", "2", "3", "4"]),
+                "b": Series(["0", "1", "2", "3", "4"], dtype="object"),
                 "c": c,
                 "d": Series([1.0, 2.0, 3.14, 4.0, 5.4], dtype="float32"),
             }
@@ -273,7 +283,7 @@ class TestAstype:
         result = df.astype(dtypes)
         expected = DataFrame(
             {
-                0: vals[:, 0].astype(str),
+                0: Series(vals[:, 0].astype(str), dtype=object),
                 1: vals[:, 1],
                 2: pd.array(vals[:, 2], dtype="Float64"),
                 3: vals[:, 3],
@@ -383,7 +393,12 @@ class TestAstype:
             ["2017-01-01", "2017-01-02", "2017-02-03"],
         ]
         df = DataFrame(vals, dtype=object)
-        with pytest.raises(TypeError, match="Cannot cast"):
+        msg = (
+            rf"Unexpected value for 'dtype': 'datetime64\[{unit}\]'. "
+            r"Must be 'datetime64\[s\]', 'datetime64\[ms\]', 'datetime64\[us\]', "
+            r"'datetime64\[ns\]' or DatetimeTZDtype"
+        )
+        with pytest.raises(ValueError, match=msg):
             df.astype(f"M8[{unit}]")
 
     @pytest.mark.parametrize("unit", ["Y", "M", "W", "D", "h", "m"])
@@ -606,6 +621,7 @@ class TestAstype:
                 {"a": 2.2, "b": "15.3", "c": "another_test"},
             ]
         )
+        expected["c"] = expected["c"].astype("object")
         type_dict = {"a": "float64", "b": "float64", "c": "object"}
 
         result = df.astype(dtype=type_dict, errors="ignore")
@@ -666,6 +682,7 @@ class TestAstype:
                 ],
             ],
             columns=timezone_frame.columns,
+            dtype="object",
         )
         tm.assert_frame_equal(result, expected)
 
@@ -740,7 +757,9 @@ class TestAstype:
         result = result.astype({"tz": "datetime64[ns, Europe/London]"})
         tm.assert_frame_equal(result, expected)
 
-    def test_astype_dt64_to_string(self, frame_or_series, tz_naive_fixture):
+    def test_astype_dt64_to_string(
+        self, frame_or_series, tz_naive_fixture, using_infer_string
+    ):
         # GH#41409
         tz = tz_naive_fixture
 
@@ -758,7 +777,10 @@ class TestAstype:
         item = result.iloc[0]
         if frame_or_series is DataFrame:
             item = item.iloc[0]
-        assert item is pd.NA
+        if using_infer_string:
+            assert item is np.nan
+        else:
+            assert item is pd.NA
 
         # For non-NA values, we should match what we get for non-EA str
         alt = obj.astype(str)
@@ -868,10 +890,10 @@ def test_frame_astype_no_copy():
     assert np.shares_memory(df.b.values, result.b.values)
 
 
-@pytest.mark.skipif(pa_version_under7p0, reason="pyarrow is required for this test")
 @pytest.mark.parametrize("dtype", ["int64", "Int64"])
 def test_astype_copies(dtype):
     # GH#50984
+    pytest.importorskip("pyarrow")
     df = DataFrame({"a": [1, 2, 3]}, dtype=dtype)
     result = df.astype("int64[pyarrow]", copy=True)
     df.iloc[0, 0] = 100

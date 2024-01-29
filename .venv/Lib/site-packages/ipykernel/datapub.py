@@ -48,6 +48,7 @@ class ZMQDataPublisher(Configurable):
             The data to be published. Think of it as a namespace.
         """
         session = self.session
+        assert session is not None
         buffers = serialize_object(
             data,
             buffer_threshold=session.buffer_threshold,

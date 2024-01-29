@@ -30,15 +30,10 @@ def test_read_without_creds_from_pub_bucket(s3_public_bucket_with_data, s3so):
 
 
 @pytest.mark.single_cpu
-def test_read_with_creds_from_pub_bucket(s3_public_bucket_with_data, monkeypatch, s3so):
+def test_read_with_creds_from_pub_bucket(s3_public_bucket_with_data, s3so):
     # Ensure we can read from a public bucket with credentials
     # GH 34626
-
-    # temporary workaround as moto fails for botocore >= 1.11 otherwise,
-    # see https://github.com/spulec/moto/issues/1924 & 1952
     pytest.importorskip("s3fs")
-    monkeypatch.setenv("AWS_ACCESS_KEY_ID", "foobar_key")
-    monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "foobar_secret")
     df = read_csv(
         f"s3://{s3_public_bucket_with_data.name}/tips.csv",
         nrows=5,

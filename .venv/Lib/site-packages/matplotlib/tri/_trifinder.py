@@ -20,6 +20,9 @@ class TriFinder:
         _api.check_isinstance(Triangulation, triangulation=triangulation)
         self._triangulation = triangulation
 
+    def __call__(self, x, y):
+        raise NotImplementedError
+
 
 class TrapezoidMapTriFinder(TriFinder):
     """

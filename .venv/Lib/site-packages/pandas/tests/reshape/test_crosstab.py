@@ -562,7 +562,7 @@ class TestCrosstab:
             codes=[[1, 1, 1, 2, 2, 2, 3, 3, 3, 0], [1, 2, 3, 1, 2, 3, 1, 2, 3, 0]],
             names=["A", "B"],
         )
-        expected_column = Index(["bar", "foo", "All"], dtype="object", name="C")
+        expected_column = Index(["bar", "foo", "All"], name="C")
         expected_data = np.array(
             [
                 [2.0, 2.0, 4.0],
@@ -670,7 +670,7 @@ class TestCrosstab:
             )
         expected = DataFrame(
             np.array([0] * 29 + [1], dtype=float).reshape(10, 3),
-            columns=Index(["bar", "foo", "All"], dtype="object", name="C"),
+            columns=Index(["bar", "foo", "All"], name="C"),
             index=MultiIndex.from_tuples(
                 [
                     ("one", "A"),
@@ -722,7 +722,7 @@ class TestCrosstab:
             codes=[[1, 1, 2, 2, 0], [1, 2, 1, 2, 0]],
             names=["A", "B"],
         )
-        expected.columns = Index(["large", "small"], dtype="object", name="C")
+        expected.columns = Index(["large", "small"], name="C")
         tm.assert_frame_equal(result, expected)
 
         # normalize on columns
@@ -737,9 +737,7 @@ class TestCrosstab:
                 [0, 0.4, 0.222222],
             ]
         )
-        expected.columns = Index(
-            ["large", "small", "Sub-Total"], dtype="object", name="C"
-        )
+        expected.columns = Index(["large", "small", "Sub-Total"], name="C")
         expected.index = MultiIndex(
             levels=[["bar", "foo"], ["one", "two"]],
             codes=[[0, 0, 1, 1], [0, 1, 0, 1]],
@@ -760,9 +758,7 @@ class TestCrosstab:
                 [0.444444, 0.555555, 1],
             ]
         )
-        expected.columns = Index(
-            ["large", "small", "Sub-Total"], dtype="object", name="C"
-        )
+        expected.columns = Index(["large", "small", "Sub-Total"], name="C")
         expected.index = MultiIndex(
             levels=[["Sub-Total", "bar", "foo"], ["", "one", "two"]],
             codes=[[1, 1, 2, 2, 0], [1, 2, 1, 2, 0]],
@@ -887,7 +883,4 @@ def test_categoricals(a_dtype, b_dtype):
     if not a_is_cat:
         expected = expected.loc[[0, 2, "All"]]
         expected["All"] = expected["All"].astype("int64")
-    repr(result)
-    repr(expected)
-    repr(expected.loc[[0, 2, "All"]])
     tm.assert_frame_equal(result, expected)

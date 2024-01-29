@@ -485,7 +485,7 @@ def test_kbinsdiscretizer_subsample(strategy, global_random_seed):
     kbd_no_subsampling.set_params(subsample=None)
     kbd_no_subsampling.fit(X)
 
-    # We use a large tolerance because we can't expect the bin edges to be exactely the
+    # We use a large tolerance because we can't expect the bin edges to be exactly the
     # same when subsampling is used.
     assert_allclose(
         kbd_subsampling.bin_edges_[0], kbd_no_subsampling.bin_edges_[0], rtol=1e-2

@@ -14,12 +14,12 @@ while others are discrete or continuous measurements.
 
 **Data Set Characteristics:**
 
-    =================   ============
-    Classes                        7
-    Samples total             581012
-    Dimensionality                54
-    Features                     int
-    =================   ============
+=================   ============
+Classes                        7
+Samples total             581012
+Dimensionality                54
+Features                     int
+=================   ============
 
 :func:`sklearn.datasets.fetch_covtype` will load the covertype dataset;
 it returns a dictionary-like 'Bunch' object

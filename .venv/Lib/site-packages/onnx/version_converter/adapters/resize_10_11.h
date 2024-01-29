@@ -8,6 +8,9 @@
 
 #pragma once
 
+#include <memory>
+#include <vector>
+
 namespace ONNX_NAMESPACE {
 namespace version_conversion {
 

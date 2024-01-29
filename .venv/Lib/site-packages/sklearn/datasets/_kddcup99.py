@@ -50,7 +50,7 @@ logger = logging.getLogger(__name__)
 @validate_params(
     {
         "subset": [StrOptions({"SA", "SF", "http", "smtp"}), None],
-        "data_home": [str, None],
+        "data_home": [str, os.PathLike, None],
         "shuffle": ["boolean"],
         "random_state": ["random_state"],
         "percent10": ["boolean"],
@@ -92,7 +92,7 @@ def fetch_kddcup99(
         To return the corresponding classical subsets of kddcup 99.
         If None, return the entire kddcup 99 dataset.
 
-    data_home : str, default=None
+    data_home : str or path-like, default=None
         Specify another download and cache folder for the datasets. By default
         all scikit-learn data is stored in '~/scikit_learn_data' subfolders.
 

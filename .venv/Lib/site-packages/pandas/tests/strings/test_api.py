@@ -1,13 +1,65 @@
+import numpy as np
 import pytest
 
 from pandas import (
+    CategoricalDtype,
     DataFrame,
     Index,
     MultiIndex,
     Series,
     _testing as tm,
+    option_context,
 )
 from pandas.core.strings.accessor import StringMethods
+
+# subset of the full set from pandas/conftest.py
+_any_allowed_skipna_inferred_dtype = [
+    ("string", ["a", np.nan, "c"]),
+    ("bytes", [b"a", np.nan, b"c"]),
+    ("empty", [np.nan, np.nan, np.nan]),
+    ("empty", []),
+    ("mixed-integer", ["a", np.nan, 2]),
+]
+ids, _ = zip(*_any_allowed_skipna_inferred_dtype)  # use inferred type as id
+
+
+@pytest.fixture(params=_any_allowed_skipna_inferred_dtype, ids=ids)
+def any_allowed_skipna_inferred_dtype(request):
+    """
+    Fixture for all (inferred) dtypes allowed in StringMethods.__init__
+
+    The covered (inferred) types are:
+    * 'string'
+    * 'empty'
+    * 'bytes'
+    * 'mixed'
+    * 'mixed-integer'
+
+    Returns
+    -------
+    inferred_dtype : str
+        The string for the inferred dtype from _libs.lib.infer_dtype
+    values : np.ndarray
+        An array of object dtype that will be inferred to have
+        `inferred_dtype`
+
+    Examples
+    --------
+    >>> from pandas._libs import lib
+    >>>
+    >>> def test_something(any_allowed_skipna_inferred_dtype):
+    ...     inferred_dtype, values = any_allowed_skipna_inferred_dtype
+    ...     # will pass
+    ...     assert lib.infer_dtype(values, skipna=True) == inferred_dtype
+    ...
+    ...     # constructor for .str-accessor will also pass
+    ...     Series(values).str
+    """
+    inferred_dtype, values = request.param
+    values = np.array(values, dtype=object)  # object dtype to avoid casting
+
+    # correctness of inference tested in tests/dtypes/test_inference.py
+    return inferred_dtype, values
 
 
 def test_api(any_string_dtype):
@@ -92,7 +144,7 @@ def test_api_per_method(
 
     if reason is not None:
         mark = pytest.mark.xfail(raises=raises, reason=reason)
-        request.node.add_marker(mark)
+        request.applymarker(mark)
 
     t = box(values, dtype=dtype)  # explicit dtype to avoid casting
     method = getattr(t.str, method_name)
@@ -112,7 +164,8 @@ def test_api_per_method(
 
     if inferred_dtype in allowed_types:
         # xref GH 23555, GH 23556
-        method(*args, **kwargs)  # works!
+        with option_context("future.no_silent_downcasting", True):
+            method(*args, **kwargs)  # works!
     else:
         # GH 23011, GH 23163
         msg = (
@@ -128,6 +181,7 @@ def test_api_for_categorical(any_string_method, any_string_dtype):
     s = Series(list("aabb"), dtype=any_string_dtype)
     s = s + " " + s
     c = s.astype("category")
+    c = c.astype(CategoricalDtype(c.dtype.categories.astype("object")))
     assert isinstance(c.str, StringMethods)
 
     method_name, args, kwargs = any_string_method

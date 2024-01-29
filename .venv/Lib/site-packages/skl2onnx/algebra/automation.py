@@ -152,11 +152,6 @@ def get_rst_doc(op_name=None):
             return "{} ({})".format(sch.name, sch.domain)
         return sch.name
 
-    def get_type_str(obj):
-        if hasattr(obj, "type_str"):
-            return obj.type_str
-        return obj.typeStr
-
     def get_is_homogeneous(obj):
         try:
             return obj.is_homogeneous
@@ -240,6 +235,12 @@ def get_rst_doc(op_name=None):
         if sch.domain not in (None, "", "ai.onnx"):
             doc_url += sch.domain + "."
         return doc_url
+
+    def get_type_str(inou):
+        try:
+            return inou.type_str
+        except AttributeError:
+            return inou.typeStr
 
     fnwd = format_name_with_domain
     tmpl = _template_operator

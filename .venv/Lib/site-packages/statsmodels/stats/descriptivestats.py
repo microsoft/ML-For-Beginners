@@ -1,10 +1,11 @@
-from statsmodels.compat.pandas import Appender, is_numeric_dtype
+from statsmodels.compat.pandas import PD_LT_2, Appender, is_numeric_dtype
 from statsmodels.compat.scipy import SP_LT_19
-from statsmodels.compat.pandas import PD_LT_2
+
 from typing import Sequence, Union
 
 import numpy as np
 import pandas as pd
+
 if PD_LT_2:
     from pandas.core.dtypes.common import is_categorical_dtype
 else:
@@ -438,7 +439,8 @@ class Description:
             _df = df.copy()
             for col in df:
                 if is_extension_array_dtype(df[col].dtype):
-                    _df[col] = _df[col].astype(object).fillna(np.nan)
+                    if _df[col].isnull().any():
+                        _df[col] = _df[col].fillna(np.nan)
         except ImportError:
             pass
 
@@ -587,7 +589,8 @@ class Description:
             A table instance supporting export to text, csv and LaTeX
         """
         df = self.frame.astype(object)
-        df = df.fillna("")
+        if df.isnull().any().any():
+            df = df.fillna("")
         cols = [str(col) for col in df.columns]
         stubs = [str(idx) for idx in df.index]
         data = []

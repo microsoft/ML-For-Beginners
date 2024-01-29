@@ -5,6 +5,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import os
 
@@ -29,7 +30,7 @@ class QoiImageFile(ImageFile.ImageFile):
         self._size = tuple(i32(self.fp.read(4)) for i in range(2))
 
         channels = self.fp.read(1)[0]
-        self.mode = "RGB" if channels == 3 else "RGBA"
+        self._mode = "RGB" if channels == 3 else "RGBA"
 
         self.fp.seek(1, os.SEEK_CUR)  # colorspace
         self.tile = [("qoi", (0, 0) + self._size, self.fp.tell(), None)]
@@ -55,7 +56,7 @@ class QoiDecoder(ImageFile.PyDecoder):
         while len(data) < self.state.xsize * self.state.ysize * bands:
             byte = self.fd.read(1)[0]
             if byte == 0b11111110:  # QOI_OP_RGB
-                value = self.fd.read(3) + o8(255)
+                value = self.fd.read(3) + self._previous_pixel[3:]
             elif byte == 0b11111111:  # QOI_OP_RGBA
                 value = self.fd.read(4)
             else:

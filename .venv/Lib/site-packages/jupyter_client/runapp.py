@@ -1,10 +1,13 @@
 """A Jupyter console app to run files."""
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
+
 import queue
 import signal
 import sys
 import time
+import typing as t
 
 from jupyter_core.application import JupyterApp, base_aliases, base_flags
 from traitlets import Any, Dict, Float
@@ -35,7 +38,7 @@ frontend_aliases = set(frontend_aliases_dict.keys())
 frontend_flags = set(frontend_flags_dict.keys())
 
 
-class RunApp(JupyterApp, JupyterConsoleApp):
+class RunApp(JupyterApp, JupyterConsoleApp):  # type:ignore[misc]
     """An Jupyter Console app to run files."""
 
     version = __version__
@@ -57,14 +60,14 @@ class RunApp(JupyterApp, JupyterConsoleApp):
         """,
     )
 
-    def parse_command_line(self, argv=None):
+    def parse_command_line(self, argv: list[str] | None = None) -> None:
         """Parse the command line arguments."""
         super().parse_command_line(argv)
         self.build_kernel_argv(self.extra_args)
         self.filenames_to_run = self.extra_args[:]
 
     @catch_config_error
-    def initialize(self, argv=None):
+    def initialize(self, argv: list[str] | None = None) -> None:  # type:ignore[override]
         """Initialize the app."""
         self.log.debug("jupyter run: initialize...")
         super().initialize(argv)
@@ -72,14 +75,14 @@ class RunApp(JupyterApp, JupyterConsoleApp):
         signal.signal(signal.SIGINT, self.handle_sigint)
         self.init_kernel_info()
 
-    def handle_sigint(self, *args):
+    def handle_sigint(self, *args: t.Any) -> None:
         """Handle SIGINT."""
         if self.kernel_manager:
             self.kernel_manager.interrupt_kernel()
         else:
             self.log.error("Cannot interrupt kernels we didn't start.\n")
 
-    def init_kernel_info(self):
+    def init_kernel_info(self) -> None:
         """Wait for a kernel to be ready, and store kernel info"""
         timeout = self.kernel_timeout
         tic = time.time()
@@ -97,7 +100,7 @@ class RunApp(JupyterApp, JupyterConsoleApp):
                     self.kernel_info = reply["content"]
                     return
 
-    def start(self):
+    def start(self) -> None:
         """Start the application."""
         self.log.debug("jupyter run: starting...")
         super().start()

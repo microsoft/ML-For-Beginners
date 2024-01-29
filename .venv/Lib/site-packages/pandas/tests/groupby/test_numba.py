@@ -3,6 +3,7 @@ import pytest
 from pandas import (
     DataFrame,
     Series,
+    option_context,
 )
 import pandas._testing as tm
 
@@ -66,3 +67,14 @@ class TestEngine:
         gb = df.groupby("a", axis=1)
         with pytest.raises(NotImplementedError, match="axis=1"):
             getattr(gb, func)(engine="numba", **kwargs)
+
+    def test_no_engine_doesnt_raise(self):
+        # GH55520
+        df = DataFrame({"a": [3, 2, 3, 2], "b": range(4), "c": range(1, 5)})
+        gb = df.groupby("a")
+        # Make sure behavior of functions w/out engine argument don't raise
+        # when the global use_numba option is set
+        with option_context("compute.use_numba", True):
+            res = gb.agg({"b": "first"})
+        expected = gb.agg({"b": "first"})
+        tm.assert_frame_equal(res, expected)

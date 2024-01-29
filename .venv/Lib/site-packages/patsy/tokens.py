@@ -31,11 +31,10 @@ def python_tokenize(code):
         for (pytype, string, (_, start), (_, end), code) in it:
             if pytype == tokenize.ENDMARKER:
                 break
-            origin = Origin(code, start, end)
-            assert pytype != tokenize.NL
-            if pytype == tokenize.NEWLINE:
+            if pytype in (tokenize.NL, tokenize.NEWLINE):
                 assert string == ""
                 continue
+            origin = Origin(code, start, end)
             if pytype == tokenize.ERRORTOKEN:
                 raise PatsyError("error tokenizing input "
                                  "(maybe an unclosed string?)",
@@ -53,8 +52,14 @@ def python_tokenize(code):
         # end of the source text. We have our own error handling for
         # such cases, so just treat this as an end-of-stream.
         #
+        if "unterminated string literal" in e.args[0]:
+            raise PatsyError(
+                "error tokenizing input ({})".format(e.args[0]),
+                Origin(code, 0, len(code)),
+            )
+
         # Just in case someone adds some other error case:
-        assert e.args[0].startswith("EOF in multi-line")
+        assert "EOF in multi-line" in e.args[0]
         return
 
 def test_python_tokenize():

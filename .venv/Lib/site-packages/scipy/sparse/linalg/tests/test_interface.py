@@ -124,7 +124,7 @@ class TestLinearOperator:
             C = A / 5
             assert_equal(A @ np.array([1, 2, 3]), result)
 
-            assert_((2j*A).dtype == np.complex_)
+            assert_((2j*A).dtype == np.complex128)
 
             # Test division by non-scalar
             msg = "Can only divide a linear operator by a scalar."
@@ -276,11 +276,11 @@ class TestAsLinearOperator:
                        for M, A in make_cases(original.T, np.float64)]
 
         original = np.array([[1, 2j, 3j], [4j, 5j, 6]])
-        self.cases += make_cases(original, np.complex_)
+        self.cases += make_cases(original, np.complex128)
         self.cases += [(interface.aslinearoperator(M).T, A.T)
-                       for M, A in make_cases(original.T, np.complex_)]
+                       for M, A in make_cases(original.T, np.complex128)]
         self.cases += [(interface.aslinearoperator(M).H, A.T.conj())
-                       for M, A in make_cases(original.T, np.complex_)]
+                       for M, A in make_cases(original.T, np.complex128)]
 
     def test_basic(self):
 
@@ -292,7 +292,7 @@ class TestAsLinearOperator:
                   np.array([[1], [2], [3]])]
             ys = [np.array([1, 2]), np.array([[1], [2]])]
 
-            if A.dtype == np.complex_:
+            if A.dtype == np.complex128:
                 xs += [np.array([1, 2j, 3j]),
                        np.array([[1], [2j], [3j]])]
                 ys += [np.array([1, 2j]), np.array([[1], [2j]])]

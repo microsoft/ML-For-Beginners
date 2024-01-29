@@ -55,29 +55,6 @@ def ci_to_errsize(cis, heights):
     return errsize
 
 
-def _normal_quantile_func(q):
-    """
-    Compute the quantile function of the standard normal distribution.
-
-    This wrapper exists because we are dropping scipy as a mandatory dependency
-    but statistics.NormalDist was added to the standard library in 3.8.
-
-    """
-    try:
-        from statistics import NormalDist
-        qf = np.vectorize(NormalDist().inv_cdf)
-    except ImportError:
-        try:
-            from scipy.stats import norm
-            qf = norm.ppf
-        except ImportError:
-            msg = (
-                "Standard normal quantile functions require either Python>=3.8 or scipy"
-            )
-            raise RuntimeError(msg)
-    return qf(q)
-
-
 def _draw_figure(fig):
     """Force draw of a matplotlib figure, accounting for back-compat."""
     # See https://github.com/matplotlib/matplotlib/issues/19197 for context
@@ -110,7 +87,7 @@ def _default_color(method, hue, color, kws, saturation=1):
 
     elif method.__name__ == "plot":
 
-        color = _normalize_kwargs(kws, mpl.lines.Line2D).get("color")
+        color = normalize_kwargs(kws, mpl.lines.Line2D).get("color")
         scout, = method([], [], scalex=False, scaley=False, color=color)
         color = scout.get_color()
         scout.remove()
@@ -155,7 +132,7 @@ def _default_color(method, hue, color, kws, saturation=1):
 
     elif method.__name__ == "fill_between":
 
-        kws = _normalize_kwargs(kws, mpl.collections.PolyCollection)
+        kws = normalize_kwargs(kws, mpl.collections.PolyCollection)
         scout = method([], [], **kws)
         facecolor = scout.get_facecolor()
         color = to_rgb(facecolor[0])
@@ -714,11 +691,7 @@ def locator_to_legend_entries(locator, limits, dtype):
         formatter.set_scientific(False)
     formatter.axis = dummy_axis()
 
-    # TODO: The following two lines should be replaced
-    # once pinned matplotlib>=3.1.0 with:
-    # formatted_levels = formatter.format_ticks(raw_levels)
-    formatter.set_locs(raw_levels)
-    formatted_levels = [formatter(x) for x in raw_levels]
+    formatted_levels = formatter.format_ticks(raw_levels)
 
     return raw_levels, formatted_levels
 
@@ -772,26 +745,6 @@ def to_utf8(obj):
         return obj.decode(encoding="utf-8")
     except AttributeError:  # obj is not bytes-like
         return str(obj)
-
-
-def _normalize_kwargs(kws, artist):
-    """Wrapper for mpl.cbook.normalize_kwargs that supports <= 3.2.1."""
-    _alias_map = {
-        'color': ['c'],
-        'linewidth': ['lw'],
-        'linestyle': ['ls'],
-        'facecolor': ['fc'],
-        'edgecolor': ['ec'],
-        'markerfacecolor': ['mfc'],
-        'markeredgecolor': ['mec'],
-        'markeredgewidth': ['mew'],
-        'markersize': ['ms']
-    }
-    try:
-        kws = normalize_kwargs(kws, artist)
-    except AttributeError:
-        kws = normalize_kwargs(kws, _alias_map)
-    return kws
 
 
 def _check_argument(param, options, value, prefix=False):
@@ -905,7 +858,7 @@ def _version_predates(lib: ModuleType, version: str) -> bool:
 
 def _scatter_legend_artist(**kws):
 
-    kws = _normalize_kwargs(kws, mpl.collections.PathCollection)
+    kws = normalize_kwargs(kws, mpl.collections.PathCollection)
 
     edgecolor = kws.pop("edgecolor", None)
     rc = mpl.rcParams

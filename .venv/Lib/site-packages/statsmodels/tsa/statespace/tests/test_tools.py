@@ -393,7 +393,7 @@ class TestConstrainStationaryMultivariate:
         # Test that the constrained results correspond to companion matrices
         # with eigenvalues less than 1 in modulus
         for unconstrained in self.eigval_cases:
-            if type(unconstrained) == list:
+            if type(unconstrained) is list:
                 cov = np.eye(unconstrained[0].shape[0])
             else:
                 cov = np.eye(unconstrained.shape[0])
@@ -446,7 +446,7 @@ class TestStationaryMultivariate:
 
     def test_cases(self):
         for constrained in self.constrained_cases:
-            if type(constrained) == list:
+            if type(constrained) is list:
                 cov = np.eye(constrained[0].shape[0])
             else:
                 cov = np.eye(constrained.shape[0])
@@ -455,7 +455,7 @@ class TestStationaryMultivariate:
             assert_allclose(reconstrained, constrained)
 
         for unconstrained in self.unconstrained_cases:
-            if type(unconstrained) == list:
+            if type(unconstrained) is list:
                 cov = np.eye(unconstrained[0].shape[0])
             else:
                 cov = np.eye(unconstrained.shape[0])

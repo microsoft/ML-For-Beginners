@@ -8,17 +8,17 @@ class ChannelABC(metaclass=abc.ABCMeta):
     """A base class for all channel ABCs."""
 
     @abc.abstractmethod
-    def start(self):
+    def start(self) -> None:
         """Start the channel."""
         pass
 
     @abc.abstractmethod
-    def stop(self):
+    def stop(self) -> None:
         """Stop the channel."""
         pass
 
     @abc.abstractmethod
-    def is_alive(self):
+    def is_alive(self) -> bool:
         """Test whether the channel is alive."""
         pass
 
@@ -32,20 +32,20 @@ class HBChannelABC(ChannelABC):
     """
 
     @abc.abstractproperty
-    def time_to_dead(self):
+    def time_to_dead(self) -> float:
         pass
 
     @abc.abstractmethod
-    def pause(self):
+    def pause(self) -> None:
         """Pause the heartbeat channel."""
         pass
 
     @abc.abstractmethod
-    def unpause(self):
+    def unpause(self) -> None:
         """Unpause the heartbeat channel."""
         pass
 
     @abc.abstractmethod
-    def is_beating(self):
+    def is_beating(self) -> bool:
         """Test whether the channel is beating."""
         pass

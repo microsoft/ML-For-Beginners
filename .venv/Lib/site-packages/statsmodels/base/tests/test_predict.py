@@ -38,7 +38,8 @@ class CheckPredictReturns:
 
         pred = res.predict(data.iloc[:1])
         pdt.assert_index_equal(pred.index, data.iloc[:1].index)
-        assert_allclose(pred.values, res.fittedvalues[0], rtol=1e-13)
+        fv = np.asarray(res.fittedvalues)
+        assert_allclose(pred.values, fv[0], rtol=1e-13)
 
         fittedm = res.fittedvalues.mean()
         xmean = data.mean()
@@ -149,5 +150,5 @@ class TestPredictGLM(CheckPredictReturns):
         pred = res.predict(data2, offset=data2['offset'])
         pdt.assert_index_equal(pred.index, fitted.index)
         fitted_nan = fitted.copy()
-        fitted_nan[0] = np.nan
+        fitted_nan.iloc[0] = np.nan
         assert_allclose(pred.values, fitted_nan.values, rtol=1e-13)

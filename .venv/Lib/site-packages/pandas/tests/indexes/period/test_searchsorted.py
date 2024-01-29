@@ -27,9 +27,9 @@ class TestSearchsorted:
 
         assert pidx.searchsorted(NaT) == 5
 
-        msg = "Input has different freq=H from PeriodArray"
+        msg = "Input has different freq=h from PeriodArray"
         with pytest.raises(IncompatibleFrequency, match=msg):
-            pidx.searchsorted(Period("2014-01-01", freq="H"))
+            pidx.searchsorted(Period("2014-01-01", freq="h"))
 
         msg = "Input has different freq=5D from PeriodArray"
         with pytest.raises(IncompatibleFrequency, match=msg):

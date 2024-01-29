@@ -1,7 +1,6 @@
 from contextlib import nullcontext
 
-from .backend_cairo import (  # noqa
-    FigureCanvasCairo, _RendererGTKCairo as RendererGTK4Cairo)
+from .backend_cairo import FigureCanvasCairo
 from .backend_gtk4 import Gtk, FigureCanvasGTK4, _BackendGTK4
 
 

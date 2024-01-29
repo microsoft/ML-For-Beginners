@@ -10,9 +10,6 @@ from pandas import (
 )
 import pandas._testing as tm
 
-# aliases to make some tests easier to read
-RI = RangeIndex
-
 
 class TestRangeIndex:
     @pytest.fixture
@@ -202,7 +199,9 @@ class TestRangeIndex:
         i_view = i.view("i8")
         tm.assert_numpy_array_equal(i.values, i_view)
 
-        i_view = i.view(RangeIndex)
+        msg = "Passing a type in RangeIndex.view is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            i_view = i.view(RangeIndex)
         tm.assert_index_equal(i, i_view)
 
     def test_dtype(self, simple_index):
@@ -243,11 +242,14 @@ class TestRangeIndex:
             pass
         assert idx._cache == {}
 
-        idx.format()
+        msg = "RangeIndex.format is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            idx.format()
         assert idx._cache == {}
 
         df = pd.DataFrame({"a": range(10)}, index=idx)
 
+        # df.__repr__ should not populate index cache
         str(df)
         assert idx._cache == {}
 
@@ -382,7 +384,9 @@ class TestRangeIndex:
 
     def test_view_index(self, simple_index):
         index = simple_index
-        index.view(Index)
+        msg = "Passing a type in RangeIndex.view is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            index.view(Index)
 
     def test_prevent_casting(self, simple_index):
         index = simple_index
@@ -507,25 +511,31 @@ class TestRangeIndex:
     @pytest.mark.parametrize(
         "indices, expected",
         [
-            ([RI(1, 12, 5)], RI(1, 12, 5)),
-            ([RI(0, 6, 4)], RI(0, 6, 4)),
-            ([RI(1, 3), RI(3, 7)], RI(1, 7)),
-            ([RI(1, 5, 2), RI(5, 6)], RI(1, 6, 2)),
-            ([RI(1, 3, 2), RI(4, 7, 3)], RI(1, 7, 3)),
-            ([RI(-4, 3, 2), RI(4, 7, 2)], RI(-4, 7, 2)),
-            ([RI(-4, -8), RI(-8, -12)], RI(0, 0)),
-            ([RI(-4, -8), RI(3, -4)], RI(0, 0)),
-            ([RI(-4, -8), RI(3, 5)], RI(3, 5)),
-            ([RI(-4, -2), RI(3, 5)], Index([-4, -3, 3, 4])),
-            ([RI(-2), RI(3, 5)], RI(3, 5)),
-            ([RI(2), RI(2)], Index([0, 1, 0, 1])),
-            ([RI(2), RI(2, 5), RI(5, 8, 4)], RI(0, 6)),
-            ([RI(2), RI(3, 5), RI(5, 8, 4)], Index([0, 1, 3, 4, 5])),
-            ([RI(-2, 2), RI(2, 5), RI(5, 8, 4)], RI(-2, 6)),
-            ([RI(3), Index([-1, 3, 15])], Index([0, 1, 2, -1, 3, 15])),
-            ([RI(3), Index([-1, 3.1, 15.0])], Index([0, 1, 2, -1, 3.1, 15.0])),
-            ([RI(3), Index(["a", None, 14])], Index([0, 1, 2, "a", None, 14])),
-            ([RI(3, 1), Index(["a", None, 14])], Index(["a", None, 14])),
+            ([RangeIndex(1, 12, 5)], RangeIndex(1, 12, 5)),
+            ([RangeIndex(0, 6, 4)], RangeIndex(0, 6, 4)),
+            ([RangeIndex(1, 3), RangeIndex(3, 7)], RangeIndex(1, 7)),
+            ([RangeIndex(1, 5, 2), RangeIndex(5, 6)], RangeIndex(1, 6, 2)),
+            ([RangeIndex(1, 3, 2), RangeIndex(4, 7, 3)], RangeIndex(1, 7, 3)),
+            ([RangeIndex(-4, 3, 2), RangeIndex(4, 7, 2)], RangeIndex(-4, 7, 2)),
+            ([RangeIndex(-4, -8), RangeIndex(-8, -12)], RangeIndex(0, 0)),
+            ([RangeIndex(-4, -8), RangeIndex(3, -4)], RangeIndex(0, 0)),
+            ([RangeIndex(-4, -8), RangeIndex(3, 5)], RangeIndex(3, 5)),
+            ([RangeIndex(-4, -2), RangeIndex(3, 5)], Index([-4, -3, 3, 4])),
+            ([RangeIndex(-2), RangeIndex(3, 5)], RangeIndex(3, 5)),
+            ([RangeIndex(2), RangeIndex(2)], Index([0, 1, 0, 1])),
+            ([RangeIndex(2), RangeIndex(2, 5), RangeIndex(5, 8, 4)], RangeIndex(0, 6)),
+            (
+                [RangeIndex(2), RangeIndex(3, 5), RangeIndex(5, 8, 4)],
+                Index([0, 1, 3, 4, 5]),
+            ),
+            (
+                [RangeIndex(-2, 2), RangeIndex(2, 5), RangeIndex(5, 8, 4)],
+                RangeIndex(-2, 6),
+            ),
+            ([RangeIndex(3), Index([-1, 3, 15])], Index([0, 1, 2, -1, 3, 15])),
+            ([RangeIndex(3), Index([-1, 3.1, 15.0])], Index([0, 1, 2, -1, 3.1, 15.0])),
+            ([RangeIndex(3), Index(["a", None, 14])], Index([0, 1, 2, "a", None, 14])),
+            ([RangeIndex(3, 1), Index(["a", None, 14])], Index(["a", None, 14])),
         ],
     )
     def test_append(self, indices, expected):
@@ -563,11 +573,14 @@ class TestRangeIndex:
     def test_format_empty(self):
         # GH35712
         empty_idx = RangeIndex(0)
-        assert empty_idx.format() == []
-        assert empty_idx.format(name=True) == [""]
+        msg = r"RangeIndex\.format is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            assert empty_idx.format() == []
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            assert empty_idx.format(name=True) == [""]
 
     @pytest.mark.parametrize(
-        "RI",
+        "ri",
         [
             RangeIndex(0, -1, -1),
             RangeIndex(0, 1, 1),
@@ -576,10 +589,10 @@ class TestRangeIndex:
             RangeIndex(-3, -5, -2),
         ],
     )
-    def test_append_len_one(self, RI):
+    def test_append_len_one(self, ri):
         # GH39401
-        result = RI.append([])
-        tm.assert_index_equal(result, RI, exact=True)
+        result = ri.append([])
+        tm.assert_index_equal(result, ri, exact=True)
 
     @pytest.mark.parametrize("base", [RangeIndex(0, 2), Index([0, 1])])
     def test_isin_range(self, base):

@@ -10,6 +10,8 @@ Sessions.
 """
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
+from __future__ import annotations
+
 import hashlib
 import hmac
 import json
@@ -25,8 +27,6 @@ from datetime import datetime, timezone
 from hmac import compare_digest
 
 # We are using compare_digest to limit the surface of timing attacks
-from typing import Optional, Union
-
 import zmq.asyncio
 from tornado.ioloop import IOLoop
 from traitlets import (
@@ -61,7 +61,7 @@ utc = timezone.utc
 # -----------------------------------------------------------------------------
 
 
-def squash_unicode(obj):
+def squash_unicode(obj: t.Any) -> t.Any:
     """coerce unicode back to bytestrings."""
     if isinstance(obj, dict):
         for key in list(obj.keys()):
@@ -89,7 +89,7 @@ MAX_BYTES = 1024
 # disallow nan, because it's not actually valid JSON
 
 
-def json_packer(obj):
+def json_packer(obj: t.Any) -> bytes:
     """Convert a json object to a bytes."""
     try:
         return json.dumps(
@@ -117,14 +117,14 @@ def json_packer(obj):
         return packed
 
 
-def json_unpacker(s):
+def json_unpacker(s: str | bytes) -> t.Any:
     """Convert a json bytes or string to an object."""
     if isinstance(s, bytes):
         s = s.decode("utf8", "replace")
     return json.loads(s)
 
 
-def pickle_packer(o):
+def pickle_packer(o: t.Any) -> bytes:
     """Pack an object using the pickle module."""
     return pickle.dumps(squash_dates(o), PICKLE_PROTOCOL)
 
@@ -197,7 +197,7 @@ def default_secure(cfg: t.Any) -> None:  # pragma: no cover
 
 def utcnow() -> datetime:
     """Return timezone-aware UTC timestamp"""
-    return datetime.utcnow().replace(tzinfo=utc)  # noqa
+    return datetime.now(utc)
 
 
 # -----------------------------------------------------------------------------
@@ -212,7 +212,7 @@ class SessionFactory(LoggingConfigurable):
 
     logname = Unicode("")
 
-    @observe("logname")  # type:ignore[misc]
+    @observe("logname")
     def _logname_changed(self, change: t.Any) -> None:
         self.log = logging.getLogger(change["new"])
 
@@ -226,10 +226,10 @@ class SessionFactory(LoggingConfigurable):
 
     loop = Instance("tornado.ioloop.IOLoop")
 
-    def _loop_default(self):
+    def _loop_default(self) -> IOLoop:
         return IOLoop.current()
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: t.Any) -> None:
         """Initialize a session factory."""
         super().__init__(**kwargs)
 
@@ -244,7 +244,7 @@ class Message:
     A Message can be created from a dict and a dict from a Message instance
     simply by calling dict(msg_obj)."""
 
-    def __init__(self, msg_dict: t.Dict[str, t.Any]) -> None:
+    def __init__(self, msg_dict: dict[str, t.Any]) -> None:
         """Initialize a message."""
         dct = self.__dict__
         for k, v in dict(msg_dict).items():
@@ -269,14 +269,16 @@ class Message:
         return self.__dict__[k]
 
 
-def msg_header(msg_id: str, msg_type: str, username: str, session: "Session") -> t.Dict[str, t.Any]:
+def msg_header(
+    msg_id: str, msg_type: str, username: str, session: Session | str
+) -> dict[str, t.Any]:
     """Create a new message header"""
     date = utcnow()
     version = protocol_version
     return locals()
 
 
-def extract_header(msg_or_header: t.Dict[str, t.Any]) -> t.Dict[str, t.Any]:
+def extract_header(msg_or_header: dict[str, t.Any]) -> dict[str, t.Any]:
     """Given a message or header, return the header."""
     if not msg_or_header:
         return {}
@@ -357,7 +359,7 @@ class Session(Configurable):
     )
 
     @observe("packer")
-    def _packer_changed(self, change):
+    def _packer_changed(self, change: t.Any) -> None:
         new = change["new"]
         if new.lower() == "json":
             self.pack = json_packer
@@ -378,7 +380,7 @@ class Session(Configurable):
     )
 
     @observe("unpacker")
-    def _unpacker_changed(self, change):
+    def _unpacker_changed(self, change: t.Any) -> None:
         new = change["new"]
         if new.lower() == "json":
             self.pack = json_packer
@@ -399,7 +401,7 @@ class Session(Configurable):
         return u
 
     @observe("session")
-    def _session_changed(self, change):
+    def _session_changed(self, change: t.Any) -> None:
         self.bsession = self.session.encode("ascii")
 
     # bsession is the session as bytes
@@ -429,7 +431,7 @@ class Session(Configurable):
         return new_id_bytes()
 
     @observe("key")
-    def _key_changed(self, change):
+    def _key_changed(self, change: t.Any) -> None:
         self._new_auth()
 
     signature_scheme = Unicode(
@@ -440,7 +442,7 @@ class Session(Configurable):
     )
 
     @observe("signature_scheme")
-    def _signature_scheme_changed(self, change):
+    def _signature_scheme_changed(self, change: t.Any) -> None:
         new = change["new"]
         if not new.startswith("hmac-"):
             raise TraitError("signature_scheme must start with 'hmac-', got %r" % new)
@@ -477,7 +479,7 @@ class Session(Configurable):
     keyfile = Unicode("", config=True, help="""path to file containing execution key.""")
 
     @observe("keyfile")
-    def _keyfile_changed(self, change):
+    def _keyfile_changed(self, change: t.Any) -> None:
         with open(change["new"], "rb") as f:
             self.key = f.read().strip()
 
@@ -489,7 +491,7 @@ class Session(Configurable):
     pack = Any(default_packer)  # the actual packer function
 
     @observe("pack")
-    def _pack_changed(self, change):
+    def _pack_changed(self, change: t.Any) -> None:
         new = change["new"]
         if not callable(new):
             raise TypeError("packer must be callable, not %s" % type(new))
@@ -497,7 +499,7 @@ class Session(Configurable):
     unpack = Any(default_unpacker)  # the actual packer function
 
     @observe("unpack")
-    def _unpack_changed(self, change):
+    def _unpack_changed(self, change: t.Any) -> None:
         # unpacker is not checked - it is assumed to be
         new = change["new"]
         if not callable(new):
@@ -523,7 +525,7 @@ class Session(Configurable):
         """,
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: t.Any) -> None:
         """create a Session object
 
         Parameters
@@ -575,7 +577,7 @@ class Session(Configurable):
                 "Message signing is disabled.  This is insecure and not recommended!"
             )
 
-    def clone(self) -> "Session":
+    def clone(self) -> Session:
         """Create a copy of this Session
 
         Useful when connecting multiple times to a given kernel.
@@ -640,18 +642,18 @@ class Session(Configurable):
             self.pack = lambda o: pack(squash_dates(o))
             self.unpack = lambda s: unpack(s)
 
-    def msg_header(self, msg_type: str) -> t.Dict[str, t.Any]:
+    def msg_header(self, msg_type: str) -> dict[str, t.Any]:
         """Create a header for a message type."""
         return msg_header(self.msg_id, msg_type, self.username, self.session)
 
     def msg(
         self,
         msg_type: str,
-        content: t.Optional[t.Dict] = None,
-        parent: t.Optional[t.Dict[str, t.Any]] = None,
-        header: t.Optional[t.Dict[str, t.Any]] = None,
-        metadata: t.Optional[t.Dict[str, t.Any]] = None,
-    ) -> t.Dict[str, t.Any]:
+        content: dict | None = None,
+        parent: dict[str, t.Any] | None = None,
+        header: dict[str, t.Any] | None = None,
+        metadata: dict[str, t.Any] | None = None,
+    ) -> dict[str, t.Any]:
         """Return the nested message dict.
 
         This format is different from what is sent over the wire. The
@@ -670,7 +672,7 @@ class Session(Configurable):
             msg["metadata"].update(metadata)
         return msg
 
-    def sign(self, msg_list: t.List) -> bytes:
+    def sign(self, msg_list: list) -> bytes:
         """Sign a message with HMAC digest. If no auth, return b''.
 
         Parameters
@@ -687,9 +689,9 @@ class Session(Configurable):
 
     def serialize(
         self,
-        msg: t.Dict[str, t.Any],
-        ident: t.Optional[t.Union[t.List[bytes], bytes]] = None,
-    ) -> t.List[bytes]:
+        msg: dict[str, t.Any],
+        ident: list[bytes] | bytes | None = None,
+    ) -> list[bytes]:
         """Serialize the message components to bytes.
 
         This is roughly the inverse of deserialize. The serialize/deserialize
@@ -751,16 +753,16 @@ class Session(Configurable):
 
     def send(
         self,
-        stream: Optional[Union[zmq.sugar.socket.Socket, ZMQStream]],
-        msg_or_type: t.Union[t.Dict[str, t.Any], str],
-        content: t.Optional[t.Dict[str, t.Any]] = None,
-        parent: t.Optional[t.Dict[str, t.Any]] = None,
-        ident: t.Optional[t.Union[bytes, t.List[bytes]]] = None,
-        buffers: t.Optional[t.List[bytes]] = None,
+        stream: zmq.sugar.socket.Socket | ZMQStream | None,
+        msg_or_type: dict[str, t.Any] | str,
+        content: dict[str, t.Any] | None = None,
+        parent: dict[str, t.Any] | None = None,
+        ident: bytes | list[bytes] | None = None,
+        buffers: list[bytes] | None = None,
         track: bool = False,
-        header: t.Optional[t.Dict[str, t.Any]] = None,
-        metadata: t.Optional[t.Dict[str, t.Any]] = None,
-    ) -> t.Optional[t.Dict[str, t.Any]]:
+        header: dict[str, t.Any] | None = None,
+        metadata: dict[str, t.Any] | None = None,
+    ) -> dict[str, t.Any] | None:
         """Build and send a message via stream or socket.
 
         The message format used by this function internally is as follows:
@@ -809,7 +811,7 @@ class Session(Configurable):
             track = False
 
         if isinstance(stream, zmq.asyncio.Socket):
-            assert stream is not None
+            assert stream is not None  # type:ignore[unreachable]
             stream = zmq.Socket.shadow(stream.underlying)
 
         if isinstance(msg_or_type, (Message, dict)):
@@ -859,6 +861,8 @@ class Session(Configurable):
             # use dummy tracker, which will be done immediately
             tracker = DONE
             stream.send_multipart(to_send, copy=copy)
+        else:
+            tracker = DONE
 
         if self.debug:
             pprint.pprint(msg)  # noqa
@@ -872,10 +876,10 @@ class Session(Configurable):
     def send_raw(
         self,
         stream: zmq.sugar.socket.Socket,
-        msg_list: t.List,
+        msg_list: list,
         flags: int = 0,
         copy: bool = True,
-        ident: t.Optional[t.Union[bytes, t.List[bytes]]] = None,
+        ident: bytes | list[bytes] | None = None,
     ) -> None:
         """Send a raw message via ident path.
 
@@ -912,7 +916,7 @@ class Session(Configurable):
         mode: int = zmq.NOBLOCK,
         content: bool = True,
         copy: bool = True,
-    ) -> t.Tuple[t.Optional[t.List[bytes]], t.Optional[t.Dict[str, t.Any]]]:
+    ) -> tuple[list[bytes] | None, dict[str, t.Any] | None]:
         """Receive and unpack a message.
 
         Parameters
@@ -926,8 +930,8 @@ class Session(Configurable):
             [idents] is a list of idents and msg is a nested message dict of
             same format as self.msg returns.
         """
-        if isinstance(socket, ZMQStream):
-            socket = socket.socket
+        if isinstance(socket, ZMQStream):  # type:ignore[unreachable]
+            socket = socket.socket  # type:ignore[unreachable]
         if isinstance(socket, zmq.asyncio.Socket):
             socket = zmq.Socket.shadow(socket.underlying)
 
@@ -950,8 +954,8 @@ class Session(Configurable):
             raise e
 
     def feed_identities(
-        self, msg_list: t.Union[t.List[bytes], t.List[zmq.Message]], copy: bool = True
-    ) -> t.Tuple[t.List[bytes], t.Union[t.List[bytes], t.List[zmq.Message]]]:
+        self, msg_list: list[bytes] | list[zmq.Message], copy: bool = True
+    ) -> tuple[list[bytes], list[bytes] | list[zmq.Message]]:
         """Split the identities from the rest of the message.
 
         Feed until DELIM is reached, then return the prefix as idents and
@@ -1017,10 +1021,10 @@ class Session(Configurable):
 
     def deserialize(
         self,
-        msg_list: t.Union[t.List[bytes], t.List[zmq.Message]],
+        msg_list: list[bytes] | list[zmq.Message],
         content: bool = True,
         copy: bool = True,
-    ) -> t.Dict[str, t.Any]:
+    ) -> dict[str, t.Any]:
         """Unserialize a msg_list to a nested message dict.
 
         This is roughly the inverse of serialize. The serialize/deserialize
@@ -1092,7 +1096,7 @@ class Session(Configurable):
         # adapt to the current version
         return adapt(message)
 
-    def unserialize(self, *args: t.Any, **kwargs: t.Any) -> t.Dict[str, t.Any]:
+    def unserialize(self, *args: t.Any, **kwargs: t.Any) -> dict[str, t.Any]:
         """**DEPRECATED** Use deserialize instead."""
         # pragma: no cover
         warnings.warn(

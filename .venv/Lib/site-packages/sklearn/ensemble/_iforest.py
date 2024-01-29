@@ -123,14 +123,6 @@ class IsolationForest(OutlierMixin, BaseBagging):
         .. versionadded:: 1.2
            `base_estimator_` was renamed to `estimator_`.
 
-    base_estimator_ : ExtraTreeRegressor instance
-        The child estimator template used to create the collection of
-        fitted sub-estimators.
-
-        .. deprecated:: 1.2
-            `base_estimator_` is deprecated and will be removed in 1.4.
-            Use `estimator_` instead.
-
     estimators_ : list of ExtraTreeRegressor instances
         The collection of fitted sub-estimators.
 
@@ -199,6 +191,9 @@ class IsolationForest(OutlierMixin, BaseBagging):
     >>> clf = IsolationForest(random_state=0).fit(X)
     >>> clf.predict([[0.1], [0], [90]])
     array([ 1,  1, -1])
+
+    For an example of using isolation forest for anomaly detection see
+    :ref:`sphx_glr_auto_examples_ensemble_plot_isolation_forest.py`.
     """
 
     _parameter_constraints: dict = {
@@ -345,7 +340,10 @@ class IsolationForest(OutlierMixin, BaseBagging):
 
         # Else, define offset_ wrt contamination parameter
         # To avoid performing input validation a second time we call
-        # _score_samples rather than score_samples
+        # _score_samples rather than score_samples.
+        # _score_samples expects a CSR matrix, so we convert if necessary.
+        if issparse(X):
+            X = X.tocsr()
         self.offset_ = np.percentile(self._score_samples(X), 100.0 * self.contamination)
 
         return self
@@ -430,7 +428,7 @@ class IsolationForest(OutlierMixin, BaseBagging):
             The lower, the more abnormal.
         """
         # Check data
-        X = self._validate_data(X, accept_sparse="csr", dtype=np.float32, reset=False)
+        X = self._validate_data(X, accept_sparse="csr", dtype=tree_dtype, reset=False)
 
         return self._score_samples(X)
 

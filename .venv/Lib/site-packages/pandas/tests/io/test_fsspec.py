@@ -18,6 +18,32 @@ from pandas import (
 import pandas._testing as tm
 from pandas.util import _test_decorators as td
 
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Passing a BlockManager to DataFrame:DeprecationWarning"
+)
+
+
+@pytest.fixture
+def fsspectest():
+    pytest.importorskip("fsspec")
+    from fsspec import register_implementation
+    from fsspec.implementations.memory import MemoryFileSystem
+    from fsspec.registry import _registry as registry
+
+    class TestMemoryFS(MemoryFileSystem):
+        protocol = "testmem"
+        test = [None]
+
+        def __init__(self, **kwargs) -> None:
+            self.test[0] = kwargs.pop("test", None)
+            super().__init__(**kwargs)
+
+    register_implementation("testmem", TestMemoryFS, clobber=True)
+    yield TestMemoryFS()
+    registry.pop("testmem", None)
+    TestMemoryFS.test[0] = None
+    TestMemoryFS.store.clear()
+
 
 @pytest.fixture
 def df1():

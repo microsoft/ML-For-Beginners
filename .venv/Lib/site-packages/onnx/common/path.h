@@ -9,7 +9,9 @@
 #include <string>
 #ifdef _WIN32
 #include <windows.h>
+
 #include <filesystem>
+
 #include "onnx/checker.h"
 #endif
 

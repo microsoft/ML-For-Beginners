@@ -1,9 +1,8 @@
 import numpy as np
 import pytest
 import sklearn
-from sklearn.datasets import load_iris, make_classification
+from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils._testing import assert_array_equal
 from sklearn.utils.fixes import parse_version
 
@@ -29,6 +28,7 @@ def imbalanced_dataset():
 
 
 @pytest.mark.parametrize("algorithm", ["SAMME", "SAMME.R"])
+@pytest.mark.filterwarnings("ignore:The SAMME.R algorithm (the default) is")
 def test_rusboost(imbalanced_dataset, algorithm):
     X, y = imbalanced_dataset
     X_train, X_test, y_train, y_test = train_test_split(
@@ -74,6 +74,7 @@ def test_rusboost(imbalanced_dataset, algorithm):
 
 
 @pytest.mark.parametrize("algorithm", ["SAMME", "SAMME.R"])
+@pytest.mark.filterwarnings("ignore:The SAMME.R algorithm (the default) is")
 def test_rusboost_sample_weight(imbalanced_dataset, algorithm):
     X, y = imbalanced_dataset
     sample_weight = np.ones_like(y)
@@ -91,25 +92,3 @@ def test_rusboost_sample_weight(imbalanced_dataset, algorithm):
 
     with pytest.raises(AssertionError):
         assert_array_equal(y_pred_no_sample_weight, y_pred_sample_weight)
-
-
-@pytest.mark.skipif(
-    sklearn_version < parse_version("1.2"), reason="requires scikit-learn>=1.2"
-)
-def test_rus_boost_classifier_base_estimator():
-    """Check that we raise a FutureWarning when accessing `base_estimator_`."""
-    X, y = load_iris(return_X_y=True)
-    estimator = RUSBoostClassifier().fit(X, y)
-    with pytest.warns(FutureWarning, match="`base_estimator_` was deprecated"):
-        estimator.base_estimator_
-
-
-def test_rus_boost_classifier_set_both_estimator_and_base_estimator():
-    """Check that we raise a ValueError when setting both `estimator` and
-    `base_estimator`."""
-    X, y = load_iris(return_X_y=True)
-    err_msg = "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-    with pytest.raises(ValueError, match=err_msg):
-        RUSBoostClassifier(
-            estimator=DecisionTreeClassifier(), base_estimator=DecisionTreeClassifier()
-        ).fit(X, y)

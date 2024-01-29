@@ -31,7 +31,7 @@ __all__ = [
 
 class SyntaxSync(metaclass=ABCMeta):
     """
-    Syntax synchroniser. This is a tool that finds a start position for the
+    Syntax synchronizer. This is a tool that finds a start position for the
     lexer. This is especially important when editing big documents; we don't
     want to start the highlighting by running the lexer from the beginning of
     the file. That is very slow when editing.
@@ -67,12 +67,12 @@ class RegexSync(SyntaxSync):
     Synchronize by starting at a line that matches the given regex pattern.
     """
 
-    # Never go more than this amount of lines backwards for synchronisation.
+    # Never go more than this amount of lines backwards for synchronization.
     # That would be too CPU intensive.
     MAX_BACKWARDS = 500
 
     # Start lexing at the start, if we are in the first 'n' lines and no
-    # synchronisation position was found.
+    # synchronization position was found.
     FROM_START_IF_NO_SYNC_POS_FOUND = 100
 
     def __init__(self, pattern: str) -> None:
@@ -88,13 +88,13 @@ class RegexSync(SyntaxSync):
         lines = document.lines
 
         # Scan upwards, until we find a point where we can start the syntax
-        # synchronisation.
+        # synchronization.
         for i in range(lineno, max(-1, lineno - self.MAX_BACKWARDS), -1):
             match = pattern.match(lines[i])
             if match:
                 return i, match.start()
 
-        # No synchronisation point found. If we aren't that far from the
+        # No synchronization point found. If we aren't that far from the
         # beginning, start at the very beginning, otherwise, just try to start
         # at the current line.
         if lineno < self.FROM_START_IF_NO_SYNC_POS_FOUND:
@@ -114,7 +114,7 @@ class RegexSync(SyntaxSync):
             # For HTML, start at any open/close tag definition.
             "HTML": r"<[/a-zA-Z]",
             # For javascript, start at a function.
-            "JavaScript": r"\bfunction\b"
+            "JavaScript": r"\bfunction\b",
             # TODO: Add definitions for other languages.
             #       By default, we start at every possible line.
         }
@@ -228,7 +228,7 @@ class PygmentsLexer(Lexer):
         line_generators: dict[LineGenerator, int] = {}
 
         def get_syntax_sync() -> SyntaxSync:
-            "The Syntax synchronisation object that we currently use."
+            "The Syntax synchronization object that we currently use."
             if self.sync_from_start():
                 return SyncFromStart()
             else:
@@ -271,7 +271,7 @@ class PygmentsLexer(Lexer):
                 return generator
 
             # No generator found. Determine starting point for the syntax
-            # synchronisation first.
+            # synchronization first.
 
             # Go at least x lines back. (Make scrolling upwards more
             # efficient.)
@@ -291,7 +291,7 @@ class PygmentsLexer(Lexer):
                 generator = create_line_generator(row, column)
 
             # If the column is not 0, ignore the first line. (Which is
-            # incomplete. This happens when the synchronisation algorithm tells
+            # incomplete. This happens when the synchronization algorithm tells
             # us to start parsing in the middle of a line.)
             if column:
                 next(generator)
@@ -316,7 +316,7 @@ class PygmentsLexer(Lexer):
                         # Remove the next item from the cache.
                         # (It could happen that it's already there, because of
                         # another generator that started filling these lines,
-                        # but we want to synchronise these lines with the
+                        # but we want to synchronize these lines with the
                         # current lexer's state.)
                         if num + 1 in cache:
                             del cache[num + 1]

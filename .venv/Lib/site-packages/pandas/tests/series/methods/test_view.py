@@ -9,6 +9,10 @@ from pandas import (
 )
 import pandas._testing as tm
 
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:Series.view is deprecated and will be removed in a future version.:FutureWarning"  # noqa: E501
+)
+
 
 class TestView:
     def test_view_i8_to_datetimelike(self):

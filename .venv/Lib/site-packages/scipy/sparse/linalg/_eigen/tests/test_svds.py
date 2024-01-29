@@ -838,7 +838,7 @@ class SVDSCommonTests:
 # --- Perform tests with each solver ---
 
 
-class Test_SVDS_once():
+class Test_SVDS_once:
     @pytest.mark.parametrize("solver", ['ekki', object])
     def test_svds_input_validation_solver(self, solver):
         message = "solver must be one of"

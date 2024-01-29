@@ -1,5 +1,11 @@
+import sys
 from collections.abc import Callable, Sequence
 from typing import TypeVar, Any, overload, SupportsIndex, Protocol
+
+if sys.version_info >= (3, 10):
+    from typing import ParamSpec, Concatenate
+else:
+    from typing_extensions import ParamSpec, Concatenate
 
 from numpy import (
     generic,
@@ -28,6 +34,7 @@ from numpy._typing import (
 
 from numpy.core.shape_base import vstack
 
+_P = ParamSpec("_P")
 _SCT = TypeVar("_SCT", bound=generic)
 
 # The signatures of `__array_wrap__` and `__array_prepare__` are the same;
@@ -73,23 +80,21 @@ def put_along_axis(
     axis: None | int,
 ) -> None: ...
 
-# TODO: Use PEP 612 `ParamSpec` once mypy supports `Concatenate`
-# xref python/mypy#8645
 @overload
 def apply_along_axis(
-    func1d: Callable[..., _ArrayLike[_SCT]],
+    func1d: Callable[Concatenate[NDArray[Any], _P], _ArrayLike[_SCT]],
     axis: SupportsIndex,
     arr: ArrayLike,
-    *args: Any,
-    **kwargs: Any,
+    *args: _P.args,
+    **kwargs: _P.kwargs,
 ) -> NDArray[_SCT]: ...
 @overload
 def apply_along_axis(
-    func1d: Callable[..., ArrayLike],
+    func1d: Callable[Concatenate[NDArray[Any], _P], ArrayLike],
     axis: SupportsIndex,
     arr: ArrayLike,
-    *args: Any,
-    **kwargs: Any,
+    *args: _P.args,
+    **kwargs: _P.kwargs,
 ) -> NDArray[Any]: ...
 
 def apply_over_axes(

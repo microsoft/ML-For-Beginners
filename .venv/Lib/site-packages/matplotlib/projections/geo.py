@@ -30,11 +30,9 @@ class GeoAxes(Axes):
     RESOLUTION = 75
 
     def _init_axis(self):
-        self.xaxis = maxis.XAxis(self)
-        self.yaxis = maxis.YAxis(self)
-        # Do not register xaxis or yaxis with spines -- as done in
-        # Axes._init_axis() -- until GeoAxes.xaxis.clear() works.
-        # self.spines['geo'].register_axis(self.yaxis)
+        self.xaxis = maxis.XAxis(self, clear=False)
+        self.yaxis = maxis.YAxis(self, clear=False)
+        self.spines['geo'].register_axis(self.yaxis)
 
     def clear(self):
         # docstring inherited
@@ -237,7 +235,7 @@ class _GeoTransform(Transform):
         self._resolution = resolution
 
     def __str__(self):
-        return "{}({})".format(type(self).__name__, self._resolution)
+        return f"{type(self).__name__}({self._resolution})"
 
     def transform_path_non_affine(self, path):
         # docstring inherited
@@ -251,9 +249,10 @@ class AitoffAxes(GeoAxes):
     class AitoffTransform(_GeoTransform):
         """The base Aitoff transform."""
 
-        def transform_non_affine(self, ll):
+        @_api.rename_parameter("3.8", "ll", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
-            longitude, latitude = ll.T
+            longitude, latitude = values.T
 
             # Pre-compute some values
             half_long = longitude / 2.0
@@ -272,10 +271,11 @@ class AitoffAxes(GeoAxes):
 
     class InvertedAitoffTransform(_GeoTransform):
 
-        def transform_non_affine(self, xy):
+        @_api.rename_parameter("3.8", "xy", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
             # MGDTODO: Math is hard ;(
-            return np.full_like(xy, np.nan)
+            return np.full_like(values, np.nan)
 
         def inverted(self):
             # docstring inherited
@@ -297,9 +297,10 @@ class HammerAxes(GeoAxes):
     class HammerTransform(_GeoTransform):
         """The base Hammer transform."""
 
-        def transform_non_affine(self, ll):
+        @_api.rename_parameter("3.8", "ll", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
-            longitude, latitude = ll.T
+            longitude, latitude = values.T
             half_long = longitude / 2.0
             cos_latitude = np.cos(latitude)
             sqrt2 = np.sqrt(2.0)
@@ -314,9 +315,10 @@ class HammerAxes(GeoAxes):
 
     class InvertedHammerTransform(_GeoTransform):
 
-        def transform_non_affine(self, xy):
+        @_api.rename_parameter("3.8", "xy", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
-            x, y = xy.T
+            x, y = values.T
             z = np.sqrt(1 - (x / 4) ** 2 - (y / 2) ** 2)
             longitude = 2 * np.arctan((z * x) / (2 * (2 * z ** 2 - 1)))
             latitude = np.arcsin(y*z)
@@ -342,14 +344,15 @@ class MollweideAxes(GeoAxes):
     class MollweideTransform(_GeoTransform):
         """The base Mollweide transform."""
 
-        def transform_non_affine(self, ll):
+        @_api.rename_parameter("3.8", "ll", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
             def d(theta):
                 delta = (-(theta + np.sin(theta) - pi_sin_l)
                          / (1 + np.cos(theta)))
                 return delta, np.abs(delta) > 0.001
 
-            longitude, latitude = ll.T
+            longitude, latitude = values.T
 
             clat = np.pi/2 - np.abs(latitude)
             ihigh = clat < 0.087  # within 5 degrees of the poles
@@ -370,7 +373,7 @@ class MollweideAxes(GeoAxes):
                 d = 0.5 * (3 * np.pi * e**2) ** (1.0/3)
                 aux[ihigh] = (np.pi/2 - d) * np.sign(latitude[ihigh])
 
-            xy = np.empty(ll.shape, dtype=float)
+            xy = np.empty(values.shape, dtype=float)
             xy[:, 0] = (2.0 * np.sqrt(2.0) / np.pi) * longitude * np.cos(aux)
             xy[:, 1] = np.sqrt(2.0) * np.sin(aux)
 
@@ -382,9 +385,10 @@ class MollweideAxes(GeoAxes):
 
     class InvertedMollweideTransform(_GeoTransform):
 
-        def transform_non_affine(self, xy):
+        @_api.rename_parameter("3.8", "xy", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
-            x, y = xy.T
+            x, y = values.T
             # from Equations (7, 8) of
             # https://mathworld.wolfram.com/MollweideProjection.html
             theta = np.arcsin(y / np.sqrt(2))
@@ -422,9 +426,10 @@ class LambertAxes(GeoAxes):
             self._center_longitude = center_longitude
             self._center_latitude = center_latitude
 
-        def transform_non_affine(self, ll):
+        @_api.rename_parameter("3.8", "ll", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
-            longitude, latitude = ll.T
+            longitude, latitude = values.T
             clong = self._center_longitude
             clat = self._center_latitude
             cos_lat = np.cos(latitude)
@@ -455,9 +460,10 @@ class LambertAxes(GeoAxes):
             self._center_longitude = center_longitude
             self._center_latitude = center_latitude
 
-        def transform_non_affine(self, xy):
+        @_api.rename_parameter("3.8", "xy", "values")
+        def transform_non_affine(self, values):
             # docstring inherited
-            x, y = xy.T
+            x, y = values.T
             clong = self._center_longitude
             clat = self._center_latitude
             p = np.maximum(np.hypot(x, y), 1e-9)

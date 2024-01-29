@@ -8,9 +8,24 @@ import re
 import sys
 import numpy as np
 import inspect
+import sysconfig
 
 
-__all__ = ['PytestTester', 'check_free_memory', '_TestPythranFunc']
+__all__ = ['PytestTester', 'check_free_memory', '_TestPythranFunc', 'IS_MUSL']
+
+
+IS_MUSL = False
+try:
+    # Note that packaging is not a dependency, hence we need this try-except:
+    from packaging.tags import sys_tags
+    _tags = list(sys_tags())
+    if 'musllinux' in _tags[0].platform:
+        IS_MUSL = True
+except ImportError:
+    # fallback to sysconfig (might be flaky)
+    v = sysconfig.get_config_var('HOST_GNU_TYPE') or ''
+    if 'musl' in v:
+        IS_MUSL = True
 
 
 class FPUModeChangeWarning(RuntimeWarning):
@@ -86,7 +101,8 @@ class PytestTester:
             else:
                 import warnings
                 warnings.warn('Could not run tests in parallel because '
-                              'pytest-xdist plugin is not available.')
+                              'pytest-xdist plugin is not available.',
+                              stacklevel=2)
 
         pytest_args += ['--pyargs'] + list(tests)
 
@@ -194,8 +210,7 @@ def check_free_memory(free_mb):
         if mem_free is None:
             pytest.skip("Could not determine available memory; set SCIPY_AVAILABLE_MEM "
                         "variable to free memory in MB to run the test.")
-        msg = '{} MB memory required, but {} MB available'.format(
-            free_mb, mem_free/1e6)
+        msg = f'{free_mb} MB memory required, but {mem_free/1e6} MB available'
 
     if mem_free < free_mb * 1e6:
         pytest.skip(msg)

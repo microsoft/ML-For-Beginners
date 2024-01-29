@@ -50,11 +50,18 @@ class TestDataFrameBlockInternals:
         assert dti[1] == ts
 
     def test_cast_internals(self, float_frame):
-        casted = DataFrame(float_frame._mgr, dtype=int)
+        msg = "Passing a BlockManager to DataFrame"
+        with tm.assert_produces_warning(
+            DeprecationWarning, match=msg, check_stacklevel=False
+        ):
+            casted = DataFrame(float_frame._mgr, dtype=int)
         expected = DataFrame(float_frame._series, dtype=int)
         tm.assert_frame_equal(casted, expected)
 
-        casted = DataFrame(float_frame._mgr, dtype=np.int32)
+        with tm.assert_produces_warning(
+            DeprecationWarning, match=msg, check_stacklevel=False
+        ):
+            casted = DataFrame(float_frame._mgr, dtype=np.int32)
         expected = DataFrame(float_frame._series, dtype=np.int32)
         tm.assert_frame_equal(casted, expected)
 
@@ -176,7 +183,7 @@ class TestDataFrameBlockInternals:
         )
         tm.assert_series_equal(result, expected)
 
-    def test_construction_with_mixed(self, float_string_frame):
+    def test_construction_with_mixed(self, float_string_frame, using_infer_string):
         # test construction edge cases with mixed types
 
         # f7u12, this does not work without extensive workaround
@@ -199,7 +206,7 @@ class TestDataFrameBlockInternals:
         expected = Series(
             [np.dtype("float64")] * 4
             + [
-                np.dtype("object"),
+                np.dtype("object") if not using_infer_string else "string",
                 np.dtype("datetime64[us]"),
                 np.dtype("timedelta64[us]"),
             ],
@@ -331,7 +338,7 @@ class TestDataFrameBlockInternals:
         assert not float_frame._is_mixed_type
         assert float_string_frame._is_mixed_type
 
-    def test_stale_cached_series_bug_473(self, using_copy_on_write):
+    def test_stale_cached_series_bug_473(self, using_copy_on_write, warn_copy_on_write):
         # this is chained, but ok
         with option_context("chained_assignment", None):
             Y = DataFrame(
@@ -341,10 +348,7 @@ class TestDataFrameBlockInternals:
             )
             repr(Y)
             Y["e"] = Y["e"].astype("object")
-            if using_copy_on_write:
-                with tm.raises_chained_assignment_error():
-                    Y["g"]["c"] = np.nan
-            else:
+            with tm.raises_chained_assignment_error():
                 Y["g"]["c"] = np.nan
             repr(Y)
             Y.sum()
@@ -354,13 +358,16 @@ class TestDataFrameBlockInternals:
             else:
                 assert pd.isna(Y["g"]["c"])
 
+    @pytest.mark.filterwarnings("ignore:Setting a value on a view:FutureWarning")
     def test_strange_column_corruption_issue(self, using_copy_on_write):
         # TODO(wesm): Unclear how exactly this is related to internal matters
         df = DataFrame(index=[0, 1])
         df[0] = np.nan
         wasCol = {}
 
-        with tm.assert_produces_warning(PerformanceWarning):
+        with tm.assert_produces_warning(
+            PerformanceWarning, raise_on_extra_warnings=False
+        ):
             for i, dt in enumerate(df.index):
                 for col in range(100, 200):
                     if col not in wasCol:
@@ -416,7 +423,8 @@ def test_update_inplace_sets_valid_block_values(using_copy_on_write):
         with tm.raises_chained_assignment_error():
             df["a"].fillna(1, inplace=True)
     else:
-        df["a"].fillna(1, inplace=True)
+        with tm.assert_produces_warning(FutureWarning, match="inplace method"):
+            df["a"].fillna(1, inplace=True)
 
     # check we haven't put a Series into any block.values
     assert isinstance(df._mgr.blocks[0].values, Categorical)

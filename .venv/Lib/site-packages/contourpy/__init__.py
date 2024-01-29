@@ -10,6 +10,8 @@ from contourpy._contourpy import (
 )
 from contourpy._version import __version__
 from contourpy.chunk import calc_chunk_sizes
+from contourpy.convert import convert_filled, convert_lines
+from contourpy.dechunk import dechunk_filled, dechunk_lines
 from contourpy.enum_util import as_fill_type, as_line_type, as_z_interp
 
 if TYPE_CHECKING:
@@ -22,6 +24,10 @@ if TYPE_CHECKING:
 __all__ = [
     "__version__",
     "contour_generator",
+    "convert_filled",
+    "convert_lines",
+    "dechunk_filled",
+    "dechunk_lines",
     "max_threads",
     "FillType",
     "LineType",
@@ -74,10 +80,10 @@ def contour_generator(
     z_interp: ZInterp | str | None = ZInterp.Linear,
     thread_count: int = 0,
 ) -> ContourGenerator:
-    """Create and return a contour generator object.
+    """Create and return a :class:`~contourpy._contourpy.ContourGenerator` object.
 
-    The class and properties of the contour generator are determined by the function arguments,
-    with sensible defaults.
+    The class and properties of the returned :class:`~contourpy._contourpy.ContourGenerator` are
+    determined by the function arguments, with sensible defaults.
 
     Args:
         x (array-like of shape (ny, nx) or (nx,), optional): The x-coordinates of the ``z`` values.
@@ -96,12 +102,14 @@ def contour_generator(
             If ``True``, only the triangular corners of quads nearest these points are always masked
             out, other triangular corners comprising three unmasked points are contoured as usual.
             If not specified, uses the default provided by the algorithm ``name``.
-        line_type (LineType, optional): The format of contour line data returned from calls to
-            :meth:`~contourpy.ContourGenerator.lines`. If not specified, uses the default provided
-            by the algorithm ``name``.
-        fill_type (FillType, optional): The format of filled contour data returned from calls to
-            :meth:`~contourpy.ContourGenerator.filled`. If not specified, uses the default provided
-            by the algorithm ``name``.
+        line_type (LineType or str, optional): The format of contour line data returned from calls
+            to :meth:`~contourpy.ContourGenerator.lines`, specified either as a
+            :class:`~contourpy.LineType` or its string equivalent such as ``"SeparateCode"``.
+            If not specified, uses the default provided by the algorithm ``name``.
+        fill_type (FillType or str, optional): The format of filled contour data returned from calls
+            to :meth:`~contourpy.ContourGenerator.filled`, specified either as a
+            :class:`~contourpy.FillType` or its string equivalent such as ``"OuterOffset"``.
+            If not specified, uses the default provided by the algorithm ``name``.
         chunk_size (int or tuple(int, int), optional): Chunk size in (y, x) directions, or the same
             size in both directions if only one value is specified.
         chunk_count (int or tuple(int, int), optional): Chunk count in (y, x) directions, or the
@@ -113,9 +121,10 @@ def contour_generator(
             at the centre (mean x, y of the corner points) and a contour line is piecewise linear
             within those triangles. Corner-masked triangles are not affected by this setting, only
             full unmasked quads.
-        z_interp (ZInterp): How to interpolate ``z`` values when determining where contour lines
-            intersect the edges of quads and the ``z`` values of the central points of quads,
-            default ``ZInterp.Linear``.
+        z_interp (ZInterp or str, optional): How to interpolate ``z`` values when determining where
+            contour lines intersect the edges of quads and the ``z`` values of the central points of
+            quads, specified either as a :class:`~contourpy.ZInterp` or its string equivalent such
+            as ``"Log"``. Default is ``ZInterp.Linear``.
         thread_count (int): Number of threads to use for contour calculation, default 0. Threads can
             only be used with an algorithm ``name`` that supports threads (currently only
             ``name="threaded"``) and there must be at least the same number of chunks as threads.

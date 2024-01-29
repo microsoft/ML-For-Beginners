@@ -523,7 +523,7 @@ class TestSLSQP:
 
     def test_nested_minimization(self):
 
-        class NestedProblem():
+        class NestedProblem:
 
             def __init__(self):
                 self.F_outer_count = 0

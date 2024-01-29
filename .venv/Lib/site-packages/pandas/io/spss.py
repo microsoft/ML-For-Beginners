@@ -63,9 +63,10 @@ def read_spss(
             raise TypeError("usecols must be list-like.")
         usecols = list(usecols)  # pyreadstat requires a list
 
-    df, _ = pyreadstat.read_sav(
+    df, metadata = pyreadstat.read_sav(
         stringify_path(path), usecols=usecols, apply_value_formats=convert_categoricals
     )
+    df.attrs = metadata.__dict__
     if dtype_backend is not lib.no_default:
         df = df.convert_dtypes(dtype_backend=dtype_backend)
     return df

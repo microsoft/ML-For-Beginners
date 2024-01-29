@@ -32,7 +32,7 @@ class CrystalLexer(ExtendedRegexLexer):
     """
 
     name = 'Crystal'
-    url = 'http://crystal-lang.org'
+    url = 'https://crystal-lang.org'
     aliases = ['cr', 'crystal']
     filenames = ['*.cr']
     mimetypes = ['text/x-crystal']

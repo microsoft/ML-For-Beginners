@@ -1,4 +1,5 @@
 """ Test cases for misc plot functions """
+import os
 
 import numpy as np
 import pytest
@@ -10,8 +11,11 @@ from pandas import (
     Index,
     Series,
     Timestamp,
+    date_range,
     interval_range,
+    period_range,
     plotting,
+    read_csv,
 )
 import pandas._testing as tm
 from pandas.tests.plotting.common import (
@@ -23,10 +27,19 @@ from pandas.tests.plotting.common import (
 )
 
 mpl = pytest.importorskip("matplotlib")
+plt = pytest.importorskip("matplotlib.pyplot")
 cm = pytest.importorskip("matplotlib.cm")
 
 
-@td.skip_if_mpl
+@pytest.fixture
+def iris(datapath) -> DataFrame:
+    """
+    The iris dataset as a DataFrame.
+    """
+    return read_csv(datapath("io", "data", "csv", "iris.csv"))
+
+
+@td.skip_if_installed("matplotlib")
 def test_import_error_message():
     # GH-19810
     df = DataFrame({"A": [1, 2]})
@@ -69,11 +82,39 @@ def test_get_accessor_args():
     assert len(kwargs) == 24
 
 
+@pytest.mark.parametrize("kind", plotting.PlotAccessor._all_kinds)
+@pytest.mark.parametrize(
+    "data", [DataFrame(np.arange(15).reshape(5, 3)), Series(range(5))]
+)
+@pytest.mark.parametrize(
+    "index",
+    [
+        Index(range(5)),
+        date_range("2020-01-01", periods=5),
+        period_range("2020-01-01", periods=5),
+    ],
+)
+def test_savefig(kind, data, index):
+    fig, ax = plt.subplots()
+    data.index = index
+    kwargs = {}
+    if kind in ["hexbin", "scatter", "pie"]:
+        if isinstance(data, Series):
+            pytest.skip(f"{kind} not supported with Series")
+        kwargs = {"x": 0, "y": 1}
+    data.plot(kind=kind, ax=ax, **kwargs)
+    fig.savefig(os.devnull)
+
+
 class TestSeriesPlots:
     def test_autocorrelation_plot(self):
         from pandas.plotting import autocorrelation_plot
 
-        ser = tm.makeTimeSeries(name="ts")
+        ser = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         # Ensure no UserWarning when making plot
         with tm.assert_produces_warning(None):
             _check_plot_works(autocorrelation_plot, series=ser)
@@ -86,13 +127,21 @@ class TestSeriesPlots:
     def test_lag_plot(self, kwargs):
         from pandas.plotting import lag_plot
 
-        ser = tm.makeTimeSeries(name="ts")
+        ser = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         _check_plot_works(lag_plot, series=ser, **kwargs)
 
     def test_bootstrap_plot(self):
         from pandas.plotting import bootstrap_plot
 
-        ser = tm.makeTimeSeries(name="ts")
+        ser = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         _check_plot_works(bootstrap_plot, series=ser, size=10)
 
 
@@ -517,9 +566,9 @@ class TestDataFramePlots:
         # Test barh plot with string and integer at the same column
         from matplotlib.text import Text
 
-        df = DataFrame([{"word": 1, "value": 0}, {"word": "knowledg", "value": 2}])
+        df = DataFrame([{"word": 1, "value": 0}, {"word": "knowledge", "value": 2}])
         plot_barh = df.plot.barh(x="word", legend=None)
-        expected_yticklabels = [Text(0, 0, "1"), Text(0, 1, "knowledg")]
+        expected_yticklabels = [Text(0, 0, "1"), Text(0, 1, "knowledge")]
         assert all(
             actual.get_text() == expected.get_text()
             for actual, expected in zip(

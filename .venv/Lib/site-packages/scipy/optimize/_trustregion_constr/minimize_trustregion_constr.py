@@ -3,7 +3,7 @@ import numpy as np
 from scipy.sparse.linalg import LinearOperator
 from .._differentiable_functions import VectorFunction
 from .._constraints import (
-    NonlinearConstraint, LinearConstraint, PreparedConstraint, strict_bounds)
+    NonlinearConstraint, LinearConstraint, PreparedConstraint, Bounds, strict_bounds)
 from .._hessian_update_strategy import BFGS
 from .._optimize import OptimizeResult
 from .._differentiable_functions import ScalarFunction
@@ -323,6 +323,11 @@ def _minimize_trustregion_constr(fun, x0, args, grad,
         verbose = 1
 
     if bounds is not None:
+        modified_lb = np.nextafter(bounds.lb, -np.inf, where=bounds.lb > -np.inf)
+        modified_ub = np.nextafter(bounds.ub, np.inf, where=bounds.ub < np.inf)
+        modified_lb = np.where(np.isfinite(bounds.lb), modified_lb, bounds.lb)
+        modified_ub = np.where(np.isfinite(bounds.ub), modified_ub, bounds.ub)
+        bounds = Bounds(modified_lb, modified_ub, keep_feasible=bounds.keep_feasible)
         finite_diff_bounds = strict_bounds(bounds.lb, bounds.ub,
                                            bounds.keep_feasible, n_vars)
     else:

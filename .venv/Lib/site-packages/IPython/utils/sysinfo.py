@@ -20,6 +20,8 @@ import pprint
 import sys
 import subprocess
 
+from pathlib import Path
+
 from IPython.core import release
 from IPython.utils import _sysinfo, encoding
 
@@ -27,7 +29,7 @@ from IPython.utils import _sysinfo, encoding
 # Code
 #-----------------------------------------------------------------------------
 
-def pkg_commit_hash(pkg_path):
+def pkg_commit_hash(pkg_path: str) -> tuple[str, str]:
     """Get short form of commit hash given directory `pkg_path`
 
     We get the commit hash from (in order of preference):
@@ -65,7 +67,7 @@ def pkg_commit_hash(pkg_path):
     return '(none found)', '<not found>'
 
 
-def pkg_info(pkg_path):
+def pkg_info(pkg_path: str) -> dict:
     """Return dict describing the context of this package
 
     Parameters
@@ -92,11 +94,10 @@ def pkg_info(pkg_path):
         default_encoding=encoding.DEFAULT_ENCODING,
         )
 
-def get_sys_info():
+def get_sys_info() -> dict:
     """Return useful information about IPython and the system, as a dict."""
-    p = os.path
-    path = p.realpath(p.dirname(p.abspath(p.join(__file__, '..'))))
-    return pkg_info(path)
+    path = Path(__file__, "..").resolve().parent
+    return pkg_info(str(path))
 
 def sys_info():
     """Return useful information about IPython and the system, as a string.

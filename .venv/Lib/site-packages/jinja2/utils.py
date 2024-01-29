@@ -182,7 +182,7 @@ def object_type_repr(obj: t.Any) -> str:
 
 def pformat(obj: t.Any) -> str:
     """Format an object using :func:`pprint.pformat`."""
-    from pprint import pformat  # type: ignore
+    from pprint import pformat
 
     return pformat(obj)
 
@@ -259,7 +259,7 @@ def urlize(
     if trim_url_limit is not None:
 
         def trim_url(x: str) -> str:
-            if len(x) > trim_url_limit:  # type: ignore
+            if len(x) > trim_url_limit:
                 return f"{x[:trim_url_limit]}..."
 
             return x

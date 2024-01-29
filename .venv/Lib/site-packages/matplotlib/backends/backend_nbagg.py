@@ -30,7 +30,7 @@ def connection_info():
     result = [
         '{fig} - {socket}'.format(
             fig=(manager.canvas.figure.get_label()
-                 or "Figure {}".format(manager.num)),
+                 or f"Figure {manager.num}"),
             socket=manager.web_sockets)
         for manager in Gcf.get_all_fig_managers()
     ]
@@ -218,7 +218,7 @@ class CommSocket:
             # The comm is ASCII, so we send the image in base64 encoded data
             # URL form.
             data = b64encode(blob).decode('ascii')
-            data_uri = "data:image/png;base64,{0}".format(data)
+            data_uri = f"data:image/png;base64,{data}"
             self.comm.send({'data': data_uri})
 
     def on_message(self, message):

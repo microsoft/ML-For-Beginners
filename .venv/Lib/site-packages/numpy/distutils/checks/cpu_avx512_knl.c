@@ -15,7 +15,7 @@
 
 int main(int argc, char **argv)
 {
-    int base[128];
+    int base[128]={};
     __m512d ad = _mm512_loadu_pd((const __m512d*)argv[argc-1]);
     /* ER */
     __m512i a = _mm512_castpd_si512(_mm512_exp2a23_pd(ad));

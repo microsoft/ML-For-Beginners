@@ -7,7 +7,6 @@ import warnings
 
 import numpy as np
 import pytest
-from scipy.sparse import csr_matrix
 
 from sklearn.cluster import AffinityPropagation, affinity_propagation
 from sklearn.cluster._affinity_propagation import _equal_similarities_and_preferences
@@ -15,6 +14,7 @@ from sklearn.datasets import make_blobs
 from sklearn.exceptions import ConvergenceWarning, NotFittedError
 from sklearn.metrics import euclidean_distances
 from sklearn.utils._testing import assert_allclose, assert_array_equal
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 n_clusters = 3
 centers = np.array([[1, 1], [-1, -1], [1, -1]]) + 10
@@ -104,10 +104,11 @@ def test_affinity_propagation_affinity_shape():
         affinity_propagation(S[:, :-1])
 
 
-def test_affinity_propagation_precomputed_with_sparse_input():
-    err_msg = "A sparse matrix was passed, but dense data is required"
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_affinity_propagation_precomputed_with_sparse_input(csr_container):
+    err_msg = "Sparse data was passed for X, but dense data is required"
     with pytest.raises(TypeError, match=err_msg):
-        AffinityPropagation(affinity="precomputed").fit(csr_matrix((3, 3)))
+        AffinityPropagation(affinity="precomputed").fit(csr_container((3, 3)))
 
 
 def test_affinity_propagation_predict(global_random_seed, global_dtype):
@@ -255,13 +256,14 @@ def test_affinity_propagation_random_state():
     assert np.mean((centers0 - centers76) ** 2) > 1
 
 
-@pytest.mark.parametrize("centers", [csr_matrix(np.zeros((1, 10))), np.zeros((1, 10))])
-def test_affinity_propagation_convergence_warning_dense_sparse(centers, global_dtype):
+@pytest.mark.parametrize("container", CSR_CONTAINERS + [np.array])
+def test_affinity_propagation_convergence_warning_dense_sparse(container, global_dtype):
     """
     Check that having sparse or dense `centers` format should not
     influence the convergence.
     Non-regression test for gh-13334.
     """
+    centers = container(np.zeros((1, 10)))
     rng = np.random.RandomState(42)
     X = rng.rand(40, 10).astype(global_dtype, copy=False)
     y = (4 * rng.rand(40)).astype(int)
@@ -287,20 +289,22 @@ def test_correct_clusters(global_dtype):
     assert_array_equal(afp.labels_, expected)
 
 
-def test_sparse_input_for_predict():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_sparse_input_for_predict(csr_container):
     # Test to make sure sparse inputs are accepted for predict
     # (non-regression test for issue #20049)
     af = AffinityPropagation(affinity="euclidean", random_state=42)
     af.fit(X)
-    labels = af.predict(csr_matrix((2, 2)))
+    labels = af.predict(csr_container((2, 2)))
     assert_array_equal(labels, (2, 2))
 
 
-def test_sparse_input_for_fit_predict():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_sparse_input_for_fit_predict(csr_container):
     # Test to make sure sparse inputs are accepted for fit_predict
     # (non-regression test for issue #20049)
     af = AffinityPropagation(affinity="euclidean", random_state=42)
     rng = np.random.RandomState(42)
-    X = csr_matrix(rng.randint(0, 2, size=(5, 5)))
+    X = csr_container(rng.randint(0, 2, size=(5, 5)))
     labels = af.fit_predict(X)
     assert_array_equal(labels, (0, 1, 1, 2, 3))

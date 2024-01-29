@@ -8,7 +8,7 @@ from typing import Any, Dict, List
 
 # See compatibility note on `group` keyword in https://docs.python.org/3/library/importlib.metadata.html#entry-points
 if sys.version_info < (3, 10):  # pragma: no cover
-    from importlib_metadata import EntryPoint, entry_points
+    from importlib_metadata import EntryPoint, entry_points  # type:ignore[import-not-found]
 else:  # pragma: no cover
     from importlib.metadata import EntryPoint, entry_points
 
@@ -32,7 +32,7 @@ class KernelProvisionerFactory(SingletonConfigurable):
     :class:`LocalProvisioner`.
     """
 
-    GROUP_NAME = 'jupyter_client.kernel_provisioners'
+    GROUP_NAME = "jupyter_client.kernel_provisioners"
     provisioners: Dict[str, EntryPoint] = {}
 
     default_provisioner_name_env = "JUPYTER_DEFAULT_PROVISIONER_NAME"
@@ -42,8 +42,8 @@ class KernelProvisionerFactory(SingletonConfigurable):
                                        entry is present in the kernelspec.""",
     )
 
-    @default('default_provisioner_name')
-    def _default_provisioner_name_default(self):
+    @default("default_provisioner_name")
+    def _default_provisioner_name_default(self) -> str:
         """The default provisioner name."""
         return getenv(self.default_provisioner_name_env, "local-provisioner")
 
@@ -63,7 +63,7 @@ class KernelProvisionerFactory(SingletonConfigurable):
         """
         is_available: bool = True
         provisioner_cfg = self._get_provisioner_config(kernel_spec)
-        provisioner_name = str(provisioner_cfg.get('provisioner_name'))
+        provisioner_name = str(provisioner_cfg.get("provisioner_name"))
         if not self._check_availability(provisioner_name):
             is_available = False
             self.log.warning(
@@ -87,7 +87,7 @@ class KernelProvisionerFactory(SingletonConfigurable):
         `ModuleNotFoundError` is raised.
         """
         provisioner_cfg = self._get_provisioner_config(kernel_spec)
-        provisioner_name = str(provisioner_cfg.get('provisioner_name'))
+        provisioner_name = str(provisioner_cfg.get("provisioner_name"))
         if not self._check_availability(provisioner_name):
             msg = f"Kernel provisioner '{provisioner_name}' has not been registered."
             raise ModuleNotFoundError(msg)
@@ -97,7 +97,7 @@ class KernelProvisionerFactory(SingletonConfigurable):
             f"kernel provisioner: {provisioner_name}"
         )
         provisioner_class = self.provisioners[provisioner_name].load()
-        provisioner_config = provisioner_cfg.get('config')
+        provisioner_config = provisioner_cfg.get("config")
         provisioner: KernelProvisionerBase = provisioner_class(
             kernel_id=kernel_id, kernel_spec=kernel_spec, parent=parent, **provisioner_config
         )
@@ -142,10 +142,10 @@ class KernelProvisionerFactory(SingletonConfigurable):
             the default information.  If no `config` sub-dictionary exists, an empty `config`
             dictionary will be added.
         """
-        env_provisioner = kernel_spec.metadata.get('kernel_provisioner', {})
-        if 'provisioner_name' in env_provisioner:  # If no provisioner_name, return default
+        env_provisioner = kernel_spec.metadata.get("kernel_provisioner", {})
+        if "provisioner_name" in env_provisioner:  # If no provisioner_name, return default
             if (
-                'config' not in env_provisioner
+                "config" not in env_provisioner
             ):  # if provisioner_name, but no config stanza, add one
                 env_provisioner.update({"config": {}})
             return env_provisioner  # Return what we found (plus config stanza if necessary)
@@ -182,7 +182,7 @@ class KernelProvisionerFactory(SingletonConfigurable):
         # resulting in a violation of a supposed invariant condition.  To address this scenario,
         # we will log a warning message indicating this situation, then build the entrypoint
         # instance ourselves - since we have that information.
-        if name == 'local-provisioner':
+        if name == "local-provisioner":
             distros = glob.glob(f"{path.dirname(path.dirname(__file__))}-*")
             self.log.warning(
                 f"Kernel Provisioning: The 'local-provisioner' is not found.  This is likely "
@@ -194,7 +194,7 @@ class KernelProvisionerFactory(SingletonConfigurable):
                 f"and used.\nThe candidate distribution locations are: {distros}"
             )
             return EntryPoint(
-                'local-provisioner', 'jupyter_client.provisioning', 'LocalProvisioner'
+                "local-provisioner", "jupyter_client.provisioning", "LocalProvisioner"
             )
 
         raise

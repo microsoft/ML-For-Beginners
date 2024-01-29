@@ -597,7 +597,7 @@ class UnobservedComponents(MLEModel):
         # of the data.
         if cycle_period_bounds is None:
             freq = self.data.freq[0] if self.data.freq is not None else ''
-            if freq == 'A':
+            if freq in ('A', 'Y'):
                 cycle_period_bounds = (1.5, 12)
             elif freq == 'Q':
                 cycle_period_bounds = (1.5*4, 12*4)

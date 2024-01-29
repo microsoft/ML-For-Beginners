@@ -15,8 +15,12 @@ from pygments.token import Token, Keyword, Name, Comment, String, Error, \
     Number, Operator, Whitespace, Generic
 
 
-class StataDarkStyle(Style):
+__all__ = ['StataDarkStyle']
 
+
+class StataDarkStyle(Style):
+    name = 'stata-dark'
+    
     background_color = "#232629"
     highlight_color = "#49483e"
 

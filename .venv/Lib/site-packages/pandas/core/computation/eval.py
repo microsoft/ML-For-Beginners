@@ -388,14 +388,10 @@ def eval(
             # we will ignore numpy warnings here; e.g. if trying
             # to use a non-numeric indexer
             try:
-                with warnings.catch_warnings(record=True):
-                    # TODO: Filter the warnings we actually care about here.
-                    if inplace and isinstance(target, NDFrame):
-                        target.loc[:, assigner] = ret
-                    else:
-                        target[  # pyright: ignore[reportGeneralTypeIssues]
-                            assigner
-                        ] = ret
+                if inplace and isinstance(target, NDFrame):
+                    target.loc[:, assigner] = ret
+                else:
+                    target[assigner] = ret  # pyright: ignore[reportGeneralTypeIssues]
             except (TypeError, IndexError) as err:
                 raise ValueError("Cannot assign expression output to target") from err
 

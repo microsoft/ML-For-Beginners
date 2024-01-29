@@ -3,7 +3,10 @@
  */
 
 #include "tensor_util.h"
+
+#include <string>
 #include <vector>
+
 #include "onnx/common/platform_helpers.h"
 
 namespace ONNX_NAMESPACE {

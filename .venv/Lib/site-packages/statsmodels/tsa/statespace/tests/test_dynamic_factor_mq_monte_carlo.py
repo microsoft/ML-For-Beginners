@@ -217,7 +217,7 @@ def test_em_nonstationary(reset_randomstate):
     # Test that when the EM algorithm estimates non-stationary parameters, that
     # it warns the user and switches to a diffuse initialization.
     ix = pd.period_range(start='2000', periods=20, freq='M')
-    endog_M = pd.Series(np.arange(20), index=ix)
+    endog_M = pd.Series(np.arange(20), index=ix, dtype=float)
     endog_M.iloc[10:12] += [0.4, -0.2]  # add in a little noise
     ix = pd.period_range(start='2000', periods=5, freq='Q')
     endog_Q = pd.Series(np.arange(5), index=ix)
@@ -230,7 +230,7 @@ def test_em_nonstationary(reset_randomstate):
            r' switched to diffuse for the following:  \["factor block:'
            r' \(\'global\',\)"\], and fitting was restarted.')
     with pytest.warns(UserWarning, match=msg):
-        return mod.fit(maxiter=2, em_initialization=False)
+        mod.fit(maxiter=2, em_initialization=False)
 
 
 def gen_k_factor1(nobs=10000, k=1, idiosyncratic_ar1=False,

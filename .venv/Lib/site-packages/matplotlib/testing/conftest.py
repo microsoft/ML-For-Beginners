@@ -66,8 +66,8 @@ def mpl_test_settings(request):
                     # Should only occur for the cairo backend tests, if neither
                     # pycairo nor cairocffi are installed.
                     if 'cairo' in backend.lower() or skip_on_importerror:
-                        pytest.skip("Failed to switch to backend {} ({})."
-                                    .format(backend, exc))
+                        pytest.skip("Failed to switch to backend "
+                                    f"{backend} ({exc}).")
                     else:
                         raise
             # Default of cleanup and image_comparison too.
@@ -75,7 +75,9 @@ def mpl_test_settings(request):
         try:
             yield
         finally:
-            matplotlib.use(prev_backend)
+            if backend is not None:
+                plt.close("all")
+                matplotlib.use(prev_backend)
 
 
 @pytest.fixture

@@ -1464,6 +1464,10 @@ class TestRegression:
         x[x.nonzero()] = x.ravel()[:1]
         assert_(x[0, 1] == x[0, 0])
 
+    @pytest.mark.skipif(
+        sys.version_info >= (3, 12),
+        reason="Python 3.12 has immortal refcounts, this test no longer works."
+    )
     @pytest.mark.skipif(not HAS_REFCOUNT, reason="Python lacks refcounts")
     def test_structured_arrays_with_objects2(self):
         # Ticket #1299 second test

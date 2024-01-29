@@ -101,16 +101,19 @@ def _get_umf_family(A):
         (np.complex128, np.int64): 'zl'
     }
 
-    f_type = np.sctypeDict[A.dtype.name]
-    i_type = np.sctypeDict[A.indices.dtype.name]
+    # A.dtype.name can only be "float64" or
+    # "complex128" in control flow
+    f_type = getattr(np, A.dtype.name)
+    # control flow may allow for more index
+    # types to get through here
+    i_type = getattr(np, A.indices.dtype.name)
 
     try:
         family = _families[(f_type, i_type)]
 
     except KeyError as e:
-        msg = 'only float64 or complex128 matrices with int32 or int64' \
-            ' indices are supported! (got: matrix: %s, indices: %s)' \
-            % (f_type, i_type)
+        msg = ('only float64 or complex128 matrices with int32 or int64 '
+               f'indices are supported! (got: matrix: {f_type}, indices: {i_type})')
         raise ValueError(msg) from e
 
     # See gh-8278. Considered converting only if
@@ -227,7 +230,7 @@ def spsolve(A, b, permc_spec=None, use_umfpack=True):
     if not (issparse(A) and A.format in ("csc", "csr")):
         A = csc_matrix(A)
         warn('spsolve requires A be CSC or CSR matrix format',
-                SparseEfficiencyWarning)
+             SparseEfficiencyWarning, stacklevel=2)
 
     # b is a vector only if b have shape (n,) or (n, 1)
     b_is_sparse = issparse(b) or is_pydata_spmatrix(b)
@@ -250,8 +253,7 @@ def spsolve(A, b, permc_spec=None, use_umfpack=True):
         raise ValueError(f"matrix must be square (has shape {(M, N)})")
 
     if M != b.shape[0]:
-        raise ValueError("matrix - rhs dimension mismatch (%s - %s)"
-                         % (A.shape, b.shape[0]))
+        raise ValueError(f"matrix - rhs dimension mismatch ({A.shape} - {b.shape[0]})")
 
     use_umfpack = use_umfpack and useUmfpack
 
@@ -290,7 +292,7 @@ def spsolve(A, b, permc_spec=None, use_umfpack=True):
             x, info = _superlu.gssv(N, A.nnz, A.data, indices, indptr,
                                     b, flag, options=options)
             if info != 0:
-                warn("Matrix is exactly singular", MatrixRankWarning)
+                warn("Matrix is exactly singular", MatrixRankWarning, stacklevel=2)
                 x.fill(np.nan)
             if b_is_vector:
                 x = x.ravel()
@@ -300,7 +302,8 @@ def spsolve(A, b, permc_spec=None, use_umfpack=True):
 
             if not (b.format == "csc" or is_pydata_spmatrix(b)):
                 warn('spsolve is more efficient when sparse b '
-                     'is in the CSC matrix format', SparseEfficiencyWarning)
+                     'is in the CSC matrix format',
+                     SparseEfficiencyWarning, stacklevel=2)
                 b = csc_matrix(b)
 
             # Create a sparse output matrix by repeatedly applying
@@ -409,7 +412,8 @@ def splu(A, permc_spec=None, diag_pivot_thresh=None,
 
     if not (issparse(A) and A.format == "csc"):
         A = csc_matrix(A)
-        warn('splu converted its input to CSC format', SparseEfficiencyWarning)
+        warn('splu converted its input to CSC format',
+             SparseEfficiencyWarning, stacklevel=2)
 
     # sum duplicates for non-canonical format
     A.sum_duplicates()
@@ -504,7 +508,7 @@ def spilu(A, drop_tol=None, fill_factor=None, drop_rule=None, permc_spec=None,
     if not (issparse(A) and A.format == "csc"):
         A = csc_matrix(A)
         warn('spilu converted its input to CSC format',
-             SparseEfficiencyWarning)
+             SparseEfficiencyWarning, stacklevel=2)
 
     # sum duplicates for non-canonical format
     A.sum_duplicates()
@@ -552,10 +556,11 @@ def factorized(A):
     --------
     >>> import numpy as np
     >>> from scipy.sparse.linalg import factorized
+    >>> from scipy.sparse import csc_matrix
     >>> A = np.array([[ 3. ,  2. , -1. ],
     ...               [ 2. , -2. ,  4. ],
     ...               [-1. ,  0.5, -1. ]])
-    >>> solve = factorized(A) # Makes LU decomposition.
+    >>> solve = factorized(csc_matrix(A)) # Makes LU decomposition.
     >>> rhs1 = np.array([1, -2, 0])
     >>> solve(rhs1) # Uses the LU factors.
     array([ 1., -2., -2.])
@@ -571,7 +576,7 @@ def factorized(A):
         if not (issparse(A) and A.format == "csc"):
             A = csc_matrix(A)
             warn('splu converted its input to CSC format',
-                 SparseEfficiencyWarning)
+                 SparseEfficiencyWarning, stacklevel=2)
 
         A = A._asfptype()  # upcast to a floating point format
 
@@ -661,7 +666,7 @@ def spsolve_triangular(A, b, lower=True, overwrite_A=False, overwrite_b=False,
     # Check the input for correct type and format.
     if not (issparse(A) and A.format == "csr"):
         warn('CSR matrix format is required. Converting to CSR matrix.',
-             SparseEfficiencyWarning)
+             SparseEfficiencyWarning, stacklevel=2)
         A = csr_matrix(A)
     elif not overwrite_A:
         A = A.copy()
@@ -682,7 +687,8 @@ def spsolve_triangular(A, b, lower=True, overwrite_A=False, overwrite_b=False,
         raise ValueError(
             'The size of the dimensions of A must be equal to '
             'the size of the first dimension of b but the shape of A is '
-            '{} and the shape of b is {}.'.format(A.shape, b.shape))
+            f'{A.shape} and the shape of b is {b.shape}.'
+        )
 
     # Init x as (a copy of) b.
     x_dtype = np.result_type(A.data, b, np.float64)
@@ -691,8 +697,9 @@ def spsolve_triangular(A, b, lower=True, overwrite_A=False, overwrite_b=False,
             x = b
         else:
             raise ValueError(
-                'Cannot overwrite b (dtype {}) with result '
-                'of type {}.'.format(b.dtype, x_dtype))
+                f'Cannot overwrite b (dtype {b.dtype}) with result '
+                f'of type {x_dtype}.'
+            )
     else:
         x = b.astype(x_dtype, copy=True)
 

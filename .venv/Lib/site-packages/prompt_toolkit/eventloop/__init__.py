@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from .async_generator import aclosing, generator_to_async_generator
 from .inputhook import (
+    InputHook,
     InputHookContext,
     InputHookSelector,
     new_eventloop_with_inputhook,
@@ -22,6 +23,7 @@ __all__ = [
     "call_soon_threadsafe",
     "get_traceback_from_context",
     # Inputhooks.
+    "InputHook",
     "new_eventloop_with_inputhook",
     "set_eventloop_with_inputhook",
     "InputHookSelector",

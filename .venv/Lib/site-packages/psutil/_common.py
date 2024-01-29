@@ -35,17 +35,19 @@ try:
 except ImportError:
     AF_UNIX = None
 
-if sys.version_info >= (3, 4):
+
+# can't take it from _common.py as this script is imported by setup.py
+PY3 = sys.version_info[0] >= 3
+if PY3:
     import enum
 else:
     enum = None
 
 
-# can't take it from _common.py as this script is imported by setup.py
-PY3 = sys.version_info[0] == 3
 PSUTIL_DEBUG = bool(os.getenv('PSUTIL_DEBUG'))
 _DEFAULT = object()
 
+# fmt: off
 __all__ = [
     # OS constants
     'FREEBSD', 'BSD', 'LINUX', 'NETBSD', 'OPENBSD', 'MACOS', 'OSX', 'POSIX',
@@ -76,6 +78,7 @@ __all__ = [
     # shell utils
     'hilite', 'term_supports_colors', 'print_color',
 ]
+# fmt: on
 
 
 # ===================================================================
@@ -137,6 +140,7 @@ if enum is None:
     NIC_DUPLEX_HALF = 1
     NIC_DUPLEX_UNKNOWN = 0
 else:
+
     class NicDuplex(enum.IntEnum):
         NIC_DUPLEX_FULL = 2
         NIC_DUPLEX_HALF = 1
@@ -149,6 +153,7 @@ if enum is None:
     POWER_TIME_UNKNOWN = -1
     POWER_TIME_UNLIMITED = -2
 else:
+
     class BatteryTime(enum.IntEnum):
         POWER_TIME_UNKNOWN = -1
         POWER_TIME_UNLIMITED = -2
@@ -173,6 +178,7 @@ else:
 
 # --- for system functions
 
+# fmt: off
 # psutil.swap_memory()
 sswap = namedtuple('sswap', ['total', 'used', 'free', 'percent', 'sin',
                              'sout'])
@@ -213,12 +219,14 @@ shwtemp = namedtuple(
 sbattery = namedtuple('sbattery', ['percent', 'secsleft', 'power_plugged'])
 # psutil.sensors_fans()
 sfan = namedtuple('sfan', ['label', 'current'])
+# fmt: on
 
 # --- for Process methods
 
 # psutil.Process.cpu_times()
-pcputimes = namedtuple('pcputimes',
-                       ['user', 'system', 'children_user', 'children_system'])
+pcputimes = namedtuple(
+    'pcputimes', ['user', 'system', 'children_user', 'children_system']
+)
 # psutil.Process.open_files()
 popenfile = namedtuple('popenfile', ['path', 'fd'])
 # psutil.Process.threads()
@@ -228,15 +236,17 @@ puids = namedtuple('puids', ['real', 'effective', 'saved'])
 # psutil.Process.gids()
 pgids = namedtuple('pgids', ['real', 'effective', 'saved'])
 # psutil.Process.io_counters()
-pio = namedtuple('pio', ['read_count', 'write_count',
-                         'read_bytes', 'write_bytes'])
+pio = namedtuple(
+    'pio', ['read_count', 'write_count', 'read_bytes', 'write_bytes']
+)
 # psutil.Process.ionice()
 pionice = namedtuple('pionice', ['ioclass', 'value'])
 # psutil.Process.ctx_switches()
 pctxsw = namedtuple('pctxsw', ['voluntary', 'involuntary'])
 # psutil.Process.connections()
-pconn = namedtuple('pconn', ['fd', 'family', 'type', 'laddr', 'raddr',
-                             'status'])
+pconn = namedtuple(
+    'pconn', ['fd', 'family', 'type', 'laddr', 'raddr', 'status']
+)
 
 # psutil.connections() and psutil.Process.connections()
 addr = namedtuple('addr', ['ip', 'port'])
@@ -265,9 +275,7 @@ if AF_INET6 is not None:
     })
 
 if AF_UNIX is not None:
-    conn_tmap.update({
-        "unix": ([AF_UNIX], [SOCK_STREAM, SOCK_DGRAM]),
-    })
+    conn_tmap.update({"unix": ([AF_UNIX], [SOCK_STREAM, SOCK_DGRAM])})
 
 
 # =====================================================================
@@ -279,13 +287,14 @@ class Error(Exception):
     """Base exception class. All other psutil exceptions inherit
     from this one.
     """
+
     __module__ = 'psutil'
 
     def _infodict(self, attrs):
         info = collections.OrderedDict()
         for name in attrs:
             value = getattr(self, name, None)
-            if value:
+            if value:  # noqa
                 info[name] = value
             elif name == "pid" and value == 0:
                 info[name] = value
@@ -296,7 +305,8 @@ class Error(Exception):
         info = self._infodict(("pid", "ppid", "name"))
         if info:
             details = "(%s)" % ", ".join(
-                ["%s=%r" % (k, v) for k, v in info.items()])
+                ["%s=%r" % (k, v) for k, v in info.items()]
+            )
         else:
             details = None
         return " ".join([x for x in (getattr(self, "msg", ""), details) if x])
@@ -312,6 +322,7 @@ class NoSuchProcess(Error):
     """Exception raised when a process with a certain PID doesn't
     or no longer exists.
     """
+
     __module__ = 'psutil'
 
     def __init__(self, pid, name=None, msg=None):
@@ -328,6 +339,7 @@ class ZombieProcess(NoSuchProcess):
     On Linux all zombie processes are querable (hence this is never
     raised). Windows doesn't have zombie processes.
     """
+
     __module__ = 'psutil'
 
     def __init__(self, pid, name=None, ppid=None, msg=None):
@@ -338,6 +350,7 @@ class ZombieProcess(NoSuchProcess):
 
 class AccessDenied(Error):
     """Exception raised when permission to perform an action is denied."""
+
     __module__ = 'psutil'
 
     def __init__(self, pid=None, name=None, msg=None):
@@ -351,6 +364,7 @@ class TimeoutExpired(Error):
     """Raised on Process.wait(timeout) if timeout expires and process
     is still alive.
     """
+
     __module__ = 'psutil'
 
     def __init__(self, seconds, pid=None, name=None):
@@ -381,6 +395,7 @@ if PY3:
         value = None
     """)
 else:
+
     def raise_from(value, from_value):
         raise value
 
@@ -420,6 +435,7 @@ def memoize(fun):
     It does NOT support:
      - methods
     """
+
     @functools.wraps(fun)
     def wrapper(*args, **kwargs):
         key = (args, frozenset(sorted(kwargs.items())))
@@ -428,7 +444,7 @@ def memoize(fun):
         except KeyError:
             try:
                 ret = cache[key] = fun(*args, **kwargs)
-            except Exception as err:
+            except Exception as err:  # noqa: BLE001
                 raise raise_from(err, None)
             return ret
 
@@ -467,6 +483,7 @@ def memoize_when_activated(fun):
     >>> foo()
     >>>
     """
+
     @functools.wraps(fun)
     def wrapper(self):
         try:
@@ -476,14 +493,14 @@ def memoize_when_activated(fun):
             # case 2: we never entered oneshot() ctx
             try:
                 return fun(self)
-            except Exception as err:
+            except Exception as err:  # noqa: BLE001
                 raise raise_from(err, None)
         except KeyError:
             # case 3: we entered oneshot() ctx but there's no cache
             # for this entry yet
             try:
                 ret = fun(self)
-            except Exception as err:
+            except Exception as err:  # noqa: BLE001
                 raise raise_from(err, None)
             try:
                 self._cache[fun] = ret
@@ -495,7 +512,8 @@ def memoize_when_activated(fun):
 
     def cache_activate(proc):
         """Activate cache. Expects a Process instance. Cache will be
-        stored as a "_cache" instance attribute."""
+        stored as a "_cache" instance attribute.
+        """
         proc._cache = {}
 
     def cache_deactivate(proc):
@@ -513,7 +531,7 @@ def memoize_when_activated(fun):
 def isfile_strict(path):
     """Same as os.path.isfile() but does not swallow EACCES / EPERM
     exceptions, see:
-    http://mail.python.org/pipermail/python-dev/2012-June/120787.html
+    http://mail.python.org/pipermail/python-dev/2012-June/120787.html.
     """
     try:
         st = os.stat(path)
@@ -527,8 +545,8 @@ def isfile_strict(path):
 
 def path_exists_strict(path):
     """Same as os.path.exists() but does not swallow EACCES / EPERM
-    exceptions, see:
-    http://mail.python.org/pipermail/python-dev/2012-June/120787.html
+    exceptions. See:
+    http://mail.python.org/pipermail/python-dev/2012-June/120787.html.
     """
     try:
         os.stat(path)
@@ -572,7 +590,7 @@ def parse_environ_block(data):
         equal_pos = data.find("=", pos, next_pos)
         if equal_pos > pos:
             key = data[pos:equal_pos]
-            value = data[equal_pos + 1:next_pos]
+            value = data[equal_pos + 1 : next_pos]
             # Windows expects environment variables to be uppercase only
             if WINDOWS_:
                 key = key.upper()
@@ -631,9 +649,12 @@ def deprecated_method(replacement):
     """A decorator which can be used to mark a method as deprecated
     'replcement' is the method name which will be called instead.
     """
+
     def outer(fun):
         msg = "%s() is deprecated and will be removed; use %s() instead" % (
-            fun.__name__, replacement)
+            fun.__name__,
+            replacement,
+        )
         if fun.__doc__ is None:
             fun.__doc__ = msg
 
@@ -641,7 +662,9 @@ def deprecated_method(replacement):
         def inner(self, *args, **kwargs):
             warnings.warn(msg, category=DeprecationWarning, stacklevel=2)
             return getattr(self, replacement)(*args, **kwargs)
+
         return inner
+
     return outer
 
 
@@ -677,7 +700,7 @@ class _WrapNumbers:
 
     def run(self, input_dict, name):
         """Cache dict and sum numbers which overflow and wrap.
-        Return an updated copy of `input_dict`
+        Return an updated copy of `input_dict`.
         """
         if name not in self.cache:
             # This was the first call.
@@ -688,7 +711,7 @@ class _WrapNumbers:
 
         old_dict = self.cache[name]
         new_dict = {}
-        for key in input_dict.keys():
+        for key in input_dict:
             input_tuple = input_dict[key]
             try:
                 old_tuple = old_dict[key]
@@ -771,13 +794,17 @@ def open_text(fname):
     On Python 2 this is just an alias for open(name, 'rt').
     """
     if not PY3:
-        return open(fname, "rt", buffering=FILE_READ_BUFFER_SIZE)
+        return open(fname, buffering=FILE_READ_BUFFER_SIZE)
 
     # See:
     # https://github.com/giampaolo/psutil/issues/675
     # https://github.com/giampaolo/psutil/pull/733
-    fobj = open(fname, "rt", buffering=FILE_READ_BUFFER_SIZE,
-                encoding=ENCODING, errors=ENCODING_ERRS)
+    fobj = open(
+        fname,
+        buffering=FILE_READ_BUFFER_SIZE,
+        encoding=ENCODING,
+        errors=ENCODING_ERRS,
+    )
     try:
         # Dictates per-line read(2) buffer size. Defaults is 8k. See:
         # https://github.com/giampaolo/psutil/issues/2050#issuecomment-1013387546
@@ -814,8 +841,7 @@ def bcat(fname, fallback=_DEFAULT):
 
 
 def bytes2human(n, format="%(value).1f%(symbol)s"):
-    """Used by various scripts. See:
-    http://goo.gl/zeJZl
+    """Used by various scripts. See: http://goo.gl/zeJZl.
 
     >>> bytes2human(10000)
     '9.8K'
@@ -827,7 +853,7 @@ def bytes2human(n, format="%(value).1f%(symbol)s"):
     for i, s in enumerate(symbols[1:]):
         prefix[s] = 1 << (i + 1) * 10
     for symbol in reversed(symbols[1:]):
-        if n >= prefix[symbol]:
+        if abs(n) >= prefix[symbol]:
             value = float(n) / prefix[symbol]
             return format % locals()
     return format % dict(symbol=symbols[0], value=n)
@@ -839,9 +865,12 @@ def get_procfs_path():
 
 
 if PY3:
+
     def decode(s):
         return s.decode(encoding=ENCODING, errors=ENCODING_ERRS)
+
 else:
+
     def decode(s):
         return s
 
@@ -857,10 +886,11 @@ def term_supports_colors(file=sys.stdout):  # pragma: no cover
         return True
     try:
         import curses
+
         assert file.isatty()
         curses.setupterm()
         assert curses.tigetnum("colors") > 0
-    except Exception:
+    except Exception:  # noqa: BLE001
         return False
     else:
         return True
@@ -871,14 +901,24 @@ def hilite(s, color=None, bold=False):  # pragma: no cover
     if not term_supports_colors():
         return s
     attr = []
-    colors = dict(green='32', red='91', brown='33', yellow='93', blue='34',
-                  violet='35', lightblue='36', grey='37', darkgrey='30')
+    colors = dict(
+        blue='34',
+        brown='33',
+        darkgrey='30',
+        green='32',
+        grey='37',
+        lightblue='36',
+        red='91',
+        violet='35',
+        yellow='93',
+    )
     colors[None] = '29'
     try:
         color = colors[color]
     except KeyError:
-        raise ValueError("invalid color %r; choose between %s" % (
-            list(colors.keys())))
+        raise ValueError(
+            "invalid color %r; choose between %s" % (list(colors.keys()))
+        )
     attr.append(color)
     if bold:
         attr.append('1')
@@ -886,7 +926,8 @@ def hilite(s, color=None, bold=False):  # pragma: no cover
 
 
 def print_color(
-        s, color=None, bold=False, file=sys.stdout):  # pragma: no cover
+    s, color=None, bold=False, file=sys.stdout
+):  # pragma: no cover
     """Print a colorized version of string."""
     if not term_supports_colors():
         print(s, file=file)  # NOQA
@@ -897,16 +938,19 @@ def print_color(
 
         DEFAULT_COLOR = 7
         GetStdHandle = ctypes.windll.Kernel32.GetStdHandle
-        SetConsoleTextAttribute = \
+        SetConsoleTextAttribute = (
             ctypes.windll.Kernel32.SetConsoleTextAttribute
+        )
 
         colors = dict(green=2, red=4, brown=6, yellow=6)
         colors[None] = DEFAULT_COLOR
         try:
             color = colors[color]
         except KeyError:
-            raise ValueError("invalid color %r; choose between %r" % (
-                color, list(colors.keys())))
+            raise ValueError(
+                "invalid color %r; choose between %r"
+                % (color, list(colors.keys()))
+            )
         if bold and color <= 7:
             color += 8
 
@@ -915,7 +959,7 @@ def print_color(
         handle = GetStdHandle(handle_id)
         SetConsoleTextAttribute(handle, color)
         try:
-            print(s, file=file)    # NOQA
+            print(s, file=file)  # NOQA
         finally:
             SetConsoleTextAttribute(handle, DEFAULT_COLOR)
 
@@ -924,13 +968,16 @@ def debug(msg):
     """If PSUTIL_DEBUG env var is set, print a debug message to stderr."""
     if PSUTIL_DEBUG:
         import inspect
+
         fname, lineno, _, lines, index = inspect.getframeinfo(
-            inspect.currentframe().f_back)
+            inspect.currentframe().f_back
+        )
         if isinstance(msg, Exception):
             if isinstance(msg, (OSError, IOError, EnvironmentError)):
                 # ...because str(exc) may contain info about the file name
                 msg = "ignoring %s" % msg
             else:
                 msg = "ignoring %r" % msg
-        print("psutil-debug [%s:%s]> %s" % (fname, lineno, msg),  # NOQA
-              file=sys.stderr)
+        print(  # noqa
+            "psutil-debug [%s:%s]> %s" % (fname, lineno, msg), file=sys.stderr
+        )

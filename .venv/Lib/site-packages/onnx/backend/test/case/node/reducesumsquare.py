@@ -167,3 +167,27 @@ class ReduceSumSquare(Base):
             outputs=[reduced],
             name="test_reduce_sum_square_negative_axes_keepdims_random",
         )
+
+    @staticmethod
+    def export_empty_set() -> None:
+        shape = [2, 0, 4]
+        keepdims = 1
+        reduced_shape = [2, 1, 4]
+
+        node = onnx.helper.make_node(
+            "ReduceSumSquare",
+            inputs=["data", "axes"],
+            outputs=["reduced"],
+            keepdims=keepdims,
+        )
+
+        data = np.array([], dtype=np.float32).reshape(shape)
+        axes = np.array([1], dtype=np.int64)
+        reduced = np.array(np.zeros(reduced_shape, dtype=np.float32))
+
+        expect(
+            node,
+            inputs=[data, axes],
+            outputs=[reduced],
+            name="test_reduce_sum_square_empty_set",
+        )

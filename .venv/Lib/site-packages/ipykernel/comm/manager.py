@@ -14,7 +14,7 @@ from .comm import Comm
 logger = logging.getLogger("ipykernel.comm")
 
 
-class CommManager(comm.base_comm.CommManager, traitlets.config.LoggingConfigurable):
+class CommManager(comm.base_comm.CommManager, traitlets.config.LoggingConfigurable):  # type:ignore[misc]
     """A comm manager."""
 
     kernel = traitlets.Instance("ipykernel.kernelbase.Kernel")
@@ -49,13 +49,13 @@ class CommManager(comm.base_comm.CommManager, traitlets.config.LoggingConfigurab
                 f(comm, msg)
                 return
             except Exception:
-                logger.error("Exception opening comm with target: %s", target_name, exc_info=True)
+                logger.error("Exception opening comm with target: %s", target_name, exc_info=True)  # noqa: G201
 
         # Failure.
         try:
             comm.close()
         except Exception:
-            logger.error(
+            logger.error(  # noqa: G201
                 """Could not close comm during `comm_open` failure
                 clean-up.  The comm may not have been opened yet.""",
                 exc_info=True,

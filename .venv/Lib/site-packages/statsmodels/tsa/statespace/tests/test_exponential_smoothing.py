@@ -102,14 +102,14 @@ oildata = pd.Series([
     446.6565229, 454.4733065, 455.6629740, 423.6322388, 456.2713279,
     440.5880501, 425.3325201, 485.1494479, 506.0481621, 526.7919833,
     514.2688890, 494.2110193],
-    index=pd.period_range(start='1996', end='2007', freq='A'))
+    index=pd.period_range(start='1996', end='2007', freq='Y'))
 
 # R, fpp: air <- window(ausair,start=1990,end=2004)
 air = pd.Series([
     17.553400, 21.860100, 23.886600, 26.929300, 26.888500,
     28.831400, 30.075100, 30.953500, 30.185700, 31.579700,
     32.577569, 33.477398, 39.021581, 41.386432, 41.596552],
-    index=pd.period_range(start='1990', end='2004', freq='A'))
+    index=pd.period_range(start='1990', end='2004', freq='Y'))
 
 # R, fpp: aust <- window(austourists,start=2005)
 aust = pd.Series([
@@ -118,7 +118,7 @@ aust = pd.Series([
     37.717881, 40.420211, 51.206863, 31.887228, 40.978263,
     43.772491, 55.558567, 33.850915, 42.076383, 45.642292,
     59.766780, 35.191877, 44.319737, 47.913736],
-    index=pd.period_range(start='2005Q1', end='2010Q4', freq='Q'))
+    index=pd.period_range(start='2005Q1', end='2010Q4', freq='Q-OCT'))
 
 
 class CheckExponentialSmoothing:

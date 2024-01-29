@@ -7,6 +7,8 @@ from pandas import (
     Index,
     MultiIndex,
     Series,
+    period_range,
+    timedelta_range,
 )
 import pandas._testing as tm
 from pandas.core.util.hashing import hash_tuples
@@ -25,7 +27,7 @@ from pandas.util import (
         Series([True, False, True] * 3),
         Series(pd.date_range("20130101", periods=9)),
         Series(pd.date_range("20130101", periods=9, tz="US/Eastern")),
-        Series(pd.timedelta_range("2000", periods=9)),
+        Series(timedelta_range("2000", periods=9)),
     ]
 )
 def series(request):
@@ -136,10 +138,17 @@ def test_multiindex_objects():
         DataFrame({"x": ["a", "b", "c"], "y": [1, 2, 3]}),
         DataFrame(),
         DataFrame(np.full((10, 4), np.nan)),
-        tm.makeMixedDataFrame(),
-        tm.makeTimeDataFrame(),
-        tm.makeTimeSeries(),
-        Series(tm.makePeriodIndex()),
+        DataFrame(
+            {
+                "A": [0.0, 1.0, 2.0, 3.0, 4.0],
+                "B": [0.0, 1.0, 0.0, 1.0, 0.0],
+                "C": Index(["foo1", "foo2", "foo3", "foo4", "foo5"], dtype=object),
+                "D": pd.date_range("20130101", periods=5),
+            }
+        ),
+        DataFrame(range(5), index=pd.date_range("2020-01-01", periods=5)),
+        Series(range(5), index=pd.date_range("2020-01-01", periods=5)),
+        Series(period_range("2020-01-01", periods=10, freq="D")),
         Series(pd.date_range("20130101", periods=3, tz="US/Eastern")),
     ],
 )
@@ -162,10 +171,17 @@ def test_hash_pandas_object(obj, index):
         Series([True, False, True]),
         DataFrame({"x": ["a", "b", "c"], "y": [1, 2, 3]}),
         DataFrame(np.full((10, 4), np.nan)),
-        tm.makeMixedDataFrame(),
-        tm.makeTimeDataFrame(),
-        tm.makeTimeSeries(),
-        Series(tm.makePeriodIndex()),
+        DataFrame(
+            {
+                "A": [0.0, 1.0, 2.0, 3.0, 4.0],
+                "B": [0.0, 1.0, 0.0, 1.0, 0.0],
+                "C": Index(["foo1", "foo2", "foo3", "foo4", "foo5"], dtype=object),
+                "D": pd.date_range("20130101", periods=5),
+            }
+        ),
+        DataFrame(range(5), index=pd.date_range("2020-01-01", periods=5)),
+        Series(range(5), index=pd.date_range("2020-01-01", periods=5)),
+        Series(period_range("2020-01-01", periods=10, freq="D")),
         Series(pd.date_range("20130101", periods=3, tz="US/Eastern")),
     ],
 )
@@ -180,8 +196,8 @@ def test_hash_pandas_object_diff_index_non_empty(obj):
     [
         Index([1, 2, 3]),
         Index([True, False, True]),
-        tm.makeTimedeltaIndex(),
-        tm.makePeriodIndex(),
+        timedelta_range("1 day", periods=2),
+        period_range("2020-01-01", freq="D", periods=2),
         MultiIndex.from_product(
             [range(5), ["foo", "bar", "baz"], pd.date_range("20130101", periods=2)]
         ),
@@ -328,9 +344,9 @@ def test_alternate_encoding(index):
 @pytest.mark.parametrize("l_add", [0, 1])
 def test_same_len_hash_collisions(l_exp, l_add):
     length = 2 ** (l_exp + 8) + l_add
-    s = tm.makeStringIndex(length).to_numpy()
+    idx = np.array([str(i) for i in range(length)], dtype=object)
 
-    result = hash_array(s, "utf8")
+    result = hash_array(idx, "utf8")
     assert not result[0] == result[1]
 
 
@@ -339,8 +355,8 @@ def test_hash_collisions():
     #
     # https://github.com/pandas-dev/pandas/issues/14711#issuecomment-264885726
     hashes = [
-        "Ingrid-9Z9fKIZmkO7i7Cn51Li34pJm44fgX6DYGBNj3VPlOH50m7HnBlPxfIwFMrcNJNMP6PSgLmwWnInciMWrCSAlLEvt7JkJl4IxiMrVbXSa8ZQoVaq5xoQPjltuJEfwdNlO6jo8qRRHvD8sBEBMQASrRa6TsdaPTPCBo3nwIBpE7YzzmyH0vMBhjQZLx1aCT7faSEx7PgFxQhHdKFWROcysamgy9iVj8DO2Fmwg1NNl93rIAqC3mdqfrCxrzfvIY8aJdzin2cHVzy3QUJxZgHvtUtOLxoqnUHsYbNTeq0xcLXpTZEZCxD4PGubIuCNf32c33M7HFsnjWSEjE2yVdWKhmSVodyF8hFYVmhYnMCztQnJrt3O8ZvVRXd5IKwlLexiSp4h888w7SzAIcKgc3g5XQJf6MlSMftDXm9lIsE1mJNiJEv6uY6pgvC3fUPhatlR5JPpVAHNSbSEE73MBzJrhCAbOLXQumyOXigZuPoME7QgJcBalliQol7YZ9",  # noqa: E501
-        "Tim-b9MddTxOWW2AT1Py6vtVbZwGAmYCjbp89p8mxsiFoVX4FyDOF3wFiAkyQTUgwg9sVqVYOZo09Dh1AzhFHbgij52ylF0SEwgzjzHH8TGY8Lypart4p4onnDoDvVMBa0kdthVGKl6K0BDVGzyOXPXKpmnMF1H6rJzqHJ0HywfwS4XYpVwlAkoeNsiicHkJUFdUAhG229INzvIAiJuAHeJDUoyO4DCBqtoZ5TDend6TK7Y914yHlfH3g1WZu5LksKv68VQHJriWFYusW5e6ZZ6dKaMjTwEGuRgdT66iU5nqWTHRH8WSzpXoCFwGcTOwyuqPSe0fTe21DVtJn1FKj9F9nEnR9xOvJUO7E0piCIF4Ad9yAIDY4DBimpsTfKXCu1vdHpKYerzbndfuFe5AhfMduLYZJi5iAw8qKSwR5h86ttXV0Mc0QmXz8dsRvDgxjXSmupPxBggdlqUlC828hXiTPD7am0yETBV0F3bEtvPiNJfremszcV8NcqAoARMe",  # noqa: E501
+        "Ingrid-9Z9fKIZmkO7i7Cn51Li34pJm44fgX6DYGBNj3VPlOH50m7HnBlPxfIwFMrcNJNMP6PSgLmwWnInciMWrCSAlLEvt7JkJl4IxiMrVbXSa8ZQoVaq5xoQPjltuJEfwdNlO6jo8qRRHvD8sBEBMQASrRa6TsdaPTPCBo3nwIBpE7YzzmyH0vMBhjQZLx1aCT7faSEx7PgFxQhHdKFWROcysamgy9iVj8DO2Fmwg1NNl93rIAqC3mdqfrCxrzfvIY8aJdzin2cHVzy3QUJxZgHvtUtOLxoqnUHsYbNTeq0xcLXpTZEZCxD4PGubIuCNf32c33M7HFsnjWSEjE2yVdWKhmSVodyF8hFYVmhYnMCztQnJrt3O8ZvVRXd5IKwlLexiSp4h888w7SzAIcKgc3g5XQJf6MlSMftDXm9lIsE1mJNiJEv6uY6pgvC3fUPhatlR5JPpVAHNSbSEE73MBzJrhCAbOLXQumyOXigZuPoME7QgJcBalliQol7YZ9",
+        "Tim-b9MddTxOWW2AT1Py6vtVbZwGAmYCjbp89p8mxsiFoVX4FyDOF3wFiAkyQTUgwg9sVqVYOZo09Dh1AzhFHbgij52ylF0SEwgzjzHH8TGY8Lypart4p4onnDoDvVMBa0kdthVGKl6K0BDVGzyOXPXKpmnMF1H6rJzqHJ0HywfwS4XYpVwlAkoeNsiicHkJUFdUAhG229INzvIAiJuAHeJDUoyO4DCBqtoZ5TDend6TK7Y914yHlfH3g1WZu5LksKv68VQHJriWFYusW5e6ZZ6dKaMjTwEGuRgdT66iU5nqWTHRH8WSzpXoCFwGcTOwyuqPSe0fTe21DVtJn1FKj9F9nEnR9xOvJUO7E0piCIF4Ad9yAIDY4DBimpsTfKXCu1vdHpKYerzbndfuFe5AhfMduLYZJi5iAw8qKSwR5h86ttXV0Mc0QmXz8dsRvDgxjXSmupPxBggdlqUlC828hXiTPD7am0yETBV0F3bEtvPiNJfremszcV8NcqAoARMe",
     ]
 
     # These should be different.

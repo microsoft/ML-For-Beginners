@@ -14,7 +14,7 @@ def pad_impl(data, raw_pads, mode, constant_values=0.0, axes=None):  # type: ign
     if axes is None:
         axes = list(range(input_rank))
     else:
-        axes = list(map(lambda axis: axis if axis >= 0 else axis + input_rank, axes))
+        axes = [axis if axis >= 0 else axis + input_rank for axis in axes]
     num_axes = len(axes)
 
     if num_axes * 2 != raw_pads.size:
@@ -66,7 +66,7 @@ class Pad(Base):
 
     @staticmethod
     def export_reflection_edge_and_wrap_pad() -> None:
-        for mode in ["edge", "reflect", "wrap"]:
+        for mode in ("edge", "reflect", "wrap"):
             node = onnx.helper.make_node(
                 "Pad", inputs=["x", "pads"], outputs=["y"], mode=mode
             )

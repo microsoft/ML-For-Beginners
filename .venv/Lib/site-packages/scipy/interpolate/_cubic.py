@@ -45,8 +45,8 @@ def prepare_input(x, y, axis, dydx=None):
     if x.shape[0] < 2:
         raise ValueError("`x` must contain at least 2 elements.")
     if x.shape[0] != y.shape[axis]:
-        raise ValueError("The length of `y` along `axis`={} doesn't "
-                         "match the length of `x`".format(axis))
+        raise ValueError(f"The length of `y` along `axis`={axis} doesn't "
+                         "match the length of `x`")
 
     if not np.all(np.isfinite(x)):
         raise ValueError("`x` must contain only finite values.")
@@ -811,9 +811,9 @@ class CubicSpline(CubicHermiteSpline):
             if bc_type == 'periodic':
                 if not np.allclose(y[0], y[-1], rtol=1e-15, atol=1e-15):
                     raise ValueError(
-                        "The first and last `y` point along axis {} must "
+                        f"The first and last `y` point along axis {axis} must "
                         "be identical (within machine precision) when "
-                        "bc_type='periodic'.".format(axis))
+                        "bc_type='periodic'.")
 
             bc_type = (bc_type, bc_type)
 

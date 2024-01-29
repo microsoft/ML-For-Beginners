@@ -1,16 +1,24 @@
+import sys
+from typing import Any
+
 import numpy as np
 import numpy.typing as npt
 
-nd: npt.NDArray[np.int_] = np.array([[1, 2], [3, 4]])
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
+
+nd: npt.NDArray[np.int_]
 
 # item
-reveal_type(nd.item())  # E: int
-reveal_type(nd.item(1))  # E: int
-reveal_type(nd.item(0, 1))  # E: int
-reveal_type(nd.item((0, 1)))  # E: int
+assert_type(nd.item(), int)
+assert_type(nd.item(1), int)
+assert_type(nd.item(0, 1), int)
+assert_type(nd.item((0, 1)), int)
 
 # tolist
-reveal_type(nd.tolist())  # E: Any
+assert_type(nd.tolist(), Any)
 
 # itemset does not return a value
 # tostring is pretty simple
@@ -20,32 +28,32 @@ reveal_type(nd.tolist())  # E: Any
 # dumps is pretty simple
 
 # astype
-reveal_type(nd.astype("float"))  # E: ndarray[Any, dtype[Any]]
-reveal_type(nd.astype(float))  # E: ndarray[Any, dtype[Any]]
-reveal_type(nd.astype(np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(nd.astype(np.float64, "K"))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(nd.astype(np.float64, "K", "unsafe"))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(nd.astype(np.float64, "K", "unsafe", True))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(nd.astype(np.float64, "K", "unsafe", True, True))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(nd.astype("float"), npt.NDArray[Any])
+assert_type(nd.astype(float), npt.NDArray[Any])
+assert_type(nd.astype(np.float64), npt.NDArray[np.float64])
+assert_type(nd.astype(np.float64, "K"), npt.NDArray[np.float64])
+assert_type(nd.astype(np.float64, "K", "unsafe"), npt.NDArray[np.float64])
+assert_type(nd.astype(np.float64, "K", "unsafe", True), npt.NDArray[np.float64])
+assert_type(nd.astype(np.float64, "K", "unsafe", True, True), npt.NDArray[np.float64])
 
 # byteswap
-reveal_type(nd.byteswap())  # E: ndarray[Any, dtype[{int_}]]
-reveal_type(nd.byteswap(True))  # E: ndarray[Any, dtype[{int_}]]
+assert_type(nd.byteswap(), npt.NDArray[np.int_])
+assert_type(nd.byteswap(True), npt.NDArray[np.int_])
 
 # copy
-reveal_type(nd.copy())  # E: ndarray[Any, dtype[{int_}]]
-reveal_type(nd.copy("C"))  # E: ndarray[Any, dtype[{int_}]]
+assert_type(nd.copy(), npt.NDArray[np.int_])
+assert_type(nd.copy("C"), npt.NDArray[np.int_])
 
-reveal_type(nd.view())  # E: ndarray[Any, dtype[{int_}]]
-reveal_type(nd.view(np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(nd.view(float))  # E: ndarray[Any, dtype[Any]]
-reveal_type(nd.view(np.float64, np.matrix))  # E: matrix[Any, Any]
+assert_type(nd.view(), npt.NDArray[np.int_])
+assert_type(nd.view(np.float64), npt.NDArray[np.float64])
+assert_type(nd.view(float), npt.NDArray[Any])
+assert_type(nd.view(np.float64, np.matrix), np.matrix[Any, Any])
 
 # getfield
-reveal_type(nd.getfield("float"))  # E: ndarray[Any, dtype[Any]]
-reveal_type(nd.getfield(float))  # E: ndarray[Any, dtype[Any]]
-reveal_type(nd.getfield(np.float64))  # E: ndarray[Any, dtype[{float64}]]
-reveal_type(nd.getfield(np.float64, 8))  # E: ndarray[Any, dtype[{float64}]]
+assert_type(nd.getfield("float"), npt.NDArray[Any])
+assert_type(nd.getfield(float), npt.NDArray[Any])
+assert_type(nd.getfield(np.float64), npt.NDArray[np.float64])
+assert_type(nd.getfield(np.float64, 8), npt.NDArray[np.float64])
 
 # setflags does not return a value
 # fill does not return a value

@@ -16,7 +16,7 @@ class GridSample(Base):
             "GridSample",
             inputs=["X", "Grid"],
             outputs=["Y"],
-            mode="bilinear",
+            mode="linear",
             padding_mode="zeros",
             align_corners=0,
         )
@@ -229,7 +229,7 @@ class GridSample(Base):
             "GridSample",
             inputs=["X", "Grid"],
             outputs=["Y"],
-            mode="bilinear",
+            mode="linear",
         )
         # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
         Y_bilinear = np.array(
@@ -249,7 +249,7 @@ class GridSample(Base):
             "GridSample",
             inputs=["X", "Grid"],
             outputs=["Y"],
-            mode="bilinear",
+            mode="linear",
             align_corners=1,
         )
         # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
@@ -287,7 +287,7 @@ class GridSample(Base):
             "GridSample",
             inputs=["X", "Grid"],
             outputs=["Y"],
-            mode="bicubic",
+            mode="cubic",
         )
         # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
         Y_bicubic = np.array(
@@ -297,6 +297,318 @@ class GridSample(Base):
 
         expect(
             node, inputs=[X, Grid], outputs=[Y_bicubic], name="test_gridsample_bicubic"
+        )
+
+        # ============================================================================
+        # Additional tests
+        # The reference output tensors were generated using PyTorch 2.0.
+        Grid = np.array(
+            [
+                [
+                    [[-1.0, -0.8], [-0.6, -0.5], [-0.1, -0.2], [0.7, 0.0]],
+                    [[0.0, 0.4], [0.2, -0.2], [-0.3, 0.5], [-1.0, 1.0]],
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="nearest",
+            align_corners=0,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_nearest = np.array(
+            [[[[0.0, 0.0, 2.0, 3.0], [4.0, 3.0, 4.0, 4.0]]]],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_nearest],
+            name="test_gridsample_nearest_align_corners_0_additional_1",
+        )
+
+        # setting mode = 'nearest'
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="nearest",
+            align_corners=1,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_nearest = np.array(
+            [[[[0.0, 0.0, 2.0, 3.0], [2.0, 3.0, 4.0, 4.0]]]],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_nearest],
+            name="test_gridsample_nearest_align_corners_1_additional_1",
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="linear",
+            align_corners=0,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_bilinear = np.array(
+            [[[[0.0000, 0.4500, 1.8000, 2.4000], [3.7000, 2.1000, 3.7000, 1.0000]]]],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_bilinear],
+            name="test_gridsample_bilinear_align_corners_0_additional_1",
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="linear",
+            align_corners=1,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_bilinear = np.array(
+            [[[[0.4000, 1.2000, 2.0500, 2.8500], [3.3000, 2.2000, 3.3500, 4.0000]]]],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_bilinear],
+            name="test_gridsample_bilinear_align_corners_1_additional_1",
+        )
+
+        # These two new bicubic tests produces slightly higher error ~5e-5
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="cubic",
+            align_corners=0,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_bicubic = np.array(
+            [
+                [
+                    [
+                        [-0.173250, 0.284265, 1.923106, 2.568000],
+                        [5.170375, 2.284414, 4.744844, 1.046875],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_bicubic],
+            name="test_gridsample_bicubic_align_corners_0_additional_1",
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="cubic",
+            align_corners=1,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_bicubic = np.array(
+            [
+                [
+                    [
+                        [0.304001, 1.128750, 2.266270, 3.144844],
+                        [4.531500, 2.455360, 4.599819, 4.000000],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_bicubic],
+            name="test_gridsample_bicubic_align_corners_1_additional_1",
+        )
+
+    @staticmethod
+    def export_volumeetric_gridsample_mode_aligncorners() -> None:
+        X = np.array(
+            [
+                [
+                    [
+                        [[1.0, 2.0], [3.0, 4.0]],
+                        [[5.0, 6.0], [7.0, 8.0]],
+                        [[9.0, 10.0], [11.0, 12.0]],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        Grid = np.array(
+            [
+                [
+                    [
+                        [[-1.0, -1.0, -1.0], [-1.0, -0.5, 0.3]],
+                        [[-0.5, -0.5, -0.5], [1.0, -0.6, -1.0]],
+                        [[-0.2, -0.2, -0.2], [0.4, 0.2, 0.6]],
+                        [[0.0, 0.0, 0.0], [-1.0, 0.0, 0.0]],
+                    ],
+                    [
+                        [[0.0, 0.0, 0.0], [-1.0, 1.0, 0.0]],
+                        [[-0.2, -0.2, -0.2], [1.0, 0.4, -0.2]],
+                        [[0.5, 0.5, 0.5], [-1.0, -0.8, 0.8]],
+                        [[1.0, 1.0, 1.0], [0.4, 0.6, -0.3]],
+                    ],
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="nearest",
+            align_corners=0,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_nearest = np.array(
+            [
+                [
+                    [
+                        [[1.0, 5.0], [1.0, 0.0], [5.0, 12.0], [5.0, 5.0]],
+                        [[5.0, 0.0], [5.0, 0.0], [12.0, 9.0], [0.0, 8.0]],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_nearest],
+            name="test_gridsample_volumetric_nearest_align_corners_0",
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="nearest",
+            align_corners=1,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_nearest = np.array(
+            [
+                [
+                    [
+                        [[1.0, 5.0], [1.0, 2.0], [5.0, 12.0], [5.0, 5.0]],
+                        [[5.0, 7.0], [5.0, 8.0], [12.0, 9.0], [12.0, 8.0]],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_nearest],
+            name="test_gridsample_volumetric_nearest_align_corners_1",
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="linear",
+            align_corners=0,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_bilinear = np.array(
+            [
+                [
+                    [
+                        [
+                            [0.1250, 3.4000],
+                            [2.0000, 0.4500],
+                            [4.7000, 10.9000],
+                            [6.5000, 3.0000],
+                        ],
+                        [
+                            [6.5000, 1.7500],
+                            [4.7000, 3.3000],
+                            [11.0000, 2.5200],
+                            [1.5000, 5.4900],
+                        ],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_bilinear],
+            name="test_gridsample_volumetric_bilinear_align_corners_0",
+        )
+
+        node = onnx.helper.make_node(
+            "GridSample",
+            inputs=["X", "Grid"],
+            outputs=["Y"],
+            mode="linear",
+            align_corners=1,
+        )
+        # Y shape, [N, C, H_out, W_out] - [1, 1, 2, 4]
+        Y_bilinear = np.array(
+            [
+                [
+                    [
+                        [
+                            [1.0000, 6.7000],
+                            [3.7500, 2.4000],
+                            [5.4000, 9.3000],
+                            [6.5000, 6.0000],
+                        ],
+                        [
+                            [6.5000, 7.0000],
+                            [5.4000, 6.6000],
+                            [9.2500, 8.4000],
+                            [12.0000, 6.1000],
+                        ],
+                    ]
+                ]
+            ],
+            dtype=np.float32,
+        )
+
+        expect(
+            node,
+            inputs=[X, Grid],
+            outputs=[Y_bilinear],
+            name="test_gridsample_volumetric_bilinear_align_corners_1",
         )
 
     """

@@ -15,6 +15,8 @@ from .signals import appcontext_popped
 from .signals import appcontext_pushed
 
 if t.TYPE_CHECKING:  # pragma: no cover
+    from _typeshed.wsgi import WSGIEnvironment
+
     from .app import Flask
     from .sessions import SessionMixin
     from .wrappers import Request
@@ -112,7 +114,9 @@ class _AppCtxGlobals:
         return object.__repr__(self)
 
 
-def after_this_request(f: ft.AfterRequestCallable) -> ft.AfterRequestCallable:
+def after_this_request(
+    f: ft.AfterRequestCallable[t.Any],
+) -> ft.AfterRequestCallable[t.Any]:
     """Executes a function after this request.  This is useful to modify
     response objects.  The function is passed the response object and has
     to return the same or a new one.
@@ -145,7 +149,10 @@ def after_this_request(f: ft.AfterRequestCallable) -> ft.AfterRequestCallable:
     return f
 
 
-def copy_current_request_context(f: t.Callable) -> t.Callable:
+F = t.TypeVar("F", bound=t.Callable[..., t.Any])
+
+
+def copy_current_request_context(f: F) -> F:
     """A helper function that decorates a function to retain the current
     request context.  This is useful when working with greenlets.  The moment
     the function is decorated a copy of the request context is created and
@@ -179,11 +186,11 @@ def copy_current_request_context(f: t.Callable) -> t.Callable:
 
     ctx = ctx.copy()
 
-    def wrapper(*args, **kwargs):
-        with ctx:
-            return ctx.app.ensure_sync(f)(*args, **kwargs)
+    def wrapper(*args: t.Any, **kwargs: t.Any) -> t.Any:
+        with ctx:  # type: ignore[union-attr]
+            return ctx.app.ensure_sync(f)(*args, **kwargs)  # type: ignore[union-attr]
 
-    return update_wrapper(wrapper, f)
+    return update_wrapper(wrapper, f)  # type: ignore[return-value]
 
 
 def has_request_context() -> bool:
@@ -239,7 +246,7 @@ class AppContext:
         self.app = app
         self.url_adapter = app.create_url_adapter(None)
         self.g: _AppCtxGlobals = app.app_ctx_globals_class()
-        self._cv_tokens: list[contextvars.Token] = []
+        self._cv_tokens: list[contextvars.Token[AppContext]] = []
 
     def push(self) -> None:
         """Binds the app context to the current context."""
@@ -302,7 +309,7 @@ class RequestContext:
     def __init__(
         self,
         app: Flask,
-        environ: dict,
+        environ: WSGIEnvironment,
         request: Request | None = None,
         session: SessionMixin | None = None,
     ) -> None:
@@ -321,9 +328,11 @@ class RequestContext:
         # Functions that should be executed after the request on the response
         # object.  These will be called before the regular "after_request"
         # functions.
-        self._after_request_functions: list[ft.AfterRequestCallable] = []
+        self._after_request_functions: list[ft.AfterRequestCallable[t.Any]] = []
 
-        self._cv_tokens: list[tuple[contextvars.Token, AppContext | None]] = []
+        self._cv_tokens: list[
+            tuple[contextvars.Token[RequestContext], AppContext | None]
+        ] = []
 
     def copy(self) -> RequestContext:
         """Creates a copy of this request context with the same request object.

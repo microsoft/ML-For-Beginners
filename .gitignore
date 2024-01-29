@@ -362,4 +362,4 @@ MigrationBackup/
 ML-For-Beginners.Rproj
 .obsidian
 venv\
-.venv
+**/.venv/

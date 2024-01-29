@@ -346,10 +346,10 @@ class RBFInterpolator:
                 warnings.warn(
                     f"`degree` should not be below {min_degree} when `kernel` "
                     f"is '{kernel}'. The interpolant may not be uniquely "
-                    "solvable, and the smoothing parameter may have an "
-                    "unintuitive effect.",
-                    UserWarning
-                    )
+                    f"solvable, and the smoothing parameter may have an "
+                    f"unintuitive effect.",
+                    UserWarning, stacklevel=2
+                )
 
         if neighbors is None:
             nobs = ny

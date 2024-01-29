@@ -42,6 +42,9 @@ class DictVectorizer(TransformerMixin, BaseEstimator):
     Features that do not occur in a sample (mapping) will have a zero value
     in the resulting array/matrix.
 
+    For an efficiency comparison of the different feature extractors, see
+    :ref:`sphx_glr_auto_examples_text_plot_hashing_vs_dict_vectorizer.py`.
+
     Read more in the :ref:`User Guide <dict_feature_extraction>`.
 
     Parameters
@@ -335,6 +338,8 @@ class DictVectorizer(TransformerMixin, BaseEstimator):
         D : list of dict_type objects of shape (n_samples,)
             Feature mappings for the samples in X.
         """
+        check_is_fitted(self, "feature_names_")
+
         # COO matrix is not subscriptable
         X = check_array(X, accept_sparse=["csr", "csc"])
         n_samples = X.shape[0]
@@ -370,6 +375,7 @@ class DictVectorizer(TransformerMixin, BaseEstimator):
         Xa : {array, sparse matrix}
             Feature vectors; always 2-d.
         """
+        check_is_fitted(self, ["feature_names_", "vocabulary_"])
         return self._transform(X, fitting=False)
 
     def get_feature_names_out(self, input_features=None):
@@ -425,6 +431,8 @@ class DictVectorizer(TransformerMixin, BaseEstimator):
         >>> v.get_feature_names_out()
         array(['bar', 'foo'], ...)
         """
+        check_is_fitted(self, "feature_names_")
+
         if not indices:
             support = np.where(support)[0]
 

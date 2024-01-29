@@ -12,10 +12,15 @@ from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String
 
 
+__all__ = ['IgorStyle']
+
+
 class IgorStyle(Style):
     """
     Pygments version of the official colors for Igor Pro procedures.
     """
+
+    name = 'igor'
 
     styles = {
         Comment:                'italic #FF0000',

@@ -962,6 +962,7 @@ def load_vi_bindings() -> KeyBindingsBase:
         )
 
     @handle(">", ">", filter=vi_navigation_mode)
+    @handle("c-t", filter=vi_insert_mode)
     def _indent(event: E) -> None:
         """
         Indent lines.
@@ -971,6 +972,7 @@ def load_vi_bindings() -> KeyBindingsBase:
         indent(buffer, current_row, current_row + event.arg)
 
     @handle("<", "<", filter=vi_navigation_mode)
+    @handle("c-d", filter=vi_insert_mode)
     def _unindent(event: E) -> None:
         """
         Unindent lines.

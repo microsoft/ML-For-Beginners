@@ -15,7 +15,7 @@ from matplotlib import _get_executable_info, ExecutableNotFoundError
 _log = logging.getLogger(__name__)
 
 
-def _checkdep_usetex():
+def _checkdep_usetex() -> bool:
     if not shutil.which("tex"):
         _log.warning("usetex mode requires TeX.")
         return False

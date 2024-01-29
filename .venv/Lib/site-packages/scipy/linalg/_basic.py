@@ -14,6 +14,10 @@ from ._decomp import _asarray_validated
 from . import _decomp, _decomp_svd
 from ._solve_toeplitz import levinson
 from ._cythonized_array_utils import find_det_from_lu
+from scipy._lib.deprecation import _NoValue, _deprecate_positional_args
+
+# deprecated imports to be removed in SciPy 1.13.0
+from scipy.linalg._flinalg_py import get_flinalg_funcs  # noqa: F401
 
 __all__ = ['solve', 'solve_triangular', 'solveh_banded', 'solve_banded',
            'solve_toeplitz', 'solve_circulant', 'inv', 'det', 'lstsq',
@@ -35,8 +39,7 @@ lapack_cast_dict = {x: ''.join([y for y in 'fdFD' if np.can_cast(x, y)])
 def _solve_check(n, info, lamch=None, rcond=None):
     """ Check arguments during the different steps of the solution phase """
     if info < 0:
-        raise ValueError('LAPACK reported an illegal value in {}-th argument'
-                         '.'.format(-info))
+        raise ValueError(f'LAPACK reported an illegal value in {-info}-th argument.')
     elif 0 < info:
         raise LinAlgError('Matrix is singular.')
 
@@ -44,8 +47,8 @@ def _solve_check(n, info, lamch=None, rcond=None):
         return
     E = lamch('E')
     if rcond < E:
-        warn('Ill-conditioned matrix (rcond={:.6g}): '
-             'result may not be accurate.'.format(rcond),
+        warn(f'Ill-conditioned matrix (rcond={rcond:.6g}): '
+             'result may not be accurate.',
              LinAlgWarning, stacklevel=3)
 
 
@@ -174,8 +177,7 @@ def solve(a, b, lower=False, overwrite_a=False,
         b_is_1D = True
 
     if assume_a not in ('gen', 'sym', 'her', 'pos'):
-        raise ValueError('{} is not a recognized matrix structure'
-                         ''.format(assume_a))
+        raise ValueError(f'{assume_a} is not a recognized matrix structure')
 
     # for a real matrix, describe it as "symmetric", not "hermitian"
     # (lapack doesn't know what to do with real hermitian matrices)
@@ -336,8 +338,7 @@ def solve_triangular(a, b, trans=0, lower=False, unit_diagonal=False,
     if len(a1.shape) != 2 or a1.shape[0] != a1.shape[1]:
         raise ValueError('expected square matrix')
     if a1.shape[0] != b1.shape[0]:
-        raise ValueError('shapes of a {} and b {} are incompatible'
-                         .format(a1.shape, b1.shape))
+        raise ValueError(f'shapes of a {a1.shape} and b {b1.shape} are incompatible')
     overwrite_b = overwrite_b or _datacopied(b1, b)
 
     trans = {'N': 0, 'T': 1, 'C': 2}.get(trans, trans)
@@ -855,8 +856,7 @@ def solve_circulant(c, b, singular='raise', tol=None,
     b = np.atleast_1d(b)
     nb = _get_axis_len("b", b, baxis)
     if nc != nb:
-        raise ValueError('Shapes of c {} and b {} are incompatible'
-                         .format(c.shape, b.shape))
+        raise ValueError(f'Shapes of c {c.shape} and b {b.shape} are incompatible')
 
     fc = np.fft.fft(np.moveaxis(c, caxis, -1), axis=-1)
     abs_fc = np.abs(fc)
@@ -1232,7 +1232,7 @@ def lstsq(a, b, cond=None, overwrite_a=False, overwrite_b=False,
         nrhs = 1
     if m != b1.shape[0]:
         raise ValueError('Shape mismatch: a and b should have the same number'
-                         ' of rows ({} != {}).'.format(m, b1.shape[0]))
+                         f' of rows ({m} != {b1.shape[0]}).')
     if m == 0 or n == 0:  # Zero-sized problem, confuses LAPACK
         x = np.zeros((n,) + b1.shape[1:], dtype=np.common_type(a1, b1))
         if n == 0:
@@ -1316,8 +1316,9 @@ def lstsq(a, b, cond=None, overwrite_a=False, overwrite_b=False,
 lstsq.default_lapack_driver = 'gelsd'
 
 
-def pinv(a, atol=None, rtol=None, return_rank=False, check_finite=True,
-         cond=None, rcond=None):
+@_deprecate_positional_args(version="1.14")
+def pinv(a, *, atol=None, rtol=None, return_rank=False, check_finite=True,
+         cond=_NoValue, rcond=_NoValue):
     """
     Compute the (Moore-Penrose) pseudo-inverse of a matrix.
 
@@ -1358,9 +1359,9 @@ def pinv(a, atol=None, rtol=None, return_rank=False, check_finite=True,
         the tolerances above are recommended instead. In fact, if provided,
         atol, rtol takes precedence over these keywords.
 
-        .. versionchanged:: 1.7.0
+        .. deprecated:: 1.7.0
             Deprecated in favor of ``rtol`` and ``atol`` parameters above and
-            will be removed in future versions of SciPy.
+            will be removed in SciPy 1.14.0.
 
         .. versionchanged:: 1.3.0
             Previously the default cutoff value was just ``eps*f`` where ``f``
@@ -1380,7 +1381,7 @@ def pinv(a, atol=None, rtol=None, return_rank=False, check_finite=True,
 
     See Also
     --------
-    pinvh : Moore-Penrose pseudoinverse of a hermititan matrix.
+    pinvh : Moore-Penrose pseudoinverse of a hermitian matrix.
 
     Notes
     -----
@@ -1409,8 +1410,8 @@ def pinv(a, atol=None, rtol=None, return_rank=False, check_finite=True,
     Here, ``A*`` denotes the conjugate transpose. The Moore-Penrose
     pseudoinverse is a unique ``B`` that satisfies all four of these
     conditions and exists for any ``A``. Note that, unlike the standard
-    matrix inverse, ``A`` does not have to be square or have
-    independant columns/rows.
+    matrix inverse, ``A`` does not have to be a square matrix or have
+    linearly independent columns/rows.
 
     As an example, we can calculate the Moore-Penrose pseudoinverse of a
     random non-square matrix and verify it satisfies the four conditions.
@@ -1435,14 +1436,15 @@ def pinv(a, atol=None, rtol=None, return_rank=False, check_finite=True,
     t = u.dtype.char.lower()
     maxS = np.max(s)
 
-    if rcond or cond:
+    if rcond is not _NoValue or cond is not _NoValue:
         warn('Use of the "cond" and "rcond" keywords are deprecated and '
-             'will be removed in future versions of SciPy. Use "atol" and '
+             'will be removed in SciPy 1.14.0. Use "atol" and '
              '"rtol" keywords instead', DeprecationWarning, stacklevel=2)
 
     # backwards compatible only atol and rtol are both missing
-    if (rcond or cond) and (atol is None) and (rtol is None):
-        atol = rcond or cond
+    if ((rcond not in (_NoValue, None) or cond not in (_NoValue, None))
+            and (atol is None) and (rtol is None)):
+        atol = rcond if rcond not in (_NoValue, None) else cond
         rtol = 0.
 
     atol = 0. if atol is None else atol
@@ -1667,9 +1669,8 @@ def matrix_balance(A, permute=True, scale=True, separate=False,
 
     if info < 0:
         raise ValueError('xGEBAL exited with the internal error '
-                         '"illegal value in argument number {}.". See '
-                         'LAPACK documentation for the xGEBAL error codes.'
-                         ''.format(-info))
+                         f'"illegal value in argument number {-info}.". See '
+                         'LAPACK documentation for the xGEBAL error codes.')
 
     # Separate the permutations from the scalings and then convert to int
     scaling = np.ones_like(ps, dtype=float)
@@ -1765,7 +1766,7 @@ def _validate_args_for_toeplitz_ops(c_or_cr, b, check_finite, keep_b_shape,
         raise ValueError('Incompatible dimensions.')
 
     is_cmplx = np.iscomplexobj(r) or np.iscomplexobj(c) or np.iscomplexobj(b)
-    dtype = np.complex128 if is_cmplx else np.double
+    dtype = np.complex128 if is_cmplx else np.float64
     r, c, b = (np.asarray(i, dtype=dtype) for i in (r, c, b))
 
     if b.ndim == 1 and not keep_b_shape:

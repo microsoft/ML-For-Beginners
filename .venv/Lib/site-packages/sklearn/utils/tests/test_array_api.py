@@ -1,18 +1,29 @@
+from functools import partial
+
 import numpy
 import pytest
-from numpy.testing import assert_allclose, assert_array_equal
+from numpy.testing import assert_allclose
 
 from sklearn._config import config_context
 from sklearn.base import BaseEstimator
 from sklearn.utils._array_api import (
     _ArrayAPIWrapper,
     _asarray_with_order,
+    _atol_for_type,
     _convert_to_numpy,
     _estimator_with_converted_arrays,
+    _nanmax,
+    _nanmin,
     _NumPyAPIWrapper,
+    _weighted_sum,
     get_namespace,
+    supported_float_dtypes,
+    yield_namespace_device_dtype_combinations,
 )
-from sklearn.utils._testing import skip_if_array_api_compat_not_configured
+from sklearn.utils._testing import (
+    _array_api_for_tests,
+    skip_if_array_api_compat_not_configured,
+)
 
 pytestmark = pytest.mark.filterwarnings(
     "ignore:The numpy.array_api submodule:UserWarning"
@@ -90,48 +101,6 @@ def test_array_api_wrapper_astype():
     assert X_converted.dtype == xp.float32
 
 
-def test_array_api_wrapper_take_for_numpy_api():
-    """Test that fast path is called for numpy.array_api."""
-    numpy_array_api = pytest.importorskip("numpy.array_api")
-    # USe the same name as numpy.array_api
-    xp_ = _AdjustableNameAPITestWrapper(numpy_array_api, "numpy.array_api")
-    xp = _ArrayAPIWrapper(xp_)
-
-    X = xp.asarray(([[1, 2, 3], [3, 4, 5]]), dtype=xp.float64)
-    X_take = xp.take(X, xp.asarray([1]), axis=0)
-    assert hasattr(X_take, "__array_namespace__")
-    assert_array_equal(X_take, numpy.take(X, [1], axis=0))
-
-
-def test_array_api_wrapper_take():
-    """Test _ArrayAPIWrapper API for take."""
-    numpy_array_api = pytest.importorskip("numpy.array_api")
-    xp_ = _AdjustableNameAPITestWrapper(numpy_array_api, "wrapped_numpy.array_api")
-    xp = _ArrayAPIWrapper(xp_)
-
-    # Check take compared to NumPy's with axis=0
-    X_1d = xp.asarray([1, 2, 3], dtype=xp.float64)
-    X_take = xp.take(X_1d, xp.asarray([1]), axis=0)
-    assert hasattr(X_take, "__array_namespace__")
-    assert_array_equal(X_take, numpy.take(X_1d, [1], axis=0))
-
-    X = xp.asarray(([[1, 2, 3], [3, 4, 5]]), dtype=xp.float64)
-    X_take = xp.take(X, xp.asarray([0]), axis=0)
-    assert hasattr(X_take, "__array_namespace__")
-    assert_array_equal(X_take, numpy.take(X, [0], axis=0))
-
-    # Check take compared to NumPy's with axis=1
-    X_take = xp.take(X, xp.asarray([0, 2]), axis=1)
-    assert hasattr(X_take, "__array_namespace__")
-    assert_array_equal(X_take, numpy.take(X, [0, 2], axis=1))
-
-    with pytest.raises(ValueError, match=r"Only axis in \(0, 1\) is supported"):
-        xp.take(X, xp.asarray([0]), axis=2)
-
-    with pytest.raises(ValueError, match=r"Only X.ndim in \(1, 2\) is supported"):
-        xp.take(xp.asarray([[[0]]]), xp.asarray([0]), axis=0)
-
-
 @pytest.mark.parametrize("array_api", ["numpy", "numpy.array_api"])
 def test_asarray_with_order(array_api):
     """Test _asarray_with_order passes along order for NumPy arrays."""
@@ -159,6 +128,85 @@ def test_asarray_with_order_ignored():
     assert not X_new_np.flags["F_CONTIGUOUS"]
 
 
+@pytest.mark.parametrize(
+    "array_namespace, device, dtype_name", yield_namespace_device_dtype_combinations()
+)
+@pytest.mark.parametrize(
+    "sample_weight, normalize, expected",
+    [
+        (None, False, 10.0),
+        (None, True, 2.5),
+        ([0.4, 0.4, 0.5, 0.7], False, 5.5),
+        ([0.4, 0.4, 0.5, 0.7], True, 2.75),
+        ([1, 2, 3, 4], False, 30.0),
+        ([1, 2, 3, 4], True, 3.0),
+    ],
+)
+def test_weighted_sum(
+    array_namespace, device, dtype_name, sample_weight, normalize, expected
+):
+    xp = _array_api_for_tests(array_namespace, device)
+    sample_score = numpy.asarray([1, 2, 3, 4], dtype=dtype_name)
+    sample_score = xp.asarray(sample_score, device=device)
+    if sample_weight is not None:
+        sample_weight = numpy.asarray(sample_weight, dtype=dtype_name)
+        sample_weight = xp.asarray(sample_weight, device=device)
+
+    with config_context(array_api_dispatch=True):
+        result = _weighted_sum(sample_score, sample_weight, normalize)
+
+    assert isinstance(result, float)
+    assert_allclose(result, expected, atol=_atol_for_type(dtype_name))
+
+
+@skip_if_array_api_compat_not_configured
+@pytest.mark.parametrize(
+    "library", ["numpy", "numpy.array_api", "cupy", "cupy.array_api", "torch"]
+)
+@pytest.mark.parametrize(
+    "X,reduction,expected",
+    [
+        ([1, 2, numpy.nan], _nanmin, 1),
+        ([1, -2, -numpy.nan], _nanmin, -2),
+        ([numpy.inf, numpy.inf], _nanmin, numpy.inf),
+        (
+            [[1, 2, 3], [numpy.nan, numpy.nan, numpy.nan], [4, 5, 6.0]],
+            partial(_nanmin, axis=0),
+            [1.0, 2.0, 3.0],
+        ),
+        (
+            [[1, 2, 3], [numpy.nan, numpy.nan, numpy.nan], [4, 5, 6.0]],
+            partial(_nanmin, axis=1),
+            [1.0, numpy.nan, 4.0],
+        ),
+        ([1, 2, numpy.nan], _nanmax, 2),
+        ([1, 2, numpy.nan], _nanmax, 2),
+        ([-numpy.inf, -numpy.inf], _nanmax, -numpy.inf),
+        (
+            [[1, 2, 3], [numpy.nan, numpy.nan, numpy.nan], [4, 5, 6.0]],
+            partial(_nanmax, axis=0),
+            [4.0, 5.0, 6.0],
+        ),
+        (
+            [[1, 2, 3], [numpy.nan, numpy.nan, numpy.nan], [4, 5, 6.0]],
+            partial(_nanmax, axis=1),
+            [3.0, numpy.nan, 6.0],
+        ),
+    ],
+)
+def test_nan_reductions(library, X, reduction, expected):
+    """Check NaN reductions like _nanmin and _nanmax"""
+    xp = pytest.importorskip(library)
+
+    if isinstance(expected, list):
+        expected = xp.asarray(expected)
+
+    with config_context(array_api_dispatch=True):
+        result = reduction(xp.asarray(X))
+
+    assert_allclose(result, expected)
+
+
 @skip_if_array_api_compat_not_configured
 @pytest.mark.parametrize("library", ["cupy", "torch", "cupy.array_api"])
 def test_convert_to_numpy_gpu(library):  # pragma: nocover
@@ -166,7 +214,7 @@ def test_convert_to_numpy_gpu(library):  # pragma: nocover
     xp = pytest.importorskip(library)
 
     if library == "torch":
-        if not xp.has_cuda:
+        if not xp.backends.cuda.is_built():
             pytest.skip("test requires cuda")
         X_gpu = xp.asarray([1.0, 2.0, 3.0], device="cuda")
     else:
@@ -255,6 +303,9 @@ def test_get_namespace_array_api_isdtype(wrapper):
     assert xp.isdtype(xp.float32, "real floating")
     assert xp.isdtype(xp.float64, "real floating")
     assert not xp.isdtype(xp.int32, "real floating")
+
+    for dtype in supported_float_dtypes(xp):
+        assert xp.isdtype(dtype, "real floating")
 
     assert xp.isdtype(xp.bool, "bool")
     assert not xp.isdtype(xp.float32, "bool")

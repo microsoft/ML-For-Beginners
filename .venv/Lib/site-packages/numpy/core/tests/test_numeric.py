@@ -645,6 +645,11 @@ class TestFloatExceptions:
     @pytest.mark.skipif(IS_WASM, reason="no wasm fp exception support")
     @pytest.mark.parametrize("typecode", np.typecodes["AllFloat"])
     def test_floating_exceptions(self, typecode):
+        if 'bsd' in sys.platform and typecode in 'gG':
+            pytest.skip(reason="Fallback impl for (c)longdouble may not raise "
+                               "FPE errors as expected on BSD OSes, "
+                               "see gh-24876, gh-23379")
+
         # Test basic arithmetic function errors
         with np.errstate(all='raise'):
             ftype = np.obj2sctype(typecode)

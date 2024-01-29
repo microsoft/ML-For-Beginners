@@ -301,8 +301,9 @@ def test_center_reindex_series(raw, series):
     tm.assert_series_equal(series_xp, series_rs)
 
 
-def test_center_reindex_frame(raw, frame):
+def test_center_reindex_frame(raw):
     # shifter index
+    frame = DataFrame(range(100), index=date_range("2020-01-01", freq="D", periods=100))
     s = [f"x{x:d}" for x in range(12)]
     minp = 10
 

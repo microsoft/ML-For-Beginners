@@ -2,9 +2,7 @@
 # Use the `scipy.io.matlab` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _mio5_params
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'MDTYPES', 'MatlabFunction', 'MatlabObject', 'MatlabOpaque',
@@ -25,13 +23,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.matlab.mio5_params is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.matlab instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.matlab` namespace, "
-                  "the `scipy.io.matlab.mio5_params` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_mio5_params, name)
+    return _sub_module_deprecation(sub_package="io.matlab", module="mio5_params",
+                                   private_modules=["_mio5_params"], all=__all__,
+                                   attribute=name)

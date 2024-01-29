@@ -223,7 +223,7 @@ def test_coerce_to_numpy_array():
     # also with no missing values -> object dtype
     arr = pd.array([True, False, True], dtype="boolean")
     result = np.array(arr)
-    expected = np.array([True, False, True], dtype="object")
+    expected = np.array([True, False, True], dtype="bool")
     tm.assert_numpy_array_equal(result, expected)
 
     # force bool dtype
@@ -242,7 +242,8 @@ def test_coerce_to_numpy_array():
 
 def test_to_boolean_array_from_strings():
     result = BooleanArray._from_sequence_of_strings(
-        np.array(["True", "False", "1", "1.0", "0", "0.0", np.nan], dtype=object)
+        np.array(["True", "False", "1", "1.0", "0", "0.0", np.nan], dtype=object),
+        dtype="boolean",
     )
     expected = BooleanArray(
         np.array([True, False, True, True, False, False, False]),
@@ -254,7 +255,7 @@ def test_to_boolean_array_from_strings():
 
 def test_to_boolean_array_from_strings_invalid_string():
     with pytest.raises(ValueError, match="cannot be cast"):
-        BooleanArray._from_sequence_of_strings(["donkey"])
+        BooleanArray._from_sequence_of_strings(["donkey"], dtype="boolean")
 
 
 @pytest.mark.parametrize("box", [True, False], ids=["series", "array"])
@@ -263,7 +264,7 @@ def test_to_numpy(box):
     # default (with or without missing values) -> object dtype
     arr = con([True, False, True], dtype="boolean")
     result = arr.to_numpy()
-    expected = np.array([True, False, True], dtype="object")
+    expected = np.array([True, False, True], dtype="bool")
     tm.assert_numpy_array_equal(result, expected)
 
     arr = con([True, False, None], dtype="boolean")

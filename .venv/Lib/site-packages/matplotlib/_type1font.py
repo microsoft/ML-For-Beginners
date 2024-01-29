@@ -140,7 +140,7 @@ class _StringToken(_Token):
         except KeyError:
             return chr(int(group, 8))
 
-    @functools.lru_cache()
+    @functools.lru_cache
     def value(self):
         if self.raw[0] == '(':
             return self._escapes_re.sub(self._escape, self.raw[1:-1])
@@ -396,8 +396,7 @@ class Type1Font:
             elif type == 3:     # end of file
                 break
             else:
-                raise RuntimeError('Unknown segment type %d in pfb file' %
-                                   type)
+                raise RuntimeError('Unknown segment type %d in pfb file' % type)
 
         return data
 
@@ -725,7 +724,7 @@ class Type1Font:
 
         if 'slant' in effects:
             slant = effects['slant']
-            fontname += '_Slant_%d' % int(1000 * slant)
+            fontname += f'_Slant_{int(1000 * slant)}'
             italicangle = round(
                 float(italicangle) - np.arctan(slant) / np.pi * 180,
                 5
@@ -734,21 +733,21 @@ class Type1Font:
 
         if 'extend' in effects:
             extend = effects['extend']
-            fontname += '_Extend_%d' % int(1000 * extend)
+            fontname += f'_Extend_{int(1000 * extend)}'
             modifier[0, 0] = extend
 
         newmatrix = np.dot(modifier, oldmatrix)
         array[::2] = newmatrix[0:3, 0]
         array[1::2] = newmatrix[0:3, 1]
         fontmatrix = (
-            '[%s]' % ' '.join(_format_approx(x, 6) for x in array)
+            f"[{' '.join(_format_approx(x, 6) for x in array)}]"
         )
         replacements = (
-            [(x, '/FontName/%s def' % fontname)
+            [(x, f'/FontName/{fontname} def')
              for x in self._pos['FontName']]
-            + [(x, '/ItalicAngle %a def' % italicangle)
+            + [(x, f'/ItalicAngle {italicangle} def')
                for x in self._pos['ItalicAngle']]
-            + [(x, '/FontMatrix %s readonly def' % fontmatrix)
+            + [(x, f'/FontMatrix {fontmatrix} readonly def')
                for x in self._pos['FontMatrix']]
             + [(x, '') for x in self._pos.get('UniqueID', [])]
         )

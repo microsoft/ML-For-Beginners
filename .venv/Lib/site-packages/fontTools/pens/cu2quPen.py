@@ -199,7 +199,7 @@ class Cu2QuPointPen(BasePointToSegmentPen):
                     # will be appended at the end of the contour
                     last_offcurves = offcurves
                 else:
-                    for (pt, smooth, name, kwargs) in offcurves:
+                    for pt, smooth, name, kwargs in offcurves:
                         pen.addPoint(pt, None, smooth, name, **kwargs)
                 pt, smooth, name, kwargs = points[-1]
                 if pt is None:
@@ -212,7 +212,7 @@ class Cu2QuPointPen(BasePointToSegmentPen):
                     pen.addPoint(pt, segment_type, smooth, name, **kwargs)
             else:
                 raise AssertionError("unexpected segment type: %r" % segment_type)
-        for (pt, smooth, name, kwargs) in last_offcurves:
+        for pt, smooth, name, kwargs in last_offcurves:
             pen.addPoint(pt, None, smooth, name, **kwargs)
         pen.endPath()
 

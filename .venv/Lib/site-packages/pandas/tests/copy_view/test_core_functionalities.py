@@ -28,27 +28,33 @@ def test_setitem_dont_track_unnecessary_references(using_copy_on_write):
     assert np.shares_memory(arr, get_array(df, "a"))
 
 
-def test_setitem_with_view_copies(using_copy_on_write):
+def test_setitem_with_view_copies(using_copy_on_write, warn_copy_on_write):
     df = DataFrame({"a": [1, 2, 3], "b": 1, "c": 1})
     view = df[:]
     expected = df.copy()
 
     df["b"] = 100
     arr = get_array(df, "a")
-    df.iloc[0, 0] = 100  # Check that we correctly track reference
+    with tm.assert_cow_warning(warn_copy_on_write):
+        df.iloc[0, 0] = 100  # Check that we correctly track reference
     if using_copy_on_write:
         assert not np.shares_memory(arr, get_array(df, "a"))
         tm.assert_frame_equal(view, expected)
 
 
-def test_setitem_with_view_invalidated_does_not_copy(using_copy_on_write, request):
+def test_setitem_with_view_invalidated_does_not_copy(
+    using_copy_on_write, warn_copy_on_write, request
+):
     df = DataFrame({"a": [1, 2, 3], "b": 1, "c": 1})
     view = df[:]
 
     df["b"] = 100
     arr = get_array(df, "a")
     view = None  # noqa: F841
-    df.iloc[0, 0] = 100
+    # TODO(CoW-warn) false positive? -> block gets split because of `df["b"] = 100`
+    # which introduces additional refs, even when those of `view` go out of scopes
+    with tm.assert_cow_warning(warn_copy_on_write):
+        df.iloc[0, 0] = 100
     if using_copy_on_write:
         # Setitem split the block. Since the old block shared data with view
         # all the new blocks are referencing view and each other. When view
@@ -57,7 +63,7 @@ def test_setitem_with_view_invalidated_does_not_copy(using_copy_on_write, reques
         mark = pytest.mark.xfail(
             reason="blk.delete does not track references correctly"
         )
-        request.node.add_marker(mark)
+        request.applymarker(mark)
         assert np.shares_memory(arr, get_array(df, "a"))
 
 

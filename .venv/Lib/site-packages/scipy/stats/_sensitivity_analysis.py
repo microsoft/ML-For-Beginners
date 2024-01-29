@@ -248,7 +248,7 @@ class PPFDist(Protocol):
 def sobol_indices(
     *,
     func: Callable[[np.ndarray], npt.ArrayLike] |
-          dict[Literal['f_A', 'f_B', 'f_AB'], np.ndarray],  # noqa
+          dict[Literal['f_A', 'f_B', 'f_AB'], np.ndarray],
     n: IntNumber,
     dists: list[PPFDist] | None = None,
     method: Callable | Literal['saltelli_2010'] = 'saltelli_2010',

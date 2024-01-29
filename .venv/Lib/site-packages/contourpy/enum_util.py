@@ -13,7 +13,10 @@ def as_fill_type(fill_type: FillType | str) -> FillType:
         FillType: Converted value.
     """
     if isinstance(fill_type, str):
-        return FillType.__members__[fill_type]
+        try:
+            return FillType.__members__[fill_type]
+        except KeyError as e:
+            raise ValueError(f"'{fill_type}' is not a valid FillType") from e
     else:
         return fill_type
 
@@ -28,7 +31,10 @@ def as_line_type(line_type: LineType | str) -> LineType:
         LineType: Converted value.
     """
     if isinstance(line_type, str):
-        return LineType.__members__[line_type]
+        try:
+            return LineType.__members__[line_type]
+        except KeyError as e:
+            raise ValueError(f"'{line_type}' is not a valid LineType") from e
     else:
         return line_type
 
@@ -43,6 +49,9 @@ def as_z_interp(z_interp: ZInterp | str) -> ZInterp:
         ZInterp: Converted value.
     """
     if isinstance(z_interp, str):
-        return ZInterp.__members__[z_interp]
+        try:
+            return ZInterp.__members__[z_interp]
+        except KeyError as e:
+            raise ValueError(f"'{z_interp}' is not a valid ZInterp") from e
     else:
         return z_interp

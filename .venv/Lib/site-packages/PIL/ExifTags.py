@@ -13,6 +13,7 @@
 This module provides constants and clear-text names for various
 well-known EXIF tags.
 """
+from __future__ import annotations
 
 from enum import IntEnum
 

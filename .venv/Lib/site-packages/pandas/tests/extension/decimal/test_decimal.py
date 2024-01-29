@@ -71,28 +71,28 @@ class TestDecimalArray(base.ExtensionTests):
     ) -> type[Exception] | None:
         return None
 
-    def _supports_reduction(self, obj, op_name: str) -> bool:
+    def _supports_reduction(self, ser: pd.Series, op_name: str) -> bool:
         return True
 
-    def check_reduce(self, s, op_name, skipna):
+    def check_reduce(self, ser: pd.Series, op_name: str, skipna: bool):
         if op_name == "count":
-            return super().check_reduce(s, op_name, skipna)
+            return super().check_reduce(ser, op_name, skipna)
         else:
-            result = getattr(s, op_name)(skipna=skipna)
-            expected = getattr(np.asarray(s), op_name)()
+            result = getattr(ser, op_name)(skipna=skipna)
+            expected = getattr(np.asarray(ser), op_name)()
             tm.assert_almost_equal(result, expected)
 
     def test_reduce_series_numeric(self, data, all_numeric_reductions, skipna, request):
         if all_numeric_reductions in ["kurt", "skew", "sem", "median"]:
             mark = pytest.mark.xfail(raises=NotImplementedError)
-            request.node.add_marker(mark)
+            request.applymarker(mark)
         super().test_reduce_series_numeric(data, all_numeric_reductions, skipna)
 
     def test_reduce_frame(self, data, all_numeric_reductions, skipna, request):
         op_name = all_numeric_reductions
         if op_name in ["skew", "median"]:
             mark = pytest.mark.xfail(raises=NotImplementedError)
-            request.node.add_marker(mark)
+            request.applymarker(mark)
 
         return super().test_reduce_frame(data, all_numeric_reductions, skipna)
 
@@ -155,6 +155,36 @@ class TestDecimalArray(base.ExtensionTests):
             raise_on_extra_warnings=False,
         ):
             super().test_fillna_limit_pad(data_missing)
+
+    @pytest.mark.parametrize(
+        "limit_area, input_ilocs, expected_ilocs",
+        [
+            ("outside", [1, 0, 0, 0, 1], [1, 0, 0, 0, 1]),
+            ("outside", [1, 0, 1, 0, 1], [1, 0, 1, 0, 1]),
+            ("outside", [0, 1, 1, 1, 0], [0, 1, 1, 1, 1]),
+            ("outside", [0, 1, 0, 1, 0], [0, 1, 0, 1, 1]),
+            ("inside", [1, 0, 0, 0, 1], [1, 1, 1, 1, 1]),
+            ("inside", [1, 0, 1, 0, 1], [1, 1, 1, 1, 1]),
+            ("inside", [0, 1, 1, 1, 0], [0, 1, 1, 1, 0]),
+            ("inside", [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]),
+        ],
+    )
+    def test_ffill_limit_area(
+        self, data_missing, limit_area, input_ilocs, expected_ilocs
+    ):
+        # GH#56616
+        msg = "ExtensionArray.fillna 'method' keyword is deprecated"
+        with tm.assert_produces_warning(
+            DeprecationWarning,
+            match=msg,
+            check_stacklevel=False,
+            raise_on_extra_warnings=False,
+        ):
+            msg = "DecimalArray does not implement limit_area"
+            with pytest.raises(NotImplementedError, match=msg):
+                super().test_ffill_limit_area(
+                    data_missing, limit_area, input_ilocs, expected_ilocs
+                )
 
     def test_fillna_limit_backfill(self, data_missing):
         msg = "Series.fillna with 'method' is deprecated"
@@ -254,12 +284,6 @@ class TestDecimalArray(base.ExtensionTests):
         assert data.dtype.name in repr(ser)
         assert "Decimal: " in repr(ser)
 
-    @pytest.mark.xfail(
-        reason="Looks like the test (incorrectly) implicitly assumes int/bool dtype"
-    )
-    def test_invert(self, data):
-        super().test_invert(data)
-
     @pytest.mark.xfail(reason="Inconsistent array-vs-scalar behavior")
     @pytest.mark.parametrize("ufunc", [np.positive, np.negative, np.abs])
     def test_unary_ufunc_dunder_equivalence(self, data, ufunc):
@@ -334,7 +358,7 @@ class DecimalArrayWithoutFromSequence(DecimalArray):
     """Helper class for testing error handling in _from_sequence."""
 
     @classmethod
-    def _from_sequence(cls, scalars, dtype=None, copy=False):
+    def _from_sequence(cls, scalars, *, dtype=None, copy=False):
         raise KeyError("For the test")
 
 

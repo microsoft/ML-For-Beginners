@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import calendar
 import codecs
 import collections
@@ -82,7 +84,7 @@ class IndirectReference(
     collections.namedtuple("IndirectReferenceTuple", ["object_id", "generation"])
 ):
     def __str__(self):
-        return "%s %s R" % self
+        return f"{self.object_id} {self.generation} R"
 
     def __bytes__(self):
         return self.__str__().encode("us-ascii")
@@ -103,7 +105,7 @@ class IndirectReference(
 
 class IndirectObjectDef(IndirectReference):
     def __str__(self):
-        return "%s %s obj" % self
+        return f"{self.object_id} {self.generation} obj"
 
 
 class XrefTable:

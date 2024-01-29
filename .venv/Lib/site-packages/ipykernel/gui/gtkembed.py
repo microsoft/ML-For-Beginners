@@ -88,7 +88,6 @@ class GTKEmbed:
 
         def dummy(*args, **kw):
             """No-op."""
-            pass
 
         # save and trap main and main_quit from gtk
         orig_main, gtk.main = gtk.main, dummy

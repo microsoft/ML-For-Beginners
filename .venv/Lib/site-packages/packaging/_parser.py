@@ -252,7 +252,13 @@ def _parse_version_many(tokenizer: Tokenizer) -> str:
 # Recursive descent parser for marker expression
 # --------------------------------------------------------------------------------------
 def parse_marker(source: str) -> MarkerList:
-    return _parse_marker(Tokenizer(source, rules=DEFAULT_RULES))
+    return _parse_full_marker(Tokenizer(source, rules=DEFAULT_RULES))
+
+
+def _parse_full_marker(tokenizer: Tokenizer) -> MarkerList:
+    retval = _parse_marker(tokenizer)
+    tokenizer.expect("END", expected="end of marker expression")
+    return retval
 
 
 def _parse_marker(tokenizer: Tokenizer) -> MarkerList:

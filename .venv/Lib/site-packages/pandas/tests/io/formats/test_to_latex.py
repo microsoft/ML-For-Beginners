@@ -187,6 +187,22 @@ class TestToLatex:
         )
         assert result == expected
 
+    def test_to_latex_pos_args_deprecation(self):
+        # GH-54229
+        df = DataFrame(
+            {
+                "name": ["Raphael", "Donatello"],
+                "age": [26, 45],
+                "height": [181.23, 177.65],
+            }
+        )
+        msg = (
+            r"Starting with pandas version 3.0 all arguments of to_latex except for "
+            r"the argument 'buf' will be keyword-only."
+        )
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            df.to_latex(None, None)
+
 
 class TestToLatexLongtable:
     def test_to_latex_empty_longtable(self):

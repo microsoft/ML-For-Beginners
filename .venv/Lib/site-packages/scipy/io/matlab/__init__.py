@@ -1,10 +1,10 @@
 """
-MATLAB® file utilies (:mod:`scipy.io.matlab`)
-=============================================
+MATLAB® file utilities (:mod:`scipy.io.matlab`)
+===============================================
 
 .. currentmodule:: scipy.io.matlab
 
-This submodule is meant to provide lower-level file utilies related to reading
+This submodule is meant to provide lower-level file utilities related to reading
 and writing MATLAB files.
 
 .. autosummary::

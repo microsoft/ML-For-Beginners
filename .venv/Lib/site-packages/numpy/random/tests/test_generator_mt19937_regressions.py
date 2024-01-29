@@ -75,6 +75,17 @@ class TestRegression:
         x = self.mt19937.beta(0.0001, 0.0001, size=100)
         assert_(not np.any(np.isnan(x)), 'Nans in mt19937.beta')
 
+    def test_beta_very_small_parameters(self):
+        # gh-24203: beta would hang with very small parameters.
+        self.mt19937.beta(1e-49, 1e-40)
+
+    def test_beta_ridiculously_small_parameters(self):
+        # gh-24266: beta would generate nan when the parameters
+        # were subnormal or a small multiple of the smallest normal.
+        tiny = np.finfo(1.0).tiny
+        x = self.mt19937.beta(tiny/32, tiny/40, size=50)
+        assert not np.any(np.isnan(x))
+
     def test_choice_sum_of_probs_tolerance(self):
         # The sum of probs should be 1.0 with some tolerance.
         # For low precision dtypes the tolerance was too tight.

@@ -2,28 +2,9 @@ import numpy as np
 import pytest
 
 import pandas as pd
-from pandas import (
-    Index,
-    RangeIndex,
-)
-import pandas._testing as tm
-from pandas.core.computation import expressions as expr
+from pandas import Index
 
 
-@pytest.fixture(autouse=True, params=[0, 1000000], ids=["numexpr", "python"])
-def switch_numexpr_min_elements(request):
-    _MIN_ELEMENTS = expr._MIN_ELEMENTS
-    expr._MIN_ELEMENTS = request.param
-    yield request.param
-    expr._MIN_ELEMENTS = _MIN_ELEMENTS
-
-
-# ------------------------------------------------------------------
-
-
-# doctest with +SKIP for one fixture fails during setup with
-# 'DoctestItem' object has no attribute 'callspec'
-# due to switch_numexpr_min_elements fixture
 @pytest.fixture(params=[1, np.array(1, dtype=np.int64)])
 def one(request):
     """
@@ -36,13 +17,13 @@ def one(request):
 
     Examples
     --------
-    dti = pd.date_range('2016-01-01', periods=2, freq='H')
+    dti = pd.date_range('2016-01-01', periods=2, freq='h')
     dti
     DatetimeIndex(['2016-01-01 00:00:00', '2016-01-01 01:00:00'],
-    dtype='datetime64[ns]', freq='H')
+    dtype='datetime64[ns]', freq='h')
     dti + one
     DatetimeIndex(['2016-01-01 01:00:00', '2016-01-01 02:00:00'],
-    dtype='datetime64[ns]', freq='H')
+    dtype='datetime64[ns]', freq='h')
     """
     return request.param
 
@@ -58,9 +39,6 @@ zeros.extend([np.array(-0.0, dtype=np.float64)])
 zeros.extend([0, 0.0, -0.0])
 
 
-# doctest with +SKIP for zero fixture fails during setup with
-# 'DoctestItem' object has no attribute 'callspec'
-# due to switch_numexpr_min_elements fixture
 @pytest.fixture(params=zeros)
 def zero(request):
     """
@@ -77,27 +55,6 @@ def zero(request):
     arr = RangeIndex(5)
     arr / zeros
     Index([nan, inf, inf, inf, inf], dtype='float64')
-    """
-    return request.param
-
-
-# ------------------------------------------------------------------
-# Vector Fixtures
-
-
-@pytest.fixture(
-    params=[
-        # TODO: add more  dtypes here
-        Index(np.arange(5, dtype="float64")),
-        Index(np.arange(5, dtype="int64")),
-        Index(np.arange(5, dtype="uint64")),
-        RangeIndex(5),
-    ],
-    ids=lambda x: type(x).__name__,
-)
-def numeric_idx(request):
-    """
-    Several types of numeric-dtypes Index objects
     """
     return request.param
 
@@ -168,22 +125,6 @@ _common_mismatch = [
 
 @pytest.fixture(
     params=[
-        pd.Timedelta(minutes=30).to_pytimedelta(),
-        np.timedelta64(30, "s"),
-        pd.Timedelta(seconds=30),
-    ]
-    + _common_mismatch
-)
-def not_hourly(request):
-    """
-    Several timedelta-like and DateOffset instances that are _not_
-    compatible with Hourly frequencies.
-    """
-    return request.param
-
-
-@pytest.fixture(
-    params=[
         np.timedelta64(4, "h"),
         pd.Timedelta(hours=23).to_pytimedelta(),
         pd.Timedelta("23:00:00"),
@@ -194,35 +135,5 @@ def not_daily(request):
     """
     Several timedelta-like and DateOffset instances that are _not_
     compatible with Daily frequencies.
-    """
-    return request.param
-
-
-@pytest.fixture(
-    params=[
-        np.timedelta64(365, "D"),
-        pd.Timedelta(days=365).to_pytimedelta(),
-        pd.Timedelta(days=365),
-    ]
-    + _common_mismatch
-)
-def mismatched_freq(request):
-    """
-    Several timedelta-like and DateOffset instances that are _not_
-    compatible with Monthly or Annual frequencies.
-    """
-    return request.param
-
-
-# ------------------------------------------------------------------
-
-
-@pytest.fixture(
-    params=[Index, pd.Series, tm.to_array, np.array, list], ids=lambda x: x.__name__
-)
-def box_1d_array(request):
-    """
-    Fixture to test behavior for Index, Series, tm.to_array, numpy Array and list
-    classes
     """
     return request.param

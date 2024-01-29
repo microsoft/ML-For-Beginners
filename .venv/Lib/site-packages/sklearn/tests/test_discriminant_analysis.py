@@ -11,7 +11,7 @@ from sklearn.discriminant_analysis import (
     _cov,
 )
 from sklearn.preprocessing import StandardScaler
-from sklearn.utils import check_random_state
+from sklearn.utils import _IS_WASM, check_random_state
 from sklearn.utils._testing import (
     _convert_container,
     assert_allclose,
@@ -219,7 +219,7 @@ def test_lda_predict_proba(solver, n_classes):
 
     assert prob_ref == pytest.approx(prob_ref_2)
     # check that the probability of LDA are close to the theoretical
-    # probabilties
+    # probabilities
     assert_allclose(
         lda.predict_proba(sample), np.hstack([prob, prob_ref])[np.newaxis], atol=1e-2
     )
@@ -591,6 +591,13 @@ def test_qda_store_covariance():
     )
 
 
+@pytest.mark.xfail(
+    _IS_WASM,
+    reason=(
+        "no floating point exceptions, see"
+        " https://github.com/numpy/numpy/pull/21895#issuecomment-1311525881"
+    ),
+)
 def test_qda_regularization():
     # The default is reg_param=0. and will cause issues when there is a
     # constant variable.

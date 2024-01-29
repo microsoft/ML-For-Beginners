@@ -16,7 +16,6 @@ randomized trees. Single and multi-output problems are both handled.
 
 import copy
 import numbers
-import warnings
 from abc import ABCMeta, abstractmethod
 from math import ceil
 from numbers import Integral, Real
@@ -122,6 +121,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         "max_leaf_nodes": [Interval(Integral, 2, None, closed="left"), None],
         "min_impurity_decrease": [Interval(Real, 0.0, None, closed="left")],
         "ccp_alpha": [Interval(Real, 0.0, None, closed="left")],
+        "monotonic_cst": ["array-like", None],
     }
 
     @abstractmethod
@@ -140,6 +140,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         min_impurity_decrease,
         class_weight=None,
         ccp_alpha=0.0,
+        monotonic_cst=None,
     ):
         self.criterion = criterion
         self.splitter = splitter
@@ -153,6 +154,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         self.min_impurity_decrease = min_impurity_decrease
         self.class_weight = class_weight
         self.ccp_alpha = ccp_alpha
+        self.monotonic_cst = monotonic_cst
 
     def get_depth(self):
         """Return the depth of the decision tree.
@@ -180,9 +182,13 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         return self.tree_.n_leaves
 
     def _support_missing_values(self, X):
-        return not issparse(X) and self._get_tags()["allow_nan"]
+        return (
+            not issparse(X)
+            and self._get_tags()["allow_nan"]
+            and self.monotonic_cst is None
+        )
 
-    def _compute_missing_values_in_feature_mask(self, X):
+    def _compute_missing_values_in_feature_mask(self, X, estimator_name=None):
         """Return boolean mask denoting if there are missing values for each feature.
 
         This method also ensures that X is finite.
@@ -192,13 +198,17 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         X : array-like of shape (n_samples, n_features), dtype=DOUBLE
             Input data.
 
+        estimator_name : str or None, default=None
+            Name to use when raising an error. Defaults to the class name.
+
         Returns
         -------
         missing_values_in_feature_mask : ndarray of shape (n_features,), or None
             Missing value mask. If missing values are not supported or there
             are no missing values, return None.
         """
-        common_kwargs = dict(estimator_name=self.__class__.__name__, input_name="X")
+        estimator_name = estimator_name or self.__class__.__name__
+        common_kwargs = dict(estimator_name=estimator_name, input_name="X")
 
         if not self._support_missing_values(X):
             assert_all_finite(X, **common_kwargs)
@@ -323,28 +333,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         min_samples_split = max(min_samples_split, 2 * min_samples_leaf)
 
         if isinstance(self.max_features, str):
-            if self.max_features == "auto":
-                if is_classification:
-                    max_features = max(1, int(np.sqrt(self.n_features_in_)))
-                    warnings.warn(
-                        (
-                            "`max_features='auto'` has been deprecated in 1.1 "
-                            "and will be removed in 1.3. To keep the past behaviour, "
-                            "explicitly set `max_features='sqrt'`."
-                        ),
-                        FutureWarning,
-                    )
-                else:
-                    max_features = self.n_features_in_
-                    warnings.warn(
-                        (
-                            "`max_features='auto'` has been deprecated in 1.1 "
-                            "and will be removed in 1.3. To keep the past behaviour, "
-                            "explicitly set `max_features=1.0'`."
-                        ),
-                        FutureWarning,
-                    )
-            elif self.max_features == "sqrt":
+            if self.max_features == "sqrt":
                 max_features = max(1, int(np.sqrt(self.n_features_in_)))
             elif self.max_features == "log2":
                 max_features = max(1, int(np.log2(self.n_features_in_)))
@@ -400,6 +389,45 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         SPLITTERS = SPARSE_SPLITTERS if issparse(X) else DENSE_SPLITTERS
 
         splitter = self.splitter
+        if self.monotonic_cst is None:
+            monotonic_cst = None
+        else:
+            if self.n_outputs_ > 1:
+                raise ValueError(
+                    "Monotonicity constraints are not supported with multiple outputs."
+                )
+            # Check to correct monotonicity constraint' specification,
+            # by applying element-wise logical conjunction
+            # Note: we do not cast `np.asarray(self.monotonic_cst, dtype=np.int8)`
+            # straight away here so as to generate error messages for invalid
+            # values using the original values prior to any dtype related conversion.
+            monotonic_cst = np.asarray(self.monotonic_cst)
+            if monotonic_cst.shape[0] != X.shape[1]:
+                raise ValueError(
+                    "monotonic_cst has shape {} but the input data "
+                    "X has {} features.".format(monotonic_cst.shape[0], X.shape[1])
+                )
+            valid_constraints = np.isin(monotonic_cst, (-1, 0, 1))
+            if not np.all(valid_constraints):
+                unique_constaints_value = np.unique(monotonic_cst)
+                raise ValueError(
+                    "monotonic_cst must be None or an array-like of -1, 0 or 1, but"
+                    f" got {unique_constaints_value}"
+                )
+            monotonic_cst = np.asarray(monotonic_cst, dtype=np.int8)
+            if is_classifier(self):
+                if self.n_classes_[0] > 2:
+                    raise ValueError(
+                        "Monotonicity constraints are not supported with multiclass "
+                        "classification"
+                    )
+                # Binary classification trees are built by constraining probabilities
+                # of the *negative class* in order to make the implementation similar
+                # to regression trees.
+                # Since self.monotonic_cst encodes constraints on probabilities of the
+                # *positive class*, all signs must be flipped.
+                monotonic_cst *= -1
+
         if not isinstance(self.splitter, Splitter):
             splitter = SPLITTERS[self.splitter](
                 criterion,
@@ -407,6 +435,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 min_samples_leaf,
                 min_weight_leaf,
                 random_state,
+                monotonic_cst,
             )
 
         if is_classifier(self):
@@ -719,7 +748,7 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
         the input samples) required to be at a leaf node. Samples have
         equal weight when sample_weight is not provided.
 
-    max_features : int, float or {"auto", "sqrt", "log2"}, default=None
+    max_features : int, float or {"sqrt", "log2"}, default=None
         The number of features to consider when looking for the best split:
 
             - If int, then consider `max_features` features at each split.
@@ -797,6 +826,25 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
         :ref:`minimal_cost_complexity_pruning` for details.
 
         .. versionadded:: 0.22
+
+    monotonic_cst : array-like of int of shape (n_features), default=None
+        Indicates the monotonicity constraint to enforce on each feature.
+          - 1: monotonic increase
+          - 0: no constraint
+          - -1: monotonic decrease
+
+        If monotonic_cst is None, no constraints are applied.
+
+        Monotonicity constraints are not supported for:
+          - multiclass classifications (i.e. when `n_classes > 2`),
+          - multioutput classifications (i.e. when `n_outputs_ > 1`),
+          - classifications trained on data with missing values.
+
+        The constraints hold over the probability of the positive class.
+
+        Read more in the :ref:`User Guide <monotonic_cst_gbdt>`.
+
+        .. versionadded:: 1.4
 
     Attributes
     ----------
@@ -909,6 +957,7 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
         min_impurity_decrease=0.0,
         class_weight=None,
         ccp_alpha=0.0,
+        monotonic_cst=None,
     ):
         super().__init__(
             criterion=criterion,
@@ -922,6 +971,7 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
             class_weight=class_weight,
             random_state=random_state,
             min_impurity_decrease=min_impurity_decrease,
+            monotonic_cst=monotonic_cst,
             ccp_alpha=ccp_alpha,
         )
 
@@ -993,23 +1043,12 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
         proba = self.tree_.predict(X)
 
         if self.n_outputs_ == 1:
-            proba = proba[:, : self.n_classes_]
-            normalizer = proba.sum(axis=1)[:, np.newaxis]
-            normalizer[normalizer == 0.0] = 1.0
-            proba /= normalizer
-
-            return proba
-
+            return proba[:, : self.n_classes_]
         else:
             all_proba = []
-
             for k in range(self.n_outputs_):
                 proba_k = proba[:, k, : self.n_classes_[k]]
-                normalizer = proba_k.sum(axis=1)[:, np.newaxis]
-                normalizer[normalizer == 0.0] = 1.0
-                proba_k /= normalizer
                 all_proba.append(proba_k)
-
             return all_proba
 
     def predict_log_proba(self, X):
@@ -1116,7 +1155,7 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
         the input samples) required to be at a leaf node. Samples have
         equal weight when sample_weight is not provided.
 
-    max_features : int, float or {"auto", "sqrt", "log2"}, default=None
+    max_features : int, float or {"sqrt", "log2"}, default=None
         The number of features to consider when looking for the best split:
 
         - If int, then consider `max_features` features at each split.
@@ -1173,6 +1212,22 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
         :ref:`minimal_cost_complexity_pruning` for details.
 
         .. versionadded:: 0.22
+
+    monotonic_cst : array-like of int of shape (n_features), default=None
+        Indicates the monotonicity constraint to enforce on each feature.
+          - 1: monotonic increase
+          - 0: no constraint
+          - -1: monotonic decrease
+
+        If monotonic_cst is None, no constraints are applied.
+
+        Monotonicity constraints are not supported for:
+          - multioutput regressions (i.e. when `n_outputs_ > 1`),
+          - regressions trained on data with missing values.
+
+        Read more in the :ref:`User Guide <monotonic_cst_gbdt>`.
+
+        .. versionadded:: 1.4
 
     Attributes
     ----------
@@ -1272,6 +1327,7 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
         max_leaf_nodes=None,
         min_impurity_decrease=0.0,
         ccp_alpha=0.0,
+        monotonic_cst=None,
     ):
         super().__init__(
             criterion=criterion,
@@ -1285,6 +1341,7 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
             random_state=random_state,
             min_impurity_decrease=min_impurity_decrease,
             ccp_alpha=ccp_alpha,
+            monotonic_cst=monotonic_cst,
         )
 
     @_fit_context(prefer_skip_nested_validation=True)
@@ -1425,19 +1482,19 @@ class ExtraTreeClassifier(DecisionTreeClassifier):
         the input samples) required to be at a leaf node. Samples have
         equal weight when sample_weight is not provided.
 
-    max_features : int, float, {"auto", "sqrt", "log2"} or None, default="sqrt"
+    max_features : int, float, {"sqrt", "log2"} or None, default="sqrt"
         The number of features to consider when looking for the best split:
 
-            - If int, then consider `max_features` features at each split.
-            - If float, then `max_features` is a fraction and
-              `max(1, int(max_features * n_features_in_))` features are considered at
-              each split.
-            - If "sqrt", then `max_features=sqrt(n_features)`.
-            - If "log2", then `max_features=log2(n_features)`.
-            - If None, then `max_features=n_features`.
+        - If int, then consider `max_features` features at each split.
+        - If float, then `max_features` is a fraction and
+          `max(1, int(max_features * n_features_in_))` features are considered at
+          each split.
+        - If "sqrt", then `max_features=sqrt(n_features)`.
+        - If "log2", then `max_features=log2(n_features)`.
+        - If None, then `max_features=n_features`.
 
-            .. versionchanged:: 1.1
-                The default of `max_features` changed from `"auto"` to `"sqrt"`.
+        .. versionchanged:: 1.1
+            The default of `max_features` changed from `"auto"` to `"sqrt"`.
 
         Note: the search for a split does not stop until at least one
         valid partition of the node samples is found, even if it requires to
@@ -1498,6 +1555,25 @@ class ExtraTreeClassifier(DecisionTreeClassifier):
         :ref:`minimal_cost_complexity_pruning` for details.
 
         .. versionadded:: 0.22
+
+    monotonic_cst : array-like of int of shape (n_features), default=None
+        Indicates the monotonicity constraint to enforce on each feature.
+          - 1: monotonic increase
+          - 0: no constraint
+          - -1: monotonic decrease
+
+        If monotonic_cst is None, no constraints are applied.
+
+        Monotonicity constraints are not supported for:
+          - multiclass classifications (i.e. when `n_classes > 2`),
+          - multioutput classifications (i.e. when `n_outputs_ > 1`),
+          - classifications trained on data with missing values.
+
+        The constraints hold over the probability of the positive class.
+
+        Read more in the :ref:`User Guide <monotonic_cst_gbdt>`.
+
+        .. versionadded:: 1.4
 
     Attributes
     ----------
@@ -1599,6 +1675,7 @@ class ExtraTreeClassifier(DecisionTreeClassifier):
         min_impurity_decrease=0.0,
         class_weight=None,
         ccp_alpha=0.0,
+        monotonic_cst=None,
     ):
         super().__init__(
             criterion=criterion,
@@ -1613,6 +1690,7 @@ class ExtraTreeClassifier(DecisionTreeClassifier):
             min_impurity_decrease=min_impurity_decrease,
             random_state=random_state,
             ccp_alpha=ccp_alpha,
+            monotonic_cst=monotonic_cst,
         )
 
 
@@ -1690,7 +1768,7 @@ class ExtraTreeRegressor(DecisionTreeRegressor):
         the input samples) required to be at a leaf node. Samples have
         equal weight when sample_weight is not provided.
 
-    max_features : int, float, {"auto", "sqrt", "log2"} or None, default=1.0
+    max_features : int, float, {"sqrt", "log2"} or None, default=1.0
         The number of features to consider when looking for the best split:
 
         - If int, then consider `max_features` features at each split.
@@ -1742,6 +1820,22 @@ class ExtraTreeRegressor(DecisionTreeRegressor):
         :ref:`minimal_cost_complexity_pruning` for details.
 
         .. versionadded:: 0.22
+
+    monotonic_cst : array-like of int of shape (n_features), default=None
+        Indicates the monotonicity constraint to enforce on each feature.
+          - 1: monotonic increase
+          - 0: no constraint
+          - -1: monotonic decrease
+
+        If monotonic_cst is None, no constraints are applied.
+
+        Monotonicity constraints are not supported for:
+          - multioutput regressions (i.e. when `n_outputs_ > 1`),
+          - regressions trained on data with missing values.
+
+        Read more in the :ref:`User Guide <monotonic_cst_gbdt>`.
+
+        .. versionadded:: 1.4
 
     Attributes
     ----------
@@ -1826,6 +1920,7 @@ class ExtraTreeRegressor(DecisionTreeRegressor):
         min_impurity_decrease=0.0,
         max_leaf_nodes=None,
         ccp_alpha=0.0,
+        monotonic_cst=None,
     ):
         super().__init__(
             criterion=criterion,
@@ -1839,4 +1934,5 @@ class ExtraTreeRegressor(DecisionTreeRegressor):
             min_impurity_decrease=min_impurity_decrease,
             random_state=random_state,
             ccp_alpha=ccp_alpha,
+            monotonic_cst=monotonic_cst,
         )

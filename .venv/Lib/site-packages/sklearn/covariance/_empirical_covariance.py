@@ -23,6 +23,13 @@ from ..utils._param_validation import validate_params
 from ..utils.extmath import fast_logdet
 
 
+@validate_params(
+    {
+        "emp_cov": [np.ndarray],
+        "precision": [np.ndarray],
+    },
+    prefer_skip_nested_validation=True,
+)
 def log_likelihood(emp_cov, precision):
     """Compute the sample mean of the log_likelihood under a covariance model.
 

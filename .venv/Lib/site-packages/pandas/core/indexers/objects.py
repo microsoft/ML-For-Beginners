@@ -102,7 +102,7 @@ class FixedWindowIndexer(BaseIndexer):
         closed: str | None = None,
         step: int | None = None,
     ) -> tuple[np.ndarray, np.ndarray]:
-        if center:
+        if center or self.window_size == 0:
             offset = (self.window_size - 1) // 2
         else:
             offset = 0
@@ -262,7 +262,9 @@ class VariableOffsetWindowIndexer(BaseIndexer):
             # end bound is previous end
             # or current index
             end_diff = (self.index[end[i - 1]] - end_bound) * index_growth_sign
-            if end_diff <= zero:
+            if end_diff == zero and not right_closed:
+                end[i] = end[i - 1] + 1
+            elif end_diff <= zero:
                 end[i] = i + 1
             else:
                 end[i] = end[i - 1]

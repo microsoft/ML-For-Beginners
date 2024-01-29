@@ -1,496 +1,589 @@
-"""Iterative methods for solving linear systems"""
-
-__all__ = ['bicg','bicgstab','cg','cgs','gmres','qmr']
-
 import warnings
-from textwrap import dedent
 import numpy as np
-
-from . import _iterative
-
 from scipy.sparse.linalg._interface import LinearOperator
 from .utils import make_system
-from scipy._lib._util import _aligned_zeros
-from scipy._lib._threadsafety import non_reentrant
+from scipy.linalg import get_lapack_funcs
+from scipy._lib.deprecation import _NoValue, _deprecate_positional_args
 
-_type_conv = {'f':'s', 'd':'d', 'F':'c', 'D':'z'}
-
-
-# Part of the docstring common to all iterative solvers
-common_doc1 = \
-"""
-Parameters
-----------
-A : {sparse matrix, ndarray, LinearOperator}"""
-
-common_doc2 = \
-"""b : ndarray
-    Right hand side of the linear system. Has shape (N,) or (N,1).
-
-Returns
--------
-x : ndarray
-    The converged solution.
-info : integer
-    Provides convergence information:
-        0  : successful exit
-        >0 : convergence to tolerance not achieved, number of iterations
-        <0 : illegal input or breakdown
-
-Other Parameters
-----------------
-x0 : ndarray
-    Starting guess for the solution.
-tol, atol : float, optional
-    Tolerances for convergence, ``norm(residual) <= max(tol*norm(b), atol)``.
-    The default for ``atol`` is ``'legacy'``, which emulates
-    a different legacy behavior.
-
-    .. warning::
-
-       The default value for `atol` will be changed in a future release.
-       For future compatibility, specify `atol` explicitly.
-maxiter : integer
-    Maximum number of iterations.  Iteration will stop after maxiter
-    steps even if the specified tolerance has not been achieved.
-M : {sparse matrix, ndarray, LinearOperator}
-    Preconditioner for A.  The preconditioner should approximate the
-    inverse of A.  Effective preconditioning dramatically improves the
-    rate of convergence, which implies that fewer iterations are needed
-    to reach a given error tolerance.
-callback : function
-    User-supplied function to call after each iteration.  It is called
-    as callback(xk), where xk is the current solution vector.
-"""
+__all__ = ['bicg', 'bicgstab', 'cg', 'cgs', 'gmres', 'qmr']
 
 
-def _stoptest(residual, atol):
+def _get_atol_rtol(name, b_norm, tol=_NoValue, atol=0., rtol=1e-5):
     """
-    Successful termination condition for the solvers.
+    A helper function to handle tolerance deprecations and normalization
     """
-    resid = np.linalg.norm(residual)
-    if resid <= atol:
-        return resid, 1
-    else:
-        return resid, 0
+    if tol is not _NoValue:
+        msg = (f"'scipy.sparse.linalg.{name}' keyword argument `tol` is "
+               "deprecated in favor of `rtol` and will be removed in SciPy "
+               "v1.14.0. Until then, if set, it will override `rtol`.")
+        warnings.warn(msg, category=DeprecationWarning, stacklevel=4)
+        rtol = float(tol) if tol is not None else rtol
+
+    if atol == 'legacy':
+        msg = (f"'scipy.sparse.linalg.{name}' called with `atol='legacy'`. "
+               "This behavior is deprecated and will result in an error in "
+               "SciPy v1.14.0. To preserve current behaviour, set `atol=0.0`.")
+        warnings.warn(msg, category=DeprecationWarning, stacklevel=4)
+        atol = 0
+
+    # this branch is only hit from gcrotmk/lgmres/tfqmr
+    if atol is None:
+        msg = (f"'scipy.sparse.linalg.{name}' called without specifying "
+               "`atol`. This behavior is deprecated and will result in an "
+               "error in SciPy v1.14.0. To preserve current behaviour, set "
+               "`atol=rtol`, or, to adopt the future default, set `atol=0.0`.")
+        warnings.warn(msg, category=DeprecationWarning, stacklevel=4)
+        atol = rtol
+
+    atol = max(float(atol), float(rtol) * float(b_norm))
+
+    return atol, rtol
 
 
-def _get_atol(tol, atol, bnrm2, get_residual, routine_name):
-    """
-    Parse arguments for absolute tolerance in termination condition.
+@_deprecate_positional_args(version="1.14")
+def bicg(A, b, x0=None, *, tol=_NoValue, maxiter=None, M=None, callback=None,
+         atol=0., rtol=1e-5):
+    """Use BIConjugate Gradient iteration to solve ``Ax = b``.
 
     Parameters
     ----------
-    tol, atol : object
-        The arguments passed into the solver routine by user.
-    bnrm2 : float
-        2-norm of the rhs vector.
-    get_residual : callable
-        Callable ``get_residual()`` that returns the initial value of
-        the residual.
-    routine_name : str
-        Name of the routine.
+    A : {sparse matrix, ndarray, LinearOperator}
+        The real or complex N-by-N matrix of the linear system.
+        Alternatively, ``A`` can be a linear operator which can
+        produce ``Ax`` and ``A^T x`` using, e.g.,
+        ``scipy.sparse.linalg.LinearOperator``.
+    b : ndarray
+        Right hand side of the linear system. Has shape (N,) or (N,1).
+    x0 : ndarray
+        Starting guess for the solution.
+    rtol, atol : float, optional
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``atol=0.`` and ``rtol=1e-5``.
+    maxiter : integer
+        Maximum number of iterations.  Iteration will stop after maxiter
+        steps even if the specified tolerance has not been achieved.
+    M : {sparse matrix, ndarray, LinearOperator}
+        Preconditioner for A.  The preconditioner should approximate the
+        inverse of A.  Effective preconditioning dramatically improves the
+        rate of convergence, which implies that fewer iterations are needed
+        to reach a given error tolerance.
+    callback : function
+        User-supplied function to call after each iteration.  It is called
+        as callback(xk), where xk is the current solution vector.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `bicg` keyword argument ``tol`` is deprecated in favor of ``rtol``
+           and will be removed in SciPy 1.14.0.
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : integer
+        Provides convergence information:
+            0  : successful exit
+            >0 : convergence to tolerance not achieved, number of iterations
+            <0 : parameter breakdown
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from scipy.sparse import csc_matrix
+    >>> from scipy.sparse.linalg import bicg
+    >>> A = csc_matrix([[3, 2, 0], [1, -1, 0], [0, 5, 1.]])
+    >>> b = np.array([2., 4., -1.])
+    >>> x, exitCode = bicg(A, b, atol=1e-5)
+    >>> print(exitCode)  # 0 indicates successful convergence
+    0
+    >>> np.allclose(A.dot(x), b)
+    True
+
     """
+    A, M, x, b, postprocess = make_system(A, M, x0, b)
+    bnrm2 = np.linalg.norm(b)
 
-    if atol is None:
-        warnings.warn("scipy.sparse.linalg.{name} called without specifying `atol`. "
-                      "The default value will be changed in a future release. "
-                      "For compatibility, specify a value for `atol` explicitly, e.g., "
-                      "``{name}(..., atol=0)``, or to retain the old behavior "
-                      "``{name}(..., atol='legacy')``".format(name=routine_name),
-                      category=DeprecationWarning, stacklevel=4)
-        atol = 'legacy'
+    atol, _ = _get_atol_rtol('bicg', bnrm2, tol, atol, rtol)
 
-    tol = float(tol)
-
-    if atol == 'legacy':
-        # emulate old legacy behavior
-        resid = get_residual()
-        if resid <= tol:
-            return 'exit'
-        if bnrm2 == 0:
-            return tol
-        else:
-            return tol * float(bnrm2)
-    else:
-        return max(float(atol), tol * float(bnrm2))
-
-
-def set_docstring(header, Ainfo, footer='', atol_default='0'):
-    def combine(fn):
-        fn.__doc__ = '\n'.join((header, common_doc1,
-                                '    ' + Ainfo.replace('\n', '\n    '),
-                                common_doc2, dedent(footer)))
-        return fn
-    return combine
-
-
-@set_docstring('Use BIConjugate Gradient iteration to solve ``Ax = b``.',
-               'The real or complex N-by-N matrix of the linear system.\n'
-               'Alternatively, ``A`` can be a linear operator which can\n'
-               'produce ``Ax`` and ``A^T x`` using, e.g.,\n'
-               '``scipy.sparse.linalg.LinearOperator``.',
-               footer="""\
-               Examples
-               --------
-               >>> import numpy as np
-               >>> from scipy.sparse import csc_matrix
-               >>> from scipy.sparse.linalg import bicg
-               >>> A = csc_matrix([[3, 2, 0], [1, -1, 0], [0, 5, 1]], dtype=float)
-               >>> b = np.array([2, 4, -1], dtype=float)
-               >>> x, exitCode = bicg(A, b)
-               >>> print(exitCode)            # 0 indicates successful convergence
-               0
-               >>> np.allclose(A.dot(x), b)
-               True
-
-               """
-               )
-@non_reentrant()
-def bicg(A, b, x0=None, tol=1e-5, maxiter=None, M=None, callback=None, atol=None):
-    A,M,x,b,postprocess = make_system(A, M, x0, b)
+    if bnrm2 == 0:
+        return postprocess(b), 0
 
     n = len(b)
+    dotprod = np.vdot if np.iscomplexobj(x) else np.dot
+
     if maxiter is None:
         maxiter = n*10
 
     matvec, rmatvec = A.matvec, A.rmatvec
     psolve, rpsolve = M.matvec, M.rmatvec
-    ltr = _type_conv[x.dtype.char]
-    revcom = getattr(_iterative, ltr + 'bicgrevcom')
 
-    def get_residual():
-        return np.linalg.norm(matvec(x) - b)
-    atol = _get_atol(tol, atol, np.linalg.norm(b), get_residual, 'bicg')
-    if atol == 'exit':
-        return postprocess(x), 0
+    rhotol = np.finfo(x.dtype.char).eps**2
 
-    resid = atol
-    ndx1 = 1
-    ndx2 = -1
-    # Use _aligned_zeros to work around a f2py bug in Numpy 1.9.1
-    work = _aligned_zeros(6*n,dtype=x.dtype)
-    ijob = 1
-    info = 0
-    ftflag = True
-    iter_ = maxiter
-    while True:
-        olditer = iter_
-        x, iter_, resid, info, ndx1, ndx2, sclr1, sclr2, ijob = \
-           revcom(b, x, work, iter_, resid, info, ndx1, ndx2, ijob)
-        if callback is not None and iter_ > olditer:
+    # Dummy values to initialize vars, silence linter warnings
+    rho_prev, p, ptilde = None, None, None
+
+    r = b - matvec(x) if x.any() else b.copy()
+    rtilde = r.copy()
+
+    for iteration in range(maxiter):
+        if np.linalg.norm(r) < atol:  # Are we done?
+            return postprocess(x), 0
+
+        z = psolve(r)
+        ztilde = rpsolve(rtilde)
+        # order matters in this dot product
+        rho_cur = dotprod(rtilde, z)
+
+        if np.abs(rho_cur) < rhotol:  # Breakdown case
+            return postprocess, -10
+
+        if iteration > 0:
+            beta = rho_cur / rho_prev
+            p *= beta
+            p += z
+            ptilde *= beta.conj()
+            ptilde += ztilde
+        else:  # First spin
+            p = z.copy()
+            ptilde = ztilde.copy()
+
+        q = matvec(p)
+        qtilde = rmatvec(ptilde)
+        rv = dotprod(ptilde, q)
+
+        if rv == 0:
+            return postprocess(x), -11
+
+        alpha = rho_cur / rv
+        x += alpha*p
+        r -= alpha*q
+        rtilde -= alpha.conj()*qtilde
+        rho_prev = rho_cur
+
+        if callback:
             callback(x)
-        slice1 = slice(ndx1-1, ndx1-1+n)
-        slice2 = slice(ndx2-1, ndx2-1+n)
-        if (ijob == -1):
-            if callback is not None:
-                callback(x)
-            break
-        elif (ijob == 1):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(work[slice1])
-        elif (ijob == 2):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*rmatvec(work[slice1])
-        elif (ijob == 3):
-            work[slice1] = psolve(work[slice2])
-        elif (ijob == 4):
-            work[slice1] = rpsolve(work[slice2])
-        elif (ijob == 5):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(x)
-        elif (ijob == 6):
-            if ftflag:
-                info = -1
-                ftflag = False
-            resid, info = _stoptest(work[slice1], atol)
-        ijob = 2
 
-    if info > 0 and iter_ == maxiter and not (resid <= atol):
-        # info isn't set appropriately otherwise
-        info = iter_
-
-    return postprocess(x), info
+    else:  # for loop exhausted
+        # Return incomplete progress
+        return postprocess(x), maxiter
 
 
-@set_docstring('Use BIConjugate Gradient STABilized iteration to solve '
-               '``Ax = b``.',
-               'The real or complex N-by-N matrix of the linear system.\n'
-               'Alternatively, ``A`` can be a linear operator which can\n'
-               'produce ``Ax`` using, e.g.,\n'
-               '``scipy.sparse.linalg.LinearOperator``.',
-               footer="""\
-               Examples
-               --------
-               >>> import numpy as np
-               >>> from scipy.sparse import csc_matrix
-               >>> from scipy.sparse.linalg import bicgstab
-               >>> R = np.array([[4, 2, 0, 1],
-               ...               [3, 0, 0, 2],
-               ...               [0, 1, 1, 1],
-               ...               [0, 2, 1, 0]])
-               >>> A = csc_matrix(R)
-               >>> b = np.array([-1, -0.5, -1, 2])
-               >>> x, exit_code = bicgstab(A, b)
-               >>> print(exit_code)  # 0 indicates successful convergence
-               0
-               >>> np.allclose(A.dot(x), b)
-               True
-               """)
-@non_reentrant()
-def bicgstab(A, b, x0=None, tol=1e-5, maxiter=None, M=None, callback=None, atol=None):
+@_deprecate_positional_args(version="1.14")
+def bicgstab(A, b, *, x0=None, tol=_NoValue, maxiter=None, M=None,
+             callback=None, atol=0., rtol=1e-5):
+    """Use BIConjugate Gradient STABilized iteration to solve ``Ax = b``.
+
+    Parameters
+    ----------
+    A : {sparse matrix, ndarray, LinearOperator}
+        The real or complex N-by-N matrix of the linear system.
+        Alternatively, ``A`` can be a linear operator which can
+        produce ``Ax`` and ``A^T x`` using, e.g.,
+        ``scipy.sparse.linalg.LinearOperator``.
+    b : ndarray
+        Right hand side of the linear system. Has shape (N,) or (N,1).
+    x0 : ndarray
+        Starting guess for the solution.
+    rtol, atol : float, optional
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``atol=0.`` and ``rtol=1e-5``.
+    maxiter : integer
+        Maximum number of iterations.  Iteration will stop after maxiter
+        steps even if the specified tolerance has not been achieved.
+    M : {sparse matrix, ndarray, LinearOperator}
+        Preconditioner for A.  The preconditioner should approximate the
+        inverse of A.  Effective preconditioning dramatically improves the
+        rate of convergence, which implies that fewer iterations are needed
+        to reach a given error tolerance.
+    callback : function
+        User-supplied function to call after each iteration.  It is called
+        as callback(xk), where xk is the current solution vector.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `bicgstab` keyword argument ``tol`` is deprecated in favor of
+           ``rtol`` and will be removed in SciPy 1.14.0.
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : integer
+        Provides convergence information:
+            0  : successful exit
+            >0 : convergence to tolerance not achieved, number of iterations
+            <0 : parameter breakdown
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from scipy.sparse import csc_matrix
+    >>> from scipy.sparse.linalg import bicgstab
+    >>> R = np.array([[4, 2, 0, 1],
+    ...               [3, 0, 0, 2],
+    ...               [0, 1, 1, 1],
+    ...               [0, 2, 1, 0]])
+    >>> A = csc_matrix(R)
+    >>> b = np.array([-1, -0.5, -1, 2])
+    >>> x, exit_code = bicgstab(A, b, atol=1e-5)
+    >>> print(exit_code)  # 0 indicates successful convergence
+    0
+    >>> np.allclose(A.dot(x), b)
+    True
+
+    """
     A, M, x, b, postprocess = make_system(A, M, x0, b)
+    bnrm2 = np.linalg.norm(b)
+
+    atol, _ = _get_atol_rtol('bicgstab', bnrm2, tol, atol, rtol)
+
+    if bnrm2 == 0:
+        return postprocess(b), 0
 
     n = len(b)
+
+    dotprod = np.vdot if np.iscomplexobj(x) else np.dot
+
     if maxiter is None:
         maxiter = n*10
 
     matvec = A.matvec
     psolve = M.matvec
-    ltr = _type_conv[x.dtype.char]
-    revcom = getattr(_iterative, ltr + 'bicgstabrevcom')
 
-    def get_residual():
-        return np.linalg.norm(matvec(x) - b)
-    atol = _get_atol(tol, atol, np.linalg.norm(b), get_residual, 'bicgstab')
-    if atol == 'exit':
-        return postprocess(x), 0
+    # These values make no sense but coming from original Fortran code
+    # sqrt might have been meant instead.
+    rhotol = np.finfo(x.dtype.char).eps**2
+    omegatol = rhotol
 
-    resid = atol
-    ndx1 = 1
-    ndx2 = -1
-    # Use _aligned_zeros to work around a f2py bug in Numpy 1.9.1
-    work = _aligned_zeros(7*n,dtype=x.dtype)
-    ijob = 1
-    info = 0
-    ftflag = True
-    iter_ = maxiter
-    while True:
-        olditer = iter_
-        x, iter_, resid, info, ndx1, ndx2, sclr1, sclr2, ijob = \
-           revcom(b, x, work, iter_, resid, info, ndx1, ndx2, ijob)
-        if callback is not None and iter_ > olditer:
+    # Dummy values to initialize vars, silence linter warnings
+    rho_prev, omega, alpha, p, v = None, None, None, None, None
+
+    r = b - matvec(x) if x.any() else b.copy()
+    rtilde = r.copy()
+
+    for iteration in range(maxiter):
+        if np.linalg.norm(r) < atol:  # Are we done?
+            return postprocess(x), 0
+
+        rho = dotprod(rtilde, r)
+        if np.abs(rho) < rhotol:  # rho breakdown
+            return postprocess(x), -10
+
+        if iteration > 0:
+            if np.abs(omega) < omegatol:  # omega breakdown
+                return postprocess(x), -11
+
+            beta = (rho / rho_prev) * (alpha / omega)
+            p -= omega*v
+            p *= beta
+            p += r
+        else:  # First spin
+            s = np.empty_like(r)
+            p = r.copy()
+
+        phat = psolve(p)
+        v = matvec(phat)
+        rv = dotprod(rtilde, v)
+        if rv == 0:
+            return postprocess(x), -11
+        alpha = rho / rv
+        r -= alpha*v
+        s[:] = r[:]
+
+        if np.linalg.norm(s) < atol:
+            x += alpha*phat
+            return postprocess(x), 0
+
+        shat = psolve(s)
+        t = matvec(shat)
+        omega = dotprod(t, s) / dotprod(t, t)
+        x += alpha*phat
+        x += omega*shat
+        r -= omega*t
+        rho_prev = rho
+
+        if callback:
             callback(x)
-        slice1 = slice(ndx1-1, ndx1-1+n)
-        slice2 = slice(ndx2-1, ndx2-1+n)
-        if (ijob == -1):
-            if callback is not None:
-                callback(x)
-            break
-        elif (ijob == 1):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(work[slice1])
-        elif (ijob == 2):
-            work[slice1] = psolve(work[slice2])
-        elif (ijob == 3):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(x)
-        elif (ijob == 4):
-            if ftflag:
-                info = -1
-                ftflag = False
-            resid, info = _stoptest(work[slice1], atol)
-        ijob = 2
 
-    if info > 0 and iter_ == maxiter and not (resid <= atol):
-        # info isn't set appropriately otherwise
-        info = iter_
-
-    return postprocess(x), info
+    else:  # for loop exhausted
+        # Return incomplete progress
+        return postprocess(x), maxiter
 
 
-@set_docstring('Use Conjugate Gradient iteration to solve ``Ax = b``.',
-               'The real or complex N-by-N matrix of the linear system.\n'
-               '``A`` must represent a hermitian, positive definite matrix.\n'
-               'Alternatively, ``A`` can be a linear operator which can\n'
-               'produce ``Ax`` using, e.g.,\n'
-               '``scipy.sparse.linalg.LinearOperator``.',
-               footer="""\
-               Examples
-               --------
-               >>> import numpy as np
-               >>> from scipy.sparse import csc_matrix
-               >>> from scipy.sparse.linalg import cg
-               >>> P = np.array([[4, 0, 1, 0],
-               ...               [0, 5, 0, 0],
-               ...               [1, 0, 3, 2],
-               ...               [0, 0, 2, 4]])
-               >>> A = csc_matrix(P)
-               >>> b = np.array([-1, -0.5, -1, 2])
-               >>> x, exit_code = cg(A, b)
-               >>> print(exit_code)    # 0 indicates successful convergence
-               0
-               >>> np.allclose(A.dot(x), b)
-               True
+@_deprecate_positional_args(version="1.14")
+def cg(A, b, x0=None, *, tol=_NoValue, maxiter=None, M=None, callback=None,
+       atol=0., rtol=1e-5):
+    """Use Conjugate Gradient iteration to solve ``Ax = b``.
 
-               """)
-@non_reentrant()
-def cg(A, b, x0=None, tol=1e-5, maxiter=None, M=None, callback=None, atol=None):
+    Parameters
+    ----------
+    A : {sparse matrix, ndarray, LinearOperator}
+        The real or complex N-by-N matrix of the linear system.
+        ``A`` must represent a hermitian, positive definite matrix.
+        Alternatively, ``A`` can be a linear operator which can
+        produce ``Ax`` using, e.g.,
+        ``scipy.sparse.linalg.LinearOperator``.
+    b : ndarray
+        Right hand side of the linear system. Has shape (N,) or (N,1).
+    x0 : ndarray
+        Starting guess for the solution.
+    rtol, atol : float, optional
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``atol=0.`` and ``rtol=1e-5``.
+    maxiter : integer
+        Maximum number of iterations.  Iteration will stop after maxiter
+        steps even if the specified tolerance has not been achieved.
+    M : {sparse matrix, ndarray, LinearOperator}
+        Preconditioner for A.  The preconditioner should approximate the
+        inverse of A.  Effective preconditioning dramatically improves the
+        rate of convergence, which implies that fewer iterations are needed
+        to reach a given error tolerance.
+    callback : function
+        User-supplied function to call after each iteration.  It is called
+        as callback(xk), where xk is the current solution vector.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `cg` keyword argument ``tol`` is deprecated in favor of ``rtol`` and
+           will be removed in SciPy 1.14.0.
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : integer
+        Provides convergence information:
+            0  : successful exit
+            >0 : convergence to tolerance not achieved, number of iterations
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from scipy.sparse import csc_matrix
+    >>> from scipy.sparse.linalg import cg
+    >>> P = np.array([[4, 0, 1, 0],
+    ...               [0, 5, 0, 0],
+    ...               [1, 0, 3, 2],
+    ...               [0, 0, 2, 4]])
+    >>> A = csc_matrix(P)
+    >>> b = np.array([-1, -0.5, -1, 2])
+    >>> x, exit_code = cg(A, b, atol=1e-5)
+    >>> print(exit_code)    # 0 indicates successful convergence
+    0
+    >>> np.allclose(A.dot(x), b)
+    True
+
+    """
     A, M, x, b, postprocess = make_system(A, M, x0, b)
+    bnrm2 = np.linalg.norm(b)
+
+    atol, _ = _get_atol_rtol('cg', bnrm2, tol, atol, rtol)
+
+    if bnrm2 == 0:
+        return postprocess(b), 0
 
     n = len(b)
+
+    if maxiter is None:
+        maxiter = n*10
+
+    dotprod = np.vdot if np.iscomplexobj(x) else np.dot
+
+    matvec = A.matvec
+    psolve = M.matvec
+    r = b - matvec(x) if x.any() else b.copy()
+
+    # Dummy value to initialize var, silences warnings
+    rho_prev, p = None, None
+
+    for iteration in range(maxiter):
+        if np.linalg.norm(r) < atol:  # Are we done?
+            return postprocess(x), 0
+
+        z = psolve(r)
+        rho_cur = dotprod(r, z)
+        if iteration > 0:
+            beta = rho_cur / rho_prev
+            p *= beta
+            p += z
+        else:  # First spin
+            p = np.empty_like(r)
+            p[:] = z[:]
+
+        q = matvec(p)
+        alpha = rho_cur / dotprod(p, q)
+        x += alpha*p
+        r -= alpha*q
+        rho_prev = rho_cur
+
+        if callback:
+            callback(x)
+
+    else:  # for loop exhausted
+        # Return incomplete progress
+        return postprocess(x), maxiter
+
+
+@_deprecate_positional_args(version="1.14")
+def cgs(A, b, x0=None, *, tol=_NoValue, maxiter=None, M=None, callback=None,
+        atol=0., rtol=1e-5):
+    """Use Conjugate Gradient Squared iteration to solve ``Ax = b``.
+
+    Parameters
+    ----------
+    A : {sparse matrix, ndarray, LinearOperator}
+        The real-valued N-by-N matrix of the linear system.
+        Alternatively, ``A`` can be a linear operator which can
+        produce ``Ax`` using, e.g.,
+        ``scipy.sparse.linalg.LinearOperator``.
+    b : ndarray
+        Right hand side of the linear system. Has shape (N,) or (N,1).
+    x0 : ndarray
+        Starting guess for the solution.
+    rtol, atol : float, optional
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``atol=0.`` and ``rtol=1e-5``.
+    maxiter : integer
+        Maximum number of iterations.  Iteration will stop after maxiter
+        steps even if the specified tolerance has not been achieved.
+    M : {sparse matrix, ndarray, LinearOperator}
+        Preconditioner for A.  The preconditioner should approximate the
+        inverse of A.  Effective preconditioning dramatically improves the
+        rate of convergence, which implies that fewer iterations are needed
+        to reach a given error tolerance.
+    callback : function
+        User-supplied function to call after each iteration.  It is called
+        as callback(xk), where xk is the current solution vector.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `cgs` keyword argument ``tol`` is deprecated in favor of ``rtol``
+           and will be removed in SciPy 1.14.0.
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : integer
+        Provides convergence information:
+            0  : successful exit
+            >0 : convergence to tolerance not achieved, number of iterations
+            <0 : parameter breakdown
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from scipy.sparse import csc_matrix
+    >>> from scipy.sparse.linalg import cgs
+    >>> R = np.array([[4, 2, 0, 1],
+    ...               [3, 0, 0, 2],
+    ...               [0, 1, 1, 1],
+    ...               [0, 2, 1, 0]])
+    >>> A = csc_matrix(R)
+    >>> b = np.array([-1, -0.5, -1, 2])
+    >>> x, exit_code = cgs(A, b)
+    >>> print(exit_code)  # 0 indicates successful convergence
+    0
+    >>> np.allclose(A.dot(x), b)
+    True
+
+    """
+    A, M, x, b, postprocess = make_system(A, M, x0, b)
+    bnrm2 = np.linalg.norm(b)
+
+    atol, _ = _get_atol_rtol('cgs', bnrm2, tol, atol, rtol)
+
+    if bnrm2 == 0:
+        return postprocess(b), 0
+
+    n = len(b)
+
+    dotprod = np.vdot if np.iscomplexobj(x) else np.dot
+
     if maxiter is None:
         maxiter = n*10
 
     matvec = A.matvec
     psolve = M.matvec
-    ltr = _type_conv[x.dtype.char]
-    revcom = getattr(_iterative, ltr + 'cgrevcom')
 
-    def get_residual():
-        return np.linalg.norm(matvec(x) - b)
-    atol = _get_atol(tol, atol, np.linalg.norm(b), get_residual, 'cg')
-    if atol == 'exit':
-        return postprocess(x), 0
+    rhotol = np.finfo(x.dtype.char).eps**2
 
-    resid = atol
-    ndx1 = 1
-    ndx2 = -1
-    # Use _aligned_zeros to work around a f2py bug in Numpy 1.9.1
-    work = _aligned_zeros(4*n,dtype=x.dtype)
-    ijob = 1
-    info = 0
-    ftflag = True
-    iter_ = maxiter
-    while True:
-        olditer = iter_
-        x, iter_, resid, info, ndx1, ndx2, sclr1, sclr2, ijob = \
-           revcom(b, x, work, iter_, resid, info, ndx1, ndx2, ijob)
-        if callback is not None and iter_ > olditer:
+    r = b - matvec(x) if x.any() else b.copy()
+
+    rtilde = r.copy()
+    bnorm = np.linalg.norm(b)
+    if bnorm == 0:
+        bnorm = 1
+
+    # Dummy values to initialize vars, silence linter warnings
+    rho_prev, p, u, q = None, None, None, None
+
+    for iteration in range(maxiter):
+        rnorm = np.linalg.norm(r)
+        if rnorm < atol:  # Are we done?
+            return postprocess(x), 0
+
+        rho_cur = dotprod(rtilde, r)
+        if np.abs(rho_cur) < rhotol:  # Breakdown case
+            return postprocess, -10
+
+        if iteration > 0:
+            beta = rho_cur / rho_prev
+
+            # u = r + beta * q
+            # p = u + beta * (q + beta * p);
+            u[:] = r[:]
+            u += beta*q
+
+            p *= beta
+            p += q
+            p *= beta
+            p += u
+
+        else:  # First spin
+            p = r.copy()
+            u = r.copy()
+            q = np.empty_like(r)
+
+        phat = psolve(p)
+        vhat = matvec(phat)
+        rv = dotprod(rtilde, vhat)
+
+        if rv == 0:  # Dot product breakdown
+            return postprocess(x), -11
+
+        alpha = rho_cur / rv
+        q[:] = u[:]
+        q -= alpha*vhat
+        uhat = psolve(u + q)
+        x += alpha*uhat
+
+        # Due to numerical error build-up the actual residual is computed
+        # instead of the following two lines that were in the original
+        # FORTRAN templates, still using a single matvec.
+
+        # qhat = matvec(uhat)
+        # r -= alpha*qhat
+        r = b - matvec(x)
+
+        rho_prev = rho_cur
+
+        if callback:
             callback(x)
-        slice1 = slice(ndx1-1, ndx1-1+n)
-        slice2 = slice(ndx2-1, ndx2-1+n)
-        if (ijob == -1):
-            if callback is not None:
-                callback(x)
-            break
-        elif (ijob == 1):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(work[slice1])
-        elif (ijob == 2):
-            work[slice1] = psolve(work[slice2])
-        elif (ijob == 3):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(x)
-        elif (ijob == 4):
-            if ftflag:
-                info = -1
-                ftflag = False
-            resid, info = _stoptest(work[slice1], atol)
-            if info == 1 and iter_ > 1:
-                # recompute residual and recheck, to avoid
-                # accumulating rounding error
-                work[slice1] = b - matvec(x)
-                resid, info = _stoptest(work[slice1], atol)
-        ijob = 2
 
-    if info > 0 and iter_ == maxiter and not (resid <= atol):
-        # info isn't set appropriately otherwise
-        info = iter_
-
-    return postprocess(x), info
+    else:  # for loop exhausted
+        # Return incomplete progress
+        return postprocess(x), maxiter
 
 
-@set_docstring('Use Conjugate Gradient Squared iteration to solve ``Ax = b``.',
-               'The real-valued N-by-N matrix of the linear system.\n'
-               'Alternatively, ``A`` can be a linear operator which can\n'
-               'produce ``Ax`` using, e.g.,\n'
-               '``scipy.sparse.linalg.LinearOperator``.',
-               footer="""\
-               Examples
-               --------
-               >>> import numpy as np
-               >>> from scipy.sparse import csc_matrix
-               >>> from scipy.sparse.linalg import cgs
-               >>> R = np.array([[4, 2, 0, 1],
-               ...               [3, 0, 0, 2],
-               ...               [0, 1, 1, 1],
-               ...               [0, 2, 1, 0]])
-               >>> A = csc_matrix(R)
-               >>> b = np.array([-1, -0.5, -1, 2])
-               >>> x, exit_code = cgs(A, b)
-               >>> print(exit_code)  # 0 indicates successful convergence
-               0
-               >>> np.allclose(A.dot(x), b)
-               True
-               """
-               )
-@non_reentrant()
-def cgs(A, b, x0=None, tol=1e-5, maxiter=None, M=None, callback=None, atol=None):
-    A, M, x, b, postprocess = make_system(A, M, x0, b)
-
-    n = len(b)
-    if maxiter is None:
-        maxiter = n*10
-
-    matvec = A.matvec
-    psolve = M.matvec
-    ltr = _type_conv[x.dtype.char]
-    revcom = getattr(_iterative, ltr + 'cgsrevcom')
-
-    def get_residual():
-        return np.linalg.norm(matvec(x) - b)
-    atol = _get_atol(tol, atol, np.linalg.norm(b), get_residual, 'cgs')
-    if atol == 'exit':
-        return postprocess(x), 0
-
-    resid = atol
-    ndx1 = 1
-    ndx2 = -1
-    # Use _aligned_zeros to work around a f2py bug in Numpy 1.9.1
-    work = _aligned_zeros(7*n,dtype=x.dtype)
-    ijob = 1
-    info = 0
-    ftflag = True
-    iter_ = maxiter
-    while True:
-        olditer = iter_
-        x, iter_, resid, info, ndx1, ndx2, sclr1, sclr2, ijob = \
-           revcom(b, x, work, iter_, resid, info, ndx1, ndx2, ijob)
-        if callback is not None and iter_ > olditer:
-            callback(x)
-        slice1 = slice(ndx1-1, ndx1-1+n)
-        slice2 = slice(ndx2-1, ndx2-1+n)
-        if (ijob == -1):
-            if callback is not None:
-                callback(x)
-            break
-        elif (ijob == 1):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(work[slice1])
-        elif (ijob == 2):
-            work[slice1] = psolve(work[slice2])
-        elif (ijob == 3):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(x)
-        elif (ijob == 4):
-            if ftflag:
-                info = -1
-                ftflag = False
-            resid, info = _stoptest(work[slice1], atol)
-            if info == 1 and iter_ > 1:
-                # recompute residual and recheck, to avoid
-                # accumulating rounding error
-                work[slice1] = b - matvec(x)
-                resid, info = _stoptest(work[slice1], atol)
-        ijob = 2
-
-    if info == -10:
-        # termination due to breakdown: check for convergence
-        resid, ok = _stoptest(b - matvec(x), atol)
-        if ok:
-            info = 0
-
-    if info > 0 and iter_ == maxiter and not (resid <= atol):
-        # info isn't set appropriately otherwise
-        info = iter_
-
-    return postprocess(x), info
-
-
-@non_reentrant()
-def gmres(A, b, x0=None, tol=1e-5, restart=None, maxiter=None, M=None, callback=None,
-          restrt=None, atol=None, callback_type=None):
+@_deprecate_positional_args(version="1.14")
+def gmres(A, b, x0=None, *, tol=_NoValue, restart=None, maxiter=None, M=None,
+          callback=None, restrt=_NoValue, atol=0., callback_type=None,
+          rtol=1e-5):
     """
     Use Generalized Minimal RESidual iteration to solve ``Ax = b``.
 
@@ -503,38 +596,20 @@ def gmres(A, b, x0=None, tol=1e-5, restart=None, maxiter=None, M=None, callback=
         ``scipy.sparse.linalg.LinearOperator``.
     b : ndarray
         Right hand side of the linear system. Has shape (N,) or (N,1).
-
-    Returns
-    -------
-    x : ndarray
-        The converged solution.
-    info : int
-        Provides convergence information:
-          * 0  : successful exit
-          * >0 : convergence to tolerance not achieved, number of iterations
-          * <0 : illegal input or breakdown
-
-    Other parameters
-    ----------------
     x0 : ndarray
         Starting guess for the solution (a vector of zeros by default).
-    tol, atol : float, optional
-        Tolerances for convergence, ``norm(residual) <= max(tol*norm(b), atol)``.
-        The default for ``atol`` is ``'legacy'``, which emulates
-        a different legacy behavior.
-
-        .. warning::
-
-           The default value for `atol` will be changed in a future release.
-           For future compatibility, specify `atol` explicitly.
+    atol, rtol : float
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``atol=0.`` and ``rtol=1e-5``.
     restart : int, optional
         Number of iterations between restarts. Larger values increase
         iteration cost, but may be necessary for convergence.
-        Default is 20.
+        If omitted, ``min(20, n)`` is used.
     maxiter : int, optional
         Maximum number of iterations (restart cycles).  Iteration will stop
         after maxiter steps even if the specified tolerance has not been
-        achieved.
+        achieved. See `callback_type`.
     M : {sparse matrix, ndarray, LinearOperator}
         Inverse of the preconditioner of A.  M should approximate the
         inverse of A and be easy to solve for (see Notes).  Effective
@@ -542,7 +617,8 @@ def gmres(A, b, x0=None, tol=1e-5, restart=None, maxiter=None, M=None, callback=
         which implies that fewer iterations are needed to reach a given
         error tolerance.  By default, no preconditioner is used.
         In this implementation, left preconditioning is used,
-        and the preconditioned residual is minimized.
+        and the preconditioned residual is minimized. However, the final
+        convergence is tested with respect to the ``b - A @ x`` residual.
     callback : function
         User-supplied function to call after each iteration.  It is called
         as `callback(args)`, where `args` are selected by `callback_type`.
@@ -552,13 +628,29 @@ def gmres(A, b, x0=None, tol=1e-5, restart=None, maxiter=None, M=None, callback=
           - ``pr_norm``: relative (preconditioned) residual norm (float),
             called on every inner iteration
           - ``legacy`` (default): same as ``pr_norm``, but also changes the
-            meaning of 'maxiter' to count inner iterations instead of restart
+            meaning of `maxiter` to count inner iterations instead of restart
             cycles.
+
+        This keyword has no effect if `callback` is not set.
     restrt : int, optional, deprecated
 
         .. deprecated:: 0.11.0
-           `gmres` keyword argument `restrt` is deprecated infavour of
-           `restart` and will be removed in SciPy 1.12.0.
+           `gmres` keyword argument ``restrt`` is deprecated in favor of
+           ``restart`` and will be removed in SciPy 1.14.0.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `gmres` keyword argument ``tol`` is deprecated in favor of ``rtol``
+           and will be removed in SciPy 1.14.0
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : int
+        Provides convergence information:
+            0  : successful exit
+            >0 : convergence to tolerance not achieved, number of iterations
 
     See Also
     --------
@@ -583,33 +675,38 @@ def gmres(A, b, x0=None, tol=1e-5, restart=None, maxiter=None, M=None, callback=
     >>> from scipy.sparse.linalg import gmres
     >>> A = csc_matrix([[3, 2, 0], [1, -1, 0], [0, 5, 1]], dtype=float)
     >>> b = np.array([2, 4, -1], dtype=float)
-    >>> x, exitCode = gmres(A, b)
+    >>> x, exitCode = gmres(A, b, atol=1e-5)
     >>> print(exitCode)            # 0 indicates successful convergence
     0
     >>> np.allclose(A.dot(x), b)
     True
     """
 
-    # Change 'restrt' keyword to 'restart'
-    if restrt is None:
-        restrt = restart
-    elif restart is not None:
-        raise ValueError("Cannot specify both restart and restrt keywords. "
-                         "Preferably use 'restart' only.")
-    else:
-        msg = ("'gmres' keyword argument 'restrt' is deprecated infavour of "
-               "'restart' and will be removed in SciPy 1.12.0.")
-        warnings.warn(msg, DeprecationWarning, stacklevel=2)
+    # Handle the deprecation frenzy
+    if restrt not in (None, _NoValue) and restart:
+        raise ValueError("Cannot specify both 'restart' and 'restrt'"
+                         " keywords. Also 'rstrt' is deprecated."
+                         " and will be removed in SciPy 1.14.0. Use "
+                         "'restart' instead.")
+    if restrt is not _NoValue:
+        msg = ("'gmres' keyword argument 'restrt' is deprecated "
+               "in favor of 'restart' and will be removed in SciPy"
+               " 1.14.0. Until then, if set, 'rstrt' will override 'restart'."
+               )
+        warnings.warn(msg, DeprecationWarning, stacklevel=3)
+        restart = restrt
 
     if callback is not None and callback_type is None:
         # Warn about 'callback_type' semantic changes.
         # Probably should be removed only in far future, Scipy 2.0 or so.
-        warnings.warn("scipy.sparse.linalg.gmres called without specifying `callback_type`. "
-                      "The default value will be changed in a future release. "
-                      "For compatibility, specify a value for `callback_type` explicitly, e.g., "
-                      "``{name}(..., callback_type='pr_norm')``, or to retain the old behavior "
-                      "``{name}(..., callback_type='legacy')``",
-                      category=DeprecationWarning, stacklevel=3)
+        msg = ("scipy.sparse.linalg.gmres called without specifying "
+               "`callback_type`. The default value will be changed in"
+               " a future release. For compatibility, specify a value "
+               "for `callback_type` explicitly, e.g., "
+               "``gmres(..., callback_type='pr_norm')``, or to retain the "
+               "old behavior ``gmres(..., callback_type='legacy')``"
+               )
+        warnings.warn(msg, category=DeprecationWarning, stacklevel=3)
 
     if callback_type is None:
         callback_type = 'legacy'
@@ -618,123 +715,161 @@ def gmres(A, b, x0=None, tol=1e-5, restart=None, maxiter=None, M=None, callback=
         raise ValueError(f"Unknown callback_type: {callback_type!r}")
 
     if callback is None:
-        callback_type = 'none'
+        callback_type = None
 
-    A, M, x, b,postprocess = make_system(A, M, x0, b)
-
-    n = len(b)
-    if maxiter is None:
-        maxiter = n*10
-
-    if restrt is None:
-        restrt = 20
-    restrt = min(restrt, n)
-
+    A, M, x, b, postprocess = make_system(A, M, x0, b)
     matvec = A.matvec
     psolve = M.matvec
-    ltr = _type_conv[x.dtype.char]
-    revcom = getattr(_iterative, ltr + 'gmresrevcom')
-
+    n = len(b)
     bnrm2 = np.linalg.norm(b)
-    Mb_nrm2 = np.linalg.norm(psolve(b))
-    def get_residual():
-        return np.linalg.norm(matvec(x) - b)
-    atol = _get_atol(tol, atol, bnrm2, get_residual, 'gmres')
-    if atol == 'exit':
-        return postprocess(x), 0
+
+    atol, _ = _get_atol_rtol('gmres', bnrm2, tol, atol, rtol)
 
     if bnrm2 == 0:
         return postprocess(b), 0
 
-    # Tolerance passed to GMRESREVCOM applies to the inner iteration
-    # and deals with the left-preconditioned residual.
-    ptol_max_factor = 1.0
+    eps = np.finfo(x.dtype.char).eps
+
+    dotprod = np.vdot if np.iscomplexobj(x) else np.dot
+
+    if maxiter is None:
+        maxiter = n*10
+
+    if restart is None:
+        restart = 20
+    restart = min(restart, n)
+
+    Mb_nrm2 = np.linalg.norm(psolve(b))
+
+    # ====================================================
+    # =========== Tolerance control from gh-8400 =========
+    # ====================================================
+    # Tolerance passed to GMRESREVCOM applies to the inner
+    # iteration and deals with the left-preconditioned
+    # residual.
+    ptol_max_factor = 1.
     ptol = Mb_nrm2 * min(ptol_max_factor, atol / bnrm2)
-    resid = np.nan
-    presid = np.nan
-    ndx1 = 1
-    ndx2 = -1
-    # Use _aligned_zeros to work around a f2py bug in Numpy 1.9.1
-    work = _aligned_zeros((6+restrt)*n,dtype=x.dtype)
-    work2 = _aligned_zeros((restrt+1)*(2*restrt+2),dtype=x.dtype)
-    ijob = 1
-    info = 0
-    ftflag = True
-    iter_ = maxiter
-    old_ijob = ijob
-    first_pass = True
-    resid_ready = False
-    iter_num = 1
-    while True:
-        olditer = iter_
-        x, iter_, presid, info, ndx1, ndx2, sclr1, sclr2, ijob = \
-           revcom(b, x, restrt, work, work2, iter_, presid, info, ndx1, ndx2, ijob, ptol)
-        if callback_type == 'x' and iter_ != olditer:
-            callback(x)
-        slice1 = slice(ndx1-1, ndx1-1+n)
-        slice2 = slice(ndx2-1, ndx2-1+n)
-        if (ijob == -1):  # gmres success, update last residual
-            if callback_type in ('pr_norm', 'legacy'):
-                if resid_ready:
-                    callback(presid / bnrm2)
-            elif callback_type == 'x':
-                callback(x)
-            break
-        elif (ijob == 1):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(x)
-        elif (ijob == 2):
-            work[slice1] = psolve(work[slice2])
-            if not first_pass and old_ijob == 3:
-                resid_ready = True
+    presid = 0.
+    # ====================================================
+    lartg = get_lapack_funcs('lartg', dtype=x.dtype)
 
-            first_pass = False
-        elif (ijob == 3):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*matvec(work[slice1])
-            if resid_ready:
-                if callback_type in ('pr_norm', 'legacy'):
-                    callback(presid / bnrm2)
-                resid_ready = False
-                iter_num = iter_num+1
+    # allocate internal variables
+    v = np.empty([restart+1, n], dtype=x.dtype)
+    h = np.zeros([restart, restart+1], dtype=x.dtype)
+    givens = np.zeros([restart, 2], dtype=x.dtype)
 
-        elif (ijob == 4):
-            if ftflag:
-                info = -1
-                ftflag = False
-            resid, info = _stoptest(work[slice1], atol)
+    # legacy iteration count
+    inner_iter = 0
 
-            # Inner loop tolerance control
-            if info or presid > ptol:
-                ptol_max_factor = min(1.0, 1.5 * ptol_max_factor)
+    for iteration in range(maxiter):
+        if iteration == 0:
+            r = b - matvec(x) if x.any() else b.copy()
+
+        v[0, :] = psolve(r)
+        tmp = np.linalg.norm(v[0, :])
+        v[0, :] *= (1 / tmp)
+        # RHS of the Hessenberg problem
+        S = np.zeros(restart+1, dtype=x.dtype)
+        S[0] = tmp
+
+        breakdown = False
+        for col in range(restart):
+            av = matvec(v[col, :])
+            w = psolve(av)
+
+            # Modified Gram-Schmidt
+            h0 = np.linalg.norm(w)
+            for k in range(col+1):
+                tmp = dotprod(v[k, :], w)
+                h[col, k] = tmp
+                w -= tmp*v[k, :]
+
+            h1 = np.linalg.norm(w)
+            h[col, col + 1] = h1
+            v[col + 1, :] = w[:]
+
+            # Exact solution indicator
+            if h1 <= eps*h0:
+                h[col, col + 1] = 0
+                breakdown = True
             else:
-                # Inner loop tolerance OK, but outer loop not.
-                ptol_max_factor = max(1e-16, 0.25 * ptol_max_factor)
+                v[col + 1, :] *= (1 / h1)
 
-            if resid != 0:
-                ptol = presid * min(ptol_max_factor, atol / resid)
-            else:
-                ptol = presid * ptol_max_factor
+            # apply past Givens rotations to current h column
+            for k in range(col):
+                c, s = givens[k, 0], givens[k, 1]
+                n0, n1 = h[col, [k, k+1]]
+                h[col, [k, k + 1]] = [c*n0 + s*n1, -s.conj()*n0 + c*n1]
 
-        old_ijob = ijob
-        ijob = 2
+            # get and apply current rotation to h and S
+            c, s, mag = lartg(h[col, col], h[col, col+1])
+            givens[col, :] = [c, s]
+            h[col, [col, col+1]] = mag, 0
 
-        if callback_type == 'legacy':
+            # S[col+1] component is always 0
+            tmp = -np.conjugate(s)*S[col]
+            S[[col, col + 1]] = [c*S[col], tmp]
+            presid = np.abs(tmp)
+            inner_iter += 1
+
+            if callback_type in ('legacy', 'pr_norm'):
+                callback(presid / bnrm2)
             # Legacy behavior
-            if iter_num > maxiter:
-                info = maxiter
+            if callback_type == 'legacy' and inner_iter == maxiter:
+                break
+            if presid <= ptol or breakdown:
                 break
 
-    if info >= 0 and not (resid <= atol):
-        # info isn't set appropriately otherwise
-        info = maxiter
+        # Solve h(col, col) upper triangular system and allow pseudo-solve
+        # singular cases as in (but without the f2py copies):
+        # y = trsv(h[:col+1, :col+1].T, S[:col+1])
 
+        if h[col, col] == 0:
+            S[col] = 0
+
+        y = np.zeros([col+1], dtype=x.dtype)
+        y[:] = S[:col+1]
+        for k in range(col, 0, -1):
+            if y[k] != 0:
+                y[k] /= h[k, k]
+                tmp = y[k]
+                y[:k] -= tmp*h[k, :k]
+        if y[0] != 0:
+            y[0] /= h[0, 0]
+
+        x += y @ v[:col+1, :]
+
+        r = b - matvec(x)
+        rnorm = np.linalg.norm(r)
+
+        # Legacy exit
+        if callback_type == 'legacy' and inner_iter == maxiter:
+            return postprocess(x), 0 if rnorm <= atol else maxiter
+
+        if callback_type == 'x':
+            callback(x)
+
+        if rnorm <= atol:
+            break
+        elif breakdown:
+            # Reached breakdown (= exact solution), but the external
+            # tolerance check failed. Bail out with failure.
+            break
+        elif presid <= ptol:
+            # Inner loop passed but outer didn't
+            ptol_max_factor = max(eps, 0.25 * ptol_max_factor)
+        else:
+            ptol_max_factor = min(1.0, 1.5 * ptol_max_factor)
+
+        ptol = presid * min(ptol_max_factor, atol / rnorm)
+
+    info = 0 if (rnorm <= atol) else maxiter
     return postprocess(x), info
 
 
-@non_reentrant()
-def qmr(A, b, x0=None, tol=1e-5, maxiter=None, M1=None, M2=None, callback=None,
-        atol=None):
+@_deprecate_positional_args(version="1.14")
+def qmr(A, b, x0=None, *, tol=_NoValue, maxiter=None, M1=None, M2=None,
+        callback=None, atol=0., rtol=1e-5):
     """Use Quasi-Minimal Residual iteration to solve ``Ax = b``.
 
     Parameters
@@ -746,30 +881,12 @@ def qmr(A, b, x0=None, tol=1e-5, maxiter=None, M1=None, M2=None, callback=None,
         ``scipy.sparse.linalg.LinearOperator``.
     b : ndarray
         Right hand side of the linear system. Has shape (N,) or (N,1).
-
-    Returns
-    -------
-    x : ndarray
-        The converged solution.
-    info : integer
-        Provides convergence information:
-            0  : successful exit
-            >0 : convergence to tolerance not achieved, number of iterations
-            <0 : illegal input or breakdown
-
-    Other Parameters
-    ----------------
     x0 : ndarray
         Starting guess for the solution.
-    tol, atol : float, optional
-        Tolerances for convergence, ``norm(residual) <= max(tol*norm(b), atol)``.
-        The default for ``atol`` is ``'legacy'``, which emulates
-        a different legacy behavior.
-
-        .. warning::
-
-           The default value for `atol` will be changed in a future release.
-           For future compatibility, specify `atol` explicitly.
+    atol, rtol : float, optional
+        Parameters for the convergence test. For convergence,
+        ``norm(b - A @ x) <= max(rtol*norm(b), atol)`` should be satisfied.
+        The default is ``atol=0.`` and ``rtol=1e-5``.
     maxiter : integer
         Maximum number of iterations.  Iteration will stop after maxiter
         steps even if the specified tolerance has not been achieved.
@@ -782,6 +899,21 @@ def qmr(A, b, x0=None, tol=1e-5, maxiter=None, M1=None, M2=None, callback=None,
     callback : function
         User-supplied function to call after each iteration.  It is called
         as callback(xk), where xk is the current solution vector.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `qmr` keyword argument ``tol`` is deprecated in favor of ``rtol``
+           and will be removed in SciPy 1.14.0.
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : integer
+        Provides convergence information:
+            0  : successful exit
+            >0 : convergence to tolerance not achieved, number of iterations
+            <0 : parameter breakdown
 
     See Also
     --------
@@ -792,9 +924,9 @@ def qmr(A, b, x0=None, tol=1e-5, maxiter=None, M1=None, M2=None, callback=None,
     >>> import numpy as np
     >>> from scipy.sparse import csc_matrix
     >>> from scipy.sparse.linalg import qmr
-    >>> A = csc_matrix([[3, 2, 0], [1, -1, 0], [0, 5, 1]], dtype=float)
-    >>> b = np.array([2, 4, -1], dtype=float)
-    >>> x, exitCode = qmr(A, b)
+    >>> A = csc_matrix([[3., 2., 0.], [1., -1., 0.], [0., 5., 1.]])
+    >>> b = np.array([2., 4., -1.])
+    >>> x, exitCode = qmr(A, b, atol=1e-5)
     >>> print(exitCode)            # 0 indicates successful convergence
     0
     >>> np.allclose(A.dot(x), b)
@@ -802,22 +934,32 @@ def qmr(A, b, x0=None, tol=1e-5, maxiter=None, M1=None, M2=None, callback=None,
     """
     A_ = A
     A, M, x, b, postprocess = make_system(A, None, x0, b)
+    bnrm2 = np.linalg.norm(b)
+
+    atol, _ = _get_atol_rtol('qmr', bnrm2, tol, atol, rtol)
+
+    if bnrm2 == 0:
+        return postprocess(b), 0
 
     if M1 is None and M2 is None:
-        if hasattr(A_,'psolve'):
+        if hasattr(A_, 'psolve'):
             def left_psolve(b):
-                return A_.psolve(b,'left')
+                return A_.psolve(b, 'left')
 
             def right_psolve(b):
-                return A_.psolve(b,'right')
+                return A_.psolve(b, 'right')
 
             def left_rpsolve(b):
-                return A_.rpsolve(b,'left')
+                return A_.rpsolve(b, 'left')
 
             def right_rpsolve(b):
-                return A_.rpsolve(b,'right')
-            M1 = LinearOperator(A.shape, matvec=left_psolve, rmatvec=left_rpsolve)
-            M2 = LinearOperator(A.shape, matvec=right_psolve, rmatvec=right_rpsolve)
+                return A_.rpsolve(b, 'right')
+            M1 = LinearOperator(A.shape,
+                                matvec=left_psolve,
+                                rmatvec=left_rpsolve)
+            M2 = LinearOperator(A.shape,
+                                matvec=right_psolve,
+                                rmatvec=right_rpsolve)
         else:
             def id(b):
                 return b
@@ -828,62 +970,108 @@ def qmr(A, b, x0=None, tol=1e-5, maxiter=None, M1=None, M2=None, callback=None,
     if maxiter is None:
         maxiter = n*10
 
-    ltr = _type_conv[x.dtype.char]
-    revcom = getattr(_iterative, ltr + 'qmrrevcom')
+    dotprod = np.vdot if np.iscomplexobj(x) else np.dot
 
-    def get_residual():
-        return np.linalg.norm(A.matvec(x) - b)
-    atol = _get_atol(tol, atol, np.linalg.norm(b), get_residual, 'qmr')
-    if atol == 'exit':
-        return postprocess(x), 0
+    rhotol = np.finfo(x.dtype.char).eps
+    betatol = rhotol
+    gammatol = rhotol
+    deltatol = rhotol
+    epsilontol = rhotol
+    xitol = rhotol
 
-    resid = atol
-    ndx1 = 1
-    ndx2 = -1
-    # Use _aligned_zeros to work around a f2py bug in Numpy 1.9.1
-    work = _aligned_zeros(11*n,x.dtype)
-    ijob = 1
-    info = 0
-    ftflag = True
-    iter_ = maxiter
-    while True:
-        olditer = iter_
-        x, iter_, resid, info, ndx1, ndx2, sclr1, sclr2, ijob = \
-           revcom(b, x, work, iter_, resid, info, ndx1, ndx2, ijob)
-        if callback is not None and iter_ > olditer:
+    r = b - A.matvec(x) if x.any() else b.copy()
+
+    vtilde = r.copy()
+    y = M1.matvec(vtilde)
+    rho = np.linalg.norm(y)
+    wtilde = r.copy()
+    z = M2.rmatvec(wtilde)
+    xi = np.linalg.norm(z)
+    gamma, eta, theta = 1, -1, 0
+    v = np.empty_like(vtilde)
+    w = np.empty_like(wtilde)
+
+    # Dummy values to initialize vars, silence linter warnings
+    epsilon, q, d, p, s = None, None, None, None, None
+
+    for iteration in range(maxiter):
+        if np.linalg.norm(r) < atol:  # Are we done?
+            return postprocess(x), 0
+        if np.abs(rho) < rhotol:  # rho breakdown
+            return postprocess(x), -10
+        if np.abs(xi) < xitol:  # xi breakdown
+            return postprocess(x), -15
+
+        v[:] = vtilde[:]
+        v *= (1 / rho)
+        y *= (1 / rho)
+        w[:] = wtilde[:]
+        w *= (1 / xi)
+        z *= (1 / xi)
+        delta = dotprod(z, y)
+
+        if np.abs(delta) < deltatol:  # delta breakdown
+            return postprocess(x), -13
+
+        ytilde = M2.matvec(y)
+        ztilde = M1.rmatvec(z)
+
+        if iteration > 0:
+            ytilde -= (xi * delta / epsilon) * p
+            p[:] = ytilde[:]
+            ztilde -= (rho * (delta / epsilon).conj()) * q
+            q[:] = ztilde[:]
+        else:  # First spin
+            p = ytilde.copy()
+            q = ztilde.copy()
+
+        ptilde = A.matvec(p)
+        epsilon = dotprod(q, ptilde)
+        if np.abs(epsilon) < epsilontol:  # epsilon breakdown
+            return postprocess(x), -14
+
+        beta = epsilon / delta
+        if np.abs(beta) < betatol:  # beta breakdown
+            return postprocess(x), -11
+
+        vtilde[:] = ptilde[:]
+        vtilde -= beta*v
+        y = M1.matvec(vtilde)
+
+        rho_prev = rho
+        rho = np.linalg.norm(y)
+        wtilde[:] = w[:]
+        wtilde *= - beta.conj()
+        wtilde += A.rmatvec(q)
+        z = M2.rmatvec(wtilde)
+        xi = np.linalg.norm(z)
+        gamma_prev = gamma
+        theta_prev = theta
+        theta = rho / (gamma_prev * np.abs(beta))
+        gamma = 1 / np.sqrt(1 + theta**2)
+
+        if np.abs(gamma) < gammatol:  # gamma breakdown
+            return postprocess(x), -12
+
+        eta *= -(rho_prev / beta) * (gamma / gamma_prev)**2
+
+        if iteration > 0:
+            d *= (theta_prev * gamma) ** 2
+            d += eta*p
+            s *= (theta_prev * gamma) ** 2
+            s += eta*ptilde
+        else:
+            d = p.copy()
+            d *= eta
+            s = ptilde.copy()
+            s *= eta
+
+        x += d
+        r -= s
+
+        if callback:
             callback(x)
-        slice1 = slice(ndx1-1, ndx1-1+n)
-        slice2 = slice(ndx2-1, ndx2-1+n)
-        if (ijob == -1):
-            if callback is not None:
-                callback(x)
-            break
-        elif (ijob == 1):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*A.matvec(work[slice1])
-        elif (ijob == 2):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*A.rmatvec(work[slice1])
-        elif (ijob == 3):
-            work[slice1] = M1.matvec(work[slice2])
-        elif (ijob == 4):
-            work[slice1] = M2.matvec(work[slice2])
-        elif (ijob == 5):
-            work[slice1] = M1.rmatvec(work[slice2])
-        elif (ijob == 6):
-            work[slice1] = M2.rmatvec(work[slice2])
-        elif (ijob == 7):
-            work[slice2] *= sclr2
-            work[slice2] += sclr1*A.matvec(x)
-        elif (ijob == 8):
-            if ftflag:
-                info = -1
-                ftflag = False
-            resid, info = _stoptest(work[slice1], atol)
-        ijob = 2
 
-    if info > 0 and iter_ == maxiter and not (resid <= atol):
-        # info isn't set appropriately otherwise
-        info = iter_
-
-    return postprocess(x), info
+    else:  # for loop exhausted
+        # Return incomplete progress
+        return postprocess(x), maxiter

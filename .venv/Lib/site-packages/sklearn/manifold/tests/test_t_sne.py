@@ -40,6 +40,7 @@ from sklearn.utils._testing import (
     ignore_warnings,
     skip_if_32bit,
 )
+from sklearn.utils.fixes import CSR_CONTAINERS, LIL_CONTAINERS
 
 x = np.linspace(0, 1, 10)
 xx, yy = np.meshgrid(x, x)
@@ -336,14 +337,15 @@ def test_optimization_minimizes_kl_divergence():
 
 
 @pytest.mark.parametrize("method", ["exact", "barnes_hut"])
-def test_fit_transform_csr_matrix(method):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_fit_transform_csr_matrix(method, csr_container):
     # TODO: compare results on dense and sparse data as proposed in:
     # https://github.com/scikit-learn/scikit-learn/pull/23585#discussion_r968388186
     # X can be a sparse matrix.
     rng = check_random_state(0)
     X = rng.randn(50, 2)
     X[(rng.randint(0, 50, 25), rng.randint(0, 2, 25))] = 0.0
-    X_csr = sp.csr_matrix(X)
+    X_csr = csr_container(X)
     tsne = TSNE(
         n_components=2,
         init="random",
@@ -394,7 +396,7 @@ def test_trustworthiness_not_euclidean_metric():
     [
         ("exact", np.asarray),
         ("barnes_hut", np.asarray),
-        ("barnes_hut", sp.csr_matrix),
+        *[("barnes_hut", csr_container) for csr_container in CSR_CONTAINERS],
     ],
 )
 @pytest.mark.parametrize(
@@ -416,7 +418,8 @@ def test_bad_precomputed_distances(method, D, retype, message_regex):
         tsne.fit_transform(retype(D))
 
 
-def test_exact_no_precomputed_sparse():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_exact_no_precomputed_sparse(csr_container):
     tsne = TSNE(
         metric="precomputed",
         method="exact",
@@ -425,13 +428,14 @@ def test_exact_no_precomputed_sparse():
         perplexity=1,
     )
     with pytest.raises(TypeError, match="sparse"):
-        tsne.fit_transform(sp.csr_matrix([[0, 5], [5, 0]]))
+        tsne.fit_transform(csr_container([[0, 5], [5, 0]]))
 
 
-def test_high_perplexity_precomputed_sparse_distances():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_high_perplexity_precomputed_sparse_distances(csr_container):
     # Perplexity should be less than 50
     dist = np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [1.0, 0.0, 0.0]])
-    bad_dist = sp.csr_matrix(dist)
+    bad_dist = csr_container(dist)
     tsne = TSNE(metric="precomputed", init="random", random_state=42, perplexity=1)
     msg = "3 neighbors per samples are required, but some samples have only 1"
     with pytest.raises(ValueError, match=msg):
@@ -439,7 +443,8 @@ def test_high_perplexity_precomputed_sparse_distances():
 
 
 @ignore_warnings(category=EfficiencyWarning)
-def test_sparse_precomputed_distance():
+@pytest.mark.parametrize("sparse_container", CSR_CONTAINERS + LIL_CONTAINERS)
+def test_sparse_precomputed_distance(sparse_container):
     """Make sure that TSNE works identically for sparse and dense matrix"""
     random_state = check_random_state(0)
     X = random_state.randn(100, 2)
@@ -447,16 +452,15 @@ def test_sparse_precomputed_distance():
     D_sparse = kneighbors_graph(X, n_neighbors=100, mode="distance", include_self=True)
     D = pairwise_distances(X)
     assert sp.issparse(D_sparse)
-    assert_almost_equal(D_sparse.A, D)
+    assert_almost_equal(D_sparse.toarray(), D)
 
     tsne = TSNE(
         metric="precomputed", random_state=0, init="random", learning_rate="auto"
     )
     Xt_dense = tsne.fit_transform(D)
 
-    for fmt in ["csr", "lil"]:
-        Xt_sparse = tsne.fit_transform(D_sparse.asformat(fmt))
-        assert_almost_equal(Xt_dense, Xt_sparse)
+    Xt_sparse = tsne.fit_transform(sparse_container(D_sparse))
+    assert_almost_equal(Xt_dense, Xt_sparse)
 
 
 def test_non_positive_computed_distances():
@@ -499,11 +503,12 @@ def test_pca_initialization_not_compatible_with_precomputed_kernel():
         tsne.fit_transform(np.array([[0.0], [1.0]]))
 
 
-def test_pca_initialization_not_compatible_with_sparse_input():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_pca_initialization_not_compatible_with_sparse_input(csr_container):
     # Sparse input matrices cannot use PCA initialization.
     tsne = TSNE(init="pca", learning_rate=100.0, perplexity=1)
     with pytest.raises(TypeError, match="PCA initialization.*"):
-        tsne.fit_transform(sp.csr_matrix([[0, 5], [5, 0]]))
+        tsne.fit_transform(csr_container([[0, 5], [5, 0]]))
 
 
 def test_n_components_range():
@@ -569,7 +574,8 @@ def test_n_iter_used():
             assert tsne.n_iter_ == n_iter - 1
 
 
-def test_answer_gradient_two_points():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_answer_gradient_two_points(csr_container):
     # Test the tree with only a single set of children.
     #
     # These tests & answers have been checked against the reference
@@ -582,10 +588,11 @@ def test_answer_gradient_two_points():
     grad_output = np.array(
         [[-2.37012478e-05, -6.29044398e-05], [2.37012478e-05, 6.29044398e-05]]
     )
-    _run_answer_test(pos_input, pos_output, neighbors, grad_output)
+    _run_answer_test(pos_input, pos_output, neighbors, grad_output, csr_container)
 
 
-def test_answer_gradient_four_points():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_answer_gradient_four_points(csr_container):
     # Four points tests the tree with multiple levels of children.
     #
     # These tests & answers have been checked against the reference
@@ -608,10 +615,11 @@ def test_answer_gradient_four_points():
             [-2.58720939e-09, 7.52706374e-09],
         ]
     )
-    _run_answer_test(pos_input, pos_output, neighbors, grad_output)
+    _run_answer_test(pos_input, pos_output, neighbors, grad_output, csr_container)
 
 
-def test_skip_num_points_gradient():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_skip_num_points_gradient(csr_container):
     # Test the kwargs option skip_num_points.
     #
     # Skip num points should make it such that the Barnes_hut gradient
@@ -637,7 +645,9 @@ def test_skip_num_points_gradient():
             [-2.58720939e-09, 7.52706374e-09],
         ]
     )
-    _run_answer_test(pos_input, pos_output, neighbors, grad_output, False, 0.1, 2)
+    _run_answer_test(
+        pos_input, pos_output, neighbors, grad_output, csr_container, False, 0.1, 2
+    )
 
 
 def _run_answer_test(
@@ -645,6 +655,7 @@ def _run_answer_test(
     pos_output,
     neighbors,
     grad_output,
+    csr_container,
     verbose=False,
     perplexity=0.1,
     skip_num_points=0,
@@ -657,9 +668,7 @@ def _run_answer_test(
     pij_input = squareform(pij_input).astype(np.float32)
     grad_bh = np.zeros(pos_output.shape, dtype=np.float32)
 
-    from scipy.sparse import csr_matrix
-
-    P = csr_matrix(pij_input)
+    P = csr_container(pij_input)
 
     neighbors = P.indices.astype(np.int64)
     indptr = P.indptr.astype(np.int64)

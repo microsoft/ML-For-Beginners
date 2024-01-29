@@ -1000,7 +1000,6 @@ class TopDictIndex(Index):
 
 
 class FDArrayIndex(Index):
-
     compilerClass = FDArrayIndexCompiler
 
     def toXML(self, xmlWriter):
@@ -2483,7 +2482,6 @@ def encodeNumber(num):
 
 
 class TopDictCompiler(DictCompiler):
-
     opcodes = buildOpcodeDict(topDictOperators)
 
     def getChildren(self, strings):
@@ -2590,7 +2588,6 @@ class FontDictCompiler(DictCompiler):
 
 
 class PrivateDictCompiler(DictCompiler):
-
     maxBlendStack = maxStackLimit
     opcodes = buildOpcodeDict(privateDictOperators)
 

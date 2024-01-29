@@ -13,8 +13,6 @@ events and the arguments which will be passed to them.
    This API is experimental in IPython 2.0, and may be revised in future versions.
 """
 
-from backcall import callback_prototype
-
 
 class EventManager(object):
     """Manage a collection of events and a sequence of callbacks for each.
@@ -63,22 +61,13 @@ class EventManager(object):
         """
         if not callable(function):
             raise TypeError('Need a callable, got %r' % function)
-        callback_proto = available_events.get(event)
         if function not in self.callbacks[event]:
-            self.callbacks[event].append(callback_proto.adapt(function))
+            self.callbacks[event].append(function)
     
     def unregister(self, event, function):
         """Remove a callback from the given event."""
         if function in self.callbacks[event]:
             return self.callbacks[event].remove(function)
-
-        # Remove callback in case ``function`` was adapted by `backcall`.
-        for callback in self.callbacks[event]:
-            try:
-                if callback.__wrapped__ is function:
-                    return self.callbacks[event].remove(callback)
-            except AttributeError:
-                pass
 
         raise ValueError('Function {!r} is not registered as a {} callback'.format(function, event))
 
@@ -93,16 +82,19 @@ class EventManager(object):
                 func(*args, **kwargs)
             except (Exception, KeyboardInterrupt):
                 if self.print_on_error:
-                    print("Error in callback {} (for {}):".format(func, event))
+                    print(
+                        "Error in callback {} (for {}), with arguments args {},kwargs {}:".format(
+                            func, event, args, kwargs
+                        )
+                    )
                 self.shell.showtraceback()
 
 # event_name -> prototype mapping
 available_events = {}
 
 def _define_event(callback_function):
-    callback_proto = callback_prototype(callback_function)
-    available_events[callback_function.__name__] = callback_proto
-    return callback_proto
+    available_events[callback_function.__name__] = callback_function
+    return callback_function
 
 # ------------------------------------------------------------------------------
 # Callback prototypes

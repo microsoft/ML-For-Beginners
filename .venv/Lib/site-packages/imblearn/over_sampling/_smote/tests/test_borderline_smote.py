@@ -1,53 +1,110 @@
-import numpy as np
+from collections import Counter
+
 import pytest
-from sklearn.neighbors import NearestNeighbors
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
 from sklearn.utils._testing import assert_allclose, assert_array_equal
 
 from imblearn.over_sampling import BorderlineSMOTE
 
 
-@pytest.fixture
-def data():
-    X = np.array(
-        [
-            [0.11622591, -0.0317206],
-            [0.77481731, 0.60935141],
-            [1.25192108, -0.22367336],
-            [0.53366841, -0.30312976],
-            [1.52091956, -0.49283504],
-            [-0.28162401, -2.10400981],
-            [0.83680821, 1.72827342],
-            [0.3084254, 0.33299982],
-            [0.70472253, -0.73309052],
-            [0.28893132, -0.38761769],
-            [1.15514042, 0.0129463],
-            [0.88407872, 0.35454207],
-            [1.31301027, -0.92648734],
-            [-1.11515198, -0.93689695],
-            [-0.18410027, -0.45194484],
-            [0.9281014, 0.53085498],
-            [-0.14374509, 0.27370049],
-            [-0.41635887, -0.38299653],
-            [0.08711622, 0.93259929],
-            [1.70580611, -0.11219234],
-        ]
-    )
-    y = np.array([0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0])
-    return X, y
-
-
 @pytest.mark.parametrize("kind", ["borderline-1", "borderline-2"])
-def test_borderline_smote(kind, data):
-    bsmote = BorderlineSMOTE(kind=kind, random_state=42)
-    bsmote_nn = BorderlineSMOTE(
-        kind=kind,
-        random_state=42,
-        k_neighbors=NearestNeighbors(n_neighbors=6),
-        m_neighbors=NearestNeighbors(n_neighbors=11),
+def test_borderline_smote_no_in_danger_samples(kind):
+    """Check that the algorithm behave properly even on a dataset without any sample
+    in danger.
+    """
+    X, y = make_classification(
+        n_samples=500,
+        n_features=2,
+        n_informative=2,
+        n_redundant=0,
+        n_repeated=0,
+        n_clusters_per_class=1,
+        n_classes=3,
+        weights=[0.1, 0.2, 0.7],
+        class_sep=1.5,
+        random_state=1,
     )
+    smote = BorderlineSMOTE(kind=kind, m_neighbors=3, k_neighbors=5, random_state=0)
+    X_res, y_res = smote.fit_resample(X, y)
 
-    X_res_1, y_res_1 = bsmote.fit_resample(*data)
-    X_res_2, y_res_2 = bsmote_nn.fit_resample(*data)
+    assert_allclose(X, X_res)
+    assert_allclose(y, y_res)
+    assert not smote.in_danger_indices
 
-    assert_allclose(X_res_1, X_res_2)
-    assert_array_equal(y_res_1, y_res_2)
+
+def test_borderline_smote_kind():
+    """Check the behaviour of the `kind` parameter.
+
+    In short, "borderline-2" generates sample closer to the boundary decision than
+    "borderline-1". We generate an example where a logistic regression will perform
+    worse on "borderline-2" than on "borderline-1".
+    """
+    X, y = make_classification(
+        n_samples=500,
+        n_features=2,
+        n_informative=2,
+        n_redundant=0,
+        n_repeated=0,
+        n_clusters_per_class=1,
+        n_classes=3,
+        weights=[0.1, 0.2, 0.7],
+        class_sep=1.0,
+        random_state=1,
+    )
+    smote = BorderlineSMOTE(
+        kind="borderline-1", m_neighbors=9, k_neighbors=5, random_state=0
+    )
+    X_res_borderline_1, y_res_borderline_1 = smote.fit_resample(X, y)
+    smote.set_params(kind="borderline-2")
+    X_res_borderline_2, y_res_borderline_2 = smote.fit_resample(X, y)
+
+    score_borderline_1 = (
+        LogisticRegression()
+        .fit(X_res_borderline_1, y_res_borderline_1)
+        .score(X_res_borderline_1, y_res_borderline_1)
+    )
+    score_borderline_2 = (
+        LogisticRegression()
+        .fit(X_res_borderline_2, y_res_borderline_2)
+        .score(X_res_borderline_2, y_res_borderline_2)
+    )
+    assert score_borderline_1 > score_borderline_2
+
+
+def test_borderline_smote_in_danger():
+    X, y = make_classification(
+        n_samples=500,
+        n_features=2,
+        n_informative=2,
+        n_redundant=0,
+        n_repeated=0,
+        n_clusters_per_class=1,
+        n_classes=3,
+        weights=[0.1, 0.2, 0.7],
+        class_sep=0.8,
+        random_state=1,
+    )
+    smote = BorderlineSMOTE(
+        kind="borderline-1",
+        m_neighbors=9,
+        k_neighbors=5,
+        random_state=0,
+    )
+    _, y_res_1 = smote.fit_resample(X, y)
+    in_danger_indices_borderline_1 = smote.in_danger_indices
+    smote.set_params(kind="borderline-2")
+    _, y_res_2 = smote.fit_resample(X, y)
+    in_danger_indices_borderline_2 = smote.in_danger_indices
+
+    for key1, key2 in zip(
+        in_danger_indices_borderline_1, in_danger_indices_borderline_2
+    ):
+        assert_array_equal(
+            in_danger_indices_borderline_1[key1], in_danger_indices_borderline_2[key2]
+        )
+    assert len(in_danger_indices_borderline_1) == len(in_danger_indices_borderline_2)
+    counter = Counter(y_res_1)
+    assert counter[0] == counter[1] == counter[2]
+    counter = Counter(y_res_2)
+    assert counter[0] == counter[1] == counter[2]

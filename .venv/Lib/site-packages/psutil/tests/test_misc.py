@@ -5,9 +5,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-"""
-Miscellaneous tests.
-"""
+"""Miscellaneous tests."""
 
 import ast
 import collections
@@ -59,14 +57,20 @@ from psutil.tests import sh
 
 
 class TestSpecialMethods(PsutilTestCase):
+    def test_check_pid_range(self):
+        with self.assertRaises(OverflowError):
+            psutil._psplatform.cext.check_pid_range(2**128)
+        with self.assertRaises(psutil.NoSuchProcess):
+            psutil.Process(2**128)
 
     def test_process__repr__(self, func=repr):
         p = psutil.Process(self.spawn_testproc().pid)
         r = func(p)
         self.assertIn("psutil.Process", r)
         self.assertIn("pid=%s" % p.pid, r)
-        self.assertIn("name='%s'" % str(p.name()),
-                      r.replace("name=u'", "name='"))
+        self.assertIn(
+            "name='%s'" % str(p.name()), r.replace("name=u'", "name='")
+        )
         self.assertIn("status=", r)
         self.assertNotIn("exitcode=", r)
         p.terminate()
@@ -75,22 +79,31 @@ class TestSpecialMethods(PsutilTestCase):
         self.assertIn("status='terminated'", r)
         self.assertIn("exitcode=", r)
 
-        with mock.patch.object(psutil.Process, "name",
-                               side_effect=psutil.ZombieProcess(os.getpid())):
+        with mock.patch.object(
+            psutil.Process,
+            "name",
+            side_effect=psutil.ZombieProcess(os.getpid()),
+        ):
             p = psutil.Process()
             r = func(p)
             self.assertIn("pid=%s" % p.pid, r)
             self.assertIn("status='zombie'", r)
             self.assertNotIn("name=", r)
-        with mock.patch.object(psutil.Process, "name",
-                               side_effect=psutil.NoSuchProcess(os.getpid())):
+        with mock.patch.object(
+            psutil.Process,
+            "name",
+            side_effect=psutil.NoSuchProcess(os.getpid()),
+        ):
             p = psutil.Process()
             r = func(p)
             self.assertIn("pid=%s" % p.pid, r)
             self.assertIn("terminated", r)
             self.assertNotIn("name=", r)
-        with mock.patch.object(psutil.Process, "name",
-                               side_effect=psutil.AccessDenied(os.getpid())):
+        with mock.patch.object(
+            psutil.Process,
+            "name",
+            side_effect=psutil.AccessDenied(os.getpid()),
+        ):
             p = psutil.Process()
             r = func(p)
             self.assertIn("pid=%s" % p.pid, r)
@@ -108,68 +121,79 @@ class TestSpecialMethods(PsutilTestCase):
     def test_no_such_process__repr__(self):
         self.assertEqual(
             repr(psutil.NoSuchProcess(321)),
-            "psutil.NoSuchProcess(pid=321, msg='process no longer exists')")
+            "psutil.NoSuchProcess(pid=321, msg='process no longer exists')",
+        )
         self.assertEqual(
             repr(psutil.NoSuchProcess(321, name="name", msg="msg")),
-            "psutil.NoSuchProcess(pid=321, name='name', msg='msg')")
+            "psutil.NoSuchProcess(pid=321, name='name', msg='msg')",
+        )
 
     def test_no_such_process__str__(self):
         self.assertEqual(
             str(psutil.NoSuchProcess(321)),
-            "process no longer exists (pid=321)")
+            "process no longer exists (pid=321)",
+        )
         self.assertEqual(
             str(psutil.NoSuchProcess(321, name="name", msg="msg")),
-            "msg (pid=321, name='name')")
+            "msg (pid=321, name='name')",
+        )
 
     def test_zombie_process__repr__(self):
         self.assertEqual(
             repr(psutil.ZombieProcess(321)),
             'psutil.ZombieProcess(pid=321, msg="PID still '
-            'exists but it\'s a zombie")')
+            'exists but it\'s a zombie")',
+        )
         self.assertEqual(
             repr(psutil.ZombieProcess(321, name="name", ppid=320, msg="foo")),
-            "psutil.ZombieProcess(pid=321, ppid=320, name='name', msg='foo')")
+            "psutil.ZombieProcess(pid=321, ppid=320, name='name', msg='foo')",
+        )
 
     def test_zombie_process__str__(self):
         self.assertEqual(
             str(psutil.ZombieProcess(321)),
-            "PID still exists but it's a zombie (pid=321)")
+            "PID still exists but it's a zombie (pid=321)",
+        )
         self.assertEqual(
             str(psutil.ZombieProcess(321, name="name", ppid=320, msg="foo")),
-            "foo (pid=321, ppid=320, name='name')")
+            "foo (pid=321, ppid=320, name='name')",
+        )
 
     def test_access_denied__repr__(self):
         self.assertEqual(
-            repr(psutil.AccessDenied(321)),
-            "psutil.AccessDenied(pid=321)")
+            repr(psutil.AccessDenied(321)), "psutil.AccessDenied(pid=321)"
+        )
         self.assertEqual(
             repr(psutil.AccessDenied(321, name="name", msg="msg")),
-            "psutil.AccessDenied(pid=321, name='name', msg='msg')")
+            "psutil.AccessDenied(pid=321, name='name', msg='msg')",
+        )
 
     def test_access_denied__str__(self):
-        self.assertEqual(
-            str(psutil.AccessDenied(321)),
-            "(pid=321)")
+        self.assertEqual(str(psutil.AccessDenied(321)), "(pid=321)")
         self.assertEqual(
             str(psutil.AccessDenied(321, name="name", msg="msg")),
-            "msg (pid=321, name='name')")
+            "msg (pid=321, name='name')",
+        )
 
     def test_timeout_expired__repr__(self):
         self.assertEqual(
             repr(psutil.TimeoutExpired(5)),
-            "psutil.TimeoutExpired(seconds=5, msg='timeout after 5 seconds')")
+            "psutil.TimeoutExpired(seconds=5, msg='timeout after 5 seconds')",
+        )
         self.assertEqual(
             repr(psutil.TimeoutExpired(5, pid=321, name="name")),
             "psutil.TimeoutExpired(pid=321, name='name', seconds=5, "
-            "msg='timeout after 5 seconds')")
+            "msg='timeout after 5 seconds')",
+        )
 
     def test_timeout_expired__str__(self):
         self.assertEqual(
-            str(psutil.TimeoutExpired(5)),
-            "timeout after 5 seconds")
+            str(psutil.TimeoutExpired(5)), "timeout after 5 seconds"
+        )
         self.assertEqual(
             str(psutil.TimeoutExpired(5, pid=321, name="name")),
-            "timeout after 5 seconds (pid=321, name='name')")
+            "timeout after 5 seconds (pid=321, name='name')",
+        )
 
     def test_process__eq__(self):
         p1 = psutil.Process()
@@ -190,12 +214,16 @@ class TestSpecialMethods(PsutilTestCase):
 
 
 class TestMisc(PsutilTestCase):
-
     def test__all__(self):
         dir_psutil = dir(psutil)
         for name in dir_psutil:
-            if name in ('long', 'tests', 'test', 'PermissionError',
-                        'ProcessLookupError'):
+            if name in (
+                'long',
+                'tests',
+                'test',
+                'PermissionError',
+                'ProcessLookupError',
+            ):
                 continue
             if not name.startswith('_'):
                 try:
@@ -205,8 +233,10 @@ class TestMisc(PsutilTestCase):
                         fun = getattr(psutil, name)
                         if fun is None:
                             continue
-                        if (fun.__doc__ is not None and
-                                'deprecated' not in fun.__doc__.lower()):
+                        if (
+                            fun.__doc__ is not None
+                            and 'deprecated' not in fun.__doc__.lower()
+                        ):
                             raise self.fail('%r not in psutil.__all__' % name)
 
         # Import 'star' will break if __all__ is inconsistent, see:
@@ -217,8 +247,9 @@ class TestMisc(PsutilTestCase):
             self.assertIn(name, dir_psutil)
 
     def test_version(self):
-        self.assertEqual('.'.join([str(x) for x in psutil.version_info]),
-                         psutil.__version__)
+        self.assertEqual(
+            '.'.join([str(x) for x in psutil.version_info]), psutil.__version__
+        )
 
     def test_process_as_dict_no_new_names(self):
         # See https://github.com/giampaolo/psutil/issues/813
@@ -262,16 +293,19 @@ class TestMisc(PsutilTestCase):
     def test_ad_on_process_creation(self):
         # We are supposed to be able to instantiate Process also in case
         # of zombie processes or access denied.
-        with mock.patch.object(psutil.Process, 'create_time',
-                               side_effect=psutil.AccessDenied) as meth:
+        with mock.patch.object(
+            psutil.Process, 'create_time', side_effect=psutil.AccessDenied
+        ) as meth:
             psutil.Process()
             assert meth.called
-        with mock.patch.object(psutil.Process, 'create_time',
-                               side_effect=psutil.ZombieProcess(1)) as meth:
+        with mock.patch.object(
+            psutil.Process, 'create_time', side_effect=psutil.ZombieProcess(1)
+        ) as meth:
             psutil.Process()
             assert meth.called
-        with mock.patch.object(psutil.Process, 'create_time',
-                               side_effect=ValueError) as meth:
+        with mock.patch.object(
+            psutil.Process, 'create_time', side_effect=ValueError
+        ) as meth:
             with self.assertRaises(ValueError):
                 psutil.Process()
             assert meth.called
@@ -279,7 +313,8 @@ class TestMisc(PsutilTestCase):
     def test_sanity_version_check(self):
         # see: https://github.com/giampaolo/psutil/issues/564
         with mock.patch(
-                "psutil._psplatform.cext.version", return_value="0.0.0"):
+            "psutil._psplatform.cext.version", return_value="0.0.0"
+        ):
             with self.assertRaises(ImportError) as cm:
                 reload_module(psutil)
             self.assertIn("version conflict", str(cm.exception).lower())
@@ -291,7 +326,6 @@ class TestMisc(PsutilTestCase):
 
 
 class TestMemoizeDecorator(PsutilTestCase):
-
     def setUp(self):
         self.calls = []
 
@@ -307,14 +341,15 @@ class TestMemoizeDecorator(PsutilTestCase):
         # with args
         for _ in range(2):
             ret = obj(1)
-            self.assertEqual(self.calls, [((), {}), ((1, ), {})])
+            self.assertEqual(self.calls, [((), {}), ((1,), {})])
             if expected_retval is not None:
                 self.assertEqual(ret, expected_retval)
         # with args + kwargs
         for _ in range(2):
             ret = obj(1, bar=2)
             self.assertEqual(
-                self.calls, [((), {}), ((1, ), {}), ((1, ), {'bar': 2})])
+                self.calls, [((), {}), ((1,), {}), ((1,), {'bar': 2})]
+            )
             if expected_retval is not None:
                 self.assertEqual(ret, expected_retval)
         # clear cache
@@ -325,12 +360,12 @@ class TestMemoizeDecorator(PsutilTestCase):
             self.assertEqual(ret, expected_retval)
         self.assertEqual(len(self.calls), 4)
         # docstring
-        self.assertEqual(obj.__doc__, "my docstring")
+        self.assertEqual(obj.__doc__, "My docstring.")
 
     def test_function(self):
         @memoize
         def foo(*args, **kwargs):
-            """my docstring"""
+            """My docstring."""
             baseclass.calls.append((args, kwargs))
             return 22
 
@@ -340,7 +375,7 @@ class TestMemoizeDecorator(PsutilTestCase):
     def test_class(self):
         @memoize
         class Foo:
-            """my docstring"""
+            """My docstring."""
 
             def __init__(self, *args, **kwargs):
                 baseclass.calls.append((args, kwargs))
@@ -370,7 +405,7 @@ class TestMemoizeDecorator(PsutilTestCase):
             @staticmethod
             @memoize
             def bar(*args, **kwargs):
-                """my docstring"""
+                """My docstring."""
                 baseclass.calls.append((args, kwargs))
                 return 22
 
@@ -382,7 +417,7 @@ class TestMemoizeDecorator(PsutilTestCase):
             @classmethod
             @memoize
             def bar(cls, *args, **kwargs):
-                """my docstring"""
+                """My docstring."""
                 baseclass.calls.append((args, kwargs))
                 return 22
 
@@ -394,7 +429,7 @@ class TestMemoizeDecorator(PsutilTestCase):
         # against different types. Keeping it anyway.
         @memoize
         def foo(*args, **kwargs):
-            """foo docstring"""
+            """Foo docstring."""
             calls.append(None)
             return (args, kwargs)
 
@@ -408,13 +443,13 @@ class TestMemoizeDecorator(PsutilTestCase):
         # with args
         for _ in range(2):
             ret = foo(1)
-            expected = ((1, ), {})
+            expected = ((1,), {})
             self.assertEqual(ret, expected)
             self.assertEqual(len(calls), 2)
         # with args + kwargs
         for _ in range(2):
             ret = foo(1, bar=2)
-            expected = ((1, ), {'bar': 2})
+            expected = ((1,), {'bar': 2})
             self.assertEqual(ret, expected)
             self.assertEqual(len(calls), 3)
         # clear cache
@@ -424,14 +459,12 @@ class TestMemoizeDecorator(PsutilTestCase):
         self.assertEqual(ret, expected)
         self.assertEqual(len(calls), 4)
         # docstring
-        self.assertEqual(foo.__doc__, "foo docstring")
+        self.assertEqual(foo.__doc__, "Foo docstring.")
 
 
 class TestCommonModule(PsutilTestCase):
-
     def test_memoize_when_activated(self):
         class Foo:
-
             @memoize_when_activated
             def foo(self):
                 calls.append(None)
@@ -460,15 +493,18 @@ class TestCommonModule(PsutilTestCase):
         def k(s):
             return s.upper() if WINDOWS else s
 
-        self.assertEqual(parse_environ_block("a=1\0"),
-                         {k("a"): "1"})
-        self.assertEqual(parse_environ_block("a=1\0b=2\0\0"),
-                         {k("a"): "1", k("b"): "2"})
-        self.assertEqual(parse_environ_block("a=1\0b=\0\0"),
-                         {k("a"): "1", k("b"): ""})
+        self.assertEqual(parse_environ_block("a=1\0"), {k("a"): "1"})
+        self.assertEqual(
+            parse_environ_block("a=1\0b=2\0\0"), {k("a"): "1", k("b"): "2"}
+        )
+        self.assertEqual(
+            parse_environ_block("a=1\0b=\0\0"), {k("a"): "1", k("b"): ""}
+        )
         # ignore everything after \0\0
-        self.assertEqual(parse_environ_block("a=1\0b=2\0\0c=3\0"),
-                         {k("a"): "1", k("b"): "2"})
+        self.assertEqual(
+            parse_environ_block("a=1\0b=2\0\0c=3\0"),
+            {k("a"): "1", k("b"): "2"},
+        )
         # ignore everything that is not an assignment
         self.assertEqual(parse_environ_block("xxx\0a=1\0"), {k("a"): "1"})
         self.assertEqual(parse_environ_block("a=1\0=b=2\0"), {k("a"): "1"})
@@ -484,21 +520,25 @@ class TestCommonModule(PsutilTestCase):
                 assert not supports_ipv6()
 
             supports_ipv6.cache_clear()
-            with mock.patch('psutil._common.socket.socket',
-                            side_effect=socket.error) as s:
+            with mock.patch(
+                'psutil._common.socket.socket', side_effect=socket.error
+            ) as s:
                 assert not supports_ipv6()
                 assert s.called
 
             supports_ipv6.cache_clear()
-            with mock.patch('psutil._common.socket.socket',
-                            side_effect=socket.gaierror) as s:
+            with mock.patch(
+                'psutil._common.socket.socket', side_effect=socket.gaierror
+            ) as s:
                 assert not supports_ipv6()
                 supports_ipv6.cache_clear()
                 assert s.called
 
             supports_ipv6.cache_clear()
-            with mock.patch('psutil._common.socket.socket.bind',
-                            side_effect=socket.gaierror) as s:
+            with mock.patch(
+                'psutil._common.socket.socket.bind',
+                side_effect=socket.gaierror,
+            ) as s:
                 assert not supports_ipv6()
                 supports_ipv6.cache_clear()
                 assert s.called
@@ -514,14 +554,17 @@ class TestCommonModule(PsutilTestCase):
         this_file = os.path.abspath(__file__)
         assert isfile_strict(this_file)
         assert not isfile_strict(os.path.dirname(this_file))
-        with mock.patch('psutil._common.os.stat',
-                        side_effect=OSError(errno.EPERM, "foo")):
+        with mock.patch(
+            'psutil._common.os.stat', side_effect=OSError(errno.EPERM, "foo")
+        ):
             self.assertRaises(OSError, isfile_strict, this_file)
-        with mock.patch('psutil._common.os.stat',
-                        side_effect=OSError(errno.EACCES, "foo")):
+        with mock.patch(
+            'psutil._common.os.stat', side_effect=OSError(errno.EACCES, "foo")
+        ):
             self.assertRaises(OSError, isfile_strict, this_file)
-        with mock.patch('psutil._common.os.stat',
-                        side_effect=OSError(errno.ENOENT, "foo")):
+        with mock.patch(
+            'psutil._common.os.stat', side_effect=OSError(errno.ENOENT, "foo")
+        ):
             assert not isfile_strict(this_file)
         with mock.patch('psutil._common.stat.S_ISREG', return_value=False):
             assert not isfile_strict(this_file)
@@ -557,7 +600,7 @@ class TestCommonModule(PsutilTestCase):
 
     def test_cat_bcat(self):
         testfn = self.get_testfn()
-        with open(testfn, "wt") as f:
+        with open(testfn, "w") as f:
             f.write("foo")
         self.assertEqual(cat(testfn), "foo")
         self.assertEqual(bcat(testfn), b"foo")
@@ -576,7 +619,6 @@ nt = collections.namedtuple('foo', 'a b c')
 
 
 class TestWrapNumbers(PsutilTestCase):
-
     def setUp(self):
         wrap_numbers.cache_clear()
 
@@ -607,36 +649,44 @@ class TestWrapNumbers(PsutilTestCase):
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
         # first wrap restarts from 10
         input = {'disk1': nt(100, 100, 10)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(100, 100, 110)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(100, 100, 110)}
+        )
         # then it remains the same
         input = {'disk1': nt(100, 100, 10)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(100, 100, 110)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(100, 100, 110)}
+        )
         # then it goes up
         input = {'disk1': nt(100, 100, 90)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(100, 100, 190)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(100, 100, 190)}
+        )
         # then it wraps again
         input = {'disk1': nt(100, 100, 20)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(100, 100, 210)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(100, 100, 210)}
+        )
         # and remains the same
         input = {'disk1': nt(100, 100, 20)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(100, 100, 210)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(100, 100, 210)}
+        )
         # now wrap another num
         input = {'disk1': nt(50, 100, 20)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(150, 100, 210)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(150, 100, 210)}
+        )
         # and again
         input = {'disk1': nt(40, 100, 20)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(190, 100, 210)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(190, 100, 210)}
+        )
         # keep it the same
         input = {'disk1': nt(40, 100, 20)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(190, 100, 210)})
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'), {'disk1': nt(190, 100, 210)}
+        )
 
     def test_changing_keys(self):
         # Emulate a case where the second call to disk_io()
@@ -644,54 +694,54 @@ class TestWrapNumbers(PsutilTestCase):
         # disappears on the third call.
         input = {'disk1': nt(5, 5, 5)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
-        input = {'disk1': nt(5, 5, 5),
-                 'disk2': nt(7, 7, 7)}
+        input = {'disk1': nt(5, 5, 5), 'disk2': nt(7, 7, 7)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
         input = {'disk1': nt(8, 8, 8)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
 
     def test_changing_keys_w_wrap(self):
-        input = {'disk1': nt(50, 50, 50),
-                 'disk2': nt(100, 100, 100)}
+        input = {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 100)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
         # disk 2 wraps
-        input = {'disk1': nt(50, 50, 50),
-                 'disk2': nt(100, 100, 10)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(50, 50, 50),
-                          'disk2': nt(100, 100, 110)})
+        input = {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 10)}
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'),
+            {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 110)},
+        )
         # disk 2 disappears
         input = {'disk1': nt(50, 50, 50)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
 
         # then it appears again; the old wrap is supposed to be
         # gone.
-        input = {'disk1': nt(50, 50, 50),
-                 'disk2': nt(100, 100, 100)}
+        input = {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 100)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
         # remains the same
-        input = {'disk1': nt(50, 50, 50),
-                 'disk2': nt(100, 100, 100)}
+        input = {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 100)}
         self.assertEqual(wrap_numbers(input, 'disk_io'), input)
         # and then wraps again
-        input = {'disk1': nt(50, 50, 50),
-                 'disk2': nt(100, 100, 10)}
-        self.assertEqual(wrap_numbers(input, 'disk_io'),
-                         {'disk1': nt(50, 50, 50),
-                          'disk2': nt(100, 100, 110)})
+        input = {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 10)}
+        self.assertEqual(
+            wrap_numbers(input, 'disk_io'),
+            {'disk1': nt(50, 50, 50), 'disk2': nt(100, 100, 110)},
+        )
 
     def test_real_data(self):
-        d = {'nvme0n1': (300, 508, 640, 1571, 5970, 1987, 2049, 451751, 47048),
-             'nvme0n1p1': (1171, 2, 5600256, 1024, 516, 0, 0, 0, 8),
-             'nvme0n1p2': (54, 54, 2396160, 5165056, 4, 24, 30, 1207, 28),
-             'nvme0n1p3': (2389, 4539, 5154, 150, 4828, 1844, 2019, 398, 348)}
+        d = {
+            'nvme0n1': (300, 508, 640, 1571, 5970, 1987, 2049, 451751, 47048),
+            'nvme0n1p1': (1171, 2, 5600256, 1024, 516, 0, 0, 0, 8),
+            'nvme0n1p2': (54, 54, 2396160, 5165056, 4, 24, 30, 1207, 28),
+            'nvme0n1p3': (2389, 4539, 5154, 150, 4828, 1844, 2019, 398, 348),
+        }
         self.assertEqual(wrap_numbers(d, 'disk_io'), d)
         self.assertEqual(wrap_numbers(d, 'disk_io'), d)
         # decrease this   ↓
-        d = {'nvme0n1': (100, 508, 640, 1571, 5970, 1987, 2049, 451751, 47048),
-             'nvme0n1p1': (1171, 2, 5600256, 1024, 516, 0, 0, 0, 8),
-             'nvme0n1p2': (54, 54, 2396160, 5165056, 4, 24, 30, 1207, 28),
-             'nvme0n1p3': (2389, 4539, 5154, 150, 4828, 1844, 2019, 398, 348)}
+        d = {
+            'nvme0n1': (100, 508, 640, 1571, 5970, 1987, 2049, 451751, 47048),
+            'nvme0n1p1': (1171, 2, 5600256, 1024, 516, 0, 0, 0, 8),
+            'nvme0n1p2': (54, 54, 2396160, 5165056, 4, 24, 30, 1207, 28),
+            'nvme0n1p3': (2389, 4539, 5154, 150, 4828, 1844, 2019, 398, 348),
+        }
         out = wrap_numbers(d, 'disk_io')
         self.assertEqual(out['nvme0n1'][0], 400)
 
@@ -714,7 +764,8 @@ class TestWrapNumbers(PsutilTestCase):
         self.assertEqual(cache[0], {'disk_io': input})
         self.assertEqual(
             cache[1],
-            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 0}})
+            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 0}},
+        )
         self.assertEqual(cache[2], {'disk_io': {}})
 
     def test_cache_wrap(self):
@@ -729,17 +780,25 @@ class TestWrapNumbers(PsutilTestCase):
         self.assertEqual(cache[0], {'disk_io': input})
         self.assertEqual(
             cache[1],
-            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 100}})
+            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 100}},
+        )
         self.assertEqual(cache[2], {'disk_io': {'disk1': set([('disk1', 2)])}})
 
         def check_cache_info():
             cache = wrap_numbers.cache_info()
             self.assertEqual(
                 cache[1],
-                {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0,
-                             ('disk1', 2): 100}})
-            self.assertEqual(cache[2],
-                             {'disk_io': {'disk1': set([('disk1', 2)])}})
+                {
+                    'disk_io': {
+                        ('disk1', 0): 0,
+                        ('disk1', 1): 0,
+                        ('disk1', 2): 100,
+                    }
+                },
+            )
+            self.assertEqual(
+                cache[2], {'disk_io': {'disk1': set([('disk1', 2)])}}
+            )
 
         # then it remains the same
         input = {'disk1': nt(100, 100, 10)}
@@ -762,20 +821,21 @@ class TestWrapNumbers(PsutilTestCase):
         self.assertEqual(cache[0], {'disk_io': input})
         self.assertEqual(
             cache[1],
-            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 190}})
+            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 190}},
+        )
         self.assertEqual(cache[2], {'disk_io': {'disk1': set([('disk1', 2)])}})
 
     def test_cache_changing_keys(self):
         input = {'disk1': nt(5, 5, 5)}
         wrap_numbers(input, 'disk_io')
-        input = {'disk1': nt(5, 5, 5),
-                 'disk2': nt(7, 7, 7)}
+        input = {'disk1': nt(5, 5, 5), 'disk2': nt(7, 7, 7)}
         wrap_numbers(input, 'disk_io')
         cache = wrap_numbers.cache_info()
         self.assertEqual(cache[0], {'disk_io': input})
         self.assertEqual(
             cache[1],
-            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 0}})
+            {'disk_io': {('disk1', 0): 0, ('disk1', 1): 0, ('disk1', 2): 0}},
+        )
         self.assertEqual(cache[2], {'disk_io': {}})
 
     def test_cache_clear(self):
@@ -814,8 +874,9 @@ class TestWrapNumbers(PsutilTestCase):
 # ===================================================================
 
 
-@unittest.skipIf(not os.path.exists(SCRIPTS_DIR),
-                 "can't locate scripts directory")
+@unittest.skipIf(
+    not os.path.exists(SCRIPTS_DIR), "can't locate scripts directory"
+)
 class TestScripts(PsutilTestCase):
     """Tests for scripts in the "scripts" directory."""
 
@@ -839,11 +900,7 @@ class TestScripts(PsutilTestCase):
     @staticmethod
     def assert_syntax(exe):
         exe = os.path.join(SCRIPTS_DIR, exe)
-        if PY3:
-            f = open(exe, 'rt', encoding='utf8')
-        else:
-            f = open(exe, 'rt')
-        with f:
+        with open(exe, encoding="utf8") if PY3 else open(exe) as f:
             src = f.read()
         ast.parse(src)
 
@@ -854,8 +911,10 @@ class TestScripts(PsutilTestCase):
             if name.endswith('.py'):
                 if 'test_' + os.path.splitext(name)[0] not in meths:
                     # self.assert_stdout(name)
-                    raise self.fail('no test defined for %r script'
-                                    % os.path.join(SCRIPTS_DIR, name))
+                    raise self.fail(
+                        'no test defined for %r script'
+                        % os.path.join(SCRIPTS_DIR, name)
+                    )
 
     @unittest.skipIf(not POSIX, "POSIX only")
     def test_executable(self):
@@ -951,4 +1010,5 @@ class TestScripts(PsutilTestCase):
 
 if __name__ == '__main__':
     from psutil.tests.runner import run_from_name
+
     run_from_name(__file__)

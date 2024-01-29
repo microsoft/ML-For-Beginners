@@ -172,7 +172,7 @@ class SphericalVoronoi:
                              '(i.e. `radius=1`).')
 
         self.radius = float(radius)
-        self.points = np.array(points).astype(np.double)
+        self.points = np.array(points).astype(np.float64)
         self._dim = self.points.shape[1]
         if center is None:
             self.center = np.zeros(self._dim)
@@ -304,9 +304,8 @@ class SphericalVoronoi:
         arcs = self.points[self._simplices] - self.center
 
         # Calculate the angle subtended by arcs
-        cosine = np.einsum('ij,ij->i', arcs[:, 0], arcs[:, 1])
-        sine = np.abs(np.linalg.det(arcs))
-        theta = np.arctan2(sine, cosine)
+        d = np.sum((arcs[:, 1] - arcs[:, 0]) ** 2, axis=1)
+        theta = np.arccos(1 - (d / (2 * (self.radius ** 2))))
 
         # Get areas using A = r * theta
         areas = self.radius * theta

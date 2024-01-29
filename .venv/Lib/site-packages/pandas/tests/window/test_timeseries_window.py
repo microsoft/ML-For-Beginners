@@ -1,8 +1,11 @@
 import numpy as np
 import pytest
 
+import pandas.util._test_decorators as td
+
 from pandas import (
     DataFrame,
+    DatetimeIndex,
     Index,
     MultiIndex,
     NaT,
@@ -178,21 +181,22 @@ class TestRollingTS:
         result = df.rolling("2s", on="A")[["B"]].sum()
         tm.assert_frame_equal(result, expected)
 
-    def test_frame_on2(self):
+    def test_frame_on2(self, unit):
         # using multiple aggregation columns
+        dti = DatetimeIndex(
+            [
+                Timestamp("20130101 09:00:00"),
+                Timestamp("20130101 09:00:02"),
+                Timestamp("20130101 09:00:03"),
+                Timestamp("20130101 09:00:05"),
+                Timestamp("20130101 09:00:06"),
+            ]
+        ).as_unit(unit)
         df = DataFrame(
             {
                 "A": [0, 1, 2, 3, 4],
                 "B": [0, 1, 2, np.nan, 4],
-                "C": Index(
-                    [
-                        Timestamp("20130101 09:00:00"),
-                        Timestamp("20130101 09:00:02"),
-                        Timestamp("20130101 09:00:03"),
-                        Timestamp("20130101 09:00:05"),
-                        Timestamp("20130101 09:00:06"),
-                    ]
-                ),
+                "C": dti,
             },
             columns=["A", "C", "B"],
         )
@@ -248,18 +252,22 @@ class TestRollingTS:
         result = df.rolling("2s", min_periods=1).sum()
         tm.assert_frame_equal(result, expected)
 
-    def test_closed(self, regular):
+    def test_closed(self, regular, unit):
         # xref GH13965
 
-        df = DataFrame(
-            {"A": [1] * 5},
-            index=[
+        dti = DatetimeIndex(
+            [
                 Timestamp("20130101 09:00:01"),
                 Timestamp("20130101 09:00:02"),
                 Timestamp("20130101 09:00:03"),
                 Timestamp("20130101 09:00:04"),
                 Timestamp("20130101 09:00:06"),
-            ],
+            ]
+        ).as_unit(unit)
+
+        df = DataFrame(
+            {"A": [1] * 5},
+            index=dti,
         )
 
         # closed must be 'right', 'left', 'both', 'neither'
@@ -599,12 +607,12 @@ class TestRollingTS:
         # more sophisticated comparison of integer vs.
         # time-based windowing
         df = DataFrame(
-            {"B": np.arange(50)}, index=date_range("20130101", periods=50, freq="H")
+            {"B": np.arange(50)}, index=date_range("20130101", periods=50, freq="h")
         )
         # in-range data
         dft = df.between_time("09:00", "16:00")
 
-        r = dft.rolling(window="5H")
+        r = dft.rolling(window="5h")
 
         result = getattr(r, f)()
 
@@ -642,15 +650,17 @@ class TestRollingTS:
         expected2 = ss.rolling(3, min_periods=1).cov()
         tm.assert_series_equal(result, expected2)
 
-    def test_rolling_on_decreasing_index(self):
+    def test_rolling_on_decreasing_index(self, unit):
         # GH-19248, GH-32385
-        index = [
-            Timestamp("20190101 09:00:30"),
-            Timestamp("20190101 09:00:27"),
-            Timestamp("20190101 09:00:20"),
-            Timestamp("20190101 09:00:18"),
-            Timestamp("20190101 09:00:10"),
-        ]
+        index = DatetimeIndex(
+            [
+                Timestamp("20190101 09:00:30"),
+                Timestamp("20190101 09:00:27"),
+                Timestamp("20190101 09:00:20"),
+                Timestamp("20190101 09:00:18"),
+                Timestamp("20190101 09:00:10"),
+            ]
+        ).as_unit(unit)
 
         df = DataFrame({"column": [3, 4, 4, 5, 6]}, index=index)
         result = df.rolling("5s").min()
@@ -690,3 +700,16 @@ def test_nat_axis_error(msg, axis):
     with pytest.raises(ValueError, match=f"{msg} values must not have NaT"):
         with tm.assert_produces_warning(FutureWarning, match=warn_msg):
             df.rolling("D", axis=axis).mean()
+
+
+@td.skip_if_no("pyarrow")
+def test_arrow_datetime_axis():
+    # GH 55849
+    expected = Series(
+        np.arange(5, dtype=np.float64),
+        index=Index(
+            date_range("2020-01-01", periods=5), dtype="timestamp[ns][pyarrow]"
+        ),
+    )
+    result = expected.rolling("1D").sum()
+    tm.assert_series_equal(result, expected)

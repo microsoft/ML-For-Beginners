@@ -6,6 +6,7 @@ import pytest
 import pandas as pd
 from pandas import (
     Series,
+    date_range,
     isna,
 )
 import pandas._testing as tm
@@ -81,8 +82,12 @@ class TestSeriesCorr:
         cp[:] = np.nan
         assert isna(cp.corr(cp))
 
-        A = tm.makeTimeSeries()
-        B = tm.makeTimeSeries()
+        A = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
+        B = A.copy()
         result = A.corr(B)
         expected, _ = stats.pearsonr(A, B)
         tm.assert_almost_equal(result, expected)
@@ -91,9 +96,13 @@ class TestSeriesCorr:
         stats = pytest.importorskip("scipy.stats")
 
         # kendall and spearman
-        A = tm.makeTimeSeries()
-        B = tm.makeTimeSeries()
-        A[-5:] = A[:5]
+        A = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
+        B = A.copy()
+        A[-5:] = A[:5].copy()
         result = A.corr(B, method="kendall")
         expected = stats.kendalltau(A, B)[0]
         tm.assert_almost_equal(result, expected)

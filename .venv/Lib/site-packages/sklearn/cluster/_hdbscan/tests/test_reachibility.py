@@ -45,7 +45,7 @@ def test_mutual_reachability_graph_equivalence_dense_sparse():
     mr_graph_dense = mutual_reachability_graph(X_dense, min_samples=3)
     mr_graph_sparse = mutual_reachability_graph(X_sparse, min_samples=3)
 
-    assert_allclose(mr_graph_dense, mr_graph_sparse.A)
+    assert_allclose(mr_graph_dense, mr_graph_sparse.toarray())
 
 
 @pytest.mark.parametrize("array_type", ["array", "sparse_csr"])

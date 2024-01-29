@@ -110,7 +110,7 @@ class TestUnionCategoricals:
         res = union_categoricals(
             [
                 Categorical(np.array([np.nan, np.nan], dtype=object)),
-                Categorical(["X"]),
+                Categorical(["X"], categories=pd.Index(["X"], dtype=object)),
             ]
         )
         exp = Categorical([np.nan, np.nan, "X"])
@@ -123,8 +123,10 @@ class TestUnionCategoricals:
         tm.assert_categorical_equal(res, exp)
 
     @pytest.mark.parametrize("val", [[], ["1"]])
-    def test_union_categoricals_empty(self, val):
+    def test_union_categoricals_empty(self, val, request, using_infer_string):
         # GH 13759
+        if using_infer_string and val == ["1"]:
+            request.applymarker(pytest.mark.xfail("object and strings dont match"))
         res = union_categoricals([Categorical([]), Categorical(val)])
         exp = Categorical(val)
         tm.assert_categorical_equal(res, exp)

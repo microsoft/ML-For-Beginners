@@ -785,9 +785,9 @@ def invhilbert(n, exact=False):
         for j in range(0, i + 1):
             s = i + j
             invh[i, j] = ((-1) ** s * (s + 1) *
-                          comb(n + i, n - j - 1, exact) *
-                          comb(n + j, n - i - 1, exact) *
-                          comb(s, i, exact) ** 2)
+                          comb(n + i, n - j - 1, exact=exact) *
+                          comb(n + j, n - i - 1, exact=exact) *
+                          comb(s, i, exact=exact) ** 2)
             if i != j:
                 invh[j, i] = invh[i, j]
     return invh
@@ -1049,7 +1049,7 @@ def dft(n, scale=None):
     """
     if scale not in [None, 'sqrtn', 'n']:
         raise ValueError("scale must be None, 'sqrtn', or 'n'; "
-                         "{!r} is not valid.".format(scale))
+                         f"{scale!r} is not valid.")
 
     omegas = np.exp(-2j * np.pi * np.arange(n) / n).reshape(-1, 1)
     m = omegas ** np.arange(n)

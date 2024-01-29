@@ -14,6 +14,10 @@ from pygments.style import Style
 from pygments.token import Comment, Error, Generic, Name, Number, Operator, \
     String, Text, Whitespace, Keyword
 
+
+__all__ = ['RainbowDashStyle']
+
+
 BLUE_LIGHT = '#0080ff'
 BLUE = '#2c5dcd'
 GREEN = '#00cc66'
@@ -37,6 +41,8 @@ class RainbowDashStyle(Style):
     A bright and colorful syntax highlighting theme.
     """
 
+    name = 'rainbow_dash'
+    
     background_color = WHITE
 
     styles = {

@@ -20,7 +20,7 @@ class TestBetween:
         tm.assert_series_equal(result, expected)
 
     def test_between_datetime_object_dtype(self):
-        ser = Series(bdate_range("1/1/2000", periods=20).astype(object))
+        ser = Series(bdate_range("1/1/2000", periods=20), dtype=object)
         ser[::2] = np.nan
 
         result = ser[ser.between(ser[3], ser[17])]

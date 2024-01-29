@@ -91,7 +91,7 @@ class EmpiricalDistributionFunction:
             Objects representing the plotted data
         """
         try:
-            import matplotlib  # noqa
+            import matplotlib  # noqa: F401
         except ModuleNotFoundError as exc:
             message = "matplotlib must be installed to use method `plot`."
             raise ModuleNotFoundError(message) from exc
@@ -553,8 +553,8 @@ def logrank(
 
     :math:`i` denotes the group (i.e. it may assume values :math:`x` or
     :math:`y`, or it may be omitted to refer to the combined sample)
-    :math:`j` denotes the time (at which an event occured),
-    :math:`N` is the number of subjects at risk just before an event occured,
+    :math:`j` denotes the time (at which an event occurred),
+    :math:`N` is the number of subjects at risk just before an event occurred,
     and :math:`O` is the observed number of events at that time.
 
     The ``statistic`` :math:`Z_x` returned by `logrank` is the (signed) square

@@ -40,8 +40,9 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 from inspect import isawaitable
 from typing import (
     TYPE_CHECKING,
-    Awaitable,
+    Any,
     Callable,
+    Coroutine,
     Hashable,
     Sequence,
     Tuple,
@@ -89,7 +90,8 @@ __all__ = [
 # This is mainly used in case of mouse move events, to prevent excessive
 # repainting during mouse move events.
 KeyHandlerCallable = Callable[
-    ["KeyPressEvent"], Union["NotImplementedOrNone", Awaitable["NotImplementedOrNone"]]
+    ["KeyPressEvent"],
+    Union["NotImplementedOrNone", Coroutine[Any, Any, "NotImplementedOrNone"]],
 ]
 
 
@@ -125,7 +127,7 @@ class Binding:
 
         # If the handler is a coroutine, create an asyncio task.
         if isawaitable(result):
-            awaitable = cast(Awaitable["NotImplementedOrNone"], result)
+            awaitable = cast(Coroutine[Any, Any, "NotImplementedOrNone"], result)
 
             async def bg_task() -> None:
                 result = await awaitable

@@ -10,7 +10,7 @@ pytest.importorskip("matplotlib.backends.backend_gtk3agg")
 def test_correct_key():
     pytest.xfail("test_widget_send_event is not triggering key_press_event")
 
-    from gi.repository import Gdk, Gtk
+    from gi.repository import Gdk, Gtk  # type: ignore
     fig = plt.figure()
     buf = []
 

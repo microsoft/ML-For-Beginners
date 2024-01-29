@@ -39,8 +39,10 @@ def test_groupby_fill_duplicate_column_names(func):
 def test_ffill_missing_arguments():
     # GH 14955
     df = DataFrame({"a": [1, 2], "b": [1, 1]})
-    with pytest.raises(ValueError, match="Must specify a fill"):
-        df.groupby("b").fillna()
+    msg = "DataFrameGroupBy.fillna is deprecated"
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        with pytest.raises(ValueError, match="Must specify a fill"):
+            df.groupby("b").fillna()
 
 
 @pytest.mark.parametrize(
@@ -50,7 +52,7 @@ def test_fillna_with_string_dtype(method, expected):
     # GH 40250
     df = DataFrame({"a": pd.array([None, "a", None], dtype="string"), "b": [0, 0, 0]})
     grp = df.groupby("b")
-    msg = "DataFrameGroupBy.fillna with 'method' is deprecated"
+    msg = "DataFrameGroupBy.fillna is deprecated"
     with tm.assert_produces_warning(FutureWarning, match=msg):
         result = grp.fillna(method=method)
     expected = DataFrame({"a": pd.array(expected, dtype="string")})

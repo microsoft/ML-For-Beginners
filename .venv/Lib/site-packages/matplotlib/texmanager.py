@@ -57,10 +57,14 @@ class TexManager:
     """
     Convert strings to dvi files using TeX, caching the results to a directory.
 
+    The cache directory is called ``tex.cache`` and is located in the directory
+    returned by `.get_cachedir`.
+
     Repeated calls to this constructor always return the same instance.
     """
 
-    texcache = os.path.join(mpl.get_cachedir(), 'tex.cache')
+    texcache = _api.deprecate_privatize_attribute("3.8")
+    _texcache = os.path.join(mpl.get_cachedir(), 'tex.cache')
     _grey_arrayd = {}
 
     _font_families = ('serif', 'sans-serif', 'cursive', 'monospace')
@@ -100,19 +104,10 @@ class TexManager:
         'computer modern typewriter': 'monospace',
     }
 
-    @functools.lru_cache()  # Always return the same instance.
+    @functools.lru_cache  # Always return the same instance.
     def __new__(cls):
-        Path(cls.texcache).mkdir(parents=True, exist_ok=True)
+        Path(cls._texcache).mkdir(parents=True, exist_ok=True)
         return object.__new__(cls)
-
-    @_api.deprecated("3.6")
-    def get_font_config(self):
-        preamble, font_cmd = self._get_font_preamble_and_command()
-        # Add a hash of the latex preamble to fontconfig so that the
-        # correct png is selected for strings rendered with same font and dpi
-        # even if the latex preamble changes within the session
-        preambles = preamble + font_cmd + self.get_custom_preamble()
-        return hashlib.md5(preambles.encode('utf-8')).hexdigest()
 
     @classmethod
     def _get_font_family_and_reduced(cls):
@@ -177,7 +172,7 @@ class TexManager:
         """
         src = cls._get_tex_source(tex, fontsize) + str(dpi)
         filehash = hashlib.md5(src.encode('utf-8')).hexdigest()
-        filepath = Path(cls.texcache)
+        filepath = Path(cls._texcache)
 
         num_letters, num_levels = 2, 2
         for i in range(0, num_letters*num_levels, num_letters):
@@ -253,12 +248,12 @@ class TexManager:
         _log.debug(cbook._pformat_subprocess(command))
         try:
             report = subprocess.check_output(
-                command, cwd=cwd if cwd is not None else cls.texcache,
+                command, cwd=cwd if cwd is not None else cls._texcache,
                 stderr=subprocess.STDOUT)
         except FileNotFoundError as exc:
             raise RuntimeError(
-                'Failed to process string with tex because {} could not be '
-                'found'.format(command[0])) from exc
+                f'Failed to process string with tex because {command[0]} '
+                'could not be found') from exc
         except subprocess.CalledProcessError as exc:
             raise RuntimeError(
                 '{prog} was not able to process the following string:\n'
@@ -339,14 +334,14 @@ class TexManager:
         alpha = cls._grey_arrayd.get(key)
         if alpha is None:
             pngfile = cls.make_png(tex, fontsize, dpi)
-            rgba = mpl.image.imread(os.path.join(cls.texcache, pngfile))
+            rgba = mpl.image.imread(os.path.join(cls._texcache, pngfile))
             cls._grey_arrayd[key] = alpha = rgba[:, :, -1]
         return alpha
 
     @classmethod
     def get_rgba(cls, tex, fontsize=None, dpi=None, rgb=(0, 0, 0)):
         r"""
-        Return latex's rendering of the tex string as an rgba array.
+        Return latex's rendering of the tex string as an RGBA array.
 
         Examples
         --------

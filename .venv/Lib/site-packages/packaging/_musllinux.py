@@ -8,7 +8,7 @@ import functools
 import re
 import subprocess
 import sys
-from typing import Iterator, NamedTuple, Optional
+from typing import Iterator, NamedTuple, Optional, Sequence
 
 from ._elffile import ELFFile
 
@@ -47,24 +47,27 @@ def _get_musl_version(executable: str) -> Optional[_MuslVersion]:
         return None
     if ld is None or "musl" not in ld:
         return None
-    proc = subprocess.run([ld], stderr=subprocess.PIPE, universal_newlines=True)
+    proc = subprocess.run([ld], stderr=subprocess.PIPE, text=True)
     return _parse_musl_version(proc.stderr)
 
 
-def platform_tags(arch: str) -> Iterator[str]:
+def platform_tags(archs: Sequence[str]) -> Iterator[str]:
     """Generate musllinux tags compatible to the current platform.
 
-    :param arch: Should be the part of platform tag after the ``linux_``
-        prefix, e.g. ``x86_64``. The ``linux_`` prefix is assumed as a
-        prerequisite for the current platform to be musllinux-compatible.
+    :param archs: Sequence of compatible architectures.
+        The first one shall be the closest to the actual architecture and be the part of
+        platform tag after the ``linux_`` prefix, e.g. ``x86_64``.
+        The ``linux_`` prefix is assumed as a prerequisite for the current platform to
+        be musllinux-compatible.
 
     :returns: An iterator of compatible musllinux tags.
     """
     sys_musl = _get_musl_version(sys.executable)
     if sys_musl is None:  # Python not dynamically linked against musl.
         return
-    for minor in range(sys_musl.minor, -1, -1):
-        yield f"musllinux_{sys_musl.major}_{minor}_{arch}"
+    for arch in archs:
+        for minor in range(sys_musl.minor, -1, -1):
+            yield f"musllinux_{sys_musl.major}_{minor}_{arch}"
 
 
 if __name__ == "__main__":  # pragma: no cover

@@ -19,15 +19,15 @@ def scatter_nd_impl(data, indices, updates, reduction="none"):  # type: ignore
     for i in np.ndindex(indices.shape[:-1]):
         # NOTE: The order of iteration in this loop is not specified.
         if reduction == "add":
-            output[indices[i]] += updates[i]
+            output[tuple(indices[i])] += updates[i]
         elif reduction == "mul":
-            output[indices[i]] *= updates[i]
+            output[tuple(indices[i])] *= updates[i]
         elif reduction == "max":
-            output[indices[i]] = np.maximum(output[indices[i]], updates[i])
+            output[tuple(indices[i])] = np.maximum(output[indices[i]], updates[i])
         elif reduction == "min":
-            output[indices[i]] = np.minimum(output[indices[i]], updates[i])
+            output[tuple(indices[i])] = np.minimum(output[indices[i]], updates[i])
         else:
-            output[indices[i]] = updates[i]
+            output[tuple(indices[i])] = updates[i]
     return output
 
 

@@ -1748,8 +1748,12 @@ class GEE(GLM):
             qv[i] = -np.sum(du**2 * (g + 1) / vu)
         qv /= (4 * scale)
 
-        from scipy.integrate import trapz
-        ql = trapz(qv, dx=xv[1] - xv[0])
+        try:
+            from scipy.integrate import trapezoid
+        except ImportError:
+            # Remove after minimum is SciPy 1.7
+            from scipy.integrate import trapz as trapezoid
+        ql = trapezoid(qv, dx=xv[1] - xv[0])
 
         qicu = -2 * ql + 2 * self.exog.shape[1]
         qic = -2 * ql + 2 * np.trace(np.dot(omega, cov_params))
@@ -2401,14 +2405,14 @@ class OrdinalGEE(GEE):
 
         # exog column names, including intercepts
         xnames = ["I(y>%.1f)" % v for v in endog_cuts]
-        if type(self.exog_orig) == pd.DataFrame:
+        if type(self.exog_orig) is pd.DataFrame:
             xnames.extend(self.exog_orig.columns)
         else:
             xnames.extend(["x%d" % k for k in range(1, exog.shape[1] + 1)])
         exog_out = pd.DataFrame(exog_out, columns=xnames)
 
         # Preserve the endog name if there is one
-        if type(self.endog_orig) == pd.Series:
+        if type(self.endog_orig) is pd.Series:
             endog_out = pd.Series(endog_out, name=self.endog_orig.name)
 
         return endog_out, exog_out, groups_out, time_out, offset_out

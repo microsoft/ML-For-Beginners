@@ -5,7 +5,6 @@
 import numpy as np
 import pytest
 from pytest import approx
-from scipy import sparse
 from scipy.optimize import minimize
 
 from sklearn.datasets import make_regression
@@ -13,7 +12,13 @@ from sklearn.exceptions import ConvergenceWarning
 from sklearn.linear_model import HuberRegressor, QuantileRegressor
 from sklearn.metrics import mean_pinball_loss
 from sklearn.utils._testing import assert_allclose, skip_if_32bit
-from sklearn.utils.fixes import parse_version, sp_version
+from sklearn.utils.fixes import (
+    COO_CONTAINERS,
+    CSC_CONTAINERS,
+    CSR_CONTAINERS,
+    parse_version,
+    sp_version,
+)
 
 
 @pytest.fixture
@@ -32,9 +37,10 @@ def default_solver():
     reason="interior-point solver is not available in SciPy 1.11",
 )
 @pytest.mark.parametrize("solver", ["interior-point", "revised simplex"])
-def test_incompatible_solver_for_sparse_input(X_y_data, solver):
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_incompatible_solver_for_sparse_input(X_y_data, solver, csc_container):
     X, y = X_y_data
-    X_sparse = sparse.csc_matrix(X)
+    X_sparse = csc_container(X)
     err_msg = (
         f"Solver {solver} does not support sparse X. Use solver 'highs' for example."
     )
@@ -264,14 +270,14 @@ def test_linprog_failure():
     reason="Solvers are available as of scipy 1.6.0",
 )
 @pytest.mark.parametrize(
-    "sparse_format", [sparse.csc_matrix, sparse.csr_matrix, sparse.coo_matrix]
+    "sparse_container", CSC_CONTAINERS + CSR_CONTAINERS + COO_CONTAINERS
 )
 @pytest.mark.parametrize("solver", ["highs", "highs-ds", "highs-ipm"])
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_sparse_input(sparse_format, solver, fit_intercept, default_solver):
+def test_sparse_input(sparse_container, solver, fit_intercept, default_solver):
     """Test that sparse and dense X give same results."""
     X, y = make_regression(n_samples=100, n_features=20, random_state=1, noise=1.0)
-    X_sparse = sparse_format(X)
+    X_sparse = sparse_container(X)
     alpha = 1e-4
     quant_dense = QuantileRegressor(
         alpha=alpha, fit_intercept=fit_intercept, solver=default_solver
@@ -284,19 +290,6 @@ def test_sparse_input(sparse_format, solver, fit_intercept, default_solver):
         assert quant_sparse.intercept_ == approx(quant_dense.intercept_)
         # check that we still predict fraction
         assert 0.45 <= np.mean(y < quant_sparse.predict(X_sparse)) <= 0.57
-
-
-# TODO (1.4): remove this test in 1.4
-@pytest.mark.skipif(
-    parse_version(sp_version.base_version) >= parse_version("1.11"),
-    reason="interior-point solver is not available in SciPy 1.11",
-)
-def test_warning_new_default(X_y_data):
-    """Check that we warn about the new default solver."""
-    X, y = X_y_data
-    model = QuantileRegressor()
-    with pytest.warns(FutureWarning, match="The default solver will change"):
-        model.fit(X, y)
 
 
 def test_error_interior_point_future(X_y_data, monkeypatch):

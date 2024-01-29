@@ -18,7 +18,6 @@ from numpy.testing import (
     assert_almost_equal,
     assert_array_equal,
 )
-from scipy.sparse import csr_matrix
 
 from sklearn.datasets import (
     load_digits,
@@ -31,6 +30,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.neural_network import MLPClassifier, MLPRegressor
 from sklearn.preprocessing import LabelBinarizer, MinMaxScaler, scale
 from sklearn.utils._testing import ignore_warnings
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 ACTIVATION_TYPES = ["identity", "logistic", "tanh", "relu"]
 
@@ -626,11 +626,12 @@ def test_shuffle():
     assert not np.array_equal(mlp1.coefs_[0], mlp2.coefs_[0])
 
 
-def test_sparse_matrices():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_sparse_matrices(csr_container):
     # Test that sparse and dense input matrices output the same results.
     X = X_digits_binary[:50]
     y = y_digits_binary[:50]
-    X_sparse = csr_matrix(X)
+    X_sparse = csr_container(X)
     mlp = MLPClassifier(solver="lbfgs", hidden_layer_sizes=15, random_state=1)
     mlp.fit(X, y)
     pred1 = mlp.predict(X)

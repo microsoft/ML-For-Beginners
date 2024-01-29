@@ -1,5 +1,5 @@
 """
-Method agnostic utility functions for linear progamming
+Method agnostic utility functions for linear programming
 """
 
 import numpy as np
@@ -444,7 +444,7 @@ def _clean_inputs(lp):
         # Do not try to handle multidimensional bounds input
         raise ValueError(
             "Invalid input for linprog: provide a 2-D array for bounds, "
-            "not a {:d}-D array.".format(len(bsh)))
+            f"not a {len(bsh):d}-D array.")
     elif np.all(bsh == (n_x, 2)):
         # Regular N x 2 array
         bounds_clean = bounds_conv
@@ -456,12 +456,12 @@ def _clean_inputs(lp):
     elif np.all(bsh == (2, n_x)):
         # Reject a 2 x N array
         raise ValueError(
-            "Invalid input for linprog: provide a {:d} x 2 array for bounds, "
-            "not a 2 x {:d} array.".format(n_x, n_x))
+            f"Invalid input for linprog: provide a {n_x:d} x 2 array for bounds, "
+            f"not a 2 x {n_x:d} array.")
     else:
         raise ValueError(
             "Invalid input for linprog: unable to interpret bounds with this "
-            "dimension tuple: {}.".format(bsh))
+            f"dimension tuple: {bsh}.")
 
     # The process above creates nan-s where the input specified None
     # Convert the nan-s in the 1st column to -np.inf and in the 2nd column

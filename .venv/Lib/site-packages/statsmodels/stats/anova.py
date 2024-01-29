@@ -1,14 +1,18 @@
+from statsmodels.compat.python import lrange
+
 import numpy as np
-from scipy import stats
 import pandas as pd
 from pandas import DataFrame, Index
 import patsy
+from scipy import stats
 
-from statsmodels.regression.linear_model import OLS
-from statsmodels.compat.python import lrange
-from statsmodels.formula.formulatools import (_remove_intercept_patsy,
-                                    _has_intercept, _intercept_idx)
+from statsmodels.formula.formulatools import (
+    _has_intercept,
+    _intercept_idx,
+    _remove_intercept_patsy,
+)
 from statsmodels.iolib import summary2
+from statsmodels.regression.linear_model import OLS
 
 
 def _get_covariance(model, robust):
@@ -489,7 +493,7 @@ class AnovaRM:
         self.subject = subject
 
         if aggregate_func == 'mean':
-            self.aggregate_func = np.mean
+            self.aggregate_func = pd.Series.mean
         else:
             self.aggregate_func = aggregate_func
 
@@ -640,7 +644,9 @@ class AnovaResults:
 
 if __name__ == "__main__":
     import pandas
+
     from statsmodels.formula.api import ols
+
     # in R
     #library(car)
     #write.csv(Moore, "moore.csv", row.names=FALSE)

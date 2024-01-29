@@ -70,15 +70,17 @@ class TestDataFrameDiff:
         tm.assert_equal(result, expected)
 
     @pytest.mark.parametrize("tz", [None, "UTC"])
-    def test_diff_datetime_axis0_with_nat(self, tz):
+    def test_diff_datetime_axis0_with_nat(self, tz, unit):
         # GH#32441
-        dti = pd.DatetimeIndex(["NaT", "2019-01-01", "2019-01-02"], tz=tz)
+        dti = pd.DatetimeIndex(["NaT", "2019-01-01", "2019-01-02"], tz=tz).as_unit(unit)
         ser = Series(dti)
 
         df = ser.to_frame()
 
         result = df.diff()
-        ex_index = pd.TimedeltaIndex([pd.NaT, pd.NaT, pd.Timedelta(days=1)])
+        ex_index = pd.TimedeltaIndex([pd.NaT, pd.NaT, pd.Timedelta(days=1)]).as_unit(
+            unit
+        )
         expected = Series(ex_index).to_frame()
         tm.assert_frame_equal(result, expected)
 
@@ -87,7 +89,7 @@ class TestDataFrameDiff:
         # diff on NaT values should give NaT, not timedelta64(0)
         dti = date_range("2016-01-01", periods=4, tz=tz)
         ser = Series(dti)
-        df = ser.to_frame()
+        df = ser.to_frame().copy()
 
         df[1] = ser.copy()
 
@@ -140,7 +142,7 @@ class TestDataFrameDiff:
         )
         tm.assert_frame_equal(result, expected)
 
-    def test_diff_timedelta(self):
+    def test_diff_timedelta(self, unit):
         # GH#4533
         df = DataFrame(
             {
@@ -148,11 +150,13 @@ class TestDataFrameDiff:
                 "value": [1.0, 2.0],
             }
         )
+        df["time"] = df["time"].dt.as_unit(unit)
 
         res = df.diff()
         exp = DataFrame(
             [[pd.NaT, np.nan], [pd.Timedelta("00:01:00"), 1]], columns=["time", "value"]
         )
+        exp["time"] = exp["time"].dt.as_unit(unit)
         tm.assert_frame_equal(res, exp)
 
     def test_diff_mixed_dtype(self):

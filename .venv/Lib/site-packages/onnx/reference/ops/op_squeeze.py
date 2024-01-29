@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=E0203,W0221
+
 
 import numpy as np
 
@@ -12,7 +12,7 @@ class Squeeze_1(OpRun):
     def _run(self, data, axes=None):  # type: ignore
         if isinstance(axes, np.ndarray):
             axes = tuple(axes)
-        elif axes in [[], tuple()]:
+        elif axes in [[], ()]:
             axes = None
         elif isinstance(axes, list):
             axes = tuple(axes)

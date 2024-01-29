@@ -68,7 +68,7 @@ def stackplot(axes, x, *args,
         stacked area plot.
     """
 
-    y = np.row_stack(args)
+    y = np.vstack(args)
 
     labels = iter(labels)
     if colors is not None:

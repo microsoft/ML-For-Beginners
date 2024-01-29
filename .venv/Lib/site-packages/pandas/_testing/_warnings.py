@@ -4,6 +4,7 @@ from contextlib import (
     contextmanager,
     nullcontext,
 )
+import inspect
 import re
 import sys
 from typing import (
@@ -12,6 +13,8 @@ from typing import (
     cast,
 )
 import warnings
+
+from pandas.compat import PY311
 
 if TYPE_CHECKING:
     from collections.abc import (
@@ -179,6 +182,11 @@ def _assert_caught_no_extra_warnings(
                 # due to these open files.
                 if any("matplotlib" in mod for mod in sys.modules):
                     continue
+            if PY311 and actual_warning.category == EncodingWarning:
+                # EncodingWarnings are checked in the CI
+                # pyproject.toml errors on EncodingWarnings in pandas
+                # Ignore EncodingWarnings from other libraries
+                continue
             extra_warnings.append(
                 (
                     actual_warning.category.__name__,
@@ -206,15 +214,14 @@ def _is_unexpected_warning(
 def _assert_raised_with_correct_stacklevel(
     actual_warning: warnings.WarningMessage,
 ) -> None:
-    from inspect import (
-        getframeinfo,
-        stack,
-    )
-
-    caller = getframeinfo(stack()[4][0])
+    # https://stackoverflow.com/questions/17407119/python-inspect-stack-is-slow
+    frame = inspect.currentframe()
+    for _ in range(4):
+        frame = frame.f_back  # type: ignore[union-attr]
+    caller_filename = inspect.getfile(frame)  # type: ignore[arg-type]
     msg = (
         "Warning not set with correct stacklevel. "
         f"File where warning is raised: {actual_warning.filename} != "
-        f"{caller.filename}. Warning message: {actual_warning.message}"
+        f"{caller_filename}. Warning message: {actual_warning.message}"
     )
-    assert actual_warning.filename == caller.filename, msg
+    assert actual_warning.filename == caller_filename, msg

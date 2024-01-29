@@ -151,7 +151,7 @@ class LayerRecord(object):
         writer.newline()
 
     def fromXML(self, eltname, attrs, content, ttFont):
-        for (name, value) in attrs.items():
+        for name, value in attrs.items():
             if name == "name":
                 setattr(self, name, value)
             else:

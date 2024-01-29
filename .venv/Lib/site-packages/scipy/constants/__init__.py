@@ -319,7 +319,7 @@ References
 
    https://physics.nist.gov/cuu/Constants/
 
-"""
+"""  # noqa: E501
 # Modules contributed by BasSw (wegwerp@gmail.com)
 from ._codata import *
 from ._constants import *

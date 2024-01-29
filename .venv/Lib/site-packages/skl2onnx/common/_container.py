@@ -629,7 +629,7 @@ class ModelComponentContainer(_WhiteBlackContainer):
             attrs["axes"] is None or not isinstance(attrs["axes"], (list, np.ndarray))
         ):
             raise TypeError(
-                f"axes must be a list or an array not " f"{type(attrs['axes'])}."
+                f"axes must be a list or an array not {type(attrs['axes'])}."
             )
         if name is None or not isinstance(name, str) or name == "":
             name = f"N{len(self.nodes)}"

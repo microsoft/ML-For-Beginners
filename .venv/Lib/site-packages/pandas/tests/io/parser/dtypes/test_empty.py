@@ -17,10 +17,10 @@ from pandas import (
 )
 import pandas._testing as tm
 
-# TODO(1.4): Change me into individual xfails at release time
-pytestmark = pytest.mark.usefixtures("pyarrow_skip")
+skip_pyarrow = pytest.mark.usefixtures("pyarrow_skip")
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_dtype_all_columns_empty(all_parsers):
     # see gh-12048
     parser = all_parsers
@@ -30,6 +30,7 @@ def test_dtype_all_columns_empty(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_pass_dtype(all_parsers):
     parser = all_parsers
 
@@ -42,6 +43,7 @@ def test_empty_pass_dtype(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_with_index_pass_dtype(all_parsers):
     parser = all_parsers
 
@@ -56,6 +58,7 @@ def test_empty_with_index_pass_dtype(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_with_multi_index_pass_dtype(all_parsers):
     parser = all_parsers
 
@@ -72,6 +75,7 @@ def test_empty_with_multi_index_pass_dtype(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_with_mangled_column_pass_dtype_by_names(all_parsers):
     parser = all_parsers
 
@@ -84,6 +88,7 @@ def test_empty_with_mangled_column_pass_dtype_by_names(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_with_mangled_column_pass_dtype_by_indexes(all_parsers):
     parser = all_parsers
 
@@ -96,6 +101,7 @@ def test_empty_with_mangled_column_pass_dtype_by_indexes(all_parsers):
     tm.assert_frame_equal(result, expected)
 
 
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_with_dup_column_pass_dtype_by_indexes(all_parsers):
     # see gh-9424
     parser = all_parsers
@@ -165,6 +171,7 @@ def test_empty_with_dup_column_pass_dtype_by_indexes_raises(all_parsers):
         ),
     ],
 )
+@skip_pyarrow  # CSV parse error: Empty CSV file or block
 def test_empty_dtype(all_parsers, dtype, expected):
     # see gh-14712
     parser = all_parsers

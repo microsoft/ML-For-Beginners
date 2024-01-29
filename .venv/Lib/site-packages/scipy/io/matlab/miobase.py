@@ -2,9 +2,7 @@
 # Use the `scipy.io.matlab` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _miobase
-
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'MatFileReader', 'MatReadError', 'MatReadWarning',
@@ -19,13 +17,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.io.matlab.miobase is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.io.matlab instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.io.matlab` namespace, "
-                  "the `scipy.io.matlab.miobase` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_miobase, name)
+    return _sub_module_deprecation(sub_package="io.matlab", module="miobase",
+                                   private_modules=["_miobase"], all=__all__,
+                                   attribute=name)

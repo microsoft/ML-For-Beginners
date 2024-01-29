@@ -113,7 +113,7 @@ def test_kde_algorithm_metric_choice(algorithm, metric):
 
     kde = KernelDensity(algorithm=algorithm, metric=metric)
 
-    if algorithm == "kd_tree" and metric not in KDTree.valid_metrics():
+    if algorithm == "kd_tree" and metric not in KDTree.valid_metrics:
         with pytest.raises(ValueError, match="invalid metric"):
             kde.fit(X)
     else:
@@ -164,7 +164,7 @@ def test_kde_sample_weights():
         test_points = rng.rand(n_samples_test, d)
         for algorithm in ["auto", "ball_tree", "kd_tree"]:
             for metric in ["euclidean", "minkowski", "manhattan", "chebyshev"]:
-                if algorithm != "kd_tree" or metric in KDTree.valid_metrics():
+                if algorithm != "kd_tree" or metric in KDTree.valid_metrics:
                     kde = KernelDensity(algorithm=algorithm, metric=metric)
 
                     # Test that adding a constant sample weight has no effect

@@ -17,6 +17,7 @@ from pandas.compat import is_platform_windows
 from pandas import (
     DatetimeIndex,
     Index,
+    RangeIndex,
     Series,
     Timestamp,
     date_range,
@@ -38,12 +39,12 @@ from pandas.tseries import (
 @pytest.fixture(
     params=[
         (timedelta(1), "D"),
-        (timedelta(hours=1), "H"),
-        (timedelta(minutes=1), "T"),
-        (timedelta(seconds=1), "S"),
-        (np.timedelta64(1, "ns"), "N"),
-        (timedelta(microseconds=1), "U"),
-        (timedelta(microseconds=1000), "L"),
+        (timedelta(hours=1), "h"),
+        (timedelta(minutes=1), "min"),
+        (timedelta(seconds=1), "s"),
+        (np.timedelta64(1, "ns"), "ns"),
+        (timedelta(microseconds=1), "us"),
+        (timedelta(microseconds=1000), "ms"),
     ]
 )
 def base_delta_code_pair(request):
@@ -51,9 +52,9 @@ def base_delta_code_pair(request):
 
 
 freqs = (
-    [f"Q-{month}" for month in MONTHS]
-    + [f"{annual}-{month}" for annual in ["A", "BA"] for month in MONTHS]
-    + ["M", "BM", "BMS"]
+    [f"QE-{month}" for month in MONTHS]
+    + [f"{annual}-{month}" for annual in ["YE", "BYE"] for month in MONTHS]
+    + ["ME", "BME", "BMS"]
     + [f"WOM-{count}{day}" for count in range(1, 5) for day in DAYS]
     + [f"W-{day}" for day in DAYS]
 )
@@ -67,28 +68,28 @@ def test_infer_freq_range(periods, freq):
     gen = date_range("1/1/2000", periods=periods, freq=freq)
     index = DatetimeIndex(gen.values)
 
-    if not freq.startswith("Q-"):
+    if not freq.startswith("QE-"):
         assert frequencies.infer_freq(index) == gen.freqstr
     else:
         inf_freq = frequencies.infer_freq(index)
-        is_dec_range = inf_freq == "Q-DEC" and gen.freqstr in (
-            "Q",
-            "Q-DEC",
-            "Q-SEP",
-            "Q-JUN",
-            "Q-MAR",
+        is_dec_range = inf_freq == "QE-DEC" and gen.freqstr in (
+            "QE",
+            "QE-DEC",
+            "QE-SEP",
+            "QE-JUN",
+            "QE-MAR",
         )
-        is_nov_range = inf_freq == "Q-NOV" and gen.freqstr in (
-            "Q-NOV",
-            "Q-AUG",
-            "Q-MAY",
-            "Q-FEB",
+        is_nov_range = inf_freq == "QE-NOV" and gen.freqstr in (
+            "QE-NOV",
+            "QE-AUG",
+            "QE-MAY",
+            "QE-FEB",
         )
-        is_oct_range = inf_freq == "Q-OCT" and gen.freqstr in (
-            "Q-OCT",
-            "Q-JUL",
-            "Q-APR",
-            "Q-JAN",
+        is_oct_range = inf_freq == "QE-OCT" and gen.freqstr in (
+            "QE-OCT",
+            "QE-JUL",
+            "QE-APR",
+            "QE-JAN",
         )
         assert is_dec_range or is_nov_range or is_oct_range
 
@@ -162,12 +163,12 @@ def test_fifth_week_of_month():
 
 def test_monthly_ambiguous():
     rng = DatetimeIndex(["1/31/2000", "2/29/2000", "3/31/2000"])
-    assert rng.inferred_freq == "M"
+    assert rng.inferred_freq == "ME"
 
 
 def test_annual_ambiguous():
     rng = DatetimeIndex(["1/31/2000", "1/31/2001", "1/31/2002"])
-    assert rng.inferred_freq == "A-JAN"
+    assert rng.inferred_freq == "YE-JAN"
 
 
 @pytest.mark.parametrize("count", range(1, 5))
@@ -202,11 +203,12 @@ def test_infer_freq_custom(base_delta_code_pair, constructor):
 
 
 @pytest.mark.parametrize(
-    "freq,expected", [("Q", "Q-DEC"), ("Q-NOV", "Q-NOV"), ("Q-OCT", "Q-OCT")]
+    "freq,expected", [("Q", "QE-DEC"), ("Q-NOV", "QE-NOV"), ("Q-OCT", "QE-OCT")]
 )
 def test_infer_freq_index(freq, expected):
     rng = period_range("1959Q2", "2009Q3", freq=freq)
-    rng = Index(rng.to_timestamp("D", how="e").astype(object))
+    with tm.assert_produces_warning(FutureWarning, match="Dtype inference"):
+        rng = Index(rng.to_timestamp("D", how="e").astype(object))
 
     assert rng.inferred_freq == expected
 
@@ -215,12 +217,12 @@ def test_infer_freq_index(freq, expected):
     "expected,dates",
     list(
         {
-            "AS-JAN": ["2009-01-01", "2010-01-01", "2011-01-01", "2012-01-01"],
-            "Q-OCT": ["2009-01-31", "2009-04-30", "2009-07-31", "2009-10-31"],
-            "M": ["2010-11-30", "2010-12-31", "2011-01-31", "2011-02-28"],
+            "YS-JAN": ["2009-01-01", "2010-01-01", "2011-01-01", "2012-01-01"],
+            "QE-OCT": ["2009-01-31", "2009-04-30", "2009-07-31", "2009-10-31"],
+            "ME": ["2010-11-30", "2010-12-31", "2011-01-31", "2011-02-28"],
             "W-SAT": ["2010-12-25", "2011-01-01", "2011-01-08", "2011-01-15"],
             "D": ["2011-01-01", "2011-01-02", "2011-01-03", "2011-01-04"],
-            "H": [
+            "h": [
                 "2011-12-31 22:00",
                 "2011-12-31 23:00",
                 "2012-01-01 00:00",
@@ -229,10 +231,11 @@ def test_infer_freq_index(freq, expected):
         }.items()
     ),
 )
-def test_infer_freq_tz(tz_naive_fixture, expected, dates):
-    # see gh-7310
+@pytest.mark.parametrize("unit", ["s", "ms", "us", "ns"])
+def test_infer_freq_tz(tz_naive_fixture, expected, dates, unit):
+    # see gh-7310, GH#55609
     tz = tz_naive_fixture
-    idx = DatetimeIndex(dates, tz=tz)
+    idx = DatetimeIndex(dates, tz=tz).as_unit(unit)
     assert idx.inferred_freq == expected
 
 
@@ -254,7 +257,8 @@ def test_infer_freq_tz_series(tz_naive_fixture):
     ],
 )
 @pytest.mark.parametrize(
-    "freq", ["H", "3H", "10T", "3601S", "3600001L", "3600000001U", "3600000000001N"]
+    "freq",
+    ["h", "3h", "10min", "3601s", "3600001ms", "3600000001us", "3600000000001ns"],
 )
 def test_infer_freq_tz_transition(tz_naive_fixture, date_pair, freq):
     # see gh-8772
@@ -264,7 +268,7 @@ def test_infer_freq_tz_transition(tz_naive_fixture, date_pair, freq):
 
 
 def test_infer_freq_tz_transition_custom():
-    index = date_range("2013-11-03", periods=5, freq="3H").tz_localize(
+    index = date_range("2013-11-03", periods=5, freq="3h").tz_localize(
         "America/Chicago"
     )
     assert index.inferred_freq is None
@@ -273,7 +277,7 @@ def test_infer_freq_tz_transition_custom():
 @pytest.mark.parametrize(
     "data,expected",
     [
-        # Hourly freq in a day must result in "H"
+        # Hourly freq in a day must result in "h"
         (
             [
                 "2014-07-01 09:00",
@@ -283,7 +287,7 @@ def test_infer_freq_tz_transition_custom():
                 "2014-07-01 13:00",
                 "2014-07-01 14:00",
             ],
-            "H",
+            "h",
         ),
         (
             [
@@ -299,7 +303,7 @@ def test_infer_freq_tz_transition_custom():
                 "2014-07-02 10:00",
                 "2014-07-02 11:00",
             ],
-            "BH",
+            "bh",
         ),
         (
             [
@@ -315,7 +319,7 @@ def test_infer_freq_tz_transition_custom():
                 "2014-07-07 10:00",
                 "2014-07-07 11:00",
             ],
-            "BH",
+            "bh",
         ),
         (
             [
@@ -344,7 +348,7 @@ def test_infer_freq_tz_transition_custom():
                 "2014-07-08 15:00",
                 "2014-07-08 16:00",
             ],
-            "BH",
+            "bh",
         ),
     ],
 )
@@ -358,7 +362,7 @@ def test_not_monotonic():
     rng = DatetimeIndex(["1/31/2000", "1/31/2001", "1/31/2002"])
     rng = rng[::-1]
 
-    assert rng.inferred_freq == "-1A-JAN"
+    assert rng.inferred_freq == "-1YE-JAN"
 
 
 def test_non_datetime_index2():
@@ -372,10 +376,10 @@ def test_non_datetime_index2():
 @pytest.mark.parametrize(
     "idx",
     [
-        tm.makeIntIndex(10),
-        tm.makeFloatIndex(10),
-        tm.makePeriodIndex(10),
-        tm.makeRangeIndex(10),
+        Index(np.arange(5), dtype=np.int64),
+        Index(np.arange(5), dtype=np.float64),
+        period_range("2020-01-01", periods=5),
+        RangeIndex(5),
     ],
 )
 def test_invalid_index_types(idx):
@@ -399,7 +403,7 @@ def test_invalid_index_types_unicode():
     msg = "Unknown datetime string format"
 
     with pytest.raises(ValueError, match=msg):
-        frequencies.infer_freq(tm.makeStringIndex(10))
+        frequencies.infer_freq(Index(["ZqgszYBfuL"]))
 
 
 def test_string_datetime_like_compat():
@@ -429,15 +433,21 @@ def test_series_invalid_type(end):
         frequencies.infer_freq(s)
 
 
-def test_series_inconvertible_string():
+def test_series_inconvertible_string(using_infer_string):
     # see gh-6407
-    msg = "Unknown datetime string format"
+    if using_infer_string:
+        msg = "cannot infer freq from"
 
-    with pytest.raises(ValueError, match=msg):
-        frequencies.infer_freq(Series(["foo", "bar"]))
+        with pytest.raises(TypeError, match=msg):
+            frequencies.infer_freq(Series(["foo", "bar"]))
+    else:
+        msg = "Unknown datetime string format"
+
+        with pytest.raises(ValueError, match=msg):
+            frequencies.infer_freq(Series(["foo", "bar"]))
 
 
-@pytest.mark.parametrize("freq", [None, "L"])
+@pytest.mark.parametrize("freq", [None, "ms"])
 def test_series_period_index(freq):
     # see gh-6407
     #
@@ -449,7 +459,7 @@ def test_series_period_index(freq):
         frequencies.infer_freq(s)
 
 
-@pytest.mark.parametrize("freq", ["M", "L", "S"])
+@pytest.mark.parametrize("freq", ["ME", "ms", "s"])
 def test_series_datetime_index(freq):
     s = Series(date_range("20130101", periods=10, freq=freq))
     inferred = frequencies.infer_freq(s)
@@ -475,22 +485,22 @@ def test_series_datetime_index(freq):
         "W@FRI",
         "W@SAT",
         "W@SUN",
-        "Q@JAN",
-        "Q@FEB",
-        "Q@MAR",
-        "A@JAN",
-        "A@FEB",
-        "A@MAR",
-        "A@APR",
-        "A@MAY",
-        "A@JUN",
-        "A@JUL",
-        "A@AUG",
-        "A@SEP",
-        "A@OCT",
-        "A@NOV",
-        "A@DEC",
-        "Y@JAN",
+        "QE@JAN",
+        "QE@FEB",
+        "QE@MAR",
+        "YE@JAN",
+        "YE@FEB",
+        "YE@MAR",
+        "YE@APR",
+        "YE@MAY",
+        "YE@JUN",
+        "YE@JUL",
+        "YE@AUG",
+        "YE@SEP",
+        "YE@OCT",
+        "YE@NOV",
+        "YE@DEC",
+        "YE@JAN",
         "WOM@1MON",
         "WOM@2MON",
         "WOM@3MON",
@@ -530,12 +540,12 @@ def test_infer_freq_non_nano():
     arr = np.arange(10).astype(np.int64).view("M8[s]")
     dta = DatetimeArray._simple_new(arr, dtype=arr.dtype)
     res = frequencies.infer_freq(dta)
-    assert res == "S"
+    assert res == "s"
 
     arr2 = arr.view("m8[ms]")
     tda = TimedeltaArray._simple_new(arr2, dtype=arr2.dtype)
     res2 = frequencies.infer_freq(tda)
-    assert res2 == "L"
+    assert res2 == "ms"
 
 
 def test_infer_freq_non_nano_tzaware(tz_aware_fixture):

@@ -53,8 +53,9 @@ class CheckPredict():
         sl2 = slice(0, -(self.k_infl + 1), None)
         assert_allclose(res1.params[sl1], res2.params[sl2], rtol=self.rtol)
         assert_allclose(res1.bse[sl1], res2.bse[sl2], rtol=30 * self.rtol)
-        assert_allclose(res1.params[-1], np.exp(res2.params[-1]),
-                        rtol=self.rtol)
+        params1 = np.asarray(res1.params)
+        params2 = np.asarray(res2.params)
+        assert_allclose(params1[-1], np.exp(params2[-1]), rtol=self.rtol)
 
     def test_predict(self):
         res1 = self.res1
@@ -64,42 +65,42 @@ class CheckPredict():
         # test for which="mean"
         rdf = res2.results_margins_atmeans
         pred = res1.get_prediction(ex, **self.pred_kwds_mean)
-        assert_allclose(pred.predicted, rdf["b"][0], rtol=1e-4)
-        assert_allclose(pred.se, rdf["se"][0], rtol=1e-4,  atol=1e-4)
+        assert_allclose(pred.predicted, rdf["b"].iloc[0], rtol=1e-4)
+        assert_allclose(pred.se, rdf["se"].iloc[0], rtol=1e-4,  atol=1e-4)
         if isinstance(pred, PredictionResultsMonotonic):
             # default method is endpoint transformation for non-ZI models
             ci = pred.conf_int()[0]
-            assert_allclose(ci[0], rdf["ll"][0], rtol=1e-3,  atol=1e-4)
-            assert_allclose(ci[1], rdf["ul"][0], rtol=1e-3,  atol=1e-4)
+            assert_allclose(ci[0], rdf["ll"].iloc[0], rtol=1e-3,  atol=1e-4)
+            assert_allclose(ci[1], rdf["ul"].iloc[0], rtol=1e-3,  atol=1e-4)
 
             ci = pred.conf_int(method="delta")[0]
-            assert_allclose(ci[0], rdf["ll"][0], rtol=1e-4,  atol=1e-4)
-            assert_allclose(ci[1], rdf["ul"][0], rtol=1e-4,  atol=1e-4)
+            assert_allclose(ci[0], rdf["ll"].iloc[0], rtol=1e-4,  atol=1e-4)
+            assert_allclose(ci[1], rdf["ul"].iloc[0], rtol=1e-4,  atol=1e-4)
         else:
             ci = pred.conf_int()[0]
-            assert_allclose(ci[0], rdf["ll"][0], rtol=1e-4,  atol=1e-4)
-            assert_allclose(ci[1], rdf["ul"][0], rtol=1e-4,  atol=1e-4)
+            assert_allclose(ci[0], rdf["ll"].iloc[0], rtol=1e-4,  atol=1e-4)
+            assert_allclose(ci[1], rdf["ul"].iloc[0], rtol=1e-4,  atol=1e-4)
 
         stat, _ = pred.t_test()
         assert_allclose(stat, pred.tvalues, rtol=1e-4,  atol=1e-4)
 
         rdf = res2.results_margins_mean
         pred = res1.get_prediction(average=True, **self.pred_kwds_mean)
-        assert_allclose(pred.predicted, rdf["b"][0], rtol=3e-4)  # self.rtol)
-        assert_allclose(pred.se, rdf["se"][0], rtol=3e-3,  atol=1e-4)
+        assert_allclose(pred.predicted, rdf["b"].iloc[0], rtol=3e-4)  # self.rtol)
+        assert_allclose(pred.se, rdf["se"].iloc[0], rtol=3e-3,  atol=1e-4)
         if isinstance(pred, PredictionResultsMonotonic):
             # default method is endpoint transformation for non-ZI models
             ci = pred.conf_int()[0]
-            assert_allclose(ci[0], rdf["ll"][0], rtol=1e-3,  atol=1e-4)
-            assert_allclose(ci[1], rdf["ul"][0], rtol=1e-3,  atol=1e-4)
+            assert_allclose(ci[0], rdf["ll"].iloc[0], rtol=1e-3,  atol=1e-4)
+            assert_allclose(ci[1], rdf["ul"].iloc[0], rtol=1e-3,  atol=1e-4)
 
             ci = pred.conf_int(method="delta")[0]
-            assert_allclose(ci[0], rdf["ll"][0], rtol=1e-4,  atol=1e-4)
-            assert_allclose(ci[1], rdf["ul"][0], rtol=1e-4,  atol=1e-4)
+            assert_allclose(ci[0], rdf["ll"].iloc[0], rtol=1e-4,  atol=1e-4)
+            assert_allclose(ci[1], rdf["ul"].iloc[0], rtol=1e-4,  atol=1e-4)
         else:
             ci = pred.conf_int()[0]
-            assert_allclose(ci[0], rdf["ll"][0], rtol=5e-4,  atol=1e-4)
-            assert_allclose(ci[1], rdf["ul"][0], rtol=5e-4,  atol=1e-4)
+            assert_allclose(ci[0], rdf["ll"].iloc[0], rtol=5e-4,  atol=1e-4)
+            assert_allclose(ci[1], rdf["ul"].iloc[0], rtol=5e-4,  atol=1e-4)
 
         stat, _ = pred.t_test()
         assert_allclose(stat, pred.tvalues, rtol=1e-4,  atol=1e-4)
@@ -108,12 +109,12 @@ class CheckPredict():
         rdf = res2.results_margins_atmeans
         pred = res1.get_prediction(ex, which="prob", y_values=np.arange(2),
                                    **self.pred_kwds_mean)
-        assert_allclose(pred.predicted, rdf["b"][1:3], rtol=3e-4)  # self.rtol)
-        assert_allclose(pred.se, rdf["se"][1:3], rtol=3e-3,  atol=1e-4)
+        assert_allclose(pred.predicted, rdf["b"].iloc[1:3], rtol=3e-4)  # self.rtol)
+        assert_allclose(pred.se, rdf["se"].iloc[1:3], rtol=3e-3,  atol=1e-4)
 
         ci = pred.conf_int()
-        assert_allclose(ci[:, 0], rdf["ll"][1:3], rtol=5e-4,  atol=1e-4)
-        assert_allclose(ci[:, 1], rdf["ul"][1:3], rtol=5e-4,  atol=1e-4)
+        assert_allclose(ci[:, 0], rdf["ll"].iloc[1:3], rtol=5e-4,  atol=1e-4)
+        assert_allclose(ci[:, 1], rdf["ul"].iloc[1:3], rtol=5e-4,  atol=1e-4)
 
         stat, _ = pred.t_test()
         assert_allclose(stat, pred.tvalues, rtol=1e-4,  atol=1e-4)
@@ -121,12 +122,12 @@ class CheckPredict():
         rdf = res2.results_margins_mean
         pred = res1.get_prediction(which="prob", y_values=np.arange(2),
                                    average=True, **self.pred_kwds_mean)
-        assert_allclose(pred.predicted, rdf["b"][1:3], rtol=5e-3)  # self.rtol)
-        assert_allclose(pred.se, rdf["se"][1:3], rtol=3e-3,  atol=5e-4)
+        assert_allclose(pred.predicted, rdf["b"].iloc[1:3], rtol=5e-3)  # self.rtol)
+        assert_allclose(pred.se, rdf["se"].iloc[1:3], rtol=3e-3,  atol=5e-4)
 
         ci = pred.conf_int()
-        assert_allclose(ci[:, 0], rdf["ll"][1:3], rtol=5e-4,  atol=1e-3)
-        assert_allclose(ci[:, 1], rdf["ul"][1:3], rtol=5e-4,  atol=5e-3)
+        assert_allclose(ci[:, 0], rdf["ll"].iloc[1:3], rtol=5e-4,  atol=1e-3)
+        assert_allclose(ci[:, 1], rdf["ul"].iloc[1:3], rtol=5e-4,  atol=5e-3)
 
         stat, _ = pred.t_test()
         assert_allclose(stat, pred.tvalues, rtol=1e-4,  atol=1e-4)

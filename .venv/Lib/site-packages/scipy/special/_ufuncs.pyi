@@ -24,6 +24,8 @@ __all__ = [
     'besselpoly',
     'beta',
     'betainc',
+    'betaincc',
+    'betainccinv',
     'betaincinv',
     'betaln',
     'binom',
@@ -283,6 +285,7 @@ _spherical_kn: np.ufunc
 _spherical_kn_d: np.ufunc
 _spherical_yn: np.ufunc
 _spherical_yn_d: np.ufunc
+_stirling2_inexact: np.ufunc
 _struve_asymp_large_z: np.ufunc
 _struve_bessel_series: np.ufunc
 _struve_power_series: np.ufunc
@@ -302,6 +305,8 @@ berp: np.ufunc
 besselpoly: np.ufunc
 beta: np.ufunc
 betainc: np.ufunc
+betaincc: np.ufunc
+betainccinv: np.ufunc
 betaincinv: np.ufunc
 betaln: np.ufunc
 binom: np.ufunc

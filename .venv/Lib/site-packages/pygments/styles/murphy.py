@@ -13,11 +13,15 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['MurphyStyle']
+
+
 class MurphyStyle(Style):
     """
     Murphy's style from CodeRay.
     """
-
+    name = 'murphy'
+    
     styles = {
         Whitespace:                "#bbbbbb",
         Comment:                   "#666 italic",

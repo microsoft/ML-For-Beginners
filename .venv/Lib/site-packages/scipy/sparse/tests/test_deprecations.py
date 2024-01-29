@@ -7,7 +7,7 @@ def test_array_api_deprecations():
         [1,2,3],
         [4,0,6]
     ])
-    msg = "1.13.0"
+    msg = "1.14.0"
 
     with pytest.deprecated_call(match=msg):
         X.get_shape()

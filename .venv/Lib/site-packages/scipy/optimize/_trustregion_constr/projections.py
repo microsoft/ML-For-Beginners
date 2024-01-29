@@ -101,7 +101,8 @@ def augmented_system_projections(A, m, n, orth_tol, max_refin, tol):
         solve = scipy.sparse.linalg.factorized(K)
     except RuntimeError:
         warn("Singular Jacobian matrix. Using dense SVD decomposition to "
-             "perform the factorizations.")
+             "perform the factorizations.",
+             stacklevel=3)
         return svd_factorization_projections(A.toarray(),
                                              m, n, orth_tol,
                                              max_refin, tol)
@@ -179,7 +180,8 @@ def qr_factorization_projections(A, m, n, orth_tol, max_refin, tol):
 
     if np.linalg.norm(R[-1, :], np.inf) < tol:
         warn('Singular Jacobian matrix. Using SVD decomposition to ' +
-             'perform the factorizations.')
+             'perform the factorizations.',
+             stacklevel=3)
         return svd_factorization_projections(A, m, n,
                                              orth_tol,
                                              max_refin,
@@ -374,10 +376,10 @@ def projections(A, method=None, orth_tol=1e-12, max_refin=3, tol=1e-15):
         if method not in ("NormalEquation", "AugmentedSystem"):
             raise ValueError("Method not allowed for sparse matrix.")
         if method == "NormalEquation" and not sksparse_available:
-            warnings.warn(("Only accepts 'NormalEquation' option when"
-                           " scikit-sparse is available. Using "
-                           "'AugmentedSystem' option instead."),
-                          ImportWarning)
+            warnings.warn("Only accepts 'NormalEquation' option when "
+                          "scikit-sparse is available. Using "
+                          "'AugmentedSystem' option instead.",
+                          ImportWarning, stacklevel=3)
             method = 'AugmentedSystem'
     else:
         if method is None:

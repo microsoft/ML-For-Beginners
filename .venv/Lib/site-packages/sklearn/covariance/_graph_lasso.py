@@ -22,6 +22,7 @@ from ..linear_model import _cd_fast as cd_fast  # type: ignore
 from ..linear_model import lars_path_gram
 from ..model_selection import check_cv, cross_val_score
 from ..utils._param_validation import Interval, StrOptions, validate_params
+from ..utils.metadata_routing import _RoutingNotSupportedMixin
 from ..utils.parallel import Parallel, delayed
 from ..utils.validation import (
     _is_arraylike_not_scalar,
@@ -705,7 +706,7 @@ def graphical_lasso_path(
     return covariances_, precisions_
 
 
-class GraphicalLassoCV(BaseGraphicalLasso):
+class GraphicalLassoCV(_RoutingNotSupportedMixin, BaseGraphicalLasso):
     """Sparse inverse covariance w/ cross-validated choice of the l1 penalty.
 
     See glossary entry for :term:`cross-validation estimator`.
@@ -737,7 +738,7 @@ class GraphicalLassoCV(BaseGraphicalLasso):
         - :term:`CV splitter`,
         - An iterable yielding (train, test) splits as arrays of indices.
 
-        For integer/None inputs :class:`KFold` is used.
+        For integer/None inputs :class:`~sklearn.model_selection.KFold` is used.
 
         Refer :ref:`User Guide <cross_validation>` for the various
         cross-validation strategies that can be used here.

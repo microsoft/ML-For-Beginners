@@ -1,5 +1,6 @@
 import importlib
 import os
+from typing import Tuple, Callable
 
 aliases = {
     'qt4': 'qt',
@@ -119,7 +120,7 @@ def set_qt_api(gui):
         return qt_env2gui[QT_API]
 
 
-def get_inputhook_name_and_func(gui):
+def get_inputhook_name_and_func(gui: str) -> Tuple[str, Callable]:
     if gui in registered:
         return gui, registered[gui]
 

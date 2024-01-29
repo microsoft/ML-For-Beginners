@@ -9,7 +9,7 @@ from bisect import bisect_left
 
 import numpy as np
 
-from ._matrix import spmatrix, _array_doc_to_matrix
+from ._matrix import spmatrix
 from ._base import _spbase, sparray, issparse
 from ._index import IndexMixin, INT_TYPES, _broadcast_arrays
 from ._sputils import (getdtype, isshape, isscalarlike, upcast_scalar,
@@ -18,67 +18,6 @@ from . import _csparsetools
 
 
 class _lil_base(_spbase, IndexMixin):
-    """Row-based LIst of Lists sparse matrix
-
-    This is a structure for constructing sparse matrices incrementally.
-    Note that inserting a single item can take linear time in the worst case;
-    to construct a matrix efficiently, make sure the items are pre-sorted by
-    index, per row.
-
-    This can be instantiated in several ways:
-        lil_array(D)
-            with a dense matrix or rank-2 ndarray D
-
-        lil_array(S)
-            with another sparse matrix S (equivalent to S.tolil())
-
-        lil_array((M, N), [dtype])
-            to construct an empty matrix with shape (M, N)
-            dtype is optional, defaulting to dtype='d'.
-
-    Attributes
-    ----------
-    dtype : dtype
-        Data type of the matrix
-    shape : 2-tuple
-        Shape of the matrix
-    ndim : int
-        Number of dimensions (this is always 2)
-    nnz
-        Number of stored values, including explicit zeros
-    data
-        LIL format data array of the matrix
-    rows
-        LIL format row index array of the matrix
-
-    Notes
-    -----
-    Sparse matrices can be used in arithmetic operations: they support
-    addition, subtraction, multiplication, division, and matrix power.
-
-    Advantages of the LIL format
-        - supports flexible slicing
-        - changes to the matrix sparsity structure are efficient
-
-    Disadvantages of the LIL format
-        - arithmetic operations LIL + LIL are slow (consider CSR or CSC)
-        - slow column slicing (consider CSC)
-        - slow matrix vector products (consider CSR or CSC)
-
-    Intended Usage
-        - LIL is a convenient format for constructing sparse matrices
-        - once a matrix has been constructed, convert to CSR or
-          CSC format for fast arithmetic and matrix vector operations
-        - consider using the COO format when constructing large matrices
-
-    Data Structure
-        - An array (``self.rows``) of rows, each of which is a sorted
-          list of column indices of non-zero elements.
-        - The corresponding nonzero values are stored in similar
-          fashion in ``self.data``.
-
-
-    """
     _format = 'lil'
 
     def __init__(self, arg1, shape=None, dtype=None, copy=False):
@@ -348,6 +287,7 @@ class _lil_base(_spbase, IndexMixin):
     def __truediv__(self, other):           # self / other
         if isscalarlike(other):
             new = self.copy()
+            new.dtype = np.result_type(self, other)
             # Divide every element by this scalar
             for j, rowvals in enumerate(new.data):
                 new.data[j] = [val/other for val in rowvals]
@@ -549,11 +489,130 @@ def isspmatrix_lil(x):
 
 # This namespace class separates array from matrix with isinstance
 class lil_array(_lil_base, sparray):
-    pass
+    """
+    Row-based LIst of Lists sparse array.
 
-lil_array.__doc__ = _lil_base.__doc__
+    This is a structure for constructing sparse arrays incrementally.
+    Note that inserting a single item can take linear time in the worst case;
+    to construct the array efficiently, make sure the items are pre-sorted by
+    index, per row.
+
+    This can be instantiated in several ways:
+        lil_array(D)
+            where D is a 2-D ndarray
+
+        lil_array(S)
+            with another sparse array or matrix S (equivalent to S.tolil())
+
+        lil_array((M, N), [dtype])
+            to construct an empty array with shape (M, N)
+            dtype is optional, defaulting to dtype='d'.
+
+    Attributes
+    ----------
+    dtype : dtype
+        Data type of the array
+    shape : 2-tuple
+        Shape of the array
+    ndim : int
+        Number of dimensions (this is always 2)
+    nnz
+    size
+    data
+        LIL format data array of the array
+    rows
+        LIL format row index array of the array
+    T
+
+    Notes
+    -----
+    Sparse arrays can be used in arithmetic operations: they support
+    addition, subtraction, multiplication, division, and matrix power.
+
+    Advantages of the LIL format
+        - supports flexible slicing
+        - changes to the array sparsity structure are efficient
+
+    Disadvantages of the LIL format
+        - arithmetic operations LIL + LIL are slow (consider CSR or CSC)
+        - slow column slicing (consider CSC)
+        - slow matrix vector products (consider CSR or CSC)
+
+    Intended Usage
+        - LIL is a convenient format for constructing sparse arrays
+        - once an array has been constructed, convert to CSR or
+          CSC format for fast arithmetic and matrix vector operations
+        - consider using the COO format when constructing large arrays
+
+    Data Structure
+        - An array (``self.rows``) of rows, each of which is a sorted
+          list of column indices of non-zero elements.
+        - The corresponding nonzero values are stored in similar
+          fashion in ``self.data``.
+
+    """
+
 
 class lil_matrix(spmatrix, _lil_base):
-    pass
+    """
+    Row-based LIst of Lists sparse matrix.
 
-lil_matrix.__doc__ = _array_doc_to_matrix(_lil_base.__doc__)
+    This is a structure for constructing sparse matrices incrementally.
+    Note that inserting a single item can take linear time in the worst case;
+    to construct the matrix efficiently, make sure the items are pre-sorted by
+    index, per row.
+
+    This can be instantiated in several ways:
+        lil_matrix(D)
+            where D is a 2-D ndarray
+
+        lil_matrix(S)
+            with another sparse array or matrix S (equivalent to S.tolil())
+
+        lil_matrix((M, N), [dtype])
+            to construct an empty matrix with shape (M, N)
+            dtype is optional, defaulting to dtype='d'.
+
+    Attributes
+    ----------
+    dtype : dtype
+        Data type of the matrix
+    shape : 2-tuple
+        Shape of the matrix
+    ndim : int
+        Number of dimensions (this is always 2)
+    nnz
+    size
+    data
+        LIL format data array of the matrix
+    rows
+        LIL format row index array of the matrix
+    T
+
+    Notes
+    -----
+    Sparse matrices can be used in arithmetic operations: they support
+    addition, subtraction, multiplication, division, and matrix power.
+
+    Advantages of the LIL format
+        - supports flexible slicing
+        - changes to the matrix sparsity structure are efficient
+
+    Disadvantages of the LIL format
+        - arithmetic operations LIL + LIL are slow (consider CSR or CSC)
+        - slow column slicing (consider CSC)
+        - slow matrix vector products (consider CSR or CSC)
+
+    Intended Usage
+        - LIL is a convenient format for constructing sparse matrices
+        - once a matrix has been constructed, convert to CSR or
+          CSC format for fast arithmetic and matrix vector operations
+        - consider using the COO format when constructing large matrices
+
+    Data Structure
+        - An array (``self.rows``) of rows, each of which is a sorted
+          list of column indices of non-zero elements.
+        - The corresponding nonzero values are stored in similar
+          fashion in ``self.data``.
+
+    """

@@ -346,7 +346,7 @@ def test_center_reindex_frame(frame, roll_func, kwargs, minp, fill_value):
         lambda x: x.rolling(window=10, min_periods=5).apply(sum, raw=True),
         pytest.param(
             lambda x: x.rolling(win_type="boxcar", window=10, min_periods=5).mean(),
-            marks=td.skip_if_no_scipy,
+            marks=td.skip_if_no("scipy"),
         ),
     ],
 )
@@ -388,7 +388,7 @@ def test_rolling_max_resample(step):
     # So that we can have 3 datapoints on last day (4, 10, and 20)
     indices.append(datetime(1975, 1, 5, 1))
     indices.append(datetime(1975, 1, 5, 2))
-    series = Series(list(range(0, 5)) + [10, 20], index=indices)
+    series = Series(list(range(5)) + [10, 20], index=indices)
     # Use floats instead of ints as values
     series = series.map(lambda x: float(x))
     # Sort chronologically
@@ -425,7 +425,7 @@ def test_rolling_min_resample(step):
     # So that we can have 3 datapoints on last day (4, 10, and 20)
     indices.append(datetime(1975, 1, 5, 1))
     indices.append(datetime(1975, 1, 5, 2))
-    series = Series(list(range(0, 5)) + [10, 20], index=indices)
+    series = Series(list(range(5)) + [10, 20], index=indices)
     # Use floats instead of ints as values
     series = series.map(lambda x: float(x))
     # Sort chronologically
@@ -445,7 +445,7 @@ def test_rolling_median_resample():
     # So that we can have 3 datapoints on last day (4, 10, and 20)
     indices.append(datetime(1975, 1, 5, 1))
     indices.append(datetime(1975, 1, 5, 2))
-    series = Series(list(range(0, 5)) + [10, 20], index=indices)
+    series = Series(list(range(5)) + [10, 20], index=indices)
     # Use floats instead of ints as values
     series = series.map(lambda x: float(x))
     # Sort chronologically
@@ -508,7 +508,7 @@ def test_rolling_min_max_numeric_types(data_type):
         lambda x: x.rolling(window=10, min_periods=5).apply(sum, raw=True),
         pytest.param(
             lambda x: x.rolling(win_type="boxcar", window=10, min_periods=5).mean(),
-            marks=td.skip_if_no_scipy,
+            marks=td.skip_if_no("scipy"),
         ),
     ],
 )

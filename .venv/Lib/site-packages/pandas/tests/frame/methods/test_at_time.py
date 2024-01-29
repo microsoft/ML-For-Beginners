@@ -18,7 +18,7 @@ class TestAtTime:
     def test_localized_at_time(self, tzstr, frame_or_series):
         tz = timezones.maybe_get_tz(tzstr)
 
-        rng = date_range("4/16/2012", "5/1/2012", freq="H")
+        rng = date_range("4/16/2012", "5/1/2012", freq="h")
         ts = frame_or_series(
             np.random.default_rng(2).standard_normal(len(rng)), index=rng
         )
@@ -69,7 +69,7 @@ class TestAtTime:
     )
     def test_at_time_errors(self, hour):
         # GH#24043
-        dti = date_range("2018", periods=3, freq="H")
+        dti = date_range("2018", periods=3, freq="h")
         df = DataFrame(list(range(len(dti))), index=dti)
         if getattr(hour, "tzinfo", None) is None:
             result = df.at_time(hour)
@@ -81,7 +81,7 @@ class TestAtTime:
 
     def test_at_time_tz(self):
         # GH#24043
-        dti = date_range("2018", periods=3, freq="H", tz="US/Pacific")
+        dti = date_range("2018", periods=3, freq="h", tz="US/Pacific")
         df = DataFrame(list(range(len(dti))), index=dti)
         result = df.at_time(time(4, tzinfo=pytz.timezone("US/Eastern")))
         expected = df.iloc[1:2]

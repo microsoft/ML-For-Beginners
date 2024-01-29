@@ -2,8 +2,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "onnx/defs/math/utils.h"
 #include "onnx/defs/controlflow/utils.h"
+
+#include <string>
+#include <vector>
 
 namespace ONNX_NAMESPACE {
 
@@ -164,7 +166,7 @@ void LoopInferenceFunction(InferenceContext& ctx) {
       if (is_loop_state_var) {
         // shape may change across iterations so ignore.
       } else {
-        // propogate shape
+        // propagate shape
         if (subgraph_output_type->tensor_type().has_shape()) {
           // per iteration output. first dimension will be number of iterations
           // but we don't know that value yet

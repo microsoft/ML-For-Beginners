@@ -2,8 +2,7 @@
 # Use the `scipy.special` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _sf_error
+from scipy._lib.deprecation import _sub_module_deprecation
 
 __all__ = [  # noqa: F822
     'SpecialFunctionWarning',
@@ -16,13 +15,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.special.sf_error is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.special instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.special` namespace, "
-                  "the `scipy.special.sf_error` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_sf_error, name)
+    return _sub_module_deprecation(sub_package="special", module="sf_error",
+                                   private_modules=["_sf_error"], all=__all__,
+                                   attribute=name)

@@ -118,16 +118,15 @@ class ToolBase:
         lambda self: self._figure.canvas if self._figure is not None else None,
         doc="The canvas of the figure affected by this tool, or None.")
 
-    @property
-    def figure(self):
-        """The Figure affected by this tool, or None."""
-        return self._figure
-
-    @figure.setter
-    def figure(self, figure):
+    def set_figure(self, figure):
         self._figure = figure
 
-    set_figure = figure.fset
+    figure = property(
+        lambda self: self._figure,
+        # The setter must explicitly call self.set_figure so that subclasses can
+        # meaningfully override it.
+        lambda self, figure: self.set_figure(figure),
+        doc="The Figure affected by this tool, or None.")
 
     def _make_classic_style_pseudo_toolbar(self):
         """
@@ -152,15 +151,6 @@ class ToolBase:
             Object that requested the tool to be triggered.
         data : object
             Extra data.
-        """
-        pass
-
-    @_api.deprecated("3.6", alternative="tool_removed_event")
-    def destroy(self):
-        """
-        Destroy the tool.
-
-        This method is called by `.ToolManager.remove_tool`.
         """
         pass
 
@@ -488,8 +478,8 @@ class ToolViewsPositions(ToolBase):
         """Add the current figure to the stack of views and positions."""
 
         if figure not in self.views:
-            self.views[figure] = cbook.Stack()
-            self.positions[figure] = cbook.Stack()
+            self.views[figure] = cbook._Stack()
+            self.positions[figure] = cbook._Stack()
             self.home_views[figure] = WeakKeyDictionary()
             # Define Home
             self.push_current(figure)

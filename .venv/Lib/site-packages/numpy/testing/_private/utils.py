@@ -22,7 +22,7 @@ import numpy as np
 from numpy.core import (
      intp, float32, empty, arange, array_repr, ndarray, isnat, array)
 from numpy import isfinite, isnan, isinf
-import numpy.linalg.lapack_lite
+import numpy.linalg._umath_linalg
 
 from io import StringIO
 
@@ -54,7 +54,7 @@ IS_WASM = platform.machine() in ["wasm32", "wasm64"]
 IS_PYPY = sys.implementation.name == 'pypy'
 IS_PYSTON = hasattr(sys, "pyston_version_info")
 HAS_REFCOUNT = getattr(sys, 'getrefcount', None) is not None and not IS_PYSTON
-HAS_LAPACK64 = numpy.linalg.lapack_lite._ilp64
+HAS_LAPACK64 = numpy.linalg._umath_linalg._ilp64
 
 _OLD_PROMOTION = lambda: np._get_promotion_state() == 'legacy'
 

@@ -13,6 +13,7 @@ from sklearn.utils._testing import (
     assert_allclose_dense_sparse,
     assert_array_equal,
 )
+from sklearn.utils.fixes import CSR_CONTAINERS
 
 eigen_solvers = ["auto", "dense", "arpack"]
 path_methods = ["auto", "FW", "D"]
@@ -226,16 +227,21 @@ def test_isomap_clone_bug():
 
 @pytest.mark.parametrize("eigen_solver", eigen_solvers)
 @pytest.mark.parametrize("path_method", path_methods)
-def test_sparse_input(global_dtype, eigen_solver, path_method, global_random_seed):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_sparse_input(
+    global_dtype, eigen_solver, path_method, global_random_seed, csr_container
+):
     # TODO: compare results on dense and sparse data as proposed in:
     # https://github.com/scikit-learn/scikit-learn/pull/23585#discussion_r968388186
-    X = sparse_rand(
-        100,
-        3,
-        density=0.1,
-        format="csr",
-        dtype=global_dtype,
-        random_state=global_random_seed,
+    X = csr_container(
+        sparse_rand(
+            100,
+            3,
+            density=0.1,
+            format="csr",
+            dtype=global_dtype,
+            random_state=global_random_seed,
+        )
     )
 
     iso_dense = manifold.Isomap(

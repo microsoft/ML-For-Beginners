@@ -75,7 +75,7 @@ def test_full_output_false(reset_randomstate):
             xopt, retvals = func(
                 dummy_func,
                 dummy_score,
-                [1],
+                [1.0],
                 (),
                 {},
                 hess=dummy_hess,
@@ -85,7 +85,13 @@ def test_full_output_false(reset_randomstate):
 
         else:
             xopt, retvals = func(
-                dummy_func, dummy_score, [1], (), {}, full_output=False, disp=0
+                dummy_func,
+                dummy_score,
+                [1.0],
+                (),
+                {},
+                full_output=False,
+                disp=0
             )
         assert_(retvals is None)
         if method == "powell" and SP_LT_15:
@@ -102,7 +108,7 @@ def test_full_output(reset_randomstate):
             xopt, retvals = func(
                 dummy_func,
                 dummy_score,
-                [1],
+                [1.0],
                 (),
                 {},
                 hess=dummy_hess,
@@ -112,7 +118,13 @@ def test_full_output(reset_randomstate):
 
         else:
             xopt, retvals = func(
-                dummy_func, dummy_score, [1], (), {}, full_output=True, disp=0
+                dummy_func,
+                dummy_score,
+                [1.0],
+                (),
+                {},
+                full_output=True,
+                disp=0
             )
 
         assert_(retvals is not None)
@@ -130,7 +142,7 @@ def test_minimize_scipy_slsqp():
     xopt, _ = func(
         dummy_bounds_constraint_func,
         None,
-        (2, 0),
+        (2.0, 0.0),
         (),
         {
             "min_method": "SLSQP",

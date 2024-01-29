@@ -186,14 +186,13 @@ def solve_continuous_lyapunov(a, q):
 
     if info < 0:
         raise ValueError('?TRSYL exited with the internal error '
-                         '"illegal value in argument number {}.". See '
-                         'LAPACK documentation for the ?TRSYL error codes.'
-                         ''.format(-info))
+                         f'"illegal value in argument number {-info}.". See '
+                         'LAPACK documentation for the ?TRSYL error codes.')
     elif info == 1:
         warnings.warn('Input "a" has an eigenvalue pair whose sum is '
                       'very close to or exactly zero. The solution is '
                       'obtained via perturbing the coefficients.',
-                      RuntimeWarning)
+                      RuntimeWarning, stacklevel=2)
     y *= scale
 
     return u.dot(y).dot(u.conj().T)

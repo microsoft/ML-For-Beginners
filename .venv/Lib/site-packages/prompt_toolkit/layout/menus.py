@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import math
 from itertools import zip_longest
-from typing import TYPE_CHECKING, Callable, Iterable, Sequence, Tuple, TypeVar, cast
+from typing import TYPE_CHECKING, Callable, Iterable, Sequence, TypeVar, cast
 from weakref import WeakKeyDictionary
 
 from prompt_toolkit.application.current import get_app
@@ -332,7 +332,7 @@ class MultiColumnCompletionMenuControl(UIControl):
         # the count, because a completer can add new completions to the
         # `CompletionState` while loading.)
         self._column_width_for_completion_state: WeakKeyDictionary[
-            CompletionState, Tuple[int, int]
+            CompletionState, tuple[int, int]
         ] = WeakKeyDictionary()
 
         # Info of last rendering.
@@ -679,7 +679,7 @@ class MultiColumnCompletionsMenu(HSplit):
             filter=full_filter & show_meta & any_completion_has_meta,
         )
 
-        # Initialise split.
+        # Initialize split.
         super().__init__([completions_window, meta_window], z_index=z_index)
 
 

@@ -8,6 +8,7 @@ from pandas import (
     DataFrame,
     Index,
     Series,
+    date_range,
     to_datetime,
 )
 import pandas._testing as tm
@@ -29,7 +30,11 @@ mpl = pytest.importorskip("matplotlib")
 
 @pytest.fixture
 def ts():
-    return tm.makeTimeSeries(name="ts")
+    return Series(
+        np.arange(30, dtype=np.float64),
+        index=date_range("2020-01-01", periods=30, freq="B"),
+        name="ts",
+    )
 
 
 class TestSeriesPlots:

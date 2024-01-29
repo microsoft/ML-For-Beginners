@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=C0200,R0902,R0912,R0913,R0914,R0915,R1716,W0611,W0612,W0613,W0221
+
 
 from enum import IntEnum
 from typing import List
@@ -65,7 +65,7 @@ class NgramPart:
     def __repr__(self):
         if self.empty():
             return f"NgramPart({self.id_})"
-        return f"NgramPart({self.id_}, {repr(self.leafs_)})"
+        return f"NgramPart({self.id_}, {self.leafs_!r})"
 
     def empty(self):
         return self._leafs_ is None

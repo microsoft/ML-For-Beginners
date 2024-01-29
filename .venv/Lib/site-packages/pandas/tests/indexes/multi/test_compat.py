@@ -87,7 +87,7 @@ def test_inplace_mutation_resets_values():
 
 
 def test_boxable_categorical_values():
-    cat = pd.Categorical(pd.date_range("2012-01-01", periods=3, freq="H"))
+    cat = pd.Categorical(pd.date_range("2012-01-01", periods=3, freq="h"))
     result = MultiIndex.from_product([["a", "b", "c"], cat]).values
     expected = pd.Series(
         [

@@ -8,6 +8,7 @@
 #  The full license is in the file COPYING.txt, distributed with this software.
 #-----------------------------------------------------------------------------
 
+import functools
 import re
 import shlex
 import sys
@@ -16,33 +17,49 @@ from pathlib import Path
 from IPython.core.magic import Magics, magics_class, line_magic
 
 
-def _is_conda_environment():
-    """Return True if the current Python executable is in a conda env"""
-    # TODO: does this need to change on windows?
-    return Path(sys.prefix, "conda-meta", "history").exists()
+def is_conda_environment(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        """Return True if the current Python executable is in a conda env"""
+        # TODO: does this need to change on windows?
+        if not Path(sys.prefix, "conda-meta", "history").exists():
+            raise ValueError(
+                "The python kernel does not appear to be a conda environment.  "
+                "Please use ``%pip install`` instead."
+            )
+        return func(*args, **kwargs)
+
+    return wrapper
 
 
-def _get_conda_executable():
-    """Find the path to the conda executable"""
+def _get_conda_like_executable(command):
+    """Find the path to the given executable
+
+    Parameters
+    ----------
+
+    executable: string
+        Value should be: conda, mamba or micromamba
+    """
     # Check if there is a conda executable in the same directory as the Python executable.
     # This is the case within conda's root environment.
-    conda = Path(sys.executable).parent / "conda"
-    if conda.is_file():
-        return str(conda)
+    executable = Path(sys.executable).parent / command
+    if executable.is_file():
+        return str(executable)
 
     # Otherwise, attempt to extract the executable from conda history.
     # This applies in any conda environment.
     history = Path(sys.prefix, "conda-meta", "history").read_text(encoding="utf-8")
     match = re.search(
-        r"^#\s*cmd:\s*(?P<command>.*conda)\s[create|install]",
+        rf"^#\s*cmd:\s*(?P<command>.*{executable})\s[create|install]",
         history,
         flags=re.MULTILINE,
     )
     if match:
         return match.groupdict()["command"]
 
-    # Fallback: assume conda is available on the system path.
-    return "conda"
+    # Fallback: assume the executable is available on the system path.
+    return command
 
 
 CONDA_COMMANDS_REQUIRING_PREFIX = {
@@ -76,18 +93,7 @@ class PackagingMagics(Magics):
 
         print("Note: you may need to restart the kernel to use updated packages.")
 
-    @line_magic
-    def conda(self, line):
-        """Run the conda package manager within the current kernel.
-
-        Usage:
-          %conda install [pkgs]
-        """
-        if not _is_conda_environment():
-            raise ValueError("The python kernel does not appear to be a conda environment.  "
-                             "Please use ``%pip install`` instead.")
-
-        conda = _get_conda_executable()
+    def _run_command(self, cmd, line):
         args = shlex.split(line)
         command = args[0] if len(args) > 0 else ""
         args = args[1:] if len(args) > 1 else [""]
@@ -108,5 +114,38 @@ class PackagingMagics(Magics):
         if needs_prefix and not has_prefix:
             extra_args.extend(["--prefix", sys.prefix])
 
-        self.shell.system(' '.join([conda, command] + extra_args + args))
+        self.shell.system(" ".join([cmd, command] + extra_args + args))
         print("\nNote: you may need to restart the kernel to use updated packages.")
+
+    @line_magic
+    @is_conda_environment
+    def conda(self, line):
+        """Run the conda package manager within the current kernel.
+
+        Usage:
+          %conda install [pkgs]
+        """
+        conda = _get_conda_like_executable("conda")
+        self._run_command(conda, line)
+
+    @line_magic
+    @is_conda_environment
+    def mamba(self, line):
+        """Run the mamba package manager within the current kernel.
+
+        Usage:
+          %mamba install [pkgs]
+        """
+        mamba = _get_conda_like_executable("mamba")
+        self._run_command(mamba, line)
+
+    @line_magic
+    @is_conda_environment
+    def micromamba(self, line):
+        """Run the conda package manager within the current kernel.
+
+        Usage:
+          %micromamba install [pkgs]
+        """
+        micromamba = _get_conda_like_executable("micromamba")
+        self._run_command(micromamba, line)

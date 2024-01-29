@@ -621,7 +621,6 @@ def dual_annealing(func, bounds, args=(), maxiter=1000,
     if isinstance(bounds, Bounds):
         bounds = new_bounds_to_old(bounds.lb, bounds.ub, len(bounds.lb))
 
-    # noqa: E501
     if x0 is not None and not len(x0) == len(bounds):
         raise ValueError('Bounds size does not match x0')
 

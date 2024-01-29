@@ -13,7 +13,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
-
+from __future__ import annotations
 
 from . import Image, ImageFile
 
@@ -43,7 +43,7 @@ class PcdImageFile(ImageFile.ImageFile):
         elif orientation == 3:
             self.tile_post_rotate = -90
 
-        self.mode = "RGB"
+        self._mode = "RGB"
         self._size = 768, 512  # FIXME: not correct for rotated images!
         self.tile = [("pcd", (0, 0) + self.size, 96 * 2048, None)]
 

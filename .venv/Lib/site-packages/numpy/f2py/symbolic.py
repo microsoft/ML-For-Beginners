@@ -2,6 +2,13 @@
 
 References:
 - J3/21-007: Draft Fortran 202x. https://j3-fortran.org/doc/year/21/21-007.pdf
+
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
+Permission to use, modify, and distribute this software is given under the
+terms of the NumPy License.
+
+NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
 """
 
 # To analyze Fortran expressions to solve dimensions specifications,

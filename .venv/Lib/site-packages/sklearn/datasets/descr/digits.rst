@@ -5,12 +5,12 @@ Optical recognition of handwritten digits dataset
 
 **Data Set Characteristics:**
 
-    :Number of Instances: 1797
-    :Number of Attributes: 64
-    :Attribute Information: 8x8 image of integer pixels in the range 0..16.
-    :Missing Attribute Values: None
-    :Creator: E. Alpaydin (alpaydin '@' boun.edu.tr)
-    :Date: July; 1998
+:Number of Instances: 1797
+:Number of Attributes: 64
+:Attribute Information: 8x8 image of integer pixels in the range 0..16.
+:Missing Attribute Values: None
+:Creator: E. Alpaydin (alpaydin '@' boun.edu.tr)
+:Date: July; 1998
 
 This is a copy of the test set of the UCI ML hand-written digits datasets
 https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits
@@ -32,15 +32,19 @@ T. Candela, D. L. Dimmick, J. Geist, P. J. Grother, S. A. Janet, and C.
 L. Wilson, NIST Form-Based Handprint Recognition System, NISTIR 5469,
 1994.
 
-.. topic:: References
+|details-start|
+**References**
+|details-split|
 
-  - C. Kaynak (1995) Methods of Combining Multiple Classifiers and Their
-    Applications to Handwritten Digit Recognition, MSc Thesis, Institute of
-    Graduate Studies in Science and Engineering, Bogazici University.
-  - E. Alpaydin, C. Kaynak (1998) Cascading Classifiers, Kybernetika.
-  - Ken Tang and Ponnuthurai N. Suganthan and Xi Yao and A. Kai Qin.
-    Linear dimensionalityreduction using relevance weighted LDA. School of
-    Electrical and Electronic Engineering Nanyang Technological University.
-    2005.
-  - Claudio Gentile. A New Approximate Maximal Margin Classification
-    Algorithm. NIPS. 2000.
+- C. Kaynak (1995) Methods of Combining Multiple Classifiers and Their
+  Applications to Handwritten Digit Recognition, MSc Thesis, Institute of
+  Graduate Studies in Science and Engineering, Bogazici University.
+- E. Alpaydin, C. Kaynak (1998) Cascading Classifiers, Kybernetika.
+- Ken Tang and Ponnuthurai N. Suganthan and Xi Yao and A. Kai Qin.
+  Linear dimensionalityreduction using relevance weighted LDA. School of
+  Electrical and Electronic Engineering Nanyang Technological University.
+  2005.
+- Claudio Gentile. A New Approximate Maximal Margin Classification
+  Algorithm. NIPS. 2000.
+
+|details-end|

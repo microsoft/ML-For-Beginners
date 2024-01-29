@@ -32,25 +32,28 @@ The generated rST syntax looks like this::
 
     Cross reference like this: :configtrait:`Application.log_datefmt`.
 """
+from __future__ import annotations
+
+import typing as t
 from collections import defaultdict
 from textwrap import dedent
 
-from traitlets import Undefined
+from traitlets import HasTraits, Undefined
+from traitlets.config.application import Application
 from traitlets.utils.text import indent
 
 
-def setup(app):
+def setup(app: t.Any) -> dict[str, t.Any]:
     """Registers the Sphinx extension.
 
     You shouldn't need to call this directly; configure Sphinx to use this
     module instead.
     """
     app.add_object_type("configtrait", "configtrait", objname="Config option")
-    metadata = {"parallel_read_safe": True, "parallel_write_safe": True}
-    return metadata
+    return {"parallel_read_safe": True, "parallel_write_safe": True}
 
 
-def interesting_default_value(dv):
+def interesting_default_value(dv: t.Any) -> bool:
     if (dv is None) or (dv is Undefined):
         return False
     if isinstance(dv, (str, list, tuple, dict, set)):
@@ -58,7 +61,7 @@ def interesting_default_value(dv):
     return True
 
 
-def format_aliases(aliases):
+def format_aliases(aliases: list[str]) -> str:
     fmted = []
     for a in aliases:
         dashes = "-" if len(a) == 1 else "--"
@@ -66,7 +69,7 @@ def format_aliases(aliases):
     return ", ".join(fmted)
 
 
-def class_config_rst_doc(cls, trait_aliases):
+def class_config_rst_doc(cls: type[HasTraits], trait_aliases: dict[str, t.Any]) -> str:
     """Generate rST documentation for this class' config options.
 
     Excludes traits defined on parent classes.
@@ -76,7 +79,7 @@ def class_config_rst_doc(cls, trait_aliases):
     for _, trait in sorted(cls.class_traits(config=True).items()):
         ttype = trait.__class__.__name__
 
-        fullname = classname + "." + trait.name
+        fullname = classname + "." + (trait.name or "")
         lines += [".. configtrait:: " + fullname, ""]
 
         help = trait.help.rstrip() or "No description"
@@ -85,7 +88,7 @@ def class_config_rst_doc(cls, trait_aliases):
         # Choices or type
         if "Enum" in ttype:
             # include Enum choices
-            lines.append(indent(":options: " + ", ".join("``%r``" % x for x in trait.values)))
+            lines.append(indent(":options: " + ", ".join("``%r``" % x for x in trait.values)))  # type:ignore[attr-defined]
         else:
             lines.append(indent(":trait type: " + ttype))
 
@@ -114,7 +117,7 @@ def class_config_rst_doc(cls, trait_aliases):
     return "\n".join(lines)
 
 
-def reverse_aliases(app):
+def reverse_aliases(app: Application) -> dict[str, list[str]]:
     """Produce a mapping of trait names to lists of command line aliases."""
     res = defaultdict(list)
     for alias, trait in app.aliases.items():
@@ -124,17 +127,17 @@ def reverse_aliases(app):
     # Treat flags which set one trait to True as aliases.
     for flag, (cfg, _) in app.flags.items():
         if len(cfg) == 1:
-            classname = list(cfg)[0]
+            classname = next(iter(cfg))
             cls_cfg = cfg[classname]
             if len(cls_cfg) == 1:
-                traitname = list(cls_cfg)[0]
+                traitname = next(iter(cls_cfg))
                 if cls_cfg[traitname] is True:
                     res[classname + "." + traitname].append(flag)
 
     return res
 
 
-def write_doc(path, title, app, preamble=None):
+def write_doc(path: str, title: str, app: Application, preamble: str | None = None) -> None:
     """Write a rst file documenting config options for a traitlets application.
 
     Parameters

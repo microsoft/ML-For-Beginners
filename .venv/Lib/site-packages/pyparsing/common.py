@@ -1,6 +1,6 @@
 # common.py
 from .core import *
-from .helpers import delimited_list, any_open_tag, any_close_tag
+from .helpers import DelimitedList, any_open_tag, any_close_tag
 from datetime import datetime
 
 
@@ -22,17 +22,17 @@ class pyparsing_common:
 
     Parse actions:
 
-    - :class:`convertToInteger`
-    - :class:`convertToFloat`
-    - :class:`convertToDate`
-    - :class:`convertToDatetime`
-    - :class:`stripHTMLTags`
-    - :class:`upcaseTokens`
-    - :class:`downcaseTokens`
+    - :class:`convert_to_integer`
+    - :class:`convert_to_float`
+    - :class:`convert_to_date`
+    - :class:`convert_to_datetime`
+    - :class:`strip_html_tags`
+    - :class:`upcase_tokens`
+    - :class:`downcase_tokens`
 
     Example::
 
-        pyparsing_common.number.runTests('''
+        pyparsing_common.number.run_tests('''
             # any int or real number, returned as the appropriate type
             100
             -100
@@ -42,7 +42,7 @@ class pyparsing_common:
             1e-12
             ''')
 
-        pyparsing_common.fnumber.runTests('''
+        pyparsing_common.fnumber.run_tests('''
             # any int or real number, returned as float
             100
             -100
@@ -52,19 +52,19 @@ class pyparsing_common:
             1e-12
             ''')
 
-        pyparsing_common.hex_integer.runTests('''
+        pyparsing_common.hex_integer.run_tests('''
             # hex numbers
             100
             FF
             ''')
 
-        pyparsing_common.fraction.runTests('''
+        pyparsing_common.fraction.run_tests('''
             # fractions
             1/2
             -3/4
             ''')
 
-        pyparsing_common.mixed_integer.runTests('''
+        pyparsing_common.mixed_integer.run_tests('''
             # mixed fractions
             1
             1/2
@@ -73,8 +73,8 @@ class pyparsing_common:
             ''')
 
         import uuid
-        pyparsing_common.uuid.setParseAction(tokenMap(uuid.UUID))
-        pyparsing_common.uuid.runTests('''
+        pyparsing_common.uuid.set_parse_action(token_map(uuid.UUID))
+        pyparsing_common.uuid.run_tests('''
             # uuid
             12345678-1234-5678-1234-567812345678
             ''')
@@ -260,8 +260,8 @@ class pyparsing_common:
         Example::
 
             date_expr = pyparsing_common.iso8601_date.copy()
-            date_expr.setParseAction(pyparsing_common.convertToDate())
-            print(date_expr.parseString("1999-12-31"))
+            date_expr.set_parse_action(pyparsing_common.convert_to_date())
+            print(date_expr.parse_string("1999-12-31"))
 
         prints::
 
@@ -287,8 +287,8 @@ class pyparsing_common:
         Example::
 
             dt_expr = pyparsing_common.iso8601_datetime.copy()
-            dt_expr.setParseAction(pyparsing_common.convertToDatetime())
-            print(dt_expr.parseString("1999-12-31T23:59:59.999"))
+            dt_expr.set_parse_action(pyparsing_common.convert_to_datetime())
+            print(dt_expr.parse_string("1999-12-31T23:59:59.999"))
 
         prints::
 
@@ -326,9 +326,9 @@ class pyparsing_common:
 
             # strip HTML links from normal text
             text = '<td>More info at the <a href="https://github.com/pyparsing/pyparsing/wiki">pyparsing</a> wiki page</td>'
-            td, td_end = makeHTMLTags("TD")
-            table_text = td + SkipTo(td_end).setParseAction(pyparsing_common.stripHTMLTags)("body") + td_end
-            print(table_text.parseString(text).body)
+            td, td_end = make_html_tags("TD")
+            table_text = td + SkipTo(td_end).set_parse_action(pyparsing_common.strip_html_tags)("body") + td_end
+            print(table_text.parse_string(text).body)
 
         Prints::
 
@@ -348,7 +348,7 @@ class pyparsing_common:
         .streamline()
         .set_name("commaItem")
     )
-    comma_separated_list = delimited_list(
+    comma_separated_list = DelimitedList(
         Opt(quoted_string.copy() | _commasepitem, default="")
     ).set_name("comma separated list")
     """Predefined expression of 1 or more printable words or quoted strings, separated by commas."""
@@ -363,7 +363,7 @@ class pyparsing_common:
     url = Regex(
         # https://mathiasbynens.be/demo/url-regex
         # https://gist.github.com/dperini/729294
-        r"^" +
+        r"(?P<url>" +
         # protocol identifier (optional)
         # short syntax // still required
         r"(?:(?:(?P<scheme>https?|ftp):)?\/\/)" +
@@ -405,18 +405,26 @@ class pyparsing_common:
         r"(\?(?P<query>[^#]*))?" +
         # fragment (optional)
         r"(#(?P<fragment>\S*))?" +
-        r"$"
+        r")"
     ).set_name("url")
+    """URL (http/https/ftp scheme)"""
     # fmt: on
 
     # pre-PEP8 compatibility names
     convertToInteger = convert_to_integer
+    """Deprecated - use :class:`convert_to_integer`"""
     convertToFloat = convert_to_float
+    """Deprecated - use :class:`convert_to_float`"""
     convertToDate = convert_to_date
+    """Deprecated - use :class:`convert_to_date`"""
     convertToDatetime = convert_to_datetime
+    """Deprecated - use :class:`convert_to_datetime`"""
     stripHTMLTags = strip_html_tags
+    """Deprecated - use :class:`strip_html_tags`"""
     upcaseTokens = upcase_tokens
+    """Deprecated - use :class:`upcase_tokens`"""
     downcaseTokens = downcase_tokens
+    """Deprecated - use :class:`downcase_tokens`"""
 
 
 _builtin_exprs = [

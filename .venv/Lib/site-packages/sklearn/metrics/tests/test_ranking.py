@@ -4,7 +4,6 @@ import warnings
 import numpy as np
 import pytest
 from scipy import stats
-from scipy.sparse import csr_matrix
 
 from sklearn import datasets, svm
 from sklearn.datasets import make_multilabel_classification
@@ -36,6 +35,7 @@ from sklearn.utils._testing import (
     assert_array_equal,
 )
 from sklearn.utils.extmath import softmax
+from sklearn.utils.fixes import CSR_CONTAINERS
 from sklearn.utils.validation import (
     check_array,
     check_consistent_length,
@@ -1762,10 +1762,12 @@ def test_label_ranking_loss():
         (0 + 2 / 2 + 1 / 2) / 3.0,
     )
 
-    # Sparse csr matrices
+
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_label_ranking_loss_sparse(csr_container):
     assert_almost_equal(
         label_ranking_loss(
-            csr_matrix(np.array([[0, 1, 0], [1, 1, 0]])), [[0.1, 10, -3], [3, 1, 3]]
+            csr_container(np.array([[0, 1, 0], [1, 1, 0]])), [[0.1, 10, -3], [3, 1, 3]]
         ),
         (0 + 2 / 2) / 2.0,
     )
@@ -1845,16 +1847,13 @@ def test_ndcg_ignore_ties_with_k():
     )
 
 
-# TODO(1.4): Replace warning w/ ValueError
-def test_ndcg_negative_ndarray_warn():
+def test_ndcg_negative_ndarray_error():
+    """Check `ndcg_score` exception when `y_true` contains negative values."""
     y_true = np.array([[-0.89, -0.53, -0.47, 0.39, 0.56]])
     y_score = np.array([[0.07, 0.31, 0.75, 0.33, 0.27]])
-    expected_message = (
-        "ndcg_score should not be used on negative y_true values. ndcg_score will raise"
-        " a ValueError on negative y_true values starting from version 1.4."
-    )
-    with pytest.warns(FutureWarning, match=expected_message):
-        assert ndcg_score(y_true, y_score) == pytest.approx(396.0329)
+    expected_message = "ndcg_score should not be used on negative y_true values"
+    with pytest.raises(ValueError, match=expected_message):
+        ndcg_score(y_true, y_score)
 
 
 def test_ndcg_invariant():
@@ -2193,10 +2192,13 @@ def test_top_k_accuracy_score_error(y_true, y_score, labels, msg):
         top_k_accuracy_score(y_true, y_score, k=2, labels=labels)
 
 
-def test_label_ranking_avg_precision_score_should_allow_csr_matrix_for_y_true_input():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_label_ranking_avg_precision_score_should_allow_csr_matrix_for_y_true_input(
+    csr_container,
+):
     # Test that label_ranking_avg_precision_score accept sparse y_true.
     # Non-regression test for #22575
-    y_true = csr_matrix([[1, 0, 0], [0, 0, 1]])
+    y_true = csr_container([[1, 0, 0], [0, 0, 1]])
     y_score = np.array([[0.5, 0.9, 0.6], [0, 0, 1]])
     result = label_ranking_average_precision_score(y_true, y_score)
     assert result == pytest.approx(2 / 3)

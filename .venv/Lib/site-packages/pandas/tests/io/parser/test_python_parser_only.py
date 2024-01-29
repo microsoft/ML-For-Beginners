@@ -274,7 +274,7 @@ def test_multi_char_sep_quotes(python_parser_only, quoting):
             parser.read_csv(StringIO(data), quoting=quoting, **kwargs)
 
 
-def test_none_delimiter(python_parser_only, capsys):
+def test_none_delimiter(python_parser_only):
     # see gh-13374 and gh-17465
     parser = python_parser_only
     data = "a,b,c\n0,1,2\n3,4,5,6\n7,8,9"
@@ -283,11 +283,13 @@ def test_none_delimiter(python_parser_only, capsys):
     # We expect the third line in the data to be
     # skipped because it is malformed, but we do
     # not expect any errors to occur.
-    result = parser.read_csv(StringIO(data), header=0, sep=None, on_bad_lines="warn")
+    with tm.assert_produces_warning(
+        ParserWarning, match="Skipping line 3", check_stacklevel=False
+    ):
+        result = parser.read_csv(
+            StringIO(data), header=0, sep=None, on_bad_lines="warn"
+        )
     tm.assert_frame_equal(result, expected)
-
-    captured = capsys.readouterr()
-    assert "Skipping line 3" in captured.err
 
 
 @pytest.mark.parametrize("data", ['a\n1\n"b"a', 'a,b,c\ncat,foo,bar\ndog,foo,"baz'])

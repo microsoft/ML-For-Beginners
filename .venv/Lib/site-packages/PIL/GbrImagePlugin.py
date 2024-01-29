@@ -23,6 +23,7 @@
 # Version 2 files are saved by GIMP v2.8 (at least)
 # Version 3 files have a format specifier of 18 for 16bit floats in
 #   the color depth field. This is currently unsupported by Pillow.
+from __future__ import annotations
 
 from . import Image, ImageFile
 from ._binary import i32be as i32
@@ -73,9 +74,9 @@ class GbrImageFile(ImageFile.ImageFile):
         comment = self.fp.read(comment_length)[:-1]
 
         if color_depth == 1:
-            self.mode = "L"
+            self._mode = "L"
         else:
-            self.mode = "RGBA"
+            self._mode = "RGBA"
 
         self._size = width, height
 

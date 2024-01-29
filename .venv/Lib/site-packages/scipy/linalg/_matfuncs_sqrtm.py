@@ -100,7 +100,7 @@ def _sqrtm_triu(T, blocksize=64):
                                                             jstart:jstop])
 
             # Invoke LAPACK.
-            # For more details, see the solve_sylvester implemention
+            # For more details, see the solve_sylvester implementation
             # and the fortran dtrsyl and ztrsyl docs.
             Rii = R[istart:istop, istart:istop]
             Rjj = R[jstart:jstop, jstart:jstop]

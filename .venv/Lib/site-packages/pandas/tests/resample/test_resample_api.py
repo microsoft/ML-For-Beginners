@@ -33,13 +33,13 @@ def test_frame(dti, _test_series):
 
 
 def test_str(_test_series):
-    r = _test_series.resample("H")
+    r = _test_series.resample("h")
     assert (
         "DatetimeIndexResampler [freq=<Hour>, axis=0, closed=left, "
         "label=left, convention=start, origin=start_day]" in str(r)
     )
 
-    r = _test_series.resample("H", origin="2000-01-01")
+    r = _test_series.resample("h", origin="2000-01-01")
     assert (
         "DatetimeIndexResampler [freq=<Hour>, axis=0, closed=left, "
         "label=left, convention=start, origin=2000-01-01 00:00:00]" in str(r)
@@ -47,12 +47,12 @@ def test_str(_test_series):
 
 
 def test_api(_test_series):
-    r = _test_series.resample("H")
+    r = _test_series.resample("h")
     result = r.mean()
     assert isinstance(result, Series)
     assert len(result) == 217
 
-    r = _test_series.to_frame().resample("H")
+    r = _test_series.to_frame().resample("h")
     result = r.mean()
     assert isinstance(result, DataFrame)
     assert len(result) == 217
@@ -77,7 +77,9 @@ def test_groupby_resample_api():
     )
     index = pd.MultiIndex.from_arrays([[1] * 8 + [2] * 8, i], names=["group", "date"])
     expected = DataFrame({"val": [5] * 7 + [6] + [7] * 7 + [8]}, index=index)
-    result = df.groupby("group").apply(lambda x: x.resample("1D").ffill())[["val"]]
+    msg = "DataFrameGroupBy.apply operated on the grouping columns"
+    with tm.assert_produces_warning(DeprecationWarning, match=msg):
+        result = df.groupby("group").apply(lambda x: x.resample("1D").ffill())[["val"]]
     tm.assert_frame_equal(result, expected)
 
 
@@ -114,7 +116,10 @@ def test_resample_group_keys():
 
     # group_keys=True
     expected.index = pd.MultiIndex.from_arrays(
-        [pd.to_datetime(["2000-01-01", "2000-01-06"]).repeat(5), expected.index]
+        [
+            pd.to_datetime(["2000-01-01", "2000-01-06"]).as_unit("ns").repeat(5),
+            expected.index,
+        ]
     )
     g = df.resample("5D", group_keys=True)
     result = g.apply(lambda x: x)
@@ -125,36 +130,36 @@ def test_pipe(test_frame, _test_series):
     # GH17905
 
     # series
-    r = _test_series.resample("H")
+    r = _test_series.resample("h")
     expected = r.max() - r.mean()
     result = r.pipe(lambda x: x.max() - x.mean())
     tm.assert_series_equal(result, expected)
 
     # dataframe
-    r = test_frame.resample("H")
+    r = test_frame.resample("h")
     expected = r.max() - r.mean()
     result = r.pipe(lambda x: x.max() - x.mean())
     tm.assert_frame_equal(result, expected)
 
 
 def test_getitem(test_frame):
-    r = test_frame.resample("H")
+    r = test_frame.resample("h")
     tm.assert_index_equal(r._selected_obj.columns, test_frame.columns)
 
-    r = test_frame.resample("H")["B"]
+    r = test_frame.resample("h")["B"]
     assert r._selected_obj.name == test_frame.columns[1]
 
     # technically this is allowed
-    r = test_frame.resample("H")["A", "B"]
+    r = test_frame.resample("h")["A", "B"]
     tm.assert_index_equal(r._selected_obj.columns, test_frame.columns[[0, 1]])
 
-    r = test_frame.resample("H")["A", "B"]
+    r = test_frame.resample("h")["A", "B"]
     tm.assert_index_equal(r._selected_obj.columns, test_frame.columns[[0, 1]])
 
 
 @pytest.mark.parametrize("key", [["D"], ["A", "D"]])
 def test_select_bad_cols(key, test_frame):
-    g = test_frame.resample("H")
+    g = test_frame.resample("h")
     # 'A' should not be referenced as a bad column...
     # will have to rethink regex if you change message!
     msg = r"^\"Columns not found: 'D'\"$"
@@ -163,7 +168,7 @@ def test_select_bad_cols(key, test_frame):
 
 
 def test_attribute_access(test_frame):
-    r = test_frame.resample("H")
+    r = test_frame.resample("h")
     tm.assert_series_equal(r.A.sum(), r["A"].sum())
 
 
@@ -171,7 +176,7 @@ def test_attribute_access(test_frame):
 def test_api_compat_before_use(attr):
     # make sure that we are setting the binner
     # on these attributes
-    rng = date_range("1/1/2012", periods=100, freq="S")
+    rng = date_range("1/1/2012", periods=100, freq="s")
     ts = Series(np.arange(len(rng)), index=rng)
     rs = ts.resample("30s")
 
@@ -186,13 +191,13 @@ def test_api_compat_before_use(attr):
 def tests_raises_on_nuisance(test_frame):
     df = test_frame
     df["D"] = "foo"
-    r = df.resample("H")
+    r = df.resample("h")
     result = r[["A", "B"]].mean()
     expected = pd.concat([r.A.mean(), r.B.mean()], axis=1)
     tm.assert_frame_equal(result, expected)
 
     expected = r[["A", "B", "C"]].mean()
-    msg = re.escape("agg function failed [how->mean,dtype->object]")
+    msg = re.escape("agg function failed [how->mean,dtype->")
     with pytest.raises(TypeError, match=msg):
         r.mean()
     result = r.mean(numeric_only=True)
@@ -201,7 +206,7 @@ def tests_raises_on_nuisance(test_frame):
 
 def test_downsample_but_actually_upsampling():
     # this is reindex / asfreq
-    rng = date_range("1/1/2012", periods=100, freq="S")
+    rng = date_range("1/1/2012", periods=100, freq="s")
     ts = Series(np.arange(len(rng), dtype="int64"), index=rng)
     result = ts.resample("20s").asfreq()
     expected = Series(
@@ -216,7 +221,7 @@ def test_combined_up_downsampling_of_irregular():
     # ts2.resample('2s').mean().ffill()
     # preserve these semantics
 
-    rng = date_range("1/1/2012", periods=100, freq="S")
+    rng = date_range("1/1/2012", periods=100, freq="s")
     ts = Series(np.arange(len(rng)), index=rng)
     ts2 = ts.iloc[[0, 1, 2, 3, 5, 7, 11, 15, 16, 25, 30]]
 
@@ -260,7 +265,7 @@ def test_combined_up_downsampling_of_irregular():
                 "2012-01-01 00:00:30",
             ],
             dtype="datetime64[ns]",
-            freq="2S",
+            freq="2s",
         ),
     )
     tm.assert_series_equal(result, expected)
@@ -294,7 +299,7 @@ def test_transform_frame(on):
 
 def test_fillna():
     # need to upsample here
-    rng = date_range("1/1/2012", periods=10, freq="2S")
+    rng = date_range("1/1/2012", periods=10, freq="2s")
     ts = Series(np.arange(len(rng), dtype="int64"), index=rng)
     r = ts.resample("s")
 
@@ -344,11 +349,11 @@ def test_agg_consistency():
     # similar aggregations with and w/o selection list
     df = DataFrame(
         np.random.default_rng(2).standard_normal((1000, 3)),
-        index=date_range("1/1/2012", freq="S", periods=1000),
+        index=date_range("1/1/2012", freq="s", periods=1000),
         columns=["A", "B", "C"],
     )
 
-    r = df.resample("3T")
+    r = df.resample("3min")
 
     msg = r"Column\(s\) \['r1', 'r2'\] do not exist"
     with pytest.raises(KeyError, match=msg):
@@ -359,11 +364,11 @@ def test_agg_consistency_int_str_column_mix():
     # GH#39025
     df = DataFrame(
         np.random.default_rng(2).standard_normal((1000, 2)),
-        index=date_range("1/1/2012", freq="S", periods=1000),
+        index=date_range("1/1/2012", freq="s", periods=1000),
         columns=[1, "a"],
     )
 
-    r = df.resample("3T")
+    r = df.resample("3min")
 
     msg = r"Column\(s\) \[2, 'b'\] do not exist"
     with pytest.raises(KeyError, match=msg):
@@ -374,214 +379,245 @@ def test_agg_consistency_int_str_column_mix():
 # `Base` test class
 
 
-def test_agg():
-    # test with all three Resampler apis and TimeGrouper
-
+@pytest.fixture
+def index():
     index = date_range(datetime(2005, 1, 1), datetime(2005, 1, 10), freq="D")
     index.name = "date"
-    df = DataFrame(
+    return index
+
+
+@pytest.fixture
+def df(index):
+    frame = DataFrame(
         np.random.default_rng(2).random((10, 2)), columns=list("AB"), index=index
     )
-    df_col = df.reset_index()
+    return frame
+
+
+@pytest.fixture
+def df_col(df):
+    return df.reset_index()
+
+
+@pytest.fixture
+def df_mult(df_col, index):
     df_mult = df_col.copy()
     df_mult.index = pd.MultiIndex.from_arrays(
-        [range(10), df.index], names=["index", "date"]
+        [range(10), index], names=["index", "date"]
     )
-    r = df.resample("2D")
-    cases = [
-        r,
-        df_col.resample("2D", on="date"),
-        df_mult.resample("2D", level="date"),
-        df.groupby(pd.Grouper(freq="2D")),
-    ]
+    return df_mult
 
-    a_mean = r["A"].mean()
-    a_std = r["A"].std()
-    a_sum = r["A"].sum()
-    b_mean = r["B"].mean()
-    b_std = r["B"].std()
-    b_sum = r["B"].sum()
 
+@pytest.fixture
+def a_mean(df):
+    return df.resample("2D")["A"].mean()
+
+
+@pytest.fixture
+def a_std(df):
+    return df.resample("2D")["A"].std()
+
+
+@pytest.fixture
+def a_sum(df):
+    return df.resample("2D")["A"].sum()
+
+
+@pytest.fixture
+def b_mean(df):
+    return df.resample("2D")["B"].mean()
+
+
+@pytest.fixture
+def b_std(df):
+    return df.resample("2D")["B"].std()
+
+
+@pytest.fixture
+def b_sum(df):
+    return df.resample("2D")["B"].sum()
+
+
+@pytest.fixture
+def df_resample(df):
+    return df.resample("2D")
+
+
+@pytest.fixture
+def df_col_resample(df_col):
+    return df_col.resample("2D", on="date")
+
+
+@pytest.fixture
+def df_mult_resample(df_mult):
+    return df_mult.resample("2D", level="date")
+
+
+@pytest.fixture
+def df_grouper_resample(df):
+    return df.groupby(pd.Grouper(freq="2D"))
+
+
+@pytest.fixture(
+    params=["df_resample", "df_col_resample", "df_mult_resample", "df_grouper_resample"]
+)
+def cases(request):
+    return request.getfixturevalue(request.param)
+
+
+def test_agg_mixed_column_aggregation(cases, a_mean, a_std, b_mean, b_std, request):
     expected = pd.concat([a_mean, a_std, b_mean, b_std], axis=1)
     expected.columns = pd.MultiIndex.from_product([["A", "B"], ["mean", "std"]])
     msg = "using SeriesGroupBy.[mean|std]"
-    for t in cases:
-        # In case 2, "date" is an index and a column, so get included in the agg
-        if t == cases[2]:
-            date_mean = t["date"].mean()
-            date_std = t["date"].std()
-            exp = pd.concat([date_mean, date_std, expected], axis=1)
-            exp.columns = pd.MultiIndex.from_product(
-                [["date", "A", "B"], ["mean", "std"]]
-            )
-            with tm.assert_produces_warning(FutureWarning, match=msg):
-                result = t.aggregate([np.mean, np.std])
-            tm.assert_frame_equal(result, exp)
-        else:
-            with tm.assert_produces_warning(FutureWarning, match=msg):
-                result = t.aggregate([np.mean, np.std])
-            tm.assert_frame_equal(result, expected)
+    # "date" is an index and a column, so get included in the agg
+    if "df_mult" in request.node.callspec.id:
+        date_mean = cases["date"].mean()
+        date_std = cases["date"].std()
+        expected = pd.concat([date_mean, date_std, expected], axis=1)
+        expected.columns = pd.MultiIndex.from_product(
+            [["date", "A", "B"], ["mean", "std"]]
+        )
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = cases.aggregate([np.mean, np.std])
+    tm.assert_frame_equal(result, expected)
 
+
+@pytest.mark.parametrize(
+    "agg",
+    [
+        {"func": {"A": np.mean, "B": np.std}},
+        {"A": ("A", np.mean), "B": ("B", np.std)},
+        {"A": NamedAgg("A", np.mean), "B": NamedAgg("B", np.std)},
+    ],
+)
+def test_agg_both_mean_std_named_result(cases, a_mean, b_std, agg):
+    msg = "using SeriesGroupBy.[mean|std]"
     expected = pd.concat([a_mean, b_std], axis=1)
-    for t in cases:
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            result = t.aggregate({"A": np.mean, "B": np.std})
-        tm.assert_frame_equal(result, expected, check_like=True)
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = cases.aggregate(**agg)
+    tm.assert_frame_equal(result, expected, check_like=True)
 
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            result = t.aggregate(A=("A", np.mean), B=("B", np.std))
-        tm.assert_frame_equal(result, expected, check_like=True)
 
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            result = t.aggregate(A=NamedAgg("A", np.mean), B=NamedAgg("B", np.std))
-        tm.assert_frame_equal(result, expected, check_like=True)
-
+def test_agg_both_mean_std_dict_of_list(cases, a_mean, a_std):
     expected = pd.concat([a_mean, a_std], axis=1)
     expected.columns = pd.MultiIndex.from_tuples([("A", "mean"), ("A", "std")])
-    for t in cases:
-        result = t.aggregate({"A": ["mean", "std"]})
-        tm.assert_frame_equal(result, expected)
+    result = cases.aggregate({"A": ["mean", "std"]})
+    tm.assert_frame_equal(result, expected)
 
+
+@pytest.mark.parametrize(
+    "agg", [{"func": ["mean", "sum"]}, {"mean": "mean", "sum": "sum"}]
+)
+def test_agg_both_mean_sum(cases, a_mean, a_sum, agg):
     expected = pd.concat([a_mean, a_sum], axis=1)
     expected.columns = ["mean", "sum"]
-    for t in cases:
-        result = t["A"].aggregate(["mean", "sum"])
-        tm.assert_frame_equal(result, expected)
+    result = cases["A"].aggregate(**agg)
+    tm.assert_frame_equal(result, expected)
 
-        result = t["A"].aggregate(mean="mean", sum="sum")
-        tm.assert_frame_equal(result, expected)
 
+@pytest.mark.parametrize(
+    "agg",
+    [
+        {"A": {"mean": "mean", "sum": "sum"}},
+        {
+            "A": {"mean": "mean", "sum": "sum"},
+            "B": {"mean2": "mean", "sum2": "sum"},
+        },
+    ],
+)
+def test_agg_dict_of_dict_specificationerror(cases, agg):
     msg = "nested renamer is not supported"
-    for t in cases:
-        with pytest.raises(pd.errors.SpecificationError, match=msg):
-            t.aggregate({"A": {"mean": "mean", "sum": "sum"}})
+    with pytest.raises(pd.errors.SpecificationError, match=msg):
+        cases.aggregate(agg)
 
-    expected = pd.concat([a_mean, a_sum, b_mean, b_sum], axis=1)
-    expected.columns = pd.MultiIndex.from_tuples(
-        [("A", "mean"), ("A", "sum"), ("B", "mean2"), ("B", "sum2")]
-    )
-    for t in cases:
-        with pytest.raises(pd.errors.SpecificationError, match=msg):
-            t.aggregate(
-                {
-                    "A": {"mean": "mean", "sum": "sum"},
-                    "B": {"mean2": "mean", "sum2": "sum"},
-                }
-            )
 
+def test_agg_dict_of_lists(cases, a_mean, a_std, b_mean, b_std):
     expected = pd.concat([a_mean, a_std, b_mean, b_std], axis=1)
     expected.columns = pd.MultiIndex.from_tuples(
         [("A", "mean"), ("A", "std"), ("B", "mean"), ("B", "std")]
     )
-    for t in cases:
-        result = t.aggregate({"A": ["mean", "std"], "B": ["mean", "std"]})
-        tm.assert_frame_equal(result, expected, check_like=True)
-
-    expected = pd.concat([a_mean, a_sum, b_mean, b_sum], axis=1)
-    expected.columns = pd.MultiIndex.from_tuples(
-        [
-            ("r1", "A", "mean"),
-            ("r1", "A", "sum"),
-            ("r2", "B", "mean"),
-            ("r2", "B", "sum"),
-        ]
-    )
+    result = cases.aggregate({"A": ["mean", "std"], "B": ["mean", "std"]})
+    tm.assert_frame_equal(result, expected, check_like=True)
 
 
-def test_agg_misc():
-    # test with all three Resampler apis and TimeGrouper
-
-    index = date_range(datetime(2005, 1, 1), datetime(2005, 1, 10), freq="D")
-    index.name = "date"
-    df = DataFrame(
-        np.random.default_rng(2).random((10, 2)), columns=list("AB"), index=index
-    )
-    df_col = df.reset_index()
-    df_mult = df_col.copy()
-    df_mult.index = pd.MultiIndex.from_arrays(
-        [range(10), df.index], names=["index", "date"]
-    )
-
-    r = df.resample("2D")
-    cases = [
-        r,
-        df_col.resample("2D", on="date"),
-        df_mult.resample("2D", level="date"),
-        df.groupby(pd.Grouper(freq="2D")),
-    ]
-
+@pytest.mark.parametrize(
+    "agg",
+    [
+        {"func": {"A": np.sum, "B": lambda x: np.std(x, ddof=1)}},
+        {"A": ("A", np.sum), "B": ("B", lambda x: np.std(x, ddof=1))},
+        {"A": NamedAgg("A", np.sum), "B": NamedAgg("B", lambda x: np.std(x, ddof=1))},
+    ],
+)
+def test_agg_with_lambda(cases, agg):
     # passed lambda
     msg = "using SeriesGroupBy.sum"
-    for t in cases:
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            result = t.agg({"A": np.sum, "B": lambda x: np.std(x, ddof=1)})
-        rcustom = t["B"].apply(lambda x: np.std(x, ddof=1))
-        expected = pd.concat([r["A"].sum(), rcustom], axis=1)
-        tm.assert_frame_equal(result, expected, check_like=True)
+    rcustom = cases["B"].apply(lambda x: np.std(x, ddof=1))
+    expected = pd.concat([cases["A"].sum(), rcustom], axis=1)
+    with tm.assert_produces_warning(FutureWarning, match=msg):
+        result = cases.agg(**agg)
+    tm.assert_frame_equal(result, expected, check_like=True)
 
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            result = t.agg(A=("A", np.sum), B=("B", lambda x: np.std(x, ddof=1)))
-        tm.assert_frame_equal(result, expected, check_like=True)
 
-        with tm.assert_produces_warning(FutureWarning, match=msg):
-            result = t.agg(
-                A=NamedAgg("A", np.sum), B=NamedAgg("B", lambda x: np.std(x, ddof=1))
-            )
-        tm.assert_frame_equal(result, expected, check_like=True)
-
-    # agg with renamers
-    expected = pd.concat(
-        [t["A"].sum(), t["B"].sum(), t["A"].mean(), t["B"].mean()], axis=1
-    )
-    expected.columns = pd.MultiIndex.from_tuples(
-        [("result1", "A"), ("result1", "B"), ("result2", "A"), ("result2", "B")]
-    )
-
+@pytest.mark.parametrize(
+    "agg",
+    [
+        {"func": {"result1": np.sum, "result2": np.mean}},
+        {"A": ("result1", np.sum), "B": ("result2", np.mean)},
+        {"A": NamedAgg("result1", np.sum), "B": NamedAgg("result2", np.mean)},
+    ],
+)
+def test_agg_no_column(cases, agg):
     msg = r"Column\(s\) \['result1', 'result2'\] do not exist"
-    for t in cases:
-        with pytest.raises(KeyError, match=msg):
-            t[["A", "B"]].agg({"result1": np.sum, "result2": np.mean})
+    with pytest.raises(KeyError, match=msg):
+        cases[["A", "B"]].agg(**agg)
 
-        with pytest.raises(KeyError, match=msg):
-            t[["A", "B"]].agg(A=("result1", np.sum), B=("result2", np.mean))
 
-        with pytest.raises(KeyError, match=msg):
-            t[["A", "B"]].agg(
-                A=NamedAgg("result1", np.sum), B=NamedAgg("result2", np.mean)
-            )
-
+@pytest.mark.parametrize(
+    "cols, agg",
+    [
+        [None, {"A": ["sum", "std"], "B": ["mean", "std"]}],
+        [
+            [
+                "A",
+                "B",
+            ],
+            {"A": ["sum", "std"], "B": ["mean", "std"]},
+        ],
+    ],
+)
+def test_agg_specificationerror_nested(cases, cols, agg, a_sum, a_std, b_mean, b_std):
     # agg with different hows
-    expected = pd.concat(
-        [t["A"].sum(), t["A"].std(), t["B"].mean(), t["B"].std()], axis=1
-    )
+    # equivalent of using a selection list / or not
+    expected = pd.concat([a_sum, a_std, b_mean, b_std], axis=1)
     expected.columns = pd.MultiIndex.from_tuples(
         [("A", "sum"), ("A", "std"), ("B", "mean"), ("B", "std")]
     )
-    for t in cases:
-        result = t.agg({"A": ["sum", "std"], "B": ["mean", "std"]})
-        tm.assert_frame_equal(result, expected, check_like=True)
+    if cols is not None:
+        obj = cases[cols]
+    else:
+        obj = cases
 
-    # equivalent of using a selection list / or not
-    for t in cases:
-        result = t[["A", "B"]].agg({"A": ["sum", "std"], "B": ["mean", "std"]})
-        tm.assert_frame_equal(result, expected, check_like=True)
+    result = obj.agg(agg)
+    tm.assert_frame_equal(result, expected, check_like=True)
 
+
+@pytest.mark.parametrize(
+    "agg", [{"A": ["sum", "std"]}, {"A": ["sum", "std"], "B": ["mean", "std"]}]
+)
+def test_agg_specificationerror_series(cases, agg):
     msg = "nested renamer is not supported"
 
     # series like aggs
-    for t in cases:
-        with pytest.raises(pd.errors.SpecificationError, match=msg):
-            t["A"].agg({"A": ["sum", "std"]})
+    with pytest.raises(pd.errors.SpecificationError, match=msg):
+        cases["A"].agg(agg)
 
-        with pytest.raises(pd.errors.SpecificationError, match=msg):
-            t["A"].agg({"A": ["sum", "std"], "B": ["mean", "std"]})
 
+def test_agg_specificationerror_invalid_names(cases):
     # errors
     # invalid names in the agg specification
     msg = r"Column\(s\) \['B'\] do not exist"
-    for t in cases:
-        with pytest.raises(KeyError, match=msg):
-            t[["A"]].agg({"A": ["sum", "std"], "B": ["mean", "std"]})
+    with pytest.raises(KeyError, match=msg):
+        cases[["A"]].agg({"A": ["sum", "std"], "B": ["mean", "std"]})
 
 
 @pytest.mark.parametrize(
@@ -597,7 +633,7 @@ def test_multi_agg_axis_1_raises(func):
     ).T
     warning_msg = "DataFrame.resample with axis=1 is deprecated."
     with tm.assert_produces_warning(FutureWarning, match=warning_msg):
-        res = df.resample("M", axis=1)
+        res = df.resample("ME", axis=1)
         with pytest.raises(
             NotImplementedError, match="axis other than 0 is not supported"
         ):
@@ -650,7 +686,7 @@ def test_try_aggregate_non_existing_column():
     # Error as we don't have 'z' column
     msg = r"Column\(s\) \['z'\] do not exist"
     with pytest.raises(KeyError, match=msg):
-        df.resample("30T").agg({"x": ["mean"], "y": ["median"], "z": ["sum"]})
+        df.resample("30min").agg({"x": ["mean"], "y": ["median"], "z": ["sum"]})
 
 
 def test_agg_list_like_func_with_args():
@@ -900,9 +936,9 @@ def test_frame_downsample_method(method, numeric_only, expected_data):
     # GH#46442 test if `numeric_only` behave as expected for DataFrameGroupBy
 
     index = date_range("2018-01-01", periods=2, freq="D")
-    expected_index = date_range("2018-12-31", periods=1, freq="Y")
+    expected_index = date_range("2018-12-31", periods=1, freq="YE")
     df = DataFrame({"cat": ["cat_1", "cat_2"], "num": [5, 20]}, index=index)
-    resampled = df.resample("Y")
+    resampled = df.resample("YE")
     if numeric_only is lib.no_default:
         kwargs = {}
     else:
@@ -912,7 +948,7 @@ def test_frame_downsample_method(method, numeric_only, expected_data):
     if isinstance(expected_data, str):
         if method in ("var", "mean", "median", "prod"):
             klass = TypeError
-            msg = re.escape(f"agg function failed [how->{method},dtype->object]")
+            msg = re.escape(f"agg function failed [how->{method},dtype->")
         else:
             klass = ValueError
             msg = expected_data
@@ -951,9 +987,9 @@ def test_series_downsample_method(method, numeric_only, expected_data):
     # GH#46442 test if `numeric_only` behave as expected for SeriesGroupBy
 
     index = date_range("2018-01-01", periods=2, freq="D")
-    expected_index = date_range("2018-12-31", periods=1, freq="Y")
+    expected_index = date_range("2018-12-31", periods=1, freq="YE")
     df = Series(["cat_1", "cat_2"], index=index)
-    resampled = df.resample("Y")
+    resampled = df.resample("YE")
     kwargs = {} if numeric_only is lib.no_default else {"numeric_only": numeric_only}
 
     func = getattr(resampled, method)
@@ -962,7 +998,7 @@ def test_series_downsample_method(method, numeric_only, expected_data):
         with pytest.raises(TypeError, match=msg):
             func(**kwargs)
     elif method == "prod":
-        msg = re.escape("agg function failed [how->prod,dtype->object]")
+        msg = re.escape("agg function failed [how->prod,dtype->")
         with pytest.raises(TypeError, match=msg):
             func(**kwargs)
     else:
@@ -1021,7 +1057,7 @@ def test_df_axis_param_depr():
     # Deprecation error when axis=1 is explicitly passed
     warning_msg = "DataFrame.resample with axis=1 is deprecated."
     with tm.assert_produces_warning(FutureWarning, match=warning_msg):
-        df.resample("M", axis=1)
+        df.resample("ME", axis=1)
 
     # Deprecation error when axis=0 is explicitly passed
     df = df.T
@@ -1030,7 +1066,7 @@ def test_df_axis_param_depr():
         "will be removed in a future version."
     )
     with tm.assert_produces_warning(FutureWarning, match=warning_msg):
-        df.resample("M", axis=0)
+        df.resample("ME", axis=0)
 
 
 def test_series_axis_param_depr(_test_series):
@@ -1039,7 +1075,7 @@ def test_series_axis_param_depr(_test_series):
         "deprecated and will be removed in a future version."
     )
     with tm.assert_produces_warning(FutureWarning, match=warning_msg):
-        _test_series.resample("H", axis=0)
+        _test_series.resample("h", axis=0)
 
 
 def test_resample_empty():
@@ -1059,5 +1095,5 @@ def test_resample_empty():
             ]
         )
     )
-    result = df.resample("8H").mean()
+    result = df.resample("8h").mean()
     tm.assert_frame_equal(result, expected)

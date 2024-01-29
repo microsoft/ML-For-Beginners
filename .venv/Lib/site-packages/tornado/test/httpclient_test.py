@@ -28,7 +28,7 @@ from tornado.iostream import IOStream
 from tornado.log import gen_log, app_log
 from tornado import netutil
 from tornado.testing import AsyncHTTPTestCase, bind_unused_port, gen_test, ExpectLog
-from tornado.test.util import skipOnTravis
+from tornado.test.util import skipOnTravis, ignore_deprecation
 from tornado.web import Application, RequestHandler, url
 from tornado.httputil import format_timestamp, HTTPHeaders
 
@@ -853,7 +853,7 @@ class SyncHTTPClientSubprocessTest(unittest.TestCase):
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             check=True,
-            timeout=5,
+            timeout=15,
         )
         if proc.stdout:
             print("STDOUT:")
@@ -887,7 +887,15 @@ class HTTPRequestTestCase(unittest.TestCase):
         self.assertEqual(request.body, utf8("foo"))
 
     def test_if_modified_since(self):
-        http_date = datetime.datetime.utcnow()
+        http_date = datetime.datetime.now(datetime.timezone.utc)
+        request = HTTPRequest("http://example.com", if_modified_since=http_date)
+        self.assertEqual(
+            request.headers, {"If-Modified-Since": format_timestamp(http_date)}
+        )
+
+    def test_if_modified_since_naive_deprecated(self):
+        with ignore_deprecation():
+            http_date = datetime.datetime.utcnow()
         request = HTTPRequest("http://example.com", if_modified_since=http_date)
         self.assertEqual(
             request.headers, {"If-Modified-Since": format_timestamp(http_date)}

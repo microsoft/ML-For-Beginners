@@ -60,7 +60,7 @@ class TestDataFrameTruncate:
         truncated = ts.truncate(before=ts.index[-1] + ts.index.freq)
         assert len(truncated) == 0
 
-        msg = "Truncate: 2000-01-06 00:00:00 must be after 2000-02-04 00:00:00"
+        msg = "Truncate: 2000-01-06 00:00:00 must be after 2000-05-16 00:00:00"
         with pytest.raises(ValueError, match=msg):
             ts.truncate(
                 before=ts.index[-1] - ts.index.freq, after=ts.index[0] + ts.index.freq

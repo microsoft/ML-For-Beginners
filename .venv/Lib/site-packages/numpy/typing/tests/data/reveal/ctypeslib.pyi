@@ -1,8 +1,15 @@
-import ctypes
+import sys
+import ctypes as ct
 from typing import Any
 
 import numpy as np
 import numpy.typing as npt
+from numpy import ctypeslib
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 AR_bool: npt.NDArray[np.bool_]
 AR_ubyte: npt.NDArray[np.ubyte]
@@ -20,68 +27,69 @@ AR_double: npt.NDArray[np.double]
 AR_longdouble: npt.NDArray[np.longdouble]
 AR_void: npt.NDArray[np.void]
 
-pointer: ctypes._Pointer[Any]
+pointer: ct._Pointer[Any]
 
-reveal_type(np.ctypeslib.c_intp())  # E: {c_intp}
+assert_type(np.ctypeslib.c_intp(), ctypeslib.c_intp)
 
-reveal_type(np.ctypeslib.ndpointer())  # E: Type[ctypeslib._ndptr[None]]
-reveal_type(np.ctypeslib.ndpointer(dtype=np.float64))  # E: Type[ctypeslib._ndptr[dtype[{float64}]]]
-reveal_type(np.ctypeslib.ndpointer(dtype=float))  # E: Type[ctypeslib._ndptr[dtype[Any]]]
-reveal_type(np.ctypeslib.ndpointer(shape=(10, 3)))  # E: Type[ctypeslib._ndptr[None]]
-reveal_type(np.ctypeslib.ndpointer(np.int64, shape=(10, 3)))  # E: Type[ctypeslib._concrete_ndptr[dtype[{int64}]]]
-reveal_type(np.ctypeslib.ndpointer(int, shape=(1,)))  # E: Type[ctypeslib._concrete_ndptr[dtype[Any]]]
+assert_type(np.ctypeslib.ndpointer(), type[ctypeslib._ndptr[None]])
+assert_type(np.ctypeslib.ndpointer(dtype=np.float64), type[ctypeslib._ndptr[np.dtype[np.float64]]])
+assert_type(np.ctypeslib.ndpointer(dtype=float), type[ctypeslib._ndptr[np.dtype[Any]]])
+assert_type(np.ctypeslib.ndpointer(shape=(10, 3)), type[ctypeslib._ndptr[None]])
+assert_type(np.ctypeslib.ndpointer(np.int64, shape=(10, 3)), type[ctypeslib._concrete_ndptr[np.dtype[np.int64]]])
+assert_type(np.ctypeslib.ndpointer(int, shape=(1,)), type[np.ctypeslib._concrete_ndptr[np.dtype[Any]]])
 
-reveal_type(np.ctypeslib.as_ctypes_type(np.bool_))  # E: Type[ctypes.c_bool]
-reveal_type(np.ctypeslib.as_ctypes_type(np.ubyte))  # E: Type[{c_ubyte}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.ushort))  # E: Type[{c_ushort}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.uintc))  # E: Type[{c_uint}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.uint))  # E: Type[{c_ulong}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.ulonglong))  # E: Type[{c_ulonglong}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.byte))  # E: Type[{c_byte}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.short))  # E: Type[{c_short}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.intc))  # E: Type[{c_int}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.int_))  # E: Type[{c_long}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.longlong))  # E: Type[{c_longlong}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.single))  # E: Type[{c_float}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.double))  # E: Type[{c_double}]
-reveal_type(np.ctypeslib.as_ctypes_type(np.longdouble))  # E: Type[{c_longdouble}]
-reveal_type(np.ctypeslib.as_ctypes_type(ctypes.c_double))  # E: Type[{c_double}]
-reveal_type(np.ctypeslib.as_ctypes_type("q"))  # E: Type[ctypes.c_longlong]
-reveal_type(np.ctypeslib.as_ctypes_type([("i8", np.int64), ("f8", np.float64)]))  # E: Type[Any]
-reveal_type(np.ctypeslib.as_ctypes_type("i8"))  # E: Type[Any]
-reveal_type(np.ctypeslib.as_ctypes_type("f8"))  # E: Type[Any]
+assert_type(np.ctypeslib.as_ctypes_type(np.bool_), type[ct.c_bool])
+assert_type(np.ctypeslib.as_ctypes_type(np.ubyte), type[ct.c_ubyte])
+assert_type(np.ctypeslib.as_ctypes_type(np.ushort), type[ct.c_ushort])
+assert_type(np.ctypeslib.as_ctypes_type(np.uintc), type[ct.c_uint])
+assert_type(np.ctypeslib.as_ctypes_type(np.byte), type[ct.c_byte])
+assert_type(np.ctypeslib.as_ctypes_type(np.short), type[ct.c_short])
+assert_type(np.ctypeslib.as_ctypes_type(np.intc), type[ct.c_int])
+assert_type(np.ctypeslib.as_ctypes_type(np.single), type[ct.c_float])
+assert_type(np.ctypeslib.as_ctypes_type(np.double), type[ct.c_double])
+assert_type(np.ctypeslib.as_ctypes_type(ct.c_double), type[ct.c_double])
+assert_type(np.ctypeslib.as_ctypes_type("q"), type[ct.c_longlong])
+assert_type(np.ctypeslib.as_ctypes_type([("i8", np.int64), ("f8", np.float64)]), type[Any])
+assert_type(np.ctypeslib.as_ctypes_type("i8"), type[Any])
+assert_type(np.ctypeslib.as_ctypes_type("f8"), type[Any])
 
-reveal_type(np.ctypeslib.as_ctypes(AR_bool.take(0)))  # E: ctypes.c_bool
-reveal_type(np.ctypeslib.as_ctypes(AR_ubyte.take(0)))  # E: {c_ubyte}
-reveal_type(np.ctypeslib.as_ctypes(AR_ushort.take(0)))  # E: {c_ushort}
-reveal_type(np.ctypeslib.as_ctypes(AR_uintc.take(0)))  # E: {c_uint}
-reveal_type(np.ctypeslib.as_ctypes(AR_uint.take(0)))  # E: {c_ulong}
-reveal_type(np.ctypeslib.as_ctypes(AR_ulonglong.take(0)))  # E: {c_ulonglong}
-reveal_type(np.ctypeslib.as_ctypes(AR_byte.take(0)))  # E: {c_byte}
-reveal_type(np.ctypeslib.as_ctypes(AR_short.take(0)))  # E: {c_short}
-reveal_type(np.ctypeslib.as_ctypes(AR_intc.take(0)))  # E: {c_int}
-reveal_type(np.ctypeslib.as_ctypes(AR_int.take(0)))  # E: {c_long}
-reveal_type(np.ctypeslib.as_ctypes(AR_longlong.take(0)))  # E: {c_longlong}
-reveal_type(np.ctypeslib.as_ctypes(AR_single.take(0)))  # E: {c_float}
-reveal_type(np.ctypeslib.as_ctypes(AR_double.take(0)))  # E: {c_double}
-reveal_type(np.ctypeslib.as_ctypes(AR_longdouble.take(0)))  # E: {c_longdouble}
-reveal_type(np.ctypeslib.as_ctypes(AR_void.take(0)))  # E: Any
-reveal_type(np.ctypeslib.as_ctypes(AR_bool))  # E: ctypes.Array[ctypes.c_bool]
-reveal_type(np.ctypeslib.as_ctypes(AR_ubyte))  # E: ctypes.Array[{c_ubyte}]
-reveal_type(np.ctypeslib.as_ctypes(AR_ushort))  # E: ctypes.Array[{c_ushort}]
-reveal_type(np.ctypeslib.as_ctypes(AR_uintc))  # E: ctypes.Array[{c_uint}]
-reveal_type(np.ctypeslib.as_ctypes(AR_uint))  # E: ctypes.Array[{c_ulong}]
-reveal_type(np.ctypeslib.as_ctypes(AR_ulonglong))  # E: ctypes.Array[{c_ulonglong}]
-reveal_type(np.ctypeslib.as_ctypes(AR_byte))  # E: ctypes.Array[{c_byte}]
-reveal_type(np.ctypeslib.as_ctypes(AR_short))  # E: ctypes.Array[{c_short}]
-reveal_type(np.ctypeslib.as_ctypes(AR_intc))  # E: ctypes.Array[{c_int}]
-reveal_type(np.ctypeslib.as_ctypes(AR_int))  # E: ctypes.Array[{c_long}]
-reveal_type(np.ctypeslib.as_ctypes(AR_longlong))  # E: ctypes.Array[{c_longlong}]
-reveal_type(np.ctypeslib.as_ctypes(AR_single))  # E: ctypes.Array[{c_float}]
-reveal_type(np.ctypeslib.as_ctypes(AR_double))  # E: ctypes.Array[{c_double}]
-reveal_type(np.ctypeslib.as_ctypes(AR_longdouble))  # E: ctypes.Array[{c_longdouble}]
-reveal_type(np.ctypeslib.as_ctypes(AR_void))  # E: ctypes.Array[Any]
+assert_type(np.ctypeslib.as_ctypes(AR_bool.take(0)), ct.c_bool)
+assert_type(np.ctypeslib.as_ctypes(AR_ubyte.take(0)), ct.c_ubyte)
+assert_type(np.ctypeslib.as_ctypes(AR_ushort.take(0)), ct.c_ushort)
+assert_type(np.ctypeslib.as_ctypes(AR_uintc.take(0)), ct.c_uint)
 
-reveal_type(np.ctypeslib.as_array(AR_ubyte))  # E: ndarray[Any, dtype[{ubyte}]]
-reveal_type(np.ctypeslib.as_array(1))  # E: ndarray[Any, dtype[Any]]
-reveal_type(np.ctypeslib.as_array(pointer))  # E: ndarray[Any, dtype[Any]]
+assert_type(np.ctypeslib.as_ctypes(AR_byte.take(0)), ct.c_byte)
+assert_type(np.ctypeslib.as_ctypes(AR_short.take(0)), ct.c_short)
+assert_type(np.ctypeslib.as_ctypes(AR_intc.take(0)), ct.c_int)
+assert_type(np.ctypeslib.as_ctypes(AR_single.take(0)), ct.c_float)
+assert_type(np.ctypeslib.as_ctypes(AR_double.take(0)), ct.c_double)
+assert_type(np.ctypeslib.as_ctypes(AR_void.take(0)), Any)
+assert_type(np.ctypeslib.as_ctypes(AR_bool), ct.Array[ct.c_bool])
+assert_type(np.ctypeslib.as_ctypes(AR_ubyte), ct.Array[ct.c_ubyte])
+assert_type(np.ctypeslib.as_ctypes(AR_ushort), ct.Array[ct.c_ushort])
+assert_type(np.ctypeslib.as_ctypes(AR_uintc), ct.Array[ct.c_uint])
+assert_type(np.ctypeslib.as_ctypes(AR_byte), ct.Array[ct.c_byte])
+assert_type(np.ctypeslib.as_ctypes(AR_short), ct.Array[ct.c_short])
+assert_type(np.ctypeslib.as_ctypes(AR_intc), ct.Array[ct.c_int])
+assert_type(np.ctypeslib.as_ctypes(AR_single), ct.Array[ct.c_float])
+assert_type(np.ctypeslib.as_ctypes(AR_double), ct.Array[ct.c_double])
+assert_type(np.ctypeslib.as_ctypes(AR_void), ct.Array[Any])
+
+assert_type(np.ctypeslib.as_array(AR_ubyte), npt.NDArray[np.ubyte])
+assert_type(np.ctypeslib.as_array(1), npt.NDArray[Any])
+assert_type(np.ctypeslib.as_array(pointer), npt.NDArray[Any])
+
+if sys.platform == "win32":
+    assert_type(np.ctypeslib.as_ctypes_type(np.int_), type[ct.c_int])
+    assert_type(np.ctypeslib.as_ctypes_type(np.uint), type[ct.c_uint])
+    assert_type(np.ctypeslib.as_ctypes(AR_uint), ct.Array[ct.c_uint])
+    assert_type(np.ctypeslib.as_ctypes(AR_int), ct.Array[ct.c_int])
+    assert_type(np.ctypeslib.as_ctypes(AR_uint.take(0)), ct.c_uint)
+    assert_type(np.ctypeslib.as_ctypes(AR_int.take(0)), ct.c_int)
+else:
+    assert_type(np.ctypeslib.as_ctypes_type(np.int_), type[ct.c_long])
+    assert_type(np.ctypeslib.as_ctypes_type(np.uint), type[ct.c_ulong])
+    assert_type(np.ctypeslib.as_ctypes(AR_uint), ct.Array[ct.c_ulong])
+    assert_type(np.ctypeslib.as_ctypes(AR_int), ct.Array[ct.c_long])
+    assert_type(np.ctypeslib.as_ctypes(AR_uint.take(0)), ct.c_ulong)
+    assert_type(np.ctypeslib.as_ctypes(AR_int.take(0)), ct.c_long)

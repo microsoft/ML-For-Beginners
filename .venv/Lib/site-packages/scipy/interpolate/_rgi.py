@@ -48,7 +48,7 @@ def _check_dimensionality(points, values):
 
 class RegularGridInterpolator:
     """
-    Interpolation on a regular or rectilinear grid in arbitrary dimensions.
+    Interpolator on a regular or rectilinear grid in arbitrary dimensions.
 
     The data must be defined on a rectilinear grid; that is, a rectangular
     grid with even or uneven spacing. Linear, nearest-neighbor, spline
@@ -198,10 +198,10 @@ class RegularGridInterpolator:
 
     See Also
     --------
-    NearestNDInterpolator : Nearest neighbor interpolation on *unstructured*
+    NearestNDInterpolator : Nearest neighbor interpolator on *unstructured*
                             data in N dimensions
 
-    LinearNDInterpolator : Piecewise linear interpolant on *unstructured* data
+    LinearNDInterpolator : Piecewise linear interpolator on *unstructured* data
                            in N dimensions
 
     interpn : a convenience function which wraps `RegularGridInterpolator`
@@ -321,8 +321,8 @@ class RegularGridInterpolator:
         >>> interp([[1.5, 1.3], [0.3, 4.5]], method='linear')
         array([ 4.7, 24.3])
         """
-        is_method_changed = self.method != method
         method = self.method if method is None else method
+        is_method_changed = self.method != method
         if method not in self._ALL_METHODS:
             raise ValueError("Method '%s' is not defined" % method)
 

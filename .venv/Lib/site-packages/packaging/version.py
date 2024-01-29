@@ -7,37 +7,39 @@
     from packaging.version import parse, Version
 """
 
-import collections
 import itertools
 import re
-from typing import Any, Callable, Optional, SupportsInt, Tuple, Union
+from typing import Any, Callable, NamedTuple, Optional, SupportsInt, Tuple, Union
 
 from ._structures import Infinity, InfinityType, NegativeInfinity, NegativeInfinityType
 
 __all__ = ["VERSION_PATTERN", "parse", "Version", "InvalidVersion"]
 
-InfiniteTypes = Union[InfinityType, NegativeInfinityType]
-PrePostDevType = Union[InfiniteTypes, Tuple[str, int]]
-SubLocalType = Union[InfiniteTypes, int, str]
-LocalType = Union[
+LocalType = Tuple[Union[int, str], ...]
+
+CmpPrePostDevType = Union[InfinityType, NegativeInfinityType, Tuple[str, int]]
+CmpLocalType = Union[
     NegativeInfinityType,
-    Tuple[
-        Union[
-            SubLocalType,
-            Tuple[SubLocalType, str],
-            Tuple[NegativeInfinityType, SubLocalType],
-        ],
-        ...,
-    ],
+    Tuple[Union[Tuple[int, str], Tuple[NegativeInfinityType, Union[int, str]]], ...],
 ]
 CmpKey = Tuple[
-    int, Tuple[int, ...], PrePostDevType, PrePostDevType, PrePostDevType, LocalType
+    int,
+    Tuple[int, ...],
+    CmpPrePostDevType,
+    CmpPrePostDevType,
+    CmpPrePostDevType,
+    CmpLocalType,
 ]
 VersionComparisonMethod = Callable[[CmpKey, CmpKey], bool]
 
-_Version = collections.namedtuple(
-    "_Version", ["epoch", "release", "dev", "pre", "post", "local"]
-)
+
+class _Version(NamedTuple):
+    epoch: int
+    release: Tuple[int, ...]
+    dev: Optional[Tuple[str, int]]
+    pre: Optional[Tuple[str, int]]
+    post: Optional[Tuple[str, int]]
+    local: Optional[LocalType]
 
 
 def parse(version: str) -> "Version":
@@ -117,7 +119,7 @@ _VERSION_PATTERN = r"""
         (?P<release>[0-9]+(?:\.[0-9]+)*)                  # release segment
         (?P<pre>                                          # pre-release
             [-_\.]?
-            (?P<pre_l>(a|b|c|rc|alpha|beta|pre|preview))
+            (?P<pre_l>alpha|a|beta|b|preview|pre|c|rc)
             [-_\.]?
             (?P<pre_n>[0-9]+)?
         )?
@@ -269,8 +271,7 @@ class Version(_BaseVersion):
         >>> Version("1!2.0.0").epoch
         1
         """
-        _epoch: int = self._version.epoch
-        return _epoch
+        return self._version.epoch
 
     @property
     def release(self) -> Tuple[int, ...]:
@@ -286,8 +287,7 @@ class Version(_BaseVersion):
         Includes trailing zeroes but not the epoch or any pre-release / development /
         post-release suffixes.
         """
-        _release: Tuple[int, ...] = self._version.release
-        return _release
+        return self._version.release
 
     @property
     def pre(self) -> Optional[Tuple[str, int]]:
@@ -302,8 +302,7 @@ class Version(_BaseVersion):
         >>> Version("1.2.3rc1").pre
         ('rc', 1)
         """
-        _pre: Optional[Tuple[str, int]] = self._version.pre
-        return _pre
+        return self._version.pre
 
     @property
     def post(self) -> Optional[int]:
@@ -451,7 +450,7 @@ class Version(_BaseVersion):
 
 
 def _parse_letter_version(
-    letter: str, number: Union[str, bytes, SupportsInt]
+    letter: Optional[str], number: Union[str, bytes, SupportsInt, None]
 ) -> Optional[Tuple[str, int]]:
 
     if letter:
@@ -489,7 +488,7 @@ def _parse_letter_version(
 _local_version_separators = re.compile(r"[\._-]")
 
 
-def _parse_local_version(local: str) -> Optional[LocalType]:
+def _parse_local_version(local: Optional[str]) -> Optional[LocalType]:
     """
     Takes a string like abc.1.twelve and turns it into ("abc", 1, "twelve").
     """
@@ -507,7 +506,7 @@ def _cmpkey(
     pre: Optional[Tuple[str, int]],
     post: Optional[Tuple[str, int]],
     dev: Optional[Tuple[str, int]],
-    local: Optional[Tuple[SubLocalType]],
+    local: Optional[LocalType],
 ) -> CmpKey:
 
     # When we compare a release version, we want to compare it with all of the
@@ -524,7 +523,7 @@ def _cmpkey(
     # if there is not a pre or a post segment. If we have one of those then
     # the normal sorting rules will handle this case correctly.
     if pre is None and post is None and dev is not None:
-        _pre: PrePostDevType = NegativeInfinity
+        _pre: CmpPrePostDevType = NegativeInfinity
     # Versions without a pre-release (except as noted above) should sort after
     # those with one.
     elif pre is None:
@@ -534,21 +533,21 @@ def _cmpkey(
 
     # Versions without a post segment should sort before those with one.
     if post is None:
-        _post: PrePostDevType = NegativeInfinity
+        _post: CmpPrePostDevType = NegativeInfinity
 
     else:
         _post = post
 
     # Versions without a development segment should sort after those with one.
     if dev is None:
-        _dev: PrePostDevType = Infinity
+        _dev: CmpPrePostDevType = Infinity
 
     else:
         _dev = dev
 
     if local is None:
         # Versions without a local segment should sort before those with one.
-        _local: LocalType = NegativeInfinity
+        _local: CmpLocalType = NegativeInfinity
     else:
         # Versions with a local segment need that segment parsed to implement
         # the sorting rules in PEP440.

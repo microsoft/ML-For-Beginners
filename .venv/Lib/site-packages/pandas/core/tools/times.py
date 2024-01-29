@@ -5,10 +5,12 @@ from datetime import (
     time,
 )
 from typing import TYPE_CHECKING
+import warnings
 
 import numpy as np
 
 from pandas._libs.lib import is_list_like
+from pandas.util._exceptions import find_stack_level
 
 from pandas.core.dtypes.generic import (
     ABCIndex,
@@ -52,6 +54,15 @@ def to_time(
     -------
     datetime.time
     """
+    if errors == "ignore":
+        # GH#54467
+        warnings.warn(
+            "errors='ignore' is deprecated and will raise in a future version. "
+            "Use to_time without passing `errors` and catch exceptions "
+            "explicitly instead",
+            FutureWarning,
+            stacklevel=find_stack_level(),
+        )
 
     def _convert_listlike(arg, format):
         if isinstance(arg, (list, tuple)):

@@ -193,7 +193,7 @@ def test_pandas_const_series():
     series = dta.exog["GNP"]
     series = tools.add_constant(series, prepend=False)
     assert_string_equal("const", series.columns[1])
-    assert_equal(series.var(0)[1], 0)
+    assert_equal(series.var(0).iloc[1], 0)
 
 
 def test_pandas_const_series_prepend():
@@ -201,14 +201,14 @@ def test_pandas_const_series_prepend():
     series = dta.exog["GNP"]
     series = tools.add_constant(series, prepend=True)
     assert_string_equal("const", series.columns[0])
-    assert_equal(series.var(0)[0], 0)
+    assert_equal(series.var(0).iloc[0], 0)
 
 
 def test_pandas_const_df():
     dta = longley.load_pandas().exog
     dta = tools.add_constant(dta, prepend=False)
     assert_string_equal("const", dta.columns[-1])
-    assert_equal(dta.var(0)[-1], 0)
+    assert_equal(dta.var(0).iloc[-1], 0)
 
 
 def test_pandas_const_df_prepend():
@@ -217,7 +217,7 @@ def test_pandas_const_df_prepend():
     dta["UNEMP"] /= dta["UNEMP"].std()
     dta = tools.add_constant(dta, prepend=True)
     assert_string_equal("const", dta.columns[0])
-    assert_equal(dta.var(0)[0], 0)
+    assert_equal(dta.var(0).iloc[0], 0)
 
 
 class TestNanDot:

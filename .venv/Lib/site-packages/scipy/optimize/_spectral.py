@@ -84,7 +84,8 @@ def _root_df_sane(func, x0, args=(), ftol=1e-8, fatol=1e-300, maxfev=1000,
         return np.linalg.norm(F)**nexp
 
     nfev = [0]
-    f, x_k, x_shape, f_k, F_k, is_complex = _wrap_func(func, x0, fmerit, nfev, maxfev, args)
+    f, x_k, x_shape, f_k, F_k, is_complex = _wrap_func(func, x0, fmerit,
+                                                       nfev, maxfev, args)
 
     k = 0
     f_0 = f_k
@@ -130,9 +131,11 @@ def _root_df_sane(func, x0, args=(), ftol=1e-8, fatol=1e-300, maxfev=1000,
         eta = eta_strategy(k, x_k, F_k)
         try:
             if line_search == 'cruz':
-                alpha, xp, fp, Fp = _nonmonotone_line_search_cruz(f, x_k, d, prev_fs, eta=eta)
+                alpha, xp, fp, Fp = _nonmonotone_line_search_cruz(f, x_k, d, prev_fs,
+                                                                  eta=eta)
             elif line_search == 'cheng':
-                alpha, xp, fp, Fp, C, Q = _nonmonotone_line_search_cheng(f, x_k, d, f_k, C, Q, eta=eta)
+                alpha, xp, fp, Fp, C, Q = _nonmonotone_line_search_cheng(f, x_k, d, f_k,
+                                                                         C, Q, eta=eta)
         except _NoConvergence:
             break
 
@@ -157,7 +160,7 @@ def _root_df_sane(func, x0, args=(), ftol=1e-8, fatol=1e-300, maxfev=1000,
 
     result = OptimizeResult(x=x, success=converged,
                             message=message,
-                            fun=F, nfev=nfev[0], nit=k)
+                            fun=F, nfev=nfev[0], nit=k, method="df-sane")
 
     return result
 

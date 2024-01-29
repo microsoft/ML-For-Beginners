@@ -122,7 +122,7 @@ def test_period_dtype_match():
     [
         DatetimeTZDtype(unit="ns", tz="Asia/Tokyo"),
         PeriodDtype(freq="2D"),
-        PeriodDtype(freq="H"),
+        PeriodDtype(freq="h"),
         np.dtype("datetime64[ns]"),
         object,
         np.int64,

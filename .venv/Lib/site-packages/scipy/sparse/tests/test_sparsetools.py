@@ -88,8 +88,10 @@ def test_nnz_overflow():
     assert_allclose(d, [[4]])
 
 
-@pytest.mark.skipif(not (sys.platform.startswith('linux') and np.dtype(np.intp).itemsize >= 8),
-                    reason="test requires 64-bit Linux")
+@pytest.mark.skipif(
+    not (sys.platform.startswith('linux') and np.dtype(np.intp).itemsize >= 8),
+    reason="test requires 64-bit Linux"
+)
 class TestInt32Overflow:
     """
     Some of the sparsetools routines use dense 2D matrices whose

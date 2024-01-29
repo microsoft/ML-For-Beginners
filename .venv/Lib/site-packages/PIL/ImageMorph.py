@@ -4,6 +4,7 @@
 #   2014-06-04 Initial version.
 #
 # Copyright (c) 2014 Dov Grobgeld <dov.grobgeld@gmail.com>
+from __future__ import annotations
 
 import re
 

@@ -1059,7 +1059,7 @@ class InstancerMerger(AligningMerger):
         Merger.__init__(self, font)
         self.model = model
         self.location = location
-        self.scalars = model.getScalars(location)
+        self.masterScalars = model.getMasterScalars(location)
 
 
 @InstancerMerger.merger(ot.CaretValue)
@@ -1067,8 +1067,10 @@ def merge(merger, self, lst):
     assert self.Format == 1
     Coords = [a.Coordinate for a in lst]
     model = merger.model
-    scalars = merger.scalars
-    self.Coordinate = otRound(model.interpolateFromMastersAndScalars(Coords, scalars))
+    masterScalars = merger.masterScalars
+    self.Coordinate = otRound(
+        model.interpolateFromValuesAndScalars(Coords, masterScalars)
+    )
 
 
 @InstancerMerger.merger(ot.Anchor)
@@ -1077,15 +1079,19 @@ def merge(merger, self, lst):
     XCoords = [a.XCoordinate for a in lst]
     YCoords = [a.YCoordinate for a in lst]
     model = merger.model
-    scalars = merger.scalars
-    self.XCoordinate = otRound(model.interpolateFromMastersAndScalars(XCoords, scalars))
-    self.YCoordinate = otRound(model.interpolateFromMastersAndScalars(YCoords, scalars))
+    masterScalars = merger.masterScalars
+    self.XCoordinate = otRound(
+        model.interpolateFromValuesAndScalars(XCoords, masterScalars)
+    )
+    self.YCoordinate = otRound(
+        model.interpolateFromValuesAndScalars(YCoords, masterScalars)
+    )
 
 
 @InstancerMerger.merger(otBase.ValueRecord)
 def merge(merger, self, lst):
     model = merger.model
-    scalars = merger.scalars
+    masterScalars = merger.masterScalars
     # TODO Handle differing valueformats
     for name, tableName in [
         ("XAdvance", "XAdvDevice"),
@@ -1097,7 +1103,9 @@ def merge(merger, self, lst):
 
         if hasattr(self, name):
             values = [getattr(a, name, 0) for a in lst]
-            value = otRound(model.interpolateFromMastersAndScalars(values, scalars))
+            value = otRound(
+                model.interpolateFromValuesAndScalars(values, masterScalars)
+            )
             setattr(self, name, value)
 
 

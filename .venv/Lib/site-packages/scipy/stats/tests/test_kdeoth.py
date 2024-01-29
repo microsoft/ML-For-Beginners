@@ -91,7 +91,8 @@ def test_kde_2d():
     kdepdf = gkde.evaluate(grid_coords)
     kdepdf = kdepdf.reshape(500, 500)
 
-    normpdf = stats.multivariate_normal.pdf(np.dstack([x, y]), mean=mean, cov=covariance)
+    normpdf = stats.multivariate_normal.pdf(np.dstack([x, y]),
+                                            mean=mean, cov=covariance)
     intervall = y.ravel()[1] - y.ravel()[0]
 
     assert_(np.sum((kdepdf - normpdf)**2) * (intervall**2) < 0.01)
@@ -131,7 +132,8 @@ def test_kde_2d_weighted():
     kdepdf = gkde.evaluate(grid_coords)
     kdepdf = kdepdf.reshape(500, 500)
 
-    normpdf = stats.multivariate_normal.pdf(np.dstack([x, y]), mean=mean, cov=covariance)
+    normpdf = stats.multivariate_normal.pdf(np.dstack([x, y]),
+                                            mean=mean, cov=covariance)
     intervall = y.ravel()[1] - y.ravel()[0]
 
     assert_(np.sum((kdepdf - normpdf)**2) * (intervall**2) < 0.01)

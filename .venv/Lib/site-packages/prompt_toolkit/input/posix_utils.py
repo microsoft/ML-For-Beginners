@@ -26,7 +26,7 @@ class PosixStdinReader:
         On Python3, this can be 'surrogateescape', which is the default.
 
         'surrogateescape' is preferred, because this allows us to transfer
-        unrecognised bytes to the key bindings. Some terminals, like lxterminal
+        unrecognized bytes to the key bindings. Some terminals, like lxterminal
         and Guake, use the 'Mxx' notation to send mouse events, where each 'x'
         can be any possible byte.
     """

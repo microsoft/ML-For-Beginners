@@ -52,10 +52,12 @@ def maybe_adjust_figure(fig: Figure, *args, **kwargs) -> None:
 def format_date_labels(ax: Axes, rot) -> None:
     # mini version of autofmt_xdate
     for label in ax.get_xticklabels():
-        label.set_ha("right")
+        label.set_horizontalalignment("right")
         label.set_rotation(rot)
     fig = ax.get_figure()
-    maybe_adjust_figure(fig, bottom=0.2)
+    if fig is not None:
+        # should always be a Figure but can technically be None
+        maybe_adjust_figure(fig, bottom=0.2)
 
 
 def table(
@@ -76,8 +78,14 @@ def table(
 
     cellText = data.values
 
+    # error: Argument "cellText" to "table" has incompatible type "ndarray[Any,
+    # Any]"; expected "Sequence[Sequence[str]] | None"
     return matplotlib.table.table(
-        ax, cellText=cellText, rowLabels=rowLabels, colLabels=colLabels, **kwargs
+        ax,
+        cellText=cellText,  # type: ignore[arg-type]
+        rowLabels=rowLabels,
+        colLabels=colLabels,
+        **kwargs,
     )
 
 
@@ -369,12 +377,12 @@ def _has_externally_shared_axis(ax1: Axes, compare_axis: str) -> bool:
             "_has_externally_shared_axis() needs 'x' or 'y' as a second parameter"
         )
 
-    axes = axes.get_siblings(ax1)
+    axes_siblings = axes.get_siblings(ax1)
 
     # Retain ax1 and any of its siblings which aren't in the same position as it
     ax1_points = ax1.get_position().get_points()
 
-    for ax2 in axes:
+    for ax2 in axes_siblings:
         if not np.array_equal(ax1_points, ax2.get_position().get_points()):
             return True
 

@@ -88,3 +88,9 @@ class TestEquals:
         ci = mi.to_flat_index().astype("category")
 
         assert not ci.equals(mi)
+
+    def test_equals_string_dtype(self, any_string_dtype):
+        # GH#55364
+        idx = CategoricalIndex(list("abc"), name="B")
+        other = Index(["a", "b", "c"], name="B", dtype=any_string_dtype)
+        assert idx.equals(other)

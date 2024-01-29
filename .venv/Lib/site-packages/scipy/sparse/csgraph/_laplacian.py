@@ -99,7 +99,7 @@ def laplacian(
     Sparse input is reformatted into ``coo`` if ``form="array"``,
     which is the default.
 
-    If the input adjacency matrix is not symmetic, the Laplacian is
+    If the input adjacency matrix is not symmetric, the Laplacian is
     also non-symmetric unless ``symmetrized=True`` is used.
 
     Diagonal entries of the input adjacency matrix are ignored and
@@ -403,11 +403,11 @@ def _laplacian_sparse_flo(graph, normed, axis, copy, form, dtype, symmetrized):
     if dtype is None:
         dtype = graph.dtype
 
-    graph_sum = graph.sum(axis=axis).getA1()
+    graph_sum = np.asarray(graph.sum(axis=axis)).ravel()
     graph_diagonal = graph.diagonal()
     diag = graph_sum - graph_diagonal
     if symmetrized:
-        graph_sum += graph.sum(axis=1 - axis).getA1()
+        graph_sum += np.asarray(graph.sum(axis=1 - axis)).ravel()
         diag = graph_sum - graph_diagonal - graph_diagonal
 
     if normed:
@@ -456,7 +456,7 @@ def _laplacian_sparse(graph, normed, axis, copy, form, dtype, symmetrized):
     if symmetrized:
         m += m.T.conj()
 
-    w = m.sum(axis=axis).getA1() - m.diagonal()
+    w = np.asarray(m.sum(axis=axis)).ravel() - m.diagonal()
     if normed:
         m = m.tocoo(copy=needs_copy)
         isolated_node_mask = (w == 0)

@@ -359,7 +359,7 @@ def test_emstep_methods_nonmissing(matlab_results, k_factors, factor_orders,
     # so we have to only provide monthly series
     dta_M = matlab_results[0].iloc[:, :8]
     dta_M = (dta_M - dta_M.mean()) / dta_M.std()
-    endog_M = dta_M.interpolate().fillna(method='backfill')
+    endog_M = dta_M.interpolate().bfill()
 
     # Remove the quarterly endog->factor maps
     if isinstance(k_factors, dict):

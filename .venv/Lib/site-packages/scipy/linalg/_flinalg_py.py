@@ -2,7 +2,7 @@
 # Author: Pearu Peterson, March 2002
 #
 
-__all__ = ['get_flinalg_funcs']
+__all__ = ['get_flinalg_funcs', 'has_column_major_storage']
 
 # The following ensures that possibly missing flavor (C or Fortran) is
 # replaced with the available one. If none is available, exception

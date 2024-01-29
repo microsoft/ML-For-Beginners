@@ -1,5 +1,5 @@
 """
-Provides classes of simple units that will be used with AxesDivider
+Provides classes of simple units that will be used with `.AxesDivider`
 class (or others) to determine the size of each Axes. The unit
 classes define `get_size` method that returns a tuple of two floats,
 meaning relative and absolute sizes, respectively.
@@ -9,7 +9,7 @@ floats. Take a look at the Divider class to see how these two
 values are used.
 """
 
-from numbers import Number
+from numbers import Real
 
 from matplotlib import _api
 from matplotlib.axes import Axes
@@ -25,8 +25,18 @@ class _Base:
         else:
             return Add(self, Fixed(other))
 
+    def get_size(self, renderer):
+        """
+        Return two-float tuple with relative and absolute sizes.
+        """
+        raise NotImplementedError("Subclasses must implement")
+
 
 class Add(_Base):
+    """
+    Sum of two sizes.
+    """
+
     def __init__(self, a, b):
         self._a = a
         self._b = b
@@ -37,25 +47,13 @@ class Add(_Base):
         return a_rel_size + b_rel_size, a_abs_size + b_abs_size
 
 
-@_api.deprecated(
-    "3.6", alternative="sum(sizes, start=Fixed(0))")
-class AddList(_Base):
-    def __init__(self, add_list):
-        self._list = add_list
-
-    def get_size(self, renderer):
-        sum_rel_size = sum([a.get_size(renderer)[0] for a in self._list])
-        sum_abs_size = sum([a.get_size(renderer)[1] for a in self._list])
-        return sum_rel_size, sum_abs_size
-
-
 class Fixed(_Base):
     """
     Simple fixed size with absolute part = *fixed_size* and relative part = 0.
     """
 
     def __init__(self, fixed_size):
-        _api.check_isinstance(Number, fixed_size=fixed_size)
+        _api.check_isinstance(Real, fixed_size=fixed_size)
         self.fixed_size = fixed_size
 
     def get_size(self, renderer):
@@ -190,7 +188,7 @@ class Fraction(_Base):
     """
 
     def __init__(self, fraction, ref_size):
-        _api.check_isinstance(Number, fraction=fraction)
+        _api.check_isinstance(Real, fraction=fraction)
         self._fraction_ref = ref_size
         self._fraction = fraction
 
@@ -204,76 +202,22 @@ class Fraction(_Base):
             return rel_size, abs_size
 
 
-@_api.deprecated("3.6", alternative="size + pad")
-class Padded(_Base):
-    """
-    Return an instance where the absolute part of *size* is
-    increase by the amount of *pad*.
-    """
-
-    def __init__(self, size, pad):
-        self._size = size
-        self._pad = pad
-
-    def get_size(self, renderer):
-        r, a = self._size.get_size(renderer)
-        rel_size = r
-        abs_size = a + self._pad
-        return rel_size, abs_size
-
-
 def from_any(size, fraction_ref=None):
     """
     Create a Fixed unit when the first argument is a float, or a
     Fraction unit if that is a string that ends with %. The second
     argument is only meaningful when Fraction unit is created.
 
-    >>> a = Size.from_any(1.2) # => Size.Fixed(1.2)
-    >>> Size.from_any("50%", a) # => Size.Fraction(0.5, a)
+    >>> from mpl_toolkits.axes_grid1.axes_size import from_any
+    >>> a = from_any(1.2) # => Fixed(1.2)
+    >>> from_any("50%", a) # => Fraction(0.5, a)
     """
-    if isinstance(size, Number):
+    if isinstance(size, Real):
         return Fixed(size)
     elif isinstance(size, str):
         if size[-1] == "%":
             return Fraction(float(size[:-1]) / 100, fraction_ref)
     raise ValueError("Unknown format")
-
-
-@_api.deprecated("3.6")
-class SizeFromFunc(_Base):
-    def __init__(self, func):
-        self._func = func
-
-    def get_size(self, renderer):
-        rel_size = 0.
-
-        bb = self._func(renderer)
-        dpi = renderer.points_to_pixels(72.)
-        abs_size = bb/dpi
-
-        return rel_size, abs_size
-
-
-@_api.deprecated("3.6")
-class GetExtentHelper:
-    _get_func_map = {
-        "left":   lambda self, axes_bbox: axes_bbox.xmin - self.xmin,
-        "right":  lambda self, axes_bbox: self.xmax - axes_bbox.xmax,
-        "bottom": lambda self, axes_bbox: axes_bbox.ymin - self.ymin,
-        "top":    lambda self, axes_bbox: self.ymax - axes_bbox.ymax,
-    }
-
-    def __init__(self, ax, direction):
-        _api.check_in_list(self._get_func_map, direction=direction)
-        self._ax_list = [ax] if isinstance(ax, Axes) else ax
-        self._direction = direction
-
-    def __call__(self, renderer):
-        get_func = self._get_func_map[self._direction]
-        vl = [get_func(ax.get_tightbbox(renderer, call_axes_locator=False),
-                       ax.bbox)
-              for ax in self._ax_list]
-        return max(vl)
 
 
 class _AxesDecorationsSize(_Base):

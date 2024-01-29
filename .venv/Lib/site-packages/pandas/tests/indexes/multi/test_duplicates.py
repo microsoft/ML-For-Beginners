@@ -11,10 +11,29 @@ from pandas._libs import (
 from pandas import (
     NA,
     DatetimeIndex,
+    Index,
     MultiIndex,
     Series,
 )
 import pandas._testing as tm
+
+
+@pytest.fixture
+def idx_dup():
+    # compare tests/indexes/multi/conftest.py
+    major_axis = Index(["foo", "bar", "baz", "qux"])
+    minor_axis = Index(["one", "two"])
+
+    major_codes = np.array([0, 0, 1, 0, 1, 1])
+    minor_codes = np.array([0, 1, 0, 1, 0, 1])
+    index_names = ["first", "second"]
+    mi = MultiIndex(
+        levels=[major_axis, minor_axis],
+        codes=[major_codes, minor_codes],
+        names=index_names,
+        verify_integrity=False,
+    )
+    return mi
 
 
 @pytest.mark.parametrize("names", [None, ["first", "second"]])
@@ -238,7 +257,7 @@ def test_duplicated(idx_dup, keep, expected):
 def test_duplicated_hashtable_impl(keep, monkeypatch):
     # GH 9125
     n, k = 6, 10
-    levels = [np.arange(n), tm.makeStringIndex(n), 1000 + np.arange(n)]
+    levels = [np.arange(n), [str(i) for i in range(n)], 1000 + np.arange(n)]
     codes = [np.random.default_rng(2).choice(n, k * n) for _ in levels]
     with monkeypatch.context() as m:
         m.setattr(libindex, "_SIZE_CUTOFF", 50)

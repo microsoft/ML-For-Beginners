@@ -1,12 +1,17 @@
 import html
+import locale
+import re
 from contextlib import closing
 from io import StringIO
+from unittest.mock import patch
 
 import pytest
 
 from sklearn import config_context
+from sklearn.base import BaseEstimator
 from sklearn.cluster import AgglomerativeClustering, Birch
-from sklearn.compose import ColumnTransformer
+from sklearn.compose import ColumnTransformer, make_column_transformer
+from sklearn.datasets import load_iris
 from sklearn.decomposition import PCA, TruncatedSVD
 from sklearn.ensemble import StackingClassifier, StackingRegressor, VotingClassifier
 from sklearn.feature_selection import SelectPercentile
@@ -17,15 +22,18 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.multiclass import OneVsOneClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.pipeline import FeatureUnion, Pipeline
+from sklearn.pipeline import FeatureUnion, Pipeline, make_pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils._estimator_html_repr import (
+    _get_css_style,
     _get_visual_block,
+    _HTMLDocumentationLinkMixin,
     _write_label_html,
     estimator_html_repr,
 )
+from sklearn.utils.fixes import parse_version
 
 
 @pytest.mark.parametrize("checked", [True, False])
@@ -37,7 +45,15 @@ def test_write_label_html(checked):
     with closing(StringIO()) as out:
         _write_label_html(out, name, tool_tip, checked=checked)
         html_label = out.getvalue()
-        assert "LogisticRegression</label>" in html_label
+
+        p = (
+            r'<label for="sk-estimator-id-[0-9]*"'
+            r' class="sk-toggleable__label (fitted)? sk-toggleable__label-arrow ">'
+            r"LogisticRegression"
+        )
+        re_compiled = re.compile(p)
+        assert re_compiled.search(html_label)
+
         assert html_label.startswith('<div class="sk-label-container">')
         assert "<pre>hello-world</pre>" in html_label
         if checked:
@@ -167,7 +183,7 @@ def test_estimator_html_repr_pipeline():
     assert html.escape(str(pipe)) in html_output
     for _, est in pipe.steps:
         assert (
-            '<div class="sk-toggleable__content"><pre>' + html.escape(str(est))
+            '<div class="sk-toggleable__content "><pre>' + html.escape(str(est))
         ) in html_output
 
     # low level estimators do not show changes
@@ -197,6 +213,9 @@ def test_estimator_html_repr_pipeline():
             assert f"<label>{html.escape(name)}</label>" in html_output
             assert f"<pre>{html.escape(str(est))}</pre>" in html_output
 
+    # verify that prefers-color-scheme is implemented
+    assert "prefers-color-scheme" in html_output
+
 
 @pytest.mark.parametrize("final_estimator", [None, LinearSVC()])
 def test_stacking_classifier(final_estimator):
@@ -225,9 +244,22 @@ def test_stacking_regressor(final_estimator):
     html_output = estimator_html_repr(reg)
 
     assert html.escape(str(reg.estimators[0][0])) in html_output
-    assert "LinearSVR</label>" in html_output
+    p = (
+        r'<label for="sk-estimator-id-[0-9]*"'
+        r' class="sk-toggleable__label (fitted)? sk-toggleable__label-arrow ">'
+        r"&nbsp;LinearSVR"
+    )
+    re_compiled = re.compile(p)
+    assert re_compiled.search(html_output)
+
     if final_estimator is None:
-        assert "RidgeCV</label>" in html_output
+        p = (
+            r'<label for="sk-estimator-id-[0-9]*"'
+            r' class="sk-toggleable__label (fitted)? sk-toggleable__label-arrow ">'
+            r"&nbsp;RidgeCV"
+        )
+        re_compiled = re.compile(p)
+        assert re_compiled.search(html_output)
     else:
         assert html.escape(final_estimator.__class__.__name__) in html_output
 
@@ -254,7 +286,13 @@ def test_ovo_classifier_duck_typing_meta():
     # inner estimators do not show changes
     with config_context(print_changed_only=True):
         assert f"<pre>{html.escape(str(ovo.estimator))}" in html_output
-        assert "LinearSVC</label>" in html_output
+        # regex to match the start of the tag
+        p = (
+            r'<label for="sk-estimator-id-[0-9]*" '
+            r'class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;LinearSVC'
+        )
+        re_compiled = re.compile(p)
+        assert re_compiled.search(html_output)
 
     # outer estimator
     assert f"<pre>{html.escape(str(ovo))}" in html_output
@@ -300,7 +338,7 @@ def test_show_arrow_pipeline():
 
     html_output = estimator_html_repr(pipe)
     assert (
-        'class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline'
+        'class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;&nbsp;Pipeline'
         in html_output
     )
 
@@ -325,3 +363,156 @@ def test_estimator_get_params_return_cls():
 
     est = MyEstimator()
     assert "MyEstimator" in estimator_html_repr(est)
+
+
+def test_estimator_html_repr_unfitted_vs_fitted():
+    """Check that we have the information that the estimator is fitted or not in the
+    HTML representation.
+    """
+
+    class MyEstimator(BaseEstimator):
+        def fit(self, X, y):
+            self.fitted_ = True
+            return self
+
+    X, y = load_iris(return_X_y=True)
+    estimator = MyEstimator()
+    assert "<span>Not fitted</span>" in estimator_html_repr(estimator)
+    estimator.fit(X, y)
+    assert "<span>Fitted</span>" in estimator_html_repr(estimator)
+
+
+@pytest.mark.parametrize(
+    "estimator",
+    [
+        LogisticRegression(),
+        make_pipeline(StandardScaler(), LogisticRegression()),
+        make_pipeline(
+            make_column_transformer((StandardScaler(), slice(0, 3))),
+            LogisticRegression(),
+        ),
+    ],
+)
+def test_estimator_html_repr_fitted_icon(estimator):
+    """Check that we are showing the fitted status icon only once."""
+    pattern = '<span class="sk-estimator-doc-link ">i<span>Not fitted</span></span>'
+    assert estimator_html_repr(estimator).count(pattern) == 1
+    X, y = load_iris(return_X_y=True)
+    estimator.fit(X, y)
+    pattern = '<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span>'
+    assert estimator_html_repr(estimator).count(pattern) == 1
+
+
+@pytest.mark.parametrize("mock_version", ["1.3.0.dev0", "1.3.0"])
+def test_html_documentation_link_mixin_sklearn(mock_version):
+    """Check the behaviour of the `_HTMLDocumentationLinkMixin` class for scikit-learn
+    default.
+    """
+
+    # mock the `__version__` where the mixin is located
+    with patch("sklearn.utils._estimator_html_repr.__version__", mock_version):
+        mixin = _HTMLDocumentationLinkMixin()
+
+        assert mixin._doc_link_module == "sklearn"
+        sklearn_version = parse_version(mock_version)
+        # we need to parse the version manually to be sure that this test is passing in
+        # other branches than `main` (that is "dev").
+        if sklearn_version.dev is None:
+            version = f"{sklearn_version.major}.{sklearn_version.minor}"
+        else:
+            version = "dev"
+        assert (
+            mixin._doc_link_template
+            == f"https://scikit-learn.org/{version}/modules/generated/"
+            "{estimator_module}.{estimator_name}.html"
+        )
+        assert (
+            mixin._get_doc_link()
+            == f"https://scikit-learn.org/{version}/modules/generated/"
+            "sklearn.utils._HTMLDocumentationLinkMixin.html"
+        )
+
+
+@pytest.mark.parametrize(
+    "module_path,expected_module",
+    [
+        ("prefix.mymodule", "prefix.mymodule"),
+        ("prefix._mymodule", "prefix"),
+        ("prefix.mypackage._mymodule", "prefix.mypackage"),
+        ("prefix.mypackage._mymodule.submodule", "prefix.mypackage"),
+        ("prefix.mypackage.mymodule.submodule", "prefix.mypackage.mymodule.submodule"),
+    ],
+)
+def test_html_documentation_link_mixin_get_doc_link(module_path, expected_module):
+    """Check the behaviour of the `_get_doc_link` with various parameter."""
+
+    class FooBar(_HTMLDocumentationLinkMixin):
+        pass
+
+    FooBar.__module__ = module_path
+    est = FooBar()
+    # if we set `_doc_link`, then we expect to infer a module and name for the estimator
+    est._doc_link_module = "prefix"
+    est._doc_link_template = (
+        "https://website.com/{estimator_module}.{estimator_name}.html"
+    )
+    assert est._get_doc_link() == f"https://website.com/{expected_module}.FooBar.html"
+
+
+def test_html_documentation_link_mixin_get_doc_link_out_of_library():
+    """Check the behaviour of the `_get_doc_link` with various parameter."""
+    mixin = _HTMLDocumentationLinkMixin()
+
+    # if the `_doc_link_module` does not refer to the root module of the estimator
+    # (here the mixin), then we should return an empty string.
+    mixin._doc_link_module = "xxx"
+    assert mixin._get_doc_link() == ""
+
+
+def test_html_documentation_link_mixin_doc_link_url_param_generator():
+    mixin = _HTMLDocumentationLinkMixin()
+    # we can bypass the generation by providing our own callable
+    mixin._doc_link_template = (
+        "https://website.com/{my_own_variable}.{another_variable}.html"
+    )
+
+    def url_param_generator(estimator):
+        return {
+            "my_own_variable": "value_1",
+            "another_variable": "value_2",
+        }
+
+    mixin._doc_link_url_param_generator = url_param_generator
+
+    assert mixin._get_doc_link() == "https://website.com/value_1.value_2.html"
+
+
+@pytest.fixture
+def set_non_utf8_locale():
+    """Pytest fixture to set non utf-8 locale during the test.
+
+    The locale is set to the original one after the test has run.
+    """
+    try:
+        locale.setlocale(locale.LC_CTYPE, "C")
+    except locale.Error:
+        pytest.skip("'C' locale is not available on this OS")
+
+    yield
+
+    # Resets the locale to the original one. Python calls setlocale(LC_TYPE, "")
+    # at startup according to
+    # https://docs.python.org/3/library/locale.html#background-details-hints-tips-and-caveats.
+    # This assumes that no other locale changes have been made. For some reason,
+    # on some platforms, trying to restore locale with something like
+    # locale.setlocale(locale.LC_CTYPE, locale.getlocale()) raises a
+    # locale.Error: unsupported locale setting
+    locale.setlocale(locale.LC_CTYPE, "")
+
+
+def test_non_utf8_locale(set_non_utf8_locale):
+    """Checks that utf8 encoding is used when reading the CSS file.
+
+    Non-regression test for https://github.com/scikit-learn/scikit-learn/issues/27725
+    """
+    _get_css_style()

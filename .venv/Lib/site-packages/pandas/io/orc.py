@@ -12,16 +12,8 @@ from typing import (
 from pandas._config import using_pyarrow_string_dtype
 
 from pandas._libs import lib
-from pandas.compat import pa_version_under8p0
 from pandas.compat._optional import import_optional_dependency
 from pandas.util._validators import check_dtype_backend
-
-from pandas.core.dtypes.common import is_unsigned_integer_dtype
-from pandas.core.dtypes.dtypes import (
-    CategoricalDtype,
-    IntervalDtype,
-    PeriodDtype,
-)
 
 import pandas as pd
 from pandas.core.indexes.api import default_index
@@ -168,7 +160,7 @@ def to_orc(
         (e.g. via builtin open function). If path is None,
         a bytes object is returned.
     engine : str, default 'pyarrow'
-        ORC library to use. Pyarrow must be >= 7.0.0.
+        ORC library to use.
     index : bool, optional
         If ``True``, include the dataframe's index(es) in the file output. If
         ``False``, they will not be written to the file.
@@ -224,20 +216,9 @@ def to_orc(
     if df.index.name is not None:
         raise ValueError("orc does not serialize index meta-data on a default index")
 
-    # If unsupported dtypes are found raise NotImplementedError
-    # In Pyarrow 8.0.0 this check will no longer be needed
-    if pa_version_under8p0:
-        for dtype in df.dtypes:
-            if isinstance(
-                dtype, (IntervalDtype, CategoricalDtype, PeriodDtype)
-            ) or is_unsigned_integer_dtype(dtype):
-                raise NotImplementedError(
-                    "The dtype of one or more columns is not supported yet."
-                )
-
     if engine != "pyarrow":
         raise ValueError("engine must be 'pyarrow'")
-    engine = import_optional_dependency(engine, min_version="7.0.0")
+    engine = import_optional_dependency(engine, min_version="10.0.1")
     pa = import_optional_dependency("pyarrow")
     orc = import_optional_dependency("pyarrow.orc")
 

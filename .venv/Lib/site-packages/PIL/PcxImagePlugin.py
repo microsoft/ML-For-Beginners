@@ -24,6 +24,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import io
 import logging
@@ -91,7 +92,7 @@ class PcxImageFile(ImageFile.ImageFile):
             self.fp.seek(-769, io.SEEK_END)
             s = self.fp.read(769)
             if len(s) == 769 and s[0] == 12:
-                # check if the palette is linear greyscale
+                # check if the palette is linear grayscale
                 for i in range(256):
                     if s[i * 3 + 1 : i * 3 + 4] != o8(i) * 3:
                         mode = rawmode = "P"
@@ -108,7 +109,7 @@ class PcxImageFile(ImageFile.ImageFile):
             msg = "unknown PCX mode"
             raise OSError(msg)
 
-        self.mode = mode
+        self._mode = mode
         self._size = bbox[2] - bbox[0], bbox[3] - bbox[1]
 
         # Don't trust the passed in stride.
@@ -203,7 +204,7 @@ def _save(im, fp, filename):
         palette += b"\x00" * (768 - len(palette))
         fp.write(palette)  # 768 bytes
     elif im.mode == "L":
-        # greyscale palette
+        # grayscale palette
         fp.write(o8(12))
         for i in range(256):
             fp.write(o8(i) * 3)

@@ -36,17 +36,17 @@ def gendat():
     Create a data set with missing values.
     """
 
-    np.random.seed(34243)
+    gen = np.random.RandomState(34243)
 
     n = 200
     p = 5
 
-    exog = np.random.normal(size=(n, p))
+    exog = gen.normal(size=(n, p))
     exog[:, 0] = exog[:, 1] - exog[:, 2] + 2*exog[:, 4]
-    exog[:, 0] += np.random.normal(size=n)
+    exog[:, 0] += gen.normal(size=n)
     exog[:, 2] = 1*(exog[:, 2] > 0)
 
-    endog = exog.sum(1) + np.random.normal(size=n)
+    endog = exog.sum(1) + gen.normal(size=n)
 
     df = pd.DataFrame(exog)
     df.columns = ["x%d" % k for k in range(1, p+1)]
@@ -97,7 +97,12 @@ class TestMICEData:
         fml = 'x1 ~ x2 + x3 + x4 + x5 + y'
         assert_equal(imp_data.conditional_formula['x1'], fml)
 
-        assert_equal(imp_data._cycle_order, ['x5', 'x3', 'x4', 'y', 'x2', 'x1'])
+        # Order of 3 and 4 is not deterministic
+        # since both have 10 missing
+        assert tuple(imp_data._cycle_order) in (
+            ('x5', 'x3', 'x4', 'y', 'x2', 'x1'),
+            ('x5', 'x4', 'x3', 'y', 'x2', 'x1')
+        )
 
         # Should make a copy
         assert not (df is imp_data.data)
@@ -161,17 +166,21 @@ class TestMICEData:
                 assert_equal(imp_data.data.shape[1], ncol)
                 assert_allclose(orig[mx], imp_data.data[mx])
 
-        assert_equal(imp_data._cycle_order, ['x5', 'x3', 'x4', 'y', 'x2', 'x1'])
-
+        # Order of 3 and 4 is not deterministic
+        # since both have 10 missing
+        assert tuple(imp_data._cycle_order) in (
+            ('x5', 'x3', 'x4', 'y', 'x2', 'x1'),
+            ('x5', 'x4', 'x3', 'y', 'x2', 'x1')
+        )
 
     def test_phreg(self):
 
-        np.random.seed(8742)
+        gen = np.random.RandomState(8742)
         n = 300
-        x1 = np.random.normal(size=n)
-        x2 = np.random.normal(size=n)
-        event_time = np.random.exponential(size=n) * np.exp(x1)
-        obs_time = np.random.exponential(size=n)
+        x1 = gen.normal(size=n)
+        x2 = gen.normal(size=n)
+        event_time = gen.exponential(size=n) * np.exp(x1)
+        obs_time = gen.exponential(size=n)
         time = np.where(event_time < obs_time, event_time, obs_time)
         status = np.where(time == event_time, 1, 0)
         df = pd.DataFrame({"time": time, "status": status, "x1": x1, "x2": x2})
@@ -236,7 +245,13 @@ class TestMICEData:
         fml = 'x4 ~ x1 + x2 + x3 + x5 + y'
         assert_equal(imp_data.conditional_formula['x4'], fml)
 
-        assert_equal(imp_data._cycle_order, ['x5', 'x3', 'x4', 'y', 'x2', 'x1'])
+        # Order of 3 and 4 is not deterministic
+        # since both have 10 missing
+        assert tuple(imp_data._cycle_order) in (
+            ('x5', 'x3', 'x4', 'y', 'x2', 'x1'),
+            ('x5', 'x4', 'x3', 'y', 'x2', 'x1')
+        )
+
 
 
     @pytest.mark.matplotlib
@@ -354,10 +369,10 @@ class TestMICE:
     @pytest.mark.slow
     def t_est_combine(self):
 
-        np.random.seed(3897)
-        x1 = np.random.normal(size=300)
-        x2 = np.random.normal(size=300)
-        y = x1 + x2 + np.random.normal(size=300)
+        gen = np.random.RandomState(3897)
+        x1 = gen.normal(size=300)
+        x2 = gen.normal(size=300)
+        y = x1 + x2 + gen.normal(size=300)
         x1[0:100] = np.nan
         x2[250:] = np.nan
         df = pd.DataFrame({"x1": x1, "x2": x2, "y": y})
@@ -377,8 +392,8 @@ class TestMICE:
 
 def test_micedata_miss1():
     # test for #4375
-    np.random.seed(0)
-    data = pd.DataFrame(np.random.rand(50, 4))
+    gen = np.random.RandomState(3897)
+    data = pd.DataFrame(gen.rand(50, 4))
     data.columns = ['var1', 'var2', 'var3', 'var4']
     # one column with a single missing value
     data.iloc[1, 1] = np.nan

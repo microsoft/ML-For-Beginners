@@ -11,7 +11,7 @@ class table_D__e_b_g(DefaultTable.DefaultTable):
         return json.dumps(self.data).encode("utf-8")
 
     def toXML(self, writer, ttFont):
-        writer.writecdata(json.dumps(self.data))
+        writer.writecdata(json.dumps(self.data, indent=2))
 
     def fromXML(self, name, attrs, content, ttFont):
         self.data = json.loads(content)

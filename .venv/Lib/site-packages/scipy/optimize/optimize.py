@@ -2,14 +2,12 @@
 # Use the `scipy.optimize` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _optimize
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
     'Brent',
     'FD_METHODS',
-    'Inf',
     'LineSearchWarning',
     'MapWrapper',
     'MemoizeJac',
@@ -21,7 +19,6 @@ __all__ = [  # noqa: F822
     'approx_fprime',
     'argmin',
     'asarray',
-    'asfarray',
     'atleast_1d',
     'bracket',
     'brent',
@@ -36,11 +33,9 @@ __all__ = [  # noqa: F822
     'fmin_powell',
     'fminbound',
     'golden',
-    'is_array_scalar',
     'line_search',
     'line_search_wolfe1',
     'line_search_wolfe2',
-    'main',
     'rosen',
     'rosen_der',
     'rosen_hess',
@@ -60,13 +55,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.optimize.optimize is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.optimize instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.optimize` namespace, "
-                  "the `scipy.optimize.optimize` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_optimize, name)
+    return _sub_module_deprecation(sub_package="optimize", module="optimize",
+                                   private_modules=["_optimize"], all=__all__,
+                                   attribute=name)

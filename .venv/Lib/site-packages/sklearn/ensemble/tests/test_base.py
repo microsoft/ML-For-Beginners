@@ -8,15 +8,13 @@ Testing for the base module (sklearn.ensemble.base).
 from collections import OrderedDict
 
 import numpy as np
-import pytest
 
-from sklearn import ensemble
 from sklearn.datasets import load_iris
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble._base import _set_random_states
 from sklearn.feature_selection import SelectFromModel
-from sklearn.linear_model import LogisticRegression, Perceptron, Ridge
+from sklearn.linear_model import Perceptron
 from sklearn.pipeline import Pipeline
 
 
@@ -109,35 +107,3 @@ def test_set_random_states():
             est1.get_params()["clf__random_state"]
             == est2.get_params()["clf__random_state"]
         )
-
-
-# TODO(1.4): remove
-def test_validate_estimator_value_error():
-    X = np.array([[1, 2], [3, 4]])
-    y = np.array([1, 0])
-    model = BaggingClassifier(estimator=Perceptron(), base_estimator=Perceptron())
-    err_msg = "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-    with pytest.raises(ValueError, match=err_msg):
-        model.fit(X, y)
-
-
-# TODO(1.4): remove
-@pytest.mark.parametrize(
-    "model",
-    [
-        ensemble.GradientBoostingClassifier(),
-        ensemble.GradientBoostingRegressor(),
-        ensemble.HistGradientBoostingClassifier(),
-        ensemble.HistGradientBoostingRegressor(),
-        ensemble.VotingClassifier(
-            [("a", LogisticRegression()), ("b", LogisticRegression())]
-        ),
-        ensemble.VotingRegressor([("a", Ridge()), ("b", Ridge())]),
-    ],
-)
-def test_estimator_attribute_error(model):
-    X = [[1], [2]]
-    y = [0, 1]
-    model.fit(X, y)
-
-    assert not hasattr(model, "estimator_")

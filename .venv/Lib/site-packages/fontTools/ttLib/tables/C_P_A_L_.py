@@ -11,7 +11,6 @@ import sys
 
 
 class table_C_P_A_L_(DefaultTable.DefaultTable):
-
     NO_NAME_ID = 0xFFFF
     DEFAULT_PALETTE_TYPE = 0
 

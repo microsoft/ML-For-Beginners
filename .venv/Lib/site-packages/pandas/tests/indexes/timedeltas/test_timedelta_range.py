@@ -3,6 +3,7 @@ import pytest
 
 from pandas import (
     Timedelta,
+    TimedeltaIndex,
     timedelta_range,
     to_timedelta,
 )
@@ -45,14 +46,23 @@ class TestTimedeltas:
     @pytest.mark.parametrize(
         "depr_unit, unit",
         [
+            ("H", "hour"),
             ("T", "minute"),
             ("t", "minute"),
+            ("S", "second"),
             ("L", "millisecond"),
             ("l", "millisecond"),
+            ("U", "microsecond"),
+            ("u", "microsecond"),
+            ("N", "nanosecond"),
+            ("n", "nanosecond"),
         ],
     )
-    def test_timedelta_units_T_L_deprecated(self, depr_unit, unit):
-        depr_msg = f"Unit '{depr_unit}' is deprecated."
+    def test_timedelta_units_H_T_S_L_U_N_deprecated(self, depr_unit, unit):
+        # GH#52536
+        depr_msg = (
+            f"'{depr_unit}' is deprecated and will be removed in a future version."
+        )
 
         expected = to_timedelta(np.arange(5), unit=unit)
         with tm.assert_produces_warning(FutureWarning, match=depr_msg):
@@ -60,12 +70,22 @@ class TestTimedeltas:
             tm.assert_index_equal(result, expected)
 
     @pytest.mark.parametrize(
-        "periods, freq", [(3, "2D"), (5, "D"), (6, "19H12T"), (7, "16H"), (9, "12H")]
+        "periods, freq", [(3, "2D"), (5, "D"), (6, "19h12min"), (7, "16h"), (9, "12h")]
     )
     def test_linspace_behavior(self, periods, freq):
         # GH 20976
         result = timedelta_range(start="0 days", end="4 days", periods=periods)
         expected = timedelta_range(start="0 days", end="4 days", freq=freq)
+        tm.assert_index_equal(result, expected)
+
+    @pytest.mark.parametrize("msg_freq, freq", [("H", "19H12min"), ("T", "19h12T")])
+    def test_timedelta_range_H_T_deprecated(self, freq, msg_freq):
+        # GH#52536
+        msg = f"'{msg_freq}' is deprecated and will be removed in a future version."
+
+        result = timedelta_range(start="0 days", end="4 days", periods=6)
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            expected = timedelta_range(start="0 days", end="4 days", freq=freq)
         tm.assert_index_equal(result, expected)
 
     def test_errors(self):
@@ -88,7 +108,7 @@ class TestTimedeltas:
 
         # too many params
         with pytest.raises(ValueError, match=msg):
-            timedelta_range(start="0 days", end="5 days", periods=10, freq="H")
+            timedelta_range(start="0 days", end="5 days", periods=10, freq="h")
 
     @pytest.mark.parametrize(
         "start, end, freq, expected_periods",
@@ -112,3 +132,42 @@ class TestTimedeltas:
         # https://github.com/pandas-dev/pandas/issues/35897
         result = timedelta_range("0s", "1s", periods=31)
         assert result.freq is None
+
+    @pytest.mark.parametrize(
+        "freq_depr, start, end, expected_values, expected_freq",
+        [
+            (
+                "3.5S",
+                "05:03:01",
+                "05:03:10",
+                ["0 days 05:03:01", "0 days 05:03:04.500000", "0 days 05:03:08"],
+                "3500ms",
+            ),
+            (
+                "2.5T",
+                "5 hours",
+                "5 hours 8 minutes",
+                [
+                    "0 days 05:00:00",
+                    "0 days 05:02:30",
+                    "0 days 05:05:00",
+                    "0 days 05:07:30",
+                ],
+                "150s",
+            ),
+        ],
+    )
+    def test_timedelta_range_deprecated_freq(
+        self, freq_depr, start, end, expected_values, expected_freq
+    ):
+        # GH#52536
+        msg = (
+            f"'{freq_depr[-1]}' is deprecated and will be removed in a future version."
+        )
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = timedelta_range(start=start, end=end, freq=freq_depr)
+        expected = TimedeltaIndex(
+            expected_values, dtype="timedelta64[ns]", freq=expected_freq
+        )
+        tm.assert_index_equal(result, expected)

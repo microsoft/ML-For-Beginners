@@ -93,7 +93,7 @@ class TestSingularLeadingSubmatrix:
         # Check if the leading submatrix is singular.
         assert_array_almost_equal(det(A[:k, :k]), 0)
 
-        # Check if `v` fullfil the specified properties
+        # Check if `v` fulfil the specified properties
         quadratic_term = np.dot(v, np.dot(A, v))
         assert_array_almost_equal(quadratic_term, 0)
 
@@ -120,7 +120,7 @@ class TestSingularLeadingSubmatrix:
         # Check if the leading submatrix is singular.
         assert_array_almost_equal(det(A[:k, :k]), 0)
 
-        # Check if `v` fullfil the specified properties
+        # Check if `v` fulfil the specified properties
         quadratic_term = np.dot(v, np.dot(A, v))
         assert_array_almost_equal(quadratic_term, 0)
 
@@ -145,7 +145,7 @@ class TestSingularLeadingSubmatrix:
         # Check if the leading submatrix is singular
         assert_array_almost_equal(det(A[:k, :k]), 0)
 
-        # Check if `v` fullfil the specified properties
+        # Check if `v` fulfil the specified properties
         quadratic_term = np.dot(v, np.dot(A, v))
         assert_array_almost_equal(quadratic_term, 0)
 

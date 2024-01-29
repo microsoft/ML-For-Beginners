@@ -66,7 +66,7 @@ def test_smoten_sparse_input(data, sparse_format):
     https://github.com/scikit-learn-contrib/imbalanced-learn/issues/971
     """
     X, y = data
-    X = OneHotEncoder().fit_transform(X)
+    X = OneHotEncoder().fit_transform(X).toarray()
     X = _convert_container(X, sparse_format)
 
     with pytest.warns(DataConversionWarning, match="is not really efficient"):

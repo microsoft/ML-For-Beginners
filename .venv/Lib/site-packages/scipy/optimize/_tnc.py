@@ -36,8 +36,9 @@ from scipy.optimize import _moduleTNC as moduleTNC
 from ._optimize import (MemoizeJac, OptimizeResult, _check_unknown_options,
                        _prepare_scalar_function)
 from ._constraints import old_bound_to_new
+from scipy._lib._array_api import atleast_nd, array_namespace
 
-from numpy import inf, array, zeros, asfarray
+from numpy import inf, array, zeros
 
 __all__ = ['fmin_tnc']
 
@@ -298,7 +299,7 @@ def _minimize_tnc(fun, x0, args=(), jac=None, bounds=None,
     scale : list of floats
         Scaling factors to apply to each variable. If None, the
         factors are up-low for interval bounded variables and
-        1+|x] fo the others. Defaults to None.
+        1+|x] for the others. Defaults to None.
     offset : float
         Value to subtract from each variable. If None, the
         offsets are (up+low)/2 for interval bounded variables
@@ -354,7 +355,13 @@ def _minimize_tnc(fun, x0, args=(), jac=None, bounds=None,
     fmin = minfev
     pgtol = gtol
 
-    x0 = asfarray(x0).flatten()
+    xp = array_namespace(x0)
+    x0 = atleast_nd(x0, ndim=1, xp=xp)
+    dtype = xp.float64
+    if xp.isdtype(x0.dtype, "real floating"):
+        dtype = x0.dtype
+    x0 = xp.reshape(xp.astype(x0, dtype), -1)
+
     n = len(x0)
 
     if bounds is None:

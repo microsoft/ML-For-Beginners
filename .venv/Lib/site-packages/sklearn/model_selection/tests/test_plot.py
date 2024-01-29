@@ -116,7 +116,6 @@ def test_validation_curve_display_default_usage(pyplot, data):
         estimator, X, y, param_name=param_name, param_range=param_range
     )
 
-    assert display.param_range == param_range
     assert_array_equal(display.param_range, param_range)
     assert_allclose(display.train_scores, train_scores)
     assert_allclose(display.test_scores, test_scores)
@@ -548,3 +547,49 @@ def test_learning_curve_display_deprecate_log_scale(data, pyplot):
 
     assert display.ax_.get_xscale() == "linear"
     assert display.ax_.get_yscale() == "linear"
+
+
+@pytest.mark.parametrize(
+    "param_range, xscale",
+    [([5, 10, 15], "linear"), ([-50, 5, 50, 500], "symlog"), ([5, 50, 500], "log")],
+)
+def test_validation_curve_xscale_from_param_range_provided_as_a_list(
+    pyplot, data, param_range, xscale
+):
+    """Check the induced xscale from the provided param_range values."""
+    X, y = data
+    estimator = DecisionTreeClassifier(random_state=0)
+
+    param_name = "max_depth"
+    display = ValidationCurveDisplay.from_estimator(
+        estimator,
+        X,
+        y,
+        param_name=param_name,
+        param_range=param_range,
+    )
+
+    assert display.ax_.get_xscale() == xscale
+
+
+@pytest.mark.parametrize(
+    "Display, params",
+    [
+        (LearningCurveDisplay, {}),
+        (ValidationCurveDisplay, {"param_name": "max_depth", "param_range": [1, 3, 5]}),
+    ],
+)
+def test_subclassing_displays(pyplot, data, Display, params):
+    """Check that named constructors return the correct type when subclassed.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/pull/27675
+    """
+    X, y = data
+    estimator = DecisionTreeClassifier(random_state=0)
+
+    class SubclassOfDisplay(Display):
+        pass
+
+    display = SubclassOfDisplay.from_estimator(estimator, X, y, **params)
+    assert isinstance(display, SubclassOfDisplay)

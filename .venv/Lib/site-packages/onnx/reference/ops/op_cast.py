@@ -1,7 +1,7 @@
 # Copyright (c) ONNX Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
-# pylint: disable=R0912,W0221
+
 
 import numpy as np
 
@@ -27,7 +27,7 @@ from onnx.reference.custom_element_types import (
 from onnx.reference.op_run import OpRun
 
 
-def cast_to(x, to, saturate):
+def cast_to(x, to, saturate):  # noqa: PLR0911
     if x.dtype == bfloat16 and x.dtype.descr[0][0] == "bfloat16":
         if to == TensorProto.BFLOAT16:
             return x

@@ -5,6 +5,7 @@
 
 import numpy as np
 import pytest
+from sklearn.datasets import make_classification
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.utils._testing import assert_array_equal
 
@@ -95,3 +96,34 @@ def test_oss_with_object(n_neighbors):
     X_resampled, y_resampled = oss.fit_resample(X, Y)
     assert_array_equal(X_resampled, X_gt)
     assert_array_equal(y_resampled, y_gt)
+
+
+def test_one_sided_selection_multiclass():
+    """Check the validity of the fitted attributes `estimators_`."""
+    X, y = make_classification(
+        n_samples=1_000,
+        n_classes=4,
+        weights=[0.1, 0.2, 0.2, 0.5],
+        n_clusters_per_class=1,
+        random_state=0,
+    )
+    oss = OneSidedSelection(random_state=RND_SEED)
+    oss.fit_resample(X, y)
+
+    assert len(oss.estimators_) == len(oss.sampling_strategy_)
+    other_classes = []
+    for est in oss.estimators_:
+        assert est.classes_[0] == 0  # minority class
+        assert est.classes_[1] in {1, 2, 3}  # other classes
+        other_classes.append(est.classes_[1])
+    assert len(set(other_classes)) == len(other_classes)
+
+
+# TODO: remove in 0.14
+def test_one_sided_selection_deprecation():
+    """Check that we raise a FutureWarning when accessing the parameter `estimator_`."""
+    oss = OneSidedSelection(random_state=RND_SEED)
+    oss.fit_resample(X, Y)
+    warn_msg = "`estimator_` attribute has been deprecated"
+    with pytest.warns(FutureWarning, match=warn_msg):
+        oss.estimator_

@@ -29,7 +29,6 @@ np.polynomial.polynomial
 
 np.__path__
 np.__version__
-np.__git_version__
 
 np.__all__
 np.char.__all__

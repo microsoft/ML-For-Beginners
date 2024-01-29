@@ -319,7 +319,7 @@ class GLMGamResults(GLMResults):
             If plot_se is true, then the confidence interval for the linear
             prediction will be added to the plot.
         cpr : bool
-            If cpr (component plus residual) is true, the a scatter plot of
+            If cpr (component plus residual) is true, then a scatter plot of
             the partial working residuals will be added to the plot.
         include_constant : bool
             If true, then the estimated intercept is added to the prediction
@@ -332,7 +332,7 @@ class GLMGamResults(GLMResults):
         Returns
         -------
         Figure
-            If `ax` is None, the created figure. Otherwise the Figure to which
+            If `ax` is None, the created figure. Otherwise, the Figure to which
             `ax` is connected.
         """
         from statsmodels.graphics.utils import _import_mpl, create_mpl_ax
@@ -349,16 +349,18 @@ class GLMGamResults(GLMResults):
         se = se[sort_index]
 
         fig, ax = create_mpl_ax(ax)
-        ax.plot(x, y_est, c='blue', lw=2)
-        if plot_se:
-            ax.plot(x, y_est + 1.96 * se, '-', c='blue')
-            ax.plot(x, y_est - 1.96 * se, '-', c='blue')
+
         if cpr:
             # TODO: resid_response does not make sense with nonlinear link
             # use resid_working ?
             residual = self.resid_working[sort_index]
             cpr_ = y_est + residual
-            ax.plot(x, cpr_, '.', lw=2)
+            ax.scatter(x, cpr_, s=4)
+
+        ax.plot(x, y_est, c='blue', lw=2)
+        if plot_se:
+            ax.plot(x, y_est + 1.96 * se, '-', c='blue')
+            ax.plot(x, y_est - 1.96 * se, '-', c='blue')
 
         ax.set_xlabel(smoother.smoothers[variable].variable_name)
 

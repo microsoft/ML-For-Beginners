@@ -82,8 +82,7 @@ def orthogonal_procrustes(A, B, check_finite=True):
     if A.ndim != 2:
         raise ValueError('expected ndim to be 2, but observed %s' % A.ndim)
     if A.shape != B.shape:
-        raise ValueError('the shapes of A and B differ ({} vs {})'.format(
-            A.shape, B.shape))
+        raise ValueError(f'the shapes of A and B differ ({A.shape} vs {B.shape})')
     # Be clever with transposes, with the intention to save memory.
     u, w, vt = svd(B.T.dot(A).T)
     R = u.dot(vt)

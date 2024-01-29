@@ -168,6 +168,9 @@
     #define npy_ftell ftell
 #endif
     #include <sys/types.h>
+    #ifndef _WIN32
+        #include <unistd.h>
+    #endif
     #define npy_lseek lseek
     #define npy_off_t off_t
 

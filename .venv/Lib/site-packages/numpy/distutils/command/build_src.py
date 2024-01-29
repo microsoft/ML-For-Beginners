@@ -539,8 +539,8 @@ class build_src(build_ext.build_ext):
             if (self.force or newer_group(depends, target_file, 'newer')) \
                    and not skip_f2py:
                 log.info("f2py: %s" % (source))
-                import numpy.f2py
-                numpy.f2py.run_main(f2py_options
+                from numpy.f2py import f2py2e
+                f2py2e.run_main(f2py_options
                                     + ['--build-dir', target_dir, source])
             else:
                 log.debug("  skipping '%s' f2py interface (up-to-date)" % (source))
@@ -558,8 +558,8 @@ class build_src(build_ext.build_ext):
                    and not skip_f2py:
                 log.info("f2py:> %s" % (target_file))
                 self.mkpath(target_dir)
-                import numpy.f2py
-                numpy.f2py.run_main(f2py_options + ['--lower',
+                from numpy.f2py import f2py2e
+                f2py2e.run_main(f2py_options + ['--lower',
                                                 '--build-dir', target_dir]+\
                                 ['-m', ext_name]+f_sources)
             else:

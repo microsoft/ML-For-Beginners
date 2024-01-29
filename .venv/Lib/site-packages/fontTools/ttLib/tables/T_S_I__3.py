@@ -9,7 +9,6 @@ superclass = ttLib.getTableClass("TSI1")
 
 
 class table_T_S_I__3(superclass):
-
     extras = {
         0xFFFA: "reserved0",
         0xFFFB: "reserved1",

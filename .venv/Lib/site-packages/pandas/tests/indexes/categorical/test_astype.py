@@ -18,7 +18,7 @@ class TestAstype:
         ci = CategoricalIndex(list("aabbca"), categories=list("cab"), ordered=False)
 
         result = ci.astype(object)
-        tm.assert_index_equal(result, Index(np.array(ci)))
+        tm.assert_index_equal(result, Index(np.array(ci), dtype=object))
 
         # this IS equal, but not the same class
         assert result.equals(ci)

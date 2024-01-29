@@ -16,16 +16,17 @@ from scipy.sparse import spdiags, diags, eye, csr_matrix
 from scipy.sparse.linalg import eigs, LinearOperator
 from scipy.sparse.linalg._eigen.lobpcg import lobpcg
 from scipy.sparse.linalg._eigen.lobpcg.lobpcg import _b_orthonormalize
+from scipy._lib._util import np_long, np_ulong
 
 _IS_32BIT = (sys.maxsize < 2**32)
 
-INT_DTYPES = {np.intc, np.int_, np.longlong, np.uintc, np.uint, np.ulonglong}
+INT_DTYPES = {np.intc, np_long, np.longlong, np.uintc, np_ulong, np.ulonglong}
 # np.half is unsupported on many test systems so excluded
-REAL_DTYPES = {np.single, np.double, np.longdouble}
-COMPLEX_DTYPES = {np.csingle, np.cdouble, np.clongdouble}
-# use sorted tuple to ensure fixed order of tests
-VDTYPES = tuple(sorted(REAL_DTYPES ^ COMPLEX_DTYPES, key=str))
-MDTYPES = tuple(sorted(INT_DTYPES ^ REAL_DTYPES ^ COMPLEX_DTYPES, key=str))
+REAL_DTYPES = {np.float32, np.float64, np.longdouble}
+COMPLEX_DTYPES = {np.complex64, np.complex128, np.clongdouble}
+# use sorted list to ensure fixed order of tests
+VDTYPES = sorted(REAL_DTYPES ^ COMPLEX_DTYPES, key=str)
+MDTYPES = sorted(INT_DTYPES ^ REAL_DTYPES ^ COMPLEX_DTYPES, key=str)
 
 
 def sign_align(A, B):
@@ -89,7 +90,8 @@ def test_Small():
 
 def test_ElasticRod():
     A, B = ElasticRod(20)
-    with pytest.warns(UserWarning, match="Exited at iteration"):
+    msg = "Exited at iteration.*|Exited postprocessing with accuracies.*"
+    with pytest.warns(UserWarning, match=msg):
         compare_solutions(A, B, 2)
 
 
@@ -100,9 +102,9 @@ def test_MikotaPair():
 
 @pytest.mark.parametrize("n", [50])
 @pytest.mark.parametrize("m", [1, 2, 10])
-@pytest.mark.parametrize("Vdtype", REAL_DTYPES)
-@pytest.mark.parametrize("Bdtype", REAL_DTYPES)
-@pytest.mark.parametrize("BVdtype", REAL_DTYPES)
+@pytest.mark.parametrize("Vdtype", sorted(REAL_DTYPES, key=str))
+@pytest.mark.parametrize("Bdtype", sorted(REAL_DTYPES, key=str))
+@pytest.mark.parametrize("BVdtype", sorted(REAL_DTYPES, key=str))
 def test_b_orthonormalize(n, m, Vdtype, Bdtype, BVdtype):
     """Test B-orthonormalization by Cholesky with callable 'B'.
     The function '_b_orthonormalize' is key in LOBPCG but may
@@ -119,7 +121,7 @@ def test_b_orthonormalize(n, m, Vdtype, Bdtype, BVdtype):
     BX = BX.astype(BVdtype)
     dtype = min(X.dtype, B.dtype, BX.dtype)
     # np.longdouble tol cannot be achieved on most systems
-    atol = m * n * max(np.finfo(dtype).eps, np.finfo(np.double).eps)
+    atol = m * n * max(np.finfo(dtype).eps, np.finfo(np.float64).eps)
 
     Xo, BXo, _ = _b_orthonormalize(lambda v: B @ v, X, BX)
     # Check in-place.
@@ -173,7 +175,7 @@ def test_nonhermitian_warning(capsys):
     out, err = capsys.readouterr()  # Capture output
     assert out.startswith("Solving standard eigenvalue")  # Test stdout
     assert err == ''  # Test empty stderr
-    # Make the matrix symmetric and the UserWarning dissappears.
+    # Make the matrix symmetric and the UserWarning disappears.
     A += A.T
     _, _ = lobpcg(A, X, verbosityLevel=1, maxiter=0)
     out, err = capsys.readouterr()  # Capture output
@@ -354,7 +356,8 @@ def test_failure_to_run_iterations_nonsymmetric():
     A = np.zeros((10, 10))
     A[0, 1] = 1
     Q = np.ones((10, 1))
-    with pytest.warns(UserWarning, match="Exited at iteration 2"):
+    msg = "Exited at iteration 2|Exited postprocessing with accuracies.*"
+    with pytest.warns(UserWarning, match=msg):
         eigenvalues, _ = lobpcg(A, Q, maxiter=20)
     assert np.max(eigenvalues) > 0
 
@@ -429,7 +432,8 @@ def test_verbosity():
     X = rnd.standard_normal((10, 10))
     A = X @ X.T
     Q = rnd.standard_normal((X.shape[0], 1))
-    with pytest.warns(UserWarning, match="Exited at iteration"):
+    msg = "Exited at iteration.*|Exited postprocessing with accuracies.*"
+    with pytest.warns(UserWarning, match=msg):
         _, _ = lobpcg(A, Q, maxiter=3, verbosityLevel=9)
 
 
@@ -505,14 +509,15 @@ def test_maxit():
     A = A.astype(np.float32)
     X = rnd.standard_normal((n, m))
     X = X.astype(np.float64)
+    msg = "Exited at iteration.*|Exited postprocessing with accuracies.*"
     for maxiter in range(1, 4):
-        with pytest.warns(UserWarning, match="Exited at iteration"):
+        with pytest.warns(UserWarning, match=msg):
             _, _, l_h, r_h = lobpcg(A, X, tol=1e-8, maxiter=maxiter,
                                     retLambdaHistory=True,
                                     retResidualNormsHistory=True)
         assert_allclose(np.shape(l_h)[0], maxiter+3)
         assert_allclose(np.shape(r_h)[0], maxiter+3)
-    with pytest.warns(UserWarning, match="Exited at iteration"):
+    with pytest.warns(UserWarning, match=msg):
         l, _, l_h, r_h = lobpcg(A, X, tol=1e-8,
                                 retLambdaHistory=True,
                                 retResidualNormsHistory=True)

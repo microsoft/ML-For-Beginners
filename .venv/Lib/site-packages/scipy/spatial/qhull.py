@@ -2,8 +2,7 @@
 # Use the `scipy.spatial` namespace for importing the functions
 # included below.
 
-import warnings
-from . import _qhull
+from scipy._lib.deprecation import _sub_module_deprecation
 
 
 __all__ = [  # noqa: F822
@@ -12,10 +11,6 @@ __all__ = [  # noqa: F822
     'HalfspaceIntersection',
     'QhullError',
     'Voronoi',
-    'os',
-    'sys',
-    'tempfile',
-    'threading',
     'tsearch',
 ]
 
@@ -25,13 +20,6 @@ def __dir__():
 
 
 def __getattr__(name):
-    if name not in __all__:
-        raise AttributeError(
-            "scipy.spatial.qhull is deprecated and has no attribute "
-            f"{name}. Try looking in scipy.spatial instead.")
-
-    warnings.warn(f"Please use `{name}` from the `scipy.spatial` namespace, "
-                  "the `scipy.spatial.qhull` namespace is deprecated.",
-                  category=DeprecationWarning, stacklevel=2)
-
-    return getattr(_qhull, name)
+    return _sub_module_deprecation(sub_package="spatial", module="qhull",
+                                   private_modules=["_qhull"], all=__all__,
+                                   attribute=name)

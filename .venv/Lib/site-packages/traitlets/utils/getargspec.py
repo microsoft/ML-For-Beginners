@@ -7,14 +7,16 @@
     :copyright: Copyright 2007-2015 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+from __future__ import annotations
 
 import inspect
 from functools import partial
+from typing import Any
 
 # Unmodified from sphinx below this line
 
 
-def getargspec(func):
+def getargspec(func: Any) -> inspect.FullArgSpec:
     """Like inspect.getargspec but supports functools.partial as well."""
     if inspect.ismethod(func):
         func = func.__func__

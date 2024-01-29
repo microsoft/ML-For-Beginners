@@ -6,6 +6,8 @@
 
 #include "onnx/version_converter/helper.h"
 
+#include <vector>
+
 namespace ONNX_NAMESPACE {
 namespace version_conversion {
 int check_numpy_unibroadcastable_and_require_broadcast(

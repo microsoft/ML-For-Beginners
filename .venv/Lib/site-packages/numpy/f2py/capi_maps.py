@@ -1,15 +1,10 @@
-#!/usr/bin/env python3
 """
-
-Copyright 1999,2000 Pearu Peterson all rights reserved,
-Pearu Peterson <pearu@ioc.ee>
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
 Permission to use, modify, and distribute this software is given under the
 terms of the NumPy License.
 
 NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
-$Date: 2005/05/06 10:57:33 $
-Pearu Peterson
-
 """
 from . import __version__
 f2py_version = __version__.version
@@ -19,6 +14,7 @@ import re
 import os
 from .crackfortran import markoutercomma
 from . import cb_rules
+from ._isocbind import iso_c_binding_map, isoc_c2pycode_map, iso_c2py_map
 
 # The environment provided by auxfuncs.py is needed for some calls to eval.
 # As the needed functions cannot be determined by static inspection of the
@@ -28,12 +24,9 @@ from .auxfuncs import *
 __all__ = [
     'getctype', 'getstrlength', 'getarrdims', 'getpydocsign',
     'getarrdocsign', 'getinit', 'sign2map', 'routsign2map', 'modsign2map',
-    'cb_sign2map', 'cb_routsign2map', 'common_sign2map'
+    'cb_sign2map', 'cb_routsign2map', 'common_sign2map', 'process_f2cmap_dict'
 ]
 
-
-# Numarray and Numeric users should set this False
-using_newcore = True
 
 depargs = []
 lcb_map = {}
@@ -58,89 +51,48 @@ c2py_map = {'double': 'float',
             'string': 'string',
             'character': 'bytes',
             }
-c2capi_map = {'double': 'NPY_DOUBLE',
-              'float': 'NPY_FLOAT',
-              'long_double': 'NPY_DOUBLE',           # forced casting
-              'char': 'NPY_STRING',
-              'unsigned_char': 'NPY_UBYTE',
-              'signed_char': 'NPY_BYTE',
-              'short': 'NPY_SHORT',
-              'unsigned_short': 'NPY_USHORT',
-              'int': 'NPY_INT',
-              'unsigned': 'NPY_UINT',
-              'long': 'NPY_LONG',
-              'long_long': 'NPY_LONG',                # forced casting
-              'complex_float': 'NPY_CFLOAT',
-              'complex_double': 'NPY_CDOUBLE',
-              'complex_long_double': 'NPY_CDOUBLE',   # forced casting
-              'string': 'NPY_STRING',
-              'character': 'NPY_CHAR'}
 
-# These new maps aren't used anywhere yet, but should be by default
-#  unless building numeric or numarray extensions.
-if using_newcore:
-    c2capi_map = {'double': 'NPY_DOUBLE',
-                  'float': 'NPY_FLOAT',
-                  'long_double': 'NPY_LONGDOUBLE',
-                  'char': 'NPY_BYTE',
-                  'unsigned_char': 'NPY_UBYTE',
-                  'signed_char': 'NPY_BYTE',
-                  'short': 'NPY_SHORT',
-                  'unsigned_short': 'NPY_USHORT',
-                  'int': 'NPY_INT',
-                  'unsigned': 'NPY_UINT',
-                  'long': 'NPY_LONG',
-                  'unsigned_long': 'NPY_ULONG',
-                  'long_long': 'NPY_LONGLONG',
-                  'unsigned_long_long': 'NPY_ULONGLONG',
-                  'complex_float': 'NPY_CFLOAT',
-                  'complex_double': 'NPY_CDOUBLE',
-                  'complex_long_double': 'NPY_CDOUBLE',
-                  'string': 'NPY_STRING',
-                  'character': 'NPY_STRING'}
+c2capi_map = {'double': 'NPY_DOUBLE',
+                'float': 'NPY_FLOAT',
+                'long_double': 'NPY_LONGDOUBLE',
+                'char': 'NPY_BYTE',
+                'unsigned_char': 'NPY_UBYTE',
+                'signed_char': 'NPY_BYTE',
+                'short': 'NPY_SHORT',
+                'unsigned_short': 'NPY_USHORT',
+                'int': 'NPY_INT',
+                'unsigned': 'NPY_UINT',
+                'long': 'NPY_LONG',
+                'unsigned_long': 'NPY_ULONG',
+                'long_long': 'NPY_LONGLONG',
+                'unsigned_long_long': 'NPY_ULONGLONG',
+                'complex_float': 'NPY_CFLOAT',
+                'complex_double': 'NPY_CDOUBLE',
+                'complex_long_double': 'NPY_CDOUBLE',
+                'string': 'NPY_STRING',
+                'character': 'NPY_STRING'}
 
 c2pycode_map = {'double': 'd',
                 'float': 'f',
-                'long_double': 'd',                       # forced casting
-                'char': '1',
-                'signed_char': '1',
-                'unsigned_char': 'b',
-                'short': 's',
-                'unsigned_short': 'w',
+                'long_double': 'g',
+                'char': 'b',
+                'unsigned_char': 'B',
+                'signed_char': 'b',
+                'short': 'h',
+                'unsigned_short': 'H',
                 'int': 'i',
-                'unsigned': 'u',
+                'unsigned': 'I',
                 'long': 'l',
-                'long_long': 'L',
+                'unsigned_long': 'L',
+                'long_long': 'q',
+                'unsigned_long_long': 'Q',
                 'complex_float': 'F',
                 'complex_double': 'D',
-                'complex_long_double': 'D',               # forced casting
-                'string': 'c',
-                'character': 'c'
-                }
-
-if using_newcore:
-    c2pycode_map = {'double': 'd',
-                    'float': 'f',
-                    'long_double': 'g',
-                    'char': 'b',
-                    'unsigned_char': 'B',
-                    'signed_char': 'b',
-                    'short': 'h',
-                    'unsigned_short': 'H',
-                    'int': 'i',
-                    'unsigned': 'I',
-                    'long': 'l',
-                    'unsigned_long': 'L',
-                    'long_long': 'q',
-                    'unsigned_long_long': 'Q',
-                    'complex_float': 'F',
-                    'complex_double': 'D',
-                    'complex_long_double': 'G',
-                    'string': 'S',
-                    'character': 'c'}
+                'complex_long_double': 'G',
+                'string': 'S',
+                'character': 'c'}
 
 # https://docs.python.org/3/c-api/arg.html#building-values
-# c2buildvalue_map is NumPy agnostic, so no need to bother with using_newcore
 c2buildvalue_map = {'double': 'd',
                     'float': 'f',
                     'char': 'b',
@@ -174,12 +126,17 @@ f2cmap_all = {'real': {'': 'float', '4': 'float', '8': 'double',
               'byte': {'': 'char'},
               }
 
+# Add ISO_C handling
+c2pycode_map.update(isoc_c2pycode_map)
+c2py_map.update(iso_c2py_map)
+f2cmap_all, _ = process_f2cmap_dict(f2cmap_all, iso_c_binding_map, c2py_map)
+# End ISO_C handling
 f2cmap_default = copy.deepcopy(f2cmap_all)
 
 f2cmap_mapped = []
 
 def load_f2cmap_file(f2cmap_file):
-    global f2cmap_all
+    global f2cmap_all, f2cmap_mapped
 
     f2cmap_all = copy.deepcopy(f2cmap_default)
 
@@ -198,29 +155,11 @@ def load_f2cmap_file(f2cmap_file):
         outmess('Reading f2cmap from {!r} ...\n'.format(f2cmap_file))
         with open(f2cmap_file) as f:
             d = eval(f.read().lower(), {}, {})
-        for k, d1 in d.items():
-            for k1 in d1.keys():
-                d1[k1.lower()] = d1[k1]
-            d[k.lower()] = d[k]
-        for k in d.keys():
-            if k not in f2cmap_all:
-                f2cmap_all[k] = {}
-            for k1 in d[k].keys():
-                if d[k][k1] in c2py_map:
-                    if k1 in f2cmap_all[k]:
-                        outmess(
-                            "\tWarning: redefinition of {'%s':{'%s':'%s'->'%s'}}\n" % (k, k1, f2cmap_all[k][k1], d[k][k1]))
-                    f2cmap_all[k][k1] = d[k][k1]
-                    outmess('\tMapping "%s(kind=%s)" to "%s"\n' %
-                            (k, k1, d[k][k1]))
-                    f2cmap_mapped.append(d[k][k1])
-                else:
-                    errmess("\tIgnoring map {'%s':{'%s':'%s'}}: '%s' must be in %s\n" % (
-                        k, k1, d[k][k1], d[k][k1], list(c2py_map.keys())))
+        f2cmap_all, f2cmap_mapped = process_f2cmap_dict(f2cmap_all, d, c2py_map, True)
         outmess('Successfully applied user defined f2cmap changes\n')
     except Exception as msg:
-        errmess(
-            'Failed to apply user defined f2cmap changes: %s. Skipping.\n' % (msg))
+        errmess('Failed to apply user defined f2cmap changes: %s. Skipping.\n' % (msg))
+
 
 cformat_map = {'double': '%g',
                'float': '%g',

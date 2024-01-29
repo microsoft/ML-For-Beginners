@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cmath>
+
 #include "onnx/common/assertions.h"
 #include "onnx/defs/function.h"
 #include "onnx/defs/schema.h"
@@ -212,20 +213,27 @@ std::function<void(OpSchema&)> PoolOpSchemaGenerator(
  the tensor according to kernel sizes, stride sizes, and pad lengths.
  {opName} pooling consisting of computing the {opName} on all values of a
  subset of the input tensor according to the kernel size and downsampling the
- data into the output tensor Y for further processing. The output spatial shape will be following:
+ data into the output tensor Y for further processing. The output spatial shape is calculated differently
+ depending on whether explicit padding is used, where pads is employed, or auto padding is used, where auto_pad is utilized.
+ With explicit padding (https://pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html?highlight=maxpool#torch.nn.MaxPool2d):
  ```
- output_spatial_shape[i] = floor((input_spatial_shape[i] + pad_shape[i] - {kernelSpatialShape}) / strides_spatial_shape[i] + 1)
+ output_spatial_shape[i] = floor((input_spatial_shape[i] + pad_shape[i] - dilation[i] * (kernel_shape[i] - 1) - 1) / strides_spatial_shape[i] + 1)
  ```
  or
  ```
- output_spatial_shape[i] = ceil((input_spatial_shape[i] + pad_shape[i] - {kernelSpatialShape}) / strides_spatial_shape[i] + 1)
+ output_spatial_shape[i] = ceil((input_spatial_shape[i] + pad_shape[i] - dilation[i] * (kernel_shape[i] - 1) - 1) / strides_spatial_shape[i] + 1)
  ```
- if ceil_mode is enabled `pad_shape[i]` is the sum of pads along axis `i`.
+ if ceil_mode is enabled. `pad_shape[i]` is the sum of pads along axis `i`.
 
- `auto_pad` is a DEPRECATED attribute. If you are using them currently, the output spatial shape will be following:
+ `auto_pad` is a DEPRECATED attribute. If you are using them currently, the output spatial shape will be following when ceil_mode is enabled:
  ```
  VALID: output_spatial_shape[i] = ceil((input_spatial_shape[i] - {kernelSpatialShape} + 1) / strides_spatial_shape[i])
  SAME_UPPER or SAME_LOWER: output_spatial_shape[i] = ceil(input_spatial_shape[i] / strides_spatial_shape[i])
+ ```
+ or when ceil_mode is disabled (https://www.tensorflow.org/api_docs/python/tf/keras/layers/AveragePooling2D):
+ ```
+ VALID: output_spatial_shape[i] = floor((input_spatial_shape[i] - {kernelSpatialShape}) / strides_spatial_shape[i]) + 1
+ SAME_UPPER or SAME_LOWER: output_spatial_shape[i] = floor((input_spatial_shape[i] - 1) / strides_spatial_shape[i]) + 1
  ```
  And pad shape will be following if `SAME_UPPER` or `SAME_LOWER`:
  ```
@@ -452,7 +460,7 @@ static const char* MaxUnpool_ver9_doc = R"DOC(
 MaxUnpool essentially computes the partial inverse of the MaxPool op.
  The input information to this op is typically the output information from a MaxPool op. The first
  input tensor X is the tensor that needs to be unpooled, which is typically the pooled tensor (first output)
- from MaxPool. The second input tensor, I, contains the indices to the (locally maximal) elements corrsponding
+ from MaxPool. The second input tensor, I, contains the indices to the (locally maximal) elements corresponding
  to the elements in the first input tensor X. Input tensor I is typically the second output of the MaxPool op.
  The third (optional) input is a tensor that specifies the output size of the unpooling operation.
 
@@ -465,7 +473,7 @@ MaxUnpool can produce the same output size for several input sizes, which makes 
  known/predictable size.
 
 In addition to the inputs, MaxUnpool takes three attributes, namely kernel_shape, strides, and pads,
- which define the exact unpooling op. The attributes typically have the same values as the corrsponding
+ which define the exact unpooling op. The attributes typically have the same values as the corresponding
  pooling op that the unpooling op is trying to invert.
 )DOC";
 
@@ -1328,7 +1336,8 @@ output_shape can also be explicitly specified in which case pads values are auto
     schema.Attr(
         "output_shape",
         "The shape of the output can be explicitly set which will cause pads values to be auto generated. If output_shape is specified "
-        "pads values are ignored. See doc for details for equations to generate pads",
+        "pads values are ignored. See doc for details for equations to generate pads. Note that the output_shape attribute value "
+        "should not include dimensions for batch size and channels, which are automatically inferred.",
         AttributeProto::INTS,
         OPTIONAL_VALUE);
     schema.Attr(
@@ -2223,75 +2232,6 @@ ONNX_OPERATOR_SET_SCHEMA(
         })
         .SetDoc(TfIdfVectorizer_ver9_doc));
 
-static const char* StringNormalizer_ver10_doc = R"DOC(
-StringNormalization performs string operations for basic cleaning.
-This operator has only one input (denoted by X) and only one output
-(denoted by Y). This operator first examines the elements in the X,
-and removes elements specified in "stopwords" attribute.
-After removing stop words, the intermediate result can be further lowercased,
-uppercased, or just returned depending the "case_change_action" attribute.
-This operator only accepts [C]- and [1, C]-tensor.
-If all elements in X are dropped, the output will be the empty value of string tensor with shape [1]
-if input shape is [C] and shape [1, 1] if input shape is [1, C].
-)DOC";
-
-ONNX_OPERATOR_SET_SCHEMA(
-    StringNormalizer,
-    10,
-    OpSchema()
-        .Input(0, "X", "UTF-8 strings to normalize", "tensor(string)")
-        .Output(0, "Y", "UTF-8 Normalized strings", "tensor(string)")
-        .Attr(
-            std::string("case_change_action"),
-            std::string("string enum that cases output to be lowercased/uppercases/unchanged."
-                        " Valid values are \"LOWER\", \"UPPER\", \"NONE\". Default is \"NONE\""),
-            AttributeProto::STRING,
-            std::string("NONE"))
-        .Attr(
-            std::string("is_case_sensitive"),
-            std::string("Boolean. Whether the identification of stop words in X is case-sensitive. Default is false"),
-            AttributeProto::INT,
-            static_cast<int64_t>(0))
-        .Attr(
-            "stopwords",
-            "List of stop words. If not set, no word would be removed from X.",
-            AttributeProto::STRINGS,
-            OPTIONAL_VALUE)
-        .Attr(
-            "locale",
-            "Environment dependent string that denotes the locale according to which output strings needs to be upper/lowercased."
-            "Default en_US or platform specific equivalent as decided by the implementation.",
-            AttributeProto::STRING,
-            OPTIONAL_VALUE)
-        .SetDoc(StringNormalizer_ver10_doc)
-        .TypeAndShapeInferenceFunction([](InferenceContext& ctx) {
-          auto output_elem_type = ctx.getOutputType(0)->mutable_tensor_type();
-          output_elem_type->set_elem_type(TensorProto::STRING);
-          if (!hasInputShape(ctx, 0)) {
-            return;
-          }
-          TensorShapeProto output_shape;
-          auto& input_shape = ctx.getInputType(0)->tensor_type().shape();
-          auto dim_size = input_shape.dim_size();
-          // Last axis dimension is unknown if we have stop-words since we do
-          // not know how many stop-words are dropped
-          if (dim_size == 1) {
-            // Unknown output dimension
-            output_shape.add_dim();
-          } else if (dim_size == 2) {
-            // Copy B-dim
-            auto& b_dim = input_shape.dim(0);
-            if (!b_dim.has_dim_value() || b_dim.dim_value() != 1) {
-              fail_shape_inference("Input shape must have either [C] or [1,C] dimensions where C > 0");
-            }
-            *output_shape.add_dim() = b_dim;
-            output_shape.add_dim();
-          } else {
-            fail_shape_inference("Input shape must have either [C] or [1,C] dimensions where C > 0");
-          }
-          updateOutputShape(ctx, 0, output_shape);
-        }));
-
 static const char* mvn_ver13_doc = R"DOC(
       A MeanVarianceNormalization Function: Perform mean variance normalization
       on the input tensor X using formula: `(X-EX)/sqrt(E(X-EX)^2)`
@@ -2309,7 +2249,7 @@ ONNX_OPERATOR_SET_SCHEMA(
         .Attr(
             "axes",
             "A list of integers, along which to reduce. The default is to "
-            "caculate along axes [0,2,3] for calculating mean and variance "
+            "calculate along axes [0,2,3] for calculating mean and variance "
             "along each channel. Two variables with the same C-coordinate "
             "are associated with the same mean and variance.",
             AttributeProto::INTS,
@@ -2690,7 +2630,7 @@ ONNX_OPERATOR_SET_SCHEMA(
         .SetDoc(LayerNormalization_ver17_doc)
         .Attr(
             "axis",
-            "The first normalization dimension. If rank(X) is r, axis' allowed range is [-r, r]. "
+            "The first normalization dimension. If rank(X) is r, axis' allowed range is [-r, r). "
             "Negative value means counting dimensions from the back.",
             AttributeProto::INT,
             static_cast<int64_t>(-1))

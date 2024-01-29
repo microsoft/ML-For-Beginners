@@ -13,6 +13,8 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
+
 import io
 import os
 import struct
@@ -208,14 +210,14 @@ class Jpeg2KImageFile(ImageFile.ImageFile):
         sig = self.fp.read(4)
         if sig == b"\xff\x4f\xff\x51":
             self.codec = "j2k"
-            self._size, self.mode = _parse_codestream(self.fp)
+            self._size, self._mode = _parse_codestream(self.fp)
         else:
             sig = sig + self.fp.read(8)
 
             if sig == b"\x00\x00\x00\x0cjP  \x0d\x0a\x87\x0a":
                 self.codec = "jp2"
                 header = _parse_jp2_header(self.fp)
-                self._size, self.mode, self.custom_mimetype, dpi = header
+                self._size, self._mode, self.custom_mimetype, dpi = header
                 if dpi is not None:
                     self.info["dpi"] = dpi
                 if self.fp.read(12).endswith(b"jp2c\xff\x4f\xff\x51"):
@@ -334,10 +336,7 @@ def _save(im, fp, filename):
     if quality_layers is not None and not (
         isinstance(quality_layers, (list, tuple))
         and all(
-            [
-                isinstance(quality_layer, (int, float))
-                for quality_layer in quality_layers
-            ]
+            isinstance(quality_layer, (int, float)) for quality_layer in quality_layers
         )
     ):
         msg = "quality_layers must be a sequence of numbers"

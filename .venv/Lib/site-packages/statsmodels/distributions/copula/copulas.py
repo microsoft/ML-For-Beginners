@@ -23,8 +23,9 @@ class CopulaDistribution:
 
     Parameters
     ----------
-    copula : str, instance of copula class
-        String name or instance of a copula class
+    copula : :class:`Copula` instance
+        An instance of :class:`Copula`, e.g. :class:`GaussianCopula`,
+        :class:`FrankCopula`, etc.
     marginals : list of distribution instances
         Marginal distributions.
     copargs : tuple

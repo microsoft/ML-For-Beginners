@@ -118,11 +118,11 @@ class UnitDbl:
 
     def __str__(self):
         """Print the UnitDbl."""
-        return "%g *%s" % (self._value, self._units)
+        return f"{self._value:g} *{self._units}"
 
     def __repr__(self):
         """Print the UnitDbl."""
-        return "UnitDbl(%g, '%s')" % (self._value, self._units)
+        return f"UnitDbl({self._value:g}, '{self._units}')"
 
     def type(self):
         """Return the type of UnitDbl data."""

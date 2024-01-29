@@ -15,6 +15,7 @@ from ._stats_pythran import _a_ij_Aij_Dij2
 from ._stats_pythran import (
     _concordant_pairs as _P, _discordant_pairs as _Q
 )
+from ._axis_nan_policy import _axis_nan_policy_factory
 from scipy.stats import _stats_py
 
 __all__ = ['epps_singleton_2samp', 'cramervonmises', 'somersd',
@@ -25,6 +26,7 @@ Epps_Singleton_2sampResult = namedtuple('Epps_Singleton_2sampResult',
                                         ('statistic', 'pvalue'))
 
 
+@_axis_nan_policy_factory(Epps_Singleton_2sampResult, n_samples=2, too_small=4)
 def epps_singleton_2samp(x, y, t=(0.4, 0.8)):
     """Compute the Epps-Singleton (ES) test statistic.
 
@@ -91,16 +93,13 @@ def epps_singleton_2samp(x, y, t=(0.4, 0.8)):
        function", The Stata Journal 9(3), p. 454--465, 2009.
 
     """
-    x, y, t = np.asarray(x), np.asarray(y), np.asarray(t)
+    # x and y are converted to arrays by the decorator
+    t = np.asarray(t)
     # check if x and y are valid inputs
-    if x.ndim > 1:
-        raise ValueError(f'x must be 1d, but x.ndim equals {x.ndim}.')
-    if y.ndim > 1:
-        raise ValueError(f'y must be 1d, but y.ndim equals {y.ndim}.')
     nx, ny = len(x), len(y)
     if (nx < 5) or (ny < 5):
         raise ValueError('x and y should have at least 5 elements, but len(x) '
-                         '= {} and len(y) = {}.'.format(nx, ny))
+                         f'= {nx} and len(y) = {ny}.')
     if not np.isfinite(x).all():
         raise ValueError('x must not contain nonfinite values.')
     if not np.isfinite(y).all():
@@ -130,7 +129,8 @@ def epps_singleton_2samp(x, y, t=(0.4, 0.8)):
     if r < 2*len(t):
         warnings.warn('Estimated covariance matrix does not have full rank. '
                       'This indicates a bad choice of the input t and the '
-                      'test might not be consistent.')  # see p. 183 in [1]_
+                      'test might not be consistent.', # see p. 183 in [1]_
+                      stacklevel=2)
 
     # compute test statistic w distributed asympt. as chisquare with df=r
     g_diff = np.mean(gx, axis=0) - np.mean(gy, axis=0)
@@ -480,6 +480,12 @@ def _cdf_cvm(x, n=None):
     return y
 
 
+def _cvm_result_to_tuple(res):
+    return res.statistic, res.pvalue
+
+
+@_axis_nan_policy_factory(CramerVonMisesResult, n_samples=1, too_small=1,
+                          result_to_tuple=_cvm_result_to_tuple)
 def cramervonmises(rvs, cdf, args=()):
     """Perform the one-sample Cramér-von Mises test for goodness of fit.
 
@@ -582,8 +588,6 @@ def cramervonmises(rvs, cdf, args=()):
 
     if vals.size <= 1:
         raise ValueError('The sample must contain at least two observations.')
-    if vals.ndim > 1:
-        raise ValueError('The sample must be one-dimensional.')
 
     n = len(vals)
     cdfvals = cdf(vals, *args)
@@ -604,10 +608,10 @@ def _get_wilcoxon_distr(n):
     Returns an array with the probabilities of all the possible ranks
     r = 0, ..., n*(n+1)/2
     """
-    c = np.ones(1, dtype=np.double)
+    c = np.ones(1, dtype=np.float64)
     for k in range(1, n + 1):
         prev_c = c
-        c = np.zeros(k * (k + 1) // 2 + 1, dtype=np.double)
+        c = np.zeros(k * (k + 1) // 2 + 1, dtype=np.float64)
         m = len(prev_c)
         c[:m] = prev_c * 0.5
         c[-m:] += prev_c * 0.5
@@ -1416,7 +1420,7 @@ def _get_binomial_log_p_value_with_nuisance_param(
     Returns
     -------
     p_value : float
-        Return the maximum p-value considering every nuisance paramater
+        Return the maximum p-value considering every nuisance parameter
         between 0 and 1
 
     Notes
@@ -1528,13 +1532,16 @@ def _pval_cvm_2samp_exact(s, m, n):
                 np.delete(tmp, i0, 1),
                 np.delete(g, i1, 1)
             ], 1)
-            tmp[0] += (a * v - b * u) ** 2
+            res = (a * v - b * u) ** 2
+            tmp[0] += res.astype(dtype)
             next_gs.append(tmp)
         gs = next_gs
     value, freq = gs[m]
     return np.float64(np.sum(freq[value >= zeta]) / combinations)
 
 
+@_axis_nan_policy_factory(CramerVonMisesResult, n_samples=2, too_small=1,
+                          result_to_tuple=_cvm_result_to_tuple)
 def cramervonmises_2samp(x, y, method='auto'):
     """Perform the two-sample Cramér-von Mises test for goodness of fit.
 
@@ -1637,8 +1644,6 @@ def cramervonmises_2samp(x, y, method='auto'):
 
     if xa.size <= 1 or ya.size <= 1:
         raise ValueError('x and y must contain at least two observations.')
-    if xa.ndim > 1 or ya.ndim > 1:
-        raise ValueError('The samples must be one-dimensional.')
     if method not in ['auto', 'exact', 'asymptotic']:
         raise ValueError('method must be either auto, exact or asymptotic.')
 

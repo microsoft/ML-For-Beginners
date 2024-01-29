@@ -69,7 +69,7 @@ _mode_reflect_doc = (
 
 _mode_interp_constant_doc = (
 """mode : {'reflect', 'grid-mirror', 'constant', 'grid-constant', 'nearest', \
-           'mirror', 'grid-wrap', 'wrap'}, optional
+'mirror', 'grid-wrap', 'wrap'}, optional
     The `mode` parameter determines how the input array is extended
     beyond its boundaries. Default is 'constant'. Behavior for each valid
     value is as follows (see additional plots and details on

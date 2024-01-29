@@ -6,6 +6,7 @@ from datetime import (
 import numpy as np
 import pytest
 
+from pandas.compat import IS64
 from pandas.errors import OutOfBoundsTimedelta
 
 import pandas as pd
@@ -20,6 +21,17 @@ from pandas.core.arrays import TimedeltaArray
 
 
 class TestTimedeltas:
+    def test_to_timedelta_dt64_raises(self):
+        # Passing datetime64-dtype data to TimedeltaIndex is no longer
+        #  supported GH#29794
+        msg = r"dtype datetime64\[ns\] cannot be converted to timedelta64\[ns\]"
+
+        ser = Series([pd.NaT])
+        with pytest.raises(TypeError, match=msg):
+            to_timedelta(ser)
+        with pytest.raises(TypeError, match=msg):
+            ser.to_frame().apply(to_timedelta)
+
     @pytest.mark.parametrize("readonly", [True, False])
     def test_to_timedelta_readonly(self, readonly):
         # GH#34857
@@ -86,12 +98,13 @@ class TestTimedeltas:
             TimedeltaIndex(arr)
 
         with pytest.raises(OutOfBoundsTimedelta, match=msg):
-            TimedeltaArray._from_sequence(arr)
+            TimedeltaArray._from_sequence(arr, dtype="m8[s]")
 
     @pytest.mark.parametrize(
         "arg", [np.arange(10).reshape(2, 5), pd.DataFrame(np.arange(10).reshape(2, 5))]
     )
     @pytest.mark.parametrize("errors", ["ignore", "raise", "coerce"])
+    @pytest.mark.filterwarnings("ignore:errors='ignore' is deprecated:FutureWarning")
     def test_to_timedelta_dataframe(self, arg, errors):
         # GH 11776
         with pytest.raises(TypeError, match="1-d array"):
@@ -137,22 +150,29 @@ class TestTimedeltas:
 
     def test_to_timedelta_invalid_errors_ignore(self):
         # gh-13613: these should not error because errors='ignore'
+        msg = "errors='ignore' is deprecated"
         invalid_data = "apple"
-        assert invalid_data == to_timedelta(invalid_data, errors="ignore")
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = to_timedelta(invalid_data, errors="ignore")
+        assert invalid_data == result
 
         invalid_data = ["apple", "1 days"]
-        tm.assert_numpy_array_equal(
-            np.array(invalid_data, dtype=object),
-            to_timedelta(invalid_data, errors="ignore"),
-        )
+        expected = np.array(invalid_data, dtype=object)
+
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = to_timedelta(invalid_data, errors="ignore")
+        tm.assert_numpy_array_equal(expected, result)
 
         invalid_data = pd.Index(["apple", "1 days"])
-        tm.assert_index_equal(invalid_data, to_timedelta(invalid_data, errors="ignore"))
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = to_timedelta(invalid_data, errors="ignore")
+        tm.assert_index_equal(invalid_data, result)
 
         invalid_data = Series(["apple", "1 days"])
-        tm.assert_series_equal(
-            invalid_data, to_timedelta(invalid_data, errors="ignore")
-        )
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = to_timedelta(invalid_data, errors="ignore")
+        tm.assert_series_equal(invalid_data, result)
 
     @pytest.mark.parametrize(
         "val, errors",
@@ -224,6 +244,7 @@ class TestTimedeltas:
         actual = to_timedelta([val])
         assert actual[0]._value == np.timedelta64("NaT").astype("int64")
 
+    @pytest.mark.xfail(not IS64, reason="Floating point error")
     def test_to_timedelta_float(self):
         # https://github.com/pandas-dev/pandas/issues/25077
         arr = np.arange(0, 1, 1e-6)[-10:]
@@ -239,7 +260,9 @@ class TestTimedeltas:
 
     def test_to_timedelta_ignore_strings_unit(self):
         arr = np.array([1, 2, "error"], dtype=object)
-        result = to_timedelta(arr, unit="ns", errors="ignore")
+        msg = "errors='ignore' is deprecated"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = to_timedelta(arr, unit="ns", errors="ignore")
         tm.assert_numpy_array_equal(result, arr)
 
     @pytest.mark.parametrize(

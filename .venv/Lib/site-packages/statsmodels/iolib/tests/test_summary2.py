@@ -70,12 +70,13 @@ parentheses.
         reg2 = OLS(y2, x).fit()
         actual = summary_col([reg1, reg2], float_format='%0.1f').as_text()
         actual = '%s\n' % actual
-        assert_equal(actual, desired)
 
         starred = summary_col([reg1, reg2], stars=True, float_format='%0.1f')
         assert "7.7***" in str(starred)
         assert "12.4**" in str(starred)
         assert "12.4***" not in str(starred)
+
+        assert_equal(actual, desired)
 
     def test_summarycol_drop_omitted(self):
         # gh-3702

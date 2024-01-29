@@ -27,6 +27,7 @@ from ..base import (
 from ..exceptions import ConvergenceWarning
 from ..utils import check_array, check_random_state, gen_batches, metadata_routing
 from ..utils._param_validation import (
+    Hidden,
     Interval,
     StrOptions,
     validate_params,
@@ -69,14 +70,19 @@ def trace_dot(X, Y):
 
 def _check_init(A, shape, whom):
     A = check_array(A)
-    if np.shape(A) != shape:
+    if shape[0] != "auto" and A.shape[0] != shape[0]:
         raise ValueError(
-            "Array with wrong shape passed to %s. Expected %s, but got %s "
-            % (whom, shape, np.shape(A))
+            f"Array with wrong first dimension passed to {whom}. Expected {shape[0]}, "
+            f"but got {A.shape[0]}."
+        )
+    if shape[1] != "auto" and A.shape[1] != shape[1]:
+        raise ValueError(
+            f"Array with wrong second dimension passed to {whom}. Expected {shape[1]}, "
+            f"but got {A.shape[1]}."
         )
     check_non_negative(A, whom)
     if np.max(A) == 0:
-        raise ValueError("Array passed to %s is full of zeros." % whom)
+        raise ValueError(f"Array passed to {whom} is full of zeros.")
 
 
 def _beta_divergence(X, W, H, beta, square_root=False):
@@ -120,7 +126,7 @@ def _beta_divergence(X, W, H, beta, square_root=False):
         if sp.issparse(X):
             norm_X = np.dot(X.data, X.data)
             norm_WH = trace_dot(np.linalg.multi_dot([W.T, W, H]), H)
-            cross_prod = trace_dot((X * H.T), W)
+            cross_prod = trace_dot((X @ H.T), W)
             res = (norm_X + norm_WH - 2.0 * cross_prod) / 2.0
         else:
             res = squared_norm(X - np.dot(W, H)) / 2.0
@@ -903,7 +909,7 @@ def non_negative_factorization(
     X,
     W=None,
     H=None,
-    n_components=None,
+    n_components="warn",
     *,
     init=None,
     update_H=True,
@@ -976,9 +982,14 @@ def non_negative_factorization(
         If `update_H=False`, it is used as a constant, to solve for W only.
         If `None`, uses the initialisation method specified in `init`.
 
-    n_components : int, default=None
+    n_components : int or {'auto'} or None, default=None
         Number of components, if n_components is not set all features
         are kept.
+        If `n_components='auto'`, the number of components is automatically inferred
+        from `W` or `H` shapes.
+
+        .. versionchanged:: 1.4
+            Added `'auto'` value.
 
     init : {'random', 'nndsvd', 'nndsvda', 'nndsvdar', 'custom'}, default=None
         Method used to initialize the procedure.
@@ -1133,7 +1144,12 @@ class _BaseNMF(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator,
     __metadata_request__inverse_transform = {"W": metadata_routing.UNUSED}
 
     _parameter_constraints: dict = {
-        "n_components": [Interval(Integral, 1, None, closed="left"), None],
+        "n_components": [
+            Interval(Integral, 1, None, closed="left"),
+            None,
+            StrOptions({"auto"}),
+            Hidden(StrOptions({"warn"})),
+        ],
         "init": [
             StrOptions({"random", "nndsvd", "nndsvda", "nndsvdar", "custom"}),
             None,
@@ -1153,7 +1169,7 @@ class _BaseNMF(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator,
 
     def __init__(
         self,
-        n_components=None,
+        n_components="warn",
         *,
         init=None,
         beta_loss="frobenius",
@@ -1179,6 +1195,16 @@ class _BaseNMF(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator,
     def _check_params(self, X):
         # n_components
         self._n_components = self.n_components
+        if self.n_components == "warn":
+            warnings.warn(
+                (
+                    "The default value of `n_components` will change from `None` to"
+                    " `'auto'` in 1.6. Set the value of `n_components` to `None`"
+                    " explicitly to suppress the warning."
+                ),
+                FutureWarning,
+            )
+            self._n_components = None  # Keeping the old default value
         if self._n_components is None:
             self._n_components = X.shape[1]
 
@@ -1188,32 +1214,61 @@ class _BaseNMF(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator,
     def _check_w_h(self, X, W, H, update_H):
         """Check W and H, or initialize them."""
         n_samples, n_features = X.shape
+
         if self.init == "custom" and update_H:
             _check_init(H, (self._n_components, n_features), "NMF (input H)")
             _check_init(W, (n_samples, self._n_components), "NMF (input W)")
+            if self._n_components == "auto":
+                self._n_components = H.shape[0]
+
             if H.dtype != X.dtype or W.dtype != X.dtype:
                 raise TypeError(
                     "H and W should have the same dtype as X. Got "
                     "H.dtype = {} and W.dtype = {}.".format(H.dtype, W.dtype)
                 )
+
         elif not update_H:
+            if W is not None:
+                warnings.warn(
+                    "When update_H=False, the provided initial W is not used.",
+                    RuntimeWarning,
+                )
+
             _check_init(H, (self._n_components, n_features), "NMF (input H)")
+            if self._n_components == "auto":
+                self._n_components = H.shape[0]
+
             if H.dtype != X.dtype:
                 raise TypeError(
                     "H should have the same dtype as X. Got H.dtype = {}.".format(
                         H.dtype
                     )
                 )
+
             # 'mu' solver should not be initialized by zeros
             if self.solver == "mu":
                 avg = np.sqrt(X.mean() / self._n_components)
                 W = np.full((n_samples, self._n_components), avg, dtype=X.dtype)
             else:
                 W = np.zeros((n_samples, self._n_components), dtype=X.dtype)
+
         else:
+            if W is not None or H is not None:
+                warnings.warn(
+                    (
+                        "When init!='custom', provided W or H are ignored. Set "
+                        " init='custom' to use them as initialization."
+                    ),
+                    RuntimeWarning,
+                )
+
+            if self._n_components == "auto":
+                self._n_components = X.shape[1]
+
             W, H = _initialize_nmf(
                 X, self._n_components, init=self.init, random_state=self.random_state
             )
+
         return W, H
 
     def _compute_regularization(self, X):
@@ -1272,7 +1327,7 @@ class _BaseNMF(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator,
 
         Returns
         -------
-        X : {ndarray, sparse matrix} of shape (n_samples, n_features)
+        X : ndarray of shape (n_samples, n_features)
             Returns a data matrix of the original shape.
         """
         if Xt is None and W is None:
@@ -1352,9 +1407,14 @@ class NMF(_BaseNMF):
 
     Parameters
     ----------
-    n_components : int, default=None
+    n_components : int or {'auto'} or None, default=None
         Number of components, if n_components is not set all features
         are kept.
+        If `n_components='auto'`, the number of components is automatically inferred
+        from W or H shapes.
+
+        .. versionchanged:: 1.4
+            Added `'auto'` value.
 
     init : {'random', 'nndsvd', 'nndsvda', 'nndsvdar', 'custom'}, default=None
         Method used to initialize the procedure.
@@ -1517,7 +1577,7 @@ class NMF(_BaseNMF):
 
     def __init__(
         self,
-        n_components=None,
+        n_components="warn",
         *,
         init=None,
         solver="cd",
@@ -1786,9 +1846,14 @@ class MiniBatchNMF(_BaseNMF):
 
     Parameters
     ----------
-    n_components : int, default=None
+    n_components : int or {'auto'} or None, default=None
         Number of components, if `n_components` is not set all features
         are kept.
+        If `n_components='auto'`, the number of components is automatically inferred
+        from W or H shapes.
+
+        .. versionchanged:: 1.4
+            Added `'auto'` value.
 
     init : {'random', 'nndsvd', 'nndsvda', 'nndsvdar', 'custom'}, default=None
         Method used to initialize the procedure.
@@ -1953,7 +2018,7 @@ class MiniBatchNMF(_BaseNMF):
 
     def __init__(
         self,
-        n_components=None,
+        n_components="warn",
         *,
         init=None,
         batch_size=1024,

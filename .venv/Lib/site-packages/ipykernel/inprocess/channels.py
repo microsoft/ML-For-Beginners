@@ -18,7 +18,7 @@ class InProcessChannel:
     proxy_methods: List[object] = []
 
     def __init__(self, client=None):
-        """Initialze the channel."""
+        """Initialize the channel."""
         super().__init__()
         self.client = client
         self._is_alive = False
@@ -45,7 +45,6 @@ class InProcessChannel:
 
     def flush(self, timeout=1.0):
         """Flush the channel."""
-        pass
 
     def call_handlers_later(self, *args, **kwds):
         """Call the message handlers later.

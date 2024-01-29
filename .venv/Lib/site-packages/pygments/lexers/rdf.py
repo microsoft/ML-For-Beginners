@@ -260,6 +260,10 @@ class TurtleLexer(RegexLexer):
             (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
 
+            # BlankNodeLabel
+            (r'(_)(:)([' + PN_CHARS_U_GRP + r'0-9]([' + PN_CHARS_GRP + r'.]*' + PN_CHARS + ')?)',
+             bygroups(Name.Namespace, Punctuation, Name.Tag)),
+
             # Comment
             (r'#[^\n]+', Comment),
 

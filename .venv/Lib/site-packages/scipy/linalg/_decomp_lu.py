@@ -11,6 +11,10 @@ from ._misc import _datacopied, LinAlgWarning
 from .lapack import get_lapack_funcs
 from ._decomp_lu_cython import lu_dispatcher
 
+# deprecated imports to be removed in SciPy 1.13.0
+from scipy.linalg._flinalg_py import get_flinalg_funcs  # noqa: F401
+
+
 lapack_cast_dict = {x: ''.join([y for y in 'fdFD' if np.can_cast(x, y)])
                     for x in np.typecodes['All']}
 
@@ -44,9 +48,10 @@ def lu_factor(a, overwrite_a=False, check_finite=True):
     lu : (M, N) ndarray
         Matrix containing U in its upper triangle, and L in its lower triangle.
         The unit diagonal elements of L are not stored.
-    piv : (N,) ndarray
+    piv : (K,) ndarray
         Pivot indices representing the permutation matrix P:
         row i of matrix was interchanged with row piv[i].
+        Of shape ``(K,)``, with ``K = min(M, N)``.
 
     See Also
     --------
@@ -59,6 +64,9 @@ def lu_factor(a, overwrite_a=False, check_finite=True):
     :func:`lu`, it outputs the L and U factors into a single array
     and returns pivot indices instead of a permutation matrix.
 
+    While the underlying ``*GETRF`` routines return 1-based pivot indices, the
+    ``piv`` array returned by ``lu_factor`` contains 0-based indices.
+
     Examples
     --------
     >>> import numpy as np
@@ -70,9 +78,32 @@ def lu_factor(a, overwrite_a=False, check_finite=True):
 
     Convert LAPACK's ``piv`` array to NumPy index and test the permutation
 
-    >>> piv_py = [2, 0, 3, 1]
+    >>> def pivot_to_permutation(piv):
+    ...     perm = np.arange(len(piv))
+    ...     for i in range(len(piv)):
+    ...         perm[i], perm[piv[i]] = perm[piv[i]], perm[i]
+    ...     return perm
+    ...
+    >>> p_inv = pivot_to_permutation(piv)
+    >>> p_inv
+    array([2, 0, 3, 1])
     >>> L, U = np.tril(lu, k=-1) + np.eye(4), np.triu(lu)
-    >>> np.allclose(A[piv_py] - L @ U, np.zeros((4, 4)))
+    >>> np.allclose(A[p_inv] - L @ U, np.zeros((4, 4)))
+    True
+
+    The P matrix in P L U is defined by the inverse permutation and
+    can be recovered using argsort:
+
+    >>> p = np.argsort(p_inv)
+    >>> p
+    array([1, 3, 0, 2])
+    >>> np.allclose(A - L[p] @ U, np.zeros((4, 4)))
+    True
+
+    or alternatively:
+
+    >>> P = np.eye(4)[p]
+    >>> np.allclose(A - P @ L @ U, np.zeros((4, 4)))
     True
     """
     if check_finite:
@@ -97,7 +128,8 @@ def lu_solve(lu_and_piv, b, trans=0, overwrite_b=False, check_finite=True):
     Parameters
     ----------
     (lu, piv)
-        Factorization of the coefficient matrix a, as given by lu_factor
+        Factorization of the coefficient matrix a, as given by lu_factor.
+        In particular piv are 0-indexed pivot indices.
     b : array
         Right-hand side
     trans : {0, 1, 2}, optional
@@ -145,8 +177,7 @@ def lu_solve(lu_and_piv, b, trans=0, overwrite_b=False, check_finite=True):
         b1 = asarray(b)
     overwrite_b = overwrite_b or _datacopied(b1, b)
     if lu.shape[0] != b1.shape[0]:
-        raise ValueError("Shapes of lu {} and b {} are incompatible"
-                         .format(lu.shape, b1.shape))
+        raise ValueError(f"Shapes of lu {lu.shape} and b {b1.shape} are incompatible")
 
     getrs, = get_lapack_funcs(('getrs',), (lu, b1))
     x, info = getrs(lu, piv, b1, trans=trans, overwrite_b=overwrite_b)

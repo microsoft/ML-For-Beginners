@@ -24,6 +24,8 @@ The cell (0, 0) is positioned at the top left.
 Thanks to John Gill for providing the class and table.
 """
 
+import numpy as np
+
 from . import _api, _docstring
 from .artist import Artist, allow_rasterization
 from .patches import Rectangle
@@ -51,14 +53,12 @@ class Cell(Rectangle):
                      'vertical':     'RL'
                      }
 
-    @_api.make_keyword_only("3.6", name="edgecolor")
-    def __init__(self, xy, width, height,
+    def __init__(self, xy, width, height, *,
                  edgecolor='k', facecolor='w',
                  fill=True,
                  text='',
                  loc=None,
                  fontproperties=None,
-                 *,
                  visible_edges='closed',
                  ):
         """
@@ -104,8 +104,9 @@ class Cell(Rectangle):
                           text=text, fontproperties=fontproperties,
                           horizontalalignment=loc, verticalalignment='center')
 
-    def set_transform(self, trans):
-        super().set_transform(trans)
+    @_api.rename_parameter("3.8", "trans", "t")
+    def set_transform(self, t):
+        super().set_transform(t)
         # the text does not get the transform!
         self.stale = True
 
@@ -428,9 +429,8 @@ class Table(Artist):
 
     def contains(self, mouseevent):
         # docstring inherited
-        inside, info = self._default_contains(mouseevent)
-        if inside is not None:
-            return inside, info
+        if self._different_canvas(mouseevent):
+            return False, {}
         # TODO: Return index of the cell containing the cursor so that the user
         # doesn't have to bind to each one individually.
         renderer = self.figure._get_renderer()
@@ -496,14 +496,15 @@ class Table(Artist):
         col : int or sequence of ints
             The indices of the columns to auto-scale.
         """
-        # check for col possibility on iteration
-        try:
-            iter(col)
-        except (TypeError, AttributeError):
-            self._autoColumns.append(col)
-        else:
-            for cell in col:
-                self._autoColumns.append(cell)
+        col1d = np.atleast_1d(col)
+        if not np.issubdtype(col1d.dtype, np.integer):
+            _api.warn_deprecated("3.8", name="col",
+                                 message="%(name)r must be an int or sequence of ints. "
+                                 "Passing other types is deprecated since %(since)s "
+                                 "and will be removed %(removal)s.")
+            return
+        for cell in col1d:
+            self._autoColumns.append(cell)
 
         self.stale = True
 
@@ -749,16 +750,16 @@ def table(ax,
     cols = len(cellText[0])
     for row in cellText:
         if len(row) != cols:
-            raise ValueError("Each row in 'cellText' must have {} columns"
-                             .format(cols))
+            raise ValueError(f"Each row in 'cellText' must have {cols} "
+                             "columns")
 
     if cellColours is not None:
         if len(cellColours) != rows:
-            raise ValueError("'cellColours' must have {} rows".format(rows))
+            raise ValueError(f"'cellColours' must have {rows} rows")
         for row in cellColours:
             if len(row) != cols:
-                raise ValueError("Each row in 'cellColours' must have {} "
-                                 "columns".format(cols))
+                raise ValueError("Each row in 'cellColours' must have "
+                                 f"{cols} columns")
     else:
         cellColours = ['w' * cols] * rows
 
@@ -778,7 +779,7 @@ def table(ax,
 
     if rowLabels is not None:
         if len(rowLabels) != rows:
-            raise ValueError("'rowLabels' must be of length {0}".format(rows))
+            raise ValueError(f"'rowLabels' must be of length {rows}")
 
     # If we have column labels, need to shift
     # the text and colour arrays down 1 row

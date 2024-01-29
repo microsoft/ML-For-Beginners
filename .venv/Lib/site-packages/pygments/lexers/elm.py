@@ -23,7 +23,7 @@ class ElmLexer(RegexLexer):
     """
 
     name = 'Elm'
-    url = 'http://elm-lang.org/'
+    url = 'https://elm-lang.org/'
     aliases = ['elm']
     filenames = ['*.elm']
     mimetypes = ['text/x-elm']

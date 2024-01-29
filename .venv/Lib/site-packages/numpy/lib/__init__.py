@@ -12,8 +12,6 @@ useful to have in the main name-space.
 
 """
 
-from numpy.version import version as __version__
-
 # Public submodules
 # Note: recfunctions and (maybe) format are public too, but not imported
 from . import mixins

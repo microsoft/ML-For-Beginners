@@ -1,27 +1,13 @@
 import numpy as np
 import pytest
 
-from pandas.compat import (
-    is_ci_environment,
-    is_platform_mac,
-    is_platform_windows,
-)
-
 from pandas import (
     DataFrame,
     Series,
 )
 import pandas._testing as tm
 
-pytestmark = [
-    pytest.mark.single_cpu,
-    pytest.mark.skipif(
-        is_ci_environment() and (is_platform_windows() or is_platform_mac()),
-        reason="On GHA CI, Windows can fail with "
-        "'Windows fatal exception: stack overflow' "
-        "and macOS can timeout",
-    ),
-]
+pytestmark = pytest.mark.single_cpu
 
 pytest.importorskip("numba")
 

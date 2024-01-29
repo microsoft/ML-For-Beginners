@@ -6,6 +6,8 @@ import numpy as np
 import pytest
 import pytz
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas.compat import is_platform_little_endian
 
 from pandas import (
@@ -42,7 +44,7 @@ class TestFromRecords:
         arrdata = [np.array([datetime(2005, 3, 1, 0, 0), None])]
         dtypes = [("EXPIRY", "<M8[ns]")]
 
-        recarray = np.core.records.fromarrays(arrdata, dtype=dtypes)
+        recarray = np.rec.fromarrays(arrdata, dtype=dtypes)
 
         result = DataFrame.from_records(recarray)
         tm.assert_frame_equal(result, expected)
@@ -50,12 +52,15 @@ class TestFromRecords:
         # coercion should work too
         arrdata = [np.array([datetime(2005, 3, 1, 0, 0), None])]
         dtypes = [("EXPIRY", "<M8[m]")]
-        recarray = np.core.records.fromarrays(arrdata, dtype=dtypes)
+        recarray = np.rec.fromarrays(arrdata, dtype=dtypes)
         result = DataFrame.from_records(recarray)
         # we get the closest supported unit, "s"
         expected["EXPIRY"] = expected["EXPIRY"].astype("M8[s]")
         tm.assert_frame_equal(result, expected)
 
+    @pytest.mark.skipif(
+        using_pyarrow_string_dtype(), reason="dtype checking logic doesn't work"
+    )
     def test_from_records_sequencelike(self):
         df = DataFrame(
             {
@@ -80,7 +85,7 @@ class TestFromRecords:
 
         # this is actually tricky to create the recordlike arrays and
         # have the dtypes be intact
-        blocks = df._to_dict_of_blocks(copy=False)
+        blocks = df._to_dict_of_blocks()
         tuples = []
         columns = []
         dtypes = []
@@ -93,7 +98,7 @@ class TestFromRecords:
                 tup.extend(b.iloc[i].values)
             tuples.append(tuple(tup))
 
-        recarray = np.array(tuples, dtype=dtypes).view(np.recarray)
+        recarray = np.array(tuples, dtype=dtypes).view(np.rec.recarray)
         recarray2 = df.to_records()
         lists = [list(x) for x in tuples]
 
@@ -110,7 +115,7 @@ class TestFromRecords:
             columns=df.columns
         )
 
-        # list of tupels (no dtype info)
+        # list of tuples (no dtype info)
         result4 = DataFrame.from_records(lists, columns=columns).reindex(
             columns=df.columns
         )
@@ -169,7 +174,7 @@ class TestFromRecords:
 
         # columns is in a different order here than the actual items iterated
         # from the dict
-        blocks = df._to_dict_of_blocks(copy=False)
+        blocks = df._to_dict_of_blocks()
         columns = []
         for b in blocks.values():
             columns.extend(b.columns)
@@ -281,7 +286,7 @@ class TestFromRecords:
 
     def test_from_records_to_records(self):
         # from numpy documentation
-        arr = np.zeros((2,), dtype=("i4,f4,a10"))
+        arr = np.zeros((2,), dtype=("i4,f4,S10"))
         arr[:] = [(1, 2.0, "Hello"), (2, 3.0, "World")]
 
         DataFrame.from_records(arr)
@@ -442,26 +447,27 @@ class TestFromRecords:
         exp = DataFrame(data, index=["a", "b", "c"])
         tm.assert_frame_equal(result, exp)
 
+    def test_from_records_misc_brokenness2(self):
         # GH#2623
         rows = []
         rows.append([datetime(2010, 1, 1), 1])
         rows.append([datetime(2010, 1, 2), "hi"])  # test col upconverts to obj
-        df2_obj = DataFrame.from_records(rows, columns=["date", "test"])
-        result = df2_obj.dtypes
-        expected = Series(
-            [np.dtype("datetime64[ns]"), np.dtype("object")], index=["date", "test"]
+        result = DataFrame.from_records(rows, columns=["date", "test"])
+        expected = DataFrame(
+            {"date": [row[0] for row in rows], "test": [row[1] for row in rows]}
         )
-        tm.assert_series_equal(result, expected)
+        tm.assert_frame_equal(result, expected)
+        assert result.dtypes["test"] == np.dtype(object)
 
+    def test_from_records_misc_brokenness3(self):
         rows = []
         rows.append([datetime(2010, 1, 1), 1])
         rows.append([datetime(2010, 1, 2), 1])
-        df2_obj = DataFrame.from_records(rows, columns=["date", "test"])
-        result = df2_obj.dtypes
-        expected = Series(
-            [np.dtype("datetime64[ns]"), np.dtype("int64")], index=["date", "test"]
+        result = DataFrame.from_records(rows, columns=["date", "test"])
+        expected = DataFrame(
+            {"date": [row[0] for row in rows], "test": [row[1] for row in rows]}
         )
-        tm.assert_series_equal(result, expected)
+        tm.assert_frame_equal(result, expected)
 
     def test_from_records_empty(self):
         # GH#3562

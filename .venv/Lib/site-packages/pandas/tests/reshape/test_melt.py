@@ -6,6 +6,8 @@ import pytest
 import pandas as pd
 from pandas import (
     DataFrame,
+    Index,
+    date_range,
     lreshape,
     melt,
     wide_to_long,
@@ -15,7 +17,11 @@ import pandas._testing as tm
 
 @pytest.fixture
 def df():
-    res = tm.makeTimeDataFrame()[:10]
+    res = DataFrame(
+        np.random.default_rng(2).standard_normal((10, 4)),
+        columns=Index(list("ABCD"), dtype=object),
+        index=date_range("2000-01-01", periods=10, freq="B"),
+    )
     res["id1"] = (res["A"] > 0).astype(np.int64)
     res["id2"] = (res["B"] > 0).astype(np.int64)
     return res
@@ -281,7 +287,7 @@ class TestMelt:
     @pytest.mark.parametrize(
         "col",
         [
-            pd.Series(pd.date_range("2010", periods=5, tz="US/Pacific")),
+            pd.Series(date_range("2010", periods=5, tz="US/Pacific")),
             pd.Series(["a", "b", "c", "a", "d"], dtype="category"),
             pd.Series([0, 1, 0, 0, 0]),
         ],
@@ -327,32 +333,28 @@ class TestMelt:
         )
 
         # Try to melt with missing `value_vars` column name
-        msg = "The following '{Var}' are not present in the DataFrame: {Col}"
-        with pytest.raises(
-            KeyError, match=msg.format(Var="value_vars", Col="\\['C'\\]")
-        ):
+        msg = "The following id_vars or value_vars are not present in the DataFrame:"
+        with pytest.raises(KeyError, match=msg):
             df.melt(["a", "b"], ["C", "d"])
 
         # Try to melt with missing `id_vars` column name
-        with pytest.raises(KeyError, match=msg.format(Var="id_vars", Col="\\['A'\\]")):
+        with pytest.raises(KeyError, match=msg):
             df.melt(["A", "b"], ["c", "d"])
 
         # Multiple missing
         with pytest.raises(
             KeyError,
-            match=msg.format(Var="id_vars", Col="\\['not_here', 'or_there'\\]"),
+            match=msg,
         ):
             df.melt(["a", "b", "not_here", "or_there"], ["c", "d"])
 
         # Multiindex melt fails if column is missing from multilevel melt
         multi = df.copy()
         multi.columns = [list("ABCD"), list("abcd")]
-        with pytest.raises(KeyError, match=msg.format(Var="id_vars", Col="\\['E'\\]")):
+        with pytest.raises(KeyError, match=msg):
             multi.melt([("E", "a")], [("B", "b")])
         # Multiindex fails if column is missing from single level melt
-        with pytest.raises(
-            KeyError, match=msg.format(Var="value_vars", Col="\\['F'\\]")
-        ):
+        with pytest.raises(KeyError, match=msg):
             multi.melt(["A"], ["F"], col_level=0)
 
     def test_melt_mixed_int_str_id_vars(self):
@@ -400,11 +402,11 @@ class TestMelt:
 
     def test_ignore_index_name_and_type(self):
         # GH 17440
-        index = pd.Index(["foo", "bar"], dtype="category", name="baz")
+        index = Index(["foo", "bar"], dtype="category", name="baz")
         df = DataFrame({"x": [0, 1], "y": [2, 3]}, index=index)
         result = melt(df, ignore_index=False)
 
-        expected_index = pd.Index(["foo", "bar"] * 2, dtype="category", name="baz")
+        expected_index = Index(["foo", "bar"] * 2, dtype="category", name="baz")
         expected = DataFrame(
             {"variable": ["x", "x", "y", "y"], "value": [0, 1, 2, 3]},
             index=expected_index,
@@ -458,6 +460,81 @@ class TestMelt:
             }
         )
         tm.assert_frame_equal(result, expected)
+
+    def test_melt_preserves_datetime(self):
+        df = DataFrame(
+            data=[
+                {
+                    "type": "A0",
+                    "start_date": pd.Timestamp("2023/03/01", tz="Asia/Tokyo"),
+                    "end_date": pd.Timestamp("2023/03/10", tz="Asia/Tokyo"),
+                },
+                {
+                    "type": "A1",
+                    "start_date": pd.Timestamp("2023/03/01", tz="Asia/Tokyo"),
+                    "end_date": pd.Timestamp("2023/03/11", tz="Asia/Tokyo"),
+                },
+            ],
+            index=["aaaa", "bbbb"],
+        )
+        result = df.melt(
+            id_vars=["type"],
+            value_vars=["start_date", "end_date"],
+            var_name="start/end",
+            value_name="date",
+        )
+        expected = DataFrame(
+            {
+                "type": {0: "A0", 1: "A1", 2: "A0", 3: "A1"},
+                "start/end": {
+                    0: "start_date",
+                    1: "start_date",
+                    2: "end_date",
+                    3: "end_date",
+                },
+                "date": {
+                    0: pd.Timestamp("2023-03-01 00:00:00+0900", tz="Asia/Tokyo"),
+                    1: pd.Timestamp("2023-03-01 00:00:00+0900", tz="Asia/Tokyo"),
+                    2: pd.Timestamp("2023-03-10 00:00:00+0900", tz="Asia/Tokyo"),
+                    3: pd.Timestamp("2023-03-11 00:00:00+0900", tz="Asia/Tokyo"),
+                },
+            }
+        )
+        tm.assert_frame_equal(result, expected)
+
+    def test_melt_allows_non_scalar_id_vars(self):
+        df = DataFrame(
+            data={"a": [1, 2, 3], "b": [4, 5, 6]},
+            index=["11", "22", "33"],
+        )
+        result = df.melt(
+            id_vars="a",
+            var_name=0,
+            value_name=1,
+        )
+        expected = DataFrame({"a": [1, 2, 3], 0: ["b"] * 3, 1: [4, 5, 6]})
+        tm.assert_frame_equal(result, expected)
+
+    def test_melt_allows_non_string_var_name(self):
+        df = DataFrame(
+            data={"a": [1, 2, 3], "b": [4, 5, 6]},
+            index=["11", "22", "33"],
+        )
+        result = df.melt(
+            id_vars=["a"],
+            var_name=0,
+            value_name=1,
+        )
+        expected = DataFrame({"a": [1, 2, 3], 0: ["b"] * 3, 1: [4, 5, 6]})
+        tm.assert_frame_equal(result, expected)
+
+    def test_melt_non_scalar_var_name_raises(self):
+        df = DataFrame(
+            data={"a": [1, 2, 3], "b": [4, 5, 6]},
+            index=["11", "22", "33"],
+        )
+        with pytest.raises(ValueError, match=r".* must be a scalar."):
+            df.melt(id_vars=["a"], var_name=[1, 2])
 
 
 class TestLreshape:
@@ -1132,7 +1209,7 @@ class TestWideToLong:
             j="num",
             sep="-",
         )
-        index = pd.Index(
+        index = Index(
             [("1", 1), ("2", 1), ("1", 2), ("2", 2)],
             name=("id", "num"),
         )

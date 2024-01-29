@@ -502,7 +502,7 @@ def remove_unused_subroutines(self):
         # Renumber glyph charstrings
         for g in font.charset:
             c, _ = cs.getItemAndSelector(g)
-            subrs = getattr(c.private, "Subrs", [])
+            subrs = getattr(c.private, "Subrs", None)
             c.subset_subroutines(subrs, font.GlobalSubrs)
 
         # Renumber subroutines themselves
@@ -511,7 +511,7 @@ def remove_unused_subroutines(self):
                 if not hasattr(font, "FDArray") and hasattr(font.Private, "Subrs"):
                     local_subrs = font.Private.Subrs
                 else:
-                    local_subrs = []
+                    local_subrs = None
             else:
                 local_subrs = subrs
 

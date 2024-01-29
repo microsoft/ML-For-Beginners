@@ -1076,7 +1076,11 @@ def test_summary_col():
     mod2 = MixedLM.from_formula('X ~ Y', d, groups=d['IDS'])
     results2 = mod2.fit(start_params=sp2)
 
-    out = summary_col([results1, results2], stars=True)
+    out = summary_col(
+        [results1, results2],
+        stars=True,
+        regressor_order=["Group Var", "Intercept", "X", "Y"]
+    )
     s = ('\n=============================\n              Y         X    \n'
          '-----------------------------\nGroup Var 0.1955    1.3854   \n'
          '          (0.6032)  (2.7377) \nIntercept -1.2672   3.4842*  \n'

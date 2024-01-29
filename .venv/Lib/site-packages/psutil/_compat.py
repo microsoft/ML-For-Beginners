@@ -16,6 +16,7 @@ import sys
 import types
 
 
+# fmt: off
 __all__ = [
     # constants
     "PY3",
@@ -31,10 +32,12 @@ __all__ = [
     "redirect_stderr",
     # python 3 exceptions
     "FileNotFoundError", "PermissionError", "ProcessLookupError",
-    "InterruptedError", "ChildProcessError", "FileExistsError"]
+    "InterruptedError", "ChildProcessError", "FileExistsError",
+]
+# fmt: on
 
 
-PY3 = sys.version_info[0] == 3
+PY3 = sys.version_info[0] >= 3
 _SENTINEL = object()
 
 if PY3:
@@ -49,6 +52,7 @@ if PY3:
 
     def b(s):
         return s.encode("latin-1")
+
 else:
     long = long
     range = xrange
@@ -83,7 +87,8 @@ else:
                 # Get the function's first positional argument.
                 type_or_obj = f.f_locals[f.f_code.co_varnames[0]]
             except (IndexError, KeyError):
-                raise RuntimeError('super() used in a function with no args')
+                msg = 'super() used in a function with no args'
+                raise RuntimeError(msg)
             try:
                 # Get the MRO so we can crawl it.
                 mro = type_or_obj.__mro__
@@ -91,7 +96,8 @@ else:
                 try:
                     mro = type_or_obj.__class__.__mro__
                 except AttributeError:
-                    raise RuntimeError('super() used in a non-newstyle class')
+                    msg = 'super() used in a non-newstyle class'
+                    raise RuntimeError(msg)
             for type_ in mro:
                 #  Find the class that owns the currently-executing method.
                 for meth in type_.__dict__.values():
@@ -118,7 +124,8 @@ else:
                     continue
                 break  # found
             else:
-                raise RuntimeError('super() called outside a method')
+                msg = 'super() called outside a method'
+                raise RuntimeError(msg)
 
         # Dispatch to builtin super().
         if type_or_obj is not _SENTINEL:
@@ -144,7 +151,6 @@ else:
     def _instance_checking_exception(base_exception=Exception):
         def wrapped(instance_checker):
             class TemporaryClass(base_exception):
-
                 def __init__(self, *args, **kwargs):
                     if len(args) == 1 and isinstance(args[0], TemporaryClass):
                         unwrap_me = args[0]
@@ -152,7 +158,9 @@ else:
                             if not attr.startswith('__'):
                                 setattr(self, attr, getattr(unwrap_me, attr))
                     else:
-                        super(TemporaryClass, self).__init__(*args, **kwargs)
+                        super(TemporaryClass, self).__init__(  # noqa
+                            *args, **kwargs
+                        )
 
                 class __metaclass__(type):
                     def __instancecheck__(cls, inst):
@@ -178,8 +186,7 @@ else:
 
     @_instance_checking_exception(EnvironmentError)
     def PermissionError(inst):
-        return getattr(inst, 'errno', _SENTINEL) in (
-            errno.EACCES, errno.EPERM)
+        return getattr(inst, 'errno', _SENTINEL) in (errno.EACCES, errno.EPERM)
 
     @_instance_checking_exception(EnvironmentError)
     def InterruptedError(inst):
@@ -199,9 +206,11 @@ else:
         except FileExistsError:
             pass
         except OSError:
-            raise RuntimeError(
+            msg = (
                 "broken or incompatible Python implementation, see: "
-                "https://github.com/giampaolo/psutil/issues/1659")
+                "https://github.com/giampaolo/psutil/issues/1659"
+            )
+            raise RuntimeError(msg)
 
 
 # --- stdlib additions
@@ -219,10 +228,11 @@ except ImportError:
         from dummy_threading import RLock
 
     _CacheInfo = collections.namedtuple(
-        "CacheInfo", ["hits", "misses", "maxsize", "currsize"])
+        "CacheInfo", ["hits", "misses", "maxsize", "currsize"]
+    )
 
     class _HashedSeq(list):
-        __slots__ = 'hashvalue'
+        __slots__ = ('hashvalue',)
 
         def __init__(self, tup, hash=hash):
             self[:] = tup
@@ -231,10 +241,17 @@ except ImportError:
         def __hash__(self):
             return self.hashvalue
 
-    def _make_key(args, kwds, typed,
-                  kwd_mark=(_SENTINEL, ),
-                  fasttypes=set((int, str, frozenset, type(None))),  # noqa
-                  sorted=sorted, tuple=tuple, type=type, len=len):
+    def _make_key(
+        args,
+        kwds,
+        typed,
+        kwd_mark=(_SENTINEL,),
+        fasttypes=set((int, str, frozenset, type(None))),  # noqa
+        sorted=sorted,
+        tuple=tuple,
+        type=type,
+        len=len,
+    ):
         key = args
         if kwds:
             sorted_items = sorted(kwds.items())
@@ -251,8 +268,9 @@ except ImportError:
 
     def lru_cache(maxsize=100, typed=False):
         """Least-recently-used cache decorator, see:
-        http://docs.python.org/3/library/functools.html#functools.lru_cache
+        http://docs.python.org/3/library/functools.html#functools.lru_cache.
         """
+
         def decorating_function(user_function):
             cache = {}
             stats = [0, 0]
@@ -266,11 +284,14 @@ except ImportError:
             nonlocal_root = [root]
             PREV, NEXT, KEY, RESULT = 0, 1, 2, 3
             if maxsize == 0:
+
                 def wrapper(*args, **kwds):
                     result = user_function(*args, **kwds)
                     stats[MISSES] += 1
                     return result
+
             elif maxsize is None:
+
                 def wrapper(*args, **kwds):
                     key = make_key(args, kwds, typed)
                     result = cache_get(key, root)
@@ -281,7 +302,9 @@ except ImportError:
                     cache[key] = result
                     stats[MISSES] += 1
                     return result
+
             else:
+
                 def wrapper(*args, **kwds):
                     if kwds or typed:
                         key = make_key(args, kwds, typed)
@@ -291,7 +314,7 @@ except ImportError:
                     try:
                         link = cache_get(key)
                         if link is not None:
-                            root, = nonlocal_root
+                            (root,) = nonlocal_root
                             link_prev, link_next, key, result = link
                             link_prev[NEXT] = link_next
                             link_next[PREV] = link_prev
@@ -306,7 +329,7 @@ except ImportError:
                     result = user_function(*args, **kwds)
                     lock.acquire()
                     try:
-                        root, = nonlocal_root
+                        (root,) = nonlocal_root
                         if key in cache:
                             pass
                         elif _len(cache) >= maxsize:
@@ -328,16 +351,17 @@ except ImportError:
                     return result
 
             def cache_info():
-                """Report cache statistics"""
+                """Report cache statistics."""
                 lock.acquire()
                 try:
-                    return _CacheInfo(stats[HITS], stats[MISSES], maxsize,
-                                      len(cache))
+                    return _CacheInfo(
+                        stats[HITS], stats[MISSES], maxsize, len(cache)
+                    )
                 finally:
                     lock.release()
 
             def cache_clear():
-                """Clear the cache and cache statistics"""
+                """Clear the cache and cache statistics."""
                 lock.acquire()
                 try:
                     cache.clear()
@@ -359,6 +383,7 @@ except ImportError:
 try:
     from shutil import which
 except ImportError:
+
     def which(cmd, mode=os.F_OK | os.X_OK, path=None):
         """Given a command, mode, and a PATH string, return the path which
         conforms to the given mode on the PATH, or None if there is no such
@@ -368,9 +393,13 @@ except ImportError:
         of os.environ.get("PATH"), or can be overridden with a custom search
         path.
         """
+
         def _access_check(fn, mode):
-            return (os.path.exists(fn) and os.access(fn, mode) and
-                    not os.path.isdir(fn))
+            return (
+                os.path.exists(fn)
+                and os.access(fn, mode)
+                and not os.path.isdir(fn)
+            )
 
         if os.path.dirname(cmd):
             if _access_check(cmd, mode):
@@ -411,6 +440,7 @@ except ImportError:
 try:
     from shutil import get_terminal_size
 except ImportError:
+
     def get_terminal_size(fallback=(80, 24)):
         try:
             import fcntl
@@ -422,9 +452,10 @@ except ImportError:
             try:
                 # This should work on Linux.
                 res = struct.unpack(
-                    'hh', fcntl.ioctl(1, termios.TIOCGWINSZ, '1234'))
+                    'hh', fcntl.ioctl(1, termios.TIOCGWINSZ, '1234')
+                )
                 return (res[1], res[0])
-            except Exception:
+            except Exception:  # noqa: BLE001
                 return fallback
 
 
@@ -432,6 +463,7 @@ except ImportError:
 try:
     from subprocess import TimeoutExpired as SubprocessTimeoutExpired
 except ImportError:
+
     class SubprocessTimeoutExpired(Exception):
         pass
 
@@ -440,6 +472,7 @@ except ImportError:
 try:
     from contextlib import redirect_stderr
 except ImportError:
+
     @contextlib.contextmanager
     def redirect_stderr(new_target):
         original = sys.stderr

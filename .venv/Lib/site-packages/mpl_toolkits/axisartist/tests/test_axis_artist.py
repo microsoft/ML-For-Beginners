@@ -87,8 +87,8 @@ def test_axis_artist():
     ax.yaxis.set_visible(False)
 
     for loc in ('left', 'right', 'bottom'):
-        _helper = AxisArtistHelperRectlinear.Fixed(ax, loc=loc)
-        axisline = AxisArtist(ax, _helper, offset=None, axis_direction=loc)
+        helper = AxisArtistHelperRectlinear.Fixed(ax, loc=loc)
+        axisline = AxisArtist(ax, helper, offset=None, axis_direction=loc)
         ax.add_artist(axisline)
 
     # Settings for bottom AxisArtist.

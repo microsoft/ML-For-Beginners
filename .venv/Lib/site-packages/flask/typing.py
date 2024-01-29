@@ -68,8 +68,10 @@ TemplateContextProcessorCallable = t.Union[
 TemplateFilterCallable = t.Callable[..., t.Any]
 TemplateGlobalCallable = t.Callable[..., t.Any]
 TemplateTestCallable = t.Callable[..., bool]
-URLDefaultCallable = t.Callable[[str, dict], None]
-URLValuePreprocessorCallable = t.Callable[[t.Optional[str], t.Optional[dict]], None]
+URLDefaultCallable = t.Callable[[str, t.Dict[str, t.Any]], None]
+URLValuePreprocessorCallable = t.Callable[
+    [t.Optional[str], t.Optional[t.Dict[str, t.Any]]], None
+]
 
 # This should take Exception, but that either breaks typing the argument
 # with a specific exception, or decorating multiple times with different

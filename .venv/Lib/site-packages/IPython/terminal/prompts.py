@@ -25,11 +25,21 @@ class Prompts(object):
             return '['+mode+'] '
         return ''
 
+    def current_line(self) -> int:
+        if self.shell.pt_app is not None:
+            return self.shell.pt_app.default_buffer.document.cursor_position_row or 0
+        return 0
 
     def in_prompt_tokens(self):
         return [
-            (Token.Prompt, self.vi_mode() ),
-            (Token.Prompt, 'In ['),
+            (Token.Prompt, self.vi_mode()),
+            (
+                Token.Prompt,
+                self.shell.prompt_line_number_format.format(
+                    line=1, rel_line=-self.current_line()
+                ),
+            ),
+            (Token.Prompt, "In ["),
             (Token.PromptNum, str(self.shell.execution_count)),
             (Token.Prompt, ']: '),
         ]
@@ -37,11 +47,20 @@ class Prompts(object):
     def _width(self):
         return fragment_list_width(self.in_prompt_tokens())
 
-    def continuation_prompt_tokens(self, width=None):
+    def continuation_prompt_tokens(self, width=None, *, lineno=None):
         if width is None:
             width = self._width()
+        line = lineno + 1 if lineno is not None else 0
+        prefix = " " * len(
+            self.vi_mode()
+        ) + self.shell.prompt_line_number_format.format(
+            line=line, rel_line=line - self.current_line() - 1
+        )
         return [
-            (Token.Prompt, (' ' * (width - 5)) + '...: '),
+            (
+                Token.Prompt,
+                prefix + (" " * (width - len(prefix) - 5)) + "...: ",
+            ),
         ]
 
     def rewrite_prompt_tokens(self):

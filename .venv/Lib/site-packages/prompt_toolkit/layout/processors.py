@@ -288,7 +288,7 @@ class HighlightSelectionProcessor(Processor):
 
             if from_ == 0 and to == 0 and len(fragments) == 0:
                 # When this is an empty line, insert a space in order to
-                # visualise the selection.
+                # visualize the selection.
                 return Transformation([(selected_fragment, " ")])
             else:
                 for i in range(from_, to):

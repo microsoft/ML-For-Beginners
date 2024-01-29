@@ -229,10 +229,10 @@ def test_hist_subtraction(constant_hessian):
             hist_right,
         )
 
-    hist_left_sub = np.zeros((1, n_bins), dtype=HISTOGRAM_DTYPE)
-    hist_right_sub = np.zeros((1, n_bins), dtype=HISTOGRAM_DTYPE)
-    _subtract_histograms(0, n_bins, hist_parent, hist_right, hist_left_sub)
-    _subtract_histograms(0, n_bins, hist_parent, hist_left, hist_right_sub)
+    hist_left_sub = np.copy(hist_parent)
+    hist_right_sub = np.copy(hist_parent)
+    _subtract_histograms(0, n_bins, hist_left_sub, hist_right)
+    _subtract_histograms(0, n_bins, hist_right_sub, hist_left)
 
     for key in ("count", "sum_hessians", "sum_gradients"):
         assert_allclose(hist_left[key], hist_left_sub[key], rtol=1e-6)

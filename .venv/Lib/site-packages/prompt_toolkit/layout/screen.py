@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import TYPE_CHECKING, Callable, DefaultDict
+from typing import TYPE_CHECKING, Callable
 
 from prompt_toolkit.cache import FastDictCache
 from prompt_toolkit.data_structures import Point
@@ -163,12 +163,12 @@ class Screen:
         else:
             default_char2 = default_char
 
-        self.data_buffer: DefaultDict[int, DefaultDict[int, Char]] = defaultdict(
+        self.data_buffer: defaultdict[int, defaultdict[int, Char]] = defaultdict(
             lambda: defaultdict(lambda: default_char2)
         )
 
         #: Escape sequences to be injected.
-        self.zero_width_escapes: DefaultDict[int, DefaultDict[int, str]] = defaultdict(
+        self.zero_width_escapes: defaultdict[int, defaultdict[int, str]] = defaultdict(
             lambda: defaultdict(lambda: "")
         )
 

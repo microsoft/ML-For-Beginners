@@ -307,8 +307,10 @@ class TestProbitModel(CheckOrdinalModelMixin):
                                           distr='probit')
         resf2 = modf2.fit(method='bfgs', disp=False)
 
-        assert_allclose(resf2.params[:3], resp.params[:3], atol=2e-4)
-        assert_allclose(resf2.params[3], resp.params[3] + 1, atol=2e-4)
+        resf2_params = np.asarray(resf2.params)
+        resp_params = np.asarray(resp.params)
+        assert_allclose(resf2_params[:3], resp_params[:3], atol=2e-4)
+        assert_allclose(resf2_params[3], resp_params[3] + 1, atol=2e-4)
 
         fitted = resp.predict()
         fitted2 = resf2.predict()
@@ -328,7 +330,7 @@ class TestProbitModel(CheckOrdinalModelMixin):
         assert_allclose(pred_zero1, pred_zero, atol=2e-4)
 
         params_adj = resp.params.copy()
-        params_adj[3] += 1
+        params_adj.iloc[3] += 1
         fitted_zero = resp.model.predict(params_adj)
         assert_allclose(pred_zero1, fitted_zero[:6], atol=2e-4)
 
@@ -464,8 +466,10 @@ class TestLogitBinary():
 
         attributes = "bse df_resid llf aic bic llnull".split()
         attributes += "llnull llr llr_pvalue prsquared".split()
-        assert_allclose(resp.params[:3], res_logit.params[:3], rtol=1e-5)
-        assert_allclose(resp.params[3], -res_logit.params[3], rtol=1e-5)
+        params = np.asarray(resp.params)
+        logit_params = np.asarray(res_logit.params)
+        assert_allclose(params[:3], logit_params[:3], rtol=1e-5)
+        assert_allclose(params[3], -logit_params[3], rtol=1e-5)
         for attr in attributes:
             assert_allclose(getattr(resp, attr), getattr(res_logit, attr),
                             rtol=1e-4)

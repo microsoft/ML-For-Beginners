@@ -32,7 +32,7 @@ class TestAstype:
         [
             array(["2019", "2020"], dtype="datetime64[ns, UTC]"),
             array([0, 0], dtype="timedelta64[ns]"),
-            array([Period("2019"), Period("2020")], dtype="period[A-DEC]"),
+            array([Period("2019"), Period("2020")], dtype="period[Y-DEC]"),
             array([Interval(0, 1), Interval(1, 2)], dtype="interval"),
             array([1, np.nan], dtype="Int64"),
         ],
@@ -89,7 +89,7 @@ class TestAstype:
         expected = np.array(cat)
         tm.assert_numpy_array_equal(result, expected)
 
-        msg = r"Cannot cast object dtype to float64"
+        msg = r"Cannot cast object|string dtype to float64"
         with pytest.raises(ValueError, match=msg):
             cat.astype(float)
 

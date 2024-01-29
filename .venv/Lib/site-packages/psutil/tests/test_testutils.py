@@ -5,9 +5,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-"""
-Tests for testing utils (psutil.tests namespace).
-"""
+"""Tests for testing utils (psutil.tests namespace)."""
 
 import collections
 import contextlib
@@ -38,6 +36,7 @@ from psutil.tests import bind_unix_socket
 from psutil.tests import call_until
 from psutil.tests import chdir
 from psutil.tests import create_sockets
+from psutil.tests import filter_proc_connections
 from psutil.tests import get_free_port
 from psutil.tests import is_namedtuple
 from psutil.tests import mock
@@ -62,7 +61,6 @@ from psutil.tests import wait_for_pid
 
 
 class TestRetryDecorator(PsutilTestCase):
-
     @mock.patch('time.sleep')
     def test_retry_success(self, sleep):
         # Fail 3 times out of 5; make sure the decorated fun returns.
@@ -71,7 +69,7 @@ class TestRetryDecorator(PsutilTestCase):
         def foo():
             while queue:
                 queue.pop()
-                1 / 0
+                1 / 0  # noqa
             return 1
 
         queue = list(range(3))
@@ -85,7 +83,7 @@ class TestRetryDecorator(PsutilTestCase):
         def foo():
             while queue:
                 queue.pop()
-                1 / 0
+                1 / 0  # noqa
             return 1
 
         queue = list(range(6))
@@ -107,17 +105,16 @@ class TestRetryDecorator(PsutilTestCase):
 
         @retry(retries=5, interval=None, logfun=None)
         def foo():
-            1 / 0
+            1 / 0  # noqa
 
         self.assertRaises(ZeroDivisionError, foo)
         self.assertEqual(sleep.call_count, 0)
 
     @mock.patch('time.sleep')
     def test_retries_arg(self, sleep):
-
         @retry(retries=5, interval=1, logfun=None)
         def foo():
-            1 / 0
+            1 / 0  # noqa
 
         self.assertRaises(ZeroDivisionError, foo)
         self.assertEqual(sleep.call_count, 5)
@@ -128,7 +125,6 @@ class TestRetryDecorator(PsutilTestCase):
 
 
 class TestSyncTestUtils(PsutilTestCase):
-
     def test_wait_for_pid(self):
         wait_for_pid(os.getpid())
         nopid = max(psutil.pids()) + 99999
@@ -167,10 +163,9 @@ class TestSyncTestUtils(PsutilTestCase):
 
 
 class TestFSTestUtils(PsutilTestCase):
-
     def test_open_text(self):
         with open_text(__file__) as f:
-            self.assertEqual(f.mode, 'rt')
+            self.assertEqual(f.mode, 'r')
 
     def test_open_binary(self):
         with open_binary(__file__) as f:
@@ -196,8 +191,9 @@ class TestFSTestUtils(PsutilTestCase):
         safe_rmpath(testfn)
         assert not os.path.exists(testfn)
         # test other exceptions are raised
-        with mock.patch('psutil.tests.os.stat',
-                        side_effect=OSError(errno.EINVAL, "")) as m:
+        with mock.patch(
+            'psutil.tests.os.stat', side_effect=OSError(errno.EINVAL, "")
+        ) as m:
             with self.assertRaises(OSError):
                 safe_rmpath(testfn)
             assert m.called
@@ -212,7 +208,6 @@ class TestFSTestUtils(PsutilTestCase):
 
 
 class TestProcessUtils(PsutilTestCase):
-
     def test_reap_children(self):
         subp = self.spawn_testproc()
         p = psutil.Process(subp.pid)
@@ -252,36 +247,39 @@ class TestProcessUtils(PsutilTestCase):
         # by subprocess.Popen
         p = self.spawn_testproc()
         terminate(p)
-        self.assertProcessGone(p)
+        self.assertPidGone(p.pid)
         terminate(p)
         # by psutil.Process
         p = psutil.Process(self.spawn_testproc().pid)
         terminate(p)
-        self.assertProcessGone(p)
+        self.assertPidGone(p.pid)
         terminate(p)
         # by psutil.Popen
         cmd = [PYTHON_EXE, "-c", "import time; time.sleep(60);"]
-        p = psutil.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                         env=PYTHON_EXE_ENV)
+        p = psutil.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            env=PYTHON_EXE_ENV,
+        )
         terminate(p)
-        self.assertProcessGone(p)
+        self.assertPidGone(p.pid)
         terminate(p)
         # by PID
         pid = self.spawn_testproc().pid
         terminate(pid)
-        self.assertProcessGone(p)
+        self.assertPidGone(p.pid)
         terminate(pid)
         # zombie
         if POSIX:
             parent, zombie = self.spawn_zombie()
             terminate(parent)
             terminate(zombie)
-            self.assertProcessGone(parent)
-            self.assertProcessGone(zombie)
+            self.assertPidGone(parent.pid)
+            self.assertPidGone(zombie.pid)
 
 
 class TestNetUtils(PsutilTestCase):
-
     def bind_socket(self):
         port = get_free_port()
         with contextlib.closing(bind_socket(addr=('', port))) as s:
@@ -315,19 +313,24 @@ class TestNetUtils(PsutilTestCase):
                 self.assertNotEqual(client.getsockname(), addr)
 
     @unittest.skipIf(not POSIX, "POSIX only")
-    @unittest.skipIf(NETBSD or FREEBSD,
-                     "/var/run/log UNIX socket opened by default")
+    @unittest.skipIf(
+        NETBSD or FREEBSD, "/var/run/log UNIX socket opened by default"
+    )
     def test_unix_socketpair(self):
         p = psutil.Process()
         num_fds = p.num_fds()
-        assert not p.connections(kind='unix')
+        self.assertEqual(
+            filter_proc_connections(p.connections(kind='unix')), []
+        )
         name = self.get_testfn()
         server, client = unix_socketpair(name)
         try:
             assert os.path.exists(name)
             assert stat.S_ISSOCK(os.stat(name).st_mode)
             self.assertEqual(p.num_fds() - num_fds, 2)
-            self.assertEqual(len(p.connections(kind='unix')), 2)
+            self.assertEqual(
+                len(filter_proc_connections(p.connections(kind='unix'))), 2
+            )
             self.assertEqual(server.getsockname(), name)
             self.assertEqual(client.getpeername(), name)
         finally:
@@ -353,11 +356,11 @@ class TestNetUtils(PsutilTestCase):
 
 @serialrun
 class TestMemLeakClass(TestMemoryLeak):
-
     @retry_on_failure()
     def test_times(self):
         def fun():
             cnt['cnt'] += 1
+
         cnt = {'cnt': 0}
         self.execute(fun, times=10, warmup_times=15)
         self.assertEqual(cnt['cnt'], 26)
@@ -376,12 +379,13 @@ class TestMemLeakClass(TestMemoryLeak):
         ls = []
 
         def fun(ls=ls):
-            ls.append("x" * 24 * 1024)
+            ls.append("x" * 124 * 1024)
 
         try:
-            # will consume around 3M in total
-            self.assertRaisesRegex(AssertionError, "extra-mem",
-                                   self.execute, fun, times=50)
+            # will consume around 30M in total
+            self.assertRaisesRegex(
+                AssertionError, "extra-mem", self.execute, fun, times=50
+            )
         finally:
             del ls
 
@@ -393,33 +397,37 @@ class TestMemLeakClass(TestMemoryLeak):
 
         box = []
         kind = "fd" if POSIX else "handle"
-        self.assertRaisesRegex(AssertionError, "unclosed " + kind,
-                               self.execute, fun)
+        self.assertRaisesRegex(
+            AssertionError, "unclosed " + kind, self.execute, fun
+        )
 
     def test_tolerance(self):
         def fun():
             ls.append("x" * 24 * 1024)
+
         ls = []
         times = 100
-        self.execute(fun, times=times, warmup_times=0,
-                     tolerance=200 * 1024 * 1024)
+        self.execute(
+            fun, times=times, warmup_times=0, tolerance=200 * 1024 * 1024
+        )
         self.assertEqual(len(ls), times + 1)
 
     def test_execute_w_exc(self):
         def fun_1():
-            1 / 0
+            1 / 0  # noqa
+
         self.execute_w_exc(ZeroDivisionError, fun_1)
         with self.assertRaises(ZeroDivisionError):
             self.execute_w_exc(OSError, fun_1)
 
         def fun_2():
             pass
+
         with self.assertRaises(AssertionError):
             self.execute_w_exc(ZeroDivisionError, fun_2)
 
 
 class TestTestingUtils(PsutilTestCase):
-
     def test_process_namespace(self):
         p = psutil.Process()
         ns = process_namespace(p)
@@ -434,7 +442,6 @@ class TestTestingUtils(PsutilTestCase):
 
 
 class TestOtherUtils(PsutilTestCase):
-
     def test_is_namedtuple(self):
         assert is_namedtuple(collections.namedtuple('foo', 'a b c')(1, 2, 3))
         assert not is_namedtuple(tuple())
@@ -442,4 +449,5 @@ class TestOtherUtils(PsutilTestCase):
 
 if __name__ == '__main__':
     from psutil.tests.runner import run_from_name
+
     run_from_name(__file__)

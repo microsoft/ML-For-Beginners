@@ -8,6 +8,11 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
+
 #include "onnx/version_converter/adapters/adapter.h"
 
 namespace ONNX_NAMESPACE {

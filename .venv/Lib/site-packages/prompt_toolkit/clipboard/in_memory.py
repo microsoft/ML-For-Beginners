@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from collections import deque
-from typing import Deque
 
 from .base import Clipboard, ClipboardData
 
@@ -22,7 +21,7 @@ class InMemoryClipboard(Clipboard):
         assert max_size >= 1
 
         self.max_size = max_size
-        self._ring: Deque[ClipboardData] = deque()
+        self._ring: deque[ClipboardData] = deque()
 
         if data is not None:
             self.set_data(data)

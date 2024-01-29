@@ -1,3 +1,4 @@
+from statsmodels.compat.pandas import FUTURE_STACK
 from statsmodels.compat.python import lzip
 
 import datetime
@@ -416,7 +417,7 @@ def _col_params(result, float_format='%.4f', stars=True, include_r2=False):
         res.loc[idx, res.columns[0]] = res.loc[idx, res.columns[0]] + '*'
     # Stack Coefs and Std.Errors
     res = res.iloc[:, :2]
-    res = res.stack()
+    res = res.stack(**FUTURE_STACK)
 
     # Add R-squared
     if include_r2:
@@ -520,10 +521,21 @@ def summary_col(results, float_format='%.4f', model_names=(), stars=False,
         cols[i].columns = [colnames[i]]
 
     def merg(x, y):
-        return x.merge(y, how='outer', right_index=True,
-                       left_index=True)
+        return x.merge(y, how='outer', right_index=True, left_index=True)
+
+    # Changes due to how pandas 2.2.0 handles merge
+    index = list(cols[0].index)
+    for col in cols[1:]:
+        for key in col.index:
+            if key not in index:
+                index.append(key)
+    for special in (('R-squared', ''), ('R-squared Adj.', '')):
+        if special in index:
+            index.remove(special)
+            index.insert(len(index), special)
 
     summ = reduce(merg, cols)
+    summ = summ.reindex(index)
 
     if regressor_order:
         varnames = summ.index.get_level_values(0).tolist()
@@ -538,7 +550,7 @@ def summary_col(results, float_format='%.4f', model_names=(), stars=False,
         if drop_omitted:
             for uo in unordered:
                 new_order.remove(uo)
-        summ = summ.loc[new_order]
+        summ = summ.reindex(new_order, level=0)
 
     idx = []
     index = summ.index.get_level_values(0)
@@ -560,10 +572,6 @@ def summary_col(results, float_format='%.4f', model_names=(), stars=False,
     # use unique column names, otherwise the merge will not succeed
     for df, name in zip(cols, _make_unique([df.columns[0] for df in cols])):
         df.columns = [name]
-
-    def merg(x, y):
-        return x.merge(y, how='outer', right_index=True,
-                       left_index=True)
 
     info = reduce(merg, cols)
     dat = pd.DataFrame(np.vstack([summ, info]))  # pd.concat better, but error

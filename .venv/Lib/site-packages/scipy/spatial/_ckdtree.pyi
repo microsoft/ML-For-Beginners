@@ -1,11 +1,9 @@
+from __future__ import annotations
 from typing import (
     Any,
     Generic,
-    Optional,
     overload,
-    Tuple,
     TypeVar,
-    Union,
 )
 
 import numpy as np
@@ -19,19 +17,9 @@ _BoxType = TypeVar("_BoxType", None, npt.NDArray[np.float64])
 
 # Copied from `numpy.typing._scalar_like._ScalarLike`
 # TODO: Expand with 0D arrays once we have shape support
-_ArrayLike0D = Union[
-    bool,
-    int,
-    float,
-    complex,
-    str,
-    bytes,
-    np.generic,
-]
-_WeightType = Union[
-    npt.ArrayLike,
-    Tuple[Optional[npt.ArrayLike], Optional[npt.ArrayLike]],
-]
+_ArrayLike0D = bool | int | float | complex | str | bytes | np.generic
+
+_WeightType = npt.ArrayLike | tuple[npt.ArrayLike | None, npt.ArrayLike | None]
 
 class cKDTreeNode:
     @property

@@ -18,6 +18,7 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import re
 
@@ -60,7 +61,7 @@ class XbmImageFile(ImageFile.ImageFile):
         if m.group("hotspot"):
             self.info["hotspot"] = (int(m.group("xhot")), int(m.group("yhot")))
 
-        self.mode = "1"
+        self._mode = "1"
         self._size = xsize, ysize
 
         self.tile = [("xbm", (0, 0) + self.size, m.end(), None)]

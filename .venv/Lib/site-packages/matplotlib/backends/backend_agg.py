@@ -23,7 +23,6 @@ Still TODO:
 
 from contextlib import nullcontext
 from math import radians, cos, sin
-import threading
 
 import numpy as np
 
@@ -62,19 +61,6 @@ class RendererAgg(RendererBase):
     context instance that controls the colors/styles
     """
 
-    # we want to cache the fonts at the class level so that when
-    # multiple figures are created we can reuse them.  This helps with
-    # a bug on windows where the creation of too many figures leads to
-    # too many open file handles.  However, storing them at the class
-    # level is not thread safe.  The solution here is to let the
-    # FigureCanvas acquire a lock on the fontd at the start of the
-    # draw, and release it when it is done.  This allows multiple
-    # renderers to share the cached fonts, but only one figure can
-    # draw at time and so the font cache is used by only one
-    # renderer at a time.
-
-    lock = threading.RLock()
-
     def __init__(self, width, height, dpi):
         super().__init__()
 
@@ -85,7 +71,7 @@ class RendererAgg(RendererBase):
         self._filter_renderers = []
 
         self._update_methods()
-        self.mathtext_parser = MathTextParser('Agg')
+        self.mathtext_parser = MathTextParser('agg')
 
         self.bbox = Bbox.from_bounds(0, 0, self.width, self.height)
 
@@ -147,9 +133,9 @@ class RendererAgg(RendererBase):
             except OverflowError:
                 cant_chunk = ''
                 if rgbFace is not None:
-                    cant_chunk += "- can not split filled path\n"
+                    cant_chunk += "- cannot split filled path\n"
                 if gc.get_hatch() is not None:
-                    cant_chunk += "- can not split hatched path\n"
+                    cant_chunk += "- cannot split hatched path\n"
                 if not path.should_simplify:
                     cant_chunk += "- path.should_simplify is False\n"
                 if len(cant_chunk):
@@ -157,7 +143,7 @@ class RendererAgg(RendererBase):
                         "Exceeded cell block limit in Agg, however for the "
                         "following reasons:\n\n"
                         f"{cant_chunk}\n"
-                        "we can not automatically split up this path to draw."
+                        "we cannot automatically split up this path to draw."
                         "\n\nPlease manually simplify your path."
                     )
 
@@ -189,7 +175,8 @@ class RendererAgg(RendererBase):
     def draw_mathtext(self, gc, x, y, s, prop, angle):
         """Draw mathtext using :mod:`matplotlib.mathtext`."""
         ox, oy, width, height, descent, font_image = \
-            self.mathtext_parser.parse(s, self.dpi, prop)
+            self.mathtext_parser.parse(s, self.dpi, prop,
+                                       antialiased=gc.get_antialiased())
 
         xd = descent * sin(radians(angle))
         yd = descent * cos(radians(angle))
@@ -206,7 +193,7 @@ class RendererAgg(RendererBase):
         # space) in the following call to draw_text_image).
         font.set_text(s, 0, flags=get_hinting_flag())
         font.draw_glyphs_to_bitmap(
-            antialiased=mpl.rcParams['text.antialiased'])
+            antialiased=gc.get_antialiased())
         d = font.get_descent() / 64.0
         # The descent needs to be adjusted for the angle.
         xo, yo = font.get_bitmap_offset()
@@ -280,6 +267,7 @@ class RendererAgg(RendererBase):
     def tostring_argb(self):
         return np.asarray(self._renderer).take([3, 0, 1, 2], axis=2).tobytes()
 
+    @_api.deprecated("3.8", alternative="buffer_rgba")
     def tostring_rgb(self):
         return np.asarray(self._renderer).take([0, 1, 2], axis=2).tobytes()
 
@@ -344,8 +332,9 @@ class RendererAgg(RendererBase):
 
     def stop_filter(self, post_processing):
         """
-        Save the plot in the current canvas as an image and apply
-        the *post_processing* function.
+        Save the current canvas as an image and apply post processing.
+
+        The *post_processing* function::
 
            def post_processing(image, dpi):
              # ny, nx, depth = image.shape
@@ -394,26 +383,23 @@ class FigureCanvasAgg(FigureCanvasBase):
         self.renderer = self.get_renderer()
         self.renderer.clear()
         # Acquire a lock on the shared font cache.
-        with RendererAgg.lock, \
-             (self.toolbar._wait_cursor_for_draw_cm() if self.toolbar
+        with (self.toolbar._wait_cursor_for_draw_cm() if self.toolbar
               else nullcontext()):
             self.figure.draw(self.renderer)
             # A GUI class may be need to update a window using this draw, so
             # don't forget to call the superclass.
             super().draw()
 
-    @_api.delete_parameter("3.6", "cleared", alternative="renderer.clear()")
-    def get_renderer(self, cleared=False):
+    def get_renderer(self):
         w, h = self.figure.bbox.size
         key = w, h, self.figure.dpi
         reuse_renderer = (self._lastKey == key)
         if not reuse_renderer:
             self.renderer = RendererAgg(w, h, self.figure.dpi)
             self._lastKey = key
-        elif cleared:
-            self.renderer.clear()
         return self.renderer
 
+    @_api.deprecated("3.8", alternative="buffer_rgba")
     def tostring_rgb(self):
         """
         Get the image as RGB `bytes`.
@@ -441,7 +427,9 @@ class FigureCanvasAgg(FigureCanvasBase):
         """
         return self.renderer.buffer_rgba()
 
-    def print_raw(self, filename_or_obj):
+    def print_raw(self, filename_or_obj, *, metadata=None):
+        if metadata is not None:
+            raise ValueError("metadata not supported for raw/rgba")
         FigureCanvasAgg.draw(self)
         renderer = self.get_renderer()
         with cbook.open_file_cm(filename_or_obj, "wb") as fh:
@@ -518,22 +506,22 @@ class FigureCanvasAgg(FigureCanvasBase):
     # print_figure(), and the latter ensures that `self.figure.dpi` already
     # matches the dpi kwarg (if any).
 
-    def print_jpg(self, filename_or_obj, *, pil_kwargs=None):
+    def print_jpg(self, filename_or_obj, *, metadata=None, pil_kwargs=None):
         # savefig() has already applied savefig.facecolor; we now set it to
         # white to make imsave() blend semi-transparent figures against an
         # assumed white background.
         with mpl.rc_context({"savefig.facecolor": "white"}):
-            self._print_pil(filename_or_obj, "jpeg", pil_kwargs)
+            self._print_pil(filename_or_obj, "jpeg", pil_kwargs, metadata)
 
     print_jpeg = print_jpg
 
-    def print_tif(self, filename_or_obj, *, pil_kwargs=None):
-        self._print_pil(filename_or_obj, "tiff", pil_kwargs)
+    def print_tif(self, filename_or_obj, *, metadata=None, pil_kwargs=None):
+        self._print_pil(filename_or_obj, "tiff", pil_kwargs, metadata)
 
     print_tiff = print_tif
 
-    def print_webp(self, filename_or_obj, *, pil_kwargs=None):
-        self._print_pil(filename_or_obj, "webp", pil_kwargs)
+    def print_webp(self, filename_or_obj, *, metadata=None, pil_kwargs=None):
+        self._print_pil(filename_or_obj, "webp", pil_kwargs, metadata)
 
     print_jpg.__doc__, print_tif.__doc__, print_webp.__doc__ = map(
         """

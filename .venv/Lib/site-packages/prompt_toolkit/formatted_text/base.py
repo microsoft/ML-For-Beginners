@@ -86,7 +86,7 @@ def to_formatted_text(
     else:
         raise ValueError(
             "No formatted text. Expecting a unicode object, "
-            "HTML, ANSI or a FormattedText instance. Got %r" % (value,)
+            f"HTML, ANSI or a FormattedText instance. Got {value!r}"
         )
 
     # Apply extra style.

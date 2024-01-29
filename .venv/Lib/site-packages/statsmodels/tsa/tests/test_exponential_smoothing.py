@@ -1,6 +1,7 @@
 """
 Author: Samuel Scherrer
 """
+from statsmodels.compat.pandas import QUARTER_END
 from statsmodels.compat.platform import PLATFORM_LINUX32, PLATFORM_WIN
 
 from itertools import product
@@ -220,7 +221,7 @@ def austourists():
         61.09776802,
         66.05576122,
     ]
-    index = pd.date_range("1999-01-01", "2015-12-31", freq="Q")
+    index = pd.date_range("1999-01-01", "2015-12-31", freq=QUARTER_END)
     return pd.Series(data, index)
 
 
@@ -279,7 +280,7 @@ def oildata():
         549.8338076,
         542.3404698,
     ]
-    return pd.Series(data, index=pd.date_range("1965", "2013", freq="AS"))
+    return pd.Series(data, index=pd.date_range("1965", "2013", freq="YS"))
 
 
 #############################################################################

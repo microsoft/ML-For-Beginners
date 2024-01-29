@@ -1,3 +1,5 @@
+from statsmodels.compat.pandas import QUARTER_END
+
 import datetime as dt
 
 import numpy as np
@@ -474,7 +476,7 @@ def test_from_estimation(d, seasonal):
     ar = [0.8] if not seasonal else [0.8, 0, 0, 0.2, -0.16]
     ma = [0.4] if not seasonal else [0.4, 0, 0, 0.2, -0.08]
     ap = ArmaProcess.from_coeffs(ar, ma, 500)
-    idx = pd.date_range(dt.datetime(1900, 1, 1), periods=500, freq="Q")
+    idx = pd.date_range(dt.datetime(1900, 1, 1), periods=500, freq=QUARTER_END)
     data = ap.generate_sample(500)
     if d == 1:
         data = np.cumsum(data)

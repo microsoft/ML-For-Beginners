@@ -36,23 +36,32 @@ import warnings
 from tornado.gen import convert_yielded
 from tornado.ioloop import IOLoop, _Selectable
 
-from typing import Any, TypeVar, Awaitable, Callable, Union, Optional, List, Dict
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Protocol,
+    Set,
+    Tuple,
+    TypeVar,
+    Union,
+)
 
-if typing.TYPE_CHECKING:
-    from typing import Set, Tuple  # noqa: F401
-    from typing_extensions import Protocol
 
-    class _HasFileno(Protocol):
-        def fileno(self) -> int:
-            pass
+class _HasFileno(Protocol):
+    def fileno(self) -> int:
+        pass
 
-    _FileDescriptorLike = Union[int, _HasFileno]
+
+_FileDescriptorLike = Union[int, _HasFileno]
 
 _T = TypeVar("_T")
 
 
 # Collection of selector thread event loops to shut down on exit.
-_selector_loops = set()  # type: Set[AddThreadSelectorEventLoop]
+_selector_loops: Set["SelectorThread"] = set()
 
 
 def _atexit_callback() -> None:
@@ -64,11 +73,12 @@ def _atexit_callback() -> None:
             loop._waker_w.send(b"a")
         except BlockingIOError:
             pass
-        # If we don't join our (daemon) thread here, we may get a deadlock
-        # during interpreter shutdown. I don't really understand why. This
-        # deadlock happens every time in CI (both travis and appveyor) but
-        # I've never been able to reproduce locally.
-        loop._thread.join()
+        if loop._thread is not None:
+            # If we don't join our (daemon) thread here, we may get a deadlock
+            # during interpreter shutdown. I don't really understand why. This
+            # deadlock happens every time in CI (both travis and appveyor) but
+            # I've never been able to reproduce locally.
+            loop._thread.join()
     _selector_loops.clear()
 
 
@@ -87,16 +97,16 @@ class BaseAsyncIOLoop(IOLoop):
         # as windows where the default event loop does not implement these methods.
         self.selector_loop = asyncio_loop
         if hasattr(asyncio, "ProactorEventLoop") and isinstance(
-            asyncio_loop, asyncio.ProactorEventLoop  # type: ignore
+            asyncio_loop, asyncio.ProactorEventLoop
         ):
             # Ignore this line for mypy because the abstract method checker
             # doesn't understand dynamic proxies.
             self.selector_loop = AddThreadSelectorEventLoop(asyncio_loop)  # type: ignore
         # Maps fd to (fileobj, handler function) pair (as in IOLoop.add_handler)
-        self.handlers = {}  # type: Dict[int, Tuple[Union[int, _Selectable], Callable]]
+        self.handlers: Dict[int, Tuple[Union[int, _Selectable], Callable]] = {}
         # Set of fds listening for reads/writes
-        self.readers = set()  # type: Set[int]
-        self.writers = set()  # type: Set[int]
+        self.readers: Set[int] = set()
+        self.writers: Set[int] = set()
         self.closing = False
         # If an asyncio loop was closed through an asyncio interface
         # instead of IOLoop.close(), we'd never hear about it and may
@@ -239,6 +249,7 @@ class BaseAsyncIOLoop(IOLoop):
     def add_callback_from_signal(
         self, callback: Callable, *args: Any, **kwargs: Any
     ) -> None:
+        warnings.warn("add_callback_from_signal is deprecated", DeprecationWarning)
         try:
             self.asyncio_loop.call_soon_threadsafe(
                 self._run_callback, functools.partial(callback, *args, **kwargs)
@@ -251,7 +262,7 @@ class BaseAsyncIOLoop(IOLoop):
         executor: Optional[concurrent.futures.Executor],
         func: Callable[..., _T],
         *args: Any,
-    ) -> Awaitable[_T]:
+    ) -> "asyncio.Future[_T]":
         return self.asyncio_loop.run_in_executor(executor, func, *args)
 
     def set_default_executor(self, executor: concurrent.futures.Executor) -> None:
@@ -417,87 +428,51 @@ class AnyThreadEventLoopPolicy(_BasePolicy):  # type: ignore
     def get_event_loop(self) -> asyncio.AbstractEventLoop:
         try:
             return super().get_event_loop()
-        except (RuntimeError, AssertionError):
-            # This was an AssertionError in Python 3.4.2 (which ships with Debian Jessie)
-            # and changed to a RuntimeError in 3.4.3.
+        except RuntimeError:
             # "There is no current event loop in thread %r"
             loop = self.new_event_loop()
             self.set_event_loop(loop)
             return loop
 
 
-class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
-    """Wrap an event loop to add implementations of the ``add_reader`` method family.
+class SelectorThread:
+    """Define ``add_reader`` methods to be called in a background select thread.
 
     Instances of this class start a second thread to run a selector.
-    This thread is completely hidden from the user; all callbacks are
-    run on the wrapped event loop's thread.
+    This thread is completely hidden from the user;
+    all callbacks are run on the wrapped event loop's thread.
 
-    This class is used automatically by Tornado; applications should not need
-    to refer to it directly.
-
-    It is safe to wrap any event loop with this class, although it only makes sense
-    for event loops that do not implement the ``add_reader`` family of methods
-    themselves (i.e. ``WindowsProactorEventLoop``)
-
-    Closing the ``AddThreadSelectorEventLoop`` also closes the wrapped event loop.
-
+    Typically used via ``AddThreadSelectorEventLoop``,
+    but can be attached to a running asyncio loop.
     """
 
-    # This class is a __getattribute__-based proxy. All attributes other than those
-    # in this set are proxied through to the underlying loop.
-    MY_ATTRIBUTES = {
-        "_consume_waker",
-        "_select_cond",
-        "_select_args",
-        "_closing_selector",
-        "_thread",
-        "_handle_event",
-        "_readers",
-        "_real_loop",
-        "_start_select",
-        "_run_select",
-        "_handle_select",
-        "_wake_selector",
-        "_waker_r",
-        "_waker_w",
-        "_writers",
-        "add_reader",
-        "add_writer",
-        "close",
-        "remove_reader",
-        "remove_writer",
-    }
-
-    def __getattribute__(self, name: str) -> Any:
-        if name in AddThreadSelectorEventLoop.MY_ATTRIBUTES:
-            return super().__getattribute__(name)
-        return getattr(self._real_loop, name)
+    _closed = False
 
     def __init__(self, real_loop: asyncio.AbstractEventLoop) -> None:
         self._real_loop = real_loop
 
-        # Create a thread to run the select system call. We manage this thread
-        # manually so we can trigger a clean shutdown from an atexit hook. Note
-        # that due to the order of operations at shutdown, only daemon threads
-        # can be shut down in this way (non-daemon threads would require the
-        # introduction of a new hook: https://bugs.python.org/issue41962)
         self._select_cond = threading.Condition()
-        self._select_args = (
-            None
-        )  # type: Optional[Tuple[List[_FileDescriptorLike], List[_FileDescriptorLike]]]
+        self._select_args: Optional[
+            Tuple[List[_FileDescriptorLike], List[_FileDescriptorLike]]
+        ] = None
         self._closing_selector = False
-        self._thread = threading.Thread(
-            name="Tornado selector",
-            daemon=True,
-            target=self._run_select,
-        )
-        self._thread.start()
-        # Start the select loop once the loop is started.
-        self._real_loop.call_soon(self._start_select)
+        self._thread: Optional[threading.Thread] = None
+        self._thread_manager_handle = self._thread_manager()
 
-        self._readers = {}  # type: Dict[_FileDescriptorLike, Callable]
-        self._writers = {}  # type: Dict[_FileDescriptorLike, Callable]
+        async def thread_manager_anext() -> None:
+            # the anext builtin wasn't added until 3.10. We just need to iterate
+            # this generator one step.
+            await self._thread_manager_handle.__anext__()
+
+        # When the loop starts, start the thread. Not too soon because we can't
+        # clean up if we get to this point but the event loop is closed without
+        # starting.
+        self._real_loop.call_soon(
+            lambda: self._real_loop.create_task(thread_manager_anext())
+        )
+
+        self._readers: Dict[_FileDescriptorLike, Callable] = {}
+        self._writers: Dict[_FileDescriptorLike, Callable] = {}
 
         # Writing to _waker_w will wake up the selector thread, which
         # watches for _waker_r to be readable.
@@ -507,28 +482,49 @@ class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
         _selector_loops.add(self)
         self.add_reader(self._waker_r, self._consume_waker)
 
-    def __del__(self) -> None:
-        # If the top-level application code uses asyncio interfaces to
-        # start and stop the event loop, no objects created in Tornado
-        # can get a clean shutdown notification. If we're just left to
-        # be GC'd, we must explicitly close our sockets to avoid
-        # logging warnings.
-        _selector_loops.discard(self)
-        self._waker_r.close()
-        self._waker_w.close()
-
     def close(self) -> None:
+        if self._closed:
+            return
         with self._select_cond:
             self._closing_selector = True
             self._select_cond.notify()
         self._wake_selector()
-        self._thread.join()
+        if self._thread is not None:
+            self._thread.join()
         _selector_loops.discard(self)
+        self.remove_reader(self._waker_r)
         self._waker_r.close()
         self._waker_w.close()
-        self._real_loop.close()
+        self._closed = True
+
+    async def _thread_manager(self) -> typing.AsyncGenerator[None, None]:
+        # Create a thread to run the select system call. We manage this thread
+        # manually so we can trigger a clean shutdown from an atexit hook. Note
+        # that due to the order of operations at shutdown, only daemon threads
+        # can be shut down in this way (non-daemon threads would require the
+        # introduction of a new hook: https://bugs.python.org/issue41962)
+        self._thread = threading.Thread(
+            name="Tornado selector",
+            daemon=True,
+            target=self._run_select,
+        )
+        self._thread.start()
+        self._start_select()
+        try:
+            # The presense of this yield statement means that this coroutine
+            # is actually an asynchronous generator, which has a special
+            # shutdown protocol. We wait at this yield point until the
+            # event loop's shutdown_asyncgens method is called, at which point
+            # we will get a GeneratorExit exception and can shut down the
+            # selector thread.
+            yield
+        except GeneratorExit:
+            self.close()
+            raise
 
     def _wake_selector(self) -> None:
+        if self._closed:
+            return
         try:
             self._waker_w.send(b"a")
         except BlockingIOError:
@@ -614,7 +610,7 @@ class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
                 pass
 
     def _handle_select(
-        self, rs: List["_FileDescriptorLike"], ws: List["_FileDescriptorLike"]
+        self, rs: List[_FileDescriptorLike], ws: List[_FileDescriptorLike]
     ) -> None:
         for r in rs:
             self._handle_event(r, self._readers)
@@ -624,8 +620,8 @@ class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
 
     def _handle_event(
         self,
-        fd: "_FileDescriptorLike",
-        cb_map: Dict["_FileDescriptorLike", Callable],
+        fd: _FileDescriptorLike,
+        cb_map: Dict[_FileDescriptorLike, Callable],
     ) -> None:
         try:
             callback = cb_map[fd]
@@ -634,18 +630,18 @@ class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
         callback()
 
     def add_reader(
-        self, fd: "_FileDescriptorLike", callback: Callable[..., None], *args: Any
+        self, fd: _FileDescriptorLike, callback: Callable[..., None], *args: Any
     ) -> None:
         self._readers[fd] = functools.partial(callback, *args)
         self._wake_selector()
 
     def add_writer(
-        self, fd: "_FileDescriptorLike", callback: Callable[..., None], *args: Any
+        self, fd: _FileDescriptorLike, callback: Callable[..., None], *args: Any
     ) -> None:
         self._writers[fd] = functools.partial(callback, *args)
         self._wake_selector()
 
-    def remove_reader(self, fd: "_FileDescriptorLike") -> bool:
+    def remove_reader(self, fd: _FileDescriptorLike) -> bool:
         try:
             del self._readers[fd]
         except KeyError:
@@ -653,10 +649,70 @@ class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
         self._wake_selector()
         return True
 
-    def remove_writer(self, fd: "_FileDescriptorLike") -> bool:
+    def remove_writer(self, fd: _FileDescriptorLike) -> bool:
         try:
             del self._writers[fd]
         except KeyError:
             return False
         self._wake_selector()
         return True
+
+
+class AddThreadSelectorEventLoop(asyncio.AbstractEventLoop):
+    """Wrap an event loop to add implementations of the ``add_reader`` method family.
+
+    Instances of this class start a second thread to run a selector.
+    This thread is completely hidden from the user; all callbacks are
+    run on the wrapped event loop's thread.
+
+    This class is used automatically by Tornado; applications should not need
+    to refer to it directly.
+
+    It is safe to wrap any event loop with this class, although it only makes sense
+    for event loops that do not implement the ``add_reader`` family of methods
+    themselves (i.e. ``WindowsProactorEventLoop``)
+
+    Closing the ``AddThreadSelectorEventLoop`` also closes the wrapped event loop.
+
+    """
+
+    # This class is a __getattribute__-based proxy. All attributes other than those
+    # in this set are proxied through to the underlying loop.
+    MY_ATTRIBUTES = {
+        "_real_loop",
+        "_selector",
+        "add_reader",
+        "add_writer",
+        "close",
+        "remove_reader",
+        "remove_writer",
+    }
+
+    def __getattribute__(self, name: str) -> Any:
+        if name in AddThreadSelectorEventLoop.MY_ATTRIBUTES:
+            return super().__getattribute__(name)
+        return getattr(self._real_loop, name)
+
+    def __init__(self, real_loop: asyncio.AbstractEventLoop) -> None:
+        self._real_loop = real_loop
+        self._selector = SelectorThread(real_loop)
+
+    def close(self) -> None:
+        self._selector.close()
+        self._real_loop.close()
+
+    def add_reader(
+        self, fd: "_FileDescriptorLike", callback: Callable[..., None], *args: Any
+    ) -> None:
+        return self._selector.add_reader(fd, callback, *args)
+
+    def add_writer(
+        self, fd: "_FileDescriptorLike", callback: Callable[..., None], *args: Any
+    ) -> None:
+        return self._selector.add_writer(fd, callback, *args)
+
+    def remove_reader(self, fd: "_FileDescriptorLike") -> bool:
+        return self._selector.remove_reader(fd)
+
+    def remove_writer(self, fd: "_FileDescriptorLike") -> bool:
+        return self._selector.remove_writer(fd)

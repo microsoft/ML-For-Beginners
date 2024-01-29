@@ -9,10 +9,13 @@ import itertools
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 from pandas.compat import (
     IS64,
     is_platform_windows,
 )
+from pandas.compat.numpy import np_version_gt2
 
 import pandas as pd
 import pandas._testing as tm
@@ -111,7 +114,7 @@ class TestSetitemCoercion(CoercionBase):
         "val,exp_dtype", [("x", object), (5, IndexError), (1.1, object)]
     )
     def test_setitem_index_object(self, val, exp_dtype):
-        obj = pd.Series([1, 2, 3, 4], index=list("abcd"))
+        obj = pd.Series([1, 2, 3, 4], index=pd.Index(list("abcd"), dtype=object))
         assert obj.index.dtype == object
 
         if exp_dtype is IndexError:
@@ -122,7 +125,7 @@ class TestSetitemCoercion(CoercionBase):
                 with tm.assert_produces_warning(FutureWarning, match=warn_msg):
                     temp[5] = 5
         else:
-            exp_index = pd.Index(list("abcd") + [val])
+            exp_index = pd.Index(list("abcd") + [val], dtype=object)
             self._assert_setitem_index_conversion(obj, val, exp_index, exp_dtype)
 
     @pytest.mark.parametrize(
@@ -195,10 +198,10 @@ class TestInsertIndexCoercion(CoercionBase):
         ],
     )
     def test_insert_index_object(self, insert, coerced_val, coerced_dtype):
-        obj = pd.Index(list("abcd"))
+        obj = pd.Index(list("abcd"), dtype=object)
         assert obj.dtype == object
 
-        exp = pd.Index(["a", coerced_val, "b", "c", "d"])
+        exp = pd.Index(["a", coerced_val, "b", "c", "d"], dtype=object)
         self._assert_insert_conversion(obj, insert, exp, coerced_dtype)
 
     @pytest.mark.parametrize(
@@ -224,6 +227,8 @@ class TestInsertIndexCoercion(CoercionBase):
         "insert, coerced_val, coerced_dtype",
         [
             (1, 1.0, None),
+            # When float_numpy_dtype=float32, this is not the case
+            # see the correction below
             (1.1, 1.1, np.float64),
             (False, False, object),  # GH#36319
             ("x", "x", object),
@@ -236,6 +241,10 @@ class TestInsertIndexCoercion(CoercionBase):
         obj = pd.Index([1.0, 2.0, 3.0, 4.0], dtype=dtype)
         coerced_dtype = coerced_dtype if coerced_dtype is not None else dtype
 
+        if np_version_gt2 and dtype == "float32" and coerced_val == 1.1:
+            # Hack, in the 2nd test case, since 1.1 can be losslessly cast to float32
+            # the expected dtype will be float32 if the original dtype was float32
+            coerced_dtype = np.float32
         exp = pd.Index([1.0, coerced_val, 2.0, 3.0, 4.0], dtype=coerced_dtype)
         self._assert_insert_conversion(obj, insert, exp, coerced_dtype)
 
@@ -254,13 +263,13 @@ class TestInsertIndexCoercion(CoercionBase):
     def test_insert_index_datetimes(self, fill_val, exp_dtype, insert_value):
         obj = pd.DatetimeIndex(
             ["2011-01-01", "2011-01-02", "2011-01-03", "2011-01-04"], tz=fill_val.tz
-        )
+        ).as_unit("ns")
         assert obj.dtype == exp_dtype
 
         exp = pd.DatetimeIndex(
             ["2011-01-01", fill_val.date(), "2011-01-02", "2011-01-03", "2011-01-04"],
             tz=fill_val.tz,
-        )
+        ).as_unit("ns")
         self._assert_insert_conversion(obj, fill_val, exp, exp_dtype)
 
         if fill_val.tz:
@@ -397,7 +406,7 @@ class TestWhereCoercion(CoercionBase):
     )
     def test_where_object(self, index_or_series, fill_val, exp_dtype):
         klass = index_or_series
-        obj = klass(list("abcd"))
+        obj = klass(list("abcd"), dtype=object)
         assert obj.dtype == object
         self._run_test(obj, fill_val, klass, exp_dtype)
 
@@ -442,8 +451,8 @@ class TestWhereCoercion(CoercionBase):
         "fill_val,exp_dtype",
         [(1, object), (1.1, object), (1 + 1j, object), (True, np.bool_)],
     )
-    def test_where_series_bool(self, fill_val, exp_dtype):
-        klass = pd.Series  # TODO: use index_or_series once we have Index[bool]
+    def test_where_series_bool(self, index_or_series, fill_val, exp_dtype):
+        klass = index_or_series
 
         obj = klass([True, False, True, False])
         assert obj.dtype == np.bool_
@@ -559,10 +568,10 @@ class TestFillnaSeriesCoercion(CoercionBase):
     )
     def test_fillna_object(self, index_or_series, fill_val, fill_dtype):
         klass = index_or_series
-        obj = klass(["a", np.nan, "c", "d"])
+        obj = klass(["a", np.nan, "c", "d"], dtype=object)
         assert obj.dtype == object
 
-        exp = klass(["a", fill_val, "c", "d"])
+        exp = klass(["a", fill_val, "c", "d"], dtype=object)
         self._assert_fillna_conversion(obj, fill_val, exp, fill_dtype)
 
     @pytest.mark.parametrize(
@@ -824,6 +833,8 @@ class TestReplaceSeriesCoercion(CoercionBase):
             raise ValueError
         return replacer
 
+    # Expected needs adjustment for the infer string option, seems to work as expecetd
+    @pytest.mark.skipif(using_pyarrow_string_dtype(), reason="TODO: test is to complex")
     def test_replace_series(self, how, to_key, from_key, replacer):
         index = pd.Index([3, 4], name="xxx")
         obj = pd.Series(self.rep[from_key], index=index, name="yyy")
@@ -835,8 +846,6 @@ class TestReplaceSeriesCoercion(CoercionBase):
         elif from_key in ["datetime64[ns, US/Eastern]", "datetime64[ns, UTC]"]:
             # tested below
             return
-
-        result = obj.replace(replacer)
 
         if (from_key == "float64" and to_key in ("int64")) or (
             from_key == "complex128" and to_key in ("int64", "float64")
@@ -851,6 +860,17 @@ class TestReplaceSeriesCoercion(CoercionBase):
             exp = pd.Series(self.rep[to_key], index=index, name="yyy")
             assert exp.dtype == to_key
 
+        msg = "Downcasting behavior in `replace`"
+        warn = FutureWarning
+        if (
+            exp.dtype == obj.dtype
+            or exp.dtype == object
+            or (exp.dtype.kind in "iufc" and obj.dtype.kind in "iufc")
+        ):
+            warn = None
+        with tm.assert_produces_warning(warn, match=msg):
+            result = obj.replace(replacer)
+
         tm.assert_series_equal(result, exp)
 
     @pytest.mark.parametrize(
@@ -861,15 +881,23 @@ class TestReplaceSeriesCoercion(CoercionBase):
     @pytest.mark.parametrize(
         "from_key", ["datetime64[ns, UTC]", "datetime64[ns, US/Eastern]"], indirect=True
     )
-    def test_replace_series_datetime_tz(self, how, to_key, from_key, replacer):
+    def test_replace_series_datetime_tz(
+        self, how, to_key, from_key, replacer, using_infer_string
+    ):
         index = pd.Index([3, 4], name="xyz")
         obj = pd.Series(self.rep[from_key], index=index, name="yyy")
         assert obj.dtype == from_key
 
-        result = obj.replace(replacer)
-
         exp = pd.Series(self.rep[to_key], index=index, name="yyy")
-        assert exp.dtype == to_key
+        if using_infer_string and to_key == "object":
+            assert exp.dtype == "string"
+        else:
+            assert exp.dtype == to_key
+
+        msg = "Downcasting behavior in `replace`"
+        warn = FutureWarning if exp.dtype != object else None
+        with tm.assert_produces_warning(warn, match=msg):
+            result = obj.replace(replacer)
 
         tm.assert_series_equal(result, exp)
 
@@ -888,16 +916,22 @@ class TestReplaceSeriesCoercion(CoercionBase):
         obj = pd.Series(self.rep[from_key], index=index, name="yyy")
         assert obj.dtype == from_key
 
-        result = obj.replace(replacer)
-
         exp = pd.Series(self.rep[to_key], index=index, name="yyy")
+        warn = FutureWarning
         if isinstance(obj.dtype, pd.DatetimeTZDtype) and isinstance(
             exp.dtype, pd.DatetimeTZDtype
         ):
             # with mismatched tzs, we retain the original dtype as of 2.0
             exp = exp.astype(obj.dtype)
+            warn = None
         else:
             assert exp.dtype == to_key
+            if to_key == from_key:
+                warn = None
+
+        msg = "Downcasting behavior in `replace`"
+        with tm.assert_produces_warning(warn, match=msg):
+            result = obj.replace(replacer)
 
         tm.assert_series_equal(result, exp)
 

@@ -1,11 +1,10 @@
 from __future__ import annotations
 
+import json
 from typing import (
     TYPE_CHECKING,
     Any,
 )
-
-from pandas._libs import json
 
 from pandas.io.excel._base import ExcelWriter
 from pandas.io.excel._util import (
@@ -262,7 +261,7 @@ class XlsxWriter(ExcelWriter):
         for cell in cells:
             val, fmt = self._value_with_fmt(cell.val)
 
-            stylekey = json.ujson_dumps(cell.style)
+            stylekey = json.dumps(cell.style)
             if fmt:
                 stylekey += fmt
 

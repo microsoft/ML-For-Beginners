@@ -175,7 +175,7 @@ def _linprog_highs(lp, solver, time_limit=None, presolve=True,
         until the computation is too costly or inexact and then switches to
         the devex method.
 
-        Curently, using ``None`` always selects ``'steepest-devex'``, but this
+        Currently, using ``None`` always selects ``'steepest-devex'``, but this
         may change as new options become available.
 
     mip_max_nodes : int
@@ -326,7 +326,7 @@ def _linprog_highs(lp, solver, time_limit=None, presolve=True,
     with np.errstate(invalid="ignore"):
         lhs_ub = -np.ones_like(b_ub)*np.inf  # LHS of UB constraints is -inf
     rhs_ub = b_ub  # RHS of UB constraints is b_ub
-    lhs_eq = b_eq  # Equality constaint is inequality
+    lhs_eq = b_eq  # Equality constraint is inequality
     rhs_eq = b_eq  # constraint with LHS=RHS
     lhs = np.concatenate((lhs_ub, lhs_eq))
     rhs = np.concatenate((rhs_ub, rhs_eq))

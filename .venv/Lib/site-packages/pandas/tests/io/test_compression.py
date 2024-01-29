@@ -9,6 +9,7 @@ import textwrap
 import time
 import zipfile
 
+import numpy as np
 import pytest
 
 from pandas.compat import is_platform_windows
@@ -142,7 +143,11 @@ def test_compression_binary(compression_only):
 
     GH22555
     """
-    df = tm.makeDataFrame()
+    df = pd.DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=pd.Index(list("ABCD"), dtype=object),
+        index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
 
     # with a file
     with tm.ensure_clean() as path:
@@ -170,7 +175,11 @@ def test_gzip_reproducibility_file_name():
 
     GH 28103
     """
-    df = tm.makeDataFrame()
+    df = pd.DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=pd.Index(list("ABCD"), dtype=object),
+        index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
     compression_options = {"method": "gzip", "mtime": 1}
 
     # test for filename
@@ -189,7 +198,11 @@ def test_gzip_reproducibility_file_object():
 
     GH 28103
     """
-    df = tm.makeDataFrame()
+    df = pd.DataFrame(
+        1.1 * np.arange(120).reshape((30, 4)),
+        columns=pd.Index(list("ABCD"), dtype=object),
+        index=pd.Index([f"i-{i}" for i in range(30)], dtype=object),
+    )
     compression_options = {"method": "gzip", "mtime": 1}
 
     # test for file object

@@ -14,7 +14,7 @@ import numpy as np
 from PIL import Image
 
 import matplotlib as mpl
-from matplotlib import _api, cbook, font_manager as fm
+from matplotlib import cbook, font_manager as fm
 from matplotlib.backend_bases import (
      _Backend, FigureCanvasBase, FigureManagerBase, RendererBase)
 from matplotlib.backends.backend_mixed import MixedModeRenderer
@@ -66,11 +66,6 @@ _log = logging.getLogger(__name__)
 # --------------------------------------------------------------------
 
 
-@_api.deprecated("3.6", alternative="a vendored copy of _escape_cdata")
-def escape_cdata(s):
-    return _escape_cdata(s)
-
-
 def _escape_cdata(s):
     s = s.replace("&", "&amp;")
     s = s.replace("<", "&lt;")
@@ -81,19 +76,9 @@ def _escape_cdata(s):
 _escape_xml_comment = re.compile(r'-(?=-)')
 
 
-@_api.deprecated("3.6", alternative="a vendored copy of _escape_comment")
-def escape_comment(s):
-    return _escape_comment.sub(s)
-
-
 def _escape_comment(s):
     s = _escape_cdata(s)
     return _escape_xml_comment.sub('- ', s)
-
-
-@_api.deprecated("3.6", alternative="a vendored copy of _escape_attrib")
-def escape_attrib(s):
-    return _escape_attrib(s)
 
 
 def _escape_attrib(s):
@@ -111,17 +96,12 @@ def _quote_escape_attrib(s):
             '"' + _escape_attrib(s) + '"')
 
 
-@_api.deprecated("3.6", alternative="a vendored copy of _short_float_fmt")
-def short_float_fmt(x):
-    return _short_float_fmt(x)
-
-
 def _short_float_fmt(x):
     """
     Create a short string representation of a float, which is %f
     formatting with trailing zeros and the decimal point removed.
     """
-    return '{0:f}'.format(x).rstrip('0').rstrip('.')
+    return f'{x:f}'.rstrip('0').rstrip('.')
 
 
 class XMLWriter:
@@ -177,12 +157,12 @@ class XMLWriter:
         self.__data = []
         self.__tags.append(tag)
         self.__write(self.__indentation[:len(self.__tags) - 1])
-        self.__write("<%s" % tag)
+        self.__write(f"<{tag}")
         for k, v in {**attrib, **extra}.items():
             if v:
                 k = _escape_cdata(k)
                 v = _quote_escape_attrib(v)
-                self.__write(' %s=%s' % (k, v))
+                self.__write(f' {k}={v}')
         self.__open = 1
         return len(self.__tags) - 1
 
@@ -197,7 +177,7 @@ class XMLWriter:
         """
         self.__flush()
         self.__write(self.__indentation[:len(self.__tags)])
-        self.__write("<!-- %s -->\n" % _escape_comment(comment))
+        self.__write(f"<!-- {_escape_comment(comment)} -->\n")
 
     def data(self, text):
         """
@@ -220,11 +200,12 @@ class XMLWriter:
         tag
             Element tag.  If given, the tag must match the start tag.  If
             omitted, the current element is closed.
+        indent : bool, default: True
         """
         if tag:
-            assert self.__tags, "unbalanced end(%s)" % tag
+            assert self.__tags, f"unbalanced end({tag})"
             assert _escape_cdata(tag) == self.__tags[-1], \
-                "expected end(%s), got %s" % (self.__tags[-1], tag)
+                f"expected end({self.__tags[-1]}), got {tag}"
         else:
             assert self.__tags, "unbalanced end()"
         tag = self.__tags.pop()
@@ -236,7 +217,7 @@ class XMLWriter:
             return
         if indent:
             self.__write(self.__indentation[:len(self.__tags)])
-        self.__write("</%s>\n" % tag)
+        self.__write(f"</{tag}>\n")
 
     def close(self, id):
         """
@@ -276,23 +257,13 @@ def _generate_transform(transform_list):
             continue
         if type == 'matrix' and isinstance(value, Affine2DBase):
             value = value.to_values()
-        parts.append('%s(%s)' % (
+        parts.append('{}({})'.format(
             type, ' '.join(_short_float_fmt(x) for x in value)))
     return ' '.join(parts)
 
 
-@_api.deprecated("3.6")
-def generate_transform(transform_list=None):
-    return _generate_transform(transform_list or [])
-
-
 def _generate_css(attrib):
     return "; ".join(f"{k}: {v}" for k, v in attrib.items())
-
-
-@_api.deprecated("3.6")
-def generate_css(attrib=None):
-    return _generate_css(attrib or {})
 
 
 _capstyle_d = {'projecting': 'square', 'butt': 'butt', 'round': 'round'}
@@ -345,9 +316,9 @@ class RendererSVG(RendererBase):
         svgwriter.write(svgProlog)
         self._start_id = self.writer.start(
             'svg',
-            width='%spt' % str_width,
-            height='%spt' % str_height,
-            viewBox='0 0 %s %s' % (str_width, str_height),
+            width=f'{str_width}pt',
+            height=f'{str_height}pt',
+            viewBox=f'0 0 {str_width} {str_height}',
             xmlns="http://www.w3.org/2000/svg",
             version="1.1",
             attrib={'xmlns:xlink': "http://www.w3.org/1999/xlink"})
@@ -499,7 +470,7 @@ class RendererSVG(RendererBase):
         m = hashlib.sha256()
         m.update(salt.encode('utf8'))
         m.update(str(content).encode('utf8'))
-        return '%s%s' % (type, m.hexdigest()[:10])
+        return f'{type}{m.hexdigest()[:10]}'
 
     def _make_flip_transform(self, transform):
         return transform + Affine2D().scale(1, -1).translate(0, self.height)
@@ -573,7 +544,7 @@ class RendererSVG(RendererBase):
         forced_alpha = gc.get_forced_alpha()
 
         if gc.get_hatch() is not None:
-            attrib['fill'] = "url(#%s)" % self._get_hatch(gc, rgbFace)
+            attrib['fill'] = f"url(#{self._get_hatch(gc, rgbFace)})"
             if (rgbFace is not None and len(rgbFace) == 4 and rgbFace[3] != 1.0
                     and not forced_alpha):
                 attrib['fill-opacity'] = _short_float_fmt(rgbFace[3])
@@ -666,7 +637,7 @@ class RendererSVG(RendererBase):
             self.writer.start('g', id=gid)
         else:
             self._groupd[s] = self._groupd.get(s, 0) + 1
-            self.writer.start('g', id="%s_%d" % (s, self._groupd[s]))
+            self.writer.start('g', id=f"{s}_{self._groupd[s]:d}")
 
     def close_group(self, s):
         # docstring inherited
@@ -729,7 +700,7 @@ class RendererSVG(RendererBase):
 
         writer.start('g', **self._get_clip_attrs(gc))
         trans_and_flip = self._make_flip_transform(trans)
-        attrib = {'xlink:href': '#%s' % oid}
+        attrib = {'xlink:href': f'#{oid}'}
         clip = (0, 0, self.width*72, self.height*72)
         for vertices, code in path.iter_segments(
                 trans_and_flip, clip=clip, simplify=False):
@@ -769,7 +740,7 @@ class RendererSVG(RendererBase):
                 master_transform, paths, all_transforms)):
             transform = Affine2D(transform.get_matrix()).scale(1.0, -1.0)
             d = self._convert_path(path, transform, simplify=False)
-            oid = 'C%x_%x_%s' % (
+            oid = 'C{:x}_{:x}_{}'.format(
                 self._path_collection_id, i, self._make_id('', d))
             writer.element('path', id=oid, d=d)
             path_codes.append(oid)
@@ -786,7 +757,7 @@ class RendererSVG(RendererBase):
             if clip_attrs:
                 writer.start('g', **clip_attrs)
             attrib = {
-                'xlink:href': '#%s' % path_id,
+                'xlink:href': f'#{path_id}',
                 'x': _short_float_fmt(xo),
                 'y': _short_float_fmt(self.height - yo),
                 'style': self._get_style(gc0, rgbFace)
@@ -870,7 +841,7 @@ class RendererSVG(RendererBase):
 
             writer.start(
                 'linearGradient',
-                id="GR%x_%d" % (self._n_gradients, i),
+                id=f"GR{self._n_gradients:x}_{i:d}",
                 gradientUnits="userSpaceOnUse",
                 x1=_short_float_fmt(x1), y1=_short_float_fmt(y1),
                 x2=_short_float_fmt(xb), y2=_short_float_fmt(yb))
@@ -912,20 +883,20 @@ class RendererSVG(RendererBase):
         writer.element(
             'path',
             attrib={'d': dpath,
-                    'fill': 'url(#GR%x_0)' % self._n_gradients,
+                    'fill': f'url(#GR{self._n_gradients:x}_0)',
                     'shape-rendering': "crispEdges"})
 
         writer.element(
             'path',
             attrib={'d': dpath,
-                    'fill': 'url(#GR%x_1)' % self._n_gradients,
+                    'fill': f'url(#GR{self._n_gradients:x}_1)',
                     'filter': 'url(#colorAdd)',
                     'shape-rendering': "crispEdges"})
 
         writer.element(
             'path',
             attrib={'d': dpath,
-                    'fill': 'url(#GR%x_2)' % self._n_gradients,
+                    'fill': f'url(#GR{self._n_gradients:x}_2)',
                     'filter': 'url(#colorAdd)',
                     'shape-rendering': "crispEdges"})
 
@@ -979,8 +950,7 @@ class RendererSVG(RendererBase):
             if self.basename is None:
                 raise ValueError("Cannot save image data to filesystem when "
                                  "writing SVG to an in-memory buffer")
-            filename = '{}.image{}.png'.format(
-                self.basename, next(self._image_counter))
+            filename = f'{self.basename}.image{next(self._image_counter)}.png'
             _log.info('Writing image file for inclusion: %s', filename)
             Image.fromarray(im).save(filename)
             oid = oid or 'Im_' + self._make_id('image', filename)
@@ -1085,7 +1055,7 @@ class RendererSVG(RendererBase):
             self._update_glyph_map_defs(glyph_map_new)
 
             for glyph_id, xposition, yposition, scale in glyph_info:
-                attrib = {'xlink:href': '#%s' % glyph_id}
+                attrib = {'xlink:href': f'#{glyph_id}'}
                 if xposition != 0.0:
                     attrib['x'] = _short_float_fmt(xposition)
                 if yposition != 0.0:
@@ -1110,7 +1080,7 @@ class RendererSVG(RendererBase):
                         ('translate', (xposition, yposition)),
                         ('scale', (scale,)),
                         ]),
-                    attrib={'xlink:href': '#%s' % char_id})
+                    attrib={'xlink:href': f'#{char_id}'})
 
             for verts, codes in rects:
                 path = Path(verts, codes)

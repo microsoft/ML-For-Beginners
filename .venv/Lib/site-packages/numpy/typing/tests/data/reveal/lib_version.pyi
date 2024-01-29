@@ -1,18 +1,25 @@
+import sys
+
 from numpy.lib import NumpyVersion
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 version = NumpyVersion("1.8.0")
 
-reveal_type(version.vstring)  # E: str
-reveal_type(version.version)  # E: str
-reveal_type(version.major)  # E: int
-reveal_type(version.minor)  # E: int
-reveal_type(version.bugfix)  # E: int
-reveal_type(version.pre_release)  # E: str
-reveal_type(version.is_devversion)  # E: bool
+assert_type(version.vstring, str)
+assert_type(version.version, str)
+assert_type(version.major, int)
+assert_type(version.minor, int)
+assert_type(version.bugfix, int)
+assert_type(version.pre_release, str)
+assert_type(version.is_devversion, bool)
 
-reveal_type(version == version)  # E: bool
-reveal_type(version != version)  # E: bool
-reveal_type(version < "1.8.0")  # E: bool
-reveal_type(version <= version)  # E: bool
-reveal_type(version > version)  # E: bool
-reveal_type(version >= "1.8.0")  # E: bool
+assert_type(version == version, bool)
+assert_type(version != version, bool)
+assert_type(version < "1.8.0", bool)
+assert_type(version <= version, bool)
+assert_type(version > version, bool)
+assert_type(version >= "1.8.0", bool)

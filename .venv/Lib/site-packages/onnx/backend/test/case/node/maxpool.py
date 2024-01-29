@@ -7,8 +7,9 @@ import numpy as np
 import onnx
 from onnx.backend.test.case.base import Base
 from onnx.backend.test.case.node import expect
-from onnx.backend.test.case.node.pool_op_common import (
-    get_output_shape,
+from onnx.reference.ops.op_pool_common import (
+    get_output_shape_auto_pad,
+    get_output_shape_explicit_padding,
     get_pad_shape,
     pool,
 )
@@ -275,11 +276,14 @@ class MaxPool(Base):
         )
         x = np.random.randn(1, 3, 32).astype(np.float32)
         x_shape = np.shape(x)
+        pads = None
         kernel_shape = [2]
         strides = [1]
-        out_shape = get_output_shape("VALID", x_shape[2:], kernel_shape, strides)
+        out_shape, _ = get_output_shape_explicit_padding(
+            pads, x_shape[2:], kernel_shape, strides
+        )
         padded = x
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, [0], "MAX")
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX")
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_1d_default")
 
@@ -297,11 +301,14 @@ class MaxPool(Base):
         )
         x = np.random.randn(1, 3, 32, 32).astype(np.float32)
         x_shape = np.shape(x)
+        pads = None
         kernel_shape = (2, 2)
         strides = (1, 1)
-        out_shape = get_output_shape("VALID", x_shape[2:], kernel_shape, strides)
+        out_shape, _ = get_output_shape_explicit_padding(
+            pads, x_shape[2:], kernel_shape, strides
+        )
         padded = x
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, (0, 0), "MAX")
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX")
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_2d_default")
 
@@ -319,11 +326,14 @@ class MaxPool(Base):
         )
         x = np.random.randn(1, 3, 32, 32, 32).astype(np.float32)
         x_shape = np.shape(x)
+        pads = None
         kernel_shape = [2, 2, 2]
         strides = [1, 1, 1]
-        out_shape = get_output_shape("VALID", x_shape[2:], kernel_shape, strides)
+        out_shape, _ = get_output_shape_explicit_padding(
+            pads, x_shape[2:], kernel_shape, strides
+        )
         padded = x
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, [0, 0, 0], "MAX")
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX")
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_3d_default")
 
@@ -345,7 +355,9 @@ class MaxPool(Base):
         x_shape = np.shape(x)
         kernel_shape = (2, 2)
         strides = (1, 1)
-        out_shape = get_output_shape("SAME_UPPER", x_shape[2:], kernel_shape, strides)
+        out_shape = get_output_shape_auto_pad(
+            "SAME_UPPER", x_shape[2:], kernel_shape, strides
+        )
         pad_shape = get_pad_shape(
             "SAME_UPPER", x_shape[2:], kernel_shape, strides, out_shape
         )
@@ -359,7 +371,8 @@ class MaxPool(Base):
             mode="constant",
             constant_values=np.nan,
         )
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, pad_shape, "MAX")
+        pads = [pad_top, pad_left, pad_bottom, pad_right]
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX", pads)
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_2d_same_upper")
 
@@ -381,7 +394,9 @@ class MaxPool(Base):
         x_shape = np.shape(x)
         kernel_shape = (2, 2)
         strides = (1, 1)
-        out_shape = get_output_shape("SAME_LOWER", x_shape[2:], kernel_shape, strides)
+        out_shape = get_output_shape_auto_pad(
+            "SAME_LOWER", x_shape[2:], kernel_shape, strides
+        )
         pad_shape = get_pad_shape(
             "SAME_LOWER", x_shape[2:], kernel_shape, strides, out_shape
         )
@@ -395,7 +410,8 @@ class MaxPool(Base):
             mode="constant",
             constant_values=np.nan,
         )
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, pad_shape, "MAX")
+        pads = [pad_top, pad_left, pad_bottom, pad_right]
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX", pads)
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_2d_same_lower")
 
@@ -418,9 +434,9 @@ class MaxPool(Base):
         kernel_shape = (3, 3)
         strides = (1, 1)
         pad_bottom = pad_top = pad_right = pad_left = 2
-        pad_shape = [pad_top + pad_bottom, pad_left + pad_right]
-        out_shape = get_output_shape(
-            "VALID", np.add(x_shape[2:], pad_shape), kernel_shape, strides
+        pads = [pad_top, pad_left, pad_bottom, pad_right]
+        out_shape, pads = get_output_shape_explicit_padding(
+            pads, x_shape[2:], kernel_shape, strides
         )
         padded = np.pad(
             x,
@@ -428,7 +444,8 @@ class MaxPool(Base):
             mode="constant",
             constant_values=np.nan,
         )
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, pad_shape, "MAX")
+
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX", pads)
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_2d_pads")
 
@@ -443,11 +460,14 @@ class MaxPool(Base):
         )
         x = np.random.randn(1, 3, 32, 32).astype(np.float32)
         x_shape = np.shape(x)
+        pads = None
         kernel_shape = (5, 5)
         strides = (3, 3)
-        out_shape = get_output_shape("VALID", x_shape[2:], kernel_shape, strides)
+        out_shape, pads = get_output_shape_explicit_padding(
+            pads, x_shape[2:], kernel_shape, strides
+        )
         padded = x
-        y = pool(padded, x_shape, kernel_shape, strides, out_shape, (0, 0), "MAX")
+        y = pool(padded, x_shape, kernel_shape, strides, out_shape, "MAX")
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_2d_strides")
 
@@ -510,3 +530,178 @@ class MaxPool(Base):
         y = np.array([[[[11, 12], [15, 16]]]]).astype(np.float32)
 
         expect(node, inputs=[x], outputs=[y], name="test_maxpool_2d_dilations")
+
+    @staticmethod
+    def export_maxpool_3d_dilations() -> None:
+        """
+        input_shape: [1, 1, 4, 4, 4]
+        output_shape: [1, 1, 2, 2, 2]
+        """
+        node = onnx.helper.make_node(
+            "MaxPool",
+            inputs=["x"],
+            outputs=["y"],
+            kernel_shape=[2, 2, 2],
+            strides=[1, 1, 1],
+            dilations=[2, 2, 2],
+        )
+        x = np.array(
+            [
+                [
+                    [
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                    ]
+                ]
+            ]
+        ).astype(np.float32)
+        y = np.array([[[[[11, 12], [15, 16]], [[11, 12], [15, 16]]]]]).astype(
+            np.float32
+        )
+
+        expect(node, inputs=[x], outputs=[y], name="test_maxpool_3d_dilations")
+
+    @staticmethod
+    def export_maxpool_3d_dilations_use_ref_impl() -> None:
+        """
+        input_shape: [1, 1, 4, 4, 4]
+        output_shape: [1, 1, 2, 2, 2]
+        """
+        dilations = [2, 2, 2]
+        kernel_shape = [2, 2, 2]
+        strides = [1, 1, 1]
+        ceil_mode = False
+        node = onnx.helper.make_node(
+            "MaxPool",
+            inputs=["x"],
+            outputs=["y"],
+            kernel_shape=[2, 2, 2],
+            strides=[1, 1, 1],
+            dilations=dilations,
+        )
+        x = np.array(
+            [
+                [
+                    [
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                        [
+                            [1, 2, 3, 4],
+                            [5, 6, 7, 8],
+                            [9, 10, 11, 12],
+                            [13, 14, 15, 16],
+                        ],
+                    ]
+                ]
+            ]
+        ).astype(np.float32)
+
+        x_shape = x.shape[2:]
+        out_shape, pads = get_output_shape_explicit_padding(
+            None, x_shape, kernel_shape, strides, dilations, ceil_mode=ceil_mode
+        )
+        padded = x
+        y = pool(
+            padded,
+            (1, 1, *x_shape),
+            kernel_shape,
+            strides,
+            out_shape,
+            "MAX",
+            pads,
+            dilations=dilations,
+        )
+
+        expect(
+            node, inputs=[x], outputs=[y], name="test_maxpool_3d_dilations_use_ref_impl"
+        )
+
+    @staticmethod
+    def export_maxpool_3d_dilations_use_ref_impl_large() -> None:
+        x_shape = (32, 32, 32)
+        dilations = (2, 2, 2)
+        kernel_shape = (5, 5, 5)
+        strides = (3, 3, 3)
+        ceil_mode = True
+
+        node = onnx.helper.make_node(
+            "MaxPool",
+            inputs=["x"],
+            outputs=["y"],
+            kernel_shape=kernel_shape,
+            strides=strides,
+            dilations=dilations,
+            ceil_mode=ceil_mode,
+        )
+
+        x = np.random.randn(1, 1, *x_shape).astype(np.float32)
+        out_shape, pads = get_output_shape_explicit_padding(
+            None, x_shape, kernel_shape, strides, dilations, ceil_mode=ceil_mode
+        )
+        padded = np.pad(
+            x,
+            (
+                (0, 0),
+                (0, 0),
+                (pads[0], pads[3]),
+                (pads[1], pads[4]),
+                (pads[2], pads[5]),
+            ),
+            mode="constant",
+            constant_values=0,
+        )
+        y = pool(
+            padded,
+            (1, 1, *x_shape),
+            kernel_shape,
+            strides,
+            out_shape,
+            "MAX",
+            pads,
+            dilations=dilations,
+        )
+
+        expect(
+            node,
+            inputs=[x],
+            outputs=[y],
+            name="test_maxpool_3d_dilations_use_ref_impl_large",
+        )

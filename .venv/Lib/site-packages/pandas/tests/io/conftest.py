@@ -51,23 +51,7 @@ def xml_file(datapath):
 
 
 @pytest.fixture
-def s3so(worker_id):
-    if is_ci_environment():
-        url = "http://localhost:5000/"
-    else:
-        worker_id = "5" if worker_id == "master" else worker_id.lstrip("gw")
-        url = f"http://127.0.0.1:555{worker_id}/"
-    return {"client_kwargs": {"endpoint_url": url}}
-
-
-@pytest.fixture(scope="function" if is_ci_environment() else "session")
-def monkeysession():
-    with pytest.MonkeyPatch.context() as mp:
-        yield mp
-
-
-@pytest.fixture(scope="function" if is_ci_environment() else "session")
-def s3_base(worker_id, monkeysession):
+def s3_base(worker_id, monkeypatch):
     """
     Fixture for mocking S3 interaction.
 
@@ -79,8 +63,8 @@ def s3_base(worker_id, monkeysession):
 
     # temporary workaround as moto fails for botocore >= 1.11 otherwise,
     # see https://github.com/spulec/moto/issues/1924 & 1952
-    monkeysession.setenv("AWS_ACCESS_KEY_ID", "foobar_key")
-    monkeysession.setenv("AWS_SECRET_ACCESS_KEY", "foobar_secret")
+    monkeypatch.setenv("AWS_ACCESS_KEY_ID", "foobar_key")
+    monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "foobar_secret")
     if is_ci_environment():
         if is_platform_arm() or is_platform_mac() or is_platform_windows():
             # NOT RUN on Windows/macOS/ARM, only Ubuntu
@@ -93,10 +77,11 @@ def s3_base(worker_id, monkeysession):
                 "Windows, macOS or ARM platforms"
             )
         else:
+            # set in .github/workflows/unit-tests.yml
             yield "http://localhost:5000"
     else:
         requests = pytest.importorskip("requests")
-        pytest.importorskip("moto", minversion="1.3.14")
+        pytest.importorskip("moto")
         pytest.importorskip("flask")  # server mode needs flask too
 
         # Launching moto in server mode, i.e., as a separate process
@@ -126,6 +111,11 @@ def s3_base(worker_id, monkeysession):
             yield endpoint_uri
 
             proc.terminate()
+
+
+@pytest.fixture
+def s3so(s3_base):
+    return {"client_kwargs": {"endpoint_url": s3_base}}
 
 
 @pytest.fixture

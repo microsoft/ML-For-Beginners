@@ -658,7 +658,7 @@ def basinhopping(func, x0, niter=100, T=1.0, stepsize=0.5,
     The minimum at -1.0109 is actually the global minimum, found already on the
     8th iteration.
 
-    """
+    """ # numpy/numpydoc#87  # noqa: E501
     if target_accept_rate <= 0. or target_accept_rate >= 1.:
         raise ValueError('target_accept_rate has to be in range (0, 1)')
     if stepwise_factor <= 0. or stepwise_factor >= 1.:

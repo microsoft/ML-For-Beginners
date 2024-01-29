@@ -69,6 +69,22 @@ def test_bbox_inches_tight_suptitle_non_default():
     fig.suptitle('Booo', x=0.5, y=1.1)
 
 
+@image_comparison(['bbox_inches_tight_layout.png'], remove_text=True,
+                  style='mpl20',
+                  savefig_kwarg=dict(bbox_inches='tight', pad_inches='layout'))
+def test_bbox_inches_tight_layout_constrained():
+    fig, ax = plt.subplots(layout='constrained')
+    fig.get_layout_engine().set(h_pad=0.5)
+    ax.set_aspect('equal')
+
+
+def test_bbox_inches_tight_layout_notconstrained(tmp_path):
+    # pad_inches='layout' should be ignored when not using constrained/
+    # compressed layout.  Smoke test that savefig doesn't error in this case.
+    fig, ax = plt.subplots()
+    fig.savefig(tmp_path / 'foo.png', bbox_inches='tight', pad_inches='layout')
+
+
 @image_comparison(['bbox_inches_tight_clipping'],
                   remove_text=True, savefig_kwarg={'bbox_inches': 'tight'})
 def test_bbox_inches_tight_clipping():
@@ -76,8 +92,8 @@ def test_bbox_inches_tight_clipping():
     # to generate an appropriately tight bbox
     plt.scatter(np.arange(10), np.arange(10))
     ax = plt.gca()
-    ax.set_xlim([0, 5])
-    ax.set_ylim([0, 5])
+    ax.set_xlim(0, 5)
+    ax.set_ylim(0, 5)
 
     # make a massive rectangle and clip it with a path
     patch = mpatches.Rectangle([-50, -50], 100, 100,

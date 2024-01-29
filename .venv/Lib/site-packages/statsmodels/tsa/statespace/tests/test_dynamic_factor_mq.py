@@ -4,7 +4,12 @@ Basic tests for the BM model
 These test standard that the state space model is set up as desired, that
 expected exceptions are raised, etc.
 """
-from statsmodels.compat.pandas import assert_frame_equal, assert_series_equal
+from statsmodels.compat.pandas import (
+    MONTH_END,
+    QUARTER_END,
+    assert_frame_equal,
+    assert_series_equal,
+)
 
 import numpy as np
 from numpy.testing import assert_, assert_allclose, assert_equal
@@ -19,7 +24,6 @@ from statsmodels.tsa.statespace import (
     sarimax,
 )
 from statsmodels.tsa.statespace.tests import test_dynamic_factor_mq_monte_carlo
-
 
 SKIP_MONTE_CARLO_TESTS = True
 
@@ -730,7 +734,7 @@ def test_invalid_model_specification():
     dta_period_M = pd.DataFrame(
         dta, index=pd.period_range(start='2000', periods=10, freq='M'))
     dta_date_M = pd.DataFrame(
-        dta, index=pd.date_range(start='2000', periods=10, freq='M'))
+        dta, index=pd.date_range(start='2000', periods=10, freq=MONTH_END))
     dta_period_Q = pd.DataFrame(
         dta, index=pd.period_range(start='2000', periods=10, freq='Q'))
 
@@ -838,9 +842,18 @@ def test_invalid_model_specification():
             dta_date_M, endog_quarterly=dta_date_W)
 
 
-@pytest.mark.parametrize('freq_Q', ['Q', 'Q-DEC', 'Q-JAN', 'QS',
-                                    'QS-DEC', 'QS-APR'])
-@pytest.mark.parametrize('freq_M', ['M', 'MS'])
+@pytest.mark.parametrize(
+    "freq_Q",
+    [
+        QUARTER_END,
+        f"{QUARTER_END}-DEC",
+        f"{QUARTER_END}-JAN",
+        "QS",
+        "QS-DEC",
+        "QS-APR",
+    ],
+)
+@pytest.mark.parametrize("freq_M", [MONTH_END, "MS"])
 def test_date_indexes(reset_randomstate, freq_M, freq_Q):
     # Test that using either PeriodIndex or DatetimeIndex for monthly or
     # quarterly data, with a variety of DatetimeIndex frequencies, works

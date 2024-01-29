@@ -69,8 +69,8 @@ class TestCustomBusinessHour:
         assert offset != offset2
 
     def test_repr(self, offset1, offset2):
-        assert repr(offset1) == "<CustomBusinessHour: CBH=09:00-17:00>"
-        assert repr(offset2) == "<CustomBusinessHour: CBH=09:00-17:00>"
+        assert repr(offset1) == "<CustomBusinessHour: cbh=09:00-17:00>"
+        assert repr(offset2) == "<CustomBusinessHour: cbh=09:00-17:00>"
 
     def test_with_offset(self, dt):
         expected = Timestamp("2014-07-01 13:00")

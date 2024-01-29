@@ -10,7 +10,7 @@ import pandas._testing as tm
 
 class TestCopy:
     @pytest.mark.parametrize("deep", ["default", None, False, True])
-    def test_copy(self, deep, using_copy_on_write):
+    def test_copy(self, deep, using_copy_on_write, warn_copy_on_write):
         ser = Series(np.arange(10), dtype="float64")
 
         # default deep is True
@@ -27,7 +27,8 @@ class TestCopy:
             else:
                 assert not np.may_share_memory(ser.values, ser2.values)
 
-        ser2[::2] = np.nan
+        with tm.assert_cow_warning(warn_copy_on_write and deep is False):
+            ser2[::2] = np.nan
 
         if deep is not False or using_copy_on_write:
             # Did not modify original Series
@@ -38,6 +39,7 @@ class TestCopy:
             assert np.isnan(ser2[0])
             assert np.isnan(ser[0])
 
+    @pytest.mark.filterwarnings("ignore:Setting a value on a view:FutureWarning")
     @pytest.mark.parametrize("deep", ["default", None, False, True])
     def test_copy_tzaware(self, deep, using_copy_on_write):
         # GH#11794

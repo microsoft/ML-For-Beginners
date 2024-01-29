@@ -26,7 +26,7 @@ BoolishT = TypeVar("BoolishT", bool, int)
 BoolishNoneT = TypeVar("BoolishNoneT", bool, int, None)
 
 
-def _check_arg_length(fname, args, max_fname_arg_count, compat_args):
+def _check_arg_length(fname, args, max_fname_arg_count, compat_args) -> None:
     """
     Checks whether 'args' has length of at most 'compat_args'. Raises
     a TypeError if that is not the case, similar to in Python when a
@@ -46,7 +46,7 @@ def _check_arg_length(fname, args, max_fname_arg_count, compat_args):
         )
 
 
-def _check_for_default_values(fname, arg_val_dict, compat_args):
+def _check_for_default_values(fname, arg_val_dict, compat_args) -> None:
     """
     Check that the keys in `arg_val_dict` are mapped to their
     default values as specified in `compat_args`.
@@ -125,7 +125,7 @@ def validate_args(fname, args, max_fname_arg_count, compat_args) -> None:
     _check_for_default_values(fname, kwargs, compat_args)
 
 
-def _check_for_invalid_keys(fname, kwargs, compat_args):
+def _check_for_invalid_keys(fname, kwargs, compat_args) -> None:
     """
     Checks whether 'kwargs' contains any keys that are not
     in 'compat_args' and raises a TypeError if there is one.

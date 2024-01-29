@@ -173,7 +173,7 @@ def hash_array(value, length=15):
     "Computes a hash identifying the value."
     try:
         onx = from_array(value)
-    except AttributeError as e:
+    except (AttributeError, TypeError) as e:
         # sparse matrix for example
         if hasattr(value, "tocoo"):
             coo = value.tocoo()

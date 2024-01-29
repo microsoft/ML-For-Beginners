@@ -53,7 +53,6 @@ def vm_stat(field):
 
 @unittest.skipIf(not MACOS, "MACOS only")
 class TestProcess(PsutilTestCase):
-
     @classmethod
     def setUpClass(cls):
         cls.pid = spawn_testproc().pid
@@ -69,11 +68,11 @@ class TestProcess(PsutilTestCase):
         year = start_ps.split(' ')[-1]
         start_psutil = psutil.Process(self.pid).create_time()
         self.assertEqual(
-            hhmmss,
-            time.strftime("%H:%M:%S", time.localtime(start_psutil)))
+            hhmmss, time.strftime("%H:%M:%S", time.localtime(start_psutil))
+        )
         self.assertEqual(
-            year,
-            time.strftime("%Y", time.localtime(start_psutil)))
+            year, time.strftime("%Y", time.localtime(start_psutil))
+        )
 
 
 @unittest.skipIf(not MACOS, "MACOS only")
@@ -103,10 +102,12 @@ class TestSystemAPIs(PsutilTestCase):
             dev, total, used, free = df(part.mountpoint)
             self.assertEqual(part.device, dev)
             self.assertEqual(usage.total, total)
-            self.assertAlmostEqual(usage.free, free,
-                                   delta=TOLERANCE_DISK_USAGE)
-            self.assertAlmostEqual(usage.used, used,
-                                   delta=TOLERANCE_DISK_USAGE)
+            self.assertAlmostEqual(
+                usage.free, free, delta=TOLERANCE_DISK_USAGE
+            )
+            self.assertAlmostEqual(
+                usage.used, used, delta=TOLERANCE_DISK_USAGE
+            )
 
     # --- cpu
 
@@ -123,11 +124,14 @@ class TestSystemAPIs(PsutilTestCase):
     def test_cpu_freq(self):
         freq = psutil.cpu_freq()
         self.assertEqual(
-            freq.current * 1000 * 1000, sysctl("sysctl hw.cpufrequency"))
+            freq.current * 1000 * 1000, sysctl("sysctl hw.cpufrequency")
+        )
         self.assertEqual(
-            freq.min * 1000 * 1000, sysctl("sysctl hw.cpufrequency_min"))
+            freq.min * 1000 * 1000, sysctl("sysctl hw.cpufrequency_min")
+        )
         self.assertEqual(
-            freq.max * 1000 * 1000, sysctl("sysctl hw.cpufrequency_max"))
+            freq.max * 1000 * 1000, sysctl("sysctl hw.cpufrequency_max")
+        )
 
     # --- virtual mem
 
@@ -183,8 +187,9 @@ class TestSystemAPIs(PsutilTestCase):
                 pass
             else:
                 self.assertEqual(stats.isup, 'RUNNING' in out, msg=out)
-                self.assertEqual(stats.mtu,
-                                 int(re.findall(r'mtu (\d+)', out)[0]))
+                self.assertEqual(
+                    stats.mtu, int(re.findall(r'mtu (\d+)', out)[0])
+                )
 
     # --- sensors_battery
 
@@ -201,4 +206,5 @@ class TestSystemAPIs(PsutilTestCase):
 
 if __name__ == '__main__':
     from psutil.tests.runner import run_from_name
+
     run_from_name(__file__)

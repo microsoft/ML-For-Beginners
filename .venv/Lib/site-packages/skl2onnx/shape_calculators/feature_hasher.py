@@ -29,7 +29,7 @@ def calculate_sklearn_feature_hasher(operator):
         operator.outputs[0].type = Int64TensorType(shape=shape)
     else:
         raise RuntimeError(
-            f"Converter is not implemented for " f"FeatureHasher.dtype={model.dtype}."
+            f"Converter is not implemented for FeatureHasher.dtype={model.dtype}."
         )
 
 

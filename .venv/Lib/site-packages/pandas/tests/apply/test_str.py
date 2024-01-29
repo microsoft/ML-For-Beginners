@@ -31,7 +31,7 @@ from pandas.tests.apply.common import (
 @pytest.mark.parametrize("how", ["agg", "apply"])
 def test_apply_with_string_funcs(request, float_frame, func, args, kwds, how):
     if len(args) > 1 and how == "agg":
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(
                 raises=TypeError,
                 reason="agg/apply signature mismatch - agg passes 2nd "
@@ -256,12 +256,16 @@ def test_agg_cython_table_transform_frame(df, func, expected, axis):
 def test_transform_groupby_kernel_series(request, string_series, op):
     # GH 35964
     if op == "ngroup":
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(raises=ValueError, reason="ngroup not valid for NDFrame")
         )
     args = [0.0] if op == "fillna" else []
     ones = np.ones(string_series.shape[0])
-    expected = string_series.groupby(ones).transform(op, *args)
+
+    warn = FutureWarning if op == "fillna" else None
+    msg = "SeriesGroupBy.fillna is deprecated"
+    with tm.assert_produces_warning(warn, match=msg):
+        expected = string_series.groupby(ones).transform(op, *args)
     result = string_series.transform(op, 0, *args)
     tm.assert_series_equal(result, expected)
 
@@ -269,7 +273,7 @@ def test_transform_groupby_kernel_series(request, string_series, op):
 @pytest.mark.parametrize("op", frame_transform_kernels)
 def test_transform_groupby_kernel_frame(request, axis, float_frame, op):
     if op == "ngroup":
-        request.node.add_marker(
+        request.applymarker(
             pytest.mark.xfail(raises=ValueError, reason="ngroup not valid for NDFrame")
         )
 
@@ -285,7 +289,12 @@ def test_transform_groupby_kernel_frame(request, axis, float_frame, op):
 
     with tm.assert_produces_warning(FutureWarning, match=msg):
         gb = float_frame.groupby(ones, axis=axis)
-    expected = gb.transform(op, *args)
+
+    warn = FutureWarning if op == "fillna" else None
+    op_msg = "DataFrameGroupBy.fillna is deprecated"
+    with tm.assert_produces_warning(warn, match=op_msg):
+        expected = gb.transform(op, *args)
+
     result = float_frame.transform(op, axis, *args)
     tm.assert_frame_equal(result, expected)
 
@@ -300,7 +309,10 @@ def test_transform_groupby_kernel_frame(request, axis, float_frame, op):
         ones = np.ones(float_frame.shape[1])
     with tm.assert_produces_warning(FutureWarning, match=msg):
         gb2 = float_frame.groupby(ones, axis=axis)
-    expected2 = gb2.transform(op, *args)
+    warn = FutureWarning if op == "fillna" else None
+    op_msg = "DataFrameGroupBy.fillna is deprecated"
+    with tm.assert_produces_warning(warn, match=op_msg):
+        expected2 = gb2.transform(op, *args)
     result2 = float_frame.transform(op, axis, *args)
     tm.assert_frame_equal(result2, expected2)
 

@@ -75,7 +75,7 @@ CFRunLoopAddTimer = CoreFoundation.CFRunLoopAddTimer
 CFRunLoopAddTimer.restype = None
 CFRunLoopAddTimer.argtypes = [void_p, void_p, void_p]
 
-kCFRunLoopCommonModes = void_p.in_dll(CoreFoundation, "kCFRunLoopCommonModes")  # noqa
+kCFRunLoopCommonModes = void_p.in_dll(CoreFoundation, "kCFRunLoopCommonModes")
 
 
 def _NSApp():

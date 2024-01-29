@@ -12,12 +12,15 @@ import pandas._libs.window.aggregations as window_aggregations
 from pandas.util._decorators import doc
 
 from pandas.core.dtypes.common import (
-    is_datetime64_ns_dtype,
+    is_datetime64_dtype,
     is_numeric_dtype,
 )
+from pandas.core.dtypes.dtypes import DatetimeTZDtype
+from pandas.core.dtypes.generic import ABCSeries
 from pandas.core.dtypes.missing import isna
 
 from pandas.core import common
+from pandas.core.arrays.datetimelike import dtype_to_unit
 from pandas.core.indexers.objects import (
     BaseIndexer,
     ExponentialMovingWindowIndexer,
@@ -55,6 +58,7 @@ if TYPE_CHECKING:
     from pandas._typing import (
         Axis,
         TimedeltaConvertibleTypes,
+        npt,
     )
 
     from pandas import (
@@ -100,7 +104,7 @@ def get_center_of_mass(
 def _calculate_deltas(
     times: np.ndarray | NDFrame,
     halflife: float | TimedeltaConvertibleTypes | None,
-) -> np.ndarray:
+) -> npt.NDArray[np.float64]:
     """
     Return the diff of the times divided by the half-life. These values are used in
     the calculation of the ewm mean.
@@ -118,9 +122,11 @@ def _calculate_deltas(
     np.ndarray
         Diff of the times divided by the half-life
     """
+    unit = dtype_to_unit(times.dtype)
+    if isinstance(times, ABCSeries):
+        times = times._values
     _times = np.asarray(times.view(np.int64), dtype=np.float64)
-    # TODO: generalize to non-nano?
-    _halflife = float(Timedelta(halflife).as_unit("ns")._value)
+    _halflife = float(Timedelta(halflife).as_unit(unit)._value)
     return np.diff(_times) / _halflife
 
 
@@ -363,8 +369,12 @@ class ExponentialMovingWindow(BaseWindow):
         if self.times is not None:
             if not self.adjust:
                 raise NotImplementedError("times is not supported with adjust=False.")
-            if not is_datetime64_ns_dtype(self.times):
-                raise ValueError("times must be datetime64[ns] dtype.")
+            times_dtype = getattr(self.times, "dtype", None)
+            if not (
+                is_datetime64_dtype(times_dtype)
+                or isinstance(times_dtype, DatetimeTZDtype)
+            ):
+                raise ValueError("times must be datetime64 dtype.")
             if len(self.times) != len(obj):
                 raise ValueError("times must be the same length as the object.")
             if not isinstance(self.halflife, (str, datetime.timedelta, np.timedelta64)):
@@ -1068,7 +1078,7 @@ class OnlineExponentialMovingWindow(ExponentialMovingWindow):
                 result_kwargs["columns"] = self._selected_obj.columns
             else:
                 result_kwargs["name"] = self._selected_obj.name
-            np_array = self._selected_obj.astype(np.float64).to_numpy()
+            np_array = self._selected_obj.astype(np.float64, copy=False).to_numpy()
         ewma_func = generate_online_numba_ewma_func(
             **get_jit_arguments(self.engine_kwargs)
         )

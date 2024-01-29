@@ -90,7 +90,7 @@ def check_stateful(cls, accepts_multicolumn, input, output, *args, **kwargs):
         elif all_outputs[0].ndim == 1:
             all_output1 = np.concatenate(all_outputs)
         else:
-            all_output1 = np.row_stack(all_outputs)
+            all_output1 = np.vstack(all_outputs)
         assert all_output1.shape[0] == len(input)
         # output_obj_reshaped = np.asarray(output_obj).reshape(all_output1.shape)
         # assert np.allclose(all_output1, output_obj_reshaped)
@@ -101,11 +101,11 @@ def check_stateful(cls, accepts_multicolumn, input, output, *args, **kwargs):
             # handles both Series and DataFrames
             all_input = pandas.concat(input_obj)
         elif np.asarray(input_obj[0]).ndim == 1:
-            # Don't use row_stack, because that would turn this into a 1xn
+            # Don't use vstack, because that would turn this into a 1xn
             # matrix:
             all_input = np.concatenate(input_obj)
         else:
-            all_input = np.row_stack(input_obj)
+            all_input = np.vstack(input_obj)
         all_output2 = t.transform(all_input, *args, **kwargs)
         if have_pandas and isinstance(input_obj[0], pandas_type):
             assert np.array_equal(all_output2.index, pandas_index)

@@ -163,8 +163,8 @@ We can also do this explicitly via:
 >>> n = 1000
 >>> A = np.empty((n, n), order='F')
 >>> for j in range(n):
->>>     for i in range(n):
->>>         A[i,j] = 1. / (i + j + 1)
+...     for i in range(n):
+...         A[i,j] = 1. / (i + j + 1)
 
 Note the use of the flag ``order='F'`` in :func:`numpy.empty`. This
 instantiates the matrix in Fortran-contiguous order and is important for
@@ -207,6 +207,7 @@ We first consider a matrix given in terms of its entries.
 
 To compute an ID to a fixed precision, type:
 
+>>> eps = 1e-3
 >>> k, idx, proj = sli.interp_decomp(A, eps)
 
 where ``eps < 1`` is the desired precision.
@@ -283,7 +284,7 @@ An ID can be converted to an SVD via the command:
 
 The SVD approximation is then:
 
->>> C = np.dot(U, np.dot(np.diag(S), np.dot(V.conj().T)))
+>>> approx = U @ np.diag(S) @ V.conj().T
 
 The SVD can also be computed "fresh" by combining both the ID and conversion
 steps into one command. Following the various ID algorithms above, there are
@@ -302,7 +303,7 @@ To compute an SVD to a fixed rank, use:
 
 >>> U, S, V = sli.svd(A, k)
 
-Both algorithms use random sampling; for the determinstic versions, issue the
+Both algorithms use random sampling; for the deterministic versions, issue the
 keyword ``rand=False`` as above.
 
 From matrix action
@@ -337,6 +338,7 @@ as a :class:`numpy.ndarray`, in which case it is trivially converted using
 The same algorithm can also estimate the spectral norm of the difference of two
 matrices ``A1`` and ``A2`` as follows:
 
+>>> A1, A2 = A**2, A
 >>> diff = sli.estimate_spectral_norm_diff(A1, A2)
 
 This is often useful for checking the accuracy of a matrix approximation.
@@ -361,6 +363,7 @@ values to their original values, use:
 
 To specify the seed values, use:
 
+>>> s = 42
 >>> sli.seed(s)
 
 where ``s`` must be an integer or array of 55 floats. If an integer, the array
@@ -369,7 +372,7 @@ seed.
 
 To simply generate some random numbers, type:
 
->>> sli.rand(n)
+>>> arr = sli.rand(n)
 
 where ``n`` is the number of random numbers to generate.
 
@@ -553,7 +556,7 @@ def interp_decomp(A, eps_or_k, rand=True):
         Column index array.
     proj : :class:`numpy.ndarray`
         Interpolation coefficients.
-    """
+    """  # numpy/numpydoc#87  # noqa: E501
     from scipy.sparse.linalg import LinearOperator
 
     real = _is_real(A)
@@ -918,8 +921,8 @@ def svd(A, eps_or_k, rand=True):
         else:
             k = int(eps_or_k)
             if k > min(A.shape):
-                raise ValueError("Approximation rank {} exceeds min(A.shape) = "
-                                 " {} ".format(k, min(A.shape)))
+                raise ValueError(f"Approximation rank {k} exceeds min(A.shape) = "
+                                 f" {min(A.shape)} ")
             if rand:
                 if real:
                     U, V, S = _backend.iddr_asvd(A, k)

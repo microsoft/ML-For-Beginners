@@ -1,6 +1,8 @@
 import numpy as np
 import pytest
 
+from pandas._config import using_pyarrow_string_dtype
+
 import pandas.util._test_decorators as td
 
 from pandas import (
@@ -20,14 +22,18 @@ from pandas.tests.frame.common import _check_mixed_float
 
 
 class TestFillNA:
-    def test_fillna_dict_inplace_nonunique_columns(self, using_copy_on_write):
+    def test_fillna_dict_inplace_nonunique_columns(
+        self, using_copy_on_write, warn_copy_on_write
+    ):
         df = DataFrame(
             {"A": [np.nan] * 3, "B": [NaT, Timestamp(1), NaT], "C": [np.nan, "foo", 2]}
         )
         df.columns = ["A", "A", "A"]
         orig = df[:]
 
-        df.fillna({"A": 2}, inplace=True)
+        # TODO(CoW-warn) better warning message
+        with tm.assert_cow_warning(warn_copy_on_write):
+            df.fillna({"A": 2}, inplace=True)
         # The first and third columns can be set inplace, while the second cannot.
 
         expected = DataFrame(
@@ -54,7 +60,8 @@ class TestFillNA:
                 df[0].fillna(-1, inplace=True)
             assert np.isnan(arr[:, 0]).all()
         else:
-            df[0].fillna(-1, inplace=True)
+            with tm.assert_produces_warning(FutureWarning, match="inplace method"):
+                df[0].fillna(-1, inplace=True)
             assert (arr[:, 0] == -1).all()
 
         # i.e. we didn't create a new 49-column block
@@ -84,6 +91,7 @@ class TestFillNA:
         with pytest.raises(ValueError, match=msg):
             datetime_frame.fillna(5, method="ffill")
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="can't fill 0 in string")
     def test_fillna_mixed_type(self, float_string_frame):
         mf = float_string_frame
         mf.loc[mf.index[5:20], "foo"] = np.nan
@@ -117,19 +125,27 @@ class TestFillNA:
                 df.x.fillna(method=m, inplace=True)
                 df.x.fillna(method=m)
 
-    def test_fillna_different_dtype(self):
+    def test_fillna_different_dtype(self, using_infer_string):
         # with different dtype (GH#3386)
         df = DataFrame(
             [["a", "a", np.nan, "a"], ["b", "b", np.nan, "b"], ["c", "c", np.nan, "c"]]
         )
 
-        result = df.fillna({2: "foo"})
+        if using_infer_string:
+            with tm.assert_produces_warning(FutureWarning, match="Downcasting"):
+                result = df.fillna({2: "foo"})
+        else:
+            result = df.fillna({2: "foo"})
         expected = DataFrame(
             [["a", "a", "foo", "a"], ["b", "b", "foo", "b"], ["c", "c", "foo", "c"]]
         )
         tm.assert_frame_equal(result, expected)
 
-        return_value = df.fillna({2: "foo"}, inplace=True)
+        if using_infer_string:
+            with tm.assert_produces_warning(FutureWarning, match="Downcasting"):
+                return_value = df.fillna({2: "foo"}, inplace=True)
+        else:
+            return_value = df.fillna({2: "foo"}, inplace=True)
         tm.assert_frame_equal(df, expected)
         assert return_value is None
 
@@ -353,20 +369,26 @@ class TestFillNA:
         expected["A"] = 0.0
         tm.assert_frame_equal(result, expected)
 
-    def test_fillna_dtype_conversion(self):
+    def test_fillna_dtype_conversion(self, using_infer_string):
         # make sure that fillna on an empty frame works
         df = DataFrame(index=["A", "B", "C"], columns=[1, 2, 3, 4, 5])
         result = df.dtypes
         expected = Series([np.dtype("object")] * 5, index=[1, 2, 3, 4, 5])
         tm.assert_series_equal(result, expected)
 
-        result = df.fillna(1)
+        msg = "Downcasting object dtype arrays"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = df.fillna(1)
         expected = DataFrame(1, index=["A", "B", "C"], columns=[1, 2, 3, 4, 5])
         tm.assert_frame_equal(result, expected)
 
         # empty block
         df = DataFrame(index=range(3), columns=["A", "B"], dtype="float64")
-        result = df.fillna("nan")
+        if using_infer_string:
+            with tm.assert_produces_warning(FutureWarning, match="Downcasting"):
+                result = df.fillna("nan")
+        else:
+            result = df.fillna("nan")
         expected = DataFrame("nan", index=range(3), columns=["A", "B"])
         tm.assert_frame_equal(result, expected)
 
@@ -642,6 +664,7 @@ class TestFillNA:
             filled = df.fillna(method="ffill")
         assert df.columns.tolist() == filled.columns.tolist()
 
+    @pytest.mark.xfail(using_pyarrow_string_dtype(), reason="can't fill 0 in string")
     def test_fill_corner(self, float_frame, float_string_frame):
         mf = float_string_frame
         mf.loc[mf.index[5:20], "foo"] = np.nan
@@ -731,12 +754,15 @@ class TestFillNA:
 
     @td.skip_array_manager_invalid_test
     @pytest.mark.parametrize("val", [-1, {"x": -1, "y": -1}])
-    def test_inplace_dict_update_view(self, val, using_copy_on_write):
+    def test_inplace_dict_update_view(
+        self, val, using_copy_on_write, warn_copy_on_write
+    ):
         # GH#47188
         df = DataFrame({"x": [np.nan, 2], "y": [np.nan, 2]})
         df_orig = df.copy()
         result_view = df[:]
-        df.fillna(val, inplace=True)
+        with tm.assert_cow_warning(warn_copy_on_write):
+            df.fillna(val, inplace=True)
         expected = DataFrame({"x": [-1, 2.0], "y": [-1.0, 2]})
         tm.assert_frame_equal(df, expected)
         if using_copy_on_write:
@@ -817,7 +843,8 @@ def test_fillna_nones_inplace():
         [[None, None], [None, None]],
         columns=["A", "B"],
     )
-    with tm.assert_produces_warning(False):
+    msg = "Downcasting object dtype arrays"
+    with tm.assert_produces_warning(FutureWarning, match=msg):
         df.fillna(value={"A": 1, "B": 2}, inplace=True)
 
     expected = DataFrame([[1, 2], [1, 2]], columns=["A", "B"])
@@ -830,3 +857,76 @@ def test_pad_backfill_deprecated(func):
     df = DataFrame({"a": [1, 2, 3]})
     with tm.assert_produces_warning(FutureWarning):
         getattr(df, func)()
+
+
+@pytest.mark.parametrize(
+    "data, expected_data, method, kwargs",
+    (
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, 3.0, 3.0, 3.0, 7.0, np.nan, np.nan],
+            "ffill",
+            {"limit_area": "inside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, 3.0, np.nan, np.nan, 7.0, np.nan, np.nan],
+            "ffill",
+            {"limit_area": "inside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, np.nan, np.nan, np.nan, 7.0, 7.0, 7.0],
+            "ffill",
+            {"limit_area": "outside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, np.nan, np.nan, np.nan, 7.0, 7.0, np.nan],
+            "ffill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+            [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+            "ffill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+        (
+            range(5),
+            range(5),
+            "ffill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, 7.0, 7.0, 7.0, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "inside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, np.nan, 3.0, np.nan, np.nan, 7.0, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "inside", "limit": 1},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [3.0, 3.0, 3.0, np.nan, np.nan, np.nan, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "outside"},
+        ),
+        (
+            [np.nan, np.nan, 3, np.nan, np.nan, np.nan, 7, np.nan, np.nan],
+            [np.nan, 3.0, 3.0, np.nan, np.nan, np.nan, 7.0, np.nan, np.nan],
+            "bfill",
+            {"limit_area": "outside", "limit": 1},
+        ),
+    ),
+)
+def test_ffill_bfill_limit_area(data, expected_data, method, kwargs):
+    # GH#56492
+    df = DataFrame(data)
+    expected = DataFrame(expected_data)
+    result = getattr(df, method)(**kwargs)
+    tm.assert_frame_equal(result, expected)

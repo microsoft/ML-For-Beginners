@@ -2,12 +2,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include "data_type_utils.h"
+
 #include <cctype>
 #include <iostream>
 #include <iterator>
 #include <sstream>
-
-#include "data_type_utils.h"
 
 namespace ONNX_NAMESPACE {
 namespace Utils {

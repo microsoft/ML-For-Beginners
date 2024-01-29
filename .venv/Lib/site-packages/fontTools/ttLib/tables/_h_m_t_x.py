@@ -12,7 +12,6 @@ log = logging.getLogger(__name__)
 
 
 class table__h_m_t_x(DefaultTable.DefaultTable):
-
     headerTag = "hhea"
     advanceName = "width"
     sideBearingName = "lsb"

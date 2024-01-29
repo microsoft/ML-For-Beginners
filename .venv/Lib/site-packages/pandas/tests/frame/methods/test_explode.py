@@ -203,7 +203,7 @@ def test_usecase():
 )
 def test_duplicate_index(input_dict, input_index, expected_dict, expected_index):
     # GH 28005
-    df = pd.DataFrame(input_dict, index=input_index)
+    df = pd.DataFrame(input_dict, index=input_index, dtype=object)
     result = df.explode("col1")
     expected = pd.DataFrame(expected_dict, index=expected_index, dtype=object)
     tm.assert_frame_equal(result, expected)

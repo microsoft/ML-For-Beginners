@@ -4,17 +4,24 @@ Tests for impulse responses of time series
 Author: Chad Fulton
 License: Simplified-BSD
 """
+from statsmodels.compat.pandas import MONTH_END
+
 import warnings
 
 import numpy as np
-import pandas as pd
-from scipy.stats import ortho_group
-import pytest
 from numpy.testing import assert_, assert_allclose
+import pandas as pd
+import pytest
+from scipy.stats import ortho_group
 
 from statsmodels.tools.sm_exceptions import EstimationWarning
-from statsmodels.tsa.statespace import (mlemodel, sarimax, structural, varmax,
-                                        dynamic_factor)
+from statsmodels.tsa.statespace import (
+    dynamic_factor,
+    mlemodel,
+    sarimax,
+    structural,
+    varmax,
+)
 from statsmodels.tsa.vector_ar.tests.test_var import get_macrodata
 
 
@@ -660,7 +667,7 @@ def test_pandas_univariate_rangeindex():
 
 def test_pandas_univariate_dateindex():
     # Impulse responses still have RangeIndex (i.e. aren't wrapped with dates)
-    ix = pd.date_range(start='2000', periods=1, freq='M')
+    ix = pd.date_range(start='2000', periods=1, freq=MONTH_END)
     endog = pd.Series(np.zeros(1), index=ix)
     mod = sarimax.SARIMAX(endog)
     res = mod.filter([0.5, 1.])
@@ -685,7 +692,7 @@ def test_pandas_multivariate_rangeindex():
 
 def test_pandas_multivariate_dateindex():
     # Impulse responses still have RangeIndex (i.e. aren't wrapped with dates)
-    ix = pd.date_range(start='2000', periods=1, freq='M')
+    ix = pd.date_range(start='2000', periods=1, freq=MONTH_END)
     endog = pd.DataFrame(np.zeros((1, 2)), index=ix)
     mod = varmax.VARMAX(endog, trend='n')
     res = mod.filter([0.5, 0., 0., 0.2, 1., 0., 1.])
@@ -698,7 +705,7 @@ def test_pandas_multivariate_dateindex():
 
 def test_pandas_anchor():
     # Test that anchor with dates works
-    ix = pd.date_range(start='2000', periods=10, freq='M')
+    ix = pd.date_range(start='2000', periods=10, freq=MONTH_END)
     endog = pd.DataFrame(np.zeros((10, 2)), index=ix)
     mod = TVSS(endog)
     res = mod.filter([])

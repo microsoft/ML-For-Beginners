@@ -6,6 +6,7 @@ def inner_join(
     left: np.ndarray,  # const intp_t[:]
     right: np.ndarray,  # const intp_t[:]
     max_groups: int,
+    sort: bool = ...,
 ) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.intp]]: ...
 def left_outer_join(
     left: np.ndarray,  # const intp_t[:]
@@ -52,8 +53,8 @@ def outer_join_indexer(
 def asof_join_backward_on_X_by_Y(
     left_values: np.ndarray,  # ndarray[numeric_t]
     right_values: np.ndarray,  # ndarray[numeric_t]
-    left_by_values: np.ndarray,  # ndarray[by_t]
-    right_by_values: np.ndarray,  # ndarray[by_t]
+    left_by_values: np.ndarray,  # const int64_t[:]
+    right_by_values: np.ndarray,  # const int64_t[:]
     allow_exact_matches: bool = ...,
     tolerance: np.number | float | None = ...,
     use_hashtable: bool = ...,
@@ -61,8 +62,8 @@ def asof_join_backward_on_X_by_Y(
 def asof_join_forward_on_X_by_Y(
     left_values: np.ndarray,  # ndarray[numeric_t]
     right_values: np.ndarray,  # ndarray[numeric_t]
-    left_by_values: np.ndarray,  # ndarray[by_t]
-    right_by_values: np.ndarray,  # ndarray[by_t]
+    left_by_values: np.ndarray,  # const int64_t[:]
+    right_by_values: np.ndarray,  # const int64_t[:]
     allow_exact_matches: bool = ...,
     tolerance: np.number | float | None = ...,
     use_hashtable: bool = ...,
@@ -70,8 +71,8 @@ def asof_join_forward_on_X_by_Y(
 def asof_join_nearest_on_X_by_Y(
     left_values: np.ndarray,  # ndarray[numeric_t]
     right_values: np.ndarray,  # ndarray[numeric_t]
-    left_by_values: np.ndarray,  # ndarray[by_t]
-    right_by_values: np.ndarray,  # ndarray[by_t]
+    left_by_values: np.ndarray,  # const int64_t[:]
+    right_by_values: np.ndarray,  # const int64_t[:]
     allow_exact_matches: bool = ...,
     tolerance: np.number | float | None = ...,
     use_hashtable: bool = ...,

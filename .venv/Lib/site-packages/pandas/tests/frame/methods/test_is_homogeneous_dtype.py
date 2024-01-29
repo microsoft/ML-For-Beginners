@@ -25,7 +25,8 @@ pytestmark = td.skip_array_manager_invalid_test
                 {
                     "A": np.array([1, 2], dtype=object),
                     "B": np.array(["a", "b"], dtype=object),
-                }
+                },
+                dtype="object",
             ),
             True,
         ),

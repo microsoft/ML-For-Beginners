@@ -45,7 +45,7 @@ def fft(x, n=None, axis=-1, norm=None, overwrite_x=False, workers=None, *,
     norm : {"backward", "ortho", "forward"}, optional
         Normalization mode. Default is "backward", meaning no normalization on
         the forward transforms and scaling by ``1/n`` on the `ifft`.
-        "forward" instead applies the ``1/n`` factor on the forward tranform.
+        "forward" instead applies the ``1/n`` factor on the forward transform.
         For ``norm="ortho"``, both directions are scaled by ``1/sqrt(n)``.
 
         .. versionadded:: 1.6.0
@@ -157,7 +157,8 @@ def fft(x, n=None, axis=-1, norm=None, overwrite_x=False, workers=None, *,
     >>> sp = fftshift(fft(np.sin(t)))
     >>> freq = fftshift(fftfreq(t.shape[-1]))
     >>> plt.plot(freq, sp.real, freq, sp.imag)
-    [<matplotlib.lines.Line2D object at 0x...>, <matplotlib.lines.Line2D object at 0x...>]
+    [<matplotlib.lines.Line2D object at 0x...>,
+     <matplotlib.lines.Line2D object at 0x...>]
     >>> plt.show()
 
     """

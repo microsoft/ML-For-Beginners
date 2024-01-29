@@ -18,4 +18,4 @@ import matplotlib as mpl
 _orig_rc_params = mpl.rcParams.copy()
 
 # Define the seaborn version
-__version__ = "0.13.0"
+__version__ = "0.13.2"

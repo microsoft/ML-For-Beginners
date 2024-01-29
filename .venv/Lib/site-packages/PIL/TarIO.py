@@ -13,16 +13,18 @@
 #
 # See the README file for information on usage and redistribution.
 #
+from __future__ import annotations
 
 import io
+from types import TracebackType
 
 from . import ContainerIO
 
 
-class TarIO(ContainerIO.ContainerIO):
+class TarIO(ContainerIO.ContainerIO[bytes]):
     """A file object that provides read access to a given member of a TAR file."""
 
-    def __init__(self, tarfile, file):
+    def __init__(self, tarfile: str, file: str) -> None:
         """
         Create file object.
 
@@ -56,11 +58,16 @@ class TarIO(ContainerIO.ContainerIO):
         super().__init__(self.fh, self.fh.tell(), size)
 
     # Context manager support
-    def __enter__(self):
+    def __enter__(self) -> TarIO:
         return self
 
-    def __exit__(self, *args):
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None:
         self.close()
 
-    def close(self):
+    def close(self) -> None:
         self.fh.close()

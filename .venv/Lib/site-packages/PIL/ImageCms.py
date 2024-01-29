@@ -14,6 +14,7 @@
 
 # See the README file for information on usage and redistribution.  See
 # below for the original description.
+from __future__ import annotations
 
 import sys
 from enum import IntEnum
@@ -27,7 +28,7 @@ except ImportError as ex:
     # anything in core.
     from ._util import DeferredError
 
-    _imagingcms = DeferredError(ex)
+    _imagingcms = DeferredError.new(ex)
 
 DESCRIPTION = """
 pyCMS
@@ -787,11 +788,8 @@ def getProfileInfo(profile):
         # info was description \r\n\r\n copyright \r\n\r\n K007 tag \r\n\r\n whitepoint
         description = profile.profile.profile_description
         cpright = profile.profile.copyright
-        arr = []
-        for elt in (description, cpright):
-            if elt:
-                arr.append(elt)
-        return "\r\n\r\n".join(arr) + "\r\n\r\n"
+        elements = [element for element in (description, cpright) if element]
+        return "\r\n\r\n".join(elements) + "\r\n\r\n"
 
     except (AttributeError, OSError, TypeError, ValueError) as v:
         raise PyCMSError(v) from v

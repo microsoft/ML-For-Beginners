@@ -37,7 +37,6 @@ headFormat = """
 
 
 class table__h_e_a_d(DefaultTable.DefaultTable):
-
     dependencies = ["maxp", "loca", "CFF ", "CFF2"]
 
     def decompile(self, data, ttFont):

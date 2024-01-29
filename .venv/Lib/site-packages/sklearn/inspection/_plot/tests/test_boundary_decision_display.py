@@ -2,18 +2,24 @@ import warnings
 
 import numpy as np
 import pytest
-from numpy.testing import assert_allclose
 
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.datasets import (
+    load_diabetes,
     load_iris,
     make_classification,
     make_multilabel_classification,
 )
+from sklearn.ensemble import IsolationForest
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.inspection._plot.decision_boundary import _check_boundary_response_method
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import scale
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
+from sklearn.utils._testing import (
+    assert_allclose,
+    assert_array_equal,
+)
 
 # TODO: Remove when https://github.com/numpy/numpy/issues/14397 is resolved
 pytestmark = pytest.mark.filterwarnings(
@@ -31,6 +37,12 @@ X, y = make_classification(
 )
 
 
+def load_iris_2d_scaled():
+    X, y = load_iris(return_X_y=True)
+    X = scale(X)[:, :2]
+    return X, y
+
+
 @pytest.fixture(scope="module")
 def fitted_clf():
     return LogisticRegression().fit(X, y)
@@ -46,43 +58,73 @@ def test_input_data_dimension(pyplot):
         DecisionBoundaryDisplay.from_estimator(estimator=clf, X=X)
 
 
-def test_check_boundary_response_method_auto():
-    """Check _check_boundary_response_method behavior with 'auto'."""
+def test_check_boundary_response_method_error():
+    """Check that we raise an error for the cases not supported by
+    `_check_boundary_response_method`.
+    """
 
-    class A:
-        def decision_function(self):
-            pass
+    class MultiLabelClassifier:
+        classes_ = [np.array([0, 1]), np.array([0, 1])]
 
-    a_inst = A()
-    method = _check_boundary_response_method(a_inst, "auto")
-    assert method == a_inst.decision_function
+    err_msg = "Multi-label and multi-output multi-class classifiers are not supported"
+    with pytest.raises(ValueError, match=err_msg):
+        _check_boundary_response_method(MultiLabelClassifier(), "predict", None)
 
-    class B:
-        def predict_proba(self):
-            pass
+    class MulticlassClassifier:
+        classes_ = [0, 1, 2]
 
-    b_inst = B()
-    method = _check_boundary_response_method(b_inst, "auto")
-    assert method == b_inst.predict_proba
+    err_msg = "Multiclass classifiers are only supported when `response_method` is"
+    for response_method in ("predict_proba", "decision_function"):
+        with pytest.raises(ValueError, match=err_msg):
+            _check_boundary_response_method(
+                MulticlassClassifier(), response_method, None
+            )
 
-    class C:
-        def predict_proba(self):
-            pass
 
-        def decision_function(self):
-            pass
-
-    c_inst = C()
-    method = _check_boundary_response_method(c_inst, "auto")
-    assert method == c_inst.decision_function
-
-    class D:
-        def predict(self):
-            pass
-
-    d_inst = D()
-    method = _check_boundary_response_method(d_inst, "auto")
-    assert method == d_inst.predict
+@pytest.mark.parametrize(
+    "estimator, response_method, class_of_interest, expected_prediction_method",
+    [
+        (DecisionTreeRegressor(), "predict", None, "predict"),
+        (DecisionTreeRegressor(), "auto", None, "predict"),
+        (LogisticRegression().fit(*load_iris_2d_scaled()), "predict", None, "predict"),
+        (LogisticRegression().fit(*load_iris_2d_scaled()), "auto", None, "predict"),
+        (
+            LogisticRegression().fit(*load_iris_2d_scaled()),
+            "predict_proba",
+            0,
+            "predict_proba",
+        ),
+        (
+            LogisticRegression().fit(*load_iris_2d_scaled()),
+            "decision_function",
+            0,
+            "decision_function",
+        ),
+        (
+            LogisticRegression().fit(X, y),
+            "auto",
+            None,
+            ["decision_function", "predict_proba", "predict"],
+        ),
+        (LogisticRegression().fit(X, y), "predict", None, "predict"),
+        (
+            LogisticRegression().fit(X, y),
+            ["predict_proba", "decision_function"],
+            None,
+            ["predict_proba", "decision_function"],
+        ),
+    ],
+)
+def test_check_boundary_response_method(
+    estimator, response_method, class_of_interest, expected_prediction_method
+):
+    """Check the behaviour of `_check_boundary_response_method` for the supported
+    cases.
+    """
+    prediction_method = _check_boundary_response_method(
+        estimator, response_method, class_of_interest
+    )
+    assert prediction_method == expected_prediction_method
 
 
 @pytest.mark.parametrize("response_method", ["predict_proba", "decision_function"])
@@ -93,8 +135,8 @@ def test_multiclass_error(pyplot, response_method):
     lr = LogisticRegression().fit(X, y)
 
     msg = (
-        "Multiclass classifiers are only supported when response_method is 'predict' or"
-        " 'auto'"
+        "Multiclass classifiers are only supported when `response_method` is 'predict'"
+        " or 'auto'"
     )
     with pytest.raises(ValueError, match=msg):
         DecisionBoundaryDisplay.from_estimator(lr, X, response_method=response_method)
@@ -162,7 +204,9 @@ def test_display_plot_input_error(pyplot, fitted_clf):
     "response_method", ["auto", "predict", "predict_proba", "decision_function"]
 )
 @pytest.mark.parametrize("plot_method", ["contourf", "contour"])
-def test_decision_boundary_display(pyplot, fitted_clf, response_method, plot_method):
+def test_decision_boundary_display_classifier(
+    pyplot, fitted_clf, response_method, plot_method
+):
     """Check that decision boundary is correct."""
     fig, ax = pyplot.subplots()
     eps = 2.0
@@ -174,6 +218,78 @@ def test_decision_boundary_display(pyplot, fitted_clf, response_method, plot_met
         plot_method=plot_method,
         eps=eps,
         ax=ax,
+    )
+    assert isinstance(disp.surface_, pyplot.matplotlib.contour.QuadContourSet)
+    assert disp.ax_ == ax
+    assert disp.figure_ == fig
+
+    x0, x1 = X[:, 0], X[:, 1]
+
+    x0_min, x0_max = x0.min() - eps, x0.max() + eps
+    x1_min, x1_max = x1.min() - eps, x1.max() + eps
+
+    assert disp.xx0.min() == pytest.approx(x0_min)
+    assert disp.xx0.max() == pytest.approx(x0_max)
+    assert disp.xx1.min() == pytest.approx(x1_min)
+    assert disp.xx1.max() == pytest.approx(x1_max)
+
+    fig2, ax2 = pyplot.subplots()
+    # change plotting method for second plot
+    disp.plot(plot_method="pcolormesh", ax=ax2, shading="auto")
+    assert isinstance(disp.surface_, pyplot.matplotlib.collections.QuadMesh)
+    assert disp.ax_ == ax2
+    assert disp.figure_ == fig2
+
+
+@pytest.mark.parametrize("response_method", ["auto", "predict", "decision_function"])
+@pytest.mark.parametrize("plot_method", ["contourf", "contour"])
+def test_decision_boundary_display_outlier_detector(
+    pyplot, response_method, plot_method
+):
+    """Check that decision boundary is correct for outlier detector."""
+    fig, ax = pyplot.subplots()
+    eps = 2.0
+    outlier_detector = IsolationForest(random_state=0).fit(X, y)
+    disp = DecisionBoundaryDisplay.from_estimator(
+        outlier_detector,
+        X,
+        grid_resolution=5,
+        response_method=response_method,
+        plot_method=plot_method,
+        eps=eps,
+        ax=ax,
+    )
+    assert isinstance(disp.surface_, pyplot.matplotlib.contour.QuadContourSet)
+    assert disp.ax_ == ax
+    assert disp.figure_ == fig
+
+    x0, x1 = X[:, 0], X[:, 1]
+
+    x0_min, x0_max = x0.min() - eps, x0.max() + eps
+    x1_min, x1_max = x1.min() - eps, x1.max() + eps
+
+    assert disp.xx0.min() == pytest.approx(x0_min)
+    assert disp.xx0.max() == pytest.approx(x0_max)
+    assert disp.xx1.min() == pytest.approx(x1_min)
+    assert disp.xx1.max() == pytest.approx(x1_max)
+
+
+@pytest.mark.parametrize("response_method", ["auto", "predict"])
+@pytest.mark.parametrize("plot_method", ["contourf", "contour"])
+def test_decision_boundary_display_regressor(pyplot, response_method, plot_method):
+    """Check that we can display the decision boundary for a regressor."""
+    X, y = load_diabetes(return_X_y=True)
+    X = X[:, :2]
+    tree = DecisionTreeRegressor().fit(X, y)
+    fig, ax = pyplot.subplots()
+    eps = 2.0
+    disp = DecisionBoundaryDisplay.from_estimator(
+        tree,
+        X,
+        response_method=response_method,
+        ax=ax,
+        eps=eps,
+        plot_method=plot_method,
     )
     assert isinstance(disp.surface_, pyplot.matplotlib.contour.QuadContourSet)
     assert disp.ax_ == ax
@@ -232,7 +348,7 @@ def test_error_bad_response(pyplot, response_method, msg):
 
     clf = MyClassifier().fit(X, y)
 
-    with pytest.raises(ValueError, match=msg):
+    with pytest.raises(AttributeError, match=msg):
         DecisionBoundaryDisplay.from_estimator(clf, X, response_method=response_method)
 
 
@@ -274,7 +390,21 @@ def test_multioutput_regressor_error(pyplot):
     y = np.asarray([[0, 1], [4, 1]])
     tree = DecisionTreeRegressor().fit(X, y)
     with pytest.raises(ValueError, match="Multi-output regressors are not supported"):
-        DecisionBoundaryDisplay.from_estimator(tree, X)
+        DecisionBoundaryDisplay.from_estimator(tree, X, response_method="predict")
+
+
+@pytest.mark.parametrize(
+    "response_method",
+    ["predict_proba", "decision_function", ["predict_proba", "predict"]],
+)
+def test_regressor_unsupported_response(pyplot, response_method):
+    """Check that we can display the decision boundary for a regressor."""
+    X, y = load_diabetes(return_X_y=True)
+    X = X[:, :2]
+    tree = DecisionTreeRegressor().fit(X, y)
+    err_msg = "should either be a classifier to be used with response_method"
+    with pytest.raises(ValueError, match=err_msg):
+        DecisionBoundaryDisplay.from_estimator(tree, X, response_method=response_method)
 
 
 @pytest.mark.filterwarnings(
@@ -353,3 +483,127 @@ def test_dataframe_support(pyplot):
         # no warnings linked to feature names validation should be raised
         warnings.simplefilter("error", UserWarning)
         DecisionBoundaryDisplay.from_estimator(estimator, df, response_method="predict")
+
+
+@pytest.mark.parametrize("response_method", ["predict_proba", "decision_function"])
+def test_class_of_interest_binary(pyplot, response_method):
+    """Check the behaviour of passing `class_of_interest` for plotting the output of
+    `predict_proba` and `decision_function` in the binary case.
+    """
+    iris = load_iris()
+    X = iris.data[:100, :2]
+    y = iris.target[:100]
+    assert_array_equal(np.unique(y), [0, 1])
+
+    estimator = LogisticRegression().fit(X, y)
+    # We will check that `class_of_interest=None` is equivalent to
+    # `class_of_interest=estimator.classes_[1]`
+    disp_default = DecisionBoundaryDisplay.from_estimator(
+        estimator,
+        X,
+        response_method=response_method,
+        class_of_interest=None,
+    )
+    disp_class_1 = DecisionBoundaryDisplay.from_estimator(
+        estimator,
+        X,
+        response_method=response_method,
+        class_of_interest=estimator.classes_[1],
+    )
+
+    assert_allclose(disp_default.response, disp_class_1.response)
+
+    # we can check that `_get_response_values` modifies the response when targeting
+    # the other class, i.e. 1 - p(y=1|x) for `predict_proba` and -decision_function
+    # for `decision_function`.
+    disp_class_0 = DecisionBoundaryDisplay.from_estimator(
+        estimator,
+        X,
+        response_method=response_method,
+        class_of_interest=estimator.classes_[0],
+    )
+
+    if response_method == "predict_proba":
+        assert_allclose(disp_default.response, 1 - disp_class_0.response)
+    else:
+        assert response_method == "decision_function"
+        assert_allclose(disp_default.response, -disp_class_0.response)
+
+
+@pytest.mark.parametrize("response_method", ["predict_proba", "decision_function"])
+def test_class_of_interest_multiclass(pyplot, response_method):
+    """Check the behaviour of passing `class_of_interest` for plotting the output of
+    `predict_proba` and `decision_function` in the multiclass case.
+    """
+    iris = load_iris()
+    X = iris.data[:, :2]
+    y = iris.target  # the target are numerical labels
+    class_of_interest_idx = 2
+
+    estimator = LogisticRegression().fit(X, y)
+    disp = DecisionBoundaryDisplay.from_estimator(
+        estimator,
+        X,
+        response_method=response_method,
+        class_of_interest=class_of_interest_idx,
+    )
+
+    # we will check that we plot the expected values as response
+    grid = np.concatenate([disp.xx0.reshape(-1, 1), disp.xx1.reshape(-1, 1)], axis=1)
+    response = getattr(estimator, response_method)(grid)[:, class_of_interest_idx]
+    assert_allclose(response.reshape(*disp.response.shape), disp.response)
+
+    # make the same test but this time using target as strings
+    y = iris.target_names[iris.target]
+    estimator = LogisticRegression().fit(X, y)
+
+    disp = DecisionBoundaryDisplay.from_estimator(
+        estimator,
+        X,
+        response_method=response_method,
+        class_of_interest=iris.target_names[class_of_interest_idx],
+    )
+
+    grid = np.concatenate([disp.xx0.reshape(-1, 1), disp.xx1.reshape(-1, 1)], axis=1)
+    response = getattr(estimator, response_method)(grid)[:, class_of_interest_idx]
+    assert_allclose(response.reshape(*disp.response.shape), disp.response)
+
+    # check that we raise an error for unknown labels
+    # this test should already be handled in `_get_response_values` but we can have this
+    # test here as well
+    err_msg = "class_of_interest=2 is not a valid label: It should be one of"
+    with pytest.raises(ValueError, match=err_msg):
+        DecisionBoundaryDisplay.from_estimator(
+            estimator,
+            X,
+            response_method=response_method,
+            class_of_interest=class_of_interest_idx,
+        )
+
+    # TODO: remove this test when we handle multiclass with class_of_interest=None
+    # by showing the max of the decision function or the max of the predicted
+    # probabilities.
+    err_msg = "Multiclass classifiers are only supported"
+    with pytest.raises(ValueError, match=err_msg):
+        DecisionBoundaryDisplay.from_estimator(
+            estimator,
+            X,
+            response_method=response_method,
+            class_of_interest=None,
+        )
+
+
+def test_subclass_named_constructors_return_type_is_subclass(pyplot):
+    """Check that named constructors return the correct type when subclassed.
+
+    Non-regression test for:
+    https://github.com/scikit-learn/scikit-learn/pull/27675
+    """
+    clf = LogisticRegression().fit(X, y)
+
+    class SubclassOfDisplay(DecisionBoundaryDisplay):
+        pass
+
+    curve = SubclassOfDisplay.from_estimator(estimator=clf, X=X)
+
+    assert isinstance(curve, SubclassOfDisplay)

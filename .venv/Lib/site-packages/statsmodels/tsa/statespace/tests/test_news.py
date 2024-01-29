@@ -5,6 +5,7 @@ Author: Chad Fulton
 License: BSD-3
 """
 from statsmodels.compat.pandas import (
+    FUTURE_STACK,
     assert_frame_equal,
     assert_series_equal,
 )
@@ -157,8 +158,8 @@ def check_news(news, revisions, updates, impact_dates, impacted_variables,
         assert_(np.all(news.revision_impacts.isnull()))
 
     # Total impacts
-    total_impacts = (news.revision_impacts.fillna(0) +
-                     news.update_impacts.fillna(0))
+    total_impacts = (news.revision_impacts.astype(float).fillna(0) +
+                     news.update_impacts.astype(float).fillna(0))
     assert_allclose(news.total_impacts, total_impacts, atol=1e-12)
 
     # - Impacted variable forecasts ------------------------------------------
@@ -178,7 +179,7 @@ def check_news(news, revisions, updates, impact_dates, impacted_variables,
 
     # - Table: data revisions ------------------------------------------------
     assert_equal(news.data_revisions.columns.tolist(),
-                 ['revised', 'observed (prev)'])
+                 ['revised', 'observed (prev)', 'detailed impacts computed'])
     assert_equal(news.data_revisions.index.names,
                  ['revision date', 'revised variable'])
     assert_(news.data_revisions.index.equals(revisions_index))
@@ -255,23 +256,37 @@ def check_news(news, revisions, updates, impact_dates, impacted_variables,
     desired = ['impact date', 'impacted variable']
     assert_equal(impacts.index.names, desired)
 
-    assert_allclose(impacts.loc[:, 'estimate (prev)'],
-                    news.prev_impacted_forecasts.stack(), atol=1e-12)
-    assert_allclose(impacts.loc[:, 'impact of revisions'],
-                    news.revision_impacts.fillna(0).stack(), atol=1e-12)
-    assert_allclose(impacts.loc[:, 'impact of news'],
-                    news.update_impacts.fillna(0).stack(), atol=1e-12)
-    assert_allclose(impacts.loc[:, 'total impact'],
-                    news.total_impacts.stack(), atol=1e-12)
-    assert_allclose(impacts.loc[:, 'estimate (new)'],
-                    news.post_impacted_forecasts.stack(), atol=1e-12)
+    assert_allclose(
+        impacts.loc[:, "estimate (prev)"],
+        news.prev_impacted_forecasts.stack(**FUTURE_STACK),
+        atol=1e-12,
+    )
+    assert_allclose(
+        impacts.loc[:, "impact of revisions"],
+        news.revision_impacts.astype(float).fillna(0).stack(**FUTURE_STACK),
+        atol=1e-12,
+    )
+    assert_allclose(
+        impacts.loc[:, "impact of news"],
+        news.update_impacts.astype(float).fillna(0).stack(**FUTURE_STACK),
+        atol=1e-12,
+    )
+    assert_allclose(
+        impacts.loc[:, "total impact"],
+        news.total_impacts.stack(**FUTURE_STACK),
+        atol=1e-12,
+    )
+    assert_allclose(
+        impacts.loc[:, "estimate (new)"],
+        news.post_impacted_forecasts.stack(**FUTURE_STACK),
+        atol=1e-12,
+    )
 
 
-# @pytest.mark.parametrize('revisions', [True, False])
-# @pytest.mark.parametrize('updates', [True, False])
-@pytest.mark.parametrize('revisions', [True])
-@pytest.mark.parametrize('updates', [True])
-def test_sarimax_time_invariant(revisions, updates):
+@pytest.mark.parametrize('revisions', [True, False])
+@pytest.mark.parametrize('updates', [True, False])
+@pytest.mark.parametrize('revisions_details_start', [True, False, -2])
+def test_sarimax_time_invariant(revisions, updates, revisions_details_start):
     # Construct previous and updated datasets
     endog = dta['infl'].copy()
     comparison_type = None
@@ -291,7 +306,8 @@ def test_sarimax_time_invariant(revisions, updates):
     mod = sarimax.SARIMAX(endog1)
     res = mod.smooth([0.5, 1.0])
     news = res.news(endog2, start='2009Q2', end='2010Q1',
-                    comparison_type=comparison_type)
+                    comparison_type=comparison_type,
+                    revisions_details_start=revisions_details_start)
 
     # Compute the true values for each combination of (revsions, updates)
     impact_dates = pd.period_range(start='2009Q2', end='2010Q1', freq='Q')
@@ -998,3 +1014,293 @@ def test_invalid():
     msg = 'The index associated with the updated results is not a superset'
     with pytest.raises(ValueError, match=msg):
         res.news(endog.values)
+
+
+@pytest.mark.parametrize('revisions_details_start', [True, -10, 200])
+def test_detailed_revisions(revisions_details_start):
+    # Construct original and revised datasets
+    y = np.log(dta[['realgdp', 'realcons',
+                    'realinv', 'cpi']]).diff().iloc[1:] * 100
+    y.iloc[-1, 0] = np.nan
+
+    y_revised = y.copy()
+    revisions = {
+        ('2009Q2', 'realgdp'): 1.1,
+        ('2009Q3', 'realcons'): 0.5,
+        ('2009Q2', 'realinv'): -0.3,
+        ('2009Q2', 'cpi'): 0.2,
+        ('2009Q3', 'cpi'): 0.2,
+    }
+    for key, diff in revisions.items():
+        y_revised.loc[key] += diff
+
+    # Create model and results
+    mod = varmax.VARMAX(y, trend='n')
+    ar_coeff = {
+        'realgdp': 0.9,
+        'realcons': 0.8,
+        'realinv': 0.7,
+        'cpi': 0.6
+    }
+    params = np.r_[np.diag(list(ar_coeff.values())).flatten(),
+                   [1, 0, 1, 0, 0, 1, 0, 0, 0, 1]]
+    res = mod.smooth(params)
+    res_revised = res.apply(y_revised)
+    news = res_revised.news(res, comparison_type='previous', tolerance=-1,
+                            revisions_details_start=revisions_details_start)
+
+    # Tests
+    data_revisions = news.data_revisions
+    revision_details = news.revision_details_by_update.reset_index([2, 3])
+
+    for key, diff in revisions.items():
+        assert_allclose(data_revisions.loc[key, 'revised'], y_revised.loc[key])
+        assert_allclose(data_revisions.loc[key, 'observed (prev)'], y.loc[key])
+        assert_equal(
+            # Need to manually cast to numpy for compatibility with
+            # pandas==1.2.5
+            np.array(data_revisions.loc[key, 'detailed impacts computed']),
+            True)
+        assert_allclose(revision_details.loc[key, 'revised'],
+                        y_revised.loc[key])
+        assert_allclose(revision_details.loc[key, 'observed (prev)'],
+                        y.loc[key])
+        assert_allclose(revision_details.loc[key, 'revision'], diff)
+
+    # For revisions to the impact period, the own-weight is equal to 1.
+    key = ('2009Q3', 'realcons', '2009Q3', 'realcons')
+    assert_allclose(revision_details.loc[key, 'weight'], 1)
+    assert_allclose(revision_details.loc[key, 'impact'],
+                    revisions[('2009Q3', 'realcons')])
+    key = ('2009Q3', 'cpi', '2009Q3', 'cpi')
+    assert_allclose(revision_details.loc[key, 'weight'], 1)
+    assert_allclose(revision_details.loc[key, 'impact'],
+                    revisions[('2009Q3', 'cpi')])
+
+    # For revisions just before the impact period, all weights are equal to
+    # zero unless there is a missing value in the impact period, in which case
+    # the weight is equal to the AR coefficient
+    key = ('2009Q2', 'realgdp', '2009Q3', 'realgdp')
+    assert_allclose(revision_details.loc[key, 'weight'], ar_coeff['realgdp'])
+    assert_allclose(revision_details.loc[key, 'impact'],
+                    ar_coeff['realgdp'] * revisions[('2009Q2', 'realgdp')])
+    key = ('2009Q2', 'realinv', '2009Q3', 'realinv')
+    assert_allclose(revision_details.loc[key, 'weight'], 0)
+    assert_allclose(revision_details.loc[key, 'impact'], 0)
+    key = ('2009Q2', 'cpi', '2009Q3', 'cpi')
+    assert_allclose(revision_details.loc[key, 'weight'], 0)
+    assert_allclose(revision_details.loc[key, 'impact'], 0)
+
+    # Check the impacts table
+
+    # Since we only have revisions, all impacts are due to revisions
+    assert_allclose(news.impacts['impact of news'], 0)
+    assert_allclose(news.impacts['total impact'],
+                    news.impacts['impact of revisions'])
+
+    # Check the values for estimates
+    for name in ['cpi', 'realcons', 'realinv']:
+        assert_allclose(
+            news.impacts.loc[('2009Q3', name), 'estimate (new)'],
+            y_revised.loc['2009Q3', name])
+        assert_allclose(
+            news.impacts.loc[('2009Q3', name), 'estimate (prev)'],
+            y.loc['2009Q3', name])
+    # Have to handle real GDP separately since the 2009Q3 value is missing
+    name = 'realgdp'
+    assert_allclose(
+        news.impacts.loc[('2009Q3', name), 'estimate (new)'],
+        y_revised.loc['2009Q2', name] * ar_coeff[name])
+    assert_allclose(
+        news.impacts.loc[('2009Q3', name), 'estimate (prev)'],
+        y.loc['2009Q2', name] * ar_coeff[name])
+
+    # Check that the values of revision impacts sum up correctly
+    assert_allclose(
+        news.impacts['impact of revisions'],
+        revision_details.groupby(level=[2, 3]).sum()['impact']
+    )
+
+
+@pytest.mark.parametrize('revisions_details_start', [False, 202])
+def test_grouped_revisions(revisions_details_start):
+    # Tests for computing revision impacts when all revisions are grouped
+    # together (i.e. no detailed impacts are computed )
+    # Construct original and revised datasets
+    y = np.log(dta[['realgdp', 'realcons',
+                    'realinv', 'cpi']]).diff().iloc[1:] * 100
+    y.iloc[-1, 0] = np.nan
+
+    y_revised = y.copy()
+    revisions = {
+        ('2009Q2', 'realgdp'): 1.1,
+        ('2009Q3', 'realcons'): 0.5,
+        ('2009Q2', 'realinv'): -0.3,
+        ('2009Q2', 'cpi'): 0.2,
+        ('2009Q3', 'cpi'): 0.2,
+    }
+    for key, diff in revisions.items():
+        y_revised.loc[key] += diff
+
+    # Create model and results
+    mod = varmax.VARMAX(y, trend='n')
+    ar_coeff = {
+        'realgdp': 0.9,
+        'realcons': 0.8,
+        'realinv': 0.7,
+        'cpi': 0.6
+    }
+    params = np.r_[np.diag(list(ar_coeff.values())).flatten(),
+                   [1, 0, 1, 0, 0, 1, 0, 0, 0, 1]]
+    res = mod.smooth(params)
+    res_revised = res.apply(y_revised)
+    news = res_revised.news(res, comparison_type='previous', tolerance=-1,
+                            revisions_details_start=revisions_details_start)
+
+    # Tests
+    data_revisions = news.data_revisions
+    revision_details = news.revision_details_by_update.reset_index([2, 3])
+
+    for key, diff in revisions.items():
+        assert_allclose(data_revisions.loc[key, 'revised'], y_revised.loc[key])
+        assert_allclose(data_revisions.loc[key, 'observed (prev)'], y.loc[key])
+        assert_equal(
+            # Need to manually cast to numpy for compatibility with
+            # pandas==1.2.5
+            np.array(data_revisions.loc[key, 'detailed impacts computed']),
+            False)
+
+    # For grouped data, should not have any of revised, observed (prev),
+    # revision, weight
+    key = ('2009Q3', 'all prior revisions', '2009Q3')
+    cols = ['revised', 'observed (prev)', 'revision', 'weight']
+    assert np.all(revision_details.loc[key, cols].isnull())
+
+    # Expected grouped impacts are the sum of the detailed impacts from
+    # `test_detailed_revisions`
+    assert_allclose(revision_details.loc[key + ('realgdp',), 'impact'],
+                    ar_coeff['realgdp'] * revisions[('2009Q2', 'realgdp')])
+    assert_allclose(revision_details.loc[key + ('realcons',), 'impact'],
+                    revisions[('2009Q3', 'realcons')])
+    assert_allclose(revision_details.loc[key + ('realinv',), 'impact'], 0)
+    assert_allclose(revision_details.loc[key + ('cpi',), 'impact'],
+                    revisions[('2009Q3', 'cpi')])
+
+    # Check the values for estimates
+    for name in ['cpi', 'realcons', 'realinv']:
+        assert_allclose(
+            news.impacts.loc[('2009Q3', name), 'estimate (new)'],
+            y_revised.loc['2009Q3', name])
+        assert_allclose(
+            news.impacts.loc[('2009Q3', name), 'estimate (prev)'],
+            y.loc['2009Q3', name])
+    # Have to handle real GDP separately since the 2009Q3 value is missing
+    name = 'realgdp'
+    assert_allclose(
+        news.impacts.loc[('2009Q3', name), 'estimate (new)'],
+        y_revised.loc['2009Q2', name] * ar_coeff[name])
+    assert_allclose(
+        news.impacts.loc[('2009Q3', name), 'estimate (prev)'],
+        y.loc['2009Q2', name] * ar_coeff[name])
+
+    # Check that the values of revision impacts sum up correctly
+    assert_allclose(
+        news.impacts['impact of revisions'],
+        revision_details.groupby(level=[2, 3]).sum()['impact']
+    )
+
+
+@pytest.mark.parametrize('revisions_details_start', [-1, 201])
+def test_mixed_revisions(revisions_details_start):
+    # Construct original and revised datasets
+    y = np.log(dta[['realgdp', 'realcons',
+                    'realinv', 'cpi']]).diff().iloc[1:] * 100
+    y.iloc[-1, 0] = np.nan
+
+    y_revised = y.copy()
+    revisions = {
+        ('2009Q2', 'realgdp'): 1.1,
+        ('2009Q3', 'realcons'): 0.5,
+        ('2009Q2', 'realinv'): -0.3,
+        ('2009Q2', 'cpi'): 0.2,
+        ('2009Q3', 'cpi'): 0.2,
+    }
+    for key, diff in revisions.items():
+        y_revised.loc[key] += diff
+
+    # Create model and results
+    mod = varmax.VARMAX(y, trend='n')
+    ar_coeff = {
+        'realgdp': 0.9,
+        'realcons': 0.8,
+        'realinv': 0.7,
+        'cpi': 0.6
+    }
+    params = np.r_[np.diag(list(ar_coeff.values())).flatten(),
+                   [1, 0, 1, 0, 0, 1, 0, 0, 0, 1]]
+    res = mod.smooth(params)
+    res_revised = res.apply(y_revised)
+    news = res_revised.news(res, comparison_type='previous', tolerance=-1,
+                            revisions_details_start=revisions_details_start)
+
+    # Tests
+    data_revisions = news.data_revisions
+    revision_details = news.revision_details_by_update.reset_index([2, 3])
+
+    for key, diff in revisions.items():
+        assert_allclose(data_revisions.loc[key, 'revised'], y_revised.loc[key])
+        assert_allclose(data_revisions.loc[key, 'observed (prev)'], y.loc[key])
+        # Revisions to 2009Q2 are grouped (i.e. no details are computed),
+        # while revisions to 2009Q3 have detailed impacts computed
+        expected_details_computed = key[0] == '2009Q3'
+        assert_equal(
+            # Need to manually cast to numpy for compatibility with
+            # pandas==1.2.5
+            np.array(data_revisions.loc[key, 'detailed impacts computed']),
+            expected_details_computed)
+
+    # For grouped data, should not have any of revised, observed (prev),
+    # revision, weight
+    key = ('2009Q2', 'all prior revisions', '2009Q3')
+    cols = ['revised', 'observed (prev)', 'revision', 'weight']
+    assert np.all(revision_details.loc[key, cols].isnull())
+
+    # Expected grouped impacts are the sum of the detailed impacts from
+    # `test_detailed_revisions` for revisions to 2009Q2
+    assert_allclose(revision_details.loc[key + ('realgdp',), 'impact'],
+                    ar_coeff['realgdp'] * revisions[('2009Q2', 'realgdp')])
+    assert_allclose(revision_details.loc[key + ('realinv',), 'impact'], 0)
+
+    # Expected detailed impacts are for revisions to 2009Q3
+    # (for revisions to the impact period, the own-weight is equal to 1)
+    key = ('2009Q3', 'realcons', '2009Q3', 'realcons')
+    assert_allclose(revision_details.loc[key, 'weight'], 1)
+    assert_allclose(revision_details.loc[key, 'impact'],
+                    revisions[('2009Q3', 'realcons')])
+    key = ('2009Q3', 'cpi', '2009Q3', 'cpi')
+    assert_allclose(revision_details.loc[key, 'weight'], 1)
+    assert_allclose(revision_details.loc[key, 'impact'],
+                    revisions[('2009Q3', 'cpi')])
+
+    # Check the values for estimates
+    for name in ['cpi', 'realcons', 'realinv']:
+        assert_allclose(
+            news.impacts.loc[('2009Q3', name), 'estimate (new)'],
+            y_revised.loc['2009Q3', name])
+        assert_allclose(
+            news.impacts.loc[('2009Q3', name), 'estimate (prev)'],
+            y.loc['2009Q3', name])
+    # Have to handle real GDP separately since the 2009Q3 value is missing
+    name = 'realgdp'
+    assert_allclose(
+        news.impacts.loc[('2009Q3', name), 'estimate (new)'],
+        y_revised.loc['2009Q2', name] * ar_coeff[name])
+    assert_allclose(
+        news.impacts.loc[('2009Q3', name), 'estimate (prev)'],
+        y.loc['2009Q2', name] * ar_coeff[name])
+
+    # Check that the values of revision impacts sum up correctly
+    assert_allclose(
+        news.impacts['impact of revisions'],
+        revision_details.groupby(level=[2, 3]).sum()['impact']
+    )

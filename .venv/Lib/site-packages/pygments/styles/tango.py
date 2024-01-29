@@ -41,14 +41,17 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
 
 
+__all__ = ['TangoStyle']
+
+
 class TangoStyle(Style):
     """
     The Crunchy default Style inspired from the color palette from
     the Tango Icon Theme Guidelines.
     """
 
-    # work in progress...
-
+    name = 'tango'
+    
     background_color = "#f8f8f8"
 
     styles = {

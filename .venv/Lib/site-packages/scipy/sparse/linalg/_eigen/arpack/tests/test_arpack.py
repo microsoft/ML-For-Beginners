@@ -77,7 +77,8 @@ def _get_test_tolerance(type_char, mattype=None, D_type=None, which=None):
 
         if type_char == 'D':
             # missing more cases, from PR 14798
-            rtol *= 7
+            rtol *= 10
+            atol *= 10
 
     return tol, rtol, atol
 

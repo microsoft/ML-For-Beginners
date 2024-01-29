@@ -1,7 +1,14 @@
+import sys
 from typing import Any
 
 import numpy as np
-from numpy._typing import NDArray, _128Bit
+import numpy.typing as npt
+from numpy._typing import _32Bit,_64Bit, _128Bit
+
+if sys.version_info >= (3, 11):
+    from typing import assert_type
+else:
+    from typing_extensions import assert_type
 
 # Can't directly import `np.float128` as it is not available on all platforms
 f16: np.floating[_128Bit]
@@ -26,15 +33,15 @@ c = complex()
 f = float()
 i = int()
 
-AR_b: np.ndarray[Any, np.dtype[np.bool_]]
-AR_u: np.ndarray[Any, np.dtype[np.uint32]]
-AR_i: np.ndarray[Any, np.dtype[np.int64]]
-AR_f: np.ndarray[Any, np.dtype[np.float64]]
-AR_c: np.ndarray[Any, np.dtype[np.complex128]]
-AR_m: np.ndarray[Any, np.dtype[np.timedelta64]]
-AR_M: np.ndarray[Any, np.dtype[np.datetime64]]
-AR_O: np.ndarray[Any, np.dtype[np.object_]]
-AR_number: NDArray[np.number[Any]]
+AR_b: npt.NDArray[np.bool_]
+AR_u: npt.NDArray[np.uint32]
+AR_i: npt.NDArray[np.int64]
+AR_f: npt.NDArray[np.float64]
+AR_c: npt.NDArray[np.complex128]
+AR_m: npt.NDArray[np.timedelta64]
+AR_M: npt.NDArray[np.datetime64]
+AR_O: npt.NDArray[np.object_]
+AR_number: npt.NDArray[np.number[Any]]
 
 AR_LIKE_b: list[bool]
 AR_LIKE_u: list[np.uint32]
@@ -47,480 +54,463 @@ AR_LIKE_O: list[np.object_]
 
 # Array subtraction
 
-reveal_type(AR_number - AR_number)  # E: ndarray[Any, dtype[number[Any]]]
+assert_type(AR_number - AR_number, npt.NDArray[np.number[Any]])
 
-reveal_type(AR_b - AR_LIKE_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_b - AR_LIKE_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_b - AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_b - AR_LIKE_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_b - AR_LIKE_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_b - AR_LIKE_O)  # E: Any
+assert_type(AR_b - AR_LIKE_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_b - AR_LIKE_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_b - AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_b - AR_LIKE_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_b - AR_LIKE_m, npt.NDArray[np.timedelta64])
+assert_type(AR_b - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_u - AR_b)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_LIKE_i - AR_b)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_f - AR_b)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_c - AR_b)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_m - AR_b)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_M - AR_b)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_LIKE_O - AR_b)  # E: Any
+assert_type(AR_LIKE_u - AR_b, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_LIKE_i - AR_b, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_f - AR_b, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_c - AR_b, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_m - AR_b, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_M - AR_b, npt.NDArray[np.datetime64])
+assert_type(AR_LIKE_O - AR_b, Any)
 
-reveal_type(AR_u - AR_LIKE_b)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_u - AR_LIKE_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_u - AR_LIKE_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_u - AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_u - AR_LIKE_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_u - AR_LIKE_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_u - AR_LIKE_O)  # E: Any
+assert_type(AR_u - AR_LIKE_b, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_u - AR_LIKE_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_u - AR_LIKE_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_u - AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_u - AR_LIKE_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_u - AR_LIKE_m, npt.NDArray[np.timedelta64])
+assert_type(AR_u - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b - AR_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_LIKE_u - AR_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_LIKE_i - AR_u)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_f - AR_u)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_c - AR_u)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_m - AR_u)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_M - AR_u)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_LIKE_O - AR_u)  # E: Any
+assert_type(AR_LIKE_b - AR_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_LIKE_u - AR_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_LIKE_i - AR_u, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_f - AR_u, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_c - AR_u, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_m - AR_u, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_M - AR_u, npt.NDArray[np.datetime64])
+assert_type(AR_LIKE_O - AR_u, Any)
 
-reveal_type(AR_i - AR_LIKE_b)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_i - AR_LIKE_u)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_i - AR_LIKE_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_i - AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_i - AR_LIKE_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_i - AR_LIKE_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_i - AR_LIKE_O)  # E: Any
+assert_type(AR_i - AR_LIKE_b, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_i - AR_LIKE_u, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_i - AR_LIKE_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_i - AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_i - AR_LIKE_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_i - AR_LIKE_m, npt.NDArray[np.timedelta64])
+assert_type(AR_i - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b - AR_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_u - AR_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_i - AR_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_f - AR_i)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_c - AR_i)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_m - AR_i)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_M - AR_i)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_LIKE_O - AR_i)  # E: Any
+assert_type(AR_LIKE_b - AR_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_u - AR_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_i - AR_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_f - AR_i, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_c - AR_i, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_m - AR_i, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_M - AR_i, npt.NDArray[np.datetime64])
+assert_type(AR_LIKE_O - AR_i, Any)
 
-reveal_type(AR_f - AR_LIKE_b)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f - AR_LIKE_u)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f - AR_LIKE_i)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f - AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f - AR_LIKE_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_f - AR_LIKE_O)  # E: Any
+assert_type(AR_f - AR_LIKE_b, npt.NDArray[np.floating[Any]])
+assert_type(AR_f - AR_LIKE_u, npt.NDArray[np.floating[Any]])
+assert_type(AR_f - AR_LIKE_i, npt.NDArray[np.floating[Any]])
+assert_type(AR_f - AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_f - AR_LIKE_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_f - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b - AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_u - AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_i - AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_f - AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_c - AR_f)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_O - AR_f)  # E: Any
+assert_type(AR_LIKE_b - AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_u - AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_i - AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_f - AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_c - AR_f, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_O - AR_f, Any)
 
-reveal_type(AR_c - AR_LIKE_b)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_c - AR_LIKE_u)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_c - AR_LIKE_i)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_c - AR_LIKE_f)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_c - AR_LIKE_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_c - AR_LIKE_O)  # E: Any
+assert_type(AR_c - AR_LIKE_b, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_c - AR_LIKE_u, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_c - AR_LIKE_i, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_c - AR_LIKE_f, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_c - AR_LIKE_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_c - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b - AR_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_u - AR_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_i - AR_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_f - AR_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_c - AR_c)  # E: ndarray[Any, dtype[complexfloating[Any, Any]]]
-reveal_type(AR_LIKE_O - AR_c)  # E: Any
+assert_type(AR_LIKE_b - AR_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_u - AR_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_i - AR_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_f - AR_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_c - AR_c, npt.NDArray[np.complexfloating[Any, Any]])
+assert_type(AR_LIKE_O - AR_c, Any)
 
-reveal_type(AR_m - AR_LIKE_b)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m - AR_LIKE_u)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m - AR_LIKE_i)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m - AR_LIKE_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m - AR_LIKE_O)  # E: Any
+assert_type(AR_m - AR_LIKE_b, npt.NDArray[np.timedelta64])
+assert_type(AR_m - AR_LIKE_u, npt.NDArray[np.timedelta64])
+assert_type(AR_m - AR_LIKE_i, npt.NDArray[np.timedelta64])
+assert_type(AR_m - AR_LIKE_m, npt.NDArray[np.timedelta64])
+assert_type(AR_m - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b - AR_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_u - AR_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_i - AR_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_m - AR_m)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_M - AR_m)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_LIKE_O - AR_m)  # E: Any
+assert_type(AR_LIKE_b - AR_m, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_u - AR_m, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_i - AR_m, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_m - AR_m, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_M - AR_m, npt.NDArray[np.datetime64])
+assert_type(AR_LIKE_O - AR_m, Any)
 
-reveal_type(AR_M - AR_LIKE_b)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_M - AR_LIKE_u)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_M - AR_LIKE_i)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_M - AR_LIKE_m)  # E: ndarray[Any, dtype[datetime64]]
-reveal_type(AR_M - AR_LIKE_M)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_M - AR_LIKE_O)  # E: Any
+assert_type(AR_M - AR_LIKE_b, npt.NDArray[np.datetime64])
+assert_type(AR_M - AR_LIKE_u, npt.NDArray[np.datetime64])
+assert_type(AR_M - AR_LIKE_i, npt.NDArray[np.datetime64])
+assert_type(AR_M - AR_LIKE_m, npt.NDArray[np.datetime64])
+assert_type(AR_M - AR_LIKE_M, npt.NDArray[np.timedelta64])
+assert_type(AR_M - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_M - AR_M)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_O - AR_M)  # E: Any
+assert_type(AR_LIKE_M - AR_M, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_O - AR_M, Any)
 
-reveal_type(AR_O - AR_LIKE_b)  # E: Any
-reveal_type(AR_O - AR_LIKE_u)  # E: Any
-reveal_type(AR_O - AR_LIKE_i)  # E: Any
-reveal_type(AR_O - AR_LIKE_f)  # E: Any
-reveal_type(AR_O - AR_LIKE_c)  # E: Any
-reveal_type(AR_O - AR_LIKE_m)  # E: Any
-reveal_type(AR_O - AR_LIKE_M)  # E: Any
-reveal_type(AR_O - AR_LIKE_O)  # E: Any
+assert_type(AR_O - AR_LIKE_b, Any)
+assert_type(AR_O - AR_LIKE_u, Any)
+assert_type(AR_O - AR_LIKE_i, Any)
+assert_type(AR_O - AR_LIKE_f, Any)
+assert_type(AR_O - AR_LIKE_c, Any)
+assert_type(AR_O - AR_LIKE_m, Any)
+assert_type(AR_O - AR_LIKE_M, Any)
+assert_type(AR_O - AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b - AR_O)  # E: Any
-reveal_type(AR_LIKE_u - AR_O)  # E: Any
-reveal_type(AR_LIKE_i - AR_O)  # E: Any
-reveal_type(AR_LIKE_f - AR_O)  # E: Any
-reveal_type(AR_LIKE_c - AR_O)  # E: Any
-reveal_type(AR_LIKE_m - AR_O)  # E: Any
-reveal_type(AR_LIKE_M - AR_O)  # E: Any
-reveal_type(AR_LIKE_O - AR_O)  # E: Any
+assert_type(AR_LIKE_b - AR_O, Any)
+assert_type(AR_LIKE_u - AR_O, Any)
+assert_type(AR_LIKE_i - AR_O, Any)
+assert_type(AR_LIKE_f - AR_O, Any)
+assert_type(AR_LIKE_c - AR_O, Any)
+assert_type(AR_LIKE_m - AR_O, Any)
+assert_type(AR_LIKE_M - AR_O, Any)
+assert_type(AR_LIKE_O - AR_O, Any)
 
 # Array floor division
 
-reveal_type(AR_b // AR_LIKE_b)  # E: ndarray[Any, dtype[{int8}]]
-reveal_type(AR_b // AR_LIKE_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_b // AR_LIKE_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_b // AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_b // AR_LIKE_O)  # E: Any
+assert_type(AR_b // AR_LIKE_b, npt.NDArray[np.int8])
+assert_type(AR_b // AR_LIKE_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_b // AR_LIKE_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_b // AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_b // AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b // AR_b)  # E: ndarray[Any, dtype[{int8}]]
-reveal_type(AR_LIKE_u // AR_b)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_LIKE_i // AR_b)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_f // AR_b)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_O // AR_b)  # E: Any
+assert_type(AR_LIKE_b // AR_b, npt.NDArray[np.int8])
+assert_type(AR_LIKE_u // AR_b, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_LIKE_i // AR_b, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_f // AR_b, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_O // AR_b, Any)
 
-reveal_type(AR_u // AR_LIKE_b)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_u // AR_LIKE_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_u // AR_LIKE_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_u // AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_u // AR_LIKE_O)  # E: Any
+assert_type(AR_u // AR_LIKE_b, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_u // AR_LIKE_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_u // AR_LIKE_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_u // AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_u // AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b // AR_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_LIKE_u // AR_u)  # E: ndarray[Any, dtype[unsignedinteger[Any]]]
-reveal_type(AR_LIKE_i // AR_u)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_f // AR_u)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_m // AR_u)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_O // AR_u)  # E: Any
+assert_type(AR_LIKE_b // AR_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_LIKE_u // AR_u, npt.NDArray[np.unsignedinteger[Any]])
+assert_type(AR_LIKE_i // AR_u, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_f // AR_u, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_m // AR_u, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_O // AR_u, Any)
 
-reveal_type(AR_i // AR_LIKE_b)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_i // AR_LIKE_u)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_i // AR_LIKE_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_i // AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_i // AR_LIKE_O)  # E: Any
+assert_type(AR_i // AR_LIKE_b, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_i // AR_LIKE_u, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_i // AR_LIKE_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_i // AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_i // AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b // AR_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_u // AR_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_i // AR_i)  # E: ndarray[Any, dtype[signedinteger[Any]]]
-reveal_type(AR_LIKE_f // AR_i)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_m // AR_i)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_O // AR_i)  # E: Any
+assert_type(AR_LIKE_b // AR_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_u // AR_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_i // AR_i, npt.NDArray[np.signedinteger[Any]])
+assert_type(AR_LIKE_f // AR_i, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_m // AR_i, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_O // AR_i, Any)
 
-reveal_type(AR_f // AR_LIKE_b)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f // AR_LIKE_u)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f // AR_LIKE_i)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f // AR_LIKE_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_f // AR_LIKE_O)  # E: Any
+assert_type(AR_f // AR_LIKE_b, npt.NDArray[np.floating[Any]])
+assert_type(AR_f // AR_LIKE_u, npt.NDArray[np.floating[Any]])
+assert_type(AR_f // AR_LIKE_i, npt.NDArray[np.floating[Any]])
+assert_type(AR_f // AR_LIKE_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_f // AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b // AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_u // AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_i // AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_f // AR_f)  # E: ndarray[Any, dtype[floating[Any]]]
-reveal_type(AR_LIKE_m // AR_f)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_LIKE_O // AR_f)  # E: Any
+assert_type(AR_LIKE_b // AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_u // AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_i // AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_f // AR_f, npt.NDArray[np.floating[Any]])
+assert_type(AR_LIKE_m // AR_f, npt.NDArray[np.timedelta64])
+assert_type(AR_LIKE_O // AR_f, Any)
 
-reveal_type(AR_m // AR_LIKE_u)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m // AR_LIKE_i)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m // AR_LIKE_f)  # E: ndarray[Any, dtype[timedelta64]]
-reveal_type(AR_m // AR_LIKE_m)  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(AR_m // AR_LIKE_O)  # E: Any
+assert_type(AR_m // AR_LIKE_u, npt.NDArray[np.timedelta64])
+assert_type(AR_m // AR_LIKE_i, npt.NDArray[np.timedelta64])
+assert_type(AR_m // AR_LIKE_f, npt.NDArray[np.timedelta64])
+assert_type(AR_m // AR_LIKE_m, npt.NDArray[np.int64])
+assert_type(AR_m // AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_m // AR_m)  # E: ndarray[Any, dtype[{int64}]]
-reveal_type(AR_LIKE_O // AR_m)  # E: Any
+assert_type(AR_LIKE_m // AR_m, npt.NDArray[np.int64])
+assert_type(AR_LIKE_O // AR_m, Any)
 
-reveal_type(AR_O // AR_LIKE_b)  # E: Any
-reveal_type(AR_O // AR_LIKE_u)  # E: Any
-reveal_type(AR_O // AR_LIKE_i)  # E: Any
-reveal_type(AR_O // AR_LIKE_f)  # E: Any
-reveal_type(AR_O // AR_LIKE_m)  # E: Any
-reveal_type(AR_O // AR_LIKE_M)  # E: Any
-reveal_type(AR_O // AR_LIKE_O)  # E: Any
+assert_type(AR_O // AR_LIKE_b, Any)
+assert_type(AR_O // AR_LIKE_u, Any)
+assert_type(AR_O // AR_LIKE_i, Any)
+assert_type(AR_O // AR_LIKE_f, Any)
+assert_type(AR_O // AR_LIKE_m, Any)
+assert_type(AR_O // AR_LIKE_M, Any)
+assert_type(AR_O // AR_LIKE_O, Any)
 
-reveal_type(AR_LIKE_b // AR_O)  # E: Any
-reveal_type(AR_LIKE_u // AR_O)  # E: Any
-reveal_type(AR_LIKE_i // AR_O)  # E: Any
-reveal_type(AR_LIKE_f // AR_O)  # E: Any
-reveal_type(AR_LIKE_m // AR_O)  # E: Any
-reveal_type(AR_LIKE_M // AR_O)  # E: Any
-reveal_type(AR_LIKE_O // AR_O)  # E: Any
+assert_type(AR_LIKE_b // AR_O, Any)
+assert_type(AR_LIKE_u // AR_O, Any)
+assert_type(AR_LIKE_i // AR_O, Any)
+assert_type(AR_LIKE_f // AR_O, Any)
+assert_type(AR_LIKE_m // AR_O, Any)
+assert_type(AR_LIKE_M // AR_O, Any)
+assert_type(AR_LIKE_O // AR_O, Any)
 
 # unary ops
 
-reveal_type(-f16)  # E: {float128}
-reveal_type(-c16)  # E: {complex128}
-reveal_type(-c8)  # E: {complex64}
-reveal_type(-f8)  # E: {float64}
-reveal_type(-f4)  # E: {float32}
-reveal_type(-i8)  # E: {int64}
-reveal_type(-i4)  # E: {int32}
-reveal_type(-u8)  # E: {uint64}
-reveal_type(-u4)  # E: {uint32}
-reveal_type(-td)  # E: timedelta64
-reveal_type(-AR_f)  # E: Any
+assert_type(-f16, np.floating[_128Bit])
+assert_type(-c16, np.complex128)
+assert_type(-c8, np.complex64)
+assert_type(-f8, np.float64)
+assert_type(-f4, np.float32)
+assert_type(-i8, np.int64)
+assert_type(-i4, np.int32)
+assert_type(-u8, np.uint64)
+assert_type(-u4, np.uint32)
+assert_type(-td, np.timedelta64)
+assert_type(-AR_f, npt.NDArray[np.float64])
 
-reveal_type(+f16)  # E: {float128}
-reveal_type(+c16)  # E: {complex128}
-reveal_type(+c8)  # E: {complex64}
-reveal_type(+f8)  # E: {float64}
-reveal_type(+f4)  # E: {float32}
-reveal_type(+i8)  # E: {int64}
-reveal_type(+i4)  # E: {int32}
-reveal_type(+u8)  # E: {uint64}
-reveal_type(+u4)  # E: {uint32}
-reveal_type(+td)  # E: timedelta64
-reveal_type(+AR_f)  # E: Any
+assert_type(+f16, np.floating[_128Bit])
+assert_type(+c16, np.complex128)
+assert_type(+c8, np.complex64)
+assert_type(+f8, np.float64)
+assert_type(+f4, np.float32)
+assert_type(+i8, np.int64)
+assert_type(+i4, np.int32)
+assert_type(+u8, np.uint64)
+assert_type(+u4, np.uint32)
+assert_type(+td, np.timedelta64)
+assert_type(+AR_f, npt.NDArray[np.float64])
 
-reveal_type(abs(f16))  # E: {float128}
-reveal_type(abs(c16))  # E: {float64}
-reveal_type(abs(c8))  # E: {float32}
-reveal_type(abs(f8))  # E: {float64}
-reveal_type(abs(f4))  # E: {float32}
-reveal_type(abs(i8))  # E: {int64}
-reveal_type(abs(i4))  # E: {int32}
-reveal_type(abs(u8))  # E: {uint64}
-reveal_type(abs(u4))  # E: {uint32}
-reveal_type(abs(td))  # E: timedelta64
-reveal_type(abs(b_))  # E: bool_
-reveal_type(abs(AR_f))  # E: Any
+assert_type(abs(f16), np.floating[_128Bit])
+assert_type(abs(c16), np.float64)
+assert_type(abs(c8), np.float32)
+assert_type(abs(f8), np.float64)
+assert_type(abs(f4), np.float32)
+assert_type(abs(i8), np.int64)
+assert_type(abs(i4), np.int32)
+assert_type(abs(u8), np.uint64)
+assert_type(abs(u4), np.uint32)
+assert_type(abs(td), np.timedelta64)
+assert_type(abs(b_), np.bool_)
 
 # Time structures
 
-reveal_type(dt + td)  # E: datetime64
-reveal_type(dt + i)  # E: datetime64
-reveal_type(dt + i4)  # E: datetime64
-reveal_type(dt + i8)  # E: datetime64
-reveal_type(dt - dt)  # E: timedelta64
-reveal_type(dt - i)  # E: datetime64
-reveal_type(dt - i4)  # E: datetime64
-reveal_type(dt - i8)  # E: datetime64
+assert_type(dt + td, np.datetime64)
+assert_type(dt + i, np.datetime64)
+assert_type(dt + i4, np.datetime64)
+assert_type(dt + i8, np.datetime64)
+assert_type(dt - dt, np.timedelta64)
+assert_type(dt - i, np.datetime64)
+assert_type(dt - i4, np.datetime64)
+assert_type(dt - i8, np.datetime64)
 
-reveal_type(td + td)  # E: timedelta64
-reveal_type(td + i)  # E: timedelta64
-reveal_type(td + i4)  # E: timedelta64
-reveal_type(td + i8)  # E: timedelta64
-reveal_type(td - td)  # E: timedelta64
-reveal_type(td - i)  # E: timedelta64
-reveal_type(td - i4)  # E: timedelta64
-reveal_type(td - i8)  # E: timedelta64
-reveal_type(td / f)  # E: timedelta64
-reveal_type(td / f4)  # E: timedelta64
-reveal_type(td / f8)  # E: timedelta64
-reveal_type(td / td)  # E: {float64}
-reveal_type(td // td)  # E: {int64}
+assert_type(td + td, np.timedelta64)
+assert_type(td + i, np.timedelta64)
+assert_type(td + i4, np.timedelta64)
+assert_type(td + i8, np.timedelta64)
+assert_type(td - td, np.timedelta64)
+assert_type(td - i, np.timedelta64)
+assert_type(td - i4, np.timedelta64)
+assert_type(td - i8, np.timedelta64)
+assert_type(td / f, np.timedelta64)
+assert_type(td / f4, np.timedelta64)
+assert_type(td / f8, np.timedelta64)
+assert_type(td / td, np.float64)
+assert_type(td // td, np.int64)
 
 # boolean
 
-reveal_type(b_ / b)  # E: {float64}
-reveal_type(b_ / b_)  # E: {float64}
-reveal_type(b_ / i)  # E: {float64}
-reveal_type(b_ / i8)  # E: {float64}
-reveal_type(b_ / i4)  # E: {float64}
-reveal_type(b_ / u8)  # E: {float64}
-reveal_type(b_ / u4)  # E: {float64}
-reveal_type(b_ / f)  # E: {float64}
-reveal_type(b_ / f16)  # E: {float128}
-reveal_type(b_ / f8)  # E: {float64}
-reveal_type(b_ / f4)  # E: {float32}
-reveal_type(b_ / c)  # E: {complex128}
-reveal_type(b_ / c16)  # E: {complex128}
-reveal_type(b_ / c8)  # E: {complex64}
+assert_type(b_ / b, np.float64)
+assert_type(b_ / b_, np.float64)
+assert_type(b_ / i, np.float64)
+assert_type(b_ / i8, np.float64)
+assert_type(b_ / i4, np.float64)
+assert_type(b_ / u8, np.float64)
+assert_type(b_ / u4, np.float64)
+assert_type(b_ / f, np.float64)
+assert_type(b_ / f16, np.floating[_128Bit])
+assert_type(b_ / f8, np.float64)
+assert_type(b_ / f4, np.float32)
+assert_type(b_ / c, np.complex128)
+assert_type(b_ / c16, np.complex128)
+assert_type(b_ / c8, np.complex64)
 
-reveal_type(b / b_)  # E: {float64}
-reveal_type(b_ / b_)  # E: {float64}
-reveal_type(i / b_)  # E: {float64}
-reveal_type(i8 / b_)  # E: {float64}
-reveal_type(i4 / b_)  # E: {float64}
-reveal_type(u8 / b_)  # E: {float64}
-reveal_type(u4 / b_)  # E: {float64}
-reveal_type(f / b_)  # E: {float64}
-reveal_type(f16 / b_)  # E: {float128}
-reveal_type(f8 / b_)  # E: {float64}
-reveal_type(f4 / b_)  # E: {float32}
-reveal_type(c / b_)  # E: {complex128}
-reveal_type(c16 / b_)  # E: {complex128}
-reveal_type(c8 / b_)  # E: {complex64}
+assert_type(b / b_, np.float64)
+assert_type(b_ / b_, np.float64)
+assert_type(i / b_, np.float64)
+assert_type(i8 / b_, np.float64)
+assert_type(i4 / b_, np.float64)
+assert_type(u8 / b_, np.float64)
+assert_type(u4 / b_, np.float64)
+assert_type(f / b_, np.float64)
+assert_type(f16 / b_, np.floating[_128Bit])
+assert_type(f8 / b_, np.float64)
+assert_type(f4 / b_, np.float32)
+assert_type(c / b_, np.complex128)
+assert_type(c16 / b_, np.complex128)
+assert_type(c8 / b_, np.complex64)
 
 # Complex
 
-reveal_type(c16 + f16)  # E: {complex256}
-reveal_type(c16 + c16)  # E: {complex128}
-reveal_type(c16 + f8)  # E: {complex128}
-reveal_type(c16 + i8)  # E: {complex128}
-reveal_type(c16 + c8)  # E: {complex128}
-reveal_type(c16 + f4)  # E: {complex128}
-reveal_type(c16 + i4)  # E: {complex128}
-reveal_type(c16 + b_)  # E: {complex128}
-reveal_type(c16 + b)  # E: {complex128}
-reveal_type(c16 + c)  # E: {complex128}
-reveal_type(c16 + f)  # E: {complex128}
-reveal_type(c16 + i)  # E: {complex128}
-reveal_type(c16 + AR_f)  # E: Any
+assert_type(c16 + f16, np.complexfloating[_64Bit | _128Bit, _64Bit | _128Bit])
+assert_type(c16 + c16, np.complex128)
+assert_type(c16 + f8, np.complex128)
+assert_type(c16 + i8, np.complex128)
+assert_type(c16 + c8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c16 + f4, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c16 + i4, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c16 + b_, np.complex128)
+assert_type(c16 + b, np.complex128)
+assert_type(c16 + c, np.complex128)
+assert_type(c16 + f, np.complex128)
+assert_type(c16 + AR_f, npt.NDArray[np.complexfloating[Any, Any]])
 
-reveal_type(f16 + c16)  # E: {complex256}
-reveal_type(c16 + c16)  # E: {complex128}
-reveal_type(f8 + c16)  # E: {complex128}
-reveal_type(i8 + c16)  # E: {complex128}
-reveal_type(c8 + c16)  # E: {complex128}
-reveal_type(f4 + c16)  # E: {complex128}
-reveal_type(i4 + c16)  # E: {complex128}
-reveal_type(b_ + c16)  # E: {complex128}
-reveal_type(b + c16)  # E: {complex128}
-reveal_type(c + c16)  # E: {complex128}
-reveal_type(f + c16)  # E: {complex128}
-reveal_type(i + c16)  # E: {complex128}
-reveal_type(AR_f + c16)  # E: Any
+assert_type(f16 + c16, np.complexfloating[_64Bit | _128Bit, _64Bit | _128Bit])
+assert_type(c16 + c16, np.complex128)
+assert_type(f8 + c16, np.complex128)
+assert_type(i8 + c16, np.complex128)
+assert_type(c8 + c16, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(f4 + c16, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(i4 + c16, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(b_ + c16, np.complex128)
+assert_type(b + c16, np.complex128)
+assert_type(c + c16, np.complex128)
+assert_type(f + c16, np.complex128)
+assert_type(AR_f + c16, npt.NDArray[np.complexfloating[Any, Any]])
 
-reveal_type(c8 + f16)  # E: {complex256}
-reveal_type(c8 + c16)  # E: {complex128}
-reveal_type(c8 + f8)  # E: {complex128}
-reveal_type(c8 + i8)  # E: {complex128}
-reveal_type(c8 + c8)  # E: {complex64}
-reveal_type(c8 + f4)  # E: {complex64}
-reveal_type(c8 + i4)  # E: {complex64}
-reveal_type(c8 + b_)  # E: {complex64}
-reveal_type(c8 + b)  # E: {complex64}
-reveal_type(c8 + c)  # E: {complex128}
-reveal_type(c8 + f)  # E: {complex128}
-reveal_type(c8 + i)  # E: complexfloating[{_NBitInt}, {_NBitInt}]
-reveal_type(c8 + AR_f)  # E: Any
+assert_type(c8 + f16, np.complexfloating[_32Bit | _128Bit, _32Bit | _128Bit])
+assert_type(c8 + c16, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c8 + f8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c8 + i8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c8 + c8, np.complex64)
+assert_type(c8 + f4, np.complex64)
+assert_type(c8 + i4, np.complex64)
+assert_type(c8 + b_, np.complex64)
+assert_type(c8 + b, np.complex64)
+assert_type(c8 + c, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c8 + f, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c8 + AR_f, npt.NDArray[np.complexfloating[Any, Any]])
 
-reveal_type(f16 + c8)  # E: {complex256}
-reveal_type(c16 + c8)  # E: {complex128}
-reveal_type(f8 + c8)  # E: {complex128}
-reveal_type(i8 + c8)  # E: {complex128}
-reveal_type(c8 + c8)  # E: {complex64}
-reveal_type(f4 + c8)  # E: {complex64}
-reveal_type(i4 + c8)  # E: {complex64}
-reveal_type(b_ + c8)  # E: {complex64}
-reveal_type(b + c8)  # E: {complex64}
-reveal_type(c + c8)  # E: {complex128}
-reveal_type(f + c8)  # E: {complex128}
-reveal_type(i + c8)  # E: complexfloating[{_NBitInt}, {_NBitInt}]
-reveal_type(AR_f + c8)  # E: Any
+assert_type(f16 + c8, np.complexfloating[_32Bit | _128Bit, _32Bit | _128Bit])
+assert_type(c16 + c8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(f8 + c8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(i8 + c8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(c8 + c8, np.complex64)
+assert_type(f4 + c8, np.complex64)
+assert_type(i4 + c8, np.complex64)
+assert_type(b_ + c8, np.complex64)
+assert_type(b + c8, np.complex64)
+assert_type(c + c8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(f + c8, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(AR_f + c8, npt.NDArray[np.complexfloating[Any, Any]])
 
 # Float
 
-reveal_type(f8 + f16)  # E: {float128}
-reveal_type(f8 + f8)  # E: {float64}
-reveal_type(f8 + i8)  # E: {float64}
-reveal_type(f8 + f4)  # E: {float64}
-reveal_type(f8 + i4)  # E: {float64}
-reveal_type(f8 + b_)  # E: {float64}
-reveal_type(f8 + b)  # E: {float64}
-reveal_type(f8 + c)  # E: {complex128}
-reveal_type(f8 + f)  # E: {float64}
-reveal_type(f8 + i)  # E: {float64}
-reveal_type(f8 + AR_f)  # E: Any
+assert_type(f8 + f16, np.floating[_64Bit | _128Bit])
+assert_type(f8 + f8, np.float64)
+assert_type(f8 + i8, np.float64)
+assert_type(f8 + f4, np.floating[_32Bit | _64Bit])
+assert_type(f8 + i4, np.floating[_32Bit | _64Bit])
+assert_type(f8 + b_, np.float64)
+assert_type(f8 + b, np.float64)
+assert_type(f8 + c, np.complex128)
+assert_type(f8 + f, np.float64)
+assert_type(f8 + AR_f, npt.NDArray[np.floating[Any]])
 
-reveal_type(f16 + f8)  # E: {float128}
-reveal_type(f8 + f8)  # E: {float64}
-reveal_type(i8 + f8)  # E: {float64}
-reveal_type(f4 + f8)  # E: {float64}
-reveal_type(i4 + f8)  # E: {float64}
-reveal_type(b_ + f8)  # E: {float64}
-reveal_type(b + f8)  # E: {float64}
-reveal_type(c + f8)  # E: {complex128}
-reveal_type(f + f8)  # E: {float64}
-reveal_type(i + f8)  # E: {float64}
-reveal_type(AR_f + f8)  # E: Any
+assert_type(f16 + f8, np.floating[_64Bit | _128Bit])
+assert_type(f8 + f8, np.float64)
+assert_type(i8 + f8, np.float64)
+assert_type(f4 + f8, np.floating[_32Bit | _64Bit])
+assert_type(i4 + f8, np.floating[_32Bit | _64Bit])
+assert_type(b_ + f8, np.float64)
+assert_type(b + f8, np.float64)
+assert_type(c + f8, np.complex128)
+assert_type(f + f8, np.float64)
+assert_type(AR_f + f8, npt.NDArray[np.floating[Any]])
 
-reveal_type(f4 + f16)  # E: {float128}
-reveal_type(f4 + f8)  # E: {float64}
-reveal_type(f4 + i8)  # E: {float64}
-reveal_type(f4 + f4)  # E: {float32}
-reveal_type(f4 + i4)  # E: {float32}
-reveal_type(f4 + b_)  # E: {float32}
-reveal_type(f4 + b)  # E: {float32}
-reveal_type(f4 + c)  # E: {complex128}
-reveal_type(f4 + f)  # E: {float64}
-reveal_type(f4 + i)  # E: floating[{_NBitInt}]
-reveal_type(f4 + AR_f)  # E: Any
+assert_type(f4 + f16, np.floating[_32Bit | _128Bit])
+assert_type(f4 + f8, np.floating[_32Bit | _64Bit])
+assert_type(f4 + i8, np.floating[_32Bit | _64Bit])
+assert_type(f4 + f4, np.float32)
+assert_type(f4 + i4, np.float32)
+assert_type(f4 + b_, np.float32)
+assert_type(f4 + b, np.float32)
+assert_type(f4 + c, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(f4 + f, np.floating[_32Bit | _64Bit])
+assert_type(f4 + AR_f, npt.NDArray[np.floating[Any]])
 
-reveal_type(f16 + f4)  # E: {float128}
-reveal_type(f8 + f4)  # E: {float64}
-reveal_type(i8 + f4)  # E: {float64}
-reveal_type(f4 + f4)  # E: {float32}
-reveal_type(i4 + f4)  # E: {float32}
-reveal_type(b_ + f4)  # E: {float32}
-reveal_type(b + f4)  # E: {float32}
-reveal_type(c + f4)  # E: {complex128}
-reveal_type(f + f4)  # E: {float64}
-reveal_type(i + f4)  # E: floating[{_NBitInt}]
-reveal_type(AR_f + f4)  # E: Any
+assert_type(f16 + f4, np.floating[_32Bit | _128Bit])
+assert_type(f8 + f4, np.floating[_32Bit | _64Bit])
+assert_type(i8 + f4, np.floating[_32Bit | _64Bit])
+assert_type(f4 + f4, np.float32)
+assert_type(i4 + f4, np.float32)
+assert_type(b_ + f4, np.float32)
+assert_type(b + f4, np.float32)
+assert_type(c + f4, np.complexfloating[_32Bit | _64Bit, _32Bit | _64Bit])
+assert_type(f + f4, np.floating[_32Bit | _64Bit])
+assert_type(AR_f + f4, npt.NDArray[np.floating[Any]])
 
 # Int
 
-reveal_type(i8 + i8)  # E: {int64}
-reveal_type(i8 + u8)  # E: Any
-reveal_type(i8 + i4)  # E: {int64}
-reveal_type(i8 + u4)  # E: Any
-reveal_type(i8 + b_)  # E: {int64}
-reveal_type(i8 + b)  # E: {int64}
-reveal_type(i8 + c)  # E: {complex128}
-reveal_type(i8 + f)  # E: {float64}
-reveal_type(i8 + i)  # E: {int64}
-reveal_type(i8 + AR_f)  # E: Any
+assert_type(i8 + i8, np.int64)
+assert_type(i8 + u8, Any)
+assert_type(i8 + i4, np.signedinteger[_32Bit | _64Bit])
+assert_type(i8 + u4, Any)
+assert_type(i8 + b_, np.int64)
+assert_type(i8 + b, np.int64)
+assert_type(i8 + c, np.complex128)
+assert_type(i8 + f, np.float64)
+assert_type(i8 + AR_f, npt.NDArray[np.floating[Any]])
 
-reveal_type(u8 + u8)  # E: {uint64}
-reveal_type(u8 + i4)  # E: Any
-reveal_type(u8 + u4)  # E: {uint64}
-reveal_type(u8 + b_)  # E: {uint64}
-reveal_type(u8 + b)  # E: {uint64}
-reveal_type(u8 + c)  # E: {complex128}
-reveal_type(u8 + f)  # E: {float64}
-reveal_type(u8 + i)  # E: Any
-reveal_type(u8 + AR_f)  # E: Any
+assert_type(u8 + u8, np.uint64)
+assert_type(u8 + i4, Any)
+assert_type(u8 + u4, np.unsignedinteger[_32Bit | _64Bit])
+assert_type(u8 + b_, np.uint64)
+assert_type(u8 + b, np.uint64)
+assert_type(u8 + c, np.complex128)
+assert_type(u8 + f, np.float64)
+assert_type(u8 + AR_f, npt.NDArray[np.floating[Any]])
 
-reveal_type(i8 + i8)  # E: {int64}
-reveal_type(u8 + i8)  # E: Any
-reveal_type(i4 + i8)  # E: {int64}
-reveal_type(u4 + i8)  # E: Any
-reveal_type(b_ + i8)  # E: {int64}
-reveal_type(b + i8)  # E: {int64}
-reveal_type(c + i8)  # E: {complex128}
-reveal_type(f + i8)  # E: {float64}
-reveal_type(i + i8)  # E: {int64}
-reveal_type(AR_f + i8)  # E: Any
+assert_type(i8 + i8, np.int64)
+assert_type(u8 + i8, Any)
+assert_type(i4 + i8, np.signedinteger[_32Bit | _64Bit])
+assert_type(u4 + i8, Any)
+assert_type(b_ + i8, np.int64)
+assert_type(b + i8, np.int64)
+assert_type(c + i8, np.complex128)
+assert_type(f + i8, np.float64)
+assert_type(AR_f + i8, npt.NDArray[np.floating[Any]])
 
-reveal_type(u8 + u8)  # E: {uint64}
-reveal_type(i4 + u8)  # E: Any
-reveal_type(u4 + u8)  # E: {uint64}
-reveal_type(b_ + u8)  # E: {uint64}
-reveal_type(b + u8)  # E: {uint64}
-reveal_type(c + u8)  # E: {complex128}
-reveal_type(f + u8)  # E: {float64}
-reveal_type(i + u8)  # E: Any
-reveal_type(AR_f + u8)  # E: Any
+assert_type(u8 + u8, np.uint64)
+assert_type(i4 + u8, Any)
+assert_type(u4 + u8, np.unsignedinteger[_32Bit | _64Bit])
+assert_type(b_ + u8, np.uint64)
+assert_type(b + u8, np.uint64)
+assert_type(c + u8, np.complex128)
+assert_type(f + u8, np.float64)
+assert_type(AR_f + u8, npt.NDArray[np.floating[Any]])
 
-reveal_type(i4 + i8)  # E: {int64}
-reveal_type(i4 + i4)  # E: {int32}
-reveal_type(i4 + i)  # E: {int_}
-reveal_type(i4 + b_)  # E: {int32}
-reveal_type(i4 + b)  # E: {int32}
-reveal_type(i4 + AR_f)  # E: Any
+assert_type(i4 + i8, np.signedinteger[_32Bit | _64Bit])
+assert_type(i4 + i4, np.int32)
+assert_type(i4 + b_, np.int32)
+assert_type(i4 + b, np.int32)
+assert_type(i4 + AR_f, npt.NDArray[np.floating[Any]])
 
-reveal_type(u4 + i8)  # E: Any
-reveal_type(u4 + i4)  # E: Any
-reveal_type(u4 + u8)  # E: {uint64}
-reveal_type(u4 + u4)  # E: {uint32}
-reveal_type(u4 + i)  # E: Any
-reveal_type(u4 + b_)  # E: {uint32}
-reveal_type(u4 + b)  # E: {uint32}
-reveal_type(u4 + AR_f)  # E: Any
+assert_type(u4 + i8, Any)
+assert_type(u4 + i4, Any)
+assert_type(u4 + u8, np.unsignedinteger[_32Bit | _64Bit])
+assert_type(u4 + u4, np.uint32)
+assert_type(u4 + b_, np.uint32)
+assert_type(u4 + b, np.uint32)
+assert_type(u4 + AR_f, npt.NDArray[np.floating[Any]])
 
-reveal_type(i8 + i4)  # E: {int64}
-reveal_type(i4 + i4)  # E: {int32}
-reveal_type(i + i4)  # E: {int_}
-reveal_type(b_ + i4)  # E: {int32}
-reveal_type(b + i4)  # E: {int32}
-reveal_type(AR_f + i4)  # E: Any
+assert_type(i8 + i4, np.signedinteger[_32Bit | _64Bit])
+assert_type(i4 + i4, np.int32)
+assert_type(b_ + i4, np.int32)
+assert_type(b + i4, np.int32)
+assert_type(AR_f + i4, npt.NDArray[np.floating[Any]])
 
-reveal_type(i8 + u4)  # E: Any
-reveal_type(i4 + u4)  # E: Any
-reveal_type(u8 + u4)  # E: {uint64}
-reveal_type(u4 + u4)  # E: {uint32}
-reveal_type(b_ + u4)  # E: {uint32}
-reveal_type(b + u4)  # E: {uint32}
-reveal_type(i + u4)  # E: Any
-reveal_type(AR_f + u4)  # E: Any
+assert_type(i8 + u4, Any)
+assert_type(i4 + u4, Any)
+assert_type(u8 + u4, np.unsignedinteger[_32Bit | _64Bit])
+assert_type(u4 + u4, np.uint32)
+assert_type(b_ + u4, np.uint32)
+assert_type(b + u4, np.uint32)
+assert_type(AR_f + u4, npt.NDArray[np.floating[Any]])

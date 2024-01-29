@@ -14,6 +14,7 @@ from pandas import (
     DataFrame,
     Series,
     date_range,
+    period_range,
     plotting,
 )
 import pandas._testing as tm
@@ -37,17 +38,18 @@ plt = pytest.importorskip("matplotlib.pyplot")
 
 @pytest.fixture
 def ts():
-    return tm.makeTimeSeries(name="ts")
+    return Series(
+        np.arange(10, dtype=np.float64),
+        index=date_range("2020-01-01", periods=10),
+        name="ts",
+    )
 
 
 @pytest.fixture
 def series():
-    return tm.makeStringSeries(name="series")
-
-
-@pytest.fixture
-def iseries():
-    return tm.makePeriodSeries(name="iseries")
+    return Series(
+        range(20), dtype=np.float64, name="series", index=[f"i_{i}" for i in range(20)]
+    )
 
 
 class TestSeriesPlots:
@@ -82,8 +84,9 @@ class TestSeriesPlots:
     def test_plot_ts_area_stacked(self, ts):
         _check_plot_works(ts.plot.area, stacked=False)
 
-    def test_plot_iseries(self, iseries):
-        _check_plot_works(iseries.plot)
+    def test_plot_iseries(self):
+        ser = Series(range(5), period_range("2020-01-01", periods=5))
+        _check_plot_works(ser.plot)
 
     @pytest.mark.parametrize(
         "kind",
@@ -91,7 +94,7 @@ class TestSeriesPlots:
             "line",
             "bar",
             "barh",
-            pytest.param("kde", marks=td.skip_if_no_scipy),
+            pytest.param("kde", marks=td.skip_if_no("scipy")),
             "hist",
             "box",
         ],
@@ -238,7 +241,7 @@ class TestSeriesPlots:
         with pytest.raises(TypeError, match=msg):
             _check_plot_works(s.plot)
 
-    @pytest.mark.parametrize("index", [None, tm.makeDateIndex(k=4)])
+    @pytest.mark.parametrize("index", [None, date_range("2020-01-01", periods=4)])
     def test_line_area_nan_series(self, index):
         values = [1, 2, np.nan, 3]
         d = Series(values, index=index)
@@ -715,7 +718,7 @@ class TestSeriesPlots:
     )
     def test_errorbar_plot_ts(self, yerr):
         # test time series plotting
-        ix = date_range("1/1/2000", "1/1/2001", freq="M")
+        ix = date_range("1/1/2000", "1/1/2001", freq="ME")
         ts = Series(np.arange(12), index=ix, name="x")
         yerr.index = ix
 
@@ -973,3 +976,10 @@ class TestSeriesPlots:
         ax = series.plot(color=None)
         expected = _unpack_cycler(mpl.pyplot.rcParams)[:1]
         _check_colors(ax.get_lines(), linecolors=expected)
+
+    @pytest.mark.slow
+    def test_plot_no_warning(self, ts):
+        # GH 55138
+        # TODO(3.0): this can be removed once Period[B] deprecation is enforced
+        with tm.assert_produces_warning(False):
+            _ = ts.plot()

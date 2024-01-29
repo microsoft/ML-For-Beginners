@@ -36,7 +36,10 @@ from pip._internal.metadata import BaseDistribution, get_default_environment
 from pip._internal.models.link import Link
 from pip._internal.models.wheel import Wheel
 from pip._internal.operations.prepare import RequirementPreparer
-from pip._internal.req.constructors import install_req_from_link_and_ireq
+from pip._internal.req.constructors import (
+    install_req_drop_extras,
+    install_req_from_link_and_ireq,
+)
 from pip._internal.req.req_install import (
     InstallRequirement,
     check_invalid_constraint_type,
@@ -176,6 +179,20 @@ class Factory:
         name: Optional[NormalizedName],
         version: Optional[CandidateVersion],
     ) -> Optional[Candidate]:
+        base: Optional[BaseCandidate] = self._make_base_candidate_from_link(
+            link, template, name, version
+        )
+        if not extras or base is None:
+            return base
+        return self._make_extras_candidate(base, extras, comes_from=template)
+
+    def _make_base_candidate_from_link(
+        self,
+        link: Link,
+        template: InstallRequirement,
+        name: Optional[NormalizedName],
+        version: Optional[CandidateVersion],
+    ) -> Optional[BaseCandidate]:
         # TODO: Check already installed candidate, and use it if the link and
         # editable flag match.
 
@@ -204,7 +221,7 @@ class Factory:
                     self._build_failures[link] = e
                     return None
 
-            base: BaseCandidate = self._editable_candidate_cache[link]
+            return self._editable_candidate_cache[link]
         else:
             if link not in self._link_candidate_cache:
                 try:
@@ -224,11 +241,7 @@ class Factory:
                     )
                     self._build_failures[link] = e
                     return None
-            base = self._link_candidate_cache[link]
-
-        if not extras:
-            return base
-        return self._make_extras_candidate(base, extras, comes_from=template)
+            return self._link_candidate_cache[link]
 
     def _iter_found_candidates(
         self,
@@ -362,9 +375,8 @@ class Factory:
         """
         for link in constraint.links:
             self._fail_if_link_is_unsupported_wheel(link)
-            candidate = self._make_candidate_from_link(
+            candidate = self._make_base_candidate_from_link(
                 link,
-                extras=frozenset(),
                 template=install_req_from_link_and_ireq(link, template),
                 name=canonicalize_name(identifier),
                 version=None,
@@ -454,10 +466,10 @@ class Factory:
         Returns requirement objects associated with the given InstallRequirement. In
         most cases this will be a single object but the following special cases exist:
             - the InstallRequirement has markers that do not apply -> result is empty
-            - the InstallRequirement has both a constraint and extras -> result is split
-                in two requirement objects: one with the constraint and one with the
-                extra. This allows centralized constraint handling for the base,
-                resulting in fewer candidate rejections.
+            - the InstallRequirement has both a constraint (or link) and extras
+                -> result is split in two requirement objects: one with the constraint
+                (or link) and one with the extra. This allows centralized constraint
+                handling for the base, resulting in fewer candidate rejections.
         """
         if not ireq.match_markers(requested_extras):
             logger.info(
@@ -471,10 +483,13 @@ class Factory:
             yield SpecifierRequirement(ireq)
         else:
             self._fail_if_link_is_unsupported_wheel(ireq.link)
-            cand = self._make_candidate_from_link(
+            # Always make the link candidate for the base requirement to make it
+            # available to `find_candidates` for explicit candidate lookup for any
+            # set of extras.
+            # The extras are required separately via a second requirement.
+            cand = self._make_base_candidate_from_link(
                 ireq.link,
-                extras=frozenset(ireq.extras),
-                template=ireq,
+                template=install_req_drop_extras(ireq) if ireq.extras else ireq,
                 name=canonicalize_name(ireq.name) if ireq.name else None,
                 version=None,
             )
@@ -489,7 +504,13 @@ class Factory:
                     raise self._build_failures[ireq.link]
                 yield UnsatisfiableRequirement(canonicalize_name(ireq.name))
             else:
+                # require the base from the link
                 yield self.make_requirement_from_candidate(cand)
+                if ireq.extras:
+                    # require the extras on top of the base candidate
+                    yield self.make_requirement_from_candidate(
+                        self._make_extras_candidate(cand, frozenset(ireq.extras))
+                    )
 
     def collect_root_requirements(
         self, root_ireqs: List[InstallRequirement]

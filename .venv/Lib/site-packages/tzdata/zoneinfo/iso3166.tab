@@ -3,17 +3,22 @@
 # This file is in the public domain, so clarified as of
 # 2009-05-17 by Arthur David Olson.
 #
-# From Paul Eggert (2022-11-18):
+# From Paul Eggert (2023-09-06):
 # This file contains a table of two-letter country codes.  Columns are
 # separated by a single tab.  Lines beginning with '#' are comments.
 # All text uses UTF-8 encoding.  The columns of the table are as follows:
 #
 # 1.  ISO 3166-1 alpha-2 country code, current as of
-#     ISO 3166-1 N1087 (2022-09-02).  See: Updates on ISO 3166-1
-#     https://isotc.iso.org/livelink/livelink/Open/16944257
-# 2.  The usual English name for the coded region,
-#     chosen so that alphabetic sorting of subsets produces helpful lists.
-#     This is not the same as the English name in the ISO 3166 tables.
+#     ISO/TC 46 N1108 (2023-04-05).  See: ISO/TC 46 Documents
+#     https://www.iso.org/committee/48750.html?view=documents
+# 2.  The usual English name for the coded region.  This sometimes
+#     departs from ISO-listed names, sometimes so that sorted subsets
+#     of names are useful (e.g., "Samoa (American)" and "Samoa
+#     (western)" rather than "American Samoa" and "Samoa"),
+#     sometimes to avoid confusion among non-experts (e.g.,
+#     "Czech Republic" and "Turkey" rather than "Czechia" and "Türkiye"),
+#     and sometimes to omit needless detail or churn (e.g., "Netherlands"
+#     rather than "Netherlands (the)" or "Netherlands (Kingdom of the)").
 #
 # The table is sorted by country code.
 #

@@ -151,6 +151,9 @@ class NonlinearDeltaCov:
         """
         g = self.grad()
         var = (np.dot(g, self.cov_params) * g).sum(-1)
+
+        if var.ndim == 2:
+            var = var.T
         return var
 
     def se_vectorized(self):

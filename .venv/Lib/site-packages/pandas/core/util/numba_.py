@@ -1,10 +1,13 @@
 """Common utilities for Numba operations"""
 from __future__ import annotations
 
+import types
 from typing import (
     TYPE_CHECKING,
     Callable,
 )
+
+import numpy as np
 
 from pandas.compat._optional import import_optional_dependency
 from pandas.errors import NumbaUtilError
@@ -82,6 +85,12 @@ def jit_user_function(func: Callable) -> Callable:
 
     if numba.extending.is_jitted(func):
         # Don't jit a user passed jitted function
+        numba_func = func
+    elif getattr(np, func.__name__, False) is func or isinstance(
+        func, types.BuiltinFunctionType
+    ):
+        # Not necessary to jit builtins or np functions
+        # This will mess up register_jitable
         numba_func = func
     else:
         numba_func = numba.extending.register_jitable(func)

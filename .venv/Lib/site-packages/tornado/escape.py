@@ -17,9 +17,15 @@
 
 Also includes a few other miscellaneous string manipulation functions that
 have crept in over time.
+
+Many functions in this module have near-equivalents in the standard library
+(the differences mainly relate to handling of bytes and unicode strings,
+and were more relevant in Python 2). In new code, the standard library
+functions are encouraged instead of this module where applicable. See the
+docstrings on each function for details.
 """
 
-import html.entities
+import html
 import json
 import re
 import urllib.parse
@@ -30,16 +36,6 @@ import typing
 from typing import Union, Any, Optional, Dict, List, Callable
 
 
-_XHTML_ESCAPE_RE = re.compile("[&<>\"']")
-_XHTML_ESCAPE_DICT = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-}
-
-
 def xhtml_escape(value: Union[str, bytes]) -> str:
     """Escapes a string so it is valid within HTML or XML.
 
@@ -47,25 +43,50 @@ def xhtml_escape(value: Union[str, bytes]) -> str:
     When used in attribute values the escaped strings must be enclosed
     in quotes.
 
+    Equivalent to `html.escape` except that this function always returns
+    type `str` while `html.escape` returns `bytes` if its input is `bytes`.
+
     .. versionchanged:: 3.2
 
        Added the single quote to the list of escaped characters.
+
+    .. versionchanged:: 6.4
+
+       Now simply wraps `html.escape`. This is equivalent to the old behavior
+       except that single quotes are now escaped as ``&#x27;`` instead of
+       ``&#39;`` and performance may be different.
     """
-    return _XHTML_ESCAPE_RE.sub(
-        lambda match: _XHTML_ESCAPE_DICT[match.group(0)], to_basestring(value)
-    )
+    return html.escape(to_unicode(value))
 
 
 def xhtml_unescape(value: Union[str, bytes]) -> str:
-    """Un-escapes an XML-escaped string."""
-    return re.sub(r"&(#?)(\w+?);", _convert_entity, _unicode(value))
+    """Un-escapes an XML-escaped string.
+
+    Equivalent to `html.unescape` except that this function always returns
+    type `str` while `html.unescape` returns `bytes` if its input is `bytes`.
+
+    .. versionchanged:: 6.4
+
+       Now simply wraps `html.unescape`. This changes behavior for some inputs
+       as required by the HTML 5 specification
+       https://html.spec.whatwg.org/multipage/parsing.html#numeric-character-reference-end-state
+
+       Some invalid inputs such as surrogates now raise an error, and numeric
+       references to certain ISO-8859-1 characters are now handled correctly.
+    """
+    return html.unescape(to_unicode(value))
 
 
 # The fact that json_encode wraps json.dumps is an implementation detail.
 # Please see https://github.com/tornadoweb/tornado/pull/706
 # before sending a pull request that adds **kwargs to this function.
 def json_encode(value: Any) -> str:
-    """JSON-encodes the given Python object."""
+    """JSON-encodes the given Python object.
+
+    Equivalent to `json.dumps` with the additional guarantee that the output
+    will never contain the character sequence ``</`` which can be problematic
+    when JSON is embedded in an HTML ``<script>`` tag.
+    """
     # JSON permits but does not require forward slashes to be escaped.
     # This is useful when json data is emitted in a <script> tag
     # in HTML, as it prevents </script> tags from prematurely terminating
@@ -78,9 +99,9 @@ def json_encode(value: Any) -> str:
 def json_decode(value: Union[str, bytes]) -> Any:
     """Returns Python objects for the given JSON string.
 
-    Supports both `str` and `bytes` inputs.
+    Supports both `str` and `bytes` inputs. Equvalent to `json.loads`.
     """
-    return json.loads(to_basestring(value))
+    return json.loads(value)
 
 
 def squeeze(value: str) -> str:
@@ -91,16 +112,20 @@ def squeeze(value: str) -> str:
 def url_escape(value: Union[str, bytes], plus: bool = True) -> str:
     """Returns a URL-encoded version of the given value.
 
-    If ``plus`` is true (the default), spaces will be represented
-    as "+" instead of "%20".  This is appropriate for query strings
-    but not for the path component of a URL.  Note that this default
-    is the reverse of Python's urllib module.
+    Equivalent to either `urllib.parse.quote_plus` or `urllib.parse.quote` depending on the ``plus``
+    argument.
+
+    If ``plus`` is true (the default), spaces will be represented as ``+`` and slashes will be
+    represented as ``%2F``.  This is appropriate for query strings. If ``plus`` is false, spaces
+    will be represented as ``%20`` and slashes are left as-is. This is appropriate for the path
+    component of a URL. Note that the default of ``plus=True`` is effectively the
+    reverse of Python's urllib module.
 
     .. versionadded:: 3.1
         The ``plus`` argument
     """
     quote = urllib.parse.quote_plus if plus else urllib.parse.quote
-    return quote(utf8(value))
+    return quote(value)
 
 
 @typing.overload
@@ -108,28 +133,29 @@ def url_unescape(value: Union[str, bytes], encoding: None, plus: bool = True) ->
     pass
 
 
-@typing.overload  # noqa: F811
+@typing.overload
 def url_unescape(
     value: Union[str, bytes], encoding: str = "utf-8", plus: bool = True
 ) -> str:
     pass
 
 
-def url_unescape(  # noqa: F811
+def url_unescape(
     value: Union[str, bytes], encoding: Optional[str] = "utf-8", plus: bool = True
 ) -> Union[str, bytes]:
     """Decodes the given value from a URL.
 
     The argument may be either a byte or unicode string.
 
-    If encoding is None, the result will be a byte string.  Otherwise,
-    the result is a unicode string in the specified encoding.
+    If encoding is None, the result will be a byte string and this function is equivalent to
+    `urllib.parse.unquote_to_bytes` if ``plus=False``.  Otherwise, the result is a unicode string in
+    the specified encoding and this function is equivalent to either `urllib.parse.unquote_plus` or
+    `urllib.parse.unquote` except that this function also accepts `bytes` as input.
 
-    If ``plus`` is true (the default), plus signs will be interpreted
-    as spaces (literal plus signs must be represented as "%2B").  This
-    is appropriate for query strings and form-encoded values but not
-    for the path component of a URL.  Note that this default is the
-    reverse of Python's urllib module.
+    If ``plus`` is true (the default), plus signs will be interpreted as spaces (literal plus signs
+    must be represented as "%2B").  This is appropriate for query strings and form-encoded values
+    but not for the path component of a URL.  Note that this default is the reverse of Python's
+    urllib module.
 
     .. versionadded:: 3.1
        The ``plus`` argument
@@ -175,17 +201,17 @@ def utf8(value: bytes) -> bytes:
     pass
 
 
-@typing.overload  # noqa: F811
+@typing.overload
 def utf8(value: str) -> bytes:
     pass
 
 
-@typing.overload  # noqa: F811
+@typing.overload
 def utf8(value: None) -> None:
     pass
 
 
-def utf8(value: Union[None, str, bytes]) -> Optional[bytes]:  # noqa: F811
+def utf8(value: Union[None, str, bytes]) -> Optional[bytes]:
     """Converts a string argument to a byte string.
 
     If the argument is already a byte string or None, it is returned unchanged.
@@ -206,17 +232,17 @@ def to_unicode(value: str) -> str:
     pass
 
 
-@typing.overload  # noqa: F811
+@typing.overload
 def to_unicode(value: bytes) -> str:
     pass
 
 
-@typing.overload  # noqa: F811
+@typing.overload
 def to_unicode(value: None) -> None:
     pass
 
 
-def to_unicode(value: Union[None, str, bytes]) -> Optional[str]:  # noqa: F811
+def to_unicode(value: Union[None, str, bytes]) -> Optional[str]:
     """Converts a string argument to a unicode string.
 
     If the argument is already a unicode string or None, it is returned
@@ -375,28 +401,3 @@ def linkify(
     # that we won't pick up &quot;, etc.
     text = _unicode(xhtml_escape(text))
     return _URL_RE.sub(make_link, text)
-
-
-def _convert_entity(m: typing.Match) -> str:
-    if m.group(1) == "#":
-        try:
-            if m.group(2)[:1].lower() == "x":
-                return chr(int(m.group(2)[1:], 16))
-            else:
-                return chr(int(m.group(2)))
-        except ValueError:
-            return "&#%s;" % m.group(2)
-    try:
-        return _HTML_UNICODE_MAP[m.group(2)]
-    except KeyError:
-        return "&%s;" % m.group(2)
-
-
-def _build_unicode_map() -> Dict[str, str]:
-    unicode_map = {}
-    for name, value in html.entities.name2codepoint.items():
-        unicode_map[name] = chr(value)
-    return unicode_map
-
-
-_HTML_UNICODE_MAP = _build_unicode_map()

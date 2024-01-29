@@ -31,7 +31,11 @@ class TestSeriesDiff:
 
     def test_diff_tz(self):
         # Combined datetime diff, normal diff and boolean diff test
-        ts = tm.makeTimeSeries(name="ts")
+        ts = Series(
+            np.arange(10, dtype=np.float64),
+            index=date_range("2020-01-01", periods=10),
+            name="ts",
+        )
         ts.diff()
 
         # neg n

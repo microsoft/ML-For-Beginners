@@ -36,6 +36,13 @@ from sklearn.utils import (
 )
 from sklearn.utils._mocking import CheckingClassifier
 from sklearn.utils._testing import assert_almost_equal, assert_array_equal
+from sklearn.utils.fixes import (
+    COO_CONTAINERS,
+    CSC_CONTAINERS,
+    CSR_CONTAINERS,
+    DOK_CONTAINERS,
+    LIL_CONTAINERS,
+)
 from sklearn.utils.multiclass import check_classification_targets, type_of_target
 
 msg = "The default value for `force_alpha` will change"
@@ -160,52 +167,49 @@ def test_ovr_ovo_regressor():
     assert np.mean(pred == iris.target) > 0.9
 
 
-def test_ovr_fit_predict_sparse():
-    for sparse in [
-        sp.csr_matrix,
-        sp.csc_matrix,
-        sp.coo_matrix,
-        sp.dok_matrix,
-        sp.lil_matrix,
-    ]:
-        base_clf = MultinomialNB(alpha=1)
+@pytest.mark.parametrize(
+    "sparse_container",
+    CSR_CONTAINERS + CSC_CONTAINERS + COO_CONTAINERS + DOK_CONTAINERS + LIL_CONTAINERS,
+)
+def test_ovr_fit_predict_sparse(sparse_container):
+    base_clf = MultinomialNB(alpha=1)
 
-        X, Y = datasets.make_multilabel_classification(
-            n_samples=100,
-            n_features=20,
-            n_classes=5,
-            n_labels=3,
-            length=50,
-            allow_unlabeled=True,
-            random_state=0,
-        )
+    X, Y = datasets.make_multilabel_classification(
+        n_samples=100,
+        n_features=20,
+        n_classes=5,
+        n_labels=3,
+        length=50,
+        allow_unlabeled=True,
+        random_state=0,
+    )
 
-        X_train, Y_train = X[:80], Y[:80]
-        X_test = X[80:]
+    X_train, Y_train = X[:80], Y[:80]
+    X_test = X[80:]
 
-        clf = OneVsRestClassifier(base_clf).fit(X_train, Y_train)
-        Y_pred = clf.predict(X_test)
+    clf = OneVsRestClassifier(base_clf).fit(X_train, Y_train)
+    Y_pred = clf.predict(X_test)
 
-        clf_sprs = OneVsRestClassifier(base_clf).fit(X_train, sparse(Y_train))
-        Y_pred_sprs = clf_sprs.predict(X_test)
+    clf_sprs = OneVsRestClassifier(base_clf).fit(X_train, sparse_container(Y_train))
+    Y_pred_sprs = clf_sprs.predict(X_test)
 
-        assert clf.multilabel_
-        assert sp.issparse(Y_pred_sprs)
-        assert_array_equal(Y_pred_sprs.toarray(), Y_pred)
+    assert clf.multilabel_
+    assert sp.issparse(Y_pred_sprs)
+    assert_array_equal(Y_pred_sprs.toarray(), Y_pred)
 
-        # Test predict_proba
-        Y_proba = clf_sprs.predict_proba(X_test)
+    # Test predict_proba
+    Y_proba = clf_sprs.predict_proba(X_test)
 
-        # predict assigns a label if the probability that the
-        # sample has the label is greater than 0.5.
-        pred = Y_proba > 0.5
-        assert_array_equal(pred, Y_pred_sprs.toarray())
+    # predict assigns a label if the probability that the
+    # sample has the label is greater than 0.5.
+    pred = Y_proba > 0.5
+    assert_array_equal(pred, Y_pred_sprs.toarray())
 
-        # Test decision_function
-        clf = svm.SVC()
-        clf_sprs = OneVsRestClassifier(clf).fit(X_train, sparse(Y_train))
-        dec_pred = (clf_sprs.decision_function(X_test) > 0).astype(int)
-        assert_array_equal(dec_pred, clf_sprs.predict(X_test).toarray())
+    # Test decision_function
+    clf = svm.SVC()
+    clf_sprs = OneVsRestClassifier(clf).fit(X_train, sparse_container(Y_train))
+    dec_pred = (clf_sprs.decision_function(X_test) > 0).astype(int)
+    assert_array_equal(dec_pred, clf_sprs.predict(X_test).toarray())
 
 
 def test_ovr_always_present():
@@ -723,11 +727,12 @@ def test_ecoc_float_y():
         ovo.fit(X, y)
 
 
-def test_ecoc_delegate_sparse_base_estimator():
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_ecoc_delegate_sparse_base_estimator(csc_container):
     # Non-regression test for
     # https://github.com/scikit-learn/scikit-learn/issues/17218
     X, y = iris.data, iris.target
-    X_sp = sp.csc_matrix(X)
+    X_sp = csc_container(X)
 
     # create an estimator that does not support sparse input
     base_estimator = CheckingClassifier(
@@ -736,11 +741,11 @@ def test_ecoc_delegate_sparse_base_estimator():
     )
     ecoc = OutputCodeClassifier(base_estimator, random_state=0)
 
-    with pytest.raises(TypeError, match="A sparse matrix was passed"):
+    with pytest.raises(TypeError, match="Sparse data was passed"):
         ecoc.fit(X_sp, y)
 
     ecoc.fit(X, y)
-    with pytest.raises(TypeError, match="A sparse matrix was passed"):
+    with pytest.raises(TypeError, match="Sparse data was passed"):
         ecoc.predict(X_sp)
 
     # smoke test to check when sparse input should be supported

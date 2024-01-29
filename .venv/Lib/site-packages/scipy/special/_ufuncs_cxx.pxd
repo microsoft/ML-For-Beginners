@@ -1,5 +1,16 @@
 from . cimport sf_error
 cdef void _set_action(sf_error.sf_error_t, sf_error.sf_action_t) noexcept nogil
+cdef void *_export_lambertw_scalar
+cdef void *_export__stirling2_inexact
+cdef void *_export_ibeta_float
+cdef void *_export_ibeta_double
+cdef void *_export_ibetac_float
+cdef void *_export_ibetac_double
+cdef void *_export_ibetac_inv_float
+cdef void *_export_ibetac_inv_double
+cdef void *_export_ibeta_inv_float
+cdef void *_export_ibeta_inv_double
+cdef void *_export_binom
 cdef void *_export_faddeeva_dawsn
 cdef void *_export_faddeeva_dawsn_complex
 cdef void *_export_fellint_RC

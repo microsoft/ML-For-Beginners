@@ -58,7 +58,7 @@ class TestIntervalRange:
 
     @pytest.mark.parametrize("tz", [None, "US/Eastern"])
     @pytest.mark.parametrize(
-        "freq, periods", [("D", 364), ("2D", 182), ("22D18H", 16), ("M", 11)]
+        "freq, periods", [("D", 364), ("2D", 182), ("22D18h", 16), ("ME", 11)]
     )
     def test_constructor_timestamp(self, closed, name, freq, periods, tz):
         start, end = Timestamp("20180101", tz=tz), Timestamp("20181231", tz=tz)
@@ -84,16 +84,14 @@ class TestIntervalRange:
         tm.assert_index_equal(result, expected)
 
         # GH 20976: linspace behavior defined from start/end/periods
-        if not breaks.freq.is_anchored() and tz is None:
-            # matches expected only for non-anchored offsets and tz naive
-            # (anchored/DST transitions cause unequal spacing in expected)
+        if not breaks.freq.n == 1 and tz is None:
             result = interval_range(
                 start=start, end=end, periods=periods, name=name, closed=closed
             )
             tm.assert_index_equal(result, expected)
 
     @pytest.mark.parametrize(
-        "freq, periods", [("D", 100), ("2D12H", 40), ("5D", 20), ("25D", 4)]
+        "freq, periods", [("D", 100), ("2D12h", 40), ("5D", 20), ("25D", 4)]
     )
     def test_constructor_timedelta(self, closed, name, freq, periods):
         start, end = Timedelta("0 days"), Timedelta("100 days")
@@ -130,7 +128,7 @@ class TestIntervalRange:
             (0, 10, 3, 9),
             (0, 10, 1.5, 9),
             (0.5, 10, 3, 9.5),
-            (Timedelta("0D"), Timedelta("10D"), "2D4H", Timedelta("8D16H")),
+            (Timedelta("0D"), Timedelta("10D"), "2D4h", Timedelta("8D16h")),
             (
                 Timestamp("2018-01-01"),
                 Timestamp("2018-02-09"),
@@ -140,7 +138,7 @@ class TestIntervalRange:
             (
                 Timestamp("2018-01-01", tz="US/Eastern"),
                 Timestamp("2018-01-20", tz="US/Eastern"),
-                "5D12H",
+                "5D12h",
                 Timestamp("2018-01-17 12:00:00", tz="US/Eastern"),
             ),
         ],
@@ -184,6 +182,9 @@ class TestIntervalRange:
     def test_linspace_dst_transition(self, start, mid, end):
         # GH 20976: linspace behavior defined from start/end/periods
         # accounts for the hour gained/lost during DST transition
+        start = start.as_unit("ns")
+        mid = mid.as_unit("ns")
+        end = end.as_unit("ns")
         result = interval_range(start=start, end=end, periods=2)
         expected = IntervalIndex.from_breaks([start, mid, end])
         tm.assert_index_equal(result, expected)
@@ -219,12 +220,15 @@ class TestIntervalRange:
         expected = "int64" if is_integer(start + end) else "float64"
         assert result == expected
 
-    def test_constructor_coverage(self):
+    def test_interval_range_fractional_period(self):
         # float value for periods
         expected = interval_range(start=0, periods=10)
-        result = interval_range(start=0, periods=10.5)
+        msg = "Non-integer 'periods' in pd.date_range, .* pd.interval_range"
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            result = interval_range(start=0, periods=10.5)
         tm.assert_index_equal(result, expected)
 
+    def test_constructor_coverage(self):
         # equivalent timestamp-like start/end
         start, end = Timestamp("2017-01-01"), Timestamp("2017-01-15")
         expected = interval_range(start=start, end=end)

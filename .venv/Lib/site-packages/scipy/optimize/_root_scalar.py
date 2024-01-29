@@ -204,7 +204,7 @@ def root_scalar(f, args=(), method=None, bracket=None,
     (1.0, 7, 8)
 
 
-    """  # noqa
+    """  # noqa: E501
     if not isinstance(args, tuple):
         args = (args,)
 
@@ -286,7 +286,7 @@ def root_scalar(f, args=(), method=None, bracket=None,
                 sol = optzeros.RootResults(root=e._x,
                                            iterations=np.nan,
                                            function_calls=e._function_calls,
-                                           flag=str(e))
+                                           flag=str(e), method=method)
             else:
                 raise
 
@@ -303,12 +303,12 @@ def root_scalar(f, args=(), method=None, bracket=None,
         if not fprime:
             # approximate fprime with finite differences
 
-            def fprime(x):
+            def fprime(x, *args):
                 # `root_scalar` doesn't actually seem to support vectorized
                 # use of `newton`. In that case, `approx_derivative` will
                 # always get scalar input. Nonetheless, it always returns an
                 # array, so we extract the element to produce scalar output.
-                return approx_derivative(f, x, method='2-point')[0]
+                return approx_derivative(f, x, method='2-point', args=args)[0]
 
         if 'xtol' in kwargs:
             kwargs['tol'] = kwargs.pop('xtol')

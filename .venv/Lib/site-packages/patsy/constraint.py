@@ -86,8 +86,8 @@ class LinearConstraint(object):
         for constraint in constraints:
             if constraint.variable_names != variable_names:
                 raise ValueError("variable names don't match")
-        coefs = np.row_stack([c.coefs for c in constraints])
-        constants = np.row_stack([c.constants for c in constraints])
+        coefs = np.vstack([c.coefs for c in constraints])
+        constants = np.vstack([c.constants for c in constraints])
         return cls(variable_names, coefs, constants)
 
 def test_LinearConstraint():

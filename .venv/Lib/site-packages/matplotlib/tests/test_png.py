@@ -20,7 +20,7 @@ def test_pngsuite():
         if data.ndim == 2:
             # keep grayscale images gray
             cmap = cm.gray
-        plt.imshow(data, extent=[i, i + 1, 0, 1], cmap=cmap)
+        plt.imshow(data, extent=(i, i + 1, 0, 1), cmap=cmap)
 
     plt.gca().patch.set_facecolor("#ddffff")
     plt.gca().set_xlim(0, len(files))

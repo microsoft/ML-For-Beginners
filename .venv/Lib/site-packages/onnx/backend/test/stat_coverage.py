@@ -36,8 +36,8 @@ experimental_covered: Sequence[str] = []
 def gen_node_test_coverage(
     schemas: Sequence[defs.OpSchema], f: IO[Any], ml: bool
 ) -> None:
-    global common_covered
-    global experimental_covered
+    global common_covered  # noqa: PLW0603
+    global experimental_covered  # noqa: PLW0603
     generators = set(
         {
             "Multinomial",
@@ -136,7 +136,7 @@ def gen_node_test_coverage(
                     f.write(f"<summary>{summary}</summary>\n\n")
                     f.write(f"```python\n{code}\n```\n\n")
                     f.write("</details>\n")
-            else:
+            else:  # noqa: PLR5501
                 if s in generators:
                     f.write(" (random generator operator)\n")
                 else:
@@ -150,12 +150,12 @@ def gen_model_test_coverage(
 ) -> None:
     f.write("# Model Test Coverage\n")
     # Process schemas
-    schema_dict = dict()
+    schema_dict = {}
     for schema in schemas:
         schema_dict[schema.name] = schema
     # Load models from each model test using Runner.prepare_model_data
     # Need to grab associated nodes
-    attrs: Dict[str, Dict[str, List[Any]]] = dict()
+    attrs: Dict[str, Dict[str, List[Any]]] = {}
     model_paths: List[Any] = []
     for rt in load_model_tests(kind="real"):
         if rt.url.startswith("onnx/backend/test/data/light/"):
@@ -192,7 +192,7 @@ def gen_model_test_coverage(
                 # Iterate through and store each node's attributes
                 for attr in node.attribute:
                     if node.op_type not in attrs:
-                        attrs[node.op_type] = dict()
+                        attrs[node.op_type] = {}
                     if attr.name not in attrs[node.op_type]:
                         attrs[node.op_type][attr.name] = []
                     if attr.type == AttributeProto.FLOAT:

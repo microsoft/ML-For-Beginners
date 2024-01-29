@@ -16,11 +16,16 @@ from pygments.token import Token, Name, Operator, Keyword, Generic, Comment, \
     Number, String, Literal, Punctuation, Error
 
 
+__all__ = ['ZenburnStyle']
+
+
 class ZenburnStyle(Style):
     """
     Low contrast Zenburn style.
     """
 
+    name = 'zenburn'
+    
     background_color = '#3f3f3f'
     highlight_color = '#484848'
     line_number_color = '#5d6262'

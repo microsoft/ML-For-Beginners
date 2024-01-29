@@ -12,6 +12,7 @@ from scipy.optimize import linprog, OptimizeWarning
 from scipy.optimize._numdiff import approx_derivative
 from scipy.sparse.linalg import MatrixRankWarning
 from scipy.linalg import LinAlgWarning
+from scipy._lib._util import VisibleDeprecationWarning
 import scipy.sparse
 import pytest
 
@@ -51,7 +52,7 @@ def _assert_unable_to_find_basic_feasible_sol(res):
     # res: linprog result object
 
     # The status may be either 2 or 4 depending on why the feasible solution
-    # could not be found. If the undelying problem is expected to not have a
+    # could not be found. If the underlying problem is expected to not have a
     # feasible solution, _assert_infeasible should be used.
     assert_(not res.success, "incorrectly reported success")
     assert_(res.status in (2, 4), "failed to report optimization failure")
@@ -63,8 +64,7 @@ def _assert_success(res, desired_fun=None, desired_x=None,
     # desired_fun: desired objective function value or None
     # desired_x: desired solution or None
     if not res.success:
-        msg = "linprog status {}, message: {}".format(res.status,
-                                                        res.message)
+        msg = f"linprog status {res.status}, message: {res.message}"
         raise AssertionError(msg)
 
     assert_equal(res.status, 0)
@@ -487,7 +487,7 @@ class LinprogCommonTests:
         # Test ill-formatted bounds
         assert_raises(ValueError, f, [1, 2, 3], bounds=[(1, 2), (3, 4)])
         with np.testing.suppress_warnings() as sup:
-            sup.filter(np.VisibleDeprecationWarning, "Creating an ndarray from ragged")
+            sup.filter(VisibleDeprecationWarning, "Creating an ndarray from ragged")
             assert_raises(ValueError, f, [1, 2, 3], bounds=[(1, 2), (3, 4), (3, 4, 5)])
         assert_raises(ValueError, f, [1, 2, 3], bounds=[(1, -2), (1, 2)])
 
@@ -603,7 +603,8 @@ class LinprogCommonTests:
         if do_presolve:
             assert_equal(res.nit, 0)
 
-        res = linprog([1, 2, 3], bounds=[(5, 0), (1, 2), (3, 4)], method=self.method, options=self.options)
+        res = linprog([1, 2, 3], bounds=[(5, 0), (1, 2), (3, 4)],
+                      method=self.method, options=self.options)
         _assert_infeasible(res)
         if do_presolve:
             assert_equal(res.nit, 0)
@@ -626,7 +627,8 @@ class LinprogCommonTests:
 
         if simplex_without_presolve:
             def g(c, bounds):
-                res = linprog(c, bounds=bounds, method=self.method, options=self.options)
+                res = linprog(c, bounds=bounds,
+                              method=self.method, options=self.options)
                 return res
 
             with pytest.warns(RuntimeWarning):
@@ -637,11 +639,13 @@ class LinprogCommonTests:
                 with pytest.raises(IndexError):
                     g(c, bounds=bounds_2)
         else:
-            res = linprog(c=c, bounds=bounds_1, method=self.method, options=self.options)
+            res = linprog(c=c, bounds=bounds_1,
+                          method=self.method, options=self.options)
             _assert_infeasible(res)
             if do_presolve:
                 assert_equal(res.nit, 0)
-            res = linprog(c=c, bounds=bounds_2, method=self.method, options=self.options)
+            res = linprog(c=c, bounds=bounds_2,
+                          method=self.method, options=self.options)
             _assert_infeasible(res)
             if do_presolve:
                 assert_equal(res.nit, 0)
@@ -2210,7 +2214,7 @@ class TestLinprogHiGHSIPM(LinprogHiGHSTests):
 ###################################
 
 
-class TestLinprogHiGHSMIP():
+class TestLinprogHiGHSMIP:
     method = "highs"
     options = {}
 

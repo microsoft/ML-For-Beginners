@@ -450,8 +450,8 @@ class JsonLexer(Lexer):
     name = 'JSON'
     url = 'https://www.json.org'
     aliases = ['json', 'json-object']
-    filenames = ['*.json', 'Pipfile.lock']
-    mimetypes = ['application/json', 'application/json-object']
+    filenames = ['*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock']
+    mimetypes = ['application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq']
 
     # No validation of integers, floats, or constants is done.
     # As long as the characters are members of the following

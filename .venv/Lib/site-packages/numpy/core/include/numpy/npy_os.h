@@ -19,12 +19,18 @@
     #define NPY_OS_SOLARIS
 #elif defined(__CYGWIN__)
     #define NPY_OS_CYGWIN
-#elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
-    #define NPY_OS_WIN32
-#elif defined(_WIN64) || defined(__WIN64__) || defined(WIN64)
-    #define NPY_OS_WIN64
-#elif defined(__MINGW32__) || defined(__MINGW64__)
+/* We are on Windows.*/
+#elif defined(_WIN32)
+  /* We are using MinGW (64-bit or 32-bit)*/
+  #if defined(__MINGW32__) || defined(__MINGW64__)
     #define NPY_OS_MINGW
+  /* Otherwise, if _WIN64 is defined, we are targeting 64-bit Windows*/
+  #elif defined(_WIN64)
+    #define NPY_OS_WIN64
+  /* Otherwise assume we are targeting 32-bit Windows*/
+  #else
+    #define NPY_OS_WIN32
+  #endif
 #elif defined(__APPLE__)
     #define NPY_OS_DARWIN
 #elif defined(__HAIKU__)

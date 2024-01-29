@@ -43,7 +43,10 @@ Y = np.array([1, 2, 2, 2, 1, 0, 1, 1, 1, 0])
 @pytest.mark.parametrize("n_estimators", [10, 20])
 @pytest.mark.parametrize(
     "estimator",
-    [AdaBoostClassifier(n_estimators=5), AdaBoostClassifier(n_estimators=10)],
+    [
+        AdaBoostClassifier(algorithm="SAMME", n_estimators=5),
+        AdaBoostClassifier(algorithm="SAMME", n_estimators=10),
+    ],
 )
 def test_easy_ensemble_classifier(n_estimators, estimator):
     # Check classification for various parameter settings.
@@ -89,7 +92,7 @@ def test_estimator():
     assert isinstance(ensemble.estimator_.steps[-1][1], AdaBoostClassifier)
 
     ensemble = EasyEnsembleClassifier(
-        2, AdaBoostClassifier(), n_jobs=-1, random_state=0
+        2, AdaBoostClassifier(algorithm="SAMME"), n_jobs=-1, random_state=0
     ).fit(X_train, y_train)
 
     assert isinstance(ensemble.estimator_.steps[-1][1], AdaBoostClassifier)
@@ -104,7 +107,9 @@ def test_bagging_with_pipeline():
     )
     estimator = EasyEnsembleClassifier(
         n_estimators=2,
-        estimator=make_pipeline(SelectKBest(k=1), AdaBoostClassifier()),
+        estimator=make_pipeline(
+            SelectKBest(k=1), AdaBoostClassifier(algorithm="SAMME")
+        ),
     )
     estimator.fit(X, y).predict(X)
 
@@ -195,7 +200,8 @@ def test_easy_ensemble_classifier_single_estimator():
 
     clf1 = EasyEnsembleClassifier(n_estimators=1, random_state=0).fit(X_train, y_train)
     clf2 = make_pipeline(
-        RandomUnderSampler(random_state=0), AdaBoostClassifier(random_state=0)
+        RandomUnderSampler(random_state=0),
+        AdaBoostClassifier(algorithm="SAMME", random_state=0),
     ).fit(X_train, y_train)
 
     assert_array_equal(clf1.predict(X_test), clf2.predict(X_test))
@@ -214,7 +220,7 @@ def test_easy_ensemble_classifier_grid_search():
         "estimator__n_estimators": [3, 4],
     }
     grid_search = GridSearchCV(
-        EasyEnsembleClassifier(estimator=AdaBoostClassifier()),
+        EasyEnsembleClassifier(estimator=AdaBoostClassifier(algorithm="SAMME")),
         parameters,
         cv=5,
     )
@@ -227,25 +233,3 @@ def test_easy_ensemble_classifier_n_features():
     estimator = EasyEnsembleClassifier().fit(X, y)
     with pytest.warns(FutureWarning, match="`n_features_` was deprecated"):
         estimator.n_features_
-
-
-@pytest.mark.skipif(
-    sklearn_version < parse_version("1.2"), reason="warns for scikit-learn>=1.2"
-)
-def test_easy_ensemble_classifier_base_estimator():
-    """Check that we raise a FutureWarning when accessing `base_estimator_`."""
-    X, y = load_iris(return_X_y=True)
-    estimator = EasyEnsembleClassifier().fit(X, y)
-    with pytest.warns(FutureWarning, match="`base_estimator_` was deprecated"):
-        estimator.base_estimator_
-
-
-def test_easy_ensemble_classifier_set_both_estimator_and_base_estimator():
-    """Check that we raise a ValueError when setting both `estimator` and
-    `base_estimator`."""
-    X, y = load_iris(return_X_y=True)
-    err_msg = "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-    with pytest.raises(ValueError, match=err_msg):
-        EasyEnsembleClassifier(
-            estimator=AdaBoostClassifier(), base_estimator=AdaBoostClassifier()
-        ).fit(X, y)

@@ -16,7 +16,6 @@ def fixlongs(glyphID, textLength, textOffset):
 
 
 class table_T_S_I__0(DefaultTable.DefaultTable):
-
     dependencies = ["TSI1"]
 
     def decompile(self, data, ttFont):

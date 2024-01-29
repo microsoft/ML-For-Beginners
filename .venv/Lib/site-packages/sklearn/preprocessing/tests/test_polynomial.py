@@ -20,7 +20,12 @@ from sklearn.preprocessing._csr_polynomial_expansion import (
     _get_sizeof_LARGEST_INT_t,
 )
 from sklearn.utils._testing import assert_array_almost_equal
-from sklearn.utils.fixes import parse_version, sp_version
+from sklearn.utils.fixes import (
+    CSC_CONTAINERS,
+    CSR_CONTAINERS,
+    parse_version,
+    sp_version,
+)
 
 
 @pytest.mark.parametrize("est", (PolynomialFeatures, SplineTransformer))
@@ -423,8 +428,10 @@ def test_spline_transformer_sparse_output(
     splt_dense.fit(X)
     splt_sparse.fit(X)
 
-    assert sparse.isspmatrix_csr(splt_sparse.transform(X))
-    assert_allclose(splt_dense.transform(X), splt_sparse.transform(X).toarray())
+    X_trans_sparse = splt_sparse.transform(X)
+    X_trans_dense = splt_dense.transform(X)
+    assert sparse.issparse(X_trans_sparse) and X_trans_sparse.format == "csr"
+    assert_allclose(X_trans_dense, X_trans_sparse.toarray())
 
     # extrapolation regime
     X_min = np.amin(X, axis=0)
@@ -520,27 +527,24 @@ def single_feature_degree3():
         ((2, 3), False, True, []),
     ],
 )
-@pytest.mark.parametrize(
-    "sparse_X",
-    [False, sparse.csr_matrix, sparse.csc_matrix],
-)
+@pytest.mark.parametrize("X_container", [None] + CSR_CONTAINERS + CSC_CONTAINERS)
 def test_polynomial_features_one_feature(
     single_feature_degree3,
     degree,
     include_bias,
     interaction_only,
     indices,
-    sparse_X,
+    X_container,
 ):
     """Test PolynomialFeatures on single feature up to degree 3."""
     X, P = single_feature_degree3
-    if sparse_X:
-        X = sparse_X(X)
+    if X_container is not None:
+        X = X_container(X)
     tf = PolynomialFeatures(
         degree=degree, include_bias=include_bias, interaction_only=interaction_only
     ).fit(X)
     out = tf.transform(X)
-    if sparse_X:
+    if X_container is not None:
         out = out.toarray()
     assert_allclose(out, P[:, indices])
     if tf.n_output_features_ > 0:
@@ -594,27 +598,24 @@ def two_features_degree3():
         ((3, 3), False, True, []),  # would need 3 input features
     ],
 )
-@pytest.mark.parametrize(
-    "sparse_X",
-    [False, sparse.csr_matrix, sparse.csc_matrix],
-)
+@pytest.mark.parametrize("X_container", [None] + CSR_CONTAINERS + CSC_CONTAINERS)
 def test_polynomial_features_two_features(
     two_features_degree3,
     degree,
     include_bias,
     interaction_only,
     indices,
-    sparse_X,
+    X_container,
 ):
     """Test PolynomialFeatures on 2 features up to degree 3."""
     X, P = two_features_degree3
-    if sparse_X:
-        X = sparse_X(X)
+    if X_container is not None:
+        X = X_container(X)
     tf = PolynomialFeatures(
         degree=degree, include_bias=include_bias, interaction_only=interaction_only
     ).fit(X)
     out = tf.transform(X)
-    if sparse_X:
+    if X_container is not None:
         out = out.toarray()
     assert_allclose(out, P[:, indices])
     if tf.n_output_features_ > 0:
@@ -710,10 +711,13 @@ def test_polynomial_feature_names():
         (4, False, True, np.float64),
     ],
 )
-def test_polynomial_features_csc_X(deg, include_bias, interaction_only, dtype):
+@pytest.mark.parametrize("csc_container", CSC_CONTAINERS)
+def test_polynomial_features_csc_X(
+    deg, include_bias, interaction_only, dtype, csc_container
+):
     rng = np.random.RandomState(0)
     X = rng.randint(0, 2, (100, 2))
-    X_csc = sparse.csc_matrix(X)
+    X_csc = csc_container(X)
 
     est = PolynomialFeatures(
         deg, include_bias=include_bias, interaction_only=interaction_only
@@ -721,9 +725,9 @@ def test_polynomial_features_csc_X(deg, include_bias, interaction_only, dtype):
     Xt_csc = est.fit_transform(X_csc.astype(dtype))
     Xt_dense = est.fit_transform(X.astype(dtype))
 
-    assert sparse.isspmatrix_csc(Xt_csc)
+    assert sparse.issparse(Xt_csc) and Xt_csc.format == "csc"
     assert Xt_csc.dtype == Xt_dense.dtype
-    assert_array_almost_equal(Xt_csc.A, Xt_dense)
+    assert_array_almost_equal(Xt_csc.toarray(), Xt_dense)
 
 
 @pytest.mark.parametrize(
@@ -737,10 +741,13 @@ def test_polynomial_features_csc_X(deg, include_bias, interaction_only, dtype):
         (3, False, True, np.float64),
     ],
 )
-def test_polynomial_features_csr_X(deg, include_bias, interaction_only, dtype):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_polynomial_features_csr_X(
+    deg, include_bias, interaction_only, dtype, csr_container
+):
     rng = np.random.RandomState(0)
     X = rng.randint(0, 2, (100, 2))
-    X_csr = sparse.csr_matrix(X)
+    X_csr = csr_container(X)
 
     est = PolynomialFeatures(
         deg, include_bias=include_bias, interaction_only=interaction_only
@@ -748,9 +755,9 @@ def test_polynomial_features_csr_X(deg, include_bias, interaction_only, dtype):
     Xt_csr = est.fit_transform(X_csr.astype(dtype))
     Xt_dense = est.fit_transform(X.astype(dtype, copy=False))
 
-    assert sparse.isspmatrix_csr(Xt_csr)
+    assert sparse.issparse(Xt_csr) and Xt_csr.format == "csr"
     assert Xt_csr.dtype == Xt_dense.dtype
-    assert_array_almost_equal(Xt_csr.A, Xt_dense)
+    assert_array_almost_equal(Xt_csr.toarray(), Xt_dense)
 
 
 @pytest.mark.parametrize("n_features", [1, 4, 5])
@@ -759,17 +766,14 @@ def test_polynomial_features_csr_X(deg, include_bias, interaction_only, dtype):
 )
 @pytest.mark.parametrize("interaction_only", [True, False])
 @pytest.mark.parametrize("include_bias", [True, False])
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
 def test_num_combinations(
-    n_features,
-    min_degree,
-    max_degree,
-    interaction_only,
-    include_bias,
+    n_features, min_degree, max_degree, interaction_only, include_bias, csr_container
 ):
     """
     Test that n_output_features_ is calculated correctly.
     """
-    x = sparse.csr_matrix(([1], ([0], [n_features - 1])))
+    x = csr_container(([1], ([0], [n_features - 1])))
     est = PolynomialFeatures(
         degree=max_degree,
         interaction_only=interaction_only,
@@ -797,8 +801,11 @@ def test_num_combinations(
         (3, False, True, np.float64),
     ],
 )
-def test_polynomial_features_csr_X_floats(deg, include_bias, interaction_only, dtype):
-    X_csr = sparse_random(1000, 10, 0.5, random_state=0).tocsr()
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_polynomial_features_csr_X_floats(
+    deg, include_bias, interaction_only, dtype, csr_container
+):
+    X_csr = csr_container(sparse_random(1000, 10, 0.5, random_state=0))
     X = X_csr.toarray()
 
     est = PolynomialFeatures(
@@ -807,9 +814,9 @@ def test_polynomial_features_csr_X_floats(deg, include_bias, interaction_only, d
     Xt_csr = est.fit_transform(X_csr.astype(dtype))
     Xt_dense = est.fit_transform(X.astype(dtype))
 
-    assert sparse.isspmatrix_csr(Xt_csr)
+    assert sparse.issparse(Xt_csr) and Xt_csr.format == "csr"
     assert Xt_csr.dtype == Xt_dense.dtype
-    assert_array_almost_equal(Xt_csr.A, Xt_dense)
+    assert_array_almost_equal(Xt_csr.toarray(), Xt_dense)
 
 
 @pytest.mark.parametrize(
@@ -829,8 +836,11 @@ def test_polynomial_features_csr_X_floats(deg, include_bias, interaction_only, d
         (2, 3, False),
     ],
 )
-def test_polynomial_features_csr_X_zero_row(zero_row_index, deg, interaction_only):
-    X_csr = sparse_random(3, 10, 1.0, random_state=0).tocsr()
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_polynomial_features_csr_X_zero_row(
+    zero_row_index, deg, interaction_only, csr_container
+):
+    X_csr = csr_container(sparse_random(3, 10, 1.0, random_state=0))
     X_csr[zero_row_index, :] = 0.0
     X = X_csr.toarray()
 
@@ -838,9 +848,9 @@ def test_polynomial_features_csr_X_zero_row(zero_row_index, deg, interaction_onl
     Xt_csr = est.fit_transform(X_csr)
     Xt_dense = est.fit_transform(X)
 
-    assert sparse.isspmatrix_csr(Xt_csr)
+    assert sparse.issparse(Xt_csr) and Xt_csr.format == "csr"
     assert Xt_csr.dtype == Xt_dense.dtype
-    assert_array_almost_equal(Xt_csr.A, Xt_dense)
+    assert_array_almost_equal(Xt_csr.toarray(), Xt_dense)
 
 
 # This degree should always be one more than the highest degree supported by
@@ -849,8 +859,11 @@ def test_polynomial_features_csr_X_zero_row(zero_row_index, deg, interaction_onl
     ["include_bias", "interaction_only"],
     [(True, True), (True, False), (False, True), (False, False)],
 )
-def test_polynomial_features_csr_X_degree_4(include_bias, interaction_only):
-    X_csr = sparse_random(1000, 10, 0.5, random_state=0).tocsr()
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_polynomial_features_csr_X_degree_4(
+    include_bias, interaction_only, csr_container
+):
+    X_csr = csr_container(sparse_random(1000, 10, 0.5, random_state=0))
     X = X_csr.toarray()
 
     est = PolynomialFeatures(
@@ -859,9 +872,9 @@ def test_polynomial_features_csr_X_degree_4(include_bias, interaction_only):
     Xt_csr = est.fit_transform(X_csr)
     Xt_dense = est.fit_transform(X)
 
-    assert sparse.isspmatrix_csr(X_csr)
+    assert sparse.issparse(Xt_csr) and Xt_csr.format == "csr"
     assert Xt_csr.dtype == Xt_dense.dtype
-    assert_array_almost_equal(Xt_csr.A, Xt_dense)
+    assert_array_almost_equal(Xt_csr.toarray(), Xt_dense)
 
 
 @pytest.mark.parametrize(
@@ -879,23 +892,25 @@ def test_polynomial_features_csr_X_degree_4(include_bias, interaction_only):
         (3, 3, False),
     ],
 )
-def test_polynomial_features_csr_X_dim_edges(deg, dim, interaction_only):
-    X_csr = sparse_random(1000, dim, 0.5, random_state=0).tocsr()
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_polynomial_features_csr_X_dim_edges(deg, dim, interaction_only, csr_container):
+    X_csr = csr_container(sparse_random(1000, dim, 0.5, random_state=0))
     X = X_csr.toarray()
 
     est = PolynomialFeatures(deg, interaction_only=interaction_only)
     Xt_csr = est.fit_transform(X_csr)
     Xt_dense = est.fit_transform(X)
 
-    assert sparse.isspmatrix_csr(Xt_csr)
+    assert sparse.issparse(Xt_csr) and Xt_csr.format == "csr"
     assert Xt_csr.dtype == Xt_dense.dtype
-    assert_array_almost_equal(Xt_csr.A, Xt_dense)
+    assert_array_almost_equal(Xt_csr.toarray(), Xt_dense)
 
 
 @pytest.mark.parametrize("interaction_only", [True, False])
 @pytest.mark.parametrize("include_bias", [True, False])
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
 def test_csr_polynomial_expansion_index_overflow_non_regression(
-    interaction_only, include_bias
+    interaction_only, include_bias, csr_container
 ):
     """Check the automatic index dtype promotion to `np.int64` when needed.
 
@@ -923,7 +938,7 @@ def test_csr_polynomial_expansion_index_overflow_non_regression(
     col = np.array(
         [n_features - 2, n_features - 1, n_features - 2, n_features - 1], dtype=np.int64
     )
-    X = sparse.csr_matrix(
+    X = csr_container(
         (data, (row, col)),
         shape=(n_samples, n_features),
         dtype=data_dtype,
@@ -1026,8 +1041,9 @@ def test_csr_polynomial_expansion_index_overflow_non_regression(
 )
 @pytest.mark.parametrize("interaction_only", [True, False])
 @pytest.mark.parametrize("include_bias", [True, False])
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
 def test_csr_polynomial_expansion_index_overflow(
-    degree, n_features, interaction_only, include_bias
+    degree, n_features, interaction_only, include_bias, csr_container
 ):
     """Tests known edge-cases to the dtype promotion strategy and custom
     Cython code, including a current bug in the upstream
@@ -1048,7 +1064,7 @@ def test_csr_polynomial_expansion_index_overflow(
         n_features * (n_features + 1) * (n_features + 2) // 6 + expected_indices[1]
     )
 
-    X = sparse.csr_matrix((data, (row, col)))
+    X = csr_container((data, (row, col)))
     pf = PolynomialFeatures(
         interaction_only=interaction_only, include_bias=include_bias, degree=degree
     )
@@ -1129,12 +1145,15 @@ def test_csr_polynomial_expansion_index_overflow(
 
 @pytest.mark.parametrize("interaction_only", [True, False])
 @pytest.mark.parametrize("include_bias", [True, False])
-def test_csr_polynomial_expansion_too_large_to_index(interaction_only, include_bias):
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_csr_polynomial_expansion_too_large_to_index(
+    interaction_only, include_bias, csr_container
+):
     n_features = np.iinfo(np.int64).max // 2
     data = [1.0]
     row = [0]
     col = [n_features - 1]
-    X = sparse.csr_matrix((data, (row, col)))
+    X = csr_container((data, (row, col)))
     pf = PolynomialFeatures(
         interaction_only=interaction_only, include_bias=include_bias, degree=(2, 2)
     )
@@ -1148,7 +1167,8 @@ def test_csr_polynomial_expansion_too_large_to_index(interaction_only, include_b
         pf.fit_transform(X)
 
 
-def test_polynomial_features_behaviour_on_zero_degree():
+@pytest.mark.parametrize("sparse_container", CSR_CONTAINERS + CSC_CONTAINERS)
+def test_polynomial_features_behaviour_on_zero_degree(sparse_container):
     """Check that PolynomialFeatures raises error when degree=0 and include_bias=False,
     and output a single constant column when include_bias=True
     """
@@ -1169,7 +1189,7 @@ def test_polynomial_features_behaviour_on_zero_degree():
     with pytest.raises(ValueError, match=err_msg):
         poly.fit_transform(X)
 
-    for _X in [X, sparse.csr_matrix(X), sparse.csc_matrix(X)]:
+    for _X in [X, sparse_container(X)]:
         poly = PolynomialFeatures(degree=0, include_bias=True)
         output = poly.fit_transform(_X)
         # convert to dense array if needed
@@ -1200,7 +1220,8 @@ def test_sizeof_LARGEST_INT_t():
     ),
     run=True,
 )
-def test_csr_polynomial_expansion_windows_fail():
+@pytest.mark.parametrize("csr_container", CSR_CONTAINERS)
+def test_csr_polynomial_expansion_windows_fail(csr_container):
     # Minimum needed to ensure integer overflow occurs while guaranteeing an
     # int64-indexable output.
     n_features = int(np.iinfo(np.int64).max ** (1 / 3) + 3)
@@ -1221,7 +1242,7 @@ def test_csr_polynomial_expansion_windows_fail():
         int(n_features * (n_features + 1) * (n_features + 2) // 6 + expected_indices[1])
     )
 
-    X = sparse.csr_matrix((data, (row, col)))
+    X = csr_container((data, (row, col)))
     pf = PolynomialFeatures(interaction_only=False, include_bias=False, degree=3)
     if sys.maxsize <= 2**32:
         msg = (

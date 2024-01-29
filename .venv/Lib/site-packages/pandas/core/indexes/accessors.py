@@ -85,9 +85,7 @@ class Properties(PandasDelegate, PandasObject, NoNewAttributesMixin):
             f"cannot convert an object of type {type(data)} to a datetimelike index"
         )
 
-    # error: Signature of "_delegate_property_get" incompatible with supertype
-    # "PandasDelegate"
-    def _delegate_property_get(self, name: str):  # type: ignore[override]
+    def _delegate_property_get(self, name: str):
         from pandas import Series
 
         values = self._get_values()
@@ -152,6 +150,20 @@ class Properties(PandasDelegate, PandasObject, NoNewAttributesMixin):
 
 @delegate_names(
     delegate=ArrowExtensionArray,
+    accessors=TimedeltaArray._datetimelike_ops,
+    typ="property",
+    accessor_mapping=lambda x: f"_dt_{x}",
+    raise_on_missing=False,
+)
+@delegate_names(
+    delegate=ArrowExtensionArray,
+    accessors=TimedeltaArray._datetimelike_methods,
+    typ="method",
+    accessor_mapping=lambda x: f"_dt_{x}",
+    raise_on_missing=False,
+)
+@delegate_names(
+    delegate=ArrowExtensionArray,
     accessors=DatetimeArray._datetimelike_ops,
     typ="property",
     accessor_mapping=lambda x: f"_dt_{x}",
@@ -175,7 +187,7 @@ class ArrowTemporalProperties(PandasDelegate, PandasObject, NoNewAttributesMixin
         self._orig = orig
         self._freeze()
 
-    def _delegate_property_get(self, name: str):  # type: ignore[override]
+    def _delegate_property_get(self, name: str):
         if not hasattr(self._parent.array, f"_dt_{name}"):
             raise NotImplementedError(
                 f"dt.{name} is not supported for {self._parent.dtype}"
@@ -215,6 +227,9 @@ class ArrowTemporalProperties(PandasDelegate, PandasObject, NoNewAttributesMixin
 
         return result
 
+    def to_pytimedelta(self):
+        return cast(ArrowExtensionArray, self._parent.array)._dt_to_pytimedelta()
+
     def to_pydatetime(self):
         # GH#20306
         warnings.warn(
@@ -227,7 +242,7 @@ class ArrowTemporalProperties(PandasDelegate, PandasObject, NoNewAttributesMixin
         )
         return cast(ArrowExtensionArray, self._parent.array)._dt_to_pydatetime()
 
-    def isocalendar(self):
+    def isocalendar(self) -> DataFrame:
         from pandas import DataFrame
 
         result = (
@@ -242,6 +257,26 @@ class ArrowTemporalProperties(PandasDelegate, PandasObject, NoNewAttributesMixin
             }
         )
         return iso_calendar_df
+
+    @property
+    def components(self) -> DataFrame:
+        from pandas import DataFrame
+
+        components_df = DataFrame(
+            {
+                col: getattr(self._parent.array, f"_dt_{col}")
+                for col in [
+                    "days",
+                    "hours",
+                    "minutes",
+                    "seconds",
+                    "milliseconds",
+                    "microseconds",
+                    "nanoseconds",
+                ]
+            }
+        )
+        return components_df
 
 
 @delegate_names(
@@ -284,7 +319,7 @@ class DatetimeProperties(Properties):
     2    2
     dtype: int32
 
-    >>> quarters_series = pd.Series(pd.date_range("2000-01-01", periods=3, freq="q"))
+    >>> quarters_series = pd.Series(pd.date_range("2000-01-01", periods=3, freq="QE"))
     >>> quarters_series
     0   2000-03-31
     1   2000-06-30
@@ -414,7 +449,7 @@ class TimedeltaProperties(Properties):
     Examples
     --------
     >>> seconds_series = pd.Series(
-    ...     pd.timedelta_range(start="1 second", periods=3, freq="S")
+    ...     pd.timedelta_range(start="1 second", periods=3, freq="s")
     ... )
     >>> seconds_series
     0   0 days 00:00:01
@@ -528,7 +563,7 @@ class PeriodProperties(Properties):
     1    2000-01-01 00:00:01
     2    2000-01-01 00:00:02
     3    2000-01-01 00:00:03
-    dtype: period[S]
+    dtype: period[s]
     >>> seconds_series.dt.second
     0    0
     1    1
@@ -544,7 +579,7 @@ class PeriodProperties(Properties):
     1    2000-01-01 01:00
     2    2000-01-01 02:00
     3    2000-01-01 03:00
-    dtype: period[H]
+    dtype: period[h]
     >>> hours_series.dt.hour
     0    0
     1    1
@@ -594,7 +629,7 @@ class CombinedDatetimelikeProperties(
                 index=orig.index,
             )
 
-        if isinstance(data.dtype, ArrowDtype) and data.dtype.kind == "M":
+        if isinstance(data.dtype, ArrowDtype) and data.dtype.kind in "Mm":
             return ArrowTemporalProperties(data, orig)
         if lib.is_np_dtype(data.dtype, "M"):
             return DatetimeProperties(data, orig)

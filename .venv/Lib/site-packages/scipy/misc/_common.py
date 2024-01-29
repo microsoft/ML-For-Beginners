@@ -199,7 +199,7 @@ def face(gray=False):
     Returns
     -------
     face : ndarray
-        image of a racoon face
+        image of a raccoon face
 
     Examples
     --------
@@ -226,7 +226,9 @@ def face(gray=False):
     face = frombuffer(data, dtype='uint8')
     face.shape = (768, 1024, 3)
     if gray is True:
-        face = (0.21 * face[:,:,0] + 0.71 * face[:,:,1] + 0.07 * face[:,:,2]).astype('uint8')
+        face = (0.21 * face[:,:,0]
+                + 0.71 * face[:,:,1]
+                + 0.07 * face[:,:,2]).astype('uint8')
     return face
 
 

@@ -85,7 +85,7 @@ def scatter_ellipse(data, level=0.9, varnames=None, ell_kwds=None,
     >>> scatter_ellipse(data, varnames=data.columns, fig=fig)
     >>> plt.show()
 
-    ..plot :: plots/graphics_correlation_plot_corr_grid.py
+    .. plot:: plots/graphics_plot_grids_scatter_ellipse.py
     """
     fig = utils.create_mpl_fig(fig)
     import matplotlib.ticker as mticker

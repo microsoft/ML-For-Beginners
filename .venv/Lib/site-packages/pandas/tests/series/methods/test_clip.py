@@ -69,8 +69,15 @@ class TestSeriesClip:
         tm.assert_series_equal(s.clip(upper=np.nan, lower=np.nan), Series([1, 2, 3]))
 
         # GH#19992
-        tm.assert_series_equal(s.clip(lower=[0, 4, np.nan]), Series([1, 4, 3]))
-        tm.assert_series_equal(s.clip(upper=[1, np.nan, 1]), Series([1, 2, 1]))
+        msg = "Downcasting behavior in Series and DataFrame methods 'where'"
+        # TODO: avoid this warning here?  seems like we should never be upcasting
+        #  in the first place?
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            res = s.clip(lower=[0, 4, np.nan])
+        tm.assert_series_equal(res, Series([1, 4, 3]))
+        with tm.assert_produces_warning(FutureWarning, match=msg):
+            res = s.clip(upper=[1, np.nan, 1])
+        tm.assert_series_equal(res, Series([1, 2, 1]))
 
         # GH#40420
         s = Series([1, 2, 3])
@@ -128,11 +135,12 @@ class TestSeriesClip:
         )
         tm.assert_series_equal(result, expected)
 
-    def test_clip_with_timestamps_and_oob_datetimes(self):
+    @pytest.mark.parametrize("dtype", [object, "M8[us]"])
+    def test_clip_with_timestamps_and_oob_datetimes(self, dtype):
         # GH-42794
-        ser = Series([datetime(1, 1, 1), datetime(9999, 9, 9)])
+        ser = Series([datetime(1, 1, 1), datetime(9999, 9, 9)], dtype=dtype)
 
         result = ser.clip(lower=Timestamp.min, upper=Timestamp.max)
-        expected = Series([Timestamp.min, Timestamp.max], dtype="object")
+        expected = Series([Timestamp.min, Timestamp.max], dtype=dtype)
 
         tm.assert_series_equal(result, expected)

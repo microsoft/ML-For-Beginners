@@ -856,7 +856,8 @@ def format_timestamp(
 
     The argument may be a numeric timestamp as returned by `time.time`,
     a time tuple as returned by `time.gmtime`, or a `datetime.datetime`
-    object.
+    object. Naive `datetime.datetime` objects are assumed to represent
+    UTC; aware objects are converted to UTC before formatting.
 
     >>> format_timestamp(1359312200)
     'Sun, 27 Jan 2013 18:43:20 GMT'

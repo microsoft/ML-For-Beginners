@@ -27,25 +27,20 @@ class PandasDataFrameXchg(DataFrameXchg):
     attributes defined on this class.
     """
 
-    def __init__(
-        self, df: DataFrame, nan_as_null: bool = False, allow_copy: bool = True
-    ) -> None:
+    def __init__(self, df: DataFrame, allow_copy: bool = True) -> None:
         """
         Constructor - an instance of this (private) class is returned from
         `pd.DataFrame.__dataframe__`.
         """
         self._df = df
-        # ``nan_as_null`` is a keyword intended for the consumer to tell the
-        # producer to overwrite null values in the data with ``NaN`` (or ``NaT``).
-        # This currently has no effect; once support for nullable extension
-        # dtypes is added, this value should be propagated to columns.
-        self._nan_as_null = nan_as_null
         self._allow_copy = allow_copy
 
     def __dataframe__(
         self, nan_as_null: bool = False, allow_copy: bool = True
     ) -> PandasDataFrameXchg:
-        return PandasDataFrameXchg(self._df, nan_as_null, allow_copy)
+        # `nan_as_null` can be removed here once it's removed from
+        # Dataframe.__dataframe__
+        return PandasDataFrameXchg(self._df, allow_copy)
 
     @property
     def metadata(self) -> dict[str, Index]:
@@ -84,18 +79,16 @@ class PandasDataFrameXchg(DataFrameXchg):
             indices = list(indices)
 
         return PandasDataFrameXchg(
-            self._df.iloc[:, indices], self._nan_as_null, self._allow_copy
+            self._df.iloc[:, indices], allow_copy=self._allow_copy
         )
 
-    def select_columns_by_name(self, names: list[str]) -> PandasDataFrameXchg:  # type: ignore[override]  # noqa: E501
+    def select_columns_by_name(self, names: list[str]) -> PandasDataFrameXchg:  # type: ignore[override]
         if not isinstance(names, abc.Sequence):
             raise ValueError("`names` is not a sequence")
         if not isinstance(names, list):
             names = list(names)
 
-        return PandasDataFrameXchg(
-            self._df.loc[:, names], self._nan_as_null, self._allow_copy
-        )
+        return PandasDataFrameXchg(self._df.loc[:, names], allow_copy=self._allow_copy)
 
     def get_chunks(self, n_chunks: int | None = None) -> Iterable[PandasDataFrameXchg]:
         """
@@ -109,8 +102,7 @@ class PandasDataFrameXchg(DataFrameXchg):
             for start in range(0, step * n_chunks, step):
                 yield PandasDataFrameXchg(
                     self._df.iloc[start : start + step, :],
-                    self._nan_as_null,
-                    self._allow_copy,
+                    allow_copy=self._allow_copy,
                 )
         else:
             yield self

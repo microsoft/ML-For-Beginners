@@ -145,9 +145,11 @@ class LowLevelCallable(tuple):
         try:
             function = module.__pyx_capi__[name]
         except AttributeError as e:
-            raise ValueError("Given module is not a Cython module with __pyx_capi__ attribute") from e
+            message = "Given module is not a Cython module with __pyx_capi__ attribute"
+            raise ValueError(message) from e
         except KeyError as e:
-            raise ValueError(f"No function {name!r} found in __pyx_capi__ of the module") from e
+            message = f"No function {name!r} found in __pyx_capi__ of the module"
+            raise ValueError(message) from e
         return cls(function, user_data, signature)
 
     @classmethod
@@ -163,7 +165,8 @@ class LowLevelCallable(tuple):
         elif _ccallback_c.check_capsule(obj):
             func = obj
         else:
-            raise ValueError("Given input is not a callable or a low-level callable (pycapsule/ctypes/cffi)")
+            raise ValueError("Given input is not a callable or a "
+                             "low-level callable (pycapsule/ctypes/cffi)")
 
         if isinstance(user_data, ctypes.c_void_p):
             context = _get_ctypes_data(user_data)
@@ -174,7 +177,8 @@ class LowLevelCallable(tuple):
         elif _ccallback_c.check_capsule(user_data):
             context = user_data
         else:
-            raise ValueError("Given user data is not a valid low-level void* pointer (pycapsule/ctypes/cffi)")
+            raise ValueError("Given user data is not a valid "
+                             "low-level void* pointer (pycapsule/ctypes/cffi)")
 
         return _ccallback_c.get_raw_capsule(func, signature, context)
 

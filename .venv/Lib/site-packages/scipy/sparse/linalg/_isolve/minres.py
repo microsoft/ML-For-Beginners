@@ -1,14 +1,17 @@
+import warnings
 from numpy import inner, zeros, inf, finfo
 from numpy.linalg import norm
 from math import sqrt
 
 from .utils import make_system
+from scipy._lib.deprecation import _NoValue, _deprecate_positional_args
 
 __all__ = ['minres']
 
 
-def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
-           M=None, callback=None, show=False, check=False):
+@_deprecate_positional_args(version="1.14.0")
+def minres(A, b, x0=None, *, shift=0.0, tol=_NoValue, maxiter=None,
+           M=None, callback=None, show=False, check=False, rtol=1e-5):
     """
     Use MINimum RESidual iteration to solve Ax=b
 
@@ -43,9 +46,9 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
         Starting guess for the solution.
     shift : float
         Value to apply to the system ``(A - shift * I)x = b``. Default is 0.
-    tol : float
+    rtol : float
         Tolerance to achieve. The algorithm terminates when the relative
-        residual is below `tol`.
+        residual is below ``rtol``.
     maxiter : integer
         Maximum number of iterations.  Iteration will stop after maxiter
         steps even if the specified tolerance has not been achieved.
@@ -63,6 +66,11 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
     check : bool
         If ``True``, run additional input validation to check that `A` and
         `M` (if specified) are symmetric. Default is ``False``.
+    tol : float, optional, deprecated
+
+        .. deprecated:: 1.12.0
+           `minres` keyword argument ``tol`` is deprecated in favor of ``rtol``
+           and will be removed in SciPy 1.14.0.
 
     Examples
     --------
@@ -91,6 +99,13 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
     """
     A, M, x, b, postprocess = make_system(A, M, x0, b)
 
+    if tol is not _NoValue:
+        msg = ("'scipy.sparse.linalg.minres' keyword argument `tol` is "
+               "deprecated in favor of `rtol` and will be removed in SciPy "
+               "v1.14. Until then, if set, it will override `rtol`.")
+        warnings.warn(msg, category=DeprecationWarning, stacklevel=4)
+        rtol = float(tol) if tol is not None else rtol
+
     matvec = A.matvec
     psolve = M.matvec
 
@@ -117,7 +132,7 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
     if show:
         print(first + 'Solution of symmetric Ax = b')
         print(first + f'n      =  {n:3g}     shift  =  {shift:23.14e}')
-        print(first + f'itnlim =  {maxiter:3g}     rtol   =  {tol:11.2e}')
+        print(first + f'itnlim =  {maxiter:3g}     rtol   =  {rtol:11.2e}')
         print()
 
     istop = 0
@@ -271,7 +286,7 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
         ynorm = norm(x)
         epsa = Anorm * eps
         epsx = Anorm * ynorm * eps
-        epsr = Anorm * ynorm * tol
+        epsr = Anorm * ynorm * rtol
         diag = gbar
 
         if diag == 0:
@@ -300,7 +315,7 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
         # In rare cases, istop is already -1 from above (Abar = const*I).
 
         if istop == 0:
-            t1 = 1 + test1      # These tests work if tol < eps
+            t1 = 1 + test1      # These tests work if rtol < eps
             t2 = 1 + test2
             if t2 <= 1:
                 istop = 2
@@ -315,9 +330,9 @@ def minres(A, b, x0=None, shift=0.0, tol=1e-5, maxiter=None,
                 istop = 3
             # if rnorm <= epsx   : istop = 2
             # if rnorm <= epsr   : istop = 1
-            if test2 <= tol:
+            if test2 <= rtol:
                 istop = 2
-            if test1 <= tol:
+            if test1 <= rtol:
                 istop = 1
 
         # See if it is time to print something.

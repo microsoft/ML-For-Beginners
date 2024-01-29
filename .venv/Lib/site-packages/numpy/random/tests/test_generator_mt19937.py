@@ -35,6 +35,7 @@ JUMP_TEST_DATA = [
     },
 ]
 
+
 @pytest.fixture(scope='module', params=[True, False])
 def endpoint(request):
     return request.param
@@ -144,6 +145,7 @@ class TestMultinomial:
         match = r"[\w\s]*pvals array is cast to 64-bit floating"
         with pytest.raises(ValueError, match=match):
             random.multinomial(1, pvals)
+
 
 class TestMultivariateHypergeometric:
 
@@ -644,7 +646,7 @@ class TestIntegers:
             sample = self.rfunc(lbnd, ubnd, endpoint=endpoint, dtype=dt)
             assert_equal(sample.dtype, dt)
 
-        for dt in (bool, int, np.compat.long):
+        for dt in (bool, int):
             lbnd = 0 if dt is bool else np.iinfo(dt).min
             ubnd = 2 if dt is bool else np.iinfo(dt).max + 1
             ubnd = ubnd - 1 if endpoint else ubnd
@@ -1238,6 +1240,25 @@ class TestRandomDist:
         sample_mean = sample.mean(axis=0)
         assert_allclose(sample_mean, exact_mean, rtol=1e-3)
 
+    # This set of parameters includes inputs with alpha.max() >= 0.1 and
+    # alpha.max() < 0.1 to exercise both generation methods within the
+    # dirichlet code.
+    @pytest.mark.parametrize(
+        'alpha',
+        [[5, 9, 0, 8],
+         [0.5, 0, 0, 0],
+         [1, 5, 0, 0, 1.5, 0, 0, 0],
+         [0.01, 0.03, 0, 0.005],
+         [1e-5, 0, 0, 0],
+         [0.002, 0.015, 0, 0, 0.04, 0, 0, 0],
+         [0.0],
+         [0, 0, 0]],
+    )
+    def test_dirichlet_multiple_zeros_in_alpha(self, alpha):
+        alpha = np.array(alpha)
+        y = random.dirichlet(alpha)
+        assert_equal(y[alpha == 0], 0.0)
+
     def test_exponential(self):
         random = Generator(MT19937(self.seed))
         actual = random.exponential(1.1234, size=(3, 2))
@@ -1467,7 +1488,7 @@ class TestRandomDist:
                       mu, np.empty((3, 2)))
         assert_raises(ValueError, random.multivariate_normal,
                       mu, np.eye(3))
-        
+
     @pytest.mark.parametrize('mean, cov', [([0], [[1+1j]]), ([0j], [[1]])])
     def test_multivariate_normal_disallow_complex(self, mean, cov):
         random = Generator(MT19937(self.seed))
@@ -1846,7 +1867,6 @@ class TestBroadcast:
     # correctly when presented with non-scalar arguments
     def setup_method(self):
         self.seed = 123456789
-
 
     def test_uniform(self):
         random = Generator(MT19937(self.seed))

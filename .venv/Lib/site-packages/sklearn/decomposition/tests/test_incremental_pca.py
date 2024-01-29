@@ -4,7 +4,6 @@ import warnings
 import numpy as np
 import pytest
 from numpy.testing import assert_array_equal
-from scipy import sparse
 
 from sklearn import datasets
 from sklearn.decomposition import PCA, IncrementalPCA
@@ -13,6 +12,7 @@ from sklearn.utils._testing import (
     assert_almost_equal,
     assert_array_almost_equal,
 )
+from sklearn.utils.fixes import CSC_CONTAINERS, CSR_CONTAINERS, LIL_CONTAINERS
 
 iris = datasets.load_iris()
 
@@ -45,14 +45,14 @@ def test_incremental_pca():
 
 
 @pytest.mark.parametrize(
-    "matrix_class", [sparse.csc_matrix, sparse.csr_matrix, sparse.lil_matrix]
+    "sparse_container", CSC_CONTAINERS + CSR_CONTAINERS + LIL_CONTAINERS
 )
-def test_incremental_pca_sparse(matrix_class):
+def test_incremental_pca_sparse(sparse_container):
     # Incremental PCA on sparse arrays.
     X = iris.data
     pca = PCA(n_components=2)
     pca.fit_transform(X)
-    X_sparse = matrix_class(X)
+    X_sparse = sparse_container(X)
     batch_size = X_sparse.shape[0] // 3
     ipca = IncrementalPCA(n_components=2, batch_size=batch_size)
 

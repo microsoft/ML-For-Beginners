@@ -22,7 +22,7 @@ from ..base import (
 )
 from ..exceptions import ConvergenceWarning
 from ..model_selection import ShuffleSplit, StratifiedShuffleSplit
-from ..utils import check_random_state, compute_class_weight
+from ..utils import check_random_state, compute_class_weight, deprecated
 from ..utils._param_validation import Hidden, Interval, StrOptions
 from ..utils.extmath import safe_sparse_dot
 from ..utils.metaestimators import available_if
@@ -323,6 +323,16 @@ class BaseSGD(SparseCoefMixin, BaseEstimator, metaclass=ABCMeta):
             classes=classes,
         )
 
+    # TODO(1.6): Remove
+    # mypy error: Decorated property not supported
+    @deprecated(  # type: ignore
+        "Attribute `loss_function_` was deprecated in version 1.4 and will be removed "
+        "in 1.6."
+    )
+    @property
+    def loss_function_(self):
+        return self._loss_function_
+
 
 def _prepare_fit_binary(est, y, i, input_dtye):
     """Initialization for fit_binary.
@@ -455,7 +465,7 @@ def fit_binary(
         intercept,
         average_coef,
         average_intercept,
-        est.loss_function_,
+        est._loss_function_,
         penalty_type,
         alpha,
         C,
@@ -619,7 +629,7 @@ class BaseSGDClassifier(LinearClassifierMixin, BaseSGD, metaclass=ABCMeta):
                 % (n_features, self.coef_.shape[-1])
             )
 
-        self.loss_function_ = self._get_loss_function(loss)
+        self._loss_function_ = self._get_loss_function(loss)
         if not hasattr(self, "t_"):
             self.t_ = 1.0
 
@@ -1131,6 +1141,10 @@ class SGDClassifier(BaseSGDClassifier):
         For multiclass fits, it is the maximum over every binary fit.
 
     loss_function_ : concrete ``LossFunction``
+
+        .. deprecated:: 1.4
+            Attribute `loss_function_` was deprecated in version 1.4 and will be
+            removed in 1.6.
 
     classes_ : array of shape (n_classes,)
 
@@ -2122,6 +2136,10 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
 
     loss_function_ : concrete ``LossFunction``
 
+        .. deprecated:: 1.4
+            ``loss_function_`` was deprecated in version 1.4 and will be removed in
+            1.6.
+
     n_features_in_ : int
         Number of features seen during :term:`fit`.
 
@@ -2260,7 +2278,7 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
             intercept[0],
             average_coef,
             average_intercept[0],
-            self.loss_function_,
+            self._loss_function_,
             penalty_type,
             alpha,
             C,
@@ -2354,7 +2372,7 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
             self._average_coef = np.zeros(n_features, dtype=X.dtype, order="C")
             self._average_intercept = np.zeros(1, dtype=X.dtype, order="C")
 
-        self.loss_function_ = self._get_loss_function(loss)
+        self._loss_function_ = self._get_loss_function(loss)
         if not hasattr(self, "t_"):
             self.t_ = 1.0
 

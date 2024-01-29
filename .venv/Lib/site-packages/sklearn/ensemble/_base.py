@@ -3,7 +3,6 @@
 # Authors: Gilles Louppe
 # License: BSD 3 clause
 
-import warnings
 from abc import ABCMeta, abstractmethod
 from typing import List
 
@@ -11,7 +10,8 @@ import numpy as np
 from joblib import effective_n_jobs
 
 from ..base import BaseEstimator, MetaEstimatorMixin, clone, is_classifier, is_regressor
-from ..utils import Bunch, _print_elapsed_time, check_random_state, deprecated
+from ..utils import Bunch, _print_elapsed_time, check_random_state
+from ..utils._tags import _safe_tags
 from ..utils.metaestimators import _BaseComposition
 
 
@@ -93,24 +93,10 @@ class BaseEnsemble(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
         The list of attributes to use as parameters when instantiating a
         new base estimator. If none are given, default parameters are used.
 
-    base_estimator : object, default="deprecated"
-        Use `estimator` instead.
-
-        .. deprecated:: 1.2
-            `base_estimator` is deprecated and will be removed in 1.4.
-            Use `estimator` instead.
-
     Attributes
     ----------
     estimator_ : estimator
         The base estimator from which the ensemble is grown.
-
-    base_estimator_ : estimator
-        The base estimator from which the ensemble is grown.
-
-        .. deprecated:: 1.2
-            `base_estimator_` is deprecated and will be removed in 1.4.
-            Use `estimator_` instead.
 
     estimators_ : list of estimators
         The collection of fitted base estimators.
@@ -126,15 +112,13 @@ class BaseEnsemble(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
         *,
         n_estimators=10,
         estimator_params=tuple(),
-        base_estimator="deprecated",
     ):
         # Set parameters
         self.estimator = estimator
         self.n_estimators = n_estimators
         self.estimator_params = estimator_params
-        self.base_estimator = base_estimator
 
-        # Don't instantiate estimators now! Parameters of base_estimator might
+        # Don't instantiate estimators now! Parameters of estimator might
         # still change. Eg., when grid-searching with the nested object syntax.
         # self.estimators_ needs to be filled by the derived classes in fit.
 
@@ -143,40 +127,10 @@ class BaseEnsemble(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
 
         Sets the `estimator_` attributes.
         """
-        if self.estimator is not None and (
-            self.base_estimator not in [None, "deprecated"]
-        ):
-            raise ValueError(
-                "Both `estimator` and `base_estimator` were set. Only set `estimator`."
-            )
-
         if self.estimator is not None:
             self.estimator_ = self.estimator
-        elif self.base_estimator != "deprecated":
-            warnings.warn(
-                (
-                    "`base_estimator` was renamed to `estimator` in version 1.2 and "
-                    "will be removed in 1.4."
-                ),
-                FutureWarning,
-            )
-            if self.base_estimator is not None:
-                self.estimator_ = self.base_estimator
-            else:
-                self.estimator_ = default
         else:
             self.estimator_ = default
-
-    # TODO(1.4): remove
-    # mypy error: Decorated property not supported
-    @deprecated(  # type: ignore
-        "Attribute `base_estimator_` was deprecated in version 1.2 and will be removed "
-        "in 1.4. Use `estimator_` instead."
-    )
-    @property
-    def base_estimator_(self):
-        """Estimator used to grow the ensemble."""
-        return self.estimator_
 
     def _make_estimator(self, append=True, random_state=None):
         """Make and configure a copy of the `estimator_` attribute.
@@ -332,3 +286,16 @@ class _BaseHeterogeneousEnsemble(
             names mapped to their values.
         """
         return super()._get_params("estimators", deep=deep)
+
+    def _more_tags(self):
+        try:
+            allow_nan = all(
+                _safe_tags(est[1])["allow_nan"] if est[1] != "drop" else True
+                for est in self.estimators
+            )
+        except Exception:
+            # If `estimators` does not comply with our API (list of tuples) then it will
+            # fail. In this case, we assume that `allow_nan` is False but the parameter
+            # validation will raise an error during `fit`.
+            allow_nan = False
+        return {"preserves_dtype": [], "allow_nan": allow_nan}

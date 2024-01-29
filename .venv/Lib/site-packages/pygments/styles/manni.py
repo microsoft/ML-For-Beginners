@@ -16,11 +16,15 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['ManniStyle']
+
+
 class ManniStyle(Style):
     """
     A colorful style, inspired by the terminal highlighting style.
     """
-
+    name = 'manni'
+    
     background_color = '#f0f3f3'
 
     styles = {

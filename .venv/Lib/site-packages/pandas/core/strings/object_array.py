@@ -207,7 +207,7 @@ class ObjectStringArrayMixin(BaseStringArrayMethods):
             )
             if isinstance(self, BaseStringArray):
                 # Not going through map, so we have to do this here.
-                result = type(self)._from_sequence(result)
+                result = type(self)._from_sequence(result, dtype=self.dtype)
             return result
 
     def _str_match(

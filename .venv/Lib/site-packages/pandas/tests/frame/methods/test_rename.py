@@ -50,13 +50,12 @@ class TestRename:
         # index
         data = {"A": {"foo": 0, "bar": 1}}
 
-        # gets sorted alphabetical
         df = DataFrame(data)
         renamed = df.rename(index={"foo": "bar", "bar": "foo"})
-        tm.assert_index_equal(renamed.index, Index(["foo", "bar"]))
+        tm.assert_index_equal(renamed.index, Index(["bar", "foo"]))
 
         renamed = df.rename(index=str.upper)
-        tm.assert_index_equal(renamed.index, Index(["BAR", "FOO"]))
+        tm.assert_index_equal(renamed.index, Index(["FOO", "BAR"]))
 
         # have to pass something
         with pytest.raises(TypeError, match="must pass an index to rename"):
@@ -165,12 +164,13 @@ class TestRename:
         renamed = df.rename(index={"foo1": "foo3", "bar2": "bar3"}, level=0)
         tm.assert_index_equal(renamed.index, new_index)
 
-    def test_rename_nocopy(self, float_frame, using_copy_on_write):
+    def test_rename_nocopy(self, float_frame, using_copy_on_write, warn_copy_on_write):
         renamed = float_frame.rename(columns={"C": "foo"}, copy=False)
 
         assert np.shares_memory(renamed["foo"]._values, float_frame["C"]._values)
 
-        renamed.loc[:, "foo"] = 1.0
+        with tm.assert_cow_warning(warn_copy_on_write):
+            renamed.loc[:, "foo"] = 1.0
         if using_copy_on_write:
             assert not (float_frame["C"] == 1.0).all()
         else:
@@ -388,8 +388,6 @@ class TestRename:
         # TODO: can we construct this without merge?
         k = merge(df4, df5, how="inner", left_index=True, right_index=True)
         result = k.rename(columns={"TClose_x": "TClose", "TClose_y": "QT_Close"})
-        str(result)
-        result.dtypes
 
         expected = DataFrame(
             [[0.0454, 22.02, 0.0422, 20130331, 600809, "饡驦", 30.01]],

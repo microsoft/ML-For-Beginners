@@ -14,8 +14,8 @@ from .scaffold import setupmethod
 if t.TYPE_CHECKING:  # pragma: no cover
     from .app import App
 
-DeferredSetupFunction = t.Callable[["BlueprintSetupState"], t.Callable]
-T_after_request = t.TypeVar("T_after_request", bound=ft.AfterRequestCallable)
+DeferredSetupFunction = t.Callable[["BlueprintSetupState"], None]
+T_after_request = t.TypeVar("T_after_request", bound=ft.AfterRequestCallable[t.Any])
 T_before_request = t.TypeVar("T_before_request", bound=ft.BeforeRequestCallable)
 T_error_handler = t.TypeVar("T_error_handler", bound=ft.ErrorHandlerCallable)
 T_teardown = t.TypeVar("T_teardown", bound=ft.TeardownCallable)
@@ -88,7 +88,7 @@ class BlueprintSetupState:
         self,
         rule: str,
         endpoint: str | None = None,
-        view_func: t.Callable | None = None,
+        view_func: ft.RouteCallable | None = None,
         **options: t.Any,
     ) -> None:
         """A helper method to register a rule (and optionally a view function)
@@ -175,14 +175,14 @@ class Blueprint(Scaffold):
         self,
         name: str,
         import_name: str,
-        static_folder: str | os.PathLike | None = None,
+        static_folder: str | os.PathLike[str] | None = None,
         static_url_path: str | None = None,
-        template_folder: str | os.PathLike | None = None,
+        template_folder: str | os.PathLike[str] | None = None,
         url_prefix: str | None = None,
         subdomain: str | None = None,
-        url_defaults: dict | None = None,
+        url_defaults: dict[str, t.Any] | None = None,
         root_path: str | None = None,
-        cli_group: str | None = _sentinel,  # type: ignore
+        cli_group: str | None = _sentinel,  # type: ignore[assignment]
     ):
         super().__init__(
             import_name=import_name,
@@ -208,7 +208,7 @@ class Blueprint(Scaffold):
 
         self.url_values_defaults = url_defaults
         self.cli_group = cli_group
-        self._blueprints: list[tuple[Blueprint, dict]] = []
+        self._blueprints: list[tuple[Blueprint, dict[str, t.Any]]] = []
 
     def _check_setup_finished(self, f_name: str) -> None:
         if self._got_registered_once:
@@ -221,7 +221,7 @@ class Blueprint(Scaffold):
             )
 
     @setupmethod
-    def record(self, func: t.Callable) -> None:
+    def record(self, func: DeferredSetupFunction) -> None:
         """Registers a function that is called when the blueprint is
         registered on the application.  This function is called with the
         state as argument as returned by the :meth:`make_setup_state`
@@ -230,7 +230,7 @@ class Blueprint(Scaffold):
         self.deferred_functions.append(func)
 
     @setupmethod
-    def record_once(self, func: t.Callable) -> None:
+    def record_once(self, func: DeferredSetupFunction) -> None:
         """Works like :meth:`record` but wraps the function in another
         function that will ensure the function is only called once.  If the
         blueprint is registered a second time on the application, the
@@ -244,7 +244,7 @@ class Blueprint(Scaffold):
         self.record(update_wrapper(wrapper, func))
 
     def make_setup_state(
-        self, app: App, options: dict, first_registration: bool = False
+        self, app: App, options: dict[str, t.Any], first_registration: bool = False
     ) -> BlueprintSetupState:
         """Creates an instance of :meth:`~flask.blueprints.BlueprintSetupState`
         object that is later passed to the register callback functions.
@@ -270,7 +270,7 @@ class Blueprint(Scaffold):
             raise ValueError("Cannot register a blueprint on itself")
         self._blueprints.append((blueprint, options))
 
-    def register(self, app: App, options: dict) -> None:
+    def register(self, app: App, options: dict[str, t.Any]) -> None:
         """Called by :meth:`Flask.register_blueprint` to register all
         views and callbacks registered on the blueprint with the
         application. Creates a :class:`.BlueprintSetupState` and calls
@@ -377,7 +377,10 @@ class Blueprint(Scaffold):
             blueprint.register(app, bp_options)
 
     def _merge_blueprint_funcs(self, app: App, name: str) -> None:
-        def extend(bp_dict, parent_dict):
+        def extend(
+            bp_dict: dict[ft.AppOrBlueprintKey, list[t.Any]],
+            parent_dict: dict[ft.AppOrBlueprintKey, list[t.Any]],
+        ) -> None:
             for key, values in bp_dict.items():
                 key = name if key is None else f"{name}.{key}"
                 parent_dict[key].extend(values)
@@ -598,7 +601,10 @@ class Blueprint(Scaffold):
         """
 
         def decorator(f: T_error_handler) -> T_error_handler:
-            self.record_once(lambda s: s.app.errorhandler(code)(f))
+            def from_blueprint(state: BlueprintSetupState) -> None:
+                state.app.errorhandler(code)(f)
+
+            self.record_once(from_blueprint)
             return f
 
         return decorator

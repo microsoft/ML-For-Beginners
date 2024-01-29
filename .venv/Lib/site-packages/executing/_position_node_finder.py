@@ -1,4 +1,5 @@
 import ast
+import sys
 import dis
 from types import CodeType, FrameType
 from typing import Any, Callable, Iterator, Optional, Sequence, Set, Tuple, Type, Union, cast
@@ -16,7 +17,8 @@ def parents(node: EnhancedAST) -> Iterator[EnhancedAST]:
             node = node.parent
             yield node
         else:
-            break
+            break  # pragma: no mutate
+
 
 def node_and_parents(node: EnhancedAST) -> Iterator[EnhancedAST]:
     yield node
@@ -42,9 +44,12 @@ def mangled_name(node: EnhancedAST) -> str:
     elif isinstance(node, (ast.FunctionDef, ast.ClassDef, ast.AsyncFunctionDef)):
         name = node.name
     elif isinstance(node, ast.ExceptHandler):
-        name = node.name or "exc"
+        assert node.name
+        name = node.name
+    elif sys.version_info >= (3,12) and isinstance(node,ast.TypeVar):
+        name=node.name
     else:
-        raise TypeError("no node to mangle")
+        raise TypeError("no node to mangle for type "+repr(type(node)))
 
     if name.startswith("__") and not name.endswith("__"):
 
@@ -52,7 +57,8 @@ def mangled_name(node: EnhancedAST) -> str:
 
         while not (isinstance(parent,ast.ClassDef) and child not in parent.bases):
             if not hasattr(parent,"parent"):
-                break
+                break # pragma: no mutate
+
             parent,child=parent.parent,parent
         else:
             class_name=parent.name.lstrip("_")
@@ -64,7 +70,7 @@ def mangled_name(node: EnhancedAST) -> str:
     return name
 
 
-@lru_cache(128)
+@lru_cache(128) # pragma: no mutate
 def get_instructions(code: CodeType) -> list[dis.Instruction]:
     return list(dis.get_instructions(code, show_caches=True))
 
@@ -154,8 +160,11 @@ class PositionNodeFinder(object):
 
         self.test_for_decorator(self.result, lasti)
 
+        # verify
         if self.decorator is None:
             self.verify(self.result, self.instruction(lasti))
+        else: 
+            assert_(self.decorator in self.result.decorator_list)
 
     def test_for_decorator(self, node: EnhancedAST, index: int) -> None:
         if (
@@ -169,21 +178,24 @@ class PositionNodeFinder(object):
 
                 # index    opname
                 # ------------------
-                # index-4  PRECALL
+                # index-4  PRECALL     (only in 3.11)
                 # index-2  CACHE
                 # index    CALL        <- the call instruction
                 # ...      CACHE       some CACHE instructions
 
                 # maybe multiple other bytecode blocks for other decorators
-                # index-4  PRECALL
+                # index-4  PRECALL     (only in 3.11)
                 # index-2  CACHE
                 # index    CALL        <- index of the next loop
                 # ...      CACHE       some CACHE instructions
 
                 # index+x  STORE_*     the ast-node of this instruction points to the decorated thing
 
-                if self.opname(index - 4) != "PRECALL" or self.opname(index) != "CALL":
-                    break
+                if not (
+                    (self.opname(index - 4) == "PRECALL" or sys.version_info >= (3, 12))
+                    and self.opname(index) == "CALL"
+                ):  # pragma: no mutate
+                    break  # pragma: no mutate
 
                 index += 2
 
@@ -198,7 +210,8 @@ class PositionNodeFinder(object):
                     self.decorator = node
                     return
 
-                index += 4
+                if sys.version_info < (3, 12):
+                    index += 4
 
     def known_issues(self, node: EnhancedAST, instruction: dis.Instruction) -> None:
         if instruction.opname in ("COMPARE_OP", "IS_OP", "CONTAINS_OP") and isinstance(
@@ -232,6 +245,16 @@ class PositionNodeFinder(object):
                 # Comprehension and generators get not fixed for now.
                 raise KnownIssue("chain comparison inside %s can not be fixed" % (node))
 
+        if (
+            sys.version_info[:3] == (3, 11, 1)
+            and isinstance(node, ast.Compare)
+            and instruction.opname == "CALL"
+            and any(isinstance(n, ast.Assert) for n in node_and_parents(node))
+        ):
+            raise KnownIssue(
+                "known bug in 3.11.1 https://github.com/python/cpython/issues/95921"
+            )
+
         if isinstance(node, ast.Assert):
             # pytest assigns the position of the assertion to all expressions of the rewritten assertion.
             # All the rewritten expressions get mapped to ast.Assert, which is the wrong ast-node.
@@ -241,6 +264,40 @@ class PositionNodeFinder(object):
         if any(isinstance(n, ast.pattern) for n in node_and_parents(node)):
             # TODO: investigate
             raise KnownIssue("pattern matching ranges seems to be wrong")
+
+        if (
+            sys.version_info >= (3, 12)
+            and isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "super"
+        ):
+            # super is optimized to some instructions which do not map nicely to a Call
+
+            # find the enclosing function
+            func = node.parent
+            while hasattr(func, "parent") and not isinstance(
+                func, (ast.AsyncFunctionDef, ast.FunctionDef)
+            ):
+
+                func = func.parent
+
+            # get the first function argument (self/cls)
+            first_arg = None
+
+            if hasattr(func, "args"):
+                args = [*func.args.posonlyargs, *func.args.args]
+                if args:
+                    first_arg = args[0].arg
+
+            if (instruction.opname, instruction.argval) in [
+                ("LOAD_DEREF", "__class__"),
+                ("LOAD_FAST", first_arg),
+                ("LOAD_DEREF", first_arg),
+            ]:
+                raise KnownIssue("super optimization")
+
+        if self.is_except_cleanup(instruction, node):
+            raise KnownIssue("exeption cleanup does not belong to the last node in a except block")
 
         if instruction.opname == "STORE_NAME" and instruction.argval == "__classcell__":
             # handle stores to __classcell__ as KnownIssue,
@@ -259,6 +316,14 @@ class PositionNodeFinder(object):
 
             raise KnownIssue("store __classcell__")
 
+        if (
+            instruction.opname == "CALL"
+            and not isinstance(node,ast.Call)
+            and any(isinstance(p, ast.Assert) for p in parents(node))
+            and sys.version_info >= (3, 11, 2)
+        ):
+            raise KnownIssue("exception generation maps to condition")
+
     @staticmethod
     def is_except_cleanup(inst: dis.Instruction, node: EnhancedAST) -> bool:
         if inst.opname not in (
@@ -268,6 +333,7 @@ class PositionNodeFinder(object):
             "STORE_GLOBAL",
             "DELETE_NAME",
             "DELETE_FAST",
+            "DELETE_DEREF",
             "DELETE_GLOBAL",
         ):
             return False
@@ -291,8 +357,26 @@ class PositionNodeFinder(object):
         #  except TypeError as msg:
         #      print("Sorry:", msg, file=file)
 
+        if (
+            isinstance(node, ast.Name)
+            and isinstance(node.ctx,ast.Store)
+            and inst.opname.startswith("STORE_")
+            and mangled_name(node) == inst.argval
+        ):
+            # Storing the variable is valid and no exception cleanup, if the name is correct
+            return False
+
+        if (
+            isinstance(node, ast.Name)
+            and isinstance(node.ctx,ast.Del)
+            and inst.opname.startswith("DELETE_")
+            and mangled_name(node) == inst.argval
+        ):
+            # Deleting the variable is valid and no exception cleanup, if the name is correct
+            return False
+
         return any(
-            isinstance(n, ast.ExceptHandler) and mangled_name(n) == inst.argval
+            isinstance(n, ast.ExceptHandler) and n.name and mangled_name(n) == inst.argval
             for n in parents(node)
         )
 
@@ -353,6 +437,13 @@ class PositionNodeFinder(object):
             # call to the generator function
             return
 
+        if (
+            sys.version_info >= (3, 12)
+            and inst_match(("LOAD_FAST_AND_CLEAR", "STORE_FAST"))
+            and node_match((ast.ListComp, ast.SetComp, ast.DictComp))
+        ):
+            return
+
         if inst_match(("CALL", "CALL_FUNCTION_EX")) and node_match(
             (ast.ClassDef, ast.Call)
         ):
@@ -371,6 +462,7 @@ class PositionNodeFinder(object):
         if (
             (
                 inst_match("LOAD_METHOD", argval="join")
+                or inst_match("LOAD_ATTR", argval="join")  # 3.12
                 or inst_match(("CALL", "BUILD_STRING"))
             )
             and node_match(ast.BinOp, left=ast.Constant, op=ast.Mod)
@@ -383,8 +475,6 @@ class PositionNodeFinder(object):
             # data: int
             return
 
-        if self.is_except_cleanup(instruction, node):
-            return
 
         if inst_match(("DELETE_NAME", "DELETE_FAST")) and node_match(
             ast.Name, id=instruction.argval, ctx=ast.Del
@@ -458,24 +548,161 @@ class PositionNodeFinder(object):
         ):
             return
 
-        if inst_match(("JUMP_IF_TRUE_OR_POP", "JUMP_IF_FALSE_OR_POP")) and node_match(
-            ast.BoolOp
-        ):
+        if inst_match(
+            (
+                "JUMP_IF_TRUE_OR_POP",
+                "JUMP_IF_FALSE_OR_POP",
+                "POP_JUMP_IF_TRUE",
+                "POP_JUMP_IF_FALSE",
+            )
+        ) and node_match(ast.BoolOp):
             # and/or short circuit
             return
 
         if inst_match("DELETE_SUBSCR") and node_match(ast.Subscript, ctx=ast.Del):
             return
 
-        if node_match(ast.Name, ctx=ast.Load) and inst_match(
-            ("LOAD_NAME", "LOAD_FAST", "LOAD_GLOBAL"), argval=mangled_name(node)
+        if (
+            node_match(ast.Name, ctx=ast.Load)
+            or (
+                node_match(ast.Name, ctx=ast.Store)
+                and isinstance(node.parent, ast.AugAssign)
+            )
+        ) and inst_match(
+            (
+                "LOAD_NAME",
+                "LOAD_FAST",
+                "LOAD_FAST_CHECK",
+                "LOAD_GLOBAL",
+                "LOAD_DEREF",
+                "LOAD_FROM_DICT_OR_DEREF",
+            ),
+            argval=mangled_name(node),
         ):
             return
 
         if node_match(ast.Name, ctx=ast.Del) and inst_match(
-            ("DELETE_NAME", "DELETE_GLOBAL"), argval=mangled_name(node)
+            ("DELETE_NAME", "DELETE_GLOBAL", "DELETE_DEREF"), argval=mangled_name(node)
         ):
             return
+
+        if node_match(ast.Constant) and inst_match(
+            "LOAD_CONST", argval=cast(ast.Constant, node).value
+        ):
+            return
+
+        if node_match(
+            (ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp, ast.For)
+        ) and inst_match(("GET_ITER", "FOR_ITER")):
+            return
+
+        if sys.version_info >= (3, 12):
+            if node_match(ast.UnaryOp, op=ast.UAdd) and inst_match(
+                "CALL_INTRINSIC_1", argrepr="INTRINSIC_UNARY_POSITIVE"
+            ):
+                return
+
+            if node_match(ast.Subscript) and inst_match("BINARY_SLICE"):
+                return
+
+            if node_match(ast.ImportFrom) and inst_match(
+                "CALL_INTRINSIC_1", argrepr="INTRINSIC_IMPORT_STAR"
+            ):
+                return
+
+            if (
+                node_match(ast.Yield) or isinstance(node.parent, ast.GeneratorExp)
+            ) and inst_match("CALL_INTRINSIC_1", argrepr="INTRINSIC_ASYNC_GEN_WRAP"):
+                return
+
+            if node_match(ast.Name) and inst_match("LOAD_DEREF",argval="__classdict__"):
+                return
+
+            if node_match(ast.TypeVar) and (
+                inst_match("CALL_INTRINSIC_1", argrepr="INTRINSIC_TYPEVAR")
+                or inst_match(
+                    "CALL_INTRINSIC_2", argrepr="INTRINSIC_TYPEVAR_WITH_BOUND"
+                )
+                or inst_match(
+                    "CALL_INTRINSIC_2", argrepr="INTRINSIC_TYPEVAR_WITH_CONSTRAINTS"
+                )
+                or inst_match(("STORE_FAST", "STORE_DEREF"), argrepr=mangled_name(node))
+            ):
+                return
+
+            if node_match(ast.TypeVarTuple) and (
+                inst_match("CALL_INTRINSIC_1", argrepr="INTRINSIC_TYPEVARTUPLE")
+                or inst_match(("STORE_FAST", "STORE_DEREF"), argrepr=node.name)
+            ):
+                return
+
+            if node_match(ast.ParamSpec) and (
+                inst_match("CALL_INTRINSIC_1", argrepr="INTRINSIC_PARAMSPEC")
+
+                or inst_match(("STORE_FAST", "STORE_DEREF"), argrepr=node.name)):
+                return
+
+
+            if node_match(ast.TypeAlias):
+                if(
+                    inst_match("CALL_INTRINSIC_1", argrepr="INTRINSIC_TYPEALIAS")
+                    or inst_match(
+                        ("STORE_NAME", "STORE_FAST", "STORE_DEREF"), argrepr=node.name.id
+                    )
+                    or inst_match("CALL")
+                ):
+                    return
+
+
+            if node_match(ast.ClassDef) and node.type_params:
+                if inst_match(
+                    ("STORE_DEREF", "LOAD_DEREF", "LOAD_FROM_DICT_OR_DEREF"),
+                    argrepr=".type_params",
+                ):
+                    return
+
+                if inst_match(("STORE_FAST", "LOAD_FAST"), argrepr=".generic_base"):
+                    return
+
+                if inst_match(
+                    "CALL_INTRINSIC_1", argrepr="INTRINSIC_SUBSCRIPT_GENERIC"
+                ):
+                    return
+
+                if inst_match("LOAD_DEREF",argval="__classdict__"):
+                    return
+
+            if node_match((ast.FunctionDef,ast.AsyncFunctionDef)) and node.type_params:
+                if inst_match("CALL"):
+                    return
+
+                if inst_match(
+                    "CALL_INTRINSIC_2", argrepr="INTRINSIC_SET_FUNCTION_TYPE_PARAMS"
+                ):
+                    return
+
+                if inst_match("LOAD_FAST",argval=".defaults"):
+                    return
+
+                if inst_match("LOAD_FAST",argval=".kwdefaults"):
+                    return
+
+            if inst_match("STORE_NAME", argval="__classdictcell__"):
+                # this is a general thing
+                return
+
+
+            # f-strings
+
+            if node_match(ast.JoinedStr) and (
+                inst_match("LOAD_ATTR", argval="join")
+                or inst_match(("LIST_APPEND", "CALL"))
+            ):
+                return
+
+            if node_match(ast.FormattedValue) and inst_match("FORMAT_VALUE"):
+                return
+
 
         # old verifier
 
@@ -498,7 +725,7 @@ class PositionNodeFinder(object):
                 UNARY_INVERT=ast.Invert,
             )[op_name]
             extra_filter = lambda e: isinstance(cast(ast.UnaryOp, e).op, op_type)
-        elif op_name in ("LOAD_ATTR", "LOAD_METHOD", "LOOKUP_METHOD"):
+        elif op_name in ("LOAD_ATTR", "LOAD_METHOD", "LOOKUP_METHOD","LOAD_SUPER_ATTR"):
             typ = ast.Attribute
             ctx = ast.Load
             extra_filter = lambda e: mangled_name(e) == instruction.argval
@@ -550,11 +777,26 @@ class PositionNodeFinder(object):
     def opname(self, index: int) -> str:
         return self.instruction(index).opname
 
+    extra_node_types=()
+    if sys.version_info >= (3,12):
+        extra_node_types = (ast.type_param,)
+
     def find_node(
         self,
         index: int,
-        match_positions: Sequence[str]=("lineno", "end_lineno", "col_offset", "end_col_offset"),
-        typ: tuple[Type, ...]=(ast.expr, ast.stmt, ast.excepthandler, ast.pattern),
+        match_positions: Sequence[str] = (
+            "lineno",
+            "end_lineno",
+            "col_offset",
+            "end_col_offset",
+        ),
+        typ: tuple[Type, ...] = (
+            ast.expr,
+            ast.stmt,
+            ast.excepthandler,
+            ast.pattern,
+            *extra_node_types,
+        ),
     ) -> EnhancedAST:
         position = self.instruction(index).positions
         assert position is not None and position.lineno is not None

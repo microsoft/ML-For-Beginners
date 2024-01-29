@@ -1,3 +1,6 @@
+import contextlib
+from io import StringIO
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
@@ -120,15 +123,22 @@ def test_valid_input_forms():
 
 def test_cycle_reset():
     fig, ax = plt.subplots()
+    prop0 = StringIO()
+    prop1 = StringIO()
+    prop2 = StringIO()
 
-    # Can't really test a reset because only a cycle object is stored
-    # but we can test the first item of the cycle.
-    prop = next(ax._get_lines.prop_cycler)
+    with contextlib.redirect_stdout(prop0):
+        plt.getp(ax.plot([1, 2], label="label")[0])
+
     ax.set_prop_cycle(linewidth=[10, 9, 4])
-    assert prop != next(ax._get_lines.prop_cycler)
+    with contextlib.redirect_stdout(prop1):
+        plt.getp(ax.plot([1, 2], label="label")[0])
+    assert prop1.getvalue() != prop0.getvalue()
+
     ax.set_prop_cycle(None)
-    got = next(ax._get_lines.prop_cycler)
-    assert prop == got
+    with contextlib.redirect_stdout(prop2):
+        plt.getp(ax.plot([1, 2], label="label")[0])
+    assert prop2.getvalue() == prop0.getvalue()
 
 
 def test_invalid_input_forms():

@@ -602,11 +602,11 @@ class GridlinesCollection(LineCollection):
         Parameters
         ----------
         which : {"major", "minor"}
-           Which grid to consider.
+            Which grid to consider.
         axis : {"both", "x", "y"}
-           Which axis to consider.
-        *args, **kwargs :
-           Passed to `.LineCollection`.
+            Which axis to consider.
+        *args, **kwargs
+            Passed to `.LineCollection`.
         """
         self._which = which
         self._axis = axis

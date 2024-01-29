@@ -33,7 +33,11 @@ from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Operator
 
 
+__all__ = ['AlgolStyle']
+
+
 class AlgolStyle(Style):
+    name = 'algol'
 
     background_color = "#ffffff"
 

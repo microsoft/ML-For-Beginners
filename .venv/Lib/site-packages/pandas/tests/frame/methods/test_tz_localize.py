@@ -16,7 +16,7 @@ class TestTZLocalize:
     # test_tz_convert_and_localize in test_tz_convert
 
     def test_tz_localize(self, frame_or_series):
-        rng = date_range("1/1/2011", periods=100, freq="H")
+        rng = date_range("1/1/2011", periods=100, freq="h")
 
         obj = DataFrame({"a": 1}, index=rng)
         obj = tm.get_obj(obj, frame_or_series)
@@ -29,7 +29,7 @@ class TestTZLocalize:
         tm.assert_equal(result, expected)
 
     def test_tz_localize_axis1(self):
-        rng = date_range("1/1/2011", periods=100, freq="H")
+        rng = date_range("1/1/2011", periods=100, freq="h")
 
         df = DataFrame({"a": 1}, index=rng)
 
@@ -43,7 +43,7 @@ class TestTZLocalize:
 
     def test_tz_localize_naive(self, frame_or_series):
         # Can't localize if already tz-aware
-        rng = date_range("1/1/2011", periods=100, freq="H", tz="utc")
+        rng = date_range("1/1/2011", periods=100, freq="h", tz="utc")
         ts = Series(1, index=rng)
         ts = frame_or_series(ts)
 
@@ -54,13 +54,13 @@ class TestTZLocalize:
     def test_tz_localize_copy_inplace_mutate(self, copy, frame_or_series):
         # GH#6326
         obj = frame_or_series(
-            np.arange(0, 5), index=date_range("20131027", periods=5, freq="1H", tz=None)
+            np.arange(0, 5), index=date_range("20131027", periods=5, freq="1h", tz=None)
         )
         orig = obj.copy()
         result = obj.tz_localize("UTC", copy=copy)
         expected = frame_or_series(
             np.arange(0, 5),
-            index=date_range("20131027", periods=5, freq="1H", tz="UTC"),
+            index=date_range("20131027", periods=5, freq="1h", tz="UTC"),
         )
         tm.assert_equal(result, expected)
         tm.assert_equal(obj, orig)

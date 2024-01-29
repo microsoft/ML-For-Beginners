@@ -509,14 +509,17 @@ def check_results(res1, res2, check_lutkepohl=False, check_params=True):
         # Check parameter-related values
         mask_free = res2._free_params_index
         mask_fixed = res2._fixed_params_index
-        assert_allclose(res2.pvalues[mask_free], res1.pvalues)
-        assert_allclose(res2.pvalues[mask_fixed], np.nan)
+        pvalues = np.asarray(res2.pvalues)
+        assert_allclose(pvalues[mask_free], res1.pvalues)
+        assert_allclose(pvalues[mask_fixed], np.nan)
 
-        assert_allclose(res2.bse[mask_free], res1.bse)
-        assert_allclose(res2.bse[mask_fixed], np.nan)
+        bse = np.asarray(res2.bse)
+        assert_allclose(bse[mask_free], res1.bse)
+        assert_allclose(bse[mask_fixed], np.nan)
 
-        assert_allclose(res2.zvalues[mask_free], res1.zvalues)
-        assert_allclose(res2.zvalues[mask_fixed], np.nan)
+        zvalues = np.asarray(res2.zvalues)
+        assert_allclose(zvalues[mask_free], res1.zvalues)
+        assert_allclose(zvalues[mask_fixed], np.nan)
 
         # Check parameter covariance matrix
         mask_free = np.ix_(res2._free_params_index, res2._free_params_index)
@@ -587,7 +590,8 @@ def test_sarimax_nonconsecutive():
     assert_equal(res2.fixed_params, ['ar.L2', 'ar.L3'])
 
     # Check that MLE finds the same parameters in either case
-    desired = np.r_[res1.params[0], 0, 0, res1.params[1:]]
+    params = np.asarray(res1.params)
+    desired = np.r_[params[0], 0, 0, params[1:]]
     assert_allclose(res2.params, desired)
 
     # Now smooth at the actual parameters (to allow high precision testing
@@ -675,7 +679,8 @@ def test_dynamic_factor_diag_error_cov():
     # Check that MLE finds the same parameters in either case
     # (need to account for the fact that diagonal params are variances but
     # unstructured params are standard deviations)
-    params = np.r_[res1.params[:2], res1.params[2:4]**0.5, res1.params[4]]
+    param_vals = np.asarray(res1.params)
+    params = np.r_[param_vals[:2], param_vals[2:4]**0.5, param_vals[4]]
     desired = np.r_[params[:3], 0, params[3:]]
     assert_allclose(res2.params, desired, atol=1e-5)
 
