@@ -2,16 +2,16 @@
 
 Bu dərsdə əvvəlki dərsdən əldə etdiyimiz balanslı və təmizlənmiş mətbəx data massivindən istifadə edəcəksiniz.
 
-Bu data massivini müxtəlix təsnifatlandıcılarda istifadə edərək _inqredientlər əsasında milli mətbəxləri təxmin edəcəksiniz_. Bunu edərkən alqoritmi başqa hansı təsnifatlandırma tapşırıqlarında istifadə edə biləcəyinizi də öyrənəcəksiniz.
+Bu data massivini müxtəlif qruplaşdırıcılarda istifadə edərək _inqrediyentlər əsasında milli mətbəxləri təxmin edəcəksiniz_. Bunu edərkən alqoritmi başqa hansı qruplaşdırma tapşırıqlarında istifadə edə biləcəyinizi də öyrənəcəksiniz.
 
 ## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/)
 # Hazırlıq
 
-Sizin [1-ci dərsi](../../1-Introduction/translations/assignment.az.md) bitirdiyinizi təxmin edirik. Əlavə olaraq bu 4 dərsdə istifadə edəcəyimiz _cleaned_cuisines.csv_ sənədinin `/data` qovluğunda mövcud olduğuna əmin olun.
+Sizin [1-ci dərsi](../../1-Introduction/translations/assignment.az.md) bitirdiyinizi güman edirik. Əlavə olaraq isə bu 4 dərsdə istifadə edəcəyimiz _cleaned_cuisines.csv_ faylının `/data` qovluğunda olduğundan əmin olun.
 
 ## Tapşırıq - milli mətbəxi təxmin et
 
-1. Bu dərsin qovluğunda olan _notebook.ipynb_ sənədini açın və aşağıdakı kodu (Pandas kitabxanasını) daxil edin:
+1. Bu dərsin qovluğunda olan _notebook.ipynb_ faylını açın və aşağıdakı kodu (Pandas kitabxanasını) daxil edin:
 
     ```python
     import pandas as pd
@@ -19,7 +19,7 @@ Sizin [1-ci dərsi](../../1-Introduction/translations/assignment.az.md) bitirdiy
     cuisines_df.head()
     ```
 
-    Yuxarıdakı kod məlumatları belə çap edəcəkdir:
+    Yuxarıdakı kod, məlumatları belə çap edəcəkdir:
 
 |     | Unnamed: 0 | cuisine | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood | yam | yeast | yogurt | zucchini |
 | --- | ---------- | ------- | ------ | -------- | ----- | ---------- | ----- | ------------ | ------- | -------- | --- | ------- | ----------- | ---------- | ----------------------- | ---- | ---- | --- | ----- | ------ | -------- |
@@ -30,7 +30,7 @@ Sizin [1-ci dərsi](../../1-Introduction/translations/assignment.az.md) bitirdiy
 | 4   | 4          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
 
 
-1. İndi isə əlavə kitabxanaları da əlavə edin:
+1. İndi isə digər kitabxanaları da əlavə edin:
 
     ```python
     from sklearn.linear_model import LogisticRegression
@@ -40,14 +40,14 @@ Sizin [1-ci dərsi](../../1-Introduction/translations/assignment.az.md) bitirdiy
     import numpy as np
     ```
 
-1. X və y kordinatlarını öyrənmə üçün iki data qrupuna ayırın. `cuisine` data qrupunun adı ola bilər:
+1. X və y koordinatlarını öyrənmək üçün iki data qrupuna ayırın. `cuisine` data qrupunun adı ola bilər:
 
     ```python
     cuisines_label_df = cuisines_df['cuisine']
     cuisines_label_df.head()
     ```
 
-    Nəticə belə görünəcəkdir:
+    Nəticə belə görünəcək:
 
     ```output
     0    indian
@@ -75,7 +75,7 @@ Sizin [1-ci dərsi](../../1-Introduction/translations/assignment.az.md) bitirdiy
 |    3 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
 |    4 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      1 |        0 | 0 |
 
-Artıq modelimizi öyrətməyə hazırıq!
+Modelimizi öyrətməyə hazır sayılırıq!
 
 ## Təsnifatlandırıcı seçimi
 
@@ -84,7 +84,7 @@ Artıq datanız təmizlənib və öyrədilmək üçün hazırdır. İndi siz bu 
 **Scikit-learn** kitabxanası təsnifatlandırmanı "Supervised Learning (Nəzarətli öyrənmə)" adı altında qruplaşdırır və siz burada çoxlu təsnifatlandırma üsullarını tapa bilərsiniz. [Seçimlər](https://scikit-learn.org/stable/supervised_learning.html) ilk baxışdan həddindən artıq çox görünəcəkdir. Aşağıdakı metodların hamısı təsnifatlandırma texnikalarıdır:
 
 - **Linear Models** (Xətti modellər)
-- **Support Vector Machines** (Dəstəkli vektor maşınları)
+- **Support Vector Machines** (Dəstək Vektor Maşını)
 - **Stochastic Gradient Descent** (Stokastik qradient eniş)
 - **Nearest Neighbors** (Yaxın qonşular)
 - **Gaussian Processes** (Qauss emalları)
@@ -96,7 +96,7 @@ Artıq datanız təmizlənib və öyrədilmək üçün hazırdır. İndi siz bu 
 
 ### Hansı təsnifatlandırıcı seçilməlidir?
 
-İndi siz hansı təsnifatlandırıcı seçməlisiniz? Adətən bunun cavabını bir çox üsulu yoxlamaq və daha yaxşı nəticə göstərəni seçməklə tapmaq olur. Yaratdığınız data qruplarını **Scikit-learn** kitabxanasıda [yanbayan müqayisə](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) edə bilərsiniz. Aşağıda nümunə kimi KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis alqoritmləri müqayisəsi göstərilib:
+İndi siz hansı təsnifatlandırıcı seçməlisiniz? Adətən bunun cavabını bir çox üsulu yoxlamaq və daha yaxşı nəticə göstərəni seçməklə tapmaq olur. Yaratdığınız data qruplarını **Scikit-learn** kitabxanasında [yanbayan müqayisə](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) edə bilərsiniz. Aşağıda nümunə kimi KNeighbors, SVC two ways, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB and QuadraticDiscrinationAnalysis alqoritmləri müqayisəsi göstərilib:
 
 ![təsnifatlandırıcıların müqayisəsi](../images/comparison.png)
 > Qrafiklər Scikit-learn sənədlərindən yaradılmışdır
@@ -136,7 +136,7 @@ Sənədlərə əsasən `multi_class` seçimində aşağıdakı öyrənmə alqori
 
 > 🎓 'solver' parametri "optimizasiya üçün istifadə olunacaq alqoritmi" nəzərdə tutur. [mənbə](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).
 
-Aşağıdakı cədvəldə Scikit-learn kitabxanasındakı alqoritmlərlə müxtəlif növ tapşırıqları və data strukturlarını necə idarə edə biləcəyininiz göstərilib:
+Aşağıdakı cədvəldə Scikit-learn kitabxanasındakı alqoritmlərlə müxtəlif növ tapşırıqları və data strukturlarını necə idarə edə biləcəyiniz göstərilib:
 
 ![alqoritmlər](../images/solvers.png)
 
@@ -166,7 +166,7 @@ Biz çoxsaylı etiket məsələsinə baxdığımız üçün _scheme_ və _solver
 
     > Qeyd. Pandas kitabxanasında [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) funksiyasını istifadə edərək data modelinizi daha səthi (az-ölçülü) formaya keçirə bilərsiniz.
 
-    Dəqiqlik **80%**-dən yuxarı olması yaxşıdır!
+    Dəqiqliyin **80%**-dən yuxarı olması yaxşıdır!
 
 1. Siz bu modelin işlədiyini bir sətir data (#50-ci sıra) ilə yoxlaya bilərsiniz:
 
@@ -184,7 +184,7 @@ Biz çoxsaylı etiket məsələsinə baxdığımız üçün _scheme_ və _solver
 
    ✅ Fərqli sıra nömrələrini yoxla və nəticəyə bax.
 
-1. Daha dərinə getsək təsnifat modelinin dəqiqliyini belə yoxlaya bilərsiniz:
+1. Daha dərinə getsək, təsnifat modelinin dəqiqliyini belə yoxlaya bilərsiniz:
 
     ```python
     test= X_test.iloc[50].values.reshape(-1, 1).T
@@ -228,7 +228,7 @@ Biz çoxsaylı etiket məsələsinə baxdığımız üçün _scheme_ və _solver
 
 ## 🚀Məşğələ
 
-Bu dərsdə siz təmizlənmiş data istifadə edərək inqredientlər əsasında milli mətbəxi təxmin edə biləcək maşın öyrənmə modelini qurdunuz. Scikit-learn kitabxanası istifadə etməklə daha hansı üsullarla təsnifatlandırma etmək mümkün olduğunu oxuyun. "Solver (alqoritm)" anlayışı üzərində daha dərinə gedərək arxa planda necə işlədiyini öyrənin.
+Bu dərsdə siz təmizlənmiş data istifadə edərək inqrediyentlər əsasında milli mətbəxi təxmin edə biləcək maşın öyrənməsi modelini qurdunuz. Scikit-learn kitabxanası istifadə etməklə daha hansı üsullarla təsnifatlandırma etmək mümkün olduğunu oxuyun. "Solver (alqoritm)" anlayışı üzərində daha dərinə gedərək arxa planda necə işlədiyini öyrənin.
 
 ## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/)
 
