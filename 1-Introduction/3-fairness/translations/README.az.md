@@ -88,75 +88,75 @@ Sİ sistemləri başa düşülən olmalıdır. Şəffaflığın ən vacib hissə
 - Bu anlaşılmada əksiklik həmin sistemlərin idarə edilməsinə, istifadə edilməsinə və sənədləşməsinə təsir edir.
 - Bu anlaşılmadakı əksiklik ən vacib olaraq sistemin səbəb olduğunu nəticəyə gətirən qərarlara təsir edir.
 
-### Accountability
+### Məsuliyyət
 
-The people who design and deploy AI systems must be accountable for how their systems operate. The need for accountability is particularly crucial with sensitive use technologies like facial recognition. Recently, there has been a growing demand for facial recognition technology, especially from law enforcement organizations who see the potential of the technology in uses like finding missing children. However, these technologies could potentially be used by a government to put their citizens’ fundamental freedoms at risk by, for example, enabling continuous surveillance of specific individuals. Hence, data scientists and organizations need to be responsible for how their AI system impacts individuals or society.
+Sİ tərtib edən və işə salan şəxslər sistemin necə işlədiyi ilə bağlı məsuliyyət daşımalıdırlar. Üz tanınması kimi həssas texnologiyaların istifadəsində məsuliyyət ehtiyacı daha əhəmiyyətlidir. Son zamanlar, itmiş uşaqları tapmaq kimi istifadəyə yararlı üz tanıma texnologiyalarına tələb hüquq təşkilatlarından tərəfindən kəskin artmışdır. Lakin bu texnologiyalar dövlət tərəfindən istifadə olunaraq vətəndaşları fundamental azadlıq risklərinə gətirib çıxara bilər. Misal üçün onlar seçilmiş fərdləri daim müşahidə edə bilərlər. Buna görə də data alimləri və təşkilatlar Sİ sistemlərinin fərdlərə və cəmiyyətə necə təsir etməsi ilə bağlı məsuliyyətli olmalıdırlar.
 
-[![Leading AI Researcher Warns of Mass Surveillance Through Facial Recognition](images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft's Approach to Responsible AI")
+[![Tanınmış Sİ tədqiqatçısı üz tanınması tətbiqi ilə ilə kütləvi izləmə barədə xəbərdarlıq edir edir](../images/accountability.png)](https://www.youtube.com/watch?v=Wldt8P5V6D0 "Microsoft-un məsuliyyətli Sİ-ə yanaşması")
 
-> 🎥 Click the image above for a video: Warnings of Mass Surveillance Through Facial Recognition
+> 🎥 Video üçün yuxarıdakı şəkilə klikləyin: Üz tanınması tətbiqi ilə ilə kütləvi izləmə barədə xəbərdarlıq
 
-Ultimately one of the biggest questions for our generation, as the first generation that is bringing AI to society, is how to ensure that computers will remain accountable to people and how to ensure that the people that design computers remain accountable to everyone else.
+Sİ-i cəmiyyətimizə gətirmiş ilk nəsil olaraq bizə ünvanlanmış ən böyük suallardan biri, komputerlərin insanlara məlusiyyətli qalacağına və komputerləri tərtib edən insanların digər hər kəsə məsuliyyətli qalacağına necə əmin ola bilərik.
 
-## Impact assessment
+## Təsirin qiymətləndirilməsi
 
-Before training a machine learning model, it is important to conduct an impact assessmet to understand the purpose of the AI system; what the intended use is; where it will be deployed; and who will be interacting with the system.  These are helpful for reviewer(s) or testers evaluating the system to know what factors to take into consideration when identifying potential risks and expected consequences.
+Maşın öyrənmə modelini öyrətməzdən əvvəl Sİ sisteminin məqsədini anlamaq üçün mümkün ola biləcək təsirlər qiymətləndirməyimiz vacibdir. Sistemin istifadəsində məqsəd nədir, harada tətbiq olunacaq və bununla kim işləyəcək. Bu məqamlar mümkün ola biləcək riskləri və gözlənilənil nəticələri nəzərə almaq üçün sistemi yoxlayan və ya test edən şəxslər üçün faydalı olacaqdır.
 
-The following are areas of focus when conducting an impact assessment:
+Aşağıda qeyd olunanlar təsirin qiymətləndirilməsi zamanı nəzərə alınacaq sahələrdir:
 
-* **Adverse impact on individuals**.  Being aware of any restriction or requirements, unsupported use or any known limitations hindering the system's performance is vital to ensure that the system is not used in a way that could cause harm to individuals.
-* **Data requirements**.  Gaining an understanding of how and where the system will use data enables reviewers to explore any data requirements you would need to be mindful of (e.g., GDPR or HIPPA data regulations).  In addition, examine whether the source or quantity of data is substantial for training.
-* **Summary of impact**.  Gather a list of potential harms that could  arise from using the system.  Throughout the ML lifecycle, review if the issues identified are mitigated or addressed.
-* **Applicable goals** for each of the six core principles.  Assess if the goals from each of the principles are met and if there are any gaps.
-
-
-## Debugging with responsible AI
-
-Similar to debugging a software application, debugging an AI system is a necessary process of identifying and resolving issues in the system.  There are many factors that would affect a model not performing as expected or responsibly.  Most traditional model performance metrics are quantitative aggregates of a model's performance, which are not sufficient to analyze how a model violates the responsible AI principles. Furthermore, a machine learning model is a black box that makes it difficult to understand what drives its outcome or provide explanation when it makes a mistake.  Later in this course, we will learn how to use the Responsible AI dashboard to help debug AI systems.  The dashboard provides a holistic tool for data scientists and AI developers to perform:
-
-* **Error analysis**.  To identify the error distribution of the model that can affect the system's fairness or reliability.
-* **Model overview**. To discover where there are disparities in the model's performance across data cohorts.
-* **Data analysis**.  To understand the data distribution and identify any potential bias in the data that could lead to fairness, inclusiveness, and reliability issues.
-* **Model interpretability**. To understand what affects or influences the model's predictions. This helps in explaining the model's behavior, which is important for transparency and accountability.
+* **Fərdlərə mənfi təsir**. Tələbləri və məhdudiyyətləri, nəzərdə tutulmayan istifadə yeri və sistemin performans limitlərini bilməklə bu sistemin başqa fərdlərə hansısa yolla zərər vurmayacağına əmin olmalısınız.
+* **Məlumat tələbləri**. Sistemin dataları necə və harada istifadə edəcəyini öyrənməklə yoxlayan şəxslər məlumat saxlanmasındakı tələblərdə nələrə diqqət etməli olacağını biləcəklər (misal üçün GDPR və ya HIPPA data qaydaları). Əlavə olaraq datanın mənbəyini və öyrənmə üçün həcminin kifayət edəcəyi də bilinəcək.
+* **Təsirin xülasəsi**. Sistemin istifadəsindən yarana biləcək bütün mümkün təhlükələrin siyahın formasında topla. MÖ prosesi boyunca təyin olunmuş problemləri necə həll edəcəyini nəzərdən keçir.
+* **Uyğun məqsədlər** 6 əsas prinsipin hər birinin məqsədinə çatıla bildiyini yoxla və mümkün boşluqları düşün.
 
 
-## 🚀 Challenge
+## Məsul Sİ-i izləmək
 
-To prevent harms from being introduced in the first place, we should:
+Proqram təminatlarının izlənildiyi kimi Sİ sistemlərində də problemlərin tapılması və həlli üçün izləmə mütləqdir. Modelin gözlənildiyi kimi və ya məsuliyyətlə işləməməsinə təsir edən bir çox amil var. Ənənəvi model performans göstəricilərinin əksəriyyəti modelin performansının kəmiyyət aqreqatlarıdır və modelin məsul Sİ prinsiplərini necə pozduğunu təhlil etmək üçün kifayət deyil. Bundan əlavə, maşın öyrənmə modelləri qara qutudur və onun nəticəyə necə gəldiyini başa düşmək, səhvlərini izah etmət qəlizdir. Bu kursun davamında Məsul Sİ panelini necə qura və sistemi izləyə biləcəyimizi öyrənəcəyik. İdarə paneli data tədqiqatçıları və Sİ proqramçıları üçün aşağıdakıları yerinə yetirmək üçün vahid bir alət təqdim edir:
 
-- have a diversity of backgrounds and perspectives among the people working on systems
-- invest in datasets that reflect the diversity of our society
-- develop better methods throughout the machine learning lifecycle for detecting and correcting responible AI when it occurs
+* **Xəta analizi**. Sistemin ədalətliliyinə və ya etibarlılığına təsir edə biləcək modelin statistik xəta paylanmasını müəyyən etmək.
+* **Modelin təsviri**. Data topluları arasında modelin performansında uyğunsuzluğun harada olduğunu aşkar etmək.
+* **Data analizi**. Məlumatların paylanmasını başa düşmək və məlumatlarda ədalətlilik, əhatəlilik və etibarlılıq problemlərinə səbəb ola biləcək hər hansı potensial qərəzliyi müəyyən etmək.
+* **Model tətbiq qabiliyyəti**. Modelin proqnozlarına nəyin təsir etdiyini başa düşmək. Bu modelin davranışını izah etməyə kömək edir, şəffaflıq və cavabdehlik üçün vacibdir.
 
-Think about real-life scenarios where a model's untrustworthiness is evident in model-building and usage. What else should we consider?
+## 🚀 Məşğələ
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
-## Review & Self Study
+Zərərin baş verməsinin qabağını almaq üçün ilk növbədə biz:
 
-In this lesson, you have learned some basics of the concepts of fairness and unfairness in machine learning.
+- sistem üzərində işləyən insanların müxtəlif təcrübə və istiqamətlərdən gəldiyinə əmin olaq
+- cəmiyyətimizin fərqliliyini özündə əks etdirən data toplusunu yığmağa sərmayə qoyaq
+- problem olduqda cavabdeh Sİ-i tapmağa və düzəltməyə qadir olan daha yaxşı maşın öyrənməsi metodları tapaq
 
-Watch this workshop to dive deeper into the topics:
+Modelin qurulmasında və istifadəsində etibarsızlığın aşkar olduğu real həyat ssenariləri haqqında düşünün. Başqa nələri nəzərə almalıyıq?
 
-- In pursuit of responsible AI: Bringing principles to practice by Besmira Nushi, Mehrnoosh Sameki and Amit Sharma
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
 
-[![Responsible AI Toolbox: An open-source framework for building responsible AI](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "RAI Toolbox: An open-source framework for building responsible AI")
+## Təkrarlayın və özünüz öyrənin
 
-> 🎥 Click the image above for a video: RAI Toolbox: An open-source framework for building responsible AI by Besmira Nushi, Mehrnoosh Sameki, and Amit Sharma
+Bu dərsdə siz maşın öyrənməsində ədalət və ədalətsizlik anlayışlarının bəzi əsaslarını öyrəndiniz.
 
-Also, read:
+Mövzuları daha dərindən öyrənmək üçün bu seminara baxın:
 
-- Microsoft’s RAI resource center: [Responsible AI Resources – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+- Məsuliyyətli Sİ axtarışında: Besmira Nushi, Mehrnoosh Sameki və Amit Sharma tərəfindən praktikaya prinsiplərin gətirilməsi
 
-- Microsoft’s FATE research group: [FATE: Fairness, Accountability, Transparency, and Ethics in AI - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+[![Məsuliyyətli Sİ alətləri: Məsul Sİ yaratmaq üçün açıq mənbəli çərçivə](https://img.youtube.com/vi/tGgJCrA-MZU/0.jpg)](https://www.youtube.com/watch?v=tGgJCrA-MZU "MSİ (Məsuliyyətli Sİ) Toolbox: Məsuliyyətli Sİ yaratmaq üçün açıq mənbəli çərçivə")
 
-RAI Toolbox:
+> 🎥 Videoya baxmaq üçün yuxarıdakı şəkilə klikləyin: MSİ (Məsuliyyətli Sİ) Toolbox: Besmira Nushi, Mehrnoosh Sameki və Amit Sharma tərəfindən məsuliyyətli Sİ yaratmaq üçün açıq mənbə çərçivəsi
 
-- [Responsible AI Toolbox GitHub repository](https://github.com/microsoft/responsible-ai-toolbox)
+Həmçinin oxuyun:
 
-Read about Azure Machine Learning's tools to ensure fairness:
+- Microsoft-un MSİ məlumat mərkəzi: [Məsuliyyətli Sİ məlumat mərkəzi – Microsoft AI](https://www.microsoft.com/ai/responsible-ai-resources?activetab=pivot1%3aprimaryr4)
+
+- Microsoft-un FATE tədqiqat qrupu: [FATE: Süni intellektdə ədalət, cavabdehlik, şəffaflıq və etika - Microsoft Research](https://www.microsoft.com/research/theme/fate/)
+
+MSİ Toolbox:
+
+- [Məsuliyyətli Sİ Toolbox GitHub reposu](https://github.com/microsoft/responsible-ai-toolbox)
+
+Ədalətliliyi təmin etmək üçün Azure Machine Learning alətləri haqqında oxuyun:
 
 - [Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/concept-fairness-ml?WT.mc_id=academic-77952-leestott)
 
-## Assignment
+## Tapşırıq
 
-[Explore RAI Toolbox](assignment.md)
+[MSİ (RAI) Toolbox kəşf edin](assignment.az.md)
