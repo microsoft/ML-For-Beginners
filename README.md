@@ -26,6 +26,20 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 ---
 
+## Announcement - New Curriculum on Generative AI was just released!
+
+We just released a 12 lesson curriculum on generative AI. Come learn things like:
+
+- prompting and prompt engineering
+- text and image app generation
+- search apps
+
+As usual, there's a lesson, assignments to complete, knowledge checks and challenges.
+
+Check it out:
+
+> https://aka.ms/genai-beginners
+
 # Getting Started
 
 **[Students](https://aka.ms/student-page)**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
@@ -134,7 +148,12 @@ Would you like to contribute a translation? Please read our [translation guideli
 
 Our team produces other curricula! Check out:
 
+- [AI for Beginners](https://aka.ms/ai-beginners)
+- [Data Science for Beginners](https://aka.ms/datascience-beginners)
+- [Generative AI for Beginners](https://aka.ms/genai-beginners)
+- [**NEW** Cybersecurity for Beginners](https://github.com/microsoft/Security-101??WT.mc_id=academic-96948-sayoung)
 - [Web Dev for Beginners](https://aka.ms/webdev-beginners)
 - [IoT for Beginners](https://aka.ms/iot-beginners)
-- [Data Science for Beginners](https://aka.ms/datascience-beginners)
-- [AI for Beginners](https://aka.ms/ai-beginners)
+- [Machine Learning for Beginners](https://aka.ms/ml-beginners)
+- [XR Development for Beginners](https://aka.ms/xr-dev-for-beginners)
+- [Mastering GitHub Copilot for AI Paired Programming](https://aka.ms/GitHubCopilotAI)
