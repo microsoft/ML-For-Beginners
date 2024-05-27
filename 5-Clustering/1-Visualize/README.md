@@ -300,7 +300,7 @@ Are these three genres significantly different in the perception of their dancea
 1. Create a scatter plot:
 
     ```python
-    sns.FacetGrid(df, hue="artist_top_genre", size=5) \
+    sns.FacetGrid(df, hue="artist_top_genre", height=5) \
        .map(plt.scatter, "popularity", "danceability") \
        .add_legend()
     ```
