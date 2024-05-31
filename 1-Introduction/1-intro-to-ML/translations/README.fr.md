@@ -37,7 +37,7 @@ Le cerveau d'un enfant et ses sens perçoivent l'environnement qui les entourent
 
 Le [cerveau humain](https://www.livescience.com/29365-human-brain.html) perçoit des choses du monde réel, assimile les informations perçues, fait des décisions rationnelles et entreprend certaines actions selon le contexte. C'est ce que l'on appelle se comporter intelligemment. Lorsque nous programmons une reproduction du processus de ce comportement à une machine, c'est ce que l'on appelle intelligence artificielle (IA).
 
-Bien que le terme peut être confu, machine learning (ML) est un important sous-ensemble de l'intelligence artificielle. **ML se réfère à l'utilisation d'algorithmes spécialisés afin de découvrir des informations utiles et de trouver des schémas non observés depuis des données perçues pour corroborer un processus de décision rationnel**.
+Bien que le terme puisse être confus, le machine learning (ML) est un important sous-ensemble de l'intelligence artificielle. **Le ML consiste à utiliser des algorithmes spécialisés afin de découvrir des informations utiles et de trouver des schémas non observés depuis des données perçues pour corroborer un processus de décision rationnel**.
 
 ![AI, ML, deep learning, data science](../images/ai-ml-ds.png)
 
@@ -66,19 +66,19 @@ Dans ce cours, vous allez apprendre :
 - Neural networks
 - IA
 
-Afin d'avoir la meilleur expérience d'apprentissage, nous éviterons les complexités des réseaux neuronaux, du 'deep learning' (construire un modèle utilisant plusieurs couches de réseaux neuronaux) et IA, dont nous parlerons dans un cours différent. Nous offirons aussi un cours à venir sur la data science pour concentrer sur cet aspect de champs très large.
+Afin d'avoir la meilleure expérience d'apprentissage, nous éviterons les complexités des réseaux neuronaux, du 'deep learning' (construire un modèle utilisant plusieurs couches de réseaux neuronaux) et IA, dont nous parlerons dans un cours différent. Nous offirons aussi un cours à venir sur la data science pour nous concentrer sur cet aspect de champs très large.
 
-## Pourquoi etudier le machine learning ?
+## Pourquoi étudier le machine learning ?
 
 Le machine learning, depuis une perspective systémique, est défini comme la création de systèmes automatiques pouvant apprendre des schémas non observés depuis des données afin d'aider à prendre des décisions intelligentes.
 
 Ce but est faiblement inspiré de la manière dont le cerveau humain apprend certaines choses depuis les données qu'il perçoit du monde extérieur.
 
-✅ Penser une minute aux raisons qu'une entreprise aurait d'essayer d'utiliser des stratégies de machine learning au lieu de créer des règles codés en dur.
+✅ Pensez une minute aux raisons qu'une entreprise aurait d'essayer d'utiliser des stratégies de machine learning au lieu de créer des règles codés en dur.
 
 ### Les applications du machine learning
 
-Les applications du machine learning sont maintenant pratiquement partout, et sont aussi omniprésentes que les données qui circulent autour de notre société (générés par nos smartphones, appareils connectés ou autres systèmes). En prenant en considération l'immense potentiel des algorithmes dernier cri de machine learning, les chercheurs ont pu exploités leurs capacités afin de résoudre des problèmes multidimensionnels et interdisciplinaires de la vie avec d'important retours positifs 
+Les applications du machine learning sont maintenant pratiquement partout, et sont aussi omniprésentes que les données qui circulent autour de notre société (générées par nos smartphones, appareils connectés ou autres systèmes). En prenant en considération l'immense potentiel des algorithmes dernier cri de machine learning, les chercheurs ont pu exploiter leurs capacités afin de résoudre des problèmes multidimensionnels et interdisciplinaires de la vie avec d'important retours positifs.
 
 **Vous pouvez utiliser le machine learning de plusieurs manières** :
 
