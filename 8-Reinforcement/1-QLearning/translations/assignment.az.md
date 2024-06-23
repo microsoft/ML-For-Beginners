@@ -10,11 +10,11 @@ Bizim vəziyyətimizdə Piter, demək olar ki, yorulmadan və ac qalmadan hərə
 
 ## Təlimatlar
 
-Həlliniz üçün başlanğıc nöqtəsi kimi orijinal [notebook.ipynb](notebook.ipynb) noutbukundan istifadə edin.
+Həlliniz üçün başlanğıc nöqtəsi kimi orijinal [notebook.ipynb](../notebook.ipynb) noutbukundan istifadə edin.
 
 Yuxarıdakı mükafat funksiyasını oyunun qaydalarına uyğun olaraq dəyişdirin. Oyunda qalib gəlmək üçün lazım olan ən yaxşı strategiyanı öyrənmək üçün isə gücləndirilmiş öyrənmə alqoritmini işlədin və təsadüfi gedişin nəticələrini qazandığınız və itirdiyiniz oyunların sayına görə alqoritminizlə müqayisə edin.
 
-> **Qeyd**: Yeni dünyanızda insanın mövqeyindən əlavə, yorğunluq və enerji səviyyələri də olduğuna görə vəziyyət daha mürəkkəbdir. Siz vəziyyəti bir qrup kimi təqdim etməyi seçə bilərsiniz(Board, enerji, yorğunluq) və ya vəziyyət üçün bir sinif yarada bilə(onu `Board`-dan da alt sinif olaraq yaratmağınız mümkündür) və ya [rlboard.py](rlboard.py) içərisindəki orijinal `Board` sinfini dəyişdirə bilərsiniz.
+> **Qeyd**: Yeni dünyanızda insanın mövqeyindən əlavə, yorğunluq və enerji səviyyələri də olduğuna görə vəziyyət daha mürəkkəbdir. Siz vəziyyəti bir qrup kimi təqdim etməyi seçə bilərsiniz(Board, enerji, yorğunluq) və ya vəziyyət üçün bir sinif yarada bilə(onu `Board`-dan da alt sinif olaraq yaratmağınız mümkündür) və ya [rlboard.py](../rlboard.py) içərisindəki orijinal `Board` sinfini dəyişdirə bilərsiniz.
 
 Həllinizdə, lütfən, kodu təsadüfi gediş strategiyasına cavab verəcək formada saxlayın və ən sonda alqoritminizin nəticələrini təsadüfi gedişlə müqayisə edin.
 
