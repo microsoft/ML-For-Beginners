@@ -258,7 +258,7 @@ Note, when the top genre is described as 'Missing', that means that Spotify did 
 1. Do a quick test to see if the data correlates in any particularly strong way:
 
     ```python
-    corrmat = df.corr()
+    corrmat = df.corr(numeric_only=True)
     f, ax = plt.subplots(figsize=(12, 9))
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
@@ -300,7 +300,7 @@ Are these three genres significantly different in the perception of their dancea
 1. Create a scatter plot:
 
     ```python
-    sns.FacetGrid(df, hue="artist_top_genre", size=5) \
+    sns.FacetGrid(df, hue="artist_top_genre", height=5) \
        .map(plt.scatter, "popularity", "danceability") \
        .add_legend()
     ```
