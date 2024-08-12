@@ -1,10 +1,11 @@
-# Poetic license
+# Poetik lisenziya
 
-## Instructions
+## Təlimatlar
 
-In [this notebook](https://www.kaggle.com/jenlooper/emily-dickinson-word-frequency) you can find over 500 Emily Dickinson poems previously analyzed for sentiment using Azure text analytics. Using this dataset, analyze it using the techniques described in the lesson. Does the suggested sentiment of a poem match the more sophistic Azure service's decision? Why or why not, in your opinion? Does anything surprise you?
-## Rubric
+[Bu notbukda](https://www.kaggle.com/jenlooper/emily-dickinson-word-frequency) Azure mətn analitikası istifadə edərək hiss analizi üçün istifadə edilən 500-dən çox Emili Dikinsonun şeirlərini tapa bilərsən. Bu dataseti istifadə edərək dərsdə bəhs olunan texinika ilə analiz et. Şeirlərdən çıxarılan hiss nəticəsi daha təkmil Azure xidmətlərinin qərarları ilə tutuşurmu? Sənin fikrincə, nə üçün tutuşur və ya tutuşmur? Nəsə sənə müəmmalı gəldi?
 
-| Criteria | Exemplary                                                                  | Adequate                                                | Needs Improvement        |
-| -------- | -------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------ |
-|          | A notebook is presented with a solid analysis of an author's sample output | The notebook is incomplete or does not perform analysis | No notebook is presented |
+## Rubrika
+
+| Meyarlar | Nümunəvi | Adekvat | İnkişaf Etdirilməli Olan |
+| -------- | ---------| ------- | ------------------------ |
+|          | Müəllifin nümunə məlumatlarının tam analizi notbukda təqdim olunub | Notbuk natamamdır və ya analiz yerinə yetirilməyib | Notbuk təqdim olunmayıb |
