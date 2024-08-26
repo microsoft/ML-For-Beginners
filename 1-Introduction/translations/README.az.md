@@ -1,16 +1,16 @@
 # Maşın öyrənməsinə giriş
 
-Kurikulumun bu hissəsində siz maşın öyrənməsi sahəsinin əsas fundamental konseptləri, onların tarixi və araşdırmaçıların onları istifadə etdikləri texnikalarla tanış olacaqsınız. Gəlin Maşın Öyrənməsinin (MÖ) bu yeni dünyasını birlikdə kəşf edək!
+Kurikulumun bu hissəsində siz maşın öyrənməsi sahəsinin əsas fundamental konseptləri, onların tarixi və tədqiqatçıların onlarla işləmək üçün istifadə etdikləri texnikalarla tanış olacaqsınız. Gəlin Maşın Öyrənməsinin (ML) bu yeni dünyasını birlikdə kəşf edək!
 
 ![globe](../images/globe.jpg)
-><a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> platformasında <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> tərəfindən təsvir 
-  
+><a href="https://unsplash.com/s/photos/globe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> platformasında <a href="https://unsplash.com/@bill_oxford?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bill Oxford</a> tərəfindən təsvir
+
 ### Dərslər
 
 1. [Maşın öyrənməsinə giriş](../1-intro-to-ML/translations/README.az.md)
 1. [Maşın öyrənmə tarixi](../2-history-of-ML/translations/README.az.md)
-1. [Maşın öyrənmə və ədalət](../3-fairness/README.md)
-1. [Maşın öyrənmə texnikaları](../4-techniques-of-ML/README.md)
+1. [Maşın öyrənmə və ədalət](../3-fairness/translations/README.az.md)
+1. [Maşın öyrənmə texnikaları](../4-techniques-of-ML/translations/README.az.md)
 
 ### Təşəkkürlər
 
