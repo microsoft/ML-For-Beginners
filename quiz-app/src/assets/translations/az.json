@@ -411,7 +411,7 @@
                 "isCorrect": "false"
               },
               {
-                "answerText": "qərəzin potensial səbəbini aşkar edə bilərsiniz",
+                "answerText": "tərəfkeşliyin potensial səbəbini aşkar edə bilərsiniz",
                 "isCorrect": "false"
               },
               {
@@ -1091,11 +1091,11 @@
             "questionText": "Çox sinifli sual nədir?",
             "answerOptions": [
               {
-                "answerText": "məlumat nöqtələrini bir neçə sinifə təsnif etmək tapşırığı",
+                "answerText": "məlumat nöqtələrini bir neçə qrupa təsnif etmək tapşırığı",
                 "isCorrect": "false"
               },
               {
-                "answerText": "məlumat nöqtələrini siniflərdən birinə təsnif etmək tapşırığı",
+                "answerText": "məlumat nöqtələrini qruplardan birinə təsnif etmək tapşırığı",
                 "isCorrect": "true"
               },
               {
@@ -1520,7 +1520,7 @@
                 "isCorrect": "true"
               },
               {
-                "answerText": "möhkəmləndirilərək öyrənmə",
+                "answerText": "gücləndirici öyrənmə",
                 "isCorrect": "false"
               }
             ]
@@ -2482,10 +2482,10 @@
       },
       {
         "id": 45,
-        "title": "Möhkəmləndirilmiş öyrənmə 1: Müharizə öncəsi quiz",
+        "title": "Gücləndirici öyrənmə 1: Müharizə öncəsi quiz",
         "quiz": [
           {
-            "questionText": "Möhkəmləndirici öyrənmə nədir?",
+            "questionText": "Gücləndirici öyrənmə nədir?",
             "answerOptions": [
               {
                 "answerText": "kiməsə nəyisə başa düşənə qədər təkrar-təkrar öyrətmək",
@@ -2535,7 +2535,7 @@
       },
       {
         "id": 46,
-        "title": "Möhkəmləndirilmiş öyrənmə 1: Müharizə sonrası quiz",
+        "title": "Gücləndirici öyrənmə 1: Müharizə sonrası quiz",
         "quiz": [
           {
             "questionText": "Q-Learning nədir?",
@@ -2588,7 +2588,7 @@
       },
       {
         "id": 47,
-        "title": "Möhkəmləndirilmiş öyrənmə 2: Müharizə öncəsi quiz",
+        "title": "Gücləndirici öyrənmə 2: Müharizə öncəsi quiz",
         "quiz": [
           {
             "questionText": "Şahmat and Go davamlı vəziyyətləri olan oyunlardır.",
@@ -2641,7 +2641,7 @@
       },
       {
         "id": 48,
-        "title": "Möhkəmləndirilmiş öyrənmə 2: Müharizə sonrası quiz",
+        "title": "Gücləndirici öyrənmə 2: Müharizə sonrası quiz",
         "quiz": [
           {
             "questionText": "Bir mühitdə bütün mümkün hərəkətləri harada müəyyənləşdiririk?",
@@ -2778,7 +2778,7 @@
             "questionText": "Meşə idarəetməsində hansı ML texnikası nümunədir?",
             "answerOptions": [
               {
-                "answerText": "Möhkəmləndirici öyrənmə",
+                "answerText": "Gücləndirici öyrənmə",
                 "isCorrect": "true"
               },
               {

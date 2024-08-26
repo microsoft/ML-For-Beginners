@@ -122,7 +122,7 @@ Məzmunun layihələrə uyğun olmasını təmin etməklə proses tələbələr 
 
 ## Oflayn giriş
 
-[Docsify](https://docsify.js.org/#/) istifadə edərək bu sənədləri oflayn rejimdə də işlədə bilərsiniz. Bunun üçün, reponu kopyalayın, cihazınızda [Docsify-ı quraşdırın](https://docsify.js.org/#/quickstart) və sonra bu reponun baş qovluqda olarkən terminalda `docsify service` yazın. Veb sayt lokal hostunuzda 3000 portunda qaldırılmış olacaq: `localhost:3000`.
+[Docsify](https://docsify.js.org/#/) istifadə edərək bu sənədləri oflayn rejimdə də işlədə bilərsiniz. Bunun üçün, reponu kopyalayın, cihazınızda [Docsify-ı quraşdırın](https://docsify.js.org/#/quickstart) və sonra bu reponun ana qovluqda olarkən terminalda `docsify service` yazın. Veb sayt lokal hostunuzda 3000 portunda qaldırılmış olacaq: `localhost:3000`.
 
 ## PDFlər
 
