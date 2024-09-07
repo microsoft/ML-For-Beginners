@@ -57,7 +57,8 @@ We do so since we want to model a line that has the least cumulative distance fr
 >
 > `X` is the 'explanatory variable'. `Y` is the 'dependent variable'. The slope of the line is `b` and `a` is the y-intercept, which refers to the value of `Y` when `X = 0`. 
 >
->![calculate the slope](images/slope.png)
+>![calculate the slope](images/slope.png) DON't KNOW HOW THEY GOT THE SLOPE!!!!!!!!
+![Better explanation](image.png)
 >
 > First, calculate the slope `b`. Infographic by [Jen Looper](https://twitter.com/jenlooper)
 >
