@@ -1,0 +1,25 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Page-1" id="MCpIz8lRCv8Zt3A3B-yo">
+    <mxGraphModel dx="1098" dy="988" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mHofzHGclkb5rKL9wMxo-1" value="AI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="510" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="mHofzHGclkb5rKL9wMxo-2" value="ML" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="240" y="280" width="390" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="mHofzHGclkb5rKL9wMxo-3" value="Deep Learning" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="290" y="310" width="330" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="mHofzHGclkb5rKL9wMxo-4" value="Neuronal Networks" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="340" y="340" width="270" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="mHofzHGclkb5rKL9wMxo-5" value="Data Science" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;opacity=50;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="540" y="140" width="120" height="570" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

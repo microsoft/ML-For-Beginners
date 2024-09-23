@@ -1,0 +1,38 @@
+How are things learned?
+    Memorization
+        Accumulation of facts
+        Limited by:
+            Time to observe facts
+            Memory to observe facts
+        ----------
+        This is "declarative knowledge" - based on statements of truth
+        ----------
+    Generalization
+        Deduce new facts from old facts
+        Limited by:
+            Accuracy of the dedeuction process
+        Essentially a predictive activity
+        Assumes that the past predicts the future.
+        ----------
+        This is "imperative knowledge" 
+        ----------    
+
+
+Basic paradigm:
+    - provide a set of - seen, observed - training data 
+    - decide on a characteristic of that training data as representative for the issue
+    - infer something (a rule?) about the process that has generated that data
+    - use inference to make predictions about previously unseen data
+    - confirm inference using a set of test data
+
+A choice might have to be made between "Will I have false negatives or false positives allowed by my rules" and it would depend on what side is the risk higher.
+
+Issues of concern when learning models:
+    Leaned models will depend on :
+        - distance metric between examples
+        - choice of features vectors 
+        - constraints of complexity model
+            - specified or unknown number of clusters
+            - complexity of separating surface
+            - need to acoid overfitting problems like "each example is its own cluster"
+            
