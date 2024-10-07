@@ -1,0 +1,142 @@
+{
+	"title": {
+		"media": {
+			"url": "https://en.wikipedia.org/wiki/File:Alan_Turing_(1912-1954)_in_1936_at_Princeton_University_(cropped).jpg",
+			"caption": "Turing in 1936.",
+			"credit": "wikipedia/<a href='https://commons.wikimedia.org/wiki/File:Alan_Turing_(1912-1954)_in_1936_at_Princeton_University_(cropped).jpg?uselang=en#Licensing/'>wikipedia</a>"
+		},
+		"text": {
+			"headline": "History of machine learning <br/> 1950 - 2011",
+			"text": "<p>The history of artificial intelligence (AI) as a field is intertwined with the history of machine learning, as the algorithms and computational advances that underpin ML fed into the development of AI. It is useful to remember that, while these fields as distinct areas of inquiry began to crystallize in the 1950s, important algorithmic, statistical, mathematical, computational and technical discoveries predated and overlapped this era. In fact, people have been thinking about these questions for hundreds of years: this article discusses the historical intellectual underpinnings of the idea of a 'thinking machine.'.</p>"
+		}
+	},
+	"events": [
+		{
+			"media": {
+				"url": "https://s.abcnews.com/images/Entertainment/whitney-cissy-dionne-gty-er-180711_hpEmbed_21x16_992.jpg",
+				"caption": "Houston's with her mother and Gospel singer, Cissy Houston and cousin Dionne Warwick.",
+				"credit": "Cissy Houston photo:<a href='http://www.flickr.com/photos/11447043@N00/418180903/'>Tom Marcello</a><br/><a href='http://commons.wikimedia.org/wiki/File%3ADionne_Warwick_television_special_1969.JPG'>Dionne Warwick: CBS Television via Wikimedia Commons</a>"
+			},
+			"start_date": {
+				"year": "1950"
+			},
+			"text": {
+				"headline": "Machines that think",
+				"text": "<p>Alan Turing, a truly remarkable person who was voted by the public in 2019 as the greatest scientist of the 20th century, is credited as helping to lay the foundation for the concept of a 'machine that can think.' He grappled with naysayers and his own need for empirical evidence of this concept in part by creating the Turing Test, which you will explore in our NLP lessons.</p>"
+			}
+		},
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "1956"
+			},
+			"text": {
+				"headline": "Dartmouth Summer Research Project",
+				"text": "The Dartmouth Summer Research Project on artificial intelligence was a seminal event for artificial intelligence as a field, and it was here that the term 'artificial intelligence' was coined (source)."
+			}
+		},
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "1956"
+			},
+			"end_date": {
+				"year": "1974"
+			},			
+			"text": {
+				"headline": "The golden years of AI",
+				"text": "From the 1950s through the mid '70s, optimism ran high in the hope that AI could solve many problems. In 1967, Marvin Minsky stated confidently that 'Within a generation ... the problem of creating 'artificial intelligence' will substantially be solved.' (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)."
+			}
+		},
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "1974"
+			},
+			"end_date": {
+				"year": "1980"
+			},			
+			"text": {
+				"headline": "The AI Winter",
+				"text": "By the mid 1970s, it had become apparent that the complexity of making 'intelligent machines' had been understated and that its promise, given the available compute power, had been overblown. Funding dried up and confidence in the field slowed."
+			}
+		},
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "1980"
+			},
+			"end_date": {
+				"year": "1990"
+			},			
+			"text": {
+				"headline": "The years of the  Expert systems",
+				"text": "As the field grew, its benefit to business became clearer, and in the 1980s so did the proliferation of 'expert systems'. Expert systems were among the first truly successful forms of artificial intelligence (AI) software."
+			}
+		},		
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "1987"
+			},
+			"end_date": {
+				"year": "1993"
+			},			
+			"text": {
+				"headline": "The AI Chill",
+				"text": "The proliferation of specialized expert systems hardware had the unfortunate effect of becoming too specialized. The rise of personal computers also competed with these large, specialized, centralized systems. The democratization of computing had begun, and it eventually paved the way for the modern explosion of big data."
+			}
+		},
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "1993"
+			},
+			"end_date": {
+				"year": "2011"
+			},			
+			"text": {
+				"headline": "The ML Era",
+				"text": "This epoch saw a new era for ML and AI to be able to solve some of the problems that had been caused earlier by the lack of data and compute power. The amount of data began to rapidly increase and become more widely available, for better and for worse, especially with the advent of the smartphone around 2007. Compute power expanded exponentially, and algorithms evolved alongside. The field began to gain maturity as the freewheeling days of the past began to crystallize into a true discipline."
+			}
+		},		
+		{
+			"media": {
+				"url": "https://youtu.be/fSrO91XO1Ck",
+				"caption": "",
+				"credit": "<a href=\"http://unidiscmusic.com\">Unidisc Music</a>"
+			},
+			"start_date": {
+				"year": "2020"
+			},	
+			"text": {
+				"headline": "Now",
+				"text": "Today machine learning and AI touch almost every part of our lives. This era calls for careful understanding of the risks and potentials effects of these algorithms on human lives. As Microsoft's Brad Smith has stated, 'Information technology raises issues that go to the heart of fundamental human-rights protections like privacy and freedom of expression. These issues heighten responsibility for tech companies that create these products. In our view, they also call for thoughtful government regulation and for the development of norms around acceptable uses' (source)."
+			}
+		}		
+	]
+}
