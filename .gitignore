@@ -13,6 +13,9 @@ dist
 *.sln.docstates
 #draw.io backups
 *.bkp
+#other backups
+*bak
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
