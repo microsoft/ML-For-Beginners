@@ -2,11 +2,11 @@
 
 ![Xətti və Polinom reqressiya infoqrafiki](../images/linear-polynomial.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) tərəfindən çəkilmiş infoqrafik
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
+## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/?loc=az)
 
 > ### [Bu dərs R proqramlaşdırma dili ilə də mövcuddur!](../solution/R/lesson_3.html)
 
-Artıq indiyək, bu dərs ərzində də istifadə edəcəyimiz balqabaq qiymətlərinin data massivi ilə reqressiyanın nə olduğunu araşdırmısınız. Həmçinin, Matplotlib ilə də onu vizuallaşdırmısınız.
+İndiyədək və bu dərs ərzində istifadə edəcəyimiz balqabaq qiymətlərinin data seti ilə reqressiyanın nə olduğunu araşdırmısınız. Həmçinin, Matplotlib ilə də onu vizuallaşdırmısınız.
 
 Artıq maşın öyrənməsi üçün reqressiyanın dərinliklərinə enməyə hazırsınız. Vizuallaşdırma sizə datadan məna çıxarmaqda yardımçı olsa da, maşın öyrənməsi gücünü _öyrətmə modellərindən_ alır. Modellər, data asılılıqlarını avtomatik olaraq tutmaq üçün keçmiş datalar üzərində öyrədilir və sizə modelin daha əvvəllər görmədiyi yeni datalar üçün proqnozlar verməyə imkan verirlər.
 
@@ -20,20 +20,20 @@ Bu dərsdə siz reqressiyanın daha 2 növü olan _sadə xətti reqressiya_ ilə
 
 ### İlkin Şərt
 
-Araşdırdığımız balqabaq datalarının strukturu ilə artıq tanış olmalısınız. Siz onu bu dərsin _notebook.ipynb_ faylında əvvəlcədən yüklənmiş və əvvəlcədən təmizlənmiş şəkildə tapa bilərsiniz. Faylda balqabağın qiyməti yeni datafreymdə buşel ilə göstərilmişdir. Bu dəftərçələri Visual Studio Code-da işlədə bildiyinizdən əmin olun.
+Araşdırdığımız balqabaq datalarının strukturu ilə artıq tanış olmalısınız. Siz onu bu dərsin _notebook.ipynb_ faylında əvvəlcədən yüklənmiş və təmizlənmiş şəkildə tapa bilərsiniz. Faylda balqabağın qiyməti yeni datafreymdə buşel ilə göstərilmişdir. Bu notbukları Visual Studio Code-da işlədə bildiyinizdən əmin olun.
 
 ### Hazırlıq
 
 Bu dataları sual vermək üçün yüklədiyinizi xatırlatmaq istəyirik.
 
-- Balqabaq almaq üçün ən yaxşı vaxt nə vaxtdır?
+- Balqabaq almaq üçün ən yaxşı vaxt nə zamandır?
 - Bir qab miniatür balqabaqdan nə qədər qiymət gözləyə bilərəm?
 - Onları yarım buşellik səbətlərlə, yoxsa 1 1/9 buşellik qutularda almalıyam?
 Gəlin bu dataları araşdırmağa davam edək.
 
-Bundan öncəki dərsdə, siz Pandas-da yeni datafreym yaradaraq onu orijinal data massivinin bir hissəsi ilə doldurdunuz və qiymətləri buşellə standartlaşdırdınız. Amma bunu etməklə siz ancaq payız ayları üçün təxminən 400 data nöqtəsi toplaya bildiniz.
+Bundan öncəki dərsdə siz Pandas-da yeni datafreym yaradaraq onu orijinal data setinin bir hissəsi ilə doldurdunuz və qiymətləri buşellə standartlaşdırdınız. Amma bunu etməklə siz ancaq payız ayları üçün təxminən 400 data nöqtəsi toplaya bildiniz.
 
-Bu dərsi müşayiət edən dəftərçəyə yüklədiyimiz datalara nəzər salın. Məlumatlar əvvəlcədən yüklənilmiş və paylanma qrafiki aylarla bağlı datanı göstərəcək formada çəkilmişdir. Bu datanı biraz da təmizləyərək onun təbiəti haqqında az da olsa əlavə məlumat ala bilərik.
+Bu dərsi müşayiət edən notbuka yüklədiyimiz datalara nəzər salın. Məlumatlar əvvəlcədən yüklənilmiş və paylanma qrafiki aylarla bağlı datanı göstərəcək formada çəkilmişdir. Bu datanı biraz da təmizləyərək onun təbiəti haqqında az da olsa əlavə məlumat ala bilərik.
 
 ### Xətti reqressiya xətti
 
@@ -46,10 +46,10 @@ Bu tip bir xətt çəkmək **Ən Kiçik Kvadratlar Reqressiyasının** tipik bir
 
 Bütün məlumat nöqtələrimizdən ən az məcmu məsafəyə malik olan xətti modelləşdirmək istədiyimiz üçün bunu edirik. Biz onun istiqaməti deyil, böyüklüyü ilə maraqlandığımıza görə şərtləri də əlavə etməzdən əvvəl kvadratlaşdırırıq.
 
-> **🧮 Mənə riyaziyyatı göstərin** 
-> 
+> **🧮 Mənə riyaziyyatı göstərin**
+>
 > _Ən uyğun xətt_ adlanan bu xətt, [tənliklə](https://en.wikipedia.org/wiki/Simple_linear_regression) ifadə oluna bilər:
-> 
+>
 > ```
 > Y = a + bX
 > ```
@@ -65,16 +65,16 @@ Bütün məlumat nöqtələrimizdən ən az məcmu məsafəyə malik olan xətti
 >![tənliyi tamamlayın](../images/calculation.png)
 >
 > Y-in dəyərini hesablayın. Əgər 4$ ətrafında ödəyirsinizsə, bu Aprel ayı olmalıdır! [Jen Looper](https://twitter.com/jenlooper) tərəfindən çəkilən infoqrafik.
-> Xəttin hesablayan riyazi əməliyyat, kəsəndən və ya `X = 0` olduqda `Y`-in bərabər olduğu dəyərdən asılı olan bucaq əmsalını göstərməlidir.
+> Xətti hesablayan riyazi əməliyyat kəsəndən və ya `X = 0` olduqda `Y`-in bərabər olduğu dəyərdən asılı olan bucaq əmsalını göstərməlidir.
 > Bu dəyərlərin hesablanması üçün olan metodlara [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html) vebsaytından baxa bilərsiniz. Ədədlərin sahib olduğu dəyərin xəttə necə təsir etməsinə baxmaq üçün isə [Least-squares calculator](https://www.mathsisfun.com/data/least-squares-calculator.html) saytına keçid edin.
 
 ## Korrelyasiya
 
 Başa düşməniz lazım olan daha bir ifadə isə X və Y dəyişənləri arasındakı **korrelyasiya əmsalıdır**. Paylanma qrafikindən istifadə edərək bu əmsalları tez bir şəkildə vizuallaşdıra bilərsiniz. Aydın bir xətt üzrə səpələnmiş data nöqtələri olan qarifikin yüksək korrelyasiyası, hər yerə səpələnmiş data nöqtələri olan qrafikin isə aşağı korrelyasiyası olur.
 
-Yaxşı bir reqresiyya modeli, reqressiya xətti ilə Ən Kiçik Kvadratlar Reqresiyyası metodundan istifadə olunmuş yüksək(0-dan fərqli, 1-ə yaxın) Korrelyasiya Əmsalı olan model hesab olunacaq.
+Yaxşı bir reqresiyya modeli, reqressiya xətti ilə Ən Kiçik Kvadratlar Reqresiyyası metodundan istifadə olunmuş yüksək (0-dan fərqli, 1-ə yaxın) Korrelyasiya Əmsalı olan model hesab olunacaq.
 
-✅ Bu dərsi müşayiət edən dəftərçəni işə salın and Ay-Qiymət paylanma qrafikinə baxın. Paylanma qrafikinin vizual təsvirinə əsasən balqabaq satışı üçün Ay ilə Qiyməti əlaqələndirən datanın yüksək yoxsa aşağı korrelyasiyası var? `Ay` əvəzinə daha dəqiq ölçüdən, məsələn *ilin günündən*(məsələn, il başlayandan keçən günlərin sayı) istifadə etsəniz dəyişiklik olacaqmı?
+✅ Bu dərsi müşayiət edən notbuku işə salın və Ay-Qiymət paylanma qrafikinə baxın. Paylanma qrafikinin vizual təsvirinə əsasən balqabaq satışı üçün Ay ilə Qiyməti əlaqələndirən datanın yüksək yoxsa aşağı korrelyasiyası var? `Ay` əvəzinə daha dəqiq ölçüdən, məsələn *ilin günündən*(məsələn, il başlayandan keçən günlərin sayı) istifadə etsəniz dəyişiklik olacaqmı?
 
 Aşağıdakı kodda, biz datanı təmizlədiyimizi və aşağıdakı formaya bənzər `new_pumpkins` adlı datafreymini əldə etdiyimizi fərz edirik:
 
@@ -86,7 +86,7 @@ ID | Month | DayOfYear | Variety | City | Package | Low Price | High Price | Pri
 73 | 10 | 274 | PIE TYPE | BALTIMORE | 1 1/9 bushel cartons | 17.0 | 17.0 | 15.454545
 74 | 10 | 281 | PIE TYPE | BALTIMORE | 1 1/9 bushel cartons | 15.0 | 15.0 | 13.636364
 
-> Datanı təmizləmək üçün istifadə olunan kodlara [`notebook.ipynb`](./notebook.ipynb) faylından baxa bilərsiniz. Keçən dərsdəki eyni təmizləmə addımlarını icra etmişik və `DayOfYear` adlı sütunu aşağıdakı ifadə ilə hesablamışıq:
+> Datanı təmizləmək üçün istifadə olunan kodlara [`notebook.ipynb`](../notebook.ipynb) faylından baxa bilərsiniz. Keçən dərsdəki eyni təmizləmə addımlarını icra etmişik və `DayOfYear` adlı sütunu aşağıdakı ifadə ilə hesablamışıq:
 
 ```python
 day_of_year = pd.to_datetime(pumpkins['Date']).apply(lambda dt: (dt-datetime(dt.year,1,1)).days)
@@ -106,7 +106,7 @@ Keçən dərsdən çox güman ki, balqabağın aylar üzrə ortalama qiymətinin
 
 Bu şəkil bizə biraz korrelyasiyaya ehtiyac olduğuna işarə edir. Biz `Month` və `Price`, və yaxud `DayOfYear` və `Price` arasındakı əlaqəni təxmin etmək üçün reqressiya modellərimizi öyrədə bilərik. İkinci əlaqəni göstərən paylanma qrafiki:
 
-<img alt="Price və Day of Year arasındakı əlaqəni göstərən paylanma qrafiki" src="../images/scatter-dayofyear.png" width="50%" /> 
+<img alt="Price və Day of Year arasındakı əlaqəni göstərən paylanma qrafiki" src="../images/scatter-dayofyear.png" width="50%" />
 
 Gəlin `corr` funksiyasından istifadə etməklə korrelyasiyanın mövcud olub olmadığına baxaq:
 
@@ -131,7 +131,7 @@ Gəlin bir müddət yalnız 'yeməli növ' balqabaq sortuna fokuslanaq and tarix
 
 ```python
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
-pie_pumpkins.plot.scatter('DayOfYear','Price') 
+pie_pumpkins.plot.scatter('DayOfYear','Price')
 ```
 
 <img alt="Price və Day of Year arasındakı əlaqəni göstərən paylanma qrafiki" src="../images/pie-pumpkins-scatter.png" width="50%" />
@@ -145,7 +145,7 @@ pie_pumpkins.dropna(inplace=True)
 pie_pumpkins.info()
 ```
 
-Başqa bir yanaşma həmin boş dəyərləri müvafiq sütundakı orta qiymətlərlə doldurmaq olardı.
+Başqa bir yanaşma, həmin boş dəyərləri müvafiq sütundakı orta qiymətlərlə doldurmaq olardı.
 
 ## Sadə xətti reqressiya
 
@@ -161,16 +161,16 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 ```
 
-İlkin olaraq giriş(özəlliklər) və çıxış(label) dəyərlərini fərqli massivlərə ayıraraq başlayırıq:
+İlkin olaraq giriş(özəlliklər) və çıxış(label) dəyərlərini fərqli setlərə ayıraraq başlayırıq:
 
 ```python
 X = pie_pumpkins['DayOfYear'].to_numpy().reshape(-1,1)
 y = pie_pumpkins['Price']
 ```
 
-Diqqət edin ki, Xətti Reqressiya paketinin, giriş datasını düzgün başa düşməsi üçün onu `reshape`(yenidən formalaşdırmaq) etməli olduq. Xətti reqressiya giriş parametri olaraq, hər sırasının giriş özəlliklərindən ibarət vektora uyğun olduğu 2 ölüçülü massiv gözləyir. Bizim situasiyada yalnız bir giriş olduğu üçün N&times;1 formalı massivə ehtiyacımız olacaq. Buradakı N data setinin ölçüsünü bildirir.
+Diqqət edin ki, Xətti Reqressiya paketinin giriş datasını düzgün başa düşməsi üçün onu `reshape`(yenidən formalaşdırmaq) etməli olduq. Xətti reqressiya giriş parametri olaraq hər sırasının giriş özəlliklərindən ibarət vektora uyğun olduğu 2 ölüçülü set gözləyir. Bizim situasiyada yalnız bir giriş olduğu üçün N&times;1 formalı setə ehtiyacımız olacaq. Buradakı N data setinin ölçüsünü bildirir.
 
-Öyrədilmədən sonra modelimizi validasiya etməyimiz üçün datanı öyrətmə və test data setlərinə ayırmağa ehtiyacımız var:
+Öyrətmədən sonra modelimizi validasiya etməyimiz üçün datanı öyrətmə və test data setlərinə ayırmağa ehtiyacımız var:
 
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
@@ -183,9 +183,9 @@ lin_reg = LinearRegression()
 lin_reg.fit(X_train,y_train)
 ```
 
-`.coef_` istifadə edərək `LinearRegression` obyektinin `fit` ilə uyğunlaşdırılandan sonra özündə saxladığı bütün reqressiya əmsallarına baxa bilərsiniz. Bizim situasiyada yalnız bir əmsal var ki, o da `-0.017` civarında olmalıdır. Bu da o deməkdir ki, qiymətlər zamanla düşsə də, bu düşüş çox yox, təxminən günə 2 sent civarında dəyişir. Həmçinin reqressiyanın Y oxu ilə kəsişmə nöqtəsinə `lin_reg.intercept_` ilə baxa bilərik. O isə bizim situasiyada `21` aralığında olacaq ki, bu da ilin əvvəlindəki qiyməti göstərir.
+`.coef_` istifadə edərək `LinearRegression` obyektinin `fit` ilə uyğunlaşdırılandan sonra özündə saxladığı bütün reqressiya əmsallarına baxa bilərsiniz. Bizim situasiyada yalnız bir əmsal var ki, o da `-0.017` civarında olmalıdır. Bu da o deməkdir ki, qiymətlər zamanla düşsə də, bu düşüş çox yox, təxminən günə 2 sent civarında dəyişir. Həmçinin reqressiyanın Y oxu ilə kəsişmə nöqtəsinə `lin_reg.intercept` ilə baxa bilərik. O isə bizim situasiyada `21` aralığında olacaq ki, bu da ilin əvvəlindəki qiyməti göstərir.
 
-Modelimizin nə dərəcə dəqiq olduğunu görmək üçün, test data setində qiymətləri təxmin edib, daha sonra onların gözlənilən qiymətlərə nə dərəcə yaxın olduğunu ölçə bilərik. Bunu orta kvadratik xəta(OKX), daha aydın formada desək, bütün gözlənilən və təxmin olunan dəyərlər arasındakı fərqin kvadratları cəminin ədədi ortası ölçümü ilə həll edə bilərik.
+Modelimizin nə dərəcə dəqiq olduğunu görmək üçün test data setində qiymətləri təxmin edib, daha sonra onların gözlənilən qiymətlərə nə dərəcə yaxın olduğunu ölçə bilərik. Bunu orta kvadratik xəta (OKX), daha aydın formada desək, bütün gözlənilən və təxmin olunan dəyərlər arasındakı fərqin kvadratları cəminin ədədi ortası ölçümü ilə həll edə bilərik.
 
 ```python
 pred = lin_reg.predict(X_test)
@@ -224,7 +224,7 @@ Date və Price arasındakı əlaqəyə fərqli bucaqdan baxmağa çalışın. Si
 
 Polinom reqressiya qeyri-xətti datalara daha yaxşı uyğunlaşmaq üçün əyri xətt yaradır. İndiki situasiyada, `DayOfYear` dəyişəninin kvadratını giriş datasına daxil etsək, datamızı parabolik əyriyə uyğunlaşdıra bilərik. Bunun sayəsində il ərzindəki hansısa nöqtədə minimum dəyərə malik olacağıq.
 
-Scikit-learn-də data emalının müxtəlif addımlarını birləşdirmək üçün [payplayn API-ı](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) mövcuddur. **Payplayn**, **təxminedicilərdən** formalaşan bir zəncirdir. Bizim situasiyada, ilk öncə polinom özəllikləri modelimizə əlavə edən payplaynı yaradacayıq və daha sonra reqressiyanı öyrədəcəyik:
+Scikit-learn-də data emalının müxtəlif addımlarını birləşdirmək üçün [payplayn API](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) mövcuddur. **Payplayn**, **təxminedicilərdən** formalaşan bir zəncirdir. Bizim situasiyada ilk öncə polinom özəllikləri modelimizə əlavə edən payplaynı yaradacayıq və daha sonra reqressiyanı öyrədəcəyik:
 
 ```python
 from sklearn.preprocessing import PolynomialFeatures
@@ -237,7 +237,7 @@ pipeline.fit(X_train,y_train)
 
 `PolynomialFeatures(2)` istifadə edilməsi, bizim giriş datasındakı bütün ikinci dərəcəli polinomları daxil edəcəyimizi bildirir. Bizim vəziyyətimizdə bu, sadəcə `DayOfYear`<sup>2</sup> mənasını verəcək, amma iki giriş dəyişəni, X və Y verildikdə isə, bu, X<sup>2</sup>, XY və Y<sup>2</sup>-ni əlavə edəcək. İstəyə bağlı olaraq daha yüksək dərəcəli polinom da istifadə edə bilərik.
 
-Payplaynlar orijinal `LinearRegression` obyektində olduğu kimi, eyni üsulla istifadə oluna bilər. Məsələn, payplaynı `fit` ilə uyğunlaşdıra, daha sonra isə təxmin nəticələrini əldə etmək üçün `predict`-i istifadə edə bilərik. Aşağıdakı qrafikdə test datası və təxmin əyrisi göstərilmişdir:
+Payplaynlar orijinal `LinearRegression` obyektində olduğu kimi, eyni üsulla istifadə oluna bilər. Məsələn, payplaynı `fit` ilə uyğunlaşdıra, daha sonra isə təxmin nəticələrini əldə etmək üçün `predict` istifadə edə bilərik. Aşağıdakı qrafikdə test datası və təxmin əyrisi göstərilmişdir:
 
 <img alt="Polynomial regression" src="../images/poly-results.png" width="50%"/>
 
@@ -249,7 +249,7 @@ Polinom Reqressiyadan istifadə etməklə biz nəzərəçarpacaq qədər olmasa 
 
 ## Kateqorik Xüsusiyyətlər
 
-İdeal şəraitdə eyni modeldən istifadə edərək fərqli balqabaq növləri üçün təxminlər istəyə bilərik. Amma `Variety` sütunu qeyri-ədədi dəyərlərdən ibarət olduğu üçün `Month` sütunundan fərqlənir. Bu tip sütunlar **categorical** adlandırılır.
+İdeal şəraitdə eyni modeldən istifadə edərək fərqli balqabaq növləri üçün təxminlər istəyə bilərik. Amma `Variety` sütunu qeyri-ədədi dəyərlərdən ibarət olduğu üçün `Month` sütunundan fərqlənir. Bu tip sütunlar **kateqorik** adlandırılır.
 
 [![Yeni başlayanlar üçün maşın öyrənməsi - Xətti Reqressiya ilə Kateqorik Xüsusiyyətlərin Təxmini](https://img.youtube.com/vi/DYGliioIAE0/0.jpg)](https://youtu.be/DYGliioIAE0 "Yeni başlayanlar üçün maşın öyrənməsi - Xətti Reqressiya ilə Kateqorik Xüsusiyyətlərin Təxmini")
 
@@ -257,7 +257,7 @@ Polinom Reqressiyadan istifadə etməklə biz nəzərəçarpacaq qədər olmasa 
 
 Burada ortalama qiymətin növdən asılılığını görə bilərsiniz:
 
-<img alt="Növlər üzrə ortalama qiymət" src="../images/price-by-variety.png" width="50%"/>
+<img alt="Növlər üzrə ortalama qiymət" src="../images/price-by-variety.png" width="50%" style="background-color: white"/>
 
 Növləri nəzərə alsaq, ilk olaraq biz onu ədədi formaya çevirməli və yaxud **kodlaşdırmalıyıq**. Bunu etməyimiz üçün müxtəlif yollar vardır:
 
@@ -289,7 +289,7 @@ X = pd.get_dummies(new_pumpkins['Variety'])
 y = new_pumpkins['Price']
 ```
 
-Kodun qalan hissəsi yuxarıda Xətti Reqressiyanı öyrətməyimiz üçün istifadə olunan kodlarla eynidir. Əgər yoxlasanız orta kvadratik xətanın eyni olduğunu, amma determinasiya əmsalının çox daha yüksək(~77%) olduğunu görəcəksiniz. Daha da dəqiq təxminlər əldə etmək üçün, `Month` və ya `DayOfYear` tipli ədədi özəllikləri də nəzərə ala bilərik. Özəlliklərdən ibarət böyük bir massiv əldə etmək üçün `join`-dən istifadə edə bilərik:
+Kodun qalan hissəsi yuxarıda Xətti Reqressiyanı öyrətməyimiz üçün istifadə olunan kodlarla eynidir. Əgər yoxlasanız, orta kvadratik xətanın eyni olduğunu, amma determinasiya əmsalının çox daha yüksək(~77%) olduğunu görəcəksiniz. Daha da dəqiq təxminlər əldə etmək üçün, `Month` və ya `DayOfYear` tipli ədədi özəllikləri də nəzərə ala bilərik. Özəlliklərdən ibarət böyük bir set əldə etmək üçün `join` istifadə edə bilərik:
 
 ```python
 X = pd.get_dummies(new_pumpkins['Variety']) \
@@ -299,11 +299,11 @@ X = pd.get_dummies(new_pumpkins['Variety']) \
 y = new_pumpkins['Price']
 ```
 
-Burada bizə 2.84 (10%) OKX(orta kvadratik xəta), 0.94 determinasiya qaytaran `City` və `Package` tiplərini də nəzərə alırıq! 
+Burada bizə 2.84 (10%) OKX (orta kvadratik xəta), 0.94 determinasiya qaytaran `City` və `Package` tiplərini də nəzərə alırıq!
 
 ## Hamısını bir araya gətirərək
 
-Ən yaxşı modeli qurmaq üçün, biz kompleks(tək-aktiv kodlaşdırılmış kateqorik + ədədi) dataları Polinom Reqressiya ilə birlikdə istifadə edə bilərik. İşinizi asanlaşdırmaq üçün kod nümunəsini aşağıda yerləşdirmişik:
+Ən yaxşı modeli qurmaq üçün, biz mürəkkəb (tək-aktiv kodlaşdırılmış kateqorik + ədədi) dataları Polinom Reqressiya ilə birlikdə istifadə edə bilərik. İşinizi asanlaşdırmaq üçün kod nümunəsini aşağıda yerləşdirmişik:
 
 ```python
 # set up training data
@@ -343,11 +343,11 @@ Bu bizə 97%-lə ən yaxşı determinasiya əmsalını, və OKX=2.23 (~8% təxmi
 
 🏆 Əla! Siz bir dərsdə 4 Reqressiya modeli yaratdınız və modelin keyfiyyətini 97%-ə qədər artırdınız. Reqressiyanın final bölməsində kateqoriyaları müəyyənləşdirmək üçün olan Logistik Reqressiya haqqında öyrənəcəksiniz.
 
-## 🚀Məşğələ
+## 🚀 Məşğələ
 
-Bu dəftərçədə bir neçə fərqli dəyişəni test edərək korrelyasiyanın modelin dəqiqliyinə necə təsir etdiyini izləyin.
+Bu notbukda bir neçə fərqli dəyişəni test edərək korrelyasiyanın modelin dəqiqliyinə necə təsir etdiyini izləyin.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
+## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

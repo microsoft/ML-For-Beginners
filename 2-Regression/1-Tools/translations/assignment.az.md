@@ -8,6 +8,6 @@ Scikit-learn-dəki [Linnerud data massivinə](https://scikit-learn.org/stable/mo
 
 ## Qiymətləndirmə
 
-| Kriteriya                      | Örnək                                    | Adekvat                       | İnkişaf Etdirilməlidir     |
-| ------------------------------ | ---------------------------------------- | ----------------------------- | -------------------------- |
-| Təsviri paraqraf göndərin      | Ətraflı izah edilmiş paraqraf göndərildi | Bir neçə cümlə göndərildi     | İzah verilmədi             |
+| Meyarlar | Nümunəvi | Adekvat | İnkişaf Etdirilməli Olan |
+| -------- | -------- | ------- | ------------------------ |
+| Təsviri paraqraf göndərin | Ətraflı izah edilmiş paraqraf göndərildi | Bir neçə cümlə göndərildi     | İzah verilmədi             |

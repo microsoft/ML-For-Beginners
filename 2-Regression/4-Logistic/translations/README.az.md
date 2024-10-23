@@ -1,8 +1,8 @@
 # Kateqoriyaları təxmin etmək üçün logistik reqressiya
 
-![Logistik və xətti reqressiya infoqrafiki](./images/linear-vs-logistic.png)
+![Logistik və xətti reqressiya infoqrafiki](../images/linear-vs-logistic.png)
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/?loc=az)
 
 > ### [Bu dərs R proqramlaşdırma dili ilə də mövcuddur!](../solution/R/lesson_4.html)
 
@@ -29,13 +29,13 @@ Gəlin bir neçə dəyişən verilməklə _balqabağın hansı rəngdə(narınc�
 
 ## Sualı müəyyənləşdirin
 
-İstəklərimiz üzərindən gedərək bunu ikili formasında ifadə edəcəyik: 'Ağ' və ya 'Ağ olmayan'. Data dəstimizdə "zolaqlı" kateqoriya olsa da, bu tip bir neçə nümunə olduğu üçün, ondan istifadə etməyəcəyik. Hər bir halda, data dəstimizdən boş dəyərləri sildikdən sonra yox olacaqlar.
+İstəklərimiz üzərindən gedərək bunu ikili formasında ifadə edəcəyik: 'Ağ' və ya 'Ağ olmayan'. Data dəstimizdə "zolaqlı" kateqoriya olsa da, bu tip bir neçə nümunə olduğu üçün ondan istifadə etməyəcəyik. Hər bir halda data setimizdən boş dəyərləri sildikdən sonra yox olacaqlar.
 
-> 🎃 Maraqlı fakt. Bəzən ağ balqabaqlara 'ruh' balqabaqlar da deyirlər. Onları çərtmək o qədər də asan olmadığı üçün, narıncı balqabaqlar qədər məşhur deyillər. Amma çox gözəl görünürlər! Ona görə də biz sualımızı bir balaca yenidən formalaşdıra bilərik: 'Ruh olan' or 'Ruh olmayan'. 👻
+> 🎃 Maraqlı fakt. Bəzən ağ balqabaqlara 'ruh' balqabaqlar da deyirlər. Onları çərtmək o qədər də asan olmadığı üçün narıncı balqabaqlar qədər məşhur deyillər. Amma çox gözəl görünürlər! Ona görə də biz sualımızı bir balaca yenidən formalaşdıra bilərik: 'Ruh olan' or 'Ruh olmayan'. 👻
 
-## Logistik reqressiya haqqında 
+## Logistik reqressiya haqqında
 
-Logistik reqressiya, keçən dərslərdə haqqında öyrəndiyiniz xətti reqressiyadan bir neçə vacib yolla fərqlənir.
+Logistik reqressiya keçən dərslərdə haqqında öyrəndiyiniz xətti reqressiyadan bir neçə vacib yolla fərqlənir.
 
 [![Yeni başlayanlar üçün maşın öyrənməsi - Maşın Öyrənməsində Klassifikasiya üçün Logistik Reqressiyanın başa düşülməsi](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "Yeni başlayanlar üçün maşın öyrənməsi - Maşın Öyrənməsində Klassifikasiya üçün Logistik Reqressiyanın başa düşülməsi")
 
@@ -43,23 +43,23 @@ Logistik reqressiya, keçən dərslərdə haqqında öyrəndiyiniz xətti reqres
 
 ### İkili klassifikasiya
 
-Logistik reqressiya, xətti reqressiyanın təklif etdiyi özəllikləri təklif etmir. Biri ikili kateqoriya("narıncı olan və ya olmayan") haqqında təxminlər irəli sürsə də, digəri balqabağın mənşəyi və yığılma vaxtını nəzərə alsaq, _qiymətinin nə qədər yüksələcəyi_ tipli davamedici dəyərləri təxmin etmək potensialındadır.
+Logistik reqressiya xətti reqressiyanın təklif etdiyi özəllikləri təklif etmir. Biri ikili kateqoriya ("narıncı olan və ya olmayan") haqqında təxminlər irəli sürsə də, digəri balqabağın mənşəyi və yığılma vaxtını nəzərə alsaq, _qiymətinin nə qədər yüksələcəyi_ tipli davamedici dəyərləri təxmin etmək potensialındadır.
 
-![Balqabaq təsnifatlandırma modeli](./images/pumpkin-classifier.png)
+![Balqabaq qruplaşdırma modeli](../images/pumpkin-classifier.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) tərəfindən çəkilmiş infoqrafik
 
 ### Digər klassifikasiya
 
-Multinomial və ordinal daxil olmaqla logistik reqressiyanın digər növləri mövcuddur:
+Multinomial və ordinal daxil olmaqla logistik reqressiyanın digər növləri də mövcuddur:
 
-- **Multinomial** özündə daha çox kateqoriyanı ehtiva edir. Məsələn, "Narıncı, Ağ, and Zolaqlı". 
-- Sıralanmış kateqoriyalardan ibarət olan **Ordinal** isə, limitli ölçülərə(mini,sm,med,lg,xl,xxl) görə sıranlamış balqabaqlarımız kimi, nəticələrimizi məntiqi olaraq sıralamaq istədikdə faydalıdır.
+- **Multinomial** özündə daha çox kateqoriyanı ehtiva edir. Məsələn, "Narıncı, Ağ, and Zolaqlı".
+- Sıralanmış kateqoriyalardan ibarət olan **Ordinal** isə limitli ölçülərə (mini,sm,med,lg,xl,xxl) görə sıralanmış balqabaqlarımız kimi nəticələrimizi məntiqi olaraq sıralamaq istədikdə faydalıdır.
 
 ![Multinomial və ordinal reqressiya](../images/multinomial-vs-ordinal.png)
 
 ### Dəyişənlər korrelyasiya etməli deyil
 
-Xətti reqressiyanın daha çox korrelyasiyalı dəyişənlərlə necə daha rahat işlədiyini xatırlayırsınızmı? Logistik reqressiyada bunun əksi baş verir. Belə ki, dəyişənlər uyğunlaşmasına ehtiyac yoxdur. Ona görə də, zəif korrelyasiyaları olan bu datamız üçün işə yarardır.
+Xətti reqressiyanın daha çox korrelyasiyalı dəyişənlərlə necə daha rahat işlədiyini xatırlayırsınızmı? Logistik reqressiyada bunun əksi baş verir. Belə ki, dəyişənlər uyğunlaşmasına ehtiyac yoxdur. Ona görə də, zəif korrelyasiyaları olan bu datamız üçün işə yarayır.
 
 ### Çoxlu təmiz dataya ehtiyacınız var
 
@@ -78,7 +78,7 @@ Xətti reqressiya daha çox data istifadə etdikcə daha dəqiq nəticələr ver
 1. Aşağıdakı kodu əlavə edin:
 
     ```python
-  
+
     columns_to_select = ['City Name','Package','Variety', 'Origin','Item Size', 'Color']
     pumpkins = full_pumpkins.loc[:, columns_to_select]
 
@@ -93,13 +93,13 @@ Xətti reqressiya daha çox data istifadə etdikcə daha dəqiq nəticələr ver
 
 ### Vizuallaşdırma - kateqorik qrafik
 
-Artıq bir neçə dəfə [başlanğıc dəftərçəsini](./notebook.ipynb) yükləmiş və `Color` dəyişəni də daxil olmaqla bir neçə dəyişən qalacaq şəkildə onu təmizləmisiniz. Gəlin dəftərçədə datafreymimizi fərqli kitabxanadan-[Seaborn](https://seaborn.pydata.org/index.html)-dan istifadə edərək vizuallaşdıraq. Bu kitabxana əvvəlki dərslərdə istifadə etmiş olduğumuz Matplotlib kitabxanası üzərinə qurulmuşdur.
+Artıq bir neçə dəfə [başlanğıc dəftərçəsini](../notebook.ipynb) yükləmiş və `Color` dəyişəni də daxil olmaqla bir neçə dəyişən qalacaq şəkildə onu təmizləmisiniz. Gəlin dəftərçədə datafreymimizi fərqli kitabxanadan - [Seaborn](https://seaborn.pydata.org/index.html)-dan istifadə edərək vizuallaşdıraq. Bu kitabxana əvvəlki dərslərdə istifadə etmiş olduğumuz Matplotlib kitabxanası üzərinə qurulmuşdur.
 
-1. `catplot` funksiyasından, `pumpkins` adlı balqabaq datamızdan istifadə etməklə və hər balqabaq kateqoriyası (narıncı və ya ağ) üçün rəng xəritəsini təyin etməklə belə bir qrafik yaradın:
+1. `catplot` funksiyasından `pumpkins` adlı balqabaq datamızdan istifadə etməklə və hər balqabaq kateqoriyası (narıncı və ya ağ) üçün rəng xəritəsini təyin etməklə belə bir qrafik yaradın:
 
     ```python
     import seaborn as sns
-    
+
     palette = {
     'ORANGE': 'orange',
     'WHITE': 'wheat',
@@ -107,7 +107,7 @@ Artıq bir neçə dəfə [başlanğıc dəftərçəsini](./notebook.ipynb) yükl
 
     sns.catplot(
     data=pumpkins, y="Variety", hue="Color", kind="count",
-    palette=palette, 
+    palette=palette,
     )
     ```
 
@@ -122,7 +122,7 @@ Bizim balqabaq datalarımızdakı bütün sütunlar mətni dəyərlərdən ibar�
 
 Özəlliklərin kodlaşdırılması üçün kodlaşdırıcıların 2 əsas tipi var:
 
-1. Ordinal şifrələyicilər data dəstimizdəki `Item Size` sütununda olduğu kimi müəyyən məntiqi sıralamanı izləyən ordinal dəyişənlər üçün uyğundur. Bu şifrələyici, hər kateqoriyanı aid olduğu kateqoriyanın sütun sırasına uyğun ədədlə ifadə edən bir əlaqə yaradır.
+1. Ordinal şifrələyicilər data dəstimizdəki `Item Size` sütununda olduğu kimi müəyyən məntiqi sıralamanı izləyən ordinal dəyişənlər üçün uyğundur. Bu şifrələyici hər kateqoriyanı aid olduğu sütun sırasına uyğun ədədlə ifadə edən bir əlaqə yaradır.
 
     ```python
     from sklearn.preprocessing import OrdinalEncoder
@@ -131,7 +131,7 @@ Bizim balqabaq datalarımızdakı bütün sütunlar mətni dəyərlərdən ibar�
     ordinal_features = ['Item Size']
     ordinal_encoder = OrdinalEncoder(categories=item_size_categories)
     ```
-2. Kateqorik şifrələyicilər isə date dəstimizdə `Item Size`-ı çıxmaq şərtilə digər özəlliklər kimi heç bir məntiqi qanunauyğunluğu izləməyən kateqorik dəyişlənlər üçün uyğundur. Bu tək-aktiv növ şifrələmədir. Bu növ şifrələmədə hər kateqoriya ikili sütunla ifadə olunur. Əgər balqabaq həmin növə aiddirsə 1, deyilsə şifrələnmiş dəyişən 0-a bərabər olur.
+2. Kateqorik şifrələyicilər isə date dəstimizdə `Item Size` çıxmaq şərtilə digər özəlliklər kimi heç bir məntiqi qanunauyğunluğu izləməyən kateqorik dəyişlənlər üçün uyğundur. Bu tək-aktiv növ şifrələmədir. Bu növ şifrələmədə hər kateqoriya ikili sütunla ifadə olunur. Əgər balqabaq həmin növə aiddirsə 1, deyilsə şifrələnmiş dəyişən 0-a bərabər olur.
 
     ```python
     from sklearn.preprocessing import OneHotEncoder
@@ -144,16 +144,16 @@ Daha sonra bir neçə şifrələyicini 1 addımda birləşdirmək və müvafiq s
 
 ```python
     from sklearn.compose import ColumnTransformer
-    
+
     ct = ColumnTransformer(transformers=[
         ('ord', ordinal_encoder, ordinal_features),
         ('cat', categorical_encoder, categorical_features)
         ])
-    
+
     ct.set_output(transform='pandas')
     encoded_features = ct.fit_transform(pumpkins)
 ```
-Digər tərəfdən etiketi kodlaşdırmaq üçün, onları yalnız 0 və siniflərin_sayı-1(burada 0 və 1-dir) arasında olan dəyərlərlə normallaşdıran scikit-learn-ün `LabelEncoder` sinifindən istifadə edəcəyik.
+Digər tərəfdən etiketi kodlaşdırmaq üçün onları yalnız 0 və siniflərin_sayı-1 (burada 0 və 1-dir) arasında olan dəyərlərlə normallaşdıran scikit-learn-ün `LabelEncoder` sinifindən istifadə edəcəyik.
 
 ```python
     from sklearn.preprocessing import LabelEncoder
@@ -172,7 +172,7 @@ Digər tərəfdən etiketi kodlaşdırmaq üçün, onları yalnız 0 və sinifl�
 
 ### Dəyişənlər arasındakı əlaqəni analiz edin
 
-Artıq dəyişənlərimizi öncədən emal etdiyimizə görə, modelin verilən özəlliklərə uyğun etiketi nə qədər düzgün təxmin edə biləcəyi barədə fikir sahibi ola bilərik. Bunun üçün özəlliklərlə etiketlər arasındakı əlaqələri analiz edə bilərik.
+Artıq dəyişənlərimizi öncədən emal etdiyimizə görə modelin verilən özəlliklərə uyğun etiketi nə qədər düzgün təxmin edə biləcəyi barədə fikir sahibi ola bilərik. Bunun üçün özəlliklərlə etiketlər arasındakı əlaqələri analiz edə bilərik.
 Bu tip analizləri aparmağın ən yaxşı yolu onları qrafikləşdirməkdir. Bu dəfə də kateqorik qrafikdə `Item Size`, `Variety` və `Color` arasındakı əlaqəni vizuallaşdırmaq üçün Seaborn-un `catplot` funksiyasından istifadə edəcəyik. Datanı daha yaxşı vizuallaşdırmaq üçün şifrələnmiş `Item Size` və şifrələnməmiş `Variety` sütunlarını istifadə edirik.
 
 ```python
@@ -215,9 +215,9 @@ Dəyişənləri yanaşı formada Seaborn qrafikləri ilə vizuallaşdıra bilər
 
 **Diqqət edin**: Seaborn bu qədər çox məlumat nöqtəsini sürü qrafiki ilə göstərməyi bacara bilmədiyi üçün yuxarıdakı kod bir xəbərdarlıq göstərə bilər. Problemin potensial həlli, 'size' parametrindən istifadə edərək işarələyicinin ölçüsünü azaltmaqdır. Amma nəzərə alın ki, bu qrafikin oxunaqlılığını aşağı salacaq.
 
-> **🧮 Mənə riyaziyyatı göstərin** 
+> **🧮 Mənə riyaziyyatı göstərin**
 >
-> Logistik reqressiya [siqmoid funksiyalarından](https://wikipedia.org/wiki/Sigmoid_function) istifadə edən 'maksimum bənzərlik' konseptinə əsaslanır. Qrafiki formada 'Siqmoid Funksiyası' 'S' hərfinə oxşayır. Bu funksiya bir dəyər götürür və onu 0 və 1 arasındakı bir qiymətə köçürür. Qrafiki əyrisi isə 'logistik əyri' də adlanır. Düsturu isə bu formadadır:
+> Logistik reqressiya [siqmoid funksiyalarından](https://wikipedia.org/wiki/Sigmoid_function) istifadə edilən 'maksimum bənzərlik' konseptinə əsaslanır. Qrafiki formada 'Siqmoid Funksiyası' 'S' hərfinə oxşayır. Bu funksiya bir dəyər götürür və onu 0 və 1 arasındakı bir qiymətə köçürür. Qrafiki əyrisi isə 'logistik əyri' də adlanır. Düsturu isə bu formadadır:
 >
 > ![logistic function](../images/sigmoid.png)
 >
@@ -235,18 +235,18 @@ Həmin ikili klassifikasiyanı tapmaq üçün bir model qurmaq Scikit-learn-də 
 
     ```python
     from sklearn.model_selection import train_test_split
-    
+
     X = encoded_pumpkins[encoded_pumpkins.columns.difference(['Color'])]
     y = encoded_pumpkins['Color']
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-    
+
     ```
 
 2. Artıq `fit()`-i öyrənmə dataları ilə çağıraraq modelinizi öyrədə və nəticəni ekrana çap edə bilərsiniz:
 
     ```python
-    from sklearn.metrics import f1_score, classification_report 
+    from sklearn.metrics import f1_score, classification_report
     from sklearn.linear_model import LogisticRegression
 
     model = LogisticRegression()
@@ -262,14 +262,14 @@ Həmin ikili klassifikasiyanı tapmaq üçün bir model qurmaq Scikit-learn-də 
 
     ```output
                        precision    recall  f1-score   support
-    
+
                     0       0.94      0.98      0.96       166
                     1       0.85      0.67      0.75        33
-    
+
         accuracy                                0.92       199
         macro avg           0.89      0.82      0.85       199
         weighted avg        0.92      0.92      0.92       199
-    
+
         Predicted labels:  [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0
         0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
         1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 0
@@ -292,26 +292,26 @@ Yuxarıdakıları ekrana çap edərək bir xal tablosu [reportu](https://scikit-
     confusion_matrix(y_test, predictions)
     ```
 
-    Take a look at your model's confusion matrix:
+    Modelinizin xəta matrisinə baxın:
 
     ```output
     array([[162,   4],
            [ 11,  22]])
     ```
 
-Scikit-learn-də, xəta matrisində Cərgələr(0 oxu) əsl etiketlər, sütunlar(1 oxu) isə təxmin edilənləri göstərir.
+Scikit-learn-də xəta matrisində Cərgələr (0 oxu) əsl etiketlər, sütunlar (1 oxu) isə təxmin edilənləri göstərir.
 
 |       |   0   |   1   |
 | :---: | :---: | :---: |
 |   0   |  TN   |  FP   |
 |   1   |  FN   |  TP   |
 
-Burada nə baş verir? Misal üçün modelimizdən balqabaqları 2 ikili kateqoriya-'ağ' və 'ağ olmayan' üzrə təsnifləndirməyi istəmişik.
+Burada nə baş verir? Misal üçün modelimizdən balqabaqları 2 ikili kateqoriya- 'ağ' və 'ağ olmayan' üzrə qruplaşdırmağı istəmişik.
 
-- Modeliniz balqabağın ağ olmadığını təxmin edirsə və o, reallıqda 'ağ olmayan' kateqoriyasına aiddirsə, biz onu yuxarı sol rəqəmlə göstərilən doğru neqativ adlandırırıq.
-- Modeliniz balqabağı ağ kimi təxmin edirsə və o, reallıqda 'ağ olmayan' kateqoriyasına aiddirsə, biz onu aşağı sol nömrə ilə göstərilən yanlış neqativ adlandırırıq.
-- Modeliniz balqabağın ağ olmadığını təxmin edirsə və o, reallıqda 'ağ' kateqoriyasına aiddirsə, biz onu yuxarı sağ nömrə ilə göstərilən yanlış pozitiv adlandırırıq.
-- Modeliniz balqabağı ağ kimi təxmin edirsə və o, reallıqda 'ağ' kateqoriyasına aiddirsə, biz onu aşağı sağ rəqəmlə göstərilən doğru pozitiv adlandırırıq.
+- Modeliniz balqabağın ağ olmadığını təxmin edirsə və o reallıqda 'ağ olmayan' kateqoriyasına aiddirsə, biz onu yuxarı sol rəqəmlə göstərilən doğru neqativ (True Negative) adlandırırıq.
+- Modeliniz balqabağı ağ kimi təxmin edirsə və o reallıqda 'ağ olmayan' kateqoriyasına aiddirsə, biz onu aşağı sol nömrə ilə göstərilən yanlış neqativ (False Negative) adlandırırıq.
+- Modeliniz balqabağın ağ olmadığını təxmin edirsə və o reallıqda 'ağ' kateqoriyasına aiddirsə, biz onu yuxarı sağ nömrə ilə göstərilən yanlış pozitiv (False Positive) adlandırırıq.
+- Modeliniz balqabağı ağ kimi təxmin edirsə və o reallıqda 'ağ' kateqoriyasına aiddirsə, biz onu aşağı sağ rəqəmlə göstərilən doğru pozitiv (True Positive) adlandırırıq.
 
 Təxmin etdiyiniz kimi, daha çox sayda doğru pozitiv və doğru neqativlərə və daha az sayda yanlış pozitiv və yanlış neqativlərə üstünlük verilir. Bu da modelin daha yaxşı performans göstərdiyini göstərir.
 
@@ -321,7 +321,7 @@ Dəqiqlik = tp / (tp + fp) = 22 / (22 + 4) = 0.8461538461538461
 
 Xatırlama = tp / (tp + fn) = 22 / (22 + 11) = 0.6666666666666666
 
-✅ Sual: Xəta matrisinə əsasən, bizim modelimiz necə işlədi? Cavab: O qədər də pis deyildi. Nəzərəçarpacaq qədər doğru neqativlər olmasına baxmayaraq, az da olsa yanlış neqativlər var.
+✅ Sual: Xəta matrisinə əsasən bizim modelimiz necə işlədi? Cavab: O qədər də pis deyildi. Nəzərəçarpacaq qədər doğru neqativlər olmasına baxmayaraq, az da olsa yanlış neqativlər var.
 
 TP/TN və FP/FN-nin xəta matrisinin xəritələşdirilməsinin köməyi ilə əvvəllər gördüyümüz şərtlərə yenidən baxaq:
 
@@ -329,7 +329,7 @@ TP/TN və FP/FN-nin xəta matrisinin xəritələşdirilməsinin köməyi ilə ə
 
 🎓 Xatırlama: TP/(TP + FN) Yaxşı etiketlənmiş və ya etiketlənməmiş fərqi olmadan, əldə edilmiş müvafiq nümunələrin bir hissəsi
 
-🎓 f1-balı: (2 * dəqiqlik * Xatırlama)/(dəqiqlik + xatırlatma) Ən yaxşısı 1, ən pisi isə 0 olmaqla dəqiqlik və xatırlatmanın çəkili ortalaması
+🎓 f1-balı: (2 * dəqiqlik * xatırlama)/(dəqiqlik + xatırlatma) Ən yaxşısı 1, ən pisi isə 0 olmaqla dəqiqlik və xatırlatmanın çəkili ortalaması
 
 🎓 Dəstək: Alınan hər bir etiketin təkrarlanma sayı
 
@@ -337,7 +337,7 @@ TP/TN və FP/FN-nin xəta matrisinin xəritələşdirilməsinin köməyi ilə ə
 
 🎓 Makro Ortalama: Etiket balanssızlığını nəzərə almadan hər bir etiket üçün ölçülməmiş orta göstəricilərin hesablanması.
 
-🎓 Çəkili Ortalama: Hər bir etiket üçün orta göstəricilərin hesablanması, etiket balanssızlığının hesaba qatılması və dəstəklərinə(hər etiket üçün doğru nümunələrin sayı) görə çəkiləndirilməsidir.
+🎓 Çəkili Ortalama: Hər bir etiket üçün orta göstəricilərin hesablanması, etiket balanssızlığının hesaba qatılması və dəstəklərinə (hər etiket üçün doğru nümunələrin sayı) görə çəkiləndirilməsidir.
 
 ✅ Modelinizin yanlış neqativlərinin sayını azaltmaq istədikdə hansı ölçümü izləməli olduğunuzu düşünürsünüz?
 
@@ -367,7 +367,7 @@ plt.title('ROC Curve')
 plt.show()
 ```
 
-Matplotlib-dən istifadə edərək modelin [Receiving Operating Characteristic(Qəbul Əməliyyatlarının Xarakteristikası)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) və ya ROC əyrisini qrafikləşdirək. ROC əyriləri daha çox bir klassifikatorun nəticəsinin doğru və ya yanlış pozitivləri baxımından bir təsvirini yaratmaq üçün istifadə olunur. "ROC əyrilərində doğru pozitivlərin nisbəti Y oxu üzrə, yanlış pozitivlərin nisbəti isə X oxu üzrə göstərilir." Əyrinin dikliyi və qrafikin orta xətti ilə əyri arasındakı məsafə önəm daşıdığına görə, sürətlə yuxarı doğru çıxan və xətti keçən bir əyri istəyirsiniz. Bizim situasiyada, başlanğıcda yanlış pozitivlər var və daha sonra əyri düzgün bir şəkildə yuxarı və aşağı doğru gedir.
+Matplotlib-dən istifadə edərək modelin [Receiving Operating Characteristic (Qəbul Əməliyyatlarının Xarakteristikası)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) və ya ROC əyrisini qrafikləşdirək. ROC əyriləri daha çox bir klassifikatorun nəticəsinin doğru və ya yanlış pozitivləri baxımından bir təsvirini yaratmaq üçün istifadə olunur. "ROC əyrilərində doğru pozitivlərin nisbəti Y oxu üzrə, yanlış pozitivlərin nisbəti isə X oxu üzrə göstərilir." Əyrinin dikliyi və qrafikin orta xətti ilə əyri arasındakı məsafə önəm daşıdığına görə sürətlə yuxarı doğru çıxan və xətti keçən bir əyri istəyirsiniz. Bizim situasiyada, başlanğıcda yanlış pozitivlər var və daha sonra əyri düzgün bir şəkildə yuxarı və aşağı doğru gedir.
 
 ![ROC](../images/ROC_2.png)
 
@@ -382,11 +382,11 @@ Nəticə `0.9749908725812341`-ə bərabərdir. ƏAS əmsalının 0 ilə 1 arası
 
 Klassifikasiya ilə bağlı gələcək dərslərdə, modelin balını yüksəltmək üçün necə iterasiyalar etməyi öyrənəcəksiniz. Amma indilik bu qədər bəsdir. Reqressiya dərslərini bitirdiyinizə görə sizi təbrik edirik!
 
-## 🚀Məşğələ
+## 🚀 Məşğələ
 
-Logistik reqressiya mövzusunda öyrəniləsi hələ çox şey var. Amma ən yaxşı öyrənmə təcrübə etməkdir. Bunun üçün dərsdəki analizə bənzər bir data dəsti tapın və onunla bir model qurun. Nə öyrəndiniz? Maraqlı data dəstləri üçün [Kaggle-ı](https://www.kaggle.com/search?q=logistic+regression+datasets) yoxlaya bilərsiniz.
+Logistik reqressiya mövzusunda öyrəniləsi hələ çox şey var. Amma ən yaxşı öyrənmə təcrübə etməkdir. Bunun üçün dərsdəki analizə bənzər bir dataset tapın və onunla bir model qurun. Nə öyrəndiniz? Maraqlı datasetlər üçün [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) yoxlaya bilərsiniz.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 
@@ -394,4 +394,4 @@ Logistik reqressiyanın praktiki istifadələri haqqında olan [bu məqalənin](
 
 ## Tapşırıq
 
-[Reqressiyanın yenidən sınanması](assignment.az.md)
+[Bəzi Reqressiyaların yenidən sınanması](assignment.az.md)
