@@ -1,15 +1,15 @@
-# MÖ Modeli istifadə etmək üçün veb tətbiq yaradaq
+# ML modeli istifadə etmək üçün veb tətbiq yaradaq
 
-Bu dərsdə MÖ modelini dünyamızdan tamamilə kənar data toplusu ilə məşq etdirəcəyik: _Ötən əsrdə UFO müşahidələri_, nümunəsi NUFORC verilənlər bazasından mənbə götürmüşdür.
+Bu dərsdə ML modelini dünyamızdan tamamilə kənar data toplusu ilə öyrədəcəyik: _Ötən əsrdə UFO müşahidələri_, nümunəsi NUFORC verilənlər bazasından mənbə götürmüşdür.
 
 Nələr öyrənəcəksiniz:
 
-- Təlim edilmiş modeli necə pikl etmək ("turşuya qoymaq") (uzunmüddətli istifadə üçün) olar.
+- Öyrədilmiş modeli necə pikl etmək ("turşuya qoymaq") (uzunmüddətli istifadə üçün) olar.
 - Bu modeli Flask proqramında necə istifadə etmək olar
 
 Məlumatları təmizləmək və modelimizi öyrətmək üçün noutbuklardan istifadəni davam etdirəcəyik. Prosesi bir addım irəli aparıb modeli “yabanı mühitdə” istifadə etməklə təcrübə apara bilərsiniz: Veb tətbiq daxilində bunu etmək üçün Flask istifadə edərək veb proqram qurmalısınız.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/?loc=az)
 
 ## Proqram yaratmaq
 
@@ -19,15 +19,15 @@ Maşın öyrənmə modellərini emal etmək üçün veb tətbiq yaratmağın bir
 
 Soruşmalı olduğunuz çoxlu suallar var:
 
-- **Bu veb yoxsa mobil tətbiqdir?** Əgər mobil tətbiq yaradırsınızsa və tətbiqi Əİ konteksində istifadə edəcəksinizsə, modeli Android və ya iOS tətbiqdə istifadə edə edərək [TensorFlow Lite](https://www.tensorflow.org/lite/) işlədə bilərsiniz. 
+- **Bu veb yoxsa mobil tətbiqdir?** Əgər mobil tətbiq yaradırsınızsa və tətbiqi IoT konteksində istifadə edəcəksinizsə, modeli Android və ya iOS tətbiqdə istifadə etmək üçün [TensorFlow Lite](https://www.tensorflow.org/lite/) istifadə edə bilərsiniz.
 - **Model harada yerləşəcək?** Bulud yoxsa lokal yaddaşda?
 - **Oflayn dəstək.** Tətbiq oflayn da işləməlidirmi?
 - **Modeli öyrətmək üçün hansı texnologiya istifadə edilmişdir?** Seçilmiş texnologiya istifadə etməli olduğunuz alətlərə təsir göstərə bilər.
     - **TensorFlow.** Məsələn, modeli TensorFlow istifadə edərək öyrədirsinizsə, ekosistem TensorFlow modelini veb proqramında istifadə etmək üçün çevirmək/dəyişdirmək imkanı verir. [TensorFlow.js](https://www.tensorflow.org/js/).
     - **PyTorch.** Əgər modeli [PyTorch](https://pytorch.org/) ilə öyrədirsinizsə, onu [ONNX](https://onnx.ai/) istifadə edərək JavaScript veb tətbiqində [Onnx Runtime](https://www.onnxruntime.ai/) işlədə bilən xüsusi (Open Neural Network Exchange) formata eksport edə bilərsiniz. Bu seçim növbəti dərsdə Scikit tərəfindən öyrənilən model üçün araşdırılacaq.
-    - **Lobe.ai və ya Azure Custom Vision** Əgər modeli MÖ SaaS (Xidmət kimi Program) sistemi kimi [Lobe.ai](https://lobe.ai/) və ya [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) istifadə edərək öyrədirsinizsə, bu tip proqram təminatı bir çox platformalar üçün onu eksport etmək imkanı, həmçinin onlayn tətbiq tərəfindən buludda sorğulanan növbəli API yaradılmasını təmin edir.
+    - **Lobe.ai və ya Azure Custom Vision** Əgər modeli ML SaaS (Xidmət kimi Proqram) sistemi kimi [Lobe.ai](https://lobe.ai/) və ya [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) istifadə edərək öyrədirsinizsə, bu tip proqram təminatı bir çox platformalar üçün onu eksport etmək imkanı, həmçinin onlayn tətbiq tərəfindən buludda sorğulanan növbəli API yaradılmasını təmin edir.
 
-Bütöv bir Flask veb tətbiqi yaradaraq veb brauzerdə modeli öyrətmək imkanınız var. Bunu həm də, JavaScript konteksində TensorFlow.js istifadə edərək də edə bilərsiniz.
+Bütöv bir Flask veb tətbiqi yaradaraq veb brauzerdə modeli öyrətmək imkanınız var. Bunu həm də JavaScript konteksində TensorFlow.js istifadə edərək də edə bilərsiniz.
 
 Məqsədə uyğun olaraq, Python əsaslı noutbuklarla işlədiyimizə görə öyrədilmiş modeli Python-da qurulmuş veb tətbiqi ilə oxuna bilən formatda daxil etmək üçün atmalı olduğunuz addımları araşdıraq.
 
@@ -37,7 +37,7 @@ Bu tapşırığı yerinə yetirmək üçün iki alətə ehtiyacınız var: Pytho
 
 ✅ [Flask](https://palletsprojects.com/p/flask/) nədir? Yaradıcıları tərəfindən 'mikro-çərçivə' kimi adlandırılan Flask, Python istifadə edərək veb çərçivələrin əsas xüsusiyyətlərini və veb səhifələr yaratmaq üçün şablon mexanizmini təmin edir. Flask yaratmaq üçün [bu öyrənmə moduluna](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) nəzər yetirin.
 
-✅ [Pickle](https://docs.python.org/3/library/pickle.html) nədir? Pickle 🥒, Python obyekt strukturunu seriallaşdıran və deseriallaşdıran bir Python moduludur. Modeli 'pickle' etdiyiniz zaman, onun strukturunu veb üçün seriallaşdırır və dəqiqləşdirirsiniz. Diqqət edin ki pickle mahiyətcə təhlükəsiz deyil. Bu səbəbdən faylı 'un-pickle' etməyə çağrıldıqda diqqətli olmaq lazımdır. 'pickle' edilmiş fayl `.pkl` uzantısına sahib olur.
+✅ [Pickle](https://docs.python.org/3/library/pickle.html) nədir? Pickle 🥒, Python obyekt strukturunu seriallaşdıran və deseriallaşdıran bir Python moduludur. Modeli 'pickle' etdiyiniz zaman, onun strukturunu veb üçün seriallaşdırır və dəqiqləşdirirsiniz. Diqqət edin ki pickle mahiyyətcə təhlükəsiz deyil. Bu səbəbdən faylı 'un-pickle' etməyə çağrıldıqda diqqətli olmaq lazımdır. 'pickle' edilmiş fayl `.pkl` uzantısına sahib olur.
 
 ## Məşğələ - datanı təmizlə
 
@@ -48,14 +48,14 @@ Bu dərsdə [NUFORC](https://nuforc.org) (Milli UFO Melumatlar Mərkəzi) tərə
 
 [ufos.csv](../data/ufos.csv) cədvəli görülmənin baş verdiyi `şəhər`, `ştat` and `ölkə`, obyektin `forması`, `coğrafi enlik` və `çoğrafi uzunluq` sütunlarına bölün.
 
-Bu dərsə daxil olan boş [qeyd dəftəri](../notebook.ipynb) verilmişdir.
+Bu dərsə daxil olan boş [qeyd notbuk](../notebook.ipynb) verilmişdir.
 
 1. `pandas`, `matplotlib`, və `numpy` kitabxanalarını və ufolar cədvəlini keçən dərs olduğu kimi daxil edin. Sadə verilənlər toplusuna nəzər yetirin:
 
     ```python
     import pandas as pd
     import numpy as np
-    
+
     ufos = pd.read_csv('./data/ufos.csv')
     ufos.head()
     ```
@@ -64,7 +64,7 @@ Bu dərsə daxil olan boş [qeyd dəftəri](../notebook.ipynb) verilmişdir.
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
-    
+
     ufos.Country.unique()
     ```
 
@@ -72,21 +72,21 @@ Bu dərsə daxil olan boş [qeyd dəftəri](../notebook.ipynb) verilmişdir.
 
     ```python
     ufos.dropna(inplace=True)
-    
+
     ufos = ufos[(ufos['Seconds'] >= 1) & (ufos['Seconds'] <= 60)]
-    
+
     ufos.info()
     ```
 
-1. Scikit- öyrənilməsi `LabelEncoder` kitabxanası ölkələr üçün növbəti dəyərləri rəqəmlərə keçirtmək üçündür:
+1. Scikit-learn `LabelEncoder` kitabxanası ölkələr üçün növbəli dəyərləri rəqəmlərə keçirtmək üçündür:
 
     ✅ LabelEncoder datanı əlifba sırası ilə kodlaşdırır.
 
     ```python
     from sklearn.preprocessing import LabelEncoder
-    
+
     ufos['Country'] = LabelEncoder().fit_transform(ufos['Country'])
-    
+
     ufos.head()
     ```
 
@@ -105,20 +105,20 @@ Bu dərsə daxil olan boş [qeyd dəftəri](../notebook.ipynb) verilmişdir.
 
 Artıq modeli öyrətmək üçün məlumatları tədris və sınaq qruplarına bölməyə başlaya bilərsiniz.
 
-1. X vektorunda öyrətmək istədiyiniz 3 xüsusiyyəti seçin, və Y vektoru `Ölkə` olacaq. `Saniyələr`, `Coğrafi enlik`, `Coğrafi uzunluq` daxil edə bilməli və ölkə id-i geri qaytara bilməlisiniz.
+1. X vektorunda öyrətmək istədiyiniz 3 xüsusiyyəti seçin, və Y vektoru `Ölkə` olacaq. `Saniyələr`, `Coğrafi enlik`, `Coğrafi uzunluq` daxil edə bilməli və ölkənin `id` dəyərini geri qaytara bilməlisiniz.
 
     ```python
     from sklearn.model_selection import train_test_split
-    
+
     Selected_features = ['Seconds','Latitude','Longitude']
-    
+
     X = ufos[Selected_features]
     y = ufos['Country']
-    
+
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. Məntiqi reqrasiya testi istifadə etməklə modelinizi öyrədin:
+1. Məntiqi reqressiya testi istifadə etməklə modelinizi öyrədin:
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -126,7 +126,7 @@ Artıq modeli öyrətmək üçün məlumatları tədris və sınaq qruplarına b
     model = LogisticRegression()
     model.fit(X_train, y_train)
     predictions = model.predict(X_test)
-    
+
     print(classification_report(y_test, predictions))
     print('Predicted labels: ', predictions)
     print('Accuracy: ', accuracy_score(y_test, predictions))
@@ -149,7 +149,7 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-Model **'3'** qaytarır, Hansıki Birləşmiş Krallığın kodudur. İnanılmaz! 👽
+Model **'3'** qaytarır, hansıki Birləşmiş Krallığın kodudur. İnanılmaz! 👽
 
 ## Məşğələ - Flask tətbiq yarat
 
@@ -170,7 +170,7 @@ Model **'3'** qaytarır, Hansıki Birləşmiş Krallığın kodudur. İnanılmaz
 
     ✅ Yekunlaşmış tətbiq üçün mənbə faylına nəzər yetirin.
 
-1. _web-app_ qovluğunda yaratmalı olduğunuz ilk fayl **requirements.txt** faylıdır. JavaScript  tətbiqində _package.json_  faylı kimi, tətbiq tərəfindən tələb olunan faylları sıralayır. **requirements.txt** faylında aşağıdakı sətirləri əlavə edin:
+1. _web-app_ qovluğunda yaratmalı olduğunuz ilk fayl **requirements.txt** faylıdır. JavaScript  tətbiqində _package.json_ faylı kimi, tətbiq tərəfindən tələb olunan faylları sıralayır. **requirements.txt** faylında aşağıdakı sətirləri əlavə edin:
 
     ```text
     scikit-learn
@@ -210,11 +210,11 @@ Model **'3'** qaytarır, Hansıki Birləşmiş Krallığın kodudur. İnanılmaz
     	letter-spacing: 1.4px;
     	font-size: 30px;
     }
-    
+
     input {
     	min-width: 150px;
     }
-    
+
     .grid {
     	width: 300px;
     	border: 1px solid #2d2d2d;
@@ -222,7 +222,7 @@ Model **'3'** qaytarır, Hansıki Birləşmiş Krallığın kodudur. İnanılmaz
     	justify-content: center;
     	margin: 20px auto;
     }
-    
+
     .box {
     	color: #fff;
     	background: #2d2d2d;
@@ -241,34 +241,34 @@ Model **'3'** qaytarır, Hansıki Birləşmiş Krallığın kodudur. İnanılmaz
         <title>🛸 UFO görülməsini öncədən müəyyən etmək! 👽</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
       </head>
-    
+
       <body>
         <div class="grid">
-    
+
           <div class="box">
-    
+
             <p>Saniyə dəyəri, coğrafi enlik və corafi uzunluğa görə, hansı ölkə UFO gördüyünü bildirmişdir?</p>
-    
+
             <form action="{{ url_for('predict')}}" method="post">
               <input type="number" name="seconds" placeholder="Seconds" required="required" min="0" max="60" />
               <input type="text" name="latitude" placeholder="Latitude" required="required" />
               <input type="text" name="longitude" placeholder="Longitude" required="required" />
-              <button type="submit" class="btn">Predict country where the UFO is seen</button>
+              <button type="submit" class="btn">UFO görünən ölkəni təxmin et</button>
             </form>
-    
+
             <p>{{ prediction_text }}</p>
-    
+
           </div>
-    
+
         </div>
-    
+
       </body>
     </html>
     ```
 
-    Bu faylda şablonlaşdırmaya diqqət yetirin. Tətbiq tərəfindən dəyişənlər ətrafında 'saqqal' sintaksisini görəcəksiniz, məsələn öngörmə mətni kimi: `{{}}`. Həmçinin, öngörməni `/predict` istiqamətinə göndərən xüsusi form da var.
+    Bu faylda şablonlaşdırmaya diqqət yetirin. Tətbiq tərəfindən dəyişənlər ətrafında 'saqqal' sintaksisini görəcəksiniz, məsələn təxmin mətni kimi: `{{}}`. Həmçinin təxminin `/predict` istiqamətinə göndərən xüsusi form da var.
 
-   Yekunda, modelin emalı və proqnozların göstərilməsini təmin edən python faylını yaratmağa hazırsınız:
+   Yekunda modelin emalı və proqnozların göstərilməsini təmin edən python faylını yaratmağa hazırsınız:
 
 1. `app.py` faylında aşağıdakıları əlavə edin:
 
@@ -276,53 +276,53 @@ Model **'3'** qaytarır, Hansıki Birləşmiş Krallığın kodudur. İnanılmaz
     import numpy as np
     from flask import Flask, request, render_template
     import pickle
-    
+
     app = Flask(__name__)
-    
+
     model = pickle.load(open("./ufo-model.pkl", "rb"))
-    
-    
+
+
     @app.route("/")
     def home():
         return render_template("index.html")
-    
-    
+
+
     @app.route("/predict", methods=["POST"])
     def predict():
-    
+
         int_features = [int(x) for x in request.form.values()]
         final_features = [np.array(int_features)]
         prediction = model.predict(final_features)
-    
+
         output = prediction[0]
-    
+
         countries = ["Australia", "Canada", "Germany", "UK", "US"]
-    
+
         return render_template(
             "index.html", prediction_text="Likely country: {}".format(countries[output])
         )
-    
-    
+
+
     if __name__ == "__main__":
         app.run(debug=True)
     ```
 
-    > 💡 Ipucu: Flask istifadə edərək veb tətbiqi işə salanda [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) əlavə edərkən, proqramınıza etdiyiniz istənilən dəyişiklik ani olaraq tətbiq olunacaq. Serveri yenidən başlatmağa ehtiyac olmayacaq. Ehtiyyatlı olun! Bu formatı real istehsalatda aktiv etmək doğru olmaz.
+    > 💡 Ipucu: Flask istifadə edərək veb tətbiqi işə salanda [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) əlavə edərkən proqramınıza etdiyiniz istənilən dəyişiklik ani olaraq tətbiq olunacaq. Serveri yenidən başlatmağa ehtiyac olmayacaq. Ehtiyyatlı olun! Bu formatı real mühitdə aktiv etmək doğru olmaz.
 
 Əgər `python app.py` və ya `python3 app.py` işlədirsinizsə - veb-serveriniz daxili serverdə (lokalda) işə başlayır və bu zaman UFO-ların harada göründüyü barədə sualınıza cavab almaq üçün qısa formanı doldura bilərsiniz!
 
 Bunu etmədən öncə, `app.py` faylına nəzər yetirək:
 
-1. Əvvəlcə, lazimi resurslar yüklənir və proqram başlayır.
-1. Sonra, model daxil edilir.
-1. Daha sonra, index.html lokal dövrədə göstərilir.
+1. Əvvəlcə lazımi resurslar yüklənir və proqram başlayır.
+1. Sonra model daxil edilir.
+1. Daha sonra index.html lokal mühitdə göstərilir.
 
-`/predict` istiqamətində, form yerləşdirilərkən, birdən çox proses baş verir:
+`/predict` istiqamətində form yerləşdirilərkən birdən çox proses baş verir:
 
 1. Forma dəyişənləri toplanır və numpy massivinə çevrilir. Daha sonra modelə göndərilir və proqnoz geri qaytarılır.
 2. Göstərilməsini istədiyimiz ölkələr onların proqnozlaşdırılan ölkə kodundan istifadə etməklə oxunaqlı mətn kimi yenidən göstərilir və həmin dəyər şablonda göstərilmək üçün index.html-ə geri göndərilir.
 
-Flask və pikl(turşu) model ilə bu şəkildə bir model istifadə etmək nisbətən sadədir. Ən çətini, proqnoz almaq üçün modelə göndərilməli olan məlumatların hansı formada olduğunu başa düşməkdir. Bütün bunlar modelin necə öyrədildiyindən asılıdır. Proqnoz əldə etmək üçün daxil edilməli üç məlumat nöqtəsi var.
+Flask və pikl model ilə bu şəkildə bir model istifadə etmək nisbətən sadədir. Ən çətini proqnoz almaq üçün modelə göndərilməli olan məlumatların hansı formada olduğunu başa düşməkdir. Bütün bunlar modelin necə öyrədildiyindən asılıdır. Proqnoz əldə etmək üçün daxil edilməli üç məlumat nöqtəsi var.
 
 Peşəkar şəraitdə modeli öyrədən insanlarla onu veb və ya mobil proqramda istifadə edənlər arasında yaxşı ünsiyyətin nə qədər zəruri olduğunu görmək olar. Bizim şərtlər daxilində bu yalnız bir nəfərdir, siz!
 
@@ -330,14 +330,14 @@ Peşəkar şəraitdə modeli öyrədən insanlarla onu veb və ya mobil proqramd
 
 ## 🚀 Rubrika
 
-Noutbukda işləyərək modeli Flask proqramına daxil etmək yerinə, onu birbaşa Flask proqramında öyrədə bilərsiniz! Modeli `qatar` adlı istiqamət üzrə proqram daxilində öyrətmək üçün, məsələn, məlumatlarınız təmizləndikdən sonra, Python kodunuzu notebookda çevirməyə cəhd edin. Bu metodu tətbiq etməyin müsbət və mənfi tərəfləri nələrdir?
+Noutbukda işləyərək modeli Flask proqramına daxil etmək yerinə onu birbaşa Flask proqramında öyrədə bilərsiniz! Modeli `train` adlı istiqamət üzrə proqram daxilində öyrətmək üçün, məsələn, məlumatlarınız təmizləndikdən sonra Python kodunuzu notbukda çevirməyə cəhd edin. Bu metodu tətbiq etməyin müsbət və mənfi tərəfləri nələrdir?
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/?loc=az)
 
-## Təkrarla və Özün öyrən
+## Təkrarla və özün öyrən
 
-MÖ modellərini dərk etmək üçün veb tətbiq yaratmağın bir çox üsulu var. Maşın öyrənməsində istifadə etmək üçün veb tətbiqi yaratmağa JavaScript və ya Python-dan istifadə edə biləcəyiniz üsulların siyahısını hazırlayın. Arxitekturaya nəzər salın: model proqramda qalmalıdır, yoxsa buludda? Ən son versiyaya necə daxil olardınız? Tətbiq olunan MÖ veb həlli üçün arxitektura modelini çəkin.
+ML modellərini dərk etmək üçün veb tətbiq yaratmağın bir çox üsulu var. Maşın öyrənməsində istifadə etmək üçün veb tətbiqi yaratmağa JavaScript və ya Python-dan istifadə edə biləcəyiniz üsulların siyahısını hazırlayın. Arxitekturaya nəzər salın: model proqramda qalmalıdır yoxsa buludda? Ən son versiyaya necə daxil olardınız? Tətbiq olunan ML veb həlli üçün arxitektura modelini çəkin.
 
 ## Tapşırıq
 
-[Başqa bir model istifadə edin](assignment.md)
+[Başqa bir model yoxlayın](assignment.az.md)
