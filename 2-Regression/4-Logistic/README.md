@@ -202,8 +202,8 @@ You can visualize variables side-by-side with Seaborn plots.
 
     ```python
     palette = {
-    0: 'orange',
-    1: 'wheat'
+    '0': 'orange',
+    '1': 'wheat'
     }
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
