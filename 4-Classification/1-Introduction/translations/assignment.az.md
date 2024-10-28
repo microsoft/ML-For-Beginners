@@ -1,11 +1,11 @@
-# Təsnifatlandırma metodlarını tədqiq edin
+# Qruplaşdırıcı metodlarını tədqiq edin
 
 ## Təlimatlar
 
-[Scikit-learn-ün sənədlərində](https://scikit-learn.org/stable/supervised_learning.html) datanı təsnifatlandırmağın çoxlu yollarını tapacaqsınız. Bu sənədlərdə kiçik bir axtarışa çıxın: məqsədiniz təsnifatlandırma metodlarına nəzər salmaq və proqramda olan data massivi, bu data massiv haqqında verə biləcəyiniz bir sualı və təsnifatlandırma metodunu uyğunlaşdırmaqdır. Elektron cədvəl və ya .doc faylında bir cədvəl yaradıb həmin təsnifatlandırma metodunun data massiv üzərində necə işlədiyini izah edin.
+[Scikit-learn sənədlərində](https://scikit-learn.org/stable/supervised_learning.html) datanı qruplaşdırmağın çoxlu yollarını tapacaqsınız. Bu sənədlərdə kiçik bir axtarışa çıxın: məqsədiniz qruplaşdırma metodlarına nəzər salmaq və proqramda olan dataseti, bu dataset haqqında verə biləcəyiniz bir sualı və qruplaşdırma metodunu uyğunlaşdırmaqdır. Elektron cədvəl və ya .doc faylında bir cədvəl yaradıb həmin qruplaşdırma metodunun dataset üzərində necə işlədiyini izah edin.
 
 ## Rubrika
 
-| Meyarlar | Nümunəvi                                                                                                                           | Adekvat                                                                                                                            | İnkişaf Etdirilməli Olan                                                                                                                                             |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|          | təqdim olunan sənəd 5 alqoritm ilə yanaşı təsnifatlandırma metodunu da əhatə edir. İcmal detallıdır və yaxşı izah olunub. | təqdim olunan sənəd 3 alqoritm ilə yanaşı təsnifatlandırma metodunu da əhatə edir. İcmal detallıdır və yaxşı izah olunub. | təqdim olunan sənəd 3-dən az alqoritmi, eləcə də təsnifatlandırma metodunu əhatə edir və icmal nə detallıdır, nə də yaxşı izah olunub. |
+| Meyarlar | Nümunəvi | Adekvat | İnkişaf Etdirilməli Olan |
+| -------- | -------- | ------- | ------------------------ |
+|          | Təqdim olunan sənəd 5 alqoritm ilə yanaşı qruplaşdırma metodunu da əhatə edir. İcmal detallıdır və yaxşı izah olunub. | Təqdim olunan sənəd 3 alqoritm ilə yanaşı qruplaşdırma metodunu da əhatə edir. İcmal detallıdır və yaxşı izah olunub. | Təqdim olunan sənəd 3-dən az alqoritmi, eləcə də qruplaşdırma metodunu əhatə edir və icmal nə detallıdır, nə də yaxşı izah olunub. |
