@@ -3,7 +3,7 @@
 ![Eskizdə Maşın öyrənməsində məsuliyyətli AI xülasəsi](../../../sketchnotes/ml-fairness.png)
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) tərəfindən eskiz
 
-## [Mühazirə öncəsi test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/?loc=az)
+## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/?loc=az)
 
 ## Giriş
 
@@ -129,7 +129,7 @@ Zərərin baş verməsinin qabağını almaq üçün ilk növbədə biz:
 
 Modelin qurulmasında və istifadəsində etibarsızlığın aşkar olduğu real həyat ssenariləri haqqında düşünün. Başqa nələri nəzərə almalıyıq?
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/?loc=az)
+## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

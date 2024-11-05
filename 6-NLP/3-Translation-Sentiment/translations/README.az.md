@@ -178,7 +178,7 @@ Nümunə [həll](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/3
 
 İstifadəçi məlumatlarından digər xüsusiyyətləri çıxarmaqla Marvin'i daha da yaxşılaşdıra bilərsinizmi?
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/36/)
+## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/36/)
 
 ## Təkrarlayın və özünüz öyrənin
 

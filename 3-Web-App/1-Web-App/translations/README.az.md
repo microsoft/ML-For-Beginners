@@ -332,7 +332,7 @@ Peşəkar şəraitdə modeli öyrədən insanlarla onu veb və ya mobil proqramd
 
 Noutbukda işləyərək modeli Flask proqramına daxil etmək yerinə onu birbaşa Flask proqramında öyrədə bilərsiniz! Modeli `train` adlı istiqamət üzrə proqram daxilində öyrətmək üçün, məsələn, məlumatlarınız təmizləndikdən sonra Python kodunuzu notbukda çevirməyə cəhd edin. Bu metodu tətbiq etməyin müsbət və mənfi tərəfləri nələrdir?
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/?loc=az)
+## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/?loc=az)
 
 ## Təkrarla və özün öyrən
 
