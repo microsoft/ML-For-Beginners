@@ -32,7 +32,7 @@ Bu dərsdə biz müxtəlif **mühitləri** simulyasiya etmək üçün **OpenAI G
 
 ```python
 import sys
-!{sys.executable} -m pip install gym 
+!{sys.executable} -m pip install gym
 
 import gym
 import matplotlib.pyplot as plt
@@ -65,7 +65,7 @@ Kartpol balans problemi ilə işləmək üçün müvafiq mühiti işə salmalıy
 
     ```python
     env.reset()
-    
+
     for i in range(100):
        env.render()
        env.step(env.action_space.sample())
@@ -80,7 +80,7 @@ Kartpol balans problemi ilə işləmək üçün müvafiq mühiti işə salmalıy
 
     ```python
     env.reset()
-    
+
     done = False
     while not done:
        env.render()
@@ -143,13 +143,13 @@ Nümunəmizdə ikinci yanaşma ilə gedəcəyik. Beləliklə müşahidə edəcə
     ```python
     def create_bins(i,num):
         return np.arange(num+1)*(i[1]-i[0])/num+i[0]
-    
+
     print("Sample bins for interval (-5,5) with 10 bins\n",create_bins((-5,5),10))
-    
+
     ints = [(-5,5),(-2,2),(-0.5,0.5),(-2,2)] # intervals of values for each parameter
     nbins = [20,20,10,10] # number of bins for each parameter
     bins = [create_bins(ints[i],nbins[i]) for i in range(4)]
-    
+
     def discretize_bins(x):
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
@@ -160,7 +160,7 @@ Nümunəmizdə ikinci yanaşma ilə gedəcəyik. Beləliklə müşahidə edəcə
 
      ```python
     env.reset()
-    
+
     done = False
     while not done:
        #env.render()
@@ -183,7 +183,7 @@ Lakin bəzən müşahidə məkanının dəqiq ölçüləri məlum olmur. `discre
     ```python
     Q = {}
     actions = (0,1)
-    
+
     def qvalues(state):
         return [Q.get((state,a),0) for a in actions]
     ```
@@ -226,7 +226,7 @@ Biz həmçinin əvvəlki dərsdən olan alqoritmimizi iki formada təkmilləşdi
         v = v-v.min()+eps
         v = v/v.sum()
         return v
-    
+
     Qmax = 0
     cum_rewards = []
     rewards = []
@@ -244,7 +244,7 @@ Biz həmçinin əvvəlki dərsdən olan alqoritmimizi iki formada təkmilləşdi
             else:
                 # exploration - randomly chose the action
                 a = np.random.randint(env.action_space.n)
-    
+
             obs, rew, done, info = env.step(a)
             cum_reward+=rew
             ns = discretize(obs)
@@ -329,7 +329,7 @@ Bu kimi bir şey görməlisən:
 
 > **Tapşırıq 4**: Burada hər addımda ən yaxşı hərəkəti seçmirdik. Bunun əksinə müvafiq ehtimal paylanması ilə nümunə götürürdük. Ən yüksək Q-Cədvəl dəyəri olan ən yaxşı hərəkəti həmişə seçmək daha düzgün olmazdımı? Bu, Q-Cədvəlinin dəyərinə uyğun hərəkət nömrəsini tapmaq üçün `np.argmax` funksiyasından istifadə etməklə edilə bilər. Həmin strategiyanı icra edin və tarazlanmanın yaxşılaşdığını izləyin.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/uiz/48/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/uiz/48/)
 
 ## Tapşırıq
 [Dağ maşınını öyrədin](assignment.az.md)

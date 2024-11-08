@@ -109,7 +109,7 @@ Bu dərslərdə siz data mühəndisinin istifadə etdiyi jestlərin hamısını 
 
 ML təcrübəçisinin addımlarını əks etdirən proses sxemini çəkin. Hazırda prosesin gedişində özünüzü harada görürsünüz? Harada çətinlik çəkəcəyinizi proqnozlaşdırırsınız? Sizə asan görünən nədir?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/8/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/8/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

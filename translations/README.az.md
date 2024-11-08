@@ -82,7 +82,7 @@ Məzmunun layihələrə uyğun olmasını təmin etməklə proses tələbələr 
 - məşğələ
 - əlavə oxu
 - tapşırıq
-- mühazirə sonrası quiz
+- Mühazirə sonrası test
 
 > **Dillər haqqında qeyd**: Bu dərslər əsasən Python dilində yazılsalar da, bir çoxları R dilində də mövcuddurlar. R dilində olan dərsləri etmək üçün `/solution` qovluğuna keçməyiniz və R dərslərini axtarmağınız lazımdır. Onlara **R Markdown** faylını təmsil edən .rmd genişləndirilməsi daxildir. Bu tip fayllara, `Markdown sənədində` `kod parçaları`(R və ya digər dillərin) və `YAML başlığının`(çıxışın, məsələn PDF-in formatını müəyyən edir) birləşməsi baxa bilərik. Kodunuzu, onun nəticəsini və fikirlərinizi Markdown formatında yazmağa və bütün bunları bir arada etməyə imkan verdiyinə görə, o, data elmi üçün nümunəvi sənədləşdirmə aləti hesab olunur. Bundan əlavə, R Markdown sənədləri PDF, HTML və ya Word kimi çıxış formatlarına render oluna bilərlər.
 

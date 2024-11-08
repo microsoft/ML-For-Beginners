@@ -58,14 +58,14 @@ Mətn müəyyən uzunluqdakı sözlər ardıcıllığına, tək sözə (uniqram)
 
 Məsələn, n-qram balı 2 olan `the quick red fox jumped over the lazy brown dog` cümləsi aşağıdakı n-qramları əmələ gətirir:
 
-1. the quick 
-2. quick red 
+1. the quick
+2. quick red
 3. red fox
-4. fox jumped 
-5. jumped over 
-6. over the 
-7. the lazy 
-8. lazy brown 
+4. fox jumped
+5. jumped over
+6. over the
+7. the lazy
+8. lazy brown
 9. brown dog
 
 Onları cümlə üzərində sürüşmə qutusu kimi göstərmək daha asan ola bilər. Nümunə 3 sözdən ibarət n-qramlar üçündür və hər cümlədə n-qram qalın şriftlə göstərilmişdir:
@@ -128,13 +128,13 @@ Gəlin bu tip tapşırıqların həlli üçün faydalı API-ləri ehtiva edən T
     ```python
     from textblob import TextBlob
     from textblob.np_extractors import ConllExtractor
-    # import and create a Conll extractor to use later 
+    # import and create a Conll extractor to use later
     extractor = ConllExtractor()
-    
+
     # later when you need a noun phrase extractor:
     user_input = input("> ")
     user_input_blob = TextBlob(user_input, np_extractor=extractor)  # note non-default extractor specified
-    np = user_input_blob.noun_phrases                                    
+    np = user_input_blob.noun_phrases
     ```
 
      > Burada nə baş verir? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) "ConLL-2000 ilə öyrədilmiş yığın təhlilindən istifadə edən isim çıxarıcı öyrətmə korpusudur”. ConLL-2000, 2000-ci ildə Hesabi Təbii Dil Öyrənmə Konfransına işarə edir. Hər il bu konfrans çətin bir NLP problemini həll etmək üçün seminar keçirir. 2000-ci ildə isə bu problem isim parçalanması olmuşdur. Həmin model Wall Street Journal-dakı "15-18-ci bölmələri öyrətmə datası (211727 token) və 20-ci bölməni isə test datası (47377 token)" kimi götürərək hazırlanmışdır. Siz istifadə olunan prosedurlara [burada](https://www.clips.uantwerpen.be/conll2000/chunking/) və nəticələrə [burada](https://ifarm.nl/erikt/research/np-chunking.html) baxa bilərsiniz.
@@ -198,7 +198,7 @@ Tapşırığın mümkün həlli [buradadır](https://github.com/microsoft/ML-For
 
 Əvvəlki bilik yoxlamasındakı tapşırığı götürün və onu həyata keçirməyə çalışın. Botu dostunuz vasitəsilə test edin. Onu aldada bilərmi? Botunuzu daha 'inandırıcı' edə bilərsinizmi?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
 
 ## Təkrarlayın və özünüz öyrənin
 

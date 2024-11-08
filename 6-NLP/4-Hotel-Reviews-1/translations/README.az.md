@@ -1,6 +1,6 @@
 # Otel rəyləri ilə duyğu analizi - datanın emalı
 
-Bu bölmədə siz böyük verilənlər toplusunun kəşfiyyat xarakterli məlumat təhlilini aparmaq üçün əvvəlki dərslərdəki üsullardan istifadə edəcəksiniz. Müxtəlif sütunların necə faydalı olduğunu yaxşı başa düşdükdən sonra öyrənəcəksiniz: 
+Bu bölmədə siz böyük verilənlər toplusunun kəşfiyyat xarakterli məlumat təhlilini aparmaq üçün əvvəlki dərslərdəki üsullardan istifadə edəcəksiniz. Müxtəlif sütunların necə faydalı olduğunu yaxşı başa düşdükdən sonra öyrənəcəksiniz:
 
 - lazımsız sütunları necə çıxarmağı
 - mövcud sütunlar əsasında bəzi yeni məlumatları necə hesablamağı
@@ -39,7 +39,7 @@ Data massivdəki başlıqlar aşağıdakı kimidir:
 
 *Hotel_Address, Additional_Number_of_Scoring, Review_Date, Average_Score, Hotel_Name, Reviewer_Nationality, Negative_Review, Review_Total_Negative_Word_Counts, Total_Number_of_Reviews, Positive_Review, Review_Total_Positive_Word_Counts, Total_Number_of_Reviews_Reviewer_Has_Given, Reviewer_Score, Tags, days_since_review, lat, lng*
 
-Burada onlar yoxlanması daha asan ola biləcək şəkildə qruplaşdırılıb: 
+Burada onlar yoxlanması daha asan ola biləcək şəkildə qruplaşdırılıb:
 ##### Oteli təsvir edən sütunlar
 
 * `Hotel_Name`, `Hotel_Address`, `lat` (en dairəsi), `lng` (uzunluq dairəsi)
@@ -50,7 +50,7 @@ Burada onlar yoxlanması daha asan ola biləcək şəkildə qruplaşdırılıb:
 
 * `Average_Score`
   * Data massivin yaradıcısına görə, bu sütun *Son bir ildəki ən son şərhə əsasən hesablanmış otelin orta qiymətidir*. Bu üsul qiyməti hesablamaq üçün olan ənənəvi üsullardan olmasa da, datanı birbaşa bu şəkildə əldə etdiyimizə görə biz onu hələlik nominal dəyər kimi qəbul edə bilərik.
-  
+
   ✅ Bu datadakı digər sütunlara əsaslanaraq, ortalama qiyməti hesablamaq üçün başqa yol düşünə bilərsinizmi?
 
 * `Total_Number_of_Reviews`
@@ -100,7 +100,7 @@ Yuxarıda qeyd edildiyi kimi, ilk baxışdan məlumatları kateqoriyalara ayırm
 
 1. Bütün şərtləri vahid standarta dəyişdirməyə cəhd etmək, lakin bu, çox çətindir, çünki bu halda müxtəlif növlər arasında uyğunluq bəlli deyil. (məs. *Classic single room*, *Single room* seçiminə uyğun gəlir, lakin *Superior Queen Room with Courtyard Garden or City View* seçimini standartlaşdırmaq çox daha çətindir)
 
-2. Biz NLP yanaşması ilə başlaya və *Solo*, *Business Traveller*, ya da *Family with young kids* kimi bəzi ifadələrin istifadə tezliyini ölçə bilər və onları tövsiyyə modelində amil olaraq nəzərə ala bilərik, çünki bunlar bütün otellər üçün uyğundur  
+2. Biz NLP yanaşması ilə başlaya və *Solo*, *Business Traveller*, ya da *Family with young kids* kimi bəzi ifadələrin istifadə tezliyini ölçə bilər və onları tövsiyyə modelində amil olaraq nəzərə ala bilərik, çünki bunlar bütün otellər üçün uyğundur
 
 Teqlər adətən (lakin həmişə deyil) *Səyahətin növü*, *Qonaqların növü*, *Otaq növü*, *Gecə sayı* və *Rəyin təqdim olunduğu cihazın növü* kimi kateqoriyalara uyğunlaşdırılan 5-6 vergüllə ayrılmış dəyərlərin siyahısından ibarət sahədir. Bununla belə, bəzi rəy sahibləri hər bir sahəni doldurmadığına görə (bəzilərini doldurmaya bilirlər), dəyərlər həmişə eyni ardıcıllıqla olmur.
 
@@ -112,25 +112,25 @@ Bu o deməkdir ki, teqlər sütunu bizim üçün tamamilə yararsız deyil, laki
 
 Data massiv ilə bağlı bir sıra qəribəliklər və ya uyğunsuzluqlar var ki, mən onları anlaya bilmirəm, lakin modellərinizi qurarkən onlardan xəbərdar olmanız üçün burada təsvir edilmişdir. Əgər başa düşsəniz, zəhmət olmasa müzakirə bölməsində bizə bildirin!
 
-Data massivdə ortalama bal və rəylərin sayı ilə bağlı aşağıdakı sütunlar var: 
+Data massivdə ortalama bal və rəylərin sayı ilə bağlı aşağıdakı sütunlar var:
 
 1. Hotel_Name
 2. Additional_Number_of_Scoring
 3. Average_Score
 4. Total_Number_of_Reviews
-5. Reviewer_Score  
+5. Reviewer_Score
 
-Bu data massivdə ən çox rəyi olan tək otel 515.000 rəydən 4789 rəylə *Britannia International Hotel Canary Wharf*dır. Amma bu otel üçün `Total_Number_of_Reviews` dəyərinə baxsaq görərik ki, bu 9086-dır. Güman edə bilərsiniz ki, rəyi olmayan çoxlu qiymətləndirmə var, ona görə də bəlkə də `Additional_Number_of_Scoring` sütunundakı dəyəri bu dəyərə əlavə etmək lazımdır. Bu dəyər 2682-dir və onu 4789-a əlavə etməklə 7,471 əldə edirik ki, bu da hələ də `Total_Number_of_Reviews` sütun dəyərindən 1615 azdır. 
+Bu data massivdə ən çox rəyi olan tək otel 515.000 rəydən 4789 rəylə *Britannia International Hotel Canary Wharf*dır. Amma bu otel üçün `Total_Number_of_Reviews` dəyərinə baxsaq görərik ki, bu 9086-dır. Güman edə bilərsiniz ki, rəyi olmayan çoxlu qiymətləndirmə var, ona görə də bəlkə də `Additional_Number_of_Scoring` sütunundakı dəyəri bu dəyərə əlavə etmək lazımdır. Bu dəyər 2682-dir və onu 4789-a əlavə etməklə 7,471 əldə edirik ki, bu da hələ də `Total_Number_of_Reviews` sütun dəyərindən 1615 azdır.
 
 Əgər `Average_Score` sütun dəyərlərinə baxsaq, bunun data massivdəki balların ortalaması olduğunu güman edə bilərsiniz, lakin Kaggle-da verilən təsvir "*Otelin son bir ildəki ən son şərhə əsasən hesablanmış orta balı*" şəklindədir. Bu, o qədər də faydalı görünmür, lakin biz data massivdəki ballara əsaslanaraq öz ortalamamızı hesablaya bilərik. Nümunə olaraq eyni oteldən istifadə edərək, orta otel balı 7,1 kimi verilir, lakin hesablanmış bal (data massivdə rəy sahibinin ortalama qiymətləndirməsi) 6,8-dir. Bu yaxındır, lakin eyni dəyər deyil və biz yalnız təxmin edə bilərik ki, `Additional_Number_of_Scoring` sütununda olan bal dəyərləri ortalama göstəricisini 7.1-ə yüksəldib. Təəssüf ki, bu iddianı sınamaq və ya sübut etmək üçün heç bir yol olmadığından `Average_Score`, `Additional_Number_of_Scoring` və `Total_Number_of_Reviews` sütun dəyərləri bizdə olmayan dataya əsaslandıqda və ya onlara istinad etdikdə onlardan istifadə etmək və ya onların doğruluğuna inanmaq çətindir.
 
-Bütün bunların üzərinə, ən çox rəy alan ikinci otelin hesablanmış orta balı 8,12 və data massivdəki `Average_Score` sütun dəyəri isə 8.1-dir. Bu düzgün hesab təsadüfdür yoxsa ilk otel datası doğru deyil? 
+Bütün bunların üzərinə, ən çox rəy alan ikinci otelin hesablanmış orta balı 8,12 və data massivdəki `Average_Score` sütun dəyəri isə 8.1-dir. Bu düzgün hesab təsadüfdür yoxsa ilk otel datası doğru deyil?
 
 Bu otellərin istisna olmaları ehtimalı və bəlkə də dəyərlərin əksəriyyətinin üst-üstə düşməsi (niyəsə bəziləri üst-üstə düşmür) ehtimalı üzərinə data massivdəki dəyərlərin düzgün istifadə edilməsini (və ya edilməməsini) araşdırmaq üçün qısa proqram yazacağıq.
 
 > 🚨 Qeyd
 >
-> Bu verilənlər toplusu ilə işləyərkən siz mətni özünüz oxumadan və ya təhlil etmədən mətndən nəyisə hesablayan kod yazacaqsınız. NLP-nin mahiyyəti də elə bundan ibarətdir, insandan asılı olmadan məna və ya duyğuları analiz və şərh edir. Bununla belə, bəzi mənfi rəyləri oxumağınız mümkündür. Mən oxumamağınızın tərəfdarıyam, çünki buna məcbur deyilsiniz. Onlardan bəziləri mənasız və ya aidiyyatı olmayan mənfi otel rəyləridir, məsələn, "Hava əla deyildi", hansı ki, oteldən və ya həqiqətən də hər hansı birindən asılı olmadan baş verən bir şeydir. Ancaq bəzi rəylərin qaranlıq tərəfi də var. Bəzən mənfi rəylər irqçi, cinsiyyətçi və ya yaş ilə bağlı ayrı-seçkilik etməyə yönəlib. Bu təəssüf doğurur, lakin ictimai vebsaytdan əldə edilmiş verilənlər bazasında gözləniləndir. Bəzi rəy sahibləri xoşagəlməz, narahat və ya əsəbi hesab edə biləcəyiniz rəylər yazırlar. Kodunuzun duyğu analizi etməsinə icazə vermək, onları özünüz oxuyub üzülməkdən daha yaxşıdır. Bununla belə, belə rəylər azlıq təşkil edir, lakin həmişə mövcud olduğunu bilməkdə fayda var. 
+> Bu verilənlər toplusu ilə işləyərkən siz mətni özünüz oxumadan və ya təhlil etmədən mətndən nəyisə hesablayan kod yazacaqsınız. NLP-nin mahiyyəti də elə bundan ibarətdir, insandan asılı olmadan məna və ya duyğuları analiz və şərh edir. Bununla belə, bəzi mənfi rəyləri oxumağınız mümkündür. Mən oxumamağınızın tərəfdarıyam, çünki buna məcbur deyilsiniz. Onlardan bəziləri mənasız və ya aidiyyatı olmayan mənfi otel rəyləridir, məsələn, "Hava əla deyildi", hansı ki, oteldən və ya həqiqətən də hər hansı birindən asılı olmadan baş verən bir şeydir. Ancaq bəzi rəylərin qaranlıq tərəfi də var. Bəzən mənfi rəylər irqçi, cinsiyyətçi və ya yaş ilə bağlı ayrı-seçkilik etməyə yönəlib. Bu təəssüf doğurur, lakin ictimai vebsaytdan əldə edilmiş verilənlər bazasında gözləniləndir. Bəzi rəy sahibləri xoşagəlməz, narahat və ya əsəbi hesab edə biləcəyiniz rəylər yazırlar. Kodunuzun duyğu analizi etməsinə icazə vermək, onları özünüz oxuyub üzülməkdən daha yaxşıdır. Bununla belə, belə rəylər azlıq təşkil edir, lakin həmişə mövcud olduğunu bilməkdə fayda var.
 
 ## Məşğələ -  Datanın təhlili
 ### Datanı yükləyin
@@ -158,7 +158,7 @@ Artıq data yükləndiyinə görə biz onun üzərində bəzi əməliyyatları y
 
 ## Datanı təhlil edin
 
-Artıq data *təmizdir*, bu isə o deməkdir ki, data onunla işlənilməyə hazırdır və yalnız ingilis simvollarını gözləyən alqoritmləri poza biləcək başqa simvollar yoxdur. 
+Artıq data *təmizdir*, bu isə o deməkdir ki, data onunla işlənilməyə hazırdır və yalnız ingilis simvollarını gözləyən alqoritmləri poza biləcək başqa simvollar yoxdur.
 
 ✅ NLP üsullarını tətbiq etməzdən əvvəl onu formatlaşdırmaq üçün bəzi ilkin emal tələb edən data ilə işləməli ola bilərdiniz, lakin bu dəfə buna ehtiyac yoxdur. Əgər olsaydı, ingiliscədə istifadə olunmayan simvolların öhdəsindən necə gələrdiniz?
 
@@ -170,7 +170,7 @@ Bu dərsdəki ilk tapşırıq datafreymi (dəyişdirmədən) yoxlayan kod yazara
 
 > Bir çox proqramlaşdırma tapşırıqları kimi, bu tapşırığı da başa çatdırmağın bir neçə yolu var, lakin məsləhət odur ki, bunu edə biləcəyiniz ən sadə, ən asan şəkildə edəsiniz, çünki gələcəkdə bu koda qayıtdığınız zaman onu başa düşmək daha asan olacaq. Bu istədiyinizə bir çox hallarda səmərəli şəkildə nail olmağınıza kömək ola biləcək datafreym üçün olan API-lar var.
 
-Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə baxmadan onlara cavab verməyə çalışın. 
+Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə baxmadan onlara cavab verməyə çalışın.
 
 1. İndicə yüklədiyiniz datafreymin *formasını* çap edin (burada forma deyəndə sətir və sütunların sayı nəzərdə tutulur)
 2. Müxtəlif milliyətlərdən olan rəy sahibləri üçün tezliyi hesablayın:
@@ -182,7 +182,7 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
 5. Baxmayaraq ki, data massivdə hər bir otel üçün `Average_Score` sütunu var, siz də ortalama balı hesablaya bilərsiniz (bunun üçün hər bir otelin data massivdəki rəy qiymətləndirmələrinin ortalamasını hesablamaq lazımdır). Datafreymə `Calc_Average_Score` başlıqlı və hesablanmış ortalamanı göstərən yeni sütun əlavə edin.
 6. Hansısa otelin eyni `Average_Score` və `Calc_Average_Score` (kəsr hissəsi onluqlara yuvarlaqlaşdırılmış) dəyəri varmı?
    1. Giriş olaraq sətir götürən və dəyərləri müqayisə edən bir Python funksiyası yazmağa çalışın və dəyərlər eyni olmadıqda mesaj çağ edin. Daha sonra isə `.apply()` funksiyasını istifadə edərək yazdığınız funksiyanı digər sətirlərə də tətbiq edin.
-7. `Negative_Review` sütununda neçə sətrin "No Negative" dəyəri olduğunu hesablayın və nəticəni çap edin  
+7. `Negative_Review` sütununda neçə sətrin "No Negative" dəyəri olduğunu hesablayın və nəticəni çap edin
 8. `Positive_Review` sütununda neçə sətrin "No Positive" dəyəri olduğunu hesablayın və nəticəni çap edin
 9. Neçə sətrin `Positive_Review` sütun və "No Positive" dəyəri, **və** neçəsinin `Negative_Review` sütun və "No Negative" dəyəri olduğunu hesablayın və nəticəni çap edin
 ### Kodlaşdırma tapşırıqlarına cavablar
@@ -204,15 +204,15 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
    nationality_freq = df["Reviewer_Nationality"].value_counts()
    print("There are " + str(nationality_freq.size) + " different nationalities")
    # print first and last rows of the Series. Change to nationality_freq.to_string() to print all of the data
-   print(nationality_freq) 
-   
+   print(nationality_freq)
+
    There are 227 different nationalities
     United Kingdom               245246
     United States of America      35437
     Australia                     21686
     Ireland                       14827
     United Arab Emirates          10235
-                                  ...  
+                                  ...
     Comoros                           1
     Palau                             1
     Northern Mariana Islands          1
@@ -229,7 +229,7 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
       # What is the top 10 most common nationalities and their frequencies?
       print("The next 10 highest frequency reviewer nationalities are:")
       print(nationality_freq[1:11].to_string())
-      
+
       The highest frequency reviewer nationality is United Kingdom with 245246 reviews.
       The next 10 highest frequency reviewer nationalities are:
        United States of America     35437
@@ -251,11 +251,11 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
    # Normally with pandas you will avoid an explicit loop, but wanted to show creating a new dataframe using criteria (don't do this with large amounts of data because it could be very slow)
    for nat in nationality_freq[:10].index:
       # First, extract all the rows that match the criteria into a new dataframe
-      nat_df = df[df["Reviewer_Nationality"] == nat]   
+      nat_df = df[df["Reviewer_Nationality"] == nat]
       # Now get the hotel freq
       freq = nat_df["Hotel_Name"].value_counts()
-      print("The most reviewed hotel for " + str(nat).strip() + " was " + str(freq.index[0]) + " with " + str(freq[0]) + " reviews.") 
-      
+      print("The most reviewed hotel for " + str(nat).strip() + " was " + str(freq.index[0]) + " with " + str(freq[0]) + " reviews.")
+
    The most reviewed hotel for United Kingdom was Britannia International Hotel Canary Wharf with 3833 reviews.
    The most reviewed hotel for United States of America was Hotel Esther a with 423 reviews.
    The most reviewed hotel for Australia was Park Plaza Westminster Bridge London with 167 reviews.
@@ -273,13 +273,13 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
    ```python
    # First create a new dataframe based on the old one, removing the uneeded columns
    hotel_freq_df = df.drop(["Hotel_Address", "Additional_Number_of_Scoring", "Review_Date", "Average_Score", "Reviewer_Nationality", "Negative_Review", "Review_Total_Negative_Word_Counts", "Positive_Review", "Review_Total_Positive_Word_Counts", "Total_Number_of_Reviews_Reviewer_Has_Given", "Reviewer_Score", "Tags", "days_since_review", "lat", "lng"], axis = 1)
-   
+
    # Group the rows by Hotel_Name, count them and put the result in a new column Total_Reviews_Found
    hotel_freq_df['Total_Reviews_Found'] = hotel_freq_df.groupby('Hotel_Name').transform('count')
-   
+
    # Get rid of all the duplicated rows
    hotel_freq_df = hotel_freq_df.drop_duplicates(subset = ["Hotel_Name"])
-   display(hotel_freq_df) 
+   display(hotel_freq_df)
    ```
    |                 Hotel_Name                 | Total_Number_of_Reviews | Total_Reviews_Found |
    | :----------------------------------------: | :---------------------: | :-----------------: |
@@ -290,7 +290,7 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
    |       Mercure Paris Porte d Orleans        |           110           |         10          |
    |                Hotel Wagner                |           135           |         10          |
    |            Hotel Gallitzinberg             |           173           |          8          |
-   
+
    `Total_Number_of_Reviews` sütunundakı dəyərlərin *data massivdə tapılan* nəticələr ilə uyğunlaşmadığını görə bilərsiniz. Bizə məlum deyil ki, bu dəyər otelə aid olan bütün rəylərin sayını göstərir (lakin bütün rəylər saytdan əldə edilməmişdir), ya da başqa hesablamanın nəticəsidir. Bu qeyri-müəyyənliyə görə `Total_Number_of_Reviews` sütunu modeldə istifadə edilməmişdir.
 
 5. Baxmayaraq ki, data massivdə hər bir otel üçün `Average_Score` sütunu var, siz də ortalama balı hesablaya bilərsiniz (bunun üçün hər bir otelin data massivdəki rəy qiymətləndirmələrinin ortalamasını hesablamaq lazımdır). Datafreymə `Calc_Average_Score` başlıqlı və hesablanmış ortalamanı göstərən yeni sütun əlavə edin. `Hotel_Name`, `Average_Score` və `Calc_Average_Score` sütunlarını çap edin.
@@ -299,19 +299,19 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
    # define a function that takes a row and performs some calculation with it
    def get_difference_review_avg(row):
      return row["Average_Score"] - row["Calc_Average_Score"]
-   
+
    # 'mean' is mathematical word for 'average'
    df['Calc_Average_Score'] = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
-   
+
    # Add a new column with the difference between the two average scores
    df["Average_Score_Difference"] = df.apply(get_difference_review_avg, axis = 1)
-   
+
    # Create a df without all the duplicates of Hotel_Name (so only 1 row per hotel)
    review_scores_df = df.drop_duplicates(subset = ["Hotel_Name"])
-   
+
    # Sort the dataframe to find the lowest and highest average score difference
    review_scores_df = review_scores_df.sort_values(by=["Average_Score_Difference"])
-   
+
    display(review_scores_df[["Average_Score_Difference", "Average_Score", "Calc_Average_Score", "Hotel_Name"]])
    ```
 
@@ -333,7 +333,7 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
 
    Sadəcə bir oteldə bu fərq 1-dən böyük olduğundan fərqi nəzərə almayıb hesablanmış ortalama qiymətləndirməni istifadə edə bilərik.
 
-6. `Negative_Review` sütununda neçə sətrin "No Negative" dəyəri olduğunu hesablayın və nəticəni çap edin 
+6. `Negative_Review` sütununda neçə sətrin "No Negative" dəyəri olduğunu hesablayın və nəticəni çap edin
 
 7. `Positive_Review` sütununda neçə sətrin "No Positive" dəyəri olduğunu hesablayın və nəticəni çap edin
 
@@ -344,15 +344,15 @@ Aşağıdakı suallara kodlaşdırma tapşırıqları kimi baxın və həllinə 
    start = time.time()
    no_negative_reviews = df.apply(lambda x: True if x['Negative_Review'] == "No Negative" else False , axis=1)
    print("Number of No Negative reviews: " + str(len(no_negative_reviews[no_negative_reviews == True].index)))
-   
+
    no_positive_reviews = df.apply(lambda x: True if x['Positive_Review'] == "No Positive" else False , axis=1)
    print("Number of No Positive reviews: " + str(len(no_positive_reviews[no_positive_reviews == True].index)))
-   
+
    both_no_reviews = df.apply(lambda x: True if x['Negative_Review'] == "No Negative" and x['Positive_Review'] == "No Positive" else False , axis=1)
    print("Number of both No Negative and No Positive reviews: " + str(len(both_no_reviews[both_no_reviews == True].index)))
    end = time.time()
    print("Lambdas took " + str(round(end - start, 2)) + " seconds")
-   
+
    Number of No Negative reviews: 127890
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
@@ -368,16 +368,16 @@ Digər bir üsul Lambdas istifadə etmədən sözügedən dəyərləri saymaq v�
    start = time.time()
    no_negative_reviews = sum(df.Negative_Review == "No Negative")
    print("Number of No Negative reviews: " + str(no_negative_reviews))
-   
+
    no_positive_reviews = sum(df["Positive_Review"] == "No Positive")
    print("Number of No Positive reviews: " + str(no_positive_reviews))
-   
+
    both_no_reviews = sum((df.Negative_Review == "No Negative") & (df.Positive_Review == "No Positive"))
    print("Number of both No Negative and No Positive reviews: " + str(both_no_reviews))
-   
+
    end = time.time()
    print("Sum took " + str(round(end - start, 2)) + " seconds")
-   
+
    Number of No Negative reviews: 127890
    Number of No Positive reviews: 35946
    Number of both No Negative and No Positive reviews: 127
@@ -393,12 +393,12 @@ Data massivin təhlilini bitirdiyinizə görə artıq növbəti dərsdə datanı
 
 Bu dərs, əvvəlki dərslərdə də gördüyümüz kimi, data üzərində əməliyyatlar etməzdən əvvəl onu və onun çatışmazlıqlarını başa düşməyin nə qədər vacib olduğunu nümayiş etdirir. Xüsusilə də mətnə əsaslanan data diqqətlə araşdırılır. Müxtəlif mətn ağırlıqlı data massivləri araşdırın və modeldə qərəzli və ya başqa istiqamətə yönəldən duyğu yarada biləcək hissələri aşkar edə bilib-bilmədiyinizə baxın.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/38/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/38/)
 
 ## Təkrarlayın və özünüz öyrənin
 
 Nitq və mətn ağırlıqlı modellər yaradarkən müxtəlif alətlərlə tanış olmaq üçün [NLP üzrə olan bu təlim toplusunu](https://docs.microsoft.com/learn/paths/explore-natural-language-processing/?WT.mc_id=academic-77952-leestott) sınayın.
 
-## Tapşırıq 
+## Tapşırıq
 
 [NLTK](assignment.az.md)

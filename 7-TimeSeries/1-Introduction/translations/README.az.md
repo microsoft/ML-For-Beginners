@@ -174,7 +174,7 @@ Növbəti dərsdə bəzi proqnozlar yaratmaq üçün ARIMA modeli yaradacaqsın�
 
 Zaman seriyalarının proqnozlaşdırılmasından faydalanacağını düşünə biləcəyiniz bütün sənaye və araşdırma sahələrinin siyahısını tərtib edin. Bu texnikaların incəsənətdə tətbiqi barədə düşünə bilərsinizmi? Ekonometrikada? Ekologiya? Pərakəndə satış? Sənaye? Maliyyə? Başqa harada?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/42/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/42/)
 
 ## Təkrarlayın və özünüz öyrənin
 

@@ -222,7 +222,7 @@ Maşın Öyrənməsinin bu metodu modelin keyfiyyətini artırmaq üçün 'bir n
 
 Bu texnikaların hər birinin dəyişiklər edə biləcəyiniz çox sayda parametrləri mövcuddur. Hər birinin standart olaraq təyin edilmiş parametrlərini araşdırın və bu parametrlərin dəyişdirilməsinin modelin keyfiyyəti üçün önəmi haqqında düşünün.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

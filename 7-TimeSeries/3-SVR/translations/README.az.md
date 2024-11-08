@@ -368,7 +368,7 @@ MAPE:  2.0572089029888656 %
 - Model üçün fərqli kernel funksiyaları yoxla və onların dataset üzərində performanslarını analiz et. [Bu sənəd]((https://scikit-learn.org/stable/modules/svm.html#kernel-functions)) çox faydalı ola bilər.
 - `timesteps` üçün fərqli dəyərlər yoxla və modelin proqnozlarına diqqət et.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
 
 ## Təkrarlayın və özünüz öyrənin
 

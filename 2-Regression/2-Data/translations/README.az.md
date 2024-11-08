@@ -198,7 +198,7 @@ Qrafiklərin yararlı informasiya göstərə bilməsi üçün adətən dataları
 
 Matplotlib-in təklif etdiyi müxtəlif vizuallaşdırma tiplərini araşdırın. Hansılar reqressiya problemləri üçün ən uyğunudur?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

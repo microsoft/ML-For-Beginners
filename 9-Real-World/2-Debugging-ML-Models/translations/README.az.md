@@ -142,7 +142,7 @@ Statistik və data ayr-seçkiliyinin qarşısını almaq üçün biz ilk növbə
 
 Model yaradılmasında ədalətsizliyin aşkar olduğu və istidadə olunduğu real həyat ssenariləri barədə düşün. Biz başqa nələri nəzərə almalıyıq?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/6/)
 
 ## Təkrarlayın və özünüz öyrənin
 

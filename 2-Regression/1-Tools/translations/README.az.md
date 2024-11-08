@@ -211,7 +211,7 @@ Yeni kod xanasında, şəkərli diabet data setini `load_diabetes()` çağırara
 
 Bu data setindən fərqli bir dəyişən üçün qrafik çəkin. İpucu: bu sətirə düzəliş edin: `X = X[:,2]`. Data massivinin hədəfi verilmək şərti ilə şəkərli diabetin xəstəlik olaraq inkişafı ilə bağlı nələri tapa bilərsiniz?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

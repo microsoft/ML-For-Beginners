@@ -347,7 +347,7 @@ Bu bizə 97%-lə ən yaxşı determinasiya əmsalını, və OKX=2.23 (~8% təxmi
 
 Bu notbukda bir neçə fərqli dəyişəni test edərək korrelyasiyanın modelin dəqiqliyinə necə təsir etdiyini izləyin.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

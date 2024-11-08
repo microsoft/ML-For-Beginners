@@ -153,7 +153,7 @@ Yuxarıdakı "dayan və düşün" elementlərindən birini seç və onu kodda t�
 
 Növbəti dərsdə təbii dilin emalı və maşın öyrənməsi üçün bir neçə yanaşma öyrənəcəksən.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
 
 ## Təkrarlayın və özünüz öyrənin
 

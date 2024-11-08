@@ -78,16 +78,16 @@ action_idx = { a : i for i,a in enumerate(actions.keys()) }
 Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək problemimizi həll edək. Təsadüfi gedişlə, almaya çatana qədər icazə verilən addımlar arasından növbəti addımımızı təsadüfi seçəcəyik (3. kod bloku).
 
 1. Aşağıdakı kodla təsadüfi gedişi həyata keçirin:
-    
+
     ```python
     def random_policy(m):
         return random.choice(list(actions))
-    
+
     def walk(m,policy,start_position=None):
         n = 0 # number of steps
         # set initial position
         if start_position:
-            m.human = start_position 
+            m.human = start_position
         else:
             m.random_start()
         while True:
@@ -102,7 +102,7 @@ Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək proble
                     m.move(a) # do the actual move
                     break
             n+=1
-    
+
     walk(m,random_policy)
     ```
     `walk` müvafiq yolun uzunluğunu qaytarmalıdır. Amma təsadüfi olduğu üçün hər çağrılma zamanı fərqli uzunluq qaytara bilər.
@@ -120,7 +120,7 @@ Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək proble
                 s += z
                 n += 1
         print(f"Average path length = {s/n}, eaten by wolf: {w} times")
-    
+
     print_statistics(random_policy)
     ```
 
@@ -231,10 +231,10 @@ Beləliklə, ən yaxşı yanaşma kəşfiyyat və istifadə arasında balansı q
 
     ```python
     for epoch in range(5000):
-    
+
         # Pick initial point
         m.random_start()
-        
+
         # Start travelling
         n=0
         cum_reward = 0
@@ -314,7 +314,7 @@ Qeyd etdiyimiz kimi, təlim prosesi problem məkanının strukturu haqqında əl
 
 Ümumiyyətlə, yadda saxlamaq lazımdır ki, təlim prosesinin uğuru və keyfiyyəti öyrənmə sürəti, öyrənmə sürətinin azalması və endirim faktoru kimi parametrlərdən əhəmiyyətli dərəcədə asılıdır. Təlim zamanı optimallaşdırdığımız(məsələn, Q-Cədvəl əmsalları) **parametrlərdən** fərqləndirmək üçün onları tez-tez **hiperparametrlər** adlandırırlar. Ən yaxşı hiperparametr dəyərlərinin tapılması prosesi **hiperparametrlərin optimallaşdırılması** adlanır və bu, ayrıca mövzu səviyyəsindədir.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
 
 ## Tapşırıq
 [Daha Real Dünya](assignment.az.md)

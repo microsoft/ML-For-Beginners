@@ -231,7 +231,7 @@ Biz çoxsaylı etiket məsələsinə baxdığımız üçün _scheme_ və _solver
 
 Bu dərsdə siz təmizlənmiş data istifadə edərək inqrediyentlər əsasında milli mətbəxi təxmin edə biləcək maşın öyrənməsi modelini qurdunuz. Scikit-learn kitabxanası istifadə etməklə daha hansı üsullarla qruplaşdırma etmək mümkün olduğunu oxuyun. "Solver (alqoritm)" anlayışı üzərində daha dərinə gedərək arxa planda necə işlədiyini öyrənin.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

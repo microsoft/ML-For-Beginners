@@ -383,7 +383,7 @@ Bütün proqnozlar üzərində ortalama mütləq faiz xətasını (MAPE) tapmaql
 
 Zaman Seriyası Modelinin düzgünlüyünü yoxlamaq yollarını araşdırın. Bu dərsdə MAPE-ə toxunacağıq, amma istifadə edə biləcəyiniz başqa üsullar varmı? Onları araşdırın və şərh edin. Yardımçı sənədi [burada] tapa bilərsiniz(https://otexts.com/fpp2/accuracy.html)
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
 
 ## Təkrarlayın və özünüz öyrənin
 

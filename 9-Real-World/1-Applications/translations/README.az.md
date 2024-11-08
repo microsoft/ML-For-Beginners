@@ -135,7 +135,7 @@ Marketingin ən effektiv strategiyası müştəriləri fərqli qruplar halında 
 
 Bu kurikulumda öyrəndiyin texnikaların istifadə oluna biləcəyi başqa bir sahəni tap və ML-in necə istifadə olunmasını araşdır.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/50/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/50/)
 
 ## Təkrarlayın və özünüz öyrənin
 

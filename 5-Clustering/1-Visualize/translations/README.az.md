@@ -320,7 +320,7 @@ Bu üç janr populyarlıqlarına görə onların oynaqlıq dərəcəsini dərk e
 
 Növbəti dərsə hazırlıq üçün indiyə qədər haqqında öyrənmiş olduğunuz müxtəlif klasterləşdirmə alqoritmlərinin olduğu bir qrafik hazırlayın və onları real mühitdə istifadə edin. Klasterləşdirmə hansı qrup problemləri həll etməyə çalışır?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

@@ -386,7 +386,7 @@ Klassifikasiya ilə bağlı gələcək dərslərdə, modelin balını yüksəltm
 
 Logistik reqressiya mövzusunda öyrəniləsi hələ çox şey var. Amma ən yaxşı öyrənmə təcrübə etməkdir. Bunun üçün dərsdəki analizə bənzər bir dataset tapın və onunla bir model qurun. Nə öyrəndiniz? Maraqlı datasetlər üçün [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) yoxlaya bilərsiniz.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

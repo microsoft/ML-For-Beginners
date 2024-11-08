@@ -288,7 +288,7 @@ Datanı təmizlədikdən sonra, onu balanslaşdırmaq üçün [SMOTE](https://im
 
 Bu proqramda bir neçə maraqlı dataset var. `data` qovluqlarına baxın. Bu qovluqlardan hansısa birində ikili və çox sinifli qruplaşdırıcı üçün uyğun ola biləcək datasetlər varmı? Onlar haqqında hansı sualları verərdiniz?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

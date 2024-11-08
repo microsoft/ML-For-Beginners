@@ -300,7 +300,7 @@ Təbriklər, 'tövsiyyə edən' veb tətbiq yaratdıq. İndi isə sistemi qurmaq
 
 Hazırki veb tətbiq minimal səviyyədədir. Bu səbəbdən inqrediyentlər və onların indekslərinə əsasən [ingredient_indexes](../../data/ingredient_indexes.csv) datasından istifadə etməklə davam etmək lazımdır. Verilmiş milli yeməyi hazırlamaq üçün hansı dadlardan istifadə edilməlidir, müəyyən edək.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 
