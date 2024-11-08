@@ -6,7 +6,7 @@
     "quizzes": [
       {
         "id": 1,
-        "title": "Maşın öyrənməsinə giriş: Mühazirədən əvvəl quiz",
+        "title": "Maşın öyrənməsinə giriş: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Ətrafımızda olan maşın öyrənməsinin tətbiqləri",
@@ -59,7 +59,7 @@
       },
       {
         "id": 2,
-        "title": "Maşın öyrənməsinə giriş: Mühazirə sonrası quiz",
+        "title": "Maşın öyrənməsinə giriş: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Maşın öyrənmə alqoritmləri bunların simulyasiyası üçün nəzərdə tutulub",
@@ -116,7 +116,7 @@
       },
       {
         "id": 3,
-        "title": "Maşın öyrənməsinin tarixi: Müharizə öncəsi quiz",
+        "title": "Maşın öyrənməsinin tarixi: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "'Süni intellekt' termini təxminən nə vaxt yaranıb?",
@@ -173,7 +173,7 @@
       },
       {
         "id": 4,
-        "title": "Maşın öyrənməsinin tarixi: Müharizə sonrası quiz",
+        "title": "Maşın öyrənməsinin tarixi: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "'Səliqəsiz' AI sisteminin nümunəsi nədir?",
@@ -230,7 +230,7 @@
       },
       {
         "id": 5,
-        "title": "Ədalət və maşın öyrənməsi: Müharizə öncəsi quiz",
+        "title": "Ədalət və maşın öyrənməsi: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Maşın öyrənməsində ədalətsizlik baş verə bilər",
@@ -287,7 +287,7 @@
       },
       {
         "id": 6,
-        "title": "Ədalət və maşın öyrənməsi: Müharizə sonrası quiz",
+        "title": "Ədalət və maşın öyrənməsi: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Bir modeldəki ədalətsizliyə səbəb ola bilər",
@@ -344,7 +344,7 @@
       },
       {
         "id": 7,
-        "title": "Alətlər və texnikalar: Müharizə öncəsi quiz",
+        "title": "Alətlər və texnikalar: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Model qurarkən bunları etməlisən:",
@@ -401,7 +401,7 @@
       },
       {
         "id": 8,
-        "title": "Alətlər və texnikalar: Müharizə sonrası quiz",
+        "title": "Alətlər və texnikalar: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Datanı təhlil edərkən bunları etməlisən:",
@@ -458,7 +458,7 @@
       },
       {
         "id": 9,
-        "title": "Reqressiyaya giriş: Müharizə öncəsi quiz",
+        "title": "Reqressiyaya giriş: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Bu dəyişənlərdən hansı ədədi dəyişəndir?",
@@ -515,7 +515,7 @@
       },
       {
         "id": 10,
-        "title": "Reqressiyaya giriş: Müharizə sonrası quiz",
+        "title": "Reqressiyaya giriş: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Əgər Maşın Öyrənmə modelinizin öyrətmə dəqiqliyi 95 % və test dəqiqliyi 30 % təşkil edirsə, o zaman hansı növ vəziyyət adlanır?",
@@ -572,7 +572,7 @@
       },
       {
         "id": 11,
-        "title": "Reqressiya üçün verilənləri hazırlayın və vizuallaşdırın: Müharizə öncəsi quiz",
+        "title": "Reqressiya üçün verilənləri hazırlayın və vizuallaşdırın: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Bu Python modullarından hansı məlumatların vizuallaşdırılması üçün istifadə olunur?",
@@ -629,7 +629,7 @@
       },
       {
         "id": 12,
-        "title": "Reqressiya üçün verilənləri hazırlayın və vizuallaşdırın: Müharizə sonrası quiz",
+        "title": "Reqressiya üçün verilənləri hazırlayın və vizuallaşdırın: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Datasetinizdə çatışmayan dəyərlərin olub-olmadığını yoxlamaq istəyirsinizsə, bu dərsə əsasən hansı kod parçası düzgündür? Tutaq ki, verilənlər bazası Pandas DataFrame obyekti olaraq 'dataset' adlı dəyişəndə ​​saxlanılır.",
@@ -686,7 +686,7 @@
       },
       {
         "id": 13,
-        "title": "Xətti və Polinom Reqressiya: Müharizə öncəsi quiz",
+        "title": "Xətti və Polinom Reqressiya: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Matplotlib nədir?",
@@ -743,7 +743,7 @@
       },
       {
         "id": 14,
-        "title": "Xətti və Polinom Reqressiya: Müharizə sonrası quiz",
+        "title": "Xətti və Polinom Reqressiya: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Əgər məlumatlarınız qeyri-xəttidirsə, ___ növ reqressiyanı sınayın",
@@ -800,7 +800,7 @@
       },
       {
         "id": 15,
-        "title": "Logistik reqressiya: Müharizə öncəsi quiz",
+        "title": "Logistik reqressiya: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Bunu proqnozlaşdırmaq üçün Logistik Reqressiyadan istifadə edin",
@@ -857,7 +857,7 @@
       },
       {
         "id": 16,
-        "title": "Logistik reqressiya: Müharizə sonrası quiz",
+        "title": "Logistik reqressiya: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Seaborn nəyin növüdür?",
@@ -914,7 +914,7 @@
       },
       {
         "id": 17,
-        "title": "Veb Tətbiqi yaratmaq: Müharizə öncəsi quiz",
+        "title": "Veb Tətbiqi yaratmaq: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "ONNX nə deməkdir?",
@@ -971,7 +971,7 @@
       },
       {
         "id": 18,
-        "title": "Veb Tətbiqi yaratmaq: Müharizə sonrası quiz",
+        "title": "Veb Tətbiqi yaratmaq: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Python-dan istifadə edərək öncədən öyrədilmiş modeli internetdə yerləşdirmək üçün hansı vasitələrdən istifadə edə bilərik?",
@@ -1028,7 +1028,7 @@
       },
       {
         "id": 19,
-        "title": "Qruplaşdırma 1: Müharizə öncəsi quiz",
+        "title": "Qruplaşdırma 1: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Qruplaşdırma aşağıdakı ilə bir çox ortaq cəhətləri olan nəzarətli öyrənmə formasıdır",
@@ -1085,7 +1085,7 @@
       },
       {
         "id": 20,
-        "title": "Qruplaşdırma 1: Müharizə sonrası quiz",
+        "title": "Qruplaşdırma 1: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Çox sinifli sual nədir?",
@@ -1138,7 +1138,7 @@
       },
       {
         "id": 21,
-        "title": "Qruplaşdırma 2: Müharizə öncəsi quiz",
+        "title": "Qruplaşdırma 2: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Balanslaşdırılmış, təmiz data ən yaxşı qruplaşdırma nəticələrini verir",
@@ -1191,7 +1191,7 @@
       },
       {
         "id": 22,
-        "title": "Qruplaşdırma 2: Müharizə sonrası quiz",
+        "title": "Qruplaşdırma 2: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "'Həlledici' nədir?",
@@ -1248,7 +1248,7 @@
       },
       {
         "id": 23,
-        "title": "Qruplaşdırma 3: Müharizə öncəsi quiz",
+        "title": "Qruplaşdırma 3: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Sınamaq üçün yaxşı bir ilkin qruplaşdırıcı:",
@@ -1305,7 +1305,7 @@
       },
       {
         "id": 24,
-        "title": "Qruplaşdırma 3: Müharizə sonrası quiz",
+        "title": "Qruplaşdırma 3: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Dəstək-Vektor qruplaşdırıcıları bunlar üçün istifadə edilə bilər",
@@ -1362,7 +1362,7 @@
       },
       {
         "id": 25,
-        "title": "Qruplaşdırma 4: Müharizə öncəsi quiz",
+        "title": "Qruplaşdırma 4: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Tövsiyyə sistemləri bunlar üçün istifadə oluna bilər",
@@ -1415,7 +1415,7 @@
       },
       {
         "id": 26,
-        "title": "Qruplaşdırma 4: Müharizə sonrası quiz",
+        "title": "Qruplaşdırma 4: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Netron tətbiqi bu işdə kömək edir:",
@@ -1472,7 +1472,7 @@
       },
       {
         "id": 27,
-        "title": "Klasterləşdirməyə giriş: Müharizə öncəsi quiz",
+        "title": "Klasterləşdirməyə giriş: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Klasterləşdirməyə real həyatımızdan nümunə ola bilər",
@@ -1529,7 +1529,7 @@
       },
       {
         "id": 28,
-        "title": "Klasterləşdirməyə giriş: Müharizə sonrası quiz",
+        "title": "Klasterləşdirməyə giriş: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Evklid həndəsəsi buna əsasən düzülmüşdür",
@@ -1586,7 +1586,7 @@
       },
       {
         "id": 29,
-        "title": "K-Ortalama Klasterləşməsi: Müharizə öncəsi quiz",
+        "title": "K-Ortalama Klasterləşməsi: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "K-Ortalama buradan gəlib:",
@@ -1643,7 +1643,7 @@
       },
       {
         "id": 30,
-        "title": "K-Ortalama Klasterləşməsi: Müharizə sonrası quiz",
+        "title": "K-Ortalama Klasterləşməsi: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Voronoi diaqramı bunu göstərir:",
@@ -1696,7 +1696,7 @@
       },
       {
         "id": 31,
-        "title": "NLP-ə giriş: Müharizə öncəsi quiz",
+        "title": "NLP-ə giriş: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "NLP bu dərsdə nəyi bildirir?",
@@ -1753,7 +1753,7 @@
       },
       {
         "id": 32,
-        "title": "Təbii dil emalına giriş: Müharizə sonrası quiz",
+        "title": "Təbii dil emalına giriş: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Cozef Veyzenbaum bu botu icad etdi",
@@ -1810,7 +1810,7 @@
       },
       {
         "id": 33,
-        "title": "NLP tapşırıqları: Müharizə öncəsi quiz",
+        "title": "NLP tapşırıqları: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Tokenizasiya",
@@ -1867,7 +1867,7 @@
       },
       {
         "id": 34,
-        "title": "NLP tapşırıqları: Müharizə sonrası quiz",
+        "title": "NLP tapşırıqları: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Daha çox təkrarlanan sözlərdən lüğət yaratmaq üçün bundan istifadə olunur:",
@@ -1924,7 +1924,7 @@
       },
       {
         "id": 35,
-        "title": "NLP və tərcümə: Müharizə öncəsi quiz",
+        "title": "NLP və tərcümə: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Sadə tərcümə",
@@ -1981,7 +1981,7 @@
       },
       {
         "id": 36,
-        "title": "NLP və tərcümə: Müharizə sonrası quiz",
+        "title": "NLP və tərcümə: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "TextBlob tərcümə kitabxanasının altında bu texnologiya durur:",
@@ -2038,7 +2038,7 @@
       },
       {
         "id": 37,
-        "title": "NLP 4: Müharizə öncəsi quiz",
+        "title": "NLP 4: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "İnsan tərəfindən yazılmış və ya danışılan mətndən hansı məlumatları əldə edə bilərik?",
@@ -2095,7 +2095,7 @@
       },
       {
         "id": 38,
-        "title": "NLP 4: Müharizə sonrası quiz",
+        "title": "NLP 4: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "NLP-nin mahiyyəti nədir?",
@@ -2148,7 +2148,7 @@
       },
       {
         "id": 39,
-        "title": "NLP 5: Müharizə öncəsi quiz",
+        "title": "NLP 5: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Nə üçün məlumatları təhlil etməzdən əvvəl təmizləmək vacibdir?",
@@ -2201,7 +2201,7 @@
       },
       {
         "id": 40,
-        "title": "NLP 5: Müharizə sonrası quiz",
+        "title": "NLP 5: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Datasetin məqsədi nədir?",
@@ -2254,7 +2254,7 @@
       },
       {
         "id": 41,
-        "title": "Zaman seriyalarına giriş: Müharizə öncəsi quiz",
+        "title": "Zaman seriyalarına giriş: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Zaman seriyasının proqnozlaşdırılması burada faydalıdır",
@@ -2311,7 +2311,7 @@
       },
       {
         "id": 42,
-        "title": "Zaman seriyalarına giriş: Müharizə sonrası quiz",
+        "title": "Zaman seriyalarına giriş: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Zaman seriyası xəttləri bunu bildirir",
@@ -2368,7 +2368,7 @@
       },
       {
         "id": 43,
-        "title": "Zaman Seriyası ARIMA: Müharizə öncəsi quiz",
+        "title": "Zaman Seriyası ARIMA: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "ARIMA açılışı",
@@ -2425,7 +2425,7 @@
       },
       {
         "id": 44,
-        "title": "Zaman Seriyası ARIMA: Müharizə sonrası quiz",
+        "title": "Zaman Seriyası ARIMA: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "ARIMA modeli zaman seriyası məlumatlarının xüsusi formasına uyğunlaşdırmaq üçün istifadə olunur",
@@ -2482,7 +2482,7 @@
       },
       {
         "id": 45,
-        "title": "Gücləndirici öyrənmə 1: Müharizə öncəsi quiz",
+        "title": "Gücləndirici öyrənmə 1: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Gücləndirici öyrənmə nədir?",
@@ -2535,7 +2535,7 @@
       },
       {
         "id": 46,
-        "title": "Gücləndirici öyrənmə 1: Müharizə sonrası quiz",
+        "title": "Gücləndirici öyrənmə 1: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Q-Learning nədir?",
@@ -2588,7 +2588,7 @@
       },
       {
         "id": 47,
-        "title": "Gücləndirici öyrənmə 2: Müharizə öncəsi quiz",
+        "title": "Gücləndirici öyrənmə 2: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Şahmat and Go davamlı vəziyyətləri olan oyunlardır.",
@@ -2641,7 +2641,7 @@
       },
       {
         "id": 48,
-        "title": "Gücləndirici öyrənmə 2: Müharizə sonrası quiz",
+        "title": "Gücləndirici öyrənmə 2: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Bir mühitdə bütün mümkün hərəkətləri harada müəyyənləşdiririk?",
@@ -2698,7 +2698,7 @@
       },
       {
         "id": 49,
-        "title": "Real həyat tətbiqləri: Müharizə öncəsi quiz",
+        "title": "Real həyat tətbiqləri: Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "Maliyyə sənayesində ML tətbiqi nümunəsi nədir?",
@@ -2755,7 +2755,7 @@
       },
       {
         "id": 50,
-        "title": "Real həyat tətbiqləri: Müharizə sonrası quiz",
+        "title": "Real həyat tətbiqləri: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "Kredit kartı saxtakarlığını aşkar etmək üçün hansı ML texnikasından istifadə edilə bilər?",
@@ -2812,7 +2812,7 @@
       },
 	  {
         "id": 51,
-        "title": "SVR zaman seriyası : Müharizə öncəsi quiz",
+        "title": "SVR zaman seriyası : Mühazirədən əvvəl test",
         "quiz": [
           {
             "questionText": "SVM bunu bildirir",
@@ -2869,7 +2869,7 @@
       },
       {
         "id": 52,
-        "title": "SVR zaman seriyası: Müharizə sonrası quiz",
+        "title": "SVR zaman seriyası: Mühazirə sonrası test",
         "quiz": [
           {
             "questionText": "SVR bu üsullardan hansı ilə öyrənir?",

@@ -130,7 +130,7 @@ Yaxın gələcəkdə çox yayılması səbəbindən maşın öyrənməsinin fund
 
 Dəftər, kağız və ya onlayn [Excalidraw](https://excalidraw.com/) kimi tətbiqdə AI, ML, dərin öyrənmə və data elmi barədə anladıqlarınızı təsvir edin. Hər bir texnika ilə effektiv həll edə biləcəyiniz problemlə bağlı fikirlərinizi də qeyd edin.
 
-# [Mühazirədən sonra test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/?loc=az)
+# [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/?loc=az)
 
 ---
 # Təkrarlayın və özünüz öyrənin

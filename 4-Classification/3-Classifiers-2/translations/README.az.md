@@ -2,7 +2,7 @@
 
 İkinci qruplaşdırma dərsində siz, ədədi dataları qruplaşdırmaq üçün olan əlavə yolları kəşf edəcəksiniz. Bundan əlavə olaraq isə bir qruplaşdırıcını digəri ilə əvəz etməyin nəticələri haqqında öyrənəcəksiniz.
 
-## [Mühazirədən əvvəl quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/?loc=az)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/?loc=az)
 
 ### İlkin şərt
 

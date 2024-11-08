@@ -2,7 +2,7 @@
 
 Əvvəlki dərslərdə, əsas nitq birləşmələrinin çıxarılması kimi əsas NLP vəzifələrini yerinə yetirmək üçün səhnə arxasında MÖ istifadə edən TextBlob kitabxanası ilə bot yaratmağı öyrəndiniz. Hesablama dilçiliyində digər mühüm bir məsələ isə bir cümlənin danışıq və ya yazılı dildən digərinə dəqiq tərcümə edilməsidir.
 
-## [Mühazirədən əvvəl sual-cavab](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/35/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/35/)
 
 Tərcümə çox çətin bir məsələdir, çünki minlərlə dil var və hər birinin çox fərqli qrammatika qaydaları ola bilər. Bir yanaşma, bir dili, məsələn, İngilis dilinin rəsmi qrammatika qaydalarını dilin özündən asılı olmayan bir struktura çevirmək və sonra başqa bir dilə tərcümə edərək geri çevirməkdir. Bu yanaşma aşağıdakı addımları atmağınızı tələb edir:
 

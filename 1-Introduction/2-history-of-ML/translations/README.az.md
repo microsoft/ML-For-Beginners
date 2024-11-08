@@ -134,7 +134,7 @@ Gələcəyin nələr vəd etdiyini görürük, lakin kompüter sistemlərini və
 
 Bu tarixi məqamlardan (yuxarıdakı sadalanan) birini seçib onların arxasında duran insanlar haqqında daha çox məlumat əldə edin. Onlar arasında maraqlı personajlar var və mədəni boşluqdan heç bir elmi kəşf yaradılmayıb. Bəs siz onlarda nələri kəşf etdiniz?
 
-## [Mühazirədən sonra test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/4/?loc=az)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/4/?loc=az)
 
 ---
 ## Təkrarlayın və özünüz öyrənin

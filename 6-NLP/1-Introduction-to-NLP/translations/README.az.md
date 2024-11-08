@@ -2,7 +2,7 @@
 
 Bu dərs *komputer dilçiliyi* alt bölməsi olan *təbii dil emalının* qısa tarixçəsini və vacib anlayışları əhatə edir.
 
-## [Mühazirədən əvvəl quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
 
 ## Giriş
 
