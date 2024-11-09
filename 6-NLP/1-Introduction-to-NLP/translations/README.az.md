@@ -1,8 +1,8 @@
 # Təbii dil emalına giriş
 
-Bu dərs *komputer dilçiliyi* alt bölməsi olan *təbii dil emalının* qısa tarixçəsini və vacib anlayışları əhatə edir.
+Bu dərs *komputer dilçiliyinin* alt bölməsi olan *təbii dil emalının* qısa tarixçəsini və vacib anlayışları əhatə edir.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/?loc=az)
 
 ## Giriş
 
@@ -14,7 +14,7 @@ NLP (Natural Language Processing - Təbii Dil Emalı) maşın öyrənməsinin t�
 Bunlar barədə öyrənəcəksən:
 
 - **Dillər ideyası**. Dillər necə inkişaf edib və hansı sahələrdə vacib araşdırlmalar aparılıb.
-- **Tərif və anlayışlar**. Sən həmçinin komputerlərin mətnləri necə emal etməsi (qrammatikanın anlamaq, isimləri və fellər seçmək daxil olmaqla) barədə tərifləri və anlayışları öyrənəcəksən. Bu dərsdə bəzi kodlaşdırma tapşırıqları var və növbəti dərslərdə digər vacib anlayışlarla bunun davamı gələcək.
+- **Tərif və anlayışlar**. Sən həmçinin komputerlərin mətnləri necə emal etməsi (qrammatikanı anlamaq, isimləri və felləri seçmək daxil olmaqla) barədə tərifləri və anlayışları öyrənəcəksən. Bu dərsdə bəzi kodlaşdırma tapşırıqları var və növbəti dərslərdə digər vacib anlayışlarla bunun davamı gələcək.
 
 ## Komputer dilçiliyi
 
@@ -22,15 +22,14 @@ Komputer dilçiliyi on illərdir araşdırma və inkişaf etdirilən bir sahədi
 
 ### Nümanə - telefon imlası
 
-Əgər indiyə kimi telefonunda yazmaq əvəzinə imla demisənsə, və ya virtual köməkçiyə sual vermisənsə, sənin nitqin mətn formasına çevrilir və sonra emal olunur. Tapılmış açar sözlər yenidən telefonun və ya köməksiçinin başa düşəcəyi, işini görə biləcəyi formaya çevrilir.
-
+Əgər indiyə kimi telefonunda yazmaq əvəzinə imla demisənsə, və ya virtual köməkçiyə sual vermisənsə, sənin nitqin mətn formasına çevrilib və sonra emal olunub. Tapılmış açar sözlər yenidən telefonun və ya köməkçinin başa düşəcəyi, işini görə biləcəyi formaya çevrilir.
 
 ![anlama](../images/comprehension.png)
-> Həqiqi dilçilik anlaması çətindir! [Jen Looper](https://twitter.com/jenlooper) təfədindən təsvir.
+> Həqiqi dilçiliyi anlamaq çətindir! [Jen Looper](https://twitter.com/jenlooper) təfədindən təsvir.
 
 ### Bu texnologiya necə mümkündür?
 
-Biz bunu etməsi üçün komputer proqramı yazdığımıza görə mümkündür. Bir neçə onilliklər əvvəl bəzi elmi fantastika yazıçıları biz çox insanın komputerlə danışacağını, və komputerin onları həmişə doğru anlayacağını təxmin etmişdilər. Təəssüflər olsun ki bu təsəvvür ediləndən daha çətin bir problem olduğu anlaşıldı, 'həqiqi' təbii dili emal etmək və cümlənin ifadə etdiyi mənanı başa düşmək üçün çox çətinliklər mövcuddur. Daxilində yumor və sarkazm daşıyan cümlələri başa düşmək xüsusilə çətin məsələdir.
+Biz bunu etməsi üçün komputer proqramı yazdığımıza görə mümkündür. Bir neçə onilliklər əvvəl bəzi elmi fantastika yazıçıları biz çox insanın komputerlə danışacağını, və komputerin onları həmişə doğru anlayacağını təxmin etmişdilər. Təəssüflər olsun ki, bu təsəvvür ediləndən daha çətin bir problem olduğu anlaşıldı, 'həqiqi' təbii dili emal etmək və cümlənin ifadə etdiyi mənanı başa düşmək üçün çox çətinliklər mövcuddur. Daxilində yumor və sarkazm daşıyan cümlələri başa düşmək xüsusilə çətin məsələdir.
 
 Biz burada məktəb dərslərində müəllimlərin cümlənin daxilində istifadə olunan qrammatikanı əhatə etməsini xatırlayırıq. Bəzi ölkələrdə tələbələr qrammatika və dilçilik mövzularını xüsusi bir fənn kimi keçirlər, və ya bu mövzular onların öyrənmə kurikulumuna daxil edilirlər: ya ibtidai sinifdə oxuma və yazmaq dərsi kimi, ya orta məktəbdə ikinci dil kimi, ya da ali məktəbdə. İsimləri fellərdən və ya zərfləri sifətlərdən ayırd etməkdə ekspert deyilsənsə, buna görə narahat olma!
 
@@ -44,7 +43,7 @@ Kodlaşdırma tapşırığında Python 3.8 proqramlaşdırma dili və nümunə m
 
 Bu bölmədə sənə lazım olacaq və istifadə edəcəksən:
 
-- **Python 3 anlamaq**. Python 3 dilində bəzi proqramlaşdırma paradiqmlərini anlamaq lazımdır. Bu dərsdə giriş (input), dövrlər (loogs), fayl oxuma (file reading) və massivlər (arrays) istifadə olunmuşdur.
+- **Python 3 anlamaq**. Python 3 dilində bəzi proqramlaşdırma paradiqmlərini anlamaq lazımdır. Bu dərsdə giriş (input), dövrlər (loops), fayl oxuma (file reading) və massivlər (arrays) istifadə olunmuşdur.
 - **Visual Studio Code + extension**. Biz Visual Studio Code proqramını və Python əlavəsini (extension) istifadə edəcəyik. İstədiyin başqa Python IDE də istifadə edə bilərsən.
 - **TextBlob**. [TextBlob](https://github.com/sloria/TextBlob) Python dilində sadələşdirilmiş mətn emalı üçün kitabxanadır. TextBlob veb saytındakı təlimatları izləyərək proqramı öz sisteminə yüklə (corpora proqramını da aşağıda qeyd olunduğu kimi yüklə):
 
@@ -61,31 +60,31 @@ Komputerlərin insan dilini anlaması tarixçəsi bir neçə onilliklərə gedir
 
 ### 'Turinq testi'
 
-Türinq 1950-ci illərdə *süni intellekt* haqqında araşdırma apararkən, insanın yazı vasitəsi ilə ünsiyyət qurduğu tərəfin başqa bir insan və ya komputer olduğunu fərqində olmamasının mümkünlüyü düşünürdü.
+Turinq 1950-ci illərdə *süni intellekt* haqqında araşdırma apararkən insanın yazı vasitəsi ilə ünsiyyət qurduğu tərəfin başqa bir insan və ya komputer olduğunu fərqində olmamasının mümkünlüyü düşünürdü.
 
 Əgər müəyyən bir müddət söhbətdən sonra insan cavabları komputerdən, yoxsa insandan aldığını fərqləndirə bilməzsə, biz hesab bilərik ki komputer *düşünə bilir*?
 
 ### İlham - 'təqlid oyunu'
 
-Bun ideya qrup daxili oynanılan *Təqlid oyunundan* götürülüb. Oyun zamanı otaqda olan bir şəxs (sorğu aparan) digər otaqda olan iki nəfərin uyğun olaraq oğlan və ya qız olduğunu tapması tələb olunur.
+Bu ideya qrup daxili oynanılan *Təqlid oyunundan* götürülüb. Oyun zamanı otaqda olan bir şəxs (sorğu aparan) digər otaqda olan iki nəfərin uyğun olaraq oğlan və ya qız olduğunu tapması tələb olunur.
 Sorğu aparan şəxs qeydlər göndərə bilər və yazılı cavablardan sirli şəxsin cinsini aşkar edə biləcək sualları düşünməyə çalışmalıdır. Təbii ki, digər otaqdakı oyunçular sorğuçunu səmimi cavablandırdıqlarına inandırmaqla çaşdırmağa da çalışırlar.
 
 ### Elizanın yaradılması
 
-1960-cı illərdə *Cosept Veizenbaum* adlı MIT alimi insanlara sual verməklə onların cavabını başa düşdüyü görünüşü verən [*Eliza*](https://wikipedia.org/wiki/ELIZA) adlı komputer 'terapisti' yaratdı. Lakin Elizanın cümləndə bəzi açar sözləri və qrammatika quruluşunu oxuyaraq cavab verə bilməsi, onun cümləni həqiqətən *anladığı* demək olmaz. Əgər Elizaya "**Mən** <u>pisəm</u>" kimi cümlə daxil edilsə, o sözlərin yerini dəyişəcək və yeni cavab formalaşdıracaq - "**Sən** nə qədər müddətdir <u>pissən</u>".
+1960-cı illərdə *Cosept Veizenbaum* adlı MIT alimi insanlara sual verməklə onların cavabını başa düşdüyü görünüşü verən [*Eliza*](https://wikipedia.org/wiki/ELIZA) adlı komputer 'terapisti' yaratdı. Lakin Elizanın cümləndə bəzi açar sözləri və qrammatika quruluşunu oxuyaraq cavab verə bilməsi, onun cümləni həqiqətən *anladığı* demək olmaz. Əgər Elizaya "**Mən** <u>pisəm</u>" kimi cümlə daxil edilsə, o sözlərin yerini dəyişəcək və yeni cavab formalaşdıracaq - "**Sən** nə qədər müddətdir <u>pissən</u>?".
 
 Bu Elizanın cümləni anladığı hissi verib açıq suallarla davam etsə də, reallıqda o sadəcə cümlənin zamanını dəyişir və əlavə sözlər daxil edir. Əgər Eliza cavab verə biləcək açar söz tapa bilməsə, o fərqli mənalara gətirə biləcək təsadüfi cavab verəcək. Eliza rahatlıqla aldadıla bilər, misal üçün istifadəçi əgər "**Sən** <u>velosipedsən</u>" yazsa, o mənalı cavab yerinə "Nə qədər müddətdir **mən** <u>velosipedəm</u>?" kimi cavab verəcək.
 
 [![Eliza ilə danışmaq](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Eliza ilə danışmaq")
 
-> 🎥 Original ELIZA proqramı barədə videoya baxmaq üçün yuxarıdakı şəkilə kliklə
+> 🎥 Orijinal ELIZA proqramı barədə videoya baxmaq üçün yuxarıdakı şəkilə kliklə
 
 > Qeyd: Əgər ACM hesabın varsa, 1966-cı ildə nəşr edilmiş [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) haqqında orijinal məqaləni
 oxuya bilərsən. Əlavə olaraq Eliza haqqında [wikipediada](https://wikipedia.org/wiki/ELIZA) da oxuya bilərsən.
 
 ## Tapşırıq - sadə danışıq botu kodlaması
 
-Eliza kimi danışıq botu, istifadəçi daxiletməsini qəbul edən edən, ağıllı şəkildə başa düşən və cavab verə bilən proqramdır. Elizadan fərqli olaraq bizim botun ağıllı söhbət apardığı görünüşü yaraqmaq üçün qaydaları olmayacaq. Bunun əvəzinə, bizim botumuz hər bir sadə söhbətdə işlədilə biləcək təsadüfi cavabları verməklə söhbəti davam etdirməyə çalışacaq bir qabiliyyətə sahib olacaq.
+Eliza kimi danışıq botu istifadəçi daxiletməsini qəbul edən, ağıllı şəkildə başa düşən və cavab verə bilən proqramdır. Elizadan fərqli olaraq bizim botun ağıllı söhbət apardığı görünüşü yaraqmaq üçün qaydaları olmayacaq. Bunun əvəzinə bizim botumuz hər bir sadə söhbətdə işlədilə biləcək təsadüfi cavabları verməklə söhbəti davam etdirməyə çalışacaq bir qabiliyyətə sahib olacaq.
 
 ### Plan
 
@@ -147,13 +146,13 @@ Gəlin indi botu yaradaq. Bəzi ifadələri təyin etməklə başlayacağıq.
 
 ---
 
-## 🚀Məşğələ
+## 🚀 Məşğələ
 
 Yuxarıdakı "dayan və düşün" elementlərindən birini seç və onu kodda tətbiq etməyə və ya həlli kağızda kod planı (pseudocode) kimi yazmağa çalış.
 
 Növbəti dərsdə təbii dilin emalı və maşın öyrənməsi üçün bir neçə yanaşma öyrənəcəksən.
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

@@ -6,6 +6,6 @@ Botlar hər yerdədir. Sənin tapşırığın: birini tap və sahiblən! Sən on
 
 ## Rubrika
 
-| Meyarlar | Nümunəvi                                                      | Adekvat                                                                                 | İnkişaf Etdirilməli Olan                   |
-| -------- |  ------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | --------------------- |
+| Meyarlar | Nümunəvi | Adekvat | İnkişaf Etdirilməli Olan |
+| -------- | -------- | ------- | ------------------------ |
 |          | 1 səhifəlik esse yazılmışdır, botun işləmə mexanizmi izahı və onunla olan təcrübən əhatə olunmuşdur | Esse yarımçıqdır və tam araşdırılma yerinə yetirilməyib | Esse hazırlanmayıb |
