@@ -10,7 +10,7 @@ Bu və sonrakı dərsdə siz MÖ aliminin repertuarının digər mövzulardan bi
 
 > 🎥 Zaman seriyalarının proqnozlaşdırılması haqqında olan video üçün yuxarıdakı şəkilə klikləyin.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/41/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/41/)
 
 Zaman seriyalarının proqnozlaşdırılması qiymət, inventar və təchizat zənciri problemlərinə birbaşa tətbiqi nəzərə alınmaqla, biznes üçün real dəyərə malik faydalı və maraqlı sahədir. Gələcək performansı daha yaxşı proqnozlaşdırmaq üçün daha çox məlumat əldə etmək üçün dərin öyrənmə üsullarından istifadə edilməyə başlansa da, zaman seriyalarının proqnozlaşdırılması klassik ML texnikalarına dayalı bir sahə olaraq qalır.
 

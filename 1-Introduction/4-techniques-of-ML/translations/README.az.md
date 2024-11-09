@@ -5,7 +5,7 @@ Maşın öyrənmə modellərinin və onların istifadə etdiyi məlumatların qu
 - Yüksək səviyyədə maşın öyrənməsinin əsasını təşkil edən prosesləri başa düşmək.
 - "Modellər", "proqnozlar" və "təlim məlumatları" kimi əsas anlayışları kəşf etmək.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/?loc=az)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/7/?loc=az)
 
 [![Yeni başlayanlar üçün ML- Maşın öyrənmə texnikaları](https://img.youtube.com/vi/4NGM0U2ZSHU/0.jpg)](https://youtu.be/4NGM0U2ZSHU "Yeni başlayanlar üçün ML- Maşın öyrənmə texnikaları")
 

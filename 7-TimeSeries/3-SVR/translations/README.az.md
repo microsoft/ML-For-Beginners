@@ -2,7 +2,7 @@
 
 Əvvəlki dərsdə ARIMA modeli istifadə etməklə necə zaman seriyalarını proqnozlaşdıra biləcəyini öyrəndin. İndi isə Dəstək vektor reqressor modeli ilə davalı datanın gələcəyini təxmin etməyə baxacaqsan.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/)
 
 ## Giriş
 

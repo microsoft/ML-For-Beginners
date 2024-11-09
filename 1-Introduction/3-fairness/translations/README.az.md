@@ -3,7 +3,7 @@
 ![Eskizdə Maşın öyrənməsində məsuliyyətli AI xülasəsi](../../../sketchnotes/ml-fairness.png)
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) tərəfindən eskiz
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/?loc=az)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/?loc=az)
 
 ## Giriş
 

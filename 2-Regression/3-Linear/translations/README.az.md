@@ -2,7 +2,7 @@
 
 ![Xətti və Polinom reqressiya infoqrafiki](../images/linear-polynomial.png)
 > [Dasani Madipalli](https://twitter.com/dasani_decoded) tərəfindən çəkilmiş infoqrafik
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/?loc=az)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/?loc=az)
 
 > ### [Bu dərs R proqramlaşdırma dili ilə də mövcuddur!](../solution/R/lesson_3.html)
 

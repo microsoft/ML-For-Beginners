@@ -1,12 +1,13 @@
 # Çox işlənən təbii dil emalı tapşırıqları və texnikaları
 
-Əksər *təbii dil emalı* tapşırıqları üçün emal ediləcək mətn hissələrə ayrılmalı, tədqiq edilməli və nəticələr ya haradasa saxlanmalı, ya da qaydalar və data setləri ilə çarpaz istinad edilməlidir. Bu tapşırıqlar proqramçıya mətndəki termin və sözlərin _mənasını_, _niyyətini_ və yaxud da yalnız _tezliyini əldə etməyə imkan verir.
+Əksər *təbii dil emalı* tapşırıqları üçün emal ediləcək mətn hissələrə ayrılmalı, tədqiq edilməli və nəticələr ya haradasa saxlanmalı, ya da qaydalar və data setləri ilə çarpaz istinad edilməlidir. Bu tapşırıqlar proqramçıya mətndəki termin və sözlərin _mənasını_, _niyyətini_ və yaxud da yalnız _tezliyini_ əldə etməyə imkan verir.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/?loc=az)
 
-Mətn emalında tez-tez istifadə olunan texnikaları kəşf edək. Maşın öyrənməsi ilə birlikdə bu üsullar böyük həcmdə mətni səmərəli şəkildə təhlil etməyə kömək edir. Bu tapşırıqlara MÖ tətbiq etməzdən əvvəl, gəlin NLP mütəxəssisinin qarşılaşdığı problemləri anlayaq.
+Mətn emalında tez-tez istifadə olunan texnikaları kəşf edək. Maşın öyrənməsi ilə birlikdə bu üsullar böyük həcmdə mətni səmərəli şəkildə təhlil etməyə kömək edir. Bu tapşırıqlara ML tətbiq etməzdən əvvəl gəlin NLP mütəxəssisinin qarşılaşdığı problemləri anlayaq.
 
 ## NLP-ə xas tapşırıqlar
+
 Üzərində işlədiyiniz mətni təhlil etməyin müxtəlif yolları var. Burada sizin yerinə yetirə biləcəyiniz tapşırıqlar mövcuddur. Həmin tapşırıqlar vasitəsilə siz mətni başa düşə və nəticələr çıxara bilərsiniz. Əksərən bu tapşırıqlar sıra ilə yerinə yetirilir.
 
 ### Tokenləşdirmə
@@ -23,7 +24,7 @@ Yəqin ki, əksər NLP alqoritmlərinin etməli olduğu ilk şey mətni tokenlə
 ![söz daxiletmələri](../images/embedding.png)
 > "I have the highest respect for your nerves, they are my old friends." - **Qürur və Qərəz**-dən bir cümlə üçün söz daxiletmələri. [Jen Looper](https://twitter.com/jenlooper) tərəfindən çəkilmiş infoqrafik.
 
-✅ Söz yerləşdirmələrilə sınaqlar keçirmək üçün [bu maraqlı aləti](https://projector.tensorflow.org/) sınayın. Bir sözə kliklədikdə oxşar sözlərdən ibarət qruplar görünür: 'oyuncaq' ilə 'disney', 'lego', 'playstation' və 'console' klasterləri.
+✅ Söz yerləşdirmələr ilə sınaqlar keçirmək üçün [bu maraqlı aləti](https://projector.tensorflow.org/) sınayın. Bir sözə kliklədikdə oxşar sözlərdən ibarət qruplar görünür: 'oyuncaq' ilə 'disney', 'lego', 'playstation' və 'console' klasterləri.
 
 ### Təhlil & Nitq hissələrinin etiketlənməsi
 
@@ -35,7 +36,7 @@ Tokenləşdirilmiş hər bir söz nitq hissəsi olaraq isim, fel və ya sifət k
 
 Hissələrə ayırma bir cümlədə hansı sözlərin bir-biri ilə əlaqəli olduğunu tanımaqdır - məsələn, `the quick red fox jumped`, `lazy brown dog` ardıcıllığından ayrı olan sifət-isim-fel ardıcıllığıdır.
 
-### Söz və İfadə Tezlikləri
+### Söz və ifadə tezlikləri
 
 Böyük bir mətni təhlil edərkən məsləhətdir ki, hər bir söz və ya söz birləşməsini və onun nə qədər tez rast gəlindiyini göstərən lüğət yaradılsın. `The quick red fox jumped over the lazy brown dog` cümləsindəki `the` 2 söz tezliyinə malikdir.
 
@@ -85,7 +86,7 @@ Onları cümlə üzərində sürüşmə qutusu kimi göstərmək daha asan ola b
 
 ### İsimin çıxarılması
 
-Əksər cümlələrdə cümlənin subyekti və ya obyekti olan isim mövcud olur. İngilis dilində tez-tez həmin isimlərin qarşısında 'a', 'an' və ya 'the' görə bilərik. NLP-də cümlənin mənasını qavramağa çalışarkən, "isimi çıxarmaq" yolu ilə cümlənin subyektinin və ya obyektinin müəyyən edilməsi tez-tez edilən bir üsuldur.
+Əksər cümlələrdə cümlənin subyekti və ya obyekti olan isim mövcud olur. İngilis dilində tez-tez həmin isimlərin qarşısında 'a', 'an' və ya 'the' görə bilərik. NLP-də cümlənin mənasını qavramağa çalışarkən "isimi çıxarmaq" yolu ilə cümlənin subyektinin və ya obyektinin müəyyən edilməsi tez-tez edilən bir üsuldur.
 
 ✅ "I cannot fix on the hour, or the spot, or the look or the words, which laid the foundation. It is too long ago. I was in the middle before I knew that I had begun." cümləsində olan isimləri müəyyənləşdirə bilərsinizmi?
 
@@ -93,13 +94,13 @@ Onları cümlə üzərində sürüşmə qutusu kimi göstərmək daha asan ola b
 
 ### Emosionallıq təhlili
 
-Cümlə və ya mətn, onun emosionallığını təyin etmək və ya nə dərəcədə *müsbət* və ya *mənfi* olması üçün təhlil edilə bilər. Emosionallıq *qütblük* və *obyektivlik/subyektivlik* ilə ölçülür. Qütblülük -1.0-dən 1.0-ə (mənfidən müsbətə) və 0.0-dan 1.0-ə qədər (ən obyektivdən ən subyektivinə) ölçülür.
+Cümlə və ya mətn onun emosionallığını təyin etmək və ya nə dərəcədə *müsbət* və ya *mənfi* olması üçün təhlil edilə bilər. Emosionallıq *qütblük* və *obyektivlik/subyektivlik* ilə ölçülür. Qütblülük -1.0-dən 1.0-ə (mənfidən müsbətə) və 0.0-dan 1.0-ə qədər (ən obyektivdən ən subyektivinə) ölçülür.
 
 ✅ Sonradan öyrənəcəksiniz ki, maşın öyrənməsindən istifadə edərək emosionallığı müəyyən etməyin müxtəlif yolları var, lakin bunun bir yolu insan eksperti tərəfindən müsbət və ya mənfi olaraq təsnif edilən söz və ifadələrin siyahısına sahib olmaq və həmin modeli verilən mətnə tətbiq edərək qütbilik hesabını tapmaqdır. Bu üsulun bəzi hallarda necə işlədiyini və digərlərində daha az yaxşı olacağını görə bilərsinizmi?
 
 ### Bükülmə
 
-Bükülmə, verilən sözə görə həmin sözün tək və ya cəm halını əldə etməyə imkan verir.
+Bükülmə verilən sözə görə həmin sözün tək və ya cəm halını əldə etməyə imkan verir.
 
 ### Lemmatizasiya(Söz kökünün müəyyən olunması)
 
@@ -109,15 +110,15 @@ NLP tədqiqatçısı üçün faydalı data bazaları da mövcuddur, xüsusən:
 
 ### WordNet
 
-[WordNet](https://wordnet.princeton.edu/) hər bir söz üçün müxtəlif dillərdə onların qarşılığı, sinonimləri, antonimləri və bir çox başqa təfərrüatları özündə saxlayan lüğət bazasıdır. Tərcümələr, orfoqrik yoxlayıcılar və ya istənilən növ dil alətləri yaratmaq üçün inanılmaz dərəcədə faydalıdırlar.
+[WordNet](https://wordnet.princeton.edu/) hər bir söz üçün müxtəlif dillərdə onların qarşılığı, sinonimləri, antonimləri və bir çox başqa təfərrüatları özündə saxlayan lüğət bazasıdır. Tərcümələr, orfoqrafik yoxlayıcılar və ya istənilən növ dil alətləri yaratmaq üçün inanılmaz dərəcədə faydalıdırlar.
 
-## NLP Kitabxanaları
+## NLP kitabxanaları
 
-Xoşbəxtlikdən, bu texnikaların hamısını özünüzün yaratmasına ehtiyac yoxdur. Çünki təbii dil emalı və ya maşın öyrənməsi üzrə ixtisaslaşmamış tərtibatçılar üçün onu daha əlçatan edən əla Python kitabxanaları mövcuddur. Növbəti dərslərdə bunlara dair daha çox nümunə olacaq, lakin burada növbəti tapşırığı yerinə yetirməkdə sizə kömək etmək üçün bəzi faydalı nümunələr öyrənəcəksiniz.
+Xoşbəxtlikdən bu texnikaların hamısını özünüzün yaratmasına ehtiyac yoxdur. Çünki təbii dil emalı və ya maşın öyrənməsi üzrə ixtisaslaşmamış tərtibatçılar üçün onu daha əlçatan edən əla Python kitabxanaları mövcuddur. Növbəti dərslərdə bunlara dair daha çox nümunə olacaq, lakin burada növbəti tapşırığı yerinə yetirməkdə sizə kömək etmək üçün bəzi faydalı nümunələr öyrənəcəksiniz.
 
 ### Tapşırıq - `TextBlob` kitabxanasından istifadə etmək
 
-Gəlin bu tip tapşırıqların həlli üçün faydalı API-ləri ehtiva edən TextBlob adlı kitabxanadan istifadə edək. TextBlob, "[NLTK](https://nltk.org) və [pattern](https://github.com/clips/pattern)-in nəhəng çiyinləri üzərində dayanır və hər ikisi ilə yaxşı uyğunlaşır." Onun API-sinə daxil edilmiş xeyli miqdarda MÖ var.
+Gəlin bu tip tapşırıqların həlli üçün faydalı API-ləri ehtiva edən TextBlob adlı kitabxanadan istifadə edək. TextBlob, "[NLTK](https://nltk.org) və [pattern](https://github.com/clips/pattern)-in nəhəng çiyinləri üzərində dayanır və hər ikisi ilə yaxşı uyğunlaşır." Onun API-sinə daxil edilmiş xeyli miqdarda ML var.
 
 > Qeyd: Təcrübəli Python tərtibatçıları üçün tövsiyə olunan faydalı [Quick Start](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) bələdçisi TextBlob üçün mövcuddur.
 
@@ -137,11 +138,11 @@ Gəlin bu tip tapşırıqların həlli üçün faydalı API-ləri ehtiva edən T
     np = user_input_blob.noun_phrases
     ```
 
-     > Burada nə baş verir? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) "ConLL-2000 ilə öyrədilmiş yığın təhlilindən istifadə edən isim çıxarıcı öyrətmə korpusudur”. ConLL-2000, 2000-ci ildə Hesabi Təbii Dil Öyrənmə Konfransına işarə edir. Hər il bu konfrans çətin bir NLP problemini həll etmək üçün seminar keçirir. 2000-ci ildə isə bu problem isim parçalanması olmuşdur. Həmin model Wall Street Journal-dakı "15-18-ci bölmələri öyrətmə datası (211727 token) və 20-ci bölməni isə test datası (47377 token)" kimi götürərək hazırlanmışdır. Siz istifadə olunan prosedurlara [burada](https://www.clips.uantwerpen.be/conll2000/chunking/) və nəticələrə [burada](https://ifarm.nl/erikt/research/np-chunking.html) baxa bilərsiniz.
+     > Burada nə baş verir? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) "ConLL-2000 ilə öyrədilmiş toplu təhlilindən istifadə edən isim çıxarıcı öyrətmə korpusudur”. ConLL-2000 2000-ci ildə Hesabi Təbii Dil Öyrənmə Konfransına işarə edir. Hər il bu konfrans çətin bir NLP problemini həll etmək üçün seminar keçirir. 2000-ci ildə isə bu problem isim parçalanması olmuşdur. Həmin model Wall Street Journal-dakı "15-18-ci bölmələri öyrətmə datası (211727 token) və 20-ci bölməni isə test datası (47377 token)" kimi götürərək hazırlanmışdır. Siz istifadə olunan prosedurlara [burada](https://www.clips.uantwerpen.be/conll2000/chunking/), nəticələrə isə [buradan](https://ifarm.nl/erikt/research/np-chunking.html) baxa bilərsiniz.
 
 ### Çağırış - NLP ilə botunuzun təkmilləşdirilməsi
 
-Əvvəlki dərsdə siz çox sadə bir sual-cavab botu yaratmışdınız. İndi, əhval-ruhiyyə üçün daxil etdiyinizi təhlil edərək və əhval-ruhiyyəyə uyğun cavabı çap etməklə Marvini bir az daha anlayışlı etmiş olacaqsınız. Bundan əlavə, həmçinin siz `isimi` təyin etməli və bu barədə soruşmalısınız.
+Əvvəlki dərsdə siz çox sadə bir sual-cavab botu yaratmışdınız. İndi əhval-ruhiyyə üçün daxil etdiyinizi təhlil edərək və əhval-ruhiyyəyə uyğun cavabı çap etməklə Marvini bir az daha anlayışlı etmiş olacaqsınız. Bundan əlavə, həmçinin siz `isimi` təyin etməli və bu barədə soruşmalısınız.
 
 Daha yaxşı danışıq botu qurarkən atmalı olduğunuz addımlar bunlardır:
 
@@ -190,15 +191,15 @@ Tapşırığın mümkün həlli [buradadır](https://github.com/microsoft/ML-For
 
 ✅ Bilik yoxlanışı
 
-1. Sizcə, anlayışlı cavablar kimisə botun həqiqətən də onları başa düşdüyünü düşünməyə 'inandıra biləcək'?
+1. Sizcə anlayışlı cavablar kimisə botun həqiqətən də onları başa düşdüyünü düşünməyə 'inandıra biləcək'?
 2. İsimi müəyyən etmək botu daha 'inandırıcı' edirmi?
 3. Nəyə görə cümlədən 'isimi' çıxarmaq faydalı olardı?
 
-## 🚀Məşğələ
+## 🚀 Məşğələ
 
 Əvvəlki bilik yoxlamasındakı tapşırığı götürün və onu həyata keçirməyə çalışın. Botu dostunuz vasitəsilə test edin. Onu aldada bilərmi? Botunuzu daha 'inandırıcı' edə bilərsinizmi?
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

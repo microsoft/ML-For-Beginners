@@ -1,6 +1,6 @@
 # Postskipt: Maşın öyrənməsində Məsul AI idarə paneli komponentləri ilə model analizi
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/5/)
 
 ## Giriş
 

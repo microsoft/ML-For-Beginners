@@ -2,7 +2,7 @@
 
 Əvvəlki dərsdə həll etdiyimiz problem əslində real həyat ssenariləri üçün uyğun olmadığı üçün oyuncaq problem kimi görünə bilər. Amma bu belə deyil, çünki Şahmat və ya Go oynamaq kimi bir çox real dünya problemləri də bu ssenarini bölüşür. Onlar arasındakı oxşarlığın səbəbi bizdə də verilmiş qaydalar və **diskret vəziyyəti** olan lövhəmizin olmasıdır.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
 
 ## Giriş
 

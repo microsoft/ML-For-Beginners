@@ -11,7 +11,7 @@ Oyunda sağ qalaraq və mümkün olduğu qədər yuxarı xal toplamaqla mükafat
 
 > 🎥 Dmitrinin Gücləndirilmiş Öyrənmə barədə olan müzakirəsini dinləmək üçün yuxarıdakı şəkilə klikləyin
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/45/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/45/)
 
 ## İlkin Şərtlər və Quraşdırma
 

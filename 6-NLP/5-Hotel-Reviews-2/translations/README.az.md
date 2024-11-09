@@ -2,7 +2,7 @@
 
 Sən artıq dataseti ətraflı kəşf etmisən və indi sütunları filtrasiya edərək yeni məlumatlar toplamaq üçün NLP texnikalarını tətbiq edəcəksən.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
 
 ### Filtrasiya və fikir analizi əməliyyatları
 

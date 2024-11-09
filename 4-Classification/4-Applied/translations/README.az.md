@@ -8,7 +8,7 @@ Maşın öyrənməsinin ən faydalı praktik istifadələrindən biri tövsiyə 
 
 > 🎥 Video üçün yuxardakı şəklə klikləyin: Jen Looper qruplaşdırılmış mətbəx datası istifadə etməklə veb tətbiq yaradır.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/?loc=az)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/?loc=az)
 
 Bu dərsdə öyrənəcəksiniz:
 

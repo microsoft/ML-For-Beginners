@@ -30,7 +30,7 @@ Bu klassik texnikaları dünyanın bir çox yerindən olan datalara tətbiq etdi
 
 **[Tələbələr](https://aka.ms/student-page)**, bu kurrikulumdan istifadə etmək üçün reponu öz GitHub hesabınıza kopyalayın və tapşırıqları özünüz tək və ya qrup şəklində tamamlayın:
 
-- Mühazirə öncəsi quiz ilə başlayın.
+- Mühazirədən əvvəl test ilə başlayın.
 - Mühazirəni oxuyun və hər bir bilik yoxlamasında olan fəaliyyətləri tamamlayın.
 - Həll kodunu işlətməkdənsə, dərsləri dərk edərək layihələri qurmağa çalışın; lakin bu kodlar hər bir layihə yönümlü dərsin `/solution` qovluğunda mövcuddur.
 - Mühazirədən sonrakı quizdə iştirak edin.
@@ -75,7 +75,7 @@ Məzmunun layihələrə uyğun olmasını təmin etməklə proses tələbələr 
 - dərslə bağlı eskiz
 - əlavə video material
 - video təlimatlar (yalnız bəzi dərslər)
-- mühazirə öncəsi quiz
+- Mühazirədən əvvəl test
 - yazılı dərs
 - layihə əsaslı dərslər üçün, layihənin necə qurulmasına dair addımlı təlimatlar
 - biliyin yoxlanması

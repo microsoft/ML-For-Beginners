@@ -6,7 +6,7 @@
 
 > 🎥 Video üçün yuxarıdakı şəkilə klikləyin: ARIMA modellərinə qısa giriş. Nümunə R dilində olsa da, anlayışlar universaldır.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
 
 ## Giriş
 

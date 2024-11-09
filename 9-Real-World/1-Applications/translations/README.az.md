@@ -7,7 +7,7 @@ Bu kurikulumda, sən öyrətmə datasının bir neçə hazırlama üsulunu və m
 
 Sənayedə daha çox maraq AI, dərin öyrənmə ətrafında çox maraq toplansa da, hələ də klassik maşın öyrənmə modelləri üçün çoxlu dəyərli tətbiqlər var. Sən bu tətbiqlərin hətta bəzilərini bugün istifadə etmisən! Bu dərsdə sən 8 fərqli sənayədə və ixtisaslaşmış sahədə bu modelləri istifadə etməklə tətbiqləri istifadəçilərə necə daha məhsuldar, etibarlı, ağıllı və dəyərli edildiyini kəşf edəcəksən.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/49/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/49/)
 
 ## 💰 Maliyyə
 

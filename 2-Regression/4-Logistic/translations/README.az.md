@@ -2,7 +2,7 @@
 
 ![Logistik və xətti reqressiya infoqrafiki](../images/linear-vs-logistic.png)
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/?loc=az)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/?loc=az)
 
 > ### [Bu dərs R proqramlaşdırma dili ilə də mövcuddur!](../solution/R/lesson_4.html)
 
