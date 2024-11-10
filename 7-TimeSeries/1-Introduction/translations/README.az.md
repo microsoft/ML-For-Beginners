@@ -4,15 +4,15 @@
 
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) tərəfindən çəkilmiş eskiz
 
-Bu və sonrakı dərsdə siz MÖ aliminin repertuarının digər mövzulardan bir qədər az tanınan maraqlı və dəyərli hissəsi olan zaman seriyalarının proqnozlaşdırılması haqqında öyrənəcəksiniz. Bu proqnozlaşdırma bir növ 'kristal kürə'-ə bənzəyir: məsələn, qiymət dəyişəninin keçmiş performansına əsaslanaraq, onun gələcək potensial dəyərini təxmin edə bilərsiniz.
+Bu və sonrakı dərsdə siz ML mühəndisinin repertuarının digər mövzulardan bir qədər az tanınan maraqlı və dəyərli hissəsi olan zaman seriyalarının proqnozlaşdırılması haqqında öyrənəcəksiniz. Bu proqnozlaşdırma bir növ 'kristal kürə'-yə bənzəyir: məsələn, qiymət dəyişəninin keçmiş performansına əsaslanaraq, onun gələcək potensial dəyərini təxmin edə bilərsiniz.
 
 [![Zaman seriyalarının proqnozlaşdırılmasına giriş](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Zaman seriyalarının proqnozlaşdırılmasına giriş")
 
 > 🎥 Zaman seriyalarının proqnozlaşdırılması haqqında olan video üçün yuxarıdakı şəkilə klikləyin.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/41/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/41/?loc=az)
 
-Zaman seriyalarının proqnozlaşdırılması qiymət, inventar və təchizat zənciri problemlərinə birbaşa tətbiqi nəzərə alınmaqla, biznes üçün real dəyərə malik faydalı və maraqlı sahədir. Gələcək performansı daha yaxşı proqnozlaşdırmaq üçün daha çox məlumat əldə etmək üçün dərin öyrənmə üsullarından istifadə edilməyə başlansa da, zaman seriyalarının proqnozlaşdırılması klassik ML texnikalarına dayalı bir sahə olaraq qalır.
+Zaman seriyalarının proqnozlaşdırılması qiymət, inventar və təchizat zənciri problemlərinə birbaşa tətbiqi nəzərə alınmaqla biznes üçün real dəyərə malik faydalı və maraqlı sahədir. Gələcək performansı daha yaxşı proqnozlaşdırmaq üçün daha çox məlumat əldə etmək üçün dərin öyrənmə üsullarından istifadə edilməyə başlansa da, zaman seriyalarının proqnozlaşdırılması klassik ML texnikalarına əsaslanan bir sahə olaraq qalır.
 
 > Penn State-in faydalı zaman seriyası kurrikulumuna [burada](https://online.stat.psu.edu/stat510/lesson/1) baxa bilərsiniz.
 
@@ -20,13 +20,13 @@ Zaman seriyalarının proqnozlaşdırılması qiymət, inventar və təchizat z�
 
 Tutaq ki, siz onların nə qədər tez-tez istifadə edildiyi və zamanla nə qədər müddətə istifadə edildiyi barədə məlumat verən bir seriya ağıllı parkomatlara sahibsiniz.
 
-> Əgər tələb və təklif qaydalarına uyğun olaraq, sayğacın keçmiş performansına əsaslanıb onun gələcək dəyərini proqnozlaşdıra bilsəydiniz, bunanla nə edərdiniz?
+> Əgər tələb və təklif qaydalarına uyğun olaraq sayğacın keçmiş performansına əsaslanıb onun gələcək dəyərini proqnozlaşdıra bilsəydiniz, bunanla nə edərdiniz?
 
 Məqsədinizə çatmaq üçün nə vaxt hərəkət edəcəyinizi dəqiq proqnozlaşdırmaq zaman seriyalarının proqnozlaşdırılması ilə həll edilə bilən bir problemdir. Pik saatlarda dayanacaq yeri axtaran insanlardan daha çox ödəniş almaq onları sevindirməz, lakin bu, küçələri təmizləmək üçün gəlir əldə etməyin etibarlı yolu olardı!
 
-Gəlin zaman seriyaları alqoritmlərinin bəzi növlərini araşdıraq və dəftərçəni yaratmaqla bəzi məlumatları təmizləmək və hazırlamağa başlayaq. Təhlil edəcəyiniz data GEFCom2014 proqnozlaşdırma müsabiqəsindən götürülmüşdür. Həmin data, 2012 və 2014-cü illər arasında 3 illik, saatlıq elektrik yükü və temperatur dəyərlərindən ibarətdir. Elektrik yükünün və temperaturun tarixi nümunələrini nəzərə alaraq, elektrik yükünün gələcək dəyərlərini proqnozlaşdıra bilərsiniz.
+Gəlin zaman seriyaları alqoritmlərinin bəzi növlərini araşdıraq və notbuk yaratmaqla bəzi məlumatları təmizləmək və hazırlamağa başlayaq. Təhlil edəcəyiniz data GEFCom2014 proqnozlaşdırma müsabiqəsindən götürülmüşdür. Həmin data, 2012 və 2014-cü illər arasında 3 illik, saatlıq elektrik yükü və temperatur dəyərlərindən ibarətdir. Elektrik yükünün və temperaturun tarixi nümunələrini nəzərə alaraq elektrik yükünün gələcək dəyərlərini proqnozlaşdıra bilərsiniz.
 
-Bu nümunədə siz, yalnız keçmiş yükləmə datasından istifadə edərək bir addım irəlini proqnozlaşdırmağı öyrənəcəksiniz. Başlamazdan əvvəl, ekran arxasında nələrin baş verdiyini anlamaqda fayda var.
+Bu nümunədə siz yalnız keçmiş yükləmə datasından istifadə edərək bir addım irəlini proqnozlaşdırmağı öyrənəcəksiniz. Başlamazdan əvvəl ekran arxasında nələrin baş verdiyini anlamaqda fayda var.
 
 ## Bəzi təriflər
 
@@ -34,11 +34,11 @@ Bu nümunədə siz, yalnız keçmiş yükləmə datasından istifadə edərək b
 
 🎓 **Zaman seriyaları**
 
-Riyaziyyatda "zaman seriyası, vaxt sırasına görə indeksləşdirilmiş(və ya siyahıya alınmış, yaxud da qrafikləşdirilmiş) data nöqtələrinin sırasıdır. Ən çox yayılmış zaman seriyası, zamanın ardıcıl bərabər məsafəli nöqtələrində götürülən ardıcıllıqdır." Zaman seriyasına misal olaraq [Dow Jones Sənaye Ortalamasının](https://wikipedia.org/wiki/Time_series) gündəlik bağlanış dəyərini göstərmək olar. Zaman seriyalarının qrafiklərindən və statistik modelləşdirməsindən istifadəyə tez-tez siqnalların işlənməsi, hava proqnozu, zəlzələnin proqnozlaşdırılması və hadisələrin baş verdiyi müddətdə məlumat nöqtələrinin zamanla tərtib oluna biləcəyi digər sahələrdə rast gəlinir.
+Riyaziyyatda "zaman seriyası vaxt sırasına görə indeksləşdirilmiş(və ya siyahıya alınmış, yaxud da qrafikləşdirilmiş) data nöqtələrinin sırasıdır. Ən çox yayılmış zaman seriyası zamanın ardıcıl bərabər məsafəli nöqtələrində götürülən ardıcıllıqdır." Zaman seriyasına misal olaraq [Dow Jones Sənaye Ortalamasının](https://wikipedia.org/wiki/Time_series) gündəlik bağlanış dəyərini göstərmək olar. Zaman seriyalarının qrafiklərindən və statistik modelləşdirməsindən istifadəyə tez-tez siqnalların işlənməsi, hava proqnozu, zəlzələnin proqnozlaşdırılması və hadisələrin baş verdiyi müddətdə məlumat nöqtələrinin zamanla tərtib oluna biləcəyi digər sahələrdə rast gəlinir.
 
 🎓 **Zaman seriyalarının təhlili**
 
-Zaman seriyalarının təhlili, yuxarıda qeyd olunan zaman seriyası məlumatlarının təhlilidir. Zaman seriyası dataları müxtəlif formalarda ola bilər. Onlardan biri, fasilə verən hadisədən əvvəl və sonra bir zaman seriyasındakı qanunauyğunluqları aşkarlayan "kəsintili zaman seriyası"-dır. Zaman seriyası üçün lazım olan analiz növü məlumatların xarakterindən asılıdır. Məlumatların özü isə nömrələr və ya simvollar seriyası formasında ola bilər.
+Zaman seriyalarının təhlili yuxarıda qeyd olunan zaman seriyası məlumatlarının təhlilidir. Zaman seriyası dataları müxtəlif formalarda ola bilər. Onlardan biri fasilə verən hadisədən əvvəl və sonra bir zaman seriyasındakı qanunauyğunluqları aşkarlayan "kəsintili (diskret) zaman seriyası"-dır. Zaman seriyası üçün lazım olan analiz növü məlumatların xarakterindən asılıdır. Məlumatların özü isə nömrələr və ya simvollar seriyası formasında ola bilər.
 
 İcrası nəzərdə tutulan təhlildə tezlik-domen və zaman-domen, xətti və qeyri-xətti və s. daxil olmaqla müxtəlif üsullardan istifadə edilir. Bu tip dataların analiz üsulları barədə ətraflı məlumatı [buradan](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) öyrənə bilərsiniz.
 
@@ -46,13 +46,13 @@ Zaman seriyalarının təhlili, yuxarıda qeyd olunan zaman seriyası məlumatla
 
 Zaman seriyalarının proqnozlaşdırılması, keçmişdə toplanmış dataların yaratdığı qanunauyğunluğa əsasən gələcək dəyərləri proqnozlaşdırmaq üçün hansısa bir modeldən istifadə etməkdir. Zaman seriyası datalarını tədqiq etmək üçün reqressiya modellərindən istifadə etmək mümkün olsa da, belə məlumatlar xüsusi model tiplərindən istifadə etməklə ən yaxşı şəkildə təhlil edilir.
 
-Zaman seriyası, datası xətti reqressiya ilə təhlil edilə bilən məlumatlardan fərqli olaraq, ardıcıl müşahidələrin siyahısıdır. Ən çox yayılmışı ARIMA-dır, açılışı "Autoregressive Integrated Moving Average" deməkdir.
+Zaman seriyası datası xətti reqressiya ilə təhlil edilə bilən məlumatlardan fərqli olaraq ardıcıl müşahidələrin siyahısıdır. Ən çox yayılmışı ARIMA-dır, açılışı "Autoregressive Integrated Moving Average" deməkdir.
 
-[ARIMA modelləri](https://online.stat.psu.edu/stat510/lesson/1/1.1) "seriyanın indiki dəyərini keçmiş dəyərlər və keçmiş proqnoz xətaları ilə əlaqələndirir." Onlar məlumatların zamanla seriyalandığı zaman domen məlumatlarını təhlil etmək üçün ən uyğun variantdırlar.
+[ARIMA modelləri](https://online.stat.psu.edu/stat510/lesson/1/1.1) "seriyanın indiki dəyərini keçmiş dəyərlər və keçmiş proqnoz xətaları ilə əlaqələndirir." Onlar məlumatların zamanla seriyalandığı zaman-domen məlumatlarını təhlil etmək üçün ən uyğun variantdırlar.
 
 > ARIMA modellərinin bir neçə növü var ki, onlar haqqında [burada](https://people.duke.edu/~rnau/411arim.htm) öyrənə bilərsiniz. Növbəti dərsdə onlar barədə öyrənəcəksiniz.
 
-Növbəti dərsdə siz, dəyərini zaman yeniləyən bir dəyişənə fokuslanan [Univariate Time Series](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm) istifadə edərək ARIMA modeli quracaqsınız. Bu tip məlumatlara misal olaraq, Mauna Loa Rəsədxanasında aylıq karbon qazı konsentrasiyasını qeyd edən [bu verilənlər bazası](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) ola bilər:
+Növbəti dərsdə siz dəyərini zamanla yenilənən bir dəyişənə fokuslanan [Univariate Time Series](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm) istifadə edərək ARIMA modeli quracaqsınız. Bu tip məlumatlara misal olaraq Mauna Loa Rəsədxanasında aylıq karbon qazı konsentrasiyasını qeyd edən [bu verilənlər bazası](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) ola bilər:
 
 |  CO2   | YearMonth | Year  | Month |
 | :----: | :-------: | :---: | :---: |
@@ -73,7 +73,7 @@ Növbəti dərsdə siz, dəyərini zaman yeniləyən bir dəyişənə fokuslanan
 
 ## Nəzərə alınmalı Zaman seriyası data xarakteristikaları
 
-Zaman seriyası məlumatlarına baxarkən onların daha yaxşı başa düşmək üçün nəzərə almalı və azaltmalı olduğunuz [müəyyən xüsusiyyətlərə](https://online.stat.psu.edu/stat510/lesson/1/1.1) malik olduğunu görə bilərsiniz. Əgər siz zaman seriyası datalarını, analiz etmək istədiyiniz potensial 'sinqal' ötürücüsü olaraq görürsünüzə, bu xüsusiyyətlər “səs-küy” kimi düşünülə bilər. Siz tez-tez müxtəlif statistik üsullardan istifadə edərək həmin xüsusiyyətlərin bəzilərini əvəz etməklə 'səs-küyü' azaltmalı olacaqsınız.
+Zaman seriyası məlumatlarına baxarkən onların daha yaxşı başa düşmək üçün nəzərə almalı və azaltmalı olduğunuz [müəyyən xüsusiyyətlərə](https://online.stat.psu.edu/stat510/lesson/1/1.1) malik olduğunu görə bilərsiniz. Əgər siz zaman seriyası datalarını analiz etmək istədiyiniz potensial 'sinqal' ötürücüsü olaraq görürsünüzə, bu xüsusiyyətlər “səs-küy” kimi düşünülə bilər. Siz tez-tez müxtəlif statistik üsullardan istifadə edərək həmin xüsusiyyətlərin bəzilərini əvəz etməklə 'səs-küyü' azaltmalı olacaqsınız.
 
 Zaman seriyaları ilə işləyə bilmək üçün bilməli olduğunuz bəzi anlayışlar bunlardır:
 
@@ -91,7 +91,7 @@ Kənar göstəricilər standart məlumat fərqindən çox uzaqdır.
 
 🎓 **Uzun müddətli dövr**
 
-Mövsümilikdən asılı olmayaraq, məlumatlar bir ildən çox davam edən iqtisadi tənəzzül kimi uzunmüddətli dövrü göstərə bilər.
+Mövsümilikdən asılı olmayaraq məlumatlar bir ildən çox davam edən iqtisadi tənəzzül kimi uzunmüddətli dövrü göstərə bilər.
 
 🎓 **Daimi fərq**
 
@@ -101,7 +101,7 @@ Zaman keçdikcə bəzi məlumatlar gecə və gündüz enerji istifadəsi kimi da
 
 Verilənlər əlavə təhlilə ehtiyac duyan qəfil dəyişikliklər göstərə bilər. Məsələn, COVID səbəbiylə müəssisələrin qəfil bağlanması məlumatların dəyişməsinə səbəb oldu.
 
-✅ Burada bir neçə il ərzində, günlük oyundaxili satışları göstərən bir [nümunə zaman seriyası süjeti](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) verilmişdir. Göstərilən datada yuxarıda sadalanan xüsusiyyətlərdən hansıları sezə bilərsiniz?
+✅ Burada bir neçə il ərzində, günlük oyundaxili satışları göstərən bir [nümunə zaman seriyası qrafiki](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) verilmişdir. Göstərilən datada yuxarıda sadalanan xüsusiyyətlərdən hansılarını sezə bilərsiniz?
 
 ![Oyundaxili satış xərcləri](../images/currency.png)
 
@@ -170,11 +170,11 @@ Növbəti dərsdə bəzi proqnozlar yaratmaq üçün ARIMA modeli yaradacaqsın�
 
 ---
 
-## 🚀Çağırış
+## 🚀 Məşğələ
 
 Zaman seriyalarının proqnozlaşdırılmasından faydalanacağını düşünə biləcəyiniz bütün sənaye və araşdırma sahələrinin siyahısını tərtib edin. Bu texnikaların incəsənətdə tətbiqi barədə düşünə bilərsinizmi? Ekonometrikada? Ekologiya? Pərakəndə satış? Sənaye? Maliyyə? Başqa harada?
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/42/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/42/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

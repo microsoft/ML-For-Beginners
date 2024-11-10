@@ -1,22 +1,22 @@
 # ARIMA ilə zaman seriyalarının proqnozlaşdırılması
 
-Əvvəlki dərsdə siz zaman sıralarının proqnozlaşdırılması haqqında öyrəndiniz. Əlavə olaraq isə, zamanla elektrik yükünün dalğalanmalarını göstərən verilənlər toplusunu yüklədiniz.
+Əvvəlki dərsdə siz zaman seriyalarının proqnozlaşdırılması haqqında öyrəndiniz. Əlavə olaraq isə zamanla elektrik yükünün dalğalanmalarını göstərən verilənlər toplusunu yüklədiniz.
 
 [![ARIMA-a giriş](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "ARIMA-a giriş")
 
 > 🎥 Video üçün yuxarıdakı şəkilə klikləyin: ARIMA modellərinə qısa giriş. Nümunə R dilində olsa da, anlayışlar universaldır.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/?loc=az)
 
 ## Giriş
 
-Bu dərsdə siz [ARIMA: *A*uto*R*egressive *I*inteqrasiya edilmiş *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average) ilə modellər qurmağın xüsusi üsulunu kəşf edəcəksiniz. ARIMA modelləri [qeyri-stasionarlığı](https://wikipedia.org/wiki/Stationary_process) göstərən datalara uyğunlaşdırılmışdır.
+Bu dərsdə siz [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average) ilə modellər qurmağın xüsusi üsulunu kəşf edəcəksiniz. ARIMA modelləri [qeyri-stasionarlığı](https://wikipedia.org/wiki/Stationary_process) göstərən datalara uyğunlaşdırılmışdır.
 
 ## Ümumi anlayışlar
 
 ARIMA ilə işləyə bilmək üçün bilməli olduğunuz bəzi anlayışlar var:
 
-- 🎓 **Stasionarlıq**. Statistik kontekstdən götürsək, stasionarlıq, zaman dəyişsə də paylanması dəyişməyən datalara aid bir anlayışdır. Beləliklə, qeyri-stasionar data, təhlil edilmək üçün transformasiya edilməli olan tendensiyalara görə dalğalanmaları göstərir. Məsələn, mövsümilik, məlumatlarda dalğalanmalar yarada bilər və “mövsümi fərqləndirmə” prosesi ilə aradan qaldırıla bilər.
+- 🎓 **Stasionarlıq**. Statistik kontekstdən götürsək, stasionarlıq zaman dəyişsə də paylanması dəyişməyən datalara aid bir anlayışdır. Beləliklə, qeyri-stasionar data təhlil edilmək üçün transformasiya edilməli olan tendensiyalara görə dalğalanmaları göstərir. Məsələn, mövsümilik məlumatlarda dalğalanmalar yarada bilər və “mövsümi fərqləndirmə” prosesi ilə aradan qaldırıla bilər.
 
 - 🎓 **[Fərqləndirmə](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Fərqləndirmə, yenə də statistik kontekstdən götürsək, qeyri-stasionar məlumatların qeyri-sabit tendensiyasını aradan qaldıraraq stasionar hala gətirmək üçün çevrilməsi prosesinə deyilir. "Fərqləndirmə zaman seriyasının səviyyəsindəki dəyişiklikləri, trend və mövsümiliyi aradan qaldırır və nəticədə zaman seriyasının orta dəyərini sabitləşdirir." [Shixiong və digərlərinin müəllifi olduğu məqalə](https://arxiv.org/abs/1904.07632)
 
@@ -24,19 +24,19 @@ ARIMA ilə işləyə bilmək üçün bilməli olduğunuz bəzi anlayışlar var:
 
 ARIMA-nın vaxt seriyalarını modelləşdirməyə və ona qarşı proqnozlar verməyə necə kömək etdiyini araşdıraq.
 
-- **AR - AvtoReqressiv**. Avtoreqressiv modellər, adından da göründüyü kimi, məlumatlarınızdakı əvvəlki dəyərləri təhlil etmək və onlar haqqında fərziyyələr irəli sürmək üçün zamanda "geriyə" baxır. Həmin əvvəlki dəyərlər “geriləmiş” adlanır. Məsələn, qələmlərin aylıq satışını göstərən məlumatlar. Hər ayın ümumi satışları datasetdə "inkişaf edən dəyişən" hesab olunacaq. Bu model "inkişaf edən maraq dəyişəninin öz geridə qalmış (yəni əvvəlki) dəyərlərinə dönməsi" kimi qurulmuşdur. [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)x
+- **AR - AvtoReqressiv**. Avtoreqressiv modellər, adından da göründüyü kimi, məlumatlarınızdakı əvvəlki dəyərləri təhlil etmək və onlar haqqında fərziyyələr irəli sürmək üçün zamanda "geriyə" baxır. Həmin əvvəlki dəyərlər “geriləmiş” adlanır. Məsələn, qələmlərin aylıq satışını göstərən məlumatlar. Hər ayın ümumi satışları datasetdə "inkişaf edən dəyişən" hesab olunacaq. Bu model "inkişaf edən maraq dəyişəninin öz geridə qalmış (yəni əvvəlki) dəyərlərinə dönməsi" kimi qurulmuşdur. [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
 - **I - İnteqrasiya**. Oxşar "ARMA" modellərindən fərqli olaraq, ARIMA-dakı "I" onun *[inteqrasiya edilmiş](https://wikipedia.org/wiki/Order_of_integration)* olmasına işarə edir. Qeyri-stasionarlığı aradan qaldırmaq üçün fərqli addımlar tətbiq edildikdə məlumatlar “inteqrasiya olunur”.
 
 - **MA - Moving Average(Dəyişkən Orta Dəyər)**. Bu modelin [dəyişkən orta dəyər](https://wikipedia.org/wiki/Moving-average_model) aspekti geriləmiş dəyərlərin cari və keçmiş qiymətlərini müşahidə etməklə müəyyən edilən çıxış dəyişəninə aiddir.
 
-Qeyd: ARIMA modeli zaman seriyası məlumatlarının xüsusi formasına mümkün qədər yaxından uyğunlaşdırmaq üçün istifadə olunur.
+Qeyd: ARIMA modeli zaman seriyası datalarının xüsusi formasına mümkün qədər yaxından uyğunlaşdırmaq üçün istifadə olunur.
 
 ## Tapşırıq - ARIMA modelini qurun
 
-Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) qovluğunu açın və [_notebook.ipynb_] faylını tapın (https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb).
+Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) qovluğunu açın və [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) faylını tapın .
 
-1. ARIMA modellərində sizə lazım olacaq `statsmodels` Python kitabxanasını yükləmək üçün dəftərçəni işə salın.
+1. ARIMA modellərində sizə lazım olacaq `statsmodels` Python kitabxanasını yükləmək üçün notbuku işə salın.
 
 1. Lazımi kitabxanaları yükləyin
 
@@ -81,9 +81,9 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
 
     İndi, modeli quraq!
 
-### Öyrətmə və test data setlərini yaradın
+### Öyrətmə və test datasetlərini yaradın
 
-İndi datalarımız yükləndi, beləliklə siz onları öyrətmə və test dəstlərinə ayıra bilərsiniz. Modelinizi öyrətmə dəstində öyrədəcəksiniz. Həmişə olduğu kimi, modelin öyrədilməsini bitirdikdən sonra siz test setindən istifadə edərək onun düzgünlüyünü qiymətləndirəcəksiniz. Modelin gələcək zaman dilimlərindən məlumat əldə etməməsini təmin etmək üçün test setinin, öyrətmə setindən sonrakı dövrü əhatə etdiyinə əmin olmalısınız.
+İndi datalarımız yükləndi, beləliklə siz onları öyrətmə və test setlərinə ayıra bilərsiniz. Modelinizi öyrətmə dəstində öyrədəcəksiniz. Həmişə olduğu kimi modelin öyrədilməsini bitirdikdən sonra siz test setindən istifadə edərək onun düzgünlüyünü qiymətləndirəcəksiniz. Modelin gələcək zaman dilimlərindən məlumat əldə etməməsini təmin etmək üçün test setinin öyrətmə setindən sonrakı dövrü əhatə etdiyinə əmin olmalısınız.
 
 1. Öyrətmə setinə 2014-cü il sentyabrın 1-dən oktyabrın 31-dək iki aylıq müddət ayırın. Data setinə 2014-cü il noyabrın 1-dən dekabrın 31-dək olan iki aylıq dövr daxildir:
 
@@ -107,15 +107,15 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
 
     ![öyrətmə və test dataları](../images/train-test.png)
 
-    Buna görə də, öyrətmə dataları üçün nisbətən kiçik bir zaman pəncərəsindən istifadə etmək bizə kifayət edəcək.
+    Buna görə də öyrətmə dataları üçün nisbətən kiçik bir zaman pəncərəsindən istifadə etmək bizə kifayət edəcək.
 
-    > Qeyd: ARIMA modelinə uyğunlaşdırmaq üçün istifadə etdiyimiz funksiya, uyğunlaşdırma zamanı nümunədaxili yoxlamadan istifadə etdiyi üçün, təsdiqləmə məlumatlarını ortadan qaldıracağıq.
+    > Qeyd: ARIMA modelinə uyğunlaşdırmaq üçün istifadə etdiyimiz funksiya uyğunlaşdırma zamanı nümunədaxili yoxlamadan istifadə etdiyi üçün təsdiqləmə məlumatlarını ortadan qaldıracağıq.
 
 ### Dataları öyrədilmək üçün hazırlayın
 
-İndi siz datalarınızı filterləyərək və miqyasını dəyişdirərək onları öyrədilmək üçün hazırlamalısınız. Yalnız sizə lazım olan vaxt dövrləri və sütunları daxil etmək üçün data dəstinizi filterləyin və məlumatların 0,1 intervalında proqnozlaşdırılmasını təmin etmək üçün miqyaslayın.
+İndi siz datalarınızı filterləyərək və miqyasını dəyişdirərək onları öyrədilmək üçün hazırlamalısınız. Yalnız sizə lazım olan vaxt dövrləri və sütunları daxil etmək üçün data dəstinizi filtrləyin və məlumatların 0,1 intervalında proqnozlaşdırılmasını təmin etmək üçün miqyaslayın.
 
-1. Data setini hər birində yalnız yuxarıda qeyd olunan vaxt dövrlərini və yalnız lazım olan "yük" sütununu özündə saxlayacaq şəkildə filterləyin:
+1. Dataseti hər birində yalnız yuxarıda qeyd olunan vaxt dövrlərini və yalnız lazım olan "yük" sütununu özündə saxlayacaq şəkildə filtrləyin:
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -156,7 +156,7 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
 
     > Miqyaslanmış data
 
-1. Artıq miqyaslanmış datanı kalibrasiya etdiyimiz üçün, test dalarını miqyaslaya bilərik:
+1. Artıq miqyaslanmış datanı kalibrasiya etdiyimiz üçün test dalarını miqyaslaya bilərik:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -165,7 +165,7 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
 
 ### ARIMA-ın icrası
 
-ARIMA-nı icra etməyin vaxtı gəldi çatdı! İndi siz bir az əvvəl yüklədiyiniz `statsmodels` kitabxanasından istifadə edəcəksiniz.
+ARIMA-nı icra etməyin vaxtı gəlib çatdı! İndi siz bir az əvvəl yüklədiyiniz `statsmodels` kitabxanasından istifadə edəcəksiniz.
 
 İzləməli olduğumuz bir neçə addım var
 
@@ -179,9 +179,9 @@ ARIMA-nı icra etməyin vaxtı gəldi çatdı! İndi siz bir az əvvəl yükləd
 `d`: zaman seriyasına tətbiq etmək üçün *fərqlənmənin* (🎓fərqlənməni xatırlayırsınız 👆?) miqdarına təsir edən modelin inteqrasiya olunmuş hissəsi ilə əlaqəli parametr.
 `q`: modelin orta hərəkətli hissəsi ilə əlaqəli parametr.
 
-> Qeyd: Əgər məlumatınızın mövsümi aspekti varsa - indi istifadə etdiyimiz  mövsümi ARIMA modeli(SARIMA) bunu edir. Bu halda siz başqa parametrlər dəstindən istifadə etməlisiniz: `p`, `d` və `q` ilə eyni assosiasiyaları təsvir edən, lakin modelin mövsümi komponentlərə uyğun gələn `P`, `D` və `Q` dəsti.
+> Qeyd: Əgər məlumatınızın mövsümi aspekti varsa - indi istifadə etdiyimiz mövsümi ARIMA modeli(SARIMA) bunu edir. Bu halda siz başqa parametrlər dəstindən istifadə etməlisiniz: `p`, `d` və `q` ilə eyni assosiasiyaları təsvir edən, lakin modelin mövsümi komponentlərə uyğun gələn `P`, `D` və `Q` dəsti.
 
-1. Üstün bildiyiniz üfüq dəyərini təyin etməklə başlayın. Gəlin 3 saatı üfüq dəyəri olaraq yoxlayaq:
+1. Üstün bildiyiniz üfüq dəyərini təyin etməklə başlayın. Gəlin saat 3-ü üfüq dəyəri olaraq yoxlayaq:
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -209,11 +209,11 @@ ARIMA-nı icra etməyin vaxtı gəldi çatdı! İndi siz bir az əvvəl yükləd
 
 ### Modelinizi qiymətləndirin
 
-Modelinizi qiymətləndirmək üçün siz `irəli gəzinti` deyilən yoxlamanı həyata keçirə bilərsiniz. Praktikada, zaman seriyası modelləri, hər təzə məlumat əldə edildikdə, yenidən öyrədilir. Bu, modelə hər zaman addımında ən yaxşı proqnozu verməyə imkan verir.
+Modelinizi qiymətləndirmək üçün siz `irəli gəzinti` deyilən yoxlamanı həyata keçirə bilərsiniz. Praktikada zaman seriyası modelləri hər təzə məlumat əldə edildikdə yenidən öyrədilir. Bu, modelə hər zaman addımında ən yaxşı proqnozu verməyə imkan verir.
 
-Həmin texnikadan istifadə edərək zaman seriyasının əvvəlindən başlayaraq, öyrətmə data setində modeli öyrədin. Sonra növbəti addım üçün proqnoz verin. Proqnoz bilinən dəyərlə qiymətləndirilir. Daha sonra öyrətmə seti məlum dəyəri daxil etmək üçün genişləndirilir və proses təkrarlanır.
+Həmin texnikadan istifadə edərək zaman seriyasının əvvəlindən başlayaraq öyrətmə datasetində modeli öyrədin. Sonra növbəti addım üçün proqnoz verin. Proqnoz bilinən dəyərlə qiymətləndirilir. Daha sonra öyrətmə seti məlum dəyəri daxil etmək üçün genişləndirilir və proses təkrarlanır.
 
-> Qeyd: Daha səmərəli öyrədilmə üçün siz öyrətmə setinin pəncərə ölçüsünü sabit saxlamalısınız ki, hər dəfə təlim dəstinə yeni müşahidə əlavə etdikdə, müşahidəni setin əvvəlindən siləsiniz.
+> Qeyd: Daha səmərəli öyrədilmə üçün siz öyrətmə setinin pəncərə ölçüsünü sabit saxlamalısınız ki, hər dəfə təlim setinə yeni müşahidə əlavə etdikdə müşahidəni setin əvvəlindən siləsiniz.
 
 Bu proses modelin praktikada necə işləyəcəyinə dair daha etibarlı təxmin verir. Bununla belə, bu qədər model yaratmağın hesablama xərcləri də var. Data kiçikdirsə və ya model sadədirsə, bu məqbuldur, lakin daha böyük miqyaslarda bu problemə səbəb ola bilər.
 
@@ -241,7 +241,7 @@ Bu proses modelin praktikada necə işləyəcəyinə dair daha etibarlı təxmin
 
     Məlumatlar üfüq nöqtəsinə uyğun olaraq üfüqi olaraq sürüşdürülür.
 
-1. Test datasının uzunluğunun döngü ölçüsündə, sürüşən pəncərə yanaşmasından istifadə edərək test datalarınızla bağlı proqnozlar verin:
+1. Test datasının uzunluğunun döngü ölçüsündə sürüşən pəncərə yanaşmasından istifadə edərək test datalarınızla bağlı proqnozlar verin:
 
     ```python
     %%time
@@ -315,7 +315,7 @@ Bütün proqnozlar üzərində ortalama mütləq faiz xətasını (MAPE) tapmaql
 >
 > ![MAPE](../images/mape.png)
 >
-> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) yuxarıdakı düsturla tapılmış proqnoz dəqiqliyini nisbət formasında göstərmək üçün istifadə olunur. Faktiki<sub>t</sub> ilə proqnozlaşdırılan<sub>t</sub> arasındakı fərq faktiki<sub>t</sub>-ə bölünür. "Bu hesablamada mütləq dəyər hər bir proqnozlaşdırılan vaxt üçün cəmlənir və uyğunlaşdırılmış n nöqtələrinin sayına bölünür." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) yuxarıdakı düsturla tapılmış proqnoz dəqiqliyini nisbət formasında göstərmək üçün istifadə olunur. Actual<sub>t</sub>(cari) ilə predicted<sub>t</sub>(proqnozlaşdırılan) arasındakı fərq actual<sub>t</sub>-ə bölünür. "Bu hesablamada mütləq dəyər hər bir proqnozlaşdırılan vaxt üçün cəmlənir və uyğunlaşdırılmış n nöqtələrinin sayına bölünür." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 
 1. Tənliyi kodla ifadə edək:
 
@@ -381,13 +381,13 @@ Bütün proqnozlar üzərində ortalama mütləq faiz xətasını (MAPE) tapmaql
 
 ## 🚀 Məşğələ
 
-Zaman Seriyası Modelinin düzgünlüyünü yoxlamaq yollarını araşdırın. Bu dərsdə MAPE-ə toxunacağıq, amma istifadə edə biləcəyiniz başqa üsullar varmı? Onları araşdırın və şərh edin. Yardımçı sənədi [burada] tapa bilərsiniz(https://otexts.com/fpp2/accuracy.html)
+Zaman Seriyası Modelinin düzgünlüyünü yoxlamaq yollarını araşdırın. Bu dərsdə MAPE-ə toxunduq, amma istifadə edə biləcəyiniz başqa üsullar varmı? Onları araşdırın və şərh edin. Yardımçı sənədi [burada](https://otexts.com/fpp2/accuracy.html) tapa bilərsiniz.
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 
-Bu dərs yalnız ARIMA ilə Zaman Seriyasının Proqnozlaşdırılmasının əsaslarına toxunur. Time Series modellərini qurmağın digər yollarını öyrənmək və bilikləriniz dərinləşdirmək üçün [bu reponu](https://microsoft.github.io/forecasting/) və onun müxtəlif model növlərini araşdırmağa vaxtınızı ayırın.
+Bu dərs yalnız ARIMA ilə Zaman Seriyasının Proqnozlaşdırılmasının əsaslarına toxunur. Zaman seriyaları modellərini qurmağın digər yollarını öyrənmək və bilikləriniz dərinləşdirmək üçün [bu reponu](https://microsoft.github.io/forecasting/) və onun müxtəlif model növlərini araşdırmağa vaxtınızı ayırın.
 
 ## Tapşırıq
 
