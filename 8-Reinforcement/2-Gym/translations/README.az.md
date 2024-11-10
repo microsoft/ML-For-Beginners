@@ -1,8 +1,8 @@
 # CartPole(Sürgülü Araba) Sürüşü
 
-Əvvəlki dərsdə həll etdiyimiz problem əslində real həyat ssenariləri üçün uyğun olmadığı üçün oyuncaq problem kimi görünə bilər. Amma bu belə deyil, çünki Şahmat və ya Go oynamaq kimi bir çox real dünya problemləri də bu ssenarini bölüşür. Onlar arasındakı oxşarlığın səbəbi bizdə də verilmiş qaydalar və **diskret vəziyyəti** olan lövhəmizin olmasıdır.
+Əvvəlki dərsdə həll etdiyimiz problem əslində real həyat ssenariləri üçün uyğun olmadığı üçün oyuncaq problem kimi görünə bilər. Amma bu belə deyil, çünki Şahmat və ya Go oynamaq kimi bir çox real dünya problemləri də bu ssenarini bölüşür. Onlar arasındakı oxşarlığın səbəbi bizdə də verilmiş qaydalar və **diskret vəziyyəti** göstərən lövhəmizin olmasıdır.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/?loc=az)
 
 ## Giriş
 
@@ -20,11 +20,11 @@ Biz tarazlamanın **CartPole** problemi kimi tanınan sadələşdirilmiş versiy
 
 ## İlkin şərtlər
 
-Bu dərsdə biz müxtəlif **mühitləri** simulyasiya etmək üçün **OpenAI Gym** adlı kitabxanadan istifadə edəcəyik. Siz bu dərsin kodunu öz kompüterinizdə(məsələn, Visual Studio Code-dan istifadə edərək) işlədə bilərsiniz. Amma nəzərə alın ki, simulyasiya yeni pəncərədə açılacaq. Kodu onlayn işlədərkən, [burada](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7) təsvir olunduğu kimi koda bəzi düzəlişlər etməli ola bilərsiniz.
+Bu dərsdə biz müxtəlif **mühitləri** simulyasiya etmək üçün **OpenAI Gym** adlı kitabxanadan istifadə edəcəyik. Siz bu dərsin kodunu öz kompüterinizdə(məsələn, Visual Studio Code-dan istifadə edərək) işlədə bilərsiniz. Amma nəzərə alın ki, simulyasiya yeni pəncərədə açılacaq. Kodu onlayn işlədərkən [burada](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7) təsvir olunduğu kimi koda bəzi düzəlişlər etməli ola bilərsiniz.
 
 ## OpenAI Gym
 
-Əvvəlki dərsdə oyunun qaydalarını və vəziyyəti özümüz yaratdığımız `Board` sinifi təyin edirdi. Burada isə biz balans dirəyinin arxasındakı fizikanı simulyasiya edəcək xüsusi **simulyasiya mühitindən** istifadə edəcəyik. Gücləndirilmiş öyrənmə alqoritmlərini öyrətmək üçün ən məşhur simulyasiya mühitlərindən biri [OpenAI](https://openai.com/) tərəfindən idarə olunan [Gym](https://gym.openai.com/)-dir. Bu gym-dən istifadə etməklə biz, cartpole simulyasiyasından Atari oyunlarına qədər fərqli **mühitlər** yarada bilərik.
+Əvvəlki dərsdə oyunun qaydalarını və vəziyyəti özümüz yaratdığımız `Board` sinifi təyin edirdi. Burada isə biz balans dirəyinin arxasındakı fizikanı simulyasiya edəcək xüsusi **simulyasiya mühitindən** istifadə edəcəyik. Gücləndirici öyrənmə alqoritmlərini öyrətmək üçün ən məşhur simulyasiya mühitlərindən biri [OpenAI](https://openai.com/) tərəfindən idarə olunan [Gym](https://gym.openai.com/)-dir. Bu gym-dən istifadə etməklə biz cartpole simulyasiyasından Atari oyunlarına qədər fərqli **mühitlər** yarada bilərik.
 
 > **Qeyd**: OpenAI Gym-də mövcud olan digər mühitlərə [burada](https://gym.openai.com/envs/#classic_control) baxa bilərsiniz.
 
@@ -44,7 +44,7 @@ import random
 
 Kartpol balans problemi ilə işləmək üçün müvafiq mühiti işə salmalıyıq. Hər bir mühit aşağıdakılarla əlaqələndirilir:
 
-- **Müşahidə məkanı**, mühitdən aldığımız məlumatların strukturunu müəyyən edir. Kartpol problemi üçün biz qütbün mövqeyini, sürəti və bəzi digər dəyərləri alırıq.
+- **Müşahidə məkanı** mühitdən aldığımız məlumatların strukturunu müəyyən edir. Kartpol problemi üçün biz qütbün mövqeyini, sürəti və bəzi digər dəyərləri alırıq.
 
 - Mümkün hərəkətləri müəyyən edən **fəaliyyət sahəsi**. Bizim vəziyyətimizdə fəaliyyət sahəsi diskretdir və iki hərəkətdən ibarətdir - **sol** və **sağ**. (2. kod bloku)
 
@@ -76,7 +76,7 @@ Kartpol balans problemi ilə işləmək üçün müvafiq mühiti işə salmalıy
 
     ![nataraz araba](../images/cartpole-nobalance.gif)
 
-1. Simulyasiya zamanı necə hərəkət edəcəyimizə qərar vermək üçün müşahidələr aparmalıyıq. Əslində, `step` funksiyası bizə cari müşahidələri, mükafat funksiyasını və simulyasiyanı davam etdirməyin mənalı olub-olmadığını göstərən indikatoru qaytarır: (4. kod bloku)
+1. Simulyasiya zamanı necə hərəkət edəcəyimizə qərar vermək üçün müşahidələr aparmalıyıq. Əslində `step` funksiyası bizə cari müşahidələri, mükafat funksiyasını və simulyasiyanı davam etdirməyin mənalı olub-olmadığını göstərən indiqatoru qaytarır: (4. kod bloku)
 
     ```python
     env.reset()
@@ -117,7 +117,7 @@ Kartpol balans problemi ilə işləmək üçün müvafiq mühiti işə salmalıy
 
     Diqqət etsəniz, hər bir simulyasiya addımında mükafat dəyəri həmişə 1 olduğunu görə bilərsiniz. Bunun səbəbi odur ki, bizim məqsədimiz mümkün qədər uzun müddət sağ qalmaqdır. Başqa cürə ifadə etsək, dirəyi ən uzun müddətə şaquli vəziyyətdə saxlamaqdır.
 
-    ✅ Əslində, ardıcıl 100 sınaq üzərindən 195-lik orta mükafat əldə edə bilsək, CartPole simulyasiyası həll edilmiş sayılacaq.
+    ✅ Əslində ardıcıl 100 sınaq üzərindən 195-lik orta mükafat əldə edə bilsək, CartPole simulyasiyası həll edilmiş sayılacaq.
 
 ## Vəziyyətin diskretləşməsi
 
@@ -125,11 +125,11 @@ Q-Öyrənməsində biz hər bir vəziyyətdə nə edəcəyimizi müəyyən edən
 
 Bunu edə biləcəyimiz bir neçə yol var:
 
-- **Hissələrə bölün**. Müəyyən bir dəyərin intervalını bilsək, bu intervalı bir neçə ** hissəyə** bölmək və sonra həmin dəyəri onun aid olduğu hissənin nömrəsi ilə əvəz edə bilərik. Bunu numpy-ın [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html)(rəqəmsallaşdırmaq) metodundan istifadə etməklə edə bilərik. Vəziyyətin rəqəmsallaşdırma üçün seçdiyimiz hissələrin sayından asılı olacağından, onun ölçüsünü dəqiq biləcəyik.
+- **Hissələrə bölün**. Müəyyən bir dəyərin intervalını bilsək, bu intervalı bir neçə ** hissəyə** bölə və sonra həmin dəyəri onun aid olduğu hissənin nömrəsi ilə əvəz edə bilərik. Bunu numpy-ın [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html)(rəqəmsallaşdırmaq) metodundan istifadə etməklə edə bilərik. Vəziyyətin rəqəmsallaşdırma üçün seçdiyimiz hissələrin sayından asılı olacağından, onun ölçüsünü dəqiq biləcəyik.
 
-✅ Xətti interpolyasiyadan istifadə edərək dəyərləri sonlu intervala(məsələn, -20-dən 20-yə) yerləşdirə bilərik və sonra onları yuvarlaqlaşdırmaqla ədədləri tam ədədlərə çevirə bilərik. Belə etmək, xüsusən də giriş dəyərlərinin dəqiq diapazonlarını bilməmək bizə vəziyyətin ölçüsünə bir az daha az nəzarət imkanı verir. Məsələn, bizim vəziyyətimizdə 4 dəyərdən 2-in öz dəyərlərində yuxarı/aşağı sərhədləri olmadığı üçün, bu sonsuz sayda vəziyyətlə nəticələnə bilər.
+✅ Xətti interpolyasiyadan istifadə edərək dəyərləri sonlu intervala(məsələn, -20-dən 20-yə) yerləşdirə bilərik və sonra onları yuvarlaqlaşdırmaqla ədədləri tam ədədlərə çevirə bilərik. Belə etmək, xüsusən də giriş dəyərlərinin dəqiq diapazonlarını bilməmək bizə vəziyyətin ölçüsünə bir az daha az nəzarət imkanı verir. Məsələn, bizim vəziyyətimizdə 4 dəyərdən 2-in öz dəyərlərində yuxarı/aşağı sərhədləri olmadığı üçün bu, sonsuz sayda vəziyyətlə nəticələnə bilər.
 
-Nümunəmizdə ikinci yanaşma ilə gedəcəyik. Beləliklə müşahidə edəcəksiniz ki, qeyri-müəyyən yuxarı/aşağı sərhədlərə baxmayaraq, bu dəyər nadir hallarda müəyyən sonlu intervallardan kənarda dəyərlər qəbul edir. Buna görə də ekstremal dəyərlərə malik vəziyyətlər çox nadir hallarda olacaq.
+Nümunəmizdə ikinci yanaşma ilə gedəcəyik. Beləliklə müşahidə edəcəksiniz ki, qeyri-müəyyən yuxarı/aşağı sərhədlərə baxmayaraq bu dəyər nadir hallarda müəyyən sonlu intervallardan kənarda dəyərlər qəbul edir. Buna görə də ekstremal dəyərlərə malik vəziyyətlər çox nadir hallarda olacaq.
 
 1. Modelimizdən müşahidələri toplayacaq və 4 tam dəyərdən ibarət qrup çıxaracaq funksiya budur: (6. kod bloku)
 
@@ -174,9 +174,9 @@ Nümunəmizdə ikinci yanaşma ilə gedəcəyik. Beləliklə müşahidə edəcə
 
 ## Q-Cədvəlinin strukturu
 
-Əvvəlki dərsimizdə vəziyyət 0-dan 8-ə qədər sadə ədədlər cütü olduğu üçün, Q-Cədvəlini 8x8x2 formalı numpy tensoru ilə təmsil etmək rahat idi. Vəziyyət vektorumuzun ölçüsü məlum olduğu üçün hissələrin diskretləşdirilməsini tətbiq etsək, bu zaman eyni yanaşmadan istifadə edə və vəziyyəti 20x20x10x10x2 formalı massiv ilə təqdim edə bilərik(buradakı 2 fəaliyyət sahəsinin ölçüsüdür və ilk ölçülər müşahidə məkanındakı hər bir parametr üçün seçdiyimiz hissələrin sayına uyğundur).
+Əvvəlki dərsimizdə vəziyyət 0-dan 8-ə qədər sadə ədədlər cütü olduğu üçün Q-Cədvəlini 8x8x2 formalı numpy tensoru ilə təmsil etmək rahat idi. Vəziyyət vektorumuzun ölçüsü məlum olduğu üçün hissələrin diskretləşdirilməsini tətbiq etsək, bu zaman eyni yanaşmadan istifadə edə və vəziyyəti 20x20x10x10x2 formalı massiv ilə təqdim edə bilərik(buradakı 2 fəaliyyət sahəsinin ölçüsüdür və ilk ölçülər müşahidə məkanındakı hər bir parametr üçün seçdiyimiz hissələrin sayına uyğundur).
 
-Lakin bəzən müşahidə məkanının dəqiq ölçüləri məlum olmur. `discretize` funksiyasında heç vaxt vəziyyətin bəzi orijinal dəyərlərin bağlı olmamasından dolayı müəyyən sərhədlər daxilində qalacağından əmin olmaya bilərik. Buna görə də, bir qədər fərqli yanaşmadan istifadə edəcəyik və Q-Cədvəlini lüğətlə təmsil edəcəyik.
+Lakin bəzən müşahidə məkanının dəqiq ölçüləri məlum olmur. `discretize` funksiyasında heç vaxt vəziyyətin bəzi orijinal dəyərlərin bağlı olmamasından dolayı müəyyən sərhədlər daxilində qalacağından əmin olmaya bilərik. Buna görə də bir qədər fərqli yanaşmadan istifadə edəcəyik və Q-Cədvəlini lüğətlə təmsil edəcəyik.
 
 1. Lüğət açarı kimi *(vəziyyət, fəaliyyət)* cütündən istifadə edin. Dəyər isə Q-Cədvəlinin giriş dəyərinə uyğun olacaq. (9. kod bloku)
 
@@ -203,13 +203,13 @@ Artıq Piterə tarazlığı öyrətməyə hazırıq!
     epsilon = 0.90
     ```
 
-    Burada `alfa` hər addımda Q-Cədvəlinin cari dəyərlərini nə dərəcədə tənzimləməli olduğumuzu müəyyən edən **öyrənmə dərəcəsidir**. Əvvəlki dərsdə biz 1 ilə başladıq, sonra isə təlim zamanı `alpha`-ı aşağı qiymətlərə endirdik. Bu nümunədə biz onu sadəlik üçün sabit saxlayacağıq və daha sonra siz ``alpha`` dəyərlərini tənzimləməklə təcrübələr apara biləcəksiniz.
+    Burada `alfa` hər addımda Q-Cədvəlinin cari dəyərlərini nə dərəcədə tənzimləməli olduğumuzu müəyyən edən **öyrənmə dərəcəsidir**. Əvvəlki dərsdə biz 1 ilə başladıq, sonra isə təlim zamanı `alpha`-nı aşağı qiymətlərə endirdik. Bu nümunədə biz onu sadəlik üçün sabit saxlayacağıq və daha sonra siz `alpha` dəyərlərini tənzimləməklə təcrübələr apara biləcəksiniz.
 
     `gamma` **endirim faktorudur** və gələcək mükafatı cari mükafatdan nə dərəcədə daha prioritetləşdirməli olduğumuzu göstərir.
 
     `epsilon` **kəşfiyyat/istifadə faktorudur**. Bizim istifadədən daha çox kəşfiyyata və ya əksinə üstünlük verməli olduğumuzu müəyyən edir. Alqoritmimizdə halların `epsilon` faizində Q-Cədvəl qiymətlərinə uyğun növbəti hərəkəti seçəcəyik, qalan hallarda isə təsadüfi hərəkəti yerinə yetirəcəyik. Bu, axtarış məkanında əvvəllər heç görmədiyimiz sahələri araşdırmağımıza təkan verəcək.
 
-    ✅ Balanslaşdırma baxımından - təsadüfi hərəkətin(kəşfiyyatın) seçilməsi yanlış istiqamətdə təsadüfi bir zərbə rolunu oynayacaq və dirək həmin "səhvlərdən" tarazlığı necə bərpa edəcəyini öyrənməli olacaq.
+    ✅ Balanslaşdırma baxımından - təsadüfi hərəkətin(kəşfiyyatın) seçilməsi yanlış istiqamətdə təsadüfi bir zərbə rolunu oynayacaq və birbaşa həmin "səhvlərdən" tarazlığı necə bərpa edəcəyini öyrənməli olacaq.
 
 ### Alqoritmi təkmilləşdirin
 
@@ -217,7 +217,7 @@ Biz həmçinin əvvəlki dərsdən olan alqoritmimizi iki formada təkmilləşdi
 
 - **Bir sıra simulyasiyalar üzrə orta məcmu mükafatını hesablayın**. Hər 5000 iterasiyada nə qədər irəlilədiyimizi ekrana çap edəcəyik və bu müddət ərzində ümumi mükafatımızın orta qiymətini çıxaracağıq. Bu o deməkdir ki, 195-dən çox bal toplasaq, tələb olunandan daha yüksək keyfiyyətlə problemi həll edilmiş hesab edə bilərik.
 
-- **Maksimum orta məcmu nəticəni hesablayın**, `Qmax` və biz həmin nəticəyə uyğun olan Q-Cədvəlini yadda saxlayacağıq. Təlimi icra edən zaman görəcəksiniz ki, bəzən orta məcmunun qiyməti aşağı düşməyə başlayır və biz Q-Cədvəlinin təlim zamanı müşahidə edilən ən yaxşı modelə uyğun olan dəyərlərini saxlamaq istəyirik.
+- **Maksimum orta məcmu nəticəni hesablayın**. Bi` `Qmax` və həmin nəticəyə uyğun olan Q-Cədvəlini yadda saxlayacağıq. Təlimi icra edən zaman görəcəksiniz ki, bəzən orta məcmunun qiyməti aşağı düşməyə başlayır və biz Q-Cədvəlinin təlim zamanı müşahidə edilən ən yaxşı modelə uyğun olan dəyərlərini saxlamaq istəyirik.
 
 1. Sonrakı planlar üçün `rewards` vektorunda hər simulyasiyada bütün məcmu mükafatları toplayın. (11. kod bloku)
 
@@ -264,7 +264,7 @@ Bu nəticələrdən aşağıdakı fərqləri görə bilərsən:
 
 - **Məqsədimizə yaxın**. Simulyasiyanın 100+ ardıcıl işləməsi ilə 195 məcmu mükafatı əldə etmək məqsədinə çatmaq üçün çox yaxınıq və ya həqiqətən buna nail ola bilərik! Kiçik nömrələr alsaq da, hələ də bilmirik, çünki ortalama 5000-dən çox icra həyata keçiririk və rəsmi meyarlarda yalnız 100 icra tələb olunur.
 
-- **Mükafat atmağa başlayır**. Bəzən mükafat düşməyə başlayır, yəni vəziyyəti daha da pis hala gətirənlərlə birlikdə Q-Cədvəlindəki öyrənilən dəyərləri "məhv edə" bilər.
+- **Mükafat artmağa başlayır**. Bəzən mükafat düşməyə başlayır, yəni vəziyyəti daha da pis hala gətirənlərlə birlikdə Q-Cədvəlindəki öyrənilən dəyərləri "məhv edə" bilər.
 
 Təlimin inkişaf qrafikini qursaq, bu müşahidə daha aydın görünür.
 
@@ -299,11 +299,11 @@ plt.plot(running_average(rewards,100))
 
 > **Tapşırıq 1**: Hiperparametr dəyərləri ilə oynayın və daha yüksək məcmu mükafat əldə edə biləcəyinizə baxın. 195-dən yuxarı qiymət ala bilirsinizmi?
 
-> **Tapşırıq 2**: Problemi tam həll etmək üçün, 100 ardıcıl icrada orta mükafat dəyərini 195 olaraq almalısınız. Təlim zamanı qiymətləri ölçün və problemi tam şəkildə həll etdiyinizə əmin olun!
+> **Tapşırıq 2**: Problemi tam həll etmək üçün 100 ardıcıl icrada orta mükafat dəyərini 195 olaraq almalısınız. Təlim zamanı qiymətləri ölçün və problemi tam şəkildə həll etdiyinizə əmin olun!
 
 ## İcra zamanı nəticəni görək
 
-Öyrədilmiş modelin necə davrandığını görmək maraqlı olardı. Simulyasiyanı işə salaq və Q-Cədvəldəki ehtimal paylamasına görə təlim, nümunə götürmə zamanı etdiyimiz fəaliyyət seçmə strategiyasını izləyək: (Kod bloku 13)
+Öyrədilmiş modelin necə davrandığını görmək maraqlı olardı. Simulyasiyanı işə salaq və Q-Cədvəldəki ehtimal paylamasına görə təlim, nümunə götürmə zamanı isə etdiyimiz fəaliyyət seçmə strategiyasını izləyək: (Kod bloku 13)
 
 ```python
 obs = env.reset()
@@ -317,7 +317,7 @@ while not done:
 env.close()
 ```
 
-Bu kimi bir şey görməlisən:
+Buna bənzər bir şey görməlisən:
 
 ![tarazlanmış cartpole](../images/cartpole-balance.gif)
 
@@ -325,17 +325,19 @@ Bu kimi bir şey görməlisən:
 
 ## 🚀 Məşğələ
 
-> **Tapşırıq 3**: Burada biz ən yaxşısı olmaya biləcək Q-Cədvəlinin son versiyasını istifadə edirdik. Xatırlayırsınızsa, ən yaxşı Q-Cədvəlini `Qbest` dəyişənində saxlamışıq! `Qbest`-i `Q`-ə kopyalayaraq ən optimal Q-Cədvəllə eyni nümunəni sınaqdan keçirin və fərqi izləyin.
+> **Tapşırıq 3**: Burada biz ən yaxşısı ola bilməyəcək Q-Cədvəlinin son versiyasını istifadə edirdik. Xatırlayırsınızsa, ən yaxşı Q-Cədvəlini `Qbest` dəyişənində saxlamışıq! `Qbest`-i `Q`-ə kopyalayaraq ən optimal Q-Cədvəllə eyni nümunəni sınaqdan keçirib fərqi izləyək.
 
 > **Tapşırıq 4**: Burada hər addımda ən yaxşı hərəkəti seçmirdik. Bunun əksinə müvafiq ehtimal paylanması ilə nümunə götürürdük. Ən yüksək Q-Cədvəl dəyəri olan ən yaxşı hərəkəti həmişə seçmək daha düzgün olmazdımı? Bu, Q-Cədvəlinin dəyərinə uyğun hərəkət nömrəsini tapmaq üçün `np.argmax` funksiyasından istifadə etməklə edilə bilər. Həmin strategiyanı icra edin və tarazlanmanın yaxşılaşdığını izləyin.
 
-## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/uiz/48/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/uiz/48/?loc=az)
 
 ## Tapşırıq
 [Dağ maşınını öyrədin](assignment.az.md)
 
 ## Nəticə
 
-Artıq oyunun istədiyi vəziyyətini müəyyənləşdirən və axtarış sahəsini ağıllı şəkildə araşdıran bir mükafat funksiyasını təmin etməklə, yaxşı nəticələr əldə edəcək agentlər yetişdirməyi öyrəndik. Q-Öyrənməsi alqoritmini diskret hərəkətlərlə, diskret və davamlı mühit hallarında uğurla tətbiq etmiş olduq.
+Artıq oyunun istənilən vəziyyətini müəyyənləşdirən və axtarış sahəsini ağıllı şəkildə araşdıran bir mükafat funksiyasını təmin etməklə yaxşı nəticələr əldə edəcək agentlər yetişdirməyi öyrəndik. Q-Öyrənməsi alqoritmini diskret hərəkətlərlə diskret və davamlı mühit hallarında uğurla tətbiq etmiş olduq.
 
-Müşahidə sahəsi Atari oyun ekranındakı görüntü kimi fəaliyyət vəziyyətinin də davamlı olduğu daha mürəkkəb vəziyyətləri öyrənmək vacibdir. Bu problemlərdə tez-tez yaxşı nəticələr əldə etmək üçün neyron şəbəkələri kimi daha güclü maşın öyrənmə texnikasından istifadə etməliyik. Bu cür irəli mövzular qarşıdakı daha mürəkkəb AI kursumuzun mövzusudur.
+It's important to also study situations where action state is also continuous, and when observation space is much more complex, such as the image from the Atari game screen.
+
+Atari oyun ekranından görüntü kimi davamlı hərəkdə olan və daha mürəkkəb müşahidə sahələrini də öyrənmək vacibdir. Bu problemlərdə tez-tez yaxşı nəticələr əldə etmək üçün neyron şəbəkələri kimi daha güclü maşın öyrənmə texnikasından istifadə etməliyik. Bu cür mürəkkəb mövzular qarşıdakı daha mürəkkəb AI kursumuzun mövzusudur.
