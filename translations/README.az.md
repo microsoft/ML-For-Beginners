@@ -142,5 +142,6 @@ Komandamız başqa kurslar da hazırlayır! Bunları yoxla:
 - [**YENİ** Yeni Başlayanlar üçün Kibertəhlükəsizlik](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
 - [Yeni Başlayanlar üçün Veb Proqramlaşdırma](https://aka.ms/webdev-beginners)
 - [Yeni başlayanlar üçün IoT](https://aka.ms/iot-beginners)
+- [Yeni başlayanlar üçün maşın öyrənməsi](https://aka.ms/ml4beginners)
 - [Yeni başlayanlar üçün XR Proqramlaşdırma](https://aka.ms/xr-dev-for-beginners)
 - [AI ilə Proqramlaşdırma üçün GitHub Kopilotdan istifadə](https://aka.ms/GitHubCopilotAI)
