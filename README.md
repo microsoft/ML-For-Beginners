@@ -28,7 +28,12 @@ Travel with us around the world as we apply these classic techniques to data fro
 
 # Getting Started
 
+Follow these steps:
+1. **Fork the Repository**: Click on the "Fork" button at the top-right corner of this page.
+2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+
 > [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+
 
 **[Students](https://aka.ms/student-page)**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
 
