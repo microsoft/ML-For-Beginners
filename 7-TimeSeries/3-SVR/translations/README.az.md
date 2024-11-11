@@ -1,8 +1,8 @@
 # Dəstək vektor reqressoru ilə zaman seriyalarının proqnozlaşdırılması
 
-Əvvəlki dərsdə ARIMA modeli istifadə etməklə necə zaman seriyalarını proqnozlaşdıra biləcəyini öyrəndin. İndi isə Dəstək vektor reqressor modeli ilə davalı datanın gələcəyini təxmin etməyə baxacaqsan.
+Əvvəlki dərsdə ARIMA modeli istifadə etməklə necə zaman seriyalarını proqnozlaşdıra biləcəyini öyrəndin. İndi isə Dəstək vektor reqressor modeli ilə davamlı datanın gələcəyini təxmin etməyə baxacaqsan.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/?loc=az)
 
 ## Giriş
 
@@ -14,13 +14,13 @@ SVR-ın zaman seriyaları proqnozlarında vacibliyini başa düşməzdən əvvə
 
 - **Reqressiya:** Verilmiş dəyərlər toplusundan davamlı dəyərlərin proqnozlaşdırılması üçün nəzarətli öyrənmə texnikasıdır. Burda əsas məqsəd maksimum sayda data nöqtələrinin uyğunluq əyrisinə (və ya xəttinə) yaxın olmasıdır. Daha ətraflı məlumat üçün [bura klikləyin](https://en.wikipedia.org/wiki/Regression_analysis).
 
-- **Dəstək Vektor Maşını (SVM):** Bu qruplaşdırma, reqressiya və uyğunsuzluqların təyin olunması üçün istifadə olunan nəzarətli maşın öyrənmə modellərindən biridir. Bu model funksiya fəzasında hiperplandır, hansı ki, qruplaşdırma tətbiqində sərhəd kimi və reqressiyada isə ən uyğun xətt kimi rol oynayır. SVM-də Kernel funksiyası əsasən dataseti çöx ölçülü fəzaya çevirmək üçün istifadə olunur, beləliklə onları bölmək daha asan olur. SVM-lər baərdə daha ətralı məlumat üçün bura [bura klikləyin](https://en.wikipedia.org/wiki/Support-vector_machine).
+- **Dəstək Vektor Maşını (SVM):** Bu qruplaşdırma, reqressiya və uyğunsuzluqların təyin olunması üçün istifadə olunan nəzarətli maşın öyrənmə modellərindən biridir. Bu model funksiya fəzasında hiperplandır, hansı ki, qruplaşdırma tətbiqində sərhəd kimi? reqressiyada isə ən uyğun xətt kimi rol oynayır. SVM-də Kernel funksiyası əsasən dataseti çox ölçülü fəzaya çevirmək üçün istifadə olunur, beləliklə onları bölmək daha asan olur. SVM-lər barədə daha ətralı məlumat üçün bura [bura klikləyin](https://en.wikipedia.org/wiki/Support-vector_machine).
 
 - **Dəstək Vektor Reqressoru (SVR):** Maksimum sayda data nöqtəsinin ən uyğun gələn xətti (SVM halında hiperplan) tapmaq üçün istifadə olunan SVM tiplərindən biridir.
 
 ### Nə üçün SVR? [^1]
 
-Son dərsdə zaman seriya datalarının proqnozlaşdırılması üçün tətbiq olunan uğurlu statistik xətti üsul ARIMA barədə öyrəndin. Lakin, bir çox hallarda zaman seriya dataları *qeyri-xətti* olurlar və onları xətti modellərlə uyğunlaşdırmaq olmur Bu hallarda SVM-in qeyri-xətti dataların reqressiya tapşırıqlarda bacarıqlarını nəzərə alaraq SVR-ı zaman seriyası proqnozlaşdırılmasında da uğurla istifadə etmək olar.
+Son dərsdə zaman seriya datalarının proqnozlaşdırılması üçün tətbiq olunan uğurlu statistik xətti üsul ARIMA barədə öyrəndin. Lakin bir çox hallarda zaman seriya dataları *qeyri-xətti* olurlar və onları xətti modellərlə uyğunlaşdırmaq olmur Bu hallarda SVM-in qeyri-xətti dataların reqressiya tapşırıqlarda bacarıqlarını nəzərə alaraq SVR-i zaman seriyası proqnozlaşdırılmasında da uğurla istifadə etmək olar.
 
 ## Tapşırıq - SVR modeli qur
 
@@ -49,7 +49,7 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
    from common.utils import load_data, mape
    ```
 
-2. `/data/energy.csv` faylından dataları Pandas datablokuna yığın və nəticəyə baxın:  [^2]
+2. `/data/energy.csv` faylından dataları Pandas datafreyminə yığın və nəticəyə baxın:  [^2]
 
    ```python
    energy = load_data('../../data')[['load']]
@@ -64,15 +64,15 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
    plt.show()
    ```
 
-   ![full data](../images/full-data.png)
+   ![bütün data](../images/full-data.png)
 
    İndi isə SVR modelini quraq.
 
 ### Öyrətmə və test datasetlərini yaradın
 
-İndi data yüklənib və sən onu öyrətmə və test qruplarına ayıra bilərsən. Sonra sənin datanı SVR üçün lazım olan zaman attımları ilə ayrılmış datasetə çevirməyin lazım olacaq. Modelini öyrətmə seti ilə öyrədəcəksən. Model öyrənməsi bitdikdən sonra onun dəqiqliyini əvvəlcə öyrənmə və test seti ilə, sonra isə bütün dataset ilə yoxlayıb ümumi performansını ölçəcəksən. Sən əmin olmalısan ki, test setin öyrənmə setinin əhatə etdiyi zaman periodundan gələcəyi də əhatə edir və modelin gələcək zamandan informasiya almır [^2] (bu vəziyyətə *Overfitting* deyilir).
+İndi data yüklənib və sən onu öyrətmə və test setlərinə ayıra bilərsən. Sonra sənin datanı SVR üçün lazım olan zaman addımları ilə ayrılmış datasetə çevirməyin lazım olacaq. Modelini öyrətmə seti ilə öyrədəcəksən. Model öyrənməsi bitdikdən sonra onun dəqiqliyini əvvəlcə öyrənmə və test seti ilə, sonra isə bütün dataset ilə yoxlayıb ümumi performansını ölçəcəksən. Sən əmin olmalısan ki, test setin öyrənmə setin əhatə etdiyi zaman periodundan sonrakı gələcəyi də əhatə edir və modelin gələcək zamandan informasiya almır [^2] (bu vəziyyətə *Overfitting* deyilir).
 
-1. 2014-cü il sentabrın 1-dən oktyabrın 31-ə kimi 2 aylıq periodu öyrənmə seti kimi ayır. Test setin isə növbəti iki ayı, noyabrın 1-dən dekabrın 31-ə kimi olan dataları əhatə edəcək: [^2]
+1. 2014-cü il sentabrın 1-dən oktyabrın 31-ə kimi 2 aylıq periodu öyrənmə seti kimi ayır. Test seti isə növbəti iki ayı, noyabrın 1-dən dekabrın 31-ə kimi olan dataları əhatə edəcək: [^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
@@ -90,15 +90,13 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
    plt.show()
    ```
 
-   ![training and testing data](../images/train-test.png)
-
-
+   ![öyrətmə and test setləri](../images/train-test.png)
 
 ### Öyrətmə üçün data hazırla
 
-İnsi sənin datanı filtrasiya və miqyasını dəyişmə əməliyyatları tətbiq etməklə öyrətmə üçün data hazırlamağın lazımdır. Dataseti filtrasiya edərək yalnız lazım olan zaman periodları və sütunlarını saxla və datanın 0 ilə 1 arasında yerləşdiyinə əmin olacaq şəkildə miqyasını dəyiş.
+İndi sənin datanı filtrasiya və miqyasını dəyişmə əməliyyatları tətbiq etməklə öyrətmə üçün hazırlamağın lazımdır. Dataseti filtrasiya edərək yalnız lazım olan zaman periodları və sütunlarını saxla və datanın 0 ilə 1 arasında yerləşdiyinə əmin olacaq şəkildə miqyasını dəyiş.
 
-1. Verilan dataseti əvvəl nəzərdə tutulan zaman periodlarına əsasən filtr et və lazım olan 'load' və tarix sütunlarını saxla: [^2]
+1. Verilən dataseti əvvəl nəzərdə tutulan zaman periodlarına əsasən filtr et və lazım olan 'load' və tarix sütunlarını saxla: [^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -120,7 +118,7 @@ Bu dərsin [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
    train['load'] = scaler.fit_transform(train)
    ```
 
-4. İndi isə test datasetini miqyasını dəyiş: [^2]
+4. İndi isə test datasetinin miqyasını dəyiş: [^2]
 
    ```python
    test['load'] = scaler.transform(test)
@@ -220,7 +218,7 @@ Sən SVR modeli yaratdın! Bizə onun dəqiqliyini ölçmək lazımdır.
 
 ### Modelin dəqiqliyini ölç [^1]
 
-Yoxlama üçün biz birinci olaraq datanı əvvəlki miqyasına geri qaytarmalıyıq. SOnra performansı yoxlamaq üçün biz əsl və proqnozlaşdırılan zaman seriyalarının qrafikini çəkəcəyik və MAPE nəticələrini konsola yazacağıq.
+Yoxlama üçün biz birinci olaraq datanı əvvəlki miqyasına geri qaytarmalıyıq. Sonra, performansı yoxlamaq üçün biz əsl və proqnozlaşdırılan zaman seriyalarının qrafikini çəkəcəyik və MAPE nəticələrini konsola yazacağıq.
 
 Proqnozlaşdırılmış və orijinal datanın miqyasını dəyiş:
 
@@ -240,9 +238,9 @@ y_test = scaler.inverse_transform(y_test)
 print(len(y_train), len(y_test))
 ```
 
-#### Modelin performansını öyrətmə və yoxlama datası ilə yoxla [^1]
+#### Modelin performansını öyrətmə və test datası ilə yoxla [^1]
 
-Biz datasetdən zaman məlumatlarını qrafikin x xəttində göstərmək üçün götürmüşük. Nəzərə al ki biz birinci ``timesteps-1`` dəyərlərini birinci çıxış dəyərlərini hesablamağa giriş kimi istifadə etmişik, yəni bundan sonrakı zaman dəyərləri əsas çıxış dəyərləri üçün istifadə olunacaq.
+Biz datasetdən zaman məlumatlarını qrafikin x xəttində göstərmək üçün götürmüşük. Nəzərə al ki, biz birinci `timesteps-1` dəyərlərini birinci çıxış dəyərlərini hesablamağa giriş kimi istifadə etmişik, yəni bundan sonrakı zaman dəyərləri əsas çıxış dəyərləri üçün istifadə olunacaq.
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -357,18 +355,17 @@ MAPE:  2.0572089029888656 %
 ```
 
 
-
-🏆 Çox gözəl qrafiklər modelin yaxşı dəqiqlikdə olduğunu göstərir. Əla!
+🏆 Bu gözəl qrafiklər modelin yaxşı dəqiqlikdə olduğunu göstərir. Əla!
 
 ---
 
 ## 🚀 Məşğələ
 
-- Model yaradarkən və data üzərində yoxlayarkən hiperparameterləri (gamma, C, epsilon) dəyişməyi yoxla və hansı dəyərlər çoxluğunun yoxlama datası ilə daha yaxşı nəticə əldə etdiyini görəsən. Bu hiperparametrlər barədə daha çox öyrənmək üçün [bu sənədə](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel) baxa bilərsən.
-- Model üçün fərqli kernel funksiyaları yoxla və onların dataset üzərində performanslarını analiz et. [Bu sənəd]((https://scikit-learn.org/stable/modules/svm.html#kernel-functions)) çox faydalı ola bilər.
+- Model yaradarkən və data üzərində yoxlayarkən hiperparameterləri (gamma, C, epsilon) dəyişməyi yoxla və hansı dəyərlər çoxluğunun yoxlama datası ilə daha yaxşı nəticə əldə etdiyini gör. Bu hiperparametrlər barədə daha çox öyrənmək üçün [bu sənədə](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel) baxa bilərsən.
+- Model üçün fərqli kernel funksiyalarını yoxla və onların dataset üzərində performanslarını analiz et. [Bu sənəd]((https://scikit-learn.org/stable/modules/svm.html#kernel-functions)) çox faydalı ola bilər.
 - `timesteps` üçün fərqli dəyərlər yoxla və modelin proqnozlarına diqqət et.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 
@@ -378,9 +375,7 @@ Bu dərs zaman seriyalarında proqnozlaşdırma üçün SVR modelinin tətbiqin�
 
 [Yeni SVR modeli](assignment.az.md)
 
-
 ## İstinadlar
-
 
 [^1]: Bu bölmənin mətni, kodu və nəticələri[@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD) tərəfindən töhfə verilib
 [^2]: Bu bölmənin mətni, kodu və nəticələri [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)-dan götürülüb

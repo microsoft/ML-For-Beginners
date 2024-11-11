@@ -2,7 +2,7 @@
 
 Sən artıq dataseti ətraflı kəşf etmisən və indi sütunları filtrasiya edərək yeni məlumatlar toplamaq üçün NLP texnikalarını tətbiq edəcəksən.
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/?loc=az)
 
 ### Filtrasiya və fikir analizi əməliyyatları
 
@@ -53,7 +53,7 @@ Datanı biraz təmizlə. Sonradan faydalı ola biləcək sütunlar əlavə et, d
       print(df["Hotel_Address"].value_counts())
       ```
 
-      Now you can query country level data:
+      Artıq ölkə səviyyəsində sorğu yarada bilərsən:
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
@@ -68,7 +68,7 @@ Datanı biraz təmizlə. Sonradan faydalı ola biləcək sütunlar əlavə et, d
       | Paris, France          |    458     |
       | Vienna, Austria        |    158     |
 
-2. Otel rəylə əlaqəli sütunları email et
+2. Otel rəyləri ilə əlaqəli sütunları emal et
 
   1. `Additional_Number_of_Scoring` sütununu sil
 
@@ -108,7 +108,7 @@ Təəssüf ki, biz 1 söz yerinə çoxlu söz birləşməsi ilə maraqlanırıq 
 
 ### Teqlərin filtrasiyası
 
-Yadda saxlayaq ki datasetin məqsədi sənin ən yaxşı oteli seçməyinə kömək etməsi üçün fikir və sütunlar əlavə etməkdir (özün və ya müştərin üçün otel tövsiyyəsi edəcək bot hazırlamaq kimi tapşırığın var). Özünə hansı teqlərin yekun datasetdə mənalı olub-olmayacağı barədə sual ver. Nümunə bir ssenari (əgər sənə başqa məqsəqlər üçün dataset lazımdırsa, hansı teqləri əlavə edə və ya çıxarmağın öz əlindədir):
+Yadda saxlayaq ki, datasetin məqsədi sənin ən yaxşı oteli seçməyinə kömək etməsi üçün fikir və sütunlar əlavə etməkdir (özün və ya müştərin üçün otel tövsiyyəsi edəcək bot hazırlamaq kimi tapşırığın var). Özünə hansı teqlərin yekun datasetdə mənalı olub-olmayacağı barədə sual ver. Nümunə bir ssenari (əgər sənə başqa məqsəqlər üçün dataset lazımdırsa, hansı teqləri əlavə edə və ya çıxarmağın öz əlindədir):
 
 1. Hansı növ səyahət uyğundursa, onlar qalmalıdır
 2. Qonaq qrupunun tipi vacibdirsə, onlar qalmalıdır
@@ -131,7 +131,7 @@ Hər teq buna bənzər bir hala çevriləcək: `Business trip, Solo traveler, Si
 
 İndi başqa bir bir problemlə üzləşirik. Rəylərin (sətirlərin) bəzilərində 5, bəzilərində 3, digərlərində 6 sütun var. Dataset özü belə yaradılıb və bunu həll etmək çətindir. Hər bir sözün istifadə tezliyini saymaq istəyirsən, lakin onlar hər rəydə fərqli sıradadır. Sıralamanın standart olmaması otellərə daha layiqli olduğu teqləri mənsub etməkdə çətinlik yaradır.
 
-Bunun yerinə biz sıralamanı özümüzə sərf edən vəziyyətə çevirə bilərik. Belə ki, hər teq söz birləşməsindən ibarət olsa da vergüllə ayrılır! Ən sadə yolu, müvəqqəti olaraq 6 sütun yaradıb hər birinə teq əlavə edə bilərik. Bundan sonra biz 6 sütunu böyük bir sütun içinə birləşdirə və `value_counts()` funksiyası ilə saya bilərik. Bunu icra etdikdən sonra 2428 vahid teq olduğunu görəcəksən. Kiçik nümunə:
+Bunun yerinə biz sıralamanı özümüzə sərf edən vəziyyətə çevirə bilərik. Belə ki, hər teq söz birləşməsindən ibarət olsa da vergüllə ayrılır! Ən sadə yolu müvəqqəti olaraq 6 sütun yaradıb hər birinə teq əlavə edə bilərik. Bundan sonra biz 6 sütunu böyük bir sütun içinə birləşdirə və `value_counts()` funksiyası ilə saya bilərik. Bunu icra etdikdən sonra 2428 vahid teq olduğunu görəcəksən. Kiçik nümunə:
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
@@ -336,7 +336,7 @@ print(df[["Negative_Review", "Negative_Sentiment"]])
 df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
-Bu faylı tapşırıqda istifadə etməkdən əvvəl ediləcək ən son şey bunun yadda saxlamaqdır! Sən həmçinin bütün yeni sütunları daha rahat istifadə edilə bilməsi üçün yerlərini dəyişə bilərsən (bu yalnız insanlar üçün olan kosmetik dəyişiklikdir).
+Bu faylı tapşırıqda istifadə etməzdən əvvəl ediləcək ən son şey bunun yadda saxlamaqdır! Sən həmçinin bütün yeni sütunları daha rahat istifadə edilə bilməsi üçün yerlərini dəyişə bilərsən (bu yalnız insanlar üçün olan kosmetik dəyişiklikdir).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -352,18 +352,19 @@ Sən bütün kodu [analiz notbukunda](https://github.com/microsoft/ML-For-Beginn
 
 1. Original dataset faylı **Hotel_Reviews.csv** əvvəlki dərsdə [kəşfetmə notbukunda](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb) analiz olunub
 2. Hotel_Reviews.csv faylı [filtrasiya notbuku](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) ilə filtrlənib və nəticə **Hotel_Reviews_Filtered.csv** faylına yazılıb
-3. Hotel_Reviews_Filtered.csv faylı [fikir analizi notbuku](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) ilə emal olunub nəticə **Hotel_Reviews_NLP.csv** faylına yazılıb
-4. Hotel_Reviews_NLP.csv faylını aşağldakı NLP Məşğələsində istifadə olunacaq
+3. Hotel_Reviews_Filtered.csv faylı [fikir analizi notbuku](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) ilə emal olunub və nəticə **Hotel_Reviews_NLP.csv** faylına yazılıb
+4. Hotel_Reviews_NLP.csv faylını aşağldakı NLP məşğələsində istifadə olunacaq
 
 ### Nəticə
 
 Başlayanda sənin sütunlarla datasetin var idi və onların hamısının nə doğruluğunu yoxlamaq mümkün idi, nə də istifadəsi. Sən datanı kəşf etdin, lazımsız hissələri filtrlədin, taqları faydalı formaya saldın, ortalama nəticəni hesabladın, fikirlərin analizini bəzi sütunlara yazdın və ümid edirik ki, təbii mətnləri emal etməklə bağlı maraqlı nələrsə öyrəndin.
 
-## [Müharizə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
-
-## Məşğələ
+---
+## 🚀 Məşğələ
 
 Artıq sən bu datasetdə fikir analizini yerinə yetirdin, indi isə fikir ətrafında oxşarlıqları (modelləri) təyin etmək üçün bu kursda öyrəndiyin başqa hansı strategiyaları (klasterləşdirmə bəlkə?) tətbiq edə biləcəyini düşün.
+
+## [Müharizə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 

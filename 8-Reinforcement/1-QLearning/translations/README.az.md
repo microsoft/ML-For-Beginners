@@ -1,31 +1,31 @@
-# Gücləndirilmiş Öyrənmə və Q-Öyrənməsinə Giriş
+# Gücləndirici Öyrənmə və Q-Öyrənməsinə Giriş
 
-![Gücləndirilmiş öyrənmənin icmalının eskizi](../../../sketchnotes/ml-reinforcement.png)
+![Gücləndirici öyrənmənin icmalının eskizi](../../../sketchnotes/ml-reinforcement.png)
 > [Tomomi Imura](https://www.twitter.com/girlie_mac) tərəfindən çəkilmiş eskiz
 
-Gücləndirilmiş öyrənmə üç mühüm anlayışı özündə birləşdirir: agent, vəziyyətlər və hər vəziyyət üçün icra yığını. Müəyyən edilmiş vəziyyətdə hərəkəti icra etməklə agentə mükafat verilir. Super Mario oyununu yadınıza salın. Təsəvvür edin ki siz Mariosunuz və hansısa mərhələdə uçurum kənarında dayanmısınız. Sizin üstünüzdə isə qəpik var. Hansısa bir mərhələdə Mario olmağınız sizin vəziyyətinizdir. Bir addım ataraq sağa hərəkət etmək sizi uçuruma aparacaq və aşağı xal toplayacaqsınız. Amma atlamaq düyməsinə basmağınız xal toplamanıza və sağ qalmanıza səbəb olacaqdı. Dediyimiz müsbət nəticə olduğuna görə sizə müsbət xal verilməlidir.
+Gücləndirici öyrənmə üç mühüm anlayışı özündə birləşdirir: agent, vəziyyətlər və hər vəziyyət üçün icra yığını. Müəyyən edilmiş vəziyyətdə hərəkəti icra etməklə agentə mükafat verilir. Super Mario oyununu yadınıza salın. Təsəvvür edin ki, siz Mariosunuz və hansısa mərhələdə uçurum kənarında dayanmısınız. Sizin üstünüzdə isə qəpik var. Hansısa bir mərhələdə Mario olmağınız sizin vəziyyətinizdir. Bir addım ataraq sağa hərəkət etmək sizi uçuruma aparacaq və aşağı xal toplayacaqsınız. Amma atlamaq düyməsinə basmağınız xal toplamanıza və sağ qalmanıza səbəb olacaqdı. Dediyimiz müsbət nəticə olduğuna görə sizə müsbət xal verilməlidir.
 
-Oyunda sağ qalaraq və mümkün olduğu qədər yuxarı xal toplamaqla mükafatı maksimuma çatdırmağı möhkəmləndirilmiş öyrənmədən və simulyator(oyun) istifadə edərək öyrənə bilərsiniz.
+Oyunda sağ qalaraq və mümkün olduğu qədər yuxarı xal toplamaqla mükafatı maksimuma çatdırmağı gücləndirici öyrənmədən və simulyator(oyun) istifadə edərək öyrənə bilərsiniz.
 
-[![Gücləndirilmiş Öyrənməyə Giriş](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
+[![Gücləndirici Öyrənməyə Giriş](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
-> 🎥 Dmitrinin Gücləndirilmiş Öyrənmə barədə olan müzakirəsini dinləmək üçün yuxarıdakı şəkilə klikləyin
+> 🎥 Dmitrinin Gücləndirici Öyrənmə barədə olan müzakirəsini dinləmək üçün yuxarıdakı şəkilə klikləyin
 
-## [Mühazirə öncəsi quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/45/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/45/?loc=az)
 
-## İlkin Şərtlər və Quraşdırma
+## İlkin şərtlər və quraşdırma
 
 Bu gün Python-da bəzi kodları sınaqdan keçirəcəyik. Dərsə aid olan Jupyter Notebook kodunu həm kompüterinizdə, həm də buludda işlədə bilməlisiniz.
 
-Siz [dərs notebook-unu](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) aça və qurmaq üçün bu dərsi izləyə bilərsiniz.
+Siz [dərs notbukunu](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) aça və mühiti qurmaq üçün bu dərsi izləyə bilərsiniz.
 
-> **Qeyd:** Bu kodu buludda açırsınızsa, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) faylını da notebook kodunda istifadə olunduğuna görə yükləməyiniz lazımdır. Onu notebook faylı ilə eyni qovluğa əlavə edin.
+> **Qeyd:** Bu kodu buludda açırsınızsa, [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py) faylını da notbuk kodunda istifadə olunduğuna görə yükləməyiniz lazımdır. Onu notbuk faylı ilə eyni qovluğa əlavə edin.
 
 ## Giriş
 
-Bu dərsdə biz rus bəstəkarı [Sergei Prokofyevin](https://en.wikipedia.org/wiki/Sergei_Prokofiev) musiqili nağılından ilhamlanaraq, **[Piter və Canavar](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)** dünyasını araşdıracağıq. Peterə ətrafını araşdırmaq, dadlı alma toplamaq və canavarla görüşməmək üçün **Gücləndirilmiş Öyrənmədən** istifadə edəcəyik.
+Bu dərsdə biz rus bəstəkarı [Sergei Prokofyevin](https://en.wikipedia.org/wiki/Sergei_Prokofiev) musiqili nağılından ilhamlanaraq **[Piter və Canavar](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)** dünyasını araşdıracağıq. Peterə ətrafını araşdırmaq, dadlı alma toplamaq və canavarla görüşməmək üçün **Gücləndirici Öyrənmədən** istifadə edəcəyik.
 
-**Gücləndirilmiş Öyrənmə** (RL – Reinforcement Learning) çoxlu təcrübələr keçirərək, **mühit** daxilində **agentin** optimal davranışını öyrənməyə imkan verən öyrənmə texnikasıdır. Bu mühitdəki agentin **mükafat funksiyası** ilə müəyyən edilmiş **hədəfi** olmalıdır.
+**Gücləndirici Öyrənmə** (RL – Reinforcement Learning) çoxlu təcrübələr keçirərək, **mühit** daxilində **agentin** optimal davranışını öyrənməyə imkan verən öyrənmə texnikasıdır. Bu mühitdəki agentin **mükafat funksiyası** ilə müəyyən edilmiş **hədəfi** olmalıdır.
 
 ## Mühit
 
@@ -69,25 +69,25 @@ action_idx = { a : i for i,a in enumerate(actions.keys()) }
 
 Ümumiləşdirsək, bu ssenarinin strategiyası və hədəfi aşağıdakılardır:
 
-- **Agentimizin(Piter) strategiyası**, "**taktika**" ilə müəyyən edilir. Taktika hər hansı bir vəziyyətdə, atılmalı olan addımı qaytaran funksiyadır. Bizim vəziyyətimizdə problemin vəziyyəti oyunçunun hazırkı mövqeyi də daxil olmaqla, lövhə ilə təmsil olunur.
+- **Agentimizin(Piter) strategiyası**, "**taktika**" ilə müəyyən edilir. Taktika hər hansı bir vəziyyətdə atılmalı olan addımı qaytaran funksiyadır. Bizim vəziyyətimizdə problemin vəziyyəti oyunçunun hazırkı mövqeyi də daxil olmaqla lövhə ilə təmsil olunur.
 
-- **Gücləndirilmiş öyrənmənin məqsədi** problemi səmərəli şəkildə həll etməyə imkan verəcək yaxşı bir taktika öyrənməkdir. Amma indilik, başlanğıc olaraq **təsadüfi gediş** adlı ən sadə siyasəti nəzərdən keçirək.
+- **Gücləndirici öyrənmənin məqsədi** problemi səmərəli şəkildə həll etməyə imkan verəcək yaxşı bir taktika öyrənməkdir. Amma indilik, başlanğıc olaraq **təsadüfi gediş** adlı ən sadə strategiyanı nəzərdən keçirək.
 
 ## Təsadüfi gəzinti
 
-Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək problemimizi həll edək. Təsadüfi gedişlə, almaya çatana qədər icazə verilən addımlar arasından növbəti addımımızı təsadüfi seçəcəyik (3. kod bloku).
+Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək problemimizi həll edək. Təsadüfi gedişlə almaya çatana qədər icazə verilən addımlar arasından növbəti addımımızı təsadüfi seçəcəyik (3. kod bloku).
 
 1. Aşağıdakı kodla təsadüfi gedişi həyata keçirin:
-    
+
     ```python
     def random_policy(m):
         return random.choice(list(actions))
-    
+
     def walk(m,policy,start_position=None):
         n = 0 # number of steps
         # set initial position
         if start_position:
-            m.human = start_position 
+            m.human = start_position
         else:
             m.random_start()
         while True:
@@ -102,7 +102,7 @@ Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək proble
                     m.move(a) # do the actual move
                     break
             n+=1
-    
+
     walk(m,random_policy)
     ```
     `walk` müvafiq yolun uzunluğunu qaytarmalıdır. Amma təsadüfi olduğu üçün hər çağrılma zamanı fərqli uzunluq qaytara bilər.
@@ -120,7 +120,7 @@ Gəlin əvvəlcə təsadüfi gediş strategiyasını həyata keçirərək proble
                 s += z
                 n += 1
         print(f"Average path length = {s/n}, eaten by wolf: {w} times")
-    
+
     print_statistics(random_policy)
     ```
 
@@ -191,7 +191,7 @@ Burada γ **endirim faktoru** adlanır və cari mükafata və ya bunun əksinə,
 
 ## Öyrənmə Alqoritmi
 
-Yuxarıdakı tənliyi nəzərə alaraq, indi öyrənmə alqoritmimiz üçün psevdokod yaza bilərik:
+Yuxarıdakı tənliyi nəzərə alaraq indi öyrənmə alqoritmimiz üçün psevdokod yaza bilərik:
 
 * Q-Cədvəli Q-ü bütün vəziyyət və gedişlər üçün bərabər ədədlərlə yaradın
 * Öyrənmə dərəcəsini α ← 1 təyin edin
@@ -208,9 +208,9 @@ Yuxarıdakı tənliyi nəzərə alaraq, indi öyrənmə alqoritmimiz üçün pse
 
 ## İstifadə ilə Kəşf qarşı-qarşıya
 
-Yuxarıdakı alqoritmdə 2.1-ci addımda gedişi necə dəqiq seçməli olduğumuzu müəyyənləşdirməmişik. Addımı təsadüfi seçsək, ətrafı təsadüfi formada **tədqiq edəcəyimiz** üçün, tez-tez ölmək, eləcə də normalda getmədiyimiz əraziləri araşdırmaq kimi ehtimallarımız var. Alternativ yanaşma isə artıq bildiyimiz Q-Cədvəl dəyərlərini **istifadə etmək** və bununla da, *s* vəziyyətində ən yaxşı hərəkəti(daha yüksək Q-Cədvəl dəyəri ilə) seçmək olardı. Amma, belə etmək, digər vəziyyətləri araşdırmağımıza mane olacaq və çox güman ki, optimal həlli tapa bilməyəcəyik.
+Yuxarıdakı alqoritmdə 2.1-ci addımda gedişi necə dəqiq seçməli olduğumuzu müəyyənləşdirməmişik. Addımı təsadüfi seçsək, ətrafı təsadüfi formada **tədqiq edəcəyimiz** üçün tez-tez ölmək, eləcə də normalda getmədiyimiz əraziləri araşdırmaq kimi ehtimallarımız var. Alternativ yanaşma isə artıq bildiyimiz Q-Cədvəl dəyərlərini **istifadə etmək** və bununla da, *s* vəziyyətində ən yaxşı hərəkəti(daha yüksək Q-Cədvəl dəyəri ilə) seçmək olardı. Amma, belə etmək digər vəziyyətləri araşdırmağımıza mane olacaq və çox güman ki optimal həlli tapa bilməyəcəyik.
 
-Beləliklə, ən yaxşı yanaşma kəşfiyyat və istifadə arasında balansı qorumaqdır. Bu, Q-Cədvəlindəki dəyərlərə mütənasib ehtimallarla *s* vəziyyətində hərəkəti seçməklə edilə bilər. Başlanğıcda, Q-Cədvəl dəyərləri eyni olduqda, bu, təsadüfi seçimə uyğun olacaq, lakin ətrafımız haqqında daha çox öyrəndikcə, arabir agentə araşdırılmamış yolu seçməyə icazə verərkən, optimal marşrutu izləmək ehtimalımız daha yüksək olacaq.
+Beləliklə, ən yaxşı yanaşma kəşfiyyat və istifadə arasında balansı qorumaqdır. Bu, Q-Cədvəlindəki dəyərlərə mütənasib ehtimallarla *s* vəziyyətində hərəkəti seçməklə edilə bilər. Başlanğıcda Q-Cədvəl dəyərləri eyni olduqda bu, təsadüfi seçimə uyğun olacaq, lakin ətrafımız haqqında daha çox öyrəndikcə arabir agentə araşdırılmamış yolu seçməyə icazə verərkən optimal marşrutu izləmək ehtimalımız daha yüksək olacaq.
 
 ## Python üzərindən icrası
 
@@ -227,14 +227,14 @@ Beləliklə, ən yaxşı yanaşma kəşfiyyat və istifadə arasında balansı q
 
     İlkin halda vektorun bütün komponentləri eyni olduqda 0-a bölünmədən yayınmaq üçün orijinal vektora bir neçə `eps` əlavə edirik.
 
-5000 təcrübə və ya **iterasiya** vasitəsilə öyrənmə alqoritmini işə salın: (8. kod bloku)
+5000 təcrübə və ya **dövr** vasitəsilə öyrənmə alqoritmini işə salın: (8. kod bloku)
 
     ```python
     for epoch in range(5000):
-    
+
         # Pick initial point
         m.random_start()
-        
+
         # Start travelling
         n=0
         cum_reward = 0
@@ -280,11 +280,11 @@ walk(m,qpolicy_strict)
 
 > **Tapşırıq 1:** Yolun maksimum uzunluğunu müəyyən sayda addımlarla (məsələn, 100) məhdudlaşdırmaq üçün `walk` funksiyasını dəyişdirin və yuxarıdakı kodun vaxtaşırı bu dəyəri qaytarmasına baxın.
 
-> **Tapşırıq 2:** `walk` funksiyasını elə dəyişdirin ki, o, əvvəllər olduğu yerlərə qayıtmasın. Belə etmək `walk`-un döngüyə girməsinin qarşısını alsa da, agent yenə də qaça bilməyəcəyi yerdə "tələyə" düşə bilər.
+> **Tapşırıq 2:** `walk` funksiyasını elə dəyişdirin ki, o, əvvəllər olduğu yerlərə qayıtmasın. Belə etmək `walk`-un dövrə girməsinin qarşısını alsa da, agent yenə də qaça bilməyəcəyi yerdə "tələyə" düşə bilər.
 
 ## Naviqasiya
 
-Daha yaxşı naviqasiya taktikası təlim zamanı istifadə etdiyimiz istifadə və kəşfiyyatı birləşdirmiş olan versiya olardı. Bu taktika biz hər bir hərəkəti Q-Cədvəlindəki dəyərlərə mütənasib olaraq müəyyən bir ehtimalla seçəcəyik. Bu strategiya hələ də agentin artıq tədqiq etdiyi mövqeyə qayıtması ilə nəticələnə bilər, lakin, aşağıdakı koddan da göründüyü kimi, bu sizə istədiyiniz məkana olan çox qısa orta yolu verir(unutmayın ki, `print_statistics` simulyasiyanı 100 dəfə həyata keçirir): (10. kod bloku)
+Daha yaxşı naviqasiya taktikası təlim zamanı istifadə etdiyimiz istismar və kəşfiyyatın birləşdirmiş olan versiyası olardı. Bu taktikada biz hər bir hərəkəti Q-Cədvəlindəki dəyərlərə mütənasib olaraq müəyyən bir ehtimalla seçəcəyik. Bu strategiya hələ də agentin artıq tədqiq etdiyi mövqeyə qayıtması ilə nəticələnə bilər, lakin, aşağıdakı koddan da göründüyü kimi bu sizə istədiyiniz məkana olan çox qısa orta yolu verir(unutmayın ki, `print_statistics` simulyasiyanı 100 dəfə həyata keçirir): (10. kod bloku)
 
 ```python
 def qpolicy(m):
@@ -306,15 +306,15 @@ Qeyd etdiyimiz kimi, təlim prosesi problem məkanının strukturu haqqında əl
 
 Öyrənilənləri belə ümumiləşdirmək olar:
 
-- **Orta yol uzunluğu artır**. Burada gördüyümüz odur ki, əvvəlcə orta yol uzunluğu artır. Bu, yəqin ki, ətraf mühit haqqında heç nə bilmədiyimiz zaman pis vəziyyətlərdə, suda və ya canavarda tələyə düşmək ehtimalımızla bağlıdır. Daha çox öyrəndikcə və bu biliklərdən istifadə etməyə başladıqda, ətraf mühiti daha uzun müddət araşdıra bilərik. Bununla belə, almaların harada daha çox olduğunu hələ də bilmiş olmuruq.
+- **Orta yol uzunluğu artır**. Burada gördüyümüz odur ki, əvvəlcə orta yol uzunluğu artır. Bu, yəqin ki, ətraf mühit haqqında heç nə bilmədiyimiz zaman pis vəziyyətlərdə, suda və ya canavarda tələyə düşmək ehtimalımızla bağlıdır. Daha çox öyrəndikcə və bu biliklərdən istifadə etməyə başladıqda ətraf mühiti daha uzun müddət araşdıra bilərik. Bununla belə, almaların harada daha çox olduğunu hələ də bilmiş olmuruq.
 
 - **Daha çox öyrəndikcə yol uzunluğu azalır**. Kifayət qədər öyrəndikdən sonra agentin hədəfə çatması asanlaşır və yol uzunluğu azalmağa başlayır. Amma, biz hələ də kəşfiyyata açığıq, ona görə də biz tez-tez ən yaxşı yoldan uzaqlaşırıq və yeni variantları araşdıraraq yolu optimaldan daha uzun edirik.
 
 - **Uzunluğun kəskin artması**. Bu qrafikdə də müşahidə etdiyimiz odur ki, müəyyən bir nöqtədə uzunluq kəskin şəkildə artır. Bu, prosesin stoxastik xarakterini göstərir və biz nə vaxtsa Q-Cədvəl əmsallarını yeni dəyərlərlə əvəz etməklə onları "korlaya" bilərik. İdeal olaraq, bu, öyrənmə sürətini azaltmaqla minimuma endirilməlidir(məsələn, təlimin sonuna doğru biz Q-Cədvəl dəyərlərini yalnız kiçik bir dəyərlə tənzimləyirik).
 
-Ümumiyyətlə, yadda saxlamaq lazımdır ki, təlim prosesinin uğuru və keyfiyyəti öyrənmə sürəti, öyrənmə sürətinin azalması və endirim faktoru kimi parametrlərdən əhəmiyyətli dərəcədə asılıdır. Təlim zamanı optimallaşdırdığımız(məsələn, Q-Cədvəl əmsalları) **parametrlərdən** fərqləndirmək üçün onları tez-tez **hiperparametrlər** adlandırırlar. Ən yaxşı hiperparametr dəyərlərinin tapılması prosesi **hiperparametrlərin optimallaşdırılması** adlanır və bu, ayrıca mövzu səviyyəsindədir.
+Ümumiyyətlə, yadda saxlamaq lazımdır ki, təlim prosesinin uğuru və keyfiyyəti öyrənmə sürəti, öyrənmə sürətinin azalması və endirim faktoru kimi parametrlərdən əhəmiyyətli dərəcədə asılıdır. Təlim zamanı optimallaşdırdığımız(məsələn, Q-Cədvəl əmsalları) **parametrlərdən** fərqləndirmək üçün onları tez-tez **hiperparametrlər** adlandırırlar. Ən yaxşı hiperparametr dəyərlərinin tapılması prosesi **hiperparametrlərin optimallaşdırılması** adlanır və bu ayrıca mövzu səviyyəsindədir.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/?loc=az)
 
 ## Tapşırıq
 [Daha Real Dünya](assignment.az.md)

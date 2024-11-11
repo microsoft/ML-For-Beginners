@@ -1,57 +1,57 @@
-# Təsnifatlandırma bölməsinə giriş
+# Qruplaşdırıcı bölməsinə giriş
 
-Bu bölmədəki 4 dərsdə ənənəvi maşın öyrənməsinin fundamental mövzusu olan _təsnifatlandırma_ haqqında öyrənəcəksiniz. Biz Asiyanın və Hindistanın möhtəşəm mətbəxləri üçün olan data massivi istifadə edərək müxtəlif təsnifatlandırma alqoritmlərinin üzərindən keçəcəyik. Ümid edək ki, acsınız!
+Bu bölmədəki 4 dərsdə ənənəvi maşın öyrənməsinin fundamental mövzusu olan _qruplaşdırıcı_ haqqında öyrənəcəksiniz. Biz Asiyanın və Hindistanın möhtəşəm mətbəxləri üçün olan data massivi istifadə edərək müxtəlif qruplaşdırıcı alqoritmlərinin üzərindən keçəcəyik. Ümid edək ki, acsınız!
 
 ![sadəcə bir çimdik!](../images/pinch.png)
 
 > Bu dərslərdə pan-Asiya mətbəxlərini qeyd edin! [Jen Looper](https://twitter.com/jenlooper) tərəfindən təsvir
 
-Təsnifatlandırma [yönləndirilmiş öyrənmə](https://wikipedia.org/wiki/Supervised_learning)nin bir formasıdır və reqressiya texnikaları ilə çoxlu ortaq cəhətləri var. Əgər desək ki, maşın öyrənməsi dəyərləri proqnozlaşdırmaqdan və obyektləri etiketləməkdən ibarətdir, o zaman təsnifatlandırmanı ümumi 2 qrupa ayıra bilərik: _binar təsnifatlandırma_ və _çox sinifli təsnifatlandırma_.
+Qruplaşdırıcı [nəzarətli öyrənmə](https://wikipedia.org/wiki/Supervised_learning)nin bir formasıdır və reqressiya texnikaları ilə çoxlu ortaq cəhətləri var. Əgər desək ki, maşın öyrənməsi dəyərləri proqnozlaşdırmaqdan və obyektləri etiketləməkdən ibarətdir, o zaman qruplaşdırıcını ümumi 2 qrupa ayıra bilərik: _ikili qruplaşdırıcı_ və _çox sinifli qruplaşdırıcı_.
 
-[![Təsnifatlandırma bölməsinə giriş](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Təsnifatlandırma bölməsinə giriş")
+[![Qruplaşdırıcı bölməsinə giriş](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Qruplaşdırıcı bölməsinə giriş")
 
-> 🎥 Yuxarıdakı təsvirə klikləməklə videoya baxın: John Guttag MIT-də təsnifatlandırma mövzusunu təqdim edir
+> 🎥 Yuxarıdakı təsvirə klikləməklə videoya baxın: John Guttag MIT-də qruplaşdırıcı mövzusunu təqdim edir
 
 Yadda saxlayın:
 
 - **Xətti reqressiya** sizə dəyişənlər arasındakı əlaqəni proqnozlaşdırmağa və yeni məlumatın həmin xəttə nəzərən harada yerləşəcəyi barədə həqiqətə yaxın olan təxminlər etməyə kömək etdi. Beləliklə siz, _balqabağın Sentyabrdakı qiyməti ilə Dekabrdakı qiymətinin arasındakı fərq nə qədər olar_ kimi suallara təxmini cavablar verə biləcəksiniz.
-- **Lojistik reqressiya** sizə "binar kateqoriyaları" aydınlaşdırmağa kömək etdi: bu qiymət nöqtəsində _balqabaq narıncıdır, yoxsa narıncı deyil_?
+- **Lojistik reqressiya** sizə "ikili kateqoriyaları" aydınlaşdırmağa kömək etdi: bu qiymət nöqtəsində _balqabaq narıncıdır, yoxsa narıncı deyil_?
 
-Təsnifatlandırma müxtəlif alqoritmləri istifadə edərək verilənin etiketini və ya sinfini təyin etmək üçün başqa yollar tapmağa imkan verir. Gəlin inqrediyentləri analiz etməklə mətbəxin aid olduğu yeri tapa bilib bilməyəcəyimizi görmək üçün mətbəx datası ilə işləyək.
+Qruplaşdırıcı müxtəlif alqoritmləri istifadə edərək verilənin etiketini və ya sinfini təyin etmək üçün başqa yollar tapmağa imkan verir. Gəlin inqrediyentləri analiz etməklə mətbəxin aid olduğu yeri tapa bilib-bilməyəcəyimizi görmək üçün mətbəx datası ilə işləyək.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/?loc=az)
 
 > ### [Bu dərs R proqramlaşdırma dili ilə də əlçatandır!](../solution/R/lesson_10.html)
 
 ### Giriş
 
-Təsnifatlandırma, bir maşın öyrənmə tədqiqatçısının və bir data mühəndisinin ən əsas fəaliyyətlərindən biridir. Binar dəyərin təsnifatlandırılması ("bu imeyl spamdır yoxsa spam deyil?") kimi sadə məsələlərdən, komputer görüşü istifadə edərək qarışıq şəkillərin təsnifatlandırılması və seqmentasiyası məsələlərinə qədər, datanı siniflərə ayırmaq və data haqqında suallar verə bilmək hər zaman faydalıdır.
+Qruplaşdırıcı bir maşın öyrənmə tədqiqatçısının və bir data mühəndisinin ən əsas fəaliyyətlərindən biridir. İkili dəyərin qruplaşdırılması ("bu imeyl spamdır, yoxsa spam deyil?") kimi sadə məsələlərdən komputer görüşü istifadə edərək qarışıq şəkillərin qruplaşdırılması və seqmentasiyası məsələlərinə qədər datanı siniflərə ayırmaq və data haqqında suallar verə bilmək hər zaman faydalıdır.
 
-Prosesi daha elmi dildə izah etsək, sizin təsnifatlandırma metodunuz, praqnozlaşdırıcı bir model yaradaraq sizə giriş və çıxış dəyərləri arasında əlaqəni təsvir etməyə imkan verir.
+Prosesi daha elmi dildə izah etsək, sizin qruplaşdırıcı metodunuz praqnozlaşdırıcı bir model yaradaraq sizə giriş və çıxış dəyərləri arasında əlaqəni təsvir etməyə imkan verir.
 
-![binar və çox sinifli təsnifatlandırma](../images/binary-multiclass.png)
+![ikili və çox sinifli qruplaşdırıcı](../images/binary-multiclass.png)
 
-> Təsnifatlandırma alqoritmlərinin həll etməli olduğu binar və çox sinifli təsnifatlandırma problemləri. [Jen Looper](https://twitter.com/jenlooper) tərəfindən infoqraf
+> Qruplaşdırıcı alqoritmlərinin həll etməli olduğu ikili və çox sinifli qruplaşdırıcı problemləri. [Jen Looper](https://twitter.com/jenlooper) tərəfindən infoqraf
 
-Datanı təmizləməyə, vizuallaşdırmağa və MÖ tapşırıqlarımız üçün hazırlamağa başlamazdan əvvəl, gəlin, maşın öyrənməsinin hansı üsullarla datanı təsnifatlandırmaq üçün istifadə edilə biləcəyini öyrənək.
+Datanı təmizləməyə, vizuallaşdırmağa və ML tapşırıqlarımız üçün hazırlamağa başlamazdan əvvəl gəlin, maşın öyrənməsinin hansı üsullarla datanı qruplaşdırmaq üçün istifadə edilə biləcəyini öyrənək.
 
-Ənənəvi maşın öyrənməsi vasitəsilə təsnifatlandırma əsasını [statistika](https://wikipedia.org/wiki/Statistical_classification)dan alır və _X xəstəliyinin yaranma ehtimalı_nı müəyyən etmək üçün `siqaret çəkən`, `çəki` və `yaş` kimi xarakteristikalardan istifadə edir. Yönləndirilmiş öyrənmə metodu olduğuna görə, daha əvvəl yerinə yetirdiyiniz reqressiya tapşırıqlarında olduğu kimi datanız etiketlənir və MÖ alqoritmləri data massivin siniflərini (ya da 'xarakteristikalar'ını) təsnifatlandırmaq və proqnozlaşdırmaq, həmçinin onları qruplara bölmək və ya nəticə çıxarmaq üçün həmin etiketləri istifadə edir.
+Ənənəvi maşın öyrənməsi vasitəsilə qruplaşdırıcı əsasını [statistika](https://wikipedia.org/wiki/Statistical_classification)dan alır və _X xəstəliyinin yaranma ehtimalı_nı müəyyən etmək üçün `siqaret çəkən`, `çəki` və `yaş` kimi xarakteristikalardan istifadə edir. Nəzarətli öyrənmə metodu olduğuna görə daha əvvəl yerinə yetirdiyiniz reqressiya tapşırıqlarında olduğu kimi datanız etiketlənir və ML alqoritmləri datasetin siniflərini (ya da 'xarakteristikalar'ını) qruplaşdırmaq və proqnozlaşdırmaq, həmçinin onları qruplara bölmək və ya nəticə çıxarmaq üçün həmin etiketlərdən istifadə edir.
 
-✅ Bir anlıq mətbəxlər haqqında data massiv təsəvvür edin. Çox sinifli model nələrə cavab verə bilərdi? Binar model nələrə cavab verə bilərdi? Əgər verilən mətbəxdə samanlıq güldəfnəsinin istifadə olunub olunmadığını müəyyən etmək istəsəniz nə baş verəcək? Deyək ki, bir ərzaq çantasında sizə illicium verum, artişok, gül kələmi və adi qıtıqotu təqdim olunur və siz bu ərzaqlardan ənənəvi Hindistan yeməyi hazırlaya bilib bilməyəcəyinizi öyrənmək istəyirsiniz. Bu zaman nə baş verəcək?
+✅ Bir anlıq mətbəxlər haqqında dataset təsəvvür edin. Çox sinifli model nələrə cavab verə bilərdi? İkili model nələrə cavab verə bilərdi? Əgər verilən mətbəxdə samanlıq güldəfnəsinin istifadə olunub olunmadığını müəyyən etmək istəsəniz nə baş verəcək? Deyək ki, bir ərzaq çantasında sizə ulduz anis, ənginar, gül kələmi və yaban turpu təqdim olunur və siz bu ərzaqlardan ənənəvi Hindistan yeməyi hazırlaya bilib bilməyəcəyinizi öyrənmək istəyirsiniz. Bu zaman nə baş verəcək?
 
 [![Çılğın sirli səbətlər](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Çılğın sirli səbətlər")
 
-> 🎥 Yuxarıdakı təsvirə klikləməklə videoya baxın. 'Chopped' proqramının xülasəsini belə verə bilərik: Aşpazlar 'sirli səbət'də olan təsadüfi seçilmiş inqrediyentlərdən yemək hazırlamalıdırlar. Şübhəsiz ki, burada MÖ modeli köməyə çatardı!
+> 🎥 Yuxarıdakı təsvirə klikləməklə videoya baxın. 'Chopped' proqramının xülasəsini belə verə bilərik: Aşpazlar 'sirli səbət'də olan təsadüfi seçilmiş inqrediyentlərdən yemək hazırlamalıdırlar. Şübhəsiz ki, burada ML modeli köməyə çatardı!
 
-## Salam 'təsnifatlandırıcı'
+## Salam 'qruplaşdırıcı'
 
-Bu mətbəx data massivi haqqında soruşmaq istədiyimiz sual həqiqətən də çox sinifli məsələ sualıdır, çünki biz bir neçə mümkün milli mətbəx ilə işləyə bilərik. İnqrediyentlər verilərsə, data bu siniflərdən hansına uyğun gələr?
+Bu mətbəx dataseti haqqında soruşmaq istədiyimiz sual həqiqətən də çox sinifli məsələ sualıdır, çünki biz bir neçə mümkün milli mətbəx ilə işləyə bilərik. İnqrediyentlər verilərsə, data bu siniflərdən hansına uyğun gələr?
 
-Scikit-learn, həll etmək istədiyiniz məsələdən asılı olaraq, datanı təsnifatlandırmaq üçün bir neçə müxtəlif alqoritm təklif edir. Növbəti iki dərsdə bu alqoritmlərdən bir neçəsi haqqında öyrənəcəksiniz.
+Scikit-learn, həll etmək istədiyiniz məsələdən asılı olaraq datanı qruplaşdırıcı üçün bir neçə müxtəlif alqoritm təklif edir. Növbəti iki dərsdə bu alqoritmlərdən bir neçəsi haqqında öyrənəcəksiniz.
 
 ## Tapşırıq - datanı təmizləyin və balanslaşdırın
 
-Proyektə başlamazdan öncə yerinə yetirilməli olan ilk tapşırıq, daha yaxşı nəticələr əldə etmək məqsədilə datanı təmizləmək və balanslaşdırmaqdır. Olduğunuz qovluqla eyni qovluqda olan boş _notebook.ipynb_ faylı ilə başlayın.
+Layihəyə başlamazdan öncə yerinə yetirilməli olan ilk tapşırıq - daha yaxşı nəticələr əldə etmək məqsədilə datanı təmizləmək və balanslaşdırmaqdır. Olduğunuz qovluqla eyni qovluqda olan boş _notebook.ipynb_ faylı ilə başlayın.
 
 Quraşdırılmalı olan ilk komponent [imblearn](https://imbalanced-learn.org/stable/)-dür. Bu, datanı daha yaxşı balanslaşdırmağa imkan verən Scikit-learn komponentidir (bu tapşırıq haqqında az sonra öyrənəcəksiniz).
 
@@ -127,7 +127,7 @@ Tapşırıq getdikcə maraqlı olmağa başlayır. Gəlin datanın mətbəxlər 
 
     ![mətbəx datasının paylanması](../images/cuisine-dist.png)
 
-    Datada olan mətbəxlərin sayı azdır, lakin data bərabər paylanmayıb. Bunu düzəldə bilərsiniz! Başlamazdan əvvəl biraz daha araşdırın. 
+    Datada olan mətbəxlərin sayı azdır, lakin data bərabər paylanmayıb. Bunu düzəldə bilərsiniz! Başlamazdan əvvəl biraz daha araşdırın.
 
 2. Hər mətbəx üçün nə qədər data olduğunu tapın və onları çap edin:
 
@@ -137,7 +137,7 @@ Tapşırıq getdikcə maraqlı olmağa başlayır. Gəlin datanın mətbəxlər 
     chinese_df = df[(df.cuisine == "chinese")]
     indian_df = df[(df.cuisine == "indian")]
     korean_df = df[(df.cuisine == "korean")]
-    
+
     print(f'thai df: {thai_df.shape}')
     print(f'japanese df: {japanese_df.shape}')
     print(f'chinese df: {chinese_df.shape}')
@@ -217,7 +217,7 @@ Artıq datanı daha dərindən analiz edib hər mətbəxdə daha çox istifadə 
 
     ![koreya](../images/korean.png)
 
-7. Növbəti addımda `drop()` funksiyasını çağıraraq ən çox istifadə olunan və ayrı mətbəxlər arasında qarışıqlıq yaradan inqrediyentləri çıxarın: 
+7. Növbəti addımda `drop()` funksiyasını çağıraraq ən çox istifadə olunan və ayrı mətbəxlər arasında qarışıqlıq yaradan inqrediyentləri çıxarın:
 
    Hamı düyünü, sarımsağı və zəncəfili sevir!
 
@@ -227,9 +227,9 @@ Artıq datanı daha dərindən analiz edib hər mətbəxdə daha çox istifadə 
     feature_df.head()
     ```
 
-## Data massivi balanslaşdırın
+## Dataseti balanslaşdırın
 
-Datanı təmizlədikdən sonra, onu balanslaşdırmaq üçün [SMOTE-u](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Synthetic Minority Over-sampling Technique" - istifadə edin.
+Datanı təmizlədikdən sonra, onu balanslaşdırmaq üçün [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Synthetic Minority Over-sampling Technique" - istifadə edin.
 
 1. `fit_resample()` funksiyasını çağırın. Bu funksiya interpolyasiya üsulu ilə yeni nümunələr yaradır.
 
@@ -238,7 +238,7 @@ Datanı təmizlədikdən sonra, onu balanslaşdırmaq üçün [SMOTE-u](https://
     transformed_feature_df, transformed_label_df = oversample.fit_resample(feature_df, labels_df)
     ```
 
-    Datanı balanslaşdırdırdan sonra onu təsnifatlandırarkən daha yaxşı nəticələr əldə edəcəksiniz. Binar təsnifatlandırmanı nümunə götürün. Əgər datanızın böyük bir hissəsi bir sinfə aiddirsə, həmin sinfə aid daha çox data olduğu üçün MÖ modeli həmin sinfi daha yüksək tezliklə proqnozlaşdıracaq. Datanı balanslaşdırmaq bu data əyrilərini yox edərək tarazsızlığı aradan qaldırır.
+    Datanı balanslaşdırdırdan sonra onu qruplaşdırarkən daha yaxşı nəticələr əldə edəcəksiniz. İkili qruplaşdırıcını nümunə götürün. Əgər datanızın böyük bir hissəsi bir sinfə aiddirsə, həmin sinfə aid daha çox data olduğu üçün ML modeli həmin sinfi daha yüksək tezliklə proqnozlaşdıracaq. Datanı balanslaşdırmaq bu data əyrilərini yox edərək tarazsızlığı aradan qaldırır.
 
 2. Artıq hər bir inqrediyent üzrə etiketlərin sayına baxa bilərsiniz:
 
@@ -264,7 +264,7 @@ Datanı təmizlədikdən sonra, onu balanslaşdırmaq üçün [SMOTE-u](https://
     Name: cuisine, dtype: int64
     ```
 
-    Artıq data təmiz, balanslı və çox ləzzətlidir! 
+    Artıq data təmiz, balanslı və çox ləzzətlidir!
 
 3. Sonuncu addım balanslaşdırılmış datanı etiketlər və xarakteristikalar da daxil olmaqla fayla eksport oluna bilən bir halda saxlamaqdır:
 
@@ -284,16 +284,16 @@ Datanı təmizlədikdən sonra, onu balanslaşdırmaq üçün [SMOTE-u](https://
 
 ---
 
-## 🚀Məşğələ
+## 🚀 Məşğələ
 
-Bu proqramda bir neçə maraqlı data massiv var. `data` qovluqlarına baxın. Bu qovluqlardan hansısa birində binar və çox sinifli təsnifatlandırma üçün uyğun ola biləcək data massivlər varmı? Onlar haqqında hansı sualları verərdiniz?
+Bu proqramda bir neçə maraqlı dataset var. `data` qovluqlarına baxın. Bu qovluqlardan hansısa birində ikili və çox sinifli qruplaşdırıcı üçün uyğun ola biləcək datasetlər varmı? Onlar haqqında hansı sualları verərdiniz?
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 
-SMOTE TPİ-ni tədqiq edin. Bu TPİ ən çox hansı hallarda istifadə olunur? Hansı problemləri həll edir?
+SMOTE API-ni tədqiq edin. Bu ən çox hansı hallarda istifadə olunur? Hansı problemləri həll edir?
 
-## Tapşırıq 
+## Tapşırıq
 
-[Təsnifatlandırma metodlarını tədqiq edin](assignment.az.md)
+[Qruplaşdırıcı metodlarını tədqiq edin](assignment.az.md)

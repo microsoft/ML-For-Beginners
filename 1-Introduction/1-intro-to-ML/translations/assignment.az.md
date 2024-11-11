@@ -1,4 +1,4 @@
-# Sistemi hazırlayın
+# Sistem hazırlayın
 
 ## Təlimatlar
 

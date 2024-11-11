@@ -2,22 +2,22 @@
 
 İkinci qruplaşdırma dərsində siz, ədədi dataları qruplaşdırmaq üçün olan əlavə yolları kəşf edəcəksiniz. Bundan əlavə olaraq isə bir qruplaşdırıcını digəri ilə əvəz etməyin nəticələri haqqında öyrənəcəksiniz.
 
-## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Mühazirədən əvvəl test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/?loc=az)
 
 ### İlkin şərt
 
-Əvvəlki dərsi bitirdiyinizi və 4-cü dərsin ana qovluğunda yerləşən `data` qovluğunda, _cleaned_cuisines.csv_ adlı data setinizin olduğunu güman edirik.
+Əvvəlki dərsi bitirdiyinizi və 4-cü dərsin ana qovluğunda yerləşən `data` qovluğunda _cleaned_cuisines.csv_ adlı datasetinizin olduğunu güman edirik.
 
 ### Hazırlıq
 
-_notebook.ipynb_ faylınızı təmizlənmiş data set ilə yükləyib, X və y datafreymlərinə bölərək model qurulması prosesi üçün hazır vəziyyətə gətirmişik.
+_notebook.ipynb_ faylınızı təmizlənmiş dataset ilə yükləyib X və y datafreymlərinə bölərək model qurulması prosesi üçün hazır vəziyyətə gətirmişik.
 
 ## Qruplaşdırma xəritəsi
 
 Öncədən, Microsoft-un yaddaş vərəqindən datanın qruplaşdırmağın müxtəlif növləri haqqında öyrənmisiniz. Scikit-learn də buna oxşar, amma təxminedicilərinizi(qruplaşdırıcıların digər adı) daha dəqiq təyin etmənizdə sizə yardım edəcək bir yaddaş vərəqəsi təklif edir:
 
-![Scikit-learn-dən MÖ Xəritəsi](../images/map.png)
-> Tövsiyyə: [Bu xəritəyə onlayn formada](https://scikit-learn.org/stable/tutorial/machine_learning_map/) baxaraq, cığırlar üzrə hərəkət edərkən üzərlərinə klik edərək dokumentasiyaları oxuya bilərsiniz.
+![Scikit-learn-dən ML Xəritəsi](../images/map.png)
+> Tövsiyyə: [Bu xəritəyə onlayn formada](https://scikit-learn.org/stable/tutorial/machine_learning_map/) baxaraq cığırlar üzrə hərəkət edərkən üzərlərinə klik edərək sənədləri oxuya bilərsiniz.
 
 ### Plan
 
@@ -27,18 +27,18 @@ Datanız haqqında aydın fikirləriniz olduğu zaman bu xəritə sizə çox kö
 - Kateqoriyanı təxmin etmək istəyirik
 - Etiketlənmiş datamız var
 - 100 mindən daha az nümunəmiz var
-- ✨ Xətti DVQ(Dəstək-Vektor Qruplaşdırıcı)-i seçə bilərik
-- Ədədi datamız olduğuna görə, əgər işinizə yaramazsa
+- ✨ Xətti SVC (Dəstək-Vektor Qruplaşdırıcı) seçə bilərik
+- Ədədi datamız olduğuna görə əgər işinizə yaramazsa
     - ✨ K-Qonşu Qruplaşdırıcını yoxlaya bilərik
-        - Əgər bu da işinizə yaramazsa, ✨ DVQ və ✨ Ansambl Qruplaşdırıcılarını yoxlayın.
+        - Əgər bu da işinizə yaramazsa, ✨ SVC və ✨ Ansambl Qruplaşdırıcılarını yoxlayın.
 
 Bu izləyə biləcəyiniz çox faydalı bir yoldur.
 
 ## Tapşırıq - datanı ayırmaq
 
-Həmin cığırı izləyərək, istifadə etmək üçün bəzi kitabxanaları idxal edərək başlamalıyıq.
+Həmin cığırı izləyərək istifadə etmək üçün bəzi kitabxanaları daxil edərək başlamalıyıq.
 
-1. Tələb olunan kitabxanaları idxal edin:
+1. Tələb olunan kitabxanaları daxil edin:
     ```python
     from sklearn.neighbors import KNeighborsClassifier
     from sklearn.linear_model import LogisticRegression
@@ -49,21 +49,21 @@ Həmin cığırı izləyərək, istifadə etmək üçün bəzi kitabxanaları id
     import numpy as np
     ```
 
-2. Öyrədilmə və test datalarını ayırın:
+2. Öyrətmə və test datalarını ayırın:
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Xətti DVQ(Dəstək-Vektor Qruplaşdırıcı)
+## Xətti SVC (Dəstək-Vektor Qruplaşdırıcı)
 
-Dəstək-Vektor klasterləşmə, MÖ texnikalarından(aşağıda bu haqda ətraflı öyrənə bilərsiniz) olan Dəstək-Vektor maşınları ailəsinin bir üzvüdür. Bu metodda siz etiketləri klasterləşdirmək üçün 'kernel(özək)' seçə bilərsiniz. 'C' parametri, parametrlərin təsirini nizamlayan 'regularization(nizamlama)'-ı bildirir. Özək [bunlardan](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) biri ola bilər. Burada biz xətti DVQ-ı istifadə edəcəyimizə görə onun da 'xətti' olaraq təyin etmişik. Ehtimalın öz standart olaraq təyin olunmuş dəyəri 'false(yanlış)'-dur. Amma burada ehtimal haqqında təxminlər toplamağımız üçün onu 'true(doğru)'-a dəyişmişik. Random state-i(Random vəziyyəti) isə, ehtimalları datanı qarışdıraraq əldə etmək üçün '0'-a bərabər etmişik.
+Dəstək-Vektor klasterləşmə ML texnikalarından(aşağıda bu haqda ətraflı öyrənə bilərsiniz) olan Dəstək-Vektor maşınları ailəsinin bir üzvüdür. Bu metodda siz etiketləri klasterləşdirmək üçün 'kernel(özək)' seçə bilərsiniz. 'C' parametri, parametrlərin təsirini nizamlayan 'regularization(nizamlama)'-ı bildirir. Özək [bunlardan](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) biri ola bilər. Burada biz xətti SVC istifadə edəcəyimizə görə onu da 'xətti' olaraq təyin etmişik. Ehtimalın özü standart olaraq təyin olunmuş dəyəri 'false(yanlış)'-dur. Amma burada ehtimal haqqında təxminlər toplamağımız üçün onu 'true(doğru)'-a dəyişmişik. Random state (Təsadüfi vəziyyəti) isə ehtimalları datanı qarışdıraraq əldə etmək üçün '0'-a bərabər etmişik.
 
-### Tapşırıq - xətti DVQ-i tətbiq edin
+### Tapşırıq - xətti SVC tətbiq edin
 
 Qruplaşdırıcılardan ibarət bir massiv yaratmaqla başlayın. Testlər apardıqca, bu massivə əlavələr edəcəksiniz.
 
-1. Xətti DVQ ilə başlayın:
+1. Xətti SVC ilə başlayın:
 
     ```python
     C = 10
@@ -73,14 +73,14 @@ Qruplaşdırıcılardan ibarət bir massiv yaratmaqla başlayın. Testlər apard
     }
     ```
 
-2. Xətti DVQ istifadə edərək modeli öyrədin və reportu ekrana çap edin:
+2. Xətti SVC istifadə edərək modeli öyrədin və reportu ekrana çap edin:
 
     ```python
     n_classifiers = len(classifiers)
-    
+
     for index, (name, classifier) in enumerate(classifiers.items()):
         classifier.fit(X_train, np.ravel(y_train))
-    
+
         y_pred = classifier.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         print("Accuracy (train) for %s: %0.1f%% " % (name, accuracy * 100))
@@ -90,28 +90,28 @@ Qruplaşdırıcılardan ibarət bir massiv yaratmaqla başlayın. Testlər apard
     Nəticə kifayət qədər yaxşıdır:
 
     ```output
-    Accuracy (train) for Linear SVC: 78.6% 
+    Accuracy (train) for Linear SVC: 78.6%
                   precision    recall  f1-score   support
-    
+
          chinese       0.71      0.67      0.69       242
           indian       0.88      0.86      0.87       234
         japanese       0.79      0.74      0.76       254
           korean       0.85      0.81      0.83       242
             thai       0.71      0.86      0.78       227
-    
+
         accuracy                           0.79      1199
        macro avg       0.79      0.79      0.79      1199
     weighted avg       0.79      0.79      0.79      1199
     ```
 ## K-Qonşu qruplaşdırıcısı
 
-K-Qonşu, MÖ metodlarının həm nəzarətli, həm də nəzarətsiz öyrənmə üçün istifadə edilən "qonşular" ailəsinin bir hissəsidir. Bu metodda, öncədən təyin olunan sayda data nöqtələri yaradılır və datalar bu nöqtələr ətrafında məlumatlar üçün ümumiləşdirilmiş etiketlər proqnozlaşdırıla bilinəcəyi formada toplanılır.
+K-Qonşu ML metodlarının həm nəzarətli, həm də nəzarətsiz öyrənmə üçün istifadə edilən "qonşular" ailəsinin bir hissəsidir. Bu metodda öncədən təyin olunan sayda data nöqtələri yaradılır və datalar bu nöqtələr ətrafında məlumatlar üçün ümumiləşdirilmiş etiketlərin proqnozlaşdırıla bilinəcəyi formada toplanılır.
 
 ### Tapşırıq - K-Qonşu qruplaşdırıcısını tətbiq edin
 
 Öncəki qruplaşdırıcı yaxşı idi və data ilə əla işlədi. Amma daha yuxarı dəqiqlik əldə edə bilərik. K-Qonşu qruplaşdırıcısını yoxlayın.
 
-1. Qruplaşdırıcı massivinizə yeni sətir əlavə edin (Xətti DVQ-dən sonra vergül qoyun):
+1. Qruplaşdırıcı massivinizə yeni sətir əlavə edin (Xətti SVC-dən sonra vergül qoyun):
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
@@ -120,15 +120,15 @@ K-Qonşu, MÖ metodlarının həm nəzarətli, həm də nəzarətsiz öyrənmə 
     Nəticə bir az pisdir:
 
     ```output
-    Accuracy (train) for KNN classifier: 73.8% 
+    Accuracy (train) for KNN classifier: 73.8%
                   precision    recall  f1-score   support
-    
+
          chinese       0.64      0.67      0.66       242
           indian       0.86      0.78      0.82       234
         japanese       0.66      0.83      0.74       254
           korean       0.94      0.58      0.72       242
             thai       0.71      0.82      0.76       227
-    
+
         accuracy                           0.74      1199
        macro avg       0.76      0.74      0.74      1199
     weighted avg       0.76      0.74      0.74      1199
@@ -138,7 +138,7 @@ K-Qonşu, MÖ metodlarının həm nəzarətli, həm də nəzarətsiz öyrənmə 
 
 ## Dəstək-Vektor Qruplaşdırıcısı
 
-Dəstək-Vektor qruplaşdırıcıları, MÖ metodlarının qruplaşdırma və reqressiya tapşırıqları üçün istifadə edilən [Dəstək-Vektor Maşını](https://wikipedia.org/wiki/Support-vector_machine) ailəsinin bir hissəsidir. DVM-lər iki kateqoriya arasındakı məsafəni maksimallaşdırmaq üçün "öyrətmə nümunələrini fəzadakı nöqtələrə köçürür". Sonrakı datalar kateqoriyalarının müəyyən olunması üçün bu fəzaya köçürülür.
+Dəstək-Vektor qruplaşdırıcıları ML metodlarının qruplaşdırma və reqressiya tapşırıqları üçün istifadə edilən [Dəstək-Vektor Maşını](https://wikipedia.org/wiki/Support-vector_machine) ailəsinin bir hissəsidir. SCM-lər iki kateqoriya arasındakı məsafəni maksimallaşdırmaq üçün "öyrətmə nümunələrini fəzadakı nöqtələrə köçürür". Sonrakı datalar kateqoriyalarının müəyyən olunması üçün bu fəzaya köçürülür.
 
 ### Dəstək Vektor Qruplaşdırıcısını tətbiq edin
 
@@ -153,25 +153,25 @@ Gəlin Dəstək Vektor Qruplaşdırıcı ilə daha dəqiq nəticə əldə etməy
     Nəticə kifayət qədər yaxşıdır!
 
     ```output
-    Accuracy (train) for SVC: 83.2% 
+    Accuracy (train) for SVC: 83.2%
                   precision    recall  f1-score   support
-    
+
          chinese       0.79      0.74      0.76       242
           indian       0.88      0.90      0.89       234
         japanese       0.87      0.81      0.84       254
           korean       0.91      0.82      0.86       242
             thai       0.74      0.90      0.81       227
-    
+
         accuracy                           0.83      1199
        macro avg       0.84      0.83      0.83      1199
     weighted avg       0.84      0.83      0.83      1199
     ```
 
-    ✅ [Support-Vectors](https://scikit-learn.org/stable/modules/svm.html#svm) haqqında ətraflı öyrənin
+    ✅ [Dəstək-Vektorları](https://scikit-learn.org/stable/modules/svm.html#svm) haqqında ətraflı öyrənin
 
 ## Ansambl Qruplaşdrıcıları
 
-Gəlin cığırı əvvəlki testimiz kifayət qədər yaxşı olsa da axıra qədər izləyək. 'Ansambl Qruplaşdırıcılarını, xüsusilə Random Meşə və AdaBoost-u' yoxlayaq:
+Gəlin cığırı əvvəlki testimiz kifayət qədər yaxşı olsa da axıra qədər izləyək. 'Ansambl Qruplaşdırıcılarını, xüsusilə Random Forest və AdaBoost-u' yoxlayaq:
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
@@ -181,7 +181,7 @@ Gəlin cığırı əvvəlki testimiz kifayət qədər yaxşı olsa da axıra qə
 Nəticələr kifayət qədər yaxşıdır. Xüsusilə Random Forest üçün:
 
 ```output
-Accuracy (train) for RFST: 84.5% 
+Accuracy (train) for RFST: 84.5%
               precision    recall  f1-score   support
 
      chinese       0.80      0.77      0.78       242
@@ -194,7 +194,7 @@ Accuracy (train) for RFST: 84.5%
    macro avg       0.85      0.85      0.84      1199
 weighted avg       0.85      0.84      0.84      1199
 
-Accuracy (train) for ADA: 72.4% 
+Accuracy (train) for ADA: 72.4%
               precision    recall  f1-score   support
 
      chinese       0.64      0.49      0.56       242
@@ -210,24 +210,24 @@ weighted avg       0.73      0.72      0.72      1199
 
 ✅ [Ansambl Qruplaşdırıcıları](https://scikit-learn.org/stable/modules/ensemble.html) haqqında ətraflı öyrənin
 
-Maşın Öyrənməsinin bu metodu, modelin keyfiyyətini artırmaq üçün 'bir neçə təxminedicilərin təxminlərini özündə birləşdirir'. Nümunəmizdə, Random Ağacları və AdaBoost-u istifadə etdik.
+Maşın Öyrənməsinin bu metodu modelin keyfiyyətini artırmaq üçün 'bir neçə təxminedicilərin təxminlərini özündə birləşdirir'. Nümunəmizdə, Random Forest və AdaBoost-u istifadə etdik.
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), ortalama hesablayan bir metod olaraq, həddən artıq uyğunlaşmamaq üçün təsadüfiliklə doldurulmuş 'qərarvermə ağaclarından' təşkil olunmuş 'meşə' yaradır. n_estimators parametri, ağacların sayını bildirir.
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest) ortalama hesablayan bir metod olaraq həddən artıq uyğunlaşmamaq üçün təsadüfiliklə doldurulmuş 'qərarvermə ağaclarından' təşkil olunmuş 'meşə' yaradır. n_estimators parametri ağacların sayını bildirir.
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) isə qruplaşdırıcını data setə uyğunlaşdırır və daha sonra öz surətlərini həmin datasetə uyğunlaşdırır. O yanlış qruplaşdırılmış qruplaşdırıcıların çəkilərinə fokuslanır və bir sonrakı qruplaşdırıcının düzəltməsi üçün uyğunluğa düzəlişlər edir.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) isə qruplaşdırıcını datasetə uyğunlaşdırır və daha sonra öz surətlərini həmin datasetə uyğunlaşdırır. O, yanlış qruplaşdırılmış qruplaşdırıcıların çəkilərinə fokuslanır və bir sonrakı qruplaşdırıcının düzəltməsi üçün uyğunluğa düzəlişlər edir.
 
 ---
 
-## 🚀Məşğələ
+## 🚀 Məşğələ
 
 Bu texnikaların hər birinin dəyişiklər edə biləcəyiniz çox sayda parametrləri mövcuddur. Hər birinin standart olaraq təyin edilmiş parametrlərini araşdırın və bu parametrlərin dəyişdirilməsinin modelin keyfiyyəti üçün önəmi haqqında düşünün.
 
-## [Mühazirə sonrası quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Mühazirə sonrası test](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/?loc=az)
 
 ## Təkrarlayın və özünüz öyrənin
 
-Bu dərslərdə çoxlu jarqon sözlər mövcuddur. Ona görə də bir dəqiqənizi ayıraraq, praktiki terminologiyaların olduğu [bu siyahıya](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) nəzər yetirin.
+Bu dərslərdə çoxlu jarqon sözlər mövcuddur. Ona görə də bir dəqiqənizi ayıraraq praktiki terminologiyaların olduğu [bu siyahıya](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) nəzər yetirin.
 
 ## Tapşırıq
 
-[Parameter oyunu](assignment.az.md)
+[Parametr oyunu](assignment.az.md)

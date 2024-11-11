@@ -1,6 +1,6 @@
 # Postskript: Klassik maşın öyrənməsinin real həyatda tətbiqləri
 
-Kurikulumun bu bölməsində klassik ML-in real həyatda bəzi tətbiqləri ilə tanış olacaqsan. Biz internetdə çox sayda elmi və məqalə və yazıları analiz etmişik və neyron şəbəkələrini, dərin öyrənməni, süni intelleki bacardığımız qədər filtr edərək yalnız əhatə etdiyimiz strategiyaların istifadə olunduğu tətbiqləri seçmişik. ML-in biznes sistemlərində, ekologiya tətbiqlərində, maliyyə, sənət və mədəniyyətdə necə tətbiq olunduqlarını öyrən.
+Kurikulumun bu bölməsində klassik ML-in real həyatda bəzi tətbiqləri ilə tanış olacaqsan. Biz internetdə çox sayda elmi məqalə və yazıları analiz etmişik və neyron şəbəkələrini, dərin öyrənməni, süni intelleki bacardığımız qədər filtr edərək yalnız əhatə etdiyimiz strategiyaların istifadə olunduğu tətbiqləri seçmişik. ML-in biznes sistemlərində, ekologiya tətbiqlərində, maliyyə, sənət və mədəniyyətdə necə tətbiq olunduqlarını öyrən.
 
 ![şahmat](../images/chess.jpg)
 
@@ -9,10 +9,10 @@ Kurikulumun bu bölməsində klassik ML-in real həyatda bəzi tətbiqləri ilə
 ## Dərslər
 
 1. [ML-in real həyat tətbiqləri](../1-Applications/translations/README.az.md)
-2. [Məsuliyyətli Sİ idarə panelinin komponentlərini istifadə edərək Maşın Öyrənməsi modelinin analizi](../2-Debugging-ML-Models/translations/README.az.md)
+2. [Məsuliyyətli AI idarə panelinin komponentlərini istifadə edərək Maşın Öyrənməsi modelinin analizi](../2-Debugging-ML-Models/translations/README.az.md)
 
 ## Təşəkkürlər
 
 "Real həyat tətbiqləri" [Jen Looper](https://twitter.com/jenlooper) və [Ornella Altunyan](https://twitter.com/ornelladotcom) daxil olmaqla digər komanda üzvləri tərəfindən yazılıb.
 
-"Məsuliyyətli Sİ idarə panelinin komponentlərini istifadə edərək Maşın Öyrənməsi modelinin analizi" [Ruth Yakubu](https://twitter.com/ruthieyakubu) tərəfindən yazılıb.
+"Məsuliyyətli AI idarə panelinin komponentlərini istifadə edərək Maşın Öyrənməsi modelinin analizi" [Ruth Yakubu](https://twitter.com/ruthieyakubu) tərəfindən yazılıb.

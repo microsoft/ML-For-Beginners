@@ -1,8 +1,8 @@
-# Məsuliyyətli Sİ Toolbox kəşf edin
+# RAI Toolboxu kəşf edin
 
 ## Təlimatlar
 
-Bu dərsdə siz "data alimlərinə Sİ sistemlərini təhlil etmək və təkmilləşdirməkdə kömək etmək üçün açıq mənbəli, icma tərəfindən idarə olunan layihə" olan Responsible AI Toolbox haqqında öyrəndiniz. Bu tapşırıq üçün RAI Toolbox-ın [noutbuklarından] (https://github.com/microsoft/responsible-ai-toolbox/blob/main/notebooks/responsibleaidashboard/getting-started.ipynb)birini araşdırın və tapıntılarınızı yazı və ya təqdimatda bildirin.
+Bu dərsdə siz "data mühəndislərinə AI sistemlərini təhlil etmək və təkmilləşdirməkdə kömək etmək üçün açıq mənbəli, icma tərəfindən idarə olunan layihə" olan Responsible AI Toolbox haqqında öyrəndiniz. Bu tapşırıq üçün RAI Toolbox-ın [noutbuklarından](https://github.com/microsoft/responsible-ai-toolbox/blob/main/notebooks/responsibleaidashboard/getting-started.ipynb) birini araşdırın və tapıntılarınızı yazı və ya təqdimatda bildirin.
 
 ## Rubrika
 
