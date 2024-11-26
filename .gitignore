@@ -5,6 +5,9 @@
 
 dist 
 
+#pythion virtual envs
+venv*
+
 # User-specific files
 *.rsuser
 *.suo

@@ -1,0 +1,14 @@
+- Decide is AI is the right approcahc for your problem
+    - if the problem can be solved with a well defined set of rules -> not AI
+    - plenty of data with useful information about your problem -> AI
+- Collect and prepare your data
+    - cleanup, format, eliminate rows or fields
+    - choose features that you will use as input for predictions (suh as medical history) 
+    - choose what you will predict - probability for a disease
+    - split into training data and test data, say 80% to 20%
+- Train your model
+    - chose algorithms or use them all.
+- Evaluate your model
+- Tuning the model's hyperparameters
+- Testing the trained model in the real-world
+
