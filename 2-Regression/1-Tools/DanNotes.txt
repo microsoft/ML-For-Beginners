@@ -1,0 +1,8 @@
+python -m venv sklearn-env
+sklearn-env\Scripts\activate  # activate
+pip install -U scikit-learn
+
+
+python -m pip show scikit-learn  # show scikit-learn version and location
+python -m pip freeze             # show all installed packages in the environment
+python -c "import sklearn; sklearn.show_versions()"
