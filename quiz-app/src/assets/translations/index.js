@@ -6,6 +6,7 @@ import ja from './ja.json';
 import it from './it.json';
 import ptbr from './ptbr.json';
 import es from './es.json';
+import az from './az.json';
 
 //export const defaultLocale = 'en';
 
@@ -16,7 +17,8 @@ const messages = {
 	ja: ja[0],
 	it: it[0],
 	ptbr: ptbr[0],
-  es: es[0]
+  es: es[0],
+  az: az[0]
 };
 
 export default messages;
