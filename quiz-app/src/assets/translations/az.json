@@ -1,0 +1,2930 @@
+[
+  {
+    "title": "Yeni başlayanlar üçün Maşın Öyrənməsi: Quizlər",
+    "complete": "Təbriklər, quizi bitirdiniz!",
+    "error": "Üzrlü sayın, yenidən cəhd edin",
+    "quizzes": [
+      {
+        "id": 1,
+        "title": "Maşın öyrənməsinə giriş: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Ətrafımızda olan maşın öyrənməsinin tətbiqləri",
+            "answerOptions": [
+              {
+                "answerText": "Doğru",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Yanlış",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Klassik ML və dərin öyrənməsi arasında texniki fərq nədir?",
+            "answerOptions": [
+              {
+                "answerText": "klassik ML daha əvvəl kəşf olunub",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "neyron şəbəkələrinin istifadəsi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "dərin öyrənmə robotlarda istifadə olunur",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Biznes ML strategiyalarından niyə istifadə etmək istəyə bilər?",
+            "answerOptions": [
+              {
+                "answerText": "çoxölçülü məsələlərin həllini avtomatlaşdırmaq üçün",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "müştərinin növü əsasında alış-veriş təcrübəsini fərdiləşdirmək üçün",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Maşın öyrənməsinə giriş: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Maşın öyrənmə alqoritmləri bunların simulyasiyası üçün nəzərdə tutulub",
+            "answerOptions": [
+              {
+                "answerText": "ağıllı maşınlar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "insan beyni",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "oranqutanlar",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Klassik ML texnikasının nümunəsi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "təbii dil emalı",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "dərin öyrənmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "neyron şəbəkələri",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Niyə hər kəs ML-nin əsaslarını öyrənməlidir?",
+            "answerOptions": [
+              {
+                "answerText": "ML öyrənmək əyləncəlidir və hər kəs üçün əlçatandır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ML strategiyaları bir çox sənaye və domenlərdə istifadə olunur",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Maşın öyrənməsinin tarixi: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "'Süni intellekt' termini təxminən nə vaxt yaranıb?",
+            "answerOptions": [
+              {
+                "answerText": "1980-lər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "1950-lər",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "1930-lar",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Maşın öyrənməsinin ilk qabaqcıllarından biri kim idi?",
+            "answerOptions": [
+              {
+                "answerText": "Alan Turinq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bil Qeyts",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Şaki roboti",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "1970-ci illərdə süni intellektdə inkişafın ləngiməsinin səbəblərindən biri nədir?",
+            "answerOptions": [
+              {
+                "answerText": "Limitli kompüter gücü",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Lazımi qədər bacarıqlı mühəndislərin olmaması",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Ölkələr arasında münaqişələr",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Maşın öyrənməsinin tarixi: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "'Səliqəsiz' AI sisteminin nümunəsi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "ELIZA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "HACKML",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "SSYSTEM",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "'Qızıl İllər' zamanı inkişaf etdirilən bir texnologiya nümunəsi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "Bloklar dünyası",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Jibo",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Robot itlər",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Hansı hadisə süni intellekt sahəsinin yaradılmasında və genişlənməsində əsas rol oynadı?",
+            "answerOptions": [
+              {
+                "answerText": "Turing testi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Dartmunt Yay Tədqiqat Layihəsi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "AI Qışı",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Ədalət və maşın öyrənməsi: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Maşın öyrənməsində ədalətsizlik baş verə bilər",
+            "answerOptions": [
+              {
+                "answerText": "qəsdən",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "istəmədən",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "ML-də 'ədalətsizlik' termini aşağıdakıları ifadə edir:",
+            "answerOptions": [
+              {
+                "answerText": "insan qruplarına ziyan vurur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "bir şəxsə ziyan vurur",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "insanların çoxuna ziyan vurur",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Zərərlərin beş əsas növünə daxildir",
+            "answerOptions": [
+              {
+                "answerText": "bölgü, xidmətin keyfiyyəti, stereotipləşdirmə, ləkələmə və həddindən artıq və ya az təmsilçilik",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yerləşdirmə, xidmət keyfiyyəti, stereotipləşdirmə, ləkələmə və həddindən artıq və ya az təmsilçilik",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "bölgü, xidmətin keyfiyyəti, stereofoniklik, ləkələmə və həddindən artıq və ya az təmsilçilik",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Ədalət və maşın öyrənməsi: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Bir modeldəki ədalətsizliyə səbəb ola bilər",
+            "answerOptions": [
+              {
+                "answerText": "tarixi məlumatlara çox əsaslanmaq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "tarixi məlumatlara az əsaslanmaq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tarixi məlumatlara çox yaxınlaşmaq",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Ədalətsizliyi azaltmaq üçün edə bilərsiniz",
+            "answerOptions": [
+              {
+                "answerText": "zərərləri və təsirlənmiş qrupları müəyyənləşdirin",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ədalətlilik ölçülərini müəyyənləşdirin",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Fairlearn kitabxanası bunları edə bilər",
+            "answerOptions": [
+              {
+                "answerText": "ədalətlilik və performans göstəricilərindən istifadə edərək bir çox modeli müqayisə edir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "sənin ehtiyaclarına ən uyğun modeli seçir",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "nəyin ədalətli və nəyin ədalətli olduğuna qərar verməyə kömək edir",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Alətlər və texnikalar: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Model qurarkən bunları etməlisən:",
+            "answerOptions": [
+              {
+                "answerText": "datanı hazlırla, sonra modeli öyrət",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "öyrətmə üsulu seç, sonra datanı hazırla",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "parametrləri tənzimlə, sonra modeli öyrət",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Sənin datanın ___ ML modelin keyfiyyətinə təsir edəcək",
+            "answerOptions": [
+              {
+                "answerText": "say",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "forma",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Xüsusiyyət dəyişənidir:",
+            "answerOptions": [
+              {
+                "answerText": "datanın keyfiyyəti",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "danın ölçülə bilən parametri",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "datanın məlumatları",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Alətlər və texnikalar: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Datanı təhlil edərkən bunları etməlisən:",
+            "answerOptions": [
+              {
+                "answerText": "istisnaları aşkar edə bilərsən",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tərəfkeşliyin potensial səbəbini aşkar edə bilərsiniz",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Datanı bunlara böl:",
+            "answerOptions": [
+              {
+                "answerText": "öyrətmə və turinq dəstləri",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "öyrətmə və test dəstləri",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "doğrulama və qiymətləndirmə dəstləri",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Müxtəlif ML kitabxanalarında öyrətmə prosesini başlamaq üçün ümumi əmr:",
+            "answerOptions": [
+              {
+                "answerText": "model.travel",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.train",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "model.fit",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Reqressiyaya giriş: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Bu dəyişənlərdən hansı ədədi dəyişəndir?",
+            "answerOptions": [
+              {
+                "answerText": "Hündürlük",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Cins",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Saç rəngi",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu dəyişənlərdən hansı kateqoriyalı dəyişəndir?",
+            "answerOptions": [
+              {
+                "answerText": "Ürək döyüntüsü",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Qan qrupu",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Çəki",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu problemlərdən hansı Reqressiya təhlilinə əsaslanan problemdir?",
+            "answerOptions": [
+              {
+                "answerText": "Tələbənin yekun imtahan qiymətlərinin proqnozlaşdırılmaq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bir insanın qan qrupunu proqnozlaşdırmaq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "E-poçtun spam olub olmadığını təxmin etmək",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Reqressiyaya giriş: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Əgər Maşın Öyrənmə modelinizin öyrətmə dəqiqliyi 95 % və test dəqiqliyi 30 % təşkil edirsə, o zaman hansı növ vəziyyət adlanır?",
+            "answerOptions": [
+              {
+                "answerText": "Çox uyğunlaşma (Overfitting)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Az uyğunlaşma (Underfitting)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "İkiqat uyğunlaşma (Double Fitting)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Xüsusiyyətlər toplusundan əhəmiyyətli xüsusiyyətlərin müəyyən edilməsi prosesi adlanır:",
+            "answerOptions": [
+              {
+                "answerText": "Xüsusiyyət Çıxarılması",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Xüsusiyyət Ölçülərinin Azaldılması",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Xüsusiyyət Seçimi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Scikit Learn-in 'train_test_split()' metodu/funksiyasından istifadə edərək verilənlər toplusunun müəyyən nisbətdə öyrətmə və test verilənlər bazasına bölünməsi prosesi adlanır:",
+            "answerOptions": [
+              {
+                "answerText": "Çarpaz-yoxlama (Cross-Validation)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Saxlama yoxlaması (Hold-Out Validation)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Yoxlamadan birini buraxılması (Leave one out Validation)",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Reqressiya üçün verilənləri hazırlayın və vizuallaşdırın: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Bu Python modullarından hansı məlumatların vizuallaşdırılması üçün istifadə olunur?",
+            "answerOptions": [
+              {
+                "answerText": "Numpy",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Scikit-learn",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Matplotlib",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Əgər məlumat dəstinizin data nöqtələrinin yayılmasını və ya digər xüsusiyyətlərini anlamaq istəyirsinizsə, yerinə yetirin:",
+            "answerOptions": [
+              {
+                "answerText": "Data vizuallaşdırılması",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Datanın ön emalı",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Öytərmə Test bölgüsü",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bunlardan hansı Maşın Öyrənmə layihəsində Data vizuallaşdırılması addımının bir hissəsidir?",
+            "answerOptions": [
+              {
+                "answerText": "Müəyyən Maşın Öyrənmə alqoritmini daxil etmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Fərqli planlama metodlarından istifadə edərək məlumatların şəkilli təsvirinin yaradılması",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Datasetin dəyərlərinin normalizasiyası",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Reqressiya üçün verilənləri hazırlayın və vizuallaşdırın: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Datasetinizdə çatışmayan dəyərlərin olub-olmadığını yoxlamaq istəyirsinizsə, bu dərsə əsasən hansı kod parçası düzgündür? Tutaq ki, verilənlər bazası Pandas DataFrame obyekti olaraq 'dataset' adlı dəyişəndə ​​saxlanılır.",
+            "answerOptions": [
+              {
+                "answerText": "dataset.isnull().sum()",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "findMissing(dataset)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sum(null(dataset))",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Datasetinizdən müxtəlif data nöqtələri qruplarının yayılmasını anlamaq istədiyiniz zaman bu vizuallaşdırma üsullarından hansı faydalıdır?",
+            "answerOptions": [
+              {
+                "answerText": "Scatter Plot",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Line Plot",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Bar Plot",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Data Visualization sizə nəyi deyə BİLMƏZ?",
+            "answerOptions": [
+              {
+                "answerText": "data nöqtələri arasındakı əlaqəni",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Datasetin hansı mənbədən yığıldığını",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Datasetdə kənar (istisna) göstəricilərin mövcudluğunun tapılması",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Xətti və Polinom Reqressiya: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Matplotlib nədir?",
+            "answerOptions": [
+              {
+                "answerText": "şəkil çəkən kitabxana",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "data vizuallaşdırma kitabxanası",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "kreditləşmə kitabxanası",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Xətti reqressiya dəyişənlər arasında əlaqə qurmaq üçün aşağıdakılardan istifadə edir",
+            "answerOptions": [
+              {
+                "answerText": "düz xətt",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "çevrə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "əyri xətt",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Yaxşı Xətti Reqressiya modelində ___ Korrelyasiya əmsalı var",
+            "answerOptions": [
+              {
+                "answerText": "aşağı",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarı",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "düz",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Xətti və Polinom Reqressiya: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Əgər məlumatlarınız qeyri-xəttidirsə, ___ növ reqressiyanı sınayın",
+            "answerOptions": [
+              {
+                "answerText": "xətti",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sferik",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "polinom",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Bunlar Reqressiya metodlarının bütün növləridir",
+            "answerOptions": [
+              {
+                "answerText": "Falsestep, Ridge, Lasso və Elasticnet",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Stepwise, Ridge, Lasso və Elasticnet",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Stepwise, Ridge, Lariat və Elasticnet",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Ən kiçik kvadrat reqressiyası o deməkdir ki, reqressiya xəttini əhatə edən bütün məlumat nöqtələri:",
+            "answerOptions": [
+              {
+                "answerText": "kvadratlaşdırılır və çıxılır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "vurulur",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "kvadratlaşdırılır və cəmlənir",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Logistik reqressiya: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Bunu proqnozlaşdırmaq üçün Logistik Reqressiyadan istifadə edin",
+            "answerOptions": [
+              {
+                "answerText": "alma yetişib, ya yetişməyib",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "ayda nə qədər bilet satmaq olar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sabah saat 18:00-da səma hansı rəngə çevriləcək",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Logistik reqressiya növlərinə daxildir",
+            "answerOptions": [
+              {
+                "answerText": "multinomial və kardinal",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "multinomial və ordinal",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "əsas və ordinal",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Datanız zəif korrelyasiyaya malikdir. İstifadə ediləcək ən yaxşı reqressiya növü:",
+            "answerOptions": [
+              {
+                "answerText": "Lagistik",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Xətti",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Kardinal",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Logistik reqressiya: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Seaborn nəyin növüdür?",
+            "answerOptions": [
+              {
+                "answerText": "data vizuallaşdırma kitabxanası",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "xəritələmə kitabxanası",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "riyaziyyat kitabxanası",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Çaşqınlıq matrisi həmçinin aşağıdakı kimi tanınır:",
+            "answerOptions": [
+              {
+                "answerText": "xəta matrisi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "həqiqən matrisi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "dəqiqlik matrisi",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Yaxşı bir model aşağıdakılara sahib olacaq:",
+            "answerOptions": [
+              {
+                "answerText": "çaşqınlıq matrisində çoxlu sayda yanlış müsbət və həqiqi neqativlər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "çaşqınlıq matrisində çoxlu sayda həqiqi müsbət və həqiqi neqativlər",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "çaşqınlıq matrisində çoxlu sayda həqiqi müsbət və yanlış neqativlər",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Veb Tətbiqi yaratmaq: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "ONNX nə deməkdir?",
+            "answerOptions": [
+              {
+                "answerText": "Over Neural Network Exchange",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Open Neural Network Exchange",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Output Neural Network Exchange",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Flask yaradıcıları tərəfindən necə müəyyən edilir?",
+            "answerOptions": [
+              {
+                "answerText": "mini-framevörk",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "böyük-framevörk",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "mikro-framevörk",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Python-un Pickle modulu nə edir?",
+            "answerOptions": [
+              {
+                "answerText": "Python obyektini seriallaşdırır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Python obyektini de-seriallaşdırır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Python obyektini seriallaşdırır və de-seriallaşdırır",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Veb Tətbiqi yaratmaq: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Python-dan istifadə edərək öncədən öyrədilmiş modeli internetdə yerləşdirmək üçün hansı vasitələrdən istifadə edə bilərik?",
+            "answerOptions": [
+              {
+                "answerText": "Flask",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "TensorFlow.js",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "onnx.js",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "SaaS nə deməkdir?",
+            "answerOptions": [
+              {
+                "answerText": "System as a Service",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Software as a Service",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Security as a Service",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Scikit-learn's LabelEncoder kitabxanası nə iş görür?",
+            "answerOptions": [
+              {
+                "answerText": "Datanı əlifba sırası ilə enkodlaşdırır",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Datanı rəqəm sırası ilə enkodlaşdırır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Datanı öz sırası ilə enkodlaşdırır",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Qruplaşdırma 1: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Qruplaşdırma aşağıdakı ilə bir çox ortaq cəhətləri olan nəzarətli öyrənmə formasıdır",
+            "answerOptions": [
+              {
+                "answerText": "Zaman seriyası",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Reqressiya texnikaları",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qruplaşdırma hansı suala cavab verməyə kömək edə bilər?",
+            "answerOptions": [
+              {
+                "answerText": "Bu e-poçt spamdır, yoxsa yox?",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Donuzlar uça bilərmi?",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Həyatın mənası nədir?",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qruplaşdırma üsullarından istifadə etmək üçün ilk addım nədir?",
+            "answerOptions": [
+              {
+                "answerText": "datasetin siniflərinin yaratmaq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "datanı təmizləmək və balanslaşdırmaq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "data nöqtələrini qrupa və ya nəticəyə əlaqələndirmək",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Qruplaşdırma 1: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Çox sinifli sual nədir?",
+            "answerOptions": [
+              {
+                "answerText": "məlumat nöqtələrini bir neçə qrupa təsnif etmək tapşırığı",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "məlumat nöqtələrini qruplardan birinə təsnif etmək tapşırığı",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "data nöqtələrini müxtəlif üsullarla təmizləmək tapşırığı",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qruplaşdırıcılara probleminizi həll etməkdə kömək etmək üçün təkrarlanan və ya faydasız məlumatları təmizləmək vacibdir.",
+            "answerOptions": [
+              {
+                "answerText": "düzdür",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Datanı balanslaşdırmaq üçün ən yaxşı səbəb nədir?",
+            "answerOptions": [
+              {
+                "answerText": "Balanssız datalar vizuallaşdırmada pis görünür",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ML modeli bir sinifə doğru yönəlməyəcəyi üçün datanı balanslaşdırmaq daha yaxşı nəticələr verir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Datanı balanslaşdırmaq sənə daha çox data nöqtəsi verir",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Qruplaşdırma 2: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Balanslaşdırılmış, təmiz data ən yaxşı qruplaşdırma nəticələrini verir",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Doğru qruplaşdırıcını necə seçməli?",
+            "answerOptions": [
+              {
+                "answerText": "Qruplaşdırıcıların hansı ssenarilərdə ən yaxşı işlədiyini anlayaraq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Təcrübəli təxmin və yoxlama",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Qruplaşdırma bunun bir növüdür",
+            "answerOptions": [
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Nəzarətli Öyrənmə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Proqramlaşdırma dili",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Qruplaşdırma 2: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "'Həlledici' nədir?",
+            "answerOptions": [
+              {
+                "answerText": "sənin işini yoxlayan şəxs",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "optimallaşdırma problemlərində istifadə olunan alqoritm",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "maşın öyrənməsi texnikası",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu dərsdə hansı qruplaşdırıcı istifadə etdik?",
+            "answerOptions": [
+              {
+                "answerText": "Logistik Reqressiya (Logistic Regression)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Qərar ağacları (Decision Trees)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Biri hamısına qarşı olan çoxlu sinif (One-vs-All Multiclass)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Qruplaşdırıcı alqoritminin gözlənildiyi kimi işlədiyini necə bilirsiniz?",
+            "answerOptions": [
+              {
+                "answerText": "Proqnozlarının dəqiqliyini yoxlamaqla",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Başqa alqoritmlərə qarşı yoxlamaqla",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Bu alqoritmin oxşar problemləri həll etməkdə nə qədər yaxşı olduğuna dair tarixi məlumatlara baxaraq",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Qruplaşdırma 3: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Sınamaq üçün yaxşı bir ilkin qruplaşdırıcı:",
+            "answerOptions": [
+              {
+                "answerText": "Xətti SVC (Linear SVC)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-qonşu qruplaşdırıcı (K-Means)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Məntiqi SVC (Logical SVC)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Tənzimləmə idarə edir:",
+            "answerOptions": [
+              {
+                "answerText": "parametrlərin təsirini",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "öyrənmə sürətinin təsirini",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "istisnaların təsiri",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "K-Qonşu qruplaşdırıcı bunun üçün istifadə oluna bilər:",
+            "answerOptions": [
+              {
+                "answerText": "nəzarətli öyrənmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "nəzarətsiz öyrənmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Qruplaşdırma 3: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Dəstək-Vektor qruplaşdırıcıları bunlar üçün istifadə edilə bilər",
+            "answerOptions": [
+              {
+                "answerText": "Qruplaşdırma",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "reqressiya",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Təsadüfi meşə (Random Forest) ___ növ qruplaşdırıcıdır",
+            "answerOptions": [
+              {
+                "answerText": "Ansambl",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Parçalamaq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Yığmaq",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Adaboost bununla tanınır:",
+            "answerOptions": [
+              {
+                "answerText": "yanlış təsnif edilmiş parçaların çəkilərinə diqqət yetirmək",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "istisnalara diqqət yetirmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "səhv datalara diqqət yetirmək",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Qruplaşdırma 4: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Tövsiyyə sistemləri bunlar üçün istifadə oluna bilər",
+            "answerOptions": [
+              {
+                "answerText": "Yaxşı restoran tövsiyyələri",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Yeni paltarlar yoxlamaq üçün tövsiyyələr",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Modelin veb tətbiqinə daxil edilməsi onun oflayn işləməsinə kömək edir",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Onnx Runtime bunun üçün istifadə oluna bilər",
+            "answerOptions": [
+              {
+                "answerText": "Veb tətbiqlərdə modeli icra etmək",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Modelləri öyrətmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Hiperparametr sazlaması",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Qruplaşdırma 4: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Netron tətbiqi bu işdə kömək edir:",
+            "answerOptions": [
+              {
+                "answerText": "Data vizuallaşdırmaqda",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Model strukturunu vizuallaşdırmaqda",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Veb tətbiqi yoxlamaqda",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Onnx ilə istifadə etmək üçün Scikit-öyrənmə modelinizi bununla çeviririk:",
+            "answerOptions": [
+              {
+                "answerText": "sklearn-app",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-web",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sklearn-onnx",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Veb tətbiqdə modelimizi istifadə etmək belə adlanır:",
+            "answerOptions": [
+              {
+                "answerText": "nəticə çıxarmaq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "müdaxilə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "sığorta",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Klasterləşdirməyə giriş: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Klasterləşdirməyə real həyatımızdan nümunə ola bilər",
+            "answerOptions": [
+              {
+                "answerText": "Şam yeməyi masası hazırlamaq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Yuyulacaq paltarları qruplaşdırmaq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Meyvə-tərəvəz alış-verişi etmək",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu sənayelərdə klasterləşdirmə üsullarından istifadə edilə bilər",
+            "answerOptions": [
+              {
+                "answerText": "bank",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "e-satış",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Klasterləşdirmə bunun növüdür:",
+            "answerOptions": [
+              {
+                "answerText": "nəzarətli öyrənmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "nəzarətsiz öyrənmə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "gücləndirici öyrənmə",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Klasterləşdirməyə giriş: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Evklid həndəsəsi buna əsasən düzülmüşdür",
+            "answerOptions": [
+              {
+                "answerText": "müstəvilər",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "əyrilər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "kürələr",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Klaster məlumatlarınızın sıxlığı bununla bağlıdır",
+            "answerOptions": [
+              {
+                "answerText": "küy",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "dərinlik",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "uyğunluq",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Ən yaxşı bilinən klasterləşdirmə alqoritmi budur",
+            "answerOptions": [
+              {
+                "answerText": "k-ortalama",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "k-orta",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "k-hissə",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "K-Ortalama Klasterləşməsi: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "K-Ortalama buradan gəlib:",
+            "answerOptions": [
+              {
+                "answerText": "elektrik mühəndisliyi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "siqnal emalı",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "kompüter dilçiliyi",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Yaxşı Siluilet rəqəmi bunu bildirir:",
+            "answerOptions": [
+              {
+                "answerText": "klasterlər yaxşı ayrılmış və müəyyənləşdirilmişdir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "az sayda klaster vardır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "çox sayda klaster vardır",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Fərqlilik:",
+            "answerOptions": [
+              {
+                "answerText": "ortadan fərqlərin kvadratlarının ortasıdır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "çox yüksək olarsa, qruplaşma problemi yaranır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "K-Ortalama Klasterləşməsi: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Voronoi diaqramı bunu göstərir:",
+            "answerOptions": [
+              {
+                "answerText": "klasterin fərqliliyini",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "klasterin mərkəzini və regionlarını",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "klasterin ətalətini",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Ətalət",
+            "answerOptions": [
+              {
+                "answerText": "klasterlərin nə qədər daxili əlaqəli olduğunun ölçüsüdür",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "klasterlərinin nə qədər hərəkət etdiyinin ölçüsüdür",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "klasterin keyfiyyətinin ölçüsüdür",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "K-Means istifadə edərək, əvvəlcə 'k' dəyərini təyin etməlisiniz",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "title": "NLP-ə giriş: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "NLP bu dərsdə nəyi bildirir?",
+            "answerOptions": [
+              {
+                "answerText": "Neyron Dil Emalı (Neural Language Processing)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Təbii dil emalı (natural language processing)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Təbii Dilçilik Emalı (Natural Linguistic Processing)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Eliza kompüter kimi fəaliyyət göstərən ilkin _ botu idi",
+            "answerOptions": [
+              {
+                "answerText": "terapist",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "həkim",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tibb bacısı",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Alan Turinqin 'Turing Testi' kompüterin _ olduğunu müəyyən etməyə çalışdı",
+            "answerOptions": [
+              {
+                "answerText": "insandan ayırd edilə bilinməyən",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "düşünən",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "Təbii dil emalına giriş: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Cozef Veyzenbaum bu botu icad etdi",
+            "answerOptions": [
+              {
+                "answerText": "Elisha",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Eliza",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Eloise",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Söhbət botları bunların əsasında cavablar qaytarır",
+            "answerOptions": [
+              {
+                "answerText": "Əvvəlcədən təyin olunmuş seçimlərdən təsadüfi seçim",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Məlumatın təhlili və maşın biliyindən istifadə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Botu necə daha effektiv edərdiniz?",
+            "answerOptions": [
+              {
+                "answerText": "Daha çox suallar verməklə.",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Daha çox data daxil etmək və ona əsasən öyrətməklə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Botlar bacarıqsızdır, onlar öyrənə bilməz :(",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "title": "NLP tapşırıqları: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Tokenizasiya",
+            "answerOptions": [
+              {
+                "answerText": "Durğu işarələri vasitəsi ilə mətni bölür",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Mətni ayrı tokenlərə (sözlərə) bölür",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Mətni ifadələrə bölür",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Yerləşdirmələr",
+            "answerOptions": [
+              {
+                "answerText": "sözlər klasterləşə bilsin deyə mətn datalarını ədədi olaraq çevirir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "sözləri ifadələrə yerləşdirir",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "cümlələri paraqraflara yerləşdirir",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Nitq hissələrinin etiketlənməsi",
+            "answerOptions": [
+              {
+                "answerText": "cümlələri nitq hissələrinə görə bölür",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tokenləşdirilmiş sözləri götürür və onları nitq hissəsinə görə etiketləyir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "cümlələrin sxemini qurur",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "title": "NLP tapşırıqları: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Daha çox təkrarlanan sözlərdən lüğət yaratmaq üçün bundan istifadə olunur:",
+            "answerOptions": [
+              {
+                "answerText": "Söz və ifadə lüğəti",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Söz və ifadə tezlikləri",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Söz və ifadə kitabxanası",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "N-qram bunu bildirir",
+            "answerOptions": [
+              {
+                "answerText": "Mətn müəyyən uzunluqdakı sözlər ardıcıllığına bölünə bilər",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Söz müəyyən uzunluqdakı simvol ardıcıllığına bölünə bilər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Mətn müəyyən uzunluqdakı paraqraflara bölünə bilər",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Emosionallıq analizi",
+            "answerOptions": [
+              {
+                "answerText": "ifadənin müsbət və ya mənfi mənada olduğunu analiz edir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "emosionallıq üçün ifadəni analiz edir",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "kədərlilik üçün ifadəni analiz edir",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "title": "NLP və tərcümə: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Sadə tərcümə",
+            "answerOptions": [
+              {
+                "answerText": "sadəcə sözləri tərcümə edir",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "cümlənin strukturunu tərcümə edir",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "emosiyaları tərcümə edir",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "*Korpus* mətnlər bunu bildirir",
+            "answerOptions": [
+              {
+                "answerText": "Az sayda mətnlər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Çox sayda mətnlər",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bir vahid mətn",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Əgər ML modelində model qurmaq üçün kifayət qədər insan tərcüməsi varsa, o _ bilər",
+            "answerOptions": [
+              {
+                "answerText": "tərcümələri ixtisar edə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tərcümələri standartlaşdırma",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tərcümələrin dəqiqliyini artıra",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "title": "NLP və tərcümə: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "TextBlob tərcümə kitabxanasının altında bu texnologiya durur:",
+            "answerOptions": [
+              {
+                "answerText": "Google Translate",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Bing",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Xüsusi ML modeli",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "`blob.translate` istifadə edə bilmək üçün bu lazımdır:",
+            "answerOptions": [
+              {
+                "answerText": "internet şəbəkəsi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "lüğət",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "JavaScript",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Emosiyanı başa düşmək üçün ML yanaşması belə ola bilər:",
+            "answerOptions": [
+              {
+                "answerText": "Reqressiya üsullarını əl ilə yaradılmış rəylərə və xallara tətbiq etmək və uyğunluqları axtarmaq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP texnikalarını əl ilə yaradılan rəylərə və xallara tətbiq etmək və uyğunluqları axtarmaq",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Əl ilə yaradılan rəylərə və xallara Klasterləşdirmə üsullarını tətbiq etmək və uyğunluqları axtarmaq",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "title": "NLP 4: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "İnsan tərəfindən yazılmış və ya danışılan mətndən hansı məlumatları əldə edə bilərik?",
+            "answerOptions": [
+              {
+                "answerText": "şablonlar və tezliklər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "emosiya və məna",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Emosiya analizi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "bir ailə yadigarının sentimental dəyərə malik olub-olmamasının öyrənilməsi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "təsiredici vəziyyətləri və subyektiv məlumatı sistematik olaraq müəyyən etmək, çıxarmaq, kəmiyyətləndirmək və öyrənmək üsulu",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "kiminsə kədərli və ya xoşbəxt olduğunu söyləmək bacarığı",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Otel rəyləri dataseti, Python və emosiya təhlili istifadə edərək hansı suala cavab vermək olar?",
+            "answerOptions": [
+              {
+                "answerText": "Rəylərdə ən çox istifadə olunan söz və ifadələr hansılardır?",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Hansı kurortda ən yaxşı hovuz var?",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Bu oteldə vale parkinqi var?",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "title": "NLP 4: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "NLP-nin mahiyyəti nədir?",
+            "answerOptions": [
+              {
+                "answerText": "insan dilini xoşbəxt və ya kədərli qruplara bölmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "bir insanın bunu etməsinə ehtiyac olmadan məna və ya hissləri şərh etmək",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "hisslərdə normadan kənar göstəriciləri tapmaq və onları yoxlamaq",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Məlumatları təmizləyərkən nələrə diqqət edə bilərsiniz?",
+            "answerOptions": [
+              {
+                "answerText": "digər dillərdə olan simvollar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "boş sətirlər və ya sütunlar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Data üzərində əməliyyatlar etməzdən əvvəl məlumatlarınızı və onların çatışmazlıqlarını başa düşmək vacibdir.",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "title": "NLP 5: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Nə üçün məlumatları təhlil etməzdən əvvəl təmizləmək vacibdir?",
+            "answerOptions": [
+              {
+                "answerText": "Bəzi sütunlarda çatışmayan və ya yanlış məlumatlar ola bilər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Qarışıq məlumatlar dataset haqqında yanlış nəticələrə səbəb ola bilər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Məlumatların təmizlənməsi strategiyasına bir nümunə hansıdır?",
+            "answerOptions": [
+              {
+                "answerText": "xüsusi suala cavab vermək üçün faydalı olmayan sütunların/sətirlərin silinməsi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "fərziyyənizə uyğun gəlməyən təsdiqlənmiş dəyərləri silmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "kənar göstəriciləri ayrı bir cədvələ köçürmək və uyğun olub olmadığını görmək üçün həmin cədvəl üçün hesablamaları yerinə yetirmək",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Tag sütunundan istifadə edərək məlumatları təsnif etmək faydalı ola bilər.",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 40,
+        "title": "NLP 5: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Datasetin məqsədi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "dünya üzrə mehmanxanalar üçün nə qədər mənfi və müsbət rəylər olduğunu görmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ən yaxşı oteli seçməyinizə kömək edəcək hisslər və sütunlar əlavə etmək",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "insanların niyə xüsusi rəylər yazdığını analiz etmək",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Stop sözlər nələrdir?",
+            "answerOptions": [
+              {
+                "answerText": "cümlənin hisslərini dəyişdirməyən ümumi ingilis sözləri",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "hiss analizini sürətləndirmək üçün silə biləcəyiniz sözlər",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Sentiment təhlilini yoxlamaq üçün onun rəyçinin xalının eyni rəyə uyğun olduğundan əmin olun.",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 41,
+        "title": "Zaman seriyalarına giriş: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Zaman seriyasının proqnozlaşdırılması burada faydalıdır",
+            "answerOptions": [
+              {
+                "answerText": "gələcək xərcləri təyin etməkdə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "gələcək qiymətləri təxmin etmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Zaman seriyası aşağıdakılardan götürülən ardıcıllıqdır:",
+            "answerOptions": [
+              {
+                "answerText": "fəzada ardıcıl bərabər məsafədə yerləşən nöqtələr",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "zamanda bərabər məsafədə yerləşən ardıcıl nöqtələr",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "məkan və zamanda ardıcıl bərabər məsafədə yerləşən nöqtələr",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Zaman sıralarından istifadə edilə bilər:",
+            "answerOptions": [
+              {
+                "answerText": "zəlzələ proqnozu",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "kompüter görmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "rəng analizi",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "title": "Zaman seriyalarına giriş: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Zaman seriyası xəttləri bunu bildirir",
+            "answerOptions": [
+              {
+                "answerText": "Zamanla ölçülə bilən artımlar və azalmalar",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Zamanla kəmiyyət azalır",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Zamanla artım və azalma arasındakı boşluqlar",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Kənara çıxmalar bunlardır",
+            "answerOptions": [
+              {
+                "answerText": "standart məlumat fərqinə yaxın nöqtələr",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "standart məlumat fərqindən uzaq nöqtələr",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "standart məlumat fərqi daxilində xal",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Zaman Seriyasının Proqnozlaşdırılması ən faydalıdır",
+            "answerOptions": [
+              {
+                "answerText": "Ekonometriya",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Tarix",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Kitabxanalar",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "title": "Zaman Seriyası ARIMA: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "ARIMA açılışı",
+            "answerOptions": [
+              {
+                "answerText": "AutoRegressive Integral Moving Average (AvtoReqressiv İnteqral Hərəkətli Orta)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Action (AvtoReqressiv İnteqrasiya edilmiş Hərəkətli Fəaliyyət)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "AutoRegressive Integrated Moving Average (AvtoReqressiv İnteqrasiya edilmiş Hərəkətli Orta)",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Stasionarlıq buna aiddir",
+            "answerOptions": [
+              {
+                "answerText": "atributları zamanla dəyişdirildikdə dəyişməyən məlumatlar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "zamanla yerdəyişdikdə paylanması dəyişməyən məlumatlar",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "zaman keçdikcə paylanması dəyişən məlumatlar",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Fərqləndirmə",
+            "answerOptions": [
+              {
+                "answerText": "trend və mövsümi sabitləşdirir",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "tendensiyanı və mövsümi gücləndirir",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "trend və mövsümi aradan qaldırır",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "title": "Zaman Seriyası ARIMA: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "ARIMA modeli zaman seriyası məlumatlarının xüsusi formasına uyğunlaşdırmaq üçün istifadə olunur",
+            "answerOptions": [
+              {
+                "answerText": "mümkün qədər düz",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "mümkün qədər yaxın",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "səpələnmə xətləri vasitəsilə",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "SARIMAX bunun üçün istifadə olunur",
+            "answerOptions": [
+              {
+                "answerText": "mövsümi ARIMA modellərini idarə etməyə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "xüsusi ARIMA modellərini idarə etməyə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "statistik ARIMA modellərini idarə etməyə",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "'İrəli gəzinti' doğrulamaya daxildir",
+            "answerOptions": [
+              {
+                "answerText": "modeli təsdiqləndikcə tədricən yenidən qiymətləndirmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "təsdiq edildikdən sonra modeli tədricən yenidən öyrətmək",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "model təsdiqləndikcə tədricən yenidən konfiqurasiya etmək",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "title": "Gücləndirici öyrənmə 1: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Gücləndirici öyrənmə nədir?",
+            "answerOptions": [
+              {
+                "answerText": "kiməsə nəyisə başa düşənə qədər təkrar-təkrar öyrətmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "bir çox eksperiment keçirərək bəzi mühitlərdə agentin optimal davranışını deşifrə edən öyrənmə texnikası",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "birdən çox eksperimentin necə aparılacağını başa düşmək",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Siyasət nədir?",
+            "answerOptions": [
+              {
+                "answerText": "hər hansı bir vəziyyətdə atıla biləcək addımı qaytaran funksiya",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "bir maddəni geri qaytara bilməyəcəyinizi bildirən sənəd",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "təsadüfi məqsəd üçün istifadə olunan funksiya",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Mükafat funksiyası mühitin hər bir vəziyyəti üçün xal qaytarır.",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 46,
+        "title": "Gücləndirici öyrənmə 1: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Q-Learning nədir?",
+            "answerOptions": [
+              {
+                "answerText": "hər bir vəziyyətin “yaxşılığını” qeyd etmək mexanizmi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "siyasətin Q-Cədvəli ilə müəyyən edildiyi alqoritm",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yuxarıdakıların hər ikisi",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Q-Cədvəli təsadüfi gediş siyasətinə hansı dəyərlərə uyğundur?",
+            "answerOptions": [
+              {
+                "answerText": "bütün bərabər dəyərlərə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "-0.25",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "bütün fərqli dəyərlərə",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Dərsimizdə öyrənmə prosesi zamanı istismar əvəzinə kəşfiyyatdan istifadə etmək daha yaxşı idi.",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 47,
+        "title": "Gücləndirici öyrənmə 2: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Şahmat and Go davamlı vəziyyətləri olan oyunlardır.",
+            "answerOptions": [
+              {
+                "answerText": "doğrudur",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "yanlışdır",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "CartPole problemi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "kənar göstəricilərin aradan qaldırılması prosesi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "alış səbətinizi optimallaşdırmaq üçün bir üsul",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "balanslaşdırmanın sadələşdirilmiş versiyası",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Oyunda potensial vəziyyətlərin müxtəlif ssenarilərini oynamaq üçün hansı alətdən istifadə edə bilərik?",
+            "answerOptions": [
+              {
+                "answerText": "təxmin edib yoxlayaraq",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "simulyasiya mühitləri",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "vəziyyət dəyişməsi yoxlaması",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 48,
+        "title": "Gücləndirici öyrənmə 2: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Bir mühitdə bütün mümkün hərəkətləri harada müəyyənləşdiririk?",
+            "answerOptions": [
+              {
+                "answerText": "metodlarda",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "əməliyyat fəzasında",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "əməliyyat siyahısında",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Lüğət açar-dəyəri kimi hansı cütdən istifadə etdik?",
+            "answerOptions": [
+              {
+                "answerText": "(vəziyyət, əməliyyar) açar kimi, Q-Cədvəl girişi dəyər kimi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "açar kimi vəziyyət, dəyər kimi əməliyyat",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "q-dəyərləri funksiyasının dəyəri açar kimi, əməliyyat isə dəyər kimi",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Q-Learning zamanı istifadə etdiyimiz hiperparametrlər hansılardır?",
+            "answerOptions": [
+              {
+                "answerText": "q-cədvəl dəyəri, cari mükafat, təsadüfi əməliyyat",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "öyrənmə dərəcəsi, endirim faktoru, kəşfiyyat/istismar faktoru",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "məcmu mükafatlar, öyrənmə dərəcəsi, kəşfiyyat faktoru",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 49,
+        "title": "Real həyat tətbiqləri: Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "Maliyyə sənayesində ML tətbiqi nümunəsi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "NLP istifadə edərək müştəri təcrübəsini fərdiləşdirmək",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Xətti reqressiyadan istifadə edərək sərvətin idarə edilməsi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Zaman seriyası istifadə edərək enerjinin idarə edilməsi",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Xəstəxanalar yenidən qəbulu idarə etmək üçün hansı ML texnikasından istifadə edə bilər?",
+            "answerOptions": [
+              {
+                "answerText": "Klasterləşdirmə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Zaman seriyası",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Enerjinin idarə edilməsi üçün Zaman Seriyasından istifadə nümunəsi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "Hərəkət hiss edən heyvanlar",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Ağıllı parking sayğacları",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Meşə yanğınlarının izlənilməsi",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "title": "Real həyat tətbiqləri: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "Kredit kartı saxtakarlığını aşkar etmək üçün hansı ML texnikasından istifadə edilə bilər?",
+            "answerOptions": [
+              {
+                "answerText": "Reqressiya",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Klasterləşdirmə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Meşə idarəetməsində hansı ML texnikası nümunədir?",
+            "answerOptions": [
+              {
+                "answerText": "Gücləndirici öyrənmə",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Zaman seriyası",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "NLP",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Səhiyyə sənayesində ML tətbiqi nümunəsi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "Reqressiyadan istifadə edərək şagird davranışının proqnozlaşdırılması",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Qruplaşdırıcıdan istifadə edərək klinik sınaqların idarə edilməsi",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Qruplaşdırıcıdan istifadə edərək heyvanların hərəkətinin tədqiqi",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+	  {
+        "id": 51,
+        "title": "SVR zaman seriyası : Mühazirədən əvvəl test",
+        "quiz": [
+          {
+            "questionText": "SVM bunu bildirir",
+            "answerOptions": [
+              {
+                "answerText": "Statistical Vector Machine (Statistik vektor maşını)",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Support Vector Machine (Dəstək vektor maşını)",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Statistical Vector Model (Statistik vektor modeli)",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu ML texnikalarından hansı davamlı dəyərləri proqnozlaşdırmaq üçün istifadə olunur?",
+            "answerOptions": [
+              {
+                "answerText": "Klasterləşdirmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Qruplaşdırma",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Reqressiya",
+                "isCorrect": "true"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu modellərdən hansı zaman seriyalarının proqnozlaşdırılması üçün geniş istifadə olunur?",
+            "answerOptions": [
+              {
+                "answerText": "ARIMA",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "K-Orta klasterləşdirmə",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Logistik Reqressiya (Logistic Regression)",
+                "isCorrect": "false"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 52,
+        "title": "SVR zaman seriyası: Mühazirə sonrası test",
+        "quiz": [
+          {
+            "questionText": "SVR bu üsullardan hansı ilə öyrənir?",
+            "answerOptions": [
+              {
+                "answerText": "Data nöqtələrinin maksimum sayına malik olan ən uyğun hiperplanın tapılması",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Verilənlər toplusunun ehtimal paylanmasının öyrənilməsi",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Datasetdə klasterlərin tapılması",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "SVM-lərdə nüvənin məqsədi nədir?",
+            "answerOptions": [
+              {
+                "answerText": "Modelin proqnozlarının dəqiqliyini ölçmək üçün",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "Dataseti daha yüksək ölçülü məkana çevirmək üçün",
+                "isCorrect": "true"
+              },
+              {
+                "answerText": "Datasetin dəyərlərinin normalizasiyası",
+                "isCorrect": "false"
+              }
+            ]
+          },
+          {
+            "questionText": "Bu modellərdən hansı datasetdə qeyri-xəttiliyi nəzərə alır?",
+            "answerOptions": [
+              {
+                "answerText": "Sadə xətti reqressiya",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "ARIMA",
+                "isCorrect": "false"
+              },
+              {
+                "answerText": "RBF nüvəsindən istifadə edən SVR",
+                "isCorrect": "true"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+
