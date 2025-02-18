@@ -132,7 +132,7 @@ Microsoft के क्लाउड एडवोकेट्स एक 12-सप
 आप [Docsify](https://docsify.js.org/#/) का उपयोग करके इस दस्तावेज़ को ऑफ़लाइन चला सकते हैं। इस रिपॉजिटरी को फोर्क करें, [Docsify इंस्टॉल करें](https://docsify.js.org/#/quickstart) अपने स्थानीय मशीन पर, और फिर इस रिपॉजिटरी के रूट फ़ोल्डर में, टाइप करें `docsify serve`। वेबसाइट आपके localhost पर पोर्ट 3000 पर सर्व होगी: `localhost:3000`।
 
 ## PDFs
-Find a pdf of the curriculum with links [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
+पाठ्यक्रम का एक पीडीएफ खोजें [यहां](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
 ## सहायता की आवश्यकता
 
