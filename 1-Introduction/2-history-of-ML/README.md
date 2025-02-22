@@ -90,7 +90,7 @@ By the mid 1970s, it had become apparent that the complexity of making 'intellig
 - **Paucity of data**. There was a paucity of data that hindered the process of testing, developing, and refining algorithms.
 - **Are we asking the right questions?**. The very questions that were being asked began to be questioned. Researchers began to field criticism about their approaches:
   - Turing tests came into question by means, among other ideas, of the 'chinese room theory' which posited that, "programming a digital computer may make it appear to understand language but could not produce real understanding." ([source](https://plato.stanford.edu/entries/chinese-room/))
-  - The ethics of introducing artificial intelligences such as the "therapist" ELIZA into society was challenged.
+  - The ethics of introducing artificial intelligences such as the "therapist" ELIZA into society were challenged.
 
 ---
 
