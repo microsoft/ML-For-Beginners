@@ -18,7 +18,7 @@ The history of artificial intelligence (AI) as a field is intertwined with the h
 ---
 ## Notable discoveries
 
-- 1763, 1812 [Bayes Theorem](https://wikipedia.org/wiki/Bayes%27_theorem) and its predecessors. This theorem and its applications underlie inference, describing the probability of an event occurring based on prior knowledge.
+- [Bayes' Theorem](https://wikipedia.org/wiki/Bayes%27_theorem), first published in 1763 and later refined by Pierre-Simon Laplace in 1812, underlies statistical inference by describing how to update the probability of an event based on prior knowledge and new evidence.
 - 1805 [Least Square Theory](https://wikipedia.org/wiki/Least_squares) by French mathematician Adrien-Marie Legendre. This theory, which you will learn about  in our Regression unit, helps in data fitting.
 - 1913 [Markov Chains](https://wikipedia.org/wiki/Markov_chain), named after Russian mathematician Andrey Markov, is used to describe a sequence of possible events based on a previous state.
 - 1957 [Perceptron](https://wikipedia.org/wiki/Perceptron) is a type of linear classifier invented by American psychologist Frank Rosenblatt that underlies advances in deep learning.
