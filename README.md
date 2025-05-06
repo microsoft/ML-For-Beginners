@@ -1,3 +1,7 @@
+# Machine Learning for Beginners - A Curriculum
+
+> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
+
 [![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
 [![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
@@ -27,10 +31,6 @@
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
 [![](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.gg/zxKYvhSnVp?WT.mc_id=academic-000002-leestott)
-
-# Machine Learning for Beginners - A Curriculum
-
-> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
 Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!
 
