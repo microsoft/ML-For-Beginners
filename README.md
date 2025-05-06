@@ -1,18 +1,36 @@
+# Machine Learning for Beginners - A Curriculum
+
+> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
+
 [![GitHub license](https://img.shields.io/github/license/microsoft/ML-For-Beginners.svg)](https://github.com/microsoft/ML-For-Beginners/blob/master/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/graphs/contributors/)
 [![GitHub issues](https://img.shields.io/github/issues/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/ML-For-Beginners.svg)](https://GitHub.com/microsoft/ML-For-Beginners/pulls/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+### Language Support
+
+[![German](https://img.shields.io/badge/German-brightgreen.svg?style=flat-square)](./translations/de/README.md)
+[![Spanish](https://img.shields.io/badge/Spanish-brightgreen.svg?style=flat-square)](./translations/es/README.md)
+[![French](https://img.shields.io/badge/French-brightgreen.svg?style=flat-square)](./translations/fr/README.md)
+[![Hindi](https://img.shields.io/badge/Hindi-brightgreen.svg?style=flat-square)](./translations/hi/README.md)
+[![Italian](https://img.shields.io/badge/Italian-brightgreen.svg?style=flat-square)](./translations/it/README.md)
+[![Japanese](https://img.shields.io/badge/Japanese-brightgreen.svg?style=flat-square)](./translations/ja/README.md)
+[![Korean](https://img.shields.io/badge/Korean-brightgreen.svg?style=flat-square)](./translations/ko/README.md)
+[![Chinese (Macau)](https://img.shields.io/badge/Chinese_(Macau)-brightgreen.svg?style=flat-square)](./translations/mo/README.md)
+[![Malay](https://img.shields.io/badge/Malay-brightgreen.svg?style=flat-square)](./translations/ms/README.md)
+[![Portuguese](https://img.shields.io/badge/Portuguese-brightgreen.svg?style=flat-square)](./translations/pt/README.md)
+[![Russian](https://img.shields.io/badge/Russian-brightgreen.svg?style=flat-square)](./translations/ru/README.md)
+[![Swahili](https://img.shields.io/badge/Swahili-brightgreen.svg?style=flat-square)](./translations/sw/README.md)
+[![Turkish](https://img.shields.io/badge/Turkish-brightgreen.svg?style=flat-square)](./translations/tr/README.md)
+[![Chinese (Simplified)](https://img.shields.io/badge/Chinese_(Simplified)-brightgreen.svg?style=flat-square)](./translations/zh/README.md)
+
+
 [![GitHub watchers](https://img.shields.io/github/watchers/microsoft/ML-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/ML-For-Beginners/watchers/)
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
 [![](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.gg/zxKYvhSnVp?WT.mc_id=academic-000002-leestott)
-
-# Machine Learning for Beginners - A Curriculum
-
-> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
 Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!
 
