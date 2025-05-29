@@ -8,116 +8,151 @@
 [![GitHub forks](https://img.shields.io/github/forks/microsoft/ML-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/ML-For-Beginners/network/)
 [![GitHub stars](https://img.shields.io/github/stars/microsoft/ML-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/ML-For-Beginners/stargazers/)
 
-# Machine Learning para Iniciantes - O Curso
+[![](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.gg/zxKYvhSnVp?WT.mc_id=academic-000002-leestott)
 
-> 🌍 Viaje pelo mundo enquanto exploramos o Machine Learning através das culturas mundiais 🌍
+# Machine Learning for Beginners - A Curriculum
 
-Os Advocates do Azure Cloud da Microsoft têm o prazer de oferecer um curso de 12 semanas com 24 lições (mais uma!) sobre **Machine Learning**. Neste curso, você irá aprender o que às vezes chamamos de **machine learning clássico**, usando principalmente Scikit-learn como biblioteca e evitando deep learning, que será coberto no próximo curso 'IA para Iniciantes'. Combine também essas lições com o curso de [Data Science para Iniciantes](https://aka.ms/datascience-beginners)!
+> 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
 
-Viaje conosco ao redor do mundo enquanto aplicamos essas técnicas clássicas a dados de muitas áreas do mundo. Cada lição inclui questionários pré e pós-aula, instruções escritas para completar a lição, uma solução, uma tarefa e muito mais. A nossa pedagogia baseada em projetos permite que você aprenda enquanto constrói, uma forma comprovada de "aderir" as novas habilidades.
+Cloud Advocates at Microsoft are pleased to offer a 12-week, 26-lesson curriculum all about **Machine Learning**. In this curriculum, you will learn about what is sometimes called **classic machine learning**, using primarily Scikit-learn as a library and avoiding deep learning, which is covered in our [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Pair these lessons with our ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), as well!
 
-**✍️ sinceros agradecimentos aos nossos autores** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Ornella Altunyan, e Amy Boyd
+Travel with us around the world as we apply these classic techniques to data from many areas of the world. Each lesson includes pre- and post-lesson quizzes, written instructions to complete the lesson, a solution, an assignment, and more. Our project-based pedagogy allows you to learn while building, a proven way for new skills to 'stick'.
 
-**🎨 Obrigado também aos nossos ilustradores** Tomomi Imura, Dasani Madipalli, e Jen Looper
+**✍️ Hearty thanks to our authors** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu and Amy Boyd
 
-**🙏 Agradecimentos especiais 🙏 aos autores, revisores e colaboradores de conteúdo do Microsoft Student Ambassador**, notavelmente Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, e Snigdha Agarwal
+**🎨 Thanks as well to our illustrators** Tomomi Imura, Dasani Madipalli, and Jen Looper
 
-**🤩 Agradecimento extra ao Microsoft Student Ambassador, Eric Wanjau, por nossas aulas de R!**
+**🙏 Special thanks 🙏 to our Microsoft Student Ambassador authors, reviewers, and content contributors**, notably Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, and Snigdha Agarwal
+
+**🤩 Extra gratitude to Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, and Vidushi Gupta for our R lessons!**
+
+# Getting Started
+
+Follow these steps:
+1. **Fork the Repository**: Click on the "Fork" button at the top-right corner of this page.
+2. **Clone the Repository**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
+
+> [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+
+
+**[Students](https://aka.ms/student-page)**, to use this curriculum, fork the entire repo to your own GitHub account and complete the exercises on your own or with a group:
+
+- Start with a pre-lecture quiz.
+- Read the lecture and complete the activities, pausing and reflecting at each knowledge check.
+- Try to create the projects by comprehending the lessons rather than running the solution code; however that code is available in the `/solution` folders in each project-oriented lesson.
+- Take the post-lecture quiz.
+- Complete the challenge.
+- Complete the assignment.
+- After completing a lesson group, visit the [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) and "learn out loud" by filling out the appropriate PAT rubric. A 'PAT' is a Progress Assessment Tool that is a rubric you fill out to further your learning. You can also react to other PATs so we can learn together.
+
+> For further study, we recommend following these [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules and learning paths.
+
+**Teachers**, we have [included some suggestions](for-teachers.md) on how to use this curriculum.
 
 ---
 
-# Iniciando
+## Video walkthroughs
 
-**Estudantes**, para usar este curso, faça um fork do nosso repositório para sua conta do GitHub e complete os exercícios de forma individual ou em grupo:
+Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.
 
-- Comece com o questionário de pré-aula.
-- Leia as aulas e conclua as atividades, pausando e refletindo a cada verificação de conhecimento.
-- Tente criar os projetos compreendendo as lições ao invés de executar o código da solução; No entanto, esse código está disponível nas pastas `/solution` em cada lição que contenha um projeto.
-- Faça o teste de pós-aula.
-- Complete o desafio.
-- Conclua a tarefa.
-- Após concluir uma lição em grupo, visite o [Quadro de discussões](https://github.com/microsoft/ML-For-Beginners/discussions) e "aprenda em voz alta" preenchendo de forma apropriada a rubrica PAT. Um 'PAT' é uma ferramenta de avaliação de progresso que é uma rubrica que você preenche para promover seu aprendizado. Você também pode reagir a outros PATs para que possamos aprender juntos.
-
-> Para um estudo mais aprofundado, recomendamos seguir os módulos e percursos de aprendizagem da [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott).
-
-**Professores**, [incluímos algumas sugestões](../for-teachers.md) em como usar este curso.
+[![ML for beginners banner](./ml-for-beginners-video-banner.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 
-## Conhece a equipe
+## Meet the Team
 
-[![Video promo](../ml-for-beginners.png)](https://youtu.be/Tj1XWrDSYJU "Video promo")
+[![Promo video](ml.gif)](https://youtu.be/Tj1XWrDSYJU "Promo video")
 
-> 🎥 Clique na imagem acima para o vídeo sobre o projeto e as pessoas que o criaram!
+**Gif by** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
+
+> 🎥 Click the image above for a video about the project and the folks who created it!
 
 ---
 
-## Pedagogia
+## Pedagogy
 
-Escolhemos dois princípios pedagógicos ao construir este curso: garantir que seja prático **baseado em projeto** e que inclua **questionários frequentes**. Além disso, este curso tem um **tema** comum para dar-lhe coesão.
+We have chosen two pedagogical tenets while building this curriculum: ensuring that it is hands-on **project-based** and that it includes **frequent quizzes**. In addition, this curriculum has a common **theme** to give it cohesion.
 
-Ao garantir que o conteúdo esteja alinhado com os projetos, o processo torna-se mais envolvente para os estudantes e a retenção dos conceitos é aumentada. Além disso, um teste de baixo risco antes da aula define a intenção do estudante de aprender um tópico, enquanto que o segundo questionário após a aula garante maior retenção. Este curso foi projetado para ser flexível e divertido e pode ser realizado por completo ou parcialmente. Os projetos começam pequenos e tornam-se cada vez mais complexos ao final do ciclo de 12 semanas. Este curso também inclui um pós-escrito sobre aplicações de ML no mundo real, que pode ser usado como crédito extra ou como base para discussão.
+By ensuring that the content aligns with projects, the process is made more engaging for students and retention of concepts will be augmented. In addition, a low-stakes quiz before a class sets the intention of the student towards learning a topic, while a second quiz after class ensures further retention. This curriculum was designed to be flexible and fun and can be taken in whole or in part. The projects start small and become increasingly complex by the end of the 12-week cycle. This curriculum also includes a postscript on real-world applications of ML, which can be used as extra credit or as a basis for discussion.
 
-> Encontre as diretrizes do nosso [Código de Conduta](../CODE_OF_CONDUCT.md), [Contribuição](../CONTRIBUTING.md) e [Tradução](../TRANSLATIONS.md). Agradecemos seu feedback construtivo!
+> Find our [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), and [Translation](TRANSLATIONS.md) guidelines. We welcome your constructive feedback!
 
-## Cada aula inclui:
+## Each lesson includes
 
-- esboço opcional
-- vídeo complementar opcional
-- teste de aquecimento da pré-aula
-- aula escrita
-- para aulas baseadas em projetos, guias com passo a passo sobre como construir o projeto
-- verificações de conhecimento
-- um desafio
-- leitura suplementar
-- tarefa
-- questionário pós-aula
+- optional sketchnote
+- optional supplemental video
+- video walkthrough (some lessons only)
+- pre-lecture warmup quiz
+- written lesson
+- for project-based lessons, step-by-step guides on how to build the project
+- knowledge checks
+- a challenge
+- supplemental reading
+- assignment
+- post-lecture quiz
 
-> **Uma nota sobre questionários**: Todos os questionários estão contidos [neste aplicativo](https://gray-sand-07a10f403.1.azurestaticapps.net/), para um total de 50 testes de três perguntas cada. Eles estão vinculados nas lições, mas o aplicativo de teste pode ser executado localmente; siga as instruções na pasta `quiz-app`.
+> **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.
 
-| Número da aula |                                Tópico                                 |                 Agrupamento de Aulas                  | Objetivos de aprendizagem                                                                                                            |                   Aula vinculada                    |    Autor     |
-| :------------: | :-------------------------------------------------------------------: | :---------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------: | :----------: |
-|       01       |                    Introdução ao machine learning                     |        [Introdução](../1-Introduction/translations/README.pt-br.md)         | Aprenda os conceitos básicos atrás do machine learning                                                                              |   [Aula](../1-Introduction/1-intro-to-ML/translations/README.pt-br.md)    |   Muhammad   |
-|       02       |                    A História de machine learning                     |        [Introdução](../1-Introduction/translations/README.pt-br.md)         | Aprenda a história subjacente desta área                                                                                            |  [Aula](../1-Introduction/2-history-of-ML/translations/README.pt-br.md)   |  Jen e Amy   |
-|       03       |               Equidade e aprendizado de máquina                       |        [Introdução](../1-Introduction/translations/README.pt-br.md)         | Quais são as questões filosóficas importantes sobre justiça que os alunos devem considerar ao construir e aplicar modelos de ML? |     [Aula](../1-Introduction/3-fairness/translations/README.pt-br.md)     |    Tomomi    |
-|       04       |                    Técnicas para machine learning                     |        [Introdução](../1-Introduction/translations/README.pt-br.md)         | Quais técnicas os pesquisadores de ML usam para construir modelos de ML?                                                              | [Aula](../1-Introduction/4-techniques-of-ML/translations/README.pt-br.md) | Chris e Jen  |
-|       05       |                        Introdução à regressão                         |          [Regressão](../2-Regression/translations/README.pt-br.md)          | Comece a usar Python e Scikit-learn para modelos de regressão                                                                     |       <ul><li>[Python](2-Regression/1-Tools/translations/README.pt-br.md)</li><li>[R](../2-Regression/1-Tools/solution/R/lesson_1-R.ipynb)</li></ul>       |       <ul><li>Jen</li><li>Eric Wanjau</li></ul>    |
-|       06       |                Preços das abóboras norte americanas 🎃                |          [Regressão](../2-Regression/translations/README.pt-br.md)          | Visualize e limpe os dados em preparação para o ML                                                                                 |     <ul><li>[Python](../2-Regression/2-Data/translations/README.pt-br.md)</li><li>[R](../2-Regression/2-Data/solution/R/lesson_2-R.ipynb)</li></ul>         |        <ul><li>Jen</li><li>Eric Wanjau</li></ul>     |
-|       07       |                Preços das abóboras norte americanas 🎃                |          [Regressão](../2-Regression/translations/README.pt-br.md)          | Construa modelos de regressão linear e polinomial                                                                                   |     <ul><li>[Python](../2-Regression/3-Linear/translations/README.pt-br.md)</li><li>[R](../2-Regression/3-Linear/solution/R/lesson_3-R.ipynb)</li></ul>       |       <ul><li>Jen</li><li>Eric Wanjau</li></ul>     |
-|       08       |                Preços das abóboras norte americanas 🎃                |          [Regressão](../2-Regression/translations/README.pt-br.md)          | Construa um modelo de regressão logística                                                                                           |     <ul><li>[Python](../2-Regression/4-Logistic/translations/README.pt-br.md)  </li><li>[R](../2-Regression/4-Logistic/solution/R/lesson_4-R.ipynb)</li></ul>     |       <ul><li>Jen</li><li>Eric Wanjau</li></ul>     |
-|       09       |                            Uma Web App 🔌                             |            [Web App](../3-Web-App/translations/README.pt-br.md)          | Crie um aplicativo web para usar seu modelo treinado                                                        |        [Python](../3-Web-App/1-Web-App/translations/README.pt-br.md)       |       Jen      |
-|       10       |                      Introdução à classificação                       |      [Classificação](../4-Classification/README.md)      | Limpe, prepare e visualize seus dados; introdução à classificação                                         |<ul><li>  [Python](4-Classification/1-Introduction/README.md) </li><li>[R](4-Classification/1-Introduction/solution/R/lesson_10-R.ipynb)  | <ul><li>Jen e Cassie</li><li>Eric Wanjau</li></ul> |
-|       11       |              Deliciosas cozinhas asiáticas e indianas 🍜              |      [Classificação](../4-Classification/README.md)      | Introdução aos classificadores                                                                           |<ul><li> [Python](4-Classification/2-Classifiers-1/README.md)</li><li>[R](4-Classification/2-Classifiers-1/solution/R/lesson_11-R.ipynb) | <ul><li>Jen e Cassie</li><li>Eric Wanjau</li></ul> |
-|       12       |              Deliciosas cozinhas asiáticas e indianas 🍜              |      [Classificação](../4-Classification/README.md)      | Mais classificadores                                                                            |<ul><li>  [Python](4-Classification/3-Classifiers-2/README.md)</li><li>[R](4-Classification/3-Classifiers-2/solution/R/lesson_12-R.ipynb)  | <ul><li>Jen e Cassie</li><li>Eric Wanjau</li></ul> |
-|       13       |              Deliciosas cozinhas asiáticas e indianas 🍜              |      [Classificação](../4-Classification/README.md)      | Construa um aplicativo web de recomendação usando seu modelo                                         |     [Python](4-Classification/4-Applied/README.md)     |       Jen      |
-|       14       |                       Introdução ao clustering                        |         [Clustering](../5-Clustering/README.md)          | Limpe, prepare e visualize seus dados; Introdução ao clustering                                           |     <ul><li> [Python](5-Clustering/1-Visualize/README.md)</li><li>[R](5-Clustering/1-Visualize/solution/R/lesson_14-R.ipynb)    |       <ul><li>Jen</li><li>Eric Wanjau</li></ul>    |
-|       15       |               Explorando Gostos Musicais Nigerianos 🎧                |         [Clustering](../5-Clustering/README.md)          | Explore o método de agrupamento K-Means                                                                                |      <ul><li> [Python](5-Clustering/2-K-Means/README.md)</li><li>[R](5-Clustering/2-K-Means/solution/R/lesson_15-R.ipynb)       |       <ul><li>Jen</li><li>Eric Wanjau</li></ul>      |
-|       16       |           Introdução processamento de linguagem natural ☕️           | [Processamento de linguagem natural](../6-NLP/README.md) | Aprenda o básico sobre PNL criando um bot simples                                                             |    [Python](6-NLP/1-Introduction-to-NLP/README.md)  |     Stephen    |
-|       17       |                        Tarefas NLP comuns ☕️                         | [Processamento de linguagem natural](../6-NLP/README.md) | Aprofunde seu conhecimento de PNL entendendo as tarefas comuns exigidas ao lidar com estruturas de linguagem                      |           [Python](6-NLP/2-Tasks/README.md)     |     Stephen    |
-|       18       |                  Tradução e análise de sentimento ♥️                  | [Processamento de linguagem natural](../6-NLP/README.md) | Tradução e análise de sentimento com Jane Austen                                                                 |    [Python](6-NLP/3-Translation-Sentiment/README.md) |     Stephen    |
-|       19       |                    Hotéis românticos da Europa ♥️                     | [Processamento de linguagem natural](../6-NLP/README.md) | Análise de sentimento com avaliações de hotéis, 1                                                     |    [Python](6-NLP/4-Hotel-Reviews-1/README.md)    |     Stephen    |
-|       20       |                    Hotéis românticos da Europa ♥️                     | [Processamento de linguagem natural](../6-NLP/README.md) | Análise de sentimento com avaliações de hotéis, 2                                                    |      [Python](6-NLP/5-Hotel-Reviews-2/README.md)   |     Stephen    |
-|       21       |                Introdução à previsão de séries temporais               |      [Séries temporais](../7-TimeSeries/README.md)       | Introdução à previsão de séries temporais                                                             |    [Python](7-TimeSeries/1-Introduction/README.md)    |    Francesca   |
-|       22       | ⚡️ Uso de Energia Mundial ⚡️ - previsão de série temporal com ARIMA |      [Séries temporais](../7-TimeSeries/README.md)       | Previsão de séries temporais com ARIMA                                                                      |        [Python](7-TimeSeries/2-ARIMA/README.md)        |    Francesca   |
-|       23       |                 Introdução à aprendizagem por reforço                 | [Aprendizagem por reforço](../8-Reinforcement/README.md) |Introdução à aprendizagem por reforço com Q-Learning                                                   |    [Python](8-Reinforcement/1-QLearning/README.md)  |     Dmitry     |
-|       24       |                  Ajuda o Pedro a evitar do lobo! 🐺                  | [Aprendizagem por reforço](../8-Reinforcement/README.md) | Ginásio de aprendizagem por reforço                                                                  |       [Python](8-Reinforcement/2-Gym/README.md)      |     Dmitry     |
-|   Postscript   |                   Cenários e aplicações de ML do mundo real               |       [ML na natureza](../9-Real-World/README.md)       | Aplicações interessantes e reveladoras do mundo real do ML clássico                                      |    [Aula](../9-Real-World/1-Applications/README.md)    |    Equipe    |
+> **A note about quizzes**: All quizzes are contained in [Quiz App folder](./quiz-app/), for 52 total quizzes of three questions each. They are linked from within the lessons but the quiz app can be run locally; follow the instruction in the `quiz-app` folder to locally host or deploy to Azure.
 
-## Acesso Offline
+| Lesson Number |                             Topic                              |                   Lesson Grouping                   | Learning Objectives                                                                                                             |                                                              Linked Lesson                                                               |                        Author                        |
+| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
+|      01       |                Introduction to machine learning                |      [Introduction](1-Introduction/README.md)       | Learn the basic concepts behind machine learning                                                                                |                                             [Lesson](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                The History of machine learning                 |      [Introduction](1-Introduction/README.md)       | Learn the history underlying this field                                                                                         |                                            [Lesson](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen and Amy                      |
+|      03       |                 Fairness and machine learning                  |      [Introduction](1-Introduction/README.md)       | What are the important philosophical issues around fairness that students should consider when building and applying ML models? |                                              [Lesson](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |
+|      04       |                Techniques for machine learning                 |      [Introduction](1-Introduction/README.md)       | What techniques do ML researchers use to build ML models?                                                                       |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris and Jen                     |
+|      05       |                   Introduction to regression                   |        [Regression](2-Regression/README.md)         | Get started with Python and Scikit-learn for regression models                                                                  |         <ul><li>[Python](2-Regression/1-Tools/README.md)</li><li>[R](2-Regression/1-Tools/solution/R/lesson_1.html)</li></ul>         |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
+|      06       |                North American pumpkin prices 🎃                |        [Regression](2-Regression/README.md)         | Visualize and clean data in preparation for ML                                                                                  |          <ul><li>[Python](2-Regression/2-Data/README.md)</li><li>[R](2-Regression/2-Data/solution/R/lesson_2.html)</li></ul>          |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
+|      07       |                North American pumpkin prices 🎃                |        [Regression](2-Regression/README.md)         | Build linear and polynomial regression models                                                                                   |        <ul><li>[Python](2-Regression/3-Linear/README.md)</li><li>[R](2-Regression/3-Linear/solution/R/lesson_3.html)</li></ul>        |      <ul><li>Jen and Dmitry</li><li>Eric Wanjau</li></ul>       |
+|      08       |                North American pumpkin prices 🎃                |        [Regression](2-Regression/README.md)         | Build a logistic regression model                                                                                               |     <ul><li>[Python](2-Regression/4-Logistic/README.md) </li><li>[R](2-Regression/4-Logistic/solution/R/lesson_4.html)</li></ul>      |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
+|      09       |                          A Web App 🔌                          |           [Web App](3-Web-App/README.md)            | Build a web app to use your trained model                                                                                       |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|      10       |                 Introduction to classification                 |    [Classification](4-Classification/README.md)     | Clean, prep, and visualize your data; introduction to classification                                                            | <ul><li> [Python](4-Classification/1-Introduction/README.md) </li><li>[R](4-Classification/1-Introduction/solution/R/lesson_10.html)  | <ul><li>Jen and Cassie</li><li>Eric Wanjau</li></ul> |
+|      11       |             Delicious Asian and Indian cuisines 🍜             |    [Classification](4-Classification/README.md)     | Introduction to classifiers                                                                                                     | <ul><li> [Python](4-Classification/2-Classifiers-1/README.md)</li><li>[R](4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | <ul><li>Jen and Cassie</li><li>Eric Wanjau</li></ul> |
+|      12       |             Delicious Asian and Indian cuisines 🍜             |    [Classification](4-Classification/README.md)     | More classifiers                                                                                                                | <ul><li> [Python](4-Classification/3-Classifiers-2/README.md)</li><li>[R](4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | <ul><li>Jen and Cassie</li><li>Eric Wanjau</li></ul> |
+|      13       |             Delicious Asian and Indian cuisines 🍜             |    [Classification](4-Classification/README.md)     | Build a recommender web app using your model                                                                                    |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
+|      14       |                   Introduction to clustering                   |        [Clustering](5-Clustering/README.md)         | Clean, prep, and visualize your data; Introduction to clustering                                                                |         <ul><li> [Python](5-Clustering/1-Visualize/README.md)</li><li>[R](5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
+|      15       |              Exploring Nigerian Musical Tastes 🎧              |        [Clustering](5-Clustering/README.md)         | Explore the K-Means clustering method                                                                                           |           <ul><li> [Python](5-Clustering/2-K-Means/README.md)</li><li>[R](5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
+|      16       |        Introduction to natural language processing ☕️         |   [Natural language processing](6-NLP/README.md)    | Learn the basics about NLP by building a simple bot                                                                             |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
+|      17       |                      Common NLP Tasks ☕️                      |   [Natural language processing](6-NLP/README.md)    | Deepen your NLP knowledge by understanding common tasks required when dealing with language structures                          |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      18       |             Translation and sentiment analysis ♥️              |   [Natural language processing](6-NLP/README.md)    | Translation and sentiment analysis with Jane Austen                                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|      19       |                  Romantic hotels of Europe ♥️                  |   [Natural language processing](6-NLP/README.md)    | Sentiment analysis with hotel reviews 1                                                                                         |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|      20       |                  Romantic hotels of Europe ♥️                  |   [Natural language processing](6-NLP/README.md)    | Sentiment analysis with hotel reviews 2                                                                                         |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|      21       |            Introduction to time series forecasting             |        [Time series](7-TimeSeries/README.md)        | Introduction to time series forecasting                                                                                         |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
+|      22       | ⚡️ World Power Usage ⚡️ - time series forecasting with ARIMA |        [Time series](7-TimeSeries/README.md)        | Time series forecasting with ARIMA                                                                                              |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
+|      23       |  ⚡️ World Power Usage ⚡️ - time series forecasting with SVR  |        [Time series](7-TimeSeries/README.md)        | Time series forecasting with Support Vector Regressor                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
+|      24       |             Introduction to reinforcement learning             | [Reinforcement learning](8-Reinforcement/README.md) | Introduction to reinforcement learning with Q-Learning                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
+|      25       |                 Help Peter avoid the wolf! 🐺                  | [Reinforcement learning](8-Reinforcement/README.md) | Reinforcement learning Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
+|  Postscript   |            Real-World ML scenarios and applications            |      [ML in the Wild](9-Real-World/README.md)       | Interesting and revealing real-world applications of classical ML                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
+|  Postscript   |            Model Debugging in ML using RAI dashboard          |      [ML in the Wild](9-Real-World/README.md)       | Model Debugging in Machine Learning using Responsible AI dashboard components                                                              |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
-Você pode executar esta documentação offline usando [Docsify](https://docsify.js.org/#/). Faça um fork deste repositório, [instale o Docsify](https://docsify.js.org/#/quickstart) em sua máquina local e, em seguida, na pasta raiz deste repositório, digite `docsify serve`. O site será servido na porta 3000 em seu localhost: `localhost: 3000`.
+> [find all additional resources for this course in our Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+
+## Offline access
+
+You can run this documentation offline by using [Docsify](https://docsify.js.org/#/). Fork this repo, [install Docsify](https://docsify.js.org/#/quickstart) on your local machine, and then in the root folder of this repo, type `docsify serve`. The website will be served on port 3000 on your localhost: `localhost:3000`.
 
 ## PDFs
 
-Encontre o pdf do curso com os links [aqui](../pdf/readme.pdf)
+Find a pdf of the curriculum with links [here](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
-## Procura-se ajuda!
+## Help Wanted
 
-Você gostaria de contribuir com uma tradução? Leia nossas [diretrizes de tradução](../TRANSLATIONS.md) e adicione informações [aqui](https://github.com/microsoft/ML-For-Beginners/issues/71)
+Would you like to contribute a translation? Please read our [translation guidelines](TRANSLATIONS.md) and add a templated issue to manage the workload [here](https://github.com/microsoft/ML-For-Beginners/issues).
 
-## Outros Cursos
+## 🎒 Other Courses 
 
-Nossa equipe produziu outros cursos! Confira:
+Our team produces other courses! Check out:
 
-- [Web Dev para Iniciantes](https://aka.ms/webdev-beginners)
-- [IoT para Iniciantes](https://aka.ms/iot-beginners)
+- [Generative AI for Beginners](https://aka.ms/genai-beginners)
+- [Generative AI for Beginners .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet)
+- [Generative AI with JavaScript](https://github.com/microsoft/generative-ai-with-javascript)
+- [AI for Beginners](https://aka.ms/ai-beginners)
+- [Data Science for Beginners](https://aka.ms/datascience-beginners)
+- [ML for Beginners](https://aka.ms/ml-beginners)
+- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101) 
+- [Web Dev for Beginners](https://aka.ms/webdev-beginners)
+- [IoT for Beginners](https://aka.ms/iot-beginners)
+- [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners)
+- [Mastering GitHub Copilot for Paired Programming](https://github.com/microsoft/Mastering-GitHub-Copilot-for-Paired-Programming)
+- [Mastering GitHub Copilot for C#/.NET Developers](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers)
+- [Choose Your Own Copilot Adventure](https://github.com/microsoft/CopilotAdventures)
