@@ -32,7 +32,7 @@ Microsoft के क्लाउड एडवोकेट्स एक 12-सप
 1. **रिपॉजिटरी को फोर्क करें**: इस पृष्ठ के ऊपर-दाईं ओर "Fork" बटन पर क्लिक करें।
 2. **रिपॉजिटरी को क्लोन करें**:   `git clone https://github.com/microsoft/ML-For-Beginners.git`
 
-> [इस कोर्स के लिए सभी अतिरिक्त संसाधनों को हमारे Microsoft Learn संग्रह में खोजें](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [इस पाठ्यक्रम के लिए सभी अतिरिक्त संसाधनों को हमारे Microsoft Learn संग्रह में खोजें](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 
 **[विद्यार्थियों](https://aka.ms/student-page)**, इस पाठ्यक्रम का उपयोग करने के लिए, पूरे रिपॉजिटरी को अपने GitHub खाते में फोर्क करें और अपने या समूह के साथ अभ्यास करें:
@@ -125,7 +125,7 @@ Microsoft के क्लाउड एडवोकेट्स एक 12-सप
 |  Postscript   |            वास्तविक दुनिया के ML परिदृश्य और अनुप्रयोग            |      [ML in the Wild](9-Real-World/README.md)       | शास्त्रीय ML के दिलचस्प और प्रकट करने वाले वास्तविक दुनिया के अनुप्रयोग                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
 |  Postscript   |            RAI डैशबोर्ड का उपयोग करके ML में मॉडल डिबगिंग          |      [ML in the Wild](9-Real-World/README.md)       | जिम्मेदार AI डैशबोर्ड घटकों का उपयोग करके मशीन लर्निंग में मॉडल डिबगिंग                                                              |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
-> [इस कोर्स के लिए सभी अतिरिक्त संसाधनों को हमारे Microsoft Learn संग्रह में खोजें](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [इस पाठ्यक्रम के लिए सभी अतिरिक्त संसाधनों को हमारे Microsoft Learn संग्रह में खोजें](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
 ## ऑफलाइन एक्सेस
 
