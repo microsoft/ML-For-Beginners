@@ -105,11 +105,11 @@ Now that you have an understanding of the math behind linear regression, let's c
 
 From the previous lesson you have probably seen that the average price for different months looks like this:
 
-<img alt="Average price by month" src="../2-Data/images/barchart.png" width="50%"/>
+<img alt="Average price by month" src="/2-Regression/2-Data/images/barchart.png" width="50%"/>
 
 This suggests that there should be some correlation, and we can try training linear regression model to predict the relationship between `Month` and `Price`, or between `DayOfYear` and `Price`. Here is the scatter plot that shows the latter relationship:
 
-<img alt="Scatter plot of Price vs. Day of Year" src="images/scatter-dayofyear.png" width="50%" /> 
+<img alt="Scatter plot of Price vs. Day of Year" src="/2-Regression/3-Linear/images/scatter-dayofyear.png" width="50%" /> 
 
 Let's see if there is a correlation using the `corr` function:
 
@@ -128,7 +128,7 @@ for i,var in enumerate(new_pumpkins['Variety'].unique()):
     ax = df.plot.scatter('DayOfYear','Price',ax=ax,c=colors[i],label=var)
 ```
 
-<img alt="Scatter plot of Price vs. Day of Year" src="images/scatter-dayofyear-color.png" width="50%" /> 
+<img alt="Scatter plot of Price vs. Day of Year" src="/2-Regression/3-Linear/images/scatter-dayofyear-color.png" width="50%" /> 
 
 Our investigation suggests that variety has more effect on the overall price than the actual selling date. We can see this with a bar graph:
 
@@ -136,7 +136,7 @@ Our investigation suggests that variety has more effect on the overall price tha
 new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 ```
 
-<img alt="Bar graph of price vs variety" src="images/price-by-variety.png" width="50%" /> 
+<img alt="Bar graph of price vs variety" src="/2-Regression/3-Linear/images/price-by-variety.png" width="50%" /> 
 
 Let us focus for the moment only on one pumpkin variety, the 'pie type', and see what effect the date has on the price:
 
@@ -144,7 +144,7 @@ Let us focus for the moment only on one pumpkin variety, the 'pie type', and see
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
 pie_pumpkins.plot.scatter('DayOfYear','Price') 
 ```
-<img alt="Scatter plot of Price vs. Day of Year" src="images/pie-pumpkins-scatter.png" width="50%" /> 
+<img alt="Scatter plot of Price vs. Day of Year" src="/2-Regression/3-Linear/images/pie-pumpkins-scatter.png" width="50%" /> 
 
 If we now calculate the correlation between `Price` and `DayOfYear` using `corr` function, we will get something like `-0.27` - which means that training a predictive model makes sense.
 
@@ -219,7 +219,7 @@ plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
 ```
 
-<img alt="Linear regression" src="images/linear-results.png" width="50%" />
+<img alt="Linear regression" src="/2-Regression/3-Linear/images/linear-results.png" width="50%" />
 
 ## Polynomial Regression
 
@@ -248,7 +248,7 @@ Using `PolynomialFeatures(2)` means that we will include all second-degree polyn
 
 Pipelines can be used in the same manner as the original `LinearRegression` object, i.e. we can `fit` the pipeline, and then use `predict` to get the prediction results. Here is the graph showing test data, and the approximation curve:
 
-<img alt="Polynomial regression" src="images/poly-results.png" width="50%" />
+<img alt="Polynomial regression" src="/2-Regression/3-Linear/images/poly-results.png" width="50%" />
 
 Using Polynomial Regression, we can get slightly lower MSE and higher determination, but not significantly. We need to take into account other features!
 
@@ -266,7 +266,7 @@ In the ideal world, we want to be able to predict prices for different pumpkin v
 
 Here you can see how average price depends on variety:
 
-<img alt="Average price by variety" src="images/price-by-variety.png" width="50%" />
+<img alt="Average price by variety" src="/2-Regression/3-Linear/images/price-by-variety.png" width="50%" />
 
 To take variety into account, we first need to convert it to numeric form, or **encode** it. There are several way we can do it:
 
