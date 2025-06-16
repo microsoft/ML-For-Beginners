@@ -10,6 +10,8 @@
 
 [![](https://dcbadge.vercel.app/api/server/ByRwuEEgH4)](https://discord.gg/zxKYvhSnVp?WT.mc_id=academic-000002-leestott)
 
+[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+
 # Machine Learning for Beginners - A Curriculum
 
 > 🌍 Travel around the world as we explore Machine Learning by means of world cultures 🌍
