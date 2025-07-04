@@ -60,6 +60,12 @@
 
     ✅ 使用什么函数来查看最后五行？
 
+    ```python
+    pumpkins
+    ```
+
+    
+
 2. 检查当前 dataframe 中是否缺少数据：
 
     ```python
