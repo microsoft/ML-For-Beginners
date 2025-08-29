@@ -63,13 +63,13 @@ Follow these steps:
 
 Some of the lessons are available as short form video. You can find all these in-line in the lessons, or on the [ML for Beginners playlist on the Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) by clicking the image below.
 
-[![ML for beginners banner](./ml-for-beginners-video-banner.png)](https://aka.ms/ml-beginners-videos)
+[![ML for beginners banner](./images/ml-for-beginners-video-banner.png)](https://aka.ms/ml-beginners-videos)
 
 ---
 
 ## Meet the Team
 
-[![Promo video](ml.gif)](https://youtu.be/Tj1XWrDSYJU "Promo video")
+[![Promo video](./images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)
 
 **Gif by** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)
 
