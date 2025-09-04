@@ -2,7 +2,7 @@
 
 ![Linear vs polynomial regression infographic](./images/linear-polynomial.png)
 > Infographic by [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [This lesson is available in R!](./solution/R/lesson_3.html)
 ### Introduction 
@@ -356,7 +356,7 @@ This should give us the best determination coefficient of almost 97%, and MSE=2.
 
 Test several different variables in this notebook to see how correlation corresponds to model accuracy.
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Review & Self Study
 

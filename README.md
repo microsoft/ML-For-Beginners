@@ -90,14 +90,14 @@ By ensuring that the content aligns with projects, the process is made more enga
 - optional sketchnote
 - optional supplemental video
 - video walkthrough (some lessons only)
-- pre-lecture warmup quiz
+- [pre-lecture warmup quiz](https://ff-quizzes.netlify.app/en/ml/)
 - written lesson
 - for project-based lessons, step-by-step guides on how to build the project
 - knowledge checks
 - a challenge
 - supplemental reading
 - assignment
-- post-lecture quiz
+- [post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 > **A note about languages**: These lessons are primarily written in Python, but many are also available in R. To complete an R lesson, go to the `/solution` folder and look for R lessons. They include an .rmd extension that represents an **R Markdown** file which can be simply defined as an embedding of `code chunks` (of R or other languages) and a `YAML header` (that guides how to format outputs such as PDF) in a `Markdown document`. As such, it serves as an exemplary authoring framework for data science since it allows you to combine your code, its output, and your thoughts by allowing you to write them down in Markdown. Moreover, R Markdown documents can be rendered to output formats such as PDF, HTML, or Word.
 
