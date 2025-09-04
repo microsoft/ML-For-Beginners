@@ -1,44 +1,53 @@
-# Küchenklassifizierer 2
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "808a71076f76ae8f5458862a8edd9215",
+  "translation_date": "2025-09-03T21:55:21+00:00",
+  "source_file": "4-Classification/3-Classifiers-2/README.md",
+  "language_code": "de"
+}
+-->
+# Küchenklassifikatoren 2
 
-In dieser zweiten Klassifikationslektion werden Sie weitere Möglichkeiten erkunden, numerische Daten zu klassifizieren. Sie werden auch die Auswirkungen der Wahl eines Klassifizierers gegenüber einem anderen kennenlernen.
+In dieser zweiten Lektion zur Klassifikation wirst du weitere Möglichkeiten zur Klassifikation numerischer Daten erkunden. Außerdem wirst du die Auswirkungen kennenlernen, die die Wahl eines Klassifikators gegenüber einem anderen haben kann.
 
-## [Vorlesungsquiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Quiz vor der Vorlesung](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
 
-### Voraussetzung
+### Voraussetzungen
 
-Wir gehen davon aus, dass Sie die vorherigen Lektionen abgeschlossen haben und einen bereinigten Datensatz in Ihrem `data`-Ordner haben, der _cleaned_cuisines.csv_ im Wurzelverzeichnis dieses 4-Lektionen-Ordners heißt.
+Wir gehen davon aus, dass du die vorherigen Lektionen abgeschlossen hast und einen bereinigten Datensatz in deinem `data`-Ordner namens _cleaned_cuisines.csv_ im Hauptverzeichnis dieses 4-Lektionen-Ordners hast.
 
 ### Vorbereitung
 
-Wir haben Ihre _notebook.ipynb_-Datei mit dem bereinigten Datensatz geladen und in X- und y-Datenrahmen unterteilt, bereit für den Modellierungsprozess.
+Wir haben deine _notebook.ipynb_-Datei mit dem bereinigten Datensatz geladen und in X- und y-Datenframes unterteilt, die bereit für den Modellierungsprozess sind.
 
 ## Eine Klassifikationskarte
 
-Früher haben Sie die verschiedenen Optionen kennengelernt, die Sie beim Klassifizieren von Daten mit Microsofts Spickzettel haben. Scikit-learn bietet einen ähnlichen, aber detaillierteren Spickzettel, der Ihnen helfen kann, Ihre Schätzer (ein anderer Begriff für Klassifizierer) weiter einzugrenzen:
+Zuvor hast du die verschiedenen Optionen kennengelernt, die dir bei der Klassifikation von Daten mithilfe des Cheat Sheets von Microsoft zur Verfügung stehen. Scikit-learn bietet ein ähnliches, aber detaillierteres Cheat Sheet, das dir dabei helfen kann, deine Auswahl an Schätzern (ein anderer Begriff für Klassifikatoren) weiter einzugrenzen:
 
-![ML-Karte von Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.de.png)
-> Tipp: [Besuchen Sie diese Karte online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) und klicken Sie entlang des Pfades, um die Dokumentation zu lesen.
+![ML-Karte von Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.de.png)  
+> Tipp: [Besuche diese Karte online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) und klicke entlang des Pfades, um die Dokumentation zu lesen.
 
 ### Der Plan
 
-Diese Karte ist sehr hilfreich, sobald Sie ein klares Verständnis Ihrer Daten haben, da Sie 'entlang ihrer Pfade' zu einer Entscheidung 'gehen' können:
+Diese Karte ist sehr hilfreich, sobald du ein klares Verständnis deiner Daten hast, da du entlang ihrer Pfade zu einer Entscheidung „gehen“ kannst:
 
-- Wir haben >50 Proben
+- Wir haben >50 Stichproben
 - Wir möchten eine Kategorie vorhersagen
 - Wir haben beschriftete Daten
-- Wir haben weniger als 100K Proben
-- ✨ Wir können einen linearen SVC wählen
-- Wenn das nicht funktioniert, da wir numerische Daten haben
-    - Können wir einen ✨ KNeighbors-Klassifizierer ausprobieren 
-      - Wenn das nicht funktioniert, versuchen Sie ✨ SVC und ✨ Ensemble-Klassifizierer
+- Wir haben weniger als 100.000 Stichproben
+- ✨ Wir können einen Linear SVC wählen
+- Falls das nicht funktioniert, da wir numerische Daten haben:
+    - Können wir einen ✨ KNeighbors-Klassifikator ausprobieren
+      - Falls das nicht funktioniert, probiere ✨ SVC und ✨ Ensemble-Klassifikatoren
 
-Das ist ein sehr hilfreicher Weg, dem man folgen kann.
+Dies ist ein sehr hilfreicher Weg, dem man folgen kann.
 
 ## Übung - Daten aufteilen
 
-Folgen Sie diesem Pfad, sollten wir zunächst einige Bibliotheken importieren.
+Entlang dieses Pfades sollten wir zunächst einige Bibliotheken importieren, die wir verwenden möchten.
 
-1. Importieren Sie die benötigten Bibliotheken:
+1. Importiere die benötigten Bibliotheken:
 
     ```python
     from sklearn.neighbors import KNeighborsClassifier
@@ -50,21 +59,21 @@ Folgen Sie diesem Pfad, sollten wir zunächst einige Bibliotheken importieren.
     import numpy as np
     ```
 
-1. Teilen Sie Ihre Trainings- und Testdaten auf:
+1. Teile deine Trainings- und Testdaten:
 
     ```python
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Linearer SVC-Klassifizierer
+## Linear SVC-Klassifikator
 
-Support-Vektor-Klassifizierung (SVC) ist ein Teil der Familie der Support-Vektor-Maschinen von ML-Techniken (erfahren Sie mehr darüber weiter unten). Bei dieser Methode können Sie einen 'Kernel' wählen, um zu entscheiden, wie die Labels gruppiert werden. Der Parameter 'C' bezieht sich auf die 'Regularisierung', die den Einfluss der Parameter reguliert. Der Kernel kann einer von [mehreren](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) sein; hier setzen wir ihn auf 'linear', um sicherzustellen, dass wir den linearen SVC nutzen. Die Wahrscheinlichkeit ist standardmäßig auf 'false' gesetzt; hier setzen wir sie auf 'true', um Wahrscheinlichkeitsabschätzungen zu sammeln. Wir setzen den Zufallsstatus auf '0', um die Daten zu mischen und Wahrscheinlichkeiten zu erhalten.
+Support-Vector Clustering (SVC) ist ein Mitglied der Familie der Support-Vector-Maschinen-Techniken des maschinellen Lernens (mehr dazu unten). Bei dieser Methode kannst du einen 'Kernel' wählen, um zu entscheiden, wie die Labels gruppiert werden. Der Parameter 'C' bezieht sich auf die 'Regularisierung', die den Einfluss der Parameter reguliert. Der Kernel kann einer von [mehreren](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) sein; hier setzen wir ihn auf 'linear', um sicherzustellen, dass wir Linear SVC nutzen. Die Wahrscheinlichkeit ist standardmäßig auf 'false' gesetzt; hier setzen wir sie auf 'true', um Wahrscheinlichkeitsabschätzungen zu erhalten. Wir setzen den Zufallszustand auf '0', um die Daten zu mischen und Wahrscheinlichkeiten zu erhalten.
 
-### Übung - einen linearen SVC anwenden
+### Übung - Linear SVC anwenden
 
-Beginnen Sie damit, ein Array von Klassifizierern zu erstellen. Sie werden dieses Array schrittweise erweitern, während wir testen. 
+Beginne damit, ein Array von Klassifikatoren zu erstellen. Du wirst dieses Array schrittweise erweitern, während wir testen.
 
-1. Beginnen Sie mit einem linearen SVC:
+1. Beginne mit einem Linear SVC:
 
     ```python
     C = 10
@@ -74,7 +83,7 @@ Beginnen Sie damit, ein Array von Klassifizierern zu erstellen. Sie werden diese
     }
     ```
 
-2. Trainieren Sie Ihr Modell mit dem linearen SVC und drucken Sie einen Bericht aus:
+2. Trainiere dein Modell mit dem Linear SVC und drucke einen Bericht aus:
 
     ```python
     n_classifiers = len(classifiers)
@@ -105,15 +114,15 @@ Beginnen Sie damit, ein Array von Klassifizierern zu erstellen. Sie werden diese
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-## K-Neighbors-Klassifizierer
+## K-Neighbors-Klassifikator
 
-K-Neighbors gehört zur Familie der "Nachbarn"-Methoden von ML, die sowohl für überwachtes als auch für unüberwachtes Lernen verwendet werden können. Bei dieser Methode wird eine vordefinierte Anzahl von Punkten erstellt, und Daten werden um diese Punkte herum gesammelt, sodass verallgemeinerte Labels für die Daten vorhergesagt werden können.
+K-Neighbors ist Teil der Familie der "Nachbarn"-Methoden des maschinellen Lernens, die sowohl für überwachtes als auch für unüberwachtes Lernen verwendet werden können. Bei dieser Methode wird eine vordefinierte Anzahl von Punkten erstellt, und Daten werden um diese Punkte herum gesammelt, sodass generalisierte Labels für die Daten vorhergesagt werden können.
 
-### Übung - den K-Neighbors-Klassifizierer anwenden
+### Übung - K-Neighbors-Klassifikator anwenden
 
-Der vorherige Klassifizierer war gut und hat gut mit den Daten funktioniert, aber vielleicht können wir eine bessere Genauigkeit erzielen. Probieren Sie einen K-Neighbors-Klassifizierer aus.
+Der vorherige Klassifikator war gut und hat gut mit den Daten funktioniert, aber vielleicht können wir eine bessere Genauigkeit erzielen. Probiere einen K-Neighbors-Klassifikator aus.
 
-1. Fügen Sie eine Zeile zu Ihrem Klassifizierer-Array hinzu (fügen Sie ein Komma nach dem Element des linearen SVC hinzu):
+1. Füge eine Zeile zu deinem Klassifikator-Array hinzu (füge ein Komma nach dem Linear SVC-Element hinzu):
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
@@ -136,17 +145,17 @@ Der vorherige Klassifizierer war gut und hat gut mit den Daten funktioniert, abe
     weighted avg       0.76      0.74      0.74      1199
     ```
 
-    ✅ Erfahren Sie mehr über [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
+    ✅ Erfahre mehr über [K-Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#neighbors)
 
-## Support-Vektor-Klassifizierer
+## Support-Vector-Klassifikator
 
-Support-Vektor-Klassifizierer sind Teil der [Support-Vektor-Maschinen](https://wikipedia.org/wiki/Support-vector_machine) Familie von ML-Methoden, die für Klassifikations- und Regressionsaufgaben verwendet werden. SVMs "karten Trainingsbeispiele in Punkte im Raum" ab, um den Abstand zwischen zwei Kategorien zu maximieren. Nachfolgende Daten werden in diesen Raum abgebildet, damit ihre Kategorie vorhergesagt werden kann.
+Support-Vector-Klassifikatoren sind Teil der [Support-Vector-Maschinen](https://wikipedia.org/wiki/Support-vector_machine)-Familie von ML-Methoden, die für Klassifikations- und Regressionstasks verwendet werden. SVMs "mappen Trainingsbeispiele auf Punkte im Raum", um den Abstand zwischen zwei Kategorien zu maximieren. Nachfolgende Daten werden in diesen Raum gemappt, sodass ihre Kategorie vorhergesagt werden kann.
 
-### Übung - einen Support-Vektor-Klassifizierer anwenden
+### Übung - Support-Vector-Klassifikator anwenden
 
-Versuchen wir, eine etwas bessere Genauigkeit mit einem Support-Vektor-Klassifizierer zu erzielen.
+Lass uns versuchen, eine etwas bessere Genauigkeit mit einem Support-Vector-Klassifikator zu erzielen.
 
-1. Fügen Sie ein Komma nach dem K-Neighbors-Element hinzu und fügen Sie dann diese Zeile hinzu:
+1. Füge ein Komma nach dem K-Neighbors-Element hinzu und füge dann diese Zeile hinzu:
 
     ```python
     'SVC': SVC(),
@@ -169,18 +178,18 @@ Versuchen wir, eine etwas bessere Genauigkeit mit einem Support-Vektor-Klassifiz
     weighted avg       0.84      0.83      0.83      1199
     ```
 
-    ✅ Erfahren Sie mehr über [Support-Vektoren](https://scikit-learn.org/stable/modules/svm.html#svm)
+    ✅ Erfahre mehr über [Support-Vektoren](https://scikit-learn.org/stable/modules/svm.html#svm)
 
-## Ensemble-Klassifizierer
+## Ensemble-Klassifikatoren
 
-Lassen Sie uns den Weg bis zum Ende verfolgen, auch wenn der vorherige Test ziemlich gut war. Lassen Sie uns einige 'Ensemble-Klassifizierer, speziell Random Forest und AdaBoost, ausprobieren:
+Lass uns den Pfad bis zum Ende verfolgen, auch wenn der vorherige Test ziemlich gut war. Lass uns einige 'Ensemble-Klassifikatoren' ausprobieren, insbesondere Random Forest und AdaBoost:
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
   'ADA': AdaBoostClassifier(n_estimators=100)
 ```
 
-Das Ergebnis ist sehr gut, insbesondere für Random Forest:
+Das Ergebnis ist sehr gut, besonders bei Random Forest:
 
 ```output
 Accuracy (train) for RFST: 84.5% 
@@ -210,29 +219,31 @@ Accuracy (train) for ADA: 72.4%
 weighted avg       0.73      0.72      0.72      1199
 ```
 
-✅ Erfahren Sie mehr über [Ensemble-Klassifizierer](https://scikit-learn.org/stable/modules/ensemble.html)
+✅ Erfahre mehr über [Ensemble-Klassifikatoren](https://scikit-learn.org/stable/modules/ensemble.html)
 
 Diese Methode des maschinellen Lernens "kombiniert die Vorhersagen mehrerer Basis-Schätzer", um die Qualität des Modells zu verbessern. In unserem Beispiel haben wir Random Trees und AdaBoost verwendet.
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), eine Durchschnittsmethode, erstellt einen 'Wald' von 'Entscheidungsbäumen', die mit Zufälligkeit durchsetzt sind, um Überanpassung zu vermeiden. Der Parameter n_estimators wird auf die Anzahl der Bäume gesetzt.
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), eine Durchschnittsmethode, erstellt einen 'Wald' aus 'Entscheidungsbäumen', die mit Zufälligkeit durchsetzt sind, um Überanpassung zu vermeiden. Der Parameter n_estimators wird auf die Anzahl der Bäume gesetzt.
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) passt einen Klassifizierer an einen Datensatz an und passt dann Kopien dieses Klassifizierers an denselben Datensatz an. Es konzentriert sich auf die Gewichte falsch klassifizierter Elemente und passt die Anpassung für den nächsten Klassifizierer an, um dies zu korrigieren.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) passt einen Klassifikator an einen Datensatz an und passt dann Kopien dieses Klassifikators an denselben Datensatz an. Es konzentriert sich auf die Gewichte von falsch klassifizierten Elementen und passt die Anpassung für den nächsten Klassifikator an, um diese zu korrigieren.
 
 ---
 
-## 🚀Herausforderung
+## 🚀 Herausforderung
 
-Jede dieser Techniken hat eine große Anzahl von Parametern, die Sie anpassen können. Recherchieren Sie die Standardparameter jedes einzelnen und überlegen Sie, was es für die Qualität des Modells bedeuten würde, diese Parameter anzupassen.
+Jede dieser Techniken hat eine große Anzahl von Parametern, die du anpassen kannst. Recherchiere die Standardparameter jeder Technik und überlege, was das Anpassen dieser Parameter für die Qualität des Modells bedeuten würde.
 
-## [Nachlesungsquiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Quiz nach der Vorlesung](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
 
-## Überprüfung & Selbststudium
+## Rückblick & Selbststudium
 
-In diesen Lektionen gibt es eine Menge Fachbegriffe, also nehmen Sie sich einen Moment Zeit, um [diese Liste](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) nützlicher Terminologie zu überprüfen!
+Es gibt viele Fachbegriffe in diesen Lektionen, also nimm dir einen Moment Zeit, um [diese Liste](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott) nützlicher Begriffe zu überprüfen!
 
 ## Aufgabe 
 
-[Parameter spielen](assignment.md)
+[Parameter-Spiel](assignment.md)
+
+---
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit maschinellen KI-Übersetzungsdiensten übersetzt. Obwohl wir uns um Genauigkeit bemühen, bitten wir zu beachten, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache sollte als die maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Verwendung dieser Übersetzung entstehen.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
