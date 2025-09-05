@@ -1,65 +1,65 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2680c691fbdb6367f350761a275e2508",
-  "translation_date": "2025-09-03T23:44:56+00:00",
+  "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
+  "translation_date": "2025-09-05T10:50:13+00:00",
   "source_file": "3-Web-App/1-Web-App/README.md",
   "language_code": "ko"
 }
 -->
 # 웹 앱을 만들어 ML 모델 사용하기
 
-이 강의에서는 _지난 세기 동안의 UFO 목격 사례_라는 독특한 데이터 세트를 사용하여 ML 모델을 훈련합니다. 이 데이터는 NUFORC의 데이터베이스에서 가져왔습니다.
+이 강의에서는 _지난 세기 동안의 UFO 목격_ 데이터를 사용하여 ML 모델을 훈련시킬 것입니다. 이 데이터는 NUFORC의 데이터베이스에서 가져왔습니다.
 
 배울 내용:
 
 - 훈련된 모델을 '피클링'하는 방법
 - Flask 앱에서 모델을 사용하는 방법
 
-노트북을 사용하여 데이터를 정리하고 모델을 훈련하는 작업을 계속 진행하겠지만, 이를 한 단계 더 발전시켜 웹 앱에서 모델을 사용하는 방법을 탐구할 수 있습니다.
+노트북을 사용하여 데이터를 정리하고 모델을 훈련시키는 작업을 계속 진행할 것이지만, 이를 한 단계 더 발전시켜 웹 앱에서 모델을 사용하는 방법을 탐구할 것입니다.
 
 이를 위해 Flask를 사용하여 웹 앱을 구축해야 합니다.
 
-## [강의 전 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [강의 전 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 앱 구축하기
 
-ML 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있습니다. 웹 아키텍처는 모델 훈련 방식에 영향을 미칠 수 있습니다. 데이터 과학 팀이 훈련한 모델을 앱에서 사용해야 하는 비즈니스 환경을 상상해 보세요.
+머신 러닝 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있습니다. 웹 아키텍처는 모델 훈련 방식에 영향을 미칠 수 있습니다. 데이터 과학 팀이 훈련한 모델을 앱에서 사용해야 하는 비즈니스 환경을 상상해 보세요.
 
 ### 고려 사항
 
 다음과 같은 질문을 해야 합니다:
 
 - **웹 앱인가 모바일 앱인가?** 모바일 앱을 구축하거나 IoT 환경에서 모델을 사용해야 한다면 [TensorFlow Lite](https://www.tensorflow.org/lite/)를 사용하여 Android 또는 iOS 앱에서 모델을 사용할 수 있습니다.
-- **모델은 어디에 위치할 것인가?** 클라우드에 있거나 로컬에 있을 수 있습니다.
+- **모델은 어디에 위치할 것인가?** 클라우드인가 로컬인가?
 - **오프라인 지원.** 앱이 오프라인에서도 작동해야 하는가?
-- **모델 훈련에 사용된 기술은 무엇인가?** 선택한 기술이 필요한 도구에 영향을 미칠 수 있습니다.
-    - **TensorFlow 사용.** 예를 들어 TensorFlow를 사용하여 모델을 훈련하는 경우, [TensorFlow.js](https://www.tensorflow.org/js/)를 사용하여 웹 앱에서 모델을 사용할 수 있도록 변환할 수 있습니다.
-    - **PyTorch 사용.** [PyTorch](https://pytorch.org/)와 같은 라이브러리를 사용하여 모델을 구축하는 경우, [ONNX](https://onnx.ai/) (Open Neural Network Exchange) 형식으로 내보내 JavaScript 웹 앱에서 사용할 수 있습니다. 이 옵션은 Scikit-learn으로 훈련된 모델을 다루는 향후 강의에서 탐구할 예정입니다.
-    - **Lobe.ai 또는 Azure Custom Vision 사용.** [Lobe.ai](https://lobe.ai/) 또는 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott)과 같은 ML SaaS(Software as a Service) 시스템을 사용하여 모델을 훈련하는 경우, 이 소프트웨어는 클라우드에서 온라인 애플리케이션이 쿼리할 수 있는 맞춤형 API를 구축하는 등 다양한 플랫폼으로 모델을 내보낼 수 있는 방법을 제공합니다.
+- **모델을 훈련시킨 기술은 무엇인가?** 선택한 기술은 필요한 도구에 영향을 미칠 수 있습니다.
+    - **TensorFlow 사용.** 예를 들어 TensorFlow를 사용하여 모델을 훈련시키는 경우, [TensorFlow.js](https://www.tensorflow.org/js/)를 사용하여 웹 앱에서 모델을 사용할 수 있도록 변환할 수 있습니다.
+    - **PyTorch 사용.** [PyTorch](https://pytorch.org/)와 같은 라이브러리를 사용하여 모델을 구축하는 경우, [ONNX](https://onnx.ai/) (Open Neural Network Exchange) 형식으로 내보내 JavaScript 웹 앱에서 [Onnx Runtime](https://www.onnxruntime.ai/)을 사용할 수 있습니다. 이 옵션은 Scikit-learn으로 훈련된 모델을 다루는 향후 강의에서 탐구할 것입니다.
+    - **Lobe.ai 또는 Azure Custom Vision 사용.** [Lobe.ai](https://lobe.ai/) 또는 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott)과 같은 ML SaaS(Software as a Service) 시스템을 사용하여 모델을 훈련시키는 경우, 이 소프트웨어는 클라우드에서 온라인 애플리케이션이 쿼리할 수 있는 맞춤형 API를 구축하는 등 다양한 플랫폼으로 모델을 내보내는 방법을 제공합니다.
 
-또한 웹 브라우저에서 직접 모델을 훈련할 수 있는 전체 Flask 웹 앱을 구축할 수도 있습니다. 이는 JavaScript 환경에서 TensorFlow.js를 사용하여도 가능합니다.
+또한 웹 브라우저에서 직접 모델을 훈련시킬 수 있는 전체 Flask 웹 앱을 구축할 수도 있습니다. 이는 JavaScript 환경에서 TensorFlow.js를 사용하여도 가능합니다.
 
 우리의 경우, Python 기반 노트북을 사용해 왔으므로, 노트북에서 훈련된 모델을 Python으로 구축된 웹 앱에서 읽을 수 있는 형식으로 내보내는 단계를 탐구해 보겠습니다.
 
 ## 도구
 
-이 작업을 위해 필요한 도구는 Flask와 Pickle입니다. 둘 다 Python에서 실행됩니다.
+이 작업을 위해 Flask와 Pickle이라는 두 가지 도구가 필요합니다. 둘 다 Python에서 실행됩니다.
 
-✅ [Flask](https://palletsprojects.com/p/flask/)란 무엇인가요? Flask는 제작자들이 '마이크로 프레임워크'라고 정의한 것으로, Python과 템플릿 엔진을 사용하여 웹 페이지를 구축하는 웹 프레임워크의 기본 기능을 제공합니다. Flask를 사용하여 앱을 구축하는 연습을 하려면 [이 학습 모듈](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)을 확인하세요.
+✅ [Flask](https://palletsprojects.com/p/flask/)란 무엇인가요? Flask는 제작자들에 의해 '마이크로 프레임워크'로 정의되며, Python을 사용하여 웹 페이지를 구축하기 위한 템플릿 엔진과 웹 프레임워크의 기본 기능을 제공합니다. Flask를 사용하여 앱을 구축하는 연습을 하려면 [이 학습 모듈](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)을 확인하세요.
 
 ✅ [Pickle](https://docs.python.org/3/library/pickle.html)이란 무엇인가요? Pickle 🥒은 Python 객체 구조를 직렬화하고 역직렬화하는 Python 모듈입니다. 모델을 '피클링'하면 웹에서 사용할 수 있도록 구조를 직렬화하거나 평탄화합니다. 주의하세요: Pickle은 본질적으로 안전하지 않으므로 파일을 '언피클링'하라는 요청을 받을 경우 주의해야 합니다. 피클링된 파일은 `.pkl` 확장자를 가집니다.
 
 ## 실습 - 데이터 정리하기
 
-이번 강의에서는 [NUFORC](https://nuforc.org) (National UFO Reporting Center)에서 수집한 80,000건의 UFO 목격 데이터를 사용합니다. 이 데이터에는 흥미로운 목격 설명이 포함되어 있습니다. 예를 들어:
+이번 강의에서는 [NUFORC](https://nuforc.org) (National UFO Reporting Center)에서 수집한 80,000건의 UFO 목격 데이터를 사용합니다. 이 데이터에는 흥미로운 UFO 목격 설명이 포함되어 있습니다. 예를 들어:
 
-- **긴 설명 예시.** "밤에 풀밭에 빛이 비추는 가운데 한 남자가 빛 속에서 나타나 텍사스 인스트루먼트 주차장으로 달려갑니다."
-- **짧은 설명 예시.** "빛이 우리를 쫓아왔습니다."
+- **긴 설명 예시.** "밤에 풀밭에 빛이 비추고 그 빛에서 한 남자가 나타나 텍사스 인스트루먼트 주차장으로 달려간다."
+- **짧은 설명 예시.** "빛이 우리를 쫓아왔다."
 
-[ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) 스프레드시트에는 목격이 발생한 `city`, `state`, `country`, 물체의 `shape`, 그리고 `latitude`와 `longitude`에 대한 열이 포함되어 있습니다.
+[ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) 스프레드시트에는 목격이 발생한 `city`, `state`, `country`, 객체의 `shape`, 그리고 `latitude`와 `longitude`에 대한 열이 포함되어 있습니다.
 
-이 강의에 포함된 빈 [노트북](notebook.ipynb)에서:
+이 강의에 포함된 빈 [노트북](../../../../3-Web-App/1-Web-App/notebook.ipynb)에서:
 
 1. 이전 강의에서 했던 것처럼 `pandas`, `matplotlib`, `numpy`를 가져오고 ufos 스프레드시트를 가져옵니다. 샘플 데이터 세트를 확인할 수 있습니다:
 
@@ -114,7 +114,7 @@ ML 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있
 
 ## 실습 - 모델 구축하기
 
-이제 데이터를 훈련 및 테스트 그룹으로 나누어 모델을 훈련할 준비를 합니다.
+이제 데이터를 훈련 및 테스트 그룹으로 나누어 모델을 훈련시킬 준비를 할 수 있습니다.
 
 1. 훈련할 세 가지 특징을 X 벡터로 선택하고 y 벡터는 `Country`로 설정합니다. `Seconds`, `Latitude`, `Longitude`를 입력하여 국가 ID를 반환할 수 있도록 합니다.
 
@@ -129,7 +129,7 @@ ML 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. 로지스틱 회귀를 사용하여 모델을 훈련합니다:
+1. 로지스틱 회귀를 사용하여 모델을 훈련시킵니다:
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -143,9 +143,9 @@ ML 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-정확도는 **(약 95%)** 나쁘지 않습니다. 이는 `Country`와 `Latitude/Longitude`가 상관관계가 있기 때문입니다.
+정확도는 **(약 95%)**로 나쁘지 않습니다. 이는 `Country`와 `Latitude/Longitude`가 상관관계가 있기 때문입니다.
 
-이 모델은 혁신적이지는 않지만, 정리된 원시 데이터를 사용하여 모델을 훈련하고 이를 웹 앱에서 사용하는 좋은 연습이 됩니다.
+이 모델은 혁신적이지는 않지만, 정리된 원시 데이터를 사용하여 모델을 훈련시키고 이를 웹 앱에서 사용하는 좋은 연습이 됩니다.
 
 ## 실습 - 모델 '피클링'하기
 
@@ -164,7 +164,7 @@ print(model.predict([[50,44,-12]]))
 
 ## 실습 - Flask 앱 구축하기
 
-이제 Flask 앱을 구축하여 모델을 호출하고 더 보기 좋은 방식으로 결과를 반환할 수 있습니다.
+이제 Flask 앱을 구축하여 모델을 호출하고 더 시각적으로 보기 좋은 방식으로 결과를 반환할 수 있습니다.
 
 1. _notebook.ipynb_ 파일 옆에 **web-app**이라는 폴더를 만듭니다. 이 폴더에는 _ufo-model.pkl_ 파일이 있어야 합니다.
 
@@ -179,7 +179,7 @@ print(model.predict([[50,44,-12]]))
     ufo-model.pkl
     ```
 
-    ✅ 완성된 앱의 모습을 보려면 솔루션 폴더를 참조하세요.
+    ✅ 완성된 앱의 보기 형태는 솔루션 폴더를 참조하세요.
 
 1. _web-app_ 폴더에서 첫 번째 파일로 **requirements.txt**를 만듭니다. JavaScript 앱의 _package.json_처럼 이 파일은 앱에 필요한 종속성을 나열합니다. **requirements.txt**에 다음 줄을 추가합니다:
 
@@ -202,7 +202,7 @@ print(model.predict([[50,44,-12]]))
     pip install -r requirements.txt
     ```
 
-1. 이제 앱을 완성하기 위해 세 개의 파일을 더 만듭니다:
+1. 이제 앱을 완성하기 위해 세 개의 파일을 더 만들 준비가 되었습니다:
 
     1. 루트에 **app.py**를 만듭니다.
     2. _templates_ 디렉토리에 **index.html**을 만듭니다.
@@ -277,9 +277,9 @@ print(model.predict([[50,44,-12]]))
     </html>
     ```
 
-    이 파일의 템플릿을 살펴보세요. `{{}}`와 같은 변수 주위의 '머스태시' 구문을 확인할 수 있습니다. 이 변수는 앱에서 제공됩니다. 예를 들어 예측 텍스트: `{{}}`. 또한 `/predict` 경로에 예측을 게시하는 폼도 있습니다.
+    이 파일의 템플릿을 살펴보세요. 앱에서 제공될 변수들, 예를 들어 예측 텍스트 `{{}}` 주위의 '머스태시' 구문을 확인하세요. 또한 `/predict` 경로에 예측을 게시하는 폼이 있습니다.
 
-    이제 모델 소비와 예측 표시를 담당하는 Python 파일을 작성할 준비가 되었습니다:
+    마지막으로, 모델 소비와 예측 표시를 구동하는 Python 파일을 작성할 준비가 되었습니다:
 
 1. `app.py`에 다음을 추가합니다:
 
@@ -318,9 +318,9 @@ print(model.predict([[50,44,-12]]))
         app.run(debug=True)
     ```
 
-    > 💡 팁: Flask를 사용하여 웹 앱을 실행할 때 [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode)를 추가하면 서버를 다시 시작하지 않고도 애플리케이션에 대한 변경 사항이 즉시 반영됩니다. 주의하세요! 프로덕션 앱에서는 이 모드를 활성화하지 마세요.
+    > 💡 팁: Flask를 사용하여 웹 앱을 실행할 때 [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode)를 추가하면 애플리케이션에 변경 사항을 적용할 때 서버를 다시 시작하지 않아도 즉시 반영됩니다. 주의하세요! 프로덕션 앱에서는 이 모드를 활성화하지 마세요.
 
-`python app.py` 또는 `python3 app.py`를 실행하면 로컬에서 웹 서버가 시작되고 짧은 폼을 작성하여 UFO 목격이 어디에서 발생했는지에 대한 답을 얻을 수 있습니다!
+`python app.py` 또는 `python3 app.py`를 실행하면 로컬에서 웹 서버가 시작되고, 짧은 폼을 작성하여 UFO 목격 위치에 대한 궁금증을 해결할 수 있습니다!
 
 그 전에 `app.py`의 구성 요소를 살펴보세요:
 
@@ -330,24 +330,24 @@ print(model.predict([[50,44,-12]]))
 
 `/predict` 경로에서 폼이 게시되면 여러 가지 일이 발생합니다:
 
-1. 폼 변수는 수집되어 numpy 배열로 변환됩니다. 그런 다음 모델로 보내져 예측이 반환됩니다.
-2. 우리가 표시하려는 국가들은 예측된 국가 코드에서 읽을 수 있는 텍스트로 다시 렌더링되며, 그 값이 index.html로 다시 보내져 템플릿에서 렌더링됩니다.
+1. 폼 변수들이 수집되어 numpy 배열로 변환됩니다. 그런 다음 모델로 보내져 예측이 반환됩니다.
+2. 표시할 국가들이 예측된 국가 코드에서 읽기 가능한 텍스트로 다시 렌더링되며, 해당 값이 index.html로 다시 보내져 템플릿에서 렌더링됩니다.
 
 Flask와 피클링된 모델을 사용하여 모델을 사용하는 것은 비교적 간단합니다. 가장 어려운 점은 모델에서 예측을 얻기 위해 보내야 할 데이터의 형태를 이해하는 것입니다. 이는 모델이 어떻게 훈련되었는지에 따라 달라집니다. 이 모델은 예측을 얻기 위해 입력해야 할 세 가지 데이터 포인트를 가지고 있습니다.
 
-전문적인 환경에서는 모델을 훈련하는 사람들과 이를 웹 또는 모바일 앱에서 소비하는 사람들 간의 원활한 의사소통이 얼마나 중요한지 알 수 있습니다. 우리의 경우, 그 모든 작업을 한 사람이 수행합니다!
+전문적인 환경에서는 모델을 훈련시키는 사람들과 이를 웹 또는 모바일 앱에서 소비하는 사람들 간의 원활한 의사소통이 얼마나 중요한지 알 수 있습니다. 우리의 경우, 그 사람은 바로 여러분입니다!
 
 ---
 
 ## 🚀 도전 과제
 
-노트북에서 작업하고 모델을 Flask 앱으로 가져오는 대신, Flask 앱 내에서 모델을 훈련할 수 있습니다! 데이터를 정리한 후 노트북의 Python 코드를 앱 내에서 `train`이라는 경로에서 모델을 훈련하도록 변환해 보세요. 이 방법을 추구하는 장단점은 무엇인가요?
+노트북에서 작업하고 모델을 Flask 앱으로 가져오는 대신, Flask 앱 내에서 모델을 훈련시킬 수 있습니다! 데이터를 정리한 후 노트북의 Python 코드를 앱 내에서 `train`이라는 경로에서 모델을 훈련시키도록 변환해 보세요. 이 방법을 추구하는 장단점은 무엇인가요?
 
-## [강의 후 퀴즈](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [강의 후 퀴즈](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 복습 및 자기 학습
 
-ML 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있습니다. JavaScript 또는 Python을 사용하여 ML을 활용하는 웹 앱을 구축할 수 있는 방법 목록을 작성해 보세요. 아키텍처를 고려하세요: 모델이 앱에 있어야 할까요, 아니면 클라우드에 있어야 할까요? 후자의 경우, 어떻게 접근할 수 있을까요? 적용된 ML 웹 솔루션에 대한 아키텍처 모델을 그려보세요.
+ML 모델을 소비하는 웹 앱을 구축하는 방법은 여러 가지가 있습니다. JavaScript 또는 Python을 사용하여 머신 러닝을 활용하는 웹 앱을 구축할 수 있는 방법 목록을 작성해 보세요. 아키텍처를 고려하세요: 모델이 앱에 있어야 할까요, 아니면 클라우드에 있어야 할까요? 후자의 경우, 어떻게 접근할 수 있을까요? 적용된 ML 웹 솔루션에 대한 아키텍처 모델을 그려보세요.
 
 ## 과제
 
