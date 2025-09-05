@@ -1,58 +1,67 @@
-# Bina Aplikasi Web untuk Menggunakan Model ML
+<!--
+CO_OP_TRANSLATOR_METADATA:
+{
+  "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
+  "translation_date": "2025-09-05T18:06:44+00:00",
+  "source_file": "3-Web-App/1-Web-App/README.md",
+  "language_code": "ms"
+}
+-->
+# Membina Aplikasi Web untuk Menggunakan Model ML
 
-Dalam pelajaran ini, anda akan melatih model ML pada set data yang sangat menarik: _Penampakan UFO selama abad yang lalu_, yang bersumber dari basis data NUFORC.
+Dalam pelajaran ini, anda akan melatih model ML menggunakan set data yang luar biasa: _Penampakan UFO sepanjang abad yang lalu_, yang diperoleh daripada pangkalan data NUFORC.
 
 Anda akan belajar:
 
 - Cara 'pickle' model yang telah dilatih
 - Cara menggunakan model tersebut dalam aplikasi Flask
 
-Kita akan melanjutkan penggunaan notebook untuk membersihkan data dan melatih model kita, tetapi anda dapat melangkah lebih jauh dengan mengeksplorasi penggunaan model 'di lapangan': dalam aplikasi web.
+Kita akan terus menggunakan notebook untuk membersihkan data dan melatih model, tetapi anda boleh melangkah lebih jauh dengan meneroka penggunaan model 'di dunia nyata', iaitu dalam aplikasi web.
 
-Untuk melakukan ini, anda perlu membangun aplikasi web menggunakan Flask.
+Untuk melakukannya, anda perlu membina aplikasi web menggunakan Flask.
 
-## [Kuis Pra-Kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [Kuiz sebelum kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## Membangun Aplikasi
+## Membina aplikasi
 
-Ada beberapa cara untuk membangun aplikasi web yang mengonsumsi model pembelajaran mesin. Arsitektur web anda mungkin mempengaruhi cara model anda dilatih. Bayangkan anda bekerja di sebuah perusahaan di mana kelompok ilmu data telah melatih model yang mereka ingin anda gunakan dalam aplikasi.
+Terdapat beberapa cara untuk membina aplikasi web yang menggunakan model pembelajaran mesin. Seni bina web anda mungkin mempengaruhi cara model anda dilatih. Bayangkan anda bekerja dalam perniagaan di mana kumpulan sains data telah melatih model yang mereka mahu anda gunakan dalam aplikasi.
 
 ### Pertimbangan
 
-Ada banyak pertanyaan yang perlu anda tanyakan:
+Terdapat banyak soalan yang perlu anda tanya:
 
-- **Apakah itu aplikasi web atau aplikasi seluler?** Jika anda membangun aplikasi seluler atau perlu menggunakan model dalam konteks IoT, anda dapat menggunakan [TensorFlow Lite](https://www.tensorflow.org/lite/) dan menggunakan model dalam aplikasi Android atau iOS.
-- **Di mana model akan berada?** Di cloud atau lokal?
-- **Dukungan offline.** Apakah aplikasi harus berfungsi secara offline?
+- **Adakah ia aplikasi web atau aplikasi mudah alih?** Jika anda membina aplikasi mudah alih atau perlu menggunakan model dalam konteks IoT, anda boleh menggunakan [TensorFlow Lite](https://www.tensorflow.org/lite/) dan menggunakan model tersebut dalam aplikasi Android atau iOS.
+- **Di mana model akan berada?** Di awan atau secara tempatan?
+- **Sokongan luar talian.** Adakah aplikasi perlu berfungsi secara luar talian?
 - **Teknologi apa yang digunakan untuk melatih model?** Teknologi yang dipilih mungkin mempengaruhi alat yang perlu anda gunakan.
-    - **Menggunakan TensorFlow.** Jika anda melatih model menggunakan TensorFlow, misalnya, ekosistem tersebut menyediakan kemampuan untuk mengkonversi model TensorFlow untuk digunakan dalam aplikasi web dengan menggunakan [TensorFlow.js](https://www.tensorflow.org/js/).
-    - **Menggunakan PyTorch.** Jika anda membangun model menggunakan perpustakaan seperti [PyTorch](https://pytorch.org/), anda memiliki opsi untuk mengekspornya dalam format [ONNX](https://onnx.ai/) (Open Neural Network Exchange) untuk digunakan dalam aplikasi web JavaScript yang dapat menggunakan [Onnx Runtime](https://www.onnxruntime.ai/). Opsi ini akan dieksplorasi dalam pelajaran mendatang untuk model yang dilatih dengan Scikit-learn.
-    - **Menggunakan Lobe.ai atau Azure Custom Vision.** Jika anda menggunakan sistem ML SaaS (Software as a Service) seperti [Lobe.ai](https://lobe.ai/) atau [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) untuk melatih model, jenis perangkat lunak ini menyediakan cara untuk mengekspor model untuk banyak platform, termasuk membangun API khusus untuk di-query di cloud oleh aplikasi online anda.
+    - **Menggunakan TensorFlow.** Jika anda melatih model menggunakan TensorFlow, contohnya, ekosistem tersebut menyediakan keupayaan untuk menukar model TensorFlow untuk digunakan dalam aplikasi web dengan menggunakan [TensorFlow.js](https://www.tensorflow.org/js/).
+    - **Menggunakan PyTorch.** Jika anda membina model menggunakan pustaka seperti [PyTorch](https://pytorch.org/), anda mempunyai pilihan untuk mengeksportnya dalam format [ONNX](https://onnx.ai/) (Open Neural Network Exchange) untuk digunakan dalam aplikasi web JavaScript yang boleh menggunakan [Onnx Runtime](https://www.onnxruntime.ai/). Pilihan ini akan diteroka dalam pelajaran akan datang untuk model yang dilatih menggunakan Scikit-learn.
+    - **Menggunakan Lobe.ai atau Azure Custom Vision.** Jika anda menggunakan sistem ML SaaS (Perisian sebagai Perkhidmatan) seperti [Lobe.ai](https://lobe.ai/) atau [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) untuk melatih model, jenis perisian ini menyediakan cara untuk mengeksport model untuk pelbagai platform, termasuk membina API tersuai untuk ditanya di awan oleh aplikasi dalam talian anda.
 
-Anda juga memiliki kesempatan untuk membangun seluruh aplikasi web Flask yang dapat melatih model itu sendiri dalam browser web. Ini juga dapat dilakukan menggunakan TensorFlow.js dalam konteks JavaScript.
+Anda juga berpeluang untuk membina keseluruhan aplikasi web Flask yang boleh melatih model itu sendiri dalam pelayar web. Ini juga boleh dilakukan menggunakan TensorFlow.js dalam konteks JavaScript.
 
-Untuk tujuan kita, karena kita telah bekerja dengan notebook berbasis Python, mari kita eksplorasi langkah-langkah yang perlu diambil untuk mengekspor model yang telah dilatih dari notebook tersebut ke format yang dapat dibaca oleh aplikasi web yang dibangun dengan Python.
+Untuk tujuan kita, memandangkan kita telah bekerja dengan notebook berasaskan Python, mari kita teroka langkah-langkah yang perlu diambil untuk mengeksport model yang telah dilatih daripada notebook tersebut ke format yang boleh dibaca oleh aplikasi web yang dibina menggunakan Python.
 
 ## Alat
 
-Untuk tugas ini, anda memerlukan dua alat: Flask dan Pickle, keduanya berjalan di Python.
+Untuk tugas ini, anda memerlukan dua alat: Flask dan Pickle, kedua-duanya berjalan pada Python.
 
-✅ Apa itu [Flask](https://palletsprojects.com/p/flask/)? Didefinisikan sebagai 'micro-framework' oleh penciptanya, Flask menyediakan fitur dasar kerangka kerja web menggunakan Python dan mesin templat untuk membangun halaman web. Lihat [modul Belajar ini](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) untuk berlatih membangun dengan Flask.
+✅ Apa itu [Flask](https://palletsprojects.com/p/flask/)? Didefinisikan sebagai 'micro-framework' oleh penciptanya, Flask menyediakan ciri asas rangka kerja web menggunakan Python dan enjin templat untuk membina halaman web. Lihat [modul pembelajaran ini](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) untuk berlatih membina dengan Flask.
 
-✅ Apa itu [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 adalah modul Python yang men-serialisasi dan de-serialisasi struktur objek Python. Ketika anda 'pickle' model, anda men-serialisasi atau meratakan strukturnya untuk digunakan di web. Hati-hati: pickle tidak secara intrinsik aman, jadi berhati-hatilah jika diminta untuk 'un-pickle' file. File yang di-pickle memiliki akhiran `.pkl`.
+✅ Apa itu [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 ialah modul Python yang menyusun dan menyahsusun struktur objek Python. Apabila anda 'pickle' model, anda menyusun atau meratakan strukturnya untuk digunakan di web. Berhati-hati: pickle tidak secara intrinsik selamat, jadi berhati-hati jika diminta untuk 'un-pickle' fail. Fail yang telah dipickle mempunyai akhiran `.pkl`.
 
 ## Latihan - membersihkan data anda
 
-Dalam pelajaran ini anda akan menggunakan data dari 80.000 penampakan UFO, dikumpulkan oleh [NUFORC](https://nuforc.org) (Pusat Pelaporan UFO Nasional). Data ini memiliki beberapa deskripsi menarik tentang penampakan UFO, misalnya:
+Dalam pelajaran ini, anda akan menggunakan data daripada 80,000 penampakan UFO, yang dikumpulkan oleh [NUFORC](https://nuforc.org) (Pusat Pelaporan UFO Kebangsaan). Data ini mempunyai beberapa deskripsi menarik tentang penampakan UFO, contohnya:
 
-- **Deskripsi contoh panjang.** "Seorang pria muncul dari sinar cahaya yang menyinari lapangan berumput di malam hari dan dia berlari menuju tempat parkir Texas Instruments".
-- **Deskripsi contoh pendek.** "lampu-lampu mengejar kami".
+- **Deskripsi contoh panjang.** "Seorang lelaki muncul dari pancaran cahaya yang bersinar di padang rumput pada waktu malam dan dia berlari ke arah tempat letak kereta Texas Instruments".
+- **Deskripsi contoh pendek.** "lampu mengejar kami".
 
-Spreadsheet [ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) mencakup kolom tentang `city`, `state`, dan `country` di mana penampakan terjadi, objek `shape` dan `latitude` serta `longitude`.
+Spreadsheet [ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) termasuk lajur tentang `city`, `state` dan `country` di mana penampakan berlaku, `shape` objek dan `latitude` serta `longitude`nya.
 
 Dalam [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) kosong yang disertakan dalam pelajaran ini:
 
-1. impor `pandas`, `matplotlib`, dan `numpy` seperti yang anda lakukan dalam pelajaran sebelumnya dan impor spreadsheet ufos. Anda dapat melihat sampel set data:
+1. import `pandas`, `matplotlib`, dan `numpy` seperti yang anda lakukan dalam pelajaran sebelumnya dan import spreadsheet ufos. Anda boleh melihat sampel set data:
 
     ```python
     import pandas as pd
@@ -62,7 +71,7 @@ Dalam [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) kosong yang dis
     ufos.head()
     ```
 
-1. Konversikan data ufos menjadi dataframe kecil dengan judul baru. Periksa nilai unik di bidang `Country`.
+1. Tukarkan data ufos kepada dataframe kecil dengan tajuk baru. Periksa nilai unik dalam medan `Country`.
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
@@ -70,7 +79,7 @@ Dalam [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) kosong yang dis
     ufos.Country.unique()
     ```
 
-1. Sekarang, anda dapat mengurangi jumlah data yang perlu kita tangani dengan menghapus nilai null dan hanya mengimpor penampakan antara 1-60 detik:
+1. Kini, anda boleh mengurangkan jumlah data yang perlu kita uruskan dengan membuang nilai null dan hanya mengimport penampakan antara 1-60 saat:
 
     ```python
     ufos.dropna(inplace=True)
@@ -80,9 +89,9 @@ Dalam [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) kosong yang dis
     ufos.info()
     ```
 
-1. Impor perpustakaan `LabelEncoder` dari Scikit-learn untuk mengonversi nilai teks untuk negara menjadi angka:
+1. Import pustaka `LabelEncoder` dari Scikit-learn untuk menukar nilai teks bagi negara kepada nombor:
 
-    ✅ LabelEncoder mengkodekan data secara alfabetis
+    ✅ LabelEncoder menyandikan data mengikut abjad
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -92,7 +101,7 @@ Dalam [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) kosong yang dis
     ufos.head()
     ```
 
-    Data anda harus terlihat seperti ini:
+    Data anda sepatutnya kelihatan seperti ini:
 
     ```output
     	Seconds	Country	Latitude	Longitude
@@ -103,11 +112,11 @@ Dalam [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) kosong yang dis
     24	3.0		3		51.783333	-0.783333
     ```
 
-## Latihan - membangun model anda
+## Latihan - membina model anda
 
-Sekarang anda dapat bersiap untuk melatih model dengan membagi data menjadi kelompok pelatihan dan pengujian.
+Kini anda boleh bersedia untuk melatih model dengan membahagikan data kepada kumpulan latihan dan ujian.
 
-1. Pilih tiga fitur yang ingin anda latih sebagai vektor X anda, dan vektor y akan menjadi `Country`. You want to be able to input `Seconds`, `Latitude` and `Longitude` dan mendapatkan id negara untuk dikembalikan.
+1. Pilih tiga ciri yang ingin anda latih sebagai vektor X anda, dan vektor y akan menjadi `Country`. Anda ingin dapat memasukkan `Seconds`, `Latitude` dan `Longitude` dan mendapatkan id negara untuk dikembalikan.
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -134,13 +143,13 @@ Sekarang anda dapat bersiap untuk melatih model dengan membagi data menjadi kelo
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-Akurasi tidak buruk **(sekitar 95%)**, tidak mengherankan, karena `Country` and `Latitude/Longitude` correlate.
+Ketepatannya tidak buruk **(sekitar 95%)**, tidak mengejutkan, kerana `Country` dan `Latitude/Longitude` berkorelasi.
 
-The model you created isn't very revolutionary as you should be able to infer a `Country` from its `Latitude` and `Longitude`, tetapi ini adalah latihan yang baik untuk mencoba melatih dari data mentah yang anda bersihkan, diekspor, dan kemudian menggunakan model ini dalam aplikasi web.
+Model yang anda cipta tidak begitu revolusioner kerana anda sepatutnya dapat menyimpulkan `Country` daripada `Latitude` dan `Longitude`nya, tetapi ia adalah latihan yang baik untuk mencuba melatih daripada data mentah yang anda bersihkan, eksport, dan kemudian menggunakan model ini dalam aplikasi web.
 
 ## Latihan - 'pickle' model anda
 
-Sekarang, saatnya untuk _pickle_ model anda! Anda dapat melakukannya dalam beberapa baris kode. Setelah itu di-_pickle_, muat model yang di-pickle dan uji terhadap array data sampel yang berisi nilai untuk detik, lintang, dan bujur,
+Kini, tiba masanya untuk _pickle_ model anda! Anda boleh melakukannya dalam beberapa baris kod. Setelah ia _dipickle_, muatkan model yang dipickle dan uji terhadap array data sampel yang mengandungi nilai untuk seconds, latitude dan longitude,
 
 ```python
 import pickle
@@ -151,15 +160,15 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-Model mengembalikan **'3'**, yang merupakan kode negara untuk Inggris. Luar biasa! 👽
+Model mengembalikan **'3'**, yang merupakan kod negara untuk UK. Hebat! 👽
 
-## Latihan - membangun aplikasi Flask
+## Latihan - membina aplikasi Flask
 
-Sekarang anda dapat membangun aplikasi Flask untuk memanggil model anda dan mengembalikan hasil serupa, tetapi dengan cara yang lebih menarik secara visual.
+Kini anda boleh membina aplikasi Flask untuk memanggil model anda dan mengembalikan hasil yang serupa, tetapi dengan cara yang lebih menarik secara visual.
 
-1. Mulailah dengan membuat folder bernama **web-app** di sebelah file _notebook.ipynb_ tempat file _ufo-model.pkl_ anda berada.
+1. Mulakan dengan mencipta folder bernama **web-app** di sebelah fail _notebook.ipynb_ di mana fail _ufo-model.pkl_ anda berada.
 
-1. Di dalam folder tersebut buat tiga folder lagi: **static**, dengan folder **css** di dalamnya, dan **templates**. Anda sekarang harus memiliki file dan direktori berikut:
+1. Dalam folder itu, cipta tiga lagi folder: **static**, dengan folder **css** di dalamnya, dan **templates**. Anda sepatutnya kini mempunyai fail dan direktori berikut:
 
     ```output
     web-app/
@@ -170,9 +179,9 @@ Sekarang anda dapat membangun aplikasi Flask untuk memanggil model anda dan meng
     ufo-model.pkl
     ```
 
-    ✅ Lihat folder solusi untuk melihat aplikasi yang sudah selesai
+    ✅ Rujuk folder penyelesaian untuk melihat aplikasi yang telah siap
 
-1. File pertama yang dibuat dalam folder _web-app_ adalah file **requirements.txt**. Seperti _package.json_ dalam aplikasi JavaScript, file ini mencantumkan ketergantungan yang diperlukan oleh aplikasi. Dalam **requirements.txt** tambahkan baris:
+1. Fail pertama yang perlu dicipta dalam folder _web-app_ ialah fail **requirements.txt**. Seperti _package.json_ dalam aplikasi JavaScript, fail ini menyenaraikan kebergantungan yang diperlukan oleh aplikasi. Dalam **requirements.txt** tambahkan baris:
 
     ```text
     scikit-learn
@@ -181,25 +190,25 @@ Sekarang anda dapat membangun aplikasi Flask untuk memanggil model anda dan meng
     flask
     ```
 
-1. Sekarang, jalankan file ini dengan menavigasi ke _web-app_:
+1. Kini, jalankan fail ini dengan menavigasi ke _web-app_:
 
     ```bash
     cd web-app
     ```
 
-1. Di terminal anda ketik `pip install`, untuk menginstal perpustakaan yang tercantum dalam _requirements.txt_:
+1. Dalam terminal anda taip `pip install`, untuk memasang pustaka yang disenaraikan dalam _requirements.txt_:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-1. Sekarang, anda siap membuat tiga file lagi untuk menyelesaikan aplikasi:
+1. Kini, anda bersedia untuk mencipta tiga lagi fail untuk melengkapkan aplikasi:
 
-    1. Buat **app.py** di root.
-    2. Buat **index.html** di direktori _templates_.
-    3. Buat **styles.css** di direktori _static/css_.
+    1. Cipta **app.py** di root.
+    2. Cipta **index.html** dalam direktori _templates_.
+    3. Cipta **styles.css** dalam direktori _static/css_.
 
-1. Buat file _styles.css_ dengan beberapa gaya:
+1. Bina fail _styles.css_ dengan beberapa gaya:
 
     ```css
     body {
@@ -233,7 +242,7 @@ Sekarang anda dapat membangun aplikasi Flask untuk memanggil model anda dan meng
     }
     ```
 
-1. Selanjutnya, buat file _index.html_:
+1. Seterusnya, bina fail _index.html_:
 
     ```html
     <!DOCTYPE html>
@@ -268,11 +277,11 @@ Sekarang anda dapat membangun aplikasi Flask untuk memanggil model anda dan meng
     </html>
     ```
 
-    Lihatlah templating dalam file ini. Perhatikan sintaks 'mustache' di sekitar variabel yang akan disediakan oleh aplikasi, seperti teks prediksi: `{{}}`. There's also a form that posts a prediction to the `/predict` route.
+    Perhatikan templat dalam fail ini. Perhatikan sintaks 'mustache' di sekitar pembolehubah yang akan disediakan oleh aplikasi, seperti teks ramalan: `{{}}`. Terdapat juga borang yang menghantar ramalan ke laluan `/predict`.
 
-    Finally, you're ready to build the python file that drives the consumption of the model and the display of predictions:
+    Akhirnya, anda bersedia untuk membina fail python yang memacu penggunaan model dan paparan ramalan:
 
-1. In `app.py` tambahkan:
+1. Dalam `app.py` tambahkan:
 
     ```python
     import numpy as np
@@ -309,40 +318,42 @@ Sekarang anda dapat membangun aplikasi Flask untuk memanggil model anda dan meng
         app.run(debug=True)
     ```
 
-    > 💡 Tip: ketika anda menambahkan [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) while running the web app using Flask, any changes you make to your application will be reflected immediately without the need to restart the server. Beware! Don't enable this mode in a production app.
+    > 💡 Tip: apabila anda menambah [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) semasa menjalankan aplikasi web menggunakan Flask, sebarang perubahan yang anda buat pada aplikasi anda akan tercermin serta-merta tanpa perlu memulakan semula pelayan. Berhati-hati! Jangan aktifkan mod ini dalam aplikasi pengeluaran.
 
-If you run `python app.py` or `python3 app.py` - your web server starts up, locally, and you can fill out a short form to get an answer to your burning question about where UFOs have been sighted!
+Jika anda menjalankan `python app.py` atau `python3 app.py` - pelayan web anda akan bermula secara tempatan, dan anda boleh mengisi borang pendek untuk mendapatkan jawapan kepada soalan anda tentang di mana UFO telah dilihat!
 
-Before doing that, take a look at the parts of `app.py`:
+Sebelum melakukannya, lihat bahagian `app.py`:
 
-1. First, dependencies are loaded and the app starts.
-1. Then, the model is imported.
-1. Then, index.html is rendered on the home route.
+1. Pertama, kebergantungan dimuatkan dan aplikasi dimulakan.
+1. Kemudian, model diimport.
+1. Kemudian, index.html dirender pada laluan utama.
 
-On the `/predict` route, several things happen when the form is posted:
+Pada laluan `/predict`, beberapa perkara berlaku apabila borang dihantar:
 
-1. The form variables are gathered and converted to a numpy array. They are then sent to the model and a prediction is returned.
-2. The Countries that we want displayed are re-rendered as readable text from their predicted country code, and that value is sent back to index.html to be rendered in the template.
+1. Pembolehubah borang dikumpulkan dan ditukar kepada array numpy. Ia kemudian dihantar ke model dan ramalan dikembalikan.
+2. Negara-negara yang ingin dipaparkan dirender semula sebagai teks yang boleh dibaca daripada kod negara yang diramalkan, dan nilai tersebut dihantar kembali ke index.html untuk dirender dalam templat.
 
-Using a model this way, with Flask and a pickled model, is relatively straightforward. The hardest thing is to understand what shape the data is that must be sent to the model to get a prediction. That all depends on how the model was trained. This one has three data points to be input in order to get a prediction.
+Menggunakan model dengan cara ini, dengan Flask dan model yang dipickle, adalah agak mudah. Perkara yang paling sukar ialah memahami bentuk data yang mesti dihantar ke model untuk mendapatkan ramalan. Itu semua bergantung pada bagaimana model dilatih. Model ini mempunyai tiga titik data untuk dimasukkan bagi mendapatkan ramalan.
 
-In a professional setting, you can see how good communication is necessary between the folks who train the model and those who consume it in a web or mobile app. In our case, it's only one person, you!
+Dalam suasana profesional, anda dapat melihat betapa pentingnya komunikasi yang baik antara mereka yang melatih model dan mereka yang menggunakannya dalam aplikasi web atau mudah alih. Dalam kes kita, ia hanya satu orang, anda!
 
 ---
 
-## 🚀 Challenge
+## 🚀 Cabaran
 
-Instead of working in a notebook and importing the model to the Flask app, you could train the model right within the Flask app! Try converting your Python code in the notebook, perhaps after your data is cleaned, to train the model from within the app on a route called `train`. Apa pro dan kontra dari mengejar metode ini?
+Daripada bekerja dalam notebook dan mengimport model ke aplikasi Flask, anda boleh melatih model terus dalam aplikasi Flask! Cuba tukarkan kod Python anda dalam notebook, mungkin selepas data anda dibersihkan, untuk melatih model dari dalam aplikasi pada laluan yang dipanggil `train`. Apakah kelebihan dan kekurangan menggunakan kaedah ini?
 
-## [Kuis Pasca-Kuliah](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [Kuiz selepas kuliah](https://ff-quizzes.netlify.app/en/ml/)
 
-## Tinjauan & Studi Mandiri
+## Ulasan & Kajian Kendiri
 
-Ada banyak cara untuk membangun aplikasi web yang mengonsumsi model ML. Buatlah daftar cara-cara yang dapat anda gunakan JavaScript atau Python untuk membangun aplikasi web yang memanfaatkan pembelajaran mesin. Pertimbangkan arsitektur: apakah model harus tetap dalam aplikasi atau hidup di cloud? Jika yang terakhir, bagaimana anda mengaksesnya? Gambarlah model arsitektur untuk solusi web ML yang diterapkan.
+Terdapat banyak cara untuk membina aplikasi web yang menggunakan model ML. Buat senarai cara anda boleh menggunakan JavaScript atau Python untuk membina aplikasi web yang memanfaatkan pembelajaran mesin. Pertimbangkan seni bina: adakah model harus kekal dalam aplikasi atau berada di awan? Jika yang terakhir, bagaimana anda akan mengaksesnya? Lukiskan model seni bina untuk penyelesaian web ML yang diterapkan.
 
-## Tugas
+## Tugasan
 
-[Cobalah model yang berbeda](assignment.md)
+[Cuba model yang berbeza](assignment.md)
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI berasaskan mesin. Walaupun kami berusaha untuk ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat penting, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+---
+
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil perhatian bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat yang kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.

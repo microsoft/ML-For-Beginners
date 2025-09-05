@@ -1,21 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f400075e003e749fdb0d6b3b4787a99",
-  "translation_date": "2025-08-29T13:10:49+00:00",
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T18:12:29+00:00",
   "source_file": "7-TimeSeries/2-ARIMA/README.md",
   "language_code": "tl"
 }
 -->
-# Pagtataya ng Time Series gamit ang ARIMA
+# Time series forecasting gamit ang ARIMA
 
-Sa nakaraang aralin, natutunan mo ang kaunti tungkol sa pagtataya ng time series at nag-load ng dataset na nagpapakita ng pagbabago-bago ng electrical load sa loob ng isang panahon.
+Sa nakaraang aralin, natutunan mo ang tungkol sa time series forecasting at nag-load ng dataset na nagpapakita ng pagbabago-bago ng electrical load sa loob ng isang panahon.
 
 [![Panimula sa ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Panimula sa ARIMA")
 
-> 🎥 I-click ang larawan sa itaas para sa isang video: Isang maikling pagpapakilala sa mga ARIMA model. Ang halimbawa ay ginawa sa R, ngunit ang mga konsepto ay pangkalahatan.
+> 🎥 I-click ang imahe sa itaas para sa isang video: Maikling pagpapakilala sa ARIMA models. Ang halimbawa ay ginawa sa R, ngunit ang mga konsepto ay pangkalahatan.
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Panimula
 
@@ -25,31 +25,31 @@ Sa araling ito, matutuklasan mo ang isang partikular na paraan ng paggawa ng mga
 
 Upang magamit ang ARIMA, may ilang mga konsepto na kailangan mong malaman:
 
-- 🎓 **Stationarity**. Sa konteksto ng estadistika, ang stationarity ay tumutukoy sa data na ang distribusyon ay hindi nagbabago kapag inilipat sa oras. Ang non-stationary na data, samakatuwid, ay nagpapakita ng pagbabago-bago dahil sa mga trend na kailangang baguhin upang ma-analisa. Halimbawa, ang seasonality ay maaaring magdulot ng pagbabago-bago sa data at maaaring alisin sa pamamagitan ng proseso ng 'seasonal-differencing'.
+- 🎓 **Stationarity**. Sa konteksto ng estadistika, ang stationarity ay tumutukoy sa data na ang distribusyon ay hindi nagbabago kapag inilipat sa oras. Ang non-stationary na data, samakatuwid, ay nagpapakita ng pagbabago-bago dahil sa mga trend na kailangang baguhin upang ma-analisa. Ang seasonality, halimbawa, ay maaaring magpakilala ng pagbabago-bago sa data at maaaring alisin sa pamamagitan ng proseso ng 'seasonal-differencing'.
 
-- 🎓 **[Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Ang differencing ng data, mula sa estadistikal na konteksto, ay tumutukoy sa proseso ng pagbabago ng non-stationary na data upang gawing stationary sa pamamagitan ng pag-aalis ng hindi pare-parehong trend. "Ang differencing ay nag-aalis ng mga pagbabago sa antas ng isang time series, inaalis ang trend at seasonality, at sa gayon ay pinapatatag ang mean ng time series." [Paper ni Shixiong et al](https://arxiv.org/abs/1904.07632)
+- 🎓 **[Differencing](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Ang differencing ng data, mula sa konteksto ng estadistika, ay tumutukoy sa proseso ng pagbabago ng non-stationary na data upang gawing stationary sa pamamagitan ng pag-aalis ng non-constant trend nito. "Ang differencing ay nag-aalis ng mga pagbabago sa antas ng isang time series, inaalis ang trend at seasonality, at sa gayon ay pinapatatag ang mean ng time series." [Paper ni Shixiong et al](https://arxiv.org/abs/1904.07632)
 
-## ARIMA sa Konteksto ng Time Series
+## ARIMA sa konteksto ng time series
 
-Tingnan natin ang mga bahagi ng ARIMA upang mas maunawaan kung paano ito nakakatulong sa pagmomodelo ng time series at sa paggawa ng mga prediksyon.
+Tuklasin natin ang mga bahagi ng ARIMA upang mas maunawaan kung paano ito nakakatulong sa pagmomodelo ng time series at sa paggawa ng mga prediksyon.
 
-- **AR - para sa AutoRegressive**. Ang mga autoregressive model, tulad ng ipinahihiwatig ng pangalan, ay tumitingin 'pabalik' sa oras upang suriin ang mga nakaraang halaga sa iyong data at gumawa ng mga palagay tungkol dito. Ang mga nakaraang halagang ito ay tinatawag na 'lags'. Halimbawa, ang data na nagpapakita ng buwanang benta ng mga lapis. Ang kabuuang benta bawat buwan ay itinuturing na isang 'evolving variable' sa dataset. Ang modelong ito ay binubuo bilang "ang evolving variable ng interes ay nire-regress sa sarili nitong lagged (i.e., nakaraang) mga halaga." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - para sa AutoRegressive**. Ang autoregressive models, gaya ng ipinahihiwatig ng pangalan, ay tumitingin 'pabalik' sa oras upang suriin ang mga nakaraang halaga sa iyong data at gumawa ng mga palagay tungkol dito. Ang mga nakaraang halaga na ito ay tinatawag na 'lags'. Halimbawa, ang data na nagpapakita ng buwanang benta ng mga lapis. Ang kabuuang benta bawat buwan ay itinuturing na isang 'evolving variable' sa dataset. Ang modelong ito ay binuo kung saan ang "evolving variable of interest ay nireregres sa sarili nitong lagged (i.e., prior) values." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - para sa Integrated**. Sa kaibahan sa mga katulad na 'ARMA' model, ang 'I' sa ARIMA ay tumutukoy sa *[integrated](https://wikipedia.org/wiki/Order_of_integration)* na aspeto nito. Ang data ay 'integrated' kapag ang mga hakbang ng differencing ay inilapat upang maalis ang non-stationarity.
+- **I - para sa Integrated**. Sa halip na ang katulad na 'ARMA' models, ang 'I' sa ARIMA ay tumutukoy sa *[integrated](https://wikipedia.org/wiki/Order_of_integration)* na aspeto nito. Ang data ay 'integrated' kapag ang mga hakbang sa differencing ay inilapat upang alisin ang non-stationarity.
 
 - **MA - para sa Moving Average**. Ang [moving-average](https://wikipedia.org/wiki/Moving-average_model) na aspeto ng modelong ito ay tumutukoy sa output variable na natutukoy sa pamamagitan ng pagmamasid sa kasalukuyan at nakaraang mga halaga ng lags.
 
-Sa madaling salita: Ang ARIMA ay ginagamit upang gawing akma ang isang modelo sa espesyal na anyo ng time series data hangga't maaari.
+Bottom line: Ang ARIMA ay ginagamit upang gawing akma ang modelo sa espesyal na anyo ng time series data nang mas malapit hangga't maaari.
 
-## Ehersisyo - Gumawa ng ARIMA Model
+## Ehersisyo - gumawa ng ARIMA model
 
-Buksan ang [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) na folder sa araling ito at hanapin ang [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) na file.
+Buksan ang [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) folder sa araling ito at hanapin ang [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) file.
 
-1. Patakbuhin ang notebook upang i-load ang `statsmodels` Python library; kakailanganin mo ito para sa mga ARIMA model.
+1. Patakbuhin ang notebook upang i-load ang `statsmodels` Python library; kakailanganin mo ito para sa ARIMA models.
 
 1. I-load ang mga kinakailangang library.
 
-1. Ngayon, i-load ang ilang karagdagang library na kapaki-pakinabang para sa pag-plot ng data:
+1. Ngayon, mag-load ng ilang karagdagang library na kapaki-pakinabang para sa pag-plot ng data:
 
     ```python
     import os
@@ -72,7 +72,7 @@ Buksan ang [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. I-load ang data mula sa `/data/energy.csv` na file sa isang Pandas dataframe at tingnan ito:
+1. I-load ang data mula sa `/data/energy.csv` file sa isang Pandas dataframe at tingnan ito:
 
     ```python
     energy = load_data('./data')[['load']]
@@ -90,9 +90,9 @@ Buksan ang [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/
 
     Ngayon, gumawa tayo ng modelo!
 
-### Gumawa ng Training at Testing Dataset
+### Gumawa ng training at testing datasets
 
-Ngayon na na-load mo na ang data, maaari mo na itong hatiin sa train at test set. Ite-train mo ang iyong modelo sa train set. Gaya ng dati, pagkatapos ng training ng modelo, susuriin mo ang katumpakan nito gamit ang test set. Kailangan mong tiyakin na ang test set ay sumasaklaw sa mas huling panahon kumpara sa training set upang matiyak na ang modelo ay hindi makakakuha ng impormasyon mula sa mga hinaharap na panahon.
+Ngayon na na-load mo na ang data, maaari mo itong hatiin sa train at test sets. Ite-train mo ang iyong modelo sa train set. Gaya ng dati, pagkatapos ng training ng modelo, susuriin mo ang katumpakan nito gamit ang test set. Kailangan mong tiyakin na ang test set ay sumasaklaw sa mas huling panahon kumpara sa training set upang matiyak na ang modelo ay hindi makakakuha ng impormasyon mula sa mga hinaharap na panahon.
 
 1. Maglaan ng dalawang buwang panahon mula Setyembre 1 hanggang Oktubre 31, 2014 para sa training set. Ang test set ay magsasama ng dalawang buwang panahon mula Nobyembre 1 hanggang Disyembre 31, 2014:
 
@@ -101,7 +101,7 @@ Ngayon na na-load mo na ang data, maaari mo na itong hatiin sa train at test set
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Dahil ang data na ito ay sumasalamin sa pang-araw-araw na pagkonsumo ng enerhiya, mayroong isang malakas na pattern ng seasonality, ngunit ang pagkonsumo ay pinaka-katulad sa pagkonsumo sa mga mas kamakailang araw.
+    Dahil ang data na ito ay sumasalamin sa pang-araw-araw na konsumo ng enerhiya, mayroong malakas na pattern ng seasonality, ngunit ang konsumo ay pinaka-katulad sa konsumo sa mas kamakailang mga araw.
 
 1. I-visualize ang mga pagkakaiba:
 
@@ -114,15 +114,15 @@ Ngayon na na-load mo na ang data, maaari mo na itong hatiin sa train at test set
     plt.show()
     ```
 
-    ![training at testing data](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.tl.png)
+    ![training at testing data](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    Samakatuwid, ang paggamit ng isang medyo maliit na window ng oras para sa pagte-train ng data ay dapat na sapat.
+    Samakatuwid, ang paggamit ng medyo maliit na window ng oras para sa training ng data ay dapat na sapat.
 
-    > Tandaan: Dahil ang function na ginagamit natin upang i-fit ang ARIMA model ay gumagamit ng in-sample validation habang nagte-train, hindi na tayo gagamit ng validation data.
+    > Tandaan: Dahil ang function na ginagamit natin upang i-fit ang ARIMA model ay gumagamit ng in-sample validation sa panahon ng fitting, hindi na natin gagamitin ang validation data.
 
-### Ihanda ang Data para sa Training
+### Ihanda ang data para sa training
 
-Ngayon, kailangan mong ihanda ang data para sa training sa pamamagitan ng pagsasagawa ng filtering at scaling ng iyong data. I-filter ang iyong dataset upang isama lamang ang mga kinakailangang panahon at mga column, at i-scale ito upang matiyak na ang data ay naka-project sa interval na 0,1.
+Ngayon, kailangan mong ihanda ang data para sa training sa pamamagitan ng pag-filter at pag-scale ng iyong data. I-filter ang iyong dataset upang isama lamang ang mga kinakailangang panahon at mga column, at i-scale upang matiyak na ang data ay naka-project sa interval na 0,1.
 
 1. I-filter ang orihinal na dataset upang isama lamang ang mga nabanggit na panahon bawat set at isama lamang ang kinakailangang column na 'load' kasama ang petsa:
 
@@ -141,7 +141,7 @@ Ngayon, kailangan mong ihanda ang data para sa training sa pamamagitan ng pagsas
     Test data shape:  (48, 1)
     ```
 
-1. I-scale ang data upang mapunta ito sa saklaw na (0, 1).
+1. I-scale ang data upang mapunta sa saklaw (0, 1).
 
     ```python
     scaler = MinMaxScaler()
@@ -157,15 +157,15 @@ Ngayon, kailangan mong ihanda ang data para sa training sa pamamagitan ng pagsas
     plt.show()
     ```
 
-    ![orihinal](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.tl.png)
+    ![orihinal](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > Ang orihinal na data
 
-    ![scaled](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.tl.png)
+    ![scaled](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
     > Ang scaled na data
 
-1. Ngayon na na-calibrate mo na ang scaled na data, maaari mo nang i-scale ang test data:
+1. Ngayon na na-calibrate mo na ang scaled na data, maaari mong i-scale ang test data:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -176,21 +176,21 @@ Ngayon, kailangan mong ihanda ang data para sa training sa pamamagitan ng pagsas
 
 Panahon na upang ipatupad ang ARIMA! Gagamitin mo na ngayon ang `statsmodels` library na na-install mo kanina.
 
-Ngayon kailangan mong sundin ang ilang hakbang:
+Kailangan mong sundin ang ilang hakbang:
 
    1. Tukuyin ang modelo sa pamamagitan ng pagtawag sa `SARIMAX()` at paglalagay ng mga parameter ng modelo: p, d, at q parameters, at P, D, at Q parameters.
-   2. Ihanda ang modelo para sa training data sa pamamagitan ng pagtawag sa `fit()` function.
-   3. Gumawa ng mga prediksyon sa pamamagitan ng pagtawag sa `forecast()` function at pagtukoy ng bilang ng mga hakbang (ang `horizon`) na ipi-predict.
+   2. Ihanda ang modelo para sa training data sa pamamagitan ng pagtawag sa fit() function.
+   3. Gumawa ng mga prediksyon sa pamamagitan ng pagtawag sa `forecast()` function at pagtukoy sa bilang ng mga hakbang (ang `horizon`) para sa forecast.
 
-> 🎓 Ano ang mga parameter na ito? Sa isang ARIMA model, mayroong 3 parameter na ginagamit upang makatulong sa pagmomodelo ng mga pangunahing aspeto ng time series: seasonality, trend, at noise. Ang mga parameter na ito ay:
+> 🎓 Ano ang mga parameter na ito? Sa isang ARIMA model, mayroong 3 parameter na ginagamit upang makatulong sa pagmomodelo ng mga pangunahing aspeto ng isang time series: seasonality, trend, at noise. Ang mga parameter na ito ay:
 
-`p`: ang parameter na nauugnay sa auto-regressive na aspeto ng modelo, na sumasaklaw sa *nakaraang* mga halaga.  
-`d`: ang parameter na nauugnay sa integrated na bahagi ng modelo, na nakakaapekto sa dami ng *differencing* (🎓 tandaan ang differencing 👆?) na ilalapat sa isang time series.  
+`p`: ang parameter na nauugnay sa auto-regressive na aspeto ng modelo, na naglalaman ng *nakaraang* mga halaga.
+`d`: ang parameter na nauugnay sa integrated na bahagi ng modelo, na nakakaapekto sa dami ng *differencing* (🎓 tandaan ang differencing 👆?) na ilalapat sa isang time series.
 `q`: ang parameter na nauugnay sa moving-average na bahagi ng modelo.
 
-> Tandaan: Kung ang iyong data ay may seasonal na aspeto - tulad ng data na ito - gagamit tayo ng seasonal ARIMA model (SARIMA). Sa kasong iyon, kailangan mong gumamit ng isa pang set ng mga parameter: `P`, `D`, at `Q` na naglalarawan ng parehong mga asosasyon tulad ng `p`, `d`, at `q`, ngunit tumutukoy sa mga seasonal na bahagi ng modelo.
+> Tandaan: Kung ang iyong data ay may seasonal na aspeto - na mayroon ang data na ito - , gumagamit tayo ng seasonal ARIMA model (SARIMA). Sa kasong iyon, kailangan mong gumamit ng isa pang set ng mga parameter: `P`, `D`, at `Q` na naglalarawan ng parehong mga asosasyon tulad ng `p`, `d`, at `q`, ngunit tumutukoy sa mga seasonal na bahagi ng modelo.
 
-1. Magsimula sa pamamagitan ng pagtatakda ng iyong gustong horizon value. Subukan natin ang 3 oras:
+1. Magsimula sa pamamagitan ng pagtatakda ng iyong preferred na horizon value. Subukan natin ang 3 oras:
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -198,9 +198,9 @@ Ngayon kailangan mong sundin ang ilang hakbang:
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Ang pagpili ng pinakamahusay na mga halaga para sa mga parameter ng ARIMA model ay maaaring maging mahirap dahil ito ay medyo subjective at nangangailangan ng oras. Maaari mong isaalang-alang ang paggamit ng `auto_arima()` function mula sa [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
+    Ang pagpili ng pinakamahusay na mga halaga para sa mga parameter ng ARIMA model ay maaaring maging hamon dahil ito ay medyo subjective at nakakaubos ng oras. Maaari mong isaalang-alang ang paggamit ng `auto_arima()` function mula sa [`pyramid` library](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
 
-1. Sa ngayon, subukan ang ilang manu-manong pagpili upang makahanap ng magandang modelo.
+1. Sa ngayon, subukan ang ilang manual na pagpipilian upang makahanap ng magandang modelo.
 
     ```python
     order = (4, 1, 0)
@@ -212,19 +212,19 @@ Ngayon kailangan mong sundin ang ilang hakbang:
     print(results.summary())
     ```
 
-    Isang talahanayan ng mga resulta ang ipi-print.
+    Isang table ng mga resulta ang naka-print.
 
 Nagawa mo na ang iyong unang modelo! Ngayon kailangan nating maghanap ng paraan upang suriin ito.
 
-### Suriin ang Iyong Modelo
+### Suriin ang iyong modelo
 
-Upang suriin ang iyong modelo, maaari mong isagawa ang tinatawag na `walk forward` validation. Sa praktika, ang mga time series model ay muling tine-train tuwing may bagong data na magagamit. Pinapayagan nito ang modelo na gumawa ng pinakamahusay na prediksyon sa bawat hakbang ng oras.
+Upang suriin ang iyong modelo, maaari mong isagawa ang tinatawag na `walk forward` validation. Sa praktika, ang mga time series model ay muling tina-train tuwing may bagong data na magagamit. Pinapayagan nito ang modelo na gumawa ng pinakamahusay na forecast sa bawat time step.
 
-Simula sa simula ng time series gamit ang teknik na ito, i-train ang modelo sa train dataset. Pagkatapos ay gumawa ng prediksyon sa susunod na hakbang ng oras. Ang prediksyon ay sinusuri laban sa kilalang halaga. Ang training set ay pagkatapos ay pinalalawak upang isama ang kilalang halaga at inuulit ang proseso.
+Simula sa simula ng time series gamit ang teknik na ito, i-train ang modelo sa train data set. Pagkatapos ay gumawa ng prediksyon sa susunod na time step. Ang prediksyon ay sinusuri laban sa kilalang halaga. Ang training set ay pagkatapos ay pinalawak upang isama ang kilalang halaga at ang proseso ay inuulit.
 
-> Tandaan: Dapat mong panatilihing nakapirmi ang window ng training set para sa mas mahusay na training upang sa tuwing magdaragdag ka ng bagong obserbasyon sa training set, aalisin mo ang obserbasyon mula sa simula ng set.
+> Tandaan: Dapat mong panatilihing nakapirmi ang window ng training set para sa mas mahusay na training upang sa tuwing magdadagdag ka ng bagong obserbasyon sa training set, aalisin mo ang obserbasyon mula sa simula ng set.
 
-Ang prosesong ito ay nagbibigay ng mas matibay na pagtatantiya kung paano magpe-perform ang modelo sa praktika. Gayunpaman, may computational cost ito dahil sa paglikha ng maraming modelo. Katanggap-tanggap ito kung maliit ang data o simple ang modelo, ngunit maaaring maging isyu sa mas malaking sukat.
+Ang prosesong ito ay nagbibigay ng mas matibay na pagtatantya kung paano gagana ang modelo sa praktika. Gayunpaman, ito ay may computation cost ng paggawa ng napakaraming modelo. Katanggap-tanggap ito kung maliit ang data o kung simple ang modelo, ngunit maaaring maging isyu sa mas malaking sukat.
 
 Ang walk-forward validation ay ang gold standard ng pagsusuri ng time series model at inirerekomenda para sa iyong sariling mga proyekto.
 
@@ -250,7 +250,7 @@ Ang walk-forward validation ay ang gold standard ng pagsusuri ng time series mod
 
     Ang data ay inilipat nang pahalang ayon sa horizon point nito.
 
-1. Gumawa ng mga prediksyon sa iyong test data gamit ang sliding window approach sa isang loop na kasinghaba ng test data:
+1. Gumawa ng mga prediksyon sa iyong test data gamit ang sliding window approach sa isang loop na kasing laki ng haba ng test data:
 
     ```python
     %%time
@@ -304,7 +304,7 @@ Ang walk-forward validation ay ang gold standard ng pagsusuri ng time series mod
     eval_df.head()
     ```
 
-    Output  
+    Output
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -313,18 +313,19 @@ Ang walk-forward validation ay ang gold standard ng pagsusuri ng time series mod
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-    Obserbahan ang prediksyon ng oras-oras na data, kumpara sa aktwal na load. Gaano ito katumpak?
+    Obserbahan ang prediksyon ng hourly data, kumpara sa aktwal na load. Gaano ito katumpak?
 
-### Suriin ang Katumpakan ng Modelo
+### Suriin ang katumpakan ng modelo
 
 Suriin ang katumpakan ng iyong modelo sa pamamagitan ng pagsubok sa mean absolute percentage error (MAPE) nito sa lahat ng prediksyon.
 > **🧮 Ipakita ang matematika**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.tl.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
-> Ang [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) ay ginagamit upang ipakita ang katumpakan ng prediksyon bilang isang ratio na tinutukoy ng pormula sa itaas. Ang pagkakaiba sa pagitan ng aktwal at prediksyon ay hinahati sa aktwal. 
->
-> "Ang absolute value sa kalkulasyong ito ay iniipon para sa bawat forecasted na punto sa oras at hinahati sa bilang ng mga fitted na puntos n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) ay ginagamit upang ipakita ang katumpakan ng prediksyon bilang isang ratio na tinukoy ng formula sa itaas. Ang pagkakaiba sa pagitan ng aktwal  
+at hinulaang  
+ay hinati sa aktwal.  
+"Ang absolute value sa kalkulasyong ito ay iniipon para sa bawat forecasted na punto sa oras at hinati sa bilang ng mga fitted na puntos n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 1. Ipakita ang equation sa code:
 
     ```python
@@ -339,7 +340,7 @@ Suriin ang katumpakan ng iyong modelo sa pamamagitan ng pagsubok sa mean absolut
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
     ```
 
-    MAPE ng forecast sa isang hakbang:  0.5570581332313952 %
+    MAPE ng isang hakbang na forecast:  0.5570581332313952 %
 
 1. I-print ang MAPE ng multi-step forecast:
 
@@ -353,7 +354,7 @@ Suriin ang katumpakan ng iyong modelo sa pamamagitan ng pagsubok sa mean absolut
 
     Mas mababa ang numero, mas maganda: isipin na ang forecast na may MAPE na 10 ay may pagkakamali ng 10%.
 
-1. Ngunit gaya ng lagi, mas madali makita ang ganitong uri ng sukat ng katumpakan sa biswal, kaya't i-plot natin ito:
+1. Ngunit gaya ng dati, mas madali itong makita ang ganitong uri ng sukat ng katumpakan sa biswal, kaya't i-plot natin ito:
 
     ```python
      if(HORIZON == 1):
@@ -381,7 +382,7 @@ Suriin ang katumpakan ng iyong modelo sa pamamagitan ng pagsubok sa mean absolut
     plt.show()
     ```
 
-    ![isang time series model](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.tl.png)
+    ![isang time series model](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
 🏆 Isang napakagandang plot, nagpapakita ng model na may mahusay na katumpakan. Magaling!
 
@@ -389,13 +390,13 @@ Suriin ang katumpakan ng iyong modelo sa pamamagitan ng pagsubok sa mean absolut
 
 ## 🚀Hamunin
 
-Suriin ang iba't ibang paraan para subukan ang katumpakan ng isang Time Series Model. Tinalakay natin ang MAPE sa araling ito, ngunit may iba pa bang mga pamamaraan na maaari mong gamitin? Mag-research at magdagdag ng anotasyon. Isang kapaki-pakinabang na dokumento ay matatagpuan [dito](https://otexts.com/fpp2/accuracy.html)
+Pag-aralan ang iba't ibang paraan para subukan ang katumpakan ng isang Time Series Model. Tinalakay natin ang MAPE sa araling ito, ngunit may iba pa bang mga pamamaraan na maaari mong gamitin? Saliksikin ang mga ito at magbigay ng anotasyon. Isang kapaki-pakinabang na dokumento ay matatagpuan [dito](https://otexts.com/fpp2/accuracy.html)
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Review at Pag-aaral sa Sarili
+## Review at Pag-aaral ng Sarili
 
-Ang araling ito ay tumatalakay lamang sa mga pangunahing kaalaman ng Time Series Forecasting gamit ang ARIMA. Maglaan ng oras upang palalimin ang iyong kaalaman sa pamamagitan ng pagsuri sa [repository na ito](https://microsoft.github.io/forecasting/) at sa iba't ibang uri ng modelo nito upang matutunan ang iba pang paraan ng paggawa ng Time Series models.
+Ang araling ito ay tumatalakay lamang sa mga pangunahing kaalaman ng Time Series Forecasting gamit ang ARIMA. Maglaan ng oras upang palalimin ang iyong kaalaman sa pamamagitan ng pagsaliksik sa [repositoryong ito](https://microsoft.github.io/forecasting/) at sa iba't ibang uri ng modelo nito upang matutunan ang iba pang paraan ng paggawa ng Time Series models.
 
 ## Takdang-Aralin
 
@@ -404,4 +405,4 @@ Ang araling ito ay tumatalakay lamang sa mga pangunahing kaalaman ng Time Series
 ---
 
 **Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
