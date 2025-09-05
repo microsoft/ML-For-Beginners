@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9579f42e3ff5114c58379cc9e186a828",
-  "translation_date": "2025-09-03T18:01:59+00:00",
+  "original_hash": "1a6e9e46b34a2e559fbbfc1f95397c7b",
+  "translation_date": "2025-09-05T08:46:23+00:00",
   "source_file": "4-Classification/2-Classifiers-1/README.md",
   "language_code": "pt"
 }
@@ -13,10 +13,10 @@ Nesta lição, vais utilizar o conjunto de dados que guardaste na última liçã
 
 Vais usar este conjunto de dados com uma variedade de classificadores para _prever uma culinária nacional com base num grupo de ingredientes_. Enquanto fazes isso, vais aprender mais sobre algumas das formas como os algoritmos podem ser utilizados para tarefas de classificação.
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 # Preparação
 
-Assumindo que completaste a [Lição 1](../1-Introduction/README.md), certifica-te de que existe um ficheiro _cleaned_cuisines.csv_ na pasta raiz `/data` para estas quatro lições.
+Assumindo que completaste [Lição 1](../1-Introduction/README.md), certifica-te de que existe um ficheiro _cleaned_cuisines.csv_ na pasta raiz `/data` para estas quatro lições.
 
 ## Exercício - prever uma culinária nacional
 
@@ -88,7 +88,7 @@ Agora estás pronto para treinar o teu modelo!
 
 ## Escolher o classificador
 
-Agora que os teus dados estão limpos e prontos para treino, tens de decidir qual algoritmo usar para o trabalho.
+Agora que os teus dados estão limpos e prontos para treino, tens de decidir qual o algoritmo a usar para o trabalho.
 
 O Scikit-learn agrupa a classificação sob Aprendizagem Supervisionada, e nessa categoria vais encontrar muitas formas de classificar. [A variedade](https://scikit-learn.org/stable/supervised_learning.html) pode parecer confusa à primeira vista. Os seguintes métodos incluem técnicas de classificação:
 
@@ -98,37 +98,37 @@ O Scikit-learn agrupa a classificação sob Aprendizagem Supervisionada, e nessa
 - Vizinhos Mais Próximos
 - Processos Gaussianos
 - Árvores de Decisão
-- Métodos de Conjunto (voting Classifier)
-- Algoritmos de multiclass e multioutput (classificação multiclass e multilabel, classificação multiclass-multioutput)
+- Métodos de Ensemble (classificador por votação)
+- Algoritmos multiclasses e multioutput (classificação multiclasses e multilabel, classificação multiclasses-multioutput)
 
 > Também podes usar [redes neuronais para classificar dados](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), mas isso está fora do âmbito desta lição.
 
 ### Qual classificador escolher?
 
-Então, qual classificador deves escolher? Muitas vezes, testar vários e procurar um bom resultado é uma forma de experimentar. O Scikit-learn oferece uma [comparação lado a lado](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) num conjunto de dados criado, comparando KNeighbors, SVC de duas formas, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB e QuadraticDiscrinationAnalysis, mostrando os resultados visualizados:
+Então, qual classificador deves escolher? Muitas vezes, testar vários e procurar um bom resultado é uma forma de experimentar. O Scikit-learn oferece uma [comparação lado a lado](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) num conjunto de dados criado, comparando KNeighbors, SVC de duas formas, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB e QuadraticDiscriminationAnalysis, mostrando os resultados visualizados:
 
-![comparação de classificadores](../../../../translated_images/comparison.edfab56193a85e7fdecbeaa1b1f8c99e94adbf7178bed0de902090cf93d6734f.pt.png)
+![comparação de classificadores](../../../../4-Classification/2-Classifiers-1/images/comparison.png)
 > Gráficos gerados na documentação do Scikit-learn
 
 > O AutoML resolve este problema de forma prática ao realizar estas comparações na nuvem, permitindo-te escolher o melhor algoritmo para os teus dados. Experimenta [aqui](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
 
 ### Uma abordagem melhor
 
-Uma forma melhor do que adivinhar aleatoriamente, no entanto, é seguir as ideias deste [guia de consulta de ML](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott) que podes descarregar. Aqui, descobrimos que, para o nosso problema multiclass, temos algumas opções:
+Uma forma melhor do que adivinhar aleatoriamente é seguir as ideias deste [guia de consulta de ML](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott) que podes descarregar. Aqui, descobrimos que, para o nosso problema multiclasses, temos algumas opções:
 
-![guia para problemas multiclass](../../../../translated_images/cheatsheet.07a475ea444d22234cb8907a3826df5bdd1953efec94bd18e4496f36ff60624a.pt.png)
-> Uma secção do Guia de Algoritmos da Microsoft, detalhando opções de classificação multiclass
+![guia para problemas multiclasses](../../../../4-Classification/2-Classifiers-1/images/cheatsheet.png)
+> Uma secção do Guia de Algoritmos da Microsoft, detalhando opções de classificação multiclasses
 
 ✅ Descarrega este guia, imprime-o e pendura-o na tua parede!
 
 ### Raciocínio
 
-Vamos ver se conseguimos raciocinar sobre diferentes abordagens, dadas as restrições que temos:
+Vamos ver se conseguimos raciocinar sobre diferentes abordagens dadas as restrições que temos:
 
 - **Redes neuronais são demasiado pesadas**. Dado o nosso conjunto de dados limpo, mas minimalista, e o facto de estarmos a realizar o treino localmente via notebooks, redes neuronais são demasiado pesadas para esta tarefa.
-- **Nenhum classificador de duas classes**. Não usamos um classificador de duas classes, o que exclui o one-vs-all.
-- **Árvore de decisão ou regressão logística podem funcionar**. Uma árvore de decisão pode funcionar, ou regressão logística para dados multiclass.
-- **Árvores de decisão impulsionadas multiclass resolvem outro problema**. A árvore de decisão impulsionada multiclass é mais adequada para tarefas não paramétricas, por exemplo, tarefas projetadas para criar rankings, por isso não é útil para nós.
+- **Sem classificadores de duas classes**. Não usamos um classificador de duas classes, o que exclui o one-vs-all.
+- **Árvore de decisão ou regressão logística podem funcionar**. Uma árvore de decisão pode funcionar, ou regressão logística para dados multiclasses.
+- **Árvores de decisão impulsionadas multiclasses resolvem outro problema**. A árvore de decisão impulsionada multiclasses é mais adequada para tarefas não paramétricas, como tarefas projetadas para criar rankings, por isso não é útil para nós.
 
 ### Usar Scikit-learn 
 
@@ -136,18 +136,18 @@ Vamos usar o Scikit-learn para analisar os nossos dados. No entanto, existem mui
 
 Basicamente, há dois parâmetros importantes - `multi_class` e `solver` - que precisamos especificar quando pedimos ao Scikit-learn para realizar uma regressão logística. O valor de `multi_class` aplica um certo comportamento. O valor do solver é o algoritmo a usar. Nem todos os solvers podem ser combinados com todos os valores de `multi_class`.
 
-De acordo com a documentação, no caso multiclass, o algoritmo de treino:
+De acordo com a documentação, no caso multiclasses, o algoritmo de treino:
 
 - **Usa o esquema one-vs-rest (OvR)**, se a opção `multi_class` estiver definida como `ovr`
-- **Usa a perda de entropia cruzada**, se a opção `multi_class` estiver definida como `multinomial`. (Atualmente, a opção `multinomial` é suportada apenas pelos solvers ‘lbfgs’, ‘sag’, ‘saga’ e ‘newton-cg’.)"
+- **Usa a perda de entropia cruzada**, se a opção `multi_class` estiver definida como `multinomial`. (Atualmente, a opção `multinomial` é suportada apenas pelos solvers ‘lbfgs’, ‘sag’, ‘saga’ e ‘newton-cg’.)
 
-> 🎓 O 'esquema' aqui pode ser 'ovr' (one-vs-rest) ou 'multinomial'. Como a regressão logística foi projetada para suportar classificação binária, esses esquemas permitem que ela lide melhor com tarefas de classificação multiclass. [fonte](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
+> 🎓 O 'esquema' aqui pode ser 'ovr' (one-vs-rest) ou 'multinomial'. Como a regressão logística foi projetada para suportar classificação binária, esses esquemas permitem que ela lide melhor com tarefas de classificação multiclasses. [fonte](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
 > 🎓 O 'solver' é definido como "o algoritmo a usar no problema de otimização". [fonte](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).
 
 O Scikit-learn oferece esta tabela para explicar como os solvers lidam com diferentes desafios apresentados por diferentes tipos de estruturas de dados:
 
-![solvers](../../../../translated_images/solvers.5fc648618529e627dfac29b917b3ccabda4b45ee8ed41b0acb1ce1441e8d1ef1.pt.png)
+![solvers](../../../../4-Classification/2-Classifiers-1/images/solvers.png)
 
 ## Exercício - dividir os dados
 
@@ -160,9 +160,9 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 ## Exercício - aplicar regressão logística
 
-Como estás a usar o caso multiclass, precisas de escolher que _esquema_ usar e que _solver_ definir. Usa LogisticRegression com uma configuração multiclass e o solver **liblinear** para treinar.
+Como estás a usar o caso multiclasses, precisas de escolher que _esquema_ usar e que _solver_ definir. Usa LogisticRegression com uma configuração multiclasses e o solver **liblinear** para treinar.
 
-1. Cria uma regressão logística com multi_class definido como `ovr` e o solver definido como `liblinear`:
+1. Cria uma regressão logística com multi_class definida como `ovr` e o solver definido como `liblinear`:
 
     ```python
     lr = LogisticRegression(multi_class='ovr',solver='liblinear')
@@ -238,7 +238,7 @@ A precisão é boa, acima de **80%**!
 
 Nesta lição, utilizou os seus dados limpos para construir um modelo de aprendizagem automática que pode prever uma cozinha nacional com base numa série de ingredientes. Dedique algum tempo a explorar as muitas opções que o Scikit-learn oferece para classificar dados. Aprofunde o conceito de 'solver' para entender o que acontece nos bastidores.
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão & Estudo Individual
 
@@ -250,4 +250,4 @@ Explore um pouco mais a matemática por trás da regressão logística nesta [li
 ---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante ter em conta que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

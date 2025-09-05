@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f400075e003e749fdb0d6b3b4787a99",
-  "translation_date": "2025-09-03T16:48:27+00:00",
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T08:39:06+00:00",
   "source_file": "7-TimeSeries/2-ARIMA/README.md",
   "language_code": "pt"
 }
@@ -13,43 +13,43 @@ Na lição anterior, aprendeste um pouco sobre previsão de séries temporais e 
 
 [![Introdução ao ARIMA](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "Introdução ao ARIMA")
 
-> 🎥 Clica na imagem acima para ver um vídeo: Uma breve introdução aos modelos ARIMA. O exemplo é feito em R, mas os conceitos são universais.
+> 🎥 Clica na imagem acima para um vídeo: Uma breve introdução aos modelos ARIMA. O exemplo é feito em R, mas os conceitos são universais.
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introdução
 
-Nesta lição, vais descobrir uma forma específica de construir modelos com [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Os modelos ARIMA são particularmente adequados para ajustar dados que apresentam [não-estacionariedade](https://wikipedia.org/wiki/Stationary_process).
+Nesta lição, vais descobrir uma forma específica de construir modelos com [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). Os modelos ARIMA são particularmente adequados para ajustar dados que apresentam [não-estacionaridade](https://wikipedia.org/wiki/Stationary_process).
 
 ## Conceitos gerais
 
 Para trabalhar com ARIMA, há alguns conceitos que precisas de conhecer:
 
-- 🎓 **Estacionariedade**. No contexto estatístico, estacionariedade refere-se a dados cuja distribuição não muda quando deslocados no tempo. Dados não-estacionários, por outro lado, apresentam flutuações devido a tendências que devem ser transformadas para serem analisadas. A sazonalidade, por exemplo, pode introduzir flutuações nos dados e pode ser eliminada através de um processo de 'diferença sazonal'.
+- 🎓 **Estacionaridade**. No contexto estatístico, estacionaridade refere-se a dados cuja distribuição não muda ao longo do tempo. Dados não estacionários, por outro lado, apresentam flutuações devido a tendências que precisam ser transformadas para serem analisadas. A sazonalidade, por exemplo, pode introduzir flutuações nos dados e pode ser eliminada através de um processo de 'diferença sazonal'.
 
-- 🎓 **[Diferença](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Diferençar dados, novamente no contexto estatístico, refere-se ao processo de transformar dados não-estacionários para torná-los estacionários, removendo a sua tendência não constante. "A diferença remove as mudanças no nível de uma série temporal, eliminando tendência e sazonalidade e, consequentemente, estabilizando a média da série temporal." [Artigo de Shixiong et al](https://arxiv.org/abs/1904.07632)
+- 🎓 **[Diferença](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Diferençar os dados, novamente no contexto estatístico, refere-se ao processo de transformar dados não estacionários para torná-los estacionários, removendo sua tendência não constante. "A diferença remove as mudanças no nível de uma série temporal, eliminando tendência e sazonalidade e, consequentemente, estabilizando a média da série temporal." [Artigo de Shixiong et al](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA no contexto de séries temporais
 
-Vamos explorar as partes do ARIMA para entender melhor como ele nos ajuda a modelar séries temporais e a fazer previsões com base nelas.
+Vamos explorar as partes do ARIMA para entender melhor como ele nos ajuda a modelar séries temporais e a fazer previsões.
 
-- **AR - de AutoRegressivo**. Modelos autoregressivos, como o nome indica, olham 'para trás' no tempo para analisar valores anteriores nos teus dados e fazer suposições sobre eles. Esses valores anteriores são chamados de 'lags'. Um exemplo seria dados que mostram vendas mensais de lápis. O total de vendas de cada mês seria considerado uma 'variável evolutiva' no conjunto de dados. Este modelo é construído como "a variável evolutiva de interesse é regredida nos seus próprios valores defasados (ou seja, anteriores)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - de AutoRegressivo**. Modelos autorregressivos, como o nome sugere, olham 'para trás' no tempo para analisar valores anteriores nos teus dados e fazer suposições sobre eles. Esses valores anteriores são chamados de 'lags'. Um exemplo seria dados que mostram vendas mensais de lápis. O total de vendas de cada mês seria considerado uma 'variável em evolução' no conjunto de dados. Este modelo é construído como "a variável de interesse em evolução é regredida em seus próprios valores defasados (ou seja, valores anteriores)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - de Integrado**. Ao contrário dos modelos semelhantes 'ARMA', o 'I' no ARIMA refere-se ao seu aspecto *[integrado](https://wikipedia.org/wiki/Order_of_integration)*. Os dados são 'integrados' quando passos de diferença são aplicados para eliminar a não-estacionariedade.
+- **I - de Integrado**. Ao contrário dos modelos semelhantes 'ARMA', o 'I' em ARIMA refere-se ao seu aspeto *[integrado](https://wikipedia.org/wiki/Order_of_integration)*. Os dados são 'integrados' quando passos de diferença são aplicados para eliminar a não-estacionaridade.
 
-- **MA - de Média Móvel**. O aspecto de [média móvel](https://wikipedia.org/wiki/Moving-average_model) deste modelo refere-se à variável de saída que é determinada observando os valores atuais e passados dos lags.
+- **MA - de Média Móvel**. O aspeto de [média móvel](https://wikipedia.org/wiki/Moving-average_model) deste modelo refere-se à variável de saída que é determinada observando os valores atuais e passados dos lags.
 
-Resumindo: ARIMA é usado para ajustar um modelo ao formato especial de dados de séries temporais o mais próximo possível.
+Resumindo: o ARIMA é usado para ajustar um modelo o mais próximo possível da forma especial dos dados de séries temporais.
 
 ## Exercício - construir um modelo ARIMA
 
 Abre a pasta [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) nesta lição e encontra o ficheiro [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb).
 
-1. Executa o notebook para carregar a biblioteca Python `statsmodels`; vais precisar dela para modelos ARIMA.
+1. Executa o notebook para carregar a biblioteca Python `statsmodels`; vais precisar dela para os modelos ARIMA.
 
 1. Carrega as bibliotecas necessárias.
 
-1. Agora, carrega várias outras bibliotecas úteis para plotar dados:
+1. Agora, carrega mais algumas bibliotecas úteis para a plotagem de dados:
 
     ```python
     import os
@@ -72,14 +72,14 @@ Abre a pasta [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/mai
     warnings.filterwarnings("ignore") # specify to ignore warning messages
     ```
 
-1. Carrega os dados do ficheiro `/data/energy.csv` para um dataframe do Pandas e analisa-os:
+1. Carrega os dados do ficheiro `/data/energy.csv` para um dataframe do Pandas e dá uma olhada:
 
     ```python
     energy = load_data('./data')[['load']]
     energy.head(10)
     ```
 
-1. Plota todos os dados de energia disponíveis de janeiro de 2012 a dezembro de 2014. Não deve haver surpresas, pois já vimos esses dados na última lição:
+1. Plota todos os dados de energia disponíveis de janeiro de 2012 a dezembro de 2014. Não deverá haver surpresas, pois já vimos esses dados na última lição:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -90,18 +90,18 @@ Abre a pasta [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/mai
 
     Agora, vamos construir um modelo!
 
-### Criar conjuntos de dados de treino e teste
+### Criar conjuntos de treino e teste
 
 Agora que os teus dados estão carregados, podes separá-los em conjuntos de treino e teste. Vais treinar o teu modelo no conjunto de treino. Como de costume, após o modelo ter terminado o treino, vais avaliar a sua precisão usando o conjunto de teste. É necessário garantir que o conjunto de teste cobre um período posterior ao conjunto de treino para garantir que o modelo não obtenha informações de períodos futuros.
 
-1. Aloca um período de dois meses de 1 de setembro a 31 de outubro de 2014 para o conjunto de treino. O conjunto de teste incluirá o período de dois meses de 1 de novembro a 31 de dezembro de 2014:
+1. Aloca um período de dois meses, de 1 de setembro a 31 de outubro de 2014, para o conjunto de treino. O conjunto de teste incluirá o período de dois meses de 1 de novembro a 31 de dezembro de 2014:
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
     test_start_dt = '2014-12-30 00:00:00'
     ```
 
-    Como estes dados refletem o consumo diário de energia, há um padrão sazonal forte, mas o consumo é mais semelhante ao consumo em dias mais recentes.
+    Como estes dados refletem o consumo diário de energia, há um forte padrão sazonal, mas o consumo é mais semelhante ao consumo de dias mais recentes.
 
 1. Visualiza as diferenças:
 
@@ -114,17 +114,17 @@ Agora que os teus dados estão carregados, podes separá-los em conjuntos de tre
     plt.show()
     ```
 
-    ![dados de treino e teste](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.pt.png)
+    ![dados de treino e teste](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
     Portanto, usar uma janela de tempo relativamente pequena para treinar os dados deve ser suficiente.
 
-    > Nota: Como a função que usamos para ajustar o modelo ARIMA utiliza validação dentro da amostra durante o ajuste, vamos omitir os dados de validação.
+    > Nota: Como a função que usamos para ajustar o modelo ARIMA utiliza validação in-sample durante o ajuste, omitiremos os dados de validação.
 
 ### Preparar os dados para treino
 
-Agora, precisas de preparar os dados para treino, realizando filtragem e escalonamento dos teus dados. Filtra o teu conjunto de dados para incluir apenas os períodos de tempo e colunas necessários, e escala os dados para garantir que sejam projetados no intervalo 0,1.
+Agora, precisas de preparar os dados para o treino, realizando filtragem e escalonamento dos dados. Filtra o teu conjunto de dados para incluir apenas os períodos de tempo e colunas necessários, e escala os dados para garantir que estejam no intervalo 0,1.
 
-1. Filtra o conjunto de dados original para incluir apenas os períodos de tempo mencionados por conjunto e apenas a coluna necessária 'load' mais a data:
+1. Filtra o conjunto de dados original para incluir apenas os períodos de tempo mencionados por conjunto e apenas a coluna necessária 'load', além da data:
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -157,11 +157,11 @@ Agora, precisas de preparar os dados para treino, realizando filtragem e escalon
     plt.show()
     ```
 
-    ![original](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.pt.png)
+    ![original](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > Os dados originais
 
-    ![escalado](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.pt.png)
+    ![escalado](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
     > Os dados escalados
 
@@ -174,23 +174,23 @@ Agora, precisas de preparar os dados para treino, realizando filtragem e escalon
 
 ### Implementar ARIMA
 
-É hora de implementar o ARIMA! Vais agora usar a biblioteca `statsmodels` que instalaste anteriormente.
+É hora de implementar o ARIMA! Agora vais usar a biblioteca `statsmodels` que instalaste anteriormente.
 
 Agora precisas de seguir vários passos:
 
    1. Define o modelo chamando `SARIMAX()` e passando os parâmetros do modelo: parâmetros p, d e q, e parâmetros P, D e Q.
-   2. Prepara o modelo para os dados de treino chamando a função fit().
-   3. Faz previsões chamando a função `forecast()` e especificando o número de passos (o `horizon`) para prever.
+   2. Prepara o modelo para os dados de treino chamando a função `fit()`.
+   3. Faz previsões chamando a função `forecast()` e especificando o número de passos (o `horizon`) a prever.
 
-> 🎓 Para que servem todos esses parâmetros? Num modelo ARIMA, há 3 parâmetros que são usados para ajudar a modelar os principais aspetos de uma série temporal: sazonalidade, tendência e ruído. Esses parâmetros são:
+> 🎓 Para que servem todos esses parâmetros? Num modelo ARIMA, há 3 parâmetros usados para ajudar a modelar os principais aspetos de uma série temporal: sazonalidade, tendência e ruído. Esses parâmetros são:
 
-`p`: o parâmetro associado ao aspeto autoregressivo do modelo, que incorpora valores *passados*.
-`d`: o parâmetro associado à parte integrada do modelo, que afeta a quantidade de *diferença* (🎓 lembra-te da diferença 👆?) a aplicar a uma série temporal.
-`q`: o parâmetro associado à parte de média móvel do modelo.
+`p`: o parâmetro associado ao aspeto autorregressivo do modelo, que incorpora valores *passados*.  
+`d`: o parâmetro associado à parte integrada do modelo, que afeta a quantidade de *diferença* (🎓 lembra-te da diferença 👆?) a aplicar a uma série temporal.  
+`q`: o parâmetro associado à parte de média móvel do modelo.  
 
-> Nota: Se os teus dados tiverem um aspeto sazonal - como estes têm -, usamos um modelo ARIMA sazonal (SARIMA). Nesse caso, precisas de usar outro conjunto de parâmetros: `P`, `D` e `Q`, que descrevem as mesmas associações que `p`, `d` e `q`, mas correspondem aos componentes sazonais do modelo.
+> Nota: Se os teus dados tiverem um aspeto sazonal - como este tem -, usamos um modelo ARIMA sazonal (SARIMA). Nesse caso, precisas de usar outro conjunto de parâmetros: `P`, `D` e `Q`, que descrevem as mesmas associações que `p`, `d` e `q`, mas correspondem aos componentes sazonais do modelo.
 
-1. Começa por definir o valor de horizonte preferido. Vamos tentar 3 horas:
+1. Começa por definir o teu valor de horizonte preferido. Vamos tentar 3 horas:
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -198,7 +198,7 @@ Agora precisas de seguir vários passos:
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Selecionar os melhores valores para os parâmetros de um modelo ARIMA pode ser desafiador, pois é algo subjetivo e demorado. Podes considerar usar uma função `auto_arima()` da biblioteca [`pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
+    Selecionar os melhores valores para os parâmetros de um modelo ARIMA pode ser desafiador, pois é algo subjetivo e demorado. Podes considerar usar uma função `auto_arima()` da [biblioteca `pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
 
 1. Por agora, tenta algumas seleções manuais para encontrar um bom modelo.
 
@@ -212,23 +212,23 @@ Agora precisas de seguir vários passos:
     print(results.summary())
     ```
 
-    Uma tabela de resultados é impressa.
+    Uma tabela de resultados é exibida.
 
 Construíste o teu primeiro modelo! Agora precisamos de encontrar uma forma de avaliá-lo.
 
 ### Avaliar o teu modelo
 
-Para avaliar o teu modelo, podes realizar a chamada validação `walk forward`. Na prática, os modelos de séries temporais são re-treinados cada vez que novos dados ficam disponíveis. Isso permite que o modelo faça a melhor previsão em cada passo de tempo.
+Para avaliar o teu modelo, podes realizar a chamada validação `walk forward`. Na prática, os modelos de séries temporais são re-treinados sempre que novos dados ficam disponíveis. Isso permite que o modelo faça a melhor previsão em cada passo de tempo.
 
-Começando no início da série temporal usando esta técnica, treina o modelo no conjunto de dados de treino. Depois faz uma previsão para o próximo passo de tempo. A previsão é avaliada em relação ao valor conhecido. O conjunto de treino é então expandido para incluir o valor conhecido e o processo é repetido.
+Começando no início da série temporal, usando esta técnica, treina o modelo no conjunto de treino. Depois, faz uma previsão para o próximo passo de tempo. A previsão é avaliada em relação ao valor conhecido. O conjunto de treino é então expandido para incluir o valor conhecido e o processo é repetido.
 
-> Nota: Deves manter a janela do conjunto de treino fixa para um treino mais eficiente, de modo que cada vez que adicionas uma nova observação ao conjunto de treino, removes a observação do início do conjunto.
+> Nota: Deves manter a janela do conjunto de treino fixa para um treino mais eficiente, de modo que, sempre que adicionares uma nova observação ao conjunto de treino, removes a observação do início do conjunto.
 
-Este processo fornece uma estimativa mais robusta de como o modelo irá funcionar na prática. No entanto, tem o custo computacional de criar tantos modelos. Isto é aceitável se os dados forem pequenos ou se o modelo for simples, mas pode ser um problema em escala.
+Este processo fornece uma estimativa mais robusta de como o modelo irá desempenhar-se na prática. No entanto, tem o custo computacional de criar tantos modelos. Isso é aceitável se os dados forem pequenos ou se o modelo for simples, mas pode ser um problema em escala.
 
 A validação walk-forward é o padrão ouro para avaliação de modelos de séries temporais e é recomendada para os teus próprios projetos.
 
-1. Primeiro, cria um ponto de dados de teste para cada passo HORIZON.
+1. Primeiro, cria um ponto de dados de teste para cada passo do HORIZON.
 
     ```python
     test_shifted = test.copy()
@@ -304,7 +304,7 @@ A validação walk-forward é o padrão ouro para avaliação de modelos de sér
     eval_df.head()
     ```
 
-    Saída
+    Saída  
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -313,16 +313,16 @@ A validação walk-forward é o padrão ouro para avaliação de modelos de sér
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-    Observa a previsão dos dados horários, comparada com a carga real. Quão precisa é esta?
+    Observa a previsão dos dados horários em comparação com a carga real. Quão precisa é esta previsão?
 
 ### Verificar a precisão do modelo
 
 Verifica a precisão do teu modelo testando o seu erro percentual absoluto médio (MAPE) em todas as previsões.
-> **🧮 Mostra-me a matemática**
+> **🧮 Mostra-me os cálculos**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.pt.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
-> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) é utilizado para mostrar a precisão da previsão como uma proporção definida pela fórmula acima. A diferença entre o valor real e o previsto é dividida pelo valor real. "O valor absoluto nesta fórmula é somado para cada ponto previsto no tempo e dividido pelo número de pontos ajustados n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) é utilizado para mostrar a precisão das previsões como uma razão definida pela fórmula acima. A diferença entre o valor real e o previsto é dividida pelo valor real. "O valor absoluto deste cálculo é somado para cada ponto previsto no tempo e dividido pelo número de pontos ajustados n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 1. Exprimir a equação em código:
 
     ```python
@@ -379,7 +379,7 @@ Verifica a precisão do teu modelo testando o seu erro percentual absoluto médi
     plt.show()
     ```
 
-    ![um modelo de séries temporais](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.pt.png)
+    ![um modelo de séries temporais](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
 🏆 Um gráfico muito bom, mostrando um modelo com boa precisão. Excelente trabalho!
 
@@ -387,13 +387,13 @@ Verifica a precisão do teu modelo testando o seu erro percentual absoluto médi
 
 ## 🚀Desafio
 
-Explore as formas de testar a precisão de um modelo de séries temporais. Falamos sobre o MAPE nesta lição, mas existem outros métodos que poderia usar? Pesquise sobre eles e anote-os. Um documento útil pode ser encontrado [aqui](https://otexts.com/fpp2/accuracy.html)
+Explore as formas de testar a precisão de um modelo de séries temporais. Abordamos o MAPE nesta lição, mas existem outros métodos que poderia usar? Pesquise sobre eles e anote-os. Um documento útil pode ser encontrado [aqui](https://otexts.com/fpp2/accuracy.html)
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão & Estudo Individual
 
-Esta lição aborda apenas os conceitos básicos de previsão de séries temporais com ARIMA. Dedique algum tempo a aprofundar o seu conhecimento explorando [este repositório](https://microsoft.github.io/forecasting/) e os seus vários tipos de modelos para aprender outras formas de construir modelos de séries temporais.
+Esta lição aborda apenas os fundamentos da previsão de séries temporais com ARIMA. Dedique algum tempo para aprofundar o seu conhecimento explorando [este repositório](https://microsoft.github.io/forecasting/) e os seus vários tipos de modelos para aprender outras formas de construir modelos de séries temporais.
 
 ## Tarefa
 
@@ -402,4 +402,4 @@ Esta lição aborda apenas os conceitos básicos de previsão de séries tempora
 ---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

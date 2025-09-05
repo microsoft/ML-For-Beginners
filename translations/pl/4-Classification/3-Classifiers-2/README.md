@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "808a71076f76ae8f5458862a8edd9215",
-  "translation_date": "2025-09-03T18:09:49+00:00",
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-05T08:25:46+00:00",
   "source_file": "4-Classification/3-Classifiers-2/README.md",
   "language_code": "pl"
 }
@@ -11,11 +11,11 @@ CO_OP_TRANSLATOR_METADATA:
 
 W tej drugiej lekcji dotyczącej klasyfikacji poznasz więcej sposobów klasyfikowania danych numerycznych. Dowiesz się również, jakie są konsekwencje wyboru jednego klasyfikatora zamiast innego.
 
-## [Quiz przed wykładem](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Wymagania wstępne
 
-Zakładamy, że ukończyłeś poprzednie lekcje i masz wyczyszczony zbiór danych w folderze `data`, zapisany jako _cleaned_cuisines.csv_ w głównym katalogu tego czteroczęściowego modułu.
+Zakładamy, że ukończyłeś poprzednie lekcje i masz wyczyszczony zbiór danych w folderze `data`, nazwany _cleaned_cuisines.csv_, znajdujący się w głównym katalogu tego czteroczęściowego kursu.
 
 ### Przygotowanie
 
@@ -25,12 +25,12 @@ Załadowaliśmy Twój plik _notebook.ipynb_ z wyczyszczonym zbiorem danych i pod
 
 Wcześniej nauczyłeś się o różnych opcjach klasyfikacji danych, korzystając z ściągi Microsoftu. Scikit-learn oferuje podobną, ale bardziej szczegółową ściągę, która może pomóc jeszcze bardziej zawęzić wybór estymatorów (inaczej klasyfikatorów):
 
-![Mapa ML ze Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.pl.png)  
+![Mapa ML ze Scikit-learn](../../../../4-Classification/3-Classifiers-2/images/map.png)
 > Wskazówka: [odwiedź tę mapę online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) i klikaj po ścieżkach, aby przeczytać dokumentację.
 
 ### Plan
 
-Ta mapa jest bardzo pomocna, gdy masz jasny obraz swoich danych, ponieważ możesz „przejść” jej ścieżkami do podjęcia decyzji:
+Ta mapa jest bardzo pomocna, gdy masz jasne zrozumienie swoich danych, ponieważ możesz „przechodzić” jej ścieżkami, aby podjąć decyzję:
 
 - Mamy >50 próbek
 - Chcemy przewidzieć kategorię
@@ -38,7 +38,7 @@ Ta mapa jest bardzo pomocna, gdy masz jasny obraz swoich danych, ponieważ może
 - Mamy mniej niż 100 tys. próbek
 - ✨ Możemy wybrać Linear SVC
 - Jeśli to nie zadziała, ponieważ mamy dane numeryczne:
-    - Możemy spróbować ✨ KNeighbors Classifier  
+    - Możemy spróbować ✨ KNeighbors Classifier 
       - Jeśli to nie zadziała, spróbuj ✨ SVC i ✨ Ensemble Classifiers
 
 To bardzo pomocna ścieżka do naśladowania.
@@ -67,9 +67,9 @@ Podążając tą ścieżką, powinniśmy zacząć od zaimportowania potrzebnych 
 
 ## Klasyfikator Linear SVC
 
-Support-Vector Clustering (SVC) to metoda należąca do rodziny maszyn wektorów nośnych (Support-Vector Machines) w technikach uczenia maszynowego (więcej o tym poniżej). W tej metodzie możesz wybrać „jądro” (kernel), aby zdecydować, jak klastrować etykiety. Parametr 'C' odnosi się do 'regularyzacji', która kontroluje wpływ parametrów. Jądro może być jednym z [kilku](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); tutaj ustawiamy je na 'linear', aby wykorzystać liniowy SVC. Domyślnie prawdopodobieństwo jest ustawione na 'false'; tutaj ustawiamy je na 'true', aby uzyskać oszacowania prawdopodobieństwa. Ustawiamy random state na '0', aby przetasować dane i uzyskać prawdopodobieństwa.
+Support-Vector Clustering (SVC) to metoda z rodziny maszyn wektorów nośnych (Support-Vector Machines) w technikach uczenia maszynowego (więcej o nich poniżej). W tej metodzie możesz wybrać „jądro” (kernel), aby zdecydować, jak grupować etykiety. Parametr 'C' odnosi się do 'regularyzacji', która kontroluje wpływ parametrów. Jądro może być jednym z [kilku](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); tutaj ustawiamy je na 'linear', aby wykorzystać liniowy SVC. Domyślnie prawdopodobieństwo jest ustawione na 'false'; tutaj ustawiamy je na 'true', aby uzyskać oszacowania prawdopodobieństwa. Parametr random state ustawiamy na '0', aby przetasować dane i uzyskać prawdopodobieństwa.
 
-### Ćwiczenie - zastosuj liniowy SVC
+### Ćwiczenie - zastosuj Linear SVC
 
 Zacznij od stworzenia tablicy klasyfikatorów. Będziesz stopniowo dodawać do tej tablicy, testując różne metody.
 
@@ -83,7 +83,7 @@ Zacznij od stworzenia tablicy klasyfikatorów. Będziesz stopniowo dodawać do t
     }
     ```
 
-2. Wytrenuj swój model, używając Linear SVC, i wydrukuj raport:
+2. Wytrenuj model, używając Linear SVC, i wyświetl raport:
 
     ```python
     n_classifiers = len(classifiers)
@@ -116,11 +116,11 @@ Zacznij od stworzenia tablicy klasyfikatorów. Będziesz stopniowo dodawać do t
 
 ## Klasyfikator K-Neighbors
 
-K-Neighbors należy do rodziny metod ML „sąsiadów”, które mogą być używane zarówno w uczeniu nadzorowanym, jak i nienadzorowanym. W tej metodzie tworzona jest z góry określona liczba punktów, a dane są zbierane wokół tych punktów, tak aby można było przewidzieć ogólne etykiety dla danych.
+K-Neighbors należy do rodziny metod ML „sąsiadów”, które mogą być używane zarówno w uczeniu nadzorowanym, jak i nienadzorowanym. W tej metodzie tworzona jest z góry określona liczba punktów, a dane są grupowane wokół tych punktów, aby można było przewidzieć ogólne etykiety dla danych.
 
 ### Ćwiczenie - zastosuj klasyfikator K-Neighbors
 
-Poprzedni klasyfikator był dobry i dobrze działał z danymi, ale może uda nam się uzyskać lepszą dokładność. Spróbujmy klasyfikatora K-Neighbors.
+Poprzedni klasyfikator był dobry i dobrze działał z danymi, ale może uda się uzyskać lepszą dokładność. Spróbuj klasyfikatora K-Neighbors.
 
 1. Dodaj linię do swojej tablicy klasyfikatorów (dodaj przecinek po elemencie Linear SVC):
 
@@ -221,7 +221,7 @@ weighted avg       0.73      0.72      0.72      1199
 
 ✅ Dowiedz się więcej o [Klasyfikatorach zespołowych](https://scikit-learn.org/stable/modules/ensemble.html)
 
-Ta metoda uczenia maszynowego „łączy przewidywania kilku podstawowych estymatorów”, aby poprawić jakość modelu. W naszym przykładzie użyliśmy Random Trees i AdaBoost.
+Ta metoda uczenia maszynowego „łączy przewidywania kilku podstawowych estymatorów”, aby poprawić jakość modelu. W naszym przykładzie użyliśmy Random Trees i AdaBoost. 
 
 - [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), metoda uśredniania, buduje „las” „drzew decyzyjnych” z elementami losowości, aby uniknąć przeuczenia. Parametr n_estimators określa liczbę drzew.
 
@@ -231,9 +231,9 @@ Ta metoda uczenia maszynowego „łączy przewidywania kilku podstawowych estyma
 
 ## 🚀 Wyzwanie
 
-Każda z tych technik ma dużą liczbę parametrów, które możesz dostosować. Zbadaj domyślne parametry każdej z nich i zastanów się, co oznaczałoby dostosowanie tych parametrów dla jakości modelu.
+Każda z tych technik ma dużą liczbę parametrów, które możesz dostosować. Zbadaj domyślne parametry każdej z nich i zastanów się, co zmiana tych parametrów oznaczałaby dla jakości modelu.
 
-## [Quiz po wykładzie](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Przegląd i samodzielna nauka
 
@@ -246,4 +246,4 @@ W tych lekcjach pojawia się wiele żargonu, więc poświęć chwilę, aby przej
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o krytycznym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-09-03T18:06:54+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-05T08:47:20+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "pt"
 }
@@ -17,7 +17,7 @@ Uma das utilizações mais práticas da aprendizagem automática é a construç�
 
 > 🎥 Clica na imagem acima para ver um vídeo: Jen Looper constrói uma aplicação web usando dados de culinária classificados
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 Nesta lição vais aprender:
 
@@ -27,9 +27,9 @@ Nesta lição vais aprender:
 
 ## Construir o teu modelo
 
-Construir sistemas de ML aplicados é uma parte importante de aproveitar estas tecnologias para os sistemas empresariais. Podes usar modelos dentro das tuas aplicações web (e assim utilizá-los num contexto offline, se necessário) usando Onnx.
+Construir sistemas de ML aplicados é uma parte importante para aproveitar estas tecnologias nos sistemas empresariais. Podes usar modelos dentro das tuas aplicações web (e assim utilizá-los num contexto offline, se necessário) ao usar Onnx.
 
-Numa [lição anterior](../../3-Web-App/1-Web-App/README.md), construíste um modelo de regressão sobre avistamentos de OVNIs, "pickled" e usaste-o numa aplicação Flask. Embora esta arquitetura seja muito útil de conhecer, trata-se de uma aplicação Python full-stack, e os teus requisitos podem incluir o uso de uma aplicação JavaScript.
+Numa [lição anterior](../../3-Web-App/1-Web-App/README.md), construíste um modelo de regressão sobre avistamentos de OVNIs, "pickled" o modelo e usaste-o numa aplicação Flask. Embora esta arquitetura seja muito útil, trata-se de uma aplicação Python full-stack, e os teus requisitos podem incluir o uso de uma aplicação JavaScript.
 
 Nesta lição, podes construir um sistema básico baseado em JavaScript para inferência. Primeiro, no entanto, precisas de treinar um modelo e convertê-lo para uso com Onnx.
 
@@ -144,7 +144,7 @@ Certifica-te de fazer a conversão com o número correto de tensores. Este conju
         f.write(onx.SerializeToString())
     ```
 
-    > Nota, podes passar [opções](https://onnx.ai/sklearn-onnx/parameterized.html) no teu script de conversão. Neste caso, passámos 'nocl' como True e 'zipmap' como False. Como este é um modelo de classificação, tens a opção de remover ZipMap, que produz uma lista de dicionários (não necessário). `nocl` refere-se à inclusão de informações de classe no modelo. Reduz o tamanho do teu modelo definindo `nocl` como 'True'.
+    > Nota, podes passar [opções](https://onnx.ai/sklearn-onnx/parameterized.html) no teu script de conversão. Neste caso, passámos 'nocl' como True e 'zipmap' como False. Como este é um modelo de classificação, tens a opção de remover ZipMap, que produz uma lista de dicionários (não necessário). `nocl` refere-se à inclusão de informações de classe no modelo. Reduz o tamanho do teu modelo ao definir `nocl` como 'True'.
 
 Executar o notebook completo agora irá construir um modelo Onnx e guardá-lo nesta pasta.
 
@@ -152,7 +152,7 @@ Executar o notebook completo agora irá construir um modelo Onnx e guardá-lo ne
 
 Os modelos Onnx não são muito visíveis no Visual Studio Code, mas há um software gratuito muito bom que muitos investigadores utilizam para visualizar o modelo e garantir que foi construído corretamente. Faz o download do [Netron](https://github.com/lutzroeder/Netron) e abre o ficheiro model.onnx. Podes ver o teu modelo simples visualizado, com os seus 380 inputs e o classificador listado:
 
-![Visualização Netron](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.pt.png)
+![Visualização Netron](../../../../4-Classification/4-Applied/images/netron.png)
 
 Netron é uma ferramenta útil para visualizar os teus modelos.
 
@@ -160,7 +160,7 @@ Agora estás pronto para usar este modelo interessante numa aplicação web. Vam
 
 ## Construir uma aplicação web de recomendação
 
-Podes usar o teu modelo diretamente numa aplicação web. Esta arquitetura também permite que o executes localmente e até offline, se necessário. Começa por criar um ficheiro `index.html` na mesma pasta onde guardaste o teu ficheiro `model.onnx`.
+Podes usar o teu modelo diretamente numa aplicação web. Esta arquitetura também permite que o modelo seja executado localmente e até offline, se necessário. Começa por criar um ficheiro `index.html` na mesma pasta onde guardaste o teu ficheiro `model.onnx`.
 
 1. Neste ficheiro _index.html_, adiciona a seguinte marcação:
 
@@ -221,7 +221,7 @@ Podes usar o teu modelo diretamente numa aplicação web. Esta arquitetura tamb�
             </div> 
     ```
 
-    Repara que cada caixa de seleção tem um valor. Este valor reflete o índice onde o ingrediente é encontrado de acordo com o conjunto de dados. A maçã, por exemplo, nesta lista alfabética, ocupa a quinta coluna, por isso o seu valor é '4', já que começamos a contar em 0. Podes consultar a [folha de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descobrir o índice de um determinado ingrediente.
+    Repara que cada caixa de seleção tem um valor. Este valor reflete o índice onde o ingrediente é encontrado de acordo com o conjunto de dados. A maçã, por exemplo, nesta lista alfabética, ocupa a quinta coluna, por isso o seu valor é '4', já que começamos a contar a partir de 0. Podes consultar a [folha de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descobrir o índice de um determinado ingrediente.
 
     Continuando o teu trabalho no ficheiro index.html, adiciona um bloco de script onde o modelo é chamado após o último `</div>`.
 
@@ -231,7 +231,7 @@ Podes usar o teu modelo diretamente numa aplicação web. Esta arquitetura tamb�
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > O Onnx Runtime é usado para permitir a execução dos teus modelos Onnx numa ampla gama de plataformas de hardware, incluindo otimizações e uma API para uso.
+    > O Onnx Runtime é usado para permitir a execução dos teus modelos Onnx em uma ampla gama de plataformas de hardware, incluindo otimizações e uma API para uso.
 
 1. Uma vez que o Runtime esteja em funcionamento, podes chamá-lo:
 
@@ -299,9 +299,9 @@ Neste código, várias coisas estão a acontecer:
 
 ## Testar a tua aplicação
 
-Abre uma sessão de terminal no Visual Studio Code na pasta onde reside o teu ficheiro index.html. Certifica-te de que tens [http-server](https://www.npmjs.com/package/http-server) instalado globalmente e escreve `http-server` no prompt. Um localhost deve abrir e podes visualizar a tua aplicação web. Verifica qual culinária é recomendada com base em vários ingredientes:
+Abre uma sessão de terminal no Visual Studio Code na pasta onde o teu ficheiro index.html está localizado. Certifica-te de que tens [http-server](https://www.npmjs.com/package/http-server) instalado globalmente e escreve `http-server` no prompt. Um localhost deve abrir e podes visualizar a tua aplicação web. Verifica qual culinária é recomendada com base em vários ingredientes:
 
-![Aplicação web de ingredientes](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.pt.png)
+![Aplicação web de ingredientes](../../../../4-Classification/4-Applied/images/web-app.png)
 
 Parabéns, criaste uma aplicação web de 'recomendação' com alguns campos. Dedica algum tempo a expandir este sistema!
 
@@ -309,9 +309,9 @@ Parabéns, criaste uma aplicação web de 'recomendação' com alguns campos. De
 
 A tua aplicação web é muito minimalista, por isso continua a expandi-la usando ingredientes e os seus índices a partir dos dados [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). Quais combinações de sabores funcionam para criar um prato nacional específico?
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisão & Estudo Individual
+## Revisão & Autoestudo
 
 Embora esta lição tenha apenas tocado na utilidade de criar um sistema de recomendação para ingredientes alimentares, esta área de aplicações de ML é muito rica em exemplos. Lê mais sobre como estes sistemas são construídos:
 
@@ -326,4 +326,4 @@ Embora esta lição tenha apenas tocado na utilidade de criar um sistema de reco
 ---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

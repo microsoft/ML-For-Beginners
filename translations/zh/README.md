@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "b79add6cc71cc7468fa23c9cf42f2327",
-  "translation_date": "2025-09-03T16:09:22+00:00",
+  "original_hash": "612aef7a03204260e940131b09691977",
+  "translation_date": "2025-09-05T08:54:16+00:00",
   "source_file": "README.md",
   "language_code": "zh"
 }
@@ -19,7 +19,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 🌐 多语言支持  
 
-#### 通过 GitHub Action 支持（自动更新且始终保持最新）  
+#### 通过 GitHub Action 支持（自动更新，始终保持最新）  
 
 [French](../fr/README.md) | [Spanish](../es/README.md) | [German](../de/README.md) | [Russian](../ru/README.md) | [Arabic](../ar/README.md) | [Persian (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Chinese (Simplified)](./README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Portuguese (Brazil)](../br/README.md) | [Italian](../it/README.md) | [Polish](../pl/README.md) | [Turkish](../tr/README.md) | [Greek](../el/README.md) | [Thai](../th/README.md) | [Swedish](../sv/README.md) | [Danish](../da/README.md) | [Norwegian](../no/README.md) | [Finnish](../fi/README.md) | [Dutch](../nl/README.md) | [Hebrew](../he/README.md) | [Vietnamese](../vi/README.md) | [Indonesian](../id/README.md) | [Malay](../ms/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Swahili](../sw/README.md) | [Hungarian](../hu/README.md) | [Czech](../cs/README.md) | [Slovak](../sk/README.md) | [Romanian](../ro/README.md) | [Bulgarian](../bg/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Croatian](../hr/README.md) | [Slovenian](../sl/README.md) | [Ukrainian](../uk/README.md) | [Burmese (Myanmar)](../my/README.md)  
 
@@ -27,13 +27,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![Azure AI Discord](https://dcbadge.limes.pink/api/server/kzRShWzttr)](https://discord.gg/kzRShWzttr)  
 
-# 机器学习入门 - 课程大纲  
+# 初学者的机器学习课程  
 
-> 🌍 跟随我们环游世界，通过世界文化探索机器学习 🌍  
+> 🌍 跟随我们一起环游世界，通过世界文化学习机器学习 🌍  
 
-微软的云倡导者团队很高兴为大家提供一个为期12周、共26节课的课程，内容涵盖**机器学习**的基础知识。在这门课程中，您将学习通常被称为**经典机器学习**的内容，主要使用 Scikit-learn 库，并避免涉及深度学习（深度学习内容在我们的 [AI 入门课程](https://aka.ms/ai4beginners) 中有详细介绍）。您还可以将这些课程与我们的 ['数据科学入门课程'](https://aka.ms/ds4beginners) 搭配学习！  
+微软的云倡导者团队很高兴为大家提供一个为期12周、共26节课的机器学习课程。在这个课程中，你将学习被称为**经典机器学习**的内容，主要使用 Scikit-learn 库，并避免涉及深度学习（深度学习内容在我们的 [AI for Beginners' curriculum](https://aka.ms/ai4beginners) 中有详细介绍）。同时可以将这些课程与我们的 ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners) 搭配学习！  
 
-跟随我们环游世界，将这些经典技术应用于来自世界各地的数据。每节课都包括课前和课后测验、完成课程的书面指导、解决方案、作业等。我们的项目式教学法让您在实践中学习，这是一种被证明能够让新技能更牢固掌握的方式。  
+跟随我们环游世界，应用这些经典技术处理来自世界各地的数据。每节课都包括课前和课后测验、完成课程的书面指导、解决方案、作业等。我们的项目式教学法让你在实践中学习，这是一种被证明能够让新技能更牢固掌握的方法。  
 
 **✍️ 特别感谢我们的作者** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu 和 Amy Boyd  
 
@@ -45,13 +45,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 # 开始学习  
 
-按照以下步骤操作：  
+按照以下步骤：  
 1. **Fork 仓库**：点击页面右上角的 "Fork" 按钮。  
 2. **克隆仓库**：`git clone https://github.com/microsoft/ML-For-Beginners.git`  
 
 > [在我们的 Microsoft Learn 集合中找到本课程的所有额外资源](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)  
 
-**[学生](https://aka.ms/student-page)**，要使用此课程，请将整个仓库 fork 到您自己的 GitHub 账户，并独立或与小组一起完成练习：  
+**[学生](https://aka.ms/student-page)**，要使用此课程，请将整个仓库 fork 到自己的 GitHub 账户，并独立或与小组一起完成练习：  
 
 - 从课前测验开始。  
 - 阅读课程内容并完成活动，在每个知识检查点暂停并反思。  
@@ -59,25 +59,25 @@ CO_OP_TRANSLATOR_METADATA:
 - 完成课后测验。  
 - 完成挑战。  
 - 完成作业。  
-- 完成一个课程组后，访问 [讨论板](https://github.com/microsoft/ML-For-Beginners/discussions)，通过填写适当的 PAT 评分表“公开学习”。PAT 是一个进度评估工具，您可以通过填写评分表来进一步学习。您还可以对其他 PAT 评分表进行互动，以便我们共同学习。  
+- 完成一个课程组后，访问 [讨论板](https://github.com/microsoft/ML-For-Beginners/discussions)，通过填写适当的 PAT 评分表“公开学习”。PAT 是一个进度评估工具，通过填写评分表可以进一步学习。你还可以对其他 PAT 评分表进行互动，以便我们共同学习。  
 
-> 为了进一步学习，我们建议您参考这些 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) 模块和学习路径。  
+> 为了进一步学习，我们推荐以下 [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) 模块和学习路径。  
 
-**教师们**，我们已经 [提供了一些建议](for-teachers.md) 来帮助您使用此课程。  
+**教师**，我们提供了一些 [建议](for-teachers.md) 来帮助您使用此课程。  
 
 ---
 
 ## 视频讲解  
 
-部分课程提供了短视频形式的讲解。您可以在课程中找到这些视频，或者点击下方图片访问 [Microsoft Developer YouTube 频道上的机器学习入门播放列表](https://aka.ms/ml-beginners-videos)。  
+部分课程提供了短视频形式的讲解。你可以在课程中找到这些视频，或者点击下方图片访问 [Microsoft Developer YouTube 频道上的 ML for Beginners 播放列表](https://aka.ms/ml-beginners-videos)。  
 
-[![机器学习入门横幅](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.zh.png)](https://aka.ms/ml-beginners-videos)  
+[![ML for beginners banner](../../images/ml-for-beginners-video-banner.png)](https://aka.ms/ml-beginners-videos)  
 
 ---
 
 ## 团队介绍  
 
-[![宣传视频](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)  
+[![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)  
 
 **Gif 作者** [Mohit Jaisal](https://linkedin.com/in/mohitjaisal)  
 
@@ -87,9 +87,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 教学法  
 
-我们在设计这门课程时选择了两个教学原则：确保课程是**基于项目的**，并且包含**频繁的测验**。此外，这门课程还有一个共同的**主题**，以增强课程的连贯性。  
+我们在设计课程时选择了两个教学原则：确保课程是**基于项目的**，并且包含**频繁的测验**。此外，这个课程还有一个共同的**主题**，使其更具连贯性。  
 
-通过确保内容与项目相结合，学习过程变得更加有趣，学生对概念的记忆也会得到增强。此外，课前的低风险测验可以让学生专注于学习主题，而课后的测验可以进一步巩固知识。这门课程设计灵活有趣，可以完整学习，也可以部分学习。项目从简单开始，到12周课程结束时逐渐变得复杂。这门课程还包括一个关于机器学习实际应用的附录，可以作为额外学分或讨论的基础。  
+通过确保内容与项目相结合，学习过程变得更加有趣，学生对概念的记忆也会得到增强。此外，课前的低风险测验可以让学生专注于学习主题，而课后的测验则进一步巩固记忆。这门课程设计灵活有趣，可以完整学习，也可以部分学习。项目从简单开始，到12周课程结束时逐渐变得复杂。课程还包括一个关于机器学习实际应用的附录，可以作为额外学分或讨论的基础。  
 
 > 查看我们的 [行为准则](CODE_OF_CONDUCT.md)、[贡献指南](CONTRIBUTING.md) 和 [翻译指南](TRANSLATIONS.md)。我们欢迎您的建设性反馈！  
 
@@ -97,27 +97,27 @@ CO_OP_TRANSLATOR_METADATA:
 
 - 可选的手绘笔记  
 - 可选的补充视频  
-- 视频讲解（仅部分课程）  
-- 课前热身测验  
+- 视频讲解（部分课程提供）  
+- [课前热身测验](https://ff-quizzes.netlify.app/en/ml/)  
 - 书面课程内容  
-- 对于基于项目的课程，提供逐步指导以完成项目  
+- 对于基于项目的课程，提供逐步指导如何完成项目  
 - 知识检查  
 - 挑战  
 - 补充阅读材料  
 - 作业  
-- 课后测验  
+- [课后测验](https://ff-quizzes.netlify.app/en/ml/)  
 
-> **关于语言的说明**：这些课程主要使用 Python 编写，但许多课程也提供 R 版本。要完成 R 课程，请转到 `/solution` 文件夹并查找 R 课程。这些课程包含 `.rmd` 扩展名，表示 **R Markdown** 文件，它可以简单定义为在 `Markdown 文档` 中嵌入 `代码块`（R 或其他语言）和 `YAML 头部`（指导如何格式化输出，例如 PDF）。因此，它是数据科学的一个优秀创作框架，因为它允许您将代码、输出和想法结合起来，用 Markdown 记录下来。此外，R Markdown 文档可以渲染为 PDF、HTML 或 Word 等输出格式。  
+> **关于语言的说明**：这些课程主要使用 Python 编写，但许多课程也提供 R 版本。要完成 R 课程，请访问 `/solution` 文件夹并查找 R 课程。这些课程文件包含 `.rmd` 扩展名，表示 **R Markdown** 文件，它可以简单定义为在 `Markdown 文档` 中嵌入 `代码块`（R 或其他语言）和 `YAML 头部`（指导如何格式化输出，如 PDF）。因此，它是数据科学的一个优秀创作框架，因为它允许你将代码、输出和想法结合起来，用 Markdown 写下来。此外，R Markdown 文档可以渲染为 PDF、HTML 或 Word 等输出格式。  
 
-> **关于测验的说明**：所有测验都包含在 [Quiz App 文件夹](../../quiz-app) 中，共有52个测验，每个测验包含三个问题。这些测验在课程中有链接，但测验应用可以在本地运行；请按照 `quiz-app` 文件夹中的说明在本地托管或部署到 Azure。  
+> **关于测验的说明**：所有测验都包含在 [Quiz App 文件夹](../../quiz-app) 中，共有52个测验，每个测验包含三个问题。这些测验在课程中有链接，但测验应用可以本地运行；请按照 `quiz-app` 文件夹中的说明在本地托管或部署到 Azure。  
 
-| 课程编号 |                             主题                              |                   课程分组                   | 学习目标                                                                                                             |                                                              课程链接                                                               |                        作者                        |  
-| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |  
-|      01       |                机器学习简介                |      [简介](1-Introduction/README.md)       | 学习机器学习的基本概念                                                                                |                                             [课程](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |  
-|      02       |                机器学习的历史                 |      [简介](1-Introduction/README.md)       | 学习这一领域的历史背景                                                                                         |                                            [课程](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen 和 Amy                      |  
+| 课程编号 |                             主题                              |                   课程分组                   | 学习目标                                                                                                             |                                                              课程链接                                                               |                        作者                        |
+| :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
+|      01       |                机器学习简介                |      [简介](1-Introduction/README.md)       | 学习机器学习的基本概念                                                                                |                                             [课程](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                机器学习的历史                 |      [简介](1-Introduction/README.md)       | 学习这一领域的历史背景                                                                                         |                                            [课程](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen 和 Amy                      |
 |      03       |                 公平性与机器学习                  |      [简介](1-Introduction/README.md)       | 学生在构建和应用机器学习模型时应考虑哪些重要的哲学问题？ |                                              [课程](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |  
-|      04       |                机器学习的技术                 |      [简介](1-Introduction/README.md)       | 机器学习研究人员使用哪些技术来构建机器学习模型？                                                                       |                                          [课程](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris 和 Jen                     |  
-|      05       |                   回归分析简介                   |        [Regression](2-Regression/README.md)         | 使用 Python 和 Scikit-learn 开始学习回归模型                                                                  |         
+|      04       |                机器学习技术                 |      [Introduction](1-Introduction/README.md)       | 机器学习研究人员用什么技术来构建机器学习模型？                                                                       |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris 和 Jen                     |
+|      05       |                   回归简介                   |        [Regression](2-Regression/README.md)         | 使用 Python 和 Scikit-learn 开始学习回归模型                                                                  |         
 <ul><li>[Python](2-Regression/1-Tools/README.md)</li><li>[R](../../2-Regression/1-Tools/solution/R/lesson_1.html)</li></ul>         |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
 |      06       |                北美南瓜价格 🎃                |        [Regression](2-Regression/README.md)         | 可视化并清理数据，为机器学习做准备                                                                                  |          <ul><li>[Python](2-Regression/2-Data/README.md)</li><li>[R](../../2-Regression/2-Data/solution/R/lesson_2.html)</li></ul>          |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
 |      07       |                北美南瓜价格 🎃                |        [Regression](2-Regression/README.md)         | 构建线性和多项式回归模型                                                                                   |        <ul><li>[Python](2-Regression/3-Linear/README.md)</li><li>[R](../../2-Regression/3-Linear/solution/R/lesson_3.html)</li></ul>        |      <ul><li>Jen 和 Dmitry</li><li>Eric Wanjau</li></ul>       |
@@ -139,7 +139,7 @@ CO_OP_TRANSLATOR_METADATA:
 |      23       |  ⚡️ 世界电力使用 ⚡️ - 使用 SVR 进行时间序列预测  |        [Time series](7-TimeSeries/README.md)        | 使用支持向量回归器进行时间序列预测                                                                           |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
 |      24       |             强化学习简介             | [Reinforcement learning](8-Reinforcement/README.md) | 使用 Q-Learning 学习强化学习简介                                                                          |                                             [Python](8-Reinforcement/1-QLearning/README.md)                                              |                        Dmitry                        |
 |      25       |                 帮助 Peter 避开狼 🐺                  | [Reinforcement learning](8-Reinforcement/README.md) | 强化学习 Gym                                                                                                      |                                                [Python](8-Reinforcement/2-Gym/README.md)                                                 |                        Dmitry                        |
-|  后记   |            真实世界中的机器学习场景和应用            |      [ML in the Wild](9-Real-World/README.md)       | 有趣且发人深省的经典机器学习真实世界应用                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
+|  后记   |            真实世界中的机器学习场景和应用            |      [ML in the Wild](9-Real-World/README.md)       | 有趣且发人深省的经典机器学习真实世界应用                                                               |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         团队                         |
 |  后记   |            使用 RAI 仪表板进行机器学习模型调试          |      [ML in the Wild](9-Real-World/README.md)       | 使用负责任的 AI 仪表板组件进行机器学习模型调试                                                              |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
 > [在我们的 Microsoft Learn 集合中找到本课程的所有额外资源](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
@@ -174,4 +174,4 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 
 **免责声明**：  
-本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们概不负责。
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。因使用本翻译而导致的任何误解或误读，我们概不负责。

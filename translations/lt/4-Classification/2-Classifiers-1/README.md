@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9579f42e3ff5114c58379cc9e186a828",
-  "translation_date": "2025-09-03T18:00:15+00:00",
+  "original_hash": "1a6e9e46b34a2e559fbbfc1f95397c7b",
+  "translation_date": "2025-09-05T07:58:37+00:00",
   "source_file": "4-Classification/2-Classifiers-1/README.md",
   "language_code": "lt"
 }
@@ -13,14 +13,14 @@ CO_OP_TRANSLATOR_METADATA:
 
 Naudodami šį duomenų rinkinį su įvairiais klasifikatoriais, _prognozuosite tam tikrą nacionalinę virtuvę pagal ingredientų grupę_. Tuo pačiu sužinosite daugiau apie tai, kaip algoritmai gali būti naudojami klasifikavimo užduotims.
 
-## [Prieš pamokos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/)
+## [Prieš paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 # Pasiruošimas
 
-Jei baigėte [1 pamoką](../1-Introduction/README.md), įsitikinkite, kad _cleaned_cuisines.csv_ failas yra šakniniame `/data` aplanke, skirtame šioms keturioms pamokoms.
+Jei baigėte [1 pamoką](../1-Introduction/README.md), įsitikinkite, kad _cleaned_cuisines.csv_ failas yra `/data` aplanke, skirtame šioms keturioms pamokoms.
 
 ## Užduotis - prognozuoti nacionalinę virtuvę
 
-1. Dirbdami šios pamokos _notebook.ipynb_ aplanke, importuokite tą failą kartu su Pandas biblioteka:
+1. Dirbdami šios pamokos _notebook.ipynb_ aplanke, importuokite failą kartu su Pandas biblioteka:
 
     ```python
     import pandas as pd
@@ -84,40 +84,40 @@ Jei baigėte [1 pamoką](../1-Introduction/README.md), įsitikinkite, kad _clean
 |    3 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      0 |        0 | 0 |
 |    4 |      0 |        0 |     0 |          0 |     0 |            0 |       0 |        0 |         0 |         0 |  ... |       0 |           0 |          0 |                       0 |    0 |    0 |    0 |     0 |      1 |        0 | 0 |
 
-Dabar esate pasiruošę mokyti savo modelį!
+Dabar esate pasiruošę treniruoti savo modelį!
 
 ## Klasifikatoriaus pasirinkimas
 
-Kai jūsų duomenys yra švarūs ir paruošti mokymui, turite nuspręsti, kokį algoritmą naudoti užduočiai atlikti.
+Kai jūsų duomenys yra švarūs ir paruošti mokymui, turite nuspręsti, kokį algoritmą naudoti.
 
-Scikit-learn klasifikavimą priskiria prie Prižiūrimo Mokymosi, ir šioje kategorijoje rasite daugybę būdų klasifikuoti. [Įvairovė](https://scikit-learn.org/stable/supervised_learning.html) iš pradžių gali atrodyti gana paini. Šie metodai apima klasifikavimo technikas:
+Scikit-learn klasifikavimą priskiria prie Prižiūrimo Mokymosi (Supervised Learning), ir šioje kategorijoje rasite daugybę būdų klasifikuoti. [Įvairovė](https://scikit-learn.org/stable/supervised_learning.html) iš pradžių gali atrodyti gana paini. Šie metodai apima klasifikavimo technikas:
 
 - Linijiniai modeliai
-- Atramos vektorinės mašinos
+- Atramos vektorių mašinos (Support Vector Machines)
 - Stochastinis gradientinis nusileidimas
 - Artimiausi kaimynai
 - Gauso procesai
 - Sprendimų medžiai
 - Ansamblio metodai (balsavimo klasifikatorius)
-- Daugiaklasiai ir daugiatiksliai algoritmai (daugiaklasis ir daugiatikslis klasifikavimas, daugiaklasis-daugiatikslis klasifikavimas)
+- Daugiaklasiai ir daugiatiksliai algoritmai (daugiaklasis ir daugiatikslis klasifikavimas)
 
-> Taip pat galite naudoti [neuroninius tinklus duomenims klasifikuoti](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), tačiau tai neįeina į šios pamokos apimtį.
+> Taip pat galite naudoti [neuroninius tinklus duomenims klasifikuoti](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification), tačiau tai nėra šios pamokos tema.
 
-### Ką pasirinkti?
+### Kurį klasifikatorių pasirinkti?
 
-Taigi, kurį klasifikatorių pasirinkti? Dažnai, išbandant kelis ir ieškant geriausio rezultato, galima rasti tinkamą. Scikit-learn siūlo [palyginimą](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) sukurto duomenų rinkinio, lyginant KNeighbors, SVC dviem būdais, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB ir QuadraticDiscrinationAnalysis, vizualizuojant rezultatus:
+Taigi, kurį klasifikatorių pasirinkti? Dažnai verta išbandyti kelis ir ieškoti geriausio rezultato. Scikit-learn siūlo [palyginimą](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) sukurto duomenų rinkinio pagrindu, lyginant KNeighbors, SVC dviem būdais, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB ir QuadraticDiscriminationAnalysis, vizualizuojant rezultatus:
 
-![klasifikatorių palyginimas](../../../../translated_images/comparison.edfab56193a85e7fdecbeaa1b1f8c99e94adbf7178bed0de902090cf93d6734f.lt.png)
-> Grafikai generuoti Scikit-learn dokumentacijoje
+![klasifikatorių palyginimas](../../../../4-Classification/2-Classifiers-1/images/comparison.png)
+> Grafikai iš Scikit-learn dokumentacijos
 
-> AutoML šią problemą išsprendžia paprastai, atlikdamas šiuos palyginimus debesyje, leidžiant jums pasirinkti geriausią algoritmą jūsų duomenims. Išbandykite [čia](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
+> AutoML išsprendžia šią problemą efektyviai, atlikdamas šiuos palyginimus debesyje, leidžiant jums pasirinkti geriausią algoritmą jūsų duomenims. Išbandykite [čia](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
 
 ### Geresnis požiūris
 
 Geresnis būdas nei spėliojimas yra vadovautis idėjomis iš šio atsisiunčiamo [ML Cheat Sheet](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott). Čia sužinome, kad mūsų daugiaklasio problemos atveju turime keletą pasirinkimų:
 
-![daugiaklasio problemos cheat sheet](../../../../translated_images/cheatsheet.07a475ea444d22234cb8907a3826df5bdd1953efec94bd18e4496f36ff60624a.lt.png)
-> Microsoft Algoritmų Cheat Sheet dalis, apibūdinanti daugiaklasio klasifikavimo galimybes
+![daugiaklasio problemos cheat sheet](../../../../4-Classification/2-Classifiers-1/images/cheatsheet.png)
+> Microsoft algoritmų cheat sheet dalis, apibūdinanti daugiaklasio klasifikavimo galimybes
 
 ✅ Atsisiųskite šį cheat sheet, atsispausdinkite ir pakabinkite ant sienos!
 
@@ -125,21 +125,21 @@ Geresnis būdas nei spėliojimas yra vadovautis idėjomis iš šio atsisiunčiam
 
 Pažiūrėkime, ar galime logiškai pasirinkti skirtingus metodus, atsižvelgdami į turimus apribojimus:
 
-- **Neuroniniai tinklai per sudėtingi**. Atsižvelgiant į mūsų švarų, bet minimalų duomenų rinkinį ir tai, kad mokymą vykdome lokaliai per užrašų knygeles, neuroniniai tinklai yra per sudėtingi šiai užduočiai.
-- **Nenaudojame dviejų klasių klasifikatoriaus**. Mes nenaudojame dviejų klasių klasifikatoriaus, todėl tai atmeta one-vs-all metodą.
+- **Neuroniniai tinklai per sudėtingi**. Atsižvelgiant į mūsų švarius, bet minimalius duomenis ir tai, kad mokymą vykdome lokaliai per užrašų knygeles, neuroniniai tinklai yra per sudėtingi šiai užduočiai.
+- **Dviejų klasių klasifikatorius netinka**. Mes nenaudojame dviejų klasių klasifikatoriaus, todėl tai atmeta one-vs-all metodą.
 - **Sprendimų medis arba logistinė regresija galėtų veikti**. Sprendimų medis galėtų veikti, arba logistinė regresija daugiaklasiams duomenims.
-- **Daugiaklasiai sustiprinti sprendimų medžiai sprendžia kitą problemą**. Daugiaklasiai sustiprinti sprendimų medžiai labiausiai tinka neparametrinėms užduotims, pvz., užduotims, skirtoms kurti reitingus, todėl jie mums nėra naudingi.
+- **Daugiaklasiai sustiprinti sprendimų medžiai sprendžia kitą problemą**. Daugiaklasiai sustiprinti sprendimų medžiai labiausiai tinka neparametrinėms užduotims, pvz., užduotims, skirtoms sudaryti reitingus, todėl jie mums nėra naudingi.
 
 ### Naudojant Scikit-learn 
 
 Naudosime Scikit-learn analizuoti mūsų duomenis. Tačiau yra daug būdų naudoti logistinę regresiją Scikit-learn. Pažvelkite į [parametrus, kuriuos galima perduoti](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
-Iš esmės yra du svarbūs parametrai - `multi_class` ir `solver` - kuriuos reikia nurodyti, kai prašome Scikit-learn atlikti logistinę regresiją. `multi_class` vertė taiko tam tikrą elgesį. Solver vertė nurodo, kokį algoritmą naudoti. Ne visi solver gali būti derinami su visomis `multi_class` vertėmis.
+Iš esmės yra du svarbūs parametrai - `multi_class` ir `solver` - kuriuos reikia nurodyti, kai prašome Scikit-learn atlikti logistinę regresiją. `multi_class` reikšmė taiko tam tikrą elgesį. Solver reikšmė nurodo, kokį algoritmą naudoti. Ne visi solver gali būti derinami su visomis `multi_class` reikšmėmis.
 
 Pagal dokumentaciją, daugiaklasio atveju mokymo algoritmas:
 
 - **Naudoja one-vs-rest (OvR) schemą**, jei `multi_class` parinktis nustatyta kaip `ovr`
-- **Naudoja kryžminio entropijos praradimą**, jei `multi_class` parinktis nustatyta kaip `multinomial`. (Šiuo metu `multinomial` parinktis palaikoma tik ‘lbfgs’, ‘sag’, ‘saga’ ir ‘newton-cg’ solver.)
+- **Naudoja kryžminio entropijos nuostolį**, jei `multi_class` parinktis nustatyta kaip `multinomial`. (Šiuo metu `multinomial` parinktis palaikoma tik su ‘lbfgs’, ‘sag’, ‘saga’ ir ‘newton-cg’ solver.)
 
 > 🎓 Čia "schema" gali būti 'ovr' (one-vs-rest) arba 'multinomial'. Kadangi logistinė regresija iš esmės skirta dvejetainiam klasifikavimui, šios schemos leidžia jai geriau tvarkyti daugiaklasio klasifikavimo užduotis. [šaltinis](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
@@ -147,12 +147,12 @@ Pagal dokumentaciją, daugiaklasio atveju mokymo algoritmas:
 
 Scikit-learn siūlo šią lentelę, kad paaiškintų, kaip solver sprendžia skirtingus iššūkius, kuriuos kelia skirtingos duomenų struktūros:
 
-![solver](../../../../translated_images/solvers.5fc648618529e627dfac29b917b3ccabda4b45ee8ed41b0acb1ce1441e8d1ef1.lt.png)
+![solver](../../../../4-Classification/2-Classifiers-1/images/solvers.png)
 
-## Užduotis - padalinti duomenis
+## Užduotis - padalyti duomenis
 
 Galime sutelkti dėmesį į logistinę regresiją pirmajam mokymo bandymui, nes neseniai apie ją mokėtės ankstesnėje pamokoje.
-Padalinkite savo duomenis į mokymo ir testavimo grupes, naudodami `train_test_split()`:
+Padalykite savo duomenis į mokymo ir testavimo grupes, naudodami `train_test_split()`:
 
 ```python
 X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
@@ -160,7 +160,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 ## Užduotis - taikyti logistinę regresiją
 
-Kadangi naudojate daugiaklasio atvejį, turite pasirinkti, kokią _schemą_ naudoti ir kokį _solver_ nustatyti. Naudokite LogisticRegression su multi_class nustatymu ir **liblinear** solver mokymui.
+Kadangi naudojate daugiaklasio atvejį, turite pasirinkti, kokią _schemą_ naudoti ir kokį _solver_ nustatyti. Naudokite LogisticRegression su multi_class nustatytu kaip `ovr` ir solver nustatytu kaip `liblinear` mokymui.
 
 1. Sukurkite logistinę regresiją su multi_class nustatytu kaip `ovr` ir solver nustatytu kaip `liblinear`:
 
@@ -172,8 +172,8 @@ Kadangi naudojate daugiaklasio atvejį, turite pasirinkti, kokią _schemą_ naud
     print ("Accuracy is {}".format(accuracy))
     ```
 
-    ✅ Išbandykite kitą solver, pvz., `lbfgs`, kuris dažnai nustatomas kaip numatytasis
-> Pastaba, naudokite Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) funkciją, kad prireikus išlygintumėte savo duomenis.
+    ✅ Išbandykite kitą solver, pvz., `lbfgs`, kuris dažnai nustatomas kaip numatytasis.
+> Pastaba, naudokite Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) funkciją, kad prireikus suplokštintumėte savo duomenis.
 Tikslumas yra geras - daugiau nei **80%**!
 
 1. Galite pamatyti šio modelio veikimą, išbandydami vieną duomenų eilutę (#50):
@@ -204,7 +204,7 @@ Tikslumas yra geras - daugiau nei **80%**!
     topPrediction.head()
     ```
 
-    Rezultatas atspausdinamas - Indijos virtuvė yra geriausia spėjimo versija, su gera tikimybe:
+    Rezultatas atspausdinamas - Indijos virtuvė yra geriausia spėjimo galimybė, su gera tikimybe:
 
     |          |        0 |
     | -------: | -------: |
@@ -216,7 +216,7 @@ Tikslumas yra geras - daugiau nei **80%**!
 
     ✅ Ar galite paaiškinti, kodėl modelis yra gana tikras, kad tai Indijos virtuvė?
 
-1. Gaukite daugiau detalių, atspausdindami klasifikacijos ataskaitą, kaip tai darėte regresijos pamokose:
+1. Gaukite daugiau informacijos, atspausdindami klasifikacijos ataskaitą, kaip tai darėte regresijos pamokose:
 
     ```python
     y_pred = model.predict(X_test)
@@ -236,18 +236,18 @@ Tikslumas yra geras - daugiau nei **80%**!
 
 ## 🚀Iššūkis
 
-Šioje pamokoje naudojote išvalytus duomenis, kad sukurtumėte mašininio mokymosi modelį, galintį prognozuoti nacionalinę virtuvę pagal ingredientų sąrašą. Skirkite laiko perskaityti daugybę Scikit-learn siūlomų galimybių duomenų klasifikavimui. Gilinkitės į „sprendiklio“ (solver) koncepciją, kad suprastumėte, kas vyksta užkulisiuose.
+Šioje pamokoje naudojote išvalytus duomenis, kad sukurtumėte mašininio mokymosi modelį, galintį prognozuoti nacionalinę virtuvę pagal ingredientų seriją. Skirkite laiko perskaityti daugybę Scikit-learn siūlomų galimybių duomenų klasifikavimui. Gilinkitės į „sprendiklio“ (solver) koncepciją, kad suprastumėte, kas vyksta užkulisiuose.
 
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/)
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Apžvalga ir savarankiškas mokymasis
 
-Gilinkitės į logistinės regresijos matematiką [šioje pamokoje](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
+Pasigilinkite į matematiką, slypinčią už logistinės regresijos, [šioje pamokoje](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
 ## Užduotis 
 
 [Studijuokite sprendiklius](assignment.md)
 
 ---
 
-**Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, atsiradusius dėl šio vertimo naudojimo.
+**Atsakomybės atsisakymas**:  
+Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius naudojant šį vertimą.

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f400075e003e749fdb0d6b3b4787a99",
-  "translation_date": "2025-09-03T16:49:56+00:00",
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T09:19:19+00:00",
   "source_file": "7-TimeSeries/2-ARIMA/README.md",
   "language_code": "hk"
 }
@@ -13,9 +13,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 [![ARIMA 簡介](https://img.youtube.com/vi/IUSk-YDau10/0.jpg)](https://youtu.be/IUSk-YDau10 "ARIMA 簡介")
 
-> 🎥 點擊上方圖片觀看影片：ARIMA 模型的簡要介紹。示例使用 R 語言，但概念具有普遍性。
+> 🎥 點擊上方圖片觀看影片：ARIMA 模型的簡要介紹。範例使用 R 語言，但概念是通用的。
 
-## [課前測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 簡介
 
@@ -23,19 +23,19 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 基本概念
 
-在使用 ARIMA 之前，你需要了解一些基本概念：
+在使用 ARIMA 之前，你需要了解以下一些概念：
 
-- 🎓 **平穩性**。從統計學的角度來看，平穩性指的是數據的分佈在時間移動時不會改變。非平穩數據則會因趨勢而波動，必須進行轉換才能進行分析。例如，季節性可能會引入數據波動，可以通過“季節性差分”過程來消除。
+- 🎓 **平穩性**。在統計學中，平穩性指的是數據的分佈在時間移動時不會改變。非平穩數據則會因趨勢而波動，必須進行轉換才能進行分析。例如，季節性可能會引入數據波動，可以通過“季節性差分”過程來消除。
 
 - 🎓 **[差分](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**。差分是指將非平穩數據轉換為平穩數據的過程，通過移除其非恆定趨勢來實現。“差分可以消除時間序列中的水平變化，消除趨勢和季節性，從而穩定時間序列的均值。” [Shixiong 等人的論文](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA 在時間序列中的應用
 
-讓我們拆解 ARIMA 的各部分，以更好地理解它如何幫助我們建模時間序列並進行預測。
+讓我們拆解 ARIMA 的各個部分，以更好地理解它如何幫助我們建模時間序列並進行預測。
 
-- **AR - 自回歸**。自回歸模型顧名思義，會“回溯”時間，分析數據中的過去值並對其進行假設。這些過去的值被稱為“滯後”。例如，顯示每月鉛筆銷售數據的數據集。每月的銷售總額被視為數據集中的“演變變量”。該模型建立在“感興趣的演變變量回歸於其自身的滯後（即先前）值”之上。[維基百科](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - 自回歸**。自回歸模型顧名思義，會“回溯”分析數據中的過去值並對其進行假設。這些過去的值被稱為“滯後”。例如，顯示鉛筆月銷量的數據。每個月的銷量總數被視為數據集中的“演變變量”。該模型的構建方式是“演變變量與其自身的滯後（即之前的）值進行回歸。” [維基百科](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - 整合**。與類似的 'ARMA' 模型不同，ARIMA 中的 'I' 指的是其 *[整合](https://wikipedia.org/wiki/Order_of_integration)* 特性。通過應用差分步驟來消除非平穩性，數據被“整合”。
+- **I - 積分**。與類似的 'ARMA' 模型不同，ARIMA 中的 'I' 指的是其 *[積分](https://wikipedia.org/wiki/Order_of_integration)* 特性。通過應用差分步驟來消除非平穩性，數據被“積分”。
 
 - **MA - 移動平均**。該模型的 [移動平均](https://wikipedia.org/wiki/Moving-average_model) 部分指的是通過觀察滯後的當前和過去值來確定輸出變量。
 
@@ -43,13 +43,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 練習 - 建立 ARIMA 模型
 
-打開本課中的 [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) 資料夾，找到 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) 文件。
+打開本課程中的 [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) 資料夾，找到 [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) 文件。
 
-1. 運行 notebook 以載入 `statsmodels` Python 庫；你將需要它來建立 ARIMA 模型。
+1. 運行 notebook 以載入 `statsmodels` Python 庫；你將需要它來使用 ARIMA 模型。
 
 1. 載入必要的庫。
 
-1. 現在，載入幾個有助於繪製數據的庫：
+1. 現在，載入幾個對繪製數據有用的庫：
 
     ```python
     import os
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
     energy.head(10)
     ```
 
-1. 繪製 2012 年 1 月至 2014 年 12 月的所有可用能源數據。這些數據應該沒有意外，因為我們在上一課中已經看過：
+1. 繪製 2012 年 1 月至 2014 年 12 月的所有可用能源數據。這些數據應該不會有驚喜，因為我們在上一課中已經看過：
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -92,9 +92,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 創建訓練和測試數據集
 
-現在數據已載入，你可以將其分為訓練集和測試集。你將在訓練集上訓練模型。像往常一樣，模型訓練完成後，你將使用測試集評估其準確性。你需要確保測試集覆蓋的時間段晚於訓練集，以確保模型不會從未來的時間段中獲取信息。
+現在數據已載入，你可以將其分為訓練集和測試集。你將在訓練集上訓練模型。像往常一樣，模型訓練完成後，你將使用測試集評估其準確性。你需要確保測試集涵蓋訓練集之後的時間段，以確保模型不會從未來的時間段中獲取信息。
 
-1. 將 2014 年 9 月 1 日至 10 月 31 日的兩個月期間分配給訓練集。測試集將包括 2014 年 11 月 1 日至 12 月 31 日的兩個月期間：
+1. 將 2014 年 9 月 1 日至 10 月 31 日的兩個月分配給訓練集。測試集將包括 2014 年 11 月 1 日至 12 月 31 日的兩個月：
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
@@ -114,7 +114,7 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![訓練和測試數據](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.hk.png)
+    ![訓練和測試數據](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
     因此，使用相對較小的時間窗口來訓練數據應該足夠。
 
@@ -122,9 +122,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 為訓練準備數據
 
-現在，你需要通過過濾和縮放數據來準備訓練數據。過濾數據集以僅包含所需的時間段和列，並縮放以確保數據投影在 0 到 1 的區間內。
+現在，你需要通過過濾和縮放數據來準備訓練數據。過濾數據集以僅包含所需的時間段和列，並縮放以確保數據投影在 0,1 區間內。
 
-1. 過濾原始數據集以僅包含上述每組的時間段，並僅包含所需的“load”列和日期：
+1. 過濾原始數據集以僅包含每個集合中上述的時間段，並僅包含所需的“load”列和日期：
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -157,15 +157,15 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![原始數據](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.hk.png)
+    ![原始數據](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > 原始數據
 
-    ![縮放後的數據](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.hk.png)
+    ![縮放後數據](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
-    > 縮放後的數據
+    > 縮放後數據
 
-1. 現在你已校準了縮放後的數據，可以縮放測試數據：
+1. 現在你已校準縮放後的數據，可以縮放測試數據：
 
     ```python
     test['load'] = scaler.transform(test)
@@ -179,18 +179,18 @@ CO_OP_TRANSLATOR_METADATA:
 接下來需要遵循幾個步驟：
 
    1. 通過調用 `SARIMAX()` 並傳入模型參數：p、d 和 q 參數，以及 P、D 和 Q 參數來定義模型。
-   2. 通過調用 `fit()` 函數為訓練數據準備模型。
+   2. 通過調用 `fit()` 函數準備訓練數據的模型。
    3. 通過調用 `forecast()` 函數並指定預測步數（即“預測範圍”）進行預測。
 
-> 🎓 這些參數是什麼意思？在 ARIMA 模型中，有 3 個參數用於幫助建模時間序列的主要方面：季節性、趨勢和噪聲。這些參數是：
+> 🎓 這些參數是什麼意思？在 ARIMA 模型中，有 3 個參數用於幫助建模時間序列的主要方面：季節性、趨勢和噪音。這些參數是：
 
 `p`: 與模型的自回歸部分相關的參數，包含*過去*的值。
-`d`: 與模型的整合部分相關的參數，影響應用於時間序列的*差分*次數（🎓 記得差分 👆？）。
+`d`: 與模型的積分部分相關的參數，影響應用於時間序列的*差分*次數（🎓 還記得差分嗎 👆？）。
 `q`: 與模型的移動平均部分相關的參數。
 
-> 注意：如果你的數據具有季節性特徵（此數據確實如此），我們使用季節性 ARIMA 模型（SARIMA）。在這種情況下，你需要使用另一組參數：`P`、`D` 和 `Q`，它們描述與 `p`、`d` 和 `q` 相同的關聯，但對應於模型的季節性部分。
+> 注意：如果你的數據具有季節性特徵（例如本數據），我們使用季節性 ARIMA 模型（SARIMA）。在這種情況下，你需要使用另一組參數：`P`、`D` 和 `Q`，它們與 `p`、`d` 和 `q` 的關聯相同，但對應於模型的季節性部分。
 
-1. 首先設置你偏好的預測範圍值。我們試試 3 小時：
+1. 首先設置你偏好的預測範圍值。讓我們試試 3 小時：
 
     ```python
     # Specify the number of steps to forecast ahead
@@ -214,7 +214,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     一個結果表格被打印出來。
 
-你已經建立了第一個模型！現在我們需要找到一種方法來評估它。
+你已經建立了第一個模型！現在我們需要找到評估它的方法。
 
 ### 評估你的模型
 
@@ -222,7 +222,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 使用此技術從時間序列的開頭開始，對訓練數據集進行模型訓練。然後對下一個時間步驟進行預測。預測結果與已知值進行評估。然後擴展訓練集以包含已知值，並重複該過程。
 
-> 注意：你應該保持訓練集窗口固定以提高訓練效率，因此每次向訓練集添加新觀測值時，應從訓練集的開頭移除觀測值。
+> 注意：為了更高效地進行訓練，你應該保持訓練集窗口固定，這樣每次向訓練集添加新觀測值時，你都會從集合的開頭移除觀測值。
 
 此過程提供了模型在實際操作中的更穩健估計。然而，這需要付出創建大量模型的計算成本。如果數據量小或模型簡單，這是可以接受的，但在大規模情況下可能會成為問題。
 
@@ -280,7 +280,7 @@ CO_OP_TRANSLATOR_METADATA:
         print(t+1, ': predicted =', yhat, 'expected =', obs)
     ```
 
-    你可以看到訓練過程：
+    你可以觀察訓練過程：
 
     ```output
     2014-12-30 00:00:00
@@ -320,11 +320,11 @@ CO_OP_TRANSLATOR_METADATA:
 通過測試所有預測的平均絕對百分比誤差 (MAPE) 來檢查模型的準確性。
 > **🧮 展示數學公式**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.hk.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
 > [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) 用於顯示預測準確度，通過上述公式定義為一個比率。實際值與預測值之間的差異被實際值除。
 >
-> 「在這個計算中，每個預測點的絕對值相加，然後再除以擬合點的數量 n。」[維基百科](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> 「在這個計算中，絕對值會對每個預測點進行求和，然後再除以擬合點的數量 n。」[維基百科](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 1. 用程式碼表示方程式：
 
     ```python
@@ -339,7 +339,7 @@ CO_OP_TRANSLATOR_METADATA:
     print('One step forecast MAPE: ', (mape(eval_df[eval_df['h'] == 't+1']['prediction'], eval_df[eval_df['h'] == 't+1']['actual']))*100, '%')
     ```
 
-    單步預測的 MAPE：0.5570581332313952 %
+    單步預測 MAPE：0.5570581332313952 %
 
 1. 輸出多步預測的 MAPE：
 
@@ -381,21 +381,21 @@ CO_OP_TRANSLATOR_METADATA:
     plt.show()
     ```
 
-    ![時間序列模型](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.hk.png)
+    ![時間序列模型](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 一個非常漂亮的圖表，顯示出模型具有良好的準確度。做得好！
+🏆 非常漂亮的圖表，顯示了一個準確度良好的模型。做得好！
 
 ---
 
 ## 🚀挑戰
 
-深入了解測試時間序列模型準確度的方法。本課程提到了 MAPE，但是否還有其他方法可以使用？研究它們並加以註解。一份有用的文件可以在[這裡](https://otexts.com/fpp2/accuracy.html)找到。
+深入了解測試時間序列模型準確度的方法。本課程中我們提到了 MAPE，但是否還有其他方法可以使用？研究它們並加以註解。一份有用的文件可以在[這裡](https://otexts.com/fpp2/accuracy.html)找到。
 
-## [課後測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 回顧與自學
 
-本課程僅涉及 ARIMA 時間序列預測的基礎知識。花些時間深入了解[這個倉庫](https://microsoft.github.io/forecasting/)及其各種模型類型，學習其他建立時間序列模型的方法。
+本課程僅涉及 ARIMA 時間序列預測的基礎知識。花些時間深入了解 [這個資源庫](https://microsoft.github.io/forecasting/) 及其各種模型類型，學習其他構建時間序列模型的方法。
 
 ## 作業
 
@@ -404,4 +404,4 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 
 **免責聲明**：  
-本文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始語言的文件應被視為權威來源。對於重要資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。
+此文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。

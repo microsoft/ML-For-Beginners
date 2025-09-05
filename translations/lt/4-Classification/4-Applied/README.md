@@ -1,37 +1,37 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-09-03T18:05:50+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-05T07:59:28+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "lt"
 }
 -->
 # Sukurkite virtuvės rekomendacijų žiniatinklio programą
 
-Šioje pamokoje sukursite klasifikavimo modelį, naudodami kai kurias technikas, kurias išmokote ankstesnėse pamokose, ir skanų virtuvės duomenų rinkinį, naudotą visoje šioje serijoje. Be to, sukursite nedidelę žiniatinklio programą, kad galėtumėte naudoti išsaugotą modelį, pasitelkdami Onnx žiniatinklio vykdymo aplinką.
+Šioje pamokoje sukursite klasifikavimo modelį, naudodami kai kurias technikas, kurias išmokote ankstesnėse pamokose, ir skanų virtuvės duomenų rinkinį, naudotą visoje šioje serijoje. Be to, sukursite nedidelę žiniatinklio programą, kuri naudos išsaugotą modelį, pasitelkdama Onnx žiniatinklio vykdymo aplinką.
 
-Viena iš naudingiausių praktinių mašininio mokymosi panaudojimo sričių yra rekomendacijų sistemų kūrimas, ir šiandien galite žengti pirmąjį žingsnį šia kryptimi!
+Vienas iš naudingiausių praktinių mašininio mokymosi pritaikymų yra rekomendacijų sistemų kūrimas, ir šiandien galite žengti pirmąjį žingsnį šia kryptimi!
 
 [![Šios žiniatinklio programos pristatymas](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Taikomas ML")
 
 > 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą: Jen Looper kuria žiniatinklio programą, naudodama klasifikuotus virtuvės duomenis
 
-## [Prieš pamoką - testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Prieš pamoką - testas](https://ff-quizzes.netlify.app/en/ml/)
 
 Šioje pamokoje išmoksite:
 
-- Kaip sukurti modelį ir išsaugoti jį Onnx formatu
+- Kaip sukurti modelį ir išsaugoti jį kaip Onnx modelį
 - Kaip naudoti Netron modelio peržiūrai
 - Kaip naudoti savo modelį žiniatinklio programoje prognozėms
 
 ## Sukurkite savo modelį
 
-Taikomosios ML sistemos kūrimas yra svarbi šių technologijų panaudojimo verslo sistemose dalis. Modelius galite naudoti savo žiniatinklio programose (ir taip naudoti juos neprisijungus, jei reikia), pasitelkdami Onnx.
+Taikomosios ML sistemos kūrimas yra svarbi šių technologijų pritaikymo jūsų verslo sistemoms dalis. Modelius galite naudoti savo žiniatinklio programose (taigi, jei reikia, juos galima naudoti ir neprisijungus) pasitelkdami Onnx.
 
 [Ankstesnėje pamokoje](../../3-Web-App/1-Web-App/README.md) sukūrėte regresijos modelį apie NSO stebėjimus, „marinuotą“ jį ir panaudojote Flask programoje. Nors ši architektūra yra labai naudinga, tai yra pilnos apimties Python programa, o jūsų reikalavimai gali apimti JavaScript programos naudojimą.
 
-Šioje pamokoje galite sukurti pagrindinę JavaScript pagrįstą sistemą prognozėms. Tačiau pirmiausia reikia išmokyti modelį ir konvertuoti jį naudoti su Onnx.
+Šioje pamokoje galite sukurti pagrindinę JavaScript pagrįstą sistemą prognozėms. Tačiau pirmiausia turite išmokyti modelį ir konvertuoti jį naudoti su Onnx.
 
 ## Užduotis - išmokykite klasifikavimo modelį
 
@@ -44,7 +44,7 @@ Pirmiausia išmokykite klasifikavimo modelį, naudodami išvalytą virtuvės duo
     import pandas as pd 
     ```
 
-    Jums reikės '[skl2onnx](https://onnx.ai/sklearn-onnx/)', kad galėtumėte konvertuoti savo Scikit-learn modelį į Onnx formatą.
+    Jums reikės '[skl2onnx](https://onnx.ai/sklearn-onnx/)', kad padėtų konvertuoti jūsų Scikit-learn modelį į Onnx formatą.
 
 1. Tada dirbkite su savo duomenimis taip, kaip darėte ankstesnėse pamokose, skaitydami CSV failą naudodami `read_csv()`:
 
@@ -72,7 +72,7 @@ Pirmiausia išmokykite klasifikavimo modelį, naudodami išvalytą virtuvės duo
 
 Naudosime 'SVC' biblioteką, kuri pasižymi geru tikslumu.
 
-1. Importuokite tinkamas Scikit-learn bibliotekas:
+1. Importuokite tinkamas bibliotekas iš Scikit-learn:
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -124,9 +124,9 @@ Naudosime 'SVC' biblioteką, kuri pasižymi geru tikslumu.
 
 ### Konvertuokite savo modelį į Onnx
 
-Įsitikinkite, kad konvertavimas atliekamas su tinkamu Tensor skaičiumi. Šiame duomenų rinkinyje yra 380 ingredientų, todėl turite nurodyti šį skaičių `FloatTensorType`:
+Įsitikinkite, kad konvertavimas atliekamas su tinkamu tensorių skaičiumi. Šiame duomenų rinkinyje yra 380 ingredientų, todėl turite nurodyti šį skaičių `FloatTensorType`:
 
-1. Konvertuokite, naudodami Tensor skaičių 380.
+1. Konvertuokite, naudodami tensorių skaičių 380.
 
     ```python
     from skl2onnx import convert_sklearn
@@ -144,23 +144,23 @@ Naudosime 'SVC' biblioteką, kuri pasižymi geru tikslumu.
         f.write(onx.SerializeToString())
     ```
 
-    > Pastaba: galite perduoti [parinktis](https://onnx.ai/sklearn-onnx/parameterized.html) savo konvertavimo skripte. Šiuo atveju mes nustatėme 'nocl', kad būtų True, ir 'zipmap', kad būtų False. Kadangi tai yra klasifikavimo modelis, turite galimybę pašalinti ZipMap, kuris sukuria žodynų sąrašą (nereikalinga). `nocl` reiškia, kad klasės informacija įtraukiama į modelį. Sumažinkite savo modelio dydį, nustatydami `nocl` kaip 'True'.
+    > Pastaba: galite perduoti [parinktis](https://onnx.ai/sklearn-onnx/parameterized.html) savo konvertavimo skripte. Šiuo atveju mes nustatėme 'nocl' kaip True ir 'zipmap' kaip False. Kadangi tai yra klasifikavimo modelis, turite galimybę pašalinti ZipMap, kuris sukuria žodynų sąrašą (nereikalinga). `nocl` reiškia, kad klasės informacija įtraukta į modelį. Sumažinkite savo modelio dydį, nustatydami `nocl` kaip 'True'.
 
 Vykdydami visą užrašų knygelę dabar sukursite Onnx modelį ir išsaugosite jį šiame aplanke.
 
 ## Peržiūrėkite savo modelį
 
-Onnx modeliai nėra labai matomi Visual Studio Code, tačiau yra labai gera nemokama programinė įranga, kurią daugelis tyrėjų naudoja modelio vizualizavimui, kad įsitikintų, jog jis tinkamai sukurtas. Atsisiųskite [Netron](https://github.com/lutzroeder/Netron) ir atidarykite savo model.onnx failą. Galite pamatyti savo paprastą modelį, vizualizuotą su 380 įėjimų ir klasifikatoriumi:
+Onnx modeliai nėra labai matomi Visual Studio Code, tačiau yra labai gera nemokama programinė įranga, kurią daugelis tyrėjų naudoja modelio vizualizavimui, kad įsitikintų, jog jis tinkamai sukurtas. Atsisiųskite [Netron](https://github.com/lutzroeder/Netron) ir atidarykite savo model.onnx failą. Galite pamatyti savo paprastą modelį, vizualizuotą su 380 įvestimis ir klasifikatoriumi:
 
-![Netron vizualizacija](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.lt.png)
+![Netron vizualizacija](../../../../4-Classification/4-Applied/images/netron.png)
 
 Netron yra naudingas įrankis modelių peržiūrai.
 
-Dabar esate pasiruošę naudoti šį puikų modelį žiniatinklio programoje. Sukurkime programą, kuri bus naudinga, kai žiūrėsite į savo šaldytuvą ir bandysite suprasti, kokį patiekalą galite pagaminti iš likusių ingredientų, kaip nustatė jūsų modelis.
+Dabar esate pasiruošę naudoti šį puikų modelį žiniatinklio programoje. Sukurkime programą, kuri bus naudinga, kai žiūrėsite į savo šaldytuvą ir bandysite suprasti, kokią kombinaciją likusių ingredientų galite naudoti, kad pagamintumėte tam tikrą virtuvės patiekalą, kaip nustatyta jūsų modeliu.
 
 ## Sukurkite rekomendacijų žiniatinklio programą
 
-Galite naudoti savo modelį tiesiogiai žiniatinklio programoje. Ši architektūra taip pat leidžia ją paleisti lokaliai ir net neprisijungus, jei reikia. Pradėkite kurdami `index.html` failą tame pačiame aplanke, kuriame išsaugojote savo `model.onnx` failą.
+Galite tiesiogiai naudoti savo modelį žiniatinklio programoje. Ši architektūra taip pat leidžia ją paleisti vietoje ir net neprisijungus, jei reikia. Pradėkite kurdami `index.html` failą tame pačiame aplanke, kuriame išsaugojote savo `model.onnx` failą.
 
 1. Šiame faile _index.html_ pridėkite šį žymėjimą:
 
@@ -221,9 +221,9 @@ Galite naudoti savo modelį tiesiogiai žiniatinklio programoje. Ši architektū
             </div> 
     ```
 
-    Atkreipkite dėmesį, kad kiekvienam žymimajam langeliui priskiriama vertė. Tai atspindi indeksą, kuriame ingredientas yra pagal duomenų rinkinį. Pavyzdžiui, obuolys šiame abėcėliniame sąraše užima penktą stulpelį, todėl jo vertė yra '4', nes pradedame skaičiuoti nuo 0. Galite pasikonsultuoti su [ingredientų skaičiuokle](../../../../4-Classification/data/ingredient_indexes.csv), kad sužinotumėte konkretaus ingrediento indeksą.
+    Atkreipkite dėmesį, kad kiekvienam žymimajam langeliui priskiriama vertė. Tai atspindi indeksą, kuriame ingredientas yra pagal duomenų rinkinį. Pavyzdžiui, obuolys šiame abėcėliniame sąraše užima penktą stulpelį, todėl jo vertė yra '4', nes pradedame skaičiuoti nuo 0. Galite pasikonsultuoti su [ingredientų skaičiuokle](../../../../4-Classification/data/ingredient_indexes.csv), kad sužinotumėte tam tikro ingrediento indeksą.
 
-    Tęsdami darbą index.html faile, pridėkite scenarijaus bloką, kuriame modelis iškviečiamas po paskutinės uždaromos `</div>` žymės.
+    Tęsdami darbą index.html faile, pridėkite scenarijaus bloką, kuriame modelis bus iškviestas po paskutinės uždaromos `</div>` žymės.
 
 1. Pirmiausia importuokite [Onnx Runtime](https://www.onnxruntime.ai/):
 
@@ -231,7 +231,7 @@ Galite naudoti savo modelį tiesiogiai žiniatinklio programoje. Ši architektū
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Onnx Runtime naudojamas, kad būtų galima paleisti Onnx modelius įvairiose aparatinės įrangos platformose, įskaitant optimizacijas ir API naudojimą.
+    > Onnx Runtime naudojamas, kad būtų galima paleisti jūsų Onnx modelius įvairiose aparatinės įrangos platformose, įskaitant optimizacijas ir API naudojimą.
 
 1. Kai Runtime yra vietoje, galite jį iškviesti:
 
@@ -287,33 +287,33 @@ Galite naudoti savo modelį tiesiogiai žiniatinklio programoje. Ši architektū
 
 Šiame kode vyksta keli dalykai:
 
-1. Sukūrėte 380 galimų reikšmių (1 arba 0) masyvą, kuris bus nustatytas ir išsiųstas modeliui prognozėms, priklausomai nuo to, ar žymimasis langelis pažymėtas.
+1. Sukūrėte 380 galimų verčių masyvą (1 arba 0), kuris bus nustatytas ir išsiųstas modeliui prognozėms, priklausomai nuo to, ar žymimasis langelis pažymėtas.
 2. Sukūrėte žymimųjų langelių masyvą ir būdą nustatyti, ar jie buvo pažymėti, funkcijoje `init`, kuri iškviečiama, kai programa paleidžiama. Kai žymimasis langelis pažymėtas, masyvas `ingredients` pakeičiamas, kad atspindėtų pasirinktą ingredientą.
 3. Sukūrėte funkciją `testCheckboxes`, kuri tikrina, ar pažymėtas bent vienas žymimasis langelis.
 4. Naudojate funkciją `startInference`, kai paspaudžiamas mygtukas, ir, jei pažymėtas bent vienas žymimasis langelis, pradedate prognozavimą.
 5. Prognozavimo rutina apima:
    1. Asinchroninį modelio įkėlimą
-   2. Tensor struktūros sukūrimą, kuri bus siunčiama modeliui
-   3. 'feeds' sukūrimą, kuris atspindi `float_input` įvestį, kurią sukūrėte mokydami savo modelį (galite naudoti Netron, kad patikrintumėte šį pavadinimą)
-   4. Šių 'feeds' siuntimą modeliui ir atsakymo laukimą
+   2. Tensor struktūros sukūrimą, kuri bus išsiųsta modeliui
+   3. „Feeds“ sukūrimą, kuris atspindi `float_input` įvestį, kurią sukūrėte mokydami savo modelį (galite naudoti Netron, kad patikrintumėte šį pavadinimą)
+   4. Šių „feeds“ siuntimą modeliui ir atsakymo laukimą
 
 ## Išbandykite savo programą
 
-Atidarykite terminalo sesiją Visual Studio Code aplanke, kuriame yra jūsų index.html failas. Įsitikinkite, kad turite [http-server](https://www.npmjs.com/package/http-server) įdiegtą globaliai, ir terminale įveskite `http-server`. Turėtų atsidaryti localhost, ir galėsite peržiūrėti savo žiniatinklio programą. Patikrinkite, kokia virtuvė rekomenduojama pagal įvairius ingredientus:
+Atidarykite terminalo sesiją Visual Studio Code aplanke, kuriame yra jūsų index.html failas. Įsitikinkite, kad turite [http-server](https://www.npmjs.com/package/http-server) įdiegtą globaliai, ir įveskite `http-server` komandoje. Turėtų atsidaryti localhost, ir galėsite peržiūrėti savo žiniatinklio programą. Patikrinkite, kokia virtuvė rekomenduojama pagal įvairius ingredientus:
 
-![ingredientų žiniatinklio programa](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.lt.png)
+![ingredientų žiniatinklio programa](../../../../4-Classification/4-Applied/images/web-app.png)
 
-Sveikiname, sukūrėte „rekomendacijų“ žiniatinklio programą su keliais laukais. Skirkite laiko šiai sistemai tobulinti!
+Sveikiname, sukūrėte „rekomendacijų“ žiniatinklio programą su keliais laukais. Skirkite šiek tiek laiko šios sistemos plėtojimui!
 
 ## 🚀Iššūkis
 
-Jūsų žiniatinklio programa yra labai minimali, todėl toliau ją tobulinkite, naudodami ingredientus ir jų indeksus iš [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) duomenų. Kokie skonio deriniai tinka tam tikram nacionaliniam patiekalui sukurti?
+Jūsų žiniatinklio programa yra labai minimali, todėl toliau ją plėtokite, naudodami ingredientus ir jų indeksus iš [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) duomenų. Kokios skonio kombinacijos tinka tam tikram nacionaliniam patiekalui sukurti?
 
-## [Po pamokos - testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Po pamokos - testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Apžvalga ir savarankiškas mokymasis
 
-Nors ši pamoka tik trumpai palietė maisto ingredientų rekomendacijų sistemos kūrimo naudingumą, ši ML taikymo sritis yra labai turtinga pavyzdžiais. Perskaitykite daugiau apie tai, kaip šios sistemos kuriamos:
+Nors ši pamoka tik trumpai palietė maisto ingredientų rekomendacijų sistemos kūrimo naudingumą, ši ML pritaikymo sritis yra labai turtinga pavyzdžiais. Skaitykite daugiau apie tai, kaip šios sistemos kuriamos:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
@@ -326,4 +326,4 @@ Nors ši pamoka tik trumpai palietė maisto ingredientų rekomendacijų sistemos
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.

@@ -1,13 +1,13 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f400075e003e749fdb0d6b3b4787a99",
-  "translation_date": "2025-09-03T16:46:42+00:00",
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-05T07:48:02+00:00",
   "source_file": "7-TimeSeries/2-ARIMA/README.md",
   "language_code": "lt"
 }
 -->
-# Laiko eilučių prognozavimas su ARIMA
+# Laiko eilučių prognozavimas naudojant ARIMA
 
 Ankstesnėje pamokoje sužinojote apie laiko eilučių prognozavimą ir įkėlėte duomenų rinkinį, rodantį elektros apkrovos svyravimus per tam tikrą laikotarpį.
 
@@ -15,37 +15,37 @@ Ankstesnėje pamokoje sužinojote apie laiko eilučių prognozavimą ir įkėlė
 
 > 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą: Trumpas ARIMA modelių pristatymas. Pavyzdys pateiktas R kalba, tačiau koncepcijos yra universalios.
 
-## [Prieš pamokos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Prieš paskaitą - testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Įvadas
 
-Šioje pamokoje sužinosite apie specifinį būdą kurti modelius naudojant [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA modeliai ypač tinka analizuoti duomenis, kurie rodo [ne-stacionarumą](https://wikipedia.org/wiki/Stationary_process).
+Šioje pamokoje sužinosite, kaip kurti modelius naudojant [ARIMA: *A*uto*R*egressive *I*ntegrated *M*oving *A*verage](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average). ARIMA modeliai ypač tinka analizuoti duomenis, kurie pasižymi [ne-stacionarumu](https://wikipedia.org/wiki/Stationary_process).
 
 ## Bendros sąvokos
 
 Norint dirbti su ARIMA, reikia suprasti keletą pagrindinių sąvokų:
 
-- 🎓 **Stacionarumas**. Statistiniame kontekste stacionarumas reiškia duomenis, kurių pasiskirstymas nesikeičia, kai jie perkelti laike. Ne-stacionarūs duomenys rodo svyravimus dėl tendencijų, kurias reikia transformuoti, kad būtų galima analizuoti. Pavyzdžiui, sezoniškumas gali sukelti duomenų svyravimus, kuriuos galima pašalinti taikant „sezoninį diferencijavimą“.
+- 🎓 **Stacionarumas**. Statistiniame kontekste stacionarumas reiškia duomenis, kurių pasiskirstymas nesikeičia laiko atžvilgiu. Ne-stacionarūs duomenys rodo svyravimus dėl tendencijų, kurias reikia transformuoti, kad būtų galima analizuoti. Pavyzdžiui, sezoniškumas gali sukelti duomenų svyravimus, kuriuos galima pašalinti taikant „sezoninį diferencijavimą“.
 
-- 🎓 **[Diferencijavimas](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Diferencijavimas statistiniame kontekste reiškia procesą, kurio metu ne-stacionarūs duomenys transformuojami į stacionarius, pašalinant jų nekonstantinę tendenciją. „Diferencijavimas pašalina laiko eilutės lygio pokyčius, panaikindamas tendencijas ir sezoniškumą, taip stabilizuodamas laiko eilutės vidurkį.“ [Shixiong et al straipsnis](https://arxiv.org/abs/1904.07632)
+- 🎓 **[Diferencijavimas](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Diferencijavimas – tai procesas, kurio metu ne-stacionarūs duomenys transformuojami į stacionarius, pašalinant jų nekonstantinę tendenciją. „Diferencijavimas pašalina laiko eilutės lygio pokyčius, eliminuoja tendencijas ir sezoniškumą, taip stabilizuodamas laiko eilutės vidurkį.“ [Shixiong et al straipsnis](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA laiko eilučių kontekste
 
-Išskaidykime ARIMA dalis, kad geriau suprastume, kaip ji padeda modeliuoti laiko eilutes ir atlikti prognozes.
+Išskaidykime ARIMA dalis, kad geriau suprastume, kaip šis modelis padeda analizuoti laiko eilutes ir atlikti prognozes.
 
-- **AR - AutoRegressive (autoregresija)**. Autoregresiniai modeliai, kaip rodo pavadinimas, „žvelgia atgal“ laike, analizuodami ankstesnes jūsų duomenų reikšmes ir darydami prielaidas apie jas. Šios ankstesnės reikšmės vadinamos „atsilikimais“ (lags). Pavyzdžiui, duomenys, rodantys mėnesinius pieštukų pardavimus. Kiekvieno mėnesio pardavimų suma būtų laikoma „kintamuoju, kuris evoliucionuoja“ duomenų rinkinyje. Šis modelis kuriamas kaip „evoliucionuojantis kintamasis yra regresuojamas pagal savo ankstesnes (t. y., ankstesnes) reikšmes.“ [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
+- **AR - autoregresija**. Autoregresiniai modeliai analizuoja ankstesnes jūsų duomenų reikšmes ir daro prielaidas apie jas. Šios ankstesnės reikšmės vadinamos „atsilikimais“ (lags). Pavyzdžiui, duomenys, rodantys mėnesinius pieštukų pardavimus. Kiekvieno mėnesio pardavimų suma būtų laikoma „besivystančiu kintamuoju“ duomenų rinkinyje. Šis modelis kuriamas taip, kad „besivystantis kintamasis yra regresuojamas pagal savo ankstesnes reikšmes“. [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
-- **I - Integrated (integracija)**. Skirtingai nuo panašių „ARMA“ modelių, „I“ ARIMA modelyje reiškia jo *[integruotą](https://wikipedia.org/wiki/Order_of_integration)* aspektą. Duomenys yra „integruoti“, kai taikomi diferencijavimo žingsniai, siekiant pašalinti ne-stacionarumą.
+- **I - integravimas**. Skirtingai nuo panašių 'ARMA' modelių, 'I' ARIMA modelyje reiškia jo *[integruotą](https://wikipedia.org/wiki/Order_of_integration)* aspektą. Duomenys yra „integruojami“, kai taikomi diferencijavimo žingsniai, siekiant pašalinti ne-stacionarumą.
 
-- **MA - Moving Average (slankusis vidurkis)**. [Slankiojo vidurkio](https://wikipedia.org/wiki/Moving-average_model) aspektas šiame modelyje reiškia išvesties kintamąjį, kuris nustatomas stebint dabartines ir ankstesnes atsilikimų reikšmes.
+- **MA - slenkamasis vidurkis**. [Slenkamojo vidurkio](https://wikipedia.org/wiki/Moving-average_model) aspektas reiškia, kad išvesties kintamasis nustatomas stebint dabartines ir ankstesnes atsilikimų reikšmes.
 
-Esmė: ARIMA naudojama tam, kad modelis kuo tiksliau atitiktų specifinę laiko eilučių duomenų formą.
+Esmė: ARIMA naudojamas tam, kad modelis kuo tiksliau atitiktų specifinę laiko eilučių duomenų formą.
 
 ## Užduotis - sukurkite ARIMA modelį
 
-Atidarykite [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) aplanką šioje pamokoje ir suraskite [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) failą.
+Atidarykite šios pamokos [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA/working) aplanką ir suraskite [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/2-ARIMA/working/notebook.ipynb) failą.
 
-1. Paleiskite užrašų knygelę, kad įkeltumėte `statsmodels` Python biblioteką; jums jos reikės ARIMA modeliams.
+1. Paleiskite užrašinę, kad įkeltumėte `statsmodels` Python biblioteką; jos prireiks ARIMA modeliams.
 
 1. Įkelkite reikalingas bibliotekas.
 
@@ -79,7 +79,7 @@ Atidarykite [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
     energy.head(10)
     ```
 
-1. Nubraižykite visus turimus energijos duomenis nuo 2012 m. sausio iki 2014 m. gruodžio. Neturėtų būti jokių staigmenų, nes šiuos duomenis matėme ankstesnėje pamokoje:
+1. Nubraižykite visus turimus energijos duomenis nuo 2012 m. sausio iki 2014 m. gruodžio. Neturėtų būti jokių netikėtumų, nes šiuos duomenis matėme ankstesnėje pamokoje:
 
     ```python
     energy.plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -92,9 +92,9 @@ Atidarykite [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
 
 ### Sukurkite mokymo ir testavimo duomenų rinkinius
 
-Dabar jūsų duomenys įkelti, todėl galite juos padalyti į mokymo ir testavimo rinkinius. Modelį treniruosite naudodami mokymo rinkinį. Kaip įprasta, kai modelio mokymas bus baigtas, jo tikslumą įvertinsite naudodami testavimo rinkinį. Turite užtikrinti, kad testavimo rinkinys apimtų vėlesnį laikotarpį nei mokymo rinkinys, kad modelis negautų informacijos iš ateities laikotarpių.
+Dabar, kai jūsų duomenys įkelti, galite juos padalyti į mokymo ir testavimo rinkinius. Modelį treniruosite naudodami mokymo rinkinį. Kaip įprasta, kai modelis baigs mokymąsi, jo tikslumą įvertinsite naudodami testavimo rinkinį. Turite užtikrinti, kad testavimo rinkinys apimtų vėlesnį laikotarpį nei mokymo rinkinys, kad modelis negautų informacijos iš ateities laikotarpių.
 
-1. Mokymo rinkiniui priskirkite dviejų mėnesių laikotarpį nuo 2014 m. rugsėjo 1 d. iki spalio 31 d. Testavimo rinkinys apims dviejų mėnesių laikotarpį nuo 2014 m. lapkričio 1 d. iki gruodžio 31 d.:
+1. Paskirkite dviejų mėnesių laikotarpį nuo 2014 m. rugsėjo 1 d. iki spalio 31 d. mokymo rinkiniui. Testavimo rinkinys apims dviejų mėnesių laikotarpį nuo 2014 m. lapkričio 1 d. iki gruodžio 31 d.:
 
     ```python
     train_start_dt = '2014-11-01 00:00:00'
@@ -114,17 +114,17 @@ Dabar jūsų duomenys įkelti, todėl galite juos padalyti į mokymo ir testavim
     plt.show()
     ```
 
-    ![mokymo ir testavimo duomenys](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.lt.png)
+    ![mokymo ir testavimo duomenys](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
-    Todėl, naudojant palyginti mažą laiko langą duomenų mokymui, turėtų pakakti.
+    Todėl, naudojant santykinai mažą laiko langą duomenų mokymui, turėtų pakakti.
 
-    > Pastaba: Kadangi funkcija, kurią naudojame ARIMA modelio pritaikymui, naudoja vidinio mėginio validaciją mokymo metu, validacijos duomenis praleisime.
+    > Pastaba: Kadangi funkcija, kurią naudojame ARIMA modeliui pritaikyti, naudoja vidinį validavimą mokymo metu, validavimo duomenų nenaudosime.
 
 ### Paruoškite duomenis mokymui
 
-Dabar reikia paruošti duomenis mokymui, atlikdami filtravimą ir duomenų skalavimą. Filtruokite savo duomenų rinkinį, kad būtų įtraukti tik reikalingi laikotarpiai ir stulpeliai, ir skalavimas, kad duomenys būtų pateikti intervale 0,1.
+Dabar reikia paruošti duomenis mokymui, atlikdami filtravimą ir duomenų mastelio keitimą. Filtruokite savo duomenų rinkinį, kad jis apimtų tik reikalingus laikotarpius ir stulpelius, o mastelio keitimas užtikrins, kad duomenys būtų pateikti intervale 0,1.
 
-1. Filtruokite originalų duomenų rinkinį, kad būtų įtraukti tik minėti laikotarpiai kiekvienam rinkiniui ir tik reikalingas stulpelis „load“ bei data:
+1. Filtruokite pradinį duomenų rinkinį, kad jis apimtų tik minėtus laikotarpius ir tik reikalingą stulpelį „load“ bei datą:
 
     ```python
     train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -141,7 +141,7 @@ Dabar reikia paruošti duomenis mokymui, atlikdami filtravimą ir duomenų skala
     Test data shape:  (48, 1)
     ```
 
-1. Skalaukite duomenis, kad jie būtų intervale (0, 1).
+1. Mastelio keitimas, kad duomenys būtų intervale (0, 1).
 
     ```python
     scaler = MinMaxScaler()
@@ -149,7 +149,7 @@ Dabar reikia paruošti duomenis mokymui, atlikdami filtravimą ir duomenų skala
     train.head(10)
     ```
 
-1. Vizualizuokite originalius ir skalautus duomenis:
+1. Vizualizuokite pradinius ir mastelio keistus duomenis:
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -157,15 +157,15 @@ Dabar reikia paruošti duomenis mokymui, atlikdami filtravimą ir duomenų skala
     plt.show()
     ```
 
-    ![originalūs](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.lt.png)
+    ![pradiniai](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
-    > Originalūs duomenys
+    > Pradiniai duomenys
 
-    ![skalauti](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.lt.png)
+    ![mastelio keisti](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
-    > Skalauti duomenys
+    > Mastelio keisti duomenys
 
-1. Dabar, kai sukalibravote skalautus duomenis, galite skalauti testavimo duomenis:
+1. Dabar, kai sukalibravote mastelio keistus duomenis, galite mastelio keisti testavimo duomenis:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -178,17 +178,17 @@ Atėjo laikas įgyvendinti ARIMA! Dabar naudosite anksčiau įdiegtą `statsmode
 
 Dabar reikia atlikti kelis žingsnius:
 
-   1. Apibrėžkite modelį, iškviesdami `SARIMAX()` ir perduodami modelio parametrus: p, d ir q parametrus, taip pat P, D ir Q parametrus.
-   2. Paruoškite modelį mokymo duomenims, iškviesdami funkciją `fit()`.
-   3. Atlikite prognozes, iškviesdami funkciją `forecast()` ir nurodydami žingsnių skaičių (prognozės „horizontą“).
+   1. Apibrėžkite modelį, iškviesdami `SARIMAX()` ir perduodami modelio parametrus: p, d ir q parametrus bei P, D ir Q parametrus.
+   2. Paruoškite modelį mokymo duomenims, iškviesdami `fit()` funkciją.
+   3. Atlikite prognozes, iškviesdami `forecast()` funkciją ir nurodydami žingsnių skaičių (prognozės „horizontą“).
 
-> 🎓 Kam skirti visi šie parametrai? ARIMA modelyje yra 3 parametrai, kurie padeda modeliuoti pagrindinius laiko eilutės aspektus: sezoniškumą, tendenciją ir triukšmą. Šie parametrai yra:
+> 🎓 Ką reiškia visi šie parametrai? ARIMA modelyje yra 3 parametrai, kurie padeda modeliuoti pagrindinius laiko eilutės aspektus: sezoniškumą, tendenciją ir triukšmą. Šie parametrai yra:
 
-`p`: parametras, susijęs su autoregresiniu modelio aspektu, kuris įtraukia *praeities* reikšmes.
-`d`: parametras, susijęs su integruota modelio dalimi, kuris veikia *diferencijavimo* (🎓 prisiminkite diferencijavimą 👆?) kiekį, taikomą laiko eilutei.
-`q`: parametras, susijęs su slankiojo vidurkio modelio dalimi.
+`p`: parametras, susijęs su autoregresiniu modelio aspektu, kuris įtraukia *praeities* reikšmes.  
+`d`: parametras, susijęs su integruota modelio dalimi, kuris veikia *diferencijavimo* (🎓 prisiminkite diferencijavimą 👆?) kiekį, taikomą laiko eilutei.  
+`q`: parametras, susijęs su slenkamojo vidurkio modelio dalimi.
 
-> Pastaba: Jei jūsų duomenys turi sezoniškumo aspektą - kaip šie duomenys - , naudojame sezoninį ARIMA modelį (SARIMA). Tokiu atveju reikia naudoti kitą parametrų rinkinį: `P`, `D` ir `Q`, kurie apibūdina tuos pačius ryšius kaip `p`, `d` ir `q`, bet atitinka modelio sezoniškumo komponentus.
+> Pastaba: Jei jūsų duomenys turi sezoniškumo aspektą – kaip šie duomenys – naudojame sezoninį ARIMA modelį (SARIMA). Tokiu atveju reikia naudoti kitą parametrų rinkinį: `P`, `D` ir `Q`, kurie apibūdina tuos pačius ryšius kaip `p`, `d` ir `q`, tačiau atitinka modelio sezoniškumo komponentus.
 
 1. Pradėkite nustatydami pageidaujamą horizonto reikšmę. Pabandykime 3 valandas:
 
@@ -198,9 +198,9 @@ Dabar reikia atlikti kelis žingsnius:
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Pasirinkti geriausias ARIMA modelio parametrų reikšmes gali būti sudėtinga, nes tai šiek tiek subjektyvu ir užima daug laiko. Galite apsvarstyti galimybę naudoti funkciją `auto_arima()` iš [`pyramid` bibliotekos](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
+    Pasirinkti geriausias ARIMA modelio parametrų reikšmes gali būti sudėtinga, nes tai šiek tiek subjektyvu ir užima daug laiko. Galite apsvarstyti galimybę naudoti `auto_arima()` funkciją iš [`pyramid` bibliotekos](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
 
-1. Kol kas pabandykite keletą rankinių pasirinkimų, kad rastumėte gerą modelį.
+1. Kol kas pabandykite rankiniu būdu pasirinkti tinkamus parametrus.
 
     ```python
     order = (4, 1, 0)
@@ -218,15 +218,15 @@ Jūs sukūrėte savo pirmąjį modelį! Dabar reikia rasti būdą jį įvertinti
 
 ### Įvertinkite savo modelį
 
-Norėdami įvertinti savo modelį, galite atlikti vadinamąją `walk forward` validaciją. Praktikoje laiko eilučių modeliai yra pertreniruojami kiekvieną kartą, kai atsiranda naujų duomenų. Tai leidžia modeliui atlikti geriausią prognozę kiekviename laiko žingsnyje.
+Norėdami įvertinti savo modelį, galite atlikti vadinamąjį `walk forward` validavimą. Praktikoje laiko eilučių modeliai yra pertreniruojami kiekvieną kartą, kai atsiranda naujų duomenų. Tai leidžia modeliui atlikti geriausią prognozę kiekviename laiko žingsnyje.
 
-Pradėdami nuo laiko eilutės pradžios, naudodami šią techniką, treniruokite modelį mokymo duomenų rinkinyje. Tada atlikite prognozę kitame laiko žingsnyje. Prognozė įvertinama pagal žinomą reikšmę. Mokymo rinkinys tada išplečiamas, kad būtų įtraukta žinoma reikšmė, ir procesas kartojamas.
+Pradėdami nuo laiko eilutės pradžios, naudodami šią techniką, treniruokite modelį naudodami mokymo duomenų rinkinį. Tada atlikite prognozę kitam laiko žingsniui. Prognozė įvertinama pagal žinomą reikšmę. Mokymo rinkinys tada išplečiamas, įtraukiant žinomą reikšmę, ir procesas kartojamas.
 
-> Pastaba: Turėtumėte išlaikyti fiksuotą mokymo rinkinio langą efektyvesniam mokymui, kad kiekvieną kartą, kai pridedate naują stebėjimą prie mokymo rinkinio, pašalintumėte stebėjimą iš rinkinio pradžios.
+> Pastaba: Siekiant efektyvesnio mokymo, turėtumėte išlaikyti fiksuotą mokymo rinkinio langą, kad kiekvieną kartą, kai pridedate naują stebėjimą prie mokymo rinkinio, pašalintumėte stebėjimą iš rinkinio pradžios.
 
-Šis procesas suteikia tikslesnį modelio veikimo įvertinimą praktikoje. Tačiau tai kainuoja skaičiavimo išteklius, nes reikia sukurti tiek daug modelių. Tai priimtina, jei duomenys yra maži arba modelis paprastas, tačiau gali būti problema dideliu mastu.
+Šis procesas suteikia tikslesnį modelio veikimo praktikoje įvertinimą. Tačiau tai kainuoja daugiau skaičiavimo išteklių, nes reikia sukurti tiek daug modelių. Tai priimtina, jei duomenys yra maži arba modelis yra paprastas, tačiau gali būti problema didesnio masto projektuose.
 
-„Walk-forward“ validacija yra aukso standartas laiko eilučių modelių vertinimui ir rekomenduojama jūsų projektams.
+`Walk-forward` validavimas yra aukso standartas laiko eilučių modelių vertinimui ir rekomenduojamas jūsų projektams.
 
 1. Pirmiausia sukurkite testavimo duomenų tašką kiekvienam HORIZON žingsniui.
 
@@ -248,9 +248,9 @@ Pradėdami nuo laiko eilutės pradžios, naudodami šią techniką, treniruokite
     | 2014-12-30 | 03:00:00 | 0.27 | 0.30   | 0.41   |
     | 2014-12-30 | 04:00:00 | 0.30 | 0.41   | 0.57   |
 
-    Duomenys yra horizontaliai perkelti pagal jų horizonto tašką.
+    Duomenys yra horizontaliai paslinkti pagal jų horizonto tašką.
 
-1. Atlikite prognozes savo testavimo duomenims, naudodami šį slankiojo lango metodą cikle, kurio dydis atitinka testavimo duomenų ilgį:
+1. Atlikite prognozes savo testavimo duomenims, naudodami šį slenkantį langą cikle, kurio dydis lygus testavimo duomenų ilgiui:
 
     ```python
     %%time
@@ -304,7 +304,7 @@ Pradėdami nuo laiko eilutės pradžios, naudodami šią techniką, treniruokite
     eval_df.head()
     ```
 
-    Rezultatas
+    Rezultatas:
     |     |            | timestamp | h   | prediction | actual   |
     | --- | ---------- | --------- | --- | ---------- | -------- |
     | 0   | 2014-12-30 | 00:00:00  | t+1 | 3,008.74   | 3,023.00 |
@@ -313,18 +313,18 @@ Pradėdami nuo laiko eilutės pradžios, naudodami šią techniką, treniruokite
     | 3   | 2014-12-30 | 03:00:00  | t+1 | 2,917.69   | 2,886.00 |
     | 4   | 2014-12-30 | 04:00:00  | t+1 | 2,946.99   | 2,963.00 |
 
-    Stebėkite valandinius duomenis: prognozė, palyginti su faktine apkrova. Koks tikslumas?
+    Stebėkite valandinius duomenis: prognozę, palyginti su faktine apkrova. Koks tikslumas?
 
 ### Patikrinkite modelio tikslumą
 
-Patikrinkite savo modelio tikslumą, išbandydami jo vidutinę absoliučią procentinę paklaidą (MAPE) visose prognozėse.
-> **🧮 Parodykime matematiką**
+Patikrinkite savo modelio tikslumą, apskaičiuodami vidutinę absoliučią procentinę klaidą (MAPE) visoms prognozėms.
+> **🧮 Parodyk matematiką**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.lt.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
 > [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) naudojamas parodyti prognozės tikslumą kaip santykį, apibrėžtą aukščiau pateikta formule. Skirtumas tarp faktinių ir prognozuotų reikšmių yra padalijamas iš faktinių reikšmių.
 >
-> „Absoliuti šios skaičiavimo vertė yra sumuojama kiekvienam prognozuotam taškui laike ir padalijama iš pritaikytų taškų skaičiaus n.“ [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> „Šioje skaičiavimo formulėje absoliuti vertė yra sumuojama kiekvienam prognozuotam taškui laike ir padalijama iš pritaikytų taškų skaičiaus n.“ [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 1. Išreikškite lygtį kode:
 
     ```python
@@ -341,7 +341,7 @@ Patikrinkite savo modelio tikslumą, išbandydami jo vidutinę absoliučią proc
 
     Vieno žingsnio prognozės MAPE:  0.5570581332313952 %
 
-1. Atspausdinkite daugiapakopės prognozės MAPE:
+1. Atspausdinkite kelių žingsnių prognozės MAPE:
 
     ```python
     print('Multi-step forecast MAPE: ', mape(eval_df['prediction'], eval_df['actual'])*100, '%')
@@ -351,7 +351,7 @@ Patikrinkite savo modelio tikslumą, išbandydami jo vidutinę absoliučią proc
     Multi-step forecast MAPE:  1.1460048657704118 %
     ```
 
-    Geriausia yra mažas skaičius: atsižvelkite į tai, kad prognozė, kurios MAPE yra 10, reiškia 10% paklaidą.
+    Geriausia, kai skaičius yra mažas: turėkite omenyje, kad prognozė su 10 MAPE reiškia, jog paklaida yra 10%.
 
 1. Tačiau, kaip visada, tokį tikslumo matavimą lengviau suprasti vizualiai, todėl nubraižykime grafiką:
 
@@ -381,21 +381,21 @@ Patikrinkite savo modelio tikslumą, išbandydami jo vidutinę absoliučią proc
     plt.show()
     ```
 
-    ![laiko eilučių modelis](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.lt.png)
+    ![laiko eilučių modelis](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
-🏆 Labai gražus grafikas, rodantis modelį su geru tikslumu. Puikus darbas!
+🏆 Labai gražus grafikas, rodantis modelį su geru tikslumu. Puikiai padirbėta!
 
 ---
 
 ## 🚀Iššūkis
 
-Pasigilinkite į būdus, kaip patikrinti laiko eilučių modelio tikslumą. Šioje pamokoje aptarėme MAPE, tačiau ar yra kitų metodų, kuriuos galėtumėte naudoti? Ištirkite juos ir pateikite pastabas. Naudingą dokumentą galite rasti [čia](https://otexts.com/fpp2/accuracy.html)
+Pasigilinkite į būdus, kaip patikrinti laiko eilučių modelio tikslumą. Šioje pamokoje aptarėme MAPE, tačiau ar yra kitų metodų, kuriuos galėtumėte naudoti? Atlikite tyrimą ir pateikite pastabas. Naudingą dokumentą galite rasti [čia](https://otexts.com/fpp2/accuracy.html)
 
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
-## Apžvalga ir savarankiškas mokymasis
+## Peržiūra ir savarankiškas mokymasis
 
-Šioje pamokoje aptariami tik pagrindiniai laiko eilučių prognozavimo su ARIMA aspektai. Skirkite laiko gilinti savo žinias, peržiūrėdami [šį saugyklą](https://microsoft.github.io/forecasting/) ir įvairius modelių tipus, kad sužinotumėte kitus būdus kurti laiko eilučių modelius.
+Šioje pamokoje aptariami tik pagrindai apie laiko eilučių prognozavimą naudojant ARIMA. Skirkite laiko gilinti savo žinias, peržiūrėdami [šį saugyklą](https://microsoft.github.io/forecasting/) ir įvairius modelių tipus, kad sužinotumėte kitus būdus, kaip kurti laiko eilučių modelius.
 
 ## Užduotis
 
@@ -404,4 +404,4 @@ Pasigilinkite į būdus, kaip patikrinti laiko eilučių modelio tikslumą. Šio
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Dėl svarbios informacijos rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.

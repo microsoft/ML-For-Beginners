@@ -1,26 +1,26 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2680c691fbdb6367f350761a275e2508",
-  "translation_date": "2025-09-03T17:55:20+00:00",
+  "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
+  "translation_date": "2025-09-05T08:45:52+00:00",
   "source_file": "3-Web-App/1-Web-App/README.md",
   "language_code": "pt"
 }
 -->
 # Construir uma Aplicação Web para Utilizar um Modelo de ML
 
-Nesta lição, vais treinar um modelo de ML com um conjunto de dados fora deste mundo: _avistamentos de OVNIs ao longo do último século_, provenientes da base de dados da NUFORC.
+Nesta lição, vais treinar um modelo de ML com um conjunto de dados fora do comum: _avistamentos de OVNIs ao longo do último século_, provenientes da base de dados do NUFORC.
 
 Vais aprender:
 
 - Como 'pickle' um modelo treinado
 - Como usar esse modelo numa aplicação Flask
 
-Continuaremos a usar notebooks para limpar os dados e treinar o modelo, mas podes levar o processo um passo além ao explorar como usar um modelo "no mundo real", por assim dizer: numa aplicação web.
+Continuaremos a usar notebooks para limpar os dados e treinar o modelo, mas podes levar o processo um passo adiante ao explorar como usar um modelo "no mundo real", por assim dizer: numa aplicação web.
 
-Para isso, precisas de construir uma aplicação web usando Flask.
+Para isso, precisas de construir uma aplicação web utilizando Flask.
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Construir uma aplicação
 
@@ -31,14 +31,14 @@ Existem várias formas de construir aplicações web para consumir modelos de ma
 Há muitas perguntas que precisas de fazer:
 
 - **É uma aplicação web ou uma aplicação móvel?** Se estás a construir uma aplicação móvel ou precisas de usar o modelo num contexto de IoT, podes usar [TensorFlow Lite](https://www.tensorflow.org/lite/) e utilizar o modelo numa aplicação Android ou iOS.
-- **Onde vai residir o modelo?** Na cloud ou localmente?
+- **Onde o modelo vai residir?** Na nuvem ou localmente?
 - **Suporte offline.** A aplicação precisa de funcionar offline?
 - **Que tecnologia foi usada para treinar o modelo?** A tecnologia escolhida pode influenciar as ferramentas que precisas de usar.
     - **Usando TensorFlow.** Se estás a treinar um modelo com TensorFlow, por exemplo, esse ecossistema permite converter um modelo TensorFlow para uso numa aplicação web utilizando [TensorFlow.js](https://www.tensorflow.org/js/).
-    - **Usando PyTorch.** Se estás a construir um modelo com uma biblioteca como [PyTorch](https://pytorch.org/), tens a opção de exportá-lo no formato [ONNX](https://onnx.ai/) (Open Neural Network Exchange) para uso em aplicações web JavaScript que podem usar o [Onnx Runtime](https://www.onnxruntime.ai/). Esta opção será explorada numa lição futura para um modelo treinado com Scikit-learn.
-    - **Usando Lobe.ai ou Azure Custom Vision.** Se estás a usar um sistema de ML SaaS (Software como Serviço) como [Lobe.ai](https://lobe.ai/) ou [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) para treinar um modelo, este tipo de software oferece formas de exportar o modelo para várias plataformas, incluindo construir uma API personalizada para ser consultada na cloud pela tua aplicação online.
+    - **Usando PyTorch.** Se estás a construir um modelo com uma biblioteca como [PyTorch](https://pytorch.org/), tens a opção de exportá-lo no formato [ONNX](https://onnx.ai/) (Open Neural Network Exchange) para uso em aplicações web JavaScript que podem utilizar o [Onnx Runtime](https://www.onnxruntime.ai/). Esta opção será explorada numa lição futura para um modelo treinado com Scikit-learn.
+    - **Usando Lobe.ai ou Azure Custom Vision.** Se estás a usar um sistema ML SaaS (Software como Serviço) como [Lobe.ai](https://lobe.ai/) ou [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) para treinar um modelo, este tipo de software fornece formas de exportar o modelo para várias plataformas, incluindo construir uma API personalizada para ser consultada na nuvem pela tua aplicação online.
 
-Também tens a oportunidade de construir uma aplicação web Flask completa que seria capaz de treinar o modelo diretamente num navegador web. Isto também pode ser feito usando TensorFlow.js num contexto JavaScript.
+Também tens a oportunidade de construir uma aplicação web Flask completa que seria capaz de treinar o modelo diretamente no navegador. Isso também pode ser feito utilizando TensorFlow.js num contexto JavaScript.
 
 Para os nossos propósitos, como temos trabalhado com notebooks baseados em Python, vamos explorar os passos necessários para exportar um modelo treinado de um notebook para um formato legível por uma aplicação web construída em Python.
 
@@ -46,20 +46,20 @@ Para os nossos propósitos, como temos trabalhado com notebooks baseados em Pyth
 
 Para esta tarefa, precisas de duas ferramentas: Flask e Pickle, ambas executadas em Python.
 
-✅ O que é [Flask](https://palletsprojects.com/p/flask/)? Definido como um 'micro-framework' pelos seus criadores, Flask fornece as funcionalidades básicas de frameworks web usando Python e um motor de templates para construir páginas web. Dá uma olhada neste [módulo de aprendizagem](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) para praticar a construção com Flask.
+✅ O que é [Flask](https://palletsprojects.com/p/flask/)? Definido como um 'micro-framework' pelos seus criadores, Flask fornece as funcionalidades básicas de frameworks web utilizando Python e um motor de templates para construir páginas web. Dá uma olhada neste [módulo de aprendizagem](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) para praticar a construção com Flask.
 
-✅ O que é [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 é um módulo Python que serializa e desserializa uma estrutura de objetos Python. Quando 'pickle' um modelo, estás a serializar ou achatar a sua estrutura para uso na web. Atenção: pickle não é intrinsecamente seguro, por isso tem cuidado ao 'des-picklar' um ficheiro. Um ficheiro pickled tem o sufixo `.pkl`.
+✅ O que é [Pickle](https://docs.python.org/3/library/pickle.html)? Pickle 🥒 é um módulo Python que serializa e desserializa uma estrutura de objetos Python. Quando 'pickle' um modelo, estás a serializar ou achatar a sua estrutura para uso na web. Atenção: pickle não é intrinsecamente seguro, por isso tem cuidado se fores solicitado a 'des-picklar' um ficheiro. Um ficheiro pickled tem o sufixo `.pkl`.
 
 ## Exercício - limpar os dados
 
 Nesta lição vais usar dados de 80.000 avistamentos de OVNIs, recolhidos pelo [NUFORC](https://nuforc.org) (Centro Nacional de Relatórios de OVNIs). Estes dados têm descrições interessantes de avistamentos de OVNIs, por exemplo:
 
-- **Descrição longa de exemplo.** "Um homem emerge de um feixe de luz que brilha num campo de relva à noite e corre em direção ao parque de estacionamento da Texas Instruments".
+- **Descrição longa de exemplo.** "Um homem emerge de um feixe de luz que brilha num campo de relva à noite e corre em direção ao estacionamento da Texas Instruments".
 - **Descrição curta de exemplo.** "as luzes perseguiram-nos".
 
-A folha de cálculo [ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) inclui colunas sobre a `cidade`, `estado` e `país` onde ocorreu o avistamento, a `forma` do objeto e a sua `latitude` e `longitude`.
+A folha de cálculo [ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) inclui colunas sobre a `cidade`, `estado` e `país` onde o avistamento ocorreu, a `forma` do objeto e a sua `latitude` e `longitude`.
 
-No [notebook](notebook.ipynb) em branco incluído nesta lição:
+No [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) em branco incluído nesta lição:
 
 1. Importa `pandas`, `matplotlib` e `numpy` como fizeste nas lições anteriores e importa a folha de cálculo de OVNIs. Podes dar uma olhada num conjunto de dados de exemplo:
 
@@ -114,9 +114,9 @@ No [notebook](notebook.ipynb) em branco incluído nesta lição:
 
 ## Exercício - construir o modelo
 
-Agora podes preparar-te para treinar um modelo ao dividir os dados em grupos de treino e teste.
+Agora podes preparar-te para treinar um modelo dividindo os dados em grupos de treino e teste.
 
-1. Seleciona as três características que queres treinar como o teu vetor X, e o vetor y será o `Country`. Queres ser capaz de introduzir `Seconds`, `Latitude` e `Longitude` e obter um id de país como retorno.
+1. Seleciona as três características que queres treinar como o teu vetor X, e o vetor y será o `Country`. Queres ser capaz de inserir `Seconds`, `Latitude` e `Longitude` e obter um id de país como retorno.
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -129,7 +129,7 @@ Agora podes preparar-te para treinar um modelo ao dividir os dados em grupos de 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. Treina o modelo usando regressão logística:
+1. Treina o modelo utilizando regressão logística:
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -143,13 +143,13 @@ Agora podes preparar-te para treinar um modelo ao dividir os dados em grupos de 
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-A precisão não é má **(cerca de 95%)**, sem surpresa, já que `Country` e `Latitude/Longitude` estão correlacionados.
+A precisão não é má **(cerca de 95%)**, o que não é surpreendente, já que `Country` e `Latitude/Longitude` estão correlacionados.
 
 O modelo que criaste não é muito revolucionário, pois deverias ser capaz de inferir um `Country` a partir da sua `Latitude` e `Longitude`, mas é um bom exercício para tentar treinar a partir de dados brutos que limpaste, exportaste e depois usaste este modelo numa aplicação web.
 
 ## Exercício - 'pickle' o modelo
 
-Agora, é hora de _pickle_ o modelo! Podes fazer isso em algumas linhas de código. Uma vez _pickled_, carrega o modelo pickled e testa-o contra um array de dados de exemplo contendo valores para segundos, latitude e longitude.
+Agora, é hora de _picklar_ o modelo! Podes fazer isso em algumas linhas de código. Uma vez _pickled_, carrega o modelo pickled e testa-o contra um array de dados de exemplo contendo valores para segundos, latitude e longitude.
 
 ```python
 import pickle
@@ -166,9 +166,9 @@ O modelo retorna **'3'**, que é o código de país para o Reino Unido. Incríve
 
 Agora podes construir uma aplicação Flask para chamar o modelo e retornar resultados semelhantes, mas de uma forma mais visualmente agradável.
 
-1. Começa por criar uma pasta chamada **web-app** ao lado do ficheiro _notebook.ipynb_ onde o teu ficheiro _ufo-model.pkl_ está localizado.
+1. Começa por criar uma pasta chamada **web-app** ao lado do ficheiro _notebook.ipynb_ onde o teu ficheiro _ufo-model.pkl_ reside.
 
-1. Nessa pasta, cria mais três pastas: **static**, com uma pasta **css** dentro dela, e **templates**. Deverias agora ter os seguintes ficheiros e diretórios:
+1. Nessa pasta, cria mais três pastas: **static**, com uma pasta **css** dentro dela, e **templates**. Deves agora ter os seguintes ficheiros e diretórios:
 
     ```output
     web-app/
@@ -190,13 +190,13 @@ Agora podes construir uma aplicação Flask para chamar o modelo e retornar resu
     flask
     ```
 
-1. Agora, executa este ficheiro ao navegar para _web-app_:
+1. Agora, executa este ficheiro navegando até _web-app_:
 
     ```bash
     cd web-app
     ```
 
-1. No teu terminal, digita `pip install` para instalar as bibliotecas listadas no _requirements.txt_:
+1. No terminal, digita `pip install` para instalar as bibliotecas listadas no _requirements.txt_:
 
     ```bash
     pip install -r requirements.txt
@@ -318,7 +318,7 @@ Agora podes construir uma aplicação Flask para chamar o modelo e retornar resu
         app.run(debug=True)
     ```
 
-    > 💡 Dica: quando adicionas [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) enquanto executas a aplicação web usando Flask, quaisquer alterações que fizeres na tua aplicação serão refletidas imediatamente sem necessidade de reiniciar o servidor. Atenção! Não habilites este modo numa aplicação de produção.
+    > 💡 Dica: quando adicionas [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode) enquanto executas a aplicação web utilizando Flask, quaisquer alterações que fizeres na tua aplicação serão refletidas imediatamente sem necessidade de reiniciar o servidor. Atenção! Não habilites este modo numa aplicação em produção.
 
 Se executares `python app.py` ou `python3 app.py` - o teu servidor web inicia localmente, e podes preencher um pequeno formulário para obter uma resposta à tua pergunta sobre onde os OVNIs foram avistados!
 
@@ -333,7 +333,7 @@ Na rota `/predict`, várias coisas acontecem quando o formulário é enviado:
 1. As variáveis do formulário são recolhidas e convertidas para um array numpy. Elas são então enviadas para o modelo e uma previsão é retornada.
 2. Os países que queremos exibir são re-renderizados como texto legível a partir do código de país previsto, e esse valor é enviado de volta ao index.html para ser renderizado no template.
 
-Usar um modelo desta forma, com Flask e um modelo pickled, é relativamente simples. O mais difícil é entender qual é a forma dos dados que devem ser enviados ao modelo para obter uma previsão. Isso depende de como o modelo foi treinado. Este tem três pontos de dados que devem ser introduzidos para obter uma previsão.
+Usar um modelo desta forma, com Flask e um modelo pickled, é relativamente simples. O mais difícil é entender qual é a forma dos dados que devem ser enviados ao modelo para obter uma previsão. Isso depende de como o modelo foi treinado. Este tem três pontos de dados que devem ser inseridos para obter uma previsão.
 
 Num ambiente profissional, podes ver como é necessária uma boa comunicação entre as pessoas que treinam o modelo e aquelas que o consomem numa aplicação web ou móvel. No nosso caso, és apenas tu!
 
@@ -343,11 +343,11 @@ Num ambiente profissional, podes ver como é necessária uma boa comunicação e
 
 Em vez de trabalhar num notebook e importar o modelo para a aplicação Flask, poderias treinar o modelo diretamente dentro da aplicação Flask! Tenta converter o teu código Python no notebook, talvez depois de os dados serem limpos, para treinar o modelo dentro da aplicação numa rota chamada `train`. Quais são os prós e contras de seguir este método?
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão & Autoestudo
 
-Existem muitas formas de construir uma aplicação web para consumir modelos de ML. Faz uma lista das formas como poderias usar JavaScript ou Python para construir uma aplicação web que aproveite machine learning. Considera a arquitetura: o modelo deve permanecer na aplicação ou viver na cloud? Se for o último caso, como o acederias? Desenha um modelo arquitetural para uma solução web aplicada de ML.
+Existem muitas formas de construir uma aplicação web para consumir modelos de ML. Faz uma lista das formas como poderias usar JavaScript ou Python para construir uma aplicação web que aproveite o machine learning. Considera a arquitetura: o modelo deve permanecer na aplicação ou viver na nuvem? Se for o último caso, como o acederias? Desenha um modelo arquitetural para uma solução web aplicada de ML.
 
 ## Tarefa
 
@@ -355,5 +355,5 @@ Existem muitas formas de construir uma aplicação web para consumir modelos de 
 
 ---
 
-**Aviso**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

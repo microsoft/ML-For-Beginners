@@ -1,17 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "085d571097d201810720df4cd379f8c2",
-  "translation_date": "2025-09-03T17:17:41+00:00",
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-05T08:17:54+00:00",
   "source_file": "5-Clustering/2-K-Means/README.md",
   "language_code": "pl"
 }
 -->
 # Klasteryzacja metodą K-Means
 
-## [Quiz przed wykładem](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
-W tej lekcji nauczysz się tworzyć klastry za pomocą biblioteki Scikit-learn oraz nigeryjskiego zestawu danych muzycznych, który zaimportowałeś wcześniej. Omówimy podstawy metody K-Means dla klasteryzacji. Pamiętaj, że jak dowiedziałeś się w poprzedniej lekcji, istnieje wiele sposobów pracy z klastrami, a metoda, którą wybierzesz, zależy od Twoich danych. Spróbujemy metody K-Means, ponieważ jest to najczęściej stosowana technika klasteryzacji. Zaczynajmy!
+W tej lekcji nauczysz się tworzyć klastry za pomocą biblioteki Scikit-learn oraz nigeryjskiego zestawu danych muzycznych, który zaimportowałeś wcześniej. Omówimy podstawy metody K-Means dla klasteryzacji. Pamiętaj, że jak nauczyłeś się w poprzedniej lekcji, istnieje wiele sposobów pracy z klastrami, a metoda, którą wybierzesz, zależy od Twoich danych. Spróbujemy metody K-Means, ponieważ jest to najczęściej stosowana technika klasteryzacji. Zaczynajmy!
 
 Pojęcia, które poznasz:
 
@@ -26,7 +26,7 @@ Pojęcia, które poznasz:
 
 Klastry można wizualizować jako [diagramy Voronoi](https://wikipedia.org/wiki/Voronoi_diagram), które zawierają punkt (lub 'nasiono') i odpowiadający mu obszar.
 
-![diagram voronoi](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.pl.png)
+![diagram Voronoi](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
 > Infografika autorstwa [Jen Looper](https://twitter.com/jenlooper)
 
@@ -91,7 +91,7 @@ Zacznij od ponownego przyjrzenia się danym o piosenkach.
 
     Dane są trochę hałaśliwe: obserwując każdą kolumnę jako wykres pudełkowy, możesz zauważyć wartości odstające.
 
-    ![wartości odstające](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.pl.png)
+    ![wartości odstające](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
 Możesz przejrzeć zestaw danych i usunąć te wartości odstające, ale to sprawiłoby, że dane byłyby dość ograniczone.
 
@@ -127,7 +127,7 @@ Możesz przejrzeć zestaw danych i usunąć te wartości odstające, ale to spra
     y_cluster_kmeans
     ```
 
-Zobaczysz wydrukowaną tablicę z przewidywanymi klastrami (0, 1 lub 2) dla każdego wiersza w ramce danych.
+Zobaczysz wydrukowaną tablicę z przewidywanymi klastrami (0, 1 lub 2) dla każdego wiersza ramki danych.
 
 1. Użyj tej tablicy, aby obliczyć 'ocenę sylwetki':
 
@@ -158,9 +158,9 @@ Nasz wynik to **0.53**, czyli w samym środku. Wskazuje to, że nasze dane nie s
     
     ```
 
-    Kilka części wymaga wyjaśnienia.
+    Jest tu kilka elementów, które warto wyjaśnić.
 
-    > 🎓 range: To są iteracje procesu klasteryzacji.
+    > 🎓 range: Są to iteracje procesu klasteryzacji.
 
     > 🎓 random_state: "Określa generowanie liczb losowych dla inicjalizacji centroidów." [Źródło](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
@@ -172,7 +172,7 @@ Nasz wynik to **0.53**, czyli w samym środku. Wskazuje to, że nasze dane nie s
 
 ### Metoda łokcia
 
-Wcześniej założyłeś, że ponieważ wybrałeś 3 gatunki muzyczne, powinieneś wybrać 3 klastry. Ale czy na pewno?
+Wcześniej założyłeś, że ponieważ wyodrębniłeś 3 gatunki muzyczne, powinieneś wybrać 3 klastry. Ale czy na pewno?
 
 1. Użyj metody 'łokcia', aby się upewnić.
 
@@ -185,13 +185,13 @@ Wcześniej założyłeś, że ponieważ wybrałeś 3 gatunki muzyczne, powiniene
     plt.show()
     ```
 
-    Użyj zmiennej `wcss`, którą zbudowałeś w poprzednim kroku, aby stworzyć wykres pokazujący, gdzie znajduje się 'zgięcie' w łokciu, co wskazuje optymalną liczbę klastrów. Może rzeczywiście jest to **3**!
+    Użyj zmiennej `wcss`, którą zbudowałeś w poprzednim kroku, aby stworzyć wykres pokazujący, gdzie znajduje się 'zgięcie' łokcia, co wskazuje optymalną liczbę klastrów. Może rzeczywiście jest to **3**!
 
-    ![metoda łokcia](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.pl.png)
+    ![metoda łokcia](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
 ## Ćwiczenie - wyświetlanie klastrów
 
-1. Spróbuj ponownie, tym razem ustawiając trzy klastry i wyświetl klastry jako wykres punktowy:
+1. Spróbuj ponownie przeprowadzić proces, tym razem ustawiając trzy klastry, i wyświetl klastry jako wykres punktowy:
 
     ```python
     from sklearn.cluster import KMeans
@@ -218,38 +218,38 @@ Wcześniej założyłeś, że ponieważ wybrałeś 3 gatunki muzyczne, powiniene
 
     Dokładność tego modelu nie jest zbyt dobra, a kształt klastrów daje Ci wskazówkę dlaczego.
 
-    ![klastry](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.pl.png)
+    ![klastry](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
-    Dane są zbyt niezrównoważone, zbyt mało skorelowane, a między wartościami kolumn występuje zbyt duża wariancja, aby dobrze je klasteryzować. W rzeczywistości klastry, które się tworzą, są prawdopodobnie mocno wpływane lub zniekształcone przez trzy kategorie gatunków, które zdefiniowaliśmy powyżej. To była lekcja!
+    Dane są zbyt niezrównoważone, zbyt mało skorelowane, a między wartościami kolumn występuje zbyt duża wariancja, aby dobrze je sklasteryzować. W rzeczywistości klastry, które się tworzą, są prawdopodobnie mocno wpływane lub zniekształcone przez trzy kategorie gatunków, które zdefiniowaliśmy powyżej. To był proces nauki!
 
     W dokumentacji Scikit-learn możesz zobaczyć, że model taki jak ten, z klastrami niezbyt dobrze oddzielonymi, ma problem z 'wariancją':
 
-    ![problematyczne modele](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.pl.png)
+    ![problematyczne modele](../../../../5-Clustering/2-K-Means/images/problems.png)
     > Infografika z Scikit-learn
 
 ## Wariancja
 
 Wariancja jest definiowana jako "średnia kwadratów różnic od średniej" [(Źródło)](https://www.mathsisfun.com/data/standard-deviation.html). W kontekście tego problemu klasteryzacji odnosi się do danych, w których liczby w naszym zestawie danych mają tendencję do zbytniego odchylenia od średniej.
 
-✅ To świetny moment, aby pomyśleć o wszystkich sposobach, w jakie możesz rozwiązać ten problem. Poprawić dane? Użyć innych kolumn? Wypróbować inny algorytm? Podpowiedź: Spróbuj [skalować dane](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/), aby je znormalizować i przetestować inne kolumny.
+✅ To świetny moment, aby pomyśleć o wszystkich sposobach, w jakie możesz rozwiązać ten problem. Dopracować dane? Użyć innych kolumn? Wypróbować inny algorytm? Podpowiedź: Spróbuj [skalować dane](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/), aby je znormalizować i przetestować inne kolumny.
 
-> Wypróbuj ten '[kalkulator wariancji](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)', aby lepiej zrozumieć koncepcję.
+> Wypróbuj ten '[kalkulator wariancji](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)', aby lepiej zrozumieć to pojęcie.
 
 ---
 
 ## 🚀Wyzwanie
 
-Spędź trochę czasu z tym notebookiem, zmieniając parametry. Czy możesz poprawić dokładność modelu, bardziej oczyszczając dane (na przykład usuwając wartości odstające)? Możesz użyć wag, aby nadać większą wagę określonym próbkom danych. Co jeszcze możesz zrobić, aby stworzyć lepsze klastry?
+Spędź trochę czasu z tym notebookiem, dopracowując parametry. Czy możesz poprawić dokładność modelu, bardziej oczyszczając dane (na przykład usuwając wartości odstające)? Możesz użyć wag, aby nadać większą wagę określonym próbkom danych. Co jeszcze możesz zrobić, aby stworzyć lepsze klastry?
 
-Podpowiedź: Spróbuj skalować dane. W notebooku znajduje się zakomentowany kod, który dodaje skalowanie standardowe, aby kolumny danych bardziej przypominały się nawzajem pod względem zakresu. Zauważysz, że chociaż ocena sylwetki spada, 'zgięcie' na wykresie łokcia wygładza się. Dzieje się tak, ponieważ pozostawienie danych nieskalowanych pozwala danym o mniejszej wariancji mieć większy wpływ. Przeczytaj więcej o tym problemie [tutaj](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Podpowiedź: Spróbuj skalować dane. W notebooku znajdziesz zakomentowany kod, który dodaje standardowe skalowanie, aby kolumny danych bardziej przypominały siebie nawzajem pod względem zakresu. Zauważysz, że chociaż ocena sylwetki spada, 'zgięcie' na wykresie łokcia wygładza się. Dzieje się tak, ponieważ pozostawienie danych nieskalowanych pozwala danym o mniejszej wariancji mieć większy wpływ. Przeczytaj więcej o tym problemie [tutaj](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Quiz po wykładzie](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Przegląd i samodzielna nauka
 
-Spójrz na symulator K-Means [taki jak ten](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Możesz użyć tego narzędzia do wizualizacji przykładowych punktów danych i określenia ich centroidów. Możesz edytować losowość danych, liczbę klastrów i liczbę centroidów. Czy pomaga Ci to zrozumieć, jak dane mogą być grupowane?
+Spójrz na symulator K-Means [taki jak ten](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Możesz użyć tego narzędzia, aby wizualizować próbki danych i określić ich centroidy. Możesz edytować losowość danych, liczbę klastrów i liczbę centroidów. Czy pomaga Ci to zrozumieć, jak dane mogą być grupowane?
 
-Spójrz także na [ten materiał o K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) ze Stanfordu.
+Zobacz także [ten materiał o K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) ze Stanfordu.
 
 ## Zadanie
 
@@ -258,4 +258,4 @@ Spójrz także na [ten materiał o K-Means](https://stanford.edu/~cpiech/cs221/h
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.

@@ -1,21 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a2aa4e9b91b9640db2c15363c4299d8b",
-  "translation_date": "2025-09-03T19:11:00+00:00",
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-05T08:53:24+00:00",
   "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
   "language_code": "pt"
 }
 -->
-# Análise de sentimento com avaliações de hotéis
+# Análise de sentimentos com avaliações de hotéis
 
 Agora que exploraste o conjunto de dados em detalhe, é hora de filtrar as colunas e usar técnicas de NLP no conjunto de dados para obter novos insights sobre os hotéis.
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-### Operações de filtragem e análise de sentimento
+### Operações de Filtragem e Análise de Sentimentos
 
-Como provavelmente já reparaste, o conjunto de dados tem alguns problemas. Algumas colunas estão preenchidas com informações inúteis, outras parecem incorretas. Mesmo que estejam corretas, não está claro como foram calculadas, e as respostas não podem ser verificadas de forma independente pelos teus próprios cálculos.
+Como provavelmente já reparaste, o conjunto de dados tem alguns problemas. Algumas colunas estão preenchidas com informações inúteis, outras parecem incorretas. Mesmo que estejam corretas, não é claro como foram calculadas, e as respostas não podem ser verificadas de forma independente pelos teus próprios cálculos.
 
 ## Exercício: mais um pouco de processamento de dados
 
@@ -79,13 +79,13 @@ Limpa os dados um pouco mais. Adiciona colunas que serão úteis mais tarde, alt
 
 2. Processar colunas de meta-avaliação dos hotéis
 
-   1. Elimina `Additional_Number_of_Scoring`
+  1. Elimina `Additional_Number_of_Scoring`
 
-   2. Substitui `Total_Number_of_Reviews` pelo número total de avaliações para aquele hotel que estão realmente no conjunto de dados 
+  1. Substitui `Total_Number_of_Reviews` pelo número total de avaliações para aquele hotel que estão realmente no conjunto de dados 
 
-   3. Substitui `Average_Score` pela nossa própria pontuação calculada
+  1. Substitui `Average_Score` pela nossa própria pontuação calculada
 
-   ```python
+  ```python
   # Drop `Additional_Number_of_Scoring`
   df.drop(["Additional_Number_of_Scoring"], axis = 1, inplace=True)
   # Replace `Total_Number_of_Reviews` and `Average_Score` with our own calculated values
@@ -105,25 +105,25 @@ Limpa os dados um pouco mais. Adiciona colunas que serão úteis mais tarde, alt
 
 4. Processar colunas de avaliadores
 
-   1. Elimina `Total_Number_of_Reviews_Reviewer_Has_Given`
+  1. Elimina `Total_Number_of_Reviews_Reviewer_Has_Given`
   
-   2. Mantém `Reviewer_Nationality`
+  2. Mantém `Reviewer_Nationality`
 
-### Colunas de tags
+### Colunas de Tags
 
 A coluna `Tag` é problemática, pois é uma lista (em formato de texto) armazenada na coluna. Infelizmente, a ordem e o número de subsecções nesta coluna nem sempre são os mesmos. É difícil para um humano identificar as frases corretas de interesse, porque há 515.000 linhas e 1427 hotéis, e cada um tem opções ligeiramente diferentes que um avaliador poderia escolher. É aqui que o NLP se destaca. Podes analisar o texto e encontrar as frases mais comuns, e contá-las.
 
-Infelizmente, não estamos interessados em palavras isoladas, mas em frases compostas (por exemplo, *Viagem de negócios*). Executar um algoritmo de distribuição de frequência de frases compostas em tantos dados (6762646 palavras) poderia levar um tempo extraordinário, mas sem olhar para os dados, parece que isso seria necessário. É aqui que a análise exploratória de dados é útil, porque ao ver uma amostra das tags como `[' Viagem de negócios  ', ' Viajante sozinho ', ' Quarto individual ', ' Ficou 5 noites ', ' Enviado de um dispositivo móvel ']`, podes começar a perguntar se é possível reduzir significativamente o processamento necessário. Felizmente, é - mas primeiro precisas seguir alguns passos para determinar as tags de interesse.
+Infelizmente, não estamos interessados em palavras isoladas, mas em frases compostas (por exemplo, *Viagem de negócios*). Executar um algoritmo de distribuição de frequência de frases compostas em tantos dados (6762646 palavras) poderia levar um tempo extraordinário, mas sem olhar para os dados, pareceria que isso é uma despesa necessária. É aqui que a análise exploratória de dados é útil, porque já viste uma amostra das tags como `[' Viagem de negócios  ', ' Viajante sozinho ', ' Quarto individual ', ' Ficou 5 noites ', ' Enviado de um dispositivo móvel ']`, podes começar a perguntar se é possível reduzir drasticamente o processamento que tens de fazer. Felizmente, é - mas primeiro precisas seguir alguns passos para determinar as tags de interesse.
 
-### Filtrar tags
+### Filtragem de tags
 
-Lembra-te de que o objetivo do conjunto de dados é adicionar sentimento e colunas que te ajudarão a escolher o melhor hotel (para ti ou talvez para um cliente que te pediu para criar um bot de recomendação de hotéis). Precisas perguntar-te se as tags são úteis ou não no conjunto de dados final. Aqui está uma interpretação (se precisasses do conjunto de dados para outros fins, tags diferentes poderiam permanecer/ser excluídas):
+Lembra-te de que o objetivo do conjunto de dados é adicionar sentimentos e colunas que te ajudem a escolher o melhor hotel (para ti ou talvez para um cliente que te encarregue de criar um bot de recomendação de hotéis). Precisas perguntar-te se as tags são úteis ou não no conjunto de dados final. Aqui está uma interpretação (se precisasses do conjunto de dados para outros fins, tags diferentes poderiam permanecer/ser excluídas da seleção):
 
 1. O tipo de viagem é relevante e deve permanecer
 2. O tipo de grupo de hóspedes é importante e deve permanecer
 3. O tipo de quarto, suíte ou estúdio em que o hóspede ficou é irrelevante (todos os hotéis têm basicamente os mesmos quartos)
-4. O dispositivo em que a avaliação foi enviada é irrelevante
-5. O número de noites que o avaliador ficou *poderia* ser relevante se atribuísses estadias mais longas a eles gostarem mais do hotel, mas é um pouco forçado e provavelmente irrelevante
+4. O dispositivo no qual a avaliação foi enviada é irrelevante
+5. O número de noites que o avaliador ficou *poderia* ser relevante se atribuísses estadias mais longas a gostar mais do hotel, mas é um pouco forçado e provavelmente irrelevante
 
 Em resumo, **mantém 2 tipos de tags e remove as outras**.
 
@@ -138,7 +138,7 @@ df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 
 Cada tag torna-se algo como: `Viagem de negócios, Viajante sozinho, Quarto individual, Ficou 5 noites, Enviado de um dispositivo móvel`. 
 
-A seguir, encontramos um problema. Algumas avaliações, ou linhas, têm 5 colunas, outras 3, outras 6. Isso é resultado de como o conjunto de dados foi criado e difícil de corrigir. Queres obter uma contagem de frequência de cada frase, mas elas estão em ordens diferentes em cada avaliação, então a contagem pode estar errada e um hotel pode não receber uma tag que merecia.
+A seguir, encontramos um problema. Algumas avaliações, ou linhas, têm 5 colunas, outras 3, outras 6. Isso é resultado de como o conjunto de dados foi criado e difícil de corrigir. Queres obter uma contagem de frequência de cada frase, mas elas estão em ordens diferentes em cada avaliação, então a contagem pode estar errada e um hotel pode não receber uma tag atribuída que merecia.
 
 Em vez disso, vais usar a ordem diferente a nosso favor, porque cada tag é composta por várias palavras, mas também separada por uma vírgula! A maneira mais simples de fazer isso é criar 6 colunas temporárias com cada tag inserida na coluna correspondente à sua ordem na tag. Podes então fundir as 6 colunas numa grande coluna e executar o método `value_counts()` na coluna resultante. Ao imprimir isso, verás que havia 2428 tags únicas. Aqui está uma pequena amostra:
 
@@ -156,13 +156,13 @@ Em vez disso, vais usar a ordem diferente a nosso favor, porque cada tag é comp
 | Família com crianças pequenas  | 61015    |
 | Ficou 4 noites                 | 47817    |
 | Quarto duplo                   | 35207    |
-| Quarto duplo standard          | 32248    |
+| Quarto duplo padrão            | 32248    |
 | Quarto duplo superior          | 31393    |
 | Família com crianças mais velhas| 26349   |
 | Quarto duplo deluxe            | 24823    |
 | Quarto duplo ou twin           | 22393    |
 | Ficou 5 noites                 | 20845    |
-| Quarto duplo ou twin standard  | 17483    |
+| Quarto duplo ou twin padrão    | 17483    |
 | Quarto duplo clássico          | 16989    |
 | Quarto duplo ou twin superior  | 13570    |
 | 2 quartos                      | 12393    |
@@ -191,15 +191,15 @@ Há uma enorme variedade de quartos, suítes, estúdios, apartamentos e assim po
 | Tipo de quarto                  | Contagem |
 | ------------------------------- | -------- |
 | Quarto duplo                    | 35207    |
-| Quarto duplo standard           | 32248    |
+| Quarto duplo padrão             | 32248    |
 | Quarto duplo superior           | 31393    |
 | Quarto duplo deluxe             | 24823    |
 | Quarto duplo ou twin            | 22393    |
-| Quarto duplo ou twin standard   | 17483    |
+| Quarto duplo ou twin padrão     | 17483    |
 | Quarto duplo clássico           | 16989    |
 | Quarto duplo ou twin superior   | 13570    |
 
-Finalmente, e isto é ótimo (porque não exigiu muito processamento), ficarás com as seguintes tags *úteis*:
+Finalmente, e isto é encantador (porque não exigiu muito processamento), ficarás com as seguintes tags *úteis*:
 
 | Tag                                           | Contagem |
 | --------------------------------------------- | -------- |
@@ -212,7 +212,7 @@ Finalmente, e isto é ótimo (porque não exigiu muito processamento), ficarás 
 | Família com crianças mais velhas              | 26349    |
 | Com um animal de estimação                    | 1405     |
 
-Poderias argumentar que `Viajantes com amigos` é mais ou menos o mesmo que `Grupo`, e seria justo combinar os dois como acima. O código para identificar as tags corretas está no [notebook de Tags](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+Poderias argumentar que `Viajantes com amigos` é o mesmo que `Grupo` mais ou menos, e seria justo combinar os dois como acima. O código para identificar as tags corretas está no [notebook de Tags](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
 
 O passo final é criar novas colunas para cada uma destas tags. Depois, para cada linha de avaliação, se a coluna `Tag` corresponder a uma das novas colunas, adiciona um 1, caso contrário, adiciona um 0. O resultado final será uma contagem de quantos avaliadores escolheram este hotel (em agregado) para, por exemplo, negócios vs lazer, ou para levar um animal de estimação, e esta é uma informação útil ao recomendar um hotel.
 
@@ -244,9 +244,9 @@ print("Saving results to Hotel_Reviews_Filtered.csv")
 df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 ```
 
-## Operações de análise de sentimento
+## Operações de Análise de Sentimentos
 
-Nesta última seção, vais aplicar análise de sentimento às colunas de avaliação e salvar os resultados num conjunto de dados.
+Nesta última seção, vais aplicar análise de sentimentos às colunas de avaliação e salvar os resultados num conjunto de dados.
 
 ## Exercício: carregar e salvar os dados filtrados
 
@@ -273,13 +273,13 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### Remover palavras irrelevantes
 
-Se executares a análise de sentimento nas colunas de avaliações negativas e positivas, pode demorar muito tempo. Testado num portátil de teste potente com CPU rápida, demorou 12 - 14 minutos dependendo da biblioteca de sentimento utilizada. Esse é um tempo (relativamente) longo, então vale a pena investigar se isso pode ser acelerado. 
+Se fosses executar a Análise de Sentimentos nas colunas de Avaliação Negativa e Avaliação Positiva, poderia levar muito tempo. Testado num portátil de teste poderoso com CPU rápida, levou 12 - 14 minutos dependendo da biblioteca de sentimentos usada. Esse é um tempo (relativamente) longo, então vale a pena investigar se isso pode ser acelerado. 
 
-Remover palavras irrelevantes, ou palavras comuns em inglês que não alteram o sentimento de uma frase, é o primeiro passo. Ao removê-las, a análise de sentimento deve ser mais rápida, mas não menos precisa (já que as palavras irrelevantes não afetam o sentimento, mas sim desaceleram a análise). 
+Remover palavras irrelevantes, ou palavras comuns em inglês que não alteram o sentimento de uma frase, é o primeiro passo. Ao removê-las, a análise de sentimentos deve ser mais rápida, mas não menos precisa (já que as palavras irrelevantes não afetam o sentimento, mas sim desaceleram a análise). 
 
 A avaliação negativa mais longa tinha 395 palavras, mas após remover as palavras irrelevantes, ficou com 195 palavras.
 
-Remover as palavras irrelevantes também é uma operação rápida, removê-las das 2 colunas de avaliação em mais de 515.000 linhas demorou 3,3 segundos no dispositivo de teste. Pode demorar um pouco mais ou menos para ti, dependendo da velocidade do CPU do teu dispositivo, RAM, se tens um SSD ou não, e outros fatores. A relativa rapidez da operação significa que, se melhorar o tempo de análise de sentimento, vale a pena fazê-lo.
+Remover as palavras irrelevantes também é uma operação rápida, removê-las de 2 colunas de avaliação em mais de 515.000 linhas levou 3,3 segundos no dispositivo de teste. Pode levar um pouco mais ou menos tempo para ti, dependendo da velocidade do CPU do teu dispositivo, RAM, se tens um SSD ou não, e alguns outros fatores. A relativa rapidez da operação significa que, se melhorar o tempo de análise de sentimentos, então vale a pena fazer.
 
 ```python
 from nltk.corpus import stopwords
@@ -301,10 +301,10 @@ df.Negative_Review = df.Negative_Review.apply(remove_stopwords)
 df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
-### Executar análise de sentimento
-Agora deve calcular a análise de sentimento para as colunas de avaliações negativas e positivas e armazenar o resultado em 2 novas colunas. O teste do sentimento será compará-lo com a pontuação do avaliador para a mesma avaliação. Por exemplo, se a análise de sentimento indicar que a avaliação negativa teve um sentimento de 1 (sentimento extremamente positivo) e a avaliação positiva também teve um sentimento de 1, mas o avaliador deu ao hotel a pontuação mais baixa possível, então ou o texto da avaliação não corresponde à pontuação, ou o analisador de sentimento não conseguiu reconhecer o sentimento corretamente. Deve esperar que algumas pontuações de sentimento estejam completamente erradas, e muitas vezes isso será explicável, por exemplo, a avaliação pode ser extremamente sarcástica: "Claro que ADOREI dormir num quarto sem aquecimento", e o analisador de sentimento interpreta isso como um sentimento positivo, embora um humano que leia saiba que é sarcasmo.
+### Realizar análise de sentimentos
 
-O NLTK fornece diferentes analisadores de sentimento para aprender, e pode substituí-los e verificar se o sentimento é mais ou menos preciso. A análise de sentimento VADER é utilizada aqui.
+Agora deves calcular a análise de sentimentos para ambas as colunas de avaliação negativa e positiva, e armazenar o resultado em 2 novas colunas. O teste da análise de sentimentos será compará-lo com a pontuação do avaliador para a mesma avaliação. Por exemplo, se a análise de sentimentos indicar que a avaliação negativa teve um sentimento de 1 (sentimento extremamente positivo) e um sentimento de 1 na avaliação positiva, mas o avaliador deu ao hotel a pontuação mais baixa possível, então ou o texto da avaliação não corresponde à pontuação, ou o analisador de sentimentos não conseguiu reconhecer o sentimento corretamente. Deves esperar que algumas pontuações de sentimentos estejam completamente erradas, e muitas vezes isso será explicável, por exemplo, a avaliação pode ser extremamente sarcástica: "Claro que ADOREI dormir num quarto sem aquecimento" e o analisador de sentimentos pensa que isso é um sentimento positivo, mesmo que um humano ao ler saiba que é sarcasmo.
+NLTK fornece diferentes analisadores de sentimento para aprender, e você pode substituí-los e verificar se o sentimento é mais ou menos preciso. A análise de sentimento VADER é utilizada aqui.
 
 > Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, junho de 2014.
 
@@ -337,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Isto demora aproximadamente 120 segundos no meu computador, mas pode variar em cada computador. Se quiser imprimir os resultados e verificar se o sentimento corresponde à avaliação:
+Isso leva aproximadamente 120 segundos no meu computador, mas pode variar em cada máquina. Se quiser imprimir os resultados e verificar se o sentimento corresponde à avaliação:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -346,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-A última coisa a fazer com o ficheiro antes de utilizá-lo no desafio é guardá-lo! Também deve considerar reorganizar todas as suas novas colunas para que sejam fáceis de trabalhar (para um humano, é uma mudança cosmética).
+A última coisa a fazer com o ficheiro antes de utilizá-lo no desafio é salvá-lo! Também deve considerar reorganizar todas as suas novas colunas para que sejam fáceis de trabalhar (para um humano, é uma mudança estética).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -358,26 +358,26 @@ df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 
 Deve executar todo o código do [notebook de análise](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (depois de ter executado [o notebook de filtragem](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) para gerar o ficheiro Hotel_Reviews_Filtered.csv).
 
-Para rever, os passos são:
+Para recapitular, os passos são:
 
 1. O ficheiro do conjunto de dados original **Hotel_Reviews.csv** é explorado na lição anterior com [o notebook de exploração](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
-2. Hotel_Reviews.csv é filtrado por [o notebook de filtragem](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), resultando em **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv é processado por [o notebook de análise de sentimento](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb), resultando em **Hotel_Reviews_NLP.csv**
+2. Hotel_Reviews.csv é filtrado pelo [notebook de filtragem](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), resultando em **Hotel_Reviews_Filtered.csv**
+3. Hotel_Reviews_Filtered.csv é processado pelo [notebook de análise de sentimento](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb), resultando em **Hotel_Reviews_NLP.csv**
 4. Utilize Hotel_Reviews_NLP.csv no Desafio de NLP abaixo
 
 ### Conclusão
 
-Quando começou, tinha um conjunto de dados com colunas e dados, mas nem todos podiam ser verificados ou utilizados. Explorou os dados, filtrou o que não precisava, converteu etiquetas em algo útil, calculou as suas próprias médias, adicionou algumas colunas de sentimento e, com sorte, aprendeu algumas coisas interessantes sobre o processamento de texto natural.
+Quando começou, tinha um conjunto de dados com colunas e informações, mas nem tudo podia ser verificado ou utilizado. Explorou os dados, filtrou o que não precisava, converteu etiquetas em algo útil, calculou as suas próprias médias, adicionou algumas colunas de sentimento e, com sorte, aprendeu coisas interessantes sobre o processamento de texto natural.
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Desafio
 
-Agora que tem o seu conjunto de dados analisado para sentimento, veja se consegue utilizar estratégias que aprendeu neste currículo (clustering, talvez?) para determinar padrões em torno do sentimento.
+Agora que tem o seu conjunto de dados analisado para sentimento, veja se consegue usar estratégias que aprendeu neste currículo (talvez clustering?) para determinar padrões relacionados ao sentimento.
 
 ## Revisão e Estudo Individual
 
-Faça [este módulo Learn](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) para aprender mais e utilizar diferentes ferramentas para explorar o sentimento em texto.
+Faça [este módulo do Learn](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) para aprender mais e usar diferentes ferramentas para explorar o sentimento em texto.
 
 ## Tarefa
 

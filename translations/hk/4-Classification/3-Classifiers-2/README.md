@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "808a71076f76ae8f5458862a8edd9215",
-  "translation_date": "2025-09-03T18:10:52+00:00",
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-05T09:31:03+00:00",
   "source_file": "4-Classification/3-Classifiers-2/README.md",
   "language_code": "hk"
 }
@@ -11,26 +11,26 @@ CO_OP_TRANSLATOR_METADATA:
 
 在這第二部分的分類課程中，你將探索更多分類數據的方法。同時，你也會了解選擇不同分類器所帶來的影響。
 
-## [課前測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ### 前置條件
 
-我們假設你已完成之前的課程，並在你的 `data` 資料夾中擁有一個名為 _cleaned_cuisines.csv_ 的清理過的數據集，該檔案位於這四課程資料夾的根目錄。
+我們假設你已完成之前的課程，並在這個四課程文件夾的根目錄中的 `data` 資料夾內擁有一個名為 _cleaned_cuisines.csv_ 的清理過的數據集。
 
 ### 準備工作
 
-我們已將你的 _notebook.ipynb_ 文件載入，並將清理過的數據集分割成 X 和 y 的數據框，準備進行模型構建。
+我們已經將清理過的數據集載入到你的 _notebook.ipynb_ 文件中，並將其分割為 X 和 y 數據框，準備進行模型構建。
 
 ## 分類地圖
 
-之前，你已學習如何使用 Microsoft 的速查表來分類數據。Scikit-learn 提供了一個類似但更細緻的速查表，能進一步幫助你縮小選擇範圍（分類器的另一個術語是估算器）：
+之前，你已經學習了使用 Microsoft 的速查表來分類數據的各種選項。Scikit-learn 提供了一個類似但更細緻的速查表，可以進一步幫助你縮小選擇範圍（分類器的另一個術語是估算器）：
 
-![Scikit-learn 的機器學習地圖](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.hk.png)
-> 提示：[在線查看此地圖](https://scikit-learn.org/stable/tutorial/machine_learning_map/)並點擊路徑以閱讀相關文檔。
+![Scikit-learn 的機器學習地圖](../../../../4-Classification/3-Classifiers-2/images/map.png)
+> 提示：[在線訪問此地圖](https://scikit-learn.org/stable/tutorial/machine_learning_map/)並點擊路徑以閱讀相關文檔。
 
 ### 計劃
 
-當你對數據有清晰的理解時，這張地圖非常有幫助，因為你可以沿著它的路徑做出決策：
+一旦你對數據有了清晰的理解，這張地圖非常有幫助，因為你可以沿著它的路徑進行決策：
 
 - 我們有超過 50 個樣本
 - 我們希望預測一個類別
@@ -41,7 +41,7 @@ CO_OP_TRANSLATOR_METADATA:
     - 我們可以嘗試 ✨ KNeighbors Classifier
       - 如果這不起作用，嘗試 ✨ SVC 和 ✨ Ensemble Classifiers
 
-這是一條非常有用的路徑。
+這是一條非常有幫助的路徑。
 
 ## 練習 - 分割數據
 
@@ -67,7 +67,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 線性 SVC 分類器
 
-支持向量聚類（SVC）是支持向量機（SVM）家族中的一員。使用此方法時，你可以選擇一個「核函數」來決定如何聚類標籤。「C」參數指的是「正則化」，它調節參數的影響。核函數可以是[多種選擇](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)之一；在這裡，我們將其設置為「線性」以確保使用線性 SVC。概率預設為「false」；在這裡，我們將其設置為「true」以獲取概率估算。我們將隨機狀態設置為「0」以打亂數據以獲取概率。
+支持向量聚類（SVC）是支持向量機家族中的一員（以下可以了解更多）。在這種方法中，你可以選擇一個「核函數」來決定如何聚類標籤。「C」參數指的是「正則化」，它調節參數的影響。核函數可以是[多種選項](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC)之一；在這裡，我們將其設置為「線性」，以確保我們使用線性 SVC。概率默認為「false」；在這裡，我們將其設置為「true」以獲取概率估算。我們將隨機狀態設置為「0」，以打亂數據以獲取概率。
 
 ### 練習 - 應用線性 SVC
 
@@ -116,13 +116,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## K-Neighbors 分類器
 
-K-Neighbors 是「鄰居」家族的機器學習方法的一部分，可用於監督學習和非監督學習。在此方法中，預定義的點數被創建，數據圍繞這些點聚集，以便可以為數據預測通用標籤。
+K-Neighbors 是「鄰居」家族的機器學習方法的一部分，可以用於監督學習和非監督學習。在這種方法中，預定義了一些點，並在這些點周圍收集數據，以便可以為數據預測通用標籤。
 
 ### 練習 - 應用 K-Neighbors 分類器
 
-之前的分類器表現良好，與數據配合得很好，但也許我們可以獲得更好的準確性。嘗試使用 K-Neighbors 分類器。
+之前的分類器表現良好，並且與數據配合得很好，但也許我們可以獲得更好的準確性。嘗試使用 K-Neighbors 分類器。
 
-1. 在分類器陣列中添加一行（在 Linear SVC 項目後加逗號）：
+1. 在分類器陣列中添加一行（在 Linear SVC 項目後添加逗號）：
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
@@ -149,13 +149,13 @@ K-Neighbors 是「鄰居」家族的機器學習方法的一部分，可用於�
 
 ## 支持向量分類器
 
-支持向量分類器屬於[支持向量機](https://wikipedia.org/wiki/Support-vector_machine)家族的機器學習方法，可用於分類和回歸任務。SVM 將「訓練樣本映射到空間中的點」，以最大化兩個類別之間的距離。隨後的數據被映射到這個空間，以便預測其類別。
+支持向量分類器是[支持向量機](https://wikipedia.org/wiki/Support-vector_machine)家族的一部分，用於分類和回歸任務。SVM 將「訓練樣本映射到空間中的點」，以最大化兩個類別之間的距離。隨後的數據被映射到這個空間中，以便預測它們的類別。
 
 ### 練習 - 應用支持向量分類器
 
 讓我們嘗試使用支持向量分類器來獲得更好的準確性。
 
-1. 在 K-Neighbors 項目後加逗號，然後添加以下行：
+1. 在 K-Neighbors 項目後添加逗號，然後添加以下行：
 
     ```python
     'SVC': SVC(),
@@ -182,7 +182,7 @@ K-Neighbors 是「鄰居」家族的機器學習方法的一部分，可用於�
 
 ## 集成分類器
 
-讓我們沿著路徑走到最後，即使之前的測試結果已經相當不錯。讓我們嘗試一些「集成分類器」，特別是隨機森林和 AdaBoost：
+即使之前的測試結果相當不錯，我們還是沿著路徑走到最後。讓我們嘗試一些「集成分類器」，特別是隨機森林和 AdaBoost：
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
@@ -221,9 +221,9 @@ weighted avg       0.73      0.72      0.72      1199
 
 ✅ 了解 [集成分類器](https://scikit-learn.org/stable/modules/ensemble.html)
 
-這種機器學習方法「結合多個基估算器的預測」以提高模型的質量。在我們的例子中，我們使用了隨機森林和 AdaBoost。
+這種機器學習方法「結合了多個基估算器的預測」，以提高模型的質量。在我們的例子中，我們使用了隨機樹和 AdaBoost。
 
-- [隨機森林](https://scikit-learn.org/stable/modules/ensemble.html#forest)，一種平均方法，構建了一個隨機性注入的「決策樹森林」以避免過擬合。n_estimators 參數設置為樹的數量。
+- [隨機森林](https://scikit-learn.org/stable/modules/ensemble.html#forest)，一種平均方法，構建了一個隨機性注入的「決策樹森林」，以避免過度擬合。n_estimators 參數設置為樹的數量。
 
 - [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) 將分類器擬合到數據集，然後將該分類器的副本擬合到相同的數據集。它專注於錯誤分類項目的權重，並調整下一個分類器的擬合以進行修正。
 
@@ -231,19 +231,19 @@ weighted avg       0.73      0.72      0.72      1199
 
 ## 🚀挑戰
 
-每種技術都有大量參數可以調整。研究每種技術的默認參數，並思考調整這些參數對模型質量的影響。
+每種技術都有大量的參數可以調整。研究每種技術的默認參數，並思考調整這些參數對模型質量的影響。
 
-## [課後測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 回顧與自學
 
-這些課程中有很多術語，花點時間回顧[這份術語表](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott)，它非常有用！
+這些課程中有很多術語，因此花點時間回顧[這份列表](https://docs.microsoft.com/dotnet/machine-learning/resources/glossary?WT.mc_id=academic-77952-leestott)中的有用術語！
 
-## 作業 
+## 作業
 
 [參數調整](assignment.md)
 
 ---
 
 **免責聲明**：  
-本文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始語言的文件應被視為權威來源。對於重要資訊，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。
+此文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。
