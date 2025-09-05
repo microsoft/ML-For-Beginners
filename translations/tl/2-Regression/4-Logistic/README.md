@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "72b5bae0879baddf6aafc82bb07b8776",
-  "translation_date": "2025-08-29T13:00:17+00:00",
+  "original_hash": "abf86d845c84330bce205a46b382ec88",
+  "translation_date": "2025-09-05T18:10:22+00:00",
   "source_file": "2-Regression/4-Logistic/README.md",
   "language_code": "tl"
 }
 -->
 # Logistic regression para sa pag-predict ng mga kategorya
 
-![Infographic ng Logistic vs. Linear Regression](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.tl.png)
+![Infographic ng Logistic vs. Linear Regression](../../../../2-Regression/4-Logistic/images/linear-vs-logistic.png)
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Ang araling ito ay available sa R!](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
 
 ## Panimula
 
-Sa huling aralin na ito tungkol sa Regression, isa sa mga pangunahing _classic_ na teknik sa ML, tatalakayin natin ang Logistic Regression. Ginagamit ang teknik na ito upang matuklasan ang mga pattern para mag-predict ng binary categories. Ang candy ba ay chocolate o hindi? Ang sakit ba ay nakakahawa o hindi? Pipiliin ba ng customer ang produktong ito o hindi?
+Sa huling araling ito tungkol sa Regression, isa sa mga pangunahing _classic_ na teknik sa ML, tatalakayin natin ang Logistic Regression. Ginagamit ang teknik na ito upang matuklasan ang mga pattern para mag-predict ng binary categories. Ang candy ba ay chocolate o hindi? Ang sakit ba ay nakakahawa o hindi? Pipiliin ba ng customer ang produktong ito o hindi?
 
 Sa araling ito, matututunan mo:
 
@@ -30,9 +30,9 @@ Sa araling ito, matututunan mo:
 
 Dahil nagtrabaho na tayo sa pumpkin data, sapat na ang ating kaalaman upang mapansin na may isang binary category na maaari nating pag-aralan: `Color`.
 
-Gumawa tayo ng logistic regression model upang mag-predict, gamit ang ilang variables, _kung anong kulay ang malamang na maging isang pumpkin_ (orange 🎃 o white 👻).
+Gumawa tayo ng logistic regression model upang mag-predict kung, batay sa ilang variables, _anong kulay ang malamang na maging isang pumpkin_ (orange 🎃 o white 👻).
 
-> Bakit natin pinag-uusapan ang binary classification sa isang aralin tungkol sa regression? Para lamang sa kaginhawaan sa wika, dahil ang logistic regression ay [talagang isang classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), bagamat linear-based ito. Matuto tungkol sa iba pang paraan ng pag-classify ng data sa susunod na grupo ng aralin.
+> Bakit natin pinag-uusapan ang binary classification sa isang aralin tungkol sa regression? Para lamang sa linguistic convenience, dahil ang logistic regression ay [talagang isang classification method](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), bagamat linear-based. Matuto tungkol sa iba pang paraan ng pag-classify ng data sa susunod na grupo ng aralin.
 
 ## Tukuyin ang tanong
 
@@ -50,9 +50,9 @@ Ang logistic regression ay naiiba sa linear regression, na natutunan mo na dati,
 
 ### Binary classification
 
-Ang logistic regression ay hindi nag-aalok ng parehong features tulad ng linear regression. Ang una ay nagbibigay ng prediction tungkol sa binary category ("white o hindi white") samantalang ang huli ay kayang mag-predict ng patuloy na values, halimbawa, batay sa pinanggalingan ng pumpkin at oras ng pag-ani, _kung gaano tataas ang presyo nito_.
+Ang logistic regression ay hindi nag-aalok ng parehong features tulad ng linear regression. Ang una ay nagbibigay ng prediction tungkol sa binary category ("white o hindi white") samantalang ang huli ay may kakayahang mag-predict ng patuloy na values, halimbawa batay sa pinanggalingan ng pumpkin at oras ng pag-ani, _kung gaano tataas ang presyo nito_.
 
-![Model ng Pumpkin Classification](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.tl.png)
+![Model ng Pumpkin Classification](../../../../2-Regression/4-Logistic/images/pumpkin-classifier.png)
 > Infographic ni [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ### Iba pang classifications
@@ -60,25 +60,27 @@ Ang logistic regression ay hindi nag-aalok ng parehong features tulad ng linear 
 May iba pang uri ng logistic regression, kabilang ang multinomial at ordinal:
 
 - **Multinomial**, na may higit sa isang kategorya - "Orange, White, at Striped".
-- **Ordinal**, na may ordered categories, kapaki-pakinabang kung nais nating i-order ang ating outcomes nang lohikal, tulad ng ating pumpkins na naka-order ayon sa finite na bilang ng sizes (mini, sm, med, lg, xl, xxl).
+- **Ordinal**, na may ordered categories, kapaki-pakinabang kung nais nating i-order ang ating outcomes nang lohikal, tulad ng ating pumpkins na naka-order batay sa finite na bilang ng sizes (mini, sm, med, lg, xl, xxl).
 
-![Multinomial vs ordinal regression](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.tl.png)
+![Multinomial vs ordinal regression](../../../../2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
 ### Hindi kailangang mag-correlate ang mga variables
 
-Tandaan kung paano mas gumagana ang linear regression sa mas correlated na variables? Ang logistic regression ay kabaligtaran - hindi kailangang mag-align ang mga variables. Angkop ito para sa data na may medyo mahina ang correlations.
+Tandaan kung paano mas gumagana ang linear regression sa mas correlated na variables? Ang logistic regression ay kabaligtaran - hindi kailangang mag-align ang mga variables. Angkop ito para sa data na may medyo mahina na correlations.
 
 ### Kailangan mo ng maraming malinis na data
 
-Mas accurate ang resulta ng logistic regression kung mas maraming data ang gagamitin; ang maliit na dataset natin ay hindi optimal para sa task na ito, kaya tandaan ito.
+Mas accurate ang resulta ng logistic regression kung mas maraming data ang ginagamit; ang maliit na dataset natin ay hindi optimal para sa task na ito, kaya tandaan ito.
 
 [![ML para sa mga nagsisimula - Data Analysis at Preparation para sa Logistic Regression](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "ML para sa mga nagsisimula - Data Analysis at Preparation para sa Logistic Regression")
+
+> 🎥 I-click ang imahe sa itaas para sa maikling video overview ng paghahanda ng data para sa linear regression
 
 ✅ Pag-isipan ang mga uri ng data na angkop para sa logistic regression
 
 ## Ehersisyo - ayusin ang data
 
-Una, linisin ang data nang kaunti, tanggalin ang mga null values at piliin lamang ang ilang columns:
+Una, linisin ang data nang kaunti, tanggalin ang mga null values at piliin lamang ang ilang mga column:
 
 1. Idagdag ang sumusunod na code:
 
@@ -98,7 +100,7 @@ Una, linisin ang data nang kaunti, tanggalin ang mga null values at piliin laman
 
 ### Visualization - categorical plot
 
-Sa puntong ito, na-load mo na ang [starter notebook](./notebook.ipynb) gamit ang pumpkin data at nilinis ito upang mapanatili ang dataset na naglalaman ng ilang variables, kabilang ang `Color`. I-visualize natin ang dataframe sa notebook gamit ang ibang library: [Seaborn](https://seaborn.pydata.org/index.html), na nakabatay sa Matplotlib na ginamit natin dati.
+Sa puntong ito, na-load mo na ang [starter notebook](../../../../2-Regression/4-Logistic/notebook.ipynb) gamit ang pumpkin data at nilinis ito upang mapanatili ang dataset na naglalaman ng ilang variables, kabilang ang `Color`. I-visualize natin ang dataframe sa notebook gamit ang ibang library: [Seaborn](https://seaborn.pydata.org/index.html), na nakabatay sa Matplotlib na ginamit natin dati.
 
 Nag-aalok ang Seaborn ng mga magagandang paraan upang i-visualize ang iyong data. Halimbawa, maaari mong ikumpara ang distributions ng data para sa bawat `Variety` at `Color` sa isang categorical plot.
 
@@ -118,7 +120,7 @@ Nag-aalok ang Seaborn ng mga magagandang paraan upang i-visualize ang iyong data
     )
     ```
 
-    ![Grid ng visualized data](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.tl.png)
+    ![Grid ng visualized data](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_1.png)
 
     Sa pag-obserba ng data, makikita mo kung paano nauugnay ang Color data sa Variety.
 
@@ -126,11 +128,11 @@ Nag-aalok ang Seaborn ng mga magagandang paraan upang i-visualize ang iyong data
 
 ### Data pre-processing: feature at label encoding
 
-Ang pumpkins dataset natin ay naglalaman ng string values para sa lahat ng columns nito. Ang pag-trabaho sa categorical data ay intuitive para sa tao ngunit hindi para sa mga makina. Ang machine learning algorithms ay mas mahusay gumana sa mga numero. Kaya't ang encoding ay isang mahalagang hakbang sa data pre-processing phase, dahil pinapayagan nitong gawing numerical data ang categorical data nang hindi nawawala ang anumang impormasyon. Ang mahusay na encoding ay nagreresulta sa paggawa ng mahusay na modelo.
+Ang dataset ng pumpkins ay naglalaman ng string values para sa lahat ng mga column nito. Ang paggamit ng categorical data ay intuitive para sa mga tao ngunit hindi para sa mga makina. Ang machine learning algorithms ay mas mahusay gumana sa mga numero. Kaya't ang encoding ay isang napakahalagang hakbang sa data pre-processing phase, dahil pinapayagan tayo nitong gawing numerical data ang categorical data, nang hindi nawawala ang anumang impormasyon. Ang mahusay na encoding ay nagreresulta sa paggawa ng mahusay na modelo.
 
 Para sa feature encoding, may dalawang pangunahing uri ng encoders:
 
-1. Ordinal encoder: angkop ito para sa ordinal variables, na mga categorical variables kung saan ang kanilang data ay may lohikal na pagkakasunod-sunod, tulad ng `Item Size` column sa ating dataset. Gumagawa ito ng mapping kung saan ang bawat kategorya ay kinakatawan ng isang numero, na siyang pagkakasunod-sunod ng kategorya sa column.
+1. Ordinal encoder: angkop ito para sa ordinal variables, na mga categorical variables kung saan ang kanilang data ay sumusunod sa lohikal na pagkakasunod-sunod, tulad ng `Item Size` column sa ating dataset. Gumagawa ito ng mapping kung saan ang bawat kategorya ay kinakatawan ng isang numero, na siyang pagkakasunod-sunod ng kategorya sa column.
 
     ```python
     from sklearn.preprocessing import OrdinalEncoder
@@ -140,7 +142,7 @@ Para sa feature encoding, may dalawang pangunahing uri ng encoders:
     ordinal_encoder = OrdinalEncoder(categories=item_size_categories)
     ```
 
-2. Categorical encoder: angkop ito para sa nominal variables, na mga categorical variables kung saan ang kanilang data ay walang lohikal na pagkakasunod-sunod, tulad ng lahat ng features maliban sa `Item Size` sa ating dataset. Ito ay isang one-hot encoding, na nangangahulugang ang bawat kategorya ay kinakatawan ng isang binary column: ang encoded variable ay katumbas ng 1 kung ang pumpkin ay kabilang sa Variety na iyon at 0 kung hindi.
+2. Categorical encoder: angkop ito para sa nominal variables, na mga categorical variables kung saan ang kanilang data ay hindi sumusunod sa lohikal na pagkakasunod-sunod, tulad ng lahat ng features maliban sa `Item Size` sa ating dataset. Ito ay isang one-hot encoding, na nangangahulugang ang bawat kategorya ay kinakatawan ng isang binary column: ang encoded variable ay katumbas ng 1 kung ang pumpkin ay kabilang sa Variety na iyon at 0 kung hindi.
 
     ```python
     from sklearn.preprocessing import OneHotEncoder
@@ -149,7 +151,7 @@ Para sa feature encoding, may dalawang pangunahing uri ng encoders:
     categorical_encoder = OneHotEncoder(sparse_output=False)
     ```
 
-Pagkatapos, ginagamit ang `ColumnTransformer` upang pagsamahin ang maraming encoders sa isang hakbang at i-apply ang mga ito sa tamang columns.
+Pagkatapos, ginagamit ang `ColumnTransformer` upang pagsamahin ang maraming encoders sa isang hakbang at i-apply ang mga ito sa tamang mga column.
 
 ```python
     from sklearn.compose import ColumnTransformer
@@ -202,7 +204,7 @@ Ngayon na na-pre-process na natin ang data, maaari nating suriin ang relasyon sa
     g.set_titles(row_template="{row_name}")
 ```
 
-![Catplot ng visualized data](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.tl.png)
+![Catplot ng visualized data](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_2.png)
 
 ### Gumamit ng swarm plot
 
@@ -220,21 +222,21 @@ Maaari mong i-visualize ang mga variables nang magkatabi gamit ang Seaborn plots
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![Swarm ng visualized data](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.tl.png)
+    ![Swarm ng visualized data](../../../../2-Regression/4-Logistic/images/swarm_2.png)
 
-**Mag-ingat**: ang code sa itaas ay maaaring mag-generate ng warning, dahil ang seaborn ay nahihirapang i-represent ang ganitong dami ng datapoints sa isang swarm plot. Ang posibleng solusyon ay bawasan ang laki ng marker, gamit ang 'size' parameter. Gayunpaman, tandaan na maaapektuhan nito ang readability ng plot.
+**Mag-ingat**: ang code sa itaas ay maaaring mag-generate ng warning, dahil hindi maipapakita ng seaborn ang ganitong dami ng datapoints sa isang swarm plot. Ang posibleng solusyon ay bawasan ang laki ng marker, gamit ang 'size' parameter. Gayunpaman, tandaan na maaapektuhan nito ang readability ng plot.
 
 > **🧮 Ipakita ang Math**
 >
 > Ang logistic regression ay nakabatay sa konsepto ng 'maximum likelihood' gamit ang [sigmoid functions](https://wikipedia.org/wiki/Sigmoid_function). Ang 'Sigmoid Function' sa isang plot ay mukhang hugis 'S'. Kinukuha nito ang isang value at ina-map ito sa pagitan ng 0 at 1. Ang curve nito ay tinatawag ding 'logistic curve'. Ang formula nito ay ganito:
 >
-> ![logistic function](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.tl.png)
+> ![logistic function](../../../../2-Regression/4-Logistic/images/sigmoid.png)
 >
 > kung saan ang midpoint ng sigmoid ay nasa x's 0 point, L ang maximum value ng curve, at k ang steepness ng curve. Kung ang resulta ng function ay higit sa 0.5, ang label ay bibigyan ng class '1' ng binary choice. Kung hindi, ito ay ikakategorya bilang '0'.
 
-## Gumawa ng iyong modelo
+## Bumuo ng iyong modelo
 
-Ang paggawa ng modelo upang mahanap ang binary classification ay nakakagulat na simple gamit ang Scikit-learn.
+Ang paggawa ng modelo upang mahanap ang mga binary classification ay nakakagulat na simple sa Scikit-learn.
 
 [![ML para sa mga nagsisimula - Logistic Regression para sa classification ng data](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML para sa mga nagsisimula - Logistic Regression para sa classification ng data")
 
@@ -317,10 +319,10 @@ Sa Scikit-learn, ang Rows (axis 0) ay actual labels at ang columns (axis 1) ay p
 
 Ano ang nangyayari dito? Sabihin nating ang modelo natin ay tinanong upang i-classify ang pumpkins sa pagitan ng dalawang binary categories, category 'white' at category 'not-white'.
 
-- Kung ang modelo mo ay nag-predict ng pumpkin bilang not white at ito ay talagang kabilang sa category 'not-white', tinatawag natin itong true negative, na ipinapakita ng numero sa kaliwang itaas.
-- Kung ang modelo mo ay nag-predict ng pumpkin bilang white ngunit ito ay talagang kabilang sa category 'not-white', tinatawag natin itong false negative, na ipinapakita ng numero sa kaliwang ibaba.
-- Kung ang modelo mo ay nag-predict ng pumpkin bilang not white ngunit ito ay talagang kabilang sa category 'white', tinatawag natin itong false positive, na ipinapakita ng numero sa kanang itaas.
-- Kung ang modelo mo ay nag-predict ng pumpkin bilang white at ito ay talagang kabilang sa category 'white', tinatawag natin itong true positive, na ipinapakita ng numero sa kanang ibaba.
+- Kung ang modelo mo ay nag-predict ng pumpkin bilang hindi white at ito ay kabilang sa category 'not-white' sa realidad, tinatawag natin itong true negative, na ipinapakita ng numero sa kaliwang itaas.
+- Kung ang modelo mo ay nag-predict ng pumpkin bilang white at ito ay kabilang sa category 'not-white' sa realidad, tinatawag natin itong false negative, na ipinapakita ng numero sa kaliwang ibaba.
+- Kung ang modelo mo ay nag-predict ng pumpkin bilang hindi white at ito ay kabilang sa category 'white' sa realidad, tinatawag natin itong false positive, na ipinapakita ng numero sa kanang itaas.
+- Kung ang modelo mo ay nag-predict ng pumpkin bilang white at ito ay kabilang sa category 'white' sa realidad, tinatawag natin itong true positive, na ipinapakita ng numero sa kanang ibaba.
 
 Tulad ng inaasahan mo, mas mainam na magkaroon ng mas malaking bilang ng true positives at true negatives at mas mababang bilang ng false positives at false negatives, na nagpapahiwatig na mas mahusay ang performance ng modelo.
 Paano nauugnay ang confusion matrix sa precision at recall? Tandaan, ang classification report na ipinakita sa itaas ay nagpakita ng precision (0.85) at recall (0.67).
@@ -335,16 +337,16 @@ A: Hindi masama; may magandang bilang ng true negatives ngunit mayroon ding ilan
 Balikan natin ang mga terminong nakita natin kanina gamit ang mapping ng TP/TN at FP/FN sa confusion matrix:
 
 🎓 Precision: TP/(TP + FP)  
-Ang bahagi ng mga tamang instance sa mga nakuha na instance (hal. aling mga label ang maayos na na-label).
+Ang bahagi ng mga tamang instance sa mga nakuha na instance (hal. aling mga label ang maayos na na-label)
 
 🎓 Recall: TP/(TP + FN)  
-Ang bahagi ng mga tamang instance na nakuha, maayos man ang pagkaka-label o hindi.
+Ang bahagi ng mga tamang instance na nakuha, maayos man ang pagkaka-label o hindi
 
 🎓 f1-score: (2 * precision * recall)/(precision + recall)  
-Isang weighted average ng precision at recall, kung saan ang pinakamaganda ay 1 at ang pinakamasama ay 0.
+Isang weighted average ng precision at recall, kung saan ang pinakamaganda ay 1 at ang pinakamasama ay 0
 
 🎓 Support:  
-Ang bilang ng mga paglitaw ng bawat label na nakuha.
+Ang bilang ng mga paglitaw ng bawat label na nakuha
 
 🎓 Accuracy: (TP + TN)/(TP + TN + FP + FN)  
 Ang porsyento ng mga label na tama ang prediksyon para sa isang sample.
@@ -355,13 +357,13 @@ Ang kalkulasyon ng unweighted mean metrics para sa bawat label, hindi isinasaala
 🎓 Weighted Avg:  
 Ang kalkulasyon ng mean metrics para sa bawat label, isinasaalang-alang ang imbalance ng label sa pamamagitan ng pag-weight base sa kanilang support (ang bilang ng tamang instance para sa bawat label).
 
-✅ Maaari mo bang isipin kung aling metric ang dapat bantayan kung nais mong bawasan ang bilang ng false negatives?
+✅ Maaari mo bang isipin kung aling metric ang dapat mong bantayan kung gusto mong bawasan ang bilang ng false negatives?
 
 ## I-visualize ang ROC curve ng modelong ito
 
 [![ML para sa mga nagsisimula - Pagsusuri ng Performance ng Logistic Regression gamit ang ROC Curves](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "ML para sa mga nagsisimula - Pagsusuri ng Performance ng Logistic Regression gamit ang ROC Curves")
 
-> 🎥 I-click ang imahe sa itaas para sa isang maikling video overview ng ROC curves.
+> 🎥 I-click ang imahe sa itaas para sa isang maikling video overview ng ROC curves
 
 Gumawa tayo ng isa pang visualization upang makita ang tinatawag na 'ROC' curve:
 
@@ -383,9 +385,9 @@ plt.title('ROC Curve')
 plt.show()
 ```
 
-Gamit ang Matplotlib, i-plot ang [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) o ROC ng modelo. Ang ROC curves ay madalas gamitin upang makita ang output ng isang classifier sa mga aspeto ng true vs. false positives. "Ang ROC curves ay karaniwang may true positive rate sa Y axis, at false positive rate sa X axis." Kaya't mahalaga ang steepness ng curve at ang espasyo sa pagitan ng midpoint line at ng curve: nais mo ng curve na mabilis na tumataas at lumalampas sa linya. Sa ating kaso, may false positives sa simula, at pagkatapos ay ang linya ay tumataas at lumalampas nang maayos:
+Gamit ang Matplotlib, i-plot ang [Receiving Operating Characteristic](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) o ROC ng modelo. Ang ROC curves ay madalas gamitin upang makita ang output ng isang classifier sa mga aspeto ng true vs. false positives. "Ang ROC curves ay karaniwang may true positive rate sa Y axis, at false positive rate sa X axis." Kaya, mahalaga ang steepness ng curve at ang espasyo sa pagitan ng midpoint line at ng curve: gusto mo ng curve na mabilis na tumataas at lumalampas sa linya. Sa ating kaso, may false positives sa simula, at pagkatapos ay ang linya ay tumataas at lumalampas nang maayos:
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.tl.png)
+![ROC](../../../../2-Regression/4-Logistic/images/ROC_2.png)
 
 Sa huli, gamitin ang [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) ng Scikit-learn upang kalkulahin ang aktwal na 'Area Under the Curve' (AUC):
 
@@ -393,26 +395,26 @@ Sa huli, gamitin ang [`roc_auc_score` API](https://scikit-learn.org/stable/modul
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```  
-Ang resulta ay `0.9749908725812341`. Dahil ang AUC ay nasa saklaw mula 0 hanggang 1, nais mo ng mataas na score, dahil ang isang modelo na 100% tama sa mga prediksyon nito ay magkakaroon ng AUC na 1; sa kasong ito, ang modelo ay _medyo magaling_.
+Ang resulta ay `0.9749908725812341`. Dahil ang AUC ay nasa saklaw na 0 hanggang 1, gusto mo ng mataas na score, dahil ang isang modelo na 100% tama sa mga prediksyon nito ay magkakaroon ng AUC na 1; sa kasong ito, ang modelo ay _medyo magaling_.
 
-Sa mga susunod na aralin tungkol sa classifications, matututo ka kung paano mag-iterate upang mapabuti ang mga score ng iyong modelo. Ngunit sa ngayon, binabati kita! Natapos mo na ang mga aralin sa regression!
+Sa mga susunod na aralin tungkol sa classifications, matututo ka kung paano mag-iterate upang mapabuti ang mga score ng iyong modelo. Ngunit sa ngayon, binabati kita! Natapos mo na ang mga regression lessons!
 
 ---
 ## 🚀Hamunin
 
 Marami pang dapat tuklasin tungkol sa logistic regression! Ngunit ang pinakamagandang paraan upang matuto ay ang mag-eksperimento. Maghanap ng dataset na angkop para sa ganitong uri ng pagsusuri at bumuo ng modelo gamit ito. Ano ang natutunan mo? Tip: subukan ang [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) para sa mga kawili-wiling dataset.
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Review at Pag-aaral ng Sarili
+## Review at Pag-aaral sa Sarili
 
 Basahin ang unang ilang pahina ng [papel na ito mula sa Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) tungkol sa ilang praktikal na gamit ng logistic regression. Pag-isipan ang mga gawain na mas angkop para sa isa o sa ibang uri ng regression na pinag-aralan natin hanggang sa puntong ito. Ano ang mas angkop?
 
-## Takdang Aralin
+## Takdang-Aralin
 
 [Subukang muli ang regression na ito](assignment.md)
 
 ---
 
 **Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na pinagmulan. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na pinagmulan. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.

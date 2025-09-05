@@ -1,113 +1,115 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-08-29T13:24:11+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-05T18:14:20+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "tl"
 }
 -->
 # Panimula sa clustering
 
-Ang clustering ay isang uri ng [Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning) na inaakalang ang dataset ay walang label o ang mga input nito ay hindi tumutugma sa mga pre-defined na output. Gumagamit ito ng iba't ibang algorithm upang suriin ang unlabeled na data at magbigay ng mga grupo batay sa mga pattern na natutuklasan nito sa data.
+Ang clustering ay isang uri ng [Unsupervised Learning](https://wikipedia.org/wiki/Unsupervised_learning) na ipinapalagay na ang dataset ay walang label o ang mga input nito ay hindi tumutugma sa mga pre-defined na output. Gumagamit ito ng iba't ibang algorithm upang suriin ang unlabeled na data at magbigay ng mga pangkat batay sa mga pattern na natutuklasan nito sa data.
 
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
 > 🎥 I-click ang imahe sa itaas para sa isang video. Habang nag-aaral ka ng machine learning gamit ang clustering, mag-enjoy sa ilang Nigerian Dance Hall tracks - ito ay isang highly rated na kanta mula 2014 ng PSquare.
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Panimula
 
-[Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) ay napaka-kapaki-pakinabang para sa pag-explore ng data. Tingnan natin kung makakatulong ito sa pagtuklas ng mga trend at pattern sa paraan ng pagkonsumo ng musika ng mga Nigerian audience.
+Ang [Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) ay napaka-kapaki-pakinabang para sa paggalugad ng data. Tingnan natin kung makakatulong ito sa pagtuklas ng mga trend at pattern sa paraan ng pagkonsumo ng musika ng mga Nigerian audience.
 
-✅ Maglaan ng isang minuto upang pag-isipan ang mga gamit ng clustering. Sa totoong buhay, nangyayari ang clustering tuwing may tambak ng labahan at kailangan mong ayusin ang mga damit ng iyong pamilya 🧦👕👖🩲. Sa data science, nangyayari ang clustering kapag sinusubukang suriin ang mga kagustuhan ng isang user, o tukuyin ang mga katangian ng anumang unlabeled dataset. Sa isang paraan, ang clustering ay tumutulong upang maunawaan ang kaguluhan, tulad ng isang drawer ng medyas.
+✅ Maglaan ng isang minuto upang pag-isipan ang mga gamit ng clustering. Sa totoong buhay, nangyayari ang clustering tuwing mayroon kang tambak ng labahan at kailangang ayusin ang mga damit ng iyong pamilya 🧦👕👖🩲. Sa data science, nangyayari ang clustering kapag sinusubukang suriin ang mga kagustuhan ng isang user, o tukuyin ang mga katangian ng anumang unlabeled dataset. Sa isang paraan, ang clustering ay tumutulong upang maunawaan ang kaguluhan, tulad ng drawer ng medyas.
 
 [![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
 
-> 🎥 I-click ang imahe sa itaas para sa isang video: Ipinakikilala ni John Guttag ng MIT ang clustering.
+> 🎥 I-click ang imahe sa itaas para sa isang video: Ipinakikilala ni John Guttag ng MIT ang clustering
 
-Sa isang propesyonal na setting, maaaring gamitin ang clustering upang matukoy ang segmentation ng merkado, tulad ng pagtukoy kung anong mga age group ang bumibili ng anong mga produkto. Isa pang gamit ay ang anomaly detection, marahil upang matukoy ang pandaraya mula sa dataset ng mga transaksyon gamit ang credit card. Maaari mo ring gamitin ang clustering upang matukoy ang mga tumor sa isang batch ng mga medical scan.
+Sa isang propesyonal na setting, maaaring gamitin ang clustering upang matukoy ang segmentation ng merkado, tulad ng pagtukoy kung anong mga age group ang bumibili ng mga partikular na produkto. Isa pang gamit ay ang anomaly detection, halimbawa upang matukoy ang pandaraya mula sa dataset ng mga transaksyon sa credit card. Maaari mo ring gamitin ang clustering upang matukoy ang mga tumor sa batch ng mga medical scan.
 
 ✅ Maglaan ng isang minuto upang pag-isipan kung paano mo maaaring naranasan ang clustering 'sa totoong buhay', sa isang banking, e-commerce, o business setting.
 
 > 🎓 Nakakatuwa, ang cluster analysis ay nagmula sa mga larangan ng Anthropology at Psychology noong 1930s. Maiisip mo ba kung paano ito ginamit noon?
 
-Bukod dito, maaari mo itong gamitin para sa pag-grupo ng mga resulta ng paghahanap - tulad ng mga shopping link, larawan, o review, halimbawa. Kapaki-pakinabang ang clustering kapag mayroon kang malaking dataset na nais mong bawasan at kung saan nais mong magsagawa ng mas detalyadong pagsusuri, kaya ang teknik na ito ay maaaring gamitin upang matuto tungkol sa data bago bumuo ng iba pang mga modelo.
+Bukod dito, maaari mo itong gamitin para sa pag-grupo ng mga resulta ng paghahanap - tulad ng mga shopping link, imahe, o review, halimbawa. Kapaki-pakinabang ang clustering kapag mayroon kang malaking dataset na nais mong bawasan at kung saan nais mong magsagawa ng mas detalyadong pagsusuri, kaya ang teknik na ito ay maaaring gamitin upang matuto tungkol sa data bago bumuo ng iba pang mga modelo.
 
-✅ Kapag ang iyong data ay nakaayos na sa mga cluster, mag-aassign ka ng cluster Id, at ang teknik na ito ay maaaring maging kapaki-pakinabang sa pag-preserve ng privacy ng dataset; maaari mong tukuyin ang isang data point gamit ang cluster id nito, sa halip na mas detalyado o mas nakikilalang data. Maiisip mo ba ang iba pang dahilan kung bakit mas gugustuhin mong tukuyin ang isang cluster Id kaysa sa ibang elemento ng cluster upang kilalanin ito?
+✅ Kapag ang iyong data ay nakaayos na sa mga cluster, maaari kang magtalaga ng cluster Id dito, at ang teknik na ito ay maaaring maging kapaki-pakinabang sa pagpapanatili ng privacy ng dataset; maaari mong tukuyin ang isang data point sa pamamagitan ng cluster id nito, sa halip na sa pamamagitan ng mas nakakapagpakilalang data. Maiisip mo ba ang iba pang dahilan kung bakit mas gugustuhin mong tukuyin ang isang cluster Id kaysa sa iba pang elemento ng cluster upang kilalanin ito?
 
-Palalimin ang iyong pag-unawa sa mga clustering techniques sa [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
+Palalimin ang iyong pag-unawa sa mga clustering techniques sa [Learn module](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott)
 
 ## Pagsisimula sa clustering
 
-[Ang Scikit-learn ay nag-aalok ng malawak na hanay](https://scikit-learn.org/stable/modules/clustering.html) ng mga pamamaraan upang magsagawa ng clustering. Ang uri na pipiliin mo ay depende sa iyong kaso ng paggamit. Ayon sa dokumentasyon, bawat pamamaraan ay may iba't ibang benepisyo. Narito ang isang pinasimpleng talahanayan ng mga pamamaraan na sinusuportahan ng Scikit-learn at ang kanilang naaangkop na mga kaso ng paggamit:
+[Ang Scikit-learn ay nag-aalok ng malawak na hanay](https://scikit-learn.org/stable/modules/clustering.html) ng mga pamamaraan upang magsagawa ng clustering. Ang uri na pipiliin mo ay depende sa iyong use case. Ayon sa dokumentasyon, bawat pamamaraan ay may iba't ibang benepisyo. Narito ang isang pinasimpleng talahanayan ng mga pamamaraan na sinusuportahan ng Scikit-learn at ang kanilang naaangkop na mga use case:
 
-| Pangalan ng Pamamaraan        | Kaso ng Paggamit                                                    |
-| :--------------------------- | :------------------------------------------------------------------ |
-| K-Means                      | pangkalahatang layunin, inductive                                   |
-| Affinity propagation         | marami, hindi pantay na mga cluster, inductive                     |
-| Mean-shift                   | marami, hindi pantay na mga cluster, inductive                     |
-| Spectral clustering          | kaunti, pantay na mga cluster, transductive                        |
-| Ward hierarchical clustering | marami, constrained na mga cluster, transductive                   |
-| Agglomerative clustering     | marami, constrained, non Euclidean distances, transductive         |
-| DBSCAN                       | non-flat geometry, hindi pantay na mga cluster, transductive       |
+| Pangalan ng Pamamaraan        | Use case                                                               |
+| :--------------------------- | :--------------------------------------------------------------------- |
+| K-Means                      | pangkalahatang layunin, inductive                                      |
+| Affinity propagation         | marami, hindi pantay na mga cluster, inductive                        |
+| Mean-shift                   | marami, hindi pantay na mga cluster, inductive                        |
+| Spectral clustering          | kaunti, pantay na mga cluster, transductive                           |
+| Ward hierarchical clustering | marami, constrained na mga cluster, transductive                      |
+| Agglomerative clustering     | marami, constrained, non Euclidean distances, transductive            |
+| DBSCAN                       | non-flat geometry, hindi pantay na mga cluster, transductive          |
 | OPTICS                       | non-flat geometry, hindi pantay na mga cluster na may variable density, transductive |
-| Gaussian mixtures            | flat geometry, inductive                                           |
-| BIRCH                        | malaking dataset na may outliers, inductive                        |
+| Gaussian mixtures            | flat geometry, inductive                                              |
+| BIRCH                        | malaking dataset na may outliers, inductive                           |
 
-> 🎓 Ang paraan ng paglikha ng mga cluster ay may kinalaman sa kung paano natin pinagsasama-sama ang mga data point sa mga grupo. Tuklasin natin ang ilang bokabularyo:
+> 🎓 Ang paraan ng paglikha natin ng mga cluster ay may kinalaman sa kung paano natin pinagsasama-sama ang mga data point sa mga grupo. Tuklasin natin ang ilang bokabularyo:
 >
 > 🎓 ['Transductive' vs. 'inductive'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
 > Ang transductive inference ay nagmumula sa mga naobserbahang training cases na tumutugma sa mga partikular na test cases. Ang inductive inference ay nagmumula sa mga training cases na tumutugma sa mga pangkalahatang panuntunan na pagkatapos ay inilalapat sa mga test cases.
 > 
-> Halimbawa: Isipin na mayroon kang dataset na bahagyang may label. Ang ilan ay 'records', ang ilan ay 'cds', at ang ilan ay walang label. Ang iyong trabaho ay magbigay ng label para sa mga walang label. Kung pipili ka ng inductive approach, magte-train ka ng model na naghahanap ng 'records' at 'cds', at ilalapat ang mga label na iyon sa iyong unlabeled na data. Ang approach na ito ay magkakaroon ng problema sa pag-classify ng mga bagay na aktwal na 'cassettes'. Ang transductive approach, sa kabilang banda, ay mas epektibong humahawak sa hindi kilalang data dahil gumagana ito upang mag-grupo ng mga magkatulad na item at pagkatapos ay maglalapat ng label sa isang grupo. Sa kasong ito, ang mga cluster ay maaaring magpakita ng 'round musical things' at 'square musical things'.
+> Halimbawa: Isipin na mayroon kang dataset na bahagyang may label. Ang ilan ay 'records', ang ilan ay 'cds', at ang ilan ay blangko. Ang iyong trabaho ay magbigay ng label para sa mga blangko. Kung pipili ka ng inductive approach, magte-train ka ng model na naghahanap ng 'records' at 'cds', at ilalapat ang mga label na iyon sa iyong unlabeled na data. Ang approach na ito ay mahihirapan sa pag-classify ng mga bagay na aktwal na 'cassettes'. Ang transductive approach, sa kabilang banda, ay mas epektibong humahawak sa hindi kilalang data dahil gumagana ito upang mag-grupo ng mga magkatulad na item at pagkatapos ay maglalapat ng label sa isang grupo. Sa kasong ito, maaaring magpakita ang mga cluster ng 'bilog na musical things' at 'parisukat na musical things'.
 > 
 > 🎓 ['Non-flat' vs. 'flat' geometry](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
-> Ang 'flat' sa kontekstong ito ay tumutukoy sa Euclidean geometry (mga bahagi nito ay itinuturo bilang 'plane' geometry), at ang non-flat ay tumutukoy sa non-Euclidean geometry. Ano ang kinalaman ng geometry sa machine learning? Bilang dalawang larangan na nakaugat sa matematika, dapat mayroong karaniwang paraan upang sukatin ang distansya sa pagitan ng mga puntos sa mga cluster, at maaaring gawin ito sa 'flat' o 'non-flat' na paraan, depende sa kalikasan ng data. [Euclidean distances](https://wikipedia.org/wiki/Euclidean_distance) ay sinusukat bilang haba ng isang linya sa pagitan ng dalawang puntos. [Non-Euclidean distances](https://wikipedia.org/wiki/Non-Euclidean_geometry) ay sinusukat sa kahabaan ng isang kurba. Kung ang iyong data, kapag na-visualize, ay tila hindi umiiral sa isang plane, maaaring kailanganin mong gumamit ng specialized algorithm upang hawakan ito.
+> Nagmula sa terminolohiyang matematika, ang non-flat vs. flat geometry ay tumutukoy sa pagsukat ng distansya sa pagitan ng mga punto sa pamamagitan ng 'flat' ([Euclidean](https://wikipedia.org/wiki/Euclidean_geometry)) o 'non-flat' (non-Euclidean) na mga geometrical na pamamaraan.
 >
-![Flat vs Nonflat Geometry Infographic](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.tl.png)
+>'Flat' sa kontekstong ito ay tumutukoy sa Euclidean geometry (ang ilang bahagi nito ay itinuturo bilang 'plane' geometry), at ang non-flat ay tumutukoy sa non-Euclidean geometry. Ano ang kinalaman ng geometry sa machine learning? Bilang dalawang larangan na nakaugat sa matematika, dapat mayroong karaniwang paraan upang sukatin ang distansya sa pagitan ng mga punto sa mga cluster, at maaaring gawin ito sa 'flat' o 'non-flat' na paraan, depende sa kalikasan ng data. [Euclidean distances](https://wikipedia.org/wiki/Euclidean_distance) ay sinusukat bilang haba ng segment ng linya sa pagitan ng dalawang punto. [Non-Euclidean distances](https://wikipedia.org/wiki/Non-Euclidean_geometry) ay sinusukat sa kahabaan ng kurba. Kung ang iyong data, kapag na-visualize, ay tila hindi umiiral sa isang plane, maaaring kailanganin mong gumamit ng specialized algorithm upang hawakan ito.
+>
+![Flat vs Nonflat Geometry Infographic](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > Infographic ni [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Distances'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
 > 
-> Ang mga cluster ay tinutukoy ng kanilang distance matrix, halimbawa ang mga distansya sa pagitan ng mga puntos. Ang distansya ay maaaring sukatin sa iba't ibang paraan. Ang Euclidean clusters ay tinutukoy ng average ng mga halaga ng punto, at naglalaman ng 'centroid' o gitnang punto. Ang mga distansya ay sinusukat sa pamamagitan ng distansya sa centroid na iyon. Ang Non-Euclidean distances ay tumutukoy sa 'clustroids', ang punto na pinakamalapit sa iba pang mga punto. Ang mga clustroids naman ay maaaring tukuyin sa iba't ibang paraan.
+> Ang mga cluster ay tinutukoy ng kanilang distance matrix, halimbawa ang mga distansya sa pagitan ng mga punto. Ang distansya ay maaaring sukatin sa ilang paraan. Ang mga Euclidean cluster ay tinutukoy ng average ng mga halaga ng punto, at naglalaman ng 'centroid' o gitnang punto. Ang mga distansya ay sinusukat sa pamamagitan ng distansya sa centroid na iyon. Ang mga non-Euclidean distances ay tumutukoy sa 'clustroids', ang punto na pinakamalapit sa iba pang mga punto. Ang mga clustroids naman ay maaaring tukuyin sa iba't ibang paraan.
 > 
 > 🎓 ['Constrained'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
-> [Constrained Clustering](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) ay nagdadala ng 'semi-supervised' learning sa unsupervised na pamamaraan. Ang mga relasyon sa pagitan ng mga puntos ay minamarkahan bilang 'cannot link' o 'must-link' kaya ang ilang mga panuntunan ay ipinapataw sa dataset.
+> [Constrained Clustering](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) ay nagpapakilala ng 'semi-supervised' learning sa unsupervised na pamamaraang ito. Ang mga relasyon sa pagitan ng mga punto ay minarkahan bilang 'cannot link' o 'must-link' kaya ang ilang mga panuntunan ay ipinapataw sa dataset.
 >
-> Halimbawa: Kung ang isang algorithm ay pinakawalan sa isang batch ng unlabelled o semi-labelled na data, ang mga cluster na nabuo nito ay maaaring hindi maganda ang kalidad. Sa halimbawa sa itaas, ang mga cluster ay maaaring mag-grupo ng 'round music things' at 'square music things' at 'triangular things' at 'cookies'. Kung bibigyan ng ilang constraints, o mga panuntunan na susundin ("ang item ay dapat gawa sa plastic", "ang item ay kailangang makagawa ng musika") makakatulong ito upang 'i-constrain' ang algorithm na gumawa ng mas mahusay na mga pagpipilian.
+>Halimbawa: Kung ang isang algorithm ay pinakawalan sa batch ng unlabeled o semi-labelled na data, ang mga cluster na nabuo nito ay maaaring hindi maganda ang kalidad. Sa halimbawa sa itaas, maaaring mag-grupo ang mga cluster ng 'bilog na musical things' at 'parisukat na musical things' at 'triangular things' at 'cookies'. Kung bibigyan ng ilang constraints, o mga panuntunan na susundin ("ang item ay dapat gawa sa plastic", "ang item ay kailangang makagawa ng musika") makakatulong ito upang 'pigilan' ang algorithm na gumawa ng mas mahusay na mga pagpipilian.
 > 
 > 🎓 'Density'
 > 
-> Ang data na 'noisy' ay itinuturing na 'dense'. Ang mga distansya sa pagitan ng mga puntos sa bawat isa sa mga cluster nito ay maaaring, sa pagsusuri, mas masikip o mas maluwag, kaya ang data na ito ay kailangang suriin gamit ang naaangkop na clustering method. [Ang artikulong ito](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) ay nagpapakita ng pagkakaiba sa pagitan ng paggamit ng K-Means clustering vs. HDBSCAN algorithms upang suriin ang isang noisy dataset na may hindi pantay na density ng cluster.
+> Ang data na 'noisy' ay itinuturing na 'dense'. Ang mga distansya sa pagitan ng mga punto sa bawat isa sa mga cluster nito ay maaaring magpakita, sa pagsusuri, na mas siksik o 'crowded' kaya ang data na ito ay kailangang suriin gamit ang naaangkop na clustering method. [Ang artikulong ito](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) ay nagpapakita ng pagkakaiba sa pagitan ng paggamit ng K-Means clustering vs. HDBSCAN algorithms upang galugarin ang isang noisy dataset na may hindi pantay na cluster density.
 
 ## Mga clustering algorithm
 
 Mayroong higit sa 100 clustering algorithms, at ang kanilang paggamit ay nakadepende sa kalikasan ng data na hawak. Talakayin natin ang ilan sa mga pangunahing uri:
 
-- **Hierarchical clustering**. Kung ang isang object ay na-classify batay sa kalapitan nito sa isang malapit na object, sa halip na sa mas malayo, ang mga cluster ay nabubuo batay sa distansya ng mga miyembro nito sa iba pang mga object. Ang agglomerative clustering ng Scikit-learn ay hierarchical.
+- **Hierarchical clustering**. Kung ang isang object ay na-classify batay sa kalapitan nito sa isang kalapit na object, sa halip na sa mas malayong object, ang mga cluster ay nabubuo batay sa distansya ng mga miyembro nito sa iba pang mga object. Ang agglomerative clustering ng Scikit-learn ay hierarchical.
 
-   ![Hierarchical clustering Infographic](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.tl.png)
+   ![Hierarchical clustering Infographic](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > Infographic ni [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Centroid clustering**. Ang sikat na algorithm na ito ay nangangailangan ng pagpili ng 'k', o ang bilang ng mga cluster na bubuuin, pagkatapos nito ay tinutukoy ng algorithm ang gitnang punto ng isang cluster at kinokolekta ang data sa paligid ng puntong iyon. [K-means clustering](https://wikipedia.org/wiki/K-means_clustering) ay isang sikat na bersyon ng centroid clustering. Ang gitna ay tinutukoy ng pinakamalapit na mean, kaya ang pangalan. Ang squared distance mula sa cluster ay pinapaliit.
+- **Centroid clustering**. Ang sikat na algorithm na ito ay nangangailangan ng pagpili ng 'k', o ang bilang ng mga cluster na bubuuin, pagkatapos nito ay tinutukoy ng algorithm ang gitnang punto ng isang cluster at kinukuha ang data sa paligid ng puntong iyon. Ang [K-means clustering](https://wikipedia.org/wiki/K-means_clustering) ay isang sikat na bersyon ng centroid clustering. Ang gitna ay tinutukoy ng pinakamalapit na mean, kaya ang pangalan. Ang squared distance mula sa cluster ay pinapaliit.
 
-   ![Centroid clustering Infographic](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.tl.png)
+   ![Centroid clustering Infographic](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > Infographic ni [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Distribution-based clustering**. Batay sa statistical modeling, ang distribution-based clustering ay nakatuon sa pagtukoy ng posibilidad na ang isang data point ay kabilang sa isang cluster, at ina-assign ito nang naaayon. Ang Gaussian mixture methods ay kabilang sa ganitong uri.
+- **Distribution-based clustering**. Batay sa statistical modeling, ang distribution-based clustering ay nakatuon sa pagtukoy ng posibilidad na ang isang data point ay kabilang sa isang cluster, at itinalaga ito nang naaayon. Ang Gaussian mixture methods ay kabilang sa ganitong uri.
 
-- **Density-based clustering**. Ang mga data point ay ina-assign sa mga cluster batay sa kanilang density, o ang kanilang pag-grupo sa paligid ng isa't isa. Ang mga data point na malayo sa grupo ay itinuturing na outliers o noise. Ang DBSCAN, Mean-shift, at OPTICS ay kabilang sa ganitong uri ng clustering.
+- **Density-based clustering**. Ang mga data point ay itinalaga sa mga cluster batay sa kanilang density, o ang kanilang pag-grupo sa paligid ng isa't isa. Ang mga data point na malayo sa grupo ay itinuturing na outliers o noise. Ang DBSCAN, Mean-shift, at OPTICS ay kabilang sa ganitong uri ng clustering.
 
-- **Grid-based clustering**. Para sa multi-dimensional datasets, isang grid ang nililikha at ang data ay hinahati sa mga cell ng grid, kaya nabubuo ang mga cluster.
+- **Grid-based clustering**. Para sa multi-dimensional datasets, isang grid ang nilikha at ang data ay hinahati sa mga cell ng grid, kaya't nabubuo ang mga cluster.
 
 ## Ehersisyo - i-cluster ang iyong data
 
-Ang clustering bilang isang teknik ay lubos na natutulungan ng tamang visualization, kaya magsimula tayo sa pag-visualize ng ating music data. Ang ehersisyong ito ay makakatulong sa atin na magdesisyon kung alin sa mga pamamaraan ng clustering ang pinaka-epektibong gamitin para sa kalikasan ng data na ito.
+Ang clustering bilang isang teknik ay lubos na natutulungan ng tamang visualization, kaya't magsimula tayo sa pag-visualize ng ating music data. Ang ehersisyong ito ay makakatulong sa atin na magpasya kung alin sa mga pamamaraan ng clustering ang pinaka-epektibong gamitin para sa kalikasan ng data na ito.
 
 1. Buksan ang [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/notebook.ipynb) file sa folder na ito.
 
@@ -117,7 +119,7 @@ Ang clustering bilang isang teknik ay lubos na natutulungan ng tamang visualizat
     !pip install seaborn
     ```
 
-1. I-append ang song data mula sa [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Mag-load ng dataframe na may ilang data tungkol sa mga kanta. Maghanda upang i-explore ang data na ito sa pamamagitan ng pag-import ng mga libraries at pag-dump ng data:
+1. I-append ang song data mula sa [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Mag-load ng dataframe na may ilang data tungkol sa mga kanta. Maghanda upang galugarin ang data na ito sa pamamagitan ng pag-import ng mga library at pag-dump ng data:
 
     ```python
     import matplotlib.pyplot as plt
@@ -216,11 +218,11 @@ Ang clustering bilang isang teknik ay lubos na natutulungan ng tamang visualizat
     | 75%   | 2017         | 242098.5    | 31         | 0.8295       | 0.403        | 0.87575  | 0.000234         | 0.164    | -3.331    | 0.177       | 125.03925  | 4              |
     | max   | 2020         | 511738      | 73         | 0.966        | 0.954        | 0.995    | 0.91             | 0.811    | 0.582     | 0.514       | 206.007    | 5              |
 
-> 🤔 Kung ang clustering ay isang unsupervised na pamamaraan na hindi nangangailangan ng labeled data, bakit natin ipinapakita ang data na may labels? Sa yugto ng pagsusuri ng data, ito ay kapaki-pakinabang, ngunit hindi ito kinakailangan para gumana ang clustering algorithms. Maaari mong alisin ang mga column headers at tukuyin ang data sa pamamagitan ng column number.
+> 🤔 Kung ang clustering ay isang unsupervised method na hindi nangangailangan ng labeled data, bakit natin ipinapakita ang data na may labels? Sa yugto ng pagsusuri ng data, ito ay kapaki-pakinabang, ngunit hindi ito kinakailangan para gumana ang clustering algorithms. Maaari mong alisin ang mga column headers at tukuyin ang data sa pamamagitan ng column number.
 
 Tingnan ang pangkalahatang halaga ng data. Tandaan na ang popularity ay maaaring '0', na nagpapakita ng mga kanta na walang ranking. Alisin natin ang mga ito sa lalong madaling panahon.
 
-1. Gumamit ng barplot upang malaman ang pinakasikat na mga genre:
+1. Gumamit ng barplot upang malaman ang pinakasikat na genres:
 
     ```python
     import seaborn as sns
@@ -232,9 +234,9 @@ Tingnan ang pangkalahatang halaga ng data. Tandaan na ang popularity ay maaaring
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.tl.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
-✅ Kung nais mong makita ang higit pang mga top values, palitan ang top `[:5]` sa mas malaking halaga, o alisin ito upang makita ang lahat.
+✅ Kung nais mong makita ang mas maraming top values, palitan ang top `[:5]` sa mas malaking halaga, o alisin ito upang makita ang lahat.
 
 Tandaan, kapag ang top genre ay inilarawan bilang 'Missing', nangangahulugan ito na hindi ito na-classify ng Spotify, kaya alisin natin ito.
 
@@ -249,11 +251,11 @@ Tandaan, kapag ang top genre ay inilarawan bilang 'Missing', nangangahulugan ito
     plt.title('Top genres',color = 'blue')
     ```
 
-    Ngayon muling suriin ang mga genre:
+    Ngayon muling suriin ang mga genres:
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.tl.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
-1. Ang tatlong nangungunang genre ang nangingibabaw sa dataset na ito. Mag-focus tayo sa `afro dancehall`, `afropop`, at `nigerian pop`, at karagdagang i-filter ang dataset upang alisin ang anumang may 0 popularity value (na nangangahulugang hindi ito na-classify na may popularity sa dataset at maaaring ituring na noise para sa ating layunin):
+1. Sa ngayon, ang tatlong nangungunang genres ang nangingibabaw sa dataset na ito. Mag-focus tayo sa `afro dancehall`, `afropop`, at `nigerian pop`, at karagdagang i-filter ang dataset upang alisin ang anumang may 0 popularity value (na nangangahulugang hindi ito na-classify na may popularity sa dataset at maaaring ituring na noise para sa ating layunin):
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -273,21 +275,21 @@ Tandaan, kapag ang top genre ay inilarawan bilang 'Missing', nangangahulugan ito
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.tl.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
-    Ang tanging malakas na correlation ay sa pagitan ng `energy` at `loudness`, na hindi masyadong nakakagulat, dahil ang malakas na musika ay karaniwang masigla. Kung hindi, ang mga correlation ay medyo mahina. Magiging interesante ang makita kung ano ang magagawa ng clustering algorithm sa data na ito.
+    Ang tanging malakas na correlation ay sa pagitan ng `energy` at `loudness`, na hindi masyadong nakakagulat, dahil ang malakas na musika ay karaniwang mas energetic. Bukod dito, ang correlations ay medyo mahina. Magiging interesante ang makita kung ano ang magagawa ng clustering algorithm sa data na ito.
 
-    > 🎓 Tandaan na ang correlation ay hindi nangangahulugang causation! Mayroon tayong patunay ng correlation ngunit walang patunay ng causation. Ang [nakakatawang web site](https://tylervigen.com/spurious-correlations) ay may mga visual na nagdidiin sa puntong ito.
+    > 🎓 Tandaan na ang correlation ay hindi nangangahulugan ng causation! Mayroon tayong patunay ng correlation ngunit walang patunay ng causation. Ang [nakakatawang web site](https://tylervigen.com/spurious-correlations) ay may mga visual na nag-eemphasize sa puntong ito.
 
 Mayroon bang convergence sa dataset na ito sa paligid ng perceived popularity at danceability ng isang kanta? Ang isang FacetGrid ay nagpapakita na may mga concentric circles na nagkakatugma, anuman ang genre. Posible kaya na ang mga Nigerian tastes ay nagkakatugma sa isang tiyak na antas ng danceability para sa genre na ito?
 
-✅ Subukan ang iba't ibang datapoints (energy, loudness, speechiness) at higit pang mga musical genres. Ano ang maaari mong matuklasan? Tingnan ang `df.describe()` table upang makita ang pangkalahatang spread ng data points.
+✅ Subukan ang iba't ibang datapoints (energy, loudness, speechiness) at mas marami o iba't ibang musical genres. Ano ang maaari mong matuklasan? Tingnan ang `df.describe()` table upang makita ang pangkalahatang spread ng data points.
 
 ### Ehersisyo - distribusyon ng data
 
-Ang tatlong genre ba na ito ay makabuluhang naiiba sa perception ng kanilang danceability, batay sa kanilang popularity?
+Ang tatlong genres ba na ito ay makabuluhang naiiba sa perception ng kanilang danceability, base sa kanilang popularity?
 
-1. Suriin ang distribusyon ng data ng ating tatlong nangungunang genre para sa popularity at danceability sa isang ibinigay na x at y axis.
+1. Suriin ang distribusyon ng data ng ating top three genres para sa popularity at danceability sa isang ibinigay na x at y axis.
 
     ```python
     sns.set_theme(style="ticks")
@@ -303,9 +305,9 @@ Ang tatlong genre ba na ito ay makabuluhang naiiba sa perception ng kanilang dan
 
     > 🎓 Tandaan na ang halimbawang ito ay gumagamit ng isang KDE (Kernel Density Estimate) graph na kumakatawan sa data gamit ang isang tuloy-tuloy na probability density curve. Pinapayagan nito tayong ma-interpret ang data kapag nagtatrabaho sa maraming distribusyon.
 
-    Sa pangkalahatan, ang tatlong genre ay maluwag na nagkakatugma sa kanilang popularity at danceability. Ang pagtukoy ng clusters sa maluwag na data na ito ay magiging hamon:
+    Sa pangkalahatan, ang tatlong genres ay maluwag na nagkakatugma sa kanilang popularity at danceability. Ang pagtukoy ng clusters sa maluwag na data na ito ay magiging hamon:
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.tl.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. Gumawa ng scatter plot:
 
@@ -317,23 +319,23 @@ Ang tatlong genre ba na ito ay makabuluhang naiiba sa perception ng kanilang dan
 
     Ang scatterplot ng parehong axes ay nagpapakita ng katulad na pattern ng convergence
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.tl.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
-Sa pangkalahatan, para sa clustering, maaari mong gamitin ang scatterplots upang ipakita ang clusters ng data, kaya ang pag-master ng ganitong uri ng visualization ay napaka-kapaki-pakinabang. Sa susunod na aralin, gagamitin natin ang filtered data na ito at gagamit ng k-means clustering upang matuklasan ang mga grupo sa data na ito na tila nag-o-overlap sa mga kawili-wiling paraan.
+Sa pangkalahatan, para sa clustering, maaari mong gamitin ang scatterplots upang ipakita ang clusters ng data, kaya ang pag-master ng ganitong uri ng visualization ay napaka-kapaki-pakinabang. Sa susunod na aralin, gagamitin natin ang filtered data na ito at gagamit ng k-means clustering upang matuklasan ang mga grupo sa data na ito na tila nag-o-overlap sa mga interesanteng paraan.
 
 ---
 
 ## 🚀Hamunin
 
-Bilang paghahanda para sa susunod na aralin, gumawa ng chart tungkol sa iba't ibang clustering algorithms na maaari mong matuklasan at gamitin sa isang production environment. Anong uri ng mga problema ang sinusubukang tugunan ng clustering?
+Bilang paghahanda para sa susunod na aralin, gumawa ng chart tungkol sa iba't ibang clustering algorithms na maaari mong matuklasan at gamitin sa isang production environment. Anong mga uri ng problema ang sinusubukang tugunan ng clustering?
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Review at Pag-aaral ng Sarili
 
-Bago ka mag-apply ng clustering algorithms, tulad ng natutunan natin, magandang ideya na maunawaan ang kalikasan ng iyong dataset. Magbasa pa tungkol sa paksang ito [dito](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
+Bago ka mag-apply ng clustering algorithms, tulad ng natutunan natin, magandang ideya na maunawaan ang likas na katangian ng iyong dataset. Magbasa pa tungkol sa paksang ito [dito](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
-[Ang kapaki-pakinabang na artikulong ito](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) ay naglalakad sa iyo sa iba't ibang paraan kung paano kumikilos ang iba't ibang clustering algorithms, na ibinigay ang iba't ibang hugis ng data.
+[Ang kapaki-pakinabang na artikulong ito](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) ay naglalakad sa iyo sa iba't ibang paraan kung paano kumikilos ang iba't ibang clustering algorithms, base sa iba't ibang hugis ng data.
 
 ## Takdang-Aralin
 
