@@ -1,27 +1,27 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a2aa4e9b91b9640db2c15363c4299d8b",
-  "translation_date": "2025-08-29T14:37:57+00:00",
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-05T18:28:06+00:00",
   "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
   "language_code": "tl"
 }
 -->
 # Sentiment analysis gamit ang mga review ng hotel
 
-Ngayon na napag-aralan mo na nang detalyado ang dataset, oras na para i-filter ang mga column at gamitin ang mga teknik ng NLP sa dataset upang makakuha ng bagong kaalaman tungkol sa mga hotel.
+Ngayon na napag-aralan mo nang mabuti ang dataset, oras na para i-filter ang mga column at gamitin ang mga teknik ng NLP sa dataset upang makakuha ng mga bagong insight tungkol sa mga hotel.
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-### Pag-filter at Operasyon ng Sentiment Analysis
+### Mga Operasyon sa Pag-filter at Sentiment Analysis
 
-Tulad ng napansin mo, may ilang isyu ang dataset. Ang ilang mga column ay puno ng walang kwentang impormasyon, ang iba naman ay tila mali. Kung tama man ang mga ito, hindi malinaw kung paano sila na-compute, at hindi mo ma-verify ang mga sagot gamit ang sarili mong mga kalkulasyon.
+Tulad ng napansin mo, may ilang isyu ang dataset. Ang ilang mga column ay puno ng walang kwentang impormasyon, ang iba naman ay tila mali. Kung tama man ang mga ito, hindi malinaw kung paano ito kinalkula, at ang mga sagot ay hindi maaaring independiyenteng ma-verify gamit ang sarili mong mga kalkulasyon.
 
 ## Ehersisyo: Karagdagang pagproseso ng data
 
-Linisin ang data nang kaunti pa. Magdagdag ng mga column na magiging kapaki-pakinabang sa hinaharap, baguhin ang mga halaga sa ibang mga column, at tanggalin ang ilang mga column nang buo.
+Linisin ang data nang kaunti pa. Magdagdag ng mga column na magiging kapaki-pakinabang sa hinaharap, baguhin ang mga halaga sa ibang mga column, at tuluyang tanggalin ang ilang mga column.
 
-1. Paunang pagproseso ng column
+1. Paunang pagproseso ng mga column
 
    1. Tanggalin ang `lat` at `lng`
 
@@ -77,13 +77,13 @@ Linisin ang data nang kaunti pa. Magdagdag ng mga column na magiging kapaki-paki
       | Paris, France          |    458     |
       | Vienna, Austria        |    158     |
 
-2. Proseso ng Hotel Meta-review columns
+2. Proseso ng mga column ng Hotel Meta-review
 
   1. Tanggalin ang `Additional_Number_of_Scoring`
 
   1. Palitan ang `Total_Number_of_Reviews` gamit ang kabuuang bilang ng mga review para sa hotel na aktwal na nasa dataset 
 
-  1. Palitan ang `Average_Score` gamit ang sarili nating na-compute na score
+  1. Palitan ang `Average_Score` gamit ang sarili nating kalkuladong score
 
   ```python
   # Drop `Additional_Number_of_Scoring`
@@ -93,17 +93,17 @@ Linisin ang data nang kaunti pa. Magdagdag ng mga column na magiging kapaki-paki
   df.Average_Score = round(df.groupby('Hotel_Name').Reviewer_Score.transform('mean'), 1)
   ```
 
-3. Proseso ng review columns
+3. Proseso ng mga column ng review
 
    1. Tanggalin ang `Review_Total_Negative_Word_Counts`, `Review_Total_Positive_Word_Counts`, `Review_Date` at `days_since_review`
 
    2. Panatilihin ang `Reviewer_Score`, `Negative_Review`, at `Positive_Review` sa kanilang kasalukuyang anyo,
      
-   3. Panatilihin ang `Tags` sa ngayon
+   3. Panatilihin ang `Tags` pansamantala
 
-     - Magkakaroon tayo ng karagdagang pag-filter ng mga operasyon sa tags sa susunod na seksyon at pagkatapos ay tatanggalin ang tags
+     - Magkakaroon tayo ng karagdagang mga operasyon sa pag-filter sa mga tag sa susunod na seksyon at pagkatapos ay tatanggalin ang mga tag
 
-4. Proseso ng reviewer columns
+4. Proseso ng mga column ng reviewer
 
   1. Tanggalin ang `Total_Number_of_Reviews_Reviewer_Has_Given`
   
@@ -111,23 +111,23 @@ Linisin ang data nang kaunti pa. Magdagdag ng mga column na magiging kapaki-paki
 
 ### Mga column ng Tag
 
-Ang column na `Tag` ay may problema dahil ito ay isang listahan (sa text form) na nakaimbak sa column. Sa kasamaang palad, ang pagkakasunod-sunod at bilang ng mga sub-seksyon sa column na ito ay hindi palaging pareho. Mahirap para sa tao na tukuyin ang tamang mga parirala na dapat pagtuunan ng pansin, dahil mayroong 515,000 na mga row, at 1427 na mga hotel, at bawat isa ay may bahagyang magkakaibang mga opsyon na maaaring piliin ng reviewer. Dito nagiging kapaki-pakinabang ang NLP. Maaari mong i-scan ang teksto at hanapin ang mga pinakakaraniwang parirala, at bilangin ang mga ito.
+Ang column na `Tag` ay may problema dahil ito ay isang listahan (sa anyong text) na nakaimbak sa column. Sa kasamaang palad, ang pagkakasunod-sunod at bilang ng mga sub-seksyon sa column na ito ay hindi palaging pareho. Mahirap para sa tao na tukuyin ang tamang mga parirala na dapat pagtuunan ng pansin, dahil mayroong 515,000 na mga row, at 1427 na mga hotel, at bawat isa ay may bahagyang magkakaibang mga opsyon na maaaring piliin ng reviewer. Dito nagiging kapaki-pakinabang ang NLP. Maaari mong i-scan ang teksto at hanapin ang mga pinakakaraniwang parirala, at bilangin ang mga ito.
 
-Sa kasamaang palad, hindi tayo interesado sa mga solong salita, kundi sa mga multi-word na parirala (hal. *Business trip*). Ang pagpapatakbo ng multi-word frequency distribution algorithm sa ganoong dami ng data (6762646 na mga salita) ay maaaring tumagal ng napakahabang oras, ngunit nang hindi tinitingnan ang data, tila ito ay isang kinakailangang gastos. Dito nagiging kapaki-pakinabang ang exploratory data analysis, dahil nakita mo na ang sample ng mga tags tulad ng `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']`, maaari mong simulan ang pagtatanong kung posible bang lubos na bawasan ang pagproseso na kailangan mong gawin. Sa kabutihang palad, posible ito - ngunit kailangan mo munang sundin ang ilang hakbang upang matukoy ang mga tags na mahalaga.
+Sa kasamaang palad, hindi tayo interesado sa mga salitang mag-isa, kundi sa mga parirala na binubuo ng maraming salita (hal. *Business trip*). Ang pagpapatakbo ng isang algorithm para sa pamamahagi ng dalas ng mga parirala sa ganitong kalaking data (6762646 na mga salita) ay maaaring tumagal ng napakahabang oras, ngunit nang hindi tinitingnan ang data, tila ito ay isang kinakailangang gastusin. Dito nagiging kapaki-pakinabang ang exploratory data analysis, dahil nakita mo ang sample ng mga tag tulad ng `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']`, maaari kang magsimulang magtanong kung posible bang lubos na bawasan ang pagproseso na kailangan mong gawin. Sa kabutihang palad, posible ito - ngunit kailangan mo munang sundin ang ilang hakbang upang matukoy ang mga tag na mahalaga.
 
-### Pag-filter ng tags
+### Pag-filter ng mga tag
 
-Tandaan na ang layunin ng dataset ay magdagdag ng sentiment at mga column na makakatulong sa iyo na pumili ng pinakamahusay na hotel (para sa iyong sarili o marahil sa isang kliyente na nag-uutos sa iyo na gumawa ng hotel recommendation bot). Kailangan mong tanungin ang iyong sarili kung ang mga tags ay kapaki-pakinabang o hindi sa panghuling dataset. Narito ang isang interpretasyon (kung kailangan mo ang dataset para sa ibang mga layunin, maaaring iba ang mga tags na mananatili/matatanggal):
+Tandaan na ang layunin ng dataset ay magdagdag ng sentiment at mga column na makakatulong sa iyo na pumili ng pinakamahusay na hotel (para sa iyong sarili o marahil sa isang kliyente na nag-aatas sa iyo na gumawa ng hotel recommendation bot). Kailangan mong tanungin ang iyong sarili kung ang mga tag ay kapaki-pakinabang o hindi sa panghuling dataset. Narito ang isang interpretasyon (kung kailangan mo ang dataset para sa ibang mga layunin, maaaring manatili/matanggal ang iba't ibang mga tag):
 
-1. Ang uri ng biyahe ay mahalaga, at dapat itong manatili
-2. Ang uri ng grupo ng bisita ay mahalaga, at dapat itong manatili
+1. Ang uri ng biyahe ay mahalaga, at dapat manatili
+2. Ang uri ng grupo ng bisita ay mahalaga, at dapat manatili
 3. Ang uri ng kwarto, suite, o studio na tinuluyan ng bisita ay hindi mahalaga (lahat ng hotel ay may halos parehong mga kwarto)
 4. Ang device na ginamit sa pagsusumite ng review ay hindi mahalaga
-5. Ang bilang ng mga gabi na tinuluyan ng reviewer *maaaring* mahalaga kung iugnay mo ang mas mahabang pananatili sa kanilang pag-like sa hotel, ngunit ito ay medyo malabo, at marahil hindi mahalaga
+5. Ang bilang ng mga gabi na tinuluyan ng reviewer *maaaring* mahalaga kung iugnay mo ang mas mahabang pananatili sa mas mataas na kasiyahan sa hotel, ngunit malabo ito, at marahil hindi mahalaga
 
-Sa kabuuan, **panatilihin ang 2 uri ng tags at tanggalin ang iba**.
+Sa kabuuan, **panatilihin ang 2 uri ng mga tag at tanggalin ang iba pa**.
 
-Una, ayaw mong bilangin ang mga tags hangga't hindi sila nasa mas magandang format, kaya nangangahulugan ito ng pag-alis ng mga square brackets at quotes. Maaari mong gawin ito sa iba't ibang paraan, ngunit gusto mo ang pinakamabilis dahil maaaring tumagal ng mahabang oras ang pagproseso ng maraming data. Sa kabutihang palad, ang pandas ay may madaling paraan upang gawin ang bawat isa sa mga hakbang na ito.
+Una, ayaw mong bilangin ang mga tag hangga't hindi sila nasa mas maayos na format, kaya nangangahulugan ito ng pag-aalis ng mga square bracket at mga quote. Maaari mong gawin ito sa iba't ibang paraan, ngunit gusto mo ang pinakamabilis dahil maaaring tumagal ng mahabang oras ang pagproseso ng maraming data. Sa kabutihang palad, may madaling paraan ang pandas para gawin ang bawat isa sa mga hakbang na ito.
 
 ```Python
 # Remove opening and closing brackets
@@ -138,9 +138,9 @@ df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 
 Ang bawat tag ay nagiging ganito: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
 
-Susunod, makakakita tayo ng problema. Ang ilang mga review, o mga row, ay may 5 column, ang iba ay may 3, ang iba ay may 6. Ito ay resulta ng kung paano ginawa ang dataset, at mahirap ayusin. Gusto mong makakuha ng frequency count ng bawat parirala, ngunit ang mga ito ay nasa iba't ibang pagkakasunod-sunod sa bawat review, kaya maaaring mali ang bilang, at maaaring hindi makakuha ng tag ang isang hotel na nararapat dito.
+Susunod, makakakita tayo ng problema. Ang ilang mga review, o mga row, ay may 5 column, ang iba ay may 3, ang iba naman ay may 6. Ito ay resulta ng kung paano nilikha ang dataset, at mahirap ayusin. Gusto mong makakuha ng frequency count ng bawat parirala, ngunit ang mga ito ay nasa iba't ibang pagkakasunod-sunod sa bawat review, kaya maaaring mali ang bilang, at maaaring hindi ma-assign sa isang hotel ang tag na nararapat dito.
 
-Sa halip, gagamitin mo ang iba't ibang pagkakasunod-sunod sa ating kalamangan, dahil ang bawat tag ay multi-word ngunit hiwalay din ng isang comma! Ang pinakasimpleng paraan upang gawin ito ay lumikha ng 6 na pansamantalang column kung saan ang bawat tag ay ipinasok sa column na tumutugma sa pagkakasunod-sunod nito sa tag. Pagkatapos ay maaari mong pagsamahin ang 6 na column sa isang malaking column at patakbuhin ang `value_counts()` method sa resulting column. Kapag na-print mo ito, makikita mo na mayroong 2428 na natatanging tags. Narito ang isang maliit na sample:
+Sa halip, gagamitin mo ang iba't ibang pagkakasunod-sunod sa iyong kalamangan, dahil ang bawat tag ay multi-word ngunit hiwalay din ng isang comma! Ang pinakasimpleng paraan para gawin ito ay lumikha ng 6 na pansamantalang column kung saan ang bawat tag ay ipapasok sa column na tumutugma sa pagkakasunod-sunod nito sa tag. Pagkatapos ay maaari mong pagsamahin ang 6 na column sa isang malaking column at patakbuhin ang `value_counts()` method sa resulting column. Kapag na-print mo ito, makikita mo na mayroong 2428 natatanging mga tag. Narito ang isang maliit na sample:
 
 | Tag                            | Count  |
 | ------------------------------ | ------ |
@@ -167,11 +167,11 @@ Sa halip, gagamitin mo ang iba't ibang pagkakasunod-sunod sa ating kalamangan, d
 | Superior Double or Twin Room   | 13570  |
 | 2 rooms                        | 12393  |
 
-Ang ilan sa mga karaniwang tags tulad ng `Submitted from a mobile device` ay walang silbi sa atin, kaya maaaring matalinong bagay na tanggalin ang mga ito bago bilangin ang paglitaw ng parirala, ngunit ito ay isang napakabilis na operasyon kaya maaari mong iwanan ang mga ito at huwag pansinin.
+Ang ilan sa mga karaniwang tag tulad ng `Submitted from a mobile device` ay walang silbi sa atin, kaya maaaring matalinong tanggalin ang mga ito bago bilangin ang paglitaw ng parirala, ngunit ito ay napakabilis na operasyon kaya maaari mo silang iwanan at huwag pansinin.
 
-### Pag-alis ng mga tags tungkol sa haba ng pananatili
+### Pagtanggal ng mga tag ng haba ng pananatili
 
-Ang pag-alis ng mga tags na ito ay hakbang 1, binabawasan nito ang kabuuang bilang ng mga tags na dapat isaalang-alang. Tandaan na hindi mo sila aalisin mula sa dataset, kundi pipiliin lamang na huwag isama ang mga ito bilang mga halaga na bibilangin/papanatilihin sa dataset ng mga review.
+Ang pagtanggal ng mga tag na ito ay hakbang 1, binabawasan nito ang kabuuang bilang ng mga tag na dapat isaalang-alang. Tandaan na hindi mo sila tinatanggal mula sa dataset, kundi pinipili lamang na huwag isama ang mga ito bilang mga halaga na bibilangin/panatilihin sa dataset ng mga review.
 
 | Length of stay   | Count  |
 | ---------------- | ------ |
@@ -186,7 +186,7 @@ Ang pag-alis ng mga tags na ito ay hakbang 1, binabawasan nito ang kabuuang bila
 | Stayed 9 nights  | 1293   |
 | ...              | ...    |
 
-Mayroong napakaraming uri ng mga kwarto, suite, studio, apartment, at iba pa. Ang mga ito ay halos pare-pareho at hindi mahalaga sa iyo, kaya tanggalin ang mga ito mula sa konsiderasyon.
+Mayroong napakaraming uri ng mga kwarto, suite, studio, apartment, at iba pa. Lahat ng mga ito ay halos pareho ang ibig sabihin at hindi mahalaga sa iyo, kaya tanggalin ang mga ito mula sa konsiderasyon.
 
 | Type of room                  | Count |
 | ----------------------------- | ----- |
@@ -199,7 +199,7 @@ Mayroong napakaraming uri ng mga kwarto, suite, studio, apartment, at iba pa. An
 | Classic Double Room           | 16989 |
 | Superior  Double or Twin Room | 13570 |
 
-Sa wakas, at ito ay kahanga-hanga (dahil hindi ito nangangailangan ng masyadong maraming pagproseso), ikaw ay maiiwan sa mga sumusunod na *kapaki-pakinabang* na tags:
+Sa wakas, at ito ay kahanga-hanga (dahil hindi ito nangangailangan ng masyadong maraming pagproseso), maiiwan ka sa mga sumusunod na *kapaki-pakinabang* na mga tag:
 
 | Tag                                           | Count  |
 | --------------------------------------------- | ------ |
@@ -212,9 +212,9 @@ Sa wakas, at ito ay kahanga-hanga (dahil hindi ito nangangailangan ng masyadong 
 | Family  with older children                   | 26349  |
 | With a  pet                                   | 1405   |
 
-Maaari mong sabihin na ang `Travellers with friends` ay pareho sa `Group` halos, at magiging makatarungan na pagsamahin ang dalawa tulad ng nasa itaas. Ang code para sa pagtukoy ng tamang tags ay nasa [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+Maaari mong sabihin na ang `Travellers with friends` ay halos pareho sa `Group`, at makatarungan na pagsamahin ang dalawa tulad ng nasa itaas. Ang code para sa pagtukoy ng tamang mga tag ay nasa [the Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
 
-Ang huling hakbang ay lumikha ng mga bagong column para sa bawat isa sa mga tags na ito. Pagkatapos, para sa bawat review row, kung ang column na `Tag` ay tumutugma sa isa sa mga bagong column, magdagdag ng 1, kung hindi, magdagdag ng 0. Ang resulta ay magiging bilang ng kung ilang reviewer ang pumili sa hotel na ito (sa kabuuan) para sa, halimbawa, business vs leisure, o para magdala ng alagang hayop, at ito ay kapaki-pakinabang na impormasyon kapag nagrerekomenda ng hotel.
+Ang huling hakbang ay lumikha ng mga bagong column para sa bawat isa sa mga tag na ito. Pagkatapos, para sa bawat review row, kung ang column na `Tag` ay tumutugma sa isa sa mga bagong column, magdagdag ng 1, kung hindi, magdagdag ng 0. Ang resulta ay magiging bilang ng kung ilang reviewer ang pumili sa hotel na ito (sa kabuuan) para sa, halimbawa, negosyo kumpara sa leisure, o para magdala ng alagang hayop, at ito ay kapaki-pakinabang na impormasyon kapag nagrerekomenda ng hotel.
 
 ```python
 # Process the Tags into new columns
@@ -234,7 +234,7 @@ df["With_a_pet"] = df.Tags.apply(lambda tag: 1 if "With a pet" in tag else 0)
 
 ### I-save ang iyong file
 
-Sa wakas, i-save ang dataset sa kasalukuyang estado nito gamit ang bagong pangalan.
+Sa wakas, i-save ang dataset sa kasalukuyang anyo nito gamit ang bagong pangalan.
 
 ```python
 df.drop(["Review_Total_Negative_Word_Counts", "Review_Total_Positive_Word_Counts", "days_since_review", "Total_Number_of_Reviews_Reviewer_Has_Given"], axis = 1, inplace=True)
@@ -244,13 +244,13 @@ print("Saving results to Hotel_Reviews_Filtered.csv")
 df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 ```
 
-## Mga Operasyon ng Sentiment Analysis
+## Mga Operasyon sa Sentiment Analysis
 
-Sa huling seksyon na ito, mag-a-apply ka ng sentiment analysis sa mga review columns at i-save ang mga resulta sa dataset.
+Sa huling seksyon na ito, mag-a-apply ka ng sentiment analysis sa mga column ng review at i-save ang mga resulta sa dataset.
 
 ## Ehersisyo: I-load at i-save ang na-filter na data
 
-Tandaan na ngayon ay iyong i-load ang na-filter na dataset na na-save sa nakaraang seksyon, **hindi** ang orihinal na dataset.
+Tandaan na ngayon ay ilo-load mo ang na-filter na dataset na na-save sa nakaraang seksyon, **hindi** ang orihinal na dataset.
 
 ```python
 import time
@@ -271,15 +271,15 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 ```
 
-### Pag-alis ng stop words
+### Pagtanggal ng mga stop word
 
-Kung magpapatakbo ka ng Sentiment Analysis sa Negative at Positive review columns, maaaring tumagal ito ng mahabang oras. Sa pagsubok sa isang malakas na test laptop na may mabilis na CPU, tumagal ito ng 12 - 14 minuto depende sa kung aling sentiment library ang ginamit. Ito ay isang (relatibong) mahabang oras, kaya sulit na suriin kung maaari itong mapabilis. 
+Kung magpapatakbo ka ng Sentiment Analysis sa mga column ng Negative at Positive review, maaaring tumagal ito ng mahabang oras. Sa pagsubok gamit ang isang makapangyarihang test laptop na may mabilis na CPU, tumagal ito ng 12 - 14 minuto depende sa kung aling sentiment library ang ginamit. Ito ay isang (relatibong) mahabang oras, kaya sulit na imbestigahan kung maaari itong mapabilis. 
 
-Ang pag-alis ng stop words, o mga karaniwang salitang Ingles na hindi nagbabago sa sentiment ng isang pangungusap, ang unang hakbang. Sa pamamagitan ng pag-alis ng mga ito, ang sentiment analysis ay dapat tumakbo nang mas mabilis, ngunit hindi magiging mas mababa ang accuracy (dahil ang stop words ay hindi nakakaapekto sa sentiment, ngunit pinapabagal nila ang analysis). 
+Ang pagtanggal ng mga stop word, o mga karaniwang salitang Ingles na hindi nagbabago sa sentiment ng isang pangungusap, ang unang hakbang. Sa pamamagitan ng pagtanggal ng mga ito, ang sentiment analysis ay dapat tumakbo nang mas mabilis, ngunit hindi magiging mas mababa ang accuracy (dahil ang mga stop word ay hindi nakakaapekto sa sentiment, ngunit pinapabagal nila ang analysis). 
 
-Ang pinakamahabang negative review ay may 395 na salita, ngunit pagkatapos alisin ang stop words, ito ay may 195 na salita.
+Ang pinakamahabang negative review ay may 395 na salita, ngunit pagkatapos tanggalin ang mga stop word, ito ay naging 195 na salita.
 
-Ang pag-alis ng stop words ay isang mabilis na operasyon din, ang pag-alis ng stop words mula sa 2 review columns sa mahigit 515,000 na mga row ay tumagal ng 3.3 segundo sa test device. Maaari itong tumagal ng bahagyang mas mahaba o mas maikli para sa iyo depende sa bilis ng CPU ng iyong device, RAM, kung mayroon kang SSD o wala, at ilang iba pang mga salik. Ang relatibong ikli ng operasyon ay nangangahulugan na kung ito ay nagpapabilis sa sentiment analysis, ito ay sulit gawin.
+Ang pagtanggal ng mga stop word ay isang mabilis na operasyon din, ang pagtanggal ng mga stop word mula sa 2 review column sa mahigit 515,000 na mga row ay tumagal ng 3.3 segundo sa test device. Maaaring tumagal ito ng bahagyang mas matagal o mas mabilis para sa iyo depende sa bilis ng CPU ng iyong device, RAM, kung mayroon kang SSD o wala, at ilang iba pang mga salik. Ang relatibong ikli ng operasyon ay nangangahulugan na kung mapapabilis nito ang sentiment analysis, sulit itong gawin.
 
 ```python
 from nltk.corpus import stopwords
@@ -302,11 +302,11 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
 ### Pagganap ng sentiment analysis
-Ngayon, dapat mong kalkulahin ang sentiment analysis para sa parehong negative at positive review columns, at itago ang resulta sa 2 bagong columns. Ang pagsusuri ng sentiment ay magiging batayan sa paghahambing nito sa score ng reviewer para sa parehong review. Halimbawa, kung ang sentiment ay nagpapakita na ang negative review ay may sentiment na 1 (sobrang positibong sentiment) at ang positive review ay may sentiment na 1, ngunit binigyan ng reviewer ang hotel ng pinakamababang score, maaaring hindi tumutugma ang review text sa score, o hindi tama ang pagkilala ng sentiment analyser sa sentiment. Dapat mong asahan na may ilang sentiment scores na ganap na mali, at madalas na may paliwanag dito, halimbawa, ang review ay maaaring sobrang sarcastic tulad ng "Siyempre, GUSTO ko ang pagtulog sa isang kwarto na walang heating" at iniisip ng sentiment analyser na positibo ang sentiment, kahit na alam ng tao na binabasa ito na ito ay sarcasm.
 
-Nagbibigay ang NLTK ng iba't ibang sentiment analyzers na maaaring pag-aralan, at maaari mong palitan ang mga ito upang makita kung mas tumpak o hindi ang sentiment. Ang VADER sentiment analysis ang ginagamit dito.
+Ngayon ay dapat mong kalkulahin ang sentiment analysis para sa parehong negative at positive review column, at i-store ang resulta sa 2 bagong column. Ang pagsubok ng sentiment ay ihahambing ito sa score ng reviewer para sa parehong review. Halimbawa, kung ang sentiment ay nag-iisip na ang negative review ay may sentiment na 1 (sobrang positibong sentiment) at ang positive review sentiment ay 1, ngunit binigyan ng reviewer ang hotel ng pinakamababang score na posible, maaaring hindi tumutugma ang review text sa score, o maaaring hindi nakilala ng sentiment analyser ang sentiment nang tama. Dapat mong asahan na ang ilang sentiment scores ay ganap na mali, at madalas na maipapaliwanag ito, halimbawa, ang review ay maaaring sobrang sarcastic "Siyempre NAGUSTUHAN ko ang pagtulog sa kwarto na walang heating" at iniisip ng sentiment analyser na positibo ang sentiment, kahit na alam ng tao na ito ay sarcasm.
+NLTK ay nagbibigay ng iba't ibang sentiment analyzers na maaaring pag-aralan, at maaari mong palitan ang mga ito upang makita kung mas tumpak o hindi ang sentiment analysis. Ang VADER sentiment analysis ang ginamit dito.
 
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: Isang Simpleng Rule-based Model para sa Sentiment Analysis ng Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, Hunyo 2014.
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -337,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Tumatagal ito ng humigit-kumulang 120 segundo sa aking computer, ngunit mag-iiba ito sa bawat computer. Kung nais mong i-print ang mga resulta at tingnan kung tumutugma ang sentiment sa review:
+Tumatagal ito ng humigit-kumulang 120 segundo sa aking computer, ngunit mag-iiba ito depende sa bawat computer. Kung nais mong i-print ang mga resulta at tingnan kung tumutugma ang sentiment sa review:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -346,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-Ang pinakahuling bagay na dapat gawin sa file bago ito gamitin sa challenge ay ang i-save ito! Dapat mo ring isaalang-alang ang pag-aayos ng lahat ng iyong bagong columns upang mas madali itong gamitin (para sa tao, ito ay isang cosmetic na pagbabago).
+Ang huling bagay na dapat gawin sa file bago ito gamitin sa challenge ay ang i-save ito! Dapat mo ring isaalang-alang ang pag-aayos ng lahat ng iyong bagong columns upang mas madali itong gamitin (para sa tao, ito ay isang cosmetic na pagbabago).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -362,22 +362,22 @@ Para sa pagsusuri, ang mga hakbang ay:
 
 1. Ang orihinal na dataset file **Hotel_Reviews.csv** ay sinuri sa nakaraang aralin gamit ang [explorer notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
 2. Ang Hotel_Reviews.csv ay na-filter gamit ang [filtering notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) na nagresulta sa **Hotel_Reviews_Filtered.csv**
-3. Ang Hotel_Reviews_Filtered.csv ay pinroseso gamit ang [sentiment analysis notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) na nagresulta sa **Hotel_Reviews_NLP.csv**
+3. Ang Hotel_Reviews_Filtered.csv ay na-proseso gamit ang [sentiment analysis notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) na nagresulta sa **Hotel_Reviews_NLP.csv**
 4. Gamitin ang Hotel_Reviews_NLP.csv sa NLP Challenge sa ibaba
 
 ### Konklusyon
 
-Nang magsimula ka, mayroon kang dataset na may mga columns at data ngunit hindi lahat ay maaaring ma-verify o magamit. Sinuri mo ang data, tinanggal ang hindi mo kailangan, binago ang mga tags sa mas kapaki-pakinabang na anyo, kinalkula ang iyong sariling mga averages, nagdagdag ng ilang sentiment columns, at sana, natutunan ang mga kawili-wiling bagay tungkol sa pagproseso ng natural na text.
+Sa simula, mayroon kang dataset na may mga columns at data ngunit hindi lahat ay maaaring ma-verify o magamit. Sinuri mo ang data, tinanggal ang hindi mo kailangan, binago ang mga tags sa mas kapaki-pakinabang na anyo, kinalkula ang sarili mong mga average, nagdagdag ng ilang sentiment columns, at sana, natutunan mo ang mga kawili-wiling bagay tungkol sa pagproseso ng natural na teksto.
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Hamon
 
-Ngayon na na-analyze mo na ang dataset para sa sentiment, subukan mong gamitin ang mga estratehiya na natutunan mo sa kurikulum na ito (clustering, marahil?) upang matukoy ang mga pattern sa paligid ng sentiment.
+Ngayon na na-analyze mo na ang dataset para sa sentiment, subukan mong gamitin ang mga estratehiyang natutunan mo sa kurikulum na ito (clustering, marahil?) upang tukuyin ang mga pattern sa paligid ng sentiment.
 
 ## Pagsusuri at Pag-aaral sa Sarili
 
-Kunin ang [Learn module na ito](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) upang matuto pa at gumamit ng iba't ibang tools para suriin ang sentiment sa text.
+Kunin ang [Learn module na ito](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) upang matuto pa at gumamit ng iba't ibang tools para suriin ang sentiment sa teksto.
 
 ## Takdang Aralin
 
@@ -386,4 +386,4 @@ Kunin ang [Learn module na ito](https://docs.microsoft.com/en-us/learn/modules/c
 ---
 
 **Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, pakitandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang orihinal na wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.

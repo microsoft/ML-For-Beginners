@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-08-29T13:57:00+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-05T18:21:16+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "tl"
 }
 -->
 # Gumawa ng Web App para sa Pagrekomenda ng Lutuin
 
-Sa araling ito, gagawa ka ng isang classification model gamit ang ilan sa mga teknik na natutunan mo sa mga nakaraang aralin at gamit ang masarap na dataset ng lutuin na ginamit sa buong serye. Bukod dito, gagawa ka ng isang maliit na web app upang magamit ang isang naka-save na model, gamit ang web runtime ng Onnx.
+Sa araling ito, gagawa ka ng isang classification model gamit ang ilan sa mga teknik na natutunan mo sa mga nakaraang aralin, gamit ang masarap na dataset ng lutuin na ginamit sa buong serye. Bukod dito, gagawa ka ng isang maliit na web app upang magamit ang naka-save na model, gamit ang web runtime ng Onnx.
 
 Isa sa mga pinaka-kapaki-pakinabang na praktikal na gamit ng machine learning ay ang paggawa ng mga sistema ng rekomendasyon, at maaari kang magsimula sa direksyong iyon ngayon!
 
 [![Ipinapakita ang web app na ito](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
-> 🎥 I-click ang imahe sa itaas para sa video: Ginawa ni Jen Looper ang isang web app gamit ang classified cuisine data
+> 🎥 I-click ang imahe sa itaas para sa video: Si Jen Looper ay gumagawa ng web app gamit ang classified cuisine data
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 Sa araling ito, matututunan mo:
 
@@ -31,11 +31,11 @@ Ang paggawa ng applied ML systems ay mahalagang bahagi ng paggamit ng mga teknol
 
 Sa isang [nakaraang aralin](../../3-Web-App/1-Web-App/README.md), gumawa ka ng Regression model tungkol sa mga sightings ng UFO, "pickled" ito, at ginamit ito sa isang Flask app. Bagama't ang arkitekturang ito ay napaka-kapaki-pakinabang, ito ay isang full-stack Python app, at maaaring kasama sa iyong mga pangangailangan ang paggamit ng JavaScript application.
 
-Sa araling ito, maaari kang gumawa ng isang basic na JavaScript-based system para sa inference. Ngunit una, kailangan mong sanayin ang isang model at i-convert ito para magamit sa Onnx.
+Sa araling ito, maaari kang gumawa ng isang basic na JavaScript-based system para sa inference. Gayunpaman, kailangan mo munang mag-train ng model at i-convert ito para magamit sa Onnx.
 
-## Ehersisyo - sanayin ang classification model
+## Ehersisyo - mag-train ng classification model
 
-Una, sanayin ang isang classification model gamit ang nilinis na dataset ng lutuin na ginamit natin.
+Una, mag-train ng classification model gamit ang nilinis na dataset ng lutuin na ginamit natin.
 
 1. Magsimula sa pag-import ng mga kapaki-pakinabang na library:
 
@@ -94,7 +94,7 @@ Gagamitin natin ang 'SVC' library na may magandang accuracy.
     model.fit(X_train,y_train.values.ravel())
     ```
 
-1. Ngayon, subukan ang iyong model, tawagin ang `predict()`:
+1. Ngayon, i-test ang iyong model, gamit ang `predict()`:
 
     ```python
     y_pred = model.predict(X_test)
@@ -144,23 +144,23 @@ Siguraduhing gawin ang conversion gamit ang tamang bilang ng Tensor. Ang dataset
         f.write(onx.SerializeToString())
     ```
 
-    > Tandaan, maaari kang magpasa ng [mga opsyon](https://onnx.ai/sklearn-onnx/parameterized.html) sa iyong conversion script. Sa kasong ito, ipinasa namin ang 'nocl' bilang True at 'zipmap' bilang False. Dahil ito ay isang classification model, mayroon kang opsyon na alisin ang ZipMap na gumagawa ng listahan ng mga dictionary (hindi kinakailangan). Ang `nocl` ay tumutukoy sa impormasyon ng klase na kasama sa model. Bawasan ang laki ng iyong model sa pamamagitan ng pagtatakda ng `nocl` sa 'True'.
+    > Tandaan, maaari kang magpasa ng [mga opsyon](https://onnx.ai/sklearn-onnx/parameterized.html) sa iyong conversion script. Sa kasong ito, ipinasa namin ang 'nocl' bilang True at 'zipmap' bilang False. Dahil ito ay isang classification model, mayroon kang opsyon na alisin ang ZipMap na gumagawa ng listahan ng mga dictionary (hindi kinakailangan). Ang `nocl` ay tumutukoy sa impormasyon ng klase na kasama sa model. Bawasan ang laki ng iyong model sa pamamagitan ng pag-set ng `nocl` sa 'True'.
 
-Ang pagtakbo ng buong notebook ngayon ay gagawa ng Onnx model at i-save ito sa folder na ito.
+Ang pagtakbo sa buong notebook ngayon ay gagawa ng Onnx model at i-save ito sa folder na ito.
 
 ## Tingnan ang iyong model
 
-Ang mga Onnx model ay hindi masyadong nakikita sa Visual Studio code, ngunit mayroong isang napakagandang libreng software na ginagamit ng maraming mananaliksik upang i-visualize ang model upang matiyak na ito ay maayos na ginawa. I-download ang [Netron](https://github.com/lutzroeder/Netron) at buksan ang iyong model.onnx file. Makikita mo ang iyong simpleng model na na-visualize, kasama ang 380 inputs at classifier na nakalista:
+Ang mga Onnx model ay hindi masyadong nakikita sa Visual Studio Code, ngunit mayroong isang napakagandang libreng software na ginagamit ng maraming mananaliksik upang i-visualize ang model upang matiyak na ito ay maayos na ginawa. I-download ang [Netron](https://github.com/lutzroeder/Netron) at buksan ang iyong model.onnx file. Makikita mo ang iyong simpleng model na na-visualize, kasama ang 380 inputs at classifier na nakalista:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.tl.png)
+![Netron visual](../../../../4-Classification/4-Applied/images/netron.png)
 
-Ang Netron ay isang kapaki-pakinabang na tool upang makita ang iyong mga model.
+Ang Netron ay isang kapaki-pakinabang na tool upang tingnan ang iyong mga model.
 
 Ngayon handa ka nang gamitin ang model na ito sa isang web app. Gumawa tayo ng app na magagamit kapag tumingin ka sa iyong refrigerator at sinusubukang alamin kung aling kombinasyon ng iyong mga natirang sangkap ang maaari mong gamitin upang magluto ng isang partikular na lutuin, ayon sa iyong model.
 
 ## Gumawa ng web application para sa rekomendasyon
 
-Maaari mong gamitin ang iyong model nang direkta sa isang web app. Ang arkitekturang ito ay nagbibigay-daan din sa iyo na patakbuhin ito nang lokal at kahit offline kung kinakailangan. Magsimula sa pamamagitan ng paggawa ng isang `index.html` file sa parehong folder kung saan mo iniimbak ang iyong `model.onnx` file.
+Maaari mong gamitin ang iyong model nang direkta sa isang web app. Ang arkitekturang ito ay nagbibigay-daan din sa iyo na patakbuhin ito nang lokal at kahit offline kung kinakailangan. Magsimula sa pamamagitan ng paggawa ng `index.html` file sa parehong folder kung saan mo iniimbak ang iyong `model.onnx` file.
 
 1. Sa file na ito _index.html_, idagdag ang sumusunod na markup:
 
@@ -176,7 +176,7 @@ Maaari mong gamitin ang iyong model nang direkta sa isang web app. Ang arkitektu
     </html>
     ```
 
-1. Ngayon, sa loob ng `body` tags, magdagdag ng kaunting markup upang ipakita ang isang listahan ng mga checkbox na sumasalamin sa ilang sangkap:
+1. Ngayon, sa loob ng `body` tags, magdagdag ng kaunting markup upang ipakita ang listahan ng mga checkbox na sumasalamin sa ilang sangkap:
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -221,9 +221,9 @@ Maaari mong gamitin ang iyong model nang direkta sa isang web app. Ang arkitektu
             </div> 
     ```
 
-    Tandaan na ang bawat checkbox ay binigyan ng value. Ang value na ito ay sumasalamin sa index kung saan matatagpuan ang sangkap ayon sa dataset. Halimbawa, ang Apple, sa listahang ito na naka-alpabeto, ay nasa ikalimang column, kaya ang value nito ay '4' dahil nagsisimula tayo sa pagbilang sa 0. Maaari mong konsultahin ang [ingredients spreadsheet](../../../../4-Classification/data/ingredient_indexes.csv) upang matuklasan ang index ng isang partikular na sangkap.
+    Tandaan na ang bawat checkbox ay binigyan ng value. Ang value na ito ay sumasalamin sa index kung saan matatagpuan ang sangkap ayon sa dataset. Halimbawa, ang Apple, sa listahang ito na naka-alpabeto, ay nasa ikalimang column, kaya ang value nito ay '4' dahil nagsisimula tayong magbilang sa 0. Maaari mong konsultahin ang [ingredients spreadsheet](../../../../4-Classification/data/ingredient_indexes.csv) upang matuklasan ang index ng isang partikular na sangkap.
 
-    Ipagpatuloy ang iyong trabaho sa index.html file, magdagdag ng script block kung saan tinatawag ang model pagkatapos ng huling pagsasara ng `</div>`.
+    Ipagpatuloy ang iyong trabaho sa index.html file, magdagdag ng script block kung saan tatawagin ang model pagkatapos ng huling pagsasara ng `</div>`.
 
 1. Una, i-import ang [Onnx Runtime](https://www.onnxruntime.ai/):
 
@@ -285,33 +285,33 @@ Maaari mong gamitin ang iyong model nang direkta sa isang web app. Ang arkitektu
     </script>
     ```
 
-Sa code na ito, may ilang bagay na nangyayari:
+Sa code na ito, maraming bagay ang nangyayari:
 
 1. Gumawa ka ng array ng 380 posibleng value (1 o 0) na itatakda at ipapadala sa model para sa inference, depende kung ang isang checkbox ng sangkap ay naka-check.
-2. Gumawa ka ng array ng mga checkbox at isang paraan upang matukoy kung naka-check ang mga ito sa isang `init` function na tinatawag kapag nagsimula ang application. Kapag ang isang checkbox ay naka-check, ang `ingredients` array ay binabago upang sumalamin sa napiling sangkap.
+2. Gumawa ka ng array ng mga checkbox at isang paraan upang matukoy kung naka-check ang mga ito sa isang `init` function na tinatawag kapag nagsimula ang application. Kapag ang isang checkbox ay naka-check, ang `ingredients` array ay binabago upang ipakita ang napiling sangkap.
 3. Gumawa ka ng `testCheckboxes` function na nagche-check kung may naka-check na checkbox.
-4. Ginamit mo ang `startInference` function kapag pinindot ang button at, kung may naka-check na checkbox, sinimulan mo ang inference.
+4. Ginagamit mo ang `startInference` function kapag pinindot ang button at, kung may naka-check na checkbox, sinisimulan mo ang inference.
 5. Ang inference routine ay kinabibilangan ng:
    1. Pag-set up ng asynchronous load ng model
-   2. Paglikha ng Tensor structure na ipapadala sa model
-   3. Paglikha ng 'feeds' na sumasalamin sa `float_input` input na ginawa mo noong sinasanay ang iyong model (maaari mong gamitin ang Netron upang i-verify ang pangalan)
-   4. Pagpapadala ng mga 'feeds' sa model at paghihintay ng tugon
+   2. Paglikha ng Tensor structure upang ipadala sa model
+   3. Paglikha ng 'feeds' na sumasalamin sa `float_input` input na ginawa mo noong nag-train ng iyong model (maaari mong gamitin ang Netron upang i-verify ang pangalan)
+   4. Pagpapadala ng mga 'feeds' sa model at paghihintay ng sagot
 
 ## Subukan ang iyong application
 
-Buksan ang isang terminal session sa Visual Studio Code sa folder kung saan matatagpuan ang iyong index.html file. Siguraduhing mayroon kang [http-server](https://www.npmjs.com/package/http-server) na naka-install globally, at i-type ang `http-server` sa prompt. Magbubukas ang isang localhost at maaari mong tingnan ang iyong web app. Tingnan kung anong lutuin ang inirerekomenda batay sa iba't ibang sangkap:
+Magbukas ng terminal session sa Visual Studio Code sa folder kung saan matatagpuan ang iyong index.html file. Siguraduhing mayroon kang [http-server](https://www.npmjs.com/package/http-server) na naka-install globally, at i-type ang `http-server` sa prompt. Magbubukas ang localhost at maaari mong tingnan ang iyong web app. Tingnan kung anong lutuin ang inirerekomenda batay sa iba't ibang sangkap:
 
-![ingredient web app](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.tl.png)
+![ingredient web app](../../../../4-Classification/4-Applied/images/web-app.png)
 
-Binabati kita, nakagawa ka ng isang 'recommendation' web app na may ilang fields. Maglaan ng oras upang palawakin ang sistemang ito!
+Binabati kita, nakagawa ka ng 'recommendation' web app na may ilang fields. Maglaan ng oras upang palawakin ang sistemang ito!
 
 ## 🚀Hamunin
 
-Ang iyong web app ay napaka-minimal, kaya ipagpatuloy ang pagpapalawak nito gamit ang mga sangkap at kanilang mga index mula sa [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) data. Anong mga kombinasyon ng lasa ang gumagana upang makagawa ng isang partikular na pambansang ulam?
+Ang iyong web app ay napaka-minimal, kaya ipagpatuloy ang pagpapalawak nito gamit ang mga sangkap at ang kanilang mga index mula sa [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) data. Anong mga kombinasyon ng lasa ang gumagana upang makagawa ng isang partikular na pambansang ulam?
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
-## Review & Self Study
+## Review at Pag-aaral sa Sarili
 
 Bagama't ang araling ito ay bahagyang tumalakay sa utility ng paggawa ng sistema ng rekomendasyon para sa mga sangkap ng pagkain, ang larangang ito ng ML applications ay napakayaman sa mga halimbawa. Magbasa pa tungkol sa kung paano binubuo ang mga sistemang ito:
 
@@ -321,7 +321,7 @@ Bagama't ang araling ito ay bahagyang tumalakay sa utility ng paggawa ng sistema
 
 ## Takdang Aralin
 
-[Magbuo ng bagong recommender](assignment.md)
+[Gumawa ng bagong recommender](assignment.md)
 
 ---
 
