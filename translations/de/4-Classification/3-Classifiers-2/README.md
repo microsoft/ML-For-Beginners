@@ -1,49 +1,49 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "808a71076f76ae8f5458862a8edd9215",
-  "translation_date": "2025-09-03T21:55:21+00:00",
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-04T22:03:02+00:00",
   "source_file": "4-Classification/3-Classifiers-2/README.md",
   "language_code": "de"
 }
 -->
-# Küchenklassifikatoren 2
+# Klassifikatoren für Küchen 2
 
-In dieser zweiten Lektion zur Klassifikation wirst du weitere Möglichkeiten zur Klassifikation numerischer Daten erkunden. Außerdem wirst du die Auswirkungen kennenlernen, die die Wahl eines Klassifikators gegenüber einem anderen haben kann.
+In dieser zweiten Lektion zur Klassifikation wirst du weitere Methoden zur Klassifikation numerischer Daten erkunden. Außerdem lernst du die Konsequenzen kennen, die sich aus der Wahl eines Klassifikators ergeben.
 
-## [Quiz vor der Vorlesung](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Quiz vor der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Voraussetzungen
 
-Wir gehen davon aus, dass du die vorherigen Lektionen abgeschlossen hast und einen bereinigten Datensatz in deinem `data`-Ordner namens _cleaned_cuisines.csv_ im Hauptverzeichnis dieses 4-Lektionen-Ordners hast.
+Wir gehen davon aus, dass du die vorherigen Lektionen abgeschlossen hast und ein bereinigtes Dataset in deinem `data`-Ordner namens _cleaned_cuisines.csv_ im Hauptverzeichnis dieses 4-Lektionen-Ordners hast.
 
 ### Vorbereitung
 
-Wir haben deine _notebook.ipynb_-Datei mit dem bereinigten Datensatz geladen und in X- und y-Datenframes unterteilt, die bereit für den Modellierungsprozess sind.
+Wir haben deine Datei _notebook.ipynb_ mit dem bereinigten Dataset geladen und in X- und y-Datenframes aufgeteilt, die bereit für den Modellierungsprozess sind.
 
 ## Eine Klassifikationskarte
 
-Zuvor hast du die verschiedenen Optionen kennengelernt, die dir bei der Klassifikation von Daten mithilfe des Cheat Sheets von Microsoft zur Verfügung stehen. Scikit-learn bietet ein ähnliches, aber detaillierteres Cheat Sheet, das dir dabei helfen kann, deine Auswahl an Schätzern (ein anderer Begriff für Klassifikatoren) weiter einzugrenzen:
+Zuvor hast du die verschiedenen Optionen kennengelernt, die dir bei der Klassifikation von Daten mithilfe des Microsoft-Spickzettels zur Verfügung stehen. Scikit-learn bietet einen ähnlichen, aber detaillierteren Spickzettel, der dir dabei helfen kann, deine Auswahl an Schätzern (ein anderer Begriff für Klassifikatoren) weiter einzugrenzen:
 
-![ML-Karte von Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.de.png)  
-> Tipp: [Besuche diese Karte online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) und klicke entlang des Pfades, um die Dokumentation zu lesen.
+![ML-Karte von Scikit-learn](../../../../4-Classification/3-Classifiers-2/images/map.png)
+> Tipp: [Besuche diese Karte online](https://scikit-learn.org/stable/tutorial/machine_learning_map/) und klicke entlang des Pfads, um die Dokumentation zu lesen.
 
 ### Der Plan
 
-Diese Karte ist sehr hilfreich, sobald du ein klares Verständnis deiner Daten hast, da du entlang ihrer Pfade zu einer Entscheidung „gehen“ kannst:
+Diese Karte ist sehr hilfreich, sobald du ein klares Verständnis deiner Daten hast, da du ihre Pfade entlanggehen kannst, um eine Entscheidung zu treffen:
 
 - Wir haben >50 Stichproben
 - Wir möchten eine Kategorie vorhersagen
 - Wir haben beschriftete Daten
 - Wir haben weniger als 100.000 Stichproben
-- ✨ Wir können einen Linear SVC wählen
+- ✨ Wir können einen Linearen SVC wählen
 - Falls das nicht funktioniert, da wir numerische Daten haben:
     - Können wir einen ✨ KNeighbors-Klassifikator ausprobieren
       - Falls das nicht funktioniert, probiere ✨ SVC und ✨ Ensemble-Klassifikatoren
 
-Dies ist ein sehr hilfreicher Weg, dem man folgen kann.
+Dies ist ein sehr hilfreicher Pfad, dem man folgen kann.
 
-## Übung - Daten aufteilen
+## Übung – Daten aufteilen
 
 Entlang dieses Pfades sollten wir zunächst einige Bibliotheken importieren, die wir verwenden möchten.
 
@@ -65,15 +65,15 @@ Entlang dieses Pfades sollten wir zunächst einige Bibliotheken importieren, die
     X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
     ```
 
-## Linear SVC-Klassifikator
+## Linearer SVC-Klassifikator
 
-Support-Vector Clustering (SVC) ist ein Mitglied der Familie der Support-Vector-Maschinen-Techniken des maschinellen Lernens (mehr dazu unten). Bei dieser Methode kannst du einen 'Kernel' wählen, um zu entscheiden, wie die Labels gruppiert werden. Der Parameter 'C' bezieht sich auf die 'Regularisierung', die den Einfluss der Parameter reguliert. Der Kernel kann einer von [mehreren](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) sein; hier setzen wir ihn auf 'linear', um sicherzustellen, dass wir Linear SVC nutzen. Die Wahrscheinlichkeit ist standardmäßig auf 'false' gesetzt; hier setzen wir sie auf 'true', um Wahrscheinlichkeitsabschätzungen zu erhalten. Wir setzen den Zufallszustand auf '0', um die Daten zu mischen und Wahrscheinlichkeiten zu erhalten.
+Support-Vector Clustering (SVC) ist ein Mitglied der Familie der Support-Vector-Maschinen (SVM), einer Technik des maschinellen Lernens (mehr dazu unten). Bei dieser Methode kannst du einen 'Kernel' auswählen, um zu entscheiden, wie die Labels gruppiert werden. Der Parameter 'C' steht für 'Regularisierung', der den Einfluss der Parameter reguliert. Der Kernel kann einer von [mehreren](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC) sein; hier setzen wir ihn auf 'linear', um sicherzustellen, dass wir linearen SVC nutzen. Die Wahrscheinlichkeit ist standardmäßig auf 'false' gesetzt; hier setzen wir sie auf 'true', um Wahrscheinlichkeitsabschätzungen zu erhalten. Wir setzen den Zufallszustand auf '0', um die Daten zu mischen und Wahrscheinlichkeiten zu erhalten.
 
-### Übung - Linear SVC anwenden
+### Übung – Linearen SVC anwenden
 
 Beginne damit, ein Array von Klassifikatoren zu erstellen. Du wirst dieses Array schrittweise erweitern, während wir testen.
 
-1. Beginne mit einem Linear SVC:
+1. Beginne mit einem Linearen SVC:
 
     ```python
     C = 10
@@ -83,7 +83,7 @@ Beginne damit, ein Array von Klassifikatoren zu erstellen. Du wirst dieses Array
     }
     ```
 
-2. Trainiere dein Modell mit dem Linear SVC und drucke einen Bericht aus:
+2. Trainiere dein Modell mit dem Linearen SVC und gib einen Bericht aus:
 
     ```python
     n_classifiers = len(classifiers)
@@ -116,13 +116,13 @@ Beginne damit, ein Array von Klassifikatoren zu erstellen. Du wirst dieses Array
 
 ## K-Neighbors-Klassifikator
 
-K-Neighbors ist Teil der Familie der "Nachbarn"-Methoden des maschinellen Lernens, die sowohl für überwachtes als auch für unüberwachtes Lernen verwendet werden können. Bei dieser Methode wird eine vordefinierte Anzahl von Punkten erstellt, und Daten werden um diese Punkte herum gesammelt, sodass generalisierte Labels für die Daten vorhergesagt werden können.
+K-Neighbors gehört zur Familie der "Nachbarn"-Methoden des maschinellen Lernens, die sowohl für überwachtes als auch unüberwachtes Lernen verwendet werden können. Bei dieser Methode wird eine vordefinierte Anzahl von Punkten erstellt, und Daten werden um diese Punkte herum gesammelt, sodass generalisierte Labels für die Daten vorhergesagt werden können.
 
-### Übung - K-Neighbors-Klassifikator anwenden
+### Übung – K-Neighbors-Klassifikator anwenden
 
-Der vorherige Klassifikator war gut und hat gut mit den Daten funktioniert, aber vielleicht können wir eine bessere Genauigkeit erzielen. Probiere einen K-Neighbors-Klassifikator aus.
+Der vorherige Klassifikator war gut und funktionierte gut mit den Daten, aber vielleicht können wir eine bessere Genauigkeit erzielen. Probiere einen K-Neighbors-Klassifikator aus.
 
-1. Füge eine Zeile zu deinem Klassifikator-Array hinzu (füge ein Komma nach dem Linear SVC-Element hinzu):
+1. Füge eine Zeile zu deinem Klassifikator-Array hinzu (füge ein Komma nach dem Linearen SVC-Element hinzu):
 
     ```python
     'KNN classifier': KNeighborsClassifier(C),
@@ -149,11 +149,11 @@ Der vorherige Klassifikator war gut und hat gut mit den Daten funktioniert, aber
 
 ## Support-Vector-Klassifikator
 
-Support-Vector-Klassifikatoren sind Teil der [Support-Vector-Maschinen](https://wikipedia.org/wiki/Support-vector_machine)-Familie von ML-Methoden, die für Klassifikations- und Regressionstasks verwendet werden. SVMs "mappen Trainingsbeispiele auf Punkte im Raum", um den Abstand zwischen zwei Kategorien zu maximieren. Nachfolgende Daten werden in diesen Raum gemappt, sodass ihre Kategorie vorhergesagt werden kann.
+Support-Vector-Klassifikatoren gehören zur [Support-Vector-Maschine](https://wikipedia.org/wiki/Support-vector_machine)-Familie von ML-Methoden, die für Klassifikations- und Regressionsaufgaben verwendet werden. SVMs "mappen Trainingsbeispiele auf Punkte im Raum", um den Abstand zwischen zwei Kategorien zu maximieren. Nachfolgende Daten werden in diesen Raum gemappt, sodass ihre Kategorie vorhergesagt werden kann.
 
-### Übung - Support-Vector-Klassifikator anwenden
+### Übung – Support-Vector-Klassifikator anwenden
 
-Lass uns versuchen, eine etwas bessere Genauigkeit mit einem Support-Vector-Klassifikator zu erzielen.
+Versuchen wir, mit einem Support-Vector-Klassifikator eine etwas bessere Genauigkeit zu erzielen.
 
 1. Füge ein Komma nach dem K-Neighbors-Element hinzu und füge dann diese Zeile hinzu:
 
@@ -182,14 +182,14 @@ Lass uns versuchen, eine etwas bessere Genauigkeit mit einem Support-Vector-Klas
 
 ## Ensemble-Klassifikatoren
 
-Lass uns den Pfad bis zum Ende verfolgen, auch wenn der vorherige Test ziemlich gut war. Lass uns einige 'Ensemble-Klassifikatoren' ausprobieren, insbesondere Random Forest und AdaBoost:
+Lass uns den Pfad bis zum Ende verfolgen, auch wenn der vorherige Test ziemlich gut war. Probieren wir einige 'Ensemble-Klassifikatoren' aus, insbesondere Random Forest und AdaBoost:
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
   'ADA': AdaBoostClassifier(n_estimators=100)
 ```
 
-Das Ergebnis ist sehr gut, besonders bei Random Forest:
+Das Ergebnis ist sehr gut, besonders für Random Forest:
 
 ```output
 Accuracy (train) for RFST: 84.5% 
@@ -223,9 +223,9 @@ weighted avg       0.73      0.72      0.72      1199
 
 Diese Methode des maschinellen Lernens "kombiniert die Vorhersagen mehrerer Basis-Schätzer", um die Qualität des Modells zu verbessern. In unserem Beispiel haben wir Random Trees und AdaBoost verwendet.
 
-- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), eine Durchschnittsmethode, erstellt einen 'Wald' aus 'Entscheidungsbäumen', die mit Zufälligkeit durchsetzt sind, um Überanpassung zu vermeiden. Der Parameter n_estimators wird auf die Anzahl der Bäume gesetzt.
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), eine Mittelungsmethode, erstellt einen 'Wald' aus 'Entscheidungsbäumen', die mit Zufälligkeit durchsetzt sind, um Überanpassung zu vermeiden. Der Parameter n_estimators gibt die Anzahl der Bäume an.
 
-- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) passt einen Klassifikator an einen Datensatz an und passt dann Kopien dieses Klassifikators an denselben Datensatz an. Es konzentriert sich auf die Gewichte von falsch klassifizierten Elementen und passt die Anpassung für den nächsten Klassifikator an, um diese zu korrigieren.
+- [AdaBoost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html) passt einen Klassifikator an ein Dataset an und passt dann Kopien dieses Klassifikators an dasselbe Dataset an. Dabei wird der Fokus auf die Gewichte falsch klassifizierter Elemente gelegt, und die Anpassung für den nächsten Klassifikator wird entsprechend korrigiert.
 
 ---
 
@@ -233,7 +233,7 @@ Diese Methode des maschinellen Lernens "kombiniert die Vorhersagen mehrerer Basi
 
 Jede dieser Techniken hat eine große Anzahl von Parametern, die du anpassen kannst. Recherchiere die Standardparameter jeder Technik und überlege, was das Anpassen dieser Parameter für die Qualität des Modells bedeuten würde.
 
-## [Quiz nach der Vorlesung](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Quiz nach der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Rückblick & Selbststudium
 
@@ -241,7 +241,7 @@ Es gibt viele Fachbegriffe in diesen Lektionen, also nimm dir einen Moment Zeit,
 
 ## Aufgabe 
 
-[Parameter-Spiel](assignment.md)
+[Parameter-Spielerei](assignment.md)
 
 ---
 

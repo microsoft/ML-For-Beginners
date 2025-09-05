@@ -1,24 +1,24 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "b2d11df10030cacc41427a1fbc8bc8f1",
-  "translation_date": "2025-09-03T23:40:36+00:00",
+  "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
+  "translation_date": "2025-09-04T22:22:07+00:00",
   "source_file": "1-Introduction/2-history-of-ML/README.md",
   "language_code": "es"
 }
 -->
 # Historia del aprendizaje automático
 
-![Resumen de la historia del aprendizaje automático en un sketchnote](../../../../translated_images/ml-history.a1bdfd4ce1f464d9a0502f38d355ffda384c95cd5278297a46c9a391b5053bc4.es.png)
+![Resumen de la historia del aprendizaje automático en un sketchnote](../../../../sketchnotes/ml-history.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/3/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
 [![ML para principiantes - Historia del aprendizaje automático](https://img.youtube.com/vi/N6wxM4wZ7V0/0.jpg)](https://youtu.be/N6wxM4wZ7V0 "ML para principiantes - Historia del aprendizaje automático")
 
-> 🎥 Haz clic en la imagen de arriba para ver un video corto sobre esta lección.
+> 🎥 Haz clic en la imagen de arriba para ver un breve video sobre esta lección.
 
 En esta lección, repasaremos los hitos más importantes en la historia del aprendizaje automático y la inteligencia artificial.
 
@@ -38,7 +38,7 @@ La historia de la inteligencia artificial (IA) como campo está entrelazada con 
 - 1970 [Retropropagación](https://wikipedia.org/wiki/Backpropagation) se utiliza para entrenar [redes neuronales feedforward](https://wikipedia.org/wiki/Feedforward_neural_network).
 - 1982 [Redes neuronales recurrentes](https://wikipedia.org/wiki/Recurrent_neural_network) son redes neuronales artificiales derivadas de las redes neuronales feedforward que crean gráficos temporales.
 
-✅ Investiga un poco. ¿Qué otras fechas destacan como fundamentales en la historia del aprendizaje automático y la inteligencia artificial?
+✅ Investiga un poco. ¿Qué otras fechas destacan como fundamentales en la historia del aprendizaje automático y la IA?
 
 ---
 ## 1950: Máquinas que piensan
@@ -50,11 +50,11 @@ Alan Turing, una persona verdaderamente extraordinaria que fue votada [por el p�
 
 "El Proyecto de investigación de verano en Dartmouth sobre inteligencia artificial fue un evento fundamental para la inteligencia artificial como campo", y fue aquí donde se acuñó el término 'inteligencia artificial' ([fuente](https://250.dartmouth.edu/highlights/artificial-intelligence-ai-coined-dartmouth)).
 
-> Cada aspecto del aprendizaje o cualquier otra característica de la inteligencia puede, en principio, describirse tan precisamente que se puede construir una máquina para simularlo.
+> Cada aspecto del aprendizaje o cualquier otra característica de la inteligencia puede, en principio, describirse tan precisamente que se pueda construir una máquina que lo simule.
 
 ---
 
-El investigador principal, el profesor de matemáticas John McCarthy, esperaba "proceder sobre la base de la conjetura de que cada aspecto del aprendizaje o cualquier otra característica de la inteligencia puede, en principio, describirse tan precisamente que se puede construir una máquina para simularlo". Los participantes incluyeron a otro destacado en el campo, Marvin Minsky.
+El investigador principal, el profesor de matemáticas John McCarthy, esperaba "proceder sobre la base de la conjetura de que cada aspecto del aprendizaje o cualquier otra característica de la inteligencia puede, en principio, describirse tan precisamente que se pueda construir una máquina que lo simule". Los participantes incluyeron a otro destacado en el campo, Marvin Minsky.
 
 El taller es reconocido por haber iniciado y fomentado varias discusiones, incluyendo "el auge de los métodos simbólicos, sistemas enfocados en dominios limitados (primeros sistemas expertos) y sistemas deductivos frente a sistemas inductivos". ([fuente](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
@@ -71,14 +71,14 @@ La investigación fue bien financiada por agencias gubernamentales, se lograron 
 
 * [Shakey el robot](https://wikipedia.org/wiki/Shakey_the_robot), que podía maniobrar y decidir cómo realizar tareas 'inteligentemente'.
 
-    ![Shakey, un robot inteligente](../../../../translated_images/shakey.4dc17819c447c05bf4b52f76da0bdd28817d056fdb906252ec20124dd4cfa55e.es.jpg)
+    ![Shakey, un robot inteligente](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
     > Shakey en 1972
 
 ---
 
 * Eliza, un primer 'chatterbot', podía conversar con personas y actuar como un 'terapeuta' primitivo. Aprenderás más sobre Eliza en las lecciones de procesamiento de lenguaje natural.
 
-    ![Eliza, un bot](../../../../translated_images/eliza.84397454cda9559bb5ec296b5b8fff067571c0cccc5405f9c1ab1c3f105c075c.es.png)
+    ![Eliza, un bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
     > Una versión de Eliza, un chatbot
 
 ---
@@ -96,7 +96,7 @@ A mediados de los años 70, se hizo evidente que la complejidad de crear 'máqui
 ---
 - **Limitaciones**. La potencia computacional era demasiado limitada.
 - **Explosión combinatoria**. La cantidad de parámetros necesarios para entrenar creció exponencialmente a medida que se pedía más a las computadoras, sin una evolución paralela de la potencia y capacidad computacional.
-- **Escasez de datos**. Había una escasez de datos que dificultaba el proceso de prueba, desarrollo y refinamiento de algoritmos.
+- **Escasez de datos**. Había una escasez de datos que dificultaba el proceso de probar, desarrollar y refinar algoritmos.
 - **¿Estamos haciendo las preguntas correctas?**. Las mismas preguntas que se estaban planteando comenzaron a ser cuestionadas. Los investigadores comenzaron a recibir críticas sobre sus enfoques:
   - Los tests de Turing fueron cuestionados mediante, entre otras ideas, la 'teoría de la habitación china', que postulaba que, "programar una computadora digital puede hacer que parezca entender el lenguaje pero no podría producir una comprensión real". ([fuente](https://plato.stanford.edu/entries/chinese-room/))
   - Se cuestionó la ética de introducir inteligencias artificiales como el "terapeuta" ELIZA en la sociedad.
@@ -108,11 +108,11 @@ Al mismo tiempo, comenzaron a formarse varias escuelas de pensamiento sobre IA. 
 ---
 ## Sistemas expertos en los años 80
 
-A medida que el campo creció, su beneficio para los negocios se hizo más claro, y en los años 80 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (IA)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
+A medida que el campo creció, su beneficio para los negocios se hizo más claro, y en la década de 1980 también lo hizo la proliferación de 'sistemas expertos'. "Los sistemas expertos estuvieron entre las primeras formas verdaderamente exitosas de software de inteligencia artificial (IA)." ([fuente](https://wikipedia.org/wiki/Expert_system)).
 
-Este tipo de sistema es en realidad _híbrido_, compuesto parcialmente por un motor de reglas que define los requisitos comerciales y un motor de inferencia que aprovecha el sistema de reglas para deducir nuevos hechos.
+Este tipo de sistema es en realidad _híbrido_, compuesto parcialmente por un motor de reglas que define los requisitos empresariales y un motor de inferencia que aprovecha el sistema de reglas para deducir nuevos hechos.
 
-Esta era también vio una atención creciente hacia las redes neuronales.
+Esta era también vio una creciente atención hacia las redes neuronales.
 
 ---
 ## 1987 - 1993: Enfriamiento de la IA
@@ -122,7 +122,7 @@ La proliferación de hardware especializado para sistemas expertos tuvo el desaf
 ---
 ## 1993 - 2011
 
-Esta época marcó una nueva era para el aprendizaje automático y la IA, permitiendo resolver algunos de los problemas que habían sido causados anteriormente por la falta de datos y potencia computacional. La cantidad de datos comenzó a aumentar rápidamente y a estar más ampliamente disponible, para bien y para mal, especialmente con la llegada del smartphone alrededor de 2007. La potencia computacional se expandió exponencialmente, y los algoritmos evolucionaron junto con ella. El campo comenzó a ganar madurez a medida que los días desenfrenados del pasado comenzaron a cristalizarse en una verdadera disciplina.
+Esta época marcó una nueva era para el aprendizaje automático y la IA, permitiendo resolver algunos de los problemas causados anteriormente por la falta de datos y potencia computacional. La cantidad de datos comenzó a aumentar rápidamente y a estar más ampliamente disponible, para bien y para mal, especialmente con la llegada del smartphone alrededor de 2007. La potencia computacional se expandió exponencialmente, y los algoritmos evolucionaron junto con ella. El campo comenzó a ganar madurez a medida que los días desenfrenados del pasado comenzaron a cristalizarse en una verdadera disciplina.
 
 ---
 ## Hoy
@@ -134,19 +134,19 @@ Hoy en día, el aprendizaje automático y la IA tocan casi todas las partes de n
 Queda por ver qué depara el futuro, pero es importante comprender estos sistemas informáticos y el software y los algoritmos que ejecutan. Esperamos que este plan de estudios te ayude a obtener una mejor comprensión para que puedas decidir por ti mismo.
 
 [![La historia del aprendizaje profundo](https://img.youtube.com/vi/mTtDfKgLm54/0.jpg)](https://www.youtube.com/watch?v=mTtDfKgLm54 "La historia del aprendizaje profundo")
-> 🎥 Haz clic en la imagen de arriba para ver un video: Yann LeCun analiza la historia del aprendizaje profundo en esta conferencia
+> 🎥 Haz clic en la imagen de arriba para ver un video: Yann LeCun habla sobre la historia del aprendizaje profundo en esta conferencia
 
 ---
 ## 🚀Desafío
 
 Investiga uno de estos momentos históricos y aprende más sobre las personas detrás de ellos. Hay personajes fascinantes, y ningún descubrimiento científico se creó jamás en un vacío cultural. ¿Qué descubres?
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/4/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 ## Revisión y autoestudio
 
-Aquí hay elementos para ver y escuchar:
+Aquí tienes elementos para ver y escuchar:
 
 [Este podcast donde Amy Boyd analiza la evolución de la IA](http://runasradio.com/Shows/Show/739)
 
@@ -161,4 +161,4 @@ Aquí hay elementos para ver y escuchar:
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

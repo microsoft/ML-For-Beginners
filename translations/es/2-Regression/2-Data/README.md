@@ -1,46 +1,46 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a683e1fe430bb0d4a10b68f6ca15e0a6",
-  "translation_date": "2025-09-03T22:38:39+00:00",
+  "original_hash": "7c077988328ebfe33b24d07945f16eca",
+  "translation_date": "2025-09-04T22:14:22+00:00",
   "source_file": "2-Regression/2-Data/README.md",
   "language_code": "es"
 }
 -->
 # Construir un modelo de regresión usando Scikit-learn: preparar y visualizar datos
 
-![Infografía de visualización de datos](../../../../translated_images/data-visualization.54e56dded7c1a804d00d027543f2881cb32da73aeadda2d4a4f10f3497526114.es.png)
+![Infografía de visualización de datos](../../../../2-Regression/2-Data/images/data-visualization.png)
 
 Infografía por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [¡Esta lección está disponible en R!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
 ## Introducción
 
-Ahora que tienes las herramientas necesarias para comenzar a construir modelos de aprendizaje automático con Scikit-learn, estás listo para empezar a formular preguntas sobre tus datos. Al trabajar con datos y aplicar soluciones de aprendizaje automático, es muy importante saber cómo formular la pregunta correcta para desbloquear adecuadamente el potencial de tu conjunto de datos.
+Ahora que tienes las herramientas necesarias para comenzar a construir modelos de aprendizaje automático con Scikit-learn, estás listo para empezar a formular preguntas sobre tus datos. Al trabajar con datos y aplicar soluciones de ML, es muy importante saber cómo hacer la pregunta correcta para desbloquear adecuadamente el potencial de tu conjunto de datos.
 
 En esta lección, aprenderás:
 
 - Cómo preparar tus datos para construir modelos.
 - Cómo usar Matplotlib para la visualización de datos.
 
-## Formular la pregunta correcta sobre tus datos
+## Hacer la pregunta correcta sobre tus datos
 
-La pregunta que necesitas responder determinará qué tipo de algoritmos de aprendizaje automático utilizarás. Y la calidad de la respuesta que obtengas dependerá en gran medida de la naturaleza de tus datos.
+La pregunta que necesitas responder determinará qué tipo de algoritmos de ML utilizarás. Y la calidad de la respuesta que obtengas dependerá en gran medida de la naturaleza de tus datos.
 
-Echa un vistazo a los [datos](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) proporcionados para esta lección. Puedes abrir este archivo .csv en VS Code. Una revisión rápida muestra inmediatamente que hay espacios en blanco y una mezcla de datos de tipo cadena y numéricos. También hay una columna extraña llamada 'Package' donde los datos son una mezcla entre 'sacks', 'bins' y otros valores. De hecho, los datos están un poco desordenados.
+Echa un vistazo a los [datos](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) proporcionados para esta lección. Puedes abrir este archivo .csv en VS Code. Una revisión rápida muestra que hay espacios en blanco y una mezcla de datos de tipo cadena y numéricos. También hay una columna extraña llamada 'Package' donde los datos son una mezcla entre 'sacks', 'bins' y otros valores. De hecho, los datos están un poco desordenados.
 
 [![ML para principiantes - Cómo analizar y limpiar un conjunto de datos](https://img.youtube.com/vi/5qGjczWTrDQ/0.jpg)](https://youtu.be/5qGjczWTrDQ "ML para principiantes - Cómo analizar y limpiar un conjunto de datos")
 
 > 🎥 Haz clic en la imagen de arriba para ver un breve video sobre cómo preparar los datos para esta lección.
 
-De hecho, no es muy común recibir un conjunto de datos completamente listo para usar y crear un modelo de aprendizaje automático directamente. En esta lección, aprenderás cómo preparar un conjunto de datos sin procesar utilizando bibliotecas estándar de Python. También aprenderás varias técnicas para visualizar los datos.
+De hecho, no es muy común recibir un conjunto de datos completamente listo para usar y crear un modelo de ML directamente. En esta lección, aprenderás cómo preparar un conjunto de datos sin procesar utilizando bibliotecas estándar de Python. También aprenderás varias técnicas para visualizar los datos.
 
 ## Caso de estudio: 'el mercado de calabazas'
 
-En esta carpeta encontrarás un archivo .csv en la carpeta raíz `data` llamado [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), que incluye 1757 líneas de datos sobre el mercado de calabazas, organizados en agrupaciones por ciudad. Estos son datos sin procesar extraídos de los [Informes estándar de mercados terminales de cultivos especiales](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuidos por el Departamento de Agricultura de los Estados Unidos.
+En esta carpeta encontrarás un archivo .csv en la carpeta raíz `data` llamado [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv), que incluye 1757 líneas de datos sobre el mercado de calabazas, agrupados por ciudad. Estos son datos sin procesar extraídos de los [Informes estándar de mercados terminales de cultivos especiales](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuidos por el Departamento de Agricultura de los Estados Unidos.
 
 ### Preparar los datos
 
@@ -50,11 +50,11 @@ Estos datos son de dominio público. Se pueden descargar en muchos archivos sepa
 
 ¿Qué notas sobre estos datos? Ya viste que hay una mezcla de cadenas, números, espacios en blanco y valores extraños que necesitas interpretar.
 
-¿Qué pregunta puedes formular sobre estos datos utilizando una técnica de regresión? ¿Qué tal "Predecir el precio de una calabaza en venta durante un mes determinado"? Al observar nuevamente los datos, hay algunos cambios que necesitas hacer para crear la estructura de datos necesaria para esta tarea.
+¿Qué pregunta puedes hacer sobre estos datos utilizando una técnica de regresión? ¿Qué tal "Predecir el precio de una calabaza en venta durante un mes determinado"? Mirando nuevamente los datos, hay algunos cambios que necesitas hacer para crear la estructura de datos necesaria para esta tarea.
 
 ## Ejercicio - analizar los datos de calabazas
 
-Utilicemos [Pandas](https://pandas.pydata.org/) (el nombre significa `Python Data Analysis`), una herramienta muy útil para dar forma a los datos, para analizar y preparar estos datos de calabazas.
+Usemos [Pandas](https://pandas.pydata.org/) (el nombre significa `Python Data Analysis`), una herramienta muy útil para dar forma a los datos, para analizar y preparar estos datos de calabazas.
 
 ### Primero, verifica si faltan fechas
 
@@ -63,7 +63,7 @@ Primero necesitarás tomar medidas para verificar si faltan fechas:
 1. Convierte las fechas al formato de mes (estas son fechas de EE. UU., por lo que el formato es `MM/DD/YYYY`).
 2. Extrae el mes a una nueva columna.
 
-Abre el archivo _notebook.ipynb_ en Visual Studio Code e importa la hoja de cálculo a un nuevo dataframe de Pandas.
+Abre el archivo _notebook.ipynb_ en Visual Studio Code e importa la hoja de cálculo en un nuevo dataframe de Pandas.
 
 1. Usa la función `head()` para ver las primeras cinco filas.
 
@@ -83,7 +83,7 @@ Abre el archivo _notebook.ipynb_ en Visual Studio Code e importa la hoja de cál
 
     Hay datos faltantes, pero tal vez no importen para la tarea en cuestión.
 
-1. Para que tu dataframe sea más fácil de trabajar, selecciona solo las columnas que necesitas, utilizando la función `loc`, que extrae del dataframe original un grupo de filas (pasadas como primer parámetro) y columnas (pasadas como segundo parámetro). La expresión `:` en el caso siguiente significa "todas las filas".
+1. Para que tu dataframe sea más fácil de trabajar, selecciona solo las columnas que necesitas, usando la función `loc`, que extrae del dataframe original un grupo de filas (pasadas como primer parámetro) y columnas (pasadas como segundo parámetro). La expresión `:` en el caso siguiente significa "todas las filas".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
@@ -121,7 +121,7 @@ Si miras la columna `Package`, las calabazas se venden en muchas configuraciones
 
 > Parece que las calabazas son muy difíciles de pesar de manera consistente.
 
-Al profundizar en los datos originales, es interesante notar que cualquier cosa con `Unit of Sale` igual a 'EACH' o 'PER BIN' también tiene el tipo de `Package` por pulgada, por bin, o 'each'. Parece que las calabazas son muy difíciles de pesar de manera consistente, así que filtremos seleccionando solo las calabazas con la cadena 'bushel' en su columna `Package`.
+Al profundizar en los datos originales, es interesante notar que cualquier cosa con `Unit of Sale` igual a 'EACH' o 'PER BIN' también tiene el tipo `Package` por pulgada, por bin, o 'each'. Parece que las calabazas son muy difíciles de pesar de manera consistente, así que filtremos seleccionando solo las calabazas con la cadena 'bushel' en su columna `Package`.
 
 1. Agrega un filtro en la parte superior del archivo, debajo de la importación inicial del .csv:
 
@@ -151,7 +151,7 @@ Ahora puedes analizar el precio por unidad basado en su medida de bushel. Si imp
 
 ## Estrategias de visualización
 
-Parte del rol del científico de datos es demostrar la calidad y naturaleza de los datos con los que están trabajando. Para hacerlo, a menudo crean visualizaciones interesantes, como gráficos, diagramas y tablas, que muestran diferentes aspectos de los datos. De esta manera, pueden mostrar visualmente relaciones y vacíos que de otro modo serían difíciles de descubrir.
+Parte del rol del científico de datos es demostrar la calidad y naturaleza de los datos con los que están trabajando. Para hacerlo, a menudo crean visualizaciones interesantes, como gráficos, diagramas y tablas, que muestran diferentes aspectos de los datos. De esta manera, pueden mostrar visualmente relaciones y brechas que de otro modo serían difíciles de descubrir.
 
 [![ML para principiantes - Cómo visualizar datos con Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML para principiantes - Cómo visualizar datos con Matplotlib")
 
@@ -183,7 +183,7 @@ Intenta crear algunos gráficos básicos para mostrar el nuevo dataframe que aca
     plt.show()
     ```
 
-    ![Un gráfico de dispersión que muestra la relación entre precio y mes](../../../../translated_images/scatterplot.b6868f44cbd2051c6680ccdbb1510697d06a3ff6cd4abda656f5009c0ed4e3fc.es.png)
+    ![Un gráfico de dispersión que muestra la relación entre precio y mes](../../../../2-Regression/2-Data/images/scatterplot.png)
 
     ¿Es este un gráfico útil? ¿Hay algo que te sorprenda?
 
@@ -200,9 +200,9 @@ Para que los gráficos muestren datos útiles, generalmente necesitas agrupar lo
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Un gráfico de barras que muestra la relación entre precio y mes](../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.es.png)
+    ![Un gráfico de barras que muestra la relación entre precio y mes](../../../../2-Regression/2-Data/images/barchart.png)
 
-    ¡Este es un gráfico de datos más útil! Parece indicar que el precio más alto de las calabazas ocurre en septiembre y octubre. ¿Cumple con tus expectativas? ¿Por qué sí o por qué no?
+    ¡Este es un gráfico de datos más útil! Parece indicar que el precio más alto de las calabazas ocurre en septiembre y octubre. ¿Cumple con tus expectativas? ¿Por qué o por qué no?
 
 ---
 
@@ -210,17 +210,17 @@ Para que los gráficos muestren datos útiles, generalmente necesitas agrupar lo
 
 Explora los diferentes tipos de visualización que ofrece Matplotlib. ¿Qué tipos son más apropiados para problemas de regresión?
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
-## Repaso y autoestudio
+## Revisión y autoestudio
 
 Echa un vistazo a las muchas formas de visualizar datos. Haz una lista de las diversas bibliotecas disponibles y anota cuáles son mejores para ciertos tipos de tareas, por ejemplo, visualizaciones en 2D frente a visualizaciones en 3D. ¿Qué descubres?
 
 ## Tarea
 
-[Explorar la visualización](assignment.md)
+[Explorar visualización](assignment.md)
 
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f400075e003e749fdb0d6b3b4787a99",
-  "translation_date": "2025-08-29T20:41:21+00:00",
+  "original_hash": "917dbf890db71a322f306050cb284749",
+  "translation_date": "2025-09-04T21:26:37+00:00",
   "source_file": "7-TimeSeries/2-ARIMA/README.md",
   "language_code": "br"
 }
@@ -15,7 +15,7 @@ Na lição anterior, você aprendeu um pouco sobre previsão de séries temporai
 
 > 🎥 Clique na imagem acima para assistir a um vídeo: Uma breve introdução aos modelos ARIMA. O exemplo é feito em R, mas os conceitos são universais.
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/43/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introdução
 
@@ -25,13 +25,13 @@ Nesta lição, você descobrirá uma maneira específica de construir modelos co
 
 Para trabalhar com ARIMA, há alguns conceitos que você precisa conhecer:
 
-- 🎓 **Estacionariedade**. No contexto estatístico, estacionariedade refere-se a dados cuja distribuição não muda ao serem deslocados no tempo. Dados não estacionários, por outro lado, apresentam flutuações devido a tendências que precisam ser transformadas para serem analisadas. A sazonalidade, por exemplo, pode introduzir flutuações nos dados e pode ser eliminada por meio de um processo de 'diferença sazonal'.
+- 🎓 **Estacionariedade**. No contexto estatístico, estacionariedade refere-se a dados cuja distribuição não muda ao serem deslocados no tempo. Dados não estacionários, por sua vez, apresentam flutuações devido a tendências que precisam ser transformadas para serem analisadas. A sazonalidade, por exemplo, pode introduzir flutuações nos dados e pode ser eliminada por meio de um processo de 'diferença sazonal'.
 
 - 🎓 **[Diferença](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average#Differencing)**. Diferençar dados, novamente no contexto estatístico, refere-se ao processo de transformar dados não estacionários para torná-los estacionários, removendo sua tendência não constante. "A diferença remove as mudanças no nível de uma série temporal, eliminando tendência e sazonalidade e, consequentemente, estabilizando a média da série temporal." [Artigo de Shixiong et al](https://arxiv.org/abs/1904.07632)
 
 ## ARIMA no contexto de séries temporais
 
-Vamos explorar as partes do ARIMA para entender melhor como ele nos ajuda a modelar séries temporais e fazer previsões com base nelas.
+Vamos detalhar as partes do ARIMA para entender melhor como ele nos ajuda a modelar séries temporais e fazer previsões com base nelas.
 
 - **AR - de AutoRegressivo**. Modelos autoregressivos, como o nome sugere, olham 'para trás' no tempo para analisar valores anteriores em seus dados e fazer suposições sobre eles. Esses valores anteriores são chamados de 'lags'. Um exemplo seria dados que mostram vendas mensais de lápis. O total de vendas de cada mês seria considerado uma 'variável evolutiva' no conjunto de dados. Este modelo é construído como "a variável evolutiva de interesse é regredida em seus próprios valores defasados (ou seja, anteriores)." [wikipedia](https://wikipedia.org/wiki/Autoregressive_integrated_moving_average)
 
@@ -114,7 +114,7 @@ Agora que seus dados estão carregados, você pode separá-los em conjuntos de t
     plt.show()
     ```
 
-    ![dados de treinamento e teste](../../../../translated_images/train-test.8928d14e5b91fc942f0ca9201b2d36c890ea7e98f7619fd94f75de3a4c2bacb9.br.png)
+    ![dados de treinamento e teste](../../../../7-TimeSeries/2-ARIMA/images/train-test.png)
 
     Portanto, usar uma janela de tempo relativamente pequena para treinar os dados deve ser suficiente.
 
@@ -141,7 +141,7 @@ Agora, você precisa preparar os dados para treinamento realizando filtragem e e
     Test data shape:  (48, 1)
     ```
 
-1. Escale os dados para estarem no intervalo (0, 1).
+1. Escale os dados para estar no intervalo (0, 1).
 
     ```python
     scaler = MinMaxScaler()
@@ -149,7 +149,7 @@ Agora, você precisa preparar os dados para treinamento realizando filtragem e e
     train.head(10)
     ```
 
-1. Visualize os dados originais vs. os dados escalados:
+1. Visualize os dados originais vs. escalonados:
 
     ```python
     energy[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']].rename(columns={'load':'original load'}).plot.hist(bins=100, fontsize=12)
@@ -157,15 +157,15 @@ Agora, você precisa preparar os dados para treinamento realizando filtragem e e
     plt.show()
     ```
 
-    ![original](../../../../translated_images/original.b2b15efe0ce92b8745918f071dceec2231661bf49c8db6918e3ff4b3b0b183c2.br.png)
+    ![original](../../../../7-TimeSeries/2-ARIMA/images/original.png)
 
     > Os dados originais
 
-    ![escalado](../../../../translated_images/scaled.e35258ca5cd3d43f86d5175e584ba96b38d51501f234abf52e11f4fe2631e45f.br.png)
+    ![escalonados](../../../../7-TimeSeries/2-ARIMA/images/scaled.png)
 
-    > Os dados escalados
+    > Os dados escalonados
 
-1. Agora que você calibrou os dados escalados, pode escalar os dados de teste:
+1. Agora que você calibrou os dados escalonados, pode escalar os dados de teste:
 
     ```python
     test['load'] = scaler.transform(test)
@@ -179,7 +179,7 @@ Agora, você precisa preparar os dados para treinamento realizando filtragem e e
 Agora você precisa seguir várias etapas:
 
    1. Defina o modelo chamando `SARIMAX()` e passando os parâmetros do modelo: parâmetros p, d e q, e parâmetros P, D e Q.
-   2. Prepare o modelo para os dados de treinamento chamando a função fit().
+   2. Prepare o modelo para os dados de treinamento chamando a função `fit()`.
    3. Faça previsões chamando a função `forecast()` e especificando o número de passos (o `horizon`) para prever.
 
 > 🎓 Para que servem todos esses parâmetros? Em um modelo ARIMA, há 3 parâmetros usados para ajudar a modelar os principais aspectos de uma série temporal: sazonalidade, tendência e ruído. Esses parâmetros são:
@@ -198,7 +198,7 @@ Agora você precisa seguir várias etapas:
     print('Forecasting horizon:', HORIZON, 'hours')
     ```
 
-    Selecionar os melhores valores para os parâmetros de um modelo ARIMA pode ser desafiador, pois é um processo um tanto subjetivo e demorado. Você pode considerar usar uma função `auto_arima()` da biblioteca [`pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
+    Selecionar os melhores valores para os parâmetros de um modelo ARIMA pode ser desafiador, pois é um pouco subjetivo e demorado. Você pode considerar usar uma função `auto_arima()` da biblioteca [`pyramid`](https://alkaline-ml.com/pmdarima/0.9.0/modules/generated/pyramid.arima.auto_arima.html).
 
 1. Por enquanto, tente algumas seleções manuais para encontrar um bom modelo.
 
@@ -220,11 +220,11 @@ Você construiu seu primeiro modelo! Agora precisamos encontrar uma maneira de a
 
 Para avaliar seu modelo, você pode realizar a chamada validação `walk forward`. Na prática, modelos de séries temporais são re-treinados cada vez que novos dados ficam disponíveis. Isso permite que o modelo faça a melhor previsão em cada etapa de tempo.
 
-Começando no início da série temporal usando essa técnica, treine o modelo no conjunto de dados de treinamento. Em seguida, faça uma previsão para o próximo passo de tempo. A previsão é avaliada em relação ao valor conhecido. O conjunto de treinamento é então expandido para incluir o valor conhecido e o processo é repetido.
+Começando no início da série temporal usando esta técnica, treine o modelo no conjunto de dados de treinamento. Em seguida, faça uma previsão para o próximo passo de tempo. A previsão é avaliada em relação ao valor conhecido. O conjunto de treinamento é então expandido para incluir o valor conhecido e o processo é repetido.
 
-> Nota: Você deve manter a janela do conjunto de treinamento fixa para um treinamento mais eficiente, de modo que, toda vez que adicionar uma nova observação ao conjunto de treinamento, remova a observação do início do conjunto.
+> Nota: Você deve manter a janela do conjunto de treinamento fixa para um treinamento mais eficiente, de modo que toda vez que adicionar uma nova observação ao conjunto de treinamento, remova a observação do início do conjunto.
 
-Esse processo fornece uma estimativa mais robusta de como o modelo se comportará na prática. No entanto, isso tem o custo computacional de criar tantos modelos. Isso é aceitável se os dados forem pequenos ou se o modelo for simples, mas pode ser um problema em escala.
+Este processo fornece uma estimativa mais robusta de como o modelo se comportará na prática. No entanto, isso tem o custo computacional de criar tantos modelos. Isso é aceitável se os dados forem pequenos ou se o modelo for simples, mas pode ser um problema em escala.
 
 A validação walk-forward é o padrão ouro para avaliação de modelos de séries temporais e é recomendada para seus próprios projetos.
 
@@ -250,7 +250,7 @@ A validação walk-forward é o padrão ouro para avaliação de modelos de sér
 
     Os dados são deslocados horizontalmente de acordo com seu ponto de horizonte.
 
-1. Faça previsões nos seus dados de teste usando essa abordagem de janela deslizante em um loop do tamanho do comprimento dos dados de teste:
+1. Faça previsões em seus dados de teste usando esta abordagem de janela deslizante em um loop do tamanho do comprimento dos dados de teste:
 
     ```python
     %%time
@@ -320,10 +320,9 @@ A validação walk-forward é o padrão ouro para avaliação de modelos de sér
 Verifique a precisão do seu modelo testando seu erro percentual absoluto médio (MAPE) em todas as previsões.
 > **🧮 Mostre-me a matemática**
 >
-> ![MAPE](../../../../translated_images/mape.fd87bbaf4d346846df6af88b26bf6f0926bf9a5027816d5e23e1200866e3e8a4.br.png)
+> ![MAPE](../../../../7-TimeSeries/2-ARIMA/images/mape.png)
 >
-> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) é usado para mostrar a precisão da previsão como uma razão definida pela fórmula acima. A diferença entre o valor real e o previsto é dividida pelo valor real.  
-> "O valor absoluto nesta fórmula é somado para cada ponto previsto no tempo e dividido pelo número de pontos ajustados n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
+> [MAPE](https://www.linkedin.com/pulse/what-mape-mad-msd-time-series-allameh-statistics/) é usado para mostrar a precisão da previsão como uma razão definida pela fórmula acima. A diferença entre o valor real e o previsto é dividida pelo valor real. "O valor absoluto nesta fórmula é somado para cada ponto previsto no tempo e dividido pelo número de pontos ajustados n." [wikipedia](https://wikipedia.org/wiki/Mean_absolute_percentage_error)
 1. Expressar a equação em código:
 
     ```python
@@ -380,7 +379,7 @@ Verifique a precisão do seu modelo testando seu erro percentual absoluto médio
     plt.show()
     ```
 
-    ![um modelo de série temporal](../../../../translated_images/accuracy.2c47fe1bf15f44b3656651c84d5e2ba9b37cd929cd2aa8ab6cc3073f50570f4e.br.png)
+    ![um modelo de série temporal](../../../../7-TimeSeries/2-ARIMA/images/accuracy.png)
 
 🏆 Um gráfico muito bom, mostrando um modelo com ótima precisão. Parabéns!
 
@@ -388,9 +387,9 @@ Verifique a precisão do seu modelo testando seu erro percentual absoluto médio
 
 ## 🚀Desafio
 
-Explore as formas de testar a precisão de um modelo de série temporal. Nós abordamos o MAPE nesta lição, mas existem outros métodos que você poderia usar? Pesquise sobre eles e faça anotações. Um documento útil pode ser encontrado [aqui](https://otexts.com/fpp2/accuracy.html)
+Explore as formas de testar a precisão de um modelo de série temporal. Tocamos no MAPE nesta lição, mas existem outros métodos que você poderia usar? Pesquise sobre eles e faça anotações. Um documento útil pode ser encontrado [aqui](https://otexts.com/fpp2/accuracy.html)
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/44/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão & Estudo Autônomo
 
