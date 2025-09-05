@@ -65,8 +65,8 @@ jobs:
           # translate -l "zh tw hk fr ja ko pt es de fa pl hi" -md -y
           # translate -l "ru ar ur mo ja bn mr ne pa br it tr" -y
           # translate -l "el th sv da no fi nl he vi id ms tl" -y
-          # translate -l "sw hu cs sk ro bg sr hr sl uk my" -y
-          translate -l "de es fa fr hi ko" -md -y
+          translate -l "sw hu cs sk ro bg sr hr sl uk my" -md -y
+          # translate -l "de es fa fr hi ko" -md -y
           # translate -l "lt pl pt zh hk tw" -md -y
           
       - name: Authenticate GitHub App
