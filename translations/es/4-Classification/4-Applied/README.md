@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-09-03T23:56:00+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-04T22:23:45+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "es"
 }
@@ -17,7 +17,7 @@ Uno de los usos prácticos más útiles del aprendizaje automático es construir
 
 > 🎥 Haz clic en la imagen de arriba para ver un video: Jen Looper construye una aplicación web utilizando datos clasificados de cocina.
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 En esta lección aprenderás:
 
@@ -27,9 +27,9 @@ En esta lección aprenderás:
 
 ## Construye tu modelo
 
-Construir sistemas de ML aplicados es una parte importante para aprovechar estas tecnologías en tus sistemas empresariales. Puedes usar modelos dentro de tus aplicaciones web (y así utilizarlos en un contexto offline si es necesario) usando Onnx.
+Construir sistemas de aprendizaje automático aplicado es una parte importante de aprovechar estas tecnologías para tus sistemas empresariales. Puedes usar modelos dentro de tus aplicaciones web (y así utilizarlos en un contexto offline si es necesario) usando Onnx.
 
-En una [lección anterior](../../3-Web-App/1-Web-App/README.md), construiste un modelo de regresión sobre avistamientos de OVNIs, lo "pickleaste" y lo usaste en una aplicación Flask. Aunque esta arquitectura es muy útil de conocer, es una aplicación Python de pila completa, y tus requisitos pueden incluir el uso de una aplicación JavaScript.
+En una [lección anterior](../../3-Web-App/1-Web-App/README.md), construiste un modelo de Regresión sobre avistamientos de OVNIs, lo "encurtiste" y lo usaste en una aplicación Flask. Aunque esta arquitectura es muy útil de conocer, es una aplicación Python de pila completa, y tus requisitos pueden incluir el uso de una aplicación JavaScript.
 
 En esta lección, puedes construir un sistema básico basado en JavaScript para inferencia. Sin embargo, primero necesitas entrenar un modelo y convertirlo para usarlo con Onnx.
 
@@ -87,7 +87,7 @@ Usaremos la biblioteca 'SVC', que tiene buena precisión.
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
     ```
 
-1. Construye un modelo de clasificación SVC como lo hiciste en la lección anterior:
+1. Construye un modelo de Clasificación SVC como lo hiciste en la lección anterior:
 
     ```python
     model = SVC(kernel='linear', C=10, probability=True,random_state=0)
@@ -152,7 +152,7 @@ Ejecutar todo el notebook ahora construirá un modelo Onnx y lo guardará en est
 
 Los modelos Onnx no son muy visibles en Visual Studio Code, pero hay un software gratuito muy bueno que muchos investigadores usan para visualizar el modelo y asegurarse de que esté correctamente construido. Descarga [Netron](https://github.com/lutzroeder/Netron) y abre tu archivo model.onnx. Puedes ver tu modelo simple visualizado, con sus 380 entradas y clasificador listados:
 
-![Visualización de Netron](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.es.png)
+![Visualización de Netron](../../../../4-Classification/4-Applied/images/netron.png)
 
 Netron es una herramienta útil para visualizar tus modelos.
 
@@ -221,9 +221,9 @@ Puedes usar tu modelo directamente en una aplicación web. Esta arquitectura tam
             </div> 
     ```
 
-    Nota que a cada casilla de verificación se le asigna un valor. Esto refleja el índice donde se encuentra el ingrediente según el conjunto de datos. Por ejemplo, la manzana, en esta lista alfabética, ocupa la quinta columna, por lo que su valor es '4', ya que comenzamos a contar desde 0. Puedes consultar la [hoja de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descubrir el índice de un ingrediente dado.
+    Nota que a cada casilla de verificación se le asigna un valor. Esto refleja el índice donde se encuentra el ingrediente según el conjunto de datos. Por ejemplo, la manzana, en esta lista alfabética, ocupa la quinta columna, por lo que su valor es '4' ya que comenzamos a contar desde 0. Puedes consultar la [hoja de cálculo de ingredientes](../../../../4-Classification/data/ingredient_indexes.csv) para descubrir el índice de un ingrediente dado.
 
-    Continuando tu trabajo en el archivo index.html, agrega un bloque de script donde se llame al modelo después del cierre final `</div>`.
+    Continuando tu trabajo en el archivo index.html, agrega un bloque de script donde se llame al modelo después del cierre final de `</div>`.
 
 1. Primero, importa el [Runtime de Onnx](https://www.onnxruntime.ai/):
 
@@ -301,19 +301,19 @@ En este código, están ocurriendo varias cosas:
 
 Abre una sesión de terminal en Visual Studio Code en la carpeta donde reside tu archivo index.html. Asegúrate de tener [http-server](https://www.npmjs.com/package/http-server) instalado globalmente y escribe `http-server` en el prompt. Debería abrirse un localhost y podrás ver tu aplicación web. Verifica qué cocina se recomienda según varios ingredientes:
 
-![Aplicación web de ingredientes](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.es.png)
+![Aplicación web de ingredientes](../../../../4-Classification/4-Applied/images/web-app.png)
 
 ¡Felicidades, has creado una aplicación web de 'recomendación' con algunos campos! Tómate un tiempo para desarrollar este sistema.
 
 ## 🚀Desafío
 
-Tu aplicación web es muy minimalista, así que continúa desarrollándola utilizando ingredientes y sus índices del archivo de datos [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). ¿Qué combinaciones de sabores funcionan para crear un plato nacional determinado?
+Tu aplicación web es muy básica, así que continúa desarrollándola utilizando ingredientes y sus índices del archivo de datos [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). ¿Qué combinaciones de sabores funcionan para crear un plato nacional dado?
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisión y Autoestudio
+## Repaso y Estudio Personal
 
-Aunque esta lección solo tocó la utilidad de crear un sistema de recomendación para ingredientes alimenticios, esta área de aplicaciones de ML es muy rica en ejemplos. Lee más sobre cómo se construyen estos sistemas:
+Aunque esta lección solo tocó la utilidad de crear un sistema de recomendación para ingredientes de comida, esta área de aplicaciones de aprendizaje automático es muy rica en ejemplos. Lee más sobre cómo se construyen estos sistemas:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
@@ -326,4 +326,4 @@ Aunque esta lección solo tocó la utilidad de crear un sistema de recomendació
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

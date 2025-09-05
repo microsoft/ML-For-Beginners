@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "6b1cb0e46d4c5b747eff6e3607642760",
-  "translation_date": "2025-09-03T22:31:55+00:00",
+  "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
+  "translation_date": "2025-09-04T22:53:45+00:00",
   "source_file": "2-Regression/1-Tools/README.md",
   "language_code": "fr"
 }
 -->
 # Commencez avec Python et Scikit-learn pour les modèles de régression
 
-![Résumé des régressions dans une sketchnote](../../../../translated_images/ml-regression.4e4f70e3b3ed446e3ace348dec973e133fa5d3680fbc8412b61879507369b98d.fr.png)
+![Résumé des régressions dans une sketchnote](../../../../sketchnotes/ml-regression.png)
 
 > Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz avant le cours](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
+## [Quiz avant le cours](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Cette leçon est disponible en R !](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
@@ -34,15 +34,15 @@ Dans cette leçon, vous apprendrez à :
 
 > 🎥 Cliquez sur l'image ci-dessus pour une courte vidéo expliquant comment configurer votre ordinateur pour l'apprentissage automatique.
 
-1. **Installez Python**. Assurez-vous que [Python](https://www.python.org/downloads/) est installé sur votre ordinateur. Vous utiliserez Python pour de nombreuses tâches de science des données et d'apprentissage automatique. La plupart des systèmes informatiques incluent déjà une installation de Python. Il existe également des [packs de codage Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) utiles pour faciliter la configuration pour certains utilisateurs.
+1. **Installez Python**. Assurez-vous que [Python](https://www.python.org/downloads/) est installé sur votre ordinateur. Vous utiliserez Python pour de nombreuses tâches de science des données et d'apprentissage automatique. La plupart des systèmes informatiques incluent déjà une installation de Python. Il existe également des [packs de codage Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) utiles pour simplifier la configuration pour certains utilisateurs.
 
    Certaines utilisations de Python nécessitent une version spécifique du logiciel, tandis que d'autres en nécessitent une différente. Pour cette raison, il est utile de travailler dans un [environnement virtuel](https://docs.python.org/3/library/venv.html).
 
-2. **Installez Visual Studio Code**. Assurez-vous que Visual Studio Code est installé sur votre ordinateur. Suivez ces instructions pour [installer Visual Studio Code](https://code.visualstudio.com/) pour une installation de base. Vous allez utiliser Python dans Visual Studio Code dans ce cours, donc il pourrait être utile de revoir comment [configurer Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) pour le développement Python.
+2. **Installez Visual Studio Code**. Assurez-vous que Visual Studio Code est installé sur votre ordinateur. Suivez ces instructions pour [installer Visual Studio Code](https://code.visualstudio.com/) pour une installation de base. Vous allez utiliser Python dans Visual Studio Code dans ce cours, alors vous pourriez vouloir vous familiariser avec la [configuration de Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) pour le développement Python.
 
    > Familiarisez-vous avec Python en parcourant cette collection de [modules d'apprentissage](https://docs.microsoft.com/users/jenlooper-2911/collections/mp1pagggd5qrq7?WT.mc_id=academic-77952-leestott)
    >
-   > [![Configurez Python avec Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Configurez Python avec Visual Studio Code")
+   > [![Configurer Python avec Visual Studio Code](https://img.youtube.com/vi/yyQM70vi7V8/0.jpg)](https://youtu.be/yyQM70vi7V8 "Configurer Python avec Visual Studio Code")
    >
    > 🎥 Cliquez sur l'image ci-dessus pour une vidéo : utiliser Python dans VS Code.
 
@@ -50,11 +50,11 @@ Dans cette leçon, vous apprendrez à :
 
 4. **Installez Jupyter Notebook**. Vous devrez [installer le package Jupyter](https://pypi.org/project/jupyter/).
 
-## Votre environnement de création ML
+## Votre environnement d'écriture ML
 
 Vous allez utiliser des **notebooks** pour développer votre code Python et créer des modèles d'apprentissage automatique. Ce type de fichier est un outil courant pour les data scientists, et ils peuvent être identifiés par leur suffixe ou extension `.ipynb`.
 
-Les notebooks sont un environnement interactif qui permet au développeur de coder, d'ajouter des notes et de rédiger de la documentation autour du code, ce qui est très utile pour des projets expérimentaux ou orientés recherche.
+Les notebooks sont un environnement interactif qui permet au développeur de coder, d'ajouter des notes et de rédiger de la documentation autour du code, ce qui est très utile pour les projets expérimentaux ou orientés recherche.
 
 [![ML pour débutants - Configurez Jupyter Notebooks pour commencer à créer des modèles de régression](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML pour débutants - Configurez Jupyter Notebooks pour commencer à créer des modèles de régression")
 
@@ -81,7 +81,7 @@ Dans ce dossier, vous trouverez le fichier _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code avec un notebook ouvert](../../../../translated_images/notebook.4a3ee31f396b88325607afda33cadcc6368de98040ff33942424260aa84d75f2.fr.jpg)
+![VS Code avec un notebook ouvert](../../../../2-Regression/1-Tools/images/notebook.jpg)
 
 Vous pouvez intercaler votre code avec des commentaires pour auto-documenter le notebook.
 
@@ -91,11 +91,11 @@ Vous pouvez intercaler votre code avec des commentaires pour auto-documenter le 
 
 Maintenant que Python est configuré dans votre environnement local et que vous êtes à l'aise avec les notebooks Jupyter, familiarisons-nous avec Scikit-learn (prononcez-le `sci` comme dans `science`). Scikit-learn fournit une [API étendue](https://scikit-learn.org/stable/modules/classes.html#api-ref) pour vous aider à effectuer des tâches d'apprentissage automatique.
 
-Selon leur [site web](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn est une bibliothèque open source d'apprentissage automatique qui prend en charge l'apprentissage supervisé et non supervisé. Elle fournit également divers outils pour l'ajustement de modèles, le prétraitement des données, la sélection et l'évaluation de modèles, ainsi que de nombreuses autres utilités."
+Selon leur [site web](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn est une bibliothèque d'apprentissage automatique open source qui prend en charge l'apprentissage supervisé et non supervisé. Elle fournit également divers outils pour l'ajustement de modèles, le prétraitement des données, la sélection et l'évaluation de modèles, ainsi que de nombreuses autres utilités."
 
 Dans ce cours, vous utiliserez Scikit-learn et d'autres outils pour construire des modèles d'apprentissage automatique afin d'effectuer ce que nous appelons des tâches d'apprentissage automatique "traditionnel". Nous avons délibérément évité les réseaux neuronaux et l'apprentissage profond, car ils sont mieux couverts dans notre prochain programme "IA pour débutants".
 
-Scikit-learn simplifie la création de modèles et leur évaluation pour une utilisation. Il se concentre principalement sur l'utilisation de données numériques et contient plusieurs ensembles de données prêts à l'emploi pour servir d'outils d'apprentissage. Il inclut également des modèles préconstruits que les étudiants peuvent essayer. Explorons le processus de chargement de données préemballées et d'utilisation d'un estimateur pour créer un premier modèle ML avec Scikit-learn à l'aide de données de base.
+Scikit-learn simplifie la construction de modèles et leur évaluation pour une utilisation. Il est principalement axé sur l'utilisation de données numériques et contient plusieurs ensembles de données prêts à l'emploi pour servir d'outils d'apprentissage. Il inclut également des modèles préconstruits que les étudiants peuvent essayer. Explorons le processus de chargement de données préemballées et utilisons un estimateur intégré pour créer un premier modèle ML avec Scikit-learn à l'aide de données de base.
 
 ## Exercice - votre premier notebook Scikit-learn
 
@@ -105,11 +105,11 @@ Scikit-learn simplifie la création de modèles et leur évaluation pour une uti
 
 > 🎥 Cliquez sur l'image ci-dessus pour une courte vidéo expliquant cet exercice.
 
-Dans le fichier _notebook.ipynb_ associé à cette leçon, videz toutes les cellules en appuyant sur l'icône de la "poubelle".
+Dans le fichier _notebook.ipynb_ associé à cette leçon, supprimez toutes les cellules en appuyant sur l'icône de la "poubelle".
 
-Dans cette section, vous allez travailler avec un petit ensemble de données sur le diabète intégré à Scikit-learn à des fins d'apprentissage. Imaginez que vous vouliez tester un traitement pour des patients diabétiques. Les modèles d'apprentissage automatique pourraient vous aider à déterminer quels patients répondraient mieux au traitement, en fonction de combinaisons de variables. Même un modèle de régression très basique, lorsqu'il est visualisé, pourrait fournir des informations sur les variables qui vous aideraient à organiser vos essais cliniques théoriques.
+Dans cette section, vous travaillerez avec un petit ensemble de données sur le diabète intégré à Scikit-learn à des fins d'apprentissage. Imaginez que vous vouliez tester un traitement pour les patients diabétiques. Les modèles d'apprentissage automatique pourraient vous aider à déterminer quels patients répondraient mieux au traitement, en fonction de combinaisons de variables. Même un modèle de régression très basique, lorsqu'il est visualisé, pourrait montrer des informations sur les variables qui vous aideraient à organiser vos essais cliniques théoriques.
 
-✅ Il existe de nombreux types de méthodes de régression, et le choix dépend de la réponse que vous recherchez. Si vous voulez prédire la taille probable d'une personne en fonction de son âge, vous utiliseriez la régression linéaire, car vous cherchez une **valeur numérique**. Si vous souhaitez déterminer si un type de cuisine doit être considéré comme végétalien ou non, vous cherchez une **catégorie** et utiliseriez la régression logistique. Vous en apprendrez davantage sur la régression logistique plus tard. Réfléchissez un peu à des questions que vous pourriez poser aux données, et à la méthode la plus appropriée.
+✅ Il existe de nombreux types de méthodes de régression, et le choix dépend de la réponse que vous recherchez. Si vous voulez prédire la taille probable d'une personne en fonction de son âge, vous utiliseriez une régression linéaire, car vous cherchez une **valeur numérique**. Si vous êtes intéressé par la découverte de si un type de cuisine doit être considéré comme végétalien ou non, vous cherchez une **attribution de catégorie**, donc vous utiliseriez une régression logistique. Vous en apprendrez davantage sur la régression logistique plus tard. Réfléchissez un peu à des questions que vous pourriez poser aux données, et à laquelle de ces méthodes serait la plus appropriée.
 
 Commençons cette tâche.
 
@@ -142,15 +142,15 @@ L'[ensemble de données sur le diabète](https://scikit-learn.org/stable/dataset
 - bp : pression artérielle moyenne
 - s1 tc : cellules T (un type de globules blancs)
 
-✅ Cet ensemble de données inclut le concept de "sexe" comme variable de caractéristique importante pour la recherche sur le diabète. De nombreux ensembles de données médicaux incluent ce type de classification binaire. Réfléchissez un peu à la manière dont de telles catégorisations pourraient exclure certaines parties de la population des traitements.
+✅ Cet ensemble de données inclut le concept de "sexe" comme variable de caractéristique importante pour la recherche sur le diabète. De nombreux ensembles de données médicaux incluent ce type de classification binaire. Réfléchissez un peu à la manière dont des catégorisations comme celle-ci pourraient exclure certaines parties de la population des traitements.
 
-Chargez maintenant les données X et y.
+Maintenant, chargez les données X et y.
 
 > 🎓 Rappelez-vous, il s'agit d'apprentissage supervisé, et nous avons besoin d'une cible nommée 'y'.
 
 Dans une nouvelle cellule de code, chargez l'ensemble de données sur le diabète en appelant `load_diabetes()`. L'entrée `return_X_y=True` indique que `X` sera une matrice de données, et `y` sera la cible de régression.
 
-1. Ajoutez des commandes print pour afficher la forme de la matrice de données et son premier élément :
+1. Ajoutez quelques commandes print pour afficher la forme de la matrice de données et son premier élément :
 
     ```python
     X, y = datasets.load_diabetes(return_X_y=True)
@@ -170,7 +170,7 @@ Dans une nouvelle cellule de code, chargez l'ensemble de données sur le diabèt
 
     ✅ Réfléchissez un peu à la relation entre les données et la cible de régression. La régression linéaire prédit les relations entre la caractéristique X et la variable cible y. Pouvez-vous trouver la [cible](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) pour l'ensemble de données sur le diabète dans la documentation ? Que démontre cet ensemble de données, étant donné la cible ?
 
-2. Ensuite, sélectionnez une partie de cet ensemble de données à tracer en sélectionnant la 3ème colonne de l'ensemble de données. Vous pouvez le faire en utilisant l'opérateur `:` pour sélectionner toutes les lignes, puis en sélectionnant la 3ème colonne à l'aide de l'index (2). Vous pouvez également remodeler les données pour qu'elles soient un tableau 2D - comme requis pour le tracé - en utilisant `reshape(n_rows, n_columns)`. Si l'un des paramètres est -1, la dimension correspondante est calculée automatiquement.
+2. Ensuite, sélectionnez une partie de cet ensemble de données à tracer en sélectionnant la 3ème colonne de l'ensemble de données. Vous pouvez le faire en utilisant l'opérateur `:` pour sélectionner toutes les lignes, puis en sélectionnant la 3ème colonne en utilisant l'index (2). Vous pouvez également remodeler les données pour qu'elles soient un tableau 2D - comme requis pour le tracé - en utilisant `reshape(n_rows, n_columns)`. Si l'un des paramètres est -1, la dimension correspondante est calculée automatiquement.
 
    ```python
    X = X[:, 2]
@@ -211,7 +211,7 @@ Dans une nouvelle cellule de code, chargez l'ensemble de données sur le diabèt
     plt.show()
     ```
 
-   ![un nuage de points montrant des points de données autour du diabète](../../../../translated_images/scatterplot.ad8b356bcbb33be68d54050e09b9b7bfc03e94fde7371f2609ae43f4c563b2d7.fr.png)
+   ![un nuage de points montrant des données sur le diabète](../../../../2-Regression/1-Tools/images/scatterplot.png)
 ✅ Réfléchissez un peu à ce qui se passe ici. Une ligne droite traverse de nombreux petits points de données, mais que fait-elle exactement ? Pouvez-vous voir comment cette ligne pourrait vous permettre de prédire où un nouveau point de données, encore inconnu, devrait se situer par rapport à l'axe y du graphique ? Essayez de mettre en mots l'utilité pratique de ce modèle.
 
 Félicitations, vous avez construit votre premier modèle de régression linéaire, créé une prédiction avec celui-ci, et l'avez affichée dans un graphique !
@@ -220,11 +220,11 @@ Félicitations, vous avez construit votre premier modèle de régression linéai
 ## 🚀Défi
 
 Tracez une autre variable de ce jeu de données. Indice : modifiez cette ligne : `X = X[:,2]`. Étant donné la cible de ce jeu de données, que pouvez-vous découvrir sur la progression du diabète en tant que maladie ?
-## [Quiz après la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/)
+## [Quiz post-cours](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Révision & Étude personnelle
 
-Dans ce tutoriel, vous avez travaillé avec une régression linéaire simple, plutôt qu'une régression univariée ou multiple. Lisez un peu sur les différences entre ces méthodes, ou regardez [cette vidéo](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+Dans ce tutoriel, vous avez travaillé avec la régression linéaire simple, plutôt qu'avec la régression univariée ou multiple. Lisez un peu sur les différences entre ces méthodes, ou regardez [cette vidéo](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
 
 Lisez davantage sur le concept de régression et réfléchissez aux types de questions qui peuvent être résolues grâce à cette technique. Suivez [ce tutoriel](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) pour approfondir votre compréhension.
 

@@ -1,25 +1,25 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a683e1fe430bb0d4a10b68f6ca15e0a6",
-  "translation_date": "2025-09-03T22:36:59+00:00",
+  "original_hash": "7c077988328ebfe33b24d07945f16eca",
+  "translation_date": "2025-09-04T22:54:23+00:00",
   "source_file": "2-Regression/2-Data/README.md",
   "language_code": "fr"
 }
 -->
 # Construire un modèle de régression avec Scikit-learn : préparer et visualiser les données
 
-![Infographie sur la visualisation des données](../../../../translated_images/data-visualization.54e56dded7c1a804d00d027543f2881cb32da73aeadda2d4a4f10f3497526114.fr.png)
+![Infographie sur la visualisation des données](../../../../2-Regression/2-Data/images/data-visualization.png)
 
 Infographie par [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz avant le cours](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
+## [Quiz avant le cours](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Cette leçon est disponible en R !](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
 ## Introduction
 
-Maintenant que vous êtes équipé des outils nécessaires pour commencer à construire des modèles d'apprentissage automatique avec Scikit-learn, vous êtes prêt à poser des questions à vos données. Lorsque vous travaillez avec des données et appliquez des solutions d'apprentissage automatique, il est très important de savoir poser les bonnes questions pour exploiter pleinement le potentiel de votre ensemble de données.
+Maintenant que vous êtes équipé des outils nécessaires pour commencer à construire des modèles d'apprentissage automatique avec Scikit-learn, vous êtes prêt à poser des questions à vos données. Lorsque vous travaillez avec des données et appliquez des solutions d'apprentissage automatique, il est essentiel de savoir poser les bonnes questions pour exploiter pleinement le potentiel de votre ensemble de données.
 
 Dans cette leçon, vous apprendrez :
 
@@ -38,9 +38,9 @@ Examinez les [données](https://github.com/microsoft/ML-For-Beginners/blob/main/
 
 En réalité, il est rare de recevoir un ensemble de données entièrement prêt à être utilisé pour créer un modèle d'apprentissage automatique. Dans cette leçon, vous apprendrez à préparer un ensemble de données brut en utilisant des bibliothèques Python standard. Vous apprendrez également différentes techniques pour visualiser les données.
 
-## Étude de cas : 'le marché des citrouilles'
+## Étude de cas : "le marché des citrouilles"
 
-Dans ce dossier, vous trouverez un fichier .csv dans le dossier racine `data` appelé [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) qui contient 1757 lignes de données sur le marché des citrouilles, triées par ville. Ce sont des données brutes extraites des [Rapports standard des marchés terminaux des cultures spécialisées](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribués par le Département de l'Agriculture des États-Unis.
+Dans ce dossier, vous trouverez un fichier .csv dans le dossier racine `data` appelé [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) qui contient 1757 lignes de données sur le marché des citrouilles, triées par ville. Ce sont des données brutes extraites des [Rapports standards des marchés terminaux des cultures spécialisées](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribués par le Département de l'Agriculture des États-Unis.
 
 ### Préparer les données
 
@@ -83,7 +83,7 @@ Ouvrez le fichier _notebook.ipynb_ dans Visual Studio Code et importez la feuill
 
     Il y a des données manquantes, mais peut-être que cela n'aura pas d'importance pour la tâche à accomplir.
 
-1. Pour rendre votre dataframe plus facile à manipuler, sélectionnez uniquement les colonnes dont vous avez besoin, en utilisant la fonction `loc` qui extrait du dataframe original un groupe de lignes (passé en premier paramètre) et de colonnes (passé en second paramètre). L'expression `:` dans le cas ci-dessous signifie "toutes les lignes".
+1. Pour rendre votre dataframe plus facile à manipuler, sélectionnez uniquement les colonnes nécessaires en utilisant la fonction `loc`, qui extrait du dataframe original un groupe de lignes (passé en premier paramètre) et de colonnes (passé en second paramètre). L'expression `:` dans le cas ci-dessous signifie "toutes les lignes".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
@@ -117,11 +117,11 @@ Solution : prenez la moyenne des colonnes `Low Price` et `High Price` pour rempl
 
 ### Mais attendez ! Il y a quelque chose d'étrange ici
 
-Si vous regardez la colonne `Package`, les citrouilles sont vendues dans de nombreuses configurations différentes. Certaines sont vendues en mesures de '1 1/9 bushel', d'autres en '1/2 bushel', certaines par citrouille, certaines par livre, et d'autres dans de grandes boîtes de largeurs variées.
+Si vous regardez la colonne `Package`, les citrouilles sont vendues dans de nombreuses configurations différentes. Certaines sont vendues en mesures de '1 1/9 bushel', d'autres en '1/2 bushel', certaines par citrouille, certaines par livre, et d'autres dans de grandes boîtes de tailles variées.
 
 > Les citrouilles semblent très difficiles à peser de manière cohérente
 
-En examinant les données originales, il est intéressant de noter que tout ce qui a `Unit of Sale` égal à 'EACH' ou 'PER BIN' a également le type `Package` par pouce, par bin, ou 'each'. Les citrouilles semblent être très difficiles à peser de manière cohérente, alors filtrons-les en sélectionnant uniquement les citrouilles contenant le mot 'bushel' dans leur colonne `Package`.
+En examinant les données originales, il est intéressant de noter que tout ce qui a `Unit of Sale` égal à 'EACH' ou 'PER BIN' a également le type `Package` par pouce, par bin, ou 'each'. Les citrouilles semblent être très difficiles à peser de manière cohérente, alors filtrons-les en sélectionnant uniquement les citrouilles avec le mot 'bushel' dans leur colonne `Package`.
 
 1. Ajoutez un filtre en haut du fichier, sous l'importation initiale du fichier .csv :
 
@@ -143,7 +143,7 @@ Avez-vous remarqué que la quantité de bushel varie selon les lignes ? Vous dev
     new_pumpkins.loc[new_pumpkins['Package'].str.contains('1/2'), 'Price'] = price/(1/2)
     ```
 
-✅ Selon [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), le poids d'un bushel dépend du type de produit, car c'est une mesure de volume. "Un bushel de tomates, par exemple, est censé peser 56 livres... Les feuilles et les légumes verts prennent plus de place avec moins de poids, donc un bushel d'épinards ne pèse que 20 livres." Tout cela est assez compliqué ! Ne nous embêtons pas à convertir un bushel en livres, et affichons plutôt les prix par bushel. Toute cette étude des bushels de citrouilles montre cependant à quel point il est important de comprendre la nature de vos données !
+✅ Selon [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), le poids d'un bushel dépend du type de produit, car c'est une mesure de volume. "Un bushel de tomates, par exemple, est censé peser 56 livres... Les feuilles et les légumes verts prennent plus de place avec moins de poids, donc un bushel d'épinards ne pèse que 20 livres." Tout cela est assez compliqué ! Ne nous embêtons pas à faire une conversion bushel-livre, et affichons plutôt les prix par bushel. Toute cette étude des bushels de citrouilles montre cependant à quel point il est important de comprendre la nature de vos données !
 
 Maintenant, vous pouvez analyser les prix par unité en fonction de leur mesure en bushel. Si vous imprimez les données une fois de plus, vous verrez comment elles sont standardisées.
 
@@ -151,7 +151,7 @@ Maintenant, vous pouvez analyser les prix par unité en fonction de leur mesure 
 
 ## Stratégies de visualisation
 
-Une partie du rôle du data scientist est de démontrer la qualité et la nature des données avec lesquelles il travaille. Pour ce faire, il crée souvent des visualisations intéressantes, comme des graphiques, des diagrammes et des tableaux, montrant différents aspects des données. De cette manière, il peut montrer visuellement des relations et des lacunes qui sont autrement difficiles à découvrir.
+Une partie du rôle du data scientist est de démontrer la qualité et la nature des données avec lesquelles il travaille. Pour ce faire, il crée souvent des visualisations intéressantes, comme des graphiques, des diagrammes et des courbes, montrant différents aspects des données. De cette manière, il peut montrer visuellement des relations et des lacunes qui seraient autrement difficiles à découvrir.
 
 [![ML pour débutants - Comment visualiser les données avec Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML pour débutants - Comment visualiser les données avec Matplotlib")
 
@@ -183,9 +183,9 @@ Essayez de créer des graphiques simples pour afficher le nouveau dataframe que 
     plt.show()
     ```
 
-    ![Un nuage de points montrant la relation entre le prix et le mois](../../../../translated_images/scatterplot.b6868f44cbd2051c6680ccdbb1510697d06a3ff6cd4abda656f5009c0ed4e3fc.fr.png)
+    ![Un nuage de points montrant la relation entre le prix et le mois](../../../../2-Regression/2-Data/images/scatterplot.png)
 
-    Ce graphique est-il utile ? Quelque chose vous surprend-il ?
+    Ce graphique est-il utile ? Y a-t-il quelque chose qui vous surprend ?
 
     Ce n'est pas particulièrement utile car tout ce qu'il fait est d'afficher vos données sous forme de points répartis dans un mois donné.
 
@@ -200,7 +200,7 @@ Pour obtenir des graphiques affichant des données utiles, vous devez générale
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Un graphique en barres montrant la relation entre le prix et le mois](../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.fr.png)
+    ![Un graphique en barres montrant la relation entre le prix et le mois](../../../../2-Regression/2-Data/images/barchart.png)
 
     Ce graphique est une visualisation de données plus utile ! Il semble indiquer que le prix le plus élevé des citrouilles se produit en septembre et octobre. Cela correspond-il à vos attentes ? Pourquoi ou pourquoi pas ?
 
@@ -210,9 +210,9 @@ Pour obtenir des graphiques affichant des données utiles, vous devez générale
 
 Explorez les différents types de visualisation que Matplotlib propose. Quels types sont les plus appropriés pour les problèmes de régression ?
 
-## [Quiz après le cours](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
+## [Quiz après le cours](https://ff-quizzes.netlify.app/en/ml/)
 
-## Révision et auto-apprentissage
+## Révision et étude personnelle
 
 Examinez les nombreuses façons de visualiser les données. Faites une liste des différentes bibliothèques disponibles et notez celles qui sont les meilleures pour certains types de tâches, par exemple les visualisations 2D contre les visualisations 3D. Que découvrez-vous ?
 

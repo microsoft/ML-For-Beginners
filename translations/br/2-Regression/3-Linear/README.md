@@ -1,24 +1,24 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f88fbc741d792890ff2f1430fe0dae0",
-  "translation_date": "2025-08-29T20:17:29+00:00",
+  "original_hash": "40e64f004f3cb50aa1d8661672d3cd92",
+  "translation_date": "2025-09-04T21:20:40+00:00",
   "source_file": "2-Regression/3-Linear/README.md",
   "language_code": "br"
 }
 -->
 # Construir um modelo de regressão usando Scikit-learn: regressão de quatro maneiras
 
-![Infográfico de regressão linear vs polinomial](../../../../translated_images/linear-polynomial.5523c7cb6576ccab0fecbd0e3505986eb2d191d9378e785f82befcf3a578a6e7.br.png)
+![Infográfico de regressão linear vs polinomial](../../../../2-Regression/3-Linear/images/linear-polynomial.png)
 > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Esta lição está disponível em R!](../../../../2-Regression/3-Linear/solution/R/lesson_3.html)
 ### Introdução 
 
 Até agora, você explorou o que é regressão com dados de exemplo coletados do conjunto de dados de preços de abóbora que usaremos ao longo desta lição. Você também os visualizou usando Matplotlib.
 
-Agora você está pronto para mergulhar mais fundo na regressão para aprendizado de máquina. Embora a visualização permita que você compreenda os dados, o verdadeiro poder do aprendizado de máquina vem do _treinamento de modelos_. Os modelos são treinados com dados históricos para capturar automaticamente as dependências dos dados e permitem prever resultados para novos dados que o modelo ainda não viu.
+Agora você está pronto para mergulhar mais fundo na regressão para aprendizado de máquina. Embora a visualização permita que você compreenda os dados, o verdadeiro poder do aprendizado de máquina vem do _treinamento de modelos_. Modelos são treinados com dados históricos para capturar automaticamente as dependências dos dados e permitem prever resultados para novos dados que o modelo ainda não viu.
 
 Nesta lição, você aprenderá mais sobre dois tipos de regressão: _regressão linear básica_ e _regressão polinomial_, juntamente com algumas das matemáticas subjacentes a essas técnicas. Esses modelos nos permitirão prever os preços das abóboras dependendo de diferentes dados de entrada.
 
@@ -26,7 +26,7 @@ Nesta lição, você aprenderá mais sobre dois tipos de regressão: _regressão
 
 > 🎥 Clique na imagem acima para um breve vídeo sobre regressão linear.
 
-> Ao longo deste currículo, assumimos conhecimento mínimo de matemática e buscamos torná-lo acessível para estudantes de outras áreas. Fique atento a notas, 🧮 destaques, diagramas e outras ferramentas de aprendizado para ajudar na compreensão.
+> Ao longo deste currículo, assumimos conhecimento mínimo de matemática e buscamos torná-lo acessível para estudantes de outras áreas. Fique atento a notas, 🧮 chamadas, diagramas e outras ferramentas de aprendizado para ajudar na compreensão.
 
 ### Pré-requisito
 
@@ -36,7 +36,7 @@ Você já deve estar familiarizado com a estrutura dos dados de abóbora que est
 
 Como lembrete, você está carregando esses dados para fazer perguntas sobre eles.
 
-- Qual é o melhor momento para comprar abóboras? 
+- Qual é o melhor momento para comprar abóboras?
 - Qual preço posso esperar por uma caixa de abóboras em miniatura?
 - Devo comprá-las em cestas de meio alqueire ou em caixas de 1 1/9 alqueire?
 Vamos continuar explorando esses dados.
@@ -50,9 +50,9 @@ Dê uma olhada nos dados que pré-carregamos no notebook que acompanha esta liç
 Como você aprendeu na Lição 1, o objetivo de um exercício de regressão linear é ser capaz de traçar uma linha para:
 
 - **Mostrar relações entre variáveis**. Mostrar a relação entre variáveis
-- **Fazer previsões**. Fazer previsões precisas sobre onde um novo ponto de dados cairia em relação a essa linha. 
- 
-É típico da **Regressão de Mínimos Quadrados** traçar esse tipo de linha. O termo 'mínimos quadrados' significa que todos os pontos de dados ao redor da linha de regressão são elevados ao quadrado e depois somados. Idealmente, essa soma final é o menor possível, porque queremos um número baixo de erros, ou `mínimos quadrados`. 
+- **Fazer previsões**. Fazer previsões precisas sobre onde um novo ponto de dados cairia em relação a essa linha.
+
+É típico da **Regressão de Mínimos Quadrados** traçar esse tipo de linha. O termo 'mínimos quadrados' significa que todos os pontos de dados ao redor da linha de regressão são elevados ao quadrado e depois somados. Idealmente, essa soma final é o menor possível, porque queremos um número baixo de erros, ou `mínimos quadrados`.
 
 Fazemos isso porque queremos modelar uma linha que tenha a menor distância cumulativa de todos os nossos pontos de dados. Também elevamos os termos ao quadrado antes de somá-los, pois estamos preocupados com sua magnitude, em vez de sua direção.
 
@@ -66,13 +66,13 @@ Fazemos isso porque queremos modelar uma linha que tenha a menor distância cumu
 >
 > `X` é a 'variável explicativa'. `Y` é a 'variável dependente'. A inclinação da linha é `b` e `a` é o intercepto no eixo Y, que se refere ao valor de `Y` quando `X = 0`. 
 >
->![calcular a inclinação](../../../../translated_images/slope.f3c9d5910ddbfcf9096eb5564254ba22c9a32d7acd7694cab905d29ad8261db3.br.png)
+>![calcular a inclinação](../../../../2-Regression/3-Linear/images/slope.png)
 >
 > Primeiro, calcule a inclinação `b`. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 >
-> Em outras palavras, referindo-se à pergunta original dos dados de abóbora: "prever o preço de uma abóbora por alqueire por mês", `X` se referiria ao preço e `Y` ao mês de venda. 
+> Em outras palavras, e referindo-se à pergunta original dos dados de abóbora: "prever o preço de uma abóbora por alqueire por mês", `X` se referiria ao preço e `Y` ao mês de venda. 
 >
->![completar a equação](../../../../translated_images/calculation.a209813050a1ddb141cdc4bc56f3af31e67157ed499e16a2ecf9837542704c94.br.png)
+>![completar a equação](../../../../2-Regression/3-Linear/images/calculation.png)
 >
 > Calcule o valor de Y. Se você está pagando cerca de $4, deve ser abril! Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 >
@@ -82,11 +82,11 @@ Fazemos isso porque queremos modelar uma linha que tenha a menor distância cumu
 
 ## Correlação
 
-Outro termo importante para entender é o **Coeficiente de Correlação** entre as variáveis X e Y fornecidas. Usando um gráfico de dispersão, você pode visualizar rapidamente esse coeficiente. Um gráfico com pontos de dados espalhados em uma linha organizada tem alta correlação, mas um gráfico com pontos de dados espalhados por toda parte entre X e Y tem baixa correlação.
+Outro termo importante para entender é o **Coeficiente de Correlação** entre as variáveis X e Y fornecidas. Usando um gráfico de dispersão, você pode visualizar rapidamente esse coeficiente. Um gráfico com pontos de dados espalhados em uma linha ordenada tem alta correlação, mas um gráfico com pontos de dados espalhados por toda parte entre X e Y tem baixa correlação.
 
 Um bom modelo de regressão linear será aquele que tem um Coeficiente de Correlação alto (mais próximo de 1 do que de 0) usando o método de Mínimos Quadrados com uma linha de regressão.
 
-✅ Execute o notebook que acompanha esta lição e observe o gráfico de dispersão de Mês para Preço. Os dados que associam Mês ao Preço das vendas de abóbora parecem ter alta ou baixa correlação, de acordo com sua interpretação visual do gráfico de dispersão? Isso muda se você usar uma medida mais detalhada em vez de `Mês`, como *dia do ano* (ou seja, número de dias desde o início do ano)?
+✅ Execute o notebook que acompanha esta lição e observe o gráfico de dispersão de Mês para Preço. Os dados que associam Mês ao Preço para vendas de abóbora parecem ter alta ou baixa correlação, de acordo com sua interpretação visual do gráfico de dispersão? Isso muda se você usar uma medida mais detalhada em vez de `Mês`, como *dia do ano* (ou seja, número de dias desde o início do ano)?
 
 No código abaixo, assumiremos que limpamos os dados e obtivemos um data frame chamado `new_pumpkins`, semelhante ao seguinte:
 
@@ -98,7 +98,7 @@ ID | Mês | DiaDoAno | Variedade | Cidade | Embalagem | Preço Baixo | Preço Al
 73 | 10 | 274 | TIPO TORTA | BALTIMORE | 1 1/9 caixas de alqueire | 17.0 | 17.0 | 15.454545
 74 | 10 | 281 | TIPO TORTA | BALTIMORE | 1 1/9 caixas de alqueire | 15.0 | 15.0 | 13.636364
 
-> O código para limpar os dados está disponível em [`notebook.ipynb`](notebook.ipynb). Realizamos os mesmos passos de limpeza da lição anterior e calculamos a coluna `DiaDoAno` usando a seguinte expressão: 
+> O código para limpar os dados está disponível em [`notebook.ipynb`](../../../../2-Regression/3-Linear/notebook.ipynb). Realizamos os mesmos passos de limpeza da lição anterior e calculamos a coluna `DiaDoAno` usando a seguinte expressão: 
 
 ```python
 day_of_year = pd.to_datetime(pumpkins['Date']).apply(lambda dt: (dt-datetime(dt.year,1,1)).days)
@@ -172,7 +172,7 @@ Outra abordagem seria preencher esses valores vazios com valores médios da colu
 
 > 🎥 Clique na imagem acima para um breve vídeo sobre regressão linear e polinomial.
 
-Para treinar nosso modelo de Regressão Linear, usaremos a biblioteca **Scikit-learn**.
+Para treinar nosso modelo de regressão linear, usaremos a biblioteca **Scikit-learn**.
 
 ```python
 from sklearn.linear_model import LinearRegression
@@ -187,7 +187,7 @@ X = pie_pumpkins['DayOfYear'].to_numpy().reshape(-1,1)
 y = pie_pumpkins['Price']
 ```
 
-> Note que tivemos que realizar `reshape` nos dados de entrada para que o pacote de Regressão Linear os entendesse corretamente. A Regressão Linear espera um array 2D como entrada, onde cada linha do array corresponde a um vetor de características de entrada. No nosso caso, como temos apenas uma entrada, precisamos de um array com formato N×1, onde N é o tamanho do conjunto de dados.
+> Note que tivemos que realizar `reshape` nos dados de entrada para que o pacote de regressão linear os entendesse corretamente. A regressão linear espera um array 2D como entrada, onde cada linha do array corresponde a um vetor de características de entrada. No nosso caso, como temos apenas uma entrada, precisamos de um array com formato N×1, onde N é o tamanho do conjunto de dados.
 
 Depois, precisamos dividir os dados em conjuntos de treino e teste, para que possamos validar nosso modelo após o treinamento:
 
@@ -195,7 +195,7 @@ Depois, precisamos dividir os dados em conjuntos de treino e teste, para que pos
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 ```
 
-Finalmente, treinar o modelo de Regressão Linear real leva apenas duas linhas de código. Definimos o objeto `LinearRegression` e ajustamos aos nossos dados usando o método `fit`:
+Finalmente, treinar o modelo de regressão linear real leva apenas duas linhas de código. Definimos o objeto `LinearRegression` e ajustamos aos nossos dados usando o método `fit`:
 
 ```python
 lin_reg = LinearRegression()
@@ -204,7 +204,7 @@ lin_reg.fit(X_train,y_train)
 
 O objeto `LinearRegression` após o ajuste (`fit`) contém todos os coeficientes da regressão, que podem ser acessados usando a propriedade `.coef_`. No nosso caso, há apenas um coeficiente, que deve ser em torno de `-0.017`. Isso significa que os preços parecem cair um pouco com o tempo, mas não muito, cerca de 2 centavos por dia. Também podemos acessar o ponto de interseção da regressão com o eixo Y usando `lin_reg.intercept_` - será em torno de `21` no nosso caso, indicando o preço no início do ano.
 
-Para ver quão preciso nosso modelo é, podemos prever preços em um conjunto de dados de teste e, em seguida, medir quão próximas nossas previsões estão dos valores esperados. Isso pode ser feito usando a métrica de erro quadrático médio (MSE), que é a média de todas as diferenças ao quadrado entre o valor esperado e o valor previsto.
+Para ver quão preciso nosso modelo é, podemos prever preços em um conjunto de dados de teste e, em seguida, medir quão próximas nossas previsões estão dos valores esperados. Isso pode ser feito usando a métrica de erro quadrático médio (MSE), que é a média de todas as diferenças quadradas entre o valor esperado e o valor previsto.
 
 ```python
 pred = lin_reg.predict(X_test)
@@ -241,7 +241,7 @@ Observe novamente a relação entre Data e Preço. Esse gráfico de dispersão p
 
 A regressão polinomial cria uma linha curva para ajustar melhor os dados não lineares. No nosso caso, se incluirmos uma variável `DayOfYear` ao quadrado nos dados de entrada, devemos ser capazes de ajustar nossos dados com uma curva parabólica, que terá um mínimo em um determinado ponto do ano.
 
-O Scikit-learn inclui uma [API de pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) útil para combinar diferentes etapas de processamento de dados. Um **pipeline** é uma cadeia de **estimadores**. No nosso caso, criaremos um pipeline que primeiro adiciona recursos polinomiais ao nosso modelo e, em seguida, treina a regressão:
+O Scikit-learn inclui uma [API de pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html?highlight=pipeline#sklearn.pipeline.make_pipeline) útil para combinar diferentes etapas de processamento de dados. Um **pipeline** é uma cadeia de **estimadores**. No nosso caso, criaremos um pipeline que primeiro adiciona características polinomiais ao nosso modelo e, em seguida, treina a regressão:
 
 ```python
 from sklearn.preprocessing import PolynomialFeatures
@@ -252,7 +252,7 @@ pipeline = make_pipeline(PolynomialFeatures(2), LinearRegression())
 pipeline.fit(X_train,y_train)
 ```
 
-Usar `PolynomialFeatures(2)` significa que incluiremos todos os polinômios de segundo grau dos dados de entrada. No nosso caso, isso significará apenas `DayOfYear`<sup>2</sup>, mas, dado duas variáveis de entrada X e Y, isso adicionará X<sup>2</sup>, XY e Y<sup>2</sup>. Também podemos usar polinômios de grau mais alto, se quisermos.
+Usar `PolynomialFeatures(2)` significa que incluiremos todos os polinômios de segundo grau dos dados de entrada. No nosso caso, isso significará apenas `DayOfYear`<sup>2</sup>, mas, dado duas variáveis de entrada X e Y, isso adicionará X<sup>2</sup>, XY e Y<sup>2</sup>. Também podemos usar polinômios de grau superior, se quisermos.
 
 Os pipelines podem ser usados da mesma maneira que o objeto original `LinearRegression`, ou seja, podemos usar `fit` no pipeline e, em seguida, usar `predict` para obter os resultados da previsão. Aqui está o gráfico mostrando os dados de teste e a curva de aproximação:
 
@@ -262,15 +262,15 @@ Usando Regressão Polinomial, podemos obter um MSE ligeiramente menor e um coefi
 
 > Você pode ver que os preços mínimos das abóboras são observados em algum momento próximo ao Halloween. Como você explicaria isso?
 
-🎃 Parabéns, você acabou de criar um modelo que pode ajudar a prever o preço de abóboras para torta. Você provavelmente pode repetir o mesmo procedimento para todos os tipos de abóbora, mas isso seria tedioso. Vamos aprender agora como levar em conta a variedade de abóbora no nosso modelo!
+🎃 Parabéns, você acabou de criar um modelo que pode ajudar a prever o preço das abóboras para torta. Você provavelmente pode repetir o mesmo procedimento para todos os tipos de abóbora, mas isso seria tedioso. Vamos aprender agora como levar em conta a variedade de abóbora no nosso modelo!
 
-## Recursos Categóricos
+## Características Categóricas
 
 No mundo ideal, queremos ser capazes de prever preços para diferentes variedades de abóbora usando o mesmo modelo. No entanto, a coluna `Variety` é um pouco diferente de colunas como `Month`, porque contém valores não numéricos. Essas colunas são chamadas de **categóricas**.
 
-[![ML para iniciantes - Previsões com Recursos Categóricos usando Regressão Linear](https://img.youtube.com/vi/DYGliioIAE0/0.jpg)](https://youtu.be/DYGliioIAE0 "ML para iniciantes - Previsões com Recursos Categóricos usando Regressão Linear")
+[![ML para iniciantes - Previsões com características categóricas usando Regressão Linear](https://img.youtube.com/vi/DYGliioIAE0/0.jpg)](https://youtu.be/DYGliioIAE0 "ML para iniciantes - Previsões com características categóricas usando Regressão Linear")
 
-> 🎥 Clique na imagem acima para um breve vídeo sobre o uso de recursos categóricos.
+> 🎥 Clique na imagem acima para um breve vídeo sobre o uso de características categóricas.
 
 Aqui você pode ver como o preço médio depende da variedade:
 
@@ -298,14 +298,14 @@ pd.get_dummies(new_pumpkins['Variety'])
 1741 | 0 | 1 | 0 | 0
 1742 | 0 | 1 | 0 | 0
 
-Para treinar a regressão linear usando a variedade codificada como one-hot como entrada, só precisamos inicializar os dados `X` e `y` corretamente:
+Para treinar a regressão linear usando a variedade codificada como one-hot nos dados de entrada, só precisamos inicializar os dados `X` e `y` corretamente:
 
 ```python
 X = pd.get_dummies(new_pumpkins['Variety'])
 y = new_pumpkins['Price']
 ```
 
-O restante do código é o mesmo que usamos acima para treinar a Regressão Linear. Se você tentar, verá que o erro médio quadrático é aproximadamente o mesmo, mas obtemos um coeficiente de determinação muito maior (~77%). Para obter previsões ainda mais precisas, podemos levar em conta mais recursos categóricos, bem como recursos numéricos, como `Month` ou `DayOfYear`. Para obter um grande array de recursos, podemos usar `join`:
+O restante do código é o mesmo que usamos acima para treinar a Regressão Linear. Se você tentar, verá que o erro médio quadrático é aproximadamente o mesmo, mas obtemos um coeficiente de determinação muito maior (~77%). Para obter previsões ainda mais precisas, podemos levar em conta mais características categóricas, bem como características numéricas, como `Month` ou `DayOfYear`. Para obter um grande array de características, podemos usar `join`:
 
 ```python
 X = pd.get_dummies(new_pumpkins['Variety']) \
@@ -354,8 +354,8 @@ Isso deve nos dar o melhor coeficiente de determinação de quase 97% e MSE=2.23
 | `DayOfYear` Linear | 2.77 (17.2%) | 0.07 |
 | `DayOfYear` Polinomial | 2.73 (17.0%) | 0.08 |
 | `Variety` Linear | 5.24 (19.7%) | 0.77 |
-| Todos os recursos Linear | 2.84 (10.5%) | 0.94 |
-| Todos os recursos Polinomial | 2.23 (8.25%) | 0.97 |
+| Todas as características Linear | 2.84 (10.5%) | 0.94 |
+| Todas as características Polinomial | 2.23 (8.25%) | 0.97 |
 
 🏆 Muito bem! Você criou quatro modelos de Regressão em uma única lição e melhorou a qualidade do modelo para 97%. Na seção final sobre Regressão, você aprenderá sobre Regressão Logística para determinar categorias.
 
@@ -364,7 +364,7 @@ Isso deve nos dar o melhor coeficiente de determinação de quase 97% e MSE=2.23
 
 Teste várias variáveis diferentes neste notebook para ver como a correlação corresponde à precisão do modelo.
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão e Autoestudo
 

@@ -1,110 +1,110 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2f88fbc741d792890ff2f1430fe0dae0",
-  "translation_date": "2025-09-03T22:16:07+00:00",
+  "original_hash": "40e64f004f3cb50aa1d8661672d3cd92",
+  "translation_date": "2025-09-04T22:51:19+00:00",
   "source_file": "2-Regression/3-Linear/README.md",
   "language_code": "fr"
 }
 -->
 # Construire un modèle de régression avec Scikit-learn : quatre approches de régression
 
-![Infographie sur la régression linéaire vs polynomiale](../../../../translated_images/linear-polynomial.5523c7cb6576ccab0fecbd0e3505986eb2d191d9378e785f82befcf3a578a6e7.fr.png)
+![Infographie sur la régression linéaire vs polynomiale](../../../../2-Regression/3-Linear/images/linear-polynomial.png)
 > Infographie par [Dasani Madipalli](https://twitter.com/dasani_decoded)
-## [Quiz pré-lecture](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/13/)
+## [Quiz avant le cours](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Cette leçon est disponible en R !](../../../../2-Regression/3-Linear/solution/R/lesson_3.html)
 ### Introduction 
 
-Jusqu'à présent, vous avez exploré ce qu'est la régression à l'aide d'un exemple de données issues du jeu de données sur les prix des citrouilles que nous utiliserons tout au long de cette leçon. Vous l'avez également visualisée à l'aide de Matplotlib.
+Jusqu'à présent, vous avez exploré ce qu'est la régression avec des données d'exemple issues du jeu de données sur les prix des citrouilles que nous utiliserons tout au long de cette leçon. Vous l'avez également visualisée à l'aide de Matplotlib.
 
-Vous êtes maintenant prêt à plonger plus profondément dans la régression pour l'apprentissage automatique. Bien que la visualisation permette de comprendre les données, la véritable puissance de l'apprentissage automatique réside dans l’_entraînement des modèles_. Les modèles sont entraînés sur des données historiques pour capturer automatiquement les dépendances entre les données, et ils permettent de prédire des résultats pour de nouvelles données que le modèle n'a jamais vues auparavant.
+Vous êtes maintenant prêt à approfondir la régression pour l'apprentissage automatique. Bien que la visualisation permette de donner du sens aux données, la véritable puissance de l'apprentissage automatique réside dans l'_entraînement des modèles_. Les modèles sont entraînés sur des données historiques pour capturer automatiquement les dépendances des données, et ils permettent de prédire les résultats pour de nouvelles données que le modèle n'a jamais vues auparavant.
 
-Dans cette leçon, vous en apprendrez davantage sur deux types de régression : la _régression linéaire de base_ et la _régression polynomiale_, ainsi que sur certaines notions mathématiques sous-jacentes à ces techniques. Ces modèles nous permettront de prédire les prix des citrouilles en fonction de différentes données d'entrée.
+Dans cette leçon, vous en apprendrez davantage sur deux types de régression : _la régression linéaire de base_ et _la régression polynomiale_, ainsi que sur certaines notions mathématiques sous-jacentes à ces techniques. Ces modèles nous permettront de prédire les prix des citrouilles en fonction de différentes données d'entrée.
 
 [![ML pour débutants - Comprendre la régression linéaire](https://img.youtube.com/vi/CRxFT8oTDMg/0.jpg)](https://youtu.be/CRxFT8oTDMg "ML pour débutants - Comprendre la régression linéaire")
 
 > 🎥 Cliquez sur l'image ci-dessus pour une courte vidéo d'introduction à la régression linéaire.
 
-> Tout au long de ce programme, nous supposons une connaissance minimale des mathématiques et cherchons à les rendre accessibles aux étudiants venant d'autres domaines. Soyez attentif aux notes, 🧮 encadrés, diagrammes et autres outils d'apprentissage pour faciliter la compréhension.
+> Tout au long de ce programme, nous supposons une connaissance minimale des mathématiques et cherchons à les rendre accessibles aux étudiants venant d'autres domaines. Soyez attentif aux notes, 🧮 aux encadrés, aux diagrammes et à d'autres outils d'apprentissage pour faciliter la compréhension.
 
 ### Prérequis
 
-Vous devriez maintenant être familier avec la structure des données sur les citrouilles que nous examinons. Vous pouvez les trouver préchargées et pré-nettoyées dans le fichier _notebook.ipynb_ de cette leçon. Dans ce fichier, le prix des citrouilles est affiché par boisseau dans un nouveau DataFrame. Assurez-vous de pouvoir exécuter ces notebooks dans des kernels dans Visual Studio Code.
+Vous devriez maintenant être familier avec la structure des données sur les citrouilles que nous examinons. Vous pouvez les trouver préchargées et pré-nettoyées dans le fichier _notebook.ipynb_ de cette leçon. Dans ce fichier, le prix des citrouilles est affiché par boisseau dans un nouveau cadre de données. Assurez-vous de pouvoir exécuter ces notebooks dans des kernels dans Visual Studio Code.
 
 ### Préparation
 
 Pour rappel, vous chargez ces données afin de poser des questions à leur sujet.
 
-- Quel est le meilleur moment pour acheter des citrouilles ?
+- Quel est le meilleur moment pour acheter des citrouilles ? 
 - Quel prix puis-je attendre pour une caisse de citrouilles miniatures ?
-- Devrais-je les acheter en paniers d'un demi-boisseau ou en cartons de 1 1/9 boisseau ?
+- Dois-je les acheter en paniers d'un demi-boisseau ou en cartons de 1 1/9 boisseau ?
 Continuons à explorer ces données.
 
-Dans la leçon précédente, vous avez créé un DataFrame Pandas et l'avez rempli avec une partie du jeu de données original, en standardisant les prix par boisseau. Cependant, en faisant cela, vous n'avez pu rassembler qu'environ 400 points de données, uniquement pour les mois d'automne.
+Dans la leçon précédente, vous avez créé un cadre de données Pandas et l'avez rempli avec une partie du jeu de données original, en standardisant les prix par boisseau. Cependant, en faisant cela, vous n'avez pu recueillir qu'environ 400 points de données et uniquement pour les mois d'automne.
 
-Examinez les données préchargées dans le notebook accompagnant cette leçon. Les données sont préchargées et un nuage de points initial est tracé pour montrer les données mensuelles. Peut-être pouvons-nous obtenir un peu plus de détails sur la nature des données en les nettoyant davantage.
+Examinez les données que nous avons préchargées dans le notebook accompagnant cette leçon. Les données sont préchargées et un premier nuage de points est tracé pour montrer les données mensuelles. Peut-être pouvons-nous obtenir un peu plus de détails sur la nature des données en les nettoyant davantage.
 
 ## Une ligne de régression linéaire
 
-Comme vous l'avez appris dans la leçon 1, l'objectif d'un exercice de régression linéaire est de tracer une ligne pour :
+Comme vous l'avez appris dans la leçon 1, l'objectif d'un exercice de régression linéaire est de pouvoir tracer une ligne pour :
 
-- **Montrer les relations entre les variables**. Montrer la relation entre les variables.
-- **Faire des prédictions**. Faire des prédictions précises sur la position d'un nouveau point de données par rapport à cette ligne.
+- **Montrer les relations entre les variables**. Montrer la relation entre les variables
+- **Faire des prédictions**. Faire des prédictions précises sur l'endroit où un nouveau point de données se situerait par rapport à cette ligne. 
+ 
+Il est typique de la **régression des moindres carrés** de tracer ce type de ligne. Le terme "moindres carrés" signifie que tous les points de données entourant la ligne de régression sont élevés au carré puis additionnés. Idéalement, cette somme finale est aussi petite que possible, car nous voulons un faible nombre d'erreurs, ou `moindres carrés`. 
 
-Il est typique d'utiliser la **régression des moindres carrés** pour tracer ce type de ligne. Le terme "moindres carrés" signifie que tous les points de données entourant la ligne de régression sont élevés au carré, puis additionnés. Idéalement, cette somme finale est aussi petite que possible, car nous voulons un faible nombre d'erreurs, ou "moindres carrés".
-
-Nous faisons cela car nous voulons modéliser une ligne ayant la plus faible distance cumulative par rapport à tous nos points de données. Nous élevons également les termes au carré avant de les additionner, car nous nous intéressons à leur magnitude plutôt qu'à leur direction.
+Nous procédons ainsi car nous voulons modéliser une ligne ayant la plus faible distance cumulée par rapport à tous nos points de données. Nous élevons également les termes au carré avant de les additionner, car nous nous intéressons à leur magnitude plutôt qu'à leur direction.
 
 > **🧮 Montrez-moi les maths** 
 > 
-> Cette ligne, appelée _ligne de meilleure adéquation_, peut être exprimée par [une équation](https://fr.wikipedia.org/wiki/R%C3%A9gression_lin%C3%A9aire_simple) : 
+> Cette ligne, appelée _ligne de meilleure ajustement_, peut être exprimée par [une équation](https://en.wikipedia.org/wiki/Simple_linear_regression) : 
 > 
 > ```
 > Y = a + bX
 > ```
 >
-> `X` est la "variable explicative". `Y` est la "variable dépendante". La pente de la ligne est `b` et `a` est l'ordonnée à l'origine, qui fait référence à la valeur de `Y` lorsque `X = 0`. 
+> `X` est la 'variable explicative'. `Y` est la 'variable dépendante'. La pente de la ligne est `b` et `a` est l'ordonnée à l'origine, qui fait référence à la valeur de `Y` lorsque `X = 0`. 
 >
->![calculer la pente](../../../../translated_images/slope.f3c9d5910ddbfcf9096eb5564254ba22c9a32d7acd7694cab905d29ad8261db3.fr.png)
+>![calculer la pente](../../../../2-Regression/3-Linear/images/slope.png)
 >
 > Tout d'abord, calculez la pente `b`. Infographie par [Jen Looper](https://twitter.com/jenlooper)
 >
-> En d'autres termes, et en se référant à la question initiale sur les données des citrouilles : "prédire le prix d'une citrouille par boisseau selon le mois", `X` ferait référence au prix et `Y` au mois de vente. 
+> En d'autres termes, et en se référant à la question originale sur les données des citrouilles : "prédire le prix d'une citrouille par boisseau selon le mois", `X` ferait référence au prix et `Y` au mois de vente. 
 >
->![compléter l'équation](../../../../translated_images/calculation.a209813050a1ddb141cdc4bc56f3af31e67157ed499e16a2ecf9837542704c94.fr.png)
+>![compléter l'équation](../../../../2-Regression/3-Linear/images/calculation.png)
 >
 > Calculez la valeur de Y. Si vous payez environ 4 $, cela doit être en avril ! Infographie par [Jen Looper](https://twitter.com/jenlooper)
 >
-> Les calculs de cette ligne doivent démontrer la pente de la ligne, qui dépend également de l'ordonnée à l'origine, ou de la position de `Y` lorsque `X = 0`.
+> Les calculs mathématiques de la ligne doivent démontrer la pente de la ligne, qui dépend également de l'ordonnée à l'origine, ou de la position de `Y` lorsque `X = 0`.
 >
-> Vous pouvez observer la méthode de calcul de ces valeurs sur le site [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html). Consultez également [ce calculateur des moindres carrés](https://www.mathsisfun.com/data/least-squares-calculator.html) pour voir comment les valeurs influencent la ligne.
+> Vous pouvez observer la méthode de calcul de ces valeurs sur le site [Math is Fun](https://www.mathsisfun.com/data/least-squares-regression.html). Consultez également [ce calculateur de moindres carrés](https://www.mathsisfun.com/data/least-squares-calculator.html) pour voir comment les valeurs des nombres influencent la ligne.
 
 ## Corrélation
 
-Un autre terme à comprendre est le **coefficient de corrélation** entre les variables X et Y données. À l'aide d'un nuage de points, vous pouvez rapidement visualiser ce coefficient. Un graphique avec des points de données alignés de manière nette présente une forte corrélation, tandis qu'un graphique avec des points dispersés partout entre X et Y présente une faible corrélation.
+Un autre terme à comprendre est le **coefficient de corrélation** entre les variables X et Y données. À l'aide d'un nuage de points, vous pouvez rapidement visualiser ce coefficient. Un graphique avec des points de données alignés de manière ordonnée présente une forte corrélation, mais un graphique avec des points de données dispersés partout entre X et Y présente une faible corrélation.
 
-Un bon modèle de régression linéaire sera celui qui a un coefficient de corrélation élevé (proche de 1 plutôt que de 0) en utilisant la méthode des moindres carrés avec une ligne de régression.
+Un bon modèle de régression linéaire sera celui qui présente un coefficient de corrélation élevé (plus proche de 1 que de 0) en utilisant la méthode de régression des moindres carrés avec une ligne de régression.
 
-✅ Exécutez le notebook accompagnant cette leçon et examinez le nuage de points associant le mois au prix. Les données associant le mois au prix des ventes de citrouilles semblent-elles avoir une corrélation élevée ou faible, selon votre interprétation visuelle du nuage de points ? Cela change-t-il si vous utilisez une mesure plus fine comme le *jour de l'année* (c'est-à-dire le nombre de jours depuis le début de l'année) ?
+✅ Exécutez le notebook accompagnant cette leçon et examinez le nuage de points associant le mois au prix. Selon votre interprétation visuelle du nuage de points, les données associant le mois au prix des ventes de citrouilles semblent-elles présenter une corrélation élevée ou faible ? Cela change-t-il si vous utilisez une mesure plus fine, comme *le jour de l'année* (c'est-à-dire le nombre de jours depuis le début de l'année) ?
 
-Dans le code ci-dessous, nous supposerons que nous avons nettoyé les données et obtenu un DataFrame appelé `new_pumpkins`, similaire à ce qui suit :
+Dans le code ci-dessous, nous supposerons que nous avons nettoyé les données et obtenu un cadre de données appelé `new_pumpkins`, similaire à ce qui suit :
 
-ID | Mois | JourDeLAnnee | Variété | Ville | Emballage | Prix Bas | Prix Haut | Prix
----|------|--------------|---------|-------|-----------|----------|-----------|------
+ID | Mois | JourDeLAn | Variété | Ville | Emballage | Prix bas | Prix haut | Prix
+---|------|-----------|---------|-------|-----------|----------|-----------|------
 70 | 9 | 267 | TYPE TARTE | BALTIMORE | cartons de 1 1/9 boisseau | 15.0 | 15.0 | 13.636364
 71 | 9 | 267 | TYPE TARTE | BALTIMORE | cartons de 1 1/9 boisseau | 18.0 | 18.0 | 16.363636
 72 | 10 | 274 | TYPE TARTE | BALTIMORE | cartons de 1 1/9 boisseau | 18.0 | 18.0 | 16.363636
 73 | 10 | 274 | TYPE TARTE | BALTIMORE | cartons de 1 1/9 boisseau | 17.0 | 17.0 | 15.454545
 74 | 10 | 281 | TYPE TARTE | BALTIMORE | cartons de 1 1/9 boisseau | 15.0 | 15.0 | 13.636364
 
-> Le code pour nettoyer les données est disponible dans [`notebook.ipynb`](notebook.ipynb). Nous avons effectué les mêmes étapes de nettoyage que dans la leçon précédente et avons calculé la colonne `JourDeLAnnee` à l'aide de l'expression suivante : 
+> Le code pour nettoyer les données est disponible dans [`notebook.ipynb`](../../../../2-Regression/3-Linear/notebook.ipynb). Nous avons effectué les mêmes étapes de nettoyage que dans la leçon précédente et avons calculé la colonne `JourDeLAn` en utilisant l'expression suivante : 
 
 ```python
 day_of_year = pd.to_datetime(pumpkins['Date']).apply(lambda dt: (dt-datetime(dt.year,1,1)).days)
 ```
 
-Maintenant que vous comprenez les mathématiques derrière la régression linéaire, créons un modèle de régression pour voir si nous pouvons prédire quel emballage de citrouilles aura les meilleurs prix. Une personne achetant des citrouilles pour un champ de citrouilles pour les fêtes pourrait vouloir cette information pour optimiser ses achats.
+Maintenant que vous comprenez les mathématiques derrière la régression linéaire, créons un modèle de régression pour voir si nous pouvons prédire quel emballage de citrouilles aura les meilleurs prix. Quelqu'un achetant des citrouilles pour un champ de citrouilles de vacances pourrait vouloir cette information pour optimiser ses achats d'emballages de citrouilles pour le champ.
 
 ## Recherche de corrélation
 
@@ -116,18 +116,18 @@ Dans la leçon précédente, vous avez probablement vu que le prix moyen pour di
 
 <img alt="Prix moyen par mois" src="../2-Data/images/barchart.png" width="50%"/>
 
-Cela suggère qu'il devrait y avoir une certaine corrélation, et nous pouvons essayer d'entraîner un modèle de régression linéaire pour prédire la relation entre `Mois` et `Prix`, ou entre `JourDeLAnnee` et `Prix`. Voici le nuage de points montrant cette dernière relation :
+Cela suggère qu'il pourrait y avoir une certaine corrélation, et nous pouvons essayer d'entraîner un modèle de régression linéaire pour prédire la relation entre `Mois` et `Prix`, ou entre `JourDeLAn` et `Prix`. Voici le nuage de points qui montre cette dernière relation :
 
 <img alt="Nuage de points du prix vs jour de l'année" src="images/scatter-dayofyear.png" width="50%" /> 
 
-Voyons s'il existe une corrélation à l'aide de la fonction `corr` :
+Voyons s'il existe une corrélation en utilisant la fonction `corr` :
 
 ```python
 print(new_pumpkins['Month'].corr(new_pumpkins['Price']))
 print(new_pumpkins['DayOfYear'].corr(new_pumpkins['Price']))
 ```
 
-Il semble que la corrélation soit assez faible, -0,15 pour `Mois` et -0,17 pour `JourDeLAnnee`, mais il pourrait y avoir une autre relation importante. Il semble qu'il existe différents groupes de prix correspondant à différentes variétés de citrouilles. Pour confirmer cette hypothèse, traçons chaque catégorie de citrouilles avec une couleur différente. En passant un paramètre `ax` à la fonction de tracé `scatter`, nous pouvons tracer tous les points sur le même graphique :
+Il semble que la corrélation soit assez faible, -0.15 par `Mois` et -0.17 par `JourDeLAn`, mais il pourrait y avoir une autre relation importante. Il semble qu'il existe différents groupes de prix correspondant à différentes variétés de citrouilles. Pour confirmer cette hypothèse, traçons chaque catégorie de citrouilles en utilisant une couleur différente. En passant un paramètre `ax` à la fonction de tracé de nuage de points, nous pouvons tracer tous les points sur le même graphique :
 
 ```python
 ax=None
@@ -147,7 +147,7 @@ new_pumpkins.groupby('Variety')['Price'].mean().plot(kind='bar')
 
 <img alt="Graphique en barres du prix vs variété" src="images/price-by-variety.png" width="50%" /> 
 
-Concentrons-nous pour le moment uniquement sur une variété de citrouilles, le "type tarte", et voyons quel effet la date a sur le prix :
+Concentrons-nous pour le moment uniquement sur une variété de citrouilles, le 'type tarte', et voyons quel effet la date a sur le prix :
 
 ```python
 pie_pumpkins = new_pumpkins[new_pumpkins['Variety']=='PIE TYPE']
@@ -155,7 +155,7 @@ pie_pumpkins.plot.scatter('DayOfYear','Price')
 ```
 <img alt="Nuage de points du prix vs jour de l'année" src="images/pie-pumpkins-scatter.png" width="50%" /> 
 
-Si nous calculons maintenant la corrélation entre `Prix` et `JourDeLAnnee` à l'aide de la fonction `corr`, nous obtiendrons quelque chose comme `-0,27` - ce qui signifie qu'entraîner un modèle prédictif a du sens.
+Si nous calculons maintenant la corrélation entre `Prix` et `JourDeLAn` en utilisant la fonction `corr`, nous obtiendrons quelque chose comme `-0.27` - ce qui signifie qu'entraîner un modèle prédictif a du sens.
 
 > Avant d'entraîner un modèle de régression linéaire, il est important de s'assurer que nos données sont propres. La régression linéaire ne fonctionne pas bien avec des valeurs manquantes, il est donc logique de se débarrasser de toutes les cellules vides :
 
@@ -164,7 +164,7 @@ pie_pumpkins.dropna(inplace=True)
 pie_pumpkins.info()
 ```
 
-Une autre approche consisterait à remplir ces valeurs vides avec les valeurs moyennes de la colonne correspondante.
+Une autre approche consisterait à remplir ces valeurs manquantes avec les valeurs moyennes de la colonne correspondante.
 
 ## Régression linéaire simple
 
@@ -187,7 +187,7 @@ X = pie_pumpkins['DayOfYear'].to_numpy().reshape(-1,1)
 y = pie_pumpkins['Price']
 ```
 
-> Notez que nous avons dû effectuer un `reshape` sur les données d'entrée pour que le package de régression linéaire les comprenne correctement. La régression linéaire attend un tableau 2D en entrée, où chaque ligne du tableau correspond à un vecteur de caractéristiques d'entrée. Dans notre cas, comme nous n'avons qu'une seule entrée, nous avons besoin d'un tableau de forme N×1, où N est la taille du jeu de données.
+> Notez que nous avons dû effectuer un `reshape` sur les données d'entrée afin que le package de régression linéaire les comprenne correctement. La régression linéaire attend un tableau 2D en entrée, où chaque ligne du tableau correspond à un vecteur de caractéristiques d'entrée. Dans notre cas, comme nous n'avons qu'une seule entrée, nous avons besoin d'un tableau de forme N×1, où N est la taille du jeu de données.
 
 Ensuite, nous devons diviser les données en ensembles d'entraînement et de test, afin de pouvoir valider notre modèle après l'entraînement :
 
@@ -195,16 +195,16 @@ Ensuite, nous devons diviser les données en ensembles d'entraînement et de tes
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 ```
 
-Enfin, entraîner le modèle de régression linéaire réel ne prend que deux lignes de code. Nous définissons l'objet `LinearRegression` et l'ajustons à nos données à l'aide de la méthode `fit` :
+Enfin, entraîner le modèle de régression linéaire réel ne prend que deux lignes de code. Nous définissons l'objet `LinearRegression` et l'ajustons à nos données en utilisant la méthode `fit` :
 
 ```python
 lin_reg = LinearRegression()
 lin_reg.fit(X_train,y_train)
 ```
 
-L'objet `LinearRegression` après l'ajustement contient tous les coefficients de la régression, accessibles via la propriété `.coef_`. Dans notre cas, il n'y a qu'un seul coefficient, qui devrait être d'environ `-0,017`. Cela signifie que les prix semblent légèrement baisser avec le temps, mais pas beaucoup, environ 2 centimes par jour. Nous pouvons également accéder au point d'intersection de la régression avec l'axe Y à l'aide de `lin_reg.intercept_` - il sera d'environ `21` dans notre cas, indiquant le prix au début de l'année.
+L'objet `LinearRegression` après l'ajustement contient tous les coefficients de la régression, qui peuvent être accessibles via la propriété `.coef_`. Dans notre cas, il n'y a qu'un seul coefficient, qui devrait être autour de `-0.017`. Cela signifie que les prix semblent baisser légèrement avec le temps, mais pas beaucoup, environ 2 centimes par jour. Nous pouvons également accéder au point d'intersection de la régression avec l'axe Y en utilisant `lin_reg.intercept_` - il sera autour de `21` dans notre cas, indiquant le prix au début de l'année.
 
-Pour voir à quel point notre modèle est précis, nous pouvons prédire les prix sur un ensemble de test, puis mesurer à quel point nos prédictions sont proches des valeurs attendues. Cela peut être fait à l'aide de la métrique de l'erreur quadratique moyenne (MSE), qui est la moyenne de toutes les différences au carré entre les valeurs attendues et prédites.
+Pour voir à quel point notre modèle est précis, nous pouvons prédire les prix sur un ensemble de test, puis mesurer à quel point nos prédictions sont proches des valeurs attendues. Cela peut être fait en utilisant la métrique de l'erreur quadratique moyenne (MSE), qui est la moyenne de toutes les différences au carré entre la valeur attendue et la valeur prédite.
 
 ```python
 pred = lin_reg.predict(X_test)
@@ -217,7 +217,7 @@ Notre erreur semble se situer autour de 2 points, soit environ 17 %. Pas très b
 ```python
 score = lin_reg.score(X_train,y_train)
 print('Model determination: ', score)
-```
+```  
 Si la valeur est 0, cela signifie que le modèle ne prend pas en compte les données d'entrée et agit comme le *pire prédicteur linéaire*, qui est simplement une moyenne des résultats. Une valeur de 1 signifie que nous pouvons prédire parfaitement tous les résultats attendus. Dans notre cas, le coefficient est d'environ 0,06, ce qui est assez faible.
 
 Nous pouvons également tracer les données de test avec la ligne de régression pour mieux comprendre comment la régression fonctionne dans notre cas :
@@ -225,7 +225,7 @@ Nous pouvons également tracer les données de test avec la ligne de régression
 ```python
 plt.scatter(X_test,y_test)
 plt.plot(X_test,pred)
-```
+```  
 
 <img alt="Régression linéaire" src="images/linear-results.png" width="50%" />
 
@@ -237,7 +237,7 @@ Un autre type de régression linéaire est la régression polynomiale. Bien qu'i
 
 Regardez à nouveau la relation entre la date et le prix. Ce nuage de points semble-t-il devoir nécessairement être analysé par une ligne droite ? Les prix ne peuvent-ils pas fluctuer ? Dans ce cas, vous pouvez essayer la régression polynomiale.
 
-✅ Les polynômes sont des expressions mathématiques qui peuvent contenir une ou plusieurs variables et coefficients.
+✅ Les polynômes sont des expressions mathématiques qui peuvent inclure une ou plusieurs variables et coefficients.
 
 La régression polynomiale crée une courbe pour mieux ajuster les données non linéaires. Dans notre cas, si nous incluons une variable `DayOfYear` au carré dans les données d'entrée, nous devrions pouvoir ajuster nos données avec une courbe parabolique, qui aura un minimum à un certain moment de l'année.
 
@@ -250,7 +250,7 @@ from sklearn.pipeline import make_pipeline
 pipeline = make_pipeline(PolynomialFeatures(2), LinearRegression())
 
 pipeline.fit(X_train,y_train)
-```
+```  
 
 Utiliser `PolynomialFeatures(2)` signifie que nous inclurons tous les polynômes de degré 2 des données d'entrée. Dans notre cas, cela signifie simplement `DayOfYear`<sup>2</sup>, mais avec deux variables d'entrée X et Y, cela ajoutera X<sup>2</sup>, XY et Y<sup>2</sup>. Nous pouvons également utiliser des polynômes de degré supérieur si nous le souhaitons.
 
@@ -276,36 +276,36 @@ Voici comment le prix moyen dépend de la variété :
 
 <img alt="Prix moyen par variété" src="images/price-by-variety.png" width="50%" />
 
-Pour prendre en compte la variété, nous devons d'abord la convertir en forme numérique, ou **encoder**. Il existe plusieurs façons de le faire :
+Pour prendre en compte la variété, nous devons d'abord la convertir en forme numérique, ou **l'encoder**. Il existe plusieurs façons de le faire :
 
-* Un simple **encodage numérique** construira un tableau des différentes variétés, puis remplacera le nom de la variété par un indice dans ce tableau. Ce n'est pas la meilleure idée pour la régression linéaire, car la régression linéaire prend la valeur numérique réelle de l'indice et l'ajoute au résultat, en la multipliant par un coefficient. Dans notre cas, la relation entre le numéro d'indice et le prix est clairement non linéaire, même si nous nous assurons que les indices sont ordonnés d'une manière spécifique.
+* Un simple **encodage numérique** construira une table des différentes variétés, puis remplacera le nom de la variété par un indice dans cette table. Ce n'est pas la meilleure idée pour la régression linéaire, car la régression linéaire prend la valeur numérique réelle de l'indice et l'ajoute au résultat, en la multipliant par un coefficient. Dans notre cas, la relation entre le numéro d'indice et le prix est clairement non linéaire, même si nous nous assurons que les indices sont ordonnés d'une manière spécifique.
 * **L'encodage one-hot** remplacera la colonne `Variety` par 4 colonnes différentes, une pour chaque variété. Chaque colonne contiendra `1` si la ligne correspondante est d'une variété donnée, et `0` sinon. Cela signifie qu'il y aura quatre coefficients dans la régression linéaire, un pour chaque variété de citrouille, responsable du "prix de départ" (ou plutôt "prix supplémentaire") pour cette variété particulière.
 
 Le code ci-dessous montre comment nous pouvons encoder une variété en one-hot :
 
 ```python
 pd.get_dummies(new_pumpkins['Variety'])
-```
+```  
 
- ID | FAIRYTALE | MINIATURE | MIXED HEIRLOOM VARIETIES | PIE TYPE
-----|-----------|-----------|--------------------------|----------
-70 | 0 | 0 | 0 | 1
-71 | 0 | 0 | 0 | 1
-... | ... | ... | ... | ...
-1738 | 0 | 1 | 0 | 0
-1739 | 0 | 1 | 0 | 0
-1740 | 0 | 1 | 0 | 0
-1741 | 0 | 1 | 0 | 0
-1742 | 0 | 1 | 0 | 0
+ ID | FAIRYTALE | MINIATURE | MIXED HEIRLOOM VARIETIES | PIE TYPE  
+----|-----------|-----------|--------------------------|----------  
+70 | 0 | 0 | 0 | 1  
+71 | 0 | 0 | 0 | 1  
+... | ... | ... | ... | ...  
+1738 | 0 | 1 | 0 | 0  
+1739 | 0 | 1 | 0 | 0  
+1740 | 0 | 1 | 0 | 0  
+1741 | 0 | 1 | 0 | 0  
+1742 | 0 | 1 | 0 | 0  
 
 Pour entraîner une régression linéaire en utilisant la variété encodée en one-hot comme entrée, nous devons simplement initialiser correctement les données `X` et `y` :
 
 ```python
 X = pd.get_dummies(new_pumpkins['Variety'])
 y = new_pumpkins['Price']
-```
+```  
 
-Le reste du code est identique à celui que nous avons utilisé ci-dessus pour entraîner la régression linéaire. Si vous essayez, vous verrez que l'erreur quadratique moyenne est à peu près la même, mais nous obtenons un coefficient de détermination beaucoup plus élevé (~77 %). Pour obtenir des prédictions encore plus précises, nous pouvons prendre en compte davantage de caractéristiques catégorielles, ainsi que des caractéristiques numériques, comme `Month` ou `DayOfYear`. Pour obtenir un grand tableau de caractéristiques, nous pouvons utiliser `join` :
+Le reste du code est le même que celui que nous avons utilisé ci-dessus pour entraîner la régression linéaire. Si vous essayez, vous verrez que l'erreur quadratique moyenne est à peu près la même, mais nous obtenons un coefficient de détermination beaucoup plus élevé (~77 %). Pour obtenir des prédictions encore plus précises, nous pouvons prendre en compte davantage de caractéristiques catégorielles, ainsi que des caractéristiques numériques, comme `Month` ou `DayOfYear`. Pour obtenir un grand tableau de caractéristiques, nous pouvons utiliser `join` :
 
 ```python
 X = pd.get_dummies(new_pumpkins['Variety']) \
@@ -313,13 +313,13 @@ X = pd.get_dummies(new_pumpkins['Variety']) \
         .join(pd.get_dummies(new_pumpkins['City'])) \
         .join(pd.get_dummies(new_pumpkins['Package']))
 y = new_pumpkins['Price']
-```
+```  
 
 Ici, nous prenons également en compte `City` et le type de `Package`, ce qui nous donne un MSE de 2,84 (10 %) et un coefficient de détermination de 0,94 !
 
 ## Tout rassembler
 
-Pour créer le meilleur modèle, nous pouvons utiliser les données combinées (catégorielles encodées en one-hot + numériques) de l'exemple ci-dessus avec la régression polynomiale. Voici le code complet pour votre commodité :
+Pour créer le meilleur modèle, nous pouvons utiliser des données combinées (catégorielles encodées en one-hot + numériques) de l'exemple ci-dessus avec la régression polynomiale. Voici le code complet pour votre commodité :
 
 ```python
 # set up training data
@@ -345,32 +345,33 @@ print(f'Mean error: {mse:3.3} ({mse/np.mean(pred)*100:3.3}%)')
 
 score = pipeline.score(X_train,y_train)
 print('Model determination: ', score)
-```
+```  
 
 Cela devrait nous donner le meilleur coefficient de détermination, presque 97 %, et un MSE=2,23 (~8 % d'erreur de prédiction).
 
-| Modèle | MSE | Détermination |
-|--------|-----|---------------|
-| `DayOfYear` Linéaire | 2,77 (17,2 %) | 0,07 |
-| `DayOfYear` Polynomial | 2,73 (17,0 %) | 0,08 |
-| `Variety` Linéaire | 5,24 (19,7 %) | 0,77 |
-| Toutes les caractéristiques Linéaire | 2,84 (10,5 %) | 0,94 |
-| Toutes les caractéristiques Polynomial | 2,23 (8,25 %) | 0,97 |
+| Modèle | MSE | Détermination |  
+|--------|-----|---------------|  
+| `DayOfYear` Linéaire | 2,77 (17,2 %) | 0,07 |  
+| `DayOfYear` Polynomial | 2,73 (17,0 %) | 0,08 |  
+| `Variety` Linéaire | 5,24 (19,7 %) | 0,77 |  
+| Toutes les caractéristiques Linéaire | 2,84 (10,5 %) | 0,94 |  
+| Toutes les caractéristiques Polynomial | 2,23 (8,25 %) | 0,97 |  
 
 🏆 Bien joué ! Vous avez créé quatre modèles de régression en une seule leçon et amélioré la qualité du modèle à 97 %. Dans la section finale sur la régression, vous apprendrez la régression logistique pour déterminer des catégories.
 
 ---
+
 ## 🚀Défi
 
 Testez plusieurs variables différentes dans ce notebook pour voir comment la corrélation correspond à la précision du modèle.
 
-## [Quiz post-lecture](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/14/)
+## [Quiz post-lecture](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Révision et auto-apprentissage
 
 Dans cette leçon, nous avons appris la régression linéaire. Il existe d'autres types importants de régression. Lisez sur les techniques Stepwise, Ridge, Lasso et Elasticnet. Un bon cours pour approfondir est le [cours de Stanford sur l'apprentissage statistique](https://online.stanford.edu/courses/sohs-ystatslearning-statistical-learning).
 
-## Devoir 
+## Devoir
 
 [Construisez un modèle](assignment.md)
 

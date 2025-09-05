@@ -1,22 +1,22 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "20f18ff565638be615df4174858e4a7f",
-  "translation_date": "2025-09-03T23:15:10+00:00",
+  "original_hash": "83320d6b6994909e35d830cebf214039",
+  "translation_date": "2025-09-04T22:58:09+00:00",
   "source_file": "9-Real-World/1-Applications/README.md",
   "language_code": "fr"
 }
 -->
 # Postscript : L'apprentissage automatique dans le monde réel
 
-![Résumé de l'apprentissage automatique dans le monde réel sous forme de sketchnote](../../../../translated_images/ml-realworld.26ee2746716155771f8076598b6145e6533fe4a9e2e465ea745f46648cbf1b84.fr.png)
+![Résumé de l'apprentissage automatique dans le monde réel sous forme de sketchnote](../../../../sketchnotes/ml-realworld.png)
 > Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 Dans ce programme, vous avez appris de nombreuses façons de préparer des données pour l'entraînement et de créer des modèles d'apprentissage automatique. Vous avez construit une série de modèles classiques de régression, de regroupement, de classification, de traitement du langage naturel et de séries chronologiques. Félicitations ! Maintenant, vous vous demandez peut-être à quoi tout cela sert... quelles sont les applications réelles de ces modèles ?
 
-Bien que l'industrie s'intéresse beaucoup à l'IA, qui utilise généralement l'apprentissage profond, les modèles classiques d'apprentissage automatique ont encore des applications précieuses. Vous utilisez peut-être déjà certaines de ces applications aujourd'hui ! Dans cette leçon, vous explorerez comment huit secteurs et domaines spécialisés différents utilisent ces types de modèles pour rendre leurs applications plus performantes, fiables, intelligentes et utiles aux utilisateurs.
+Bien que l'industrie s'intéresse beaucoup à l'IA, qui repose généralement sur l'apprentissage profond, les modèles classiques d'apprentissage automatique ont encore des applications précieuses. Vous utilisez peut-être déjà certaines de ces applications aujourd'hui ! Dans cette leçon, vous explorerez comment huit secteurs et domaines spécialisés différents utilisent ces types de modèles pour rendre leurs applications plus performantes, fiables, intelligentes et utiles aux utilisateurs.
 
-## [Quiz avant la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/49/)
+## [Quiz avant la leçon](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 💰 Finance
 
@@ -26,14 +26,14 @@ Le secteur financier offre de nombreuses opportunités pour l'apprentissage auto
 
 Nous avons étudié le [regroupement k-means](../../5-Clustering/2-K-Means/README.md) plus tôt dans le cours, mais comment peut-il être utilisé pour résoudre des problèmes liés à la fraude par carte de crédit ?
 
-Le regroupement k-means est utile dans une technique de détection de fraude appelée **détection des anomalies**. Les anomalies, ou écarts dans les observations d'un ensemble de données, peuvent nous indiquer si une carte de crédit est utilisée normalement ou si quelque chose d'inhabituel se produit. Comme indiqué dans l'article ci-dessous, vous pouvez trier les données de carte de crédit en utilisant un algorithme de regroupement k-means et attribuer chaque transaction à un groupe en fonction de son degré d'anomalie. Ensuite, vous pouvez évaluer les groupes les plus risqués pour déterminer s'il s'agit de transactions frauduleuses ou légitimes.
+Le regroupement k-means est utile dans une technique de détection de fraude appelée **détection des anomalies**. Les anomalies, ou écarts dans les observations d'un ensemble de données, peuvent nous indiquer si une carte de crédit est utilisée normalement ou si quelque chose d'inhabituel se produit. Comme indiqué dans l'article ci-dessous, vous pouvez trier les données de carte de crédit à l'aide d'un algorithme de regroupement k-means et attribuer chaque transaction à un groupe en fonction de son caractère inhabituel. Ensuite, vous pouvez évaluer les groupes les plus risqués pour déterminer s'il s'agit de transactions frauduleuses ou légitimes.
 [Référence](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.680.1195&rep=rep1&type=pdf)
 
 ### Gestion de patrimoine
 
-En gestion de patrimoine, un individu ou une entreprise gère des investissements au nom de ses clients. Leur objectif est de maintenir et de faire croître la richesse à long terme, il est donc essentiel de choisir des investissements performants.
+En gestion de patrimoine, un individu ou une entreprise gère les investissements au nom de ses clients. Leur objectif est de maintenir et de faire croître la richesse à long terme, il est donc essentiel de choisir des investissements performants.
 
-Une façon d'évaluer la performance d'un investissement est d'utiliser la régression statistique. La [régression linéaire](../../2-Regression/1-Tools/README.md) est un outil précieux pour comprendre comment un fonds se comporte par rapport à un indice de référence. Nous pouvons également déterminer si les résultats de la régression sont statistiquement significatifs, ou dans quelle mesure ils affecteraient les investissements d'un client. Vous pourriez même approfondir votre analyse en utilisant une régression multiple, où des facteurs de risque supplémentaires peuvent être pris en compte. Pour un exemple de fonctionnement de cette méthode pour un fonds spécifique, consultez l'article ci-dessous sur l'évaluation des performances des fonds à l'aide de la régression.
+Une façon d'évaluer la performance d'un investissement est d'utiliser la régression statistique. La [régression linéaire](../../2-Regression/1-Tools/README.md) est un outil précieux pour comprendre comment un fonds se comporte par rapport à un indice de référence. Nous pouvons également déduire si les résultats de la régression sont statistiquement significatifs, ou dans quelle mesure ils affecteraient les investissements d'un client. Vous pouvez même approfondir votre analyse en utilisant la régression multiple, où des facteurs de risque supplémentaires peuvent être pris en compte. Pour un exemple de fonctionnement de cette méthode pour un fonds spécifique, consultez l'article ci-dessous sur l'évaluation des performances des fonds à l'aide de la régression.
 [Référence](http://www.brightwoodventures.com/evaluating-fund-performance-using-regression/)
 
 ## 🎓 Éducation
@@ -56,12 +56,12 @@ Le secteur du commerce de détail peut certainement tirer parti de l'IA, que ce 
 
 ### Personnalisation du parcours client
 
-Chez Wayfair, une entreprise qui vend des articles pour la maison comme des meubles, aider les clients à trouver les produits adaptés à leurs goûts et besoins est primordial. Dans cet article, les ingénieurs de l'entreprise décrivent comment ils utilisent l'IA et le NLP pour "proposer les bons résultats aux clients". Leur moteur d'intention de requête utilise notamment l'extraction d'entités, l'entraînement de classificateurs, l'extraction d'opinions et de sentiments sur les avis clients. C'est un cas classique d'utilisation du NLP dans le commerce en ligne.
+Chez Wayfair, une entreprise qui vend des articles pour la maison comme des meubles, aider les clients à trouver les produits adaptés à leurs goûts et besoins est primordial. Dans cet article, les ingénieurs de l'entreprise décrivent comment ils utilisent l'IA et le NLP pour "proposer les bons résultats aux clients". Leur moteur d'intention de requête utilise notamment l'extraction d'entités, l'entraînement de classificateurs, l'extraction d'opinions et le marquage des sentiments sur les avis clients. C'est un exemple classique de l'utilisation du NLP dans le commerce en ligne.
 [Référence](https://www.aboutwayfair.com/tech-innovation/how-we-use-machine-learning-and-natural-language-processing-to-empower-search)
 
 ### Gestion des stocks
 
-Des entreprises innovantes et agiles comme [StitchFix](https://stitchfix.com), un service de box qui expédie des vêtements aux consommateurs, s'appuient fortement sur l'IA pour les recommandations et la gestion des stocks. Leurs équipes de stylisme collaborent avec leurs équipes de merchandising : "un de nos data scientists a expérimenté un algorithme génétique et l'a appliqué à l'habillement pour prédire ce qui pourrait être un vêtement réussi qui n'existe pas encore aujourd'hui. Nous avons présenté cela à l'équipe de merchandising, et maintenant ils peuvent l'utiliser comme outil."
+Des entreprises innovantes et agiles comme [StitchFix](https://stitchfix.com), un service de box qui expédie des vêtements aux consommateurs, s'appuient fortement sur l'IA pour les recommandations et la gestion des stocks. Leurs équipes de stylisme collaborent avec leurs équipes de merchandising : "l'un de nos data scientists a expérimenté un algorithme génétique et l'a appliqué à l'habillement pour prédire ce qui pourrait être un vêtement réussi qui n'existe pas encore aujourd'hui. Nous avons présenté cela à l'équipe de merchandising, et maintenant ils peuvent l'utiliser comme outil."
 [Référence](https://www.zdnet.com/article/how-stitch-fix-uses-machine-learning-to-master-the-science-of-styling/)
 
 ## 🏥 Santé
@@ -75,12 +75,12 @@ La toxicité dans les essais cliniques est une préoccupation majeure pour les f
 
 ### Gestion des réadmissions hospitalières
 
-Les soins hospitaliers sont coûteux, surtout lorsque les patients doivent être réadmis. Cet article discute d'une entreprise qui utilise l'IA pour prédire le potentiel de réadmission en utilisant des algorithmes de [regroupement](../../5-Clustering/README.md). Ces groupes aident les analystes à "découvrir des groupes de réadmissions qui peuvent partager une cause commune".
+Les soins hospitaliers sont coûteux, surtout lorsque les patients doivent être réadmis. Cet article discute d'une entreprise qui utilise l'IA pour prédire le potentiel de réadmission à l'aide d'algorithmes de [regroupement](../../5-Clustering/README.md). Ces regroupements aident les analystes à "découvrir des groupes de réadmissions qui peuvent partager une cause commune".
 [Référence](https://healthmanagement.org/c/healthmanagement/issuearticle/hospital-readmissions-and-machine-learning)
 
 ### Gestion des maladies
 
-La récente pandémie a mis en lumière les façons dont l'IA peut aider à stopper la propagation des maladies. Dans cet article, vous reconnaîtrez l'utilisation d'ARIMA, de courbes logistiques, de régression linéaire et de SARIMA. "Ce travail est une tentative de calculer le taux de propagation de ce virus et ainsi de prédire les décès, les guérisons et les cas confirmés, afin de mieux nous préparer et survivre."
+La récente pandémie a mis en lumière les façons dont l'IA peut aider à stopper la propagation des maladies. Dans cet article, vous reconnaîtrez l'utilisation d'ARIMA, de courbes logistiques, de régression linéaire et de SARIMA. "Ce travail est une tentative de calculer le taux de propagation de ce virus et ainsi de prédire les décès, les guérisons et les cas confirmés, afin de mieux nous préparer et de survivre."
 [Référence](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7979218/)
 
 ## 🌲 Écologie et technologies vertes
@@ -96,14 +96,14 @@ Cette approche inverse la configuration habituelle du RL puisque la dynamique du
 
 ### Détection des mouvements des animaux
 
-Bien que l'apprentissage profond ait révolutionné le suivi visuel des mouvements des animaux (vous pouvez créer votre propre [traqueur d'ours polaire](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott) ici), les techniques classiques d'IA ont encore leur place dans cette tâche.
+Bien que l'apprentissage profond ait révolutionné le suivi visuel des mouvements des animaux (vous pouvez créer votre propre [traqueur d'ours polaire](https://docs.microsoft.com/learn/modules/build-ml-model-with-azure-stream-analytics/?WT.mc_id=academic-77952-leestott) ici), l'IA classique a encore sa place dans cette tâche.
 
-Les capteurs pour suivre les mouvements des animaux de ferme et l'IoT utilisent ce type de traitement visuel, mais des techniques d'IA plus basiques sont utiles pour prétraiter les données. Par exemple, dans cet article, les postures des moutons ont été surveillées et analysées à l'aide de divers algorithmes de classification. Vous pourriez reconnaître la courbe ROC à la page 335.
+Les capteurs pour suivre les mouvements des animaux de ferme et l'IoT utilisent ce type de traitement visuel, mais des techniques d'IA plus basiques sont utiles pour prétraiter les données. Par exemple, dans cet article, les postures des moutons ont été surveillées et analysées à l'aide de divers algorithmes de classification. Vous reconnaîtrez peut-être la courbe ROC à la page 335.
 [Référence](https://druckhaus-hofmann.de/gallery/31-wj-feb-2020.pdf)
 
 ### ⚡️ Gestion de l'énergie
 
-Dans nos leçons sur la [prévision des séries chronologiques](../../7-TimeSeries/README.md), nous avons évoqué le concept de parcmètres intelligents pour générer des revenus pour une ville en comprenant l'offre et la demande. Cet article discute en détail de la manière dont le regroupement, la régression et la prévision des séries chronologiques se combinent pour aider à prédire l'utilisation future de l'énergie en Irlande, sur la base des compteurs intelligents.
+Dans nos leçons sur la [prévision des séries chronologiques](../../7-TimeSeries/README.md), nous avons évoqué le concept de parcmètres intelligents pour générer des revenus pour une ville en fonction de la compréhension de l'offre et de la demande. Cet article discute en détail de la manière dont le regroupement, la régression et la prévision des séries chronologiques se combinent pour aider à prédire la consommation future d'énergie en Irlande, à partir de compteurs intelligents.
 [Référence](https://www-cdn.knime.com/sites/default/files/inline-images/knime_bigdata_energy_timeseries_whitepaper.pdf)
 
 ## 💼 Assurance
@@ -117,7 +117,7 @@ MetLife, un fournisseur d'assurance-vie, est transparent sur la manière dont il
 
 ## 🎨 Arts, culture et littérature
 
-Dans les arts, par exemple dans le journalisme, il existe de nombreux problèmes intéressants. Détecter les fausses informations est un problème majeur, car il a été prouvé qu'elles influencent l'opinion des gens et même qu'elles renversent des démocraties. Les musées peuvent également bénéficier de l'utilisation de l'IA, que ce soit pour trouver des liens entre les artefacts ou pour planifier leurs ressources.
+Dans les arts, par exemple dans le journalisme, il existe de nombreux problèmes intéressants. Détecter les fausses informations est un problème majeur, car il a été prouvé qu'elles influencent l'opinion des gens et même qu'elles renversent des démocraties. Les musées peuvent également bénéficier de l'IA, que ce soit pour établir des liens entre les artefacts ou pour planifier leurs ressources.
 
 ### Détection des fausses informations
 
@@ -128,7 +128,7 @@ Cet article montre comment la combinaison de différents domaines de l'IA peut p
 
 ### IA dans les musées
 
-Les musées sont à l'aube d'une révolution de l'IA où la catalogation et la numérisation des collections ainsi que la recherche de liens entre les artefacts deviennent plus faciles grâce aux avancées technologiques. Des projets comme [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) aident à percer les mystères des collections inaccessibles comme les Archives du Vatican. Mais l'aspect commercial des musées bénéficie également des modèles d'IA.
+Les musées sont à l'aube d'une révolution de l'IA où la catalogation et la numérisation des collections ainsi que la recherche de liens entre les artefacts deviennent plus faciles grâce aux avancées technologiques. Des projets tels que [In Codice Ratio](https://www.sciencedirect.com/science/article/abs/pii/S0306457321001035#:~:text=1.,studies%20over%20large%20historical%20sources.) aident à percer les mystères des collections inaccessibles comme les Archives du Vatican. Mais l'aspect commercial des musées bénéficie également des modèles d'IA.
 
 Par exemple, l'Art Institute of Chicago a construit des modèles pour prédire ce qui intéresse les visiteurs et quand ils assisteront aux expositions. L'objectif est de créer des expériences de visite individualisées et optimisées à chaque visite. "Au cours de l'exercice 2017, le modèle a prédit la fréquentation et les admissions avec une précision de 1 %, déclare Andrew Simnick, vice-président senior à l'Art Institute."
 [Référence](https://www.chicagobusiness.com/article/20180518/ISSUE01/180519840/art-institute-of-chicago-uses-data-to-make-exhibit-choices)
@@ -137,21 +137,21 @@ Par exemple, l'Art Institute of Chicago a construit des modèles pour prédire c
 
 ### Segmentation des clients
 
-Les stratégies marketing les plus efficaces ciblent les clients de différentes manières en fonction de divers regroupements. Dans cet article, les utilisations des algorithmes de regroupement sont discutées pour soutenir le marketing différencié. Le marketing différencié aide les entreprises à améliorer la reconnaissance de leur marque, à atteindre davantage de clients et à générer plus de revenus.
+Les stratégies marketing les plus efficaces ciblent les clients de différentes manières en fonction de divers regroupements. Dans cet article, les utilisations des algorithmes de regroupement sont discutées pour soutenir le marketing différencié. Le marketing différencié aide les entreprises à améliorer la reconnaissance de la marque, à atteindre davantage de clients et à générer plus de revenus.
 [Référence](https://ai.inqline.com/machine-learning-for-marketing-customer-segmentation/)
 
 ## 🚀 Défi
-Identifiez un autre secteur qui bénéficie de certaines des techniques que vous avez apprises dans ce programme, et découvrez comment il utilise l'apprentissage automatique.
 
-## [Quiz après le cours](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/50/)
+Identifiez un autre secteur qui bénéficie de certaines des techniques que vous avez apprises dans ce programme, et découvrez comment il utilise l'IA.
+## Quiz après la conférence
 
 ## Révision et étude personnelle
 
-L'équipe de science des données de Wayfair propose plusieurs vidéos intéressantes sur la manière dont ils utilisent l'apprentissage automatique dans leur entreprise. Cela vaut la peine de [jeter un œil](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos) !
+L'équipe de science des données de Wayfair propose plusieurs vidéos intéressantes sur l'utilisation de l'apprentissage automatique dans leur entreprise. Cela vaut la peine de [jeter un coup d'œil](https://www.youtube.com/channel/UCe2PjkQXqOuwkW1gw6Ameuw/videos) !
 
 ## Devoir
 
-[Une chasse au trésor sur l'apprentissage automatique](assignment.md)
+[Une chasse au trésor en apprentissage automatique](assignment.md)
 
 ---
 

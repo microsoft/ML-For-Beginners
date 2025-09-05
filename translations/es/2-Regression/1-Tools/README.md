@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "6b1cb0e46d4c5b747eff6e3607642760",
-  "translation_date": "2025-09-03T22:34:01+00:00",
+  "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
+  "translation_date": "2025-09-04T22:13:49+00:00",
   "source_file": "2-Regression/1-Tools/README.md",
   "language_code": "es"
 }
 -->
 # Comienza con Python y Scikit-learn para modelos de regresión
 
-![Resumen de regresiones en un sketchnote](../../../../translated_images/ml-regression.4e4f70e3b3ed446e3ace348dec973e133fa5d3680fbc8412b61879507369b98d.es.png)
+![Resumen de regresiones en un sketchnote](../../../../sketchnotes/ml-regression.png)
 
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [¡Esta lección está disponible en R!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
@@ -32,7 +32,7 @@ En esta lección, aprenderás a:
 
 [![ML para principiantes - Configura tus herramientas para construir modelos de aprendizaje automático](https://img.youtube.com/vi/-DfeD2k2Kj0/0.jpg)](https://youtu.be/-DfeD2k2Kj0 "ML para principiantes - Configura tus herramientas para construir modelos de aprendizaje automático")
 
-> 🎥 Haz clic en la imagen de arriba para ver un breve video sobre cómo configurar tu computadora para ML.
+> 🎥 Haz clic en la imagen de arriba para ver un video corto sobre cómo configurar tu computadora para ML.
 
 1. **Instalar Python**. Asegúrate de que [Python](https://www.python.org/downloads/) esté instalado en tu computadora. Usarás Python para muchas tareas de ciencia de datos y aprendizaje automático. La mayoría de los sistemas informáticos ya incluyen una instalación de Python. También hay disponibles [Paquetes de Codificación de Python](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott) útiles para facilitar la configuración a algunos usuarios.
 
@@ -58,7 +58,7 @@ Los notebooks son un entorno interactivo que permite al desarrollador tanto codi
 
 [![ML para principiantes - Configura Jupyter Notebooks para comenzar a construir modelos de regresión](https://img.youtube.com/vi/7E-jC8FLA2E/0.jpg)](https://youtu.be/7E-jC8FLA2E "ML para principiantes - Configura Jupyter Notebooks para comenzar a construir modelos de regresión")
 
-> 🎥 Haz clic en la imagen de arriba para ver un breve video sobre este ejercicio.
+> 🎥 Haz clic en la imagen de arriba para ver un video corto sobre este ejercicio.
 
 ### Ejercicio - trabajar con un notebook
 
@@ -81,11 +81,11 @@ En esta carpeta, encontrarás el archivo _notebook.ipynb_.
     hello notebook
     ```
 
-![VS Code con un notebook abierto](../../../../translated_images/notebook.4a3ee31f396b88325607afda33cadcc6368de98040ff33942424260aa84d75f2.es.jpg)
+![VS Code con un notebook abierto](../../../../2-Regression/1-Tools/images/notebook.jpg)
 
 Puedes intercalar tu código con comentarios para auto-documentar el notebook.
 
-✅ Piensa por un momento en cómo es diferente el entorno de trabajo de un desarrollador web frente al de un científico de datos.
+✅ Piensa por un momento en cómo es diferente el entorno de trabajo de un desarrollador web en comparación con el de un científico de datos.
 
 ## Puesta en marcha con Scikit-learn
 
@@ -103,11 +103,11 @@ Scikit-learn hace que sea sencillo construir modelos y evaluarlos para su uso. S
 
 [![ML para principiantes - Tu primer proyecto de regresión lineal en Python](https://img.youtube.com/vi/2xkXL5EUpS0/0.jpg)](https://youtu.be/2xkXL5EUpS0 "ML para principiantes - Tu primer proyecto de regresión lineal en Python")
 
-> 🎥 Haz clic en la imagen de arriba para ver un breve video sobre este ejercicio.
+> 🎥 Haz clic en la imagen de arriba para ver un video corto sobre este ejercicio.
 
 En el archivo _notebook.ipynb_ asociado a esta lección, elimina todas las celdas presionando el ícono de 'papelera'.
 
-En esta sección, trabajarás con un pequeño conjunto de datos sobre diabetes que está integrado en Scikit-learn para fines de aprendizaje. Imagina que quisieras probar un tratamiento para pacientes diabéticos. Los modelos de aprendizaje automático podrían ayudarte a determinar qué pacientes responderían mejor al tratamiento, basándote en combinaciones de variables. Incluso un modelo de regresión muy básico, cuando se visualiza, podría mostrar información sobre variables que te ayudarían a organizar tus ensayos clínicos teóricos.
+En esta sección, trabajarás con un pequeño conjunto de datos sobre diabetes que está integrado en Scikit-learn para propósitos de aprendizaje. Imagina que quisieras probar un tratamiento para pacientes diabéticos. Los modelos de aprendizaje automático podrían ayudarte a determinar qué pacientes responderían mejor al tratamiento, basándote en combinaciones de variables. Incluso un modelo de regresión muy básico, cuando se visualiza, podría mostrar información sobre variables que te ayudarían a organizar tus ensayos clínicos teóricos.
 
 ✅ Hay muchos tipos de métodos de regresión, y cuál elijas depende de la respuesta que estés buscando. Si quieres predecir la altura probable de una persona dada su edad, usarías regresión lineal, ya que estás buscando un **valor numérico**. Si estás interesado en descubrir si un tipo de cocina debería considerarse vegana o no, estás buscando una **asignación de categoría**, por lo que usarías regresión logística. Aprenderás más sobre regresión logística más adelante. Piensa un poco en algunas preguntas que puedes hacer a los datos y cuál de estos métodos sería más apropiado.
 
@@ -117,7 +117,7 @@ Vamos a comenzar con esta tarea.
 
 Para esta tarea, importaremos algunas bibliotecas:
 
-- **matplotlib**. Es una herramienta útil para [gráficos](https://matplotlib.org/) y la usaremos para crear un gráfico de líneas.
+- **matplotlib**. Es una herramienta útil para [graficar](https://matplotlib.org/) y la usaremos para crear un gráfico de líneas.
 - **numpy**. [numpy](https://numpy.org/doc/stable/user/whatisnumpy.html) es una biblioteca útil para manejar datos numéricos en Python.
 - **sklearn**. Esta es la biblioteca [Scikit-learn](https://scikit-learn.org/stable/user_guide.html).
 
@@ -185,7 +185,7 @@ En una nueva celda de código, carga el conjunto de datos de diabetes llamando a
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
    ```
 
-4. Ahora estás listo para entrenar tu modelo. Carga el modelo de regresión lineal y entrénalo con tus conjuntos de entrenamiento X e y usando `model.fit()`:
+4. ¡Ahora estás listo para entrenar tu modelo! Carga el modelo de regresión lineal y entrénalo con tus conjuntos de entrenamiento X e y usando `model.fit()`:
 
     ```python
     model = linear_model.LinearRegression()
@@ -200,7 +200,7 @@ En una nueva celda de código, carga el conjunto de datos de diabetes llamando a
     y_pred = model.predict(X_test)
     ```
 
-6. Ahora es momento de mostrar los datos en un gráfico. Matplotlib es una herramienta muy útil para esta tarea. Crea un gráfico de dispersión de todos los datos de prueba X e y, y usa la predicción para dibujar una línea en el lugar más apropiado entre los grupos de datos del modelo.
+6. Ahora es momento de mostrar los datos en un gráfico. Matplotlib es una herramienta muy útil para esta tarea. Crea un gráfico de dispersión de todos los datos de prueba X e y, y usa la predicción para dibujar una línea en el lugar más apropiado, entre los grupos de datos del modelo.
 
     ```python
     plt.scatter(X_test, y_test,  color='black')
@@ -211,21 +211,21 @@ En una nueva celda de código, carga el conjunto de datos de diabetes llamando a
     plt.show()
     ```
 
-   ![un gráfico de dispersión mostrando puntos de datos sobre diabetes](../../../../translated_images/scatterplot.ad8b356bcbb33be68d54050e09b9b7bfc03e94fde7371f2609ae43f4c563b2d7.es.png)
+   ![un gráfico de dispersión mostrando puntos de datos sobre diabetes](../../../../2-Regression/1-Tools/images/scatterplot.png)
 ✅ Piensa un poco en lo que está sucediendo aquí. Una línea recta está atravesando muchos pequeños puntos de datos, pero ¿qué está haciendo exactamente? ¿Puedes ver cómo deberías poder usar esta línea para predecir dónde debería encajar un nuevo punto de datos no visto en relación con el eje y del gráfico? Intenta poner en palabras el uso práctico de este modelo.
 
-¡Felicidades, construiste tu primer modelo de regresión lineal, creaste una predicción con él y la mostraste en un gráfico!
+¡Felicidades! Has construido tu primer modelo de regresión lineal, creado una predicción con él y la has mostrado en un gráfico.
 
 ---
 ## 🚀Desafío
 
 Grafica una variable diferente de este conjunto de datos. Pista: edita esta línea: `X = X[:,2]`. Dado el objetivo de este conjunto de datos, ¿qué puedes descubrir sobre la progresión de la diabetes como enfermedad?
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisión y Autoestudio
 
-En este tutorial, trabajaste con regresión lineal simple, en lugar de regresión univariada o múltiple. Lee un poco sobre las diferencias entre estos métodos, o echa un vistazo a [este video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+En este tutorial, trabajaste con regresión lineal simple, en lugar de regresión univariante o múltiple. Lee un poco sobre las diferencias entre estos métodos, o echa un vistazo a [este video](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
 
 Lee más sobre el concepto de regresión y piensa en qué tipo de preguntas pueden responderse con esta técnica. Toma este [tutorial](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott) para profundizar tu comprensión.
 
@@ -236,4 +236,4 @@ Lee más sobre el concepto de regresión y piensa en qué tipo de preguntas pued
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Aunque nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

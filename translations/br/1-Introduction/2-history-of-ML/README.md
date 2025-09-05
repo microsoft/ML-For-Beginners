@@ -1,18 +1,18 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "b2d11df10030cacc41427a1fbc8bc8f1",
-  "translation_date": "2025-08-29T21:32:36+00:00",
+  "original_hash": "6a05fec147e734c3e6bfa54505648e2b",
+  "translation_date": "2025-09-04T21:37:10+00:00",
   "source_file": "1-Introduction/2-history-of-ML/README.md",
   "language_code": "br"
 }
 -->
 # História do aprendizado de máquina
 
-![Resumo da história do aprendizado de máquina em um sketchnote](../../../../translated_images/ml-history.a1bdfd4ce1f464d9a0502f38d355ffda384c95cd5278297a46c9a391b5053bc4.br.png)
+![Resumo da história do aprendizado de máquina em um sketchnote](../../../../sketchnotes/ml-history.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/3/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
@@ -22,7 +22,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nesta lição, vamos explorar os principais marcos na história do aprendizado de máquina e da inteligência artificial.
 
-A história da inteligência artificial (IA) como campo está entrelaçada com a história do aprendizado de máquina, já que os algoritmos e avanços computacionais que sustentam o aprendizado de máquina contribuíram para o desenvolvimento da IA. É útil lembrar que, embora esses campos como áreas distintas de estudo tenham começado a se cristalizar na década de 1950, importantes [descobertas algorítmicas, estatísticas, matemáticas, computacionais e técnicas](https://wikipedia.org/wiki/Timeline_of_machine_learning) precederam e se sobrepuseram a essa era. Na verdade, as pessoas têm pensado sobre essas questões por [centenas de anos](https://wikipedia.org/wiki/History_of_artificial_intelligence): este artigo discute os fundamentos intelectuais históricos da ideia de uma 'máquina pensante'.
+A história da inteligência artificial (IA) como campo está entrelaçada com a história do aprendizado de máquina, já que os algoritmos e avanços computacionais que sustentam o aprendizado de máquina contribuíram para o desenvolvimento da IA. É útil lembrar que, embora esses campos como áreas distintas de estudo tenham começado a se cristalizar na década de 1950, importantes [descobertas algorítmicas, estatísticas, matemáticas, computacionais e técnicas](https://wikipedia.org/wiki/Timeline_of_machine_learning) precederam e se sobrepuseram a essa era. Na verdade, as pessoas têm pensado sobre essas questões por [centenas de anos](https://wikipedia.org/wiki/History_of_artificial_intelligence): este artigo discute as bases intelectuais históricas da ideia de uma 'máquina pensante'.
 
 ---
 ## Descobertas notáveis
@@ -43,7 +43,7 @@ A história da inteligência artificial (IA) como campo está entrelaçada com a
 ---
 ## 1950: Máquinas que pensam
 
-Alan Turing, uma pessoa verdadeiramente notável que foi eleito [pelo público em 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) como o maior cientista do século 20, é creditado por ajudar a estabelecer a base para o conceito de uma 'máquina que pode pensar'. Ele enfrentou críticos e sua própria necessidade de evidências empíricas desse conceito, em parte criando o [Teste de Turing](https://www.bbc.com/news/technology-18475646), que você explorará em nossas lições de PLN.
+Alan Turing, uma pessoa verdadeiramente notável que foi eleito [pelo público em 2019](https://wikipedia.org/wiki/Icons:_The_Greatest_Person_of_the_20th_Century) como o maior cientista do século 20, é creditado por ajudar a estabelecer as bases para o conceito de uma 'máquina que pode pensar'. Ele enfrentou críticos e sua própria necessidade de evidências empíricas desse conceito, em parte, criando o [Teste de Turing](https://www.bbc.com/news/technology-18475646), que você explorará em nossas lições de PLN.
 
 ---
 ## 1956: Projeto de Pesquisa de Verão em Dartmouth
@@ -54,16 +54,16 @@ Alan Turing, uma pessoa verdadeiramente notável que foi eleito [pelo público e
 
 ---
 
-O pesquisador principal, professor de matemática John McCarthy, esperava "prosseguir com base na conjectura de que todo aspecto de aprendizado ou qualquer outra característica da inteligência pode, em princípio, ser descrito tão precisamente que uma máquina pode ser feita para simulá-lo." Os participantes incluíram outro luminar no campo, Marvin Minsky.
+O pesquisador principal, o professor de matemática John McCarthy, esperava "prosseguir com base na conjectura de que todo aspecto de aprendizado ou qualquer outra característica da inteligência pode, em princípio, ser descrito tão precisamente que uma máquina pode ser feita para simulá-lo." Os participantes incluíram outro grande nome do campo, Marvin Minsky.
 
 O workshop é creditado por ter iniciado e incentivado várias discussões, incluindo "a ascensão de métodos simbólicos, sistemas focados em domínios limitados (primeiros sistemas especialistas) e sistemas dedutivos versus sistemas indutivos." ([fonte](https://wikipedia.org/wiki/Dartmouth_workshop)).
 
 ---
 ## 1956 - 1974: "Os anos dourados"
 
-Dos anos 1950 até meados dos anos 70, o otimismo era alto na esperança de que a IA pudesse resolver muitos problemas. Em 1967, Marvin Minsky afirmou confiantemente que "Dentro de uma geração ... o problema de criar 'inteligência artificial' será substancialmente resolvido." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
+Dos anos 1950 até meados dos anos 70, o otimismo era alto na esperança de que a IA pudesse resolver muitos problemas. Em 1967, Marvin Minsky afirmou confiantemente que "Dentro de uma geração... o problema de criar 'inteligência artificial' será substancialmente resolvido." (Minsky, Marvin (1967), Computation: Finite and Infinite Machines, Englewood Cliffs, N.J.: Prentice-Hall)
 
-A pesquisa em processamento de linguagem natural floresceu, a busca foi refinada e tornou-se mais poderosa, e o conceito de 'micro-mundos' foi criado, onde tarefas simples eram realizadas usando instruções em linguagem comum.
+Pesquisas em processamento de linguagem natural floresceram, buscas foram refinadas e tornadas mais poderosas, e o conceito de 'micro-mundos' foi criado, onde tarefas simples eram realizadas usando instruções em linguagem comum.
 
 ---
 
@@ -71,14 +71,14 @@ A pesquisa foi bem financiada por agências governamentais, avanços foram feito
 
 * [Shakey, o robô](https://wikipedia.org/wiki/Shakey_the_robot), que podia se mover e decidir como realizar tarefas 'inteligentemente'.
 
-    ![Shakey, um robô inteligente](../../../../translated_images/shakey.4dc17819c447c05bf4b52f76da0bdd28817d056fdb906252ec20124dd4cfa55e.br.jpg)
+    ![Shakey, um robô inteligente](../../../../1-Introduction/2-history-of-ML/images/shakey.jpg)
     > Shakey em 1972
 
 ---
 
 * Eliza, um dos primeiros 'chatterbots', podia conversar com pessoas e agir como um 'terapeuta' primitivo. Você aprenderá mais sobre Eliza nas lições de PLN.
 
-    ![Eliza, um bot](../../../../translated_images/eliza.84397454cda9559bb5ec296b5b8fff067571c0cccc5405f9c1ab1c3f105c075c.br.png)
+    ![Eliza, um bot](../../../../1-Introduction/2-history-of-ML/images/eliza.png)
     > Uma versão de Eliza, um chatbot
 
 ---
@@ -96,21 +96,21 @@ Por volta de meados dos anos 1970, tornou-se evidente que a complexidade de cria
 ---
 - **Limitações**. A capacidade computacional era muito limitada.
 - **Explosão combinatória**. A quantidade de parâmetros necessários para treinamento cresceu exponencialmente à medida que mais era exigido dos computadores, sem uma evolução paralela da capacidade computacional.
-- **Escassez de dados**. Havia uma escassez de dados que dificultava o processo de testar, desenvolver e refinar algoritmos.
+- **Escassez de dados**. Havia uma escassez de dados que dificultava o processo de teste, desenvolvimento e refinamento de algoritmos.
 - **Estamos fazendo as perguntas certas?**. As próprias perguntas que estavam sendo feitas começaram a ser questionadas. Pesquisadores começaram a enfrentar críticas sobre suas abordagens:
-  - Testes de Turing foram questionados por meio, entre outras ideias, da 'teoria da sala chinesa', que postulava que, "programar um computador digital pode fazer parecer que ele entende a linguagem, mas não poderia produzir compreensão real." ([fonte](https://plato.stanford.edu/entries/chinese-room/))
+  - Testes de Turing foram questionados por meio, entre outras ideias, da 'teoria da sala chinesa', que postulava que "programar um computador digital pode fazê-lo parecer entender a linguagem, mas não poderia produzir compreensão real." ([fonte](https://plato.stanford.edu/entries/chinese-room/))
   - A ética de introduzir inteligências artificiais como o "terapeuta" ELIZA na sociedade foi desafiada.
 
 ---
 
-Ao mesmo tempo, várias escolas de pensamento sobre IA começaram a se formar. Uma dicotomia foi estabelecida entre práticas de ["IA bagunçada" vs. "IA organizada"](https://wikipedia.org/wiki/Neats_and_scruffies). Laboratórios _bagunçados_ ajustavam programas por horas até obterem os resultados desejados. Laboratórios _organizados_ "focavam em lógica e resolução formal de problemas". ELIZA e SHRDLU eram sistemas _bagunçados_ bem conhecidos. Nos anos 1980, à medida que surgiu a demanda por sistemas de aprendizado de máquina reproduzíveis, a abordagem _organizada_ gradualmente tomou a dianteira, pois seus resultados são mais explicáveis.
+Ao mesmo tempo, várias escolas de pensamento em IA começaram a se formar. Uma dicotomia foi estabelecida entre práticas de ["IA desleixada" vs. "IA organizada"](https://wikipedia.org/wiki/Neats_and_scruffies). Laboratórios _desleixados_ ajustavam programas por horas até obterem os resultados desejados. Laboratórios _organizados_ "focavam em lógica e resolução formal de problemas". ELIZA e SHRDLU eram sistemas _desleixados_ bem conhecidos. Nos anos 1980, à medida que surgiu a demanda por sistemas de aprendizado de máquina reproduzíveis, a abordagem _organizada_ gradualmente tomou a dianteira, pois seus resultados são mais explicáveis.
 
 ---
 ## Sistemas especialistas nos anos 1980
 
 À medida que o campo crescia, seus benefícios para os negócios tornaram-se mais claros, e nos anos 1980 também ocorreu a proliferação de 'sistemas especialistas'. "Sistemas especialistas estavam entre as primeiras formas verdadeiramente bem-sucedidas de software de inteligência artificial (IA)." ([fonte](https://wikipedia.org/wiki/Expert_system)).
 
-Este tipo de sistema é, na verdade, _híbrido_, consistindo parcialmente de um motor de regras que define requisitos de negócios e um motor de inferência que utiliza o sistema de regras para deduzir novos fatos.
+Este tipo de sistema é na verdade _híbrido_, consistindo parcialmente de um motor de regras que define requisitos de negócios e um motor de inferência que utiliza o sistema de regras para deduzir novos fatos.
 
 Esta era também viu uma atenção crescente às redes neurais.
 
@@ -122,7 +122,7 @@ A proliferação de hardware especializado para sistemas especialistas teve o ef
 ---
 ## 1993 - 2011
 
-Este período viu uma nova era para o aprendizado de máquina e a IA resolverem alguns dos problemas causados anteriormente pela falta de dados e capacidade computacional. A quantidade de dados começou a aumentar rapidamente e se tornar mais amplamente disponível, para o bem e para o mal, especialmente com o advento do smartphone por volta de 2007. A capacidade computacional expandiu-se exponencialmente, e os algoritmos evoluíram junto. O campo começou a ganhar maturidade à medida que os dias livres do passado começaram a se cristalizar em uma verdadeira disciplina.
+Este período viu uma nova era para o aprendizado de máquina e a IA, permitindo resolver alguns dos problemas causados anteriormente pela falta de dados e capacidade computacional. A quantidade de dados começou a aumentar rapidamente e se tornar mais amplamente disponível, para o bem e para o mal, especialmente com o advento do smartphone por volta de 2007. A capacidade computacional expandiu exponencialmente, e os algoritmos evoluíram junto. O campo começou a ganhar maturidade à medida que os dias livres do passado começaram a se cristalizar em uma verdadeira disciplina.
 
 ---
 ## Hoje
@@ -141,10 +141,10 @@ Ainda não se sabe o que o futuro reserva, mas é importante entender esses sist
 
 Aprofunde-se em um desses momentos históricos e aprenda mais sobre as pessoas por trás deles. Há personagens fascinantes, e nenhuma descoberta científica foi criada em um vácuo cultural. O que você descobre?
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/4/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
-## Revisão e Autoestudo
+## Revisão e autoestudo
 
 Aqui estão itens para assistir e ouvir:
 
@@ -161,4 +161,4 @@ Aqui estão itens para assistir e ouvir:
 ---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.

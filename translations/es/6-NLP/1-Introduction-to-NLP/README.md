@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "89e923cf3e8bdff9662536e8bf9516e6",
-  "translation_date": "2025-09-04T00:47:18+00:00",
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-04T22:28:35+00:00",
   "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
   "language_code": "es"
 }
@@ -11,13 +11,13 @@ CO_OP_TRANSLATOR_METADATA:
 
 Esta lección cubre una breve historia y conceptos importantes del *procesamiento de lenguaje natural*, un subcampo de la *lingüística computacional*.
 
-## [Cuestionario previo a la clase](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introducción
 
-El PLN, como se le conoce comúnmente, es una de las áreas más conocidas donde se ha aplicado el aprendizaje automático y se utiliza en software de producción.
+El procesamiento de lenguaje natural, conocido como NLP por sus siglas en inglés, es una de las áreas más conocidas donde se ha aplicado el aprendizaje automático y se utiliza en software de producción.
 
-✅ ¿Puedes pensar en algún software que uses todos los días que probablemente tenga algo de PLN integrado? ¿Qué hay de tus programas de procesamiento de texto o aplicaciones móviles que usas regularmente?
+✅ ¿Puedes pensar en algún software que uses todos los días que probablemente tenga algo de NLP integrado? ¿Qué hay de tus programas de procesamiento de texto o aplicaciones móviles que usas regularmente?
 
 Aprenderás sobre:
 
@@ -26,20 +26,20 @@ Aprenderás sobre:
 
 ## Lingüística computacional
 
-La lingüística computacional es un área de investigación y desarrollo que, durante muchas décadas, ha estudiado cómo las computadoras pueden trabajar con, e incluso entender, traducir y comunicarse en idiomas. El procesamiento de lenguaje natural (PLN) es un campo relacionado que se centra en cómo las computadoras pueden procesar idiomas 'naturales', o humanos.
+La lingüística computacional es un área de investigación y desarrollo que, durante muchas décadas, ha estudiado cómo las computadoras pueden trabajar con los idiomas, e incluso entenderlos, traducirlos y comunicarse con ellos. El procesamiento de lenguaje natural (NLP) es un campo relacionado que se centra en cómo las computadoras pueden procesar idiomas 'naturales', es decir, humanos.
 
 ### Ejemplo - dictado en el teléfono
 
 Si alguna vez has dictado a tu teléfono en lugar de escribir o le has hecho una pregunta a un asistente virtual, tu voz fue convertida en texto y luego procesada o *analizada* desde el idioma que hablaste. Las palabras clave detectadas se procesaron en un formato que el teléfono o asistente pudo entender y actuar en consecuencia.
 
-![comprensión](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.es.png)
+![comprensión](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
 > ¡La comprensión lingüística real es difícil! Imagen por [Jen Looper](https://twitter.com/jenlooper)
 
 ### ¿Cómo es posible esta tecnología?
 
-Esto es posible porque alguien escribió un programa de computadora para hacerlo. Hace unas décadas, algunos escritores de ciencia ficción predijeron que las personas hablarían principalmente con sus computadoras, y que estas siempre entenderían exactamente lo que querían decir. Lamentablemente, resultó ser un problema más difícil de lo que muchos imaginaban, y aunque hoy en día es un problema mucho mejor entendido, existen desafíos significativos para lograr un procesamiento de lenguaje natural 'perfecto' cuando se trata de entender el significado de una oración. Este es un problema particularmente difícil cuando se trata de entender el humor o detectar emociones como el sarcasmo en una oración.
+Esto es posible porque alguien escribió un programa de computadora para hacerlo. Hace unas décadas, algunos escritores de ciencia ficción predijeron que las personas hablarían principalmente con sus computadoras y que estas siempre entenderían exactamente lo que querían decir. Lamentablemente, resultó ser un problema más difícil de lo que muchos imaginaron, y aunque hoy en día es un problema mucho mejor entendido, existen desafíos significativos para lograr un procesamiento de lenguaje natural 'perfecto' cuando se trata de entender el significado de una oración. Este es un problema particularmente difícil cuando se trata de entender el humor o detectar emociones como el sarcasmo en una oración.
 
-En este punto, podrías estar recordando las clases escolares donde el profesor cubría las partes de la gramática en una oración. En algunos países, se enseña gramática y lingüística como una materia dedicada, pero en muchos, estos temas se incluyen como parte del aprendizaje de un idioma: ya sea tu primer idioma en la escuela primaria (aprendiendo a leer y escribir) y quizás un segundo idioma en la secundaria o preparatoria. ¡No te preocupes si no eres un experto en diferenciar sustantivos de verbos o adverbios de adjetivos!
+En este punto, podrías estar recordando las clases escolares donde el profesor cubría las partes de la gramática en una oración. En algunos países, se enseña gramática y lingüística como una materia dedicada, pero en muchos, estos temas se incluyen como parte del aprendizaje de un idioma: ya sea tu primer idioma en la escuela primaria (aprendiendo a leer y escribir) y quizás un segundo idioma en la escuela secundaria. ¡No te preocupes si no eres un experto en diferenciar sustantivos de verbos o adverbios de adjetivos!
 
 Si tienes dificultades con la diferencia entre el *presente simple* y el *presente progresivo*, no estás solo. Esto es algo desafiante para muchas personas, incluso hablantes nativos de un idioma. La buena noticia es que las computadoras son muy buenas aplicando reglas formales, y aprenderás a escribir código que pueda *analizar* una oración tan bien como un humano. El mayor desafío que examinarás más adelante es entender el *significado* y el *sentimiento* de una oración.
 
@@ -74,7 +74,7 @@ Si, después de cierto tiempo de conversación, el humano no podía determinar s
 
 ### La inspiración - 'el juego de imitación'
 
-La idea para esto provino de un juego de fiesta llamado *El juego de imitación*, donde un interrogador está solo en una habitación y tiene la tarea de determinar cuál de dos personas (en otra habitación) es hombre y cuál es mujer. El interrogador puede enviar notas y debe tratar de pensar en preguntas cuyas respuestas escritas revelen el género de la persona misteriosa. Por supuesto, los jugadores en la otra habitación intentan engañar al interrogador respondiendo preguntas de manera que lo confundan o lo engañen, mientras que también dan la apariencia de responder honestamente.
+La idea para esto provino de un juego de fiesta llamado *El juego de imitación*, donde un interrogador está solo en una habitación y tiene la tarea de determinar cuál de dos personas (en otra habitación) es hombre y cuál es mujer. El interrogador puede enviar notas y debe tratar de pensar en preguntas cuyas respuestas escritas revelen el género de la persona misteriosa. Por supuesto, los jugadores en la otra habitación intentan engañar al interrogador respondiendo preguntas de manera que lo confundan o lo engañen, mientras dan la apariencia de responder honestamente.
 
 ### Desarrollando Eliza
 
@@ -86,7 +86,7 @@ Esto daba la impresión de que Eliza entendía la declaración y estaba haciendo
 
 > 🎥 Haz clic en la imagen de arriba para ver un video sobre el programa original de ELIZA
 
-> Nota: Puedes leer la descripción original de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publicada en 1966 si tienes una cuenta de ACM. Alternativamente, lee sobre Eliza en [Wikipedia](https://wikipedia.org/wiki/ELIZA)
+> Nota: Puedes leer la descripción original de [Eliza](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) publicada en 1966 si tienes una cuenta de ACM. Alternativamente, lee sobre Eliza en [Wikipedia](https://wikipedia.org/wiki/ELIZA).
 
 ## Ejercicio - programando un bot conversacional básico
 
@@ -97,7 +97,7 @@ Un bot conversacional, como Eliza, es un programa que solicita la entrada del us
 Tus pasos al construir un bot conversacional:
 
 1. Imprimir instrucciones que aconsejen al usuario cómo interactuar con el bot.
-2. Iniciar un bucle.
+2. Iniciar un bucle:
    1. Aceptar la entrada del usuario.
    2. Si el usuario ha pedido salir, entonces salir.
    3. Procesar la entrada del usuario y determinar la respuesta (en este caso, la respuesta es una elección aleatoria de una lista de posibles respuestas genéricas).
@@ -106,7 +106,7 @@ Tus pasos al construir un bot conversacional:
 
 ### Construyendo el bot
 
-Vamos a crear el bot ahora. Comenzaremos definiendo algunas frases.
+Vamos a crear el bot a continuación. Comenzaremos definiendo algunas frases.
 
 1. Crea este bot tú mismo en Python con las siguientes respuestas aleatorias:
 
@@ -142,7 +142,7 @@ Vamos a crear el bot ahora. Comenzaremos definiendo algunas frases.
     It was nice talking to you, goodbye!
     ```
 
-    Una posible solución a la tarea está [aquí](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py)
+    Una posible solución a la tarea está [aquí](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/1-Introduction-to-NLP/solution/bot.py).
 
     ✅ Detente y reflexiona
 
@@ -154,26 +154,26 @@ Vamos a crear el bot ahora. Comenzaremos definiendo algunas frases.
 
 ## 🚀Desafío
 
-Elige uno de los elementos de "detente y reflexiona" mencionados arriba y trata de implementarlo en código o escribe una solución en papel usando pseudocódigo.
+Elige uno de los elementos de "detente y reflexiona" anteriores y trata de implementarlo en código o escribe una solución en papel usando pseudocódigo.
 
 En la próxima lección, aprenderás sobre una serie de otros enfoques para analizar el lenguaje natural y el aprendizaje automático.
 
-## [Cuestionario posterior a la clase](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisión y autoestudio
 
-Consulta las referencias a continuación como oportunidades de lectura adicional.
+Echa un vistazo a las referencias a continuación como oportunidades de lectura adicional.
 
 ### Referencias
 
 1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
-2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
+2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010.
 
-## Tarea 
+## Tarea
 
 [Busca un bot](assignment.md)
 
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
