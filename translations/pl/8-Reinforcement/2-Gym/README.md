@@ -1,29 +1,29 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9660fbd80845c59c15715cb418cd6e23",
-  "translation_date": "2025-09-03T18:39:47+00:00",
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-05T08:28:22+00:00",
   "source_file": "8-Reinforcement/2-Gym/README.md",
   "language_code": "pl"
 }
 -->
 # CartPole Skating
 
-Problem, który rozwiązywaliśmy w poprzedniej lekcji, może wydawać się zabawkowy i mało przydatny w rzeczywistych scenariuszach. Tak jednak nie jest, ponieważ wiele problemów w prawdziwym świecie również ma podobny charakter – na przykład gra w szachy czy Go. Są one podobne, ponieważ również mamy planszę z określonymi zasadami i **dyskretny stan**.
+Problem, który rozwiązywaliśmy w poprzedniej lekcji, może wydawać się zabawkowy i mało przydatny w rzeczywistych scenariuszach. Jednak tak nie jest, ponieważ wiele problemów w prawdziwym świecie również ma podobny charakter – na przykład gra w szachy czy Go. Są one podobne, ponieważ również mamy planszę z określonymi zasadami i **dyskretny stan**.
 
-## [Quiz przed lekcją](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Wprowadzenie
 
-W tej lekcji zastosujemy te same zasady Q-Learningu do problemu z **ciągłym stanem**, czyli stanem określonym przez jedną lub więcej liczb rzeczywistych. Zajmiemy się następującym problemem:
+W tej lekcji zastosujemy te same zasady Q-Learningu do problemu z **ciągłym stanem**, czyli stanem opisanym przez jedną lub więcej liczb rzeczywistych. Zajmiemy się następującym problemem:
 
-> **Problem**: Jeśli Piotr chce uciec przed wilkiem, musi nauczyć się poruszać szybciej. Zobaczymy, jak Piotr może nauczyć się jeździć na łyżwach, w szczególności utrzymywać równowagę, korzystając z Q-Learningu.
+> **Problem**: Jeśli Piotr chce uciec przed wilkiem, musi nauczyć się poruszać szybciej. Zobaczymy, jak Piotr może nauczyć się jeździć na łyżwach, a w szczególności utrzymywać równowagę, korzystając z Q-Learningu.
 
-![Wielka ucieczka!](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.pl.png)
+![Wielka ucieczka!](../../../../8-Reinforcement/2-Gym/images/escape.png)
 
-> Piotr i jego przyjaciele wykazują się kreatywnością, by uciec przed wilkiem! Obraz autorstwa [Jen Looper](https://twitter.com/jenlooper)
+> Piotr i jego przyjaciele wykazują się kreatywnością, aby uciec przed wilkiem! Obraz autorstwa [Jen Looper](https://twitter.com/jenlooper)
 
-Użyjemy uproszczonej wersji problemu utrzymywania równowagi, znanej jako problem **CartPole**. W świecie CartPole mamy poziomy suwak, który może poruszać się w lewo lub w prawo, a celem jest utrzymanie pionowego słupka na szczycie suwaka.
+Użyjemy uproszczonej wersji problemu utrzymywania równowagi, znanej jako problem **CartPole**. W świecie CartPole mamy poziomy suwak, który może poruszać się w lewo lub w prawo, a celem jest utrzymanie pionowego słupka na górze suwaka.
 
 ## Wymagania wstępne
 
@@ -134,9 +134,9 @@ Istnieje kilka sposobów, aby to zrobić:
 
 - **Podział na przedziały**. Jeśli znamy zakres danej wartości, możemy podzielić ten zakres na liczbę **przedziałów**, a następnie zastąpić wartość numerem przedziału, do którego należy. Można to zrobić za pomocą metody numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html). W tym przypadku dokładnie znamy rozmiar stanu, ponieważ zależy on od liczby przedziałów, które wybierzemy do digitalizacji.
 
-✅ Możemy użyć interpolacji liniowej, aby sprowadzić wartości do pewnego skończonego zakresu (np. od -20 do 20), a następnie przekonwertować liczby na liczby całkowite, zaokrąglając je. Daje nam to nieco mniej kontroli nad rozmiarem stanu, zwłaszcza jeśli nie znamy dokładnych zakresów wartości wejściowych. Na przykład w naszym przypadku 2 z 4 wartości nie mają górnych/dolnych granic, co może skutkować nieskończoną liczbą stanów.
+✅ Możemy użyć interpolacji liniowej, aby sprowadzić wartości do pewnego skończonego zakresu (np. od -20 do 20), a następnie przekonwertować liczby na liczby całkowite przez zaokrąglenie. Daje nam to nieco mniej kontroli nad rozmiarem stanu, szczególnie jeśli nie znamy dokładnych zakresów wartości wejściowych. Na przykład w naszym przypadku 2 z 4 wartości nie mają górnych/dolnych ograniczeń, co może skutkować nieskończoną liczbą stanów.
 
-W naszym przykładzie wybierzemy drugie podejście. Jak zauważysz później, mimo nieokreślonych górnych/dolnych granic, te wartości rzadko przyjmują wartości poza pewnymi skończonymi zakresami, więc stany z ekstremalnymi wartościami będą bardzo rzadkie.
+W naszym przykładzie wybierzemy drugie podejście. Jak zauważysz później, mimo nieokreślonych górnych/dolnych ograniczeń, te wartości rzadko przyjmują wartości poza pewnymi skończonymi zakresami, więc stany z ekstremalnymi wartościami będą bardzo rzadkie.
 
 1. Oto funkcja, która pobiera obserwację z naszego modelu i zwraca krotkę 4 wartości całkowitych: (blok kodu 6)
 
@@ -163,7 +163,7 @@ W naszym przykładzie wybierzemy drugie podejście. Jak zauważysz później, mi
 
 1. Uruchommy teraz krótką symulację i zaobserwujmy te zdyskretyzowane wartości środowiska. Możesz wypróbować zarówno `discretize`, jak i `discretize_bins`, aby zobaczyć, czy istnieje różnica.
 
-    ✅ `discretize_bins` zwraca numer przedziału, który zaczyna się od 0. Dlatego dla wartości zmiennej wejściowej w okolicach 0 zwraca liczbę ze środka zakresu (10). W `discretize` nie przejmowaliśmy się zakresem wartości wyjściowych, pozwalając im być ujemnymi, więc wartości stanu nie są przesunięte, a 0 odpowiada 0. (blok kodu 8)
+    ✅ `discretize_bins` zwraca numer przedziału, który zaczyna się od 0. Dlatego dla wartości zmiennej wejściowej w okolicach 0 zwraca numer ze środka zakresu (10). W `discretize` nie przejmowaliśmy się zakresem wartości wyjściowych, pozwalając im być ujemnymi, więc wartości stanu nie są przesunięte, a 0 odpowiada 0. (blok kodu 8)
 
     ```python
     env.reset()
@@ -177,13 +177,13 @@ W naszym przykładzie wybierzemy drugie podejście. Jak zauważysz później, mi
     env.close()
     ```
 
-    ✅ Odkomentuj linię zaczynającą się od `env.render`, jeśli chcesz zobaczyć, jak środowisko działa. W przeciwnym razie możesz uruchomić je w tle, co jest szybsze. Tę "niewidzialną" egzekucję będziemy stosować podczas procesu Q-Learningu.
+    ✅ Odkomentuj linię zaczynającą się od `env.render`, jeśli chcesz zobaczyć, jak środowisko działa. W przeciwnym razie możesz uruchomić je w tle, co jest szybsze. Tę "niewidzialną" egzekucję wykorzystamy podczas procesu Q-Learningu.
 
 ## Struktura Q-Table
 
 W poprzedniej lekcji stan był prostą parą liczb od 0 do 8, więc wygodnie było reprezentować Q-Table jako tensor numpy o kształcie 8x8x2. Jeśli używamy dyskretyzacji za pomocą przedziałów, rozmiar naszego wektora stanu jest również znany, więc możemy użyć tego samego podejścia i reprezentować stan jako tablicę o kształcie 20x20x10x10x2 (gdzie 2 to wymiar przestrzeni akcji, a pierwsze wymiary odpowiadają liczbie przedziałów, które wybraliśmy dla każdej z wartości w przestrzeni obserwacji).
 
-Jednak czasami dokładne wymiary przestrzeni obserwacji nie są znane. W przypadku funkcji `discretize` nigdy nie możemy być pewni, że nasz stan pozostaje w określonych granicach, ponieważ niektóre z oryginalnych wartości nie mają ograniczeń. Dlatego użyjemy nieco innego podejścia i przedstawimy Q-Table jako słownik.
+Jednak czasami dokładne wymiary przestrzeni obserwacji nie są znane. W przypadku funkcji `discretize` nigdy nie możemy być pewni, że nasz stan pozostaje w określonych granicach, ponieważ niektóre z oryginalnych wartości nie są ograniczone. Dlatego użyjemy nieco innego podejścia i przedstawimy Q-Table jako słownik.
 
 1. Użyj pary *(stan, akcja)* jako klucza słownika, a wartość będzie odpowiadać wartości wpisu w Q-Table. (blok kodu 9)
 
@@ -210,11 +210,11 @@ Teraz jesteśmy gotowi, aby nauczyć Piotra balansowania!
     epsilon = 0.90
     ```
 
-    Tutaj `alpha` to **współczynnik uczenia się**, który określa, w jakim stopniu powinniśmy dostosowywać bieżące wartości Q-Table na każdym kroku. W poprzedniej lekcji zaczynaliśmy od 1, a następnie zmniejszaliśmy `alpha` do niższych wartości podczas treningu. W tym przykładzie dla uproszczenia utrzymamy go na stałym poziomie, ale możesz eksperymentować z dostosowywaniem wartości `alpha` później.
+    Tutaj `alpha` to **współczynnik uczenia się**, który określa, w jakim stopniu powinniśmy dostosowywać bieżące wartości Q-Table na każdym kroku. W poprzedniej lekcji zaczynaliśmy od 1, a następnie zmniejszaliśmy `alpha` do niższych wartości podczas treningu. W tym przykładzie utrzymamy go na stałym poziomie dla uproszczenia, ale możesz eksperymentować z dostosowywaniem wartości `alpha` później.
 
-    `gamma` to **współczynnik dyskontowy**, który pokazuje, w jakim stopniu powinniśmy priorytetowo traktować przyszłą nagrodę nad obecną.
+    `gamma` to **współczynnik dyskontowy**, który pokazuje, w jakim stopniu powinniśmy priorytetyzować przyszłą nagrodę nad bieżącą.
 
-    `epsilon` to **współczynnik eksploracji/eksploatacji**, który określa, czy powinniśmy preferować eksplorację, czy eksploatację. W naszym algorytmie w `epsilon` procentach przypadków wybierzemy następną akcję zgodnie z wartościami Q-Table, a w pozostałych przypadkach wykonamy losową akcję. Pozwoli nam to eksplorować obszary przestrzeni poszukiwań, których wcześniej nie widzieliśmy.
+    `epsilon` to **współczynnik eksploracji/eksploatacji**, który określa, czy powinniśmy preferować eksplorację czy eksploatację. W naszym algorytmie w `epsilon` procentach przypadków wybierzemy następną akcję zgodnie z wartościami Q-Table, a w pozostałych przypadkach wykonamy losową akcję. Pozwoli nam to eksplorować obszary przestrzeni poszukiwań, których wcześniej nie widzieliśmy.
 
     ✅ W kontekście balansowania – wybór losowej akcji (eksploracja) działałby jak przypadkowe "pchnięcie" w złą stronę, a słupek musiałby nauczyć się, jak odzyskać równowagę po tych "błędach".
 
@@ -222,7 +222,7 @@ Teraz jesteśmy gotowi, aby nauczyć Piotra balansowania!
 
 Możemy również wprowadzić dwa ulepszenia do naszego algorytmu z poprzedniej lekcji:
 
-- **Obliczanie średniej skumulowanej nagrody** w serii symulacji. Będziemy drukować postęp co 5000 iteracji i uśredniać naszą skumulowaną nagrodę w tym okresie. Oznacza to, że jeśli uzyskamy więcej niż 195 punktów, możemy uznać problem za rozwiązany, i to z jeszcze wyższą jakością niż wymagana.
+- **Obliczanie średniej skumulowanej nagrody** w serii symulacji. Będziemy drukować postęp co 5000 iteracji i uśredniać naszą skumulowaną nagrodę w tym okresie. Oznacza to, że jeśli uzyskamy więcej niż 195 punktów – możemy uznać problem za rozwiązany, i to z jeszcze wyższą jakością niż wymagana.
 
 - **Obliczanie maksymalnego średniego wyniku skumulowanego**, `Qmax`, i przechowywanie Q-Table odpowiadającej temu wynikowi. Podczas treningu zauważysz, że czasami średni wynik skumulowany zaczyna spadać, a my chcemy zachować wartości Q-Table odpowiadające najlepszemu modelowi zaobserwowanemu podczas treningu.
 
@@ -269,7 +269,7 @@ Możemy również wprowadzić dwa ulepszenia do naszego algorytmu z poprzedniej 
 
 Co możesz zauważyć z tych wyników:
 
-- **Blisko naszego celu**. Jesteśmy bardzo blisko osiągnięcia celu uzyskania 195 skumulowanych nagród w ponad 100 kolejnych uruchomieniach symulacji, a może nawet go osiągnęliśmy! Nawet jeśli uzyskamy mniejsze liczby, nadal nie wiemy, ponieważ uśredniamy wyniki z 5000 uruchomień, a formalne kryterium wymaga tylko 100 uruchomień.
+- **Blisko naszego celu**. Jesteśmy bardzo blisko osiągnięcia celu uzyskania 195 skumulowanych nagród w ponad 100 kolejnych uruchomieniach symulacji, lub możemy już go osiągnęliśmy! Nawet jeśli uzyskamy mniejsze liczby, nadal nie wiemy, ponieważ uśredniamy wyniki z 5000 uruchomień, a formalne kryterium wymaga tylko 100 uruchomień.
 
 - **Nagroda zaczyna spadać**. Czasami nagroda zaczyna spadać, co oznacza, że możemy "zniszczyć" już wyuczone wartości w Q-Table, zastępując je tymi, które pogarszają sytuację.
 
@@ -283,7 +283,7 @@ Podczas treningu zbieraliśmy wartość skumulowanej nagrody na każdej iteracji
 plt.plot(rewards)
 ```
 
-![surowy postęp](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.pl.png)
+![surowy postęp](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
 Z tego wykresu trudno coś wywnioskować, ponieważ ze względu na charakter stochastycznego procesu treningowego długość sesji treningowych znacznie się różni. Aby lepiej zrozumieć ten wykres, możemy obliczyć **średnią kroczącą** dla serii eksperymentów, na przykład 100. Można to wygodnie zrobić za pomocą `np.convolve`: (blok kodu 12)
 
@@ -294,7 +294,7 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![postęp treningu](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.pl.png)
+![postęp treningu](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
 ## Zmienianie hiperparametrów
 
@@ -304,11 +304,11 @@ Aby uczynić proces uczenia bardziej stabilnym, warto dostosować niektóre z na
 
 - **Zwiększanie epsilon**. Możemy chcieć stopniowo zwiększać `epsilon`, aby mniej eksplorować, a bardziej eksploatować. Prawdopodobnie warto zacząć od niższej wartości `epsilon` i stopniowo zwiększać ją do prawie 1.
 > **Zadanie 1**: Pobaw się wartościami hiperparametrów i sprawdź, czy możesz osiągnąć wyższą skumulowaną nagrodę. Czy udaje Ci się przekroczyć 195?
-> **Zadanie 2**: Aby formalnie rozwiązać problem, musisz osiągnąć średnią nagrodę wynoszącą 195 w 100 kolejnych próbach. Mierz to podczas treningu i upewnij się, że formalnie rozwiązałeś problem!
+> **Zadanie 2**: Aby formalnie rozwiązać problem, musisz osiągnąć średnią nagrodę na poziomie 195 w 100 kolejnych próbach. Mierz to podczas treningu i upewnij się, że formalnie rozwiązałeś problem!
 
 ## Zobaczenie wyników w praktyce
 
-Ciekawie byłoby zobaczyć, jak zachowuje się wytrenowany model. Uruchommy symulację i zastosujmy tę samą strategię wyboru akcji co podczas treningu, próbkując zgodnie z rozkładem prawdopodobieństwa w Q-Table: (blok kodu 13)
+Ciekawie byłoby zobaczyć, jak zachowuje się wytrenowany model. Uruchommy symulację i zastosujmy tę samą strategię wyboru akcji, co podczas treningu, próbkując zgodnie z rozkładem prawdopodobieństwa w Q-Table: (blok kodu 13)
 
 ```python
 obs = env.reset()
@@ -324,28 +324,28 @@ env.close()
 
 Powinieneś zobaczyć coś takiego:
 
-![balansujący cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
+![a balancing cartpole](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
 ---
 
 ## 🚀Wyzwanie
 
-> **Zadanie 3**: Tutaj używaliśmy ostatecznej wersji Q-Table, która może nie być najlepsza. Pamiętaj, że zapisaliśmy najlepiej działającą Q-Table w zmiennej `Qbest`! Wypróbuj ten sam przykład z najlepiej działającą Q-Table, kopiując `Qbest` do `Q`, i sprawdź, czy zauważysz różnicę.
+> **Zadanie 3**: Tutaj korzystaliśmy z ostatecznej wersji Q-Table, która może nie być najlepsza. Pamiętaj, że zapisaliśmy najlepiej działającą Q-Table w zmiennej `Qbest`! Wypróbuj ten sam przykład, używając najlepiej działającej Q-Table, kopiując `Qbest` do `Q`, i sprawdź, czy zauważysz różnicę.
 
-> **Zadanie 4**: Tutaj nie wybieraliśmy najlepszej akcji na każdym kroku, lecz próbkowaliśmy zgodnie z odpowiadającym rozkładem prawdopodobieństwa. Czy bardziej sensowne byłoby zawsze wybieranie najlepszej akcji, z najwyższą wartością w Q-Table? Można to zrobić, używając funkcji `np.argmax`, aby znaleźć numer akcji odpowiadający najwyższej wartości w Q-Table. Zaimplementuj tę strategię i sprawdź, czy poprawia balansowanie.
+> **Zadanie 4**: W tym przypadku nie wybieraliśmy najlepszej akcji na każdym kroku, lecz próbkowaliśmy zgodnie z odpowiadającym rozkładem prawdopodobieństwa. Czy miałoby więcej sensu zawsze wybierać najlepszą akcję, z najwyższą wartością w Q-Table? Można to zrobić, używając funkcji `np.argmax`, aby znaleźć numer akcji odpowiadający najwyższej wartości w Q-Table. Zaimplementuj tę strategię i sprawdź, czy poprawia to balansowanie.
 
-## [Quiz po wykładzie](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Zadanie
 [Wytrenuj Mountain Car](assignment.md)
 
 ## Podsumowanie
 
-Nauczyliśmy się, jak trenować agentów, aby osiągali dobre wyniki, jedynie dostarczając im funkcję nagrody, która definiuje pożądany stan gry, oraz dając im możliwość inteligentnego eksplorowania przestrzeni wyszukiwania. Z powodzeniem zastosowaliśmy algorytm Q-Learning w przypadkach środowisk dyskretnych i ciągłych, ale z dyskretnymi akcjami.
+Nauczyliśmy się, jak trenować agentów, aby osiągali dobre wyniki, dostarczając im jedynie funkcję nagrody, która definiuje pożądany stan gry, oraz dając im możliwość inteligentnego eksplorowania przestrzeni poszukiwań. Z powodzeniem zastosowaliśmy algorytm Q-Learning w przypadkach środowisk dyskretnych i ciągłych, ale z dyskretnymi akcjami.
 
-Warto również zbadać sytuacje, w których stan akcji jest ciągły, a przestrzeń obserwacji jest znacznie bardziej złożona, na przykład obraz z ekranu gry Atari. W takich problemach często musimy używać bardziej zaawansowanych technik uczenia maszynowego, takich jak sieci neuronowe, aby osiągnąć dobre wyniki. Te bardziej zaawansowane tematy będą przedmiotem naszego nadchodzącego kursu zaawansowanej sztucznej inteligencji.
+Ważne jest również badanie sytuacji, w których przestrzeń akcji jest również ciągła, a przestrzeń obserwacji jest znacznie bardziej złożona, na przykład obraz z ekranu gry Atari. W takich problemach często musimy korzystać z bardziej zaawansowanych technik uczenia maszynowego, takich jak sieci neuronowe, aby osiągnąć dobre wyniki. Te bardziej zaawansowane tematy będą przedmiotem naszego kolejnego, bardziej zaawansowanego kursu AI.
 
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego języku źródłowym powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

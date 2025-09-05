@@ -1,21 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73e9a7245aa57f00cd413ffd22c0ccb6",
-  "translation_date": "2025-09-03T17:46:16+00:00",
+  "original_hash": "69389392fa6346e0dfa30f664b7b6fec",
+  "translation_date": "2025-09-05T08:22:20+00:00",
   "source_file": "1-Introduction/1-intro-to-ML/README.md",
   "language_code": "pl"
 }
 -->
 # Wprowadzenie do uczenia maszynowego
 
-## [Quiz przed wykładem](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
 [![ML dla początkujących - Wprowadzenie do uczenia maszynowego dla początkujących](https://img.youtube.com/vi/6mSx_KJxcHI/0.jpg)](https://youtu.be/6mSx_KJxcHI "ML dla początkujących - Wprowadzenie do uczenia maszynowego dla początkujących")
 
-> 🎥 Kliknij obrazek powyżej, aby obejrzeć krótki film omawiający tę lekcję.
+> 🎥 Kliknij obrazek powyżej, aby obejrzeć krótki film związany z tą lekcją.
 
 Witamy na kursie klasycznego uczenia maszynowego dla początkujących! Niezależnie od tego, czy dopiero zaczynasz swoją przygodę z tym tematem, czy jesteś doświadczonym praktykiem ML, który chce odświeżyć wiedzę w danej dziedzinie, cieszymy się, że do nas dołączasz! Chcemy stworzyć przyjazne miejsce startowe dla Twojej nauki ML i chętnie ocenimy, odpowiemy na Twoje [opinie](https://github.com/microsoft/ML-For-Beginners/discussions) oraz uwzględnimy je w kursie.
 
@@ -26,60 +26,60 @@ Witamy na kursie klasycznego uczenia maszynowego dla początkujących! Niezależ
 ---
 ## Rozpoczęcie pracy z uczeniem maszynowym
 
-Przed rozpoczęciem tego kursu musisz przygotować swój komputer do lokalnego uruchamiania notebooków.
+Przed rozpoczęciem pracy z tym kursem musisz przygotować swój komputer do lokalnego uruchamiania notebooków.
 
-- **Skonfiguruj swój komputer za pomocą tych filmów**. Skorzystaj z poniższych linków, aby dowiedzieć się [jak zainstalować Pythona](https://youtu.be/CXZYvNRIAKM) na swoim systemie oraz [jak skonfigurować edytor tekstu](https://youtu.be/EU8eayHWoZg) do programowania.
+- **Skonfiguruj swój komputer za pomocą tych filmów**. Skorzystaj z poniższych linków, aby dowiedzieć się [jak zainstalować Python](https://youtu.be/CXZYvNRIAKM) na swoim systemie oraz [jak skonfigurować edytor tekstu](https://youtu.be/EU8eayHWoZg) do programowania.
 - **Naucz się Pythona**. Zaleca się również podstawową znajomość [Pythona](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott), języka programowania przydatnego dla naukowców zajmujących się danymi, którego używamy w tym kursie.
 - **Poznaj Node.js i JavaScript**. Kilka razy w tym kursie używamy JavaScriptu do tworzenia aplikacji webowych, więc będziesz potrzebować [node](https://nodejs.org) i [npm](https://www.npmjs.com/) oraz [Visual Studio Code](https://code.visualstudio.com/) do programowania w Pythonie i JavaScript.
-- **Załóż konto na GitHubie**. Skoro znalazłeś nas tutaj na [GitHubie](https://github.com), być może już masz konto, ale jeśli nie, załóż je, a następnie zrób fork tego kursu, aby korzystać z niego na własny użytek. (Możesz też dać nam gwiazdkę 😊)
+- **Załóż konto na GitHub**. Skoro znalazłeś nas tutaj na [GitHub](https://github.com), być może już masz konto, ale jeśli nie, załóż je, a następnie zrób fork tego kursu, aby korzystać z niego na własny użytek. (Możesz też dać nam gwiazdkę 😊)
 - **Poznaj Scikit-learn**. Zapoznaj się z [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), zestawem bibliotek ML, które wykorzystujemy w tych lekcjach.
 
 ---
 ## Czym jest uczenie maszynowe?
 
-Termin 'uczenie maszynowe' jest jednym z najpopularniejszych i najczęściej używanych terminów współczesności. Istnieje spora szansa, że słyszałeś ten termin przynajmniej raz, jeśli masz jakąkolwiek styczność z technologią, niezależnie od dziedziny, w której pracujesz. Mechanizmy uczenia maszynowego są jednak tajemnicą dla większości ludzi. Dla początkującego w tej dziedzinie temat może czasami wydawać się przytłaczający. Dlatego ważne jest, aby zrozumieć, czym właściwie jest uczenie maszynowe, i poznawać je krok po kroku, poprzez praktyczne przykłady.
+Termin 'uczenie maszynowe' jest jednym z najpopularniejszych i najczęściej używanych terminów współczesności. Istnieje spore prawdopodobieństwo, że słyszałeś ten termin przynajmniej raz, jeśli masz jakąkolwiek styczność z technologią, niezależnie od dziedziny, w której pracujesz. Mechanizmy uczenia maszynowego są jednak tajemnicą dla większości ludzi. Dla początkującego w tej dziedzinie temat może czasami wydawać się przytłaczający. Dlatego ważne jest, aby zrozumieć, czym właściwie jest uczenie maszynowe i poznawać je krok po kroku, poprzez praktyczne przykłady.
 
 ---
 ## Krzywa popularności
 
-![ml hype curve](../../../../translated_images/hype.07183d711a17aafe70915909a0e45aa286ede136ee9424d418026ab00fec344c.pl.png)
+![ml hype curve](../../../../1-Introduction/1-intro-to-ML/images/hype.png)
 
 > Google Trends pokazuje ostatnią 'krzywą popularności' terminu 'uczenie maszynowe'
 
 ---
 ## Tajemniczy wszechświat
 
-Żyjemy w wszechświecie pełnym fascynujących tajemnic. Wielcy naukowcy, tacy jak Stephen Hawking, Albert Einstein i wielu innych, poświęcili swoje życie na poszukiwanie znaczących informacji, które odkrywają tajemnice otaczającego nas świata. To jest ludzka potrzeba uczenia się: dziecko uczy się nowych rzeczy i odkrywa strukturę swojego świata rok po roku, dorastając do dorosłości.
+Żyjemy w wszechświecie pełnym fascynujących tajemnic. Wielcy naukowcy, tacy jak Stephen Hawking, Albert Einstein i wielu innych, poświęcili swoje życie na poszukiwanie znaczących informacji, które odkrywają tajemnice otaczającego nas świata. To jest ludzka kondycja uczenia się: dziecko uczy się nowych rzeczy i odkrywa strukturę swojego świata rok po roku, dorastając do dorosłości.
 
 ---
 ## Mózg dziecka
 
-Mózg dziecka i jego zmysły postrzegają fakty otaczającego świata i stopniowo uczą się ukrytych wzorców życia, które pomagają dziecku tworzyć logiczne reguły identyfikujące poznane wzorce. Proces uczenia się ludzkiego mózgu sprawia, że ludzie są najbardziej zaawansowanymi żywymi istotami na świecie. Ciągłe uczenie się poprzez odkrywanie ukrytych wzorców, a następnie innowacje na ich podstawie, pozwala nam stawać się coraz lepszymi przez całe życie. Ta zdolność uczenia się i ewolucji jest związana z koncepcją zwaną [plastycznością mózgu](https://www.simplypsychology.org/brain-plasticity.html). Powierzchownie możemy dostrzec pewne motywacyjne podobieństwa między procesem uczenia się ludzkiego mózgu a koncepcjami uczenia maszynowego.
+Mózg dziecka i jego zmysły postrzegają fakty otoczenia i stopniowo uczą się ukrytych wzorców życia, które pomagają dziecku tworzyć logiczne zasady identyfikacji poznanych wzorców. Proces uczenia się ludzkiego mózgu sprawia, że ludzie są najbardziej zaawansowanymi istotami żyjącymi na świecie. Ciągłe uczenie się poprzez odkrywanie ukrytych wzorców, a następnie innowacje na ich podstawie, pozwala nam stawać się coraz lepszymi przez całe życie. Ta zdolność uczenia się i ewolucji jest związana z koncepcją zwaną [plastycznością mózgu](https://www.simplypsychology.org/brain-plasticity.html). Powierzchownie możemy dostrzec pewne motywacyjne podobieństwa między procesem uczenia się ludzkiego mózgu a koncepcjami uczenia maszynowego.
 
 ---
 ## Ludzki mózg
 
-[Ludzki mózg](https://www.livescience.com/29365-human-brain.html) postrzega rzeczy z rzeczywistego świata, przetwarza postrzegane informacje, podejmuje racjonalne decyzje i wykonuje określone działania w zależności od okoliczności. To nazywamy inteligentnym zachowaniem. Kiedy programujemy imitację procesu inteligentnego zachowania na maszynie, nazywa się to sztuczną inteligencją (AI).
+[Ludzki mózg](https://www.livescience.com/29365-human-brain.html) postrzega rzeczy ze świata rzeczywistego, przetwarza postrzegane informacje, podejmuje racjonalne decyzje i wykonuje określone działania w zależności od okoliczności. To właśnie nazywamy inteligentnym zachowaniem. Kiedy programujemy imitację procesu inteligentnego zachowania na maszynie, nazywa się to sztuczną inteligencją (AI).
 
 ---
 ## Kilka terminów
 
-Chociaż terminy mogą być mylone, uczenie maszynowe (ML) jest ważnym podzbiorem sztucznej inteligencji. **ML zajmuje się wykorzystaniem specjalistycznych algorytmów do odkrywania znaczących informacji i znajdowania ukrytych wzorców w postrzeganych danych, aby wspierać proces podejmowania racjonalnych decyzji**.
+Chociaż terminy mogą być mylone, uczenie maszynowe (ML) jest ważnym podzbiorem sztucznej inteligencji. **ML zajmuje się wykorzystaniem specjalistycznych algorytmów do odkrywania znaczących informacji i znajdowania ukrytych wzorców w postrzeganych danych, aby wspierać proces racjonalnego podejmowania decyzji**.
 
 ---
 ## AI, ML, Deep Learning
 
-![AI, ML, deep learning, data science](../../../../translated_images/ai-ml-ds.537ea441b124ebf69c144a52c0eb13a7af63c4355c2f92f440979380a2fb08b8.pl.png)
+![AI, ML, deep learning, data science](../../../../1-Introduction/1-intro-to-ML/images/ai-ml-ds.png)
 
 > Diagram pokazujący relacje między AI, ML, deep learning i data science. Infografika autorstwa [Jen Looper](https://twitter.com/jenlooper) inspirowana [tym grafikiem](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
 ---
 ## Koncepcje do omówienia
 
-W tym kursie omówimy tylko podstawowe koncepcje uczenia maszynowego, które początkujący musi znać. Skupimy się na tym, co nazywamy 'klasycznym uczeniem maszynowym', głównie korzystając z Scikit-learn, doskonałej biblioteki, której wielu studentów używa do nauki podstaw. Aby zrozumieć szersze koncepcje sztucznej inteligencji lub deep learning, niezbędna jest solidna podstawowa wiedza o uczeniu maszynowym, którą chcemy tutaj zaoferować.
+W tym kursie omówimy tylko podstawowe koncepcje uczenia maszynowego, które początkujący musi znać. Skupimy się na tym, co nazywamy 'klasycznym uczeniem maszynowym', głównie korzystając z Scikit-learn, doskonałej biblioteki, którą wielu studentów wykorzystuje do nauki podstaw. Aby zrozumieć szersze koncepcje sztucznej inteligencji lub deep learning, niezbędna jest solidna wiedza podstawowa z zakresu uczenia maszynowego, którą chcemy tutaj zaoferować.
 
 ---
-## Na tym kursie nauczysz się:
+## W tym kursie nauczysz się:
 
 - podstawowych koncepcji uczenia maszynowego
 - historii ML
@@ -89,7 +89,7 @@ W tym kursie omówimy tylko podstawowe koncepcje uczenia maszynowego, które poc
 - technik klastrowania w ML
 - technik przetwarzania języka naturalnego w ML
 - technik prognozowania szeregów czasowych w ML
-- uczenia ze wzmocnieniem
+- uczenia przez wzmacnianie
 - zastosowań uczenia maszynowego w rzeczywistości
 
 ---
@@ -99,7 +99,7 @@ W tym kursie omówimy tylko podstawowe koncepcje uczenia maszynowego, które poc
 - sieci neuronowych
 - AI
 
-Aby zapewnić lepsze doświadczenie edukacyjne, unikniemy złożoności sieci neuronowych, 'deep learning' - budowania modeli z wieloma warstwami za pomocą sieci neuronowych - oraz AI, które omówimy w innym kursie. Oferujemy również nadchodzący kurs data science, który skupi się na tym aspekcie tej większej dziedziny.
+Aby zapewnić lepsze doświadczenie edukacyjne, unikniemy złożoności sieci neuronowych, 'deep learning' - wielowarstwowego budowania modeli za pomocą sieci neuronowych - oraz AI, które omówimy w innym kursie. Oferujemy również nadchodzący kurs data science, który skupi się na tym aspekcie tej większej dziedziny.
 
 ---
 ## Dlaczego warto studiować uczenie maszynowe?
@@ -113,7 +113,7 @@ Ta motywacja jest luźno inspirowana tym, jak ludzki mózg uczy się pewnych rze
 ---
 ## Zastosowania uczenia maszynowego
 
-Zastosowania uczenia maszynowego są teraz niemal wszędzie i są tak wszechobecne jak dane przepływające przez nasze społeczeństwa, generowane przez nasze smartfony, urządzenia podłączone do sieci i inne systemy. Biorąc pod uwagę ogromny potencjał najnowocześniejszych algorytmów uczenia maszynowego, naukowcy badają ich zdolność do rozwiązywania wielowymiarowych i wielodyscyplinarnych problemów życia codziennego z wielkimi pozytywnymi rezultatami.
+Zastosowania uczenia maszynowego są teraz niemal wszędzie i są tak wszechobecne jak dane przepływające w naszych społeczeństwach, generowane przez nasze smartfony, urządzenia połączone i inne systemy. Biorąc pod uwagę ogromny potencjał najnowocześniejszych algorytmów uczenia maszynowego, naukowcy badają ich zdolność do rozwiązywania wielowymiarowych i wielodyscyplinarnych problemów życia codziennego z wielkimi pozytywnymi rezultatami.
 
 ---
 ## Przykłady zastosowania ML
@@ -123,23 +123,23 @@ Zastosowania uczenia maszynowego są teraz niemal wszędzie i są tak wszechobec
 - Do przewidywania prawdopodobieństwa wystąpienia choroby na podstawie historii medycznej pacjenta lub raportów.
 - Do wykorzystania danych pogodowych w celu przewidywania zjawisk atmosferycznych.
 - Do analizy sentymentu tekstu.
-- Do wykrywania fałszywych wiadomości, aby powstrzymać rozprzestrzenianie się propagandy.
+- Do wykrywania fałszywych wiadomości, aby zatrzymać rozprzestrzenianie się propagandy.
 
 Finanse, ekonomia, nauki o Ziemi, eksploracja kosmosu, inżynieria biomedyczna, nauki kognitywne, a nawet dziedziny humanistyczne zaadaptowały uczenie maszynowe do rozwiązywania trudnych, wymagających przetwarzania danych problemów w swoich dziedzinach.
 
 ---
 ## Podsumowanie
 
-Uczenie maszynowe automatyzuje proces odkrywania wzorców, znajdując znaczące informacje w rzeczywistych lub generowanych danych. Udowodniło swoją wartość w biznesie, zdrowiu i aplikacjach finansowych, między innymi.
+Uczenie maszynowe automatyzuje proces odkrywania wzorców poprzez znajdowanie znaczących informacji z danych rzeczywistych lub generowanych. Udowodniło swoją wartość w biznesie, zdrowiu i aplikacjach finansowych, między innymi.
 
 W niedalekiej przyszłości zrozumienie podstaw uczenia maszynowego stanie się koniecznością dla ludzi z każdej dziedziny ze względu na jego szerokie zastosowanie.
 
 ---
 # 🚀 Wyzwanie
 
-Naszkicuj, na papierze lub za pomocą aplikacji online, takiej jak [Excalidraw](https://excalidraw.com/), swoje rozumienie różnic między AI, ML, deep learning i data science. Dodaj pomysły na problemy, które każda z tych technik jest dobra w rozwiązywaniu.
+Naszkicuj, na papierze lub za pomocą aplikacji online, takiej jak [Excalidraw](https://excalidraw.com/), swoje rozumienie różnic między AI, ML, deep learning i data science. Dodaj kilka pomysłów na problemy, które każda z tych technik jest dobra w rozwiązywaniu.
 
-# [Quiz po wykładzie](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/)
+# [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 # Przegląd i samodzielna nauka
@@ -156,4 +156,4 @@ Weź udział w [kursie](https://docs.microsoft.com/learn/modules/introduction-to
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za źródło autorytatywne. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.

@@ -1,37 +1,37 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "3150d40f36a77857316ecaed5f31e856",
-  "translation_date": "2025-09-03T16:54:03+00:00",
+  "original_hash": "662b509c39eee205687726636d0a8455",
+  "translation_date": "2025-09-05T08:39:49+00:00",
   "source_file": "7-TimeSeries/1-Introduction/README.md",
   "language_code": "pt"
 }
 -->
 # Introdução à previsão de séries temporais
 
-![Resumo de séries temporais em um sketchnote](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.pt.png)
+![Resumo de séries temporais em um sketchnote](../../../../sketchnotes/ml-timeseries.png)
 
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-Nesta lição e na próxima, vais aprender um pouco sobre previsão de séries temporais, uma parte interessante e valiosa do repertório de um cientista de ML que é um pouco menos conhecida do que outros tópicos. A previsão de séries temporais é como uma espécie de 'bola de cristal': com base no desempenho passado de uma variável, como o preço, podes prever o seu valor potencial futuro.
+Nesta lição e na próxima, vais aprender um pouco sobre previsão de séries temporais, uma parte interessante e valiosa do repertório de um cientista de ML que é um pouco menos conhecida do que outros tópicos. A previsão de séries temporais é como uma espécie de "bola de cristal": com base no desempenho passado de uma variável, como o preço, podes prever o seu valor potencial futuro.
 
 [![Introdução à previsão de séries temporais](https://img.youtube.com/vi/cBojo1hsHiI/0.jpg)](https://youtu.be/cBojo1hsHiI "Introdução à previsão de séries temporais")
 
 > 🎥 Clica na imagem acima para ver um vídeo sobre previsão de séries temporais
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/41/)
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-É um campo útil e interessante com valor real para os negócios, dado que tem aplicação direta em problemas de preços, inventário e questões de cadeia de abastecimento. Embora técnicas de aprendizagem profunda tenham começado a ser usadas para obter mais insights e prever melhor o desempenho futuro, a previsão de séries temporais continua a ser um campo amplamente informado por técnicas clássicas de ML.
+É um campo útil e interessante com valor real para os negócios, dado a sua aplicação direta em problemas de preços, inventário e questões de cadeia de abastecimento. Embora técnicas de aprendizagem profunda tenham começado a ser usadas para obter mais insights e prever melhor o desempenho futuro, a previsão de séries temporais continua a ser um campo amplamente informado por técnicas clássicas de ML.
 
 > O currículo útil de séries temporais da Penn State pode ser encontrado [aqui](https://online.stat.psu.edu/stat510/lesson/1)
 
 ## Introdução
 
-Suponhamos que geres uma rede de parquímetros inteligentes que fornecem dados sobre a frequência e duração de uso ao longo do tempo.
+Suponha que geres uma rede de parquímetros inteligentes que fornecem dados sobre a frequência e duração de uso ao longo do tempo.
 
 > E se pudesses prever, com base no desempenho passado do parquímetro, o seu valor futuro de acordo com as leis de oferta e procura?
 
-Prever com precisão quando agir para alcançar o teu objetivo é um desafio que pode ser abordado com previsão de séries temporais. Não deixaria as pessoas felizes serem cobradas mais em horários de pico quando procuram um lugar para estacionar, mas seria uma forma eficaz de gerar receita para limpar as ruas!
+Prever com precisão quando agir para alcançar o teu objetivo é um desafio que pode ser abordado com previsão de séries temporais. Não seria agradável para as pessoas serem cobradas mais em horários de pico quando procuram um lugar para estacionar, mas seria uma forma eficaz de gerar receita para limpar as ruas!
 
 Vamos explorar alguns dos tipos de algoritmos de séries temporais e começar um notebook para limpar e preparar alguns dados. Os dados que vais analisar foram retirados da competição de previsão GEFCom2014. Consistem em 3 anos de valores horários de carga elétrica e temperatura entre 2012 e 2014. Dado os padrões históricos de carga elétrica e temperatura, podes prever valores futuros de carga elétrica.
 
@@ -39,15 +39,15 @@ Neste exemplo, vais aprender a prever um passo temporal à frente, usando apenas
 
 ## Algumas definições
 
-Ao encontrar o termo 'séries temporais', precisas de entender o seu uso em vários contextos diferentes.
+Ao encontrar o termo "séries temporais", precisas de entender o seu uso em vários contextos diferentes.
 
 🎓 **Séries temporais**
 
-Em matemática, "uma série temporal é uma série de pontos de dados indexados (ou listados ou representados graficamente) em ordem temporal. Mais comumente, uma série temporal é uma sequência tomada em pontos sucessivos igualmente espaçados no tempo." Um exemplo de série temporal é o valor de fechamento diário do [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). O uso de gráficos de séries temporais e modelagem estatística é frequentemente encontrado em processamento de sinais, previsão do tempo, previsão de terremotos e outros campos onde eventos ocorrem e pontos de dados podem ser representados ao longo do tempo.
+Em matemática, "uma série temporal é uma série de pontos de dados indexados (ou listados ou representados graficamente) em ordem temporal. Mais comumente, uma série temporal é uma sequência tomada em pontos sucessivos igualmente espaçados no tempo." Um exemplo de série temporal é o valor de fecho diário do [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). O uso de gráficos de séries temporais e modelagem estatística é frequentemente encontrado em processamento de sinais, previsão do tempo, previsão de terremotos e outros campos onde eventos ocorrem e pontos de dados podem ser representados ao longo do tempo.
 
 🎓 **Análise de séries temporais**
 
-A análise de séries temporais é a análise dos dados de séries temporais mencionados acima. Os dados de séries temporais podem assumir formas distintas, incluindo 'séries temporais interrompidas', que detectam padrões na evolução de uma série temporal antes e depois de um evento interruptor. O tipo de análise necessário para a série temporal depende da natureza dos dados. Os dados de séries temporais podem assumir a forma de séries de números ou caracteres.
+A análise de séries temporais é a análise dos dados de séries temporais mencionados acima. Os dados de séries temporais podem assumir formas distintas, incluindo "séries temporais interrompidas", que detectam padrões na evolução de uma série temporal antes e depois de um evento interruptor. O tipo de análise necessário para a série temporal depende da natureza dos dados. Os dados de séries temporais podem assumir a forma de séries de números ou caracteres.
 
 A análise a ser realizada utiliza uma variedade de métodos, incluindo domínio de frequência e domínio temporal, linear e não linear, entre outros. [Saiba mais](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) sobre as várias formas de analisar este tipo de dados.
 
@@ -61,7 +61,7 @@ Os dados de séries temporais são uma lista de observações ordenadas, diferen
 
 > Existem vários tipos de modelos ARIMA, sobre os quais podes aprender [aqui](https://people.duke.edu/~rnau/411arim.htm) e que vais abordar na próxima lição.
 
-Na próxima lição, vais construir um modelo ARIMA usando [Séries Temporais Univariadas](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm), que se concentram numa variável que muda de valor ao longo do tempo. Um exemplo deste tipo de dados é [este conjunto de dados](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) que regista a concentração mensal de CO2 no Observatório Mauna Loa:
+Na próxima lição, vais construir um modelo ARIMA usando [Séries Temporais Univariadas](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm), que se concentram numa variável que muda o seu valor ao longo do tempo. Um exemplo deste tipo de dados é [este conjunto de dados](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) que regista a concentração mensal de CO2 no Observatório Mauna Loa:
 
 |   CO2   | YearMonth | Year  | Month |
 | :-----: | :-------: | :---: | :---: |
@@ -82,7 +82,7 @@ Na próxima lição, vais construir um modelo ARIMA usando [Séries Temporais Un
 
 ## Características dos dados de séries temporais a considerar
 
-Ao observar dados de séries temporais, podes notar que eles têm [certas características](https://online.stat.psu.edu/stat510/lesson/1/1.1) que precisas levar em conta e mitigar para entender melhor os seus padrões. Se considerares os dados de séries temporais como potencialmente fornecendo um 'sinal' que desejas analisar, essas características podem ser vistas como 'ruído'. Muitas vezes, precisarás reduzir esse 'ruído' compensando algumas dessas características usando técnicas estatísticas.
+Ao observar dados de séries temporais, podes notar que eles possuem [certas características](https://online.stat.psu.edu/stat510/lesson/1/1.1) que precisas levar em conta e mitigar para entender melhor os seus padrões. Se considerares os dados de séries temporais como potencialmente fornecendo um "sinal" que desejas analisar, essas características podem ser vistas como "ruído". Muitas vezes, será necessário reduzir esse "ruído" compensando algumas dessas características usando técnicas estatísticas.
 
 Aqui estão alguns conceitos que deves conhecer para trabalhar com séries temporais:
 
@@ -96,7 +96,7 @@ Sazonalidade é definida como flutuações periódicas, como picos de vendas dur
 
 🎓 **Outliers**
 
-Outliers estão longe da variância padrão dos dados.
+Outliers são valores que estão muito distantes da variância padrão dos dados.
 
 🎓 **Ciclo de longo prazo**
 
@@ -110,9 +110,9 @@ Ao longo do tempo, alguns dados exibem flutuações constantes, como o uso de en
 
 Os dados podem exibir uma mudança abrupta que pode precisar de análise adicional. O encerramento repentino de negócios devido à COVID, por exemplo, causou mudanças nos dados.
 
-✅ Aqui está um [exemplo de gráfico de séries temporais](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) mostrando o gasto diário de moeda em jogo ao longo de alguns anos. Consegues identificar alguma das características listadas acima nesses dados?
+✅ Aqui está um [exemplo de gráfico de séries temporais](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) mostrando o gasto diário em moeda dentro de um jogo ao longo de alguns anos. Consegues identificar alguma das características listadas acima nesses dados?
 
-![Gasto de moeda em jogo](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.pt.png)
+![Gasto em moeda no jogo](../../../../7-TimeSeries/1-Introduction/images/currency.png)
 
 ## Exercício - começando com dados de uso de energia
 
@@ -160,9 +160,9 @@ Vamos começar a criar um modelo de séries temporais para prever o uso futuro d
     plt.show()
     ```
 
-    ![gráfico de energia](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.pt.png)
+    ![gráfico de energia](../../../../7-TimeSeries/1-Introduction/images/energy-plot.png)
 
-4. Agora, representa graficamente a primeira semana de julho de 2014, fornecendo-a como entrada para o `energy` no padrão `[from date]:[to date]`:
+4. Agora, representa graficamente a primeira semana de julho de 2014, fornecendo-a como entrada para o `energy` no padrão `[data inicial]:[data final]`:
 
     ```python
     energy['2014-07-01':'2014-07-07'].plot(y='load', subplots=True, figsize=(15, 8), fontsize=12)
@@ -171,7 +171,7 @@ Vamos começar a criar um modelo de séries temporais para prever o uso futuro d
     plt.show()
     ```
 
-    ![julho](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.pt.png)
+    ![julho](../../../../7-TimeSeries/1-Introduction/images/july-2014.png)
 
     Um gráfico bonito! Dá uma olhada nesses gráficos e vê se consegues determinar alguma das características listadas acima. O que podemos concluir ao visualizar os dados?
 
@@ -181,9 +181,9 @@ Na próxima lição, vais criar um modelo ARIMA para fazer algumas previsões.
 
 ## 🚀Desafio
 
-Faz uma lista de todas as indústrias e áreas de investigação que consegues pensar que poderiam beneficiar da previsão de séries temporais. Consegues pensar numa aplicação dessas técnicas nas artes? Em Econometria? Ecologia? Retalho? Indústria? Finanças? Onde mais?
+Faz uma lista de todas as indústrias e áreas de estudo que consegues pensar que poderiam beneficiar da previsão de séries temporais. Consegues pensar numa aplicação dessas técnicas nas artes? Em Econometria? Ecologia? Retalho? Indústria? Finanças? Onde mais?
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/42/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão & Autoestudo
 
@@ -195,5 +195,5 @@ Embora não os abordemos aqui, redes neurais são por vezes usadas para melhorar
 
 ---
 
-**Aviso**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos pela precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+**Aviso Legal**:  
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.

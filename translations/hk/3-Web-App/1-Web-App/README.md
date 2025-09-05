@@ -1,67 +1,67 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "2680c691fbdb6367f350761a275e2508",
-  "translation_date": "2025-09-03T17:56:17+00:00",
+  "original_hash": "e0b75f73e4a90d45181dc5581fe2ef5c",
+  "translation_date": "2025-09-05T09:28:03+00:00",
   "source_file": "3-Web-App/1-Web-App/README.md",
   "language_code": "hk"
 }
 -->
 # 建立一個使用機器學習模型的網頁應用程式
 
-在這節課中，你將使用一個來自外太空的數據集來訓練一個機器學習模型：_過去一個世紀的UFO目擊事件_，數據來源於NUFORC的資料庫。
+在這節課中，你將使用一個非常特別的數據集來訓練機器學習模型：_過去一個世紀的UFO目擊事件_，數據來源於NUFORC的資料庫。
 
-你將學到：
+你將學習：
 
 - 如何將訓練好的模型進行“pickle”處理
 - 如何在Flask應用程式中使用該模型
 
-我們將繼續使用筆記本來清理數據並訓練模型，但你可以更進一步，探索如何在“真實世界”中使用模型，也就是在一個網頁應用程式中。
+我們將繼續使用筆記本來清理數據並訓練模型，但你可以更進一步，探索如何在“真實世界”中使用模型：例如在網頁應用程式中。
 
-為此，你需要使用Flask來建立一個網頁應用程式。
+為了做到這一點，你需要使用Flask來建立一個網頁應用程式。
 
-## [課前測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/17/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 建立應用程式
 
-有多種方法可以建立網頁應用程式來使用機器學習模型。你的網頁架構可能會影響模型的訓練方式。想像一下，你正在一家公司工作，數據科學團隊已經訓練了一個模型，他們希望你在應用程式中使用該模型。
+有多種方法可以建立網頁應用程式來使用機器學習模型。你的網頁架構可能會影響模型的訓練方式。想像一下，你在一家公司工作，數據科學團隊已經訓練了一個模型，他們希望你在應用程式中使用該模型。
 
-### 考量因素
+### 考慮事項
 
 你需要問自己許多問題：
 
-- **這是一個網頁應用程式還是移動應用程式？** 如果你正在建立一個移動應用程式，或者需要在物聯網（IoT）環境中使用該模型，你可以使用 [TensorFlow Lite](https://www.tensorflow.org/lite/)，並在Android或iOS應用程式中使用該模型。
+- **是網頁應用程式還是移動應用程式？** 如果你正在建立移動應用程式或需要在物聯網（IoT）環境中使用模型，你可以使用 [TensorFlow Lite](https://www.tensorflow.org/lite/) 並在Android或iOS應用程式中使用該模型。
 - **模型將存放在哪裡？** 是在雲端還是本地？
-- **是否需要離線支援？** 應用程式是否需要在離線狀態下運行？
-- **訓練模型使用了什麼技術？** 所選技術可能會影響你需要使用的工具。
-    - **使用TensorFlow。** 如果你使用TensorFlow訓練模型，該生態系統提供了將TensorFlow模型轉換為可在網頁應用程式中使用的功能，例如使用 [TensorFlow.js](https://www.tensorflow.org/js/)。
-    - **使用PyTorch。** 如果你使用像 [PyTorch](https://pytorch.org/) 這樣的庫來建立模型，你可以選擇將其導出為 [ONNX](https://onnx.ai/)（開放神經網絡交換格式）格式，供JavaScript網頁應用程式使用 [Onnx Runtime](https://www.onnxruntime.ai/)。在未來的課程中，我們將探索如何將Scikit-learn訓練的模型導出為ONNX格式。
-    - **使用Lobe.ai或Azure Custom Vision。** 如果你使用的是像 [Lobe.ai](https://lobe.ai/) 或 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) 這樣的機器學習SaaS（軟體即服務）系統來訓練模型，這類軟體提供了多平台導出模型的方法，包括建立一個專屬的API，供你的線上應用程式在雲端查詢。
+- **離線支援。** 應用程式是否需要離線運作？
+- **使用什麼技術訓練模型？** 選擇的技術可能會影響你需要使用的工具。
+    - **使用TensorFlow。** 如果你使用TensorFlow訓練模型，該生態系統提供了將TensorFlow模型轉換為網頁應用程式使用的能力，例如使用 [TensorFlow.js](https://www.tensorflow.org/js/)。
+    - **使用PyTorch。** 如果你使用像 [PyTorch](https://pytorch.org/) 這樣的庫來建立模型，你可以選擇將其導出為 [ONNX](https://onnx.ai/)（開放神經網絡交換格式），以便在使用 [Onnx Runtime](https://www.onnxruntime.ai/) 的JavaScript網頁應用程式中使用。這種選項將在未來的課程中探索，適用於使用Scikit-learn訓練的模型。
+    - **使用Lobe.ai或Azure Custom Vision。** 如果你使用像 [Lobe.ai](https://lobe.ai/) 或 [Azure Custom Vision](https://azure.microsoft.com/services/cognitive-services/custom-vision-service/?WT.mc_id=academic-77952-leestott) 這樣的機器學習SaaS（軟件即服務）系統來訓練模型，這類軟件提供了多平台導出模型的方法，包括建立一個定制的API，供你的線上應用程式在雲端查詢。
 
-你還可以選擇建立一個完整的Flask網頁應用程式，該應用程式甚至可以在網頁瀏覽器中自行訓練模型。這也可以使用TensorFlow.js在JavaScript環境中完成。
+你還可以建立一個完整的Flask網頁應用程式，該應用程式可以在網頁瀏覽器中自行訓練模型。這也可以在JavaScript環境中使用TensorFlow.js來完成。
 
-對於我們的目的，由於我們一直在使用基於Python的筆記本，讓我們來探索將訓練好的模型從筆記本導出為Python構建的網頁應用程式可讀格式的步驟。
+對於我們的目的，由於我們一直在使用基於Python的筆記本，讓我們來探索如何將訓練好的模型從筆記本導出為Python建立的網頁應用程式可讀的格式。
 
 ## 工具
 
-完成這項任務，你需要兩個工具：Flask和Pickle，這兩者都在Python上運行。
+完成這項任務，你需要兩個工具：Flask和Pickle，它們都在Python上運行。
 
-✅ [Flask](https://palletsprojects.com/p/flask/) 是什麼？由其創建者定義為“微框架”，Flask提供了使用Python和模板引擎構建網頁的基本功能。查看[這個學習模組](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott)來練習使用Flask。
+✅ [Flask](https://palletsprojects.com/p/flask/) 是什麼？由其創建者定義為“微框架”，Flask提供了使用Python和模板引擎建立網頁的基本功能。查看 [這個學習模組](https://docs.microsoft.com/learn/modules/python-flask-build-ai-web-app?WT.mc_id=academic-77952-leestott) 來練習使用Flask建立應用程式。
 
-✅ [Pickle](https://docs.python.org/3/library/pickle.html) 是什麼？Pickle 🥒 是一個Python模組，用於序列化和反序列化Python對象結構。當你對模型進行“pickle”處理時，你會將其結構序列化或扁平化，以便在網頁上使用。注意：Pickle本身並不安全，因此如果被要求“un-pickle”一個文件時要小心。Pickle文件的後綴是`.pkl`。
+✅ [Pickle](https://docs.python.org/3/library/pickle.html) 是什麼？Pickle 🥒 是一個Python模組，用於序列化和反序列化Python物件結構。當你對模型進行“pickle”處理時，你會將其結構序列化或扁平化，以便在網頁上使用。注意：Pickle本身並不安全，因此如果被要求“un-pickle”文件時要小心。Pickle文件的後綴是 `.pkl`。
 
 ## 練習 - 清理數據
 
-在這節課中，你將使用來自 [NUFORC](https://nuforc.org)（全國UFO報告中心）的80,000條UFO目擊數據。這些數據包含一些有趣的UFO目擊描述，例如：
+在這節課中，你將使用來自 [NUFORC](https://nuforc.org)（全國UFO報告中心）的80,000個UFO目擊事件數據。這些數據包含一些有趣的UFO目擊描述，例如：
 
-- **長描述範例。** “一名男子從夜晚草地上的一道光束中出現，並跑向德州儀器的停車場。”
-- **短描述範例。** “燈光追著我們跑。”
+- **長描述範例。** “一束光照在夜晚的草地上，一名男子從光束中走出，跑向德州儀器的停車場。”
+- **短描述範例。** “燈光追著我們。”
 
-[ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) 試算表包含有關目擊事件的`city`、`state`和`country`，物體的`shape`以及其`latitude`和`longitude`等欄位。
+[ufos.csv](../../../../3-Web-App/1-Web-App/data/ufos.csv) 試算表包含有關目擊事件的 `city`、`state` 和 `country`，物體的 `shape` 以及其 `latitude` 和 `longitude` 的欄位。
 
-在這節課提供的空白 [notebook](notebook.ipynb) 中：
+在這節課提供的空白 [notebook](../../../../3-Web-App/1-Web-App/notebook.ipynb) 中：
 
-1. 像之前的課程一樣，匯入`pandas`、`matplotlib`和`numpy`，並匯入ufos試算表。你可以查看數據集的樣本：
+1. 像之前的課程一樣，導入 `pandas`、`matplotlib` 和 `numpy`，並導入UFO試算表。你可以查看一個數據集範例：
 
     ```python
     import pandas as pd
@@ -71,7 +71,7 @@ CO_OP_TRANSLATOR_METADATA:
     ufos.head()
     ```
 
-1. 將ufos數據轉換為一個小型的數據框，並重新命名欄位標題。檢查`Country`欄位中的唯一值。
+1. 將UFO數據轉換為一個小型數據框，並重新命名欄位。檢查 `Country` 欄位中的唯一值。
 
     ```python
     ufos = pd.DataFrame({'Seconds': ufos['duration (seconds)'], 'Country': ufos['country'],'Latitude': ufos['latitude'],'Longitude': ufos['longitude']})
@@ -79,7 +79,7 @@ CO_OP_TRANSLATOR_METADATA:
     ufos.Country.unique()
     ```
 
-1. 現在，你可以通過刪除任何空值並僅匯入1-60秒之間的目擊事件來減少需要處理的數據量：
+1. 現在，你可以通過刪除任何空值並僅導入1-60秒之間的目擊事件來減少需要處理的數據量：
 
     ```python
     ufos.dropna(inplace=True)
@@ -89,9 +89,9 @@ CO_OP_TRANSLATOR_METADATA:
     ufos.info()
     ```
 
-1. 匯入Scikit-learn的`LabelEncoder`庫，將國家的文字值轉換為數字：
+1. 導入Scikit-learn的 `LabelEncoder` 庫，將國家的文字值轉換為數字：
 
-    ✅ LabelEncoder會按字母順序編碼數據
+    ✅ LabelEncoder 按字母順序編碼數據
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -114,9 +114,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 練習 - 建立模型
 
-現在，你可以準備通過將數據分為訓練組和測試組來訓練模型。
+現在你可以準備通過將數據分為訓練和測試組來訓練模型。
 
-1. 選擇三個特徵作為你的X向量，y向量將是`Country`。你希望能輸入`Seconds`、`Latitude`和`Longitude`，並獲得一個國家代碼作為返回值。
+1. 選擇三個特徵作為你的X向量，y向量將是 `Country`。你希望能夠輸入 `Seconds`、`Latitude` 和 `Longitude`，並返回一個國家ID。
 
     ```python
     from sklearn.model_selection import train_test_split
@@ -129,7 +129,7 @@ CO_OP_TRANSLATOR_METADATA:
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
     ```
 
-1. 使用邏輯回歸來訓練模型：
+1. 使用邏輯回歸訓練你的模型：
 
     ```python
     from sklearn.metrics import accuracy_score, classification_report
@@ -143,13 +143,13 @@ CO_OP_TRANSLATOR_METADATA:
     print('Accuracy: ', accuracy_score(y_test, predictions))
     ```
 
-準確率還不錯 **（約95%）**，這並不令人意外，因為`Country`與`Latitude/Longitude`有相關性。
+準確率不錯 **（約95%）**，這並不意外，因為 `Country` 和 `Latitude/Longitude` 是相關的。
 
-你創建的模型並不是非常革命性的，因為你應該能夠從`Latitude`和`Longitude`推斷出`Country`，但這是一個很好的練習，嘗試從你清理、導出的原始數據中訓練模型，然後在網頁應用程式中使用該模型。
+你建立的模型並不算非常革命性，因為你應該能夠從 `Latitude` 和 `Longitude` 推斷出 `Country`，但這是一個很好的練習，嘗試從清理過的原始數據中訓練模型，導出模型，然後在網頁應用程式中使用它。
 
 ## 練習 - 將模型進行“pickle”處理
 
-現在，是時候對你的模型進行_pickle_處理了！你可以用幾行代碼完成這個操作。一旦完成_pickle_處理，載入你的pickled模型，並用一個包含秒數、緯度和經度值的樣本數據陣列進行測試，
+現在，是時候對你的模型進行 _pickle_ 處理了！你可以用幾行代碼完成這個操作。一旦完成 _pickle_ 處理，載入你的Pickle模型並用一個包含秒數、緯度和經度的樣本數據陣列進行測試，
 
 ```python
 import pickle
@@ -160,15 +160,15 @@ model = pickle.load(open('ufo-model.pkl','rb'))
 print(model.predict([[50,44,-12]]))
 ```
 
-模型返回 **'3'**，這是英國的國家代碼。太酷了！👽
+模型返回 **'3'**，這是英國的國家代碼。太神奇了！👽
 
 ## 練習 - 建立Flask應用程式
 
-現在，你可以建立一個Flask應用程式來調用你的模型，並以更具視覺吸引力的方式返回類似的結果。
+現在你可以建立一個Flask應用程式來調用你的模型並以更具視覺吸引力的方式返回類似結果。
 
-1. 首先，在_notebook.ipynb_文件旁邊建立一個名為**web-app**的資料夾，該資料夾中應包含你的_ufo-model.pkl_文件。
+1. 首先在 _notebook.ipynb_ 文件旁邊建立一個名為 **web-app** 的資料夾，該資料夾中存放你的 _ufo-model.pkl_ 文件。
 
-1. 在該資料夾中再建立三個資料夾：**static**（裡面有一個**css**資料夾）和**templates**。現在你應該有以下文件和目錄結構：
+1. 在該資料夾中建立三個子資料夾：**static**，其中包含一個名為 **css** 的資料夾，以及 **templates**。你現在應該有以下文件和目錄：
 
     ```output
     web-app/
@@ -181,7 +181,7 @@ print(model.predict([[50,44,-12]]))
 
     ✅ 參考解決方案資料夾以查看完成的應用程式
 
-1. 在_web-app_資料夾中建立第一個文件，名為**requirements.txt**。像JavaScript應用程式中的_package.json_一樣，這個文件列出了應用程式所需的依賴項。在**requirements.txt**中添加以下內容：
+1. 在 _web-app_ 資料夾中建立第一個文件 **requirements.txt**。像JavaScript應用程式中的 _package.json_ 一樣，這個文件列出了應用程式所需的依賴項。在 **requirements.txt** 中添加以下行：
 
     ```text
     scikit-learn
@@ -190,13 +190,13 @@ print(model.predict([[50,44,-12]]))
     flask
     ```
 
-1. 現在，通過導航到_web-app_來運行此文件：
+1. 現在，通過導航到 _web-app_ 運行此文件：
 
     ```bash
     cd web-app
     ```
 
-1. 在終端中輸入`pip install`，以安裝_requirements.txt_中列出的庫：
+1. 在終端中輸入 `pip install`，以安裝 _requirements.txt_ 中列出的庫：
 
     ```bash
     pip install -r requirements.txt
@@ -204,11 +204,11 @@ print(model.predict([[50,44,-12]]))
 
 1. 現在，你可以建立另外三個文件來完成應用程式：
 
-    1. 在根目錄中建立**app.py**。
-    2. 在_templates_目錄中建立**index.html**。
-    3. 在_static/css_目錄中建立**styles.css**。
+    1. 在根目錄建立 **app.py**。
+    2. 在 _templates_ 資料夾中建立 **index.html**。
+    3. 在 _static/css_ 資料夾中建立 **styles.css**。
 
-1. 在_styles.css_文件中添加一些樣式：
+1. 在 _styles.css_ 文件中添加一些樣式：
 
     ```css
     body {
@@ -242,7 +242,7 @@ print(model.predict([[50,44,-12]]))
     }
     ```
 
-1. 接下來，建立_index.html_文件：
+1. 接下來，建立 _index.html_ 文件：
 
     ```html
     <!DOCTYPE html>
@@ -277,11 +277,11 @@ print(model.predict([[50,44,-12]]))
     </html>
     ```
 
-    查看此文件中的模板語法。注意變數周圍的“mustache”語法，例如`{{}}`，這些變數將由應用程式提供。還有一個表單，會將預測結果發送到`/predict`路由。
+    查看此文件中的模板語法。注意變數周圍的“大括號”語法，例如預測文字：`{{}}`。還有一個表單，它將預測結果發送到 `/predict` 路由。
 
-    最後，你已準備好建立驅動模型消費和顯示預測結果的Python文件：
+    最後，你準備好建立驅動模型消耗和預測顯示的Python文件：
 
-1. 在`app.py`中添加：
+1. 在 `app.py` 中添加：
 
     ```python
     import numpy as np
@@ -318,42 +318,42 @@ print(model.predict([[50,44,-12]]))
         app.run(debug=True)
     ```
 
-    > 💡 提示：當你在使用Flask運行網頁應用程式時添加[`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode)，任何對應用程式的更改都會立即反映，而無需重新啟動伺服器。但要小心！不要在生產應用程式中啟用此模式。
+    > 💡 提示：當你在使用Flask運行網頁應用程式時添加 [`debug=True`](https://www.askpython.com/python-modules/flask/flask-debug-mode)，你對應用程式所做的任何更改都會立即反映，而無需重新啟動伺服器。注意！不要在生產應用程式中啟用此模式。
 
-如果你運行`python app.py`或`python3 app.py`，你的本地網頁伺服器將啟動，你可以填寫一個簡短的表單，來回答你對UFO目擊地點的疑問！
+如果你運行 `python app.py` 或 `python3 app.py` - 你的網頁伺服器將在本地啟動，你可以填寫一個簡短的表單來獲得關於UFO目擊地點的答案！
 
-在此之前，先看看`app.py`的各個部分：
+在此之前，查看 `app.py` 的各部分：
 
 1. 首先，載入依賴項並啟動應用程式。
-1. 然後，匯入模型。
-1. 接著，在首頁路由上渲染index.html。
+1. 然後，導入模型。
+1. 接著，在主路由上渲染 index.html。
 
-在`/predict`路由上，當表單被提交時會發生以下幾件事：
+在 `/predict` 路由上，當表單提交時會發生以下幾件事：
 
-1. 表單變數被收集並轉換為numpy陣列，然後發送到模型，並返回預測結果。
-2. 我們希望顯示的國家名稱從預測的國家代碼重新渲染為可讀的文字，並將該值發送回index.html以在模板中渲染。
+1. 表單變數被收集並轉換為numpy陣列。然後它們被發送到模型並返回預測結果。
+2. 我們希望顯示的國家代碼被重新渲染為可讀的文字，並將該值發送回 index.html，在模板中渲染。
 
-使用這種方式，通過Flask和pickled模型來使用模型相對簡單。最困難的部分是理解必須發送到模型的數據形狀，這取決於模型的訓練方式。這個模型需要輸入三個數據點來獲得預測結果。
+以這種方式使用模型，結合Flask和Pickle模型，相對簡單。最困難的是理解必須發送到模型的數據形狀，以獲得預測結果。這完全取決於模型的訓練方式。這個模型需要輸入三個數據點才能獲得預測結果。
 
-在專業環境中，你可以看到訓練模型的人員與在網頁或移動應用程式中使用模型的人員之間的良好溝通是多麼重要。在我們的案例中，這些工作都由你一人完成！
+在專業環境中，你可以看到訓練模型的人和在網頁或移動應用程式中使用模型的人之間良好的溝通是多麼重要。在我們的情況下，只有一個人，那就是你！
 
 ---
 
 ## 🚀 挑戰
 
-與其在筆記本中工作並將模型匯入Flask應用程式，你可以直接在Flask應用程式中訓練模型！嘗試將筆記本中的Python代碼轉換為應用程式中的代碼，也許在清理數據後，從應用程式中的一個名為`train`的路由來訓練模型。嘗試這種方法的優缺點是什麼？
+與其在筆記本中工作並將模型導入Flask應用程式，你可以直接在Flask應用程式中訓練模型！嘗試將筆記本中的Python代碼轉換為在應用程式內的 `train` 路由上訓練模型，可能是在清理數據之後。追求這種方法的優缺點是什麼？
 
-## [課後測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/18/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 回顧與自學
 
-有許多方法可以建立一個網頁應用程式來使用機器學習模型。列出你可以使用JavaScript或Python建立網頁應用程式以利用機器學習的方法。考慮架構：模型應該保留在應用程式中還是存放在雲端？如果是後者，你將如何訪問它？畫出一個應用機器學習的網頁解決方案的架構模型。
+有許多方法可以建立網頁應用程式來使用機器學習模型。列出你可以使用JavaScript或Python建立網頁應用程式以利用機器學習的方法。考慮架構：模型應該保留在應用程式中還是存放在雲端？如果是後者，你將如何訪問它？繪製一個應用機器學習的網頁解決方案架構模型。
 
 ## 作業
 
-[嘗試一個不同的模型](assignment.md)
+[嘗試不同的模型](assignment.md)
 
 ---
 
 **免責聲明**：  
-本文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始語言的文件應被視為權威來源。對於重要信息，建議使用專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議使用專業的人工作業翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解讀概不負責。

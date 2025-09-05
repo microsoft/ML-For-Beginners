@@ -1,32 +1,32 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "6b1cb0e46d4c5b747eff6e3607642760",
-  "translation_date": "2025-09-03T16:35:42+00:00",
+  "original_hash": "fa81d226c71d5af7a2cade31c1c92b88",
+  "translation_date": "2025-09-05T07:46:22+00:00",
   "source_file": "2-Regression/1-Tools/README.md",
   "language_code": "lt"
 }
 -->
 # Pradėkite dirbti su Python ir Scikit-learn regresijos modeliams
 
-![Regresijų santrauka sketchnote](../../../../translated_images/ml-regression.4e4f70e3b3ed446e3ace348dec973e133fa5d3680fbc8412b61879507369b98d.lt.png)
+![Regresijų santrauka sketchnote](../../../../sketchnotes/ml-regression.png)
 
 > Sketchnote sukūrė [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-## [Prieš paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/9/)
+## [Klausimynas prieš paskaitą](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Ši pamoka yra prieinama R kalba!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
+> ### [Ši pamoka taip pat prieinama R kalba!](../../../../2-Regression/1-Tools/solution/R/lesson_1.html)
 
 ## Įvadas
 
 Šiose keturiose pamokose sužinosite, kaip kurti regresijos modelius. Netrukus aptarsime, kam jie skirti. Tačiau prieš pradėdami, įsitikinkite, kad turite tinkamus įrankius, kad galėtumėte pradėti procesą!
 
-Šioje pamokoje sužinosite, kaip:
+Šioje pamokoje išmoksite:
 
 - Konfigūruoti savo kompiuterį vietinėms mašininio mokymosi užduotims.
 - Dirbti su Jupyter užrašinėmis.
 - Naudoti Scikit-learn, įskaitant diegimą.
-- Išbandyti linijinę regresiją praktiniame užduotyje.
+- Išbandyti linijinę regresiją praktiniame užsiėmime.
 
 ## Diegimai ir konfigūracijos
 
@@ -36,7 +36,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 1. **Įdiekite Python**. Įsitikinkite, kad jūsų kompiuteryje įdiegta [Python](https://www.python.org/downloads/). Python bus naudojamas daugeliui duomenų mokslo ir mašininio mokymosi užduočių. Dauguma kompiuterių sistemų jau turi Python diegimą. Taip pat yra naudingų [Python Coding Packs](https://code.visualstudio.com/learn/educators/installers?WT.mc_id=academic-77952-leestott), kurie palengvina nustatymą kai kuriems vartotojams.
 
-   Kai kurios Python naudojimo situacijos reikalauja vienos programinės įrangos versijos, o kitos - kitos versijos. Dėl šios priežasties naudinga dirbti [virtualioje aplinkoje](https://docs.python.org/3/library/venv.html).
+   Kai kurios Python naudojimo situacijos reikalauja vienos programinės įrangos versijos, o kitos - kitos. Dėl šios priežasties naudinga dirbti [virtualioje aplinkoje](https://docs.python.org/3/library/venv.html).
 
 2. **Įdiekite Visual Studio Code**. Įsitikinkite, kad jūsų kompiuteryje įdiegta Visual Studio Code. Sekite šias instrukcijas, kad atliktumėte [Visual Studio Code diegimą](https://code.visualstudio.com/). Šiame kurse naudosite Python Visual Studio Code aplinkoje, todėl galbūt norėsite pasipraktikuoti, kaip [konfigūruoti Visual Studio Code](https://docs.microsoft.com/learn/modules/python-install-vscode?WT.mc_id=academic-77952-leestott) Python kūrimui.
 
@@ -52,7 +52,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## Jūsų ML kūrimo aplinka
 
-Jūs naudosite **užrašines** (notebooks), kad sukurtumėte Python kodą ir kurtumėte mašininio mokymosi modelius. Šio tipo failai yra dažnai naudojami duomenų mokslininkų ir juos galima atpažinti pagal jų plėtinį `.ipynb`.
+Jūs naudosite **užrašines** (notebooks), kad sukurtumėte Python kodą ir kurtumėte mašininio mokymosi modelius. Šio tipo failai yra įprastas įrankis duomenų mokslininkams, ir juos galima atpažinti pagal jų priesagą arba plėtinį `.ipynb`.
 
 Užrašinės yra interaktyvi aplinka, leidžianti kūrėjui tiek rašyti kodą, tiek pridėti pastabas ir dokumentaciją aplink kodą, kas yra labai naudinga eksperimentiniams ar moksliniams projektams.
 
@@ -66,32 +66,32 @@ Užrašinės yra interaktyvi aplinka, leidžianti kūrėjui tiek rašyti kodą, 
 
 1. Atidarykite _notebook.ipynb_ Visual Studio Code aplinkoje.
 
-   Jupyter serveris bus paleistas su Python 3+. Užrašinėje rasite vietas, kurias galima `paleisti` (run), t. y. kodo dalis. Galite paleisti kodo bloką, pasirinkdami ikoną, kuri atrodo kaip grojimo mygtukas.
+   Jupyter serveris bus paleistas su Python 3+. Užrašinėje rasite vietas, kurias galima `paleisti`, t. y. kodo dalis. Galite paleisti kodo bloką, pasirinkdami piktogramą, kuri atrodo kaip grojimo mygtukas.
 
-2. Pasirinkite `md` ikoną ir pridėkite šiek tiek markdown teksto, pvz., **# Sveiki atvykę į savo užrašinę**.
+2. Pasirinkite `md` piktogramą ir pridėkite šiek tiek markdown teksto, pvz., **# Sveiki atvykę į savo užrašinę**.
 
    Tada pridėkite šiek tiek Python kodo.
 
 3. Įveskite **print('hello notebook')** kodo bloke.
 4. Paspauskite rodyklę, kad paleistumėte kodą.
 
-   Turėtumėte pamatyti atspausdintą pranešimą:
+   Turėtumėte pamatyti atspausdintą sakinį:
 
     ```output
     hello notebook
     ```
 
-![VS Code su atidaryta užrašine](../../../../translated_images/notebook.4a3ee31f396b88325607afda33cadcc6368de98040ff33942424260aa84d75f2.lt.jpg)
+![VS Code su atidaryta užrašine](../../../../2-Regression/1-Tools/images/notebook.jpg)
 
 Galite įterpti savo kodą su komentarais, kad savarankiškai dokumentuotumėte užrašinę.
 
-✅ Pagalvokite minutę, kaip skiriasi žiniatinklio kūrėjo darbo aplinka nuo duomenų mokslininko.
+✅ Pagalvokite minutę, kaip skiriasi žiniatinklio kūrėjo darbo aplinka nuo duomenų mokslininko aplinkos.
 
-## Pradžia su Scikit-learn
+## Darbas su Scikit-learn
 
-Dabar, kai Python yra nustatytas jūsų vietinėje aplinkoje ir jūs jaučiatės patogiai dirbdami su Jupyter užrašinėmis, pasistenkime taip pat patogiai jaustis su Scikit-learn (tariama `sci`, kaip `science`). Scikit-learn siūlo [platus API](https://scikit-learn.org/stable/modules/classes.html#api-ref), kuris padeda atlikti ML užduotis.
+Dabar, kai Python yra nustatytas jūsų vietinėje aplinkoje ir jūs jaučiatės patogiai dirbdami su Jupyter užrašinėmis, pasistenkime taip pat susipažinti su Scikit-learn (tariama `sci`, kaip `science`). Scikit-learn siūlo [platus API](https://scikit-learn.org/stable/modules/classes.html#api-ref), kuris padeda atlikti ML užduotis.
 
-Pagal jų [svetainę](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn yra atviro kodo mašininio mokymosi biblioteka, palaikanti prižiūrimą ir neprižiūrimą mokymąsi. Ji taip pat siūlo įvairius įrankius modelių kūrimui, duomenų apdorojimui, modelių pasirinkimui ir vertinimui bei daugybę kitų naudingų funkcijų."
+Pagal jų [svetainę](https://scikit-learn.org/stable/getting_started.html), "Scikit-learn yra atviro kodo mašininio mokymosi biblioteka, palaikanti prižiūrimą ir neprižiūrimą mokymąsi. Ji taip pat siūlo įvairius įrankius modelių pritaikymui, duomenų apdorojimui, modelių pasirinkimui ir vertinimui bei daugybę kitų naudingų funkcijų."
 
 Šiame kurse naudosite Scikit-learn ir kitus įrankius, kad sukurtumėte mašininio mokymosi modelius, skirtus vadinamoms 'tradicinio mašininio mokymosi' užduotims. Mes sąmoningai vengėme neuroninių tinklų ir giluminio mokymosi, nes jie geriau aptariami mūsų būsimoje 'AI pradedantiesiems' mokymo programoje.
 
@@ -105,11 +105,11 @@ Scikit-learn leidžia lengvai kurti modelius ir vertinti jų naudojimą. Ji daug
 
 > 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte trumpą vaizdo įrašą apie šį pratimą.
 
-Failo _notebook.ipynb_ susijusio su šia pamoka, išvalykite visas ląsteles paspausdami 'šiukšliadėžės' ikoną.
+Failo _notebook.ipynb_ susijusio su šia pamoka, ištrinkite visas ląsteles paspausdami 'šiukšliadėžės' piktogramą.
 
-Šiame skyriuje dirbsite su mažu duomenų rinkiniu apie diabetą, kuris yra įmontuotas Scikit-learn mokymosi tikslais. Įsivaizduokite, kad norite išbandyti gydymą diabetu sergantiems pacientams. Mašininio mokymosi modeliai galėtų padėti nustatyti, kurie pacientai geriau reaguotų į gydymą, remiantis kintamųjų deriniais. Net labai paprastas regresijos modelis, vizualizuotas, galėtų parodyti informaciją apie kintamuosius, kurie padėtų organizuoti teorinius klinikinius tyrimus.
+Šiame skyriuje dirbsite su nedideliu duomenų rinkiniu apie diabetą, kuris yra įtrauktas į Scikit-learn mokymosi tikslais. Įsivaizduokite, kad norite išbandyti gydymą diabetu sergantiems pacientams. Mašininio mokymosi modeliai gali padėti nustatyti, kurie pacientai geriau reaguotų į gydymą, remiantis kintamųjų deriniais. Net labai paprastas regresijos modelis, vizualizuotas, gali parodyti informaciją apie kintamuosius, kurie padėtų organizuoti teorinius klinikinius tyrimus.
 
-✅ Yra daug regresijos metodų tipų, ir kurį pasirinkti priklauso nuo klausimo, į kurį norite atsakyti. Jei norite prognozuoti tikėtiną žmogaus ūgį pagal jo amžių, naudotumėte linijinę regresiją, nes ieškote **skaitinės vertės**. Jei jus domina, ar tam tikra virtuvė turėtų būti laikoma veganiška, ieškote **kategorijos priskyrimo**, todėl naudotumėte logistinę regresiją. Vėliau sužinosite daugiau apie logistinę regresiją. Pagalvokite apie kai kuriuos klausimus, kuriuos galite užduoti duomenims, ir kuris iš šių metodų būtų tinkamesnis.
+✅ Yra daug regresijos metodų tipų, ir kurį pasirinkti priklauso nuo klausimo, į kurį norite atsakyti. Jei norite prognozuoti tikėtiną žmogaus ūgį pagal jo amžių, naudotumėte linijinę regresiją, nes ieškote **skaitinės vertės**. Jei jus domina, ar tam tikra virtuvė turėtų būti laikoma veganiška, ieškote **kategorijos priskyrimo**, todėl naudotumėte logistinę regresiją. Vėliau sužinosite daugiau apie logistinę regresiją. Pagalvokite apie keletą klausimų, kuriuos galite užduoti duomenims, ir kuris iš šių metodų būtų tinkamesnis.
 
 Pradėkime šią užduotį.
 
@@ -135,7 +135,7 @@ Importuokite keletą bibliotekų, kurios padės atlikti užduotis.
 
 ### Diabeto duomenų rinkinys
 
-Įmontuotas [diabeto duomenų rinkinys](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) apima 442 duomenų pavyzdžius apie diabetą su 10 kintamųjų, kai kurie iš jų yra:
+Įmontuotas [diabeto duomenų rinkinys](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) apima 442 duomenų pavyzdžius apie diabetą, su 10 kintamųjų, kai kurie iš jų yra:
 
 - amžius: amžius metais
 - kūno masės indeksas (BMI)
@@ -146,7 +146,7 @@ Importuokite keletą bibliotekų, kurios padės atlikti užduotis.
 
 Dabar įkelkite X ir y duomenis.
 
-> 🎓 Atminkite, kad tai yra prižiūrimas mokymasis, ir mums reikia pavadinto 'y' tikslo.
+> 🎓 Prisiminkite, tai yra prižiūrimas mokymasis, ir mums reikia pavadinto 'y' tikslo.
 
 Naujoje kodo ląstelėje įkelkite diabeto duomenų rinkinį, naudodami `load_diabetes()`. Įvestis `return_X_y=True` nurodo, kad `X` bus duomenų matrica, o `y` bus regresijos tikslas.
 
@@ -170,7 +170,7 @@ Naujoje kodo ląstelėje įkelkite diabeto duomenų rinkinį, naudodami `load_di
 
     ✅ Pagalvokite apie ryšį tarp duomenų ir regresijos tikslo. Linijinė regresija prognozuoja ryšius tarp kintamojo X ir tikslo kintamojo y. Ar galite rasti [tikslą](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset) diabeto duomenų rinkinyje dokumentacijoje? Ką šis duomenų rinkinys demonstruoja, atsižvelgiant į tikslą?
 
-2. Tada pasirinkite dalį šio duomenų rinkinio, kurią norite pavaizduoti, pasirinkdami 3-ąją duomenų rinkinio stulpelį. Tai galite padaryti naudodami `:` operatorių, kad pasirinktumėte visas eilutes, ir tada pasirinkdami 3-ąjį stulpelį, naudodami indeksą (2). Taip pat galite pertvarkyti duomenis į 2D masyvą - kaip reikalaujama vaizdavimui - naudodami `reshape(n_rows, n_columns)`. Jei vienas iš parametrų yra -1, atitinkama dimensija apskaičiuojama automatiškai.
+2. Tada pasirinkite dalį šio duomenų rinkinio, kurią norite pavaizduoti, pasirinkdami 3-ąją duomenų rinkinio stulpelį. Tai galite padaryti naudodami `:` operatorių, kad pasirinktumėte visas eilutes, ir tada pasirinkdami 3-ąjį stulpelį naudodami indeksą (2). Taip pat galite pertvarkyti duomenis į 2D masyvą - kaip reikalaujama grafiko kūrimui - naudodami `reshape(n_rows, n_columns)`. Jei vienas iš parametrų yra -1, atitinkama dimensija apskaičiuojama automatiškai.
 
    ```python
    X = X[:, 2]
@@ -179,7 +179,7 @@ Naujoje kodo ląstelėje įkelkite diabeto duomenų rinkinį, naudodami `load_di
 
    ✅ Bet kuriuo metu spausdinkite duomenis, kad patikrintumėte jų formą.
 
-3. Dabar, kai turite duomenis, paruoštus vaizdavimui, galite patikrinti, ar mašina gali padėti nustatyti logišką skirstymą tarp skaičių šiame duomenų rinkinyje. Norėdami tai padaryti, turite padalyti tiek duomenis (X), tiek tikslą (y) į testavimo ir mokymo rinkinius. Scikit-learn turi paprastą būdą tai padaryti; galite padalyti savo testavimo duomenis tam tikru tašku.
+3. Dabar, kai turite duomenis, paruoštus grafiko kūrimui, galite patikrinti, ar mašina gali padėti nustatyti logišką skirstymą tarp skaičių šiame duomenų rinkinyje. Norėdami tai padaryti, turite padalyti tiek duomenis (X), tiek tikslą (y) į testavimo ir mokymo rinkinius. Scikit-learn turi paprastą būdą tai padaryti; galite padalyti savo testavimo duomenis tam tikru tašku.
 
    ```python
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.33)
@@ -200,23 +200,24 @@ Naujoje kodo ląstelėje įkelkite diabeto duomenų rinkinį, naudodami `load_di
     y_pred = model.predict(X_test)
     ```
 
-6. Dabar laikas parodyti duomenis grafike. Matplotlib yra labai naudinga priemonė šiai užduočiai. Sukurkite sklaidos diagramą visiems X ir y testavimo duomenims ir naudokite prognozę, kad nubrėžtumėte liniją tinkamiausioje vietoje tarp modelio du
-✅ Pagalvokite, kas čia vyksta. Tiesi linija eina per daugybę mažų duomenų taškų, bet ką ji iš tikrųjų daro? Ar galite suprasti, kaip ši linija gali padėti numatyti, kur naujas, nematytas duomenų taškas turėtų būti susijęs su grafiko y ašimi? Pabandykite žodžiais apibūdinti praktinį šio modelio panaudojimą.
+6. Dabar laikas parodyti duomenis grafike. Matplotlib yra labai naudinga priemonė šiai užduočiai. Sukurkite sklaidos grafiką visiems X ir y testavimo duomenims, o prognozę naudokite linijai nubrėžti tinkamiausioje vietoje tarp modelio duomenų grupių.
 
-Sveikiname, jūs sukūrėte savo pirmąjį linijinės regresijos modelį, atlikote prognozę su juo ir pavaizdavote ją grafike!
+
+✅ Pagalvokite, kas čia vyksta. Tiesi linija eina per daugybę mažų duomenų taškų, bet ką ji iš tikrųjų daro? Ar galite pastebėti, kaip ši linija gali padėti numatyti, kur naujas, dar nematytas duomenų taškas turėtų atsidurti santykyje su grafiko y ašimi? Pabandykite žodžiais apibūdinti praktinį šio modelio pritaikymą.
+
+Sveikiname, jūs sukūrėte savo pirmąjį linijinį regresijos modelį, atlikote prognozę su juo ir pavaizdavote ją grafike!
 
 ---
 ## 🚀Iššūkis
 
-Pavaizduokite kitą kintamąjį iš šio duomenų rinkinio. Užuomina: redaguokite šią eilutę: `X = X[:,2]`. Atsižvelgiant į šio duomenų rinkinio tikslą, ką galite sužinoti apie diabeto progresavimą kaip ligą?
-
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/10/)
+Pavaizduokite kitą šio duomenų rinkinio kintamąjį. Užuomina: redaguokite šią eilutę: `X = X[:,2]`. Atsižvelgiant į šio duomenų rinkinio tikslą, ką galite sužinoti apie diabeto progresavimą kaip ligą?
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Apžvalga ir savarankiškas mokymasis
 
-Šioje pamokoje dirbote su paprasta linijine regresija, o ne su univariante ar daugialype regresija. Perskaitykite šiek tiek apie šių metodų skirtumus arba peržiūrėkite [šį vaizdo įrašą](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
+Šioje pamokoje dirbote su paprasta linijine regresija, o ne su univariante ar daugiavariante regresija. Pasidomėkite skirtumais tarp šių metodų arba peržiūrėkite [šį vaizdo įrašą](https://www.coursera.org/lecture/quantifying-relationships-regression-models/linear-vs-nonlinear-categorical-variables-ai2Ef).
 
-Sužinokite daugiau apie regresijos koncepciją ir pagalvokite, kokius klausimus galima atsakyti naudojant šią techniką. Paimkite [šį mokymą](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott), kad pagilintumėte savo supratimą.
+Plačiau pasiskaitykite apie regresijos sąvoką ir pagalvokite, kokius klausimus galima atsakyti naudojant šią techniką. Norėdami giliau suprasti, peržiūrėkite šį [vadovą](https://docs.microsoft.com/learn/modules/train-evaluate-regression-models?WT.mc_id=academic-77952-leestott).
 
 ## Užduotis
 
@@ -225,4 +226,4 @@ Sužinokite daugiau apie regresijos koncepciją ir pagalvokite, kokius klausimus
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.

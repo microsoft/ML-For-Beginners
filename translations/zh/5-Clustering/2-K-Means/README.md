@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "085d571097d201810720df4cd379f8c2",
-  "translation_date": "2025-09-03T17:18:36+00:00",
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-05T09:02:01+00:00",
   "source_file": "5-Clustering/2-K-Means/README.md",
   "language_code": "zh"
 }
 -->
 # K-Means 聚类
 
-## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [课前测验](https://ff-quizzes.netlify.app/en/ml/)
 
-在本课中，您将学习如何使用 Scikit-learn 和之前导入的尼日利亚音乐数据集创建聚类。我们将介绍 K-Means 聚类的基础知识。请记住，正如您在之前的课程中学到的那样，有许多方法可以处理聚类，具体使用哪种方法取决于您的数据。我们将尝试 K-Means，因为它是最常见的聚类技术。让我们开始吧！
+在本课中，您将学习如何使用 Scikit-learn 和之前导入的尼日利亚音乐数据集创建聚类。我们将介绍 K-Means 聚类的基础知识。请记住，正如您在之前的课程中学到的那样，有许多方法可以处理聚类，您使用的方法取决于您的数据。我们将尝试 K-Means，因为它是最常见的聚类技术。让我们开始吧！
 
-您将学习以下术语：
+您将学习的术语：
 
 - Silhouette评分
 - 肘部法则
@@ -24,9 +24,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 [K-Means 聚类](https://wikipedia.org/wiki/K-means_clustering) 是一种源自信号处理领域的方法。它用于通过一系列观察将数据分组并划分为“k”个聚类。每次观察都将数据点分配到离其最近的“均值”或聚类中心点。
 
-这些聚类可以通过 [Voronoi 图](https://wikipedia.org/wiki/Voronoi_diagram) 进行可视化，其中包括一个点（或“种子”）及其对应的区域。
+这些聚类可以通过 [Voronoi 图](https://wikipedia.org/wiki/Voronoi_diagram) 来可视化，其中包括一个点（或“种子”）及其对应的区域。
 
-![voronoi diagram](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.zh.png)
+![voronoi diagram](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
 > 信息图由 [Jen Looper](https://twitter.com/jenlooper) 提供
 
@@ -35,9 +35,9 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
 1. 算法通过从数据集中采样选择 k 个中心点。之后进入循环：
     1. 将每个样本分配到最近的质心。
     2. 通过计算分配到之前质心的所有样本的平均值来创建新的质心。
-    3. 计算新质心与旧质心之间的差异，并重复直到质心稳定。
+    3. 然后计算新旧质心之间的差异，并重复直到质心稳定。
 
-使用 K-Means 的一个缺点是需要确定“k”，即质心的数量。幸运的是，“肘部法则”可以帮助估算一个好的起始值。您马上就会尝试。
+使用 K-Means 的一个缺点是您需要确定“k”，即质心的数量。幸运的是，“肘部法则”可以帮助估算一个好的起始值。您马上就会尝试。
 
 ## 前提条件
 
@@ -89,11 +89,11 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
     sns.boxplot(x = 'release_date', data = df)
     ```
 
-    这些数据有点杂乱：通过观察每一列的箱线图，您可以看到异常值。
+    这些数据有点噪声：通过观察每一列的箱线图，您可以看到异常值。
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.zh.png)
+    ![outliers](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
-您可以遍历数据集并删除这些异常值，但这样会使数据变得非常少。
+您可以遍历数据集并删除这些异常值，但这样会使数据变得非常有限。
 
 1. 目前，选择您将用于聚类练习的列。选择范围相似的列，并将 `artist_top_genre` 列编码为数值数据：
 
@@ -127,7 +127,7 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
     y_cluster_kmeans
     ```
 
-您会看到一个数组，其中打印了数据框每一行的预测聚类（0、1 或 2）。
+您会看到一个数组打印出来，其中包含数据框每一行的预测聚类（0、1 或 2）。
 
 1. 使用此数组计算“Silhouette评分”：
 
@@ -172,7 +172,7 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
 
 ### 肘部法则
 
-之前，您推测因为目标是 3 个歌曲流派，所以应该选择 3 个聚类。但真的是这样吗？
+之前，您推测因为您针对 3 个歌曲流派，所以应该选择 3 个聚类。但真的是这样吗？
 
 1. 使用“肘部法则”确认。
 
@@ -185,9 +185,9 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
     plt.show()
     ```
 
-    使用您在上一步中构建的 `wcss` 变量创建一个图表，显示肘部的“弯曲”位置，这表明最佳聚类数量。也许确实是 3！
+    使用您在上一步中构建的 `wcss` 变量创建一个图表，显示肘部的“弯曲”位置，这表明最佳聚类数量。也许确实是 **3**！
 
-    ![elbow method](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.zh.png)
+    ![elbow method](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
 ## 练习 - 显示聚类
 
@@ -216,15 +216,15 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
     print('Accuracy score: {0:0.2f}'. format(correct_labels/float(y.size)))
     ```
 
-    该模型的准确性不太好，聚类的形状给出了原因的提示。
+    该模型的准确性不太高，聚类的形状给了您一个提示原因。
 
-    ![clusters](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.zh.png)
+    ![clusters](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
     这些数据过于不平衡，相关性太低，并且列值之间的方差太大，无法很好地聚类。事实上，形成的聚类可能受到我们上面定义的三个流派类别的严重影响或偏斜。这是一个学习过程！
 
-    在 Scikit-learn 的文档中，您可以看到像这样的模型，聚类分界不太清晰，存在“方差”问题：
+    在 Scikit-learn 的文档中，您可以看到像这样的模型，聚类划分不太清晰，存在“方差”问题：
 
-    ![problem models](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.zh.png)
+    ![problem models](../../../../5-Clustering/2-K-Means/images/problems.png)
     > 信息图来自 Scikit-learn
 
 ## 方差
@@ -239,11 +239,11 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
 
 ## 🚀挑战
 
-花些时间研究这个 notebook，调整参数。通过进一步清理数据（例如删除异常值），您能否提高模型的准确性？您可以使用权重为某些数据样本赋予更大的权重。还有什么方法可以创建更好的聚类？
+花一些时间在这个 notebook 上，调整参数。通过进一步清理数据（例如删除异常值），您能否提高模型的准确性？您可以使用权重为某些数据样本赋予更大的权重。还有什么方法可以创建更好的聚类？
 
-提示：尝试缩放数据。notebook 中有注释代码，添加了标准缩放以使数据列在范围上更接近。您会发现虽然 Silhouette评分下降了，但肘部图中的“弯曲”变得更平滑。这是因为未缩放的数据允许方差较小的数据具有更大的权重。阅读更多关于此问题的信息[这里](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226)。
+提示：尝试缩放数据。notebook 中有注释代码，添加了标准缩放以使数据列在范围上更接近。您会发现虽然 Silhouette评分下降了，但肘部图中的“弯曲”变得更平滑。这是因为未缩放的数据允许方差较小的数据具有更大的权重。阅读更多关于此问题的内容[这里](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226)。
 
-## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [课后测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 复习与自学
 
@@ -258,4 +258,4 @@ K-Means 聚类过程[通过三步流程执行](https://scikit-learn.org/stable/m
 ---
 
 **免责声明**：  
-本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保翻译的准确性，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们不对因使用此翻译而产生的任何误解或误读承担责任。
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。因使用本翻译而导致的任何误解或误读，我们概不负责。

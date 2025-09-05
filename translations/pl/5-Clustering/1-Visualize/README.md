@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-09-03T17:06:26+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-05T08:16:39+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "pl"
 }
@@ -13,15 +13,15 @@ Klasteryzacja to rodzaj [uczenia nienadzorowanego](https://wikipedia.org/wiki/Uc
 
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
-> 🎥 Kliknij obrazek powyżej, aby obejrzeć wideo. Podczas nauki maszynowego uczenia się z klasteryzacją, posłuchaj nigeryjskich utworów Dance Hall - to wysoko oceniana piosenka z 2014 roku autorstwa PSquare.
+> 🎥 Kliknij obrazek powyżej, aby obejrzeć wideo. Podczas nauki o klasteryzacji w uczeniu maszynowym, posłuchaj nigeryjskich utworów Dance Hall - to wysoko oceniana piosenka z 2014 roku autorstwa PSquare.
 
-## [Quiz przed wykładem](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Wprowadzenie
 
-[Klasteryzacja](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) jest bardzo przydatna w eksploracji danych. Zobaczmy, czy może pomóc odkryć trendy i wzorce w sposobie, w jaki nigeryjscy odbiorcy konsumują muzykę.
+[Klasteryzacja](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) jest bardzo przydatna w eksploracji danych. Zobaczmy, czy może pomóc w odkrywaniu trendów i wzorców w sposobie, w jaki nigeryjscy odbiorcy konsumują muzykę.
 
-✅ Zastanów się przez chwilę nad zastosowaniami klasteryzacji. W codziennym życiu klasteryzacja ma miejsce, gdy masz stos prania i musisz posortować ubrania członków rodziny 🧦👕👖🩲. W nauce o danych klasteryzacja występuje podczas analizy preferencji użytkownika lub określania cech dowolnego nieoznaczonego zbioru danych. Klasteryzacja w pewnym sensie pomaga uporządkować chaos, jak w przypadku szuflady na skarpetki.
+✅ Zastanów się przez chwilę nad zastosowaniami klasteryzacji. W codziennym życiu klasteryzacja ma miejsce, gdy masz stos prania i musisz posortować ubrania członków rodziny 🧦👕👖🩲. W data science klasteryzacja występuje podczas analizy preferencji użytkownika lub określania cech dowolnego nieoznaczonego zbioru danych. Klasteryzacja w pewnym sensie pomaga uporządkować chaos, jak w przypadku szuflady na skarpetki.
 
 [![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
 
@@ -29,48 +29,48 @@ Klasteryzacja to rodzaj [uczenia nienadzorowanego](https://wikipedia.org/wiki/Uc
 
 W środowisku zawodowym klasteryzacja może być używana do określania takich rzeczy jak segmentacja rynku, np. ustalanie, jakie grupy wiekowe kupują jakie produkty. Innym zastosowaniem może być wykrywanie anomalii, np. w celu wykrycia oszustw w zbiorze danych o transakcjach kartami kredytowymi. Możesz również użyć klasteryzacji do identyfikacji guzów w serii skanów medycznych.
 
-✅ Zastanów się przez chwilę, czy spotkałeś się z klasteryzacją „w terenie”, np. w bankowości, e-commerce lub biznesie.
+✅ Zastanów się przez chwilę, jak mogłeś spotkać się z klasteryzacją „w terenie”, w bankowości, e-commerce lub biznesie.
 
 > 🎓 Co ciekawe, analiza klastrów wywodzi się z dziedzin antropologii i psychologii w latach 30. XX wieku. Wyobraź sobie, jak mogła być wtedy używana.
 
-Alternatywnie, można ją wykorzystać do grupowania wyników wyszukiwania - na przykład według linków zakupowych, obrazów lub recenzji. Klasteryzacja jest przydatna, gdy masz duży zbiór danych, który chcesz zredukować i na którym chcesz przeprowadzić bardziej szczegółową analizę, więc technika ta może być używana do poznania danych przed skonstruowaniem innych modeli.
+Alternatywnie, możesz użyć jej do grupowania wyników wyszukiwania - na przykład według linków zakupowych, obrazów lub recenzji. Klasteryzacja jest przydatna, gdy masz duży zbiór danych, który chcesz zredukować i na którym chcesz przeprowadzić bardziej szczegółową analizę, więc technika ta może być używana do poznania danych przed skonstruowaniem innych modeli.
 
-✅ Po zorganizowaniu danych w klastry przypisujesz im identyfikator klastra, co może być przydatne przy zachowaniu prywatności zbioru danych; zamiast odnosić się do punktu danych za pomocą bardziej ujawniających danych identyfikacyjnych, możesz odwoływać się do niego za pomocą identyfikatora klastra. Czy potrafisz wymyślić inne powody, dla których warto używać identyfikatora klastra zamiast innych elementów klastra do jego identyfikacji?
+✅ Gdy dane są zorganizowane w klastry, przypisujesz im identyfikator klastra. Ta technika może być przydatna przy zachowaniu prywatności zbioru danych; zamiast odnosić się do punktu danych za pomocą bardziej ujawniających danych identyfikacyjnych, możesz odwoływać się do niego za pomocą identyfikatora klastra. Czy możesz wymyślić inne powody, dla których warto odwoływać się do identyfikatora klastra zamiast innych elementów klastra, aby go zidentyfikować?
 
 Pogłęb swoją wiedzę na temat technik klasteryzacji w tym [module nauki](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
 
 ## Rozpoczęcie pracy z klasteryzacją
 
-[Scikit-learn oferuje szeroki wachlarz](https://scikit-learn.org/stable/modules/clustering.html) metod do przeprowadzania klasteryzacji. Wybór odpowiedniej metody zależy od przypadku użycia. Zgodnie z dokumentacją każda metoda ma różne zalety. Oto uproszczona tabela metod obsługiwanych przez Scikit-learn i ich odpowiednich zastosowań:
+[Scikit-learn oferuje szeroki wachlarz](https://scikit-learn.org/stable/modules/clustering.html) metod do przeprowadzania klasteryzacji. Typ, który wybierzesz, będzie zależał od Twojego przypadku użycia. Według dokumentacji każda metoda ma różne zalety. Oto uproszczona tabela metod obsługiwanych przez Scikit-learn i ich odpowiednich zastosowań:
 
 | Nazwa metody                 | Zastosowanie                                                          |
 | :--------------------------- | :-------------------------------------------------------------------- |
 | K-Means                      | ogólne zastosowanie, indukcyjne                                       |
 | Affinity propagation         | wiele, nierówne klastry, indukcyjne                                   |
 | Mean-shift                   | wiele, nierówne klastry, indukcyjne                                   |
-| Spectral clustering          | kilka, równe klastry, transdukcyjne                                   |
-| Ward hierarchical clustering | wiele, ograniczone klastry, transdukcyjne                             |
+| Spectral clustering          | kilka, równe klastry, transdukcyjne                                  |
+| Ward hierarchical clustering | wiele, ograniczone klastry, transdukcyjne                            |
 | Agglomerative clustering     | wiele, ograniczone, odległości nieeuklidesowe, transdukcyjne          |
 | DBSCAN                       | geometria niepłaska, nierówne klastry, transdukcyjne                  |
 | OPTICS                       | geometria niepłaska, nierówne klastry o zmiennej gęstości, transdukcyjne |
 | Gaussian mixtures            | geometria płaska, indukcyjne                                         |
 | BIRCH                        | duży zbiór danych z wartościami odstającymi, indukcyjne              |
 
-> 🎓 Sposób tworzenia klastrów ma wiele wspólnego z tym, jak grupujemy punkty danych w grupy. Rozwińmy trochę słownictwo:
+> 🎓 Sposób, w jaki tworzymy klastry, ma wiele wspólnego z tym, jak grupujemy punkty danych w grupy. Rozpakujmy trochę terminologię:
 >
 > 🎓 ['Transdukcyjne' vs. 'indukcyjne'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
 > Wnioskowanie transdukcyjne opiera się na zaobserwowanych przypadkach treningowych, które są mapowane na konkretne przypadki testowe. Wnioskowanie indukcyjne opiera się na przypadkach treningowych, które są mapowane na ogólne reguły, które dopiero potem są stosowane do przypadków testowych.
 > 
-> Przykład: Wyobraź sobie, że masz zbiór danych, który jest tylko częściowo oznaczony. Niektóre rzeczy to „płyty”, inne „CD”, a niektóre są puste. Twoim zadaniem jest przypisanie etykiet do pustych danych. Jeśli wybierzesz podejście indukcyjne, wytrenujesz model szukający „płyt” i „CD” i zastosujesz te etykiety do nieoznaczonych danych. Podejście to będzie miało trudności z klasyfikacją rzeczy, które są faktycznie „kasetami”. Podejście transdukcyjne, z drugiej strony, radzi sobie z tymi nieznanymi danymi bardziej efektywnie, ponieważ działa na zasadzie grupowania podobnych elementów razem, a następnie przypisuje etykietę do grupy. W tym przypadku klastry mogą odzwierciedlać „okrągłe muzyczne rzeczy” i „kwadratowe muzyczne rzeczy”.
+> Przykład: Wyobraź sobie, że masz zbiór danych, który jest tylko częściowo oznaczony. Niektóre rzeczy to „płyty”, inne „CD”, a niektóre są puste. Twoim zadaniem jest przypisanie etykiet do pustych danych. Jeśli wybierzesz podejście indukcyjne, wytrenujesz model szukający „płyt” i „CD” i zastosujesz te etykiety do nieoznaczonych danych. Podejście to będzie miało trudności z klasyfikacją rzeczy, które są faktycznie „kasetami”. Podejście transdukcyjne, z drugiej strony, radzi sobie z tymi nieznanymi danymi bardziej efektywnie, ponieważ działa na grupowaniu podobnych elementów razem, a następnie przypisuje etykietę do grupy. W tym przypadku klastry mogą odzwierciedlać „okrągłe muzyczne rzeczy” i „kwadratowe muzyczne rzeczy”.
 > 
 > 🎓 ['Geometria niepłaska' vs. 'płaska'](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
 > Wywodzące się z terminologii matematycznej, geometria niepłaska vs. płaska odnosi się do pomiaru odległości między punktami za pomocą metod geometrycznych „płaskich” ([euklidesowych](https://wikipedia.org/wiki/Geometria_euklidesowa)) lub „niepłaskich” (nieeuklidesowych).
 >
->'Płaska' w tym kontekście odnosi się do geometrii euklidesowej (części której są nauczane jako „geometria płaszczyzny”), a 'niepłaska' odnosi się do geometrii nieeuklidesowej. Co geometria ma wspólnego z uczeniem maszynowym? Cóż, jako dwie dziedziny zakorzenione w matematyce, musi istnieć wspólny sposób mierzenia odległości między punktami w klastrach, a to może być wykonane w sposób „płaski” lub „niepłaski”, w zależności od charakteru danych. [Odległości euklidesowe](https://wikipedia.org/wiki/Odległość_euklidesowa) są mierzone jako długość odcinka między dwoma punktami. [Odległości nieeuklidesowe](https://wikipedia.org/wiki/Geometria_nieeuklidesowa) są mierzone wzdłuż krzywej. Jeśli Twoje dane, wizualizowane, wydają się nie istnieć na płaszczyźnie, możesz potrzebować specjalistycznego algorytmu do ich obsługi.
+>'Płaska' w tym kontekście odnosi się do geometrii euklidesowej (części której są nauczane jako „geometria płaszczyzny”), a 'niepłaska' odnosi się do geometrii nieeuklidesowej. Co geometria ma wspólnego z uczeniem maszynowym? Cóż, jako dwie dziedziny zakorzenione w matematyce, musi istnieć wspólny sposób mierzenia odległości między punktami w klastrach, a to można zrobić w sposób „płaski” lub „niepłaski”, w zależności od charakteru danych. [Odległości euklidesowe](https://wikipedia.org/wiki/Odległość_euklidesowa) są mierzone jako długość odcinka między dwoma punktami. [Odległości nieeuklidesowe](https://wikipedia.org/wiki/Geometria_nieeuklidesowa) są mierzone wzdłuż krzywej. Jeśli Twoje dane, wizualizowane, wydają się nie istnieć na płaszczyźnie, możesz potrzebować specjalistycznego algorytmu do ich obsługi.
 >
-![Flat vs Nonflat Geometry Infographic](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.pl.png)
+![Flat vs Nonflat Geometry Infographic](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > Infografika autorstwa [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Odległości'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
@@ -79,9 +79,9 @@ Pogłęb swoją wiedzę na temat technik klasteryzacji w tym [module nauki](http
 > 
 > 🎓 ['Ograniczone'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
-> [Ograniczona klasteryzacja](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) wprowadza 'uczenie półnadzorowane' do tej metody nienadzorowanej. Relacje między punktami są oznaczane jako 'nie można połączyć' lub 'musi być połączone', więc na zbiór danych nakładane są pewne reguły.
+> [Ograniczona klasteryzacja](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) wprowadza 'uczenie półnadzorowane' do tej metody nienadzorowanej. Relacje między punktami są oznaczane jako 'nie można połączyć' lub 'muszą być połączone', więc na zbiór danych nakładane są pewne reguły.
 >
->Przykład: Jeśli algorytm zostanie uwolniony na partii nieoznaczonych lub półoznaczonych danych, klastry, które utworzy, mogą być niskiej jakości. W powyższym przykładzie klastry mogą grupować „okrągłe muzyczne rzeczy”, „kwadratowe muzyczne rzeczy”, „trójkątne rzeczy” i „ciastka”. Jeśli zostaną wprowadzone pewne ograniczenia lub reguły („przedmiot musi być wykonany z plastiku”, „przedmiot musi być w stanie produkować muzykę”), może to pomóc „ograniczyć” algorytm do podejmowania lepszych decyzji.
+>Przykład: Jeśli algorytm zostanie uwolniony na partii nieoznaczonych lub półoznaczonych danych, klastry, które produkuje, mogą być niskiej jakości. W powyższym przykładzie klastry mogą grupować „okrągłe muzyczne rzeczy”, „kwadratowe muzyczne rzeczy”, „trójkątne rzeczy” i „ciastka”. Jeśli zostaną wprowadzone pewne ograniczenia lub reguły do przestrzegania („przedmiot musi być wykonany z plastiku”, „przedmiot musi być w stanie produkować muzykę”), może to pomóc „ograniczyć” algorytm do podejmowania lepszych decyzji.
 > 
 > 🎓 'Gęstość'
 > 
@@ -89,16 +89,16 @@ Pogłęb swoją wiedzę na temat technik klasteryzacji w tym [module nauki](http
 
 ## Algorytmy klasteryzacji
 
-Istnieje ponad 100 algorytmów klasteryzacji, a ich zastosowanie zależy od charakteru danych. Omówmy niektóre z głównych:
+Istnieje ponad 100 algorytmów klasteryzacji, a ich zastosowanie zależy od charakteru danych. Omówmy niektóre z najważniejszych:
 
 - **Klasteryzacja hierarchiczna**. Jeśli obiekt jest klasyfikowany na podstawie swojej bliskości do pobliskiego obiektu, a nie do bardziej odległego, klastry są tworzone na podstawie odległości ich członków od innych obiektów. Klasteryzacja aglomeracyjna w Scikit-learn jest hierarchiczna.
 
-   ![Hierarchical clustering Infographic](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.pl.png)
+   ![Hierarchical clustering Infographic](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > Infografika autorstwa [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 - **Klasteryzacja centroidowa**. Ten popularny algorytm wymaga wyboru 'k', czyli liczby klastrów do utworzenia, po czym algorytm określa punkt centralny klastra i gromadzi dane wokół tego punktu. [Klasteryzacja K-means](https://wikipedia.org/wiki/K-means_clustering) jest popularną wersją klasteryzacji centroidowej. Centrum jest określane przez najbliższą średnią, stąd nazwa. Kwadratowa odległość od klastra jest minimalizowana.
 
-   ![Centroid clustering Infographic](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.pl.png)
+   ![Centroid clustering Infographic](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > Infografika autorstwa [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 - **Klasteryzacja oparta na rozkładzie**. Opierając się na modelowaniu statystycznym, klasteryzacja oparta na rozkładzie koncentruje się na określeniu prawdopodobieństwa, że punkt danych należy do klastra, i przypisaniu go odpowiednio. Metody mieszanki Gaussa należą do tego typu.
@@ -109,7 +109,7 @@ Istnieje ponad 100 algorytmów klasteryzacji, a ich zastosowanie zależy od char
 
 ## Ćwiczenie - klasteryzuj swoje dane
 
-Klasteryzacja jako technika jest znacznie wspomagana przez odpowiednią wizualizację, więc zacznijmy od wizualizacji naszych danych muzycznych. To ćwiczenie pomoże nam zdecydować, którą z metod klasteryzacji najskuteczniej zastosować do charakteru tych danych.
+Klasteryzacja jako technika jest bardzo wspomagana przez odpowiednią wizualizację, więc zacznijmy od wizualizacji naszych danych muzycznych. To ćwiczenie pomoże nam zdecydować, którą z metod klasteryzacji powinniśmy najskuteczniej zastosować do charakteru tych danych.
 
 1. Otwórz plik [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/notebook.ipynb) w tym folderze.
 
@@ -119,7 +119,7 @@ Klasteryzacja jako technika jest znacznie wspomagana przez odpowiednią wizualiz
     !pip install seaborn
     ```
 
-1. Dodaj dane o piosenkach z pliku [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Załaduj ramkę danych z informacjami o piosenkach. Przygotuj się do eksploracji tych danych, importując biblioteki i wyświetlając dane:
+1. Dodaj dane o piosenkach z pliku [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Załaduj dataframe z danymi o piosenkach. Przygotuj się do eksploracji tych danych, importując biblioteki i wyświetlając dane:
 
     ```python
     import matplotlib.pyplot as plt
@@ -139,7 +139,7 @@ Klasteryzacja jako technika jest znacznie wspomagana przez odpowiednią wizualiz
 | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
 | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
 
-1. Uzyskaj informacje o ramce danych, wywołując `info()`:
+1. Uzyskaj informacje o dataframe, wywołując `info()`:
 
     ```python
     df.info()
@@ -173,7 +173,7 @@ Klasteryzacja jako technika jest znacznie wspomagana przez odpowiednią wizualiz
     memory usage: 66.4+ KB
     ```
 
-1. Sprawdź ponownie, czy nie ma wartości null, wywołując `isnull()` i upewniając się, że suma wynosi 0:
+1. Sprawdź ponownie, czy są wartości null, wywołując `isnull()` i upewniając się, że suma wynosi 0:
 
     ```python
     df.isnull().sum()
@@ -218,7 +218,7 @@ Klasteryzacja jako technika jest znacznie wspomagana przez odpowiednią wizualiz
     | 75%   | 2017         | 242098.5    | 31         | 0.8295       | 0.403        | 0.87575  | 0.000234         | 0.164    | -3.331    | 0.177       | 125.03925  | 4              |
     | max   | 2020         | 511738      | 73         | 0.966        | 0.954        | 0.995    | 0.91             | 0.811    | 0.582     | 0.514       | 206.007    | 5              |
 
-> 🤔 Jeśli pracujemy z klasteryzacją, metodą niesuperwizowaną, która nie wymaga danych z etykietami, dlaczego pokazujemy te dane z etykietami? W fazie eksploracji danych są one przydatne, ale nie są konieczne do działania algorytmów klasteryzacji. Można równie dobrze usunąć nagłówki kolumn i odwoływać się do danych według numeru kolumny.
+> 🤔 Jeśli pracujemy z klastrowaniem, metodą nienadzorowaną, która nie wymaga danych z etykietami, dlaczego pokazujemy te dane z etykietami? W fazie eksploracji danych są one przydatne, ale nie są konieczne do działania algorytmów klastrowania. Można równie dobrze usunąć nagłówki kolumn i odwoływać się do danych według numeru kolumny.
 
 Spójrz na ogólne wartości danych. Zauważ, że popularność może wynosić '0', co oznacza utwory, które nie mają rankingu. Usuńmy je wkrótce.
 
@@ -234,7 +234,7 @@ Spójrz na ogólne wartości danych. Zauważ, że popularność może wynosić '
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.pl.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
 ✅ Jeśli chcesz zobaczyć więcej wartości, zmień top `[:5]` na większą wartość lub usuń go, aby zobaczyć wszystko.
 
@@ -253,9 +253,9 @@ Zauważ, że gdy najpopularniejszy gatunek jest opisany jako 'Missing', oznacza 
 
     Teraz sprawdź ponownie gatunki:
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.pl.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
-1. Trzy najpopularniejsze gatunki zdecydowanie dominują w tym zbiorze danych. Skoncentrujmy się na `afro dancehall`, `afropop` i `nigerian pop`, dodatkowo filtrując zbiór danych, aby usunąć wszystko z wartością popularności 0 (co oznacza, że nie zostało sklasyfikowane jako popularne w zbiorze danych i może być uznane za szum dla naszych celów):
+1. Trzy najpopularniejsze gatunki zdecydowanie dominują w tym zbiorze danych. Skoncentrujmy się na `afro dancehall`, `afropop` i `nigerian pop`, dodatkowo filtrując zbiór danych, aby usunąć wszystko z wartością popularności 0 (co oznacza, że nie zostało sklasyfikowane jako popularne w zbiorze danych i może być uznane za szum w naszych celach):
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -275,9 +275,9 @@ Zauważ, że gdy najpopularniejszy gatunek jest opisany jako 'Missing', oznacza 
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.pl.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
-    Jedyną silną korelacją jest związek między `energy` a `loudness`, co nie jest zaskakujące, biorąc pod uwagę, że głośna muzyka jest zwykle dość energetyczna. Poza tym korelacje są stosunkowo słabe. Ciekawe będzie zobaczenie, co algorytm klasteryzacji może zrobić z tymi danymi.
+    Jedyną silną korelacją jest związek między `energy` a `loudness`, co nie jest zaskakujące, biorąc pod uwagę, że głośna muzyka jest zwykle dość energetyczna. Poza tym korelacje są stosunkowo słabe. Ciekawe będzie zobaczenie, co algorytm klastrowania może zrobić z tymi danymi.
 
     > 🎓 Pamiętaj, że korelacja nie oznacza przyczynowości! Mamy dowód korelacji, ale brak dowodu przyczynowości. [Zabawna strona internetowa](https://tylervigen.com/spurious-correlations) zawiera wizualizacje, które podkreślają ten punkt.
 
@@ -307,7 +307,7 @@ Czy te trzy gatunki różnią się znacząco w postrzeganiu ich taneczności, w 
 
     Ogólnie rzecz biorąc, trzy gatunki luźno się pokrywają pod względem ich popularności i taneczności. Określenie klastrów w tych luźno powiązanych danych będzie wyzwaniem:
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.pl.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. Utwórz wykres punktowy:
 
@@ -319,29 +319,29 @@ Czy te trzy gatunki różnią się znacząco w postrzeganiu ich taneczności, w 
 
     Wykres punktowy dla tych samych osi pokazuje podobny wzór zbieżności
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.pl.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
-Ogólnie rzecz biorąc, w przypadku klasteryzacji można używać wykresów punktowych do pokazywania klastrów danych, więc opanowanie tego typu wizualizacji jest bardzo przydatne. W następnej lekcji weźmiemy te przefiltrowane dane i użyjemy klasteryzacji k-średnich, aby odkryć grupy w tych danych, które interesująco się pokrywają.
+Ogólnie rzecz biorąc, w przypadku klastrowania można używać wykresów punktowych do pokazywania klastrów danych, więc opanowanie tego typu wizualizacji jest bardzo przydatne. W następnej lekcji weźmiemy te przefiltrowane dane i użyjemy klastrowania k-średnich, aby odkryć grupy w tych danych, które wydają się nakładać w interesujący sposób.
 
 ---
 
 ## 🚀Wyzwanie
 
-W ramach przygotowania do następnej lekcji stwórz wykres dotyczący różnych algorytmów klasteryzacji, które możesz odkryć i użyć w środowisku produkcyjnym. Jakie problemy próbuje rozwiązać klasteryzacja?
+W ramach przygotowania do następnej lekcji, stwórz wykres dotyczący różnych algorytmów klastrowania, które możesz odkryć i użyć w środowisku produkcyjnym. Jakie problemy próbuje rozwiązać klastrowanie?
 
-## [Quiz po lekcji](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Przegląd i samodzielna nauka
 
-Zanim zastosujesz algorytmy klasteryzacji, jak się nauczyliśmy, warto zrozumieć naturę swojego zbioru danych. Przeczytaj więcej na ten temat [tutaj](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
+Zanim zastosujesz algorytmy klastrowania, jak się nauczyliśmy, warto zrozumieć naturę swojego zbioru danych. Przeczytaj więcej na ten temat [tutaj](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
-[Ten pomocny artykuł](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) przeprowadza Cię przez różne sposoby działania algorytmów klasteryzacji w zależności od kształtu danych.
+[Ten pomocny artykuł](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) przeprowadza Cię przez różne sposoby działania algorytmów klastrowania, biorąc pod uwagę różne kształty danych.
 
 ## Zadanie
 
-[Zbadaj inne wizualizacje dla klasteryzacji](assignment.md)
+[Zbadaj inne wizualizacje dla klastrowania](assignment.md)
 
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za źródło autorytatywne. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
