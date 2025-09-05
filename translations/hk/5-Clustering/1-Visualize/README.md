@@ -1,39 +1,39 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-09-03T17:12:52+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-05T09:21:17+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "hk"
 }
 -->
 # 聚類簡介
 
-聚類是一種[無監督學習](https://wikipedia.org/wiki/Unsupervised_learning)方法，假設數據集是未標籤的，或者其輸入未與預定義的輸出匹配。它使用各種算法來篩選未標籤的數據，並根據數據中識別的模式進行分組。
+聚類是一種[無監督學習](https://wikipedia.org/wiki/Unsupervised_learning)方法，假設數據集是未標籤的，或者其輸入未與預定義的輸出匹配。它使用各種算法來整理未標籤的數據，並根據數據中識別的模式提供分組。
 
 [![PSquare 的 No One Like You](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "PSquare 的 No One Like You")
 
-> 🎥 點擊上方圖片觀看影片。在學習聚類的同時，享受一些尼日利亞舞廳音樂——這是 PSquare 在 2014 年的一首高評價歌曲。
+> 🎥 點擊上方圖片觀看影片。在學習機器學習中的聚類時，欣賞一些尼日利亞舞廳音樂——這是 PSquare 在 2014 年的一首高評價歌曲。
 
-## [課前測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [課前測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ### 簡介
 
 [聚類](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124)在數據探索中非常有用。讓我們看看它是否能幫助發現尼日利亞觀眾消費音樂的趨勢和模式。
 
-✅ 花一分鐘思考一下聚類的用途。在日常生活中，聚類就像當你有一堆洗好的衣服需要分類到家人衣物的時候 🧦👕👖🩲。在數據科學中，聚類發生在分析用戶偏好或確定任何未標籤數據集的特徵時。聚類在某種程度上幫助我們理解混亂，就像整理襪子抽屜一樣。
+✅ 花一分鐘思考一下聚類的用途。在日常生活中，聚類發生在你有一堆洗衣物需要分類成家人衣物的時候 🧦👕👖🩲。在數據科學中，聚類發生在分析用戶偏好或確定任何未標籤數據集的特徵時。聚類在某種程度上幫助理解混亂，就像整理襪子抽屜一樣。
 
 [![機器學習簡介](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "聚類簡介")
 
 > 🎥 點擊上方圖片觀看影片：麻省理工學院的 John Guttag 介紹聚類
 
-在專業環境中，聚類可以用於市場細分，例如確定哪些年齡段購買哪些商品。另一個用途是異常檢測，例如從信用卡交易數據集中檢測欺詐行為。或者，你可以使用聚類來識別醫學掃描中的腫瘤。
+在專業環境中，聚類可以用於確定市場細分，例如確定哪些年齡段購買哪些商品。另一個用途是異常檢測，例如從信用卡交易數據集中檢測欺詐行為。或者你可能使用聚類來確定一批醫學掃描中的腫瘤。
 
 ✅ 花一分鐘思考一下你可能在銀行、電子商務或商業環境中遇到過的聚類。
 
 > 🎓 有趣的是，聚類分析起源於 1930 年代的人類學和心理學領域。你能想像它可能是如何被使用的嗎？
 
-另外，你可以用它來分組搜索結果，例如按購物鏈接、圖片或評論分組。當你擁有一個大型數據集並希望進行更細緻的分析時，聚類非常有用，因此這項技術可以在構建其他模型之前幫助了解數據。
+或者，你可以用它來分組搜索結果，例如按購物鏈接、圖片或評論分組。當你有一個大型數據集需要縮減並進行更細緻的分析時，聚類非常有用，因此該技術可以在構建其他模型之前幫助了解數據。
 
 ✅ 一旦你的數據被組織成聚類，你可以為其分配一個聚類 ID。這種技術在保護數據集隱私時非常有用；你可以用聚類 ID 而不是更具識別性的數據來引用數據點。你能想到其他使用聚類 ID 而不是聚類中其他元素來識別的原因嗎？
 
@@ -41,9 +41,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ## 聚類入門
 
-[Scikit-learn 提供了大量方法](https://scikit-learn.org/stable/modules/clustering.html)來執行聚類。你選擇的類型將取決於你的使用案例。根據文檔，每種方法都有不同的優勢。以下是 Scikit-learn 支持的方法及其適用場景的簡化表格：
+[Scikit-learn 提供了大量方法](https://scikit-learn.org/stable/modules/clustering.html)來執行聚類。你選擇的類型將取決於你的使用案例。根據文檔，每種方法都有不同的優勢。以下是 Scikit-learn 支持的方法及其適用使用案例的簡化表格：
 
-| 方法名稱                     | 使用場景                                                               |
+| 方法名稱                     | 使用案例                                                               |
 | :--------------------------- | :--------------------------------------------------------------------- |
 | K-Means                      | 通用用途，歸納式                                                      |
 | Affinity propagation         | 多個、不均勻的聚類，歸納式                                            |
@@ -52,25 +52,25 @@ CO_OP_TRANSLATOR_METADATA:
 | Ward hierarchical clustering | 多個、受限的聚類，轉導式                                              |
 | Agglomerative clustering     | 多個、受限的、非歐幾里得距離，轉導式                                  |
 | DBSCAN                       | 非平面幾何、不均勻的聚類，轉導式                                      |
-| OPTICS                       | 非平面幾何、不均勻且密度可變的聚類，轉導式                            |
+| OPTICS                       | 非平面幾何、不均勻的聚類，密度可變，轉導式                            |
 | Gaussian mixtures            | 平面幾何，歸納式                                                      |
-| BIRCH                        | 大型數據集且有異常值，歸納式                                          |
+| BIRCH                        | 大型數據集，含異常值，歸納式                                          |
 
-> 🎓 我們如何創建聚類與我們如何將數據點分組有很大關係。讓我們來解釋一些術語：
+> 🎓 我們如何創建聚類與我們如何將數據點分組有很大關係。讓我們解釋一些術語：
 >
 > 🎓 ['轉導式' vs. '歸納式'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
 > 轉導式推理是基於觀察到的訓練案例並映射到特定測試案例。歸納式推理是基於訓練案例並映射到一般規則，然後應用於測試案例。
 > 
-> 舉例：假設你有一個部分標籤的數據集。一些是“唱片”，一些是“CD”，一些是空白。你的任務是為空白部分提供標籤。如果你選擇歸納式方法，你會訓練一個模型尋找“唱片”和“CD”，並將這些標籤應用於未標籤數據。這種方法可能難以分類實際是“磁帶”的項目。而轉導式方法則更有效地處理這些未知數據，因為它努力將相似項目分組，然後為整個組分配標籤。在這種情況下，聚類可能反映“圓形音樂物品”和“方形音樂物品”。
+> 舉例：假設你有一個部分標籤的數據集。一些是“唱片”，一些是“CD”，一些是空白。你的任務是為空白部分提供標籤。如果你選擇歸納式方法，你會訓練一個模型尋找“唱片”和“CD”，並將這些標籤應用於未標籤數據。這種方法可能難以分類實際上是“磁帶”的物品。而轉導式方法則更有效地處理這些未知數據，因為它努力將相似的物品分組，然後為整個分組分配標籤。在這種情況下，聚類可能反映“圓形音樂物品”和“方形音樂物品”。
 > 
-> 🎓 ['非平面' vs. '平面幾何'](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
+> 🎓 ['非平面' vs. '平面'幾何](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
 > 源自數學術語，非平面 vs. 平面幾何指的是通過“平面”（[歐幾里得](https://wikipedia.org/wiki/Euclidean_geometry)）或“非平面”（非歐幾里得）幾何方法測量點之間的距離。
 >
-> 在這裡，“平面”指的是歐幾里得幾何（部分被教為“平面”幾何），而“非平面”指的是非歐幾里得幾何。幾何與機器學習有什麼關係？作為兩個根植於數學的領域，必須有一種通用方法來測量聚類中點之間的距離，這可以根據數據的性質以“平面”或“非平面”的方式完成。[歐幾里得距離](https://wikipedia.org/wiki/Euclidean_distance)是通過兩點之間線段的長度來測量的。[非歐幾里得距離](https://wikipedia.org/wiki/Non-Euclidean_geometry)則沿曲線測量。如果你的數據在可視化後似乎不在平面上，你可能需要使用專門的算法來處理它。
+>'平面'在此上下文中指的是歐幾里得幾何（部分被教為“平面”幾何），而非平面指的是非歐幾里得幾何。幾何與機器學習有什麼關係？作為兩個根植於數學的領域，必須有一種通用方法來測量聚類中點之間的距離，這可以根據數據的性質以“平面”或“非平面”的方式進行。[歐幾里得距離](https://wikipedia.org/wiki/Euclidean_distance)是通過兩點之間線段的長度來測量的。[非歐幾里得距離](https://wikipedia.org/wiki/Non-Euclidean_geometry)則沿曲線測量。如果你的數據在可視化後似乎不在平面上，你可能需要使用專門的算法來處理它。
 >
-![平面 vs 非平面幾何信息圖](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.hk.png)
+![平面 vs 非平面幾何信息圖](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > 信息圖由 [Dasani Madipalli](https://twitter.com/dasani_decoded) 提供
 > 
 > 🎓 ['距離'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
@@ -81,31 +81,31 @@ CO_OP_TRANSLATOR_METADATA:
 > 
 > [受限聚類](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf)在這種無監督方法中引入了“半監督”學習。點之間的關係被標記為“不能鏈接”或“必須鏈接”，因此對數據集施加了一些規則。
 >
-> 舉例：如果一個算法在一批未標籤或半標籤數據上自由運行，它生成的聚類可能質量較差。在上述例子中，聚類可能分組為“圓形音樂物品”、“方形音樂物品”、“三角形物品”和“餅乾”。如果給出一些約束或規則（例如“物品必須由塑料製成”、“物品需要能夠產生音樂”），這可以幫助“約束”算法做出更好的選擇。
+>舉例：如果一個算法在一批未標籤或半標籤數據上自由運行，它生成的聚類可能質量較差。在上述例子中，聚類可能分組為“圓形音樂物品”、“方形音樂物品”、“三角形物品”和“餅乾”。如果給出一些限制或規則（“物品必須由塑料製成”，“物品需要能夠產生音樂”），這可以幫助“限制”算法做出更好的選擇。
 > 
 > 🎓 '密度'
 > 
-> 被認為“噪聲”的數據被視為“密集”。其每個聚類中的點之間的距離可能在檢查後顯示為更密集或更稀疏，因此需要使用適當的聚類方法來分析這些數據。[這篇文章](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html)展示了使用 K-Means 聚類與 HDBSCAN 算法探索具有不均勻聚類密度的噪聲數據集的區別。
+> 被認為是“噪聲”的數據被認為是“密集”的。每個聚類中的點之間的距離在檢查時可能顯示出更多或更少的密度或“擁擠”，因此需要使用適當的聚類方法來分析這些數據。[這篇文章](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html)展示了使用 K-Means 聚類與 HDBSCAN 算法探索具有不均勻聚類密度的噪聲數據集的區別。
 
 ## 聚類算法
 
 有超過 100 種聚類算法，其使用取決於手頭數據的性質。讓我們討論一些主要的算法：
 
-- **層次聚類**。如果一個物件是根據其與附近物件的接近程度而分類，而不是與更遠的物件，則聚類是基於其成員與其他物件的距離形成的。Scikit-learn 的凝聚聚類屬於層次聚類。
+- **層次聚類**。如果物品是根據其與附近物品的接近程度而分類，而不是與更遠的物品，聚類是基於其成員與其他物品的距離形成的。Scikit-learn 的凝聚聚類是層次聚類。
 
-   ![層次聚類信息圖](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.hk.png)
+   ![層次聚類信息圖](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > 信息圖由 [Dasani Madipalli](https://twitter.com/dasani_decoded) 提供
 
-- **中心點聚類**。這種流行的算法需要選擇“k”，即要形成的聚類數量，之後算法確定聚類的中心點並圍繞該點收集數據。[K-means 聚類](https://wikipedia.org/wiki/K-means_clustering)是中心點聚類的一個流行版本。中心點是由最近的平均值確定的，因此得名。聚類的平方距離被最小化。
+- **中心點聚類**。這種流行的算法需要選擇“k”，即要形成的聚類數量，然後算法確定聚類的中心點並圍繞該點收集數據。[K-means 聚類](https://wikipedia.org/wiki/K-means_clustering)是中心點聚類的一個流行版本。中心點由最近的平均值確定，因此得名。聚類的平方距離被最小化。
 
-   ![中心點聚類信息圖](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.hk.png)
+   ![中心點聚類信息圖](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > 信息圖由 [Dasani Madipalli](https://twitter.com/dasani_decoded) 提供
 
 - **基於分佈的聚類**。基於統計建模，基於分佈的聚類集中於確定數據點屬於某個聚類的概率，並據此分配。高斯混合方法屬於此類。
 
-- **基於密度的聚類**。數據點根據其密度或圍繞彼此的分組分配到聚類中。遠離群體的數據點被視為異常值或噪聲。DBSCAN、Mean-shift 和 OPTICS 屬於此類聚類。
+- **基於密度的聚類**。數據點根據其密度或圍繞彼此的分組分配到聚類中。遠離群體的數據點被認為是異常值或噪聲。DBSCAN、Mean-shift 和 OPTICS 屬於此類聚類。
 
-- **基於網格的聚類**。對於多維數據集，創建一個網格並將數據分配到網格的單元中，從而創建聚類。
+- **基於網格的聚類**。對於多維數據集，創建一個網格，並將數據分配到網格的單元中，從而創建聚類。
 
 ## 練習 - 聚類你的數據
 
@@ -139,7 +139,7 @@ CO_OP_TRANSLATOR_METADATA:
 | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
 | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
 
-1. 獲取數據框的基本資訊，使用 `info()`：
+1. 獲取數據框的基本信息，使用 `info()`：
 
     ```python
     df.info()
@@ -173,7 +173,7 @@ CO_OP_TRANSLATOR_METADATA:
     memory usage: 66.4+ KB
     ```
 
-1. 使用 `isnull()` 並確認總和為 0，檢查是否有空值：
+1. 使用 `isnull()` 並驗證總和為 0，檢查是否有空值：
 
     ```python
     df.isnull().sum()
@@ -218,11 +218,11 @@ CO_OP_TRANSLATOR_METADATA:
     | 75%   | 2017         | 242098.5    | 31         | 0.8295       | 0.403        | 0.87575  | 0.000234         | 0.164    | -3.331    | 0.177       | 125.03925  | 4              |
     | max   | 2020         | 511738      | 73         | 0.966        | 0.954        | 0.995    | 0.91             | 0.811    | 0.582     | 0.514       | 206.007    | 5              |
 
-> 🤔 如果我們正在使用聚類這種不需要標籤數據的無監督方法，為什麼還要展示這些帶有標籤的數據？在數據探索階段，這些標籤很有用，但對於聚類算法來說並非必要。你完全可以移除列標題，並通過列號來引用數據。
+> 🤔 如果我們正在使用聚類這種不需要標籤數據的無監督方法，為什麼還要展示帶有標籤的數據？在數據探索階段，標籤很有用，但對於聚類算法來說並非必要。你完全可以移除列標題，並通過列號來引用數據。
 
-查看數據的一般值。注意，流行度可以是 '0'，這表示歌曲沒有排名。我們稍後會移除這些數據。
+查看數據的一般值。注意，流行度可以是 "0"，這表示歌曲沒有排名。我們稍後會移除這些數據。
 
-1. 使用柱狀圖找出最受歡迎的音樂類型：
+1. 使用條形圖找出最流行的音樂類型：
 
     ```python
     import seaborn as sns
@@ -234,13 +234,13 @@ CO_OP_TRANSLATOR_METADATA:
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.hk.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
 ✅ 如果想查看更多的前幾名數據，可以將 `[:5]` 改為更大的值，或者移除它以查看所有數據。
 
-注意，當最受歡迎的音樂類型顯示為 'Missing' 時，這表示 Spotify 沒有對其進行分類，因此我們需要移除它。
+注意，當最流行的音樂類型被描述為 "Missing" 時，這表示 Spotify 沒有對其進行分類，因此我們需要移除它。
 
-1. 通過篩選移除缺失數據
+1. 通過篩選移除缺失數據：
 
     ```python
     df = df[df['artist_top_genre'] != 'Missing']
@@ -253,9 +253,9 @@ CO_OP_TRANSLATOR_METADATA:
 
     現在重新檢查音樂類型：
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.hk.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
-1. 顯然，前三大音樂類型在這個數據集中占主導地位。我們將集中研究 `afro dancehall`、`afropop` 和 `nigerian pop`，並進一步篩選數據，移除流行度值為 0 的數據（這表示該數據集中的歌曲未被分類為流行，對我們的目的來說可以視為噪音）：
+1. 顯然，前三大音樂類型在這個數據集中占主導地位。我們將集中研究 `afro dancehall`、`afropop` 和 `nigerian pop`，並進一步篩選數據，移除流行度值為 0 的數據（這表示該數據集未對其進行流行度分類，對我們的目的來說可以視為噪音）：
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -275,21 +275,21 @@ CO_OP_TRANSLATOR_METADATA:
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.hk.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
     唯一的強相關性是 `energy` 和 `loudness` 之間，這並不令人驚訝，因為響亮的音樂通常非常有活力。除此之外，相關性相對較弱。看看聚類算法如何處理這些數據會很有趣。
 
     > 🎓 注意，相關性並不意味著因果關係！我們有相關性的證據，但沒有因果關係的證據。一個[有趣的網站](https://tylervigen.com/spurious-correlations)提供了一些視覺化內容，強調了這一點。
 
-這個數據集中是否存在歌曲的流行度和舞蹈性之間的收斂現象？FacetGrid 顯示無論音樂類型如何，都存在一些同心圓排列。是否可能是尼日利亞的品味在這些音樂類型中收斂於某個舞蹈性水平？
+在這個數據集中，歌曲的流行度和舞蹈性是否有任何收斂？FacetGrid 顯示無論音樂類型如何，都有一些同心圓排列。是否可能是尼日利亞的品味在這些音樂類型中收斂於某個舞蹈性水平？
 
-✅ 嘗試不同的數據點（例如 energy、loudness、speechiness）以及更多或不同的音樂類型。你能發現什麼？查看 `df.describe()` 表格，了解數據點的一般分佈。
+✅ 嘗試不同的數據點（例如 energy、loudness、speechiness）以及更多或不同的音樂類型。你能發現什麼？查看 `df.describe()` 表格以了解數據點的一般分佈。
 
 ### 練習 - 數據分佈
 
 這三種音樂類型在流行度和舞蹈性方面的感知是否有顯著差異？
 
-1. 檢查我們的前三大音樂類型在流行度和舞蹈性上的數據分佈，沿著給定的 x 和 y 軸。
+1. 檢查我們前三大音樂類型在流行度和舞蹈性上的數據分佈，沿著給定的 x 和 y 軸。
 
     ```python
     sns.set_theme(style="ticks")
@@ -303,11 +303,11 @@ CO_OP_TRANSLATOR_METADATA:
 
     你可以發現圍繞一般收斂點的同心圓，顯示數據分佈。
 
-    > 🎓 注意，此示例使用了 KDE（核密度估計）圖，該圖使用連續概率密度曲線來表示數據。這使我們在處理多個分佈時能夠更好地解釋數據。
+    > 🎓 注意，此示例使用了 KDE（核密度估計）圖，該圖使用連續概率密度曲線表示數據。這使我們在處理多個分佈時能夠解釋數據。
 
     總的來說，這三種音樂類型在流行度和舞蹈性方面大致對齊。要在這些大致對齊的數據中確定聚類將是一個挑戰：
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.hk.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. 創建散點圖：
 
@@ -319,7 +319,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     同一軸上的散點圖顯示了類似的收斂模式
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.hk.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
 總的來說，對於聚類，你可以使用散點圖來顯示數據的聚類，因此掌握這種可視化方法非常有用。在下一課中，我們將使用 k-means 聚類來探索這些數據中有趣的重疊群組。
 
@@ -329,11 +329,11 @@ CO_OP_TRANSLATOR_METADATA:
 
 為下一課做準備，製作一張關於你可能在生產環境中發現並使用的各種聚類算法的圖表。聚類試圖解決什麼樣的問題？
 
-## [課後測驗](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [課後測驗](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 回顧與自學
 
-在應用聚類算法之前，如我們所學，了解數據集的性質是個好主意。閱讀更多相關內容：[這裡](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
+在應用聚類算法之前，正如我們所學，了解數據集的性質是個好主意。閱讀更多相關內容：[這裡](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
 [這篇有用的文章](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) 介紹了不同聚類算法在不同數據形狀下的行為。
 
@@ -344,4 +344,4 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 
 **免責聲明**：  
-本文件已使用人工智能翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 進行翻譯。儘管我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。原始語言的文件應被視為權威來源。對於重要資訊，建議使用專業的人類翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤解釋概不負責。
+此文件已使用 AI 翻譯服務 [Co-op Translator](https://github.com/Azure/co-op-translator) 翻譯。我們致力於提供準確的翻譯，但請注意，自動翻譯可能包含錯誤或不準確之處。應以原始語言的文件作為權威來源。對於關鍵資訊，建議尋求專業人工翻譯。我們對因使用此翻譯而引起的任何誤解或錯誤詮釋概不負責。

@@ -1,21 +1,21 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "808a71076f76ae8f5458862a8edd9215",
-  "translation_date": "2025-09-03T18:09:20+00:00",
+  "original_hash": "49047911108adc49d605cddfb455749c",
+  "translation_date": "2025-09-05T08:00:00+00:00",
   "source_file": "4-Classification/3-Classifiers-2/README.md",
   "language_code": "lt"
 }
 -->
 # Virtuvės klasifikatoriai 2
 
-Šioje antroje klasifikavimo pamokoje jūs išnagrinėsite daugiau būdų, kaip klasifikuoti skaitinius duomenis. Taip pat sužinosite apie pasekmes, renkantis vieną klasifikatorių vietoj kito.
+Šioje antroje klasifikavimo pamokoje jūs tyrinėsite daugiau būdų, kaip klasifikuoti skaitmeninius duomenis. Taip pat sužinosite apie pasekmes, renkantis vieną klasifikatorių vietoj kito.
 
-## [Prieš paskaitą skirtas testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/23/)
+## [Prieš paskaitą: testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Būtinos žinios
 
-Manome, kad jau baigėte ankstesnes pamokas ir turite išvalytą duomenų rinkinį savo `data` aplanke, pavadintą _cleaned_cuisines.csv_, esančiame šio 4 pamokų aplanko šaknyje.
+Daroma prielaida, kad jau baigėte ankstesnes pamokas ir turite išvalytą duomenų rinkinį savo `data` aplanke, pavadintą _cleaned_cuisines.csv_, esančiame šio 4 pamokų aplanko šaknyje.
 
 ### Pasiruošimas
 
@@ -23,9 +23,9 @@ Mes įkėlėme jūsų _notebook.ipynb_ failą su išvalytu duomenų rinkiniu ir 
 
 ## Klasifikavimo žemėlapis
 
-Anksčiau sužinojote apie įvairias galimybes klasifikuoti duomenis, naudodamiesi „Microsoft“ apgaulės lapu. Scikit-learn siūlo panašų, bet detalesnį apgaulės lapą, kuris gali dar labiau padėti susiaurinti jūsų pasirinkimą (kitaip vadinamą klasifikatoriais):
+Ankstesnėje pamokoje sužinojote apie įvairias galimybes klasifikuoti duomenis, naudodamiesi „Microsoft“ apgaulės lapu. Scikit-learn siūlo panašų, bet detalesnį apgaulės lapą, kuris gali dar labiau padėti susiaurinti jūsų pasirinkimą (kitaip vadinamą klasifikatoriais):
 
-![ML žemėlapis iš Scikit-learn](../../../../translated_images/map.e963a6a51349425ab107b38f6c7307eb4c0d0c7ccdd2e81a5e1919292bab9ac7.lt.png)
+![ML žemėlapis iš Scikit-learn](../../../../4-Classification/3-Classifiers-2/images/map.png)
 > Patarimas: [aplankykite šį žemėlapį internete](https://scikit-learn.org/stable/tutorial/machine_learning_map/) ir spustelėkite kelią, kad perskaitytumėte dokumentaciją.
 
 ### Planas
@@ -37,7 +37,7 @@ Anksčiau sužinojote apie įvairias galimybes klasifikuoti duomenis, naudodamie
 - Turime pažymėtus duomenis
 - Turime mažiau nei 100 tūkst. pavyzdžių
 - ✨ Galime pasirinkti Linear SVC
-- Jei tai neveikia, kadangi turime skaitinius duomenis
+- Jei tai neveikia, kadangi turime skaitmeninius duomenis
     - Galime išbandyti ✨ KNeighbors Classifier 
       - Jei tai neveikia, išbandykite ✨ SVC ir ✨ Ensemble Classifiers
 
@@ -45,7 +45,7 @@ Tai labai naudingas kelias, kurio verta laikytis.
 
 ## Užduotis – padalykite duomenis
 
-Sekdami šį kelią, turėtume pradėti importuodami kai kurias bibliotekas.
+Sekdami šį kelią, turėtume pradėti importuodami kai kurias reikalingas bibliotekas.
 
 1. Importuokite reikalingas bibliotekas:
 
@@ -67,7 +67,7 @@ Sekdami šį kelią, turėtume pradėti importuodami kai kurias bibliotekas.
 
 ## Linear SVC klasifikatorius
 
-Support-Vector Clustering (SVC) yra Support-Vector Machines šeimos ML technikų dalis (daugiau apie jas sužinosite žemiau). Šiame metode galite pasirinkti „branduolį“ (kernel), kuris nusprendžia, kaip grupuoti etiketes. Parametras „C“ reiškia „reguliavimą“, kuris reguliuoja parametrų įtaką. Branduolys gali būti vienas iš [keleto](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); čia mes nustatome jį kaip „linear“, kad užtikrintume Linear SVC naudojimą. Tikimybė pagal nutylėjimą yra „false“; čia mes nustatome ją kaip „true“, kad gautume tikimybių įvertinimus. Atsitiktinę būseną nustatome kaip „0“, kad sumaišytume duomenis ir gautume tikimybes.
+Support-Vector Clustering (SVC) yra Support-Vector Machines šeimos ML technikų dalis (daugiau apie jas sužinosite žemiau). Šiame metode galite pasirinkti „branduolį“ (kernel), kuris nusprendžia, kaip suskirstyti etiketes. Parametras „C“ reiškia „reguliavimą“, kuris reguliuoja parametrų įtaką. Branduolys gali būti vienas iš [kelių](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC); čia mes nustatome jį kaip „linear“, kad užtikrintume Linear SVC naudojimą. Tikimybė pagal nutylėjimą yra „false“; čia mes nustatome ją kaip „true“, kad gautume tikimybių įvertinimus. Atsitiktinę būseną nustatome kaip „0“, kad sumaišytume duomenis ir gautume tikimybes.
 
 ### Užduotis – pritaikykite Linear SVC
 
@@ -83,7 +83,7 @@ Pradėkite kurdami klasifikatorių masyvą. Jūs palaipsniui pridėsite prie ši
     }
     ```
 
-2. Išmokykite savo modelį naudodami Linear SVC ir išspausdinkite ataskaitą:
+2. Treniruokite savo modelį naudodami Linear SVC ir išspausdinkite ataskaitą:
 
     ```python
     n_classifiers = len(classifiers)
@@ -149,7 +149,7 @@ Ankstesnis klasifikatorius buvo geras ir gerai veikė su duomenimis, bet galbūt
 
 ## Support Vector Classifier
 
-Support-Vector klasifikatoriai yra [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) šeimos ML metodų dalis, naudojama klasifikavimo ir regresijos užduotims. SVM „žemėlapiuoja mokymo pavyzdžius į taškus erdvėje“, kad maksimaliai padidintų atstumą tarp dviejų kategorijų. Vėlesni duomenys yra žemėlapiuojami į šią erdvę, kad būtų galima prognozuoti jų kategoriją.
+Support-Vector klasifikatoriai yra [Support-Vector Machine](https://wikipedia.org/wiki/Support-vector_machine) šeimos ML metodų dalis, naudojama klasifikavimo ir regresijos užduotims. SVM „sudeda mokymo pavyzdžius į taškus erdvėje“, kad maksimaliai padidintų atstumą tarp dviejų kategorijų. Vėlesni duomenys yra sudedami į šią erdvę, kad būtų galima prognozuoti jų kategoriją.
 
 ### Užduotis – pritaikykite Support Vector Classifier
 
@@ -182,7 +182,7 @@ Pabandykime pasiekti šiek tiek geresnį tikslumą naudodami Support Vector Clas
 
 ## Ensemble Classifiers
 
-Sekime kelią iki pat pabaigos, nors ankstesnis testas buvo gana geras. Išbandykime „Ensemble Classifiers“, konkrečiai Random Forest ir AdaBoost:
+Sekime kelią iki galo, nors ankstesnis testas buvo gana geras. Išbandykime „Ensemble Classifiers“, konkrečiai Random Forest ir AdaBoost:
 
 ```python
   'RFST': RandomForestClassifier(n_estimators=100),
@@ -221,7 +221,7 @@ weighted avg       0.73      0.72      0.72      1199
 
 ✅ Sužinokite daugiau apie [Ensemble Classifiers](https://scikit-learn.org/stable/modules/ensemble.html)
 
-Šis mašininio mokymosi metodas „sujungia kelių bazinių vertintojų prognozes“, kad pagerintų modelio kokybę. Mūsų pavyzdyje naudojome Random Trees ir AdaBoost.
+Šis mašininio mokymosi metodas „sujungia kelių bazinių įvertintojų prognozes“, kad pagerintų modelio kokybę. Mūsų pavyzdyje naudojome Random Trees ir AdaBoost.
 
 - [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest), vidurkinimo metodas, sukuria „mišką“ iš „sprendimų medžių“, įterptų su atsitiktinumu, kad būtų išvengta per didelio pritaikymo. Parametras n_estimators nustatomas kaip medžių skaičius.
 
@@ -231,9 +231,9 @@ weighted avg       0.73      0.72      0.72      1199
 
 ## 🚀Iššūkis
 
-Kiekvienas iš šių metodų turi daug parametrų, kuriuos galite koreguoti. Ištyrinėkite kiekvieno metodo numatytuosius parametrus ir pagalvokite, ką šių parametrų koregavimas reikštų modelio kokybei.
+Kiekviena iš šių technikų turi daug parametrų, kuriuos galite koreguoti. Ištyrinėkite kiekvieno numatytuosius parametrus ir pagalvokite, ką šių parametrų koregavimas reikštų modelio kokybei.
 
-## [Po paskaitos skirtas testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/24/)
+## [Po paskaitos: testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Peržiūra ir savarankiškas mokymasis
 
@@ -241,9 +241,9 @@ Kiekvienas iš šių metodų turi daug parametrų, kuriuos galite koreguoti. Iš
 
 ## Užduotis 
 
-[Parametrų eksperimentai](assignment.md)
+[Parametrų žaidimas](assignment.md)
 
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius naudojant šį vertimą.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.

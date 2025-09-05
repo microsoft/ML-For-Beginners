@@ -1,32 +1,33 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a2aa4e9b91b9640db2c15363c4299d8b",
-  "translation_date": "2025-09-03T19:09:08+00:00",
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-05T08:08:00+00:00",
   "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
   "language_code": "lt"
 }
 -->
 # Sentimentų analizė su viešbučių apžvalgomis
 
-Dabar, kai išsamiai išnagrinėjote duomenų rinkinį, metas filtruoti stulpelius ir taikyti NLP technikas, kad gautumėte naujų įžvalgų apie viešbučius.
-## [Prieš paskaitą: testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+Dabar, kai išsamiai išnagrinėjote duomenų rinkinį, metas filtruoti stulpelius ir pritaikyti NLP technikas, kad gautumėte naujų įžvalgų apie viešbučius.
+
+## [Prieš paskaitą: testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Filtravimo ir sentimentų analizės operacijos
 
-Kaip turbūt pastebėjote, duomenų rinkinyje yra keletas problemų. Kai kurie stulpeliai užpildyti nereikalinga informacija, kiti atrodo neteisingi. Net jei jie teisingi, neaišku, kaip jie buvo apskaičiuoti, ir atsakymų negalima savarankiškai patikrinti atliekant savo skaičiavimus.
+Kaip turbūt pastebėjote, duomenų rinkinyje yra keletas problemų. Kai kurie stulpeliai užpildyti nereikalinga informacija, kiti atrodo neteisingi. Net jei jie teisingi, neaišku, kaip buvo apskaičiuoti, ir atsakymų negalima savarankiškai patikrinti pagal jūsų pačių skaičiavimus.
 
 ## Užduotis: šiek tiek daugiau duomenų apdorojimo
 
-Dar šiek tiek išvalykite duomenis. Pridėkite stulpelius, kurie bus naudingi vėliau, pakeiskite kitų stulpelių reikšmes ir visiškai pašalinkite tam tikrus stulpelius.
+Išvalykite duomenis dar šiek tiek. Pridėkite stulpelius, kurie bus naudingi vėliau, pakeiskite kitų stulpelių reikšmes ir visiškai pašalinkite tam tikrus stulpelius.
 
 1. Pradinis stulpelių apdorojimas
 
    1. Pašalinkite `lat` ir `lng`
 
-   2. Pakeiskite `Hotel_Address` reikšmes šiomis reikšmėmis (jei adresas apima miesto ir šalies pavadinimą, pakeiskite jį tik į miestą ir šalį).
+   2. Pakeiskite `Hotel_Address` reikšmes taip (jei adresas turi miesto ir šalies pavadinimą, pakeiskite jį į tik miestą ir šalį).
 
-      Tai yra vieninteliai miestai ir šalys duomenų rinkinyje:
+      Štai vieninteliai miestai ir šalys duomenų rinkinyje:
 
       Amsterdamas, Nyderlandai
 
@@ -61,7 +62,7 @@ Dar šiek tiek išvalykite duomenis. Pridėkite stulpelius, kurie bus naudingi v
       print(df["Hotel_Address"].value_counts())
       ```
 
-      Dabar galite užklausti duomenis šalies lygiu:
+      Dabar galite užklausti duomenis pagal šalį:
 
       ```python
       display(df.groupby("Hotel_Address").agg({"Hotel_Name": "nunique"}))
@@ -80,9 +81,9 @@ Dar šiek tiek išvalykite duomenis. Pridėkite stulpelius, kurie bus naudingi v
 
   1. Pašalinkite `Additional_Number_of_Scoring`
 
-  1. Pakeiskite `Total_Number_of_Reviews` į bendrą apžvalgų skaičių, kuris iš tikrųjų yra duomenų rinkinyje 
+  1. Pakeiskite `Total_Number_of_Reviews` į bendrą apžvalgų skaičių, kuris iš tikrųjų yra duomenų rinkinyje
 
-  1. Pakeiskite `Average_Score` į mūsų pačių apskaičiuotą rezultatą
+  1. Pakeiskite `Average_Score` į mūsų pačių apskaičiuotą vidurkį
 
   ```python
   # Drop `Additional_Number_of_Scoring`
@@ -110,9 +111,9 @@ Dar šiek tiek išvalykite duomenis. Pridėkite stulpelius, kurie bus naudingi v
 
 ### Žymų stulpeliai
 
-`Tag` stulpelis yra problemiškas, nes jame saugomas sąrašas (teksto forma). Deja, šio stulpelio poskyrių tvarka ir skaičius ne visada yra vienodi. Žmogui sunku nustatyti tinkamas frazes, į kurias verta atkreipti dėmesį, nes yra 515 000 eilučių ir 1427 viešbučiai, o kiekvienas turi šiek tiek skirtingas galimybes, kurias apžvalgininkas galėjo pasirinkti. Čia praverčia NLP. Galite nuskaityti tekstą, rasti dažniausiai pasitaikančias frazes ir jas suskaičiuoti.
+`Tag` stulpelis yra problemiškas, nes jame saugomas sąrašas (teksto forma). Deja, šio stulpelio poskyrių tvarka ir skaičius ne visada yra vienodi. Žmogui sunku nustatyti, kurios frazės yra svarbios, nes yra 515 000 eilučių ir 1427 viešbučiai, o kiekvienas turi šiek tiek skirtingas galimybes, kurias apžvalgininkas galėjo pasirinkti. Čia NLP yra labai naudingas. Galite nuskaityti tekstą, rasti dažniausiai pasitaikančias frazes ir jas suskaičiuoti.
 
-Deja, mūsų nedomina pavieniai žodžiai, o kelių žodžių frazės (pvz., *Verslo kelionė*). Paleisti kelių žodžių dažnio paskirstymo algoritmą tokiam dideliam duomenų kiekiui (6762646 žodžių) gali užtrukti nepaprastai daug laiko, tačiau, nepažvelgus į duomenis, atrodo, kad tai būtina. Čia praverčia duomenų tyrimo analizė, nes matėte žymų pavyzdį, pvz., `[' Business trip  ', ' Solo traveler ', ' Single Room ', ' Stayed 5 nights ', ' Submitted from  a mobile device ']`, galite pradėti klausti, ar įmanoma labai sumažinti apdorojimo apimtį. Laimei, tai įmanoma - bet pirmiausia reikia atlikti keletą žingsnių, kad nustatytumėte dominančias žymas.
+Deja, mūsų nedomina pavieniai žodžiai, o kelių žodžių frazės (pvz., *Verslo kelionė*). Kelių žodžių dažnio paskirstymo algoritmas tokiam dideliam duomenų kiekiui (6762646 žodžių) galėtų užtrukti nepaprastai daug laiko, tačiau, nepažvelgus į duomenis, atrodo, kad tai būtina. Čia naudinga duomenų tyrimo analizė, nes jau matėte žymių pavyzdį, pvz., `[' Verslo kelionė  ', ' Vienišas keliautojas ', ' Vienvietis kambarys ', ' Praleido 5 naktis ', ' Pateikta iš mobiliojo įrenginio ']`, galite pradėti klausti, ar įmanoma labai sumažinti apdorojimo apimtį. Laimei, tai įmanoma - bet pirmiausia reikia atlikti keletą žingsnių, kad nustatytumėte svarbias žymas.
 
 ### Žymų filtravimas
 
@@ -120,13 +121,13 @@ Prisiminkite, kad duomenų rinkinio tikslas yra pridėti sentimentus ir stulpeli
 
 1. Kelionės tipas yra svarbus ir turėtų likti
 2. Svečio grupės tipas yra svarbus ir turėtų likti
-3. Kambario, apartamentų ar studijos tipas, kuriame svečias apsistojo, yra nesvarbus (visi viešbučiai iš esmės turi tuos pačius kambarius)
-4. Įrenginys, kuriuo pateikta apžvalga, yra nesvarbus
-5. Nakvynių skaičius *galėtų* būti svarbus, jei ilgesnės viešnagės būtų siejamos su viešbučio patikimu, tačiau tai abejotina ir greičiausiai nesvarbu
+3. Kambario, apartamentų ar studijos tipas, kuriame svečias apsistojo, yra nesvarbus (visi viešbučiai turi iš esmės tuos pačius kambarius)
+4. Įrenginys, iš kurio pateikta apžvalga, yra nesvarbus
+5. Naktų, kurias apžvalgininkas praleido, skaičius *galėtų* būti svarbus, jei ilgesnės viešnagės būtų susijusios su viešbučio patikimu, tačiau tai abejotina ir greičiausiai nesvarbu
 
 Apibendrinant, **palikite 2 žymų tipus ir pašalinkite kitus**.
 
-Pirmiausia nenorite skaičiuoti žymų, kol jos nėra geresniame formate, todėl reikia pašalinti kvadratinius skliaustus ir kabutes. Tai galite padaryti keliais būdais, tačiau norite greičiausio, nes apdoroti daug duomenų gali užtrukti ilgai. Laimei, pandas turi paprastą būdą atlikti kiekvieną iš šių žingsnių.
+Pirmiausia, nenorite skaičiuoti žymų, kol jos nėra geresniame formate, todėl reikia pašalinti kvadratinius skliaustus ir kabutes. Tai galite padaryti keliais būdais, tačiau norite greičiausio, nes apdoroti daug duomenų gali užtrukti ilgai. Laimei, pandas turi paprastą būdą atlikti kiekvieną iš šių žingsnių.
 
 ```Python
 # Remove opening and closing brackets
@@ -135,68 +136,68 @@ df.Tags = df.Tags.str.strip("[']")
 df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 ```
 
-Kiekviena žyma tampa kažkuo panašiu į: `Business trip, Solo traveler, Single Room, Stayed 5 nights, Submitted from a mobile device`. 
+Kiekviena žyma tampa panaši į: `Verslo kelionė, Vienišas keliautojas, Vienvietis kambarys, Praleido 5 naktis, Pateikta iš mobiliojo įrenginio`. 
 
-Tada susiduriame su problema. Kai kurios apžvalgos arba eilutės turi 5 stulpelius, kai kurios 3, kai kurios 6. Tai yra duomenų rinkinio kūrimo rezultatas ir sunku ištaisyti. Norite gauti kiekvienos frazės dažnio skaičių, tačiau jos yra skirtingoje eilėje kiekvienoje apžvalgoje, todėl skaičiavimas gali būti netikslus, o viešbutis gali negauti jam priskirtos žymos, kurios jis nusipelnė.
+Tada susiduriame su problema. Kai kurios apžvalgos arba eilutės turi 5 stulpelius, kai kurios 3, kai kurios 6. Tai yra duomenų rinkinio kūrimo rezultatas ir sunku ištaisyti. Norite gauti kiekvienos frazės dažnio skaičių, tačiau jos yra skirtingoje tvarkoje kiekvienoje apžvalgoje, todėl skaičiavimas gali būti netikslus, o viešbutis gali negauti žymos, kurios jis nusipelnė.
 
-Vietoj to pasinaudosite skirtinga tvarka savo naudai, nes kiekviena žyma yra kelių žodžių, bet taip pat atskirta kableliu! Paprasčiausias būdas tai padaryti yra sukurti 6 laikinus stulpelius, kuriuose kiekviena žyma įterpiama į stulpelį, atitinkantį jos eilę žymoje. Tada galite sujungti 6 stulpelius į vieną didelį stulpelį ir paleisti `value_counts()` metodą ant gauto stulpelio. Atspausdinę pamatysite, kad buvo 2428 unikalios žymos. Štai nedidelis pavyzdys:
+Vietoj to, pasinaudosite skirtinga tvarka savo naudai, nes kiekviena žyma yra kelių žodžių, bet taip pat atskirta kableliu! Paprasčiausias būdas tai padaryti yra sukurti 6 laikinus stulpelius, kuriuose kiekviena žyma įterpiama į stulpelį, atitinkantį jos tvarką žymoje. Tada galite sujungti 6 stulpelius į vieną didelį stulpelį ir paleisti `value_counts()` metodą ant gauto stulpelio. Atspausdinus, pamatysite, kad buvo 2428 unikalios žymos. Štai nedidelis pavyzdys:
 
 | Žyma                           | Skaičius |
 | ------------------------------ | -------- |
 | Laisvalaikio kelionė           | 417778   |
 | Pateikta iš mobiliojo įrenginio| 307640   |
 | Pora                           | 252294   |
-| Apsistojo 1 nakčiai            | 193645   |
-| Apsistojo 2 nakčiai            | 133937   |
+| Praleido 1 naktį               | 193645   |
+| Praleido 2 naktis              | 133937   |
 | Vienišas keliautojas           | 108545   |
-| Apsistojo 3 nakčiai            | 95821    |
+| Praleido 3 naktis              | 95821    |
 | Verslo kelionė                 | 82939    |
 | Grupė                          | 65392    |
 | Šeima su mažais vaikais        | 61015    |
-| Apsistojo 4 nakčiai            | 47817    |
+| Praleido 4 naktis              | 47817    |
 | Dvivietis kambarys             | 35207    |
 | Standartinis dvivietis kambarys| 32248    |
 | Aukštesnės klasės dvivietis kambarys | 31393 |
 | Šeima su vyresniais vaikais    | 26349    |
 | Prabangus dvivietis kambarys   | 24823    |
-| Dvivietis arba dvivietis su atskiromis lovomis | 22393 |
-| Apsistojo 5 nakčiai            | 20845    |
-| Standartinis dvivietis arba dvivietis su atskiromis lovomis | 17483 |
+| Dvivietis arba dvynis kambarys | 22393    |
+| Praleido 5 naktis              | 20845    |
+| Standartinis dvivietis arba dvynis kambarys | 17483 |
 | Klasikinis dvivietis kambarys  | 16989    |
-| Aukštesnės klasės dvivietis arba dvivietis su atskiromis lovomis | 13570 |
+| Aukštesnės klasės dvivietis arba dvynis kambarys | 13570 |
 | 2 kambariai                    | 12393    |
 
 Kai kurios dažnos žymos, pvz., `Pateikta iš mobiliojo įrenginio`, mums nėra naudingos, todėl gali būti protinga jas pašalinti prieš skaičiuojant frazių pasikartojimą, tačiau tai yra tokia greita operacija, kad galite jas palikti ir ignoruoti.
 
-### Nakvynių trukmės žymų pašalinimas
+### Viešnagės trukmės žymų pašalinimas
 
-Šių žymų pašalinimas yra pirmas žingsnis, jis šiek tiek sumažina žymų, kurias reikia apsvarstyti, skaičių. Atkreipkite dėmesį, kad jų nepašalinate iš duomenų rinkinio, tiesiog nusprendžiate jų neįtraukti į apžvalgų duomenų rinkinio skaičiavimus.
+Šių žymų pašalinimas yra pirmas žingsnis, jis šiek tiek sumažina bendrą žymų skaičių, kurį reikia apsvarstyti. Atkreipkite dėmesį, kad jų nepašalinate iš duomenų rinkinio, tiesiog nusprendžiate jų neįtraukti į apžvalgų duomenų rinkinio skaičiavimus.
 
-| Nakvynės trukmė | Skaičius |
+| Viešnagės trukmė | Skaičius |
 | ---------------- | -------- |
-| Apsistojo 1 nakčiai | 193645 |
-| Apsistojo 2 nakčiai | 133937 |
-| Apsistojo 3 nakčiai | 95821  |
-| Apsistojo 4 nakčiai | 47817  |
-| Apsistojo 5 nakčiai | 20845  |
-| Apsistojo 6 nakčiai | 9776   |
-| Apsistojo 7 nakčiai | 7399   |
-| Apsistojo 8 nakčiai | 2502   |
-| Apsistojo 9 nakčiai | 1293   |
-| ...              | ...     |
+| Praleido 1 naktį | 193645   |
+| Praleido 2 naktis| 133937   |
+| Praleido 3 naktis| 95821    |
+| Praleido 4 naktis| 47817    |
+| Praleido 5 naktis| 20845    |
+| Praleido 6 naktis| 9776     |
+| Praleido 7 naktis| 7399     |
+| Praleido 8 naktis| 2502     |
+| Praleido 9 naktis| 1293     |
+| ...              | ...      |
 
-Yra didelė įvairovė kambarių, apartamentų, studijų, butų ir pan. Jie visi reiškia maždaug tą patį ir nėra svarbūs jums, todėl pašalinkite juos iš svarstymo.
+Yra didelė kambarių, apartamentų, studijų, butų ir pan. įvairovė. Jie visi reiškia maždaug tą patį ir nėra svarbūs jums, todėl pašalinkite juos iš svarstymo.
 
 | Kambario tipas                | Skaičius |
 | ----------------------------- | -------- |
 | Dvivietis kambarys            | 35207    |
-| Standartinis dvivietis kambarys | 32248   |
+| Standartinis dvivietis kambarys| 32248    |
 | Aukštesnės klasės dvivietis kambarys | 31393 |
 | Prabangus dvivietis kambarys  | 24823    |
-| Dvivietis arba dvivietis su atskiromis lovomis | 22393 |
-| Standartinis dvivietis arba dvivietis su atskiromis lovomis | 17483 |
+| Dvivietis arba dvynis kambarys| 22393    |
+| Standartinis dvivietis arba dvynis kambarys | 17483 |
 | Klasikinis dvivietis kambarys | 16989    |
-| Aukštesnės klasės dvivietis arba dvivietis su atskiromis lovomis | 13570 |
+| Aukštesnės klasės dvivietis arba dvynis kambarys | 13570 |
 
 Galiausiai, ir tai yra malonu (nes tam nereikėjo daug apdorojimo), liksite su šiomis *naudingomis* žymomis:
 
@@ -206,14 +207,14 @@ Galiausiai, ir tai yra malonu (nes tam nereikėjo daug apdorojimo), liksite su �
 | Pora                                         | 252294   |
 | Vienišas keliautojas                         | 108545   |
 | Verslo kelionė                               | 82939    |
-| Grupė (sujungta su Keliautojais su draugais) | 67535    |
+| Grupė (sujungta su Keliautojai su draugais)  | 67535    |
 | Šeima su mažais vaikais                      | 61015    |
 | Šeima su vyresniais vaikais                  | 26349    |
 | Su augintiniu                                | 1405     |
 
-Galite teigti, kad `Keliautojai su draugais` yra tas pats kaip `Grupė`, ir būtų teisinga sujungti šiuos du, kaip parodyta aukščiau. Kodas, skirtas tinkamų žymų identifikavimui, yra [Žymų užrašų knygelėje](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+Galite teigti, kad `Keliautojai su draugais` yra tas pats kaip `Grupė`, ir būtų teisinga juos sujungti, kaip parodyta aukščiau. Kodas, skirtas tinkamoms žymoms identifikuoti, yra [Tags notebook](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
 
-Paskutinis žingsnis yra sukurti naujus stulpelius kiekvienai iš šių žymų. Tada, kiekvienai apžvalgos eilutei, jei `Tag` stulpelis atitinka vieną iš naujų stulpelių, pridėkite 1, jei ne, pridėkite 0. Galutinis rezultatas bus skaičius, kiek apžvalgininkų pasirinko šį viešbutį (bendru mastu) verslo ar laisvalaikio kelionėms, arba, pavyzdžiui, atvykti su augintiniu, ir tai yra naudinga informacija rekomenduojant viešbutį.
+Paskutinis žingsnis yra sukurti naujus stulpelius kiekvienai iš šių žymų. Tada, kiekvienai apžvalgos eilutei, jei `Tag` stulpelis atitinka vieną iš naujų stulpelių, pridėkite 1, jei ne, pridėkite 0. Galutinis rezultatas bus skaičius, kiek apžvalgininkų pasirinko šį viešbutį (bendrai) verslo ar laisvalaikio kelionei, arba, pavyzdžiui, su augintiniu, ir tai yra naudinga informacija rekomenduojant viešbutį.
 
 ```python
 # Process the Tags into new columns
@@ -245,7 +246,7 @@ df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 
 ## Sentimentų analizės operacijos
 
-Šiame paskutiniame skyriuje taikysite sentimentų analizę apžvalgų stulpeliams ir išsaugosite rezultatus duomenų rinkinyje.
+Šiame paskutiniame skyriuje pritaikysite sentimentų analizę apžvalgų stulpeliams ir išsaugosite rezultatus duomenų rinkinyje.
 
 ## Užduotis: įkelkite ir išsaugokite filtruotus duomenis
 
@@ -272,13 +273,13 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### Stop žodžių pašalinimas
 
-Jei atliktumėte sentimentų analizę neigiamų ir teigiamų apžvalgų stulpeliuose, tai galėtų užtrukti ilgai. Testuota galingame testavimo nešiojamame kompiuteryje su greitu procesoriumi, tai užtruko 12–14 minučių, priklausomai nuo to, kuri sentimentų biblioteka buvo naudojama. Tai yra (santykinai) ilgas laikas, todėl verta ištirti, ar tai galima pagreitinti. 
+Jei atliktumėte sentimentų analizę neigiamų ir teigiamų apžvalgų stulpeliams, tai galėtų užtrukti ilgai. Testuota galingame nešiojamame kompiuteryje su greitu procesoriumi, tai užtruko 12–14 minučių, priklausomai nuo to, kuri sentimentų biblioteka buvo naudojama. Tai yra (santykinai) ilgas laikas, todėl verta ištirti, ar tai galima pagreitinti. 
 
-Stop žodžių, arba dažnų anglų kalbos žodžių, kurie nekeičia sakinio sentimentų, pašalinimas yra pirmas žingsnis. Pašalinus juos, sentimentų analizė turėtų vykti greičiau, tačiau nebūti mažiau tiksli (nes stop žodžiai neturi įtakos sentimentams, tačiau jie sulėtina analizę). 
+Stop žodžių, arba dažnų anglų kalbos žodžių, kurie nekeičia sakinio sentimentų, pašalinimas yra pirmas žingsnis. Pašalinus juos, sentimentų analizė turėtų vykti greičiau, tačiau nebūti mažiau tiksli (nes stop žodžiai sentimentų nekeičia, tačiau jie sulėtina analizę). 
 
-Ilgiausia neigiama apžvalga buvo 395 žodžiai, tačiau pašalinus stop žodžius, ji sumažėjo iki 195 žodžių.
+Ilgiausia neigiama apžvalga buvo 395 žodžių, tačiau pašalinus stop žodžius, ji tapo 195 žodžių.
 
-Stop žodžių pašalinimas taip pat yra greita operacija, pašalinti stop žodžius iš 2 apžvalgų stulpelių per 515 000 eilučių užtruko 3,3 sekundės testavimo įrenginyje. Tai galėtų užtrukti šiek tiek daugiau ar mažiau laiko, priklausomai nuo jūsų įrenginio procesoriaus greičio, RAM, ar turite SSD, ir kitų veiksnių. Operacijos trumpumas reiškia, kad jei tai pagerina sentimentų analizės laiką, verta tai atlikti.
+Stop žodžių pašalinimas taip pat yra greita operacija, pašalinus stop žodžius iš 2 apžvalgų stulpelių per 515 000 eilučių, tai užtruko 3,3 sekundės testavimo įrenginyje. Tai galėtų užtrukti šiek tiek daugiau ar mažiau laiko, priklausomai nuo jūsų įrenginio procesoriaus greičio, RAM, ar turite SSD, ir kitų veiksnių. Operacijos santykinis trumpumas reiškia, kad jei tai pagerina sentimentų analizės laiką, verta tai atlikti.
 
 ```python
 from nltk.corpus import stopwords
@@ -301,11 +302,11 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
 ### Sentimentų analizės atlikimas
-Dabar turėtumėte apskaičiuoti sentimentų analizę tiek neigiamų, tiek teigiamų atsiliepimų stulpeliams ir rezultatus išsaugoti dviejuose naujuose stulpeliuose. Sentimentų testas bus palyginti jį su recenzento įvertinimu už tą patį atsiliepimą. Pavyzdžiui, jei sentimentų analizė rodo, kad neigiamas atsiliepimas turi sentimentą 1 (labai teigiamas sentimentas) ir teigiamas atsiliepimas taip pat turi sentimentą 1, tačiau recenzentas viešbučiui suteikė žemiausią įmanomą įvertinimą, tuomet arba atsiliepimo tekstas neatitinka įvertinimo, arba sentimentų analizatorius negalėjo teisingai atpažinti sentimentų. Turėtumėte tikėtis, kad kai kurie sentimentų įvertinimai bus visiškai neteisingi, ir dažnai tai bus paaiškinama, pvz., atsiliepimas gali būti labai sarkastiškas: „Žinoma, man LABAI patiko miegoti kambaryje be šildymo“, o sentimentų analizatorius mano, kad tai teigiamas sentimentas, nors žmogus, skaitantis tai, suprastų, kad tai sarkazmas.
 
-NLTK siūlo įvairius sentimentų analizatorius, kuriuos galima išbandyti, ir galite juos pakeisti, kad pamatytumėte, ar sentimentų analizė tampa tikslesnė. Čia naudojama VADER sentimentų analizė.
+Dabar turėtumėte apskaičiuoti sentimentų analizę tiek neigiamų, tiek teigiamų apžvalgų stulpeliams ir išsaugoti rezultatą 2 naujuose stulpeliuose. Sentimentų testas bus palyginti jį su apžvalgininko įvertinimu už tą pačią apžvalgą. Pavyzdžiui, jei sentimentų analizė mano, kad neigiama apžvalga turėjo sentimentą 1 (labai teigiamas sentimentas) ir
+NLTK siūlo įvairius sentimentų analizės įrankius, kuriuos galite išbandyti ir pakeisti, kad pamatytumėte, ar sentimentų analizė yra tikslesnė ar mažiau tiksli. Čia naudojama VADER sentimentų analizė.
 
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, 2014 m. birželis.
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -324,7 +325,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Vėliau savo programoje, kai būsite pasiruošę apskaičiuoti sentimentus, galite juos pritaikyti kiekvienam atsiliepimui taip:
+Vėliau, kai būsite pasiruošę skaičiuoti sentimentus savo programoje, galite juos pritaikyti kiekvienai apžvalgai taip:
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -336,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Tai užtrunka maždaug 120 sekundžių mano kompiuteryje, tačiau laikas gali skirtis priklausomai nuo kompiuterio. Jei norite išspausdinti rezultatus ir patikrinti, ar sentimentai atitinka atsiliepimą:
+Tai užtrunka maždaug 120 sekundžių mano kompiuteryje, tačiau laikas gali skirtis priklausomai nuo kompiuterio. Jei norite išspausdinti rezultatus ir patikrinti, ar sentimentai atitinka apžvalgą:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -345,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-Paskutinis dalykas, kurį reikia padaryti su failu prieš naudojant jį iššūkyje, yra jį išsaugoti! Taip pat turėtumėte apsvarstyti galimybę pertvarkyti visus naujus stulpelius, kad jie būtų patogesni naudoti (tai kosmetinis pakeitimas žmogui).
+Paskutinis dalykas, kurį reikia padaryti su failu prieš naudojant jį iššūkyje, yra jį išsaugoti! Taip pat turėtumėte apsvarstyti galimybę pertvarkyti visas naujas stulpelius, kad jie būtų patogesni naudoti (tai kosmetinis pakeitimas, skirtas žmogui).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -355,24 +356,24 @@ print("Saving results to Hotel_Reviews_NLP.csv")
 df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 ```
 
-Turėtumėte paleisti visą kodą [analizės užrašų knygelėje](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (po to, kai paleidote [filtravimo užrašų knygelę](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), kad sugeneruotumėte Hotel_Reviews_Filtered.csv failą).
+Turėtumėte paleisti visą kodą iš [analizės užrašų knygelės](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (po to, kai paleidote [filtravimo užrašų knygelę](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), kad sugeneruotumėte Hotel_Reviews_Filtered.csv failą).
 
 Apžvelkime žingsnius:
 
-1. Originalus duomenų rinkinys **Hotel_Reviews.csv** buvo analizuotas ankstesnėje pamokoje naudojant [tyrimo užrašų knygelę](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
+1. Originalus duomenų failas **Hotel_Reviews.csv** buvo analizuotas ankstesnėje pamokoje naudojant [tyrimo užrašų knygelę](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
 2. Hotel_Reviews.csv buvo filtruotas naudojant [filtravimo užrašų knygelę](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), rezultatas - **Hotel_Reviews_Filtered.csv**
 3. Hotel_Reviews_Filtered.csv buvo apdorotas naudojant [sentimentų analizės užrašų knygelę](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb), rezultatas - **Hotel_Reviews_NLP.csv**
 4. Naudokite Hotel_Reviews_NLP.csv NLP iššūkyje žemiau
 
 ### Išvada
 
-Kai pradėjote, turėjote duomenų rinkinį su stulpeliais ir duomenimis, tačiau ne visi jie galėjo būti patikrinti ar panaudoti. Jūs ištyrėte duomenis, išfiltravote tai, ko nereikia, konvertavote žymes į kažką naudingo, apskaičiavote savo vidurkius, pridėjote sentimentų stulpelius ir, tikėkimės, sužinojote įdomių dalykų apie natūralios kalbos apdorojimą.
+Pradėję turėjote duomenų rinkinį su stulpeliais ir duomenimis, tačiau ne visi jie buvo patikrinami ar naudojami. Jūs ištyrėte duomenis, išfiltravote nereikalingus, konvertavote žymes į naudingą informaciją, apskaičiavote savo vidurkius, pridėjote sentimentų stulpelius ir, tikėkimės, sužinojote įdomių dalykų apie natūralaus teksto apdorojimą.
 
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Iššūkis
 
-Dabar, kai jūsų duomenų rinkinys yra analizuotas sentimentų atžvilgiu, pabandykite naudoti strategijas, kurias išmokote šiame kurse (galbūt klasterizavimą?), kad nustatytumėte sentimentų modelius.
+Dabar, kai jūsų duomenų rinkinys yra analizuotas sentimentų atžvilgiu, pabandykite pritaikyti strategijas, kurias išmokote šiame kurse (galbūt klasterizavimą?), kad nustatytumėte sentimentų tendencijas.
 
 ## Apžvalga ir savarankiškas mokymasis
 
@@ -380,9 +381,9 @@ Pereikite [šį mokymosi modulį](https://docs.microsoft.com/en-us/learn/modules
 
 ## Užduotis
 
-[Išbandykite kitą duomenų rinkinį](assignment.md)
+[Naudokite kitą duomenų rinkinį](assignment.md)
 
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.

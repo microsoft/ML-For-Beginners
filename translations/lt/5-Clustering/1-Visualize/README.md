@@ -1,47 +1,47 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-09-03T17:04:09+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-05T07:50:18+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "lt"
 }
 -->
-# Įvadas į klasterizaciją
+# Įvadas į klasterizavimą
 
-Klasterizacija yra [Nesupervizuoto mokymosi](https://wikipedia.org/wiki/Unsupervised_learning) tipas, kuris remiasi prielaida, kad duomenų rinkinys yra nepažymėtas arba jo įvestys nėra susietos su iš anksto apibrėžtais rezultatais. Ji naudoja įvairius algoritmus, kad išanalizuotų nepažymėtus duomenis ir sudarytų grupes pagal duomenyse pastebėtus modelius.
+Klasterizavimas yra [nesupervizuoto mokymosi](https://wikipedia.org/wiki/Unsupervised_learning) tipas, kuris daro prielaidą, kad duomenų rinkinys yra nepažymėtas arba jo įvestys nėra susietos su iš anksto apibrėžtais rezultatais. Jis naudoja įvairius algoritmus, kad išanalizuotų nepažymėtus duomenis ir sudarytų grupes pagal duomenyse pastebėtus modelius.
 
 [![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
 
-> 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą. Studijuodami mašininį mokymąsi su klasterizacija, pasimėgaukite Nigerijos šokių muzikos ritmais – tai labai vertinama PSquare daina iš 2014 metų.
+> 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą. Mokydamiesi mašininio mokymosi su klasterizavimu, pasimėgaukite Nigerijos šokių muzikos ritmais – tai labai vertinama PSquare daina iš 2014 metų.
 
-## [Prieš paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [Prieš paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Įvadas
 
-[Klasterizacija](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) yra labai naudinga duomenų tyrinėjimui. Pažiūrėkime, ar ji gali padėti atrasti tendencijas ir modelius, kaip Nigerijos auditorija suvartoja muziką.
+[Klasterizavimas](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) yra labai naudingas duomenų tyrinėjimui. Pažiūrėkime, ar jis gali padėti atrasti tendencijas ir modelius, kaip Nigerijos auditorija vartoja muziką.
 
-✅ Skirkite minutę pagalvoti apie klasterizacijos panaudojimą. Kasdieniame gyvenime klasterizacija vyksta, kai turite skalbinių krūvą ir reikia išrūšiuoti šeimos narių drabužius 🧦👕👖🩲. Duomenų moksle klasterizacija vyksta analizuojant vartotojo pageidavimus arba nustatant bet kokio nepažymėto duomenų rinkinio charakteristikas. Klasterizacija tam tikra prasme padeda suprasti chaosą, kaip tvarkant kojinių stalčių.
+✅ Skirkite minutę pagalvoti apie klasterizavimo panaudojimą. Kasdieniame gyvenime klasterizavimas vyksta, kai turite skalbinių krūvą ir reikia išrūšiuoti šeimos narių drabužius 🧦👕👖🩲. Duomenų moksle klasterizavimas vyksta analizuojant vartotojo pageidavimus arba nustatant bet kokio nepažymėto duomenų rinkinio charakteristikas. Klasterizavimas tam tikra prasme padeda įvesti tvarką į chaosą, kaip tvarkant kojinių stalčių.
 
 [![Introduction to ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduction to Clustering")
 
-> 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą: MIT profesorius John Guttag pristato klasterizaciją.
+> 🎥 Spustelėkite aukščiau esančią nuotrauką, kad peržiūrėtumėte vaizdo įrašą: MIT profesorius John Guttag pristato klasterizavimą.
 
-Profesinėje aplinkoje klasterizacija gali būti naudojama rinkos segmentavimui, pavyzdžiui, nustatant, kokios amžiaus grupės perka kokius daiktus. Kitas panaudojimas galėtų būti anomalijų aptikimas, galbūt siekiant nustatyti sukčiavimą iš kredito kortelių operacijų duomenų rinkinio. Taip pat galite naudoti klasterizaciją, kad nustatytumėte auglius medicininių skenavimų rinkinyje.
+Profesinėje aplinkoje klasterizavimas gali būti naudojamas rinkos segmentavimui, pavyzdžiui, nustatant, kokios amžiaus grupės perka tam tikrus produktus. Kitas panaudojimas galėtų būti anomalijų aptikimas, pavyzdžiui, siekiant nustatyti sukčiavimą iš kredito kortelių operacijų duomenų rinkinio. Taip pat galite naudoti klasterizavimą, kad nustatytumėte auglius medicininių skenavimų rinkinyje.
 
-✅ Pagalvokite minutę, kaip galėjote susidurti su klasterizacija „laukinėje gamtoje“, bankininkystės, e. prekybos ar verslo aplinkoje.
+✅ Pagalvokite minutę, kaip galėjote susidurti su klasterizavimu „laukinėje gamtoje“, bankininkystės, e. prekybos ar verslo aplinkoje.
 
 > 🎓 Įdomu tai, kad klasterių analizė atsirado antropologijos ir psichologijos srityse 1930-aisiais. Ar galite įsivaizduoti, kaip ji galėjo būti naudojama?
 
-Be to, ją galima naudoti grupuojant paieškos rezultatus – pavyzdžiui, pagal apsipirkimo nuorodas, vaizdus ar apžvalgas. Klasterizacija yra naudinga, kai turite didelį duomenų rinkinį, kurį norite sumažinti ir atlikti detalesnę analizę, todėl ši technika gali būti naudojama norint sužinoti apie duomenis prieš kuriant kitus modelius.
+Be to, klasterizavimas gali būti naudojamas grupuojant paieškos rezultatus – pavyzdžiui, pagal apsipirkimo nuorodas, vaizdus ar apžvalgas. Klasterizavimas yra naudingas, kai turite didelį duomenų rinkinį, kurį norite sumažinti ir atlikti detalesnę analizę, todėl ši technika gali būti naudojama norint sužinoti apie duomenis prieš kuriant kitus modelius.
 
-✅ Kai jūsų duomenys yra organizuoti klasteriuose, galite priskirti jiems klasterio ID. Ši technika gali būti naudinga išsaugant duomenų rinkinio privatumą; vietoj to galite nurodyti duomenų tašką pagal jo klasterio ID, o ne pagal labiau atskleidžiančius identifikuojamus duomenis. Ar galite sugalvoti kitų priežasčių, kodėl norėtumėte nurodyti klasterio ID, o ne kitus klasterio elementus, kad jį identifikuotumėte?
+✅ Kai jūsų duomenys yra suskirstyti į klasterius, galite priskirti jiems klasterio ID. Ši technika gali būti naudinga išsaugant duomenų rinkinio privatumą; vietoj to galite nurodyti duomenų tašką pagal jo klasterio ID, o ne pagal labiau atskleidžiančius identifikuojamus duomenis. Ar galite sugalvoti kitų priežasčių, kodėl norėtumėte naudoti klasterio ID, o ne kitus klasterio elementus, kad jį identifikuotumėte?
 
-Gilinkite savo supratimą apie klasterizacijos technikas šiame [mokymosi modulyje](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
+Gilinkite savo supratimą apie klasterizavimo technikas šiame [mokymosi modulyje](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
 
-## Pradžia su klasterizacija
+## Pradžia su klasterizavimu
 
-[Scikit-learn siūlo platų metodų pasirinkimą](https://scikit-learn.org/stable/modules/clustering.html) klasterizacijai atlikti. Jūsų pasirinkimas priklausys nuo naudojimo atvejo. Pagal dokumentaciją, kiekvienas metodas turi įvairių privalumų. Štai supaprastinta lentelė apie Scikit-learn palaikomus metodus ir jų tinkamus naudojimo atvejus:
+[Scikit-learn siūlo platų metodų pasirinkimą](https://scikit-learn.org/stable/modules/clustering.html) klasterizavimui atlikti. Jūsų pasirinkimas priklausys nuo naudojimo atvejo. Pagal dokumentaciją, kiekvienas metodas turi įvairių privalumų. Štai supaprastinta lentelė apie Scikit-learn palaikomus metodus ir jų tinkamus naudojimo atvejus:
 
 | Metodo pavadinimas            | Naudojimo atvejis                                                   |
 | :---------------------------- | :------------------------------------------------------------------ |
@@ -56,21 +56,21 @@ Gilinkite savo supratimą apie klasterizacijos technikas šiame [mokymosi moduly
 | Gaussian mixtures             | tolygi geometrija, induktyvus                                      |
 | BIRCH                         | didelis duomenų rinkinys su išimtimis, induktyvus                  |
 
-> 🎓 Kaip mes kuriame klasterius, labai priklauso nuo to, kaip mes grupuojame duomenų taškus į grupes. Išskaidykime kai kuriuos terminus:
+> 🎓 Kaip mes kuriame klasterius, labai priklauso nuo to, kaip grupuojame duomenų taškus į grupes. Išskaidykime kai kuriuos terminus:
 >
 > 🎓 ['Transduktyvus' vs. 'induktyvus'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
-> Transduktyvi išvada yra gaunama iš stebėtų mokymo atvejų, kurie susiejami su konkrečiais testavimo atvejais. Induktyvi išvada yra gaunama iš mokymo atvejų, kurie susiejami su bendromis taisyklėmis, kurios tik tada taikomos testavimo atvejams.
+> Transduktyvi išvada yra daroma iš stebėtų mokymo atvejų, kurie susiejami su konkrečiais testavimo atvejais. Induktyvi išvada yra daroma iš mokymo atvejų, kurie susiejami su bendromis taisyklėmis, kurios tik tada taikomos testavimo atvejams. 
 > 
-> Pavyzdys: Įsivaizduokite, kad turite duomenų rinkinį, kuris yra tik iš dalies pažymėtas. Kai kurie dalykai yra „įrašai“, kai kurie „CD“, o kai kurie yra tušti. Jūsų užduotis yra suteikti etiketes tuštiems duomenims. Jei pasirinksite induktyvų požiūrį, treniruosite modelį ieškodami „įrašų“ ir „CD“ ir taikysite tas etiketes nepažymėtiems duomenims. Šis požiūris turės sunkumų klasifikuojant dalykus, kurie iš tikrųjų yra „kasetės“. Transduktyvus požiūris, kita vertus, efektyviau tvarko šiuos nežinomus duomenis, nes jis dirba grupuodamas panašius elementus ir tada priskiria etiketę grupei. Šiuo atveju klasteriai gali atspindėti „apvalius muzikinius dalykus“ ir „kvadratinius muzikinius dalykus“.
+> Pavyzdys: Įsivaizduokite, kad turite duomenų rinkinį, kuris yra tik iš dalies pažymėtas. Kai kurie dalykai yra „plokštelės“, kai kurie „CD“, o kai kurie yra tušti. Jūsų užduotis yra suteikti etiketes tuštiems duomenims. Jei pasirinksite induktyvų požiūrį, treniruosite modelį ieškodami „plokštelių“ ir „CD“, ir taikysite tas etiketes nepažymėtiems duomenims. Šis požiūris turės sunkumų klasifikuojant dalykus, kurie iš tikrųjų yra „kasetės“. Transduktyvus požiūris, kita vertus, efektyviau tvarko šiuos nežinomus duomenis, nes jis dirba grupuodamas panašius elementus ir tada priskiria etiketę grupei. Šiuo atveju klasteriai gali atspindėti „apvalius muzikinius dalykus“ ir „kvadratinius muzikinius dalykus“. 
 > 
 > 🎓 ['Netolygi' vs. 'tolygia' geometrija](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
-> Kilusi iš matematinės terminologijos, netolygi vs. tolygi geometrija reiškia atstumų tarp taškų matavimą naudojant „tolygias“ ([Euklidines](https://wikipedia.org/wiki/Euclidean_geometry)) arba „netolygias“ (ne Euklidines) geometrines metodikas.
+> Matematinėje terminologijoje netolygi vs. tolygi geometrija reiškia atstumų tarp taškų matavimą naudojant „tolygias“ ([Euklidines](https://wikipedia.org/wiki/Euclidean_geometry)) arba „netolygias“ (ne Euklidines) geometrines metodikas. 
 >
->'Tolygia' šiame kontekste reiškia Euklidinę geometriją (dalys kurios mokomos kaip „plokštuminė“ geometrija), o netolygi reiškia ne Euklidinę geometriją. Ką geometrija turi bendro su mašininiu mokymusi? Na, kaip dvi matematikos šakos, turi būti bendras būdas matuoti atstumus tarp taškų klasteriuose, ir tai gali būti daroma „tolygiai“ arba „netolygiai“, priklausomai nuo duomenų pobūdžio. [Euklidiniai atstumai](https://wikipedia.org/wiki/Euclidean_distance) matuojami kaip linijos segmento ilgis tarp dviejų taškų. [Ne Euklidiniai atstumai](https://wikipedia.org/wiki/Non-Euclidean_geometry) matuojami palei kreivę. Jei jūsų duomenys, vizualizuoti, atrodo, kad neegzistuoja plokštumoje, jums gali prireikti specializuoto algoritmo, kad juos apdorotumėte.
+>'Tolygia' šiame kontekste reiškia Euklidinę geometriją (dalis jos mokoma kaip „plokštuminė“ geometrija), o netolygi reiškia ne Euklidinę geometriją. Ką geometrija turi bendro su mašininiu mokymusi? Na, kaip dvi matematikos sritys, turi būti bendras būdas matuoti atstumus tarp taškų klasteriuose, ir tai gali būti daroma „tolygiai“ arba „netolygiai“, priklausomai nuo duomenų pobūdžio. [Euklidiniai atstumai](https://wikipedia.org/wiki/Euclidean_distance) matuojami kaip linijos segmento ilgis tarp dviejų taškų. [Ne Euklidiniai atstumai](https://wikipedia.org/wiki/Non-Euclidean_geometry) matuojami palei kreivę. Jei jūsų duomenys, vizualizuoti, atrodo, kad neegzistuoja plokštumoje, jums gali prireikti specializuoto algoritmo, kad juos apdorotumėte.
 >
-![Tolygios vs Netolygios Geometrijos Infografikas](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.lt.png)
+![Tolygios vs Netolygios Geometrijos Infografikas](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > Infografikas sukurtas [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Atstumai'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
@@ -79,37 +79,37 @@ Gilinkite savo supratimą apie klasterizacijos technikas šiame [mokymosi moduly
 > 
 > 🎓 ['Apriboti'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
-> [Apribota klasterizacija](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) įveda „pusiau prižiūrimą“ mokymąsi į šį nesupervizuotą metodą. Taškų tarpusavio ryšiai pažymimi kaip „negali būti susieti“ arba „turi būti susieti“, todėl kai kurios taisyklės priverčiamos duomenų rinkiniui.
+> [Apribotas klasterizavimas](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) įveda „pusiau supervizuotą“ mokymąsi į šį nesupervizuotą metodą. Taškų tarpusavio ryšiai pažymimi kaip „negali būti susieti“ arba „turi būti susieti“, todėl duomenų rinkiniui pridedamos tam tikros taisyklės.
 >
->Pavyzdys: Jei algoritmas paleidžiamas laisvai ant nepažymėtų arba pusiau pažymėtų duomenų, klasteriai, kuriuos jis sukuria, gali būti prastos kokybės. Aukščiau pateiktame pavyzdyje klasteriai gali grupuoti „apvalius muzikinius dalykus“, „kvadratinius muzikinius dalykus“, „trikampius dalykus“ ir „sausainius“. Jei pateikiami tam tikri apribojimai arba taisyklės, kurių reikia laikytis („daiktas turi būti pagamintas iš plastiko“, „daiktas turi galėti groti muziką“), tai gali padėti „apriboti“ algoritmą, kad jis priimtų geresnius sprendimus.
+>Pavyzdys: Jei algoritmas paleidžiamas laisvai ant nepažymėtų arba pusiau pažymėtų duomenų, klasteriai, kuriuos jis sukuria, gali būti prastos kokybės. Aukščiau pateiktame pavyzdyje klasteriai gali grupuoti „apvalius muzikinius dalykus“, „kvadratinius muzikinius dalykus“, „trikampius dalykus“ ir „sausainius“. Jei duodami tam tikri apribojimai arba taisyklės („daiktas turi būti pagamintas iš plastiko“, „daiktas turi galėti groti muziką“), tai gali padėti „apriboti“ algoritmą, kad jis priimtų geresnius sprendimus.
 > 
 > 🎓 'Tankis'
 > 
-> Duomenys, kurie yra „triukšmingi“, laikomi „tankiais“. Atstumai tarp taškų kiekviename jo klasteryje gali, ištyrus, pasirodyti daugiau ar mažiau tankūs, arba „susigrūdę“, todėl šiuos duomenis reikia analizuoti naudojant tinkamą klasterizacijos metodą. [Šis straipsnis](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demonstruoja skirtumą tarp K-Means klasterizacijos ir HDBSCAN algoritmų naudojimo triukšmingam duomenų rinkiniui su netolygiu klasterio tankiu tyrinėti.
+> Duomenys, kurie yra „triukšmingi“, laikomi „tankiais“. Atstumai tarp taškų kiekviename jo klasteryje gali būti, ištyrus, daugiau ar mažiau tankūs, arba „susigrūdę“, todėl šiuos duomenis reikia analizuoti naudojant tinkamą klasterizavimo metodą. [Šis straipsnis](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demonstruoja skirtumą tarp K-Means klasterizavimo ir HDBSCAN algoritmų naudojimo triukšmingam duomenų rinkiniui su netolygiu klasterio tankiu tyrinėti.
 
-## Klasterizacijos algoritmai
+## Klasterizavimo algoritmai
 
-Yra daugiau nei 100 klasterizacijos algoritmų, ir jų naudojimas priklauso nuo turimų duomenų pobūdžio. Aptarkime keletą pagrindinių:
+Yra daugiau nei 100 klasterizavimo algoritmų, ir jų naudojimas priklauso nuo turimų duomenų pobūdžio. Aptarkime keletą pagrindinių:
 
-- **Hierarchinė klasterizacija**. Jei objektas klasifikuojamas pagal jo artumą prie netoliese esančio objekto, o ne prie tolimesnio, klasteriai formuojami pagal jų narių atstumą iki ir nuo kitų objektų. Scikit-learn aglomeracinė klasterizacija yra hierarchinė.
+- **Hierarchinis klasterizavimas**. Jei objektas klasifikuojamas pagal jo artumą prie netolimo objekto, o ne prie tolimesnio, klasteriai formuojami pagal jų narių atstumą iki kitų objektų. Scikit-learn aglomeracinis klasterizavimas yra hierarchinis.
 
-   ![Hierarchinės klasterizacijos Infografikas](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.lt.png)
+   ![Hierarchinio klasterizavimo Infografikas](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > Infografikas sukurtas [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Centroidų klasterizacija**. Šis populiarus algoritmas reikalauja pasirinkti „k“, arba klasterių skaičių, kurį reikia suformuoti, po kurio algoritmas nustato klasterio centrinį tašką ir surenka duomenis aplink tą tašką. [K-means klasterizacija](https://wikipedia.org/wiki/K-means_clustering) yra populiari centroidų klasterizacijos versija. Centras nustatomas pagal artimiausią vidurkį, todėl toks pavadinimas. Kvadratinis atstumas nuo klasterio yra minimalizuojamas.
+- **Centroidų klasterizavimas**. Šis populiarus algoritmas reikalauja pasirinkti „k“, arba klasterių skaičių, po kurio algoritmas nustato klasterio centrinį tašką ir surenka duomenis aplink tą tašką. [K-means klasterizavimas](https://wikipedia.org/wiki/K-means_clustering) yra populiari centroidų klasterizavimo versija. Centras nustatomas pagal artimiausią vidurkį, todėl toks pavadinimas. Kvadratinis atstumas nuo klasterio yra minimalizuojamas.
 
-   ![Centroidų klasterizacijos Infografikas](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.lt.png)
+   ![Centroidų klasterizavimo Infografikas](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > Infografikas sukurtas [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Paskirstymo pagrindu klasterizacija**. Remiantis statistiniu modeliavimu, paskirstymo pagrindu klasterizacija orientuojasi į tikimybės nustatymą, kad duomenų taškas priklauso klasteriui, ir priskiria jį atitinkamai. Gaussian mišinių metodai priklauso šiam tipui.
+- **Paskirstymo pagrindu klasterizavimas**. Remiantis statistiniu modeliavimu, paskirstymo pagrindu klasterizavimas orientuojasi į tikimybės nustatymą, kad duomenų taškas priklauso klasteriui, ir priskiria jį atitinkamai. Gaussian mišinių metodai priklauso šiam tipui.
 
-- **Tankio pagrindu klasterizacija**. Duomenų taškai priskiriami klasteriams pagal jų tankį arba jų grupavimą aplink vienas kitą. Duomenų taškai, esantys toli nuo grupės, laikomi išimtimis arba triukšmu. DBSCAN, Mean-shift ir OPTICS priklauso šiam klasterizacijos tipui.
+- **Tankio pagrindu klasterizavimas**. Duomenų taškai priskiriami klasteriams pagal jų tankį arba grupavimą aplink vienas kitą. Duomenų taškai, esantys toli nuo grupės, laikomi išimtimis arba triukšmu. DBSCAN, Mean-shift ir OPTICS priklauso šiam klasterizavimo tipui.
 
-- **Tinklelio pagrindu klasterizacija**. Daugiamatėms duomenų rinkiniams sukuriamas tinklelis, o duomenys paskirstomi tarp tinklelio ląstelių, taip sukuriant klasterius.
+- **Tinklelio pagrindu klasterizavimas**. Daugiamatėms duomenų rinkiniams sukuriamas tinklelis, o duomenys paskirstomi tarp tinklelio langelių, taip sukuriant klasterius.
 
 ## Užduotis – suklasterizuokite savo duomenis
 
-Klasterizacijos technika labai palengvinama tinkama vizualizacija, todėl pradėkime vizualizuoti mūsų muzikos duomenis. Ši užduotis padės mums nuspręsti, kurį klasterizacijos metodą efektyviausiai naudoti šių duomenų pobūdžiui.
+Klasterizavimo technika labai palengvinama tinkama vizualizacija, todėl pradėkime vizualizuoti mūsų muzikos duomenis. Ši užduotis padės mums nuspręsti, kurį klasterizavimo metodą efektyviausiai naudoti šių duomenų pobūdžiui.
 
 1. Atidarykite [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/notebook.ipynb) failą šiame aplanke.
 
@@ -119,7 +119,7 @@ Klasterizacijos technika labai palengvinama tinkama vizualizacija, todėl pradė
     !pip install seaborn
     ```
 
-1. Pridėkite dainų duomenis iš [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Įkelkite duomenų rėmelį su kai kuriais duomenimis apie dainas. Pasiruoškite tyrinėti šiuos duomenis importuodami bibliotekas ir išvesdami duomenis:
+1. Pridėkite dainų duomenis iš [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv). Užpildykite duomenų rėmelį su informacija apie dainas. Pasiruoškite tyrinėti šiuos duomenis importuodami bibliotekas ir išvesdami duomenis:
 
     ```python
     import matplotlib.pyplot as plt
@@ -131,10 +131,10 @@ Klasterizacijos technika labai palengvinama tinkama vizualizacija, todėl pradė
 
     Patikrinkite pirmas kelias duomenų eilutes:
 
-    |     | pavadinimas             | albumas                      | atlikėjas           | atlikėjo žanras   | išleidimo data | ilgis  | populiarumas | šoklumas      | akustiškumas | energija | instrumentiškumas | gyvumas  | garsumas | kalbėjimas  | tempas  | laiko parašas  |
-    | --- | ----------------------- | ---------------------------- | ------------------- | ---------------- | ------------- | ------ | ----------- | ------------ | ------------ | ------- | ---------------- | ------- | -------- | ---------- | ------- | ------------- |
-    | 0   | Sparky                  | Mandy & The Jungle           | Cruel Santino       | alternatyvus r&b | 2019          | 144000 | 48          | 0.666        | 0.851        | 0.42    | 0.534            | 0.11    | -6.699   | 0.0829     | 133.015 | 5             |
-    | 1   | sh
+    |     | pavadinimas              | albumas                      | atlikėjas           | atlikėjo pagrindinis žanras | išleidimo data | ilgis | populiarumas | šoklumas      | akustiškumas   | energija | instrumentiškumas | gyvumas | garsumas | kalbėjimas   | tempas  | laiko parašas   |
+    | --- | ------------------------ | ---------------------------- | ------------------- | --------------------------- | -------------- | ------ | ---------- | ------------ | -------------- | ------ | ---------------- | -------- | -------- | ----------- | ------- | -------------- |
+    | 0   | Sparky                   | Mandy & The Jungle           | Cruel Santino       | alternatyvus r&b            | 2019           | 144000 | 48         | 0.666        | 0.851          | 0.42   | 0.534            | 0.11     | -6.699   | 0.0829      | 133.015 | 5              |
+    | 1   |
 | 2   | LITT!                    | LITT!                        | AYLØ                | indie r&b        | 2018         | 207758 | 40         | 0.836        | 0.272        | 0.564  | 0.000537         | 0.11     | -7.127   | 0.0424      | 130.005 | 4              |
 | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
 | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
@@ -234,7 +234,7 @@ Pažvelkite į bendras duomenų reikšmes. Atkreipkite dėmesį, kad populiaruma
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![populiariausi](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.lt.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
 ✅ Jei norite pamatyti daugiau aukščiausių reikšmių, pakeiskite top `[:5]` į didesnę reikšmę arba pašalinkite ją, kad pamatytumėte viską.
 
@@ -253,7 +253,7 @@ Atkreipkite dėmesį, kai aukščiausias žanras apibūdinamas kaip 'Missing', t
 
     Dabar dar kartą patikrinkite žanrus:
 
-    ![visi žanrai](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.lt.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
 1. Trys populiariausi žanrai akivaizdžiai dominuoja šiame duomenų rinkinyje. Susikoncentruokime į `afro dancehall`, `afropop` ir `nigerian pop`, papildomai filtruokime duomenų rinkinį, kad pašalintume viską su 0 populiarumo reikšme (tai reiškia, kad jie nebuvo klasifikuoti pagal populiarumą duomenų rinkinyje ir gali būti laikomi triukšmu mūsų tikslams):
 
@@ -267,7 +267,7 @@ Atkreipkite dėmesį, kai aukščiausias žanras apibūdinamas kaip 'Missing', t
     plt.title('Top genres',color = 'blue')
     ```
 
-1. Greitai patikrinkite, ar duomenys koreliuoja kokiu nors ypatingai stipriu būdu:
+1. Greitai patikrinkite, ar duomenys koreliuoja kokiu nors stipriu būdu:
 
     ```python
     corrmat = df.corr(numeric_only=True)
@@ -275,13 +275,13 @@ Atkreipkite dėmesį, kai aukščiausias žanras apibūdinamas kaip 'Missing', t
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![koreliacijos](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.lt.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
     Vienintelė stipri koreliacija yra tarp `energy` ir `loudness`, kas nėra labai stebėtina, nes garsus muzika paprastai yra gana energinga. Kitaip koreliacijos yra gana silpnos. Bus įdomu pamatyti, ką klasterizavimo algoritmas gali padaryti su šiais duomenimis.
 
     > 🎓 Atkreipkite dėmesį, kad koreliacija nereiškia priežastinio ryšio! Turime koreliacijos įrodymą, bet neturime priežastinio ryšio įrodymo. [Ši juokinga svetainė](https://tylervigen.com/spurious-correlations) turi keletą vizualizacijų, kurios pabrėžia šį punktą.
 
-Ar šiame duomenų rinkinyje yra konvergencija aplink dainos suvokiamą populiarumą ir šokamumą? FacetGrid rodo, kad yra koncentriniai apskritimai, kurie sutampa, nepriklausomai nuo žanro. Ar gali būti, kad Nigerijos skoniai sutampa tam tikru šokamumo lygiu šiam žanrui?  
+Ar šiame duomenų rinkinyje yra konvergencija aplink dainos suvokiamą populiarumą ir šokamumą? FacetGrid rodo, kad yra koncentriniai apskritimai, kurie sutampa, nepriklausomai nuo žanro. Ar gali būti, kad Nigerijos skoniai konverguoja tam tikru šokamumo lygiu šiam žanrui?  
 
 ✅ Išbandykite skirtingus duomenų taškus (energy, loudness, speechiness) ir daugiau ar skirtingų muzikos žanrų. Ką galite atrasti? Pažvelkite į `df.describe()` lentelę, kad pamatytumėte bendrą duomenų taškų pasiskirstymą.
 
@@ -303,11 +303,11 @@ Ar šie trys žanrai reikšmingai skiriasi pagal jų šokamumo suvokimą, remian
 
     Galite atrasti koncentrinius apskritimus aplink bendrą konvergencijos tašką, rodančius taškų pasiskirstymą.
 
-    > 🎓 Atkreipkite dėmesį, kad šiame pavyzdyje naudojama KDE (Kernel Density Estimate) grafika, kuri atvaizduoja duomenis naudojant nuolatinę tikimybės tankio kreivę. Tai leidžia interpretuoti duomenis dirbant su keliomis pasiskirstymo formomis.
+    > 🎓 Atkreipkite dėmesį, kad šiame pavyzdyje naudojama KDE (Kernel Density Estimate) grafika, kuri atvaizduoja duomenis naudojant nuolatinę tikimybės tankio kreivę. Tai leidžia interpretuoti duomenis dirbant su keliomis pasiskirstymo reikšmėmis.
 
-    Apskritai, trys žanrai laisvai sutampa pagal jų populiarumą ir šokamumą. Klasterių nustatymas šiuose laisvai suderintuose duomenyse bus iššūkis:
+    Apskritai, trys žanrai laisvai suderinti pagal jų populiarumą ir šokamumą. Nustatyti klasterius šiuose laisvai suderintuose duomenyse bus iššūkis:
 
-    ![pasiskirstymas](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.lt.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. Sukurkite sklaidos diagramą:
 
@@ -319,7 +319,7 @@ Ar šie trys žanrai reikšmingai skiriasi pagal jų šokamumo suvokimą, remian
 
     Sklaidos diagrama su tomis pačiomis ašimis rodo panašų konvergencijos modelį
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.lt.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
 Apskritai, klasterizavimui galite naudoti sklaidos diagramas, kad parodytumėte duomenų klasterius, todėl šio tipo vizualizacijos įvaldymas yra labai naudingas. Kitoje pamokoje naudosime šiuos filtruotus duomenis ir taikysime k-means klasterizavimą, kad atrastume grupes šiuose duomenyse, kurios įdomiai persidengia.
 
@@ -329,19 +329,19 @@ Apskritai, klasterizavimui galite naudoti sklaidos diagramas, kad parodytumėte 
 
 Ruošiantis kitai pamokai, sudarykite diagramą apie įvairius klasterizavimo algoritmus, kuriuos galite atrasti ir naudoti gamybos aplinkoje. Kokias problemas klasterizavimas bando spręsti?
 
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Apžvalga ir savarankiškas mokymasis
 
 Prieš taikydami klasterizavimo algoritmus, kaip išmokome, gerai suprasti savo duomenų rinkinio pobūdį. Skaitykite daugiau apie šią temą [čia](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
-[Šis naudingas straipsnis](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) paaiškina įvairius būdus, kaip skirtingi klasterizavimo algoritmai elgiasi, atsižvelgiant į skirtingas duomenų formas.
+[Šis naudingas straipsnis](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) paaiškina įvairius klasterizavimo algoritmus ir jų elgesį, atsižvelgiant į skirtingas duomenų formas.
 
 ## Užduotis
 
-[Tyrinėkite kitus klasterizavimo vizualizacijos būdus](assignment.md)
+[Tyrinėkite kitus vizualizacijos būdus klasterizavimui](assignment.md)
 
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipkite dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama profesionali žmogaus vertimo paslauga. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius naudojant šį vertimą.

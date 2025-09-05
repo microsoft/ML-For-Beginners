@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-09-03T18:06:22+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-05T08:25:16+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "pl"
 }
 -->
-# Zbuduj aplikację webową rekomendującą kuchnie
+# Stwórz aplikację webową rekomendującą kuchnie
 
 W tej lekcji zbudujesz model klasyfikacyjny, korzystając z technik poznanych w poprzednich lekcjach oraz z pysznego zestawu danych o kuchniach, używanego w całej tej serii. Dodatkowo stworzysz małą aplikację webową, która wykorzysta zapisany model, korzystając z webowego środowiska uruchomieniowego Onnx.
 
 Jednym z najbardziej praktycznych zastosowań uczenia maszynowego jest budowanie systemów rekomendacji, a dziś możesz zrobić pierwszy krok w tym kierunku!
 
-[![Prezentacja tej aplikacji webowej](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
+[![Prezentacja aplikacji webowej](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "Applied ML")
 
 > 🎥 Kliknij obrazek powyżej, aby obejrzeć wideo: Jen Looper buduje aplikację webową, używając danych o klasyfikacji kuchni
 
-## [Quiz przed lekcją](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Quiz przed lekcją](https://ff-quizzes.netlify.app/en/ml/)
 
 W tej lekcji nauczysz się:
 
@@ -27,11 +27,11 @@ W tej lekcji nauczysz się:
 
 ## Zbuduj swój model
 
-Budowanie systemów ML w praktyce jest ważnym elementem wykorzystania tych technologii w systemach biznesowych. Możesz używać modeli w swoich aplikacjach webowych (a tym samym korzystać z nich w trybie offline, jeśli zajdzie taka potrzeba), korzystając z Onnx.
+Budowanie systemów ML w praktyce jest ważnym elementem wykorzystania tych technologii w systemach biznesowych. Możesz używać modeli w swoich aplikacjach webowych (a tym samym w trybie offline, jeśli zajdzie taka potrzeba), korzystając z Onnx.
 
-W [poprzedniej lekcji](../../3-Web-App/1-Web-App/README.md) zbudowałeś model regresji dotyczący obserwacji UFO, „zapeklowałeś” go i użyłeś w aplikacji Flask. Chociaż ta architektura jest bardzo przydatna, jest to pełna aplikacja w Pythonie, a Twoje wymagania mogą obejmować użycie aplikacji w JavaScript.
+W [poprzedniej lekcji](../../3-Web-App/1-Web-App/README.md) zbudowałeś model regresji dotyczący obserwacji UFO, zapisałeś go w formacie "pickle" i użyłeś w aplikacji Flask. Chociaż ta architektura jest bardzo przydatna, jest to pełna aplikacja Pythonowa, a Twoje wymagania mogą obejmować użycie aplikacji JavaScriptowej.
 
-W tej lekcji możesz zbudować podstawowy system w JavaScript do wnioskowania. Najpierw jednak musisz wytrenować model i przekonwertować go do użycia z Onnx.
+W tej lekcji możesz zbudować podstawowy system wnioskowania oparty na JavaScript. Najpierw jednak musisz wytrenować model i przekonwertować go do formatu Onnx.
 
 ## Ćwiczenie - wytrenuj model klasyfikacyjny
 
@@ -46,14 +46,14 @@ Najpierw wytrenuj model klasyfikacyjny, korzystając z oczyszczonego zestawu dan
 
     Potrzebujesz '[skl2onnx](https://onnx.ai/sklearn-onnx/)', aby pomóc w konwersji modelu Scikit-learn do formatu Onnx.
 
-1. Następnie pracuj z danymi w taki sam sposób, jak w poprzednich lekcjach, odczytując plik CSV za pomocą `read_csv()`:
+1. Następnie, pracuj z danymi w taki sam sposób jak w poprzednich lekcjach, odczytując plik CSV za pomocą `read_csv()`:
 
     ```python
     data = pd.read_csv('../data/cleaned_cuisines.csv')
     data.head()
     ```
 
-1. Usuń dwie pierwsze niepotrzebne kolumny i zapisz pozostałe dane jako 'X':
+1. Usuń pierwsze dwie niepotrzebne kolumny i zapisz pozostałe dane jako 'X':
 
     ```python
     X = data.iloc[:,2:]
@@ -68,9 +68,9 @@ Najpierw wytrenuj model klasyfikacyjny, korzystając z oczyszczonego zestawu dan
     
     ```
 
-### Rozpocznij rutynę treningową
+### Rozpocznij procedurę treningową
 
-Użyj biblioteki 'SVC', która zapewnia dobrą dokładność.
+Użyjemy biblioteki 'SVC', która zapewnia dobrą dokładność.
 
 1. Zaimportuj odpowiednie biblioteki z Scikit-learn:
 
@@ -122,11 +122,11 @@ Użyj biblioteki 'SVC', która zapewnia dobrą dokładność.
     weighted avg       0.79      0.79      0.79      1199
     ```
 
-### Przekonwertuj swój model na Onnx
+### Konwertuj swój model do Onnx
 
 Upewnij się, że konwersja odbywa się z odpowiednią liczbą tensorów. Ten zestaw danych zawiera 380 składników, więc musisz podać tę liczbę w `FloatTensorType`:
 
-1. Przekonwertuj, używając liczby tensorów równej 380.
+1. Przeprowadź konwersję, używając liczby tensorów równej 380.
 
     ```python
     from skl2onnx import convert_sklearn
@@ -144,7 +144,7 @@ Upewnij się, że konwersja odbywa się z odpowiednią liczbą tensorów. Ten ze
         f.write(onx.SerializeToString())
     ```
 
-    > Uwaga, możesz przekazać [opcje](https://onnx.ai/sklearn-onnx/parameterized.html) w swoim skrypcie konwersji. W tym przypadku ustawiliśmy 'nocl' na True i 'zipmap' na False. Ponieważ jest to model klasyfikacyjny, masz możliwość usunięcia ZipMap, który produkuje listę słowników (nie jest to konieczne). `nocl` odnosi się do informacji o klasach zawartych w modelu. Zmniejsz rozmiar modelu, ustawiając `nocl` na 'True'.
+    > Uwaga: możesz przekazać [opcje](https://onnx.ai/sklearn-onnx/parameterized.html) w swoim skrypcie konwersji. W tym przypadku ustawiliśmy 'nocl' na True i 'zipmap' na False. Ponieważ jest to model klasyfikacyjny, masz możliwość usunięcia ZipMap, który produkuje listę słowników (nie jest to konieczne). `nocl` odnosi się do informacji o klasach zawartych w modelu. Zmniejsz rozmiar modelu, ustawiając `nocl` na 'True'.
 
 Uruchomienie całego notebooka teraz zbuduje model Onnx i zapisze go w tym folderze.
 
@@ -152,11 +152,11 @@ Uruchomienie całego notebooka teraz zbuduje model Onnx i zapisze go w tym folde
 
 Modele Onnx nie są zbyt widoczne w Visual Studio Code, ale istnieje bardzo dobre darmowe oprogramowanie, które wielu badaczy używa do wizualizacji modelu, aby upewnić się, że został poprawnie zbudowany. Pobierz [Netron](https://github.com/lutzroeder/Netron) i otwórz plik model.onnx. Możesz zobaczyć wizualizację swojego prostego modelu, z jego 380 wejściami i klasyfikatorem:
 
-![Netron visual](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.pl.png)
+![Wizualizacja Netron](../../../../4-Classification/4-Applied/images/netron.png)
 
 Netron to przydatne narzędzie do przeglądania modeli.
 
-Teraz jesteś gotowy, aby użyć tego modelu w aplikacji webowej. Zbuduj aplikację, która przyda się, gdy spojrzysz do swojej lodówki i spróbujesz ustalić, jakie kombinacje składników możesz wykorzystać do przygotowania danego dania kuchni, zgodnie z Twoim modelem.
+Teraz jesteś gotowy, aby użyć tego ciekawego modelu w aplikacji webowej. Zbudujmy aplikację, która przyda się, gdy zajrzysz do swojej lodówki i spróbujesz ustalić, jakie kombinacje składników możesz wykorzystać do przygotowania danego dania kuchni, zgodnie z Twoim modelem.
 
 ## Zbuduj aplikację webową rekomendującą
 
@@ -221,7 +221,7 @@ Możesz użyć swojego modelu bezpośrednio w aplikacji webowej. Ta architektura
             </div> 
     ```
 
-    Zauważ, że każdemu polu wyboru przypisano wartość. Odzwierciedla ona indeks, w którym składnik znajduje się zgodnie z zestawem danych. Jabłko, na przykład, w tej alfabetycznej liście zajmuje piątą kolumnę, więc jego wartość to '4', ponieważ zaczynamy liczyć od 0. Możesz skonsultować się z [arkuszem składników](../../../../4-Classification/data/ingredient_indexes.csv), aby odkryć indeks danego składnika.
+    Zauważ, że każdemu polu wyboru przypisano wartość. Odzwierciedla to indeks, w którym składnik znajduje się zgodnie z zestawem danych. Na przykład jabłko w tej alfabetycznej liście zajmuje piątą kolumnę, więc jego wartość to '4', ponieważ zaczynamy liczyć od 0. Możesz skonsultować się z [arkuszem składników](../../../../4-Classification/data/ingredient_indexes.csv), aby odkryć indeks danego składnika.
 
     Kontynuując pracę w pliku index.html, dodaj blok skryptu, w którym model jest wywoływany po ostatnim zamykającym `</div>`.
 
@@ -231,7 +231,7 @@ Możesz użyć swojego modelu bezpośrednio w aplikacji webowej. Ta architektura
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Onnx Runtime jest używany do umożliwienia uruchamiania modeli Onnx na szerokiej gamie platform sprzętowych, w tym optymalizacji i API do użycia.
+    > Onnx Runtime jest używany do uruchamiania modeli Onnx na szerokiej gamie platform sprzętowych, w tym optymalizacji i API do użycia.
 
 1. Gdy Runtime jest już na miejscu, możesz go wywołać:
 
@@ -287,11 +287,11 @@ Możesz użyć swojego modelu bezpośrednio w aplikacji webowej. Ta architektura
 
 W tym kodzie dzieje się kilka rzeczy:
 
-1. Utworzyłeś tablicę 380 możliwych wartości (1 lub 0), które mają być ustawione i wysłane do modelu do wnioskowania, w zależności od tego, czy pole wyboru składnika jest zaznaczone.
+1. Utworzyłeś tablicę 380 możliwych wartości (1 lub 0), które są ustawiane i wysyłane do modelu do wnioskowania, w zależności od tego, czy pole wyboru składnika jest zaznaczone.
 2. Utworzyłeś tablicę pól wyboru i sposób określenia, czy zostały zaznaczone, w funkcji `init`, która jest wywoływana podczas uruchamiania aplikacji. Gdy pole wyboru jest zaznaczone, tablica `ingredients` jest zmieniana, aby odzwierciedlić wybrany składnik.
 3. Utworzyłeś funkcję `testCheckboxes`, która sprawdza, czy jakiekolwiek pole wyboru zostało zaznaczone.
 4. Używasz funkcji `startInference`, gdy przycisk jest naciśnięty, i jeśli jakiekolwiek pole wyboru jest zaznaczone, rozpoczynasz wnioskowanie.
-5. Rutyna wnioskowania obejmuje:
+5. Procedura wnioskowania obejmuje:
    1. Ustawienie asynchronicznego ładowania modelu
    2. Utworzenie struktury Tensor do wysłania do modelu
    3. Utworzenie 'feeds', które odzwierciedlają wejście `float_input`, które utworzyłeś podczas trenowania modelu (możesz użyć Netron, aby zweryfikować tę nazwę)
@@ -301,19 +301,19 @@ W tym kodzie dzieje się kilka rzeczy:
 
 Otwórz sesję terminala w Visual Studio Code w folderze, w którym znajduje się Twój plik index.html. Upewnij się, że masz zainstalowany globalnie [http-server](https://www.npmjs.com/package/http-server), i wpisz `http-server` w terminalu. Powinien otworzyć się localhost, gdzie możesz zobaczyć swoją aplikację webową. Sprawdź, jaka kuchnia jest rekomendowana na podstawie różnych składników:
 
-![ingredient web app](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.pl.png)
+![Aplikacja webowa składników](../../../../4-Classification/4-Applied/images/web-app.png)
 
-Gratulacje, stworzyłeś aplikację webową „rekomendującą” z kilkoma polami. Poświęć trochę czasu na rozwinięcie tego systemu!
+Gratulacje, stworzyłeś aplikację webową 'rekomendującą' z kilkoma polami. Poświęć trochę czasu na rozwinięcie tego systemu!
 
 ## 🚀Wyzwanie
 
 Twoja aplikacja webowa jest bardzo minimalistyczna, więc kontynuuj jej rozwijanie, używając składników i ich indeksów z danych [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). Jakie kombinacje smaków działają, aby stworzyć danie narodowe?
 
-## [Quiz po lekcji](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Quiz po lekcji](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Przegląd i samodzielna nauka
 
-Chociaż ta lekcja tylko dotknęła tematu tworzenia systemu rekomendacji dla składników jedzenia, obszar zastosowań ML w tym zakresie jest bardzo bogaty w przykłady. Przeczytaj więcej o tym, jak te systemy są budowane:
+Chociaż ta lekcja tylko dotknęła tematu tworzenia systemu rekomendacji dla składników jedzenia, ten obszar zastosowań ML jest bardzo bogaty w przykłady. Przeczytaj więcej o tym, jak te systemy są budowane:
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
@@ -326,4 +326,4 @@ Chociaż ta lekcja tylko dotknęła tematu tworzenia systemu rekomendacji dla sk
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego języku źródłowym powinien być uznawany za autorytatywne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.

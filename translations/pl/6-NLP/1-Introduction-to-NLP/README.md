@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "89e923cf3e8bdff9662536e8bf9516e6",
-  "translation_date": "2025-09-03T18:59:57+00:00",
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-05T08:31:36+00:00",
   "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
   "language_code": "pl"
 }
@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Ta lekcja obejmuje krótką historię i ważne pojęcia związane z *przetwarzaniem języka naturalnego*, poddziedziną *lingwistyki komputerowej*.
 
-## [Quiz przed wykładem](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Wprowadzenie
 
@@ -21,31 +21,31 @@ NLP, jak jest powszechnie nazywane, to jedna z najbardziej znanych dziedzin, w k
 
 Dowiesz się o:
 
-- **Idei języków**. Jak języki się rozwijały i jakie były główne obszary badań.
+- **Idei języków**. Jak rozwijały się języki i jakie były główne obszary badań.
 - **Definicjach i pojęciach**. Poznasz definicje i pojęcia dotyczące tego, jak komputery przetwarzają tekst, w tym analizę składniową, gramatykę oraz identyfikację rzeczowników i czasowników. W tej lekcji znajdziesz kilka zadań programistycznych oraz wprowadzenie do ważnych koncepcji, które później nauczysz się kodować w kolejnych lekcjach.
 
 ## Lingwistyka komputerowa
 
-Lingwistyka komputerowa to dziedzina badań i rozwoju, która od wielu dekad zajmuje się tym, jak komputery mogą pracować z językami, a nawet je rozumieć, tłumaczyć i komunikować się w nich. Przetwarzanie języka naturalnego (NLP) to pokrewna dziedzina, skupiająca się na tym, jak komputery mogą przetwarzać języki „naturalne”, czyli ludzkie.
+Lingwistyka komputerowa to dziedzina badań i rozwoju, która od wielu dekad zajmuje się tym, jak komputery mogą pracować z językami, a nawet je rozumieć, tłumaczyć i komunikować się za ich pomocą. Przetwarzanie języka naturalnego (NLP) to pokrewna dziedzina, skupiająca się na tym, jak komputery mogą przetwarzać języki "naturalne", czyli ludzkie.
 
 ### Przykład - dyktowanie na telefonie
 
 Jeśli kiedykolwiek dyktowałeś coś swojemu telefonowi zamiast pisać lub zadawałeś pytanie wirtualnemu asystentowi, Twoja mowa została przekształcona w formę tekstową, a następnie przetworzona lub *zanalizowana* w języku, którym się posługiwałeś. Wykryte słowa kluczowe zostały następnie przetworzone na format, który telefon lub asystent mógł zrozumieć i na jego podstawie podjąć działanie.
 
-![comprehension](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.pl.png)
+![comprehension](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
 > Prawdziwe zrozumienie językowe jest trudne! Obraz autorstwa [Jen Looper](https://twitter.com/jenlooper)
 
 ### Jak to jest możliwe?
 
-Jest to możliwe dzięki temu, że ktoś napisał program komputerowy, który to umożliwia. Kilka dekad temu niektórzy pisarze science fiction przewidywali, że ludzie będą głównie rozmawiać ze swoimi komputerami, a komputery zawsze będą dokładnie rozumieć, co mają na myśli. Niestety, okazało się, że jest to trudniejszy problem, niż wielu sobie wyobrażało, i chociaż dziś jest to problem znacznie lepiej zrozumiany, nadal istnieją znaczące wyzwania w osiągnięciu „doskonałego” przetwarzania języka naturalnego, szczególnie w kontekście rozumienia znaczenia zdania. Jest to szczególnie trudne w przypadku rozumienia humoru lub wykrywania emocji, takich jak sarkazm, w zdaniu.
+Jest to możliwe dzięki temu, że ktoś napisał program komputerowy, który to umożliwia. Kilka dekad temu niektórzy pisarze science fiction przewidywali, że ludzie będą głównie rozmawiać ze swoimi komputerami, a komputery zawsze będą dokładnie rozumieć, co mają na myśli. Niestety, okazało się, że jest to trudniejszy problem, niż wielu sobie wyobrażało, i choć dziś jest to problem znacznie lepiej zrozumiany, nadal istnieją znaczące wyzwania w osiągnięciu "doskonałego" przetwarzania języka naturalnego, szczególnie w kontekście rozumienia znaczenia zdania. Szczególnie trudne jest rozumienie humoru czy wykrywanie emocji, takich jak sarkazm, w zdaniu.
 
 W tym momencie możesz przypomnieć sobie lekcje w szkole, na których nauczyciel omawiał części gramatyczne zdania. W niektórych krajach uczniowie uczą się gramatyki i lingwistyki jako osobnego przedmiotu, ale w wielu krajach te tematy są częścią nauki języka: albo ojczystego w szkole podstawowej (nauka czytania i pisania), albo drugiego języka w szkole średniej. Nie martw się, jeśli nie jesteś ekspertem w rozróżnianiu rzeczowników od czasowników czy przysłówków od przymiotników!
 
-Jeśli masz trudności z rozróżnieniem *czasu teraźniejszego prostego* od *czasu teraźniejszego ciągłego*, nie jesteś sam. To trudne dla wielu osób, nawet rodzimych użytkowników języka. Dobra wiadomość jest taka, że komputery są naprawdę dobre w stosowaniu formalnych reguł, a Ty nauczysz się pisać kod, który potrafi *analizować składnię* zdania równie dobrze jak człowiek. Większym wyzwaniem, które później zbadamy, jest rozumienie *znaczenia* i *emocji* zawartych w zdaniu.
+Jeśli masz trudności z rozróżnieniem *czasu teraźniejszego prostego* od *czasu teraźniejszego ciągłego*, nie jesteś sam. To trudne dla wielu osób, nawet rodzimych użytkowników języka. Dobrą wiadomością jest to, że komputery są naprawdę dobre w stosowaniu formalnych reguł, a Ty nauczysz się pisać kod, który potrafi *analizować składnię* zdania równie dobrze jak człowiek. Większym wyzwaniem, które później zbadamy, jest rozumienie *znaczenia* i *emocji* zawartych w zdaniu.
 
 ## Wymagania wstępne
 
-Głównym wymaganiem wstępnym do tej lekcji jest umiejętność czytania i rozumienia języka, w którym jest napisana. Nie ma tu problemów matematycznych ani równań do rozwiązania. Chociaż oryginalny autor napisał tę lekcję po angielsku, jest ona również tłumaczona na inne języki, więc możesz czytać tłumaczenie. W przykładach używane są różne języki (aby porównać różne zasady gramatyczne różnych języków). Te fragmenty *nie* są tłumaczone, ale tekst wyjaśniający jest, więc znaczenie powinno być jasne.
+Głównym wymaganiem wstępnym dla tej lekcji jest umiejętność czytania i rozumienia języka, w którym jest napisana. Nie ma tu problemów matematycznych ani równań do rozwiązania. Choć pierwotny autor napisał tę lekcję po angielsku, jest ona również tłumaczona na inne języki, więc możesz czytać tłumaczenie. W przykładach używane są różne języki (aby porównać różne reguły gramatyczne różnych języków). Te fragmenty *nie* są tłumaczone, ale tekst objaśniający jest, więc znaczenie powinno być jasne.
 
 Do zadań programistycznych będziesz używać Pythona, a przykłady są napisane w wersji Python 3.8.
 
@@ -64,27 +64,27 @@ W tej sekcji będziesz potrzebować i używać:
 
 ## Rozmowa z maszynami
 
-Historia prób nauczenia komputerów rozumienia ludzkiego języka sięga dekad, a jednym z pierwszych naukowców, którzy rozważali przetwarzanie języka naturalnego, był *Alan Turing*.
+Historia prób nauczenia komputerów rozumienia ludzkiego języka sięga dziesięcioleci, a jednym z pierwszych naukowców, którzy rozważali przetwarzanie języka naturalnego, był *Alan Turing*.
 
 ### Test Turinga
 
-Kiedy Turing badał *sztuczną inteligencję* w latach 50., zastanawiał się, czy można przeprowadzić test konwersacyjny między człowiekiem a komputerem (za pomocą korespondencji pisemnej), w którym człowiek nie byłby pewien, czy rozmawia z innym człowiekiem czy z komputerem.
+Kiedy Turing badał *sztuczną inteligencję* w latach 50., zastanawiał się, czy można przeprowadzić test konwersacyjny, w którym człowiek i komputer (poprzez korespondencję pisemną) rozmawiają, a człowiek nie jest pewien, czy rozmawia z innym człowiekiem czy z komputerem.
 
 Jeśli po pewnym czasie rozmowy człowiek nie byłby w stanie określić, czy odpowiedzi pochodzą od komputera czy nie, czy można powiedzieć, że komputer *myśli*?
 
-### Inspiracja - „gra naśladowania”
+### Inspiracja - 'gra naśladowcza'
 
-Pomysł ten pochodzi z gry towarzyskiej zwanej *Gra naśladowania*, w której osoba przesłuchująca znajduje się sama w pokoju i ma za zadanie określić, które z dwóch osób (w innym pokoju) są odpowiednio mężczyzną i kobietą. Osoba przesłuchująca może wysyłać notatki i musi wymyślać pytania, na które odpowiedzi pisemne ujawnią płeć tajemniczej osoby. Oczywiście osoby w drugim pokoju starają się zmylić przesłuchującego, odpowiadając na pytania w sposób wprowadzający w błąd lub dezorientujący, jednocześnie sprawiając wrażenie, że odpowiadają szczerze.
+Pomysł ten pochodził z gry towarzyskiej zwanej *Gra naśladowcza*, w której osoba przesłuchująca znajduje się sama w pokoju i ma za zadanie określić, które z dwóch osób (w innym pokoju) są odpowiednio mężczyzną i kobietą. Osoba przesłuchująca może wysyłać notatki i musi wymyślać pytania, na które pisemne odpowiedzi ujawnią płeć tajemniczej osoby. Oczywiście osoby w drugim pokoju próbują zmylić przesłuchującego, odpowiadając w sposób wprowadzający w błąd lub dezorientujący, jednocześnie sprawiając wrażenie, że odpowiadają szczerze.
 
 ### Rozwój Elizy
 
-W latach 60. naukowiec z MIT, *Joseph Weizenbaum*, stworzył [*Elizę*](https://wikipedia.org/wiki/ELIZA), komputerowego „terapeutę”, który zadawał człowiekowi pytania i sprawiał wrażenie, że rozumie jego odpowiedzi. Jednakże, chociaż Eliza potrafiła analizować składnię zdania i identyfikować pewne konstrukcje gramatyczne oraz słowa kluczowe, aby udzielić sensownej odpowiedzi, nie można było powiedzieć, że *rozumie* zdanie. Jeśli Eliza otrzymała zdanie w formacie "**Jestem** <u>smutny</u>", mogła przekształcić i zastąpić słowa w zdaniu, aby utworzyć odpowiedź "Jak długo **jesteś** <u>smutny</u>?".
+W latach 60. naukowiec z MIT, *Joseph Weizenbaum*, stworzył [*Elizę*](https://wikipedia.org/wiki/ELIZA), komputerowego "terapeutę", który zadawał człowiekowi pytania i sprawiał wrażenie, że rozumie jego odpowiedzi. Jednakże, choć Eliza potrafiła analizować zdanie i identyfikować pewne konstrukcje gramatyczne oraz słowa kluczowe, aby udzielić sensownej odpowiedzi, nie można było powiedzieć, że *rozumie* zdanie. Jeśli Eliza otrzymała zdanie w formacie "**Jestem** <u>smutny</u>", mogła przekształcić i zastąpić słowa w zdaniu, aby utworzyć odpowiedź "Jak długo **jesteś** <u>smutny</u>".
 
 Dawało to wrażenie, że Eliza rozumie wypowiedź i zadaje pytanie uzupełniające, podczas gdy w rzeczywistości zmieniała czas i dodawała kilka słów. Jeśli Eliza nie mogła zidentyfikować słowa kluczowego, dla którego miała odpowiedź, zamiast tego udzielała losowej odpowiedzi, która mogła pasować do wielu różnych wypowiedzi. Elizę można było łatwo oszukać, na przykład jeśli użytkownik napisał "**Jesteś** <u>rowerem</u>", mogła odpowiedzieć "Jak długo **byłem** <u>rowerem</u>?", zamiast bardziej sensownej odpowiedzi.
 
 [![Rozmowa z Elizą](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Rozmowa z Elizą")
 
-> 🎥 Kliknij obrazek powyżej, aby obejrzeć wideo o oryginalnym programie ELIZA
+> 🎥 Kliknij obrazek powyżej, aby obejrzeć film o oryginalnym programie ELIZA
 
 > Uwaga: Możesz przeczytać oryginalny opis [Elizy](https://cacm.acm.org/magazines/1966/1/13317-elizaa-computer-program-for-the-study-of-natural-language-communication-between-man-and-machine/abstract) opublikowany w 1966 roku, jeśli masz konto ACM. Alternatywnie, przeczytaj o Elizie na [wikipedii](https://wikipedia.org/wiki/ELIZA).
 
@@ -146,28 +146,28 @@ Stwórzmy teraz bota. Zaczniemy od zdefiniowania kilku fraz.
 
     ✅ Zatrzymaj się i zastanów
 
-    1. Czy uważasz, że losowe odpowiedzi mogłyby „oszukać” kogoś, aby uwierzył, że bot faktycznie go rozumie?
+    1. Czy uważasz, że losowe odpowiedzi mogłyby "oszukać" kogoś, aby pomyślał, że bot faktycznie go rozumie?
     2. Jakie funkcje musiałby mieć bot, aby być bardziej skutecznym?
-    3. Jeśli bot naprawdę mógłby „rozumieć” znaczenie zdania, czy musiałby „pamiętać” znaczenie poprzednich zdań w rozmowie?
+    3. Jeśli bot naprawdę mógłby "rozumieć" znaczenie zdania, czy musiałby "pamiętać" znaczenie poprzednich zdań w rozmowie?
 
 ---
 
 ## 🚀Wyzwanie
 
-Wybierz jeden z elementów „zatrzymaj się i zastanów” powyżej i spróbuj go zaimplementować w kodzie lub napisz rozwiązanie na papierze, używając pseudokodu.
+Wybierz jeden z elementów "zatrzymaj się i zastanów" powyżej i spróbuj go zaimplementować w kodzie lub napisz rozwiązanie na papierze, używając pseudokodu.
 
 W następnej lekcji dowiesz się o kilku innych podejściach do analizy języka naturalnego i uczenia maszynowego.
 
-## [Quiz po wykładzie](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Przegląd i samodzielna nauka
 
-Zapoznaj się z poniższymi odniesieniami jako możliwościami dalszego czytania.
+Zapoznaj się z poniższymi odniesieniami jako możliwościami dalszej lektury.
 
 ### Odniesienia
 
-1. Schubert, Lenhart, "Computational Linguistics", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
-2. Princeton University "About WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
+1. Schubert, Lenhart, "Lingwistyka komputerowa", *The Stanford Encyclopedia of Philosophy* (Spring 2020 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/spr2020/entries/computational-linguistics/>.
+2. Princeton University "O WordNet." [WordNet](https://wordnet.princeton.edu/). Princeton University. 2010. 
 
 ## Zadanie 
 
@@ -176,4 +176,4 @@ Zapoznaj się z poniższymi odniesieniami jako możliwościami dalszego czytania
 ---
 
 **Zastrzeżenie**:  
-Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego języku źródłowym powinien być uznawany za autorytatywne źródło. W przypadku informacji o kluczowym znaczeniu zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za wiarygodne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.

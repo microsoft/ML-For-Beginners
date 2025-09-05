@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-09-03T18:07:17+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-05T09:07:17+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "zh"
 }
@@ -13,11 +13,11 @@ CO_OP_TRANSLATOR_METADATA:
 
 机器学习最实用的用途之一是构建推荐系统，今天您可以迈出这一方向的第一步！
 
-[![展示这个网页应用](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "应用机器学习")
+[![展示此网页应用](https://img.youtube.com/vi/17wdM9AHMfg/0.jpg)](https://youtu.be/17wdM9AHMfg "应用机器学习")
 
 > 🎥 点击上方图片观看视频：Jen Looper 使用分类美食数据构建网页应用
 
-## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [课前测验](https://ff-quizzes.netlify.app/en/ml/)
 
 在本课中，您将学习：
 
@@ -29,9 +29,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 构建应用型机器学习系统是将这些技术应用于业务系统的重要部分。通过使用 Onnx，您可以在网页应用中使用模型（因此在需要时也可以离线使用）。
 
-在[之前的课程](../../3-Web-App/1-Web-App/README.md)中，您构建了一个关于 UFO 目击事件的回归模型，将其“封装”并在 Flask 应用中使用。虽然这种架构非常有用，但它是一个完整的 Python 应用，而您的需求可能包括使用 JavaScript 应用。
+在[之前的课程](../../3-Web-App/1-Web-App/README.md)中，您构建了一个关于 UFO 目击事件的回归模型，将其“pickle”保存，并在 Flask 应用中使用。虽然这种架构非常有用，但它是一个全栈 Python 应用，而您的需求可能包括使用 JavaScript 应用。
 
-在本课中，您可以构建一个基于 JavaScript 的基本推理系统。不过，首先需要训练一个模型并将其转换为 Onnx 格式。
+在本课中，您可以构建一个基于 JavaScript 的基础推理系统。不过，首先需要训练一个模型并将其转换为 Onnx 格式。
 
 ## 练习 - 训练分类模型
 
@@ -46,7 +46,7 @@ CO_OP_TRANSLATOR_METADATA:
 
     您需要 '[skl2onnx](https://onnx.ai/sklearn-onnx/)' 来帮助将 Scikit-learn 模型转换为 Onnx 格式。
 
-1. 然后，像之前课程中一样使用 `read_csv()` 读取 CSV 文件处理数据：
+1. 然后，像之前课程中一样使用 `read_csv()` 读取 CSV 文件来处理数据：
 
     ```python
     data = pd.read_csv('../data/cleaned_cuisines.csv')
@@ -124,7 +124,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 将模型转换为 Onnx
 
-确保使用正确的张量数量进行转换。此数据集列出了 380 种成分，因此您需要在 `FloatTensorType` 中标注该数量：
+确保使用正确的张量数量进行转换。此数据集列出了 380 种食材，因此您需要在 `FloatTensorType` 中注明该数量：
 
 1. 使用张量数量 380 进行转换。
 
@@ -136,7 +136,7 @@ CO_OP_TRANSLATOR_METADATA:
     options = {id(model): {'nocl': True, 'zipmap': False}}
     ```
 
-1. 创建 onx 文件并保存为 **model.onnx**：
+1. 创建 onx 并保存为文件 **model.onnx**：
 
     ```python
     onx = convert_sklearn(model, initial_types=initial_type, options=options)
@@ -144,25 +144,25 @@ CO_OP_TRANSLATOR_METADATA:
         f.write(onx.SerializeToString())
     ```
 
-    > 注意，您可以在转换脚本中传入[选项](https://onnx.ai/sklearn-onnx/parameterized.html)。在本例中，我们传入了 'nocl' 为 True 和 'zipmap' 为 False。由于这是一个分类模型，您可以选择移除 ZipMap，它会生成一个字典列表（不必要）。`nocl` 指的是模型中是否包含类别信息。通过将 `nocl` 设置为 'True' 来减小模型的大小。
+    > 注意，您可以在转换脚本中传递[选项](https://onnx.ai/sklearn-onnx/parameterized.html)。在本例中，我们将 'nocl' 设置为 True，将 'zipmap' 设置为 False。由于这是一个分类模型，您可以选择移除 ZipMap，它会生成一个字典列表（不必要）。`nocl` 指的是模型中是否包含类别信息。通过将 `nocl` 设置为 'True' 来减小模型的大小。
 
-运行整个笔记本后，现在会构建一个 Onnx 模型并将其保存到此文件夹中。
+运行整个笔记本后，您将构建一个 Onnx 模型并将其保存到此文件夹中。
 
 ## 查看您的模型
 
-Onnx 模型在 Visual Studio Code 中不太直观，但有一个非常好的免费软件，许多研究人员使用它来可视化模型，以确保模型构建正确。下载 [Netron](https://github.com/lutzroeder/Netron) 并打开您的 model.onnx 文件。您可以看到您的简单模型被可视化，列出了其 380 个输入和分类器：
+Onnx 模型在 Visual Studio Code 中不太直观，但有一个非常好的免费软件，许多研究人员使用它来可视化模型，以确保模型构建正确。下载 [Netron](https://github.com/lutzroeder/Netron) 并打开您的 model.onnx 文件。您可以看到您的简单模型被可视化，包含 380 个输入和分类器：
 
-![Netron 可视化](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.zh.png)
+![Netron 可视化](../../../../4-Classification/4-Applied/images/netron.png)
 
 Netron 是一个查看模型的有用工具。
 
-现在您可以在网页应用中使用这个简洁的模型了。让我们构建一个应用，当您查看冰箱并试图确定可以用剩余食材组合制作哪种美食时，这个应用会派上用场。
+现在您可以在网页应用中使用这个简洁的模型了。让我们构建一个应用，当您查看冰箱并试图决定如何利用剩余食材制作某种美食时，它会派上用场。
 
 ## 构建推荐网页应用
 
-您可以直接在网页应用中使用您的模型。这种架构还允许您在本地运行它，甚至在需要时离线运行。首先，在存储 `model.onnx` 文件的同一文件夹中创建一个 `index.html` 文件。
+您可以直接在网页应用中使用您的模型。这种架构还允许您在本地运行，甚至在需要时离线运行。首先，在存储 `model.onnx` 文件的同一文件夹中创建一个 `index.html` 文件。
 
-1. 在这个文件 _index.html_ 中，添加以下标记：
+1. 在此文件 _index.html_ 中，添加以下标记：
 
     ```html
     <!DOCTYPE html>
@@ -176,7 +176,7 @@ Netron 是一个查看模型的有用工具。
     </html>
     ```
 
-1. 现在，在 `body` 标签内，添加一些标记以显示一些食材的复选框列表：
+1. 现在，在 `body` 标签内添加一些标记以显示一些食材的复选框列表：
 
     ```html
     <h1>Check your refrigerator. What can you create?</h1>
@@ -221,9 +221,9 @@ Netron 是一个查看模型的有用工具。
             </div> 
     ```
 
-    注意，每个复选框都被赋予了一个值。这反映了根据数据集找到食材的索引。例如，苹果在这个按字母顺序排列的列表中占据第五列，因此其值为 '4'，因为我们从 0 开始计数。您可以查阅 [ingredients spreadsheet](../../../../4-Classification/data/ingredient_indexes.csv) 来发现某个食材的索引。
+    注意，每个复选框都被赋予了一个值。这反映了食材在数据集中的索引位置。例如，苹果在这个按字母顺序排列的列表中占据第五列，因此其值为 '4'（因为我们从 0 开始计数）。您可以查阅 [ingredients spreadsheet](../../../../4-Classification/data/ingredient_indexes.csv) 来找到某个食材的索引。
 
-    在 index.html 文件中继续工作，在最后一个关闭的 `</div>` 后添加一个脚本块，其中调用了模型。
+    继续在 index.html 文件中工作，在最后一个关闭的 `</div>` 后添加一个脚本块，其中调用了模型。
 
 1. 首先，导入 [Onnx Runtime](https://www.onnxruntime.ai/)：
 
@@ -285,12 +285,12 @@ Netron 是一个查看模型的有用工具。
     </script>
     ```
 
-在这段代码中，发生了以下几件事：
+在此代码中，发生了以下几件事：
 
-1. 您创建了一个包含 380 个可能值（1 或 0）的数组，用于设置并发送到模型进行推理，具体取决于某个食材复选框是否被选中。
-2. 您创建了一个复选框数组以及一种在应用启动时通过 `init` 函数确定它们是否被选中的方法。当复选框被选中时，`ingredients` 数组会被修改以反映所选食材。
+1. 您创建了一个包含 380 个可能值（1 或 0）的数组，用于根据食材复选框是否被选中来设置并发送到模型进行推理。
+2. 您创建了一个复选框数组以及一个在应用启动时确定它们是否被选中的 `init` 函数。当复选框被选中时，`ingredients` 数组会被修改以反映所选食材。
 3. 您创建了一个 `testCheckboxes` 函数，用于检查是否有复选框被选中。
-4. 当按钮被按下时，您使用 `startInference` 函数，如果有复选框被选中，则开始推理。
+4. 您使用 `startInference` 函数，当按钮被按下时，如果有复选框被选中，您就开始推理。
 5. 推理流程包括：
    1. 设置模型的异步加载
    2. 创建一个发送到模型的张量结构
@@ -299,31 +299,31 @@ Netron 是一个查看模型的有用工具。
 
 ## 测试您的应用
 
-在存放 index.html 文件的文件夹中打开 Visual Studio Code 的终端会话。确保您已全局安装 [http-server](https://www.npmjs.com/package/http-server)，然后在提示符下输入 `http-server`。一个本地主机应该打开，您可以查看您的网页应用。检查根据各种食材推荐的美食：
+在存放 index.html 文件的文件夹中打开 Visual Studio Code 的终端会话。确保您已全局安装 [http-server](https://www.npmjs.com/package/http-server)，然后在提示符下输入 `http-server`。一个本地主机将打开，您可以查看您的网页应用。根据各种食材检查推荐的美食：
 
-![食材网页应用](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.zh.png)
+![食材网页应用](../../../../4-Classification/4-Applied/images/web-app.png)
 
 恭喜，您已经创建了一个带有几个字段的“推荐”网页应用。花点时间完善这个系统吧！
 
 ## 🚀挑战
 
-您的网页应用非常简约，因此请继续使用 [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) 数据中的食材及其索引来完善它。哪些风味组合可以制作出某个国家的特色菜？
+您的网页应用非常简约，因此请继续使用 [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv) 数据中的食材及其索引来完善它。哪些风味组合可以制作出某种国家菜肴？
 
-## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [课后测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 复习与自学
 
-虽然本课只是简单介绍了为食材创建推荐系统的实用性，但这一领域的机器学习应用有非常丰富的示例。阅读更多关于这些系统如何构建的内容：
+虽然本课只是简单介绍了创建食材推荐系统的实用性，但这一领域的机器学习应用有许多丰富的示例。阅读更多关于这些系统如何构建的内容：
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
 - https://www.technologyreview.com/2015/03/23/168831/everything-is-a-recommendation/
 
-## 作业 
+## 作业
 
 [构建一个新的推荐系统](assignment.md)
 
 ---
 
 **免责声明**：  
-本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保翻译的准确性，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们不对因使用此翻译而产生的任何误解或误读承担责任。
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们概不负责。

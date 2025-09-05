@@ -1,17 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "f80e513b3279869e7661e3190cc83076",
-  "translation_date": "2025-09-03T16:58:53+00:00",
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-05T08:40:23+00:00",
   "source_file": "7-TimeSeries/3-SVR/README.md",
   "language_code": "pt"
 }
 -->
 # Previsão de Séries Temporais com Support Vector Regressor
 
-Na lição anterior, aprendeste a usar o modelo ARIMA para fazer previsões de séries temporais. Agora vais explorar o modelo Support Vector Regressor, que é um modelo de regressão usado para prever dados contínuos.
+Na lição anterior, aprendeste a usar o modelo ARIMA para fazer previsões de séries temporais. Agora vais explorar o modelo Support Vector Regressor, que é um modelo de regressão utilizado para prever dados contínuos.
 
-## [Questionário pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [Questionário pré-aula](https://ff-quizzes.netlify.app/en/ml/) 
 
 ## Introdução
 
@@ -19,15 +19,15 @@ Nesta lição, vais descobrir uma forma específica de construir modelos com [**
 
 ### SVR no contexto de séries temporais [^1]
 
-Antes de entenderes a importância do SVR na previsão de séries temporais, aqui estão alguns conceitos importantes que precisas de saber:
+Antes de compreender a importância do SVR na previsão de séries temporais, aqui estão alguns conceitos importantes que precisas de saber:
 
 - **Regressão:** Técnica de aprendizagem supervisionada para prever valores contínuos a partir de um conjunto de entradas. A ideia é ajustar uma curva (ou linha) no espaço de características que tenha o maior número de pontos de dados. [Clica aqui](https://en.wikipedia.org/wiki/Regression_analysis) para mais informações.
-- **Support Vector Machine (SVM):** Um tipo de modelo de aprendizagem supervisionada usado para classificação, regressão e deteção de outliers. O modelo é um hiperplano no espaço de características, que no caso de classificação atua como uma fronteira, e no caso de regressão atua como a linha de melhor ajuste. No SVM, uma função Kernel é geralmente usada para transformar o conjunto de dados para um espaço com maior número de dimensões, de forma que possam ser facilmente separáveis. [Clica aqui](https://en.wikipedia.org/wiki/Support-vector_machine) para mais informações sobre SVMs.
-- **Support Vector Regressor (SVR):** Um tipo de SVM, usado para encontrar a linha de melhor ajuste (que no caso do SVM é um hiperplano) que tenha o maior número de pontos de dados.
+- **Support Vector Machine (SVM):** Um tipo de modelo de aprendizagem supervisionada usado para classificação, regressão e deteção de outliers. O modelo é um hiperplano no espaço de características, que no caso de classificação atua como uma fronteira, e no caso de regressão atua como a linha de melhor ajuste. No SVM, uma função Kernel é geralmente usada para transformar o conjunto de dados para um espaço com maior número de dimensões, de forma a torná-los mais facilmente separáveis. [Clica aqui](https://en.wikipedia.org/wiki/Support-vector_machine) para mais informações sobre SVMs.
+- **Support Vector Regressor (SVR):** Um tipo de SVM, que encontra a linha de melhor ajuste (que no caso de SVM é um hiperplano) com o maior número de pontos de dados.
 
-### Por que usar SVR? [^1]
+### Porquê SVR? [^1]
 
-Na última lição aprendeste sobre ARIMA, que é um método estatístico linear muito bem-sucedido para prever dados de séries temporais. No entanto, em muitos casos, os dados de séries temporais apresentam *não-linearidade*, que não pode ser mapeada por modelos lineares. Nestes casos, a capacidade do SVM de considerar a não-linearidade nos dados para tarefas de regressão torna o SVR bem-sucedido na previsão de séries temporais.
+Na última lição aprendeste sobre o ARIMA, que é um método estatístico linear muito bem-sucedido para prever dados de séries temporais. No entanto, em muitos casos, os dados de séries temporais apresentam *não-linearidade*, que não pode ser mapeada por modelos lineares. Nestes casos, a capacidade do SVM de considerar a não-linearidade nos dados para tarefas de regressão torna o SVR bem-sucedido na previsão de séries temporais.
 
 ## Exercício - construir um modelo SVR
 
@@ -71,13 +71,13 @@ Abre a pasta [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/mai
    plt.show()
    ```
 
-   ![dados completos](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.pt.png)
+   ![dados completos](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
    Agora, vamos construir o nosso modelo SVR.
 
 ### Criar conjuntos de treino e teste
 
-Agora que os dados estão carregados, podes separá-los em conjuntos de treino e teste. Depois vais remodelar os dados para criar um conjunto de dados baseado em passos temporais, que será necessário para o SVR. Vais treinar o teu modelo no conjunto de treino. Após o modelo terminar o treino, vais avaliar a sua precisão no conjunto de treino, no conjunto de teste e depois no conjunto de dados completo para ver o desempenho geral. É importante garantir que o conjunto de teste cobre um período posterior ao conjunto de treino para garantir que o modelo não obtém informações de períodos futuros [^2] (uma situação conhecida como *Overfitting*).
+Agora que os dados estão carregados, podes separá-los em conjuntos de treino e teste. Depois vais remodelar os dados para criar um conjunto de dados baseado em passos temporais, que será necessário para o SVR. Vais treinar o teu modelo no conjunto de treino. Após o modelo terminar o treino, vais avaliar a sua precisão no conjunto de treino, no conjunto de teste e depois no conjunto de dados completo para ver o desempenho geral. É importante garantir que o conjunto de teste cobre um período posterior ao conjunto de treino para assegurar que o modelo não obtém informações de períodos futuros [^2] (uma situação conhecida como *Overfitting*).
 
 1. Aloca um período de dois meses de 1 de setembro a 31 de outubro de 2014 para o conjunto de treino. O conjunto de teste incluirá o período de dois meses de 1 de novembro a 31 de dezembro de 2014: [^2]
 
@@ -97,11 +97,11 @@ Agora que os dados estão carregados, podes separá-los em conjuntos de treino e
    plt.show()
    ```
 
-   ![dados de treino e teste](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.pt.png)
+   ![dados de treino e teste](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
 ### Preparar os dados para treino
 
-Agora, precisas de preparar os dados para treino, realizando filtragem e escalonamento dos dados. Filtra o conjunto de dados para incluir apenas os períodos de tempo e colunas necessárias, e faz o escalonamento para garantir que os dados sejam projetados no intervalo 0,1.
+Agora, precisas de preparar os dados para treino, realizando filtragem e escalonamento dos dados. Filtra o conjunto de dados para incluir apenas os períodos de tempo e colunas necessários, e faz o escalonamento para garantir que os dados são projetados no intervalo 0,1.
 
 1. Filtra o conjunto de dados original para incluir apenas os períodos de tempo mencionados por conjunto e apenas a coluna necessária 'load' mais a data: [^2]
 
@@ -133,7 +133,7 @@ Agora, precisas de preparar os dados para treino, realizando filtragem e escalon
 
 ### Criar dados com passos temporais [^1]
 
-Para o SVR, transformas os dados de entrada para a forma `[batch, timesteps]`. Assim, remodelas os dados existentes `train_data` e `test_data` de forma que haja uma nova dimensão que se refere aos passos temporais. 
+Para o SVR, transformas os dados de entrada para a forma `[batch, timesteps]`. Assim, remodelas os `train_data` e `test_data` existentes de forma a que haja uma nova dimensão que se refere aos passos temporais. 
 
 ```python
 # Converting to numpy arrays
@@ -141,7 +141,7 @@ train_data = train.values
 test_data = test.values
 ```
 
-Neste exemplo, usamos `timesteps = 5`. Assim, as entradas para o modelo são os dados dos primeiros 4 passos temporais, e a saída será os dados do 5º passo temporal.
+Para este exemplo, usamos `timesteps = 5`. Assim, as entradas para o modelo são os dados dos primeiros 4 passos temporais, e a saída será os dados do 5º passo temporal.
 
 ```python
 timesteps=5
@@ -192,7 +192,7 @@ Agora, é hora de implementar o SVR. Para saber mais sobre esta implementação,
   2. Prepara o modelo para os dados de treino chamando a função `fit()`
   3. Faz previsões chamando a função `predict()`
 
-Agora criamos um modelo SVR. Aqui usamos o [kernel RBF](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), e definimos os hiperparâmetros gamma, C e epsilon como 0.5, 10 e 0.05, respetivamente.
+Agora criamos um modelo SVR. Aqui usamos o [kernel RBF](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), e definimos os hiperparâmetros gamma, C e epsilon como 0.5, 10 e 0.05 respetivamente.
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
@@ -226,9 +226,9 @@ Construíste o teu SVR! Agora precisamos de avaliá-lo.
 
 ### Avaliar o modelo [^1]
 
-Para a avaliação, primeiro vamos escalonar os dados de volta para a nossa escala original. Depois, para verificar o desempenho, vamos fazer o gráfico da série temporal original e prevista, e também imprimir o resultado do MAPE.
+Para avaliação, primeiro vamos escalonar os dados de volta para a escala original. Depois, para verificar o desempenho, vamos fazer o gráfico da série temporal original e prevista, e também imprimir o resultado do MAPE.
 
-Escalonar a saída prevista e original:
+Escalona os dados previstos e originais:
 
 ```python
 # Scaling the predictions
@@ -261,7 +261,7 @@ print(len(train_timestamps), len(test_timestamps))
 1412 44
 ```
 
-Fazer o gráfico das previsões para os dados de treino:
+Faz o gráfico das previsões para os dados de treino:
 
 ```python
 plt.figure(figsize=(25,6))
@@ -273,9 +273,9 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![previsão dos dados de treino](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.pt.png)
+![previsão dos dados de treino](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
-Imprimir MAPE para os dados de treino
+Imprime o MAPE para os dados de treino
 
 ```python
 print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
@@ -285,7 +285,7 @@ print('MAPE for training data: ', mape(y_train_pred, y_train)*100, '%')
 MAPE for training data: 1.7195710200875551 %
 ```
 
-Fazer o gráfico das previsões para os dados de teste
+Faz o gráfico das previsões para os dados de teste
 
 ```python
 plt.figure(figsize=(10,3))
@@ -296,9 +296,9 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![previsão dos dados de teste](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.pt.png)
+![previsão dos dados de teste](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
-Imprimir MAPE para os dados de teste
+Imprime o MAPE para os dados de teste
 
 ```python
 print('MAPE for testing data: ', mape(y_test_pred, y_test)*100, '%')
@@ -352,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![previsão dos dados completos](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.pt.png)
+![previsão dos dados completos](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -362,7 +362,7 @@ print('MAPE: ', mape(Y_pred, Y)*100, '%')
 MAPE:  2.0572089029888656 %
 ```
 
-🏆 Gráficos muito bons, mostrando um modelo com boa precisão. Parabéns!
+🏆 Gráficos muito bons, mostrando um modelo com boa precisão. Excelente trabalho!
 
 ---
 
@@ -370,13 +370,13 @@ MAPE:  2.0572089029888656 %
 
 - Tenta ajustar os hiperparâmetros (gamma, C, epsilon) ao criar o modelo e avalia os dados para ver qual conjunto de hiperparâmetros dá os melhores resultados nos dados de teste. Para saber mais sobre estes hiperparâmetros, podes consultar o documento [aqui](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Experimenta usar diferentes funções kernel para o modelo e analisa os seus desempenhos no conjunto de dados. Um documento útil pode ser encontrado [aqui](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
-- Experimenta usar diferentes valores para `timesteps` para o modelo olhar para trás e fazer previsões.
+- Tenta usar diferentes valores para `timesteps` para o modelo olhar para trás e fazer previsões.
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisão & Autoestudo
+## Revisão & Estudo Individual
 
-Esta lição foi para introduzir a aplicação de SVR para previsão de séries temporais. Para saber mais sobre SVR, podes consultar [este blog](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Esta [documentação sobre scikit-learn](https://scikit-learn.org/stable/modules/svm.html) fornece uma explicação mais abrangente sobre SVMs em geral, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) e também outros detalhes de implementação, como as diferentes [funções kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) que podem ser usadas e os seus parâmetros.
+Esta lição foi para introduzir a aplicação de SVR na previsão de séries temporais. Para saber mais sobre SVR, podes consultar [este blog](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Esta [documentação sobre scikit-learn](https://scikit-learn.org/stable/modules/svm.html) fornece uma explicação mais abrangente sobre SVMs em geral, [SVRs](https://scikit-learn.org/stable/modules/svm.html#regression) e também outros detalhes de implementação, como as diferentes [funções kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) que podem ser usadas e os seus parâmetros.
 
 ## Tarefa
 
