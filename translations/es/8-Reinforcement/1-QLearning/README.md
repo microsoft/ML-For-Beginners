@@ -1,26 +1,26 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ffe994d1cc881bdeb49226a064116e5",
-  "translation_date": "2025-09-04T00:19:42+00:00",
+  "original_hash": "911efd5e595089000cb3c16fce1beab8",
+  "translation_date": "2025-09-04T22:25:29+00:00",
   "source_file": "8-Reinforcement/1-QLearning/README.md",
   "language_code": "es"
 }
 -->
 # Introducción al Aprendizaje por Refuerzo y Q-Learning
 
-![Resumen del refuerzo en el aprendizaje automático en un sketchnote](../../../../translated_images/ml-reinforcement.94024374d63348dbb3571c343ca7ddabef72adac0b8086d47164b769ba3a8a1d.es.png)
+![Resumen del refuerzo en el aprendizaje automático en un sketchnote](../../../../sketchnotes/ml-reinforcement.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
-El aprendizaje por refuerzo implica tres conceptos importantes: el agente, algunos estados y un conjunto de acciones por estado. Al ejecutar una acción en un estado específico, el agente recibe una recompensa. Imagina nuevamente el videojuego Super Mario. Tú eres Mario, estás en un nivel del juego, parado junto al borde de un acantilado. Sobre ti hay una moneda. Tú, siendo Mario, en un nivel del juego, en una posición específica... ese es tu estado. Moverte un paso hacia la derecha (una acción) te llevará al borde del acantilado, y eso te daría una puntuación numérica baja. Sin embargo, presionar el botón de salto te permitiría obtener un punto y seguir vivo. Ese es un resultado positivo y debería otorgarte una puntuación numérica positiva.
+El aprendizaje por refuerzo implica tres conceptos importantes: el agente, algunos estados y un conjunto de acciones por estado. Al ejecutar una acción en un estado específico, el agente recibe una recompensa. Imagina nuevamente el videojuego Super Mario. Tú eres Mario, estás en un nivel del juego, parado junto al borde de un acantilado. Sobre ti hay una moneda. Tú, siendo Mario, en un nivel del juego, en una posición específica... ese es tu estado. Moverte un paso hacia la derecha (una acción) te llevará al borde y te dará una puntuación numérica baja. Sin embargo, presionar el botón de salto te permitirá ganar un punto y seguir vivo. Ese es un resultado positivo y debería otorgarte una puntuación numérica positiva.
 
-Usando aprendizaje por refuerzo y un simulador (el juego), puedes aprender a jugar para maximizar la recompensa, que es mantenerse vivo y obtener la mayor cantidad de puntos posible.
+Usando aprendizaje por refuerzo y un simulador (el juego), puedes aprender a jugar para maximizar la recompensa, que es permanecer vivo y obtener la mayor cantidad de puntos posible.
 
 [![Introducción al Aprendizaje por Refuerzo](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
 > 🎥 Haz clic en la imagen de arriba para escuchar a Dmitry hablar sobre el Aprendizaje por Refuerzo
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/45/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Prerrequisitos y Configuración
 
@@ -32,15 +32,15 @@ Puedes abrir [el notebook de la lección](https://github.com/microsoft/ML-For-Be
 
 ## Introducción
 
-En esta lección, exploraremos el mundo de **[Pedro y el Lobo](https://es.wikipedia.org/wiki/Pedro_y_el_lobo)**, inspirado en un cuento musical de un compositor ruso, [Sergei Prokofiev](https://es.wikipedia.org/wiki/Sergu%C3%A9i_Prok%C3%B3fiev). Usaremos **Aprendizaje por Refuerzo** para permitir que Pedro explore su entorno, recoja manzanas deliciosas y evite encontrarse con el lobo.
+En esta lección, exploraremos el mundo de **[Pedro y el Lobo](https://en.wikipedia.org/wiki/Peter_and_the_Wolf)**, inspirado en un cuento musical de hadas de un compositor ruso, [Sergei Prokofiev](https://en.wikipedia.org/wiki/Sergei_Prokofiev). Usaremos **Aprendizaje por Refuerzo** para permitir que Pedro explore su entorno, recoja manzanas deliciosas y evite encontrarse con el lobo.
 
-El **Aprendizaje por Refuerzo** (RL) es una técnica de aprendizaje que nos permite aprender un comportamiento óptimo de un **agente** en algún **entorno** mediante la ejecución de muchos experimentos. Un agente en este entorno debe tener algún **objetivo**, definido por una **función de recompensa**.
+El **Aprendizaje por Refuerzo** (RL) es una técnica de aprendizaje que nos permite aprender un comportamiento óptimo de un **agente** en algún **entorno** realizando muchos experimentos. Un agente en este entorno debe tener algún **objetivo**, definido por una **función de recompensa**.
 
 ## El entorno
 
 Para simplificar, consideremos el mundo de Pedro como un tablero cuadrado de tamaño `ancho` x `alto`, como este:
 
-![Entorno de Pedro](../../../../translated_images/environment.40ba3cb66256c93fa7e92f6f7214e1d1f588aafa97d266c11d108c5c5d101b6c.es.png)
+![Entorno de Pedro](../../../../8-Reinforcement/1-QLearning/images/environment.png)
 
 Cada celda en este tablero puede ser:
 
@@ -65,7 +65,7 @@ Este código debería imprimir una imagen del entorno similar a la anterior.
 
 ## Acciones y política
 
-En nuestro ejemplo, el objetivo de Pedro sería encontrar una manzana, mientras evita al lobo y otros obstáculos. Para ello, esencialmente puede caminar por el tablero hasta encontrar una manzana.
+En nuestro ejemplo, el objetivo de Pedro sería encontrar una manzana, mientras evita al lobo y otros obstáculos. Para lograr esto, esencialmente puede caminar por el tablero hasta encontrar una manzana.
 
 Por lo tanto, en cualquier posición, puede elegir entre una de las siguientes acciones: arriba, abajo, izquierda y derecha.
 
@@ -117,7 +117,7 @@ Primero resolvamos nuestro problema implementando una estrategia de camino aleat
 
     La llamada a `walk` debería devolver la longitud del camino correspondiente, que puede variar de una ejecución a otra.
 
-1. Ejecuta el experimento de camino varias veces (digamos, 100), y muestra las estadísticas resultantes (bloque de código 4):
+1. Ejecuta el experimento de camino varias veces (digamos, 100) y muestra las estadísticas resultantes (bloque de código 4):
 
     ```python
     def print_statistics(policy):
@@ -142,7 +142,7 @@ Primero resolvamos nuestro problema implementando una estrategia de camino aleat
 
 ## Función de recompensa
 
-Para hacer nuestra política más inteligente, necesitamos entender qué movimientos son "mejores" que otros. Para ello, necesitamos definir nuestro objetivo.
+Para hacer nuestra política más inteligente, necesitamos entender qué movimientos son "mejores" que otros. Para hacer esto, necesitamos definir nuestro objetivo.
 
 El objetivo puede definirse en términos de una **función de recompensa**, que devolverá algún valor de puntuación para cada estado. Cuanto mayor sea el número, mejor será la función de recompensa. (bloque de código 5)
 
@@ -163,7 +163,7 @@ def reward(m,pos=None):
     return move_reward
 ```
 
-Una cosa interesante sobre las funciones de recompensa es que en la mayoría de los casos, *solo se nos da una recompensa sustancial al final del juego*. Esto significa que nuestro algoritmo debería recordar los pasos "buenos" que conducen a una recompensa positiva al final y aumentar su importancia. De manera similar, todos los movimientos que conducen a malos resultados deberían desalentarse.
+Lo interesante de las funciones de recompensa es que en la mayoría de los casos, *solo se nos da una recompensa sustancial al final del juego*. Esto significa que nuestro algoritmo debería recordar los pasos "buenos" que conducen a una recompensa positiva al final y aumentar su importancia. De manera similar, todos los movimientos que conducen a malos resultados deberían desalentarse.
 
 ## Q-Learning
 
@@ -177,7 +177,7 @@ Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 
 Nota que inicializamos todos los valores de la Q-Table con un valor igual, en nuestro caso - 0.25. Esto corresponde a la política de "camino aleatorio", porque todos los movimientos en cada estado son igualmente buenos. Podemos pasar la Q-Table a la función `plot` para visualizar la tabla en el tablero: `m.plot(Q)`.
 
-![Entorno de Pedro](../../../../translated_images/env_init.04e8f26d2d60089e128f21d22e5fef57d580e559f0d5937b06c689e5e7cdd438.es.png)
+![Entorno de Pedro](../../../../8-Reinforcement/1-QLearning/images/env_init.png)
 
 En el centro de cada celda hay una "flecha" que indica la dirección preferida de movimiento. Dado que todas las direcciones son iguales, se muestra un punto.
 
@@ -189,13 +189,13 @@ Una vez que comenzamos a movernos, cada acción tendrá una recompensa correspon
 
 > Recuerda que no importa el resultado inmediato, sino el resultado final, que obtendremos al final de la simulación.
 
-Para tener en cuenta esta recompensa diferida, necesitamos usar los principios de **[programación dinámica](https://es.wikipedia.org/wiki/Programaci%C3%B3n_din%C3%A1mica)**, que nos permiten pensar en nuestro problema de manera recursiva.
+Para tener en cuenta esta recompensa diferida, necesitamos usar los principios de la **[programación dinámica](https://en.wikipedia.org/wiki/Dynamic_programming)**, que nos permiten pensar en nuestro problema de manera recursiva.
 
-Supongamos que ahora estamos en el estado *s*, y queremos movernos al siguiente estado *s'*. Al hacerlo, recibiremos la recompensa inmediata *r(s,a)*, definida por la función de recompensa, más alguna recompensa futura. Si suponemos que nuestra Q-Table refleja correctamente la "atractividad" de cada acción, entonces en el estado *s'* elegiremos una acción *a* que corresponda al valor máximo de *Q(s',a')*. Así, la mejor recompensa futura posible que podríamos obtener en el estado *s* se definirá como `max`
+Supongamos que ahora estamos en el estado *s*, y queremos movernos al siguiente estado *s'*. Al hacerlo, recibiremos la recompensa inmediata *r(s,a)*, definida por la función de recompensa, más alguna recompensa futura. Si suponemos que nuestra Q-Table refleja correctamente la "atractividad" de cada acción, entonces en el estado *s'* elegiremos una acción *a'* que corresponda al valor máximo de *Q(s',a')*. Así, la mejor recompensa futura posible que podríamos obtener en el estado *s* se definirá como `max`
 
-## Verificando la política
+## Comprobando la política
 
-Dado que la Q-Table enumera la "atractividad" de cada acción en cada estado, es bastante sencillo usarla para definir la navegación eficiente en nuestro mundo. En el caso más simple, podemos seleccionar la acción correspondiente al valor más alto de la Q-Table: (bloque de código 9)
+Dado que la Q-Table enumera la "atractividad" de cada acción en cada estado, es bastante fácil usarla para definir la navegación eficiente en nuestro mundo. En el caso más simple, podemos seleccionar la acción correspondiente al valor más alto de la Q-Table: (bloque de código 9)
 
 ```python
 def qpolicy_strict(m):
@@ -207,17 +207,17 @@ def qpolicy_strict(m):
 walk(m,qpolicy_strict)
 ```
 
-> Si pruebas el código anterior varias veces, puede que notes que a veces se "queda colgado" y necesitas presionar el botón STOP en el notebook para interrumpirlo. Esto ocurre porque podría haber situaciones en las que dos estados "apuntan" el uno al otro en términos de valor óptimo de Q, en cuyo caso el agente termina moviéndose entre esos estados indefinidamente.
+> Si pruebas el código anterior varias veces, puede que notes que a veces se "queda colgado" y necesitas presionar el botón STOP en el notebook para interrumpirlo. Esto ocurre porque podría haber situaciones en las que dos estados "apuntan" el uno al otro en términos de valor óptimo de Q-Value, en cuyo caso el agente termina moviéndose entre esos estados indefinidamente.
 
 ## 🚀Desafío
 
 > **Tarea 1:** Modifica la función `walk` para limitar la longitud máxima del camino a un cierto número de pasos (por ejemplo, 100), y observa cómo el código anterior devuelve este valor de vez en cuando.
 
-> **Tarea 2:** Modifica la función `walk` para que no regrese a los lugares donde ya ha estado previamente. Esto evitará que `walk` entre en bucles, sin embargo, el agente aún puede terminar "atrapado" en una ubicación de la que no pueda escapar.
+> **Tarea 2:** Modifica la función `walk` para que no regrese a los lugares donde ya ha estado previamente. Esto evitará que `walk` entre en bucles, sin embargo, el agente aún puede terminar "atrapado" en una ubicación de la que no puede escapar.
 
 ## Navegación
 
-Una política de navegación mejor sería la que usamos durante el entrenamiento, que combina explotación y exploración. En esta política, seleccionaremos cada acción con cierta probabilidad, proporcional a los valores en la Q-Table. Esta estrategia aún puede resultar en que el agente regrese a una posición que ya ha explorado, pero, como puedes ver en el código a continuación, resulta en un camino promedio muy corto hacia la ubicación deseada (recuerda que `print_statistics` ejecuta la simulación 100 veces): (bloque de código 10)
+Una política de navegación mejor sería la que usamos durante el entrenamiento, que combina explotación y exploración. En esta política, seleccionaremos cada acción con cierta probabilidad, proporcional a los valores en la Q-Table. Esta estrategia aún puede hacer que el agente regrese a una posición que ya ha explorado, pero, como puedes ver en el código a continuación, resulta en un camino promedio muy corto hacia la ubicación deseada (recuerda que `print_statistics` ejecuta la simulación 100 veces): (bloque de código 10)
 
 ```python
 def qpolicy(m):
@@ -237,7 +237,7 @@ Como hemos mencionado, el proceso de aprendizaje es un equilibrio entre la explo
 
 ## Los aprendizajes pueden resumirse como:
 
-- **La longitud promedio del camino aumenta**. Lo que vemos aquí es que al principio, la longitud promedio del camino aumenta. Esto probablemente se debe al hecho de que cuando no sabemos nada sobre el entorno, es más probable que quedemos atrapados en estados desfavorables, como agua o lobos. A medida que aprendemos más y comenzamos a usar este conocimiento, podemos explorar el entorno por más tiempo, pero aún no sabemos muy bien dónde están las manzanas.
+- **La longitud promedio del camino aumenta**. Lo que vemos aquí es que al principio, la longitud promedio del camino aumenta. Esto probablemente se debe al hecho de que cuando no sabemos nada sobre el entorno, es probable que quedemos atrapados en estados desfavorables, como agua o lobos. A medida que aprendemos más y comenzamos a usar este conocimiento, podemos explorar el entorno por más tiempo, pero aún no sabemos muy bien dónde están las manzanas.
 
 - **La longitud del camino disminuye a medida que aprendemos más**. Una vez que aprendemos lo suficiente, se vuelve más fácil para el agente alcanzar el objetivo, y la longitud del camino comienza a disminuir. Sin embargo, aún estamos abiertos a la exploración, por lo que a menudo nos desviamos del mejor camino y exploramos nuevas opciones, haciendo que el camino sea más largo de lo óptimo.
 
@@ -245,9 +245,9 @@ Como hemos mencionado, el proceso de aprendizaje es un equilibrio entre la explo
 
 En general, es importante recordar que el éxito y la calidad del proceso de aprendizaje dependen significativamente de parámetros como la tasa de aprendizaje, la disminución de la tasa de aprendizaje y el factor de descuento. A menudo se les llama **hiperparámetros**, para distinguirlos de los **parámetros**, que optimizamos durante el entrenamiento (por ejemplo, los coeficientes de la Q-Table). El proceso de encontrar los mejores valores de hiperparámetros se llama **optimización de hiperparámetros**, y merece un tema aparte.
 
-## [Cuestionario post-lectura](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
+## [Cuestionario post-clase](https://ff-quizzes.netlify.app/en/ml/)
 
-## Asignación 
+## Tarea 
 [Un Mundo Más Realista](assignment.md)
 
 ---

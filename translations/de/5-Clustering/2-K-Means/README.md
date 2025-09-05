@@ -1,51 +1,51 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "085d571097d201810720df4cd379f8c2",
-  "translation_date": "2025-09-03T21:47:21+00:00",
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-04T21:56:30+00:00",
   "source_file": "5-Clustering/2-K-Means/README.md",
   "language_code": "de"
 }
 -->
 # K-Means Clustering
 
-## [Quiz vor der Lektion](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [Quiz vor der Lektion](https://ff-quizzes.netlify.app/en/ml/)
 
-In dieser Lektion lernst du, wie man Cluster mit Scikit-learn und dem nigerianischen Musikdatensatz erstellt, den du zuvor importiert hast. Wir behandeln die Grundlagen von K-Means für Clustering. Denk daran, dass es, wie du in der vorherigen Lektion gelernt hast, viele Möglichkeiten gibt, mit Clustern zu arbeiten, und die Methode, die du verwendest, hängt von deinen Daten ab. Wir probieren K-Means aus, da es die gängigste Clustering-Technik ist. Los geht's!
+In dieser Lektion lernst du, wie man mit Scikit-learn und dem nigerianischen Musikdatensatz, den du zuvor importiert hast, Cluster erstellt. Wir behandeln die Grundlagen von K-Means für das Clustering. Denke daran, dass es, wie du in der vorherigen Lektion gelernt hast, viele Möglichkeiten gibt, mit Clustern zu arbeiten, und die Methode, die du wählst, hängt von deinen Daten ab. Wir werden K-Means ausprobieren, da es die gängigste Clustering-Technik ist. Los geht's!
 
 Begriffe, die du kennenlernen wirst:
 
-- Silhouette-Bewertung
+- Silhouette-Score
 - Elbow-Methode
-- Trägheit
+- Trägheit (Inertia)
 - Varianz
 
 ## Einführung
 
-[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) ist eine Methode aus dem Bereich der Signalverarbeitung. Sie wird verwendet, um Gruppen von Daten in 'k' Cluster zu unterteilen und zu partitionieren, basierend auf einer Reihe von Beobachtungen. Jede Beobachtung dient dazu, einen gegebenen Datenpunkt dem nächstgelegenen 'Mittelwert' oder dem Mittelpunkt eines Clusters zuzuordnen.
+[K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) ist eine Methode aus dem Bereich der Signalverarbeitung. Sie wird verwendet, um Datengruppen in 'k' Cluster zu unterteilen, basierend auf einer Reihe von Beobachtungen. Jede Beobachtung dient dazu, einen bestimmten Datenpunkt dem nächstgelegenen 'Mittelwert' oder dem Mittelpunkt eines Clusters zuzuordnen.
 
-Die Cluster können als [Voronoi-Diagramme](https://wikipedia.org/wiki/Voronoi_diagram) visualisiert werden, die einen Punkt (oder 'Seed') und dessen entsprechende Region enthalten.
+Die Cluster können als [Voronoi-Diagramme](https://wikipedia.org/wiki/Voronoi_diagram) visualisiert werden, die einen Punkt (oder 'Seed') und dessen zugehörige Region umfassen.
 
-![voronoi diagram](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.de.png)
+![voronoi diagram](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
 > Infografik von [Jen Looper](https://twitter.com/jenlooper)
 
-Der K-Means-Clustering-Prozess [läuft in einem Drei-Schritte-Prozess ab](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+Der K-Means-Clustering-Prozess [läuft in einem dreistufigen Verfahren ab](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
-1. Der Algorithmus wählt k-Mittelpunkte aus, indem er aus dem Datensatz sampelt. Danach wird eine Schleife durchlaufen:
-    1. Jeder Stichprobe wird der nächstgelegene Mittelpunkt zugewiesen.
-    2. Es werden neue Mittelpunkte erstellt, indem der Mittelwert aller Stichproben berechnet wird, die den vorherigen Mittelpunkten zugewiesen wurden.
-    3. Dann wird die Differenz zwischen den neuen und alten Mittelpunkten berechnet und der Vorgang wiederholt, bis die Mittelpunkte stabilisiert sind.
+1. Der Algorithmus wählt eine Anzahl von k-Mittelpunkten aus, indem er Stichproben aus dem Datensatz zieht. Danach wiederholt er:
+    1. Er ordnet jede Stichprobe dem nächstgelegenen Schwerpunkt zu.
+    2. Er erstellt neue Schwerpunkte, indem er den Mittelwert aller Stichproben berechnet, die den vorherigen Schwerpunkten zugeordnet wurden.
+    3. Dann berechnet er die Differenz zwischen den neuen und alten Schwerpunkten und wiederholt den Vorgang, bis die Schwerpunkte stabilisiert sind.
 
-Ein Nachteil von K-Means ist, dass du 'k', also die Anzahl der Mittelpunkte, festlegen musst. Glücklicherweise hilft die 'Elbow-Methode', einen guten Ausgangswert für 'k' zu schätzen. Du wirst sie gleich ausprobieren.
+Ein Nachteil der Verwendung von K-Means ist, dass du 'k', also die Anzahl der Schwerpunkte, festlegen musst. Glücklicherweise hilft die 'Elbow-Methode', einen guten Ausgangswert für 'k' zu schätzen. Du wirst sie gleich ausprobieren.
 
 ## Voraussetzung
 
-Du wirst in der [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb)-Datei arbeiten, die den Datenimport und die vorläufige Bereinigung enthält, die du in der letzten Lektion durchgeführt hast.
+Du wirst in der Datei [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/2-K-Means/notebook.ipynb) arbeiten, die den Datenimport und die vorläufige Bereinigung enthält, die du in der letzten Lektion durchgeführt hast.
 
 ## Übung - Vorbereitung
 
-Beginne damit, die Song-Daten erneut zu betrachten.
+Beginne damit, die Song-Daten noch einmal anzusehen.
 
 1. Erstelle ein Boxplot, indem du `boxplot()` für jede Spalte aufrufst:
 
@@ -89,11 +89,11 @@ Beginne damit, die Song-Daten erneut zu betrachten.
     sns.boxplot(x = 'release_date', data = df)
     ```
 
-    Diese Daten sind etwas unruhig: Wenn du jede Spalte als Boxplot betrachtest, kannst du Ausreißer erkennen.
+    Diese Daten sind etwas verrauscht: Wenn du jede Spalte als Boxplot betrachtest, kannst du Ausreißer erkennen.
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.de.png)
+    ![outliers](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
-Du könntest den Datensatz durchgehen und diese Ausreißer entfernen, aber das würde die Daten ziemlich minimal machen.
+Du könntest den Datensatz durchgehen und diese Ausreißer entfernen, aber das würde die Daten ziemlich minimieren.
 
 1. Wähle vorerst aus, welche Spalten du für deine Clustering-Übung verwenden möchtest. Wähle solche mit ähnlichen Bereichen und kodiere die Spalte `artist_top_genre` als numerische Daten:
 
@@ -110,7 +110,7 @@ Du könntest den Datensatz durchgehen und diese Ausreißer entfernen, aber das w
     y = le.transform(y)
     ```
 
-1. Jetzt musst du entscheiden, wie viele Cluster du anvisieren möchtest. Du weißt, dass es 3 Song-Genres gibt, die wir aus dem Datensatz herausgearbeitet haben, also probieren wir 3:
+1. Jetzt musst du festlegen, wie viele Cluster du anstreben möchtest. Du weißt, dass es 3 Song-Genres gibt, die wir aus dem Datensatz herausgearbeitet haben, also probiere es mit 3:
 
     ```python
     from sklearn.cluster import KMeans
@@ -129,7 +129,7 @@ Du könntest den Datensatz durchgehen und diese Ausreißer entfernen, aber das w
 
 Du siehst ein Array, das die vorhergesagten Cluster (0, 1 oder 2) für jede Zeile des Dataframes ausgibt.
 
-1. Verwende dieses Array, um eine 'Silhouette-Bewertung' zu berechnen:
+1. Verwende dieses Array, um einen 'Silhouette-Score' zu berechnen:
 
     ```python
     from sklearn import metrics
@@ -137,13 +137,13 @@ Du siehst ein Array, das die vorhergesagten Cluster (0, 1 oder 2) für jede Zeil
     score
     ```
 
-## Silhouette-Bewertung
+## Silhouette-Score
 
-Suche nach einer Silhouette-Bewertung, die näher an 1 liegt. Diese Bewertung variiert von -1 bis 1, und wenn der Wert 1 ist, ist das Cluster dicht und gut von anderen Clustern getrennt. Ein Wert nahe 0 repräsentiert überlappende Cluster mit Stichproben, die sehr nahe an der Entscheidungsgrenze der benachbarten Cluster liegen. [(Quelle)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
+Suche nach einem Silhouette-Score, der näher bei 1 liegt. Dieser Score variiert zwischen -1 und 1, und wenn der Score 1 ist, ist das Cluster dicht und gut von anderen Clustern getrennt. Ein Wert nahe 0 repräsentiert sich überlappende Cluster mit Stichproben, die sehr nahe an der Entscheidungsgrenze der benachbarten Cluster liegen. [(Quelle)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
 
-Unsere Bewertung ist **.53**, also genau in der Mitte. Das zeigt, dass unsere Daten nicht besonders gut für diese Art von Clustering geeignet sind, aber lass uns weitermachen.
+Unser Score ist **0,53**, also genau in der Mitte. Das zeigt, dass unsere Daten nicht besonders gut für diese Art von Clustering geeignet sind, aber lass uns weitermachen.
 
-### Übung - Modell erstellen
+### Übung - Ein Modell erstellen
 
 1. Importiere `KMeans` und starte den Clustering-Prozess.
 
@@ -158,21 +158,21 @@ Unsere Bewertung ist **.53**, also genau in der Mitte. Das zeigt, dass unsere Da
     
     ```
 
-    Es gibt einige Teile, die eine Erklärung verdienen.
+    Es gibt einige Teile, die einer Erklärung bedürfen.
 
     > 🎓 range: Dies sind die Iterationen des Clustering-Prozesses.
 
-    > 🎓 random_state: "Bestimmt die Zufallszahlengenerierung für die Initialisierung der Mittelpunkte." [Quelle](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
+    > 🎓 random_state: "Bestimmt die Zufallszahlengenerierung für die Initialisierung der Schwerpunkte." [Quelle](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓 WCSS: "Summe der quadratischen Abstände innerhalb eines Clusters" misst den quadratischen Durchschnittsabstand aller Punkte innerhalb eines Clusters zum Cluster-Mittelpunkt. [Quelle](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
+    > 🎓 WCSS: "within-cluster sums of squares" misst den quadrierten durchschnittlichen Abstand aller Punkte innerhalb eines Clusters zum Cluster-Schwerpunkt. [Quelle](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
 
-    > 🎓 Trägheit: K-Means-Algorithmen versuchen, Mittelpunkte zu wählen, um die 'Trägheit' zu minimieren, "ein Maß dafür, wie intern kohärent Cluster sind." [Quelle](https://scikit-learn.org/stable/modules/clustering.html). Der Wert wird bei jeder Iteration der WCSS-Variable hinzugefügt.
+    > 🎓 Trägheit (Inertia): K-Means-Algorithmen versuchen, Schwerpunkte so zu wählen, dass die 'Trägheit' minimiert wird, "ein Maß dafür, wie intern kohärent Cluster sind." [Quelle](https://scikit-learn.org/stable/modules/clustering.html). Der Wert wird bei jeder Iteration zur WCSS-Variablen hinzugefügt.
 
-    > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) kannst du die 'k-means++'-Optimierung verwenden, die "die Mittelpunkte so initialisiert, dass sie (im Allgemeinen) weit voneinander entfernt sind, was wahrscheinlich bessere Ergebnisse als eine zufällige Initialisierung liefert."
+    > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) kannst du die 'k-means++'-Optimierung verwenden, die "die Schwerpunkte so initialisiert, dass sie (im Allgemeinen) weit voneinander entfernt sind, was wahrscheinlich bessere Ergebnisse als eine zufällige Initialisierung liefert."
 
 ### Elbow-Methode
 
-Zuvor hast du vermutet, dass du, weil du 3 Song-Genres anvisiert hast, 3 Cluster wählen solltest. Aber ist das wirklich der Fall?
+Zuvor hast du angenommen, dass du 3 Cluster wählen solltest, da du 3 Song-Genres anvisiert hast. Aber ist das wirklich der Fall?
 
 1. Verwende die 'Elbow-Methode', um sicherzugehen.
 
@@ -185,11 +185,11 @@ Zuvor hast du vermutet, dass du, weil du 3 Song-Genres anvisiert hast, 3 Cluster
     plt.show()
     ```
 
-    Verwende die `wcss`-Variable, die du im vorherigen Schritt erstellt hast, um ein Diagramm zu erstellen, das zeigt, wo der 'Knick' im Ellbogen ist, der die optimale Anzahl von Clustern anzeigt. Vielleicht sind es tatsächlich **3**!
+    Verwende die `wcss`-Variable, die du im vorherigen Schritt erstellt hast, um ein Diagramm zu erstellen, das zeigt, wo der 'Knick' im Ellbogen liegt, der die optimale Anzahl von Clustern anzeigt. Vielleicht sind es tatsächlich **3**!
 
-    ![elbow method](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.de.png)
+    ![elbow method](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
-## Übung - Cluster anzeigen
+## Übung - Die Cluster anzeigen
 
 1. Wiederhole den Prozess, diesmal mit drei Clustern, und zeige die Cluster als Streudiagramm an:
 
@@ -218,38 +218,38 @@ Zuvor hast du vermutet, dass du, weil du 3 Song-Genres anvisiert hast, 3 Cluster
 
     Die Genauigkeit dieses Modells ist nicht sehr gut, und die Form der Cluster gibt dir einen Hinweis, warum.
 
-    ![clusters](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.de.png)
+    ![clusters](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
-    Diese Daten sind zu unausgewogen, zu wenig korreliert und es gibt zu viel Varianz zwischen den Spaltenwerten, um gut zu clustern. Tatsächlich werden die Cluster, die sich bilden, wahrscheinlich stark von den drei Genre-Kategorien beeinflusst oder verzerrt, die wir oben definiert haben. Das war ein Lernprozess!
+    Diese Daten sind zu unausgewogen, zu wenig korreliert, und es gibt zu viel Varianz zwischen den Spaltenwerten, um gut zu clustern. Tatsächlich werden die Cluster, die sich bilden, wahrscheinlich stark von den drei Genre-Kategorien beeinflusst, die wir oben definiert haben. Das war ein Lernprozess!
 
-    In der Dokumentation von Scikit-learn kannst du sehen, dass ein Modell wie dieses, mit Clustern, die nicht sehr gut abgegrenzt sind, ein 'Varianz'-Problem hat:
+    In der Dokumentation von Scikit-learn kannst du sehen, dass ein Modell wie dieses, bei dem die Cluster nicht sehr gut abgegrenzt sind, ein 'Varianz'-Problem hat:
 
-    ![problem models](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.de.png)
+    ![problem models](../../../../5-Clustering/2-K-Means/images/problems.png)
     > Infografik von Scikit-learn
 
 ## Varianz
 
-Varianz wird definiert als "der Durchschnitt der quadrierten Abweichungen vom Mittelwert" [(Quelle)](https://www.mathsisfun.com/data/standard-deviation.html). Im Kontext dieses Clustering-Problems bezieht sich dies darauf, dass die Zahlen unseres Datensatzes dazu neigen, sich zu stark vom Mittelwert zu entfernen.
+Varianz wird definiert als "der Durchschnitt der quadrierten Abweichungen vom Mittelwert" [(Quelle)](https://www.mathsisfun.com/data/standard-deviation.html). Im Kontext dieses Clustering-Problems bezieht sich dies darauf, dass die Zahlen unseres Datensatzes dazu neigen, sich etwas zu stark vom Mittelwert zu entfernen.
 
-✅ Dies ist ein großartiger Moment, um über all die Möglichkeiten nachzudenken, wie du dieses Problem beheben könntest. Die Daten ein wenig mehr anpassen? Andere Spalten verwenden? Einen anderen Algorithmus verwenden? Tipp: Versuche, [deine Daten zu skalieren](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/), um sie zu normalisieren und andere Spalten zu testen.
+✅ Dies ist ein guter Moment, um über alle Möglichkeiten nachzudenken, wie du dieses Problem beheben könntest. Die Daten etwas mehr anpassen? Andere Spalten verwenden? Einen anderen Algorithmus ausprobieren? Tipp: Versuche, [deine Daten zu skalieren](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/), um sie zu normalisieren, und teste andere Spalten.
 
-> Probiere diesen '[Varianz-Rechner](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)', um das Konzept ein wenig besser zu verstehen.
+> Probiere diesen '[Varianzrechner](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' aus, um das Konzept besser zu verstehen.
 
 ---
 
-## 🚀 Herausforderung
+## 🚀Herausforderung
 
 Verbringe etwas Zeit mit diesem Notebook und passe die Parameter an. Kannst du die Genauigkeit des Modells verbessern, indem du die Daten weiter bereinigst (z. B. Ausreißer entfernst)? Du kannst Gewichte verwenden, um bestimmten Datenproben mehr Gewicht zu geben. Was kannst du sonst noch tun, um bessere Cluster zu erstellen?
 
-Tipp: Versuche, deine Daten zu skalieren. Im Notebook gibt es kommentierten Code, der Standard-Skalierung hinzufügt, um die Daten-Spalten einander ähnlicher zu machen, was den Bereich betrifft. Du wirst feststellen, dass die Silhouette-Bewertung sinkt, aber der 'Knick' im Ellbogen-Diagramm glättet sich. Dies liegt daran, dass das Belassen der Daten ohne Skalierung es Daten mit weniger Varianz ermöglicht, mehr Gewicht zu tragen. Lies ein wenig mehr über dieses Problem [hier](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Tipp: Versuche, deine Daten zu skalieren. Im Notebook gibt es auskommentierten Code, der eine Standard-Skalierung hinzufügt, um die Daten-Spalten in Bezug auf den Bereich einander ähnlicher zu machen. Du wirst feststellen, dass der Silhouette-Score zwar sinkt, aber der 'Knick' im Ellbogen-Diagramm glatter wird. Das liegt daran, dass unskalierte Daten es Daten mit weniger Varianz erlauben, mehr Gewicht zu tragen. Lies mehr über dieses Problem [hier](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Quiz nach der Lektion](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [Quiz nach der Lektion](https://ff-quizzes.netlify.app/en/ml/)
 
-## Überprüfung & Selbststudium
+## Rückblick & Selbststudium
 
-Schau dir einen K-Means-Simulator [wie diesen hier](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/) an. Du kannst dieses Tool verwenden, um Beispieldatenpunkte zu visualisieren und deren Mittelpunkte zu bestimmen. Du kannst die Zufälligkeit der Daten, die Anzahl der Cluster und die Anzahl der Mittelpunkte bearbeiten. Hilft dir das, eine Vorstellung davon zu bekommen, wie die Daten gruppiert werden können?
+Schau dir einen K-Means-Simulator [wie diesen hier](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/) an. Mit diesem Tool kannst du Beispieldatenpunkte visualisieren und deren Schwerpunkte bestimmen. Du kannst die Zufälligkeit der Daten, die Anzahl der Cluster und die Anzahl der Schwerpunkte bearbeiten. Hilft dir das, eine Vorstellung davon zu bekommen, wie die Daten gruppiert werden können?
 
-Schau dir auch [dieses Handout zu K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) von Stanford an.
+Sieh dir auch [dieses Handout zu K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) von Stanford an.
 
 ## Aufgabe
 
@@ -258,4 +258,4 @@ Schau dir auch [dieses Handout zu K-Means](https://stanford.edu/~cpiech/cs221/ha
 ---
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.

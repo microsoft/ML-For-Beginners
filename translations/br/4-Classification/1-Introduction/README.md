@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "76438ce4e5d48982d48f1b55c981caac",
-  "translation_date": "2025-08-29T21:52:39+00:00",
+  "original_hash": "aaf391d922bd6de5efba871d514c6d47",
+  "translation_date": "2025-09-04T21:41:01+00:00",
   "source_file": "4-Classification/1-Introduction/README.md",
   "language_code": "br"
 }
@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Nestas quatro lições, você explorará um dos focos fundamentais do aprendizado de máquina clássico - _classificação_. Vamos utilizar vários algoritmos de classificação com um conjunto de dados sobre as brilhantes culinárias da Ásia e da Índia. Espero que você esteja com fome!
 
-![só uma pitada!](../../../../translated_images/pinch.1b035ec9ba7e0d408313b551b60c721c9c290b2dd2094115bc87e6ddacd114c9.br.png)
+![só uma pitada!](../../../../4-Classification/1-Introduction/images/pinch.png)
 
 > Celebre as culinárias pan-asiáticas nestas lições! Imagem por [Jen Looper](https://twitter.com/jenlooper)
 
@@ -19,42 +19,42 @@ Classificação é uma forma de [aprendizado supervisionado](https://wikipedia.o
 
 [![Introdução à classificação](https://img.youtube.com/vi/eg8DJYwdMyg/0.jpg)](https://youtu.be/eg8DJYwdMyg "Introdução à classificação")
 
-> 🎥 Clique na imagem acima para assistir a um vídeo: John Guttag, do MIT, apresenta a classificação
+> 🎥 Clique na imagem acima para assistir a um vídeo: John Guttag do MIT apresenta a classificação
 
 Lembre-se:
 
 - **Regressão linear** ajudou você a prever relações entre variáveis e fazer previsões precisas sobre onde um novo ponto de dados se encaixaria em relação a essa linha. Por exemplo, você poderia prever _qual seria o preço de uma abóbora em setembro vs. dezembro_.
 - **Regressão logística** ajudou você a descobrir "categorias binárias": neste ponto de preço, _essa abóbora é laranja ou não-laranja_?
 
-A classificação utiliza vários algoritmos para determinar outras maneiras de identificar o rótulo ou a classe de um ponto de dados. Vamos trabalhar com esses dados de culinária para ver se, ao observar um grupo de ingredientes, conseguimos determinar sua origem culinária.
+A classificação utiliza vários algoritmos para determinar outras formas de identificar o rótulo ou a classe de um ponto de dados. Vamos trabalhar com esses dados de culinária para ver se, ao observar um grupo de ingredientes, conseguimos determinar sua origem culinária.
 
-## [Pré-quiz da aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/19/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Esta lição está disponível em R!](../../../../4-Classification/1-Introduction/solution/R/lesson_10.html)
 
 ### Introdução
 
-A classificação é uma das atividades fundamentais do pesquisador de aprendizado de máquina e do cientista de dados. Desde a classificação básica de um valor binário ("este e-mail é spam ou não?") até a classificação e segmentação complexa de imagens usando visão computacional, é sempre útil ser capaz de organizar dados em classes e fazer perguntas sobre eles.
+A classificação é uma das atividades fundamentais do pesquisador de aprendizado de máquina e do cientista de dados. Desde a classificação básica de um valor binário ("este e-mail é spam ou não?"), até a classificação e segmentação complexas de imagens usando visão computacional, é sempre útil poder organizar dados em classes e fazer perguntas sobre eles.
 
 Para descrever o processo de forma mais científica, seu método de classificação cria um modelo preditivo que permite mapear a relação entre variáveis de entrada e variáveis de saída.
 
-![classificação binária vs. multiclasse](../../../../translated_images/binary-multiclass.b56d0c86c81105a697dddd82242c1d11e4d78b7afefea07a44627a0f1111c1a9.br.png)
+![classificação binária vs. multiclasse](../../../../4-Classification/1-Introduction/images/binary-multiclass.png)
 
-> Problemas binários vs. multiclasse para algoritmos de classificação resolverem. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
+> Problemas binários vs. multiclasse para algoritmos de classificação lidarem. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
-Antes de começar o processo de limpar nossos dados, visualizá-los e prepará-los para nossas tarefas de aprendizado de máquina, vamos aprender um pouco sobre as várias maneiras pelas quais o aprendizado de máquina pode ser usado para classificar dados.
+Antes de começar o processo de limpar nossos dados, visualizá-los e prepará-los para nossas tarefas de aprendizado de máquina, vamos aprender um pouco sobre as várias formas de usar aprendizado de máquina para classificar dados.
 
-Derivada da [estatística](https://wikipedia.org/wiki/Statistical_classification), a classificação usando aprendizado de máquina clássico utiliza características, como `smoker`, `weight` e `age`, para determinar a _probabilidade de desenvolver X doença_. Como uma técnica de aprendizado supervisionado semelhante aos exercícios de regressão que você realizou anteriormente, seus dados são rotulados e os algoritmos de aprendizado de máquina usam esses rótulos para classificar e prever classes (ou 'características') de um conjunto de dados e atribuí-las a um grupo ou resultado.
+Derivada da [estatística](https://wikipedia.org/wiki/Statistical_classification), a classificação usando aprendizado de máquina clássico utiliza características, como `fumante`, `peso` e `idade`, para determinar a _probabilidade de desenvolver X doença_. Como uma técnica de aprendizado supervisionado semelhante aos exercícios de regressão que você realizou anteriormente, seus dados são rotulados e os algoritmos de aprendizado de máquina usam esses rótulos para classificar e prever classes (ou 'características') de um conjunto de dados e atribuí-las a um grupo ou resultado.
 
-✅ Tire um momento para imaginar um conjunto de dados sobre culinárias. O que um modelo multiclasse seria capaz de responder? O que um modelo binário seria capaz de responder? E se você quisesse determinar se uma determinada culinária provavelmente usa feno-grego? E se você quisesse ver se, dado um presente de uma sacola de supermercado cheia de anis-estrelado, alcachofras, couve-flor e raiz-forte, você poderia criar um prato típico indiano?
+✅ Tire um momento para imaginar um conjunto de dados sobre culinárias. O que um modelo multiclasse seria capaz de responder? O que um modelo binário seria capaz de responder? E se você quisesse determinar se uma determinada culinária provavelmente usaria feno-grego? E se você quisesse ver se, dado um presente de uma sacola de supermercado cheia de anis-estrelado, alcachofras, couve-flor e raiz-forte, você poderia criar um prato típico indiano?
 
 [![Cestas misteriosas malucas](https://img.youtube.com/vi/GuTeDbaNoEU/0.jpg)](https://youtu.be/GuTeDbaNoEU "Cestas misteriosas malucas")
 
-> 🎥 Clique na imagem acima para assistir a um vídeo. Toda a premissa do programa 'Chopped' é a 'cesta misteriosa', onde os chefs têm que fazer um prato com uma escolha aleatória de ingredientes. Certamente um modelo de aprendizado de máquina teria ajudado!
+> 🎥 Clique na imagem acima para assistir a um vídeo. Todo o conceito do programa 'Chopped' é a 'cesta misteriosa', onde os chefs têm que fazer um prato com uma escolha aleatória de ingredientes. Certamente um modelo de aprendizado de máquina teria ajudado!
 
 ## Olá 'classificador'
 
-A pergunta que queremos fazer sobre este conjunto de dados de culinária é, na verdade, uma **pergunta multiclasse**, já que temos várias possíveis culinárias nacionais para trabalhar. Dado um lote de ingredientes, a qual dessas muitas classes os dados pertencem?
+A pergunta que queremos fazer sobre este conjunto de dados de culinária é, na verdade, uma **pergunta multiclasse**, já que temos várias possíveis culinárias nacionais para trabalhar. Dado um lote de ingredientes, a qual dessas muitas classes os dados se encaixarão?
 
 O Scikit-learn oferece vários algoritmos diferentes para classificar dados, dependendo do tipo de problema que você deseja resolver. Nas próximas duas lições, você aprenderá sobre alguns desses algoritmos.
 
@@ -62,7 +62,7 @@ O Scikit-learn oferece vários algoritmos diferentes para classificar dados, dep
 
 A primeira tarefa, antes de começar este projeto, é limpar e **balancear** seus dados para obter melhores resultados. Comece com o arquivo em branco _notebook.ipynb_ na raiz desta pasta.
 
-A primeira coisa a instalar é o [imblearn](https://imbalanced-learn.org/stable/). Este é um pacote do Scikit-learn que permitirá balancear melhor os dados (você aprenderá mais sobre essa tarefa em breve).
+A primeira coisa a instalar é o [imblearn](https://imbalanced-learn.org/stable/). Este é um pacote do Scikit-learn que permitirá que você balanceie melhor os dados (você aprenderá mais sobre essa tarefa em um minuto).
 
 1. Para instalar o `imblearn`, execute `pip install`, assim:
 
@@ -70,7 +70,7 @@ A primeira coisa a instalar é o [imblearn](https://imbalanced-learn.org/stable/
     pip install imblearn
     ```
 
-1. Importe os pacotes necessários para importar seus dados e visualizá-los, além de importar `SMOTE` do `imblearn`.
+1. Importe os pacotes necessários para importar seus dados e visualizá-los, e também importe `SMOTE` do `imblearn`.
 
     ```python
     import pandas as pd
@@ -114,7 +114,7 @@ A primeira coisa a instalar é o [imblearn](https://imbalanced-learn.org/stable/
     df.info()
     ```
 
-    Sua saída se parece com:
+    Sua saída será semelhante a:
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -134,7 +134,7 @@ Agora o trabalho começa a ficar mais interessante. Vamos descobrir a distribui�
     df.cuisine.value_counts().plot.barh()
     ```
 
-    ![distribuição de dados de culinária](../../../../translated_images/cuisine-dist.d0cc2d551abe5c25f83d73a5f560927e4a061e9a4560bac1e97d35682ef3ca6d.br.png)
+    ![distribuição de dados de culinária](../../../../4-Classification/1-Introduction/images/cuisine-dist.png)
 
     Há um número finito de culinárias, mas a distribuição dos dados é desigual. Você pode corrigir isso! Antes de fazer isso, explore um pouco mais.
 
@@ -166,9 +166,9 @@ Agora o trabalho começa a ficar mais interessante. Vamos descobrir a distribui�
 
 ## Descobrindo ingredientes
 
-Agora você pode se aprofundar nos dados e aprender quais são os ingredientes típicos por culinária. Você deve limpar dados recorrentes que criam confusão entre culinárias, então vamos aprender sobre esse problema.
+Agora você pode se aprofundar nos dados e aprender quais são os ingredientes típicos por culinária. Você deve limpar dados recorrentes que criam confusão entre as culinárias, então vamos aprender sobre esse problema.
 
-1. Crie uma função `create_ingredient()` em Python para criar um dataframe de ingredientes. Essa função começará removendo uma coluna inútil e classificará os ingredientes por sua contagem:
+1. Crie uma função `create_ingredient()` em Python para criar um dataframe de ingredientes. Esta função começará removendo uma coluna inútil e classificará os ingredientes por sua contagem:
 
     ```python
     def create_ingredient_df(df):
@@ -188,7 +188,7 @@ Agora você pode se aprofundar nos dados e aprender quais são os ingredientes t
     thai_ingredient_df.head(10).plot.barh()
     ```
 
-    ![thai](../../../../translated_images/thai.0269dbab2e78bd38a132067759fe980008bdb80b6d778e5313448dbe12bed846.br.png)
+    ![tailandesa](../../../../4-Classification/1-Introduction/images/thai.png)
 
 1. Faça o mesmo para os dados japoneses:
 
@@ -197,7 +197,7 @@ Agora você pode se aprofundar nos dados e aprender quais são os ingredientes t
     japanese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![japanese](../../../../translated_images/japanese.30260486f2a05c463c8faa62ebe7b38f0961ed293bd9a6db8eef5d3f0cf17155.br.png)
+    ![japonesa](../../../../4-Classification/1-Introduction/images/japanese.png)
 
 1. Agora para os ingredientes chineses:
 
@@ -206,7 +206,7 @@ Agora você pode se aprofundar nos dados e aprender quais são os ingredientes t
     chinese_ingredient_df.head(10).plot.barh()
     ```
 
-    ![chinese](../../../../translated_images/chinese.e62cafa5309f111afd1b54490336daf4e927ce32bed837069a0b7ce481dfae8d.br.png)
+    ![chinesa](../../../../4-Classification/1-Introduction/images/chinese.png)
 
 1. Plote os ingredientes indianos:
 
@@ -215,7 +215,7 @@ Agora você pode se aprofundar nos dados e aprender quais são os ingredientes t
     indian_ingredient_df.head(10).plot.barh()
     ```
 
-    ![indian](../../../../translated_images/indian.2c4292002af1a1f97a4a24fec6b1459ee8ff616c3822ae56bb62b9903e192af6.br.png)
+    ![indiana](../../../../4-Classification/1-Introduction/images/indian.png)
 
 1. Finalmente, plote os ingredientes coreanos:
 
@@ -224,11 +224,11 @@ Agora você pode se aprofundar nos dados e aprender quais são os ingredientes t
     korean_ingredient_df.head(10).plot.barh()
     ```
 
-    ![korean](../../../../translated_images/korean.4a4f0274f3d9805a65e61f05597eeaad8620b03be23a2c0a705c023f65fad2c0.br.png)
+    ![coreana](../../../../4-Classification/1-Introduction/images/korean.png)
 
 1. Agora, remova os ingredientes mais comuns que criam confusão entre culinárias distintas, chamando `drop()`:
 
-   Todo mundo adora arroz, alho e gengibre!
+   Todo mundo ama arroz, alho e gengibre!
 
     ```python
     feature_df= df.drop(['cuisine','Unnamed: 0','rice','garlic','ginger'], axis=1)
@@ -238,9 +238,9 @@ Agora você pode se aprofundar nos dados e aprender quais são os ingredientes t
 
 ## Balancear o conjunto de dados
 
-Agora que você limpou os dados, use o [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Técnica de Superamostragem de Minoria Sintética" - para balanceá-los.
+Agora que você limpou os dados, use o [SMOTE](https://imbalanced-learn.org/dev/references/generated/imblearn.over_sampling.SMOTE.html) - "Técnica de Sobreamostragem de Minoria Sintética" - para balanceá-los.
 
-1. Chame `fit_resample()`, essa estratégia gera novas amostras por interpolação.
+1. Chame `fit_resample()`, esta estratégia gera novas amostras por interpolação.
 
     ```python
     oversample = SMOTE()
@@ -256,7 +256,7 @@ Agora que você limpou os dados, use o [SMOTE](https://imbalanced-learn.org/dev/
     print(f'old label count: {df.cuisine.value_counts()}')
     ```
 
-    Sua saída se parece com isto:
+    Sua saída será semelhante a:
 
     ```output
     new label count: korean      799
@@ -297,17 +297,17 @@ Agora que você limpou os dados, use o [SMOTE](https://imbalanced-learn.org/dev/
 
 Este currículo contém vários conjuntos de dados interessantes. Explore as pastas `data` e veja se alguma contém conjuntos de dados que seriam apropriados para classificação binária ou multiclasse. Que perguntas você faria a esse conjunto de dados?
 
-## [Pós-quiz da aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/20/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão e Autoestudo
 
 Explore a API do SMOTE. Para quais casos de uso ele é mais adequado? Que problemas ele resolve?
 
-## Tarefa 
+## Tarefa
 
 [Explore métodos de classificação](assignment.md)
 
 ---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automatizadas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte autoritativa. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original em seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações equivocadas decorrentes do uso desta tradução.

@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "3150d40f36a77857316ecaed5f31e856",
-  "translation_date": "2025-09-03T22:47:22+00:00",
+  "original_hash": "662b509c39eee205687726636d0a8455",
+  "translation_date": "2025-09-04T22:55:33+00:00",
   "source_file": "7-TimeSeries/1-Introduction/README.md",
   "language_code": "fr"
 }
 -->
 # Introduction à la prévision des séries temporelles
 
-![Résumé des séries temporelles dans un sketchnote](../../../../translated_images/ml-timeseries.fb98d25f1013fc0c59090030080b5d1911ff336427bec31dbaf1ad08193812e9.fr.png)
+![Résumé des séries temporelles dans un sketchnote](../../../../sketchnotes/ml-timeseries.png)
 
 > Sketchnote par [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
@@ -19,21 +19,21 @@ Dans cette leçon et la suivante, vous allez découvrir la prévision des série
 
 > 🎥 Cliquez sur l'image ci-dessus pour une vidéo sur la prévision des séries temporelles
 
-## [Quiz avant la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/41/)
+## [Quiz avant la leçon](https://ff-quizzes.netlify.app/en/ml/)
 
-C'est un domaine utile et intéressant avec une réelle valeur pour les entreprises, étant donné son application directe aux problèmes de tarification, d'inventaire et de chaîne d'approvisionnement. Bien que les techniques d'apprentissage profond aient commencé à être utilisées pour obtenir davantage d'informations afin de mieux prédire les performances futures, la prévision des séries temporelles reste un domaine largement influencé par les techniques classiques d'apprentissage automatique.
+C'est un domaine utile et intéressant avec une réelle valeur pour les entreprises, étant donné son application directe aux problèmes de tarification, d'inventaire et de chaîne d'approvisionnement. Bien que les techniques d'apprentissage profond commencent à être utilisées pour obtenir des informations plus précises et mieux prédire les performances futures, la prévision des séries temporelles reste un domaine largement influencé par les techniques classiques d'apprentissage automatique.
 
 > Le programme utile sur les séries temporelles de Penn State est disponible [ici](https://online.stat.psu.edu/stat510/lesson/1)
 
 ## Introduction
 
-Supposons que vous gérez un ensemble de parcmètres intelligents qui fournissent des données sur leur fréquence d'utilisation et leur durée d'utilisation au fil du temps.
+Supposons que vous gérez un réseau de parcmètres intelligents qui fournissent des données sur leur fréquence d'utilisation et leur durée d'utilisation au fil du temps.
 
-> Et si vous pouviez prédire, en fonction des performances passées du parcmètre, sa valeur future selon les lois de l'offre et de la demande ?
+> Et si vous pouviez prédire, en vous basant sur les performances passées du parcmètre, sa valeur future selon les lois de l'offre et de la demande ?
 
 Prédire avec précision le moment où agir pour atteindre votre objectif est un défi qui pourrait être relevé grâce à la prévision des séries temporelles. Cela ne rendrait pas les gens heureux d'être facturés davantage pendant les périodes de forte affluence lorsqu'ils cherchent une place de parking, mais ce serait un moyen sûr de générer des revenus pour nettoyer les rues !
 
-Explorons certains types d'algorithmes de séries temporelles et commençons un notebook pour nettoyer et préparer des données. Les données que vous allez analyser proviennent de la compétition de prévision GEFCom2014. Elles consistent en 3 années de valeurs horaires de charge électrique et de température entre 2012 et 2014. Étant donné les modèles historiques de charge électrique et de température, vous pouvez prédire les valeurs futures de charge électrique.
+Explorons certains types d'algorithmes de séries temporelles et commençons un notebook pour nettoyer et préparer des données. Les données que vous allez analyser proviennent de la compétition de prévision GEFCom2014. Elles consistent en 3 ans de valeurs horaires de charge électrique et de température entre 2012 et 2014. En observant les modèles historiques de charge électrique et de température, vous pouvez prédire les valeurs futures de la charge électrique.
 
 Dans cet exemple, vous apprendrez à prévoir une étape temporelle à l'avance, en utilisant uniquement les données historiques de charge. Avant de commencer, cependant, il est utile de comprendre ce qui se passe en coulisses.
 
@@ -43,17 +43,17 @@ Lorsque vous rencontrez le terme "séries temporelles", vous devez comprendre so
 
 🎓 **Séries temporelles**
 
-En mathématiques, "une série temporelle est une série de points de données indexés (ou listés ou tracés) dans l'ordre temporel. Le plus souvent, une série temporelle est une séquence prise à des intervalles successifs équidistants dans le temps." Un exemple de série temporelle est la valeur de clôture quotidienne du [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). L'utilisation de graphiques de séries temporelles et de modélisation statistique est fréquemment rencontrée dans le traitement du signal, la prévision météorologique, la prédiction des tremblements de terre et d'autres domaines où des événements se produisent et des points de données peuvent être tracés dans le temps.
+En mathématiques, "une série temporelle est une série de points de données indexés (ou listés ou tracés) dans un ordre temporel. Le plus souvent, une série temporelle est une séquence prise à des intervalles successifs espacés de manière égale dans le temps." Un exemple de série temporelle est la valeur de clôture quotidienne du [Dow Jones Industrial Average](https://wikipedia.org/wiki/Time_series). L'utilisation de graphiques de séries temporelles et de modélisation statistique est fréquemment rencontrée dans le traitement du signal, la prévision météorologique, la prédiction des tremblements de terre et d'autres domaines où des événements se produisent et des points de données peuvent être tracés au fil du temps.
 
 🎓 **Analyse des séries temporelles**
 
-L'analyse des séries temporelles est l'analyse des données de séries temporelles mentionnées ci-dessus. Les données de séries temporelles peuvent prendre des formes distinctes, y compris les "séries temporelles interrompues" qui détectent des modèles dans l'évolution d'une série temporelle avant et après un événement perturbateur. Le type d'analyse nécessaire pour les séries temporelles dépend de la nature des données. Les données de séries temporelles elles-mêmes peuvent prendre la forme de séries de nombres ou de caractères.
+L'analyse des séries temporelles est l'analyse des données de séries temporelles mentionnées ci-dessus. Les données de séries temporelles peuvent prendre des formes distinctes, y compris les "séries temporelles interrompues" qui détectent les modèles dans l'évolution d'une série temporelle avant et après un événement perturbateur. Le type d'analyse nécessaire pour les séries temporelles dépend de la nature des données. Les données de séries temporelles elles-mêmes peuvent prendre la forme de séries de nombres ou de caractères.
 
 L'analyse à effectuer utilise une variété de méthodes, y compris le domaine fréquentiel et le domaine temporel, linéaire et non linéaire, et plus encore. [En savoir plus](https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc4.htm) sur les nombreuses façons d'analyser ce type de données.
 
 🎓 **Prévision des séries temporelles**
 
-La prévision des séries temporelles est l'utilisation d'un modèle pour prédire des valeurs futures en fonction des modèles affichés par les données précédemment collectées telles qu'elles se sont produites dans le passé. Bien qu'il soit possible d'utiliser des modèles de régression pour explorer les données de séries temporelles, avec des indices temporels comme variables x sur un graphique, ces données sont mieux analysées à l'aide de types de modèles spécifiques.
+La prévision des séries temporelles est l'utilisation d'un modèle pour prédire des valeurs futures en se basant sur les modèles affichés par les données précédemment collectées telles qu'elles se sont produites dans le passé. Bien qu'il soit possible d'utiliser des modèles de régression pour explorer les données de séries temporelles, avec des indices temporels comme variables x sur un graphique, ces données sont mieux analysées en utilisant des types de modèles spécifiques.
 
 Les données de séries temporelles sont une liste d'observations ordonnées, contrairement aux données qui peuvent être analysées par régression linéaire. Le modèle le plus courant est ARIMA, un acronyme qui signifie "Autoregressive Integrated Moving Average".
 
@@ -61,7 +61,7 @@ Les données de séries temporelles sont une liste d'observations ordonnées, co
 
 > Il existe plusieurs types de modèles ARIMA, que vous pouvez découvrir [ici](https://people.duke.edu/~rnau/411arim.htm) et que vous aborderez dans la prochaine leçon.
 
-Dans la prochaine leçon, vous construirez un modèle ARIMA en utilisant [les séries temporelles univariées](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm), qui se concentrent sur une variable qui change de valeur au fil du temps. Un exemple de ce type de données est [ce jeu de données](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) qui enregistre la concentration mensuelle de CO2 à l'observatoire de Mauna Loa :
+Dans la prochaine leçon, vous construirez un modèle ARIMA en utilisant [les séries temporelles univariées](https://itl.nist.gov/div898/handbook/pmc/section4/pmc44.htm), qui se concentrent sur une variable qui change de valeur au fil du temps. Un exemple de ce type de données est [ce jeu de données](https://itl.nist.gov/div898/handbook/pmc/section4/pmc4411.htm) qui enregistre la concentration mensuelle de CO2 à l'Observatoire de Mauna Loa :
 
 |  CO2   | YearMonth | Year  | Month |
 | :----: | :-------: | :---: | :---: |
@@ -112,17 +112,17 @@ Les données peuvent afficher un changement brusque qui pourrait nécessiter une
 
 ✅ Voici un [exemple de graphique de séries temporelles](https://www.kaggle.com/kashnitsky/topic-9-part-1-time-series-analysis-in-python) montrant les dépenses quotidiennes en monnaie virtuelle dans un jeu sur plusieurs années. Pouvez-vous identifier certaines des caractéristiques mentionnées ci-dessus dans ces données ?
 
-![Dépenses en monnaie virtuelle dans un jeu](../../../../translated_images/currency.e7429812bfc8c6087b2d4c410faaa4aaa11b2fcaabf6f09549b8249c9fbdb641.fr.png)
+![Dépenses en monnaie virtuelle](../../../../7-TimeSeries/1-Introduction/images/currency.png)
 
 ## Exercice - démarrer avec les données de consommation d'énergie
 
 Commençons par créer un modèle de séries temporelles pour prédire la consommation d'énergie future en fonction de la consommation passée.
 
-> Les données de cet exemple proviennent de la compétition de prévision GEFCom2014. Elles consistent en 3 années de valeurs horaires de charge électrique et de température entre 2012 et 2014.
+> Les données de cet exemple proviennent de la compétition de prévision GEFCom2014. Elles consistent en 3 ans de valeurs horaires de charge électrique et de température entre 2012 et 2014.
 >
 > Tao Hong, Pierre Pinson, Shu Fan, Hamidreza Zareipour, Alberto Troccoli et Rob J. Hyndman, "Probabilistic energy forecasting: Global Energy Forecasting Competition 2014 and beyond", International Journal of Forecasting, vol.32, no.3, pp 896-913, juillet-septembre, 2016.
 
-1. Dans le dossier `working` de cette leçon, ouvrez le fichier _notebook.ipynb_. Commencez par ajouter des bibliothèques qui vous aideront à charger et visualiser les données :
+1. Dans le dossier `working` de cette leçon, ouvrez le fichier _notebook.ipynb_. Commencez par ajouter des bibliothèques qui vous aideront à charger et visualiser les données.
 
     ```python
     import os
@@ -160,7 +160,7 @@ Commençons par créer un modèle de séries temporelles pour prédire la consom
     plt.show()
     ```
 
-    ![Graphique de consommation d'énergie](../../../../translated_images/energy-plot.5fdac3f397a910bc6070602e9e45bea8860d4c239354813fa8fc3c9d556f5bad.fr.png)
+    ![Graphique de consommation d'énergie](../../../../7-TimeSeries/1-Introduction/images/energy-plot.png)
 
 4. Ensuite, tracez la première semaine de juillet 2014, en la fournissant comme entrée à `energy` dans le format `[date de début]:[date de fin]` :
 
@@ -171,7 +171,7 @@ Commençons par créer un modèle de séries temporelles pour prédire la consom
     plt.show()
     ```
 
-    ![Juillet](../../../../translated_images/july-2014.9e1f7c318ec6d5b30b0d7e1e20be3643501f64a53f3d426d7c7d7b62addb335e.fr.png)
+    ![juillet](../../../../7-TimeSeries/1-Introduction/images/july-2014.png)
 
     Un graphique magnifique ! Examinez ces graphiques et voyez si vous pouvez déterminer certaines des caractéristiques mentionnées ci-dessus. Que pouvons-nous déduire en visualisant les données ?
 
@@ -181,9 +181,9 @@ Dans la prochaine leçon, vous créerez un modèle ARIMA pour effectuer des pré
 
 ## 🚀Défi
 
-Faites une liste de toutes les industries et domaines de recherche que vous pouvez imaginer qui bénéficieraient de la prévision des séries temporelles. Pouvez-vous penser à une application de ces techniques dans les arts ? En économétrie ? En écologie ? En commerce de détail ? En industrie ? En finance ? Où encore ?
+Faites une liste de toutes les industries et domaines de recherche auxquels vous pouvez penser qui bénéficieraient de la prévision des séries temporelles. Pouvez-vous penser à une application de ces techniques dans les arts ? En économétrie ? En écologie ? En commerce de détail ? En industrie ? En finance ? Où encore ?
 
-## [Quiz après la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/42/)
+## [Quiz après la leçon](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Révision et auto-apprentissage
 

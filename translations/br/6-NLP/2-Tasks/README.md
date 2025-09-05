@@ -1,17 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "6534e145d52a3890590d27be75386e5d",
-  "translation_date": "2025-08-29T22:20:03+00:00",
+  "original_hash": "5f3cb462e3122e1afe7ab0050ccf2bd3",
+  "translation_date": "2025-09-04T21:43:59+00:00",
   "source_file": "6-NLP/2-Tasks/README.md",
   "language_code": "br"
 }
 -->
 # Tarefas e técnicas comuns de processamento de linguagem natural
 
-Para a maioria das tarefas de *processamento de linguagem natural*, o texto a ser processado deve ser dividido, examinado e os resultados armazenados ou cruzados com regras e conjuntos de dados. Essas tarefas permitem ao programador derivar o _significado_, a _intenção_ ou apenas a _frequência_ de termos e palavras em um texto.
+Para a maioria das tarefas de *processamento de linguagem natural*, o texto a ser processado deve ser dividido, examinado e os resultados armazenados ou cruzados com regras e conjuntos de dados. Essas tarefas permitem que o programador derive o _significado_, a _intenção_ ou apenas a _frequência_ de termos e palavras em um texto.
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 Vamos explorar técnicas comuns usadas no processamento de texto. Combinadas com aprendizado de máquina, essas técnicas ajudam a analisar grandes volumes de texto de forma eficiente. Antes de aplicar ML a essas tarefas, no entanto, vamos entender os problemas enfrentados por um especialista em PLN.
 
@@ -21,16 +21,16 @@ Existem diferentes maneiras de analisar um texto com o qual você está trabalha
 
 ### Tokenização
 
-Provavelmente, a primeira coisa que a maioria dos algoritmos de PLN precisa fazer é dividir o texto em tokens ou palavras. Embora isso pareça simples, lidar com pontuação e delimitadores de palavras e frases em diferentes idiomas pode ser complicado. Pode ser necessário usar vários métodos para determinar as demarcações.
+Provavelmente, a primeira coisa que a maioria dos algoritmos de PLN precisa fazer é dividir o texto em tokens, ou palavras. Embora isso pareça simples, lidar com pontuação e delimitadores de palavras e frases em diferentes idiomas pode ser complicado. Pode ser necessário usar vários métodos para determinar as demarcações.
 
-![tokenization](../../../../translated_images/tokenization.1641a160c66cd2d93d4524e8114e93158a9ce0eba3ecf117bae318e8a6ad3487.br.png)
+![tokenization](../../../../6-NLP/2-Tasks/images/tokenization.png)
 > Tokenizando uma frase de **Orgulho e Preconceito**. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
 ### Embeddings
 
 [Word embeddings](https://wikipedia.org/wiki/Word_embedding) são uma maneira de converter seus dados textuais em valores numéricos. Os embeddings são feitos de forma que palavras com significados semelhantes ou usadas juntas fiquem agrupadas.
 
-![word embeddings](../../../../translated_images/embedding.2cf8953c4b3101d188c2f61a5de5b6f53caaa5ad4ed99236d42bc3b6bd6a1fe2.br.png)
+![word embeddings](../../../../6-NLP/2-Tasks/images/embedding.png)
 > "Tenho o maior respeito pelos seus nervos, eles são meus velhos amigos." - Word embeddings para uma frase de **Orgulho e Preconceito**. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
 ✅ Experimente [esta ferramenta interessante](https://projector.tensorflow.org/) para explorar word embeddings. Clicar em uma palavra mostra clusters de palavras semelhantes: 'brinquedo' agrupa-se com 'disney', 'lego', 'playstation' e 'console'.
@@ -39,15 +39,15 @@ Provavelmente, a primeira coisa que a maioria dos algoritmos de PLN precisa faze
 
 Cada palavra que foi tokenizada pode ser marcada como uma parte do discurso - um substantivo, verbo ou adjetivo. A frase `a rápida raposa vermelha pulou sobre o cachorro marrom preguiçoso` pode ser marcada como raposa = substantivo, pulou = verbo.
 
-![parsing](../../../../translated_images/parse.d0c5bbe1106eae8fe7d60a183cd1736c8b6cec907f38000366535f84f3036101.br.png)
+![parsing](../../../../6-NLP/2-Tasks/images/parse.png)
 
-> Parsing de uma frase de **Orgulho e Preconceito**. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
+> Fazendo parsing de uma frase de **Orgulho e Preconceito**. Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
 Parsing é reconhecer quais palavras estão relacionadas umas às outras em uma frase - por exemplo, `a rápida raposa vermelha pulou` é uma sequência de adjetivo-substantivo-verbo que é separada da sequência `cachorro marrom preguiçoso`.
 
 ### Frequência de Palavras e Frases
 
-Um procedimento útil ao analisar um grande corpo de texto é construir um dicionário de cada palavra ou frase de interesse e quantas vezes ela aparece. A frase `a rápida raposa vermelha pulou sobre o cachorro marrom preguiçoso` tem uma frequência de 2 para a palavra "a".
+Um procedimento útil ao analisar um grande corpo de texto é construir um dicionário de cada palavra ou frase de interesse e com que frequência ela aparece. A frase `a rápida raposa vermelha pulou sobre o cachorro marrom preguiçoso` tem uma frequência de 2 para a palavra "a".
 
 Vamos observar um exemplo de texto onde contamos a frequência das palavras. O poema The Winners de Rudyard Kipling contém o seguinte verso:
 
@@ -60,7 +60,7 @@ Down to Gehenna or up to the Throne,
 He travels the fastest who travels alone.
 ```
 
-Como as frequências de frases podem ser sensíveis ou não a maiúsculas, a frase `um amigo` tem uma frequência de 2, `o` tem uma frequência de 6 e `viaja` tem uma frequência de 2.
+Como as frequências de frases podem ser sensíveis ou não a maiúsculas e minúsculas, conforme necessário, a frase `um amigo` tem uma frequência de 2, `o` tem uma frequência de 6 e `viaja` tem uma frequência de 2.
 
 ### N-grams
 
@@ -87,7 +87,7 @@ Pode ser mais fácil visualizar isso como uma janela deslizante sobre a frase. A
 5.   a rápida raposa vermelha **<u>pulou sobre o</u>** cachorro marrom preguiçoso  
 6.   a rápida raposa vermelha pulou **<u>sobre o cachorro</u>** marrom preguiçoso  
 7.   a rápida raposa vermelha pulou sobre <u>**o cachorro marrom**</u> preguiçoso  
-8.   a rápida raposa vermelha pulou sobre o **<u>cachorro marrom preguiçoso</u>**
+8.   a rápida raposa vermelha pulou sobre o **<u>cachorro marrom preguiçoso</u>**  
 
 ![n-grams sliding window](../../../../6-NLP/2-Tasks/images/n-grams.gif)
 
@@ -95,7 +95,7 @@ Pode ser mais fácil visualizar isso como uma janela deslizante sobre a frase. A
 
 ### Extração de Frases Nominais
 
-Na maioria das frases, há um substantivo que é o sujeito ou objeto da frase. Em inglês, ele geralmente pode ser identificado por ter 'a', 'an' ou 'the' antes dele. Identificar o sujeito ou objeto de uma frase extraindo a 'frase nominal' é uma tarefa comum em PLN ao tentar entender o significado de uma frase.
+Na maioria das frases, há um substantivo que é o sujeito ou objeto da frase. Em inglês, muitas vezes é identificável por ter 'a', 'an' ou 'the' antes dele. Identificar o sujeito ou objeto de uma frase extraindo a 'frase nominal' é uma tarefa comum em PLN ao tentar entender o significado de uma frase.
 
 ✅ Na frase "Não consigo fixar a hora, ou o local, ou o olhar ou as palavras, que lançaram a base. Faz muito tempo. Eu já estava no meio antes de perceber que tinha começado.", você consegue identificar as frases nominais?
 
@@ -119,15 +119,15 @@ Também existem bancos de dados úteis disponíveis para pesquisadores de PLN, n
 
 ### WordNet
 
-[WordNet](https://wordnet.princeton.edu/) é um banco de dados de palavras, sinônimos, antônimos e muitos outros detalhes para cada palavra em vários idiomas. É incrivelmente útil ao tentar construir traduções, verificadores ortográficos ou ferramentas linguísticas de qualquer tipo.
+[WordNet](https://wordnet.princeton.edu/) é um banco de dados de palavras, sinônimos, antônimos e muitos outros detalhes para cada palavra em vários idiomas. É incrivelmente útil ao tentar construir tradutores, verificadores ortográficos ou ferramentas de linguagem de qualquer tipo.
 
 ## Bibliotecas de PLN
 
-Felizmente, você não precisa construir todas essas técnicas sozinho, pois existem excelentes bibliotecas Python disponíveis que tornam o processamento de linguagem natural muito mais acessível para desenvolvedores que não são especializados em PLN ou aprendizado de máquina. As próximas lições incluem mais exemplos dessas bibliotecas, mas aqui você aprenderá alguns exemplos úteis para ajudá-lo na próxima tarefa.
+Felizmente, você não precisa construir todas essas técnicas sozinho, pois existem excelentes bibliotecas Python disponíveis que tornam o PLN muito mais acessível para desenvolvedores que não são especializados em processamento de linguagem natural ou aprendizado de máquina. As próximas lições incluem mais exemplos dessas bibliotecas, mas aqui você aprenderá alguns exemplos úteis para ajudá-lo na próxima tarefa.
 
 ### Exercício - usando a biblioteca `TextBlob`
 
-Vamos usar uma biblioteca chamada TextBlob, pois ela contém APIs úteis para lidar com esses tipos de tarefas. TextBlob "se baseia nos ombros gigantes do [NLTK](https://nltk.org) e do [pattern](https://github.com/clips/pattern), e funciona bem com ambos." Ela possui uma quantidade considerável de ML embutida em sua API.
+Vamos usar uma biblioteca chamada TextBlob, pois ela contém APIs úteis para lidar com esses tipos de tarefas. TextBlob "se apoia nos ombros gigantes do [NLTK](https://nltk.org) e do [pattern](https://github.com/clips/pattern), e funciona bem com ambos." Ela possui uma quantidade considerável de ML embutida em sua API.
 
 > Nota: Um [Guia Rápido](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) útil está disponível para TextBlob e é recomendado para desenvolvedores Python experientes.
 
@@ -147,13 +147,13 @@ Ao tentar identificar *frases nominais*, o TextBlob oferece várias opções de 
     np = user_input_blob.noun_phrases                                    
     ```
 
-    > O que está acontecendo aqui? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) é "Um extrator de frases nominais que usa chunk parsing treinado com o corpus de treinamento ConLL-2000." ConLL-2000 refere-se à Conferência de 2000 sobre Aprendizado Computacional de Linguagem Natural. Cada ano, a conferência hospedava um workshop para resolver um problema desafiador de PLN, e em 2000 foi o chunking de substantivos. Um modelo foi treinado no Wall Street Journal, com "as seções 15-18 como dados de treinamento (211727 tokens) e a seção 20 como dados de teste (47377 tokens)". Você pode conferir os procedimentos usados [aqui](https://www.clips.uantwerpen.be/conll2000/chunking/) e os [resultados](https://ifarm.nl/erikt/research/np-chunking.html).
+    > O que está acontecendo aqui? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) é "Um extrator de frases nominais que usa chunk parsing treinado com o corpus de treinamento ConLL-2000." ConLL-2000 refere-se à Conferência de 2000 sobre Aprendizado Computacional de Linguagem Natural. Cada ano, a conferência hospedava um workshop para resolver um problema desafiador de PLN, e em 2000 foi o chunking de frases nominais. Um modelo foi treinado no Wall Street Journal, com "as seções 15-18 como dados de treinamento (211727 tokens) e a seção 20 como dados de teste (47377 tokens)". Você pode conferir os procedimentos usados [aqui](https://www.clips.uantwerpen.be/conll2000/chunking/) e os [resultados](https://ifarm.nl/erikt/research/np-chunking.html).
 
 ### Desafio - melhorando seu bot com PLN
 
 Na lição anterior, você construiu um bot de perguntas e respostas muito simples. Agora, você tornará Marvin um pouco mais simpático analisando sua entrada para detectar o sentimento e imprimindo uma resposta correspondente. Você também precisará identificar uma `noun_phrase` e perguntar sobre ela.
 
-Seus passos ao construir um bot conversacional melhor:
+Seus passos para construir um bot conversacional melhor:
 
 1. Imprima instruções orientando o usuário sobre como interagir com o bot.  
 2. Inicie o loop:  
@@ -162,7 +162,7 @@ Seus passos ao construir um bot conversacional melhor:
    3. Processe a entrada do usuário e determine a resposta de sentimento apropriada.  
    4. Se uma frase nominal for detectada no sentimento, pluralize-a e peça mais informações sobre esse tópico.  
    5. Imprima a resposta.  
-3. Volte ao passo 2.
+3. Volte ao passo 2.  
 
 Aqui está o trecho de código para determinar o sentimento usando TextBlob. Observe que há apenas quatro *gradientes* de resposta de sentimento (você pode adicionar mais, se quiser):
 
@@ -212,7 +212,7 @@ Implemente o bot na verificação de conhecimento anterior e teste-o com um amig
 
 Escolha uma tarefa na verificação de conhecimento anterior e tente implementá-la. Teste o bot com um amigo. Ele consegue enganá-lo? Você consegue tornar seu bot mais 'crível'?
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão e Autoestudo
 

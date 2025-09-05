@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "085d571097d201810720df4cd379f8c2",
-  "translation_date": "2025-08-29T21:06:22+00:00",
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-04T21:30:41+00:00",
   "source_file": "5-Clustering/2-K-Means/README.md",
   "language_code": "br"
 }
 -->
 # K-Means clustering
 
-## [Pre-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [Pre-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 Nesta lição, você aprenderá como criar clusters usando Scikit-learn e o conjunto de dados de música nigeriana que você importou anteriormente. Vamos abordar os fundamentos do K-Means para Clustering. Lembre-se de que, como você aprendeu na lição anterior, existem várias maneiras de trabalhar com clusters, e o método que você usa depende dos seus dados. Vamos experimentar o K-Means, pois é a técnica de clustering mais comum. Vamos começar!
 
@@ -26,18 +26,18 @@ Termos que você aprenderá:
 
 Os clusters podem ser visualizados como [diagramas de Voronoi](https://wikipedia.org/wiki/Voronoi_diagram), que incluem um ponto (ou 'semente') e sua região correspondente.
 
-![voronoi diagram](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.br.png)
+![voronoi diagram](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
 > Infográfico por [Jen Looper](https://twitter.com/jenlooper)
 
-O processo de clustering K-Means [é executado em três etapas](https://scikit-learn.org/stable/modules/clustering.html#k-means):
+O processo de clustering K-Means [é executado em um processo de três etapas](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
 1. O algoritmo seleciona um número k de pontos centrais ao amostrar do conjunto de dados. Depois disso, ele entra em um loop:
     1. Ele atribui cada amostra ao centróide mais próximo.
     2. Ele cria novos centróides calculando o valor médio de todas as amostras atribuídas aos centróides anteriores.
     3. Em seguida, calcula a diferença entre os novos e antigos centróides e repete até que os centróides sejam estabilizados.
 
-Uma desvantagem do uso do K-Means é que você precisará estabelecer 'k', ou seja, o número de centróides. Felizmente, o 'método do cotovelo' ajuda a estimar um bom valor inicial para 'k'. Você experimentará isso em breve.
+Uma desvantagem de usar K-Means é o fato de que você precisará estabelecer 'k', ou seja, o número de centróides. Felizmente, o 'método do cotovelo' ajuda a estimar um bom valor inicial para 'k'. Você experimentará isso em breve.
 
 ## Pré-requisito
 
@@ -91,7 +91,7 @@ Comece revisando os dados das músicas.
 
     Esses dados estão um pouco ruidosos: ao observar cada coluna como um boxplot, você pode ver outliers.
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.br.png)
+    ![outliers](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
 Você poderia percorrer o conjunto de dados e remover esses outliers, mas isso tornaria os dados bastante reduzidos.
 
@@ -139,9 +139,9 @@ Você verá um array impresso com clusters previstos (0, 1 ou 2) para cada linha
 
 ## Pontuação de Silhouette
 
-Procure uma pontuação de silhouette mais próxima de 1. Essa pontuação varia de -1 a 1, e se a pontuação for 1, o cluster é denso e bem separado dos outros clusters. Um valor próximo de 0 representa clusters sobrepostos com amostras muito próximas do limite de decisão dos clusters vizinhos. [(Fonte)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
+Procure uma pontuação de silhouette mais próxima de 1. Essa pontuação varia de -1 a 1, e se a pontuação for 1, o cluster é denso e bem separado de outros clusters. Um valor próximo de 0 representa clusters sobrepostos com amostras muito próximas do limite de decisão dos clusters vizinhos. [(Fonte)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
 
-Nossa pontuação é **0,53**, bem no meio. Isso indica que nossos dados não são particularmente adequados para esse tipo de clustering, mas vamos continuar.
+Nossa pontuação é **0.53**, bem no meio. Isso indica que nossos dados não são particularmente adequados para este tipo de clustering, mas vamos continuar.
 
 ### Exercício - construir um modelo
 
@@ -164,9 +164,9 @@ Nossa pontuação é **0,53**, bem no meio. Isso indica que nossos dados não s�
 
     > 🎓 random_state: "Determina a geração de números aleatórios para a inicialização dos centróides." [Fonte](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓 WCSS: "soma dos quadrados dentro do cluster" mede a distância média ao quadrado de todos os pontos dentro de um cluster até o centróide do cluster. [Fonte](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
+    > 🎓 WCSS: "soma dos quadrados dentro do cluster" mede a distância média quadrada de todos os pontos dentro de um cluster até o centróide do cluster. [Fonte](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
 
-    > 🎓 Inércia: Os algoritmos K-Means tentam escolher centróides para minimizar a 'inércia', "uma medida de quão coerentes internamente os clusters são." [Fonte](https://scikit-learn.org/stable/modules/clustering.html). O valor é adicionado à variável wcss em cada iteração.
+    > 🎓 Inércia: Os algoritmos K-Means tentam escolher centróides para minimizar a 'inércia', "uma medida de quão internamente coerentes os clusters são." [Fonte](https://scikit-learn.org/stable/modules/clustering.html). O valor é adicionado à variável wcss em cada iteração.
 
     > 🎓 k-means++: No [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means), você pode usar a otimização 'k-means++', que "inicializa os centróides para serem (geralmente) distantes uns dos outros, levando a resultados provavelmente melhores do que a inicialização aleatória."
 
@@ -187,7 +187,7 @@ Anteriormente, você presumiu que, como segmentou 3 gêneros musicais, deveria e
 
     Use a variável `wcss` que você construiu na etapa anterior para criar um gráfico mostrando onde está a 'curva' no cotovelo, que indica o número ideal de clusters. Talvez seja **3**!
 
-    ![elbow method](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.br.png)
+    ![elbow method](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
 ## Exercício - exibir os clusters
 
@@ -218,20 +218,20 @@ Anteriormente, você presumiu que, como segmentou 3 gêneros musicais, deveria e
 
     A precisão deste modelo não é muito boa, e o formato dos clusters dá uma pista do porquê.
 
-    ![clusters](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.br.png)
+    ![clusters](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
-    Esses dados são muito desequilibrados, pouco correlacionados e há muita variância entre os valores das colunas para formar bons clusters. Na verdade, os clusters que se formam provavelmente são fortemente influenciados ou enviesados pelas três categorias de gêneros que definimos acima. Foi um processo de aprendizado!
+    Esses dados são muito desequilibrados, pouco correlacionados e há muita variância entre os valores das colunas para formar bons clusters. Na verdade, os clusters que se formam provavelmente são fortemente influenciados ou enviesados pelas três categorias de gênero que definimos acima. Isso foi um processo de aprendizado!
 
     Na documentação do Scikit-learn, você pode ver que um modelo como este, com clusters não muito bem demarcados, tem um problema de 'variância':
 
-    ![problem models](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.br.png)
+    ![problem models](../../../../5-Clustering/2-K-Means/images/problems.png)
     > Infográfico do Scikit-learn
 
 ## Variância
 
-Variância é definida como "a média das diferenças ao quadrado em relação à média" [(Fonte)](https://www.mathsisfun.com/data/standard-deviation.html). No contexto deste problema de clustering, refere-se a dados em que os números do nosso conjunto tendem a divergir um pouco demais da média.
+Variância é definida como "a média das diferenças quadradas em relação à média" [(Fonte)](https://www.mathsisfun.com/data/standard-deviation.html). No contexto deste problema de clustering, refere-se a dados cujos números do conjunto tendem a divergir um pouco demais da média.
 
-✅ Este é um ótimo momento para pensar em todas as maneiras de corrigir esse problema. Ajustar os dados um pouco mais? Usar colunas diferentes? Utilizar um algoritmo diferente? Dica: Experimente [escalar seus dados](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) para normalizá-los e testar outras colunas.
+✅ Este é um ótimo momento para pensar em todas as maneiras de corrigir esse problema. Ajustar os dados um pouco mais? Usar colunas diferentes? Usar um algoritmo diferente? Dica: Experimente [escalar seus dados](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) para normalizá-los e testar outras colunas.
 
 > Experimente este '[calculador de variância](https://www.calculatorsoup.com/calculators/statistics/variance-calculator.php)' para entender melhor o conceito.
 
@@ -241,15 +241,15 @@ Variância é definida como "a média das diferenças ao quadrado em relação �
 
 Passe algum tempo com este notebook ajustando os parâmetros. Você consegue melhorar a precisão do modelo limpando mais os dados (removendo outliers, por exemplo)? Você pode usar pesos para dar mais importância a determinadas amostras de dados. O que mais você pode fazer para criar clusters melhores?
 
-Dica: Experimente escalar seus dados. Há código comentado no notebook que adiciona escalonamento padrão para fazer as colunas de dados se parecerem mais em termos de intervalo. Você descobrirá que, embora a pontuação de silhouette diminua, a 'curva' no gráfico do cotovelo se suaviza. Isso ocorre porque deixar os dados sem escala permite que dados com menos variância tenham mais peso. Leia um pouco mais sobre esse problema [aqui](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Dica: Experimente escalar seus dados. Há código comentado no notebook que adiciona escala padrão para fazer as colunas de dados se parecerem mais em termos de intervalo. Você descobrirá que, embora a pontuação de silhouette diminua, a 'curva' no gráfico do cotovelo se suaviza. Isso ocorre porque deixar os dados sem escala permite que dados com menos variância tenham mais peso. Leia um pouco mais sobre esse problema [aqui](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Post-lecture quiz](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [Post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão e Autoestudo
 
-Dê uma olhada em um simulador de K-Means [como este](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Você pode usar esta ferramenta para visualizar pontos de dados de amostra e determinar seus centróides. Você pode editar a aleatoriedade dos dados, o número de clusters e o número de centróides. Isso ajuda você a ter uma ideia de como os dados podem ser agrupados?
+Dê uma olhada em um Simulador de K-Means [como este](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Você pode usar esta ferramenta para visualizar pontos de dados de amostra e determinar seus centróides. Você pode editar a aleatoriedade dos dados, o número de clusters e o número de centróides. Isso ajuda você a ter uma ideia de como os dados podem ser agrupados?
 
-Além disso, confira [este material sobre K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) da Stanford.
+Além disso, veja [este material sobre K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) da Stanford.
 
 ## Tarefa
 

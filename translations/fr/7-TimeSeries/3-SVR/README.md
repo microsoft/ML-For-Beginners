@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "f80e513b3279869e7661e3190cc83076",
-  "translation_date": "2025-09-03T22:51:52+00:00",
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-04T22:56:04+00:00",
   "source_file": "7-TimeSeries/3-SVR/README.md",
   "language_code": "fr"
 }
@@ -11,27 +11,27 @@ CO_OP_TRANSLATOR_METADATA:
 
 Dans la leçon précédente, vous avez appris à utiliser le modèle ARIMA pour effectuer des prédictions sur des séries temporelles. Maintenant, vous allez découvrir le modèle Support Vector Regressor, un modèle de régression utilisé pour prédire des données continues.
 
-## [Quiz avant la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [Quiz avant la leçon](https://ff-quizzes.netlify.app/en/ml/) 
 
 ## Introduction
 
-Dans cette leçon, vous allez découvrir une méthode spécifique pour construire des modèles avec [**SVM** : **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) pour la régression, ou **SVR : Support Vector Regressor**. 
+Dans cette leçon, vous allez découvrir une méthode spécifique pour construire des modèles avec [**SVM** : **S**upport **V**ector **M**achine](https://en.wikipedia.org/wiki/Support-vector_machine) pour la régression, ou **SVR : Support Vector Regressor**.
 
 ### SVR dans le contexte des séries temporelles [^1]
 
 Avant de comprendre l'importance du SVR dans la prévision des séries temporelles, voici quelques concepts importants que vous devez connaître :
 
 - **Régression :** Technique d'apprentissage supervisé pour prédire des valeurs continues à partir d'un ensemble d'entrées donné. L'idée est d'ajuster une courbe (ou une ligne) dans l'espace des caractéristiques qui contient le maximum de points de données. [Cliquez ici](https://en.wikipedia.org/wiki/Regression_analysis) pour plus d'informations.
-- **Support Vector Machine (SVM) :** Un type de modèle d'apprentissage supervisé utilisé pour la classification, la régression et la détection des anomalies. Le modèle est un hyperplan dans l'espace des caractéristiques, qui agit comme une frontière dans le cas de la classification, et comme une ligne de meilleur ajustement dans le cas de la régression. Dans le SVM, une fonction de noyau est généralement utilisée pour transformer le jeu de données dans un espace de dimensions supérieures, afin qu'ils soient facilement séparables. [Cliquez ici](https://en.wikipedia.org/wiki/Support-vector_machine) pour plus d'informations sur les SVM.
-- **Support Vector Regressor (SVR) :** Un type de SVM, utilisé pour trouver la ligne de meilleur ajustement (qui, dans le cas du SVM, est un hyperplan) contenant le maximum de points de données.
+- **Support Vector Machine (SVM) :** Type de modèle d'apprentissage supervisé utilisé pour la classification, la régression et la détection des anomalies. Le modèle est un hyperplan dans l'espace des caractéristiques, qui agit comme une frontière dans le cas de la classification, et comme une ligne de meilleur ajustement dans le cas de la régression. Dans le SVM, une fonction Kernel est généralement utilisée pour transformer le jeu de données dans un espace de dimensions supérieures, afin qu'ils soient facilement séparables. [Cliquez ici](https://en.wikipedia.org/wiki/Support-vector_machine) pour plus d'informations sur les SVM.
+- **Support Vector Regressor (SVR) :** Type de SVM, utilisé pour trouver la ligne de meilleur ajustement (qui, dans le cas du SVM, est un hyperplan) contenant le maximum de points de données.
 
 ### Pourquoi utiliser le SVR ? [^1]
 
-Dans la dernière leçon, vous avez appris à utiliser ARIMA, une méthode statistique linéaire très efficace pour prévoir les données de séries temporelles. Cependant, dans de nombreux cas, les données de séries temporelles présentent une *non-linéarité*, qui ne peut pas être modélisée par des modèles linéaires. Dans de tels cas, la capacité du SVM à prendre en compte la non-linéarité des données pour les tâches de régression rend le SVR efficace pour la prévision des séries temporelles.
+Dans la dernière leçon, vous avez appris à utiliser ARIMA, une méthode statistique linéaire très efficace pour prévoir les données des séries temporelles. Cependant, dans de nombreux cas, les données des séries temporelles présentent une *non-linéarité*, qui ne peut pas être modélisée par des modèles linéaires. Dans de tels cas, la capacité du SVM à prendre en compte la non-linéarité des données pour les tâches de régression rend le SVR efficace pour la prévision des séries temporelles.
 
 ## Exercice - Construire un modèle SVR
 
-Les premières étapes de préparation des données sont les mêmes que celles de la leçon précédente sur [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA). 
+Les premières étapes de préparation des données sont les mêmes que celles de la leçon précédente sur [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA).
 
 Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) dans cette leçon et trouvez le fichier [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb). [^2]
 
@@ -71,13 +71,13 @@ Ouvrez le dossier [_/working_](https://github.com/microsoft/ML-For-Beginners/tre
    plt.show()
    ```
 
-   ![données complètes](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.fr.png)
+   ![données complètes](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
    Maintenant, construisons notre modèle SVR.
 
 ### Créer des ensembles de données d'entraînement et de test
 
-Maintenant que vos données sont chargées, vous pouvez les séparer en ensembles d'entraînement et de test. Ensuite, vous allez remodeler les données pour créer un ensemble de données basé sur des étapes temporelles, ce qui sera nécessaire pour le SVR. Vous entraînerez votre modèle sur l'ensemble d'entraînement. Une fois l'entraînement terminé, vous évaluerez sa précision sur l'ensemble d'entraînement, l'ensemble de test, puis sur l'ensemble complet pour voir les performances globales. Vous devez vous assurer que l'ensemble de test couvre une période ultérieure à celle de l'ensemble d'entraînement afin que le modèle ne tire pas d'informations des périodes futures [^2] (une situation connue sous le nom de *surapprentissage*).
+Vos données sont maintenant chargées, vous pouvez donc les séparer en ensembles d'entraînement et de test. Ensuite, vous allez remodeler les données pour créer un ensemble de données basé sur des étapes temporelles, ce qui sera nécessaire pour le SVR. Vous entraînerez votre modèle sur l'ensemble d'entraînement. Une fois l'entraînement terminé, vous évaluerez sa précision sur l'ensemble d'entraînement, l'ensemble de test, puis l'ensemble complet pour voir les performances globales. Vous devez vous assurer que l'ensemble de test couvre une période ultérieure à celle de l'ensemble d'entraînement afin que le modèle ne tire pas d'informations des périodes futures [^2] (une situation connue sous le nom de *surapprentissage*).
 
 1. Allouez une période de deux mois du 1er septembre au 31 octobre 2014 à l'ensemble d'entraînement. L'ensemble de test inclura la période de deux mois du 1er novembre au 31 décembre 2014 : [^2]
 
@@ -97,13 +97,13 @@ Maintenant que vos données sont chargées, vous pouvez les séparer en ensemble
    plt.show()
    ```
 
-   ![données d'entraînement et de test](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.fr.png)
+   ![données d'entraînement et de test](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
 ### Préparer les données pour l'entraînement
 
-Maintenant, vous devez préparer les données pour l'entraînement en effectuant un filtrage et une mise à l'échelle de vos données. Filtrez votre ensemble de données pour inclure uniquement les périodes et colonnes nécessaires, et mettez à l'échelle pour garantir que les données sont projetées dans l'intervalle 0,1.
+Maintenant, vous devez préparer les données pour l'entraînement en effectuant un filtrage et une mise à l'échelle de vos données. Filtrez votre jeu de données pour inclure uniquement les périodes et colonnes nécessaires, et mettez à l'échelle pour garantir que les données sont projetées dans l'intervalle 0,1.
 
-1. Filtrez l'ensemble de données original pour inclure uniquement les périodes mentionnées par ensemble et uniquement la colonne nécessaire 'load' ainsi que la date : [^2]
+1. Filtrez le jeu de données original pour inclure uniquement les périodes mentionnées par ensemble et uniquement la colonne nécessaire 'load' ainsi que la date : [^2]
 
    ```python
    train = energy.copy()[(energy.index >= train_start_dt) & (energy.index < test_start_dt)][['load']]
@@ -133,7 +133,7 @@ Maintenant, vous devez préparer les données pour l'entraînement en effectuant
 
 ### Créer des données avec des étapes temporelles [^1]
 
-Pour le SVR, vous transformez les données d'entrée pour qu'elles soient sous la forme `[batch, timesteps]`. Ainsi, vous remodelez les `train_data` et `test_data` existants de manière à ce qu'il y ait une nouvelle dimension qui se réfère aux étapes temporelles. 
+Pour le SVR, vous transformez les données d'entrée pour qu'elles soient sous la forme `[batch, timesteps]`. Ainsi, vous remodelez les `train_data` et `test_data` existants de manière à ajouter une nouvelle dimension qui fait référence aux étapes temporelles.
 
 ```python
 # Converting to numpy arrays
@@ -147,7 +147,7 @@ Pour cet exemple, nous prenons `timesteps = 5`. Ainsi, les entrées du modèle s
 timesteps=5
 ```
 
-Conversion des données d'entraînement en tenseur 2D à l'aide de la compréhension de liste imbriquée :
+Conversion des données d'entraînement en tenseur 2D à l'aide de la compréhension de listes imbriquées :
 
 ```python
 train_data_timesteps=np.array([[j for j in train_data[i:i+timesteps]] for i in range(0,len(train_data)-timesteps+1)])[:,:,0]
@@ -186,13 +186,13 @@ print(x_test.shape, y_test.shape)
 
 ### Implémenter le SVR [^1]
 
-Maintenant, il est temps d'implémenter le SVR. Pour en savoir plus sur cette implémentation, vous pouvez consulter [cette documentation](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Pour notre implémentation, nous suivons ces étapes :
+Il est maintenant temps d'implémenter le SVR. Pour en savoir plus sur cette implémentation, vous pouvez consulter [cette documentation](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Pour notre implémentation, nous suivons ces étapes :
 
   1. Définir le modèle en appelant `SVR()` et en passant les hyperparamètres du modèle : kernel, gamma, c et epsilon
   2. Préparer le modèle pour les données d'entraînement en appelant la fonction `fit()`
   3. Faire des prédictions en appelant la fonction `predict()`
 
-Maintenant, nous créons un modèle SVR. Ici, nous utilisons le [noyau RBF](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), et définissons les hyperparamètres gamma, C et epsilon à 0.5, 10 et 0.05 respectivement.
+Nous créons maintenant un modèle SVR. Ici, nous utilisons le [kernel RBF](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel), et définissons les hyperparamètres gamma, C et epsilon à 0.5, 10 et 0.05 respectivement.
 
 ```python
 model = SVR(kernel='rbf',gamma=0.5, C=10, epsilon = 0.05)
@@ -226,7 +226,7 @@ Vous avez construit votre SVR ! Maintenant, nous devons l'évaluer.
 
 ### Évaluer votre modèle [^1]
 
-Pour l'évaluation, nous allons d'abord remettre les données à leur échelle originale. Ensuite, pour vérifier les performances, nous tracerons le graphique des séries temporelles originales et prédites, et nous imprimerons également le résultat du MAPE.
+Pour l'évaluation, nous allons d'abord remettre les données à leur échelle originale. Ensuite, pour vérifier les performances, nous tracerons le graphique des séries temporelles originales et prédites, et imprimerons également le résultat du MAPE.
 
 Remettre à l'échelle les sorties prédites et originales :
 
@@ -248,7 +248,7 @@ print(len(y_train), len(y_test))
 
 #### Vérifier les performances du modèle sur les données d'entraînement et de test [^1]
 
-Nous extrayons les horodatages de l'ensemble de données pour les afficher sur l'axe x de notre graphique. Notez que nous utilisons les ```timesteps-1``` premières valeurs comme entrée pour la première sortie, donc les horodatages pour la sortie commenceront après cela.
+Nous extrayons les horodatages du jeu de données pour les afficher sur l'axe x de notre graphique. Notez que nous utilisons les ```timesteps-1``` premières valeurs comme entrée pour la première sortie, donc les horodatages pour la sortie commenceront après cela.
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -273,7 +273,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![prédictions des données d'entraînement](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.fr.png)
+![prédictions des données d'entraînement](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
 Imprimer le MAPE pour les données d'entraînement
 
@@ -296,7 +296,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![prédictions des données de test](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.fr.png)
+![prédictions des données de test](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
 Imprimer le MAPE pour les données de test
 
@@ -352,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![prédictions des données complètes](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.fr.png)
+![prédictions des données complètes](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -369,25 +369,25 @@ MAPE:  2.0572089029888656 %
 ## 🚀Défi
 
 - Essayez de modifier les hyperparamètres (gamma, C, epsilon) lors de la création du modèle et évaluez les données pour voir quel ensemble d'hyperparamètres donne les meilleurs résultats sur les données de test. Pour en savoir plus sur ces hyperparamètres, vous pouvez consulter le document [ici](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
-- Essayez d'utiliser différentes fonctions de noyau pour le modèle et analysez leurs performances sur l'ensemble de données. Un document utile peut être trouvé [ici](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
+- Essayez d'utiliser différentes fonctions kernel pour le modèle et analysez leurs performances sur le jeu de données. Un document utile peut être trouvé [ici](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 - Essayez d'utiliser différentes valeurs pour `timesteps` pour que le modèle puisse regarder en arrière pour faire des prédictions.
 
-## [Quiz après la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Quiz après la leçon](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Révision et auto-apprentissage
 
-Cette leçon avait pour but d'introduire l'application du SVR pour la prévision des séries temporelles. Pour en savoir plus sur le SVR, vous pouvez consulter [ce blog](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Cette [documentation sur scikit-learn](https://scikit-learn.org/stable/modules/svm.html) fournit une explication plus complète sur les SVM en général, les [SVR](https://scikit-learn.org/stable/modules/svm.html#regression) et également d'autres détails d'implémentation tels que les différentes [fonctions de noyau](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) qui peuvent être utilisées, ainsi que leurs paramètres.
+Cette leçon avait pour but d'introduire l'application du SVR pour la prévision des séries temporelles. Pour en savoir plus sur le SVR, vous pouvez consulter [ce blog](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Cette [documentation sur scikit-learn](https://scikit-learn.org/stable/modules/svm.html) fournit une explication plus complète sur les SVM en général, les [SVR](https://scikit-learn.org/stable/modules/svm.html#regression) et également d'autres détails d'implémentation tels que les différentes [fonctions kernel](https://scikit-learn.org/stable/modules/svm.html#kernel-functions) qui peuvent être utilisées, ainsi que leurs paramètres.
 
 ## Devoir
 
 [Un nouveau modèle SVR](assignment.md)
 
-## Crédits
+## Remerciements
 
-[^1] : Le texte, le code et les résultats de cette section ont été contribué par [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)  
-[^2] : Le texte, le code et les résultats de cette section ont été tirés de [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
+[^1]: Le texte, le code et les résultats de cette section ont été contribué par [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
+[^2]: Le texte, le code et les résultats de cette section ont été tirés de [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
 
 ---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction professionnelle humaine. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
