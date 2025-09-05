@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-08-29T21:01:01+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-04T21:29:07+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "br"
 }
@@ -13,35 +13,35 @@ Clusterização é um tipo de [Aprendizado Não Supervisionado](https://wikipedi
 
 [![No One Like You por PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You por PSquare")
 
-> 🎥 Clique na imagem acima para assistir ao vídeo. Enquanto você estuda aprendizado de máquina com clusterização, aproveite algumas faixas de Dance Hall nigeriano - esta é uma música muito bem avaliada de 2014 por PSquare.
+> 🎥 Clique na imagem acima para assistir ao vídeo. Enquanto estuda aprendizado de máquina com clusterização, aproveite algumas faixas de Dance Hall nigeriano - esta é uma música muito bem avaliada de 2014 por PSquare.
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Introdução
 
-[Clusterização](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) é muito útil para exploração de dados. Vamos ver se ela pode ajudar a descobrir tendências e padrões na forma como o público nigeriano consome música.
+[Clusterização](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) é muito útil para exploração de dados. Vamos ver se ela pode ajudar a descobrir tendências e padrões no modo como o público nigeriano consome música.
 
-✅ Reserve um momento para pensar sobre os usos da clusterização. Na vida real, clusterização acontece sempre que você tem uma pilha de roupas e precisa separar as peças de cada membro da família 🧦👕👖🩲. Em ciência de dados, clusterização ocorre ao tentar analisar as preferências de um usuário ou determinar as características de qualquer conjunto de dados não rotulado. De certa forma, clusterização ajuda a dar sentido ao caos, como uma gaveta de meias.
+✅ Reserve um minuto para pensar sobre os usos da clusterização. Na vida real, clusterização acontece sempre que você tem uma pilha de roupas e precisa separar as peças de cada membro da família 🧦👕👖🩲. Em ciência de dados, clusterização ocorre ao tentar analisar as preferências de um usuário ou determinar as características de qualquer conjunto de dados não rotulado. De certa forma, clusterização ajuda a dar sentido ao caos, como uma gaveta de meias.
 
 [![Introdução ao ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introdução à Clusterização")
 
 > 🎥 Clique na imagem acima para assistir ao vídeo: John Guttag do MIT apresenta clusterização.
 
-No ambiente profissional, clusterização pode ser usada para determinar coisas como segmentação de mercado, identificando quais faixas etárias compram quais itens, por exemplo. Outro uso seria a detecção de anomalias, talvez para identificar fraudes em um conjunto de dados de transações de cartão de crédito. Ou você pode usar clusterização para identificar tumores em um lote de exames médicos.
+No ambiente profissional, clusterização pode ser usada para determinar coisas como segmentação de mercado, identificando quais faixas etárias compram quais itens, por exemplo. Outro uso seria a detecção de anomalias, talvez para identificar fraudes em um conjunto de dados de transações com cartão de crédito. Ou você pode usar clusterização para identificar tumores em um lote de exames médicos.
 
-✅ Pense por um momento sobre como você pode ter encontrado clusterização 'na prática', em um ambiente bancário, de e-commerce ou de negócios.
+✅ Pense por um minuto sobre como você pode ter encontrado clusterização 'na prática', em um ambiente bancário, de e-commerce ou de negócios.
 
-> 🎓 Curiosamente, a análise de clusters teve origem nos campos de Antropologia e Psicologia na década de 1930. Você consegue imaginar como ela pode ter sido usada?
+> 🎓 Curiosamente, a análise de clusters teve origem nos campos de Antropologia e Psicologia na década de 1930. Consegue imaginar como ela pode ter sido usada?
 
-Alternativamente, você poderia usá-la para agrupar resultados de busca - por links de compras, imagens ou avaliações, por exemplo. Clusterização é útil quando você tem um grande conjunto de dados que deseja reduzir e sobre o qual deseja realizar uma análise mais detalhada. Assim, a técnica pode ser usada para aprender sobre os dados antes de construir outros modelos.
+Alternativamente, você poderia usá-la para agrupar resultados de busca - por links de compras, imagens ou avaliações, por exemplo. Clusterização é útil quando você tem um grande conjunto de dados que deseja reduzir e sobre o qual quer realizar uma análise mais detalhada. Assim, a técnica pode ser usada para aprender sobre os dados antes de construir outros modelos.
 
-✅ Uma vez que seus dados estão organizados em clusters, você atribui a eles um Id de cluster, e essa técnica pode ser útil para preservar a privacidade de um conjunto de dados; você pode se referir a um ponto de dados pelo seu Id de cluster, em vez de usar dados identificáveis mais reveladores. Consegue pensar em outros motivos para usar um Id de cluster em vez de outros elementos do cluster para identificá-lo?
+✅ Uma vez que seus dados estejam organizados em clusters, você pode atribuir a eles um Id de cluster. Essa técnica pode ser útil para preservar a privacidade de um conjunto de dados; você pode se referir a um ponto de dados pelo seu Id de cluster, em vez de usar dados identificáveis mais reveladores. Consegue pensar em outros motivos para usar um Id de cluster em vez de outros elementos do cluster para identificá-lo?
 
 Aprofunde seu entendimento sobre técnicas de clusterização neste [módulo de aprendizado](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
 
 ## Começando com clusterização
 
-[Scikit-learn oferece uma ampla variedade](https://scikit-learn.org/stable/modules/clustering.html) de métodos para realizar clusterização. O tipo que você escolhe dependerá do seu caso de uso. De acordo com a documentação, cada método tem diferentes benefícios. Aqui está uma tabela simplificada dos métodos suportados pelo Scikit-learn e seus casos de uso apropriados:
+[Scikit-learn oferece uma ampla variedade](https://scikit-learn.org/stable/modules/clustering.html) de métodos para realizar clusterização. O tipo que você escolher dependerá do seu caso de uso. De acordo com a documentação, cada método tem diferentes benefícios. Aqui está uma tabela simplificada dos métodos suportados pelo Scikit-learn e seus casos de uso apropriados:
 
 | Nome do método                | Caso de uso                                                           |
 | :---------------------------- | :-------------------------------------------------------------------- |
@@ -49,20 +49,20 @@ Aprofunde seu entendimento sobre técnicas de clusterização neste [módulo de 
 | Propagação de afinidade       | muitos clusters desiguais, indutivo                                  |
 | Mean-shift                    | muitos clusters desiguais, indutivo                                  |
 | Clusterização espectral       | poucos clusters iguais, transdutivo                                  |
-| Clusterização hierárquica Ward | muitos clusters restritos, transdutivo                              |
+| Clusterização hierárquica Ward| muitos clusters restritos, transdutivo                               |
 | Clusterização aglomerativa    | muitos clusters restritos, distâncias não euclidianas, transdutivo   |
 | DBSCAN                        | geometria não plana, clusters desiguais, transdutivo                 |
 | OPTICS                        | geometria não plana, clusters desiguais com densidade variável, transdutivo |
 | Misturas Gaussianas           | geometria plana, indutivo                                            |
-| BIRCH                         | grande conjunto de dados com outliers, indutivo                     |
+| BIRCH                         | grande conjunto de dados com outliers, indutivo                      |
 
-> 🎓 Como criamos clusters tem muito a ver com como agrupamos os pontos de dados. Vamos explorar alguns termos:
+> 🎓 Como criamos clusters tem muito a ver com como agrupamos os pontos de dados. Vamos explorar alguns vocabulários:
 >
 > 🎓 ['Transdutivo' vs. 'indutivo'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
 > Inferência transdutiva é derivada de casos de treinamento observados que mapeiam para casos de teste específicos. Inferência indutiva é derivada de casos de treinamento que mapeiam para regras gerais que só então são aplicadas aos casos de teste.
 > 
-> Um exemplo: Imagine que você tem um conjunto de dados parcialmente rotulado. Alguns itens são 'discos', outros 'CDs', e alguns estão em branco. Sua tarefa é fornecer rótulos para os itens em branco. Se você escolher uma abordagem indutiva, treinaria um modelo procurando por 'discos' e 'CDs', e aplicaria esses rótulos aos dados não rotulados. Essa abordagem teria dificuldade em classificar itens que na verdade são 'fitas cassete'. Uma abordagem transdutiva, por outro lado, lida com esses dados desconhecidos de forma mais eficaz, agrupando itens semelhantes e aplicando um rótulo ao grupo. Nesse caso, os clusters poderiam refletir 'coisas musicais redondas' e 'coisas musicais quadradas'.
+> Um exemplo: Imagine que você tem um conjunto de dados parcialmente rotulado. Alguns itens são 'discos', outros 'CDs', e alguns estão em branco. Sua tarefa é fornecer rótulos para os itens em branco. Se você escolher uma abordagem indutiva, treinaria um modelo procurando por 'discos' e 'CDs' e aplicaria esses rótulos aos dados não rotulados. Essa abordagem teria dificuldade em classificar itens que na verdade são 'fitas cassete'. Uma abordagem transdutiva, por outro lado, lida com esses dados desconhecidos de forma mais eficaz, agrupando itens semelhantes e aplicando um rótulo ao grupo. Nesse caso, os clusters poderiam refletir 'coisas musicais redondas' e 'coisas musicais quadradas'.
 > 
 > 🎓 ['Geometria não plana' vs. 'plana'](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
@@ -70,7 +70,7 @@ Aprofunde seu entendimento sobre técnicas de clusterização neste [módulo de 
 >
 >'Plana' neste contexto refere-se à geometria Euclidiana (partes da qual são ensinadas como 'geometria plana'), e 'não plana' refere-se à geometria não Euclidiana. O que a geometria tem a ver com aprendizado de máquina? Bem, como dois campos enraizados na matemática, deve haver uma maneira comum de medir distâncias entre pontos em clusters, e isso pode ser feito de forma 'plana' ou 'não plana', dependendo da natureza dos dados. [Distâncias Euclidianas](https://wikipedia.org/wiki/Dist%C3%A2ncia_euclidiana) são medidas como o comprimento de um segmento de linha entre dois pontos. [Distâncias não Euclidianas](https://wikipedia.org/wiki/Geometria_n%C3%A3o_euclidiana) são medidas ao longo de uma curva. Se seus dados, visualizados, parecem não existir em um plano, você pode precisar usar um algoritmo especializado para lidar com eles.
 >
-![Infográfico Geometria Plana vs Não Plana](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.br.png)
+![Infográfico Geometria Plana vs Não Plana](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Distâncias'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
@@ -85,7 +85,7 @@ Aprofunde seu entendimento sobre técnicas de clusterização neste [módulo de 
 > 
 > 🎓 'Densidade'
 > 
-> Dados que são 'ruidosos' são considerados 'densos'. As distâncias entre pontos em cada um de seus clusters podem, ao serem examinadas, provar ser mais ou menos densas, ou 'aglomeradas', e assim esses dados precisam ser analisados com o método de clusterização apropriado. [Este artigo](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demonstra a diferença entre usar K-Means clustering vs. algoritmos HDBSCAN para explorar um conjunto de dados ruidoso com densidade de cluster desigual.
+> Dados que são 'ruidosos' são considerados 'densos'. As distâncias entre pontos em cada um de seus clusters podem, ao serem examinadas, ser mais ou menos densas, ou 'aglomeradas', e assim esses dados precisam ser analisados com o método de clusterização apropriado. [Este artigo](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) demonstra a diferença entre usar clusterização K-Means vs. algoritmos HDBSCAN para explorar um conjunto de dados ruidoso com densidade de cluster desigual.
 
 ## Algoritmos de clusterização
 
@@ -93,15 +93,15 @@ Existem mais de 100 algoritmos de clusterização, e seu uso depende da natureza
 
 - **Clusterização hierárquica**. Se um objeto é classificado por sua proximidade a um objeto próximo, em vez de um mais distante, os clusters são formados com base na distância de seus membros para outros objetos. A clusterização aglomerativa do Scikit-learn é hierárquica.
 
-   ![Infográfico Clusterização Hierárquica](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.br.png)
+   ![Infográfico Clusterização Hierárquica](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Clusterização por centroide**. Este algoritmo popular exige a escolha de 'k', ou o número de clusters a serem formados, após o qual o algoritmo determina o ponto central de um cluster e reúne dados ao redor desse ponto. [K-means clustering](https://wikipedia.org/wiki/K-means_clustering) é uma versão popular de clusterização por centroide. O centro é determinado pela média mais próxima, daí o nome. A distância quadrada do cluster é minimizada.
+- **Clusterização por centroide**. Este algoritmo popular requer a escolha de 'k', ou o número de clusters a serem formados, após o qual o algoritmo determina o ponto central de um cluster e reúne dados ao redor desse ponto. [Clusterização K-means](https://wikipedia.org/wiki/K-means_clustering) é uma versão popular de clusterização por centroide. O centro é determinado pela média mais próxima, daí o nome. A distância quadrada do cluster é minimizada.
 
-   ![Infográfico Clusterização por Centroide](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.br.png)
+   ![Infográfico Clusterização por Centroide](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Clusterização baseada em distribuição**. Baseada em modelagem estatística, a clusterização baseada em distribuição centra-se em determinar a probabilidade de um ponto de dados pertencer a um cluster e atribuí-lo de acordo. Métodos de mistura Gaussianas pertencem a este tipo.
+- **Clusterização baseada em distribuição**. Baseada em modelagem estatística, a clusterização baseada em distribuição foca em determinar a probabilidade de um ponto de dados pertencer a um cluster e atribuí-lo de acordo. Métodos de mistura Gaussianas pertencem a este tipo.
 
 - **Clusterização baseada em densidade**. Pontos de dados são atribuídos a clusters com base em sua densidade, ou seu agrupamento ao redor uns dos outros. Pontos de dados distantes do grupo são considerados outliers ou ruídos. DBSCAN, Mean-shift e OPTICS pertencem a este tipo de clusterização.
 
@@ -145,7 +145,7 @@ Clusterização como técnica é muito auxiliada por uma boa visualização, ent
     df.info()
     ```
 
-   A saída será parecida com isso:
+   A saída será semelhante a:
 
     ```output
     <class 'pandas.core.frame.DataFrame'>
@@ -220,7 +220,7 @@ Clusterização como técnica é muito auxiliada por uma boa visualização, ent
 
 > 🤔 Se estamos trabalhando com clustering, um método não supervisionado que não requer dados rotulados, por que estamos mostrando esses dados com rótulos? Na fase de exploração de dados, eles são úteis, mas não são necessários para os algoritmos de clustering funcionarem. Você poderia simplesmente remover os cabeçalhos das colunas e se referir aos dados pelo número da coluna.
 
-Observe os valores gerais dos dados. Note que a popularidade pode ser '0', o que indica músicas que não têm classificação. Vamos remover essas em breve.
+Observe os valores gerais dos dados. Note que a popularidade pode ser '0', o que indica músicas que não têm classificação. Vamos remover esses valores em breve.
 
 1. Use um gráfico de barras para descobrir os gêneros mais populares:
 
@@ -234,13 +234,13 @@ Observe os valores gerais dos dados. Note que a popularidade pode ser '0', o que
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.br.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
-✅ Se você quiser ver mais valores no topo, altere o `[:5]` para um valor maior ou remova-o para ver todos.
+✅ Se você quiser ver mais valores principais, altere o top `[:5]` para um valor maior ou remova-o para ver todos.
 
-Note que, quando o gênero principal é descrito como 'Missing', isso significa que o Spotify não o classificou, então vamos removê-lo.
+Note que, quando o gênero principal é descrito como 'Missing', isso significa que o Spotify não o classificou, então vamos eliminá-lo.
 
-1. Remova os dados ausentes filtrando-os:
+1. Elimine os dados ausentes filtrando-os:
 
     ```python
     df = df[df['artist_top_genre'] != 'Missing']
@@ -253,9 +253,9 @@ Note que, quando o gênero principal é descrito como 'Missing', isso significa 
 
     Agora verifique novamente os gêneros:
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.br.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
-1. De longe, os três principais gêneros dominam este conjunto de dados. Vamos nos concentrar em `afro dancehall`, `afropop` e `nigerian pop`, além de filtrar o conjunto de dados para remover qualquer coisa com um valor de popularidade 0 (o que significa que não foi classificado com uma popularidade no conjunto de dados e pode ser considerado ruído para nossos propósitos):
+1. De longe, os três principais gêneros dominam este conjunto de dados. Vamos nos concentrar em `afro dancehall`, `afropop` e `nigerian pop`, além de filtrar o conjunto de dados para remover qualquer coisa com valor de popularidade 0 (o que significa que não foi classificado com uma popularidade no conjunto de dados e pode ser considerado ruído para nossos propósitos):
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -275,13 +275,13 @@ Note que, quando o gênero principal é descrito como 'Missing', isso significa 
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.br.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
     A única correlação forte é entre `energy` e `loudness`, o que não é muito surpreendente, dado que músicas altas geralmente são bastante energéticas. Fora isso, as correlações são relativamente fracas. Será interessante ver o que um algoritmo de clustering pode fazer com esses dados.
 
     > 🎓 Note que correlação não implica causalidade! Temos prova de correlação, mas nenhuma prova de causalidade. Um [site divertido](https://tylervigen.com/spurious-correlations) tem alguns visuais que enfatizam esse ponto.
 
-Há alguma convergência neste conjunto de dados em torno da popularidade percebida de uma música e sua capacidade de dança? Um FacetGrid mostra que há círculos concêntricos que se alinham, independentemente do gênero. Poderia ser que os gostos nigerianos convergem em um certo nível de capacidade de dança para este gênero?
+Há alguma convergência neste conjunto de dados em torno da popularidade percebida de uma música e sua capacidade de dança? Um FacetGrid mostra que há círculos concêntricos que se alinham, independentemente do gênero. Será que os gostos nigerianos convergem em um certo nível de capacidade de dança para este gênero?
 
 ✅ Experimente diferentes pontos de dados (energia, loudness, speechiness) e mais ou diferentes gêneros musicais. O que você pode descobrir? Dê uma olhada na tabela `df.describe()` para ver a distribuição geral dos pontos de dados.
 
@@ -289,7 +289,7 @@ Há alguma convergência neste conjunto de dados em torno da popularidade perceb
 
 Esses três gêneros são significativamente diferentes na percepção de sua capacidade de dança, com base em sua popularidade?
 
-1. Examine a distribuição de dados dos nossos três principais gêneros para popularidade e capacidade de dança ao longo de um eixo x e y dados.
+1. Examine a distribuição de dados dos nossos três principais gêneros para popularidade e capacidade de dança ao longo de um eixo x e y dado.
 
     ```python
     sns.set_theme(style="ticks")
@@ -307,7 +307,7 @@ Esses três gêneros são significativamente diferentes na percepção de sua ca
 
     Em geral, os três gêneros se alinham vagamente em termos de sua popularidade e capacidade de dança. Determinar clusters nesses dados vagamente alinhados será um desafio:
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.br.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. Crie um gráfico de dispersão:
 
@@ -319,7 +319,7 @@ Esses três gêneros são significativamente diferentes na percepção de sua ca
 
     Um gráfico de dispersão dos mesmos eixos mostra um padrão semelhante de convergência.
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.br.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
 Em geral, para clustering, você pode usar gráficos de dispersão para mostrar clusters de dados, então dominar esse tipo de visualização é muito útil. Na próxima lição, usaremos esses dados filtrados e aplicaremos o clustering k-means para descobrir grupos nesses dados que parecem se sobrepor de maneiras interessantes.
 
@@ -329,13 +329,13 @@ Em geral, para clustering, você pode usar gráficos de dispersão para mostrar 
 
 Em preparação para a próxima lição, faça um gráfico sobre os vários algoritmos de clustering que você pode descobrir e usar em um ambiente de produção. Que tipos de problemas o clustering está tentando resolver?
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisão e Autoestudo
 
-Antes de aplicar algoritmos de clustering, como aprendemos, é uma boa ideia entender a natureza do seu conjunto de dados. Leia mais sobre este tópico [aqui](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html).
+Antes de aplicar algoritmos de clustering, como aprendemos, é uma boa ideia entender a natureza do seu conjunto de dados. Leia mais sobre este tópico [aqui](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
-[Este artigo útil](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) explica as diferentes formas como vários algoritmos de clustering se comportam, dados diferentes formatos de dados.
+[Este artigo útil](https://www.freecodecamp.org/news/8-clustering-algorithms-in-machine-learning-that-all-data-scientists-should-know/) explica as diferentes maneiras como vários algoritmos de clustering se comportam, dados diferentes formatos de dados.
 
 ## Tarefa
 

@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-09-03T21:46:15+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-04T21:55:35+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "de"
 }
@@ -13,15 +13,15 @@ Clustering ist eine Art des [Unüberwachten Lernens](https://wikipedia.org/wiki/
 
 [![No One Like You von PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You von PSquare")
 
-> 🎥 Klicken Sie auf das Bild oben für ein Video. Während Sie maschinelles Lernen mit Clustering studieren, genießen Sie einige nigerianische Dancehall-Tracks – dies ist ein hoch bewertetes Lied aus dem Jahr 2014 von PSquare.
+> 🎥 Klicken Sie auf das Bild oben für ein Video. Während Sie maschinelles Lernen mit Clustering studieren, genießen Sie einige nigerianische Dancehall-Tracks – dies ist ein hoch bewertetes Lied von 2014 von PSquare.
 
-## [Quiz vor der Vorlesung](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [Quiz vor der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Einführung
 
-[Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) ist sehr nützlich für die Datenexploration. Schauen wir mal, ob es helfen kann, Trends und Muster in der Art und Weise zu entdecken, wie nigerianische Zuhörer Musik konsumieren.
+[Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) ist sehr nützlich für die Datenexploration. Schauen wir, ob es helfen kann, Trends und Muster in der Art und Weise zu entdecken, wie nigerianische Zuhörer Musik konsumieren.
 
-✅ Nehmen Sie sich eine Minute Zeit, um über die Einsatzmöglichkeiten von Clustering nachzudenken. Im Alltag passiert Clustering immer dann, wenn Sie einen Wäschehaufen haben und die Kleidung Ihrer Familienmitglieder sortieren müssen 🧦👕👖🩲. In der Datenwissenschaft passiert Clustering, wenn versucht wird, die Vorlieben eines Nutzers zu analysieren oder die Eigenschaften eines unbeschrifteten Datensatzes zu bestimmen. Clustering hilft gewissermaßen, Chaos zu ordnen, wie eine Sockenschublade.
+✅ Nehmen Sie sich eine Minute Zeit, um über die Einsatzmöglichkeiten von Clustering nachzudenken. Im Alltag passiert Clustering immer dann, wenn Sie einen Wäschehaufen haben und die Kleidung Ihrer Familienmitglieder sortieren müssen 🧦👕👖🩲. In der Datenwissenschaft passiert Clustering, wenn versucht wird, die Vorlieben eines Nutzers zu analysieren oder die Merkmale eines unbeschrifteten Datensatzes zu bestimmen. Clustering hilft gewissermaßen, Chaos zu ordnen, wie eine Sockenschublade.
 
 [![Einführung in ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Einführung in Clustering")
 
@@ -29,13 +29,13 @@ Clustering ist eine Art des [Unüberwachten Lernens](https://wikipedia.org/wiki/
 
 In einem professionellen Umfeld kann Clustering verwendet werden, um Dinge wie Marktsegmentierung zu bestimmen, beispielsweise welche Altersgruppen welche Artikel kaufen. Eine weitere Anwendung wäre die Anomalieerkennung, möglicherweise zur Betrugserkennung in einem Datensatz von Kreditkartentransaktionen. Oder Sie könnten Clustering verwenden, um Tumore in einer Reihe von medizinischen Scans zu identifizieren.
 
-✅ Denken Sie einen Moment darüber nach, wie Sie Clustering „in freier Wildbahn“ erlebt haben, sei es im Bankwesen, E-Commerce oder Geschäftsumfeld.
+✅ Denken Sie eine Minute darüber nach, wie Sie Clustering „in freier Wildbahn“ erlebt haben, sei es im Bankwesen, E-Commerce oder Geschäftsumfeld.
 
 > 🎓 Interessanterweise stammt die Clusteranalyse aus den Bereichen Anthropologie und Psychologie der 1930er Jahre. Können Sie sich vorstellen, wie sie damals verwendet wurde?
 
-Alternativ könnten Sie es für die Gruppierung von Suchergebnissen verwenden – beispielsweise nach Einkaufslinks, Bildern oder Bewertungen. Clustering ist nützlich, wenn Sie einen großen Datensatz haben, den Sie reduzieren und auf dem Sie eine detailliertere Analyse durchführen möchten. Die Technik kann verwendet werden, um Daten zu verstehen, bevor andere Modelle erstellt werden.
+Alternativ könnten Sie es für die Gruppierung von Suchergebnissen verwenden – beispielsweise nach Einkaufslinks, Bildern oder Bewertungen. Clustering ist nützlich, wenn Sie einen großen Datensatz haben, den Sie reduzieren möchten, und auf dem Sie eine detailliertere Analyse durchführen möchten. Die Technik kann verwendet werden, um Daten zu verstehen, bevor andere Modelle erstellt werden.
 
-✅ Sobald Ihre Daten in Clustern organisiert sind, weisen Sie ihnen eine Cluster-ID zu. Diese Technik kann nützlich sein, um die Privatsphäre eines Datensatzes zu wahren; Sie können stattdessen auf einen Datenpunkt anhand seiner Cluster-ID verweisen, anstatt auf offenere identifizierbare Daten. Können Sie sich andere Gründe vorstellen, warum Sie eine Cluster-ID anstelle anderer Elemente des Clusters verwenden würden, um sie zu identifizieren?
+✅ Sobald Ihre Daten in Clustern organisiert sind, weisen Sie ihnen eine Cluster-ID zu. Diese Technik kann nützlich sein, um die Privatsphäre eines Datensatzes zu wahren; Sie können stattdessen auf einen Datenpunkt anhand seiner Cluster-ID verweisen, anstatt auf offenere identifizierbare Daten. Können Sie sich andere Gründe vorstellen, warum Sie eine Cluster-ID anstelle anderer Elemente des Clusters verwenden würden, um ihn zu identifizieren?
 
 Vertiefen Sie Ihr Verständnis von Clustering-Techniken in diesem [Learn-Modul](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
 
@@ -47,7 +47,7 @@ Vertiefen Sie Ihr Verständnis von Clustering-Techniken in diesem [Learn-Modul](
 | :--------------------------- | :-------------------------------------------------------------------- |
 | K-Means                      | allgemeiner Zweck, induktiv                                           |
 | Affinity Propagation         | viele, ungleichmäßige Cluster, induktiv                              |
-| Mean-Shift                   | viele, ungleichmäßige Cluster, induktiv                              |
+| Mean-shift                   | viele, ungleichmäßige Cluster, induktiv                              |
 | Spectral Clustering          | wenige, gleichmäßige Cluster, transduktiv                            |
 | Ward Hierarchical Clustering | viele, eingeschränkte Cluster, transduktiv                           |
 | Agglomerative Clustering     | viele, eingeschränkte, nicht-euklidische Distanzen, transduktiv      |
@@ -58,34 +58,34 @@ Vertiefen Sie Ihr Verständnis von Clustering-Techniken in diesem [Learn-Modul](
 
 > 🎓 Wie wir Cluster erstellen, hängt stark davon ab, wie wir die Datenpunkte zu Gruppen zusammenfassen. Lassen Sie uns einige Begriffe klären:
 >
-> 🎓 ['Transduktiv' vs. 'induktiv'](https://wikipedia.org/wiki/Transduction_(machine_learning))
+> 🎓 ['Transduktiv' vs. 'Induktiv'](https://wikipedia.org/wiki/Transduction_(machine_learning))
 > 
 > Transduktive Inferenz wird aus beobachteten Trainingsfällen abgeleitet, die auf spezifische Testfälle abgebildet werden. Induktive Inferenz wird aus Trainingsfällen abgeleitet, die allgemeine Regeln ableiten, die dann auf Testfälle angewendet werden.
 > 
-> Ein Beispiel: Stellen Sie sich vor, Sie haben einen Datensatz, der nur teilweise beschriftet ist. Einige Dinge sind „Schallplatten“, einige „CDs“ und einige sind leer. Ihre Aufgabe ist es, die leeren Felder zu beschriften. Wenn Sie einen induktiven Ansatz wählen, würden Sie ein Modell trainieren, das nach „Schallplatten“ und „CDs“ sucht, und diese Labels auf Ihre unbeschrifteten Daten anwenden. Dieser Ansatz wird Schwierigkeiten haben, Dinge zu klassifizieren, die tatsächlich „Kassetten“ sind. Ein transduktiver Ansatz hingegen geht mit diesen unbekannten Daten effektiver um, da er ähnliche Elemente gruppiert und dann einer Gruppe ein Label zuweist. In diesem Fall könnten Cluster „runde Musiksachen“ und „quadratische Musiksachen“ widerspiegeln.
+> Ein Beispiel: Stellen Sie sich vor, Sie haben einen Datensatz, der nur teilweise beschriftet ist. Einige Dinge sind „Schallplatten“, einige „CDs“ und einige sind leer. Ihre Aufgabe ist es, die leeren Felder zu beschriften. Wenn Sie einen induktiven Ansatz wählen, würden Sie ein Modell trainieren, das nach „Schallplatten“ und „CDs“ sucht, und diese Labels auf Ihre unbeschrifteten Daten anwenden. Dieser Ansatz hätte Schwierigkeiten, Dinge zu klassifizieren, die tatsächlich „Kassetten“ sind. Ein transduktiver Ansatz hingegen geht mit diesen unbekannten Daten effektiver um, da er ähnliche Elemente gruppiert und dann einer Gruppe ein Label zuweist. In diesem Fall könnten Cluster „runde Musiksachen“ und „quadratische Musiksachen“ widerspiegeln.
 > 
 > 🎓 ['Nicht-flache' vs. 'flache' Geometrie](https://datascience.stackexchange.com/questions/52260/terminology-flat-geometry-in-the-context-of-clustering)
 > 
-> Abgeleitet aus mathematischer Terminologie bezieht sich nicht-flache vs. flache Geometrie auf die Messung von Distanzen zwischen Punkten entweder durch „flache“ ([euklidische](https://wikipedia.org/wiki/Euclidean_geometry)) oder „nicht-flache“ (nicht-euklidische) geometrische Methoden.
+> Abgeleitet aus mathematischer Terminologie, bezieht sich nicht-flache vs. flache Geometrie auf die Messung von Distanzen zwischen Punkten entweder durch „flache“ ([Euklidische](https://wikipedia.org/wiki/Euclidean_geometry)) oder „nicht-flache“ (nicht-euklidische) geometrische Methoden.
 >
->'Flach' in diesem Kontext bezieht sich auf euklidische Geometrie (Teile davon werden als 'Ebene' Geometrie gelehrt), und nicht-flach bezieht sich auf nicht-euklidische Geometrie. Was hat Geometrie mit maschinellem Lernen zu tun? Nun, als zwei Felder, die in der Mathematik verwurzelt sind, muss es eine gemeinsame Methode geben, um Distanzen zwischen Punkten in Clustern zu messen, und das kann auf eine 'flache' oder 'nicht-flache' Weise erfolgen, abhängig von der Natur der Daten. [Euklidische Distanzen](https://wikipedia.org/wiki/Euclidean_distance) werden als die Länge eines Liniensegments zwischen zwei Punkten gemessen. [Nicht-euklidische Distanzen](https://wikipedia.org/wiki/Non-Euclidean_geometry) werden entlang einer Kurve gemessen. Wenn Ihre Daten, visualisiert, nicht auf einer Ebene zu existieren scheinen, müssen Sie möglicherweise einen spezialisierten Algorithmus verwenden, um sie zu verarbeiten.
+>'Flach' in diesem Kontext bezieht sich auf euklidische Geometrie (Teile davon werden als 'Ebene' Geometrie gelehrt), und nicht-flach bezieht sich auf nicht-euklidische Geometrie. Was hat Geometrie mit maschinellem Lernen zu tun? Nun, als zwei Felder, die in der Mathematik verwurzelt sind, muss es eine gemeinsame Methode geben, um Distanzen zwischen Punkten in Clustern zu messen, und das kann auf eine 'flache' oder 'nicht-flache' Weise erfolgen, abhängig von der Natur der Daten. [Euklidische Distanzen](https://wikipedia.org/wiki/Euclidean_distance) werden als die Länge eines Liniensegments zwischen zwei Punkten gemessen. [Nicht-euklidische Distanzen](https://wikipedia.org/wiki/Non-Euclidean_geometry) werden entlang einer Kurve gemessen. Wenn Ihre Daten, visualisiert, nicht auf einer Ebene zu existieren scheinen, könnten Sie einen spezialisierten Algorithmus benötigen, um sie zu verarbeiten.
 >
-![Flache vs. nicht-flache Geometrie Infografik](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.de.png)
+![Flache vs. Nicht-flache Geometrie Infografik](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > Infografik von [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Distanzen'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
 > 
-> Cluster werden durch ihre Distanzmatrix definiert, z. B. die Distanzen zwischen Punkten. Diese Distanz kann auf verschiedene Weise gemessen werden. Euklidische Cluster werden durch den Durchschnitt der Punktwerte definiert und enthalten einen 'Zentroid' oder Mittelpunkt. Distanzen werden somit durch die Entfernung zu diesem Zentroid gemessen. Nicht-euklidische Distanzen beziehen sich auf 'Clustroids', den Punkt, der anderen Punkten am nächsten ist. Clustroids können wiederum auf verschiedene Weise definiert werden.
+> Cluster werden durch ihre Distanzmatrix definiert, z. B. die Distanzen zwischen Punkten. Diese Distanz kann auf verschiedene Weise gemessen werden. Euklidische Cluster werden durch den Durchschnitt der Punktwerte definiert und enthalten einen 'Zentroid' oder Mittelpunkt. Distanzen werden somit durch die Entfernung zu diesem Zentroid gemessen. Nicht-euklidische Distanzen beziehen sich auf 'Clustroids', den Punkt, der anderen Punkten am nächsten ist. Clustroids können wiederum auf verschiedene Arten definiert werden.
 > 
 > 🎓 ['Eingeschränkt'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
 > [Eingeschränktes Clustering](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) führt 'semi-überwachtes' Lernen in diese unüberwachte Methode ein. Die Beziehungen zwischen Punkten werden als 'kann nicht verknüpfen' oder 'muss verknüpfen' markiert, sodass einige Regeln auf den Datensatz angewendet werden.
 >
->Ein Beispiel: Wenn ein Algorithmus auf einen Stapel unbeschrifteter oder halb-beschrifteter Daten losgelassen wird, können die von ihm erzeugten Cluster von schlechter Qualität sein. Im obigen Beispiel könnten die Cluster „runde Musiksachen“, „quadratische Musiksachen“, „dreieckige Sachen“ und „Kekse“ gruppieren. Wenn einige Einschränkungen oder Regeln hinzugefügt werden ("das Objekt muss aus Plastik bestehen", "das Objekt muss Musik produzieren können"), kann dies helfen, den Algorithmus zu besseren Entscheidungen zu führen.
+>Ein Beispiel: Wenn ein Algorithmus auf einen Stapel unbeschrifteter oder halb-beschrifteter Daten losgelassen wird, könnten die von ihm erzeugten Cluster von schlechter Qualität sein. Im obigen Beispiel könnten die Cluster „runde Musiksachen“, „quadratische Musiksachen“, „dreieckige Sachen“ und „Kekse“ gruppieren. Wenn einige Einschränkungen oder Regeln hinzugefügt werden ("das Objekt muss aus Plastik sein", "das Objekt muss Musik produzieren können"), kann dies helfen, den Algorithmus zu besseren Entscheidungen zu führen.
 > 
 > 🎓 'Dichte'
 > 
-> Daten, die „rauschend“ sind, gelten als „dicht“. Die Distanzen zwischen Punkten in jedem seiner Cluster können sich bei der Untersuchung als mehr oder weniger dicht oder „gedrängt“ erweisen, und daher müssen diese Daten mit der geeigneten Clustering-Methode analysiert werden. [Dieser Artikel](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) zeigt den Unterschied zwischen der Verwendung von K-Means-Clustering und HDBSCAN-Algorithmen zur Untersuchung eines rauschenden Datensatzes mit ungleichmäßiger Clusterdichte.
+> Daten, die „rauschend“ sind, gelten als „dicht“. Die Distanzen zwischen Punkten in jedem seiner Cluster können sich bei der Untersuchung als mehr oder weniger dicht oder „gedrängt“ erweisen, und daher müssen diese Daten mit der geeigneten Clustering-Methode analysiert werden. [Dieser Artikel](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) zeigt den Unterschied zwischen der Verwendung von K-Means Clustering und HDBSCAN-Algorithmen zur Untersuchung eines rauschenden Datensatzes mit ungleichmäßiger Cluster-Dichte.
 
 ## Clustering-Algorithmen
 
@@ -93,23 +93,23 @@ Es gibt über 100 Clustering-Algorithmen, und ihre Verwendung hängt von der Nat
 
 - **Hierarchisches Clustering**. Wenn ein Objekt basierend auf seiner Nähe zu einem nahegelegenen Objekt klassifiziert wird, anstatt zu einem weiter entfernten, werden Cluster basierend auf den Distanzen ihrer Mitglieder zu und von anderen Objekten gebildet. Scikit-learns agglomeratives Clustering ist hierarchisch.
 
-   ![Hierarchisches Clustering Infografik](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.de.png)
+   ![Hierarchisches Clustering Infografik](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > Infografik von [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Zentroid-Clustering**. Dieser beliebte Algorithmus erfordert die Wahl von 'k', oder der Anzahl der zu bildenden Cluster, wonach der Algorithmus den Mittelpunkt eines Clusters bestimmt und Daten um diesen Punkt sammelt. [K-Means-Clustering](https://wikipedia.org/wiki/K-means_clustering) ist eine beliebte Version des Zentroid-Clustering. Der Mittelpunkt wird durch den nächstgelegenen Mittelwert bestimmt, daher der Name. Die quadratische Entfernung vom Cluster wird minimiert.
+- **Zentroid-basiertes Clustering**. Dieser beliebte Algorithmus erfordert die Wahl von 'k', oder der Anzahl der zu bildenden Cluster, wonach der Algorithmus den Mittelpunkt eines Clusters bestimmt und Daten um diesen Punkt sammelt. [K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) ist eine beliebte Version des zentroid-basierten Clustering. Der Mittelpunkt wird durch den nächstgelegenen Mittelwert bestimmt, daher der Name. Die quadratische Entfernung vom Cluster wird minimiert.
 
-   ![Zentroid-Clustering Infografik](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.de.png)
+   ![Zentroid-basiertes Clustering Infografik](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > Infografik von [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 - **Verteilungsbasiertes Clustering**. Basierend auf statistischer Modellierung konzentriert sich das verteilungsbasierte Clustering darauf, die Wahrscheinlichkeit zu bestimmen, dass ein Datenpunkt zu einem Cluster gehört, und ihn entsprechend zuzuweisen. Gaussian-Mischmethoden gehören zu diesem Typ.
 
-- **Dichtebasiertes Clustering**. Datenpunkte werden basierend auf ihrer Dichte oder ihrer Gruppierung umeinander herum Clustern zugewiesen. Datenpunkte, die weit von der Gruppe entfernt sind, werden als Ausreißer oder Rauschen betrachtet. DBSCAN, Mean-Shift und OPTICS gehören zu diesem Typ des Clustering.
+- **Dichtebasiertes Clustering**. Datenpunkte werden basierend auf ihrer Dichte oder ihrer Gruppierung umeinander herum Clustern zugewiesen. Datenpunkte, die weit von der Gruppe entfernt sind, werden als Ausreißer oder Rauschen betrachtet. DBSCAN, Mean-shift und OPTICS gehören zu diesem Typ des Clustering.
 
 - **Rasterbasiertes Clustering**. Für mehrdimensionale Datensätze wird ein Raster erstellt und die Daten werden auf die Zellen des Rasters verteilt, wodurch Cluster entstehen.
 
-## Übung – Ihre Daten clustern
+## Übung – Daten clustern
 
-Clustering als Technik wird durch eine ordentliche Visualisierung erheblich erleichtert. Lassen Sie uns daher beginnen, unsere Musikdaten zu visualisieren. Diese Übung wird uns helfen zu entscheiden, welche der Clustering-Methoden wir am effektivsten für die Natur dieser Daten verwenden sollten.
+Clustering als Technik wird durch eine ordentliche Visualisierung erheblich erleichtert, also lassen Sie uns beginnen, unsere Musikdaten zu visualisieren. Diese Übung wird uns helfen zu entscheiden, welche der Clustering-Methoden wir am effektivsten für die Natur dieser Daten verwenden sollten.
 
 1. Öffnen Sie die Datei [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/1-Visualize/notebook.ipynb) in diesem Ordner.
 
@@ -119,7 +119,7 @@ Clustering als Technik wird durch eine ordentliche Visualisierung erheblich erle
     !pip install seaborn
     ```
 
-1. Fügen Sie die Songdaten aus [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv) hinzu. Laden Sie ein DataFrame mit einigen Daten über die Songs. Bereiten Sie sich darauf vor, diese Daten zu erkunden, indem Sie die Bibliotheken importieren und die Daten ausgeben:
+1. Fügen Sie die Songdaten aus [_nigerian-songs.csv_](https://github.com/microsoft/ML-For-Beginners/blob/main/5-Clustering/data/nigerian-songs.csv) hinzu. Laden Sie einen Dataframe mit einigen Daten über die Songs. Bereiten Sie sich darauf vor, diese Daten zu erkunden, indem Sie die Bibliotheken importieren und die Daten ausgeben:
 
     ```python
     import matplotlib.pyplot as plt
@@ -131,10 +131,10 @@ Clustering als Technik wird durch eine ordentliche Visualisierung erheblich erle
 
     Überprüfen Sie die ersten Zeilen der Daten:
 
-    |     | name                     | album                        | artist              | artist_top_genre | release_date | length | popularity | danceability | acousticness | energy | instrumentalness | liveness | loudness | speechiness | tempo   | time_signature |
-    | --- | ------------------------ | ---------------------------- | ------------------- | ---------------- | ------------ | ------ | ---------- | ------------ | ------------ | ------ | ---------------- | -------- | -------- | ----------- | ------- | -------------- |
-    | 0   | Sparky                   | Mandy & The Jungle           | Cruel Santino       | alternative r&b  | 2019         | 144000 | 48         | 0.666        | 0.851        | 0.42   | 0.534            | 0.11     | -6.699   | 0.0829      | 133.015 | 5              |
-    | 1   | shuga rush               | EVERYTHING YOU HEARD IS TRUE | Odunsi (The Engine) | afropop          | 2020         | 89488  | 30         | 0.71         | 0.0822       | 0.683  | 0.000169         | 0.101    | -5.64    | 0.36        | 129.993 | 3              |
+    |     | Name                     | Album                        | Künstler            | Künstler-Top-Genre | Veröffentlichungsdatum | Länge  | Beliebtheit | Tanzbarkeit | Akustizität | Energie | Instrumentalität | Lebendigkeit | Lautstärke | Sprachlichkeit | Tempo   | Taktart         |
+    | --- | ------------------------ | ---------------------------- | ------------------- | ------------------ | ---------------------- | ------ | ----------- | ----------- | ----------- | ------ | ---------------- | ----------- | ---------- | -------------- | ------- | -------------- |
+    | 0   | Sparky                   | Mandy & The Jungle           | Cruel Santino       | Alternative R&B    | 2019                   | 144000 | 48          | 0.666       | 0.851       | 0.42   | 0.534            | 0.11        | -6.699     | 0.0829         | 133.015 | 5              |
+    | 1   | shuga rush               | EVERYTHING YOU HEARD IS TRUE | Odunsi (The Engine) | Afropop            | 2020                   | 89488  | 30          | 0.71        | 0.0822      | 0.683  | 0.000169         | 0.101       | -5.64      | 0.36           | 129.993 | 3              |
 | 2   | LITT!                    | LITT!                        | AYLØ                | indie r&b        | 2018         | 207758 | 40         | 0.836        | 0.272        | 0.564  | 0.000537         | 0.11     | -7.127   | 0.0424      | 130.005 | 4              |
 | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
 | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
@@ -234,11 +234,11 @@ Schauen Sie sich die allgemeinen Werte der Daten an. Beachten Sie, dass Populari
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.de.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
 ✅ Wenn Sie mehr Top-Werte sehen möchten, ändern Sie das Top `[:5]` in einen größeren Wert oder entfernen Sie es, um alle anzuzeigen.
 
-Beachten Sie, wenn das Top-Genre als 'Missing' beschrieben wird, bedeutet das, dass Spotify es nicht klassifiziert hat. Lassen Sie uns diese entfernen.
+Beachten Sie, wenn das Top-Genre als 'Missing' beschrieben wird, bedeutet das, dass Spotify es nicht klassifiziert hat. Lassen Sie uns dies entfernen.
 
 1. Entfernen Sie fehlende Daten, indem Sie sie herausfiltern:
 
@@ -253,7 +253,7 @@ Beachten Sie, wenn das Top-Genre als 'Missing' beschrieben wird, bedeutet das, d
 
     Überprüfen Sie nun die Genres erneut:
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.de.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
 1. Die drei Top-Genres dominieren bei weitem diesen Datensatz. Konzentrieren wir uns auf `afro dancehall`, `afropop` und `nigerian pop` und filtern den Datensatz zusätzlich, um alles mit einem Popularitätswert von 0 zu entfernen (was bedeutet, dass es im Datensatz nicht klassifiziert wurde und für unsere Zwecke als Rauschen betrachtet werden kann):
 
@@ -275,21 +275,21 @@ Beachten Sie, wenn das Top-Genre als 'Missing' beschrieben wird, bedeutet das, d
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.de.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
     Die einzige starke Korrelation besteht zwischen `energy` und `loudness`, was nicht allzu überraschend ist, da laute Musik normalerweise ziemlich energiegeladen ist. Ansonsten sind die Korrelationen relativ schwach. Es wird interessant sein zu sehen, was ein Clustering-Algorithmus aus diesen Daten machen kann.
 
     > 🎓 Beachten Sie, dass Korrelation keine Kausalität impliziert! Wir haben einen Beweis für Korrelation, aber keinen Beweis für Kausalität. Eine [amüsante Website](https://tylervigen.com/spurious-correlations) bietet einige Visualisierungen, die diesen Punkt betonen.
 
-Gibt es in diesem Datensatz eine Konvergenz in Bezug auf die wahrgenommene Popularität und Tanzbarkeit eines Songs? Ein FacetGrid zeigt, dass es konzentrische Kreise gibt, die sich unabhängig vom Genre ausrichten. Könnte es sein, dass nigerianische Geschmäcker bei einem bestimmten Tanzbarkeitsniveau für dieses Genre konvergieren?
+Gibt es in diesem Datensatz eine Konvergenz zwischen der wahrgenommenen Popularität und der Tanzbarkeit eines Songs? Ein FacetGrid zeigt, dass es konzentrische Kreise gibt, die sich unabhängig vom Genre ausrichten. Könnte es sein, dass nigerianische Geschmäcker bei einem bestimmten Tanzbarkeitsniveau für dieses Genre konvergieren?
 
-✅ Probieren Sie verschiedene Datenpunkte (Energie, Lautstärke, Sprachanteil) und mehr oder andere Musikgenres aus. Was können Sie entdecken? Werfen Sie einen Blick auf die `df.describe()`-Tabelle, um die allgemeine Verteilung der Datenpunkte zu sehen.
+✅ Probieren Sie verschiedene Datenpunkte (energy, loudness, speechiness) und mehr oder andere Musikgenres aus. Was können Sie entdecken? Werfen Sie einen Blick auf die `df.describe()`-Tabelle, um die allgemeine Verteilung der Datenpunkte zu sehen.
 
 ### Übung - Datenverteilung
 
 Unterscheiden sich diese drei Genres signifikant in der Wahrnehmung ihrer Tanzbarkeit, basierend auf ihrer Popularität?
 
-1. Untersuchen Sie die Datenverteilung unserer drei Top-Genres in Bezug auf Popularität und Tanzbarkeit entlang einer gegebenen x- und y-Achse.
+1. Untersuchen Sie die Datenverteilung unserer drei Top-Genres für Popularität und Tanzbarkeit entlang einer gegebenen x- und y-Achse.
 
     ```python
     sns.set_theme(style="ticks")
@@ -303,11 +303,11 @@ Unterscheiden sich diese drei Genres signifikant in der Wahrnehmung ihrer Tanzba
 
     Sie können konzentrische Kreise um einen allgemeinen Konvergenzpunkt entdecken, die die Verteilung der Punkte zeigen.
 
-    > 🎓 Beachten Sie, dass dieses Beispiel ein KDE-Diagramm (Kernel Density Estimate) verwendet, das die Daten mit einer kontinuierlichen Wahrscheinlichkeitsdichtekurve darstellt. Dies ermöglicht es uns, Daten bei der Arbeit mit mehreren Verteilungen zu interpretieren.
+    > 🎓 Beachten Sie, dass dieses Beispiel ein KDE (Kernel Density Estimate)-Diagramm verwendet, das die Daten mit einer kontinuierlichen Wahrscheinlichkeitsdichtekurve darstellt. Dies ermöglicht es uns, Daten bei der Arbeit mit mehreren Verteilungen zu interpretieren.
 
-    Im Allgemeinen stimmen die drei Genres lose in Bezug auf ihre Popularität und Tanzbarkeit überein. Cluster in diesen lose ausgerichteten Daten zu bestimmen, wird eine Herausforderung:
+    Im Allgemeinen stimmen die drei Genres lose in Bezug auf ihre Popularität und Tanzbarkeit überein. Cluster in diesen lose ausgerichteten Daten zu bestimmen, wird eine Herausforderung sein:
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.de.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. Erstellen Sie ein Streudiagramm:
 
@@ -319,9 +319,9 @@ Unterscheiden sich diese drei Genres signifikant in der Wahrnehmung ihrer Tanzba
 
     Ein Streudiagramm derselben Achsen zeigt ein ähnliches Muster der Konvergenz:
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.de.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
-Im Allgemeinen können Sie für das Clustering Streudiagramme verwenden, um Datencluster darzustellen. Daher ist es sehr nützlich, diese Art der Visualisierung zu beherrschen. In der nächsten Lektion werden wir diese gefilterten Daten verwenden und mit k-means Clustering Gruppen in diesen Daten entdecken, die sich auf interessante Weise überlappen.
+Im Allgemeinen können Sie für das Clustering Streudiagramme verwenden, um Cluster von Daten darzustellen. Daher ist es sehr nützlich, diese Art der Visualisierung zu beherrschen. In der nächsten Lektion werden wir diese gefilterten Daten verwenden und k-means-Clustering einsetzen, um Gruppen in diesen Daten zu entdecken, die auf interessante Weise überlappen.
 
 ---
 
@@ -329,9 +329,9 @@ Im Allgemeinen können Sie für das Clustering Streudiagramme verwenden, um Date
 
 Bereiten Sie sich auf die nächste Lektion vor, indem Sie ein Diagramm über die verschiedenen Clustering-Algorithmen erstellen, die Sie möglicherweise in einer Produktionsumgebung entdecken und verwenden könnten. Welche Arten von Problemen versucht das Clustering zu lösen?
 
-## [Quiz nach der Vorlesung](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Quiz nach der Vorlesung](https://ff-quizzes.netlify.app/en/ml/)
 
-## Rückblick & Selbststudium
+## Überprüfung & Selbststudium
 
 Bevor Sie Clustering-Algorithmen anwenden, ist es, wie wir gelernt haben, eine gute Idee, die Natur Ihres Datensatzes zu verstehen. Lesen Sie mehr zu diesem Thema [hier](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html).
 
@@ -344,4 +344,4 @@ Bevor Sie Clustering-Algorithmen anwenden, ist es, wie wir gelernt haben, eine g
 ---
 
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, weisen wir darauf hin, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner ursprünglichen Sprache sollte als maßgebliche Quelle betrachtet werden. Für kritische Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die sich aus der Nutzung dieser Übersetzung ergeben.

@@ -1,50 +1,50 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "72b5bae0879baddf6aafc82bb07b8776",
-  "translation_date": "2025-08-29T20:25:42+00:00",
+  "original_hash": "abf86d845c84330bce205a46b382ec88",
+  "translation_date": "2025-09-04T21:23:34+00:00",
   "source_file": "2-Regression/4-Logistic/README.md",
   "language_code": "br"
 }
 -->
 # Regressão logística para prever categorias
 
-![Infográfico de regressão logística vs. linear](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.br.png)
+![Infográfico de regressão logística vs. regressão linear](../../../../2-Regression/4-Logistic/images/linear-vs-logistic.png)
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-> ### [Esta lição está disponível em R!](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
+> ### [Esta aula está disponível em R!](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
 
 ## Introdução
 
-Nesta última lição sobre Regressão, uma das técnicas básicas _clássicas_ de ML, vamos explorar a Regressão Logística. Você usaria essa técnica para descobrir padrões e prever categorias binárias. Este doce é chocolate ou não? Esta doença é contagiosa ou não? Este cliente escolherá este produto ou não?
+Nesta última aula sobre Regressão, uma das técnicas básicas _clássicas_ de ML, vamos explorar a Regressão Logística. Você usaria essa técnica para descobrir padrões e prever categorias binárias. Este doce é chocolate ou não? Esta doença é contagiosa ou não? Este cliente escolherá este produto ou não?
 
-Nesta lição, você aprenderá:
+Nesta aula, você aprenderá:
 
 - Uma nova biblioteca para visualização de dados
-- Técnicas para regressão logística
+- Técnicas de regressão logística
 
-✅ Aprofunde seu entendimento sobre como trabalhar com este tipo de regressão neste [módulo do Learn](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
+✅ Aprofunde seu entendimento sobre como trabalhar com este tipo de regressão neste [módulo de aprendizado](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott)
 
 ## Pré-requisito
 
-Depois de trabalhar com os dados de abóboras, já estamos familiarizados o suficiente para perceber que há uma categoria binária com a qual podemos trabalhar: `Color`.
+Depois de trabalhar com os dados de abóbora, já estamos suficientemente familiarizados para perceber que há uma categoria binária com a qual podemos trabalhar: `Color`.
 
-Vamos construir um modelo de regressão logística para prever, com base em algumas variáveis, _qual é a cor provável de uma abóbora_ (laranja 🎃 ou branca 👻).
+Vamos construir um modelo de regressão logística para prever, com base em algumas variáveis, _qual é a cor provável de uma determinada abóbora_ (laranja 🎃 ou branca 👻).
 
-> Por que estamos falando de classificação binária em uma lição sobre regressão? Apenas por conveniência linguística, já que a regressão logística é [na verdade um método de classificação](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), embora baseado em um modelo linear. Aprenda sobre outras formas de classificar dados no próximo grupo de lições.
+> Por que estamos falando de classificação binária em uma aula sobre regressão? Apenas por conveniência linguística, já que a regressão logística é [na verdade um método de classificação](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression), embora baseado em linearidade. Aprenda sobre outras formas de classificar dados no próximo grupo de aulas.
 
 ## Definir a pergunta
 
 Para nossos propósitos, vamos expressar isso como um binário: 'Branca' ou 'Não Branca'. Há também uma categoria 'listrada' em nosso conjunto de dados, mas há poucas instâncias dela, então não a utilizaremos. Ela desaparece quando removemos valores nulos do conjunto de dados, de qualquer forma.
 
-> 🎃 Curiosidade: às vezes chamamos abóboras brancas de abóboras 'fantasmas'. Elas não são muito fáceis de esculpir, então não são tão populares quanto as laranjas, mas têm uma aparência interessante! Assim, também poderíamos reformular nossa pergunta como: 'Fantasma' ou 'Não Fantasma'. 👻
+> 🎃 Curiosidade: às vezes chamamos abóboras brancas de abóboras 'fantasma'. Elas não são muito fáceis de esculpir, então não são tão populares quanto as laranjas, mas têm uma aparência interessante! Assim, poderíamos reformular nossa pergunta como: 'Fantasma' ou 'Não Fantasma'. 👻
 
 ## Sobre regressão logística
 
 A regressão logística difere da regressão linear, que você aprendeu anteriormente, em alguns aspectos importantes.
 
-[![ML para iniciantes - Entendendo Regressão Logística para Classificação em Machine Learning](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "ML para iniciantes - Entendendo Regressão Logística para Classificação em Machine Learning")
+[![ML para iniciantes - Entendendo a Regressão Logística para Classificação de Machine Learning](https://img.youtube.com/vi/KpeCT6nEpBY/0.jpg)](https://youtu.be/KpeCT6nEpBY "ML para iniciantes - Entendendo a Regressão Logística para Classificação de Machine Learning")
 
 > 🎥 Clique na imagem acima para um breve vídeo sobre regressão logística.
 
@@ -52,7 +52,7 @@ A regressão logística difere da regressão linear, que você aprendeu anterior
 
 A regressão logística não oferece os mesmos recursos que a regressão linear. A primeira oferece uma previsão sobre uma categoria binária ("branca ou não branca"), enquanto a segunda é capaz de prever valores contínuos, por exemplo, dado a origem de uma abóbora e o tempo de colheita, _quanto seu preço aumentará_.
 
-![Modelo de classificação de abóboras](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.br.png)
+![Modelo de classificação de abóbora](../../../../2-Regression/4-Logistic/images/pumpkin-classifier.png)
 > Infográfico por [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 ### Outras classificações
@@ -60,13 +60,13 @@ A regressão logística não oferece os mesmos recursos que a regressão linear.
 Existem outros tipos de regressão logística, incluindo multinomial e ordinal:
 
 - **Multinomial**, que envolve mais de uma categoria - "Laranja, Branca e Listrada".
-- **Ordinal**, que envolve categorias ordenadas, útil se quisermos ordenar nossos resultados logicamente, como nossas abóboras ordenadas por um número finito de tamanhos (mini,pequeno,médio,grande,xl,xxl).
+- **Ordinal**, que envolve categorias ordenadas, útil se quisermos ordenar nossos resultados logicamente, como nossas abóboras que são ordenadas por um número finito de tamanhos (mini, pequeno, médio, grande, extra grande, extra extra grande).
 
-![Regressão multinomial vs ordinal](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.br.png)
+![Regressão multinomial vs ordinal](../../../../2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
 ### As variáveis NÃO precisam ser correlacionadas
 
-Lembra como a regressão linear funcionava melhor com variáveis mais correlacionadas? A regressão logística é o oposto - as variáveis não precisam estar alinhadas. Isso funciona para este conjunto de dados, que tem correlações um tanto fracas.
+Lembra como a regressão linear funcionava melhor com variáveis mais correlacionadas? A regressão logística é o oposto - as variáveis não precisam estar alinhadas. Isso funciona para este conjunto de dados, que tem correlações relativamente fracas.
 
 ### Você precisa de muitos dados limpos
 
@@ -80,7 +80,7 @@ A regressão logística fornecerá resultados mais precisos se você usar mais d
 
 ## Exercício - organizar os dados
 
-Primeiro, limpe os dados um pouco, removendo valores nulos e selecionando apenas algumas colunas:
+Primeiro, limpe os dados, removendo valores nulos e selecionando apenas algumas colunas:
 
 1. Adicione o seguinte código:
 
@@ -100,11 +100,11 @@ Primeiro, limpe os dados um pouco, removendo valores nulos e selecionando apenas
 
 ### Visualização - gráfico categórico
 
-Agora que você carregou o [notebook inicial](./notebook.ipynb) com os dados de abóboras novamente e os limpou para preservar um conjunto de dados contendo algumas variáveis, incluindo `Color`, vamos visualizar o dataframe no notebook usando uma biblioteca diferente: [Seaborn](https://seaborn.pydata.org/index.html), que é construída sobre o Matplotlib que usamos anteriormente.
+Agora você carregou o [notebook inicial](../../../../2-Regression/4-Logistic/notebook.ipynb) com os dados de abóbora novamente e os limpou para preservar um conjunto de dados contendo algumas variáveis, incluindo `Color`. Vamos visualizar o dataframe no notebook usando uma biblioteca diferente: [Seaborn](https://seaborn.pydata.org/index.html), que é construída sobre o Matplotlib que usamos anteriormente.
 
-O Seaborn oferece algumas maneiras interessantes de visualizar seus dados. Por exemplo, você pode comparar distribuições dos dados para cada `Variety` e `Color` em um gráfico categórico.
+Seaborn oferece algumas maneiras interessantes de visualizar seus dados. Por exemplo, você pode comparar distribuições dos dados para cada `Variety` e `Color` em um gráfico categórico.
 
-1. Crie tal gráfico usando a função `catplot`, com os dados de abóboras `pumpkins`, e especificando um mapeamento de cores para cada categoria de abóbora (laranja ou branca):
+1. Crie tal gráfico usando a função `catplot`, com os dados de abóbora `pumpkins`, e especificando um mapeamento de cores para cada categoria de abóbora (laranja ou branca):
 
     ```python
     import seaborn as sns
@@ -120,7 +120,7 @@ O Seaborn oferece algumas maneiras interessantes de visualizar seus dados. Por e
     )
     ```
 
-    ![Uma grade de dados visualizados](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.br.png)
+    ![Uma grade de dados visualizados](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_1.png)
 
     Observando os dados, você pode ver como os dados de `Color` se relacionam com `Variety`.
 
@@ -128,11 +128,11 @@ O Seaborn oferece algumas maneiras interessantes de visualizar seus dados. Por e
 
 ### Pré-processamento de dados: codificação de características e rótulos
 
-Nosso conjunto de dados de abóboras contém valores de string para todas as suas colunas. Trabalhar com dados categóricos é intuitivo para humanos, mas não para máquinas. Os algoritmos de aprendizado de máquina funcionam bem com números. Por isso, a codificação é uma etapa muito importante na fase de pré-processamento de dados, pois permite transformar dados categóricos em dados numéricos, sem perder informações. Uma boa codificação leva à construção de um bom modelo.
+Nosso conjunto de dados de abóboras contém valores de string para todas as suas colunas. Trabalhar com dados categóricos é intuitivo para humanos, mas não para máquinas. Algoritmos de aprendizado de máquina funcionam bem com números. É por isso que a codificação é uma etapa muito importante na fase de pré-processamento de dados, pois nos permite transformar dados categóricos em dados numéricos, sem perder nenhuma informação. Uma boa codificação leva à construção de um bom modelo.
 
-Para a codificação de características, existem dois principais tipos de codificadores:
+Para codificação de características, existem dois tipos principais de codificadores:
 
-1. Codificador ordinal: é adequado para variáveis ordinais, que são variáveis categóricas cujos dados seguem uma ordem lógica, como a coluna `Item Size` em nosso conjunto de dados. Ele cria um mapeamento em que cada categoria é representada por um número, que é a ordem da categoria na coluna.
+1. Codificador ordinal: é adequado para variáveis ordinais, que são variáveis categóricas cujos dados seguem uma ordem lógica, como a coluna `Item Size` em nosso conjunto de dados. Ele cria um mapeamento de forma que cada categoria seja representada por um número, que é a ordem da categoria na coluna.
 
     ```python
     from sklearn.preprocessing import OrdinalEncoder
@@ -151,7 +151,7 @@ Para a codificação de características, existem dois principais tipos de codif
     categorical_encoder = OneHotEncoder(sparse_output=False)
     ```
 
-Depois, `ColumnTransformer` é usado para combinar múltiplos codificadores em uma única etapa e aplicá-los às colunas apropriadas.
+Então, `ColumnTransformer` é usado para combinar múltiplos codificadores em uma única etapa e aplicá-los às colunas apropriadas.
 
 ```python
     from sklearn.compose import ColumnTransformer
@@ -206,15 +206,15 @@ A melhor maneira de realizar esse tipo de análise é plotando os dados. Usaremo
     g.set_titles(row_template="{row_name}")
 ```
 
-![Um catplot de dados visualizados](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.br.png)
+![Um gráfico categórico de dados visualizados](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_2.png)
 
-### Usar um gráfico de dispersão (swarm plot)
+### Usar um gráfico de dispersão
 
 Como `Color` é uma categoria binária (Branca ou Não), ela precisa de '[uma abordagem especializada](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar) para visualização'. Existem outras maneiras de visualizar a relação dessa categoria com outras variáveis.
 
 Você pode visualizar variáveis lado a lado com gráficos do Seaborn.
 
-1. Experimente um gráfico de dispersão ('swarm') para mostrar a distribuição de valores:
+1. Experimente um gráfico de dispersão ('swarm plot') para mostrar a distribuição de valores:
 
     ```python
     palette = {
@@ -224,17 +224,17 @@ Você pode visualizar variáveis lado a lado com gráficos do Seaborn.
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![Um gráfico de dispersão de dados visualizados](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.br.png)
+    ![Um gráfico de dispersão de dados visualizados](../../../../2-Regression/4-Logistic/images/swarm_2.png)
 
-**Atenção**: o código acima pode gerar um aviso, já que o Seaborn pode falhar ao representar tal quantidade de pontos de dados em um gráfico de dispersão. Uma solução possível é diminuir o tamanho do marcador, usando o parâmetro 'size'. No entanto, esteja ciente de que isso pode afetar a legibilidade do gráfico.
+**Atenção**: o código acima pode gerar um aviso, já que o Seaborn pode falhar ao representar uma quantidade tão grande de pontos de dados em um gráfico de dispersão. Uma solução possível é diminuir o tamanho do marcador, usando o parâmetro 'size'. No entanto, esteja ciente de que isso afeta a legibilidade do gráfico.
 
 > **🧮 Mostre-me a Matemática**
 >
-> A regressão logística baseia-se no conceito de 'máxima verossimilhança' usando [funções sigmoides](https://wikipedia.org/wiki/Sigmoid_function). Uma 'Função Sigmoide' em um gráfico parece uma forma de 'S'. Ela pega um valor e o mapeia para algo entre 0 e 1. Sua curva também é chamada de 'curva logística'. Sua fórmula é assim:
+> A regressão logística se baseia no conceito de 'máxima verossimilhança' usando [funções sigmoides](https://wikipedia.org/wiki/Sigmoid_function). Uma 'Função Sigmoide' em um gráfico tem a forma de um 'S'. Ela pega um valor e o mapeia para algo entre 0 e 1. Sua curva também é chamada de 'curva logística'. Sua fórmula é assim:
 >
-> ![função logística](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.br.png)
+> ![função logística](../../../../2-Regression/4-Logistic/images/sigmoid.png)
 >
-> onde o ponto médio da sigmoide encontra-se no ponto 0 de x, L é o valor máximo da curva e k é a inclinação da curva. Se o resultado da função for maior que 0,5, o rótulo em questão será classificado como '1' da escolha binária. Caso contrário, será classificado como '0'.
+> onde o ponto médio da sigmoide encontra-se no ponto 0 de x, L é o valor máximo da curva, e k é a inclinação da curva. Se o resultado da função for maior que 0.5, o rótulo em questão será atribuído à classe '1' da escolha binária. Caso contrário, será classificado como '0'.
 
 ## Construir seu modelo
 
@@ -242,7 +242,7 @@ Construir um modelo para encontrar essas classificações binárias é surpreend
 
 [![ML para iniciantes - Regressão Logística para classificação de dados](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "ML para iniciantes - Regressão Logística para classificação de dados")
 
-> 🎥 Clique na imagem acima para um breve vídeo sobre como construir um modelo de regressão linear.
+> 🎥 Clique na imagem acima para um breve vídeo sobre construção de um modelo de regressão linear.
 
 1. Selecione as variáveis que deseja usar em seu modelo de classificação e divida os conjuntos de treinamento e teste chamando `train_test_split()`:
 
@@ -271,7 +271,7 @@ Construir um modelo para encontrar essas classificações binárias é surpreend
     print('F1-score: ', f1_score(y_test, predictions))
     ```
 
-    Veja o desempenho do seu modelo. Não é ruim, considerando que você tem apenas cerca de 1000 linhas de dados:
+    Veja o desempenho do seu modelo. Não está ruim, considerando que você tem apenas cerca de 1000 linhas de dados:
 
     ```output
                        precision    recall  f1-score   support
@@ -292,9 +292,9 @@ Construir um modelo para encontrar essas classificações binárias é surpreend
         F1-score:  0.7457627118644068
     ```
 
-## Melhor compreensão por meio de uma matriz de confusão
+## Melhor compreensão via uma matriz de confusão
 
-Embora você possa obter um relatório de desempenho [termos](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) imprimindo os itens acima, talvez seja mais fácil entender seu modelo usando uma [matriz de confusão](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) para ajudar a entender como o modelo está se saindo.
+Embora você possa obter um relatório de desempenho [termos](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html?highlight=classification_report#sklearn.metrics.classification_report) imprimindo os itens acima, talvez consiga entender seu modelo mais facilmente usando uma [matriz de confusão](https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix) para ajudar a entender como o modelo está se saindo.
 
 > 🎓 Uma '[matriz de confusão](https://wikipedia.org/wiki/Confusion_matrix)' (ou 'matriz de erro') é uma tabela que expressa os verdadeiros vs. falsos positivos e negativos do seu modelo, avaliando assim a precisão das previsões.
 
@@ -312,7 +312,7 @@ Embora você possa obter um relatório de desempenho [termos](https://scikit-lea
            [ 11,  22]])
     ```
 
-No Scikit-learn, as linhas (eixo 0) da matriz de confusão são os rótulos reais e as colunas (eixo 1) são os rótulos previstos.
+No Scikit-learn, as linhas (eixo 0) são os rótulos reais e as colunas (eixo 1) são os rótulos previstos.
 
 |       |   0   |   1   |
 | :---: | :---: | :---: |
@@ -321,12 +321,12 @@ No Scikit-learn, as linhas (eixo 0) da matriz de confusão são os rótulos reai
 
 O que está acontecendo aqui? Digamos que nosso modelo seja solicitado a classificar abóboras entre duas categorias binárias, categoria 'branca' e categoria 'não branca'.
 
-- Se o modelo prevê uma abóbora como não branca e ela realmente pertence à categoria 'não branca', chamamos isso de verdadeiro negativo, mostrado pelo número no canto superior esquerdo.
-- Se o modelo prevê uma abóbora como branca e ela realmente pertence à categoria 'não branca', chamamos isso de falso negativo, mostrado pelo número no canto inferior esquerdo.
-- Se o modelo prevê uma abóbora como não branca e ela realmente pertence à categoria 'branca', chamamos isso de falso positivo, mostrado pelo número no canto superior direito.
-- Se o modelo prevê uma abóbora como branca e ela realmente pertence à categoria 'branca', chamamos isso de verdadeiro positivo, mostrado pelo número no canto inferior direito.
+- Se seu modelo prevê uma abóbora como não branca e ela pertence à categoria 'não branca' na realidade, chamamos isso de verdadeiro negativo, mostrado pelo número no canto superior esquerdo.
+- Se seu modelo prevê uma abóbora como branca e ela pertence à categoria 'não branca' na realidade, chamamos isso de falso negativo, mostrado pelo número no canto inferior esquerdo.
+- Se seu modelo prevê uma abóbora como não branca e ela pertence à categoria 'branca' na realidade, chamamos isso de falso positivo, mostrado pelo número no canto superior direito.
+- Se seu modelo prevê uma abóbora como branca e ela pertence à categoria 'branca' na realidade, chamamos isso de verdadeiro positivo, mostrado pelo número no canto inferior direito.
 
-Como você deve ter adivinhado, é preferível ter um número maior de verdadeiros positivos e verdadeiros negativos e um número menor de falsos positivos e falsos negativos, o que implica que o modelo está se saindo melhor.
+Como você deve ter imaginado, é preferível ter um número maior de verdadeiros positivos e verdadeiros negativos e um número menor de falsos positivos e falsos negativos, o que implica que o modelo está se saindo melhor.
 Como a matriz de confusão se relaciona com precisão e recall? Lembre-se, o relatório de classificação mostrado acima indicou precisão (0,85) e recall (0,67).
 
 Precisão = tp / (tp + fp) = 22 / (22 + 4) = 0,8461538461538461
@@ -337,19 +337,19 @@ Recall = tp / (tp + fn) = 22 / (22 + 11) = 0,6666666666666666
 
 Vamos revisitar os termos que vimos anteriormente com a ajuda do mapeamento de TP/TN e FP/FN na matriz de confusão:
 
-🎓 Precisão: TP/(TP + FP) A fração de instâncias relevantes entre as instâncias recuperadas (por exemplo, quais rótulos foram bem rotulados).
+🎓 Precisão: TP/(TP + FP) A fração de instâncias relevantes entre as instâncias recuperadas (ex.: quais rótulos foram bem rotulados)
 
-🎓 Recall: TP/(TP + FN) A fração de instâncias relevantes que foram recuperadas, independentemente de estarem bem rotuladas ou não.
+🎓 Recall: TP/(TP + FN) A fração de instâncias relevantes que foram recuperadas, independentemente de estarem bem rotuladas ou não
 
-🎓 f1-score: (2 * precisão * recall)/(precisão + recall) Uma média ponderada entre precisão e recall, sendo o melhor 1 e o pior 0.
+🎓 f1-score: (2 * precisão * recall)/(precisão + recall) Uma média ponderada entre precisão e recall, sendo o melhor 1 e o pior 0
 
-🎓 Suporte: O número de ocorrências de cada rótulo recuperado.
+🎓 Suporte: O número de ocorrências de cada rótulo recuperado
 
-🎓 Precisão geral (Accuracy): (TP + TN)/(TP + TN + FP + FN) A porcentagem de rótulos previstos corretamente para uma amostra.
+🎓 Precisão geral: (TP + TN)/(TP + TN + FP + FN) A porcentagem de rótulos previstos corretamente para uma amostra.
 
-🎓 Macro Avg: O cálculo da média não ponderada das métricas para cada rótulo, sem levar em conta o desequilíbrio entre os rótulos.
+🎓 Média Macro: O cálculo das métricas médias não ponderadas para cada rótulo, sem levar em conta o desequilíbrio entre os rótulos.
 
-🎓 Weighted Avg: O cálculo da média das métricas para cada rótulo, levando em conta o desequilíbrio entre os rótulos ao ponderá-los pelo suporte (o número de instâncias verdadeiras para cada rótulo).
+🎓 Média Ponderada: O cálculo das métricas médias para cada rótulo, levando em conta o desequilíbrio entre os rótulos ao ponderá-los pelo suporte (o número de instâncias verdadeiras para cada rótulo).
 
 ✅ Você consegue pensar em qual métrica deve observar se quiser que seu modelo reduza o número de falsos negativos?
 
@@ -357,7 +357,7 @@ Vamos revisitar os termos que vimos anteriormente com a ajuda do mapeamento de T
 
 [![ML para iniciantes - Analisando o desempenho da regressão logística com curvas ROC](https://img.youtube.com/vi/GApO575jTA0/0.jpg)](https://youtu.be/GApO575jTA0 "ML para iniciantes - Analisando o desempenho da regressão logística com curvas ROC")
 
-> 🎥 Clique na imagem acima para um breve vídeo sobre curvas ROC.
+> 🎥 Clique na imagem acima para um breve vídeo sobre curvas ROC
 
 Vamos fazer mais uma visualização para ver a chamada curva 'ROC':
 
@@ -381,7 +381,7 @@ plt.show()
 
 Usando Matplotlib, plote a [Curva Característica de Operação do Receptor](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) ou ROC do modelo. As curvas ROC são frequentemente usadas para visualizar o desempenho de um classificador em termos de seus verdadeiros positivos versus falsos positivos. "As curvas ROC geralmente apresentam a taxa de verdadeiros positivos no eixo Y e a taxa de falsos positivos no eixo X." Assim, a inclinação da curva e o espaço entre a linha do ponto médio e a curva são importantes: você quer uma curva que rapidamente suba e ultrapasse a linha. No nosso caso, há falsos positivos no início, e então a linha sobe e ultrapassa adequadamente:
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.br.png)
+![ROC](../../../../2-Regression/4-Logistic/images/ROC_2.png)
 
 Por fim, use a API [`roc_auc_score`](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) do Scikit-learn para calcular a 'Área Sob a Curva' (AUC):
 
@@ -389,8 +389,7 @@ Por fim, use a API [`roc_auc_score`](https://scikit-learn.org/stable/modules/gen
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```
-
-O resultado é `0,9749908725812341`. Dado que a AUC varia de 0 a 1, você quer um valor alto, já que um modelo que é 100% correto em suas previsões terá uma AUC de 1; neste caso, o modelo está _muito bom_.
+O resultado é `0.9749908725812341`. Dado que o AUC varia de 0 a 1, você quer um valor alto, já que um modelo que é 100% correto em suas previsões terá um AUC de 1; neste caso, o modelo está _muito bom_.
 
 Em futuras lições sobre classificações, você aprenderá como iterar para melhorar os resultados do seu modelo. Mas, por enquanto, parabéns! Você concluiu estas lições sobre regressão!
 
@@ -399,13 +398,13 @@ Em futuras lições sobre classificações, você aprenderá como iterar para me
 
 Há muito mais para explorar sobre regressão logística! Mas a melhor maneira de aprender é experimentando. Encontre um conjunto de dados que se preste a este tipo de análise e construa um modelo com ele. O que você aprende? dica: experimente [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) para conjuntos de dados interessantes.
 
-## [Quiz pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+## [Quiz pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisão e Autoestudo
+## Revisão & Autoestudo
 
 Leia as primeiras páginas [deste artigo de Stanford](https://web.stanford.edu/~jurafsky/slp3/5.pdf) sobre alguns usos práticos da regressão logística. Pense em tarefas que são mais adequadas para um ou outro tipo de regressão entre as que estudamos até agora. O que funcionaria melhor?
 
-## Tarefa
+## Tarefa 
 
 [Repetindo esta regressão](assignment.md)
 

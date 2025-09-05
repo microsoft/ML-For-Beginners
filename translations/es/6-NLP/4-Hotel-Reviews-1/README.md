@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "3c4738bb0836dd838c552ab9cab7e09d",
-  "translation_date": "2025-09-04T00:41:00+00:00",
+  "original_hash": "8d32dadeda93c6fb5c43619854882ab1",
+  "translation_date": "2025-09-04T22:27:31+00:00",
   "source_file": "6-NLP/4-Hotel-Reviews-1/README.md",
   "language_code": "es"
 }
@@ -15,7 +15,7 @@ En esta sección, utilizarás las técnicas de las lecciones anteriores para rea
 - cómo calcular nuevos datos basados en las columnas existentes
 - cómo guardar el conjunto de datos resultante para usarlo en el desafío final
 
-## [Cuestionario previo a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/37/)
+## [Cuestionario previo a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Introducción
 
@@ -37,8 +37,8 @@ Este desafío asume que estás construyendo un bot de recomendación de hoteles 
 Usando Python, un conjunto de datos de reseñas de hoteles y el análisis de sentimientos de NLTK, podrías descubrir:
 
 * ¿Cuáles son las palabras y frases más utilizadas en las reseñas?
-* ¿Las *etiquetas* oficiales que describen un hotel se correlacionan con las puntuaciones de las reseñas (por ejemplo, hay más reseñas negativas para un hotel en particular por *Familia con niños pequeños* que por *Viajero solo*, lo que podría indicar que es mejor para *Viajeros solos*)?
-* ¿Las puntuaciones de sentimiento de NLTK "coinciden" con la puntuación numérica del revisor del hotel?
+* ¿Las *etiquetas* oficiales que describen un hotel se correlacionan con las puntuaciones de las reseñas (por ejemplo, hay reseñas más negativas para un hotel en particular por *Familia con niños pequeños* que por *Viajero solo*, lo que podría indicar que es mejor para *Viajeros solos*)?
+* ¿Las puntuaciones de sentimientos de NLTK "coinciden" con la puntuación numérica del revisor del hotel?
 
 #### Conjunto de datos
 
@@ -52,8 +52,8 @@ Aquí están agrupados de una manera que podría ser más fácil de examinar:
 ##### Columnas del hotel
 
 * `Hotel_Name`, `Hotel_Address`, `lat` (latitud), `lng` (longitud)
-  * Usando *lat* y *lng* podrías trazar un mapa con Python mostrando las ubicaciones de los hoteles (quizás codificado por colores para reseñas negativas y positivas).
-  * Hotel_Address no parece ser útil para nosotros, y probablemente lo reemplazaremos con un país para facilitar la clasificación y búsqueda.
+  * Usando *lat* y *lng* podrías trazar un mapa con Python mostrando las ubicaciones de los hoteles (quizás codificado por colores para reseñas negativas y positivas)
+  * Hotel_Address no parece ser útil para nosotros, y probablemente lo reemplazaremos con un país para facilitar la clasificación y búsqueda
 
 **Columnas de meta-reseñas del hotel**
 
@@ -65,28 +65,28 @@ Aquí están agrupados de una manera que podría ser más fácil de examinar:
 * `Total_Number_of_Reviews`
   * El número total de reseñas que ha recibido este hotel - no está claro (sin escribir algo de código) si esto se refiere a las reseñas en el conjunto de datos.
 * `Additional_Number_of_Scoring`
-  * Esto significa que se dio una puntuación pero el revisor no escribió una reseña positiva o negativa.
+  * Esto significa que se dio una puntuación de reseña pero no se escribió una reseña positiva o negativa por parte del revisor.
 
 **Columnas de reseñas**
 
 - `Reviewer_Score`
-  - Este es un valor numérico con un máximo de 1 decimal entre los valores mínimos y máximos 2.5 y 10.
-  - No se explica por qué 2.5 es la puntuación más baja posible.
+  - Este es un valor numérico con un máximo de 1 decimal entre los valores mínimos y máximos 2.5 y 10
+  - No se explica por qué 2.5 es la puntuación más baja posible
 - `Negative_Review`
-  - Si un revisor no escribió nada, este campo tendrá "**No Negative**".
-  - Ten en cuenta que un revisor puede escribir una reseña positiva en la columna de reseñas negativas (por ejemplo, "no hay nada malo en este hotel").
+  - Si un revisor no escribió nada, este campo tendrá "**No Negative**"
+  - Ten en cuenta que un revisor puede escribir una reseña positiva en la columna de reseña negativa (por ejemplo, "no hay nada malo en este hotel")
 - `Review_Total_Negative_Word_Counts`
-  - Un mayor conteo de palabras negativas indica una puntuación más baja (sin verificar la sentimentalidad).
+  - Un mayor conteo de palabras negativas indica una puntuación más baja (sin verificar la sentimentalidad)
 - `Positive_Review`
-  - Si un revisor no escribió nada, este campo tendrá "**No Positive**".
-  - Ten en cuenta que un revisor puede escribir una reseña negativa en la columna de reseñas positivas (por ejemplo, "no hay nada bueno en este hotel en absoluto").
+  - Si un revisor no escribió nada, este campo tendrá "**No Positive**"
+  - Ten en cuenta que un revisor puede escribir una reseña negativa en la columna de reseña positiva (por ejemplo, "no hay nada bueno en este hotel en absoluto")
 - `Review_Total_Positive_Word_Counts`
-  - Un mayor conteo de palabras positivas indica una puntuación más alta (sin verificar la sentimentalidad).
+  - Un mayor conteo de palabras positivas indica una puntuación más alta (sin verificar la sentimentalidad)
 - `Review_Date` y `days_since_review`
-  - Se podría aplicar una medida de frescura o antigüedad a una reseña (las reseñas más antiguas podrían no ser tan precisas como las más recientes debido a cambios en la administración del hotel, renovaciones, adición de una piscina, etc.).
+  - Se podría aplicar una medida de frescura o antigüedad a una reseña (las reseñas más antiguas podrían no ser tan precisas como las más recientes debido a cambios en la gestión del hotel, renovaciones, adición de una piscina, etc.)
 - `Tags`
   - Estas son descripciones breves que un revisor puede seleccionar para describir el tipo de huésped que era (por ejemplo, solo o en familia), el tipo de habitación que tenía, la duración de la estancia y cómo se envió la reseña.
-  - Desafortunadamente, usar estas etiquetas es problemático, revisa la sección a continuación que discute su utilidad.
+  - Desafortunadamente, usar estas etiquetas es problemático, consulta la sección a continuación que discute su utilidad.
 
 **Columnas del revisor**
 
@@ -99,27 +99,27 @@ Aquí están agrupados de una manera que podría ser más fácil de examinar:
 
 | Average  Score | Total Number   Reviews | Reviewer   Score | Negative <br />Review                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Positive   Review                 | Tags                                                                                      |
 | -------------- | ---------------------- | ---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 7.8            | 1945                   | 2.5              | Este no es actualmente un hotel sino un sitio de construcción. Fui aterrorizado desde temprano en la mañana y todo el día con ruidos de construcción inaceptables mientras descansaba después de un largo viaje y trabajaba en la habitación. La gente trabajaba todo el día, es decir, con martillos neumáticos en las habitaciones adyacentes. Pedí un cambio de habitación pero no había ninguna habitación silenciosa disponible. Para empeorar las cosas, me cobraron de más. Me fui en la noche ya que tenía un vuelo muy temprano y recibí una factura adecuada. Un día después, el hotel hizo otro cargo sin mi consentimiento por encima del precio reservado. Es un lugar terrible. No te castigues reservando aquí. | Nada. Lugar terrible. Mantente alejado. | Viaje de negocios. Pareja. Habitación doble estándar. Estancia de 2 noches. |
+| 7.8            | 1945                   | 2.5              | Este no es actualmente un hotel sino un sitio de construcción. Fui aterrorizado desde temprano en la mañana y todo el día con ruidos de construcción inaceptables mientras descansaba después de un largo viaje y trabajaba en la habitación. La gente trabajaba todo el día, es decir, con martillos neumáticos en las habitaciones adyacentes. Pedí un cambio de habitación pero no había ninguna habitación silenciosa disponible. Para empeorar las cosas, me cobraron de más. Me fui en la noche ya que tenía un vuelo muy temprano y recibí una factura adecuada. Un día después, el hotel hizo otro cargo sin mi consentimiento por encima del precio reservado. Es un lugar terrible. No te castigues reservando aquí. | Nada. Lugar terrible. Aléjate.   | Viaje de negocios. Pareja. Habitación doble estándar. Estancia de 2 noches.              |
 
 Como puedes ver, este huésped no tuvo una estancia feliz en este hotel. El hotel tiene una buena puntuación promedio de 7.8 y 1945 reseñas, pero este revisor le dio un 2.5 y escribió 115 palabras sobre lo negativa que fue su estancia. Si no escribió nada en absoluto en la columna Positive_Review, podrías deducir que no hubo nada positivo, pero aún así escribió 7 palabras de advertencia. Si solo contáramos palabras en lugar del significado o sentimiento de las palabras, podríamos tener una visión sesgada de la intención del revisor. Curiosamente, su puntuación de 2.5 es confusa, porque si esa estancia en el hotel fue tan mala, ¿por qué darle algún punto? Al investigar el conjunto de datos de cerca, verás que la puntuación más baja posible es 2.5, no 0. La puntuación más alta posible es 10.
 
 ##### Tags
 
-Como se mencionó anteriormente, a primera vista, la idea de usar `Tags` para categorizar los datos tiene sentido. Desafortunadamente, estas etiquetas no están estandarizadas, lo que significa que en un hotel dado, las opciones podrían ser *Single room*, *Twin room* y *Double room*, pero en el siguiente hotel, son *Deluxe Single Room*, *Classic Queen Room* y *Executive King Room*. Estas podrían ser las mismas cosas, pero hay tantas variaciones que la elección se convierte en:
+Como se mencionó anteriormente, a primera vista, la idea de usar `Tags` para categorizar los datos tiene sentido. Desafortunadamente, estas etiquetas no están estandarizadas, lo que significa que en un hotel dado, las opciones podrían ser *Habitación individual*, *Habitación doble*, y *Habitación twin*, pero en el siguiente hotel, son *Habitación individual deluxe*, *Habitación clásica queen*, y *Habitación ejecutiva king*. Podrían ser lo mismo, pero hay tantas variaciones que la elección se convierte en:
 
-1. Intentar cambiar todos los términos a un estándar único, lo cual es muy difícil, porque no está claro cuál sería la ruta de conversión en cada caso (por ejemplo, *Classic single room* se mapea a *Single room* pero *Superior Queen Room with Courtyard Garden or City View* es mucho más difícil de mapear).
+1. Intentar cambiar todos los términos a un estándar único, lo cual es muy difícil, porque no está claro cuál sería el camino de conversión en cada caso (por ejemplo, *Habitación individual clásica* se mapea a *Habitación individual* pero *Habitación superior queen con vista al jardín del patio o a la ciudad* es mucho más difícil de mapear).
 
-1. Podemos tomar un enfoque de NLP y medir la frecuencia de ciertos términos como *Solo*, *Viajero de negocios* o *Familia con niños pequeños* según se aplican a cada hotel, y factorizar eso en la recomendación.
+1. Podemos tomar un enfoque de NLP y medir la frecuencia de ciertos términos como *Solo*, *Viajero de negocios*, o *Familia con niños pequeños* según se aplican a cada hotel, y factorizar eso en la recomendación.
 
-Las etiquetas suelen (pero no siempre) ser un solo campo que contiene una lista de 5 a 6 valores separados por comas que se alinean con *Tipo de viaje*, *Tipo de huéspedes*, *Tipo de habitación*, *Número de noches* y *Tipo de dispositivo en el que se envió la reseña*. Sin embargo, debido a que algunos revisores no completan cada campo (pueden dejar uno en blanco), los valores no siempre están en el mismo orden.
+Las etiquetas suelen ser (pero no siempre) un solo campo que contiene una lista de 5 a 6 valores separados por comas que se alinean con *Tipo de viaje*, *Tipo de huéspedes*, *Tipo de habitación*, *Número de noches*, y *Tipo de dispositivo en el que se envió la reseña*. Sin embargo, debido a que algunos revisores no completan cada campo (pueden dejar uno en blanco), los valores no siempre están en el mismo orden.
 
-Como ejemplo, toma *Tipo de grupo*. Hay 1025 posibilidades únicas en este campo en la columna `Tags`, y desafortunadamente solo algunas de ellas se refieren a un grupo (algunas son el tipo de habitación, etc.). Si filtras solo las que mencionan familia, los resultados contienen muchos valores de tipo *Family room*. Si incluyes el término *with*, es decir, cuentas los valores *Family with*, los resultados son mejores, con más de 80,000 de los 515,000 resultados que contienen la frase "Family with young children" o "Family with older children".
+Como ejemplo, toma *Tipo de grupo*. Hay 1025 posibilidades únicas en este campo en la columna `Tags`, y desafortunadamente solo algunas de ellas se refieren a un grupo (algunas son el tipo de habitación, etc.). Si filtras solo las que mencionan familia, los resultados contienen muchos resultados del tipo *Habitación familiar*. Si incluyes el término *con*, es decir, cuentas los valores *Familia con*, los resultados son mejores, con más de 80,000 de los 515,000 resultados que contienen la frase "Familia con niños pequeños" o "Familia con niños mayores".
 
 Esto significa que la columna de etiquetas no es completamente inútil para nosotros, pero requerirá algo de trabajo para hacerla útil.
 
 ##### Puntuación promedio del hotel
 
-Hay una serie de rarezas o discrepancias con el conjunto de datos que no puedo resolver, pero se ilustran aquí para que estés al tanto de ellas al construir tus modelos. Si las resuelves, por favor háznoslo saber en la sección de discusión.
+Hay una serie de rarezas o discrepancias con el conjunto de datos que no puedo resolver, pero se ilustran aquí para que estés al tanto de ellas al construir tus modelos. Si lo resuelves, por favor háznoslo saber en la sección de discusión.
 
 El conjunto de datos tiene las siguientes columnas relacionadas con la puntuación promedio y el número de reseñas:
 
@@ -129,23 +129,22 @@ El conjunto de datos tiene las siguientes columnas relacionadas con la puntuaci�
 4. Total_Number_of_Reviews
 5. Reviewer_Score  
 
-El único hotel con más reseñas en este conjunto de datos es *Britannia International Hotel Canary Wharf* con 4789 reseñas de 515,000. Pero si miramos el valor de `Total_Number_of_Reviews` para este hotel, es 9086. Podrías deducir que hay muchas más puntuaciones sin reseñas, así que tal vez deberíamos sumar el valor de la columna `Additional_Number_of_Scoring`. Ese valor es 2682, y al sumarlo a 4789 obtenemos 7471, lo cual sigue siendo 1615 menos que el valor de `Total_Number_of_Reviews`.
+El único hotel con más reseñas en este conjunto de datos es *Britannia International Hotel Canary Wharf* con 4789 reseñas de 515,000. Pero si miramos el valor de `Total_Number_of_Reviews` para este hotel, es 9086. Podrías deducir que hay muchas más puntuaciones sin reseñas, así que tal vez deberíamos sumar el valor de la columna `Additional_Number_of_Scoring`. Ese valor es 2682, y sumándolo a 4789 obtenemos 7471, que aún está 1615 por debajo de `Total_Number_of_Reviews`.
 
-Si tomas la columna `Average_Score`, podrías deducir que es el promedio de las reseñas en el conjunto de datos, pero la descripción de Kaggle es "*Puntuación promedio del hotel, calculada en base al último comentario del último año*". Esto no parece tan útil, pero podemos calcular nuestro propio promedio basado en las puntuaciones de las reseñas en el conjunto de datos. Usando el mismo hotel como ejemplo, la puntuación promedio del hotel se da como 7.1 pero la puntuación calculada (promedio de las puntuaciones de los revisores *en* el conjunto de datos) es 6.8. Esto es cercano, pero no el mismo valor, y solo podemos suponer que las puntuaciones dadas en las reseñas de `Additional_Number_of_Scoring` aumentaron el promedio a 7.1. Desafortunadamente, sin forma de probar o demostrar esa afirmación, es difícil usar o confiar en `Average_Score`, `Additional_Number_of_Scoring` y `Total_Number_of_Reviews` cuando se basan en, o se refieren a, datos que no tenemos.
+Si tomas la columna `Average_Score`, podrías deducir que es el promedio de las reseñas en el conjunto de datos, pero la descripción de Kaggle es "*Puntuación promedio del hotel, calculada en base al último comentario del último año*". Eso no parece muy útil, pero podemos calcular nuestro propio promedio basado en las puntuaciones de las reseñas en el conjunto de datos. Usando el mismo hotel como ejemplo, la puntuación promedio del hotel se da como 7.1 pero la puntuación calculada (promedio de las puntuaciones de los revisores *en* el conjunto de datos) es 6.8. Esto es cercano, pero no el mismo valor, y solo podemos suponer que las puntuaciones dadas en las reseñas de `Additional_Number_of_Scoring` aumentaron el promedio a 7.1. Desafortunadamente, sin forma de probar o demostrar esa afirmación, es difícil usar o confiar en `Average_Score`, `Additional_Number_of_Scoring` y `Total_Number_of_Reviews` cuando se basan en, o se refieren a, datos que no tenemos.
 
 Para complicar aún más las cosas, el hotel con el segundo mayor número de reseñas tiene una puntuación promedio calculada de 8.12 y la `Average_Score` del conjunto de datos es 8.1. ¿Es esta puntuación correcta una coincidencia o es el primer hotel una discrepancia?
-Sobre la posibilidad de que este hotel sea un caso atípico, y que tal vez la mayoría de los valores coincidan (pero algunos no por alguna razón), escribiremos un programa breve para explorar los valores en el conjunto de datos y determinar el uso correcto (o no uso) de los valores.
 
-> 🚨 Una nota de precaución
->
-> Al trabajar con este conjunto de datos, escribirás código que calcula algo a partir del texto sin necesidad de leer o analizar el texto tú mismo. Esta es la esencia del NLP: interpretar significado o sentimiento sin que un humano tenga que hacerlo. Sin embargo, es posible que leas algunas de las reseñas negativas. Te insto a que no lo hagas, porque no es necesario. Algunas son absurdas o irrelevantes, como "El clima no fue bueno", algo fuera del control del hotel o de cualquier persona. Pero también hay un lado oscuro en algunas reseñas. A veces las reseñas negativas son racistas, sexistas o discriminatorias por edad. Esto es desafortunado pero esperable en un conjunto de datos extraído de un sitio web público. Algunos usuarios dejan reseñas que podrían resultarte desagradables, incómodas o perturbadoras. Es mejor dejar que el código mida el sentimiento en lugar de leerlas tú mismo y molestarte. Dicho esto, es una minoría la que escribe este tipo de cosas, pero existen de todos modos.
-
+En la posibilidad de que este hotel pueda ser un caso atípico, y que tal vez la mayoría de los valores coincidan (pero algunos no por alguna razón), escribiremos un programa corto a continuación para explorar los valores en el conjunto de datos y determinar el uso correcto (o no uso) de los valores.
+> 🚨 Una nota de precaución  
+>  
+> Al trabajar con este conjunto de datos, escribirás código que calcula algo a partir del texto sin necesidad de leer o analizar el texto tú mismo. Esta es la esencia del procesamiento de lenguaje natural (NLP), interpretar el significado o el sentimiento sin que un humano tenga que hacerlo. Sin embargo, es posible que leas algunas de las reseñas negativas. Te recomendaría que no lo hagas, porque no es necesario. Algunas de ellas son absurdas o irrelevantes, como reseñas negativas de hoteles que dicen: "El clima no fue bueno", algo que está fuera del control del hotel, o de cualquier persona. Pero también hay un lado oscuro en algunas reseñas. A veces, las reseñas negativas son racistas, sexistas o discriminatorias por edad. Esto es desafortunado pero esperable en un conjunto de datos extraído de un sitio web público. Algunos usuarios dejan reseñas que podrían resultarte desagradables, incómodas o perturbadoras. Es mejor dejar que el código mida el sentimiento en lugar de leerlas tú mismo y sentirte afectado. Dicho esto, es una minoría la que escribe este tipo de cosas, pero existen de todos modos.
 ## Ejercicio - Exploración de datos
 ### Cargar los datos
 
-Ya es suficiente examinar los datos visualmente, ahora escribirás algo de código y obtendrás respuestas. Esta sección utiliza la biblioteca pandas. Tu primera tarea es asegurarte de que puedes cargar y leer los datos en formato CSV. La biblioteca pandas tiene un cargador rápido de CSV, y el resultado se coloca en un dataframe, como en lecciones anteriores. El CSV que estamos cargando tiene más de medio millón de filas, pero solo 17 columnas. Pandas te ofrece muchas formas poderosas de interactuar con un dataframe, incluida la capacidad de realizar operaciones en cada fila.
+Ya basta de examinar los datos visualmente, ¡ahora escribirás algo de código y obtendrás respuestas! Esta sección utiliza la biblioteca pandas. Tu primera tarea es asegurarte de que puedes cargar y leer los datos en formato CSV. La biblioteca pandas tiene un cargador rápido de CSV, y el resultado se coloca en un dataframe, como en lecciones anteriores. El CSV que estamos cargando tiene más de medio millón de filas, pero solo 17 columnas. Pandas te ofrece muchas formas poderosas de interactuar con un dataframe, incluyendo la capacidad de realizar operaciones en cada fila.
 
-A partir de aquí, en esta lección habrá fragmentos de código y algunas explicaciones del código, así como discusiones sobre lo que significan los resultados. Usa el archivo _notebook.ipynb_ incluido para tu código.
+A partir de aquí, en esta lección, habrá fragmentos de código y algunas explicaciones del código, además de una discusión sobre lo que significan los resultados. Usa el archivo _notebook.ipynb_ incluido para tu código.
 
 Comencemos cargando el archivo de datos que usarás:
 
@@ -168,31 +167,31 @@ Ahora que los datos están cargados, podemos realizar algunas operaciones sobre 
 
 En este caso, los datos ya están *limpios*, lo que significa que están listos para trabajar y no tienen caracteres en otros idiomas que puedan causar problemas a los algoritmos que esperan solo caracteres en inglés.
 
-✅ Es posible que tengas que trabajar con datos que requieran un procesamiento inicial para formatearlos antes de aplicar técnicas de NLP, pero no en esta ocasión. Si tuvieras que hacerlo, ¿cómo manejarías caracteres que no están en inglés?
+✅ Es posible que tengas que trabajar con datos que requieran un procesamiento inicial para formatearlos antes de aplicar técnicas de NLP, pero no en esta ocasión. Si tuvieras que hacerlo, ¿cómo manejarías los caracteres que no están en inglés?
 
-Tómate un momento para asegurarte de que, una vez cargados los datos, puedes explorarlos con código. Es muy fácil querer centrarse en las columnas `Negative_Review` y `Positive_Review`. Están llenas de texto natural para que tus algoritmos de NLP lo procesen. Pero espera, antes de saltar al NLP y al análisis de sentimientos, deberías seguir el código a continuación para verificar si los valores dados en el conjunto de datos coinciden con los valores que calculas con pandas.
+Tómate un momento para asegurarte de que, una vez cargados los datos, puedes explorarlos con código. Es muy fácil querer centrarse en las columnas `Negative_Review` y `Positive_Review`. Estas están llenas de texto natural para que tus algoritmos de NLP lo procesen. ¡Pero espera! Antes de sumergirte en el NLP y el análisis de sentimientos, deberías seguir el código a continuación para verificar si los valores dados en el conjunto de datos coinciden con los valores que calculas con pandas.
 
 ## Operaciones con el dataframe
 
-La primera tarea en esta lección es verificar si las siguientes afirmaciones son correctas escribiendo código que examine el dataframe (sin modificarlo).
+La primera tarea en esta lección es verificar si las siguientes afirmaciones son correctas escribiendo algo de código que examine el dataframe (sin modificarlo).
 
-> Como en muchas tareas de programación, hay varias formas de completarlas, pero un buen consejo es hacerlo de la manera más simple y fácil posible, especialmente si será más fácil de entender cuando vuelvas a este código en el futuro. Con dataframes, hay una API completa que a menudo tendrá una forma eficiente de hacer lo que necesitas.
+> Como en muchas tareas de programación, hay varias formas de completarlas, pero un buen consejo es hacerlo de la manera más simple y fácil posible, especialmente si será más fácil de entender cuando vuelvas a este código en el futuro. Con los dataframes, hay una API completa que a menudo tendrá una forma eficiente de hacer lo que necesitas.
 
 Trata las siguientes preguntas como tareas de codificación e intenta responderlas sin mirar la solución.
 
 1. Imprime la *forma* del dataframe que acabas de cargar (la forma es el número de filas y columnas).
-2. Calcula la frecuencia de las nacionalidades de los revisores:
+2. Calcula el conteo de frecuencia para las nacionalidades de los revisores:
    1. ¿Cuántos valores distintos hay en la columna `Reviewer_Nationality` y cuáles son?
    2. ¿Qué nacionalidad de revisor es la más común en el conjunto de datos (imprime el país y el número de reseñas)?
    3. ¿Cuáles son las siguientes 10 nacionalidades más frecuentes y su conteo de frecuencia?
-3. ¿Cuál fue el hotel más reseñado por cada una de las 10 nacionalidades de revisores más frecuentes?
+3. ¿Cuál fue el hotel más reseñado para cada una de las 10 nacionalidades de revisores más frecuentes?
 4. ¿Cuántas reseñas hay por hotel (conteo de frecuencia de hotel) en el conjunto de datos?
 5. Aunque hay una columna `Average_Score` para cada hotel en el conjunto de datos, también puedes calcular un puntaje promedio (obteniendo el promedio de todos los puntajes de los revisores en el conjunto de datos para cada hotel). Agrega una nueva columna a tu dataframe con el encabezado `Calc_Average_Score` que contenga ese promedio calculado.
 6. ¿Hay hoteles que tengan el mismo `Average_Score` (redondeado a 1 decimal) y `Calc_Average_Score`?
    1. Intenta escribir una función en Python que tome una Serie (fila) como argumento y compare los valores, imprimiendo un mensaje cuando los valores no sean iguales. Luego usa el método `.apply()` para procesar cada fila con la función.
-7. Calcula e imprime cuántas filas tienen valores de columna `Negative_Review` iguales a "No Negative".
-8. Calcula e imprime cuántas filas tienen valores de columna `Positive_Review` iguales a "No Positive".
-9. Calcula e imprime cuántas filas tienen valores de columna `Positive_Review` iguales a "No Positive" **y** valores de columna `Negative_Review` iguales a "No Negative".
+7. Calcula e imprime cuántas filas tienen valores de la columna `Negative_Review` iguales a "No Negative".
+8. Calcula e imprime cuántas filas tienen valores de la columna `Positive_Review` iguales a "No Positive".
+9. Calcula e imprime cuántas filas tienen valores de la columna `Positive_Review` iguales a "No Positive" **y** valores de la columna `Negative_Review` iguales a "No Negative".
 
 ### Respuestas en código
 
@@ -203,7 +202,7 @@ Trata las siguientes preguntas como tareas de codificación e intenta responderl
    > The shape of the data (rows, cols) is (515738, 17)
    ```
 
-2. Calcula la frecuencia de las nacionalidades de los revisores:
+2. Calcula el conteo de frecuencia para las nacionalidades de los revisores:
 
    1. ¿Cuántos valores distintos hay en la columna `Reviewer_Nationality` y cuáles son?
    2. ¿Qué nacionalidad de revisor es la más común en el conjunto de datos (imprime el país y el número de reseñas)?
@@ -253,7 +252,7 @@ Trata las siguientes preguntas como tareas de codificación e intenta responderl
        France                        7296
       ```
 
-3. ¿Cuál fue el hotel más reseñado por cada una de las 10 nacionalidades de revisores más frecuentes?
+3. ¿Cuál fue el hotel más reseñado para cada una de las 10 nacionalidades de revisores más frecuentes?
 
    ```python
    # What was the most frequently reviewed hotel for the top 10 nationalities
@@ -299,8 +298,8 @@ Trata las siguientes preguntas como tareas de codificación e intenta responderl
    |       Mercure Paris Porte d Orleans        |           110           |         10          |
    |                Hotel Wagner                |           135           |         10          |
    |            Hotel Gallitzinberg             |           173           |          8          |
-   
-   Puede que notes que los resultados *contados en el conjunto de datos* no coinciden con el valor en `Total_Number_of_Reviews`. No está claro si este valor en el conjunto de datos representa el número total de reseñas que tuvo el hotel, pero no todas fueron extraídas, o algún otro cálculo. `Total_Number_of_Reviews` no se utiliza en el modelo debido a esta falta de claridad.
+
+   Puedes notar que los resultados *contados en el conjunto de datos* no coinciden con el valor en `Total_Number_of_Reviews`. No está claro si este valor en el conjunto de datos representa el número total de reseñas que tuvo el hotel, pero no todas fueron extraídas, o algún otro cálculo. `Total_Number_of_Reviews` no se utiliza en el modelo debido a esta falta de claridad.
 
 5. Aunque hay una columna `Average_Score` para cada hotel en el conjunto de datos, también puedes calcular un puntaje promedio (obteniendo el promedio de todos los puntajes de los revisores en el conjunto de datos para cada hotel). Agrega una nueva columna a tu dataframe con el encabezado `Calc_Average_Score` que contenga ese promedio calculado. Imprime las columnas `Hotel_Name`, `Average_Score` y `Calc_Average_Score`.
 
@@ -324,7 +323,7 @@ Trata las siguientes preguntas como tareas de codificación e intenta responderl
    display(review_scores_df[["Average_Score_Difference", "Average_Score", "Calc_Average_Score", "Hotel_Name"]])
    ```
 
-   También podrías preguntarte sobre el valor de `Average_Score` y por qué a veces es diferente del puntaje promedio calculado. Como no podemos saber por qué algunos valores coinciden, pero otros tienen una diferencia, es más seguro en este caso usar los puntajes de las reseñas que tenemos para calcular el promedio nosotros mismos. Dicho esto, las diferencias suelen ser muy pequeñas. Aquí están los hoteles con la mayor desviación entre el promedio del conjunto de datos y el promedio calculado:
+   También puedes preguntarte sobre el valor de `Average_Score` y por qué a veces es diferente del puntaje promedio calculado. Como no podemos saber por qué algunos valores coinciden, pero otros tienen una diferencia, lo más seguro en este caso es usar los puntajes de las reseñas que tenemos para calcular el promedio nosotros mismos. Dicho esto, las diferencias suelen ser muy pequeñas, aquí están los hoteles con la mayor desviación entre el promedio del conjunto de datos y el promedio calculado:
 
    | Average_Score_Difference | Average_Score | Calc_Average_Score |                                  Hotel_Name |
    | :----------------------: | :-----------: | :----------------: | ------------------------------------------: |
@@ -340,13 +339,13 @@ Trata las siguientes preguntas como tareas de codificación e intenta responderl
    |           0.9            |      8.6      |        7.7         |   MARQUIS Faubourg St Honor Relais Ch teaux |
    |           1.3            |      7.2      |        5.9         |                          Kube Hotel Ice Bar |
 
-   Con solo 1 hotel que tiene una diferencia de puntaje mayor a 1, significa que probablemente podamos ignorar la diferencia y usar el puntaje promedio calculado.
+   Con solo 1 hotel teniendo una diferencia de puntaje mayor a 1, significa que probablemente podemos ignorar la diferencia y usar el puntaje promedio calculado.
 
-6. Calcula e imprime cuántas filas tienen valores de columna `Negative_Review` iguales a "No Negative".
+6. Calcula e imprime cuántas filas tienen valores de la columna `Negative_Review` iguales a "No Negative".
 
-7. Calcula e imprime cuántas filas tienen valores de columna `Positive_Review` iguales a "No Positive".
+7. Calcula e imprime cuántas filas tienen valores de la columna `Positive_Review` iguales a "No Positive".
 
-8. Calcula e imprime cuántas filas tienen valores de columna `Positive_Review` iguales a "No Positive" **y** valores de columna `Negative_Review` iguales a "No Negative".
+8. Calcula e imprime cuántas filas tienen valores de la columna `Positive_Review` iguales a "No Positive" **y** valores de la columna `Negative_Review` iguales a "No Negative".
 
    ```python
    # with lambdas:
@@ -393,16 +392,16 @@ Otra forma de contar elementos sin Lambdas, y usar sum para contar las filas:
    Sum took 0.19 seconds
    ```
 
-   Puede que hayas notado que hay 127 filas que tienen valores "No Negative" y "No Positive" en las columnas `Negative_Review` y `Positive_Review`, respectivamente. Esto significa que el revisor dio al hotel un puntaje numérico, pero se negó a escribir una reseña positiva o negativa. Afortunadamente, esta es una pequeña cantidad de filas (127 de 515738, o 0.02%), por lo que probablemente no sesgará nuestro modelo o resultados en ninguna dirección en particular. Sin embargo, podrías no haber esperado que un conjunto de datos de reseñas tuviera filas sin reseñas, por lo que vale la pena explorar los datos para descubrir filas como esta.
+   Puede que hayas notado que hay 127 filas que tienen valores "No Negative" y "No Positive" en las columnas `Negative_Review` y `Positive_Review`, respectivamente. Esto significa que el revisor dio al hotel un puntaje numérico, pero se negó a escribir una reseña positiva o negativa. Afortunadamente, esta es una pequeña cantidad de filas (127 de 515738, o 0.02%), por lo que probablemente no sesgará nuestro modelo o resultados en ninguna dirección en particular, pero podrías no haber esperado que un conjunto de datos de reseñas tuviera filas sin reseñas, por lo que vale la pena explorar los datos para descubrir filas como esta.
 
-Ahora que has explorado el conjunto de datos, en la próxima lección filtrarás los datos y agregarás análisis de sentimientos.
+Ahora que has explorado el conjunto de datos, en la próxima lección filtrarás los datos y agregarás algo de análisis de sentimientos.
 
 ---
 ## 🚀Desafío
 
-Esta lección demuestra, como vimos en lecciones anteriores, lo críticamente importante que es entender tus datos y sus peculiaridades antes de realizar operaciones sobre ellos. Los datos basados en texto, en particular, requieren un escrutinio cuidadoso. Explora varios conjuntos de datos ricos en texto y ve si puedes descubrir áreas que podrían introducir sesgos o sentimientos sesgados en un modelo.
+Esta lección demuestra, como vimos en lecciones anteriores, lo críticamente importante que es entender tus datos y sus peculiaridades antes de realizar operaciones sobre ellos. Los datos basados en texto, en particular, requieren un escrutinio cuidadoso. Explora varios conjuntos de datos ricos en texto y ve si puedes descubrir áreas que podrían introducir sesgos o sentimientos distorsionados en un modelo.
 
-## [Cuestionario posterior a la lección](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/38/)
+## [Cuestionario posterior a la lección](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisión y autoestudio
 
@@ -415,4 +414,4 @@ Toma [este Learning Path sobre NLP](https://docs.microsoft.com/learn/paths/explo
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por lograr precisión, tenga en cuenta que las traducciones automáticas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

@@ -1,23 +1,23 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73e9a7245aa57f00cd413ffd22c0ccb6",
-  "translation_date": "2025-09-03T23:37:03+00:00",
+  "original_hash": "69389392fa6346e0dfa30f664b7b6fec",
+  "translation_date": "2025-09-04T22:21:40+00:00",
   "source_file": "1-Introduction/1-intro-to-ML/README.md",
   "language_code": "es"
 }
 -->
 # Introducción al aprendizaje automático
 
-## [Cuestionario previo a la clase](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1/)
+## [Cuestionario previo a la clase](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
 [![ML para principiantes - Introducción al aprendizaje automático para principiantes](https://img.youtube.com/vi/6mSx_KJxcHI/0.jpg)](https://youtu.be/6mSx_KJxcHI "ML para principiantes - Introducción al aprendizaje automático para principiantes")
 
-> 🎥 Haz clic en la imagen de arriba para ver un video corto sobre esta lección.
+> 🎥 Haz clic en la imagen de arriba para ver un breve video sobre esta lección.
 
-¡Bienvenido a este curso sobre aprendizaje automático clásico para principiantes! Ya sea que seas completamente nuevo en este tema o un practicante experimentado de ML que busca repasar un área, ¡nos alegra que te unas a nosotros! Queremos crear un punto de partida amigable para tu estudio de ML y estaríamos encantados de evaluar, responder e incorporar tus [comentarios](https://github.com/microsoft/ML-For-Beginners/discussions).
+¡Bienvenido a este curso sobre aprendizaje automático clásico para principiantes! Ya sea que seas completamente nuevo en este tema o un practicante experimentado de ML que busca repasar un área, ¡nos alegra que te unas a nosotros! Queremos crear un punto de partida amigable para tu estudio de ML y estaremos encantados de evaluar, responder e incorporar tus [comentarios](https://github.com/microsoft/ML-For-Beginners/discussions).
 
 [![Introducción al aprendizaje automático](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introducción al aprendizaje automático")
 
@@ -26,11 +26,11 @@ CO_OP_TRANSLATOR_METADATA:
 ---
 ## Comenzando con el aprendizaje automático
 
-Antes de comenzar con este plan de estudios, necesitas tener tu computadora configurada y lista para ejecutar notebooks localmente.
+Antes de comenzar con este plan de estudios, necesitas tener tu computadora configurada y lista para ejecutar notebooks de manera local.
 
-- **Configura tu máquina con estos videos**. Usa los siguientes enlaces para aprender [cómo instalar Python](https://youtu.be/CXZYvNRIAKM) en tu sistema y [configurar un editor de texto](https://youtu.be/EU8eayHWoZg) para desarrollo.
+- **Configura tu máquina con estos videos**. Usa los siguientes enlaces para aprender [cómo instalar Python](https://youtu.be/CXZYvNRIAKM) en tu sistema y [configurar un editor de texto](https://youtu.be/EU8eayHWoZg) para el desarrollo.
 - **Aprende Python**. También se recomienda tener un entendimiento básico de [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott), un lenguaje de programación útil para científicos de datos que utilizamos en este curso.
-- **Aprende Node.js y JavaScript**. También usamos JavaScript algunas veces en este curso al construir aplicaciones web, por lo que necesitarás tener [node](https://nodejs.org) y [npm](https://www.npmjs.com/) instalados, así como [Visual Studio Code](https://code.visualstudio.com/) disponible para desarrollo tanto en Python como en JavaScript.
+- **Aprende Node.js y JavaScript**. También utilizamos JavaScript algunas veces en este curso al construir aplicaciones web, por lo que necesitarás tener [node](https://nodejs.org) y [npm](https://www.npmjs.com/) instalados, así como [Visual Studio Code](https://code.visualstudio.com/) disponible para el desarrollo tanto en Python como en JavaScript.
 - **Crea una cuenta de GitHub**. Ya que nos encontraste aquí en [GitHub](https://github.com), es posible que ya tengas una cuenta, pero si no, crea una y luego haz un fork de este plan de estudios para usarlo por tu cuenta. (También puedes darnos una estrella 😊).
 - **Explora Scikit-learn**. Familiarízate con [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), un conjunto de bibliotecas de ML que referenciamos en estas lecciones.
 
@@ -42,7 +42,7 @@ El término 'aprendizaje automático' es uno de los más populares y frecuenteme
 ---
 ## La curva de expectativas
 
-![curva de expectativas de ML](../../../../translated_images/hype.07183d711a17aafe70915909a0e45aa286ede136ee9424d418026ab00fec344c.es.png)
+![curva de expectativas de ML](../../../../1-Introduction/1-intro-to-ML/images/hype.png)
 
 > Google Trends muestra la reciente 'curva de expectativas' del término 'aprendizaje automático'.
 
@@ -59,7 +59,7 @@ El cerebro y los sentidos de un niño perciben los hechos de su entorno y gradua
 ---
 ## El cerebro humano
 
-El [cerebro humano](https://www.livescience.com/29365-human-brain.html) percibe cosas del mundo real, procesa la información percibida, toma decisiones racionales y realiza ciertas acciones según las circunstancias. Esto es lo que llamamos comportarse inteligentemente. Cuando programamos una réplica del proceso de comportamiento inteligente en una máquina, se llama inteligencia artificial (IA).
+El [cerebro humano](https://www.livescience.com/29365-human-brain.html) percibe cosas del mundo real, procesa la información percibida, toma decisiones racionales y realiza ciertas acciones según las circunstancias. Esto es lo que llamamos comportarse de manera inteligente. Cuando programamos una réplica del proceso de comportamiento inteligente en una máquina, se llama inteligencia artificial (IA).
 
 ---
 ## Algunos términos
@@ -69,14 +69,14 @@ Aunque los términos pueden confundirse, el aprendizaje automático (ML) es un s
 ---
 ## IA, ML, Aprendizaje profundo
 
-![IA, ML, aprendizaje profundo, ciencia de datos](../../../../translated_images/ai-ml-ds.537ea441b124ebf69c144a52c0eb13a7af63c4355c2f92f440979380a2fb08b8.es.png)
+![IA, ML, aprendizaje profundo, ciencia de datos](../../../../1-Introduction/1-intro-to-ML/images/ai-ml-ds.png)
 
 > Un diagrama que muestra las relaciones entre IA, ML, aprendizaje profundo y ciencia de datos. Infografía por [Jen Looper](https://twitter.com/jenlooper) inspirada en [este gráfico](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining).
 
 ---
 ## Conceptos a cubrir
 
-En este plan de estudios, vamos a cubrir solo los conceptos básicos del aprendizaje automático que un principiante debe conocer. Cubrimos lo que llamamos 'aprendizaje automático clásico', principalmente utilizando Scikit-learn, una excelente biblioteca que muchos estudiantes usan para aprender los fundamentos. Para entender conceptos más amplios de inteligencia artificial o aprendizaje profundo, es indispensable un conocimiento fundamental sólido del aprendizaje automático, y queremos ofrecerlo aquí.
+En este plan de estudios, vamos a cubrir solo los conceptos básicos del aprendizaje automático que un principiante debe conocer. Cubrimos lo que llamamos 'aprendizaje automático clásico', principalmente utilizando Scikit-learn, una excelente biblioteca que muchos estudiantes usan para aprender los fundamentos. Para entender conceptos más amplios de inteligencia artificial o aprendizaje profundo, es indispensable tener un conocimiento fundamental sólido del aprendizaje automático, y por eso queremos ofrecerlo aquí.
 
 ---
 ## En este curso aprenderás:
@@ -99,7 +99,7 @@ En este plan de estudios, vamos a cubrir solo los conceptos básicos del aprendi
 - redes neuronales
 - IA
 
-Para ofrecer una mejor experiencia de aprendizaje, evitaremos las complejidades de las redes neuronales, el 'aprendizaje profundo' - construcción de modelos con muchas capas utilizando redes neuronales - y la IA, que discutiremos en un plan de estudios diferente. También ofreceremos un próximo plan de estudios de ciencia de datos para centrarnos en ese aspecto de este campo más amplio.
+Para ofrecer una mejor experiencia de aprendizaje, evitaremos las complejidades de las redes neuronales, el 'aprendizaje profundo' - construcción de modelos con muchas capas utilizando redes neuronales - y la IA, que discutiremos en un plan de estudios diferente. También ofreceremos un próximo plan de estudios sobre ciencia de datos para centrarnos en ese aspecto de este campo más amplio.
 
 ---
 ## ¿Por qué estudiar aprendizaje automático?
@@ -125,7 +125,7 @@ Las aplicaciones del aprendizaje automático están ahora casi en todas partes y
 - Para entender el sentimiento de un texto.
 - Para detectar noticias falsas y detener la propagación de propaganda.
 
-Finanzas, economía, ciencias de la tierra, exploración espacial, ingeniería biomédica, ciencias cognitivas e incluso campos en las humanidades han adaptado el aprendizaje automático para resolver los arduos problemas de procesamiento de datos en sus áreas.
+Finanzas, economía, ciencias de la tierra, exploración espacial, ingeniería biomédica, ciencias cognitivas e incluso áreas de las humanidades han adaptado el aprendizaje automático para resolver los arduos problemas de procesamiento de datos en sus dominios.
 
 ---
 ## Conclusión
@@ -137,9 +137,9 @@ En un futuro cercano, entender los fundamentos del aprendizaje automático será
 ---
 # 🚀 Desafío
 
-Dibuja, en papel o usando una aplicación en línea como [Excalidraw](https://excalidraw.com/), tu comprensión de las diferencias entre IA, ML, aprendizaje profundo y ciencia de datos. Agrega algunas ideas sobre los problemas que cada una de estas técnicas es buena resolviendo.
+Dibuja, en papel o usando una aplicación en línea como [Excalidraw](https://excalidraw.com/), tu comprensión de las diferencias entre IA, ML, aprendizaje profundo y ciencia de datos. Agrega algunas ideas sobre los problemas que cada una de estas técnicas es buena para resolver.
 
-# [Cuestionario posterior a la clase](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/)
+# [Cuestionario posterior a la clase](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 # Revisión y autoestudio
@@ -151,9 +151,9 @@ Toma un [Camino de Aprendizaje](https://docs.microsoft.com/learn/modules/introdu
 ---
 # Tarea
 
-[Comienza a trabajar](assignment.md)
+[Ponte en marcha](assignment.md)
 
 ---
 
 **Descargo de responsabilidad**:  
-Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse como la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.
+Este documento ha sido traducido utilizando el servicio de traducción automática [Co-op Translator](https://github.com/Azure/co-op-translator). Si bien nos esforzamos por garantizar la precisión, tenga en cuenta que las traducciones automatizadas pueden contener errores o imprecisiones. El documento original en su idioma nativo debe considerarse la fuente autorizada. Para información crítica, se recomienda una traducción profesional realizada por humanos. No nos hacemos responsables de malentendidos o interpretaciones erróneas que puedan surgir del uso de esta traducción.

@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9579f42e3ff5114c58379cc9e186a828",
-  "translation_date": "2025-09-03T23:49:36+00:00",
+  "original_hash": "1a6e9e46b34a2e559fbbfc1f95397c7b",
+  "translation_date": "2025-09-04T23:02:16+00:00",
   "source_file": "4-Classification/2-Classifiers-1/README.md",
   "language_code": "fr"
 }
 -->
 # Classificateurs de cuisine 1
 
-Dans cette leçon, vous utiliserez le jeu de données que vous avez sauvegardé lors de la dernière leçon, rempli de données équilibrées et propres sur les cuisines.
+Dans cette leçon, vous utiliserez le jeu de données que vous avez sauvegardé lors de la dernière leçon, rempli de données équilibrées et nettoyées sur les cuisines.
 
 Vous utiliserez ce jeu de données avec une variété de classificateurs pour _prédire une cuisine nationale donnée en fonction d'un groupe d'ingrédients_. En le faisant, vous en apprendrez davantage sur certaines des façons dont les algorithmes peuvent être utilisés pour des tâches de classification.
 
-## [Quiz avant la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/)
+## [Quiz avant la leçon](https://ff-quizzes.netlify.app/en/ml/)
 # Préparation
 
 En supposant que vous avez terminé [Leçon 1](../1-Introduction/README.md), assurez-vous qu'un fichier _cleaned_cuisines.csv_ existe dans le dossier racine `/data` pour ces quatre leçons.
@@ -39,7 +39,7 @@ En supposant que vous avez terminé [Leçon 1](../1-Introduction/README.md), ass
 | 4   | 4          | indian  | 0      | 0        | 0     | 0          | 0     | 0            | 0       | 0        | ... | 0       | 0           | 0          | 0                       | 0    | 0    | 0   | 0     | 1      | 0        |
   
 
-1. Maintenant, importez plusieurs autres bibliothèques :
+1. Ensuite, importez plusieurs autres bibliothèques :
 
     ```python
     from sklearn.linear_model import LogisticRegression
@@ -88,7 +88,7 @@ Vous êtes maintenant prêt à entraîner votre modèle !
 
 ## Choisir votre classificateur
 
-Maintenant que vos données sont propres et prêtes pour l'entraînement, vous devez décider quel algorithme utiliser pour la tâche. 
+Maintenant que vos données sont nettoyées et prêtes pour l'entraînement, vous devez décider quel algorithme utiliser pour la tâche.
 
 Scikit-learn regroupe la classification sous l'apprentissage supervisé, et dans cette catégorie, vous trouverez de nombreuses façons de classifier. [La variété](https://scikit-learn.org/stable/supervised_learning.html) peut sembler déroutante au premier abord. Les méthodes suivantes incluent toutes des techniques de classification :
 
@@ -105,9 +105,9 @@ Scikit-learn regroupe la classification sous l'apprentissage supervisé, et dans
 
 ### Quel classificateur choisir ?
 
-Alors, quel classificateur devriez-vous choisir ? Souvent, tester plusieurs et chercher un bon résultat est une façon de procéder. Scikit-learn propose une [comparaison côte à côte](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) sur un jeu de données créé, comparant KNeighbors, SVC de deux façons, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB et QuadraticDiscriminationAnalysis, montrant les résultats visualisés : 
+Alors, quel classificateur devriez-vous choisir ? Souvent, tester plusieurs et chercher un bon résultat est une façon de procéder. Scikit-learn propose une [comparaison côte à côte](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html) sur un jeu de données créé, comparant KNeighbors, SVC de deux manières, GaussianProcessClassifier, DecisionTreeClassifier, RandomForestClassifier, MLPClassifier, AdaBoostClassifier, GaussianNB et QuadraticDiscriminationAnalysis, montrant les résultats visualisés :
 
-![comparaison des classificateurs](../../../../translated_images/comparison.edfab56193a85e7fdecbeaa1b1f8c99e94adbf7178bed0de902090cf93d6734f.fr.png)
+![comparaison des classificateurs](../../../../4-Classification/2-Classifiers-1/images/comparison.png)
 > Graphiques générés à partir de la documentation de Scikit-learn
 
 > AutoML résout ce problème de manière élégante en exécutant ces comparaisons dans le cloud, vous permettant de choisir le meilleur algorithme pour vos données. Essayez-le [ici](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)
@@ -116,30 +116,30 @@ Alors, quel classificateur devriez-vous choisir ? Souvent, tester plusieurs et c
 
 Une meilleure façon que de deviner au hasard est de suivre les idées de cette [fiche pratique ML téléchargeable](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott). Ici, nous découvrons que, pour notre problème multiclasses, nous avons quelques choix :
 
-![fiche pratique pour les problèmes multiclasses](../../../../translated_images/cheatsheet.07a475ea444d22234cb8907a3826df5bdd1953efec94bd18e4496f36ff60624a.fr.png)
+![fiche pratique pour les problèmes multiclasses](../../../../4-Classification/2-Classifiers-1/images/cheatsheet.png)
 > Une section de la fiche pratique des algorithmes de Microsoft, détaillant les options de classification multiclasses
 
-✅ Téléchargez cette fiche pratique, imprimez-la et accrochez-la sur votre mur !
+✅ Téléchargez cette fiche pratique, imprimez-la et accrochez-la à votre mur !
 
 ### Raisonnement
 
-Voyons si nous pouvons raisonner sur différentes approches données les contraintes que nous avons :
+Voyons si nous pouvons raisonner sur les différentes approches données les contraintes que nous avons :
 
 - **Les réseaux neuronaux sont trop lourds**. Étant donné notre jeu de données propre mais minimal, et le fait que nous exécutons l'entraînement localement via des notebooks, les réseaux neuronaux sont trop lourds pour cette tâche.
-- **Pas de classificateur à deux classes**. Nous n'utilisons pas de classificateur à deux classes, ce qui exclut le one-vs-all. 
-- **Un arbre de décision ou une régression logistique pourrait fonctionner**. Un arbre de décision pourrait fonctionner, ou une régression logistique pour des données multiclasses. 
+- **Pas de classificateur à deux classes**. Nous n'utilisons pas de classificateur à deux classes, ce qui exclut le one-vs-all.
+- **Un arbre de décision ou une régression logistique pourraient fonctionner**. Un arbre de décision pourrait fonctionner, ou une régression logistique pour des données multiclasses.
 - **Les arbres de décision boostés multiclasses résolvent un problème différent**. L'arbre de décision boosté multiclasses est le plus adapté aux tâches non paramétriques, par exemple les tâches conçues pour établir des classements, donc il n'est pas utile pour nous.
 
 ### Utiliser Scikit-learn 
 
 Nous utiliserons Scikit-learn pour analyser nos données. Cependant, il existe de nombreuses façons d'utiliser la régression logistique dans Scikit-learn. Consultez les [paramètres à passer](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression).  
 
-Essentiellement, il y a deux paramètres importants - `multi_class` et `solver` - que nous devons spécifier lorsque nous demandons à Scikit-learn d'effectuer une régression logistique. La valeur de `multi_class` applique un certain comportement. La valeur du solver correspond à l'algorithme à utiliser. Tous les solveurs ne peuvent pas être associés à toutes les valeurs de `multi_class`.
+Essentiellement, il y a deux paramètres importants - `multi_class` et `solver` - que nous devons spécifier lorsque nous demandons à Scikit-learn d'effectuer une régression logistique. La valeur de `multi_class` applique un certain comportement. La valeur du solver détermine quel algorithme utiliser. Tous les solveurs ne peuvent pas être associés à toutes les valeurs de `multi_class`.
 
 Selon la documentation, dans le cas multiclasses, l'algorithme d'entraînement :
 
 - **Utilise le schéma one-vs-rest (OvR)**, si l'option `multi_class` est définie sur `ovr`
-- **Utilise la perte d'entropie croisée**, si l'option `multi_class` est définie sur `multinomial`. (Actuellement, l'option `multinomial` est prise en charge uniquement par les solveurs ‘lbfgs’, ‘sag’, ‘saga’ et ‘newton-cg’.)"
+- **Utilise la perte d'entropie croisée**, si l'option `multi_class` est définie sur `multinomial`. (Actuellement, l'option `multinomial` est prise en charge uniquement par les solveurs ‘lbfgs’, ‘sag’, ‘saga’ et ‘newton-cg’.)
 
 > 🎓 Le 'schéma' ici peut être 'ovr' (one-vs-rest) ou 'multinomial'. Étant donné que la régression logistique est vraiment conçue pour prendre en charge la classification binaire, ces schémas lui permettent de mieux gérer les tâches de classification multiclasses. [source](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
@@ -147,7 +147,7 @@ Selon la documentation, dans le cas multiclasses, l'algorithme d'entraînement :
 
 Scikit-learn propose ce tableau pour expliquer comment les solveurs gèrent les différents défis présentés par les différentes structures de données :
 
-![solveurs](../../../../translated_images/solvers.5fc648618529e627dfac29b917b3ccabda4b45ee8ed41b0acb1ce1441e8d1ef1.fr.png)
+![solveurs](../../../../4-Classification/2-Classifiers-1/images/solvers.png)
 
 ## Exercice - diviser les données
 
@@ -162,7 +162,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 Étant donné que vous utilisez le cas multiclasses, vous devez choisir quel _schéma_ utiliser et quel _solver_ définir. Utilisez LogisticRegression avec un paramètre multiclasses et le solveur **liblinear** pour entraîner.
 
-1. Créez une régression logistique avec multi_class défini sur `ovr` et le solveur défini sur `liblinear` :
+1. Créez une régression logistique avec `multi_class` défini sur `ovr` et le solveur défini sur `liblinear` :
 
     ```python
     lr = LogisticRegression(multi_class='ovr',solver='liblinear')
@@ -173,8 +173,8 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     ```
 
     ✅ Essayez un solveur différent comme `lbfgs`, qui est souvent défini par défaut
-> Remarque, utilisez la fonction Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) pour aplatir vos données si nécessaire.
-La précision est bonne à plus de **80 %** !
+> Remarque, utilisez la fonction Pandas [`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html) pour aplatir vos données lorsque nécessaire.
+L'exactitude est bonne à plus de **80 %** !
 
 1. Vous pouvez voir ce modèle en action en testant une ligne de données (#50) :
 
@@ -204,7 +204,7 @@ La précision est bonne à plus de **80 %** !
     topPrediction.head()
     ```
 
-    Le résultat est affiché - la cuisine indienne est sa meilleure supposition, avec une bonne probabilité :
+    Le résultat est affiché - la cuisine indienne est sa meilleure estimation, avec une bonne probabilité :
 
     |          |        0 |
     | -------: | -------: |
@@ -230,24 +230,24 @@ La précision est bonne à plus de **80 %** !
     | japanese     | 0.70      | 0.75   | 0.72     | 220     |
     | korean       | 0.86      | 0.76   | 0.81     | 242     |
     | thai         | 0.79      | 0.85   | 0.82     | 254     |
-    | précision    | 0.80      | 1199   |          |         |
+    | exactitude   | 0.80      | 1199   |          |         |
     | moyenne macro| 0.80      | 0.80   | 0.80     | 1199    |
     | moyenne pondérée | 0.80  | 0.80   | 0.80     | 1199    |
 
 ## 🚀Défi
 
-Dans cette leçon, vous avez utilisé vos données nettoyées pour construire un modèle d'apprentissage automatique capable de prédire une cuisine nationale en fonction d'une série d'ingrédients. Prenez le temps de parcourir les nombreuses options que Scikit-learn propose pour classifier les données. Approfondissez le concept de 'solver' pour comprendre ce qui se passe en coulisses.
+Dans cette leçon, vous avez utilisé vos données nettoyées pour construire un modèle d'apprentissage automatique capable de prédire une cuisine nationale à partir d'une série d'ingrédients. Prenez le temps de parcourir les nombreuses options que Scikit-learn propose pour classifier les données. Approfondissez le concept de 'solver' pour comprendre ce qui se passe en coulisses.
 
-## [Quiz après la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/)
+## [Quiz post-cours](https://ff-quizzes.netlify.app/en/ml/)
 
-## Révision & Étude personnelle
+## Révision & Auto-apprentissage
 
-Approfondissez un peu plus les mathématiques derrière la régression logistique dans [cette leçon](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)
+Approfondissez un peu plus les mathématiques derrière la régression logistique dans [cette leçon](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)  
 ## Devoir 
 
-[Étudiez les solvers](assignment.md)
+[Étudiez les solveurs](assignment.md)
 
 ---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.

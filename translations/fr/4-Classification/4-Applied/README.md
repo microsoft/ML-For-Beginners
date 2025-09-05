@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "ad2cf19d7490247558d20a6a59650d13",
-  "translation_date": "2025-09-03T23:54:45+00:00",
+  "original_hash": "61bdec27ed2da8b098cd9065405d9bb0",
+  "translation_date": "2025-09-04T23:03:00+00:00",
   "source_file": "4-Classification/4-Applied/README.md",
   "language_code": "fr"
 }
 -->
 # Construire une application web de recommandation de cuisine
 
-Dans cette leçon, vous allez créer un modèle de classification en utilisant certaines des techniques apprises dans les leçons précédentes, ainsi que le délicieux ensemble de données sur les cuisines utilisé tout au long de cette série. De plus, vous allez construire une petite application web pour utiliser un modèle sauvegardé, en tirant parti du runtime web d'Onnx.
+Dans cette leçon, vous allez créer un modèle de classification en utilisant certaines des techniques apprises dans les leçons précédentes, ainsi que le délicieux ensemble de données sur les cuisines utilisé tout au long de cette série. De plus, vous allez construire une petite application web pour utiliser un modèle sauvegardé, en exploitant le runtime web d'Onnx.
 
 L'un des usages pratiques les plus utiles de l'apprentissage automatique est la création de systèmes de recommandation, et vous pouvez faire le premier pas dans cette direction dès aujourd'hui !
 
@@ -17,7 +17,7 @@ L'un des usages pratiques les plus utiles de l'apprentissage automatique est la 
 
 > 🎥 Cliquez sur l'image ci-dessus pour une vidéo : Jen Looper construit une application web en utilisant des données de cuisine classifiées
 
-## [Quiz avant la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/25/)
+## [Quiz avant la leçon](https://ff-quizzes.netlify.app/en/ml/)
 
 Dans cette leçon, vous apprendrez :
 
@@ -27,7 +27,7 @@ Dans cette leçon, vous apprendrez :
 
 ## Construisez votre modèle
 
-Créer des systèmes d'apprentissage automatique appliqués est une partie importante de l'intégration de ces technologies dans vos systèmes d'entreprise. Vous pouvez utiliser des modèles dans vos applications web (et donc les utiliser hors ligne si nécessaire) en utilisant Onnx.
+Construire des systèmes d'apprentissage automatique appliqué est une partie importante de l'exploitation de ces technologies pour vos systèmes d'entreprise. Vous pouvez utiliser des modèles dans vos applications web (et donc les utiliser hors ligne si nécessaire) en utilisant Onnx.
 
 Dans une [leçon précédente](../../3-Web-App/1-Web-App/README.md), vous avez construit un modèle de régression sur les observations d'OVNI, l'avez "picklé" et utilisé dans une application Flask. Bien que cette architecture soit très utile à connaître, il s'agit d'une application Python full-stack, et vos besoins peuvent inclure l'utilisation d'une application JavaScript.
 
@@ -124,7 +124,7 @@ Nous utiliserons la bibliothèque 'SVC' qui offre une bonne précision.
 
 ### Convertissez votre modèle en Onnx
 
-Assurez-vous de faire la conversion avec le bon nombre de tenseurs. Cet ensemble de données contient 380 ingrédients répertoriés, donc vous devez noter ce nombre dans `FloatTensorType` :
+Assurez-vous de faire la conversion avec le bon nombre de tenseurs. Cet ensemble de données contient 380 ingrédients listés, donc vous devez noter ce nombre dans `FloatTensorType` :
 
 1. Convertissez en utilisant un nombre de tenseurs de 380.
 
@@ -136,7 +136,7 @@ Assurez-vous de faire la conversion avec le bon nombre de tenseurs. Cet ensemble
     options = {id(model): {'nocl': True, 'zipmap': False}}
     ```
 
-1. Créez le fichier onx et sauvegardez-le sous le nom **model.onnx** :
+1. Créez le fichier onx et sauvegardez-le sous **model.onnx** :
 
     ```python
     onx = convert_sklearn(model, initial_types=initial_type, options=options)
@@ -144,7 +144,7 @@ Assurez-vous de faire la conversion avec le bon nombre de tenseurs. Cet ensemble
         f.write(onx.SerializeToString())
     ```
 
-    > Notez que vous pouvez passer des [options](https://onnx.ai/sklearn-onnx/parameterized.html) dans votre script de conversion. Dans ce cas, nous avons défini 'nocl' sur True et 'zipmap' sur False. Étant donné qu'il s'agit d'un modèle de classification, vous avez l'option de supprimer ZipMap qui produit une liste de dictionnaires (non nécessaire). `nocl` fait référence à l'inclusion des informations de classe dans le modèle. Réduisez la taille de votre modèle en définissant `nocl` sur 'True'.
+    > Notez que vous pouvez passer des [options](https://onnx.ai/sklearn-onnx/parameterized.html) dans votre script de conversion. Dans ce cas, nous avons passé 'nocl' à True et 'zipmap' à False. Étant donné qu'il s'agit d'un modèle de classification, vous avez l'option de supprimer ZipMap qui produit une liste de dictionnaires (non nécessaire). `nocl` fait référence à l'inclusion des informations de classe dans le modèle. Réduisez la taille de votre modèle en définissant `nocl` sur 'True'.
 
 Exécuter l'ensemble du notebook permettra maintenant de construire un modèle Onnx et de le sauvegarder dans ce dossier.
 
@@ -152,7 +152,7 @@ Exécuter l'ensemble du notebook permettra maintenant de construire un modèle O
 
 Les modèles Onnx ne sont pas très visibles dans Visual Studio Code, mais il existe un excellent logiciel gratuit que de nombreux chercheurs utilisent pour visualiser le modèle et s'assurer qu'il est correctement construit. Téléchargez [Netron](https://github.com/lutzroeder/Netron) et ouvrez votre fichier model.onnx. Vous pouvez voir votre modèle simple visualisé, avec ses 380 entrées et son classificateur listé :
 
-![Visualisation Netron](../../../../translated_images/netron.a05f39410211915e0f95e2c0e8b88f41e7d13d725faf660188f3802ba5c9e831.fr.png)
+![Visualisation Netron](../../../../4-Classification/4-Applied/images/netron.png)
 
 Netron est un outil utile pour visualiser vos modèles.
 
@@ -160,7 +160,7 @@ Vous êtes maintenant prêt à utiliser ce modèle dans une application web. Con
 
 ## Construisez une application web de recommandation
 
-Vous pouvez utiliser votre modèle directement dans une application web. Cette architecture vous permet également de l'exécuter localement et même hors ligne si nécessaire. Commencez par créer un fichier `index.html` dans le même dossier où vous avez sauvegardé votre fichier `model.onnx`.
+Vous pouvez utiliser votre modèle directement dans une application web. Cette architecture permet également de l'exécuter localement et même hors ligne si nécessaire. Commencez par créer un fichier `index.html` dans le même dossier où vous avez sauvegardé votre fichier `model.onnx`.
 
 1. Dans ce fichier _index.html_, ajoutez le balisage suivant :
 
@@ -221,19 +221,19 @@ Vous pouvez utiliser votre modèle directement dans une application web. Cette a
             </div> 
     ```
 
-    Notez que chaque case à cocher a une valeur. Cela reflète l'index où l'ingrédient se trouve selon l'ensemble de données. Par exemple, la pomme, dans cette liste alphabétique, occupe la cinquième colonne, donc sa valeur est '4' puisque nous commençons à compter à 0. Vous pouvez consulter le [tableau des ingrédients](../../../../4-Classification/data/ingredient_indexes.csv) pour découvrir l'index d'un ingrédient donné.
+    Notez que chaque case à cocher est attribuée une valeur. Cela reflète l'index où l'ingrédient se trouve selon l'ensemble de données. Par exemple, la pomme, dans cette liste alphabétique, occupe la cinquième colonne, donc sa valeur est '4' puisque nous commençons à compter à 0. Vous pouvez consulter le [tableau des ingrédients](../../../../4-Classification/data/ingredient_indexes.csv) pour découvrir l'index d'un ingrédient donné.
 
-    En continuant votre travail dans le fichier index.html, ajoutez un bloc de script où le modèle est appelé après la dernière balise `</div>`.
+    En continuant votre travail dans le fichier index.html, ajoutez un bloc de script où le modèle est appelé après la dernière fermeture de `</div>`.
 
-1. Tout d'abord, importez le [runtime Onnx](https://www.onnxruntime.ai/) :
+1. Tout d'abord, importez le [Onnx Runtime](https://www.onnxruntime.ai/) :
 
     ```html
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script> 
     ```
 
-    > Le runtime Onnx est utilisé pour permettre l'exécution de vos modèles Onnx sur une large gamme de plateformes matérielles, avec des optimisations et une API à utiliser.
+    > Onnx Runtime est utilisé pour permettre l'exécution de vos modèles Onnx sur une large gamme de plateformes matérielles, avec des optimisations et une API à utiliser.
 
-1. Une fois le runtime en place, vous pouvez l'appeler :
+1. Une fois le Runtime en place, vous pouvez l'appeler :
 
     ```html
     <script>
@@ -292,7 +292,7 @@ Dans ce code, plusieurs choses se produisent :
 3. Vous avez créé une fonction `testCheckboxes` qui vérifie si une case a été cochée.
 4. Vous utilisez la fonction `startInference` lorsque le bouton est pressé et, si une case est cochée, vous démarrez l'inférence.
 5. La routine d'inférence inclut :
-   1. La configuration d'un chargement asynchrone du modèle
+   1. La mise en place d'un chargement asynchrone du modèle
    2. La création d'une structure Tensor à envoyer au modèle
    3. La création de 'feeds' qui reflètent l'entrée `float_input` que vous avez créée lors de l'entraînement de votre modèle (vous pouvez utiliser Netron pour vérifier ce nom)
    4. L'envoi de ces 'feeds' au modèle et l'attente d'une réponse
@@ -301,7 +301,7 @@ Dans ce code, plusieurs choses se produisent :
 
 Ouvrez une session terminal dans Visual Studio Code dans le dossier où se trouve votre fichier index.html. Assurez-vous que vous avez [http-server](https://www.npmjs.com/package/http-server) installé globalement, et tapez `http-server` à l'invite. Un localhost devrait s'ouvrir et vous pouvez visualiser votre application web. Vérifiez quelle cuisine est recommandée en fonction des différents ingrédients :
 
-![Application web d'ingrédients](../../../../translated_images/web-app.4c76450cabe20036f8ec6d5e05ccc0c1c064f0d8f2fe3304d3bcc0198f7dc139.fr.png)
+![Application web d'ingrédients](../../../../4-Classification/4-Applied/images/web-app.png)
 
 Félicitations, vous avez créé une application web de 'recommandation' avec quelques champs. Prenez le temps de développer ce système !
 
@@ -309,11 +309,11 @@ Félicitations, vous avez créé une application web de 'recommandation' avec qu
 
 Votre application web est très minimaliste, alors continuez à la développer en utilisant les ingrédients et leurs index issus des données [ingredient_indexes](../../../../4-Classification/data/ingredient_indexes.csv). Quelles combinaisons de saveurs fonctionnent pour créer un plat national donné ?
 
-## [Quiz après la leçon](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/26/)
+## [Quiz après la leçon](https://ff-quizzes.netlify.app/en/ml/)
 
-## Révision & Étude personnelle
+## Révision et auto-apprentissage
 
-Bien que cette leçon ait seulement effleuré l'utilité de créer un système de recommandation pour les ingrédients alimentaires, ce domaine des applications ML est très riche en exemples. Lisez davantage sur la façon dont ces systèmes sont construits :
+Bien que cette leçon ait seulement effleuré l'utilité de créer un système de recommandation pour les ingrédients alimentaires, ce domaine des applications d'apprentissage automatique est très riche en exemples. Lisez davantage sur la façon dont ces systèmes sont construits :
 
 - https://www.sciencedirect.com/topics/computer-science/recommendation-engine
 - https://www.technologyreview.com/2014/08/25/171547/the-ultimate-challenge-for-recommendation-engines/
@@ -326,4 +326,4 @@ Bien que cette leçon ait seulement effleuré l'utilité de créer un système d
 ---
 
 **Avertissement** :  
-Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de faire appel à une traduction humaine professionnelle. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
+Ce document a été traduit à l'aide du service de traduction automatique [Co-op Translator](https://github.com/Azure/co-op-translator). Bien que nous nous efforcions d'assurer l'exactitude, veuillez noter que les traductions automatisées peuvent contenir des erreurs ou des inexactitudes. Le document original dans sa langue d'origine doit être considéré comme la source faisant autorité. Pour des informations critiques, il est recommandé de recourir à une traduction professionnelle réalisée par un humain. Nous déclinons toute responsabilité en cas de malentendus ou d'interprétations erronées résultant de l'utilisation de cette traduction.
