@@ -62,10 +62,15 @@ jobs:
           # translate -l "mo ms mr my ne nl no pa pl pt ro ru" -y
           # translate -l "sk sl sr sv sw th tl tr tw vi zh hk" -y
           # Recommendation for large batches over 29 files run them in batches maximum github runner time is 6 hours
-          # translate -l "zh tw hk fr ja ko pt es de fa pl hi" -md -y
-          # translate -l "ru ar ur mo ja bn mr ne pa br it tr" -y
-          # translate -l "el th sv da no fi nl he vi id ms tl" -y
-          translate -l "sw hu cs sk ro bg sr hr sl uk my" -md -y
+          # this set only translates markdown files 
+          # translate -l "zh tw hk fr ja ko" -md -y
+          # translate -l "pt es de fa pl hi" -md -y
+          # translate -l "ru ar ur mo ja bn" -md -y
+          # translate -l "mr ne pa br it tr" -md -y
+          # translate -l "el th sv da no fi" -md -y
+          # translate -l "nl he vi id ms tl" -md -y
+          # translate -l "sw hu cs sk ro bg" -md -y
+          translate -l "sr hr sl uk my" -md -y
           # translate -l "de es fa fr hi ko" -md -y
           # translate -l "lt pl pt zh hk tw" -md -y
           
