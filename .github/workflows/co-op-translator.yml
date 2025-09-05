@@ -67,8 +67,8 @@ jobs:
           # translate -l "pt es de fa pl hi" -md -y
           # translate -l "ru ar ur mo ja bn" -md -y
           # translate -l "mr ne pa br it tr" -md -y
-          # translate -l "el th sv da no fi" -md -y
-          translate -l "nl he vi id ms tl" -md -y
+          translate -l "el th sv da no fi" -md -y
+          # translate -l "nl he vi id ms tl" -md -y
           # translate -l "sw hu cs sk ro bg" -md -y
           # translate -l "sr hr sl uk my" -md -y
           # translate -l "de es fa fr hi ko" -md -y
