@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "f80e513b3279869e7661e3190cc83076",
-  "translation_date": "2025-09-03T16:57:34+00:00",
+  "original_hash": "482bccabe1df958496ea71a3667995cd",
+  "translation_date": "2025-09-05T07:49:42+00:00",
   "source_file": "7-TimeSeries/3-SVR/README.md",
   "language_code": "lt"
 }
@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Ankstesnėje pamokoje sužinojote, kaip naudoti ARIMA modelį laiko eilučių prognozėms. Dabar susipažinsite su Support Vector Regressor modeliu, kuris yra regresijos modelis, skirtas tęstiniams duomenims prognozuoti.
 
-## [Prieš paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/51/) 
+## [Prieš paskaitos testas](https://ff-quizzes.netlify.app/en/ml/) 
 
 ## Įvadas
 
@@ -19,10 +19,10 @@ Ankstesnėje pamokoje sužinojote, kaip naudoti ARIMA modelį laiko eilučių pr
 
 ### SVR laiko eilučių kontekste [^1]
 
-Prieš suprantant SVR svarbą laiko eilučių prognozėse, svarbu žinoti šiuos pagrindinius konceptus:
+Prieš suprantant SVR svarbą laiko eilučių prognozėse, pateikiame keletą svarbių sąvokų, kurias reikia žinoti:
 
-- **Regresija:** Prižiūrimo mokymosi technika, skirta tęstinių reikšmių prognozavimui pagal pateiktą įvestį. Idėja yra pritaikyti kreivę (arba liniją) funkcijų erdvėje, kurioje yra maksimalus duomenų taškų skaičius. [Spauskite čia](https://en.wikipedia.org/wiki/Regression_analysis) norėdami sužinoti daugiau.
-- **Support Vector Machine (SVM):** Prižiūrimo mokymosi modelis, naudojamas klasifikacijai, regresijai ir anomalijų aptikimui. Modelis yra hiperplokštuma funkcijų erdvėje, kuri klasifikacijos atveju veikia kaip riba, o regresijos atveju kaip geriausiai tinkanti linija. SVM dažnai naudoja branduolio funkciją, kad transformuotų duomenų rinkinį į aukštesnės dimensijos erdvę, kurioje jie tampa lengviau atskiriami. [Spauskite čia](https://en.wikipedia.org/wiki/Support-vector_machine) norėdami sužinoti daugiau apie SVM.
+- **Regresija:** Prižiūrimo mokymosi technika, skirta tęstinėms reikšmėms prognozuoti pagal pateiktą įvesties duomenų rinkinį. Idėja yra pritaikyti kreivę (arba liniją) funkcijų erdvėje, kurioje yra maksimalus duomenų taškų skaičius. [Spauskite čia](https://en.wikipedia.org/wiki/Regression_analysis) norėdami sužinoti daugiau.
+- **Support Vector Machine (SVM):** Prižiūrimo mašininio mokymosi modelio tipas, naudojamas klasifikacijai, regresijai ir anomalijų aptikimui. Modelis yra hiperplokštuma funkcijų erdvėje, kuri klasifikacijos atveju veikia kaip riba, o regresijos atveju kaip geriausiai tinkanti linija. SVM dažnai naudojama branduolio funkcija, skirta transformuoti duomenų rinkinį į aukštesnės dimensijos erdvę, kad jie būtų lengviau atskiriami. [Spauskite čia](https://en.wikipedia.org/wiki/Support-vector_machine) norėdami sužinoti daugiau apie SVM.
 - **Support Vector Regressor (SVR):** SVM tipas, skirtas rasti geriausiai tinkamą liniją (SVM atveju tai yra hiperplokštuma), kurioje yra maksimalus duomenų taškų skaičius.
 
 ### Kodėl SVR? [^1]
@@ -35,7 +35,7 @@ Pirmieji keli duomenų paruošimo žingsniai yra tokie patys kaip ankstesnėje p
 
 Atidarykite [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/3-SVR/working) aplanką šioje pamokoje ir suraskite [_notebook.ipynb_](https://github.com/microsoft/ML-For-Beginners/blob/main/7-TimeSeries/3-SVR/working/notebook.ipynb) failą.[^2]
 
-1. Paleiskite notebook ir importuokite reikalingas bibliotekas: [^2]
+1. Paleiskite užrašų knygelę ir importuokite reikalingas bibliotekas: [^2]
 
    ```python
    import sys
@@ -56,7 +56,7 @@ Atidarykite [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
    from common.utils import load_data, mape
    ```
 
-2. Įkelkite duomenis iš `/data/energy.csv` failo į Pandas dataframe ir peržiūrėkite: [^2]
+2. Įkelkite duomenis iš `/data/energy.csv` failo į Pandas duomenų rėmelį ir peržiūrėkite: [^2]
 
    ```python
    energy = load_data('../../data')[['load']]
@@ -71,15 +71,15 @@ Atidarykite [_/working_](https://github.com/microsoft/ML-For-Beginners/tree/main
    plt.show()
    ```
 
-   ![visi duomenys](../../../../translated_images/full-data.a82ec9957e580e976f651a4fc38f280b9229c6efdbe3cfe7c60abaa9486d2cbe.lt.png)
+   ![visi duomenys](../../../../7-TimeSeries/3-SVR/images/full-data.png)
 
    Dabar sukurkime SVR modelį.
 
 ### Sukurkite mokymo ir testavimo duomenų rinkinius
 
-Kai duomenys yra įkelti, galite juos padalinti į mokymo ir testavimo rinkinius. Tada pertvarkysite duomenis, kad sukurtumėte laiko žingsnių pagrindu sudarytą duomenų rinkinį, kuris bus reikalingas SVR. Modelį treniruosite su mokymo rinkiniu. Kai modelio mokymas bus baigtas, įvertinsite jo tikslumą mokymo rinkinyje, testavimo rinkinyje ir visame duomenų rinkinyje, kad pamatytumėte bendrą našumą. Turite užtikrinti, kad testavimo rinkinys apimtų vėlesnį laikotarpį nei mokymo rinkinys, kad modelis negautų informacijos iš ateities laikotarpių [^2] (situacija, vadinama *permokymu*).
+Dabar jūsų duomenys yra įkelti, todėl galite juos padalyti į mokymo ir testavimo rinkinius. Tada pertvarkysite duomenis, kad sukurtumėte laiko žingsnių pagrindu sudarytą duomenų rinkinį, kuris bus reikalingas SVR. Modelį treniruosite su mokymo rinkiniu. Baigus modelio mokymą, įvertinsite jo tikslumą mokymo rinkinyje, testavimo rinkinyje ir visame duomenų rinkinyje, kad pamatytumėte bendrą našumą. Turite užtikrinti, kad testavimo rinkinys apimtų vėlesnį laikotarpį nei mokymo rinkinys, kad modelis negautų informacijos iš ateities laikotarpių [^2] (situacija, vadinama *perdėtu pritaikymu*).
 
-1. Paskirkite dviejų mėnesių laikotarpį nuo 2014 m. rugsėjo 1 d. iki spalio 31 d. mokymo rinkiniui. Testavimo rinkinys apims dviejų mėnesių laikotarpį nuo 2014 m. lapkričio 1 d. iki gruodžio 31 d.: [^2]
+1. Skirkite dviejų mėnesių laikotarpį nuo 2014 m. rugsėjo 1 d. iki spalio 31 d. mokymo rinkiniui. Testavimo rinkinys apims dviejų mėnesių laikotarpį nuo 2014 m. lapkričio 1 d. iki gruodžio 31 d.: [^2]
 
    ```python
    train_start_dt = '2014-11-01 00:00:00'
@@ -97,7 +97,7 @@ Kai duomenys yra įkelti, galite juos padalinti į mokymo ir testavimo rinkinius
    plt.show()
    ```
 
-   ![mokymo ir testavimo duomenys](../../../../translated_images/train-test.ead0cecbfc341921d4875eccf25fed5eefbb860cdbb69cabcc2276c49e4b33e5.lt.png)
+   ![mokymo ir testavimo duomenys](../../../../7-TimeSeries/3-SVR/images/train-test.png)
 
 ### Paruoškite duomenis mokymui
 
@@ -118,7 +118,7 @@ Dabar turite paruošti duomenis mokymui, atlikdami filtravimą ir mastelio keiti
    Test data shape:  (48, 1)
    ```
    
-2. Mastelio keitimas mokymo duomenims į intervalą (0, 1): [^2]
+2. Mastelio keitimas mokymo duomenims, kad jie būtų intervale (0, 1): [^2]
 
    ```python
    scaler = MinMaxScaler()
@@ -186,7 +186,7 @@ print(x_test.shape, y_test.shape)
 
 ### Įgyvendinkite SVR [^1]
 
-Dabar laikas įgyvendinti SVR. Norėdami sužinoti daugiau apie šį įgyvendinimą, galite kreiptis į [šią dokumentaciją](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Mūsų įgyvendinimui laikomės šių žingsnių:
+Dabar laikas įgyvendinti SVR. Norėdami sužinoti daugiau apie šį įgyvendinimą, galite perskaityti [šią dokumentaciją](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). Mūsų įgyvendinimui laikomės šių žingsnių:
 
   1. Apibrėžkite modelį, iškviesdami `SVR()` ir perduodami modelio hiperparametrus: kernel, gamma, c ir epsilon
   2. Paruoškite modelį mokymo duomenims, iškviesdami funkciją `fit()`
@@ -248,7 +248,7 @@ print(len(y_train), len(y_test))
 
 #### Patikrinkite modelio našumą mokymo ir testavimo duomenyse [^1]
 
-Iš duomenų rinkinio išgauname laiko žymes, kad parodytume x ašyje mūsų grafike. Atkreipkite dėmesį, kad naudojame pirmus ```timesteps-1``` reikšmes kaip įvestį pirmai išvesčiai, todėl išvesčių laiko žymės prasidės po to.
+Iš duomenų rinkinio išgauname laiko žymes, kad parodytume x ašyje mūsų grafike. Atkreipkite dėmesį, kad naudojame pirmus ```timesteps-1``` duomenis kaip įvestį pirmai išvesčiai, todėl išvesties laiko žymės prasidės po to.
 
 ```python
 train_timestamps = energy[(energy.index < test_start_dt) & (energy.index >= train_start_dt)].index[timesteps-1:]
@@ -273,7 +273,7 @@ plt.title("Training data prediction")
 plt.show()
 ```
 
-![mokymo duomenų prognozė](../../../../translated_images/train-data-predict.3c4ef4e78553104ffdd53d47a4c06414007947ea328e9261ddf48d3eafdefbbf.lt.png)
+![mokymo duomenų prognozė](../../../../7-TimeSeries/3-SVR/images/train-data-predict.png)
 
 Atspausdinkite MAPE mokymo duomenims
 
@@ -296,7 +296,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![testavimo duomenų prognozė](../../../../translated_images/test-data-predict.8afc47ee7e52874f514ebdda4a798647e9ecf44a97cc927c535246fcf7a28aa9.lt.png)
+![testavimo duomenų prognozė](../../../../7-TimeSeries/3-SVR/images/test-data-predict.png)
 
 Atspausdinkite MAPE testavimo duomenims
 
@@ -352,7 +352,7 @@ plt.xlabel('Timestamp')
 plt.show()
 ```
 
-![visų duomenų prognozė](../../../../translated_images/full-data-predict.4f0fed16a131c8f3bcc57a3060039dc7f2f714a05b07b68c513e0fe7fb3d8964.lt.png)
+![visų duomenų prognozė](../../../../7-TimeSeries/3-SVR/images/full-data-predict.png)
 
 ```python
 print('MAPE: ', mape(Y_pred, Y)*100, '%')
@@ -368,15 +368,15 @@ MAPE:  2.0572089029888656 %
 
 ## 🚀Iššūkis
 
-- Pabandykite keisti hiperparametrus (gamma, C, epsilon) kurdami modelį ir įvertinkite duomenis, kad pamatytumėte, kurie hiperparametrų rinkiniai duoda geriausius rezultatus testavimo duomenyse. Norėdami sužinoti daugiau apie šiuos hiperparametrus, galite kreiptis į dokumentą [čia](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
+- Pabandykite keisti hiperparametrus (gamma, C, epsilon) kurdami modelį ir įvertinkite duomenis, kad pamatytumėte, kurie hiperparametrų rinkiniai duoda geriausius rezultatus testavimo duomenyse. Norėdami sužinoti daugiau apie šiuos hiperparametrus, galite perskaityti dokumentą [čia](https://scikit-learn.org/stable/modules/svm.html#parameters-of-the-rbf-kernel). 
 - Pabandykite naudoti skirtingas branduolio funkcijas modelyje ir analizuokite jų našumą duomenų rinkinyje. Naudingą dokumentą galite rasti [čia](https://scikit-learn.org/stable/modules/svm.html#kernel-functions).
 - Pabandykite naudoti skirtingas `timesteps` reikšmes, kad modelis galėtų pažvelgti atgal ir atlikti prognozę.
 
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/52/)
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Apžvalga ir savarankiškas mokymasis
 
-Ši pamoka buvo skirta supažindinti su SVR taikymu laiko eilučių prognozavimui. Norėdami sužinoti daugiau apie SVR, galite kreiptis į [šį tinklaraštį](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Ši [scikit-learn dokumentacija](https://scikit-learn.org/stable/modules/svm.html) pateikia išsamesnį paaiškinimą apie SVM apskritai, [SVR](https://scikit-learn.org/stable/modules/svm.html#regression) ir kitus įgyvendinimo aspektus, tokius kaip skirtingos [branduolio funkcijos](https://scikit-learn.org/stable/modules/svm.html#kernel-functions), kurias galima naudoti, ir jų parametrai.
+Ši pamoka buvo skirta supažindinti su SVR taikymu laiko eilučių prognozavimui. Norėdami sužinoti daugiau apie SVR, galite perskaityti [šį tinklaraštį](https://www.analyticsvidhya.com/blog/2020/03/support-vector-regression-tutorial-for-machine-learning/). Ši [dokumentacija apie scikit-learn](https://scikit-learn.org/stable/modules/svm.html) pateikia išsamesnį paaiškinimą apie SVM apskritai, [SVR](https://scikit-learn.org/stable/modules/svm.html#regression) ir kitus įgyvendinimo aspektus, tokius kaip skirtingos [branduolio funkcijos](https://scikit-learn.org/stable/modules/svm.html#kernel-functions), kurias galima naudoti, ir jų parametrai.
 
 ## Užduotis
 
@@ -385,7 +385,7 @@ MAPE:  2.0572089029888656 %
 ## Kreditas
 
 [^1]: Tekstą, kodą ir rezultatus šioje dalyje pateikė [@AnirbanMukherjeeXD](https://github.com/AnirbanMukherjeeXD)
-[^2]: Tekstas, kodas ir rezultatai šioje dalyje paimti iš [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
+[^2]: Tekstas, kodas ir rezultatai šioje dalyje buvo paimti iš [ARIMA](https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries/2-ARIMA)
 
 ---
 

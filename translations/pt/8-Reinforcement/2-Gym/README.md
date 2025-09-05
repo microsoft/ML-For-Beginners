@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9660fbd80845c59c15715cb418cd6e23",
-  "translation_date": "2025-09-03T18:40:42+00:00",
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-05T08:49:47+00:00",
   "source_file": "8-Reinforcement/2-Gym/README.md",
   "language_code": "pt"
 }
 -->
 ## Pré-requisitos
 
-Nesta lição, utilizaremos uma biblioteca chamada **OpenAI Gym** para simular diferentes **ambientes**. Pode executar o código desta lição localmente (por exemplo, no Visual Studio Code), caso em que a simulação abrirá numa nova janela. Ao executar o código online, poderá precisar de fazer alguns ajustes, conforme descrito [aqui](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+Nesta lição, utilizaremos uma biblioteca chamada **OpenAI Gym** para simular diferentes **ambientes**. Pode executar o código desta lição localmente (por exemplo, no Visual Studio Code), caso em que a simulação será aberta numa nova janela. Ao executar o código online, poderá precisar de fazer alguns ajustes, conforme descrito [aqui](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
@@ -31,7 +31,7 @@ import random
 
 ## Exercício - inicializar um ambiente de CartPole
 
-Para trabalhar com o problema de equilíbrio do CartPole, precisamos inicializar o ambiente correspondente. Cada ambiente está associado a:
+Para trabalhar com o problema de equilíbrio do CartPole, precisamos de inicializar o ambiente correspondente. Cada ambiente está associado a:
 
 - **Espaço de observação**, que define a estrutura da informação que recebemos do ambiente. No problema do CartPole, recebemos a posição do poste, a velocidade e outros valores.
 
@@ -65,7 +65,7 @@ Para ver como o ambiente funciona, vamos executar uma simulação curta de 100 p
 
     ![CartPole sem equilíbrio](../../../../8-Reinforcement/2-Gym/images/cartpole-nobalance.gif)
 
-1. Durante a simulação, precisamos obter observações para decidir como agir. Na verdade, a função step retorna as observações atuais, uma função de recompensa e um indicador `done` que indica se faz sentido continuar a simulação ou não: (bloco de código 4)
+1. Durante a simulação, precisamos de obter observações para decidir como agir. Na verdade, a função step retorna as observações atuais, uma função de recompensa e um indicador `done` que indica se faz sentido continuar a simulação ou não: (bloco de código 4)
 
     ```python
     env.reset()
@@ -104,17 +104,17 @@ Para ver como o ambiente funciona, vamos executar uma simulação curta de 100 p
     print(env.observation_space.high)
     ```
 
-    Também pode notar que o valor de recompensa em cada passo da simulação é sempre 1. Isto porque o nosso objetivo é sobreviver o maior tempo possível, ou seja, manter o poste numa posição razoavelmente vertical pelo maior período de tempo.
+    Também pode notar que o valor de recompensa em cada passo da simulação é sempre 1. Isto acontece porque o nosso objetivo é sobreviver o maior tempo possível, ou seja, manter o poste numa posição razoavelmente vertical pelo maior período de tempo.
 
     ✅ Na verdade, a simulação do CartPole é considerada resolvida se conseguirmos obter uma recompensa média de 195 ao longo de 100 tentativas consecutivas.
 
 ## Discretização do estado
 
-No Q-Learning, precisamos construir uma Q-Table que define o que fazer em cada estado. Para isso, o estado precisa ser **discreto**, ou seja, deve conter um número finito de valores discretos. Assim, precisamos de alguma forma **discretizar** as nossas observações, mapeando-as para um conjunto finito de estados.
+No Q-Learning, precisamos de construir uma Q-Table que define o que fazer em cada estado. Para isso, o estado precisa de ser **discreto**, ou seja, deve conter um número finito de valores discretos. Assim, precisamos de alguma forma **discretizar** as nossas observações, mapeando-as para um conjunto finito de estados.
 
-Existem algumas formas de fazer isso:
+Existem algumas formas de fazer isto:
 
-- **Dividir em intervalos**. Se conhecemos o intervalo de um determinado valor, podemos dividir este intervalo em vários **bins** e, em seguida, substituir o valor pelo número do bin ao qual pertence. Isto pode ser feito usando o método [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) do numpy. Neste caso, saberemos exatamente o tamanho do estado, pois dependerá do número de bins que selecionarmos para a digitalização.
+- **Dividir em intervalos**. Se conhecemos o intervalo de um determinado valor, podemos dividir este intervalo em vários **bins** e substituir o valor pelo número do bin ao qual pertence. Isto pode ser feito usando o método [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) do numpy. Neste caso, saberemos exatamente o tamanho do estado, pois dependerá do número de bins que selecionarmos para a digitalização.
 
 ✅ Podemos usar interpolação linear para trazer os valores para um intervalo finito (por exemplo, de -20 a 20) e, em seguida, converter os números em inteiros arredondando-os. Isto dá-nos um pouco menos de controlo sobre o tamanho do estado, especialmente se não conhecermos os intervalos exatos dos valores de entrada. Por exemplo, no nosso caso, 2 dos 4 valores não têm limites superiores/inferiores, o que pode resultar num número infinito de estados.
 
@@ -145,7 +145,7 @@ No nosso exemplo, utilizaremos a segunda abordagem. Como poderá notar mais tard
 
 1. Agora, execute uma simulação curta e observe esses valores discretos do ambiente. Sinta-se à vontade para experimentar tanto `discretize` quanto `discretize_bins` e veja se há alguma diferença.
 
-    ✅ `discretize_bins` retorna o número do bin, que é baseado em 0. Assim, para valores da variável de entrada próximos de 0, retorna o número do meio do intervalo (10). Em `discretize`, não nos preocupámos com o intervalo dos valores de saída, permitindo que sejam negativos, de modo que os valores do estado não são deslocados e 0 corresponde a 0. (bloco de código 8)
+    ✅ `discretize_bins` retorna o número do bin, que é baseado em 0. Assim, para valores da variável de entrada próximos de 0, retorna o número do meio do intervalo (10). Em `discretize`, não nos preocupámos com o intervalo dos valores de saída, permitindo que sejam negativos, e assim os valores do estado não são deslocados, e 0 corresponde a 0. (bloco de código 8)
 
     ```python
     env.reset()
@@ -163,11 +163,11 @@ No nosso exemplo, utilizaremos a segunda abordagem. Como poderá notar mais tard
 
 ## Estrutura da Q-Table
 
-Na lição anterior, o estado era um simples par de números de 0 a 8, e assim era conveniente representar a Q-Table por um tensor numpy com uma forma de 8x8x2. Se utilizarmos a discretização por bins, o tamanho do nosso vetor de estado também será conhecido, então podemos usar a mesma abordagem e representar o estado por um array de forma 20x20x10x10x2 (aqui 2 é a dimensão do espaço de ação, e as primeiras dimensões correspondem ao número de bins que selecionámos para cada um dos parâmetros no espaço de observação).
+Na lição anterior, o estado era um simples par de números de 0 a 8, e assim era conveniente representar a Q-Table por um tensor numpy com uma forma de 8x8x2. Se utilizarmos a discretização por bins, o tamanho do nosso vetor de estado também será conhecido, então podemos usar a mesma abordagem e representar o estado por um array com a forma 20x20x10x10x2 (aqui 2 é a dimensão do espaço de ação, e as primeiras dimensões correspondem ao número de bins que selecionámos para cada um dos parâmetros no espaço de observação).
 
 No entanto, às vezes as dimensões precisas do espaço de observação não são conhecidas. No caso da função `discretize`, nunca podemos ter certeza de que o nosso estado permanece dentro de certos limites, porque alguns dos valores originais não têm limites. Assim, utilizaremos uma abordagem ligeiramente diferente e representaremos a Q-Table por um dicionário.
 
-1. Utilize o par *(state,action)* como chave do dicionário, e o valor corresponderá ao valor da entrada na Q-Table. (bloco de código 9)
+1. Use o par *(state,action)* como chave do dicionário, e o valor corresponderá ao valor da entrada na Q-Table. (bloco de código 9)
 
     ```python
     Q = {}
@@ -198,13 +198,13 @@ Agora estamos prontos para ensinar o Peter a equilibrar!
 
     `epsilon` é o **fator de exploração/exploração**, que determina se devemos preferir explorar ou explorar. No nosso algoritmo, em `epsilon` por cento dos casos, selecionaremos a próxima ação de acordo com os valores da Q-Table, e no restante dos casos executaremos uma ação aleatória. Isto permitirá explorar áreas do espaço de busca que nunca vimos antes.
 
-    ✅ Em termos de equilíbrio - escolher uma ação aleatória (exploração) atuaria como um empurrão aleatório na direção errada, e o poste teria de aprender a recuperar o equilíbrio desses "erros".
+    ✅ Em termos de equilíbrio - escolher uma ação aleatória (exploração) seria como um empurrão aleatório na direção errada, e o poste teria de aprender a recuperar o equilíbrio desses "erros".
 
 ### Melhorar o algoritmo
 
 Podemos também fazer duas melhorias ao nosso algoritmo da lição anterior:
 
-- **Calcular a recompensa cumulativa média**, ao longo de várias simulações. Imprimiremos o progresso a cada 5000 iterações e calcularemos a média da recompensa cumulativa nesse período de tempo. Isto significa que, se obtivermos mais de 195 pontos, podemos considerar o problema resolvido, com qualidade ainda maior do que o necessário.
+- **Calcular a recompensa cumulativa média**, ao longo de várias simulações. Iremos imprimir o progresso a cada 5000 iterações e calcularemos a média da recompensa cumulativa nesse período de tempo. Isto significa que, se obtivermos mais de 195 pontos, podemos considerar o problema resolvido, com qualidade ainda maior do que o necessário.
 
 - **Calcular o resultado cumulativo médio máximo**, `Qmax`, e armazenaremos a Q-Table correspondente a esse resultado. Quando executar o treino, notará que, às vezes, o resultado cumulativo médio começa a cair, e queremos manter os valores da Q-Table que correspondem ao melhor modelo observado durante o treino.
 
@@ -251,7 +251,7 @@ Podemos também fazer duas melhorias ao nosso algoritmo da lição anterior:
 
 O que pode notar a partir desses resultados:
 
-- **Perto do nosso objetivo**. Estamos muito próximos de atingir o objetivo de obter 195 recompensas cumulativas ao longo de 100+ execuções consecutivas da simulação, ou podemos até ter conseguido! Mesmo que obtenhamos números menores, ainda não sabemos, porque calculamos a média ao longo de 5000 execuções, e apenas 100 execuções são necessárias no critério formal.
+- **Perto do nosso objetivo**. Estamos muito próximos de alcançar o objetivo de obter 195 recompensas cumulativas ao longo de 100+ execuções consecutivas da simulação, ou podemos até ter alcançado! Mesmo que obtenhamos números menores, ainda não sabemos, porque calculamos a média ao longo de 5000 execuções, e apenas 100 execuções são necessárias no critério formal.
 
 - **Recompensa começa a cair**. Às vezes, a recompensa começa a cair, o que significa que podemos "destruir" valores já aprendidos na Q-Table com os que pioram a situação.
 
@@ -259,15 +259,15 @@ Esta observação é mais claramente visível se plotarmos o progresso do treino
 
 ## Plotar o progresso do treino
 
-Durante o treino, coletámos o valor da recompensa cumulativa em cada uma das iterações no vetor `rewards`. Aqui está como fica quando o plotamos contra o número de iteração:
+Durante o treino, coletámos o valor da recompensa cumulativa em cada uma das iterações no vetor `rewards`. Aqui está como fica quando o plotamos contra o número de iterações:
 
 ```python
 plt.plot(rewards)
 ```
 
-![progresso bruto](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.pt.png)
+![progresso bruto](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
-A partir deste gráfico, não é possível dizer nada, porque, devido à natureza do processo de treino estocástico, a duração das sessões de treino varia muito. Para dar mais sentido a este gráfico, podemos calcular a **média móvel** ao longo de uma série de experiências, digamos 100. Isto pode ser feito convenientemente usando `np.convolve`: (bloco de código 12)
+A partir deste gráfico, não é possível dizer nada, porque, devido à natureza do processo de treino estocástico, a duração das sessões de treino varia muito. Para dar mais sentido a este gráfico, podemos calcular a **média móvel** ao longo de uma série de experimentos, digamos 100. Isto pode ser feito convenientemente usando `np.convolve`: (bloco de código 12)
 
 ```python
 def running_average(x,window):
@@ -276,7 +276,7 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![progresso do treino](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.pt.png)
+![progresso do treino](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
 ## Variar os hiperparâmetros
 
@@ -285,7 +285,7 @@ Para tornar o treino mais estável, faz sentido ajustar alguns dos nossos hiperp
 - **Para a taxa de aprendizagem**, `alpha`, podemos começar com valores próximos de 1 e depois ir reduzindo o parâmetro. Com o tempo, obteremos boas probabilidades na Q-Table e, assim, devemos ajustá-las ligeiramente, e não sobrescrever completamente com novos valores.
 
 - **Aumentar epsilon**. Podemos querer aumentar o `epsilon` lentamente, para explorar menos e explorar mais. Provavelmente faz sentido começar com um valor mais baixo de `epsilon` e aumentar até quase 1.
-> **Tarefa 1**: Experimente diferentes valores de hiperparâmetros e veja se consegue alcançar uma recompensa acumulada maior. Está a conseguir acima de 195?
+> **Tarefa 1**: Experimente alterar os valores dos hiperparâmetros e veja se consegue obter uma recompensa cumulativa mais alta. Está a conseguir ultrapassar 195?
 > **Tarefa 2**: Para resolver formalmente o problema, é necessário alcançar uma recompensa média de 195 ao longo de 100 execuções consecutivas. Meça isso durante o treino e certifique-se de que o problema foi resolvido formalmente!
 
 ## Ver o resultado em ação
@@ -304,7 +304,7 @@ while not done:
 env.close()
 ```
 
-Deverá ver algo como isto:
+Deverá aparecer algo como isto:
 
 ![um cartpole equilibrado](../../../../8-Reinforcement/2-Gym/images/cartpole-balance.gif)
 
@@ -314,18 +314,18 @@ Deverá ver algo como isto:
 
 > **Tarefa 3**: Aqui, estávamos a usar a cópia final da Q-Table, que pode não ser a melhor. Lembre-se de que armazenámos a Q-Table com melhor desempenho na variável `Qbest`! Experimente o mesmo exemplo com a Q-Table de melhor desempenho, copiando `Qbest` para `Q`, e veja se nota alguma diferença.
 
-> **Tarefa 4**: Aqui, não estávamos a selecionar a melhor ação em cada passo, mas sim a amostrar com a correspondente distribuição de probabilidade. Faria mais sentido selecionar sempre a melhor ação, com o valor mais alto na Q-Table? Isto pode ser feito utilizando a função `np.argmax` para descobrir o número da ação correspondente ao valor mais alto na Q-Table. Implemente esta estratégia e veja se melhora o equilíbrio.
+> **Tarefa 4**: Aqui, não estávamos a selecionar a melhor ação em cada passo, mas sim a amostrar com a correspondente distribuição de probabilidade. Faria mais sentido selecionar sempre a melhor ação, com o valor mais alto na Q-Table? Isto pode ser feito utilizando a função `np.argmax` para descobrir o número da ação correspondente ao maior valor na Q-Table. Implemente esta estratégia e veja se melhora o equilíbrio.
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Tarefa
 [Treinar um Mountain Car](assignment.md)
 
 ## Conclusão
 
-Aprendemos agora como treinar agentes para alcançar bons resultados apenas fornecendo-lhes uma função de recompensa que define o estado desejado do jogo e dando-lhes a oportunidade de explorar inteligentemente o espaço de busca. Aplicámos com sucesso o algoritmo de Q-Learning nos casos de ambientes discretos e contínuos, mas com ações discretas.
+Aprendemos agora como treinar agentes para alcançar bons resultados apenas fornecendo-lhes uma função de recompensa que define o estado desejado do jogo e dando-lhes a oportunidade de explorar inteligentemente o espaço de busca. Aplicámos com sucesso o algoritmo de Q-Learning em casos de ambientes discretos e contínuos, mas com ações discretas.
 
-É importante também estudar situações em que o estado de ação é contínuo e quando o espaço de observação é muito mais complexo, como a imagem do ecrã de um jogo Atari. Nestes problemas, muitas vezes é necessário usar técnicas de aprendizagem automática mais avançadas, como redes neuronais, para alcançar bons resultados. Esses tópicos mais avançados serão abordados no nosso próximo curso de IA mais avançado.
+É importante também estudar situações em que o estado das ações é contínuo e quando o espaço de observação é muito mais complexo, como a imagem do ecrã de um jogo Atari. Nestes problemas, muitas vezes é necessário usar técnicas de aprendizagem automática mais avançadas, como redes neuronais, para alcançar bons resultados. Esses tópicos mais avançados serão abordados no nosso próximo curso de IA mais avançado.
 
 ---
 

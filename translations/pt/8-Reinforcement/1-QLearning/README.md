@@ -1,26 +1,26 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ffe994d1cc881bdeb49226a064116e5",
-  "translation_date": "2025-09-03T18:31:32+00:00",
+  "original_hash": "911efd5e595089000cb3c16fce1beab8",
+  "translation_date": "2025-09-05T08:49:11+00:00",
   "source_file": "8-Reinforcement/1-QLearning/README.md",
   "language_code": "pt"
 }
 -->
 # Introdução ao Aprendizado por Reforço e Q-Learning
 
-![Resumo do reforço em aprendizagem de máquina em um sketchnote](../../../../translated_images/ml-reinforcement.94024374d63348dbb3571c343ca7ddabef72adac0b8086d47164b769ba3a8a1d.pt.png)
+![Resumo do reforço em aprendizagem de máquina em um sketchnote](../../../../sketchnotes/ml-reinforcement.png)
 > Sketchnote por [Tomomi Imura](https://www.twitter.com/girlie_mac)
 
 O aprendizado por reforço envolve três conceitos importantes: o agente, alguns estados e um conjunto de ações por estado. Ao executar uma ação em um estado específico, o agente recebe uma recompensa. Imagine novamente o jogo de computador Super Mario. Você é o Mario, está em um nível do jogo, ao lado de um precipício. Acima de você há uma moeda. Você, sendo o Mario, em um nível do jogo, em uma posição específica... esse é o seu estado. Mover um passo para a direita (uma ação) fará com que você caia no precipício, o que lhe dará uma pontuação numérica baixa. No entanto, pressionar o botão de salto permitirá que você marque um ponto e continue vivo. Esse é um resultado positivo e deve lhe conceder uma pontuação numérica positiva.
 
-Usando aprendizado por reforço e um simulador (o jogo), você pode aprender a jogar para maximizar a recompensa, que é permanecer vivo e marcar o maior número de pontos possível.
+Usando aprendizado por reforço e um simulador (o jogo), você pode aprender a jogar para maximizar a recompensa, que é permanecer vivo e marcar o máximo de pontos possível.
 
 [![Introdução ao Aprendizado por Reforço](https://img.youtube.com/vi/lDq_en8RNOo/0.jpg)](https://www.youtube.com/watch?v=lDq_en8RNOo)
 
 > 🎥 Clique na imagem acima para ouvir Dmitry falar sobre Aprendizado por Reforço
 
-## [Quiz pré-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/45/)
+## [Quiz pré-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Pré-requisitos e Configuração
 
@@ -28,7 +28,7 @@ Nesta lição, vamos experimentar algum código em Python. Você deve ser capaz 
 
 Você pode abrir [o notebook da lição](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/notebook.ipynb) e seguir esta lição para construir.
 
-> **Nota:** Se estiver abrindo este código na nuvem, também precisará buscar o arquivo [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), que é usado no código do notebook. Adicione-o ao mesmo diretório que o notebook.
+> **Nota:** Se você estiver abrindo este código na nuvem, também precisará buscar o arquivo [`rlboard.py`](https://github.com/microsoft/ML-For-Beginners/blob/main/8-Reinforcement/1-QLearning/rlboard.py), que é usado no código do notebook. Adicione-o ao mesmo diretório que o notebook.
 
 ## Introdução
 
@@ -40,11 +40,11 @@ Nesta lição, vamos explorar o mundo de **[Pedro e o Lobo](https://en.wikipedia
 
 Para simplificar, vamos considerar o mundo de Pedro como um tabuleiro quadrado de tamanho `largura` x `altura`, como este:
 
-![Ambiente de Pedro](../../../../translated_images/environment.40ba3cb66256c93fa7e92f6f7214e1d1f588aafa97d266c11d108c5c5d101b6c.pt.png)
+![Ambiente de Pedro](../../../../8-Reinforcement/1-QLearning/images/environment.png)
 
 Cada célula neste tabuleiro pode ser:
 
-* **terra**, onde Pedro e outras criaturas podem caminhar.
+* **chão**, onde Pedro e outras criaturas podem caminhar.
 * **água**, onde obviamente não se pode caminhar.
 * uma **árvore** ou **grama**, um lugar onde se pode descansar.
 * uma **maçã**, que representa algo que Pedro ficaria feliz em encontrar para se alimentar.
@@ -65,11 +65,11 @@ Este código deve imprimir uma imagem do ambiente semelhante à acima.
 
 ## Ações e política
 
-No nosso exemplo, o objetivo de Pedro seria encontrar uma maçã, enquanto evita o lobo e outros obstáculos. Para isso, ele pode essencialmente andar até encontrar uma maçã.
+No nosso exemplo, o objetivo de Pedro seria encontrar uma maçã, enquanto evita o lobo e outros obstáculos. Para isso, ele pode essencialmente andar por aí até encontrar uma maçã.
 
 Portanto, em qualquer posição, ele pode escolher entre uma das seguintes ações: cima, baixo, esquerda e direita.
 
-Definiremos essas ações como um dicionário e mapearemos para pares de alterações de coordenadas correspondentes. Por exemplo, mover para a direita (`R`) corresponderia ao par `(1,0)`. (bloco de código 2):
+Definiremos essas ações como um dicionário e as mapearemos para pares de mudanças de coordenadas correspondentes. Por exemplo, mover para a direita (`R`) corresponderia ao par `(1,0)`. (bloco de código 2):
 
 ```python
 actions = { "U" : (0,-1), "D" : (0,1), "L" : (-1,0), "R" : (1,0) }
@@ -142,7 +142,7 @@ Vamos primeiro resolver nosso problema implementando uma estratégia de caminhad
 
 ## Função de recompensa
 
-Para tornar nossa política mais inteligente, precisamos entender quais movimentos são "melhores" do que outros. Para isso, precisamos definir nosso objetivo.
+Para tornar nossa política mais inteligente, precisamos entender quais movimentos são "melhores" que outros. Para isso, precisamos definir nosso objetivo.
 
 O objetivo pode ser definido em termos de uma **função de recompensa**, que retornará algum valor de pontuação para cada estado. Quanto maior o número, melhor a função de recompensa. (bloco de código 5)
 
@@ -169,19 +169,19 @@ Uma coisa interessante sobre funções de recompensa é que, na maioria dos caso
 
 O algoritmo que discutiremos aqui é chamado **Q-Learning**. Neste algoritmo, a política é definida por uma função (ou uma estrutura de dados) chamada **Q-Table**. Ela registra a "qualidade" de cada uma das ações em um estado dado.
 
-É chamada de Q-Table porque muitas vezes é conveniente representá-la como uma tabela ou matriz multidimensional. Como nosso tabuleiro tem dimensões `largura` x `altura`, podemos representar a Q-Table usando um array numpy com forma `largura` x `altura` x `len(actions)`: (bloco de código 6)
+É chamada de Q-Table porque muitas vezes é conveniente representá-la como uma tabela ou matriz multidimensional. Como nosso tabuleiro tem dimensões `largura` x `altura`, podemos representar a Q-Table usando um array numpy com formato `largura` x `altura` x `len(actions)`: (bloco de código 6)
 
 ```python
 Q = np.ones((width,height,len(actions)),dtype=np.float)*1.0/len(actions)
 ```
 
-Note que inicializamos todos os valores da Q-Table com um valor igual, no nosso caso - 0.25. Isso corresponde à política de "caminhada aleatória", porque todos os movimentos em cada estado são igualmente bons. Podemos passar a Q-Table para a função `plot` para visualizar a tabela no tabuleiro: `m.plot(Q)`.
+Observe que inicializamos todos os valores da Q-Table com um valor igual, no nosso caso - 0.25. Isso corresponde à política de "caminhada aleatória", porque todos os movimentos em cada estado são igualmente bons. Podemos passar a Q-Table para a função `plot` para visualizar a tabela no tabuleiro: `m.plot(Q)`.
 
-![Ambiente de Pedro](../../../../translated_images/env_init.04e8f26d2d60089e128f21d22e5fef57d580e559f0d5937b06c689e5e7cdd438.pt.png)
+![Ambiente de Pedro](../../../../8-Reinforcement/1-QLearning/images/env_init.png)
 
 No centro de cada célula há uma "seta" que indica a direção preferida de movimento. Como todas as direções são iguais, um ponto é exibido.
 
-Agora precisamos executar a simulação, explorar nosso ambiente e aprender uma melhor distribuição de valores na Q-Table, o que nos permitirá encontrar o caminho para a maçã muito mais rapidamente.
+Agora precisamos executar a simulação, explorar nosso ambiente e aprender uma melhor distribuição de valores da Q-Table, o que nos permitirá encontrar o caminho para a maçã muito mais rapidamente.
 
 ## Essência do Q-Learning: Equação de Bellman
 
@@ -191,7 +191,7 @@ Uma vez que começamos a nos mover, cada ação terá uma recompensa corresponde
 
 Para levar em conta essa recompensa atrasada, precisamos usar os princípios de **[programação dinâmica](https://en.wikipedia.org/wiki/Dynamic_programming)**, que nos permitem pensar sobre nosso problema de forma recursiva.
 
-Suponha que estamos agora no estado *s*, e queremos nos mover para o próximo estado *s'*. Ao fazer isso, receberemos a recompensa imediata *r(s,a)*, definida pela função de recompensa, mais alguma recompensa futura. Se supusermos que nossa Q-Table reflete corretamente a "atratividade" de cada ação, então no estado *s'* escolheremos uma ação *a* que corresponde ao valor máximo de *Q(s',a')*. Assim, a melhor recompensa futura possível que poderíamos obter no estado *s* será definida como `max`
+Suponha que estamos agora no estado *s*, e queremos nos mover para o próximo estado *s'*. Ao fazer isso, receberemos a recompensa imediata *r(s,a)*, definida pela função de recompensa, mais alguma recompensa futura. Se supusermos que nossa Q-Table reflete corretamente a "atratividade" de cada ação, então no estado *s'* escolheremos uma ação *a* que corresponda ao valor máximo de *Q(s',a')*. Assim, a melhor recompensa futura possível que poderíamos obter no estado *s* será definida como `max`
 
 ## Verificar a política
 
@@ -217,7 +217,7 @@ walk(m,qpolicy_strict)
 
 ## Navegação
 
-Uma política de navegação melhor seria aquela que utilizámos durante o treino, que combina exploração e aproveitamento. Nesta política, selecionamos cada ação com uma certa probabilidade, proporcional aos valores na Q-Table. Esta estratégia ainda pode fazer com que o agente volte a uma posição que já explorou, mas, como podes ver no código abaixo, resulta num caminho médio muito curto até ao local desejado (lembra-te que `print_statistics` executa a simulação 100 vezes): (bloco de código 10)
+Uma política de navegação melhor seria aquela que utilizámos durante o treino, que combina exploração e aproveitamento. Nesta política, selecionamos cada ação com uma certa probabilidade, proporcional aos valores na Q-Table. Esta estratégia pode ainda resultar no agente voltar a uma posição que já explorou, mas, como podes ver no código abaixo, resulta num caminho médio muito curto até ao local desejado (lembra-te que `print_statistics` executa a simulação 100 vezes): (bloco de código 10)
 
 ```python
 def qpolicy(m):
@@ -229,23 +229,23 @@ def qpolicy(m):
 print_statistics(qpolicy)
 ```
 
-Depois de executares este código, deverás obter um comprimento médio de caminho muito menor do que antes, na faixa de 3-6.
+Depois de executar este código, deverás obter um comprimento médio de caminho muito menor do que antes, na faixa de 3-6.
 
-## Investigando o processo de aprendizagem
+## Investigar o processo de aprendizagem
 
 Como mencionámos, o processo de aprendizagem é um equilíbrio entre exploração e aproveitamento do conhecimento adquirido sobre a estrutura do espaço do problema. Vimos que os resultados da aprendizagem (a capacidade de ajudar um agente a encontrar um caminho curto até ao objetivo) melhoraram, mas também é interessante observar como o comprimento médio do caminho se comporta durante o processo de aprendizagem:
 
-## As aprendizagens podem ser resumidas como:
+## Resumo das aprendizagens:
 
 - **O comprimento médio do caminho aumenta**. O que vemos aqui é que, inicialmente, o comprimento médio do caminho aumenta. Isto provavelmente deve-se ao facto de que, quando não sabemos nada sobre o ambiente, é mais provável ficarmos presos em estados desfavoráveis, como água ou lobos. À medida que aprendemos mais e começamos a usar esse conhecimento, conseguimos explorar o ambiente por mais tempo, mas ainda não sabemos muito bem onde estão as maçãs.
 
 - **O comprimento do caminho diminui, à medida que aprendemos mais**. Quando aprendemos o suficiente, torna-se mais fácil para o agente alcançar o objetivo, e o comprimento do caminho começa a diminuir. No entanto, ainda estamos abertos à exploração, por isso frequentemente desviamos do melhor caminho e exploramos novas opções, tornando o caminho mais longo do que o ideal.
 
-- **O comprimento aumenta abruptamente**. O que também observamos neste gráfico é que, em determinado momento, o comprimento aumentou abruptamente. Isto indica a natureza estocástica do processo, e que podemos, em algum momento, "estragar" os coeficientes da Q-Table ao sobrescrevê-los com novos valores. Isto idealmente deve ser minimizado ao reduzir a taxa de aprendizagem (por exemplo, no final do treino, ajustamos os valores da Q-Table apenas por um pequeno valor).
+- **O comprimento aumenta abruptamente**. O que também observamos neste gráfico é que, em determinado momento, o comprimento aumentou abruptamente. Isto indica a natureza estocástica do processo, e que podemos, em algum momento, "estragar" os coeficientes da Q-Table ao sobrescrevê-los com novos valores. Isto idealmente deve ser minimizado ao diminuir a taxa de aprendizagem (por exemplo, no final do treino, ajustamos os valores da Q-Table apenas por um valor pequeno).
 
-No geral, é importante lembrar que o sucesso e a qualidade do processo de aprendizagem dependem significativamente de parâmetros, como a taxa de aprendizagem, a redução da taxa de aprendizagem e o fator de desconto. Estes são frequentemente chamados de **hiperparâmetros**, para distingui-los dos **parâmetros**, que otimizamos durante o treino (por exemplo, os coeficientes da Q-Table). O processo de encontrar os melhores valores de hiperparâmetros é chamado de **otimização de hiperparâmetros**, e merece um tópico à parte.
+No geral, é importante lembrar que o sucesso e a qualidade do processo de aprendizagem dependem significativamente de parâmetros, como a taxa de aprendizagem, a diminuição da taxa de aprendizagem e o fator de desconto. Estes são frequentemente chamados de **hiperparâmetros**, para distingui-los dos **parâmetros**, que otimizamos durante o treino (por exemplo, os coeficientes da Q-Table). O processo de encontrar os melhores valores de hiperparâmetros é chamado de **otimização de hiperparâmetros**, e merece um tópico à parte.
 
-## [Questionário pós-aula](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/46/)
+## [Questionário pós-aula](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Trabalho 
 [Um Mundo Mais Realista](assignment.md)
@@ -253,4 +253,4 @@ No geral, é importante lembrar que o sucesso e a qualidade do processo de apren
 ---
 
 **Aviso Legal**:  
-Este documento foi traduzido utilizando o serviço de tradução por IA [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, é importante notar que traduções automáticas podem conter erros ou imprecisões. O documento original na sua língua nativa deve ser considerado a fonte autoritária. Para informações críticas, recomenda-se a tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas decorrentes da utilização desta tradução.
+Este documento foi traduzido utilizando o serviço de tradução automática [Co-op Translator](https://github.com/Azure/co-op-translator). Embora nos esforcemos para garantir a precisão, esteja ciente de que traduções automáticas podem conter erros ou imprecisões. O documento original no seu idioma nativo deve ser considerado a fonte oficial. Para informações críticas, recomenda-se uma tradução profissional realizada por humanos. Não nos responsabilizamos por quaisquer mal-entendidos ou interpretações incorretas resultantes do uso desta tradução.

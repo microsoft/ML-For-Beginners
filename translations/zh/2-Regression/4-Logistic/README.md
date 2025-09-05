@@ -1,44 +1,44 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "72b5bae0879baddf6aafc82bb07b8776",
-  "translation_date": "2025-09-03T16:30:26+00:00",
+  "original_hash": "abf86d845c84330bce205a46b382ec88",
+  "translation_date": "2025-09-05T08:57:14+00:00",
   "source_file": "2-Regression/4-Logistic/README.md",
   "language_code": "zh"
 }
 -->
 # 使用逻辑回归预测类别
 
-![逻辑回归与线性回归信息图](../../../../translated_images/linear-vs-logistic.ba180bf95e7ee66721ba10ebf2dac2666acbd64a88b003c83928712433a13c7d.zh.png)
+![逻辑回归与线性回归信息图](../../../../2-Regression/4-Logistic/images/linear-vs-logistic.png)
 
-## [课前测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/15/)
+## [课前测验](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [本课程也提供 R 版本！](../../../../2-Regression/4-Logistic/solution/R/lesson_4.html)
 
 ## 简介
 
-在本课程中，我们将学习逻辑回归，这是经典机器学习技术之一。你可以使用这种技术发现模式以预测二元类别。例如，这颗糖果是巧克力还是不是巧克力？这种疾病是否具有传染性？这个顾客是否会选择这个产品？
+在本课程中，我们将学习逻辑回归，这是经典机器学习技术之一。你可以使用这种技术发现模式以预测二元类别。例如，这颗糖果是巧克力还是不是巧克力？这种疾病是否具有传染性？这个顾客会选择这个产品还是不会？
 
 在本课程中，你将学习：
 
 - 一个新的数据可视化库
 - 逻辑回归的技术
 
-✅ 在这个 [学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) 中深入了解这种回归类型的工作原理。
+✅ 在这个 [学习模块](https://docs.microsoft.com/learn/modules/train-evaluate-classification-models?WT.mc_id=academic-77952-leestott) 中深入了解如何使用这种回归方法。
 
 ## 前置知识
 
-在之前的课程中，我们已经熟悉了南瓜数据，并意识到其中有一个可以使用的二元类别：`Color`。
+通过之前的南瓜数据集练习，我们已经足够熟悉它，并意识到其中有一个可以处理的二元类别：`Color`。
 
 让我们构建一个逻辑回归模型来预测给定一些变量时，_某个南瓜可能的颜色_（橙色 🎃 或白色 👻）。
 
-> 为什么我们在回归课程中讨论二元分类？仅仅是为了语言上的方便，因为逻辑回归实际上是[一种分类方法](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)，尽管它是基于线性的。在下一组课程中，你将学习其他分类数据的方法。
+> 为什么在回归课程中讨论二元分类？仅仅是为了语言上的方便，因为逻辑回归实际上是[一种分类方法](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)，尽管它是基于线性的。在下一组课程中，你将学习其他分类数据的方法。
 
 ## 定义问题
 
-对于我们的目的，我们将问题表达为二元类别：“白色”或“非白色”。数据集中还有一个“条纹”类别，但实例很少，因此我们不会使用它。实际上，在移除数据集中的空值后，它也会消失。
+对于我们的目的，我们将问题表达为一个二元类别：“白色”或“非白色”。数据集中还有一个“条纹”类别，但实例较少，因此我们不会使用它。实际上，在移除数据集中的空值后，它也会消失。
 
-> 🎃 有趣的事实，我们有时称白色南瓜为“幽灵”南瓜。它们不太容易雕刻，因此不像橙色南瓜那么受欢迎，但它们看起来很酷！所以我们也可以将问题重新表述为：“幽灵”或“非幽灵”。👻
+> 🎃 有趣的事实：我们有时称白色南瓜为“幽灵”南瓜。它们不太容易雕刻，因此不像橙色南瓜那么受欢迎，但它们看起来很酷！所以我们也可以将问题重新表述为：“幽灵”或“非幽灵”。👻
 
 ## 关于逻辑回归
 
@@ -50,9 +50,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 二元分类
 
-逻辑回归无法提供线性回归的功能。前者预测二元类别（“白色或非白色”），而后者可以预测连续值，例如根据南瓜的产地和收获时间，_价格将上涨多少_。
+逻辑回归与线性回归的功能不同。前者预测二元类别（例如“白色或非白色”），而后者能够预测连续值，例如根据南瓜的产地和收获时间，_价格将上涨多少_。
 
-![南瓜分类模型](../../../../translated_images/pumpkin-classifier.562771f104ad5436b87d1c67bca02a42a17841133556559325c0a0e348e5b774.zh.png)
+![南瓜分类模型](../../../../2-Regression/4-Logistic/images/pumpkin-classifier.png)
 > 信息图由 [Dasani Madipalli](https://twitter.com/dasani_decoded) 提供
 
 ### 其他分类
@@ -62,15 +62,15 @@ CO_OP_TRANSLATOR_METADATA:
 - **多项式分类**：涉及多个类别，例如“橙色、白色和条纹”。
 - **有序分类**：涉及有序类别，适用于逻辑排序的结果，例如按有限大小排序的南瓜（迷你、小、中、大、特大、超大）。
 
-![多项式分类与有序分类](../../../../translated_images/multinomial-vs-ordinal.36701b4850e37d86c9dd49f7bef93a2f94dbdb8fe03443eb68f0542f97f28f29.zh.png)
+![多项式分类与有序分类](../../../../2-Regression/4-Logistic/images/multinomial-vs-ordinal.png)
 
 ### 变量不需要相关
 
-还记得线性回归在变量相关性较强时效果更好吗？逻辑回归正好相反——变量不需要相关。这适用于数据中相关性较弱的情况。
+还记得线性回归在变量相关性较高时效果更好吗？逻辑回归正好相反——变量不需要相关性。这适用于数据中相关性较弱的情况。
 
 ### 需要大量干净数据
 
-逻辑回归在使用更多数据时会提供更准确的结果；我们的数据集较小，因此并不理想。
+逻辑回归在使用更多数据时会给出更准确的结果；我们的数据集较小，因此并不理想。
 
 [![机器学习初学者 - 数据分析与准备用于逻辑回归](https://img.youtube.com/vi/B2X4H9vcXTs/0.jpg)](https://youtu.be/B2X4H9vcXTs "机器学习初学者 - 数据分析与准备用于逻辑回归")
 
@@ -100,9 +100,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 ### 可视化 - 分类图
 
-现在你已经加载了 [起始笔记本](./notebook.ipynb)，再次使用南瓜数据并清理数据以保留包含一些变量（包括 `Color`）的数据集。让我们使用一个不同的库 [Seaborn](https://seaborn.pydata.org/index.html) 在笔记本中可视化数据。Seaborn 基于之前使用的 Matplotlib。
+现在你已经加载了[起始笔记本](../../../../2-Regression/4-Logistic/notebook.ipynb)，其中包含南瓜数据，并清理了数据以保留一些变量，包括 `Color`。让我们使用一个不同的库 [Seaborn](https://seaborn.pydata.org/index.html) 在笔记本中可视化数据框。Seaborn 是基于我们之前使用的 Matplotlib 构建的。
 
-Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比较 `Variety` 和 `Color` 的数据分布。
+Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以在分类图中比较 `Variety` 和 `Color` 数据的分布。
 
 1. 使用 `catplot` 函数创建这样的图，使用南瓜数据 `pumpkins`，并为每个南瓜类别（橙色或白色）指定颜色映射：
 
@@ -120,7 +120,7 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
     )
     ```
 
-    ![数据可视化网格](../../../../translated_images/pumpkins_catplot_1.c55c409b71fea2ecc01921e64b91970542101f90bcccfa4aa3a205db8936f48b.zh.png)
+    ![数据可视化网格](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_1.png)
 
     通过观察数据，你可以看到 `Color` 数据与 `Variety` 的关系。
 
@@ -128,11 +128,11 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
 
 ### 数据预处理：特征和标签编码
 
-我们的南瓜数据集的所有列都包含字符串值。处理分类数据对人类来说很直观，但对机器来说却不然。机器学习算法更适合处理数字数据。这就是为什么编码是数据预处理阶段非常重要的一步，因为它可以将分类数据转换为数值数据，而不会丢失任何信息。良好的编码有助于构建良好的模型。
+我们的南瓜数据集的所有列都包含字符串值。处理分类数据对人类来说很直观，但对机器来说却不然。机器学习算法更适合处理数字数据。这就是为什么编码是数据预处理阶段非常重要的一步，它使我们能够将分类数据转换为数值数据，而不会丢失任何信息。良好的编码有助于构建良好的模型。
 
 对于特征编码，主要有两种编码器：
 
-1. 有序编码器：适用于有序变量，即数据具有逻辑顺序的分类变量，例如数据集中的 `Item Size` 列。它创建一个映射，使每个类别由一个数字表示，该数字是列中类别的顺序。
+1. **有序编码器**：适用于有序变量，即数据具有逻辑顺序的分类变量，例如数据集中的 `Item Size` 列。它创建一个映射，使每个类别由一个数字表示，该数字是列中类别的顺序。
 
     ```python
     from sklearn.preprocessing import OrdinalEncoder
@@ -142,7 +142,7 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
     ordinal_encoder = OrdinalEncoder(categories=item_size_categories)
     ```
 
-2. 分类编码器：适用于名义变量，即数据没有逻辑顺序的分类变量，例如数据集中除 `Item Size` 之外的所有特征。它是一种独热编码，这意味着每个类别由一个二进制列表示：如果南瓜属于该 `Variety`，则编码变量等于 1，否则为 0。
+2. **分类编码器**：适用于无序变量，即数据没有逻辑顺序的分类变量，例如数据集中除 `Item Size` 之外的所有特征。它是一种独热编码，这意味着每个类别由一个二进制列表示：如果南瓜属于该类别，则编码变量为 1，否则为 0。
 
     ```python
     from sklearn.preprocessing import OneHotEncoder
@@ -151,7 +151,7 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
     categorical_encoder = OneHotEncoder(sparse_output=False)
     ```
 
-然后，使用 `ColumnTransformer` 将多个编码器合并为一个步骤并应用于适当的列。
+然后，使用 `ColumnTransformer` 将多个编码器合并为一个步骤，并将其应用于适当的列。
 
 ```python
     from sklearn.compose import ColumnTransformer
@@ -174,19 +174,19 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
     encoded_label = label_encoder.fit_transform(pumpkins['Color'])
 ```
 
-一旦我们对特征和标签进行了编码，就可以将它们合并到一个新的数据框 `encoded_pumpkins` 中。
+完成特征和标签编码后，我们可以将它们合并为一个新的数据框 `encoded_pumpkins`。
 
 ```python
     encoded_pumpkins = encoded_features.assign(Color=encoded_label)
 ```
 
-✅ 使用有序编码器处理 `Item Size` 列有什么优势？
+✅ 使用有序编码器处理 `Item Size` 列有哪些优势？
 
 ### 分析变量之间的关系
 
-现在我们已经对数据进行了预处理，可以分析特征和标签之间的关系，以了解模型在给定特征时预测标签的能力。
+现在我们已经对数据进行了预处理，可以分析特征和标签之间的关系，以了解模型在给定特征的情况下预测标签的能力。
 
-分析这种关系的最佳方式是绘制数据。我们将再次使用 Seaborn 的 `catplot` 函数，以分类图的形式可视化 `Item Size`、`Variety` 和 `Color` 的关系。为了更好地绘制数据，我们将使用编码后的 `Item Size` 列和未编码的 `Variety` 列。
+分析这种关系的最佳方式是绘制数据。我们将再次使用 Seaborn 的 `catplot` 函数，以分类图的形式可视化 `Item Size`、`Variety` 和 `Color` 之间的关系。为了更好地绘制数据，我们将使用编码后的 `Item Size` 列和未编码的 `Variety` 列。
 
 ```python
     palette = {
@@ -206,15 +206,15 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
     g.set_titles(row_template="{row_name}")
 ```
 
-![数据分类图](../../../../translated_images/pumpkins_catplot_2.87a354447880b3889278155957f8f60dd63db4598de5a6d0fda91c334d31f9f1.zh.png)
+![数据分类图](../../../../2-Regression/4-Logistic/images/pumpkins_catplot_2.png)
 
-### 使用 swarm 图
+### 使用蜂群图
 
-由于 `Color` 是一个二元类别（白色或非白色），它需要“[一种专门的可视化方法](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar)”。还有其他方法可以可视化此类别与其他变量的关系。
+由于 `Color` 是一个二元类别（白色或非白色），它需要“[一种专门的方法](https://seaborn.pydata.org/tutorial/categorical.html?highlight=bar)来可视化”。还有其他方法可以可视化此类别与其他变量的关系。
 
-你可以使用 Seaborn 图并排可视化变量。
+你可以使用 Seaborn 图表并排可视化变量。
 
-1. 尝试使用“swarm”图显示值的分布：
+1. 尝试使用“蜂群图”来显示值的分布：
 
     ```python
     palette = {
@@ -224,23 +224,23 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
     sns.swarmplot(x="Color", y="ord__Item Size", data=encoded_pumpkins, palette=palette)
     ```
 
-    ![数据分布图](../../../../translated_images/swarm_2.efeacfca536c2b577dc7b5f8891f28926663fbf62d893ab5e1278ae734ca104e.zh.png)
+    ![数据蜂群图](../../../../2-Regression/4-Logistic/images/swarm_2.png)
 
-**注意**：上述代码可能会生成警告，因为 Seaborn 无法在 swarm 图中表示如此多的数据点。一个可能的解决方案是通过使用 `size` 参数减小标记的大小。然而，请注意，这会影响图表的可读性。
+**注意**：上述代码可能会生成警告，因为 Seaborn 无法在蜂群图中表示如此多的数据点。一个可能的解决方案是通过使用 `size` 参数减小标记的大小。然而，请注意，这会影响图表的可读性。
 
 > **🧮 数学原理**
 >
-> 逻辑回归依赖于“最大似然”的概念，使用 [Sigmoid 函数](https://wikipedia.org/wiki/Sigmoid_function)。在图表上，Sigmoid 函数呈现“S”形。它将一个值映射到 0 和 1 之间。其曲线也被称为“逻辑曲线”。公式如下：
+> 逻辑回归依赖于“最大似然”概念，使用[Sigmoid 函数](https://wikipedia.org/wiki/Sigmoid_function)。在图表上，Sigmoid 函数看起来像一个“S”形。它将一个值映射到 0 和 1 之间的某个位置。它的曲线也被称为“逻辑曲线”。其公式如下：
 >
-> ![逻辑函数](../../../../translated_images/sigmoid.8b7ba9d095c789cf72780675d0d1d44980c3736617329abfc392dfc859799704.zh.png)
+> ![逻辑函数](../../../../2-Regression/4-Logistic/images/sigmoid.png)
 >
-> 其中，Sigmoid 的中点位于 x 的 0 点，L 是曲线的最大值，k 是曲线的陡度。如果函数的结果大于 0.5，则该标签被归为二元选择的类别“1”。否则，它被归为类别“0”。
+> 其中，Sigmoid 的中点位于 x 的 0 点，L 是曲线的最大值，k 是曲线的陡度。如果函数的结果大于 0.5，则该标签将被归类为二元选择中的“1”。否则，将被归类为“0”。
 
 ## 构建模型
 
-在 Scikit-learn 中构建用于二元分类的模型非常简单。
+在 Scikit-learn 中构建一个用于二元分类的模型非常简单。
 
-[![机器学习初学者 - 使用逻辑回归进行数据分类](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "机器学习初学者 - 使用逻辑回归进行数据分类")
+[![机器学习初学者 - 用逻辑回归进行数据分类](https://img.youtube.com/vi/MmZS2otPrQ8/0.jpg)](https://youtu.be/MmZS2otPrQ8 "机器学习初学者 - 用逻辑回归进行数据分类")
 
 > 🎥 点击上方图片观看关于构建线性回归模型的简短视频概述。
 
@@ -319,44 +319,47 @@ Seaborn 提供了一些很棒的方式来可视化数据。例如，你可以比
 |   0   |  TN   |  FP   |
 |   1   |  FN   |  TP   |
 
-这里发生了什么？假设我们的模型需要将南瓜分类为两个二元类别：“白色”和“非白色”。
+这里发生了什么？假设我们的模型被要求在两个二元类别之间对南瓜进行分类，“白色”和“非白色”。
 
-- 如果模型预测南瓜为非白色，而实际上属于“非白色”类别，我们称之为真负例，显示在左上角。
-- 如果模型预测南瓜为白色，而实际上属于“非白色”类别，我们称之为假负例，显示在左下角。
-- 如果模型预测南瓜为非白色，而实际上属于“白色”类别，我们称之为假正例，显示在右上角。
-- 如果模型预测南瓜为白色，而实际上属于“白色”类别，我们称之为真正例，显示在右下角。
+- 如果模型预测南瓜为非白色，而实际上属于“非白色”类别，我们称之为真负（True Negative），显示在左上角。
+- 如果模型预测南瓜为白色，而实际上属于“非白色”类别，我们称之为假负（False Negative），显示在左下角。
+- 如果模型预测南瓜为非白色，而实际上属于“白色”类别，我们称之为假正（False Positive），显示在右上角。
+- 如果模型预测南瓜为白色，而实际上属于“白色”类别，我们称之为真正（True Positive），显示在右下角。
 
-正如你可能猜到的，较多的真正例和真负例以及较少的假正例和假负例表明模型表现更好。
-混淆矩阵如何与精确率和召回率相关？记住，上面打印的分类报告显示了精确率（0.85）和召回率（0.67）。
+正如你可能猜到的，较多的真正和真负以及较少的假正和假负表明模型表现更好。
+混淆矩阵如何与精确率和召回率相关联？请记住，上面打印的分类报告显示精确率为 0.85，召回率为 0.67。
 
 精确率 = tp / (tp + fp) = 22 / (22 + 4) = 0.8461538461538461
 
 召回率 = tp / (tp + fn) = 22 / (22 + 11) = 0.6666666666666666
 
 ✅ 问：根据混淆矩阵，模型表现如何？  
-答：还不错；有相当数量的真负样本，但也有一些假负样本。
+答：还不错；有相当多的真正例，但也有一些假负例。
 
-让我们通过混淆矩阵中 TP/TN 和 FP/FN 的映射，重新审视之前看到的术语：
+让我们通过混淆矩阵中 TP/TN 和 FP/FN 的映射，重新回顾之前提到的术语：
 
-🎓 精确率：TP/(TP + FP)  
-检索到的实例中相关实例的比例（例如，哪些标签被正确标注）。
+🎓 精确率（Precision）：TP/(TP + FP)  
+检索到的实例中，相关实例的比例（例如，哪些标签被正确标记）。
 
-🎓 召回率：TP/(TP + FN)  
-检索到的相关实例的比例，无论是否被正确标注。
+🎓 召回率（Recall）：TP/(TP + FN)  
+相关实例中被检索到的比例，无论是否被正确标记。
 
-🎓 f1-分数：(2 * 精确率 * 召回率)/(精确率 + 召回率)  
-精确率和召回率的加权平均值，最佳为 1，最差为 0。
+🎓 F1 分数（f1-score）：(2 * precision * recall)/(precision + recall)  
+精确率和召回率的加权平均值，最佳值为 1，最差值为 0。
 
-🎓 支持：检索到的每个标签的出现次数。
+🎓 支持度（Support）：  
+每个标签被检索到的次数。
 
-🎓 准确率：(TP + TN)/(TP + TN + FP + FN)  
-样本中预测正确的标签所占的百分比。
+🎓 准确率（Accuracy）：(TP + TN)/(TP + TN + FP + FN)  
+样本中标签被正确预测的百分比。
 
-🎓 宏平均：对每个标签的度量进行无权重平均计算，不考虑标签的不平衡。
+🎓 宏平均（Macro Avg）：  
+对每个标签的指标进行无权重平均的计算，不考虑标签的不平衡。
 
-🎓 加权平均：对每个标签的度量进行平均计算，考虑标签的不平衡，通过支持（每个标签的真实实例数量）进行加权。
+🎓 加权平均（Weighted Avg）：  
+对每个标签的指标进行加权平均的计算，权重由支持度（每个标签的真实实例数）决定。
 
-✅ 你能想到如果想减少假负样本，应该关注哪个指标吗？
+✅ 你能想到如果想减少假负例的数量，应该关注哪个指标吗？
 
 ## 可视化该模型的 ROC 曲线
 
@@ -384,9 +387,9 @@ plt.title('ROC Curve')
 plt.show()
 ```
 
-使用 Matplotlib 绘制模型的 [接收者操作特性](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc) 或 ROC。ROC 曲线通常用于查看分类器输出的真阳性与假阳性情况。“ROC 曲线通常在 Y 轴上显示真阳性率，在 X 轴上显示假阳性率。”因此，曲线的陡峭程度以及中线与曲线之间的空间很重要：你希望曲线迅速向上并越过中线。在我们的例子中，开始时有假阳性，然后曲线正确地向上并越过中线：
+使用 Matplotlib 绘制模型的 [接收者操作特性曲线（ROC）](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html?highlight=roc)。ROC 曲线通常用于查看分类器输出的真阳性与假阳性之间的关系。“ROC 曲线通常以真阳性率为 Y 轴，假阳性率为 X 轴。”因此，曲线的陡峭程度以及曲线与中线之间的空间很重要：你希望曲线迅速向上并越过中线。在我们的例子中，起初有一些假阳性，然后曲线正确地向上并越过中线：
 
-![ROC](../../../../translated_images/ROC_2.777f20cdfc4988ca683ade6850ac832cb70c96c12f1b910d294f270ef36e1a1c.zh.png)
+![ROC](../../../../2-Regression/4-Logistic/images/ROC_2.png)
 
 最后，使用 Scikit-learn 的 [`roc_auc_score` API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html?highlight=roc_auc#sklearn.metrics.roc_auc_score) 计算实际的“曲线下面积”（AUC）：
 
@@ -394,7 +397,7 @@ plt.show()
 auc = roc_auc_score(y_test,y_scores[:,1])
 print(auc)
 ```  
-结果是 `0.9749908725812341`。由于 AUC 的范围是 0 到 1，你希望分数越大越好，因为一个预测完全正确的模型的 AUC 为 1；在这种情况下，模型表现 _相当不错_。
+结果是 `0.9749908725812341`。由于 AUC 的范围是 0 到 1，你希望分数越大越好，因为一个 100% 正确预测的模型的 AUC 为 1；在这种情况下，该模型表现“相当不错”。
 
 在未来的分类课程中，你将学习如何迭代以提高模型的分数。但现在，恭喜你！你已经完成了这些回归课程！
 
@@ -402,19 +405,19 @@ print(auc)
 
 ## 🚀挑战
 
-关于逻辑回归还有很多内容可以深入探讨！但学习的最佳方式是实验。找到一个适合这种分析的数据集，并用它构建一个模型。你学到了什么？提示：试试 [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) 寻找有趣的数据集。
+关于逻辑回归还有很多内容可以深入探讨！但最好的学习方式是动手实践。找到一个适合这种分析的数据集，并用它构建一个模型。你学到了什么？提示：试试 [Kaggle](https://www.kaggle.com/search?q=logistic+regression+datasets) 上的一些有趣数据集。
 
-## [课后测验](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/16/)
+## [课后测验](https://ff-quizzes.netlify.app/en/ml/)
 
 ## 复习与自学
 
-阅读 [斯坦福大学的这篇论文](https://web.stanford.edu/~jurafsky/slp3/5.pdf) 的前几页，了解逻辑回归的一些实际应用。思考哪些任务更适合我们到目前为止学习的不同类型的回归任务。什么方法效果最好？
+阅读 [斯坦福大学的这篇论文](https://web.stanford.edu/~jurafsky/slp3/5.pdf) 的前几页，了解逻辑回归的一些实际应用。思考哪些任务更适合我们到目前为止学习的回归类型。哪种方法效果更好？
 
 ## 作业
 
-[重试这个回归](assignment.md)
+[重试这个回归任务](assignment.md)
 
 ---
 
 **免责声明**：  
-本文档使用AI翻译服务 [Co-op Translator](https://github.com/Azure/co-op-translator) 进行翻译。尽管我们努力确保翻译的准确性，但请注意，自动翻译可能包含错误或不准确之处。原始语言的文档应被视为权威来源。对于关键信息，建议使用专业人工翻译。我们不对因使用此翻译而产生的任何误解或误读承担责任。
+本文档使用AI翻译服务[Co-op Translator](https://github.com/Azure/co-op-translator)进行翻译。尽管我们努力确保准确性，但请注意，自动翻译可能包含错误或不准确之处。应以原始语言的文档作为权威来源。对于关键信息，建议使用专业人工翻译。对于因使用本翻译而引起的任何误解或误读，我们概不负责。

@@ -1,37 +1,37 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9660fbd80845c59c15715cb418cd6e23",
-  "translation_date": "2025-09-03T18:38:52+00:00",
+  "original_hash": "107d5bb29da8a562e7ae72262d251a75",
+  "translation_date": "2025-09-05T08:03:21+00:00",
   "source_file": "8-Reinforcement/2-Gym/README.md",
   "language_code": "lt"
 }
 -->
-# CartPole Čiuožimas
+# CartPole čiuožimas
 
-Problema, kurią sprendėme ankstesnėje pamokoje, gali atrodyti kaip žaislinė problema, neturinti realaus pritaikymo gyvenime. Tačiau taip nėra, nes daugelis realaus pasaulio problemų taip pat turi panašią struktūrą – įskaitant šachmatų ar Go žaidimą. Jos yra panašios, nes taip pat turime lentą su nustatytomis taisyklėmis ir **diskrečia būsena**.
+Problema, kurią sprendėme ankstesnėje pamokoje, gali atrodyti kaip žaislinė užduotis, neturinti realaus pritaikymo. Tačiau tai nėra tiesa, nes daugelis realaus pasaulio problemų taip pat turi panašų scenarijų – įskaitant šachmatų ar Go žaidimą. Jos yra panašios, nes taip pat turime lentą su tam tikromis taisyklėmis ir **diskretinę būseną**.
 
-## [Prieš paskaitą atlikite testą](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/47/)
+## [Prieš paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Įvadas
 
-Šioje pamokoje taikysime tuos pačius Q-mokymosi principus problemai su **tęstine būsena**, t. y. būsena, kurią apibrėžia vienas ar daugiau realiųjų skaičių. Spręsime šią problemą:
+Šioje pamokoje taikysime tuos pačius Q-Learning principus problemoms su **nepertraukiama būsena**, t. y. būsena, kurią apibrėžia vienas ar daugiau realių skaičių. Spręsime šią problemą:
 
-> **Problema**: Jei Petras nori pabėgti nuo vilko, jis turi išmokti judėti greičiau. Pažiūrėsime, kaip Petras gali išmokti čiuožti, ypač išlaikyti pusiausvyrą, naudojant Q-mokymąsi.
+> **Problema**: Jei Petras nori pabėgti nuo vilko, jis turi išmokti judėti greičiau. Pažiūrėsime, kaip Petras gali išmokti čiuožti, ypač išlaikyti pusiausvyrą, naudojant Q-Learning.
 
-![Didysis pabėgimas!](../../../../translated_images/escape.18862db9930337e3fce23a9b6a76a06445f229dadea2268e12a6f0a1fde12115.lt.png)
+![Didysis pabėgimas!](../../../../8-Reinforcement/2-Gym/images/escape.png)
 
-> Petras ir jo draugai tampa kūrybingi, norėdami pabėgti nuo vilko! Iliustracija: [Jen Looper](https://twitter.com/jenlooper)
+> Petras ir jo draugai tampa kūrybingi, kad pabėgtų nuo vilko! Vaizdas sukurtas [Jen Looper](https://twitter.com/jenlooper)
 
-Naudosime supaprastintą pusiausvyros išlaikymo versiją, vadinamą **CartPole** problema. CartPole pasaulyje turime horizontalų slankiklį, kuris gali judėti į kairę arba į dešinę, o tikslas yra išlaikyti vertikalią lazdą ant slankiklio.
+Naudosime supaprastintą pusiausvyros išlaikymo versiją, žinomą kaip **CartPole** problema. CartPole pasaulyje turime horizontalų slankiklį, kuris gali judėti į kairę arba į dešinę, o tikslas yra išlaikyti vertikalų stulpą ant slankiklio.
 
 ## Reikalavimai
 
-Šioje pamokoje naudosime biblioteką **OpenAI Gym**, skirtą įvairių **aplinkų** simuliacijai. Pamokos kodą galite vykdyti lokaliai (pvz., Visual Studio Code), tokiu atveju simuliacija bus atidaryta naujame lange. Jei vykdote kodą internete, gali reikėti atlikti tam tikrus pakeitimus, kaip aprašyta [čia](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
+Šioje pamokoje naudosime biblioteką **OpenAI Gym**, kad simuliuotume įvairias **aplinkas**. Pamokos kodą galite vykdyti lokaliai (pvz., Visual Studio Code), tokiu atveju simuliacija atsidarys naujame lange. Jei kodą vykdote internete, gali reikėti atlikti tam tikrus pakeitimus, kaip aprašyta [čia](https://towardsdatascience.com/rendering-openai-gym-envs-on-binder-and-google-colab-536f99391cc7).
 
 ## OpenAI Gym
 
-Ankstesnėje pamokoje žaidimo taisyklės ir būsena buvo apibrėžtos mūsų pačių sukurtoje `Board` klasėje. Šioje pamokoje naudosime specialią **simuliacijos aplinką**, kuri simuliuos fizikos dėsnius, susijusius su lazdos balansavimu. Viena populiariausių simuliacijos aplinkų, skirtų stiprinamojo mokymosi algoritmams, vadinama [Gym](https://gym.openai.com/), kurią prižiūri [OpenAI](https://openai.com/). Naudodami šią aplinką galime kurti įvairias **aplinkas**, nuo CartPole simuliacijos iki Atari žaidimų.
+Ankstesnėje pamokoje žaidimo taisykles ir būseną apibrėžė mūsų sukurta `Board` klasė. Čia naudosime specialią **simuliacijos aplinką**, kuri simuliuos fiziką už balansuojančio stulpo. Viena populiariausių simuliacijos aplinkų, skirtų mokyti stiprinamojo mokymosi algoritmus, vadinama [Gym](https://gym.openai.com/), kurią prižiūri [OpenAI](https://openai.com/). Naudodami šią aplinką galime kurti įvairias **aplinkas** – nuo CartPole simuliacijos iki Atari žaidimų.
 
 > **Pastaba**: Kitas OpenAI Gym aplinkas galite pamatyti [čia](https://gym.openai.com/envs/#classic_control).
 
@@ -49,13 +49,13 @@ import random
 
 ## Užduotis – inicializuoti CartPole aplinką
 
-Norėdami dirbti su CartPole balansavimo problema, turime inicializuoti atitinkamą aplinką. Kiekviena aplinka turi:
+Norėdami dirbti su CartPole balanso problema, turime inicializuoti atitinkamą aplinką. Kiekviena aplinka yra susijusi su:
 
-- **Stebėjimų erdvę**, kuri apibrėžia informaciją, kurią gauname iš aplinkos. CartPole problemai gauname lazdos padėtį, greitį ir kitus parametrus.
+- **Stebėjimo erdve**, kuri apibrėžia informacijos struktūrą, kurią gauname iš aplinkos. CartPole problemai gauname stulpo poziciją, greitį ir kitus parametrus.
 
-- **Veiksmų erdvę**, kuri apibrėžia galimus veiksmus. Mūsų atveju veiksmų erdvė yra diskreti, ir susideda iš dviejų veiksmų – **kairė** ir **dešinė**. (kodo blokas 2)
+- **Veiksmų erdve**, kuri apibrėžia galimus veiksmus. Mūsų atveju veiksmų erdvė yra diskretiška ir susideda iš dviejų veiksmų – **kairė** ir **dešinė**. (kodo blokas 2)
 
-1. Inicializuokite aplinką naudodami šį kodą:
+1. Norėdami inicializuoti, įveskite šį kodą:
 
     ```python
     env = gym.make("CartPole-v1")
@@ -64,11 +64,11 @@ Norėdami dirbti su CartPole balansavimo problema, turime inicializuoti atitinka
     print(env.action_space.sample())
     ```
 
-Norėdami pamatyti, kaip veikia aplinka, paleiskime trumpą simuliaciją, trunkančią 100 žingsnių. Kiekviename žingsnyje pateikiame veiksmą, kurį reikia atlikti – šioje simuliacijoje atsitiktinai pasirenkame veiksmą iš `action_space`.
+Norėdami pamatyti, kaip veikia aplinka, paleiskime trumpą simuliaciją 100 žingsnių. Kiekviename žingsnyje pateikiame vieną veiksmą – šioje simuliacijoje atsitiktinai pasirenkame veiksmą iš `action_space`.
 
-1. Paleiskite žemiau pateiktą kodą ir pažiūrėkite, kas nutiks.
+1. Paleiskite žemiau esantį kodą ir pažiūrėkite, ką jis duoda.
 
-    ✅ Atminkite, kad šį kodą geriausia vykdyti lokaliai, naudojant Python! (kodo blokas 3)
+    ✅ Rekomenduojama šį kodą vykdyti lokaliai, naudojant Python! (kodo blokas 3)
 
     ```python
     env.reset()
@@ -96,7 +96,7 @@ Norėdami pamatyti, kaip veikia aplinka, paleiskime trumpą simuliaciją, trunka
     env.close()
     ```
 
-    Jūsų užrašų knygelės išvestyje turėtų būti kažkas panašaus į tai:
+    Galutinis rezultatas turėtų būti panašus į šį:
 
     ```text
     [ 0.03403272 -0.24301182  0.02669811  0.2895829 ] -> 1.0
@@ -109,43 +109,43 @@ Norėdami pamatyti, kaip veikia aplinka, paleiskime trumpą simuliaciją, trunka
     [ 0.17617249  0.35602306 -0.21873684 -0.90998894] -> 1.0
     ```
 
-    Stebėjimų vektorius, kuris grąžinamas kiekviename simuliacijos žingsnyje, apima šias reikšmes:
-    - Vežimėlio padėtis
+    Stebėjimo vektorius, grąžinamas kiekviename simuliacijos žingsnyje, apima šias reikšmes:
+    - Vežimėlio pozicija
     - Vežimėlio greitis
-    - Lazdos kampas
-    - Lazdos sukimosi greitis
+    - Stulpo kampas
+    - Stulpo sukimosi greitis
 
-1. Gaukite šių skaičių minimalią ir maksimalią reikšmes: (kodo blokas 5)
+1. Gaukite šių skaičių minimalią ir maksimalią reikšmę: (kodo blokas 5)
 
     ```python
     print(env.observation_space.low)
     print(env.observation_space.high)
     ```
 
-    Taip pat galite pastebėti, kad atlygio reikšmė kiekviename simuliacijos žingsnyje visada yra 1. Taip yra todėl, kad mūsų tikslas yra išgyventi kuo ilgiau, t. y. išlaikyti lazdą pakankamai vertikalioje padėtyje kuo ilgesnį laiką.
+    Taip pat galite pastebėti, kad atlygio reikšmė kiekviename simuliacijos žingsnyje visada yra 1. Taip yra todėl, kad mūsų tikslas yra išgyventi kuo ilgiau, t. y. išlaikyti stulpą pakankamai vertikalioje padėtyje kuo ilgesnį laiką.
 
-    ✅ Iš tiesų, CartPole simuliacija laikoma išspręsta, jei mums pavyksta gauti vidutinį 195 atlygį per 100 iš eilės vykdomų bandymų.
+    ✅ Iš tiesų, CartPole simuliacija laikoma išspręsta, jei sugebame pasiekti vidutinį 195 atlygį per 100 iš eilės vykdomų bandymų.
 
 ## Būsenos diskretizavimas
 
-Q-mokymesi turime sukurti Q-lentelę, kuri nurodo, ką daryti kiekvienoje būsenoje. Norėdami tai padaryti, būsena turi būti **diskreti**, tiksliau, ji turi turėti baigtinį diskrečių reikšmių skaičių. Todėl turime kažkaip **diskretizuoti** savo stebėjimus, susiedami juos su baigtiniu būsenų rinkiniu.
+Q-Learning algoritme turime sukurti Q-lentelę, kuri apibrėžia, ką daryti kiekvienoje būsenoje. Kad tai būtų įmanoma, būsena turi būti **diskretiška**, tiksliau, ji turi turėti baigtinį skaičių diskrečių reikšmių. Todėl turime kažkaip **diskretizuoti** savo stebėjimus, susiedami juos su baigtiniu būsenų rinkiniu.
 
 Yra keletas būdų, kaip tai padaryti:
 
-- **Padalijimas į intervalus**. Jei žinome tam tikros reikšmės intervalą, galime padalyti šį intervalą į tam tikrą skaičių **intervalų** ir tada pakeisti reikšmę į intervalą, kuriam ji priklauso. Tai galima padaryti naudojant numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) metodą. Tokiu atveju tiksliai žinosime būsenos dydį, nes jis priklausys nuo pasirinktų intervalų skaičiaus.
+- **Padalinti į intervalus**. Jei žinome tam tikros reikšmės intervalą, galime padalinti šį intervalą į tam tikrą skaičių **intervalų** ir tada pakeisti reikšmę į intervalą, kuriam ji priklauso. Tai galima padaryti naudojant numpy [`digitize`](https://numpy.org/doc/stable/reference/generated/numpy.digitize.html) metodą. Tokiu atveju tiksliai žinosime būsenos dydį, nes jis priklausys nuo pasirinkto intervalų skaičiaus.
 
-✅ Galime naudoti linijinę interpolaciją, kad reikšmes pritaikytume tam tikram baigtiniam intervalui (pvz., nuo -20 iki 20), o tada konvertuoti skaičius į sveikuosius skaičius juos suapvalinant. Tai suteikia mažiau kontrolės būsenos dydžiui, ypač jei nežinome tikslių įvesties reikšmių ribų. Pavyzdžiui, mūsų atveju 2 iš 4 reikšmių neturi viršutinių/apatinių ribų, o tai gali lemti begalinį būsenų skaičių.
+✅ Galime naudoti linijinę interpolaciją, kad reikšmes paverstume tam tikru baigtiniu intervalu (pvz., nuo -20 iki 20), o tada skaičius paversti sveikaisiais skaičiais, juos suapvalinant. Tai suteikia mažiau kontrolės būsenos dydžiui, ypač jei nežinome tikslių įvesties reikšmių diapazonų. Pavyzdžiui, mūsų atveju 2 iš 4 reikšmių neturi viršutinės/apatinės ribos, todėl gali atsirasti begalinis būsenų skaičius.
 
 Mūsų pavyzdyje naudosime antrąjį metodą. Kaip pastebėsite vėliau, nepaisant neapibrėžtų ribų, šios reikšmės retai viršija tam tikrus baigtinius intervalus, todėl būsenos su ekstremaliomis reikšmėmis bus labai retos.
 
-1. Štai funkcija, kuri paims mūsų modelio stebėjimus ir sukurs 4 sveikųjų skaičių tuple: (kodo blokas 6)
+1. Štai funkcija, kuri paims stebėjimą iš mūsų modelio ir sukurs 4 sveikųjų skaičių tuple: (kodo blokas 6)
 
     ```python
     def discretize(x):
         return tuple((x/np.array([0.25, 0.25, 0.01, 0.1])).astype(np.int))
     ```
 
-1. Taip pat išbandykime kitą diskretizavimo metodą, naudodami intervalus: (kodo blokas 7)
+1. Taip pat išbandykime kitą diskretizavimo metodą, naudojant intervalus: (kodo blokas 7)
 
     ```python
     def create_bins(i,num):
@@ -161,9 +161,9 @@ Mūsų pavyzdyje naudosime antrąjį metodą. Kaip pastebėsite vėliau, nepaisa
         return tuple(np.digitize(x[i],bins[i]) for i in range(4))
     ```
 
-1. Dabar paleiskime trumpą simuliaciją ir stebėkime šias diskretizuotas aplinkos reikšmes. Galite išbandyti tiek `discretize`, tiek `discretize_bins` ir pažiūrėti, ar yra skirtumas.
+1. Dabar paleiskime trumpą simuliaciją ir stebėkime tas diskretizuotas aplinkos reikšmes. Galite išbandyti tiek `discretize`, tiek `discretize_bins` ir pažiūrėti, ar yra skirtumas.
 
-    ✅ `discretize_bins` grąžina intervalo numerį, kuris prasideda nuo 0. Todėl įvesties kintamojo reikšmėms, esančioms apie 0, jis grąžina skaičių iš intervalo vidurio (10). `discretize` funkcijoje mums nerūpėjo išvesties reikšmių diapazonas, leidžiant joms būti neigiamoms, todėl būsenos reikšmės nėra perstumtos, o 0 atitinka 0. (kodo blokas 8)
+    ✅ `discretize_bins` grąžina intervalo numerį, kuris prasideda nuo 0. Todėl įvesties reikšmėms, esančioms apie 0, jis grąžina numerį iš intervalo vidurio (10). `discretize` funkcijoje nesirūpinome išvesties reikšmių diapazonu, leidome joms būti neigiamoms, todėl būsenos reikšmės nėra perstumtos, o 0 atitinka 0. (kodo blokas 8)
 
     ```python
     env.reset()
@@ -177,13 +177,13 @@ Mūsų pavyzdyje naudosime antrąjį metodą. Kaip pastebėsite vėliau, nepaisa
     env.close()
     ```
 
-    ✅ Atkomentuokite eilutę, prasidedančią `env.render`, jei norite pamatyti, kaip vykdoma aplinka. Priešingu atveju galite vykdyti ją fone, kas yra greičiau. Šį „nematomą“ vykdymą naudosime Q-mokymosi procese.
+    ✅ Jei norite pamatyti, kaip vykdoma aplinka, iškomentuokite eilutę, prasidedančią `env.render`. Priešingu atveju galite vykdyti ją fone, kas yra greičiau. Šį „nematomą“ vykdymą naudosime Q-Learning procese.
 
 ## Q-lentelės struktūra
 
-Ankstesnėje pamokoje būsena buvo paprasta pora skaičių nuo 0 iki 8, todėl buvo patogu Q-lentelę atvaizduoti kaip numpy tensorą, kurio forma yra 8x8x2. Jei naudojame intervalų diskretizavimą, mūsų būsenos vektoriaus dydis taip pat yra žinomas, todėl galime naudoti tą patį metodą ir būseną atvaizduoti kaip masyvą, kurio forma yra 20x20x10x10x2 (čia 2 yra veiksmų erdvės dimensija, o pirmosios dimensijos atitinka pasirinktų intervalų skaičių kiekvienam stebėjimų erdvės parametrui).
+Ankstesnėje pamokoje būsena buvo paprasta pora skaičių nuo 0 iki 8, todėl buvo patogu Q-lentelę atvaizduoti kaip numpy tensorą, kurio forma yra 8x8x2. Jei naudojame intervalų diskretizavimą, mūsų būsenos vektoriaus dydis taip pat yra žinomas, todėl galime naudoti tą patį metodą ir atvaizduoti būseną kaip masyvą, kurio forma yra 20x20x10x10x2 (čia 2 yra veiksmų erdvės dimensija, o pirmosios dimensijos atitinka intervalų skaičių, kurį pasirinkome kiekvienam stebėjimo erdvės parametrui).
 
-Tačiau kartais stebėjimų erdvės tikslios dimensijos nėra žinomos. Naudojant `discretize` funkciją, niekada negalime būti tikri, kad mūsų būsena išliks tam tikrose ribose, nes kai kurios pradinės reikšmės nėra apribotos. Todėl naudosime šiek tiek kitokį metodą ir Q-lentelę atvaizduosime kaip žodyną.
+Tačiau kartais stebėjimo erdvės tikslios dimensijos nėra žinomos. Naudojant `discretize` funkciją, niekada negalime būti tikri, kad mūsų būsena išliks tam tikrose ribose, nes kai kurios pradinės reikšmės nėra ribotos. Todėl naudosime šiek tiek kitokį metodą ir Q-lentelę atvaizduosime kaip žodyną.
 
 1. Naudokite porą *(būsena, veiksmas)* kaip žodyno raktą, o reikšmė atitiks Q-lentelės įrašo reikšmę. (kodo blokas 9)
 
@@ -195,11 +195,11 @@ Tačiau kartais stebėjimų erdvės tikslios dimensijos nėra žinomos. Naudojan
         return [Q.get((state,a),0) for a in actions]
     ```
 
-    Čia taip pat apibrėžiame funkciją `qvalues()`, kuri grąžina Q-lentelės reikšmių sąrašą, atitinkantį visus galimus veiksmus tam tikroje būsenoje. Jei įrašas nėra Q-lentelėje, grąžinsime 0 kaip numatytąją reikšmę.
+    Čia taip pat apibrėžiame funkciją `qvalues()`, kuri grąžina Q-lentelės reikšmių sąrašą, atitinkantį visus galimus veiksmus tam tikroje būsenoje. Jei įrašo nėra Q-lentelėje, grąžinsime 0 kaip numatytąją reikšmę.
 
-## Pradėkime Q-mokymąsi
+## Pradėkime Q-Learning
 
-Dabar esame pasiruošę išmokyti Petrą išlaikyti pusiausvyrą!
+Dabar esame pasiruošę mokyti Petrą išlaikyti pusiausvyrą!
 
 1. Pirmiausia nustatykime keletą hiperparametrų: (kodo blokas 10)
 
@@ -210,23 +210,23 @@ Dabar esame pasiruošę išmokyti Petrą išlaikyti pusiausvyrą!
     epsilon = 0.90
     ```
 
-    Čia `alpha` yra **mokymosi greitis**, kuris nurodo, kiek turėtume koreguoti dabartines Q-lentelės reikšmes kiekviename žingsnyje. Ankstesnėje pamokoje pradėjome nuo 1, o vėliau mažinome `alpha` mokymo metu. Šiame pavyzdyje išlaikysime jį pastovų dėl paprastumo, tačiau vėliau galite eksperimentuoti su `alpha` reikšmėmis.
+    Čia `alpha` yra **mokymosi greitis**, kuris apibrėžia, kiek turėtume koreguoti dabartines Q-lentelės reikšmes kiekviename žingsnyje. Ankstesnėje pamokoje pradėjome nuo 1, o vėliau sumažinome `alpha` iki mažesnių reikšmių mokymo metu. Šiame pavyzdyje išlaikysime jį pastovų, kad būtų paprasčiau, o vėliau galite eksperimentuoti su `alpha` reikšmių koregavimu.
 
-    `gamma` yra **nuolaidos faktorius**, kuris parodo, kiek turėtume teikti pirmenybę būsimam atlygiui, palyginti su dabartiniu atlygiu.
+    `gamma` yra **nuolaidos faktorius**, kuris parodo, kiek turėtume teikti pirmenybę būsimam atlygiui, palyginti su dabartiniu.
 
-    `epsilon` yra **tyrinėjimo/naudojimo faktorius**, kuris nustato, ar turėtume teikti pirmenybę tyrinėjimui, ar naudojimui. Mūsų algoritme `epsilon` procentais atvejų pasirinksime kitą veiksmą pagal Q-lentelės reikšmes, o likusiais atvejais vykdysime atsitiktinį veiksmą. Tai leis mums ištirti paieškos erdvės sritis, kurių dar nematėme.
+    `epsilon` yra **tyrimo/naudojimo faktorius**, kuris nustato, ar turėtume teikti pirmenybę tyrimui, ar naudojimui. Mūsų algoritme `epsilon` procentais atvejų pasirinksime kitą veiksmą pagal Q-lentelės reikšmes, o likusiais atvejais vykdysime atsitiktinį veiksmą. Tai leis mums ištirti paieškos erdvės sritis, kurių dar niekada nematėme.
 
-    ✅ Kalbant apie balansavimą – atsitiktinio veiksmo pasirinkimas (tyrinėjimas) veiktų kaip atsitiktinis smūgis netinkama kryptimi, ir lazda turėtų išmokti, kaip atgauti pusiausvyrą po tokių „klaidų“.
+    ✅ Kalbant apie balansavimą – atsitiktinio veiksmo pasirinkimas (tyrimas) veiktų kaip atsitiktinis smūgis neteisinga kryptimi, ir stulpas turėtų išmokti, kaip atgauti pusiausvyrą po tokių „klaidų“.
 
 ### Tobulinkime algoritmą
 
-Taip pat galime atlikti du patobulinimus mūsų algoritmui iš ankstesnės pamokos:
+Taip pat galime atlikti du patobulinimus mūsų algoritme iš ankstesnės pamokos:
 
-- **Apskaičiuoti vidutinį kaupiamąjį atlygį** per tam tikrą simuliacijų skaičių. Spausdinsime pažangą kas 5000 iteracijų ir vidurkinsime kaupiamąjį atlygį per tą laikotarpį. Tai reiškia, kad jei gausime daugiau nei 195 taškus – galime laikyti problemą išspręsta, net su aukštesne kokybe nei reikalaujama.
+- **Skaičiuoti vidutinį kumuliacinį atlygį** per tam tikrą simuliacijų skaičių. Spausdinsime progresą kas 5000 iteracijų ir vidutiniškai skaičiuosime kumuliacinį atlygį per tą laikotarpį. Tai reiškia, kad jei pasieksime daugiau nei 195 taškus, galime laikyti problemą išspręsta, net geresne kokybe nei reikalaujama.
 
-- **Apskaičiuoti maksimalų vidutinį kaupiamąjį rezultatą**, `Qmax`, ir išsaugosime Q-lentelę, atitinkančią tą rezultatą. Kai paleisite mokymą, pastebėsite, kad kartais vidutinis kaupiamasis rezultatas pradeda mažėti, ir norime išsaugoti Q-lentelės reikšmes, atitinkančias geriausią modelį, pastebėtą mokymo metu.
+- **Skaičiuoti maksimalų vidutinį kumuliacinį rezultatą**, `Qmax`, ir išsaugosime Q-lentelę, atitinkančią tą rezultatą. Kai vykdysite mokymą, pastebėsite, kad kartais vidutinis kumuliacinis rezultatas pradeda mažėti, ir norime išsaugoti Q-lentelės reikšmes, kurios atitinka geriausią modelį, pastebėtą mokymo metu.
 
-1. Surinkite visus kaupiamuosius atlygius kiekvienoje simuliacijoje į `rewards` vektorių, kad galėtumėte juos vėliau pavaizduoti grafike. (kodo blokas 11)
+1. Surinkite visus kumuliacinius atlygius kiekvienoje simuliacijoje į `rewards` vektorių, kad galėtumėte juos vėliau pavaizduoti. (kodo blokas 11)
 
     ```python
     def probs(v,eps=1e-4):
@@ -269,23 +269,23 @@ Taip pat galime atlikti du patobulinimus mūsų algoritmui iš ankstesnės pamok
 
 Ką galite pastebėti iš šių rezultatų:
 
-- **Artėjame prie tikslo**. Esame labai arti tikslo – gauti 195 kaupiamuosius atlygius per 100+ iš eilės vykdomų simuliacijų, arba galbūt jau jį pasiekėme! Net jei gauname mažesnius skaičius, vis tiek nežinome, nes vidurkiname per 5000 vykdymų, o oficialiame kriterijuje reikalaujama tik 100 vykdymų.
+- **Artėjame prie tikslo**. Esame labai arti tikslo pasiekti 195 kumuliacinius atlygius per 100+ iš eilės vykdomų simuliacijų, arba galbūt jau pasiekėme! Net jei gauname mažesnius skaičius, vis tiek nežinome, nes vidutiniškai skaičiuojame per 5000 vykdymų, o formalūs kriterijai reikalauja tik 100 vykdymų.
 
 - **Atlygis pradeda mažėti**. Kartais atlygis pradeda mažėti, o tai reiškia, kad galime „sugadinti“ jau išmoktas Q-lentelės reikšmes naujomis, kurios pablogina situaciją.
 
-Šis pastebėjimas tampa aiškesnis, jei pavaizduojame mokymo pažangą grafike.
+Šis pastebėjimas tampa aiškesnis, jei pavaizduojame mokymo progresą.
 
-## Mokymo pažangos vaizdavimas
+## Mokymo progreso vaizdavimas
 
-Mokymo metu surinkome kaupiamojo atlygio reikšmes kiekvienoje iteracijoje į `rewards` vektorių. Štai kaip tai atrodo, kai pavaizduojame prieš iteracijų skaičių:
+Mokymo metu surinkome kumuliacinio atlygio reikšmes kiekvienoje iteracijoje į `rewards` vektorių. Štai kaip tai atrodo, kai pavaizduojame prieš iteracijų skaičių:
 
 ```python
 plt.plot(rewards)
 ```
 
-![neapdorota pažanga](../../../../translated_images/train_progress_raw.2adfdf2daea09c596fc786fa347a23e9aceffe1b463e2257d20a9505794823ec.lt.png)
+![žalias progresas](../../../../8-Reinforcement/2-Gym/images/train_progress_raw.png)
 
-Iš šio grafiko sunku ką nors pasakyti, nes dėl stochastinio mokymo proceso treniruočių sesijų trukmė labai skiriasi. Kad šis grafikas būtų prasmingesnis, galime apskaičiuoti **slankųjį vidurkį** per seriją eksperimentų, tarkime, 100. Tai galima patogiai atlikti naudojant `np.convolve`: (kodo blokas 12)
+Iš šio grafiko neįmanoma nieko pasakyti, nes dėl stochastinio mokymo proceso mokymo sesijų ilgis labai skiriasi. Kad šis grafikas būtų prasmingesnis, galime apskaičiuoti **slankųjį vidurkį** per eksperimentų seriją, tarkime, 100. Tai galima patogiai atlikti naudojant `np.convolve`: (kodo blokas 12)
 
 ```python
 def running_average(x,window):
@@ -294,17 +294,17 @@ def running_average(x,window):
 plt.plot(running_average(rewards,100))
 ```
 
-![mokymo pažanga](../../../../translated_images/train_progress_runav.c71694a8fa9ab35935aff6f109e5ecdfdbdf1b0ae265da49479a81b5fae8f0aa.lt.png)
+![mokymo progresas](../../../../8-Reinforcement/2-Gym/images/train_progress_runav.png)
 
 ## Hiperparametrų keitimas
 
-Norint, kad mokymasis būtų stabilesnis, verta reguliuoti kai kuriuos hiperparametrus mokymo metu. Konkrečiai:
+Kad mokymasis būtų stabilesnis, verta koreguoti kai kuriuos hiperparametrus mokymo metu. Visų pirma:
 
-- **Mokymosi greičiui**, `alpha`, galime pradėti nuo reikšmių, artimų 1, ir tada palaipsniui mažinti šį parametrą. Laikui bėgant gausime geras tikimybių reikšmes Q-lentelėje, todėl turėtume jas šiek tiek koreguoti, o ne visiškai perrašyti naujomis reikšmėmis.
+- **Mokymosi greičiui**, `alpha`, galime pradėti nuo reikšmių, artimų 1, ir palaipsniui mažinti parametrą. Laikui bėgant gausime geras tikimybių reikšmes Q-lentelėje, todėl turėtume jas koreguoti švelniai, o ne visiškai perrašyti naujomis reikšmėmis.
 
-- **Didinti epsilon**.
+- **Didinti epsilon**. Galime norėti palaipsniui didinti `epsilon`, kad mažiau tyrinėtume ir daugiau naudotume. Tikriausiai prasminga pradėti nuo mažesnės `epsilon` reikšmės ir palaipsniui didinti iki beveik
 > **Užduotis 1**: Pakeiskite hiperparametrų reikšmes ir pažiūrėkite, ar galite pasiekti didesnį bendrą atlygį. Ar pasiekiate daugiau nei 195?
-> **Užduotis 2**: Norint oficialiai išspręsti problemą, reikia pasiekti 195 vidutinį atlygį per 100 iš eilės vykdomų bandymų. Stebėkite tai mokymosi metu ir įsitikinkite, kad problema oficialiai išspręsta!
+> **Užduotis 2**: Norėdami oficialiai išspręsti problemą, turite pasiekti 195 vidutinį atlygį per 100 iš eilės vykdomų bandymų. Stebėkite tai mokymosi metu ir įsitikinkite, kad problema oficialiai išspręsta!
 
 ## Rezultato stebėjimas veiksmuose
 
@@ -330,22 +330,22 @@ Turėtumėte pamatyti kažką panašaus į tai:
 
 ## 🚀Iššūkis
 
-> **Užduotis 3**: Čia naudojome galutinę Q-lentelės kopiją, kuri gali nebūti geriausia. Prisiminkite, kad geriausiai veikiančią Q-lentelę išsaugojome `Qbest` kintamajame! Išbandykite tą patį pavyzdį su geriausiai veikiančia Q-lentele, nukopijuodami `Qbest` į `Q`, ir pažiūrėkite, ar pastebėsite skirtumą.
+> **Užduotis 3**: Čia naudojome galutinę Q-lentelės kopiją, kuri gali nebūti geriausia. Atminkite, kad geriausiai veikiančią Q-lentelę išsaugojome `Qbest` kintamajame! Išbandykite tą patį pavyzdį su geriausiai veikiančia Q-lentele, nukopijuodami `Qbest` į `Q`, ir pažiūrėkite, ar pastebėsite skirtumą.
 
 > **Užduotis 4**: Čia kiekviename žingsnyje nepasirinkome geriausio veiksmo, o rinkomės pagal atitinkamą tikimybių pasiskirstymą. Ar būtų prasmingiau visada pasirinkti geriausią veiksmą, turintį didžiausią Q-lentelės vertę? Tai galima padaryti naudojant `np.argmax` funkciją, kad sužinotumėte veiksmo numerį, atitinkantį didžiausią Q-lentelės vertę. Įgyvendinkite šią strategiją ir pažiūrėkite, ar tai pagerina balansavimą.
 
-## [Po paskaitos testas](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/48/)
+## [Po paskaitos testas](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Užduotis
 [Treniruokite kalnų automobilį](assignment.md)
 
 ## Išvada
 
-Dabar išmokome treniruoti agentus, kad jie pasiektų gerų rezultatų, tiesiog pateikdami jiems atlygio funkciją, apibrėžiančią norimą žaidimo būseną, ir suteikdami galimybę protingai tyrinėti paieškos erdvę. Sėkmingai pritaikėme Q-mokymosi algoritmą diskretinių ir tęstinių aplinkų atvejais, tačiau su diskretiniais veiksmais.
+Dabar išmokome, kaip treniruoti agentus, kad jie pasiektų gerų rezultatų, tiesiog suteikdami jiems atlygio funkciją, apibrėžiančią norimą žaidimo būseną, ir suteikdami galimybę protingai tyrinėti paieškos erdvę. Sėkmingai pritaikėme Q-mokymosi algoritmą tiek diskretinėse, tiek tęstinėse aplinkose, tačiau su diskretiniais veiksmais.
 
-Taip pat svarbu nagrinėti situacijas, kai veiksmo būsena yra tęstinė, o stebėjimo erdvė yra daug sudėtingesnė, pavyzdžiui, vaizdas iš Atari žaidimo ekrano. Tokiose problemose dažnai reikia naudoti galingesnes mašininio mokymosi technikas, tokias kaip neuroniniai tinklai, kad būtų pasiekti geri rezultatai. Šios pažangesnės temos bus aptartos mūsų būsimame pažangesniame dirbtinio intelekto kurse.
+Svarbu taip pat nagrinėti situacijas, kai veiksmo būsena yra tęstinė, o stebėjimo erdvė yra daug sudėtingesnė, pavyzdžiui, vaizdas iš Atari žaidimo ekrano. Tokiose problemose dažnai reikia naudoti galingesnes mašininio mokymosi technikas, tokias kaip neuroniniai tinklai, kad pasiektume gerų rezultatų. Šios pažangesnės temos bus aptartos mūsų būsimame pažangesniame dirbtinio intelekto kurse.
 
 ---
 
 **Atsakomybės apribojimas**:  
-Šis dokumentas buvo išverstas naudojant AI vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudoti profesionalų žmogaus vertimą. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus interpretavimus, atsiradusius dėl šio vertimo naudojimo.
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipiame dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojama naudotis profesionalių vertėjų paslaugomis. Mes neprisiimame atsakomybės už nesusipratimus ar klaidingus aiškinimus, kylančius dėl šio vertimo naudojimo.

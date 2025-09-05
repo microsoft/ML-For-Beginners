@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a2aa4e9b91b9640db2c15363c4299d8b",
-  "translation_date": "2025-09-03T19:10:06+00:00",
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-05T08:33:12+00:00",
   "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
   "language_code": "pl"
 }
@@ -11,7 +11,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 Teraz, gdy dokładnie przeanalizowałeś zbiór danych, czas przefiltrować kolumny i zastosować techniki NLP, aby uzyskać nowe informacje o hotelach.
 
-## [Quiz przed wykładem](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+## [Quiz przed wykładem](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Operacje filtrowania i analizy sentymentu
 
@@ -25,7 +25,7 @@ Oczyść dane jeszcze bardziej. Dodaj kolumny, które będą przydatne później
 
    1. Usuń `lat` i `lng`
 
-   2. Zastąp wartości w `Hotel_Address` następującymi wartościami (jeśli adres zawiera nazwę miasta i kraju, zmień go na samo miasto i kraj).
+   2. Zastąp wartości w kolumnie `Hotel_Address` następującymi wartościami (jeśli adres zawiera nazwę miasta i kraju, zmień go na samo miasto i kraj).
 
       Oto jedyne miasta i kraje w zbiorze danych:
 
@@ -109,11 +109,11 @@ Oczyść dane jeszcze bardziej. Dodaj kolumny, które będą przydatne później
   
    2. Zachowaj `Reviewer_Nationality`
 
-### Kolumny z tagami
+### Kolumna Tag
 
-Kolumna `Tag` jest problematyczna, ponieważ zawiera listę (w formie tekstowej) przechowywaną w kolumnie. Niestety, kolejność i liczba podsekcji w tej kolumnie nie zawsze są takie same. Trudno jest człowiekowi zidentyfikować odpowiednie frazy, które mogą być interesujące, ponieważ zbiór danych zawiera 515 000 wierszy i 1427 hoteli, a każdy z nich ma nieco inne opcje, które recenzent mógł wybrać. Tutaj przydaje się NLP. Możesz przeanalizować tekst i znaleźć najczęstsze frazy oraz policzyć ich wystąpienia.
+Kolumna `Tag` jest problematyczna, ponieważ zawiera listę (w formie tekstowej) przechowywaną w kolumnie. Niestety, kolejność i liczba podsekcji w tej kolumnie nie zawsze są takie same. Trudno jest człowiekowi zidentyfikować odpowiednie frazy, które mogą być interesujące, ponieważ zbiór danych zawiera 515 000 wierszy i 1427 hoteli, a każdy z nich ma nieco inne opcje, które recenzent mógł wybrać. Tutaj przydaje się NLP. Możesz przeanalizować tekst, znaleźć najczęstsze frazy i je policzyć.
 
-Niestety, nie interesują nas pojedyncze słowa, ale frazy wielowyrazowe (np. *Podróż służbowa*). Uruchomienie algorytmu dystrybucji częstotliwości fraz wielowyrazowych na tak dużej ilości danych (6762646 słów) mogłoby zająć niezwykle dużo czasu, ale bez analizy danych wydaje się, że jest to konieczne. Tutaj przydaje się eksploracyjna analiza danych, ponieważ widząc próbkę tagów, takich jak `[' Podróż służbowa  ', ' Podróżujący samotnie ', ' Pokój jednoosobowy ', ' Pobyt 5 nocy ', ' Wysłano z urządzenia mobilnego ']`, możesz zacząć zastanawiać się, czy można znacznie zmniejszyć ilość przetwarzania, które musisz wykonać. Na szczęście jest to możliwe - ale najpierw musisz wykonać kilka kroków, aby określić interesujące tagi.
+Niestety, nie interesują nas pojedyncze słowa, ale frazy wielowyrazowe (np. *Podróż służbowa*). Uruchomienie algorytmu częstotliwości fraz wielowyrazowych na tak dużej ilości danych (6762646 słów) mogłoby zająć niezwykle dużo czasu, ale bez analizy danych wydaje się, że jest to konieczny wydatek. Tutaj przydaje się eksploracyjna analiza danych, ponieważ widząc próbkę tagów, takich jak `[' Podróż służbowa  ', ' Podróżujący samotnie ', ' Pokój jednoosobowy ', ' Pobyt 5 nocy ', ' Wysłano z urządzenia mobilnego ']`, możesz zacząć zastanawiać się, czy można znacznie zmniejszyć ilość przetwarzania, które musisz wykonać. Na szczęście jest to możliwe - ale najpierw musisz wykonać kilka kroków, aby określić interesujące tagi.
 
 ### Filtrowanie tagów
 
@@ -121,7 +121,7 @@ Pamiętaj, że celem zbioru danych jest dodanie sentymentu i kolumn, które pomo
 
 1. Rodzaj podróży jest istotny i powinien zostać
 2. Rodzaj grupy gości jest ważny i powinien zostać
-3. Rodzaj pokoju, apartamentu lub studia, w którym przebywał gość, jest nieistotny (wszystkie hotele mają zasadniczo te same pokoje)
+3. Rodzaj pokoju, apartamentu lub studia, w którym przebywał gość, jest nieistotny (wszystkie hotele mają w zasadzie te same pokoje)
 4. Urządzenie, z którego wysłano recenzję, jest nieistotne
 5. Liczba nocy spędzonych przez recenzenta *mogłaby* być istotna, jeśli przypiszesz dłuższe pobyty do większego zadowolenia z hotelu, ale to mało prawdopodobne i raczej nieistotne
 
@@ -138,7 +138,7 @@ df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 
 Każdy tag staje się czymś w rodzaju: `Podróż służbowa, Podróżujący samotnie, Pokój jednoosobowy, Pobyt 5 nocy, Wysłano z urządzenia mobilnego`. 
 
-Następnie pojawia się problem. Niektóre recenzje lub wiersze mają 5 kolumn, inne 3, jeszcze inne 6. Jest to wynik sposobu, w jaki zbiór danych został utworzony, i trudno to naprawić. Chcesz uzyskać liczbę wystąpień każdej frazy, ale są one w różnej kolejności w każdej recenzji, więc liczba może być nieprecyzyjna, a hotel może nie otrzymać przypisanego tagu, na który zasługuje.
+Następnie pojawia się problem. Niektóre recenzje lub wiersze mają 5 kolumn, inne 3, jeszcze inne 6. Jest to wynik sposobu, w jaki zbiór danych został utworzony, i trudno to naprawić. Chcesz uzyskać częstotliwość występowania każdej frazy, ale są one w różnej kolejności w każdej recenzji, więc liczba może być nieprecyzyjna, a hotel może nie otrzymać przypisanego tagu, na który zasługuje.
 
 Zamiast tego wykorzystasz różną kolejność na swoją korzyść, ponieważ każdy tag jest wielowyrazowy, ale także oddzielony przecinkiem! Najprostszym sposobem na to jest utworzenie 6 tymczasowych kolumn, w których każdy tag zostanie wstawiony do kolumny odpowiadającej jego kolejności w tagu. Następnie możesz połączyć 6 kolumn w jedną dużą kolumnę i uruchomić metodę `value_counts()` na wynikowej kolumnie. Po jej wydrukowaniu zobaczysz, że było 2428 unikalnych tagów. Oto mała próbka:
 
@@ -167,7 +167,7 @@ Zamiast tego wykorzystasz różną kolejność na swoją korzyść, ponieważ ka
 | Superior pokój dwuosobowy lub typu twin | 13570 |
 | 2 pokoje                       | 12393  |
 
-Niektóre z popularnych tagów, takich jak `Wysłano z urządzenia mobilnego`, są dla nas bezużyteczne, więc warto je usunąć przed liczeniem wystąpień fraz, ale jest to tak szybka operacja, że możesz je zostawić i po prostu je zignorować.
+Niektóre z popularnych tagów, takich jak `Wysłano z urządzenia mobilnego`, są dla nas bezużyteczne, więc może być rozsądne usunięcie ich przed liczeniem występowania fraz, ale jest to tak szybka operacja, że możesz je zostawić i po prostu je zignorować.
 
 ### Usuwanie tagów dotyczących długości pobytu
 
@@ -186,12 +186,12 @@ Usunięcie tych tagów to pierwszy krok, który nieco zmniejsza całkowitą licz
 | Pobyt 9 nocy    | 1293   |
 | ...             | ...    |
 
-Istnieje ogromna różnorodność pokoi, apartamentów, studiów, mieszkań i tak dalej. Wszystkie oznaczają mniej więcej to samo i nie są dla Ciebie istotne, więc usuń je z rozważań.
+Istnieje ogromna różnorodność pokoi, apartamentów, studiów, mieszkań i tak dalej. Wszystkie one oznaczają mniej więcej to samo i nie są dla Ciebie istotne, więc usuń je z rozważań.
 
 | Rodzaj pokoju               | Liczba |
 | --------------------------- | ------ |
-| Pokój dwuosobowy            | 35207  |
-| Standardowy pokój dwuosobowy| 32248  |
+| Pokój dwuosobowy           | 35207  |
+| Standardowy pokój dwuosobowy | 32248  |
 | Superior pokój dwuosobowy   | 31393  |
 | Deluxe pokój dwuosobowy     | 24823  |
 | Pokój dwuosobowy lub typu twin | 22393 |
@@ -212,9 +212,9 @@ Na koniec, i to jest satysfakcjonujące (ponieważ nie wymagało dużego przetwa
 | Rodzina ze starszymi dziećmi                  | 26349  |
 | Z pupilem                                     | 1405   |
 
-Można argumentować, że `Podróżujący z przyjaciółmi` to mniej więcej to samo co `Grupa`, i byłoby to uzasadnione, aby połączyć te dwa tagi, jak powyżej. Kod do identyfikacji odpowiednich tagów znajduje się w [notatniku z tagami](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+Można by argumentować, że `Podróżujący z przyjaciółmi` to w zasadzie to samo co `Grupa`, i byłoby to uzasadnione, aby połączyć te dwa tagi, jak powyżej. Kod do identyfikacji odpowiednich tagów znajduje się w [notatniku Tags](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
 
-Ostatnim krokiem jest utworzenie nowych kolumn dla każdego z tych tagów. Następnie, dla każdego wiersza recenzji, jeśli kolumna `Tag` pasuje do jednej z nowych kolumn, dodaj 1, jeśli nie, dodaj 0. Końcowy wynik to liczba recenzentów, którzy wybrali ten hotel (w sumie) np. na podróż służbową lub wypoczynkową, albo na pobyt z pupilem, co jest przydatną informacją przy rekomendowaniu hotelu.
+Ostatnim krokiem jest utworzenie nowych kolumn dla każdego z tych tagów. Następnie, dla każdego wiersza recenzji, jeśli kolumna `Tag` pasuje do jednej z nowych kolumn, dodaj 1, jeśli nie, dodaj 0. Końcowym wynikiem będzie liczba recenzentów, którzy wybrali ten hotel (w sumie) np. na podróż służbową lub wypoczynkową, albo na pobyt z pupilem, co jest przydatną informacją przy rekomendowaniu hotelu.
 
 ```python
 # Process the Tags into new columns
@@ -246,11 +246,11 @@ df.to_csv(r'../data/Hotel_Reviews_Filtered.csv', index = False)
 
 ## Operacje analizy sentymentu
 
-W tej ostatniej sekcji zastosujesz analizę sentymentu do kolumn z recenzjami i zapiszesz wyniki w zbiorze danych.
+W tej ostatniej sekcji zastosujesz analizę sentymentu do kolumn recenzji i zapiszesz wyniki w zbiorze danych.
 
 ## Ćwiczenie: załaduj i zapisz przefiltrowane dane
 
-Zauważ, że teraz ładujesz przefiltrowany zbiór danych zapisany w poprzedniej sekcji, **nie** oryginalny zbiór danych.
+Zauważ, że teraz ładujesz przefiltrowany zbiór danych zapisany w poprzedniej sekcji, **a nie** oryginalny zbiór danych.
 
 ```python
 import time
@@ -273,13 +273,13 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### Usuwanie stop słów
 
-Jeśli uruchomisz analizę sentymentu na kolumnach z recenzjami negatywnymi i pozytywnymi, może to zająć dużo czasu. Testowane na wydajnym laptopie z szybkim procesorem trwało to 12-14 minut w zależności od użytej biblioteki do analizy sentymentu. To (stosunkowo) długi czas, więc warto sprawdzić, czy można go skrócić.
+Jeśli uruchomisz analizę sentymentu na kolumnach recenzji negatywnych i pozytywnych, może to zająć dużo czasu. Testowane na wydajnym laptopie z szybkim procesorem, zajęło to 12-14 minut w zależności od użytej biblioteki analizy sentymentu. To (stosunkowo) długi czas, więc warto sprawdzić, czy można go skrócić. 
 
-Usuwanie stop słów, czyli powszechnych angielskich słów, które nie zmieniają sentymentu zdania, to pierwszy krok. Usuwając je, analiza sentymentu powinna działać szybciej, ale nie mniej dokładnie (ponieważ stop słowa nie wpływają na sentyment, ale spowalniają analizę).
+Usuwanie stop słów, czyli powszechnych angielskich słów, które nie wpływają na sentyment zdania, to pierwszy krok. Usunięcie ich powinno przyspieszyć analizę sentymentu, ale nie zmniejszyć jej dokładności (ponieważ stop słowa nie wpływają na sentyment, ale spowalniają analizę). 
 
-Najdłuższa negatywna recenzja miała 395 słów, ale po usunięciu stop słów ma 195 słów.
+Najdłuższa negatywna recenzja miała 395 słów, ale po usunięciu stop słów, ma 195 słów.
 
-Usuwanie stop słów to również szybka operacja, usunięcie ich z 2 kolumn recenzji w 515 000 wierszy zajęło 3,3 sekundy na urządzeniu testowym. Może to zająć nieco więcej lub mniej czasu w zależności od szybkości procesora, pamięci RAM, posiadania dysku SSD i innych czynników. Relatywnie krótki czas operacji oznacza, że jeśli poprawi czas analizy sentymentu, warto to zrobić.
+Usuwanie stop słów to również szybka operacja, usunięcie ich z 2 kolumn recenzji w 515 000 wierszy zajęło 3,3 sekundy na urządzeniu testowym. Może to zająć nieco więcej lub mniej czasu w zależności od szybkości procesora, pamięci RAM, posiadania dysku SSD i innych czynników. Relatywnie krótki czas operacji oznacza, że jeśli poprawi czas analizy sentymentu, to warto ją wykonać.
 
 ```python
 from nltk.corpus import stopwords
@@ -301,10 +301,10 @@ df.Negative_Review = df.Negative_Review.apply(remove_stopwords)
 df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
-### Wykonywanie analizy sentymentu
-Teraz powinieneś obliczyć analizę sentymentu dla kolumn z negatywnymi i pozytywnymi recenzjami, a wynik zapisać w dwóch nowych kolumnach. Testem sentymentu będzie porównanie go z oceną recenzenta dla tej samej recenzji. Na przykład, jeśli analiza sentymentu wskazuje, że negatywna recenzja miała sentyment równy 1 (bardzo pozytywny sentyment) i pozytywna recenzja również miała sentyment równy 1, ale recenzent dał hotelowi najniższą możliwą ocenę, oznacza to, że tekst recenzji nie pasuje do oceny lub analiza sentymentu nie rozpoznała poprawnie sentymentu. Możesz spodziewać się, że niektóre wyniki analizy sentymentu będą całkowicie błędne, co często będzie można wyjaśnić, np. recenzja może być bardzo sarkastyczna: „Oczywiście UWIELBIAŁEM spać w pokoju bez ogrzewania”, a analiza sentymentu uzna to za pozytywny sentyment, mimo że człowiek czytający to wiedziałby, że to sarkazm.
+### Przeprowadzanie analizy sentymentu
 
-NLTK oferuje różne narzędzia do analizy sentymentu, które można przetestować, i możesz je zamieniać, aby sprawdzić, czy analiza sentymentu jest bardziej lub mniej dokładna. W tym przypadku używana jest analiza sentymentu VADER.
+Teraz powinieneś obliczyć analizę sentymentu dla kolumn recenzji negatywnych i pozytywnych oraz zapisać wynik w 2 nowych kolumnach. Test analizy sentymentu będzie polegał na porównaniu go z oceną recenzenta dla tej samej recenzji. Na przykład, jeśli analiza sentymentu uzna, że negatywna recenzja miała sentyment 1 (bardzo pozytywny sentyment), a pozytywna recenzja również sentyment 1, ale recenzent dał hotelowi najniższą możliwą ocenę, to albo tekst recenzji nie odpowiada ocenie, albo analizator sentymentu nie rozpoznał poprawnie sentymentu. Powinieneś spodziewać się, że niektóre wyniki analizy sentymentu będą całkowicie błędne, co często będzie można wyjaśnić, np. recenzja może być bardzo sarkastyczna: "Oczywiście UWIELBIAŁEM spać w pokoju bez ogrzewania", a analizator sentymentu uzna to za pozytywny sentyment, mimo że człowiek czytający to wiedziałby, że to sarkazm.
+NLTK dostarcza różne analizatory sentymentu, z którymi można eksperymentować, i możesz je zamieniać, aby sprawdzić, czy analiza sentymentu jest bardziej lub mniej dokładna. W tym przypadku używana jest analiza sentymentu VADER.
 
 > Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, czerwiec 2014.
 
@@ -325,7 +325,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Później w programie, gdy będziesz gotowy do obliczenia sentymentu, możesz zastosować go do każdej recenzji w następujący sposób:
+Później, w swoim programie, gdy będziesz gotowy do obliczenia sentymentu, możesz zastosować go do każdej recenzji w następujący sposób:
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -337,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-To zajmuje około 120 sekund na moim komputerze, ale czas może się różnić w zależności od komputera. Jeśli chcesz wydrukować wyniki i sprawdzić, czy sentyment pasuje do recenzji:
+Na moim komputerze zajmuje to około 120 sekund, ale czas ten może się różnić w zależności od urządzenia. Jeśli chcesz wydrukować wyniki i sprawdzić, czy sentyment odpowiada recenzji:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -346,7 +346,7 @@ df = df.sort_values(by=["Positive_Sentiment"], ascending=True)
 print(df[["Positive_Review", "Positive_Sentiment"]])
 ```
 
-Ostatnią rzeczą, którą należy zrobić z plikiem przed użyciem go w wyzwaniu, jest zapisanie go! Powinieneś również rozważyć przeorganizowanie wszystkich nowych kolumn, aby były łatwe w obsłudze (dla człowieka, to kosmetyczna zmiana).
+Ostatnią rzeczą, którą należy zrobić z plikiem przed użyciem go w wyzwaniu, jest zapisanie go! Warto również rozważyć uporządkowanie wszystkich nowych kolumn w taki sposób, aby były łatwe do obsługi (dla człowieka to zmiana kosmetyczna).
 
 ```python
 # Reorder the columns (This is cosmetic, but to make it easier to explore the data later)
@@ -360,24 +360,24 @@ Powinieneś uruchomić cały kod z [notatnika analizy](https://github.com/micros
 
 Podsumowując, kroki są następujące:
 
-1. Oryginalny plik danych **Hotel_Reviews.csv** został zbadany w poprzedniej lekcji za pomocą [notatnika eksploracyjnego](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
-2. Hotel_Reviews.csv został przefiltrowany za pomocą [notatnika filtrowania](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), co dało **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv został przetworzony za pomocą [notatnika analizy sentymentu](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb), co dało **Hotel_Reviews_NLP.csv**
-4. Użyj Hotel_Reviews_NLP.csv w wyzwaniu NLP poniżej
+1. Oryginalny plik danych **Hotel_Reviews.csv** został przeanalizowany w poprzedniej lekcji za pomocą [notatnika eksploracyjnego](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
+2. Hotel_Reviews.csv został przefiltrowany za pomocą [notatnika filtrowania](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb), co dało wynikowy plik **Hotel_Reviews_Filtered.csv**
+3. Hotel_Reviews_Filtered.csv został przetworzony za pomocą [notatnika analizy sentymentu](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb), co dało wynikowy plik **Hotel_Reviews_NLP.csv**
+4. Użyj Hotel_Reviews_NLP.csv w poniższym wyzwaniu NLP
 
 ### Podsumowanie
 
-Na początku miałeś zestaw danych z kolumnami i danymi, ale nie wszystko mogło być zweryfikowane lub użyte. Zbadałeś dane, odfiltrowałeś to, czego nie potrzebujesz, przekształciłeś tagi w coś użytecznego, obliczyłeś własne średnie, dodałeś kolumny sentymentu i, miejmy nadzieję, nauczyłeś się ciekawych rzeczy o przetwarzaniu naturalnego tekstu.
+Na początku miałeś zestaw danych z kolumnami i danymi, ale nie wszystkie z nich mogły być zweryfikowane lub użyte. Przeanalizowałeś dane, odfiltrowałeś to, czego nie potrzebujesz, przekształciłeś tagi w coś użytecznego, obliczyłeś własne średnie, dodałeś kolumny sentymentu i, miejmy nadzieję, nauczyłeś się kilku ciekawych rzeczy o przetwarzaniu tekstu naturalnego.
 
-## [Quiz po lekcji](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [Quiz po wykładzie](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Wyzwanie
 
-Teraz, gdy masz zestaw danych przeanalizowany pod kątem sentymentu, sprawdź, czy możesz użyć strategii, których nauczyłeś się w tym kursie (np. klasteryzacji), aby określić wzorce związane z sentymentem.
+Teraz, gdy przeanalizowałeś swój zestaw danych pod kątem sentymentu, sprawdź, czy możesz wykorzystać strategie, których nauczyłeś się w tym kursie (np. klasteryzację?), aby określić wzorce związane z sentymentem.
 
 ## Przegląd i samodzielna nauka
 
-Weź [ten moduł Learn](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott), aby dowiedzieć się więcej i użyć różnych narzędzi do eksploracji sentymentu w tekście.
+Skorzystaj z [tego modułu Learn](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott), aby dowiedzieć się więcej i użyć różnych narzędzi do eksploracji sentymentu w tekście.
 
 ## Zadanie
 
