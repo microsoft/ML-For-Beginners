@@ -1,15 +1,15 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "73e9a7245aa57f00cd413ffd22c0ccb6",
-  "translation_date": "2025-08-29T21:29:52+00:00",
+  "original_hash": "69389392fa6346e0dfa30f664b7b6fec",
+  "translation_date": "2025-09-06T07:34:02+00:00",
   "source_file": "1-Introduction/1-intro-to-ML/README.md",
   "language_code": "it"
 }
 -->
 # Introduzione al machine learning
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/1/)
+## [Quiz pre-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 
@@ -17,7 +17,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 > 🎥 Clicca sull'immagine sopra per un breve video che illustra questa lezione.
 
-Benvenuto in questo corso sul machine learning classico per principianti! Che tu sia completamente nuovo a questo argomento o un esperto di ML che desidera ripassare un'area, siamo felici di averti con noi! Vogliamo creare un punto di partenza amichevole per il tuo studio del ML e saremmo felici di valutare, rispondere e incorporare il tuo [feedback](https://github.com/microsoft/ML-For-Beginners/discussions).
+Benvenuto in questo corso sul machine learning classico per principianti! Che tu sia completamente nuovo a questo argomento o un esperto di ML che desidera ripassare un'area, siamo felici di averti con noi! Vogliamo creare un punto di partenza amichevole per il tuo studio di ML e saremmo felici di valutare, rispondere e incorporare il tuo [feedback](https://github.com/microsoft/ML-For-Beginners/discussions).
 
 [![Introduzione al ML](https://img.youtube.com/vi/h0e2HAPTGF4/0.jpg)](https://youtu.be/h0e2HAPTGF4 "Introduzione al ML")
 
@@ -30,31 +30,31 @@ Prima di iniziare con questo curriculum, è necessario configurare il tuo comput
 
 - **Configura il tuo computer con questi video**. Usa i seguenti link per imparare [come installare Python](https://youtu.be/CXZYvNRIAKM) sul tuo sistema e [configurare un editor di testo](https://youtu.be/EU8eayHWoZg) per lo sviluppo.
 - **Impara Python**. È anche consigliato avere una conoscenza di base di [Python](https://docs.microsoft.com/learn/paths/python-language/?WT.mc_id=academic-77952-leestott), un linguaggio di programmazione utile per i data scientist che utilizziamo in questo corso.
-- **Impara Node.js e JavaScript**. Utilizziamo anche JavaScript alcune volte in questo corso per costruire applicazioni web, quindi sarà necessario avere [node](https://nodejs.org) e [npm](https://www.npmjs.com/) installati, oltre a [Visual Studio Code](https://code.visualstudio.com/) disponibile sia per lo sviluppo in Python che in JavaScript.
-- **Crea un account GitHub**. Dato che ci hai trovato qui su [GitHub](https://github.com), potresti già avere un account, ma se non lo hai, creane uno e poi fai un fork di questo curriculum per usarlo personalmente. (Sentiti libero di darci una stella, 😊)
+- **Impara Node.js e JavaScript**. Utilizziamo anche JavaScript alcune volte in questo corso per costruire app web, quindi sarà necessario avere [node](https://nodejs.org) e [npm](https://www.npmjs.com/) installati, oltre a [Visual Studio Code](https://code.visualstudio.com/) disponibile sia per lo sviluppo in Python che in JavaScript.
+- **Crea un account GitHub**. Dato che ci hai trovato qui su [GitHub](https://github.com), potresti già avere un account, ma se non lo hai, creane uno e poi fai un fork di questo curriculum per usarlo da solo. (Sentiti libero di darci una stella, 😊)
 - **Esplora Scikit-learn**. Familiarizza con [Scikit-learn](https://scikit-learn.org/stable/user_guide.html), un insieme di librerie ML che utilizziamo in queste lezioni.
 
 ---
 ## Cos'è il machine learning?
 
-Il termine 'machine learning' è uno dei più popolari e frequentemente utilizzati oggi. È probabile che tu abbia sentito questo termine almeno una volta se hai una certa familiarità con la tecnologia, indipendentemente dal settore in cui lavori. Tuttavia, la meccanica del machine learning è un mistero per la maggior parte delle persone. Per un principiante del machine learning, l'argomento può talvolta sembrare opprimente. Pertanto, è importante capire cosa sia realmente il machine learning e impararlo passo dopo passo, attraverso esempi pratici.
+Il termine 'machine learning' è uno dei più popolari e frequentemente utilizzati oggi. È molto probabile che tu abbia sentito questo termine almeno una volta se hai una certa familiarità con la tecnologia, indipendentemente dal settore in cui lavori. Tuttavia, la meccanica del machine learning è un mistero per la maggior parte delle persone. Per un principiante del machine learning, l'argomento può talvolta sembrare opprimente. Pertanto, è importante capire cosa sia realmente il machine learning e impararlo passo dopo passo, attraverso esempi pratici.
 
 ---
 ## La curva dell'hype
 
-![ml hype curve](../../../../translated_images/hype.07183d711a17aafe70915909a0e45aa286ede136ee9424d418026ab00fec344c.it.png)
+![ml hype curve](../../../../1-Introduction/1-intro-to-ML/images/hype.png)
 
 > Google Trends mostra la recente 'curva dell'hype' del termine 'machine learning'
 
 ---
 ## Un universo misterioso
 
-Viviamo in un universo pieno di misteri affascinanti. Grandi scienziati come Stephen Hawking, Albert Einstein e molti altri hanno dedicato la loro vita alla ricerca di informazioni significative che svelano i misteri del mondo che ci circonda. Questa è la condizione umana dell'apprendimento: un bambino umano impara nuove cose e scopre la struttura del suo mondo anno dopo anno mentre cresce fino all'età adulta.
+Viviamo in un universo pieno di misteri affascinanti. Grandi scienziati come Stephen Hawking, Albert Einstein e molti altri hanno dedicato la loro vita alla ricerca di informazioni significative che svelano i misteri del mondo che ci circonda. Questa è la condizione umana dell'apprendimento: un bambino umano impara cose nuove e scopre la struttura del suo mondo anno dopo anno mentre cresce fino all'età adulta.
 
 ---
-## Il cervello del bambino
+## Il cervello di un bambino
 
-Il cervello e i sensi di un bambino percepiscono i fatti del loro ambiente e gradualmente apprendono i modelli nascosti della vita che aiutano il bambino a creare regole logiche per identificare i modelli appresi. Il processo di apprendimento del cervello umano rende gli esseri umani la creatura vivente più sofisticata di questo mondo. Apprendere continuamente scoprendo modelli nascosti e poi innovare su quei modelli ci consente di migliorarci continuamente nel corso della nostra vita. Questa capacità di apprendimento e capacità di evoluzione è legata a un concetto chiamato [plasticità cerebrale](https://www.simplypsychology.org/brain-plasticity.html). Superficialmente, possiamo tracciare alcune somiglianze motivazionali tra il processo di apprendimento del cervello umano e i concetti di machine learning.
+Il cervello e i sensi di un bambino percepiscono i fatti del loro ambiente e gradualmente apprendono i modelli nascosti della vita che aiutano il bambino a creare regole logiche per identificare i modelli appresi. Il processo di apprendimento del cervello umano rende gli esseri umani la creatura vivente più sofisticata di questo mondo. Apprendere continuamente scoprendo modelli nascosti e poi innovando su quei modelli ci consente di migliorarci continuamente nel corso della nostra vita. Questa capacità di apprendimento e capacità di evoluzione è legata a un concetto chiamato [plasticità cerebrale](https://www.simplypsychology.org/brain-plasticity.html). Superficialmente, possiamo tracciare alcune somiglianze motivazionali tra il processo di apprendimento del cervello umano e i concetti di machine learning.
 
 ---
 ## Il cervello umano
@@ -69,14 +69,14 @@ Sebbene i termini possano essere confusi, il machine learning (ML) è un importa
 ---
 ## AI, ML, Deep Learning
 
-![AI, ML, deep learning, data science](../../../../translated_images/ai-ml-ds.537ea441b124ebf69c144a52c0eb13a7af63c4355c2f92f440979380a2fb08b8.it.png)
+![AI, ML, deep learning, data science](../../../../1-Introduction/1-intro-to-ML/images/ai-ml-ds.png)
 
 > Un diagramma che mostra le relazioni tra AI, ML, deep learning e data science. Infografica di [Jen Looper](https://twitter.com/jenlooper) ispirata a [questa grafica](https://softwareengineering.stackexchange.com/questions/366996/distinction-between-ai-ml-neural-networks-deep-learning-and-data-mining)
 
 ---
 ## Concetti da trattare
 
-In questo curriculum, tratteremo solo i concetti fondamentali del machine learning che un principiante deve conoscere. Tratteremo ciò che chiamiamo 'machine learning classico' utilizzando principalmente Scikit-learn, un'eccellente libreria che molti studenti usano per imparare le basi. Per comprendere concetti più ampi di intelligenza artificiale o deep learning, una solida conoscenza fondamentale del machine learning è indispensabile, e quindi vogliamo offrirla qui.
+In questo curriculum, tratteremo solo i concetti fondamentali del machine learning che un principiante deve conoscere. Tratteremo ciò che chiamiamo 'machine learning classico' utilizzando principalmente Scikit-learn, una libreria eccellente che molti studenti usano per imparare le basi. Per comprendere concetti più ampi di intelligenza artificiale o deep learning, è indispensabile una solida conoscenza fondamentale del machine learning, e quindi vorremmo offrirla qui.
 
 ---
 ## In questo corso imparerai:
@@ -99,7 +99,7 @@ In questo curriculum, tratteremo solo i concetti fondamentali del machine learni
 - reti neurali
 - AI
 
-Per rendere l'esperienza di apprendimento migliore, eviteremo le complessità delle reti neurali, del 'deep learning' - costruzione di modelli a molti strati utilizzando reti neurali - e dell'AI, che discuteremo in un curriculum separato. Offriremo anche un curriculum di data science in arrivo per concentrarci su quell'aspetto di questo campo più ampio.
+Per rendere l'esperienza di apprendimento migliore, eviteremo le complessità delle reti neurali, del 'deep learning' - costruzione di modelli a più livelli utilizzando reti neurali - e dell'AI, che discuteremo in un curriculum diverso. Offriremo anche un prossimo curriculum di data science per concentrarci su quell'aspetto di questo campo più ampio.
 
 ---
 ## Perché studiare il machine learning?
@@ -113,7 +113,7 @@ Questa motivazione è vagamente ispirata a come il cervello umano apprende certe
 ---
 ## Applicazioni del machine learning
 
-Le applicazioni del machine learning sono ormai ovunque e sono tanto onnipresenti quanto i dati che scorrono nelle nostre società, generati dai nostri smartphone, dispositivi connessi e altri sistemi. Considerando il potenziale immenso degli algoritmi di machine learning all'avanguardia, i ricercatori hanno esplorato la loro capacità di risolvere problemi reali multidimensionali e multidisciplinari con grandi risultati positivi.
+Le applicazioni del machine learning sono ormai ovunque e sono tanto ubiquitarie quanto i dati che scorrono nelle nostre società, generati dai nostri smartphone, dispositivi connessi e altri sistemi. Considerando l'immenso potenziale degli algoritmi di machine learning all'avanguardia, i ricercatori hanno esplorato la loro capacità di risolvere problemi reali multidimensionali e multidisciplinari con grandi risultati positivi.
 
 ---
 ## Esempi di ML applicato
@@ -121,25 +121,25 @@ Le applicazioni del machine learning sono ormai ovunque e sono tanto onnipresent
 **Puoi utilizzare il machine learning in molti modi**:
 
 - Per prevedere la probabilità di una malattia dalla storia medica o dai referti di un paziente.
-- Per sfruttare i dati meteorologici e prevedere eventi atmosferici.
+- Per sfruttare i dati meteorologici per prevedere eventi atmosferici.
 - Per comprendere il sentimento di un testo.
 - Per rilevare notizie false e fermare la diffusione di propaganda.
 
-Finanza, economia, scienze della terra, esplorazione spaziale, ingegneria biomedica, scienze cognitive e persino campi nelle discipline umanistiche hanno adattato il machine learning per risolvere i problemi ardui e pesanti di elaborazione dati dei loro settori.
+Finanza, economia, scienze della terra, esplorazione spaziale, ingegneria biomedica, scienze cognitive e persino campi nelle discipline umanistiche hanno adattato il machine learning per risolvere i problemi ardui e pesanti di elaborazione dei dati del loro settore.
 
 ---
 ## Conclusione
 
-Il machine learning automatizza il processo di scoperta di modelli trovando intuizioni significative dai dati reali o generati. Si è dimostrato altamente prezioso in applicazioni aziendali, sanitarie e finanziarie, tra le altre.
+Il machine learning automatizza il processo di scoperta dei modelli trovando intuizioni significative dai dati reali o generati. Si è dimostrato altamente prezioso in applicazioni aziendali, sanitarie e finanziarie, tra le altre.
 
 Nel prossimo futuro, comprendere le basi del machine learning sarà indispensabile per persone di qualsiasi settore, data la sua adozione diffusa.
 
 ---
 # 🚀 Sfida
 
-Disegna, su carta o utilizzando un'app online come [Excalidraw](https://excalidraw.com/), la tua comprensione delle differenze tra AI, ML, deep learning e data science. Aggiungi alcune idee sui problemi che ciascuna di queste tecniche è in grado di risolvere.
+Disegna, su carta o utilizzando un'app online come [Excalidraw](https://excalidraw.com/), la tua comprensione delle differenze tra AI, ML, deep learning e data science. Aggiungi alcune idee sui problemi che ciascuna di queste tecniche è adatta a risolvere.
 
-# [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/2/)
+# [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ---
 # Revisione e studio autonomo

@@ -1,47 +1,47 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "89e923cf3e8bdff9662536e8bf9516e6",
-  "translation_date": "2025-08-29T22:32:33+00:00",
+  "original_hash": "1c2ec40cf55c98a028a359c27ef7e45a",
+  "translation_date": "2025-09-06T07:40:35+00:00",
   "source_file": "6-NLP/1-Introduction-to-NLP/README.md",
   "language_code": "it"
 }
 -->
 # Introduzione all'elaborazione del linguaggio naturale
 
-Questa lezione tratta una breve storia e i concetti fondamentali dell'*elaborazione del linguaggio naturale*, un sottocampo della *linguistica computazionale*.
+Questa lezione copre una breve storia e i concetti fondamentali dell'*elaborazione del linguaggio naturale*, un sottocampo della *linguistica computazionale*.
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/31/)
+## [Quiz pre-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Introduzione
 
 L'NLP, come è comunemente noto, è uno dei settori più conosciuti in cui il machine learning è stato applicato e utilizzato in software di produzione.
 
-✅ Riesci a pensare a un software che usi ogni giorno e che probabilmente abbia incorporato qualche funzionalità di NLP? Che dire dei tuoi programmi di elaborazione testi o delle app mobili che usi regolarmente?
+✅ Riesci a pensare a un software che usi ogni giorno e che probabilmente abbia incorporato qualche funzionalità di NLP? Che dire dei programmi di elaborazione testi o delle app mobili che usi regolarmente?
 
 Imparerai:
 
 - **L'idea delle lingue**. Come si sono sviluppate le lingue e quali sono stati i principali ambiti di studio.
-- **Definizioni e concetti**. Imparerai anche definizioni e concetti su come i computer elaborano il testo, inclusi il parsing, la grammatica e l'identificazione di nomi e verbi. In questa lezione ci sono alcuni compiti di programmazione e vengono introdotti diversi concetti importanti che imparerai a programmare nelle lezioni successive.
+- **Definizioni e concetti**. Imparerai anche definizioni e concetti su come i computer elaborano il testo, inclusi il parsing, la grammatica e l'identificazione di nomi e verbi. Ci sono alcuni compiti di programmazione in questa lezione e vengono introdotti diversi concetti importanti che imparerai a programmare nelle lezioni successive.
 
 ## Linguistica computazionale
 
-La linguistica computazionale è un'area di ricerca e sviluppo che, per molti decenni, ha studiato come i computer possano lavorare con le lingue, comprenderle, tradurle e persino comunicare con esse. L'elaborazione del linguaggio naturale (NLP) è un campo correlato che si concentra su come i computer possano elaborare le lingue "naturali", ovvero quelle umane.
+La linguistica computazionale è un'area di ricerca e sviluppo che, per molti decenni, ha studiato come i computer possano lavorare con le lingue, comprenderle, tradurle e persino comunicare con esse. L'elaborazione del linguaggio naturale (NLP) è un campo correlato che si concentra su come i computer possano elaborare le lingue 'naturali', ovvero quelle umane.
 
 ### Esempio - dettatura al telefono
 
-Se hai mai dettato al tuo telefono invece di digitare o hai fatto una domanda a un assistente virtuale, il tuo discorso è stato convertito in forma testuale e poi elaborato o *analizzato* dalla lingua che hai parlato. Le parole chiave rilevate sono state poi trasformate in un formato che il telefono o l'assistente poteva comprendere e su cui agire.
+Se hai mai dettato al tuo telefono invece di digitare o hai fatto una domanda a un assistente virtuale, il tuo discorso è stato convertito in forma testuale e poi elaborato o *analizzato* dalla lingua che hai parlato. Le parole chiave rilevate sono state poi trasformate in un formato che il telefono o l'assistente poteva comprendere e su cui poteva agire.
 
-![comprensione](../../../../translated_images/comprehension.619708fc5959b0f6a24ebffba2ad7b0625391a476141df65b43b59de24e45c6f.it.png)
+![comprensione](../../../../6-NLP/1-Introduction-to-NLP/images/comprehension.png)
 > La vera comprensione linguistica è difficile! Immagine di [Jen Looper](https://twitter.com/jenlooper)
 
 ### Come è resa possibile questa tecnologia?
 
-Questo è possibile perché qualcuno ha scritto un programma per farlo. Alcuni decenni fa, alcuni scrittori di fantascienza avevano previsto che le persone avrebbero parlato principalmente ai loro computer e che i computer avrebbero sempre capito esattamente cosa intendessero. Purtroppo, si è rivelato un problema più difficile di quanto molti immaginassero e, sebbene oggi sia un problema molto meglio compreso, ci sono sfide significative nel raggiungere una comprensione "perfetta" del linguaggio naturale, soprattutto quando si tratta di comprendere il significato di una frase. Questo è particolarmente difficile quando si tratta di capire l'umorismo o rilevare emozioni come il sarcasmo in una frase.
+Questo è possibile perché qualcuno ha scritto un programma per computer per farlo. Alcuni decenni fa, alcuni scrittori di fantascienza avevano previsto che le persone avrebbero parlato principalmente ai loro computer e che i computer avrebbero sempre capito esattamente cosa intendessero. Purtroppo, si è rivelato un problema più difficile di quanto molti immaginassero e, sebbene oggi sia un problema molto meglio compreso, ci sono sfide significative nel raggiungere una comprensione 'perfetta' del linguaggio naturale, soprattutto quando si tratta di comprendere il significato di una frase. Questo è un problema particolarmente difficile quando si tratta di capire l'umorismo o rilevare emozioni come il sarcasmo in una frase.
 
-A questo punto, potresti ricordare le lezioni scolastiche in cui l'insegnante trattava le parti della grammatica in una frase. In alcuni paesi, agli studenti viene insegnata la grammatica e la linguistica come materia dedicata, ma in molti altri questi argomenti sono inclusi nell'apprendimento di una lingua: sia la tua lingua madre nella scuola primaria (imparare a leggere e scrivere) sia forse una seconda lingua nella scuola secondaria. Non preoccuparti se non sei un esperto nel distinguere i nomi dai verbi o gli avverbi dagli aggettivi!
+A questo punto, potresti ricordare le lezioni scolastiche in cui l'insegnante trattava le parti della grammatica in una frase. In alcuni paesi, agli studenti viene insegnata la grammatica e la linguistica come materia dedicata, ma in molti, questi argomenti sono inclusi nell'apprendimento di una lingua: sia la tua lingua madre nella scuola primaria (imparare a leggere e scrivere) sia forse una seconda lingua nella scuola secondaria o superiore. Non preoccuparti se non sei un esperto nel distinguere i nomi dai verbi o gli avverbi dagli aggettivi!
 
-Se hai difficoltà a distinguere tra il *presente semplice* e il *presente progressivo*, non sei solo. Questo è un argomento difficile per molte persone, anche per i madrelingua di una lingua. La buona notizia è che i computer sono davvero bravi ad applicare regole formali, e imparerai a scrivere codice che può *analizzare* una frase bene quanto un essere umano. La sfida più grande che esaminerai in seguito è comprendere il *significato* e il *sentimento* di una frase.
+Se hai difficoltà a distinguere tra il *presente semplice* e il *presente progressivo*, non sei solo. Questo è un argomento impegnativo per molte persone, anche per i madrelingua di una lingua. La buona notizia è che i computer sono davvero bravi ad applicare regole formali e imparerai a scrivere codice che può *analizzare* una frase bene quanto un essere umano. La sfida più grande che esaminerai in seguito è comprendere il *significato* e il *sentimento* di una frase.
 
 ## Prerequisiti
 
@@ -68,19 +68,19 @@ La storia di tentare di far comprendere ai computer il linguaggio umano risale a
 
 ### Il 'test di Turing'
 
-Quando Turing stava studiando l'*intelligenza artificiale* negli anni '50, si chiedeva se fosse possibile somministrare un test conversazionale a un essere umano e a un computer (tramite corrispondenza scritta) in cui l'essere umano nella conversazione non fosse sicuro se stesse conversando con un altro essere umano o con un computer.
+Quando Turing stava studiando *intelligenza artificiale* negli anni '50, si chiedeva se fosse possibile somministrare un test conversazionale a un essere umano e a un computer (tramite corrispondenza scritta) in cui l'umano nella conversazione non fosse sicuro se stesse conversando con un altro umano o con un computer.
 
-Se, dopo una certa durata della conversazione, l'essere umano non riusciva a determinare se le risposte provenissero da un computer o meno, allora si poteva dire che il computer stesse *pensando*?
+Se, dopo una certa durata della conversazione, l'umano non riusciva a determinare se le risposte provenissero da un computer o meno, allora si poteva dire che il computer stesse *pensando*?
 
 ### L'ispirazione - 'il gioco dell'imitazione'
 
-L'idea per questo venne da un gioco di società chiamato *Il gioco dell'imitazione*, in cui un interrogatore è da solo in una stanza e ha il compito di determinare quale delle due persone (in un'altra stanza) sia rispettivamente maschio e femmina. L'interrogatore può inviare note e deve cercare di pensare a domande in cui le risposte scritte rivelino il genere della persona misteriosa. Ovviamente, i giocatori nell'altra stanza cercano di ingannare l'interrogatore rispondendo alle domande in modo tale da fuorviare o confondere l'interrogatore, pur dando l'impressione di rispondere onestamente.
+L'idea per questo venne da un gioco di società chiamato *Il gioco dell'imitazione* in cui un interrogatore è da solo in una stanza e ha il compito di determinare quale delle due persone (in un'altra stanza) sia maschio e quale femmina. L'interrogatore può inviare note e deve cercare di pensare a domande in cui le risposte scritte rivelino il genere della persona misteriosa. Ovviamente, i giocatori nell'altra stanza cercano di ingannare l'interrogatore rispondendo alle domande in modo da fuorviare o confondere l'interrogatore, pur dando l'impressione di rispondere onestamente.
 
 ### Sviluppare Eliza
 
-Negli anni '60, uno scienziato del MIT chiamato *Joseph Weizenbaum* sviluppò [*Eliza*](https://wikipedia.org/wiki/ELIZA), un "terapeuta" computerizzato che poneva domande all'essere umano e dava l'impressione di comprendere le sue risposte. Tuttavia, mentre Eliza poteva analizzare una frase e identificare determinati costrutti grammaticali e parole chiave per dare una risposta ragionevole, non si poteva dire che *comprendesse* la frase. Se a Eliza veniva presentata una frase con il formato "**Io sono** <u>triste</u>", poteva riorganizzare e sostituire le parole nella frase per formare la risposta "Da quanto tempo **sei** <u>triste</u>?".
+Negli anni '60, uno scienziato del MIT chiamato *Joseph Weizenbaum* sviluppò [*Eliza*](https://wikipedia.org/wiki/ELIZA), un 'terapeuta' computerizzato che poneva domande all'umano dando l'impressione di comprendere le sue risposte. Tuttavia, mentre Eliza poteva analizzare una frase e identificare determinati costrutti grammaticali e parole chiave per dare una risposta ragionevole, non si poteva dire che *comprendesse* la frase. Se a Eliza veniva presentata una frase con il formato "**Io sono** <u>triste</u>", poteva riorganizzare e sostituire parole nella frase per formare la risposta "Da quanto tempo **sei** <u>triste</u>?".
 
-Questo dava l'impressione che Eliza comprendesse l'affermazione e stesse ponendo una domanda di approfondimento, mentre in realtà stava cambiando il tempo verbale e aggiungendo alcune parole. Se Eliza non riusciva a identificare una parola chiave per cui aveva una risposta, dava invece una risposta casuale che poteva essere applicabile a molte affermazioni diverse. Eliza poteva essere facilmente ingannata, ad esempio se un utente scriveva "**Tu sei** una <u>bicicletta</u>", poteva rispondere con "Da quanto tempo **sono** una <u>bicicletta</u>?", invece di una risposta più ragionata.
+Questo dava l'impressione che Eliza avesse compreso l'affermazione e stesse ponendo una domanda di approfondimento, mentre in realtà stava cambiando il tempo verbale e aggiungendo alcune parole. Se Eliza non riusciva a identificare una parola chiave per cui aveva una risposta, dava invece una risposta casuale che poteva essere applicabile a molte affermazioni diverse. Eliza poteva essere facilmente ingannata, ad esempio se un utente scriveva "**Tu sei** una <u>bicicletta</u>", poteva rispondere con "Da quanto tempo **sono** una <u>bicicletta</u>?", invece di una risposta più ragionata.
 
 [![Conversare con Eliza](https://img.youtube.com/vi/RMK9AphfLco/0.jpg)](https://youtu.be/RMK9AphfLco "Conversare con Eliza")
 
@@ -146,9 +146,9 @@ Creiamo il bot. Inizieremo definendo alcune frasi.
 
     ✅ Fermati e rifletti
 
-    1. Pensi che le risposte casuali potrebbero "ingannare" qualcuno facendogli credere che il bot capisca davvero?
+    1. Pensi che le risposte casuali potrebbero 'ingannare' qualcuno facendogli credere che il bot abbia realmente capito?
     2. Quali caratteristiche dovrebbe avere il bot per essere più efficace?
-    3. Se un bot potesse davvero "comprendere" il significato di una frase, dovrebbe anche "ricordare" il significato delle frasi precedenti in una conversazione?
+    3. Se un bot potesse davvero 'comprendere' il significato di una frase, dovrebbe anche 'ricordare' il significato delle frasi precedenti in una conversazione?
 
 ---
 
@@ -158,7 +158,7 @@ Scegli uno degli elementi "fermati e rifletti" sopra e prova a implementarlo in 
 
 Nella prossima lezione, imparerai diversi approcci per analizzare il linguaggio naturale e il machine learning.
 
-## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/32/)
+## [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisione e studio autonomo
 

@@ -1,19 +1,19 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a683e1fe430bb0d4a10b68f6ca15e0a6",
-  "translation_date": "2025-08-29T20:36:35+00:00",
+  "original_hash": "7c077988328ebfe33b24d07945f16eca",
+  "translation_date": "2025-09-06T07:27:38+00:00",
   "source_file": "2-Regression/2-Data/README.md",
   "language_code": "it"
 }
 -->
 # Costruire un modello di regressione con Scikit-learn: preparare e visualizzare i dati
 
-![Infografica sulla visualizzazione dei dati](../../../../translated_images/data-visualization.54e56dded7c1a804d00d027543f2881cb32da73aeadda2d4a4f10f3497526114.it.png)
+![Infografica sulla visualizzazione dei dati](../../../../2-Regression/2-Data/images/data-visualization.png)
 
 Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/11/)
+## [Quiz pre-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 > ### [Questa lezione è disponibile in R!](../../../../2-Regression/2-Data/solution/R/lesson_2.html)
 
@@ -23,12 +23,12 @@ Ora che hai configurato gli strumenti necessari per iniziare a costruire modelli
 
 In questa lezione imparerai:
 
-- Come preparare i dati per la costruzione di un modello.
+- Come preparare i dati per la costruzione di modelli.
 - Come utilizzare Matplotlib per la visualizzazione dei dati.
 
-## Porre la domanda giusta ai tuoi dati
+## Formulare la domanda giusta sui tuoi dati
 
-La domanda a cui vuoi rispondere determinerà il tipo di algoritmi di ML che utilizzerai. E la qualità della risposta che otterrai dipenderà fortemente dalla natura dei tuoi dati.
+La domanda che vuoi rispondere determinerà il tipo di algoritmi di ML che utilizzerai. E la qualità della risposta che otterrai dipenderà fortemente dalla natura dei tuoi dati.
 
 Dai un'occhiata ai [dati](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) forniti per questa lezione. Puoi aprire questo file .csv in VS Code. Una rapida occhiata mostra immediatamente che ci sono spazi vuoti e un mix di stringhe e dati numerici. C'è anche una colonna strana chiamata 'Package' dove i dati sono un mix tra 'sacks', 'bins' e altri valori. I dati, in effetti, sono un po' disordinati.
 
@@ -36,21 +36,21 @@ Dai un'occhiata ai [dati](https://github.com/microsoft/ML-For-Beginners/blob/mai
 
 > 🎥 Clicca sull'immagine sopra per un breve video che mostra come preparare i dati per questa lezione.
 
-In effetti, non è molto comune ricevere un dataset completamente pronto per essere utilizzato per creare un modello di ML. In questa lezione, imparerai come preparare un dataset grezzo utilizzando librerie standard di Python. Imparerai anche varie tecniche per visualizzare i dati.
+In effetti, non è molto comune ricevere un dataset completamente pronto per creare un modello di ML direttamente. In questa lezione, imparerai come preparare un dataset grezzo utilizzando librerie standard di Python. Imparerai anche varie tecniche per visualizzare i dati.
 
 ## Caso di studio: 'il mercato delle zucche'
 
-In questa cartella troverai un file .csv nella cartella principale `data` chiamato [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) che include 1757 righe di dati sul mercato delle zucche, raggruppati per città. Questi sono dati grezzi estratti dai [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuiti dal Dipartimento dell'Agricoltura degli Stati Uniti.
+In questa cartella troverai un file .csv nella cartella principale `data` chiamato [US-pumpkins.csv](https://github.com/microsoft/ML-For-Beginners/blob/main/2-Regression/data/US-pumpkins.csv) che include 1757 righe di dati sul mercato delle zucche, suddivisi in gruppi per città. Questi sono dati grezzi estratti dai [Specialty Crops Terminal Markets Standard Reports](https://www.marketnews.usda.gov/mnp/fv-report-config-step1?type=termPrice) distribuiti dal Dipartimento dell'Agricoltura degli Stati Uniti.
 
 ### Preparare i dati
 
-Questi dati sono di dominio pubblico. Possono essere scaricati in molti file separati, uno per città, dal sito web dell'USDA. Per evitare troppi file separati, abbiamo concatenato tutti i dati delle città in un unico foglio di calcolo, quindi abbiamo già _preparato_ un po' i dati. Ora, diamo un'occhiata più da vicino ai dati.
+Questi dati sono di dominio pubblico. Possono essere scaricati in molti file separati, per città, dal sito web dell'USDA. Per evitare troppi file separati, abbiamo concatenato tutti i dati delle città in un unico foglio di calcolo, quindi abbiamo già _preparato_ un po' i dati. Ora, diamo un'occhiata più da vicino ai dati.
 
 ### I dati sulle zucche - prime conclusioni
 
 Cosa noti su questi dati? Hai già visto che c'è un mix di stringhe, numeri, spazi vuoti e valori strani che devi interpretare.
 
-Quale domanda puoi porre a questi dati utilizzando una tecnica di regressione? Che ne dici di "Prevedere il prezzo di una zucca in vendita durante un determinato mese". Guardando di nuovo i dati, ci sono alcune modifiche che devi fare per creare la struttura dei dati necessaria per questo compito.
+Quale domanda puoi porre a questi dati, utilizzando una tecnica di regressione? Che ne dici di "Prevedere il prezzo di una zucca in vendita durante un determinato mese". Guardando di nuovo i dati, ci sono alcune modifiche che devi apportare per creare la struttura dei dati necessaria per il compito.
 
 ## Esercizio - analizzare i dati sulle zucche
 
@@ -58,7 +58,7 @@ Utilizziamo [Pandas](https://pandas.pydata.org/), (il nome sta per `Python Data 
 
 ### Primo, controlla le date mancanti
 
-Per prima cosa, dovrai controllare se ci sono date mancanti:
+Per prima cosa, dovrai prendere provvedimenti per controllare le date mancanti:
 
 1. Converti le date in un formato mensile (queste sono date statunitensi, quindi il formato è `MM/DD/YYYY`).
 2. Estrai il mese in una nuova colonna.
@@ -75,15 +75,15 @@ Apri il file _notebook.ipynb_ in Visual Studio Code e importa il foglio di calco
 
     ✅ Quale funzione useresti per visualizzare le ultime cinque righe?
 
-1. Controlla se ci sono dati mancanti nel dataframe attuale:
+1. Controlla se ci sono dati mancanti nel dataframe corrente:
 
     ```python
     pumpkins.isnull().sum()
     ```
 
-    Ci sono dati mancanti, ma forse non saranno rilevanti per il compito da svolgere.
+    Ci sono dati mancanti, ma forse non saranno rilevanti per il compito.
 
-1. Per rendere il tuo dataframe più facile da gestire, seleziona solo le colonne necessarie utilizzando la funzione `loc`, che estrae dal dataframe originale un gruppo di righe (passate come primo parametro) e colonne (passate come secondo parametro). L'espressione `:` nel caso seguente significa "tutte le righe".
+1. Per rendere il tuo dataframe più facile da gestire, seleziona solo le colonne necessarie, utilizzando la funzione `loc` che estrae dal dataframe originale un gruppo di righe (passate come primo parametro) e colonne (passate come secondo parametro). L'espressione `:` nel caso seguente significa "tutte le righe".
 
     ```python
     columns_to_select = ['Package', 'Low Price', 'High Price', 'Date']
@@ -94,7 +94,7 @@ Apri il file _notebook.ipynb_ in Visual Studio Code e importa il foglio di calco
 
 Pensa a come determinare il prezzo medio di una zucca in un determinato mese. Quali colonne sceglieresti per questo compito? Suggerimento: avrai bisogno di 3 colonne.
 
-Soluzione: calcola la media delle colonne `Low Price` e `High Price` per popolare la nuova colonna Price, e converti la colonna Date per mostrare solo il mese. Fortunatamente, secondo il controllo precedente, non ci sono dati mancanti per date o prezzi.
+Soluzione: calcola la media delle colonne `Low Price` e `High Price` per popolare la nuova colonna Price, e converti la colonna Date per mostrare solo il mese. Fortunatamente, secondo il controllo sopra, non ci sono dati mancanti per date o prezzi.
 
 1. Per calcolare la media, aggiungi il seguente codice:
 
@@ -105,7 +105,7 @@ Soluzione: calcola la media delle colonne `Low Price` e `High Price` per popolar
 
     ```
 
-   ✅ Sentiti libero di stampare qualsiasi dato che desideri controllare utilizzando `print(month)`.
+   ✅ Sentiti libero di stampare qualsiasi dato per verificarlo utilizzando `print(month)`.
 
 2. Ora, copia i tuoi dati convertiti in un nuovo dataframe Pandas:
 
@@ -113,11 +113,11 @@ Soluzione: calcola la media delle colonne `Low Price` e `High Price` per popolar
     new_pumpkins = pd.DataFrame({'Month': month, 'Package': pumpkins['Package'], 'Low Price': pumpkins['Low Price'],'High Price': pumpkins['High Price'], 'Price': price})
     ```
 
-    Stampando il tuo dataframe, vedrai un dataset pulito e ordinato su cui puoi costruire il tuo nuovo modello di regressione.
+    Stampando il tuo dataframe vedrai un dataset pulito e ordinato su cui puoi costruire il tuo nuovo modello di regressione.
 
 ### Ma aspetta! C'è qualcosa di strano qui
 
-Se guardi la colonna `Package`, le zucche sono vendute in molte configurazioni diverse. Alcune sono vendute in misure di '1 1/9 bushel', altre in '1/2 bushel', alcune per zucca, altre per libbra, e altre ancora in grandi scatole di larghezze variabili.
+Se guardi la colonna `Package`, le zucche vengono vendute in molte configurazioni diverse. Alcune sono vendute in misure di '1 1/9 bushel', altre in '1/2 bushel', alcune per zucca, alcune per libbra, e altre in grandi scatole di larghezze variabili.
 
 > Le zucche sembrano molto difficili da pesare in modo coerente
 
@@ -131,7 +131,7 @@ Esaminando i dati originali, è interessante notare che tutto ciò che ha `Unit 
 
     Se stampi i dati ora, puoi vedere che stai ottenendo solo le circa 415 righe di dati contenenti zucche per bushel.
 
-### Ma aspetta! C'è ancora una cosa da fare
+### Ma aspetta! C'è un'altra cosa da fare
 
 Hai notato che la quantità di bushel varia per riga? Devi normalizzare i prezzi in modo da mostrare il prezzo per bushel, quindi fai qualche calcolo per standardizzarlo.
 
@@ -145,13 +145,13 @@ Hai notato che la quantità di bushel varia per riga? Devi normalizzare i prezzi
 
 ✅ Secondo [The Spruce Eats](https://www.thespruceeats.com/how-much-is-a-bushel-1389308), il peso di un bushel dipende dal tipo di prodotto, poiché è una misura di volume. "Un bushel di pomodori, ad esempio, dovrebbe pesare 56 libbre... Foglie e verdure occupano più spazio con meno peso, quindi un bushel di spinaci pesa solo 20 libbre." È tutto piuttosto complicato! Non preoccupiamoci di fare una conversione bushel-libbra, e invece calcoliamo il prezzo per bushel. Tutto questo studio sui bushel di zucche, tuttavia, dimostra quanto sia importante comprendere la natura dei tuoi dati!
 
-Ora puoi analizzare i prezzi per unità in base alla loro misura in bushel. Se stampi i dati un'altra volta, puoi vedere come sono stati standardizzati.
+Ora puoi analizzare i prezzi per unità in base alla loro misura di bushel. Se stampi i dati un'altra volta, puoi vedere come sono stati standardizzati.
 
-✅ Hai notato che le zucche vendute a mezzo bushel sono molto costose? Riesci a capire perché? Suggerimento: le zucche piccole sono molto più costose di quelle grandi, probabilmente perché ce ne sono molte di più per bushel, dato lo spazio inutilizzato occupato da una grande zucca vuota per torte.
+✅ Hai notato che le zucche vendute per mezzo bushel sono molto costose? Riesci a capire perché? Suggerimento: le zucche piccole sono molto più costose di quelle grandi, probabilmente perché ce ne sono molte di più per bushel, dato lo spazio inutilizzato occupato da una grande zucca vuota per torta.
 
 ## Strategie di visualizzazione
 
-Parte del ruolo del data scientist è dimostrare la qualità e la natura dei dati con cui sta lavorando. Per fare ciò, spesso creano visualizzazioni interessanti, come grafici, diagrammi e tabelle, che mostrano diversi aspetti dei dati. In questo modo, possono mostrare visivamente relazioni e lacune che altrimenti sarebbero difficili da individuare.
+Parte del ruolo del data scientist è dimostrare la qualità e la natura dei dati con cui sta lavorando. Per farlo, spesso creano visualizzazioni interessanti, come grafici, diagrammi e tabelle, che mostrano diversi aspetti dei dati. In questo modo, sono in grado di mostrare visivamente relazioni e lacune che altrimenti sarebbero difficili da individuare.
 
 [![ML per principianti - Come visualizzare i dati con Matplotlib](https://img.youtube.com/vi/SbUkxH6IJo0/0.jpg)](https://youtu.be/SbUkxH6IJo0 "ML per principianti - Come visualizzare i dati con Matplotlib")
 
@@ -165,7 +165,7 @@ Una libreria di visualizzazione dei dati che funziona bene nei notebook Jupyter 
 
 ## Esercizio - sperimenta con Matplotlib
 
-Prova a creare alcuni grafici di base per visualizzare il nuovo dataframe che hai appena creato. Cosa mostrerebbe un grafico a linee di base?
+Prova a creare alcuni grafici di base per visualizzare il nuovo dataframe che hai appena creato. Cosa mostrerebbe un grafico lineare di base?
 
 1. Importa Matplotlib all'inizio del file, sotto l'importazione di Pandas:
 
@@ -174,7 +174,7 @@ Prova a creare alcuni grafici di base per visualizzare il nuovo dataframe che ha
     ```
 
 1. Esegui nuovamente l'intero notebook per aggiornare.
-1. Alla fine del notebook, aggiungi una cella per tracciare i dati come un boxplot:
+1. Alla fine del notebook, aggiungi una cella per tracciare i dati come un box:
 
     ```python
     price = new_pumpkins.Price
@@ -183,9 +183,9 @@ Prova a creare alcuni grafici di base per visualizzare il nuovo dataframe che ha
     plt.show()
     ```
 
-    ![Un diagramma a dispersione che mostra la relazione tra prezzo e mese](../../../../translated_images/scatterplot.b6868f44cbd2051c6680ccdbb1510697d06a3ff6cd4abda656f5009c0ed4e3fc.it.png)
+    ![Un diagramma a dispersione che mostra la relazione tra prezzo e mese](../../../../2-Regression/2-Data/images/scatterplot.png)
 
-    Questo grafico è utile? Ti sorprende qualcosa?
+    Questo grafico è utile? C'è qualcosa che ti sorprende?
 
     Non è particolarmente utile, poiché tutto ciò che fa è mostrare i tuoi dati come una distribuzione di punti in un determinato mese.
 
@@ -200,7 +200,7 @@ Per ottenere grafici che mostrino dati utili, di solito è necessario raggruppar
     plt.ylabel("Pumpkin Price")
     ```
 
-    ![Un grafico a barre che mostra la relazione tra prezzo e mese](../../../../translated_images/barchart.a833ea9194346d769c77a3a870f7d8aee51574cd1138ca902e5500830a41cbce.it.png)
+    ![Un grafico a barre che mostra la relazione tra prezzo e mese](../../../../2-Regression/2-Data/images/barchart.png)
 
     Questo è una visualizzazione dei dati più utile! Sembra indicare che il prezzo più alto per le zucche si verifica a settembre e ottobre. Questo corrisponde alle tue aspettative? Perché o perché no?
 
@@ -208,13 +208,13 @@ Per ottenere grafici che mostrino dati utili, di solito è necessario raggruppar
 
 ## 🚀Sfida
 
-Esplora i diversi tipi di visualizzazioni che Matplotlib offre. Quali tipi sono più appropriati per i problemi di regressione?
+Esplora i diversi tipi di visualizzazione che Matplotlib offre. Quali tipi sono più appropriati per problemi di regressione?
 
-## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/12/)
+## [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisione e studio autonomo
 
-Dai un'occhiata ai molti modi per visualizzare i dati. Fai un elenco delle varie librerie disponibili e annota quali sono le migliori per determinati tipi di compiti, ad esempio visualizzazioni 2D rispetto a visualizzazioni 3D. Cosa scopri?
+Dai un'occhiata ai molti modi per visualizzare i dati. Fai un elenco delle varie librerie disponibili e annota quali sono migliori per determinati tipi di compiti, ad esempio visualizzazioni 2D rispetto a visualizzazioni 3D. Cosa scopri?
 
 ## Compito
 
@@ -223,4 +223,4 @@ Dai un'occhiata ai molti modi per visualizzare i dati. Fai un elenco delle varie
 ---
 
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche potrebbero contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale eseguita da un traduttore umano. Non siamo responsabili per eventuali fraintendimenti o interpretazioni errate derivanti dall'uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.
