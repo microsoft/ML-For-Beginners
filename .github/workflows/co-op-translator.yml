@@ -64,8 +64,8 @@ jobs:
           # Recommendation for large batches over 29 files run them in batches maximum github runner time is 6 hours
           # this set only translates markdown files 
           # translate -l "zh tw hk fr ja ko" -md -y
-          # translate -l "pt es de fa pl hi" -md -y
-          translate -l "ru ar ur mo ja bn" -md -y
+          translate -l "pt es de fa pl hi" -md -y
+          # translate -l "ru ar ur mo ja bn" -md -y
           # translate -l "mr ne pa br it tr" -md -y
           # translate -l "el th sv da no fi" -md -y
           # translate -l "nl he vi id ms tl" -md -y
