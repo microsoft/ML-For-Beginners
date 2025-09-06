@@ -1,41 +1,41 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "0ab69b161efd7a41d325ee28b29415d7",
-  "translation_date": "2025-08-29T21:03:11+00:00",
+  "original_hash": "730225ea274c9174fe688b21d421539d",
+  "translation_date": "2025-09-06T07:29:55+00:00",
   "source_file": "5-Clustering/1-Visualize/README.md",
   "language_code": "it"
 }
 -->
 # Introduzione al clustering
 
-Il clustering è un tipo di [Apprendimento Non Supervisionato](https://wikipedia.org/wiki/Apprendimento_non_supervisionato) che presuppone che un dataset sia non etichettato o che i suoi input non siano associati a output predefiniti. Utilizza vari algoritmi per analizzare dati non etichettati e fornire raggruppamenti basati sui pattern individuati nei dati.
+Il clustering è un tipo di [Apprendimento Non Supervisionato](https://wikipedia.org/wiki/Apprendimento_non_supervisionato) che presuppone che un dataset sia non etichettato o che i suoi input non siano associati a output predefiniti. Utilizza vari algoritmi per analizzare dati non etichettati e fornire raggruppamenti basati sui pattern rilevati nei dati.
 
-[![No One Like You by PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You by PSquare")
+[![No One Like You di PSquare](https://img.youtube.com/vi/ty2advRiWJM/0.jpg)](https://youtu.be/ty2advRiWJM "No One Like You di PSquare")
 
 > 🎥 Clicca sull'immagine sopra per un video. Mentre studi il machine learning con il clustering, goditi alcune tracce di Dance Hall nigeriana - questa è una canzone molto apprezzata del 2014 di PSquare.
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/27/)
+## [Quiz pre-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Introduzione
 
-[Clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) è molto utile per l'esplorazione dei dati. Vediamo se può aiutare a scoprire tendenze e pattern nel modo in cui il pubblico nigeriano consuma musica.
+[Il clustering](https://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_124) è molto utile per l'esplorazione dei dati. Vediamo se può aiutare a scoprire tendenze e pattern nel modo in cui il pubblico nigeriano consuma musica.
 
-✅ Prenditi un minuto per riflettere sugli utilizzi del clustering. Nella vita reale, il clustering avviene ogni volta che hai un mucchio di bucato e devi separare i vestiti dei membri della tua famiglia 🧦👕👖🩲. In data science, il clustering avviene quando si cerca di analizzare le preferenze di un utente o determinare le caratteristiche di un dataset non etichettato. Il clustering, in un certo senso, aiuta a dare un senso al caos, come un cassetto di calzini.
+✅ Prenditi un minuto per pensare agli utilizzi del clustering. Nella vita reale, il clustering avviene ogni volta che hai un mucchio di bucato e devi separare i vestiti dei membri della tua famiglia 🧦👕👖🩲. In data science, il clustering avviene quando si cerca di analizzare le preferenze di un utente o determinare le caratteristiche di un dataset non etichettato. Il clustering, in un certo senso, aiuta a dare un senso al caos, come un cassetto di calzini.
 
 [![Introduzione al ML](https://img.youtube.com/vi/esmzYhuFnds/0.jpg)](https://youtu.be/esmzYhuFnds "Introduzione al Clustering")
 
 > 🎥 Clicca sull'immagine sopra per un video: John Guttag del MIT introduce il clustering.
 
-In un contesto professionale, il clustering può essere utilizzato per determinare cose come la segmentazione del mercato, ad esempio per capire quali fasce d'età acquistano determinati articoli. Un altro utilizzo potrebbe essere la rilevazione di anomalie, magari per individuare frodi in un dataset di transazioni con carta di credito. Oppure potresti usare il clustering per identificare tumori in un lotto di scansioni mediche.
+In un contesto professionale, il clustering può essere utilizzato per determinare cose come la segmentazione del mercato, ad esempio per capire quali fasce d'età acquistano determinati articoli. Un altro utilizzo potrebbe essere il rilevamento di anomalie, magari per individuare frodi in un dataset di transazioni con carta di credito. Oppure potresti usare il clustering per identificare tumori in un lotto di scansioni mediche.
 
-✅ Prenditi un minuto per riflettere su come potresti aver incontrato il clustering "nel mondo reale", in un contesto bancario, di e-commerce o aziendale.
+✅ Pensa un momento a come potresti aver incontrato il clustering 'nel mondo reale', in un contesto bancario, di e-commerce o aziendale.
 
-> 🎓 Curiosamente, l'analisi dei cluster ha avuto origine nei campi dell'Antropologia e della Psicologia negli anni '30. Riesci a immaginare come potrebbe essere stata utilizzata?
+> 🎓 Interessante: l'analisi dei cluster ha avuto origine nei campi dell'Antropologia e della Psicologia negli anni '30. Riesci a immaginare come potrebbe essere stata utilizzata?
 
 In alternativa, potresti usarlo per raggruppare i risultati di ricerca - ad esempio per link di shopping, immagini o recensioni. Il clustering è utile quando hai un grande dataset che vuoi ridurre e su cui vuoi eseguire un'analisi più granulare, quindi la tecnica può essere utilizzata per conoscere i dati prima di costruire altri modelli.
 
-✅ Una volta che i tuoi dati sono organizzati in cluster, assegni loro un Id di cluster, e questa tecnica può essere utile per preservare la privacy di un dataset; puoi invece fare riferimento a un punto dati tramite il suo Id di cluster, piuttosto che tramite dati identificabili più rivelatori. Riesci a pensare ad altri motivi per cui potresti preferire fare riferimento a un Id di cluster piuttosto che ad altri elementi del cluster per identificarlo?
+✅ Una volta che i tuoi dati sono organizzati in cluster, assegni loro un Id di cluster, e questa tecnica può essere utile per preservare la privacy di un dataset; puoi invece fare riferimento a un punto dati tramite il suo Id di cluster, piuttosto che con dati identificabili più rivelatori. Riesci a pensare ad altri motivi per cui potresti preferire riferirti a un Id di cluster piuttosto che ad altri elementi del cluster per identificarlo?
 
 Approfondisci la tua comprensione delle tecniche di clustering in questo [modulo di apprendimento](https://docs.microsoft.com/learn/modules/train-evaluate-cluster-models?WT.mc_id=academic-77952-leestott).
 
@@ -45,16 +45,16 @@ Approfondisci la tua comprensione delle tecniche di clustering in questo [modulo
 
 | Nome del metodo              | Caso d'uso                                                             |
 | :--------------------------- | :--------------------------------------------------------------------- |
-| K-Means                      | scopo generale, induttivo                                              |
+| K-Means                      | uso generale, induttivo                                               |
 | Affinity propagation         | molti cluster, cluster disomogenei, induttivo                         |
 | Mean-shift                   | molti cluster, cluster disomogenei, induttivo                         |
 | Spectral clustering          | pochi cluster, cluster omogenei, transduttivo                         |
 | Ward hierarchical clustering | molti cluster, cluster vincolati, transduttivo                        |
-| Agglomerative clustering     | molti cluster vincolati, distanze non euclidee, transduttivo           |
+| Agglomerative clustering     | molti cluster vincolati, distanze non euclidee, transduttivo          |
 | DBSCAN                       | geometria non piatta, cluster disomogenei, transduttivo               |
 | OPTICS                       | geometria non piatta, cluster disomogenei con densità variabile, transduttivo |
 | Gaussian mixtures            | geometria piatta, induttivo                                           |
-| BIRCH                        | dataset grande con outlier, induttivo                                 |
+| BIRCH                        | dataset di grandi dimensioni con outlier, induttivo                   |
 
 > 🎓 Come creiamo i cluster dipende molto da come raggruppiamo i punti dati in gruppi. Esploriamo un po' di vocabolario:
 >
@@ -70,7 +70,7 @@ Approfondisci la tua comprensione delle tecniche di clustering in questo [modulo
 >
 >'Piatta' in questo contesto si riferisce alla geometria euclidea (parte della quale viene insegnata come geometria 'piana'), e 'non piatta' si riferisce alla geometria non euclidea. Cosa c'entra la geometria con il machine learning? Bene, essendo due campi radicati nella matematica, deve esserci un modo comune per misurare le distanze tra punti nei cluster, e ciò può essere fatto in modo 'piatto' o 'non piatto', a seconda della natura dei dati. [Le distanze euclidee](https://wikipedia.org/wiki/Distanza_euclidea) sono misurate come la lunghezza di un segmento di linea tra due punti. [Le distanze non euclidee](https://wikipedia.org/wiki/Geometria_non_euclidea) sono misurate lungo una curva. Se i tuoi dati, visualizzati, sembrano non esistere su un piano, potresti dover utilizzare un algoritmo specializzato per gestirli.
 >
-![Infografica Geometria Piatta vs Non Piatta](../../../../translated_images/flat-nonflat.d1c8c6e2a96110c1d57fa0b72913f6aab3c245478524d25baf7f4a18efcde224.it.png)
+![Infografica Geometria Piatta vs Non Piatta](../../../../5-Clustering/1-Visualize/images/flat-nonflat.png)
 > Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 > 
 > 🎓 ['Distanze'](https://web.stanford.edu/class/cs345a/slides/12-clustering.pdf)
@@ -79,13 +79,13 @@ Approfondisci la tua comprensione delle tecniche di clustering in questo [modulo
 > 
 > 🎓 ['Vincolati'](https://wikipedia.org/wiki/Constrained_clustering)
 > 
-> [Il clustering vincolato](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) introduce l'apprendimento 'semi-supervisionato' in questo metodo non supervisionato. Le relazioni tra i punti sono contrassegnate come 'non collegabili' o 'devono essere collegati', quindi alcune regole vengono imposte al dataset.
+> [Il clustering vincolato](https://web.cs.ucdavis.edu/~davidson/Publications/ICDMTutorial.pdf) introduce l'apprendimento 'semi-supervisionato' in questo metodo non supervisionato. Le relazioni tra punti sono contrassegnate come 'non collegabili' o 'devono essere collegati', quindi alcune regole vengono imposte al dataset.
 >
-> Un esempio: Se un algoritmo viene lasciato libero su un lotto di dati non etichettati o semi-etichettati, i cluster che produce potrebbero essere di scarsa qualità. Nell'esempio sopra, i cluster potrebbero raggruppare 'cose musicali rotonde', 'cose musicali quadrate', 'cose triangolari' e 'biscotti'. Se vengono forniti alcuni vincoli, o regole da seguire ("l'oggetto deve essere fatto di plastica", "l'oggetto deve essere in grado di produrre musica") questo può aiutare a 'vincolare' l'algoritmo a fare scelte migliori.
+>Un esempio: Se un algoritmo viene lasciato libero su un batch di dati non etichettati o semi-etichettati, i cluster che produce potrebbero essere di scarsa qualità. Nell'esempio sopra, i cluster potrebbero raggruppare 'cose musicali rotonde', 'cose musicali quadrate', 'cose triangolari' e 'biscotti'. Se vengono forniti alcuni vincoli, o regole da seguire ("l'oggetto deve essere fatto di plastica", "l'oggetto deve essere in grado di produrre musica") questo può aiutare a 'vincolare' l'algoritmo a fare scelte migliori.
 > 
 > 🎓 'Densità'
 > 
-> I dati che sono 'rumorosi' sono considerati 'densi'. Le distanze tra i punti in ciascuno dei suoi cluster possono dimostrarsi, all'esame, più o meno dense, o 'affollate', e quindi questi dati devono essere analizzati con il metodo di clustering appropriato. [Questo articolo](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) dimostra la differenza tra l'utilizzo del clustering K-Means e degli algoritmi HDBSCAN per esplorare un dataset rumoroso con densità di cluster disomogenea.
+> I dati che sono 'rumorosi' sono considerati 'densi'. Le distanze tra punti in ciascuno dei suoi cluster possono dimostrarsi, all'esame, più o meno dense, o 'affollate', e quindi questi dati devono essere analizzati con il metodo di clustering appropriato. [Questo articolo](https://www.kdnuggets.com/2020/02/understanding-density-based-clustering.html) dimostra la differenza tra l'utilizzo del clustering K-Means e degli algoritmi HDBSCAN per esplorare un dataset rumoroso con densità di cluster disomogenea.
 
 ## Algoritmi di clustering
 
@@ -93,12 +93,12 @@ Esistono oltre 100 algoritmi di clustering, e il loro utilizzo dipende dalla nat
 
 - **Clustering gerarchico**. Se un oggetto viene classificato in base alla sua vicinanza a un oggetto vicino, piuttosto che a uno più lontano, i cluster vengono formati in base alla distanza dei loro membri da e verso altri oggetti. Il clustering agglomerativo di Scikit-learn è gerarchico.
 
-   ![Infografica Clustering Gerarchico](../../../../translated_images/hierarchical.bf59403aa43c8c47493bfdf1cc25230f26e45f4e38a3d62e8769cd324129ac15.it.png)
+   ![Infografica Clustering Gerarchico](../../../../5-Clustering/1-Visualize/images/hierarchical.png)
    > Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
-- **Clustering basato sul centroide**. Questo popolare algoritmo richiede la scelta di 'k', ovvero il numero di cluster da formare, dopodiché l'algoritmo determina il punto centrale di un cluster e raccoglie i dati attorno a quel punto. [Il clustering K-means](https://wikipedia.org/wiki/K-means_clustering) è una versione popolare del clustering basato sul centroide. Il centro è determinato dalla media più vicina, da cui il nome. La distanza quadrata dal cluster viene minimizzata.
+- **Clustering basato sul centroide**. Questo algoritmo popolare richiede la scelta di 'k', ovvero il numero di cluster da formare, dopodiché l'algoritmo determina il punto centrale di un cluster e raccoglie i dati attorno a quel punto. [Il clustering K-means](https://wikipedia.org/wiki/K-means_clustering) è una versione popolare del clustering basato sul centroide. Il centro è determinato dalla media più vicina, da cui il nome. La distanza quadrata dal cluster viene minimizzata.
 
-   ![Infografica Clustering Centroide](../../../../translated_images/centroid.097fde836cf6c9187d0b2033e9f94441829f9d86f4f0b1604dd4b3d1931aee34.it.png)
+   ![Infografica Clustering Centroide](../../../../5-Clustering/1-Visualize/images/centroid.png)
    > Infografica di [Dasani Madipalli](https://twitter.com/dasani_decoded)
 
 - **Clustering basato sulla distribuzione**. Basato sulla modellazione statistica, il clustering basato sulla distribuzione si concentra sulla determinazione della probabilità che un punto dati appartenga a un cluster, assegnandolo di conseguenza. I metodi di miscele gaussiane appartengono a questo tipo.
@@ -131,10 +131,10 @@ Il clustering come tecnica è notevolmente facilitato da una corretta visualizza
 
     Controlla le prime righe di dati:
 
-    |     | nome                     | album                        | artista              | genere_principale_artista | data_di_rilascio | durata | popolarità | ballabilità | acusticità | energia | strumentalità | vivacità | volume   | parlato     | tempo   | firma_temporale |
-    | --- | ------------------------ | ---------------------------- | ------------------- | ------------------------- | ---------------- | ------ | ---------- | ----------- | ----------- | ------ | ------------- | -------- | -------- | ----------- | ------- | -------------- |
-    | 0   | Sparky                   | Mandy & The Jungle           | Cruel Santino       | alternative r&b          | 2019             | 144000 | 48         | 0.666       | 0.851       | 0.42   | 0.534         | 0.11     | -6.699   | 0.0829      | 133.015 | 5              |
-    | 1   | shuga rush               | EVERYTHING YOU HEARD IS TRUE | Odunsi (The Engine) | afropop                   | 2020             | 89488  | 30         | 0.71        | 0.0822      | 0.683  | 0.000169      | 0.101    | -5.64    | 0.36        | 129.993 | 3              |
+    |     | nome                     | album                        | artista             | genere_principale_artista | data_di_uscita | durata | popolarità | ballabilità | acusticità | energia | strumentalità | vivacità | volume   | parlato     | tempo   | firma_temporale |
+    | --- | ------------------------ | ---------------------------- | ------------------- | -------------------------- | -------------- | ------ | ---------- | ------------ | ------------ | ------ | -------------- | -------- | -------- | ----------- | ------- | -------------- |
+    | 0   | Sparky                   | Mandy & The Jungle           | Cruel Santino       | alternative r&b           | 2019           | 144000 | 48         | 0.666        | 0.851        | 0.42   | 0.534          | 0.11     | -6.699   | 0.0829      | 133.015 | 5              |
+    | 1   | shuga rush               | EVERYTHING YOU HEARD IS TRUE | Odunsi (The Engine) | afropop                    | 2020           | 89488  | 30         | 0.71         | 0.0822       | 0.683  | 0.000169       | 0.101    | -5.64    | 0.36        | 129.993 | 3              |
 | 2   | LITT!                    | LITT!                        | AYLØ                | indie r&b        | 2018         | 207758 | 40         | 0.836        | 0.272        | 0.564  | 0.000537         | 0.11     | -7.127   | 0.0424      | 130.005 | 4              |
 | 3   | Confident / Feeling Cool | Enjoy Your Life              | Lady Donli          | nigerian pop     | 2019         | 175135 | 14         | 0.894        | 0.798        | 0.611  | 0.000187         | 0.0964   | -4.961   | 0.113       | 111.087 | 4              |
 | 4   | wanted you               | rare.                        | Odunsi (The Engine) | afropop          | 2018         | 152049 | 25         | 0.702        | 0.116        | 0.833  | 0.91             | 0.348    | -6.044   | 0.0447      | 105.115 | 4              |
@@ -234,11 +234,11 @@ Osserva i valori generali dei dati. Nota che la popolarità può essere '0', il 
     plt.title('Top genres',color = 'blue')
     ```
 
-    ![most popular](../../../../translated_images/popular.9c48d84b3386705f98bf44e26e9655bee9eb7c849d73be65195e37895bfedb5d.it.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/popular.png)
 
-✅ Se desideri vedere più valori principali, modifica il top `[:5]` con un valore maggiore o rimuovilo per vedere tutto.
+✅ Se vuoi vedere più valori principali, modifica il top `[:5]` con un valore maggiore o rimuovilo per vedere tutto.
 
-Nota che, quando il genere principale è descritto come 'Missing', significa che Spotify non lo ha classificato, quindi rimuoviamolo.
+Nota, quando il genere principale è descritto come 'Missing', significa che Spotify non lo ha classificato, quindi rimuoviamolo.
 
 1. Elimina i dati mancanti filtrandoli:
 
@@ -253,9 +253,9 @@ Nota che, quando il genere principale è descritto come 'Missing', significa che
 
     Ora ricontrolla i generi:
 
-    ![most popular](../../../../translated_images/all-genres.1d56ef06cefbfcd61183023834ed3cb891a5ee638a3ba5c924b3151bf80208d7.it.png)
+    ![most popular](../../../../5-Clustering/1-Visualize/images/all-genres.png)
 
-1. Di gran lunga, i primi tre generi dominano questo dataset. Concentriamoci su `afro dancehall`, `afropop` e `nigerian pop`, filtrando inoltre il dataset per rimuovere qualsiasi valore di popolarità pari a 0 (il che significa che non è stato classificato con una popolarità nel dataset e può essere considerato rumore per i nostri scopi):
+1. Di gran lunga, i tre generi principali dominano questo dataset. Concentriamoci su `afro dancehall`, `afropop` e `nigerian pop`, filtrando inoltre il dataset per rimuovere qualsiasi valore di popolarità pari a 0 (il che significa che non è stato classificato con una popolarità nel dataset e può essere considerato rumore per i nostri scopi):
 
     ```python
     df = df[(df['artist_top_genre'] == 'afro dancehall') | (df['artist_top_genre'] == 'afropop') | (df['artist_top_genre'] == 'nigerian pop')]
@@ -267,7 +267,7 @@ Nota che, quando il genere principale è descritto come 'Missing', significa che
     plt.title('Top genres',color = 'blue')
     ```
 
-1. Fai un test rapido per vedere se i dati mostrano correlazioni particolarmente forti:
+1. Fai un test rapido per vedere se i dati correlano in modo particolarmente forte:
 
     ```python
     corrmat = df.corr(numeric_only=True)
@@ -275,13 +275,13 @@ Nota che, quando il genere principale è descritto come 'Missing', significa che
     sns.heatmap(corrmat, vmax=.8, square=True)
     ```
 
-    ![correlations](../../../../translated_images/correlation.a9356bb798f5eea51f47185968e1ebac5c078c92fce9931e28ccf0d7fab71c2b.it.png)
+    ![correlations](../../../../5-Clustering/1-Visualize/images/correlation.png)
 
     L'unica correlazione forte è tra `energy` e `loudness`, il che non è troppo sorprendente, dato che la musica forte è di solito piuttosto energica. Altrimenti, le correlazioni sono relativamente deboli. Sarà interessante vedere cosa può fare un algoritmo di clustering con questi dati.
 
     > 🎓 Nota che la correlazione non implica causalità! Abbiamo la prova della correlazione ma non la prova della causalità. Un [sito web divertente](https://tylervigen.com/spurious-correlations) ha alcune visualizzazioni che enfatizzano questo punto.
 
-C'è qualche convergenza in questo dataset attorno alla percezione della popolarità e della ballabilità di una canzone? Un FacetGrid mostra che ci sono cerchi concentrici che si allineano, indipendentemente dal genere. Potrebbe essere che i gusti nigeriani convergano a un certo livello di ballabilità per questo genere?  
+C'è qualche convergenza in questo dataset intorno alla percezione della popolarità e della ballabilità di una canzone? Un FacetGrid mostra che ci sono cerchi concentrici che si allineano, indipendentemente dal genere. Potrebbe essere che i gusti nigeriani convergano a un certo livello di ballabilità per questo genere?  
 
 ✅ Prova diversi punti dati (energy, loudness, speechiness) e più o diversi generi musicali. Cosa puoi scoprire? Dai un'occhiata alla tabella `df.describe()` per vedere la distribuzione generale dei punti dati.
 
@@ -301,13 +301,13 @@ Questi tre generi sono significativamente diversi nella percezione della loro ba
     )
     ```
 
-    Puoi scoprire cerchi concentrici attorno a un punto generale di convergenza, mostrando la distribuzione dei punti.
+    Puoi scoprire cerchi concentrici intorno a un punto generale di convergenza, mostrando la distribuzione dei punti.
 
     > 🎓 Nota che questo esempio utilizza un grafico KDE (Kernel Density Estimate) che rappresenta i dati utilizzando una curva di densità di probabilità continua. Questo ci permette di interpretare i dati quando si lavora con più distribuzioni.
 
     In generale, i tre generi si allineano vagamente in termini di popolarità e ballabilità. Determinare cluster in questi dati vagamente allineati sarà una sfida:
 
-    ![distribution](../../../../translated_images/distribution.9be11df42356ca958dc8e06e87865e09d77cab78f94fe4fea8a1e6796c64dc4b.it.png)
+    ![distribution](../../../../5-Clustering/1-Visualize/images/distribution.png)
 
 1. Crea un grafico a dispersione:
 
@@ -319,7 +319,7 @@ Questi tre generi sono significativamente diversi nella percezione della loro ba
 
     Un grafico a dispersione degli stessi assi mostra un modello simile di convergenza
 
-    ![Facetgrid](../../../../translated_images/facetgrid.9b2e65ce707eba1f983b7cdfed5d952e60f385947afa3011df6e3cc7d200eb5b.it.png)
+    ![Facetgrid](../../../../5-Clustering/1-Visualize/images/facetgrid.png)
 
 In generale, per il clustering, puoi utilizzare grafici a dispersione per mostrare cluster di dati, quindi padroneggiare questo tipo di visualizzazione è molto utile. Nella prossima lezione, prenderemo questi dati filtrati e utilizzeremo il clustering k-means per scoprire gruppi in questi dati che sembrano sovrapporsi in modi interessanti.
 
@@ -327,11 +327,11 @@ In generale, per il clustering, puoi utilizzare grafici a dispersione per mostra
 
 ## 🚀Sfida
 
-In preparazione per la prossima lezione, crea un grafico sui vari algoritmi di clustering che potresti scoprire e utilizzare in un ambiente di produzione. Quali tipi di problemi il clustering cerca di affrontare?
+In preparazione per la prossima lezione, crea un grafico sui vari algoritmi di clustering che potresti scoprire e utilizzare in un ambiente di produzione. Quali tipi di problemi sta cercando di affrontare il clustering?
 
-## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/28/)
+## [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
-## Revisione e studio autonomo
+## Revisione & Studio Autonomo
 
 Prima di applicare algoritmi di clustering, come abbiamo imparato, è una buona idea comprendere la natura del tuo dataset. Leggi di più su questo argomento [qui](https://www.kdnuggets.com/2019/10/right-clustering-algorithm.html)
 
@@ -344,4 +344,4 @@ Prima di applicare algoritmi di clustering, come abbiamo imparato, è una buona 
 ---
 
 **Disclaimer**:  
-Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di notare che le traduzioni automatiche potrebbero contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si consiglia una traduzione professionale eseguita da un traduttore umano. Non siamo responsabili per eventuali fraintendimenti o interpretazioni errate derivanti dall'uso di questa traduzione.
+Questo documento è stato tradotto utilizzando il servizio di traduzione automatica [Co-op Translator](https://github.com/Azure/co-op-translator). Sebbene ci impegniamo per garantire l'accuratezza, si prega di tenere presente che le traduzioni automatiche possono contenere errori o imprecisioni. Il documento originale nella sua lingua nativa dovrebbe essere considerato la fonte autorevole. Per informazioni critiche, si raccomanda una traduzione professionale effettuata da un traduttore umano. Non siamo responsabili per eventuali incomprensioni o interpretazioni errate derivanti dall'uso di questa traduzione.

@@ -1,17 +1,17 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "a2aa4e9b91b9640db2c15363c4299d8b",
-  "translation_date": "2025-08-29T22:42:40+00:00",
+  "original_hash": "2c742993fe95d5bcbb2846eda3d442a1",
+  "translation_date": "2025-09-06T07:41:41+00:00",
   "source_file": "6-NLP/5-Hotel-Reviews-2/README.md",
   "language_code": "it"
 }
 -->
 # Analisi del sentiment con recensioni di hotel
 
-Ora che hai esplorato il dataset in dettaglio, è il momento di filtrare le colonne e utilizzare tecniche di NLP sul dataset per ottenere nuove informazioni sugli hotel.
+Ora che hai esplorato il dataset in dettaglio, è il momento di filtrare le colonne e utilizzare tecniche di elaborazione del linguaggio naturale (NLP) sul dataset per ottenere nuove informazioni sugli hotel.
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/39/)
+## [Quiz pre-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ### Operazioni di filtraggio e analisi del sentiment
 
@@ -111,23 +111,23 @@ Pulisci ulteriormente i dati. Aggiungi colonne che saranno utili in seguito, mod
 
 ### Colonne dei tag
 
-La colonna `Tag` è problematica poiché è una lista (in formato testo) memorizzata nella colonna. Purtroppo l'ordine e il numero di sottosezioni in questa colonna non sono sempre gli stessi. È difficile per un essere umano identificare le frasi corrette di interesse, perché ci sono 515.000 righe e 1427 hotel, e ciascuno ha opzioni leggermente diverse che un recensore potrebbe scegliere. Qui entra in gioco il NLP. Puoi analizzare il testo e trovare le frasi più comuni, contando la loro frequenza.
+La colonna `Tag` è problematica poiché è una lista (in formato testo) memorizzata nella colonna. Purtroppo l'ordine e il numero di sottosezioni in questa colonna non sono sempre gli stessi. È difficile per un essere umano identificare le frasi corrette di interesse, perché ci sono 515.000 righe e 1427 hotel, e ciascuno ha opzioni leggermente diverse che un recensore potrebbe scegliere. Qui entra in gioco l'NLP. Puoi analizzare il testo e trovare le frasi più comuni, contando la loro frequenza.
 
-Purtroppo, non siamo interessati a singole parole, ma a frasi composte da più parole (ad esempio *Viaggio di lavoro*). Eseguire un algoritmo di distribuzione di frequenza su frasi composte su una quantità così grande di dati (6762646 parole) potrebbe richiedere un tempo straordinario, ma senza guardare i dati, sembrerebbe una spesa necessaria. Qui l'analisi esplorativa dei dati è utile, perché hai visto un campione dei tag come `[' Viaggio di lavoro  ', ' Viaggiatore solitario ', ' Camera singola ', ' Soggiornato 5 notti ', ' Inviato da un dispositivo mobile ']`, puoi iniziare a chiederti se è possibile ridurre notevolmente l'elaborazione necessaria. Fortunatamente, è possibile - ma prima devi seguire alcuni passaggi per determinare i tag di interesse.
+Purtroppo, non siamo interessati a singole parole, ma a frasi composte da più parole (ad esempio *Viaggio di lavoro*). Eseguire un algoritmo di distribuzione di frequenza su frasi composte su una quantità così grande di dati (6762646 parole) potrebbe richiedere un tempo straordinario, ma senza guardare i dati, sembrerebbe una spesa necessaria. Qui l'analisi esplorativa dei dati è utile, perché hai visto un campione dei tag come `[' Viaggio di lavoro  ', ' Viaggiatore solitario ', ' Camera singola ', ' Soggiornato 5 notti ', ' Inviato da un dispositivo mobile ']`, puoi iniziare a chiederti se è possibile ridurre notevolmente il processo. Fortunatamente, è possibile - ma prima devi seguire alcuni passaggi per identificare i tag di interesse.
 
 ### Filtraggio dei tag
 
-Ricorda che l'obiettivo del dataset è aggiungere sentiment e colonne che ti aiutino a scegliere il miglior hotel (per te stesso o magari per un cliente che ti chiede di creare un bot per raccomandare hotel). Devi chiederti se i tag sono utili o meno nel dataset finale. Ecco un'interpretazione (se avessi bisogno del dataset per altri motivi, potrebbero esserci tag diversi da includere/escludere):
+Ricorda che l'obiettivo del dataset è aggiungere sentiment e colonne che ti aiutino a scegliere il miglior hotel (per te stesso o magari per un cliente che ti chiede di creare un bot di raccomandazione per hotel). Devi chiederti se i tag sono utili o meno nel dataset finale. Ecco un'interpretazione (se avessi bisogno del dataset per altri motivi, potrebbero esserci tag diversi da includere/escludere):
 
 1. Il tipo di viaggio è rilevante e dovrebbe rimanere
 2. Il tipo di gruppo di ospiti è importante e dovrebbe rimanere
-3. Il tipo di camera, suite o studio in cui l'ospite ha soggiornato è irrilevante (tutti gli hotel hanno sostanzialmente le stesse camere)
+3. Il tipo di camera, suite o studio in cui l'ospite ha soggiornato è irrilevante (tutti gli hotel hanno fondamentalmente le stesse camere)
 4. Il dispositivo su cui è stata inviata la recensione è irrilevante
 5. Il numero di notti di soggiorno *potrebbe* essere rilevante se attribuisci soggiorni più lunghi al fatto che l'ospite abbia apprezzato di più l'hotel, ma è un'ipotesi debole e probabilmente irrilevante
 
 In sintesi, **mantieni 2 tipi di tag e rimuovi gli altri**.
 
-Per prima cosa, non vuoi contare i tag finché non sono in un formato migliore, quindi ciò significa rimuovere le parentesi quadre e le virgolette. Puoi farlo in diversi modi, ma vuoi il più veloce possibile poiché potrebbe richiedere molto tempo per elaborare una grande quantità di dati. Fortunatamente, pandas offre un modo semplice per eseguire ciascuno di questi passaggi.
+Per prima cosa, non vuoi contare i tag finché non sono in un formato migliore, quindi significa rimuovere le parentesi quadre e le virgolette. Puoi farlo in diversi modi, ma vuoi il metodo più veloce poiché potrebbe richiedere molto tempo per elaborare una grande quantità di dati. Fortunatamente, pandas offre un modo semplice per eseguire ciascuno di questi passaggi.
 
 ```Python
 # Remove opening and closing brackets
@@ -138,9 +138,9 @@ df.Tags = df.Tags.str.replace(" ', '", ",", regex = False)
 
 Ogni tag diventa qualcosa come: `Viaggio di lavoro, Viaggiatore solitario, Camera singola, Soggiornato 5 notti, Inviato da un dispositivo mobile`. 
 
-Successivamente troviamo un problema. Alcune recensioni, o righe, hanno 5 colonne, altre 3, altre 6. Questo è il risultato di come è stato creato il dataset ed è difficile da correggere. Vuoi ottenere un conteggio di frequenza di ogni frase, ma sono in ordine diverso in ogni recensione, quindi il conteggio potrebbe essere errato e un hotel potrebbe non ricevere un tag assegnato che meriterebbe.
+Successivamente, troviamo un problema. Alcune recensioni, o righe, hanno 5 colonne, altre 3, altre 6. Questo è il risultato di come è stato creato il dataset ed è difficile da correggere. Vuoi ottenere un conteggio di frequenza di ogni frase, ma sono in ordine diverso in ogni recensione, quindi il conteggio potrebbe essere errato e un hotel potrebbe non ottenere un tag assegnato che meriterebbe.
 
-Invece userai l'ordine diverso a nostro vantaggio, poiché ogni tag è composto da più parole ma anche separato da una virgola! Il modo più semplice per farlo è creare 6 colonne temporanee con ciascun tag inserito nella colonna corrispondente al suo ordine nel tag. Puoi quindi unire le 6 colonne in una grande colonna e eseguire il metodo `value_counts()` sulla colonna risultante. Stampando il risultato, vedrai che ci sono 2428 tag unici. Ecco un piccolo campione:
+Invece userai l'ordine diverso a nostro vantaggio, poiché ogni tag è composto da più parole ma anche separato da una virgola! Il modo più semplice per farlo è creare 6 colonne temporanee con ogni tag inserito nella colonna corrispondente al suo ordine nel tag. Puoi quindi unire le 6 colonne in una grande colonna e eseguire il metodo `value_counts()` sulla colonna risultante. Stampando il risultato, vedrai che ci sono 2428 tag unici. Ecco un piccolo campione:
 
 | Tag                            | Conteggio |
 | ------------------------------ | --------- |
@@ -163,7 +163,7 @@ Invece userai l'ordine diverso a nostro vantaggio, poiché ogni tag è composto 
 | Camera doppia o twin           | 22393     |
 | Soggiornato 5 notti            | 20845     |
 | Camera doppia o twin standard  | 17483     |
-| Camera doppia classica         | 16989     |
+| Camera doppia classic          | 16989     |
 | Camera doppia o twin superior  | 13570     |
 | 2 camere                       | 12393     |
 
@@ -186,7 +186,7 @@ Rimuovere questi tag è il primo passo, riduce leggermente il numero totale di t
 | Soggiornato 9 notti   | 1293      |
 | ...                   | ...       |
 
-Ci sono una grande varietà di camere, suite, studi, appartamenti e così via. Tutti significano più o meno la stessa cosa e non sono rilevanti per te, quindi rimuovili dalla considerazione.
+Ci sono una grande varietà di camere, suite, monolocali, appartamenti e così via. Tutti significano più o meno la stessa cosa e non sono rilevanti per te, quindi rimuovili dalla considerazione.
 
 | Tipo di camera                  | Conteggio |
 | ------------------------------- | --------- |
@@ -196,7 +196,7 @@ Ci sono una grande varietà di camere, suite, studi, appartamenti e così via. T
 | Camera doppia deluxe            | 24823     |
 | Camera doppia o twin            | 22393     |
 | Camera doppia o twin standard   | 17483     |
-| Camera doppia classica          | 16989     |
+| Camera doppia classic           | 16989     |
 | Camera doppia o twin superior   | 13570     |
 
 Infine, e questo è interessante (perché non ha richiesto molta elaborazione), rimarrai con i seguenti tag *utili*:
@@ -212,9 +212,9 @@ Infine, e questo è interessante (perché non ha richiesto molta elaborazione), 
 | Famiglia con bambini grandi                   | 26349     |
 | Con un animale domestico                      | 1405      |
 
-Si potrebbe sostenere che `Viaggiatori con amici` sia più o meno lo stesso di `Gruppo`, e sarebbe giusto combinarli come sopra. Il codice per identificare i tag corretti si trova nel [notebook dei tag](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
+Si potrebbe sostenere che `Viaggiatori con amici` sia lo stesso di `Gruppo` più o meno, e sarebbe giusto combinarli come sopra. Il codice per identificare i tag corretti si trova [nel notebook dei tag](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb).
 
-L'ultimo passo è creare nuove colonne per ciascuno di questi tag. Poi, per ogni riga di recensione, se la colonna `Tag` corrisponde a una delle nuove colonne, aggiungi un 1, altrimenti aggiungi uno 0. Il risultato finale sarà un conteggio di quanti recensori hanno scelto questo hotel (in aggregato) per, ad esempio, lavoro vs piacere, o per portare un animale domestico, e queste sono informazioni utili per raccomandare un hotel.
+L'ultimo passo è creare nuove colonne per ciascuno di questi tag. Quindi, per ogni riga di recensione, se la colonna `Tag` corrisponde a una delle nuove colonne, aggiungi un 1, altrimenti aggiungi uno 0. Il risultato finale sarà un conteggio di quanti recensori hanno scelto questo hotel (in aggregato) per, ad esempio, lavoro vs piacere, o per portare un animale domestico, e queste sono informazioni utili quando si consiglia un hotel.
 
 ```python
 # Process the Tags into new columns
@@ -273,13 +273,13 @@ df.to_csv(r'../data/Hotel_Reviews_NLP.csv', index = False)
 
 ### Rimozione delle stop words
 
-Se dovessi eseguire l'analisi del sentiment sulle colonne delle recensioni negative e positive, potrebbe richiedere molto tempo. Testato su un potente laptop con CPU veloce, ha impiegato 12-14 minuti a seconda della libreria di sentiment utilizzata. È un tempo (relativamente) lungo, quindi vale la pena indagare se può essere accelerato.
+Se dovessi eseguire l'analisi del sentiment sulle colonne delle recensioni negative e positive, potrebbe richiedere molto tempo. Testato su un potente laptop con CPU veloce, ha richiesto 12-14 minuti a seconda della libreria di sentiment utilizzata. È un tempo (relativamente) lungo, quindi vale la pena indagare se può essere accelerato. 
 
-Rimuovere le stop words, ovvero parole comuni in inglese che non cambiano il sentiment di una frase, è il primo passo. Rimuovendole, l'analisi del sentiment dovrebbe essere più veloce, ma non meno accurata (poiché le stop words non influenzano il sentiment, ma rallentano l'analisi).
+Rimuovere le stop words, ovvero parole comuni in inglese che non influenzano il sentiment di una frase, è il primo passo. Rimuovendole, l'analisi del sentiment dovrebbe essere più veloce, ma non meno accurata (poiché le stop words non influenzano il sentiment, ma rallentano l'analisi). 
 
 La recensione negativa più lunga era di 395 parole, ma dopo la rimozione delle stop words, è di 195 parole.
 
-Rimuovere le stop words è anche un'operazione veloce: rimuovere le stop words da 2 colonne di recensioni su 515.000 righe ha impiegato 3,3 secondi sul dispositivo di test. Potrebbe richiedere leggermente più o meno tempo a seconda della velocità della CPU del tuo dispositivo, della RAM, se hai un SSD o meno, e di altri fattori. La relativa brevità dell'operazione significa che, se migliora il tempo dell'analisi del sentiment, allora vale la pena farlo.
+La rimozione delle stop words è anche un'operazione veloce: rimuovere le stop words da 2 colonne di recensioni su 515.000 righe ha richiesto 3,3 secondi sul dispositivo di test. Potrebbe richiedere leggermente più o meno tempo a seconda della velocità della CPU del tuo dispositivo, della RAM, della presenza di un SSD e di altri fattori. La relativa brevità dell'operazione significa che, se migliora il tempo di analisi del sentiment, allora vale la pena farlo.
 
 ```python
 from nltk.corpus import stopwords
@@ -302,11 +302,11 @@ df.Positive_Review = df.Positive_Review.apply(remove_stopwords)
 ```
 
 ### Esecuzione dell'analisi del sentiment
-Ora dovresti calcolare l'analisi del sentiment per entrambe le colonne delle recensioni negative e positive, e memorizzare il risultato in 2 nuove colonne. Il test del sentiment sarà confrontarlo con il punteggio dato dal recensore per la stessa recensione. Ad esempio, se l'analisi del sentiment rileva che una recensione negativa ha un sentiment di 1 (sentiment estremamente positivo) e una recensione positiva ha un sentiment di 1, ma il recensore ha dato all'hotel il punteggio più basso possibile, allora o il testo della recensione non corrisponde al punteggio, oppure l'analizzatore di sentiment non è stato in grado di riconoscere correttamente il sentiment. Dovresti aspettarti che alcuni punteggi di sentiment siano completamente sbagliati, e spesso ciò sarà spiegabile, ad esempio la recensione potrebbe essere estremamente sarcastica: "Ovviamente ADORO dormire in una stanza senza riscaldamento", e l'analizzatore di sentiment potrebbe interpretarlo come un sentiment positivo, anche se un essere umano leggendo capirebbe che si tratta di sarcasmo.
 
-NLTK fornisce diversi analizzatori di sentiment con cui fare pratica, e puoi sostituirli per vedere se il sentiment è più o meno accurato. Qui viene utilizzata l'analisi del sentiment VADER.
+Ora dovresti calcolare l'analisi del sentiment per entrambe le colonne delle recensioni negative e positive, e memorizzare il risultato in 2 nuove colonne. Il test del sentiment sarà confrontarlo con il punteggio del recensore per la stessa recensione. Ad esempio, se il sentiment indica che la recensione negativa ha un sentiment di 1 (sentiment estremamente positivo) e un sentiment positivo di 1, ma il recensore ha dato all'hotel il punteggio più basso possibile, allora o il testo della recensione non corrisponde al punteggio, oppure l'analizzatore di sentiment non è stato in grado di riconoscere correttamente il sentiment. Dovresti aspettarti che alcuni punteggi di sentiment siano completamente errati, e spesso ciò sarà spiegabile, ad esempio la recensione potrebbe essere estremamente sarcastica "Ovviamente ADORO dormire in una stanza senza riscaldamento" e l'analizzatore di sentiment pensa che sia un sentiment positivo, anche se un essere umano leggendo capirebbe che si tratta di sarcasmo.
+NLTK fornisce diversi analizzatori di sentimenti con cui imparare, e puoi sostituirli per vedere se il risultato è più o meno accurato. Qui viene utilizzata l'analisi del sentiment VADER.
 
-> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, Giugno 2014.
+> Hutto, C.J. & Gilbert, E.E. (2014). VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text. Eighth International Conference on Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, giugno 2014.
 
 ```python
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -325,7 +325,7 @@ def calc_sentiment(review):
     return vader_sentiment.polarity_scores(review)["compound"]    
 ```
 
-Successivamente, nel tuo programma, quando sei pronto per calcolare il sentiment, puoi applicarlo a ogni recensione come segue:
+Più avanti nel tuo programma, quando sei pronto per calcolare il sentiment, puoi applicarlo a ogni recensione come segue:
 
 ```python
 # Add a negative sentiment and positive sentiment column
@@ -337,7 +337,7 @@ end = time.time()
 print("Calculating sentiment took " + str(round(end - start, 2)) + " seconds")
 ```
 
-Questo richiede circa 120 secondi sul mio computer, ma il tempo può variare a seconda del computer. Se vuoi stampare i risultati e verificare se il sentiment corrisponde alla recensione:
+Questo richiede circa 120 secondi sul mio computer, ma il tempo può variare su ogni macchina. Se vuoi stampare i risultati e verificare se il sentiment corrisponde alla recensione:
 
 ```python
 df = df.sort_values(by=["Negative_Sentiment"], ascending=True)
@@ -358,26 +358,26 @@ df.to_csv(r"../data/Hotel_Reviews_NLP.csv", index = False)
 
 Dovresti eseguire l'intero codice per [il notebook di analisi](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) (dopo aver eseguito [il notebook di filtraggio](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) per generare il file Hotel_Reviews_Filtered.csv).
 
-Per ricapitolare, i passaggi sono:
+Per riepilogare, i passaggi sono:
 
-1. Il file del dataset originale **Hotel_Reviews.csv** è stato esplorato nella lezione precedente con [il notebook di esplorazione](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
-2. Hotel_Reviews.csv è stato filtrato con [il notebook di filtraggio](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) risultando in **Hotel_Reviews_Filtered.csv**
-3. Hotel_Reviews_Filtered.csv è stato elaborato con [il notebook di analisi del sentiment](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) risultando in **Hotel_Reviews_NLP.csv**
-4. Usa Hotel_Reviews_NLP.csv nella sfida NLP qui sotto
+1. Il file del dataset originale **Hotel_Reviews.csv** viene esplorato nella lezione precedente con [il notebook di esplorazione](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/4-Hotel-Reviews-1/solution/notebook.ipynb)
+2. Hotel_Reviews.csv viene filtrato tramite [il notebook di filtraggio](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/1-notebook.ipynb) risultando in **Hotel_Reviews_Filtered.csv**
+3. Hotel_Reviews_Filtered.csv viene elaborato tramite [il notebook di analisi del sentiment](https://github.com/microsoft/ML-For-Beginners/blob/main/6-NLP/5-Hotel-Reviews-2/solution/3-notebook.ipynb) risultando in **Hotel_Reviews_NLP.csv**
+4. Utilizza Hotel_Reviews_NLP.csv nella sfida NLP qui sotto
 
 ### Conclusione
 
-Quando hai iniziato, avevi un dataset con colonne e dati, ma non tutto poteva essere verificato o utilizzato. Hai esplorato i dati, filtrato ciò che non ti serviva, convertito tag in qualcosa di utile, calcolato le tue medie, aggiunto alcune colonne di sentiment e, si spera, imparato alcune cose interessanti sull'elaborazione del testo naturale.
+Quando hai iniziato, avevi un dataset con colonne e dati, ma non tutto poteva essere verificato o utilizzato. Hai esplorato i dati, filtrato ciò che non ti serviva, convertito tag in qualcosa di utile, calcolato le tue medie, aggiunto alcune colonne di sentiment e, si spera, imparato cose interessanti sull'elaborazione del testo naturale.
 
-## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/40/)
+## [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Sfida
 
-Ora che hai analizzato il tuo dataset per il sentiment, vedi se riesci a utilizzare le strategie che hai imparato in questo corso (ad esempio il clustering) per determinare schemi relativi al sentiment.
+Ora che hai analizzato il sentiment del tuo dataset, prova a utilizzare le strategie che hai imparato in questo corso (ad esempio il clustering?) per determinare schemi legati al sentiment.
 
 ## Revisione e studio autonomo
 
-Segui [questo modulo Learn](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) per saperne di più e utilizzare strumenti diversi per esplorare il sentiment nel testo.
+Segui [questo modulo Learn](https://docs.microsoft.com/en-us/learn/modules/classify-user-feedback-with-the-text-analytics-api/?WT.mc_id=academic-77952-leestott) per approfondire e utilizzare strumenti diversi per esplorare il sentiment nei testi.
 
 ## Compito
 
