@@ -1,38 +1,38 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "085d571097d201810720df4cd379f8c2",
-  "translation_date": "2025-08-29T21:06:45+00:00",
+  "original_hash": "7cdd17338d9bbd7e2171c2cd462eb081",
+  "translation_date": "2025-09-06T07:30:53+00:00",
   "source_file": "5-Clustering/2-K-Means/README.md",
   "language_code": "it"
 }
 -->
-# Clustering K-Means
+# K-Means clustering
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/29/)
+## [Quiz preliminare alla lezione](https://ff-quizzes.netlify.app/en/ml/)
 
-In questa lezione, imparerai a creare cluster utilizzando Scikit-learn e il dataset di musica nigeriana che hai importato in precedenza. Tratteremo le basi del K-Means per il clustering. Tieni presente che, come hai appreso nella lezione precedente, ci sono molti modi per lavorare con i cluster e il metodo che utilizzi dipende dai tuoi dati. Proveremo il K-Means poiché è la tecnica di clustering più comune. Iniziamo!
+In questa lezione, imparerai a creare cluster utilizzando Scikit-learn e il dataset di musica nigeriana che hai importato in precedenza. Tratteremo le basi del K-Means per il clustering. Tieni presente che, come hai appreso nella lezione precedente, ci sono molti modi per lavorare con i cluster e il metodo che utilizzi dipende dai tuoi dati. Proveremo il K-Means poiché è la tecnica di clustering più comune. Cominciamo!
 
 Termini che imparerai:
 
-- Punteggio silhouette
+- Silhouette scoring
 - Metodo del gomito
 - Inerzia
 - Varianza
 
 ## Introduzione
 
-[Clustering K-Means](https://wikipedia.org/wiki/K-means_clustering) è un metodo derivato dal campo dell'elaborazione del segnale. Viene utilizzato per dividere e raggruppare gruppi di dati in 'k' cluster utilizzando una serie di osservazioni. Ogni osservazione lavora per raggruppare un determinato punto dati al centroide più vicino, ovvero il punto centrale di un cluster.
+Il [K-Means Clustering](https://wikipedia.org/wiki/K-means_clustering) è un metodo derivato dal campo dell'elaborazione del segnale. Viene utilizzato per dividere e raggruppare gruppi di dati in 'k' cluster utilizzando una serie di osservazioni. Ogni osservazione lavora per raggruppare un determinato punto dati al centro più vicino, o al "mean", che rappresenta il punto centrale di un cluster.
 
-I cluster possono essere visualizzati come [diagrammi di Voronoi](https://wikipedia.org/wiki/Voronoi_diagram), che includono un punto (o 'seme') e la sua regione corrispondente.
+I cluster possono essere visualizzati come [diagrammi di Voronoi](https://wikipedia.org/wiki/Voronoi_diagram), che includono un punto (o "seme") e la sua regione corrispondente.
 
-![diagramma di voronoi](../../../../translated_images/voronoi.1dc1613fb0439b9564615eca8df47a4bcd1ce06217e7e72325d2406ef2180795.it.png)
+![diagramma di voronoi](../../../../5-Clustering/2-K-Means/images/voronoi.png)
 
 > Infografica di [Jen Looper](https://twitter.com/jenlooper)
 
 Il processo di clustering K-Means [si esegue in tre passaggi](https://scikit-learn.org/stable/modules/clustering.html#k-means):
 
-1. L'algoritmo seleziona un numero k di punti centrali campionandoli dal dataset. Successivamente, esegue un ciclo:
+1. L'algoritmo seleziona un numero k di punti centrali campionando dal dataset. Successivamente, esegue un ciclo:
     1. Assegna ogni campione al centroide più vicino.
     2. Crea nuovi centroidi calcolando il valore medio di tutti i campioni assegnati ai centroidi precedenti.
     3. Calcola la differenza tra i nuovi e i vecchi centroidi e ripete il processo fino a quando i centroidi si stabilizzano.
@@ -91,11 +91,11 @@ Inizia dando un'altra occhiata ai dati delle canzoni.
 
     Questi dati sono un po' rumorosi: osservando ogni colonna come boxplot, puoi vedere i valori anomali.
 
-    ![outliers](../../../../translated_images/boxplots.8228c29dabd0f29227dd38624231a175f411f1d8d4d7c012cb770e00e4fdf8b6.it.png)
+    ![outliers](../../../../5-Clustering/2-K-Means/images/boxplots.png)
 
-Potresti esaminare il dataset e rimuovere questi valori anomali, ma ciò renderebbe i dati piuttosto ridotti.
+Potresti esaminare il dataset e rimuovere questi valori anomali, ma ciò renderebbe i dati piuttosto limitati.
 
-1. Per ora, scegli quali colonne utilizzare per il tuo esercizio di clustering. Seleziona quelle con intervalli simili e codifica la colonna `artist_top_genre` come dati numerici:
+1. Per ora, scegli quali colonne utilizzare per il tuo esercizio di clustering. Scegli quelle con intervalli simili e codifica la colonna `artist_top_genre` come dati numerici:
 
     ```python
     from sklearn.preprocessing import LabelEncoder
@@ -127,9 +127,9 @@ Potresti esaminare il dataset e rimuovere questi valori anomali, ma ciò rendere
     y_cluster_kmeans
     ```
 
-Vedrai stampato un array con i cluster previsti (0, 1 o 2) per ogni riga del dataframe.
+Vedrai un array stampato con i cluster previsti (0, 1 o 2) per ogni riga del dataframe.
 
-1. Usa questo array per calcolare un 'punteggio silhouette':
+1. Usa questo array per calcolare un 'silhouette score':
 
     ```python
     from sklearn import metrics
@@ -137,9 +137,9 @@ Vedrai stampato un array con i cluster previsti (0, 1 o 2) per ogni riga del dat
     score
     ```
 
-## Punteggio silhouette
+## Silhouette score
 
-Cerca un punteggio silhouette vicino a 1. Questo punteggio varia da -1 a 1, e se il punteggio è 1, il cluster è denso e ben separato dagli altri cluster. Un valore vicino a 0 rappresenta cluster sovrapposti con campioni molto vicini al confine decisionale dei cluster vicini. [(Fonte)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
+Cerca un silhouette score vicino a 1. Questo punteggio varia da -1 a 1, e se il punteggio è 1, il cluster è denso e ben separato dagli altri cluster. Un valore vicino a 0 rappresenta cluster sovrapposti con campioni molto vicini al confine decisionale dei cluster vicini. [(Fonte)](https://dzone.com/articles/kmeans-silhouette-score-explained-with-python-exam)
 
 Il nostro punteggio è **0.53**, quindi a metà strada. Questo indica che i nostri dati non sono particolarmente adatti a questo tipo di clustering, ma continuiamo.
 
@@ -160,13 +160,13 @@ Il nostro punteggio è **0.53**, quindi a metà strada. Questo indica che i nost
 
     Ci sono alcune parti qui che meritano una spiegazione.
 
-    > 🎓 range: Queste sono le iterazioni del processo di clustering.
+    > 🎓 range: Questi sono le iterazioni del processo di clustering.
 
     > 🎓 random_state: "Determina la generazione di numeri casuali per l'inizializzazione dei centroidi." [Fonte](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans)
 
-    > 🎓 WCSS: "Somma dei quadrati intra-cluster" misura la distanza media quadrata di tutti i punti all'interno di un cluster rispetto al centroide del cluster. [Fonte](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
+    > 🎓 WCSS: "Somma dei quadrati all'interno del cluster" misura la distanza media quadrata di tutti i punti all'interno di un cluster rispetto al centroide del cluster. [Fonte](https://medium.com/@ODSC/unsupervised-learning-evaluating-clusters-bd47eed175ce).
 
-    > 🎓 Inerzia: Gli algoritmi K-Means tentano di scegliere i centroidi per minimizzare l'inerzia, "una misura di quanto siano coerenti internamente i cluster." [Fonte](https://scikit-learn.org/stable/modules/clustering.html). Il valore viene aggiunto alla variabile wcss a ogni iterazione.
+    > 🎓 Inerzia: Gli algoritmi K-Means tentano di scegliere centroidi per minimizzare l'inerzia, "una misura di quanto siano coerenti internamente i cluster." [Fonte](https://scikit-learn.org/stable/modules/clustering.html). Il valore viene aggiunto alla variabile wcss a ogni iterazione.
 
     > 🎓 k-means++: In [Scikit-learn](https://scikit-learn.org/stable/modules/clustering.html#k-means) puoi utilizzare l'ottimizzazione 'k-means++', che "inizializza i centroidi in modo che siano (generalmente) distanti tra loro, portando probabilmente a risultati migliori rispetto all'inizializzazione casuale."
 
@@ -185,13 +185,13 @@ In precedenza, hai ipotizzato che, poiché hai targetizzato 3 generi musicali, d
     plt.show()
     ```
 
-    Usa la variabile `wcss` che hai costruito nel passaggio precedente per creare un grafico che mostri dove si trova la 'curvatura' nel gomito, che indica il numero ottimale di cluster. Forse è davvero **3**!
+    Usa la variabile `wcss` che hai costruito nel passaggio precedente per creare un grafico che mostra dove si trova la "curvatura" nel gomito, indicando il numero ottimale di cluster. Forse è davvero **3**!
 
-    ![metodo del gomito](../../../../translated_images/elbow.72676169eed744ff03677e71334a16c6b8f751e9e716e3d7f40dd7cdef674cca.it.png)
+    ![metodo del gomito](../../../../5-Clustering/2-K-Means/images/elbow.png)
 
 ## Esercizio - visualizzare i cluster
 
-1. Prova di nuovo il processo, questa volta impostando tre cluster, e visualizza i cluster come uno scatterplot:
+1. Prova di nuovo il processo, questa volta impostando tre cluster, e visualizza i cluster come scatterplot:
 
     ```python
     from sklearn.cluster import KMeans
@@ -218,18 +218,18 @@ In precedenza, hai ipotizzato che, poiché hai targetizzato 3 generi musicali, d
 
     L'accuratezza di questo modello non è molto buona, e la forma dei cluster ti dà un indizio sul perché.
 
-    ![cluster](../../../../translated_images/clusters.b635354640d8e4fd4a49ef545495518e7be76172c97c13bd748f5b79f171f69a.it.png)
+    ![cluster](../../../../5-Clustering/2-K-Means/images/clusters.png)
 
-    Questi dati sono troppo sbilanciati, poco correlati e c'è troppa varianza tra i valori delle colonne per formare cluster ben definiti. Infatti, i cluster che si formano sono probabilmente fortemente influenzati o distorti dalle tre categorie di genere che abbiamo definito sopra. È stato un processo di apprendimento!
+    Questi dati sono troppo sbilanciati, poco correlati e c'è troppa varianza tra i valori delle colonne per formare cluster ben definiti. Infatti, i cluster che si formano sono probabilmente fortemente influenzati o distorti dalle tre categorie di generi che abbiamo definito sopra. È stato un processo di apprendimento!
 
     Nella documentazione di Scikit-learn, puoi vedere che un modello come questo, con cluster non molto ben definiti, ha un problema di 'varianza':
 
-    ![modelli problematici](../../../../translated_images/problems.f7fb539ccd80608e1f35c319cf5e3ad1809faa3c08537aead8018c6b5ba2e33a.it.png)
+    ![modelli problematici](../../../../5-Clustering/2-K-Means/images/problems.png)
     > Infografica da Scikit-learn
 
 ## Varianza
 
-La varianza è definita come "la media delle differenze al quadrato rispetto alla media" [(Fonte)](https://www.mathsisfun.com/data/standard-deviation.html). Nel contesto di questo problema di clustering, si riferisce al fatto che i numeri del nostro dataset tendono a divergere un po' troppo dalla media.
+La varianza è definita come "la media delle differenze al quadrato rispetto alla media" [(Fonte)](https://www.mathsisfun.com/data/standard-deviation.html). Nel contesto di questo problema di clustering, si riferisce ai dati in cui i numeri del nostro dataset tendono a divergere un po' troppo dalla media.
 
 ✅ Questo è un ottimo momento per pensare a tutti i modi in cui potresti correggere questo problema. Modificare un po' i dati? Usare colonne diverse? Utilizzare un algoritmo diverso? Suggerimento: prova a [scalare i tuoi dati](https://www.mygreatlearning.com/blog/learning-data-science-with-k-means-clustering/) per normalizzarli e testare altre colonne.
 
@@ -239,21 +239,21 @@ La varianza è definita come "la media delle differenze al quadrato rispetto all
 
 ## 🚀Sfida
 
-Dedica un po' di tempo a questo notebook, modificando i parametri. Riesci a migliorare l'accuratezza del modello pulendo ulteriormente i dati (ad esempio, rimuovendo i valori anomali)? Puoi usare pesi per dare maggiore importanza a determinati campioni di dati. Cos'altro puoi fare per creare cluster migliori?
+Dedica un po' di tempo a questo notebook, modificando i parametri. Riesci a migliorare l'accuratezza del modello pulendo ulteriormente i dati (ad esempio rimuovendo i valori anomali)? Puoi utilizzare pesi per dare maggiore importanza a determinati campioni di dati. Cos'altro puoi fare per creare cluster migliori?
 
-Suggerimento: prova a scalare i tuoi dati. Nel notebook c'è del codice commentato che aggiunge la scalatura standard per far sì che le colonne dei dati si somiglino di più in termini di intervallo. Scoprirai che, mentre il punteggio silhouette diminuisce, la 'curvatura' nel grafico del gomito si appiana. Questo perché lasciare i dati non scalati consente ai dati con meno varianza di avere un peso maggiore. Leggi un po' di più su questo problema [qui](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
+Suggerimento: prova a scalare i tuoi dati. Nel notebook c'è del codice commentato che aggiunge la scalatura standard per far sì che le colonne dei dati si somiglino di più in termini di intervallo. Scoprirai che, mentre il silhouette score diminuisce, la "curvatura" nel grafico del gomito si appiana. Questo perché lasciare i dati non scalati consente ai dati con meno varianza di avere un peso maggiore. Leggi un po' di più su questo problema [qui](https://stats.stackexchange.com/questions/21222/are-mean-normalization-and-feature-scaling-needed-for-k-means-clustering/21226#21226).
 
-## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/30/)
+## [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisione e studio autonomo
 
-Dai un'occhiata a un simulatore di K-Means [come questo](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Puoi utilizzare questo strumento per visualizzare punti dati di esempio e determinare i loro centroidi. Puoi modificare la casualità dei dati, il numero di cluster e il numero di centroidi. Ti aiuta a capire come i dati possono essere raggruppati?
+Dai un'occhiata a un simulatore di K-Means [come questo](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/). Puoi utilizzare questo strumento per visualizzare punti dati di esempio e determinare i loro centroidi. Puoi modificare la casualità dei dati, il numero di cluster e il numero di centroidi. Questo ti aiuta a capire come i dati possono essere raggruppati?
 
-Inoltre, dai un'occhiata a [questo documento sul K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) di Stanford.
+Dai anche un'occhiata a [questo documento sul K-Means](https://stanford.edu/~cpiech/cs221/handouts/kmeans.html) di Stanford.
 
 ## Compito
 
-[Prova metodi di clustering diversi](assignment.md)
+[Prova diversi metodi di clustering](assignment.md)
 
 ---
 
