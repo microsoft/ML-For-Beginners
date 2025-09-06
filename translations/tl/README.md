@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "612aef7a03204260e940131b09691977",
-  "translation_date": "2025-09-05T18:07:19+00:00",
+  "original_hash": "1dd12e0cd1de7d05f65abe07bc401c63",
+  "translation_date": "2025-09-06T19:04:48+00:00",
   "source_file": "README.md",
   "language_code": "tl"
 }
@@ -29,17 +29,17 @@ CO_OP_TRANSLATOR_METADATA:
 
 # Machine Learning para sa mga Baguhan - Isang Kurikulum  
 
-> 🌍 Maglakbay sa buong mundo habang tinutuklas ang Machine Learning sa pamamagitan ng kultura ng iba't ibang bansa 🌍  
+> 🌍 Maglakbay sa buong mundo habang natututo ng Machine Learning gamit ang mga kultura ng mundo 🌍  
 
-Ang mga Cloud Advocates sa Microsoft ay masayang nag-aalok ng isang 12-linggong, 26-aralin na kurikulum tungkol sa **Machine Learning**. Sa kurikulum na ito, matututo ka tungkol sa tinatawag na **classic machine learning**, gamit ang pangunahing Scikit-learn bilang library at iiwasan ang deep learning, na saklaw sa aming [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Ipares ang mga araling ito sa aming ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), din!  
+Ang mga Cloud Advocates sa Microsoft ay masayang nag-aalok ng isang 12-linggong, 26-leksyon na kurikulum tungkol sa **Machine Learning**. Sa kurikulum na ito, matututo ka tungkol sa tinatawag na **classic machine learning**, gamit ang pangunahing Scikit-learn bilang library at iiwasan ang deep learning, na saklaw sa aming [AI for Beginners' curriculum](https://aka.ms/ai4beginners). Ipares ang mga leksyon na ito sa aming ['Data Science for Beginners' curriculum](https://aka.ms/ds4beginners), din!  
 
-Sumama sa amin sa paglalakbay sa buong mundo habang ina-apply ang mga klasikong teknik sa data mula sa iba't ibang bahagi ng mundo. Ang bawat aralin ay may kasamang pre- at post-lesson quizzes, nakasulat na mga tagubilin para tapusin ang aralin, solusyon, assignment, at marami pa. Ang aming project-based pedagogy ay nagbibigay-daan sa iyo na matuto habang gumagawa, isang napatunayang paraan para mas tumatak ang mga bagong kasanayan.  
+Sumama sa amin sa paglalakbay sa buong mundo habang ginagamit ang mga klasikong teknik na ito sa datos mula sa iba't ibang bahagi ng mundo. Ang bawat leksyon ay may kasamang pre- at post-lesson quizzes, nakasulat na mga tagubilin para sa leksyon, solusyon, takdang-aralin, at marami pa. Ang aming project-based pedagogy ay nagbibigay-daan sa iyo na matuto habang gumagawa, isang napatunayang paraan para mas matandaan ang mga bagong kasanayan.  
 
 **✍️ Taos-pusong pasasalamat sa aming mga may-akda** Jen Looper, Stephen Howell, Francesca Lazzeri, Tomomi Imura, Cassie Breviu, Dmitry Soshnikov, Chris Noring, Anirban Mukherjee, Ornella Altunyan, Ruth Yakubu at Amy Boyd  
 
 **🎨 Salamat din sa aming mga ilustrador** Tomomi Imura, Dasani Madipalli, at Jen Looper  
 
-**🙏 Espesyal na pasasalamat 🙏 sa aming Microsoft Student Ambassador na mga may-akda, reviewer, at mga kontribyutor ng nilalaman**, partikular Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, at Snigdha Agarwal  
+**🙏 Espesyal na pasasalamat 🙏 sa aming Microsoft Student Ambassador na mga may-akda, tagasuri, at mga kontribyutor ng nilalaman**, partikular Rishit Dagli, Muhammad Sakib Khan Inan, Rohan Raj, Alexandru Petrescu, Abhishek Jaiswal, Nawrin Tabassum, Ioan Samuila, at Snigdha Agarwal  
 
 **🤩 Dagdag na pasasalamat sa Microsoft Student Ambassadors Eric Wanjau, Jasleen Sondhi, at Vidushi Gupta para sa aming mga R lessons!**  
 
@@ -51,17 +51,17 @@ Sundin ang mga hakbang na ito:
 
 > [hanapin ang lahat ng karagdagang resources para sa kursong ito sa aming Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)  
 
-**[Mga Mag-aaral](https://aka.ms/student-page)**, para magamit ang kurikulum na ito, i-fork ang buong repo sa iyong sariling GitHub account at tapusin ang mga exercises nang mag-isa o kasama ang grupo:  
+**[Mga Mag-aaral](https://aka.ms/student-page)**, upang magamit ang kurikulum na ito, i-fork ang buong repo sa iyong sariling GitHub account at kumpletuhin ang mga exercises nang mag-isa o kasama ang grupo:  
 
-- Simulan sa pre-lecture quiz.  
-- Basahin ang lecture at tapusin ang mga aktibidad, huminto at magmuni-muni sa bawat knowledge check.  
-- Subukang gawin ang mga proyekto sa pamamagitan ng pag-unawa sa mga aralin sa halip na i-run ang solution code; gayunpaman, ang code na iyon ay makikita sa `/solution` folders sa bawat project-oriented lesson.  
-- Gawin ang post-lecture quiz.  
-- Tapusin ang challenge.  
-- Tapusin ang assignment.  
-- Pagkatapos tapusin ang isang lesson group, bisitahin ang [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) at "mag-aral nang malakas" sa pamamagitan ng pag-fill out ng angkop na PAT rubric. Ang 'PAT' ay isang Progress Assessment Tool na isang rubric na iyong pinupunan para mapalalim ang iyong pag-aaral. Maaari ka ring mag-react sa ibang PATs para magtulungan sa pag-aaral.  
+- Magsimula sa pre-lecture quiz.  
+- Basahin ang leksyon at kumpletuhin ang mga aktibidad, huminto at magmuni-muni sa bawat knowledge check.  
+- Subukang gawin ang mga proyekto sa pamamagitan ng pag-unawa sa mga leksyon sa halip na i-run ang solution code; gayunpaman, ang code na iyon ay makikita sa `/solution` folders sa bawat project-oriented lesson.  
+- Sagutan ang post-lecture quiz.  
+- Kumpletuhin ang challenge.  
+- Kumpletuhin ang takdang-aralin.  
+- Pagkatapos makumpleto ang isang grupo ng leksyon, bisitahin ang [Discussion Board](https://github.com/microsoft/ML-For-Beginners/discussions) at "matuto nang malakas" sa pamamagitan ng pag-fill out ng angkop na PAT rubric. Ang 'PAT' ay isang Progress Assessment Tool na isang rubric na iyong pinupunan upang mapalalim ang iyong pag-aaral. Maaari ka ring mag-react sa ibang PATs upang matuto nang sama-sama.  
 
-> Para sa karagdagang pag-aaral, inirerekomenda naming sundan ang mga [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules at learning paths.  
+> Para sa karagdagang pag-aaral, inirerekumenda naming sundan ang mga [Microsoft Learn](https://docs.microsoft.com/en-us/users/jenlooper-2911/collections/k7o7tg1gp306q4?WT.mc_id=academic-77952-leestott) modules at learning paths.  
 
 **Mga Guro**, mayroon kaming [ilang mungkahi](for-teachers.md) kung paano gamitin ang kurikulum na ito.  
 
@@ -69,13 +69,13 @@ Sundin ang mga hakbang na ito:
 
 ## Video walkthroughs  
 
-Ang ilan sa mga aralin ay available bilang maikling video. Makikita mo ang lahat ng ito in-line sa mga aralin, o sa [ML for Beginners playlist sa Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) sa pamamagitan ng pag-click sa imahe sa ibaba.  
+Ang ilan sa mga leksyon ay available bilang maikling video. Makikita ang mga ito in-line sa mga leksyon, o sa [ML for Beginners playlist sa Microsoft Developer YouTube channel](https://aka.ms/ml-beginners-videos) sa pamamagitan ng pag-click sa imahe sa ibaba.  
 
-[![ML for beginners banner](../../images/ml-for-beginners-video-banner.png)](https://aka.ms/ml-beginners-videos)  
+[![ML for beginners banner](../../translated_images/ml-for-beginners-video-banner.63f694a100034bc6251134294459696e070a3a9a04632e9fe6a24aa0de4a7384.tl.png)](https://aka.ms/ml-beginners-videos)  
 
 ---
 
-## Kilalanin ang Team  
+## Kilalanin ang Koponan  
 
 [![Promo video](../../images/ml.gif)](https://youtu.be/Tj1XWrDSYJU)  
 
@@ -87,53 +87,52 @@ Ang ilan sa mga aralin ay available bilang maikling video. Makikita mo ang lahat
 
 ## Pedagogy  
 
-Pinili namin ang dalawang pedagogical tenets habang binubuo ang kurikulum na ito: tiyaking ito ay hands-on **project-based** at may kasamang **madalas na quizzes**. Bukod dito, ang kurikulum na ito ay may karaniwang **tema** para bigyan ito ng pagkakaugnay.  
+Pinili namin ang dalawang pedagogical tenets habang binubuo ang kurikulum na ito: tiyaking ito ay hands-on **project-based** at may kasamang **madalas na quizzes**. Bukod dito, ang kurikulum na ito ay may karaniwang **tema** upang bigyan ito ng pagkakaugnay.  
 
-Sa pamamagitan ng pagtiyak na ang nilalaman ay naaayon sa mga proyekto, mas nagiging engaging ang proseso para sa mga mag-aaral at mas tumatatak ang mga konsepto. Bukod dito, ang low-stakes quiz bago ang klase ay nagtatakda ng intensyon ng mag-aaral patungo sa pag-aaral ng isang paksa, habang ang pangalawang quiz pagkatapos ng klase ay mas nagpapalalim ng retention. Ang kurikulum na ito ay dinisenyo upang maging flexible at masaya at maaaring kunin nang buo o bahagi lamang. Ang mga proyekto ay nagsisimula sa maliit at nagiging mas kumplikado sa pagtatapos ng 12-linggong cycle. Ang kurikulum na ito ay mayroon ding postscript sa mga real-world applications ng ML, na maaaring gamitin bilang extra credit o bilang batayan para sa diskusyon.  
+Sa pamamagitan ng pagtiyak na ang nilalaman ay naaayon sa mga proyekto, mas nagiging engaging ang proseso para sa mga mag-aaral at mas tumatatak ang mga konsepto. Bukod dito, ang low-stakes quiz bago ang klase ay nagtatakda ng intensyon ng mag-aaral patungo sa pag-aaral ng isang paksa, habang ang pangalawang quiz pagkatapos ng klase ay nagtitiyak ng mas malalim na pag-unawa. Ang kurikulum na ito ay idinisenyo upang maging flexible at masaya at maaaring kunin nang buo o bahagi lamang. Ang mga proyekto ay nagsisimula sa maliit at nagiging mas kumplikado sa pagtatapos ng 12-linggong cycle. Ang kurikulum na ito ay may kasamang postscript sa mga real-world applications ng ML, na maaaring gamitin bilang extra credit o bilang batayan para sa talakayan.  
 
-> Hanapin ang aming [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), at [Translation](TRANSLATIONS.md) guidelines. Malugod naming tinatanggap ang iyong konstruktibong feedback!  
+> Hanapin ang aming [Code of Conduct](CODE_OF_CONDUCT.md), [Contributing](CONTRIBUTING.md), at [Translation](TRANSLATIONS.md) guidelines. Malugod naming tinatanggap ang inyong mga konstruktibong feedback!  
 
-## Ang bawat aralin ay may kasamang  
+## Ang bawat leksyon ay may kasamang  
 
 - opsyonal na sketchnote  
 - opsyonal na supplemental video  
-- video walkthrough (ilang aralin lamang)  
+- video walkthrough (ilang leksyon lamang)  
 - [pre-lecture warmup quiz](https://ff-quizzes.netlify.app/en/ml/)  
-- nakasulat na aralin  
-- para sa mga project-based lessons, step-by-step guides kung paano buuin ang proyekto  
+- nakasulat na leksyon  
+- para sa mga project-based lessons, step-by-step guides kung paano gawin ang proyekto  
 - knowledge checks  
 - isang challenge  
 - supplemental reading  
-- assignment  
+- takdang-aralin  
 - [post-lecture quiz](https://ff-quizzes.netlify.app/en/ml/)  
 
-> **Tungkol sa mga wika**: Ang mga aralin na ito ay pangunahing nakasulat sa Python, ngunit marami rin ang available sa R. Para tapusin ang isang R lesson, pumunta sa `/solution` folder at hanapin ang mga R lessons. Mayroon silang .rmd extension na kumakatawan sa isang **R Markdown** file na maaaring tukuyin bilang isang embedding ng `code chunks` (ng R o iba pang wika) at isang `YAML header` (na gumagabay kung paano i-format ang outputs tulad ng PDF) sa isang `Markdown document`. Bilang ganito, ito ay nagsisilbing isang exemplary authoring framework para sa data science dahil pinapayagan ka nitong pagsamahin ang iyong code, ang output nito, at ang iyong mga saloobin sa pamamagitan ng pagsulat ng mga ito sa Markdown. Bukod dito, ang mga R Markdown documents ay maaaring i-render sa output formats tulad ng PDF, HTML, o Word.  
+> **Tungkol sa mga wika**: Ang mga leksyon na ito ay pangunahing nakasulat sa Python, ngunit marami rin ang available sa R. Upang kumpletuhin ang isang R lesson, pumunta sa `/solution` folder at hanapin ang mga R lessons. Mayroon silang .rmd extension na kumakatawan sa isang **R Markdown** file na maaaring tukuyin bilang isang embedding ng `code chunks` (ng R o iba pang wika) at isang `YAML header` (na gumagabay kung paano i-format ang outputs tulad ng PDF) sa isang `Markdown document`. Bilang ganito, ito ay nagsisilbing isang exemplary authoring framework para sa data science dahil pinapayagan nitong pagsamahin ang iyong code, ang output nito, at ang iyong mga saloobin sa pamamagitan ng pagsulat ng mga ito sa Markdown. Bukod dito, ang mga R Markdown documents ay maaaring i-render sa output formats tulad ng PDF, HTML, o Word.  
 
-> **Tungkol sa quizzes**: Ang lahat ng quizzes ay nakapaloob sa [Quiz App folder](../../quiz-app), para sa kabuuang 52 quizzes na may tig-tatlong tanong bawat isa. Ang mga ito ay naka-link mula sa loob ng mga aralin ngunit ang quiz app ay maaaring i-run locally; sundin ang mga tagubilin sa `quiz-app` folder para i-host locally o i-deploy sa Azure.  
+> **Tungkol sa mga quizzes**: Ang lahat ng quizzes ay nasa [Quiz App folder](../../quiz-app), para sa kabuuang 52 quizzes na may tig-tatlong tanong bawat isa. Ang mga ito ay naka-link mula sa loob ng mga leksyon ngunit ang quiz app ay maaaring i-run locally; sundin ang mga tagubilin sa `quiz-app` folder upang i-host locally o i-deploy sa Azure.  
 
-| Lesson Number |                             Paksa                              |                   Pangkat ng Aralin                   | Mga Layunin sa Pag-aaral                                                                                                         |                                                              Naka-link na Aralin                                                               |                        May-akda                        |
+| Lesson Number |                             Paksa                              |                   Pangkat ng Leksyon                   | Mga Layunin sa Pagkatuto                                                                                                         |                                                              Naka-link na Leksyon                                                               |                        May-akda                        |
 | :-----------: | :------------------------------------------------------------: | :-------------------------------------------------: | ------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: |
-|      01       |                Panimula sa machine learning                |      [Panimula](1-Introduction/README.md)       | Matutunan ang mga pangunahing konsepto sa likod ng machine learning                                                                                |                                             [Aralin](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
-|      02       |                Ang Kasaysayan ng machine learning                 |      [Panimula](1-Introduction/README.md)       | Matutunan ang kasaysayan sa likod ng larangang ito                                                                                         |                                            [Aralin](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen at Amy                      |
-|      03       |                 Pagkamakatarungan at machine learning                  |      [Panimula](1-Introduction/README.md)       | Ano ang mga mahahalagang isyung pilosopikal tungkol sa pagkamakatarungan na dapat isaalang-alang ng mga mag-aaral sa paggawa at pag-apply ng ML models? |                                              [Aralin](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |  
+|      01       |                Panimula sa machine learning                |      [Panimula](1-Introduction/README.md)       | Matutunan ang mga pangunahing konsepto sa likod ng machine learning                                                                                |                                             [Leksyon](1-Introduction/1-intro-to-ML/README.md)                                             |                       Muhammad                       |
+|      02       |                Ang Kasaysayan ng machine learning                 |      [Panimula](1-Introduction/README.md)       | Matutunan ang kasaysayan sa likod ng larangang ito                                                                                         |                                            [Leksyon](1-Introduction/2-history-of-ML/README.md)                                            |                     Jen at Amy                      |
+|      03       |                 Pagkamakatarungan at machine learning                  |      [Panimula](1-Introduction/README.md)       | Ano ang mga mahahalagang isyung pilosopikal tungkol sa pagkamakatarungan na dapat isaalang-alang ng mga mag-aaral kapag gumagawa at nag-aaplay ng ML models? |                                              [Leksyon](1-Introduction/3-fairness/README.md)                                               |                        Tomomi                        |  
 |      04       |                Mga Teknik para sa Machine Learning             |      [Introduction](1-Introduction/README.md)       | Anong mga teknik ang ginagamit ng mga mananaliksik ng ML para bumuo ng mga modelo ng ML?                                         |                                          [Lesson](1-Introduction/4-techniques-of-ML/README.md)                                           |                    Chris at Jen                     |
-|      05       |                   Panimula sa Regression                       |        [Regression](2-Regression/README.md)         | Magsimula gamit ang Python at Scikit-learn para sa mga regression model                                                        |         
-<ul><li>[Python](2-Regression/1-Tools/README.md)</li><li>[R](../../2-Regression/1-Tools/solution/R/lesson_1.html)</li></ul>         |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
-|      06       |                Presyo ng Kalabasa sa Hilagang Amerika 🎃       |        [Regression](2-Regression/README.md)         | I-visualize at linisin ang data bilang paghahanda para sa ML                                                                     |          <ul><li>[Python](2-Regression/2-Data/README.md)</li><li>[R](../../2-Regression/2-Data/solution/R/lesson_2.html)</li></ul>          |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
-|      07       |                Presyo ng Kalabasa sa Hilagang Amerika 🎃       |        [Regression](2-Regression/README.md)         | Bumuo ng linear at polynomial regression models                                                                                 |        <ul><li>[Python](2-Regression/3-Linear/README.md)</li><li>[R](../../2-Regression/3-Linear/solution/R/lesson_3.html)</li></ul>        |      <ul><li>Jen at Dmitry</li><li>Eric Wanjau</li></ul>       |
-|      08       |                Presyo ng Kalabasa sa Hilagang Amerika 🎃       |        [Regression](2-Regression/README.md)         | Bumuo ng logistic regression model                                                                                              |     <ul><li>[Python](2-Regression/4-Logistic/README.md) </li><li>[R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)</li></ul>      |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
-|      09       |                          Isang Web App 🔌                       |           [Web App](3-Web-App/README.md)            | Bumuo ng web app para magamit ang iyong trained model                                                                           |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
-|      10       |                 Panimula sa Classification                     |    [Classification](4-Classification/README.md)     | Linisin, ihanda, at i-visualize ang iyong data; panimula sa classification                                                      | <ul><li> [Python](4-Classification/1-Introduction/README.md) </li><li>[R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | <ul><li>Jen at Cassie</li><li>Eric Wanjau</li></ul> |
-|      11       |             Masasarap na Asian at Indian Cuisine 🍜            |    [Classification](4-Classification/README.md)     | Panimula sa mga classifier                                                                                                      | <ul><li> [Python](4-Classification/2-Classifiers-1/README.md)</li><li>[R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | <ul><li>Jen at Cassie</li><li>Eric Wanjau</li></ul> |
-|      12       |             Masasarap na Asian at Indian Cuisine 🍜            |    [Classification](4-Classification/README.md)     | Higit pang mga classifier                                                                                                       | <ul><li> [Python](4-Classification/3-Classifiers-2/README.md)</li><li>[R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | <ul><li>Jen at Cassie</li><li>Eric Wanjau</li></ul> |
+|      05       |                   Panimula sa Regression                       |        [Regression](2-Regression/README.md)         | Magsimula gamit ang Python at Scikit-learn para sa mga regression model                                                        |         [Python](2-Regression/1-Tools/README.md) • [R](../../2-Regression/1-Tools/solution/R/lesson_1.html)         |      Jen • Eric Wanjau       |
+|      06       |                Mga Presyo ng Kalabasa sa Hilagang Amerika 🎃   |        [Regression](2-Regression/README.md)         | I-visualize at linisin ang data bilang paghahanda para sa ML                                                                     |          [Python](2-Regression/2-Data/README.md) • [R](../../2-Regression/2-Data/solution/R/lesson_2.html)          |      Jen • Eric Wanjau       |
+|      07       |                Mga Presyo ng Kalabasa sa Hilagang Amerika 🎃   |        [Regression](2-Regression/README.md)         | Bumuo ng linear at polynomial regression models                                                                                 |        [Python](2-Regression/3-Linear/README.md) • [R](../../2-Regression/3-Linear/solution/R/lesson_3.html)        |      Jen at Dmitry • Eric Wanjau       |
+|      08       |                Mga Presyo ng Kalabasa sa Hilagang Amerika 🎃   |        [Regression](2-Regression/README.md)         | Bumuo ng logistic regression model                                                                                              |     [Python](2-Regression/4-Logistic/README.md) • [R](../../2-Regression/4-Logistic/solution/R/lesson_4.html)      |      Jen • Eric Wanjau       |
+|      09       |                          Isang Web App 🔌                      |           [Web App](3-Web-App/README.md)            | Bumuo ng web app para magamit ang iyong trained model                                                                           |                                                 [Python](3-Web-App/1-Web-App/README.md)                                                  |                         Jen                          |
+|      10       |                 Panimula sa Classification                     |    [Classification](4-Classification/README.md)     | Linisin, ihanda, at i-visualize ang iyong data; panimula sa classification                                                      | [Python](4-Classification/1-Introduction/README.md) • [R](../../4-Classification/1-Introduction/solution/R/lesson_10.html)  | Jen at Cassie • Eric Wanjau |
+|      11       |             Masasarap na Asian at Indian Cuisine 🍜            |    [Classification](4-Classification/README.md)     | Panimula sa classifiers                                                                                                         | [Python](4-Classification/2-Classifiers-1/README.md) • [R](../../4-Classification/2-Classifiers-1/solution/R/lesson_11.html) | Jen at Cassie • Eric Wanjau |
+|      12       |             Masasarap na Asian at Indian Cuisine 🍜            |    [Classification](4-Classification/README.md)     | Higit pang classifiers                                                                                                          | [Python](4-Classification/3-Classifiers-2/README.md) • [R](../../4-Classification/3-Classifiers-2/solution/R/lesson_12.html) | Jen at Cassie • Eric Wanjau |
 |      13       |             Masasarap na Asian at Indian Cuisine 🍜            |    [Classification](4-Classification/README.md)     | Bumuo ng recommender web app gamit ang iyong modelo                                                                             |                                              [Python](4-Classification/4-Applied/README.md)                                              |                         Jen                          |
-|      14       |                   Panimula sa Clustering                       |        [Clustering](5-Clustering/README.md)         | Linisin, ihanda, at i-visualize ang iyong data; Panimula sa clustering                                                          |         <ul><li> [Python](5-Clustering/1-Visualize/README.md)</li><li>[R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
-|      15       |              Pagsusuri ng Musical Tastes ng Nigeria 🎧         |        [Clustering](5-Clustering/README.md)         | Tuklasin ang K-Means clustering method                                                                                         |           <ul><li> [Python](5-Clustering/2-K-Means/README.md)</li><li>[R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      <ul><li>Jen</li><li>Eric Wanjau</li></ul>       |
+|      14       |                   Panimula sa Clustering                       |        [Clustering](5-Clustering/README.md)         | Linisin, ihanda, at i-visualize ang iyong data; Panimula sa clustering                                                          |         [Python](5-Clustering/1-Visualize/README.md) • [R](../../5-Clustering/1-Visualize/solution/R/lesson_14.html)         |      Jen • Eric Wanjau       |
+|      15       |              Pagsusuri ng Musical Tastes ng Nigeria 🎧         |        [Clustering](5-Clustering/README.md)         | Tuklasin ang K-Means clustering method                                                                                         |           [Python](5-Clustering/2-K-Means/README.md) • [R](../../5-Clustering/2-K-Means/solution/R/lesson_15.html)           |      Jen • Eric Wanjau       |
 |      16       |        Panimula sa Natural Language Processing ☕️             |   [Natural language processing](6-NLP/README.md)    | Matutunan ang mga pangunahing kaalaman tungkol sa NLP sa pamamagitan ng paggawa ng simpleng bot                                 |                                             [Python](6-NLP/1-Introduction-to-NLP/README.md)                                              |                       Stephen                        |
-|      17       |                      Karaniwang NLP Tasks ☕️                   |   [Natural language processing](6-NLP/README.md)    | Palalimin ang kaalaman sa NLP sa pamamagitan ng pag-unawa sa mga karaniwang gawain na kinakailangan sa pagproseso ng wika       |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
-|      18       |             Pagsasalin at Sentiment Analysis ♥️                |   [Natural language processing](6-NLP/README.md)    | Pagsasalin at sentiment analysis gamit si Jane Austen                                                                          |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
-|      19       |                  Mga Romantic na Hotel sa Europa ♥️            |   [Natural language processing](6-NLP/README.md)    | Sentiment analysis gamit ang mga review ng hotel 1                                                                             |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
-|      20       |                  Mga Romantic na Hotel sa Europa ♥️            |   [Natural language processing](6-NLP/README.md)    | Sentiment analysis gamit ang mga review ng hotel 2                                                                             |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
+|      17       |                      Karaniwang Gawain sa NLP ☕️              |   [Natural language processing](6-NLP/README.md)    | Palalimin ang kaalaman sa NLP sa pamamagitan ng pag-unawa sa mga karaniwang gawain na kinakailangan sa pagproseso ng wika       |                                                    [Python](6-NLP/2-Tasks/README.md)                                                     |                       Stephen                        |
+|      18       |             Pagsasalin at Sentiment Analysis ♥️               |   [Natural language processing](6-NLP/README.md)    | Pagsasalin at sentiment analysis gamit ang mga akda ni Jane Austen                                                             |                                            [Python](6-NLP/3-Translation-Sentiment/README.md)                                             |                       Stephen                        |
+|      19       |                  Mga Romantic Hotels sa Europa ♥️             |   [Natural language processing](6-NLP/README.md)    | Sentiment analysis gamit ang mga review ng hotel 1                                                                             |                                               [Python](6-NLP/4-Hotel-Reviews-1/README.md)                                                |                       Stephen                        |
+|      20       |                  Mga Romantic Hotels sa Europa ♥️             |   [Natural language processing](6-NLP/README.md)    | Sentiment analysis gamit ang mga review ng hotel 2                                                                             |                                               [Python](6-NLP/5-Hotel-Reviews-2/README.md)                                                |                       Stephen                        |
 |      21       |            Panimula sa Time Series Forecasting                |        [Time series](7-TimeSeries/README.md)        | Panimula sa time series forecasting                                                                                             |                                             [Python](7-TimeSeries/1-Introduction/README.md)                                              |                      Francesca                       |
 |      22       | ⚡️ Paggamit ng Kuryente sa Mundo ⚡️ - Time Series Forecasting gamit ang ARIMA |        [Time series](7-TimeSeries/README.md)        | Time series forecasting gamit ang ARIMA                                                                                         |                                                 [Python](7-TimeSeries/2-ARIMA/README.md)                                                 |                      Francesca                       |
 |      23       |  ⚡️ Paggamit ng Kuryente sa Mundo ⚡️ - Time Series Forecasting gamit ang SVR  |        [Time series](7-TimeSeries/README.md)        | Time series forecasting gamit ang Support Vector Regressor                                                                      |                                                  [Python](7-TimeSeries/3-SVR/README.md)                                                  |                       Anirban                        |
@@ -142,9 +141,9 @@ Sa pamamagitan ng pagtiyak na ang nilalaman ay naaayon sa mga proyekto, mas nagi
 |  Postscript   |            Mga Real-World Scenario at Aplikasyon ng ML         |      [ML in the Wild](9-Real-World/README.md)       | Mga kawili-wili at kapana-panabik na real-world na aplikasyon ng klasikong ML                                                  |                                             [Lesson](9-Real-World/1-Applications/README.md)                                              |                         Team                         |
 |  Postscript   |            Pag-debug ng Modelo sa ML gamit ang RAI Dashboard  |      [ML in the Wild](9-Real-World/README.md)       | Pag-debug ng Modelo sa Machine Learning gamit ang mga Responsible AI dashboard components                                       |                                             [Lesson](9-Real-World/2-Debugging-ML-Models/README.md)                                              |                         Ruth Yakubu                       |
 
-> [hanapin ang lahat ng karagdagang resources para sa kursong ito sa aming Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
+> [Hanapin ang lahat ng karagdagang resources para sa kursong ito sa aming Microsoft Learn collection](https://learn.microsoft.com/en-us/collections/qrqzamz1nn2wx3?WT.mc_id=academic-77952-bethanycheum)
 
-## Offline na Access
+## Offline na Pag-access
 
 Maaari mong patakbuhin ang dokumentasyong ito offline gamit ang [Docsify](https://docsify.js.org/#/). I-fork ang repo na ito, [i-install ang Docsify](https://docsify.js.org/#/quickstart) sa iyong lokal na makina, at pagkatapos sa root folder ng repo na ito, i-type ang `docsify serve`. Ang website ay magsisilbi sa port 3000 sa iyong localhost: `localhost:3000`.
 
@@ -152,10 +151,9 @@ Maaari mong patakbuhin ang dokumentasyong ito offline gamit ang [Docsify](https:
 
 Hanapin ang PDF ng kurikulum na may mga link [dito](https://microsoft.github.io/ML-For-Beginners/pdf/readme.pdf).
 
-
 ## 🎒 Iba Pang Kurso 
 
-Ang aming team ay gumagawa ng iba pang mga kurso! Tingnan:
+Ang aming team ay gumagawa ng iba pang mga kurso! Tingnan ang:
 
 - [Generative AI for Beginners](https://aka.ms/genai-beginners)
 - [Generative AI for Beginners .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet)
@@ -175,4 +173,4 @@ Ang aming team ay gumagawa ng iba pang mga kurso! Tingnan:
 ---
 
 **Paunawa**:  
-Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na sanggunian. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na maaaring magmula sa paggamit ng pagsasaling ito.
+Ang dokumentong ito ay isinalin gamit ang AI translation service na [Co-op Translator](https://github.com/Azure/co-op-translator). Bagama't sinisikap naming maging tumpak, tandaan na ang mga awtomatikong pagsasalin ay maaaring maglaman ng mga pagkakamali o hindi pagkakatugma. Ang orihinal na dokumento sa kanyang katutubong wika ang dapat ituring na opisyal na pinagmulan. Para sa mahalagang impormasyon, inirerekomenda ang propesyonal na pagsasalin ng tao. Hindi kami mananagot sa anumang hindi pagkakaunawaan o maling interpretasyon na dulot ng paggamit ng pagsasaling ito.
