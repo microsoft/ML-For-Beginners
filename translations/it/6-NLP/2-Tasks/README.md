@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "6534e145d52a3890590d27be75386e5d",
-  "translation_date": "2025-08-29T22:20:40+00:00",
+  "original_hash": "5f3cb462e3122e1afe7ab0050ccf2bd3",
+  "translation_date": "2025-09-06T07:39:03+00:00",
   "source_file": "6-NLP/2-Tasks/README.md",
   "language_code": "it"
 }
@@ -11,9 +11,9 @@ CO_OP_TRANSLATOR_METADATA:
 
 Per la maggior parte dei compiti di *elaborazione del linguaggio naturale*, il testo da elaborare deve essere suddiviso, esaminato e i risultati devono essere archiviati o confrontati con regole e set di dati. Questi compiti permettono al programmatore di derivare il _significato_ o l'_intento_ o solo la _frequenza_ dei termini e delle parole in un testo.
 
-## [Quiz pre-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/33/)
+## [Quiz pre-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
-Scopriamo le tecniche comuni utilizzate nell'elaborazione del testo. Combinate con il machine learning, queste tecniche ti aiutano ad analizzare grandi quantità di testo in modo efficiente. Prima di applicare il ML a questi compiti, tuttavia, cerchiamo di comprendere i problemi che un esperto di NLP potrebbe incontrare.
+Scopriamo le tecniche comuni utilizzate nell'elaborazione del testo. Combinate con il machine learning, queste tecniche ti aiutano ad analizzare grandi quantità di testo in modo efficiente. Prima di applicare il ML a questi compiti, però, cerchiamo di comprendere i problemi che un esperto di NLP potrebbe incontrare.
 
 ## Compiti comuni nell'NLP
 
@@ -23,33 +23,33 @@ Esistono diversi modi per analizzare un testo su cui stai lavorando. Ci sono com
 
 Probabilmente la prima cosa che la maggior parte degli algoritmi di NLP deve fare è suddividere il testo in token, o parole. Sebbene possa sembrare semplice, tenere conto della punteggiatura e dei delimitatori di parole e frasi di lingue diverse può renderlo complicato. Potresti dover utilizzare vari metodi per determinare le demarcazioni.
 
-![tokenizzazione](../../../../translated_images/tokenization.1641a160c66cd2d93d4524e8114e93158a9ce0eba3ecf117bae318e8a6ad3487.it.png)
+![tokenizzazione](../../../../6-NLP/2-Tasks/images/tokenization.png)
 > Tokenizzazione di una frase da **Orgoglio e Pregiudizio**. Infografica di [Jen Looper](https://twitter.com/jenlooper)
 
 ### Embeddings
 
 [Word embeddings](https://wikipedia.org/wiki/Word_embedding) sono un modo per convertire i dati testuali in numeri. Gli embeddings vengono effettuati in modo tale che parole con significati simili o parole utilizzate insieme si raggruppino.
 
-![word embeddings](../../../../translated_images/embedding.2cf8953c4b3101d188c2f61a5de5b6f53caaa5ad4ed99236d42bc3b6bd6a1fe2.it.png)
+![word embeddings](../../../../6-NLP/2-Tasks/images/embedding.png)
 > "Ho il massimo rispetto per i tuoi nervi, sono miei vecchi amici." - Word embeddings per una frase in **Orgoglio e Pregiudizio**. Infografica di [Jen Looper](https://twitter.com/jenlooper)
 
-✅ Prova [questo strumento interessante](https://projector.tensorflow.org/) per sperimentare con i word embeddings. Cliccando su una parola vengono mostrati cluster di parole simili: 'giocattolo' si raggruppa con 'disney', 'lego', 'playstation' e 'console'.
+✅ Prova [questo strumento interessante](https://projector.tensorflow.org/) per sperimentare con i word embeddings. Cliccando su una parola mostra cluster di parole simili: 'giocattolo' si raggruppa con 'disney', 'lego', 'playstation' e 'console'.
 
 ### Parsing e Tagging delle Parti del Discorso
 
-Ogni parola che è stata tokenizzata può essere etichettata come parte del discorso - un sostantivo, un verbo o un aggettivo. La frase `la veloce volpe rossa saltò sopra il cane marrone pigro` potrebbe essere etichettata come fox = sostantivo, jumped = verbo.
+Ogni parola che è stata tokenizzata può essere etichettata come parte del discorso - un sostantivo, verbo o aggettivo. La frase `la veloce volpe rossa saltò sopra il cane marrone pigro` potrebbe essere etichettata come fox = sostantivo, jumped = verbo.
 
-![parsing](../../../../translated_images/parse.d0c5bbe1106eae8fe7d60a183cd1736c8b6cec907f38000366535f84f3036101.it.png)
+![parsing](../../../../6-NLP/2-Tasks/images/parse.png)
 
 > Parsing di una frase da **Orgoglio e Pregiudizio**. Infografica di [Jen Looper](https://twitter.com/jenlooper)
 
-Il parsing consiste nel riconoscere quali parole sono correlate tra loro in una frase - ad esempio `la veloce volpe rossa saltò` è una sequenza aggettivo-sostantivo-verbo che è separata dalla sequenza `cane marrone pigro`.
+Il parsing consiste nel riconoscere quali parole sono correlate tra loro in una frase - ad esempio `la veloce volpe rossa saltò` è una sequenza aggettivo-sostantivo-verbo che è separata dalla sequenza `il cane marrone pigro`.
 
 ### Frequenze di Parole e Frasi
 
-Una procedura utile quando si analizza un grande corpo di testo è costruire un dizionario di ogni parola o frase di interesse e quante volte appare. La frase `la veloce volpe rossa saltò sopra il cane marrone pigro` ha una frequenza di 2 per la parola "la".
+Una procedura utile quando si analizza un grande corpo di testo è costruire un dizionario di ogni parola o frase di interesse e quante volte appare. La frase `la veloce volpe rossa saltò sopra il cane marrone pigro` ha una frequenza di 2 per la parola "il".
 
-Osserviamo un esempio di testo in cui contiamo la frequenza delle parole. La poesia "The Winners" di Rudyard Kipling contiene il seguente verso:
+Vediamo un esempio di testo in cui contiamo la frequenza delle parole. La poesia The Winners di Rudyard Kipling contiene il seguente verso:
 
 ```output
 What the moral? Who rides may read.
@@ -60,7 +60,7 @@ Down to Gehenna or up to the Throne,
 He travels the fastest who travels alone.
 ```
 
-Poiché le frequenze delle frasi possono essere sensibili o meno alla distinzione tra maiuscole e minuscole, la frase `un amico` ha una frequenza di 2, `il` ha una frequenza di 6 e `viaggia` ha una frequenza di 2.
+Poiché le frequenze delle frasi possono essere sensibili o insensibili alle maiuscole, la frase `un amico` ha una frequenza di 2, `il` ha una frequenza di 6 e `viaggia` è 2.
 
 ### N-grams
 
@@ -69,53 +69,53 @@ Un testo può essere suddiviso in sequenze di parole di una lunghezza prestabili
 Ad esempio, `la veloce volpe rossa saltò sopra il cane marrone pigro` con un punteggio n-gram di 2 produce i seguenti n-grams:
 
 1. la veloce  
-2. veloce rossa  
-3. rossa volpe  
-4. volpe saltò  
+2. veloce volpe  
+3. volpe rossa  
+4. rossa saltò  
 5. saltò sopra  
 6. sopra il  
 7. il cane  
 8. cane marrone  
 9. marrone pigro  
 
-Potrebbe essere più facile visualizzarlo come una finestra scorrevole sulla frase. Ecco un esempio per n-grams di 3 parole, con il n-gram evidenziato in grassetto in ogni frase:
+Potrebbe essere più facile visualizzarlo come una finestra scorrevole sulla frase. Ecco un esempio per n-grams di 3 parole, l'n-gram è in grassetto in ogni frase:
 
-1.   <u>**la veloce rossa**</u> volpe saltò sopra il cane marrone pigro  
-2.   la **<u>veloce rossa volpe</u>** saltò sopra il cane marrone pigro  
-3.   la veloce **<u>rossa volpe saltò</u>** sopra il cane marrone pigro  
-4.   la veloce rossa **<u>volpe saltò sopra</u>** il cane marrone pigro  
-5.   la veloce rossa volpe **<u>saltò sopra il</u>** cane marrone pigro  
-6.   la veloce rossa volpe saltò **<u>sopra il cane</u>** marrone pigro  
-7.   la veloce rossa volpe saltò sopra <u>**il cane marrone**</u> pigro  
-8.   la veloce rossa volpe saltò sopra il **<u>cane marrone pigro</u>**
+1.   <u>**la veloce volpe**</u> rossa saltò sopra il cane marrone pigro  
+2.   la **<u>veloce volpe rossa</u>** saltò sopra il cane marrone pigro  
+3.   la veloce **<u>volpe rossa saltò</u>** sopra il cane marrone pigro  
+4.   la veloce volpe **<u>rossa saltò sopra</u>** il cane marrone pigro  
+5.   la veloce volpe rossa **<u>saltò sopra il</u>** cane marrone pigro  
+6.   la veloce volpe rossa saltò **<u>sopra il cane</u>** marrone pigro  
+7.   la veloce volpe rossa saltò sopra <u>**il cane marrone**</u> pigro  
+8.   la veloce volpe rossa saltò sopra il **<u>cane marrone pigro</u>**  
 
 ![finestra scorrevole n-grams](../../../../6-NLP/2-Tasks/images/n-grams.gif)
 
-> Valore n-gram di 3: Infografica di [Jen Looper](https://twitter.com/jenlooper)
+> Valore N-gram di 3: Infografica di [Jen Looper](https://twitter.com/jenlooper)
 
 ### Estrazione di Frasi Nominali
 
 Nella maggior parte delle frasi, c'è un sostantivo che è il soggetto o l'oggetto della frase. In inglese, spesso è identificabile perché preceduto da 'a', 'an' o 'the'. Identificare il soggetto o l'oggetto di una frase attraverso l'estrazione della frase nominale è un compito comune nell'NLP quando si cerca di comprendere il significato di una frase.
 
-✅ Nella frase "Non riesco a fissare l'ora, o il luogo, o lo sguardo o le parole, che hanno posto le fondamenta. È passato troppo tempo. Ero nel mezzo prima di rendermi conto che avevo iniziato.", riesci a identificare le frasi nominali?
+✅ Nella frase "Non riesco a fissare l'ora, o il luogo, o lo sguardo o le parole, che hanno posto le basi. È troppo tempo fa. Ero nel mezzo prima di rendermi conto che avevo iniziato.", riesci a identificare le frasi nominali?
 
 Nella frase `la veloce volpe rossa saltò sopra il cane marrone pigro` ci sono 2 frasi nominali: **veloce volpe rossa** e **cane marrone pigro**.
 
 ### Analisi del Sentimento
 
-Una frase o un testo possono essere analizzati per il sentimento, ovvero quanto è *positivo* o *negativo*. Il sentimento viene misurato in termini di *polarità* e *oggettività/soggettività*. La polarità è misurata da -1.0 a 1.0 (negativo a positivo) e da 0.0 a 1.0 (più oggettivo a più soggettivo).
+Una frase o un testo possono essere analizzati per il sentimento, ovvero quanto è *positivo* o *negativo*. Il sentimento viene misurato in *polarità* e *oggettività/soggettività*. La polarità è misurata da -1.0 a 1.0 (negativo a positivo) e da 0.0 a 1.0 (più oggettivo a più soggettivo).
 
-✅ Più avanti imparerai che ci sono diversi modi per determinare il sentimento utilizzando il machine learning, ma un modo è avere un elenco di parole e frasi categorizzate come positive o negative da un esperto umano e applicare quel modello al testo per calcolare un punteggio di polarità. Riesci a vedere come questo potrebbe funzionare in alcune circostanze e meno bene in altre?
+✅ Più avanti imparerai che ci sono diversi modi per determinare il sentimento utilizzando il machine learning, ma un modo è avere un elenco di parole e frasi categorizzate come positive o negative da un esperto umano e applicare quel modello al testo per calcolare un punteggio di polarità. Riesci a vedere come questo funzionerebbe in alcune circostanze e meno bene in altre?
 
 ### Inflessione
 
-L'inflessione ti permette di prendere una parola e ottenere la forma singolare o plurale della parola.
+L'inflessione ti permette di prendere una parola e ottenere il singolare o il plurale della parola.
 
 ### Lemmatizzazione
 
 Un *lemma* è la radice o la parola principale per un insieme di parole, ad esempio *volò*, *vola*, *volando* hanno come lemma il verbo *volare*.
 
-Sono inoltre disponibili database utili per i ricercatori NLP, in particolare:
+Sono disponibili anche database utili per i ricercatori NLP, in particolare:
 
 ### WordNet
 
@@ -123,11 +123,11 @@ Sono inoltre disponibili database utili per i ricercatori NLP, in particolare:
 
 ## Librerie NLP
 
-Fortunatamente, non devi costruire tutte queste tecniche da zero, poiché ci sono eccellenti librerie Python disponibili che rendono l'NLP molto più accessibile agli sviluppatori che non sono specializzati in elaborazione del linguaggio naturale o machine learning. Le prossime lezioni includono più esempi di queste librerie, ma qui imparerai alcuni esempi utili per aiutarti con il prossimo compito.
+Fortunatamente, non devi costruire tutte queste tecniche da solo, poiché ci sono eccellenti librerie Python disponibili che rendono l'NLP molto più accessibile agli sviluppatori che non sono specializzati in elaborazione del linguaggio naturale o machine learning. Le prossime lezioni includono più esempi di queste librerie, ma qui imparerai alcuni esempi utili per aiutarti con il prossimo compito.
 
 ### Esercizio - utilizzo della libreria `TextBlob`
 
-Usiamo una libreria chiamata TextBlob, che contiene API utili per affrontare questi tipi di compiti. TextBlob "si basa sulle solide fondamenta di [NLTK](https://nltk.org) e [pattern](https://github.com/clips/pattern), e funziona bene con entrambi." Ha una quantità considerevole di ML integrato nella sua API.
+Usiamo una libreria chiamata TextBlob poiché contiene API utili per affrontare questi tipi di compiti. TextBlob "si basa sulle solide fondamenta di [NLTK](https://nltk.org) e [pattern](https://github.com/clips/pattern), e funziona bene con entrambi." Ha una quantità considerevole di ML integrata nella sua API.
 
 > Nota: È disponibile una [Guida Rapida](https://textblob.readthedocs.io/en/dev/quickstart.html#quickstart) utile per TextBlob, consigliata agli sviluppatori Python esperti.
 
@@ -147,11 +147,11 @@ Quando si cerca di identificare *frasi nominali*, TextBlob offre diverse opzioni
     np = user_input_blob.noun_phrases                                    
     ```
 
-    > Cosa sta succedendo qui? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) è "Un estrattore di frasi nominali che utilizza il parsing a chunk addestrato con il corpus di addestramento ConLL-2000." ConLL-2000 si riferisce alla Conferenza del 2000 sull'Apprendimento Computazionale del Linguaggio Naturale. Ogni anno la conferenza ospitava un workshop per affrontare un problema spinoso dell'NLP, e nel 2000 si trattava del chunking delle frasi nominali. Un modello è stato addestrato sul Wall Street Journal, con "le sezioni 15-18 come dati di addestramento (211727 token) e la sezione 20 come dati di test (47377 token)". Puoi consultare le procedure utilizzate [qui](https://www.clips.uantwerpen.be/conll2000/chunking/) e i [risultati](https://ifarm.nl/erikt/research/np-chunking.html).
+    > Cosa sta succedendo qui? [ConllExtractor](https://textblob.readthedocs.io/en/dev/api_reference.html?highlight=Conll#textblob.en.np_extractors.ConllExtractor) è "Un estrattore di frasi nominali che utilizza il chunk parsing addestrato con il corpus di addestramento ConLL-2000." ConLL-2000 si riferisce alla Conferenza del 2000 sull'Apprendimento Computazionale del Linguaggio Naturale. Ogni anno la conferenza ospitava un workshop per affrontare un problema spinoso dell'NLP, e nel 2000 si trattava del chunking delle frasi nominali. Un modello è stato addestrato sul Wall Street Journal, con "le sezioni 15-18 come dati di addestramento (211727 token) e la sezione 20 come dati di test (47377 token)". Puoi consultare le procedure utilizzate [qui](https://www.clips.uantwerpen.be/conll2000/chunking/) e i [risultati](https://ifarm.nl/erikt/research/np-chunking.html).
 
 ### Sfida - migliorare il tuo bot con l'NLP
 
-Nella lezione precedente hai costruito un bot di domande e risposte molto semplice. Ora, renderai Marvin un po' più empatico analizzando il tuo input per il sentimento e stampando una risposta che corrisponda al sentimento. Dovrai anche identificare una `frase nominale` e chiedere ulteriori informazioni su di essa.
+Nella lezione precedente hai costruito un bot di domande e risposte molto semplice. Ora, renderai Marvin un po' più empatico analizzando il tuo input per il sentimento e stampando una risposta che corrisponda al sentimento. Dovrai anche identificare una `noun_phrase` e chiedere ulteriori informazioni su di essa.
 
 I tuoi passaggi per costruire un bot conversazionale migliore:
 
@@ -164,7 +164,7 @@ I tuoi passaggi per costruire un bot conversazionale migliore:
    5. Stampa la risposta  
 3. Torna al passaggio 2  
 
-Ecco il frammento di codice per determinare il sentimento utilizzando TextBlob. Nota che ci sono solo quattro *gradazioni* di risposta basata sul sentimento (puoi aggiungerne altre se lo desideri):
+Ecco il frammento di codice per determinare il sentimento utilizzando TextBlob. Nota che ci sono solo quattro *gradazioni* di risposta al sentimento (puoi aggiungerne di più se lo desideri):
 
 ```python
 if user_input_blob.polarity <= -0.5:
@@ -200,7 +200,7 @@ Una possibile soluzione al compito è [qui](https://github.com/microsoft/ML-For-
 
 ✅ Verifica della Conoscenza
 
-1. Pensi che le risposte empatiche potrebbero 'ingannare' qualcuno facendogli credere che il bot li capisca davvero?  
+1. Pensi che le risposte empatiche potrebbero 'ingannare' qualcuno facendogli credere che il bot li capisca realmente?  
 2. Identificare la frase nominale rende il bot più 'credibile'?  
 3. Perché estrarre una 'frase nominale' da una frase è una cosa utile da fare?  
 
@@ -212,7 +212,7 @@ Implementa il bot nella verifica della conoscenza precedente e testalo su un ami
 
 Prendi un compito nella verifica della conoscenza precedente e prova a implementarlo. Testa il bot su un amico. Può ingannarli? Puoi rendere il tuo bot più 'credibile'?
 
-## [Quiz post-lezione](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/34/)
+## [Quiz post-lezione](https://ff-quizzes.netlify.app/en/ml/)
 
 ## Revisione e Studio Autonomo
 
