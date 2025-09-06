@@ -1,8 +1,8 @@
 <!--
 CO_OP_TRANSLATOR_METADATA:
 {
-  "original_hash": "9579f42e3ff5114c58379cc9e186a828",
-  "translation_date": "2025-09-03T23:50:16+00:00",
+  "original_hash": "1a6e9e46b34a2e559fbbfc1f95397c7b",
+  "translation_date": "2025-09-06T09:36:18+00:00",
   "source_file": "4-Classification/2-Classifiers-1/README.md",
   "language_code": "ja"
 }
@@ -13,10 +13,10 @@ CO_OP_TRANSLATOR_METADATA:
 
 このデータセットを使って、さまざまな分類器を用いて_材料のグループに基づいて特定の国の料理を予測_します。その過程で、分類タスクにアルゴリズムを活用する方法についてさらに学びます。
 
-## [講義前クイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/21/)
+## [講義前のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 # 準備
 
-[レッスン1](../1-Introduction/README.md)を完了している場合、これら4つのレッスンのために、ルートの`/data`フォルダに_cleaned_cuisines.csv_ファイルが存在することを確認してください。
+[レッスン1](../1-Introduction/README.md)を完了している場合、これら4つのレッスンのルート`/data`フォルダに_cleaned_cuisines.csv_ファイルが存在することを確認してください。
 
 ## 演習 - 国の料理を予測する
 
@@ -49,7 +49,7 @@ CO_OP_TRANSLATOR_METADATA:
     import numpy as np
     ```
 
-1. X座標とy座標を2つのデータフレームに分割してトレーニング用に準備します。`cuisine`をラベルのデータフレームとして使用します:
+1. X座標とy座標を2つのデータフレームに分割してトレーニング用に準備します。`cuisine`をラベルデータフレームとして使用します:
 
     ```python
     cuisines_label_df = cuisines_df['cuisine']
@@ -74,7 +74,7 @@ CO_OP_TRANSLATOR_METADATA:
     cuisines_feature_df.head()
     ```
 
-    特徴は以下のように見えます:
+    特徴データは以下のようになります:
 
 |      | almond | angelica | anise | anise_seed | apple | apple_brandy | apricot | armagnac | artemisia | artichoke |  ... | whiskey | white_bread | white_wine | whole_grain_wheat_flour | wine | wood |  yam | yeast | yogurt | zucchini |
 | ---: | -----: | -------: | ----: | ---------: | ----: | -----------: | ------: | -------: | --------: | --------: | ---: | ------: | ----------: | ---------: | ----------------------: | ---: | ---: | ---: | ----: | -----: | -------: |
@@ -90,7 +90,7 @@ CO_OP_TRANSLATOR_METADATA:
 
 データがクリーンでトレーニングの準備が整ったら、どのアルゴリズムを使用するかを決定する必要があります。
 
-Scikit-learnでは分類が教師あり学習のカテゴリに分類されており、その中で多くの分類方法が提供されています。[その種類](https://scikit-learn.org/stable/supervised_learning.html)は最初は非常に多くて混乱するかもしれません。以下の方法はすべて分類技術を含んでいます:
+Scikit-learnは分類を教師あり学習のカテゴリに分類しており、その中で多くの分類方法を提供しています。[その種類](https://scikit-learn.org/stable/supervised_learning.html)は最初は非常に多くて混乱するかもしれません。以下の方法はすべて分類技術を含んでいます:
 
 - 線形モデル
 - サポートベクターマシン
@@ -101,53 +101,53 @@ Scikit-learnでは分類が教師あり学習のカテゴリに分類されて�
 - アンサンブル法（投票分類器）
 - マルチクラスおよびマルチ出力アルゴリズム（マルチクラス分類、マルチラベル分類、マルチクラス・マルチ出力分類）
 
-> [ニューラルネットワークを使用してデータを分類する](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification)こともできますが、このレッスンの範囲外です。
+> [ニューラルネットワークを使ってデータを分類](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification)することもできますが、このレッスンの範囲外です。
 
 ### どの分類器を選ぶべきか？
 
-では、どの分類器を選ぶべきでしょうか？多くの場合、いくつか試して良い結果を探すのがテストの方法です。Scikit-learnは、作成されたデータセットでKNeighbors、SVC（2種類）、GaussianProcessClassifier、DecisionTreeClassifier、RandomForestClassifier、MLPClassifier、AdaBoostClassifier、GaussianNB、QuadraticDiscriminationAnalysisを比較し、結果を視覚化する[比較](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html)を提供しています:
+では、どの分類器を選ぶべきでしょうか？多くの場合、いくつか試して良い結果を探すのが一つの方法です。Scikit-learnは[KNeighbors、SVC（2種類）、GaussianProcessClassifier、DecisionTreeClassifier、RandomForestClassifier、MLPClassifier、AdaBoostClassifier、GaussianNB、QuadraticDiscriminationAnalysis](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html)を比較し、結果を視覚化した[サイドバイサイド比較](https://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html)を提供しています:
 
-![分類器の比較](../../../../translated_images/comparison.edfab56193a85e7fdecbeaa1b1f8c99e94adbf7178bed0de902090cf93d6734f.ja.png)
+![分類器の比較](../../../../4-Classification/2-Classifiers-1/images/comparison.png)
 > Scikit-learnのドキュメントで生成されたプロット
 
 > AutoMLはこれらの比較をクラウドで実行し、データに最適なアルゴリズムを選択できるため、この問題を簡単に解決します。[こちら](https://docs.microsoft.com/learn/modules/automate-model-selection-with-azure-automl/?WT.mc_id=academic-77952-leestott)で試してみてください。
 
 ### より良いアプローチ
 
-しかし、無作為に推測するよりも良い方法は、このダウンロード可能な[MLチートシート](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott)のアイデアに従うことです。ここでは、マルチクラス問題に対していくつかの選択肢があることがわかります:
+しかし、無作為に推測するよりも、ダウンロード可能な[MLチートシート](https://docs.microsoft.com/azure/machine-learning/algorithm-cheat-sheet?WT.mc_id=academic-77952-leestott)のアイデアに従う方が良い方法です。ここでは、マルチクラス問題に対していくつかの選択肢があることがわかります:
 
-![マルチクラス問題のチートシート](../../../../translated_images/cheatsheet.07a475ea444d22234cb8907a3826df5bdd1953efec94bd18e4496f36ff60624a.ja.png)
+![マルチクラス問題のチートシート](../../../../4-Classification/2-Classifiers-1/images/cheatsheet.png)
 > Microsoftのアルゴリズムチートシートの一部、マルチクラス分類オプションを詳細に説明
 
-✅ このチートシートをダウンロードして印刷し、壁に貼りましょう！
+✅ このチートシートをダウンロードして、印刷して壁に貼りましょう！
 
 ### 推論
 
-制約を考慮して、さまざまなアプローチを推論してみましょう:
+制約を考慮して、異なるアプローチを推論してみましょう:
 
-- **ニューラルネットワークは重すぎる**。クリーンだが最小限のデータセットを使用し、ノートブックを介してローカルでトレーニングを実行するため、ニューラルネットワークはこのタスクには重すぎます。
+- **ニューラルネットワークは重すぎる**。クリーンで最小限のデータセットを使用し、ノートブックを介してローカルでトレーニングを実行するため、ニューラルネットワークはこのタスクには重すぎます。
 - **2クラス分類器は使用しない**。2クラス分類器は使用しないため、one-vs-allは除外されます。
-- **決定木またはロジスティック回帰が適している可能性がある**。決定木やマルチクラスデータに対するロジスティック回帰が適しているかもしれません。
-- **マルチクラスブースト決定木は異なる問題を解決する**。マルチクラスブースト決定木は非パラメトリックタスク、例えばランキングを構築するタスクに最適であり、私たちには役立ちません。
+- **決定木またはロジスティック回帰が適している可能性がある**。決定木またはマルチクラスデータに対するロジスティック回帰が適している可能性があります。
+- **マルチクラスブースト決定木は異なる問題を解決する**。マルチクラスブースト決定木は非パラメトリックタスク、例えばランキングを構築するタスクに最適であり、私たちには適していません。
 
 ### Scikit-learnの使用
 
-データを分析するためにScikit-learnを使用します。ただし、Scikit-learnでロジスティック回帰を使用する方法は多数あります。[渡すべきパラメータ](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression)を確認してください。
+Scikit-learnを使用してデータを分析します。ただし、Scikit-learnでロジスティック回帰を使用する方法は多数あります。[渡すべきパラメータ](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression)を確認してください。
 
-基本的に、Scikit-learnにロジスティック回帰を実行させる際に指定する必要がある重要なパラメータは、`multi_class`と`solver`の2つです。`multi_class`の値は特定の動作を適用します。solverの値は使用するアルゴリズムを指定します。すべてのsolverがすべての`multi_class`値と組み合わせられるわけではありません。
+基本的に、ロジスティック回帰を実行する際に指定する必要がある重要なパラメータは2つあります - `multi_class`と`solver`です。`multi_class`値は特定の動作を適用します。solverの値は使用するアルゴリズムを指定します。すべてのsolverがすべての`multi_class`値とペアリングできるわけではありません。
 
 ドキュメントによると、マルチクラスの場合、トレーニングアルゴリズムは以下のように動作します:
 
 - **one-vs-rest (OvR)方式を使用**する場合、`multi_class`オプションが`ovr`に設定されている場合
-- **クロスエントロピー損失を使用**する場合、`multi_class`オプションが`multinomial`に設定されている場合（現在、`multinomial`オプションは‘lbfgs’, ‘sag’, ‘saga’, ‘newton-cg’ソルバーのみでサポートされています）
+- **クロスエントロピー損失を使用**する場合、`multi_class`オプションが`multinomial`に設定されている場合。（現在、`multinomial`オプションは‘lbfgs’, ‘sag’, ‘saga’, ‘newton-cg’ソルバーのみでサポートされています。）
 
-> 🎓 ここでの「方式」は、'ovr'（one-vs-rest）または'multinomial'のいずれかです。ロジスティック回帰は本来バイナリ分類をサポートするように設計されているため、これらの方式はマルチクラス分類タスクをより適切に処理できるようにします。[出典](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
+> 🎓 ここでの「方式」は、'ovr'（one-vs-rest）または'multinomial'のいずれかです。ロジスティック回帰は基本的にバイナリ分類をサポートするように設計されているため、これらの方式はマルチクラス分類タスクをより適切に処理できるようにします。[出典](https://machinelearningmastery.com/one-vs-rest-and-one-vs-one-for-multi-class-classification/)
 
 > 🎓 「solver」は「最適化問題で使用するアルゴリズム」と定義されています。[出典](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html?highlight=logistic%20regressio#sklearn.linear_model.LogisticRegression)
 
-Scikit-learnは、異なるデータ構造が引き起こす課題に対してsolverがどのように対応するかを説明するこの表を提供しています:
+Scikit-learnは、solverが異なるデータ構造によって引き起こされる課題をどのように処理するかを説明するこの表を提供しています:
 
-![ソルバー](../../../../translated_images/solvers.5fc648618529e627dfac29b917b3ccabda4b45ee8ed41b0acb1ce1441e8d1ef1.ja.png)
+![ソルバー](../../../../4-Classification/2-Classifiers-1/images/solvers.png)
 
 ## 演習 - データを分割する
 
@@ -160,7 +160,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 ## 演習 - ロジスティック回帰を適用する
 
-マルチクラスの場合、使用する_方式_と設定する_ソルバー_を選択する必要があります。LogisticRegressionを使用して、multi_classを`ovr`に設定し、**liblinear**ソルバーを使用してトレーニングします。
+マルチクラスの場合、使用する_方式_と設定する_ソルバー_を選択する必要があります。multi_classを`ovr`に設定し、solverを`liblinear`に設定してロジスティック回帰を使用します。
 
 1. multi_classを`ovr`に設定し、solverを`liblinear`に設定したロジスティック回帰を作成します:
 
@@ -173,10 +173,10 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     ```
 
     ✅ デフォルトとしてよく設定される`lbfgs`のような別のソルバーを試してみてください
-> 注意が必要な場合は、データを平坦化するためにPandasの[`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html)関数を使用してください。
+> 注意が必要な場合、データを平坦化するには、Pandasの[`ravel`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.ravel.html)関数を使用してください。
 精度は**80%以上**で良好です！
 
-1. このモデルを試すには、データの1行（#50）をテストしてみてください：
+1. データの1行（#50）をテストして、このモデルの動作を確認できます：
 
     ```python
     print(f'ingredients: {X_test.iloc[50][X_test.iloc[50]!=0].keys()}')
@@ -192,7 +192,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
    ✅ 別の行番号を試して結果を確認してください。
 
-1. さらに掘り下げて、この予測の精度を確認してみましょう：
+1. さらに掘り下げて、この予測の精度を確認できます：
 
     ```python
     test= X_test.iloc[50].values.reshape(-1, 1).T
@@ -204,7 +204,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
     topPrediction.head()
     ```
 
-    結果が出力されます - インド料理が最も可能性が高いと予測されています：
+    結果が出力されます - インド料理が最も確率が高いと予測されています：
 
     |          |        0 |
     | -------: | -------: |
@@ -236,18 +236,18 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 ## 🚀チャレンジ
 
-このレッスンでは、クリーンアップしたデータを使用して、材料の組み合わせから国の料理を予測する機械学習モデルを構築しました。Scikit-learnが提供する分類オプションをじっくり読んでみてください。さらに「solver」の概念を掘り下げて、裏で何が行われているのかを理解してください。
+このレッスンでは、クリーンアップしたデータを使用して、材料の組み合わせから国の料理を予測する機械学習モデルを構築しました。Scikit-learnが提供するデータ分類の多くのオプションをじっくり読んでみてください。さらに「solver」の概念を掘り下げて、裏で何が行われているのかを理解してください。
 
-## [講義後のクイズ](https://gray-sand-07a10f403.1.azurestaticapps.net/quiz/22/)
+## [講義後のクイズ](https://ff-quizzes.netlify.app/en/ml/)
 
 ## レビューと自己学習
 
 ロジスティック回帰の数学的背景について、[このレッスン](https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2006.pdf)を掘り下げて学んでください。
 ## 課題 
 
-[solverについて学ぶ](assignment.md)
+[ソルバーについて学ぶ](assignment.md)
 
 ---
 
 **免責事項**:  
-この文書はAI翻訳サービス[Co-op Translator](https://github.com/Azure/co-op-translator)を使用して翻訳されています。正確性を追求しておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。元の言語で記載された文書を正式な情報源としてお考えください。重要な情報については、専門の人間による翻訳を推奨します。この翻訳の使用に起因する誤解や誤解釈について、当社は責任を負いません。
+この文書は、AI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性を期すよう努めておりますが、自動翻訳には誤りや不正確さが含まれる可能性があります。元の言語で記載された原文を信頼できる情報源としてご参照ください。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用に起因する誤解や誤認について、当方は一切の責任を負いません。
