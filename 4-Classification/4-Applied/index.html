@@ -1,17 +1,26 @@
-<!--
-D:\AI\MachineLearning\ML-For-Beginners\4-Classification\4-Applied>python -m http.server 8000
-Acces in th broser: http://localhost:8000/
-online netron to onnx file: https://netron.app/
--->
-
 <!DOCTYPE html>
 <html>
     <head>
         <title>Cuisine Matcher</title>
+        <link rel="stylesheet" href="styles.css">
         <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.9.0/dist/ort.min.js"></script>
     </head>
     <body>
-        <h1>Check your refrigerator. What can you create?</h1>
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="logo">
+                <a href="#">Cuisine Matcher</a>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Recipes</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+
+        <h1 style="padding: 20px 20px 0 20px;">Check your refrigerator. What can you create?</h1>
+
         <div id="wrapper">
             <div class="boxCont">
                 <input type="checkbox" value="4" class="checkbox">
@@ -48,55 +57,9 @@ online netron to onnx file: https://netron.app/
                 <label>cumin</label>
             </div>
         </div>
-        <div style="padding-top:10px">
+        <div style="padding: 20px">
             <button onClick="startInference()">What kind of cuisine can you make?</button>
         </div> 
+        <script src="CouisineMatcher.js"></script>
     </body>
 </html>
-<script>
-    const ingredients = Array(380).fill(0);
-    
-    const checks = [...document.querySelectorAll('.checkbox')];
-    
-    checks.forEach(check => {
-        check.addEventListener('change', function() {
-            // toggle the state of the ingredient
-            // based on the checkbox's value (1 or 0)
-            ingredients[check.value] = check.checked ? 1 : 0;
-        });
-    });
-
-    function testCheckboxes() {
-        // validate if at least one checkbox is checked
-        return checks.some(check => check.checked);
-    }
-
-    async function startInference() {
-
-        let atLeastOneChecked = testCheckboxes()
-
-        if (!atLeastOneChecked) {
-            alert('Please select at least one ingredient.');
-            return;
-        }
-        try {
-            // create a new session and load the model.
-            
-            const session = await ort.InferenceSession.create('./model.onnx');
-
-            const input = new ort.Tensor(new Float32Array(ingredients), [1, 380]);
-            const feeds = { float_input: input };
-
-            // feed inputs and run
-            const results = await session.run(feeds);
-
-            // read from results
-            alert('You can enjoy ' + results.label.data[0] + ' cuisine today!')
-
-        } catch (e) {
-            console.log(`failed to inference ONNX model`);
-            console.error(e);
-        }
-    }
-           
-</script>
